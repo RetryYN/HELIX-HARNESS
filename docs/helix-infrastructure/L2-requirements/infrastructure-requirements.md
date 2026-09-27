@@ -126,10 +126,10 @@ parent_l1_candidate: docs/helix-infrastructure/L1-planning/infrastructure-intent
 ### HELIXINFRASTRUCTURE-L2-010 SECURITY authority・Worker操作の構成体
 
 - **親L1**：`HELIXINFRASTRUCTURE-L1-021`、`HELIXINFRASTRUCTURE-L1-028`、`HELIXINFRASTRUCTURE-L1-029`、`HELIXINFRASTRUCTURE-L1-039`。
-- **入力**：INFRASTRUCTUREの限定操作要求（target/project/action/revision/expiry）、SECURITYのauthority/credential/network/isolation/egress条件、OS assignment/ticket、Worker実行結果。
+- **入力**：INFRASTRUCTUREの限定操作要求（target/project/action/revision/scope/expiry）、SECURITYのauthority/credential/network/isolation/egress条件、通常OS/Worker経路ではOS assignment/ticket、実行後のWorker結果receipt。結果receiptは開始前の入力ではなく後段で受け取る。更新・変更を適用するoperationに限り、該当target/revision/scopeのSECURITY update-admission状態を受ける。独立bootstrap/recovery operationではL2-006のresource/pathと別SECURITY authorityを入力にし、停止中OSのticketを開始条件にしない。
 - **提供**：SECURITYで認可された範囲だけをWorkerが実行し、操作対象、scope、before/after resource state、結果/evidenceへ接続する実操作経路。
 - **保証**：INFRASTRUCTUREがsecurity policyや自身のauthorityを作らず、credential valueをresource normal state、backup、snapshotへ無条件に保存しない。Workerは無制限Shell主体にならない。実操作はOS/SECURITY/Workerの役割を越えずに停止・回収できる。
-- **単独成立の依存・版**：L2-001/005/006/009、SECURITY authorityとWorker実行契約。`version_target: 1.0`。
+- **単独成立の依存・版**：全operationでL2-001の対象resource/actual stateと、対象・action・revision・scope・expiryに適用される有効なSECURITY authorityを照合する。全実操作はSECURITY制約下のWorker実行契約を通す。通常OS/Worker経路ではOS assignment/ticketとL2-009 Work/Change接続を用いる。更新・変更を適用する場合のみ、該当target/revision/scopeのSECURITY update admissionがacceptedであることを追加条件とする。state-changing operationでは、そのactionに適用されるL2-005のbefore/after、backup/restore/rollback/recovery義務を確認し、該当義務が不明または未充足なら変更を保留する。無関係な復旧義務を全操作へ一律要求しない。bootstrap/recovery operationもSECURITY制約下のWorker実行契約を通し、L2-006の独立resource/pathと別SECURITY authorityを開始条件とする。OS/通常Control Plane停止中にそのticketまたは通常L2-009応答を必須にせず、復旧後はoperation/resultをOSへ同期する。この限定は通常operation ticket/authorityの一般免除ではない。`version_target: 1.0`。
 - **失敗時の戻し先・未完義務**：authority/credential scope/target/revision不一致なら実行前に拒否しSECURITY/OSへ返す。部分実行は成功にせず、実際の状態と未完操作、復旧/rollback obligationsを記録する。
 - **束ねる条件**：原文minimum item 14 (SECURITY connection)、16 (Worker execution)、HRI-L1-021/028/029/039。
 

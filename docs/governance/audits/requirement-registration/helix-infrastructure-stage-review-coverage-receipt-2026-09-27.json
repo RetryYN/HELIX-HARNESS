@@ -1,0 +1,3105 @@
+{
+  "receipt_id": "MPR-RCPT-HELIX-INFRASTRUCTURE-STAGE-REVIEW-2026-09-27",
+  "authority_effect": "none",
+  "candidate_digest_rule": "Existing L2 identity section, trailing blank lines stripped, followed by one LF. Changed L2 identities are explicitly enumerated; original source atoms and dispositions retained. L11 corrected full file is bound separately below.",
+  "correction_reason": "C1/C2操作別update admissionと独立復旧、C3モデル資源属性oracleを具体化。最低18項目を保持。",
+  "candidate_semantics_unchanged": false,
+  "acceptance_binding": {
+    "source_path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+    "sha256": "sha256:7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+    "base_commit": "c9fc9aa463a82b8a11b0132dddd5e05a82bbbf0c",
+    "base_file_sha256": "sha256:39cc6ffc11c4994fef69ff4f676fd88f529ec677ef9a4dc58b12a17f77d000ba",
+    "change_kind": "targeted_acceptance_correction"
+  },
+  "candidates": [
+    {
+      "requirement_identity": "HELIXINFRASTRUCTURE-L2-001",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HELIXINFRASTRUCTURE-L1-001",
+        "HELIXINFRASTRUCTURE-L1-004",
+        "HELIXINFRASTRUCTURE-L1-005",
+        "HELIXINFRASTRUCTURE-L1-006",
+        "HELIXINFRASTRUCTURE-L1-007",
+        "HELIXINFRASTRUCTURE-L1-009",
+        "HELIXINFRASTRUCTURE-L1-022"
+      ],
+      "candidate_semantic_digest": "sha256:1f419d31826a8f6627f0595822cd99d5b8c55db0bfd5faa25a735bca92b529c6",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "現行L1/POからの新L2候補の起草。旧sourceは意味比較資料として参照し、旧atomを候補へ移管・採択・retireしない。入力旧atom集合は空集合であり、no_lossは空集合についてのみ。現行L1/POの条件対応はparent_source_conditionsと本文/L11を独立照合する。旧資産全体の被覆を主張しない。",
+      "atoms": [],
+      "current_condition_refs": [
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-001",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-004",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-005",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-006",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-007",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-009",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-022"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": [],
+      "acceptance_binding": {
+        "source_path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+        "sha256": "sha256:7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+        "base_commit": "c9fc9aa463a82b8a11b0132dddd5e05a82bbbf0c",
+        "base_file_sha256": "sha256:39cc6ffc11c4994fef69ff4f676fd88f529ec677ef9a4dc58b12a17f77d000ba",
+        "change_kind": "targeted_acceptance_correction"
+      },
+      "previous_registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-001-002",
+      "previous_candidate_semantic_digest": "sha256:1f419d31826a8f6627f0595822cd99d5b8c55db0bfd5faa25a735bca92b529c6",
+      "candidate_semantics_unchanged": true
+    },
+    {
+      "requirement_identity": "HELIXINFRASTRUCTURE-L2-003",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HELIXINFRASTRUCTURE-L1-005",
+        "HELIXINFRASTRUCTURE-L1-006",
+        "HELIXINFRASTRUCTURE-L1-007",
+        "HELIXINFRASTRUCTURE-L1-009",
+        "HELIXINFRASTRUCTURE-L1-010",
+        "HELIXINFRASTRUCTURE-L1-011"
+      ],
+      "candidate_semantic_digest": "sha256:dd1b436cf6c66cbfa615c5a154af617c0c2078e70e90345f6d8ad3e09e8e3b0b",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "現行L1/POからの新L2候補の起草。旧sourceは意味比較資料として参照し、旧atomを候補へ移管・採択・retireしない。入力旧atom集合は空集合であり、no_lossは空集合についてのみ。現行L1/POの条件対応はparent_source_conditionsと本文/L11を独立照合する。旧資産全体の被覆を主張しない。",
+      "atoms": [],
+      "current_condition_refs": [
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-005",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-006",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-007",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-009",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-010",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-011"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": [],
+      "acceptance_binding": {
+        "source_path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+        "sha256": "sha256:7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+        "base_commit": "c9fc9aa463a82b8a11b0132dddd5e05a82bbbf0c",
+        "base_file_sha256": "sha256:39cc6ffc11c4994fef69ff4f676fd88f529ec677ef9a4dc58b12a17f77d000ba",
+        "change_kind": "targeted_acceptance_correction"
+      },
+      "previous_registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-003-002",
+      "previous_candidate_semantic_digest": "sha256:dd1b436cf6c66cbfa615c5a154af617c0c2078e70e90345f6d8ad3e09e8e3b0b",
+      "candidate_semantics_unchanged": true
+    },
+    {
+      "requirement_identity": "HELIXINFRASTRUCTURE-L2-010",
+      "requirement_kind": "composite",
+      "parent_l1_ids": [
+        "HELIXINFRASTRUCTURE-L1-021",
+        "HELIXINFRASTRUCTURE-L1-028",
+        "HELIXINFRASTRUCTURE-L1-029",
+        "HELIXINFRASTRUCTURE-L1-039"
+      ],
+      "candidate_semantic_digest": "sha256:c6b93eb12b5bfe8deb36485c688ce02709bfa49da40086b0d4b59cf6cdc45f37",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "現行L1/POからの新L2候補の起草。旧sourceは意味比較資料として参照し、旧atomを候補へ移管・採択・retireしない。入力旧atom集合は空集合であり、no_lossは空集合についてのみ。現行L1/POの条件対応はparent_source_conditionsと本文/L11を独立照合する。旧資産全体の被覆を主張しない。",
+      "atoms": [],
+      "current_condition_refs": [
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-021",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-028",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-029",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-039"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": [],
+      "acceptance_binding": {
+        "source_path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+        "sha256": "sha256:7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+        "base_commit": "c9fc9aa463a82b8a11b0132dddd5e05a82bbbf0c",
+        "base_file_sha256": "sha256:39cc6ffc11c4994fef69ff4f676fd88f529ec677ef9a4dc58b12a17f77d000ba",
+        "change_kind": "targeted_acceptance_correction"
+      },
+      "previous_registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-010-002",
+      "previous_candidate_semantic_digest": "sha256:957284a0c31d79f73ab4546197faae76b70ba6d7faf69b428a689a44262c9bfb",
+      "candidate_semantics_unchanged": false
+    },
+    {
+      "requirement_identity": "HELIXINFRASTRUCTURE-L2-011",
+      "requirement_kind": "composite",
+      "parent_l1_ids": [
+        "HELIXINFRASTRUCTURE-L1-001",
+        "HELIXINFRASTRUCTURE-L1-002",
+        "HELIXINFRASTRUCTURE-L1-003",
+        "HELIXINFRASTRUCTURE-L1-004",
+        "HELIXINFRASTRUCTURE-L1-005",
+        "HELIXINFRASTRUCTURE-L1-006",
+        "HELIXINFRASTRUCTURE-L1-007",
+        "HELIXINFRASTRUCTURE-L1-009",
+        "HELIXINFRASTRUCTURE-L1-010",
+        "HELIXINFRASTRUCTURE-L1-011",
+        "HELIXINFRASTRUCTURE-L1-014",
+        "HELIXINFRASTRUCTURE-L1-016",
+        "HELIXINFRASTRUCTURE-L1-017",
+        "HELIXINFRASTRUCTURE-L1-018",
+        "HELIXINFRASTRUCTURE-L1-019",
+        "HELIXINFRASTRUCTURE-L1-020",
+        "HELIXINFRASTRUCTURE-L1-021",
+        "HELIXINFRASTRUCTURE-L1-022",
+        "HELIXINFRASTRUCTURE-L1-028",
+        "HELIXINFRASTRUCTURE-L1-029",
+        "HELIXINFRASTRUCTURE-L1-038",
+        "HELIXINFRASTRUCTURE-L1-039"
+      ],
+      "candidate_semantic_digest": "sha256:6bebc7a8fecafca8fa776e06bf718c0774ef7ae9c96de4bce50155b203a54351",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "現行L1/POからの新L2候補の起草。旧sourceは意味比較資料として参照し、旧atomを候補へ移管・採択・retireしない。入力旧atom集合は空集合であり、no_lossは空集合についてのみ。現行L1/POの条件対応はparent_source_conditionsと本文/L11を独立照合する。旧資産全体の被覆を主張しない。",
+      "atoms": [],
+      "current_condition_refs": [
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-001",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-002",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-003",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-004",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-005",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-006",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-007",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-009",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-010",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-011",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-014",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-016",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-017",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-018",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-019",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-020",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-021",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-022",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-028",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-029",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-038",
+        "docs/helix-infrastructure/L1-planning/infrastructure-intent.md#HELIXINFRASTRUCTURE-L1-039"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": [],
+      "acceptance_binding": {
+        "source_path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+        "sha256": "sha256:7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+        "base_commit": "c9fc9aa463a82b8a11b0132dddd5e05a82bbbf0c",
+        "base_file_sha256": "sha256:39cc6ffc11c4994fef69ff4f676fd88f529ec677ef9a4dc58b12a17f77d000ba",
+        "change_kind": "targeted_acceptance_correction"
+      },
+      "previous_registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-011-002",
+      "previous_candidate_semantic_digest": "sha256:6bebc7a8fecafca8fa776e06bf718c0774ef7ae9c96de4bce50155b203a54351",
+      "candidate_semantics_unchanged": true
+    }
+  ],
+  "prior_receipts": [
+    {
+      "path": "docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json",
+      "sha256": "sha256:ad11c2002b4bf5ba9476519a3ed4ae4d92ffa43f3cc89de5f6ff3164a9f176b5",
+      "relation": "Existing atom identity/disposition and pre-isolation provenance retained unchanged; this correction preserves original source atom dispositions; per-identity semantic changes and acceptance evidence are recorded separately."
+    }
+  ],
+  "po_source": {
+    "path": "docs/helix-infrastructure/sources/runtime-infrastructure-l1-po-original-2026-09-26.md",
+    "commit": "c9fc9aa463a82b8a11b0132dddd5e05a82bbbf0c",
+    "sha256": "sha256:a76dfdd2106f6aa5b0dc94c65a2cfbc64d2a57298bba7dd07f5b24d1b1589522",
+    "attribution": "固定source中のPO原文とmetadata/前書きを区別し、既存のsource atom dispositionを保持する。",
+    "lines": [
+      {
+        "source_line": 1,
+        "source_text": "---"
+      },
+      {
+        "source_line": 2,
+        "source_text": "title: \"HELIX Runtime Infrastructure L1要求候補（POの原文、2026-09-26）\""
+      },
+      {
+        "source_line": 3,
+        "source_text": "kind: source_snapshot"
+      },
+      {
+        "source_line": 4,
+        "source_text": "source: PO（2026-09-26のClaude作業sessionで提示）"
+      },
+      {
+        "source_line": 5,
+        "source_text": "recorded_at: 2026-09-26"
+      },
+      {
+        "source_line": 6,
+        "source_text": "decision_record: docs/governance/decisions/infrastructure-l1-idea-po-decisions-2026-09-26.md"
+      },
+      {
+        "source_line": 7,
+        "source_text": "authority_effect: none"
+      },
+      {
+        "source_line": 8,
+        "source_text": "---"
+      },
+      {
+        "source_line": 10,
+        "source_text": "# HELIX Runtime Infrastructure L1要求候補（POの原文、2026-09-26）"
+      },
+      {
+        "source_line": 12,
+        "source_text": "2026-09-26（Asia/Tokyo）、POが示した本文を、そのまま保存する。"
+      },
+      {
+        "source_line": 13,
+        "source_text": "本書は書き換えない。現在の意味は[HELIX-INFRASTRUCTUREの企画（L1）案](../L1-planning/infrastructure-intent.md)に置き、差分はgitで辿る。"
+      },
+      {
+        "source_line": 14,
+        "source_text": "原文の表題にある「v0.1」と、原文の名前「HELIX Runtime Infrastructure」は原文の一部として残す。正式名称は、POの回答でHELIX-INFRASTRUCTUREとした（[判断記録](../../governance/decisions/infrastructure-l1-idea-po-decisions-2026-09-26.md)）。"
+      },
+      {
+        "source_line": 16,
+        "source_text": "---"
+      },
+      {
+        "source_line": 18,
+        "source_text": "# HELIX Runtime Infrastructure L1要求候補 v0.1"
+      },
+      {
+        "source_line": 20,
+        "source_text": "## 1. 中心価値"
+      },
+      {
+        "source_line": 22,
+        "source_text": "HELIX Runtime Infrastructureは、HELIX自身の各機構、Worker、Model Runtime、Data Store、Connector等が、安全かつ継続的に稼働するための実行基盤を提供する。"
+      },
+      {
+        "source_line": 24,
+        "source_text": "設計知識はBRAIN、Infrastructure要求・設計はHELIX自身のHELIX-HARNESS-CORE、進行統制はHELIX-OS、権限制約はHELIX-SECURITYが所有する。"
+      },
+      {
+        "source_line": 26,
+        "source_text": "Runtime Infrastructureは、"
+      },
+      {
+        "source_line": 28,
+        "source_text": "> **承認されたHELIX Infrastructure Designを、観測可能・復旧可能な実Runtimeとして成立させ、その実状態を保持する領域**"
+      },
+      {
+        "source_line": 30,
+        "source_text": "とする。"
+      },
+      {
+        "source_line": 32,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 33,
+        "source_text": "BRAIN"
+      },
+      {
+        "source_line": 34,
+        "source_text": "Infrastructure Knowledge"
+      },
+      {
+        "source_line": 35,
+        "source_text": "        ↓"
+      },
+      {
+        "source_line": 36,
+        "source_text": "HELIX-HARNESS-CORE"
+      },
+      {
+        "source_line": 37,
+        "source_text": "HELIX固有Infrastructure Design"
+      },
+      {
+        "source_line": 38,
+        "source_text": "        ↓"
+      },
+      {
+        "source_line": 39,
+        "source_text": "HELIX Runtime Infrastructure"
+      },
+      {
+        "source_line": 40,
+        "source_text": "実Runtime"
+      },
+      {
+        "source_line": 41,
+        "source_text": "        ↓"
+      },
+      {
+        "source_line": 42,
+        "source_text": "Observed Actual State"
+      },
+      {
+        "source_line": 43,
+        "source_text": "```"
+      },
+      {
+        "source_line": 45,
+        "source_text": "---"
+      },
+      {
+        "source_line": 47,
+        "source_text": "# HRI-L1-001"
+      },
+      {
+        "source_line": 49,
+        "source_text": "## HELIX自身のRuntime Topologyを持つ"
+      },
+      {
+        "source_line": 51,
+        "source_text": "HELIXを構成するRuntime Resourceとその関係を識別できる。"
+      },
+      {
+        "source_line": 53,
+        "source_text": "対象例："
+      },
+      {
+        "source_line": 55,
+        "source_text": "* HELIX-OS"
+      },
+      {
+        "source_line": 56,
+        "source_text": "* HELIX-BRAIN"
+      },
+      {
+        "source_line": 57,
+        "source_text": "* HELIX-LABO"
+      },
+      {
+        "source_line": 58,
+        "source_text": "* HELIX-INTELLIGENCE"
+      },
+      {
+        "source_line": 59,
+        "source_text": "* HELIX-SECURITY"
+      },
+      {
+        "source_line": 60,
+        "source_text": "* HELIX-CONNECT"
+      },
+      {
+        "source_line": 61,
+        "source_text": "* Runner / Sandbox"
+      },
+      {
+        "source_line": 62,
+        "source_text": "* Worker Runtime"
+      },
+      {
+        "source_line": 63,
+        "source_text": "* Model Runtime"
+      },
+      {
+        "source_line": 64,
+        "source_text": "* Database"
+      },
+      {
+        "source_line": 65,
+        "source_text": "* Queue"
+      },
+      {
+        "source_line": 66,
+        "source_text": "* Artifact Store"
+      },
+      {
+        "source_line": 67,
+        "source_text": "* Evidence Store"
+      },
+      {
+        "source_line": 68,
+        "source_text": "* Log / Metric infrastructure"
+      },
+      {
+        "source_line": 70,
+        "source_text": "各Resourceについて、"
+      },
+      {
+        "source_line": 72,
+        "source_text": "* identity"
+      },
+      {
+        "source_line": 73,
+        "source_text": "* role"
+      },
+      {
+        "source_line": 74,
+        "source_text": "* environment"
+      },
+      {
+        "source_line": 75,
+        "source_text": "* location"
+      },
+      {
+        "source_line": 76,
+        "source_text": "* version"
+      },
+      {
+        "source_line": 77,
+        "source_text": "* dependencies"
+      },
+      {
+        "source_line": 78,
+        "source_text": "* lifecycle state"
+      },
+      {
+        "source_line": 80,
+        "source_text": "を辿れる。"
+      },
+      {
+        "source_line": 82,
+        "source_text": "---"
+      },
+      {
+        "source_line": 84,
+        "source_text": "# HRI-L1-002"
+      },
+      {
+        "source_line": 86,
+        "source_text": "## Infrastructureの設計正本と実状態を分離する"
+      },
+      {
+        "source_line": 88,
+        "source_text": "次を同一状態として扱わない。"
+      },
+      {
+        "source_line": 90,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 91,
+        "source_text": "Approved Design"
+      },
+      {
+        "source_line": 92,
+        "source_text": "        ≠"
+      },
+      {
+        "source_line": 93,
+        "source_text": "Deployment Target"
+      },
+      {
+        "source_line": 94,
+        "source_text": "        ≠"
+      },
+      {
+        "source_line": 95,
+        "source_text": "Observed Actual State"
+      },
+      {
+        "source_line": 96,
+        "source_text": "```"
+      },
+      {
+        "source_line": 98,
+        "source_text": "Infrastructure設計の意味正本はHELIX-HARNESS-COREが所有する。"
+      },
+      {
+        "source_line": 100,
+        "source_text": "Runtime Infrastructureは、その設計から導かれたDeployment Targetと観測したActual Stateを扱う。"
+      },
+      {
+        "source_line": 102,
+        "source_text": "Actual StateからInfrastructure要求・設計を直接書き換えない。"
+      },
+      {
+        "source_line": 104,
+        "source_text": "---"
+      },
+      {
+        "source_line": 106,
+        "source_text": "# HRI-L1-003"
+      },
+      {
+        "source_line": 108,
+        "source_text": "## Desired / Actual Driftを検出できる"
+      },
+      {
+        "source_line": 110,
+        "source_text": "承認されたInfrastructure構成と実環境の差を確認できる。"
+      },
+      {
+        "source_line": 112,
+        "source_text": "対象例："
+      },
+      {
+        "source_line": 114,
+        "source_text": "* Resource missing"
+      },
+      {
+        "source_line": 115,
+        "source_text": "* Unexpected resource"
+      },
+      {
+        "source_line": 116,
+        "source_text": "* Version mismatch"
+      },
+      {
+        "source_line": 117,
+        "source_text": "* Configuration drift"
+      },
+      {
+        "source_line": 118,
+        "source_text": "* Network drift"
+      },
+      {
+        "source_line": 119,
+        "source_text": "* Permission drift"
+      },
+      {
+        "source_line": 120,
+        "source_text": "* Capacity drift"
+      },
+      {
+        "source_line": 121,
+        "source_text": "* Runtime replacement"
+      },
+      {
+        "source_line": 122,
+        "source_text": "* Unknown dependency"
+      },
+      {
+        "source_line": 124,
+        "source_text": "Driftを自動的に「正しい変更」とみなさない。"
+      },
+      {
+        "source_line": 126,
+        "source_text": "---"
+      },
+      {
+        "source_line": 128,
+        "source_text": "# HRI-L1-004"
+      },
+      {
+        "source_line": 130,
+        "source_text": "## Environmentを独立Identityとして扱う"
+      },
+      {
+        "source_line": 132,
+        "source_text": "少なくとも、"
+      },
+      {
+        "source_line": 134,
+        "source_text": "* Development"
+      },
+      {
+        "source_line": 135,
+        "source_text": "* Verification"
+      },
+      {
+        "source_line": 136,
+        "source_text": "* Staging"
+      },
+      {
+        "source_line": 137,
+        "source_text": "* Production"
+      },
+      {
+        "source_line": 138,
+        "source_text": "* Recovery"
+      },
+      {
+        "source_line": 140,
+        "source_text": "等のEnvironmentを混同しない。"
+      },
+      {
+        "source_line": 142,
+        "source_text": "各Environmentについて、"
+      },
+      {
+        "source_line": 144,
+        "source_text": "* resource"
+      },
+      {
+        "source_line": 145,
+        "source_text": "* configuration"
+      },
+      {
+        "source_line": 146,
+        "source_text": "* network"
+      },
+      {
+        "source_line": 147,
+        "source_text": "* credential scope"
+      },
+      {
+        "source_line": 148,
+        "source_text": "* data"
+      },
+      {
+        "source_line": 149,
+        "source_text": "* version"
+      },
+      {
+        "source_line": 150,
+        "source_text": "* authority"
+      },
+      {
+        "source_line": 152,
+        "source_text": "を分離する。"
+      },
+      {
+        "source_line": 154,
+        "source_text": "別Environmentの成功をProduction成立の証拠にしない。"
+      },
+      {
+        "source_line": 156,
+        "source_text": "---"
+      },
+      {
+        "source_line": 158,
+        "source_text": "# HRI-L1-005"
+      },
+      {
+        "source_line": 160,
+        "source_text": "## Compute Resourceを管理できる"
+      },
+      {
+        "source_line": 162,
+        "source_text": "HELIXが利用するComputeを共通モデルで扱う。"
+      },
+      {
+        "source_line": 164,
+        "source_text": "対象例："
+      },
+      {
+        "source_line": 166,
+        "source_text": "* Local Machine"
+      },
+      {
+        "source_line": 167,
+        "source_text": "* VPS"
+      },
+      {
+        "source_line": 168,
+        "source_text": "* Dedicated Server"
+      },
+      {
+        "source_line": 169,
+        "source_text": "* Cloud VM"
+      },
+      {
+        "source_line": 170,
+        "source_text": "* Container Runtime"
+      },
+      {
+        "source_line": 171,
+        "source_text": "* GPU Node"
+      },
+      {
+        "source_line": 172,
+        "source_text": "* Worker Node"
+      },
+      {
+        "source_line": 174,
+        "source_text": "Providerや物理場所に関係なく、"
+      },
+      {
+        "source_line": 176,
+        "source_text": "* CPU"
+      },
+      {
+        "source_line": 177,
+        "source_text": "* RAM"
+      },
+      {
+        "source_line": 178,
+        "source_text": "* GPU / VRAM"
+      },
+      {
+        "source_line": 179,
+        "source_text": "* Storage"
+      },
+      {
+        "source_line": 180,
+        "source_text": "* Runtime"
+      },
+      {
+        "source_line": 181,
+        "source_text": "* Capacity"
+      },
+      {
+        "source_line": 182,
+        "source_text": "* Health"
+      },
+      {
+        "source_line": 183,
+        "source_text": "* Availability"
+      },
+      {
+        "source_line": 185,
+        "source_text": "を確認できる。"
+      },
+      {
+        "source_line": 187,
+        "source_text": "---"
+      },
+      {
+        "source_line": 189,
+        "source_text": "# HRI-L1-006"
+      },
+      {
+        "source_line": 191,
+        "source_text": "## Network Topologyを持つ"
+      },
+      {
+        "source_line": 193,
+        "source_text": "HELIX内部および外部への通信経路を把握できる。"
+      },
+      {
+        "source_line": 195,
+        "source_text": "少なくとも、"
+      },
+      {
+        "source_line": 197,
+        "source_text": "* source"
+      },
+      {
+        "source_line": 198,
+        "source_text": "* destination"
+      },
+      {
+        "source_line": 199,
+        "source_text": "* protocol"
+      },
+      {
+        "source_line": 200,
+        "source_text": "* endpoint"
+      },
+      {
+        "source_line": 201,
+        "source_text": "* direction"
+      },
+      {
+        "source_line": 202,
+        "source_text": "* purpose"
+      },
+      {
+        "source_line": 203,
+        "source_text": "* security boundary"
+      },
+      {
+        "source_line": 204,
+        "source_text": "* dependency"
+      },
+      {
+        "source_line": 206,
+        "source_text": "を持つ。"
+      },
+      {
+        "source_line": 208,
+        "source_text": "HELIX-CONNECTの論理接続と、Infrastructureの物理・Runtime通信経路を区別する。"
+      },
+      {
+        "source_line": 210,
+        "source_text": "---"
+      },
+      {
+        "source_line": 212,
+        "source_text": "# HRI-L1-007"
+      },
+      {
+        "source_line": 214,
+        "source_text": "## State / Storage Resourceを管理できる"
+      },
+      {
+        "source_line": 216,
+        "source_text": "HELIXが利用する永続・一時Stateを区別できる。"
+      },
+      {
+        "source_line": 218,
+        "source_text": "対象例："
+      },
+      {
+        "source_line": 220,
+        "source_text": "* Operational DB"
+      },
+      {
+        "source_line": 221,
+        "source_text": "* Evidence Store"
+      },
+      {
+        "source_line": 222,
+        "source_text": "* Artifact Store"
+      },
+      {
+        "source_line": 223,
+        "source_text": "* Queue"
+      },
+      {
+        "source_line": 224,
+        "source_text": "* Cache"
+      },
+      {
+        "source_line": 225,
+        "source_text": "* Log Store"
+      },
+      {
+        "source_line": 226,
+        "source_text": "* Metric Store"
+      },
+      {
+        "source_line": 227,
+        "source_text": "* Model Store"
+      },
+      {
+        "source_line": 229,
+        "source_text": "各Stateについて、"
+      },
+      {
+        "source_line": 231,
+        "source_text": "* owner"
+      },
+      {
+        "source_line": 232,
+        "source_text": "* durability"
+      },
+      {
+        "source_line": 233,
+        "source_text": "* backup requirement"
+      },
+      {
+        "source_line": 234,
+        "source_text": "* retention"
+      },
+      {
+        "source_line": 235,
+        "source_text": "* environment"
+      },
+      {
+        "source_line": 236,
+        "source_text": "* security classification"
+      },
+      {
+        "source_line": 237,
+        "source_text": "* recovery requirement"
+      },
+      {
+        "source_line": 239,
+        "source_text": "を持てる。"
+      },
+      {
+        "source_line": 241,
+        "source_text": "---"
+      },
+      {
+        "source_line": 243,
+        "source_text": "# HRI-L1-008"
+      },
+      {
+        "source_line": 245,
+        "source_text": "## Control PlaneとExecution Planeを分離する"
+      },
+      {
+        "source_line": 247,
+        "source_text": "HELIXの管理・判断機構と、大量Resourceを消費するWorker実行を分離できる。"
+      },
+      {
+        "source_line": 249,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 250,
+        "source_text": "Control Plane"
+      },
+      {
+        "source_line": 251,
+        "source_text": "OS / Security / Coordination"
+      },
+      {
+        "source_line": 253,
+        "source_text": "Execution Plane"
+      },
+      {
+        "source_line": 254,
+        "source_text": "Worker / CI / Model / Sandbox"
+      },
+      {
+        "source_line": 255,
+        "source_text": "```"
+      },
+      {
+        "source_line": 257,
+        "source_text": "Worker暴走、CI負荷、Model Runtime負荷によって、HELIXの管理・停止・復旧能力そのものが失われない構成を取れる。"
+      },
+      {
+        "source_line": 259,
+        "source_text": "---"
+      },
+      {
+        "source_line": 261,
+        "source_text": "# HRI-L1-009"
+      },
+      {
+        "source_line": 263,
+        "source_text": "## Model RuntimeをInfrastructure Resourceとして扱う"
+      },
+      {
+        "source_line": 265,
+        "source_text": "LLM Runtimeを通常の外部APIだけでなく、Infrastructure Resourceとして扱える。"
+      },
+      {
+        "source_line": 267,
+        "source_text": "対象例："
+      },
+      {
+        "source_line": 269,
+        "source_text": "* External Model API"
+      },
+      {
+        "source_line": 270,
+        "source_text": "* Local LLM"
+      },
+      {
+        "source_line": 271,
+        "source_text": "* GPU Server"
+      },
+      {
+        "source_line": 272,
+        "source_text": "* Distributed Model Server"
+      },
+      {
+        "source_line": 273,
+        "source_text": "* Fine-tuned Model Runtime"
+      },
+      {
+        "source_line": 275,
+        "source_text": "少なくとも、"
+      },
+      {
+        "source_line": 277,
+        "source_text": "* model"
+      },
+      {
+        "source_line": 278,
+        "source_text": "* version"
+      },
+      {
+        "source_line": 279,
+        "source_text": "* server"
+      },
+      {
+        "source_line": 280,
+        "source_text": "* GPU / memory requirement"
+      },
+      {
+        "source_line": 281,
+        "source_text": "* concurrency"
+      },
+      {
+        "source_line": 282,
+        "source_text": "* latency"
+      },
+      {
+        "source_line": 283,
+        "source_text": "* capacity"
+      },
+      {
+        "source_line": 284,
+        "source_text": "* health"
+      },
+      {
+        "source_line": 285,
+        "source_text": "* endpoint"
+      },
+      {
+        "source_line": 287,
+        "source_text": "へ辿れる。"
+      },
+      {
+        "source_line": 289,
+        "source_text": "モデルの知能評価はINTELLIGENCE/LABOへ分離する。"
+      },
+      {
+        "source_line": 291,
+        "source_text": "---"
+      },
+      {
+        "source_line": 293,
+        "source_text": "# HRI-L1-010"
+      },
+      {
+        "source_line": 295,
+        "source_text": "## CapacityとSaturationを観測できる"
+      },
+      {
+        "source_line": 297,
+        "source_text": "各Resourceについて、"
+      },
+      {
+        "source_line": 299,
+        "source_text": "* capacity"
+      },
+      {
+        "source_line": 300,
+        "source_text": "* utilization"
+      },
+      {
+        "source_line": 301,
+        "source_text": "* queue"
+      },
+      {
+        "source_line": 302,
+        "source_text": "* concurrency"
+      },
+      {
+        "source_line": 303,
+        "source_text": "* saturation"
+      },
+      {
+        "source_line": 304,
+        "source_text": "* rejection"
+      },
+      {
+        "source_line": 305,
+        "source_text": "* backpressure"
+      },
+      {
+        "source_line": 307,
+        "source_text": "を観測できる。"
+      },
+      {
+        "source_line": 309,
+        "source_text": "Resource枯渇を突然の異常としてだけ扱わず、予定された状態として制御できる。"
+      },
+      {
+        "source_line": 311,
+        "source_text": "---"
+      },
+      {
+        "source_line": 313,
+        "source_text": "# HRI-L1-011"
+      },
+      {
+        "source_line": 315,
+        "source_text": "## Resource Admissionを持つ"
+      },
+      {
+        "source_line": 317,
+        "source_text": "新しいJob、Worker、Model、CI等を起動する前に、必要Resourceを利用可能か確認できる。"
+      },
+      {
+        "source_line": 319,
+        "source_text": "Capacity不足時に、"
+      },
+      {
+        "source_line": 321,
+        "source_text": "* queue"
+      },
+      {
+        "source_line": 322,
+        "source_text": "* delay"
+      },
+      {
+        "source_line": 323,
+        "source_text": "* lower-cost runtime"
+      },
+      {
+        "source_line": 324,
+        "source_text": "* alternative node"
+      },
+      {
+        "source_line": 325,
+        "source_text": "* reject"
+      },
+      {
+        "source_line": 326,
+        "source_text": "* human escalation"
+      },
+      {
+        "source_line": 328,
+        "source_text": "等へ接続できる。"
+      },
+      {
+        "source_line": 330,
+        "source_text": "過負荷状態で無制限にJobを追加しない。"
+      },
+      {
+        "source_line": 332,
+        "source_text": "---"
+      },
+      {
+        "source_line": 334,
+        "source_text": "# HRI-L1-012"
+      },
+      {
+        "source_line": 336,
+        "source_text": "## Failure Domainを識別する"
+      },
+      {
+        "source_line": 338,
+        "source_text": "Resourceを単なる一覧ではなくFailure Domainとして扱える。"
+      },
+      {
+        "source_line": 340,
+        "source_text": "例："
+      },
+      {
+        "source_line": 342,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 343,
+        "source_text": "Local PC failure"
+      },
+      {
+        "source_line": 344,
+        "source_text": "VPS failure"
+      },
+      {
+        "source_line": 345,
+        "source_text": "GPU node failure"
+      },
+      {
+        "source_line": 346,
+        "source_text": "Network failure"
+      },
+      {
+        "source_line": 347,
+        "source_text": "Provider failure"
+      },
+      {
+        "source_line": 348,
+        "source_text": "Database failure"
+      },
+      {
+        "source_line": 349,
+        "source_text": "Storage failure"
+      },
+      {
+        "source_line": 350,
+        "source_text": "```"
+      },
+      {
+        "source_line": 352,
+        "source_text": "一つの故障がどこまで影響するか、Blast Radiusを辿れる。"
+      },
+      {
+        "source_line": 354,
+        "source_text": "---"
+      },
+      {
+        "source_line": 356,
+        "source_text": "# HRI-L1-013"
+      },
+      {
+        "source_line": 358,
+        "source_text": "## Single Point of Failureを把握する"
+      },
+      {
+        "source_line": 360,
+        "source_text": "HELIX自身について、"
+      },
+      {
+        "source_line": 362,
+        "source_text": "> このResourceを失うとHELIXの何が止まるか"
+      },
+      {
+        "source_line": 364,
+        "source_text": "を把握できる。"
+      },
+      {
+        "source_line": 366,
+        "source_text": "冗長化を必須にはしないが、"
+      },
+      {
+        "source_line": 368,
+        "source_text": "* accepted SPOF"
+      },
+      {
+        "source_line": 369,
+        "source_text": "* impact"
+      },
+      {
+        "source_line": 370,
+        "source_text": "* recovery"
+      },
+      {
+        "source_line": 371,
+        "source_text": "* rationale"
+      },
+      {
+        "source_line": 373,
+        "source_text": "を明示する。"
+      },
+      {
+        "source_line": 375,
+        "source_text": "---"
+      },
+      {
+        "source_line": 377,
+        "source_text": "# HRI-L1-014"
+      },
+      {
+        "source_line": 379,
+        "source_text": "## ObservabilityをRuntimeの必須能力とする"
+      },
+      {
+        "source_line": 381,
+        "source_text": "HELIX自身のInfrastructureについて最低限、"
+      },
+      {
+        "source_line": 383,
+        "source_text": "* health"
+      },
+      {
+        "source_line": 384,
+        "source_text": "* metric"
+      },
+      {
+        "source_line": 385,
+        "source_text": "* log"
+      },
+      {
+        "source_line": 386,
+        "source_text": "* resource usage"
+      },
+      {
+        "source_line": 387,
+        "source_text": "* dependency status"
+      },
+      {
+        "source_line": 388,
+        "source_text": "* queue state"
+      },
+      {
+        "source_line": 389,
+        "source_text": "* error"
+      },
+      {
+        "source_line": 390,
+        "source_text": "* latency"
+      },
+      {
+        "source_line": 391,
+        "source_text": "* deployment revision"
+      },
+      {
+        "source_line": 392,
+        "source_text": "* recovery state"
+      },
+      {
+        "source_line": 394,
+        "source_text": "を観測できる。"
+      },
+      {
+        "source_line": 396,
+        "source_text": "「観測不能」をHealthyへ変換しない。"
+      },
+      {
+        "source_line": 398,
+        "source_text": "---"
+      },
+      {
+        "source_line": 400,
+        "source_text": "# HRI-L1-015"
+      },
+      {
+        "source_line": 402,
+        "source_text": "## Infrastructure Eventを共通Episodeへ接続する"
+      },
+      {
+        "source_line": 404,
+        "source_text": "Runtime EventをHELIX全体の相関IDへ接続する。"
+      },
+      {
+        "source_line": 406,
+        "source_text": "例えば、"
+      },
+      {
+        "source_line": 408,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 409,
+        "source_text": "Requirement"
+      },
+      {
+        "source_line": 410,
+        "source_text": "→ Ticket"
+      },
+      {
+        "source_line": 411,
+        "source_text": "→ Worker"
+      },
+      {
+        "source_line": 412,
+        "source_text": "→ Runner"
+      },
+      {
+        "source_line": 413,
+        "source_text": "→ Infrastructure Resource"
+      },
+      {
+        "source_line": 414,
+        "source_text": "→ Failure"
+      },
+      {
+        "source_line": 415,
+        "source_text": "→ Recovery"
+      },
+      {
+        "source_line": 416,
+        "source_text": "```"
+      },
+      {
+        "source_line": 418,
+        "source_text": "を一つのEpisodeとして追跡できる。"
+      },
+      {
+        "source_line": 420,
+        "source_text": "LABOへ渡せる観測材料を失わない。"
+      },
+      {
+        "source_line": 422,
+        "source_text": "---"
+      },
+      {
+        "source_line": 424,
+        "source_text": "# HRI-L1-016"
+      },
+      {
+        "source_line": 426,
+        "source_text": "## IncidentをRuntime状態として扱える"
+      },
+      {
+        "source_line": 428,
+        "source_text": "HELIX Infrastructure上で、"
+      },
+      {
+        "source_line": 430,
+        "source_text": "* degraded"
+      },
+      {
+        "source_line": 431,
+        "source_text": "* unavailable"
+      },
+      {
+        "source_line": 432,
+        "source_text": "* capacity exhausted"
+      },
+      {
+        "source_line": 433,
+        "source_text": "* dependency failure"
+      },
+      {
+        "source_line": 434,
+        "source_text": "* data unavailable"
+      },
+      {
+        "source_line": 435,
+        "source_text": "* network unavailable"
+      },
+      {
+        "source_line": 436,
+        "source_text": "* security isolation"
+      },
+      {
+        "source_line": 437,
+        "source_text": "* unknown"
+      },
+      {
+        "source_line": 439,
+        "source_text": "等を通常状態と区別できる。"
+      },
+      {
+        "source_line": 441,
+        "source_text": "Incidentの意味・Severityは承認済み要求を参照し、Runtime自身が勝手に定義しない。"
+      },
+      {
+        "source_line": 443,
+        "source_text": "---"
+      },
+      {
+        "source_line": 445,
+        "source_text": "# HRI-L1-017"
+      },
+      {
+        "source_line": 447,
+        "source_text": "## Backupを実行状態として追跡する"
+      },
+      {
+        "source_line": 449,
+        "source_text": "HELIX自身の重要Stateについて、"
+      },
+      {
+        "source_line": 451,
+        "source_text": "* backup target"
+      },
+      {
+        "source_line": 452,
+        "source_text": "* source revision"
+      },
+      {
+        "source_line": 453,
+        "source_text": "* timestamp"
+      },
+      {
+        "source_line": 454,
+        "source_text": "* completeness"
+      },
+      {
+        "source_line": 455,
+        "source_text": "* location"
+      },
+      {
+        "source_line": 456,
+        "source_text": "* integrity"
+      },
+      {
+        "source_line": 457,
+        "source_text": "* expiry"
+      },
+      {
+        "source_line": 459,
+        "source_text": "を確認できる。"
+      },
+      {
+        "source_line": 461,
+        "source_text": "「Backup設定がある」ことをBackup成功としない。"
+      },
+      {
+        "source_line": 463,
+        "source_text": "---"
+      },
+      {
+        "source_line": 465,
+        "source_text": "# HRI-L1-018"
+      },
+      {
+        "source_line": 467,
+        "source_text": "## Restore可能性を実証できる"
+      },
+      {
+        "source_line": 469,
+        "source_text": "BackupとRestoreを別状態として扱う。"
+      },
+      {
+        "source_line": 471,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 472,
+        "source_text": "Backup Exists"
+      },
+      {
+        "source_line": 473,
+        "source_text": "≠"
+      },
+      {
+        "source_line": 474,
+        "source_text": "Restore Works"
+      },
+      {
+        "source_line": 475,
+        "source_text": "```"
+      },
+      {
+        "source_line": 477,
+        "source_text": "実際に、"
+      },
+      {
+        "source_line": 479,
+        "source_text": "* restoration"
+      },
+      {
+        "source_line": 480,
+        "source_text": "* integrity"
+      },
+      {
+        "source_line": 481,
+        "source_text": "* dependency reconnection"
+      },
+      {
+        "source_line": 482,
+        "source_text": "* startup"
+      },
+      {
+        "source_line": 483,
+        "source_text": "* verification"
+      },
+      {
+        "source_line": 485,
+        "source_text": "まで確認できる。"
+      },
+      {
+        "source_line": 487,
+        "source_text": "---"
+      },
+      {
+        "source_line": 489,
+        "source_text": "# HRI-L1-019"
+      },
+      {
+        "source_line": 491,
+        "source_text": "## Rollback先を保持する"
+      },
+      {
+        "source_line": 493,
+        "source_text": "Infrastructure変更、Runtime更新、Model更新等について、変更前の適格な状態へ戻せる。"
+      },
+      {
+        "source_line": 495,
+        "source_text": "Rollback先には、"
+      },
+      {
+        "source_line": 497,
+        "source_text": "* infrastructure version"
+      },
+      {
+        "source_line": 498,
+        "source_text": "* configuration"
+      },
+      {
+        "source_line": 499,
+        "source_text": "* artifact"
+      },
+      {
+        "source_line": 500,
+        "source_text": "* dependency"
+      },
+      {
+        "source_line": 501,
+        "source_text": "* data compatibility"
+      },
+      {
+        "source_line": 502,
+        "source_text": "* recovery procedure"
+      },
+      {
+        "source_line": 504,
+        "source_text": "を関連付ける。"
+      },
+      {
+        "source_line": 506,
+        "source_text": "---"
+      },
+      {
+        "source_line": 508,
+        "source_text": "# HRI-L1-020"
+      },
+      {
+        "source_line": 510,
+        "source_text": "## Bootstrap / Recovery Rootを持つ"
+      },
+      {
+        "source_line": 512,
+        "source_text": "HELIX全体が停止した場合でも、HELIX自身を使わなければ復旧できない循環依存を避ける。"
+      },
+      {
+        "source_line": 514,
+        "source_text": "最低限の、"
+      },
+      {
+        "source_line": 516,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 517,
+        "source_text": "Bootstrap"
+      },
+      {
+        "source_line": 518,
+        "source_text": "Recovery"
+      },
+      {
+        "source_line": 519,
+        "source_text": "Inspection"
+      },
+      {
+        "source_line": 520,
+        "source_text": "Rollback"
+      },
+      {
+        "source_line": 521,
+        "source_text": "```"
+      },
+      {
+        "source_line": 523,
+        "source_text": "能力は、停止したHELIX本体から独立して利用できる。"
+      },
+      {
+        "source_line": 525,
+        "source_text": "例："
+      },
+      {
+        "source_line": 527,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 528,
+        "source_text": "HELIX OS dead"
+      },
+      {
+        "source_line": 529,
+        "source_text": "↓"
+      },
+      {
+        "source_line": 530,
+        "source_text": "HELIX OSに「OSを直して」と頼めない"
+      },
+      {
+        "source_line": 531,
+        "source_text": "```"
+      },
+      {
+        "source_line": 533,
+        "source_text": "という自己依存を作らない。"
+      },
+      {
+        "source_line": 535,
+        "source_text": "---"
+      },
+      {
+        "source_line": 537,
+        "source_text": "# HRI-L1-021"
+      },
+      {
+        "source_line": 539,
+        "source_text": "## Out-of-Band Recovery Pathを持つ"
+      },
+      {
+        "source_line": 541,
+        "source_text": "通常のHELIX Control Planeが利用不能な場合に、"
+      },
+      {
+        "source_line": 543,
+        "source_text": "* runtime inspection"
+      },
+      {
+        "source_line": 544,
+        "source_text": "* health confirmation"
+      },
+      {
+        "source_line": 545,
+        "source_text": "* service stop"
+      },
+      {
+        "source_line": 546,
+        "source_text": "* rollback"
+      },
+      {
+        "source_line": 547,
+        "source_text": "* recovery startup"
+      },
+      {
+        "source_line": 549,
+        "source_text": "を行える限定経路を持つ。"
+      },
+      {
+        "source_line": 551,
+        "source_text": "通常運用の万能な裏口にはせず、SECURITYの別Authorityを要求する。"
+      },
+      {
+        "source_line": 553,
+        "source_text": "---"
+      },
+      {
+        "source_line": 555,
+        "source_text": "# HRI-L1-022"
+      },
+      {
+        "source_line": 557,
+        "source_text": "## DeploymentをVersion付きで追跡する"
+      },
+      {
+        "source_line": 559,
+        "source_text": "何が、"
+      },
+      {
+        "source_line": 561,
+        "source_text": "* where"
+      },
+      {
+        "source_line": 562,
+        "source_text": "* when"
+      },
+      {
+        "source_line": 563,
+        "source_text": "* version"
+      },
+      {
+        "source_line": 564,
+        "source_text": "* configuration"
+      },
+      {
+        "source_line": 565,
+        "source_text": "* artifact"
+      },
+      {
+        "source_line": 566,
+        "source_text": "* dependency"
+      },
+      {
+        "source_line": 568,
+        "source_text": "で動いているかを確認できる。"
+      },
+      {
+        "source_line": 570,
+        "source_text": "同じ「HELIX」という名前でも異なるRuntime Revisionを区別する。"
+      },
+      {
+        "source_line": 572,
+        "source_text": "---"
+      },
+      {
+        "source_line": 574,
+        "source_text": "# HRI-L1-023"
+      },
+      {
+        "source_line": 576,
+        "source_text": "## Infrastructure Updateを段階適用できる"
+      },
+      {
+        "source_line": 578,
+        "source_text": "HELIX自身のInfrastructure変更を一括更新だけにしない。"
+      },
+      {
+        "source_line": 580,
+        "source_text": "必要に応じて、"
+      },
+      {
+        "source_line": 582,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 583,
+        "source_text": "Candidate"
+      },
+      {
+        "source_line": 584,
+        "source_text": "→ Isolated / Shadow"
+      },
+      {
+        "source_line": 585,
+        "source_text": "→ Partial"
+      },
+      {
+        "source_line": 586,
+        "source_text": "→ Verified"
+      },
+      {
+        "source_line": 587,
+        "source_text": "→ Promoted"
+      },
+      {
+        "source_line": 588,
+        "source_text": "```"
+      },
+      {
+        "source_line": 590,
+        "source_text": "と段階適用できる。"
+      },
+      {
+        "source_line": 592,
+        "source_text": "SECURITYのUpdate Admissionを通過しないInfrastructure変更を自動昇格させない。"
+      },
+      {
+        "source_line": 594,
+        "source_text": "---"
+      },
+      {
+        "source_line": 596,
+        "source_text": "# HRI-L1-024"
+      },
+      {
+        "source_line": 598,
+        "source_text": "## Infrastructure変更のBlast Radiusを限定する"
+      },
+      {
+        "source_line": 600,
+        "source_text": "変更前に、"
+      },
+      {
+        "source_line": 602,
+        "source_text": "* affected resource"
+      },
+      {
+        "source_line": 603,
+        "source_text": "* affected mechanism"
+      },
+      {
+        "source_line": 604,
+        "source_text": "* dependent job"
+      },
+      {
+        "source_line": 605,
+        "source_text": "* affected environment"
+      },
+      {
+        "source_line": 606,
+        "source_text": "* affected data"
+      },
+      {
+        "source_line": 607,
+        "source_text": "* rollback target"
+      },
+      {
+        "source_line": 609,
+        "source_text": "を確認できる。"
+      },
+      {
+        "source_line": 611,
+        "source_text": "Infrastructure変更からHELIX全体を無条件に停止させない。"
+      },
+      {
+        "source_line": 613,
+        "source_text": "---"
+      },
+      {
+        "source_line": 615,
+        "source_text": "# HRI-L1-025"
+      },
+      {
+        "source_line": 617,
+        "source_text": "## Providerを交換可能にする"
+      },
+      {
+        "source_line": 619,
+        "source_text": "HELIX Runtime Infrastructureを、"
+      },
+      {
+        "source_line": 621,
+        "source_text": "* AWS"
+      },
+      {
+        "source_line": 622,
+        "source_text": "* GCP"
+      },
+      {
+        "source_line": 623,
+        "source_text": "* Azure"
+      },
+      {
+        "source_line": 624,
+        "source_text": "* VPS vendor"
+      },
+      {
+        "source_line": 625,
+        "source_text": "* Local Machine"
+      },
+      {
+        "source_line": 626,
+        "source_text": "* specific GPU provider"
+      },
+      {
+        "source_line": 628,
+        "source_text": "等へ恒久固定しない。"
+      },
+      {
+        "source_line": 630,
+        "source_text": "Provider固有実装とHELIXが必要とするCapabilityを分離する。"
+      },
+      {
+        "source_line": 632,
+        "source_text": "---"
+      },
+      {
+        "source_line": 634,
+        "source_text": "# HRI-L1-026"
+      },
+      {
+        "source_line": 636,
+        "source_text": "## Local / VPS / Cloudを混在できる"
+      },
+      {
+        "source_line": 638,
+        "source_text": "HELIX自身は単一Cloudだけを前提としない。"
+      },
+      {
+        "source_line": 640,
+        "source_text": "例えば、"
+      },
+      {
+        "source_line": 642,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 643,
+        "source_text": "Local PC"
+      },
+      {
+        "source_line": 644,
+        "source_text": "├─ Control / development"
+      },
+      {
+        "source_line": 646,
+        "source_text": "VPS"
+      },
+      {
+        "source_line": 647,
+        "source_text": "├─ always-on worker"
+      },
+      {
+        "source_line": 648,
+        "source_text": "├─ CI"
+      },
+      {
+        "source_line": 650,
+        "source_text": "GPU Server"
+      },
+      {
+        "source_line": 651,
+        "source_text": "├─ Local LLM"
+      },
+      {
+        "source_line": 653,
+        "source_text": "Cloud"
+      },
+      {
+        "source_line": 654,
+        "source_text": "└─ optional service"
+      },
+      {
+        "source_line": 655,
+        "source_text": "```"
+      },
+      {
+        "source_line": 657,
+        "source_text": "のようなHybrid Runtimeを扱える。"
+      },
+      {
+        "source_line": 659,
+        "source_text": "配置判断自体はINTELLIGENCE/OSとの接続で行う。"
+      },
+      {
+        "source_line": 661,
+        "source_text": "---"
+      },
+      {
+        "source_line": 663,
+        "source_text": "# HRI-L1-027"
+      },
+      {
+        "source_line": 665,
+        "source_text": "## Resource Locationを明示する"
+      },
+      {
+        "source_line": 667,
+        "source_text": "State、Worker、Model、Artifact等について、"
+      },
+      {
+        "source_line": 669,
+        "source_text": "> どこに存在するか"
+      },
+      {
+        "source_line": 671,
+        "source_text": "を確認できる。"
+      },
+      {
+        "source_line": 673,
+        "source_text": "Location不明なResourceを安全な利用対象とみなさない。"
+      },
+      {
+        "source_line": 675,
+        "source_text": "---"
+      },
+      {
+        "source_line": 677,
+        "source_text": "# HRI-L1-028"
+      },
+      {
+        "source_line": 679,
+        "source_text": "## Infrastructure SecurityをHELIX-SECURITYへ接続する"
+      },
+      {
+        "source_line": 681,
+        "source_text": "Runtime InfrastructureはSECURITYから、"
+      },
+      {
+        "source_line": 683,
+        "source_text": "* network constraint"
+      },
+      {
+        "source_line": 684,
+        "source_text": "* credential constraint"
+      },
+      {
+        "source_line": 685,
+        "source_text": "* environment isolation"
+      },
+      {
+        "source_line": 686,
+        "source_text": "* project isolation"
+      },
+      {
+        "source_line": 687,
+        "source_text": "* action authority"
+      },
+      {
+        "source_line": 688,
+        "source_text": "* update admission"
+      },
+      {
+        "source_line": 689,
+        "source_text": "* egress policy"
+      },
+      {
+        "source_line": 691,
+        "source_text": "を受け取る。"
+      },
+      {
+        "source_line": 693,
+        "source_text": "Infrastructure自身がSecurity policyを自己生成しない。"
+      },
+      {
+        "source_line": 695,
+        "source_text": "---"
+      },
+      {
+        "source_line": 697,
+        "source_text": "# HRI-L1-029"
+      },
+      {
+        "source_line": 699,
+        "source_text": "## CredentialをInfrastructure状態へ埋め込まない"
+      },
+      {
+        "source_line": 701,
+        "source_text": "Runtime ResourceはCredentialそのものを通常Stateとして保存しない。"
+      },
+      {
+        "source_line": 703,
+        "source_text": "CredentialはHELIX-SECURITYの管理境界から必要scopeで受け取る。"
+      },
+      {
+        "source_line": 705,
+        "source_text": "Infrastructure backupやsnapshotへSecretを無条件に含めない。"
+      },
+      {
+        "source_line": 707,
+        "source_text": "---"
+      },
+      {
+        "source_line": 709,
+        "source_text": "# HRI-L1-030"
+      },
+      {
+        "source_line": 711,
+        "source_text": "## CostをResource状態として観測できる"
+      },
+      {
+        "source_line": 713,
+        "source_text": "HELIX自身について、"
+      },
+      {
+        "source_line": 715,
+        "source_text": "* Compute"
+      },
+      {
+        "source_line": 716,
+        "source_text": "* GPU"
+      },
+      {
+        "source_line": 717,
+        "source_text": "* Storage"
+      },
+      {
+        "source_line": 718,
+        "source_text": "* Network"
+      },
+      {
+        "source_line": 719,
+        "source_text": "* external service"
+      },
+      {
+        "source_line": 720,
+        "source_text": "* Model API"
+      },
+      {
+        "source_line": 721,
+        "source_text": "* always-on resource"
+      },
+      {
+        "source_line": 723,
+        "source_text": "等のCostをResourceやWorkloadへ関連付けられる。"
+      },
+      {
+        "source_line": 725,
+        "source_text": "費用の採否や予算決定はRuntime Infrastructureが行わない。"
+      },
+      {
+        "source_line": 727,
+        "source_text": "---"
+      },
+      {
+        "source_line": 729,
+        "source_text": "# HRI-L1-031"
+      },
+      {
+        "source_line": 731,
+        "source_text": "## Lifecycle全体を扱う"
+      },
+      {
+        "source_line": 733,
+        "source_text": "Infrastructure Resourceについて、"
+      },
+      {
+        "source_line": 735,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 736,
+        "source_text": "Plan"
+      },
+      {
+        "source_line": 737,
+        "source_text": "Provision"
+      },
+      {
+        "source_line": 738,
+        "source_text": "Configure"
+      },
+      {
+        "source_line": 739,
+        "source_text": "Activate"
+      },
+      {
+        "source_line": 740,
+        "source_text": "Observe"
+      },
+      {
+        "source_line": 741,
+        "source_text": "Update"
+      },
+      {
+        "source_line": 742,
+        "source_text": "Degrade"
+      },
+      {
+        "source_line": 743,
+        "source_text": "Recover"
+      },
+      {
+        "source_line": 744,
+        "source_text": "Retire"
+      },
+      {
+        "source_line": 745,
+        "source_text": "Decommission"
+      },
+      {
+        "source_line": 746,
+        "source_text": "```"
+      },
+      {
+        "source_line": 748,
+        "source_text": "を区別する。"
+      },
+      {
+        "source_line": 750,
+        "source_text": "作成できることだけでInfrastructure管理成立としない。"
+      },
+      {
+        "source_line": 752,
+        "source_text": "---"
+      },
+      {
+        "source_line": 754,
+        "source_text": "# HRI-L1-032"
+      },
+      {
+        "source_line": 756,
+        "source_text": "## Decommissionを正式状態として扱う"
+      },
+      {
+        "source_line": 758,
+        "source_text": "不要になったResourceを「使っていない」だけで放置しない。"
+      },
+      {
+        "source_line": 760,
+        "source_text": "Decommission時に、"
+      },
+      {
+        "source_line": 762,
+        "source_text": "* dependency"
+      },
+      {
+        "source_line": 763,
+        "source_text": "* data"
+      },
+      {
+        "source_line": 764,
+        "source_text": "* credential"
+      },
+      {
+        "source_line": 765,
+        "source_text": "* network"
+      },
+      {
+        "source_line": 766,
+        "source_text": "* cost"
+      },
+      {
+        "source_line": 767,
+        "source_text": "* backup"
+      },
+      {
+        "source_line": 768,
+        "source_text": "* replacement"
+      },
+      {
+        "source_line": 770,
+        "source_text": "を確認する。"
+      },
+      {
+        "source_line": 772,
+        "source_text": "---"
+      },
+      {
+        "source_line": 774,
+        "source_text": "# HRI-L1-033"
+      },
+      {
+        "source_line": 776,
+        "source_text": "## Runtime StateのFreshnessを持つ"
+      },
+      {
+        "source_line": 778,
+        "source_text": "観測したActual Stateには、"
+      },
+      {
+        "source_line": 780,
+        "source_text": "* observed_at"
+      },
+      {
+        "source_line": 781,
+        "source_text": "* source"
+      },
+      {
+        "source_line": 782,
+        "source_text": "* freshness"
+      },
+      {
+        "source_line": 783,
+        "source_text": "* collector"
+      },
+      {
+        "source_line": 784,
+        "source_text": "* confidence / unknown"
+      },
+      {
+        "source_line": 786,
+        "source_text": "を持つ。"
+      },
+      {
+        "source_line": 788,
+        "source_text": "古い観測結果を現在のInfrastructure状態として使わない。"
+      },
+      {
+        "source_line": 790,
+        "source_text": "---"
+      },
+      {
+        "source_line": 792,
+        "source_text": "# HRI-L1-034"
+      },
+      {
+        "source_line": 794,
+        "source_text": "## Unknownを第一級状態として扱う"
+      },
+      {
+        "source_line": 796,
+        "source_text": "Infrastructureでは、"
+      },
+      {
+        "source_line": 798,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 799,
+        "source_text": "Healthy"
+      },
+      {
+        "source_line": 800,
+        "source_text": "Unhealthy"
+      },
+      {
+        "source_line": 801,
+        "source_text": "Unknown"
+      },
+      {
+        "source_line": 802,
+        "source_text": "Unobserved"
+      },
+      {
+        "source_line": 803,
+        "source_text": "Stale"
+      },
+      {
+        "source_line": 804,
+        "source_text": "```"
+      },
+      {
+        "source_line": 806,
+        "source_text": "を区別する。"
+      },
+      {
+        "source_line": 808,
+        "source_text": "確認できないResourceをHealthyとして補完しない。"
+      },
+      {
+        "source_line": 810,
+        "source_text": "---"
+      },
+      {
+        "source_line": 812,
+        "source_text": "# HRI-L1-035"
+      },
+      {
+        "source_line": 814,
+        "source_text": "## HELIX本体とHELIX-Web Infrastructureを分離する"
+      },
+      {
+        "source_line": 816,
+        "source_text": "将来のWeb展開では、"
+      },
+      {
+        "source_line": 818,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 819,
+        "source_text": "HELIX Internal Infrastructure"
+      },
+      {
+        "source_line": 820,
+        "source_text": "≠"
+      },
+      {
+        "source_line": 821,
+        "source_text": "HELIX-Web Service Infrastructure"
+      },
+      {
+        "source_line": 822,
+        "source_text": "```"
+      },
+      {
+        "source_line": 824,
+        "source_text": "とする。"
+      },
+      {
+        "source_line": 826,
+        "source_text": "HELIX-Web側の、"
+      },
+      {
+        "source_line": 828,
+        "source_text": "* tenant runtime"
+      },
+      {
+        "source_line": 829,
+        "source_text": "* customer job"
+      },
+      {
+        "source_line": 830,
+        "source_text": "* customer credential"
+      },
+      {
+        "source_line": 831,
+        "source_text": "* service state"
+      },
+      {
+        "source_line": 832,
+        "source_text": "* deployment"
+      },
+      {
+        "source_line": 834,
+        "source_text": "をHELIX本体Infrastructureへ暗黙共有しない。"
+      },
+      {
+        "source_line": 836,
+        "source_text": "---"
+      },
+      {
+        "source_line": 838,
+        "source_text": "# HRI-L1-036"
+      },
+      {
+        "source_line": 840,
+        "source_text": "## HELIX Core AssetをRuntime境界でも保護する"
+      },
+      {
+        "source_line": 842,
+        "source_text": "HELIX-HARNESS-CORE、BRAIN、INTELLIGENCE、LABO等の内部Assetを、Runtime Infrastructureの配置によって不用意に外部へ公開しない。"
+      },
+      {
+        "source_line": 844,
+        "source_text": "SECURITYのAsset Boundaryに従って、"
+      },
+      {
+        "source_line": 846,
+        "source_text": "* internal only"
+      },
+      {
+        "source_line": 847,
+        "source_text": "* service internal"
+      },
+      {
+        "source_line": 848,
+        "source_text": "* external"
+      },
+      {
+        "source_line": 849,
+        "source_text": "* restricted"
+      },
+      {
+        "source_line": 851,
+        "source_text": "等の配置条件を適用できる。"
+      },
+      {
+        "source_line": 853,
+        "source_text": "---"
+      },
+      {
+        "source_line": 855,
+        "source_text": "# HRI-L1-037"
+      },
+      {
+        "source_line": 857,
+        "source_text": "## Self-hosting更新で現行稼働版を失わない"
+      },
+      {
+        "source_line": 859,
+        "source_text": "HELIXがHELIX自身のInfrastructureを変更する場合、"
+      },
+      {
+        "source_line": 861,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 862,
+        "source_text": "Running Generation N"
+      },
+      {
+        "source_line": 863,
+        "source_text": "        ↓"
+      },
+      {
+        "source_line": 864,
+        "source_text": "Candidate Generation N+1"
+      },
+      {
+        "source_line": 865,
+        "source_text": "```"
+      },
+      {
+        "source_line": 867,
+        "source_text": "を分離する。"
+      },
+      {
+        "source_line": 869,
+        "source_text": "候補版が自身の成功を自己承認して、稼働版を先に破壊しない。"
+      },
+      {
+        "source_line": 871,
+        "source_text": "適格な旧Generationへ戻れる状態を保つ。"
+      },
+      {
+        "source_line": 873,
+        "source_text": "---"
+      },
+      {
+        "source_line": 875,
+        "source_text": "# HRI-L1-038"
+      },
+      {
+        "source_line": 877,
+        "source_text": "## Runtime Infrastructureを再構築可能にする"
+      },
+      {
+        "source_line": 879,
+        "source_text": "Infrastructure状態が失われても、"
+      },
+      {
+        "source_line": 881,
+        "source_text": "* approved design"
+      },
+      {
+        "source_line": 882,
+        "source_text": "* configuration"
+      },
+      {
+        "source_line": 883,
+        "source_text": "* artifact"
+      },
+      {
+        "source_line": 884,
+        "source_text": "* dependency"
+      },
+      {
+        "source_line": 885,
+        "source_text": "* data backup"
+      },
+      {
+        "source_line": 886,
+        "source_text": "* version"
+      },
+      {
+        "source_line": 887,
+        "source_text": "* deployment evidence"
+      },
+      {
+        "source_line": 889,
+        "source_text": "から必要なRuntimeを再構築できる。"
+      },
+      {
+        "source_line": 891,
+        "source_text": "特定の一台のMachine内部だけに復旧不能な知識を持たない。"
+      },
+      {
+        "source_line": 893,
+        "source_text": "---"
+      },
+      {
+        "source_line": 895,
+        "source_text": "# HRI-L1-039"
+      },
+      {
+        "source_line": 897,
+        "source_text": "## 実Infrastructure操作はRunnerを通す"
+      },
+      {
+        "source_line": 899,
+        "source_text": "HELIXがInfrastructureを操作するとき、"
+      },
+      {
+        "source_line": 901,
+        "source_text": "* provision"
+      },
+      {
+        "source_line": 902,
+        "source_text": "* configure"
+      },
+      {
+        "source_line": 903,
+        "source_text": "* deploy"
+      },
+      {
+        "source_line": 904,
+        "source_text": "* stop"
+      },
+      {
+        "source_line": 905,
+        "source_text": "* scale"
+      },
+      {
+        "source_line": 906,
+        "source_text": "* restore"
+      },
+      {
+        "source_line": 907,
+        "source_text": "* delete"
+      },
+      {
+        "source_line": 909,
+        "source_text": "等の実操作は、SECURITYによるAuthorityを受けたRunner / Sandbox等の限定実行経路を通す。"
+      },
+      {
+        "source_line": 911,
+        "source_text": "Runtime Infrastructure自身が無制限Shell主体にならない。"
+      },
+      {
+        "source_line": 913,
+        "source_text": "---"
+      },
+      {
+        "source_line": 915,
+        "source_text": "# HRI-L1-040"
+      },
+      {
+        "source_line": 917,
+        "source_text": "## Provider API / IaCを実装方式として固定しない"
+      },
+      {
+        "source_line": 919,
+        "source_text": "Infrastructure操作は、"
+      },
+      {
+        "source_line": 921,
+        "source_text": "* Terraform / OpenTofu"
+      },
+      {
+        "source_line": 922,
+        "source_text": "* Ansible"
+      },
+      {
+        "source_line": 923,
+        "source_text": "* Cloud API"
+      },
+      {
+        "source_line": 924,
+        "source_text": "* Provider CLI"
+      },
+      {
+        "source_line": 925,
+        "source_text": "* local script"
+      },
+      {
+        "source_line": 926,
+        "source_text": "* container runtime"
+      },
+      {
+        "source_line": 928,
+        "source_text": "等で実装できる。"
+      },
+      {
+        "source_line": 930,
+        "source_text": "特定ToolをHELIX Infrastructureの意味正本にしない。"
+      },
+      {
+        "source_line": 932,
+        "source_text": "---"
+      },
+      {
+        "source_line": 934,
+        "source_text": "# 各機構との境界"
+      },
+      {
+        "source_line": 936,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 937,
+        "source_text": "HELIX-BRAIN"
+      },
+      {
+        "source_line": 938,
+        "source_text": "Infrastructure Pattern / Knowledge"
+      },
+      {
+        "source_line": 939,
+        "source_text": "        ↓"
+      },
+      {
+        "source_line": 941,
+        "source_text": "HELIX-HARNESS"
+      },
+      {
+        "source_line": 942,
+        "source_text": "Infrastructure Requirement / Verification Contract"
+      },
+      {
+        "source_line": 943,
+        "source_text": "        ↓"
+      },
+      {
+        "source_line": 945,
+        "source_text": "HELIX-HARNESS-CORE"
+      },
+      {
+        "source_line": 946,
+        "source_text": "HELIX固有Infrastructure Design"
+      },
+      {
+        "source_line": 947,
+        "source_text": "        ↓"
+      },
+      {
+        "source_line": 949,
+        "source_text": "HELIX Runtime Infrastructure"
+      },
+      {
+        "source_line": 950,
+        "source_text": "Deployment Target / Actual Runtime State"
+      },
+      {
+        "source_line": 951,
+        "source_text": "        │"
+      },
+      {
+        "source_line": 952,
+        "source_text": "        ├── SECURITY"
+      },
+      {
+        "source_line": 953,
+        "source_text": "        │   Authority / Isolation / Credential"
+      },
+      {
+        "source_line": 954,
+        "source_text": "        │"
+      },
+      {
+        "source_line": 955,
+        "source_text": "        ├── OS"
+      },
+      {
+        "source_line": 956,
+        "source_text": "        │   Change / Deployment / Incidentの進行統制"
+      },
+      {
+        "source_line": 957,
+        "source_text": "        │"
+      },
+      {
+        "source_line": 958,
+        "source_text": "        ├── Runner"
+      },
+      {
+        "source_line": 959,
+        "source_text": "        │   実Infrastructure操作"
+      },
+      {
+        "source_line": 960,
+        "source_text": "        │"
+      },
+      {
+        "source_line": 961,
+        "source_text": "        ├── INTELLIGENCE"
+      },
+      {
+        "source_line": 962,
+        "source_text": "        │   Placement / Capacity / Diagnosis proposal"
+      },
+      {
+        "source_line": 963,
+        "source_text": "        │"
+      },
+      {
+        "source_line": 964,
+        "source_text": "        └── LABO"
+      },
+      {
+        "source_line": 965,
+        "source_text": "            Operation / Failure / Cost / Recovery評価"
+      },
+      {
+        "source_line": 966,
+        "source_text": "```"
+      },
+      {
+        "source_line": 968,
+        "source_text": "---"
+      },
+      {
+        "source_line": 970,
+        "source_text": "# OSとの境界"
+      },
+      {
+        "source_line": 972,
+        "source_text": "HELIX-OSは、"
+      },
+      {
+        "source_line": 974,
+        "source_text": "* 何を変更するか"
+      },
+      {
+        "source_line": 975,
+        "source_text": "* どのTicketで進めるか"
+      },
+      {
+        "source_line": 976,
+        "source_text": "* 誰が行うか"
+      },
+      {
+        "source_line": 977,
+        "source_text": "* どの証拠を登録するか"
+      },
+      {
+        "source_line": 978,
+        "source_text": "* いつ停止・再開するか"
+      },
+      {
+        "source_line": 980,
+        "source_text": "を統制する。"
+      },
+      {
+        "source_line": 982,
+        "source_text": "Runtime Infrastructureは、"
+      },
+      {
+        "source_line": 984,
+        "source_text": "* どのResourceが存在するか"
+      },
+      {
+        "source_line": 985,
+        "source_text": "* どのTopologyか"
+      },
+      {
+        "source_line": 986,
+        "source_text": "* どのVersionか"
+      },
+      {
+        "source_line": 987,
+        "source_text": "* 現在どういう状態か"
+      },
+      {
+        "source_line": 988,
+        "source_text": "* どこに配置されているか"
+      },
+      {
+        "source_line": 990,
+        "source_text": "を扱う。"
+      },
+      {
+        "source_line": 992,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 993,
+        "source_text": "OS"
+      },
+      {
+        "source_line": 994,
+        "source_text": "= Work / Change State"
+      },
+      {
+        "source_line": 996,
+        "source_text": "Runtime Infrastructure"
+      },
+      {
+        "source_line": 997,
+        "source_text": "= Runtime Resource State"
+      },
+      {
+        "source_line": 998,
+        "source_text": "```"
+      },
+      {
+        "source_line": 1000,
+        "source_text": "同じStateを二重に正本化しない。"
+      },
+      {
+        "source_line": 1002,
+        "source_text": "---"
+      },
+      {
+        "source_line": 1004,
+        "source_text": "# SECURITYとの境界"
+      },
+      {
+        "source_line": 1006,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 1007,
+        "source_text": "Runtime Infrastructure"
+      },
+      {
+        "source_line": 1008,
+        "source_text": "「Server AにJobをDeployしたい」"
+      },
+      {
+        "source_line": 1010,
+        "source_text": "SECURITY"
+      },
+      {
+        "source_line": 1011,
+        "source_text": "「Server A / Project X / Operation Deploy /"
+      },
+      {
+        "source_line": 1012,
+        "source_text": " Revision Y / Expiry Zなら許可」"
+      },
+      {
+        "source_line": 1014,
+        "source_text": "Runner"
+      },
+      {
+        "source_line": 1015,
+        "source_text": "「その範囲だけ実行」"
+      },
+      {
+        "source_line": 1016,
+        "source_text": "```"
+      },
+      {
+        "source_line": 1018,
+        "source_text": "Infrastructureは自分で自分の権限を拡張しない。"
+      },
+      {
+        "source_line": 1020,
+        "source_text": "---"
+      },
+      {
+        "source_line": 1022,
+        "source_text": "# LABOとの境界"
+      },
+      {
+        "source_line": 1024,
+        "source_text": "Runtime Infrastructureは生の、"
+      },
+      {
+        "source_line": 1026,
+        "source_text": "* metric"
+      },
+      {
+        "source_line": 1027,
+        "source_text": "* event"
+      },
+      {
+        "source_line": 1028,
+        "source_text": "* failure"
+      },
+      {
+        "source_line": 1029,
+        "source_text": "* recovery"
+      },
+      {
+        "source_line": 1030,
+        "source_text": "* cost"
+      },
+      {
+        "source_line": 1031,
+        "source_text": "* capacity"
+      },
+      {
+        "source_line": 1033,
+        "source_text": "を観測可能にする。"
+      },
+      {
+        "source_line": 1035,
+        "source_text": "「この構成が良かったか」はLABOが過去実績として評価する。"
+      },
+      {
+        "source_line": 1037,
+        "source_text": "Runtime自身が成功実績から設計PatternをBRAINへ直接昇格させない。"
+      },
+      {
+        "source_line": 1039,
+        "source_text": "---"
+      },
+      {
+        "source_line": 1041,
+        "source_text": "# INTELLIGENCEとの境界"
+      },
+      {
+        "source_line": 1043,
+        "source_text": "INTELLIGENCEは、"
+      },
+      {
+        "source_line": 1045,
+        "source_text": "* Resource配置"
+      },
+      {
+        "source_line": 1046,
+        "source_text": "* Worker placement"
+      },
+      {
+        "source_line": 1047,
+        "source_text": "* Capacity shortage"
+      },
+      {
+        "source_line": 1048,
+        "source_text": "* Failure diagnosis"
+      },
+      {
+        "source_line": 1049,
+        "source_text": "* Scaling"
+      },
+      {
+        "source_line": 1050,
+        "source_text": "* Recovery candidate"
+      },
+      {
+        "source_line": 1052,
+        "source_text": "等を判断候補として出せる。"
+      },
+      {
+        "source_line": 1054,
+        "source_text": "Runtime Infrastructureは候補を直接Authorityとして実行しない。"
+      },
+      {
+        "source_line": 1056,
+        "source_text": "---"
+      },
+      {
+        "source_line": 1058,
+        "source_text": "# 1.0で最低限成立させる範囲"
+      },
+      {
+        "source_line": 1060,
+        "source_text": "1.0では少なくとも、"
+      },
+      {
+        "source_line": 1062,
+        "source_text": "1. Runtime Resource Identity"
+      },
+      {
+        "source_line": 1063,
+        "source_text": "2. Topology"
+      },
+      {
+        "source_line": 1064,
+        "source_text": "3. Environment"
+      },
+      {
+        "source_line": 1065,
+        "source_text": "4. Desired / Actual separation"
+      },
+      {
+        "source_line": 1066,
+        "source_text": "5. Drift"
+      },
+      {
+        "source_line": 1067,
+        "source_text": "6. Compute / Network / Storage"
+      },
+      {
+        "source_line": 1068,
+        "source_text": "7. Model / Worker Runtime"
+      },
+      {
+        "source_line": 1069,
+        "source_text": "8. Capacity"
+      },
+      {
+        "source_line": 1070,
+        "source_text": "9. Observability"
+      },
+      {
+        "source_line": 1071,
+        "source_text": "10. Incident state"
+      },
+      {
+        "source_line": 1072,
+        "source_text": "11. Backup / Restore"
+      },
+      {
+        "source_line": 1073,
+        "source_text": "12. Rollback"
+      },
+      {
+        "source_line": 1074,
+        "source_text": "13. Deployment version"
+      },
+      {
+        "source_line": 1075,
+        "source_text": "14. Security connection"
+      },
+      {
+        "source_line": 1076,
+        "source_text": "15. OS connection"
+      },
+      {
+        "source_line": 1077,
+        "source_text": "16. Runner execution"
+      },
+      {
+        "source_line": 1078,
+        "source_text": "17. Bootstrap / Out-of-Band Recovery"
+      },
+      {
+        "source_line": 1079,
+        "source_text": "18. Rebuildability"
+      },
+      {
+        "source_line": 1081,
+        "source_text": "を成立させる。"
+      },
+      {
+        "source_line": 1083,
+        "source_text": "高度なAutoscaling、Multi-cloud、完全自動Failover等は、必要性と実績から後の版へ拡張できる。"
+      },
+      {
+        "source_line": 1085,
+        "source_text": "---"
+      },
+      {
+        "source_line": 1087,
+        "source_text": "# 要求の核"
+      },
+      {
+        "source_line": 1089,
+        "source_text": "> **HELIX Runtime Infrastructureは、HELIX自身を構成するCompute、Network、Storage、State、Worker、Model Runtime等の実行基盤とTopologyを扱い、承認されたInfrastructure Designから導かれたDeployment Targetと観測されたActual Stateを分離して保持する。Capacity、Failure、Observability、Backup、Restore、Rollback、Lifecycle、Cost、Driftを追跡し、HELIX全体が停止しても復旧できるBootstrap / Out-of-Band Recoveryを持つ。設計知識、要求意味、進行統制、Security Authority、判断、評価はそれぞれBRAIN、HARNESS/CORE、OS、SECURITY、INTELLIGENCE、LABOへ分離する。**"
+      }
+    ]
+  }
+}

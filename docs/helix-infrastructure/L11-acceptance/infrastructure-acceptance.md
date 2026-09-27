@@ -35,8 +35,8 @@ parent_l1_candidate: docs/helix-infrastructure/L1-planning/infrastructure-intent
 
 - **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-001`、`HELIXINFRASTRUCTURE-L1-004`、`HELIXINFRASTRUCTURE-L1-005`、`HELIXINFRASTRUCTURE-L1-006`、`HELIXINFRASTRUCTURE-L1-007`、`HELIXINFRASTRUCTURE-L1-009`、`HELIXINFRASTRUCTURE-L1-022`。
 
-- **受入手順**：HELIX-OS/BRAIN/LABO/INTELLIGENCE/SECURITY/CONNECT、Worker/Model Runtime、database/queue/artifact/evidence/log/metric storeのfixtureをenvironment別に置き、identity/role/location/version/dependency/lifecycle/network path/state-storage classを収集する。source/destination/protocol/endpoint/direction/purpose/security boundary/dependencyを持つnetwork path、persistent/temporary storageのowner/durability/backup/retention/confidentiality/recovery属性、logical HELIX-CONNECTとphysical pathを照合する。
-- **成功条件**：各観測は対象environmentとsource/revisionに結びつき、environment間のresourceが混同されない。未観測の項目はunknownとして残る。Model/Worker runtime inventoryは参照できるが、その能力評価、ticket状態、security policyをInfrastructure所有値として出さない。
+- **受入手順**：HELIX-OS/BRAIN/LABO/INTELLIGENCE/SECURITY/CONNECT、Worker/Model Runtime、database/queue/artifact/evidence/log/metric storeのfixtureをenvironment別に置き、identity/role/location/version/dependency/lifecycle/network path/state-storage classを収集する。source/destination/protocol/endpoint/direction/purpose/security boundary/dependencyを持つnetwork path、persistent/temporary storageのowner/durability/backup/retention/confidentiality/recovery属性、logical HELIX-CONNECTとphysical pathを照合する。対象scopeに含むModel Runtimeはmodel/version/server/GPU-memory requirement/concurrency/latency/capacity/health/endpointをsource/revision付きで記録する。
+- **成功条件**：各観測は対象environmentとsource/revisionに結びつき、environment間のresourceが混同されない。未観測の項目はunknownとして残る。Model/Worker runtime inventoryは参照できるが、その能力評価、ticket状態、security policyをInfrastructure所有値として出さない。 対象scopeに含むModel Runtime属性を対象environment/source/revisionへ結び、未観測は推定値で埋めない。対象scopeに含まれないModel Runtimeを存在すると仮定しない。
 - **反例・失敗条件**：stagingのresourceをproductionの存在証拠として扱う、logical connectorをphysical routeと同一扱いする、欠けたversion/dependencyを推定で埋める、またはresource stateをsecurity authorityの代用にした場合は不合格。
 - **失敗戻し先**：欠落したsource/ownerまたはCORE設計owner。読めない範囲・未完観測を保持する。
 - **対応する1.0 minimum**：1 Resource identity、2 Topology、3 Environment、6 Compute/Network/Storage、7 Model/Worker Runtime、13 Deployment versionのruntime側。
@@ -55,8 +55,8 @@ parent_l1_candidate: docs/helix-infrastructure/L1-planning/infrastructure-intent
 
 - **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-005`、`HELIXINFRASTRUCTURE-L1-006`、`HELIXINFRASTRUCTURE-L1-007`、`HELIXINFRASTRUCTURE-L1-009`、`HELIXINFRASTRUCTURE-L1-010`、`HELIXINFRASTRUCTURE-L1-011`。
 
-- **受入手順**：CPU/RAM/GPU/VRAM/storage/network/runtime/model requirementを持つresource snapshotと、十分、境界不明、容量不足、古いobservationの起動要求を使う。capacity/utilization/queue/concurrency/saturation/rejection/backpressureの各入力がどの対象版に属するか確認する。
-- **成功条件**：資源と容量情報がsource/revision付きで参照できる。既知の不足はcapacity unavailableとしてOS/INTELLIGENCEへ返され、queue/delay、代替候補、人へのescalation、reject等の判断経路へ渡せる。Infrastructure自身は配置や費用の選択を承認しない。
+- **受入手順**：CPU/RAM/GPU/VRAM/storage/network/runtime/model requirementを持つresource snapshotと、十分、境界不明、容量不足、古いobservationの起動要求を使う。対象scopeのModel Runtimeがあれば、model/version/server/GPU-memory requirement/concurrency/latency/capacity/health/endpoint各属性のsource/revisionと観測範囲も照合する。capacity/utilization/queue/concurrency/saturation/rejection/backpressureの各入力がどの対象版に属するか確認する。
+- **成功条件**：資源と容量情報がsource/revision付きで参照でき、Model Runtime属性も対象版に対応する。属性やcapacityの未観測/stale/unknownをhealthyまたは十分なcapacityとしない。既知の不足はcapacity unavailableとしてOS/INTELLIGENCEへ返され、queue/delay、代替候補、人へのescalation、reject等の判断経路へ渡せる。Infrastructure自身は配置や費用の選択を承認しない。実測できた値はsource/revision付きで保持する。容量の十分性を判定する閾値・適用条件が未設定なら、その判定をunknownとして戻し、観測値の存在だけで適格とせず、fixtureから製品閾値を新設しない。
 - **反例・失敗条件**：未知・古いcapacityを受入可とする、無制限にJobを追加する、またはInfrastructureが承認なしにnode移動/cost選択を実行する場合は不合格。
 - **失敗戻し先**：capacity observation sourceとOS/INTELLIGENCEのdecision owner。待機中要求・snapshot・未完義務を維持する。
 - **対応する1.0 minimum**：6 Compute/Network/Storage、7 Model/Worker Runtimeのresource側、8 Capacity。
@@ -129,9 +129,9 @@ parent_l1_candidate: docs/helix-infrastructure/L1-planning/infrastructure-intent
 
 - **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-021`、`HELIXINFRASTRUCTURE-L1-028`、`HELIXINFRASTRUCTURE-L1-029`、`HELIXINFRASTRUCTURE-L1-039`。
 
-- **受入手順**：SECURITY authority scope内の許可操作、範囲外対象、期限切れauthority、credential不足、revision不一致、部分操作を使う。OS assignment/ticket、Worker result、Infrastructure before/after state evidenceを関連付ける。
-- **成功条件**：Worker操作はSECURITYが認めたtarget/action/scope/expiry内に限られ、結果と実状態が別evidenceとして結びつく。credential値は通常resource stateへ漏らさず、停止時には実状態・未完操作・rollback義務を引き継ぐ。
-- **反例・失敗条件**：INFRASTRUCTURE自身がpolicy/authorityを発行する、範囲外操作が実行される、Workerの成功返答だけで実状態変更を受入れる、又は部分実行を成功として閉じる場合は不合格。
+- **受入手順**：SECURITY authority scope内の許可操作、範囲外対象、期限切れauthority、credential不足、revision不一致、部分操作を使い、通常OS/Worker operationと独立bootstrap/recovery operationを別fixtureにする。update/change actionは同じtarget/revision/scopeでSECURITY update-admission accepted/denied/unknown/mismatchを比較し、OS assignment/ticket、Worker result、Infrastructure before/after evidenceを対応づける。read-only fixtureは対象scope、read target、空のwrite-setと許可対象resourceのoperation前後値を定義する。
+- **成功条件**：Worker操作はSECURITYが認めたtarget/action/revision/scope/expiry内に限られ、結果と実状態が別evidenceとして結びつく。更新・変更はupdate admission acceptedかつ通常authorityが有効な場合だけ許可範囲内で適用し、denied/unknown/mismatch/期限切れ/失効なら変更前に停止しSECURITYへ戻す。read-onlyではwrite禁止の適用と、宣言したscope/write-set内で当該操作が変更を起こしていないこと、許可対象resourceの前後状態を確認する。実行中の無関係な状態変化まで不変と要求しない。OS/通常Control Plane停止中の独立bootstrap/recoveryもSECURITY制約下のWorker実行契約を通し、L2-006の独立resource/pathと別SECURITY authorityが有効な場合に限り、通常OS ticket/assignmentやL2-009応答なしで限定された点検/停止/recoveryを開始できる。OS復旧後は結果を通常のWork/Change traceへ同期する。credential値は通常resource stateへ漏らさず、停止時・部分実行では実状態・未完操作と該当する復旧/rollback義務を引き継ぐ。
+- **反例・失敗条件**：INFRASTRUCTURE自身がpolicy/authorityを発行する、範囲外操作が実行される、Workerの成功返答だけで実状態変更を受入れる、又は部分実行を成功として閉じる場合は不合格。read-onlyの宣言だけでwrite禁止・対象scopeのbefore/after確認を省く、writeが許される、または全resource状態digestが不変でないことだけを理由に失敗とする場合も不合格。update admission欠如だけを理由にread-onlyを拒否しないが、read-onlyにも対象・action・scope・authority条件は適用する。
 - **失敗戻し先**：実行前のauthority不一致はSECURITY/OSへ戻す。部分実行はInfrastructure実状態と復旧責務のownerへ返す。
 - **最低範囲対応**：14 SECURITY connection、16 Worker execution。
 
@@ -144,6 +144,8 @@ parent_l1_candidate: docs/helix-infrastructure/L1-planning/infrastructure-intent
 - **受入手順**：対象範囲と除外範囲を固定し、L2-001〜010および025の採択済み要求と必要契約を同一構成manifestへpinする。最低18項目それぞれにtest input、expected outcome、observed evidence、結果を記録し、正常構成と失敗/rollback構成を端から端まで評価する。通常のInfrastructure構成体受入と、HELIXOS-L2-014のstageへ収載する場合のstage integration evidenceを区別する。
 - **成功条件**：1〜18の各minimum itemに対応する証拠があり、単体機能、CORE/OS/SECURITY/Worker接続、構成体の成立が別に判定される。Backup/Restore/Rollbackと独立Bootstrap/Recovery、Rebuildabilityの復旧端まで確認される。未完義務は次のowner/ticket/recovery pathに残り、稼働中構成と適格rollback先が特定できる。stageへ収載する場合は、そのstage identityとの対応も確認するが、HELIXOS-L2-014自体を通常のInfrastructure構成体受入の前提にはしない。
 - **反例・失敗条件**：18項目のいずれかが欠落、unobserved/unknown/stale/mismatch/unauthorizedがpass扱い、backupだけでrestore合格、部分接続の成功だけで構成体pass、又は後続版条件を暗黙に必須化する場合は不合格。HELIX-WEB顧客runtimeを本体Infrastructure構成体へ混ぜても不合格。
+- **操作別の追加oracle**：最低18項目の構成体全体ではBackup/Restore/Rollback・独立Bootstrap/Recovery・Rebuildabilityをすべて確認する。個々の操作では、許可済み更新、read-only/no-change、適用復旧義務付きstate change、OS停止中の独立recoveryを別fixtureにする。更新はL2-010のupdate admission、read-onlyは適用scope内のwrite禁止と操作起因の変更なし、変更操作はそのactionに適用される復旧義務を照合する。無関係なread-only操作までbackup全件を必須にはしないが、構成体の最低18項目から復旧能力を除外しない。
+- **独立復旧の追加oracle**：停止中OSのticket/assignmentまたは通常L2-009応答なしでも、独立path/resourceと別SECURITY authority、SECURITY制約下のWorker実行契約により限定recoveryを開始し、復旧後にoperation/resultをOSへ同期する。許可欠落、適用復旧義務unknownの変更、通常操作へのticket免除、または同期欠落は構成体成功にしない。
 - **失敗戻し先**：失敗したunit/connectionのownerへ戻し、構成体は未成立のままにする。部分成功と未完義務は各ownerへ引継ぎ、rollbackまたは現行stage維持の判断材料を残す。
 - **最低範囲対応**：1–18すべて。L2の「1.0最低18項目と要求IDの対応」表を証拠indexとして使うが、表自体は原要求や個別試験の代用ではない。
 
