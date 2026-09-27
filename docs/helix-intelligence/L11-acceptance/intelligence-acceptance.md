@@ -285,3 +285,19 @@ HELIXINTELLIGENCE-L2-069／HELIXINTELLIGENCE-L2-070／HELIXINTELLIGENCE-L2-071�
 | `HELIXINTELLIGENCE-L2-066` | 人がL2-010 schema/versionに基づきtask scope、source revision、未評価状態、actor/timeを持つproposalを作り、OS receipt後にOSがassignmentを別記録する。 | 人案をINT生成・評価済み・assignment済みと偽装する、schema版不明を現行とみなす、同一proposal重複を新規根拠として使う場合は保留する。 | 未見contract版または遅延receiptはversion/scopeを照合し、互換性不明ならOSへ戻す。receiptがなくても提案内容の記録は可能だが、assignment成立とはしない。 |
 
 本表の正常fixtureに対する結果が合格しても、fixture外性能、未指定の互換version、未構成能力、または実環境一般の適格性を保証しない。未知入力の失敗状態は対象能力の限定であり、全INTELLIGENCE能力の普遍的失敗/成功を意味しない。
+
+### HELIXINTELLIGENCE-L2-072 Judgment pack候補とshadow評価 — 受入候補
+
+- **前提**：未採択candidateとして検証する。受入は実装・実行・gate適用の許可を作らない。対象scope/revision、pack identity/version、評価入力とoracle、reviewer identity/context/authority/routeを固定し、欠けた値を補完しない。独立性は2026-09-26 PO判断に従い、provider/modelが同じかどうかでは判定しない。
+- **正常例**：候補packが対象工程・domain・risk・failure mode・既存authorityへ適用可能な根拠を持つ。候補は本番判断へ影響しないshadowとして、同じscope/revisionに対する評価結果・unknown・反例を記録する。候補作成側と異なるidentity/context/authority/routeのreviewerがpackの適用根拠とshadow結果を独立に確認する。両証拠が揃っても状態は候補/review済みのままであり、対象ownerの既存authority手続きに採用結果がなければgateは強制されない。
+- **誤りを含む例**：評価前または独立review前に候補を強制gateへ使う、候補の結果を既存の判断結果として扱う、作成者や同じ作成contextのreviewを独立とする、scope/risk/authority/versionの不一致や欠測を互換・適用可能と推測する、shadow比較不能を成功にする場合は不合格。candidateの作成・shadow・review完了から強制gate化や追加authorityを自動生成した場合も不合格。
+- **未見例**：初回fixtureと異なる工程またはfailure modeを持つ未公開scopeを与える。packの適用条件に含まれなければunknown/非適用を返し、既定checklistへ自動fallbackしてgateを強制しない。既知scopeでもsource revisionや必要evidenceが欠ければ評価未完として保持する。
+- **判定oracle**：shadow中の候補が実判断・gate結果を変えないこと、packと評価が対象scope/revision・版へ結び付くこと、適用外/unknownが適用可能に変換されないこと、shadow評価と独立review双方が揃う前に強制規則へ昇格しないことを確認する。両方が揃った後も既存対象authorityの採用記録なしに強制しない。provider/model名を固定要件にせず、使った実版はHARNESS共通pack contractに記録する。
+- **境界**：この受入はjudgment pack単体の適用条件と非強制shadow状態に限る。旧HAC-HIL-21aの最小専門team生成、HAC-HIL-21bに含まれる未許可tool/自己検証拒否、HAC-HIL-21cのcatalog変更時stale/rebuild/retireはHR-FR-HIL-21の他identityとの合成条件であり、本候補だけの合格でそれらを閉じない。旧IRの`DOWNSTREAM-HIL-BR-29`はpair descentまで未完として保持する。
+
+- **未完の正常例と自己依存の反例**：scope/sourceだけからpack候補を生成し、identity/versionを付ける。shadow/reviewは未実施としてその後の義務へ残せる。生成前にその候補のshadow/review済receiptを要求する、未実施を評価済みにする、2.0外部知識取得を全1.0候補へ必須化する入力契約は不合格。
+
+- **構成・選択依存の反例**：packをL2-001のdomain identityとL2-002の選択capability構成へ結べない、未構成能力を実行可能扱いする、HARNESS-L2-023の有効依存閉包にunknown/staleを含むまま強制適用する例を拒否する。BRAIN知識を選択した場合だけ028のstate/互換範囲を照合し、記録した版番号だけで利用可能とはみなさない。
+- **評価証拠の再利用**：対象pack版/scope・oracle・shadow結果が一致する有効な既存証拠を使える。新規実験を行わなかったという理由だけで新しいWorker実験を一律要求しない。実験を選ぶ場合はLABO006のOS assignmentと実行結果、system化/operation配分を評価する場合は007の証拠条件を確認する。再利用元がstale/比較不能なら未完に戻し、INTELLIGENCEの自己評価だけで有効性を確定しない。
+
+- **配置・版の判断境界（R2225-01）**：BR-29の既存HARNESS／OS・1.0 pack運用案と、072のINTELLIGENCE判断候補配置案はL2のA/BでPO確認に残す。072の受入案が整ってもB採択済みと表示しない。正常例は判断候補/適用gap/shadow状態までとし、OS登録・LABO効果評価の責務を維持する。3.0の学習入力接続、ローカルモデル学習・調整を1.0成立条件にした例、または旧配置案との差分を記録せず確定した例を拒否する。
