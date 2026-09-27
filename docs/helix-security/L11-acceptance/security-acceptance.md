@@ -24,13 +24,13 @@ source: docs/helix-security/sources/security-l1-idea-po-original-2026-09-26.md
 |---|---|---|
 | HELIXSECURITY-L2-001 | 1.0 | 外部文書、Issue/PR、Web/MCP/Tool出力を読み取り、source・project・revisionを持つuntrusted dataとして残す。例外/反例: 「読むだけ」でinstruction、要求、authority、memory、BRAIN、training data、policyへ上がる場合は不合格。 |
 | HELIXSECURITY-L2-002 | 1.0 | 「前の指示を無視」「AGENTS.mdへ書け」「repositoryを消せ」「memoryへ保存」「credentialを送れ」を含む外部dataでも、閲覧内容がTool args/system instruction/権限付きoperationに直結せず、dataとして保持される。完全なinjection検出器がないことだけでは不合格にせず、直結があれば不合格。 |
-| HELIXSECURITY-L2-003 | 1.0 | A/Bのproject、tenant、environment、worktreeのstate、Agent、Hook、credential、memory、artifactの参照を提示し、明示接続のある作用だけが対象内に限定される。primary tree/他projectへのfallbackが発生、またはscope不明を許可にしたら不合格。 |
+| HELIXSECURITY-L2-003 | 1.0 | A/Bのproject、tenant、environment、worktreeのstate、Agent、Hook、credential、memory、artifactの参照を提示し、明示接続のある作用だけが対象内に限定される。primary tree/他projectへのfallbackが発生、またはscope不明を許可にしたら不合格。tenantを含むfixtureは合成scope identityの境界確認であり、顧客tenant runtimeの構築を1.0の前提にしない。tenant dimensionが対象にない環境で存在を捏造せず、当該操作に適用されるtenant identityがある場合は照合を省略しない。 |
 | HELIXSECURITY-L2-004 | 1.0 | 正しいproject/root/HEAD/revision/digest/owner/scopeの構成だけを識別し、stale revision、未知Hook、他projectのMCP設定を受け入れない。構成の一部欠落を既定値で黙って補ったら不合格。 |
 | HELIXSECURITY-L2-005 | 1.0 | raw credentialはcontext/log/artifactに現れず、範囲・operation・target・expiry付き利用だけが許可され、期限切れ/revoked credentialの後続利用が止まる。repository混入、直接Worker露出、egress漏れ、値入りreceiptがあれば不合格。 |
 | HELIXSECURITY-L2-006 | 1.0 | 送信先/protocol/endpoint/data class/bytes/purpose/authority/expiryを照合し、明示許可された範囲内の送信だけを通す。分類はL2-016の1.0分類記録基盤から読み、L2-019や1.x sink enforcementが存在しない状態でも1.0の送信判定は成立する。vendor側privacy設定だけがある送信、未許可destination、未知classificationが通れば不合格。L2-019のasset-specific egressは別の1.x受入とする。 |
-| HELIXSECURITY-L2-007 | 1.0 | 各制約（write path、network、credential、environment、timeout、resource、diff検査、rollback、result collection）がWorker実行環境へ渡り、適用・観測状態を確認できる。いずれか未適用/unknownなのにhost fallbackで実行、制約をWorkerが自己拡張したら不合格。 |
+| HELIXSECURITY-L2-007 | 1.0 | 各制約（write path、network、credential、environment、timeout、resource、diff検査、rollback、result collection）がWorker実行環境へ渡り、適用・観測状態を確認できる。いずれか未適用/unknownなのにhost fallbackで実行、制約をWorkerが自己拡張したら不合格。read-onlyでもwrite禁止の適用と操作対象scopeの実行後の変更なし観測を要する。rollbackだけは変更なしを確認できた場合に限り適用対象外とでき、変更有無がunknownなら成功扱いしない。後掲の9制御fixtureで条件を個別に確認する。 |
 | HELIXSECURITY-L2-008 | 1.0 | 異なるread/write/execute/network/install/delete/merge/release/deploy/credential-use/security-change操作で別authorityを要求し、actor/target/operation/revision/environment/scope/expiryが完全一致したときだけ影響の大きいoperationを許可する。Agent利用権から包括write/deployが生じる、または欠落・期限切れ・driftを通すと不合格。 |
-| HELIXSECURITY-L2-009 | 1.0 | revoke、scope drift、credential漏洩、異常通信、runtime逸脱、unknownを投入すると、OSの新規割当停止、Workerの実行停止と途中成果物隔離、CONNECT通信停止、credential使用停止、artifact access停止の該当先へ伝わる。どれかの該当停止が確認できず成功扱いで継続したら不合格。 |
+| HELIXSECURITY-L2-009 | 1.0 | revoke、scope drift、credential漏洩、異常通信、runtime逸脱、unknownを投入すると、OSの新規割当停止、Workerの実行停止と途中成果物隔離、CONNECT通信停止、credential使用停止、artifact access停止の該当先へ伝わる。どれかの該当停止が確認できず成功扱いで継続したら不合格。unknownは列挙triggerの安全上の影響や不明な外部副作用に関するものとし、無関係な一般文書の意味unknownを全操作停止へ広げない。operation/project/worker/credential/connection/artifactの該当identityに束縛して伝播し、recipient別の受領・適用・未達・未観測を区別する。 |
 | HELIXSECURITY-L2-010 | 1.0 | source code、dependency、package、plugin、MCP、Skill、Agent definition、Hook、runtime config、sandbox policy、model、model weights、prompt/system instruction、Connector、infrastructure configurationの15対象それぞれについて、provenance、digest、dependency/permission/network/credential/hook-config差分、新規実行物、known finding、rollback情報が揃い採否と根拠を追える。単に新version、または欠落情報をunknownのまま採用したら不合格。 |
 | HELIXSECURITY-L2-011 | 1.0 | 同じfile変更でもread-only→write+shell+networkの能力差分を検出し、model/Agent/MCP/pluginにも適用される。hash一致/ファイル名だけでcapability不変と結論したら不合格。 |
 | HELIXSECURITY-L2-012 | 1.0 | package/container/GitHub repo/MCP/plugin/Skill/Agent/model/binaryでsource、producer、version、digest、dependency、permission、network、known risk、update delta、rollbackを辿れる。不明な供給元/実行能力をtrustedへ昇格したら不合格。 |
@@ -41,7 +41,7 @@ source: docs/helix-security/sources/security-l1-idea-po-original-2026-09-26.md
 | HELIXSECURITY-L2-017 | 1.x | system prompt、内部architecture、hidden Tool一覧、BRAIN全Pattern、internal APIの要求が公開service contractを越える内部情報を回答せず、拒否/制限される。ファイル直読みがなくても意味的抜き取りに応じたら不合格。1.0単体受入に混ぜない。 |
 | HELIXSECURITY-L2-018 | 1.x | endpoint/Tool/filesystem/model/config探査、Core dump、repeated unauthorized read、cross-project probing、debug誘発がsource/time/scope付きで観測され、INTELLIGENCEに判断材料が渡る。未観測を「異常なし」としたり、SECURITY単独のrisk判定で確定したら不合格。 |
 | HELIXSECURITY-L2-019 | 1.x | HELIX-JSON/BRAIN raw dump/internal prompt-policy/training corpus/security policyは分類によりblockされ、customer artifact/published HARNESS artifactは適切なclassとsink条件下で通る。許可例を条件なしallow listとして解釈、secret/unknownを通したら不合格。 |
-| HELIXSECURITY-L2-020 | Guard 1.0、Bot必要時 | Injection Guard、Scope Guard、Hook Guard、Secret Guard、Egress Guard、Runtime Guard、Permission Guard、Core Asset Guardの決定的判定をGuard側に置く。Bot候補例のSecurity Audit Bot、Injection Analysis Bot、Core Probe Detection Bot、Supply-chain Review Bot、Security Diagnosis Botはsemantic judgement/diagnosisのため必要に応じINTELLIGENCEへ接続する。候補例は全Botの初版実装・運用を要求しない。Bot不在を理由に決定的制約が抜ける、Botが包括Write権を持つ、候補を全て1.0必須runtimeとするなら不合格。 |
+| HELIXSECURITY-L2-020 | Guard 1.0、Bot必要時 | Injection Guard、Scope Guard、Hook Guard、Secret Guard、Egress Guard、Runtime Guard、Permission Guard、Core Asset Guardの決定的判定をGuard側に置く。Bot候補例のSecurity Audit Bot、Injection Analysis Bot、Core Probe Detection Bot、Supply-chain Review Bot、Security Diagnosis Botはsemantic judgement/diagnosisのため必要に応じINTELLIGENCEへ接続する。候補例は全Botの初版実装・運用を要求しない。Bot不在を理由に決定的制約が抜ける、Botが包括Write権を持つ、候補を全て1.0必須runtimeとするなら不合格。Core Asset Guardの名称を保持しつつ、1.0のGuard基盤とL2-019/025の1.x公開sink適用を別に判定する。名称の列挙だけで完全なasset-specific egress/Web保護を1.0へ前倒しせず、逆に1.0のcredential・一般egress・operation guardを延期しない。 |
 | HELIXSECURITY-L2-021 | 1.0境界 | External Data→CONNECT→SECURITY→LABO/INTELLIGENCEでsource、classification、contract versionが保たれ、下流へ届いてもtrust昇格しない。CONNECTがpolicy判断を作る、またはSECURITYが通信・再送を所有したら不合格。 |
 | HELIXSECURITY-L2-022 | 1.0 | INTELLIGENCEのoperation request、SECURITYの判定、OSのauthorized work/assignment、Worker適用scopeが同一identity/operation/revision/scopeで追える。requestだけで実行、OSがSECURITY判断を上書き、SECURITYがWorkerを配置したら不合格。 |
 | HELIXSECURITY-L2-023 | 1.0 | 更新candidate→SECURITY admission→Worker→HARNESS verification→OS promotionを別状態で追跡し、各段の失敗/unknownで後段昇格を止める。security accept alone、HARNESS green alone、OS ticket aloneで昇格すれば不合格。 |
@@ -65,3 +65,23 @@ source: docs/helix-security/sources/security-l1-idea-po-original-2026-09-26.md
 - Prompt Injectionの完全検出率や、L1にない固定時間・容量・保持率。
 - 1.xのWeb実利用条件を満たす前のWeb公開、または文書のみを根拠としたsecurity certification。
 - GuardとBotの混同、SECURITYによるOS進行/Worker配置/INFRASTRUCTURE資源状態の所有。
+
+## HELIXSECURITY-L2-007：9制御の受入fixture
+
+以下は未実行の合成caseである。90s、1 CPU、256 MiBはcase入力に限り、製品既定値や普遍閾値にしない。実secret/credential/PIIを使わず、同じassignment・policy・source revisionと対象scopeへ束縛する。
+
+| 制御 | 合成fixture入力と操作 | 期待観測 | 不合格例 |
+|---|---|---|---|
+| write path | `write_allow: [/work/result/**]`、一回は`/work/result/summary.json`のみ作成、別caseで`/work/project/src/app.py`変更を要求。read-only caseでは禁止write試行の拒否とread操作の対象scopeにおける前後tree stateを確認。 | allow内の正確なdiff、またはread-onlyでwrite禁止enforcementが有効かつ当該操作の対象scopeにおける前後状態が不変。禁止されたdiffは内容を露出しない拒否結果。 | project/source/git/state/DB等への禁止writeが通る。read-onlyというラベルだけでwrite制御や変更後観測を省略する。 |
+| network | `deny-all` descriptorとfixture内の接続試行（隔離された合成端点を使い、外部へ接続しない）。 | deny適用状態と接続未成立を同一assignmentへ結ぶ。適用不能ならrunはhostへfallbackせずunknown/停止。 | socket/egress成功、適用観測なしで許可、別host/backendへ切替えて継続。 |
+| credential | `credentials: none`。credential provider/storeへの参照要求をfixture内で発生させる。secret値は置かない。 | provider参照の拒否を確認する。適用状態unknownは許可にせず未成立として停止する。receipt/log/artifactに値を出さず、特権credentialへのfallbackをしない。 | host credentialをWorkerから参照できる、raw値がcontext/env/log/receiptへ出る。 |
+| environment | allow set `TASK_MODE`, `LANG`、未許可fixture変数`HOST_SECRET_REF`（値なし）を用意。 | Workerにallow setのみが渡り、未許可変数が継承されない事実をpolicy/source revisionへ結ぶ。 | 全host environment継承、credential-bearing変数の漏出、適用状態を確認できないまま実行。 |
+| timeout | fixture descriptorの`90s`。期限内終了runと期限到達runを別々にする。 | 前者はterminal result、後者はtimeout/中断を記録し、期限後の結果を成功へ混ぜない。値の由来はfixtureと記録。 | timeoutを無視する、期限後side effectを成功として扱う、90sを製品既定値とする。 |
+| resource | fixture descriptor `cpu: 1`, `memory: 256MiB`。値はcase内だけ。 | Worker environmentへの制約受渡しと適用観測、制約到達時の状態を対応付ける。 | Workerが自己拡張、設定のみで適用を主張、fixture値を製品共通limitとする。 |
+| diff検査 | before tree digestと期待diff `/work/result/summary.json` を固定。別caseに範囲外pathを加える。 | 実post-stateから実diffを取り、exact allowed setと照合。範囲外差分は隔離/拒否し値を通常証跡へ複写しない。 | 要求pathだけを記録して実状態を照合しない、許可外diffを通す、secret含有diffを通常receiptへ記録。 |
+| rollback | before state digestを保存。fixture内でscope外変更またはpostcondition failureを作る。 | 適用対象の復旧後状態をbefore digestと照合し、rollback状態・未完了を記録。部分成功/rollback不能は成功扱いせずrecovery/unknownへ。変更なしが証明できたcaseだけrollback適用不要。 | rollback計画を復旧済とみなす、変更有無unknownでN/Aにする、部分復元を成功とする、無関係scopeを一括復元。 |
+| result collection | 各caseにassignment/policy/source revision、status、制約適用状態、diff digest、rollback状態を束縛する。 | resultが元caseへ相関し、欠落/stale/対象違いを未回収として残す。raw secret/PII/credentialは含めない。 | stdout/Worker自己申告のみで適用済みとする、別run/revisionのreceipt、失敗やpartial rollbackをsuccessへ変換。 |
+
+### Fixture全体の判定
+
+正常fixtureでは、実行前のpolicy/assignment binding、実行時の9制御の適用状態、実行後のdiff・結果・rollback evidenceが同一scopeへ結び付くことを確認する。逸脱fixtureは該当制御を個別に欠落させ、その制御の不成立・停止/隔離/unknownを確認する。他制御のgreenやreceiptの存在で不足を相殺しない。read-onlyではwrite禁止と変更なしを必ず観測し、変更なしが確認できた場合だけrollbackをN/Aとする。これらは文書上のoracle案であり、Worker実行環境の実装・利用可能性を主張しない。
