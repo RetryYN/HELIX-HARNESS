@@ -358,3 +358,45 @@ BRAIN知識接続の正本の受入は、[HELIXBRAIN-L2-030の対](../../helix-b
 ### 依存区分と受入停止
 
 各受入ではHARNESS-L2-026のDesign Template/CORE/BRAIN connector契約とL3 authority、HARNESS-L2-025の構成体scope/oracleを常時照合する。対の検証設計は常時出力必須とし、UI設計など対象別の専用契約と個別oracleは該当scopeで追加する。選んだPatternのidentity/version/compatibility/required inputは選択時に必須。背景資料は参照のみとする。未承認・missing・unknown・conflict・staleの必須入力がある操作は保留し、Pattern未選択は未観測とする。
+## G16 既存製品のReverseと差分改修の受入候補
+
+起点は[PO原文第2項](../sources/capability-reinforcement-po-original-2026-09-27.md)、[判断記録](../../governance/decisions/capability-reinforcement-po-decisions-2026-09-27.md)、および追補candidate HARNESS-L2-027/028/029である。以下は未実行の内容oracle候補。各operationのsource authority、版、scope、対象を先に固定し、design revisionは保存設計との比較をする028/029で要求し、027単体には課さない。field/traceの存在のみを合格にしない。候補受入から要求・設計の採択、L3 approval、コード変更・migration適用の許可を生成しない。
+
+### HARNESS-L2-027 unit（`HARNESS-L1-001`, `HARNESS-L1-003`, `HARNESS-L1-005`）
+
+HARNESS-L2-019は製品単位のFull Reverse入口とHELIX形式のresult/unknown境界を所有する。027は019から呼び出し得る選択source型の抽出unit/pack candidateで、019の完了receiptを前提にしない。HARNESS-L2-010/011がpack identityとcall/input contractを所有し、HARNESS-L2-014は承認設計のauthorityを保つ。027の出力は観測candidateであり、設計stageの承認成果ではない。
+
+**正常例**：選択されたcode fixture（`if status != "draft": return 409; if amount > max: return 422; persist(amount); return 200`）のrevision/digestを入力する。抽出候補は、status guardがdraft以外を409で拒否すること、amountがmaxを超えると422で拒否してpersistへ到達しないこと、draftかつamount<=maxではpersist後200になることを各source spanへ結び、状態遷移・guard・副作用の順を明示する。これらはcodeから観測した振舞い候補であって、要求意味・承認設計・runtimeで実測した結果とは表示しない。選択したDB schema/API definition/configも各revision/digestと根拠spanへ結び、認識不能constructをunknown/unsupportedとして返す。未選択typeは未観測で「存在しない」としない。019の完了receiptやsaved design revisionなしでも、019のintake/result boundaryに沿うsource observationとして単独で成立する。
+
+**誤りを含む例**：別branchのsourceを同じ対象としてjoinする、任意に添えた保存設計revisionがsource対象と不一致なのにsource observationの根拠として混ぜる、unsupported config keyを既定値と推測する、静的codeからの推論を実測behaviorまたはRequirementとして出す、parseできないcustom functionを削除対象扱いする、未選択sourceを「差分なし」と判定する場合は不合格。027の単独抽出は保存設計との比較を行わない。Missing/stale/ambiguous inputがある部分はunknownを保ち、既存要求・設計を書き換えない。
+
+**未見例**：作成側が知らないAPI schema versionまたは未見のDB definition fieldを含むfixtureを入力する。対応できる範囲を根拠sourceとともに返し、非対応field/挙動をunknown/unsupportedに残す。共通fieldの抽出成功から未見fieldやruntime-only behaviorの抽出成功を外挿しない。対象version契約なしは保留とする。
+
+### HARNESS-L2-028 connection（`HARNESS-L1-001`, `HARNESS-L1-003`, `HARNESS-L1-004`, `HARNESS-L1-005`, `HARNESS-L1-006`）
+
+**正常例**：同一product/scopeに属する027の抽出receiptと、対象revision/source/authority状態を確認できるcurrent saved design revisionを比較入力し、既知trace上のAPI変更をaffected exact setへ写す。comparison candidateとしての入力はapproved状態を意味しない。approvedとの主張は当該revisionに結び付くapproval receiptがある場合だけ許し、unknown/staleをapprovedへ昇格しない。外部で新規追加された独自処理は変更候補と保存対象に識別し、無関係なdesign/APIをaffectedへ混ぜない。known traceの局所比較とHARNESS-L2-003/004のScoped Reverseを用いる。
+
+**誤りを含む例**：過去のsource receiptや違うdesign revisionを使う、対象revision/source/authority状態がunknown/staleなのにapprovedと主張する、approval receiptなしでapproved状態へ進める、単語/同じpathだけでaffectedを推測する、影響関係不明をUnaffectedにする、通常のscope付き差分で全体Reverseを強制する、または意味変更をright-side patchへ隠す場合は不合格。trace欠落時はunknownを明記して全体Reverse/reobservation候補へ送る。L2/L1のmeaning差はBackflowへ返す。
+
+**未見例**：未見の独自helper functionとAPI dependencyが同じscope内に追加されたfixtureを入力し、抽出されたrelationとsaved designの既知edgeだけaffectedとし、不明edgeはunknownとして残す。confidence/filename similarityだけから保存designに存在したことや変更の非影響を主張しない。設計authorityのcurrent revisionが不明なら比較を保留する。
+
+### HARNESS-L2-029 composite（`HARNESS-L1-001`, `HARNESS-L1-003`, `HARNESS-L1-004`, `HARNESS-L1-005`, `HARNESS-L1-006`）
+
+既存HARNESS-L2-014が設計成果/authority、019が単体製品のFull Reverse入口、027が選択source抽出unit、028が抽出と保存designのconnectionをそれぞれ所有する。029はそのunit/connectionを通した差分改修proposalのcompositeで、各既存identityやpack境界を置き換えない。
+
+**正常例（PO例を含む）**：対象revision/source/authority状態を特定できる保存designを比較候補として入力する。approvedとの主張は当該revisionに結び付くapproval receiptがある場合だけ許し、unknown/staleをapprovedへ昇格しない。そのうえで保存済みdesignが`/orders/approve` APIの変更を要求し、利用者が外で加えた`normalizeSupplierCode` custom processingを保つfixtureを与える。027が現実装・DB schema・API定義・設定をsource-bound candidateとして抽出し、028が保存designとのexact deltaとaffected APIを絞る。029のbundleには、該当APIの設計差分、当該APIだけのcode repair案、保存対象として特定した`normalizeSupplierCode`と非変更根拠、必要なDB schema migration案（source/target schema、対象scope、compatibility/rollback oracleまたは不足）を相互traceして返す。関係のないAPI/custom processingを含めない。migrationが不要なら「この対象では案なし」とoracle根拠を示す。出力はproposal/diff/planであり、working treeやDBへ適用しない。
+
+**誤りを含む例**：独自処理を生成案で上書き・削除する、関連しないAPI全体を再生成する、DB migration案にdata-loss範囲・version前提を隠す、移行案を自動実行する、要求意味・saved design authorityを変更する、対象revision/source/authority状態がunknown/staleなのにapprovedと主張する、approval receiptなしでapproved状態へ進める、unknown sourceを既定処理で埋める、またはsource→delta→proposalのtraceを別revisionで混ぜる場合は不合格。意味保存なら限定proposalと対象検証、意味を変えるなら該当層へのBackflowを示す。新規design/code/migration proposalは次revisionのcandidateに留め、現行approved designへ自動昇格しない。
+
+**未見例**：作成側へ伏せた第2のcustom processorと変更済みmigration historyがある対象を与える。既知仕様/fixtureで確認できるaffected APIだけを候補化し、所有範囲・過去migration状態・互換性を特定できない部分はunknownとしてproposalを保留する。既知APIの成功から未見custom behaviorを保持できたと一般化しない。対応外DB/API/config/versionを未対応と明記し、silent fallbackしない。
+
+### 共通依存・scope oracle
+
+HARNESS-L2-027/028/029の各利用で、4区分を次のように判定する。
+
+- **常時必須**：HARNESS-L2-019 input/result boundary、HARNESS-L2-010/011 pack identity/version/scope/receipt、product/source revisionの対応、source read authorization/data-useの明示。HARNESS-L2-003/004 Backflow/impact contractとrequirement revision/authorityとの対応は、要求traceまたは保存設計との比較を行う028/029の該当operationで必須とし、raw source extractionだけを行う027には要求しない。保存design revisionも028/029で比較基準にする場合に必須であり、027には課さない。028/029で比較候補のdesign revisionをapprovedと主張するには、そのrevisionに結び付くapproval receiptが必要であり、対象revision/source/authority状態のunknownまたはstaleはapprovedへ昇格させない。
+- **特定操作時のみ必須**：selected API repair proposalのAPI contract/oracle、DB migration proposalのschema/data ownership・compatibility/loss/rollback oracle、あるsource typeのversion-specific extractor契約。当該操作を含まない利用までその操作依存を要求しない。
+- **選択した入力元に応じて必須**：選択したcode/DB definition/API definition/config/baselineごとのrevision・digest・scope・schema/profile契約とreceipt。未選択source/baselineは未観測であり、他sourceへのsilent fallbackは不合格。
+- **参照資料のみ**：一般説明、旧設計例、類似製品の文書。requirement authority・saved design revision・source relation・data owner・oracleを参照扱いにできない。
+
+実体に対する変更適用、migration実施、commit/releaseは全ケースで本candidateの外である。POの「code repair案／data migration案」を「修正の実行」や「data移行完了」と読み替えたら不合格。各passは対象revision・product・selected-source・affected-scopeだけを示し、他製品への万能性やVersion 1全体の完成をclaimしない。
