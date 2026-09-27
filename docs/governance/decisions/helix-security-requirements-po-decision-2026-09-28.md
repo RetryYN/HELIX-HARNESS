@@ -2,8 +2,9 @@
 title: "HELIX-SECURITY 要求一式のPO判断"
 decision_record_id: HDEC-SECURITY-REQUIREMENTS-2026-09-28
 decision_status: recorded
-decider: PO
+decider_role: PO
 decided_at: 2026-09-28
+recorded_at: 2026-09-28
 source_repository_revision: f6dad2a33e24f000b87d7f09b8d40288257e74cc
 authority_effect: effective_when_this_record_is_admitted_to_main
 ---
@@ -12,7 +13,7 @@ authority_effect: effective_when_this_record_is_admitted_to_main
 
 ## PO原文
 
-2026-09-28に受領したPO判断を、作業指示ファイル `scaffold/review-handoff/local/codex-goals-2026-09-27.md` 手順4から全文転記する。受信時刻は記録していないため日付のみ示す。判断の根拠は次の明示回答であり、reviewやmergeの結果ではない。
+PO判断はPOがClaude（review_merge lane）との会話で2026-09-28に示し、Claudeが原文のまま[本PRの「PO判断の受領と次の作業」コメント](https://github.com/RetryYN/HELIX-HARNESS/pull/2203#issuecomment-5857756675)および他の確認PR・作業指示へ転記した。本記録はその全文を保持する。受信時刻は記録していないため日付のみ示す。判断の根拠は次の明示回答であり、reviewやmergeの結果ではない。
 
 > #2198〜#2205について、各確認資料が固定したL1の対象revisionを確定し、L2と対になるL11の要求一式に合意する。各PRの明示候補集合は、記載されているversion_targetと適用条件を保持して採用する。
 > HARNESSの所属は029＝CORE、031＝共通部品、032＝COREとする。
