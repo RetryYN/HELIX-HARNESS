@@ -678,3 +678,28 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **正常**：scope拡張候補に、複雑さ、公開面、運用負債の変更前後の対象・方法・条件・結果と、受入oracleへの寄与、代替案、最小必要性の根拠を与える。同じscope/revisionで照合でき、三観点のどの義務が増減したかを示す。測定の実行手段や数式が違っても、宣言した条件と証拠へ辿る。
 - **誤り**：追加機能数は少ないが公開API/設定面と保守義務を増やした候補に対して、追加数のみで最小必要とする。運用負債または複雑さの結果が欠けた例、旧revisionの計測を流用する例、別観点の好成績で欠測を相殺する例も、scope判定の根拠充足としない。原文にない共通閾値をAIが補って拒否・許可する例も不成立。
 - **未見・開始境界**：新しい変更種別で測定値がまだない入力でも、候補形成と不足項目の提示は行える。測定方法・条件が未定なら該当ownerへ返し、結果や必要性成立を捏造しない。後段の計測完了を起草開始の前提にせず、未完のscope判定から実行権限を生成しない。
+
+
+## HARNESS-CORE layer ledger／template抽出候補の受入
+
+### HARNESS-L2-040 全層ledger契約と層外anchor
+
+**対応要求**：HARNESS-L2-040（CORE unit candidate、`version_target: 1.0`、未採択）。親L1はHARNESS-L1-001/003/004。HARNESSはledger、layer/pair、anchor、row、coverageの意味契約を定め、実際の登録・保存・snapshot/projection・ticket運転は別のOS契約に従う。L0 charterは層外anchorでありpairではない。
+
+**正常例**：同じ対象revisionのcatalogにcanonical L1–L12のledger契約と、L1↔L12、L2↔L11、L3↔L10、L4↔L9、L5↔L8、L6↔L7の6 pairがあり、L0 charterはidentity・対象revision・sourceを持つ層外authority anchor recordとして別登録される。各ledgerにtype/粒度/node/edge/authority/input-output/gate/template版があり、rowはstable subject ID/revision/source span/semantic digest/status/owner/upstream/downstream edgeへ結び付く。coverage receiptは同revisionの全層を列挙し、未完なしを内容で示す。HARNESSがcatalogの契約を提示してもOSの実保存やticket実行を成功と主張しない。
+
+**誤りを含む例**：L7 ledgerが欠落、pairの片側edgeがない、L0 charterの独立anchor recordがなく参照文字列だけを置く、L0を第7pairまたはL0 layer ledgerにする、rowのowner/source span/revisionがない、別revisionのrowを同じcoverageに混ぜる。個々の欄が存在しても構造上の欠落を発見し、coverageを完了扱いにしない。OSの保存receiptがない場合はOS実行未確認と分け、HARNESS契約自体のoracleを代用しない。
+
+**未見例**：同scopeの別layer/template revisionを伏せて与え、新しい必須node/edgeまたはpair変更がcatalog/coverageに現れないとき、その変更範囲をstale/uncoveredとして示す。root authority・scope・互換版がunknownなら対象外扱いで抜けさせず、その範囲を未評価に保つ。成功は指定revisionのcatalog契約照合に限り、OS runtime実装、全layer実保存、L3承認や全要求の成立を意味しない。
+
+### HARNESS-L2-041 active templateのobligation抽出とgap提示
+
+**対応要求**：HARNESS-L2-041（CORE unit candidate、`version_target: 1.0`、未採択）。親L1はHARNESS-L1-001/003/004/009。HARNESS-L2-009の選択・適用契約を使い、OSは選択操作の実行・保存・projectionを担う。041は正本ledgerへ直接登録せず、L3/実装/採択を生成しない。
+
+**正常例**：固定されたactive template revisionの章、field、table row、applicability rule、done-when、pair contractを入力scopeに従って機械抽出し、一つずつatomまたは理由付き非適用/未解決として対応付ける。各atom/proposalにsource span、template revision、適用分岐、semantic digest、抽出器/version digestがあり、対応ledger契約版の候補行として出力される。全対象要素が個別に対応し、未対応要素・空/TBD・抽出不能・同一obligation重複のgap数と対象が具体的に示された場合だけ、そのscopeの抽出結果を照合済みとする。
+
+**誤りを含む例**：templateの空fieldまたはTBDを値の推測で埋める、適用条件の分岐を読み飛ばす、同じobligationを別atomとして重複出力する、章/table rowの一部を候補ledger行から欠落させる、機械抽出の結果を持たず人手要約だけで完全抽出と称する。いずれもgap findingまたは不一致を返し、LLM自由補完・重複・未対応を合格にしない。templateのactive版や対象scopeが未提示なら抽出成功とせずunknown/保留にする。
+
+**未見例**：同scopeの伏せた新template revisionまたは新しいapplicability分岐を与え、全要素を抽出できれば対応atomへ、未対応ならsource span付きgapへ返すことを確認する。選択されていない別templateの内容は未観測と記録し、万能な抽出保証へ外挿しない。結果は指定template/scopeでの契約受入であり、ledgerへの登録、設計成立、利用者受入、OS実行を意味しない。
+
+**戻し先と境界**：template選択・必須input・適用性の不足はHARNESS-L2-009/該当ownerへ、ledger/pair契約の不足はHARNESS-L2-040相当の契約ownerへ返す。OSの保存/実行receipt欠落はOS側未実行/未確認として保持する。HARNESS-L2-025/026の設計生成・pair oracleと責務を混同しない。

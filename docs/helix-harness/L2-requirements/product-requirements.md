@@ -935,3 +935,32 @@ scope拡張候補の受入寄与・最小性を照合するとき、追加機能
 候補の起草開始には測定完了を要求しない。scope拡張の必要性を満たしたと主張する段階では、上の三観点とauthoritative oracleへの寄与・代替案・minimum-necessary proofを一緒に示す。測定欠落は該当するscope判定を未完にし、低い追加機能数や別観点の好成績で相殺しない。不要な拡張は既存035へ戻し、新たに必要と判明した変更は既存Backflow/ticket境界へ戻す。実行authority、全作業の同期gate、通常作業の毎回の人確認は追加しない。
 
 旧根拠：HIL-NFR-07。原文と所在は[scope計測の原文照合](../../governance/audits/requirements-stage/scope-measures-legacy-differences-2026-09-28.md)。既存035の導出連鎖・循環拒否を置換しない。
+
+
+## 旧HIL-FR-46/47から再導出するCORE候補
+
+本節の候補はHARNESS-COREが定める版付き契約と候補形成であり、実行器や登録writerを新設しない。共通の親候補は現行HARNESS-L1-001（正規L1–L12とV-pair）、HARNESS-L1-003（変更影響・stale）、HARNESS-L1-004（scope別の検証義務・反例・証拠・差戻し）であり、templateの選択・適用まで扱う041はHARNESS-L1-009も親にする。040が記録するtemplate版は層別契約のidentityであり、template適用の成立は041とL2-009へ渡す。親L1本文の候補状態と意味を変えない。既採択HARNESS-L2-025/026は設計生成・pair oracleの契約なので、この二候補が作る層catalogや原子的obligation抽出の代替ではない。
+
+### HARNESS-L2-040 全層ledger契約と層外anchor（HARNESS-CORE unit候補、version_target: 1.0）
+
+- **親L1**：`HARNESS-L1-001`, `HARNESS-L1-003`, `HARNESS-L1-004`。現行L1本文の候補revisionを入力し、L1–L12とcanonical V-pairを一つの対象構造として扱う。新しいlayer、pair、L0企画価値は追加しない。
+- **種別・scope**：HARNESS-COREの単体能力候補。canonical L1–L12について必要なledger契約を列挙し、正規pairをL1↔L12、L2↔L11、L3↔L10、L4↔L9、L5↔L8、L6↔L7の6組として保つ。L0 charterは層外authority anchorとして別参照し、7組目のpairやlayer ledgerへ変換しない。
+- **入力**：対象HARNESS L1 revision、canonical pair定義、層ごとのauthority/source revision、各層で有効なledger/template契約版。L0 charterのauthorityは出所と対象revisionを参照するだけで、本候補がauthorityを発行・解釈変更しない。
+- **出力**：version付きlayer ledger catalogと、各ledgerのtype・粒度・必須node/edge・authority参照・input/output・entry/exit gate・適用template版を特定できる契約。L0 charterは層外authority anchorの独立recordとしてcatalogに別登録し、identity・対象revision・sourceを残す。ledger rowはstable subject ID、row revision、source span、semantic digest、status、owner、上流/下流edgeを識別できる。対象revisionのlayer snapshotとcoverage receiptに含むべき全件・未完・stale情報を定義する。
+- **依存区分**：**常時必須**＝対象L1 revision、canonical six-pair map、根拠に使うauthority/source revisionのidentity。**特定操作時のみ**＝指定layerのcatalog/snapshot/coverageを生成または更新する処理は、その操作scope・対象revision・互換契約がそろった場合だけ対象となる。**選択した入力元に応じて必須**＝L0 charterまたは層別templateを根拠に選ぶ場合、その正確なrevision・適用範囲・authorityを照合する。**参照資料のみ**＝旧runtime/旧層番号、背景説明、実装方式。これらは現行authorityやpairの根拠にしない。
+- **所有境界**：HARNESSはcatalogの意味、層ごとの契約、coverage receiptの成立条件を定める。OSは別途認められたscopeで登録・保存・snapshot/projection・ticket実行を運転する。本候補はOSにwriter、ticket、実行、authority、完了状態を与えず、HARNESSがOSの保存成功を代行しない。
+- **保証と戻し先**：12層それぞれの必須ledger契約、6 pair、L0層外anchor、row identityと双方向edgeが同じrevisionで追跡できる。層・pair・authority・templateの不足や矛盾はmissing/unknown/staleとして該当範囲のcoverageを未完にし、HARNESSのL1/L2契約ownerまたはauthority ownerへ戻す。catalogが存在するだけでL1承認、L2合意、L3要件承認、OS登録・実行、completionを成立させない。
+- **既存候補との境界**：HARNESS-L2-025/026のL3要件から具体設計・pair oracleを作る能力はそのまま維持する。040は設計成果を生成せず、025/026の完了receiptを開始前提としない。040の候補採否や実装完了も025/026から推定しない。
+
+### HARNESS-L2-041 active templateのobligation抽出とgap提示（HARNESS-CORE unit候補、version_target: 1.0）
+
+- **親L1**：`HARNESS-L1-001`, `HARNESS-L1-003`, `HARNESS-L1-004`, `HARNESS-L1-009`。HARNESS-L1-009のtemplate選択・適用条件・要求不足の差戻しを具体化し、L1-001/003/004に従って出典とpair scopeを追跡する。
+- **種別・scope**：HARNESS-COREの単体能力候補。指定されたactive template revisionと適用scopeについて、章、field、table row、applicability rule、done-when、pair contractを原子的obligationとして機械抽出する契約を定める。対象となる既存canonical pairの契約は保持し、旧L0–L14配列や追加pairを作らない。
+- **入力**：HARNESS-L2-009に基づく選択済みtemplate identity/revision、適用するlayer・要求kind・対象scope、source span、対応ledger契約版（040または互換な版付きledger契約）、抽出器/version identity。active版や適用scopeが不明・矛盾・staleなら処理対象を確定しない。
+- **出力**：source span・template revision・適用条件・obligation種別・semantic digestを備えたtemplate atomと、該当ledgerへの候補行。未対応template要素、空/TBD、抽出不能、同一obligation重複は個別gap findingとして示す。抽出器/version digestを出力し、未解決要素をLLMの自由補完や成功扱いで埋めない。候補行は正本ledgerへの登録・採択ではない。
+- **依存区分**：**常時必須**＝対象HARNESS-L1 revision、HARNESS-L2-009のtemplate適用契約、要求された抽出scopeと出典を識別できること。**特定操作時のみ**＝選択されたtemplate revisionからatom/proposal/gapを作る処理。**選択した入力元に応じて必須**＝特定layer/templateを選んだ場合、そのtemplateの正確なrevision、applicability分岐、対となるpair契約、版付きledger契約。template ownerがBRAIN等であれば当該templateの入力契約と互換性を使うが、未選択の知識・templateを観測済みとみなさない。**参照資料のみ**＝旧extractor/runtime、非選択のtemplate、背景例。
+- **所有境界**：HARNESS-COREはobligationの抽出契約、候補行、gapの意味と戻し先を所有する。HARNESS-L2-009はtemplate適用と必要要求inputのBackflowを所有する。OSは選択された操作のticket/実行/保存/projectionを別の契約に従って運転する。041は台帳writer、OS executor、template authority、L3要件・実装・採択を所有しない。
+- **保証と戻し先**：active templateに明記された各対象要素がatomまたは理由付きgapのどちらかに対応し、同一要素の重複や未対応を隠さない。必須要素の欠落、空/TBD、抽出不能、重複、版不一致を解消せず完了扱いにしない。templateの意味・適用性が不明ならHARNESS-L2-009/対象ownerへ、ledger契約不整合なら040相当の契約ownerへ戻す。抽出結果・candidate rowは要求合意、設計成立、受入成功を生成しない。
+- **既存候補との境界**：HARNESS-L2-025/026は承認済み要件から具体設計と対oracleを構成・検査する。041はactive templateの要求要素を漏れなく候補化し、空所や抽出限界を明示する前段のCORE契約であり、設計内容・oracle結果を新たに生成したり、025/026を置換・前提化したりしない。
+
+原文sourceとsource holdingは`docs/governance/audits/requirement-registration/harness-layer-ledger-extraction-source-lines-2026-09-28.jsonl`および同じ監査ディレクトリのcoverage receiptに記録する。旧候補行の追加は候補出力の意味として保持し、実際のregistry更新・snapshot・ticket実行は個別に認められたOS側契約へ戻す。
