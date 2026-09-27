@@ -1,0 +1,55 @@
+{
+  "receipt_id": "MPR-RCPT-HARNESS-W-TWO-STAGE-2026-09-28",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom順に改行で区切る。末尾改行なし。",
+  "scope": "confirmed FR-L1-28とtechnical I-4の原文2行。W二段の意味を保持し、旧物理層番号・field・runtimeを採用しない。画面/下流設計sourceは補助参照で、その全文被覆を主張しない。",
+  "candidates": [
+    {
+      "requirement_identity": "HARNESS-L2-037",
+      "requirement_kind": "composite",
+      "parent_l1_ids": [
+        "HARNESS-L1-001",
+        "HARNESS-L1-004",
+        "HARNESS-L1-009"
+      ],
+      "candidate_semantic_digest": "sha256:d7a06c9fd6d87b721318463970a204452d91b5d92416c2e9d0e183c4bcad726b",
+      "source_atom_set_digest": "sha256:32c08bb24faeb706749ecdcbcc42457c5794f96436f8e02a54ce96c67623b3bc",
+      "source_atom_count": 2,
+      "source_collection_scope": "confirmed FR-L1-28とtechnical I-4の原文2行。W二段の意味を保持し、旧物理層番号・field・runtimeを採用しない。画面/下流設計sourceは補助参照で、その全文被覆を主張しない。",
+      "atoms": [
+        {
+          "atom_id": "W-TWO-STAGE-functional-requirements.md-L0059",
+          "source_holding_registration_id": "MPR-SH-W-TWO-STAGE-001",
+          "legacy_asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B",
+          "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+          "source_file_sha256": "sha256:a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+          "source_line": 59,
+          "source_line_sha256": "sha256:a7b461949218e37e67110567ee4aad528901e8a2536341fc6d23a5cb35590106",
+          "source_text": "| **FR-L1-28** | HELIX W 2段設計（Phase 1一般system＋Phase 2 agent昇華をL10で合流するspecialist workflow） | two-stage-agent-design | Phase 1/2各L9成果物 | L10合流済み成果物、L11〜L12統合flow。development styleやcase-driven modelへ混ぜない | P1 | (L10 carry、画面紐付け薄い) |",
+          "disposition": "carried",
+          "relation": "一般systemとagent固有設計の二段成果・合流・後続pairへのtraceを保持。旧drive/phase.yaml/層番号は現行適用条件と正規pairへ再導出。"
+        },
+        {
+          "atom_id": "W-TWO-STAGE-technical-requirements.md-L0169",
+          "source_holding_registration_id": "MPR-SH-W-TWO-STAGE-001",
+          "legacy_asset_id": "LEGACY-ASSET-96CCD05C4CCA06F50D3D",
+          "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/technical-requirements.md",
+          "source_file_sha256": "sha256:3e105358418cb54af0bc2e414d0b06171715ab2a26ea3b44dd16f932bcbfef88",
+          "source_line": 169,
+          "source_line_sha256": "sha256:cc12f3fae870d6917c65a8c671f7de283c931f31788c61502561c894c6c52a5b",
+          "source_text": "| HELIX W Phase 合流 state (I-4) | drive=agent (FR-L1-28、two-stage-agent-design.md) が確定したら Phase 1/2 → L10 合流状態を `phase.yaml` に追記 (`phase_merge` フィールド) | two-stage-agent-design.md |",
+          "disposition": "carried",
+          "relation": "一般systemとagent固有設計の二段成果・合流・後続pairへのtraceを保持。旧drive/phase.yaml/層番号は現行適用条件と正規pairへ再導出。"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-009",
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-022",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md#harness-l2-037"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    }
+  ]
+}
