@@ -830,3 +830,60 @@ BRAIN知識接続の正本は、[HELIXBRAIN-L2-030](../../helix-brain/L2-require
 **Phaseごとの上流と人の判断**：旧Conceptの二回のVを保持する。Phase 1は全体企画を親に一般systemのL2要求合意・L3要件承認を経て設計/実装/対検証へ進む。Phase 1の確定仕様と実物の検証結果をPhase 2への入力とし、agent固有の目的、利用者結果、制約、permission、失敗時の戻し、受入をHARNESS008/024でL2へ形成する。そのL2合意と、そこから導くPhase 2固有のL3要件承認を既存authority手順で得るまでは、Phase 2のL4以下へ進まない。Phase 1の合意・承認をPhase 2へコピーしない。二つのL2/L3 identity・revision・判断記録と合流scopeを別々に保持し、同じcommitやIDを強制しない。Phase 2で外殻の意味を変える必要が出れば該当するPhase 1上流へBackflowし、影響したpairをstaleにして再照合する。技術上の差分だけと推測して上流判断を省略しない。Phase 2が未承認でも要求候補と未完義務の記録は進められるが、設計/実装/合流を済ませたとは扱わない。
 
 旧Concept根拠：`LEGACY-ASSET-75776FE016E550F5355F`、`archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md:343–361`、SHA-256 `b6cecb7bec29d85b36e299f8a594821c1d778328506fe2c056ca330ef76d968c`。一般系とagent系で各々要求/要件からVを通る意味とA-74の自身適用除外を保持する。旧L0-L14は現行ConceptとL1-L12の正規pairへ再導出し、旧provider環境を実装前提にしない。単一L3への畳み込みは本候補では採らない。
+
+### HARNESS-L2-038 候補 — 選択Reverse scopeの内容閉包
+
+**状態**：新規unit候補、`version_target: 1.0`候補、未採択。これはrequirements-stageで照合したHIL-FR-22/35の元条件を、利用者が選んだsource/Full Reverse scopeの内容評価へ限定する提案である。候補の記載はPO判断・実装許可・設計承認を生成しない。
+
+**候補identity / 所属**：`HARNESS-L2-038`、unit、HELIX-HARNESS-CORE候補。旧target crosswalkはFR-22を「HARNESS／OS、コア」(`infinity-functional-target-crosswalk.md:31`)としている。038が定めるのはsource capabilityと要求・設計・検証対の意味上の照合契約である。source型ごとの抽出は共通部品候補027、入口/HELIX形式の変換とunknownは019、保存設計との比較は028、差分改修proposalの構成は029が所有する。038は抽出parser、CONNECT、OSのticket/実行、設計authority、test実行を所有しない。
+
+**親L1候補**：primary `HARNESS-L1-001`, `HARNESS-L1-003`, `HARNESS-L1-004`, `HARNESS-L1-006`, `HARNESS-L1-008`。001/003/004はV-pair・trace、変更影響/stale、対象revisionに合う検証義務・反例・証拠・戻し先を根拠とし、006はfreeze/完了の区別、008は指示と根拠からの要求形成を根拠とする。`HARNESS-L1-005`は038の結果を外部利用者向けsurfaceとして提供するoperationに限り適用し、内部CORE処理には外部提供条件を一律適用しない。L1は現行revisionのまま扱い、候補から親意味の改訂を推定しない。
+
+**既存要求と境界**：HARNESS-L2-019はFull Reverse入口、変換結果・unknown一覧を所有する。027は明示選択されたsource typeの静的なsource-bound observation、source span、抽出限界を返す。HARNESS-L2-008/024は要求候補の形成・質問・人の訂正/合意への収束を、HARNESS-L2-004はrequirementから設計/testへの影響・traceを、HARNESS-L2-035は候補要求の上流根拠と受入寄与をそれぞれ所有する。038はこれらの責務を置き換えず、「選択した能力を調べた/完了した」と主張できる内容根拠・個別閉包を定める。
+
+**対象とscope**：Full Reverseまたは旧資産の意味照合を明示選択した1つの対象revision・source snapshot・source type・scopeに限るunit。全archive/全製品/全4020 assetを常時走査する要求ではない。作業途中の抽出・調査では未選択sourceや未調査能力をunknown/未完として返せる。
+
+**受け取るもの**：
+
+- 対象製品/projectと対象L1/要求revision・authority状態、選択したFull Reverse/legacy-source scopeと適用範囲。
+- HARNESS-L2-019のintake/result契約。該当source typeを利用する場合は027のsource observation receipt（source revision/digest、選択範囲、根拠span、unsupported/unknownを含む）。019の完了receiptをsource inspectionの開始前提にしない。
+- 対象scopeの能力候補ごとのidentity/source locator/provenance、観測内容、既存要求/候補要求とのrelation、理由付き処置または未決/未観測の記録。外部/旧asset由来の能力とHARNESSが現在所有する要求の意味を混同しない。
+- 当該段階で既に存在する要求・設計・対の検証義務とoracleのrevision/authority状態。まだ生成していない後段artifactは入力必須としない。
+
+**提供するもの**：選択された各能力について、個別に追跡できるcoverage resultを返す。最低限、能力のsource identityと根拠span、内容/適用scope、選ばれた既存処置または候補処置と理由、関連する要求identity/候補、対象revision上で既に存在する設計要素・test/oracle・gateへのrelation、未完義務/unknown/矛盾/戻し先を区別する。旧文にあるdisposition語を必須enumとして固定しない。状態語・採否authorityは現行対象の既存契約とauthority状態に従い、038が決定を発行しない。
+
+**保証すること**：
+
+- 選択scope内で個別能力をまとめた一つのcomposite IDだけで全件閉包としない。完了claimの分母は、選択scopeとsource snapshotに束縛された観測manifest中の全抽出capabilityとする。各capabilityは一意IDで一度ずつ結果へ現れ、抽出manifestと結果の件数・identityが一致しなければならない。未調査、未決、根拠のない却下、要求や適用される検証義務へ孤立した能力を、coverage-completeまたはpair-freeze成立と表示しない。manifestにunsupported/unknown範囲があればゼロ件や対象外へ読み替えず、そのscopeの閉包は未完とする。
+- 各工程の開始時に将来の設計/test/detector完成を要求しない。能力の観測/要求形成段階は、現段階のsource evidenceと上流判断待ち/後段義務を明記すれば成立し得る。設計、対のtest/oracle、適用gate等の証拠は、それぞれの後段artifactがあり、当該段階の閉包・pair-freeze・完了を主張する時点でのみ該当義務について要求する。
+- 各capabilityと、適用対象となるrequirement・basic design・test・detector/gateは、該当endpointが存在する段階では両方向に照合できるrelationを持つ。relationの片側だけが存在し、逆向き照会で孤立が分からない状態を閉包としない。後段endpointがまだ作成されていない途中段階では、将来成果を要求せず未完義務として保持する。適用外をN/A/却下に読み替えず、理由と権限根拠がある場合に限ってその状態を示す。根拠のない`no finding`、空欄、placeholder、旧source文の機械複製、同内容/digestの重複を内容評価または完了根拠にしない。根拠が足りない時はunknown/未完とする。
+- capability observation/candidateと採用済み要求、承認設計、実装、実行成功、利用者受入を別状態にする。処置表現は旧enumを固定しないが、現行status/authority上で「既存義務への採用」「既存義務の強化」「意味を変える再設計候補」「根拠・authority付きの却下/対象外」「既存義務への吸収」「未決/unknown」を区別し、理由と吸収先を追跡可能にする。人の意味判断が既存authority modelで必要ならそこへ返し、038は新しい承認者・承認手順を作らない。
+- 完了claimが対象にするReverse段階では、固定された旧R0–R4名/schemaを要求せず、現行artifact上で以下の内容を検査できること：根拠とsource範囲のmap、観測された契約、現状(as-is)設計とtest、意図仮説と既存authorityによるPO検証状態、残差とowner/routing。R3相当のPO検証は既存authorityへ接続し、038が承認や検証を生成しない。初期観測・要求形成だけの結果は後段内容未完を明示して成立し得るが、当該段階またはFull Reverse完了を主張するのに必要な内容が欠ければclaimを成立させない。
+- 不一致はHARNESS-L2-003/004のBackflowに従い、意味が変わる最上流へ戻す。source解析不足は選択sourceの再観測へ、要求意味は008/024の形成へ、設計境界は014/028へ、検証義務/oracleは004/022へ返す。
+
+**依存区分**：
+
+- **常時必須**：対象revisionとauthority状態、明示されたscope/非対象、HARNESS-L2-010/011の適用pack/input/version契約、038が呼ばれるoperationの019 intake/result境界、要求の形成/trace/Backflowを担う008/024/004の適用契約。作業途中でも選択source identityと観測済み範囲/未完表示は必須。
+- **特定操作時のみ必須**：pair-freeze/coverage-complete/Full Reverse完了/no-findingを主張する時は、当該claimが対象とする全selected capability、適用範囲、個別処置理由と、その完了段階で要求されるdesign/test/oracle/gateの証拠。設計または検証をまだclaimしない段階では未来artifactを要求しない。approvedを主張する場合は既存の対象revision付きapproval evidenceが必要。
+- **選択した入力元に応じて必須**：019 operationで選択されたsource typeの027 observation/receiptと、選択scopeのasset locator・source span・digest・分類/読取許可。未選択sourceや別revisionは未観測とし、存在/不存在、無影響、空と推定しない。
+- **参照資料のみ**：未選択source、背景説明、旧asset全件一覧、旧固定phase名/R0–R4 schema、旧enum、旧runtime/registry/receipt実装。参照しただけでcoverage分母・authority・適用義務にしない。
+
+**単独成立依存**：HARNESS-L2-019の選択scope/結果境界、HARNESS-L2-010/011のpack/input契約、要求形成・trace/Backflowを扱う008/024/004。027は038の特定operationがsource型抽出を要する場合だけ呼び出す入力producerで、027非対応sourceを含む全Reverseに一律依存させない。HARNESS-L2-014/022は該当する設計/検証段階のauthority/oracleとして利用するが、調査開始時の完了receiptを要求しない。OS/CI/実行環境はHARNESS単体成立に必須としない。
+
+**失敗・戻し先**：source revision/scope/span不足、unsupported構文、重複identity、selection変更後のstaleは該当箇所をunknownとして再観測へ戻す。能力の意味/採否根拠が上流にない場合はHARNESS-L2-008/024へ、trace/impact欠落は003/004へ、設計・test/oracleの不整合は014/022または該当ownerへ戻す。工程開始時に将来artifactがないことだけでは失敗とせず、完了claim時に必要な後段義務が未完ならそのclaimを成立させない。
+
+**正常・誤り・未見の判定点**：対L11受入案 [`HARNESS-L2-038`対応のL11受入](../L11-acceptance/product-acceptance.md) に、manifest分母、双方向join、処置意味区分、stage内容のoracleを置く。
+
+**旧HELIXからの再導出（保持と差分）**：
+
+- `LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:112`（SHA-256 `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`）のHIL-FR-22を起点にする。能力ごとのID、扱いと理由、HIL requirement/basic design/test/detector-gateへの双方向関係、未判断/根拠なし却下/孤児/集約だけの閉包をpair-freeze不成立にする意味を保持する。
+- HIL-FR-35は同旧L1 `:125`、同じSHA（旧target crosswalk `infinity-functional-target-crosswalk.md:44`）から、5つの段階内容・PO検証と、空/placeholder/同文/同digest/対象義務未被覆/根拠なしno-findingを内容成立にしない条件を導出する。
+- 差分は対象を明示選択したscopeに限定し、旧固定R0–R4のラベル/schema、状態enum、全旧source一括走査、全製品への一律gateを復活させないこと。ただしFR-35で列挙された段階の意味内容とFR-22の全件・双方向閉包条件は、省略せず現行artifactで検査する。旧FR-22/35のL1/IR atomは新identityの採択、過去データの完了、実装の証拠とは扱わない。
+
+**旧FR-24との境界**：HIL-FR-24は `concept-requirement-po-decision-packet.md:979` と機構crosswalk JSONL:94の既存記録どおり2.0候補（1.0は接続/記録土台）として保持し、本候補へ取り込まない。038はsourceから能力と意味根拠を照合するHARNESS契約であり、外部Product Dataの取得、full/incremental snapshot、watermark、canonical entity mapping、tombstone、schema driftを実装/所有しない。
+
+
+
+**固定照合基準**：草稿が照合した現行本文の基準commitは `afc3963085b53a4bf86ac5da8f7663aef1bed144`。旧source・現行L1/L2/L11のfile SHAは下記出典の固定値を参照する。
+
+**段階の内容依存と中断**：source根拠から観測契約、観測契約からas-is設計/test、これらを根拠とした意図仮説/PO検証、最後に差分/routingという内容の依存を保持する。見出し名を変えただけで段階を飛ばせない。選択scopeで必要なobligationが100%に満たなければcheckpoint後も未完とし、budget途中停止を完了へ丸めない。既存契約上不要な操作の追加はしない。旧受入根拠は `LEGACY-ASSET-AFE91778057B7E76BEEC`、`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md:62`（HOT-HIL-35）、SHA-256 `4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576`。

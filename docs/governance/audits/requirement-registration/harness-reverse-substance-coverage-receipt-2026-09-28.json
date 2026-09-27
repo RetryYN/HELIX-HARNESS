@@ -1,0 +1,69 @@
+{
+  "receipt_id": "MPR-RCPT-HARNESS-REVERSE-SUBSTANCE-2026-09-28",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom順に改行で区切る。末尾改行なし。",
+  "scope": "旧HIL-FR22/35とHOT-HIL35の原文3行。selected scopeの内容閉包・各段階内容を保持。旧IR/運転受入全件の被覆を主張しない。",
+  "candidates": [
+    {
+      "requirement_identity": "HARNESS-L2-038",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HARNESS-L1-001",
+        "HARNESS-L1-003",
+        "HARNESS-L1-004",
+        "HARNESS-L1-006",
+        "HARNESS-L1-008"
+      ],
+      "candidate_semantic_digest": "sha256:dd5b5450801617bbd6cc1dfd2e522420399ec58fb7675a286221dd0d9415767c",
+      "source_atom_set_digest": "sha256:068afcddf101fdcd7d0da8e743f6d5f2e89509f182888e6efd22674c4ca91cc4",
+      "source_atom_count": 3,
+      "source_collection_scope": "旧HIL-FR22/35とHOT-HIL35の原文3行。selected scopeの内容閉包・各段階内容を保持。旧IR/運転受入全件の被覆を主張しない。",
+      "atoms": [
+        {
+          "atom_id": "REVERSE-SUBSTANCE-infinity-loop-platform-requirements.md-L0112",
+          "source_holding_registration_id": "MPR-SH-REVERSE-SUBSTANCE-001",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 112,
+          "source_line_sha256": "sha256:a25967dc2a741b6a422e72e8588a805b3fedb67a11ce3f6faf6231c37a159291",
+          "source_text": "| **HIL-FR-22** | Source Capability Coverage Gateは各抽出capabilityに一意IDを付け、`adopt/harden/redesign/reject/absorbed`、根拠、HIL要件、基本設計、test、detector/gateを双方向joinする。未判断、根拠なしreject、孤立capability、複合IDによる一括合格が1件でもあればpair-freezeを拒否する。 | capability ledger、coverage matrix、failure code |",
+          "disposition": "carried",
+          "relation": "selected capabilityの個別全件/双方向関係と段階別内容・PO検証・未完保持をHARNESS038/L11へ再導出。旧schemaや全archive走査は固定しない。"
+        },
+        {
+          "atom_id": "REVERSE-SUBSTANCE-infinity-loop-platform-requirements.md-L0125",
+          "source_holding_registration_id": "MPR-SH-REVERSE-SUBSTANCE-001",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 125,
+          "source_line_sha256": "sha256:682e43b0cc0fbec1b79e033d7ce095a63722a6f1b41b6f6f4bd419118d043902",
+          "source_text": "| **HIL-FR-35** | Reverse Substance GateはR0 evidence map、R1 observed contracts、R2 as-is design/test、R3 intent hypothesis＋PO検証、R4 gap/routingをstage別schemaで検査し、空、placeholder、同文、同digest、対象obligation未被覆、根拠なし`no finding`を拒否する。 | phase assertion、coverage、content digest、substance failure code |",
+          "disposition": "carried",
+          "relation": "selected capabilityの個別全件/双方向関係と段階別内容・PO検証・未完保持をHARNESS038/L11へ再導出。旧schemaや全archive走査は固定しない。"
+        },
+        {
+          "atom_id": "REVERSE-SUBSTANCE-L1-infinity-loop-operational-test-design.md-L0062",
+          "source_holding_registration_id": "MPR-SH-REVERSE-SUBSTANCE-001",
+          "legacy_asset_id": "LEGACY-ASSET-AFE91778057B7E76BEEC",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+          "source_file_sha256": "sha256:4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+          "source_line": 62,
+          "source_line_sha256": "sha256:314bc5eb2070da46663f99806c600611d49e21af3aedb8ce419bbaaa96bfeeea",
+          "source_text": "| **HOT-HIL-35** | HIL-FR-04/35, HIL-NFR-03/20 | R0–R4へ空、placeholder、同文、同digest、対象漏れ、根拠なしno-findingを投入し、budget途中停止も発生させる | 各phase固有assertionで拒否し、obligation 100%未満はcheckpoint後も未完了。phase skip 0 |",
+          "disposition": "carried",
+          "relation": "selected capabilityの個別全件/双方向関係と段階別内容・PO検証・未完保持をHARNESS038/L11へ再導出。旧schemaや全archive走査は固定しない。"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-019",
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-027",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md#harness-l2-038"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    }
+  ]
+}
