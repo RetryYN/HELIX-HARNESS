@@ -1,0 +1,2618 @@
+{
+  "audit_id": "legacy-regression-direct-source-os-infrastructure-connect-2026-09-28",
+  "baseline_commit": "85cee18960bd1973fb1b28132e6498464b0f673b",
+  "requirement_bytes_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "scope_note": "OS、INFRASTRUCTURE、CONNECTの直接参照を対象とする限定監査。旧runtime/test/CIは実行しない。全4,020資産やatom単位の完全被覆は主張しない。空receipt・atom台帳・holdingを意味対応の証拠として扱わない。",
+  "current_documents": [
+    {
+      "mechanism": "OS",
+      "l1": "docs/helix-os/L1-planning/system-intent.md",
+      "l1_sha256": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+      "l2": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "l2_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "l11": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "l11_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "audit": "docs/governance/audits/requirements-stage/helix-os-internal-audit-2026-09-27.md",
+      "audit_sha256": "91d74d7bba023b1011995189d8c914067a28e9db1ca8db5ec615272e22f512cb",
+      "resolution": "docs/governance/audits/requirements-stage/helix-os-internal-resolution-2026-09-27.md",
+      "resolution_sha256": "af670138233c5dfa82e41d8cde8d1a5ca3f123970f6ff792a33de6045658b03e"
+    },
+    {
+      "mechanism": "INFRASTRUCTURE",
+      "l1": "docs/helix-infrastructure/L1-planning/infrastructure-intent.md",
+      "l1_sha256": "1673cf1333c762b817e1031cb610de90b6e967f7c2d851ab2a4b71e4959ebc37",
+      "l2": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "l2_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "l11": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "l11_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "audit": "docs/governance/audits/requirements-stage/helix-infrastructure-internal-audit-2026-09-27.md",
+      "audit_sha256": "c08b2eca0ade2826ecbaeedc6d6a84662a83fc3a5f9e05e354b4ae8fe0c4c8f7",
+      "resolution": "docs/governance/audits/requirements-stage/helix-infrastructure-internal-resolution-2026-09-27.md",
+      "resolution_sha256": "964c668c77152be9a693212ab5e91b4c4acbd505ac826f7bc3d53fe1c5de8bd0"
+    },
+    {
+      "mechanism": "CONNECT",
+      "l1": "docs/helix-connect/L1-planning/connect-intent.md",
+      "l1_sha256": "9c212572afda81405c6d5ab70151f5b35356722204616e85e132162b45907c70",
+      "l2": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "l2_sha256": "31e3f234172bb5a92b26d41db2de21534cd4301274fc7e2800b4f8a935ce598b",
+      "l11": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "l11_sha256": "bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad",
+      "audit": "docs/governance/audits/requirements-stage/helix-connect-internal-audit-2026-09-27.md",
+      "audit_sha256": "b7bf043b296c8244c03109decac468fe1c38a2405f31209ce197906c630b997e",
+      "resolution": "docs/governance/audits/requirements-stage/helix-connect-internal-resolution-2026-09-27.md",
+      "resolution_sha256": "5d8a6bed983917efa40a2764631d74b07d56e76e20c788f35d7f918f9b6e3753"
+    }
+  ],
+  "source_target_rows": [
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "legacy_lines": [
+        "46-67"
+      ],
+      "legacy_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "current_l2_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-003",
+        "HELIXOS-L2-004",
+        "HELIXOS-L2-005",
+        "HELIXOS-L2-006",
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-008",
+        "HELIXOS-L2-009",
+        "HELIXOS-L2-010",
+        "HELIXOS-L2-011",
+        "HELIXOS-L2-014",
+        "HELIXOS-L2-015",
+        "HELIXOS-L2-016",
+        "HELIXOS-L2-017",
+        "HELIXOS-L2-018",
+        "HELIXOS-L2-019",
+        "HELIXOS-L2-020",
+        "HELIXOS-L2-021",
+        "HELIXOS-L2-022",
+        "HELIXOS-L2-023",
+        "HELIXOS-L2-024",
+        "HELIXOS-L2-025"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:779-804",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:21-40,320-428",
+      "legacy_condition": "Pillar-level workflow recovery, agreed-scope continuity, worker, verification, improvement, distribution, records and external-boundary trace. Signal alone must not change workflow or authority.",
+      "normal_oracle": "Preserve exact source/revision, agreed scope and evidence; return deviations through existing owner and recovery path.",
+      "negative_oracle": "No authority or workflow promotion from a signal; no treating partial success as complete; no loss of pending obligations across recovery.",
+      "numbers_authority_version": "No fixed provider, worker-cycle, budget or evaluation score is imported from the legacy implementation.",
+      "disposition": "rederived_with_scope_split",
+      "residual": "Per-source atom to current successor binding remains unconfirmed; current audit explicitly keeps OS legacy routing 001-013 and atom coverage unresolved. Not a claim of missing requirement semantics."
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "legacy_lines": [
+        "18-185",
+        "186-289",
+        "376-508",
+        "349-351"
+      ],
+      "legacy_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "current_l2_ids": [
+        "HELIXOS-L2-004",
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-008",
+        "HELIXOS-L2-009",
+        "HELIXOS-L2-010",
+        "HELIXOS-L2-011",
+        "HELIXOS-L2-014",
+        "HELIXOS-L2-018",
+        "HELIXOS-L2-019",
+        "HELIXOS-L2-023",
+        "HELIXOS-L2-027",
+        "HELIXOS-L2-028",
+        "HELIXOS-L2-029"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:779-804,824-877",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:21-40,442-480",
+      "legacy_condition": "Ticket identity/input/dependency/admission, assignment and attempt, retry/review/evidence, lifecycle/replay/security/release contract.",
+      "normal_oracle": "Bind attempt to exact ticket/scope/revision and preserve retry/failure/evidence through handoff and resume.",
+      "negative_oracle": "Reject stale or mismatched authority/evidence, duplicate execution or unsupported completion; do not infer accepted state from projection or missing evidence.",
+      "numbers_authority_version": "Current 1.0 bounded conditions govern. Do not import old database/CLI/runtime or any unstated fixed retry/cycle/provider quantity.",
+      "disposition": "rederived_and_split_by_owner",
+      "residual": "Audit identifies 37 old routing containers and unresolved old atom→successor mapping; no individual coverage inferred."
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-201EED9C5D6D2FF4D41B",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md",
+      "legacy_lines": [
+        "21-67"
+      ],
+      "legacy_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20",
+      "current_l2_ids": [
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-006",
+        "HELIXOS-L2-008",
+        "HELIXOS-L2-011",
+        "HELIXOS-L2-014"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:779-804,619-640",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:366-371,430-441",
+      "legacy_condition": "Independent functional-slice review, explicit include/exclude, maturity/impact, reproducible deployment/rollback and safety dependencies.",
+      "normal_oracle": "The stage scope reports included/excluded capabilities and verifies the chosen small scope separately from target-project rollout.",
+      "negative_oracle": "Do not call stage-scope derivation a deployment; do not mark excluded or pending slices complete or impose old Slice/Module/Bundle naming/counts.",
+      "numbers_authority_version": "Current OS version/scope table and PO conditions govern; legacy channel/module count is not a 1.0 threshold.",
+      "disposition": "rederived",
+      "residual": "Per-atom coverage outside explicitly traced OS scope is not closed."
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-B75E46DBE77592351574",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+      "legacy_lines": [
+        "31-219"
+      ],
+      "legacy_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+      "current_l2_ids": [
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-006",
+        "HELIXOS-L2-008",
+        "HELIXOS-L2-011",
+        "HELIXOS-L2-014"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:779-804,619-640",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:366-371,430-441",
+      "legacy_condition": "Slice identity/lifecycle, ownership, admission/recovery, impact/CI, manifest/replay and requirement coverage.",
+      "normal_oracle": "Keep scope, included dependencies, rollout and rollback traceable to revision and evidence.",
+      "negative_oracle": "Do not promote candidate scope to release/deployment or conflate rollout state with requirement coverage.",
+      "numbers_authority_version": "No legacy Bundle/channel quantity imported; current version_target/conditions control.",
+      "disposition": "rederived",
+      "residual": "Detailed source atom map is unconfirmed."
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-2B0DE689AA572DE66181",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+      "legacy_lines": [
+        "57",
+        "62",
+        "219-229",
+        "283-296",
+        "300-308"
+      ],
+      "legacy_sha256": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe",
+      "current_l2_ids": [
+        "HELIXOS-L2-004",
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-009",
+        "HELIXOS-L2-010",
+        "HELIXOS-L2-018",
+        "HELIXOS-L2-019",
+        "HELIXOS-L2-023",
+        "HELIXOS-L2-027",
+        "HELIXOS-L2-028",
+        "HELIXOS-L2-029"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:779-804,824-877",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:442-478",
+      "legacy_condition": "Resident execution, lane assignment/queue, capacity, continuation, role split and handoff.",
+      "normal_oracle": "Assignment, attempt and continuity preserve original ticket constraints; work returns to original Worker with scope-bound finding and current verification evidence.",
+      "negative_oracle": "No fixed resident provider/cycle, no double run, no self-review, no unauthorized recovery or stale receipt reuse.",
+      "numbers_authority_version": "Fixed provider/cycle requirements were not transferred; current per-task budget/stop controls apply.",
+      "disposition": "rederived_and_runtime_replaced",
+      "residual": "Other atom-level mappings and old routing membership remain unconfirmed."
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-A6926200F28B26300432",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+      "legacy_lines": [
+        "45-73"
+      ],
+      "legacy_sha256": "e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765",
+      "current_l2_ids": [
+        "HELIXOS-L2-004",
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-009",
+        "HELIXOS-L2-010",
+        "HELIXOS-L2-018",
+        "HELIXOS-L2-019",
+        "HELIXOS-L2-023"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:779-804",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:21-40,320-428",
+      "legacy_condition": "Separate creator/reviewer/authority lanes, worker/lane distinction and handoff.",
+      "normal_oracle": "Independent review is bound to current revision and reviewer separation.",
+      "negative_oracle": "Do not infer provider count or external workflow from the name 'three-lane'; no actor self-approves.",
+      "numbers_authority_version": "Three lanes describes a legacy candidate model and is not a current fixed provider count.",
+      "disposition": "rederived",
+      "residual": "Exact line-to-atom mapping not asserted."
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "legacy_lines": [
+        "663-666"
+      ],
+      "legacy_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "current_l2_ids": [
+        "HELIXOS-L2-027"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:824-846",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:442-455",
+      "legacy_condition": "RLO-FR-040 task-class Bench evidence and explicit unbenchmarked state; score alone must not change scope, branch, assignment or merge authority.",
+      "normal_oracle": "No score/evaluation evidence yields explicit unassessed state; current operation still needs its authority inputs.",
+      "negative_oracle": "Reject guessed effort or authority change based only on score.",
+      "numbers_authority_version": "No fixed score or automatic low-risk classifier adopted.",
+      "disposition": "retained_and_extended_by_redirection",
+      "residual": "RLO-FR-040 alone does not specify or authorize first assignment/execution; current 027 adds closure inputs and after-run result handoff."
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-437A6A68F9A9E0AE1B9E",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+      "legacy_lines": [
+        "43"
+      ],
+      "legacy_sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+      "current_l2_ids": [
+        "HELIXOS-L2-027"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:824-846",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:442-455",
+      "legacy_condition": "RLO-AC-030 negative oracle: no Bench evidence must not be replaced by guessed measurement or permission.",
+      "normal_oracle": "Mark unassessed and preserve it through a bounded attempt; report evidence and result after the attempt.",
+      "negative_oracle": "Never call an inferred score a measured result or source of execution authority.",
+      "numbers_authority_version": "No guessed numeric score/threshold imported.",
+      "disposition": "retained_and_connected",
+      "residual": "AC-030 alone does not close first-run assignment/execution; acceptance design has not been executed."
+    },
+    {
+      "mechanism": "INFRASTRUCTURE",
+      "legacy_asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "legacy_lines": [
+        "68-98",
+        "108-119",
+        "164-171"
+      ],
+      "legacy_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "current_l2_ids": [
+        "HELIXINFRASTRUCTURE-L2-001",
+        "HELIXINFRASTRUCTURE-L2-002",
+        "HELIXINFRASTRUCTURE-L2-003",
+        "HELIXINFRASTRUCTURE-L2-004",
+        "HELIXINFRASTRUCTURE-L2-005",
+        "HELIXINFRASTRUCTURE-L2-006",
+        "HELIXINFRASTRUCTURE-L2-007",
+        "HELIXINFRASTRUCTURE-L2-008",
+        "HELIXINFRASTRUCTURE-L2-009",
+        "HELIXINFRASTRUCTURE-L2-010",
+        "HELIXINFRASTRUCTURE-L2-011",
+        "HELIXINFRASTRUCTURE-L2-025"
+      ],
+      "current_l2_ref": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:32-150,287-297",
+      "current_l11_ref": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md:34-150,290-299",
+      "legacy_condition": "Environment/credential reference; plan/apply/receipt separation; deployment/artifact/state evidence; action-bound rollback, incident, maintenance and HELIX self-use obligations.",
+      "normal_oracle": "Observe target and revision; plan then authorized Worker apply; bind actor/target/before-after/diff/time/result to receipt; exercise action-applicable restore or rollback and verify it.",
+      "negative_oracle": "Ambiguous target, missing credential/authority, incompatible rollback target, absent backup where required, or missing operation evidence cannot be successful; read-only still enforces no-write and checks no operation-caused change.",
+      "numbers_authority_version": "No provider/lifecycle thresholds copied; 1.0 uses PO minimum 18 scope exactly, later scope remains later.",
+      "disposition": "rederived_and_owner_split",
+      "residual": "Not every old lifecycle obligation is 1.0; selected source atoms are not proven covered by empty candidate receipts."
+    },
+    {
+      "mechanism": "INFRASTRUCTURE",
+      "legacy_asset_id": "LEGACY-ASSET-5D41345F55800F23AC38",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md",
+      "legacy_lines": [
+        "7-15"
+      ],
+      "legacy_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6",
+      "current_l2_ids": [
+        "HELIXINFRASTRUCTURE-L2-001",
+        "HELIXINFRASTRUCTURE-L2-004",
+        "HELIXINFRASTRUCTURE-L2-005",
+        "HELIXINFRASTRUCTURE-L2-006",
+        "HELIXINFRASTRUCTURE-L2-007",
+        "HELIXINFRASTRUCTURE-L2-010",
+        "HELIXINFRASTRUCTURE-L2-011",
+        "HELIXOS-L2-004",
+        "HELIXOS-L2-005",
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-009",
+        "HELIXSECURITY-L2-003",
+        "HELIXSECURITY-L2-005",
+        "HELIXSECURITY-L2-006",
+        "HELIXSECURITY-L2-007",
+        "HELIXSECURITY-L2-016",
+        "HARNESS-L2-010",
+        "HARNESS-L2-011",
+        "HARNESS-L2-022",
+        "HARNESS-L2-023"
+      ],
+      "current_l2_ref": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:32-101,126-149; docs/helix-os/L2-requirements/governance-requirements.md:54-69,286-334,354-394; docs/helix-security/L2-requirements/security-requirements.md:93-137,220-229; docs/helix-harness/L2-requirements/product-requirements.md:340-360,447-490",
+      "current_l11_ref": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md:34-104,128-169; docs/helix-os/L11-acceptance/governance-acceptance.md:21-40,324-358; docs/helix-security/L11-acceptance/security-acceptance.md:21-34,40-48,57-87; docs/helix-harness/L11-acceptance/product-acceptance.md:215-240",
+      "legacy_condition": "NIO-L3-01..09候補。event/loggingはidentity・severity・correlation・redaction・retention・loss/duplication・ordering・clock・schema evolution・secret/PII拒否を含む。alertはtyped findingのincident/recovery ownerへの決定的route、重複/storm/silence/ack/expiryを管理する。operation evidenceはRequirement/Design/test/runtime/releaseへ双方向traceし差分をRequirement Re-entryへ送る。自動修復は契約、actor/tool/target/params/budget/blast-radius、rollback、独立検証、consumer evidenceの成立範囲だけで許可する。",
+      "normal_oracle": "INFRAはresource/observation/restoreのsource・revision・時刻・状態を保持し、OSはtask/ticket/ack・作業/evidence・戻し先を管理、SECURITYはdata class/redaction/credential/operation authorityを所有し、HARNESSは共通pack・検証/受入契約を供給する。実操作の物理強制はWorker側。所有境界を越えず、該当ownerへ差分を戻す。",
+      "negative_oracle": "stale/欠測/collector停止をhealthyへしない。log値にsecret/PIIを含めない。発火したFinding/alertを正しいownerへrouteせず完了扱いしない。実操作をactor/target/params/budget/scope/authorityやrollback/独立検証なしで通さない。単独の計画/backup名/OS ticketで実行・復旧合格を代用しない。",
+      "numbers_authority_version": "NIOはcandidate/unapproved。threshold、retention、RTO/RPO、sample count、fault procedureを現在の一律1.0閾値にしない。INFRA-L2-019はfreshness/confidenceの後続版であり、INFRA-L2-004の1.0最低条件「観測不能をhealthyへしない」を弱めずに別管理する。",
+      "disposition": "source_candidate_mapped_to_split_current_owners",
+      "residual": "現在の各L2/L11は上記のowner境界・最低条件を分担しているが、NIO-L3-04/05の具体event schema・ordering/retention/alert lifecycleとNIO-L3-07のoperation単位双方向trace全体を現行1.0として採択したとは確認できない。NIO-L3自体が未承認candidateなので、具体化は各ownerに沿うL3で保持または採否し、旧候補の数値/細目を無断で現行義務化しない。INFRA-L2-019は後続版であり、1.0依存にしない。"
+    },
+    {
+      "mechanism": "INFRASTRUCTURE",
+      "legacy_asset_id": "LEGACY-ASSET-E239B45CE3FFE8B34D2B",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/infrastructure-operations-requirements-and-connections-source_v0.1.md",
+      "legacy_lines": [
+        "120-132"
+      ],
+      "legacy_sha256": "4d94b4b887a356fb9b17eaddc4df7a9c6e0eaed955d151c48a6efba667be7344",
+      "current_l2_ids": [
+        "HELIXINFRASTRUCTURE-L2-001",
+        "HELIXINFRASTRUCTURE-L2-003",
+        "HELIXINFRASTRUCTURE-L2-005",
+        "HELIXINFRASTRUCTURE-L2-008",
+        "HELIXINFRASTRUCTURE-L2-011",
+        "HELIXINFRASTRUCTURE-L2-013",
+        "HELIXINFRASTRUCTURE-L2-016",
+        "HELIXINFRASTRUCTURE-L2-023",
+        "HELIXINFRASTRUCTURE-L2-024"
+      ],
+      "current_l2_ref": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:32-150,152-285,329-408",
+      "current_l11_ref": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md:34-169,189-288",
+      "legacy_condition": "Design obligation graph includes failure domain/dependencies/capacity/rollback; avoid mandating a specific provider or multiple regions unconditionally.",
+      "normal_oracle": "Design documents applicable environment/dependencies and recovery path; provider choice is scoped, not a universal hard-coded premise.",
+      "negative_oracle": "Reject specific cloud/multi-region as universal prerequisite absent scope evidence; keep unknown failure behavior unresolved rather than healthy.",
+      "numbers_authority_version": "PO scope separates minimum 18 in 1.0 from later failure-domain/multi-cloud/automatic failover scope.",
+      "disposition": "rederived_with_later_scope_preserved",
+      "residual": "Later-version items are retained at version unspecified; no 1.0 coverage conclusion for them."
+    },
+    {
+      "mechanism": "INFRASTRUCTURE",
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "legacy_lines": [
+        "165-170"
+      ],
+      "legacy_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "current_l2_ids": [
+        "HELIXINFRASTRUCTURE-L2-001",
+        "HELIXINFRASTRUCTURE-L2-009",
+        "HELIXINFRASTRUCTURE-L2-011",
+        "HELIXINFRASTRUCTURE-L2-012"
+      ],
+      "current_l2_ref": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:32-50,104-112,138-149,152-160",
+      "current_l11_ref": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md:34-52,94-104,140-169,171-178",
+      "legacy_condition": "Legacy split between typed control plane and data/detection plane with versioned contracts.",
+      "normal_oracle": "Observe resource/runtime identity and exchange versioned status without conflating OS work state and INFRA resource state.",
+      "negative_oracle": "Do not impose old TypeScript/Node/Python runtime choice or treat plane separation as a prerequisite unless version/scope selects it.",
+      "numbers_authority_version": "L1-008/L2-012 isolation is explicitly later than 1.0; basic 1.0 resource identity/state remains in 001/009/011.",
+      "disposition": "meaning_retained_runtime_choice_replaced",
+      "residual": "Not a claim that old runtime architecture or code is adopted."
+    },
+    {
+      "mechanism": "INFRASTRUCTURE",
+      "legacy_asset_id": "LEGACY-ASSET-3E3D84D599ED0476926B",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/version-up.md",
+      "legacy_lines": [
+        "13-38"
+      ],
+      "legacy_sha256": "8b4f333a0734a4a2f3f8cea9f1b17c87c3880a0dc271671af45f53be7b7c4a74",
+      "current_l2_ids": [
+        "HELIXINFRASTRUCTURE-L2-012",
+        "HELIXINFRASTRUCTURE-L2-013",
+        "HELIXINFRASTRUCTURE-L2-014",
+        "HELIXINFRASTRUCTURE-L2-015",
+        "HELIXINFRASTRUCTURE-L2-016",
+        "HELIXINFRASTRUCTURE-L2-017",
+        "HELIXINFRASTRUCTURE-L2-018",
+        "HELIXINFRASTRUCTURE-L2-019",
+        "HELIXINFRASTRUCTURE-L2-020",
+        "HELIXINFRASTRUCTURE-L2-021",
+        "HELIXINFRASTRUCTURE-L2-022",
+        "HELIXINFRASTRUCTURE-L2-023",
+        "HELIXINFRASTRUCTURE-L2-024",
+        "HELIXINFRASTRUCTURE-L2-026"
+      ],
+      "current_l2_ref": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:152-285,329-408",
+      "current_l11_ref": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md:171-314",
+      "legacy_condition": "Future-targeted capability is explicitly preserved rather than active or dropped; future activation remains separately decided.",
+      "normal_oracle": "Keep after-1.0 candidates intact with explicit current version boundary and applicable activation scope.",
+      "negative_oracle": "Do not treat a parked/later candidate as current 1.0 capability or erase it as dropped.",
+      "numbers_authority_version": "Current PO decided `1.0より後（版は未定）`; old target labels/activation timelines do not supply present versions.",
+      "disposition": "future_scope_preserved",
+      "residual": "Future version and activation conditions intentionally remain unspecified."
+    },
+    {
+      "mechanism": "CONNECT",
+      "legacy_asset_id": "LEGACY-ASSET-C3DE79BA9451172F3E43",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+      "legacy_lines": [
+        "33-57",
+        "86-109"
+      ],
+      "legacy_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04",
+      "current_l2_ids": [
+        "HELIXCONNECT-L2-001",
+        "HELIXCONNECT-L2-002",
+        "HELIXCONNECT-L2-003",
+        "HELIXCONNECT-L2-004",
+        "HELIXCONNECT-L2-005",
+        "HELIXCONNECT-L2-006",
+        "HELIXCONNECT-L2-007"
+      ],
+      "current_l2_ref": "docs/helix-connect/L2-requirements/connect-requirements.md:56-135",
+      "current_l11_ref": "docs/helix-connect/L11-acceptance/connect-acceptance.md:42-72",
+      "legacy_condition": "Versioned read connector, explicit revision, source/operation authority, idempotency, stale/unknown state for a specific data-ingestion pipeline.",
+      "normal_oracle": "Compare exact endpoint/contract revisions; transmit only after current compatibility and applicable authority; retry same operation/digest only inside declared bound.",
+      "negative_oracle": "No send on stale/unknown/mismatch, expired/revoked authority, invalid operation or unreceived ACK; endpoint sharing under distinct identities is not a collision.",
+      "numbers_authority_version": "No provider/runtime/API-key rules or legacy fixed version numbers copied; current connection contract owns operation bounds. Current candidate target 1.0 applies to registered connection conditions.",
+      "disposition": "meaning_rederived_not_exact_reuse",
+      "residual": "CONNECT derived-coverage receipt source_atom_count=0; not evidence of old connector atom coverage."
+    },
+    {
+      "mechanism": "CONNECT",
+      "legacy_asset_id": "LEGACY-ASSET-DD66C1B6B7BE234B37E6",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/product-data-connector.md",
+      "legacy_lines": [
+        "27-57"
+      ],
+      "legacy_sha256": "48014b188ebe0c3ffe18b86fa472f048a88e248316bf2b3218aaa605a5e55f42",
+      "current_l2_ids": [
+        "HELIXCONNECT-L2-002",
+        "HELIXCONNECT-L2-003",
+        "HELIXCONNECT-L2-004",
+        "HELIXCONNECT-L2-005",
+        "HELIXCONNECT-L2-006",
+        "HELIXCONNECT-L2-007"
+      ],
+      "current_l2_ref": "docs/helix-connect/L2-requirements/connect-requirements.md:67-135",
+      "current_l11_ref": "docs/helix-connect/L11-acceptance/connect-acceptance.md:46-72",
+      "legacy_condition": "Pure function/adapter external boundary, strict version contract, exact result/failure oracle and separate ingestion authority.",
+      "normal_oracle": "Record current contract/revision and exact result/failure; adapter-specific decision remains with endpoint owner.",
+      "negative_oracle": "No generic API/error-token assumption; do not conflate technical transport success with business success or approval.",
+      "numbers_authority_version": "No old API shape or retry count copied as generic requirement.",
+      "disposition": "selective_rederivation",
+      "residual": "Source-to-identity atom closure not independently receipted."
+    },
+    {
+      "mechanism": "CONNECT",
+      "legacy_asset_id": "LEGACY-ASSET-BD13CC67526B48D461F9",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/adr/ADR-003-runtime-adapter-boundary-subscription-cli.md",
+      "legacy_lines": [
+        "8-24",
+        "26-45"
+      ],
+      "legacy_sha256": "ffbe51c4a34cdaf4c072393a0864d916c7a4e1d6eaf4788bb0260e8280291f37",
+      "current_l2_ids": [
+        "HELIXCONNECT-L2-001",
+        "HELIXCONNECT-L2-002",
+        "HELIXCONNECT-L2-003",
+        "HELIXCONNECT-L2-004",
+        "HELIXCONNECT-L2-005",
+        "HELIXCONNECT-L2-006",
+        "HELIXCONNECT-L2-007"
+      ],
+      "current_l2_ref": "docs/helix-connect/L2-requirements/connect-requirements.md:43-135",
+      "current_l11_ref": "docs/helix-connect/L11-acceptance/connect-acceptance.md:22-80",
+      "legacy_condition": "Adapter must isolate provider specifics; A-71 failure records authentication assumptions leaking below an unowned boundary.",
+      "normal_oracle": "Connection-specific adapter/transport revision is tracked while business meaning/permission remains with endpoint owners and SECURITY.",
+      "negative_oracle": "No provider-specific CLI/auth/API-key assumption leaks into generic CONNECT, and CONNECT cannot claim business approval/completion.",
+      "numbers_authority_version": "No legacy Node/Python CLI or provider requirements imported.",
+      "disposition": "failure_history_retained_boundary_rederived",
+      "residual": "Audit explicitly scopes full consumer inventory elsewhere; this check does not establish that all consumers are connected."
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "legacy_lines": [
+        "25-110"
+      ],
+      "legacy_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "current_l2_ids": [
+        "HELIXOS-L2-005",
+        "HELIXOS-L2-007"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:194-217",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:21-40",
+      "legacy_condition": "監査probe・qualified差分はproposal/evidenceに限り、finding・owner・route・remediation・Requirement・merge権限を自己確定しない。exact HEAD/authority/evidence、反証、expiry、stale拒否を要求する。",
+      "normal_oracle": "候補を既存のINTELLIGENCE監査責務へ送り、OSは出典・scope・採否・戻し先を追跡する。",
+      "negative_oracle": "AI自己評価だけで検証済み/priority/owner/routeを付与しない。自由文やdeltaからIssue/CI/mergeを直接変更しない。",
+      "numbers_authority_version": "候補要求でありOS自身の監査probe機能として採択されていない。限定修復候補はINTELLIGENCEへ移管済み。",
+      "disposition": "rederived_owner_split",
+      "residual": "OS L2:208はINTELLIGENCE候補への移管、L2:214-217はOSの記録/還流だけ。probe schema、独立再現、delta invalidation等の詳細は現行OS要求で採択されていない。"
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-E9BDD9DCA6CF67CBE424",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requests.md",
+      "legacy_lines": [
+        "25-55"
+      ],
+      "legacy_sha256": "5c29cba6331dff96082f74612ceaf755fe4a30a10e75be62797e8073de7fec99",
+      "current_l2_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-007"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:427",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:21-40",
+      "legacy_condition": "会話解釈から人間authorityを作らず、decision/selection/approval/disposition/runtime_judgmentを分離する。directiveは作業入力であり、正本・安全・検証を免除しない。memoryは有期限coordination pointerだけ。",
+      "normal_oracle": "要求・source revisionを特定し、相談やsignalで承認/決定/完了を生成せず、正しいownerへ戻す。",
+      "negative_oracle": "口調・反復・緊急性・AI解釈だけでhuman provenanceやapprovalを付与しない。",
+      "numbers_authority_version": "L1 candidate・plan固有承認前と記載され、OS L2で採択済み要求ではない。",
+      "disposition": "candidate_hold",
+      "residual": "OS L2:427は旧candidateを入力として掲示し、current semanticsへの昇格・採択を宣言しない。"
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-17E4FD7C3DB0B3C82210",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requirements.md",
+      "legacy_lines": [
+        "27-60"
+      ],
+      "legacy_sha256": "cb97e7594b38cfada7d4fedb948937bab9e9d8f3e7c7123eca82a7ce6e8f8eb4",
+      "current_l2_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-007"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:507",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:21-40",
+      "legacy_condition": "authority語彙のexact schema、approvalの対象/scope/revision/actor/expiry、legacy値のinput-only隔離、invalid memory再投影拒否などを要求する。",
+      "normal_oracle": "現行OSは必要なauthority/source・revisionと欠落/競合を追跡し、信号から権限を生成しない範囲を保持する。",
+      "negative_oracle": "曖昧legacy decisionを推測でcurrent authorityへ再出力しない。",
+      "numbers_authority_version": "L3 candidate・canonical未昇格。細かなAVS schema/runtime/adaptersをOS要求へ昇格したとは読めない。",
+      "disposition": "candidate_hold",
+      "residual": "詳細schema、DB、CLI、prompt検査、workflow tokenは未採択候補として留保。"
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "legacy_lines": [
+        "1-19",
+        "30-53",
+        "55-95"
+      ],
+      "legacy_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+      "current_l2_ids": [
+        "HELIXOS-L2-014",
+        "HELIXOS-L2-021",
+        "HELIXOS-L2-026"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:461-478,807-821",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:366-371,430-441",
+      "legacy_condition": "Concept/Visionの能力目標、提供Package候補、primary owner一意性、release/version/artifactの軸分離。明記された未確定は製品要件や公開版に自動昇格しない。",
+      "normal_oracle": "段階構成を要求・依存から導出し、対象・版・artifact・consumer・rollbackを追跡する。Vision/Web候補とOS段階構成を混同しない。",
+      "negative_oracle": "PKG候補、Package数、Visionの1.0表記から正式Slice/Module/公開許可を作らない。",
+      "numbers_authority_version": "整理候補で、current requirement承認済みではない。概念本文は長期Visionを現行公開契約と区別する。",
+      "disposition": "candidate_hold",
+      "residual": "Concept/FRS差分の採否・ownerは候補のまま。L2-026はOS段階構成導出の現行候補であり、旧Package表の採用ではない。"
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-602131C2EDDE1D7AD55A",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "legacy_lines": [
+        "13-24"
+      ],
+      "legacy_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+      "current_l2_ids": [
+        "HELIXOS-L2-009",
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-004"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:398-400",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:21-40",
+      "legacy_condition": "中断後も既存source of truthから会話/作業意図を再構成し、目的、未完、制約、根拠の引継ぎを行う。",
+      "normal_oracle": "利用者の継続/再開に必要な対象・状態を現行ticket/assignment/evidenceから引き継ぐ。",
+      "negative_oracle": "通知や会話memoryをrequirements/authorityの正本へしない。",
+      "numbers_authority_version": "CLR-BR-001は候補・承認待ちでOS L2-009への追加検討入力に限定。",
+      "disposition": "candidate_hold",
+      "residual": "OS L2:398-411はCLR詳細を未承認candidateと明記。L11の一般continuity条件はあるが全CLR案の採択ではない。"
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "legacy_lines": [
+        "13-60"
+      ],
+      "legacy_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+      "current_l2_ids": [
+        "HELIXOS-L2-009",
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-004"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:398-411",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:352-358",
+      "legacy_condition": "保存と再取得、切替時の未完義務/予算/retry継承、最小restart packet、同条件比較、段階導入を求める。",
+      "normal_oracle": "既存OS受入はcontinuity・assignment・evidenceの基本条件を確認し、候補詳細が採択されるまではその範囲にとどめる。",
+      "negative_oracle": "重要情報欠落を黙って落として新sessionを成功扱いしない。",
+      "numbers_authority_version": "CLR-R01..08とL10 oracleは未承認候補で現行requirementsに未昇格。",
+      "disposition": "candidate_hold",
+      "residual": "最小restart packet schema、3方式比較の厳密条件、段階導入は下流承認・正本化待ちで、現行L11の一般継続条件を超えて採択したとはしない。"
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-154018C4C6B5E3AB9C63",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requests.md",
+      "legacy_lines": [
+        "8-16"
+      ],
+      "legacy_sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3",
+      "current_l2_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-003",
+        "HELIXOS-L2-005",
+        "HELIXOS-L2-007"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:429",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:21-40",
+      "legacy_condition": "設計候補の根拠収集、人間反応とAI解釈の分離、受容軸/findingの系譜を保持し、必要scopeだけを再作業する。",
+      "normal_oracle": "現行OSは要求・source・scope・影響・採否・戻し先を記録し、設計所有者へ戻す。",
+      "negative_oracle": "客観品質greenを人間の意味受容や選好承認に読み替えない。",
+      "numbers_authority_version": "L1 redesign candidate、OS L2は入力候補として記載するだけ。",
+      "disposition": "candidate_hold",
+      "residual": "Design evidence/axis convergenceはCORE/HARNESS設計責務を含みOS単独の要求として確定していない。"
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-2D530EE7717B7A1E9218",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+      "legacy_lines": [
+        "11-36"
+      ],
+      "legacy_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687",
+      "current_l2_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-003",
+        "HELIXOS-L2-005",
+        "HELIXOS-L2-007"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:429",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:21-40",
+      "legacy_condition": "evidence→設計含意→採否根拠、反応原文とAI分類の分離、客観欠陥/人間選好の別管理、finding系譜、scope限定再作業を具体化する。",
+      "normal_oracle": "OSの管理viewで対象・証拠・判断先を追跡する一般的な受入はある。詳細設計収束oracleは候補内に留保。",
+      "negative_oracle": "AI分類だけでrequirement/design/human approvalを書き換えない。",
+      "numbers_authority_version": "L3 candidate、canonicalization前である。",
+      "disposition": "candidate_hold",
+      "residual": "具体のresearch sufficiency、軸退行判定、許容範囲等は現行L2/L11として採択されていない。"
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-429B017144C61B9C906D",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+      "legacy_lines": [
+        "1-18"
+      ],
+      "legacy_sha256": "3cb6ee8a4d342b7f667c0960d08eb0a18fa44372ecb03bd85e0576e59baa4cca",
+      "current_l2_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-003",
+        "HELIXOS-L2-004",
+        "HELIXOS-L2-005",
+        "HELIXOS-L2-006",
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-008",
+        "HELIXOS-L2-009"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:277-284",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:21-40",
+      "legacy_condition": "72 investment候補、段階、依存、導入束、採否、ownerへの段階引継ぎをinventoryとして保持する。",
+      "normal_oracle": "OSは候補の意味を個別採否し、authority/work/evidence/resource/AI context/learning/costの条件を対象ごとに追う。",
+      "negative_oracle": "INV ID/P0..P4/legacy graphを新世代の要求や実装順に一括転記しない。",
+      "numbers_authority_version": "未承認candidate台帳。OS L2:277-284はexact 72件分類と一部保留を明示。",
+      "disposition": "held_with_selective_rederivation",
+      "residual": "INV-043旧Cursor早期E2Eは不採用、INV-068/070/071/072は将来研究として保留。個々の他項目は新世代対応表で採否する。"
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-E365F83763C0FB340328",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
+      "legacy_lines": [
+        "51-124",
+        "133-180"
+      ],
+      "legacy_sha256": "951c8a89cbb839f3cbe70f04c436751db81c474303ebdcc97cf066cd7155836c",
+      "current_l2_ids": [
+        "HELIXOS-L2-004",
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-008",
+        "HELIXOS-L2-009",
+        "HELIXOS-L2-010",
+        "HELIXOS-L2-011",
+        "HELIXOS-L2-014"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:155-185,536",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:338-366",
+      "legacy_condition": "Execution Ticket/Bench接続案は、ticket identity、retry/replay、authority、resource・予算・期限、receipt、評価のadvisory境界、測定欠損の扱いを接続する。",
+      "normal_oracle": "OS L2/L11はassignment・attempt・handoffと実行記録を保持し、Benchの評価とは別に実行authorityを確認する。",
+      "negative_oracle": "Bench結果だけからdispatch/merge authorityを生成せず、未評価・unknown・staleを成功値へ補完しない。",
+      "numbers_authority_version": "intake/request自体がL3候補・IR/正規化前。",
+      "disposition": "candidate_hold_with_partial_mapping",
+      "residual": "ETI L24-26は未確定SLO/retentionやversion targetを保持。detailed Bench runner/scorer/replayは現行OS L2/L11へ全面採択されていない。"
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-48383451734A0832AF87",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requests.md",
+      "legacy_lines": [
+        "14-34"
+      ],
+      "legacy_sha256": "b9ffa16c10602ccef0fbf6f9124bd67d67c0e672f3c8208c94eea97fc36f259c",
+      "current_l2_ids": [
+        "HELIXOS-L2-004",
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-008",
+        "HELIXOS-L2-009",
+        "HELIXOS-L2-010",
+        "HELIXOS-L2-011"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:536",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:338-366",
+      "legacy_condition": "通常ticketから観測receipt、欠損検出、replay比較、同一model反復、無権限変更拒否、既存owner還流を要求する。",
+      "normal_oracle": "OS側ではticket/assignment/evidence/authorityの進行を管理し、評価出力はadvisoryとして ownerへ返す。",
+      "negative_oracle": "dashboard表示や計測コードだけで成功、Benchによる配車決定、無権限の本番変更を認めない。",
+      "numbers_authority_version": "L1 candidate、要求承認と実装許可は保留。",
+      "disposition": "candidate_hold",
+      "residual": "実装済み計測、継続観測や厳密な反復ベンチの全面受入を現行OSへ追加したわけではない。"
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-0AA076D5CAF7C591F23D",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-validation.md",
+      "legacy_lines": [
+        "14-30"
+      ],
+      "legacy_sha256": "fea63c221b36d5e81a58fa206ff6ed8969227aa9a720af622463f369850a9fa1",
+      "current_l2_ids": [
+        "HELIXOS-L2-004",
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-008",
+        "HELIXOS-L2-009",
+        "HELIXOS-L2-010",
+        "HELIXOS-L2-011"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:536",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:338-366",
+      "legacy_condition": "劣化・判定不能を正当な結果として保持し、既存評価・配車ownerに根拠を返してBench自体はdispatchしない。",
+      "normal_oracle": "通常のOS実行受入は割当/実行/検収分離を確かめ、性能変化だけで権限を付与しない。",
+      "negative_oracle": "劣化を隠す、unknownをgreen扱いする、Benchが直接routeすることを拒否。",
+      "numbers_authority_version": "L10 acceptance候補、runtimeなし/正本化待ち。",
+      "disposition": "candidate_hold",
+      "residual": "詳細validation candidateは現行OSのL11採択ではない。"
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-67ADFAB856D954B3C5D2",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+      "legacy_lines": [
+        "21-59"
+      ],
+      "legacy_sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+      "current_l2_ids": [
+        "HELIXOS-L2-014",
+        "HELIXOS-L2-021",
+        "HELIXOS-L2-026"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:619-640,807-821",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:366-371,430-441",
+      "legacy_condition": "構成体には固有acceptance、dependency closure、unknown fail-close、rollback・read-afterを要求し、単体greenで組合せ合格を代用しない。",
+      "normal_oracle": "OS-026は段階構成導出のL11で候補比較、依存/責務/安全閉包、できないこと/更新/切戻しを検査する。",
+      "negative_oracle": "旧slice/module/bundle数やgreen件数から完成・公開を導かない。",
+      "numbers_authority_version": "FRS acceptance candidate; L2-026は1.0候補として構成体の要求導出に限定して再導出。",
+      "disposition": "rederived_with_scope_split",
+      "residual": "L2-026は旧FRSの全配布・qualified consumer・runtime受入一式を移管しない。対象段階構成の導出義務を保持。"
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-87B393F048F052258622",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/harness-memory-coordination-boundary-requests.md",
+      "legacy_lines": [
+        "13-55"
+      ],
+      "legacy_sha256": "38769f088c8f2dee4ae79c9d0528c1779eadc175b61284aa77518274b23bc772",
+      "current_l2_ids": [
+        "HELIXOS-L2-004",
+        "HELIXOS-L2-009",
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-007"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:354-365",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:352-358",
+      "legacy_condition": "memoryを有期限通知/pointerへ限定し、正本の再取得、stale拒否、authority自動昇格防止、provider memory境界、履歴再開を要求する。",
+      "normal_oracle": "OSはnotificationから要求正本を逆生成せず、各状態authorityへ戻ることとscope/traceを確認する。",
+      "negative_oracle": "provider memory、session history、AI解釈を要求/approval/knowledge正本へ混入しない。",
+      "numbers_authority_version": "L1候補、独立検収・正本化待ち。",
+      "disposition": "candidate_hold",
+      "residual": "HMCの完全なenvelope/lifecycle契約は現行OS L2に採択されていない。"
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-00896223F0864B9D14D6",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/harness-memory-coordination-boundary-requirements.md",
+      "legacy_lines": [
+        "13-60"
+      ],
+      "legacy_sha256": "421d8cbcdb12120c7bf97bdbae053d3e1dac0d73229418b4f74341a2dd182dbc",
+      "current_l2_ids": [
+        "HELIXOS-L2-004",
+        "HELIXOS-L2-009",
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-007"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:354-365",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:352-358",
+      "legacy_condition": "typed envelope、pointer freshness、authority本文の非複製、lifecycle、重複配送/dedupe、provider native isolation、mechanical enforcementを要求する。",
+      "normal_oracle": "L11は通知再取得・stale pointer・重複/期限切れの一般negative caseを持つ。",
+      "negative_oracle": "message body aloneから作業を始めず、invalid/superseded memoryをcurrent guidanceにしない。",
+      "numbers_authority_version": "L3 candidate・independent check/canonicalization待ち。",
+      "disposition": "candidate_hold",
+      "residual": "全てのHMC-R01..17 schema/enforcementはOS current contractへの採択ではない。"
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-3AC6722CBF61023378CB",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-commercial-license-requirements.md",
+      "legacy_lines": [
+        "1-54",
+        "54-88"
+      ],
+      "legacy_sha256": "35d25d16755239eb0b68b6b9d32250dd340df5406246c84868e5bb1aabd3e0c9",
+      "current_l2_ids": [
+        "HELIXOS-L2-006",
+        "HELIXOS-L2-007"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:245-258",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:21-40",
+      "legacy_condition": "LICENSE候補は利用者成果物/HELIX資産/第三者素材を区別し、過去MIT版を遡及撤回せず、権利未確認assetに限り商用発効を止める。紹介・宣伝は別途任意同意。",
+      "normal_oracle": "OSの配布記録は対象版/許諾/変更の証跡とownerへ繋ぐが、契約の成立や権利判断を発明しない。",
+      "negative_oracle": "商用候補文書や将来Web/APIから課金・配布・商用権限を生成しない。",
+      "numbers_authority_version": "license candidate statusのまま、法的発効/権利判断は別途。",
+      "disposition": "candidate_hold",
+      "residual": "OSのL2記載は管理・候補保留であり、当候補の商用条件をcurrent 1.0の利用条件として採択していない。"
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-08373C0AEE18881133D5",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l1-request-candidates.md",
+      "legacy_lines": [
+        "5-13"
+      ],
+      "legacy_sha256": "17c7a6f8781768e4daf6da9fc2d9f09320a19d51bf17c4dfb8ca789ea3b51f01",
+      "current_l2_ids": [
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-005",
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-004",
+        "HELIXOS-L2-009"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:320-334",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:21-40",
+      "legacy_condition": "運用品質候補は観測source/freshness、restore/rollbackを実行証拠で確かめ、unknown/staleをhealthyとしない。OSの役割は進行・evidence・owner route。",
+      "normal_oracle": "状態/欠測/incident/復旧先を記録し、実行操作はINFRASTRUCTURE/runtime ownerに残す。",
+      "negative_oracle": "OSが運用resourceやrestore authorityを吸収しない。",
+      "numbers_authority_version": "親sourceはINFRASTRUCTUREのL1候補。OS側はconsumer/管理統制。",
+      "disposition": "other_mechanism_owner",
+      "residual": "資源観測/restore oracleのprimary ownerはINFRASTRUCTURE (L2:320-334, L1 1.0 scope table); OSは管理証拠と作業戻し先だけを持つ。NIOのL3未承認数値は受入oracleにしない。"
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-FD3F979AF945CE3EC306",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/producer-provenance-separation-requests.md",
+      "legacy_lines": [
+        "10-33"
+      ],
+      "legacy_sha256": "dfda22022f1f9ced3f543ccadb91ff7de9335d7a6ea7aaff9efdd1702ecda2a1",
+      "current_l2_ids": [
+        "HELIXOS-L2-004",
+        "HELIXOS-L2-007"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:380-394",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:338-358",
+      "legacy_condition": "成果生成者、commit者、PR公開者、独立reviewerのprovenanceを分離し、mixed/unknownやsource scopeを推定で潰さない。",
+      "normal_oracle": "OSはproducer証拠を保存しHARNESS independent-review条件に接続する。",
+      "negative_oracle": "Git actorの違いだけで独立性や人間承認を成立させない。",
+      "numbers_authority_version": "PPSはdraft candidate、Git actor/routing redesignは明示的に対象外。",
+      "disposition": "candidate_hold",
+      "residual": "L2:380-394は管理候補として保持、完全なprovenance graph/schemaは採択済み要求でない。"
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-A04F169C5D514C5443D0",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/producer-provenance-separation-requirements.md",
+      "legacy_lines": [
+        "13-70"
+      ],
+      "legacy_sha256": "9f1e268986845f5f209517de24f57f2828e130f971a1429be96d0f88a5e9d59a",
+      "current_l2_ids": [
+        "HELIXOS-L2-004",
+        "HELIXOS-L2-007"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:380-394",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:338-358",
+      "legacy_condition": "producer/actor/lineage graph、unknown producerの非推測、mixed保持、scope-bound evidenceを要求する。",
+      "normal_oracle": "OSは成果・revision・assignment・evidenceを追跡し、HARNESS owns independent-review test。",
+      "negative_oracle": "署名やbot actorだけでproducer・independent reviewerを推測しない。",
+      "numbers_authority_version": "候補状態で、actor identityやroutingの再設計は対象外。",
+      "disposition": "candidate_hold",
+      "residual": "詳細provenance graphは未採択。OSは記録/照合ownerでproducer意味の定義を独占しない。"
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-12E2CD9B07EFAC343ED0",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-requirements.md",
+      "legacy_lines": [
+        "32-76"
+      ],
+      "legacy_sha256": "4776830ec12a6a464732db56e6ff8d93f89e8e89a6dcb8c175728a82482cc754",
+      "current_l2_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-003",
+        "HELIXOS-L2-005",
+        "HELIXOS-L2-007"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:212-217",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:21-40",
+      "legacy_condition": "refactor triggerはfinding/evidence/scope/semantic preservation/verification/admission/expiryを持ち、定期scan、file size、単一metricから採択/実行しない。",
+      "normal_oracle": "OSは観測・候補・scope・採否・結果・失効を追跡し、実装ownerへ割当を戻す。",
+      "negative_oracle": "AI/source probeだけから自動修復を実行しない。",
+      "numbers_authority_version": "旧Trigger candidateはINTELLIGENCE候補へ移した範囲あり、OSは管理記録のみ。",
+      "disposition": "rederived_owner_split",
+      "residual": "OS L2:212-217は旧automation/scope taxonomyを継承せず管理/routeの意味のみ保持。"
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-19E54587EB063625EC53",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requests.md",
+      "legacy_lines": [
+        "21-38"
+      ],
+      "legacy_sha256": "f6379e1294bf4c68c93430903f24949d5373a60b82e5286ac34d51a5eb614a2e",
+      "current_l2_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-003",
+        "HELIXOS-L2-007"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:428",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:21-40",
+      "legacy_condition": "要求形成は意味変更とtechnical normalizationを分け、scope/authorityに応じて人の確認を要求する。未確定・新根拠なし再質問を避ける。",
+      "normal_oracle": "OSはcandidate/revision/owner/backflowを管理し、対象製品の要求意味を直接変更しない。",
+      "negative_oracle": "scopeが無関係な通常作業へ拡張されない。",
+      "numbers_authority_version": "RFAはsource candidateでOS L2に採択宣言なし。",
+      "disposition": "candidate_hold",
+      "residual": "Requirement formation engine の入力分類・admission oracleは別責務で、OS routingだけでは代替されない。"
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-F38874B2497742797010",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requirements.md",
+      "legacy_lines": [
+        "21-52"
+      ],
+      "legacy_sha256": "97e1e5341beb48e735aacab3b3957b0707fa6aef2e70d0af8c0051607082e155",
+      "current_l2_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-003",
+        "HELIXOS-L2-007"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:508",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:21-40",
+      "legacy_condition": "source/authority/scopeとrequirement formation candidateを束縛し、意味不明/不足を適切な判断先へ返す。可逆な技術整形を一律approval gateにしない。",
+      "normal_oracle": "OSは戻し先と影響範囲を記録する。詳細engineのL1/L3/L10条件は候補保持。",
+      "negative_oracle": "issue/PRやAI解釈だけから要求revision/approvalを作らない。",
+      "numbers_authority_version": "L3 candidate/canonical promotion待ち。",
+      "disposition": "candidate_hold",
+      "residual": "機械admission schemaとformal oracleは現在のOS L11を超える候補義務として保持。"
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-5841D44AE1255A061667",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requirements.md",
+      "legacy_lines": [
+        "18-78"
+      ],
+      "legacy_sha256": "0d395f7ccd81a8c749ef4c3b8c0a660505b6183531992b4678267b5b51c929eb",
+      "current_l2_ids": [
+        "HELIXOS-L2-005",
+        "HELIXOS-L2-007"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:504",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:25-40",
+      "legacy_condition": "learningのsource/licence/scope/evidence/admission/promotion/rollbackを管理し、候補と知識のownerを分ける。",
+      "normal_oracle": "LABOが評価・改善提案、OSは提案登録/割当/還流、BRAINが再利用知識の責務を持つ。",
+      "negative_oracle": "登録件数やmemory writeだけで学習効果・knowledge authorityを成立させない。",
+      "numbers_authority_version": "旧RCLSのlearning pipelineはL2:382によりLABO候補へ移管。OS consumerのみ。",
+      "disposition": "other_mechanism_owner",
+      "residual": "Learning measurement/promotion primary owner is LABO; knowledge packaging/reuse is BRAIN. OS retains evidence routing only. RCLS full lifecycle is not OS adoption."
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-C4BDEC295C37DE2CED56",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/scrum-operation-typed-projection-requirements.md",
+      "legacy_lines": [
+        "13-34"
+      ],
+      "legacy_sha256": "c7a998aa686db588ea324ecf0d9a08007cd7656d03ceef50a6591766991a826f",
+      "current_l2_ids": [
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-004",
+        "HELIXOS-L2-005",
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-009"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:199-204",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:21-40",
+      "legacy_condition": "7 typed Scrum operation、event projection、不変のsource binding、欠落/重複/誤layerのfail-close。",
+      "normal_oracle": "OS current L2はmanagement viewで進行を再構築し、project/Issue/DB/dashboardから意味・承認を逆生成しない。",
+      "negative_oracle": "legacy layer/schema/project DB/roadmap/test/CIをcurrent oracleにしない。",
+      "numbers_authority_version": "pending canonical promotion。旧7 operationは不採択と現行L2で明記。",
+      "disposition": "rejected_old_schema_rederived_semantics",
+      "residual": "Projection/typed state semantics are maintained via current L2/L11; old seven-operation schema and machine interface are explicitly not reused."
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-322CD23B625A08E2BFB3",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md",
+      "legacy_lines": [
+        "10-44"
+      ],
+      "legacy_sha256": "c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447",
+      "current_l2_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-003",
+        "HELIXOS-L2-004",
+        "HELIXOS-L2-005",
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-009"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:233-241",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:21-40",
+      "legacy_condition": "Security engagementは明示されたtarget/operation/environment/data/network scope、provider admission、evidence、action-specific authority、release境界を要求。",
+      "normal_oracle": "OSは既存SECURITY authorityを対象task/operationに結び記録し、securityが判定したpermitを越えない。",
+      "negative_oracle": "候補・Issue・provider accessから許可を生成しない。未許可・scope drift・revoke時は操作しない。",
+      "numbers_authority_version": "旧SEAは候補。current ownerはSECURITY authority、OSはrecord/assignment consumer。",
+      "disposition": "other_mechanism_owner",
+      "residual": "Primary authority/broker belongs to SECURITY, not OS; OS L2 233-241 explicitly keeps exact scope and says no legacy broker/credential operation here."
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-11E8FE0479751F02A4A3",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/three-lane-capacity-profile-requests.md",
+      "legacy_lines": [
+        "13-21"
+      ],
+      "legacy_sha256": "a428f2de8652b9508456aed358152865a1f96f6978e5d204b1e2dfd3a1d2e1ba",
+      "current_l2_ids": [
+        "HELIXOS-L2-004",
+        "HELIXOS-L2-005",
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-008",
+        "HELIXOS-L2-009"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:221-229",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:21-40",
+      "legacy_condition": "pool/WIP/verification/integration capacityを分け、accepted throughputで測る旧候補は、worker 3/cursor 3/reviewer 2、burst5等の固定数も含む。",
+      "normal_oracle": "OSは有期resource profile、下流処理能力、backpressure、revision変更後の証拠を確認する。",
+      "negative_oracle": "登録pool数を稼働数/throughputにしない。固定ベンダー・定常数・burst上限を要求にしない。",
+      "numbers_authority_version": "固定capacity数値はL2:227-229で恒久要求から明示除外。",
+      "disposition": "rederived_without_fixed_counts",
+      "residual": "Capacity dimensions retained; provider counts 3/3/2, burst 5 and 8-slot are not current requirements."
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-5DAB2F0E1C13F846CABB",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/management-scrum-product-forward.md",
+      "legacy_lines": [
+        "10-29"
+      ],
+      "legacy_sha256": "33462610beba32ec952b1eb4cb3ef4f57886a0ddb7f116ea9949d50042099f59",
+      "current_l2_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-003",
+        "HELIXOS-L2-005",
+        "HELIXOS-L2-007"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:189-197",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:21-40",
+      "legacy_condition": "Management Scrum observation must not modify product authority inside Scrum; forward to canonical V-model owner and keep a minimal typed issue contract.",
+      "normal_oracle": "OS manages intake/impact/owner/backflow while product requirement authority remains with product owner.",
+      "negative_oracle": "Issue-first/status/S0..S4/scrum reverse alone does not mutate requirement, approval or completion.",
+      "numbers_authority_version": "Old policy confirmed historically, but current OS mapping explicitly rejects old statuses/adapters as current.",
+      "disposition": "rederived",
+      "residual": "Current management meaning and forward boundary retained; legacy workflow/state labels and runtime artifacts not reused."
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-BF02D9AB7313C42D8FED",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/README.md",
+      "legacy_lines": [
+        "13-47",
+        "55-76"
+      ],
+      "legacy_sha256": "59120aa9b044b4edf2387959ced5ad4020d230b747cc5406ac6d03281f1f9b83",
+      "current_l2_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-003",
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-010"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:125-168",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:338-345",
+      "legacy_condition": "Workflow meaning belongs to requirements; machine registry mirrors versioned source. Independent axes and transitions prevent states conflated; stale contract cannot change axes.",
+      "normal_oracle": "OS current workflow/ticket requirements use source/revision/scope and dynamic composition, with missing/conflict returned.",
+      "negative_oracle": "Registry/string/token alone does not create human directive, authority, or current requirement.",
+      "numbers_authority_version": "Legacy mode taxonomy is not current status authority; current L2 uses source-gated state terms.",
+      "disposition": "rederived",
+      "residual": "Workflow classification and work routing retained at current identity boundary; old mode registry, state numbers and labels are not reused."
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "legacy_lines": [
+        "24-84"
+      ],
+      "legacy_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "current_l2_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-003",
+        "HELIXOS-L2-007"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:518",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:21-40",
+      "legacy_condition": "Legacy Requirement IR records owner IDs and source pointers for HIL functions, but the JSON encoding is an old projection, not independent authority.",
+      "normal_oracle": "OS traces requirement source/revision and owning mechanism to the current requirement authority.",
+      "negative_oracle": "Do not reuse old IR schema/IDs or treat a source pointer as proof current adoption.",
+      "numbers_authority_version": "Current L2:518 references inventory for re-derivation only.",
+      "disposition": "reference_only_rederived",
+      "residual": "Source pointers indicate migration provenance; no one-to-one old IR migration claim. HIL subject owner may be OS, but engine/contract details require current owner decisions."
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-67761C517521603F844C",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+      "legacy_lines": [
+        "1-35",
+        "100-125",
+        "200-225",
+        "270-295",
+        "365-415",
+        "445-465"
+      ],
+      "legacy_sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "current_l2_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-003",
+        "HELIXOS-L2-007"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:519",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:21-40",
+      "legacy_condition": "Old system contracts contain typed intake, admission, compaction, source graph, runtime IPC, template and canonicalization contracts with embedded old exact schemas.",
+      "normal_oracle": "Current OS uses requirement/source/authority tracking and owner boundaries; only semantic crosswalk is inherited.",
+      "negative_oracle": "Old JSON behavior/schema/runtime contract not applied automatically to current L2/L11.",
+      "numbers_authority_version": "Explicitly source/reference only at OS L2:519.",
+      "disposition": "reference_only",
+      "residual": "Source inventory covers requirements; no current one-to-one successor for all old system contract behaviors is declared. Verify each contract only if adopted into a current pack."
+    },
+    {
+      "mechanism": "INFRASTRUCTURE",
+      "legacy_asset_id": "LEGACY-ASSET-235F57A4DC453383E6C7",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/concept/HELIX_CONCEPT_v0.1.md",
+      "legacy_lines": [
+        "69-91",
+        "234-238"
+      ],
+      "legacy_sha256": "ab9d93f843875c1cd9b61049721c455ae067548196c216e64168711156afd475",
+      "current_l2_ids": [
+        "HELIXINFRASTRUCTURE-L2-001",
+        "HELIXINFRASTRUCTURE-L2-003",
+        "HELIXINFRASTRUCTURE-L2-004",
+        "HELIXINFRASTRUCTURE-L2-005",
+        "HELIXINFRASTRUCTURE-L2-006",
+        "HELIXINFRASTRUCTURE-L2-007",
+        "HELIXINFRASTRUCTURE-L2-011"
+      ],
+      "current_l2_ref": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:420-424",
+      "current_l11_ref": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md:34-150",
+      "legacy_condition": "Conceptは共有基盤のdata/authority境界、CPU/memory/GPU/time/token/cost制約、不足時の待機/直列化/移動を要求する。",
+      "normal_oracle": "runtime資源identity・状態・freshness・復旧証拠をINFRAが観測し、配置/assignmentはOS/INTELLIGENCE ownerへ戻す。",
+      "negative_oracle": "不足・unknownを容量十分と扱わず、資源状態authorityをOSへ移さない。",
+      "numbers_authority_version": "Conceptは方向性。個別数値は旧Conceptの一律固定値として採らない。",
+      "disposition": "rederived_owner_split",
+      "residual": "現行INFRA-L2のresource state、OS/INTELLIGENCEへの受渡しへ再導出。具体閾値はL3で導出対象、未実装を欠陥とはしない。"
+    },
+    {
+      "mechanism": "INFRASTRUCTURE",
+      "legacy_asset_id": "LEGACY-ASSET-D65FB82C21C5EDBDFCE4",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/memory-learning-promotion.md",
+      "legacy_lines": [
+        "184-185"
+      ],
+      "legacy_sha256": "70ed887f35ca38a6e406d91b750848a9b89cde73825358c554ad009d473a115a",
+      "current_l2_ids": [
+        "HELIXINFRASTRUCTURE-L2-005",
+        "HELIXINFRASTRUCTURE-L2-007"
+      ],
+      "current_l2_ref": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:416-424",
+      "current_l11_ref": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md:74-104",
+      "legacy_condition": "Promotion-specific rollback/retire on regression; do not erase evidence or permit unconditional same-evidence repromotion.",
+      "normal_oracle": "INFRA handles explicit runtime resource state/restore; LABO owns learning effect and promotion lifecycle, BRAIN retained knowledge.",
+      "negative_oracle": "Do not generalize a learning rollback target into a backup obligation for every runtime operation.",
+      "numbers_authority_version": "Detailed learning promotion is a legacy L5 slice, outside Infrastructure primary function.",
+      "disposition": "other_mechanism_owner",
+      "residual": "Specific learning promotion rollback belongs to LABO/BRAIN; only runtime backup/restore resource-state aspects map to INFRA. Old memory-promotion design is not current required runtime."
+    },
+    {
+      "mechanism": "INFRASTRUCTURE",
+      "legacy_asset_id": "LEGACY-ASSET-6F9EA1BA29C41A6DD329",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-requirements.md",
+      "legacy_lines": [
+        "13-44"
+      ],
+      "legacy_sha256": "1e94e78d52fc6f226ac98c501da176b0fa33b57c298fb28ce561178de66a4c76",
+      "current_l2_ids": [
+        "HELIXINFRASTRUCTURE-L2-001",
+        "HELIXINFRASTRUCTURE-L2-002",
+        "HELIXINFRASTRUCTURE-L2-003",
+        "HELIXINFRASTRUCTURE-L2-004",
+        "HELIXINFRASTRUCTURE-L2-005",
+        "HELIXINFRASTRUCTURE-L2-006",
+        "HELIXINFRASTRUCTURE-L2-007",
+        "HELIXINFRASTRUCTURE-L2-008",
+        "HELIXINFRASTRUCTURE-L2-009",
+        "HELIXINFRASTRUCTURE-L2-010",
+        "HELIXINFRASTRUCTURE-L2-011"
+      ],
+      "current_l2_ref": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:419-424",
+      "current_l11_ref": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md:34-150",
+      "legacy_condition": "Concept v4 candidate divides authority, responsibility, execution, evidence and deployment/rollback surfaces; compatibility inputs do not auto-become current.",
+      "normal_oracle": "Current INFRA asks only runtime topology/state/observation/recovery plus explicit OS/SECURITY/Worker connections, with v1.0 scope separately bounded.",
+      "negative_oracle": "Old planes or broad architecture candidate requirements do not expand minimum 1.0 or create new owner authority.",
+      "numbers_authority_version": "Candidate-approved but canonical promotion/IR/runtime adoption not complete.",
+      "disposition": "reference_rederived",
+      "residual": "The old candidate is comparison input. Current authority is the PO-approved Concept/L1/L2; preserve boundary language without importing the full plane architecture."
+    },
+    {
+      "mechanism": "INFRASTRUCTURE",
+      "legacy_asset_id": "LEGACY-ASSET-653A097F9C9EE51F6FDD",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md",
+      "legacy_lines": [
+        "30-47",
+        "79-85",
+        "116-128"
+      ],
+      "legacy_sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+      "current_l2_ids": [
+        "HELIXINFRASTRUCTURE-L2-001",
+        "HELIXINFRASTRUCTURE-L2-002",
+        "HELIXINFRASTRUCTURE-L2-003",
+        "HELIXINFRASTRUCTURE-L2-004",
+        "HELIXINFRASTRUCTURE-L2-005",
+        "HELIXINFRASTRUCTURE-L2-006",
+        "HELIXINFRASTRUCTURE-L2-007",
+        "HELIXINFRASTRUCTURE-L2-008",
+        "HELIXINFRASTRUCTURE-L2-009",
+        "HELIXINFRASTRUCTURE-L2-010",
+        "HELIXINFRASTRUCTURE-L2-011"
+      ],
+      "current_l2_ref": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:419-424",
+      "current_l11_ref": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md:34-150",
+      "legacy_condition": "Concept v4 candidate separates DevOS product distribution, work/control plane, execution, assurance and evidence/state surfaces; release lifecycle belongs separately from runtime resource state.",
+      "normal_oracle": "Current INFRA preserves runtime resources/configuration/state/recovery evidence; OS keeps work/change state, SECURITY authority, Worker actual operation.",
+      "negative_oracle": "Do not turn legacy planes or status names into new 1.0 requirements or collapse resource revision with OS release stage.",
+      "numbers_authority_version": "Candidate authority says canonical promotion, IR admission and runtime application are not complete.",
+      "disposition": "reference_rederived",
+      "residual": "Re-derived owner boundary in current L1/L2; no direct migration of v4 candidate schema or plane decomposition."
+    },
+    {
+      "mechanism": "OS",
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "legacy_lines": [
+        "53-69",
+        "120-121",
+        "166-167"
+      ],
+      "legacy_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "current_l2_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-003",
+        "HELIXOS-L2-004",
+        "HELIXOS-L2-005",
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-008",
+        "HELIXOS-L2-009",
+        "HELIXOS-L2-010",
+        "HELIXOS-L2-011",
+        "HELIXOS-L2-014",
+        "HELIXOS-L2-015",
+        "HELIXOS-L2-016",
+        "HELIXOS-L2-017",
+        "HELIXOS-L2-018",
+        "HELIXOS-L2-019",
+        "HELIXOS-L2-020",
+        "HELIXOS-L2-021",
+        "HELIXOS-L2-022",
+        "HELIXOS-L2-023",
+        "HELIXOS-L2-024",
+        "HELIXOS-L2-025",
+        "HELIXOS-L2-026"
+      ],
+      "current_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:779-804,807-821",
+      "current_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:21-40,320-441",
+      "legacy_condition": "Infinity Loop platform candidate assigns management, issue/reverse, review/recovery, workflow, provenance, CI, learning, security, delivery and resource/control-plane responsibilities; it contains fixed legacy runtime/transition details and broad future-state contracts.",
+      "normal_oracle": "Current OS records source, project/requirement revision, assignment, evidence, status, owner and backflow across bounded work; product-specific execution, security authority, resource state and learning are delegated to their owners.",
+      "negative_oracle": "Do not treat legacy event/database/CI/hook/runtime schema, fixed workflow, provider rules, or aggregate source inventory as current requirements or authority. Missing/stale evidence is not completion.",
+      "numbers_authority_version": "No fixed old runtime, topology, stage, count or threshold imported. Current OS stage, CI and deployment boundaries are version/scope-specific.",
+      "disposition": "rederived_with_owner_and_version_split",
+      "residual": "OS-level behavior is compared to current L2/L11. Old underlying HIL/management/CI/learning/security details not explicitly adopted remain candidates or are owned by HARNESS, SECURITY, INFRASTRUCTURE, LABO, BRAIN, INTELLIGENCE; no claim of old atom-level migration."
+    }
+  ],
+  "known_unresolved": [
+    {
+      "mechanism": "OS",
+      "issue": "Legacy source atom successor mapping for 001-013/routing containers and exact exclusions remains unconfirmed per helix-os-internal-audit-2026-09-27.md:121-123.",
+      "classification": "unconfirmed_not_zero_coverage"
+    },
+    {
+      "mechanism": "INFRASTRUCTURE",
+      "issue": "Stage review candidate receipt has zero prior source atoms for selected candidates; cannot prove lifecycle or later-version atom coverage. Audit/resolution are semantic crosswalks, not per-atom acceptance receipts.",
+      "classification": "unconfirmed_not_zero_coverage"
+    },
+    {
+      "mechanism": "CONNECT",
+      "issue": "Derived receipt source_atom_count=0; does not cover old connector atoms. Old source semantic comparison exists, but no complete legacy atom→L2/L11 regression receipt is asserted.",
+      "classification": "unconfirmed_not_zero_coverage"
+    },
+    {
+      "mechanism": "ALL",
+      "issue": "Old source runtime/tests/acceptance were not executed; this is requirement-level direct-source comparison only.",
+      "classification": "execution_unverified"
+    }
+  ],
+  "direct_reference_inventory": {
+    "input": "/tmp/legacy-direct-source-references.json",
+    "note": "Each extracted path/consumer/line is retained for repeatability. Rows in source_target_rows were manually compared to the current L2/L11 and audit/resolution. Other mentions are intentionally not promoted to semantic coverage; their atom mapping remains unconfirmed.",
+    "mechanisms": {
+      "os": {
+        "mention_count": 63,
+        "entries": [
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 68,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+            "legacy_asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+            "legacy_lines": null,
+            "legacy_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+            "ledger_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 70,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+            "legacy_asset_id": "LEGACY-ASSET-2B0DE689AA572DE66181",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+            "legacy_lines": null,
+            "legacy_sha256": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe",
+            "ledger_sha256": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 71,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+            "legacy_asset_id": "LEGACY-ASSET-A6926200F28B26300432",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+            "legacy_lines": null,
+            "legacy_sha256": "e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765",
+            "ledger_sha256": "e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 117,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:319",
+            "legacy_asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+            "legacy_lines": "319",
+            "legacy_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+            "ledger_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 120,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:65",
+            "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "legacy_lines": "65",
+            "legacy_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+            "ledger_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 120,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:242",
+            "legacy_asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+            "legacy_lines": "242",
+            "legacy_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+            "ledger_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 121,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:69",
+            "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "legacy_lines": "69",
+            "legacy_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+            "ledger_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 125,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/process/modes/README.md:29-47",
+            "legacy_asset_id": "LEGACY-ASSET-BF02D9AB7313C42D8FED",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/README.md",
+            "legacy_lines": "29-47",
+            "legacy_sha256": "59120aa9b044b4edf2387959ced5ad4020d230b747cc5406ac6d03281f1f9b83",
+            "ledger_sha256": "59120aa9b044b4edf2387959ced5ad4020d230b747cc5406ac6d03281f1f9b83",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 154,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:157-163",
+            "legacy_asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+            "legacy_lines": "157-163",
+            "legacy_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+            "ledger_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 155,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md:164",
+            "legacy_asset_id": "LEGACY-ASSET-E365F83763C0FB340328",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
+            "legacy_lines": "164",
+            "legacy_sha256": "951c8a89cbb839f3cbe70f04c436751db81c474303ebdcc97cf066cd7155836c",
+            "ledger_sha256": "951c8a89cbb839f3cbe70f04c436751db81c474303ebdcc97cf066cd7155836c",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 166,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:121",
+            "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "legacy_lines": "121",
+            "legacy_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+            "ledger_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 166,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:242",
+            "legacy_asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+            "legacy_lines": "242",
+            "legacy_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+            "ledger_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 167,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:65",
+            "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "legacy_lines": "65",
+            "legacy_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+            "ledger_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 168,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/process/modes/README.md:33",
+            "legacy_asset_id": "LEGACY-ASSET-BF02D9AB7313C42D8FED",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/README.md",
+            "legacy_lines": "33",
+            "legacy_sha256": "59120aa9b044b4edf2387959ced5ad4020d230b747cc5406ac6d03281f1f9b83",
+            "ledger_sha256": "59120aa9b044b4edf2387959ced5ad4020d230b747cc5406ac6d03281f1f9b83",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 189,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/management-scrum-product-forward.md",
+            "legacy_asset_id": "LEGACY-ASSET-5DAB2F0E1C13F846CABB",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/management-scrum-product-forward.md",
+            "legacy_lines": null,
+            "legacy_sha256": "33462610beba32ec952b1eb4cb3ef4f57886a0ddb7f116ea9949d50042099f59",
+            "ledger_sha256": "33462610beba32ec952b1eb4cb3ef4f57886a0ddb7f116ea9949d50042099f59",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 199,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/scrum-operation-typed-projection-requirements.md",
+            "legacy_asset_id": "LEGACY-ASSET-C4BDEC295C37DE2CED56",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/scrum-operation-typed-projection-requirements.md",
+            "legacy_lines": null,
+            "legacy_sha256": "c7a998aa686db588ea324ecf0d9a08007cd7656d03ceef50a6591766991a826f",
+            "ledger_sha256": "c7a998aa686db588ea324ecf0d9a08007cd7656d03ceef50a6591766991a826f",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 212,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-requirements.md",
+            "legacy_asset_id": "LEGACY-ASSET-12E2CD9B07EFAC343ED0",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-requirements.md",
+            "legacy_lines": null,
+            "legacy_sha256": "4776830ec12a6a464732db56e6ff8d93f89e8e89a6dcb8c175728a82482cc754",
+            "ledger_sha256": "4776830ec12a6a464732db56e6ff8d93f89e8e89a6dcb8c175728a82482cc754",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 221,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/three-lane-capacity-profile-requests.md",
+            "legacy_asset_id": "LEGACY-ASSET-11E8FE0479751F02A4A3",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/three-lane-capacity-profile-requests.md",
+            "legacy_lines": null,
+            "legacy_sha256": "a428f2de8652b9508456aed358152865a1f96f6978e5d204b1e2dfd3a1d2e1ba",
+            "ledger_sha256": "a428f2de8652b9508456aed358152865a1f96f6978e5d204b1e2dfd3a1d2e1ba",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 233,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md",
+            "legacy_asset_id": "LEGACY-ASSET-322CD23B625A08E2BFB3",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md",
+            "legacy_lines": null,
+            "legacy_sha256": "c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447",
+            "ledger_sha256": "c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 245,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-commercial-license-requirements.md",
+            "legacy_asset_id": "LEGACY-ASSET-3AC6722CBF61023378CB",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-commercial-license-requirements.md",
+            "legacy_lines": null,
+            "legacy_sha256": "35d25d16755239eb0b68b6b9d32250dd340df5406246c84868e5bb1aabd3e0c9",
+            "ledger_sha256": "35d25d16755239eb0b68b6b9d32250dd340df5406246c84868e5bb1aabd3e0c9",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 277,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+            "legacy_asset_id": "LEGACY-ASSET-429B017144C61B9C906D",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+            "legacy_lines": null,
+            "legacy_sha256": "3cb6ee8a4d342b7f667c0960d08eb0a18fa44372ecb03bd85e0576e59baa4cca",
+            "ledger_sha256": "3cb6ee8a4d342b7f667c0960d08eb0a18fa44372ecb03bd85e0576e59baa4cca",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 320,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l1-request-candidates.md",
+            "legacy_asset_id": "LEGACY-ASSET-08373C0AEE18881133D5",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l1-request-candidates.md",
+            "legacy_lines": null,
+            "legacy_sha256": "17c7a6f8781768e4daf6da9fc2d9f09320a19d51bf17c4dfb8ca789ea3b51f01",
+            "ledger_sha256": "17c7a6f8781768e4daf6da9fc2d9f09320a19d51bf17c4dfb8ca789ea3b51f01",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 354,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/harness-memory-coordination-boundary-requests.md",
+            "legacy_asset_id": "LEGACY-ASSET-87B393F048F052258622",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/harness-memory-coordination-boundary-requests.md",
+            "legacy_lines": null,
+            "legacy_sha256": "38769f088c8f2dee4ae79c9d0528c1779eadc175b61284aa77518274b23bc772",
+            "ledger_sha256": "38769f088c8f2dee4ae79c9d0528c1779eadc175b61284aa77518274b23bc772",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 381,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/producer-provenance-separation-requests.md",
+            "legacy_asset_id": "LEGACY-ASSET-FD3F979AF945CE3EC306",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/producer-provenance-separation-requests.md",
+            "legacy_lines": null,
+            "legacy_sha256": "dfda22022f1f9ced3f543ccadb91ff7de9335d7a6ea7aaff9efdd1702ecda2a1",
+            "ledger_sha256": "dfda22022f1f9ced3f543ccadb91ff7de9335d7a6ea7aaff9efdd1702ecda2a1",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 398,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+            "legacy_asset_id": "LEGACY-ASSET-602131C2EDDE1D7AD55A",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+            "legacy_lines": null,
+            "legacy_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+            "ledger_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 417,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+            "legacy_asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+            "legacy_lines": null,
+            "legacy_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+            "ledger_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 427,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requests.md",
+            "legacy_asset_id": "LEGACY-ASSET-E9BDD9DCA6CF67CBE424",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requests.md",
+            "legacy_lines": null,
+            "legacy_sha256": "5c29cba6331dff96082f74612ceaf755fe4a30a10e75be62797e8073de7fec99",
+            "ledger_sha256": "5c29cba6331dff96082f74612ceaf755fe4a30a10e75be62797e8073de7fec99",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 428,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requests.md",
+            "legacy_asset_id": "LEGACY-ASSET-19E54587EB063625EC53",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requests.md",
+            "legacy_lines": null,
+            "legacy_sha256": "f6379e1294bf4c68c93430903f24949d5373a60b82e5286ac34d51a5eb614a2e",
+            "ledger_sha256": "f6379e1294bf4c68c93430903f24949d5373a60b82e5286ac34d51a5eb614a2e",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 429,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requests.md",
+            "legacy_asset_id": "LEGACY-ASSET-154018C4C6B5E3AB9C63",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requests.md",
+            "legacy_lines": null,
+            "legacy_sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3",
+            "ledger_sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 461,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md",
+            "legacy_asset_id": "LEGACY-ASSET-201EED9C5D6D2FF4D41B",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md",
+            "legacy_lines": null,
+            "legacy_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20",
+            "ledger_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 478,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+            "legacy_asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+            "legacy_lines": null,
+            "legacy_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+            "ledger_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 502,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/harness-memory-coordination-boundary-requirements.md",
+            "legacy_asset_id": "LEGACY-ASSET-00896223F0864B9D14D6",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/harness-memory-coordination-boundary-requirements.md",
+            "legacy_lines": null,
+            "legacy_sha256": "421d8cbcdb12120c7bf97bdbae053d3e1dac0d73229418b4f74341a2dd182dbc",
+            "ledger_sha256": "421d8cbcdb12120c7bf97bdbae053d3e1dac0d73229418b4f74341a2dd182dbc",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 503,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+            "legacy_asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+            "legacy_lines": null,
+            "legacy_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+            "ledger_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 504,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requirements.md",
+            "legacy_asset_id": "LEGACY-ASSET-5841D44AE1255A061667",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requirements.md",
+            "legacy_lines": null,
+            "legacy_sha256": "0d395f7ccd81a8c749ef4c3b8c0a660505b6183531992b4678267b5b51c929eb",
+            "ledger_sha256": "0d395f7ccd81a8c749ef4c3b8c0a660505b6183531992b4678267b5b51c929eb",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 505,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/producer-provenance-separation-requirements.md",
+            "legacy_asset_id": "LEGACY-ASSET-A04F169C5D514C5443D0",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/producer-provenance-separation-requirements.md",
+            "legacy_lines": null,
+            "legacy_sha256": "9f1e268986845f5f209517de24f57f2828e130f971a1429be96d0f88a5e9d59a",
+            "ledger_sha256": "9f1e268986845f5f209517de24f57f2828e130f971a1429be96d0f88a5e9d59a",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 506,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+            "legacy_asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+            "legacy_lines": null,
+            "legacy_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+            "ledger_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 507,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requirements.md",
+            "legacy_asset_id": "LEGACY-ASSET-17E4FD7C3DB0B3C82210",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requirements.md",
+            "legacy_lines": null,
+            "legacy_sha256": "cb97e7594b38cfada7d4fedb948937bab9e9d8f3e7c7123eca82a7ce6e8f8eb4",
+            "ledger_sha256": "cb97e7594b38cfada7d4fedb948937bab9e9d8f3e7c7123eca82a7ce6e8f8eb4",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 508,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requirements.md",
+            "legacy_asset_id": "LEGACY-ASSET-F38874B2497742797010",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requirements.md",
+            "legacy_lines": null,
+            "legacy_sha256": "97e1e5341beb48e735aacab3b3957b0707fa6aef2e70d0af8c0051607082e155",
+            "ledger_sha256": "97e1e5341beb48e735aacab3b3957b0707fa6aef2e70d0af8c0051607082e155",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 509,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+            "legacy_asset_id": "LEGACY-ASSET-2D530EE7717B7A1E9218",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+            "legacy_lines": null,
+            "legacy_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687",
+            "ledger_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 510,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+            "legacy_asset_id": "LEGACY-ASSET-B75E46DBE77592351574",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+            "legacy_lines": null,
+            "legacy_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+            "ledger_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 518,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+            "legacy_asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+            "legacy_lines": null,
+            "legacy_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+            "ledger_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 519,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+            "legacy_asset_id": "LEGACY-ASSET-67761C517521603F844C",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+            "legacy_lines": null,
+            "legacy_sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+            "ledger_sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 536,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requests.md",
+            "legacy_asset_id": "LEGACY-ASSET-48383451734A0832AF87",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requests.md",
+            "legacy_lines": null,
+            "legacy_sha256": "b9ffa16c10602ccef0fbf6f9124bd67d67c0e672f3c8208c94eea97fc36f259c",
+            "ledger_sha256": "b9ffa16c10602ccef0fbf6f9124bd67d67c0e672f3c8208c94eea97fc36f259c",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 539,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:349-351",
+            "legacy_asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+            "legacy_lines": "349-351",
+            "legacy_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+            "ledger_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 539,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md:663-666",
+            "legacy_asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+            "legacy_lines": "663-666",
+            "legacy_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+            "ledger_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 779,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+            "legacy_asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+            "legacy_lines": null,
+            "legacy_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+            "ledger_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 780,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "legacy_lines": null,
+            "legacy_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+            "ledger_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 781,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+            "legacy_asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+            "legacy_lines": null,
+            "legacy_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+            "ledger_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 782,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md",
+            "legacy_asset_id": "LEGACY-ASSET-201EED9C5D6D2FF4D41B",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md",
+            "legacy_lines": null,
+            "legacy_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20",
+            "ledger_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 783,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+            "legacy_asset_id": "LEGACY-ASSET-B75E46DBE77592351574",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+            "legacy_lines": null,
+            "legacy_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+            "ledger_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 784,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+            "legacy_asset_id": "LEGACY-ASSET-2B0DE689AA572DE66181",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+            "legacy_lines": null,
+            "legacy_sha256": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe",
+            "ledger_sha256": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 785,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+            "legacy_asset_id": "LEGACY-ASSET-A6926200F28B26300432",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+            "legacy_lines": null,
+            "legacy_sha256": "e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765",
+            "ledger_sha256": "e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 822,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md",
+            "legacy_asset_id": "LEGACY-ASSET-201EED9C5D6D2FF4D41B",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md",
+            "legacy_lines": null,
+            "legacy_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20",
+            "ledger_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 822,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+            "legacy_asset_id": "LEGACY-ASSET-B75E46DBE77592351574",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+            "legacy_lines": null,
+            "legacy_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+            "ledger_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 822,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+            "legacy_asset_id": "LEGACY-ASSET-67ADFAB856D954B3C5D2",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+            "legacy_lines": null,
+            "legacy_sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+            "ledger_sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 826,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md:43",
+            "legacy_asset_id": "LEGACY-ASSET-437A6A68F9A9E0AE1B9E",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+            "legacy_lines": "43",
+            "legacy_sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+            "ledger_sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "consumer_line": 828,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+            "legacy_asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+            "legacy_lines": null,
+            "legacy_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+            "ledger_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "consumer_line": 256,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-validation.md",
+            "legacy_asset_id": "LEGACY-ASSET-0AA076D5CAF7C591F23D",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-validation.md",
+            "legacy_lines": null,
+            "legacy_sha256": "fea63c221b36d5e81a58fa206ff6ed8969227aa9a720af622463f369850a9fa1",
+            "ledger_sha256": "fea63c221b36d5e81a58fa206ff6ed8969227aa9a720af622463f369850a9fa1",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "consumer_line": 444,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md:43",
+            "legacy_asset_id": "LEGACY-ASSET-437A6A68F9A9E0AE1B9E",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+            "legacy_lines": "43",
+            "legacy_sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+            "ledger_sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/governance/audits/requirements-stage/helix-os-internal-audit-2026-09-27.md",
+            "consumer_line": 56,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md:663–666、SHA",
+            "legacy_asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+            "legacy_lines": "663–666、SHA",
+            "legacy_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+            "ledger_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/governance/audits/requirements-stage/helix-os-internal-audit-2026-09-27.md",
+            "consumer_line": 56,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md:43、SHA",
+            "legacy_asset_id": "LEGACY-ASSET-437A6A68F9A9E0AE1B9E",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+            "legacy_lines": "43、SHA",
+            "legacy_sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+            "ledger_sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/governance/audits/requirements-stage/helix-os-internal-resolution-2026-09-27.md",
+            "consumer_line": 13,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+            "legacy_asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+            "legacy_lines": null,
+            "legacy_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+            "ledger_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "os",
+            "consumer": "docs/governance/audits/requirements-stage/helix-os-internal-resolution-2026-09-27.md",
+            "consumer_line": 18,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+            "legacy_asset_id": "LEGACY-ASSET-437A6A68F9A9E0AE1B9E",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+            "legacy_lines": null,
+            "legacy_sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+            "ledger_sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          }
+        ]
+      },
+      "infrastructure": {
+        "mention_count": 20,
+        "entries": [
+          {
+            "mechanism": "infrastructure",
+            "consumer": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+            "consumer_line": 416,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+            "legacy_asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+            "legacy_lines": null,
+            "legacy_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+            "ledger_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "infrastructure",
+            "consumer": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+            "consumer_line": 417,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md",
+            "legacy_asset_id": "LEGACY-ASSET-5D41345F55800F23AC38",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md",
+            "legacy_lines": null,
+            "legacy_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6",
+            "ledger_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "infrastructure",
+            "consumer": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+            "consumer_line": 418,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/infrastructure-operations-requirements-and-connections-source_v0.1.md",
+            "legacy_asset_id": "LEGACY-ASSET-E239B45CE3FFE8B34D2B",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/infrastructure-operations-requirements-and-connections-source_v0.1.md",
+            "legacy_lines": null,
+            "legacy_sha256": "4d94b4b887a356fb9b17eaddc4df7a9c6e0eaed955d151c48a6efba667be7344",
+            "ledger_sha256": "4d94b4b887a356fb9b17eaddc4df7a9c6e0eaed955d151c48a6efba667be7344",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "infrastructure",
+            "consumer": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+            "consumer_line": 419,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md",
+            "legacy_asset_id": "LEGACY-ASSET-653A097F9C9EE51F6FDD",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md",
+            "legacy_lines": null,
+            "legacy_sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+            "ledger_sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "infrastructure",
+            "consumer": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+            "consumer_line": 420,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/concept/HELIX_CONCEPT_v0.1.md",
+            "legacy_asset_id": "LEGACY-ASSET-235F57A4DC453383E6C7",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/concept/HELIX_CONCEPT_v0.1.md",
+            "legacy_lines": null,
+            "legacy_sha256": "ab9d93f843875c1cd9b61049721c455ae067548196c216e64168711156afd475",
+            "ledger_sha256": "ab9d93f843875c1cd9b61049721c455ae067548196c216e64168711156afd475",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "infrastructure",
+            "consumer": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+            "consumer_line": 421,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "legacy_lines": null,
+            "legacy_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+            "ledger_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "infrastructure",
+            "consumer": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+            "consumer_line": 422,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/process/modes/version-up.md",
+            "legacy_asset_id": "LEGACY-ASSET-3E3D84D599ED0476926B",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/version-up.md",
+            "legacy_lines": null,
+            "legacy_sha256": "8b4f333a0734a4a2f3f8cea9f1b17c87c3880a0dc271671af45f53be7b7c4a74",
+            "ledger_sha256": "8b4f333a0734a4a2f3f8cea9f1b17c87c3880a0dc271671af45f53be7b7c4a74",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "infrastructure",
+            "consumer": "docs/helix-infrastructure/L1-planning/infrastructure-intent.md",
+            "consumer_line": 131,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md:29-30",
+            "legacy_asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+            "legacy_lines": "29-30",
+            "legacy_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+            "ledger_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "infrastructure",
+            "consumer": "docs/helix-infrastructure/L1-planning/infrastructure-intent.md",
+            "consumer_line": 134,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/memory-learning-promotion.md:184-185",
+            "legacy_asset_id": "LEGACY-ASSET-D65FB82C21C5EDBDFCE4",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/memory-learning-promotion.md",
+            "legacy_lines": "184-185",
+            "legacy_sha256": "70ed887f35ca38a6e406d91b750848a9b89cde73825358c554ad009d473a115a",
+            "ledger_sha256": "70ed887f35ca38a6e406d91b750848a9b89cde73825358c554ad009d473a115a",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "infrastructure",
+            "consumer": "docs/helix-infrastructure/L1-planning/infrastructure-intent.md",
+            "consumer_line": 135,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-requirements.md:43",
+            "legacy_asset_id": "LEGACY-ASSET-6F9EA1BA29C41A6DD329",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-requirements.md",
+            "legacy_lines": "43",
+            "legacy_sha256": "1e94e78d52fc6f226ac98c501da176b0fa33b57c298fb28ce561178de66a4c76",
+            "ledger_sha256": "1e94e78d52fc6f226ac98c501da176b0fa33b57c298fb28ce561178de66a4c76",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "infrastructure",
+            "consumer": "docs/helix-infrastructure/L1-planning/infrastructure-intent.md",
+            "consumer_line": 139,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md:9,15",
+            "legacy_asset_id": "LEGACY-ASSET-5D41345F55800F23AC38",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md",
+            "legacy_lines": "9,15",
+            "legacy_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6",
+            "ledger_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "infrastructure",
+            "consumer": "docs/helix-infrastructure/L1-planning/infrastructure-intent.md",
+            "consumer_line": 143,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:165-166",
+            "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "legacy_lines": "165-166",
+            "legacy_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+            "ledger_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "infrastructure",
+            "consumer": "docs/helix-infrastructure/L1-planning/infrastructure-intent.md",
+            "consumer_line": 144,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/infrastructure-operations-requirements-and-connections-source_v0.1.md:128",
+            "legacy_asset_id": "LEGACY-ASSET-E239B45CE3FFE8B34D2B",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/infrastructure-operations-requirements-and-connections-source_v0.1.md",
+            "legacy_lines": "128",
+            "legacy_sha256": "4d94b4b887a356fb9b17eaddc4df7a9c6e0eaed955d151c48a6efba667be7344",
+            "ledger_sha256": "4d94b4b887a356fb9b17eaddc4df7a9c6e0eaed955d151c48a6efba667be7344",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "infrastructure",
+            "consumer": "docs/governance/audits/requirements-stage/helix-infrastructure-internal-resolution-2026-09-27.md",
+            "consumer_line": 5,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md:68-98,108-119,164-171",
+            "legacy_asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+            "legacy_lines": "68-98,108-119,164-171",
+            "legacy_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+            "ledger_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "infrastructure",
+            "consumer": "docs/governance/audits/requirements-stage/helix-infrastructure-internal-resolution-2026-09-27.md",
+            "consumer_line": 6,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md:7-15",
+            "legacy_asset_id": "LEGACY-ASSET-5D41345F55800F23AC38",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md",
+            "legacy_lines": "7-15",
+            "legacy_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6",
+            "ledger_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "infrastructure",
+            "consumer": "docs/governance/audits/requirements-stage/helix-infrastructure-internal-audit-2026-09-27.md",
+            "consumer_line": 24,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md:68–98,108–119,164–171",
+            "legacy_asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+            "legacy_lines": "68–98,108–119,164–171",
+            "legacy_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+            "ledger_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "infrastructure",
+            "consumer": "docs/governance/audits/requirements-stage/helix-infrastructure-internal-audit-2026-09-27.md",
+            "consumer_line": 25,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md:7–15",
+            "legacy_asset_id": "LEGACY-ASSET-5D41345F55800F23AC38",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md",
+            "legacy_lines": "7–15",
+            "legacy_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6",
+            "ledger_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "infrastructure",
+            "consumer": "docs/governance/audits/requirements-stage/helix-infrastructure-internal-audit-2026-09-27.md",
+            "consumer_line": 26,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/infrastructure-operations-requirements-and-connections-source_v0.1.md:120–132",
+            "legacy_asset_id": "LEGACY-ASSET-E239B45CE3FFE8B34D2B",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/infrastructure-operations-requirements-and-connections-source_v0.1.md",
+            "legacy_lines": "120–132",
+            "legacy_sha256": "4d94b4b887a356fb9b17eaddc4df7a9c6e0eaed955d151c48a6efba667be7344",
+            "ledger_sha256": "4d94b4b887a356fb9b17eaddc4df7a9c6e0eaed955d151c48a6efba667be7344",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "infrastructure",
+            "consumer": "docs/governance/audits/requirements-stage/helix-infrastructure-internal-audit-2026-09-27.md",
+            "consumer_line": 27,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:165–170",
+            "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "legacy_lines": "165–170",
+            "legacy_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+            "ledger_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "infrastructure",
+            "consumer": "docs/governance/audits/requirements-stage/helix-infrastructure-internal-audit-2026-09-27.md",
+            "consumer_line": 28,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/process/modes/version-up.md:13–38",
+            "legacy_asset_id": "LEGACY-ASSET-3E3D84D599ED0476926B",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/version-up.md",
+            "legacy_lines": "13–38",
+            "legacy_sha256": "8b4f333a0734a4a2f3f8cea9f1b17c87c3880a0dc271671af45f53be7b7c4a74",
+            "ledger_sha256": "8b4f333a0734a4a2f3f8cea9f1b17c87c3880a0dc271671af45f53be7b7c4a74",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          }
+        ]
+      },
+      "connect": {
+        "mention_count": 6,
+        "entries": [
+          {
+            "mechanism": "connect",
+            "consumer": "docs/helix-connect/L1-planning/connect-intent.md",
+            "consumer_line": 46,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md:33-57",
+            "legacy_asset_id": "LEGACY-ASSET-C3DE79BA9451172F3E43",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+            "legacy_lines": "33-57",
+            "legacy_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04",
+            "ledger_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "connect",
+            "consumer": "docs/helix-connect/L1-planning/connect-intent.md",
+            "consumer_line": 46,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/product-data-connector.md:27-57",
+            "legacy_asset_id": "LEGACY-ASSET-DD66C1B6B7BE234B37E6",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/product-data-connector.md",
+            "legacy_lines": "27-57",
+            "legacy_sha256": "48014b188ebe0c3ffe18b86fa472f048a88e248316bf2b3218aaa605a5e55f42",
+            "ledger_sha256": "48014b188ebe0c3ffe18b86fa472f048a88e248316bf2b3218aaa605a5e55f42",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "connect",
+            "consumer": "docs/helix-connect/L1-planning/connect-intent.md",
+            "consumer_line": 47,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/adr/ADR-003-runtime-adapter-boundary-subscription-cli.md:8-24",
+            "legacy_asset_id": "LEGACY-ASSET-BD13CC67526B48D461F9",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/adr/ADR-003-runtime-adapter-boundary-subscription-cli.md",
+            "legacy_lines": "8-24",
+            "legacy_sha256": "ffbe51c4a34cdaf4c072393a0864d916c7a4e1d6eaf4788bb0260e8280291f37",
+            "ledger_sha256": "ffbe51c4a34cdaf4c072393a0864d916c7a4e1d6eaf4788bb0260e8280291f37",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "connect",
+            "consumer": "docs/governance/audits/requirements-stage/helix-connect-internal-audit-2026-09-27.md",
+            "consumer_line": 27,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+            "legacy_asset_id": "LEGACY-ASSET-C3DE79BA9451172F3E43",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+            "legacy_lines": null,
+            "legacy_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04",
+            "ledger_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "connect",
+            "consumer": "docs/governance/audits/requirements-stage/helix-connect-internal-audit-2026-09-27.md",
+            "consumer_line": 28,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/product-data-connector.md",
+            "legacy_asset_id": "LEGACY-ASSET-DD66C1B6B7BE234B37E6",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/product-data-connector.md",
+            "legacy_lines": null,
+            "legacy_sha256": "48014b188ebe0c3ffe18b86fa472f048a88e248316bf2b3218aaa605a5e55f42",
+            "ledger_sha256": "48014b188ebe0c3ffe18b86fa472f048a88e248316bf2b3218aaa605a5e55f42",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          },
+          {
+            "mechanism": "connect",
+            "consumer": "docs/governance/audits/requirements-stage/helix-connect-internal-audit-2026-09-27.md",
+            "consumer_line": 29,
+            "raw_reference": "archive/legacy-generation-2026-09-14/root/docs/adr/ADR-003-runtime-adapter-boundary-subscription-cli.md",
+            "legacy_asset_id": "LEGACY-ASSET-BD13CC67526B48D461F9",
+            "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/adr/ADR-003-runtime-adapter-boundary-subscription-cli.md",
+            "legacy_lines": null,
+            "legacy_sha256": "ffbe51c4a34cdaf4c072393a0864d916c7a4e1d6eaf4788bb0260e8280291f37",
+            "ledger_sha256": "ffbe51c4a34cdaf4c072393a0864d916c7a4e1d6eaf4788bb0260e8280291f37",
+            "sha_matches_ledger": true,
+            "semantic_review": "condition_compared_to_current_scope_by_unique_source_path; atom_level_coverage_not_claimed"
+          }
+        ]
+      }
+    }
+  },
+  "cross_mechanism_findings": [
+    {
+      "finding_id": "OS-CROSS-01",
+      "classification": "後継経路の要明確化（旧sourceはdraftであり、現行違反の認定ではない）",
+      "owner_note": "HARNESS監査からOSへ渡る横断所見。source/provenance表の正本はHARNESS側。OSはOS-L2-020の利用者CI/CI運転能力に必要な接続だけを所有し、HARNESSの検証義務・旧受入を再定義しない。",
+      "legacy_sources": [
+        {
+          "legacy_asset_id": "LEGACY-ASSET-58CBC57F44DFDD288961",
+          "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-atomic-development-requirements.md",
+          "lines": [
+            "52-64"
+          ],
+          "sha256": "52af19a483d6222f31d1d52031482fc60c62c504fe97496687d8175aa7a53756",
+          "authority_status": "draft",
+          "condition": "GH-FR-025: impact-selected/critical checks vs full recovery; omitted checks recorded; post-merge full recovery and nightly fill missing/failed/drift; unknown/high-risk fails full; targeted/full p95 budgets and per-interval runner measurements; budget excess routes to separate Performance Recovery without weakening checks."
+        },
+        {
+          "legacy_asset_id": "LEGACY-ASSET-79B70809D0A1EE2D5392",
+          "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-ci-performance-requirements.md",
+          "lines": [
+            "21-23",
+            "27-30"
+          ],
+          "sha256": "7a9b3534671516be8810e40a8c96119e885eb431a4753518b56fe2479b9263d1",
+          "authority_status": "draft",
+          "condition": "GH-NFR-009/010: separate receipts and p95 60-second/3-minute targets, impact/full recovery. GH-NFR-011/AC-018: preserve correctness result, record HEAD/environment/cache/interval and p50/p95 before/after, issue recovery in same episode without shrinking checks, independent cross-review and revalidation."
+        }
+      ],
+      "current_mapping": [
+        {
+          "id": "HELIXOS-L2-020",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": "692-701",
+          "covers": "CI profile derivation, isolation, result collection/recovery, state separation, HARNESS oracle and execution owner boundaries."
+        },
+        {
+          "id": "HELIXOS-L2-020",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": "359-365",
+          "covers": "required profile, exact HEAD/oracle/environment/run binding, result states, failure cannot be made successful by weakening checks."
+        },
+        {
+          "id": "OS-04 L3 handoff row for HELIXOS-L2-020",
+          "path": "docs/governance/audits/requirements-stage/l3-handoff-2026-09-27.md",
+          "lines": "60,225",
+          "covers": "generic requirement to derive HARNESS oracle/CI execution contract and results; does not enumerate this old candidate’s measurement/recovery details."
+        }
+      ],
+      "finding": "Current OS-L2-020/L11-020 cover correctness-preserving execution and recovery, but do not state p95 values, required per-interval duration/runner evidence, or a distinct Performance Recovery route for performance-only overrun. The referenced old sources are draft, so absence is not a confirmed violation of current approved requirements; the surviving obligation/disposition path is unclear in the current OS-04 handoff.",
+      "expected_resolution": "Because the source is draft, do not auto-adopt p95 60 seconds/3 minutes or any other fixed threshold. In the HARNESS-owned source/provenance record, explicitly show the status and scope of GH-FR-025/GH-NFR-009..011/GH-AC-017..018. In the OS-04 L3 handoff, derive evidence fields, measurement scopes and candidate limits from the current OS-L2-020/HARNESS verification contract and applicable technical grounds; specify how a performance-only overrun is recorded/returned while correctness remains distinct. If the old targets are not applicable, record the candidate disposition and why. Do not weaken correctness gates or turn unknown measurements into success.",
+      "status": "cross_mechanism_followup_required; no runtime/test was run"
+    }
+  ]
+}

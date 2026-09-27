@@ -48,7 +48,27 @@ registerの過去行やregistered_proposal／authority_effect:noneは変更せ�
 
 ## 旧HELIXからのデグレ照合
 
-監査成果を検収中。旧sourceのpath・行・asset ID・SHAと現行ID／L11の対応を下位資料に集約する。旧CIの性能候補条件、旧Benchのhidden oracle・blind judge条件の具体的引継ぎ先を確認している。いずれも旧sourceはdraftであり、採用済み旧要求の消失とは断定しない。本監査の後に未解消事項を消化し、要求ステージ終了の条件を再照合する。
+次の3資料に8機構の照合をまとめた。各資料のJSONにasset・path・行・SHA、現行ID／受入または候補保全先を記録した。
+
+| 対象 | 条件照合と根拠 | 対応行／旧path |
+|---|---|---|
+| HARNESS・SECURITY | [機構別照合](legacy-regression-harness-security-2026-09-28.md) | 44対応行／43 path |
+| OS・INFRASTRUCTURE・CONNECT | [機構別照合](legacy-regression-os-infra-connect-2026-09-28.md) | 51機構別対応／50 path |
+| BRAIN・LABO・INTELLIGENCE | [機構別照合](legacy-regression-brain-labo-intelligence-2026-09-28.md) | 40機構別対応／31 path |
+
+3資料間の共有を除く旧pathは92件である。これは現行のL1/L2/L11、機構内監査・解消記録が直接参照する旧sourceと、その条件の確認に必要な補助sourceを対象とする監査である。135対応行を135要求、92 pathを旧資産4,020件の全被覆へ換算しない。旧sourceの残るholdingと未完義務は維持する。
+
+### 検出した引継ぎの不明確さ
+
+| ID | 原条件と状態 | 不明確な点・戻し先 | 次の処置 |
+|---|---|---|---|
+| REG-01 | GH-FR-025、GH-NFR-009〜011／AC-017〜018。旧sourceはdraft | 旧HELIX自身のCI p95 60秒／3分、HEAD・runner・区間計測、correctnessと性能超過の分離、検査縮退で隠さないPerformance Recovery。HARNESS-L2-005／OS-L2-020の一般契約だけでは具体的な旧候補の引継ぎが明確でない | 旧scope・数値・反例をOSの測定／性能要件導出へ候補として保全。旧値を全製品の必須値にせず、無断採択・retireをしない。merge後全件／nightly廃止は別の記録済みPO判断であり、ここで差し戻さない |
+| REG-02 | Bench R04/R08、AC-006/012。旧sourceはdraft | public taskとhidden oracleの分離、fixtureからfuture answer等を除くこと、author／blind judgeの分離、Workerへのoracle漏洩拒否。LABO-L2-059の比較契約に対する具体的な対応先が不明確 | 旧sourceの条件付き比較scopeを保持し、L2/L11候補への局所追補案を作る。全Worker履歴055にhidden testを強制しない。旧draftを採用済み違反として扱わない |
+| REG-03 | v1.3 §4.3、柱HBR-P3。旧文書はconfirmed | measurement contract全fieldと未測定／stale／非代表環境／target未達時のcompletion拒否について、HARNESS・OS・INFRA・LABOをまたぐ具体的な対受入が未特定 | 原field・失敗条件から対象別ID／受入を再照合し、実際に欠ける条件を追補する。全製品共通の数値を追加することとは分ける |
+| REG-04 | 柱HBR-P4/P8。旧文書はconfirmed | 自動修復・recipeから予防gateへの昇格、外部検索知見のskill化について、HARNESS／OSの一般的なowner移管説明だけでは現在の達成条件・版・受入を特定できない | INTELLIGENCE・LABO・BRAINの具体ID／L11と後続版候補を照合する。既存の意味変更記録がある部分、保持済みの部分、真の欠落を分け、HARNESSへ運転機能を戻さない |
+| REG-05 | v1.3 §4.6.1、HR-AC-HYB-008-01〜09。旧文書はconfirmed | package manifest、自己適用物除外、非破壊setup、同梱文書、Linux／Windows consumer確認、promotion／rollback、作用束縛の9受入が、HARNESS-L2-006とOSの配布運転へ個別に対応していない | 9受入を個別照合し、現行の提供／OS運転／SECURITY境界へ結ぶ。旧Node／CLI／配布先を復活させず、技術方式の非継承を利用価値・反例の削除と混同しない |
+
+REG-01/02は旧draftの後継候補の不明確さ、REG-03〜05は確認済み旧sourceの条件の引継ぎ先を追加確認すべき箇所として区別した。単にsourceが残っていることや「L3へ送る」という一般句で解消扱いにしない。これらの追加照合・必要な追補を続け、未解消0件の最終横断照合は解消後に行う。本PRは監査とPO判断の状態追随であり、要求ステージ終了の宣言ではない。
 
 ## 現行入口と作業表示の追随
 
