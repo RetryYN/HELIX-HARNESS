@@ -2,6 +2,8 @@
 
 **対象**: HELIX-SECURITY。このpacketはPO判断を記録する前の確認素材であり、採択・合意・承認を示さない。
 
+**現在の状態（2026-09-28）**：PO判断を受領し、[判断記録](../../decisions/helix-security-requirements-po-decision-2026-09-28.md)へ全文・対象SHA・全28候補の採用を記録した。以下の質問・候補状態の説明は判断前の提示内容として残す。現在の採否と個別選択は判断記録を参照する。
+
 ## 先に確認できる要点
 
 **この機構でできること（1.0候補）**
@@ -14,7 +16,7 @@
 
 - L2-027はMemory・Training Dataset・BRAINへの永続化を判定する構成体候補、L2-028はpack更新とartifact integrityの単体候補。L2-014の単体判定と、3経路すべての構成体成立を分ける。
 - 版境界: L2-017〜019とL2-025のWeb実利用、L2-026の意味判断・検出接続は後続版側。L2-015/016の資産基盤、L2-020のGuard、L2-026のGuard/Bot境界は1.0側として表に残す。
-- 機構内監査後のL11補強は、L2-007の9制御fixture、L2-009の該当trigger/recipient別停止、L2-003のtenant等のscope照合、L2-020のGuard/Bot境界。制御や権限の意味は広げず、全unknownによる一律停止や顧客runtime必須化も追加しない。
+- 内部監査の消化で実際に補強したのは、L11-007（9制御fixtureでWorker制約を確認し、read-onlyでもwrite禁止を強制、scope内の操作起因変更なしを観測。rollbackを省けるのは変更なしを確認した場合のみ）、L11-009（triggerと該当recipientごとの停止・未達/未観測）、L11-003（project/tenant/environment/worktree等と関連stateのscope照合）、L11-020（Guardと必要時Botの責務例）。L2/L11-010の15更新対象とその個別条件は維持したが、人の毎run承認は追加していない。無関係なunknownの全操作停止や顧客runtimeを1.0へ追加していない。
 
 **今回決めること**
 
@@ -89,7 +91,7 @@
 - `SECURITY-functional-r2`: [docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r2.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r2.json)、SHA-256 `1d6d270a08943d07ebd4f69c6ff481e20002ec3ab08f2082996f9c2861ec7109`。
 - `SECURITY-functional`: [docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json)、SHA-256 `377fe1b6d2c036748e15e17726a35b8f413e8c50f5546de8c1a66fed4317207b`。
 
-## POに明示してほしい判断（未受領）
+## 判断前に提示した事項（2026-09-28回答済み）
 
 - **L1**: 固定したL1本文のexact revisionを確定するか、差戻すか。過去のPO企画判断から現在のL1 bytesの確定を推定しない。
 - **L2/L11**: 上表の全候補について、明示された範囲で採用・保留・不採用、または差戻しを記録する。包括回答で個々のIDの処置が特定できない場合、その候補は未受領のままにする。
@@ -111,6 +113,6 @@
 
 旧自律境界（LEGACY-ASSET-6EBDB617A8104A7756D0、`archive/legacy-generation-2026-09-14/root/CLAUDE.md:82-85`、SHA-256 `7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb`）の、人が企画・要求の意味を持ちAIが要件以下を起草する分担を保持する。旧層番号・旧runtime・旧merge方式は移植しない。現行のL1/L2対象revision判断と、L3要件承認を分ける。
 
-現在はPO判断未受領。受領後は実際の回答・対象revision・候補処置を記録し、本文変更があれば対のL11、register訂正revision、receipt、研究pinとbindingを追随させてexact HEADを再reviewする。候補の処置から旧sourceのretireや未完atomの被覆完了、L3承認、実装・release許可を生成しない。
+判断前はPO判断未受領だった。受領後は実際の回答・対象revision・候補処置を記録し、本文変更があれば対のL11、register訂正revision、receipt、研究pinとbindingを追随させてexact HEADを再reviewする。候補の処置から旧sourceのretireや未完atomの被覆完了、L3承認、実装・release許可を生成しない。
 
 8機構分の確認PRをすべて作成し、全件の独立review指摘0件まで作成側が進める。先行する確認PRのPO判断待ちを理由に、残る確認PRの作成・reviewを止めない。
