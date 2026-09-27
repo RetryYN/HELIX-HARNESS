@@ -60,25 +60,25 @@
 |HARNESS-L2-024 `L2:499-524`|primary `HARNESS-L1-008`; context `HARNESS-L1-006`,`HARNESS-L1-005`,`HARNESS-L1-007`,`HARNESS-L1-001`; engine unit, 1.0|同revision既回答照合、影響順、根拠ある再質問、形成情報不足と人の合意待ち分離。固定iteration件数を使わない|`L11:240`; normal/error/unseen、failure/cancel/timeout、初回空履歴、質問量等は補助計測|未実行。engine/OSの責務重複なし|
 |HARNESS-L2-026 `L2:530-542`|`HARNESS-L1-005`,`HARNESS-L1-007`,`HARNESS-L1-009`,`HARNESS-L1-001`; unit, 1.0|③ design内pack。Template/CORE/BRAIN connector必須、個別Pattern選択時のみ。画面/API/permission/state/DB/oracleを合成|`L11:332-341`; approved後編集禁止の横断設計oracle、Pattern conflict代替も不変条件維持を確認|未実行。L2本文は依存とBRAIN/CORE ownershipを明示|
 |HARNESS-L2-025 `L2:544-555`|`HARNESS-L1-001`,`HARNESS-L1-004`,`HARNESS-L1-005`,`HARNESS-L1-007`,`HARNESS-L1-009`; composite, 1.0|026 design + 必要なBRAIN connectionの端から端invariant。026を生成前提にせず、025→026順|`L11:342-360`; 単体成功と構成体oracleを分離、Pattern selection時だけreceipt|未実行。自己循環なし|
-|HARNESS-L2-027 `L2:559-569`|`HARNESS-L1-001`,`HARNESS-L1-003`,`HARNESS-L1-005`; unit, 1.0|選択した静的source型のversioned observation。source authority/read boundary必須、requirement/design/receiptはraw extractionに不要。019選択型利用時に必要|`L11:365-374`; source spanを使い正/誤/未見構造抽出内容を検査、未選択type未観測|未実行。正確なservice/component/CORE owner allocationはrelease manifest段階の確認事項（C1）|
-|HARNESS-L2-028 `L2:571-581`|`HARNESS-L1-001`,`HARNESS-L1-003`,`HARNESS-L1-004`,`HARNESS-L1-005`,`HARNESS-L1-006`; connection, 1.0|027 receiptと現行saved design/requirement traceのdelta/affected set照合。approved主張にapproval receipt必須|`L11:375-382`; code/API/DB差分とexact affected scope、unknown/stale拒否|未実行。consumerとしての正本owner allocationはrelease manifest段階の確認事項（C1）|
-|HARNESS-L2-029 `L2:583-596`|`HARNESS-L1-001`,`HARNESS-L1-003`,`HARNESS-L1-004`,`HARNESS-L1-005`,`HARNESS-L1-006`; composite, 1.0|source observation→design delta→改修提案/回帰契約、適用は提案のみ|`L11:383-402`; custom processing維持、意味別proposal、禁止migration副作用|未実行。owner allocationはrelease manifest段階の確認事項（C1）|
-|HARNESS-L2-030 `L2:601-617`|`HARNESS-L1-001`,`HARNESS-L1-004`,`HARNESS-L1-005`,`HARNESS-L1-007`; unit, 1.0|014 design + 022 oracleからscenario/case/data/double候補を生成。実行とoracle authorityを所有しない|`L11:408-414`; 制約/edge/拒否状態/外部応答を実際にoracle比較、誤り・未見も検査|未実行。owner allocationはrelease manifest段階の確認事項（C1）|
-|HARNESS-L2-031 `L2:619-635`|`HARNESS-L1-001`,`HARNESS-L1-004`,`HARNESS-L1-005`,`HARNESS-L1-007`; unit, 1.0|許可されたsanitized failure inputを縮小し同一failure確認、修正前fail/修正後passの候補。run resultは後段|`L11:416-422`; 具体PATCH縮小例、各縮小結果を後続receiptで確かめ同一oracle違反を保持|未実行。permission, 022 oracle、032 executor境界を保持。owner allocationはrelease manifest段階の確認事項（C1）|
-|HARNESS-L2-032 `L2:637-653`|`HARNESS-L1-001`,`HARNESS-L1-004`,`HARNESS-L1-005`,`HARNESS-L1-007`; connection, 1.0|artifact→選択OS-020/user CI schemaへのversioned packet。HARNESSはoracle/artifact、executorは隔離実行/result|`L11:424-430`; packet/revision/oracle/schema一致とconsumer後続receipt確認|未実行。接続能力のowner allocationはrelease manifest段階の確認事項（C1）|
-|HARNESS-L2-033 `L2:655-671`|`HARNESS-L1-001`,`HARNESS-L1-004`,`HARNESS-L1-005`,`HARNESS-L1-007`; composite, 1.0|030/031→必要時032、候補作成から実行後結果、回帰成立まで段階trace。開始前receipt要求なし|`L11:432-438`; case/repro/reduction/pre-fix fail/post-fix passの個別receipt条件|未実行。owner allocationはrelease manifest段階の確認事項（C1）|
+|HARNESS-L2-027 `L2:559-569`|`HARNESS-L1-001`,`HARNESS-L1-003`,`HARNESS-L1-005`; unit, 1.0|選択した静的source型のversioned observation。source authority/read boundary必須、requirement/design/receiptはraw extractionに不要。019選択型利用時に必要|`L11:365-374`; source spanを使い正/誤/未見構造抽出内容を検査、未選択type未観測|未実行。正確なservice/component/CORE owner allocationは要求段階で所有先候補を整理する消化対象（C1）|
+|HARNESS-L2-028 `L2:571-581`|`HARNESS-L1-001`,`HARNESS-L1-003`,`HARNESS-L1-004`,`HARNESS-L1-005`,`HARNESS-L1-006`; connection, 1.0|027 receiptと現行saved design/requirement traceのdelta/affected set照合。approved主張にapproval receipt必須|`L11:375-382`; code/API/DB差分とexact affected scope、unknown/stale拒否|未実行。consumerとしての正本owner allocationは要求段階で所有先候補を整理する消化対象（C1）|
+|HARNESS-L2-029 `L2:583-596`|`HARNESS-L1-001`,`HARNESS-L1-003`,`HARNESS-L1-004`,`HARNESS-L1-005`,`HARNESS-L1-006`; composite, 1.0|source observation→design delta→改修提案/回帰契約、適用は提案のみ|`L11:383-402`; custom processing維持、意味別proposal、禁止migration副作用|未実行。owner allocationは要求段階で所有先候補を整理する消化対象（C1）|
+|HARNESS-L2-030 `L2:601-617`|`HARNESS-L1-001`,`HARNESS-L1-004`,`HARNESS-L1-005`,`HARNESS-L1-007`; unit, 1.0|014 design + 022 oracleからscenario/case/data/double候補を生成。実行とoracle authorityを所有しない|`L11:408-414`; 制約/edge/拒否状態/外部応答を実際にoracle比較、誤り・未見も検査|未実行。owner allocationは要求段階で所有先候補を整理する消化対象（C1）|
+|HARNESS-L2-031 `L2:619-635`|`HARNESS-L1-001`,`HARNESS-L1-004`,`HARNESS-L1-005`,`HARNESS-L1-007`; unit, 1.0|許可されたsanitized failure inputを縮小し同一failure確認、修正前fail/修正後passの候補。run resultは後段|`L11:416-422`; 具体PATCH縮小例、各縮小結果を後続receiptで確かめ同一oracle違反を保持|未実行。permission, 022 oracle、032 executor境界を保持。owner allocationは要求段階で所有先候補を整理する消化対象（C1）|
+|HARNESS-L2-032 `L2:637-653`|`HARNESS-L1-001`,`HARNESS-L1-004`,`HARNESS-L1-005`,`HARNESS-L1-007`; connection, 1.0|artifact→選択OS-020/user CI schemaへのversioned packet。HARNESSはoracle/artifact、executorは隔離実行/result|`L11:424-430`; packet/revision/oracle/schema一致とconsumer後続receipt確認|未実行。接続能力のowner allocationは要求段階で所有先候補を整理する消化対象（C1）|
+|HARNESS-L2-033 `L2:655-671`|`HARNESS-L1-001`,`HARNESS-L1-004`,`HARNESS-L1-005`,`HARNESS-L1-007`; composite, 1.0|030/031→必要時032、候補作成から実行後結果、回帰成立まで段階trace。開始前receipt要求なし|`L11:432-438`; case/repro/reduction/pre-fix fail/post-fix passの個別receipt条件|未実行。owner allocationは要求段階で所有先候補を整理する消化対象（C1）|
 
 注: 001–009はL2の既存L1-ID接続表`product-requirements.md:310-318`、010–022は同表`:324-336`、023/024および026/025/027–033は各節冒頭の親L1記述を採った。行範囲は改行単位の現baseline位置。
 
 ## 具体所見
 
-### C1 — G16/G18 pack owner を release manifest で未解決のままにしない
+### C1 — G16/G18の能力の所属を要求段階で明示する
 
 - **根拠**: `docs/helix-harness/L2-requirements/product-requirements.md:340-350`は、packをservice①〜⑦/component/COREの一つに所有させ、複数service共有の能力はcomponent/COREに置き、release unitへ収める/収めないを明示すると要求する。G15では026について「③設計serviceが利用する」「014はservice入口、026は内部pack」と`L2:534-542`に明記され、025も`L2:546-555`でcomposite境界が定まる。
 - **現行候補の観測**: G16各節`L2:559-596`およびG18各節`L2:601-671`はunit/connection/composite kind、I/O、依存、処理責務を説明するが、027–033個別にservice/component/CORE ownerとrelease-unit収載先までは割当てていない。`product-acceptance.md:406`では030/031を独立versioned capability packと呼ぶ一方、ownerや収載mapの行はない。親L1 IDとkindだけではpack ownerを決められない。
-- **確度・stage境界**: これは現本文の矛盾や、まだ設計されていない実装の欠陥とは判定しない。L2-010に対するrelease manifest/pack allocationのstage-close条件として残す。L3 pack設計で単一owner・closure・収載/非収載を決める計画なら、その設計に明示してから検証する必要がある。候補をrelease manifestへ収載済み、またはL2-010 pack境界適合済みと扱う段階でownerを空欄にするのは不適合。
+- **確度・stage境界**: 未実装の欠陥ではないが、どの提供サービス・共通部品・COREから能力を提供するかは要求の機能境界である。027〜033の所属候補と理由を、026と同じ粒度でL2へ追補する消化対象とする。具体的な配布形式・manifestのschemaはL3へ渡すが、能力の所属そのものをL3へ一括延期しない。材料不足の項目だけ、原文・選択肢・推奨・影響IDを付け、確認PRでPOが判断できるようにする。
 - **具体反例**: 外部利用者が⑦運用serviceだけを収載したmanifestでincident縮小031とuser-CI接続032を選ぶ。しかしmanifestが031/032を⑦内、shared component、COREのどこへ所有/収載するか未宣言なら、選択serviceの依存closureと交換/rollback ownerを再現できず、L2-010/L11-010のpack一覧・一意所有oracleを評価できない。これは実行時のOS/user-CI ownerとは別のpack ownership問題。
-- **影響**: `HARNESS-L2-027`〜`HARNESS-L2-033`（026/025はowner/boundaryを既に説明する対照）、`HARNESS-L2-010/011`、release manifest。候補修正は新機構の追加でなく、L3で確定する事項の一覧へ引き継ぎ、pack catalogに各IDの単一ownerと収載/除外を記録し、複数service共有はcomponent/COREへ置くこと。032ではHARNESS接続pack ownerとOS-020/user-CI実行ownerを別に記す。割当根拠が不足する場合は推定せず、対象L1/POへ返す。
+- **影響**: `HARNESS-L2-027`〜`HARNESS-L2-033`、`HARNESS-L2-010/011`。機構別消化で各能力の単一所有先候補（サービス①〜⑦／共通部品／CORE）と利用サービス・理由をL2へ記し、複数サービス共有なら010の既存原則に従って部品／COREへ置く。032の接続pack所有とOS-020／利用者CIの実行責務は別に記す。候補の記載で採択を生成せず、実際の所属判断は確認PRの対象revisionへ含める。
 
 ### 既に本文で閉じていて重複findingにしない項目
 
@@ -90,8 +90,8 @@
 
 ## 結論
 
-HARNESSのL2/L11候補はPO第1・2・4項の要求を既存責務に接続し、service/CORE/BRAIN/OSの基本境界、単体/接続/構成体、未評価と受入の区別は本文上おおむね閉じている。具体的なstage-close確認点は、G16/G18で追加された能力packごとの一意 owner と収載/除外先を、release manifest設計でL2-010に従って確定すること（C1）。現行要求候補だけからは未設計実装の欠陥とせず、確定前に収載済みと誤認しない。001–009のsource atom successor対応も独立に未確定であり、routing container状態を保ったまま別途扱う。
+全33 identityの基本的な責務・受入対応を確認した。要求段階の消化対象はC1：G16/G18の027〜033について、能力の所属候補と理由をL2へ追補し、POが確認できる機能境界を揃える。具体manifest形式等はL3へ渡す。001〜009のsource atom successor対応は別に未確定であり、routing container状態を保って横断整理へ渡す。
 
-## 作成側の検収と引継ぎ
+## 作成側の検収と独立review指摘対応
 
-GPT6 Luna highの調査をCodex executionが検収した。C1は要求欠落の修正要求ではなく、L2-010に既にある一意所有・依存閉包をL3で具体化する持越し事項とする。今回、追加の要求本文修正候補は0件。後続の機構別消化ではこの処置とsource atom対応の未確定範囲を確認し、横断整理・総合検証へ渡す。監査文書のmergeで要求採択・source全量被覆・L3着手許可を生成しない。
+GPT6 Luna highの調査をCodex executionが検収した。初版ではC1全体をL3持越しとしたが、ClaudeのR2183-01により修正した。能力の所属は要求段階の消化対象、配布manifestの実現形式等はL3事項と分ける。修正候補はC1の1件であり、要求本文の追補は後続消化PRで行う。監査文書のmergeで要求採択・source全量被覆・L3着手許可を生成しない。
