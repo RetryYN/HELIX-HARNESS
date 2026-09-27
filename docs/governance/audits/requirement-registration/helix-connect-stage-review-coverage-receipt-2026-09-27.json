@@ -1,0 +1,75 @@
+{
+  "receipt_id": "MPR-RCPT-HELIX-CONNECT-STAGE-REVIEW-2026-09-27",
+  "authority_effect": "none",
+  "candidate_digest_rule": "Existing L2 identity section, trailing blank lines stripped, followed by one LF. Changed L2 identities are explicitly enumerated; original source atoms and dispositions retained. L11 corrected full file is bound separately below.",
+  "correction_reason": "互換性の参照照合と送信操作の適格性を分離。既存read scopeと操作時SECURITY許可を保持。",
+  "candidate_semantics_unchanged": false,
+  "acceptance_binding": {
+    "source_path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+    "sha256": "sha256:bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad",
+    "base_commit": "4629b93f6471f25b71ee255e8966b65be01dd20b",
+    "base_file_sha256": "sha256:b5dcfe5477b91a13e70e8e4e0bc3a020529d5c0c8272af7079befcbb6cceb624",
+    "change_kind": "targeted_acceptance_correction"
+  },
+  "candidates": [
+    {
+      "requirement_identity": "HELIXCONNECT-L2-002",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HELIXCONNECT-L1-001"
+      ],
+      "candidate_semantic_digest": "sha256:ebc3e58d7479cb2f80ada4ebba32363bdcf6cf67e908075b5b1ececb29f8e037",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "PO原文・Concept・現行各機構L2の接続条件からCONNECTの共通候補を導出する。元の業務要求は元機構に同一bytesで保持する。旧sourceは意味比較として参照し、旧atomの移管・採択・retireは行わないため入力旧atom集合は空集合。空集合のno_lossを原文意味の網羅被覆と呼ばない。原文・現行条件の所在は親被覆と接続棚卸しへ束縛する。",
+      "atoms": [],
+      "current_condition_refs": [
+        "docs/helix-connect/L1-planning/connect-intent.md#helixconnect-l1-001",
+        "docs/governance/audits/g7-connect-source-connection-inventory.md"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": [],
+      "acceptance_binding": {
+        "source_path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+        "sha256": "sha256:bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad",
+        "base_commit": "4629b93f6471f25b71ee255e8966b65be01dd20b",
+        "base_file_sha256": "sha256:b5dcfe5477b91a13e70e8e4e0bc3a020529d5c0c8272af7079befcbb6cceb624",
+        "change_kind": "targeted_acceptance_correction"
+      },
+      "previous_registration_id": "MPR-RC-HELIXCONNECT-L2-002-001",
+      "previous_candidate_semantic_digest": "sha256:ee3f897b1280a33412ab6cc34f1df9a507a68317b0a053fae2beea8b36e51be5",
+      "candidate_semantics_unchanged": false
+    }
+  ],
+  "prior_receipts": [
+    {
+      "path": "docs/governance/audits/requirement-registration/helixconnect-derived-coverage-receipt-2026-09-27.json",
+      "sha256": "sha256:8f9392be152b91427e1e96bbb0b20b5241662f3de4272a6d6dde37de0da1507f",
+      "relation": "Existing atom identity/disposition and pre-isolation provenance retained unchanged; this correction preserves original source atom dispositions; per-identity semantic changes and acceptance evidence are recorded separately."
+    }
+  ],
+  "po_source": {
+    "path": "docs/helix-connect/sources/connect-l1-po-original-2026-09-27.md",
+    "commit": "4629b93f6471f25b71ee255e8966b65be01dd20b",
+    "sha256": "sha256:a9737c48618f048103879ef1602b82b9800c8b25df884a5d04562a07fcffec1a",
+    "attribution": "固定source中のPO原文とmetadata/前書きを区別し、既存のsource atom dispositionを保持する。",
+    "lines": [
+      {
+        "source_line": 1,
+        "source_text": "# HELIX-CONNECT L1企画原文（PO提示、2026-09-27）"
+      },
+      {
+        "source_line": 3,
+        "source_text": "出所：2026-09-27のHELIX-CONNECT第2弾（G7）起草依頼に含まれたPO原文。"
+      },
+      {
+        "source_line": 5,
+        "source_text": "> CONNECT各機能の接続部分を疎結合に保ち、各機構への変更耐性を強化する機構。以上。ぐらいしかないが？段階リリースは機能として成立する部分を決めてだからほかの要求から導出する仕組みだろ。どう考えても両方そうだろ。"
+      },
+      {
+        "source_line": 7,
+        "source_text": "本書は原文を編集せず保存する。引用符は入力側の区切り記号であり、引用符自体は発言本文に含まれない。"
+      }
+    ]
+  }
+}

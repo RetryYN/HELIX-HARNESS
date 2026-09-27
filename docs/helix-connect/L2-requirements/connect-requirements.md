@@ -66,14 +66,16 @@ HELIX-CONNECTは各接続を固有の接続identityで登録し、接続元・�
 
 ### HELIXCONNECT-L2-002 契約互換性照合とstale再検証（unit）
 
-接続の開始前、および登録後に端点、意味契約revision、adapter/transport revision、互換範囲のいずれかが変化した後の再利用前に、実際に使用する両端revisionが登録済みの互換条件に合うか照合する。登録時と使用時のrevisionを記録する。不一致・unknown・staleでは通信を開始せず、原因revisionと照合結果を残す。再検証で互換が確認された時だけ、そのrevision組合せのstaleを解消する。
+接続の開始前、および登録後に端点、意味契約revision、adapter/transport revision、互換範囲のいずれかが変化した後の再利用前に、実際に使用する両端revisionが登録済みの互換条件に合うか照合する。互換性照合は、接続identity、両端revision、互換宣言、scopeの参照操作として単独で実施でき、送信実行用の許可を事前条件にしない。入力の読取りに適用される既存scope/access条件は維持する。登録時と使用時のrevisionを記録する。不一致・unknown・staleでは互換成立とせず、原因revisionと照合結果を残す。再検証で互換が確認された時だけ、そのrevision組合せのstaleを解消する。
+
+実際の送信操作を適格と判定する場合は、互換成立に加えて、そのactor・target・operation・revision・environment・scope・expiryに有効なSECURITY許可と、適用されるdata-use/classification条件を操作時に照合する。許可が欠落・unknown・期限切れ・scope不一致・失効していれば、互換成立結果を保持しても送信可とはせず、送信attemptを開始しない。互換性照合だけの参照では、送信可否は`not_evaluated`とし、許可の存在または不存在を推測しない。
 
 共通pack契約の適用：HARNESS-L2-010/011の契約・成果物・依存版と互換範囲を比較し、未対応版を黙って読み替えない。
 
-- **入力**：接続identity、登録receipt、実使用する両端契約/成果物/依存revision、互換宣言、scope、期限内のSECURITY許可識別子。
-- **出力**：revision組合せを固定した照合receipt（compatible/incompatible/unknown/stale）と送信可否。
-- **単独で成り立つための依存**：L2-001の接続登録、端点ownerのversion/互換宣言。通信実行を必須にしない。
-- **失敗時の戻し先**：契約不一致は接続設計・契約ownerへ、許可scope/expiry問題はHELIX-SECURITYへ戻す。どちらも解決するまで未送信で保留する。
+- **入力**：互換性照合には、接続identity、登録receipt、実使用する両端契約/成果物/依存revision、互換宣言、scopeを使い、入力の読取りには適用される既存scope/access条件を守る。送信適格性を判断する操作に限り、actor、target、operation、environment、expiry、該当するSECURITY許可識別子とdata-use/classification条件を追加で照合する。
+- **出力**：revision組合せを固定した互換性receipt（compatible/incompatible/unknown/stale）。送信操作の要求がある場合のみ、互換成立と有効な適用許可/data-use条件の双方を満たした`eligible`、または理由付きの`withheld`を返す。参照のみの場合は`send_eligibility=not_evaluated`とし、送信attemptを発行しない。
+- **単独で成り立つための依存**：L2-001の接続登録、端点ownerのversion/互換宣言。送信適格性を照合する操作では、該当するSECURITY authorityとdata-use条件を追加で参照する。通信実行を必須にしない。
+- **失敗時の戻し先**：契約不一致は接続設計・契約ownerへ、読取りaccess条件はその既存owner/authorityへ、送信時の許可scope/expiry問題はHELIX-SECURITYへ戻す。比較不能はunknown/staleとして記録し、送信は保留する。
 
 ### HELIXCONNECT-L2-003 契約に束縛した通信（unit）
 
