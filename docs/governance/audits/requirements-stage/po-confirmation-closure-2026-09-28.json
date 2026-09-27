@@ -2915,6 +2915,31 @@
     }
   },
   "candidate_total": 250,
-  "legacy_regression_status": "separate_verification_required",
-  "implementation_order_A_B": "not_decided"
+  "legacy_regression_status": "incomplete_reference_side_audit_and_REG_01_to_06_resolution_required",
+  "implementation_order_A_B": "not_decided",
+  "legacy_regression_required_scope": {
+    "reference_side_old_paths": 92,
+    "reference_side_limitation": "Cannot detect old requirements not referenced by current documents.",
+    "old_to_new_populations": {
+      "requirement_ir": 153,
+      "confirmed_identities": 175,
+      "system_contracts": 24,
+      "refinements": 14,
+      "acceptance_items": 72,
+      "system_tests": 24
+    },
+    "population_overlap": "Use existing IR/document relations; counts are not additive independent requirements.",
+    "source_line_partition": {
+      "v1_3": 521,
+      "historical_candidates": 4755,
+      "required": "Distinguish lines traceable through populations from unassociated lines without inferring line coverage from document relations."
+    },
+    "phase_capability_observations": {
+      "degraded": 17,
+      "not_reimplemented_formally": 1,
+      "semantic_equivalence_unresolved": 1
+    },
+    "completion": "Resolve REG-01 through REG-06 and demonstrate zero unmapped conditions before final stage closure; no implementation success inferred.",
+    "all_4020_assets_scan_required": false
+  }
 }

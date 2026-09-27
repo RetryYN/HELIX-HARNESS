@@ -56,7 +56,7 @@ registerの過去行やregistered_proposal／authority_effect:noneは変更せ�
 | OS・INFRASTRUCTURE・CONNECT | [機構別照合](legacy-regression-os-infra-connect-2026-09-28.md) | 51機構別対応／50 path |
 | BRAIN・LABO・INTELLIGENCE | [機構別照合](legacy-regression-brain-labo-intelligence-2026-09-28.md) | 40機構別対応／31 path |
 
-3資料間の共有を除く旧pathは92件である。これは現行のL1/L2/L11、機構内監査・解消記録が直接参照する旧sourceと、その条件の確認に必要な補助sourceを対象とする監査である。135対応行を135要求、92 pathを旧資産4,020件の全被覆へ換算しない。旧sourceの残るholdingと未完義務は維持する。
+3資料間の共有を除く旧pathは92件である。これは現行のL1/L2/L11、機構内監査・解消記録が直接参照する旧sourceと、その条件の確認に必要な補助sourceを対象とする監査である。135対応行を135要求、92 pathを旧資産4,020件の全被覆へ換算しない。旧sourceの残るholdingと未完義務は維持する。 **この参照側の照合では、現行側から未参照の旧要求の欠落は検出できない。** 旧要求集合を起点とする逆方向の照合をREG-06として別途行う。
 
 ### 検出した引継ぎの不明確さ
 
@@ -67,6 +67,15 @@ registerの過去行やregistered_proposal／authority_effect:noneは変更せ�
 | REG-03 | v1.3 §4.3、柱HBR-P3。旧文書はconfirmed | measurement contract全fieldと未測定／stale／非代表環境／target未達時のcompletion拒否について、HARNESS・OS・INFRA・LABOをまたぐ具体的な対受入が未特定 | 原field・失敗条件から対象別ID／受入を再照合し、実際に欠ける条件を追補する。全製品共通の数値を追加することとは分ける |
 | REG-04 | 柱HBR-P4/P8。旧文書はconfirmed | 自動修復・recipeから予防gateへの昇格、外部検索知見のskill化について、HARNESS／OSの一般的なowner移管説明だけでは現在の達成条件・版・受入を特定できない | INTELLIGENCE・LABO・BRAINの具体ID／L11と後続版候補を照合する。既存の意味変更記録がある部分、保持済みの部分、真の欠落を分け、HARNESSへ運転機能を戻さない |
 | REG-05 | v1.3 §4.6.1、HR-AC-HYB-008-01〜09。旧文書はconfirmed | package manifest、自己適用物除外、非破壊setup、同梱文書、Linux／Windows consumer確認、promotion／rollback、作用束縛の9受入が、HARNESS-L2-006とOSの配布運転へ個別に対応していない | 9受入を個別照合し、現行の提供／OS運転／SECURITY境界へ結ぶ。旧Node／CLI／配布先を復活させず、技術方式の非継承を利用価値・反例の削除と混同しない |
+| REG-06 | [旧要求集合](../../requirement-carry-forward-status.md)：IR 153、confirmed identity 175、補助134（system contract 24・refinement 14・acceptance 72・system test 24） | 現行側の参照だけでは未参照の欠落を検出できない。既存routingは候補で、successor被覆の証明ではない | 旧→新の方向で各条件を現行L2/L11保持・意味の再導出・置換・後続版の版印・記録付き廃止／意味変更・未対応へ分類する。IRとconfirmedの重複は既存relationで区別し、独立要求として合算しない。未対応0件を最終照合の前提とする |
+
+### REG-06の照合範囲と完了条件
+
+- 上記集合の原条件・例外・反例・数値を現行の具体的なL2とL11へ対応づける。source holding、一般的なowner移管、候補入力の`no_loss`だけで被覆済みにしない。意味変更・廃止・既決と食い違う後続版移管は対象revisionの人間decisionを要する。
+- v1.3の521行と旧candidateの4,755行は、IR／confirmed／補助集合を経由して辿れる範囲と、どれにも属さない行を分ける。集合の重複や文書単位の関連を行単位の被覆へ換算しない。旧candidateの未採択状態を保つ。
+- [フェーズ能力台帳](../../phase-capability-inventory.md)の縮退17件・正式には未再実装1件・意味的等価性未解決1件について、現行L2/L11での回復、後続版、記録付きの縮退受容のいずれに当たるかを照合する。要求上の回復と実装・実行済みは区別する。
+- 未対応を具体的に記録して局所追補・既存判断との照合へ戻し、REG-01〜05とともに未解消0件を確認してから手順5の最終横断照合を閉じる。本PRは範囲を確定する途中の監査であり、この照合自体は後続PRで行う。
+- [旧資産の判断時期](../../decisions/legacy-asset-review-timing-2026-09-23.md)に従い、旧資産4,020件の全件調査や旧実行経路の起動は行わない。
 
 REG-01/02は旧draftの後継候補の不明確さ、REG-03〜05は確認済み旧sourceの条件の引継ぎ先を追加確認すべき箇所として区別した。単にsourceが残っていることや「L3へ送る」という一般句で解消扱いにしない。これらの追加照合・必要な追補を続け、未解消0件の最終横断照合は解消後に行う。本PRは監査とPO判断の状態追随であり、要求ステージ終了の宣言ではない。
 
