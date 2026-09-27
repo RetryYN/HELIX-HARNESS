@@ -108,15 +108,15 @@
 
 以上の3点は文書の明確化候補であり、採択済み欠陥とは断定しない。Web有効化、最低標本数、ユーザーへの反復確認、LABOによる配置決定、runtime操作を強制する具体的な受入矛盾は見つからなかった。既存L1/legacy holdingの範囲で明確化するか、L1/PO採択まで保留するかは親レビューに委ねる。
 
-## Lines and exclusions checked
+## 照合した行と除外範囲
 
-- L1 exact hierarchy/meaning: `labo-intent.md:17-35,42-90,92-102`; its mapping has 11 parent identities. L2 table is the authoritative 53-item expansion; IDs 043–049 are unused, not hidden requirements.
-- L2 individual requirement groups: units `:65-161`, connectors `:163-294`, composites `:298-320`, invariants and source crosswalk `:322-377`, additions `:379-455`.
-- L11 general/unit/connection/composite/§24/candidate rows: `labo-acceptance.md:19-136`, G9 acceptance `:138-162`, G13 `:164-176`, G19 `:178-185`.
-- PO source §1–25 including §24 invariants at `labo-core-engine-po-original-2026-09-26.md:1-842`; G9 and G19 PO snapshots and decisions cited above. None of these decisions is treated as L1/L2 adoption.
-- Web input source itself is referenced as a candidate in holding file; its exact 14 candidates are retained `improvement-research-requirements.md:67-100`, including daily collection. It is excluded from the current 53-identity count.
+- L1の階層と意味：`labo-intent.md:17-35,42-90,92-102`。親identityは11件で、L2で53件へ展開する。043〜049は未使用のIDであり、隠れた要求ではない。
+- L2の個別要求群：単体`:65-161`、接続`:163-294`、構成体`:298-320`、不変条件とsource対応`:322-377`、追補`:379-455`。
+- L11の共通・単体・接続・構成体・PO§24・候補の行：`labo-acceptance.md:19-136`、G9受入`:138-162`、G13`:164-176`、G19`:178-185`。
+- PO原文§1〜25と§24の不変条件：`labo-core-engine-po-original-2026-09-26.md:1-842`。G9/G19の原文と判断記録は冒頭に記載した。これらの記録を対象L1/L2の採択と扱わない。
+- Web入力sourceはholding文書の候補として参照する。14候補は`improvement-research-requirements.md:67-100`に日次収集を含めて保持され、現行53identityの件数には含めない。
 
-trackedファイルは編集していない。旧実行物・test artifactも実行していない。
+旧実行物・testは実行していない。
 
 ## 作成側の検収と後続消化
 
