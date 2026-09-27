@@ -401,3 +401,14 @@ decision_record: docs/governance/decisions/security-l1-idea-po-decisions-2026-09
 ## authorityと状態
 
 全候補と受入は未採択・未実行である。文書、coverage receipt、登録、review、CI相当の記録だけからrequirements agreement、L3 approval、runtime enforcement、Web公開許可、security certificationを生成しない。旧authority、legacy green、旧test、既存配置の存在で不足を相殺しない。
+
+### HELIXSECURITY-L2-029 第三者runtimeへの委譲データと訓練利用条件（単体追補候補、1.0）
+
+- **親・状態**：HELIXSECURITY-L1-006／007。`version_target: 1.0`、未採択候補。006の外部通信と007のWorker制約へ、旧HIL-NFR-37/39の第三者runtime条件を追補する。候補の登録から現行の通信・runtime採用を許可しない。
+- **入力**：委譲対象のdata classification、許可pathと検査対象、secret/PII検査結果、送信先runtimeと対象版・設定・scope、訓練利用opt-outの確認状態と根拠、操作のauthority・目的・期限、ローカルで検証/強制した隔離と外部送信の証拠を受け取る。
+- **提供・保証**：第三者runtimeへ渡せる範囲、拒否/未確認の理由、採用条件の充足状態を返す。公開可能・機密・secret/PIIを区別し、機密以上の委譲をpathの許可一覧とsecret検査を含むローカル制御で遮断する。未分類を公開可能と推測しない。opt-out完了は機密以上の送信許可を意味しない。
+- **訓練利用条件**：訓練利用opt-out完了を当該runtime採用の前提として保持する。未完了/不明の間は公開可能コード以外を委譲しない。公開可能コードでも既存の送信先・目的・authority・期限・隔離条件を免除せず、限定された委譲実績からruntime採用完了を生成しない。opt-out確認の出所・対象・時点を残し、別runtimeや別版/設定へ流用しない。
+- **証拠の区別**：vendorのprivacy UI・修正宣言・remote flagだけをHELIX側のsecurity保証にしない。provider側opt-out確認と、HELIXがローカルで検証・強制できるsandbox/network allowlist/egress観測/FS差分等の証拠を別に扱う。ローカル検査成功からprovider側の訓練利用停止を証明したと主張しない。確認不能は確認不能として残す。特定sandbox製品や旧CLIは選定しない。
+- **依存・境界**：005/006/007のsecret・egress・Worker条件と016の1.0分類基盤を使い、実資源への適用はINFRASTRUCTURE、割当はOSのままにする。実際に第三者runtimeへ委譲する操作の条件であり、第三者を使わない作業の依存へ広げない。1.xのWeb公開sink全体への強制を1.0へ前倒ししない。通常作業に毎回の人間承認を追加しない。
+- **失敗時**：分類/検査/ローカル適用の不明は該当委譲を拒否し、それぞれdata owner/検査元/実行基盤へ返す。opt-out不明は採用未完としてruntime条件の確認へ返し、未完理由と対象revisionを保持する。根拠や条件変更時は以前の判定を流用しない。
+- **旧source**：LEGACY-ASSET-719D5EC9C06FC4AAD0FF、旧`infinity-loop-platform-requirements.md:217,219`のHIL-NFR-37/39。分類・機密以上遮断・opt-out採用前提・vendor設定だけでは保証しない条件を同時に保持し、no-trainingという別方式を推測で同値代替しない。原文の具体的な制御責務を現行SECURITY／OS／INFRASTRUCTUREへ分け、旧runtimeを復帰させない。
