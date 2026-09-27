@@ -725,19 +725,19 @@ BRAIN知識接続の正本は、[HELIXBRAIN-L2-030](../../helix-brain/L2-require
 
 **親L1**：`HARNESS-L1-001`, `HARNESS-L1-004`。L1-004の対象revisionとriskに合う検証義務、反例、証拠、差戻し条件、およびL1-001の正規V-pairに基づく。L1にない検証閾値や全環境一律実行を追加しない。
 
-**kind・scope**：HELIX-HARNESS-COREの共通検証契約に属するunit候補。対象revision、ticket、risk、変更範囲および適用するdriveを持つテスト設計・検証gateを扱う。実行、CI編成・運転、ログ/state管理はHELIX-OSの責務であり、本候補はそれらを実行しない。
+**kind・scope**：HELIX-HARNESS-COREの共通検証契約に属するunit候補。対象revision、ticket、risk、変更範囲および画面適用条件を持つテスト設計・検証gateを扱う。実行、CI編成・運転、ログ/state管理はHELIX-OSの責務であり、本候補はそれらを実行しない。
 
 **既存責務との関係**：`HARNESS-L2-005`はticket・変更範囲・riskから必要な検証を選び、CIに組み立てる規則を所有する。`HARNESS-L2-022`は段階ごとのverification/acceptance oracleと証拠契約を所有する。036は選択された検証プロファイル内で、テスト観点の抜け・レベル間重複とdev-local/CI間の契約差を検査する限定能力であり、005のticket導出、022のoracle、OSの実行責務を置換しない。PR前のticket/riskに応じた検証、Forward小/中/大、危険度の高い変更の早期上位証明、省いた検査の記録と合流先ticketでの回収を維持する。全test段階、全ticket、全環境の同時・全件実行は要求しない。
 
-**入力**：同一対象revisionに結び付く現行の設計成果、テスト設計成果、test-level定義、対象ticketとその適用profile、変更範囲/risk、drive判定、適用可能な要求・設計oracleおよび必要なsource版。成果物の形式は固定せず、現行形式が提供するscope・観点・trace情報を用いる。UI/FE対象の場合はL2 prototype／screen scope、design-token SSOT、対象画面のscreenshots、state transition定義を渡す。未選択driveは未観測として扱い、FE条件を暗黙に適用しない。
+**入力**：同一対象revisionに結び付く現行の設計成果、テスト設計成果、test-level定義、対象ticketとその適用profile、変更範囲/risk、画面の有無とL2.5 Prototype適用の判定記録、適用可能な要求・設計oracleおよび必要なsource版。成果物の形式は固定せず、現行形式が提供するscope・観点・trace情報を用いる。画面を持つ対象の場合はL2 prototype／screen scope、design-token SSOT、対象画面のscreenshots、state transition定義を渡す。画面の有無・適用判定がunknownなら未評価でHARNESS-L2-003/008の要求形成・Prototype適用判断へ戻す。
 
-**出力**：適用scopeを明示した観点と設計項目の対応、観点抜け一覧、レベル間の重複一覧、pass/failと根拠。対象ticketで選択された同一lint/gate契約をdev-localとCIの双方が参照できる版付き判定入力・結果照合情報を返す。`drive=fe`では5軸ごとの`DetectorResult`（pass/failと詳細）およびCI証跡へのrelationを返す。省略がある場合はHARNESS-L2-005に従い理由と回収先ticketを保持する。
+**出力**：適用scopeを明示した観点と設計項目の対応、観点抜け一覧、レベル間の重複一覧、pass/failと根拠。対象ticketで選択された同一lint/gate契約をdev-localとCIの双方が参照できる版付き判定入力・結果照合情報を返す。画面を持つticket対象の合意済みscreen scopeでは5軸ごとの`DetectorResult`（pass/failと詳細）およびCI証跡へのrelationを返す。省略がある場合はHARNESS-L2-005に従い理由と回収先ticketを保持する。
 
 **保証すること**：
 
 - 対象scope内で現行設計成果・テスト設計成果・test-level定義を静的に照合し、設計項目に対応しない必要テスト観点または同一観点のレベル間重複を一覧化してWゲートをfailとする。NFR-13由来の「抜け／重複0件」はこの適用scopeの判定条件として保持する。適用外の項目を適用済みと数えない。
 - ticket/riskから選ばれた同一lint/gateの内容snapshot・契約版・scopeをdev-localとCIで照合し、片側だけの実行、異なる内容/設定、対象snapshot/revision/scopeの不一致、または結果の欠落を同一条件の検証済みとして扱わない。dev-localとCIのcommit SHA一致は要求せず、editor側で失敗した場合はcommit前の局所修正へ戻す。OSが該当ticketで実行対象と実行時点を編成する。全環境同時実行を036が追加しない。
-- `drive=fe`では`mock-promotion`、`design-token-drift`、`a11y-regression`、`visual-regression`、`state-transition-drift`の5軸すべてを決定論的に判定し、各軸のpass証跡を要求する。いずれかのfailまたは証跡欠落はsilent passにしない。非FE driveではこの5軸を必須化しない。
+- 画面を持つticket対象の合意済みscreen scopeでは`mock-promotion`、`design-token-drift`、`a11y-regression`、`visual-regression`、`state-transition-drift`の5軸すべてを決定論的に判定し、各軸のpass証跡を要求する。いずれかのfailまたは証跡欠落はsilent passにしない。非画面と根拠付きで判定された対象ではこの5軸を必須化しない。
 - cross-detectionの適用scope内で、依存漏れ、契約漏れ、接続欠損、デグレをそれぞれ検出・報告し、対象gateの合格では各0件を保つ。結果には対象revision、profile/scope、該当箇所、期待条件、観測内容を含める。unknownを0件扱いしない。
 - NFR-13のgate通過率「≥90% (KPI D-02、B5=b)」を運用目標として保持する。適用母集団・期間・分母はL3で照合し、意味を変更する場合はPO判断へ戻す。これはticketごとのpass閾値ではない。
 - 根拠となるoracle、revision、適用scopeが不足・stale・conflictなら対象の検証結果を保留し、unknownをpassやN/Aへ変えない。要件・oracleの意味差はHARNESS-L2-008または022の責務へ戻す。OSは選択された実行を行い、結果とreceiptを保存する。
@@ -745,15 +745,17 @@ BRAIN知識接続の正本は、[HELIXBRAIN-L2-030](../../helix-brain/L2-require
 **依存区分**：
 
 - **常時必須**：対象revision/ticket/scope、HARNESS-L2-005の適用profileと省略・回収条件、HARNESS-L2-022の対oracle・証拠契約、現行の設計成果・テスト設計成果・テストレベル定義、実行する同一lint/gateの識別子と版。
-- **特定操作時のみ**：ticketで検証gateを実行するときは、同じgateをdev-localとCIの両面で照合する。editorで失敗したときはcommit前の局所修正へ戻す。CIに載せる検査の段数・範囲はHARNESS-L2-005のticket/risk規則で決め、全件を一律に実行しない。`drive=fe`の検証操作では下記5軸を適用する。
-- **選択した入力元・適用scopeに応じて必須**：`drive=fe`なら、L2 prototype／screen scope、design-token SSOT、対象screenshots、state transition定義と5軸すべてのoracle/証跡を照合する。FE driveを選択していない対象ではFE証跡を要求しない。drive=feの5軸はどれもN/Aとして除外しない。
+- **特定操作時のみ**：ticketで検証gateを実行するときは、同じgateをdev-localとCIの両面で照合する。editorで失敗したときはcommit前の局所修正へ戻す。CIに載せる検査の段数・範囲はHARNESS-L2-005のticket/risk規則で決め、全件を一律に実行しない。画面対象の検証操作では下記5軸を適用する。
+- **選択した入力元・適用scopeに応じて必須**：画面対象なら、L2 prototype／screen scope、design-token SSOT、対象screenshots、state transition定義と5軸すべてのoracle/証跡を照合する。非画面と根拠付きで判定された対象ではFE証跡を要求しない。画面対象の5軸はどれもN/Aとして除外しない。
 - **参照資料のみ**：旧hook名、旧CI job名、旧DB/log path、過去の実装例は要求の出所を示す資料であり、現行runtime依存ではない。
 
 **正常・誤り・未見の境界**：
 
 - 正常：あるticket profileが単体gateだけを選び、設計項目ごとの該当観点が一度ずつ対応する。dev-localとCIが同版・同設定で結果を返し、適用された観点に抜け・重複がないためWゲートはpassする。未選択のsystem testを実行済みとは主張しない。
-- 誤り：テスト観点が設計項目に対応しない、同じ観点を複数levelで重複計上する、またはFE driveにおいて5軸の一つの証跡がない／failする場合は該当scopeをfailまたは保留する。editorではpassしたがCIは旧版・別設定を実行した場合、二重実行の契約成立としない。
-- 未見：未公開の同scope設計項目を追加し、既存のテストレベル定義とoracleから適用観点を照合する。根拠のある対応がない観点は不足、oracleがない場合は未評価として返す。未知のdriveは未評価とする。`drive=fe`が選択済みなら未見fixtureを理由に5軸の一部を省略せず、5軸すべてに対する結果を照合する。
+- 誤り：テスト観点が設計項目に対応しない、同じ観点を複数levelで重複計上する、または画面対象において5軸の一つの証跡がない／failする場合は該当scopeをfailまたは保留する。editorではpassしたがCIは旧版・別設定を実行した場合、二重実行の契約成立としない。
+- 未見：未公開の同scope設計項目を追加し、既存のテストレベル定義とoracleから適用観点を照合する。根拠のある対応がない観点は不足、oracleがない場合は未評価として返す。画面適用判定が不明なら未評価とする。画面対象と判定済みなら未見fixtureを理由に5軸の一部を省略せず、5軸すべてに対する結果を照合する。
+
+**画面適用の出所と戻し先**：HARNESS-L2-001/003のScreen Applicability記録（対象要求revision、画面の有無、理由、判定者、HEAD、再評価条件）と、当該ticketが参照する合意済みL2.5 Prototypeのscreen scopeから5軸の対象を特定する。OSはこの根拠をticket/profileへ結び付け、036は一致を照合する。画面があるのにscreen scopeや合意が欠けるときは非適用にせず、該当検証を保留して003/008へ戻す。非画面でPoCだけを要する場合はFE適用にしない。画面追加・scope変更・判定revision更新時は適用を再照合し、以前の非適用を流用しない。
 
 **旧source・保持/変更**：
 
@@ -761,3 +763,5 @@ BRAIN知識接続の正本は、[HELIXBRAIN-L2-030](../../helix-brain/L2-require
 - 同asset `docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md:53`（FR-L1-22、同file SHA、行SHA-256 `1cc6f208ebbbb6d900d791e546db07b6047e7a07e6a2071817391191b3abbdf9`）。原文は「FE detector 5 軸 (mock-promotion / design-token-drift / a11y-regression / visual-regression / state-transition-drift) の決定論的判定」、入力にL2 mock/design-token SSOT/screenshots/画面遷移定義、出力にDetectorResult pass/fail+詳細とCI証跡を指定する。軸・条件付き適用・出力を保持し、旧spec実装の移植はしない。
 - `LEGACY-ASSET-5429AA05B022E9F49B0A`、`docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/nfr.md:31`（NFR-06、file SHA-256 `4853a43c5ea12354dc2dab20dc3a52b15ff6be075e49fdaf1bff26280e992122`、行SHA-256 `0e1efa8f6017fd18bc55f46f1c9096c64cf3e0c2d7e73d8abef3bc3ed43c0c80`）。`drive=fe`のとき5軸pass証跡を必須にするfail-closeを保持する。旧`blockOnFailure=true`、exit code、stdin、hook等は現行の実装指定にしない。
 - 同asset `docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/nfr.md:51`（NFR-13、同file SHA、行SHA-256 `e1be1261c63355fe7439bad12c1c60df6fc130a91713a7a862169a7e5dbde0a1`）。原文条件は「同一 lint/gate を dev-local (editor PreToolUse / pre-commit) と CI (GHA harness-check) の両方で実行し、editor で fail なら commit 前に局所修正 loop に戻す」、cross-detectionの依存漏れ／契約漏れ／接続欠損／デグレとW抜け／重複の「0 件維持」、gate通過率「≥90% (KPI D-02、B5=b)」。同一適用gateの内容snapshot・契約版・scopeの二面照合、局所修正loop、各0件条件を保持する。旧hook/GHA名は現行実装依存にしない。≥90%は運用目標として保持し、適用母集団・期間・分母をL3で照合する。これを意味変更する場合はPO判断へ戻し、根拠なく個別gateの閾値にしない。全ticketで全検査を同時実行する拡張も行わない。
+
+旧`drive=fe`は原文として保持するが、現行の起動enumにはしない。2026-09-24 PO判断 `docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md:75-78` のticket化、およびHARNESS-L2-001/003の画面適用判断へ対応させる。5軸とfail-closeは保持し、適用の出所を画面有無・合意したscreen scope・対象ticketへ再導出する。旧drive fieldの不在で画面検証を脱落させず、非画面のPoCへ拡張しない。
