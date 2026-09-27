@@ -301,3 +301,14 @@ HELIXINTELLIGENCE-L2-069／HELIXINTELLIGENCE-L2-070／HELIXINTELLIGENCE-L2-071�
 - **評価証拠の再利用**：対象pack版/scope・oracle・shadow結果が一致する有効な既存証拠を使える。新規実験を行わなかったという理由だけで新しいWorker実験を一律要求しない。実験を選ぶ場合はLABO006のOS assignmentと実行結果、system化/operation配分を評価する場合は007の証拠条件を確認する。再利用元がstale/比較不能なら未完に戻し、INTELLIGENCEの自己評価だけで有効性を確定しない。
 
 - **配置・版の判断境界（R2225-01）**：BR-29の既存HARNESS／OS・1.0 pack運用案と、072のINTELLIGENCE判断候補配置案はL2のA/BでPO確認に残す。072の受入案が整ってもB採択済みと表示しない。正常例は判断候補/適用gap/shadow状態までとし、OS登録・LABO効果評価の責務を維持する。3.0の学習入力接続、ローカルモデル学習・調整を1.0成立条件にした例、または旧配置案との差分を記録せず確定した例を拒否する。
+
+
+#### HIL-FR-57/58追補fixture（未採択候補、FR58の版境界付き）
+
+- **正常**：適用可能な工程/domain/riskと既存authority、判断目的/観点/反証質問/evidence/停止条件、構成sourceと版を結んだpack candidateを作る。重複componentの整理でもsource edgeを保持し、競合sourceがあればconflict/unknownとしてcandidate内に残す。欠けたsource、実績、評価結果を捏造しない。
+- **未完だが正常な段階**：候補descriptorを作成した時点でshadow、独立review、rollback evidenceが未実施なら、各々を未完義務として出力できる。これらのreceiptを候補生成の事前条件にして自己依存させない。ただし未完の候補をshadow済み、review済み、rollback確認済み、activeとして表示しない。
+- **比較fixture**：同一scope/revision/case/oracleのcandidateあり・なし結果を対照し、既知false-positive、false-negative、unknown、seeded counterexampleをscorecardへ反映する。比較条件が一致しない結果は比較不能/未評価とする。case追加や閾値の創作で差を成功扱いしない。
+- **独立性fixture**：作成側と異なるreviewer identity/context/authority/routeが独立にevidenceを読む例を受け入れる。作成側worker自身または同workerのsubagent reviewは拒否する。provider/modelまたはruntimeが同じ/異なるという事実だけでは独立性を判定せず、2026-09-26 PO判断の条件を適用する。
+- **rollback/active境界fixture**：rollback先・戻し条件・該当versionのrollback evidenceが欠ける、またはshadow/独立reviewが未完の候補をactive/強制gateとして出したら不合格。全証跡が揃った例でも、対象authorityの採択記録なしに072がactive化した場合は不合格。owner/OSの既存採択・rollback記録があれば参照し、INTELLIGENCEの自己評価receiptで代替しない。
+- **FR58の版境界**：finding/reversal/retry/escaped defect/skill efficacyからINTELLIGENCEが不足観点を候補化し、1.0 packを自動改善する例は不合格。1.0〜2.xの知識評価・保持はHMC-BR-003に従いLABOの範囲に残し、INTELLIGENCEによる改善利用は3.0以降の保留として扱う。3.0の利用を1.0の依存・受入条件にしない。
+- **未見**：初回と異なるrisk/failure mode、構成skillの衝突、source revision・評価状態のunknownを含む例で、適用外/unknown/conflict/未評価を返す。未見を既定pack適用可、改善根拠、activeへ自動変換しない。
