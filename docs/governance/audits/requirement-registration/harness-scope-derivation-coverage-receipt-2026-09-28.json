@@ -1,0 +1,62 @@
+{
+  "receipt_id": "MPR-RCPT-HARNESS-SCOPE-DERIVATION-2026-09-28",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom順に改行で区切る。末尾改行なし。",
+  "scope": "旧HIL-FR-38/HIL-NFR-23の原文2行と既存IR identityの明示対応。MPR-SH-IR-001と意味重複し、独立要求数に加算しない。全IR/旧文書の被覆ではない。",
+  "candidates": [
+    {
+      "requirement_identity": "HARNESS-L2-035",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HARNESS-L1-008"
+      ],
+      "candidate_semantic_digest": "sha256:7eabe1b8feefc4f7d954cf182a20d6db5c9f7ebd3e253767cc41c9def6d61896",
+      "source_atom_set_digest": "sha256:4ac99b9c228a13a909610a9b0519ab811993ce6c175b42b6e42e966d2e9a9013",
+      "source_atom_count": 2,
+      "source_collection_scope": "旧HIL-FR-38/HIL-NFR-23の原文2行と既存IR identityの明示対応。MPR-SH-IR-001と意味重複し、独立要求数に加算しない。全IR/旧文書の被覆ではない。",
+      "atoms": [
+        {
+          "atom_id": "SCOPE-DERIVATION-HIL-FR-38-L0128",
+          "source_holding_registration_id": "MPR-SH-SCOPE-DERIVATION-001",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 128,
+          "source_line_sha256": "sha256:58fe296f29fa6778ab21d22dee62a8dc65ed416dc8099c45092b564de3329ba8",
+          "source_text": "| **HIL-FR-38** | Scope Authority Gateは各capabilityの根拠をchat directive、L0、PO-approved scopeまたはそのderivation chainへ結び、acceptance寄与、最小性、代替案、budget消費を検査する。後付け要件だけの循環根拠を拒否する。 | authority edge、necessity proof、budget receipt |",
+          "ir_requirement_id": "HIL-FR-38",
+          "ir_source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-38",
+          "ir_statement_semantic_digest": "sha256:1e9fcc442e00d47b8e3a876bb7eb139356f9447fbce661f77c6cd5c9cd6a870b",
+          "ir_record_semantic_digest": "sha256:e53592e9f662eca67ed89e38011462d8698a4d208e308d9e586853d3798ec686",
+          "disposition": "carried",
+          "relation": "原文根拠・受入寄与・最小性・代替案・budget根拠と後付け循環拒否をL2-035入力/提供/必要性、L11正常/個別反例へ。"
+        },
+        {
+          "atom_id": "SCOPE-DERIVATION-HIL-NFR-23-L0203",
+          "source_holding_registration_id": "MPR-SH-SCOPE-DERIVATION-001",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 203,
+          "source_line_sha256": "sha256:a85c36b3ae6562e79cb34e58c41d6b061ef45da37a5d8bc5d88f1694c3065291",
+          "source_text": "| **HIL-NFR-23** | scope derivation graphはacyclicでauthoritative rootへ到達し、capability自身または同時追加HILだけを根拠にするcycleを拒否する。 |",
+          "ir_requirement_id": "HIL-NFR-23",
+          "ir_source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-23",
+          "ir_statement_semantic_digest": "sha256:27ea355917c7115610a257a83f695b750701e0a54201bc7aa790864490243861",
+          "ir_record_semantic_digest": "sha256:c0c469c8dff0ac5972aab0f63ef2dac75133063a4eeef408d0438c6bb4e53b54",
+          "disposition": "carried",
+          "relation": "authoritative rootまでの非循環導出、能力自身/同時追加候補だけの自己根拠拒否をL2-035提供/循環、L11個別反例/未見へ。"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-008",
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-024",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md#harness-l2-035"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    }
+  ],
+  "pre_isolation_delta_matches": []
+}
