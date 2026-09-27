@@ -1,0 +1,106 @@
+{
+  "receipt_id": "MPR-RCPT-HARNESS-LAYER-LEDGER-EXTRACTION-2026-09-28-R2",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom順に改行で区切る。末尾改行なし。",
+  "scope": "旧HIL-FR-46/47のarchive L1要求表2行の条件別split。HARNESS-CORE候補へ意味契約・gapを保持し、ledger登録writer、layer snapshot生成、ledgerへの候補行追加の実行/保存を生存source holdingへ保留。候補採択、OS実行、旧IR/HR-FR-HIL-18・HAC/HAT全体の被覆は主張しない。",
+  "candidates": [
+    {
+      "requirement_identity": "HARNESS-L2-040",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HARNESS-L1-001",
+        "HARNESS-L1-003",
+        "HARNESS-L1-004"
+      ],
+      "candidate_semantic_digest": "sha256:c349606d7798e3f4eb5e6cb31e0618a83dcfa05f9fc888b0ce618f6d160757df",
+      "source_atom_set_digest": "sha256:b0c34e7f87f3c70133db44a9be1a38d00a994bc5abe6f65c3c3ca4faa3c290a0",
+      "source_atom_count": 1,
+      "source_collection_scope": "旧HIL-FR-46/47のarchive L1要求表2行の条件別split。HARNESS-CORE候補へ意味契約・gapを保持し、ledger登録writer、layer snapshot生成、ledgerへの候補行追加の実行/保存を生存source holdingへ保留。候補採択、OS実行、旧IR/HR-FR-HIL-18・HAC/HAT全体の被覆は主張しない。",
+      "atoms": [
+        {
+          "atom_id": "LAYER-LEDGER-HIL-FR-46-L0136",
+          "source_holding_registration_id": "MPR-SH-HARNESS-LAYER-LEDGER-EXTRACTION-001",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 136,
+          "source_line_sha256": "sha256:a62b63ab18b23ac9564d6c7ffca7580ac9471a6d6e7374f8e4a26c93f0441b6c",
+          "source_text": "| **HIL-FR-46** | Layer Ledger Registryはcanonical L1–L12ごとにledger type、粒度、必須node/edge、authority、input/output、entry/exit gate、template versionを登録する。L0 charterは層外authority anchorとして別登録する。各layer ledgerのrowはstable subject ID、revision、source span、semantic digest、status、owner、downstream/upstream edgeを持つ。 | layer ledger catalog、row revision、layer snapshot、coverage receipt |",
+          "ir_requirement_id": "HIL-FR-46",
+          "ir_source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-46",
+          "ir_statement_semantic_digest": "sha256:0255c7c9107d749eee633f9b94612ee7da059e544021824a3fa65b299afae7b3",
+          "ir_record_semantic_digest": "sha256:e17cdfbced6952ae8236b417fc80a963d73aa02d8650d80f02ae1f3afffbe634",
+          "disposition": "split",
+          "relation": "保持: HARNESS-CORE 040/L11-040がL1–L12 catalogの意味、L0別record、row identity/edge、snapshot/coverage契約を定める。関連するOS-L2-015はauthority/sourceの管理record、016は対象状態/trace、017はticket運転を担う。保留: layer ledgerの実登録writer、snapshot生成、coverage receiptの保存/発行の具体的な現行OS能力は015/016/017に明示されない。原文の実行/保存部分はMPR-SH-HARNESS-LAYER-LEDGER-EXTRACTION-001に残す。"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-harness/L1-planning/product-intent.md#harness-l1-001",
+        "docs/helix-harness/L1-planning/product-intent.md#harness-l1-003",
+        "docs/helix-harness/L1-planning/product-intent.md#harness-l1-004",
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-025",
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-026",
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-015",
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-016",
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-017"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": [],
+      "preserved_pending_registration_refs": [
+        "MPR-SH-HARNESS-LAYER-LEDGER-EXTRACTION-001"
+      ]
+    },
+    {
+      "requirement_identity": "HARNESS-L2-041",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HARNESS-L1-001",
+        "HARNESS-L1-003",
+        "HARNESS-L1-004",
+        "HARNESS-L1-009"
+      ],
+      "candidate_semantic_digest": "sha256:d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260",
+      "source_atom_set_digest": "sha256:a586be988524a1f702b1a2acc9118224cc0248ac16868193f9bebf132dd3e2f0",
+      "source_atom_count": 1,
+      "source_collection_scope": "旧HIL-FR-46/47のarchive L1要求表2行の条件別split。HARNESS-CORE候補へ意味契約・gapを保持し、ledger登録writer、layer snapshot生成、ledgerへの候補行追加の実行/保存を生存source holdingへ保留。候補採択、OS実行、旧IR/HR-FR-HIL-18・HAC/HAT全体の被覆は主張しない。",
+      "atoms": [
+        {
+          "atom_id": "TEMPLATE-EXTRACT-HIL-FR-47-L0137",
+          "source_holding_registration_id": "MPR-SH-HARNESS-LAYER-LEDGER-EXTRACTION-001",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 137,
+          "source_line_sha256": "sha256:785f0998ca9fd2192bcddc638d1ef1233551c251e307e631303642abe7713fad",
+          "source_text": "| **HIL-FR-47** | Template Obligation Extractorは各layerのactive templateから章、field、table row、applicability rule、done-when、pair contractを原子的obligationとして機械抽出し、該当ledgerへ候補行を追加する。未対応template要素、空/TBD、抽出不能、同一obligation重複をfinding化し、LLM自由補完で埋めない。 | template atom、ledger proposal、extractor/version digest、gap finding |",
+          "ir_requirement_id": "HIL-FR-47",
+          "ir_source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-47",
+          "ir_statement_semantic_digest": "sha256:b1a61c1eb5f24a741168801fed3b323578151edabb2f62d1d47e239861dc1dca",
+          "ir_record_semantic_digest": "sha256:830e3870dcece39c096de9d792013f0b993379d5a36291f95f66946ee47f3966",
+          "disposition": "split",
+          "relation": "保持: HARNESS-CORE 041/L11-041がactive templateの機械的obligation抽出、atom/proposal、gap/digestの意味を定める。OS-L2-015/016/017はauthority記録、状態trace、ticket運転の隣接責務だが、該当ledgerへ候補行を実際に追加するwriterを明示しない。保留: 候補行の正本ledger追加・保存/実行部分をMPR-SH-HARNESS-LAYER-LEDGER-EXTRACTION-001に残す。旧配置差はreceipt placement_differenceに記録する。"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-harness/L1-planning/product-intent.md#harness-l1-001",
+        "docs/helix-harness/L1-planning/product-intent.md#harness-l1-003",
+        "docs/helix-harness/L1-planning/product-intent.md#harness-l1-004",
+        "docs/helix-harness/L1-planning/product-intent.md#harness-l1-009",
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-009",
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-025",
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-026",
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-015",
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-016",
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-017"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": [],
+      "preserved_pending_registration_refs": [
+        "MPR-SH-HARNESS-LAYER-LEDGER-EXTRACTION-001"
+      ]
+    }
+  ],
+  "supersedes_receipt_id": "MPR-RCPT-HARNESS-LAYER-LEDGER-EXTRACTION-2026-09-28",
+  "placement_difference": "FR46は旧機能照合表・rehome queue・PO packetいずれもHARNESS/OS。FR47は機能照合表（docs/governance/audits/source-rebaseline/infinity-functional-target-crosswalk.md:56）とrehome queue（docs/governance/legacy-migration/ir/legacy-ir-w2-functional-rehome-queue.md:429-431）がOSのみ、PO packet（docs/governance/crosswalks/concept-requirement-po-decision-packet.md:1001）がHARNESS/OS。現行HARNESS-L1-009とL2-009のtemplate設計義務に従い抽出意味/gap契約をHARNESS-CORE候補に置き、OSに登録・保存・実行を残す。ただしOS-L2-015/016/017はauthority記録・状態trace・ticket運転までで、layer ledger writer、snapshot生成、候補行の正本追加を明示しないため、この実行部分は未割当のまま保持する。これは旧候補配置からの差分と理由の記録であり、POの採択や正式successor決定を代行しない。"
+}
