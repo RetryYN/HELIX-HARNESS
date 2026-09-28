@@ -509,8 +509,8 @@
     "old_source_sha_files_match_mapping": true,
     "current_main_target_evidence_collected": true,
     "l11_direct_identity_missing_count": 0,
-    "all_l11_exact_rows_or_sections": false,
-    "l11_reference_only_count": 5,
+    "all_l11_exact_rows_or_sections": true,
+    "l11_reference_only_count": 0,
     "l11_no_exact_identity_count": 0
   },
   "rules": {
@@ -1115,6 +1115,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             },
@@ -1131,6 +1136,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             }
@@ -2694,6 +2704,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             },
@@ -2710,6 +2725,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             }
@@ -9680,6 +9700,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             },
@@ -9696,6 +9721,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             }
@@ -10772,6 +10802,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             },
@@ -10788,6 +10823,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             }
@@ -11865,6 +11905,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             },
@@ -11881,6 +11926,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             }
@@ -13073,6 +13123,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             },
@@ -13089,6 +13144,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             }
@@ -14227,6 +14287,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             },
@@ -14243,6 +14308,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             }
@@ -15320,6 +15390,11 @@
                   "line": 211,
                   "line_sha256": "57867720dcebe20c1a5af7dbd4a79b566c4ef3d64fffb8674bf527d308c3e780",
                   "text": "| HARNESS-L2-016 | ⑤だけを導入した環境で、振る舞い・契約・要求を保てる変更がRefactorされ、意味が変わる変更は対応する左の層へBackflowされる。Performance Refactorでは固定したbaselineと回帰oracleで比べる | 右側で左側のauthorityを黙って書き換える／測定できない高速化を採る／設計と契約のないコードをReverseなしで扱う |"
+                },
+                {
+                  "line": 324,
+                  "line_sha256": "58f9079e6f14952dd17fc606418e3eb63b33d7067971f50c455c67bf73b652df",
+                  "text": "| `HARNESS-L2-016` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-007`, `HARNESS-L1-003`） | performance比較は既存baseline/budget/workload/profile/statistical condition/regression oracleに従い、対象scopeのbefore/after結果と契約回帰を示す。費用・時間改善でbehavior/contract/requirement退行を相殺しない。 | profile対象の局所改善でregressionを隠す／性能oracleなしに「速い」とする／右側で上流意味を変更する。 |"
                 }
               ]
             },
@@ -15336,6 +15411,11 @@
                   "line": 211,
                   "line_sha256": "57867720dcebe20c1a5af7dbd4a79b566c4ef3d64fffb8674bf527d308c3e780",
                   "text": "| HARNESS-L2-016 | ⑤だけを導入した環境で、振る舞い・契約・要求を保てる変更がRefactorされ、意味が変わる変更は対応する左の層へBackflowされる。Performance Refactorでは固定したbaselineと回帰oracleで比べる | 右側で左側のauthorityを黙って書き換える／測定できない高速化を採る／設計と契約のないコードをReverseなしで扱う |"
+                },
+                {
+                  "line": 324,
+                  "line_sha256": "58f9079e6f14952dd17fc606418e3eb63b33d7067971f50c455c67bf73b652df",
+                  "text": "| `HARNESS-L2-016` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-007`, `HARNESS-L1-003`） | performance比較は既存baseline/budget/workload/profile/statistical condition/regression oracleに従い、対象scopeのbefore/after結果と契約回帰を示す。費用・時間改善でbehavior/contract/requirement退行を相殺しない。 | profile対象の局所改善でregressionを隠す／性能oracleなしに「速い」とする／右側で上流意味を変更する。 |"
                 }
               ]
             }
@@ -15405,6 +15485,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             },
@@ -15421,6 +15506,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             }
@@ -16501,6 +16591,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             },
@@ -16517,6 +16612,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             }
@@ -18109,6 +18209,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             },
@@ -18125,6 +18230,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             }
@@ -19829,6 +19939,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             },
@@ -19845,6 +19960,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             }
@@ -21159,6 +21279,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             },
@@ -21175,6 +21300,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             }
@@ -21660,6 +21790,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             },
@@ -21676,6 +21811,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             }
@@ -21739,9 +21879,14 @@
                   "line": 163,
                   "line_sha256": "ffa0e23c02aa472fa254613c5b72f03b32eda4b1423f1ec7e4392d4873455670",
                   "text": "| HELIXINTELLIGENCE-L2-010 | 親: HELIXINTELLIGENCE-L1-010。単体（ticket別placement proposal）。接続context: HELIXINTELLIGENCE-L2-034, HELIXINTELLIGENCE-L2-035, HELIXINTELLIGENCE-L2-037, HELIXINTELLIGENCE-L2-061。1.0。 | **正常**: task capability/tool/domainと同scopeの実績とLABO HELIX-Benchの作業種別・model class別水準/根拠を示し、候補Workerの条件適合をexpected evidenceで照合する。oracleは適合条件と配置案理由が実績およびBench task-class evidenceの適用範囲に合うこと。**誤り**: price/nameだけの順位、scope外実績の適用、未評価Workerのqualified扱い、Bench作業種別/適用範囲の不一致を無視した配置案を不合格とする。Bench水準が未評価なら候補も未評価を保ち、証拠不足はLABOへ戻す。**未見**: 未公開task/worker profile組合せで適合scope内の候補だけを提示し、証拠がなければ未評価を保つ。OSがassignment/進行を行うことを確認し、INTELLIGENCEのproposalを実割当成功としない。 |"
+                },
+                {
+                  "line": 197,
+                  "line_sha256": "86511f10f973862afa916f1b4e39371132ba69043c93f8505355bc4bdb94f2b4",
+                  "text": "| `HELIXINTELLIGENCE-L2-010` L11補強（単体、parent `HELIXINTELLIGENCE-L1-010`; input-contract context candidate `HELIXINTELLIGENCE-L2-067`） | 既存L2-010のplacement proposalが、入力契約候補L2-067で定めるscope/revision有効なquality gate・priority/toleranceと、既存L2-034経由のLABO比較材料を使い、Worker/effort候補の理由・除外・不確実性・未評価を示す。proposalはOS assignment/進行へ別handoffする。 | 価格/model/benchmark単独で決める／必要品質未達・unknown・未評価を隠す／既決decisionが適用境界内なのに毎run確認を求める／proposalが割当・実行許可になる／human interventionを除いた費用を総費用として扱う。 |"
                 }
               ],
-              "section_sha256": "85e4e1752099b60103cea60febd4f7c065eb0055182ee59b5313fa1135ef6eb7"
+              "section_sha256": "073b0aeaae01c179179bce6ad0796862b521f4f8aabc633c8ab333ecadfb335f"
             },
             "current_main_identity_chunk": {
               "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
@@ -21762,9 +21907,14 @@
                   "line": 163,
                   "line_sha256": "ffa0e23c02aa472fa254613c5b72f03b32eda4b1423f1ec7e4392d4873455670",
                   "text": "| HELIXINTELLIGENCE-L2-010 | 親: HELIXINTELLIGENCE-L1-010。単体（ticket別placement proposal）。接続context: HELIXINTELLIGENCE-L2-034, HELIXINTELLIGENCE-L2-035, HELIXINTELLIGENCE-L2-037, HELIXINTELLIGENCE-L2-061。1.0。 | **正常**: task capability/tool/domainと同scopeの実績とLABO HELIX-Benchの作業種別・model class別水準/根拠を示し、候補Workerの条件適合をexpected evidenceで照合する。oracleは適合条件と配置案理由が実績およびBench task-class evidenceの適用範囲に合うこと。**誤り**: price/nameだけの順位、scope外実績の適用、未評価Workerのqualified扱い、Bench作業種別/適用範囲の不一致を無視した配置案を不合格とする。Bench水準が未評価なら候補も未評価を保ち、証拠不足はLABOへ戻す。**未見**: 未公開task/worker profile組合せで適合scope内の候補だけを提示し、証拠がなければ未評価を保つ。OSがassignment/進行を行うことを確認し、INTELLIGENCEのproposalを実割当成功としない。 |"
+                },
+                {
+                  "line": 197,
+                  "line_sha256": "86511f10f973862afa916f1b4e39371132ba69043c93f8505355bc4bdb94f2b4",
+                  "text": "| `HELIXINTELLIGENCE-L2-010` L11補強（単体、parent `HELIXINTELLIGENCE-L1-010`; input-contract context candidate `HELIXINTELLIGENCE-L2-067`） | 既存L2-010のplacement proposalが、入力契約候補L2-067で定めるscope/revision有効なquality gate・priority/toleranceと、既存L2-034経由のLABO比較材料を使い、Worker/effort候補の理由・除外・不確実性・未評価を示す。proposalはOS assignment/進行へ別handoffする。 | 価格/model/benchmark単独で決める／必要品質未達・unknown・未評価を隠す／既決decisionが適用境界内なのに毎run確認を求める／proposalが割当・実行許可になる／human interventionを除いた費用を総費用として扱う。 |"
                 }
               ],
-              "section_sha256": "85e4e1752099b60103cea60febd4f7c065eb0055182ee59b5313fa1135ef6eb7"
+              "section_sha256": "073b0aeaae01c179179bce6ad0796862b521f4f8aabc633c8ab333ecadfb335f"
             }
           },
           "candidate_status": "explicit_candidate_adopted_and_target_text_unchanged",
@@ -21826,9 +21976,14 @@
                   "line": 164,
                   "line_sha256": "f3b5b6c96322d045af0d8e574b0becad3054fe16de7231422d3dacfb6fa39915",
                   "text": "| HELIXINTELLIGENCE-L2-011 | 親: HELIXINTELLIGENCE-L1-011。単体（同一corpus/responsibility scopeのmodel/provider比較）。接続context: HELIXINTELLIGENCE-L2-034, HELIXINTELLIGENCE-L2-041。1.0。 | **正常**: current/candidate双方へ同じtask corpus/task snapshot・scoring version・run protocol・hardware classと独立oracleを適用し、実際のfinding、FP、miss、再現性、latency、costの比較値がrun記録と一致する。cacheや手介入を含む実行条件を揃え、費用にはpricing source/currency/effective timestamp/charging classを結び付ける。**誤り**: corpus/version/scope/protocol/hardwareやcache/手介入条件の違いを隠して同条件比較とする、価格根拠の違い・欠測を隠す、miss/FPを落とす、またはversion名だけで優位判定すれば不合格。**未見**: held-out例についても事前に同条件化した比較からscope別実績を出し、比較条件欠落は比較不能にする。データがない指標はunknownであり順位や一般優位を生成しない。 |"
+                },
+                {
+                  "line": 198,
+                  "line_sha256": "3f49c83520bcb41c281059acad39abe9c92d64a837b998c7528e4eb36ad1174f",
+                  "text": "| `HELIXINTELLIGENCE-L2-011` L11補強（単体、parent `HELIXINTELLIGENCE-L1-011`） | 同一corpus/responsibility scope、quality oracle、run version/protocolを揃え、findings/FP/miss/reproducibility/latency/costとrescue/rework/human interventionを別々に比較する。baseline/current/candidate/hybridは実験条件、HELIXなし/旧/新はcohortとして別軸に保持する。priority/toleranceのない指標に勝敗を付けず、必要scopeの結果に限定する。 | model更新名や価格だけで上位認定／同条件でない結果を順位化／救援・人修正を除外／欠測費用をゼロとする／比較結果から自動差替えする。 |"
                 }
               ],
-              "section_sha256": "55abda20c0385ec6e5c4f6d87cae9cec24434557ce7381f4981ca06273dc9d28"
+              "section_sha256": "4d49f874a4fb742127ab4af74fdd70df7270baf9d75879669fedb41f200e2342"
             },
             "current_main_identity_chunk": {
               "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
@@ -21849,9 +22004,14 @@
                   "line": 164,
                   "line_sha256": "f3b5b6c96322d045af0d8e574b0becad3054fe16de7231422d3dacfb6fa39915",
                   "text": "| HELIXINTELLIGENCE-L2-011 | 親: HELIXINTELLIGENCE-L1-011。単体（同一corpus/responsibility scopeのmodel/provider比較）。接続context: HELIXINTELLIGENCE-L2-034, HELIXINTELLIGENCE-L2-041。1.0。 | **正常**: current/candidate双方へ同じtask corpus/task snapshot・scoring version・run protocol・hardware classと独立oracleを適用し、実際のfinding、FP、miss、再現性、latency、costの比較値がrun記録と一致する。cacheや手介入を含む実行条件を揃え、費用にはpricing source/currency/effective timestamp/charging classを結び付ける。**誤り**: corpus/version/scope/protocol/hardwareやcache/手介入条件の違いを隠して同条件比較とする、価格根拠の違い・欠測を隠す、miss/FPを落とす、またはversion名だけで優位判定すれば不合格。**未見**: held-out例についても事前に同条件化した比較からscope別実績を出し、比較条件欠落は比較不能にする。データがない指標はunknownであり順位や一般優位を生成しない。 |"
+                },
+                {
+                  "line": 198,
+                  "line_sha256": "3f49c83520bcb41c281059acad39abe9c92d64a837b998c7528e4eb36ad1174f",
+                  "text": "| `HELIXINTELLIGENCE-L2-011` L11補強（単体、parent `HELIXINTELLIGENCE-L1-011`） | 同一corpus/responsibility scope、quality oracle、run version/protocolを揃え、findings/FP/miss/reproducibility/latency/costとrescue/rework/human interventionを別々に比較する。baseline/current/candidate/hybridは実験条件、HELIXなし/旧/新はcohortとして別軸に保持する。priority/toleranceのない指標に勝敗を付けず、必要scopeの結果に限定する。 | model更新名や価格だけで上位認定／同条件でない結果を順位化／救援・人修正を除外／欠測費用をゼロとする／比較結果から自動差替えする。 |"
                 }
               ],
-              "section_sha256": "55abda20c0385ec6e5c4f6d87cae9cec24434557ce7381f4981ca06273dc9d28"
+              "section_sha256": "4d49f874a4fb742127ab4af74fdd70df7270baf9d75879669fedb41f200e2342"
             }
           },
           "candidate_status": "explicit_candidate_adopted_and_target_text_unchanged",
@@ -22033,18 +22193,38 @@
             "fixed_identity_chunk": {
               "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
               "file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
-              "kind": "reference_only",
-              "line": 166,
-              "line_sha256": "ac1df69b1afa5f78bf623a7aba320235cf0a389ff63ebed524338053efb2416c",
-              "text": "[LABOの比較評価候補](../../helix-labo/L2-requirements/labo-requirements.md) HELIXLABO-L2-059および[INTELLIGENCEの配置入力契約候補](../../helix-intelligence/L2-requirements/intelligence-requirements.md) HELIXINTELLIGENCE-L2-067との責務境界を保持する。対象scopeに有効な品質・優先・許容悪化の判断は再利用し、未決・失効・適用境界外のみ判断ownerへ戻す。本追補は未実行の受入候補であり、実測改善や要求採択を生成しない。"
+              "kind": "table_rows",
+              "canonical": {
+                "line": 170,
+                "line_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62",
+                "text": "| `HELIXLABO-L2-059`（単体候補、parent `HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context） | scope/revisionに適用可能なquality oracleと既決priority/tolerance（適用可能な判断のrunごとの再確認なし）、同一task snapshot/scorer/protocol/hardware条件、現行実験のOS割当Worker receipt（歴史runは当時の実行者・authority・receipt）を与える。decisionが未決/失効/適用境界外ならownerへ戻す。実験条件baseline/current/candidate/hybridとHELIXなし/旧版/新版cohortを別軸で記録し、比較目的と群を明示し、導入効果はあり／なし、改訂効果は旧版／新版、三者の関係を主張する場合だけ三者を要求する。未選択群の不足を選択した二者比較の不成立理由にしない。品質gateを先に個別判定し、retry・上位Worker救援・rework・CI・review・人修正込みの費用、所要時間、人介入を分ける。欠測通貨・非貨幣化人時間・比較不能cohortは明示する。 | 劣化品質を価格/速度で相殺／初回candidate単価だけで安価認定／上位救援・人修正・retryを除外／未承認換算率で人時間を0円化／受入成果なしを効率成功扱い／実験条件とcohortを混ぜる／scope・oracle・protocol・hardware・run version違いを混ぜる／歴史結果をcurrent性能へ転用／LABOがWorkerを割当・起動する。 |"
+              },
+              "all_direct_table_rows": [
+                {
+                  "line": 170,
+                  "line_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62",
+                  "text": "| `HELIXLABO-L2-059`（単体候補、parent `HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context） | scope/revisionに適用可能なquality oracleと既決priority/tolerance（適用可能な判断のrunごとの再確認なし）、同一task snapshot/scorer/protocol/hardware条件、現行実験のOS割当Worker receipt（歴史runは当時の実行者・authority・receipt）を与える。decisionが未決/失効/適用境界外ならownerへ戻す。実験条件baseline/current/candidate/hybridとHELIXなし/旧版/新版cohortを別軸で記録し、比較目的と群を明示し、導入効果はあり／なし、改訂効果は旧版／新版、三者の関係を主張する場合だけ三者を要求する。未選択群の不足を選択した二者比較の不成立理由にしない。品質gateを先に個別判定し、retry・上位Worker救援・rework・CI・review・人修正込みの費用、所要時間、人介入を分ける。欠測通貨・非貨幣化人時間・比較不能cohortは明示する。 | 劣化品質を価格/速度で相殺／初回candidate単価だけで安価認定／上位救援・人修正・retryを除外／未承認換算率で人時間を0円化／受入成果なしを効率成功扱い／実験条件とcohortを混ぜる／scope・oracle・protocol・hardware・run version違いを混ぜる／歴史結果をcurrent性能へ転用／LABOがWorkerを割当・起動する。 |"
+                }
+              ],
+              "section_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62"
             },
             "current_main_identity_chunk": {
               "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
               "file_sha256": "119fa43bce6753bdb0fed5420641617b9665907a7b1c3b2e6def590098e7442d",
-              "kind": "reference_only",
-              "line": 166,
-              "line_sha256": "ac1df69b1afa5f78bf623a7aba320235cf0a389ff63ebed524338053efb2416c",
-              "text": "[LABOの比較評価候補](../../helix-labo/L2-requirements/labo-requirements.md) HELIXLABO-L2-059および[INTELLIGENCEの配置入力契約候補](../../helix-intelligence/L2-requirements/intelligence-requirements.md) HELIXINTELLIGENCE-L2-067との責務境界を保持する。対象scopeに有効な品質・優先・許容悪化の判断は再利用し、未決・失効・適用境界外のみ判断ownerへ戻す。本追補は未実行の受入候補であり、実測改善や要求採択を生成しない。"
+              "kind": "table_rows",
+              "canonical": {
+                "line": 170,
+                "line_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62",
+                "text": "| `HELIXLABO-L2-059`（単体候補、parent `HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context） | scope/revisionに適用可能なquality oracleと既決priority/tolerance（適用可能な判断のrunごとの再確認なし）、同一task snapshot/scorer/protocol/hardware条件、現行実験のOS割当Worker receipt（歴史runは当時の実行者・authority・receipt）を与える。decisionが未決/失効/適用境界外ならownerへ戻す。実験条件baseline/current/candidate/hybridとHELIXなし/旧版/新版cohortを別軸で記録し、比較目的と群を明示し、導入効果はあり／なし、改訂効果は旧版／新版、三者の関係を主張する場合だけ三者を要求する。未選択群の不足を選択した二者比較の不成立理由にしない。品質gateを先に個別判定し、retry・上位Worker救援・rework・CI・review・人修正込みの費用、所要時間、人介入を分ける。欠測通貨・非貨幣化人時間・比較不能cohortは明示する。 | 劣化品質を価格/速度で相殺／初回candidate単価だけで安価認定／上位救援・人修正・retryを除外／未承認換算率で人時間を0円化／受入成果なしを効率成功扱い／実験条件とcohortを混ぜる／scope・oracle・protocol・hardware・run version違いを混ぜる／歴史結果をcurrent性能へ転用／LABOがWorkerを割当・起動する。 |"
+              },
+              "all_direct_table_rows": [
+                {
+                  "line": 170,
+                  "line_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62",
+                  "text": "| `HELIXLABO-L2-059`（単体候補、parent `HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context） | scope/revisionに適用可能なquality oracleと既決priority/tolerance（適用可能な判断のrunごとの再確認なし）、同一task snapshot/scorer/protocol/hardware条件、現行実験のOS割当Worker receipt（歴史runは当時の実行者・authority・receipt）を与える。decisionが未決/失効/適用境界外ならownerへ戻す。実験条件baseline/current/candidate/hybridとHELIXなし/旧版/新版cohortを別軸で記録し、比較目的と群を明示し、導入効果はあり／なし、改訂効果は旧版／新版、三者の関係を主張する場合だけ三者を要求する。未選択群の不足を選択した二者比較の不成立理由にしない。品質gateを先に個別判定し、retry・上位Worker救援・rework・CI・review・人修正込みの費用、所要時間、人介入を分ける。欠測通貨・非貨幣化人時間・比較不能cohortは明示する。 | 劣化品質を価格/速度で相殺／初回candidate単価だけで安価認定／上位救援・人修正・retryを除外／未承認換算率で人時間を0円化／受入成果なしを効率成功扱い／実験条件とcohortを混ぜる／scope・oracle・protocol・hardware・run version違いを混ぜる／歴史結果をcurrent性能へ転用／LABOがWorkerを割当・起動する。 |"
+                }
+              ],
+              "section_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62"
             }
           },
           "candidate_status": "explicit_candidate_adopted_and_target_text_unchanged",
@@ -22417,6 +22597,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             },
@@ -22433,6 +22618,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             }
@@ -22496,9 +22686,14 @@
                   "line": 163,
                   "line_sha256": "ffa0e23c02aa472fa254613c5b72f03b32eda4b1423f1ec7e4392d4873455670",
                   "text": "| HELIXINTELLIGENCE-L2-010 | 親: HELIXINTELLIGENCE-L1-010。単体（ticket別placement proposal）。接続context: HELIXINTELLIGENCE-L2-034, HELIXINTELLIGENCE-L2-035, HELIXINTELLIGENCE-L2-037, HELIXINTELLIGENCE-L2-061。1.0。 | **正常**: task capability/tool/domainと同scopeの実績とLABO HELIX-Benchの作業種別・model class別水準/根拠を示し、候補Workerの条件適合をexpected evidenceで照合する。oracleは適合条件と配置案理由が実績およびBench task-class evidenceの適用範囲に合うこと。**誤り**: price/nameだけの順位、scope外実績の適用、未評価Workerのqualified扱い、Bench作業種別/適用範囲の不一致を無視した配置案を不合格とする。Bench水準が未評価なら候補も未評価を保ち、証拠不足はLABOへ戻す。**未見**: 未公開task/worker profile組合せで適合scope内の候補だけを提示し、証拠がなければ未評価を保つ。OSがassignment/進行を行うことを確認し、INTELLIGENCEのproposalを実割当成功としない。 |"
+                },
+                {
+                  "line": 197,
+                  "line_sha256": "86511f10f973862afa916f1b4e39371132ba69043c93f8505355bc4bdb94f2b4",
+                  "text": "| `HELIXINTELLIGENCE-L2-010` L11補強（単体、parent `HELIXINTELLIGENCE-L1-010`; input-contract context candidate `HELIXINTELLIGENCE-L2-067`） | 既存L2-010のplacement proposalが、入力契約候補L2-067で定めるscope/revision有効なquality gate・priority/toleranceと、既存L2-034経由のLABO比較材料を使い、Worker/effort候補の理由・除外・不確実性・未評価を示す。proposalはOS assignment/進行へ別handoffする。 | 価格/model/benchmark単独で決める／必要品質未達・unknown・未評価を隠す／既決decisionが適用境界内なのに毎run確認を求める／proposalが割当・実行許可になる／human interventionを除いた費用を総費用として扱う。 |"
                 }
               ],
-              "section_sha256": "85e4e1752099b60103cea60febd4f7c065eb0055182ee59b5313fa1135ef6eb7"
+              "section_sha256": "073b0aeaae01c179179bce6ad0796862b521f4f8aabc633c8ab333ecadfb335f"
             },
             "current_main_identity_chunk": {
               "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
@@ -22519,9 +22714,14 @@
                   "line": 163,
                   "line_sha256": "ffa0e23c02aa472fa254613c5b72f03b32eda4b1423f1ec7e4392d4873455670",
                   "text": "| HELIXINTELLIGENCE-L2-010 | 親: HELIXINTELLIGENCE-L1-010。単体（ticket別placement proposal）。接続context: HELIXINTELLIGENCE-L2-034, HELIXINTELLIGENCE-L2-035, HELIXINTELLIGENCE-L2-037, HELIXINTELLIGENCE-L2-061。1.0。 | **正常**: task capability/tool/domainと同scopeの実績とLABO HELIX-Benchの作業種別・model class別水準/根拠を示し、候補Workerの条件適合をexpected evidenceで照合する。oracleは適合条件と配置案理由が実績およびBench task-class evidenceの適用範囲に合うこと。**誤り**: price/nameだけの順位、scope外実績の適用、未評価Workerのqualified扱い、Bench作業種別/適用範囲の不一致を無視した配置案を不合格とする。Bench水準が未評価なら候補も未評価を保ち、証拠不足はLABOへ戻す。**未見**: 未公開task/worker profile組合せで適合scope内の候補だけを提示し、証拠がなければ未評価を保つ。OSがassignment/進行を行うことを確認し、INTELLIGENCEのproposalを実割当成功としない。 |"
+                },
+                {
+                  "line": 197,
+                  "line_sha256": "86511f10f973862afa916f1b4e39371132ba69043c93f8505355bc4bdb94f2b4",
+                  "text": "| `HELIXINTELLIGENCE-L2-010` L11補強（単体、parent `HELIXINTELLIGENCE-L1-010`; input-contract context candidate `HELIXINTELLIGENCE-L2-067`） | 既存L2-010のplacement proposalが、入力契約候補L2-067で定めるscope/revision有効なquality gate・priority/toleranceと、既存L2-034経由のLABO比較材料を使い、Worker/effort候補の理由・除外・不確実性・未評価を示す。proposalはOS assignment/進行へ別handoffする。 | 価格/model/benchmark単独で決める／必要品質未達・unknown・未評価を隠す／既決decisionが適用境界内なのに毎run確認を求める／proposalが割当・実行許可になる／human interventionを除いた費用を総費用として扱う。 |"
                 }
               ],
-              "section_sha256": "85e4e1752099b60103cea60febd4f7c065eb0055182ee59b5313fa1135ef6eb7"
+              "section_sha256": "073b0aeaae01c179179bce6ad0796862b521f4f8aabc633c8ab333ecadfb335f"
             }
           },
           "candidate_status": "explicit_candidate_adopted_and_target_text_unchanged",
@@ -22583,9 +22783,14 @@
                   "line": 164,
                   "line_sha256": "f3b5b6c96322d045af0d8e574b0becad3054fe16de7231422d3dacfb6fa39915",
                   "text": "| HELIXINTELLIGENCE-L2-011 | 親: HELIXINTELLIGENCE-L1-011。単体（同一corpus/responsibility scopeのmodel/provider比較）。接続context: HELIXINTELLIGENCE-L2-034, HELIXINTELLIGENCE-L2-041。1.0。 | **正常**: current/candidate双方へ同じtask corpus/task snapshot・scoring version・run protocol・hardware classと独立oracleを適用し、実際のfinding、FP、miss、再現性、latency、costの比較値がrun記録と一致する。cacheや手介入を含む実行条件を揃え、費用にはpricing source/currency/effective timestamp/charging classを結び付ける。**誤り**: corpus/version/scope/protocol/hardwareやcache/手介入条件の違いを隠して同条件比較とする、価格根拠の違い・欠測を隠す、miss/FPを落とす、またはversion名だけで優位判定すれば不合格。**未見**: held-out例についても事前に同条件化した比較からscope別実績を出し、比較条件欠落は比較不能にする。データがない指標はunknownであり順位や一般優位を生成しない。 |"
+                },
+                {
+                  "line": 198,
+                  "line_sha256": "3f49c83520bcb41c281059acad39abe9c92d64a837b998c7528e4eb36ad1174f",
+                  "text": "| `HELIXINTELLIGENCE-L2-011` L11補強（単体、parent `HELIXINTELLIGENCE-L1-011`） | 同一corpus/responsibility scope、quality oracle、run version/protocolを揃え、findings/FP/miss/reproducibility/latency/costとrescue/rework/human interventionを別々に比較する。baseline/current/candidate/hybridは実験条件、HELIXなし/旧/新はcohortとして別軸に保持する。priority/toleranceのない指標に勝敗を付けず、必要scopeの結果に限定する。 | model更新名や価格だけで上位認定／同条件でない結果を順位化／救援・人修正を除外／欠測費用をゼロとする／比較結果から自動差替えする。 |"
                 }
               ],
-              "section_sha256": "55abda20c0385ec6e5c4f6d87cae9cec24434557ce7381f4981ca06273dc9d28"
+              "section_sha256": "4d49f874a4fb742127ab4af74fdd70df7270baf9d75879669fedb41f200e2342"
             },
             "current_main_identity_chunk": {
               "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
@@ -22606,9 +22811,14 @@
                   "line": 164,
                   "line_sha256": "f3b5b6c96322d045af0d8e574b0becad3054fe16de7231422d3dacfb6fa39915",
                   "text": "| HELIXINTELLIGENCE-L2-011 | 親: HELIXINTELLIGENCE-L1-011。単体（同一corpus/responsibility scopeのmodel/provider比較）。接続context: HELIXINTELLIGENCE-L2-034, HELIXINTELLIGENCE-L2-041。1.0。 | **正常**: current/candidate双方へ同じtask corpus/task snapshot・scoring version・run protocol・hardware classと独立oracleを適用し、実際のfinding、FP、miss、再現性、latency、costの比較値がrun記録と一致する。cacheや手介入を含む実行条件を揃え、費用にはpricing source/currency/effective timestamp/charging classを結び付ける。**誤り**: corpus/version/scope/protocol/hardwareやcache/手介入条件の違いを隠して同条件比較とする、価格根拠の違い・欠測を隠す、miss/FPを落とす、またはversion名だけで優位判定すれば不合格。**未見**: held-out例についても事前に同条件化した比較からscope別実績を出し、比較条件欠落は比較不能にする。データがない指標はunknownであり順位や一般優位を生成しない。 |"
+                },
+                {
+                  "line": 198,
+                  "line_sha256": "3f49c83520bcb41c281059acad39abe9c92d64a837b998c7528e4eb36ad1174f",
+                  "text": "| `HELIXINTELLIGENCE-L2-011` L11補強（単体、parent `HELIXINTELLIGENCE-L1-011`） | 同一corpus/responsibility scope、quality oracle、run version/protocolを揃え、findings/FP/miss/reproducibility/latency/costとrescue/rework/human interventionを別々に比較する。baseline/current/candidate/hybridは実験条件、HELIXなし/旧/新はcohortとして別軸に保持する。priority/toleranceのない指標に勝敗を付けず、必要scopeの結果に限定する。 | model更新名や価格だけで上位認定／同条件でない結果を順位化／救援・人修正を除外／欠測費用をゼロとする／比較結果から自動差替えする。 |"
                 }
               ],
-              "section_sha256": "55abda20c0385ec6e5c4f6d87cae9cec24434557ce7381f4981ca06273dc9d28"
+              "section_sha256": "4d49f874a4fb742127ab4af74fdd70df7270baf9d75879669fedb41f200e2342"
             }
           },
           "candidate_status": "explicit_candidate_adopted_and_target_text_unchanged",
@@ -22790,18 +23000,38 @@
             "fixed_identity_chunk": {
               "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
               "file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
-              "kind": "reference_only",
-              "line": 166,
-              "line_sha256": "ac1df69b1afa5f78bf623a7aba320235cf0a389ff63ebed524338053efb2416c",
-              "text": "[LABOの比較評価候補](../../helix-labo/L2-requirements/labo-requirements.md) HELIXLABO-L2-059および[INTELLIGENCEの配置入力契約候補](../../helix-intelligence/L2-requirements/intelligence-requirements.md) HELIXINTELLIGENCE-L2-067との責務境界を保持する。対象scopeに有効な品質・優先・許容悪化の判断は再利用し、未決・失効・適用境界外のみ判断ownerへ戻す。本追補は未実行の受入候補であり、実測改善や要求採択を生成しない。"
+              "kind": "table_rows",
+              "canonical": {
+                "line": 170,
+                "line_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62",
+                "text": "| `HELIXLABO-L2-059`（単体候補、parent `HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context） | scope/revisionに適用可能なquality oracleと既決priority/tolerance（適用可能な判断のrunごとの再確認なし）、同一task snapshot/scorer/protocol/hardware条件、現行実験のOS割当Worker receipt（歴史runは当時の実行者・authority・receipt）を与える。decisionが未決/失効/適用境界外ならownerへ戻す。実験条件baseline/current/candidate/hybridとHELIXなし/旧版/新版cohortを別軸で記録し、比較目的と群を明示し、導入効果はあり／なし、改訂効果は旧版／新版、三者の関係を主張する場合だけ三者を要求する。未選択群の不足を選択した二者比較の不成立理由にしない。品質gateを先に個別判定し、retry・上位Worker救援・rework・CI・review・人修正込みの費用、所要時間、人介入を分ける。欠測通貨・非貨幣化人時間・比較不能cohortは明示する。 | 劣化品質を価格/速度で相殺／初回candidate単価だけで安価認定／上位救援・人修正・retryを除外／未承認換算率で人時間を0円化／受入成果なしを効率成功扱い／実験条件とcohortを混ぜる／scope・oracle・protocol・hardware・run version違いを混ぜる／歴史結果をcurrent性能へ転用／LABOがWorkerを割当・起動する。 |"
+              },
+              "all_direct_table_rows": [
+                {
+                  "line": 170,
+                  "line_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62",
+                  "text": "| `HELIXLABO-L2-059`（単体候補、parent `HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context） | scope/revisionに適用可能なquality oracleと既決priority/tolerance（適用可能な判断のrunごとの再確認なし）、同一task snapshot/scorer/protocol/hardware条件、現行実験のOS割当Worker receipt（歴史runは当時の実行者・authority・receipt）を与える。decisionが未決/失効/適用境界外ならownerへ戻す。実験条件baseline/current/candidate/hybridとHELIXなし/旧版/新版cohortを別軸で記録し、比較目的と群を明示し、導入効果はあり／なし、改訂効果は旧版／新版、三者の関係を主張する場合だけ三者を要求する。未選択群の不足を選択した二者比較の不成立理由にしない。品質gateを先に個別判定し、retry・上位Worker救援・rework・CI・review・人修正込みの費用、所要時間、人介入を分ける。欠測通貨・非貨幣化人時間・比較不能cohortは明示する。 | 劣化品質を価格/速度で相殺／初回candidate単価だけで安価認定／上位救援・人修正・retryを除外／未承認換算率で人時間を0円化／受入成果なしを効率成功扱い／実験条件とcohortを混ぜる／scope・oracle・protocol・hardware・run version違いを混ぜる／歴史結果をcurrent性能へ転用／LABOがWorkerを割当・起動する。 |"
+                }
+              ],
+              "section_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62"
             },
             "current_main_identity_chunk": {
               "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
               "file_sha256": "119fa43bce6753bdb0fed5420641617b9665907a7b1c3b2e6def590098e7442d",
-              "kind": "reference_only",
-              "line": 166,
-              "line_sha256": "ac1df69b1afa5f78bf623a7aba320235cf0a389ff63ebed524338053efb2416c",
-              "text": "[LABOの比較評価候補](../../helix-labo/L2-requirements/labo-requirements.md) HELIXLABO-L2-059および[INTELLIGENCEの配置入力契約候補](../../helix-intelligence/L2-requirements/intelligence-requirements.md) HELIXINTELLIGENCE-L2-067との責務境界を保持する。対象scopeに有効な品質・優先・許容悪化の判断は再利用し、未決・失効・適用境界外のみ判断ownerへ戻す。本追補は未実行の受入候補であり、実測改善や要求採択を生成しない。"
+              "kind": "table_rows",
+              "canonical": {
+                "line": 170,
+                "line_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62",
+                "text": "| `HELIXLABO-L2-059`（単体候補、parent `HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context） | scope/revisionに適用可能なquality oracleと既決priority/tolerance（適用可能な判断のrunごとの再確認なし）、同一task snapshot/scorer/protocol/hardware条件、現行実験のOS割当Worker receipt（歴史runは当時の実行者・authority・receipt）を与える。decisionが未決/失効/適用境界外ならownerへ戻す。実験条件baseline/current/candidate/hybridとHELIXなし/旧版/新版cohortを別軸で記録し、比較目的と群を明示し、導入効果はあり／なし、改訂効果は旧版／新版、三者の関係を主張する場合だけ三者を要求する。未選択群の不足を選択した二者比較の不成立理由にしない。品質gateを先に個別判定し、retry・上位Worker救援・rework・CI・review・人修正込みの費用、所要時間、人介入を分ける。欠測通貨・非貨幣化人時間・比較不能cohortは明示する。 | 劣化品質を価格/速度で相殺／初回candidate単価だけで安価認定／上位救援・人修正・retryを除外／未承認換算率で人時間を0円化／受入成果なしを効率成功扱い／実験条件とcohortを混ぜる／scope・oracle・protocol・hardware・run version違いを混ぜる／歴史結果をcurrent性能へ転用／LABOがWorkerを割当・起動する。 |"
+              },
+              "all_direct_table_rows": [
+                {
+                  "line": 170,
+                  "line_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62",
+                  "text": "| `HELIXLABO-L2-059`（単体候補、parent `HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context） | scope/revisionに適用可能なquality oracleと既決priority/tolerance（適用可能な判断のrunごとの再確認なし）、同一task snapshot/scorer/protocol/hardware条件、現行実験のOS割当Worker receipt（歴史runは当時の実行者・authority・receipt）を与える。decisionが未決/失効/適用境界外ならownerへ戻す。実験条件baseline/current/candidate/hybridとHELIXなし/旧版/新版cohortを別軸で記録し、比較目的と群を明示し、導入効果はあり／なし、改訂効果は旧版／新版、三者の関係を主張する場合だけ三者を要求する。未選択群の不足を選択した二者比較の不成立理由にしない。品質gateを先に個別判定し、retry・上位Worker救援・rework・CI・review・人修正込みの費用、所要時間、人介入を分ける。欠測通貨・非貨幣化人時間・比較不能cohortは明示する。 | 劣化品質を価格/速度で相殺／初回candidate単価だけで安価認定／上位救援・人修正・retryを除外／未承認換算率で人時間を0円化／受入成果なしを効率成功扱い／実験条件とcohortを混ぜる／scope・oracle・protocol・hardware・run version違いを混ぜる／歴史結果をcurrent性能へ転用／LABOがWorkerを割当・起動する。 |"
+                }
+              ],
+              "section_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62"
             }
           },
           "candidate_status": "explicit_candidate_adopted_and_target_text_unchanged",
@@ -23175,6 +23405,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             },
@@ -23191,6 +23426,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             }
@@ -23254,9 +23494,14 @@
                   "line": 163,
                   "line_sha256": "ffa0e23c02aa472fa254613c5b72f03b32eda4b1423f1ec7e4392d4873455670",
                   "text": "| HELIXINTELLIGENCE-L2-010 | 親: HELIXINTELLIGENCE-L1-010。単体（ticket別placement proposal）。接続context: HELIXINTELLIGENCE-L2-034, HELIXINTELLIGENCE-L2-035, HELIXINTELLIGENCE-L2-037, HELIXINTELLIGENCE-L2-061。1.0。 | **正常**: task capability/tool/domainと同scopeの実績とLABO HELIX-Benchの作業種別・model class別水準/根拠を示し、候補Workerの条件適合をexpected evidenceで照合する。oracleは適合条件と配置案理由が実績およびBench task-class evidenceの適用範囲に合うこと。**誤り**: price/nameだけの順位、scope外実績の適用、未評価Workerのqualified扱い、Bench作業種別/適用範囲の不一致を無視した配置案を不合格とする。Bench水準が未評価なら候補も未評価を保ち、証拠不足はLABOへ戻す。**未見**: 未公開task/worker profile組合せで適合scope内の候補だけを提示し、証拠がなければ未評価を保つ。OSがassignment/進行を行うことを確認し、INTELLIGENCEのproposalを実割当成功としない。 |"
+                },
+                {
+                  "line": 197,
+                  "line_sha256": "86511f10f973862afa916f1b4e39371132ba69043c93f8505355bc4bdb94f2b4",
+                  "text": "| `HELIXINTELLIGENCE-L2-010` L11補強（単体、parent `HELIXINTELLIGENCE-L1-010`; input-contract context candidate `HELIXINTELLIGENCE-L2-067`） | 既存L2-010のplacement proposalが、入力契約候補L2-067で定めるscope/revision有効なquality gate・priority/toleranceと、既存L2-034経由のLABO比較材料を使い、Worker/effort候補の理由・除外・不確実性・未評価を示す。proposalはOS assignment/進行へ別handoffする。 | 価格/model/benchmark単独で決める／必要品質未達・unknown・未評価を隠す／既決decisionが適用境界内なのに毎run確認を求める／proposalが割当・実行許可になる／human interventionを除いた費用を総費用として扱う。 |"
                 }
               ],
-              "section_sha256": "85e4e1752099b60103cea60febd4f7c065eb0055182ee59b5313fa1135ef6eb7"
+              "section_sha256": "073b0aeaae01c179179bce6ad0796862b521f4f8aabc633c8ab333ecadfb335f"
             },
             "current_main_identity_chunk": {
               "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
@@ -23277,9 +23522,14 @@
                   "line": 163,
                   "line_sha256": "ffa0e23c02aa472fa254613c5b72f03b32eda4b1423f1ec7e4392d4873455670",
                   "text": "| HELIXINTELLIGENCE-L2-010 | 親: HELIXINTELLIGENCE-L1-010。単体（ticket別placement proposal）。接続context: HELIXINTELLIGENCE-L2-034, HELIXINTELLIGENCE-L2-035, HELIXINTELLIGENCE-L2-037, HELIXINTELLIGENCE-L2-061。1.0。 | **正常**: task capability/tool/domainと同scopeの実績とLABO HELIX-Benchの作業種別・model class別水準/根拠を示し、候補Workerの条件適合をexpected evidenceで照合する。oracleは適合条件と配置案理由が実績およびBench task-class evidenceの適用範囲に合うこと。**誤り**: price/nameだけの順位、scope外実績の適用、未評価Workerのqualified扱い、Bench作業種別/適用範囲の不一致を無視した配置案を不合格とする。Bench水準が未評価なら候補も未評価を保ち、証拠不足はLABOへ戻す。**未見**: 未公開task/worker profile組合せで適合scope内の候補だけを提示し、証拠がなければ未評価を保つ。OSがassignment/進行を行うことを確認し、INTELLIGENCEのproposalを実割当成功としない。 |"
+                },
+                {
+                  "line": 197,
+                  "line_sha256": "86511f10f973862afa916f1b4e39371132ba69043c93f8505355bc4bdb94f2b4",
+                  "text": "| `HELIXINTELLIGENCE-L2-010` L11補強（単体、parent `HELIXINTELLIGENCE-L1-010`; input-contract context candidate `HELIXINTELLIGENCE-L2-067`） | 既存L2-010のplacement proposalが、入力契約候補L2-067で定めるscope/revision有効なquality gate・priority/toleranceと、既存L2-034経由のLABO比較材料を使い、Worker/effort候補の理由・除外・不確実性・未評価を示す。proposalはOS assignment/進行へ別handoffする。 | 価格/model/benchmark単独で決める／必要品質未達・unknown・未評価を隠す／既決decisionが適用境界内なのに毎run確認を求める／proposalが割当・実行許可になる／human interventionを除いた費用を総費用として扱う。 |"
                 }
               ],
-              "section_sha256": "85e4e1752099b60103cea60febd4f7c065eb0055182ee59b5313fa1135ef6eb7"
+              "section_sha256": "073b0aeaae01c179179bce6ad0796862b521f4f8aabc633c8ab333ecadfb335f"
             }
           },
           "candidate_status": "explicit_candidate_adopted_and_target_text_unchanged",
@@ -23341,9 +23591,14 @@
                   "line": 164,
                   "line_sha256": "f3b5b6c96322d045af0d8e574b0becad3054fe16de7231422d3dacfb6fa39915",
                   "text": "| HELIXINTELLIGENCE-L2-011 | 親: HELIXINTELLIGENCE-L1-011。単体（同一corpus/responsibility scopeのmodel/provider比較）。接続context: HELIXINTELLIGENCE-L2-034, HELIXINTELLIGENCE-L2-041。1.0。 | **正常**: current/candidate双方へ同じtask corpus/task snapshot・scoring version・run protocol・hardware classと独立oracleを適用し、実際のfinding、FP、miss、再現性、latency、costの比較値がrun記録と一致する。cacheや手介入を含む実行条件を揃え、費用にはpricing source/currency/effective timestamp/charging classを結び付ける。**誤り**: corpus/version/scope/protocol/hardwareやcache/手介入条件の違いを隠して同条件比較とする、価格根拠の違い・欠測を隠す、miss/FPを落とす、またはversion名だけで優位判定すれば不合格。**未見**: held-out例についても事前に同条件化した比較からscope別実績を出し、比較条件欠落は比較不能にする。データがない指標はunknownであり順位や一般優位を生成しない。 |"
+                },
+                {
+                  "line": 198,
+                  "line_sha256": "3f49c83520bcb41c281059acad39abe9c92d64a837b998c7528e4eb36ad1174f",
+                  "text": "| `HELIXINTELLIGENCE-L2-011` L11補強（単体、parent `HELIXINTELLIGENCE-L1-011`） | 同一corpus/responsibility scope、quality oracle、run version/protocolを揃え、findings/FP/miss/reproducibility/latency/costとrescue/rework/human interventionを別々に比較する。baseline/current/candidate/hybridは実験条件、HELIXなし/旧/新はcohortとして別軸に保持する。priority/toleranceのない指標に勝敗を付けず、必要scopeの結果に限定する。 | model更新名や価格だけで上位認定／同条件でない結果を順位化／救援・人修正を除外／欠測費用をゼロとする／比較結果から自動差替えする。 |"
                 }
               ],
-              "section_sha256": "55abda20c0385ec6e5c4f6d87cae9cec24434557ce7381f4981ca06273dc9d28"
+              "section_sha256": "4d49f874a4fb742127ab4af74fdd70df7270baf9d75879669fedb41f200e2342"
             },
             "current_main_identity_chunk": {
               "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
@@ -23364,9 +23619,14 @@
                   "line": 164,
                   "line_sha256": "f3b5b6c96322d045af0d8e574b0becad3054fe16de7231422d3dacfb6fa39915",
                   "text": "| HELIXINTELLIGENCE-L2-011 | 親: HELIXINTELLIGENCE-L1-011。単体（同一corpus/responsibility scopeのmodel/provider比較）。接続context: HELIXINTELLIGENCE-L2-034, HELIXINTELLIGENCE-L2-041。1.0。 | **正常**: current/candidate双方へ同じtask corpus/task snapshot・scoring version・run protocol・hardware classと独立oracleを適用し、実際のfinding、FP、miss、再現性、latency、costの比較値がrun記録と一致する。cacheや手介入を含む実行条件を揃え、費用にはpricing source/currency/effective timestamp/charging classを結び付ける。**誤り**: corpus/version/scope/protocol/hardwareやcache/手介入条件の違いを隠して同条件比較とする、価格根拠の違い・欠測を隠す、miss/FPを落とす、またはversion名だけで優位判定すれば不合格。**未見**: held-out例についても事前に同条件化した比較からscope別実績を出し、比較条件欠落は比較不能にする。データがない指標はunknownであり順位や一般優位を生成しない。 |"
+                },
+                {
+                  "line": 198,
+                  "line_sha256": "3f49c83520bcb41c281059acad39abe9c92d64a837b998c7528e4eb36ad1174f",
+                  "text": "| `HELIXINTELLIGENCE-L2-011` L11補強（単体、parent `HELIXINTELLIGENCE-L1-011`） | 同一corpus/responsibility scope、quality oracle、run version/protocolを揃え、findings/FP/miss/reproducibility/latency/costとrescue/rework/human interventionを別々に比較する。baseline/current/candidate/hybridは実験条件、HELIXなし/旧/新はcohortとして別軸に保持する。priority/toleranceのない指標に勝敗を付けず、必要scopeの結果に限定する。 | model更新名や価格だけで上位認定／同条件でない結果を順位化／救援・人修正を除外／欠測費用をゼロとする／比較結果から自動差替えする。 |"
                 }
               ],
-              "section_sha256": "55abda20c0385ec6e5c4f6d87cae9cec24434557ce7381f4981ca06273dc9d28"
+              "section_sha256": "4d49f874a4fb742127ab4af74fdd70df7270baf9d75879669fedb41f200e2342"
             }
           },
           "candidate_status": "explicit_candidate_adopted_and_target_text_unchanged",
@@ -23497,18 +23757,38 @@
             "fixed_identity_chunk": {
               "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
               "file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
-              "kind": "reference_only",
-              "line": 166,
-              "line_sha256": "ac1df69b1afa5f78bf623a7aba320235cf0a389ff63ebed524338053efb2416c",
-              "text": "[LABOの比較評価候補](../../helix-labo/L2-requirements/labo-requirements.md) HELIXLABO-L2-059および[INTELLIGENCEの配置入力契約候補](../../helix-intelligence/L2-requirements/intelligence-requirements.md) HELIXINTELLIGENCE-L2-067との責務境界を保持する。対象scopeに有効な品質・優先・許容悪化の判断は再利用し、未決・失効・適用境界外のみ判断ownerへ戻す。本追補は未実行の受入候補であり、実測改善や要求採択を生成しない。"
+              "kind": "table_rows",
+              "canonical": {
+                "line": 170,
+                "line_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62",
+                "text": "| `HELIXLABO-L2-059`（単体候補、parent `HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context） | scope/revisionに適用可能なquality oracleと既決priority/tolerance（適用可能な判断のrunごとの再確認なし）、同一task snapshot/scorer/protocol/hardware条件、現行実験のOS割当Worker receipt（歴史runは当時の実行者・authority・receipt）を与える。decisionが未決/失効/適用境界外ならownerへ戻す。実験条件baseline/current/candidate/hybridとHELIXなし/旧版/新版cohortを別軸で記録し、比較目的と群を明示し、導入効果はあり／なし、改訂効果は旧版／新版、三者の関係を主張する場合だけ三者を要求する。未選択群の不足を選択した二者比較の不成立理由にしない。品質gateを先に個別判定し、retry・上位Worker救援・rework・CI・review・人修正込みの費用、所要時間、人介入を分ける。欠測通貨・非貨幣化人時間・比較不能cohortは明示する。 | 劣化品質を価格/速度で相殺／初回candidate単価だけで安価認定／上位救援・人修正・retryを除外／未承認換算率で人時間を0円化／受入成果なしを効率成功扱い／実験条件とcohortを混ぜる／scope・oracle・protocol・hardware・run version違いを混ぜる／歴史結果をcurrent性能へ転用／LABOがWorkerを割当・起動する。 |"
+              },
+              "all_direct_table_rows": [
+                {
+                  "line": 170,
+                  "line_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62",
+                  "text": "| `HELIXLABO-L2-059`（単体候補、parent `HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context） | scope/revisionに適用可能なquality oracleと既決priority/tolerance（適用可能な判断のrunごとの再確認なし）、同一task snapshot/scorer/protocol/hardware条件、現行実験のOS割当Worker receipt（歴史runは当時の実行者・authority・receipt）を与える。decisionが未決/失効/適用境界外ならownerへ戻す。実験条件baseline/current/candidate/hybridとHELIXなし/旧版/新版cohortを別軸で記録し、比較目的と群を明示し、導入効果はあり／なし、改訂効果は旧版／新版、三者の関係を主張する場合だけ三者を要求する。未選択群の不足を選択した二者比較の不成立理由にしない。品質gateを先に個別判定し、retry・上位Worker救援・rework・CI・review・人修正込みの費用、所要時間、人介入を分ける。欠測通貨・非貨幣化人時間・比較不能cohortは明示する。 | 劣化品質を価格/速度で相殺／初回candidate単価だけで安価認定／上位救援・人修正・retryを除外／未承認換算率で人時間を0円化／受入成果なしを効率成功扱い／実験条件とcohortを混ぜる／scope・oracle・protocol・hardware・run version違いを混ぜる／歴史結果をcurrent性能へ転用／LABOがWorkerを割当・起動する。 |"
+                }
+              ],
+              "section_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62"
             },
             "current_main_identity_chunk": {
               "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
               "file_sha256": "119fa43bce6753bdb0fed5420641617b9665907a7b1c3b2e6def590098e7442d",
-              "kind": "reference_only",
-              "line": 166,
-              "line_sha256": "ac1df69b1afa5f78bf623a7aba320235cf0a389ff63ebed524338053efb2416c",
-              "text": "[LABOの比較評価候補](../../helix-labo/L2-requirements/labo-requirements.md) HELIXLABO-L2-059および[INTELLIGENCEの配置入力契約候補](../../helix-intelligence/L2-requirements/intelligence-requirements.md) HELIXINTELLIGENCE-L2-067との責務境界を保持する。対象scopeに有効な品質・優先・許容悪化の判断は再利用し、未決・失効・適用境界外のみ判断ownerへ戻す。本追補は未実行の受入候補であり、実測改善や要求採択を生成しない。"
+              "kind": "table_rows",
+              "canonical": {
+                "line": 170,
+                "line_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62",
+                "text": "| `HELIXLABO-L2-059`（単体候補、parent `HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context） | scope/revisionに適用可能なquality oracleと既決priority/tolerance（適用可能な判断のrunごとの再確認なし）、同一task snapshot/scorer/protocol/hardware条件、現行実験のOS割当Worker receipt（歴史runは当時の実行者・authority・receipt）を与える。decisionが未決/失効/適用境界外ならownerへ戻す。実験条件baseline/current/candidate/hybridとHELIXなし/旧版/新版cohortを別軸で記録し、比較目的と群を明示し、導入効果はあり／なし、改訂効果は旧版／新版、三者の関係を主張する場合だけ三者を要求する。未選択群の不足を選択した二者比較の不成立理由にしない。品質gateを先に個別判定し、retry・上位Worker救援・rework・CI・review・人修正込みの費用、所要時間、人介入を分ける。欠測通貨・非貨幣化人時間・比較不能cohortは明示する。 | 劣化品質を価格/速度で相殺／初回candidate単価だけで安価認定／上位救援・人修正・retryを除外／未承認換算率で人時間を0円化／受入成果なしを効率成功扱い／実験条件とcohortを混ぜる／scope・oracle・protocol・hardware・run version違いを混ぜる／歴史結果をcurrent性能へ転用／LABOがWorkerを割当・起動する。 |"
+              },
+              "all_direct_table_rows": [
+                {
+                  "line": 170,
+                  "line_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62",
+                  "text": "| `HELIXLABO-L2-059`（単体候補、parent `HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context） | scope/revisionに適用可能なquality oracleと既決priority/tolerance（適用可能な判断のrunごとの再確認なし）、同一task snapshot/scorer/protocol/hardware条件、現行実験のOS割当Worker receipt（歴史runは当時の実行者・authority・receipt）を与える。decisionが未決/失効/適用境界外ならownerへ戻す。実験条件baseline/current/candidate/hybridとHELIXなし/旧版/新版cohortを別軸で記録し、比較目的と群を明示し、導入効果はあり／なし、改訂効果は旧版／新版、三者の関係を主張する場合だけ三者を要求する。未選択群の不足を選択した二者比較の不成立理由にしない。品質gateを先に個別判定し、retry・上位Worker救援・rework・CI・review・人修正込みの費用、所要時間、人介入を分ける。欠測通貨・非貨幣化人時間・比較不能cohortは明示する。 | 劣化品質を価格/速度で相殺／初回candidate単価だけで安価認定／上位救援・人修正・retryを除外／未承認換算率で人時間を0円化／受入成果なしを効率成功扱い／実験条件とcohortを混ぜる／scope・oracle・protocol・hardware・run version違いを混ぜる／歴史結果をcurrent性能へ転用／LABOがWorkerを割当・起動する。 |"
+                }
+              ],
+              "section_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62"
             }
           },
           "candidate_status": "explicit_candidate_adopted_and_target_text_unchanged",
@@ -23974,9 +24254,14 @@
                   "line": 163,
                   "line_sha256": "ffa0e23c02aa472fa254613c5b72f03b32eda4b1423f1ec7e4392d4873455670",
                   "text": "| HELIXINTELLIGENCE-L2-010 | 親: HELIXINTELLIGENCE-L1-010。単体（ticket別placement proposal）。接続context: HELIXINTELLIGENCE-L2-034, HELIXINTELLIGENCE-L2-035, HELIXINTELLIGENCE-L2-037, HELIXINTELLIGENCE-L2-061。1.0。 | **正常**: task capability/tool/domainと同scopeの実績とLABO HELIX-Benchの作業種別・model class別水準/根拠を示し、候補Workerの条件適合をexpected evidenceで照合する。oracleは適合条件と配置案理由が実績およびBench task-class evidenceの適用範囲に合うこと。**誤り**: price/nameだけの順位、scope外実績の適用、未評価Workerのqualified扱い、Bench作業種別/適用範囲の不一致を無視した配置案を不合格とする。Bench水準が未評価なら候補も未評価を保ち、証拠不足はLABOへ戻す。**未見**: 未公開task/worker profile組合せで適合scope内の候補だけを提示し、証拠がなければ未評価を保つ。OSがassignment/進行を行うことを確認し、INTELLIGENCEのproposalを実割当成功としない。 |"
+                },
+                {
+                  "line": 197,
+                  "line_sha256": "86511f10f973862afa916f1b4e39371132ba69043c93f8505355bc4bdb94f2b4",
+                  "text": "| `HELIXINTELLIGENCE-L2-010` L11補強（単体、parent `HELIXINTELLIGENCE-L1-010`; input-contract context candidate `HELIXINTELLIGENCE-L2-067`） | 既存L2-010のplacement proposalが、入力契約候補L2-067で定めるscope/revision有効なquality gate・priority/toleranceと、既存L2-034経由のLABO比較材料を使い、Worker/effort候補の理由・除外・不確実性・未評価を示す。proposalはOS assignment/進行へ別handoffする。 | 価格/model/benchmark単独で決める／必要品質未達・unknown・未評価を隠す／既決decisionが適用境界内なのに毎run確認を求める／proposalが割当・実行許可になる／human interventionを除いた費用を総費用として扱う。 |"
                 }
               ],
-              "section_sha256": "85e4e1752099b60103cea60febd4f7c065eb0055182ee59b5313fa1135ef6eb7"
+              "section_sha256": "073b0aeaae01c179179bce6ad0796862b521f4f8aabc633c8ab333ecadfb335f"
             },
             "current_main_identity_chunk": {
               "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
@@ -23997,9 +24282,14 @@
                   "line": 163,
                   "line_sha256": "ffa0e23c02aa472fa254613c5b72f03b32eda4b1423f1ec7e4392d4873455670",
                   "text": "| HELIXINTELLIGENCE-L2-010 | 親: HELIXINTELLIGENCE-L1-010。単体（ticket別placement proposal）。接続context: HELIXINTELLIGENCE-L2-034, HELIXINTELLIGENCE-L2-035, HELIXINTELLIGENCE-L2-037, HELIXINTELLIGENCE-L2-061。1.0。 | **正常**: task capability/tool/domainと同scopeの実績とLABO HELIX-Benchの作業種別・model class別水準/根拠を示し、候補Workerの条件適合をexpected evidenceで照合する。oracleは適合条件と配置案理由が実績およびBench task-class evidenceの適用範囲に合うこと。**誤り**: price/nameだけの順位、scope外実績の適用、未評価Workerのqualified扱い、Bench作業種別/適用範囲の不一致を無視した配置案を不合格とする。Bench水準が未評価なら候補も未評価を保ち、証拠不足はLABOへ戻す。**未見**: 未公開task/worker profile組合せで適合scope内の候補だけを提示し、証拠がなければ未評価を保つ。OSがassignment/進行を行うことを確認し、INTELLIGENCEのproposalを実割当成功としない。 |"
+                },
+                {
+                  "line": 197,
+                  "line_sha256": "86511f10f973862afa916f1b4e39371132ba69043c93f8505355bc4bdb94f2b4",
+                  "text": "| `HELIXINTELLIGENCE-L2-010` L11補強（単体、parent `HELIXINTELLIGENCE-L1-010`; input-contract context candidate `HELIXINTELLIGENCE-L2-067`） | 既存L2-010のplacement proposalが、入力契約候補L2-067で定めるscope/revision有効なquality gate・priority/toleranceと、既存L2-034経由のLABO比較材料を使い、Worker/effort候補の理由・除外・不確実性・未評価を示す。proposalはOS assignment/進行へ別handoffする。 | 価格/model/benchmark単独で決める／必要品質未達・unknown・未評価を隠す／既決decisionが適用境界内なのに毎run確認を求める／proposalが割当・実行許可になる／human interventionを除いた費用を総費用として扱う。 |"
                 }
               ],
-              "section_sha256": "85e4e1752099b60103cea60febd4f7c065eb0055182ee59b5313fa1135ef6eb7"
+              "section_sha256": "073b0aeaae01c179179bce6ad0796862b521f4f8aabc633c8ab333ecadfb335f"
             }
           },
           "candidate_status": "explicit_candidate_adopted_and_target_text_unchanged",
@@ -24061,9 +24351,14 @@
                   "line": 164,
                   "line_sha256": "f3b5b6c96322d045af0d8e574b0becad3054fe16de7231422d3dacfb6fa39915",
                   "text": "| HELIXINTELLIGENCE-L2-011 | 親: HELIXINTELLIGENCE-L1-011。単体（同一corpus/responsibility scopeのmodel/provider比較）。接続context: HELIXINTELLIGENCE-L2-034, HELIXINTELLIGENCE-L2-041。1.0。 | **正常**: current/candidate双方へ同じtask corpus/task snapshot・scoring version・run protocol・hardware classと独立oracleを適用し、実際のfinding、FP、miss、再現性、latency、costの比較値がrun記録と一致する。cacheや手介入を含む実行条件を揃え、費用にはpricing source/currency/effective timestamp/charging classを結び付ける。**誤り**: corpus/version/scope/protocol/hardwareやcache/手介入条件の違いを隠して同条件比較とする、価格根拠の違い・欠測を隠す、miss/FPを落とす、またはversion名だけで優位判定すれば不合格。**未見**: held-out例についても事前に同条件化した比較からscope別実績を出し、比較条件欠落は比較不能にする。データがない指標はunknownであり順位や一般優位を生成しない。 |"
+                },
+                {
+                  "line": 198,
+                  "line_sha256": "3f49c83520bcb41c281059acad39abe9c92d64a837b998c7528e4eb36ad1174f",
+                  "text": "| `HELIXINTELLIGENCE-L2-011` L11補強（単体、parent `HELIXINTELLIGENCE-L1-011`） | 同一corpus/responsibility scope、quality oracle、run version/protocolを揃え、findings/FP/miss/reproducibility/latency/costとrescue/rework/human interventionを別々に比較する。baseline/current/candidate/hybridは実験条件、HELIXなし/旧/新はcohortとして別軸に保持する。priority/toleranceのない指標に勝敗を付けず、必要scopeの結果に限定する。 | model更新名や価格だけで上位認定／同条件でない結果を順位化／救援・人修正を除外／欠測費用をゼロとする／比較結果から自動差替えする。 |"
                 }
               ],
-              "section_sha256": "55abda20c0385ec6e5c4f6d87cae9cec24434557ce7381f4981ca06273dc9d28"
+              "section_sha256": "4d49f874a4fb742127ab4af74fdd70df7270baf9d75879669fedb41f200e2342"
             },
             "current_main_identity_chunk": {
               "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
@@ -24084,9 +24379,14 @@
                   "line": 164,
                   "line_sha256": "f3b5b6c96322d045af0d8e574b0becad3054fe16de7231422d3dacfb6fa39915",
                   "text": "| HELIXINTELLIGENCE-L2-011 | 親: HELIXINTELLIGENCE-L1-011。単体（同一corpus/responsibility scopeのmodel/provider比較）。接続context: HELIXINTELLIGENCE-L2-034, HELIXINTELLIGENCE-L2-041。1.0。 | **正常**: current/candidate双方へ同じtask corpus/task snapshot・scoring version・run protocol・hardware classと独立oracleを適用し、実際のfinding、FP、miss、再現性、latency、costの比較値がrun記録と一致する。cacheや手介入を含む実行条件を揃え、費用にはpricing source/currency/effective timestamp/charging classを結び付ける。**誤り**: corpus/version/scope/protocol/hardwareやcache/手介入条件の違いを隠して同条件比較とする、価格根拠の違い・欠測を隠す、miss/FPを落とす、またはversion名だけで優位判定すれば不合格。**未見**: held-out例についても事前に同条件化した比較からscope別実績を出し、比較条件欠落は比較不能にする。データがない指標はunknownであり順位や一般優位を生成しない。 |"
+                },
+                {
+                  "line": 198,
+                  "line_sha256": "3f49c83520bcb41c281059acad39abe9c92d64a837b998c7528e4eb36ad1174f",
+                  "text": "| `HELIXINTELLIGENCE-L2-011` L11補強（単体、parent `HELIXINTELLIGENCE-L1-011`） | 同一corpus/responsibility scope、quality oracle、run version/protocolを揃え、findings/FP/miss/reproducibility/latency/costとrescue/rework/human interventionを別々に比較する。baseline/current/candidate/hybridは実験条件、HELIXなし/旧/新はcohortとして別軸に保持する。priority/toleranceのない指標に勝敗を付けず、必要scopeの結果に限定する。 | model更新名や価格だけで上位認定／同条件でない結果を順位化／救援・人修正を除外／欠測費用をゼロとする／比較結果から自動差替えする。 |"
                 }
               ],
-              "section_sha256": "55abda20c0385ec6e5c4f6d87cae9cec24434557ce7381f4981ca06273dc9d28"
+              "section_sha256": "4d49f874a4fb742127ab4af74fdd70df7270baf9d75879669fedb41f200e2342"
             }
           },
           "candidate_status": "explicit_candidate_adopted_and_target_text_unchanged",
@@ -24217,18 +24517,38 @@
             "fixed_identity_chunk": {
               "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
               "file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
-              "kind": "reference_only",
-              "line": 166,
-              "line_sha256": "ac1df69b1afa5f78bf623a7aba320235cf0a389ff63ebed524338053efb2416c",
-              "text": "[LABOの比較評価候補](../../helix-labo/L2-requirements/labo-requirements.md) HELIXLABO-L2-059および[INTELLIGENCEの配置入力契約候補](../../helix-intelligence/L2-requirements/intelligence-requirements.md) HELIXINTELLIGENCE-L2-067との責務境界を保持する。対象scopeに有効な品質・優先・許容悪化の判断は再利用し、未決・失効・適用境界外のみ判断ownerへ戻す。本追補は未実行の受入候補であり、実測改善や要求採択を生成しない。"
+              "kind": "table_rows",
+              "canonical": {
+                "line": 170,
+                "line_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62",
+                "text": "| `HELIXLABO-L2-059`（単体候補、parent `HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context） | scope/revisionに適用可能なquality oracleと既決priority/tolerance（適用可能な判断のrunごとの再確認なし）、同一task snapshot/scorer/protocol/hardware条件、現行実験のOS割当Worker receipt（歴史runは当時の実行者・authority・receipt）を与える。decisionが未決/失効/適用境界外ならownerへ戻す。実験条件baseline/current/candidate/hybridとHELIXなし/旧版/新版cohortを別軸で記録し、比較目的と群を明示し、導入効果はあり／なし、改訂効果は旧版／新版、三者の関係を主張する場合だけ三者を要求する。未選択群の不足を選択した二者比較の不成立理由にしない。品質gateを先に個別判定し、retry・上位Worker救援・rework・CI・review・人修正込みの費用、所要時間、人介入を分ける。欠測通貨・非貨幣化人時間・比較不能cohortは明示する。 | 劣化品質を価格/速度で相殺／初回candidate単価だけで安価認定／上位救援・人修正・retryを除外／未承認換算率で人時間を0円化／受入成果なしを効率成功扱い／実験条件とcohortを混ぜる／scope・oracle・protocol・hardware・run version違いを混ぜる／歴史結果をcurrent性能へ転用／LABOがWorkerを割当・起動する。 |"
+              },
+              "all_direct_table_rows": [
+                {
+                  "line": 170,
+                  "line_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62",
+                  "text": "| `HELIXLABO-L2-059`（単体候補、parent `HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context） | scope/revisionに適用可能なquality oracleと既決priority/tolerance（適用可能な判断のrunごとの再確認なし）、同一task snapshot/scorer/protocol/hardware条件、現行実験のOS割当Worker receipt（歴史runは当時の実行者・authority・receipt）を与える。decisionが未決/失効/適用境界外ならownerへ戻す。実験条件baseline/current/candidate/hybridとHELIXなし/旧版/新版cohortを別軸で記録し、比較目的と群を明示し、導入効果はあり／なし、改訂効果は旧版／新版、三者の関係を主張する場合だけ三者を要求する。未選択群の不足を選択した二者比較の不成立理由にしない。品質gateを先に個別判定し、retry・上位Worker救援・rework・CI・review・人修正込みの費用、所要時間、人介入を分ける。欠測通貨・非貨幣化人時間・比較不能cohortは明示する。 | 劣化品質を価格/速度で相殺／初回candidate単価だけで安価認定／上位救援・人修正・retryを除外／未承認換算率で人時間を0円化／受入成果なしを効率成功扱い／実験条件とcohortを混ぜる／scope・oracle・protocol・hardware・run version違いを混ぜる／歴史結果をcurrent性能へ転用／LABOがWorkerを割当・起動する。 |"
+                }
+              ],
+              "section_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62"
             },
             "current_main_identity_chunk": {
               "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
               "file_sha256": "119fa43bce6753bdb0fed5420641617b9665907a7b1c3b2e6def590098e7442d",
-              "kind": "reference_only",
-              "line": 166,
-              "line_sha256": "ac1df69b1afa5f78bf623a7aba320235cf0a389ff63ebed524338053efb2416c",
-              "text": "[LABOの比較評価候補](../../helix-labo/L2-requirements/labo-requirements.md) HELIXLABO-L2-059および[INTELLIGENCEの配置入力契約候補](../../helix-intelligence/L2-requirements/intelligence-requirements.md) HELIXINTELLIGENCE-L2-067との責務境界を保持する。対象scopeに有効な品質・優先・許容悪化の判断は再利用し、未決・失効・適用境界外のみ判断ownerへ戻す。本追補は未実行の受入候補であり、実測改善や要求採択を生成しない。"
+              "kind": "table_rows",
+              "canonical": {
+                "line": 170,
+                "line_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62",
+                "text": "| `HELIXLABO-L2-059`（単体候補、parent `HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context） | scope/revisionに適用可能なquality oracleと既決priority/tolerance（適用可能な判断のrunごとの再確認なし）、同一task snapshot/scorer/protocol/hardware条件、現行実験のOS割当Worker receipt（歴史runは当時の実行者・authority・receipt）を与える。decisionが未決/失効/適用境界外ならownerへ戻す。実験条件baseline/current/candidate/hybridとHELIXなし/旧版/新版cohortを別軸で記録し、比較目的と群を明示し、導入効果はあり／なし、改訂効果は旧版／新版、三者の関係を主張する場合だけ三者を要求する。未選択群の不足を選択した二者比較の不成立理由にしない。品質gateを先に個別判定し、retry・上位Worker救援・rework・CI・review・人修正込みの費用、所要時間、人介入を分ける。欠測通貨・非貨幣化人時間・比較不能cohortは明示する。 | 劣化品質を価格/速度で相殺／初回candidate単価だけで安価認定／上位救援・人修正・retryを除外／未承認換算率で人時間を0円化／受入成果なしを効率成功扱い／実験条件とcohortを混ぜる／scope・oracle・protocol・hardware・run version違いを混ぜる／歴史結果をcurrent性能へ転用／LABOがWorkerを割当・起動する。 |"
+              },
+              "all_direct_table_rows": [
+                {
+                  "line": 170,
+                  "line_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62",
+                  "text": "| `HELIXLABO-L2-059`（単体候補、parent `HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context） | scope/revisionに適用可能なquality oracleと既決priority/tolerance（適用可能な判断のrunごとの再確認なし）、同一task snapshot/scorer/protocol/hardware条件、現行実験のOS割当Worker receipt（歴史runは当時の実行者・authority・receipt）を与える。decisionが未決/失効/適用境界外ならownerへ戻す。実験条件baseline/current/candidate/hybridとHELIXなし/旧版/新版cohortを別軸で記録し、比較目的と群を明示し、導入効果はあり／なし、改訂効果は旧版／新版、三者の関係を主張する場合だけ三者を要求する。未選択群の不足を選択した二者比較の不成立理由にしない。品質gateを先に個別判定し、retry・上位Worker救援・rework・CI・review・人修正込みの費用、所要時間、人介入を分ける。欠測通貨・非貨幣化人時間・比較不能cohortは明示する。 | 劣化品質を価格/速度で相殺／初回candidate単価だけで安価認定／上位救援・人修正・retryを除外／未承認換算率で人時間を0円化／受入成果なしを効率成功扱い／実験条件とcohortを混ぜる／scope・oracle・protocol・hardware・run version違いを混ぜる／歴史結果をcurrent性能へ転用／LABOがWorkerを割当・起動する。 |"
+                }
+              ],
+              "section_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62"
             }
           },
           "candidate_status": "explicit_candidate_adopted_and_target_text_unchanged",
@@ -24593,9 +24913,14 @@
                   "line": 163,
                   "line_sha256": "ffa0e23c02aa472fa254613c5b72f03b32eda4b1423f1ec7e4392d4873455670",
                   "text": "| HELIXINTELLIGENCE-L2-010 | 親: HELIXINTELLIGENCE-L1-010。単体（ticket別placement proposal）。接続context: HELIXINTELLIGENCE-L2-034, HELIXINTELLIGENCE-L2-035, HELIXINTELLIGENCE-L2-037, HELIXINTELLIGENCE-L2-061。1.0。 | **正常**: task capability/tool/domainと同scopeの実績とLABO HELIX-Benchの作業種別・model class別水準/根拠を示し、候補Workerの条件適合をexpected evidenceで照合する。oracleは適合条件と配置案理由が実績およびBench task-class evidenceの適用範囲に合うこと。**誤り**: price/nameだけの順位、scope外実績の適用、未評価Workerのqualified扱い、Bench作業種別/適用範囲の不一致を無視した配置案を不合格とする。Bench水準が未評価なら候補も未評価を保ち、証拠不足はLABOへ戻す。**未見**: 未公開task/worker profile組合せで適合scope内の候補だけを提示し、証拠がなければ未評価を保つ。OSがassignment/進行を行うことを確認し、INTELLIGENCEのproposalを実割当成功としない。 |"
+                },
+                {
+                  "line": 197,
+                  "line_sha256": "86511f10f973862afa916f1b4e39371132ba69043c93f8505355bc4bdb94f2b4",
+                  "text": "| `HELIXINTELLIGENCE-L2-010` L11補強（単体、parent `HELIXINTELLIGENCE-L1-010`; input-contract context candidate `HELIXINTELLIGENCE-L2-067`） | 既存L2-010のplacement proposalが、入力契約候補L2-067で定めるscope/revision有効なquality gate・priority/toleranceと、既存L2-034経由のLABO比較材料を使い、Worker/effort候補の理由・除外・不確実性・未評価を示す。proposalはOS assignment/進行へ別handoffする。 | 価格/model/benchmark単独で決める／必要品質未達・unknown・未評価を隠す／既決decisionが適用境界内なのに毎run確認を求める／proposalが割当・実行許可になる／human interventionを除いた費用を総費用として扱う。 |"
                 }
               ],
-              "section_sha256": "85e4e1752099b60103cea60febd4f7c065eb0055182ee59b5313fa1135ef6eb7"
+              "section_sha256": "073b0aeaae01c179179bce6ad0796862b521f4f8aabc633c8ab333ecadfb335f"
             },
             "current_main_identity_chunk": {
               "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
@@ -24616,9 +24941,14 @@
                   "line": 163,
                   "line_sha256": "ffa0e23c02aa472fa254613c5b72f03b32eda4b1423f1ec7e4392d4873455670",
                   "text": "| HELIXINTELLIGENCE-L2-010 | 親: HELIXINTELLIGENCE-L1-010。単体（ticket別placement proposal）。接続context: HELIXINTELLIGENCE-L2-034, HELIXINTELLIGENCE-L2-035, HELIXINTELLIGENCE-L2-037, HELIXINTELLIGENCE-L2-061。1.0。 | **正常**: task capability/tool/domainと同scopeの実績とLABO HELIX-Benchの作業種別・model class別水準/根拠を示し、候補Workerの条件適合をexpected evidenceで照合する。oracleは適合条件と配置案理由が実績およびBench task-class evidenceの適用範囲に合うこと。**誤り**: price/nameだけの順位、scope外実績の適用、未評価Workerのqualified扱い、Bench作業種別/適用範囲の不一致を無視した配置案を不合格とする。Bench水準が未評価なら候補も未評価を保ち、証拠不足はLABOへ戻す。**未見**: 未公開task/worker profile組合せで適合scope内の候補だけを提示し、証拠がなければ未評価を保つ。OSがassignment/進行を行うことを確認し、INTELLIGENCEのproposalを実割当成功としない。 |"
+                },
+                {
+                  "line": 197,
+                  "line_sha256": "86511f10f973862afa916f1b4e39371132ba69043c93f8505355bc4bdb94f2b4",
+                  "text": "| `HELIXINTELLIGENCE-L2-010` L11補強（単体、parent `HELIXINTELLIGENCE-L1-010`; input-contract context candidate `HELIXINTELLIGENCE-L2-067`） | 既存L2-010のplacement proposalが、入力契約候補L2-067で定めるscope/revision有効なquality gate・priority/toleranceと、既存L2-034経由のLABO比較材料を使い、Worker/effort候補の理由・除外・不確実性・未評価を示す。proposalはOS assignment/進行へ別handoffする。 | 価格/model/benchmark単独で決める／必要品質未達・unknown・未評価を隠す／既決decisionが適用境界内なのに毎run確認を求める／proposalが割当・実行許可になる／human interventionを除いた費用を総費用として扱う。 |"
                 }
               ],
-              "section_sha256": "85e4e1752099b60103cea60febd4f7c065eb0055182ee59b5313fa1135ef6eb7"
+              "section_sha256": "073b0aeaae01c179179bce6ad0796862b521f4f8aabc633c8ab333ecadfb335f"
             }
           },
           "candidate_status": "explicit_candidate_adopted_and_target_text_unchanged",
@@ -24680,9 +25010,14 @@
                   "line": 164,
                   "line_sha256": "f3b5b6c96322d045af0d8e574b0becad3054fe16de7231422d3dacfb6fa39915",
                   "text": "| HELIXINTELLIGENCE-L2-011 | 親: HELIXINTELLIGENCE-L1-011。単体（同一corpus/responsibility scopeのmodel/provider比較）。接続context: HELIXINTELLIGENCE-L2-034, HELIXINTELLIGENCE-L2-041。1.0。 | **正常**: current/candidate双方へ同じtask corpus/task snapshot・scoring version・run protocol・hardware classと独立oracleを適用し、実際のfinding、FP、miss、再現性、latency、costの比較値がrun記録と一致する。cacheや手介入を含む実行条件を揃え、費用にはpricing source/currency/effective timestamp/charging classを結び付ける。**誤り**: corpus/version/scope/protocol/hardwareやcache/手介入条件の違いを隠して同条件比較とする、価格根拠の違い・欠測を隠す、miss/FPを落とす、またはversion名だけで優位判定すれば不合格。**未見**: held-out例についても事前に同条件化した比較からscope別実績を出し、比較条件欠落は比較不能にする。データがない指標はunknownであり順位や一般優位を生成しない。 |"
+                },
+                {
+                  "line": 198,
+                  "line_sha256": "3f49c83520bcb41c281059acad39abe9c92d64a837b998c7528e4eb36ad1174f",
+                  "text": "| `HELIXINTELLIGENCE-L2-011` L11補強（単体、parent `HELIXINTELLIGENCE-L1-011`） | 同一corpus/responsibility scope、quality oracle、run version/protocolを揃え、findings/FP/miss/reproducibility/latency/costとrescue/rework/human interventionを別々に比較する。baseline/current/candidate/hybridは実験条件、HELIXなし/旧/新はcohortとして別軸に保持する。priority/toleranceのない指標に勝敗を付けず、必要scopeの結果に限定する。 | model更新名や価格だけで上位認定／同条件でない結果を順位化／救援・人修正を除外／欠測費用をゼロとする／比較結果から自動差替えする。 |"
                 }
               ],
-              "section_sha256": "55abda20c0385ec6e5c4f6d87cae9cec24434557ce7381f4981ca06273dc9d28"
+              "section_sha256": "4d49f874a4fb742127ab4af74fdd70df7270baf9d75879669fedb41f200e2342"
             },
             "current_main_identity_chunk": {
               "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
@@ -24703,9 +25038,14 @@
                   "line": 164,
                   "line_sha256": "f3b5b6c96322d045af0d8e574b0becad3054fe16de7231422d3dacfb6fa39915",
                   "text": "| HELIXINTELLIGENCE-L2-011 | 親: HELIXINTELLIGENCE-L1-011。単体（同一corpus/responsibility scopeのmodel/provider比較）。接続context: HELIXINTELLIGENCE-L2-034, HELIXINTELLIGENCE-L2-041。1.0。 | **正常**: current/candidate双方へ同じtask corpus/task snapshot・scoring version・run protocol・hardware classと独立oracleを適用し、実際のfinding、FP、miss、再現性、latency、costの比較値がrun記録と一致する。cacheや手介入を含む実行条件を揃え、費用にはpricing source/currency/effective timestamp/charging classを結び付ける。**誤り**: corpus/version/scope/protocol/hardwareやcache/手介入条件の違いを隠して同条件比較とする、価格根拠の違い・欠測を隠す、miss/FPを落とす、またはversion名だけで優位判定すれば不合格。**未見**: held-out例についても事前に同条件化した比較からscope別実績を出し、比較条件欠落は比較不能にする。データがない指標はunknownであり順位や一般優位を生成しない。 |"
+                },
+                {
+                  "line": 198,
+                  "line_sha256": "3f49c83520bcb41c281059acad39abe9c92d64a837b998c7528e4eb36ad1174f",
+                  "text": "| `HELIXINTELLIGENCE-L2-011` L11補強（単体、parent `HELIXINTELLIGENCE-L1-011`） | 同一corpus/responsibility scope、quality oracle、run version/protocolを揃え、findings/FP/miss/reproducibility/latency/costとrescue/rework/human interventionを別々に比較する。baseline/current/candidate/hybridは実験条件、HELIXなし/旧/新はcohortとして別軸に保持する。priority/toleranceのない指標に勝敗を付けず、必要scopeの結果に限定する。 | model更新名や価格だけで上位認定／同条件でない結果を順位化／救援・人修正を除外／欠測費用をゼロとする／比較結果から自動差替えする。 |"
                 }
               ],
-              "section_sha256": "55abda20c0385ec6e5c4f6d87cae9cec24434557ce7381f4981ca06273dc9d28"
+              "section_sha256": "4d49f874a4fb742127ab4af74fdd70df7270baf9d75879669fedb41f200e2342"
             }
           },
           "candidate_status": "explicit_candidate_adopted_and_target_text_unchanged",
@@ -24836,18 +25176,38 @@
             "fixed_identity_chunk": {
               "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
               "file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
-              "kind": "reference_only",
-              "line": 166,
-              "line_sha256": "ac1df69b1afa5f78bf623a7aba320235cf0a389ff63ebed524338053efb2416c",
-              "text": "[LABOの比較評価候補](../../helix-labo/L2-requirements/labo-requirements.md) HELIXLABO-L2-059および[INTELLIGENCEの配置入力契約候補](../../helix-intelligence/L2-requirements/intelligence-requirements.md) HELIXINTELLIGENCE-L2-067との責務境界を保持する。対象scopeに有効な品質・優先・許容悪化の判断は再利用し、未決・失効・適用境界外のみ判断ownerへ戻す。本追補は未実行の受入候補であり、実測改善や要求採択を生成しない。"
+              "kind": "table_rows",
+              "canonical": {
+                "line": 170,
+                "line_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62",
+                "text": "| `HELIXLABO-L2-059`（単体候補、parent `HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context） | scope/revisionに適用可能なquality oracleと既決priority/tolerance（適用可能な判断のrunごとの再確認なし）、同一task snapshot/scorer/protocol/hardware条件、現行実験のOS割当Worker receipt（歴史runは当時の実行者・authority・receipt）を与える。decisionが未決/失効/適用境界外ならownerへ戻す。実験条件baseline/current/candidate/hybridとHELIXなし/旧版/新版cohortを別軸で記録し、比較目的と群を明示し、導入効果はあり／なし、改訂効果は旧版／新版、三者の関係を主張する場合だけ三者を要求する。未選択群の不足を選択した二者比較の不成立理由にしない。品質gateを先に個別判定し、retry・上位Worker救援・rework・CI・review・人修正込みの費用、所要時間、人介入を分ける。欠測通貨・非貨幣化人時間・比較不能cohortは明示する。 | 劣化品質を価格/速度で相殺／初回candidate単価だけで安価認定／上位救援・人修正・retryを除外／未承認換算率で人時間を0円化／受入成果なしを効率成功扱い／実験条件とcohortを混ぜる／scope・oracle・protocol・hardware・run version違いを混ぜる／歴史結果をcurrent性能へ転用／LABOがWorkerを割当・起動する。 |"
+              },
+              "all_direct_table_rows": [
+                {
+                  "line": 170,
+                  "line_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62",
+                  "text": "| `HELIXLABO-L2-059`（単体候補、parent `HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context） | scope/revisionに適用可能なquality oracleと既決priority/tolerance（適用可能な判断のrunごとの再確認なし）、同一task snapshot/scorer/protocol/hardware条件、現行実験のOS割当Worker receipt（歴史runは当時の実行者・authority・receipt）を与える。decisionが未決/失効/適用境界外ならownerへ戻す。実験条件baseline/current/candidate/hybridとHELIXなし/旧版/新版cohortを別軸で記録し、比較目的と群を明示し、導入効果はあり／なし、改訂効果は旧版／新版、三者の関係を主張する場合だけ三者を要求する。未選択群の不足を選択した二者比較の不成立理由にしない。品質gateを先に個別判定し、retry・上位Worker救援・rework・CI・review・人修正込みの費用、所要時間、人介入を分ける。欠測通貨・非貨幣化人時間・比較不能cohortは明示する。 | 劣化品質を価格/速度で相殺／初回candidate単価だけで安価認定／上位救援・人修正・retryを除外／未承認換算率で人時間を0円化／受入成果なしを効率成功扱い／実験条件とcohortを混ぜる／scope・oracle・protocol・hardware・run version違いを混ぜる／歴史結果をcurrent性能へ転用／LABOがWorkerを割当・起動する。 |"
+                }
+              ],
+              "section_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62"
             },
             "current_main_identity_chunk": {
               "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
               "file_sha256": "119fa43bce6753bdb0fed5420641617b9665907a7b1c3b2e6def590098e7442d",
-              "kind": "reference_only",
-              "line": 166,
-              "line_sha256": "ac1df69b1afa5f78bf623a7aba320235cf0a389ff63ebed524338053efb2416c",
-              "text": "[LABOの比較評価候補](../../helix-labo/L2-requirements/labo-requirements.md) HELIXLABO-L2-059および[INTELLIGENCEの配置入力契約候補](../../helix-intelligence/L2-requirements/intelligence-requirements.md) HELIXINTELLIGENCE-L2-067との責務境界を保持する。対象scopeに有効な品質・優先・許容悪化の判断は再利用し、未決・失効・適用境界外のみ判断ownerへ戻す。本追補は未実行の受入候補であり、実測改善や要求採択を生成しない。"
+              "kind": "table_rows",
+              "canonical": {
+                "line": 170,
+                "line_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62",
+                "text": "| `HELIXLABO-L2-059`（単体候補、parent `HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context） | scope/revisionに適用可能なquality oracleと既決priority/tolerance（適用可能な判断のrunごとの再確認なし）、同一task snapshot/scorer/protocol/hardware条件、現行実験のOS割当Worker receipt（歴史runは当時の実行者・authority・receipt）を与える。decisionが未決/失効/適用境界外ならownerへ戻す。実験条件baseline/current/candidate/hybridとHELIXなし/旧版/新版cohortを別軸で記録し、比較目的と群を明示し、導入効果はあり／なし、改訂効果は旧版／新版、三者の関係を主張する場合だけ三者を要求する。未選択群の不足を選択した二者比較の不成立理由にしない。品質gateを先に個別判定し、retry・上位Worker救援・rework・CI・review・人修正込みの費用、所要時間、人介入を分ける。欠測通貨・非貨幣化人時間・比較不能cohortは明示する。 | 劣化品質を価格/速度で相殺／初回candidate単価だけで安価認定／上位救援・人修正・retryを除外／未承認換算率で人時間を0円化／受入成果なしを効率成功扱い／実験条件とcohortを混ぜる／scope・oracle・protocol・hardware・run version違いを混ぜる／歴史結果をcurrent性能へ転用／LABOがWorkerを割当・起動する。 |"
+              },
+              "all_direct_table_rows": [
+                {
+                  "line": 170,
+                  "line_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62",
+                  "text": "| `HELIXLABO-L2-059`（単体候補、parent `HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context） | scope/revisionに適用可能なquality oracleと既決priority/tolerance（適用可能な判断のrunごとの再確認なし）、同一task snapshot/scorer/protocol/hardware条件、現行実験のOS割当Worker receipt（歴史runは当時の実行者・authority・receipt）を与える。decisionが未決/失効/適用境界外ならownerへ戻す。実験条件baseline/current/candidate/hybridとHELIXなし/旧版/新版cohortを別軸で記録し、比較目的と群を明示し、導入効果はあり／なし、改訂効果は旧版／新版、三者の関係を主張する場合だけ三者を要求する。未選択群の不足を選択した二者比較の不成立理由にしない。品質gateを先に個別判定し、retry・上位Worker救援・rework・CI・review・人修正込みの費用、所要時間、人介入を分ける。欠測通貨・非貨幣化人時間・比較不能cohortは明示する。 | 劣化品質を価格/速度で相殺／初回candidate単価だけで安価認定／上位救援・人修正・retryを除外／未承認換算率で人時間を0円化／受入成果なしを効率成功扱い／実験条件とcohortを混ぜる／scope・oracle・protocol・hardware・run version違いを混ぜる／歴史結果をcurrent性能へ転用／LABOがWorkerを割当・起動する。 |"
+                }
+              ],
+              "section_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62"
             }
           },
           "candidate_status": "explicit_candidate_adopted_and_target_text_unchanged",
@@ -27843,6 +28203,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             },
@@ -27859,6 +28224,11 @@
                   "line": 217,
                   "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
                   "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+                },
+                {
+                  "line": 325,
+                  "line_sha256": "e0caac20ffb96325219fea844563bbef81ca85ad4680a6d92892187d054785ef",
+                  "text": "| `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |"
                 }
               ]
             }
