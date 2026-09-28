@@ -1,0 +1,96 @@
+{
+  "receipt_id": "MPR-RCPT-HELIXOS-SAFE-CONTINUATION-2026-09-28",
+  "authority_effect": "none",
+  "candidate_state": "registered_proposal; PO未採択",
+  "scope": "旧IPC-R07の連続するLEGACY-CAND-LINE-003082/003083二atomを、採択済みOS-L2-009の継続・復旧に接続する未採択HELIXOS-L2/L11-041候補へ限定して再導出。旧IPC系列全体、runtime/provider具体機構、coordination-onlyの厳密意味、外部authorityの意味定義は未被覆のまま保持。",
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/helixos-safe-continuation-source-lines-2026-09-28.jsonl#LEGACY-CAND-LINE-003082+LEGACY-CAND-LINE-003083",
+  "source_atom_set_digest_rule": "atom_id + 半角空白 + sha256:付きsource_line_sha256。末尾改行なし。",
+  "candidate_digest_rule": "### ID見出しから次の同階層見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "candidates": [
+    {
+      "requirement_identity": "HELIXOS-L2-041",
+      "requirement_kind": "unit",
+      "version_target": "1.0 candidate, no v0.1 inclusion decision",
+      "parent_l1_ids": [
+        "HELIXOS-L1-003"
+      ],
+      "parent_l1_source": {
+        "path": "docs/helix-os/L1-planning/system-intent.md",
+        "sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+        "decision_ref": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md:27-33"
+      },
+      "candidate_semantic_digest": "sha256:a43e3eda819e37ef81db0c60c5add5cebce5e3d17ca858c1446c27ac4db80c48",
+      "candidate_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-041",
+      "candidate_file_sha256": "sha256:b121c8c0bf511affb989dd393dda220364e86b24ba16cd0b4d5486b9a6075519",
+      "candidate_section_boundaries": {
+        "start_line": 1134,
+        "end_line": 1141,
+        "start_heading_prefix": "### HELIXOS-L2-041 "
+      },
+      "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "acceptance_file_sha256": "sha256:36113cde58f80398aae0337455e0c13e88ec38578dbcb7e892d076cadaa74315",
+      "acceptance_section_sha256": "sha256:32f08cfa7b070bb902277f79e044e971bbd3948e90621c624d80b167f80d7ded",
+      "acceptance_section_boundaries": {
+        "start_line": 736,
+        "end_line": 746,
+        "start_heading_prefix": "### HELIXOS-L2-041 "
+      },
+      "source_atom_set_digest": "sha256:e7361e62020c3355fafca9ab6d99fa0f3e81da4fbe2735ea0342fbb7e72b7647",
+      "source_atom_count": 2,
+      "source_collection_scope": "旧IPC-R07 requirements候補の連続する45–46行、LEGACY-CAND-LINE-003082/003083の2 atom。IPC family全体および旧runtime/provider pathは入力外。",
+      "atoms": [
+        {
+          "atom_id": "LEGACY-CAND-LINE-003082",
+          "source_kind": "historical_candidate_requirement_atom",
+          "candidate_line_id": "LEGACY-CAND-LINE-003082",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "source_file_sha256": "sha256:4a0dc04f1cf100770c5cc0440b0ca9a056b7d443f8d0b04e0978483b442cfe04",
+          "source_line": 45,
+          "source_line_sha256": "sha256:04ae83fc736b4703e16f16c526e3e712d9c0c85b3c01ee76806868eae2153103",
+          "source_text": "再読込不能なprovider/runtimeでは、安全なsession transitionとcoordination-only continuationを使う。",
+          "parent_requirement_ref": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/instruction-path-change-resilience-requirements.md:43-46 (IPC-R07)",
+          "disposition": "carried_to_unadopted_candidate_limited_scope",
+          "semantic_limit": "安全なsession transitionとcoordination-only continuationの条件。厳密なruntime semanticsは定義しない。"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-003083",
+          "source_kind": "historical_candidate_requirement_atom",
+          "candidate_line_id": "LEGACY-CAND-LINE-003083",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "source_file_sha256": "sha256:4a0dc04f1cf100770c5cc0440b0ca9a056b7d443f8d0b04e0978483b442cfe04",
+          "source_line": 46,
+          "source_line_sha256": "sha256:19cef28e6e21b22ef88dea26d6bf9ebc64dd865c638ebb2e151b2ced8f69cbc4",
+          "source_text": "旧指示、撤回claim、secret、private reasoningを持ち越さず、継続に必要な外部正本を再取得する。",
+          "parent_requirement_ref": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/instruction-path-change-resilience-requirements.md:43-46 (IPC-R07)",
+          "disposition": "carried_to_unadopted_candidate_limited_scope",
+          "semantic_limit": "旧指示・撤回claim・secret・private reasoningを持ち越さず、必要な外部正本を再取得する意味。外部authorityの種類・意味は定義しない。"
+        }
+      ],
+      "coverage_result": "no_loss_limited_to_two_linked_atoms_candidate",
+      "carried_atom_refs": [
+        "LEGACY-CAND-LINE-003082",
+        "LEGACY-CAND-LINE-003083"
+      ],
+      "preserved_pending_registration_refs": [],
+      "human_decision_disposition_refs": [],
+      "unaccounted_atom_refs": [],
+      "semantic_limit": "当該連続二atomの候補内容対応のみ。分類訂正・候補routeは採択、IPC系列closure、実装、実行、受入実施を生成しない。",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/helixos-safe-continuation-source-lines-2026-09-28.jsonl#LEGACY-CAND-LINE-003082+LEGACY-CAND-LINE-003083"
+    }
+  ],
+  "source_parent_context": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+    "source_file_sha256": "sha256:4a0dc04f1cf100770c5cc0440b0ca9a056b7d443f8d0b04e0978483b442cfe04",
+    "lines": "43-46",
+    "status": "historical_candidate; lines 45-46 are the only atoms carried to this candidate",
+    "remaining_conditions": [
+      "IPC-R01..06, IPC-R08..10",
+      "provider/runtime-specific behavior and exact authority-source semantics"
+    ]
+  },
+  "human_decision_provenance": {
+    "decision_ref": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+    "status": "L1 parent confirmed and fixed L2/L11 adopted on 2026-09-28; HELIXOS-L2-041 not included; PO decision pending"
+  },
+  "validation_boundary": "static source/line/section SHA and L2/L11 comparison only; no old execution"
+}

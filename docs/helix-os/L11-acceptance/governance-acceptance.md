@@ -732,3 +732,15 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 **未見例**：未見のbudget revision、途中で交代したWorker、遅延したattempt event、実験retryを含むfixtureで、対象ticketとpolicyの適用scope・lineageを再照合する。上限・累積回数・失敗理由を確定できないときはretryを保留してownerへ戻し、古いpolicyや別episodeのreceiptで成功にしない。無関係なticketの通常作業はこの上限判定から停止させない。
 
 **戻し先と限界**：記録欠落は`HELIXOS-L2-019`、policy不明はその決定owner、route不明は`HELIXOS-L2-010`、要求意味差はHARNESS/Backflow、復旧地点不明はOS Recoveryへ返す。旧`HXT-AC-015`の限定的なnormal/negative oracleを扱い、旧`HXT-FR-014`の全failure route、旧runtime、固定schema、数値上限、実装・実行済み状態を採用しない。
+
+### HELIXOS-L2-041 再読込不能時の正本再取得を伴う継続 — L11受入候補
+
+**対応と状態**：`HELIXOS-L2-041`と対になる未採択候補、`version_target: 1.0`、親`HELIXOS-L1-003`。採択済みOS-009の継続・復旧責務へ限定接続する。以下は未実行の正常・negative・unknown oracleであり、候補追加や静的確認はPO採択、provider/runtime能力の実証、運用有効化を示さない。
+
+**正常例**：既存のauthority契約が特定する外部正本sourceとそのrevisionをfixtureへ与え、provider/runtimeから指示経路を再読込できない状態で、既存契約が示す安全なsession transitionとcoordination-only continuationの適用条件、および未完義務を提示する。移行後のcontextには旧指示、撤回済みclaim、secret、private reasoningが含まれず、次の処理に必要なsourceは既存の正本経路から再取得され、identity/revision・確認結果と既存provenanceへ結ばれる。出力はsourceが与えるauthority意味を会話や要約から補わず、OS-009の既存制約と未完義務を保つ。
+
+**Negative例**：旧instructionや以前のclaimを現在のauthorityとして継続する、撤回済みclaimを有効扱いする、secretまたはprivate reasoningをcoordination packetへ含める、sourceを再取得せず会話要約を正本の代わりにする、古いrevisionやconflictしたsourceを確認済みと示す場合、その継続をauthority確認済みとして扱わない。`HELIXSECURITY-L2-005`のraw secret境界を外さない。旧CLR-R06がcandidate状態であることや、packetが存在することを採択済み根拠へ昇格しない。
+
+**Unknown例**：sourceの選択・identity・revision・正本性・取得結果のいずれかが不明、またはprovider/runtimeが再読込不能か観測不能で安全なtransition条件も確定できないfixtureでは、正常例に見立てず`unknown`を示す。依存する継続だけを保留し、未完義務と確認先を示す。未知のauthority意味や新しいprovider fallbackを推測しない。
+
+**受入の限界**：各caseは指定されたsource/revisionと既存transition契約に限る。旧source用語の`coordination-only continuation`や「安全なsession transition」の厳密なruntime上の内容は新定義せず、既存契約に未定義または不明があればunknownとする。別provider、runtime、session方式の対応表、旧instructionの再読込機構、外部sourceの種類や意味、新しい承認経路は本候補に含めない。正常caseの通過、source取得成功、OS-009の利用、L2/L11候補の登録から要求採択、実装・運用の完了を導かない。

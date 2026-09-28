@@ -1,9 +1,9 @@
 {
   "packet_kind": "recommendation_for_PO_decision_only",
-  "basis_commit": "dcc86cf02ade62aab1a723b49f8d5bca20677047",
+  "basis_commit": "6c502f7bece2a8f1b7c7010297429b7b02b1c23d",
   "as_of": "2026-09-28",
-  "count": 33,
-  "status": "All 33 are live registered proposals (authority_effect none). HELIXOS-L2-040 and HELIXINTELLIGENCE-L2-073 are bounded candidates pending PO; existing pair 039/045 remains separately pending. No adoption, hold, reject, implementation, or acceptance run is inferred from PRs or L2/L11 text.",
+  "count": 34,
+  "status": "All 34 are live registered proposals (authority_effect none). HELIXOS-L2-040/041 and HELIXINTELLIGENCE-L2-073 are bounded candidates pending PO; existing pair 039/045 remains separately pending. No adoption, hold, reject, implementation, or acceptance run is inferred from PRs or L2/L11 text.",
   "decision_grouping": "No shared adoption decision is bundled except PORTFOLIO-FIXTURE-FR54-FR55-ROUTE and HARNESS-OS-WBS-SHAPE-039-045-PAIR. HELIXOS-L2-039/HARNESS-L2-045 are linked by the latter, not independent adoption choices. The earlier R2247 options for 039 were preparation alternatives: A proposed adopting OS-039 alone with registrations blocked while the HARNESS contract was absent; B proposed holding 039 while preparing the HARNESS candidate and re-presenting both exact revisions. The B preparation step is completed by this HARNESS-045 candidate, but no PO selection resulted. The new pair options are A=adopt both exact revisions, B=hold both; neither has been selected, and B is advisory. HARNESS-L2-043/044 remain jointly routed only by the explicit FR54/55 route. Other candidate identities retain independent choices. HELIXINTELLIGENCE-L2-072 remains limited to its 1.0 shadow subset and HELIX-LABO-L2-062 preserves 2.0.",
   "candidates": [
     {
@@ -2558,6 +2558,80 @@
       }
     },
     {
+      "identity": "HELIXOS-L2-041",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "Historical candidate IPC-R07 consecutive requirement atoms LEGACY-CAND-LINE-003082/003083; bounded safe continuation with external authority source re-fetch. IPC family and runtime/provider mechanisms remain unresolved.",
+      "new_meaning_choice": "A: adopt exact 041 L2/L11 as a 1.0 candidate, preserving existing authority-source semantics and OS-009 continuation boundary. B: hold 041 and retain both old atoms unresolved. C: decide a meaning change/retire for both old atoms with target revision and impact.",
+      "recommended_choice": "A",
+      "choice_meaning": "限定A推奨。再読込不能時の安全なsession transitionとcoordination-only continuationを前提条件として置き、旧指示・撤回claim・secret・private reasoningを持ち越さず、必要な外部正本を既存authority契約に従って再取得する。厳密なtransition/runtime semanticsや外部authorityの意味は新設しない。",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HELIXOS-L2-041 再読込不能時の正本再取得を伴う継続（単体候補、version_target: 1.0）",
+      "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-041",
+      "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "registration_id": "MPR-RC-HELIXOS-L2-041-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXOS-L1-003"
+      ],
+      "parent_l1_path": "docs/helix-os/L1-planning/system-intent.md",
+      "parent_l1_sha256_current": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+      "parent_planning_revision_recorded": "docs/helix-os/L1-planning/system-intent.md@612ae1e9be85eda42649bf74e46998fd57da3de6 sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e（#2199固定L1、041採択は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-safe-continuation-coverage-receipt-2026-09-28.json#HELIXOS-L2-041",
+      "receipt_id": "MPR-RCPT-HELIXOS-SAFE-CONTINUATION-2026-09-28",
+      "receipt_candidate_digest_rule": "### ID見出しから次の同階層見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "start_heading_prefix": "### HELIXOS-L2-041 ",
+          "end_heading_prefix": "次の同階層候補見出し（###）"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "start_heading_prefix": "### HELIXOS-L2-041 ",
+          "end_heading_prefix": "EOF"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:a43e3eda819e37ef81db0c60c5add5cebce5e3d17ca858c1446c27ac4db80c48",
+      "receipt_candidate_semantic_digest": "sha256:a43e3eda819e37ef81db0c60c5add5cebce5e3d17ca858c1446c27ac4db80c48",
+      "current_candidate_semantic_digest": "sha256:a43e3eda819e37ef81db0c60c5add5cebce5e3d17ca858c1446c27ac4db80c48",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 2,
+      "source_atom_set_digest": "sha256:e7361e62020c3355fafca9ab6d99fa0f3e81da4fbe2735ea0342fbb7e72b7647",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "line": 45,
+          "source_line_sha256": "sha256:04ae83fc736b4703e16f16c526e3e712d9c0c85b3c01ee76806868eae2153103",
+          "atom_id": "LEGACY-CAND-LINE-003082",
+          "source_file_sha256": "sha256:4a0dc04f1cf100770c5cc0440b0ca9a056b7d443f8d0b04e0978483b442cfe04",
+          "source_revision_ref": "archive/current-file-sha"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "line": 46,
+          "source_line_sha256": "sha256:19cef28e6e21b22ef88dea26d6bf9ebc64dd865c638ebb2e151b2ced8f69cbc4",
+          "atom_id": "LEGACY-CAND-LINE-003083",
+          "source_file_sha256": "sha256:4a0dc04f1cf100770c5cc0440b0ca9a056b7d443f8d0b04e0978483b442cfe04",
+          "source_revision_ref": "archive/current-file-sha"
+        }
+      ],
+      "source_reference_note": "旧IPC-R07の連続する003082/003083のsource text/line/file SHAは別の分類訂正監査、receipt、source-lines JSONLで固定。IPC系列全体や旧provider/runtime機構は未対応。両atomとも採択済みとは扱わない。",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXOS-L2-041",
+      "paired_l11_id": "HELIXOS-L2-041",
+      "affected_requirement_and_consumer_ids": "HELIXOS-L1-003; HELIXOS-L2-009/015/019; HELIXSECURITY-L2-005; 対L11; old IPC-R07 atoms 003082/003083",
+      "rationale": "再読込不能時の安全な継続を定める旧条件と、その継続に対する情報持越し禁止・外部正本再取得条件の二atomを一緒に保持する。依存source不明時はunknownとして該当継続だけを保留し、外部authority意味・新しいprovider/runtime機構は定義しない。",
+      "previous_register_revision": null,
+      "version_target_evidence": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "line": 1134,
+        "excerpt": "### HELIXOS-L2-041 再読込不能時の正本再取得を伴う継続（単体候補、version_target: 1.0）",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
+      }
+    },
+    {
       "identity": "HELIXINTELLIGENCE-L2-073",
       "decision_state": "pending_PO; not adopted",
       "source_basis_class": "Historical draft candidate AAFD-R-04 two-line requirement atom: Probe does not replace the UIL deterministic detector, and free text is not directly projected to Issue, Requirement, CI, or merge authority.",
@@ -2668,7 +2742,7 @@
     }
   ],
   "initial_25_basis_commit": "f4b2a2b02cf5ea3134e27be0a65c100395161bad",
-  "progression": "Initial 25 candidates + PR #2241 HARNESS-L2-042 + PR #2238 HELIXOS-L2-038 = historical 27; PR #2245 merged HARNESS-L2-043, giving 28; PR #2246 merged HARNESS-L2-044, giving 29; PR #2247 registered HELIXOS-L2-039, giving 30; current HARNESS-L2-045 brings the live decision set to 31. HELIXOS-L2-039/HARNESS-L2-045 are linked by an unselected paired PO decision. Current HELIXOS-L2-040 adds one bounded old HXT-AC-015 retry-route candidate, making 32; no PO selection. Current HELIXINTELLIGENCE-L2-073 adds one bounded old AAFD-R-04 free-text direct-projection boundary candidate, making 33; no PO selection.",
+  "progression": "Initial 25 candidates + PR #2241 HARNESS-L2-042 + PR #2238 HELIXOS-L2-038 = historical 27; PR #2245 merged HARNESS-L2-043, giving 28; PR #2246 merged HARNESS-L2-044, giving 29; PR #2247 registered HELIXOS-L2-039, giving 30; current HARNESS-L2-045 brings the live decision set to 31. HELIXOS-L2-039/HARNESS-L2-045 are linked by an unselected paired PO decision. Current HELIXOS-L2-040 adds one bounded old HXT-AC-015 retry-route candidate, making 32; no PO selection. Current HELIXINTELLIGENCE-L2-073 adds one bounded old AAFD-R-04 free-text direct-projection boundary candidate, making 33; no PO selection. Current HELIXOS-L2-041 adds one bounded old IPC-R07 safe-continuation candidate from two linked atoms, making 34; no PO selection.",
   "version_target_evidence": null,
   "portfolio_fixture_fr54_fr55_route": {
     "decision_id": "PORTFOLIO-FIXTURE-FR54-FR55-ROUTE",
