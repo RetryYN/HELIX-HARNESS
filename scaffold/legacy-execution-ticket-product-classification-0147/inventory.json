@@ -82,11 +82,11 @@
     },
     {
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "sha256": "sha256:78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be"
+      "sha256": "4d52e1d0ee762d005d4dc164003ad1ea48b04cb0feef4c1021173502fb43acd3"
     },
     {
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-      "sha256": "sha256:db691bb55ab1079eeee70bc7cf86c61f197bf13d95455b9ad375f60fe3356a19"
+      "sha256": "9f13971bb1a44a49b396b9ed955975545de2694c98a63dd9cd619908e7381a94"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",

@@ -61,3 +61,8 @@
 ## 後続追加：HIL-FR-68旧source meaning residual（40候補外）
 
 旧archive `LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:158`（file SHA-256 `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`、line SHA-256 `1cb33f5f4fb41235b6e5930dc888fdff561a3d6eff99d50f816ea6ab8b151cd5`）のHIL-FR-68を候補40件とは別のPO未決residualとして記録した。旧IRはHR-FR-HIL-23／HAC-HIL-23a/b/c／HAT-HIL-23へ接続する。OS-L2/L11-043はWorker typed-eventの部分重複のみ。PO採択済みCONNECT-L2-001/002/005は明示された機構間connectionのadapter/transport版・互換・traceを扱い、Workerを自動でCONNECT connectionと見なさない。旧CLI移行、Node code-held approval policy/policy digest、adapter version/ACP互換評価のowner・適用範囲は未割当。具体的選択肢と推奨A（保留・保全）は[PO packet](post-confirmation-25-po-decision-packet-2026-09-28.md#hil-fr-68のsource-meaning-residual40候補外po未決)へ記録。ACP adoptionも旧source全体のno_loss/closureも決定・主張しない。
+
+
+## 後続草稿：HR-FR-HYB-006／HELIXOS-L2-044（限定negative oracle）
+
+旧v1.3 §4.6のarchive line 290と6fabd125 baseline line 275を別revisionとして確認し、`HR-AC-HYB-006`の「prose handoverだけの解決」spanだけをOS L2/L11-044未採択候補へ限定対応する。file/line SHA、span、holding、atom範囲は`docs/governance/audits/requirement-registration/os-v13-hyb-006-feedback-resolution-source-lines-2026-09-28.jsonl`と対応receiptに固定。候補入力2 spansはno_loss、両source lines/旧HR-FR-HYB-006条件はpartialでclosureを主張しない。FR側のfeedback lifecycle/event-projection/SessionStart、未ack finding消失、source HEAD mismatchを別残差として両holdingに保持する。候補`MPR-RC-HELIXOS-L2-044-001`は`registered_proposal` / `authority_effect:none`、PO未決。採択はprose-only handover rejectionだけを具体化し、既採択HELIXOS-L2-007のevidence sufficiencyを再定義しない。旧ticket-id-redo/connection auditの同表記`HELIXOS-L2-044`は旧ticket IDの照合値であり、現行requirement identityとは別である。
