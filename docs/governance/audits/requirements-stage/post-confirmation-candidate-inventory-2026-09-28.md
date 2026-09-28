@@ -95,3 +95,8 @@ A＝exact L2/L11-042の限定採択（推奨）、B＝原atomを保留、C＝sou
 旧v1.3 §4.10 HR-FR-P2-05 archive line 428（`REQSRC-SUP-00330`）と6fabd125 baseline line 409の完全同文別revision atomを、両方candidate inputとして区別して保持する。起動前に現行descriptor・HEAD・authority/rule・OS task boundaryを同一dispatchへ束縛し、既存secret denyと出力の非権威性を適用する限定候補である。旧packet schema/runtime、L2-031の追加runtime専用条件の主Workerへの拡張、v1.3全体の被覆は主張しない。source-lines/receiptを追加記録し、両source holdingは未解消のまま。candidateは`registered_proposal` / `authority_effect:none`、PO未決・未採択。packet basis mainは`782a7320925a28d0c7b35ebc54b0ec7cc1329e7c`。
 
 今回の同一packet追随で、既存HELIXOS-L2-042 JSONのarchive line 431 `source_reference_examples[].source_line_sha256`の重複接頭辞`sha256:sha256:`を`sha256:`へ直した。source atomとそのdigestは変えていない。
+
+
+## 後続追加：#2259後のHELIXOS-L2-043（現行判断集合40候補）
+
+旧v1.3 §4.10 HR-FR-P2-06 archive line 429（`REQSRC-SUP-00331`、holding `MPR-SH-SUPPLEMENTARY-003`）と6fabd125 baseline line 410（別revision・holding `MPR-SH-V13-BASELINE-001`）をtyped-event S1とNode-exclusive S2に分割した。`HELIXOS-L2-043`と対L11へのcandidate inputはS1の2 atomのみで、選択範囲のcoverageはno_loss、`unaccounted_atom_refs:[]`。archive/baseline S2の2 atomは`preserved_pending`としてPO判断へ保全し、source line/HR-FR-P2-06全体はpartialでno_loss/closureを主張しない。正確な原文・file/line/span SHAは`os-v13-p2-06-worker-delegation-source-lines-2026-09-28.jsonl`および`os-v13-p2-06-worker-delegation-coverage-receipt-2026-09-28.json`。登録`MPR-RC-HELIXOS-L2-043-001`は`registered_proposal` / `authority_effect:none`、PO未決。typed-event candidate Aを推奨。Node専有残差はA保持/B現行責務へ再導出/C理由付きretire/D保留、現時点ではDを推奨し、SECURITY/OS/Worker/canonical writerへの意味割当を先取りしない。判断packetは同一ファイルで40候補、basis main `fbfc6f8cf0554a092e794aa61778f319836927ee`へ追随。

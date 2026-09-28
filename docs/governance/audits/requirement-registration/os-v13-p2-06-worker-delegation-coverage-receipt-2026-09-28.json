@@ -1,0 +1,190 @@
+{
+  "receipt_id": "MPR-RCPT-OS-V13-P2-06-WORKER-DELEGATION-2026-09-28",
+  "receipt_state": "draft_not_registered",
+  "authority_effect": "none",
+  "candidate_identity": "HELIXOS-L2-043",
+  "requirement_kind": "unit_supplement",
+  "parent_l1_ids": [
+    "HELIXOS-L1-003",
+    "HELIXOS-L1-008"
+  ],
+  "candidate_semantic_digest": "sha256:e286b34a9805a690f324ebe37ee0936691f636082b49350ee9dc5183787d9a68",
+  "candidate_l2_file_sha256": "sha256:cd0aa3ae422ca8391c27b316650f470093f12edcf3bc4b621da0035d2706eddf",
+  "paired_acceptance_identity": "HELIXOS-L2-043",
+  "paired_acceptance_digest": "sha256:136c2c209e30667dc74f1757b00fc482ce1216f05a851990c02437dc9078976b",
+  "l11_file_sha256": "sha256:ebe12d376523ea010df0733e929ecb3d5a557f97b54f248a1096f4a2e8e5fb70",
+  "source_lines_ref": "docs/governance/audits/requirement-registration/os-v13-p2-06-worker-delegation-source-lines-2026-09-28.jsonl",
+  "source_collection_scope": "旧v1.3 HR-FR-P2-06 archive line 429（REQSRC-SUP-00331）と、6fabd125 baseline line 410の完全同文別revisionだけを対象とする。各source lineをtyped-event節とNode専有節へ分割し、archive/baselineごとに別atomの計4 spansを保全する。候補入力はtyped-event節の2 atomのみ。Node専有節の2 atomは候補入力外としてsource holdingへ保持し、PO meaning decisionを待つ。",
+  "source_collection_atom_count": 4,
+  "source_collection_atom_set_digest": "sha256:6b47156d4527b696ab0b89688f270bef2ae06f637de68f82c17a0e81293c5cc6",
+  "candidate_input_atom_refs": [
+    "V13-ARCHIVE-L0429-HR-FR-P2-06-S1",
+    "V13-BASE-6FAB-L0410-S1"
+  ],
+  "candidate_input_atom_count": 2,
+  "candidate_input_atom_set_digest": "sha256:79789ba39196a3eb9ba2caa6c403fa3b2df40975ad7fd9004d5f4b942b5ff861",
+  "candidate_input_accounting_status": "no_loss for the two selected typed-event atoms only; the full HR-FR-P2-06 source line and condition remain partial, with the Node-exclusive atoms preserved pending PO decision.",
+  "source_line_coverage_result": "partial; no_loss_not_claimed",
+  "condition_closure": "not_asserted",
+  "candidate_input_coverage_result": "no_loss",
+  "unaccounted_atom_refs": [],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-SUPPLEMENTARY-003",
+    "MPR-SH-V13-BASELINE-001"
+  ],
+  "authority_boundary": "本候補はevent種別の識別と追跡だけを要求する。approval requestは承認ではなく、tool call eventは操作権限ではなく、result eventはwrite transactionや成果採択の権限ではない。旧Node専有の意味をSECURITY、OS、Worker、現行の書込み責務へ暗黙に移管しない。",
+  "po_decision_item": {
+    "status": "required_before_any_node_exclusive_atom_rehome_or_retire",
+    "source_atoms": [
+      "V13-ARCHIVE-L0429-HR-FR-P2-06-S2",
+      "V13-BASE-6FAB-L0410-S2"
+    ],
+    "original_source_text": "| `HR-FR-P2-06` | delegationはapproval request／tool call／resultをtyped eventで交換し、Node control planeだけがapprovalとwrite transactionを決定する |",
+    "decision_span": "Node control planeだけがapprovalとwrite transactionを決定する",
+    "question": "旧sourceの「Node control planeだけがapprovalとwrite transactionを決定する」専有意味を現行HELIXでどう扱うか。",
+    "choices": [
+      {
+        "choice": "A retain_as_normative",
+        "meaning": "旧Node専有を現行も要求する。Nodeを指す対象・decision authority・write transaction境界の定義と現行責務との整合が必要。",
+        "impact": "既存のSECURITY authority、OS progress/assignment、Worker executionの境界へ新たな専有ownerを置く可能性があり、authority・state writer・運用統合に広い影響。現行roleだけへ暗黙投影できない。"
+      },
+      {
+        "choice": "B explicit_rederive_current_ownership",
+        "meaning": "旧Node専有の代わりに、current authority/state/execution contractを対象revision単位で明示する。具体的なdecision/write責務を変更後ownerへ割り当てる。",
+        "impact": "旧sourceのsingle Node authority/write semanticsを変更し、SECURITY/OS/Worker/正本ownerの責務、operation authority、canonical transaction boundaryを変える。意味変更に対するPO判断が必要。"
+      },
+      {
+        "choice": "C retire_node_specific_meaning",
+        "meaning": "Node implementation-specific専有条件を明示的理由でretireし、typed-event clauseだけを独立に再配置する。",
+        "impact": "旧要求意味の一部を終了する判断となる。対象revision、理由、影響するapproval/write pathと未移管条件を明記するPO判断が必要。"
+      },
+      {
+        "choice": "D defer_and_preserve",
+        "meaning": "専有意味は未処分sourceとして両holdingに保持し、現行requirementへの再配置・retireを保留する。",
+        "impact": "この候補で旧HR-FR-P2-06全体のno_lossやclosureは成立しない。Node atomはsource holdingに残り、後続判断が必要。"
+      }
+    ],
+    "current_candidate_effect": "L2-043 draft covers only typed-event trace. It does not adopt or resolve A/B/C, and it does not claim source-line no_loss or condition closure."
+  },
+  "related_legacy_overlap_not_in_candidate_input": [
+    {
+      "source": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:158",
+      "requirement_id": "HIL-FR-68",
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "relation": "Delegation Wire Protocol also describes structured events and Node-held approval response policy; it overlaps P2-06 but is a distinct source/requirement. Its implementation/schema semantics are not included here."
+    },
+    {
+      "source": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md:34-36,55",
+      "requirement_id": "WCC-FR-01",
+      "relation": "Legacy design candidate references P2-06 for common typed-event delegation and descriptor. It is not an additional P2-06 source atom and is not treated as a current adopted OS requirement."
+    }
+  ],
+  "current_condition_refs": [
+    "docs/helix-os/L1-planning/system-intent.md#HELIXOS-L1-003",
+    "docs/helix-os/L1-planning/system-intent.md#HELIXOS-L1-008",
+    "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-004",
+    "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-007",
+    "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-009",
+    "docs/helix-os/L11-acceptance/governance-acceptance.md#HELIXOS-L2-004",
+    "docs/helix-os/L11-acceptance/governance-acceptance.md#HELIXOS-L2-007",
+    "docs/helix-os/L11-acceptance/governance-acceptance.md#HELIXOS-L2-009",
+    "docs/helix-security/L2-requirements/security-requirements.md#HELIXSECURITY-L2-008"
+  ],
+  "old_source_atoms": [
+    {
+      "atom_id": "V13-ARCHIVE-L0429-HR-FR-P2-06-S1",
+      "parent_line_atom_id": "V13-ARCHIVE-L0429-HR-FR-P2-06",
+      "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-003",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "source_line": 429,
+      "source_line_sha256": "sha256:896a90c2b832a9cb960a7206e3b31d17abc3a131c54200414401d276593e6975",
+      "source_text": "| `HR-FR-P2-06` | delegationはapproval request／tool call／resultをtyped eventで交換し、Node control planeだけがapprovalとwrite transactionを決定する |",
+      "source_span_text": "delegationはapproval request／tool call／resultをtyped eventで交換し、",
+      "source_span_sha256": "sha256:a1d77f47b83393bafbca40227a611d2655be5d2e38decc098dc1df8eaf66cfff",
+      "source_clause_kind": "typed_event",
+      "atomization_rationale": "HR-FR-P2-06の原文は「交換し、」で二つの独立命題を接続する。前半はrequest/tool call/resultのevent表現、後半はNode control planeの承認/write transaction専有であり、責務・authority含意が異なるため別atomとする。改行またはsentenceを跨がず、このsource line内の文節だけを切り出す。",
+      "disposition": "candidate_scope",
+      "source_item_id": "REQSRC-SUP-00331",
+      "legacy_asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "candidate_input": true,
+      "relation": "approval request／tool call／resultを既存OS event contractの区別可能な型として交換・追跡する限定候補へ対応づける。Node専有の承認・write transaction意味は含めない。",
+      "audit_ref": "docs/governance/audits/requirements-stage/legacy-v13-semantic-condition-audit-2026-09-28.json#V13-WORKER-HR-FR-P2-06"
+    },
+    {
+      "atom_id": "V13-ARCHIVE-L0429-HR-FR-P2-06-S2",
+      "parent_line_atom_id": "V13-ARCHIVE-L0429-HR-FR-P2-06",
+      "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-003",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "source_line": 429,
+      "source_line_sha256": "sha256:896a90c2b832a9cb960a7206e3b31d17abc3a131c54200414401d276593e6975",
+      "source_text": "| `HR-FR-P2-06` | delegationはapproval request／tool call／resultをtyped eventで交換し、Node control planeだけがapprovalとwrite transactionを決定する |",
+      "source_span_text": "Node control planeだけがapprovalとwrite transactionを決定する",
+      "source_span_sha256": "sha256:54ea0757e631716ce8766bce87d4178129b37a728a721bea1459d2b16f255457",
+      "source_clause_kind": "node_exclusive",
+      "atomization_rationale": "HR-FR-P2-06の原文は「交換し、」で二つの独立命題を接続する。前半はrequest/tool call/resultのevent表現、後半はNode control planeの承認/write transaction専有であり、責務・authority含意が異なるため別atomとする。改行またはsentenceを跨がず、このsource line内の文節だけを切り出す。",
+      "disposition": "preserved_pending_PO_decision",
+      "source_item_id": "REQSRC-SUP-00331",
+      "legacy_asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "candidate_input": false,
+      "preserved_pending_registration_ref": "MPR-SH-SUPPLEMENTARY-003",
+      "relation": "Node control planeだけがapprovalとwrite transactionを決める意味。現行OS/SECURITY/Workerへ割当てず、候補入力外の別atomとしてsource holdingに保全し、POの保持/再導出/retire判断へ残す。",
+      "audit_ref": "docs/governance/audits/requirements-stage/legacy-v13-semantic-condition-audit-2026-09-28.json#V13-WORKER-HR-FR-P2-06"
+    },
+    {
+      "atom_id": "V13-BASE-6FAB-L0410-S1",
+      "parent_line_atom_id": "V13-BASE-6FAB-L0410",
+      "source_holding_registration_id": "MPR-SH-V13-BASELINE-001",
+      "source_path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+      "source_file_sha256": "sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+      "source_line": 410,
+      "source_line_sha256": "sha256:896a90c2b832a9cb960a7206e3b31d17abc3a131c54200414401d276593e6975",
+      "source_text": "| `HR-FR-P2-06` | delegationはapproval request／tool call／resultをtyped eventで交換し、Node control planeだけがapprovalとwrite transactionを決定する |",
+      "source_span_text": "delegationはapproval request／tool call／resultをtyped eventで交換し、",
+      "source_span_sha256": "sha256:a1d77f47b83393bafbca40227a611d2655be5d2e38decc098dc1df8eaf66cfff",
+      "source_clause_kind": "typed_event",
+      "atomization_rationale": "HR-FR-P2-06の原文は「交換し、」で二つの独立命題を接続する。前半はrequest/tool call/resultのevent表現、後半はNode control planeの承認/write transaction専有であり、責務・authority含意が異なるため別atomとする。改行またはsentenceを跨がず、このsource line内の文節だけを切り出す。",
+      "disposition": "candidate_scope",
+      "source_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "original_source_path": "docs/governance/helix-harness-requirements_v1.3.md",
+      "candidate_input": true,
+      "relation": "approval request／tool call／resultを既存OS event contractの区別可能な型として交換・追跡する限定候補へ対応づける。Node専有の承認・write transaction意味は含めない。",
+      "audit_ref": "docs/governance/audits/requirements-stage/legacy-v13-semantic-condition-audit-2026-09-28.json#V13-WORKER-HR-FR-P2-06"
+    },
+    {
+      "atom_id": "V13-BASE-6FAB-L0410-S2",
+      "parent_line_atom_id": "V13-BASE-6FAB-L0410",
+      "source_holding_registration_id": "MPR-SH-V13-BASELINE-001",
+      "source_path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+      "source_file_sha256": "sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+      "source_line": 410,
+      "source_line_sha256": "sha256:896a90c2b832a9cb960a7206e3b31d17abc3a131c54200414401d276593e6975",
+      "source_text": "| `HR-FR-P2-06` | delegationはapproval request／tool call／resultをtyped eventで交換し、Node control planeだけがapprovalとwrite transactionを決定する |",
+      "source_span_text": "Node control planeだけがapprovalとwrite transactionを決定する",
+      "source_span_sha256": "sha256:54ea0757e631716ce8766bce87d4178129b37a728a721bea1459d2b16f255457",
+      "source_clause_kind": "node_exclusive",
+      "atomization_rationale": "HR-FR-P2-06の原文は「交換し、」で二つの独立命題を接続する。前半はrequest/tool call/resultのevent表現、後半はNode control planeの承認/write transaction専有であり、責務・authority含意が異なるため別atomとする。改行またはsentenceを跨がず、このsource line内の文節だけを切り出す。",
+      "disposition": "preserved_pending_PO_decision",
+      "source_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "original_source_path": "docs/governance/helix-harness-requirements_v1.3.md",
+      "candidate_input": false,
+      "preserved_pending_registration_ref": "MPR-SH-V13-BASELINE-001",
+      "relation": "Node control planeだけがapprovalとwrite transactionを決める意味。現行OS/SECURITY/Workerへ割当てず、候補入力外の別atomとしてsource holdingに保全し、POの保持/再導出/retire判断へ残す。",
+      "audit_ref": "docs/governance/audits/requirements-stage/legacy-v13-semantic-condition-audit-2026-09-28.json#V13-WORKER-HR-FR-P2-06"
+    }
+  ],
+  "related_candidate_check": {
+    "candidate_identity": "HELIXOS-L2-043",
+    "existing_candidate_at_base": false,
+    "checked_current_os_l2_l11_and_related_worker_terms": true
+  },
+  "decision_status": "typed-event portion is an unregistered draft candidate; Node-exclusive source meaning remains pending PO decision.",
+  "candidate_input_coverage_scope": "限定: candidate_input_atom_refsに列挙したarchive/baseline typed-event S1の2 atomのみ。旧HR-FR-P2-06のsource line/condition全体にはno_lossを主張しない。",
+  "preserved_pending_atom_refs": [
+    "V13-ARCHIVE-L0429-HR-FR-P2-06-S2",
+    "V13-BASE-6FAB-L0410-S2"
+  ],
+  "coverage_result": "no_loss"
+}

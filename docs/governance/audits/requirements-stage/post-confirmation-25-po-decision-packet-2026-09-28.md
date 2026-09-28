@@ -1,6 +1,6 @@
-# 8機構確認後の追加候補：PO判断パケット（初版25 + 後続14 = 39）
+# 8機構確認後の追加候補：PO判断パケット（初版25 + 後続15 = 40）
 
-基準HEAD: `782a7320925a28d0c7b35ebc54b0ec7cc1329e7c`（#2258後main）。この基準HEADの38候補にHELIXSECURITY-L2-033を追加し、判断集合は39候補となる。033は未採択のbounded candidateであり、全候補は`registered_proposal` / `authority_effect:none`、PO未採択・未判断である。PR mergeやL2/L11本文・registerの存在から採択・実装・受入完了は推定しない。
+基準HEAD: `fbfc6f8cf0554a092e794aa61778f319836927ee`（最新main）。この基準HEADの39候補にHELIXOS-L2-043を追加し、判断集合は40候補となる。043は未採択のbounded candidateであり、全候補は`registered_proposal` / `authority_effect:none`、PO未採択・未判断である。PR mergeやL2/L11本文・registerの存在から採択・実装・受入完了は推定しない。
 
 ## 選択肢
 
@@ -196,3 +196,12 @@ A＝exact L2/L11-042の限定採択、B＝原atomを保留、C＝対象source re
 ## 後続訂正：HELIXOS-L2-042 source reference digest表記
 
 本packet JSONの既存HELIXOS-L2-042 `source_reference_examples`にあったarchive line 431の`source_line_sha256`値 `sha256:sha256:...`を、source-lines/receiptと一致する`sha256:...`へ修正した。これは接頭辞の重複訂正だけで、source bytes、atom、digest値、042候補範囲は不変。
+
+
+## 後続追加：HELIXOS-L2-043（判断集合40候補）
+
+| ID | 状態／推奨 | 版／対象L1親 | source basis／POが決める意味境界 | 根拠（旧sourceの正確なreceipt） | 影響する要求・consumer | 推奨理由 |
+|---|---|---|---|---|---|---|
+| `HELIXOS-L2-043` (L2/L11) | PO未決／typed-event candidate **A**推奨。Node残差 **D**推奨 | 1.0; HELIXOS-L1-003/008 | HR-FR-P2-06のtyped-event S1のみ。Node専有のapproval/write transaction意味は別のPO残差 | `docs/governance/audits/requirement-registration/os-v13-p2-06-worker-delegation-coverage-receipt-2026-09-28.json`; candidate inputはarchive line 429 S1とbaseline line 410 S1。source file SHA-256 `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406` / `1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1`、line SHA-256はいずれも`896a90c2b832a9cb960a7206e3b31d17abc3a131c54200414401d276593e6975` | HELIXOS-L2/L11-043、OS-L2-004/007/009、SECURITY-L2-008、Worker delegation、Node control plane/canonical writer residual | OSはevent追跡、SECURITY authority、Worker execution、canonical writerは既存契約を維持。旧行全体のclosureを主張せず、Node専有は別判断に保つ。 |
+
+登録`MPR-RC-HELIXOS-L2-043-001`は`registered_proposal` / `authority_effect:none`。typed-event候補のA＝exact L2/L11限定採択を推奨し、B＝S1保留、C＝対象revision・理由・影響付き意味変更/retire。別個のNode-exclusive residualの原文は「Node control planeだけがapprovalとwrite transactionを決定する」。その選択肢はA＝Node専有をnormative保持、B＝現行ownerへ明示再導出、C＝対象revision・理由・影響付きretire、D＝両holdingに保留（現時点推奨）。Node residualはSECURITY authority、OS assignment/progress、Worker execution、canonical writer/write transaction境界に影響し、043候補の採択とは独立する。receiptは選択S1 2 atomだけをcandidate inputとして`no_loss`、`unaccounted_atom_refs:[]`とする一方、archive/baseline各S2は`preserved_pending`であり、旧HR-FR-P2-06行全体はpartialでno_lossを主張しない。

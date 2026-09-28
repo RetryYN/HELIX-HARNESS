@@ -1148,3 +1148,12 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - **緩和と再検証**：既存の適用条件に従って成果検証を緩和する場合、緩和対象、理由、有効期限を特定する。緩和下で返された成果は、対象成果とassignment/scopeに結び付く再検証receiptが、選択済みHARNESS oracleと同じ対象revision/scopeに対する結果を示すまでacceptedにしない。receiptまたは参照oracleが欠落・unknown・stale、対象不一致、期限外であれば未完のまま保留する。緩和条件は新しい許可や権限を生まず、既存SECURITY authorityの適用を置き換えない。
 - **隣接責務との境界**：`HELIXOS-L2-004`は割当・Worker成果形式・結果回収を担い、`HELIXOS-L2-007/019`は証拠の出典・revision・継続を保持する。HARNESS-L2-005は選択taskに必要なverification/oracleを定め、OSはそのoracleの意味を追加・削除・変更しない。SECURITY-L2-007/008は既存のWorker制約とoperation authorityを担い、本候補はsecurity policyや許可条件を再定義しない。
 - **旧sourceとの保持と限界**：旧v1.3 §4.10 HR-FR-P2-08の「strict schema／digest検証を既定」「緩和には対象、理由、期限、再検証receipt」を保持する。旧schema、digest方式、Node/Python実装、provider/runtime、旧receipt形式は移植せず、追加承認者や新しい緩和許可手続きを設けない。旧source全体の再配置やcoverage closureは主張しない。source lineと候補範囲の照合は[source-lines草稿](../../governance/audits/requirement-registration/os-v13-worker-output-source-lines-2026-09-28.jsonl)および[coverage receipt草稿](../../governance/audits/requirement-registration/os-v13-worker-output-coverage-receipt-2026-09-28.json)を参照する。候補本文は要求採択、実装・実行許可を生成しない。
+
+### HELIXOS-L2-043 Worker委譲のapproval request／tool call／result追跡（単体追補候補、version_target: 1.0）
+
+- **親・状態**：`HELIXOS-L1-003`／`HELIXOS-L1-008`に接続する未採択候補。対象はOS assignmentに結び付くWorker委譲のevent追跡に限る。採択・実装・runtime起動の許可を生成しない。
+- **保持する条件**：Worker委譲で発生するapproval request、tool call、resultを、それぞれ区別できる既存OS event contract上の型として交換・記録する。各eventは既存のassignment、source／revision、actorおよび因果関係の記録へ結び、request・実行したcall・返却resultの対応を後から追えるようにする。承認要求が既存の適用契約上不要な操作に、新しいapproval requestや承認を追加しない。
+- **既存event契約との接続**：`HELIXOS-L2-004`の割当・実行・回収、`HELIXOS-L2-007`の共通証拠/provenance、`HELIXOS-L2-009`のevent永続化・冪等projection・checkpointを使う。既存event形式を置換せず、event schema、transport、adapter、runtimeを本候補で定義しない。
+- **権限境界**：approval request eventは承認そのものではなく、tool call eventは操作許可ではなく、result eventは検証・完了・write transactionの決定ではない。eventの型・順序・記録からauthority、承認、成果採択、canonical state変更を生成しない。本候補は承認またはwrite transactionを決定する唯一の機構を定めず、旧Node control plane専有の意味を現行SECURITY／OS／Workerへ移管しない。適用operationの権限と実行は現行の各契約のままとする。
+- **失敗・戻し先**：event型、相関、assignment/source/revisionとの対応が欠落・unknown・stale・conflictなら、対応する委譲chainを未完として記録し、既存event/provenance/ticket ownerへ戻す。missing eventをsuccessや承認に補完しない。影響するchainだけを保留し、無関係なWorker作業を一律停止しない。
+- **旧sourceとの保持と未決境界**：source-lines/coverage receipt草稿は、旧HR-FR-P2-06のtyped event節だけを本候補への限定対応案とし、同じ行の「Node control planeだけがapprovalとwrite transactionを決定する」という別の意味条件を未計上として保持する。Node専有条件を保持・現行役割へ再導出・retireする判断はPOへ残し、この候補やreceiptで旧行全体のno_loss／condition closureを主張しない。

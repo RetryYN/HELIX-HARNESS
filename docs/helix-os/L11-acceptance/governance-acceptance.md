@@ -758,3 +758,12 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 **unknown／期限・stale**：policy/oracle revision、期限、対象成果との対応を確認できないcaseでは合格を推測せずunknown／未完とする。期限切れの緩和を有効として流用しない。新しいschema、digest方式、provider/runtime、receipt formatを未見caseから補作しない。
 
 **責務境界と受入限界**：HARNESSはタスク固有の検証義務・oracleの意味を定め、OSは既存assignmentへWorker成果と検証状態を束ねて記録・回収し、SECURITYは既存authority・実行制約を担う。OSがschemaやdigest algorithm、HARNESS oracle、SECURITY許可を発行・変更したら不合格。source lineとcoverage候補の範囲は[照合receipt草稿](../../governance/audits/requirement-registration/os-v13-worker-output-coverage-receipt-2026-09-28.json)を参照する。これらのcaseは旧v1.3全体の被覆、候補採択、実行結果を主張しない。
+
+### HELIXOS-L2-043 Worker委譲event追跡の受入候補
+
+- **対応・状態**：L2-043と対になる未採択・未実行候補。以下は文書上のoracle案であり、event runtime、adapter、CIの実装・実行を主張しない。
+- **正常例**：既存assignmentに結ばれたWorker taskで、適用契約がapproval requestを必要とするcaseでは要求eventを、許可済みtool実行ではcall eventを、実行後はresult eventをそれぞれ区別できる型として記録する。既存event identityとassignment/source/revisionのprovenanceから3種の関係を辿れ、既存L2-009の永続化・再投影で同じ論理eventへ戻れることを確認する。request/call/resultの記録はauthority判定やHARNESSのtask oracleと別の事実として扱う。有効な既決operation authorityが再利用できる条件に、追加の人間承認を要求しない。
+- **欠落・競合例**：approval request、tool call、resultのいずれかの型またはevent関係を欠落・取り違えたfixtureでは、該当chainを未完またはunknownとして残し、完了・承認・成功にしない。別assignment、actor、source/revision、結果を同一chainとする場合も不合格。eventの存在や順序だけからtoolの許可またはwrite transactionを成立させない。
+- **境界反例**：OSがapproval decisionを作る、SECURITYがOS assignment/progressを所有する、Workerのevent/resultが自身のauthorityやwrite transactionを決める、または旧Node専有条件をこの候補だけで現在のどれかの機構へ移すcaseは不合格。この候補は承認／write transaction ownerを選ばない。必要なapproval requestが既存契約上ないtaskに毎回のrequestや人間承認を要求した場合も不合格。
+- **未見例**：同一既存event contractを使う未見Workerまたは別assignmentを与え、event typeとtask/assignment/revisionの追跡が保たれるか確認する。未宣言のevent schema、runtime、adapter、approval authorityを補作せず、既存contractで分類・関係付けできない部分は未完として戻す。
+- **未決source意味**：旧HR-FR-P2-06のNode control plane専有節はこのcandidate oracleに含めず、[coverage receipt草稿](../../governance/audits/requirement-registration/os-v13-p2-06-worker-delegation-coverage-receipt-2026-09-28.json)にPO判断事項と選択肢を記録する。したがってL2-043の受入は旧source line全体のno_loss、正式successor、authority意味の確定を示さない。
