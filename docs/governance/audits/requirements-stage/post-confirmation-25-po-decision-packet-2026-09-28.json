@@ -2290,9 +2290,9 @@
       "identity": "HELIXOS-L2-039",
       "decision_state": "pending_PO; not adopted",
       "source_basis_class": "HDEC-L2D-S0-02-approved WBS-OS-002 candidate row; bounded OS registration-eligibility derivation. Legacy PHCAP-08 equivalence remains unknown.",
-      "new_meaning_choice": "PO is asked to adopt or defer this exact HELIXOS-L2-039 L2/L11 revision, OS-side WBS-OS-002 registration gate, applicability contract, scope and consumer boundary. HDEC-L2D-S0-02 approved the predecessor candidate row and split, not this L2/L11 revision or its adoption.",
-      "recommended_choice": "A",
-      "choice_meaning": "採用（L2/L11 authority decision only）",
+      "new_meaning_choice": "POが二つの排他的案を選ぶ。Aは039 exact L2/L11を今採択する案で、現時点で有効なHARNESS WBS-HARNESS-001契約revisionが無い間は全作業候補の登録をunknownとして保留する。Bは039の採択を保留し、HARNESS WBS-HARNESS-001の現行L2/L11候補を別PRで用意した後、両側のexact revisionを一組として再提示する案。Bは推奨であり、PO未選択・自動deferではない。HDEC-L2D-S0-02は両側候補意味のsplitを承認したが、現行L2/L11への適用や採択ではない。",
+      "recommended_choice": "B",
+      "choice_meaning": "保留（HARNESS WBS-HARNESS-001の現行L2/L11候補を別PRで提示後、039と有効契約のexact revisionを一組で再判断。PO未選択であり自動deferではない）",
       "version_target_as_written": "1.0",
       "title_and_kind": "### HELIXOS-L2-039 WBS作業identityと登録前適格性（単体候補、version_target: 1.0）",
       "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md",
@@ -2344,11 +2344,51 @@
         }
       ],
       "source_reference_note": "旧combined candidateは固定commit 6967ceef8dfe173839ab8fb130e1611af914e4fe内のpath・行を参照し、現行OS split rowはcurrent-tree pathを参照する。全source rowのpath・行・file/line SHAはreceipt docs/governance/audits/requirement-registration/helixos-wbs-work-identity-coverage-receipt-2026-09-28.json#candidates[HELIXOS-L2-039] に記録。source atomはHDEC-L2D-S0-02承認対象のWBS-OS-002行1件で、現split行は同文lineage照合。RA-199、RB06-278を含む旧archive rule atomsはMPR-SH-LEGACY-RULE-004へ保留しcarryしない。",
-      "internal_PO_choice": null,
+      "internal_PO_choice": {
+        "selection_state": "pending_PO; no selection recorded",
+        "authority_effect": "none",
+        "current_dependency_status": {
+          "requirement_identity": "WBS-HARNESS-001",
+          "status": "現行HARNESS L2/L11に有効な契約revisionがない。WBS-HARNESS-001のsplit candidate rowは現行候補ファイルにあるが、候補の存在は採択・適用可能な契約を作らない。",
+          "candidate_source": "docs/helix-harness/candidates/wbs-ledger-requirements.md:22",
+          "current_requirement_source": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "current_acceptance_source": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+        },
+        "choices": [
+          {
+            "id": "A",
+            "label": "039 exact L2/L11を今採択",
+            "meaning": "OS側のWBS-OS-002登録前条件を採択する。適用可能な有効HARNESS WBS-HARNESS-001契約revisionが成立するまで、全作業候補の登録は契約applicability unknownとして保留する。候補形が有効契約に適合しない場合の登録拒否を維持し、旧WBS-OS-002の不適合拒否を弱めない。",
+            "impact_ids": [
+              "HELIXOS-L2-039",
+              "HELIXOS-L2-016",
+              "HELIXOS-L2-017",
+              "WBS-HARNESS-001",
+              "HELIXOS-L2-039 L11"
+            ]
+          },
+          {
+            "id": "B",
+            "label": "039採択を保留し、HARNESS契約候補と対で再提示（推奨）",
+            "meaning": "039は未採択のまま保持する。別PRでHARNESS WBS-HARNESS-001の現行L2/L11候補を用意し、そのexact revisionと039のexact L2/L11 revisionを一組にしてPOへ再提示する。これは候補作成側の推奨であり、PO選択や自動deferではない。",
+            "impact_ids": [
+              "HELIXOS-L2-039",
+              "HELIXOS-L2-039 L11",
+              "WBS-HARNESS-001",
+              "HELIXOS-L2-016",
+              "HELIXOS-L2-017"
+            ]
+          }
+        ],
+        "recommended": "B",
+        "recommendation_basis": "現行HARNESS L2/L11には有効なWBS-HARNESS-001契約が無く、039単独採択はすべての作業登録をunknown保留にする。対となる規範契約とOS適用条件を同じPO判断単位で確認できるよう、別PR後に両方のexact revisionを再提示する。",
+        "source_and_authority_limit": "HDEC-L2D-S0-02は承認済みcombined WBS候補の両側意味のsplitを承認したが、現行HELIX-OS/HARNESSのL2/L11適用・採択はしていない。",
+        "mutually_exclusive": true
+      },
       "paired_l2_id": "HELIXOS-L2-039",
       "paired_l11_id": "HELIXOS-L2-039",
       "affected_requirement_and_consumer_ids": "HELIXOS-L1-002/009; HELIXOS-L2-016/017; WBS-HARNESS-001; 対L11",
-      "rationale": "HDECで承認済みのWBS-OS-002をOS登録前のidentity/適格性判定へ接続する限定候補。親要求・product・粒度・担当候補・依存・予算、既存作業の意味照合、および適用対象HARNESS WBS-HARNESS-001契約revision適合を確認する。HARNESS形状規範は再定義せず、旧RA-199/RB06-278等のrule atomやPHCAP-08全体の意味同等性を主張しない。L2/L11候補は未採択であり、PO個別判断が必要。",
+      "rationale": "HDECで承認済みのWBS-OS-002をOS登録前のidentity/適格性判定へ接続する限定候補。現行HARNESS L2/L11にWBS-HARNESS-001有効revisionが無く、039だけを採択すると契約revision/applicability unknownの間は全作業候補が保留となる。別PRでHARNESS契約の現行L2/L11候補を用意し、両側exact revisionを対で再提示する案を推奨する。PO選択は未済。適合契約が成立した後も、不適合作業の登録拒否を維持する。HDECのsplit承認は現行候補の適用・採択ではない。",
       "previous_register_revision": null,
       "version_target_evidence": {
         "path": "docs/helix-os/L2-requirements/governance-requirements.md",
