@@ -1,6 +1,6 @@
-# 8機構確認後の追加候補：PO判断パケット（初版25 + 後続15 = 40）
+# 8機構確認後の追加候補：PO判断パケット（初版25 + 後続16 = 41）
 
-基準HEAD: `e194378c77019f60d55577fbf014e7430ebe270a`（#2261統合後main）。この基準HEADの候補40件は維持し、本追補は候補外のHIL-FR-68 source meaning residualを追加する。043は未採択のbounded candidateであり、全候補は`registered_proposal` / `authority_effect:none`、PO未採択・未判断である。PR mergeやL2/L11本文・registerの存在から採択・実装・受入完了は推定しない。
+基準HEAD: `223e7e567df1500046fe0abc1bb279e4b2440d86`（今回基準main）。この基準HEADの候補40件を維持し、本草稿でHELIXOS-L2-044を追加して判断集合41件とする。044を含む全候補は`registered_proposal` / `authority_effect:none`、PO未採択・未判断である。PR mergeやL2/L11本文・registerの存在から採択・実装・受入完了は推定しない。
 
 ## 選択肢
 
@@ -208,7 +208,7 @@ A＝exact L2/L11-042の限定採択、B＝原atomを保留、C＝対象source re
 
 旧HR-FR-P6-06のarchive L432／baseline L413から、package内容S1を別revisionの2 atomとして既存030候補へ局所対応した。登録は`MPR-RC-HELIXOS-L2-030-003`、候補本文のsemantic digestは不変。PLAN-M-02承認境界S2の2 atomは両holdingに保留し、現行SECURITY authorityとの対象・等価性はPO残差とする。030採択だけで旧行全体のno_loss、publish/cutover許可、旧PLAN-M-02の退役を生成しない。原文と選択肢は[局所receipt](../requirement-registration/os-v13-p6-06-package-coverage-receipt-2026-09-28.json)に記録。
 
-## HIL-FR-68のsource meaning residual（40候補外・PO未決）
+## HIL-FR-68のsource meaning residual（41候補外・PO未決）
 
 旧archive `LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:158`。file SHA-256 `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`、line SHA-256 `1cb33f5f4fb41235b6e5930dc888fdff561a3d6eff99d50f816ea6ab8b151cd5`。旧IR `requirements.json#/HIL-FR-68`（semantic digest `c9a0c409d5b73089fea4e0868d95677f1f855ccc30e749b1960c3377a8e89845`）は`HR-FR-HIL-23`、`HAC-HIL-23a/b/c`、未実装設計`HAT-HIL-23`へ接続する。assertion ledgerはstructured-event契約検査とNode approval policyのcode外保持拒否を記録する。
 
@@ -221,4 +221,11 @@ A＝exact L2/L11-042の限定採択、B＝原atomを保留、C＝対象source re
 | C 旧意味を保持 | 指定した対象経路に旧CLI移行とNode policy/digestを適用する。provider/runtime、policy owner、SECURITY境界への影響を特定する。|
 | D 明示的に変更・retire | 対象revision、理由、consumer影響を伴う意味変更/retireを判断する。|
 
-Aは推奨に留まりPO選択ではない。どの案もACP adoptionを決めず、source全体の`no_loss`/closureを主張しない。JSON内の`source_meaning_residuals`に同じ選択肢を記録し、この項目はcandidate count 40に加算しない。
+Aは推奨に留まりPO選択ではない。どの案もACP adoptionを決めず、source全体の`no_loss`/closureを主張しない。JSON内の`source_meaning_residuals`に同じ選択肢を記録し、この項目はcandidate count 41に加算しない。
+
+
+## 後続草稿：HELIXOS-L2-044（判断集合41候補案）
+
+| `HELIXOS-L2-044` (L2/L11) | PO未決／限定negative oracle **A**推奨 | 1.0; HELIXOS-L1-006 | HR-AC-HYB-006のprose-only resolution rejectionだけを候補化。既採択OS-007 evidence sufficiencyは再定義しない | `docs/governance/audits/requirement-registration/os-v13-hyb-006-feedback-resolution-coverage-receipt-2026-09-28.json`; archive line 290 + baseline line 275、各source/line/span SHAとatomはreceipt/source-lines参照 | HELIXOS-L2/L11-044; adopted HELIXOS-L2/L11-007; HELIXOS-L1-006 | prose handoverだけではresolutionにならないnegative oracleに限定。FR event/projection/SessionStart、unacked finding loss、source HEAD mismatchは残差として保全し、旧行全体のcoverage/closureを主張しない。
+
+A＝exact L2/L11-044限定候補を採択（推奨）、B＝selected source atomsをholdingに保留、C＝対象revision・理由・影響付きの意味変更/retire。登録草稿`MPR-RC-HELIXOS-L2-044-001`は`registered_proposal` / `authority_effect:none`、PO未決。候補は新しいevidence schema/十分条件/承認者/event/projection/SessionStart条件を定義しない。

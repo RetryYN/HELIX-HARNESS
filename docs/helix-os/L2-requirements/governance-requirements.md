@@ -1157,3 +1157,10 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - **権限境界**：approval request eventは承認そのものではなく、tool call eventは操作許可ではなく、result eventは検証・完了・write transactionの決定ではない。eventの型・順序・記録からauthority、承認、成果採択、canonical state変更を生成しない。本候補は承認またはwrite transactionを決定する唯一の機構を定めず、旧Node control plane専有の意味を現行SECURITY／OS／Workerへ移管しない。適用operationの権限と実行は現行の各契約のままとする。
 - **失敗・戻し先**：event型、相関、assignment/source/revisionとの対応が欠落・unknown・stale・conflictなら、対応する委譲chainを未完として記録し、既存event/provenance/ticket ownerへ戻す。missing eventをsuccessや承認に補完しない。影響するchainだけを保留し、無関係なWorker作業を一律停止しない。
 - **旧sourceとの保持と未決境界**：source-lines/coverage receipt草稿は、旧HR-FR-P2-06のtyped event節だけを本候補への限定対応案とし、同じ行の「Node control planeだけがapprovalとwrite transactionを決定する」という別の意味条件を未計上として保持する。Node専有条件を保持・現行役割へ再導出・retireする判断はPOへ残し、この候補やreceiptで旧行全体のno_loss／condition closureを主張しない。
+
+### HELIXOS-L2-044 feedback prose-only handoverをresolutionとして扱わない（単体追補候補、version_target: 1.0）
+
+- **親・状態**：`HELIXOS-L1-006`に接続する未採択候補。既採択`HELIXOS-L2-007`のfeedback lifecycleとsource/evidence保持に限定して接続し、採択・実装・運用許可を生成しない。
+- **保持する条件**：feedback findingのprose handoverだけをresolutionの証拠として扱わない。proseだけでfindingの状態をresolvedへ変更せず、既存のfeedback lifecycleと`HELIXOS-L2-007`が求めるsource/revision付き証拠の条件が満たされたか不明な間は未解決として保持する。本候補はresolutionに必要な証拠の新しい型・十分条件を定義しない。
+- **既存責務との境界**：intake、classify、ack、pending、resolutionの区別、未ack findingを消さないこと、およびsource/evidence保持は既存OS契約のまま適用する。prose handoverに独立したauthoritative statusを与えず、新しいactor、承認、通知、event schema、projection、SessionStart条件を追加しない。
+- **sourceとの限界**：旧HR-AC-HYB-006のprose-only resolution clauseだけを候補入力とする。未ack findingの消失、source HEAD mismatch、HR-FR-HYB-006のevent/projection lifecycleとSessionStart surfaceは候補外のsource remainderとして保全する。旧行・条件全体の被覆・closureを主張しない。

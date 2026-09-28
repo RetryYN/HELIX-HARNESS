@@ -767,3 +767,10 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **境界反例**：OSがapproval decisionを作る、SECURITYがOS assignment/progressを所有する、Workerのevent/resultが自身のauthorityやwrite transactionを決める、または旧Node専有条件をこの候補だけで現在のどれかの機構へ移すcaseは不合格。この候補は承認／write transaction ownerを選ばない。必要なapproval requestが既存契約上ないtaskに毎回のrequestや人間承認を要求した場合も不合格。
 - **未見例**：同一既存event contractを使う未見Workerまたは別assignmentを与え、event typeとtask/assignment/revisionの追跡が保たれるか確認する。未宣言のevent schema、runtime、adapter、approval authorityを補作せず、既存contractで分類・関係付けできない部分は未完として戻す。
 - **未決source意味**：旧HR-FR-P2-06のNode control plane専有節はこのcandidate oracleに含めず、[coverage receipt草稿](../../governance/audits/requirement-registration/os-v13-p2-06-worker-delegation-coverage-receipt-2026-09-28.json)にPO判断事項と選択肢を記録する。したがってL2-043の受入は旧source line全体のno_loss、正式successor、authority意味の確定を示さない。
+
+### HELIXOS-L2-044 feedback prose-only handoverをresolutionとして扱わない — L11受入候補
+
+- **状態・対応**：HELIXOS-L2-044と対になる未採択・未実行候補。採択済みHELIXOS-L2-007のfeedback/evidence責務へ限定接続する。
+- **Negative oracle**：既存project・要求revisionに結び付くfeedback findingと、findingに関するprose handoverだけを与える。handover文だけをresolution evidenceまたはresolved状態として記録した場合は不合格とする。既存のfeedback lifecycle/evidence contractを満たしたか確認できないfindingは未解決／pendingのままとし、理由と未完状態を既存OS evidenceへ残す。
+- **境界とunknown**：resolutionに必要な証拠の新しいschema、充分条件、承認者をこの候補で定義しない。source/revisionや既存status/evidenceがunknown・stale・conflictならresolution成立を推測せず該当findingだけ保留し、無関係なfindingや作業を一律停止しない。
+- **範囲**：このoracleは旧HR-AC-HYB-006の「prose handoverだけの解決」否定条件に限る。未ack finding消失、source HEAD不一致、event/projectionとSessionStart surfaceの受入は対象外で、同行のno_lossや旧条件全体のclosureを主張しない。
