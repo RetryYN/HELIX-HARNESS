@@ -1,9 +1,9 @@
 {
   "packet_kind": "recommendation_for_PO_decision_only",
-  "basis_commit": "1b8d93b360e3c414eb263b0cee0c8c4b55ab59c9",
+  "basis_commit": "78b402e1e2eb06b7cc08ae35bb722fadc90dae91",
   "as_of": "2026-09-28",
-  "count": 36,
-  "status": "初版25候補と後続11候補の判断packet。全36件はregistered_proposal / authority_effect:none、PO未採択・未判断。",
+  "count": 37,
+  "status": "初版25候補と後続12候補の判断packet。全37件はregistered_proposal / authority_effect:none、PO未採択・未判断。",
   "decision_grouping": "No shared adoption decision is bundled except PORTFOLIO-FIXTURE-FR54-FR55-ROUTE and HARNESS-OS-WBS-SHAPE-039-045-PAIR. HELIXOS-L2-039/HARNESS-L2-045 are linked by the latter, not independent adoption choices. The earlier R2247 options for 039 were preparation alternatives: A proposed adopting OS-039 alone with registrations blocked while the HARNESS contract was absent; B proposed holding 039 while preparing the HARNESS candidate and re-presenting both exact revisions. The B preparation step is completed by this HARNESS-045 candidate, but no PO selection resulted. The new pair options are A=adopt both exact revisions, B=hold both; neither has been selected, and B is advisory. HARNESS-L2-043/044 remain jointly routed only by the explicit FR54/55 route. Other candidate identities retain independent choices. HELIXINTELLIGENCE-L2-072 remains limited to its 1.0 shadow subset and HELIX-LABO-L2-062 preserves 2.0.",
   "candidates": [
     {
@@ -2877,10 +2877,138 @@
       },
       "acceptance_section_sha256": "sha256:5dcf1c19728badff041220d610a85c3507a6c6f70fea57c0081ae9902705c6f1",
       "acceptance_source_file_sha256": "sha256:64ce1f5536bbffdfb8b86ae7e605ff5fc301948f6c75569bb80e2d2f2c6814d0"
+    },
+    {
+      "identity": "HARNESS-L2-046",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "旧v1.3 §4.4 L259の二文と§10 L647の要約一文を、6fabd125監査基準revisionの同文spanと別々に保持した6 sentence span。Full V段階freeze/検証とProduction Scrum backfill条件の限定再導出。",
+      "new_meaning_choice": "A: exact HARNESS-L2/L11-046を、選択Full V scopeの段階freeze/列挙条件検証と、Production Scrumまたは許可された合成内のScrum部分のdelta/backfill/checkpoint/SR4条件を分離した1.0候補として採用する。B: 未採択のまま6 spanをsource holdingに保持する。C: 旧条件の意味変更またはretireを対象revision・理由・影響を明示して判断する。",
+      "recommended_choice": "A",
+      "choice_meaning": "限定A推奨。Full Vは適用するL1〜L5層でsystem workflowを段階的にfreezeしV-pairで全列挙条件を検証する。Full VにScrum slice/checkpoint/SR4は要求しない。Scrum条件はProduction Scrumまたは既存PO判断に従ってScrumを合成適用する部分だけに課す。4方式定義、製品特性に合わせた合成許可、L3までの共通工程を変更しない。",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HARNESS-L2-046 V-model全体workflowとScrum slice deltaのbackfill（単体候補、version_target: 1.0）",
+      "requirement_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-046",
+      "acceptance_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md#harness-l2-046",
+      "registration_id": "MPR-RC-HARNESS-L2-046-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HARNESS-L1-001",
+        "HARNESS-L1-002",
+        "HARNESS-L1-004"
+      ],
+      "parent_l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+      "parent_l1_sha256_current": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+      "parent_planning_revision_recorded": "docs/helix-harness/L1-planning/product-intent.md@3296c1175bf479e2086dc913c13eb23803d11aa0 sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f（#2198固定L1、046採択は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-fullv-scrum-coverage-receipt-2026-09-28.json#HARNESS-L2-046",
+      "receipt_id": "MPR-RCPT-HARNESS-FULLV-SCRUM-2026-09-28",
+      "receipt_candidate_digest_rule": "L2の### HARNESS-L2-046見出しから次の同階層候補見出しまで（EOF）。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "start_heading_prefix": "### HARNESS-L2-046 ",
+          "end_heading_prefix": "EOF"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "start_heading_prefix": "### HARNESS-L2-046 ",
+          "end_heading_prefix": "EOF"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e",
+      "receipt_candidate_semantic_digest": "sha256:47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e",
+      "current_candidate_semantic_digest": "sha256:47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e",
+      "candidate_digest_matches_register_and_receipt": true,
+      "acceptance_section_sha256": "sha256:a8e99f7df7166566c04b1113b045851d8417e17e8078c034f8f2a34ebfe4f37f",
+      "acceptance_source_file_sha256": "sha256:92e5fef1771fb24c1c1cb110cc105a1b9fd58d73d003615ea17be09922f3a616",
+      "source_atom_count": 6,
+      "source_atom_set_digest": "sha256:2ea2811aaf80f131636c55cc68e43e64cbde8b3d0df4abb81c7900410c7d79b8",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "line": 259,
+          "source_line_sha256": "sha256:e4c0f143df26e2777e66ada84e1903a154519b42e9732eaa6f06f9d09c849db6",
+          "source_span_sha256": "sha256:5855c5e0899044e8696c4a01ced91d23830d09eb9a5ef48a8b34eb4f4b3b7818",
+          "source_span_text": "Full Vではsystem全体のworkflow modelをL1〜L5で段階的に凍結し、右腕で全transition、loop、terminal、exception、permission、timeout、notification、audit、data、switching、routing、resource allocationを検証する。",
+          "atom_id": "V13-ARCHIVE-L0259-S1",
+          "source_item_id": "REQSRC-SUP-00198",
+          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "source_revision_ref": "archive/current-file-sha"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "line": 259,
+          "source_line_sha256": "sha256:e4c0f143df26e2777e66ada84e1903a154519b42e9732eaa6f06f9d09c849db6",
+          "source_span_sha256": "sha256:4018be3929a3543a871e96defe4ce3389ae560fb53e761dc4fe44029beaf5c6f",
+          "source_span_text": "Production Scrumではslice deltaだけを先行利用できるが、sprint reviewまたはrelease合流前にScrum Reverseでsystem workflowとL1〜L5設計資産へbackfillし、SR4 pair-freezeなしにrelease-readyとしない。",
+          "atom_id": "V13-ARCHIVE-L0259-S2",
+          "source_item_id": "REQSRC-SUP-00198",
+          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "source_revision_ref": "archive/current-file-sha"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "line": 647,
+          "source_line_sha256": "sha256:6c616a3fb85f5affae79a701b3ac2accf0975373d3540e8738bdd2b3c0a9d41e",
+          "source_span_sha256": "sha256:c44727d99ea5fc3a69964894ff5d26e79857a1c9332c0b54589de6ca6be597e4",
+          "source_span_text": "Full Vはsystem workflow全体、Production Scrumはslice deltaとSR0〜SR4 backfillの両方を保持する。",
+          "atom_id": "V13-ARCHIVE-L0647",
+          "source_item_id": "REQSRC-SUP-00504",
+          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "source_revision_ref": "archive/current-file-sha"
+        },
+        {
+          "path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+          "line": 244,
+          "source_line_sha256": "sha256:e4c0f143df26e2777e66ada84e1903a154519b42e9732eaa6f06f9d09c849db6",
+          "source_span_sha256": "sha256:5855c5e0899044e8696c4a01ced91d23830d09eb9a5ef48a8b34eb4f4b3b7818",
+          "source_span_text": "Full Vではsystem全体のworkflow modelをL1〜L5で段階的に凍結し、右腕で全transition、loop、terminal、exception、permission、timeout、notification、audit、data、switching、routing、resource allocationを検証する。",
+          "atom_id": "V13-BASE-6FAB-L0244-S1",
+          "source_item_id": "V13-BASE-6FAB-L0244",
+          "source_file_sha256": "sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+          "source_revision_ref": "6fabd12512a3659fff4a956692cdd61faeeb16ce"
+        },
+        {
+          "path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+          "line": 244,
+          "source_line_sha256": "sha256:e4c0f143df26e2777e66ada84e1903a154519b42e9732eaa6f06f9d09c849db6",
+          "source_span_sha256": "sha256:4018be3929a3543a871e96defe4ce3389ae560fb53e761dc4fe44029beaf5c6f",
+          "source_span_text": "Production Scrumではslice deltaだけを先行利用できるが、sprint reviewまたはrelease合流前にScrum Reverseでsystem workflowとL1〜L5設計資産へbackfillし、SR4 pair-freezeなしにrelease-readyとしない。",
+          "atom_id": "V13-BASE-6FAB-L0244-S2",
+          "source_item_id": "V13-BASE-6FAB-L0244",
+          "source_file_sha256": "sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+          "source_revision_ref": "6fabd12512a3659fff4a956692cdd61faeeb16ce"
+        },
+        {
+          "path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+          "line": 628,
+          "source_line_sha256": "sha256:6c616a3fb85f5affae79a701b3ac2accf0975373d3540e8738bdd2b3c0a9d41e",
+          "source_span_sha256": "sha256:c44727d99ea5fc3a69964894ff5d26e79857a1c9332c0b54589de6ca6be597e4",
+          "source_span_text": "Full Vはsystem workflow全体、Production Scrumはslice deltaとSR0〜SR4 backfillの両方を保持する。",
+          "atom_id": "V13-BASE-6FAB-L0628",
+          "source_item_id": "V13-BASE-6FAB-L0628",
+          "source_file_sha256": "sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+          "source_revision_ref": "6fabd12512a3659fff4a956692cdd61faeeb16ce"
+        }
+      ],
+      "source_reference_note": "MPR-SH-SUPPLEMENTARY-003のREQSRC-SUP-00198/00504とMPR-SH-V13-BASELINE-001のV13-BASE-6FAB-L0244/L0628をsource-linesでsentence spanに分解し、source holding IDs/bytesは不変で保持する。L259の二文を別atomとし、L647はその二条件の一部を要約するため同一atomに統合せず第3独立条件にも数えない。6fab基準revisionはarchive revisionへ統合しない。",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HARNESS-L2-046",
+      "paired_l11_id": "HARNESS-L2-046",
+      "affected_requirement_and_consumer_ids": "HARNESS-L1-001/002/004; HARNESS-L2-001/002/003/004/022/023; 対L11; 選択styleのV-pair consumers",
+      "rationale": "現行L2-002/003は方式選択・composition、Scrum checkpoint/SR4責務を持つが、Full Vでsystem workflowをL1〜L5に段階freezeし列挙検証する明示契約とScrum固有backfill条件の適用scopeを一組で明示していない。046は旧L259の二文とL647要約の重複関係を保ち、Full VにScrum条件を誤適用せず、既存PO方式定義・合成許可を保持する。",
+      "previous_register_revision": null,
+      "version_target_evidence": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "line": 1025,
+        "excerpt": "### HARNESS-L2-046 V-model全体workflowとScrum slice deltaのbackfill（単体候補、version_target: 1.0）",
+        "interpretation": "本候補のversion_target: 1.0。採択、実装許可、受入実行を意味しない."
+      }
     }
   ],
   "initial_25_basis_commit": "f4b2a2b02cf5ea3134e27be0a65c100395161bad",
-  "progression": "Initial 25 candidates + PR #2241 HARNESS-L2-042 + PR #2238 HELIXOS-L2-038 = historical 27; PR #2245 merged HARNESS-L2-043, giving 28; PR #2246 merged HARNESS-L2-044, giving 29; PR #2247 registered HELIXOS-L2-039, giving 30; current HARNESS-L2-045 brings the live decision set to 31. HELIXOS-L2-039/HARNESS-L2-045 are linked by an unselected paired PO decision. Current HELIXOS-L2-040 adds one bounded old HXT-AC-015 retry-route candidate, making 32; no PO selection. Current HELIXINTELLIGENCE-L2-073 adds one bounded old AAFD-R-04 free-text direct-projection boundary candidate, making 33; no PO selection. Current HELIXOS-L2-041 adds one bounded old IPC-R07 safe-continuation candidate from two linked atoms, making 34; no PO selection. Current HELIXLABO-L2-066 adds one bounded old Bugbot candidate-line metric gap, making 35; no PO selection. Its source atom is historical and its current L2/L11 candidate remains unadopted. Current HELIXSECURITY-L2-032 adds one bounded old v1.3 §4.10 HR-FR-P2-07 repository-level bypass precedence candidate, making 36; no PO selection. It applies across provider/runtime instances under the old external AI Worker contract, preserves existing authority when no deny applies, and does not claim §4.10 closure.",
+  "progression": "Initial 25 candidates + PR #2241 HARNESS-L2-042 + PR #2238 HELIXOS-L2-038 = historical 27; PR #2245 merged HARNESS-L2-043, giving 28; PR #2246 merged HARNESS-L2-044, giving 29; PR #2247 registered HELIXOS-L2-039, giving 30; current HARNESS-L2-045 brings the live decision set to 31. HELIXOS-L2-039/HARNESS-L2-045 are linked by an unselected paired PO decision. Current HELIXOS-L2-040 adds one bounded old HXT-AC-015 retry-route candidate, making 32; no PO selection. Current HELIXINTELLIGENCE-L2-073 adds one bounded old AAFD-R-04 free-text direct-projection boundary candidate, making 33; no PO selection. Current HELIXOS-L2-041 adds one bounded old IPC-R07 safe-continuation candidate from two linked atoms, making 34; no PO selection. Current HELIXLABO-L2-066 adds one bounded old Bugbot candidate-line metric gap, making 35; no PO selection. Its source atom is historical and its current L2/L11 candidate remains unadopted. Current HELIXSECURITY-L2-032 adds one bounded old v1.3 §4.10 HR-FR-P2-07 repository-level bypass precedence candidate, making 36; no PO selection. It applies across provider/runtime instances under the old external AI Worker contract, preserves existing authority when no deny applies, and does not claim §4.10 closure. Current HARNESS-L2-046 adds one bounded v1.3 Full V/Scrum workflow condition candidate from six sentence spans across archive and 6fabd125 baseline revisions, making 37; no PO selection. It preserves the 2026-09-25 four-style definitions/composition permission, requires staged freeze and listed verification for selected Full V only, and applies Scrum backfill/checkpoint/SR4 solely to Scrum-selected/composed scope.",
   "version_target_evidence": null,
   "portfolio_fixture_fr54_fr55_route": {
     "decision_id": "PORTFOLIO-FIXTURE-FR54-FR55-ROUTE",

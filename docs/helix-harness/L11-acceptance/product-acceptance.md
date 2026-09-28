@@ -755,3 +755,17 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 **未見例**：作成側に伏せた依存edgeまたは変更種別を含む作業単位と、未見の有効規範revisionを入力し、適用scope・規範項目・依存と順序の整合を再特定する。新しい形が有効規範に含まれると確認できない場合は、旧形式などへ暗黙fallbackせずunknown／保留にする。結果を別scopeまたは別revisionへ外挿しない。
 
 **境界と戻し先**：HARNESSは規範と適合条件を所有し、OSはその有効版を台帳schemaへ写して登録時に適合を照合する。OSは規範を変更せず、適合しない作業単位は登録拒否、適用版または適合性unknownは保留とする。検証・受入条件不足は`HARNESS-L2-004/022`、依存区分は`HARNESS-L2-023`、工程style・順序・差戻しは`HARNESS-L2-002/003`のownerへ返す。旧PHCAP-08との同等性はunknownのままとし、旧固定上限、schema、runtime、CLIを受入条件にしない。予算・期限の値の意味や未設定・超過時の扱いはPO判断事項であり、本受入候補は決定しない。
+
+### HARNESS-L2-046 V-model全体workflowとScrum slice deltaのbackfill受入候補
+
+**対応要求**：`HARNESS-L2-046`（単体候補、`version_target: 1.0`、未採択）。親L1候補は`HARNESS-L1-001/002/004`で、L2記載の導出理由に従う。以下は未実行の内容oracleであり、L2-002/003の採択済み条件、SR4 receipt、OSの運転結果を置き換えない。
+
+**Full Vの正常例**：Full Vを選択し、対象revisionのsystem workflowと適用するL1〜L5層・設計資産を入力する。workflowを該当層で段階的に明確化・freezeし、各段階の対応V-pairでsystem全体の全transition、loop、terminal、exception、permission、timeout、notification、audit、data、switching、routing、resource allocationを検証する。対象との関係、層ごとのfreeze状態、検証状態を追跡できることを確認し、条件の適用性やoracleが未提示ならunknownとして残してsystem全体のclosureを主張しない。このFull V scopeはslice化しない方式であり、Production Scrumのslice delta、Scrum Reverse、SR0〜SR4、SR4 receiptなしでも、Full Vの段階的freezeとV-pair検証closureが満たされれば候補条件を満たす。
+
+**Production Scrumを含むscopeの正常例**：Production Scrumを選択したscope、または2026-09-25 PO判断に基づき許可された方式合成のうちL2-002/003でScrumを適用する部分に、system workflowから切り出したslice deltaを先行適用する。既存triggerに従い、sprint review時またはrelease合流前にScrum Reverseがsystem workflowと該当L1〜L5設計資産へbackfillし、SR4 pair-freezeを得たScrum scopeだけをrelease-ready候補にできることを確認する。SR0〜SR4を要する既存checkpoint triggerが成立するscopeでは各段階とreceiptを別々に確認し、SR4 receiptが欠けるScrum scopeをrelease-readyとしない。方式定義・合成許可、L3までの共通工程とtrigger条件は変更しない。
+
+**誤りを含む例**：Full V scopeで適用するL1〜L5層の段階的freezeを欠く、system workflowのtransition等の適用条件を未検証のまま全体完了とする例は不成立またはunknownにする。Full VにScrum slice deltaやSR4 receiptがないことだけを理由に不成立とする判定は過剰適用であり、認めない。Production Scrumを選択・合成適用するscopeでは、slice deltaをsystem workflowへ戻さないままsprint reviewまたはrelease合流を進める、該当L1〜L5設計資産のbackfillを欠く、または必要なSR4 receiptなしにrelease-readyとする例を不成立またはunknownにする。slice単体の成功、一般的なV-pair一覧、別revisionのSR4 receiptでScrum scopeの不足を相殺しない。
+
+**未見例**：作成側に伏せた追加transition、exception、または新しいslice deltaを与え、対象system workflowとbackfillのcoverageを再照合する。入力にoracle・適用性・source revisionがない範囲はunknown／未評価を維持し、別scopeや別revisionへ結果を外挿しない。
+
+**戻し先と境界**：workflow semanticsまたはstyle適用条件の不足はHARNESS-L2-002/003、検証義務・pair oracleの不足はHARNESS-L2-004/022へ戻す。OS ticket、workflow instance、保存state、runtimeをこの候補の成果とせず、L11例は利用者受入の実行結果を生成しない。
