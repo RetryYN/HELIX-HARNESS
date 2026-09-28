@@ -1172,3 +1172,11 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - **対象と提供**：OS-L1-002の適用対象として選択された機構について、検証・test・検出基盤の整備状況を「実装済み」「設計済み・実装未」「未設計」の3区分で一覧する。旧sourceの「各機構」をどの現行対象・版へ割り当てるかは確定しておらず、本候補から現行8機構すべて、将来のWeb対象、または特定versionへの適用を推定しない。ここで扱うのは基盤整備状況の分類と一覧であり、個別機構の進行dashboard、専用UI、リアルタイム更新、PO／Worker roster表示は要求しない。
 - **既採択状態との境界**：HELIXOS-L2-016／L11-016が定めるportfolio trace・一般state・unknown/staleの意味を変更せず、FR-L1-35の3区分へ置き換えない。分類の根拠が不明または古い対象は既存L2-016に従いunknown/staleのまま扱い、三つのreadiness区分へ推測で割り当てない。
 - **旧sourceと再導出**：旧FR-L1-35の条件atomを意味再導出する候補である。ここでの適用対象はOS-L1-002の適用対象として選択された範囲の候補であり、旧sourceが含意する全対象・owner・版の対応は未確定のまま残す。旧HARNESS機能からOS portfolio projectionへの責務・owner移動は提案に留まり、対象範囲・owner・version target・採否についてPO判断待ちとする。旧source、保持範囲、現行L2-016との差分は[限定coverage receipt](../../governance/audits/requirement-registration/os-fr-l1-35-readiness-coverage-receipt-2026-09-28.json)に示す。receiptの候補入力no_lossは入力atomをこの候補範囲へ対応づけた記録であり、POが確定したsemantic successor、採択、旧source holdingの解消を意味しない。
+
+### HELIXOS-L2-046 dispatchからmergeまでのauthority・HEAD・scope連続性（connection候補、version_target: 1.0）
+
+- **親と状態**：採択済み`HELIXOS-L1-009`／`HELIXOS-L1-010`に接続する未採択候補。管理・推進・検収の責務分離と変更・依存に応じた統合順序／検証集合を、既存の作業authorityと運用規則の範囲でつなぐ。候補本文・registerは要求採択、実装・実行・merge許可を生成しない。
+- **提供するもの**：一つの選択済み作業scopeについて、dispatch、実行、Ready化、merge admissionの各遷移で対象、適用中のauthority、HEAD/revision、scope、既存契約が要求する検証義務とその結果を照合する接続条件を示す。遷移間に対象HEAD、authority、scopeまたは適用条件が変わった場合は、その変化をstale／未完として扱い、既存の判断・検証・merge admissionを再照合する。工程の一部の成功を後続段階の成功へ伝播しない。
+- **禁止する迂回**：pathが`docs/`であることだけを理由に、既存の適用可能なauthority・review・required verificationを省略しない。探索・prototypeのmergeはその限定scopeの証拠共有に限り、本実装やproduction pathへの取り込み許可へ読み替えない。適用中の契約・設定でrequiredとされた確認を、未実施のままskipしてReady／merge可能としない。
+- **既存責務との境界**：`HELIXOS-L2-010／011`のticket、推進、統合計画責務、`HELIXOS-L2-004／007／008`のassignment・authority・証拠・CI運転、HELIX-OSのGitHub運用モデルのPR作成／独立review／merge admissionを置き換えない。検証義務の定義はHARNESS、操作authorityはSECURITY、具体的なrequired条件と除外可否はそれぞれ既存ownerの採択済みcontractが持つ。本候補は新しいapproval、check、scope、skipまたは許可方式を定義しない。
+- **source範囲と限界**：旧RFA-AC-16の一つのacceptance rowだけをこの接続候補へ対応づける。旧RFA候補全体、隣接AC行、旧engine／schema／runtime、全GitHub operationの実装・受入やsource closureは対象外で、旧条件全体のsuccessorを主張しない。

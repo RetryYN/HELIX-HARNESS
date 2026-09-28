@@ -117,3 +117,14 @@ A＝exact L2/L11-042の限定採択（推奨）、B＝原atomを保留、C＝sou
 | OS | [HELIXOS-L2-045：各機構の検証・test・検出基盤readiness一覧（単体候補）](../../../helix-os/L2-requirements/governance-requirements.md#helixos-l2-045) | [L11受入候補](../../../helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-045) | `MPR-RC-HELIXOS-L2-045-001`; `os-fr-l1-35-readiness-coverage-receipt-2026-09-28.json` |
 
 旧confirmed175のFR-L1-35 archive atom 1件をcandidate inputとして対応づける。旧3区分の意味だけを保持し、対象集合はOS-L1-002の適用対象として選択された範囲に限定する候補。現行機構群・将来Web・version targetを確定しない。OSへのrehome/owner移管と採択は未決。PO packetはversion・対象機構集合・owner入力が未決の間、旧HARNESS source holdingと045候補を生存させsource atomを保持するB（保留）を推奨するが、選択ではない。AはOSへのowner rehomeとversion・対象機構集合の明示を伴う045採択、Cは対象source revision・理由・影響を明示した置換/retireである。version target・対象機構集合・owner dispositionを対象revisionでPOが決める必要がある。候補inputのno_lossはsource mapping範囲のみでsemantic successorや旧holding解消を示さない。既採択OS-L1-002/OS-L2/L11-016への接続を保ち、016のgeneral stateを再定義しない。BR-06/UX-02のdashboard、専用UI、realtime表示は含めない。別revision `V13-BASE-6FAB-L0638`（`MPR-SH-V13-BASELINE-001`）は別atomとして保留し、混合しない。PO packetは同一ファイルで43候補、basis main `249b1f648ce8ece4c6de82917910a752fa94a449`へ追随。
+
+
+## 後続候補：HELIXOS-L2-046（判断集合44候補）
+
+| 機構 | 候補・L2本文 | 対のL11 | 生存register revision・coverage receipt |
+|---|---|---|---|
+| OS | [HELIXOS-L2-046：dispatchからmergeまでのauthority・HEAD・scope連続性（connection候補、version_target: 1.0）](../../../helix-os/L2-requirements/governance-requirements.md#helixos-l2-046) | [L11受入候補](../../../helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-046) | `MPR-RC-HELIXOS-L2-046-001`; `helixos-rfa-scope-coverage-receipt-2026-09-28.json` |
+
+旧`LEGACY-CAND-LINE-003612`のRFA-AC-16 acceptance row（`LEGACY-ASSET-00C7DF9250F8A9A25B24`、archive file SHA-256 `c3f62478904e620eced270996360274e2840f9d94eca117d838d0e6dfeda7a86`、line SHA-256 `bafb2bae38d5e4363a90e58405e44e1e4544e85adfaa2b318bef2425a873065c`）一行だけをHELIXOS-L2/L11-046へ未採択候補として対応づける。#2268のcondition overlayで同じ行は条件として再確認され、旧snapshot上のexplanation分類を意味closureの根拠にしない。
+
+既存GitHub運用モデルにあるPR作成・独立review・Ready・exact base/content HEAD・stale・merge admission、OS-004/007/008/010/011が個別に持つassignment・authority・証拠・CI・推進／統合計画を再定義しない。限定残差はこれらの段階間で同じ対象authority/HEAD/scopeを照合し、docs path exemption、exploratory mergeの実装許可化、required skipを拒否するL2/L11接続oracleである。specific required list、CI、追加承認、skip機構は導入しない。RFA-AC-16一行のみの局所candidate inputであり、旧RFA、旧runtime、その他旧sourceのclosureは主張しない。source holding `MPR-SH-CANDIDATE-003`は生存する。A＝限定候補を採択（推奨）、B＝保留、C＝対象revision・理由・影響を付して意味変更／retire。いずれも未選択。
