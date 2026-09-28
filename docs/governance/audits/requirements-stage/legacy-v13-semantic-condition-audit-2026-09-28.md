@@ -34,7 +34,7 @@ condition rowsの行先比較結果（条件状態）:
 - line 102はSR0–SR4等の固定L2/L11照合を残しつつ、Reverse成果物の最終句を未確認として`partial`へ変更した。
 - lines 65–66の限定的なcovered根拠に、HARNESS-L2-003と、同IDをkeyに持つL2 106–107／L11 41–42の参照行を追記した。
 - line 112（旧source行SHA-256 `cd626aa398130c2023ec3167563fae6d79522561aa8ade8e93e48381f851c5fd`）のSR3差分をexactly oneのrouteへ送る条件は、PO固定revision `f6dad2a33` のHARNESS-L2-002／003（L2:105）と対L11:39（route 0件・複数件を拒否）に直接一致するため、`unresolved`から`covered`へ訂正した。この2条項は現main `bf1c30cec` でも同文。旧L113–119の個別条件まで一括して閉じず、形式的な後継割当も行わない。
-- line 119（旧source行SHA-256 `b8d0bd53395b0c57bf8aed4d6007d792e7aa0e7038480f0880754e0a2d22f0d6`）は、固定L2:105,111／L11:39–40のSR3 route、Refactor／Backflow境界、Performance Refactorの測定条件・測定不能な高速化拒否と一部一致するため、`unresolved`から`partial`へ訂正した。Design Refactorのsemantic similarity／consumer／oracle／dependency graph判定、名称類似だけの統合拒否、機能追加との同一episode混載禁止は対L2/L11で未確認。性能条件もL2側の規範への対応が未特定であり、全条件被覆とはしない。
+- line 119（旧source行SHA-256 `b8d0bd53395b0c57bf8aed4d6007d792e7aa0e7038480f0880754e0a2d22f0d6`）は、固定L2:105,111,399／L11:39–40,292–294のSR3 route、Refactor／Backflow境界、Performance Refactorの測定条件・測定不能な高速化拒否と一部一致するため、`unresolved`から`partial`へ訂正した。Design Refactorのsemantic similarity／consumer／oracle／dependency graph判定、名称類似だけの統合拒否、機能追加との同一episode混載禁止は対L2/L11で未確認であり、全条件被覆とはしない。L2側の性能規範が未特定とした前回記述は、HARNESS-L2-016:399を見落とした誤りとして撤回する。
 - 条件の意味分類は採択・実装・受入完了の証拠ではない。`unresolved`を含む行単位の比較であり、全source条件の最終割当ではない。
 
 
