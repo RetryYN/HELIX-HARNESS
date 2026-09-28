@@ -861,3 +861,21 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **typed edge欠落の負例**：親子・統合元・後継identity間のtyped edgeが欠ける入力を与える。他の履歴、authority、oracleが揃っていてもlineage closureとは判定しない。
 - **競合・未見条件**：同名異義、同一pathの再利用、identity重複、base revision違い、lineage先の欠落を与え、path/name一致だけで同一assetと判定しない。対応する履歴やauthorityが確認できない箇所をunknownに残す。
 - **受入境界**：静的な候補、receipt、fixture、または文書参照の存在だけでは実際の保存処理、rollback、権限、実装、PO採択、L3承認、旧FRの全条件移管を成立させない。旧runtime、旧test、旧fixtureは実行しない。
+
+### HARNESS-L2-055 隣接層の双方向trace gate結果受入候補（未実行）
+
+**対応要求**：HARNESS-L2-055（HARNESS-CORE unit候補、未採択）。以下は静的な内容oracle案であり、実行、採択、L3承認を示さない。
+
+- **正常例**：固定したscopeに隣接する親・子の義務と上下両方向のtraceが揃う入力では、scopeと対象revisionが分かる成立範囲を示し、未解決descent/backflowを0として識別する。これは候補oracleの期待であり実行証拠ではない。
+- **不成立例**：child側の上位参照だけを欠落させた入力では未降下を、親側のbackflowだけを欠落させた入力では未逆伝播をそれぞれ区別して提示し、片方向の関係から双方向成立を返さない。非隣接edge、親より粗いchild、個別義務をaggregateでまとめた入力は該当する不一致を個別に示し、scopeを成立扱いにしない。
+- **unknown例**：対象scope/layer、row identity、source revisionまたは適用する隣接関係が欠ける・矛盾する場合はunknown/未完を示す。stale revisionやsnapshot不一致はNFR-29 cross-conditionへ残し、この候補のFR-48受入結果として数えない。
+- **戻し先と境界**：要求意味・隣接層の定義不足はHARNESS側の要求ownerへ返し、台帳保存・ticket・実行証拠の欠落はOS側の該当ownerへ返す。候補の結果だけでL1承認、L2合意、L3承認、実行成功、要求採択を生成しない。
+
+### HARNESS-L2-056 canonical V-pair gate結果とfeedback受入候補（未実行）
+
+**対応要求**：HARNESS-L2-056（HARNESS-CORE composite候補、未採択）。以下は静的な内容oracle案であり、実行、採択、L3承認を示さない。
+
+- **正常例**：対象revision/scopeでcanonical 6 pairが対応するatomic oracle単位で照合され、L12 feedbackがL1企画と層外L0 charterの両方へ結び付く入力では、pairごとの成立範囲を識別する。L0は層外anchorのままでpair数へ含めない。
+- **不成立例**：6組のうち1組だけで片側edgeまたは対応する実行結果を欠落させたとき、そのpairと不足条件を特定し、そのpairをcomplete/greenにしない。設計側と検証側でoracle identityが異なるpairも対応済みとして扱わない。別の5組の成立を欠落組の証拠へ流用しない。L12→L1またはL12→L0のどちらか一方だけがある場合、欠けた出口をfeedback未完として示す。
+- **unknown例**：canonical pair定義、対象scope、oracle identity/適用関係、feedback先または結果証拠が不明・矛盾する入力はunknown/未完に保つ。異snapshot・stale revisionはNFR-29 cross-conditionへ残し、本候補のFR-49 atomに混ぜない。
+- **戻し先と境界**：pair/feedbackの要求意味不足はHARNESS側の該当ownerへ、OSの実行・保存・登録証拠の不足はOS側ownerへ返す。候補受入の期待結果を旧実装の合格、L3承認、採択、実行許可または要求stage終了へ読み替えない。
