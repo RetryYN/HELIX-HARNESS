@@ -1,0 +1,176 @@
+{
+  "receipt_id": "MPR-RCPT-HARNESS-L2-048-O9-2026-09-29",
+  "authority_effect": "none",
+  "candidate_state": "registered_proposal only; no PO adoption",
+  "basis_commit": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
+  "candidate_digest_rule": "L2 section from `### HARNESS-L2-048` until next `###`; trailing blank lines removed, one LF.",
+  "paired_acceptance_digest_rule": "L11 candidate section from exact `### HARNESS-L2-048のL11受入候補（未実行）` heading until next `###`; trailing blank lines removed, one LF.",
+  "candidate_semantic_digest": "sha256:9328dccd943ac8f690d149673a5f05626465990f3197306a45d7b8cca27c34d5",
+  "candidate_l2_file_sha256": "sha256:bb7e3a45876f23898be3e8f51fe08f81ec24672ff829d6816122c22794123560",
+  "paired_acceptance_identity": "HARNESS-L2-048",
+  "paired_acceptance_digest": "sha256:4a4d893e909d1ccc32b52cc96b22f82eaef6bffead7037677df561cd2617466d",
+  "l11_file_sha256": "sha256:f8fc0e64fea6777412e3f5219932cdf7438377e69bcf2687b9493fdc59155c1c",
+  "source_lines_ref": "docs/governance/audits/requirement-registration/ops-o9-naming-source-lines-2026-09-29.jsonl",
+  "source_lines_file_sha256": "sha256:f743f49bdfb1d652d29c00ecabe486bdfc6f25114da0715c05105b122f639554",
+  "source_holding_lines_ref": "docs/governance/audits/requirement-registration/ops-o9-naming-source-holding-lines-2026-09-29.jsonl",
+  "source_holding_lines_sha256": "sha256:8ad688981a53ff1b802010d6286e7796c05d10cbd7d107e65c3634adfce602a3",
+  "task_source_snapshot_ref": "docs/governance/audits/requirement-registration/ops-loop-goal-source-snapshot-2026-09-29.md",
+  "task_source_snapshot_sha256": "sha256:ebaec80c40d2f410b7edef555b941b6a57bab4632084c8ee6af4f8e08106b39b",
+  "source_atom_set_digest_rule": "SHA-256 over ordered UTF-8 lines `atom_id` + space + `sha256:`-prefixed `source_span_sha256`, joined by LF without trailing LF.",
+  "source_atom_set_digest": "sha256:0ce5b76a02f0e562c0ccb0acdc4050c7e54b866948abeff18bfc22ead542775c",
+  "source_atom_count": 17,
+  "coverage_result": "no_loss",
+  "source_collection_scope": "17 exact contiguous source spans explicitly represented by HARNESS-L2-048/L11 are carried. All 15 full legacy source lines, exact file/line SHA-256, and complementary text segments are retained in MPR-SH-O9-NAMING-001. Nonselected semantics are pending, not included in this candidate atom set. The 15 lines are bounded selections; no whole-file/archive closure is claimed.",
+  "atoms": [
+    {
+      "atom_id": "O9-infinity-loop-platform-requirements-L0130-S01",
+      "disposition": "carried",
+      "source_span_sha256": "sha256:75a01309cd8ac7698e604851f0f1732c87424a0d829e412dc45a525ffed52d6e",
+      "source_line_ref": "docs/governance/audits/requirement-registration/ops-o9-naming-source-holding-lines-2026-09-29.jsonl#O9-HOLD-infinity-loop-platform-requirements-L0130"
+    },
+    {
+      "atom_id": "O9-infinity-loop-platform-requirements-L0130-S02",
+      "disposition": "carried",
+      "source_span_sha256": "sha256:bceb8ae85c907a9990dd881d5f02cafd609601156578b7a49764c95570f6fb3a",
+      "source_line_ref": "docs/governance/audits/requirement-registration/ops-o9-naming-source-holding-lines-2026-09-29.jsonl#O9-HOLD-infinity-loop-platform-requirements-L0130"
+    },
+    {
+      "atom_id": "O9-infinity-loop-platform-requirements-L0204-S01",
+      "disposition": "carried",
+      "source_span_sha256": "sha256:4074ed4b8072a7c367e01bbf3a4bc0a1332c57f5fcd0e032d69171b7afdf80fe",
+      "source_line_ref": "docs/governance/audits/requirement-registration/ops-o9-naming-source-holding-lines-2026-09-29.jsonl#O9-HOLD-infinity-loop-platform-requirements-L0204"
+    },
+    {
+      "atom_id": "O9-infinity-loop-platform-requirements-L0204-S02",
+      "disposition": "carried",
+      "source_span_sha256": "sha256:eb11780dc351527368943fd1ef63d708df9e2c73e774686870f531d77892f56c",
+      "source_line_ref": "docs/governance/audits/requirement-registration/ops-o9-naming-source-holding-lines-2026-09-29.jsonl#O9-HOLD-infinity-loop-platform-requirements-L0204"
+    },
+    {
+      "atom_id": "O9-infinity-loop-platform-requirements-L0205-S01",
+      "disposition": "carried",
+      "source_span_sha256": "sha256:cf23313bd03230118c23da1a866f28952acd72253fb541db104a603f9fb7ddff",
+      "source_line_ref": "docs/governance/audits/requirement-registration/ops-o9-naming-source-holding-lines-2026-09-29.jsonl#O9-HOLD-infinity-loop-platform-requirements-L0205"
+    },
+    {
+      "atom_id": "O9-infinity-loop-platform-requirements-L0205-S02",
+      "disposition": "carried",
+      "source_span_sha256": "sha256:8b7264013f461172fc68e4301c301b1e32426d1a1c82da98cb320354f7cb2838",
+      "source_line_ref": "docs/governance/audits/requirement-registration/ops-o9-naming-source-holding-lines-2026-09-29.jsonl#O9-HOLD-infinity-loop-platform-requirements-L0205"
+    },
+    {
+      "atom_id": "O9-infinity-loop-platform-basic-design-L0291-S01",
+      "disposition": "carried",
+      "source_span_sha256": "sha256:f08d20fc4973145ea991e949f54c9b4d30526db4c62e179cb54222fc4aa72fc9",
+      "source_line_ref": "docs/governance/audits/requirement-registration/ops-o9-naming-source-holding-lines-2026-09-29.jsonl#O9-HOLD-infinity-loop-platform-basic-design-L0291"
+    },
+    {
+      "atom_id": "O9-infinity-loop-platform-basic-design-L0291-S02",
+      "disposition": "carried",
+      "source_span_sha256": "sha256:1bbbf193e1f245edfa3622fe8232cdc5ebb70a28cfcd4cacbc6ee58a2614697f",
+      "source_line_ref": "docs/governance/audits/requirement-registration/ops-o9-naming-source-holding-lines-2026-09-29.jsonl#O9-HOLD-infinity-loop-platform-basic-design-L0291"
+    },
+    {
+      "atom_id": "O9-infinity-loop-platform-basic-design-L0291-S03",
+      "disposition": "carried",
+      "source_span_sha256": "sha256:9f338533ddda674fc0995785bc478e90f84eb569268cdb3ff3b2f7cc44735cdb",
+      "source_line_ref": "docs/governance/audits/requirement-registration/ops-o9-naming-source-holding-lines-2026-09-29.jsonl#O9-HOLD-infinity-loop-platform-basic-design-L0291"
+    },
+    {
+      "atom_id": "O9-infinity-loop-platform-basic-design-L0300-S01",
+      "disposition": "carried",
+      "source_span_sha256": "sha256:a930a6eda3232ff5997415765be825da2b6e12aa06ade73f600f9f33a9b97044",
+      "source_line_ref": "docs/governance/audits/requirement-registration/ops-o9-naming-source-holding-lines-2026-09-29.jsonl#O9-HOLD-infinity-loop-platform-basic-design-L0300"
+    },
+    {
+      "atom_id": "O9-infinity-loop-platform-basic-design-L0300-S02",
+      "disposition": "carried",
+      "source_span_sha256": "sha256:7ef28e044dffd077933ba2f9495124519a9bc3368bc36ee957471461972432c2",
+      "source_line_ref": "docs/governance/audits/requirement-registration/ops-o9-naming-source-holding-lines-2026-09-29.jsonl#O9-HOLD-infinity-loop-platform-basic-design-L0300"
+    },
+    {
+      "atom_id": "O9-infinity-loop-platform-basic-design-L0301-S01",
+      "disposition": "carried",
+      "source_span_sha256": "sha256:eb6bc6c5de1a3632aae89c2af274692266d7ef93129cb565b8c2ee3c18e83dd2",
+      "source_line_ref": "docs/governance/audits/requirement-registration/ops-o9-naming-source-holding-lines-2026-09-29.jsonl#O9-HOLD-infinity-loop-platform-basic-design-L0301"
+    },
+    {
+      "atom_id": "O9-infinity-loop-platform-basic-design-L0302-S01",
+      "disposition": "carried",
+      "source_span_sha256": "sha256:3e17a1d7efe503709330d543ac9d1676e202eff1a6c0145162fa9459196f81a2",
+      "source_line_ref": "docs/governance/audits/requirement-registration/ops-o9-naming-source-holding-lines-2026-09-29.jsonl#O9-HOLD-infinity-loop-platform-basic-design-L0302"
+    },
+    {
+      "atom_id": "O9-infinity-loop-platform-basic-design-L0332-S01",
+      "disposition": "carried",
+      "source_span_sha256": "sha256:f569c367f4e1f6221f32f845be1bc0eeaa022042356aad60f70e8b522d4f0a28",
+      "source_line_ref": "docs/governance/audits/requirement-registration/ops-o9-naming-source-holding-lines-2026-09-29.jsonl#O9-HOLD-infinity-loop-platform-basic-design-L0332"
+    },
+    {
+      "atom_id": "O9-infinity-loop-platform-basic-design-L0333-S01",
+      "disposition": "carried",
+      "source_span_sha256": "sha256:b8c73fe583e205687cdc4d8d6d0ce7197b8d39d7eabe4171f2a4020e75e03449",
+      "source_line_ref": "docs/governance/audits/requirement-registration/ops-o9-naming-source-holding-lines-2026-09-29.jsonl#O9-HOLD-infinity-loop-platform-basic-design-L0333"
+    },
+    {
+      "atom_id": "O9-infinity-loop-platform-basic-design-L0334-S01",
+      "disposition": "carried",
+      "source_span_sha256": "sha256:6fb6a5892ce0f14b6dea3b12dbb9f97b28089cf4fd4f3ae5e280daf527694689",
+      "source_line_ref": "docs/governance/audits/requirement-registration/ops-o9-naming-source-holding-lines-2026-09-29.jsonl#O9-HOLD-infinity-loop-platform-basic-design-L0334"
+    },
+    {
+      "atom_id": "O9-infinity-loop-platform-basic-design-L0335-S01",
+      "disposition": "carried",
+      "source_span_sha256": "sha256:13cd7dcc5e06d7b97df9183c764efa01e6570b7cd91900da2aea87b87b7eef67",
+      "source_line_ref": "docs/governance/audits/requirement-registration/ops-o9-naming-source-holding-lines-2026-09-29.jsonl#O9-HOLD-infinity-loop-platform-basic-design-L0335"
+    }
+  ],
+  "unselected_source_remainder_refs": [
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-requirements-L0130-R01",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-requirements-L0130-R02",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-requirements-L0130-R03",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-requirements-L0143-R01",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-requirements-L0204-R01",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-requirements-L0204-R02",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-requirements-L0204-R03",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-requirements-L0205-R01",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-requirements-L0205-R02",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-requirements-L0205-R03",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0291-R01",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0291-R02",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0291-R03",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0291-R04",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0298-R01",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0299-R01",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0300-R01",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0300-R02",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0300-R03",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0301-R01",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0302-R01",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0326-R01",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0332-R01",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0332-R02",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0333-R01",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0333-R02",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0334-R01",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0334-R02",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0335-R01",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0335-R02"
+  ],
+  "unaccounted_atom_refs": [],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-O9-NAMING-001"
+  ],
+  "human_decision_disposition_refs": [],
+  "parent_concept_revision": "docs/concept/helix-concept.md@c18969c73306f6ed4cc4b93249583cd7e5d9ff68 sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（読取revision。候補採択は継承しない）",
+  "parent_planning_revision": "docs/helix-harness/L1-planning/product-intent.md@c18969c73306f6ed4cc4b93249583cd7e5d9ff68 sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f（PO固定L1 authorityは既存decision record参照。候補採択は継承しない）",
+  "parent_l1_ids": [
+    "HARNESS-L1-001",
+    "HARNESS-L1-003",
+    "HARNESS-L1-004"
+  ],
+  "requirement_kind": "unit",
+  "version_target_status": "not_stated_by_O9_source; no version selected",
+  "candidate_registration_id": "MPR-RC-HARNESS-L2-048-001",
+  "authority_boundary": "Candidate registration/review/merge does not adopt the requirement or grant implementation/CI/release authority."
+}

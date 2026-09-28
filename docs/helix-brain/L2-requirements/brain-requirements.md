@@ -582,3 +582,14 @@ ZIP source catalogはscratchpad記載の201件/22分類と保持ZIP内の179件/
 - **依存区分**：**常時必須**＝connection contract identity/version/互換範囲、query/receipt schema、対象scope・相関identity、受取側HARNESS-L2-009 contract。**特定操作時のみ**＝選択Patternを設計候補へ適用する場合はapplicability/required input/relation/negative caseを検査する。**選択した入力元に応じて必須**＝BRAIN knowledgeを選択したqueryでは該当knowledge identity/version/sourceと全required fieldsを照合し、未選択のknowledge sourceは未観測とする。**参照資料のみ**＝説明資料や背景例。receipt・required field・authorityの代替にしない。
 - **正常例**：二つの候補Pattern、conflicts_with / alternative_to relation、required input、source/versionをHARNESSへ渡し、HARNESSが両候補と未決inputを別個に保持できるreceiptを作る。BRAIN側は採用先を選ばない。
 - **失敗・戻し先**：connector contract/version/互換がmissing・unknown・staleなら呼出しを保留する。選択Patternのfield欠落や矛盾はそのknowledge受渡しを不合格とし、BRAINへ、receiver scope/schema不整合はHARNESSへ戻す。別Patternの成功で穴を埋めない。
+
+
+### HELIXBRAIN-L2-031 役割型の再利用知識候補（unit candidate）
+
+- **authority／状態**：未採択候補。`registered_proposal`／`authority_effect: none`。HARNESS命名の決定や特定製品での採用を決めない。
+- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-002`、`HELIXBRAIN-L1-003`、`HELIXBRAIN-L1-005`、`HELIXBRAIN-L1-007`、`HELIXBRAIN-L1-008`、`HELIXBRAIN-L1-011`、`HELIXBRAIN-L1-012`。設計知識の領域・階層、Patternの意味、関係、出所・版、製品固有意味の分離、提供候補と採用判断の区別を親にする。
+- **対象・版**：設計objectの役割語彙の意味・一般例・適用条件・反例をPattern/Design Unit/Partとして参照可能にする候補。PO原文とL1にversion target指定がないので版を推定しない。
+- **要求候補**：旧source由来のrole term候補（Entity、ValueObject、Aggregate、DomainService、Policy、Specification、Command、Query、DomainEvent、Receipt、Port、Adapter、Repository）について、意味、役割の違い、適用条件、反例、根拠を再利用知識として表現する。語彙の追加・統合・退役は版と出所を持つ候補にし、未評価知識をaccepted/matureへ昇格しない。
+- **提供境界**：HELIX-HARNESS-COREへ役割語彙と例を候補知識として返せる。HARNESS側が対象への適用・命名decision・例外を判断する。BRAINは特定の命名表、コード文法、consumer一覧、test oracle対応、rename操作を所有しない。
+- **非対象**：製品固有のAPI、screen、業務用語、permission、state、要求意味、名称の強制を汎用知識に入れない。BRAIN候補の存在や返却だけでHARNESS側の受入・採択を成立させない。
+- **出所**：BRAIN固有のlegacy requirement atomを今回の直接入力にはせず、BRAIN L1からの新規導出候補として扱う。旧role語彙はHARNESS候補の限定source inputであり、本BRAIN candidateでは参照のみ。
