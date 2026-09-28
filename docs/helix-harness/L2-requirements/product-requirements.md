@@ -980,3 +980,21 @@ scope拡張候補の受入寄与・最小性を照合するとき、追加機能
 - **不成立と戻し先**：semantic similarity、consumer、oracle、dependency graphのいずれかが未確認なら判定を未評価に保ち、出典のownerと設計・契約ownerへ不足を戻す。対の設計・契約がない対象は`HARNESS-L2-019`のReverse入口へ、要求・公開契約・永続状態等の意味変更は`HARNESS-L2-003/004/016`の該当Backflow先へ戻す。機能追加の混載は同一episodeのRefactor成立を拒否し、追加要求を別episodeへ分ける。本候補の文書・receipt・登録だけで要求採択、L3要件承認、実装、実行、受入を成立させない。
 
 原文・旧資産・別revisionの関係とsplit被覆は`docs/governance/audits/requirement-registration/harness-refactor-episode-coverage-receipt-2026-09-28.json`に記録する。
+
+## 旧HIL-FR-55から再導出するactive template例coverage候補
+
+### HARNESS-L2-043 active templateのrule／branch別例coverage（HARNESS-CORE unit候補、version_target: 1.0）
+
+- **所属候補・旧差分**：推奨配置はHARNESS-COREとするが、PO未決である。旧HIL-FR-55の対応印は`docs/governance/crosswalks/concept-requirement-po-decision-packet.md:1009`で`HELIX-HARNESS、部品`までを示し、COREまたは個別部品名までは特定しない。HARNESS-L2-009の同packet `:174–178`は同要求自身を`部品：Design Template`へ置く根拠だが、その配置をHIL-FR-55へ移す根拠ではない。CORE案は、選択scopeの例coverage oracleが製品固有の意味・設計を持つHARNESS core側の責務で、BRAINを設計patternの知識源としてconnector接続するという2026-09-25 PO記録（`docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md:51–55`）を理由とする提案であり、旧配置の証明ではない。043のCORE案は、この限定された候補scopeに対する配置提案として人の選択を待つ。
+
+- **親L1**：`HARNESS-L1-001`, `HARNESS-L1-004`, `HARNESS-L1-009`。001の正規V-pair、004の対象revision/riskに合う検証義務・反例・証拠・差戻し、009のtemplate選択・適用と設計義務を具体化する。親L1の意味やrevisionは変更しない。
+- **種別・scope**：HARNESS-COREの単体能力候補（推奨配置、PO未決）。選択されたactive template revisionと対象scopeに適用されるvalidation ruleおよびapplicability branchについて、rule／branchごとの例coverageを評価する。template要素の機械抽出・ledger候補行・抽出gapは041、具体設計生成と設計構成体のoracleは026/025の責務とし、043はそれらを重複実装しない。
+- **入力**：対象L1 revision、要求kind・構成・scope、HARNESS-L2-009で選択されたtemplateのidentity/revisionと適用条件、各validation rule/applicability branchの識別可能な内容、rule／branchに適用するrisk根拠、対応するoracle契約。041のtemplate atomが利用可能な場合はsource spanと抽出結果を参照する。active版・適用条件・rule／branch分母・必要なrisk根拠がunknown、conflictまたはstaleなら十分性を判定しない。
+- **出力**：対象revision/scope、template版、適用rule／branchの分母、各rule／branchに対応するcanonical positive例と境界negative例、例が確かめるoracle、risk追加例とその不足根拠、重複・冗長性findingを結ぶexample adequacy matrix。全適用rule／branchに最低1件ずつのpositiveとboundary negativeを対応付ける。状態遷移、failure、security、migration、multi-runtime差異は、対象scopeのrisk分析で未被覆と示された場合に限り追加例を求める。例の件数だけで十分性を決めず、rule／branch／該当riskのcoverageを照合する。
+- **依存区分**：**常時必須**＝対象HARNESS-L1 revision、対象scope/revision、HARNESS-L2-009のactive template選択・適用契約、適用rule／branchと照合するoracleの識別。**特定操作時のみ**＝選択scopeについてexample adequacy matrixと例coverageを評価する処理。**選択した入力元に応じて必須**＝041のatomを使う場合はそのtemplate/source revisionと抽出scope、risk追加例を判定する場合はその対象scopeのrisk根拠と未被覆領域、multi-runtime差異を扱う場合は選択scope内のruntime条件。**参照資料のみ**＝旧schema、旧runtime、未選択templateやscope外の例。
+- **保証と戻し先**：各適用rule／branchにpositiveと境界negativeの双方を対応させ、例がどの条件・oracleを検証するかを追跡できる。対応例またはoracleが欠けるrule／branch、根拠のないN/A、risk未評価、版不一致は未完またはunknownとして示し、件数で相殺しない。active版・適用性不足はHARNESS-L2-009/対象template ownerへ、抽出済みrule／branchの欠落は041相当の抽出契約ownerへ、risk・oracle・検証義務の不足はHARNESS-L2-004/該当ownerへ戻す。候補や例は要求合意、設計成立、採択、実装、受入成功を生成しない。
+- **既存候補との境界**：041はactive templateの要素抽出と未対応・空/TBD・抽出不能・重複のgap提示を扱い、rule／branchに対するpositive/negative例の妥当性やcoverage十分性は判定しない。026/025は承認済み要求から具体設計と対oracleを構成・検査し、本候補のtemplate例coverageを代替しない。OSは選択された操作の実行・保存・状態記録を別契約で担う。
+
+- **配置差の選択境界**：旧HIL-FR-55の`部品`という対応印を保持しつつ、現行CORE所属は暫定推奨にとどめる。POが`部品：Design Template`を選ぶ場合も、それはHARNESS-L2-009に示された当該部品の候補配置を043へ適用する新しい判断であり、旧HIL-FR-55から確定済みとして継承しない。
+
+**旧根拠**：`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:145`、旧行SHA-256 `78a2e6c819e73153ce2bbd832c0f87777dba08750fa1b84fcafc916fa7cafa30`。旧Template Example Calibratorの意味条件を保持し、旧schema／runtimeを移植しない。
