@@ -2,6 +2,8 @@
 
 基準mainは `5e42b759addec0166af3d0fd98ca878a8c851f10`（#2234統合後）。[確認PRの採択250件](po-confirmation-closure-2026-09-28.json)と現行仮登録の生存候補をidentityで差し引いた。固定PO判断は250件を採用したが、その後の25件を採用・保留・不採用へ分類した判断はない。L2/L11本文があること、registerへの登録、PR mergeやreviewは採択を生成しない。
 
+この25件は上記基準時点の記録である。後続PR #2238・#2241統合後の現行生存候補は27件（この一覧の25件と追加2件）で、追加分も未採択である。基準時点の記述は当時の履歴として保持し、現在の件数は後続差分を含めて読む。
+
 | 機構 | 候補・L2本文 | 対のL11 | 生存register revision |
 |---|---|---|---|
 | HARNESS | [HARNESS-L2-034：要求別の計測契約と完成判定（コアの単体候補、version_target 1.0）](../../../helix-harness/L2-requirements/product-requirements.md#L693) | [L11](../../../helix-harness/L11-acceptance/product-acceptance.md#L465) | `MPR-RC-HARNESS-L2-034-003` |
@@ -33,3 +35,14 @@
 一覧の25件は後続の局所候補であり、採用・保留・不採用の判断をまだ受けていない。候補の意味と`version_target`は各L2/L11本文、入力原文と被覆範囲は各`coverage_receipt_ref`で確認する。原文の意味変更・retireを選ぶ場合はその対象source・revision・理由・影響を付けてPO判断へ出す。判断後も実装・受入実行とは別である。
 
 この一覧は手順6の採否対象を失わないための監査であり、採否欄を推測で埋めない。
+
+## 後続差分：#2238・#2241統合後の追加候補2件
+
+下記2件は基準main後に追加され、現在の生存registerに登録された候補である。PRのmerge、候補本文、L11、receipt、registerは採択や人間decisionを生成しない。両coverage receiptの`authority_effect`は`none`で、候補状態も`unadopted`と記録されている。
+
+| 機構 | 候補・L2本文 | 対のL11 | 生存register revision・coverage receipt |
+|---|---|---|---|
+| HARNESS | [HARNESS-L2-042：Design Refactor判定とepisode分離（⑤のunit候補、version_target: 1.0）](../../../helix-harness/L2-requirements/product-requirements.md#L970) | [L11受入候補](../../../helix-harness/L11-acceptance/product-acceptance.md#L707) | `MPR-RC-HARNESS-L2-042-001`；`harness-refactor-episode-coverage-receipt-2026-09-28.json#HARNESS-L2-042`（#2241、merge `945a30bebe20e66097125d27aec5931b8b95cc0c`） |
+| OS | [HELIXOS-L2-038：Layer ledger writer・snapshot・proposal append（単体候補、version_target: 1.0）](../../../helix-os/L2-requirements/governance-requirements.md#L1096) | [L11受入候補](../../../helix-os/L11-acceptance/governance-acceptance.md#L671) | `MPR-RC-HELIXOS-L2-038-001`；`os-layer-ledger-writer-coverage-receipt-2026-09-28.json#HELIXOS-L2-038`（#2238、merge `bf1c30cec0e08919c3624e5172ac9fdc8632af2c`） |
+
+HARNESS-L2-042のreceiptは旧v1.3 §4.2 L119の異なる2 source revisionを別atomとして保持し、Performance Refactor条件は採択済みL2/L11-016を参照するsplitを記録する。HELIXOS-L2-038のreceiptは旧HIL-FR-46/47のwriter・snapshot・proposal保存部分をOS候補として分け、HARNESS側の意味契約候補とsource holdingを残す範囲を記録する。いずれも旧source全体の正式後継、実装、受入実行を確定しない。
