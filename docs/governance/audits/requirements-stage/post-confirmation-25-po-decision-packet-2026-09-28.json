@@ -3788,6 +3788,28 @@
               "未採択のまま保留してsource holdingを保持",
               "対象subatom・revision・理由・影響を特定して意味変更/retire"
             ]
+          },
+          {
+            "id": "definition_alignment",
+            "status": "pending",
+            "selected_choice": null,
+            "recommended_choice": "D1",
+            "recommendation_is_decision": false,
+            "choices": [
+              {
+                "id": "D1",
+                "meaning": "両定義を別指標として並立させる。未採択065は`first_pass`を最初のAttemptの受入oracle結果として保持し、067は旧S3に沿ってfirst-eligible candidateの結果を保持する。両候補採択時も指標は同一化・代替・合算せず、旧sourceのfirst-eligible定義に沿うのは067側だけである。採択済み059や現行065/067の本文は変更しない。"
+              },
+              {
+                "id": "D2",
+                "meaning": "065の定義を旧sourceのfirst-eligible candidateへ寄せる別revisionを起草し、対象revisionのPO判断を得る。現行065本文・registerはこのframeだけでは変更しない。"
+              },
+              {
+                "id": "D3",
+                "meaning": "旧sourceのfirst-eligible定義を指定revisionでretireする。対象source revision、理由、影響する条件・consumerを示してPO判断を得る。候補採否A（その旧定義を持つ067 exact revisionの採択）とは同時選択できない。A採択後に旧定義をretireする場合は、067の別revisionまたはretireについて別途PO判断を得る。"
+              }
+            ],
+            "recommendation_rationale": "旧source S3はfirst-passの初回を最初のeligible candidateとする一方、未採択065は最初のAttemptの受入oracle結果と定義する。粒度が異なるため、D1なら両候補が将来採択されても指標を別々に保ち、067だけが旧sourceの定義に沿うことを明示できる。D1は候補A/B/Cの採否を決めず、source meaningや現行本文も変更しない。"
           }
         ],
         "options": [
