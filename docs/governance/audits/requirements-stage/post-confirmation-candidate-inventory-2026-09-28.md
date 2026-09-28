@@ -151,3 +151,8 @@ A＝exact L2/L11-042の限定採択（推奨）、B＝原atomを保留、C＝sou
 ## 後続訂正：HELIXSECURITY-L2-033 credential境界（判断集合46候補）
 
 現行register末端は`MPR-RC-HELIXSECURITY-L2-033-002`で、初回`-001`をsupersedeする。追加したL2/L11の資格情報境界は、raw secret／credential値またはsecret／機密内容を外部Workerへ渡すtaskをdenyし、値・内容を露出させず既存L2-005の限定credential-use capabilityを用いる認証付きoperationは、既存L2-008/007と該当L2-006の条件内で一律denyしない。旧HR-FR-P2-05の「secret task deny」がこのoperationを含むかは未定義のため、全credential-use taskの禁止はL2-005の採択済み対象revisionへの意味変更としてPO判断へ残す。A（訂正候補採択、推奨）／B（source holdingへ保留）／C（対象revision・理由・影響付き意味変更／retire）は未選択。2 source atom・source-lines・holdingは不変、候補集合は46件のまま。訂正receiptは[`security-v13-worker-context-coverage-receipt-2026-09-28-r2.json`](../requirement-registration/security-v13-worker-context-coverage-receipt-2026-09-28-r2.json)。
+
+
+## 後続追加：HARNESS-L2-047（現行判断集合47候補）
+
+旧HIL-BR-09/30・HIL-FR-59/60の4 source lineを、[HARNESS-L2-047](../../../helix-harness/L2-requirements/product-requirements.md#harness-l2-047)と[対L11](../../../helix-harness/L11-acceptance/product-acceptance.md#harness-l2-047)へHARNESS配置A候補として限定再導出した。旧source line SHA、candidate/acceptance digest、対象4 atomは[coverage receipt](../requirement-registration/harness-specialist-contract-coverage-receipt-2026-09-29.json)と[source-lines](../requirement-registration/harness-specialist-contract-source-lines-2026-09-29.jsonl)に記録する。登録`MPR-RC-HARNESS-L2-047-001`は`registered_proposal` / `authority_effect:none`。PO未決・未採択。比較案BのINTELLIGENCE配置をPO packetへ保持し、B選択時は本HARNESS配置案から後継を確定しない。入力は4 semantic line atomsのみであり、別holdingのIR identities、残るsemantic lines、旧source全体のclosureを主張しない。

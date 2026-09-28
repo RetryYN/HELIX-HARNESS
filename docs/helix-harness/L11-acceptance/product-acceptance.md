@@ -769,3 +769,17 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 **未見例**：作成側に伏せた追加transition、exception、または新しいslice deltaを与え、対象system workflowとbackfillのcoverageを再照合する。入力にoracle・適用性・source revisionがない範囲はunknown／未評価を維持し、別scopeや別revisionへ結果を外挿しない。
 
 **戻し先と境界**：workflow semanticsまたはstyle適用条件の不足はHARNESS-L2-002/003、検証義務・pair oracleの不足はHARNESS-L2-004/022へ戻す。OS ticket、workflow instance、保存state、runtimeをこの候補の成果とせず、L11例は利用者受入の実行結果を生成しない。
+
+### HARNESS-L2-047 専門Workerの必要性判断と契約生成の受入候補
+
+**対応要求**：`HARNESS-L2-047`（HARNESS-CORE単体候補、`version_target: 1.0`、PO未決・未採択）。候補配置AはHARNESS-L1-001/002/004、比較案BはINTELLIGENCE配置である。HARNESSはprocess/verificationと候補契約の意味を定め、INTELLIGENCEの配置案、LABOの測定材料、OSのassignment/runtime lifecycle、SECURITYのauthorityを混同しない。この受入案から実行済み状態や要求採択を生成しない。
+
+- **正常例：専門Workerを必要とするtask**：task identity/scope/revision、適用process phase・task-kind・verification oracle、single-worker既存roleとの比較条件、適用範囲が一致するLABO evidenceを入力する。専門知識、独立context、並列性、blind verification等のtask関連利益と比較根拠が決定に結ばれた場合だけ`muster`候補を返す。次にruntime-neutral contractがHIL-FR-59由来の全field（objective、成果物schema、tool guidance、task boundary、context selectors、allowed/denied tool/path候補、model/effort class、budget、checkpoint、escalation、verification contract）を持ち、input/output digest、generation rationale、guard validation結果へ追跡できることを確認する。同一正規化入力と生成規則revisionでは意味内容とdigestが一致する。
+- **正常例：単一Workerで十分**：比較条件が既存roleで十分と示すtaskは`existing_role_sufficient`とし、追加specialist contractを生成しない。該当role候補へ戻し、OS assignmentは別の既存契約で扱う。
+- **保留例：比較材料不足**：LABO evidenceが未評価、適用scope外、staleまたは欠落、比較対象不明、oracleまたはtask boundaryが未確定の場合は`unknown_or_defer`を返す。適用できない測定を専門化利益に換算せず、必要なowner/evidenceと未完条件を示し、contract生成・OS起動候補を進めない。
+- **不成立例：根拠のないmuster**：single-worker比較を省略する、専門性ラベルだけを根拠にする、provider/model名・価格・Bench水準だけから選ぶ、無関係なtaskの並列性を便益とする、固定数値thresholdを追加する場合は不合格。比較測定はtask scope・適用oracle・evidenceへ結び、条件不足はunknownとする。
+- **不成立例：境界/権限の昇格**：contract内のtool/path候補をSECURITY許可として扱う、OS assignmentやWorker起動をHARNESSが行う、INTELLIGENCE/LABO proposalを割当済みと扱う、HARNESSがSECURITY authorityや実行環境の隔離を代替する場合は不合格。OSが適格な既存runtime profile/assignmentを示せない場合、projectionはunknown/拒否となり完了しない。
+- **不成立例：worker/verifier separation**：同じidentity・context・authorityをworkerとverifierに使う場合は不合格。同一provider/modelの属性だけを理由に別identity/context/authorityの検証を非独立と扱う場合も不合格。provider/model記録の欠落も検知する。
+- **lifecycleと中断**：適用されるlease/fencing/失効/retire条件とOS lifecycle evidenceが不足または不一致なら当該候補を保留し、別assignmentへ資格情報・状態が漏れないことを別owner契約で確認する。source revision、scope、oracle、generator revision、runtime profileまたはauthorityが変化した場合、依存する判断/contractをstaleにして該当ownerへ再照合する。中断・budget/期限到達では判断根拠、partial contract、未完義務、再開条件を残し、成功扱いにしない。
+- **未見例**：未見task-kind/domain/riskまたは適格profileを与え、同一の境界で必要性判断、unknown処理、contract field coverage、digest追跡を確かめる。未選択profileやoracleを推測で補わず、source/適用条件が不明なら保留する。
+- **受入の限界**：このcandidateの静的oracleは測定実績、runtime実行、assignment、authority、採択、設計承認、利用者受入を生成しない。既存HARNESS/OS/INTELLIGENCE/LABO/SECURITYの正本要求を変更せず、旧runtime/schemaを再現しない。
