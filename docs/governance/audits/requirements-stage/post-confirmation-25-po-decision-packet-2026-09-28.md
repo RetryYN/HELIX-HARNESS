@@ -286,3 +286,10 @@ A＝exact L2/L11-044限定候補を採択（推奨）、B＝selected source atom
 旧`LEGACY-CAND-LINE-001656`（archive execution-ticket-requirements.md:399、asset `LEGACY-ASSET-3A15E5645D2D2A59DFF5`、file SHA `f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b`、line SHA `58be97d309362b845682602ae352b1954ed433fbc4b6552791f89be07d70db4f`）の第3文S3C「総Attempt count」だけを1 atomとして入力する。S3A/S3Bは067の既存receiptに残し、#2271のreceipt／holdingを変更しない。candidate-scoped no_lossはS3C atomだけであり、source line全体のclosureを主張しない。
 
 068は明示されたtask/scope/evaluation範囲内のdistinct OS Attempt identityを観測する候補である。OSがその範囲の記録完全性を示せない場合はunknownを保持する。OSがAttempt identityを割り当てない実行前の拒否intakeを含めず、OSがidentityを付与したdenied Attemptは他のstatusと同様に数える。未採択065の`retry_count+1`、067のrepair round換算、CI rerunや重複配送の水増しは行わず、059/065/067とOS既存契約を変更しない。A＝exact 068 revision採択を推奨、B＝候補・atomを保留、C＝対象revision・理由・影響付きの意味変更/retire。`internal_PO_choice`はnull、A/B/Cはいずれも未選択。source-lines／receipt／registerはS3C一件だけを固定する。判断packetは判断集合46件、basis main `17bb8b6568b4fc065702bdafafdc6a7e4a37af6b`。
+
+
+## 後続訂正：HELIXSECURITY-L2-033 credential境界（判断集合46候補）
+
+P0訂正revision `MPR-RC-HELIXSECURITY-L2-033-002`は、L2/L11-033に資格情報境界の正常例と反例を追記し、初回候補本文・初回register・初回receiptを履歴として保持する。訂正候補はraw secret／credential値またはsecret／機密task内容を外部Workerへ渡すcaseをdenyする一方、値と内容をWorkerへ露出させず既存L2-005の限定credential-use capabilityを使う認証付きoperationは、L2-008 authority、L2-007制約および該当するL2-006条件の範囲で一律denyしない。新しい許可・authority・capabilityは生成しない。
+
+旧HR-FR-P2-05（archive line 428／6fabd125 baseline line 409）の「secret task deny」は、この認証付きoperationを含むかを定義しない。A＝訂正revisionの限定候補を採択（推奨）、B＝候補と2 source atomをholdingに保留、C＝全credential-use taskの禁止等を意味変更として選ぶ場合は対象source revisionに加え、採択済みL2-005対象revision・理由・影響を特定する。PO選択は未受領。source atom 2件・source-lines・両source holdingは不変で、scope coverageはその2 atomに限定する。最新receiptは`security-v13-worker-context-coverage-receipt-2026-09-28-r2.json`、L2/L11・register・digest pinは同JSON packet内のHELIXSECURITY-L2-033 current revisionを参照する。候補数は46のままである。

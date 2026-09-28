@@ -146,3 +146,8 @@ A＝exact L2/L11-042の限定採択（推奨）、B＝原atomを保留、C＝sou
 | LABO | [HELIXLABO-L2-068：Worker Attempt countの観測（単体追補候補、1.0）](../../../helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-068) | [L11受入候補](../../../helix-labo/L11-acceptance/labo-acceptance.md#helixlabo-l2-068) | `MPR-RC-HELIXLABO-L2-068-001`; `labo-attempt-count-coverage-receipt-2026-09-28.json#HELIXLABO-L2-068` |
 
 旧`LEGACY-CAND-LINE-001656`第3文S3C（総Attempt count）だけをcandidate inputとする1 atomの局所receipt。S3A/S3Bと#2271のreceiptは保持し、source line全体のclosureは主張しない。OSが明示範囲の全Attempt記録を証拠づけられる時だけdistinct identityを数え、完全性不明はunknownとする。Attempt identityのない実行前拒否intakeは対象外。065の`retry_count`や067のrepair roundから換算しない。候補は`registered_proposal` / `authority_effect:none`、PO未決・未採択。
+
+
+## 後続訂正：HELIXSECURITY-L2-033 credential境界（判断集合46候補）
+
+現行register末端は`MPR-RC-HELIXSECURITY-L2-033-002`で、初回`-001`をsupersedeする。追加したL2/L11の資格情報境界は、raw secret／credential値またはsecret／機密内容を外部Workerへ渡すtaskをdenyし、値・内容を露出させず既存L2-005の限定credential-use capabilityを用いる認証付きoperationは、既存L2-008/007と該当L2-006の条件内で一律denyしない。旧HR-FR-P2-05の「secret task deny」がこのoperationを含むかは未定義のため、全credential-use taskの禁止はL2-005の採択済み対象revisionへの意味変更としてPO判断へ残す。A（訂正候補採択、推奨）／B（source holdingへ保留）／C（対象revision・理由・影響付き意味変更／retire）は未選択。2 source atom・source-lines・holdingは不変、候補集合は46件のまま。訂正receiptは[`security-v13-worker-context-coverage-receipt-2026-09-28-r2.json`](../requirement-registration/security-v13-worker-context-coverage-receipt-2026-09-28-r2.json)。
