@@ -694,3 +694,29 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 ### 境界・受入結果
 
 正常/negative/unseen結果は選択scopeと対象revisionに限る。append writer、snapshot、receiptの成功からHARNESS意味の採択、L3承認、実装/運転の成功、全scopeのcoverageを導かない。authoritative ledgerへの意味変更、requirement acceptance、external publication/releaseは別の明示authority対象であり、本候補の操作に含まれない。実際の受入実行は候補採択・下流設計後の別段階であり、この文書または静的登録を実行証拠としない。
+
+### HELIXOS-L2-039 WBS作業identityと登録前適格性 — L11受入候補
+
+未実行の受入oracle候補。HDEC-L2D-S0-02で承認されたWBS-OS-002のうち、OS側の作業identityと登録前条件だけを検査する。作業単位の規範はHARNESS（WBS-HARNESS-001）の責務であり、L2-016のportfolio traceやL2-017のticket graph／workflow生成を再実装しない。039と本受入候補は未採択であり、ここに記すcaseは将来の条件を示す。
+
+#### 正常例：新規作業候補のidentityと必須参照
+
+対象の親要求ID、その親kind、対象product、taskまたはaggregateの粒度、担当候補、依存、budget、既存作業との意味照合結果、および対象revisionに適用される有効なHARNESS `WBS-HARNESS-001`契約revisionが揃ったfixtureを与える。候補の作業単位形がその契約に適合し、親要求が有効で依存が非循環、同じ意味の作業が無い場合、作業候補は一つの安定identityで親要求・product・粒度・担当候補・依存・budgetへ結ばれ、登録前判定が適合した契約revisionと各条件・照合scopeを示す。親要求kindは親から引き継ぎ、候補identityの発行や登録は要求採択、実行許可、実際の担当割当を生成しない。
+
+#### 誤り例：親欠落、循環、budget欠落、意味重複
+
+- 親要求IDが無い、または参照先が解決しない場合、作業候補を登録可能とせず、親要求欠落と差戻し先を示す。
+- dependency graphに循環がある場合、作業候補を登録可能とせず、循環に関与する作業identityとedgeを未解決として残す。
+- budgetが無い場合、未設定をゼロ予算や無制限と解釈せず、登録を保留してbudget未完義務を示す。
+- 適用対象の有効なHARNESS `WBS-HARNESS-001`契約revisionに候補の作業単位形が適合しない場合、登録を拒否し、契約revisionと不適合箇所を示す。OSが作業単位規範を補完・変更して通過させない。
+- 適用契約revisionまたはapplicabilityが不明、未確定、または対象revisionに有効であることを確認できない場合、適合を推測せずunknownとして登録を保留し、未確認の契約参照を示す。
+- 既存作業との意味照合で同じ作業が別identityに重複すると判明した場合、新identityで二重登録しない。該当作業と照合根拠を示し、既存記録側の適切な扱いへ返す。旧RA-199の「既存PLANを延長する優先規則」は本候補に含めず、扱いを039から規定しない。
+- product、粒度、担当候補、親kind、または依存を確認できない場合は、推測で補完せずunknownとして登録前に保留する。
+
+#### 未見例：新しい作業意味または不十分な照合範囲
+
+既存fixtureにない作業意味、複数productへの関係、または一部の既存作業しか確認できない照合scopeを与える。未見条件だけを理由に重複なし・適格と判定せず、未照合範囲とunknownを示して登録前判定を保留する。必要な親要求・product・粒度・担当候補・依存・budgetと照合証拠がそろい、重複なしを判断できる範囲に限って正常caseの評価へ進む。未知の作業分解規則、WBS-OS-001/003–008の網羅性、PHCAP-08との意味同等性をこのcaseから推定しない。
+
+#### 候補境界・受入結果
+
+正常／誤り／未見の各結果は、提示された親要求・作業候補・依存・照合scopeだけに結びつける。039候補や静的fixtureの通過はWBS-OS全体の採択・運用、HARNESS規範の採択、作業graphの独立検収、budgetの支出許可を意味しない。HDEC-L2D-S0-02の旧候補split承認だけでは039は採択されず、本候補revisionのPO判断待ちである。

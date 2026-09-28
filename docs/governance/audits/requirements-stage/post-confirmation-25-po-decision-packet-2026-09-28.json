@@ -1,10 +1,10 @@
 {
   "packet_kind": "recommendation_for_PO_decision_only",
-  "basis_commit": "5de1738511a845a9500e9f35a9f77561ea00372c",
+  "basis_commit": "53c19540eef29ffa9aa23ca4d35806edd4279535",
   "as_of": "2026-09-28",
-  "count": 29,
-  "status": "All 29 are live registered proposals (authority_effect none); HARNESS-L2-044 is added by the current PR and is not yet merged. No adoption, hold, reject, implementation, or acceptance run is inferred from PRs or L2/L11 text.",
-  "decision_grouping": "No shared adoption decision is bundled except the explicit PORTFOLIO-FIXTURE-FR54-FR55-ROUTE item: HARNESS-L2-043 and HARNESS-L2-044 are jointly routed by its mutually exclusive three options, while the other candidate identities retain their own choices. The packet rows for 043/044 recommend candidate choice A only conditionally on shared route choice B; shared choice A or C means neither candidate is adopted to preserve these old FR54/FR55 conditions. The entries share a rendering format only. In particular, the recommendation for HELIXINTELLIGENCE-L2-072 is limited to its 1.0 shadow subset while its remaining improvement loop stays in source holding; HELIX-LABO-L2-062 preserves 2.0. The post-initial additions HARNESS-L2-042 and HELIXOS-L2-038 retain independent choices; HARNESS-L2-043/044 are jointly routed only by the explicit PORTFOLIO-FIXTURE-FR54-FR55-ROUTE choice above and are not separate PO route selections.",
+  "count": 30,
+  "status": "All 30 are live registered proposals (authority_effect none); HELIXOS-L2-039 is added by the current PR and remains pending PO. No adoption, hold, reject, implementation, or acceptance run is inferred from PRs or L2/L11 text.",
+  "decision_grouping": "No shared adoption decision is bundled except the explicit PORTFOLIO-FIXTURE-FR54-FR55-ROUTE item; HELIXOS-L2-039 has its own independent PO choice: HARNESS-L2-043 and HARNESS-L2-044 are jointly routed by its mutually exclusive three options, while the other candidate identities retain their own choices. The packet rows for 043/044 recommend candidate choice A only conditionally on shared route choice B; shared choice A or C means neither candidate is adopted to preserve these old FR54/FR55 conditions. The entries share a rendering format only. In particular, the recommendation for HELIXINTELLIGENCE-L2-072 is limited to its 1.0 shadow subset while its remaining improvement loop stays in source holding; HELIX-LABO-L2-062 preserves 2.0. The post-initial additions HARNESS-L2-042, HELIXOS-L2-038, and HELIXOS-L2-039 retain independent choices; HARNESS-L2-043/044 are jointly routed only by the explicit PORTFOLIO-FIXTURE-FR54-FR55-ROUTE choice above and are not separate PO route selections.",
   "candidates": [
     {
       "identity": "HARNESS-L2-034",
@@ -2285,10 +2285,121 @@
         "authority_effect": "none until the applicable PO decision is recorded",
         "selection_state": "pending_PO"
       }
+    },
+    {
+      "identity": "HELIXOS-L2-039",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "HDEC-L2D-S0-02-approved WBS-OS-002 candidate row; bounded OS registration-eligibility derivation. Legacy PHCAP-08 equivalence remains unknown.",
+      "new_meaning_choice": "POが二つの排他的案を選ぶ。Aは039 exact L2/L11を今採択する案で、現時点で有効なHARNESS WBS-HARNESS-001契約revisionが無い間は全作業候補の登録をunknownとして保留する。Bは039の採択を保留し、HARNESS WBS-HARNESS-001の現行L2/L11候補を別PRで用意した後、両側のexact revisionを一組として再提示する案。Bは推奨であり、PO未選択・自動deferではない。HDEC-L2D-S0-02は両側候補意味のsplitを承認したが、現行L2/L11への適用や採択ではない。",
+      "recommended_choice": "B",
+      "choice_meaning": "保留（HARNESS WBS-HARNESS-001の現行L2/L11候補を別PRで提示後、039と有効契約のexact revisionを一組で再判断。PO未選択であり自動deferではない）",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HELIXOS-L2-039 WBS作業identityと登録前適格性（単体候補、version_target: 1.0）",
+      "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "registration_id": "MPR-RC-HELIXOS-L2-039-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXOS-L1-002",
+        "HELIXOS-L1-009"
+      ],
+      "parent_l1_path": "docs/helix-os/L1-planning/system-intent.md",
+      "parent_l1_sha256_current": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+      "parent_planning_revision_recorded": "docs/helix-os/L1-planning/system-intent.md@612ae1e9be85eda42649bf74e46998fd57da3de6 sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e（#2199対象revision確定。039候補の採択は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-wbs-work-identity-coverage-receipt-2026-09-28.json#HELIXOS-L2-039",
+      "receipt_id": "MPR-RCPT-HELIXOS-WBS-WORK-IDENTITY-2026-09-28",
+      "receipt_candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "start_heading_prefix": "### HELIXOS-L2-039 ",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:5a6926062caa7484a9d889a21a1d7f705508cd14f7d4d366df7ec6949cedc671",
+      "receipt_candidate_semantic_digest": "sha256:5a6926062caa7484a9d889a21a1d7f705508cd14f7d4d366df7ec6949cedc671",
+      "current_candidate_semantic_digest": "sha256:5a6926062caa7484a9d889a21a1d7f705508cd14f7d4d366df7ec6949cedc671",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 1,
+      "source_atom_set_digest": "sha256:828e1bd350eed9cc4680f19ba2c03b0e0f1e02a3c96ff3bd00c5a7651214aafe",
+      "source_reference_examples": [
+        {
+          "path": "docs/governance/candidates/wbs-ledger-requirements.md",
+          "source_commit": "6967ceef8dfe173839ab8fb130e1611af914e4fe",
+          "line": 52,
+          "source_line_sha256": "sha256:ab967d2dfb18d34902dfeed18bc08b46f3c09b56320ad97c94748c2d6a068655",
+          "atom_id": "WBS-OS-002",
+          "source_file_sha256": "sha256:34711045caea9a6bac6fa1084b056e393593efe76099b7f124af4e17265a84f6",
+          "source_revision_ref": "6967ceef8dfe173839ab8fb130e1611af914e4fe:docs/governance/candidates/wbs-ledger-requirements.md"
+        },
+        {
+          "path": "docs/helix-os/candidates/wbs-ledger-requirements.md",
+          "line": 59,
+          "source_line_sha256": "sha256:ab967d2dfb18d34902dfeed18bc08b46f3c09b56320ad97c94748c2d6a068655",
+          "atom_id": "WBS-OS-002",
+          "source_file_sha256": "sha256:b39cea19a06f65345cd738cc061aebbc0af5847214a25e3bf72a06f4d3302d0a",
+          "source_revision_ref": "current-tree:docs/helix-os/candidates/wbs-ledger-requirements.md"
+        }
+      ],
+      "source_reference_note": "旧combined candidateは固定commit 6967ceef8dfe173839ab8fb130e1611af914e4fe内のpath・行を参照し、現行OS split rowはcurrent-tree pathを参照する。全source rowのpath・行・file/line SHAはreceipt docs/governance/audits/requirement-registration/helixos-wbs-work-identity-coverage-receipt-2026-09-28.json#candidates[HELIXOS-L2-039] に記録。source atomはHDEC-L2D-S0-02承認対象のWBS-OS-002行1件で、現split行は同文lineage照合。RA-199、RB06-278を含む旧archive rule atomsはMPR-SH-LEGACY-RULE-004へ保留しcarryしない。",
+      "internal_PO_choice": {
+        "selection_state": "pending_PO; no selection recorded",
+        "authority_effect": "none",
+        "current_dependency_status": {
+          "requirement_identity": "WBS-HARNESS-001",
+          "status": "現行HARNESS L2/L11に有効な契約revisionがない。WBS-HARNESS-001のsplit candidate rowは現行候補ファイルにあるが、候補の存在は採択・適用可能な契約を作らない。",
+          "candidate_source": "docs/helix-harness/candidates/wbs-ledger-requirements.md:22",
+          "current_requirement_source": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "current_acceptance_source": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+        },
+        "choices": [
+          {
+            "id": "A",
+            "label": "039 exact L2/L11を今採択",
+            "meaning": "OS側のWBS-OS-002登録前条件を採択する。適用可能な有効HARNESS WBS-HARNESS-001契約revisionが成立するまで、全作業候補の登録は契約applicability unknownとして保留する。候補形が有効契約に適合しない場合の登録拒否を維持し、旧WBS-OS-002の不適合拒否を弱めない。",
+            "impact_ids": [
+              "HELIXOS-L2-039",
+              "HELIXOS-L2-016",
+              "HELIXOS-L2-017",
+              "WBS-HARNESS-001",
+              "HELIXOS-L2-039 L11"
+            ]
+          },
+          {
+            "id": "B",
+            "label": "039採択を保留し、HARNESS契約候補と対で再提示（推奨）",
+            "meaning": "039は未採択のまま保持する。別PRでHARNESS WBS-HARNESS-001の現行L2/L11候補を用意し、そのexact revisionと039のexact L2/L11 revisionを一組にしてPOへ再提示する。これは候補作成側の推奨であり、PO選択や自動deferではない。",
+            "impact_ids": [
+              "HELIXOS-L2-039",
+              "HELIXOS-L2-039 L11",
+              "WBS-HARNESS-001",
+              "HELIXOS-L2-016",
+              "HELIXOS-L2-017"
+            ]
+          }
+        ],
+        "recommended": "B",
+        "recommendation_basis": "現行HARNESS L2/L11には有効なWBS-HARNESS-001契約が無く、039単独採択はすべての作業登録をunknown保留にする。対となる規範契約とOS適用条件を同じPO判断単位で確認できるよう、別PR後に両方のexact revisionを再提示する。",
+        "source_and_authority_limit": "HDEC-L2D-S0-02は承認済みcombined WBS候補の両側意味のsplitを承認したが、現行HELIX-OS/HARNESSのL2/L11適用・採択はしていない。",
+        "mutually_exclusive": true
+      },
+      "paired_l2_id": "HELIXOS-L2-039",
+      "paired_l11_id": "HELIXOS-L2-039",
+      "affected_requirement_and_consumer_ids": "HELIXOS-L1-002/009; HELIXOS-L2-016/017; WBS-HARNESS-001; 対L11",
+      "rationale": "HDECで承認済みのWBS-OS-002をOS登録前のidentity/適格性判定へ接続する限定候補。現行HARNESS L2/L11にWBS-HARNESS-001有効revisionが無く、039だけを採択すると契約revision/applicability unknownの間は全作業候補が保留となる。別PRでHARNESS契約の現行L2/L11候補を用意し、両側exact revisionを対で再提示する案を推奨する。PO選択は未済。適合契約が成立した後も、不適合作業の登録拒否を維持する。HDECのsplit承認は現行候補の適用・採択ではない。",
+      "previous_register_revision": null,
+      "version_target_evidence": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "line": 1114,
+        "excerpt": "### HELIXOS-L2-039",
+        "interpretation": "本文に明記されたversion_target: 1.0。採択、実装許可、受入完了ではない。"
+      }
     }
   ],
   "initial_25_basis_commit": "f4b2a2b02cf5ea3134e27be0a65c100395161bad",
-  "progression": "Initial 25 candidates + PR #2241 HARNESS-L2-042 + PR #2238 HELIXOS-L2-038 = historical 27; PR #2245 merged HARNESS-L2-043, giving 28 pending PO candidates; current HARNESS-L2-044 is independent and pending PO, bringing the live decision set to 29.",
+  "progression": "Initial 25 candidates + PR #2241 HARNESS-L2-042 + PR #2238 HELIXOS-L2-038 = historical 27; PR #2245 merged HARNESS-L2-043, giving 28; PR #2246 merged HARNESS-L2-044, giving 29. Current HELIXOS-L2-039 is an independent pending PO candidate, bringing the live decision set to 30.",
   "version_target_evidence": null,
   "portfolio_fixture_fr54_fr55_route": {
     "decision_id": "PORTFOLIO-FIXTURE-FR54-FR55-ROUTE",
