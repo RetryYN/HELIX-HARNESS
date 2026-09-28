@@ -53,13 +53,13 @@ HARNESS-L2-042のreceiptは旧v1.3 §4.2 L119の異なる2 source revisionを別
 
 ## 後続追加：HARNESS-L2-043
 
-旧HIL-FR-55のTemplate Example Calibratorの意味条件を、[HARNESS-L2-043](../../../helix-harness/L2-requirements/product-requirements.md#L986)と[対L11](../../../helix-harness/L11-acceptance/product-acceptance.md#L723)へ単体候補として再導出した。初回登録`MPR-RC-HARNESS-L2-043-001`を保持し、所属の差分とPO選択欄を明示した生存訂正revisionは`MPR-RC-HARNESS-L2-043-002`である。[coverage receipt](../requirement-registration/harness-template-example-coverage-receipt-2026-09-28.json)は旧原文1行の局所無損失を示す。候補は未採択であり、初版25件の履歴と#2238/#2241後の27件の履歴を変更しない。043を追加した時点の判断集合は28件だった。
+旧HIL-FR-55のTemplate Example Calibratorの意味条件を、[HARNESS-L2-043](../../../helix-harness/L2-requirements/product-requirements.md#L986)と[対L11](../../../helix-harness/L11-acceptance/product-acceptance.md#L728)へ単体候補として再導出した。初回登録`MPR-RC-HARNESS-L2-043-001`を保持し、所属の差分とPO選択欄を明示した生存訂正revisionは`MPR-RC-HARNESS-L2-043-002`である。[coverage receipt](../requirement-registration/harness-template-example-coverage-receipt-2026-09-28.json)は旧原文1行の局所無損失を示す。候補は未採択であり、初版25件の履歴と#2238/#2241後の27件の履歴を変更しない。043を追加した時点の判断集合は28件だった。
 
 ## 後続追加：HARNESS-L2-044
 
 | 機構 | 候補・L2本文 | 対のL11 | 生存register revision・coverage receipt |
 |---|---|---|---|
-| HARNESS | [HARNESS-L2-044：design obligation portfolioの契約coverage（単体能力候補、version_target: 1.0）](../../../helix-harness/L2-requirements/product-requirements.md#L1002) | [L11受入候補](../../../helix-harness/L11-acceptance/product-acceptance.md#L735) | `MPR-RC-HARNESS-L2-044-001`；`harness-contract-portfolio-coverage-receipt-2026-09-28.json#HARNESS-L2-044` |
+| HARNESS | [HARNESS-L2-044：design obligation portfolioの契約coverage（単体能力候補、version_target: 1.0）](../../../helix-harness/L2-requirements/product-requirements.md#L1002) | [L11受入候補](../../../helix-harness/L11-acceptance/product-acceptance.md#L740) | `MPR-RC-HARNESS-L2-044-001`；`harness-contract-portfolio-coverage-receipt-2026-09-28.json#HARNESS-L2-044` |
 
 旧HIL-FR-54のarchive L1要求表144行1 atomのみをreceipt対象とする。旧packet row 1008は汎用「部品」で、個別component配置は未決。FR55 atomとIR全体を含むsource holdingはactive `MPR-SH-PORTFOLIO-FIXTURE-002`および`MPR-SH-IR-003`へ保留し、044は旧2 atom holding全体の被覆を主張しない。候補はPO未採択、authority effect none。
 
@@ -211,7 +211,7 @@ HYB-002の3 clauseをarchive/baseline別revisionの6 atomとしてこの候補�
 
 ## O9追加候補（未採択、判断集合59）
 
-- [HARNESS-L2-048：対象と役割型による命名・安全なrename](../../../helix-harness/L2-requirements/product-requirements.md#harness-l2-048)／[対L11](../../../helix-harness/L11-acceptance/product-acceptance.md#L788)：`MPR-RC-HARNESS-L2-048-001`、[17 selected clause spans; remainders held in MPR-SH-O9-NAMING-001](../requirement-registration/o9-harness-coverage-receipt-2026-09-29.json)。O9原文はversion targetを指定しないため未設定。
+- [HARNESS-L2-048：対象と役割型による命名・安全なrename](../../../helix-harness/L2-requirements/product-requirements.md#harness-l2-048)／[対L11](../../../helix-harness/L11-acceptance/product-acceptance.md#L793)：`MPR-RC-HARNESS-L2-048-001`、[17 selected clause spans; remainders held in MPR-SH-O9-NAMING-001](../requirement-registration/o9-harness-coverage-receipt-2026-09-29.json)。O9原文はversion targetを指定しないため未設定。
 - [HELIXBRAIN-L2-031：役割型の再利用知識](../../../helix-brain/L2-requirements/brain-requirements.md#helixbrain-l2-031)／[対L11](../../../helix-brain/L11-acceptance/brain-acceptance.md#L120)：`MPR-RC-HELIXBRAIN-L2-031-001`、[empty-input receipt](../requirement-registration/o9-brain-coverage-receipt-2026-09-29.json)。BRAIN L1-derived new proposalでありversion target未設定。
 
 両候補のowner・scope・source meaning・adoption・version axesは別々にPO未選択として記録した。source snapshotを含むO9根拠とexact line accountingは[packet](post-confirmation-25-po-decision-packet-2026-09-28.md#o9追加候補対象と役割型による命名再利用語彙判断集合59候補)およびreceiptを参照。

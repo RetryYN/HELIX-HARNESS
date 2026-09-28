@@ -128,7 +128,7 @@ A/Bはいずれも未選択。source atomの存在、HDEC split、PR本文、reg
 
 ## 後続追加：HARNESS-L2-044
 
-旧HIL-FR-54のContract Portfolio Planner条件を、[HARNESS-L2-044](../../../../docs/helix-harness/L2-requirements/product-requirements.md#L1002)と[対L11](../../../../docs/helix-harness/L11-acceptance/product-acceptance.md#L735)へHELIX-HARNESS内の汎用部品候補として再導出した。登録`MPR-RC-HARNESS-L2-044-001`、[coverage receipt](../requirement-registration/harness-contract-portfolio-coverage-receipt-2026-09-28.json)は旧原文144行の1 atomのみを対象とする。旧PO packet row 1008はHELIX-HARNESS内の汎用「部品」までで、個別部品の配置はPO未決。候補は未採択であり、FR55とIR record、旧source holding全体は保留のまま。生存候補の判断集合は32件となる（本節の旧044時点は29件）。
+旧HIL-FR-54のContract Portfolio Planner条件を、[HARNESS-L2-044](../../../../docs/helix-harness/L2-requirements/product-requirements.md#L1002)と[対L11](../../../../docs/helix-harness/L11-acceptance/product-acceptance.md#L740)へHELIX-HARNESS内の汎用部品候補として再導出した。登録`MPR-RC-HARNESS-L2-044-001`、[coverage receipt](../requirement-registration/harness-contract-portfolio-coverage-receipt-2026-09-28.json)は旧原文144行の1 atomのみを対象とする。旧PO packet row 1008はHELIX-HARNESS内の汎用「部品」までで、個別部品の配置はPO未決。候補は未採択であり、FR55とIR record、旧source holding全体は保留のまま。生存候補の判断集合は32件となる（本節の旧044時点は29件）。
 
 ### HIL-FR-54/55 source処理の一体PO選択（3択）
 
@@ -386,7 +386,7 @@ O9はPO原文を[byte-identical task-source snapshot](../requirement-registratio
 
 | identity | 正確なL2/L11候補 | 独立する判断点 | 旧source入力／生存registration |
 |---|---|---|---|
-| `HARNESS-L2-048` | [`product-requirements.md`](../../../helix-harness/L2-requirements/product-requirements.md#harness-l2-048)／[`product-acceptance.md`](../../../helix-harness/L11-acceptance/product-acceptance.md#L788) | HARNESSが命名・rename ruleを持つか、どこまで適用するか、version targetをどう置くか | HIL-FR-40、HIL-NFR-24/25、旧basic design §4.4からの17選択clause spans。HIL-FR-53 line 143はreference/holdingのみ; full lines/remainders held in MPR-SH-O9-NAMING-001；`MPR-RC-HARNESS-L2-048-001`；[receipt](../requirement-registration/o9-harness-coverage-receipt-2026-09-29.json) |
+| `HARNESS-L2-048` | [`product-requirements.md`](../../../helix-harness/L2-requirements/product-requirements.md#harness-l2-048)／[`product-acceptance.md`](../../../helix-harness/L11-acceptance/product-acceptance.md#L793) | HARNESSが命名・rename ruleを持つか、どこまで適用するか、version targetをどう置くか | HIL-FR-40、HIL-NFR-24/25、旧basic design §4.4からの17選択clause spans。HIL-FR-53 line 143はreference/holdingのみ; full lines/remainders held in MPR-SH-O9-NAMING-001；`MPR-RC-HARNESS-L2-048-001`；[receipt](../requirement-registration/o9-harness-coverage-receipt-2026-09-29.json) |
 | `HELIXBRAIN-L2-031` | [`brain-requirements.md`](../../../helix-brain/L2-requirements/brain-requirements.md#helixbrain-l2-031)／[`brain-acceptance.md`](../../../helix-brain/L11-acceptance/brain-acceptance.md#L120) | BRAINが汎用role意味・例を再利用知識として持つか、HARNESSへ返す境界、version target | 新規L1導出候補。直接legacy atom 0；`MPR-RC-HELIXBRAIN-L2-031-001`；[空集合receipt](../requirement-registration/o9-brain-coverage-receipt-2026-09-29.json) |
 
 両候補とも全decision axisの`selected`はnullで、推奨Aは助言にとどまる。O9には1.0／後続版の指定がないため、どちらもversion targetを設定せず、PO判断へ残した。HARNESS候補の直接入力は17 selected clause spansのみ。15 full source linesと全remainderはMPR-SH-O9-NAMING-001にsource holdingとして保全し、HIL-FR-53 line 143を含む非選択条件をHARNESS候補へ割り当てない。BRAIN候補は旧atomを直接入力にしない。BRAINは既存L1の領域、Pattern/Unit/Part、根拠・版・反例、製品固有意味の分離を親とする。既存ID、採択済み本文、OS/SECURITY責務名を改名対象にしない。
