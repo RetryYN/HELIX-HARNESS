@@ -1164,3 +1164,11 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - **保持する条件**：feedback findingのprose handoverだけをresolutionの証拠として扱わない。proseだけでfindingの状態をresolvedへ変更せず、既存のfeedback lifecycleと`HELIXOS-L2-007`が求めるsource/revision付き証拠の条件が満たされたか不明な間は未解決として保持する。本候補はresolutionに必要な証拠の新しい型・十分条件を定義しない。
 - **既存責務との境界**：intake、classify、ack、pending、resolutionの区別、未ack findingを消さないこと、およびsource/evidence保持は既存OS契約のまま適用する。prose handoverに独立したauthoritative statusを与えず、新しいactor、承認、通知、event schema、projection、SessionStart条件を追加しない。
 - **sourceとの限界**：旧HR-AC-HYB-006のprose-only resolution clauseだけを候補入力とする。未ack findingの消失、source HEAD mismatch、HR-FR-HYB-006のevent/projection lifecycleとSessionStart surfaceは候補外のsource remainderとして保全する。旧行・条件全体の被覆・closureを主張しない。
+
+### HELIXOS-L2-045 各機構の検証・test・検出基盤readiness一覧（単体候補）
+
+- **状態**：HELIX-OSの未採択候補。version targetは未指定。旧HELIX-HARNESSのFR-L1-35をHELIX-OSへ再配置する提案であり、source ownerの移管、要求採択、実装・運用許可を生成しない。FR-L1-35の保持／置換・retireに関する既存の未決A/Bは、[残差disposition記録](../../governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md)のとおり未決のまま保つ。
+- **親L1**：採択済みHELIXOS-L1-002（複数projectの要求から作業・検証・提供・運用までの欠落・競合・stale把握）。対象親revisionは[OS L1計画](../L1-planning/system-intent.md)の2026-09-28固定bytes。L1-002との接続は候補根拠であり、この候補自体の採択ではない。
+- **対象と提供**：OS-L1-002の適用対象として選択された機構について、検証・test・検出基盤の整備状況を「実装済み」「設計済み・実装未」「未設計」の3区分で一覧する。旧sourceの「各機構」をどの現行対象・版へ割り当てるかは確定しておらず、本候補から現行8機構すべて、将来のWeb対象、または特定versionへの適用を推定しない。ここで扱うのは基盤整備状況の分類と一覧であり、個別機構の進行dashboard、専用UI、リアルタイム更新、PO／Worker roster表示は要求しない。
+- **既採択状態との境界**：HELIXOS-L2-016／L11-016が定めるportfolio trace・一般state・unknown/staleの意味を変更せず、FR-L1-35の3区分へ置き換えない。分類の根拠が不明または古い対象は既存L2-016に従いunknown/staleのまま扱い、三つのreadiness区分へ推測で割り当てない。
+- **旧sourceと再導出**：旧FR-L1-35の条件atomを意味再導出する候補である。ここでの適用対象はOS-L1-002の適用対象として選択された範囲の候補であり、旧sourceが含意する全対象・owner・版の対応は未確定のまま残す。旧HARNESS機能からOS portfolio projectionへの責務・owner移動は提案に留まり、対象範囲・owner・version target・採否についてPO判断待ちとする。旧source、保持範囲、現行L2-016との差分は[限定coverage receipt](../../governance/audits/requirement-registration/os-fr-l1-35-readiness-coverage-receipt-2026-09-28.json)に示す。receiptの候補入力no_lossは入力atomをこの候補範囲へ対応づけた記録であり、POが確定したsemantic successor、採択、旧source holdingの解消を意味しない。

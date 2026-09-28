@@ -1,0 +1,151 @@
+{
+  "receipt_id": "DRAFT-RCPT-HELIXOS-L2-045-FR-L1-35-2026-09-28",
+  "receipt_state": "draft_unadopted_candidate_scope_recorded",
+  "authority_effect": "none",
+  "candidate_identity": "HELIXOS-L2-045",
+  "requirement_kind": "unit",
+  "candidate_semantic_digest": "sha256:87b2bc8fc6a5285ae300dff95ea46d461e754207bb71c5e5fb2729b34bcf1968",
+  "candidate_l2_file_sha256": "sha256:4924a3fb322a27aaf8a4e5a55b303cebd98063f7aa3045201d635b5316057440",
+  "paired_acceptance_identity": "HELIXOS-L2-045",
+  "paired_acceptance_digest": "sha256:5e6841d94bc8b6896cce1b941ef218f6b4b8168bb2ae49dce3f0679203868084",
+  "l11_file_sha256": "sha256:c73c4d4514865b097634395f7a76ae02a64506a52a93796fa1b9b346d4729d94",
+  "source_lines_ref": "docs/governance/audits/requirement-registration/os-fr-l1-35-readiness-source-lines-2026-09-28.jsonl",
+  "source_collection_scope": "MPR-SH-CONFIRMED-003が保全するconfirmed175のうち、archiveのsource-qualified identity harness/L1-requirements/functional-requirements.md::FR-L1-35だけを独立atomとして候補入力。175件全体・旧HARNESS要求全体のclosureは対象外。",
+  "source_collection_atom_count": 1,
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256（sha256:接頭辞を含む）を連結し、atom順に改行で区切る。末尾改行なし。",
+  "candidate_input_atom_refs": [
+    "CONFIRMED-HARNESS-FR-L1-35"
+  ],
+  "candidate_input_atom_count": 1,
+  "candidate_input_atom_set_digest": "sha256:0ce05cb98e705342470d05f4542ad370d9e28f020bfc5bf5e76a7fe0dfaa83ba",
+  "candidate_input_accounting_status": "この限定候補入力1 atomは候補本文の旧3区分readiness inventory条件へ対応づけた。candidate_inputのno_lossは選択した入力atomのmapping記録に限る。POが確定したsemantic successor、適用対象集合、owner移管、採択を示さない。",
+  "source_line_coverage_result": "candidate_input_scoped; applicability_and_semantic_successor_not_confirmed; owner/version/disposition_pending_PO",
+  "condition_closure": "not_asserted",
+  "candidate_input_coverage_result": "no_loss",
+  "unaccounted_atom_refs": [],
+  "preserved_pending_registration_refs": [],
+  "preserved_pending_atom_refs": [],
+  "atoms": [
+    {
+      "atom_id": "CONFIRMED-HARNESS-FR-L1-35",
+      "source_holding_registration_id": "MPR-SH-CONFIRMED-003",
+      "source_qualified_requirement_id": "harness/L1-requirements/functional-requirements.md::FR-L1-35",
+      "legacy_asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B",
+      "source_revision_kind": "archive",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_file_sha256": "sha256:a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "source_line": 66,
+      "source_line_sha256": "sha256:7bff35b2a785e51c8eeebeded9e93ac720efd2f9ca8315552e14d8d6ea66be90",
+      "source_text": "| **FR-L1-35** | 基盤整備状況の可視化 (実装済み / 設計済み・実装未 / 未設計の 3 区分で検証・テスト・検出基盤を一覧表示) | infra-readiness | 各機構の実装状況 | 整備状況一覧 (区分付き) | P2 | HM-01 |",
+      "source_clause_kind": "readiness_inventory",
+      "atomization_rationale": "FR-L1-35は基盤の対象、3区分、一覧提供を一つの要求行で規定する。対象・区分・一覧を分割すると旧条件の組合せを失うため、同一source-qualified identityを一つのatomとして扱う。",
+      "disposition": "candidate_scope",
+      "candidate_input": true,
+      "relation": "この候補はsource atomの局所mappingのみを記録する。MPR-SH-CONFIRMED-003は175 identitiesの生存source holdingとして変更せず、旧FR-L1-35の現行適用集合・formal successor・owner移管・versionはPO判断まで未確定。",
+      "audit_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#FR-L1-35",
+      "candidate_semantic_digest": "sha256:87b2bc8fc6a5285ae300dff95ea46d461e754207bb71c5e5fb2729b34bcf1968",
+      "source_holding_remains_live": true
+    }
+  ],
+  "parent_l1": {
+    "identity": "HELIXOS-L1-002",
+    "path": "docs/helix-os/L1-planning/system-intent.md",
+    "source_commit": "249b1f648ce8ece4c6de82917910a752fa94a449",
+    "source_file_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+    "adoption_basis": "2026-09-28 HELIX-OS PO decision fixes this L1 revision. L1-002 covers understanding gaps across multiple projects through verification. Candidate applicability is limited to the mechanism scope selected under L1-002; this candidate does not choose current or future target mechanisms, version, source ownership, or adoption."
+  },
+  "current_adopted_pair": {
+    "identity": "HELIXOS-L2-016 / HELIXOS-L11-016",
+    "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+    "l2_file_sha256": "sha256:4924a3fb322a27aaf8a4e5a55b303cebd98063f7aa3045201d635b5316057440",
+    "l2_condition": "adopted portfolio trace and general status including unknown/stale; it does not define FR-L1-35 three-class readiness inventory",
+    "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+    "l11_file_sha256": "sha256:c73c4d4514865b097634395f7a76ae02a64506a52a93796fa1b9b346d4729d94",
+    "l11_condition": "adopted general state visibility and unknown/stale; no per-mechanism verification/test/detection foundation three-class inventory oracle"
+  },
+  "po_disposition": {
+    "selection_status": "pending_PO; no selection recorded",
+    "authority_effect": "none",
+    "choices": [
+      {
+        "id": "A",
+        "meaning": "旧FR-L1-35の3区分readiness inventoryをOS-L2/L11-045として採択し、source ownerをOSへrehomeする。version targetと対象機構集合は対象revisionで明示する。"
+      },
+      {
+        "id": "B",
+        "meaning": "旧inventory価値を採択済みOS-L2/L11-016の一般stateへ置換/retireし、045を採択しない。対象revision、理由、version/scope、owner disposition、consumer影響を明示する。"
+      },
+      {
+        "id": "C",
+        "meaning": "旧source holdingを生存させ、045を未採択で保留する。HARNESS owner維持または別の候補経路も含め、version target、対象機構集合、owner方針を対象revisionで選ぶまで決定を延期する。"
+      }
+    ],
+    "recommendation": "C（推奨・未選択）：version target（1.0／後続版）、対象機構集合、source owner方針が未決。特にHARNESS owner維持とOS-L2/L11-045採択は両立しないため、判断入力確定まで旧source holdingを保ち候補を保留する。HARNESS owner維持を選ぶ場合は別途HARNESS側候補を検討する。これは採択・意味変更・retireの決定ではない。影響: legacy confirmed FR-L1-35、OS-L1-002対象集合、採択済みOS-L2/L11-016、未採択OS-L2/L11-045。",
+    "decision_frame": {
+      "selection_status": "pending_PO",
+      "selected_option": null,
+      "recommended_option": "C",
+      "recommendation_is_decision": false,
+      "decision_dimensions": [
+        {
+          "id": "version_target",
+          "status": "pending",
+          "choices": [
+            "1.0",
+            "後続版（対象revisionでversionを指定）"
+          ]
+        },
+        {
+          "id": "target_mechanism_set",
+          "status": "pending",
+          "choice_prompt": "OS-L1-002の適用対象として扱う機構集合を対象revisionで具体的に選択する。現行全機構・将来Webを自動選択しない。"
+        },
+        {
+          "id": "source_owner",
+          "status": "pending",
+          "choices": [
+            "OSへrehomeしてHELIXOS-L2/L11-045のownerを担う（Aを選ぶ場合の前提）",
+            "旧HARNESS source ownerを維持し、OS-045は保留して別途HARNESS側候補を起こす（C経路）"
+          ],
+          "constraint": "OS-L2/L11-045を採択するAとHARNESS owner維持は同時選択できない。HARNESS owner維持なら045を保留し、別のHARNESS側候補経路を検討する。"
+        }
+      ],
+      "options": [
+        {
+          "id": "A",
+          "meaning": "旧FR-L1-35の3区分readiness inventoryをOS-L2/L11-045として採択し、source ownerをOSへrehomeする。version targetと対象機構集合は対象revisionで明示する。"
+        },
+        {
+          "id": "B",
+          "meaning": "旧inventory価値を採択済みOS-L2/L11-016の一般stateへ置換/retireし、045を採択しない。対象revision、理由、version/scope、owner disposition、consumer影響を明示する。"
+        },
+        {
+          "id": "C",
+          "meaning": "旧source holdingを生存させ、045を未採択で保留する。HARNESS owner維持または別の候補経路も含め、version target、対象機構集合、owner方針を対象revisionで選ぶまで決定を延期する。"
+        }
+      ],
+      "recommendation_rationale": "version target（1.0／後続版）、OS-L1-002の具体的対象機構集合、source owner方針が未決。特にHARNESS owner維持とOS-L2/L11-045採択は両立しないため、入力確定までCを推奨する。",
+      "affected_requirement_and_consumer_ids": [
+        "legacy confirmed FR-L1-35",
+        "HELIXOS-L1-002",
+        "adopted HELIXOS-L2/L11-016",
+        "unadopted HELIXOS-L2/L11-045"
+      ]
+    }
+  },
+  "related_nonidentical_source_revision": {
+    "source_holding_registration_id": "MPR-SH-V13-BASELINE-001",
+    "atom_id": "V13-BASE-6FAB-L0638",
+    "source_path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+    "source_line": 638,
+    "source_file_sha256": "sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+    "source_line_sha256": "sha256:18a694b64315a4b2b7725e1c6f637d1b45501f0090fd5de1cc3e98e07739df8c",
+    "source_text": "- Design HARNESSの実装済み／設計済み／UX検証済み状態を分離し、screenからacceptanceまでのtrace欠落を拒否する。",
+    "relation": "別のv1.3 baseline revision/holding/atom。FR-L1-35との同一視、統合、candidate inputへの追加は行わない。"
+  },
+  "version_target": null,
+  "semantic_successor_status": "not_confirmed_pending_PO",
+  "receipt_limits": "このreceiptはcandidate inputのprovenanceと局所mappingを記録する。formal successor assignment、meaning carry-forward closure、source applicability/owner/version disposition、採択、実装、受入実行を証明しない。",
+  "source_holding_remains_live": true,
+  "source_holding_note": "MPR-SH-CONFIRMED-003は未変更・生存中。candidate registrationはsource holding revisionをsupersedeせず、source dispositionを確定しない。"
+}
