@@ -856,7 +856,7 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 ### HELIXOS-L11-053 canonicalizationの原子的確定・部分current拒否の受入候補（未実行）
 
 - **対応要求・状態**：`HELIXOS-L2-053`（HELIX-OS単体候補、未採択）。静的なoracle案であり、実runtime、DB、rollback、受入実行または要求採択を主張しない。
-- **正常例**：一つの有効なcanonicalization operationについて、HARNESS／artifact ownerが確定した意味payloadと対象scope、全base revision、Markdown／asset revision、event ledger、trace、impact、stale関係、projectionおよびreceiptのwrite義務を列挙する。全必須writeが揃った場合だけ、同一operation receiptからbefore/after revisionと各write outcomeを辿れ、新artifact群がcurrentとして提示されることを確認する。旧`harness.db`との一致は条件にしない。
+- **正常例**：一つの有効なcanonicalization operationについて、HARNESS／artifact ownerが確定した意味payloadと対象scope、全base revision、Markdown／asset revision、event ledger、trace、impact、stale関係、projectionおよびreceiptのwrite義務を列挙する。全必須writeが揃った場合だけ、同一operation receiptからbefore/after revision、write count、各write outcomeを辿れ、新artifact群がcurrentとして提示されることを確認する。旧`harness.db`との一致は条件にしない。
 - **境界別failure注入**：上記write境界を一つずつ失敗させ、他境界の前後順序も変えたfixtureを与える。各失敗で新artifactの部分集合がcurrent pointer、canonical readまたはprojection経由の確定済みstateとして現れず、先行currentが保護されることを確認する。receiptには失敗したowner/boundary、確定writeと未完write、rollbackまたは隔離先、残る復旧義務が表される。失敗時にrollback完了を証明できなければ`unknown/incomplete`のままにする。
 - **base CAS負例**：開始時に読んだbaseの一つをcommit前に更新するfixtureを与える。operation全体をstale/conflictへ止め、新規revisionを公開せず、競合したbaseと未完write義務をreceiptへ示す。古いbaseを上書きせず、異なるscopeの成功結果を再利用しない。
 - **command再送の負例**：同じcommand identityとpayloadで再送した場合はsemantic revisionを二重作成しない。同じcommand IDで異payloadの場合はHARNESS-L2-052の意味判定を参照してconflictにし、先行current・revision・receiptを保持する。HARNESS候補が未採択またはその判定evidenceがない状態を、OSが独自のpayload意味判定で補わない。

@@ -1108,6 +1108,24 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 
 **隣接候補と未解決範囲**：HARNESS-L2-042は異なるv1.3 source atomsに基づく採択済み一般判断なので、本候補へ拡張・改訂しない。HARNESS-L2-048の選択rename範囲もHIL-FR-50の被覆に読み替えない。OSのwriter条件はHARNESSの意味条件を代替しない。source receiptはこの一行の局所対応だけを記録し、holdingを解放しない。HIL-FR-51〜55、HIL-FR-50全体のformal closure、旧IR全体、旧実装・旧testの実行は対象外である。
 
+
+### HARNESS-L2-051 工程終了 evidence の対応候補（HELIX-HARNESS単体、未採択）
+
+**authority／状態**：`registered_proposal`、`authority_effect: none`。本候補はPHCAP-08全体のclosureでも、要求採択・L3承認・実装／実行許可でもない。2026-09-29の57候補判断に含まれず、その判断から採択を継承しない。`version_target`は旧sourceにも今回の対象revisionにも指定がないため付けない。
+
+**親L1と責務**：`HARNESS-L1-001/003/004/006`。HARNESSは工程の意味、stageと正規pair、oracle、停止・再開・完了の条件を持つ。HELIX-OSは既存authorityの下で対象revision、ticket/workflow、evidence参照、停止時の未完義務を記録・引継ぎする。OSのstatusやticket完了からHARNESSのstage exitを決めない。
+
+**候補scope**：stageの進行または終了を主張する場面に限り、対象stage、適用scope、stage goal、canonical/paired layer、責務owner、required output、適用oracle、対象revision/HEAD、参照するevidenceと未完条件の関係を同一対象として追跡できることを求める。候補はHARNESS-L2/L11とL3/L10のpair単位で識別する。下位stageのpassや証拠の存在だけから上位stageの成立を推定しない。
+
+**未完条件の扱い**：採択済みHARNESS-L2-003/022のfreeze・停止・再開およびpair別oracle/evidence条件に沿い、対象scopeの未完事項と不足する根拠を識別する。分類が不明、対象revisionがずれる、必要なpair/oracle/evidenceが欠ける場合はstageを未完またはunknownに保つ。既存要求にない後続責務、承認者、deadline、再入場資格をこの候補から作らない。
+
+**既存要求との関係**：採択済み`HARNESS-L2-003`のfreeze/差戻し/再開/完了・未解決事項条件、`HARNESS-L2-022`のIntegrated/Verified/Acceptedの分離と段階別oracle/evidence/revisionを再定義しない。採択済み`HELIXOS-L2-002/016/017`が持つtrace、欠落/unknown/stale、ticket/workflow、未完義務の記録をstage意味へ昇格しない。これらは部分的な意味対応であり、本候補の採択や旧条件全体の移管を示さない。HARNESS-L2-050のledger-specific evidenceとPHCAP-08の工程終了evidenceを混同しない。
+
+**PO判断待ちの別案（候補本文の規範条件に含めない）**：旧source lines 47–68のfield setをそのまま必須の単一`stage_exit_receipt` schemaにする案、各stageにindependent review receiptを必須化する案、deferへ期限と再入場条件を必須化する案は追加の意味・制約である。採否は別途PO判断が必要であり、ここでは未採択optionとして記録する。現行候補はこれらの必須化を主張しない。
+
+**旧sourceと差分**：`LEGACY-ASSET-D27D4A1511BFD43623A9`（旧`lifecycle-stage-completion-goals.md`、file SHA-256 `21ba24bf781048f1cb03a20172c8049a6112690cda3d0d0f7dd0ba3cb0bd7406`）の選択行47–68、70–72を局所照合した。旧文書はdraftであり、その条件を本候補へcarryせず、正式successorとも数えない。候補のstage/pair/scope/evidence関係は採択済みHARNESS-L2-003/022およびHELIXOS-L2-002/016/017の部分的条件から現行責務へ再導出する。選択した25行はすべてsource holdingに保全する。formal gate/schema、未解決事項の分類、defer属性、自由記述等から完了扱いしない条件も保留し、別判断まで候補入力へ移さない。全stage独立review、期限・再入場条件の必須化も未採択optionとして保留する。旧runtime、旧test、旧process、PHCAP-08全条件を移植しない。
+
+**境界**：coverage receiptは選択した25 source linesをholdingに保全した事実だけを記録し、source atomの候補移管、資産holdingの解除、旧FR全体のsuccessor割当、PHCAP-08の完了、PO合意、stage exitの実績を主張しない。旧sourceに含まれるlines 74–84、関連する別資産・旧case・旧runtimeは対象外である。
 ### HARNESS-L2-052 canonical commandの意味identityと再送判定（HELIX-HARNESS単体候補、未採択）
 
 - **authority／状態**：新規の未採択候補。`registered_proposal`／`authority_effect: none`。2026-09-29の57候補PO判断の対象外であり、要求採択、L3承認、実装・実行許可、旧要求の正式後継割当を生成しない。`version_target`は旧HIL-FR-52に指定がないため付けない。
