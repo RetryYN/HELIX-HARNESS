@@ -357,3 +357,7 @@ PO原文：「チケットそのものに参照をつけたり実装の一部み
 
 - `HELIXOS-L2-049`（Worker稼働観測と低干渉task割当）：旧sourceは旧capacity区分、pool上限とactive WIPの分離、競合しないREADY taskと順序を限定保持。新規案は低干渉taskの適格性、INTELLIGENCE配置案の利用、設定上限と遊休時の別assignmentを新規案として選択する。A＝exact候補採択（推奨）、B＝保留、C＝revision・理由・影響を明示した変更。いずれも未選択。登録 `MPR-RC-HELIXOS-L2-049-001`、[receipt](../requirement-registration/helixos-worker-utilization-coverage-receipt-2026-09-29.json)は選択spanのみpartial。親 HELIXOS-L1-003/HELIXOS-L1-008、影響 OS-L2-004/005/007/008/009。
 - `HELIXOS-L2-050`（独立review capacityの観測と調整）：旧sourceは旧review queue/待ち/rework占有/reviewer稼働率のtyped threshold、lease一意性とbackpressureを限定保持。新規案はreview session増枠・縮退と具体的閾値、PR generationとHEADに束縛する手順を新規案として選択する。A＝exact候補採択（推奨）、B＝保留、C＝revision・理由・影響を明示した変更。いずれも未選択。登録 `MPR-RC-HELIXOS-L2-050-001`、[receipt](../requirement-registration/helixos-reviewer-capacity-coverage-receipt-2026-09-29.json)は選択spanのみpartial。親 HELIXOS-L1-003/HELIXOS-L1-009、影響 OS-L2-004/007; HARNESS-L2-005。
+
+## O4追加候補：task単位の作成／review配置（判断集合55候補）
+
+- `HELIXOS-L2-051`／対L11-051。旧sourceは役割分離・差戻し・適性evidence・exact-HEAD reviewを選択6 spanで限定保持。逆向き配置、Cursor create-only、Claude優先は新規案。A＝exact候補採択（推奨）、B＝保留、C＝優先範囲/強さと適用scopeをrevision・理由・影響付きで変更。いずれも未選択。登録 `MPR-RC-HELIXOS-L2-051-001`、[partial receipt](../requirement-registration/ops-o4-coverage-receipt-2026-09-29.json)。固定provider matrixはsource holding。
