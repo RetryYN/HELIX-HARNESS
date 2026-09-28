@@ -998,3 +998,14 @@ scope拡張候補の受入寄与・最小性を照合するとき、追加機能
 - **配置差の選択境界**：旧HIL-FR-55の`部品`という対応印を保持しつつ、現行CORE所属は暫定推奨にとどめる。POが`部品：Design Template`を選ぶ場合も、それはHARNESS-L2-009に示された当該部品の候補配置を043へ適用する新しい判断であり、旧HIL-FR-55から確定済みとして継承しない。
 
 **旧根拠**：`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:145`、旧行SHA-256 `78a2e6c819e73153ce2bbd832c0f87777dba08750fa1b84fcafc916fa7cafa30`。旧Template Example Calibratorの意味条件を保持し、旧schema／runtimeを移植しない。
+
+### HARNESS-L2-044 design obligation portfolioの契約coverage候補（HELIX-HARNESS内の部品候補）
+
+**対応要求**：HARNESS-L2-044（HELIX-HARNESS内の単体能力候補、`version_target: 1.0`、未採択。個別部品の配置はPO判断待ち）。親L1は`HARNESS-L1-001/004/009`。旧sourceはHIL-FR-54、`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:144`（line SHA-256 `502ef00823463c0fd4218c7b554e4b6959fc28aa9006d6d6eb79f555b86b4f67`）。旧PO packet `docs/governance/crosswalks/concept-requirement-po-decision-packet.md:1008`の配置表示は`HELIX-HARNESS、部品`までであり、より具体的な所属は特定しない。
+
+- **種別・scope**：対象revisionのrequirement atomとdesign obligationを契約coverageの意味classへ整理し、適用されるclassとnormative contractの割当を照合する共通部品候補。旧sourceの分類語やportfolio schemaを現行の固定形式にしない。
+- **入力**：対象L1・要求・design scopeとrevision、当該scopeに適用されるrequirement atom／Design Obligation Graph、関連するnormative contract・対oracleのidentity/revisionと適用根拠。L2-009等から導かれる義務や025/026の設計成果を参照する場合も、そのsource revisionとscopeを結ぶ。required atom、契約、適用性またはoracleがunknown/conflict/staleなら閉包判定を行わない。
+- **出力**：authority、lifecycle、interface/data/state/event/failure/security/observability/operation、V-pair oracle等の適用義務を意味classへまとめたobligation-to-contract coverageと、対象revision・scope付きportfolio提案。classごとにnormative contractを原則1件割り当て、既存契約の再利用、delta追加、新規契約、根拠付き非適用を区別する。重複割当・意味重複・未被覆classと根拠を示し、未被覆0かつ意味重複0となる最小portfolio候補を提示する。
+- **依存区分**（HARNESS-L2-023の4区分）：**常時必須**＝選択された対象L1／要求／design scopeとrevision、そのscopeの適用義務class、normative contract、対oracleおよび各identity・契約版・適用根拠。**特定操作時のみ必須**＝当該portfolioを評価・提案する操作とそのscope。評価操作を選んだときは対象範囲のcoverage閉包を完了できないmissing/unknown/staleがあれば未完または保留を返す。**選択した入力元に応じて必須**＝template由来義務、041の抽出結果、025/026の設計成果を選択入力に含めるscopeでは、そのsource identity/revision・適用範囲・互換を照合する。未選択sourceは未観測とし、不在や合格を推測しない。**参照資料のみ**＝旧schema、旧runtime、背景説明、今回のscopeやauthority・義務・契約・oracleを定めない資料。これらを現行依存や評価根拠へ変換しない。
+- **保証と差戻し**：適用classの全てに契約または根拠付き非適用が対応し、各割当が同じ義務意味と対oracleを覆うか照合できる。複数契約への分割は必要な境界と根拠を明示する。意味不明・authority不足は要求ownerへ、template適用・義務導出の不足はHARNESS-L2-009/対象template ownerへ、設計要素やpair oracleの不足はHARNESS-L2-026/022等の該当ownerへ返す。旧schema、旧runtime、特定のPlanner実装は要求せず、候補の出力は要求合意、設計承認、実装、候補採択を生成しない。
+- **既存候補との境界**：009はtemplate選択・適用と設計義務を導出し、041はtemplate要素の抽出と未対応gapを示し、043はrule/branchごとの例coverageを評価する。026はunit設計と対検証設計を構成し、025はgeneric compositeの設計整合を検査する。044はそれらの成果を入力に契約portfolio全体のclass coverageを照合する候補であり、義務抽出・設計生成・例妥当性判定・構成体設計oracleを重複実装しない。旧FR-55の例coverageは043、旧FR-56のworkflow phase bindingは別scopeとして扱う。

@@ -53,4 +53,12 @@ HARNESS-L2-042のreceiptは旧v1.3 §4.2 L119の異なる2 source revisionを別
 
 ## 後続追加：HARNESS-L2-043
 
-旧HIL-FR-55のTemplate Example Calibratorの意味条件を、[HARNESS-L2-043](../../../helix-harness/L2-requirements/product-requirements.md#L986)と[対L11](../../../helix-harness/L11-acceptance/product-acceptance.md#L723)へ単体候補として再導出した。登録`MPR-RC-HARNESS-L2-043-001`、[coverage receipt](../requirement-registration/harness-template-example-coverage-receipt-2026-09-28.json)は旧原文1行の局所無損失を示す。候補は未採択であり、初版25件の履歴と#2238/#2241後の27件の履歴を変更しない。生存候補の判断集合は28件となる。
+旧HIL-FR-55のTemplate Example Calibratorの意味条件を、[HARNESS-L2-043](../../../helix-harness/L2-requirements/product-requirements.md#L986)と[対L11](../../../helix-harness/L11-acceptance/product-acceptance.md#L723)へ単体候補として再導出した。初回登録`MPR-RC-HARNESS-L2-043-001`を保持し、所属の差分とPO選択欄を明示した生存訂正revisionは`MPR-RC-HARNESS-L2-043-002`である。[coverage receipt](../requirement-registration/harness-template-example-coverage-receipt-2026-09-28.json)は旧原文1行の局所無損失を示す。候補は未採択であり、初版25件の履歴と#2238/#2241後の27件の履歴を変更しない。043を追加した時点の判断集合は28件だった。
+
+## 後続追加：HARNESS-L2-044
+
+| 機構 | 候補・L2本文 | 対のL11 | 生存register revision・coverage receipt |
+|---|---|---|---|
+| HARNESS | [HARNESS-L2-044：design obligation portfolioの契約coverage（単体能力候補、version_target: 1.0）](../../../helix-harness/L2-requirements/product-requirements.md#L1002) | [L11受入候補](../../../helix-harness/L11-acceptance/product-acceptance.md#L735) | `MPR-RC-HARNESS-L2-044-001`；`harness-contract-portfolio-coverage-receipt-2026-09-28.json#HARNESS-L2-044` |
+
+旧HIL-FR-54のarchive L1要求表144行1 atomのみをreceipt対象とする。旧packet row 1008は汎用「部品」で、個別component配置は未決。FR55 atomとIR全体を含むsource holdingはactive `MPR-SH-PORTFOLIO-FIXTURE-002`および`MPR-SH-IR-003`へ保留し、044は旧2 atom holding全体の被覆を主張しない。候補はPO未採択、authority effect none。

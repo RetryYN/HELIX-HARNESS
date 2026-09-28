@@ -51,3 +51,7 @@ unknownな義務、根拠のない非適用、競合するcontractは閉包失�
 - **025誤り・未見**：同じ意味義務を二contractへ無説明で割り当てる、必須義務にcontract/oracleがない、非適用の根拠がない、または孤立contractを最小とする例は不合格。未見の義務classはunknownと影響を返し、unitの合格だけでcompositeの閉包を主張しない。
 - **026正常**：active templateの各validation ruleと各applicability branchに、該当ruleを通すcanonical positive一件以上、境界で拒否するnegative一件以上をtraceし、risk上の追加対象も根拠とともに確認する。
 - **026誤り・未見**：positiveまたはnegativeの片方が欠ける、境界外のnegative、別branchの例による穴埋め、risk未被覆を例の総数で隠す場合は不合格。未見template/rule/branchを既存fixtureから通過扱いせず未評価と必要例を返す。
+
+## 後続候補への再配線（2026-09-28）
+
+上記の025/026への追補は当時の未合意変更案として履歴保持する。現行候補では、旧HIL-FR-54のclass別契約coverage条件を新規HARNESS-L2-044と対L11へ、旧HIL-FR-55のrule／branch別例coverage条件をHARNESS-L2-043と対L11へ対応付ける。044は`version_target: 1.0`、親HARNESS-L1-001/004/009、未採択であり、採用済み025/026の本文・revisionは変更しない。旧packetの配置表記を超える個別所属と候補採択はPO判断待ちとし、既存source holding・append-only register・旧source atomは変更しない。
