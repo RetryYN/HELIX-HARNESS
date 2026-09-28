@@ -1,6 +1,6 @@
 # REG-06 条件別照合：HIL-BR-21／22／27
 
-基準HEADは `17bb8b6568b4fc065702bdafafdc6a7e4a37af6b`。手順5 REG-06 の旧source起点母集団から、同じ設計契約領域の3 identityだけを条件単位で再照合した読み取り専用監査である。旧source、旧CLI/runtime/test/CIは参照のみとし、実行していない。`authority_effect: none`。
+基準HEADは `87e292931b18815aacd4f34003d461d877f532d6`。手順5 REG-06 の旧source起点母集団から、同じ設計契約領域の3 identityだけを条件単位で再照合した読み取り専用監査である。旧source、旧CLI/runtime/test/CIは参照のみとし、実行していない。`authority_effect: none`。
 
 ## 判定
 
@@ -38,7 +38,7 @@ IR108 matrixでは3行とも `legacy_output_oracle: null`。旧sourceは条件�
 
 現行mainで照合した文書bytesは次のとおり。HARNESS／OSの2026-09-28 PO判断記録は、固定HEAD `f6dad2a33e24f000b87d7f09b8d40288257e74cc`上の対象文書revisionを指定している。後から追加された本文は判断を自動継承しない。ここで引用した各既存L2/L11範囲はその固定本文に存在し、固定後の差分比較では範囲内本文の改変ではなく後続候補節の追加を確認した。BRAINの現行対象SHAはPO判断記録の固定SHAと一致する。
 
-| 現行文書 | main `17bb8b6` のSHA-256 | 照合行 |
+| 現行文書 | main `87e2929` のSHA-256 | 照合行 |
 |---|---|---|
 | [`product-requirements.md`](../../../helix-harness/L2-requirements/product-requirements.md) | `6c3023f9ca2be5d33f8e66ae2f2f0691bf69ff8070cfa386c953168e2d6eace9` | 48-60, 105, 111, 530-555, 957-966, 1002-1011 |
 | [`product-acceptance.md`](../../../helix-harness/L11-acceptance/product-acceptance.md) | `92e5fef1771fb24c1c1cb110cc105a1b9fd58d73d003615ea17be09922f3a616` | 21-42, 332-360, 699-709, 735-745 |
