@@ -1,0 +1,326 @@
+{
+  "schema_version": "legacy-candidate-description-condition-overlay.v1",
+  "audit_id": "legacy-candidate-description-condition-overlay-2026-09-28",
+  "basis_main_commit": "249b1f648ce8ece4c6de82917910a752fa94a449",
+  "authority_effect": "none",
+  "audit_mode": "read_only_append_only_classification_overlay",
+  "scope": {
+    "population": "legacy candidate source lines",
+    "source_population_count": 4755,
+    "included_source_item_ids": [
+      "LEGACY-CAND-LINE-003505",
+      "LEGACY-CAND-LINE-003504",
+      "LEGACY-CAND-LINE-003514",
+      "LEGACY-CAND-LINE-003612",
+      "LEGACY-CAND-LINE-001588",
+      "LEGACY-CAND-LINE-001558",
+      "LEGACY-CAND-LINE-001656",
+      "LEGACY-CAND-LINE-001548",
+      "LEGACY-CAND-LINE-001709",
+      "LEGACY-CAND-LINE-003614"
+    ],
+    "unique_row_count": 10,
+    "excluded_scope": "No other source row, candidate packet, requirement, or acceptance row is classified by this overlay."
+  },
+  "source_verification": {
+    "routing_jsonl": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+    "checks": "Each selected ID is unique in the routing JSONL; its original class/status is retained below; each archived source file SHA-256 and source line SHA-256 was recomputed and matched the row and legacy asset ledger."
+  },
+  "prior_correction_exclusion": {
+    "r2253_audit": "docs/governance/audits/requirements-stage/legacy-candidate-r04-line45-classification-correction-2026-09-28.md",
+    "r2253_corrected_row": "LEGACY-CAND-LINE-000142",
+    "r2254_audit": "docs/governance/audits/requirements-stage/legacy-candidate-line-003082-reclassification-2026-09-28.md",
+    "r2254_corrected_row": "LEGACY-CAND-LINE-003082",
+    "excluded_from_this_overlay": true,
+    "statement": "The ten row IDs below are disjoint from the two already corrected source IDs. Historical snapshots and both correction audits remain unchanged."
+  },
+  "count_rule": {
+    "baseline_basis": "Original 4,755-line snapshot counts (926/2959/870), plus exactly one explanation-to-condition correction in #2253 and one in #2254.",
+    "baseline_post_r2253_r2254": {
+      "structure": 926,
+      "explanation": 2957,
+      "condition": 872,
+      "condition_route_unknown": 576,
+      "total": 4755
+    },
+    "effective_after_this_overlay": {
+      "structure": 926,
+      "explanation": 2947,
+      "condition": 882,
+      "condition_route_unknown": 586,
+      "total": 4755
+    },
+    "route_unknown_rule": "Each reclassified row has no verified condition-level successor/coverage. Its prior non-requirement routing label is retained as snapshot evidence; effective condition route is unknown. The unknown count is a subset of condition rows, not an additional source-class bucket.",
+    "other_route_buckets_unchanged": {
+      "source_relation_coverage_unresolved": 141,
+      "unadopted_candidate_relation_only": 155
+    }
+  },
+  "rows": [
+    {
+      "source_item_id": "LEGACY-CAND-LINE-003505",
+      "legacy_asset_id": "LEGACY-ASSET-AE48728497244121EEC3",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-acceptance.md",
+        "line": 22,
+        "file_sha256": "66609d952094050336a3e29abf088c18178590fb5998dbbd06dc1fecb4b79251",
+        "line_sha256": "d1a17300c71dc7c67a78a1eb308ba683a471da3ba2b3b55fc98e8cde6de0b98c",
+        "excerpt": "| RTG-AC-003 | RTG-R-02 | hard trigger、threshold、trend、recurrence、release boundary、provider change、safety-netを別々に実証する | 単一metric、LOC、file size、Issue数、AI評価だけでadmitしない |"
+      },
+      "snapshot": {
+        "classification": "explanation",
+        "routing_status": "non_requirement_source_structure_or_explanation",
+        "current_ids": [],
+        "adopted_current_requirement_ids": [],
+        "later_25_candidate_ids": [],
+        "review_outcome": "non_requirement_source_structure_or_explanation"
+      },
+      "effective_audit_classification": "condition",
+      "effective_condition_route": "unknown",
+      "conditional_clauses": "複数のtrigger/admission要素を別々に実証し、単一metric等だけでadmitしない条件。",
+      "condition_bearing_basis": "複合条件の個別実証と明示的な拒否条件が同一行にある。",
+      "coverage_statement": "current/adopted relation fields are provenance or relation evidence only; no condition-level semantic coverage, successor closure, or adoption is claimed."
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-003504",
+      "legacy_asset_id": "LEGACY-ASSET-AE48728497244121EEC3",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-acceptance.md",
+        "line": 21,
+        "file_sha256": "66609d952094050336a3e29abf088c18178590fb5998dbbd06dc1fecb4b79251",
+        "line_sha256": "d34da3c2ae88839bb7b3f38ae5b2f305db3b2536f2d22d54f84813b9810efe67",
+        "excerpt": "| RTG-AC-002 | RTG-R-01 | threshold、window、minimum sample、hysteresis、cooldown、expiryを一件ずつ別判定する | stale policy、wrong baseline、window無視を拒否 |"
+      },
+      "snapshot": {
+        "classification": "explanation",
+        "routing_status": "non_requirement_source_structure_or_explanation",
+        "current_ids": [],
+        "adopted_current_requirement_ids": [],
+        "later_25_candidate_ids": [],
+        "review_outcome": "non_requirement_source_structure_or_explanation"
+      },
+      "effective_audit_classification": "condition",
+      "effective_condition_route": "unknown",
+      "conditional_clauses": "threshold、window、minimum sample、hysteresis、cooldown、expiryの個別判定、およびstale policy等の拒否。",
+      "condition_bearing_basis": "判定対象と拒否する反例が具体的に列挙されている。",
+      "coverage_statement": "current/adopted relation fields are provenance or relation evidence only; no condition-level semantic coverage, successor closure, or adoption is claimed."
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-003514",
+      "legacy_asset_id": "LEGACY-ASSET-AE48728497244121EEC3",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-acceptance.md",
+        "line": 31,
+        "file_sha256": "66609d952094050336a3e29abf088c18178590fb5998dbbd06dc1fecb4b79251",
+        "line_sha256": "3ac63a4cfa41777d940bed5e6ee011c04aa00f487bed296cfb1c2a74aad55477",
+        "excerpt": "| RTG-AC-012 | RTG-R-06 | false-positive、missed-trigger、duplicate、coverage、lead time、rework、CI costをbefore／after比較する | 単一改善値だけでadoptionを確定しない |"
+      },
+      "snapshot": {
+        "classification": "explanation",
+        "routing_status": "non_requirement_source_structure_or_explanation",
+        "current_ids": [],
+        "adopted_current_requirement_ids": [],
+        "later_25_candidate_ids": [],
+        "review_outcome": "non_requirement_source_structure_or_explanation"
+      },
+      "effective_audit_classification": "condition",
+      "effective_condition_route": "unknown",
+      "conditional_clauses": "複数品質指標のbefore/after比較を要求し、単一改善値だけでadoptionを確定しない。",
+      "condition_bearing_basis": "比較対象とadoption否定条件が明記されている。",
+      "coverage_statement": "current/adopted relation fields are provenance or relation evidence only; no condition-level semantic coverage, successor closure, or adoption is claimed."
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-003612",
+      "legacy_asset_id": "LEGACY-ASSET-00C7DF9250F8A9A25B24",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-acceptance.md",
+        "line": 37,
+        "file_sha256": "c3f62478904e620eced270996360274e2840f9d94eca117d838d0e6dfeda7a86",
+        "line_sha256": "bafb2bae38d5e4363a90e58405e44e1e4544e85adfaa2b318bef2425a873065c",
+        "excerpt": "| RFA-AC-16 | RFA-GH-02 | dispatch/実行/ready/mergeが同authority/HEAD/scopeを照合。docs path免除・探索mergeの実装許可化・required skipを拒否 |"
+      },
+      "snapshot": {
+        "classification": "explanation",
+        "routing_status": "non_requirement_source_structure_or_explanation",
+        "current_ids": [],
+        "adopted_current_requirement_ids": [],
+        "later_25_candidate_ids": [],
+        "review_outcome": "non_requirement_source_structure_or_explanation"
+      },
+      "effective_audit_classification": "condition",
+      "effective_condition_route": "unknown",
+      "conditional_clauses": "dispatch/実行/ready/mergeでauthority・HEAD・scopeを照合し、免除・許可化・required skipを拒否する。",
+      "condition_bearing_basis": "段階ごとの照合条件と禁止条件が明記されている。",
+      "coverage_statement": "current/adopted relation fields are provenance or relation evidence only; no condition-level semantic coverage, successor closure, or adoption is claimed."
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-001588",
+      "legacy_asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "line": 278,
+        "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "line_sha256": "4b9879f54e6dfe42569fb43355c3daab8338c104050f637e0c023bea4cd63a1a",
+        "excerpt": "Release側がTicket exact set、system acceptance、compatibility、Bundle/Module/version、rollback、配布artifactを評価する。Ticket closeやBench scoreだけでqualifiedにしない。性能SLOが明示されたReleaseのみ、鮮度・coverage・比較可能性を満たすmeasurement receiptをrelease obligationに束縛する。"
+      },
+      "snapshot": {
+        "classification": "explanation",
+        "routing_status": "non_requirement_source_structure_or_explanation",
+        "current_ids": [],
+        "adopted_current_requirement_ids": [],
+        "later_25_candidate_ids": [],
+        "review_outcome": "non_requirement_source_structure_or_explanation"
+      },
+      "effective_audit_classification": "condition",
+      "effective_condition_route": "unknown",
+      "conditional_clauses": "Ticket closeやBench scoreだけではqualificationしない。性能SLOが明示されたReleaseに限り、measurement receiptの鮮度・coverage・比較可能性をrelease obligationへ結ぶ。",
+      "condition_bearing_basis": "適用条件（性能SLO明示時）と不適格条件が明記されている。",
+      "coverage_statement": "current/adopted relation fields are provenance or relation evidence only; no condition-level semantic coverage, successor closure, or adoption is claimed."
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-001558",
+      "legacy_asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "line": 218,
+        "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "line_sha256": "df44d56eb5da247d1f38a24e3a75ba1a08d559168f735cc52f10e089741ede27",
+        "excerpt": "admitted current contract、解決済み必要依存・gate・acceptance・riskを満たす集合を導出する。優先順位、現在capacity、競合lease、予算、capability freshnessによるdispatch可否は別projectionとし、取得不能をREADY/dispatch可へ推測しない。既存Work Graph/schedulerを使用する。"
+      },
+      "snapshot": {
+        "classification": "explanation",
+        "routing_status": "non_requirement_source_structure_or_explanation",
+        "current_ids": [],
+        "adopted_current_requirement_ids": [],
+        "later_25_candidate_ids": [],
+        "review_outcome": "non_requirement_source_structure_or_explanation"
+      },
+      "effective_audit_classification": "condition",
+      "effective_condition_route": "unknown",
+      "conditional_clauses": "admitted current contractと解決済み依存・gate・acceptance・riskを満たす集合を導出し、取得不能をREADY/dispatch可と推測しない。",
+      "condition_bearing_basis": "導出に必要な前提と不確実時の拒否境界が明記されている。",
+      "coverage_statement": "current/adopted relation fields are provenance or relation evidence only; no condition-level semantic coverage, successor closure, or adoption is claimed."
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-001656",
+      "legacy_asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "line": 399,
+        "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "line_sha256": "58be97d309362b845682602ae352b1954ed433fbc4b6552791f89be07d70db4f",
+        "excerpt": "追加するのは、first-pass acceptance、Attempt count、repair rounds、queue/active/review/Human待ち時間、escaped defects、rollback/Recovery、coverage、observer overhead、evidence freshnessなどである。これらは既存12指標のsilent renameではない。First-passの「初回」は最初のeligible candidateとし、内部で何度も修正した後の提出を隠さないためAttempt/repair回数を併記する。"
+      },
+      "snapshot": {
+        "classification": "explanation",
+        "routing_status": "non_requirement_source_structure_or_explanation",
+        "current_ids": [
+          "HELIXOS-L2-004",
+          "HELIXOS-L2-007",
+          "HELIXOS-L2-008",
+          "HELIXOS-L2-009",
+          "HELIXOS-L2-010",
+          "HELIXOS-L2-011",
+          "HELIXOS-L2-014"
+        ],
+        "adopted_current_requirement_ids": [
+          "HELIXOS-L2-014"
+        ],
+        "later_25_candidate_ids": [],
+        "review_outcome": "mapped_source_basis_coverage_unresolved"
+      },
+      "effective_audit_classification": "condition",
+      "effective_condition_route": "unknown",
+      "conditional_clauses": "first-passの「初回」を最初のeligible candidateと定義し、内部の再修正を隠さないようAttempt/repair回数を併記する。",
+      "condition_bearing_basis": "指標の母数定義と隠蔽防止条件が明記されている。",
+      "coverage_statement": "current/adopted relation fields are provenance or relation evidence only; no condition-level semantic coverage, successor closure, or adoption is claimed."
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-001548",
+      "legacy_asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "line": 198,
+        "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "line_sha256": "12da676f826da1ea6bed76202f42039fcfd540b88f396f482114c67cb2c4b903",
+        "excerpt": "確定したRequirement IR、Design/PLAN、Responsibility、Verification Obligationとcompiler policyから同一入力に同一byte/digestのcandidateを生成する。AIによる分解案は候補であり、未確定objective/scope/acceptance/dependencyをcompilerが推測しない。Release配置・可変priority・measurement policyは生成物への外部bindingとする。"
+      },
+      "snapshot": {
+        "classification": "explanation",
+        "routing_status": "non_requirement_source_structure_or_explanation",
+        "current_ids": [],
+        "adopted_current_requirement_ids": [],
+        "later_25_candidate_ids": [],
+        "review_outcome": "non_requirement_source_structure_or_explanation"
+      },
+      "effective_audit_classification": "condition",
+      "effective_condition_route": "unknown",
+      "conditional_clauses": "同一確定入力から同一byte/digestを生成し、未確定objective/scope/acceptance/dependencyをcompilerが推測しない。",
+      "condition_bearing_basis": "再現性条件と未確定値の推測禁止が明記されている。",
+      "coverage_statement": "current/adopted relation fields are provenance or relation evidence only; no condition-level semantic coverage, successor closure, or adoption is claimed."
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-001709",
+      "legacy_asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "line": 486,
+        "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "line_sha256": "7d8bec078693bcd37d9a1a34ed2aa61401596d19365575894cc534853693f870",
+        "excerpt": "inventory-only → shadow_compile → dual-read/比較 → bounded canary → cutover → rollback window → consumer-zeroの条件を定義する。実験mode shadowとは命名を分ける。恒久dual-writeを作らない。"
+      },
+      "snapshot": {
+        "classification": "explanation",
+        "routing_status": "non_requirement_source_structure_or_explanation",
+        "current_ids": [],
+        "adopted_current_requirement_ids": [],
+        "later_25_candidate_ids": [],
+        "review_outcome": "non_requirement_source_structure_or_explanation"
+      },
+      "effective_audit_classification": "condition",
+      "effective_condition_route": "unknown",
+      "conditional_clauses": "inventory-onlyからconsumer-zeroまでの順序、bounded canary、cutover、rollback windowを定義し、恒久dual-writeを作らない。",
+      "condition_bearing_basis": "段階順序と切替・rollbackの終了条件が明記されている。",
+      "coverage_statement": "current/adopted relation fields are provenance or relation evidence only; no condition-level semantic coverage, successor closure, or adoption is claimed."
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-003614",
+      "legacy_asset_id": "LEGACY-ASSET-00C7DF9250F8A9A25B24",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-acceptance.md",
+        "line": 39,
+        "file_sha256": "c3f62478904e620eced270996360274e2840f9d94eca117d838d0e6dfeda7a86",
+        "line_sha256": "bc7a92b5e25c9d81c38c1d138b4dd278eb0d647ca431109a63ac8278455002ad",
+        "excerpt": "| RFA-AC-18 | RFA-RF-01..04, RFA-RC-01..05, RFA-GH-01..03 | 限定調査→候補→独立検証→scope再freeze→IR→許可作業→main read-after→L12までE2E。候補保存だけの完了主張を拒否 |"
+      },
+      "snapshot": {
+        "classification": "explanation",
+        "routing_status": "non_requirement_source_structure_or_explanation",
+        "current_ids": [],
+        "adopted_current_requirement_ids": [],
+        "later_25_candidate_ids": [],
+        "review_outcome": "non_requirement_source_structure_or_explanation"
+      },
+      "effective_audit_classification": "condition",
+      "effective_condition_route": "unknown",
+      "conditional_clauses": "限定調査から候補、独立検証、scope再freeze、IR、許可作業、main read-after、L12までを完了列とし、候補保存だけの完了主張を拒否する。",
+      "condition_bearing_basis": "完了とみなす手順の終端条件と否定条件が明記されている。",
+      "coverage_statement": "current/adopted relation fields are provenance or relation evidence only; no condition-level semantic coverage, successor closure, or adoption is claimed."
+    }
+  ],
+  "limits": [
+    "This overlay reclassifies exactly ten source lines from explanation to condition for no-loss review.",
+    "Current/adopted ID relations are recorded only as evidence of existing references; they do not establish semantic coverage or succession.",
+    "No requirement is adopted, no L2/L11 is edited, and no condition is marked covered or resolved.",
+    "The original 4,755-line semantic-routing JSONL and prior audit snapshots are immutable and are not changed.",
+    "This bounded sample does not establish full source atomization, no-loss closure, or requirement-stage completion."
+  ],
+  "static_assertions": {
+    "selected_rows_all_snapshot_explanation": true,
+    "selected_rows_source_and_line_digests_match": true,
+    "selected_rows_unique": true,
+    "r2253_r2254_corrected_rows_excluded": true,
+    "effective_source_class_count_sums_to_4755": true,
+    "condition_unknown_count_is_subset": true
+  }
+}
