@@ -725,15 +725,15 @@
       "identity": "HARNESS-L2-043",
       "decision_state": "pending_PO; not adopted",
       "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
-      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
+      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, proposed internal placement, split/unit boundary, scope and consumer contract. The old packet maps HIL-FR-55 only to a generic HELIX-HARNESS 部品; the current HARNESS-CORE placement is a recommendation, while HARNESS-L2-009 Design Template wording is contextual only and not a prior selection for FR-55.",
       "recommended_choice": "A",
       "choice_meaning": "採用（L2/L11 authority decision only）",
       "version_target_as_written": "1.0",
       "title_and_kind": "### HARNESS-L2-043 active templateのrule／branch別例coverage（HARNESS-CORE unit候補、version_target: 1.0）",
       "requirement_source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
       "acceptance_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-      "registration_id": "MPR-RC-HARNESS-L2-043-001",
-      "supersedes_registration_id": null,
+      "registration_id": "MPR-RC-HARNESS-L2-043-002",
+      "supersedes_registration_id": "MPR-RC-HARNESS-L2-043-001",
       "management_state": "registered_proposal",
       "authority_effect": "none",
       "parent_l1_ids": [
@@ -754,9 +754,9 @@
           "end_heading_prefix": "次の見出し（見出しlevel問わず）"
         }
       ],
-      "registered_candidate_semantic_digest": "sha256:847498df092d017760007e4b52e3fd3a230ac7e075cde44083f8149e47aace29",
-      "receipt_candidate_semantic_digest": "sha256:847498df092d017760007e4b52e3fd3a230ac7e075cde44083f8149e47aace29",
-      "current_candidate_semantic_digest": "sha256:847498df092d017760007e4b52e3fd3a230ac7e075cde44083f8149e47aace29",
+      "registered_candidate_semantic_digest": "sha256:da678d9181ebe76ae93084c27744d253c617ebe03b709d79f55b79d2abbc6666",
+      "receipt_candidate_semantic_digest": "sha256:da678d9181ebe76ae93084c27744d253c617ebe03b709d79f55b79d2abbc6666",
+      "current_candidate_semantic_digest": "sha256:da678d9181ebe76ae93084c27744d253c617ebe03b709d79f55b79d2abbc6666",
       "candidate_digest_matches_register_and_receipt": true,
       "source_atom_count": 1,
       "source_atom_set_digest": "sha256:9293e8accee00d8e5d4bfb32f7844f16365c99498ebd945fed0df71942c4a4c4",
@@ -770,17 +770,31 @@
         }
       ],
       "source_reference_note": "旧HIL-FR-55原文1行のasset/path/行/file・line SHA-256はcoverage receiptのHARNESS-L2-043節とsource-lines台帳に保持。IR HIL-FR-55およびHR-FR-HIL-20/HAC/HATは関連sourceとして残し、この局所receiptの全量被覆へ換算しない。",
-      "internal_PO_choice": null,
+      "internal_PO_choice": {
+        "choices": [
+          "A: HARNESS-CORE placement (recommended candidate placement)",
+          "B: HELIX-HARNESS generic component placement; Design Template subtype only if the PO separately applies the placement evidenced for HARNESS-L2-009"
+        ],
+        "recommended": "A: HARNESS-CORE placement",
+        "selection_state": "pending_PO",
+        "source_limit": "HIL-FR-55 row 1009 in the old PO packet states generic 部品 only. The Design Template placement in rows 174–178 is HARNESS-L2-009-specific and does not establish FR-55 placement.",
+        "recommendation_basis": "The 2026-09-25 BRAIN PO record places product-specific meaning/design in HARNESS core and connects BRAIN as design-pattern knowledge (docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md:51–55). This role rationale does not prove the old FR-55 placement."
+      },
       "paired_l2_id": "HARNESS-L2-043",
       "paired_l11_id": "HARNESS-L2-043",
       "affected_requirement_and_consumer_ids": "HARNESS-L1-001/004/009; HARNESS-L2-004/009/025/026/041, 対L11",
-      "rationale": "旧HIL-FR-55のTemplate Example Calibratorを、041のobligation抽出と分けたCORE単体候補として保持する。適用rule/branchごとのcanonical positiveと境界negativeを最低一対、risk未被覆時だけ追加例を要求し、例数でなくcoverage十分性を判定する。旧template engine/schema/runtimeやIR補助契約全体の移植・採択は主張しない。",
-      "previous_register_revision": null,
+      "rationale": "旧HIL-FR-55のTemplate Example Calibratorを、041のobligation抽出と分けた単体候補として保持する。旧PO packet row 1009はHARNESS内の汎用「部品」までであり、CORE/Design Templateのどちらかを特定しない。候補ではCOREを推奨配置としてPO判断を待つ。理由は、HARNESS製品固有の選択scope例coverage契約をCOREの意味・設計責務として扱い、BRAINの設計pattern知識はconnector経由で用いるという2026-09-25 PO記録（brain-helix-core-po-intent-2026-09-25.md:51–55）にある。L2-009 row 174–178のDesign Template配置は009自身の根拠としてのみ参照する。適用rule/branchごとのcanonical positiveと境界negativeを最低一対、risk未被覆時だけ追加例を要求し、例数でなくcoverage十分性を判定する。旧template engine/schema/runtimeやIR補助契約全体の移植・採択は主張しない。",
+      "previous_register_revision": {
+        "registration_id": "MPR-RC-HARNESS-L2-043-001",
+        "candidate_semantic_digest": "sha256:847498df092d017760007e4b52e3fd3a230ac7e075cde44083f8149e47aace29",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-template-example-coverage-receipt-2026-09-28.json#HARNESS-L2-043",
+        "management_state_at_revision": "registered_proposal"
+      },
       "version_target_evidence": {
         "path": "docs/helix-harness/L2-requirements/product-requirements.md",
         "line": 986,
         "excerpt": "### HARNESS-L2-043 active templateのrule／branch別例coverage（HARNESS-CORE unit候補、version_target: 1.0）",
-        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
+        "interpretation": "本文に明記された1.0候補の版印。COREはPO未決の推奨配置であり、採択、v0.1収載、実装許可ではない。"
       }
     },
     {

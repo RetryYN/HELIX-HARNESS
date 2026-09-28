@@ -3,9 +3,9 @@
   "authority_effect": "none",
   "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
   "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom ID順に改行で区切る。末尾改行なし。",
-  "scope": "旧HIL-FR-55のarchive L1要求表145行だけを入力とし、active templateのvalidation rule/applicability branch別の例coverage十分性をHARNESS-CORE 043候補へ再導出する。旧IR recordとHR-FR-HIL-20/HAC/HATの関連は別source holdingに残し、全system contract、旧template engine、実装、受入実行、正式successor割当、採択の被覆を主張しない。",
+  "scope": "旧HIL-FR-55のarchive L1要求表145行だけを入力とし、active templateのvalidation rule/applicability branch別の例coverage十分性をHARNESS-CORE 043候補へ再導出する。配置はCOREを推奨するがPO未決。旧PO packet row 1009はHIL-FR-55をHELIX-HARNESSの汎用「部品」と記録し、HARNESS-L2-009 row 174–178の「部品：Design Template」は009自身の配置であるためFR-55に適用済みとは扱わない。CORE推奨の役割理由は2026-09-25 PO記録がHARNESS coreに製品固有の意味・設計を置き、設計pattern知識のBRAIN connector接続を定めたことにある（`docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md:51–55`）。旧IR recordとHR-FR-HIL-20/HAC/HATの関連は別source holdingに残し、全system contract、旧template engine、実装、受入実行、正式successor割当、採択の被覆を主張しない。",
   "source_atom_set_ref": "docs/governance/audits/requirement-registration/harness-template-example-source-lines-2026-09-28.jsonl#HIL-FR-55",
-  "l11_file_sha256": "sha256:e214cbf69301dd44ce45421041747fd5047c2ff8c349da23efb8131d48a07320",
+  "l11_file_sha256": "sha256:fb070c04679602096a430fef9ffbbe9c4d423f9b2f6ddb6233864034bf679e73",
   "candidate_state": "registered_proposal; authority_effect:none; PO未採択",
   "candidates": [
     {
@@ -16,7 +16,7 @@
         "HARNESS-L1-004",
         "HARNESS-L1-009"
       ],
-      "candidate_semantic_digest": "sha256:847498df092d017760007e4b52e3fd3a230ac7e075cde44083f8149e47aace29",
+      "candidate_semantic_digest": "sha256:da678d9181ebe76ae93084c27744d253c617ebe03b709d79f55b79d2abbc6666",
       "source_atom_set_digest": "sha256:9293e8accee00d8e5d4bfb32f7844f16365c99498ebd945fed0df71942c4a4c4",
       "source_atom_count": 1,
       "source_collection_scope": "旧HIL-FR-55のarchive L1要求表145行だけを入力とし、active templateのvalidation rule/applicability branch別の例coverage十分性をHARNESS-CORE 043候補へ再導出する。旧IR recordとHR-FR-HIL-20/HAC/HATの関連は別source holdingに残し、全system contract、旧template engine、実装、受入実行、正式successor割当、採択の被覆を主張しない。",
@@ -35,7 +35,7 @@
           "ir_statement_semantic_digest": "sha256:a79393484c93dc7d7f6c107b0781583e9648f79111cabc74cd8058c695fcb801",
           "ir_record_semantic_digest": "sha256:7a9e90a2f23df3c38ff878f6f4d9bffbf70e8f7a717f6dee2178894da0d01d81",
           "disposition": "semantic_rederivation_candidate",
-          "relation": "保持: HARNESS-L2/L11-043候補がrule/branchごとcanonical positiveと境界negativeの最低一対、risk未被覆時だけ追加例、件数でなくcoverage十分性を定める。旧example adequacy matrixの意味は候補出力へ保持する。変更: 旧L1–L12固定template engine/schema/runtimeは現行HARNESS-L2-009/041/025/026との責務分担へ再導出し、必須実装方式としない。旧IR、HR-FR-HIL-20と対HAC/HAT全体は本atom局所receiptに含めず生存holdingへ残す。"
+          "relation": "保持: HARNESS-L2/L11-043候補がrule/branchごとcanonical positiveと境界negativeの最低一対、risk未被覆時だけ追加例、件数でなくcoverage十分性を定める。旧example adequacy matrixの意味は候補出力へ保持する。旧PO packet row 1009のFR-55配置表記はHELIX-HARNESS内の汎用「部品」であり、COREまたはDesign Templateまで特定しない。HARNESS-L2-009 row 174–178のDesign Template配置は009自身の対応印なので、043への配置根拠として流用しない。COREは、製品固有の意味・設計をHARNESS coreに置きBRAINとconnector接続する2026-09-25 PO記録:51–55を役割上の理由とする推奨で、PO選択待ち。変更: 旧L1–L12固定template engine/schema/runtimeは現行HARNESS-L2-009/041/025/026との責務分担へ再導出し、必須実装方式としない。旧IR、HR-FR-HIL-20と対HAC/HAT全体は本atom局所receiptに含めず生存holdingへ残す。"
         }
       ],
       "current_condition_refs": [
@@ -52,7 +52,8 @@
       "preserved_pending_registration_refs": [
         "MPR-SH-IR-003",
         "MPR-SH-SUPPLEMENTARY-003"
-      ]
+      ],
+      "ownership_recommendation": "HARNESS-CORE（推奨配置、PO未決）。理由はHARNESS製品固有の選択scope例coverage契約をCOREの意味・設計責務として扱い、BRAINの設計pattern知識はconnector経由で用いる役割分担（2026-09-25 PO記録:51–55）。旧HIL-FR-55の配置根拠は汎用「部品」までであり、CORE確定を示さない。"
     }
   ]
 }

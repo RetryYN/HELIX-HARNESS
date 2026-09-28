@@ -722,7 +722,7 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 
 ### HARNESS-L2-043 active templateのrule／branch別例coverage
 
-**対応要求**：HARNESS-L2-043（HARNESS-CORE unit候補、`version_target: 1.0`、未採択）。親L1はHARNESS-L1-001/004/009。043は例coverage契約を定め、template選択・適用はL2-009、active templateの要素抽出は041、設計unit/compositeと対oracleは026/025へ分ける。旧sourceはHIL-FR-55、`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:145`（line SHA-256 `78a2e6c819e73153ce2bbd832c0f87777dba08750fa1b84fcafc916fa7cafa30`）。
+**対応要求**：HARNESS-L2-043（HARNESS-CORE unit候補、`version_target: 1.0`、未採択、CORE配置は推奨案でPO未決）。親L1はHARNESS-L1-001/004/009。043は例coverage契約を定め、template選択・適用はL2-009、active templateの要素抽出は041、設計unit/compositeと対oracleは026/025へ分ける。旧sourceはHIL-FR-55、`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:145`（line SHA-256 `78a2e6c819e73153ce2bbd832c0f87777dba08750fa1b84fcafc916fa7cafa30`）。旧packet `concept-requirement-po-decision-packet.md:1009`の配置表記は汎用の`部品`である。HARNESS-L2-009の同packet `:174–178`にある`部品：Design Template`は009自身の配置例であり、FR-55または043の既決配置を意味しない。CORE案は、選択scopeの例coverage oracleが製品固有の意味・設計を持つHARNESS core側の責務で、BRAINを設計patternの知識源としてconnector接続するという2026-09-25 PO記録（`docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md:51–55`）を理由とする提案であり、旧配置の証明ではない。COREは現候補の推奨配置にとどまり、PO判断を待つ。
 
 **正常例**：選択されたactive template revisionと適用scopeの全validation rule／applicability branchを分母として確定する。各rule／branchにcanonical positive例と境界negative例を最低1件ずつ対応付け、例ごとに適用条件、期待する受理／拒否、oracle、source spanを照合する。状態遷移、failure、security、migration、multi-runtime差異については対象risk分析で未被覆と特定された場合だけ追加例と理由を示す。例の数ではなく、適用rule／branchと該当riskが内容上検査されたかを判定する。
 
