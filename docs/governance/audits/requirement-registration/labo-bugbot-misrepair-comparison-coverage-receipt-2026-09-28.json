@@ -1,0 +1,71 @@
+{
+  "receipt_id": "MPR-RCPT-LABO-BUGBOT-MISREPAIR-COMPARISON-2026-09-28",
+  "authority_effect": "none",
+  "candidate_state": "unregistered_proposal; authority_effect:none; PO未採択",
+  "candidate_digest_rule": "L2の### ID見出しから次の同階層見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/labo-bugbot-misrepair-comparison-source-lines-2026-09-28.jsonl#LEGACY-CAND-LINE-000425",
+  "source_atom_set_digest_rule": "atom_id + 半角空白 + sha256:付きsource_line_sha256。末尾改行なし。",
+  "source_atom_set_digest": "sha256:125b5e3abc880685ab28ac2560aa7bc8226beaab29aa5c31cc0edc515ca784a5",
+  "scope": "旧Bugbot限定修復候補の75行目にある単独文1 atomだけを入力する。成功数だけに依存しない品質優先・費用/時間/手戻りは採択済みHELIXLABO-L2-059と対L11の条件を再利用し、Aとの同条件比較および誤修復数・未解消数を共通eligible case分母と事前固定oracleへ結ぶ残りを未採択HELIXLABO-L2-066/L11-066へ対応させ、この1 atomをno_lossで閉じる。059の固定revision・意味・採択範囲は変更しない。旧候補全体、隣接別atom、別紙、実装、受入実行、旧runtimeの再利用、要求採択、固定target/閾値、全旧要求のno_lossは主張しない。",
+  "source_boundary_review": {
+    "sentence_spans_source_lines": false,
+    "selected_source_line_ids": [
+      "LEGACY-CAND-LINE-000425"
+    ],
+    "adjacent_lines_out_of_scope": [
+      "LEGACY-CAND-LINE-000423",
+      "LEGACY-CAND-LINE-000424",
+      "LEGACY-CAND-LINE-000426"
+    ],
+    "classification_false_negative_found": false,
+    "classification_note": "旧候補source line carry-forward inventoryに当該行が存在し、preserved_pending_atomization・successor_requirement_ids空として保持されている。文境界をまたぐnormative条件は確認されず、誤ったsource行分類も確認されない。現行coverageの限定gapは、採択済み059/060が周辺の比較責務を持つ一方、75行目のA同条件における誤修復・未解消数の分母とoracleを明示していない点。従って別個の分類訂正auditは不要。"
+  },
+  "candidates": [
+    {
+      "requirement_identity": "HELIXLABO-L2-066",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HELIXLABO-L1-005",
+        "HELIXLABO-L1-011"
+      ],
+      "version_target": "1.0",
+      "candidate_semantic_digest": "sha256:d65780351792a4587966a7eb45c34359626200af5bdd8eb55e197b0a6f0db184",
+      "acceptance_candidate_digest": "sha256:0a1d72d7d0fb3b97b14ce6f53738785b76bce642a2f9b7c83c4328a45fc68cce",
+      "source_atom_set_digest": "sha256:125b5e3abc880685ab28ac2560aa7bc8226beaab29aa5c31cc0edc515ca784a5",
+      "source_atom_count": 1,
+      "source_collection_scope": "旧Bugbot限定修復候補の75行目1atomのみ。隣接73/74/76行は独立source lineのため本candidateへ含めず、移管完了とも主張しない。",
+      "atoms": [
+        {
+          "atom_id": "LEGACY-CAND-LINE-000425",
+          "legacy_asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+          "source_file_sha256": "sha256:81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+          "source_line": 75,
+          "source_line_sha256": "sha256:9facff56cbc42f9f7157dd85f1078605951af16a52fef5ec698bb62fd46681bc",
+          "source_text": "成功件数だけで評価せず、Aと同条件の費用・時間・手戻り・誤修復・未解消数を測定する。",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "inventory_atomization_status": "preserved_pending_atomization",
+          "disposition": "narrow_candidate",
+          "relation": "A identity/versionと同一eligible case分母・事前固定oracleに結んだ誤修復数と未解消数をL2-066/L11-066へ候補化する。費用・時間・手戻りおよびquality-first比較は採択済み059を再利用する。"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-labo/L1-planning/labo-intent.md#HELIXLABO-L1-005",
+        "docs/helix-labo/L1-planning/labo-intent.md#HELIXLABO-L1-011",
+        "docs/helix-labo/L2-requirements/labo-requirements.md#HELIXLABO-L2-006",
+        "docs/helix-labo/L2-requirements/labo-requirements.md#HELIXLABO-L2-059",
+        "docs/helix-labo/L2-requirements/labo-requirements.md#HELIXLABO-L2-060",
+        "docs/helix-labo/L11-acceptance/labo-acceptance.md#HELIXLABO-L2-059",
+        "docs/helix-labo/L11-acceptance/labo-acceptance.md#HELIXLABO-L2-060",
+        "docs/helix-labo/L2-requirements/labo-requirements.md#HELIXLABO-L2-066",
+        "docs/helix-labo/L11-acceptance/labo-acceptance.md#HELIXLABO-L2-066"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": [],
+      "carried_atom_refs": [
+        "LEGACY-CAND-LINE-000425"
+      ]
+    }
+  ]
+}

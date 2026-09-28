@@ -1,9 +1,9 @@
 {
   "packet_kind": "recommendation_for_PO_decision_only",
-  "basis_commit": "6c502f7bece2a8f1b7c7010297429b7b02b1c23d",
+  "basis_commit": "0027f338c3115e63bdda9e7f49328519ad23047a",
   "as_of": "2026-09-28",
-  "count": 34,
-  "status": "All 34 are live registered proposals (authority_effect none). HELIXOS-L2-040/041 and HELIXINTELLIGENCE-L2-073 are bounded candidates pending PO; existing pair 039/045 remains separately pending. No adoption, hold, reject, implementation, or acceptance run is inferred from PRs or L2/L11 text.",
+  "count": 35,
+  "status": "初版25候補と後続10候補の判断packet。全35件はregistered_proposal / authority_effect:none、PO未採択・未判断。",
   "decision_grouping": "No shared adoption decision is bundled except PORTFOLIO-FIXTURE-FR54-FR55-ROUTE and HARNESS-OS-WBS-SHAPE-039-045-PAIR. HELIXOS-L2-039/HARNESS-L2-045 are linked by the latter, not independent adoption choices. The earlier R2247 options for 039 were preparation alternatives: A proposed adopting OS-039 alone with registrations blocked while the HARNESS contract was absent; B proposed holding 039 while preparing the HARNESS candidate and re-presenting both exact revisions. The B preparation step is completed by this HARNESS-045 candidate, but no PO selection resulted. The new pair options are A=adopt both exact revisions, B=hold both; neither has been selected, and B is advisory. HARNESS-L2-043/044 remain jointly routed only by the explicit FR54/55 route. Other candidate identities retain independent choices. HELIXINTELLIGENCE-L2-072 remains limited to its 1.0 shadow subset and HELIX-LABO-L2-062 preserves 2.0.",
   "candidates": [
     {
@@ -1269,6 +1269,75 @@
         "excerpt": "**kind / parent / status**：unit、`HELIXLABO-L1-005` primary、`HELIXLABO-L1-011` context、`version_target: 1.0`、`draft_candidate`。採択済みの`HELIXLABO-L2-059`を変更せず、候補runtimeのqualificationと実task scorecardの観測条件を補う未採択候補である。親L1の固定revisionは2026-09-28のHELIX-LABO判断記録を参照し、候補追加から採択・実験実行・Worker割当を生成しない。",
         "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
       }
+    },
+    {
+      "identity": "HELIXLABO-L2-066",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "Historical unadopted candidate atom LEGACY-CAND-LINE-000425; bounded re-derivation. Legacy Bugbot candidate authority remains unadopted; the source does not identify A, so A identity/version must be established or the comparison remains unknown.",
+      "new_meaning_choice": "A: accept exact HELIXLABO-L2/L11-066 authority meaning as a 1.0 candidate, requiring explicit A identity/version, common eligible-case denominator and pre-fixed oracle for misrepair/unresolved counts; reuse adopted 059 for same-condition quality-first cost/time/rework comparison. B: defer and keep the atom unresolved. C: decide meaning change/retire against the identified source revision and impacts.",
+      "recommended_choice": "A",
+      "choice_meaning": "限定A推奨。誤修復数・未解消数を同じeligible case分母と事前固定oracleに結び、Aまたは条件が不明ならunknown/未評価を維持する。費用・時間・手戻りおよびquality-first比較は採択済み059の対象revision/意味を再利用する。固定target、閾値、実験・実装許可は設けない。",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HELIXLABO-L2-066 A比較における誤修復・未解消数の明示（単体追補候補、1.0）",
+      "requirement_source_path": "docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-066",
+      "acceptance_source_path": "docs/helix-labo/L11-acceptance/labo-acceptance.md#helixlabo-l2-066",
+      "registration_id": "MPR-RC-HELIXLABO-L2-066-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXLABO-L1-005",
+        "HELIXLABO-L1-011"
+      ],
+      "parent_l1_path": "docs/helix-labo/L1-planning/labo-intent.md",
+      "parent_l1_sha256_current": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc",
+      "parent_planning_revision_recorded": "docs/helix-labo/L1-planning/labo-intent.md@5c79869daba9a5c4fe426ddf3ad8e1bc380e64ca sha256:78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc（2026-09-28確認済みL1親bytes。066の採択は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/labo-bugbot-misrepair-comparison-coverage-receipt-2026-09-28.json#HELIXLABO-L2-066",
+      "receipt_id": "MPR-RCPT-LABO-BUGBOT-MISREPAIR-COMPARISON-2026-09-28",
+      "receipt_candidate_digest_rule": "L2/L11の各### ID見出しから次の同階層以上の見出しまでを順に連結。末尾空行を除き各sectionはUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+          "start_heading_prefix": "### HELIXLABO-L2-066 ",
+          "end_heading_prefix": "次の###候補見出し"
+        },
+        {
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "start_heading_prefix": "### HELIXLABO-L2-066 ",
+          "end_heading_prefix": "EOF"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:d65780351792a4587966a7eb45c34359626200af5bdd8eb55e197b0a6f0db184",
+      "receipt_candidate_semantic_digest": "sha256:d65780351792a4587966a7eb45c34359626200af5bdd8eb55e197b0a6f0db184",
+      "current_candidate_semantic_digest": "sha256:d65780351792a4587966a7eb45c34359626200af5bdd8eb55e197b0a6f0db184",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 1,
+      "source_atom_set_digest": "sha256:125b5e3abc880685ab28ac2560aa7bc8226beaab29aa5c31cc0edc515ca784a5",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+          "line": 75,
+          "source_line_sha256": "sha256:9facff56cbc42f9f7157dd85f1078605951af16a52fef5ec698bb62fd46681bc",
+          "atom_id": "LEGACY-CAND-LINE-000425",
+          "source_file_sha256": "sha256:81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+          "source_revision_ref": "archive/current-file-sha"
+        }
+      ],
+      "source_reference_note": "旧Bugbot candidate holding MPR-SH-CANDIDATE-003の75行1文だけをreceipt/source-lines JSONLで固定する。旧sourceはhistorical_candidateであり、現行候補はPO未採択。採択済み059と対L11の同条件品質比較・費用/時間/手戻りを再利用し、残る誤修復/未解消数を明示する。73/74/76行や旧候補全体、実装/実行を対象にしない。",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXLABO-L2-066",
+      "paired_l11_id": "HELIXLABO-L2-066",
+      "affected_requirement_and_consumer_ids": "HELIXLABO-L1-005/011; HELIXLABO-L2-006/059/060; 対L11; oracle/受入owner、OS assignment/execution、SECURITY許可、LABO比較receipt",
+      "rationale": "採択済み059は品質優先の同条件比較、費用・時間・手戻りを扱うが、旧Bugbot候補75行の誤修復/未解消数をAとの共通eligible case分母と事前固定oracleへ結ぶ条件を明示しない。066はこの局所gapだけを補い、059の固定revisionを変えず、Aが特定できない場合はunknownを保つ。",
+      "previous_register_revision": null,
+      "version_target_evidence": {
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "line": 520,
+        "excerpt": "**kind / parent / status**：unit、`HELIXLABO-L1-005` primary、`HELIXLABO-L1-011` context、`version_target: 1.0`、`draft_candidate`。",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
+      },
+      "acceptance_section_sha256": "0a1d72d7d0fb3b97b14ce6f53738785b76bce642a2f9b7c83c4328a45fc68cce",
+      "acceptance_source_file_sha256": "9b5bbcc0b86acab63eed19bb58c0dc294133ddfcb6607353fc03a7130c443e4f"
     },
     {
       "identity": "HELIXOS-L2-030",
@@ -2742,7 +2811,7 @@
     }
   ],
   "initial_25_basis_commit": "f4b2a2b02cf5ea3134e27be0a65c100395161bad",
-  "progression": "Initial 25 candidates + PR #2241 HARNESS-L2-042 + PR #2238 HELIXOS-L2-038 = historical 27; PR #2245 merged HARNESS-L2-043, giving 28; PR #2246 merged HARNESS-L2-044, giving 29; PR #2247 registered HELIXOS-L2-039, giving 30; current HARNESS-L2-045 brings the live decision set to 31. HELIXOS-L2-039/HARNESS-L2-045 are linked by an unselected paired PO decision. Current HELIXOS-L2-040 adds one bounded old HXT-AC-015 retry-route candidate, making 32; no PO selection. Current HELIXINTELLIGENCE-L2-073 adds one bounded old AAFD-R-04 free-text direct-projection boundary candidate, making 33; no PO selection. Current HELIXOS-L2-041 adds one bounded old IPC-R07 safe-continuation candidate from two linked atoms, making 34; no PO selection.",
+  "progression": "Initial 25 candidates + PR #2241 HARNESS-L2-042 + PR #2238 HELIXOS-L2-038 = historical 27; PR #2245 merged HARNESS-L2-043, giving 28; PR #2246 merged HARNESS-L2-044, giving 29; PR #2247 registered HELIXOS-L2-039, giving 30; current HARNESS-L2-045 brings the live decision set to 31. HELIXOS-L2-039/HARNESS-L2-045 are linked by an unselected paired PO decision. Current HELIXOS-L2-040 adds one bounded old HXT-AC-015 retry-route candidate, making 32; no PO selection. Current HELIXINTELLIGENCE-L2-073 adds one bounded old AAFD-R-04 free-text direct-projection boundary candidate, making 33; no PO selection. Current HELIXOS-L2-041 adds one bounded old IPC-R07 safe-continuation candidate from two linked atoms, making 34; no PO selection. Current HELIXLABO-L2-066 adds one bounded old Bugbot candidate-line metric gap, making 35; no PO selection. Its source atom is historical and its current L2/L11 candidate remains unadopted.",
   "version_target_evidence": null,
   "portfolio_fixture_fr54_fr55_route": {
     "decision_id": "PORTFOLIO-FIXTURE-FR54-FR55-ROUTE",
