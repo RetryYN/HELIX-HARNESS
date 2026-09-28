@@ -10,8 +10,8 @@
   "upstream": [
     {
       "path": "scaffold/pre-isolation-outside-l1-semantic/inventory.json",
-      "sha256": "12513f6df96440afd4813f3295fc7c3d5c17df5766cf5b671c1307c43a71f17e",
-      "note": "4旧L1 blob、現行L1 SHA、line anchors、historical 13 holding scan"
+      "sha256": "7bfec7ab3e5b4205eb547607828647157ee65cb7ba35664b7e1be496a226273f",
+      "note": "4旧L1 blob、現行L1 SHA、line anchors、historical 13 holding scan [2026-09-29 OS-038-002 transitive current-pin refresh: updated changed current input `scaffold/pre-isolation-outside-l1-semantic/inventory.json` SHA 12513f6df96440afd4813f3295fc7c3d5c17df5766cf5b671c1307c43a71f17e -> 7bfec7ab3e5b4205eb547607828647157ee65cb7ba35664b7e1be496a226273f. Scaffold role, obligations and authority remain unchanged.]"
     },
     {
       "path": "scaffold/pre-isolation-outside-l1-semantic/README.md",

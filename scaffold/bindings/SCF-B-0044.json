@@ -31,7 +31,7 @@
     {
       "path": "scaffold/outside67-global-49-67/inventory.json",
       "sha256": "01b33bd2ab541068aabd6a34e4418e0b3ea33b2cc713877cafa4f2fc5734a87e",
-      "note": "19件の分類集計・13 holding snapshot・unknown境界"
+      "note": "19件の分類集計・13 holding snapshot・unknown境界 [2026-09-29 OS-038-002 transitive current-pin refresh: updated changed current input `scaffold/outside67-global-49-67/inventory.json` SHA 01b33bd2ab541068aabd6a34e4418e0b3ea33b2cc713877cafa4f2fc5734a87e -> c61ab00785dc788164a0f477250b63a1242d75f0b64cc88b43a4ec626a1d90ce. Scaffold role, obligations and authority remain unchanged.]"
     },
     {
       "path": "scaffold/outside67-global-49-67/source-items.jsonl",

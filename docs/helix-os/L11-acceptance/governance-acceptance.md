@@ -674,7 +674,7 @@ party混在、免責/権利根拠の不一致、stage skip、cutover authority�
 
 ### 正常例：contractを使ったlayer snapshotとproposal append
 
-対象revisionで採択・有効化されたHARNESS-COREのL2 ledger契約とactive template revision、L1-L12のうち明示選択したlayer、L0 anchorの別record、HARNESS-L2-040/041に適合するsource-backed atom/proposal/gapを受け取る。これは将来の実行条件を検査するfixtureであり、現時点で040/041または038が採択済みとの主張ではない。OSがauthority/source revisionと既存base digestを照合し、対象layer snapshotを選択scopeとして生成し、proposalをappend-only候補recordとして一度登録する。receiptからHARNESSの原proposal/source atom、OSの対象ledger revision、contract/template version、snapshot digest、authority reference、scope、statusへ相互に辿れる。snapshot/receiptはHARNESSのsemantic approvalや要求採択を示さず、他layerまたは対象全体のcoverage完了も主張しない。
+対象revisionで採択・有効化されたHARNESS-COREのL2 ledger契約とactive template revision、L1-L12のうち明示選択したlayer、L0 anchorの別record、HARNESS-L2-040/041に適合するsource-backed atom/proposal/gapを受け取る。2026-09-29のPO判断はHARNESS-L2-040/041 revision -002およびHELIXOS-L2-038 revision -001を採択した。ここに示すfixtureは操作authorityを生成せず、対象revisionで契約が有効化され、既存scopeが成立する条件の検査例である。OSがauthority/source revisionと既存base digestを照合し、対象layer snapshotを選択scopeとして生成し、proposalをappend-only候補recordとして一度登録する。receiptからHARNESSの原proposal/source atom、OSの対象ledger revision、contract/template version、snapshot digest、authority reference、scope、statusへ相互に辿れる。snapshot/receiptはHARNESSのsemantic approvalや要求採択を示さず、他layerまたは対象全体のcoverage完了も主張しない。
 
 ### 誤り例：意味の上書き、stale base、権限拡張、部分成功
 
@@ -682,10 +682,18 @@ party混在、免責/権利根拠の不一致、stage skip、cutover authority�
 - proposal生成後にbase ledger revisionまたはactive template/contract revisionが更新されたのに、古いsnapshotをcurrentとして扱う。appendを保留しstale edgeと再照合条件を保持する。
 - 対象scope/authorityが不足したまま全層/全projectへ書き込む、L0をL1-L12 rowとして登録する、PR mergeやreceipt存在をauthorityとして扱う。writeを拒否しunknown/unauthorizedを返す。
 - event/proposalを保存した後snapshotまたはreceiptの書込みに失敗した部分成功を、完了appendと表示する。または再開時に同じproposalを二重追記する。未完位置を残して冪等に再開し、snapshot/receipt整合が回復するまで成功表示しない。
-- HARNESS-L2-040/041が未採択、対象revisionで無効、またはHARNESS-L2-009のactive template適用条件が不明な状態でwriterをcommitする。候補の存在や同じ`version_target: 1.0`を根拠にせず、未完としてwriteを保留する。
+- 対象revisionに適用されるHARNESS-L2-040/041が未採択または無効、またはHARNESS-L2-009のactive template適用条件が不明な状態でwriterをcommitする。候補の存在や同じ`version_target: 1.0`を根拠にせず、未完としてwriteを保留する。
 - 同じproposal/correlation IDへ異なるpayloadまたはbase digestを再送し、既存行を上書きする。衝突として両入力と対象revisionを残し、二重appendも成功receiptも出さない。
 - appendの一部だけが保存されsnapshot/receiptが失敗した後、正本への候補行追加が完了したかのように可視化する。未完状態と原proposalを公開し、整合するsnapshot/receiptが再構築されるまで完了状態を出さない。
 - OS proposal appendをrequirement acceptance、PO decision、L3開始許可、HARNESS validation pass、CI/merge/release readinessとして扱う。これらの状態遷移を拒否し、該当authority/判定ownerへ返す。
+
+### revision -002候補の追加negative oracle（未採択）
+
+2026-09-29のPO判断が採択したHELIXOS-L2-038 revision -001を維持し、この追補を未採択のrevision -002候補として扱う。PO採択済みHARNESS-L2-041 revision -002は下記二つのfailure identityを定義しない。該当契約を追加するHARNESS-L2-041 revision -003（MPR-RC-HARNESS-L2-041-003）は未採択候補であるため、HARNESS側で同契約が別途採択・有効化されるまでこの二fixtureを実行可能な条件として扱わない。HARNESSが採択済み契約から対象input/template/extractor versionに結びつけたfindingを出した場合に、OSはfindingの意味を決め直さずoutcomeをwriter入力として処理する。
+
+- **atomicity拒否**：一つのproposalに二義務が含まれるfixtureで、HARNESSの`HIL_LAYER_OBLIGATION_NOT_ATOMIC` findingと現在のledger/base digestを渡す。OSが意味判定をやり直さずappendを`rejected`にし、candidate row増分0、current snapshot不変、HARNESS finding・source atom・proposal・操作receiptの追跡を保つことを確認する。
+- **再実行nondeterminism隔離**：同一input/template/extractor versionのreplay digest不一致を示すHARNESS `HIL_LAYER_EXTRACTION_NONDETERMINISTIC` findingを、既存current snapshotがあるfixtureで渡す。OSが抽出結果を再比較せずproposalを`quarantined`として保持し、current更新0、直前snapshot digest不変、finding・base・再実行correlationの参照を保つことを確認する。
+- HARNESS findingが欠落、別input/version/baseへ束縛、または不明な場合は、OSがatomicity/nondeterminismを推定せず状態をunknown/staleとして保留する。OSのquarantine receiptはHARNESSの意味findingやOS writer operationを検証済みにせず、要求採択・write authorityも生成しない。
 
 ### 未見例：未知layer/template atomまたは新contract revision
 

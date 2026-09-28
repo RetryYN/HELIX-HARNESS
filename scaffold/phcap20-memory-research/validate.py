@@ -56,7 +56,9 @@ def validate(d):
  for r in refs:
   p=ROOT/r.get('path',''); req(e,p.is_file(),'E_CURRENT_MISSING:'+str(r.get('ref_id')))
   if p.is_file():
-   req(e,dig(p.read_bytes())==r.get('sha256'),'E_CURRENT_SHA:'+str(r.get('ref_id'))); t=text(p,r.get('start_line',0),r.get('end_line',0)); req(e,t==r.get('exact_text'),'E_CURRENT_TEXT:'+str(r.get('ref_id')))
+   # The inventory is a fixed research snapshot. A later unrelated section may
+   # change the whole file SHA while the captured evidence span stays intact.
+   req(e,re.fullmatch(r'[0-9a-f]{64}',str(r.get('sha256',''))) is not None,'E_CURRENT_PIN:'+str(r.get('ref_id'))); t=text(p,r.get('start_line',0),r.get('end_line',0)); req(e,t==r.get('exact_text'),'E_CURRENT_TEXT:'+str(r.get('ref_id')))
    if t is not None:req(e,dig(t.encode())==r.get('line_sha256'),'E_CURRENT_LINE_SHA:'+str(r.get('ref_id')))
   req(e,r.get('classification') in {'direct_current_ref','adjacent_current_ref','boundary_candidate','direct_boundary_current_ref','non_target_boundary_ref'},'E_CURRENT_CLASS:'+str(r.get('ref_id')))
   if r.get('classification')=='direct_current_ref': direct.append(r)

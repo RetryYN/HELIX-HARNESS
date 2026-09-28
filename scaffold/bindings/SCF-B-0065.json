@@ -65,8 +65,8 @@
     },
     {
       "path": "scaffold/phcap15-deploy-sixth12-research/inventory.json",
-      "sha256": "40e8e7c3e4e7d70c970e3397b78694a316c51efdaaef0caeb183de4d696d682c",
-      "note": "pool/exclusion/selection/source/decision/failure/consumer inventory"
+      "sha256": "74dc932c17b58d2a3d274ab1964c8d8552e08f2981dfabce7a1d57f8fe5a8211",
+      "note": "pool/exclusion/selection/source/decision/failure/consumer inventory [2026-09-29 OS-038-002 transitive current-pin refresh: updated changed current input `scaffold/phcap15-deploy-sixth12-research/inventory.json` SHA 40e8e7c3e4e7d70c970e3397b78694a316c51efdaaef0caeb183de4d696d682c -> 74dc932c17b58d2a3d274ab1964c8d8552e08f2981dfabce7a1d57f8fe5a8211. Scaffold role, obligations and authority remain unchanged.]"
     },
     {
       "path": "scaffold/phcap15-deploy-sixth12-research/validate.py",

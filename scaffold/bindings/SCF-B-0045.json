@@ -11,7 +11,7 @@
     {
       "path": "scaffold/pre-isolation-outside-holding-16-30/inventory.json",
       "sha256": "ab01a1e6d3bda955b40cf434d9c5d213c291b9800cb393c4e52fa6b25acb71f0",
-      "note": "rows 16–30の15 path、13 live holding exact relation、candidate/unknown境界"
+      "note": "rows 16–30の15 path、13 live holding exact relation、candidate/unknown境界 [2026-09-29 OS-038-002 transitive current-pin refresh: updated changed current input `scaffold/pre-isolation-outside-holding-16-30/inventory.json` SHA ab01a1e6d3bda955b40cf434d9c5d213c291b9800cb393c4e52fa6b25acb71f0 -> 7e3a9e221bad4bfcc5c2c8a70ccc3ad5d0c1b129f9f34014711fb186776603bd. Scaffold role, obligations and authority remain unchanged.]"
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-16-30/generate.py",
