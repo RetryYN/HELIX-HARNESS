@@ -17,6 +17,13 @@
     "reviewed_content_head": "a39691382e84898715d384ddffc76d5d03d0a4d1",
     "sha256": "37038a391acee8ad8859d476046fb936ec6fedc5ffba87c4d005c7aa5339e0c0"
   },
+  "review_correction_basis": {
+    "review_id": "R2274-01",
+    "pr": 2274,
+    "reviewed_head": "6e84af65ca589c72f0acfb2e59f84fcd8122e3fb",
+    "comment_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2274#issuecomment-5871512201",
+    "authority_effect": "none"
+  },
   "legacy_sources": {
     "requirement_document": {
       "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
@@ -50,7 +57,7 @@
       },
       "effective_overlay_fields": {
         "dispositions": ["adopted_meaning", "true_missing_condition_needing_candidate"],
-        "remaining_condition": "閉じた対象要求集合の全設計義務を原子的に生成・消込し、説明のない設計漏れが0件であることを判定するgateは現行採択済みHARNESS/OS条項で確認できない。relation・unknown・staleの可視化と未解決edgeの保留だけではこのgateを示さない。"
+        "remaining_condition": "現行採択済み条項はtemplate設計義務のtrace・N/A・backflow・消込を部分保持する。残る条件は、固定したclosed scopeの全設計義務を原子的に生成・消込したと確認し、説明のない設計漏れが0件であるgateである。個別義務のtrace/消込、relation/unknown/staleの可視化、管理層の要求source-atom no-loss receiptだけではこのclosed-scope gateを示さない。"
       },
       "retained_adopted_conditions": [
         {
@@ -70,6 +77,16 @@
             {"path": "docs/helix-os/L11-acceptance/governance-acceptance.md", "lines": [331, 336]}
           ],
           "audit_basis": "legacy-ir108-br21-br22-br27-condition-audit-2026-09-28.md:34"
+        },
+        {
+          "condition_key": "HIL-BR-22-A3",
+          "meaning": "OSはtemplate候補と選定版、設計義務、N/A、backflow、消込をtraceし、template欠落・stale・conflict・必須input欠落では自由形式fallbackや文書生成から適用・完成を推定しない。これは個別義務状態の部分保持である。",
+          "current_requirement_refs": ["HELIXOS-L2-001", "HELIXOS-L2-002", "HELIXOS-L2-005", "HELIXOS-L2-007", "HELIXOS-L2-013"],
+          "acceptance_evidence": [
+            {"path": "docs/helix-os/L11-acceptance/governance-acceptance.md", "lines": [45]}
+          ],
+          "adoption_limit": "個別template義務のtrace・消込とfailure boundaryは保持するが、closed scopeの全義務原子的消込および説明のないgapゼロ判定までは示さない。",
+          "audit_basis": "docs/helix-os/L11-acceptance/governance-acceptance.md:45"
         }
       ],
       "remaining_condition_atoms": [
@@ -77,14 +94,24 @@
           "condition_key": "HIL-BR-22-R1",
           "source_clause": "要求系統とservice/capability系統をDesign Templateへ結び、各要求から生じる設計義務を原子的に生成・消込する。閉じた要求集合について説明のない設計漏れを0件にし、未知の要求まで網羅したとは主張しない。",
           "source_span_is_verbatim": true,
-          "remaining_meaning": "固定したclosed scopeの全design obligationを原子的に消込んだ根拠と、説明のない漏れが0件である判定を行うgateが現行採択済み条項にない。一般的なunknown/stale可視化やrelation traceだけでは代替できない。",
+          "remaining_meaning": "現行にはtemplate候補・設計義務・N/A・backflow・個別消込のtraceがあるが、固定したclosed scopeの全design obligationを原子的に生成・消込した根拠と、説明のない漏れが0件である判定を行うgateはない。個別義務の追跡やunknown/stale可視化だけでは代替できない。",
           "unadopted_analogous_refs": ["HARNESS-L2-041", "HARNESS-L2-044"],
           "relation_limit": "041は別source HIL-FR-47、044は別source HIL-FR-54由来の未採択候補。いずれもHIL-BR-22のsuccessorまたは採択済み意味ではない。",
           "audit_basis": "legacy-ir108-br21-br22-br27-condition-audit-2026-09-28.md:34"
         }
       ],
       "formal_successor_ids": [],
-      "carry_forward_authority": "preserved_pending_rehome"
+      "carry_forward_authority": "preserved_pending_rehome",
+      "scope_boundary_evidence": [
+        {
+          "refs": [
+            {"path": "docs/helix-os/L2-requirements/governance-requirements.md", "lines": [23, 25]},
+            {"path": "docs/helix-os/L11-acceptance/governance-acceptance.md", "lines": [44]}
+          ],
+          "meaning": "OS管理層のsource atom preservation / HARNESS no-loss receiptは要求PRの候補登録とsource atom計上にscopeを持つ。",
+          "coverage_limit": "管理層のsource-atom no-lossは、BR-22のtemplate起点design obligation全件消込またはzero-unexplained-gap判定として集計しない。"
+        }
+      ]
     },
     {
       "identity": "HIL-BR-27",
@@ -100,7 +127,7 @@
       },
       "effective_overlay_fields": {
         "dispositions": ["adopted_meaning", "true_missing_condition_needing_candidate"],
-        "remaining_condition": "採択済みtemplate義務、unit/composite、Pattern条件だけでは、旧行が要求する必要十分なDesign Contract Portfolioと明示的な拒否条件を確認できない。class-wise zero-uncovered/zero-duplicateは別source由来の未採択044にある類似gateであり、旧行の逐語条件として扱わない。"
+        "remaining_condition": "採択済みtemplate義務、unit/composite、Pattern条件と、必須inputのAI補完禁止だけでは、旧行が要求する必要十分なDesign Contract Portfolio、意味契約の文書量産拒否、固定冊数拒否、template見本不足時の拒否をすべて確認できない。class-wise zero-uncovered/zero-duplicateは別source由来の未採択044にある類似gateであり、旧行の逐語条件として扱わない。"
       },
       "retained_adopted_conditions": [
         {
@@ -120,6 +147,19 @@
             {"path": "docs/helix-brain/L11-acceptance/brain-acceptance.md", "lines": [31, 37]}
           ],
           "audit_basis": "legacy-ir108-br21-br22-br27-condition-audit-2026-09-28.md:35"
+        },
+        {
+          "condition_key": "HIL-BR-27-A3",
+          "meaning": "templateの必須inputが欠けた場合、AI補完で埋めず質問・要求候補・N/A判断候補へbackflowする。これは必須input欠落についての部分保持である。",
+          "current_requirement_refs": ["HARNESS-L2-009"],
+          "current_requirement_evidence": [
+            {"path": "docs/helix-harness/L2-requirements/product-requirements.md", "lines": [60]}
+          ],
+          "acceptance_evidence": [
+            {"path": "docs/helix-harness/L11-acceptance/product-acceptance.md", "lines": [69, 130]}
+          ],
+          "source_comparison": "旧sourceのtemplate見本不足と、HARNESS-L2-009の必須input欠落は別の適用条件である。009は必須inputのAI補完拒否を保持するが、template見本の十分性は定めない。",
+          "audit_basis": "PR #2274 Claude review R2274-01, exact reviewed HEAD 6e84af65ca589c72f0acfb2e59f84fcd8122e3fb"
         }
       ],
       "remaining_condition_atoms": [
@@ -136,9 +176,10 @@
           "condition_key": "HIL-BR-27-R2",
           "source_clause": "同じ意味契約の文書量産と、見本不足をLLM自由補完で埋めることの双方を拒否する。",
           "source_span_is_verbatim": true,
-          "remaining_meaning": "同じ意味の契約を複数文書に量産せず、見本不足をLLM自由補完で埋めないという明示条件を保持する。",
-          "unadopted_analogous_refs": [],
-          "relation_limit": "この条件は旧sourceに明記されるが、採択済みHARNESS-L2-025/026とBRAIN-L2-003/009では確認できない。",
+          "condition_focus": "同じ意味契約の文書量産",
+          "remaining_meaning": "同じ意味契約を複数文書へ量産しないという明示条件を保持する。",
+          "unadopted_analogous_refs": ["HARNESS-L2-044"],
+          "relation_limit": "044の意味重複0 gateは別source HIL-FR-54由来の未採択類似案であり、この旧条件のsuccessorまたは採択済み意味ではない。",
           "audit_basis": "legacy-ir108-br21-br22-br27-condition-audit-2026-09-28.md:35"
         },
         {
@@ -149,6 +190,25 @@
           "unadopted_analogous_refs": [],
           "relation_limit": "この条件は旧sourceに明記されるが、採択済みHARNESS-L2-025/026とBRAIN-L2-003/009では確認できない。",
           "audit_basis": "legacy-ir108-br21-br22-br27-condition-audit-2026-09-28.md:35"
+        },
+        {
+          "condition_key": "HIL-BR-27-R4",
+          "source_clause": "同じ意味契約の文書量産と、見本不足をLLM自由補完で埋めることの双方を拒否する。",
+          "source_span_is_verbatim": true,
+          "condition_focus": "見本不足をLLM自由補完で埋めること",
+          "remaining_meaning": "HARNESS-L2-009は必須input欠落へのAI補完を禁じてbackflowする部分を保持する。しかし、旧sourceの「見本不足」（template例・見本の不足）がある場合に、その例の十分性を確認してLLM自由補完を拒否する条件は採択済み要求にない。残差はtemplate見本のcoverageであり、必須input欠落一般ではない。",
+          "adopted_partial_assessment": "HARNESS-L2-009/L11-009は必須input欠落時にAI補完を使わない点を保持するため、旧禁止の一部と重なる。適用条件と対象が必須inputであるため、template見本自体の不十分さを処置する条件とは同一でない。",
+          "adopted_partial_condition_ref": "HIL-BR-27-A3",
+          "adopted_partial_evidence": {
+            "current_requirement_ref": "HARNESS-L2-009",
+            "acceptance_evidence": [
+              {"path": "docs/helix-harness/L11-acceptance/product-acceptance.md", "lines": [69, 130]}
+            ],
+            "retained_boundary": "必須input欠落をAI補完で埋めない。見本・example sufficiencyの保証までは含めない。"
+          },
+          "unadopted_analogous_refs": ["HARNESS-L2-043"],
+          "relation_limit": "043/L11-043は別source HIL-FR-55由来のrule/branch別例coverage候補で未採択。template見本の十分性に類似するが、HIL-BR-27のsuccessorまたは採択済み意味ではない。",
+          "audit_basis": "PR #2274 Claude review R2274-01, exact reviewed HEAD 6e84af65ca589c72f0acfb2e59f84fcd8122e3fb"
         }
       ],
       "formal_successor_ids": [],
@@ -175,6 +235,16 @@
       "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
       "l11_lines": [735, 745],
       "role": "portfolio class-wise zero-uncovered/zero-duplicate gateの類似候補。BR-22/27のsuccessorではない。"
+    },
+    {
+      "identity": "HARNESS-L2-043",
+      "status": "registered_proposal_unadopted",
+      "source_identity": "HIL-FR-55",
+      "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "l2_lines": [984, 998],
+      "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "l11_lines": [723, 733],
+      "role": "active templateのvalidation rule/applicability branchごとのpositive/negative example coverageを扱う別source候補。HIL-BR-27-R4に類似するがsuccessorではない。"
     }
   ],
   "authority_boundaries": {
