@@ -100,8 +100,8 @@
   "condition_status_counts": {
     "covered": 3,
     "implementation-only": 31,
-    "partial": 83,
-    "unresolved": 172,
+    "partial": 84,
+    "unresolved": 171,
     "version-target": 14
   },
   "condition_destination_counts": {
@@ -19009,22 +19009,24 @@
         "HARNESS-L2-002",
         "L11-002"
       ],
-      "destination_adoption_axis": "current_semantic_parent_route_exact_line_coverage_unproven",
+      "destination_adoption_axis": "adopted_pair_partial_condition_coverage_with_recorded_PO_meaning_change_formal_successor_unassigned",
       "section_route_targets_as_recorded": "各行が参照する対応HARNESS/OS/機構別L11。上記の各L2/L11 ID",
-      "destination_status": "summary_acceptance_route_back_no_independent_successor",
-      "current_review_conclusion": "§10は個別owner clauseへ戻す集約表で、独立successor/acceptance IDとして二重計上しない。各AC/fixtureをsource conditionとL11へ結ぶまで、見出しや受入一覧への掲載を受入pass/完了証拠にしない。",
-      "condition_status": "unresolved",
+      "destination_status": "summary_acceptance_adopted_pair_partial_with_recorded_style_change",
+      "current_review_conclusion": "旧L639は複合受入条件。旧3方式からexactly oneを選ぶ部分は、2026-09-25のPO判断で4方式を製品特性に合わせて合成可能へ明示変更した。採択済みHARNESS-L2-002:102と対L11:34-35は方式未選択・適用条件不成立を拒否し、合成してもL1–L3・要件承認・V-pair・品質条件を落とさない。Discovery／PoCを開発方式のphaseへ混入させず、ticket起動と結果の採否を別に判定する条件はL2:101,103とL11:22,34-35,37にある。ただし旧原文のliteralな別fieldのschema形状を現行L2/L11は固定していない。現行の意味分離を旧fieldのbyte互換や受入実行と同一視せず、formal successorは未割当とする。",
+      "condition_status": "partial",
       "condition_comparison": {
-        "status": "unresolved",
-        "reason": "Owner/L2/L11 family route exists, but this source condition has no individually established adopted successor or exact paired acceptance in the reviewed evidence. Candidate status, source holding, or thematic overlap does not close it.",
-        "route_track": "owner route; condition-level closure unresolved",
+        "status": "partial",
+        "reason": "旧exactly-one style選択はPOの対象revision付き判断で4方式の合成許容へ意味変更され、採択済みL2/L11は未選択・適用条件不成立の拒否と合成時の品質条件を保持する。Discovery／PoCを方式phaseから分ける受入もある。ただし旧separate fieldのliteral schema形状は未確定で、全条件の同一性や実行済み受入は主張しない。",
+        "route_track": "adopted_L2_L11_partial_with_recorded_PO_meaning_change",
         "comparison_refs": [
-          "current_review section route",
-          "relevant fixed L2/L11; candidate IDs remain unadopted"
+          "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md:639 sha256:a1246b2d13e88149de79871a952cb1c9749e5ff9b5f74891a2a3679daddb277e",
+          "docs/governance/decisions/po-optimal-draft-po-decisions-2026-09-25.md:49-65 sha256:fb16449af47b30f151445d0c6b3ee16117c47b23a86baedb2434a0e6602a6f95",
+          "f6dad2a33e24f000b87d7f09b8d40288257e74cc:docs/helix-harness/L2-requirements/product-requirements.md:101-103 (HARNESS-L2-002)",
+          "f6dad2a33e24f000b87d7f09b8d40288257e74cc:docs/helix-harness/L11-acceptance/product-acceptance.md:22,34-35,37 (HARNESS-L2-002/003)"
         ],
         "unresolved_residual": true
       },
-      "coverage_assertion": "not established; condition-level residual retained",
+      "coverage_assertion": "partial adopted-pair evidence with recorded PO meaning change; literal separate-field schema and formal successor remain unassigned",
       "successor_assignment": "unassigned; no source line in this mapping receives a formal successor",
       "authority_effect": "none"
     },
@@ -20150,8 +20152,10 @@
       112
     ],
     "unresolved_to_partial": [
-      119
+      119,
+      639
     ],
-    "line119_performance_L2_ref_correction": "HARNESS-L2-016:399 and paired L11:292-294 were omitted from prior line119 comparison; partial status unchanged; performance L2 normative gap claim withdrawn"
+    "line119_performance_L2_ref_correction": "HARNESS-L2-016:399 and paired L11:292-294 were omitted from prior line119 comparison; partial status unchanged; performance L2 normative gap claim withdrawn",
+    "line639_style_acceptance_correction": "Old V13-AC-639 exactly-one style was explicitly changed by 2026-09-25 PO to 4 combinable styles; fixed HARNESS-L2/L11-002 retains fail-close and Discovery/PoC separation. Literal separate-field schema and formal successor remain unresolved."
   }
 }
