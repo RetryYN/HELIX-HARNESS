@@ -782,3 +782,11 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **不成立例**：対象基盤を一覧から落とす、状態区分を一括の「完了／未完了」等へまとめる、または3区分と異なる値へ置換した場合は、この候補の旧条件を満たさない。
 - **unknown/stale**：対象revisionまたは状態の根拠を確認できないfixtureは、正常例へ分類せず、既採択HELIXOS-L2-016／L11-016のunknown/stale扱いを維持する。unknown/staleを三分類のいずれかに推測で割り当てない。
 - **境界と受入限界**：この候補は選択済み適用対象に対する一覧条件に限定し、専用UI、dashboard、リアルタイム性、PO向けroster表示を要求しない。L2-016のgeneral portfolio stateを再定義せず、全対象・将来版への適用、旧HARNESSからOSへのowner移管、候補採択、実装、受入実行を主張しない。旧sourceの保持／置換・retireに関するPO判断は未決のまま残す。
+
+### HELIXOS-L2-046 dispatchからmergeまでのauthority・HEAD・scope連続性の受入候補
+
+- **状態と対象**：未採択・未実行のconnection候補。選択した一つの作業scopeにおけるdispatch、実行、Ready化、merge admissionの遷移を検収する。authority／検証義務の新しい種類や適用範囲は作らない。
+- **正常例**：既存の有効なauthority、対象scope、入力HEAD、ticket／assignment、HARNESSが定めるrequired verificationとその現行HEAD向け結果を固定する。各遷移が同じ対象と許可scopeを参照し、必要な独立reviewと既存merge admission条件を満たした場合だけ次段へ進む。最終admissionはmerge対象content HEADと最新baseの組に結び、read-afterで照合できる。
+- **scope／HEAD／authority変更**：実行中またはReady後に対象HEAD、base、scope、authorityの有効性、適用HARNESS contractのいずれかが変わるfixtureを与える。影響する遷移だけをstale／未完へ戻し、無関係なscopeは既存規則どおり扱う。旧HEADのreviewや検証結果、失効したauthorityを現在の対象へ転用しない。
+- **誤りの例**：`docs/` pathのため既存のrequired review／verificationを除外する、探索・prototypeのmergeを本実装許可として扱う、required verificationをskipする、別HEADまたは別scopeの成功を流用する、対象HEAD／base変更後に古いreview結果でmergeを進める、あるいは一段の成功を次段完了へ伝播する場合は不成立。
+- **境界と受入限界**：required条件と適用可能な除外は既存contractのownerが決め、本候補は具体的なrequired list、CI、skip機構、追加承認、実運用設定を定義しない。RFA-AC-16の指定rowだけを扱い、旧RFA全体のclosure、実装、運転、merge実施を主張しない。

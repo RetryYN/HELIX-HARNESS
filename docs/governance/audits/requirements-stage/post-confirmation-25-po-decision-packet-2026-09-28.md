@@ -252,3 +252,17 @@ A＝exact L2/L11-044限定候補を採択（推奨）、B＝selected source atom
 - **理由・影響**：version・scope・ownerが未確定なため、source holdingと候補を保全して判断を保留する。影響はlegacy FR-L1-35、OS-L1-002、採択済みOS-L2/L11-016、未採択OS-L2/L11-045。
 
 別revisionの`V13-BASE-6FAB-L0638`（`docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt:638`、holding `MPR-SH-V13-BASELINE-001`）はDesign HARNESSの実装済み／設計済み／UX検証済み状態とtrace欠落を扱う別atomであり、FR-L1-35と同一視・統合せず今回の候補入力に含めない。候補mapping・receiptはformal successor/adoptionを証明しない。
+
+## 後続候補：HELIXOS-L2-046（判断集合44候補）
+
+| ID | 状態／推奨 | 版／対象L1親 | source basis／POが決める意味境界 | 根拠・範囲 | 影響する要求・consumer | 推奨理由 |
+|---|---|---|---|---|---|---|
+| `HELIXOS-L2-046` (L2/L11) | PO未決／推奨 **A exact bounded connectionの採択** | `1.0`; `HELIXOS-L1-009/010` | 旧RFA-AC-16のdispatch・execution・Ready・merge間で同じauthority、対象HEAD、scopeを照合し、`docs` path exemption、exploratory/prototype mergeの実装許可化、既存required verificationのskipを拒否する限定候補。authority、HEAD、scopeの継続を検収するが、具体的なrequired list・新CI・追加承認を作らない。 | `LEGACY-CAND-LINE-003612`、旧asset `LEGACY-ASSET-00C7DF9250F8A9A25B24`。旧source file SHA-256 `c3f62478904e620eced270996360274e2840f9d94eca117d838d0e6dfeda7a86`、line SHA-256 `bafb2bae38d5e4363a90e58405e44e1e4544e85adfaa2b318bef2425a873065c`。局所[source-lines](../requirement-registration/helixos-rfa-scope-source-lines-2026-09-28.jsonl)と[coverage receipt](../requirement-registration/helixos-rfa-scope-coverage-receipt-2026-09-28.json)に記録。RFA-AC-16一行だけの候補入力で、旧RFA全体のclosureは主張しない。 | 固定OS-L1-009/010; adopted OS-L2/L11-004/007/008/010/011、GitHub上流運用モデル。既存roleを置換せず、各遷移間の継続性と三つの迂回拒否を接続する。 | 個別の統制は既存OS／HARNESS／SECURITY／GitHub運用契約に残し、dispatchからmergeまで一つの対象・権限・scopeを保つconnection候補として提示する。候補採択のみをPO判断とし、実装・運転・mergeを生成しない。 |
+
+**PO判断frame（未決・未選択）**
+
+- A＝L2/L11-046のexact bounded connectionだけを採択する（推奨）。既存責務と判定条件を置換・追加しない。
+- B＝046を未採択で保留し、旧source holdingと選択atomを生存させる。
+- C＝対象source revision、理由、影響を明示する人間decisionで意味変更またはretireを判断し、046を採択しない。
+
+登録草稿`MPR-RC-HELIXOS-L2-046-001`は`registered_proposal` / `authority_effect:none`であり、A/B/CはいずれもPO未選択である。source holding `MPR-SH-CANDIDATE-003`はliveのままで、今回の選択行以外のsource atomは本候補へ含めない。旧sourceの残余条件、実装、運転、受入実行、merge permissionは未評価・未確定のままとする。
