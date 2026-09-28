@@ -23,7 +23,7 @@
   "source_atom_count": 8,
   "source_collection_scope": "MPR-SH-SEMANTIC-LINE-003のHIL-FR-48 line 138およびHIL-FR-49 line 139を意味spanへ非重複分解し、FR-48/49のHARNESS gate outcome候補へ割当てた8 atom。HIL-FR-48 stale revision、HIL-FR-49異snapshot、NFR-29 cross-condition、MPR-SH-IR-003のIR rows 81/82はcandidate atomに含めずholdingに保持。assertion 031-04/07/08、032-09/12もNFR-29 oracle参照として非計上。031-09/032-14 meta casesは対象外。",
   "candidate_source_atom_set_digests": {
-    "HARNESS-L2-055": "sha256:1010851ffd784b7559ef92e520d71497dabaaee2fb7f43c622f75ec61afec592",
+    "HARNESS-L2-055": "sha256:85c6ec0ba4f29b7fdbbb03a55ba4c33c28075486db3b6b799ab175a0ce995781",
     "HARNESS-L2-056": "sha256:bd48f1e083e34ec41a6cba58ca7745a6ac90d2c40026b930f9e4437483f9e5de"
   },
   "atoms": [
