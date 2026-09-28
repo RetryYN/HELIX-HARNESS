@@ -1,0 +1,82 @@
+{
+  "receipt_id": "MPR-RCPT-HELIXINTELLIGENCE-FREE-TEXT-BOUNDARY-2026-09-28",
+  "authority_effect": "none",
+  "candidate_state": "registered_proposal; PO未採択",
+  "scope": "旧AAFD-R-04の単一line atomのみを、未知finding探索の自由文からRequirement/CI/merge authorityへのdirect projectionを拒否する未採択候補へ限定再導出。自由文以外の適格な根拠と既存owner判断を経る後続経路、AAFD全体、CI/merge動作は対象外。",
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/intelligence-free-text-boundary-source-lines-2026-09-28.jsonl#LEGACY-CAND-LINE-000143",
+  "source_atom_set_digest_rule": "atom_id + 半角空白 + sha256:付きsource_line_sha256。末尾改行なし。",
+  "candidate_digest_rule": "### ID見出しから次の同階層見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。L2 sectionをcandidate digestとし、L11 section digestを別途保持。",
+  "candidates": [
+    {
+      "requirement_identity": "HELIXINTELLIGENCE-L2-073",
+      "requirement_kind": "unit",
+      "version_target": "1.0 candidate, PO decision pending; no adoption or implementation permission",
+      "parent_l1_ids": [
+        "HELIXINTELLIGENCE-L1-009"
+      ],
+      "parent_l1_source": {
+        "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+        "sha256": "sha256:8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8",
+        "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md"
+      },
+      "candidate_semantic_digest": "sha256:3780b548fe3c19c27e058e279b162614b9878710a0e2dbe0f053f687b77f3b44",
+      "candidate_source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#helixintelligence-l2-073",
+      "candidate_file_sha256": "sha256:1b6f34209279e84d58a8389183f7d0fa7e206c9dc2cab128f72bb978ce5a0c43",
+      "candidate_section_boundaries": {
+        "start_line": 601,
+        "end_line": 607,
+        "start_heading_prefix": "### HELIXINTELLIGENCE-L2-073 "
+      },
+      "acceptance_source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "acceptance_file_sha256": "sha256:d68049f3faf60f7430105ce2cd940001b567a929f58f3d5735e5f6b2d0dfe1cd",
+      "acceptance_section_sha256": "sha256:76c4fdbc5483082f47e39b2de7d92480e7e73e3aa2a7cb42a6f7203af5fd5e16",
+      "acceptance_section_boundaries": {
+        "start_line": 317,
+        "end_line": 325,
+        "start_heading_prefix": "### HELIXINTELLIGENCE-L2-073 "
+      },
+      "source_atom_set_digest": "sha256:6b49f93d6c399d97f32d0a728e9196e81485ff59a7e4045492bc75bc8993347b",
+      "source_atom_count": 1,
+      "source_collection_scope": "LEGACY-CAND-LINE-000143単一行。旧AAFD-R-04の他行/他条件は入力外。",
+      "atoms": [
+        {
+          "atom_id": "LEGACY-CAND-LINE-000143",
+          "source_kind": "historical_candidate_requirement",
+          "candidate_line_id": "LEGACY-CAND-LINE-000143",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "sha256:685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 46,
+          "source_line_sha256": "sha256:333d4deb1ee4f9c39d411fb9749a8e3d6c5d397972bf29b5c5d52f03ba696412",
+          "source_text": "Requirement、CI、merge authorityへ投影しない。",
+          "parent_requirement_ref": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md:41-46",
+          "disposition": "carried_to_unadopted_candidate_limited_scope",
+          "semantic_limit": "AAFD-R-04の未知finding探索自由文からRequirement、CI、merge authorityへの直接投影禁止のみ。既存owner経路を経た後続処理、AAFDの他条件、CI/merge behaviorは対象外。"
+        }
+      ],
+      "coverage_result": "no_loss_limited_to_single_atom_candidate",
+      "carried_atom_refs": [
+        "LEGACY-CAND-LINE-000143"
+      ],
+      "preserved_pending_registration_refs": [],
+      "human_decision_disposition_refs": [],
+      "unaccounted_atom_refs": [],
+      "semantic_limit": "候補本文と旧source lineの意味対応のみ。L2/L11採択、AAFD全体のcoverage、CI/merge新behavior、実装・受入実行なし."
+    }
+  ],
+  "source_parent_context": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+    "source_file_sha256": "sha256:685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+    "lines": "41-46",
+    "status": "historical draft candidate; only AAFD-R-04 direct projection boundary carried",
+    "remaining_conditions": [
+      "AAFD-R-01..03 and R-05..15",
+      "deterministic detector and UIL qualification contract",
+      "CI or merge authority behavior"
+    ]
+  },
+  "human_decision_provenance": {
+    "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+    "status": "L1-009 parent is confirmed; HELIXINTELLIGENCE-L2-073 is outside the adopted 54 identities and remains PO decision pending."
+  },
+  "validation_boundary": "static source line/file digest, candidate section digest, parent revision, and L2/L11 boundary comparison only; no old execution and no CI/merge behavior change."
+}

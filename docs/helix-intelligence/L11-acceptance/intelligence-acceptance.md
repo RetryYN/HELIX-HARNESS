@@ -312,3 +312,15 @@ HELIXINTELLIGENCE-L2-069／HELIXINTELLIGENCE-L2-070／HELIXINTELLIGENCE-L2-071�
 - **rollback/active境界fixture**：rollback先・戻し条件・該当versionのrollback evidenceが欠ける、またはshadow/独立reviewが未完の候補をactive/強制gateとして出したら不合格。全証跡が揃った例でも、対象authorityの採択記録なしに072がactive化した場合は不合格。owner/OSの既存採択・rollback記録があれば参照し、INTELLIGENCEの自己評価receiptで代替しない。
 - **FR58の版境界**：finding/reversal/retry/escaped defect/skill efficacyからINTELLIGENCEが不足観点を候補化し、1.0 packを自動改善する例は不合格。1.0〜2.xの知識評価・保持はHMC-BR-003に従いLABOの範囲に残し、INTELLIGENCEによる改善利用は3.0以降の保留として扱う。3.0の利用を1.0の依存・受入条件にしない。
 - **未見**：初回と異なるrisk/failure mode、構成skillの衝突、source revision・評価状態のunknownを含む例で、適用外/unknown/conflict/未評価を返す。未見を既定pack適用可、改善根拠、activeへ自動変換しない。
+
+
+### HELIXINTELLIGENCE-L2-073 未知finding探索の自由文からの直接投影境界 — 受入候補
+
+- **前提**：未採択candidateとして、未知finding探索の自由文だけを入力する独立fixtureで確認する。候補の存在・提示・受入案はIssue、Requirement、CI、merge authorityの変更や実行を許可しない。既存owner経路を変更する受入にはしない。
+- **正常例**：既存UIL deterministic detectorの役割・結果を維持し、Agentic Audit Probeの探索自由文をその代替として扱わない。自由文のみのfindingを記録し、4つの宛先への直接projectionが発生しないことをそれぞれ確認する。必要な場合は対象ownerへfinding/candidateとして提示し、未判断状態を保つ。別途、適格根拠とowner判断が揃う既存経路の処理はその既存条件に従う。
+- **Issue宛先の誤り**：自由文だけからIssueを直接作成または更新した場合は不合格。UIL等の既存owner経路が独立に作成・受理する場合まで恒久禁止する解釈も不合格。
+- **Requirement宛先の誤り**：自由文だけからRequirement本文・identity・revision・採否/承認状態を作成、変更、確定した場合は不合格。ownerの独立した既存判断を経た後続処理まで永久に禁止する解釈も不合格。
+- **CI宛先の誤り**：自由文だけからCI定義・実行要求・実行結果・pass/完了状態を作成または変更した場合は不合格。新しいCI停止・起動動作やgateを候補から追加することも範囲外。
+- **merge authority宛先の誤り**：自由文だけからmerge可否・admission・merge操作の権限または状態を作成、変更、成立させた場合は不合格。既存の独立review/merge admissionを置換または追加制約することも範囲外。
+- **未見例**：既知fixtureと異なる未知finding文を与え、detector優先と4つの宛先を別々に照合する。ownerへのfinding/candidate提示は保持できる一方、Probeでdeterministic detectorを置換すること、および自由文のみからの各direct projectionはそれぞれ拒否される。根拠/authorityが不明ならunknownを保つ。いずれか一つの宛先の拒否で別宛先を代用しない。
+- **判定oracle**：deterministic detector非置換と、Issue作成/更新、Requirement変更、CI変更/実行authority、merge authority/admissionの各negative oracleを独立に照合する。自由文単独のdirect projectionまたはdetector置換のどれか一つでも成立すれば不合格。CI/merge behaviorを新設せず、ownerの独立判断後の既存経路も一律禁止しない。

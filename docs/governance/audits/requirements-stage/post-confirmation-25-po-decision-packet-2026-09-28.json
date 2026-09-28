@@ -1,9 +1,9 @@
 {
   "packet_kind": "recommendation_for_PO_decision_only",
-  "basis_commit": "99df8134923ca43f6d2d62774530fe68bf6d94c6",
+  "basis_commit": "dcc86cf02ade62aab1a723b49f8d5bca20677047",
   "as_of": "2026-09-28",
-  "count": 32,
-  "status": "All 32 are live registered proposals (authority_effect none). HELIXOS-L2-040 is a new bounded retry-route candidate pending PO; existing pair 039/045 remains separately pending. No adoption, hold, reject, implementation, or acceptance run is inferred from PRs or L2/L11 text.",
+  "count": 33,
+  "status": "All 33 are live registered proposals (authority_effect none). HELIXOS-L2-040 and HELIXINTELLIGENCE-L2-073 are bounded candidates pending PO; existing pair 039/045 remains separately pending. No adoption, hold, reject, implementation, or acceptance run is inferred from PRs or L2/L11 text.",
   "decision_grouping": "No shared adoption decision is bundled except PORTFOLIO-FIXTURE-FR54-FR55-ROUTE and HARNESS-OS-WBS-SHAPE-039-045-PAIR. HELIXOS-L2-039/HARNESS-L2-045 are linked by the latter, not independent adoption choices. The earlier R2247 options for 039 were preparation alternatives: A proposed adopting OS-039 alone with registrations blocked while the HARNESS contract was absent; B proposed holding 039 while preparing the HARNESS candidate and re-presenting both exact revisions. The B preparation step is completed by this HARNESS-045 candidate, but no PO selection resulted. The new pair options are A=adopt both exact revisions, B=hold both; neither has been selected, and B is advisory. HARNESS-L2-043/044 remain jointly routed only by the explicit FR54/55 route. Other candidate identities retain independent choices. HELIXINTELLIGENCE-L2-072 remains limited to its 1.0 shadow subset and HELIX-LABO-L2-062 preserves 2.0.",
   "candidates": [
     {
@@ -2556,10 +2556,119 @@
         "excerpt": "### HELIXOS-L2-040 retry上限到達時の型付き戻し先（単体候補、version_target: 1.0）",
         "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
       }
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-073",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "Historical draft candidate AAFD-R-04 two-line requirement atom: Probe does not replace the UIL deterministic detector, and free text is not directly projected to Issue, Requirement, CI, or merge authority.",
+      "new_meaning_choice": "A: adopt exact L2/L11 as a 1.0 candidate boundary preserving the UIL deterministic detector role/result and rejecting direct projection from unknown-finding exploratory free text alone into Issue, Requirement, CI, or merge authority. B: defer and preserve both source atoms unresolved. C: decide meaning change or retire against both identified source lines/revision and impacts.",
+      "recommended_choice": "A",
+      "choice_meaning": "Bounded A recommendation. Preserve the detector nonreplacement condition and reject only direct projection from exploratory free text alone to four destinations. Keep independent negative oracles. Do not add Issue/CI/merge behavior or constrain valid existing owner-authorized routes.",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HELIXINTELLIGENCE-L2-073 未知finding探索の自由文からの直接投影境界（unit candidate、version_target: 1.0）",
+      "requirement_source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#helixintelligence-l2-073",
+      "acceptance_source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-073-002",
+      "supersedes_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-073-001",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXINTELLIGENCE-L1-009"
+      ],
+      "parent_l1_path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+      "parent_l1_sha256_current": "8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8",
+      "parent_planning_revision_recorded": "docs/helix-intelligence/L1-planning/intelligence-intent.md@5c79869daba9a5c4fe426ddf3ad8e1bc380e64ca sha256:8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8（L1-009親は確定済み、073は未採択）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/intelligence-free-text-boundary-coverage-receipt-2026-09-28-r2.json",
+      "receipt_id": "MPR-RCPT-HELIXINTELLIGENCE-FREE-TEXT-BOUNDARY-2026-09-28-R2",
+      "receipt_candidate_digest_rule": "### ID見出しから次の同階層見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+          "start_heading_prefix": "### HELIXINTELLIGENCE-L2-073 ",
+          "end_heading_prefix": "次の同階層候補見出し（###）"
+        },
+        {
+          "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+          "start_heading_prefix": "### HELIXINTELLIGENCE-L2-073 ",
+          "end_heading_prefix": "次の同階層候補見出し（###）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:4425189d3870de92165ebdbc790902317dc2799d89f760156ab17441662a2eb5",
+      "receipt_candidate_semantic_digest": "sha256:4425189d3870de92165ebdbc790902317dc2799d89f760156ab17441662a2eb5",
+      "current_candidate_semantic_digest": "sha256:4425189d3870de92165ebdbc790902317dc2799d89f760156ab17441662a2eb5",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 2,
+      "source_atom_set_digest": "sha256:2d8209e1f351870271650d801b32b30db8e92f49c24cabf7e740f27e4d83cc4d",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "line": 45,
+          "source_line_sha256": "sha256:e7d58c59ce05eff5e2807b1a123e36e30d95dd8eddea9b26ae8de88406fa0de3",
+          "atom_id": "LEGACY-CAND-LINE-000142",
+          "source_file_sha256": "sha256:685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_revision_ref": "archive/current-file-sha"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "line": 46,
+          "source_line_sha256": "sha256:333d4deb1ee4f9c39d411fb9749a8e3d6c5d397972bf29b5c5d52f03ba696412",
+          "atom_id": "LEGACY-CAND-LINE-000143",
+          "source_file_sha256": "sha256:685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_revision_ref": "archive/current-file-sha"
+        }
+      ],
+      "source_reference_note": "旧AAFD-R-04の45-46行2 atomsをr2 receipt/source-lines JSONLで固定。旧R04外の条件、AAFD全体、自由文以外の根拠で進む既存owner pathは対象外。",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXINTELLIGENCE-L2-073",
+      "paired_l11_id": "HELIXINTELLIGENCE-L2-073",
+      "affected_requirement_and_consumer_ids": "HELIXINTELLIGENCE-L1-009; HELIXINTELLIGENCE-L2/L11-009; UIL deterministic detector; Issue, Requirement, CI, PR/review authority owners; HELIXOS-L2-001/007/008/010; HARNESS-L2-003/022",
+      "rationale": "採択済みL2/L11-009は監査finding traceと一般的な自由文authority境界を持つ。旧AAFD-R-04のline 45はUIL deterministic detector非置換、line 46はIssue/Requirement/CI/merge authorityの4宛先を明示する。元sentence全体の2 atomを受け、検出器境界と4宛先の独立negative oracleを限定候補にする。自由文単独でない既存owner経路やCI/merge behaviorは変更しない。",
+      "previous_register_revision": null,
+      "version_target_evidence": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "line": 601,
+        "excerpt": "### HELIXINTELLIGENCE-L2-073 未知finding探索の自由文からの直接投影境界（unit candidate、version_target: 1.0）",
+        "interpretation": "本文に明記した1.0候補の目標版。PO採択、v0.1収載、実装許可ではない."
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "exact L2/L11候補を1.0として採用",
+          "meaning": "ProbeがUIL deterministic detectorを置換しないことと、未知finding探索の自由文だけではIssue、Requirement、CI、merge authorityへ直接projectionしないことを採用する。ownerへのfinding/candidate提示、および別途適格根拠・owner判断後の既存経路は維持し、新behaviorは追加しない。",
+          "impact_ids": [
+            "HELIXINTELLIGENCE-L2/L11-073",
+            "HELIXINTELLIGENCE-L2/L11-009",
+            "UIL",
+            "HELIXOS-L2-001/007/008/010",
+            "HARNESS-L2-003/022"
+          ]
+        },
+        {
+          "id": "B",
+          "label": "候補を保留",
+          "meaning": "073は未採択のままr2 receiptと2 source atomsを保持する。",
+          "impact_ids": [
+            "HELIXINTELLIGENCE-L2/L11-073",
+            "LEGACY-CAND-LINE-000142",
+            "LEGACY-CAND-LINE-000143"
+          ]
+        },
+        {
+          "id": "C",
+          "label": "意味変更/retireを判断",
+          "meaning": "旧source revisionの45-46行、変更またはretire理由と影響をPO decisionへ明示する。旧source bytesは保持する。",
+          "impact_ids": [
+            "HELIXINTELLIGENCE-L2/L11-073",
+            "LEGACY-CAND-LINE-000142",
+            "LEGACY-CAND-LINE-000143",
+            "HELIXINTELLIGENCE-L2/L11-009"
+          ]
+        }
+      ]
     }
   ],
   "initial_25_basis_commit": "f4b2a2b02cf5ea3134e27be0a65c100395161bad",
-  "progression": "Initial 25 candidates + PR #2241 HARNESS-L2-042 + PR #2238 HELIXOS-L2-038 = historical 27; PR #2245 merged HARNESS-L2-043, giving 28; PR #2246 merged HARNESS-L2-044, giving 29; PR #2247 registered HELIXOS-L2-039, giving 30; current HARNESS-L2-045 brings the live decision set to 31. HELIXOS-L2-039/HARNESS-L2-045 are linked by an unselected paired PO decision. Current HELIXOS-L2-040 adds one bounded old HXT-AC-015 retry-route candidate, making 32; no PO selection.",
+  "progression": "Initial 25 candidates + PR #2241 HARNESS-L2-042 + PR #2238 HELIXOS-L2-038 = historical 27; PR #2245 merged HARNESS-L2-043, giving 28; PR #2246 merged HARNESS-L2-044, giving 29; PR #2247 registered HELIXOS-L2-039, giving 30; current HARNESS-L2-045 brings the live decision set to 31. HELIXOS-L2-039/HARNESS-L2-045 are linked by an unselected paired PO decision. Current HELIXOS-L2-040 adds one bounded old HXT-AC-015 retry-route candidate, making 32; no PO selection. Current HELIXINTELLIGENCE-L2-073 adds one bounded old AAFD-R-04 free-text direct-projection boundary candidate, making 33; no PO selection.",
   "version_target_evidence": null,
   "portfolio_fixture_fr54_fr55_route": {
     "decision_id": "PORTFOLIO-FIXTURE-FR54-FR55-ROUTE",
