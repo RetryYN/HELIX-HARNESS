@@ -7,6 +7,7 @@ IDS=['OUTSIDE67-PATH-002','OUTSIDE67-PATH-005','OUTSIDE67-PATH-013','OUTSIDE67-P
 EXISTING=['OUTSIDE67-PATH-008','OUTSIDE67-PATH-011','OUTSIDE67-PATH-030','OUTSIDE67-PATH-033','OUTSIDE67-PATH-034','OUTSIDE67-PATH-035','OUTSIDE67-PATH-036','OUTSIDE67-PATH-037','OUTSIDE67-PATH-043','OUTSIDE67-PATH-045','OUTSIDE67-PATH-046','OUTSIDE67-PATH-047','OUTSIDE67-PATH-052','OUTSIDE67-PATH-054','OUTSIDE67-PATH-055','OUTSIDE67-PATH-056','OUTSIDE67-PATH-057','OUTSIDE67-PATH-059','OUTSIDE67-PATH-063','OUTSIDE67-PATH-064','OUTSIDE67-PATH-065','OUTSIDE67-PATH-066','OUTSIDE67-PATH-001','OUTSIDE67-PATH-004','OUTSIDE67-PATH-007','OUTSIDE67-PATH-010','OUTSIDE67-PATH-060']
 PRE='2d4991042be55268bac30a8bbcdac45b3865030a'; ARCH='064280b5c1c5c98f949e6e3be5ef87cbe4a4b658'
 HEAD='b343360a104d377e545adc404a4151d70eac024e'; PREVIOUS_HEAD='b343360a104d377e545adc404a4151d70eac024e'
+COUNTERPART_CAPTURE='612ae1e9be85eda42649bf74e46998fd57da3de6'
 HOLDING='docs/governance/legacy-migration/pre-isolation/pre-isolation-outside-holding-67-source-holding.jsonl'; REGISTER='docs/governance/management-provisional-requirement-register.jsonl'
 LEDGERS=['docs/governance/legacy-asset-disposition.jsonl','docs/governance/legacy-asset-decisions.jsonl','docs/governance/legacy-asset-copy-read-after.jsonl','docs/governance/legacy-asset-decision-log.md','docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl','docs/governance/legacy-migration/requirement/legacy-requirement-implementation-crosswalk-bootstrap.jsonl','docs/governance/legacy-migration/ir/legacy-ir-product-unit-decomposition-bootstrap.jsonl']
 SOURCE_PATHS={'OUTSIDE67-PATH-002':'docs/design/harness/L2-requirements/product-requirements.md','OUTSIDE67-PATH-005':'docs/design/helix-os/L2-requirements/governance-requirements.md','OUTSIDE67-PATH-013':'docs/design/helix/L2-requirements/README.md','OUTSIDE67-PATH-031':'docs/governance/audits/l2-requirements/legacy-ai-read-entry-disposition.md','OUTSIDE67-PATH-061':'docs/governance/upstream-rebaseline-and-asset-governance-policy-2026-09-14.md'}
@@ -78,8 +79,10 @@ def validate(root):
   fail(e,f'E_ITEM_KEYS:{sid}',set(x)!={'archive_counterpart','archive_revision','artifact_kind','candidate_phase','candidate_product','legacy_evidence','phase_status','pre_isolation','product_candidates','product_status','reported_holding','source_item_id','source_path','source_unit','status'})
   cp=x.get('archive_counterpart',{})
   fail(e,f'E_COUNTERPART:{sid}',cp.get('path')!=COUNTERPARTS.get(sid) or cp.get('content_hash_matches_archive') is not COUNTERPART_MATCH[sid])
-  current=(root/COUNTERPARTS[sid]).read_bytes() if (root/COUNTERPARTS[sid]).is_file() else b''
-  fail(e,f'E_COUNTERPART_PROV:{sid}',cp.get('sha256')!=sha(current) or cp.get('bytes')!=len(current))
+  # selected-source-items is a fixed evidence capture. All five counterpart
+  # bytes match this Git revision; later live L2 additions must not rewrite it.
+  captured=blob(root,COUNTERPART_CAPTURE,COUNTERPARTS[sid])
+  fail(e,f'E_COUNTERPART_PROV:{sid}',cp.get('sha256')!=sha(captured) or cp.get('bytes')!=len(captured))
   for side,c in [('pre_isolation',PRE),('archive_revision',ARCH)]:
    got=x.get(side,{}); want=h.get('pre_isolation' if side=='pre_isolation' else 'archive',{})
    fail(e,f'E_REV:{sid}:{side}',got.get('commit')!=c or got.get('blob_oid')!=want.get('blob_oid') or got.get('sha256')!=want.get('sha256') or got.get('bytes')!=want.get('bytes') or got.get('line_count')!=len(blob(root,c,SOURCE_PATHS[sid]).decode().splitlines()))
