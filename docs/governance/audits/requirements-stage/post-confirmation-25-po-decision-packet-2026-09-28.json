@@ -1,6 +1,6 @@
 {
   "packet_kind": "recommendation_for_PO_decision_only",
-  "basis_commit": "22f0e53d528d8e32cb799d4c95effebab6bb35c4",
+  "basis_commit": "e194378c77019f60d55577fbf014e7430ebe270a",
   "as_of": "2026-09-28",
   "count": 40,
   "status": "初版25候補と後続15候補の判断packet。全40件はregistered_proposal / authority_effect:none、PO未採択・未判断。",
@@ -3422,6 +3422,89 @@
       "recommendation_basis": "親L1-001/002/003/004 traceはV-pair、style/quality、change impact/stale、verification/evidence/returnを導くが、budget/deadlineの値・単位・欠損/超過運用を導かない。さらに039はbudget absenceを拒否する一方、045はmissing/overrun gateを定義しない。旧IMP-049詳細も未disposition。意味境界をPOに明示し、対採択を保留するBを推奨する。",
       "selection_note": "推奨は候補作成側の助言であり、PO選択・自動hold/deferではない。",
       "budget_deadline_boundary": "045 requires the budget-cap/deadline value or source-reference fields; omission is shape-ineligible. 039 independently rejects absent budget. Value semantics, units, unresolved reference, and overrun handling remain PO-residual."
+    }
+  ],
+  "source_meaning_residuals": [
+    {
+      "residual_key": "V13-HIL-FR-68-SOURCE-MEANING-RESIDUAL",
+      "classification": "source_meaning_residual; not_a_candidate; excluded_from_count_40",
+      "authority_effect": "none",
+      "source": {
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "line": 158,
+        "file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "line_sha256": "sha256:1cb33f5f4fb41235b6e5930dc888fdff561a3d6eff99d50f816ea6ab8b151cd5",
+        "text": "| **HIL-FR-68** | Delegation Wire Protocolは`helix <runtime>`委譲をプロセス起動+stdout回収から、承認要求・tool call・結果の構造化イベントを受けるadapter契約へ移行し、承認応答policyをNode制御面がコードで保持する。共通下層としてのACP互換採用を評価する。 | structured event log、承認応答policy digest、adapter契約version |"
+      },
+      "legacy_ir": {
+        "pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-68",
+        "semantic_digest": "sha256:c9a0c409d5b73089fea4e0868d95677f1f855ccc30e749b1960c3377a8e89845",
+        "assertion": "HIA-FR-068",
+        "primary_system_contract": "HR-FR-HIL-23",
+        "acceptance": [
+          "HAC-HIL-23a",
+          "HAC-HIL-23b",
+          "HAC-HIL-23c"
+        ],
+        "system_test": "HAT-HIL-23 (designed_not_implemented)",
+        "acceptance_scope": "HR-FR-HIL-23 composite cases cover sandbox/proposal revalidation, egress/scope/secret/bypass rejection, quota/egress boundary; assertion ledger separately states structured-event contract inspection and rejects approval-response policy stored outside code."
+      },
+      "current_overlap_and_ownership": [
+        {
+          "owner": "HELIX-OS",
+          "refs": [
+            "HELIXOS-L1-003",
+            "HELIXOS-L1-008",
+            "HELIXOS-L2-004/007/009",
+            "HELIXOS-L2/L11-043"
+          ],
+          "coverage": "OS-043 is an unadopted candidate for Worker approval-request/tool-call/result event distinction and trace (source basis is P2-06); it is partial semantic overlap only and does not close HIL-FR-68, CLI migration, adapter version, ACP evaluation, or Node policy/digest."
+        },
+        {
+          "owner": "HELIX-CONNECT",
+          "refs": [
+            "HELIXCONNECT-L2-001/002/005"
+          ],
+          "coverage": "HELIXCONNECT-L2-001/002/005は2026-09-28のPO判断記録で採択済みで、明示登録された機構間接続のadapter/transport revision、互換/stale照合、技術traceを担う。Worker/provider runtimeは自動的にその機構間接続とはならず、対応するconnection identityと端点が確認されるまでHIL-FR-68のadapter条件の被覆は推定しない。",
+          "decision_ref": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md:27,44-48"
+        }
+      ],
+      "open_residuals": [
+        "legacy `helix <runtime>` process-launch/stdout-to-adapter migration meaning and applicability",
+        "Node control-plane code-held approval-response policy ownership and its policy digest; do not silently assign to OS, CONNECT, or SECURITY",
+        "adapter-contract version and ACP-compatibility evaluation owner/applicability; preserve as unassigned until the actual connection/Worker-adapter boundary is resolved; evaluating ACP does not adopt ACP",
+        "structured event log is only a partial trace overlap with OS-007/043, not an exact HIL-FR-68 successor or closure"
+      ],
+      "po_question": "どの旧HIL-FR-68条件を現行責務へ再導出し、どれを旧実装条件として保持または理由付きretireするか。ACPの採用可否はこの判断に含めない。",
+      "choices": [
+        {
+          "choice": "A_defer_and_preserve",
+          "recommended": true,
+          "meaning": "残差をこのsource-meaning recordで保持し、旧CLI・Node policy/digest・adapter version/ACP evaluationのowner/scope判断まで候補化しない。",
+          "impact": "HIL-FR-68は未閉鎖。OS-043の部分重なりと採択済みCONNECT要求の適用範囲を維持し、採択・実装・ACP採用を生成しない。"
+        },
+        {
+          "choice": "B_rederive_by_confirmed_scope",
+          "recommended": false,
+          "meaning": "Workerイベント意味をOS側へ、明示された機構間adapter revision/互換をCONNECTへ再導出する。実接続でないWorker-provider adapterは所有者・scopeを別途特定する。Node policy/digestは別判断に残す。",
+          "impact": "別のL2/L11候補または差分判断が必要。CONNECTへ全Workerを一律割当てず、ACP互換評価とACP採用を分離する。"
+        },
+        {
+          "choice": "C_retain_legacy_normative_meaning",
+          "recommended": false,
+          "meaning": "旧CLI移行とNode code-held policy/digest条件を指定された対象・実行経路にnormativeとして保持する。",
+          "impact": "対象runtime/provider、policy owner、既存SECURITY authorityとの境界を特定する必要があり、現行責務との不整合があれば影響範囲が広い。"
+        },
+        {
+          "choice": "D_explicitly_change_or_retire",
+          "recommended": false,
+          "meaning": "対象revision、理由、consumer影響を特定して一部または全部の意味変更・retireを明示する。",
+          "impact": "人間decisionなしに実施できない。ACP adoption remains a separate decision."
+        }
+      ],
+      "recommendation": "A_defer_and_preserve. This is a recommendation, not a PO selection or automatic defer.",
+      "coverage": "partial; no_loss_not_claimed; condition_closure_not_asserted"
     }
   ]
 }
