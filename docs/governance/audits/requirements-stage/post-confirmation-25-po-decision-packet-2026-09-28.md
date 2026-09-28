@@ -293,3 +293,12 @@ A＝exact L2/L11-044限定候補を採択（推奨）、B＝selected source atom
 P0訂正revision `MPR-RC-HELIXSECURITY-L2-033-002`は、L2/L11-033に資格情報境界の正常例と反例を追記し、初回候補本文・初回register・初回receiptを履歴として保持する。訂正候補はraw secret／credential値またはsecret／機密task内容を外部Workerへ渡すcaseをdenyする一方、値と内容をWorkerへ露出させず既存L2-005の限定credential-use capabilityを使う認証付きoperationは、L2-008 authority、L2-007制約および該当するL2-006条件の範囲で一律denyしない。新しい許可・authority・capabilityは生成しない。
 
 旧HR-FR-P2-05（archive line 428／6fabd125 baseline line 409）の「secret task deny」は、この認証付きoperationを含むかを定義しない。A＝訂正revisionの限定候補を採択（推奨）、B＝候補と2 source atomをholdingに保留、C＝全credential-use taskの禁止等を意味変更として選ぶ場合は対象source revisionに加え、採択済みL2-005対象revision・理由・影響を特定する。PO選択は未受領。source atom 2件・source-lines・両source holdingは不変で、scope coverageはその2 atomに限定する。最新receiptは`security-v13-worker-context-coverage-receipt-2026-09-28-r2.json`、L2/L11・register・digest pinは同JSON packet内のHELIXSECURITY-L2-033 current revisionを参照する。候補数は46のままである。
+
+
+## 後続追加：HARNESS-L2-047（判断集合47候補）
+
+| ID | 状態／推奨 | 版／対象L1親 | source basis／POが決める意味境界 | 根拠 | 影響する要求・consumer | 推奨理由 |
+|---|---|---|---|---|---|---|
+| `HARNESS-L2-047` (L2/L11) | PO未決／推奨 **A（HARNESS配置）**。**B（INTELLIGENCE配置）**を代替案として保持 | 1.0; HARNESS-L1-001/002/004 | HIL-BR-09/30のHARNESS process/contract生成と専門化抑制、HIL-FR-59のruntime-neutral contract fields/digests、HIL-FR-60の測定利益・single-worker十分性・適格projection/lifecycleを4 source lineで保持。POはHARNESS対INTELLIGENCEのowner配置を決める | `docs/governance/audits/requirement-registration/harness-specialist-contract-coverage-receipt-2026-09-29.json#HARNESS-L2-047`; source-linesは旧archive `infinity-loop-platform-requirements.md:61,82,149,150`、4 line SHAはreceipt参照 | HARNESS-L2-005/010/011/022; OS-L2-004/042/043; INTELLIGENCE-L2-010; LABO-L2-055/060; SECURITY-L2-007/008 | 旧BR09/30がHARNESSを明記し、現行責務ではHARNESSがprocess/verificationを持つ。INT placement、LABO evidence、OS assignment/runtime lifecycle、SECURITY authorityを重複所有しない。Bを選ぶ場合は別owner/parent/registrationが要る。 |
+
+A＝HARNESS-L2/L11-047 exact candidate revisionを選び、HARNESSをnormative contract-generation ownerとする（推奨）。B＝HARNESS候補を採択せず、同じsource atomsについてHELIX-INTELLIGENCEをownerとする別候補を起草・登録する。C＝4 source line atomsをholdingへ保留。D＝意味変更/retireは対象revision・理由・影響付き。選択は未決で、candidate registerは`registered_proposal` / `authority_effect:none`。必要性判断とruntime-neutral contract生成は別outputで、OSのassignment/runtime projection、SECURITY authority、実行を生成しない。4 semantic line atomsのみのscope no_lossであり、別holdingのIR recordsまたはsource全体のclosureを主張しない。
