@@ -328,3 +328,16 @@ A（推奨）＝CONNECTがprofile catalog/identity/config/typed descriptorを供
 Incident immediate-releaseのA/B比較は48候補の外に保つ。Aで例外を残す場合の最低条件は、既決の有効authorityの再利用、対象と作用を明記した一度の許可、backfill義務である。Bで通常Release Portへ統一する場合は、本番障害の復旧時間への影響を根拠付きで示し、値が分からなければunknownとする。OS-044とHELIXOS-L1-006の親関係はtraceの説明を追補する課題であり、新たな採否軸やL1判断へ変えない。
 
 機械可読の全48候補の軸、registration ID、依存する共有frame、候補外の判断材料は[同名JSON](post-confirmation-25-po-decision-packet-2026-09-28.json)の`decision_axes`を参照する。各軸が未選択であることは、この節の「推奨」と区別する。
+
+## O1・O2追加候補：ticket返却と運用feedback（判断集合52候補）
+
+この4候補は[依頼source snapshot](ops-o1-o2-request-source-snapshot-2026-09-29.md)に記録したO1・O2の意図要約と、旧Ticket／feedback資産の限定された条件を起点にする。依頼sourceはPO一次発話や対象revisionの採択記録ではない。返却率などの指標と機構間の分担は新規案として提示し、旧source全体のclosureや実装許可を主張しない。旧資産の選択節と残余は[source-lines](../requirement-registration/ops-o1-o2-source-lines-2026-09-29.jsonl)と[coverage receipt](../requirement-registration/ops-o1-o2-coverage-receipt-2026-09-29.json)で区別する。
+
+| 候補 | L2/L11の判断対象 | 旧sourceと新規案の境界 | 推奨するPO選択肢 |
+|---|---|---|---|
+| `HELIXOS-L2-047` | 発行済Ticketを受け手が編集せず、理由・不足条件・根拠をOSへ返し、元revisionを保持した新revisionとして再発行する単体候補 | 旧Ticketのimmutable/revisioned、運用属性の分離、Backflow/proposal境界を保持。任意の不備Ticketの理由付き返却・再発行の一連の手順は新規案 | A＝exact候補を採択（推奨）、B＝保留、C＝対象条件・理由・影響を示して変更。いずれも未選択 |
+| `HELIXOS-L2-048` | 返却・検証不能・不足input/oracleを既存feedback lifecycleと結び、LABO評価からINTELLIGENCE提案、OS判断へ運ぶ接続候補 | 旧finding/evidence・未解決保持と既存OS契約を利用。O1返却から評価・次回提案までの接続は新規案 | A＝exact候補を採択（推奨）、B＝保留、C＝接続範囲・責務を対象revisionで変更。未選択 |
+| `HELIXLABO-L2-069` | 返却率、理由分類、再発行後成立状況を、母数・scope・欠測を明示して評価する単体候補 | 旧評価・feedbackの証拠保持を利用。これらの指標・分類・比較条件は新規案で、数値閾値や因果改善を決めない | A＝exact候補を採択（推奨）、B＝保留、C＝指標・scope・導入版を対象revisionで変更。未選択 |
+| `HELIXINTELLIGENCE-L2-074` | LABO評価済みの返却情報を適用範囲が合う次回Worker配置proposalの根拠にする単体候補 | 旧観測・配置材料と既存L2-010を利用。次回proposalへの入力契約は新規案で、ticket発行や自動学習を含めない | A＝exact候補を採択（推奨）、B＝保留、C＝入力・適用範囲を対象revisionで変更。未選択 |
+
+4候補の採否はそれぞれ別判断とし、単体候補の採択から接続候補、他機構候補、既存のHARNESS-034/-036・OS-040の採択を推定しない。LABOは割当・起動・ticket発行を行わず、INTELLIGENCEは配置案を出し、OSが既存のauthority・要求・工程・検証契約に沿って発行と指定を判断する。旧Ticket/feedbackの未選択条件、欠落したPO一次文言、分類定義・母数・windowなど判断に必要な値は残差として保持する。

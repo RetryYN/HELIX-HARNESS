@@ -1,0 +1,269 @@
+{
+  "receipt_id": "MPR-RCPT-OPS-O1-O2-2026-09-29",
+  "authority_effect": "none",
+  "candidate_state": "registered_proposal only; no PO adoption",
+  "basis_commit": "1aa41a8ba6e750d23a46b832d1513738e84894bb",
+  "source_atom_set_digest_rule": "SHA-256 over ordered UTF-8 lines `atom_id` + space + `sha256:`-prefixed `source_span_sha256`, joined by LF without trailing LF.",
+  "candidate_digest_rule": "L2 section from `### ID` until next `###`; trim trailing blank lines and terminate with one UTF-8 LF.",
+  "source_lines_ref": "docs/governance/audits/requirement-registration/ops-o1-o2-source-lines-2026-09-29.jsonl",
+  "request_source_snapshot": {
+    "path": "docs/governance/audits/requirements-stage/ops-o1-o2-request-source-snapshot-2026-09-29.md",
+    "sha256": "sha256:c09a32e8daf3ffe03a6bbe358f9c1cc5483613beac4ae7090b36bf5d2d1475fa",
+    "classification": "Claude review-handoff summary copied as task-input snapshot. It is not direct PO utterance or PO decision. All conditions absent from legacy selected spans, including LABO return/reissue metrics and INTELLIGENCE next-proposal input, are new candidate proposals."
+  },
+  "scope": "O1 immutable return/reissue plus selected O2 feedback handoff/evaluation/placement atoms. Atom-level no_loss applies only to each candidate’s listed source spans. No full-file, full legacy-ticket, feedback lifecycle, runtime, consumer closure, authority decision, or old-source migration is claimed. Residual old conditions stay in source holding/old asset disposition.",
+  "unresolved_source_scope": [
+    "Execution-ticket source conditions outside the exact listed spans remain unresolved/not mapped, including atomic responsibility, broader admission, retry/recovery routes and other dependency conditions.",
+    "Legacy feedback lifecycle source remainder and runtime/store/schema are not mapped or migrated; current adopted OS-L2-007 remains the lifecycle contract.",
+    "Legacy operations-feedback document uses historical L14/process/runtime framing and is context only.",
+    "No legacy source atom establishes the new LABO metric definitions/denominators/windows or INTELLIGENCE input rule; these are new proposals from the task-input summary, not inherited PO-approved meaning."
+  ],
+  "candidates": [
+    {
+      "requirement_identity": "HELIXOS-L2-047",
+      "requirement_kind": "unit",
+      "version_target": "1.0 candidate; no inclusion decision",
+      "parent_l1_ids": [
+        "HELIXOS-L1-009"
+      ],
+      "parent_l1_sources": [
+        {
+          "path": "docs/helix-os/L1-planning/system-intent.md",
+          "revision": "docs/helix-os/L1-planning/system-intent.md@1aa41a8ba6e750d23a46b832d1513738e84894bb sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e（main基準revision。PO判断対象bytesとの一致は既存decision recordを参照）"
+        }
+      ],
+      "candidate_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-047",
+      "candidate_semantic_digest": "sha256:ceef03cf8b7ea946e5a59d01f04391b250b5fd45da42f33e55e43a223a40fdd2",
+      "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "source_atom_set_digest": "sha256:2394f5b4fcd158cfda710c950b36527c6d979ee2fa8b36094de9f607f93c24b6",
+      "source_atom_count": 4,
+      "source_collection_scope": "選択したsource sentence/span atomのみ。source本文・親要求・旧runtime全体のclosureを主張しない。",
+      "atoms": [
+        {
+          "atom_id": "O1-TICKET-IMMUTABLE",
+          "legacy_asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+          "source_file_sha256": "sha256:f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+          "source_line": 101,
+          "source_line_sha256": "sha256:bc3891c6ee1b2982656eea46dfedc9b59f73cb90ab3740200b65cf736467ca71",
+          "source_text": "3. Ticketはimmutable/revisioned。exactly-one primary responsibilityとbehavior contractを持つ。曖昧な分解は候補・backflowに留める。",
+          "source_text_span": "Ticketはimmutable/revisioned。",
+          "source_span_sha256": "sha256:c83a0a28156d8de63111e48b82293fcf04ea559e8ef82dd7d8dc6050d8c6f64f",
+          "span_scope_note": "一行の第1文だけ。第2文のexactly-one primary responsibility/behavior contractは本候補の範囲外。",
+          "disposition": "carried_span",
+          "relation": "保持するatom: Ticketをimmutable/revisionedとする。後続のexactly-one responsibility/behavior contractは本候補atomに含めない。"
+        },
+        {
+          "atom_id": "O1-TICKET-NONEXECUTION-ATTRIBUTES",
+          "legacy_asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+          "source_file_sha256": "sha256:f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+          "source_line": 102,
+          "source_line_sha256": "sha256:6fb892ab97f097535a18fd3940948ff171a5c8a5d270ac9c42c464d9de4155e0",
+          "source_text": "4. actor、provider、model、session、branch、worktree、lease、現時点の優先順位・進捗・measurement値はTicket本文へ入れない。",
+          "source_text_span": "4. actor、provider、model、session、branch、worktree、lease、現時点の優先順位・進捗・measurement値はTicket本文へ入れない。",
+          "source_span_sha256": "sha256:6fb892ab97f097535a18fd3940948ff171a5c8a5d270ac9c42c464d9de4155e0",
+          "span_scope_note": "該当する完全なsource line sentence only。隣接する他条件や旧implementationは範囲外。",
+          "disposition": "carried_span",
+          "relation": "保持するatom: actor/provider/model/session/branch/worktree/lease/現priority/progress/measurementをticket本文へ入れない。"
+        },
+        {
+          "atom_id": "O1-TICKET-OPERATIONAL-CHANGE-NOT-REVISION",
+          "legacy_asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+          "source_file_sha256": "sha256:f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+          "source_line": 105,
+          "source_line_sha256": "sha256:8237eb2d0b85a33cf0a9f6041b1148ac2d95ff6856215ab3f08699cbf4491506",
+          "source_text": "7. provider変更・観測方針変更・配車順位変更だけでTicketの意味revisionを増やさない。",
+          "source_text_span": "7. provider変更・観測方針変更・配車順位変更だけでTicketの意味revisionを増やさない。",
+          "source_span_sha256": "sha256:8237eb2d0b85a33cf0a9f6041b1148ac2d95ff6856215ab3f08699cbf4491506",
+          "span_scope_note": "該当する完全なsource line sentence only。隣接する他条件や旧implementationは範囲外。",
+          "disposition": "carried_span",
+          "relation": "保持するatom: provider/observation/placement順位変更のみでticket意味revisionを増やさない。"
+        },
+        {
+          "atom_id": "O1-MANAGEMENT-PROPOSAL-NOT-OVERWRITE",
+          "legacy_asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+          "source_file_sha256": "sha256:f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+          "source_line": 282,
+          "source_line_sha256": "sha256:5554ecdf5624fd3e7009fc5f0d9f9992358425a805233de930ee103bf34e8df7",
+          "source_text": "READY/blocked/active、lead time、retry、cost、coverage、measurement integrity、placementを別軸でprojectionする。管理側はreclassify/split/replan/backflow等のproposalを作成できるが、Ticketの意味を直接上書きしない。評価結果の利用可否・配車順は既存policyから説明可能に導出する。",
+          "source_text_span": "READY/blocked/active、lead time、retry、cost、coverage、measurement integrity、placementを別軸でprojectionする。管理側はreclassify/split/replan/backflow等のproposalを作成できるが、Ticketの意味を直接上書きしない。評価結果の利用可否・配車順は既存policyから説明可能に導出する。",
+          "source_span_sha256": "sha256:5554ecdf5624fd3e7009fc5f0d9f9992358425a805233de930ee103bf34e8df7",
+          "span_scope_note": "該当する完全なsource line sentence only。隣接する他条件や旧implementationは範囲外。",
+          "disposition": "carried_span",
+          "relation": "管理側proposalがticket意味を直接上書きしない。"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-004",
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-007",
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-010"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": [],
+      "context_only_source_refs": {
+        "legacy_ticket_asset": "LEGACY-ASSET-3A15E5645D2D2A59DFF5; adjacent ticket lines and HXT dependency/retry conditions remain outside these selected atoms"
+      }
+    },
+    {
+      "requirement_identity": "HELIXOS-L2-048",
+      "requirement_kind": "connection",
+      "version_target": "1.0 candidate; no inclusion decision",
+      "parent_l1_ids": [
+        "HELIXOS-L1-006",
+        "HELIXOS-L1-009"
+      ],
+      "parent_l1_sources": [
+        {
+          "path": "docs/helix-os/L1-planning/system-intent.md",
+          "revision": "docs/helix-os/L1-planning/system-intent.md@1aa41a8ba6e750d23a46b832d1513738e84894bb sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e（main基準revision。PO判断対象bytesとの一致は既存decision recordを参照）"
+        }
+      ],
+      "candidate_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-048",
+      "candidate_semantic_digest": "sha256:0cbd66b870d6b45f739c6759ed2b325d65e69cfbf3e72b6b5638f1e530c77622",
+      "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "source_atom_set_digest": "sha256:0688103d88ac41a44778232ca24ff9f55a94349387f02c4155dada8f8d0d3d84",
+      "source_atom_count": 2,
+      "source_collection_scope": "選択したsource sentence/span atomのみ。source本文・親要求・旧runtime全体のclosureを主張しない。",
+      "atoms": [
+        {
+          "atom_id": "O2-POSTCLOSE-ASSESSMENT",
+          "legacy_asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+          "source_file_sha256": "sha256:f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+          "source_line": 319,
+          "source_line_sha256": "sha256:fe6e99e332d445699fd06fc251f9696e8bc16921a84397f74d8df9c3f6b54557",
+          "source_text": "閉じたTicketに後日見つかった不具合、rollback、Recovery、Requirement Re-entryを証拠付きrelationで接続する。時間的近接や同じpathだけで原因Ticketを断定しない。元のclosureは保存し、追補assessmentを新発行する。観測窓未満、未追跡、打切りを0 defectsとしない。一般Ticket closeを長期観測窓待ちにしない。",
+          "source_text_span": "閉じたTicketに後日見つかった不具合、rollback、Recovery、Requirement Re-entryを証拠付きrelationで接続する。時間的近接や同じpathだけで原因Ticketを断定しない。元のclosureは保存し、追補assessmentを新発行する。観測窓未満、未追跡、打切りを0 defectsとしない。一般Ticket closeを長期観測窓待ちにしない。",
+          "source_span_sha256": "sha256:fe6e99e332d445699fd06fc251f9696e8bc16921a84397f74d8df9c3f6b54557",
+          "span_scope_note": "該当する完全なsource line sentence only。隣接する他条件や旧implementationは範囲外。",
+          "disposition": "carried_span",
+          "relation": "保持するatom: closed ticketへの後日finding relation、近接/pathのみでの因果断定拒否、元closure保持と追補assessment、観測途中等を0件にしない。"
+        },
+        {
+          "atom_id": "O1-MANAGEMENT-PROPOSAL-NOT-OVERWRITE",
+          "legacy_asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+          "source_file_sha256": "sha256:f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+          "source_line": 282,
+          "source_line_sha256": "sha256:5554ecdf5624fd3e7009fc5f0d9f9992358425a805233de930ee103bf34e8df7",
+          "source_text": "READY/blocked/active、lead time、retry、cost、coverage、measurement integrity、placementを別軸でprojectionする。管理側はreclassify/split/replan/backflow等のproposalを作成できるが、Ticketの意味を直接上書きしない。評価結果の利用可否・配車順は既存policyから説明可能に導出する。",
+          "source_text_span": "READY/blocked/active、lead time、retry、cost、coverage、measurement integrity、placementを別軸でprojectionする。管理側はreclassify/split/replan/backflow等のproposalを作成できるが、Ticketの意味を直接上書きしない。評価結果の利用可否・配車順は既存policyから説明可能に導出する。",
+          "source_span_sha256": "sha256:5554ecdf5624fd3e7009fc5f0d9f9992358425a805233de930ee103bf34e8df7",
+          "span_scope_note": "該当する完全なsource line sentence only。隣接する他条件や旧implementationは範囲外。",
+          "disposition": "carried_span",
+          "relation": "管理側proposalがticket意味を直接上書きしない。"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-007",
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-020",
+        "docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-010",
+        "docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-037",
+        "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#helixintelligence-l2-010"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": [],
+      "context_only_source_refs": {
+        "legacy_ticket_asset": "LEGACY-ASSET-3A15E5645D2D2A59DFF5; archive/.../execution-ticket-requirements.md lines 238,242,323; context only, not all clauses mapped",
+        "legacy_feedback_asset": "LEGACY-ASSET-F6E9EA3422A0EF1DF090; archive/.../feedback-lifecycle.md lines 10,19,86,89,92,94; source/lifecycle meaning already handled by adopted OS-L2-007; old storage/state machine excluded",
+        "legacy_ops_asset": "LEGACY-ASSET-B7C2E013967395CFD83B; archive/.../operations-feedback-boundary.md lines 45-47; historical context only, no old process/runtime carried"
+      }
+    },
+    {
+      "requirement_identity": "HELIXLABO-L2-069",
+      "requirement_kind": "unit",
+      "version_target": "1.0 candidate; no inclusion decision",
+      "parent_l1_ids": [
+        "HELIXLABO-L1-007"
+      ],
+      "parent_l1_sources": [
+        {
+          "path": "docs/helix-labo/L1-planning/labo-intent.md",
+          "revision": "docs/helix-labo/L1-planning/labo-intent.md@1aa41a8ba6e750d23a46b832d1513738e84894bb sha256:78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc（main基準revision。PO判断対象bytesとの一致は既存decision recordを参照）"
+        }
+      ],
+      "candidate_source_path": "docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-069",
+      "candidate_semantic_digest": "sha256:605acfa9ec39bbdc0d964f3bf3c644122f1c081c202ddea48fe682ac31be5bc9",
+      "acceptance_source_path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "source_atom_set_digest": "sha256:6201a67d94a581b01ff8e50dfa04e9e5ac81553d4d0028da038474cbf8baa9ec",
+      "source_atom_count": 2,
+      "source_collection_scope": "選択したsource sentence/span atomのみ。source本文・親要求・旧runtime全体のclosureを主張しない。",
+      "atoms": [
+        {
+          "atom_id": "O2-POSTCLOSE-ASSESSMENT",
+          "legacy_asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+          "source_file_sha256": "sha256:f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+          "source_line": 319,
+          "source_line_sha256": "sha256:fe6e99e332d445699fd06fc251f9696e8bc16921a84397f74d8df9c3f6b54557",
+          "source_text": "閉じたTicketに後日見つかった不具合、rollback、Recovery、Requirement Re-entryを証拠付きrelationで接続する。時間的近接や同じpathだけで原因Ticketを断定しない。元のclosureは保存し、追補assessmentを新発行する。観測窓未満、未追跡、打切りを0 defectsとしない。一般Ticket closeを長期観測窓待ちにしない。",
+          "source_text_span": "閉じたTicketに後日見つかった不具合、rollback、Recovery、Requirement Re-entryを証拠付きrelationで接続する。時間的近接や同じpathだけで原因Ticketを断定しない。元のclosureは保存し、追補assessmentを新発行する。観測窓未満、未追跡、打切りを0 defectsとしない。一般Ticket closeを長期観測窓待ちにしない。",
+          "source_span_sha256": "sha256:fe6e99e332d445699fd06fc251f9696e8bc16921a84397f74d8df9c3f6b54557",
+          "span_scope_note": "該当する完全なsource line sentence only。隣接する他条件や旧implementationは範囲外。",
+          "disposition": "carried_span",
+          "relation": "保持するatom: closed ticketへの後日finding relation、近接/pathのみでの因果断定拒否、元closure保持と追補assessment、観測途中等を0件にしない。"
+        },
+        {
+          "atom_id": "O2-COUNT-REDUCTION-NOT-QUALITY",
+          "legacy_asset_id": "LEGACY-ASSET-F6E9EA3422A0EF1DF090",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/feedback-lifecycle.md",
+          "source_file_sha256": "sha256:2e0a028fc48c6acc92a5b09ada9fc511ed0389b71af9deee782ec81aa731a655",
+          "source_line": 24,
+          "source_line_sha256": "sha256:34a0310df36982f511d71b3b882ff2e5923b68fde9d150232e2008a0d8c643c0",
+          "source_text": "件数減少だけを品質証明にしない。gate/actionableが残ること、terminal化の根拠、hidden breadcrumb、",
+          "source_text_span": "件数減少だけを品質証明にしない。",
+          "source_span_sha256": "sha256:bd4055aba638835af6b305faf044e70c4b71c5322f9fee903e49e40f070db809",
+          "span_scope_note": "一行の最初の文だけ。旧sourceのstore/schema/gate/actionable詳細は範囲外。",
+          "disposition": "carried_span",
+          "relation": "保持するatom: 件数減少だけで品質を証明しない。Feedback lifecycle実装条件は本candidate atomに含めない。"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-010",
+        "docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-037"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": [],
+      "context_only_source_refs": {
+        "legacy_ticket_asset": "LEGACY-ASSET-3A15E5645D2D2A59DFF5; archive/.../execution-ticket-requirements.md lines 238,242,323; context only, not all clauses mapped",
+        "legacy_feedback_asset": "LEGACY-ASSET-F6E9EA3422A0EF1DF090; archive/.../feedback-lifecycle.md lines 10,19,86,89,92,94; source/lifecycle meaning already handled by adopted OS-L2-007; old storage/state machine excluded",
+        "legacy_ops_asset": "LEGACY-ASSET-B7C2E013967395CFD83B; archive/.../operations-feedback-boundary.md lines 45-47; historical context only, no old process/runtime carried"
+      }
+    },
+    {
+      "requirement_identity": "HELIXINTELLIGENCE-L2-074",
+      "requirement_kind": "unit",
+      "version_target": "1.0 candidate; no inclusion decision",
+      "parent_l1_ids": [
+        "HELIXINTELLIGENCE-L1-010"
+      ],
+      "parent_l1_sources": [
+        {
+          "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+          "revision": "docs/helix-intelligence/L1-planning/intelligence-intent.md@1aa41a8ba6e750d23a46b832d1513738e84894bb sha256:8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8（main基準revision。PO判断対象bytesとの一致は既存decision recordを参照）"
+        }
+      ],
+      "candidate_source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#helixintelligence-l2-074",
+      "candidate_semantic_digest": "sha256:5605649ccd2e582bc795b6937792c4957230bf0045031fa58cf9ffa21871719c",
+      "acceptance_source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "新規提案。旧sourceからこの次回placement proposal入力を直接支えるlegacy atomは抽出していない（空集合）。依頼summary由来の候補文であり、旧source coverage/no_lossを主張しない。",
+      "atoms": [],
+      "current_condition_refs": [
+        "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#helixintelligence-l2-010",
+        "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#helixintelligence-l2-067"
+      ],
+      "coverage_result": "pending_coverage",
+      "unaccounted_atom_refs": [],
+      "context_only_source_refs": {
+        "legacy_ticket_asset": "LEGACY-ASSET-3A15E5645D2D2A59DFF5; archive/.../execution-ticket-requirements.md lines 238,242,323; context only, not all clauses mapped",
+        "legacy_feedback_asset": "LEGACY-ASSET-F6E9EA3422A0EF1DF090; archive/.../feedback-lifecycle.md lines 10,19,86,89,92,94; source/lifecycle meaning already handled by adopted OS-L2-007; old storage/state machine excluded",
+        "legacy_ops_asset": "LEGACY-ASSET-B7C2E013967395CFD83B; archive/.../operations-feedback-boundary.md lines 45-47; historical context only, no old process/runtime carried"
+      }
+    }
+  ]
+}

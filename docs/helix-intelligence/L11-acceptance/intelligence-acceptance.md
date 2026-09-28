@@ -324,3 +324,12 @@ HELIXINTELLIGENCE-L2-069／HELIXINTELLIGENCE-L2-070／HELIXINTELLIGENCE-L2-071�
 - **merge authority宛先の誤り**：自由文だけからmerge可否・admission・merge操作の権限または状態を作成、変更、成立させた場合は不合格。既存の独立review/merge admissionを置換または追加制約することも範囲外。
 - **未見例**：既知fixtureと異なる未知finding文を与え、detector優先と4つの宛先を別々に照合する。ownerへのfinding/candidate提示は保持できる一方、Probeでdeterministic detectorを置換すること、および自由文のみからの各direct projectionはそれぞれ拒否される。根拠/authorityが不明ならunknownを保つ。いずれか一つの宛先の拒否で別宛先を代用しない。
 - **判定oracle**：deterministic detector非置換と、Issue作成/更新、Requirement変更、CI変更/実行authority、merge authority/admissionの各negative oracleを独立に照合する。自由文単独のdirect projectionまたはdetector置換のどれか一つでも成立すれば不合格。CI/merge behaviorを新設せず、ownerの独立判断後の既存経路も一律禁止しない。
+
+### HELIXINTELLIGENCE-L2-074 評価済み返却feedbackの配置proposal入力の受入候補
+
+- **状態**：L2-074と対になる未採択・未実行候補。L2-010のproposal boundaryを維持する入力caseであり、model/runtime動作を主張しない。
+- **正常例**：LABO評価済みのticket返却reason、同scopeの再発行後検証結果、task class/domain、source/revision、観測母数/windowを与える。INTELLIGENCEが同scopeのWorker実績として根拠を引用した配置proposalを出し、未評価範囲と再評価条件を明示する。OSはproposalを参考情報として受け、発行・指定・割当の既存判断を別に行う。
+- **拒否例**：LABO未評価、比較不能、欠測、stale、異なるscope/revisionまたはtask classの結果を評価済み根拠へ昇格した場合は不合格。単一feedbackからWorkerを恒久除外/昇格、modelを自動更新、ticketを直接発行、assignment/dispatchを実行する場合も不合格。
+- **不足例**：task属性不足ならOSへ、LABO評価/evidence/scope不足ならLABOへ返し、proposalを未確定とする。未評価を既定Workerや「成功」と補完しない。
+- **未見例**：同じ理由classでも対象scopeの異なるfeedbackを与え、適用できないevidenceがproposalへ混ざらず、適用可能範囲とunknownが区別されることを確認する。
+- **受入限界**：配置精度の因果改善、固定threshold、資格の恒久化、model更新・自動学習、実dispatchは検査・要求対象外。proposal受入からOSのticket/assignment決定を生成しない。

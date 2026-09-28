@@ -284,3 +284,12 @@ L2-064と対になる未採択受入候補、1.0。
 - **未見例**：OSの訂正eventが遅延している、担当交代後のAttempt lineageを同じtask/scopeへ結べない、同じidentityの重複と別Attemptを判別できない、sourceが全Attemptの捕捉を保証しない場合は総数をunknownとし、記録source ownerへ返す。遅延eventや別scopeの履歴から欠落Attemptを推測しない。
 - **065／067との受入境界**：065が適用されるscopeでは`first_pass`とpost-initial `retry_count`をその定義のまま受入れ、068のAttempt identity countと別々に報告する。067が適用されるscopeでは`same_attempt_repair_round_count`を同一Attempt内の修復として保持し、068のAttempt数へ加算しない。3つを同じscorecardへ併記しても、明示された定義・scope・receiptを維持し、換算・代替・合算をしない。065/067の候補有無にかかわらず、068単独のOS Attempt記録だけから本指標を返す。
 - **責務・受入限界**：OSの既存assignment/Attempt identity、event/evidence、結果・訂正receiptを入力に使い、LABOは数と比較証拠だけを返す。LABOはWorkerを起動・再試行・割当せず、Attempt/Retry policyや成功oracleを定めない。既存OS recordがAttempt境界または記録完全性を明示しない場合は定義を推測せず未評価にする。候補の静的記述は実装、実験許可、Worker割当、実測結果、採択を示さない。
+
+### HELIXLABO-L2-069 Ticket返却・再発行後の成立状況評価の受入候補
+
+- **状態**：L2-069と対になる未採択・未実行候補。数値metricや実運転を確定せず、指定入力の評価境界を照合する。
+- **正常例**：同一ticket family/scopeの複数feedbackについて、reason class、返却件数、該当する観測母数、source completeness、reissue後の検証結果を受け取る。出力は分母・scope・revision・windowを示し、各resultを成立/不成立/未評価に区別する。OS ticketや配置を変更せずfeedback candidateとして返す。
+- **不合格**：異なるscope/revisionを同一cohortとして集計、母数不明のrateを確定、欠測を0、観測window未満/未追跡/打切りをdefect 0件、未実行を成功、件数減少だけをquality証明、または再発行後成立を原因関係の証明として出力する。LABOがticket/assignment/priority/oracleを変更する場合も不合格。
+- **比較不能例**：母数またはsource completenessが不明、revisionがstale、再発行ticketと元findingの因果relationがない場合はrate/resultを評価不能とし、欠けた証拠を指定してOS/source ownerへ返す。
+- **未見例**：検収から届いたoracle不足findingを入力し、発生源と理由classを保持して評価する。適用分類がない場合は自由に新classを作らずunknown/未分類として返す。
+- **受入限界**：固定threshold、因果推論手法、実験の割付方式や自動学習は要求しない。評価結果からticket採択・改善完了・配置変更を導かない。

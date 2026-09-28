@@ -605,3 +605,12 @@ L2-011は既存の同一corpus/responsibility scope比較を所有したまま�
 - **要求**：Agentic Audit Probeによる未知finding探索はUILのdeterministic detectorを置換しない。未知finding探索の自由文だけを根拠に、Issueを直接作成/更新せず、Requirementの意味・revision・承認状態を直接変更せず、CIの定義・実行・結果・完了状態を直接変更せず、merge authority・admission・merge状態を直接変更しない。finding/candidateを各ownerへ提示することはできる。適格な別根拠と独立したowner判断を経る既存経路を禁止、変更、追加する要求ではない。
 - **既存owner境界**：finding検出・qualificationは既存UIL owner、Requirement意味は上流owner、CI/verificationは既存OS/HARNESS owner、PR review/merge admissionは現行GitHub authority経路に残る。本候補はIssue route、detector、CIまたはmergeの新しいgate、動作、手順、許可、禁止条件を定義せず、自由文単独のdirect projectionとdetector置換だけを対象とする。
 - **単独成立依存・戻し先**：`HELIXINTELLIGENCE-L2-009`の監査finding/source/evidence traceと、UILおよび各宛先の既存owner境界を参照する。qualificationまたは根拠が不足する場合はcandidate/findingとしてownerへ戻す。対象・根拠・適用経路が不明ならunknownのまま保つ。`version_target: 1.0`は候補の目標版であり、採択や実装許可ではない。
+
+### HELIXINTELLIGENCE-L2-074 評価済み返却feedbackの配置proposal入力（単体候補、version_target: 1.0）
+
+- **親と状態**：`HELIXINTELLIGENCE-L1-010`に接続する未採択候補。採択済みL2-010 Worker配置候補と既存候補L2-067の入力条件を補う限定candidateであり、それらの意味を暗黙変更しない。
+- **入力と提供**：LABOから、返却reason class、欠けた入力/oracle、再発行後の検証成立状況を含む評価済みevidenceを受け取る。evidenceはtask class/domain、対象revision、scope、観測母数・window、source completeness、LABO評価状態を伴う。INTELLIGENCEは同scopeのWorker実績へ適用可能な場合に限り、次回のticket別placement proposalの根拠として引用し、提案・根拠・適用範囲・未評価/不確実性・再評価条件を示す。
+- **適用保証**：未評価、比較不能、stale、別task class/scope/revisionのfeedbackは適合実績として扱わず、placement入力から除外するか未評価として示す。少数/単一feedbackから恒久的なWorker資格・順位、因果的な能力差、model更新を決めない。既存L2-010のsuccess/failure/rework/latency/cost/reliability evidenceを利用し、LABOの評価だけでproposalを正しいと保証しない。
+- **境界**：INTELLIGENCEは配置proposalを出す。指定、ticket発行/再発行、assignment、dispatch、Worker/modelの自動昇格/除外はOS/既存ownerに残し、候補evidenceから要求意味・authority・ticketを生成しない。新しい承認経路は設けない。
+- **戻し先**：task属性不足はOSへ、Bench/evidence/scope/revisionまたはLABO評価不足はLABOへ返し、該当proposalを未評価/未確定とする。
+- **旧sourceとの対応と限界**：旧ticket/feedback sourceの成功・失敗・reworkと再発行後評価を次回配置判断に使うというO2の入力要望を、既存L2-010の配置案責務へ限定接続する新規案。旧sourceは配置案への自動学習やworker資格の恒久更新を根拠づけないため追加しない。候補は実際の配置変更や改善効果を主張しない。

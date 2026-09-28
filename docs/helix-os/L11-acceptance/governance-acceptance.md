@@ -790,3 +790,21 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **scope／HEAD／authority変更**：実行中またはReady後に対象HEAD、base、scope、authorityの有効性、適用HARNESS contractのいずれかが変わるfixtureを与える。影響する遷移だけをstale／未完へ戻し、無関係なscopeは既存規則どおり扱う。旧HEADのreviewや検証結果、失効したauthorityを現在の対象へ転用しない。
 - **誤りの例**：`docs/` pathのため既存のrequired review／verificationを除外する、探索・prototypeのmergeを本実装許可として扱う、required verificationをskipする、別HEADまたは別scopeの成功を流用する、対象HEAD／base変更後に古いreview結果でmergeを進める、あるいは一段の成功を次段完了へ伝播する場合は不成立。
 - **境界と受入限界**：required条件と適用可能な除外は既存contractのownerが決め、本候補は具体的なrequired list、CI、skip機構、追加承認、実運用設定を定義しない。RFA-AC-16の指定rowだけを扱い、旧RFA全体のclosure、実装、運転、merge実施を主張しない。
+
+### HELIXOS-L2-047 理由付きticket返却・再発行の受入候補
+
+- **状態**：L2-047と対になる未採択・未実行候補。文書上の静的oracle案であり、runtime動作や要求採択を主張しない。
+- **正常例**：`T@r1`とassignment/resultを与え、受け手が不足条件と根拠source revisionを理由付きで返す。`T@r1`のbytes/digestが不変で、OSが返却と因果関係を記録し、対処した`T@r2`を新revisionとして発行する。旧assignment/resultは新revisionの適用契約で明示的に適格化されない限り継承されない。
+- **不合格**：Worker/検収が本文を直接変更する、`r1`を上書きする、理由/evidenceを落とす、別scope/revisionの根拠を流用する、`r2`を`r1`と同一revision扱いする、またはIssue/PR状態だけで再発行・完了を成立させる。
+- **unknown/stale**：target identity、要求revision、返却元、証拠source、scope、既存relationが不明なら再発行成立を推測せず当該ticketを未完で返す。新しいschema/relation型を補作しない。
+- **未見例**：検収側のoracle不足とWorker側の入力不足をそれぞれ与える。どちらも本文変更なしで発行元へ届き、元revision保持と新revision発行が成立する。
+- **受入限界**：既存ownerが定めるrevision・relation・authority契約の範囲に限る。実行やCIの合格を主張しない。
+
+### HELIXOS-L2-048 feedback受渡し・未解決維持の受入候補
+
+- **正常例**：一つのticket返却findingと、検証不能の理由・不足oracle/inputを与える。OSがsource revision、target scope、ticket/assignment、発生元を保持してpendingにし、LABOへ評価candidateを渡す。LABOが理由/evidence/scope/再評価条件付きの提案を返し、INTELLIGENCEが適用可能なLABO評価evidenceを次回proposalに引用する。OSがproposalと既存ticket契約を別々に確認して発行・再発行を決める。
+- **解決oracle**：prose handoverだけ、欠けた入力/oracle、未ack状態、または別revision/scopeのevidenceだけではfindingをresolvedにしない。resolutionは既存L2-007の条件を満たす証拠があるときだけ成立する。
+- **不合格**：findingが消える、未解決がsuccess扱い、CIが不足oracleを創作、異なるscope/revisionを同一評価へ混ぜる、LABOがticket/assignmentを作る、INTELLIGENCEがdispatchする、feedbackだけでauthority/要求意味/priorityを変更する場合。
+- **unknown/未評価**：対象revision・scope・評価母数・source・resolution条件のいずれかが不明/staleなら、その部分をunknown/未評価のまま保ちownerへ返す。欠測を0または成功としない。
+- **未見例**：Worker返却でなく、検収のoracle不足から始まるfindingを与え、同じowner分担とpending/evidence保持を照合する。LABO評価が未完ならINTELLIGENCEは未評価としてproposalを保留する。
+- **受入限界**：resolutionの新schema/十分条件、測定指標の数値threshold、runtime、実学習は導入しない。candidateと受入案から旧source全体のclosureや改善の因果効果を主張しない。

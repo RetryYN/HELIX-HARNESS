@@ -1,9 +1,9 @@
 {
   "packet_kind": "recommendation_for_PO_decision_only",
-  "basis_commit": "d6daba2279dcbdb1a6dfa239d0f1e183e6971476",
+  "basis_commit": "1aa41a8ba6e750d23a46b832d1513738e84894bb",
   "as_of": "2026-09-29",
-  "count": 48,
-  "status": "48 candidate decisions pending PO; all remain unadopted unless a recorded PO decision says otherwise.",
+  "count": 52,
+  "status": "52 candidate entries in this decision packet; all choices here remain unselected. Any later PO decisions must be recorded in separate exact-revision decision records; this packet does not infer them.",
   "decision_grouping": "No shared adoption decision is bundled except PORTFOLIO-FIXTURE-FR54-FR55-ROUTE and HARNESS-OS-WBS-SHAPE-039-045-PAIR. HELIXOS-L2-039/HARNESS-L2-045 are linked by the latter, not independent adoption choices. The earlier R2247 options for 039 were preparation alternatives: A proposed adopting OS-039 alone with registrations blocked while the HARNESS contract was absent; B proposed holding 039 while preparing the HARNESS candidate and re-presenting both exact revisions. The B preparation step is completed by this HARNESS-045 candidate, but no PO selection resulted. The new pair options are A=adopt both exact revisions, B=hold both; neither has been selected, and B is advisory. HARNESS-L2-043/044 remain jointly routed only by the explicit FR54/55 route. Other candidate identities retain independent choices. HELIXINTELLIGENCE-L2-072 remains limited to its 1.0 shadow subset and HELIX-LABO-L2-062 preserves 2.0.",
   "candidates": [
     {
@@ -4144,10 +4144,312 @@
         ],
         "recommendation_rationale": "CONNECT L1-001 owns shared typed contract boundaries; SECURITY adopted L2-005..008 already owns operation and policy safety. Separating descriptor supply from authorization avoids new authority and leaves business meaning with the source mechanism."
       }
+    },
+    {
+      "identity": "HELIXOS-L2-047",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "旧Ticketのimmutable/revisioned、運用属性分離、管理proposal非上書きを限定保持する。任意の不備に対する理由付き返却と新revision再発行の一連の条件は依頼summary由来の新規案。",
+      "new_meaning_choice": "A＝exact候補の返却・再発行契約を採択。B＝候補を保留し元のTicket/Backflow契約のみを維持。C＝対象revision・理由・影響を示して条件を変更する。 いずれも未選択。",
+      "recommended_choice": "A",
+      "choice_meaning": "Aは登録されたL2/L11のexact候補だけを選ぶ。既存採択済み条件を置換せず、接続先候補を自動採択しない。L3承認、実装、運転、releaseを生成しない。",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HELIXOS-L2-047 チケットの理由付き返却と新revision再発行（単体候補、version_target: 1.0）",
+      "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-047",
+      "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-047",
+      "registration_id": "MPR-RC-HELIXOS-L2-047-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXOS-L1-009"
+      ],
+      "parent_l1_path": "docs/helix-os/L1-planning/system-intent.md",
+      "parent_l1_sha256_current": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+      "parent_planning_revision_recorded": "docs/helix-os/L1-planning/system-intent.md@1aa41a8ba6e750d23a46b832d1513738e84894bb sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e（main基準revision。PO判断対象bytesとの一致は既存decision recordを参照）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/ops-o1-o2-coverage-receipt-2026-09-29.json#HELIXOS-L2-047",
+      "receipt_id": "MPR-RCPT-OPS-O1-O2-2026-09-29",
+      "receipt_candidate_digest_rule": "L2 section from `### ID` until next `###`; trim trailing blank lines and terminate with one UTF-8 LF.",
+      "registered_candidate_semantic_digest": "sha256:ceef03cf8b7ea946e5a59d01f04391b250b5fd45da42f33e55e43a223a40fdd2",
+      "receipt_candidate_semantic_digest": "sha256:ceef03cf8b7ea946e5a59d01f04391b250b5fd45da42f33e55e43a223a40fdd2",
+      "current_candidate_semantic_digest": "sha256:ceef03cf8b7ea946e5a59d01f04391b250b5fd45da42f33e55e43a223a40fdd2",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 4,
+      "source_atom_set_digest": "sha256:2394f5b4fcd158cfda710c950b36527c6d979ee2fa8b36094de9f607f93c24b6",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+          "line": 101,
+          "source_file_sha256": "sha256:f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+          "source_line_sha256": "sha256:bc3891c6ee1b2982656eea46dfedc9b59f73cb90ab3740200b65cf736467ca71",
+          "atom_id": "O1-TICKET-IMMUTABLE",
+          "source_text_span": "Ticketはimmutable/revisioned。"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+          "line": 102,
+          "source_file_sha256": "sha256:f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+          "source_line_sha256": "sha256:6fb892ab97f097535a18fd3940948ff171a5c8a5d270ac9c42c464d9de4155e0",
+          "atom_id": "O1-TICKET-NONEXECUTION-ATTRIBUTES",
+          "source_text_span": "4. actor、provider、model、session、branch、worktree、lease、現時点の優先順位・進捗・measurement値はTicket本文へ入れない。"
+        }
+      ],
+      "source_reference_note": "選択したsentence/span atomに限る。旧source全体のclosureを主張しない。依頼sourceはClaude summaryでPO一次発話ではない。",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXOS-L2-047",
+      "paired_l11_id": "HELIXOS-L11-047",
+      "affected_requirement_and_consumer_ids": "OS-L2-004/007/010/020/022; LABO-L2-010/037/052; INTELLIGENCE-L2-010; HARNESS-L2-005/022/034/036; OS-L2-040/044; applicable source holding",
+      "rationale": "現行の責務に沿って限定候補を分ける。ticket発行と運転はOS、評価はLABO、配置案はINTELLIGENCE、検証oracleはHARNESS。",
+      "candidate_input_coverage_result": "no_loss for selected source spans only",
+      "source_line_coverage_result": "partial; unselected clauses remain in source holding; no full source closure",
+      "preserved_pending_atom_refs": [
+        "MPR-SH-CANDIDATE-003"
+      ],
+      "po_decision_frame": {
+        "selection_status": "pending_PO",
+        "selected_option": null,
+        "recommended_option": "A",
+        "recommendation_is_decision": false,
+        "options": [
+          {
+            "id": "A",
+            "meaning": "adopt exact candidate revision"
+          },
+          {
+            "id": "B",
+            "meaning": "hold unadopted"
+          },
+          {
+            "id": "C",
+            "meaning": "amend with exact affected revision/reason/impact"
+          }
+        ]
+      }
+    },
+    {
+      "identity": "HELIXOS-L2-048",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "旧post-close assessmentとticket非上書きを限定保持し、既存OS-007/020/022を参照する。返却からLABO評価・次回提案への一連の接続は新規案。",
+      "new_meaning_choice": "A＝OS↔LABO↔INTELLIGENCEの限定接続を採択。B＝保留。C＝対象revision・理由・影響を示して接続scope/ownerを変更。 いずれも未選択。",
+      "recommended_choice": "A",
+      "choice_meaning": "Aは登録されたL2/L11のexact候補だけを選ぶ。既存採択済み条件を置換せず、接続先候補を自動採択しない。L3承認、実装、運転、releaseを生成しない。",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HELIXOS-L2-048 返却・検証不成立feedbackの評価・還流接続（connection候補、version_target: 1.0）",
+      "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-048",
+      "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-048",
+      "registration_id": "MPR-RC-HELIXOS-L2-048-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXOS-L1-006",
+        "HELIXOS-L1-009"
+      ],
+      "parent_l1_path": "docs/helix-os/L1-planning/system-intent.md",
+      "parent_l1_sha256_current": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+      "parent_planning_revision_recorded": "docs/helix-os/L1-planning/system-intent.md@1aa41a8ba6e750d23a46b832d1513738e84894bb sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e（main基準revision。PO判断対象bytesとの一致は既存decision recordを参照）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/ops-o1-o2-coverage-receipt-2026-09-29.json#HELIXOS-L2-048",
+      "receipt_id": "MPR-RCPT-OPS-O1-O2-2026-09-29",
+      "receipt_candidate_digest_rule": "L2 section from `### ID` until next `###`; trim trailing blank lines and terminate with one UTF-8 LF.",
+      "registered_candidate_semantic_digest": "sha256:0cbd66b870d6b45f739c6759ed2b325d65e69cfbf3e72b6b5638f1e530c77622",
+      "receipt_candidate_semantic_digest": "sha256:0cbd66b870d6b45f739c6759ed2b325d65e69cfbf3e72b6b5638f1e530c77622",
+      "current_candidate_semantic_digest": "sha256:0cbd66b870d6b45f739c6759ed2b325d65e69cfbf3e72b6b5638f1e530c77622",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 2,
+      "source_atom_set_digest": "sha256:0688103d88ac41a44778232ca24ff9f55a94349387f02c4155dada8f8d0d3d84",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+          "line": 319,
+          "source_file_sha256": "sha256:f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+          "source_line_sha256": "sha256:fe6e99e332d445699fd06fc251f9696e8bc16921a84397f74d8df9c3f6b54557",
+          "atom_id": "O2-POSTCLOSE-ASSESSMENT",
+          "source_text_span": "閉じたTicketに後日見つかった不具合、rollback、Recovery、Requirement Re-entryを証拠付きrelationで接続する。時間的近接や同じpathだけで原因Ticketを断定しない。元のclosureは保存し、追補assessmentを新発行する。観測窓未満、未追跡、打切りを0 defectsとしない。一般Ticket closeを長期観測窓待ちにしない。"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+          "line": 282,
+          "source_file_sha256": "sha256:f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+          "source_line_sha256": "sha256:5554ecdf5624fd3e7009fc5f0d9f9992358425a805233de930ee103bf34e8df7",
+          "atom_id": "O1-MANAGEMENT-PROPOSAL-NOT-OVERWRITE",
+          "source_text_span": "READY/blocked/active、lead time、retry、cost、coverage、measurement integrity、placementを別軸でprojectionする。管理側はreclassify/split/replan/backflow等のproposalを作成できるが、Ticketの意味を直接上書きしない。評価結果の利用可否・配車順は既存policyから説明可能に導出する。"
+        }
+      ],
+      "source_reference_note": "選択したsentence/span atomに限る。旧source全体のclosureを主張しない。依頼sourceはClaude summaryでPO一次発話ではない。",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXOS-L2-048",
+      "paired_l11_id": "HELIXOS-L11-048",
+      "affected_requirement_and_consumer_ids": "OS-L2-004/007/010/020/022; LABO-L2-010/037/052; INTELLIGENCE-L2-010; HARNESS-L2-005/022/034/036; OS-L2-040/044; applicable source holding",
+      "rationale": "現行の責務に沿って限定候補を分ける。ticket発行と運転はOS、評価はLABO、配置案はINTELLIGENCE、検証oracleはHARNESS。",
+      "candidate_input_coverage_result": "no_loss for selected source spans only",
+      "source_line_coverage_result": "partial; unselected clauses remain in source holding; no full source closure",
+      "preserved_pending_atom_refs": [
+        "MPR-SH-CANDIDATE-003"
+      ],
+      "po_decision_frame": {
+        "selection_status": "pending_PO",
+        "selected_option": null,
+        "recommended_option": "A",
+        "recommendation_is_decision": false,
+        "options": [
+          {
+            "id": "A",
+            "meaning": "adopt exact candidate revision"
+          },
+          {
+            "id": "B",
+            "meaning": "hold unadopted"
+          },
+          {
+            "id": "C",
+            "meaning": "amend with exact affected revision/reason/impact"
+          }
+        ]
+      }
+    },
+    {
+      "identity": "HELIXLABO-L2-069",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "旧post-close assessmentと件数減少だけでは品質証明にならない条件を保持。返却率、reason class、再発行後成立率とその分母/windowは新規案。",
+      "new_meaning_choice": "A＝exact評価候補を採択。B＝保留。C＝対象revision・理由・影響を示して指標/scope/versionを変更。 いずれも未選択。",
+      "recommended_choice": "A",
+      "choice_meaning": "Aは登録されたL2/L11のexact候補だけを選ぶ。既存採択済み条件を置換せず、接続先候補を自動採択しない。L3承認、実装、運転、releaseを生成しない。",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HELIXLABO-L2-069 Ticket返却・再発行後の成立状況評価（単体候補、version_target: 1.0）",
+      "requirement_source_path": "docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-069",
+      "acceptance_source_path": "docs/helix-labo/L11-acceptance/labo-acceptance.md#helixlabo-l2-069",
+      "registration_id": "MPR-RC-HELIXLABO-L2-069-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXLABO-L1-007"
+      ],
+      "parent_l1_path": "docs/helix-labo/L1-planning/labo-intent.md",
+      "parent_l1_sha256_current": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc",
+      "parent_planning_revision_recorded": "docs/helix-labo/L1-planning/labo-intent.md@1aa41a8ba6e750d23a46b832d1513738e84894bb sha256:78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc（main基準revision。PO判断対象bytesとの一致は既存decision recordを参照）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/ops-o1-o2-coverage-receipt-2026-09-29.json#HELIXLABO-L2-069",
+      "receipt_id": "MPR-RCPT-OPS-O1-O2-2026-09-29",
+      "receipt_candidate_digest_rule": "L2 section from `### ID` until next `###`; trim trailing blank lines and terminate with one UTF-8 LF.",
+      "registered_candidate_semantic_digest": "sha256:605acfa9ec39bbdc0d964f3bf3c644122f1c081c202ddea48fe682ac31be5bc9",
+      "receipt_candidate_semantic_digest": "sha256:605acfa9ec39bbdc0d964f3bf3c644122f1c081c202ddea48fe682ac31be5bc9",
+      "current_candidate_semantic_digest": "sha256:605acfa9ec39bbdc0d964f3bf3c644122f1c081c202ddea48fe682ac31be5bc9",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 2,
+      "source_atom_set_digest": "sha256:6201a67d94a581b01ff8e50dfa04e9e5ac81553d4d0028da038474cbf8baa9ec",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+          "line": 319,
+          "source_file_sha256": "sha256:f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+          "source_line_sha256": "sha256:fe6e99e332d445699fd06fc251f9696e8bc16921a84397f74d8df9c3f6b54557",
+          "atom_id": "O2-POSTCLOSE-ASSESSMENT",
+          "source_text_span": "閉じたTicketに後日見つかった不具合、rollback、Recovery、Requirement Re-entryを証拠付きrelationで接続する。時間的近接や同じpathだけで原因Ticketを断定しない。元のclosureは保存し、追補assessmentを新発行する。観測窓未満、未追跡、打切りを0 defectsとしない。一般Ticket closeを長期観測窓待ちにしない。"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/feedback-lifecycle.md",
+          "line": 24,
+          "source_file_sha256": "sha256:2e0a028fc48c6acc92a5b09ada9fc511ed0389b71af9deee782ec81aa731a655",
+          "source_line_sha256": "sha256:34a0310df36982f511d71b3b882ff2e5923b68fde9d150232e2008a0d8c643c0",
+          "atom_id": "O2-COUNT-REDUCTION-NOT-QUALITY",
+          "source_text_span": "件数減少だけを品質証明にしない。"
+        }
+      ],
+      "source_reference_note": "選択したsentence/span atomに限る。旧source全体のclosureを主張しない。依頼sourceはClaude summaryでPO一次発話ではない。",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXLABO-L2-069",
+      "paired_l11_id": "HELIXLABO-L11-069",
+      "affected_requirement_and_consumer_ids": "OS-L2-004/007/010/020/022; LABO-L2-010/037/052; INTELLIGENCE-L2-010; HARNESS-L2-005/022/034/036; OS-L2-040/044; applicable source holding",
+      "rationale": "現行の責務に沿って限定候補を分ける。ticket発行と運転はOS、評価はLABO、配置案はINTELLIGENCE、検証oracleはHARNESS。",
+      "candidate_input_coverage_result": "no_loss for selected source spans only",
+      "source_line_coverage_result": "partial; unselected clauses remain in source holding; no full source closure",
+      "preserved_pending_atom_refs": [
+        "MPR-SH-CANDIDATE-003"
+      ],
+      "po_decision_frame": {
+        "selection_status": "pending_PO",
+        "selected_option": null,
+        "recommended_option": "A",
+        "recommendation_is_decision": false,
+        "options": [
+          {
+            "id": "A",
+            "meaning": "adopt exact candidate revision"
+          },
+          {
+            "id": "B",
+            "meaning": "hold unadopted"
+          },
+          {
+            "id": "C",
+            "meaning": "amend with exact affected revision/reason/impact"
+          }
+        ]
+      }
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-074",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "対応する独立旧source atomは抽出できず、依頼summaryから既存L2-010のproposal責務へ追加する新規案。",
+      "new_meaning_choice": "A＝評価済みscope付きfeedbackを次回placement proposal入力にするexact候補を採択。B＝保留。C＝対象revision・理由・影響を示して入力/scopeを変更。 いずれも未選択。",
+      "recommended_choice": "A",
+      "choice_meaning": "Aは登録されたL2/L11のexact候補だけを選ぶ。既存採択済み条件を置換せず、接続先候補を自動採択しない。L3承認、実装、運転、releaseを生成しない。",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HELIXINTELLIGENCE-L2-074 評価済み返却feedbackの配置proposal入力（単体候補、version_target: 1.0）",
+      "requirement_source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#helixintelligence-l2-074",
+      "acceptance_source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md#helixintelligence-l2-074",
+      "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-074-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXINTELLIGENCE-L1-010"
+      ],
+      "parent_l1_path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+      "parent_l1_sha256_current": "8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8",
+      "parent_planning_revision_recorded": "docs/helix-intelligence/L1-planning/intelligence-intent.md@1aa41a8ba6e750d23a46b832d1513738e84894bb sha256:8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8（main基準revision。PO判断対象bytesとの一致は既存decision recordを参照）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/ops-o1-o2-coverage-receipt-2026-09-29.json#HELIXINTELLIGENCE-L2-074",
+      "receipt_id": "MPR-RCPT-OPS-O1-O2-2026-09-29",
+      "receipt_candidate_digest_rule": "L2 section from `### ID` until next `###`; trim trailing blank lines and terminate with one UTF-8 LF.",
+      "registered_candidate_semantic_digest": "sha256:5605649ccd2e582bc795b6937792c4957230bf0045031fa58cf9ffa21871719c",
+      "receipt_candidate_semantic_digest": "sha256:5605649ccd2e582bc795b6937792c4957230bf0045031fa58cf9ffa21871719c",
+      "current_candidate_semantic_digest": "sha256:5605649ccd2e582bc795b6937792c4957230bf0045031fa58cf9ffa21871719c",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 0,
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_reference_examples": [],
+      "source_reference_note": "独立した旧source atomは0件。依頼summaryに基づく新規案として示す。",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXINTELLIGENCE-L2-074",
+      "paired_l11_id": "HELIXINTELLIGENCE-L11-074",
+      "affected_requirement_and_consumer_ids": "OS-L2-004/007/010/020/022; LABO-L2-010/037/052; INTELLIGENCE-L2-010; HARNESS-L2-005/022/034/036; OS-L2-040/044; applicable source holding",
+      "rationale": "現行の責務に沿って限定候補を分ける。ticket発行と運転はOS、評価はLABO、配置案はINTELLIGENCE、検証oracleはHARNESS。",
+      "candidate_input_coverage_result": "pending_coverage; new proposal with no legacy atom selected",
+      "source_line_coverage_result": "not_applicable_new_proposal; no legacy atom selected",
+      "preserved_pending_atom_refs": [],
+      "po_decision_frame": {
+        "selection_status": "pending_PO",
+        "selected_option": null,
+        "recommended_option": "A",
+        "recommendation_is_decision": false,
+        "options": [
+          {
+            "id": "A",
+            "meaning": "adopt exact candidate revision"
+          },
+          {
+            "id": "B",
+            "meaning": "hold unadopted"
+          },
+          {
+            "id": "C",
+            "meaning": "amend with exact affected revision/reason/impact"
+          }
+        ]
+      }
     }
   ],
   "initial_25_basis_commit": "f4b2a2b02cf5ea3134e27be0a65c100395161bad",
-  "progression": "Initial 25 candidates + PR #2241 HARNESS-L2-042 + PR #2238 HELIXOS-L2-038 = historical 27; PR #2245 merged HARNESS-L2-043, giving 28; PR #2246 merged HARNESS-L2-044, giving 29; PR #2247 registered HELIXOS-L2-039, giving 30; current HARNESS-L2-045 brings the live decision set to 31. HELIXOS-L2-039/HARNESS-L2-045 are linked by an unselected paired PO decision. Current HELIXOS-L2-040 adds one bounded old HXT-AC-015 retry-route candidate, making 32; no PO selection. Current HELIXINTELLIGENCE-L2-073 adds one bounded old AAFD-R-04 free-text direct-projection boundary candidate, making 33; no PO selection. Current HELIXOS-L2-041 adds one bounded old IPC-R07 safe-continuation candidate from two linked atoms, making 34; no PO selection. Current HELIXLABO-L2-066 adds one bounded old Bugbot candidate-line metric gap, making 35; no PO selection. Its source atom is historical and its current L2/L11 candidate remains unadopted. Current HELIXSECURITY-L2-032 adds one bounded old v1.3 §4.10 HR-FR-P2-07 repository-level bypass precedence candidate, making 36; no PO selection. It applies across provider/runtime instances under the old external AI Worker contract, preserves existing authority when no deny applies, and does not claim §4.10 closure. Current HARNESS-L2-046 adds one bounded v1.3 Full V/Scrum workflow condition candidate from six sentence spans across archive and 6fabd125 baseline revisions, making 37; no PO selection. It preserves the 2026-09-25 four-style definitions/composition permission, requires staged freeze and listed verification for selected Full V only, and applies Scrum backfill/checkpoint/SR4 solely to Scrum-selected/composed scope. Current HELIXOS-L2-042 adds one bounded old v1.3 HR-FR-P2-08 Worker-result strict validation/relaxation candidate from archive line 431, making 38; the identical 6fabd125 baseline line 412 remains a separate pending source atom and is not counted as candidate input. No PO selection. Current HELIXSECURITY-L2-033 adds one bounded old v1.3 §4.10 HR-FR-P2-05 external-worker startup-context / non-authoritative-output candidate from archive line 428 and the distinct 6fabd125 baseline twin line 409, making 39; both atoms are candidate inputs and remain distinct source revisions/holdings. No PO selection. Current HELIXOS-L2-043 adds a bounded old v1.3 §4.10 HR-FR-P2-06 typed-event candidate from archive line 429 and distinct 6fabd125 baseline line 410 (two selected S1 atoms), making 40; no PO selection. The Node-exclusive S2 atoms remain preserved_pending for separate PO choice D (recommended); the full old source line remains partial and no full-line no_loss is claimed. Current HELIXOS-L2-044 adds one bounded old v1.3 HR-AC-HYB-006 prose-only-resolution rejection candidate, making 41; the selected two revision atoms have scoped no_loss while other source clauses remain preserved pending, and no PO selection is recorded. Current HELIXSECURITY-L2-034 adds one bounded old v1.3 HR-FR-HYB-002 MCP tool-profile security candidate, making 42; six selected spans across two source revisions are candidate inputs and the remaining six source spans stay preserved pending, with no PO selection. Current HELIXOS-L2-045 adds a narrowly scoped FR-L1-35 three-class readiness inventory proposal for the selected OS-L1-002 applicability scope, making 43; no PO selection, owner transfer, applicability set, or version target is recorded. Current HELIXOS-L2-046 adds one bounded old RFA-AC-16 dispatch/execution/Ready/merge continuity and bypass-rejection connection candidate from LEGACY-CAND-LINE-003612, making 44; only this acceptance row is mapped, broader RFA source closure is not claimed, and no PO selection is recorded. Current HELIXLABO-L2-067 adds one candidate-scoped subatom for first-eligible candidate boundary and same-Attempt repair-round visibility after HELIXOS-L2-046, making 45; no PO selection, no 065 adoption dependency, and no change to adopted 059 or unadopted 065 definitions. Current HELIXLABO-L2-068 adds the separately preserved S3C total Attempt-count subatom after #2271/HELIXLABO-L2-067, making 46; no PO selection, no 065 adoption dependency, no retry_count+1 derivation, and unknown is retained when OS record completeness is unproven. Current HARNESS-L2-047 adds one bounded four-line HIL-BR-09/30 and HIL-FR-59/60 specialist Worker contract candidate; the HARNESS A placement is recommended but PO-unselected, and INTELLIGENCE owner B remains an explicit alternative. The candidate separates measured muster decision from runtime-neutral contract generation, keeps OS assignment/runtime lifecycle and SECURITY authority, and does not claim closure of other source atoms. The four semantic-line atoms have scoped no_loss; corresponding IR records remain separately held, and no adoption is recorded. CONNECT-008 adds HYB-002 profile supply conditions as a separate unadopted candidate: 6/12 supply atoms plus 6/12 SECURITY-034 policy atoms are routed, adoption/meaning closure 0/12 and both source holdings remain live. Decision set is 48; no PO selection.",
+  "progression": "Initial 25 candidates + PR #2241 HARNESS-L2-042 + PR #2238 HELIXOS-L2-038 = historical 27; PR #2245 merged HARNESS-L2-043, giving 28; PR #2246 merged HARNESS-L2-044, giving 29; PR #2247 registered HELIXOS-L2-039, giving 30; current HARNESS-L2-045 brings the live decision set to 31. HELIXOS-L2-039/HARNESS-L2-045 are linked by an unselected paired PO decision. Current HELIXOS-L2-040 adds one bounded old HXT-AC-015 retry-route candidate, making 32; no PO selection. Current HELIXINTELLIGENCE-L2-073 adds one bounded old AAFD-R-04 free-text direct-projection boundary candidate, making 33; no PO selection. Current HELIXOS-L2-041 adds one bounded old IPC-R07 safe-continuation candidate from two linked atoms, making 34; no PO selection. Current HELIXLABO-L2-066 adds one bounded old Bugbot candidate-line metric gap, making 35; no PO selection. Its source atom is historical and its current L2/L11 candidate remains unadopted. Current HELIXSECURITY-L2-032 adds one bounded old v1.3 §4.10 HR-FR-P2-07 repository-level bypass precedence candidate, making 36; no PO selection. It applies across provider/runtime instances under the old external AI Worker contract, preserves existing authority when no deny applies, and does not claim §4.10 closure. Current HARNESS-L2-046 adds one bounded v1.3 Full V/Scrum workflow condition candidate from six sentence spans across archive and 6fabd125 baseline revisions, making 37; no PO selection. It preserves the 2026-09-25 four-style definitions/composition permission, requires staged freeze and listed verification for selected Full V only, and applies Scrum backfill/checkpoint/SR4 solely to Scrum-selected/composed scope. Current HELIXOS-L2-042 adds one bounded old v1.3 HR-FR-P2-08 Worker-result strict validation/relaxation candidate from archive line 431, making 38; the identical 6fabd125 baseline line 412 remains a separate pending source atom and is not counted as candidate input. No PO selection. Current HELIXSECURITY-L2-033 adds one bounded old v1.3 §4.10 HR-FR-P2-05 external-worker startup-context / non-authoritative-output candidate from archive line 428 and the distinct 6fabd125 baseline twin line 409, making 39; both atoms are candidate inputs and remain distinct source revisions/holdings. No PO selection. Current HELIXOS-L2-043 adds a bounded old v1.3 §4.10 HR-FR-P2-06 typed-event candidate from archive line 429 and distinct 6fabd125 baseline line 410 (two selected S1 atoms), making 40; no PO selection. The Node-exclusive S2 atoms remain preserved_pending for separate PO choice D (recommended); the full old source line remains partial and no full-line no_loss is claimed. Current HELIXOS-L2-044 adds one bounded old v1.3 HR-AC-HYB-006 prose-only-resolution rejection candidate, making 41; the selected two revision atoms have scoped no_loss while other source clauses remain preserved pending, and no PO selection is recorded. Current HELIXSECURITY-L2-034 adds one bounded old v1.3 HR-FR-HYB-002 MCP tool-profile security candidate, making 42; six selected spans across two source revisions are candidate inputs and the remaining six source spans stay preserved pending, with no PO selection. Current HELIXOS-L2-045 adds a narrowly scoped FR-L1-35 three-class readiness inventory proposal for the selected OS-L1-002 applicability scope, making 43; no PO selection, owner transfer, applicability set, or version target is recorded. Current HELIXOS-L2-046 adds one bounded old RFA-AC-16 dispatch/execution/Ready/merge continuity and bypass-rejection connection candidate from LEGACY-CAND-LINE-003612, making 44; only this acceptance row is mapped, broader RFA source closure is not claimed, and no PO selection is recorded. Current HELIXLABO-L2-067 adds one candidate-scoped subatom for first-eligible candidate boundary and same-Attempt repair-round visibility after HELIXOS-L2-046, making 45; no PO selection, no 065 adoption dependency, and no change to adopted 059 or unadopted 065 definitions. Current HELIXLABO-L2-068 adds the separately preserved S3C total Attempt-count subatom after #2271/HELIXLABO-L2-067, making 46; no PO selection, no 065 adoption dependency, no retry_count+1 derivation, and unknown is retained when OS record completeness is unproven. Current HARNESS-L2-047 adds one bounded four-line HIL-BR-09/30 and HIL-FR-59/60 specialist Worker contract candidate; the HARNESS A placement is recommended but PO-unselected, and INTELLIGENCE owner B remains an explicit alternative. The candidate separates measured muster decision from runtime-neutral contract generation, keeps OS assignment/runtime lifecycle and SECURITY authority, and does not claim closure of other source atoms. The four semantic-line atoms have scoped no_loss; corresponding IR records remain separately held, and no adoption is recorded. CONNECT-008 adds HYB-002 profile supply conditions as a separate unadopted candidate: 6/12 supply atoms plus 6/12 SECURITY-034 policy atoms are routed, adoption/meaning closure 0/12 and both source holdings remain live. Decision set is 48; no PO selection. O1/O2 adds four unadopted candidates OS-047/048, LABO-069, INTELLIGENCE-074, making 52; source spans and new proposals are distinct, no PO selection inferred.",
   "version_target_evidence": null,
   "portfolio_fixture_fr54_fr55_route": {
     "decision_id": "PORTFOLIO-FIXTURE-FR54-FR55-ROUTE",
@@ -6712,6 +7014,186 @@
           }
         },
         "candidate_specific_axes": []
+      },
+      {
+        "identity": "HELIXOS-L2-047",
+        "registration_id": "MPR-RC-HELIXOS-L2-047-001",
+        "axes": {
+          "candidate_adoption": {
+            "selection_status": "pending_PO",
+            "selected": null,
+            "decision_ref": "candidate-local",
+            "exact_revision": {
+              "identity": "HELIXOS-L2-047",
+              "registration_id": "MPR-RC-HELIXOS-L2-047-001",
+              "l2_id": "HELIXOS-L2-047",
+              "l11_id": "HELIXOS-L11-047",
+              "candidate_semantic_digest": "sha256:ceef03cf8b7ea946e5a59d01f04391b250b5fd45da42f33e55e43a223a40fdd2",
+              "supersedes_registration_id": null
+            },
+            "options_ref": "new_meaning_choice",
+            "recommendation": "A"
+          },
+          "source_meaning_disposition": {
+            "selection_status": "pending_PO; source disposition distinct from candidate adoption",
+            "selected": null,
+            "candidate_source_scope": {
+              "source_atom_count": 4,
+              "receipt_ref": "docs/governance/audits/requirement-registration/ops-o1-o2-coverage-receipt-2026-09-29.json#HELIXOS-L2-047",
+              "coverage": "partial; unselected clauses remain in source holding; no full source closure"
+            },
+            "options_ref": "new_meaning_choice",
+            "separation_rule": "selected spans only; unselected clauses remain holding; meaning change/retire needs affected source revision/reason/consumer impact"
+          },
+          "owner_placement": {
+            "selection_status": "proposal owner only; no separate PO selection recorded",
+            "selected": null,
+            "proposed_owner": "HELIX-OS",
+            "source_ref": "candidate identity and L1 parent; proposed, not adopted"
+          },
+          "version_target": {
+            "selection_status": "proposal value only; no independent PO selection",
+            "selected": null,
+            "proposed_value": "1.0",
+            "source_ref": "L2 candidate heading",
+            "change_rule": "different target requires new exact candidate revision; adoption is not deployment"
+          }
+        }
+      },
+      {
+        "identity": "HELIXOS-L2-048",
+        "registration_id": "MPR-RC-HELIXOS-L2-048-001",
+        "axes": {
+          "candidate_adoption": {
+            "selection_status": "pending_PO",
+            "selected": null,
+            "decision_ref": "candidate-local",
+            "exact_revision": {
+              "identity": "HELIXOS-L2-048",
+              "registration_id": "MPR-RC-HELIXOS-L2-048-001",
+              "l2_id": "HELIXOS-L2-048",
+              "l11_id": "HELIXOS-L11-048",
+              "candidate_semantic_digest": "sha256:0cbd66b870d6b45f739c6759ed2b325d65e69cfbf3e72b6b5638f1e530c77622",
+              "supersedes_registration_id": null
+            },
+            "options_ref": "new_meaning_choice",
+            "recommendation": "A"
+          },
+          "source_meaning_disposition": {
+            "selection_status": "pending_PO; source disposition distinct from candidate adoption",
+            "selected": null,
+            "candidate_source_scope": {
+              "source_atom_count": 2,
+              "receipt_ref": "docs/governance/audits/requirement-registration/ops-o1-o2-coverage-receipt-2026-09-29.json#HELIXOS-L2-048",
+              "coverage": "partial; unselected clauses remain in source holding; no full source closure"
+            },
+            "options_ref": "new_meaning_choice",
+            "separation_rule": "selected spans only; unselected clauses remain holding; meaning change/retire needs affected source revision/reason/consumer impact"
+          },
+          "owner_placement": {
+            "selection_status": "proposal owner only; no separate PO selection recorded",
+            "selected": null,
+            "proposed_owner": "HELIX-OS",
+            "source_ref": "candidate identity and L1 parent; proposed, not adopted"
+          },
+          "version_target": {
+            "selection_status": "proposal value only; no independent PO selection",
+            "selected": null,
+            "proposed_value": "1.0",
+            "source_ref": "L2 candidate heading",
+            "change_rule": "different target requires new exact candidate revision; adoption is not deployment"
+          }
+        }
+      },
+      {
+        "identity": "HELIXLABO-L2-069",
+        "registration_id": "MPR-RC-HELIXLABO-L2-069-001",
+        "axes": {
+          "candidate_adoption": {
+            "selection_status": "pending_PO",
+            "selected": null,
+            "decision_ref": "candidate-local",
+            "exact_revision": {
+              "identity": "HELIXLABO-L2-069",
+              "registration_id": "MPR-RC-HELIXLABO-L2-069-001",
+              "l2_id": "HELIXLABO-L2-069",
+              "l11_id": "HELIXLABO-L11-069",
+              "candidate_semantic_digest": "sha256:605acfa9ec39bbdc0d964f3bf3c644122f1c081c202ddea48fe682ac31be5bc9",
+              "supersedes_registration_id": null
+            },
+            "options_ref": "new_meaning_choice",
+            "recommendation": "A"
+          },
+          "source_meaning_disposition": {
+            "selection_status": "pending_PO; source disposition distinct from candidate adoption",
+            "selected": null,
+            "candidate_source_scope": {
+              "source_atom_count": 2,
+              "receipt_ref": "docs/governance/audits/requirement-registration/ops-o1-o2-coverage-receipt-2026-09-29.json#HELIXLABO-L2-069",
+              "coverage": "partial; unselected clauses remain in source holding; no full source closure"
+            },
+            "options_ref": "new_meaning_choice",
+            "separation_rule": "selected spans only; unselected clauses remain holding; meaning change/retire needs affected source revision/reason/consumer impact"
+          },
+          "owner_placement": {
+            "selection_status": "proposal owner only; no separate PO selection recorded",
+            "selected": null,
+            "proposed_owner": "HELIX-LABO",
+            "source_ref": "candidate identity and L1 parent; proposed, not adopted"
+          },
+          "version_target": {
+            "selection_status": "proposal value only; no independent PO selection",
+            "selected": null,
+            "proposed_value": "1.0",
+            "source_ref": "L2 candidate heading",
+            "change_rule": "different target requires new exact candidate revision; adoption is not deployment"
+          }
+        }
+      },
+      {
+        "identity": "HELIXINTELLIGENCE-L2-074",
+        "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-074-001",
+        "axes": {
+          "candidate_adoption": {
+            "selection_status": "pending_PO",
+            "selected": null,
+            "decision_ref": "candidate-local",
+            "exact_revision": {
+              "identity": "HELIXINTELLIGENCE-L2-074",
+              "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-074-001",
+              "l2_id": "HELIXINTELLIGENCE-L2-074",
+              "l11_id": "HELIXINTELLIGENCE-L11-074",
+              "candidate_semantic_digest": "sha256:5605649ccd2e582bc795b6937792c4957230bf0045031fa58cf9ffa21871719c",
+              "supersedes_registration_id": null
+            },
+            "options_ref": "new_meaning_choice",
+            "recommendation": "A"
+          },
+          "source_meaning_disposition": {
+            "selection_status": "pending_PO; source disposition distinct from candidate adoption",
+            "selected": null,
+            "candidate_source_scope": {
+              "source_atom_count": 0,
+              "receipt_ref": "docs/governance/audits/requirement-registration/ops-o1-o2-coverage-receipt-2026-09-29.json#HELIXINTELLIGENCE-L2-074",
+              "coverage": "not_applicable_new_proposal; no legacy atom selected"
+            },
+            "options_ref": "new_meaning_choice",
+            "separation_rule": "selected spans only; unselected clauses remain holding; meaning change/retire needs affected source revision/reason/consumer impact"
+          },
+          "owner_placement": {
+            "selection_status": "proposal owner only; no separate PO selection recorded",
+            "selected": null,
+            "proposed_owner": "HELIX-INTELLIGENCE",
+            "source_ref": "candidate identity and L1 parent; proposed, not adopted"
+          },
+          "version_target": {
+            "selection_status": "proposal value only; no independent PO selection",
+            "selected": null,
+            "proposed_value": "1.0",
+            "source_ref": "L2 candidate heading",
+            "change_rule": "different target requires new exact candidate revision; adoption is not deployment"
+          }
+        }
       }
     ],
     "shared_frames": [
