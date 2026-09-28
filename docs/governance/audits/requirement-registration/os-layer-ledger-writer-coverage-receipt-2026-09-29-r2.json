@@ -15,7 +15,7 @@
         "HELIXOS-L1-004",
         "HELIXOS-L1-008"
       ],
-      "candidate_semantic_digest": "sha256:5d1f58bdca07696a17a6382599bfcba98dc43038778f832a719b176ebaaabd2d",
+      "candidate_semantic_digest": "sha256:c3b0424bd39ac7c91166c87738fbefc1b20a11b904012d9ada768a113ccbe013",
       "source_atom_set_digest": "sha256:8db63db824ce624b1208b695ed3ea82fc8aa44f5ad734608b1f11de37ec6d940",
       "source_atom_count": 2,
       "source_collection_scope": "旧HIL-FR-46/47 archive L1要求表の2原文行に限るsource coverageを維持する。OS writer・snapshot・proposal保存のoutcome oracleを、旧HST-CASE-030-04/05を設計証拠としてHELIXOS-L2/L11-038 revision -002候補へ追補する。旧HST caseは追加source atomに数えず、旧IR等の全量被覆、採択、実装や実行の証拠を主張しない。",
@@ -77,8 +77,8 @@
   ],
   "source_holding_registration_id": "MPR-SH-HARNESS-LAYER-LEDGER-EXTRACTION-001",
   "source_split_receipt_ref": "docs/governance/audits/requirement-registration/harness-layer-ledger-extraction-coverage-receipt-2026-09-28-r2.json",
-  "l11_file_sha256": "sha256:08c247d6e889365b8b6f00ca305c813e28d5a3b3560513cfbc2427a207b34396",
-  "candidate_state": "MPR-RC-HELIXOS-L2-038-001 remains the exact PO-adopted revision in the 2026-09-29 decision record. MPR-RC-HELIXOS-L2-038-002 is an unadopted correction proposal and depends on unadopted MPR-RC-HARNESS-L2-041-003 for the two new HARNESS finding identities; neither adoption nor execution authority is generated.",
+  "l11_file_sha256": "33c901951d857bfe6e11365eafd1f75910091c2062d1c49fb2aefb2213cba957",
+  "candidate_state": "MPR-RC-HELIXOS-L2-038-001 remains the exact PO-adopted revision in the 2026-09-29 decision record. MPR-RC-HELIXOS-L2-038-002 is an unadopted correction proposal and depends on unadopted MPR-RC-HARNESS-L2-041-003 for the two new HARNESS finding conditions; neither adoption nor execution authority is generated.",
   "supersedes_receipt_id": "MPR-RCPT-OS-LAYER-LEDGER-WRITER-2026-09-28",
   "decision_boundary": {
     "formal_decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md#HELIXOS-L2-038",
@@ -86,7 +86,11 @@
     "accepted_l2_semantic_digest": "sha256:603b5db48045408a85d116071a4ad0f8a470064cd073a05beb9bc118f386fd6c",
     "accepted_l11_semantic_digest": "sha256:eabb68eaafc76f0080fbe9cb9c6904005c88b72e7cee9563f2515b4488de2e5d",
     "new_revision": "MPR-RC-HELIXOS-L2-038-002",
-    "new_revision_state": "unadopted proposal; this receipt does not modify or extend the prior PO decision"
+    "new_revision_state": "unadopted proposal; this receipt does not modify or extend the prior PO decision",
+    "new_l11_basic_section_digest": "sha256:eabb68eaafc76f0080fbe9cb9c6904005c88b72e7cee9563f2515b4488de2e5d",
+    "new_l11_addendum_heading": "HELIXOS-L2-038 revision -002候補の追加negative oracle（未採択）",
+    "new_l11_addendum_section_digest": "sha256:86287e73d09522940b2a07bf8f304135ff3d495904df055088f07fff077766ed",
+    "new_l11_relation": "The -002 candidate consists of the original identity section plus its identity-named addendum; the PO-adopted -001 section remains fixed separately. Neither section alone is the full -002 acceptance."
   },
   "oracle_evidence": {
     "authority_note": "The assertion/design cases below are legacy design evidence (design-defined, not-implemented), not proof of runtime behavior. OS consumes HARNESS-041 findings; HARNESS retains semantic atomicity and extractor determinism decisions.",

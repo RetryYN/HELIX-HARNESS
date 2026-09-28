@@ -6,7 +6,7 @@
   "product": "HELIX-Web",
   "owner_candidate": "outside67 Web／Web-OS L1 anchor semantic review（最終owner未解決）",
   "state": "registered",
-  "reason": "MPR-SH-OUTSIDE67-001の既存SCF-B-0096／0099でsource調査済みの4 path（PATH-007／009／010／012）について追加のL1接続をholding、pre-isolation、archiveのexact Git bytes／digestと現行四製品L1候補へ静的に照合し、Web L1 6＋Web-OS L1 5のrow-sized anchor候補およびREADME context 2件を保持するresearch-only Scaffold。現行L1本文のraw metadataはdraft／parent approval待ちだが承認decisionでeffective approved、研究candidate authorityはnoneに保持し、旧pathはpath-level contextであり、formal unit、phase、実装、縮退、failure、consumer、authorityへ昇格しない。既存SCF-B-0057／0062／0080〜0091に加え、SCF-B-0096／0099のselected path集合との重複を明示し、各source itemに先行Binding IDを保持する。重複Bindingの全体bytes digestは入力として固定せず、各Binding IDの実体とselected path集合をvalidatorで照合する。#1813は進捗参照のみとする。",
+    "reason": "MPR-SH-OUTSIDE67-001の既存SCF-B-0096／0099でsource調査済みの4 path（PATH-007／009／010／012）について追加のL1接続をholding、pre-isolation、archiveのexact Git bytes／digestと現行四製品L1候補へ静的に照合し、Web L1 6＋Web-OS L1 5のrow-sized anchor候補およびREADME context 2件を保持するresearch-only Scaffold。現行L1本文のraw metadataはdraft／parent approval待ちだが承認decisionでeffective approved、研究candidate authorityはnoneに保持し、旧pathはpath-level contextであり、formal unit、phase、実装、縮退、failure、consumer、authorityへ昇格しない。既存SCF-B-0057／0062／0080〜0091に加え、SCF-B-0096／0099のselected path集合との重複を明示し、各source itemに先行Binding IDを保持する。重複Bindingの全体bytes digestは入力として固定せず、各Binding IDの実体とselected path集合をvalidatorで照合する。#1813は進捗参照のみとする。",
   "upstream": [
     {
       "path": "docs/governance/new-generation-start-here.md",
@@ -20,7 +20,7 @@
     },
     {
       "path": "docs/governance/management-provisional-requirement-register.jsonl",
-      "sha256": "83b32d3cc8699a929eb578d87af1676af426ce768243e63a14ba485a5a4d461c",
+      "sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
       "note": "fixed BASE static input; no old runtime execution"
     },
     {

@@ -687,12 +687,12 @@ party混在、免責/権利根拠の不一致、stage skip、cutover authority�
 - appendの一部だけが保存されsnapshot/receiptが失敗した後、正本への候補行追加が完了したかのように可視化する。未完状態と原proposalを公開し、整合するsnapshot/receiptが再構築されるまで完了状態を出さない。
 - OS proposal appendをrequirement acceptance、PO decision、L3開始許可、HARNESS validation pass、CI/merge/release readinessとして扱う。これらの状態遷移を拒否し、該当authority/判定ownerへ返す。
 
-### revision -002候補の追加negative oracle（未採択）
+### HELIXOS-L2-038 revision -002候補の追加negative oracle（未採択）
 
 2026-09-29のPO判断が採択したHELIXOS-L2-038 revision -001を維持し、この追補を未採択のrevision -002候補として扱う。PO採択済みHARNESS-L2-041 revision -002は下記二つのfailure identityを定義しない。該当契約を追加するHARNESS-L2-041 revision -003（MPR-RC-HARNESS-L2-041-003）は未採択候補であるため、HARNESS側で同契約が別途採択・有効化されるまでこの二fixtureを実行可能な条件として扱わない。HARNESSが採択済み契約から対象input/template/extractor versionに結びつけたfindingを出した場合に、OSはfindingの意味を決め直さずoutcomeをwriter入力として処理する。
 
-- **atomicity拒否**：一つのproposalに二義務が含まれるfixtureで、HARNESSの`HIL_LAYER_OBLIGATION_NOT_ATOMIC` findingと現在のledger/base digestを渡す。OSが意味判定をやり直さずappendを`rejected`にし、candidate row増分0、current snapshot不変、HARNESS finding・source atom・proposal・操作receiptの追跡を保つことを確認する。
-- **再実行nondeterminism隔離**：同一input/template/extractor versionのreplay digest不一致を示すHARNESS `HIL_LAYER_EXTRACTION_NONDETERMINISTIC` findingを、既存current snapshotがあるfixtureで渡す。OSが抽出結果を再比較せずproposalを`quarantined`として保持し、current更新0、直前snapshot digest不変、finding・base・再実行correlationの参照を保つことを確認する。
+- **atomicity拒否**：一つのproposalに二義務が含まれるfixtureで、HARNESS-041-003が定めるatom対応不一致のfindingと現在のledger/base digestを渡す（旧HST-CASE-030-04のcodeは`HIL_LAYER_OBLIGATION_NOT_ATOMIC`）。OSが意味判定をやり直さずappendを`rejected`にし、candidate row増分0、current snapshot不変、HARNESS finding・source atom・proposal・操作receiptの追跡を保つことを確認する。
+- **再実行nondeterminism隔離**：同一input/template/extractor versionの再抽出digest不一致を示すHARNESS-041-003のfindingを、既存current snapshotがあるfixtureで渡す（旧HST-CASE-030-05のcodeは`HIL_LAYER_EXTRACTION_NONDETERMINISTIC`）。OSが抽出結果を再比較せずproposalを`quarantined`として保持し、current更新0、直前snapshot digest不変、finding・base・再実行correlationの参照を保つことを確認する。
 - HARNESS findingが欠落、別input/version/baseへ束縛、または不明な場合は、OSがatomicity/nondeterminismを推定せず状態をunknown/staleとして保留する。OSのquarantine receiptはHARNESSの意味findingやOS writer operationを検証済みにせず、要求採択・write authorityも生成しない。
 
 ### 未見例：未知layer/template atomまたは新contract revision

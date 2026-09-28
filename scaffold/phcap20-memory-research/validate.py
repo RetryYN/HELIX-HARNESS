@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """PHCAP-20 memory/continuation research premise validator; static checks only."""
-import hashlib,json,re,sys
+import hashlib,json,re,subprocess,sys
 from pathlib import Path
 HERE=Path(__file__).resolve().parent; ROOT=HERE.parents[1]; INV=HERE/'inventory.json'
 ASSET=ROOT/'docs/governance/legacy-asset-disposition.jsonl'; PHASE=ROOT/'docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl'; DEC=ROOT/'docs/governance/legacy-asset-decisions.jsonl'
@@ -19,6 +19,8 @@ EXPECTED_CONTRADICTION_RESOLUTIONS={
  'CONTR-03':'HARNESS/Web/Web-OS remain non-target connection or boundary candidates; no PHCAP-20 target ownership is generated',
  'CONTR-04':'learning versus memory/continuation split remains unresolved; no cross-phase merge or successor is generated',
 }
+PO_FIXED_REVISION='318ec4a04abb3c1cc17111b3d939f913facd5fd3'
+PO_FIXED_REFS={'CUR-OS-L2','CUR-OS-L2-MEMORY','CUR-OS-L2-CONTINUATION','CUR-OS-L11','CUR-OS-L11-CONTINUATION'}
 def validate(d):
  e=[]
  req(e,d.get('schema')=='phcap20-memory-research/v1','E_SCHEMA'); req(e,d.get('status')=='research_premise_candidate','E_STATUS'); req(e,d.get('authority_effect')=='none','E_AUTHORITY'); req(e,d.get('meaning_change_applied') is False,'E_MEANING'); req(e,d.get('successor_requirement_ids')==[] and d.get('human_decision_ref') is None,'E_DECISION'); req(e,d.get('equivalence_claim') is None,'E_EQUIVALENCE'); req(e,d.get('old_runtime_test_ci_execution') is False,'E_OLD_EXEC')
@@ -56,9 +58,15 @@ def validate(d):
  for r in refs:
   p=ROOT/r.get('path',''); req(e,p.is_file(),'E_CURRENT_MISSING:'+str(r.get('ref_id')))
   if p.is_file():
-   # The inventory is a fixed research snapshot. A later unrelated section may
-   # change the whole file SHA while the captured evidence span stays intact.
-   req(e,re.fullmatch(r'[0-9a-f]{64}',str(r.get('sha256',''))) is not None,'E_CURRENT_PIN:'+str(r.get('ref_id'))); t=text(p,r.get('start_line',0),r.get('end_line',0)); req(e,t==r.get('exact_text'),'E_CURRENT_TEXT:'+str(r.get('ref_id')))
+   # Keep the inventory's fixed whole-file pin verifiable. The five OS refs
+   # were captured in the PO decision's exact source revision; later additions
+   # to those files must not rewrite this research snapshot.
+   pinned=p.read_bytes()
+   if r.get('ref_id') in PO_FIXED_REFS:
+    historical=subprocess.run(['git','show',PO_FIXED_REVISION+':'+r['path']],cwd=ROOT,stdout=subprocess.PIPE,stderr=subprocess.DEVNULL,check=False)
+    req(e,historical.returncode==0,'E_CURRENT_HISTORY:'+str(r.get('ref_id')))
+    if historical.returncode==0:pinned=historical.stdout
+   req(e,dig(pinned)==r.get('sha256'),'E_CURRENT_SHA:'+str(r.get('ref_id'))); t=text(p,r.get('start_line',0),r.get('end_line',0)); req(e,t==r.get('exact_text'),'E_CURRENT_TEXT:'+str(r.get('ref_id')))
    if t is not None:req(e,dig(t.encode())==r.get('line_sha256'),'E_CURRENT_LINE_SHA:'+str(r.get('ref_id')))
   req(e,r.get('classification') in {'direct_current_ref','adjacent_current_ref','boundary_candidate','direct_boundary_current_ref','non_target_boundary_ref'},'E_CURRENT_CLASS:'+str(r.get('ref_id')))
   if r.get('classification')=='direct_current_ref': direct.append(r)
