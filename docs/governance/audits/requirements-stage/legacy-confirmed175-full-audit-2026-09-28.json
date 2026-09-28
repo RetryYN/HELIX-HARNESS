@@ -3,8 +3,23 @@
   "audit_mode": "read_only_static_source_and_document_review",
   "current_head": "5e42b759addec0166af3d0fd98ca878a8c851f10",
   "approved_requirements_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
-  "mapping_input": "/tmp/legacy-confirmed-final-mapping.json",
-  "residual_input": "/tmp/confirmed175-current-disposition.md",
+  "mapping_input": {
+    "canonical_source_identity_ledger": {
+      "path": "docs/governance/legacy-migration/identity/legacy-confirmed-requirement-identity-carry-forward.jsonl",
+      "sha256": "eadb6052cdc64c344e63bef4ed8c88f69b06fc6127f71f6d57b059f7cfbd18ed"
+    },
+    "product_routing_candidates": {
+      "path": "docs/governance/legacy-migration/identity/legacy-confirmed-identity-product-routing-candidates.jsonl",
+      "sha256": "d9fa0d6d7ac6d4e258efa112f0defc21c5dc0340e95c89b995938021390f9900"
+    },
+    "working_intermediate_sha256": "dcd54ef4c4bfdc3beb5432d99fe2c6502a03b2bfe986ecddc276ab11b58314aa",
+    "provenance": "175 identities derived from the canonical source ledger and routing candidates; working intermediate was a derived audit view, not repository authority or required replay input."
+  },
+  "residual_input": {
+    "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
+    "sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
+    "working_intermediate_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82"
+  },
   "count_correction": {
     "mapping_population": 175,
     "unique_source_qualified_identities": 175,

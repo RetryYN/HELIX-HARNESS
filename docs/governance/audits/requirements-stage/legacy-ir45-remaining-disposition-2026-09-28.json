@@ -3,17 +3,19 @@
   "baseline_main_commit": "559ae3ba4bfe660d666a57f227466d7dcdd440d9",
   "po_fixed_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
   "audit_head": "5e42b759addec0166af3d0fd98ca878a8c851f10",
-  "scope": "Read-only identity-level audit for 45 IR153 identities absent from /tmp/ir108-disposition-matrix.json.",
+  "scope": "Read-only identity-level audit for 45 IR153 identities absent from docs/governance/audits/requirements-stage/legacy-ir108-disposition-matrix-2026-09-28.json.",
   "inputs": {
     "mapping": {
-      "path": "/tmp/legacy-ir-final-mapping.json",
-      "sha256": "9242a73a4fb141c1cb46d4f41db53df621d4b0be42e01bba4b53776808294073",
+      "path": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl",
+      "sha256": "51ae96d3fd27cc4aaa6e445c27ff0c6f175199cae09efe4e1566b73c1e8019b0",
       "record_count": 153,
       "baseline_commit": "85cee18960bd1973fb1b28132e6498464b0f673b",
-      "current_head": "00d04085f75752f3f86b9fe0d8656a99066cd929"
+      "current_head": "00d04085f75752f3f86b9fe0d8656a99066cd929",
+      "working_intermediate_sha256": "9242a73a4fb141c1cb46d4f41db53df621d4b0be42e01bba4b53776808294073",
+      "provenance": "153 identities from this append-only carry-forward ledger and archive requirements.json source lines; working intermediate was a derived audit view at the recorded SHA, not a repository authority or required replay input."
     },
     "prior_matrix": {
-      "path": "/tmp/ir108-disposition-matrix.json",
+      "path": "docs/governance/audits/requirements-stage/legacy-ir108-disposition-matrix-2026-09-28.json",
       "sha256": "e3c20b7e3973ee07133ae327fb9fbaf463639848e31d741823f8fee9994e4729",
       "record_count": 108,
       "baseline_commit": "559ae3ba4bfe660d666a57f227466d7dcdd440d9",
