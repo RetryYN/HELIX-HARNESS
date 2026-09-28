@@ -1,0 +1,82 @@
+{
+  "receipt_id": "MPR-RCPT-HELIXOS-RETRY-TYPED-RETURN-2026-09-28",
+  "authority_effect": "none",
+  "candidate_state": "registered_proposal; PO未採択",
+  "scope": "旧HXT-AC-015の単一受入atomを、採択済みOS継続・ticket型への未採択接続候補HELIXOS-L2/L11-040へ限定して再導出。親HXT-FR-014全routeと旧runtime/schemaは未被覆のまま保持。",
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/helixos-retry-typed-return-source-lines-2026-09-28.jsonl#HXT-AC-015",
+  "source_atom_set_digest_rule": "atom_id + 半角空白 + sha256:付きsource_line_sha256。末尾改行なし。",
+  "candidate_digest_rule": "### ID見出しから次の同階層見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "candidates": [
+    {
+      "requirement_identity": "HELIXOS-L2-040",
+      "requirement_kind": "unit",
+      "version_target": "1.0 candidate, no v0.1 inclusion decision",
+      "parent_l1_ids": [
+        "HELIXOS-L1-003"
+      ],
+      "parent_l1_source": {
+        "path": "docs/helix-os/L1-planning/system-intent.md",
+        "sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+        "decision_ref": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md:27-33"
+      },
+      "candidate_semantic_digest": "sha256:dfd272b75826d37333671f7152a0a58d2d013f0bd13a3f3957a76a39dcdfad80",
+      "candidate_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-040",
+      "candidate_file_sha256": "sha256:a0a8b5e5454bcedc1e45942226614b5d5d3d60fcca5f706341d064812a93a4cd",
+      "candidate_section_boundaries": {
+        "start_line": 1124,
+        "end_line": 1132,
+        "start_heading_prefix": "### HELIXOS-L2-040 "
+      },
+      "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "acceptance_file_sha256": "sha256:a36ea0cfdb2311022cd527ffaac2fd14b23ed9f5a84a6d6a84a61b6f163f042f",
+      "acceptance_section_sha256": "sha256:a70e3b1af4b22d3370c6a845fc6b5ced1e1162e2cea66cb1d0664211130533e7",
+      "acceptance_section_boundaries": {
+        "start_line": 724,
+        "end_line": 734,
+        "start_heading_prefix": "### HELIXOS-L2-040 "
+      },
+      "source_atom_set_digest": "sha256:cc95b867d2fa93e2b21348e372aa43ff65542e2d4fa9805e254c049bec256be3",
+      "source_atom_count": 1,
+      "source_collection_scope": "HXT-AC-015表行1 atom。HXT-FR-014全体、HXT-AC-014と他ticket条件は入力外。",
+      "atoms": [
+        {
+          "atom_id": "HXT-AC-015",
+          "source_kind": "historical_candidate_acceptance",
+          "candidate_line_id": "LEGACY-CAND-LINE-001105",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+          "source_file_sha256": "sha256:fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+          "source_line": 43,
+          "source_line_sha256": "sha256:f412f81552711a0846872ed733042aebc93d82bdb508b85b53a124ef5a202e29",
+          "source_text": "| HXT-AC-015 | retry上限超過をtyped Recovery/backflowへ送る | HXT-FR-014 |",
+          "parent_requirement_ref": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:240-242",
+          "disposition": "carried_to_unadopted_candidate_limited_scope",
+          "semantic_limit": "HXT-AC-015のretry上限→typed Recovery/Backflowだけ。HXT-FR-014の全route、旧runtime/schema/数値は未対応。"
+        }
+      ],
+      "coverage_result": "no_loss_limited_to_single_atom_candidate",
+      "carried_atom_refs": [
+        "HXT-AC-015"
+      ],
+      "preserved_pending_registration_refs": [],
+      "human_decision_disposition_refs": [],
+      "unaccounted_atom_refs": [],
+      "semantic_limit": "新候補の内容対応のみ。採択、旧HXT family closure、実装・受入実行なし。"
+    }
+  ],
+  "source_parent_context": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+    "source_file_sha256": "sha256:f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+    "lines": "240-242",
+    "status": "historical_candidate; only AC-015 narrowed scope carried",
+    "remaining_conditions": [
+      "Reverse/Human Requiredの全route",
+      "policy/runtime/schema詳細",
+      "旧HXT全受入"
+    ]
+  },
+  "human_decision_provenance": {
+    "decision_ref": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+    "status": "L1 parent confirmed and fixed L2/L11 adopted on 2026-09-28; 040 not included; PO decision pending"
+  },
+  "validation_boundary": "static source/line/section SHA and L2/L11 comparison only; no old execution"
+}
