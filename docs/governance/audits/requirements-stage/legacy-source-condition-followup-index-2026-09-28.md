@@ -37,3 +37,14 @@
 旧v1.3 §4.10 HR-FR-P2-08（REQSRC-SUP-00333、archive line 431）の原文1 atomを、[HELIXOS-L2-042](../../../helix-os/L2-requirements/governance-requirements.md#helixos-l2-042)と対L11へ未採択候補として局所対応した。source file SHA-256 `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`、line SHA-256 `sha256:53d8b2cd66448f9c5d4828b8fbe99d3bffed93b237fe86e0f515b3d1d7ad933f`、asset `LEGACY-ASSET-02319C2481B9E01698D5`、holding `MPR-SH-SUPPLEMENTARY-003`。source-linesとcoverage receipt `docs/governance/audits/requirement-registration/os-v13-worker-output-coverage-receipt-2026-09-28.json`はarchive input 1 atomを固定する。完全同文のbaseline revision `V13-BASE-6FAB-L0412`（6fabd125 line 412）は別atom・別holding `MPR-SH-V13-BASELINE-001`に残し、archive atomへ統合・加算しない。
 
 候補は`MPR-RC-HELIXOS-L2-042-001`として仮登録、PO未決・未採択。strict schema／digest既定と緩和時の対象・理由・期限・再検証receiptを保持する候補だが、旧source condition unresolvedの状態、655-item holding、他のP2条件、全v1.3 coverageを閉じない。A＝exact candidate採択（推奨）、B＝atom保留、C＝対象revision付き意味変更/retire。
+
+
+## 後続追加：HR-FR-P2-05／HELIXSECURITY-L2-033
+
+旧v1.3 §4.10 HR-FR-P2-05（REQSRC-SUP-00330、archive line 428、asset `LEGACY-ASSET-02319C2481B9E01698D5`、holding `MPR-SH-SUPPLEMENTARY-003`）と、6fabd125 baseline line 409（`V13-BASE-6FAB-L0409`、別holding `MPR-SH-V13-BASELINE-001`）の同文2 revision atomsを、[HELIXSECURITY-L2-033](../../../helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-033)と対L11へ未採択候補として対応づけた。archive file SHA-256 `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`、baseline file SHA-256 `1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1`。両行のline SHA-256は`174f87daa1755264b9066d715a5c8541c9b5a13167f3fa66c18d420fe3ccc1d3`。source-linesと[coverage receipt](../requirement-registration/security-v13-worker-context-coverage-receipt-2026-09-28.json)は二atomを候補入力として別々に固定し、holdingを解消しない。登録は`MPR-RC-HELIXSECURITY-L2-033-001`、`registered_proposal` / `authority_effect:none`、PO未決・未採択。
+
+候補は旧`worker-context-packet.v1` schema・runtimeを持ち込まず、現行descriptor/assignment/authorityによるdispatch binding、既存secret boundary、Worker出力の非権威性を限定する。L2-031の主Worker契約外runtime条件を主Workerへ拡張せず、毎回の人間承認・無関係taskの一律停止も追加しない。現在の判断packetは既存の同一ファイルを39候補・basis main `782a7320925a28d0c7b35ebc54b0ec7cc1329e7c`へ追随した。
+
+## 後続訂正：HELIXOS-L2-042 source reference digest表記
+
+39候補packet JSONにあったHELIXOS-L2-042のarchive line 431 source reference値`sha256:sha256:53d8b2cd66448f9c5d4828b8fbe99d3bffed93b237fe86e0f515b3d1d7ad933f`を`sha256:53d8b2cd66448f9c5d4828b8fbe99d3bffed93b237fe86e0f515b3d1d7ad933f`へ訂正した。値の直列化だけを直し、旧source atom、receipt、coverage意味を変更していない。

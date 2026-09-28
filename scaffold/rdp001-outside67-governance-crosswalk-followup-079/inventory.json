@@ -442,7 +442,7 @@
     "holding_record_count": 67,
     "current_live_source_holding_count": 14,
     "management_register_path": "docs/governance/management-provisional-requirement-register.jsonl",
-    "management_register_sha256": "055eed1b3460376fdd918e87a3dd711e1345cc63453228f430901227b096e58d",
+    "management_register_sha256": "1958ab34cf65b41d61ecf38b06fda7beaf8d244d586d2415237d52c6aa739ef0",
     "existing_reviewed_ids": [
       "OUTSIDE67-PATH-008",
       "OUTSIDE67-PATH-011",

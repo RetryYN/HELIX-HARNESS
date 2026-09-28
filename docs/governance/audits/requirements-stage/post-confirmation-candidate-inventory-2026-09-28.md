@@ -84,3 +84,14 @@ HARNESS-L2-042のreceiptは旧v1.3 §4.2 L119の異なる2 source revisionを別
 旧v1.3 §4.10 HR-FR-P2-08のarchive line 431（REQSRC-SUP-00333、source holding `MPR-SH-SUPPLEMENTARY-003`）1 atomを、[HELIXOS-L2-042](../../../helix-os/L2-requirements/governance-requirements.md#helixos-l2-042)と[対L11](../../../helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-042)へ、strict schema／digest defaultと緩和時の対象・理由・期限・再検証receiptの意味保持候補として局所対応させた。完全同文のbaseline atom `V13-BASE-6FAB-L0412`（6fabd125 line 412）は別revision・別atomとして`MPR-SH-V13-BASELINE-001`へ保全し、archive atomとの同一視・合算はしない。`docs/governance/audits/requirement-registration/os-v13-worker-output-coverage-receipt-2026-09-28.json`および`os-v13-worker-output-source-lines-2026-09-28.jsonl`がsource/candidate digestsを固定する。登録`MPR-RC-HELIXOS-L2-042-001`は`registered_proposal` / `authority_effect:none`。PO未決・未採択。
 
 A＝exact L2/L11-042の限定採択（推奨）、B＝原atomを保留、C＝source revision・理由・影響を特定した意味変更/retire。OSは成果状態を既存assignmentへ束ね、HARNESS-L2-005のverification oracleとSECURITY-L2-007/008の既存authorityを維持する。旧schema/runtime/receiptの移植、候補採択、source holding解除、coverage closure、実装許可は主張しない。machine packetは#2257後main `34c1f48663bec1bcb7071b1889adb3c3a2e20e51`から38候補。
+
+
+## 後続追加：#2258後のHELIXSECURITY-L2-033（現行判断集合39候補）
+
+| 機構 | 候補・L2本文 | 対のL11 | 生存register revision・coverage receipt |
+|---|---|---|---|
+| SECURITY | [HELIXSECURITY-L2-033：外部AI Workerの実行文脈束縛と出力の非権威性](../../../helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-033) | [L11受入候補](../../../helix-security/L11-acceptance/security-acceptance.md#helixsecurity-l2-033) | `MPR-RC-HELIXSECURITY-L2-033-001`; `security-v13-worker-context-coverage-receipt-2026-09-28.json` |
+
+旧v1.3 §4.10 HR-FR-P2-05 archive line 428（`REQSRC-SUP-00330`）と6fabd125 baseline line 409の完全同文別revision atomを、両方candidate inputとして区別して保持する。起動前に現行descriptor・HEAD・authority/rule・OS task boundaryを同一dispatchへ束縛し、既存secret denyと出力の非権威性を適用する限定候補である。旧packet schema/runtime、L2-031の追加runtime専用条件の主Workerへの拡張、v1.3全体の被覆は主張しない。source-lines/receiptを追加記録し、両source holdingは未解消のまま。candidateは`registered_proposal` / `authority_effect:none`、PO未決・未採択。packet basis mainは`782a7320925a28d0c7b35ebc54b0ec7cc1329e7c`。
+
+今回の同一packet追随で、既存HELIXOS-L2-042 JSONのarchive line 431 `source_reference_examples[].source_line_sha256`の重複接頭辞`sha256:sha256:`を`sha256:`へ直した。source atomとそのdigestは変えていない。
