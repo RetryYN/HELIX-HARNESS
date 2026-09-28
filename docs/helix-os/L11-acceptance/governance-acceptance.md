@@ -827,3 +827,11 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **負荷低下とlease保全**：待ち件数・時間・rework占有率・reviewer稼働率が設定縮退条件を満たした場合、新規review assignmentの増加を停止し、active lease完了後に余剰capacityを縮退できる。縮退のためactive leaseを中断・重複発行せず、既存receiptを失効前の別revisionへ転用しない。HEAD/base/scope変更時は現行独立review要件に従い再照合する。複数のreview assignmentが並行するfixtureで、merge直前に各対象の最新base・content HEAD・scope・stale状態・merge admissionを個別再取得し、一方のmerge後は他方のbase driftを再判定する。staleまたは不一致なら作成側へ理由付きで返す。capacity増枠やreview receiptだけでmerge条件を満たしたことにしない。
 - **独立性と権限の反例**：provider/model名の違いのみで独立reviewを認定する、作成者・そのSubagentへreviewを割り当てる、reviewerにbranch修正/Ready/merge権限を与える、同一対象の重複receiptをcapacityとして扱う、review完了で他のHARNESS段階条件を満たしたとする例は不合格。
 - **旧source・受入限界**：旧3L-R-29/30、3L-AC-028/030/031/032およびMIC-R-06のbackpressure、review lease、一意性、原因別増枠を限定oracleとして再導出する。固定第3reviewer、旧provider、旧CI/Merge Train/PR/DB fixture、実測・運転済み状態は本候補から生成しない。閾値とsession操作は新規案のためPO判断へ残す。
+
+### HELIXOS-L2-051 作成／reviewレーンのtask単位選択と配置適性の受入候補
+
+- **状態・対象**：L2-051と対になる未採択・未実行のL11候補。既存OS assignment、Worker共通契約、独立review、GitHub merge admissionの意味を変更せず、task単位の配置選択と適性根拠だけを照合する。
+- **正常例**：要求・設計taskのscope、authority、task class、LABOの有効な適性evidence、INTELLIGENCEの配置案を与える。適格性がある場合、OSがClaudeを作成Workerとする案を確認し、別runtime/contextのCodexを`review_merge`に割り当てる。reviewは同じcontent HEADをread-onlyで扱い、findingは作成責任へ返る。修正後の新HEADについて独立reviewを再取得する。別taskでは適性と利用可能性が成立すれば、Codex作成／Claude reviewの逆向き配置も正常となる。
+- **拒否例**：同一task/changeに同じruntime/contextを作成・reviewの両方へ割り当てる、Cursor cloud agentをreviewerにする、provider名が異なることだけで独立reviewとする、適性未評価・scope外・authority不足をClaude優先で迂回する、または修正前HEADのreviewを修正後HEADへ流用した場合は不合格。
+- **unknown例**：LABOのtask class別水準、INTELLIGENCEの配置案、provider availability、scopeまたはauthorityがmissing／stale／conflictの場合、OSが配置成立を推定せず理由付きで保留し、該当入力ownerへ戻す。別適格候補を選ぶ場合はその適用evidenceと根拠が辿れる。
+- **受入限界**：Cursor cloud agentの一般安全性、固定provider matrix、全taskへのClaude指定、適性測定方式／thresholdの新設、実runtime・CI動作はこのoracleの対象外。L2-004、L2-018／020の既存条件やそのacceptanceを再定義せず、候補記載から要求採択、実行・操作authorityまたはmerge許可を生成しない。
