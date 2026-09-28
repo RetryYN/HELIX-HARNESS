@@ -809,3 +809,21 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **unknown/未評価**：対象revision・scope・評価母数・source・resolution条件のいずれかが不明/staleなら、その部分をunknown/未評価のまま保ちownerへ返す。欠測を0または成功としない。
 - **未見例**：Worker返却でなく、検収のoracle不足から始まるfindingを与え、同じowner分担とpending/evidence保持を照合する。LABO評価が未完ならINTELLIGENCEは未評価としてproposalを保留する。
 - **受入限界**：resolutionの新schema/十分条件、測定指標の数値threshold、runtime、実学習は導入しない。candidateと受入案から旧source全体のclosureや改善の因果効果を主張しない。
+
+### HELIXOS-L2-049 Worker稼働観測と低干渉task割当の受入候補
+
+- **候補状態と範囲**：L2-049と対になる未採択・未実行候補。以下は文書上のoracle案であり、実装・運転・受入実行の証拠ではない。
+- **状態分離**：登録上限=5、割当可能=3、割当中=2、実行中=2、遊休=1、検証待ち=4、統合待ち=1をfixtureで与える。各状態が区別され、利用率の分母・観測時点・対象scopeが示されることを確認する。登録数5を実行中5またはaccepted throughputとして出す例は不合格。5はfixture値に限定し要求恒久値にしない。
+- **低干渉taskの適格性**：遊休Workerと未着手taskを与え、READY、依存充足、single-writer/authority lease有効、scope充足、changed-path非競合、既存review/merge義務充足、優先順とdeadlineを害さない場合だけ、別assignmentとして一度割り当てられる。元ticketの順序とidentity、成果・budget・未完義務のlineageを保つ。INTELLIGENCEの配置案がlow-impact適格性を支持しない、または適格性unknownなら割当を保留する。
+- **直列順序と遊休**：依存未完、競合path、上位taskのdeadline侵害、scope/authority欠落、review/merge義務未充足、または低影響判定unknownの各例で後続taskをdispatchしない。適格taskがなければ遊休を遊休として記録し、dummy taskや利用率補完を作らない。
+- **設定上限と停止**：同一入力で上限を2と5に変えたfixtureを与え、各上限超過のassignmentを拒否して理由を残す。変更中の設定、上限/停止条件がmissing・unknown・staleの場合に能力や許可を推定しない。設定値は有期profileであり、5を固定要求としない。
+- **責務・証拠境界**：OSがINTELLIGENCEの配置案を上書きして影響判断を作る、HARNESS義務を省く、resource pool上限を稼働数とみなす、または旧provider数・8-slot・CI/DB/Merge Trainを成立証拠にする例は不合格。旧3L-BR-010、3L-R-28、MIC-R-01/06由来条件を限定して再導出し、旧family全体のclosureを主張しない。
+
+### HELIXOS-L2-050 独立review capacity調整の受入候補
+
+- **候補状態と範囲**：L2-050と対になる未採択・未実行候補。独立性・review結果の意味はHARNESS、authorityはSECURITYの既存契約に従う。
+- **需要起因の増枠**：review queue件数・待ち時間・rework占有率・reviewer稼働率を各typed閾値で照合し、設定上の増枠条件が成立し、reviewer capacity不足が主因で、review以外のdownstreamに詰まりがなく、有効な独立reviewer session/capabilityが上限内で利用可能なfixtureを与える。設定上限=2のfixtureでは、review backlog閾値超過時に利用可能な独立reviewer sessionを最大2つまで別対象へ割り当て、3つ目を追加しない。上限値はfixture設定である。OSが追加assignmentを割り当て、対象PRのcandidate generationとHEAD/revision、reviewer identity/context/route、leaseを一意に記録する。同一PR generationへ二重の主reviewを出してcapacity増と数える例は不合格。HEAD変更後は旧世代のreviewを新HEADへ流用せず、新世代として再reviewする。
+- **原因別backpressure**：検証待ちまたは統合待ちが主因、利用可能reviewerがない、reviewer上限が飽和、閾値/上限がunknown、または必要authorityが失効の各fixtureで、追加review sessionやWorker dispatchが解決策として成功扱いされない。原因・観測値・待ち義務を残し、該当scopeのdispatchをbackpressureする。
+- **負荷低下とlease保全**：待ち件数・時間・rework占有率・reviewer稼働率が設定縮退条件を満たした場合、新規review assignmentの増加を停止し、active lease完了後に余剰capacityを縮退できる。縮退のためactive leaseを中断・重複発行せず、既存receiptを失効前の別revisionへ転用しない。HEAD/base/scope変更時は現行独立review要件に従い再照合する。複数のreview assignmentが並行するfixtureで、merge直前に各対象の最新base・content HEAD・scope・stale状態・merge admissionを個別再取得し、一方のmerge後は他方のbase driftを再判定する。staleまたは不一致なら作成側へ理由付きで返す。capacity増枠やreview receiptだけでmerge条件を満たしたことにしない。
+- **独立性と権限の反例**：provider/model名の違いのみで独立reviewを認定する、作成者・そのSubagentへreviewを割り当てる、reviewerにbranch修正/Ready/merge権限を与える、同一対象の重複receiptをcapacityとして扱う、review完了で他のHARNESS段階条件を満たしたとする例は不合格。
+- **旧source・受入限界**：旧3L-R-29/30、3L-AC-028/030/031/032およびMIC-R-06のbackpressure、review lease、一意性、原因別増枠を限定oracleとして再導出する。固定第3reviewer、旧provider、旧CI/Merge Train/PR/DB fixture、実測・運転済み状態は本候補から生成しない。閾値とsession操作は新規案のためPO判断へ残す。
