@@ -20157,5 +20157,18 @@
     ],
     "line119_performance_L2_ref_correction": "HARNESS-L2-016:399 and paired L11:292-294 were omitted from prior line119 comparison; partial status unchanged; performance L2 normative gap claim withdrawn",
     "line639_style_acceptance_correction": "Old V13-AC-639 exactly-one style was explicitly changed by 2026-09-25 PO to 4 combinable styles; fixed HARNESS-L2/L11-002 retains fail-close and Discovery/PoC separation. Literal separate-field schema and formal successor remain unresolved."
-  }
+  },
+  "post_baseline_updates": [
+    {
+      "source_line": 650,
+      "source_item_id": "REQSRC-SUP-00507",
+      "source_line_sha256": "sha256:c9587a6500b2a47d8827b8e9e2c966b9b79e63a1d1b01263f32b7dd8ff978f01",
+      "baseline_revision_atom_id": "V13-BASE-6FAB-L0631",
+      "current_candidate_id": "HARNESS-L2-039",
+      "current_candidate_register_id": "MPR-RC-HARNESS-L2-039-003",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-experience-contract-coverage-receipt-2026-09-28-r3.json#HARNESS-L2-039",
+      "status": "candidate_unadopted; line650 condition_status remains unresolved",
+      "scope": "旧v1.3 §10 L650の7軸current UX evidence条件を未採択039候補と対L11へ追補。source2 revisionは別atom。r3 no_lossは24 input atomsに限る。対象revisionのPO採否、formal successor、旧source全体の条件閉包、受入実行は未成立。"
+    }
+  ]
 }

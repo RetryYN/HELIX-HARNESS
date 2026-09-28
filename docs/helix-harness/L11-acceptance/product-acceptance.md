@@ -671,6 +671,10 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 
 **prototype/walkthroughの反例**：UI scopeに静止画とscreen一覧・trace・agreement表示だけを与え、操作可能なprototype相当やwalkthroughの実施結果がないのに、prototype確認済みとしてclosureする例を拒否する。正常例では同一scope/revisionの操作可能性とwalkthrough結果・未決事項・訂正を既存008/024の合意根拠へ渡す。開始時に未実施なら未完義務として候補を返せるが、実施済みへ補完しない。旧manifest形式を別の固定schemaとして要求しない。
 
+**正常例：UX完了に必要なcurrent evidence**：UI/UX適用scopeの同一対象scope/revisionについて、L10–L12で評価したreal-data、responsive、motion、accessibility、performance、continuity、人間評価の全7軸のcurrent evidenceがそろい、既存V-pair上の実装・検証関係も別途示されるfixtureを与える。実装状態と`ux_verified`は別に判定し、7軸の全てを確認できた場合だけUX完了主張を成立させる。個別軸をN/Aとして省略しない。非UI scopeは既存の根拠付きN/A境界を維持し、UX完了を主張しない。
+
+**誤り例：UX evidenceの欠落・stale・適用性不明**：7軸のうちいずれか1軸について、証拠が欠ける、対象revision/scopeが異なる、またはcurrentでないfixtureは、その軸以外の証拠がそろっていてもUX完了を拒否する。7軸のいずれかの適用性がunknownであるfixtureもUX完了を拒否し、N/Aへ変換しない。こうした欠落は`implemented`や候補形成・要求/設計作業の開始を取り消さず、保留するのはUX完了主張だけとする。新しいauthority、承認者、実装状態は追加しない。
+
 ## HARNESS-L2-035 scope計測追補の受入
 
 既存L11-035と併せる未実行・未採択候補。

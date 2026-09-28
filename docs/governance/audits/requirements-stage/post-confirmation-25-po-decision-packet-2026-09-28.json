@@ -1,6 +1,6 @@
 {
   "packet_kind": "recommendation_for_PO_decision_only",
-  "basis_commit": "945a30bebe20e66097125d27aec5931b8b95cc0c",
+  "basis_commit": "aad1f3fd906fd0508a9b53b5a9a66608f6e2f44b",
   "as_of": "2026-09-28",
   "count": 27,
   "status": "All 27 are live registered proposals (authority_effect none); no adoption, hold, reject, implementation, or acceptance run is inferred from merged PRs or presence of L2/L11 text.",
@@ -421,8 +421,8 @@
       "title_and_kind": "### HARNESS-L2-039 体験・UI・Frontend契約を同一scopeへ結ぶ（HARNESS-CORE composite候補、version_target: 1.0）",
       "requirement_source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
       "acceptance_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-      "registration_id": "MPR-RC-HARNESS-L2-039-002",
-      "supersedes_registration_id": "MPR-RC-HARNESS-L2-039-001",
+      "registration_id": "MPR-RC-HARNESS-L2-039-003",
+      "supersedes_registration_id": "MPR-RC-HARNESS-L2-039-002",
       "management_state": "registered_proposal",
       "authority_effect": "none",
       "parent_l1_ids": [
@@ -436,8 +436,8 @@
       "parent_l1_path": "docs/helix-harness/L1-planning/product-intent.md",
       "parent_l1_sha256_current": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
       "parent_planning_revision_recorded": "docs/helix-harness/L1-planning/product-intent.md@84bd5e27e4001603744f59df3bd09342bbd513f3 sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f（固定親確認済み、新候補採択は継承しない）",
-      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-experience-contract-coverage-receipt-2026-09-28-r2.json#HARNESS-L2-039",
-      "receipt_id": "MPR-RCPT-HARNESS-EXPERIENCE-CONTRACT-2026-09-28-R2",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-experience-contract-coverage-receipt-2026-09-28-r3.json#HARNESS-L2-039",
+      "receipt_id": "MPR-RCPT-HARNESS-EXPERIENCE-CONTRACT-2026-09-28-R3",
       "receipt_candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
       "candidate_section_boundaries": [
         {
@@ -446,12 +446,12 @@
           "end_heading_prefix": "次の見出し（見出しlevel問わず）"
         }
       ],
-      "registered_candidate_semantic_digest": "sha256:63bc33928410b6c7329bef0320676cc4d1223da7b0d604b57786be27166f4422",
-      "receipt_candidate_semantic_digest": "sha256:63bc33928410b6c7329bef0320676cc4d1223da7b0d604b57786be27166f4422",
-      "current_candidate_semantic_digest": "sha256:63bc33928410b6c7329bef0320676cc4d1223da7b0d604b57786be27166f4422",
+      "registered_candidate_semantic_digest": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0",
+      "receipt_candidate_semantic_digest": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0",
+      "current_candidate_semantic_digest": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0",
       "candidate_digest_matches_register_and_receipt": true,
-      "source_atom_count": 22,
-      "source_atom_set_digest": "sha256:b100fb1721c2b29b20e72d118c2a75e469cd051fb1548fde16376060be73ef50",
+      "source_atom_count": 24,
+      "source_atom_set_digest": "sha256:737c561b69ac7c10915d0f32a566a6d92601c2cf6315501fafd1f051042b3b80",
       "source_reference_examples": [
         {
           "path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
@@ -473,18 +473,32 @@
           "line": 271,
           "source_line_sha256": "sha256:b9eac22955283f657a93a4fa32fc5473430a0ec08b984aacba7a19fb36cff62b",
           "atom_id": "REQSRC-SUP-00204"
+        },
+        {
+          "source_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "source_line_sha256": "sha256:c9587a6500b2a47d8827b8e9e2c966b9b79e63a1d1b01263f32b7dd8ff978f01",
+          "atom_id": "REQSRC-SUP-00507",
+          "held_snapshot_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "line": 650
+        },
+        {
+          "source_path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+          "source_line_sha256": "sha256:c9587a6500b2a47d8827b8e9e2c966b9b79e63a1d1b01263f32b7dd8ff978f01",
+          "atom_id": "V13-BASE-6FAB-L0631",
+          "held_snapshot_path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+          "line": 631
         }
       ],
-      "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/harness-experience-contract-coverage-receipt-2026-09-28-r2.json#candidates[HARNESS-L2-039] に記録。代表例: docs/governance/requirements-source/helix-requirements_v1.3.md:269 (atom REQSRC-SUP-00203); docs/governance/helix-harness-requirements_v1.3.md:254 (atom V13-BASE-6FAB-L0254; snapshot docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt); docs/governance/requirements-source/helix-requirements_v1.3.md:271 (atom REQSRC-SUP-00204); …計22 atom（全行・line SHAはreceipt参照）",
+      "source_reference_note": "全24 revision atomsの原source path・行・行SHA-256はr3 receiptのHARNESS-L2-039節に保持。旧v1.3 L650（REQSRC-SUP-00507）とbaseline L631（V13-BASE-6FAB-L0631）の同文別revisionを追加し、UX完了の7軸current evidenceを039候補と対L11へ明示。",
       "internal_PO_choice": null,
       "paired_l2_id": "HARNESS-L2-039",
       "paired_l11_id": "HARNESS-L2-039",
       "affected_requirement_and_consumer_ids": "HARNESS-L1-001/003/004/006/008/009; HARNESS-L2-008/014/015/016, 対L11",
-      "rationale": "L1の設計提供・体験・scopeを基にUI/Frontend契約を同一scopeへつなぐcomposite。22 source atomsにある重複revisionを要求数に加算しない。",
+      "rationale": "L1の設計提供・体験・scopeを基にUI/Frontend契約を同一scopeへつなぐcomposite。既存22 source atomsと追加した2つのsource revision atomを要求数に加算しない。旧v1.3 §10 L650とbaseline L631のUX完了7軸current evidenceを未採択039候補へ追補し、欠落/stale時の完成拒否を対L11へ追加。2つのsource revisionを1 atomに畳まない。",
       "previous_register_revision": {
-        "registration_id": "MPR-RC-HARNESS-L2-039-001",
-        "candidate_semantic_digest": "sha256:da5a6672f196dffba6fb2bdc7d7133153744a1605460f70d0da1bbb7699580c9",
-        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-experience-contract-coverage-receipt-2026-09-28.json",
+        "registration_id": "MPR-RC-HARNESS-L2-039-002",
+        "candidate_semantic_digest": "sha256:63bc33928410b6c7329bef0320676cc4d1223da7b0d604b57786be27166f4422",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-experience-contract-coverage-receipt-2026-09-28-r2.json#HARNESS-L2-039",
         "management_state_at_revision": "registered_proposal"
       },
       "version_target_evidence": {
@@ -492,7 +506,15 @@
         "line": 891,
         "excerpt": "### HARNESS-L2-039 体験・UI・Frontend契約を同一scopeへ結ぶ（HARNESS-CORE composite候補、version_target: 1.0）",
         "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
-      }
+      },
+      "earlier_register_revisions": [
+        {
+          "registration_id": "MPR-RC-HARNESS-L2-039-001",
+          "candidate_semantic_digest": "sha256:da5a6672f196dffba6fb2bdc7d7133153744a1605460f70d0da1bbb7699580c9",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-experience-contract-coverage-receipt-2026-09-28.json",
+          "management_state_at_revision": "registered_proposal"
+        }
+      ]
     },
     {
       "identity": "HARNESS-L2-040",
@@ -2087,5 +2109,5 @@
     }
   ],
   "initial_25_basis_commit": "f4b2a2b02cf5ea3134e27be0a65c100395161bad",
-  "progression": "初版25候補（initial_25_basis_commit）に、merge済み未採択候補2件（HARNESS-L2-042: PR #2241、HELIXOS-L2-038: PR #2238）を追加し、27候補へ更新。"
+  "progression": "初版25候補（initial_25_basis_commit）に、merge済み未採択候補2件（HARNESS-L2-042: PR #2241、HELIXOS-L2-038: PR #2238）を追加し、27候補へ更新。 HARNESS-L2-039はこの更新でr2→r3/登録-002→-003へ訂正（旧v1.3 L650とbaseline L631の7軸UX証拠を追加）。件数27は不変。"
 }
