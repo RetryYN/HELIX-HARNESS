@@ -1,10 +1,10 @@
 # 手順5 P1: Worker機能単位の旧条件処置案
 
-基準main: `859bebd2ef1ee7079800793a7f0d9c1b88c123d5`（PR #2277 merge後）。本書はWorkerの機能単位6件に限るread-onlyの意味照合案であり、要求の採択、旧source holding解除、正式successor割当、実装・実行受入を生成しない。旧CLI、runtime、adapter、test、CIは実行していない。対象外を含むREG-06全体の未対応0は主張しない。
+基準main: `859bebd2ef1ee7079800793a7f0d9c1b88c123d5`（PR #2277 merge後）。本書は旧Worker共通契約FR-01〜09とAC-01〜07を、Workerの機能単位7件へ束ねたread-onlyの意味照合案であり、要求の採択、旧source holding解除、正式successor割当、実装・実行受入を生成しない。旧CLI、runtime、adapter、test、CIは実行していない。対象外を含むREG-06全体の未対応0は主張しない。
 
 ## 範囲と数え方
 
-旧条件を、作業の進行に沿った6つの機能単位へまとめて照合する。
+旧条件を、作業の進行と適格性評価に沿った7つの機能単位へまとめて照合する。
 
 1. 起動とassignment
 2. eventとlifecycle記録
@@ -12,10 +12,11 @@
 4. 安全・権限・隔離
 5. adapterとWorker契約
 6. 検収・承認の責務
+7. Worker適格性評価と用途別admit/retire
 
 「単位」は意味をまとめた調査行であり、旧atom数、source line数、L2要求数ではない。現行要求にある同義の意味と、その要求だけでは未成立の詳細を分けた。candidateは採択済みとして数えない。旧実装方式のretireはPOへ提示する処置案であり、retire判断済みとはしない。
 
-## 6単位の照合
+## 7単位の照合
 
 | # | 機能単位 | 旧条件と根拠 | 現行の採択済み契約／候補 | 処置案 |
 |---:|---|---|---|---|
@@ -25,10 +26,13 @@
 | 4 | 安全・権限・隔離 | 旧WCC-FR-03/04は隔離worktree、repository/DB/credential非到達、network deny、scope外diff拒否を列挙（WCC同:57-58）。旧isolation policyはsecret task全般deny、host allowlist非対応、特定broker/enforcerを前提（`archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/worker-isolation-policy.md:21-43`; asset `LEGACY-ASSET-604CADBAF8004788EB15`, file SHA-256 `152a7a5806001ae1b2e0215d7cd61db14b7c61cbc4b4b501524bda58622716cf`）。 | SECURITY L2/L11-005〜009がraw secret隔離、egress、実行制約の伝達と適用観測、操作authority、revoke/隔離伝播を採択済み（`security-requirements.md:110-157`; `security-acceptance.md:29-33`）。#2277後もL2-033全体は未採択候補で、その追補はraw secret/機密内容がWorkerへ渡る場合をdenyし、既存の限定credential-use capabilityを同条件だけで一律denyしない（L2 `:479-485`; L11 `:147-154`）。 | 安全保証とowner境界は採択済み。旧sandbox broker、旧filesystem/network手段はPO retire提案。旧「secret/credentialが必要なtask一律deny」の曖昧な範囲は、#2277の未採択訂正candidateと採択済み005を併記し、PO判断なしにretire済みとしない。 |
 | 5 | adapterとWorker契約 | 旧WCC-FR-01/02はprovider共通descriptor・I/O・同一CLI wrapperを要求（WCC `:55-56`）。旧HIL-BR-30は工程/要求入力から専門Worker契約を自動生成（後掲source表）。 | HARNESS L2/L11-010/011はpack単位のversioned input/output/dependency/verification contractと呼出し境界を採択済み。OS L2-004はWorker identity/capability/provider/model/configを記録。INTELLIGENCE L2-014は目的/scope/input/output/action/stop/versionを持つ専門Bot候補を採択済みだが、実作業はOS割当Workerへhand-off（`intelligence-requirements.md:126-130`; 2026-09-28 PO decisionの明示候補集合に含む）。ただしHIL-BR-30/FR-59/FR-60が要求した専門Worker contractの生成物とmuster判定は、既存割当・Bot manifest・pack contractでは満たさないと個別監査が判定。 | 一般のprovider中立契約は採択済み。旧wrapper/typed-event adapter実装はPO retire提案。専門Worker contract生成・musterは**新しい要求候補が必要**だが、後継ID・配置は未決。HARNESS/INTELLIGENCE配置A/BのPO判断前に要求本文を起こさない。 |
 | 6 | 検収・承認の責務 | 旧WCC-FR-06は作成者と独立reviewerを区別するが、provider/model familyも独立性要件に含める（WCC `:60`）。旧resident-laneはworkerまたは同じidentity/session/contextでの自己検収を禁じる（`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md:298-310`; file SHA-256 `17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd`）。 | OS L2/L11-004採択済み: INTELLIGENCEは配置案、OSは検証後の割当、Workerは実行、SECURITYは自己承認防止/authority。作成側Worker/Subagentを独立reviewと数えず、identity/context/authority/routeで独立性を判定。PO Worker decision（`worker-execution-model-po-decisions-2026-09-26.md:56-60,82-92`; file SHA-256 `1c93bf0aadccfdf6b536a32d3923a17fbd00a1fd830850f9369b5b6d6b12efb2`）。 | 責任分離・独立検収は採択済み。provider/model familyの一致/相違を独立性の代理にする旧条件はPO retire提案。別providerや毎回の人間承認は要求しない。 |
+| 7 | Worker適格性評価と用途別admit/retire | 旧WCC-FR-07/08 `worker-common-contract.md:61-62` は固定fixture/rubric/task/riskでauthor claimを除いたblind score、smoke-only拒否、重大failureを平均で相殺しない用途別admit/retireを要求する。WCC-AC-04/05 `:130-131` が反例を固定し、WCC-AC-06 `:132` は旧Kimi/Grok Discoveryを採用済みclaimへ昇格しない境界を要求する。同asset・file SHAは#1と共通。 | 採択済みLABO L2-055 `labo-requirements.md:150-160` は作業種別・model class別の水準/未評価を、L2-059 `:416-435` は固定比較条件、品質gate、費用を、L2-060 `:441-455` は支援効果比較を扱う。blind author/judge分離とtask/oracle隔離は未採択061 `:457-467`、候補名遮蔽・smoke-only/重大failure非相殺は未採択064 `:491-500`、task別資格scorecardと用途別decision参照は未採択065 `:503-516`。これらの候補は採択済みの適格性・admit権限ではない。 | 一般評価の基盤は採択済み。WCC-FR-07/08とAC-04/05のblind・重大failure・用途別根拠は061/064/065の未採択条件に依存する。LABO scoreだけでOSの割当やadmit/retireを決めず、用途別decision owner・適用scopeをPO packetに残す。AC-06の旧provider名とS2/S4固定工程は旧方式のretire提案とし、探索結果をauthorityに昇格しない意味は保持する。 |
+
+対象旧WCCのAC-01〜07（同source `:127-133`）は、AC-01→#1/#5、AC-02→#4、AC-03→#3/#6、AC-04/05/06→#7、AC-07→#1/#4へ対応付けた。AC-06は特定providerのDiscovery段階を現行stageへ移植しない。WCC全体の別節にある技術schema、provider対応表、受入test設計は、この7単位の意味分類だけではclosureしない。
 
 ## specialist contract生成の限定残差
 
-以下は、今回の6単位のうち#5「adapterとWorker契約」に属する一つの機能残差である。担当割当・配置案・Bot manifestと、runtime-neutral specialist contractの生成出力を同一視しない。
+以下は、今回の7単位のうち#5「adapterとWorker契約」に属する一つの機能残差である。担当割当・配置案・Bot manifestと、runtime-neutral specialist contractの生成出力を同一視しない。
 
 | 旧condition | 旧source evidence | 現行照合と残差 |
 |---|---|---|
@@ -42,16 +46,16 @@
 
 ## 件数と進捗表示
 
-この監査用に定義した6単位は、照合開始時点では分類未了 `6/6` と置く。これはREG-06の旧source atom数や未解決件数ではない。照合後の**分類結果**は次のとおり。
+この監査用に定義した7単位は、照合開始時点では分類未了 `7/7` と置く。これはREG-06の旧source atom数や未解決件数ではない。照合後の**分類結果**は次のとおり。
 
 | 状態 | 単位数 | 内訳 |
 |---|---:|---|
-| 採択済みの一般条件に対応 | 2/6 | #2 event意味、#6 approval。旧実装方式のretire提案はPO未決であり、旧行全体のclosureではない。 |
-| 採択済みの一般条件＋既存未採択candidate detail | 3/6 | #1の割当/停止、#3の結果/検収、#4の安全/authorityの一般条件は採択済み。外部Workerのcontext/output/isolation detailはSECURITY-L2-033候補にも接続し、P0訂正後も未採択。 |
-| 新要求候補が必要 | 1/6 | #5一般adapter契約は採択済みだが、専門Worker contract生成/musterは別の残差（HIL-BR-30/FR-59/FR-60、後継ID未割当）。 |
+| 採択済みの一般条件に対応 | 2/7 | #2 event意味、#6 approval。旧実装方式のretire提案はPO未決であり、旧行全体のclosureではない。 |
+| 採択済みの一般条件＋既存未採択candidate detail | 4/7 | #1の割当/停止、#3の結果/検収、#4の安全/authority、#7の評価基盤は採択済み。#1/#3/#4はSECURITY-L2-033、#7はLABO-L2-061/064/065の未採択条件にも依存する。 |
+| 新要求候補が必要 | 1/7 | #5一般adapter契約は採択済みだが、専門Worker contract生成/musterは別の残差（HIL-BR-30/FR-59/FR-60、後継ID未割当）。 |
 | 旧方式としてPOへretire提示 | 上記に直交 | same CLI wrapper、provider固有typed event/wire protocol、旧lifecycle/hash-chain/DB、旧sandbox broker/enforcer、特定canonical stdout envelope、provider/model familyでの独立性判定。 |
 
-従って、この6件の**分類未了は6→0**。処置が必要な機能残差は2群に集約される。ひとつは#1/#3/#4に接続する既存L2-033候補の採否、もうひとつは#5内の専門Worker contract生成/muster候補である。一般条件が採択済みの単位は5/6だが、これを各旧行全体の無損失や採択済みだけでのclosureとは数えない。P1全体のcompletionやREG-06未対応ゼロを意味しない。retireのPO選択がなければ旧方式項目は「retire提案中」と保持する。
+従って、この7件の**分類未了は7→0**。処置が必要な機能残差は3群に集約される。#1/#3/#4に接続する既存SECURITY-L2-033候補の採否、#5内の専門Worker contract生成/muster候補、#7のblind評価・重大failure非相殺・用途別decisionを持つLABO-L2-061/064/065の採否である。一般条件が採択済みの単位は6/7だが、これを各旧行全体の無損失や採択済みだけでのclosureとは数えない。P1全体のcompletionやREG-06未対応ゼロを意味しない。retireのPO選択がなければ旧方式項目は「retire提案中」と保持する。
 
 ## REG-06/overlayとの関係
 
