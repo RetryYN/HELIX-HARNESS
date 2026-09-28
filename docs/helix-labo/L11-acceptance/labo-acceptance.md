@@ -257,3 +257,11 @@ L2-064と対になる未採択受入候補、1.0。
 **未見例**：未評価runtime version、新task class、または変更されたfixture/rubricが来た場合、既存資格結果をそのまま転用せず、新scopeの比較条件・適用oracleが不足なら未評価/比較不能を返す。初見taskでdiff/lintの単位や対象profileが未定の場合もunknownを維持し、指標定義ownerへ戻す。未見のために通常Worker履歴へfull benchを強制せず、候補資格scopeの証拠不足だけを未完にする。
 
 **責務・受入限界**：LABO-006はOS割当Workerによる実験run、LABO-055は通常Worker履歴の水準、採択済みLABO-059は品質優先の同条件比較と全費用、LABO-061/064は別の未採択候補であり、本候補の常時依存ではない。HELIXLABO-L2-065自身が、選択資格scopeに必要なtask/oracle/context・candidate名blind条件を所有するが、これらの候補の実行・配置・採否を所有しない。oracle/fixture/acceptanceはHARNESS/要求owner、assignment/実行はOS、許可されたdata/executionはSECURITY、測定・比較receiptはLABOへ戻す。score、未評価、適格性の表示だけから実験許可、Worker assignment、admission、best runtime、未見taskへの一般化を作らない。実効費用内訳と、同条件のtask class/scope/測定定義/revisionに限るtrend/failure findingをscorecardと一緒に出す。用途別decisionおよび資格admission decisionは既存ownerの結果または未決として参照し、LABO自身の判断へ変換しない。
+
+### HELIXLABO-L2-066 A比較における誤修復・未解消数の受入候補（単体、1.0）
+
+未実行の受入候補。親は`HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context。採択済みHELIXLABO-L2-059の品質優先・比較条件・費用等の意味を保持し、A比較の誤修復数と未解消数を分母およびoracleに結ぶ観測だけを補う。旧Bugbot候補の採択、Bugbot/修復器の実装、比較runの許可を生成しない。
+
+- **正常**：比較開始前に固定されたAと候補のidentity/version、同じtask/scope/対象revision、重複を除いた共通eligible case集合、受入/quality oracleとrevision、scorer/protocol/toolchain/environmentおよび同一の終了/cutoff条件を確認する。各群で同一caseへoracleを適用したreceiptがあり、各群別に`misrepair_count/N`（oracleが誤った修復と判定したcase数）と`unresolved_count/N`（終了/cutoff時に受入oracleを満たす解決がないcase数）を分子・分母付きで返す。oracleが適用不能またはreceiptが不足するcaseはunknownとして示し、分母から黙って除かず比較を未評価/比較不能にする。2指標は重なり得るため個別に数える。既存059の費用・時間・手戻りは同じscopeの比較として保持する。
+- **誤りを含む例**：Aの意味/版を推測する、結果を見た後でeligible集合・分母・oracleを変更する、Aと候補のcase集合や計測条件を変える、分子だけで割合を示す、unknown・欠測・重複caseを理由なく分母から落とす、oracleに結ばない数を誤修復/未解消と断定する、成功件数や費用/速度だけで誤修復・未解消を隠す、費用/手戻りを片側だけ除外する。それぞれ当該比較を不成立または未評価とし、unknownは0にしない。
+- **未見・権限境界**：Aのidentity/conditionやoracle適用性が初見で不明なら一般化せず、未評価/比較不能と必要なownerへの戻し先を返す。固定件数・rate threshold・合否thresholdを置かない。結果はLABOの計測・比較材料に留まり、要求採択、効果達成、実験許可、Worker/修復器の選定・割当・実行、authorityを生成しない。
