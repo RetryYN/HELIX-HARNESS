@@ -37,7 +37,6 @@ HELIX-CONNECTは接続登録、契約版照合、通信、再送、追跡を担�
 | HELIXCONNECT-L2-005 | unit | HELIXCONNECT-L1-001 | 接続単位の追跡記録 | 1.0 |
 | HELIXCONNECT-L2-006 | connection | HELIXCONNECT-L1-001 | 片側交換後の互換を保った接続 | 1.0 |
 | HELIXCONNECT-L2-007 | composite | HELIXCONNECT-L1-001 | 複数機構を結ぶ接続構成体 | 1.0 |
-| HELIXCONNECT-L2-008 | unit | HELIXCONNECT-L1-001 | MCP profile catalogとtyped descriptorの供給 | 1.0 |
 
 `version_target`は能力を目標とする版で、実際の契約版・実装版・採択状態を表さない。実際にどの接続を対象とするかは、接続先と接続の棚卸しおよび要求identityとの照合を経て特定する。
 

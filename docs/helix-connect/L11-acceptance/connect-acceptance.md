@@ -36,7 +36,6 @@ sources:
 | HELIXCONNECT-L11-005 | HELIXCONNECT-L2-005 | unit | 送受信・再送・stale・部分失敗を接続単位に順序追跡できる |
 | HELIXCONNECT-L11-006 | HELIXCONNECT-L2-006 | connection | 片側交換後、固定側を変更せず互換なら通信し、非互換/unknown/staleならfail-closeする |
 | HELIXCONNECT-L11-007 | HELIXCONNECT-L2-007 | composite | 複数の接続辺とoperation lineageを終端まで追跡し、途中失敗時に全体成功を報告しない |
-| HELIXCONNECT-L11-008 | HELIXCONNECT-L2-008 | unit | 登録済みMCP profile catalogと型付き設定・capability・read-only descriptorをrevisionへ束縛し、不明・stale・不整合を利用可能にしない |
 
 ## 単体接続の確認
 
