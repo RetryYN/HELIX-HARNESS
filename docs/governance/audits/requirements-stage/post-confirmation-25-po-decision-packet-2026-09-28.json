@@ -3497,9 +3497,9 @@
       "identity": "HELIXOS-L2-045",
       "decision_state": "pending_PO; not adopted",
       "source_basis_class": "Confirmed old FR-L1-35 single-identity atom, rederived as a bounded OS readiness-inventory candidate. Source mapping does not confirm a semantic successor, ownership transfer, or adoption.",
-      "new_meaning_choice": "A＝旧FR-L1-35の3区分readiness inventoryをHELIXOS-L2/L11-045として採択し、source ownerをOSへrehomeする。version target・対象機構集合を対象revisionで明示する。B＝旧inventory価値を採択済みOS-L2/L11-016の一般stateへ置換/retireし、045を採択しない。C＝旧source holdingを生存・045を未採択で保留し、version・対象機構集合・owner方針が決まるまで延期する。HARNESS owner維持はC経路であり、別HARNESS側候補を検討する。A/B/Cはすべて未選択。",
-      "recommended_choice": "C",
-      "choice_meaning": "A/B/C remain unselected. A adopts OS-L2/L11-045 and requires owner rehome to OS, with version and target mechanisms selected. B replaces/retires the old value into adopted general state 016. C keeps the source holding live and 045 unadopted until version, target mechanism set, and owner path are selected. Keeping HARNESS as owner is a C path and requires a separate HARNESS-side candidate; it cannot be combined with adopting OS-045. No current all-mechanism set, future Web scope, or version is inferred.",
+      "new_meaning_choice": "A＝旧FR-L1-35の3区分readiness inventoryをHELIXOS-L2/L11-045として採択し、source ownerをOSへrehomeする。version target（1.0／後続版）と対象機構集合は対象revisionで明示する。 B＝旧HARNESS source holdingを生存させ、HELIXOS-L2/L11-045を未採択のまま保留する。version target、対象機構集合、owner方針の決定を保留し、source atomを保持する。 C＝HELIXOS-L2/L11-045を採択せず、旧FR-L1-35を対象source revision・理由・影響を明示して採択済みOS-L2/L11-016の一般stateへ置換/retireする。version、適用scope、owner dispositionも対象revisionで明示する。 A/B/Cはすべて未選択。",
+      "recommended_choice": "B",
+      "choice_meaning": "A/B/C remain unselected. A adopts OS-L2/L11-045 and rehomes the source owner to OS, with version target and target mechanism set stated on the decision revision. B keeps the old HARNESS source holding live and holds 045 unadopted, preserving the source atom while version, target mechanism set, and owner disposition remain undecided. C replaces/retires the old FR-L1-35 value into adopted general state 016 without adopting 045, and records the source revision, reason, version/scope, owner disposition, and consumer impact. No all-mechanism set, future Web scope, or version is inferred.",
       "version_target_as_written": null,
       "title_and_kind": "### HELIXOS-L2-045 各機構の検証・test・検出基盤readiness一覧（単体候補）",
       "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-045",
@@ -3553,7 +3553,7 @@
       "paired_l2_id": "HELIXOS-L2-045",
       "paired_l11_id": "HELIXOS-L2-045",
       "affected_requirement_and_consumer_ids": "HELIXOS-L1-002; adopted HELIXOS-L2/L11-016 general portfolio state; HELIXOS-L2/L11-045 (unadopted rehome proposal); legacy confirmed FR-L1-35",
-      "rationale": "version target（1.0／後続版）、OS-L1-002のどの対象機構へ適用するか、source owner方針が未決。OS-L2/L11-045採択とHARNESS owner維持は両立しない。旧confirmed FR-L1-35と採択済みL2/L11-016の差分は確認済みだが、owner/version/scopeが定まるまでC（保留）を推奨する。HARNESS ownerを保つ場合は別候補経路となる。推奨は選択ではない。影響: legacy FR-L1-35、OS-L1-002対象集合、adopted OS-L2/L11-016、unadopted OS-L2/L11-045。",
+      "rationale": "version target（1.0／後続版）、OS-L1-002の具体的な対象機構集合、source owner方針が未決である。旧HARNESS source holdingと045候補を保全して判断を保留するBを推奨する。これはPO選択ではなく、置換/retireを決定しない。影響: legacy confirmed FR-L1-35、OS-L1-002対象集合、採択済みOS-L2/L11-016、未採択OS-L2/L11-045。",
       "previous_register_revision": null,
       "version_target_evidence": "旧FR-L1-35はP2要求。現行OS candidateのversion_targetは未指定。現行8機構、将来Web、または1.0等への割当てを推定しない。",
       "source_line_coverage_result": "candidate_input_scoped; semantic_successor_not_confirmed; disposition_pending_PO",
@@ -3563,7 +3563,7 @@
       "po_decision_frame": {
         "selection_status": "pending_PO",
         "selected_option": null,
-        "recommended_option": "C",
+        "recommended_option": "B",
         "recommendation_is_decision": false,
         "decision_dimensions": [
           {
@@ -3583,27 +3583,28 @@
             "id": "source_owner",
             "status": "pending",
             "choices": [
-              "OSへrehomeしてHELIXOS-L2/L11-045のownerを担う（Aを選ぶ場合の前提）",
-              "旧HARNESS source ownerを維持し、OS-045は保留して別途HARNESS側候補を起こす（C経路）"
+              "OSへrehomeしてHELIXOS-L2/L11-045のownerを担う（A）",
+              "旧HARNESS source holdingを保持し、OS-045は保留する（B）",
+              "対象source revision・理由・影響を明示して置換/retireし、OS-045は採択しない（C）"
             ],
-            "constraint": "OS-L2/L11-045を採択するAとHARNESS owner維持は同時選択できない。HARNESS owner維持なら045を保留し、別のHARNESS側候補経路を検討する。"
+            "constraint": "AではOSへsource ownerをrehomeする。Bでは旧HARNESS source holdingを生存させる。Cでは対象source revision、理由、owner disposition、consumer影響を判断revisionに記録する。"
           }
         ],
         "options": [
           {
             "id": "A",
-            "meaning": "旧FR-L1-35の3区分readiness inventoryをOS-L2/L11-045として採択し、source ownerをOSへrehomeする。version targetと対象機構集合は対象revisionで明示する。"
+            "meaning": "旧FR-L1-35の3区分readiness inventoryをHELIXOS-L2/L11-045として採択し、source ownerをOSへrehomeする。version target（1.0／後続版）と対象機構集合は対象revisionで明示する。"
           },
           {
             "id": "B",
-            "meaning": "旧inventory価値を採択済みOS-L2/L11-016の一般stateへ置換/retireし、045を採択しない。対象revision、理由、version/scope、owner disposition、consumer影響を明示する。"
+            "meaning": "旧HARNESS source holdingを生存させ、HELIXOS-L2/L11-045を未採択のまま保留する。version target、対象機構集合、owner方針の決定を保留し、source atomを保持する。"
           },
           {
             "id": "C",
-            "meaning": "旧source holdingを生存させ、045を未採択で保留する。HARNESS owner維持または別の候補経路も含め、version target、対象機構集合、owner方針を対象revisionで選ぶまで決定を延期する。"
+            "meaning": "HELIXOS-L2/L11-045を採択せず、旧FR-L1-35を対象source revision・理由・影響を明示して採択済みOS-L2/L11-016の一般stateへ置換/retireする。version、適用scope、owner dispositionも対象revisionで明示する。"
           }
         ],
-        "recommendation_rationale": "version target（1.0／後続版）、OS-L1-002の具体的対象機構集合、source owner方針が未決。特にHARNESS owner維持とOS-L2/L11-045採択は両立しないため、入力確定までCを推奨する。",
+        "recommendation_rationale": "version target（1.0／後続版）、OS-L1-002の具体的な対象機構集合、source owner方針が未決である。旧HARNESS source holdingと045候補を保全して判断を保留するBを推奨する。これはPO選択ではなく、置換/retireを決定しない。影響: legacy confirmed FR-L1-35、OS-L1-002対象集合、採択済みOS-L2/L11-016、未採択OS-L2/L11-045。",
         "affected_requirement_and_consumer_ids": [
           "legacy confirmed FR-L1-35",
           "HELIXOS-L1-002",
@@ -3614,7 +3615,7 @@
     }
   ],
   "initial_25_basis_commit": "f4b2a2b02cf5ea3134e27be0a65c100395161bad",
-  "progression": "Initial 25 candidates + PR #2241 HARNESS-L2-042 + PR #2238 HELIXOS-L2-038 = historical 27; PR #2245 merged HARNESS-L2-043, giving 28; PR #2246 merged HARNESS-L2-044, giving 29; PR #2247 registered HELIXOS-L2-039, giving 30; current HARNESS-L2-045 brings the live decision set to 31. HELIXOS-L2-039/HARNESS-L2-045 are linked by an unselected paired PO decision. Current HELIXOS-L2-040 adds one bounded old HXT-AC-015 retry-route candidate, making 32; no PO selection. Current HELIXINTELLIGENCE-L2-073 adds one bounded old AAFD-R-04 free-text direct-projection boundary candidate, making 33; no PO selection. Current HELIXOS-L2-041 adds one bounded old IPC-R07 safe-continuation candidate from two linked atoms, making 34; no PO selection. Current HELIXLABO-L2-066 adds one bounded old Bugbot candidate-line metric gap, making 35; no PO selection. Its source atom is historical and its current L2/L11 candidate remains unadopted. Current HELIXSECURITY-L2-032 adds one bounded old v1.3 §4.10 HR-FR-P2-07 repository-level bypass precedence candidate, making 36; no PO selection. It applies across provider/runtime instances under the old external AI Worker contract, preserves existing authority when no deny applies, and does not claim §4.10 closure. Current HARNESS-L2-046 adds one bounded v1.3 Full V/Scrum workflow condition candidate from six sentence spans across archive and 6fabd125 baseline revisions, making 37; no PO selection. It preserves the 2026-09-25 four-style definitions/composition permission, requires staged freeze and listed verification for selected Full V only, and applies Scrum backfill/checkpoint/SR4 solely to Scrum-selected/composed scope. Current HELIXOS-L2-042 adds one bounded old v1.3 HR-FR-P2-08 Worker-result strict validation/relaxation candidate from archive line 431, making 38; the identical 6fabd125 baseline line 412 remains a separate pending source atom and is not counted as candidate input. No PO selection. Current HELIXSECURITY-L2-033 adds one bounded old v1.3 §4.10 HR-FR-P2-05 external-worker startup-context / non-authoritative-output candidate from archive line 428 and the distinct 6fabd125 baseline twin line 409, making 39; both atoms are candidate inputs and remain distinct source revisions/holdings. No PO selection. Current HELIXOS-L2-043 adds a bounded old v1.3 §4.10 HR-FR-P2-06 typed-event candidate from archive line 429 and distinct 6fabd125 baseline line 410 (two selected S1 atoms), making 40; no PO selection. The Node-exclusive S2 atoms remain preserved_pending for separate PO choice D (recommended); the full old source line remains partial and no full-line no_loss is claimed. Current HELIXOS-L2-044 adds one bounded old v1.3 HR-AC-HYB-006 prose-only-resolution rejection candidate, making 41; the selected two revision atoms have scoped no_loss while other source clauses remain preserved pending, and no PO selection is recorded. Current HELIXOS-L2-045 adds a narrowly scoped FR-L1-35 three-class readiness inventory proposal for the selected OS-L1-002 applicability scope, making 43; no PO selection, owner transfer, applicability set, or version target is recorded.",
+  "progression": "Initial 25 candidates + PR #2241 HARNESS-L2-042 + PR #2238 HELIXOS-L2-038 = historical 27; PR #2245 merged HARNESS-L2-043, giving 28; PR #2246 merged HARNESS-L2-044, giving 29; PR #2247 registered HELIXOS-L2-039, giving 30; current HARNESS-L2-045 brings the live decision set to 31. HELIXOS-L2-039/HARNESS-L2-045 are linked by an unselected paired PO decision. Current HELIXOS-L2-040 adds one bounded old HXT-AC-015 retry-route candidate, making 32; no PO selection. Current HELIXINTELLIGENCE-L2-073 adds one bounded old AAFD-R-04 free-text direct-projection boundary candidate, making 33; no PO selection. Current HELIXOS-L2-041 adds one bounded old IPC-R07 safe-continuation candidate from two linked atoms, making 34; no PO selection. Current HELIXLABO-L2-066 adds one bounded old Bugbot candidate-line metric gap, making 35; no PO selection. Its source atom is historical and its current L2/L11 candidate remains unadopted. Current HELIXSECURITY-L2-032 adds one bounded old v1.3 §4.10 HR-FR-P2-07 repository-level bypass precedence candidate, making 36; no PO selection. It applies across provider/runtime instances under the old external AI Worker contract, preserves existing authority when no deny applies, and does not claim §4.10 closure. Current HARNESS-L2-046 adds one bounded v1.3 Full V/Scrum workflow condition candidate from six sentence spans across archive and 6fabd125 baseline revisions, making 37; no PO selection. It preserves the 2026-09-25 four-style definitions/composition permission, requires staged freeze and listed verification for selected Full V only, and applies Scrum backfill/checkpoint/SR4 solely to Scrum-selected/composed scope. Current HELIXOS-L2-042 adds one bounded old v1.3 HR-FR-P2-08 Worker-result strict validation/relaxation candidate from archive line 431, making 38; the identical 6fabd125 baseline line 412 remains a separate pending source atom and is not counted as candidate input. No PO selection. Current HELIXSECURITY-L2-033 adds one bounded old v1.3 §4.10 HR-FR-P2-05 external-worker startup-context / non-authoritative-output candidate from archive line 428 and the distinct 6fabd125 baseline twin line 409, making 39; both atoms are candidate inputs and remain distinct source revisions/holdings. No PO selection. Current HELIXOS-L2-043 adds a bounded old v1.3 §4.10 HR-FR-P2-06 typed-event candidate from archive line 429 and distinct 6fabd125 baseline line 410 (two selected S1 atoms), making 40; no PO selection. The Node-exclusive S2 atoms remain preserved_pending for separate PO choice D (recommended); the full old source line remains partial and no full-line no_loss is claimed. Current HELIXOS-L2-044 adds one bounded old v1.3 HR-AC-HYB-006 prose-only-resolution rejection candidate, making 41; the selected two revision atoms have scoped no_loss while other source clauses remain preserved pending, and no PO selection is recorded. Current HELIXSECURITY-L2-034 adds one bounded old v1.3 HR-FR-HYB-002 MCP tool-profile security candidate, making 42; six selected spans across two source revisions are candidate inputs and the remaining six source spans stay preserved pending, with no PO selection. Current HELIXOS-L2-045 adds a narrowly scoped FR-L1-35 three-class readiness inventory proposal for the selected OS-L1-002 applicability scope, making 43; no PO selection, owner transfer, applicability set, or version target is recorded.",
   "version_target_evidence": null,
   "portfolio_fixture_fr54_fr55_route": {
     "decision_id": "PORTFOLIO-FIXTURE-FR54-FR55-ROUTE",
