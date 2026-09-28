@@ -1,0 +1,67 @@
+{
+  "receipt_id": "DRAFT-RCPT-OS-V13-HR-FR-P6-06-PACKAGE-CONTENT-2026-09-28",
+  "receipt_state": "linked_to_register_correction",
+  "authority_effect": "none",
+  "candidate_identity": "HELIXOS-L2-030",
+  "candidate_identity_state": "registered_proposal_unadopted",
+  "candidate_registration_ref": "docs/governance/management-provisional-requirement-register.jsonl#MPR-RC-HELIXOS-L2-030-003",
+  "candidate_semantic_digest": "sha256:4e51938b15f6d1217f50d1406df702d4346e3c02fd373f2a8cb6b4c5749f2af5",
+  "candidate_l2_file_sha256": "sha256:cd0aa3ae422ca8391c27b316650f470093f12edcf3bc4b621da0035d2706eddf",
+  "candidate_l2_refs": [
+    "docs/helix-os/L2-requirements/governance-requirements.md:879 (HELIXOS-L2-030; guarantees 1 and 4)",
+    "docs/helix-os/L2-requirements/governance-requirements.md:1065 (generated-index supplement)"
+  ],
+  "paired_acceptance_identity": "HELIXOS-L2-030",
+  "candidate_l11_file_sha256": "sha256:ebe12d376523ea010df0733e929ecb3d5a557f97b54f248a1096f4a2e8e5fb70",
+  "candidate_l11_refs": [
+    "docs/helix-os/L11-acceptance/governance-acceptance.md:480 (candidate acceptance)",
+    "docs/helix-os/L11-acceptance/governance-acceptance.md:486 (HR-AC-HYB-008-01)",
+    "docs/helix-os/L11-acceptance/governance-acceptance.md:489 (HR-AC-HYB-008-04)",
+    "docs/helix-os/L11-acceptance/governance-acceptance.md:640 (generated-index supplement)"
+  ],
+  "existing_candidate_receipt_ref": "docs/governance/audits/requirement-registration/os-package-acceptance-coverage-receipt-2026-09-28-r2.json#HELIXOS-L2-030",
+  "existing_candidate_register_state": "MPR-RC-HELIXOS-L2-030-003, management_state registered_proposal, authority_effect none; its declared source atom set is 98 candidate-input atoms, including the two HR-FR-P6-06 S1 spans; S2 remains outside candidate input.",
+  "source_collection_scope": "Archive v1.3 HR-FR-P6-06 line 432 and 6fab baseline line 413 are separate source revisions with identical line bytes. Split each line at the grammatical predicate boundary after “持ち、” into package-content S1 and PLAN-M-02 approval-boundary S2. Preserve four distinct source spans; candidate input is only the two S1 spans. The two S2 spans remain with their distinct source holdings for PO decision.",
+  "source_atom_count": 4,
+  "source_atom_set_digest_rule": "SHA-256 over ordered UTF-8 lines `atom_id<TAB>source_span_sha256` joined by LF; span SHA retains `sha256:` prefix. Atom order is archive S1,S2 then baseline S1,S2.",
+  "source_atom_set_digest": "sha256:69592a82ccafdd3943df189e6b94aeed4c2c2c4963927a7d6f72d718882c49cb",
+  "source_lines_ref": "docs/governance/audits/requirement-registration/os-v13-p6-06-package-source-lines-2026-09-28.jsonl",
+  "candidate_input_atom_refs": [
+    "V13-ARCHIVE-L0432-HR-FR-P6-06-S1",
+    "V13-BASELINE-L0413-HR-FR-P6-06-S1"
+  ],
+  "candidate_input_atom_count": 2,
+  "candidate_input_atom_set_digest": "sha256:dfa9f1403f7f86e02ce9acb12e7511f07090cccf3126f7486ecb6334c7bb95ee",
+  "candidate_input_scope_mapping": "S1 package content conditions map to existing L2-030 guarantee 1 (manifest, generated index, third-party split, license/attribution, digest), guarantee 4 (README/current license/third-party attribution/provenance/disclaimer), and generated-index supplement; paired L11 maps to acceptance 01, 04, and generated-index normal/error/unseen examples. Mapping is descriptive only; the existing candidate remains unadopted.",
+  "preserved_pending_atom_refs": [
+    "V13-ARCHIVE-L0432-HR-FR-P6-06-S2",
+    "V13-BASELINE-L0413-HR-FR-P6-06-S2"
+  ],
+  "preserved_source_holding_refs": [
+    "MPR-SH-SUPPLEMENTARY-003",
+    "MPR-SH-V13-BASELINE-001"
+  ],
+  "po_decision_residual": {
+    "status": "required_before_equivalence_or_retirement",
+    "source_atoms": [
+      "V13-ARCHIVE-L0432-HR-FR-P6-06-S2",
+      "V13-BASELINE-L0413-HR-FR-P6-06-S2"
+    ],
+    "original_source_text": "| `HR-FR-P6-06` | 配布packageはcanonical／generated index、first／third-party区分、provenance、license、免責、digestを持ち、publish／cutoverはPLAN-M-02承認境界を維持する |",
+    "decision_span": "publish／cutoverはPLAN-M-02承認境界を維持する",
+    "question": "旧PLAN-M-02のpublish/cutover承認境界を、現行HELIXSECURITY-L2-008の操作別authorityへ意味同等として再配置するか、旧対象・人間decisionの境界を保つか、または明示的にretireするか。",
+    "options": [
+      "retain the legacy PLAN-M-02 boundary for the identified operation scope",
+      "rederive an explicit mapping to current operation-specific SECURITY authority with PO-confirmed scope/equivalence",
+      "retire the old PLAN-M-02 meaning by an explicit PO decision",
+      "defer and preserve both source atoms in the existing holdings"
+    ],
+    "impact": "Do not infer a new per-operation human approval gate. Current L2-030 already reuses a valid matching authority and separates package validation from permission; equivalence or retirement of the legacy PLAN-M-02 meaning remains a PO-level source-meaning decision."
+  },
+  "coverage_result": "partial_scope_mapping_only",
+  "source_line_coverage_result": "partial; no_loss_not_claimed",
+  "condition_closure": "not_asserted",
+  "candidate_input_coverage_result": "no_loss for the two selected S1 atoms only; source lines as a whole remain partial",
+  "authority_boundary": "This receipt records source mapping and residuals only. It does not adopt L2-030, decide authority equivalence, create publish/cutover permission, or change any existing L2/L11/register/receipt.",
+  "decision_status": "S1 mapped to existing unadopted L2-030 and included in r3 candidate input; S2 preserved pending PO meaning decision."
+}

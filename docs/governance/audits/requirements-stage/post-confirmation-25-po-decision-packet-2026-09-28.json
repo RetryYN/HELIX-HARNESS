@@ -1,6 +1,6 @@
 {
   "packet_kind": "recommendation_for_PO_decision_only",
-  "basis_commit": "fbfc6f8cf0554a092e794aa61778f319836927ee",
+  "basis_commit": "22f0e53d528d8e32cb799d4c95effebab6bb35c4",
   "as_of": "2026-09-28",
   "count": 40,
   "status": "初版25候補と後続15候補の判断packet。全40件はregistered_proposal / authority_effect:none、PO未採択・未判断。",
@@ -1350,8 +1350,8 @@
       "title_and_kind": "### HELIXOS-L2-030 HARNESS packageの生成・consumer検証・段階配布（単体候補）",
       "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md",
       "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-      "registration_id": "MPR-RC-HELIXOS-L2-030-002",
-      "supersedes_registration_id": "MPR-RC-HELIXOS-L2-030-001",
+      "registration_id": "MPR-RC-HELIXOS-L2-030-003",
+      "supersedes_registration_id": "MPR-RC-HELIXOS-L2-030-002",
       "management_state": "registered_proposal",
       "authority_effect": "none",
       "parent_l1_ids": [
@@ -1361,8 +1361,8 @@
       "parent_l1_path": "docs/helix-os/L1-planning/system-intent.md",
       "parent_l1_sha256_current": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
       "parent_planning_revision_recorded": "docs/helix-os/L1-planning/system-intent.md@42a63af75a65d3b52a0be0c72d142979e1caf4ea sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e（確認済み親bytes、新候補の採用は継承しない）",
-      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/os-package-acceptance-coverage-receipt-2026-09-28-r2.json#HELIXOS-L2-030",
-      "receipt_id": "MPR-RCPT-OS-PACKAGE-ACCEPTANCE-2026-09-28-R2",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/os-package-acceptance-coverage-receipt-2026-09-28-r3.json#HELIXOS-L2-030",
+      "receipt_id": "MPR-RCPT-OS-PACKAGE-ACCEPTANCE-2026-09-28-R3",
       "receipt_candidate_digest_rule": "L2の### HELIXOS-L2-030本文節と、文末## HELIXOS-L2-030生成index追補節をこの順に各末尾空行除去・LF1つで正規化して直接連結したUTF-8 SHA-256。既存行は移動/変更しない。",
       "candidate_section_boundaries": [
         {
@@ -1380,8 +1380,8 @@
       "receipt_candidate_semantic_digest": "sha256:4e51938b15f6d1217f50d1406df702d4346e3c02fd373f2a8cb6b4c5749f2af5",
       "current_candidate_semantic_digest": "sha256:4e51938b15f6d1217f50d1406df702d4346e3c02fd373f2a8cb6b4c5749f2af5",
       "candidate_digest_matches_register_and_receipt": true,
-      "source_atom_count": 96,
-      "source_atom_set_digest": "sha256:022f39f2d7ee65b6615474d85d09d55972ab48f97dbb3925c99bda223b601f2c",
+      "source_atom_count": 98,
+      "source_atom_set_digest": "sha256:c0979bf49c9c38d6abe157d117f0a15b1fe61670090234c7a8b7b4fbb2dc0427",
       "source_reference_examples": [
         {
           "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
@@ -1403,18 +1403,34 @@
           "line": 299,
           "source_line_sha256": "sha256:9612b8055e09b8b625dedcf51972ea22c4f494775eb4bce0fdd3d09cc747f196",
           "atom_id": "REQSRC-SUP-00224"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "line": 432,
+          "source_line_sha256": "sha256:2d2a7f87985d226782a2064851ea971123b4e3af9bffbf1021ca8cf76cf898c4",
+          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "atom_id": "V13-ARCHIVE-L0432-HR-FR-P6-06-S1",
+          "candidate_input": true
+        },
+        {
+          "path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+          "line": 413,
+          "source_line_sha256": "sha256:2d2a7f87985d226782a2064851ea971123b4e3af9bffbf1021ca8cf76cf898c4",
+          "source_file_sha256": "sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+          "atom_id": "V13-BASELINE-L0413-HR-FR-P6-06-S1",
+          "candidate_input": true
         }
       ],
-      "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/os-package-acceptance-coverage-receipt-2026-09-28-r2.json#candidates[HELIXOS-L2-030] に記録。代表例: archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md:296 (atom REQSRC-SUP-00222); archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md:298 (atom REQSRC-SUP-00223); archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md:299 (atom REQSRC-SUP-00224); …計96 atom（全行・line SHAはreceipt参照）",
+      "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/os-package-acceptance-coverage-receipt-2026-09-28-r3.json#candidates[HELIXOS-L2-030] に記録。代表例: archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md:296 (atom REQSRC-SUP-00222); archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md:298 (atom REQSRC-SUP-00223); archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md:299 (atom REQSRC-SUP-00224); …計98 atom（全行・line SHAはreceipt参照）",
       "internal_PO_choice": null,
       "paired_l2_id": "HELIXOS-L2-030",
       "paired_l11_id": "HELIXOS-L2-030",
       "affected_requirement_and_consumer_ids": "HELIXOS-L1-005/007; HARNESS-L2-010/011, HELIXOS-L2-014, 対L11",
-      "rationale": "HARNESS package生成・consumer検証・段階配布をOS L1-005/007へ接続。96 selected atomsの限定集合であり、全source/全distributionを主張しない。採択しても配布実行の許可ではない。 保証6のWindows互換は1.0判断に直接影響するため、本文L891・対L11 L491・旧HIL-TR-04/NFR-19に基づくA/B選択と検証負担を下記の独立判断事項に示す。",
+      "rationale": "HARNESS package生成・consumer検証・段階配布をOS L1-005/007へ接続。98 selected atomsの限定集合であり、全source/全distributionを主張しない。採択しても配布実行の許可ではない。 保証6のWindows互換は1.0判断に直接影響するため、本文L891・対L11 L491・旧HIL-TR-04/NFR-19に基づくA/B選択と検証負担を下記の独立判断事項に示す。",
       "previous_register_revision": {
-        "registration_id": "MPR-RC-HELIXOS-L2-030-001",
-        "candidate_semantic_digest": "sha256:01beaa64126515611a6ec8d9ac7949aadc2ee52e7014fc98cd571ba28821001b",
-        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/os-package-acceptance-coverage-receipt-2026-09-28.json",
+        "registration_id": "MPR-RC-HELIXOS-L2-030-002",
+        "candidate_semantic_digest": "sha256:4e51938b15f6d1217f50d1406df702d4346e3c02fd373f2a8cb6b4c5749f2af5",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/os-package-acceptance-coverage-receipt-2026-09-28-r2.json",
         "management_state_at_revision": "registered_proposal"
       },
       "version_target_evidence": {
@@ -1462,6 +1478,16 @@
           "旧HIL-TR-04のmacOS first-class portable / HIL-NFR-19のmacOS portable suiteは、このOS-030保証6のWindows互換選択から自動処分しない。別の対象環境・版判断としてsourceを保持する。",
           "Web判断記録L119の「Web提供系のHELIX実行環境を検証済みLinuxに限る」は、OS-030のHARNESS package consumer互換とは対象が異なる。Windows consumer互換をWeb runtime対応へ読み替えない。"
         ]
+      },
+      "p6_06_scope_correction": {
+        "candidate_input": "HR-FR-P6-06 archive L432 and baseline L413 package-content S1 two atoms are mapped to unchanged L2/L11-030.",
+        "source_line_coverage": "partial; no_loss_not_claimed",
+        "preserved_pending_atom_refs": [
+          "V13-ARCHIVE-L0432-HR-FR-P6-06-S2",
+          "V13-BASELINE-L0413-HR-FR-P6-06-S2"
+        ],
+        "po_residual": "旧PLAN-M-02のpublish/cutover承認境界と現行SECURITY operation authorityの対象・等価性をPOが判断する。030採択と独立。",
+        "local_receipt": "docs/governance/audits/requirement-registration/os-v13-p6-06-package-coverage-receipt-2026-09-28.json"
       }
     },
     {
@@ -3175,7 +3201,7 @@
       "title_and_kind": "### HELIXOS-L2-043 Worker委譲のapproval request／tool call／result追跡（単体追補候補、version_target: 1.0）",
       "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-043",
       "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-043",
-      "registration_id": "MPR-RC-HELIXOS-L2-043-001",
+      "registration_id": "MPR-RC-HELIXOS-L2-043-002",
       "supersedes_registration_id": null,
       "management_state": "registered_proposal",
       "authority_effect": "none",
@@ -3186,8 +3212,8 @@
       "parent_l1_path": "docs/helix-os/L1-planning/system-intent.md",
       "parent_l1_sha256_current": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
       "parent_planning_revision_recorded": "docs/helix-os/L1-planning/system-intent.md@fbfc6f8cf0554a092e794aa61778f319836927ee sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e（基準mainで確認した親bytes。043採択は継承しない）",
-      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/os-v13-p2-06-worker-delegation-coverage-receipt-2026-09-28.json",
-      "receipt_id": "MPR-RCPT-OS-V13-P2-06-WORKER-DELEGATION-2026-09-28",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/os-v13-p2-06-worker-delegation-coverage-receipt-2026-09-28-r2.json",
+      "receipt_id": "MPR-RCPT-OS-V13-P2-06-WORKER-DELEGATION-2026-09-28-R2",
       "receipt_candidate_digest_rule": "L2/L11の### HELIXOS-L2-043見出しから次の同階層候補見出しまで（EOF）。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
       "candidate_section_boundaries": [
         {
@@ -3288,7 +3314,8 @@
           "canonical writer / write transaction owner"
         ],
         "decision_state": "pending_PO; separate from typed-event candidate choice"
-      }
+      },
+      "registration_correction_note": "-002は未決S2 atomをhuman_decision_disposition_refsから除き、登録状態と整合するr2 receiptへ参照を訂正した。S2はpreserved_pendingで、PO判断・候補採択は未発生。"
     }
   ],
   "initial_25_basis_commit": "f4b2a2b02cf5ea3134e27be0a65c100395161bad",
