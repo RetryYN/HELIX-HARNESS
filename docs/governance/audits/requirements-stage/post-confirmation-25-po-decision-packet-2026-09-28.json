@@ -1,9 +1,9 @@
 {
   "packet_kind": "recommendation_for_PO_decision_only",
-  "basis_commit": "eec721901c06ffa15a220216c5c928d001288a61",
+  "basis_commit": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
   "as_of": "2026-09-29",
-  "count": 57,
-  "status": "57 candidate entries in this decision packet; all choices here remain unselected. Any later PO decisions must be recorded in separate exact-revision decision records; this packet does not infer them.",
+  "count": 59,
+  "status": "59 candidate entries in this decision packet; all choices here remain unselected. Any later PO decisions must be recorded in separate exact-revision decision records; this packet does not infer them.",
   "decision_grouping": "No shared adoption decision is bundled except PORTFOLIO-FIXTURE-FR54-FR55-ROUTE and HARNESS-OS-WBS-SHAPE-039-045-PAIR. HELIXOS-L2-039/HARNESS-L2-045 are linked by the latter, not independent adoption choices. The earlier R2247 options for 039 were preparation alternatives: A proposed adopting OS-039 alone with registrations blocked while the HARNESS contract was absent; B proposed holding 039 while preparing the HARNESS candidate and re-presenting both exact revisions. The B preparation step is completed by this HARNESS-045 candidate, but no PO selection resulted. The new pair options are A=adopt both exact revisions, B=hold both; neither has been selected, and B is advisory. HARNESS-L2-043/044 remain jointly routed only by the explicit FR54/55 route. Other candidate identities retain independent choices. HELIXINTELLIGENCE-L2-072 remains limited to its 1.0 shadow subset and HELIX-LABO-L2-062 preserves 2.0.",
   "candidates": [
     {
@@ -4888,10 +4888,207 @@
           }
         ]
       }
+    },
+    {
+      "identity": "HARNESS-L2-048",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "bounded carry-forward of 17 exact selected clause spans; full lines/remainders held, no whole-source closure",
+      "new_meaning_choice": "A＝HARNESSが対象＋役割型の命名・rename条件を所有し、BRAINは再利用role知識を提供する。B＝HARNESSが語彙知識も所有し、BRAIN候補を見送る。C＝対象を限定・分割した修正版へ戻す。すべて未選択。",
+      "recommended_choice": "A",
+      "choice_meaning": "Aは候補境界への助言のみ。PO選択、candidate adoption、owner placement、scope、version targetを生成しない。",
+      "version_target_as_written": "O9 source does not state a target; deliberately unassigned pending PO",
+      "title_and_kind": "HARNESS-L2-048 役割型と対象による命名・安全なrename候補（unit candidate）",
+      "requirement_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-048",
+      "acceptance_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md#L788",
+      "registration_id": "MPR-RC-HARNESS-L2-048-001",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HARNESS-L1-001",
+        "HARNESS-L1-003",
+        "HARNESS-L1-004"
+      ],
+      "parent_l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+      "parent_l1_sha256_current": "sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+      "parent_concept_revision_recorded": "docs/concept/helix-concept.md@c18969c73306f6ed4cc4b93249583cd7e5d9ff68 sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（読取revision。候補採択は継承しない）",
+      "parent_planning_revision_recorded": "docs/helix-harness/L1-planning/product-intent.md@c18969c73306f6ed4cc4b93249583cd7e5d9ff68 sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/o9-harness-coverage-receipt-2026-09-29.json",
+      "registered_candidate_semantic_digest": "sha256:9328dccd943ac8f690d149673a5f05626465990f3197306a45d7b8cca27c34d5",
+      "receipt_candidate_semantic_digest": "sha256:9328dccd943ac8f690d149673a5f05626465990f3197306a45d7b8cca27c34d5",
+      "current_candidate_semantic_digest": "sha256:9328dccd943ac8f690d149673a5f05626465990f3197306a45d7b8cca27c34d5",
+      "candidate_digest_matches_register_and_receipt": true,
+      "acceptance_section_sha256": "sha256:4a4d893e909d1ccc32b52cc96b22f82eaef6bffead7037677df561cd2617466d",
+      "acceptance_source_file_sha256": "sha256:f8fc0e64fea6777412e3f5219932cdf7438377e69bcf2687b9493fdc59155c1c",
+      "source_atom_count": 17,
+      "source_atom_set_digest": "sha256:0ce5b76a02f0e562c0ccb0acdc4050c7e54b866948abeff18bfc22ead542775c",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 130,
+          "atom_id": "O9-infinity-loop-platform-requirements-L0130-S01",
+          "span": "Entity/ValueObject/Aggregate/DomainService/Policy/Specification/Command/Query/DomainEvent/Receipt/Port/Adapter/Repository"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 130,
+          "atom_id": "O9-infinity-loop-platform-requirements-L0130-S02",
+          "span": "内部rename後もoracle identityを維持する"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 204,
+          "atom_id": "O9-infinity-loop-platform-requirements-L0204-S01",
+          "span": "名称の文字列類似だけでrename"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 204,
+          "atom_id": "O9-infinity-loop-platform-requirements-L0204-S02",
+          "span": "全consumer、最小変換、behavior invariant、退行時rollback"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 205,
+          "atom_id": "O9-infinity-loop-platform-requirements-L0205-S01",
+          "span": "`Manager/Helper/Util/Data`等の責務不明名を根拠なしで許さず"
+        }
+      ],
+      "source_reference_note": "Exact selected clause spans and SHA are in canonical source-lines; full source lines/remainders are held by MPR-SH-O9-NAMING-001. Receipt no_loss covers selected spans only, and does not imply whole source-line semantics or archive closure.",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HARNESS-L2-048",
+      "paired_l11_id": "HARNESS-L2-048",
+      "affected_requirement_and_consumer_ids": "HARNESS-L1-001/003/004; HARNESS-L2-004/005/009 and paired L11; HELIXBRAIN-L1-001/002/003/005/007/008/011/012; O9 task-source scope",
+      "rationale": "旧sourceの17 selected spansのみをHARNESSへ限定carryし、15 full linesと全remainderをMPR-SH-O9-NAMING-001へ保全。HIL-FR-53 line 143はreference/holding only。BRAINは別の新規knowledge proposalとして分離。",
+      "candidate_input_coverage_result": "no_loss over the 17 exact selected clause spans only; HIL-FR-53 line 143 and other unselected source text remain held, not carried",
+      "source_line_coverage_result": "Exact selected lines with original file and line digests; unselected source conditions and archive closure are not claimed.",
+      "preserved_pending_atom_refs": [
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-requirements-L0130-R01",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-requirements-L0130-R02",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-requirements-L0130-R03",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-requirements-L0143-R01",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-requirements-L0204-R01",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-requirements-L0204-R02",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-requirements-L0204-R03",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-requirements-L0205-R01",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-requirements-L0205-R02",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-requirements-L0205-R03",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0291-R01",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0291-R02",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0291-R03",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0291-R04",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0298-R01",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0299-R01",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0300-R01",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0300-R02",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0300-R03",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0301-R01",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0302-R01",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0326-R01",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0332-R01",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0332-R02",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0333-R01",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0333-R02",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0334-R01",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0334-R02",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0335-R01",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-basic-design-L0335-R02"
+      ],
+      "po_decision_frame": {
+        "selection_status": "pending_PO",
+        "selected_option": null,
+        "recommended_option": "A",
+        "recommendation_is_decision": false,
+        "options": [
+          {
+            "id": "A",
+            "meaning": "A＝HARNESSが対象＋役割型の命名・rename条件を所有し、BRAINは再利用role知識を提供する。"
+          },
+          {
+            "id": "B",
+            "meaning": "保留候補を未採択のまま登録し、旧source・L1差分を保持する。"
+          },
+          {
+            "id": "C",
+            "meaning": "正確な対象・責務・L1親を指定した修正版を作り直す。"
+          }
+        ]
+      },
+      "preserved_pending_registration_refs": [
+        "MPR-SH-O9-NAMING-001"
+      ]
+    },
+    {
+      "identity": "HELIXBRAIN-L2-031",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "new L1-derived knowledge proposal; empty legacy atom input set",
+      "new_meaning_choice": "A＝BRAINが汎用role語彙の意味・例・適用条件・反例を候補知識として持ち、HARNESSが適用・命名decisionを所有する。B＝知識候補を保留。C＝BRAINに持たせる範囲または関係を修正する。すべて未選択。",
+      "recommended_choice": "A",
+      "choice_meaning": "Aは候補境界への助言のみ。PO選択、candidate adoption、owner placement、scope、version targetを生成しない。",
+      "version_target_as_written": "O9 source does not state a target; deliberately unassigned pending PO",
+      "title_and_kind": "HELIXBRAIN-L2-031 役割型の再利用知識候補（unit candidate）",
+      "requirement_source_path": "docs/helix-brain/L2-requirements/brain-requirements.md#helixbrain-l2-031",
+      "acceptance_source_path": "docs/helix-brain/L11-acceptance/brain-acceptance.md#L120",
+      "registration_id": "MPR-RC-HELIXBRAIN-L2-031-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXBRAIN-L1-001",
+        "HELIXBRAIN-L1-002",
+        "HELIXBRAIN-L1-003",
+        "HELIXBRAIN-L1-005",
+        "HELIXBRAIN-L1-007",
+        "HELIXBRAIN-L1-008",
+        "HELIXBRAIN-L1-011",
+        "HELIXBRAIN-L1-012"
+      ],
+      "parent_l1_path": "docs/helix-brain/L1-planning/brain-intent.md",
+      "parent_l1_sha256_current": "sha256:2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0",
+      "parent_concept_revision_recorded": "docs/concept/helix-concept.md@c18969c73306f6ed4cc4b93249583cd7e5d9ff68 sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（読取revision。候補採択は継承しない）",
+      "parent_planning_revision_recorded": "docs/helix-brain/L1-planning/brain-intent.md@c18969c73306f6ed4cc4b93249583cd7e5d9ff68 sha256:2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/o9-brain-coverage-receipt-2026-09-29.json",
+      "registered_candidate_semantic_digest": "sha256:65eb78860b59586c2d17c2a70a7134db8057a70f7025924bb00c9fa3a255e1ca",
+      "receipt_candidate_semantic_digest": "sha256:65eb78860b59586c2d17c2a70a7134db8057a70f7025924bb00c9fa3a255e1ca",
+      "current_candidate_semantic_digest": "sha256:65eb78860b59586c2d17c2a70a7134db8057a70f7025924bb00c9fa3a255e1ca",
+      "candidate_digest_matches_register_and_receipt": true,
+      "acceptance_section_sha256": "sha256:b9e074f72682d161905d96bb20beb06e312db5c23dfd643deb54cf188a18bb1d",
+      "acceptance_source_file_sha256": "sha256:833e80f6b27e6f20461f4c57dd8021d146badcd3a6296e2dd7148649a4389ed5",
+      "source_atom_count": 0,
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_reference_examples": [],
+      "source_reference_note": "BRAIN direct legacy input is 0 atoms. HARNESS direct input is 17 exact selected clause spans; 15 full source lines and every nonselected remainder are held in MPR-SH-O9-NAMING-001. Exact source paths, full line digests and the separate empty BRAIN receipt are recorded; no old semantic coverage is claimed for BRAIN.",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXBRAIN-L2-031",
+      "paired_l11_id": "HELIXBRAIN-L2-031",
+      "affected_requirement_and_consumer_ids": "HELIXBRAIN-L1-001/002/003/005/007/008/011/012; HARNESS-L2-048 as consumer-boundary proposal",
+      "rationale": "BRAIN L1の領域/階層、Pattern意味、関係、provenance/version、product-specific exclusion、consumer adoption boundaryからの新規導出。旧requirements atom inputは0。",
+      "candidate_input_coverage_result": "no_loss of empty direct legacy-atom input set; new proposal",
+      "source_line_coverage_result": "Task source snapshot and current L1 parents identified; no old semantic atoms claimed.",
+      "preserved_pending_atom_refs": [],
+      "po_decision_frame": {
+        "selection_status": "pending_PO",
+        "selected_option": null,
+        "recommended_option": "A",
+        "recommendation_is_decision": false,
+        "options": [
+          {
+            "id": "A",
+            "meaning": "A＝BRAINが汎用role語彙の意味・例・適用条件・反例を候補知識として持ち、HARNESSが適用・命名decisionを所有する。"
+          },
+          {
+            "id": "B",
+            "meaning": "保留候補を未採択のまま登録し、旧source・L1差分を保持する。"
+          },
+          {
+            "id": "C",
+            "meaning": "正確な対象・責務・L1親を指定した修正版を作り直す。"
+          }
+        ]
+      }
     }
   ],
   "initial_25_basis_commit": "f4b2a2b02cf5ea3134e27be0a65c100395161bad",
-  "progression": "Initial 25 candidates + PR #2241 HARNESS-L2-042 + PR #2238 HELIXOS-L2-038 = historical 27; PR #2245 merged HARNESS-L2-043, giving 28; PR #2246 merged HARNESS-L2-044, giving 29; PR #2247 registered HELIXOS-L2-039, giving 30; current HARNESS-L2-045 brings the live decision set to 31. HELIXOS-L2-039/HARNESS-L2-045 are linked by an unselected paired PO decision. Current HELIXOS-L2-040 adds one bounded old HXT-AC-015 retry-route candidate, making 32; no PO selection. Current HELIXINTELLIGENCE-L2-073 adds one bounded old AAFD-R-04 free-text direct-projection boundary candidate, making 33; no PO selection. Current HELIXOS-L2-041 adds one bounded old IPC-R07 safe-continuation candidate from two linked atoms, making 34; no PO selection. Current HELIXLABO-L2-066 adds one bounded old Bugbot candidate-line metric gap, making 35; no PO selection. Its source atom is historical and its current L2/L11 candidate remains unadopted. Current HELIXSECURITY-L2-032 adds one bounded old v1.3 §4.10 HR-FR-P2-07 repository-level bypass precedence candidate, making 36; no PO selection. It applies across provider/runtime instances under the old external AI Worker contract, preserves existing authority when no deny applies, and does not claim §4.10 closure. Current HARNESS-L2-046 adds one bounded v1.3 Full V/Scrum workflow condition candidate from six sentence spans across archive and 6fabd125 baseline revisions, making 37; no PO selection. It preserves the 2026-09-25 four-style definitions/composition permission, requires staged freeze and listed verification for selected Full V only, and applies Scrum backfill/checkpoint/SR4 solely to Scrum-selected/composed scope. Current HELIXOS-L2-042 adds one bounded old v1.3 HR-FR-P2-08 Worker-result strict validation/relaxation candidate from archive line 431, making 38; the identical 6fabd125 baseline line 412 remains a separate pending source atom and is not counted as candidate input. No PO selection. Current HELIXSECURITY-L2-033 adds one bounded old v1.3 §4.10 HR-FR-P2-05 external-worker startup-context / non-authoritative-output candidate from archive line 428 and the distinct 6fabd125 baseline twin line 409, making 39; both atoms are candidate inputs and remain distinct source revisions/holdings. No PO selection. Current HELIXOS-L2-043 adds a bounded old v1.3 §4.10 HR-FR-P2-06 typed-event candidate from archive line 429 and distinct 6fabd125 baseline line 410 (two selected S1 atoms), making 40; no PO selection. The Node-exclusive S2 atoms remain preserved_pending for separate PO choice D (recommended); the full old source line remains partial and no full-line no_loss is claimed. Current HELIXOS-L2-044 adds one bounded old v1.3 HR-AC-HYB-006 prose-only-resolution rejection candidate, making 41; the selected two revision atoms have scoped no_loss while other source clauses remain preserved pending, and no PO selection is recorded. Current HELIXSECURITY-L2-034 adds one bounded old v1.3 HR-FR-HYB-002 MCP tool-profile security candidate, making 42; six selected spans across two source revisions are candidate inputs and the remaining six source spans stay preserved pending, with no PO selection. Current HELIXOS-L2-045 adds a narrowly scoped FR-L1-35 three-class readiness inventory proposal for the selected OS-L1-002 applicability scope, making 43; no PO selection, owner transfer, applicability set, or version target is recorded. Current HELIXOS-L2-046 adds one bounded old RFA-AC-16 dispatch/execution/Ready/merge continuity and bypass-rejection connection candidate from LEGACY-CAND-LINE-003612, making 44; only this acceptance row is mapped, broader RFA source closure is not claimed, and no PO selection is recorded. Current HELIXLABO-L2-067 adds one candidate-scoped subatom for first-eligible candidate boundary and same-Attempt repair-round visibility after HELIXOS-L2-046, making 45; no PO selection, no 065 adoption dependency, and no change to adopted 059 or unadopted 065 definitions. Current HELIXLABO-L2-068 adds the separately preserved S3C total Attempt-count subatom after #2271/HELIXLABO-L2-067, making 46; no PO selection, no 065 adoption dependency, no retry_count+1 derivation, and unknown is retained when OS record completeness is unproven. Current HARNESS-L2-047 adds one bounded four-line HIL-BR-09/30 and HIL-FR-59/60 specialist Worker contract candidate; the HARNESS A placement is recommended but PO-unselected, and INTELLIGENCE owner B remains an explicit alternative. The candidate separates measured muster decision from runtime-neutral contract generation, keeps OS assignment/runtime lifecycle and SECURITY authority, and does not claim closure of other source atoms. The four semantic-line atoms have scoped no_loss; corresponding IR records remain separately held, and no adoption is recorded. CONNECT-008 adds HYB-002 profile supply conditions as a separate unadopted candidate: 6/12 supply atoms plus 6/12 SECURITY-034 policy atoms are routed, adoption/meaning closure 0/12 and both source holdings remain live. Decision set is 48; no PO selection. O1/O2 adds four unadopted candidates OS-047/048, LABO-069, INTELLIGENCE-074, making 52; source spans and new proposals are distinct, no PO selection inferred. O3/O5 adds HELIXOS-L2-049/050 as two unselected, bounded candidates after #2286, making 54; source remainders remain in holding. O4 adds HELIXOS-L2-051 as an unselected task-lane placement candidate after #2287, making 55. O6 adds HELIXOS-L2-052 as an unselected post-merge cleanup and base-drift candidate, making 56. Current HELIXCONNECT-L2-009 adds one new-proposal connection candidate for O7, making 57; its direct legacy atom set is empty and no PO selection is recorded. Decision set is 57; no PO selection.",
+  "progression": "Initial 25 candidates + PR #2241 HARNESS-L2-042 + PR #2238 HELIXOS-L2-038 = historical 27; PR #2245 merged HARNESS-L2-043, giving 28; PR #2246 merged HARNESS-L2-044, giving 29; PR #2247 registered HELIXOS-L2-039, giving 30; current HARNESS-L2-045 brings the live decision set to 31. HELIXOS-L2-039/HARNESS-L2-045 are linked by an unselected paired PO decision. Current HELIXOS-L2-040 adds one bounded old HXT-AC-015 retry-route candidate, making 32; no PO selection. Current HELIXINTELLIGENCE-L2-073 adds one bounded old AAFD-R-04 free-text direct-projection boundary candidate, making 33; no PO selection. Current HELIXOS-L2-041 adds one bounded old IPC-R07 safe-continuation candidate from two linked atoms, making 34; no PO selection. Current HELIXLABO-L2-066 adds one bounded old Bugbot candidate-line metric gap, making 35; no PO selection. Its source atom is historical and its current L2/L11 candidate remains unadopted. Current HELIXSECURITY-L2-032 adds one bounded old v1.3 §4.10 HR-FR-P2-07 repository-level bypass precedence candidate, making 36; no PO selection. It applies across provider/runtime instances under the old external AI Worker contract, preserves existing authority when no deny applies, and does not claim §4.10 closure. Current HARNESS-L2-046 adds one bounded v1.3 Full V/Scrum workflow condition candidate from six sentence spans across archive and 6fabd125 baseline revisions, making 37; no PO selection. It preserves the 2026-09-25 four-style definitions/composition permission, requires staged freeze and listed verification for selected Full V only, and applies Scrum backfill/checkpoint/SR4 solely to Scrum-selected/composed scope. Current HELIXOS-L2-042 adds one bounded old v1.3 HR-FR-P2-08 Worker-result strict validation/relaxation candidate from archive line 431, making 38; the identical 6fabd125 baseline line 412 remains a separate pending source atom and is not counted as candidate input. No PO selection. Current HELIXSECURITY-L2-033 adds one bounded old v1.3 §4.10 HR-FR-P2-05 external-worker startup-context / non-authoritative-output candidate from archive line 428 and the distinct 6fabd125 baseline twin line 409, making 39; both atoms are candidate inputs and remain distinct source revisions/holdings. No PO selection. Current HELIXOS-L2-043 adds a bounded old v1.3 §4.10 HR-FR-P2-06 typed-event candidate from archive line 429 and distinct 6fabd125 baseline line 410 (two selected S1 atoms), making 40; no PO selection. The Node-exclusive S2 atoms remain preserved_pending for separate PO choice D (recommended); the full old source line remains partial and no full-line no_loss is claimed. Current HELIXOS-L2-044 adds one bounded old v1.3 HR-AC-HYB-006 prose-only-resolution rejection candidate, making 41; the selected two revision atoms have scoped no_loss while other source clauses remain preserved pending, and no PO selection is recorded. Current HELIXSECURITY-L2-034 adds one bounded old v1.3 HR-FR-HYB-002 MCP tool-profile security candidate, making 42; six selected spans across two source revisions are candidate inputs and the remaining six source spans stay preserved pending, with no PO selection. Current HELIXOS-L2-045 adds a narrowly scoped FR-L1-35 three-class readiness inventory proposal for the selected OS-L1-002 applicability scope, making 43; no PO selection, owner transfer, applicability set, or version target is recorded. Current HELIXOS-L2-046 adds one bounded old RFA-AC-16 dispatch/execution/Ready/merge continuity and bypass-rejection connection candidate from LEGACY-CAND-LINE-003612, making 44; only this acceptance row is mapped, broader RFA source closure is not claimed, and no PO selection is recorded. Current HELIXLABO-L2-067 adds one candidate-scoped subatom for first-eligible candidate boundary and same-Attempt repair-round visibility after HELIXOS-L2-046, making 45; no PO selection, no 065 adoption dependency, and no change to adopted 059 or unadopted 065 definitions. Current HELIXLABO-L2-068 adds the separately preserved S3C total Attempt-count subatom after #2271/HELIXLABO-L2-067, making 46; no PO selection, no 065 adoption dependency, no retry_count+1 derivation, and unknown is retained when OS record completeness is unproven. Current HARNESS-L2-047 adds one bounded four-line HIL-BR-09/30 and HIL-FR-59/60 specialist Worker contract candidate; the HARNESS A placement is recommended but PO-unselected, and INTELLIGENCE owner B remains an explicit alternative. The candidate separates measured muster decision from runtime-neutral contract generation, keeps OS assignment/runtime lifecycle and SECURITY authority, and does not claim closure of other source atoms. The four semantic-line atoms have scoped no_loss; corresponding IR records remain separately held, and no adoption is recorded. CONNECT-008 adds HYB-002 profile supply conditions as a separate unadopted candidate: 6/12 supply atoms plus 6/12 SECURITY-034 policy atoms are routed, adoption/meaning closure 0/12 and both source holdings remain live. Decision set is 48; no PO selection. O1/O2 adds four unadopted candidates OS-047/048, LABO-069, INTELLIGENCE-074, making 52; source spans and new proposals are distinct, no PO selection inferred. O3/O5 adds HELIXOS-L2-049/050 as two unselected, bounded candidates after #2286, making 54; source remainders remain in holding. O4 adds HELIXOS-L2-051 as an unselected task-lane placement candidate after #2287, making 55. O6 adds HELIXOS-L2-052 as an unselected post-merge cleanup and base-drift candidate, making 56. Current HELIXCONNECT-L2-009 adds one new-proposal connection candidate for O7, making 57; its direct legacy atom set is empty and no PO selection is recorded. Decision set is 57; no PO selection.; O9 adds HARNESS-L2-048 and HELIXBRAIN-L2-031 as separate candidate identities; both version targets are deliberately unassigned because O9 source does not specify them.",
   "version_target_evidence": null,
   "portfolio_fixture_fr54_fr55_route": {
     "decision_id": "PORTFOLIO-FIXTURE-FR54-FR55-ROUTE",
@@ -5084,7 +5281,7 @@
     "authority_effect": "none; all axes remain unselected",
     "normalization_basis": {
       "source_packet_sha256_before_append": "65208209b041427bae30f1071bf4650f3b45647a1d2689a1c7a929b81388c747",
-      "main_commit": "4c57648e2efc1941e0417d02a4e08dda5df8df99"
+      "main_commit": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68"
     },
     "rules": [
       "Exact-candidate adoption, source meaning disposition, owner placement, scope, and version target are separate decision axes. Recommendations do not select any axis.",
@@ -7873,6 +8070,119 @@
             "proposed_value": "1.0",
             "source_ref": "version_target_as_written/title_and_kind",
             "change_rule": "A different target requires an exact revised candidate revision; adoption of the current exact revision does not imply deployment or release."
+          }
+        },
+        "candidate_specific_axes": []
+      },
+      {
+        "identity": "HARNESS-L2-048",
+        "registration_id": "MPR-RC-HARNESS-L2-048-001",
+        "axes": {
+          "candidate_adoption": {
+            "selection_status": "pending_PO",
+            "selected": null,
+            "decision_ref": "candidate-local",
+            "exact_revision": {
+              "identity": "HARNESS-L2-048",
+              "registration_id": "MPR-RC-HARNESS-L2-048-001",
+              "l2_id": "HARNESS-L2-048",
+              "l11_id": "HARNESS-L2-048",
+              "candidate_semantic_digest": "sha256:9328dccd943ac8f690d149673a5f05626465990f3197306a45d7b8cca27c34d5"
+            },
+            "options_ref": "new_meaning_choice",
+            "recommendation": "A"
+          },
+          "source_meaning_disposition": {
+            "selection_status": "pending_PO; separate from candidate adoption",
+            "selected": null,
+            "candidate_source_scope": {
+              "source_atom_count": 17,
+              "receipt_ref": "docs/governance/audits/requirement-registration/o9-harness-coverage-receipt-2026-09-29.json",
+              "coverage": "no_loss over 17 exact selected spans only; name-collision remainder and HIL-FR-53 line 143 plus all other nonselected text held in MPR-SH-O9-NAMING-001"
+            },
+            "options_ref": "new_meaning_choice",
+            "separation_rule": "Candidate adoption does not retire or change unselected source meaning; any later meaning change requires exact source revision, reason and consumer impact."
+          },
+          "owner_placement": {
+            "selection_status": "pending_PO; proposal only",
+            "selected": null,
+            "choice_ref": "new_meaning_choice",
+            "proposed_owner": "HELIX-HARNESS naming rule",
+            "owner_alternatives": [
+              "HARNESS owns the rule; BRAIN supplies reusable role knowledge",
+              "HARNESS owns both rule and vocabulary knowledge"
+            ],
+            "recommendation": "A advisory only"
+          },
+          "candidate_scope": {
+            "selection_status": "pending_PO",
+            "selected": null,
+            "source_ref": "docs/governance/audits/requirement-registration/ops-loop-goal-source-snapshot-2026-09-29.md",
+            "proposed_scope": "HARNESS候補の直接入力はHIL-FR-40、HIL-NFR-24/25、旧basic design §4.4の17 exact selected clause spansのみ。HIL-FR-53 line 143を含む15 full linesと全remainderはMPR-SH-O9-NAMING-001へ保全し、直接入力・被覆とは主張しない。"
+          },
+          "version_target": {
+            "selection_status": "not stated by source; pending_PO",
+            "selected": null,
+            "proposed_value": null,
+            "source_ref": "docs/governance/audits/requirement-registration/ops-loop-goal-source-snapshot-2026-09-29.md#O9",
+            "change_rule": "Do not infer 1.0 or a later version. Any selected target requires an exact revised candidate revision."
+          }
+        },
+        "candidate_specific_axes": []
+      },
+      {
+        "identity": "HELIXBRAIN-L2-031",
+        "registration_id": "MPR-RC-HELIXBRAIN-L2-031-001",
+        "axes": {
+          "candidate_adoption": {
+            "selection_status": "pending_PO",
+            "selected": null,
+            "decision_ref": "candidate-local",
+            "exact_revision": {
+              "identity": "HELIXBRAIN-L2-031",
+              "registration_id": "MPR-RC-HELIXBRAIN-L2-031-001",
+              "l2_id": "HELIXBRAIN-L2-031",
+              "l11_id": "HELIXBRAIN-L2-031",
+              "candidate_semantic_digest": "sha256:65eb78860b59586c2d17c2a70a7134db8057a70f7025924bb00c9fa3a255e1ca",
+              "supersedes_registration_id": null
+            },
+            "options_ref": "new_meaning_choice",
+            "recommendation": "A"
+          },
+          "source_meaning_disposition": {
+            "selection_status": "pending_PO; separate from candidate adoption",
+            "selected": null,
+            "candidate_source_scope": {
+              "source_atom_count": 0,
+              "receipt_ref": "docs/governance/audits/requirement-registration/o9-brain-coverage-receipt-2026-09-29.json",
+              "coverage": "no_loss of empty direct legacy input set; no legacy meaning asserted"
+            },
+            "options_ref": "new_meaning_choice",
+            "separation_rule": "Candidate adoption does not retire or change unselected source meaning; any later meaning change requires exact source revision, reason and consumer impact."
+          },
+          "owner_placement": {
+            "selection_status": "pending_PO; proposal only",
+            "selected": null,
+            "choice_ref": "new_meaning_choice",
+            "proposed_owner": "HELIX-BRAIN reusable vocabulary knowledge",
+            "owner_alternatives": [
+              "BRAIN owns generic reusable knowledge; HARNESS applies names",
+              "Hold or move the vocabulary knowledge to another named owner"
+            ],
+            "recommendation": "A advisory only"
+          },
+          "candidate_scope": {
+            "selection_status": "pending_PO",
+            "selected": null,
+            "source_ref": "docs/governance/audits/requirement-registration/ops-loop-goal-source-snapshot-2026-09-29.md",
+            "proposed_scope": "BRAIN L1から導く新規知識候補。旧sourceはHARNESS候補の限定入力にのみ割当て、本候補は直接legacy input 0件。空集合のno_lossであり、旧意味の継承・closureではない。"
+          },
+          "version_target": {
+            "selection_status": "not stated by source; pending_PO",
+            "selected": null,
+            "proposed_value": null,
+            "source_ref": "docs/governance/audits/requirement-registration/ops-loop-goal-source-snapshot-2026-09-29.md#O9",
+            "change_rule": "Do not infer 1.0 or a later version. Any selected target requires an exact revised candidate revision."
           }
         },
         "candidate_specific_axes": []

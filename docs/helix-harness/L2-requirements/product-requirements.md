@@ -1050,3 +1050,19 @@ scope拡張候補の受入寄与・最小性を照合するとき、追加機能
 - **版と範囲**：`version_target: 1.0`は未採択候補の版印であり、初版収載・実装・実行を決めない。候補登録・receiptは選択した4旧source lineだけを対象とし、全旧source集合のclosureを主張しない。
 
 旧原文4行、source holding、scope限定receiptは[`harness-specialist-contract-source-lines-2026-09-29.jsonl`](../../governance/audits/requirement-registration/harness-specialist-contract-source-lines-2026-09-29.jsonl)と[`harness-specialist-contract-coverage-receipt-2026-09-29.json`](../../governance/audits/requirement-registration/harness-specialist-contract-coverage-receipt-2026-09-29.json)に記録する。
+
+
+### HARNESS-L2-048 役割型と対象による命名・安全なrename候補（unit candidate）
+
+- **authority／状態**：未採択の要求候補。`registered_proposal`／`authority_effect: none`。旧要求全体の移管完了、L3承認、実装・CI起動を主張しない。
+- **親L1**：`HARNESS-L1-001`、`HARNESS-L1-003`、`HARNESS-L1-004`。V-model成果物とoracleの対応、変更影響、検証義務を候補化する。
+- **対象・版**：設計object、文書上の責務名、module/class/function等のimplementation symbolに対する命名規律。O9の原文にversion targetの指定がないため、版は未指定のままPO判断に残す。
+- **要求候補**：対象と役割の型が読み取れる名前を提案し、型語彙の候補は旧`Entity/ValueObject/Aggregate/DomainService/Policy/Specification/Command/Query/DomainEvent/Receipt/Port/Adapter/Repository`を起点にする。実際の識別子文法、各コード要素への型適用、canonical nameはL3設計に委ねる。`Manager/Helper/Util/Data`等の責務不明名は根拠のある役割・consumer・期限付き例外が無ければfinding候補とする。
+- **rename候補**：対象identity、implementation symbol、test oracleを別々のedgeで決定論的に対応づけ、名前が変わってもstable IDとoracle identityを保つ。test oracleはdomain object＋operation＋oracle IDへbindし、private実装名だけをoracle identityにしない。自動修正候補は、canonical名が決定済み、internal identifierのみ、全consumerを列挙、semantic signatureとbehavior invariantを検証可能、最小変換とrollbackを用意、をすべて満たす場合に限る。文字列類似だけの統合や責務の推測を禁止する。
+- **返却・例外**：役割不明、consumer不明、behavior差分あり、public API/CLI、永続DB field/event、consumerが直接読む設定keyは自動renameせず、理由付きfindingとして作成側またはRedesign/互換migrationを伴うRetrofitへ返す。期限付き例外は理由・owner・expiryを記録して先へ進める候補とし、検出だけで工程を一律停止しない。
+- **CI境界**：将来の新世代検査は違反検出、自動修正候補、返却理由の記録までを担う。CIは採択、merge、authorityを決めない。旧CIは対象外。
+- **旧sourceとの差分**：HARNESS-L2-048の直接入力はHIL-FR-40、HIL-NFR-24/25および旧basic design §4.4の17選択clause spansに限る。HIL-FR-53 line 143を含む15 full linesと非選択remainderはsource holdingに保持し、この候補が再導出したとは扱わない。旧basic designのtable名や永続schemaを現行設計として移さず、実装方式・DB table・具体検出器はL3以降へ回す。
+
+###### HARNESS-L2-048の適用境界
+
+HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再利用知識として役割語彙の意味・例を提供する候補を別identityで持つ。BRAINの語彙候補はHARNESSの命名規則、製品固有設計の採択、命名decisionを上書きしない。OS/SECURITY等の責務名、既存要求ID、採択済み要求本文の名称変更は本候補に含めない。

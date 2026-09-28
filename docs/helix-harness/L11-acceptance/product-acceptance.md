@@ -783,3 +783,13 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **lifecycleと中断**：適用されるlease/fencing/失効/retire条件とOS lifecycle evidenceが不足または不一致なら当該候補を保留し、別assignmentへ資格情報・状態が漏れないことを別owner契約で確認する。source revision、scope、oracle、generator revision、runtime profileまたはauthorityが変化した場合、依存する判断/contractをstaleにして該当ownerへ再照合する。中断・budget/期限到達では判断根拠、partial contract、未完義務、再開条件を残し、成功扱いにしない。
 - **未見例**：未見task-kind/domain/riskまたは適格profileを与え、同一の境界で必要性判断、unknown処理、contract field coverage、digest追跡を確かめる。未選択profileやoracleを推測で補わず、source/適用条件が不明なら保留する。
 - **受入の限界**：このcandidateの静的oracleは測定実績、runtime実行、assignment、authority、採択、設計承認、利用者受入を生成しない。既存HARNESS/OS/INTELLIGENCE/LABO/SECURITYの正本要求を変更せず、旧runtime/schemaを再現しない。
+
+
+### HARNESS-L2-048のL11受入候補（未実行）
+
+- **有効例**：設計object、対象、役割型、canonical候補、stable object ID、implementation symbol、consumer、oracle IDを別edgeで与える。名称が変わってもobject IDとoracle IDへの対応が保持され、domain object＋operation＋oracle IDの対応が辿れ、要求・検証のpairは同じidentityを指す。
+- **自動修正可の例**：canonical名が既決、internal symbolのみ、全consumerとsemantic signatureが列挙され、振る舞い不変、最小差分、rollback evidenceが揃う場合だけ、botが修正PR候補とrename receiptを作れる。bot自身はmergeしない。
+- **拒否例**：文字列が似ているだけで統合、`Manager`等の曖昧語を根拠なく許可、private symbol名だけへoracleをbind、またはrename後にstable ID/oracle edgeが切れる場合は不合格。
+- **返却例**：role unknown、consumer incompleteness、semantic signature mismatch、public API/CLI、persisted field/event、直接参照される設定keyでは自動修正を拒否し、理由・影響・戻し先を記録する。互換migrationが要る対象を単なるinternal renameで合格にしない。
+- **例外経路**：自動修正不能findingは警告として残し、理由・owner・expiryのある例外が指定されたfixtureでは後続へ進める。期限なし・責任者なしの例外は不合格。
+- **CI非権限**：検査結果と候補提示は証拠であり、採択・merge admission・実装権限を生成しない。受入条件は候補の期待結果であって未構築CIの実行証拠ではない。

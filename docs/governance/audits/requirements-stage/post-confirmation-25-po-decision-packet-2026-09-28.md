@@ -378,3 +378,17 @@ PO原文：「チケットそのものに参照をつけたり実装の一部み
 | `HELIXCONNECT-L2-009` (L2/L11) | PO未決／推奨 **A** | 1.0; `HELIXCONNECT-L1-001` | A＝direction/order属性＋typed feedback＋既存bounded policy参照。B＝feedback/bidirectional/serial/parallelを4 kind化。C＝direction/feedbackをCONNECT、serial/parallelをHARNESS/OSへ分割する等のscope選択。すべて未選択。 | source atom 0、空集合の`no_loss`。5つの一般旧source行はreference-only。CONNECT-L2-001/002/004/005/007、HARNESS relation語彙、OS-040/044、SECURITY operation authorityを変更しない。 |
 
 **PO判断frame（未選択）**：A＝direction/orderを属性にし、feedback/returnを理由・端点identity/revision・operation lineage付きtyped edgeとし、loopは既存有限retry/budget/stop policyを参照する。B＝4独立kindを導入し、edge relationとtopology/schedulingの区別を決める。C＝CONNECTとHARNESS/OSに範囲を分ける。どの選択肢も逆方向authority、業務上の解決、採択済みrelation語彙の変更を生成しない。登録`MPR-RC-HELIXCONNECT-L2-009-001`は`registered_proposal` / `authority_effect:none`、PO未決である。
+
+
+## O9追加候補：対象と役割型による命名・再利用語彙（判断集合59候補）
+
+O9はPO原文を[byte-identical task-source snapshot](../requirement-registration/ops-loop-goal-source-snapshot-2026-09-29.md)に固定した。snapshot SHA-256: `sha256:ebaec80c40d2f410b7edef555b941b6a57bab4632084c8ee6af4f8e08106b39b`。work request / Claude要約はauthorityではなく、要求の親はそれぞれのL1である。
+
+| identity | 正確なL2/L11候補 | 独立する判断点 | 旧source入力／生存registration |
+|---|---|---|---|
+| `HARNESS-L2-048` | [`product-requirements.md`](../../../helix-harness/L2-requirements/product-requirements.md#harness-l2-048)／[`product-acceptance.md`](../../../helix-harness/L11-acceptance/product-acceptance.md#L788) | HARNESSが命名・rename ruleを持つか、どこまで適用するか、version targetをどう置くか | HIL-FR-40、HIL-NFR-24/25、旧basic design §4.4からの17選択clause spans。HIL-FR-53 line 143はreference/holdingのみ; full lines/remainders held in MPR-SH-O9-NAMING-001；`MPR-RC-HARNESS-L2-048-001`；[receipt](../requirement-registration/o9-harness-coverage-receipt-2026-09-29.json) |
+| `HELIXBRAIN-L2-031` | [`brain-requirements.md`](../../../helix-brain/L2-requirements/brain-requirements.md#helixbrain-l2-031)／[`brain-acceptance.md`](../../../helix-brain/L11-acceptance/brain-acceptance.md#L120) | BRAINが汎用role意味・例を再利用知識として持つか、HARNESSへ返す境界、version target | 新規L1導出候補。直接legacy atom 0；`MPR-RC-HELIXBRAIN-L2-031-001`；[空集合receipt](../requirement-registration/o9-brain-coverage-receipt-2026-09-29.json) |
+
+両候補とも全decision axisの`selected`はnullで、推奨Aは助言にとどまる。O9には1.0／後続版の指定がないため、どちらもversion targetを設定せず、PO判断へ残した。HARNESS候補の直接入力は17 selected clause spansのみ。15 full source linesと全remainderはMPR-SH-O9-NAMING-001にsource holdingとして保全し、HIL-FR-53 line 143を含む非選択条件をHARNESS候補へ割り当てない。BRAIN候補は旧atomを直接入力にしない。BRAINは既存L1の領域、Pattern/Unit/Part、根拠・版・反例、製品固有意味の分離を親とする。既存ID、採択済み本文、OS/SECURITY責務名を改名対象にしない。
+
+Exact old file/line/file SHA-256/line SHA-256, selected atom digest, local goal source snapshot, candidate/L11 digests and scope limits are in [source-lines](../requirement-registration/ops-o9-naming-source-lines-2026-09-29.jsonl) and the two receipts. The 15 old line atoms are bounded selections; no closure of either legacy file or archive is claimed. The BRAIN receipt's `no_loss` covers only the empty direct legacy input set.

@@ -115,3 +115,12 @@ L2の「親L1全12件の受け先」の各行を、この文書の同ID受入へ
 ### 限界と戻し先
 
 契約版/互換不明はqueryを保留する。Pattern意味・条件・関係の不整合はBRAINの該当親L1へ、受取scope/schemaやHARNESS設計義務への結合不備はHARNESSへ戻す。候補の受渡し、BRAIN内候補の構成、LABO評価の存在からPattern採択・承認・実装を生成しない。成功は当該knowledge identity/versionとquery scopeだけに限り、万能な設計能力の保証にしない。
+
+
+### HELIXBRAIN-L2-031のL11受入候補（未実行）
+
+- **有効例**：role termごとに識別、意味、適用条件、consumer非依存の例、negative example、source、knowledge revision/stateを持つ候補をPattern/Unit/Partの既存階層へ結ぶ。CORE queryは選択された知識だけをidentity/version付きで返し、未選択項目を網羅済みと表示しない。
+- **区別例**：QueryとCommand、Entityとimmutable ValueObject、Aggregateと単なるpayload、PortとAdapter等の境界例で、責務・state・authorityの根拠を辿れる。語だけ合っていて意味根拠がない場合は不合格。
+- **製品固有反例**：製品固有のscreen名、API、業務語、permissionを含む例を入れ、一般化できる role concept と固有意味を分離する。固有名を汎用knowledgeへ昇格したら不合格。
+- **版・成熟度**：source/版/state/反例が欠落、または単一の成功例やAI生成のみでaccepted/matureにした場合は不合格。評価・独立検証を通ったという根拠が候補に無ければ未評価のまま保持する。
+- **HARNESS境界**：返却されたrole knowledgeを使っても、HARNESSのcanonical name、例外、rename、consumer/oracle mappingは別途のHARNESS判断とする。BRAINが採用名を決めたりコード変更を行ったら不合格。
