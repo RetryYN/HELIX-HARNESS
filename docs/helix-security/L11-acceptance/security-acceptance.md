@@ -141,3 +141,11 @@ source: docs/helix-security/sources/security-l1-idea-po-original-2026-09-26.md
 - **責務境界・正常回帰**：CONNECTが登録済み接続・contract・adapter/transport revisionの互換照合を返し、SECURITYが既存security policyによるprofile別operation条件を返し、Worker実行環境／INFRASTRUCTUREが既存制約の適用状態を返すfixtureを確認する。CONNECTがcredential/egress/tool safety policyを発行する、SECURITYがprofile registryや業務上の意味を所有する、Workerが制約を自己拡張する場合は不合格。profileに関する新しい人間承認を毎回要求したり、無関係なprofile/taskを一律停止したりしたら不合格。
 - **未closureの確認**：catalogがprofileを列挙・設定するtyped契約、typed safety/read-only-probeの供給契約、未登録profileと登録集合の関係は本候補の成功条件に含めず、それぞれのowner・版・意味が未確定なままなら未closureとして保持する。L2-018の1.x probe観測を、旧read-only probe契約の自動充足と見なさない。
 - **旧source照合**：HR-FR-HYB-002 archive line 286および6fabd125 baseline line 271の別revision、全12 spanと個別の保持／保留関係を[source-lines](../../governance/audits/requirement-registration/security-v13-hyb-002-profile-source-lines-2026-09-28.jsonl)と[coverage receipt](../../governance/audits/requirement-registration/security-v13-hyb-002-profile-coverage-receipt-2026-09-28.json)で確認する。receiptの選定atom no-lossは候補入力6 atomに限り、旧2行全体のsemantic closureはpartialである。
+
+## P0訂正追補（対象: HELIXSECURITY-L2-033 L11）
+
+本節は、上記HELIXSECURITY-L2-033の対L11に対応する未採択訂正候補である。本文および既存受入の行位置を保つため文書末尾に置く。
+
+- **資格情報境界の正常例・反例**：正常例として、対象operation・target・revision・scope・expiryに一致する既存L2-008 authorityと、L2-005の非公開・範囲付きcredential-use capabilityがあり、raw credential値とsecret／機密task内容をWorkerへ渡さず、L2-007制約および該当するL2-006 egress条件も満たすtaskを与える。この認証付きtaskは、既存契約の範囲で起動でき、追加の毎回承認を要求しない。反例として、上記条件が成立しているのに「credentialを使うtask」という理由だけでdispatchを一律denyしたら不合格とする。raw secret値をWorkerへ渡す必要があるtask、またはsecret／機密内容を外部Workerへ渡すtaskを起動するfixtureは引き続き拒否する。この区別はL2-005の境界を変えず、taskや送信の許可を新設しない。旧HR-FR-P2-05の「secret task deny」が認証付きoperation全般を意味するかは原文で確定できない。全 credential-use task も禁止する意図を選ぶ場合は、採択済みL2-005の対象revisionと影響を示す意味変更としてPO判断へ出し、この候補から先取りしない。
+
+- **訂正source pin**：[source-lines](../../governance/audits/requirement-registration/security-v13-worker-context-source-lines-2026-09-28.jsonl)の2 atomとdigestを再利用し、[訂正coverage receipt](../../governance/audits/requirement-registration/security-v13-worker-context-coverage-receipt-2026-09-28-r2.json)へ現行L2/L11 bytesと訂正内容を記録する。

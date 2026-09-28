@@ -475,3 +475,11 @@ decision_record: docs/governance/decisions/security-l1-idea-po-decisions-2026-09
 - **非拡張**：新しいauthority issuer、許可範囲、secret分類、egress例外、MCP registry、capability schema、probe実装、provider/runtime選定、毎回の人間承認を作らない。有効な既決authorityを同一revision/scope内で再利用し、無関係な接続・task・通常作業へ停止を広げない。
 - **失敗時**：対象profileの安全条件を評価できない場合はそのprofile operationをfail-closeし、欠落条件と対象revisionを既存のownerへ返す。別profileや別revisionの判定を流用しない。
 - **旧sourceと未完atom**：旧v1.3 HR-FR-HYB-002 archive line 286（REQSRC-SUP-00213）と6fabd125 baseline line 271を別revision atomとして扱う。profile単位credential/egress/tool-capability fail-close、secret要求拒否、write可能probe拒否の6 atomだけを本候補入力とする。profile列挙・設定、typed safety/read-only-probe供給、未登録profile拒否の6 atomは既存CONNECT/SECURITY条項との関係を記録したうえで両source holdingへ保全し、意味closureを主張しない。旧source全体、旧runtime/adapter/test/CIの移植・実行を主張しない。完全なatom分割とSHAは[source-lines](../../governance/audits/requirement-registration/security-v13-hyb-002-profile-source-lines-2026-09-28.jsonl)および[coverage receipt](../../governance/audits/requirement-registration/security-v13-hyb-002-profile-coverage-receipt-2026-09-28.json)を参照。
+
+## P0訂正追補（対象: HELIXSECURITY-L2-033）
+
+本節は、上記HELIXSECURITY-L2-033「隔離とsecret task」の未採択訂正候補として明示的に結び付く。本文および既存要求の行位置を保つため文書末尾に置く。
+
+- **資格情報境界の訂正追補（未採択revision）**：この候補で起動前denyする「secret/credentialを必要とするtask」は、raw secret／credential値をWorkerへ渡す必要があるtask、またはsecret／機密内容を外部Workerへ渡すtaskを指す。値・内容をWorkerへ露出させず、既存HELIXSECURITY-L2-005の操作・対象・scope・期限付きcredential-use capabilityを用いる認証付きoperationは、それだけを理由にdenyしない。既存HELIXSECURITY-L2-008の当該operation authority、L2-007の隔離制約、および該当するL2-006のegress条件が成立する場合に限り、既存契約の範囲でそのdispatchを起動できる。本追補は新しいauthority、capability、secret分類、許可を作らず、有効な既決authorityを再利用する。旧HR-FR-P2-05は「secret task deny」の適用対象を定義していないため、この境界は採択済みL2-005とL2-034受入の正常条件に沿った限定再導出候補である。
+
+- **旧source atom・訂正receipt**：入力atomは旧HR-FR-P2-05 archive line 428と6fabd125 baseline line 409の既存2 atomで不変である。[source-lines](../../governance/audits/requirement-registration/security-v13-worker-context-source-lines-2026-09-28.jsonl)および[訂正coverage receipt](../../governance/audits/requirement-registration/security-v13-worker-context-coverage-receipt-2026-09-28-r2.json)を参照する。

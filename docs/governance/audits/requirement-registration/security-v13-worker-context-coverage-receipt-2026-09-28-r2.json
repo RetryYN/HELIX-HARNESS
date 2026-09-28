@@ -1,0 +1,98 @@
+{
+  "receipt_id": "MPR-RCPT-SECURITY-V13-WORKER-CONTEXT-2026-09-28-R2",
+  "receipt_state": "candidate_scope_corrected; authority_effect_none",
+  "authority_effect": "none",
+  "candidate_digest_rule": "composite UTF-8 pin: normalize the existing HELIXSECURITY-L2-033 heading section (through the next heading, trim trailing blank lines, one LF), then one LF separator, then normalize the document-tail section headed `## P0訂正追補（対象: HELIXSECURITY-L2-033）` through EOF (trim trailing blank lines, one LF); SHA-256 the concatenated bytes. The paired L11 digest uses the corresponding HELIXSECURITY-L2-033 acceptance section and tail appendix headed `## P0訂正追補（対象: HELIXSECURITY-L2-033 L11）`.",
+  "source_atom_set_digest_rule": "atom_id、半角空白、sha256:付きsource_line_sha256をatom ID順に改行で区切る。末尾改行なし。archiveと6fabd125 baselineは同文でも別atomとしてdigestへ個別に含める。",
+  "scope": "同じ旧v1.3 §4.10 HR-FR-P2-05 archive原source line 428（REQSRC-SUP-00330）と6fabd125 baseline line 409の別revision atomを入力する訂正revision。起動前context binding、raw secret／credential値またはsecret／機密task内容を外部Workerへ渡す場合のdeny、および出力の非権威性を候補として記録する。既存L2-005の操作・対象・scope・期限付きcredential-use capabilityに従い、値・機密内容をWorkerへ渡さない認証付きoperationは、既存L2-008 authority、L2-007制約および該当L2-006条件の範囲で一律denyしない。HR-FR-P2-05の「secret task deny」はこの適用幅を定義していないため、source意味の曖昧さを保持し、blanket denyを意図する場合はPOの意味変更判断へ残す。source atom集合と2件のatom mappingは旧receiptのまま保持し、両source holding、旧packet schema/runtime、v1.3全体、condition closure、採択・実装・起動許可は主張しない。",
+  "candidate_identity": "HELIXSECURITY-L2-033",
+  "requirement_kind": "unit_supplement",
+  "parent_l1_ids": [
+    "HELIXSECURITY-L1-007",
+    "HELIXSECURITY-L1-008"
+  ],
+  "candidate_semantic_digest": "sha256:b486a0c44e8f21a6f8738dedeac91dcb94da335b73409b6adeaecf8fa639bf1a",
+  "candidate_l2_file_sha256": "sha256:d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+  "paired_acceptance_identity": "HELIXSECURITY-L2-033",
+  "paired_acceptance_digest": "sha256:e1c4d0668ff63c5f319b730ae44bb37e10cb42769e14a09b4300e92d50053ede",
+  "l11_file_sha256": "sha256:e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/security-v13-worker-context-source-lines-2026-09-28.jsonl",
+  "source_atom_set_digest": "sha256:51f5c701b974f092e647ccf8dec15ddfc30b818e3b796b5eaa57aacd18064aa3",
+  "source_atom_count": 2,
+  "source_collection_scope": "MPR-SH-SUPPLEMENTARY-003で保全中のv1.3 supplementary sourceからHR-FR-P2-05 archive原文line 428と、MPR-SH-V13-BASELINE-001で保全中の6fabd125 baseline同文line 409を、それぞれ別revision/source holdingのatomとして入力する。隣接HR-FR-P2-06/07/08、HR-FR-HIL-*、旧test/design/runtime、全v1.3の被覆は入力外。source holdingはいずれも解消しない。",
+  "current_condition_refs": [
+    "docs/helix-security/L1-planning/security-intent.md#HELIXSECURITY-L1-007",
+    "docs/helix-security/L1-planning/security-intent.md#HELIXSECURITY-L1-008",
+    "docs/helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-007",
+    "docs/helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-008",
+    "docs/helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-029",
+    "docs/helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-031",
+    "docs/helix-security/L11-acceptance/security-acceptance.md#helixsecurity-l2-029",
+    "docs/helix-security/L11-acceptance/security-acceptance.md#helixsecurity-l2-031",
+    "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-004",
+    "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-031",
+    "docs/helix-harness/L11-acceptance/product-acceptance.md#harness-l2-031",
+    "docs/governance/decisions/security-requirements-po-decision-2026-09-28.md"
+  ],
+  "existing_responsibility_route": {
+    "owner": "HELIX-SECURITY（既存policy/authorityとWorker制約の起動条件照合）",
+    "primary_existing_requirements": [
+      "HELIXSECURITY-L2-007",
+      "HELIXSECURITY-L2-008"
+    ],
+    "supporting_existing_requirements": [
+      "HELIXSECURITY-L2-005",
+      "HELIXSECURITY-L2-029",
+      "HELIXSECURITY-L2-031",
+      "HELIXOS-L2-004",
+      "HARNESS-L2-031"
+    ],
+    "reason": "L2-007はWorker環境への実行制約、L2-008はoperation-specific authorityを担うが、外部Workerのversioned descriptorとcurrent HEAD/authority/rule/task boundaryの同一dispatch束縛を明示していない。OS-L2-004がassignmentの目的・成果形式・許可範囲・予算・期限、HARNESS task contractがinput/sanitization/oracleを所有する。L2-029/031は追加runtime限定条件を別に保持する。"
+  },
+  "atoms": [
+    {
+      "atom_id": "V13-ARCHIVE-L0428-HR-FR-P2-05",
+      "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-003",
+      "legacy_asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "source_item_id": "REQSRC-SUP-00330",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "source_line": 428,
+      "source_line_sha256": "sha256:174f87daa1755264b9066d715a5c8541c9b5a13167f3fa66c18d420fe3ccc1d3",
+      "source_text": "| `HR-FR-P2-05` | 外部AI workerはversioned descriptor、`worker-context-packet.v1`によるcurrent HEAD／authority／rule／task boundary束縛、隔離worktree、secret task deny、non-authoritative outputを満たす場合だけ起動する |",
+      "audit_ref": "docs/governance/audits/requirements-stage/legacy-v13-semantic-condition-audit-2026-09-28.json#V13-WORKER-HR-FR-P2-05",
+      "classification": "condition",
+      "classification_confidence": "high",
+      "condition_status": "unresolved",
+      "disposition": "candidate_rehome_draft",
+      "relation": "HR-FR-P2-05の外部AI Worker起動前条件をSECURITY-L2-033候補へ意味保持候補として対応づける。旧packet/schemaや旧runtimeは移植せず、適用authorityとcontextの現行契約へ再導出する。"
+    },
+    {
+      "atom_id": "V13-BASE-6FAB-L0409",
+      "source_holding_registration_id": "MPR-SH-V13-BASELINE-001",
+      "source_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "source_path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+      "original_source_path": "docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+      "source_line": 409,
+      "source_line_sha256": "sha256:174f87daa1755264b9066d715a5c8541c9b5a13167f3fa66c18d420fe3ccc1d3",
+      "source_text": "| `HR-FR-P2-05` | 外部AI workerはversioned descriptor、`worker-context-packet.v1`によるcurrent HEAD／authority／rule／task boundary束縛、隔離worktree、secret task deny、non-authoritative outputを満たす場合だけ起動する |",
+      "audit_ref": "docs/governance/audits/requirements-stage/legacy-v13-semantic-condition-audit-2026-09-28.json#V13-WORKER-HR-FR-P2-05",
+      "atom_relation": "V13-ARCHIVE-L0428-HR-FR-P2-05との同文twin。別6fabd125基準revision・別source holding／atomとして候補入力に含め、archive atomへ統合しない",
+      "candidate_input": true,
+      "disposition": "candidate_rehome_draft",
+      "relation": "archive原sourceと同文の6fabd125基準revision。別revision atomとして同じ限定条件への候補対応を記録し、archive atomに統合しない。"
+    }
+  ],
+  "coverage_result": "no_loss",
+  "condition_closure": "not_asserted",
+  "unaccounted_atom_refs": [],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-SUPPLEMENTARY-003",
+    "MPR-SH-V13-BASELINE-001"
+  ],
+  "decision_status": "pending_PO; candidate not adopted",
+  "open_boundary": "旧HR-FR-P2-05のsecret task denyが、値・機密内容をWorkerへ渡さず既存L2-005 capabilityを使う認証付きoperationまで含むかは原文から確定できない。本訂正候補はL2-005およびL2-034の既存正常条件との整合を推奨する。全credential-use taskの禁止を意図する場合は、採択済みL2-005対象revisionへの意味変更と影響をPO判断へ明示する。source holdingは未解消で、このreceiptは同じ2 atomのみを記録する。",
+  "supersedes_receipt_id": "MPR-RCPT-SECURITY-V13-WORKER-CONTEXT-2026-09-28",
+  "paired_acceptance_digest_rule": "composite UTF-8 pin: normalize the existing HELIXSECURITY-L2-033 heading section (through the next heading, trim trailing blank lines, one LF), then one LF separator, then normalize the document-tail section headed `## P0訂正追補（対象: HELIXSECURITY-L2-033）` through EOF (trim trailing blank lines, one LF); SHA-256 the concatenated bytes. The paired L11 digest uses the corresponding HELIXSECURITY-L2-033 acceptance section and tail appendix headed `## P0訂正追補（対象: HELIXSECURITY-L2-033 L11）`."
+}

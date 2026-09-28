@@ -3110,17 +3110,17 @@
     },
     {
       "identity": "HELIXSECURITY-L2-033",
-      "decision_state": "pending_PO; not adopted",
+      "decision_state": "pending_PO; corrected candidate revision not adopted",
       "source_basis_class": "旧v1.3 §4.10 HR-FR-P2-05のarchive line 428と、6fabd125 baseline line 409の同文別revision atomを、起動前context binding／secret-task deny／output non-authorityとして限定再導出する。両source holdingを維持する。",
-      "new_meaning_choice": "A: exact L2/L11-033を採択する。外部Workerの起動前に現行descriptor・current HEAD・SECURITY authority/rule・OS task boundaryを同一dispatchへ束縛し、secret/credentialを必要とするtaskを既存境界でdenyし、出力だけからauthority/canonical stateを生成しない。B: 両source atomを未採択のままholdingに保留する。C: 対象source revisionと影響を特定して意味変更またはretireを判断する。",
+      "new_meaning_choice": "A: exact corrected L2/L11-033 revision -002を採択する。raw secret／credential値をWorkerへ渡すtask、またはsecret／機密task内容を外部Workerへ渡すtaskはdenyし、値・内容を隠した既存L2-005の限定credential-use capabilityを使う認証付きoperationは、既存L2-008 authority、L2-007制約および該当L2-006条件の範囲で一律denyしない。B: 2 source atomとcandidate revisionを未採択のままholdingへ保留する。C: HR-FR-P2-05の「secret task deny」を全credential-use taskへ適用する等の意味変更／retireを選ぶ場合、対象source revisionに加えて、影響する採択済みL2-005対象revision・理由・影響を特定する。A/B/Cは未選択。",
       "recommended_choice": "A",
-      "choice_meaning": "限定A推奨。既存L2-007/008/005、OS assignment、選択済みHARNESS task contractを組み合わせた起動前bindingと非権威出力の候補。新しいpacket schema、descriptor形式、runtime registry、secret分類、毎回の承認、無関係なtaskの一律停止は追加しない。追加runtimeのL2-031/L2-029条件は主Workerへ拡張しない。",
+      "choice_meaning": "限定A推奨。採択済みL2-005が提供する非公開・範囲付きcredential-use capability、既存L2-008のoperation authority、L2-034の正常条件と整合させる。raw valueまたはsecret／機密内容の外部Worker受渡しは拒否する。新しい許可・authority・capability・毎回承認を作らず、旧HR-FR-P2-05の適用幅が未定義であることと、blanket denyを選ぶ場合のL2-005への意味影響を明示する。",
       "version_target_as_written": "1.0",
       "title_and_kind": "### HELIXSECURITY-L2-033 外部AI Workerの実行文脈束縛と出力の非権威性（単体追補候補、version_target: 1.0）",
       "requirement_source_path": "docs/helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-033",
       "acceptance_source_path": "docs/helix-security/L11-acceptance/security-acceptance.md#helixsecurity-l2-033",
-      "registration_id": "MPR-RC-HELIXSECURITY-L2-033-001",
-      "supersedes_registration_id": null,
+      "registration_id": "MPR-RC-HELIXSECURITY-L2-033-002",
+      "supersedes_registration_id": "MPR-RC-HELIXSECURITY-L2-033-001",
       "management_state": "registered_proposal",
       "authority_effect": "none",
       "parent_l1_ids": [
@@ -3130,9 +3130,9 @@
       "parent_l1_path": "docs/helix-security/L1-planning/security-intent.md",
       "parent_l1_sha256_current": "sha256:b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d",
       "parent_planning_revision_recorded": "docs/helix-security/L1-planning/security-intent.md@f6dad2a33e24f000b87d7f09b8d40288257e74cc sha256:b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d（#2203で確定した親bytes。033採択は継承しない）",
-      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/security-v13-worker-context-coverage-receipt-2026-09-28.json",
-      "receipt_id": "MPR-RCPT-SECURITY-V13-WORKER-CONTEXT-2026-09-28",
-      "receipt_candidate_digest_rule": "L2の### HELIXSECURITY-L2-033見出しから次の同階層見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/security-v13-worker-context-coverage-receipt-2026-09-28-r2.json",
+      "receipt_id": "MPR-RCPT-SECURITY-V13-WORKER-CONTEXT-2026-09-28-R2",
+      "receipt_candidate_digest_rule": "composite UTF-8 pin: normalize the existing HELIXSECURITY-L2-033 heading section (through the next heading, trim trailing blank lines, one LF), then one LF separator, then normalize the document-tail section headed `## P0訂正追補（対象: HELIXSECURITY-L2-033）` through EOF (trim trailing blank lines, one LF); SHA-256 the concatenated bytes. The paired L11 digest uses the corresponding HELIXSECURITY-L2-033 acceptance section and tail appendix headed `## P0訂正追補（対象: HELIXSECURITY-L2-033 L11）`.",
       "candidate_section_boundaries": [
         {
           "path": "docs/helix-security/L2-requirements/security-requirements.md",
@@ -3145,9 +3145,9 @@
           "end_heading_prefix": "次の見出し（見出しlevel問わず）"
         }
       ],
-      "registered_candidate_semantic_digest": "sha256:4707d0a3deb5158f72f6b36e111d7c0519015181de390c06f0d2a45601b4eb0d",
-      "receipt_candidate_semantic_digest": "sha256:4707d0a3deb5158f72f6b36e111d7c0519015181de390c06f0d2a45601b4eb0d",
-      "current_candidate_semantic_digest": "sha256:4707d0a3deb5158f72f6b36e111d7c0519015181de390c06f0d2a45601b4eb0d",
+      "registered_candidate_semantic_digest": "sha256:b486a0c44e8f21a6f8738dedeac91dcb94da335b73409b6adeaecf8fa639bf1a",
+      "receipt_candidate_semantic_digest": "sha256:b486a0c44e8f21a6f8738dedeac91dcb94da335b73409b6adeaecf8fa639bf1a",
+      "current_candidate_semantic_digest": "sha256:b486a0c44e8f21a6f8738dedeac91dcb94da335b73409b6adeaecf8fa639bf1a",
       "candidate_digest_matches_register_and_receipt": true,
       "source_atom_count": 2,
       "source_atom_set_digest": "sha256:51f5c701b974f092e647ccf8dec15ddfc30b818e3b796b5eaa57aacd18064aa3",
@@ -3174,12 +3174,12 @@
           "relation": "complete_text_twin_of_V13-ARCHIVE-L0428-HR-FR-P2-05; distinct 6fabd125 baseline revision and distinct source holding/atom; separately included in this candidate input, never merged with the archive atom"
         }
       ],
-      "source_reference_note": "旧HR-FR-P2-05 archive line 428（REQSRC-SUP-00330）と同文の6fabd125 baseline line 409は別revision・別holdingの2 atomとして入力する。旧packet schema/runtimeを移植せず、現行descriptor・authority・rule・task boundaryのbinding、既存secret deny、出力の非権威性を限定再導出する。隣接P2-06/07/08、v1.3全体、両source holdingのclosureは対象外。",
+      "source_reference_note": "旧HR-FR-P2-05 archive line 428（REQSRC-SUP-00330）と同文の6fabd125 baseline line 409は別revision・別holdingの2 atomとして入力し、source-linesは不変。旧packet schema/runtimeを移植しない。raw secret／credential値またはsecret／機密内容を外部Workerへ渡すtaskはdenyし、既存L2-005の限定credential-use capabilityによる認証付きoperationは、既存L2-008 authority・L2-007制約・該当L2-006条件の範囲で一律denyしない。旧「secret task deny」の適用幅は未定義であり、全credential-use禁止はL2-005に影響するPO意味判断へ残す。",
       "internal_PO_choice": null,
       "paired_l2_id": "HELIXSECURITY-L2-033",
       "paired_l11_id": "HELIXSECURITY-L2-033",
-      "affected_requirement_and_consumer_ids": "HELIXSECURITY-L1-007/008; HELIXSECURITY-L2-005/007/008/029/031; HELIXOS-L2-004; HARNESS-L2-031; 対L11; external AI Worker dispatch",
-      "rationale": "現行L2-007/008、OS-L2-004とHARNESS task contractは個々の制約・authority・assignment・oracleを分担するが、外部Worker dispatchでdescriptor、HEAD、authority/rule、assignment task boundaryを同一実行文脈へ束ね、secret-task denyとnon-authoritative outputを起動/受取条件として受け入れる対は明示されていない。033はSECURITYの既存policy/authority適用のみを照合し、assignment・oracle・enforcer・runtime登録のownerを移さない。L2-031の追加runtime限定条件を拡張しない。",
+      "affected_requirement_and_consumer_ids": "HELIXSECURITY-L1-007/008; 採択済みHELIXSECURITY-L2-005; HELIXSECURITY-L2-007/008/029/031/034; HELIXOS-L2-004; HARNESS-L2-031; 対L11; external AI Worker dispatch",
+      "rationale": "採択済みL2-005はsecret値を露出しないscope/operation/expiry付きcredential-use capabilityを提供し、未採択L2-034の正常例もこれを再利用する。既存L2-007/008とOS assignmentは外部Worker制約、operation authority、task boundaryを分担する。033は起動時bindingと非権威出力を維持し、値または機密task内容を外部Workerへ渡すcaseをdenyする一方、credential付きoperationという理由だけのdenyを不合格にする限定候補。旧HR-FR-P2-05の「secret task deny」はこの区別を明示しないため全credential-use禁止は新たな意味選択となり、採択済みL2-005への対象revision付き影響確認を要する。",
       "previous_register_revision": null,
       "version_target_evidence": {
         "path": "docs/helix-security/L2-requirements/security-requirements.md",
@@ -3187,8 +3187,21 @@
         "excerpt": "### HELIXSECURITY-L2-033 外部AI Workerの実行文脈束縛と出力の非権威性（単体追補候補、version_target: 1.0）",
         "interpretation": "候補見出しに記載された目標版。採択・実装許可ではない。"
       },
-      "acceptance_section_sha256": "sha256:6d83abe63e3e852d58d9a9a60ae39c6b29284b6b8ab781bdb86456e479e60be0",
-      "acceptance_source_file_sha256": "sha256:b79a8bf53534b9370f9c46f312dea38635f7fd9650be957db8ffa406f8299bb3"
+      "acceptance_section_sha256": "sha256:e1c4d0668ff63c5f319b730ae44bb37e10cb42769e14a09b4300e92d50053ede",
+      "acceptance_source_file_sha256": "sha256:e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
+      "candidate_appendix_boundaries": [
+        {
+          "path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "start_heading_prefix": "## P0訂正追補（対象: HELIXSECURITY-L2-033）",
+          "end_heading_prefix": "EOF"
+        },
+        {
+          "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+          "start_heading_prefix": "## P0訂正追補（対象: HELIXSECURITY-L2-033 L11）",
+          "end_heading_prefix": "EOF"
+        }
+      ],
+      "candidate_section_boundaries_scope": "base sections only; the document-tail correction appendix is separately pinned by candidate_appendix_boundaries"
     },
     {
       "identity": "HELIXOS-L2-043",
