@@ -1,0 +1,334 @@
+{
+  "artifact_id": "P1-OS-V13-HYB-006-FEEDBACK-FUNCTIONAL-CROSSWALK-2026-09-29",
+  "artifact_kind": "effective_legacy_condition_disposition_crosswalk",
+  "basis_main_commit": "d6daba2279dcbdb1a6dfa239d0f1e183e6971476",
+  "basis_main_subject": "PR #2280 MCP profile audit format; #2280 is format precedent, not feedback coverage evidence.",
+  "authority_effect": "none",
+  "candidate_adoption": "none",
+  "source_holding_closure": "none",
+  "scope": {
+    "legacy_asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+    "source_item_id": "REQSRC-SUP-00217",
+    "legacy_requirement_id": "HR-FR-HYB-006",
+    "source_lines": [
+      290,
+      275
+    ],
+    "source_revisions": [
+      "archive",
+      "6fabd125 baseline"
+    ],
+    "functional_unit": "feedback semantic lifecycle and three negative oracles, separated from legacy event/projection/SessionStart mechanisms",
+    "out_of_scope": [
+      "full v1.3 closure",
+      "archive runtime/hook/CLI/test/CI execution",
+      "new requirement candidate",
+      "source holding retirement",
+      "implementation or acceptance execution"
+    ]
+  },
+  "existing_source_artifacts": {
+    "source_lines": "docs/governance/audits/requirement-registration/os-v13-hyb-006-feedback-resolution-source-lines-2026-09-28.jsonl",
+    "source_line_count": 8,
+    "source_collection_atom_set_digest": "sha256:e6a84d775dddcca5adbfb082bf210cd176996db0b5ef259730989771780b9596",
+    "coverage_receipt": "docs/governance/audits/requirement-registration/os-v13-hyb-006-feedback-resolution-coverage-receipt-2026-09-28.json",
+    "receipt_id": "DRAFT-RCPT-OS-V13-HYB-006-FEEDBACK-RESOLUTION-2026-09-28",
+    "candidate_input_atom_count": 2,
+    "candidate_input_atom_set_digest": "sha256:03b7158db785dd0c62d04c09c9390c8121db4c403d73746ee142b1f9262cbb2e",
+    "candidate_register_id": "MPR-RC-HELIXOS-L2-044-001",
+    "candidate_state": "registered_proposal",
+    "candidate_authority_effect": "none",
+    "prior_condition_audit": "docs/governance/audits/requirements-stage/legacy-v13-semantic-condition-audit-2026-09-28.json#V13-HYB-006"
+  },
+  "counts": {
+    "source_revision_count": 2,
+    "functional_condition_count": 4,
+    "lineage_atom_count": 8,
+    "adopted_satisfied_atom_count": 2,
+    "adopted_partial_relation_atom_count": 2,
+    "existing_unadopted_candidate_atom_count": 2,
+    "preserved_pending_no_exact_general_successor_atom_count": 2,
+    "semantic_closure_atom_count": 2,
+    "unresolved_semantic_closure_atom_count": 6,
+    "source_line_closure_count": 0,
+    "source_lineage_register_alignment_conflict_count": 0,
+    "legacy_mechanism_retire_atom_count": 0,
+    "counting_note": "8 atoms = 4 clause spans × 2 revisions. The adopted match closes only the two unacknowledged-finding atoms. Lifecycle is partial, prose-only is unadopted, source-HEAD mismatch is pending. Both source lines remain partial."
+  },
+  "conditions": [
+    {
+      "condition_key": "feedback_lifecycle_vs_legacy_surface",
+      "condition": "Feedback semantic lifecycle versus event/projection/SessionStart surface",
+      "lineage_atom_count": 2,
+      "effective_treatment": "partial_adopted_contract_with_pending_residual",
+      "adopted_satisfied": false,
+      "semantic_closure": false,
+      "current_requirement_relations": [
+        {
+          "id": "HELIXOS-L2-007",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-007",
+          "relation": "Adopted text distinguishes intake/classify/ack/pending/resolution; it does not name reverse-candidate or define a complete transition contract."
+        },
+        {
+          "id": "HELIXOS-L2-009",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-009",
+          "relation": "Durable event and idempotent projection partially align generically; no feedback event kinds or SessionStart delivery are specified."
+        },
+        {
+          "id": "HELIXOS-L2-010",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-010",
+          "relation": "Workflow/backflow tickets may route some work but are not an exact reverse-candidate feedback state."
+        }
+      ],
+      "finding": "The two lifecycle atoms mix semantic state distinctions with an old technology surface. Preserve semantic comparison separately from exact event/projection implementation and SessionStart. Do not revive the archived hook/runtime or claim full lifecycle coverage; reverse-candidate and current-session surfacing have no exact adopted mapping.",
+      "owner": "HELIX-OS: L2-007 feedback state/evidence; L2-009 generic durable event/projection.",
+      "po_meaning_decision": "Only if disposition removes the user-visible effect: decide whether pending feedback must be surfaced at session start through a current technology-neutral surface, or whether SessionStart is solely an obsolete mechanism. No choice made.",
+      "lineage_atoms": [
+        {
+          "atom_id": "V13-ARCHIVE-L0290-HR-FR-HYB-006-FR-LIFECYCLE",
+          "source_revision": "archive",
+          "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-003",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "source_line": 290,
+          "source_line_sha256": "sha256:2125ab8a351eea42abeb00975c7ff99a80fed5fe914b5c84a50bf6ca4945b931",
+          "source_span_text": "feedback lifecycleはintake、classify、ack、pending、reverse-candidate、resolution、SessionStart surfaceをevent/projectionで管理する",
+          "source_span_sha256": "sha256:020aeef97aa35a0a606864ff5d0a333a51cd5b549c05b950c63859e2f7d2c539",
+          "source_item_id": "REQSRC-SUP-00217",
+          "source_lines_disposition": "preserved_pending",
+          "source_lines_candidate_input": false,
+          "effective_treatment": "partial_adopted_contract_with_pending_residual",
+          "semantic_closure": false
+        },
+        {
+          "atom_id": "V13-BASE-6FAB-L0275-HR-FR-HYB-006-FR-LIFECYCLE",
+          "source_revision": "6fabd125 baseline",
+          "source_holding_registration_id": "MPR-SH-V13-BASELINE-001",
+          "source_path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+          "source_file_sha256": "sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+          "source_line": 275,
+          "source_line_sha256": "sha256:2125ab8a351eea42abeb00975c7ff99a80fed5fe914b5c84a50bf6ca4945b931",
+          "source_span_text": "feedback lifecycleはintake、classify、ack、pending、reverse-candidate、resolution、SessionStart surfaceをevent/projectionで管理する",
+          "source_span_sha256": "sha256:020aeef97aa35a0a606864ff5d0a333a51cd5b549c05b950c63859e2f7d2c539",
+          "source_item_id": "REQSRC-SUP-00217",
+          "source_lines_disposition": "preserved_pending",
+          "source_lines_candidate_input": false,
+          "effective_treatment": "partial_adopted_contract_with_pending_residual",
+          "semantic_closure": false
+        }
+      ]
+    },
+    {
+      "condition_key": "unacknowledged_finding_non_disappearance",
+      "condition": "Unacknowledged finding must not disappear",
+      "lineage_atom_count": 2,
+      "effective_treatment": "adopted_exact_condition",
+      "adopted_satisfied": true,
+      "semantic_closure": true,
+      "current_requirement_relations": [
+        {
+          "id": "HELIXOS-L2-007",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-007",
+          "relation": "Adopted condition distinguishes ack/pending and says an unacknowledged finding is not lost."
+        },
+        {
+          "id": "HELIXOS-L11-007",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-007",
+          "relation": "Adopted negative oracle rejects content disappearance for unacknowledged findings."
+        }
+      ],
+      "finding": "The exact negative condition is supported by adopted L2 and L11 for both source revisions. This condition-level match does not close either source line or other spans.",
+      "owner": "HELIX-OS / adopted HELIXOS-L2-007.",
+      "po_meaning_decision": null,
+      "lineage_atoms": [
+        {
+          "atom_id": "V13-ARCHIVE-L0290-HR-FR-HYB-006-AC-UNACK",
+          "source_revision": "archive",
+          "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-003",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "source_line": 290,
+          "source_line_sha256": "sha256:2125ab8a351eea42abeb00975c7ff99a80fed5fe914b5c84a50bf6ca4945b931",
+          "source_span_text": "未ack findingの消失",
+          "source_span_sha256": "sha256:25dab270774a8804bba37ab1de8d94dd3c8e65367c8a3788ef2538c716adad2b",
+          "source_item_id": "REQSRC-SUP-00217",
+          "source_lines_disposition": "preserved_pending",
+          "source_lines_candidate_input": false,
+          "effective_treatment": "adopted_exact_condition",
+          "semantic_closure": true
+        },
+        {
+          "atom_id": "V13-BASE-6FAB-L0275-HR-FR-HYB-006-AC-UNACK",
+          "source_revision": "6fabd125 baseline",
+          "source_holding_registration_id": "MPR-SH-V13-BASELINE-001",
+          "source_path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+          "source_file_sha256": "sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+          "source_line": 275,
+          "source_line_sha256": "sha256:2125ab8a351eea42abeb00975c7ff99a80fed5fe914b5c84a50bf6ca4945b931",
+          "source_span_text": "未ack findingの消失",
+          "source_span_sha256": "sha256:25dab270774a8804bba37ab1de8d94dd3c8e65367c8a3788ef2538c716adad2b",
+          "source_item_id": "REQSRC-SUP-00217",
+          "source_lines_disposition": "preserved_pending",
+          "source_lines_candidate_input": false,
+          "effective_treatment": "adopted_exact_condition",
+          "semantic_closure": true
+        }
+      ]
+    },
+    {
+      "condition_key": "prose_only_resolution_rejection",
+      "condition": "Prose handover alone is not resolution evidence",
+      "lineage_atom_count": 2,
+      "effective_treatment": "existing_unadopted_candidate",
+      "adopted_satisfied": false,
+      "semantic_closure": false,
+      "current_requirement_relations": [
+        {
+          "id": "HELIXOS-L2-044",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-044",
+          "relation": "Registered proposal rejects prose-only resolution, without defining evidence sufficiency/schema."
+        },
+        {
+          "id": "HELIXOS-L11-044",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-044",
+          "relation": "Unexecuted oracle rejects prose-only handover and explicitly excludes the other three source conditions."
+        }
+      ],
+      "finding": "The registered candidate and receipt are limited to this condition. Receipt/register include both source atoms, but the source-lines ledger marks the archive atom preserved_pending/candidate_input=false. Reconcile that mismatch before treating lineage accounting as aligned. Remaining six spans are outside this candidate.",
+      "owner": "HELIX-OS candidate owner. OS-044 records L1-006; adopted L2-007 parent lineage is L1-002/004/007/008. Reconcile that parent mapping before adoption; this audit does not amend it.",
+      "po_meaning_decision": "Adoption remains the existing PO decision item. A new PO meaning choice is needed only if broadening the rule or defining resolution sufficiency beyond the bounded rejection.",
+      "lineage_atoms": [
+        {
+          "atom_id": "V13-ARCHIVE-L0290-HR-FR-HYB-006-AC-PROSE-ONLY",
+          "source_revision": "archive",
+          "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-003",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "source_line": 290,
+          "source_line_sha256": "sha256:2125ab8a351eea42abeb00975c7ff99a80fed5fe914b5c84a50bf6ca4945b931",
+          "source_span_text": "prose handoverだけの解決",
+          "source_span_sha256": "sha256:03980f7a4f1f6e65e6b6e8ac5eff71b2d461558cc127c2d9091721ea790208b4",
+          "source_item_id": "REQSRC-SUP-00217",
+          "source_lines_disposition": "candidate_scope",
+          "source_lines_candidate_input": true,
+          "effective_treatment": "existing_unadopted_candidate",
+          "semantic_closure": false
+        },
+        {
+          "atom_id": "V13-BASE-6FAB-L0275-HR-FR-HYB-006-AC-PROSE-ONLY",
+          "source_revision": "6fabd125 baseline",
+          "source_holding_registration_id": "MPR-SH-V13-BASELINE-001",
+          "source_path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+          "source_file_sha256": "sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+          "source_line": 275,
+          "source_line_sha256": "sha256:2125ab8a351eea42abeb00975c7ff99a80fed5fe914b5c84a50bf6ca4945b931",
+          "source_span_text": "prose handoverだけの解決",
+          "source_span_sha256": "sha256:03980f7a4f1f6e65e6b6e8ac5eff71b2d461558cc127c2d9091721ea790208b4",
+          "source_item_id": "REQSRC-SUP-00217",
+          "source_lines_disposition": "candidate_scope",
+          "source_lines_candidate_input": true,
+          "effective_treatment": "existing_unadopted_candidate",
+          "semantic_closure": false
+        }
+      ]
+    },
+    {
+      "condition_key": "source_head_mismatch_rejection",
+      "condition": "Feedback source HEAD mismatch must be rejected",
+      "lineage_atom_count": 2,
+      "effective_treatment": "preserved_pending_no_exact_general_successor",
+      "adopted_satisfied": false,
+      "semantic_closure": false,
+      "current_requirement_relations": [
+        {
+          "id": "HELIXOS-L2-007",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-007",
+          "relation": "Source/revision provenance is general; feedback is not explicitly bound to source HEAD or mismatch rejection."
+        },
+        {
+          "id": "HELIXOS-L2-008",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-008",
+          "relation": "CI results are bound to HEAD/environment, not every feedback origin."
+        },
+        {
+          "id": "HELIXOS-L2-011",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-011",
+          "relation": "Selected integration uses base+A+B and rejects another HEAD, but is not general feedback handling."
+        },
+        {
+          "id": "GitHub upstream operating model",
+          "path": "docs/governance/github-upstream-operating-model.md#独立reviewとexact-head",
+          "relation": "Exact base/content HEAD applies to PR review requests/responses, not all feedback sources."
+        }
+      ],
+      "finding": "Current exact-HEAD contracts apply only in their stated operations. Do not generalize to all feedback sources. Keep these atoms pending applicability/source identity mapping; source revision/digest provenance is not equivalent to exact source HEAD.",
+      "owner": "HELIX-OS owns feedback provenance; PR review remains under the current GitHub review operation contract.",
+      "po_meaning_decision": "If extending mismatch rejection beyond PR findings or retiring the condition, PO must decide source applicability. No new gate is created here.",
+      "lineage_atoms": [
+        {
+          "atom_id": "V13-ARCHIVE-L0290-HR-FR-HYB-006-AC-HEAD-MISMATCH",
+          "source_revision": "archive",
+          "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-003",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "source_line": 290,
+          "source_line_sha256": "sha256:2125ab8a351eea42abeb00975c7ff99a80fed5fe914b5c84a50bf6ca4945b931",
+          "source_span_text": "source HEAD不一致",
+          "source_span_sha256": "sha256:674e5051c30608c826b24da23f8492c1bb131e7dabe7d3aa91df0ffea97c97d9",
+          "source_item_id": "REQSRC-SUP-00217",
+          "source_lines_disposition": "preserved_pending",
+          "source_lines_candidate_input": false,
+          "effective_treatment": "preserved_pending_no_exact_general_successor",
+          "semantic_closure": false
+        },
+        {
+          "atom_id": "V13-BASE-6FAB-L0275-HR-FR-HYB-006-AC-HEAD-MISMATCH",
+          "source_revision": "6fabd125 baseline",
+          "source_holding_registration_id": "MPR-SH-V13-BASELINE-001",
+          "source_path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+          "source_file_sha256": "sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+          "source_line": 275,
+          "source_line_sha256": "sha256:2125ab8a351eea42abeb00975c7ff99a80fed5fe914b5c84a50bf6ca4945b931",
+          "source_span_text": "source HEAD不一致",
+          "source_span_sha256": "sha256:674e5051c30608c826b24da23f8492c1bb131e7dabe7d3aa91df0ffea97c97d9",
+          "source_item_id": "REQSRC-SUP-00217",
+          "source_lines_disposition": "preserved_pending",
+          "source_lines_candidate_input": false,
+          "effective_treatment": "preserved_pending_no_exact_general_successor",
+          "semantic_closure": false
+        }
+      ]
+    }
+  ],
+  "lineage_accounting_note": {
+    "existing_receipt_scope": "8 source spans recorded; no-loss only for the two selected prose-only atoms; both complete source lines remain partial.",
+    "source_lines_receipt_register_alignment": "Verified: the archive and baseline prose-only atoms are candidate_scope/candidate_input=true in the source-lines ledger and receipt; the register carries the same two atom IDs and matching atom-set digest."
+  },
+  "owner_and_po_boundary": {
+    "functional_owner": "HELIX-OS",
+    "adopted_contracts": [
+      "HELIXOS-L2-007",
+      "HELIXOS-L2-009"
+    ],
+    "new_candidate_created": false,
+    "owner_choice_required_now": false,
+    "open_po_meaning_only_if_disposition_changes": [
+      "Retain session-start surfacing as a semantic behavior versus retire only the old SessionStart mechanism.",
+      "Scope source-HEAD mismatch rejection to PR-review findings versus additional feedback origins.",
+      "Existing OS-044 adoption/hold/retire decision remains separate and pending."
+    ]
+  },
+  "verification_boundary": {
+    "performed": [
+      "source line/span SHA-256 checks",
+      "source-lines/receipt/register comparison",
+      "static adopted OS L2/L11 and OS-044 comparison",
+      "JSON read-after and diff checks"
+    ],
+    "not_performed": [
+      "archive runtime/hook/CLI/adapter/test/CI execution",
+      "candidate adoption",
+      "source holding release"
+    ]
+  }
+}
