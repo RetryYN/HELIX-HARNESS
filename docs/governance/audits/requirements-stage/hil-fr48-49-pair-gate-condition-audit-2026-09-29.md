@@ -19,7 +19,8 @@
 | NFR-29 cross-condition。031-04/07/08（304/307/308行、古いdigest・意味revision差・snapshot差） | 040の対象revision/staleおよびOS側の保存状態に関連する | **部分対応**。旧pair receiptをstaleとし新pair receiptを出さない具体的なnegative oracleは現行の対節で未確認。FR-48だけのatomとして数えない |
 | FR-49。032-01（309行、正常）、032-02〜07（310–315行、6 pair各欠落） | 040は正規6 pairを明示し、L11はpair片側edge欠落を拒否。022はL8–L11の段階的検証、025/026は設計と対oracleの構成 | **部分対応**。各pairの原子oracleでの双方向joinを評価し、欠けたpairだけをfindingへ返す独立gateの受入は未特定。025/026の設計構成や022の段階判定を、旧gateの実行と同一視しない |
 | FR-49。032-08（316行、L12→層外L0還流edge欠落） | 040はL0を層外anchorとして保持し、HARNESS-L2-021はL12観測から要求へ戻す | **未対応**。L12→L1と層外L0へのfeedback edgeを別々に照合するoracleは未特定。L0を7番目のpairにしない |
-| NFR-29 cross-condition。032-09/12/13（317/320/321行、片方向・異snapshot） | 040は上下流edgeと同revisionを要求。025は双方向traceを求める | **部分対応**。旧gateのforward/reverse片側ごとの失敗とpair receipt増分0、異snapshot時のstale判定は対節で未確認。FR-49だけのatomとして数えない |
+| NFR-29 cross-condition。032-09/12（317/320行、reverse欠落・異snapshot） | 040は上下流edgeと同revisionを要求。025は双方向traceを求める | **部分対応**。reverse片側欠落時の失敗とpair receipt増分0、異snapshot時のstale判定は対節で未確認。これらはFR-49だけのatomとして数えない |
+| FR-49。032-13（321行、forward欠落） | 040は上下流edgeを定め、025は双方向traceを求める | **部分対応**。032-09のreverse欠落と対になるforward片側欠落のgate拒否・finding・pair receipt増分0は未特定。FR-49の旧反例として保持する |
 | FR-49。032-10/11（318/319行、oracle ID不一致・execution receipt欠落） | 022はoracle結果と利用者受入記録を段階別に分け、025/026は対oracleを形成する | **部分対応**。pairのoracle identity不一致を拒否し、実行receipt欠落ではpairedに留めgreenを出さない具体例は旧gateとして未特定。設計済みoracleと実行済みoracleを混同しない |
 
 031-09と032-14は旧test-designのassertion meta caseであり、FR-48/49の追加要求atomに数えない。旧test-designのCASE-032-08は`HIL_LAYER_L0_ANCHOR_PROJECTION_INVALID`、主sourceの旧system assertion CASE-032-08は`HIL_LAYER_FEEDBACK_L12_L0_ANCHOR_MISSING`と記す。両sourceの観測時点・意味を混同せず、本監査はFR-49原文と主sourceのfeedback欠落を照合対象とし、projection不正は別の残差として保留する。
