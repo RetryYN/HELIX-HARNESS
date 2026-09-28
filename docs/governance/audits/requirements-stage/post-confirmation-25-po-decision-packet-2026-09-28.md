@@ -1,6 +1,6 @@
 # 8機構確認後の追加候補：PO判断パケット（初版25 + 後続15 = 40）
 
-基準HEAD: `22f0e53d528d8e32cb799d4c95effebab6bb35c4`（#2260統合後main）。この基準HEADの40候補にOS-030 source対応とOS-043 register欄訂正を追補し、判断集合は40候補のままである。043は未採択のbounded candidateであり、全候補は`registered_proposal` / `authority_effect:none`、PO未採択・未判断である。PR mergeやL2/L11本文・registerの存在から採択・実装・受入完了は推定しない。
+基準HEAD: `e194378c77019f60d55577fbf014e7430ebe270a`（#2261統合後main）。この基準HEADの候補40件は維持し、本追補は候補外のHIL-FR-68 source meaning residualを追加する。043は未採択のbounded candidateであり、全候補は`registered_proposal` / `authority_effect:none`、PO未採択・未判断である。PR mergeやL2/L11本文・registerの存在から採択・実装・受入完了は推定しない。
 
 ## 選択肢
 
@@ -207,3 +207,18 @@ A＝exact L2/L11-042の限定採択、B＝原atomを保留、C＝対象source re
 登録`MPR-RC-HELIXOS-L2-043-002`（-001の人間decision参照欄誤記を訂正）は`registered_proposal` / `authority_effect:none`。typed-event候補のA＝exact L2/L11限定採択を推奨し、B＝S1保留、C＝対象revision・理由・影響付き意味変更/retire。別個のNode-exclusive residualの原文は「Node control planeだけがapprovalとwrite transactionを決定する」。その選択肢はA＝Node専有をnormative保持、B＝現行ownerへ明示再導出、C＝対象revision・理由・影響付きretire、D＝両holdingに保留（現時点推奨）。Node residualはSECURITY authority、OS assignment/progress、Worker execution、canonical writer/write transaction境界に影響し、043候補の採択とは独立する。receiptは選択S1 2 atomだけをcandidate inputとして`no_loss`、`unaccounted_atom_refs:[]`とする一方、archive/baseline各S2は`preserved_pending`であり、旧HR-FR-P2-06行全体はpartialでno_lossを主張しない。
 
 旧HR-FR-P6-06のarchive L432／baseline L413から、package内容S1を別revisionの2 atomとして既存030候補へ局所対応した。登録は`MPR-RC-HELIXOS-L2-030-003`、候補本文のsemantic digestは不変。PLAN-M-02承認境界S2の2 atomは両holdingに保留し、現行SECURITY authorityとの対象・等価性はPO残差とする。030採択だけで旧行全体のno_loss、publish/cutover許可、旧PLAN-M-02の退役を生成しない。原文と選択肢は[局所receipt](../requirement-registration/os-v13-p6-06-package-coverage-receipt-2026-09-28.json)に記録。
+
+## HIL-FR-68のsource meaning residual（40候補外・PO未決）
+
+旧archive `LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:158`。file SHA-256 `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`、line SHA-256 `1cb33f5f4fb41235b6e5930dc888fdff561a3d6eff99d50f816ea6ab8b151cd5`。旧IR `requirements.json#/HIL-FR-68`（semantic digest `c9a0c409d5b73089fea4e0868d95677f1f855ccc30e749b1960c3377a8e89845`）は`HR-FR-HIL-23`、`HAC-HIL-23a/b/c`、未実装設計`HAT-HIL-23`へ接続する。assertion ledgerはstructured-event契約検査とNode approval policyのcode外保持拒否を記録する。
+
+現行OS-043はP2-06由来のWorker request/tool-call/result追跡を扱う未採択候補で、HIL-FR-68の部分重複に限る。PO採択済みCONNECT-L2-001/002/005は明示登録された機構間接続のadapter/transport revision・互換性・traceを所有するが、Worker/provider runtimeをCONNECT接続と自動同一視しない。旧CLI移行、Node code-held policyとpolicy digest、adapter versionの適用owner、ACP互換評価のowner/scopeは未割当であり、この残差からOSまたはCONNECTへ移管しない。ACP評価は採用決定を意味しない。
+
+| PO選択肢 | 意味と影響 |
+|---|---|
+| **A（推奨）保留・保全** | source residualとして保持し、scope/ownerの確認まで候補化しない。HIL-FR-68は未閉鎖。|
+| B 確認済みscopeへ再導出 | Workerイベント意味はOS、明示された機構間adapter revision/互換はCONNECTへ分ける。非接続のWorker adapterは別途ownerを特定し、Node policy/digestは別判断とする。|
+| C 旧意味を保持 | 指定した対象経路に旧CLI移行とNode policy/digestを適用する。provider/runtime、policy owner、SECURITY境界への影響を特定する。|
+| D 明示的に変更・retire | 対象revision、理由、consumer影響を伴う意味変更/retireを判断する。|
+
+Aは推奨に留まりPO選択ではない。どの案もACP adoptionを決めず、source全体の`no_loss`/closureを主張しない。JSON内の`source_meaning_residuals`に同じ選択肢を記録し、この項目はcandidate count 40に加算しない。
