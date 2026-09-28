@@ -16,7 +16,7 @@
     },
     "prior_matrix": {
       "path": "docs/governance/audits/requirements-stage/legacy-ir108-disposition-matrix-2026-09-28.json",
-      "sha256": "e3c20b7e3973ee07133ae327fb9fbaf463639848e31d741823f8fee9994e4729",
+      "sha256": "0e26f66e4d593f7f710e17b8c2349dffd5849467f208fc5fbdda635e31dd224d",
       "record_count": 108,
       "baseline_commit": "559ae3ba4bfe660d666a57f227466d7dcdd440d9",
       "disposition_counts": {
@@ -26,7 +26,9 @@
         "implementation_only": 41,
         "true_missing_condition_needing_candidate": 7,
         "scope_decision": 16
-      }
+      },
+      "working_intermediate_sha256": "e3c20b7e3973ee07133ae327fb9fbaf463639848e31d741823f8fee9994e4729",
+      "difference_from_repository_snapshot": "The 108 identity items and disposition counts are unchanged. Only input_recheck_snapshot_sha256 keys and the W2 working-intermediate provenance note changed when the four source rechecks were pinned to repository files."
     },
     "legacy_ir": {
       "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
