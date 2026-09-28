@@ -1,6 +1,6 @@
-# 8機構確認後の追加候補：PO判断パケット（初版25 + 後続13 = 38）
+# 8機構確認後の追加候補：PO判断パケット（初版25 + 後続14 = 39）
 
-基準HEAD: `34c1f48663bec1bcb7071b1889adb3c3a2e20e51`（merge済み#2257後）。この基準HEADの37候補へ、HELIXOS-L2-042を追加し、判断集合は38候補となる。042は未採択のbounded candidateであり、全候補は`registered_proposal` / `authority_effect:none`、PO未採択・未判断である。PR mergeやL2/L11本文・registerの存在から採択・実装・受入完了は推定しない。
+基準HEAD: `782a7320925a28d0c7b35ebc54b0ec7cc1329e7c`（#2258後main）。この基準HEADの38候補にHELIXSECURITY-L2-033を追加し、判断集合は39候補となる。033は未採択のbounded candidateであり、全候補は`registered_proposal` / `authority_effect:none`、PO未採択・未判断である。PR mergeやL2/L11本文・registerの存在から採択・実装・受入完了は推定しない。
 
 ## 選択肢
 
@@ -185,3 +185,14 @@ MPR-RC-HARNESS-L2-046-001を`registered_proposal` / `authority_effect:none`と�
 | `HELIXOS-L2-042` (L2/L11) | PO未決／推奨 **A** | 1.0; HELIXOS-L1-003 | HR-FR-P2-08のstrict schema／digest既定と、緩和時の対象・理由・期限・再検証receiptを保持する限定候補。OSのassignment成果状態への接続と、HARNESS oracle／SECURITY authorityの責務境界を含む意味はPO判断 | `docs/governance/audits/requirement-registration/os-v13-worker-output-coverage-receipt-2026-09-28.json`; atom V13-ARCHIVE-L0431-HR-FR-P2-08はarchive line 431、file SHA-256 `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`、line SHA-256 `53d8b2cd66448f9c5d4828b8fbe99d3bffed93b237fe86e0f515b3d1d7ad933f` | `HELIXOS-L2-042` (L2/L11); OS-L1-003、既存OS-L2-004/007/019、HARNESS-L2-005、SECURITY-L2-007/008 | strict defaultと緩和条件は現行OS責務に明示されず、worker assignment／成果回収へ限定追補する。HARNESSがoracle、SECURITYがauthorityを維持し、旧実装やreceipt formatを移植しない。 |
 
 A＝exact L2/L11-042の限定採択、B＝原atomを保留、C＝対象source revision・理由・影響付きの意味変更/retire。登録`MPR-RC-HELIXOS-L2-042-001`は`registered_proposal` / `authority_effect:none`で、PO選択は未決。source inputはarchive atom 1件だけ。完全同文のbaseline atom `V13-BASE-6FAB-L0412`（6fabd125 line 412、file SHA-256 `1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1`、同line SHA）は別revision・別atomとして`MPR-SH-V13-BASELINE-001`へ保全し、archive atomと合算しない。旧v1.3全体のcoverage closure、source holding解除、schema/runtime実装、実行許可を生成しない。現行machine packet countは38。
+
+
+## 後続追加：HELIXSECURITY-L2-033（判断集合39候補）
+
+旧v1.3 §4.10 HR-FR-P2-05のarchive line 428（`REQSRC-SUP-00330`）と、6fabd125 baseline line 409の同文別revisionを、それぞれ別atomとして[HELIXSECURITY-L2-033](../../../../docs/helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-033)と対L11へ限定再導出した。両atomのfile/line SHAは[source-lines](../requirement-registration/security-v13-worker-context-source-lines-2026-09-28.jsonl)、coverageは[receipt](../requirement-registration/security-v13-worker-context-coverage-receipt-2026-09-28.json)に固定する。source holding `MPR-SH-SUPPLEMENTARY-003`と`MPR-SH-V13-BASELINE-001`は残し、旧packet schema/runtimeを移植しない。
+
+登録`MPR-RC-HELIXSECURITY-L2-033-001`は`registered_proposal` / `authority_effect:none`、PO未決・未採択。A＝exact L2/L11候補の採択（推奨）、B＝両source atomを保留、C＝対象revision・理由・影響を特定した意味変更/retire。Aも新packet schema、runtime registry、毎回の承認、無関係taskの一律停止を追加せず、L2-031の追加runtime条件を主Workerへ広げない。
+
+## 後続訂正：HELIXOS-L2-042 source reference digest表記
+
+本packet JSONの既存HELIXOS-L2-042 `source_reference_examples`にあったarchive line 431の`source_line_sha256`値 `sha256:sha256:...`を、source-lines/receiptと一致する`sha256:...`へ修正した。これは接頭辞の重複訂正だけで、source bytes、atom、digest値、042候補範囲は不変。

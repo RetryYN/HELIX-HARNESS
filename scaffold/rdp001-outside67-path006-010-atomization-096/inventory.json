@@ -27,7 +27,7 @@
     "holding_path": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
     "holding_sha256": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
     "management_register_path": "docs/governance/management-provisional-requirement-register.jsonl",
-    "management_register_sha256": "055eed1b3460376fdd918e87a3dd711e1345cc63453228f430901227b096e58d",
+    "management_register_sha256": "1958ab34cf65b41d61ecf38b06fda7beaf8d244d586d2415237d52c6aa739ef0",
     "holding_path_revision_pair_denominator": 67,
     "holding_record_count": 67,
     "selected_path_revision_pair_count": 5,
