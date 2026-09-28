@@ -744,3 +744,17 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 **Unknown例**：sourceの選択・identity・revision・正本性・取得結果のいずれかが不明、またはprovider/runtimeが再読込不能か観測不能で安全なtransition条件も確定できないfixtureでは、正常例に見立てず`unknown`を示す。依存する継続だけを保留し、未完義務と確認先を示す。未知のauthority意味や新しいprovider fallbackを推測しない。
 
 **受入の限界**：各caseは指定されたsource/revisionと既存transition契約に限る。旧source用語の`coordination-only continuation`や「安全なsession transition」の厳密なruntime上の内容は新定義せず、既存契約に未定義または不明があればunknownとする。別provider、runtime、session方式の対応表、旧instructionの再読込機構、外部sourceの種類や意味、新しい承認経路は本候補に含めない。正常caseの通過、source取得成功、OS-009の利用、L2/L11候補の登録から要求採択、実装・運用の完了を導かない。
+
+### HELIXOS-L2-042 Worker成果のschema／digest適格性と緩和後再検証 — L11受入候補
+
+**対応と状態**：HELIXOS-L2-042と対になる未採択・未実行候補、`version_target: 1.0`、親`HELIXOS-L1-003`。採択済み`HELIXOS-L2-004`のassignment／Worker成果回収条件への限定追補である。以下はoracle案であり、旧source、候補、静的fixtureから要求採択・実装・実行済み受入を推定しない。
+
+**正常例：strict schemaとdigestが既定**：対象revision/scope、OS assignment、期待する成果形式、選択済みのschema／digest policy、HARNESSが定めた適用oracleを与える。schema strict validationと成果bytesに対するdigest検証が同じassignment・scope・revisionに結ばれて成立した場合のみ、該当成果を検証済みとして扱える。digest一致だけで内容の正しさ、authority、別成果の適合を認めない。
+
+**不成立例：欠落・不一致・自己申告**：適用schema/policy/oracleの欠落、版・scope違い、strict validation未実施、digest不一致、Workerの自己申告だけを個別に与える。該当成果はaccepted／完了／検証済みにならず、理由と未完義務をOSの既存assignment/evidenceへ残す。他の成果や無関係なassignmentを一律停止しない。
+
+**緩和例：対象・理由・期限と再検証receipt**：既存の適用条件に沿った緩和について、対象、理由、有効期限を持つ記録と、緩和条件下で返された対象成果を与える。再検証receiptが同じ成果、assignment/scope/revision、選択済みHARNESS oracleとその結果を示す場合にだけ、その成果の適格状態を再評価できる。receiptが無い、参照oracleが異なる、またはreceiptが別成果・scope・revisionに属する場合はacceptedとしない。新しい承認者や緩和権限は要求しない。
+
+**unknown／期限・stale**：policy/oracle revision、期限、対象成果との対応を確認できないcaseでは合格を推測せずunknown／未完とする。期限切れの緩和を有効として流用しない。新しいschema、digest方式、provider/runtime、receipt formatを未見caseから補作しない。
+
+**責務境界と受入限界**：HARNESSはタスク固有の検証義務・oracleの意味を定め、OSは既存assignmentへWorker成果と検証状態を束ねて記録・回収し、SECURITYは既存authority・実行制約を担う。OSがschemaやdigest algorithm、HARNESS oracle、SECURITY許可を発行・変更したら不合格。source lineとcoverage候補の範囲は[照合receipt草稿](../../governance/audits/requirement-registration/os-v13-worker-output-coverage-receipt-2026-09-28.json)を参照する。これらのcaseは旧v1.3全体の被覆、候補採択、実行結果を主張しない。

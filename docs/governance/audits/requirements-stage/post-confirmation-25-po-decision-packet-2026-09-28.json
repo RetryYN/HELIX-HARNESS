@@ -1,9 +1,9 @@
 {
   "packet_kind": "recommendation_for_PO_decision_only",
-  "basis_commit": "78b402e1e2eb06b7cc08ae35bb722fadc90dae91",
+  "basis_commit": "34c1f48663bec1bcb7071b1889adb3c3a2e20e51",
   "as_of": "2026-09-28",
-  "count": 37,
-  "status": "初版25候補と後続12候補の判断packet。全37件はregistered_proposal / authority_effect:none、PO未採択・未判断。",
+  "count": 38,
+  "status": "初版25候補と後続13候補の判断packet。全38件はregistered_proposal / authority_effect:none、PO未採択・未判断。",
   "decision_grouping": "No shared adoption decision is bundled except PORTFOLIO-FIXTURE-FR54-FR55-ROUTE and HARNESS-OS-WBS-SHAPE-039-045-PAIR. HELIXOS-L2-039/HARNESS-L2-045 are linked by the latter, not independent adoption choices. The earlier R2247 options for 039 were preparation alternatives: A proposed adopting OS-039 alone with registrations blocked while the HARNESS contract was absent; B proposed holding 039 while preparing the HARNESS candidate and re-presenting both exact revisions. The B preparation step is completed by this HARNESS-045 candidate, but no PO selection resulted. The new pair options are A=adopt both exact revisions, B=hold both; neither has been selected, and B is advisory. HARNESS-L2-043/044 remain jointly routed only by the explicit FR54/55 route. Other candidate identities retain independent choices. HELIXINTELLIGENCE-L2-072 remains limited to its 1.0 shadow subset and HELIX-LABO-L2-062 preserves 2.0.",
   "candidates": [
     {
@@ -3005,10 +3005,86 @@
         "excerpt": "### HARNESS-L2-046 V-model全体workflowとScrum slice deltaのbackfill（単体候補、version_target: 1.0）",
         "interpretation": "本候補のversion_target: 1.0。採択、実装許可、受入実行を意味しない."
       }
+    },
+    {
+      "identity": "HELIXOS-L2-042",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "旧v1.3 §4.10 HR-FR-P2-08のarchive source condition 1行（source holding MPR-SH-SUPPLEMENTARY-003 / REQSRC-SUP-00333）の限定再導出。",
+      "new_meaning_choice": "A: strict schema／digest検証を既定とし、緩和に対象・理由・期限および対象成果と選択済み検証oracleへ結び付く再検証receiptを要求する、exact L2/L11-042候補を採択する。B: 未採択のまま原source atomをholdingに保留する。C: このsource revisionに対する意味変更またはretireを対象・理由・影響付きで判断する。",
+      "recommended_choice": "A",
+      "choice_meaning": "限定A推奨。既定のstrict schema/digestと、緩和時の対象・理由・期限・再検証receiptを保持する。OSは成果状態を既存assignmentへ束ね、HARNESSの選択済みoracleを定義し直さず、SECURITY authorityも変更しない。旧実装や厳密なreceipt formatは移植しない。",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HELIXOS-L2-042 Worker成果のschema／digest適格性と緩和後再検証（単体追補候補、version_target: 1.0）",
+      "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-042",
+      "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-042",
+      "registration_id": "MPR-RC-HELIXOS-L2-042-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXOS-L1-003"
+      ],
+      "parent_l1_path": "docs/helix-os/L1-planning/system-intent.md",
+      "parent_l1_sha256_current": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+      "parent_planning_revision_recorded": "docs/helix-os/L1-planning/system-intent.md@635f6c9296592473d0f6fb667d436a1f5f80afb7 sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e（#2199固定L1-003、042採択は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/os-v13-worker-output-coverage-receipt-2026-09-28.json",
+      "receipt_id": "MPR-RCPT-OS-V13-WORKER-OUTPUT-2026-09-28",
+      "receipt_candidate_digest_rule": "L2/L11の### HELIXOS-L2-042見出しから次の同階層候補見出しまで（EOF）。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "start_heading_prefix": "### HELIXOS-L2-042 ",
+          "end_heading_prefix": "EOF"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "start_heading_prefix": "### HELIXOS-L2-042 ",
+          "end_heading_prefix": "EOF"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:75e8b9f72eaa777f25e38335664cb2527da8c56c1445a3eca181de27cc258e71",
+      "receipt_candidate_semantic_digest": "sha256:75e8b9f72eaa777f25e38335664cb2527da8c56c1445a3eca181de27cc258e71",
+      "current_candidate_semantic_digest": "sha256:75e8b9f72eaa777f25e38335664cb2527da8c56c1445a3eca181de27cc258e71",
+      "candidate_digest_matches_register_and_receipt": true,
+      "acceptance_section_sha256": "sha256:0f23c0399f3b6c37094d4725563f80bb5e82d25e35b9ba7a1196c2106f76a4df",
+      "acceptance_source_file_sha256": "sha256:9122fddee0515d2771378fec165297d2c5c79586d6ea5a7260ed1e11d8426642",
+      "source_atom_count": 1,
+      "source_atom_set_digest": "sha256:0ee37b614a5febbb9189205989ecd965a04b5139304ac6725ee17fddee51c774",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "line": 431,
+          "source_line_sha256": "sha256:sha256:53d8b2cd66448f9c5d4828b8fbe99d3bffed93b237fe86e0f515b3d1d7ad933f",
+          "atom_id": "V13-ARCHIVE-L0431-HR-FR-P2-08",
+          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "source_item_id": "REQSRC-SUP-00333",
+          "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-003",
+          "source_revision_ref": "archive/current-file-sha"
+        },
+        {
+          "path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+          "line": 412,
+          "source_line_sha256": "sha256:53d8b2cd66448f9c5d4828b8fbe99d3bffed93b237fe86e0f515b3d1d7ad933f",
+          "atom_id": "V13-BASE-6FAB-L0412",
+          "source_file_sha256": "sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+          "source_holding_registration_id": "MPR-SH-V13-BASELINE-001",
+          "source_revision_ref": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+          "candidate_input": false,
+          "relation": "complete text twin at distinct baseline revision; separately preserved, not merged or counted in one-atom candidate input"
+        }
+      ],
+      "source_reference_note": "既存supplementary source holding MPR-SH-SUPPLEMENTARY-003のREQSRC-SUP-00333、旧v1.3 §4.10 HR-FR-P2-08のarchive line 431の1 atomに限定。原文/file・line digestはsource-linesとcoverage receiptで固定。 同文の6fabd125 baseline atom V13-BASE-6FAB-L0412（line 412、別file/revision・別holding MPR-SH-V13-BASELINE-001）は別atomとして保全し、本candidateの1 atom source setへ合算しない。",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXOS-L2-042",
+      "paired_l11_id": "HELIXOS-L2-042",
+      "affected_requirement_and_consumer_ids": "HELIXOS-L1-003; HELIXOS-L2-004/007/019; HARNESS-L2-005; SECURITY-L2-007/008; 対L11; OS assignment／Worker成果回収",
+      "rationale": "採択済みOS-L2-004がWorker成果形式と回収を担い、OS-007/019がevidence provenance/revisionを保持するため、成果の状態をOS assignmentへ接続する。HARNESS-L2-005がtask固有oracleを定め、SECURITY-007/008が既存authorityと実行制約を担う。現行責務は旧strict-default／緩和条件を個別には明示充足しないため、単独candidateとして意味を保持し、normative ownerやauthorityを奪わない。 同文の別baseline revisionは別atomとして別holdingに残し、revision差分を同一atomへ潰さない。",
+      "previous_register_revision": null,
+      "version_target_evidence": "本文L2/L11にversion_target: 1.0と記載。これは目標版であり採択状態を示さない。"
     }
   ],
   "initial_25_basis_commit": "f4b2a2b02cf5ea3134e27be0a65c100395161bad",
-  "progression": "Initial 25 candidates + PR #2241 HARNESS-L2-042 + PR #2238 HELIXOS-L2-038 = historical 27; PR #2245 merged HARNESS-L2-043, giving 28; PR #2246 merged HARNESS-L2-044, giving 29; PR #2247 registered HELIXOS-L2-039, giving 30; current HARNESS-L2-045 brings the live decision set to 31. HELIXOS-L2-039/HARNESS-L2-045 are linked by an unselected paired PO decision. Current HELIXOS-L2-040 adds one bounded old HXT-AC-015 retry-route candidate, making 32; no PO selection. Current HELIXINTELLIGENCE-L2-073 adds one bounded old AAFD-R-04 free-text direct-projection boundary candidate, making 33; no PO selection. Current HELIXOS-L2-041 adds one bounded old IPC-R07 safe-continuation candidate from two linked atoms, making 34; no PO selection. Current HELIXLABO-L2-066 adds one bounded old Bugbot candidate-line metric gap, making 35; no PO selection. Its source atom is historical and its current L2/L11 candidate remains unadopted. Current HELIXSECURITY-L2-032 adds one bounded old v1.3 §4.10 HR-FR-P2-07 repository-level bypass precedence candidate, making 36; no PO selection. It applies across provider/runtime instances under the old external AI Worker contract, preserves existing authority when no deny applies, and does not claim §4.10 closure. Current HARNESS-L2-046 adds one bounded v1.3 Full V/Scrum workflow condition candidate from six sentence spans across archive and 6fabd125 baseline revisions, making 37; no PO selection. It preserves the 2026-09-25 four-style definitions/composition permission, requires staged freeze and listed verification for selected Full V only, and applies Scrum backfill/checkpoint/SR4 solely to Scrum-selected/composed scope.",
+  "progression": "Initial 25 candidates + PR #2241 HARNESS-L2-042 + PR #2238 HELIXOS-L2-038 = historical 27; PR #2245 merged HARNESS-L2-043, giving 28; PR #2246 merged HARNESS-L2-044, giving 29; PR #2247 registered HELIXOS-L2-039, giving 30; current HARNESS-L2-045 brings the live decision set to 31. HELIXOS-L2-039/HARNESS-L2-045 are linked by an unselected paired PO decision. Current HELIXOS-L2-040 adds one bounded old HXT-AC-015 retry-route candidate, making 32; no PO selection. Current HELIXINTELLIGENCE-L2-073 adds one bounded old AAFD-R-04 free-text direct-projection boundary candidate, making 33; no PO selection. Current HELIXOS-L2-041 adds one bounded old IPC-R07 safe-continuation candidate from two linked atoms, making 34; no PO selection. Current HELIXLABO-L2-066 adds one bounded old Bugbot candidate-line metric gap, making 35; no PO selection. Its source atom is historical and its current L2/L11 candidate remains unadopted. Current HELIXSECURITY-L2-032 adds one bounded old v1.3 §4.10 HR-FR-P2-07 repository-level bypass precedence candidate, making 36; no PO selection. It applies across provider/runtime instances under the old external AI Worker contract, preserves existing authority when no deny applies, and does not claim §4.10 closure. Current HARNESS-L2-046 adds one bounded v1.3 Full V/Scrum workflow condition candidate from six sentence spans across archive and 6fabd125 baseline revisions, making 37; no PO selection. It preserves the 2026-09-25 four-style definitions/composition permission, requires staged freeze and listed verification for selected Full V only, and applies Scrum backfill/checkpoint/SR4 solely to Scrum-selected/composed scope. Current HELIXOS-L2-042 adds one bounded old v1.3 HR-FR-P2-08 Worker-result strict validation/relaxation candidate from archive line 431, making 38; the identical 6fabd125 baseline line 412 remains a separate pending source atom and is not counted as candidate input. No PO selection.",
   "version_target_evidence": null,
   "portfolio_fixture_fr54_fr55_route": {
     "decision_id": "PORTFOLIO-FIXTURE-FR54-FR55-ROUTE",

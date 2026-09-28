@@ -30,3 +30,10 @@
 ## 後続追加：HARNESS-L2-046／現行37候補
 
 旧v1.3 §4.4 L259の二文（Full V段階freeze/検証、Production Scrum delta/backfill/SR4）と§10 L647の要約文を、archive revisionおよび6fabd125監査基準revisionで照合し、6 sentence spansを[HARNESS-L2-046](../../../helix-harness/L2-requirements/product-requirements.md#harness-l2-046)と対L11へ未採択候補として追補した。L647は部分重複要約で第3の独立条件ではない。生存registerは`MPR-RC-HARNESS-L2-046-001`、source-lines/coverage receiptは`harness-fullv-scrum-source-lines-2026-09-28.jsonl`と`harness-fullv-scrum-coverage-receipt-2026-09-28.json`。Full VにScrum slice/checkpoint/SR4を適用せず、Scrum適用scopeだけにbackfill条件を置く。2026-09-25 PO判断の4方式定義・合成許可を維持する。source holding/capture不変。現在の候補集合は37件で、採否は未決。
+
+
+## 後続追加：HR-FR-P2-08／HELIXOS-L2-042
+
+旧v1.3 §4.10 HR-FR-P2-08（REQSRC-SUP-00333、archive line 431）の原文1 atomを、[HELIXOS-L2-042](../../../helix-os/L2-requirements/governance-requirements.md#helixos-l2-042)と対L11へ未採択候補として局所対応した。source file SHA-256 `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`、line SHA-256 `sha256:53d8b2cd66448f9c5d4828b8fbe99d3bffed93b237fe86e0f515b3d1d7ad933f`、asset `LEGACY-ASSET-02319C2481B9E01698D5`、holding `MPR-SH-SUPPLEMENTARY-003`。source-linesとcoverage receipt `docs/governance/audits/requirement-registration/os-v13-worker-output-coverage-receipt-2026-09-28.json`はarchive input 1 atomを固定する。完全同文のbaseline revision `V13-BASE-6FAB-L0412`（6fabd125 line 412）は別atom・別holding `MPR-SH-V13-BASELINE-001`に残し、archive atomへ統合・加算しない。
+
+候補は`MPR-RC-HELIXOS-L2-042-001`として仮登録、PO未決・未採択。strict schema／digest既定と緩和時の対象・理由・期限・再検証receiptを保持する候補だが、旧source condition unresolvedの状態、655-item holding、他のP2条件、全v1.3 coverageを閉じない。A＝exact candidate採択（推奨）、B＝atom保留、C＝対象revision付き意味変更/retire。
