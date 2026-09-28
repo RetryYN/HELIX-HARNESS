@@ -365,3 +365,7 @@ PO原文：「チケットそのものに参照をつけたり実装の一部み
 ## INTELLIGENCE-074の空入力集合の訂正
 
 現行登録 `MPR-RC-HELIXINTELLIGENCE-L2-074-002`。選択した旧source atomは明示的に0件で、[r2 receipt](../requirement-registration/ops-o1-o2-intelligence-074-empty-coverage-receipt-2026-09-29-r2.json)の `no_loss` は空集合の未計上0件だけを意味する。旧source意味の被覆や候補採択を示さず、配置案の新規条件はPO判断待ち。
+
+## O6追加候補：merge後cleanupとbase drift（判断集合56候補）
+
+- `HELIXOS-L2-052`／対L11-052。旧sourceは衝突時の作成側返却と先行merge後のbase drift再照合を保持し、旧delete設定はcontextとしてsource holding。A＝所有確認済みlocal cleanup・最新base再照合・新HEAD独立reviewを候補採択（推奨）。A2＝Aに加え、作成側が所有するmerge済みPR branchのremote ref削除を、対象repository・ref・delete作用を明示したPOの許可またはrepository設定の許可判断のもとで片付けに含める。A2では外部削除作用と復元手段の有無を記録し、候補の選択だけを削除許可にしない。B＝保留、C＝cleanup対象やauto-rebase例外をrevision・理由・影響付きで変更。いずれも未選択。登録 `MPR-RC-HELIXOS-L2-052-001`、[bounded receipt](../requirement-registration/ops-o6-coverage-receipt-2026-09-29.json)は選択3 atomの2 carried・1 heldでno_loss。

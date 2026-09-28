@@ -835,3 +835,12 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **拒否例**：同一task/changeに同じruntime/contextを作成・reviewの両方へ割り当てる、Cursor cloud agentをreviewerにする、provider名が異なることだけで独立reviewとする、適性未評価・scope外・authority不足をClaude優先で迂回する、または修正前HEADのreviewを修正後HEADへ流用した場合は不合格。
 - **unknown例**：LABOのtask class別水準、INTELLIGENCEの配置案、provider availability、scopeまたはauthorityがmissing／stale／conflictの場合、OSが配置成立を推定せず理由付きで保留し、該当入力ownerへ戻す。別適格候補を選ぶ場合はその適用evidenceと根拠が辿れる。
 - **受入限界**：Cursor cloud agentの一般安全性、固定provider matrix、全taskへのClaude指定、適性測定方式／thresholdの新設、実runtime・CI動作はこのoracleの対象外。L2-004、L2-018／020の既存条件やそのacceptanceを再定義せず、候補記載から要求採択、実行・操作authorityまたはmerge許可を生成しない。
+
+### HELIXOS-L2-052 merge後local cleanup・base drift再照合の受入候補
+
+- **状態**：HELIXOS-L2-052と対になる未採択・未実行の静的oracle案。candidate登録からruntime、remote操作、要求採択またはmerge許可を主張しない。
+- **正常例**：PR-Aの明示mergeとread-afterが成功し、関連PR-Bとのassignment ownershipを確認できる。PR-A所有のlocal worktreeとlocal branchのうち、他assignmentが使用せず未完作業もないものだけを自動・冪等にcleanupし、対象・結果・未完義務を記録する。remote refはdelete作用を含む有効authorityがある場合だけ対象にできる。PR-Bはcontent HEADを変えずに最新baseとのtrial merge、stale、依存およびreview bindingを照合し、stale=0でreview済みbase/content pairが一致するときはその状態を保持する。
+- **作成側へ返す例**：PR-Aのmerge後にPR-Bのtrial mergeがconflict、base進行によりstale、依存条件変化、またはreview bindingのpair不一致となるfixtureを与える。merge／review側が作成branchを変更せず、差分と根拠を特定して作成側へ返すことを確認する。作成側が修正した新HEADは新しいreview依頼を経て独立reviewされ、旧HEADの結果を再利用しない。
+- **拒否例**：所有関係が不明なlocal worktree／branchを削除する、remote refを対象・delete作用を含む有効authorityなしで削除する、自動rebaseでcontent HEADが変わった後に旧reviewを流用する、mergeだけでReady／完了／Issue closeを生成する、またはreview側が作成branchを修正する場合は成立としない。
+- **unknown例**：merge後read-after、assignment所有関係、remote deletion authority、trial merge結果、stale結果、依存状態またはreview bindingのいずれかが欠ける・古い・矛盾する場合、cleanup／rechain成立を表示せず理由付きでownerへ返す。
+- **受入限界**：旧sourceの指定sentence spanと現行operating modelに対する候補oracleであり、旧workflow／runtime、全GitHub操作、全PR lifecycleの移管・実装・実受入を主張しない。
