@@ -5103,8 +5103,10 @@
       "authority_effect": "none",
       "parent_l1_ids": [
         "HARNESS-L1-001",
-        "HARNESS-L1-002",
-        "HARNESS-L1-004"
+        "HARNESS-L1-003",
+        "HARNESS-L1-004",
+        "HARNESS-L1-006",
+        "HARNESS-L1-009"
       ],
       "parent_l1_path": "docs/helix-harness/L1-planning/product-intent.md",
       "parent_l1_sha256_current": "sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",

@@ -398,7 +398,7 @@ Exact old file/line/file SHA-256/line SHA-256, selected atom digest, local goal 
 
 | ID | 状態／推奨 | 版／親 | POが選ぶ意味・候補範囲 | 根拠・影響 |
 |---|---|---|---|---|
-| `HARNESS-L2-049` (L2/L11) | PO未決／推奨 **A** | 1.0; HARNESS-L1-001/002/004 | A＝rendered prototype・profile・oracle・known fixturesを受け、表示条件・検査精度・文言量を評価。B＝scope縮小/分割。C＝保留。すべて未選択。 | 旧VDH-FR-011の1 spanを選択、残る24 spanを`MPR-SH-VDH-O10-001`に保全。生存登録`MPR-RC-HARNESS-L2-049-002`は`-001`を訂正。現行039はPattern/CORE/profile制約下のprototype構築を定めていない。049は測定専用。prototype構築は別PO scope frameに未選択で記録。 |
+| `HARNESS-L2-049` (L2/L11) | PO未決／推奨 **A** | 1.0; HARNESS-L1-001/003/004/006/009 | A＝rendered prototype・profile・oracle・known fixturesを受け、表示条件・検査精度・文言量を評価。B＝scope縮小/分割。C＝保留。すべて未選択。 | 旧VDH-FR-011の1 spanを選択、残る24 spanを`MPR-SH-VDH-O10-001`に保全。生存登録`MPR-RC-HARNESS-L2-049-002`は`-001`を訂正。現行039はPattern/CORE/profile制約下のprototype構築を定めていない。049は測定専用。prototype構築は別PO scope frameに未選択で記録。 |
 
 `HARNESS-L2-049`の単独入力は、scope/revisionと利用許可が結ばれたrenderable prototype、適用profile、oracle、既知のpositive/negative fixtures。049は表示計測・精度の照合・profile由来の簡潔copy候補を返す。O10作業依頼の重点から導くfixture評価とcopy量提案は新規案で、旧sourceに同じ明示規則があったとは主張しない。BRAIN/LABO/INTELLIGENCEは既存接続のまま。
 
