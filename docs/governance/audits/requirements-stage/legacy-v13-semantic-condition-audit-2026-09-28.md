@@ -45,4 +45,8 @@ condition rowsの行先比較結果（条件状態）:
 
 行ごとのsource text/digest、condition cluster/status、比較理由、target refsは同梱JSONの521 recordsに保持した。後続版／L3具体化／最終割当は対象別pairとauthorityに従う。
 
+## 後続追補：旧L650の保持先候補
+
+基準main後、旧v1.3 §10 L650（`REQSRC-SUP-00507`、行SHA-256 `c9587a6500b2a47d8827b8e9e2c966b9b79e63a1d1b01263f32b7dd8ff978f01`）と同文のbaseline L631（`V13-BASE-6FAB-L0631`）を別revision atomとして、未採択のHARNESS-L2/L11-039へ追補した。r3 receiptはこの2 atomを加えた24 atomの局所`no_loss`、生存registerは`MPR-RC-HARNESS-L2-039-003`である。7軸のcurrent UX evidenceと欠落・stale時のUX完成拒否を候補本文と対受入に明記した。候補のPO採否はまだないため、この監査のL650は`unresolved`のままとし、formal successorや受入実行を生成しない。
+
 比較根拠とrouting sourceに列挙した現行ファイルの存在・記載SHAを確認した。旧source本文中に埋め込まれた過去のpath文字列のうち、現行repoに存在しないものはsource記録として保持し、current target linkとして検証済みとは扱わない。

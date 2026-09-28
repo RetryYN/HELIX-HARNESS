@@ -46,3 +46,7 @@
 | OS | [HELIXOS-L2-038：Layer ledger writer・snapshot・proposal append（単体候補、version_target: 1.0）](../../../helix-os/L2-requirements/governance-requirements.md#L1096) | [L11受入候補](../../../helix-os/L11-acceptance/governance-acceptance.md#L671) | `MPR-RC-HELIXOS-L2-038-001`；`os-layer-ledger-writer-coverage-receipt-2026-09-28.json#HELIXOS-L2-038`（#2238、merge `bf1c30cec0e08919c3624e5172ac9fdc8632af2c`） |
 
 HARNESS-L2-042のreceiptは旧v1.3 §4.2 L119の異なる2 source revisionを別atomとして保持し、Performance Refactor条件は採択済みL2/L11-016を参照するsplitを記録する。HELIXOS-L2-038のreceiptは旧HIL-FR-46/47のwriter・snapshot・proposal保存部分をOS候補として分け、HARNESS側の意味契約候補とsource holdingを残す範囲を記録する。いずれも旧source全体の正式後継、実装、受入実行を確定しない。
+
+## 後続訂正：HARNESS-L2-039のUX証拠条件
+
+初版25件の基準表は登録`MPR-RC-HARNESS-L2-039-002`を保持する。旧v1.3 §10 L650とbaseline L631の同文別revisionを候補039へ追補した後の生存registerは`MPR-RC-HARNESS-L2-039-003`であり、r3 coverage receiptは24 revision atomsを局所対象とする。対L11もUX完成主張時の7軸current evidence欠落・stale拒否を追補した。候補039は引き続き未採択で、27件の総数は変わらない。

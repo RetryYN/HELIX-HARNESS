@@ -926,6 +926,8 @@ BRAIN知識接続の正本は、[HELIXBRAIN-L2-030](../../helix-brain/L2-require
 
 **UI prototype証拠の受渡し**：UI適用scopeのprototype合意/closureを主張する段階では、操作可能なprototype相当と、同じscope/revisionを実際にwalkthroughした結果・未決事項・訂正を、既存008/024の合意根拠へ結ぶ。静止画や一覧だけを操作可能性・walkthrough実施の証拠へ変換しない。旧manifest schemaは固定せず、未実施なら当該義務を未完として保持する。039の契約候補形成の開始に、未来のprototype完成やwalkthrough完了は要求しない。非UIなら既存の根拠付き非適用判定と再評価条件を保持する。
 
+**UX完了主張時の証拠**：UI/UXが適用されるscopeで`ux_verified`（UX完了）を主張するoperationは、同じ対象scope/revisionに対してL10–L12で評価したreal-data、responsive、motion、accessibility、performance、continuity、人間評価の全軸のcurrent evidenceを必要とする。いずれかの軸の証拠がmissingまたはstale、または適用性がunknownならUX完了を拒否する。UI/UX適用scopeで個別軸をN/Aとして省略しない。`implemented`は既存V-pair上の実装・検証関係で別に判定し、両状態を相互に推定しない。この証拠はUX完了主張の条件であり、候補形成、要求・設計・prototype検討の開始条件ではない。非UI scopeでは既存の根拠付きN/A境界を維持し、UX完了状態を生成しない。旧根拠：`archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md:650`、`docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt:631`。
+
 ## HARNESS-L2-035 scope拡張の計測条件（追補）
 
 既存035と一体の未採択候補。親HARNESS-L1-008、version_target: 1.0を保持する。
