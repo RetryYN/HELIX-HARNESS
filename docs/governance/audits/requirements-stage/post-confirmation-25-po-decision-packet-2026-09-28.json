@@ -2560,16 +2560,16 @@
     {
       "identity": "HELIXINTELLIGENCE-L2-073",
       "decision_state": "pending_PO; not adopted",
-      "source_basis_class": "Historical draft candidate AAFD-R-04 single source line, narrowly derived as a free-text-only direct-projection boundary for Requirement, CI, and merge authority. Other AAFD conditions are outside scope.",
-      "new_meaning_choice": "A: exact L2/L11 candidate 1.0 meaning is adopted for the boundary that unknown-finding exploratory free text alone cannot directly project into Requirement, CI, or merge authority; owners may receive findings/candidates and separately use existing authority paths. B: defer and preserve candidate/source atom unresolved. C: decide meaning change or retire against the identified source revision and impacts.",
+      "source_basis_class": "Historical draft candidate AAFD-R-04 two-line requirement atom: Probe does not replace the UIL deterministic detector, and free text is not directly projected to Issue, Requirement, CI, or merge authority.",
+      "new_meaning_choice": "A: adopt exact L2/L11 as a 1.0 candidate boundary preserving the UIL deterministic detector role/result and rejecting direct projection from unknown-finding exploratory free text alone into Issue, Requirement, CI, or merge authority. B: defer and preserve both source atoms unresolved. C: decide meaning change or retire against both identified source lines/revision and impacts.",
       "recommended_choice": "A",
-      "choice_meaning": "Bounded A recommendation. Reject only direct projection from exploratory free text alone. Keep independent negative oracles for each of the three destinations; do not add CI/merge behavior or constrain valid existing owner-authorized routes.",
+      "choice_meaning": "Bounded A recommendation. Preserve the detector nonreplacement condition and reject only direct projection from exploratory free text alone to four destinations. Keep independent negative oracles. Do not add Issue/CI/merge behavior or constrain valid existing owner-authorized routes.",
       "version_target_as_written": "1.0",
       "title_and_kind": "### HELIXINTELLIGENCE-L2-073 未知finding探索の自由文からの直接投影境界（unit candidate、version_target: 1.0）",
       "requirement_source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#helixintelligence-l2-073",
       "acceptance_source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
-      "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-073-001",
-      "supersedes_registration_id": null,
+      "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-073-002",
+      "supersedes_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-073-001",
       "management_state": "registered_proposal",
       "authority_effect": "none",
       "parent_l1_ids": [
@@ -2578,8 +2578,8 @@
       "parent_l1_path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
       "parent_l1_sha256_current": "8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8",
       "parent_planning_revision_recorded": "docs/helix-intelligence/L1-planning/intelligence-intent.md@5c79869daba9a5c4fe426ddf3ad8e1bc380e64ca sha256:8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8（L1-009親は確定済み、073は未採択）",
-      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/intelligence-free-text-boundary-coverage-receipt-2026-09-28.json",
-      "receipt_id": "MPR-RCPT-HELIXINTELLIGENCE-FREE-TEXT-BOUNDARY-2026-09-28",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/intelligence-free-text-boundary-coverage-receipt-2026-09-28-r2.json",
+      "receipt_id": "MPR-RCPT-HELIXINTELLIGENCE-FREE-TEXT-BOUNDARY-2026-09-28-R2",
       "receipt_candidate_digest_rule": "### ID見出しから次の同階層見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
       "candidate_section_boundaries": [
         {
@@ -2593,13 +2593,21 @@
           "end_heading_prefix": "次の同階層候補見出し（###）"
         }
       ],
-      "registered_candidate_semantic_digest": "sha256:3780b548fe3c19c27e058e279b162614b9878710a0e2dbe0f053f687b77f3b44",
-      "receipt_candidate_semantic_digest": "sha256:3780b548fe3c19c27e058e279b162614b9878710a0e2dbe0f053f687b77f3b44",
-      "current_candidate_semantic_digest": "sha256:3780b548fe3c19c27e058e279b162614b9878710a0e2dbe0f053f687b77f3b44",
+      "registered_candidate_semantic_digest": "sha256:4425189d3870de92165ebdbc790902317dc2799d89f760156ab17441662a2eb5",
+      "receipt_candidate_semantic_digest": "sha256:4425189d3870de92165ebdbc790902317dc2799d89f760156ab17441662a2eb5",
+      "current_candidate_semantic_digest": "sha256:4425189d3870de92165ebdbc790902317dc2799d89f760156ab17441662a2eb5",
       "candidate_digest_matches_register_and_receipt": true,
-      "source_atom_count": 1,
-      "source_atom_set_digest": "sha256:6b49f93d6c399d97f32d0a728e9196e81485ff59a7e4045492bc75bc8993347b",
+      "source_atom_count": 2,
+      "source_atom_set_digest": "sha256:2d8209e1f351870271650d801b32b30db8e92f49c24cabf7e740f27e4d83cc4d",
       "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "line": 45,
+          "source_line_sha256": "sha256:e7d58c59ce05eff5e2807b1a123e36e30d95dd8eddea9b26ae8de88406fa0de3",
+          "atom_id": "LEGACY-CAND-LINE-000142",
+          "source_file_sha256": "sha256:685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_revision_ref": "archive/current-file-sha"
+        },
         {
           "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
           "line": 46,
@@ -2609,12 +2617,12 @@
           "source_revision_ref": "archive/current-file-sha"
         }
       ],
-      "source_reference_note": "旧AAFD-R-04単一source lineとline/file SHAはreceipt/source-lines JSONLに固定。自由文以外の根拠を用いるexisting owner pathsとAAFDの他条件は対象外。",
+      "source_reference_note": "旧AAFD-R-04の45-46行2 atomsをr2 receipt/source-lines JSONLで固定。旧R04外の条件、AAFD全体、自由文以外の根拠で進む既存owner pathは対象外。",
       "internal_PO_choice": null,
       "paired_l2_id": "HELIXINTELLIGENCE-L2-073",
       "paired_l11_id": "HELIXINTELLIGENCE-L2-073",
-      "affected_requirement_and_consumer_ids": "HELIXINTELLIGENCE-L1-009; HELIXINTELLIGENCE-L2/L11-009; HELIXOS-L2-001/007/008/010; HARNESS-L2-003/022; Requirement, CI, PR/review authority owners",
-      "rationale": "採択済みL2/L11-009は監査findingのtraceと自由文によるauthority変更禁止を持つ。旧AAFD-R-04はRequirement、CI、merge authorityの三宛先を明示しており、現L2/L11-009だけにある一般境界へ三つの独立negative oracleを追加する限定候補が残る。自由文だけを根拠にしない既存owner経路の変更やCI/merge behaviorは含まない。",
+      "affected_requirement_and_consumer_ids": "HELIXINTELLIGENCE-L1-009; HELIXINTELLIGENCE-L2/L11-009; UIL deterministic detector; Issue, Requirement, CI, PR/review authority owners; HELIXOS-L2-001/007/008/010; HARNESS-L2-003/022",
+      "rationale": "採択済みL2/L11-009は監査finding traceと一般的な自由文authority境界を持つ。旧AAFD-R-04のline 45はUIL deterministic detector非置換、line 46はIssue/Requirement/CI/merge authorityの4宛先を明示する。元sentence全体の2 atomを受け、検出器境界と4宛先の独立negative oracleを限定候補にする。自由文単独でない既存owner経路やCI/merge behaviorは変更しない。",
       "previous_register_revision": null,
       "version_target_evidence": {
         "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
@@ -2626,10 +2634,11 @@
         {
           "id": "A",
           "label": "exact L2/L11候補を1.0として採用",
-          "meaning": "未知finding探索の自由文だけではRequirement、CI、merge authorityへ直接projectionしない境界を採用する。候補/findingのowner提示と、別途適格な根拠・owner判断を経る既存経路は維持し、CI/mergeの新behaviorを追加しない。",
+          "meaning": "ProbeがUIL deterministic detectorを置換しないことと、未知finding探索の自由文だけではIssue、Requirement、CI、merge authorityへ直接projectionしないことを採用する。ownerへのfinding/candidate提示、および別途適格根拠・owner判断後の既存経路は維持し、新behaviorは追加しない。",
           "impact_ids": [
             "HELIXINTELLIGENCE-L2/L11-073",
             "HELIXINTELLIGENCE-L2/L11-009",
+            "UIL",
             "HELIXOS-L2-001/007/008/010",
             "HARNESS-L2-003/022"
           ]
@@ -2637,18 +2646,20 @@
         {
           "id": "B",
           "label": "候補を保留",
-          "meaning": "073は未採択のままsource atomとcandidate registrationを保持し、対象revisionで再判断する。",
+          "meaning": "073は未採択のままr2 receiptと2 source atomsを保持する。",
           "impact_ids": [
             "HELIXINTELLIGENCE-L2/L11-073",
+            "LEGACY-CAND-LINE-000142",
             "LEGACY-CAND-LINE-000143"
           ]
         },
         {
           "id": "C",
           "label": "意味変更/retireを判断",
-          "meaning": "旧source revision・変更またはretire理由・影響をPO decisionへ明示する。旧source bytesは保持する。",
+          "meaning": "旧source revisionの45-46行、変更またはretire理由と影響をPO decisionへ明示する。旧source bytesは保持する。",
           "impact_ids": [
             "HELIXINTELLIGENCE-L2/L11-073",
+            "LEGACY-CAND-LINE-000142",
             "LEGACY-CAND-LINE-000143",
             "HELIXINTELLIGENCE-L2/L11-009"
           ]

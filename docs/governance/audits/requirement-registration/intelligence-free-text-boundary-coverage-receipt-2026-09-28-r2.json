@@ -1,0 +1,101 @@
+{
+  "receipt_id": "MPR-RCPT-HELIXINTELLIGENCE-FREE-TEXT-BOUNDARY-2026-09-28-R2",
+  "supersedes_receipt_id": "MPR-RCPT-HELIXINTELLIGENCE-FREE-TEXT-BOUNDARY-2026-09-28",
+  "authority_effect": "none",
+  "candidate_state": "registered_proposal; PO未採択",
+  "scope": "旧AAFD-R-04の二つのsource lineを一組の2-atom集合として保持。未知finding探索のsource profileがUIL deterministic detectorを置換しない条件と、自由文の直接Issue/Requirement/CI/merge authority投影を拒否する条件を、HELIXINTELLIGENCE-L2/L11-073へ限定再導出。AAFD他条件、既存owner経路、CI/merge behavior変更は対象外。",
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/intelligence-free-text-boundary-source-lines-2026-09-28-r2.jsonl#LEGACY-CAND-LINE-000142,LEGACY-CAND-LINE-000143",
+  "source_atom_set_digest_rule": "source line順にatom_id + 半角空白 + sha256:付きsource_line_sha256を並べ、LFで結合（末尾改行なし）。",
+  "candidate_digest_rule": "### ID見出しから次の同階層見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。L2 sectionをcandidate digestとし、L11 section digestを別途保持。",
+  "candidates": [
+    {
+      "requirement_identity": "HELIXINTELLIGENCE-L2-073",
+      "requirement_kind": "unit",
+      "version_target": "1.0 candidate, PO decision pending; no adoption or implementation permission",
+      "parent_l1_ids": [
+        "HELIXINTELLIGENCE-L1-009"
+      ],
+      "parent_l1_source": {
+        "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+        "sha256": "sha256:8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8",
+        "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md"
+      },
+      "candidate_semantic_digest": "sha256:4425189d3870de92165ebdbc790902317dc2799d89f760156ab17441662a2eb5",
+      "candidate_source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#helixintelligence-l2-073",
+      "candidate_file_sha256": "sha256:b73bc60eb7b89cae28aeeb54f12fbad5100f5d6100bea003b3d3c8115a44cfd2",
+      "candidate_section_boundaries": {
+        "start_line": 601,
+        "end_line": 607,
+        "start_heading_prefix": "### HELIXINTELLIGENCE-L2-073 "
+      },
+      "acceptance_source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "acceptance_file_sha256": "sha256:e8327ed2acb2c95644cdb8d031f55a22ebfefa95021542c798e6914114403305",
+      "acceptance_section_sha256": "sha256:d98488d23fc02992143edb4a1e689a0c12dcc91d0ec1c9adabe1b8e334dd9ef1",
+      "acceptance_section_boundaries": {
+        "start_line": 317,
+        "end_line": 326,
+        "start_heading_prefix": "### HELIXINTELLIGENCE-L2-073 "
+      },
+      "source_atom_set_digest": "sha256:2d8209e1f351870271650d801b32b30db8e92f49c24cabf7e740f27e4d83cc4d",
+      "source_atom_count": 2,
+      "source_collection_scope": "旧AAFD-R-04を構成するarchive line 45-46の2行。R-04内の一組の条件のみ。AAFDその他の要求行は入力外。",
+      "atoms": [
+        {
+          "atom_id": "LEGACY-CAND-LINE-000142",
+          "source_kind": "historical_candidate_requirement",
+          "candidate_line_id": "LEGACY-CAND-LINE-000142",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "sha256:685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 45,
+          "source_line_sha256": "sha256:e7d58c59ce05eff5e2807b1a123e36e30d95dd8eddea9b26ae8de88406fa0de3",
+          "source_text": "Agentic Audit Probeは未知finding探索のsource profileであり、UILのdeterministic detectorを置換しない。自由文を直接Issue、",
+          "parent_requirement_ref": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md:43-46",
+          "disposition": "carried_to_unadopted_candidate_limited_scope",
+          "semantic_limit": "AAFD-R-04の未知finding探索source profileとUIL deterministic detector非置換。"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-000143",
+          "source_kind": "historical_candidate_requirement",
+          "candidate_line_id": "LEGACY-CAND-LINE-000143",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "sha256:685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 46,
+          "source_line_sha256": "sha256:333d4deb1ee4f9c39d411fb9749a8e3d6c5d397972bf29b5c5d52f03ba696412",
+          "source_text": "Requirement、CI、merge authorityへ投影しない。",
+          "parent_requirement_ref": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md:43-46",
+          "disposition": "carried_to_unadopted_candidate_limited_scope",
+          "semantic_limit": "自由文をIssue、Requirement、CI、merge authorityへ直接投影しない。"
+        }
+      ],
+      "coverage_result": "no_loss_limited_to_two_atom_candidate",
+      "carried_atom_refs": [
+        "LEGACY-CAND-LINE-000142",
+        "LEGACY-CAND-LINE-000143"
+      ],
+      "preserved_pending_registration_refs": [],
+      "human_decision_disposition_refs": [],
+      "unaccounted_atom_refs": [],
+      "semantic_limit": "候補本文とAAFD-R-04の2 source linesの意味対応のみ。L2/L11採択、AAFD全体coverage、CI/merge behavior、実装・受入実行なし。"
+    }
+  ],
+  "source_parent_context": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+    "source_file_sha256": "sha256:685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+    "lines": "43-46",
+    "status": "historical draft candidate; complete AAFD-R-04 two-line condition carried to unadopted candidate",
+    "remaining_conditions": [
+      "AAFD-R-01..03 and R-05..15",
+      "UIL qualification and routes beyond detector-nonreplacement boundary",
+      "any CI or merge authority behavior"
+    ]
+  },
+  "human_decision_provenance": {
+    "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+    "status": "L1-009 parent is confirmed; HELIXINTELLIGENCE-L2-073 remains outside adopted 54 identities and pending PO decision."
+  },
+  "correction_provenance": {
+    "finding_ref": "R2253-01",
+    "prior_issue": "LEGACY-CAND-LINE-000142 was classified explanation in the immutable 4755-line routing snapshot; review found it is the first half of the explicit AAFD-R-04 requirement sentence. This r2 receipt includes it without rewriting that snapshot."
+  },
+  "validation_boundary": "static source line/file digest, candidate section digest, parent revision, and L2/L11 boundary comparison only; no old execution and no CI/merge behavior change."
+}

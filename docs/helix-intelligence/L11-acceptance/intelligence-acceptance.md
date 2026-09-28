@@ -316,10 +316,11 @@ HELIXINTELLIGENCE-L2-069／HELIXINTELLIGENCE-L2-070／HELIXINTELLIGENCE-L2-071�
 
 ### HELIXINTELLIGENCE-L2-073 未知finding探索の自由文からの直接投影境界 — 受入候補
 
-- **前提**：未採択candidateとして、探索から得た未知findingの自由文だけを入力する独立fixtureで確認する。候補の存在・提示・受入案はRequirement、CI、merge authorityの変更や実行を許可しない。既存owner経路を変更する受入にはしない。
-- **正常例**：未知findingの自由文をfinding/candidateとして記録し、三つの宛先それぞれへの直接projectionが発生しないことを確認する。必要な場合は対象ownerへ提示し、状態をcandidate/未判断として保つ。別途、既存owner経路で適格な根拠と判断が揃った処理は、その経路の既存条件に従って扱える。
+- **前提**：未採択candidateとして、未知finding探索の自由文だけを入力する独立fixtureで確認する。候補の存在・提示・受入案はIssue、Requirement、CI、merge authorityの変更や実行を許可しない。既存owner経路を変更する受入にはしない。
+- **正常例**：既存UIL deterministic detectorの役割・結果を維持し、Agentic Audit Probeの探索自由文をその代替として扱わない。自由文のみのfindingを記録し、4つの宛先への直接projectionが発生しないことをそれぞれ確認する。必要な場合は対象ownerへfinding/candidateとして提示し、未判断状態を保つ。別途、適格根拠とowner判断が揃う既存経路の処理はその既存条件に従う。
+- **Issue宛先の誤り**：自由文だけからIssueを直接作成または更新した場合は不合格。UIL等の既存owner経路が独立に作成・受理する場合まで恒久禁止する解釈も不合格。
 - **Requirement宛先の誤り**：自由文だけからRequirement本文・identity・revision・採否/承認状態を作成、変更、確定した場合は不合格。ownerの独立した既存判断を経た後続処理まで永久に禁止する解釈も不合格。
 - **CI宛先の誤り**：自由文だけからCI定義・実行要求・実行結果・pass/完了状態を作成または変更した場合は不合格。新しいCI停止・起動動作やgateを候補から追加することも範囲外。
 - **merge authority宛先の誤り**：自由文だけからmerge可否・admission・merge操作の権限または状態を作成、変更、成立させた場合は不合格。既存の独立review/merge admissionを置換または追加制約することも範囲外。
-- **未見例**：既知fixtureと異なる未知finding文を与え、三つの宛先を別々に照合する。対象ownerへのcandidate/finding提示は保持できる一方、自由文だけによる各direct projectionはそれぞれ拒否され、根拠/authorityが不明ならunknownを保つ。複数宛先のうち一つの拒否結果で他の二つを代用しない。
-- **判定oracle**：Requirement本文・revision・authority、CI定義・実行・結果authority、merge authority/admissionの三つを独立したnegative oracleとして照合する。自由文単独のdirect projectionがどれか一つでも成立すれば不合格。確認対象はこの入力境界だけであり、CI挙動・merge挙動を新設せず、ownerの独立判断後の既存経路も一律禁止しない。
+- **未見例**：既知fixtureと異なる未知finding文を与え、detector優先と4つの宛先を別々に照合する。ownerへのfinding/candidate提示は保持できる一方、Probeでdeterministic detectorを置換すること、および自由文のみからの各direct projectionはそれぞれ拒否される。根拠/authorityが不明ならunknownを保つ。いずれか一つの宛先の拒否で別宛先を代用しない。
+- **判定oracle**：deterministic detector非置換と、Issue作成/更新、Requirement変更、CI変更/実行authority、merge authority/admissionの各negative oracleを独立に照合する。自由文単独のdirect projectionまたはdetector置換のどれか一つでも成立すれば不合格。CI/merge behaviorを新設せず、ownerの独立判断後の既存経路も一律禁止しない。
