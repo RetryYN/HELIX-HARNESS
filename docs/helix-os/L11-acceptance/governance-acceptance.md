@@ -720,3 +720,15 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 #### 候補境界・受入結果
 
 正常／誤り／未見の各結果は、提示された親要求・作業候補・依存・照合scopeだけに結びつける。039候補や静的fixtureの通過はWBS-OS全体の採択・運用、HARNESS規範の採択、作業graphの独立検収、budgetの支出許可を意味しない。HDEC-L2D-S0-02の旧候補split承認だけでは039は採択されず、本候補revisionのPO判断待ちである。
+
+### HELIXOS-L2-040 retry上限到達時の型付き戻し先 — L11受入候補
+
+**対応と状態**：`HELIXOS-L2-040`と同じ未採択候補、`version_target: 1.0`。親は`HELIXOS-L1-003`。L2/L11の追加は採択、retry実行、Recovery成功、旧HXT全条件の被覆を生成しない。
+
+**正常例**：対象ticket/assignment、適用中のpolicy revision、policyが定めるcounter semantics（初回を含むか、対象となる失敗の範囲）と上限N、同じ意味で集計された同一episodeの持続attempt event群、その後のretry要求を与える。上限到達時の次回起動をせず、累積回数・budget・lineage・未完義務を保持する。失敗理由が要求意味/入力不足なら既存Backflow型で要求エンジンへ、逸脱/context切れからの復旧なら既存Recovery型で中断工程へ戻す。同じ入力から同じ型と戻し先を再構成でき、routeの理由と元ticketを追える。
+
+**誤りを含む例**：session再開やWorker交代でattemptを0に戻す、上限到達後に同じscopeのretryを起動する、実験の別budgetを本線へ混ぜる、要求意味の不足をRecovery成功で隠す、context復旧をBackflowで代替する、policy不明または台帳取得不能でretryを許可する、route待ちをclose/成功へ昇格する例をそれぞれ拒否する。既存型で理由を表せない場合は新型を推測しない。
+
+**未見例**：未見のbudget revision、途中で交代したWorker、遅延したattempt event、実験retryを含むfixtureで、対象ticketとpolicyの適用scope・lineageを再照合する。上限・累積回数・失敗理由を確定できないときはretryを保留してownerへ戻し、古いpolicyや別episodeのreceiptで成功にしない。無関係なticketの通常作業はこの上限判定から停止させない。
+
+**戻し先と限界**：記録欠落は`HELIXOS-L2-019`、policy不明はその決定owner、route不明は`HELIXOS-L2-010`、要求意味差はHARNESS/Backflow、復旧地点不明はOS Recoveryへ返す。旧`HXT-AC-015`の限定的なnormal/negative oracleを扱い、旧`HXT-FR-014`の全failure route、旧runtime、固定schema、数値上限、実装・実行済み状態を採用しない。

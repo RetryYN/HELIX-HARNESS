@@ -1,9 +1,9 @@
 {
   "packet_kind": "recommendation_for_PO_decision_only",
-  "basis_commit": "5f18c8b9fd8364a81fe7c8614cc48f3d34152e6f",
+  "basis_commit": "99df8134923ca43f6d2d62774530fe68bf6d94c6",
   "as_of": "2026-09-28",
-  "count": 31,
-  "status": "All 31 are live registered proposals (authority_effect none); HELIXOS-L2-039 and HARNESS-L2-045 remain pending PO and are presented for one paired decision. No adoption, hold, reject, implementation, or acceptance run is inferred from PRs or L2/L11 text.",
+  "count": 32,
+  "status": "All 32 are live registered proposals (authority_effect none). HELIXOS-L2-040 is a new bounded retry-route candidate pending PO; existing pair 039/045 remains separately pending. No adoption, hold, reject, implementation, or acceptance run is inferred from PRs or L2/L11 text.",
   "decision_grouping": "No shared adoption decision is bundled except PORTFOLIO-FIXTURE-FR54-FR55-ROUTE and HARNESS-OS-WBS-SHAPE-039-045-PAIR. HELIXOS-L2-039/HARNESS-L2-045 are linked by the latter, not independent adoption choices. The earlier R2247 options for 039 were preparation alternatives: A proposed adopting OS-039 alone with registrations blocked while the HARNESS contract was absent; B proposed holding 039 while preparing the HARNESS candidate and re-presenting both exact revisions. The B preparation step is completed by this HARNESS-045 candidate, but no PO selection resulted. The new pair options are A=adopt both exact revisions, B=hold both; neither has been selected, and B is advisory. HARNESS-L2-043/044 remain jointly routed only by the explicit FR54/55 route. Other candidate identities retain independent choices. HELIXINTELLIGENCE-L2-072 remains limited to its 1.0 shadow subset and HELIX-LABO-L2-062 preserves 2.0.",
   "candidates": [
     {
@@ -2495,10 +2495,71 @@
         "excerpt": "### HARNESS-L2-045",
         "interpretation": "本文記載のversion_target: 1.0。採択・実装許可・受入完了を意味しない。"
       }
+    },
+    {
+      "identity": "HELIXOS-L2-040",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "Historical candidate HXT-AC-015 single acceptance atom, bounded retry-limit to typed Recovery/Backflow derivation. Parent HXT-FR-014 full route remains unresolved.",
+      "new_meaning_choice": "A: 040 exact L2/L11を1.0候補として採用し、既存budget/policy上限到達時の同一scope retry停止と理由別Recovery/Backflowを要求化。B: 040を保留し、旧AC-015をunresolvedのまま保持。C: 旧AC-015の意味変更/retireを対象revisionと影響付きで判断。",
+      "recommended_choice": "A",
+      "choice_meaning": "限定A推奨。旧AC-015の上限超過→typed戻し先を既存OS-009/010契約へ接続する。固定retry数値や全HXT-FR-014 routeは含まない。",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HELIXOS-L2-040 retry上限到達時の型付き戻し先（単体候補、version_target: 1.0）",
+      "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-040",
+      "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "registration_id": "MPR-RC-HELIXOS-L2-040-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXOS-L1-003"
+      ],
+      "parent_l1_path": "docs/helix-os/L1-planning/system-intent.md",
+      "parent_l1_sha256_current": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+      "parent_planning_revision_recorded": "docs/helix-os/L1-planning/system-intent.md@612ae1e9be85eda42649bf74e46998fd57da3de6 sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e（#2199固定L1、040採択は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-retry-typed-return-coverage-receipt-2026-09-28.json#HELIXOS-L2-040",
+      "receipt_id": "MPR-RCPT-HELIXOS-RETRY-TYPED-RETURN-2026-09-28",
+      "receipt_candidate_digest_rule": "### ID見出しから次の同階層見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "start_heading_prefix": "### HELIXOS-L2-040 ",
+          "end_heading_prefix": "次の同階層候補見出し（###）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:dfd272b75826d37333671f7152a0a58d2d013f0bd13a3f3957a76a39dcdfad80",
+      "receipt_candidate_semantic_digest": "sha256:dfd272b75826d37333671f7152a0a58d2d013f0bd13a3f3957a76a39dcdfad80",
+      "current_candidate_semantic_digest": "sha256:dfd272b75826d37333671f7152a0a58d2d013f0bd13a3f3957a76a39dcdfad80",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 1,
+      "source_atom_set_digest": "sha256:cc95b867d2fa93e2b21348e372aa43ff65542e2d4fa9805e254c049bec256be3",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+          "line": 43,
+          "source_line_sha256": "sha256:f412f81552711a0846872ed733042aebc93d82bdb508b85b53a124ef5a202e29",
+          "atom_id": "HXT-AC-015",
+          "source_file_sha256": "sha256:fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+          "source_revision_ref": "archive/current-file-sha"
+        }
+      ],
+      "source_reference_note": "旧AC-015のsource text/line/file SHAはreceiptとsource-lines JSONLで固定。親HXT-FR-014のReverse/Human Requiredを含む全routeは未対応。",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXOS-L2-040",
+      "paired_l11_id": "HELIXOS-L2-040",
+      "affected_requirement_and_consumer_ids": "HELIXOS-L1-003; HELIXOS-L2-009/010/019; HXT-TYPE-08/10; 対L11; old HXT-AC-015",
+      "rationale": "既存Recovery/Backflow型だけではretry上限からの因果routeとnegative oracleが明示されない。旧AC-015単一atomを既存OS責務に限定して接続し、数値・新ticket型・実行権限を作らない。",
+      "previous_register_revision": null,
+      "version_target_evidence": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "line": 1124,
+        "excerpt": "### HELIXOS-L2-040 retry上限到達時の型付き戻し先（単体候補、version_target: 1.0）",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
+      }
     }
   ],
   "initial_25_basis_commit": "f4b2a2b02cf5ea3134e27be0a65c100395161bad",
-  "progression": "Initial 25 candidates + PR #2241 HARNESS-L2-042 + PR #2238 HELIXOS-L2-038 = historical 27; PR #2245 merged HARNESS-L2-043, giving 28; PR #2246 merged HARNESS-L2-044, giving 29; PR #2247 registered HELIXOS-L2-039, giving 30; current HARNESS-L2-045 brings the live decision set to 31. HELIXOS-L2-039/HARNESS-L2-045 are linked by an unselected paired PO decision.",
+  "progression": "Initial 25 candidates + PR #2241 HARNESS-L2-042 + PR #2238 HELIXOS-L2-038 = historical 27; PR #2245 merged HARNESS-L2-043, giving 28; PR #2246 merged HARNESS-L2-044, giving 29; PR #2247 registered HELIXOS-L2-039, giving 30; current HARNESS-L2-045 brings the live decision set to 31. HELIXOS-L2-039/HARNESS-L2-045 are linked by an unselected paired PO decision. Current HELIXOS-L2-040 adds one bounded old HXT-AC-015 retry-route candidate, making 32; no PO selection.",
   "version_target_evidence": null,
   "portfolio_fixture_fr54_fr55_route": {
     "decision_id": "PORTFOLIO-FIXTURE-FR54-FR55-ROUTE",
