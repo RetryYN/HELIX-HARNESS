@@ -276,3 +276,13 @@ A＝exact L2/L11-044限定候補を採択（推奨）、B＝selected source atom
 **候補採否frame（未決・未選択）**：`internal_PO_choice: null`。A＝exact L2/L11-067だけを採択し、実験・資格試験・Worker割当・実装許可は含めない。B＝候補を未採択で保留し、派生subatomと`MPR-SH-CANDIDATE-003`を保全する。C＝対象source subatom/revision・理由・consumer影響付きの意味変更/retire。059/065の意味変更、065採択の前提化、source line全体のclosureはどの選択肢からも生成しない。
 
 **定義整合frame（別次元、未決・未選択）**：`definition_alignment`のPO選択は`null`で、候補採否A/B/Cとは独立する。D1＝065の`first_pass`（最初のAttemptのoracle結果）と067の`first_eligible_candidate_result`（最初のeligible candidateのoracle結果）を別指標として並立させる（推奨）。両候補が採択された場合も旧source S3の定義に沿うのは067側だけである。D2＝065を旧source定義へ寄せる別revisionを起こし、対象revisionのPO判断を得る。D3＝旧sourceのfirst-eligible定義を対象revisionで理由・影響・consumerを示してretireする。D3は候補採否A（旧定義を持つ067 exact revisionの採択）と同時選択できず、A採択後のretireには067の別revisionまたはretireに関する別PO判断を要する。いずれも現行065/067本文やregisterの変更を自動生成せず、D1の推奨も選択ではない。
+
+## 後続候補：HELIXLABO-L2-068（#2271後、判断集合46候補）
+
+| 機構 | 候補・L2本文 | 対のL11 | 生存register revision・coverage receipt |
+|---|---|---|---|
+| LABO | [HELIXLABO-L2-068：Worker Attempt countの観測（単体追補候補、1.0）](../../../helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-068) | [L11受入候補](../../../helix-labo/L11-acceptance/labo-acceptance.md#helixlabo-l2-068) | `MPR-RC-HELIXLABO-L2-068-001`; `labo-attempt-count-coverage-receipt-2026-09-28.json#HELIXLABO-L2-068` |
+
+旧`LEGACY-CAND-LINE-001656`（archive execution-ticket-requirements.md:399、asset `LEGACY-ASSET-3A15E5645D2D2A59DFF5`、file SHA `f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b`、line SHA `58be97d309362b845682602ae352b1954ed433fbc4b6552791f89be07d70db4f`）の第3文S3C「総Attempt count」だけを1 atomとして入力する。S3A/S3Bは067の既存receiptに残し、#2271のreceipt／holdingを変更しない。candidate-scoped no_lossはS3C atomだけであり、source line全体のclosureを主張しない。
+
+068は明示されたtask/scope/evaluation範囲内のdistinct OS Attempt identityを観測する候補である。OSがその範囲の記録完全性を示せない場合はunknownを保持する。OSがAttempt identityを割り当てない実行前の拒否intakeを含めず、OSがidentityを付与したdenied Attemptは他のstatusと同様に数える。未採択065の`retry_count+1`、067のrepair round換算、CI rerunや重複配送の水増しは行わず、059/065/067とOS既存契約を変更しない。A＝exact 068 revision採択を推奨、B＝候補・atomを保留、C＝対象revision・理由・影響付きの意味変更/retire。`internal_PO_choice`はnull、A/B/Cはいずれも未選択。source-lines／receipt／registerはS3C一件だけを固定する。判断packetは判断集合46件、basis main `17bb8b6568b4fc065702bdafafdc6a7e4a37af6b`。
