@@ -4,7 +4,7 @@
   "as_of": "2026-09-28",
   "count": 29,
   "status": "All 29 are live registered proposals (authority_effect none); HARNESS-L2-044 is added by the current PR and is not yet merged. No adoption, hold, reject, implementation, or acceptance run is inferred from PRs or L2/L11 text.",
-  "decision_grouping": "No shared adoption decision is bundled: each identity has its own choice. The entries share a rendering format only. In particular, the recommendation for HELIXINTELLIGENCE-L2-072 is limited to its 1.0 shadow subset while its remaining improvement loop stays in source holding; HELIX-LABO-L2-062 preserves 2.0. The four post-initial additions, HARNESS-L2-042, HELIXOS-L2-038, HARNESS-L2-043 and HARNESS-L2-044, are independent PO decisions.",
+  "decision_grouping": "No shared adoption decision is bundled except the explicit PORTFOLIO-FIXTURE-FR54-FR55-ROUTE item: HARNESS-L2-043 and HARNESS-L2-044 are jointly routed by its mutually exclusive three options, while the other candidate identities retain their own choices. The packet rows for 043/044 recommend candidate choice A only conditionally on shared route choice B; shared choice A or C means neither candidate is adopted to preserve these old FR54/FR55 conditions. The entries share a rendering format only. In particular, the recommendation for HELIXINTELLIGENCE-L2-072 is limited to its 1.0 shadow subset while its remaining improvement loop stays in source holding; HELIX-LABO-L2-062 preserves 2.0. The post-initial additions HARNESS-L2-042 and HELIXOS-L2-038 retain independent choices; HARNESS-L2-043/044 are jointly routed only by the explicit PORTFOLIO-FIXTURE-FR54-FR55-ROUTE choice above and are not separate PO route selections.",
   "candidates": [
     {
       "identity": "HARNESS-L2-034",
@@ -725,9 +725,9 @@
       "identity": "HARNESS-L2-043",
       "decision_state": "pending_PO; not adopted",
       "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
-      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, proposed internal placement, split/unit boundary, scope and consumer contract. The old packet maps HIL-FR-55 only to a generic HELIX-HARNESS 部品; the current HARNESS-CORE placement is a recommendation, while HARNESS-L2-009 Design Template wording is contextual only and not a prior selection for FR-55.",
+      "new_meaning_choice": "PO is asked to adopt or defer the exact 043 L2/L11 meaning only if shared FR54/55 routing choice B is selected. Its separate internal_PO_choice for CORE versus generic component placement remains pending; this does not decide the shared route.",
       "recommended_choice": "A",
-      "choice_meaning": "採用（L2/L11 authority decision only）",
+      "choice_meaning": "採用（L2/L11 authority decision only。共通FR54/55 routing B選択時に限る。配置はinternal_PO_choiceの別判断）",
       "version_target_as_written": "1.0",
       "title_and_kind": "### HARNESS-L2-043 active templateのrule／branch別例coverage（HARNESS-CORE unit候補、version_target: 1.0）",
       "requirement_source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
@@ -795,6 +795,16 @@
         "line": 986,
         "excerpt": "### HARNESS-L2-043 active templateのrule／branch別例coverage（HARNESS-CORE unit候補、version_target: 1.0）",
         "interpretation": "本文に明記された1.0候補の版印。COREはPO未決の推奨配置であり、採択、v0.1収載、実装許可ではない。"
+      },
+      "routing_choice_ref": "#portfolio_fixture_fr54_fr55_route",
+      "conditionality": {
+        "recommended_choice_applies_only_if": {
+          "decision_ref": "#portfolio_fixture_fr54_fr55_route",
+          "choice": "B"
+        },
+        "if_shared_route_choice_is": "A or C: do not adopt this candidate as the disposition route for its corresponding old condition",
+        "authority_effect": "none until the applicable PO decision is recorded",
+        "selection_state": "pending_PO"
       }
     },
     {
@@ -2187,15 +2197,15 @@
       "identity": "HARNESS-L2-044",
       "decision_state": "pending_PO; not adopted",
       "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
-      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, unit boundary, scope, class-wise portfolio closure conditions, consumer contract, and individual HELIX-HARNESS component placement. The old PO packet only records generic 部品; the source atom and receipt do not decide CORE or another named component and do not imply this exact L2 meaning was already decided.",
+      "new_meaning_choice": "PO is asked to adopt or defer the exact 044 L2/L11 meaning only if shared FR54/55 routing choice B is selected. A separate internal placement choice remains pending between generic HELIX-HARNESS 部品 and a newly specified more-specific component placement; this placement choice does not decide the shared route.",
       "recommended_choice": "A",
-      "choice_meaning": "採用（L2/L11 authority decision only。個別component配置は別途PO判断）",
+      "choice_meaning": "採用（L2/L11 authority decision only。共通FR54/55 routing B選択時に限る。配置granularityはinternal_PO_choiceで別判断）",
       "version_target_as_written": "1.0",
-      "title_and_kind": "### HARNESS-L2-044 design obligation portfolioの契約coverage候補（単体能力候補、version_target 1.0）",
+      "title_and_kind": "### HARNESS-L2-044 design obligation portfolioの契約coverage候補（HELIX-HARNESS内の部品候補）（単体能力候補、version_target 1.0）",
       "requirement_source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
       "acceptance_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-      "registration_id": "MPR-RC-HARNESS-L2-044-001",
-      "supersedes_registration_id": null,
+      "registration_id": "MPR-RC-HARNESS-L2-044-002",
+      "supersedes_registration_id": "MPR-RC-HARNESS-L2-044-001",
       "management_state": "registered_proposal",
       "authority_effect": "none",
       "parent_l1_ids": [
@@ -2216,9 +2226,9 @@
           "end_heading_prefix": "次の見出し（見出しlevel問わず）"
         }
       ],
-      "registered_candidate_semantic_digest": "sha256:b34292591392f02cb3051e815dd222c9264f2af0f3fdbdbe0e0a903669e3948c",
-      "receipt_candidate_semantic_digest": "sha256:b34292591392f02cb3051e815dd222c9264f2af0f3fdbdbe0e0a903669e3948c",
-      "current_candidate_semantic_digest": "sha256:b34292591392f02cb3051e815dd222c9264f2af0f3fdbdbe0e0a903669e3948c",
+      "registered_candidate_semantic_digest": "sha256:690f2bfa866c778be47459baa99139905260d3ca569739a4d4707c61096212f2",
+      "receipt_candidate_semantic_digest": "sha256:690f2bfa866c778be47459baa99139905260d3ca569739a4d4707c61096212f2",
+      "current_candidate_semantic_digest": "sha256:690f2bfa866c778be47459baa99139905260d3ca569739a4d4707c61096212f2",
       "candidate_digest_matches_register_and_receipt": true,
       "source_atom_count": 1,
       "source_atom_set_digest": "sha256:4f91e2819e94c09ea3590e713032118eb4fec47399d08cbfeeb8689222c15d66",
@@ -2232,27 +2242,95 @@
         }
       ],
       "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/harness-contract-portfolio-coverage-receipt-2026-09-28.json#candidates[HARNESS-L2-044] に記録。対象は旧HIL-FR-54、line 144の1 atomのみ。HIL-FR-55 line 145はactive MPR-SH-PORTFOLIO-FIXTURE-002に保留。",
-      "internal_PO_choice": null,
+      "internal_PO_choice": {
+        "choices": [
+          "A: retain generic HELIX-HARNESS 部品 placement, the granularity evidenced by old PO packet row 1008",
+          "B: specify a more-specific HELIX-HARNESS component placement as a new PO choice; the old source does not establish it"
+        ],
+        "selection_state": "pending_PO",
+        "recommended": "A: retain generic HELIX-HARNESS 部品 placement",
+        "recommendation_reason": "旧PO packet row 1008 explicitly records only HELIX-HARNESS、部品. A more-specific component would add a placement meaning not established by the source.",
+        "independent_choice_dimension": "placement granularity is a separate dimension from the shared FR54/55 route choice",
+        "applicability_condition": {
+          "decision_ref": "#portfolio_fixture_fr54_fr55_route",
+          "choice": "B",
+          "and": "HARNESS-L2-044 is separately adopted"
+        },
+        "selection_note": "This is a separate placement dimension, not a selection. It applies only if shared route choice B is selected and 044 is separately adopted; it does not itself recommend adopting 044."
+      },
       "paired_l2_id": "HARNESS-L2-044",
       "paired_l11_id": "HARNESS-L2-044",
       "affected_requirement_and_consumer_ids": "HARNESS-L1-001/004/009; HARNESS-L2-009/025/026/041, 対L11; 個別component配置はPO未決",
       "rationale": "旧HIL-FR-54のclass-wise obligation-to-contract portfolio closureを、単体能力候補としてL2/L11へ局所再導出する。旧packet row 1008はHELIX-HARNESS内の汎用「部品」までで、COREその他の配置を選んでいないためPO未決を維持する。FR55とIR全体、2 atom holding全体の被覆を主張しない。 旧source由来はHARNESS-L2-044候補のexact境界を既決にしないため、PO採択待ち。",
       "previous_register_revision": {
-        "registration_id": "MPR-RC-HARNESS-L2-043-001",
-        "candidate_semantic_digest": "sha256:847498df092d017760007e4b52e3fd3a230ac7e075cde44083f8149e47aace29",
-        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-template-example-coverage-receipt-2026-09-28.json#HARNESS-L2-043",
+        "registration_id": "MPR-RC-HARNESS-L2-044-001",
+        "candidate_semantic_digest": "sha256:b34292591392f02cb3051e815dd222c9264f2af0f3fdbdbe0e0a903669e3948c",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-contract-portfolio-coverage-receipt-2026-09-28.json#HARNESS-L2-044",
         "management_state_at_revision": "registered_proposal"
       },
       "version_target_evidence": {
         "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-        "line": 1002,
-        "excerpt": "### HARNESS-L2-044 design obligation portfolioの契約coverage候補（単体能力候補、version_target 1.0）",
+        "line": 1004,
+        "excerpt": "HARNESS-L2-044（HELIX-HARNESS内の部品候補、単体能力、version_target: 1.0、未採択。個別部品の配置はPO判断待ち）",
         "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
       },
-      "source_collection_scope": "旧HIL-FR-54のarchive L1要求表144行（source atom PORTFOLIO-FIXTURE-HIL-FR-54-L0144）だけを入力とし、契約portfolioのclass-wise coverage閉包条件をHARNESS-L2/L11-044候補へ再導出する。旧HIL-FR-55は別atomとしてactive MPR-SH-PORTFOLIO-FIXTURE-002に残し、本receiptはFR55、旧IR record全体、旧portfolio tool/schema/runtime、実装、受入実行、正式successor割当、候補採択または2 atom holding全体の被覆を主張しない。 source-linesのrelation欄が記録する過去のL2-025変更提案は履歴として保持し、採択済み025の訂正とは扱わない。"
+      "source_collection_scope": "旧HIL-FR-54のarchive L1要求表144行（source atom PORTFOLIO-FIXTURE-HIL-FR-54-L0144）だけを入力とし、契約portfolioのclass-wise coverage閉包条件をHARNESS-L2/L11-044候補へ再導出する。旧HIL-FR-55は別atomとしてactive MPR-SH-PORTFOLIO-FIXTURE-002に残し、本receiptはFR55、旧IR record全体、旧portfolio tool/schema/runtime、実装、受入実行、正式successor割当、候補採択または2 atom holding全体の被覆を主張しない。 source-linesのrelation欄が記録する過去のL2-025変更提案は履歴として保持し、採択済み025の訂正とは扱わない。",
+      "routing_choice_ref": "#portfolio_fixture_fr54_fr55_route",
+      "conditionality": {
+        "recommended_choice_applies_only_if": {
+          "decision_ref": "#portfolio_fixture_fr54_fr55_route",
+          "choice": "B"
+        },
+        "if_shared_route_choice_is": "A or C: do not adopt this candidate as the disposition route for its corresponding old condition",
+        "authority_effect": "none until the applicable PO decision is recorded",
+        "selection_state": "pending_PO"
+      }
     }
   ],
   "initial_25_basis_commit": "f4b2a2b02cf5ea3134e27be0a65c100395161bad",
   "progression": "Initial 25 candidates + PR #2241 HARNESS-L2-042 + PR #2238 HELIXOS-L2-038 = historical 27; PR #2245 merged HARNESS-L2-043, giving 28 pending PO candidates; current HARNESS-L2-044 is independent and pending PO, bringing the live decision set to 29.",
-  "version_target_evidence": null
+  "version_target_evidence": null,
+  "portfolio_fixture_fr54_fr55_route": {
+    "decision_id": "PORTFOLIO-FIXTURE-FR54-FR55-ROUTE",
+    "selection_status": "pending_PO; no selection recorded",
+    "authority_effect": "none",
+    "scope": "旧HIL-FR-54/55のsource処理を一つの排他的な経路判断で選ぶ。歴史的な変更案A/Bは後続三択へ折り畳まれ、独立のPO選択肢や既決事項ではない。FR54/55のsource atom・候補・保留範囲は個別に記録する。",
+    "historical_option_status": "旧案A/Bは当時の未合意案として判断史に保全するが、本三択内の独立PO選択ではない。",
+    "choices": [
+      {
+        "id": "A",
+        "label": "旧案A：FR54/55条件を採択済み025/026へ追補する",
+        "meaning": "HARNESS-L2/L11-025/026へ旧FR54/55の具体条件を統合する変更経路。PO判断後に対象本文、register訂正revision、receiptを更新する。043/044を同じ旧条件の保持先として併せて採択しない。",
+        "candidate_ids_not_adopted_for_this_route": [
+          "HARNESS-L2-043",
+          "HARNESS-L2-044"
+        ],
+        "historic_option_mapping": "以前の未合意変更案Aの意味をこの選択肢に再掲する。旧案Aそのものを別途選択する欄ではない。"
+      },
+      {
+        "id": "B",
+        "label": "FR54を044、FR55を043へ別候補として分離する",
+        "meaning": "HARNESS-L2/L11-044で旧FR54のportfolio closure条件を扱い、HARNESS-L2/L11-043で旧FR55のtemplate rule/branch別例coverage条件を扱う。採択済み025/026の本文・register revisionを変更しない。候補ごとの採択と各配置選択は別途PO判断に残す。",
+        "candidate_ids": [
+          "HARNESS-L2-043",
+          "HARNESS-L2-044"
+        ],
+        "historic_option_mapping": "新しい分離route。旧案A/Bを別途選択しない。",
+        "recommendation": "各候補のsource conditionと責務を分離し、採択済み025/026を変更しない。"
+      },
+      {
+        "id": "C",
+        "label": "旧FR54/55を記録付きでretire／意味変更する",
+        "meaning": "旧条件を維持しない理由、変更前後、対象revision、影響をPO判断記録へ記し、登録とsource dispositionを訂正する。043/044を同じ旧条件の保持先として併せて採択しない。",
+        "candidate_ids_not_adopted_for_this_route": [
+          "HARNESS-L2-043",
+          "HARNESS-L2-044"
+        ],
+        "historic_option_mapping": "以前の未合意変更案Bの意味をこの選択肢に再掲する。旧案Bそのものを別途選択する欄ではない。"
+      }
+    ],
+    "recommended_choice": "B",
+    "recommendation_reason": "FR54のcontract class別portfolio closureとFR55のtemplate rule/branch別example coverageは異なる責務であり、別候補に分ければ採択済み025/026の変更を避けて両source conditionを評価できる。sourceにある汎用HELIX-HARNESS「部品」以上の個別配置は確定扱いにしない。",
+    "choice_independence": "本A/B/Cは旧FR54/55の共通routingに対する一つの排他的なPO判断。未選択であり、個別候補推奨、register、receiptから選択を推定しない。"
+  }
 }

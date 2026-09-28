@@ -5,7 +5,7 @@
   "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom ID順に改行で区切る。末尾改行なし。",
   "scope": "旧HIL-FR-54 archive L1要求表144行の単一atomのみを対象とする局所receipt。旧PO packet row 1008は配置をHELIX-HARNESS内の汎用「部品」と記録しており、COREまたは他の個別componentを選んでいない。L2-044は単体能力候補として再導出され、個別部品配置はPO未決。FR55 atom、IR record、その他の旧portfolio関連条件はactive source holdingへ残す。 source-linesのrelation欄にあるL2-025案は旧時点の未合意提案の記録であり、現行の採択済み025を修正・変更する根拠ではない。本候補は独立した044ルートで、025の意味・採択状態は不変。",
   "source_atom_set_ref": "docs/governance/audits/requirement-registration/portfolio-fixture-source-lines-2026-09-28.jsonl#HIL-FR-54",
-  "l11_file_sha256": "sha256:5732b7a13c5d495f59f44e1c8c1b1b34a57bac028513bab97891bb28f2b73b2a",
+  "l11_file_sha256": "sha256:f3049baaa9c8ccba97c3396e7e0cb75eacf1c7d8bc341568a0d9aed5d97664dc",
   "candidate_state": "registered_proposal; authority_effect:none; PO未採択",
   "candidates": [
     {
@@ -16,7 +16,7 @@
         "HARNESS-L1-004",
         "HARNESS-L1-009"
       ],
-      "candidate_semantic_digest": "sha256:b34292591392f02cb3051e815dd222c9264f2af0f3fdbdbe0e0a903669e3948c",
+      "candidate_semantic_digest": "sha256:690f2bfa866c778be47459baa99139905260d3ca569739a4d4707c61096212f2",
       "source_atom_set_digest": "sha256:4f91e2819e94c09ea3590e713032118eb4fec47399d08cbfeeb8689222c15d66",
       "source_atom_count": 1,
       "source_collection_scope": "旧HIL-FR-54のarchive L1要求表144行（source atom PORTFOLIO-FIXTURE-HIL-FR-54-L0144）だけを入力とし、契約portfolioのclass-wise coverage閉包条件をHARNESS-L2/L11-044候補へ再導出する。旧HIL-FR-55は別atomとしてactive MPR-SH-PORTFOLIO-FIXTURE-002に残し、本receiptはFR55、旧IR record全体、旧portfolio tool/schema/runtime、実装、受入実行、正式successor割当、候補採択または2 atom holding全体の被覆を主張しない。 source-linesのrelation欄が記録する過去のL2-025変更提案は履歴として保持し、採択済み025の訂正とは扱わない。",
