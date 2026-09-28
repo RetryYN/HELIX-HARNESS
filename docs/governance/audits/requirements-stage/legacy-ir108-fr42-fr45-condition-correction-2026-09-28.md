@@ -4,7 +4,7 @@
 
 ## 判定
 
-IR108 disposition matrix（固定基準commit `559ae3ba4bfe660d666a57f227466d7dcdd440d9`、SHA-256 `0e26f66e4d593f7f710e17b8c2349dffd5849467f208fc5fbdda635e31dd224d`）では、HIL-FR-42とHIL-FR-45はいずれも `adopted_meaning`／`remaining_condition: null` とされている。本照合では、その分類は旧行の全条件を説明していないと判断する。FR-42には閉じた対象scopeの未消込義務ゼロを確認するgateがなく、FR-45には要求identity変更を全source atomの処置・semantic digest・下流stale・review authorityを備えたreceiptへ条件づける契約が確認できない。該当する条件分類の監査補正が妥当である。
+IR108 disposition matrix（固定基準commit `559ae3ba4bfe660d666a57f227466d7dcdd440d9`、SHA-256 `0e26f66e4d593f7f710e17b8c2349dffd5849467f208fc5fbdda635e31dd224d`）では、HIL-FR-42とHIL-FR-45はいずれも `adopted_meaning`／`remaining_condition: null` とされている。本照合ではこのnull分類は旧行全体を説明しないと判断する。FR-42では未消込等の追跡・Backflow・no-loss gateは再導出されているが、未解決の設計義務が1件でもあればpair-freezeを拒否する条件が残る。FR-45ではsource atomの全件行先、stale/digest不整合拒否、人間decisionの境界は再導出されており、残るのはsplit/merge等のidentity変更種別ごとにbefore/after両semantic digestを含むreceiptを適用前提とする明示条件である。
 
 両要求のcarry-forward状態は [`legacy-requirement-carry-forward.jsonl`](../../legacy-migration/requirement/legacy-requirement-carry-forward.jsonl) のFR-42（75行目）・FR-45（78行目）にあるとおり `preserved_pending_rehome`、successor IDなしのままである。補正はこのauthority状態を変更しない。
 
@@ -27,15 +27,21 @@ IR108 disposition matrix（固定基準commit `559ae3ba4bfe660d666a57f227466d7dc
 
 採択済みHARNESS-L2-004は要求変更から影響する設計・testと再検証範囲を導き、変更条件の検証漏れを識別する。HARNESS-L2-009はversioned templateから設計義務を導き、必須input不足をBackflowできる。対L11はtrace欠落、templateの適用差、required input不足を確認する（[HARNESS L2](../../../helix-harness/L2-requirements/product-requirements.md) SHA-256 `6c3023f9ca2be5d33f8e66ae2f2f0691bf69ff8070cfa386c953168e2d6eace9`, lines 55, 60; [HARNESS L11](../../../helix-harness/L11-acceptance/product-acceptance.md) SHA-256 `92e5fef1771fb24c1c1cb110cc105a1b9fd58d73d003615ea17be09922f3a616`, lines 24, 29, 69, 129–130). 採択済みHELIXOS-L2-016は要求から関係先へのtrace、未接続・unknown・staleの状態を分け、未解決edgeを下流完了に進めない（[OS L2](../../../helix-os/L2-requirements/governance-requirements.md) SHA-256 `39b52c81e38cd7301a0efaaf76fa3dd9da046df574b4236da8e6a3cdf4bb9387`, lines 652–660; [OS L11](../../../helix-os/L11-acceptance/governance-acceptance.md) SHA-256 `dd91b61c131a32caa440d9ae8f3248fe900e7406fee85c07555452b0d4b77cef`, lines 331–336).
 
-これらはsource trace・要求変更の再検証・template義務と欠落inputを再導出するが、適用対象義務を原子的に全消込し、閉じたscope内の未説明義務が0件であることをpair freeze条件として照合する採択済みgateではない。matrixのtarget ID集合は参照先であり、条件充足の証明ではない。
+OS側にも採択済みL2/L11の共通保持条件がある。[OS L2](../../../helix-os/L2-requirements/governance-requirements.md) SHA-256 `39b52c81e38cd7301a0efaaf76fa3dd9da046df574b4236da8e6a3cdf4bb9387`, lines 23–25 は要求意味の無承認変更を止め、入力source atom完全集合・保持先・人間decision対象・HARNESS無損失receiptを登録し、未計上・stale・digest不一致等が1件でもあればmerge可能にしない。[OS L11](../../../helix-os/L11-acceptance/governance-acceptance.md) SHA-256 `dd91b61c131a32caa440d9ae8f3248fe900e7406fee85c07555452b0d4b77cef`, lines 44–45 は各atomの行先、source集合digest、候補semantic digest、`authority_effect`、template義務・N/A・Backflow・消込を照合し、template欠落の自由形式fallbackを拒否する。このためFR-42のsource atom no-loss、根拠のないN/A/未消込の可視化・差戻しは採択済み意味として保持される。
+
+HARNESS-L2-025/026と対L11も、要求から設計要素・oracleへの双方向trace、構成体固有義務、unknown/不一致時の差戻しを採択済み範囲で確認する。それでも、上記のsource atom gateはsource→要求の無損失割当と要求PRのmergeを対象とし、全設計義務の消込完了をpair-freeze前提にするものではない。未解決の義務・孤児・placeholder・根拠のないN/A・一括消込が1件でもあればpair freezeを拒否する旧FR-42条件は残る。
+
+matrixがFR-42に列挙するHARNESS-L2-003/004/005/008/010/011/014/022/025/026、HELIXOS-L2-015/016/019/020は全て採択済み本文で確認した。003/005は工程gateと検証義務、008は要求意味形成、010/011はpack境界と呼出し条件、014/025/026は設計提供・unit/composite trace、022はpairごとの検証/受入stateを扱う。OS-015/016/019/020はauthority記録、relation/stale、continuity、検収/CI運転を扱う。これらは隣接するtrace・検証・進行条件を満たすが、個々のdesign obligationが全消込済みであることをfreeze時に判定するcondition-level gateは定めない。HARNESS-L2-004/009とOS L2 `:23,25`、OS L11 `:44,45`はmatrix target外も含めて関連条件として追加確認した。
 
 近似候補の境界も確認した。HARNESS-L2-041（[L2](../../../helix-harness/L2-requirements/product-requirements.md) lines 957–966、[L11](../../../helix-harness/L11-acceptance/product-acceptance.md) lines 699–709）はactive templateの指定scope内抽出候補で、旧HIL-FR-47由来かつ未採択である。HARNESS-L2-044（同L2 lines 1002–1011、同L11 lines 735–745）は別source HIL-FR-54由来の未採択portfolio候補で、未被覆classと意味重複ゼロを検査する。044は欠けたgateに意味的に近いものの、いずれもFR-42を採択済みで満たす証拠にも、FR-42のsuccessorにもならない。
 
 ### HIL-FR-45
 
-採択済みHARNESS-L2-004/対L11は変更要求に応じた設計・test traceと再検証範囲を扱う。HELIXOS-L2-015/対L11はsource identity・revision・digest・authority出所・訂正履歴を、HELIXOS-L2-016/対L11は関係先traceと未解決/stale状態を扱い、HELIXOS-L2-019/対L11はevent・provenance・continuityを扱う（OS L2 SHA-256 `39b52c81e38cd7301a0efaaf76fa3dd9da046df574b4236da8e6a3cdf4bb9387`, lines 642–660, 682–690; OS L11 SHA-256 `dd91b61c131a32caa440d9ae8f3248fe900e7406fee85c07555452b0d4b77cef`, lines 324–336, 352–360; HARNESS L2/L11 SHAは上記）。
+採択済み[OS L2](../../../helix-os/L2-requirements/governance-requirements.md) `:23,25` はsource集合・HARNESS無損失receipt・各atomの行先を要求PRへ束縛し、未計上atom、stale、digest不一致、wrong product、仮登録欠落があればmerge可能状態にしない。意味変更・縮退・retireは人間decisionなしに登録しない。対の[OS L11](../../../helix-os/L11-acceptance/governance-acceptance.md) `:44` はsource atom集合digest、候補semantic digest、無損失receipt、保持先または人間decision対象への各atom割当を検査する。これによりFR-45のsource atom全件処置と authority gate は既採択条件で保持される（OS L2 SHA-256 `39b52c81e38cd7301a0efaaf76fa3dd9da046df574b4236da8e6a3cdf4bb9387`; OS L11 SHA-256 `dd91b61c131a32caa440d9ae8f3248fe900e7406fee85c07555452b0d4b77cef`）。
 
-ただし、これらの一般的なprovenance/change-impact条件は、split/merge/rename/supersede/reject/N/Aそれぞれの適用を、before/after semantic digest、各source atomの処置、下流stale、review authorityを一つのchange/applicability receiptで確認できる場合に限る、という条件を明示しない。採択済み本文からは各source atomの処置完了をidentity変更の前提にするgateも確認できない。このno-loss lineage／stale-propagation gateは条件意味の残差として記録する。旧ledgerの全field・実装形式を追加要求するものではない。
+matrix対象のHARNESS-L2-003/004/005/008/010/011/014/022とOS-015/016/019/020は全て確認した。003/008/014は意味・人間判断・Backflow境界、004/005/022は要求変更影響・検証/受入義務、010/011はpack/呼出し契約、OS-015/016/019/020はprovenance・stale/trace・continuity・検収状態をそれぞれ扱う。これらはsource atom全件割当やauthority gateを補強するが、OS L2 `:23,25`／L11 `:44`が既に担うno-loss条件を重ねて要求する根拠にはならず、identity変更の個別適用条件も明記しない。
+
+したがってFR-45の残差は、旧条件が列挙するsplit/merge/rename/supersede/reject/N/Aのうちどのidentity-change operationを適用するかを明示し、そのoperationに対応するbefore/after両semantic digestを一つのchange/applicability receiptへ束縛してから適用する条件に限定する。atomごとの行先、no-loss判定、人間decision境界、stale/digest拒否は採択済みOS L2 `:23,25`／L11 `:44`等にあるため、残差として重ねて数えない。現行条件は候補semantic digestとsource atom集合digestを持つが、両方をidentity-change operationの前後意味digestとして区別し、operation-specific receiptの成立を適用条件にすることまでは明示していない。新しい要求やledger schemaは提案せず、この旧条件と採択済み一般gateとの残る差だけを記録する。
 
 ## REG-06分類差分と除外範囲
 
@@ -45,6 +51,6 @@ HIL-FR-43（matrix同じく `adopted_meaning`／null）はこの記録の対象�
 
 ## 検証範囲
 
-- 旧source、L2/L11本文、PO判断記録、matrix、carry-forward ledgerを静的に照合した。旧runtime・test・CIは実行していない。
+- 旧source、全matrix target ID、上記の追加関連L2/L11条件、PO判断記録、matrix、carry-forward ledger、PR #2275のreview comment `#issuecomment-5871552571` を静的に照合した。旧runtime・test・CIは実行していない。
 - 本記録の追加は監査証拠であり、要求本文や既存matrixの書換え、採用、successor割当、要求段階完了を意味しない。
 - baselineの本文SHAはmatrix値と一致する。REG-06 population audit JSON（SHA-256 `286352584c5ef17195b71c57be165eaf2b1d2da1a2877b53258b65e6ec58f4e6`）は母集団・relation join監査で、個別condition完了を主張しない。
