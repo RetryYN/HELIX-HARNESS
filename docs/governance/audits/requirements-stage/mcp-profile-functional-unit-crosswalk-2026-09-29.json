@@ -1,0 +1,501 @@
+{
+  "artifact_id": "P1-MCP-PROFILE-FUNCTIONAL-CROSSWALK-2026-09-29",
+  "artifact_kind": "effective_legacy_condition_disposition_crosswalk",
+  "basis_main_commit": "c77ada94cdd79d7f07b75c4fd1f5515a5b7528b2",
+  "authority_effect": "none",
+  "candidate_adoption": "none",
+  "source_holding_closure": "none",
+  "scope": {
+    "legacy_asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+    "source_item_id": "REQSRC-SUP-00213",
+    "legacy_requirement_id": "HR-FR-HYB-002",
+    "source_lines": [
+      286,
+      271
+    ],
+    "source_revisions": [
+      "archive",
+      "6fabd125 baseline"
+    ],
+    "functional_unit": "MCP profile enumeration, configuration, typed safety/read-only probe supply, and profile-scoped fail-close",
+    "out_of_scope": [
+      "full v1.3 closure",
+      "source holding retirement",
+      "MCP registry/schema/provider selection",
+      "runtime/adapter/CLI/test/CI execution",
+      "formal requirement adoption"
+    ]
+  },
+  "existing_source_artifacts": {
+    "source_lines": "docs/governance/audits/requirement-registration/security-v13-hyb-002-profile-source-lines-2026-09-28.jsonl",
+    "coverage_receipt": "docs/governance/audits/requirement-registration/security-v13-hyb-002-profile-coverage-receipt-2026-09-28.json",
+    "receipt_id": "MPR-RCPT-SECURITY-V13-HYB-002-PROFILE-2026-09-28",
+    "source_inventory_digest": "sha256:715df3606d1b2965e1896f58f297473402c229ba296713ca22f52b5af9b72cbc",
+    "candidate_source_atom_set_digest": "sha256:5eb6244f7a7a84da692c2531e00014a9bd965577a58c4bb932aac57592ff432e",
+    "existing_candidate_register_id": "MPR-RC-HELIXSECURITY-L2-034-001",
+    "candidate_state": "registered_proposal",
+    "candidate_authority_effect": "none"
+  },
+  "counts": {
+    "source_revision_count": 2,
+    "unique_clause_count": 6,
+    "lineage_atom_count": 12,
+    "existing_candidate_routed_atom_count": 6,
+    "preserved_pending_atom_count": 6,
+    "adopted_satisfied_atom_count": 0,
+    "semantic_closure_atom_count": 0,
+    "unresolved_semantic_closure_atom_count": 12,
+    "legacy_method_retire_atom_count": 0,
+    "counting_note": "6 candidate-routed lineage atoms and 6 preserved-pending atoms are all still unresolved for semantic closure; existing receipt no-loss is bounded to the selected 6 candidate inputs."
+  },
+  "conditions": [
+    {
+      "condition_key": "catalog_profile_identity_and_configuration",
+      "condition": "profile列挙・identity・typed configuration",
+      "source_span_text": "profile列挙、設定",
+      "lineage_atom_count": 2,
+      "effective_treatment": "preserved_pending",
+      "adopted_satisfied": false,
+      "candidate_identity": null,
+      "semantic_closure": false,
+      "current_requirement_relations": [
+        {
+          "id": "HELIXCONNECT-L2-001",
+          "path": "docs/helix-connect/L2-requirements/connect-requirements.md#helixconnect-l2-001",
+          "relation": "connection endpoint, contract, adapter/transport identity; does not establish MCP catalog enumeration/configuration equivalence"
+        },
+        {
+          "id": "HELIXCONNECT-L2-002",
+          "path": "docs/helix-connect/L2-requirements/connect-requirements.md#helixconnect-l2-002",
+          "relation": "compatibility and stale revalidation for registered connections; not catalog supply"
+        },
+        {
+          "id": "HELIXSECURITY-L2-004",
+          "path": "docs/helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-004",
+          "relation": "configuration integrity/revision/digest; partial relation only"
+        }
+      ],
+      "unselected_owner_options": [
+        {
+          "option": "A",
+          "primary_owner": "HELIX-CONNECT",
+          "split": "CONNECT supplies registered profile/descriptor identity, typed configuration and revision; SECURITY evaluates existing policy against it.",
+          "impact": "Fits CONNECT registration/contract/adapter boundary; requires new source-backed L2/L11 candidate pair, not adoption.",
+          "selected": false,
+          "recommended_for_candidate_drafting": true
+        },
+        {
+          "option": "B",
+          "primary_owner": "HELIX-SECURITY",
+          "split": "SECURITY owns profile catalog/configuration supply as well as its security evaluation; CONNECT passes transport identity only.",
+          "impact": "May change current CONNECT/SECURITY boundary and requires that difference plus source basis to be presented for PO choice.",
+          "selected": false,
+          "recommended_for_candidate_drafting": false
+        }
+      ],
+      "lineage_atoms": [
+        {
+          "atom_id": "V13-ARCHIVE-L0286-HR-FR-HYB-002-S01",
+          "source_revision": "archive",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "source_commit": null,
+          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "source_line": 286,
+          "source_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+          "source_span_text": "profile列挙、設定",
+          "source_span_sha256": "sha256:f43991829c2e95f0ff69b7a23accca7857fdc0704d90a69fecd30e5f45a82822",
+          "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-003",
+          "existing_receipt_disposition": "preserved_pending",
+          "existing_candidate_input": false,
+          "existing_condition_status": "unresolved",
+          "effective_treatment": "preserved_pending",
+          "semantic_closure": false
+        },
+        {
+          "atom_id": "V13-BASE-6FAB-L0271-S01",
+          "source_revision": "baseline",
+          "source_path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+          "source_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+          "source_file_sha256": "sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+          "source_line": 271,
+          "source_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+          "source_span_text": "profile列挙、設定",
+          "source_span_sha256": "sha256:f43991829c2e95f0ff69b7a23accca7857fdc0704d90a69fecd30e5f45a82822",
+          "source_holding_registration_id": "MPR-SH-V13-BASELINE-001",
+          "existing_receipt_disposition": "preserved_pending",
+          "existing_candidate_input": false,
+          "existing_condition_status": "unresolved",
+          "effective_treatment": "preserved_pending",
+          "semantic_closure": false
+        }
+      ]
+    },
+    {
+      "condition_key": "typed_safety_and_read_only_probe_supply",
+      "condition": "typed safety / read-only probe供給",
+      "source_span_text": "safety、read-only probeを型付きで提供",
+      "lineage_atom_count": 2,
+      "effective_treatment": "preserved_pending",
+      "adopted_satisfied": false,
+      "candidate_identity": null,
+      "semantic_closure": false,
+      "current_requirement_relations": [
+        {
+          "id": "HELIXSECURITY-L2-018",
+          "path": "docs/helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-018",
+          "relation": "1.x capability probing observation; not read-only probe supply/type contract"
+        },
+        {
+          "id": "HELIXSECURITY-L2-034",
+          "path": "docs/helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-034",
+          "relation": "unadopted candidate binds a declared read-only probe to profile revision and rejects write-capable assignment; explicitly excludes probe supply/type contract"
+        },
+        {
+          "id": "HELIXCONNECT-L2-001",
+          "path": "docs/helix-connect/L2-requirements/connect-requirements.md#helixconnect-l2-001",
+          "relation": "profile/adapter identity may be transported as connection data; no probe descriptor supply contract"
+        }
+      ],
+      "unselected_owner_options": [
+        {
+          "option": "A",
+          "primary_owner": "HELIX-CONNECT + HELIX-SECURITY",
+          "split": "CONNECT supplies a version-bound probe descriptor; SECURITY owns read-only classification and operation policy.",
+          "impact": "Separates supply from safety meaning; requires paired L2/L11 candidate scope and explicit interface.",
+          "selected": false,
+          "recommended_for_candidate_drafting": true
+        },
+        {
+          "option": "B",
+          "primary_owner": "HELIX-SECURITY",
+          "split": "SECURITY owns the typed safety/probe contract and decision semantics; CONNECT transports profile and adapter identity only.",
+          "impact": "Concentrates safety semantics in SECURITY but must avoid moving connection identity/transport ownership.",
+          "selected": false,
+          "recommended_for_candidate_drafting": false
+        }
+      ],
+      "lineage_atoms": [
+        {
+          "atom_id": "V13-ARCHIVE-L0286-HR-FR-HYB-002-S02",
+          "source_revision": "archive",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "source_commit": null,
+          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "source_line": 286,
+          "source_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+          "source_span_text": "safety、read-only probeを型付きで提供",
+          "source_span_sha256": "sha256:110d64ef4eddc210031bb42bac95cc6c246f7ec1f636d25efcbde70f51feb5f1",
+          "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-003",
+          "existing_receipt_disposition": "preserved_pending",
+          "existing_candidate_input": false,
+          "existing_condition_status": "unresolved",
+          "effective_treatment": "preserved_pending",
+          "semantic_closure": false
+        },
+        {
+          "atom_id": "V13-BASE-6FAB-L0271-S02",
+          "source_revision": "baseline",
+          "source_path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+          "source_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+          "source_file_sha256": "sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+          "source_line": 271,
+          "source_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+          "source_span_text": "safety、read-only probeを型付きで提供",
+          "source_span_sha256": "sha256:110d64ef4eddc210031bb42bac95cc6c246f7ec1f636d25efcbde70f51feb5f1",
+          "source_holding_registration_id": "MPR-SH-V13-BASELINE-001",
+          "existing_receipt_disposition": "preserved_pending",
+          "existing_candidate_input": false,
+          "existing_condition_status": "unresolved",
+          "effective_treatment": "preserved_pending",
+          "semantic_closure": false
+        }
+      ]
+    },
+    {
+      "condition_key": "profile_scoped_credential_egress_tool_capability_fail_close",
+      "condition": "profile単位credential/egress/tool-capability fail-close",
+      "source_span_text": "credential、egress、tool capabilityをprofile単位でfail-closeする",
+      "lineage_atom_count": 2,
+      "effective_treatment": "existing_candidate_unadopted",
+      "adopted_satisfied": false,
+      "candidate_identity": "HELIXSECURITY-L2-034",
+      "semantic_closure": false,
+      "current_requirement_relations": [
+        {
+          "id": "HELIXSECURITY-L2-005",
+          "path": "docs/helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-005",
+          "relation": "general credential/secret boundary"
+        },
+        {
+          "id": "HELIXSECURITY-L2-006",
+          "path": "docs/helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-006",
+          "relation": "general egress conditions"
+        },
+        {
+          "id": "HELIXSECURITY-L2-007",
+          "path": "docs/helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-007",
+          "relation": "Worker execution constraints"
+        },
+        {
+          "id": "HELIXSECURITY-L2-008",
+          "path": "docs/helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-008",
+          "relation": "operation-specific authority"
+        },
+        {
+          "id": "HELIXCONNECT-L2-001/002",
+          "path": "docs/helix-connect/L2-requirements/connect-requirements.md#helixconnect-l2-001",
+          "relation": "profile/adapter identity and compatibility are inputs; CONNECT does not issue policy"
+        }
+      ],
+      "unselected_owner_options": [],
+      "lineage_atoms": [
+        {
+          "atom_id": "V13-ARCHIVE-L0286-HR-FR-HYB-002-S03",
+          "source_revision": "archive",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "source_commit": null,
+          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "source_line": 286,
+          "source_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+          "source_span_text": "credential、egress、tool capabilityをprofile単位でfail-closeする",
+          "source_span_sha256": "sha256:4c4af40d394ce05afbc7c3b59a965d2e589cefb37eefec6cbe772e028b766d4c",
+          "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-003",
+          "existing_receipt_disposition": "candidate_input",
+          "existing_candidate_input": true,
+          "existing_condition_status": "unresolved",
+          "effective_treatment": "existing_candidate_unadopted",
+          "semantic_closure": false
+        },
+        {
+          "atom_id": "V13-BASE-6FAB-L0271-S03",
+          "source_revision": "baseline",
+          "source_path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+          "source_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+          "source_file_sha256": "sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+          "source_line": 271,
+          "source_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+          "source_span_text": "credential、egress、tool capabilityをprofile単位でfail-closeする",
+          "source_span_sha256": "sha256:4c4af40d394ce05afbc7c3b59a965d2e589cefb37eefec6cbe772e028b766d4c",
+          "source_holding_registration_id": "MPR-SH-V13-BASELINE-001",
+          "existing_receipt_disposition": "candidate_input",
+          "existing_candidate_input": true,
+          "existing_condition_status": "unresolved",
+          "effective_treatment": "existing_candidate_unadopted",
+          "semantic_closure": false
+        }
+      ]
+    },
+    {
+      "condition_key": "reject_unregistered_profile",
+      "condition": "未登録profile拒否",
+      "source_span_text": "未登録profile",
+      "lineage_atom_count": 2,
+      "effective_treatment": "preserved_pending",
+      "adopted_satisfied": false,
+      "candidate_identity": null,
+      "semantic_closure": false,
+      "current_requirement_relations": [
+        {
+          "id": "HELIXSECURITY-L2-004",
+          "path": "docs/helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-004",
+          "relation": "rejects unknown configuration; MCP profile registered-set equivalence not established"
+        },
+        {
+          "id": "HELIXCONNECT-L2-001",
+          "path": "docs/helix-connect/L2-requirements/connect-requirements.md#helixconnect-l2-001",
+          "relation": "rejects unavailable/missing connection identity; does not define MCP profile registered set"
+        }
+      ],
+      "unselected_owner_options": [
+        {
+          "option": "A",
+          "primary_owner": "HELIX-CONNECT",
+          "split": "Unknown profile is rejected against CONNECT-owned catalog membership; SECURITY consumes a resolved identity for policy evaluation.",
+          "impact": "Keeps registration with connection/descriptor supply; requires an explicit catalog membership contract.",
+          "selected": false,
+          "recommended_for_candidate_drafting": true
+        },
+        {
+          "option": "B",
+          "primary_owner": "HELIX-SECURITY",
+          "split": "Unknown profile is rejected by a SECURITY-owned catalog/configuration authority.",
+          "impact": "Requires defining how this does not duplicate CONNECT registration identity and may change current boundary.",
+          "selected": false,
+          "recommended_for_candidate_drafting": false
+        }
+      ],
+      "lineage_atoms": [
+        {
+          "atom_id": "V13-ARCHIVE-L0286-HR-FR-HYB-002-S04",
+          "source_revision": "archive",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "source_commit": null,
+          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "source_line": 286,
+          "source_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+          "source_span_text": "未登録profile",
+          "source_span_sha256": "sha256:8659190c94464b3e5088f65269a0fcbd646bcf91e89ad76b4ddc68a5f8977958",
+          "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-003",
+          "existing_receipt_disposition": "preserved_pending",
+          "existing_candidate_input": false,
+          "existing_condition_status": "unresolved",
+          "effective_treatment": "preserved_pending",
+          "semantic_closure": false
+        },
+        {
+          "atom_id": "V13-BASE-6FAB-L0271-S04",
+          "source_revision": "baseline",
+          "source_path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+          "source_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+          "source_file_sha256": "sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+          "source_line": 271,
+          "source_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+          "source_span_text": "未登録profile",
+          "source_span_sha256": "sha256:8659190c94464b3e5088f65269a0fcbd646bcf91e89ad76b4ddc68a5f8977958",
+          "source_holding_registration_id": "MPR-SH-V13-BASELINE-001",
+          "existing_receipt_disposition": "preserved_pending",
+          "existing_candidate_input": false,
+          "existing_condition_status": "unresolved",
+          "effective_treatment": "preserved_pending",
+          "semantic_closure": false
+        }
+      ]
+    },
+    {
+      "condition_key": "reject_secret_request",
+      "condition": "secret要求拒否",
+      "source_span_text": "secret要求",
+      "lineage_atom_count": 2,
+      "effective_treatment": "existing_candidate_unadopted",
+      "adopted_satisfied": false,
+      "candidate_identity": "HELIXSECURITY-L2-034",
+      "semantic_closure": false,
+      "current_requirement_relations": [
+        {
+          "id": "HELIXSECURITY-L2-005",
+          "path": "docs/helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-005",
+          "relation": "existing raw-secret boundary; 034 candidate applies it to selected profile/task"
+        }
+      ],
+      "unselected_owner_options": [],
+      "lineage_atoms": [
+        {
+          "atom_id": "V13-ARCHIVE-L0286-HR-FR-HYB-002-S05",
+          "source_revision": "archive",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "source_commit": null,
+          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "source_line": 286,
+          "source_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+          "source_span_text": "secret要求",
+          "source_span_sha256": "sha256:5ca727f1ad16cb2f224a28bb5a99a32e2e204fa2974336d685f1c10c89913c11",
+          "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-003",
+          "existing_receipt_disposition": "candidate_input",
+          "existing_candidate_input": true,
+          "existing_condition_status": "unresolved",
+          "effective_treatment": "existing_candidate_unadopted",
+          "semantic_closure": false
+        },
+        {
+          "atom_id": "V13-BASE-6FAB-L0271-S05",
+          "source_revision": "baseline",
+          "source_path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+          "source_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+          "source_file_sha256": "sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+          "source_line": 271,
+          "source_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+          "source_span_text": "secret要求",
+          "source_span_sha256": "sha256:5ca727f1ad16cb2f224a28bb5a99a32e2e204fa2974336d685f1c10c89913c11",
+          "source_holding_registration_id": "MPR-SH-V13-BASELINE-001",
+          "existing_receipt_disposition": "candidate_input",
+          "existing_candidate_input": true,
+          "existing_condition_status": "unresolved",
+          "effective_treatment": "existing_candidate_unadopted",
+          "semantic_closure": false
+        }
+      ]
+    },
+    {
+      "condition_key": "reject_write_capable_probe",
+      "condition": "read-only probeへのwrite可能tool割当て拒否",
+      "source_span_text": "write可能probeを拒否する",
+      "lineage_atom_count": 2,
+      "effective_treatment": "existing_candidate_unadopted",
+      "adopted_satisfied": false,
+      "candidate_identity": "HELIXSECURITY-L2-034",
+      "semantic_closure": false,
+      "current_requirement_relations": [
+        {
+          "id": "HELIXSECURITY-L2-034",
+          "path": "docs/helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-034",
+          "relation": "unadopted candidate rejects write-capable capability when probe is declared read-only"
+        },
+        {
+          "id": "HELIXSECURITY-L2-034-L11",
+          "path": "docs/helix-security/L11-acceptance/security-acceptance.md#helixsecurity-l2-034",
+          "relation": "paired acceptance contains static negative oracle; not runtime evidence"
+        }
+      ],
+      "unselected_owner_options": [],
+      "lineage_atoms": [
+        {
+          "atom_id": "V13-ARCHIVE-L0286-HR-FR-HYB-002-S06",
+          "source_revision": "archive",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "source_commit": null,
+          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "source_line": 286,
+          "source_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+          "source_span_text": "write可能probeを拒否する",
+          "source_span_sha256": "sha256:ff19d40a81abd4ecb34060fbc8b8508cb800327d146218be76f9d685651283ef",
+          "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-003",
+          "existing_receipt_disposition": "candidate_input",
+          "existing_candidate_input": true,
+          "existing_condition_status": "unresolved",
+          "effective_treatment": "existing_candidate_unadopted",
+          "semantic_closure": false
+        },
+        {
+          "atom_id": "V13-BASE-6FAB-L0271-S06",
+          "source_revision": "baseline",
+          "source_path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+          "source_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+          "source_file_sha256": "sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+          "source_line": 271,
+          "source_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+          "source_span_text": "write可能probeを拒否する",
+          "source_span_sha256": "sha256:ff19d40a81abd4ecb34060fbc8b8508cb800327d146218be76f9d685651283ef",
+          "source_holding_registration_id": "MPR-SH-V13-BASELINE-001",
+          "existing_receipt_disposition": "candidate_input",
+          "existing_candidate_input": true,
+          "existing_condition_status": "unresolved",
+          "effective_treatment": "existing_candidate_unadopted",
+          "semantic_closure": false
+        }
+      ]
+    }
+  ],
+  "retirement_assessment": {
+    "result": "no_legacy_method_identified",
+    "basis": "The source row specifies capabilities and rejection conditions, not a concrete catalog, probe, adapter, CLI, or runtime method. No method retirement can be inferred from these two requirement rows.",
+    "po_retire_decision_created": false
+  },
+  "verification_boundary": {
+    "performed": [
+      "static read of exact archive/baseline lines, source atom file, receipt, current CONNECT/SECURITY L2/L11, register, inventory, and PO packet"
+    ],
+    "not_performed": [
+      "legacy runtime, adapter, CLI, test, CI, MCP connection, or probe execution"
+    ],
+    "claim": "document and identity crosswalk only; no runtime behavior or source holding closure claimed"
+  },
+  "candidate_drafting_recommendation": {
+    "route": "A",
+    "status": "recommended_for_candidate_drafting_only",
+    "description": "Draft paired L2/L11 candidates with CONNECT owning profile/descriptor registration, enumeration, typed versioned supply, and SECURITY owning existing-policy evaluation and read-only safety classification.",
+    "owner_selected": false,
+    "requirement_adopted": false,
+    "po_adoption_decision_required": true,
+    "alternative_route": "B remains available as a PO choice if SECURITY is to own catalog/probe supply; that may change the current CONNECT/SECURITY responsibility boundary and must be stated with its basis and impact."
+  }
+}
