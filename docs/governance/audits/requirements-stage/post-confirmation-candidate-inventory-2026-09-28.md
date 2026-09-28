@@ -128,3 +128,13 @@ A＝exact L2/L11-042の限定採択（推奨）、B＝原atomを保留、C＝sou
 旧`LEGACY-CAND-LINE-003612`のRFA-AC-16 acceptance row（`LEGACY-ASSET-00C7DF9250F8A9A25B24`、archive file SHA-256 `c3f62478904e620eced270996360274e2840f9d94eca117d838d0e6dfeda7a86`、line SHA-256 `bafb2bae38d5e4363a90e58405e44e1e4544e85adfaa2b318bef2425a873065c`）一行だけをHELIXOS-L2/L11-046へ未採択候補として対応づける。#2268のcondition overlayで同じ行は条件として再確認され、旧snapshot上のexplanation分類を意味closureの根拠にしない。
 
 既存GitHub運用モデルにあるPR作成・独立review・Ready・exact base/content HEAD・stale・merge admission、OS-004/007/008/010/011が個別に持つassignment・authority・証拠・CI・推進／統合計画を再定義しない。限定残差はこれらの段階間で同じ対象authority/HEAD/scopeを照合し、docs path exemption、exploratory mergeの実装許可化、required skipを拒否するL2/L11接続oracleである。specific required list、CI、追加承認、skip機構は導入しない。RFA-AC-16一行のみの局所candidate inputであり、旧RFA、旧runtime、その他旧sourceのclosureは主張しない。source holding `MPR-SH-CANDIDATE-003`は生存する。A＝限定候補を採択（推奨）、B＝保留、C＝対象revision・理由・影響を付して意味変更／retire。いずれも未選択。
+
+## 後続候補：HELIXLABO-L2-067（#2270後、判断集合45候補）
+
+| 機構 | 候補・L2本文 | 対のL11 | 生存register revision・coverage receipt |
+|---|---|---|---|
+| LABO | [HELIXLABO-L2-067：初回eligible candidateとAttempt内修復の観測（単体追補候補、1.0）](../../../helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-067) | [L11受入候補](../../../helix-labo/L11-acceptance/labo-acceptance.md#helixlabo-l2-067) | `MPR-RC-HELIXLABO-L2-067-001`; `labo-firstpass-attempt-repair-coverage-receipt-2026-09-28.json#HELIXLABO-L2-067` |
+
+旧`LEGACY-CAND-LINE-001656`（archive execution-ticket-requirements.md:399）第3文をfirst-eligible境界／repair-round visibility／総Attempt countの3 subatomへ分け、前2件だけをcandidate inputとする。総Attempt count subatomは`MPR-SH-CANDIDATE-003`へpending保全し、067では算出しない。source holdingは生存し、同一行のtelemetry列挙・silent-rename条件、隣接行、旧candidate全体のclosureは主張しない。source/file/line SHA、selected/pending subatom境界、candidate digestおよびL11 digestはsource-lines、coverage receipt、registerへ固定する。
+
+旧source S3はfirst-passの「初回」を最初のeligible candidateとするが、未採択LABO-065の`first_pass`は最初のAttemptの受入oracle結果であり、candidate境界とtask Attempt境界で定義が異なる。両候補が将来採択されても二指標は並立し、旧source定義に沿うのは067の`first_eligible_candidate_result`だけで、065の`first_pass`と同一化・代替・合算しない。採択済みLABO-059の品質・比較・費用意味と現行065本文は変更せず、067の`same_attempt_repair_round_count`も別grainで、総Attempt countを算出せず、065の採択を依存条件としない。OS-L2-014への旧source relationは確認したが、記録上のmeaning coverageはunknownであり、段階構成責務はLABO task telemetryを閉じない。候補採否のPO判断packetはA＝067 exact L2/L11のみ採択を推奨する。B＝source holdingと候補を保留、C＝対象subatom・revision・理由・影響付きの意味変更/retire。`internal_PO_choice`は未決（null）、A/B/Cは未選択で、推奨はPO判断を意味しない。これとは別の未決`definition_alignment`次元ではD1＝065/067を別定義の指標として並立（推奨）、D2＝065を旧定義へ寄せる別revisionについてPO判断、D3＝旧定義を対象revisionで理由・影響付きretireを選ぶが、067 exact revisionの採択Aとは同時選択不可で、A採択後のretireには067別revisionまたはretireの別PO判断が要る。D1なら両候補採択時にも旧source定義に沿うのは067側だけである。D1/D2/D3も未選択で、候補採否を決めない。どの選択肢も実験・資格試験・Worker割当・実装許可を生成しない。
