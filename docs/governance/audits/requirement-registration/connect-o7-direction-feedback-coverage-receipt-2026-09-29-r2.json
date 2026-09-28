@@ -1,0 +1,128 @@
+{
+  "receipt_id": "DRAFT-RCPT-HELIXCONNECT-L2-009-O7-DIRECTION-FEEDBACK-2026-09-29-R2",
+  "receipt_state": "draft_unadopted_new_proposal_scope_recorded",
+  "authority_effect": "none",
+  "requirement_identity": "HELIXCONNECT-L2-009",
+  "requirement_kind": "connection",
+  "candidate_semantic_digest": "sha256:d2fc48f4ce3049a078203b281a69a2d211789456ef4fa6a25cd074f96c04712f",
+  "candidate_l2_file_sha256": "sha256:89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+  "candidate_digest_rule": "UTF-8 bytes from ### HELIXCONNECT-L2-009 heading to EOF, trailing blank lines removed, exactly one LF at end.",
+  "paired_acceptance_identity": "HELIXCONNECT-L11-009",
+  "paired_acceptance_digest": "sha256:07e639a165d02d32deb8ae820418aadc9893837b5d3cab5b8387287cd3283ca1",
+  "l11_file_sha256": "sha256:aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9",
+  "l11_digest_rule": "UTF-8 bytes from ### HELIXCONNECT-L11-009 heading to EOF, trailing blank lines removed, exactly one LF at end.",
+  "source_lines_ref": "docs/governance/audits/requirement-registration/connect-o7-direction-feedback-source-lines-2026-09-29.jsonl",
+  "source_collection_scope": "Bounded archive search over L3-requirements, governance/candidates, and L1-requirements only. Five related general-semantics lines are reference-only and not candidate input. No matching CONNECT-specific legacy relation/type contract was found. Candidate is a new proposal requested by O7; no old source atoms are represented as its semantic input.",
+  "source_collection_reference_atom_count": 5,
+  "source_collection_reference_atom_refs": [
+    "O7-LEGACY-UWJ-FR-006-L0050",
+    "O7-LEGACY-HIL-NFR-04-L0184",
+    "O7-LEGACY-HIL-BR-25-L0077",
+    "O7-LEGACY-MIC-R-02-L0066",
+    "O7-LEGACY-MIC-FLOW-L0132"
+  ],
+  "source_atom_set_digest_rule": "Candidate input atom IDs joined by LF, no trailing LF; the direct legacy candidate-input set is empty.",
+  "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "candidate_input_atom_refs": [],
+  "candidate_input_atom_count": 0,
+  "candidate_input_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "candidate_input_accounting_status": "no_loss of the empty direct legacy-atom input set. O7 work request is a task basis, not an adopted requirement or operation authority. General legacy atoms remain reference-only; exact relation/type semantics are a new proposal.",
+  "source_line_coverage_result": "bounded_search_only; no matching CONNECT-specific relation/type contract found in the searched scopes; archive-wide absence and legacy semantic closure are not claimed",
+  "candidate_input_coverage_result": "no_loss of empty legacy atom set; candidate is new proposal",
+  "condition_closure": "not_asserted",
+  "unaccounted_atom_refs": [],
+  "preserved_pending_registration_refs": [],
+  "atoms": [
+    {
+      "atom_id": "O7-LEGACY-UWJ-FR-006-L0050",
+      "legacy_asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_line": 50,
+      "source_file_sha256": "sha256:e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b",
+      "source_line_sha256": "sha256:21e664a7fd4afa4085c2a1f62a2497de925ae21a9fe6e0aeb5609bae45f13b17",
+      "disposition": "reference_only",
+      "candidate_input": false,
+      "relation": "General workflow loop return/continue/stop, limit, terminal, and resume contract; reference only, not CONNECT relation semantics."
+    },
+    {
+      "atom_id": "O7-LEGACY-HIL-NFR-04-L0184",
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_line": 184,
+      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_line_sha256": "sha256:6294259dd37af26ddd6f86e404be637b29c341c80d344d4eae2253daff8490fe",
+      "disposition": "reference_only",
+      "candidate_input": false,
+      "relation": "General loop iteration/time/token/cost cap, stop reason, and resume checkpoint; reference only, not connector relation semantics."
+    },
+    {
+      "atom_id": "O7-LEGACY-HIL-BR-25-L0077",
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_line": 77,
+      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_line_sha256": "sha256:5f6245bdc3312264b8e3ff4ba5589f71fa97f8bcbe4b7ff055e0070b54de2fd6",
+      "disposition": "reference_only",
+      "candidate_input": false,
+      "relation": "Bidirectional relation between adjacent layers/V-pairs; not inter-mechanism CONNECT direction or send authority."
+    },
+    {
+      "atom_id": "O7-LEGACY-MIC-R-02-L0066",
+      "legacy_asset_id": "LEGACY-ASSET-23D3D9769B093AFDCC25",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/management-integration-cell-requirements.md",
+      "source_line": 66,
+      "source_file_sha256": "sha256:f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6",
+      "source_line_sha256": "sha256:7775aa4943f269d8bbba9dbc198de37a029bb6a1e8186795e0368887a74183bd",
+      "disposition": "reference_only",
+      "candidate_input": false,
+      "relation": "Serial merge followed by remaining-lane base-drift recheck; integration control, not connector-edge ordering."
+    },
+    {
+      "atom_id": "O7-LEGACY-MIC-FLOW-L0132",
+      "legacy_asset_id": "LEGACY-ASSET-23D3D9769B093AFDCC25",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/management-integration-cell-requirements.md",
+      "source_line": 132,
+      "source_file_sha256": "sha256:f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6",
+      "source_line_sha256": "sha256:9ace7e580dc064b86250c8cb88a991ab8bff812c6c4edec3e0d0a14fdeff143f",
+      "disposition": "reference_only",
+      "candidate_input": false,
+      "relation": "Serial main merge in old orchestration flow; general workflow sequence, not a CONNECT connection kind."
+    }
+  ],
+  "legacy_search": {
+    "record_ref": "docs/governance/audits/requirement-registration/connect-o7-direction-feedback-source-lines-2026-09-29.jsonl#O7-LEGACY-SEARCH-CONNECT-RELATION-2026-09-29",
+    "command": "rg -n -i 'feedback.{0,50}(edge|relation|return)|(edge|relation|return).{0,50}feedback|loop.{0,40}(termination|budget|retry|上限|終了)|(termination|budget|retry|上限|終了).{0,40}loop|serial.{0,30}(connection|relation|merge)|parallel.{0,30}(connection|relation)|paired[_ -]?bidirectional|one[_ -]?way|双方向.{0,40}(接続|relation)|片方向.{0,40}(接続|relation)' archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements archive/legacy-generation-2026-09-14/root/docs/governance/candidates archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements",
+    "scopes": [
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/candidates",
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements"
+    ],
+    "match_count": 18,
+    "search_output_sha256": "sha256:a337468b2cfdd6e37b3fce0fd50420dff7766845d4f0048f96c6a792c42f61de",
+    "absence_limit": "The searched archive directories and query terms are bounded; no claim is made for requirements.json or all archive paths."
+  },
+  "current_adopted_boundary": {
+    "connect": "docs/helix-connect/L2-requirements/connect-requirements.md#HELIXCONNECT-L2-001/002/004/005/007; L2-001 already carries direction in connection identity, L2-002 stale recheck, L2-004 retry upper bound, L2-005 trace, L2-007 composite partial-failure behavior.",
+    "harness": "docs/helix-harness/L2-requirements/product-requirements.md:182; current relation vocabulary remains owned there and is not changed by this candidate.",
+    "os": "HELIXOS-L2-040 retry-limit return, HELIXOS-L2-044 prose-only feedback not resolving a finding; this candidate does not own retry policy, work ownership, or resolution.",
+    "security": "Existing operation-specific SECURITY authority applies independently to every direction; CONNECT does not issue or infer authority."
+  },
+  "version_target": "1.0",
+  "decision_status": "pending_PO; candidate not adopted",
+  "po_decision_packet_ref": "docs/governance/audits/requirements-stage/post-confirmation-25-po-decision-packet-2026-09-28.md#helixconnect-l2-009",
+  "receipt_limits": "Provenance/search scope and new-proposal boundary only. Does not prove a legacy successor, archive-wide absence, semantic closure, requirement adoption, implementation, communication permission, security authority, or acceptance execution.",
+  "task_basis": {
+    "source_type": "tracked_work_request_snapshot_not_legacy_requirement",
+    "source_path": "docs/governance/audits/requirements-stage/ops-o7-request-source-snapshot-2026-09-29.md",
+    "source_file_sha256": "sha256:d97007ea6984cb288ee2db832f05c6fb2b491411a1589a76cd6f3a760b67f11d",
+    "source_lines": "17-27",
+    "record_ref": "docs/governance/audits/requirement-registration/connect-o7-direction-feedback-source-lines-2026-09-29.jsonl#O7-OPS-LOOP-REQUEST-2026-09-28",
+    "authority_effect": "none; work request is not a requirement/adoption/operation authority"
+  },
+  "supersedes_registration_id": "MPR-RC-HELIXCONNECT-L2-009-001",
+  "registration_id": "MPR-RC-HELIXCONNECT-L2-009-002",
+  "supersedes_receipt_ref": "docs/governance/audits/requirement-registration/connect-o7-direction-feedback-coverage-receipt-2026-09-29.json",
+  "correction_reason": "R-PO-L11-CONNECT-009: Split unknown/missing handling by initial send, feedback send, loop retry, parallel join, and ACK/completion so each missing field gates only its relevant operation. L2, empty direct legacy atom set, and other candidate meaning remain unchanged.",
+  "paired_acceptance_digest_rule": "UTF-8 bytes from ### HELIXCONNECT-L11-009 heading to EOF, trailing blank lines removed, exactly one LF at end.",
+  "l2_file_sha256": "sha256:89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2"
+}

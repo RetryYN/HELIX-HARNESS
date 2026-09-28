@@ -97,4 +97,8 @@ sources:
 - **正常例（bounded loop）**：前向き辺A→Bと、理由・source/target identity・revisionを持つfeedback edge B→A、既存のretry/budget policy参照、期限、終端ownerを与える。各反復のattempt countとoperation lineageを累積し、既存上限到達で停止してOS-040等の既存ownerへ未解決として返す。prose feedbackだけでresolvedにしない（OS-044境界）。
 - **正常例（順序）**：複数edgeをserial指定した場合は宣言順と先行条件を維持する。parallel指定では独立するedgeをそれぞれ追跡し、宣言されたjoinの全条件が満たされるまでcompositeを完了扱いしない。
 - **拒否例**：one-way A→BからB→Aの送信権を推論する、paired bidirectionalの片方向だけauthority確認する、方向またはfeedbackのendpoint/contract revisionを欠いたrelationを利用可能扱いする、理由なしfeedbackをresolutionとして扱う、termination policyなしのloop、反復ごとのretry budget reset、宣言のない順序/join、辺の一部成功を全体成功へ伝播する場合は不合格。
-- **unknown例**：endpoint、接続identity、契約revision、既存authority、feedback reason/source、retry上限／budget、期限、join条件、ACKのいずれかがmissing・unknown・stale・conflictなら、送信／retry／完了を成立させず、missing inputとownerを記録して停止する。
+- **unknown例（初回送信）**：送信する辺のendpoint、接続identity、契約revision、またはその送信に適用される既存authorityがmissing・unknown・stale・conflictなら、その辺の初回送信をeligibleにせず、missing inputとownerを記録する。feedback reason、loop policy、parallel join条件、ACKの欠落だけでは、独立して適格な初回送信を止めない。
+- **unknown例（feedback送信）**：feedbackを送る操作に必要なreason、source/target identity、契約revision、独立した逆方向connection、またはその送信に適用されるauthorityがmissing・unknown・stale・conflictなら、feedback送信だけを保留し、未送信のreturn relationとmissing input、ownerを記録する。これを初回送信の不成立やfeedback解決済みへ読み替えない。
+- **unknown例（loop）**：loopのretry上限／budget、期限、停止時の戻し先ownerまたは参照する既存termination policyがmissing・unknown・stale・conflictなら、追加retryを行わずloopを未解決で保留する。これらの欠落だけでは、すでに適格な初回辺の送信可否を遡って変えない。
+- **unknown例（並列合流）**：parallel compositeに宣言されたjoin条件がmissing・unknown・stale・conflictなら、joinとcomposite完了だけを保留する。各辺の送信適格性は独立に判定し、join条件の欠落だけで適格な辺の送信を一括停止しない。
+- **unknown例（ACKと完了）**：ACKが未着、またはACKのoperation/接続identity/契約revisionとの対応がmissing・unknown・stale・conflictなら、送信attempt自体はACK待ちとして保持し、受領確認・operation完了・composite完了を成立させない。missing inputと確認先ownerを記録し、未確認を成功へ丸めない。
