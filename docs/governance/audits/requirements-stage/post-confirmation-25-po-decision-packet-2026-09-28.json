@@ -1,6 +1,6 @@
 {
   "packet_kind": "recommendation_for_PO_decision_only",
-  "basis_commit": "fba91c837cc81f368ca1fb0f0d94f82d1366e38d",
+  "basis_commit": "d6daba2279dcbdb1a6dfa239d0f1e183e6971476",
   "as_of": "2026-09-29",
   "count": 48,
   "status": "48 candidate decisions pending PO; all remain unadopted unless a recorded PO decision says otherwise.",
