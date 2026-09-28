@@ -1107,3 +1107,12 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 **旧sourceと差分**：直接のsource atomは旧L1 requirements `LEGACY-ASSET-719D5EC9C06FC4AAD0FF`のHIL-FR-50 line 140だけである（file SHA-256 `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`、line SHA-256 `9d9c14e1dac400ad6cf1cacdd6a54d82d4a09374d128af2ba3036652655fde54`）。旧HOT-HIL-47 line 74およびHST-HIL-033 line 60は受入設計のoracle参照にとどまり、source atomとして数えない。差分は、旧caseのledger-specific trigger、consumer/pair/oracle集約、変更種別ごとのrouting、rollback欠落時の扱いを一つの候補scopeへ明示すること。旧API、ledger schema、runtime、実行手順は移植しない。
 
 **隣接候補と未解決範囲**：HARNESS-L2-042は異なるv1.3 source atomsに基づく採択済み一般判断なので、本候補へ拡張・改訂しない。HARNESS-L2-048の選択rename範囲もHIL-FR-50の被覆に読み替えない。OSのwriter条件はHARNESSの意味条件を代替しない。source receiptはこの一行の局所対応だけを記録し、holdingを解放しない。HIL-FR-51〜55、HIL-FR-50全体のformal closure、旧IR全体、旧実装・旧testの実行は対象外である。
+
+### HARNESS-L2-052 canonical commandの意味identityと再送判定（HELIX-HARNESS単体候補、未採択）
+
+- **authority／状態**：新規の未採択候補。`registered_proposal`／`authority_effect: none`。2026-09-29の57候補PO判断の対象外であり、要求採択、L3承認、実装・実行許可、旧要求の正式後継割当を生成しない。`version_target`は旧HIL-FR-52に指定がないため付けない。
+- **親L1**：`HARNESS-L1-001/003/004`。要求意味とV-pair、変更影響・trace、oracle・evidenceの責務に限る。OSの保存・commit運転をHARNESSへ移さない。
+- **意味identity**：canonicalization commandのidentityは、呼出し側のcommand ID、操作scope、対象base revision、正規化した意味payloadのdigestを結んだものとする。command IDだけ、文書path、PR/Issue番号、到着時刻を意味identityの代替にしない。正規化規則と対象scopeのrevisionを記録し、入力payloadを同じ規則・同じrevisionで評価したときだけ同じ意味digestとする。HARNESSはこの意味照合条件とconflict分類を定め、永続保存や実際のcommitを所有しない。
+- **再送・競合条件**：同一command ID・scope・base・payload digestの再送は同一操作identityとして扱い、同じ意味結果へ結ぶ。既に記録されたcommand IDが異なる意味payload digest、scopeまたはbaseに結ばれている場合は`conflict`として返し、先行identityや先行receiptを上書きしない。command IDが同じというだけで異なるpayloadを冪等再送として受理しない。baseのcurrentness／CAS拒否の運転と保存はHELIX-OSの所有であり、本候補はその結果を入力として意味分類する。
+- **境界と既存要求**：`HARNESS-L2-003/004/008/016`の既存意味形成、identity、trace、影響、受入責務を変更しない。要求の採否、authority、canonical revision発行、stale伝播、event/projection/receipt保存、rollback、command記録のdurabilityはOSおよび各既存ownerへ残す。本候補から新しい承認者、毎回の人間承認、永続schema、DB名を導入しない。
+- **旧sourceと差分**：旧HIL-FR-52 line 142のcommand idempotencyを意味identity条件として再導出する。保持するのは同一操作の再送と異payloadの混同拒否である。異payloadを同一command IDへ送るnegative oracleはHOT-HIL-49を限定的な受入設計参照として加える。HARNESS-L2-052は原子的な多artifact保存・projection・rollbackの実行を持たず、`harness.db`を現行機構名や再利用対象としない。HIL-FR-53 line 143のasset lineage、rename/move/split/merge/supersedeは入力にしない。

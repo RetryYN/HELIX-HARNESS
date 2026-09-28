@@ -823,3 +823,13 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **未見例**：作成側に伏せたconsumerまたはorphan edge、同名異義のrow、scope外の隣接ledger revisionを与える。既知母集団外・適用oracle不明の範囲をunknownに保ち、未見consumerなし、影響なし、全体closureと推定しない。
 - **証拠と境界**：receiptは対象revision、scope、evidence参照、未評価範囲、戻し先を識別する。文書・receiptの存在だけで実際の変更、rollback成功、要求採択、L3承認、OS writer実行、CI、受入完了を主張しない。HOT-HIL-47/HST-HIL-033は設計oracleとして参照するだけで、実行しない。
 - **明示的除外**：HIL-FR-51/52/53/54/55をこの対受入へ含めない。HIL-FR-50の全旧条件、HIL-BR-25/HIL-NFR-29の全条件、旧test/runtimeの実行結果についてclosureを主張しない。
+
+### HARNESS-L11-052 canonical command意味identityと異payload再送の受入候補（未実行）
+
+- **対応要求・状態**：`HARNESS-L2-052`（HELIX-HARNESS単体候補、未採択）。本節は静的oracle案であり、実行・採択・旧case合格・canonicalization実装を主張しない。
+- **正常例**：同じcommand ID、scope、base revision、正規化規則revisionおよび意味payloadを持つ初回要求と再送を与える。両方が同一のcommand意味identity／意味結果へ対応し、再送を別の意味変更として数えないことを確認する。command ID以外の入力が同じであることを比較根拠としてreceiptに残す。
+- **異payloadの負例**：最初のcommand IDを受け付けた後、同じIDで一つの意味payload atomだけを変えた再送を与える。後続要求が`conflict`となり、先行identity・先行意味結果・先行receiptのdigestとrevisionが変わらず、二つ目の意味revisionが生じないことを確認する。payload digestの欠落、scope違いまたは正規化規則revision違いを同一payloadとみなさない。
+- **base競合の負例**：同一command ID・同一payloadでbase revisionのみが古い、または先行登録時と異なる入力を与える。意味identityの照合結果とOSのbase CAS結果を別々に記録し、OSがstale/conflictを返した場合にHARNESSが新しい意味canonicalizationとして受理しないことを確認する。
+- **unknown・欠落例**：command ID、scope、base、payload digest、正規化規則revisionまたは先行identityのいずれかを欠落・不一致にする。値を補完・推測せず`unknown`または`conflict`とし、passにしない。別scope・別revisionのoracleで不足を埋めない。
+- **証拠と責務境界**：oracleは入力各値、正規化規則revision、先行・後続semantic digest、判定、先行receiptの不変性と差戻し先を結ぶ。意味照合結果は、OSの永続化、multi-artifact commit、failure isolation、実際のretry成功、L3承認、要求採択、CIまたは全FR-52/53 closureを主張しない。HOT-HIL-49の異payload conflict条件はoracle設計の参照元として記録するだけで実行しない。
+- **旧sourceとの対応・除外**：旧HIL-FR-52 line 142のcommand idempotencyを保持し、HOT-HIL-49のsame-command/different-payload negative caseで反証可能にする。base CASとartifact故障注入は対HELIXOS-L2/L11-053で扱う。HIL-FR-53 line 143およびHOT-HIL-49に列挙されたrename/split/merge、asset authority/oracle/typed edge保持は本受入の対象外であり、別のsource holdingに保持する。

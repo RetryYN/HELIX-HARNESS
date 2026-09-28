@@ -1,0 +1,177 @@
+{
+  "receipt_id": "MPR-RCPT-HELIXOS-053-FR52-2026-09-29",
+  "receipt_state": "candidate_scope_recorded",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### HELIXOS-L2-053見出しからEOFまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256（sha256: prefixなし）をatom順に改行連結。末尾改行なし。",
+  "scope": "HIL-FR-52 atomic artifact set, no partial canonical publication, base CAS and receipt evidence atoms. HOT-HIL-49 boundary failures are design references. No command meaning ownership or FR53 closure.",
+  "candidate_identity": "HELIXOS-L2-053",
+  "requirement_kind": "unit",
+  "candidate_semantic_digest": "sha256:161e0d0456fce3fd00701a0ff7f582804a02cc7da030628169d1024ce41b8258",
+  "paired_acceptance_identity": "HELIXOS-L11-053",
+  "paired_acceptance_digest": "sha256:4cf14acd12981897bf91c6d0548981bdfce45bbee4b7ed1545a08e7cad7e380d",
+  "candidate_l2_file_sha256": "sha256:05eecbde48f4b6205bdd9a66687217feb9658de88397bc3a78107c3c309e433b",
+  "paired_acceptance_file_sha256": "sha256:cce42f26d474a19a988943a8a24323ef89d016f3b3b78d7e7978ed9cb87ca5ec",
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/helixos-fr52-atomicity-source-lines-2026-09-29.jsonl",
+  "source_atom_set_digest": "sha256:6fd5426dbfdcbb3a7790104b60c32063a865319d61a12f7c0653302fb7a206de",
+  "source_atom_count": 4,
+  "source_collection_scope": "MPR-SH-SEMANTIC-LINE-003のHIL-FR-52 line 142を5つの意味atomへ一度だけ分割した共通partitionから、このcandidateに割当てられたatomのみを選ぶ。HIL-FR-52の全source rowは2候補でno_loss; HIL-FR-53 line 143、FR53各意味、旧IR recordはcandidate atomとして二重計上せずholdingに残す。HOT-HIL-49はread-only oracle参照で追加source atomではない。",
+  "atoms": [
+    {
+      "atom_id": "FR52-ARTIFACT-ATOMIC-L0142",
+      "source_holding_registration_id": "MPR-SH-SEMANTIC-LINE-003",
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_line": 142,
+      "source_line_sha256": "sha256:c159d3113bc2719dd5f8492468407706c2d79978942aa8f0cf96bccc6936fda8",
+      "source_text": "| **HIL-FR-52** | Atomic Canonicalization TransactionはMarkdown、asset revision、event ledger、trace、impact、stale propagation、harness.db projection、receiptを単一operationで原子的に更新する。部分成功をCanonicalとして扱わず、command idempotencyとbase revision CASを強制する。 | canonicalization receipt、before/after revision、write count、rollback/conflict receipt |",
+      "source_span_text": "Atomic Canonicalization TransactionはMarkdown、asset revision、event ledger、trace、impact、stale propagation、harness.db projection、receiptを単一operationで原子的に更新する。",
+      "source_span_start_char": 18,
+      "source_span_end_char": 173,
+      "source_requirement_id": "HIL-FR-52",
+      "relation": "non-overlapping semantic partition of HIL-FR-52 line 142; owner別artifactを単一logical operationとして確定する。旧harness.dbは現行DB名として扱わない",
+      "candidate_identity": "HELIXOS-L2-053",
+      "disposition": "semantic_rederivation_candidate",
+      "human_decision_disposition_refs": []
+    },
+    {
+      "atom_id": "FR52-NO-PARTIAL-L0142",
+      "source_holding_registration_id": "MPR-SH-SEMANTIC-LINE-003",
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_line": 142,
+      "source_line_sha256": "sha256:c159d3113bc2719dd5f8492468407706c2d79978942aa8f0cf96bccc6936fda8",
+      "source_text": "| **HIL-FR-52** | Atomic Canonicalization TransactionはMarkdown、asset revision、event ledger、trace、impact、stale propagation、harness.db projection、receiptを単一operationで原子的に更新する。部分成功をCanonicalとして扱わず、command idempotencyとbase revision CASを強制する。 | canonicalization receipt、before/after revision、write count、rollback/conflict receipt |",
+      "source_span_text": "部分成功をCanonicalとして扱わず、",
+      "source_span_start_char": 173,
+      "source_span_end_char": 194,
+      "source_requirement_id": "HIL-FR-52",
+      "relation": "non-overlapping semantic partition of HIL-FR-52 line 142; 一部writeをcurrent canonicalとして公開しない",
+      "candidate_identity": "HELIXOS-L2-053",
+      "disposition": "semantic_rederivation_candidate",
+      "human_decision_disposition_refs": []
+    },
+    {
+      "atom_id": "FR52-BASE-CAS-L0142",
+      "source_holding_registration_id": "MPR-SH-SEMANTIC-LINE-003",
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_line": 142,
+      "source_line_sha256": "sha256:c159d3113bc2719dd5f8492468407706c2d79978942aa8f0cf96bccc6936fda8",
+      "source_text": "| **HIL-FR-52** | Atomic Canonicalization TransactionはMarkdown、asset revision、event ledger、trace、impact、stale propagation、harness.db projection、receiptを単一operationで原子的に更新する。部分成功をCanonicalとして扱わず、command idempotencyとbase revision CASを強制する。 | canonicalization receipt、before/after revision、write count、rollback/conflict receipt |",
+      "source_span_text": "base revision CASを強制する。",
+      "source_span_start_char": 214,
+      "source_span_end_char": 237,
+      "source_requirement_id": "HIL-FR-52",
+      "relation": "non-overlapping semantic partition of HIL-FR-52 line 142; commit時にbase CASし、stale/conflictで先行currentを保護する",
+      "candidate_identity": "HELIXOS-L2-053",
+      "disposition": "semantic_rederivation_candidate",
+      "human_decision_disposition_refs": []
+    },
+    {
+      "atom_id": "FR52-RECEIPT-EVIDENCE-L0142",
+      "source_holding_registration_id": "MPR-SH-SEMANTIC-LINE-003",
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_line": 142,
+      "source_line_sha256": "sha256:c159d3113bc2719dd5f8492468407706c2d79978942aa8f0cf96bccc6936fda8",
+      "source_text": "| **HIL-FR-52** | Atomic Canonicalization TransactionはMarkdown、asset revision、event ledger、trace、impact、stale propagation、harness.db projection、receiptを単一operationで原子的に更新する。部分成功をCanonicalとして扱わず、command idempotencyとbase revision CASを強制する。 | canonicalization receipt、before/after revision、write count、rollback/conflict receipt |",
+      "source_span_text": "canonicalization receipt、before/after revision、write count、rollback/conflict receipt",
+      "source_span_start_char": 240,
+      "source_span_end_char": 324,
+      "source_requirement_id": "HIL-FR-52",
+      "relation": "non-overlapping semantic partition of HIL-FR-52 line 142; 成功・失敗receiptで前後revision、write数、rollback/conflict結果を追跡する",
+      "candidate_identity": "HELIXOS-L2-053",
+      "disposition": "semantic_rederivation_candidate",
+      "human_decision_disposition_refs": []
+    }
+  ],
+  "cross_candidate_partition": {
+    "partition_group_id": "HIL-FR-52-L0142-CANDIDATE-PARTITION-2026-09-29",
+    "source_requirement": "HIL-FR-52",
+    "source_line": 142,
+    "source_line_sha256": "sha256:c159d3113bc2719dd5f8492468407706c2d79978942aa8f0cf96bccc6936fda8",
+    "partition_rule": "同じ旧要求rowを複数candidateへ重複計上せず、5 semantic clause atomを各1回割当てる。command idempotencyはHARNESS-L2-052、artifact atomicity・部分公開拒否・base CAS・receipt evidenceはHELIXOS-L2-053へ割当て。",
+    "atom_routes": [
+      {
+        "atom_id": "FR52-CMD-IDENTITY-L0142",
+        "candidate_identity": "HARNESS-L2-052"
+      },
+      {
+        "atom_id": "FR52-ARTIFACT-ATOMIC-L0142",
+        "candidate_identity": "HELIXOS-L2-053"
+      },
+      {
+        "atom_id": "FR52-NO-PARTIAL-L0142",
+        "candidate_identity": "HELIXOS-L2-053"
+      },
+      {
+        "atom_id": "FR52-BASE-CAS-L0142",
+        "candidate_identity": "HELIXOS-L2-053"
+      },
+      {
+        "atom_id": "FR52-RECEIPT-EVIDENCE-L0142",
+        "candidate_identity": "HELIXOS-L2-053"
+      }
+    ],
+    "partition_result": "all five semantic atoms assigned exactly once; no overlap; no unaccounted FR-52 line-142 atom"
+  },
+  "oracle_reference": {
+    "asset_id": "LEGACY-ASSET-AFE91778057B7E76BEEC",
+    "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+    "source_file_sha256": "sha256:4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+    "source_line": 76,
+    "source_line_sha256": "sha256:fe4a8d1f7752a6d2cea666b009d17b5982c8368a04c117a93cef521c938c5ce3",
+    "source_text": "| **HOT-HIL-49** | HIL-FR-52, HIL-FR-53, HIL-NFR-31/32 | Markdown、DB、receiptの各段へfaultを注入し、rename/split/mergeとstale base revisionを実行する | 部分current 0、同一command冪等、異payload conflict、identity・authority・oracle・typed edge保持を証明する |",
+    "use": "read-only acceptance oracle design reference only; not counted as a requirement atom and not executed"
+  },
+  "parent_l1_ids": [
+    "HELIXOS-L1-003",
+    "HELIXOS-L1-004",
+    "HELIXOS-L1-008",
+    "HELIXOS-L1-009"
+  ],
+  "current_condition_refs": [
+    "docs/concept/helix-concept.md",
+    "docs/helix-harness/L1-planning/product-intent.md",
+    "docs/helix-os/L1-planning/system-intent.md",
+    "docs/helix-harness/L2-requirements/product-requirements.md#HARNESS-L2-052",
+    "docs/helix-harness/L11-acceptance/product-acceptance.md#HARNESS-L11-052",
+    "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-053",
+    "docs/helix-os/L11-acceptance/governance-acceptance.md#HELIXOS-L11-053",
+    "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+    "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+    "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+    "docs/governance/audits/requirements-stage/hil-fr52-53-atomic-canonicalization-identity-audit-2026-09-29.md"
+  ],
+  "parent_concept_revision": "docs/concept/helix-concept.md@e20a716f510d6bf423386e24a18e54f40ce298d0 sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+  "parent_planning_revision": "docs/helix-os/L1-planning/system-intent.md@e20a716f510d6bf423386e24a18e54f40ce298d0 sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+  "coverage_result": "no_loss",
+  "condition_closure": "not_asserted",
+  "unaccounted_atom_refs": [],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-SEMANTIC-LINE-003#remaining atoms (FR52 source row is split only at the five listed semantic spans)",
+    "MPR-SH-IR-003#HIL-FR-52 record; IR namespace remains held and is not double-counted as a second source atom",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-requirements-L0143 (HIL-FR-53 full line remains unassigned; not input to either candidate)"
+  ],
+  "decision_status": "pending_PO; HARNESS-L2-052 and HELIXOS-L2-053 are outside the 57-candidate decision and remain unadopted",
+  "open_boundary": "Existing adopted HARNESS/OS requirement revisions remain authoritative unchanged. HARNESS owns semantic command identity; OS owns durable artifact transaction and failure isolation. FR-53 identity lineage, rename/move/split/merge/supersede remains separate in source holding. Old harness.db is historical projection wording only; no current successor is declared.",
+  "registration_id": "MPR-RC-HELIXOS-L2-053-001",
+  "candidate_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-053",
+  "paired_acceptance_path": "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l11-053",
+  "source_requirement_atom_routes": {
+    "FR52-CMD-IDENTITY-L0142": "HARNESS-L2-052",
+    "FR52-ARTIFACT-ATOMIC-L0142": "HELIXOS-L2-053",
+    "FR52-NO-PARTIAL-L0142": "HELIXOS-L2-053",
+    "FR52-BASE-CAS-L0142": "HELIXOS-L2-053",
+    "FR52-RECEIPT-EVIDENCE-L0142": "HELIXOS-L2-053"
+  },
+  "human_decision_disposition_refs": [],
+  "registered_at": "2026-09-29T07:39:45+09:00",
+  "registered_by": "Codex execution lane",
+  "legacy_source_revision": "legacy-generation-2026-09-14"
+}
