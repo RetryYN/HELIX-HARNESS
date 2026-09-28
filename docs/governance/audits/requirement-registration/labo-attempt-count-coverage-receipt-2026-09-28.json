@@ -1,0 +1,112 @@
+{
+  "receipt_id": "MPR-RCPT-LABO-ATTEMPT-COUNT-2026-09-28",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### HELIXLABO-L2-068見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "acceptance_candidate_digest_rule": "L11の### HELIXLABO-L2-068見出しからEOFまでのUTF-8 bytes。",
+  "source_atom_set_digest_rule": "atom_id + 半角空白 + sha256:付きsource_line_sha256。末尾改行なし。",
+  "scope": "LEGACY-CAND-LINE-001656第3文のS3C（総Attempt count）だけをHELIXLABO-L2/L11-068へcandidate-scopedで対応づける。S3A first-eligible boundaryおよびS3B same-Attempt repair-round visibilityは本入力から除外し、067の既存receiptを変更しない。no_lossはこのS3C atomだけに限り、source lineの他の意味、隣接行、旧candidate全体、OS側記録完全性を主張しない。",
+  "source_boundary_review": {
+    "sentence_spans_source_lines": true,
+    "selected_source_line_ids": [
+      "LEGACY-CAND-LINE-001656"
+    ],
+    "selected_subatom_ids": [
+      "LABO-ATTEMPT-COUNT-LEGACY-CAND-LINE-001656-S3C-ATTEMPT-COUNT"
+    ],
+    "out_of_scope_source_line_ids": [
+      "LEGACY-CAND-LINE-001655",
+      "LEGACY-CAND-LINE-001657"
+    ],
+    "classification_false_negative_found": false,
+    "classification_note": "既存OSのassignment/Attempt identity、event/evidence、結果/訂正receiptは入力候補になるが、OSが対象範囲の全Attempt捕捉を証明しない場合の総数はunknownである。LABO-065のretry_count（初回後retry数）から換算せず、067のAttempt内repair roundsからも換算しない。",
+    "source_line_remainder_disposition": "第3文の複合表記「Attempt/repair回数」から総Attempt count component（S3C）だけを本candidate inputとする。repair component（S3B）は067の既存receiptに残す。第一文の列挙「Attempt count」は意味確認のsupporting mentionであり別atomではない。同一行のtelemetry列挙、silent-rename条件、隣接行、旧candidate全文はMPR-SH-CANDIDATE-003に保全する。",
+    "preserved_pending_subatom_ids": [
+      "LEGACY-CAND-LINE-001656",
+      "S3A/S3Bは既存067 receiptで管理"
+    ]
+  },
+  "candidates": [
+    {
+      "requirement_identity": "HELIXLABO-L2-068",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HELIXLABO-L1-005",
+        "HELIXLABO-L1-011"
+      ],
+      "version_target": "1.0",
+      "candidate_semantic_digest": "sha256:7e3df32b0131722c88ae148c4cbfa9a1be20f81826099c0ceb29a674e07030e2",
+      "acceptance_candidate_digest": "sha256:3dcf068de1351b2e8c1f2d772ec9273cb7908368a32b389ee40ce51929ad8d94",
+      "source_atom_set_digest": "sha256:29253e0976beb39dec178b28a348890e7d9290fad406a25a72ca876994adf3a9",
+      "source_atom_count": 1,
+      "source_collection_scope": "LEGACY-CAND-LINE-001656第3文S3Cの総Attempt count atom 1件のみ。S3A/S3Bは本receiptへ重複入力せず、同一行の他atomと旧candidate全体は保全する。",
+      "atoms": [
+        {
+          "atom_id": "LABO-ATTEMPT-COUNT-LEGACY-CAND-LINE-001656-S3C-ATTEMPT-COUNT",
+          "candidate_source_line_id": "LEGACY-CAND-LINE-001656",
+          "source_holding_registration_id": "MPR-SH-CANDIDATE-003",
+          "legacy_asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+          "source_file_sha256": "sha256:f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+          "source_line": 399,
+          "source_line_sha256": "sha256:58be97d309362b845682602ae352b1954ed433fbc4b6552791f89be07d70db4f",
+          "source_text_span": "Attempt/repair回数",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "inventory_atomization_status": "preserved_pending_atomization",
+          "disposition": "narrow_candidate_subatom",
+          "relation": "選択した総Attempt count意味を068へ対応づける。Attempt identityを持たないpre-execution rejected intakeは数えず、OSが記録完全性を示せない場合はunknownを返す。",
+          "selected_span": "複合表記「Attempt/repair回数」のうち、Attempt countを表す側（S3C）。repairはS3Bとして067で扱う。",
+          "supporting_source_mention": "第一文の列挙「Attempt count」はS3Cの意味を確認するsupporting mentionであり、別atom／別計上ではない。",
+          "selected_semantic_fragment": "複合表記Attempt/repair回数から抽出する総Attempt count component。repair-round visibilityは別atom S3Bとして067に保持。",
+          "selected_sentence_span": "Attempt/repair回数"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-labo/L1-planning/labo-intent.md#HELIXLABO-L1-005",
+        "docs/helix-labo/L1-planning/labo-intent.md#HELIXLABO-L1-011",
+        "docs/helix-labo/L2-requirements/labo-requirements.md#HELIXLABO-L2-059",
+        "docs/helix-labo/L2-requirements/labo-requirements.md#HELIXLABO-L2-065",
+        "docs/helix-labo/L2-requirements/labo-requirements.md#HELIXLABO-L2-067",
+        "docs/helix-labo/L2-requirements/labo-requirements.md#HELIXLABO-L2-068",
+        "docs/helix-labo/L11-acceptance/labo-acceptance.md#HELIXLABO-L2-068",
+        "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-018",
+        "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-019",
+        "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-023"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": [],
+      "carried_atom_refs": [
+        "LABO-ATTEMPT-COUNT-LEGACY-CAND-LINE-001656-S3C-ATTEMPT-COUNT"
+      ],
+      "preserved_pending_atom_refs": [
+        "MPR-SH-CANDIDATE-003#LEGACY-CAND-LINE-001656 remainder"
+      ]
+    }
+  ],
+  "source_line_coverage_result": "candidate_scoped_no_loss_for_S3C_only; S3A/S3B are separately mapped by HELIXLABO-L2/L11-067; full_line_closure_not_claimed",
+  "preserved_pending_atom_refs": [
+    "MPR-SH-CANDIDATE-003#LEGACY-CAND-LINE-001656 remainder"
+  ],
+  "internal_PO_choice": null,
+  "po_decision_frame": {
+    "selection_status": "pending_PO",
+    "selected_option": null,
+    "recommended_option": "A",
+    "recommendation_is_decision": false,
+    "options": [
+      {
+        "id": "A",
+        "meaning": "HELIXLABO-L2/L11-068 exact revisionだけを採択し、OSが記録完全性を示せる明示範囲のdistinct Attempt identity countを観測する。065/067/059およびOSの既存意味は変更しない。"
+      },
+      {
+        "id": "B",
+        "meaning": "068を未採択で保留し、S3C atomとMPR-SH-CANDIDATE-003を生存させる。"
+      },
+      {
+        "id": "C",
+        "meaning": "対象source subatom/revision・理由・consumer影響を特定して意味変更またはretireする。"
+      }
+    ],
+    "recommendation_rationale": "OSにはassignment/Attempt identityとevent/evidence/result/訂正の既存記録があり、LABOは観測countを別候補にできる。ただし記録完全性はscopeごとに確認し、確認不能ならunknownとする。pre-executionの拒否intakeでOSがAttempt identityを発行していないものは除外する。065 retry_count+1や067 repair countの換算は行わず、066/067/065本文を変更しない。"
+  }
+}

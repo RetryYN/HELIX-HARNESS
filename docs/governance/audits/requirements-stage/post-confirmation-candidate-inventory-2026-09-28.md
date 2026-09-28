@@ -138,3 +138,11 @@ A＝exact L2/L11-042の限定採択（推奨）、B＝原atomを保留、C＝sou
 旧`LEGACY-CAND-LINE-001656`（archive execution-ticket-requirements.md:399）第3文をfirst-eligible境界／repair-round visibility／総Attempt countの3 subatomへ分け、前2件だけをcandidate inputとする。総Attempt count subatomは`MPR-SH-CANDIDATE-003`へpending保全し、067では算出しない。source holdingは生存し、同一行のtelemetry列挙・silent-rename条件、隣接行、旧candidate全体のclosureは主張しない。source/file/line SHA、selected/pending subatom境界、candidate digestおよびL11 digestはsource-lines、coverage receipt、registerへ固定する。
 
 旧source S3はfirst-passの「初回」を最初のeligible candidateとするが、未採択LABO-065の`first_pass`は最初のAttemptの受入oracle結果であり、candidate境界とtask Attempt境界で定義が異なる。両候補が将来採択されても二指標は並立し、旧source定義に沿うのは067の`first_eligible_candidate_result`だけで、065の`first_pass`と同一化・代替・合算しない。採択済みLABO-059の品質・比較・費用意味と現行065本文は変更せず、067の`same_attempt_repair_round_count`も別grainで、総Attempt countを算出せず、065の採択を依存条件としない。OS-L2-014への旧source relationは確認したが、記録上のmeaning coverageはunknownであり、段階構成責務はLABO task telemetryを閉じない。候補採否のPO判断packetはA＝067 exact L2/L11のみ採択を推奨する。B＝source holdingと候補を保留、C＝対象subatom・revision・理由・影響付きの意味変更/retire。`internal_PO_choice`は未決（null）、A/B/Cは未選択で、推奨はPO判断を意味しない。これとは別の未決`definition_alignment`次元ではD1＝065/067を別定義の指標として並立（推奨）、D2＝065を旧定義へ寄せる別revisionについてPO判断、D3＝旧定義を対象revisionで理由・影響付きretireを選ぶが、067 exact revisionの採択Aとは同時選択不可で、A採択後のretireには067別revisionまたはretireの別PO判断が要る。D1なら両候補採択時にも旧source定義に沿うのは067側だけである。D1/D2/D3も未選択で、候補採否を決めない。どの選択肢も実験・資格試験・Worker割当・実装許可を生成しない。
+
+## 後続候補：HELIXLABO-L2-068（#2271後）
+
+| 機構 | 候補・L2本文 | 対のL11 | 生存register revision・coverage receipt |
+|---|---|---|---|
+| LABO | [HELIXLABO-L2-068：Worker Attempt countの観測（単体追補候補、1.0）](../../../helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-068) | [L11受入候補](../../../helix-labo/L11-acceptance/labo-acceptance.md#helixlabo-l2-068) | `MPR-RC-HELIXLABO-L2-068-001`; `labo-attempt-count-coverage-receipt-2026-09-28.json#HELIXLABO-L2-068` |
+
+旧`LEGACY-CAND-LINE-001656`第3文S3C（総Attempt count）だけをcandidate inputとする1 atomの局所receipt。S3A/S3Bと#2271のreceiptは保持し、source line全体のclosureは主張しない。OSが明示範囲の全Attempt記録を証拠づけられる時だけdistinct identityを数え、完全性不明はunknownとする。Attempt identityのない実行前拒否intakeは対象外。065の`retry_count`や067のrepair roundから換算しない。候補は`registered_proposal` / `authority_effect:none`、PO未決・未採択。
