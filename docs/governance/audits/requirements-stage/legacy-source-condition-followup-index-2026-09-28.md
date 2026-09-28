@@ -48,3 +48,8 @@
 ## 後続訂正：HELIXOS-L2-042 source reference digest表記
 
 39候補packet JSONにあったHELIXOS-L2-042のarchive line 431 source reference値`sha256:sha256:53d8b2cd66448f9c5d4828b8fbe99d3bffed93b237fe86e0f515b3d1d7ad933f`を`sha256:53d8b2cd66448f9c5d4828b8fbe99d3bffed93b237fe86e0f515b3d1d7ad933f`へ訂正した。値の直列化だけを直し、旧source atom、receipt、coverage意味を変更していない。
+
+
+## 後続追加：HR-FR-P2-06／HELIXOS-L2-043
+
+旧v1.3 §4.10 HR-FR-P2-06 archive line 429（`REQSRC-SUP-00331`、`MPR-SH-SUPPLEMENTARY-003`）とbaseline 6fabd125 line 410（`MPR-SH-V13-BASELINE-001`）の4 sentence-clause atomsを、typed-event S1 2 atomとNode-exclusive S2 2 atomに分けて照合した。S1のみを[HELIXOS-L2-043](../../../helix-os/L2-requirements/governance-requirements.md#helixos-l2-043)/対L11へ候補化し、S1 subsetは`no_loss`、unaccounted atom refsは空。source line全体はpartial/no-loss非主張。S2原文「Node control planeだけがapprovalとwrite transactionを決定する」は両holdingに`preserved_pending`。PO選択A=Node専有保持、B=現行責務へ明示再導出、C=理由付きretire、D=保留（現時点推奨）。登録`MPR-RC-HELIXOS-L2-043-001`、candidate input 2 atom、`authority_effect:none`。
