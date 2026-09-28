@@ -312,3 +312,19 @@ A＝HARNESS-L2/L11-047 exact candidate revisionを選び、HARNESSをnormative c
 | CONNECT | [HELIXCONNECT-L2-008](../../../helix-connect/L2-requirements/connect-requirements.md#helixconnect-l2-008) | [HELIXCONNECT-L11-008](../../../helix-connect/L11-acceptance/connect-acceptance.md#helixconnect-l11-008) | `MPR-RC-HELIXCONNECT-L2-008-002（-001のdigest訂正revision）`; `connect-v13-hyb-002-profile-supply-coverage-receipt-2026-09-29.json` |
 
 A（推奨）＝CONNECTがprofile catalog/identity/config/typed descriptorを供給し、SECURITYがpolicy/read-only operation safetyを所有。B＝profile/probe供給全体をSECURITYへ移し、責務境界を変更。C＝6 atomを保留、またはrevision・理由・影響付き意味変更/retire。すべて未選択。SECURITY-034は独立未採択候補で、本候補は採択を依存としない。
+
+## P2 決定軸の分離（48候補、すべて未選択）
+
+この節と同名JSONの`decision_axes`は、上の候補判断を**採否、原文の意味の処置、所属・対象範囲、導入版**へ分けて表示する。48候補すべてに各軸の`selected: null`を置き、推奨をPO選択へ変換しない。旧A/B/Cの文字は各候補固有の選択肢を指し、別軸へ転用しない。候補を採択する場合でも、対象は登録されたexact revisionとその本文・受入に限る。別の所属・範囲・版・意味へ変えるには対象revisionと判断を別に特定する。source dispositionは引用receiptのatomだけに適用し、候補外の条件は生存holding／残差に残す。L3承認、実装、release、配布はこのpacketから生じない。
+
+| 判断事項 | 分離してPOに示す軸 | 未決の具体点 |
+|---|---|---|
+| HARNESS-045／OS-039 | 既存pairの両exact revision採否と、予算・期限の意味 | 039のbudget欠如拒否、045の値または参照の必須形と別に、単位、参照の未解決／stale、超過時の扱い、例外・値の決定責務が未確定。旧IMP-049の直列化条件／parallel capは別残差。 |
+| OS-045 | exact候補採否、旧HARNESS sourceの保持／OSへの移管／意味変更・retire、対象機構集合、`version_target` | 現行A/B/Cは複数軸を束ねる歴史的本文として保持する。全8機構・Web・1.0を推定しない。版の値は未指定。 |
+| LABO-067 | exact候補採否とfirst-pass定義の整合 | D1＝065の初回Attemptと067の初回eligible candidateを別指標で並立（推奨）、D2＝065の別revision、D3＝旧定義の理由・影響付きretire。D3と現行067採択は同時選択できない。総Attempt countの068は別指標。 |
+| HARNESS-043/044 | FR54/55 route、各候補採否、配置 | routeを選んでも各候補とownerは採択されない。 |
+| HARNESS-047／CONNECT-008 | exact候補採否と代替owner配置 | 047はHARNESS対INTELLIGENCE、008はCONNECT対SECURITY。現行の提案配置は選択済みではない。008の生存register revisionは`MPR-RC-HELIXCONNECT-L2-008-002`。 |
+
+Incident immediate-releaseのA/B比較は48候補の外に保つ。Aで例外を残す場合の最低条件は、既決の有効authorityの再利用、対象と作用を明記した一度の許可、backfill義務である。Bで通常Release Portへ統一する場合は、本番障害の復旧時間への影響を根拠付きで示し、値が分からなければunknownとする。OS-044とHELIXOS-L1-006の親関係はtraceの説明を追補する課題であり、新たな採否軸やL1判断へ変えない。
+
+機械可読の全48候補の軸、registration ID、依存する共有frame、候補外の判断材料は[同名JSON](post-confirmation-25-po-decision-packet-2026-09-28.json)の`decision_axes`を参照する。各軸が未選択であることは、この節の「推奨」と区別する。
