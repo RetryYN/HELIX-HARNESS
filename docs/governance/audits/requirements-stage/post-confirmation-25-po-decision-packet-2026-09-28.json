@@ -4148,16 +4148,16 @@
     {
       "identity": "HELIXOS-L2-047",
       "decision_state": "pending_PO; not adopted",
-      "source_basis_class": "旧Ticketのimmutable/revisioned・運用属性分離・管理proposal非上書きとtyped relationを限定保持。返却・再発行はPO原文を起点とする新規案。「依存をつけない」をTicket本文外のOS relation graphと読む部分はPO未確認の解釈案。",
-      "new_meaning_choice": "採否はA＝exact候補採択（推奨）／B＝保留／C＝対象revision・理由・影響を示して変更。別軸で「依存をつけない」の解釈をA＝Ticket本文に埋め込まずOS typed relation graphで持つ（解釈案の推奨）／B＝依存関係自体を持たない／C＝別の範囲を指定して決める。どちらの軸もPO未選択。",
+      "source_basis_class": "旧Ticketのimmutable/revisioned・運用属性分離・管理proposal非上書き・typed relationは限定保持。Ticket非参照境界はPO確認回答の原文に基づく。特定OS graph配置は未採択の新規案。返却・再発行はPO原文を起点とする新規候補。",
+      "new_meaning_choice": "候補採否はA＝exact候補採択（推奨）／B＝保留／C＝対象revision・理由・影響を示して変更。PO確認済みのTicket非参照境界を含む候補の採否は未選択。特定graph配置や下流実装はこの選択だけで確定しない。",
       "recommended_choice": "A",
       "choice_meaning": "Aは登録されたL2/L11のexact候補だけを選ぶ。既存採択済み条件を置換せず、接続先候補を自動採択しない。L3承認、実装、運転、releaseを生成しない。",
       "version_target_as_written": "1.0",
       "title_and_kind": "### HELIXOS-L2-047 チケットの理由付き返却と新revision再発行（単体候補、version_target: 1.0）",
       "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-047",
       "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-047",
-      "registration_id": "MPR-RC-HELIXOS-L2-047-002",
-      "supersedes_registration_id": "MPR-RC-HELIXOS-L2-047-001",
+      "registration_id": "MPR-RC-HELIXOS-L2-047-003",
+      "supersedes_registration_id": "MPR-RC-HELIXOS-L2-047-002",
       "management_state": "registered_proposal",
       "authority_effect": "none",
       "parent_l1_ids": [
@@ -4166,12 +4166,12 @@
       "parent_l1_path": "docs/helix-os/L1-planning/system-intent.md",
       "parent_l1_sha256_current": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
       "parent_planning_revision_recorded": "docs/helix-os/L1-planning/system-intent.md@1aa41a8ba6e750d23a46b832d1513738e84894bb sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e（main基準revision。PO判断対象bytesとの一致は既存decision recordを参照）",
-      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/ops-o1-o2-coverage-receipt-2026-09-29-r2.json#HELIXOS-L2-047",
-      "receipt_id": "MPR-RCPT-OPS-O1-O2-2026-09-29-R2",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/ops-o1-o2-coverage-receipt-2026-09-29-r3.json#HELIXOS-L2-047",
+      "receipt_id": "MPR-RCPT-OPS-O1-O2-2026-09-29-R3",
       "receipt_candidate_digest_rule": "L2 section from `### ID` until next `###`; trim trailing blank lines and terminate with one UTF-8 LF.",
-      "registered_candidate_semantic_digest": "sha256:0edfc5ca4eab9a39bdb74af507c263db3a0b4b68c5a3054f59b5ea8b959a21d6",
-      "receipt_candidate_semantic_digest": "sha256:0edfc5ca4eab9a39bdb74af507c263db3a0b4b68c5a3054f59b5ea8b959a21d6",
-      "current_candidate_semantic_digest": "sha256:0edfc5ca4eab9a39bdb74af507c263db3a0b4b68c5a3054f59b5ea8b959a21d6",
+      "registered_candidate_semantic_digest": "sha256:e19191ce980467fddf5822619ccd480a41c84e6382ad1191ad5ea3ab04192377",
+      "receipt_candidate_semantic_digest": "sha256:e19191ce980467fddf5822619ccd480a41c84e6382ad1191ad5ea3ab04192377",
+      "current_candidate_semantic_digest": "sha256:e19191ce980467fddf5822619ccd480a41c84e6382ad1191ad5ea3ab04192377",
       "candidate_digest_matches_register_and_receipt": true,
       "source_atom_count": 5,
       "source_atom_set_digest": "sha256:dc68e4be063c88914c2f21ed1f709f01e5d5b42773edcb04b008591c1dc6d45f",
@@ -4201,7 +4201,7 @@
           "line": 214
         }
       ],
-      "source_reference_note": "選択した5 spanに限る。typed relationは文脈atomで、本文外graph案の直接根拠ではない。PO一次発話はops-o1-o2-request-source-snapshot-2026-09-29-r2.mdに原文収録し、Claudeの解釈と分離。旧source全体のclosureを主張しない。",
+      "source_reference_note": "選択した5旧source spanに限る。PO確認回答の原文はops-o1-o2-request-source-snapshot-2026-09-29-r3.md。typed relationは文脈で、特定graph配置の直接根拠ではない。",
       "internal_PO_choice": null,
       "paired_l2_id": "HELIXOS-L2-047",
       "paired_l11_id": "HELIXOS-L11-047",
@@ -4233,29 +4233,11 @@
         ]
       },
       "dependency_interpretation": {
-        "source_quote_ref": "docs/governance/audits/requirements-stage/ops-o1-o2-request-source-snapshot-2026-09-29-r2.md",
-        "selection_status": "pending_PO; distinct from candidate adoption",
-        "selected": null,
-        "recommended_option": "A (interpretation proposal only; no authority)",
-        "options": [
-          {
-            "id": "A",
-            "meaning": "Ticket本文へ依存を埋め込まず、必要な依存をOSの既存typed relation graphで管理する"
-          },
-          {
-            "id": "B",
-            "meaning": "Ticketと周辺契約に依存関係自体を持たせない。既存typed relation契約との意味差を別途処分する"
-          },
-          {
-            "id": "C",
-            "meaning": "POが依存禁止の対象と範囲を指定する。影響するTicket/relation要求をその後に改訂する"
-          }
-        ],
-        "affected_requirement_ids": [
-          "HELIXOS-L2-047",
-          "HELIXOS-L2-007"
-        ],
-        "note": "PO原文と旧sourceの間の解釈候補。Aの選択や実装許可を本packetから推定しない。"
+        "status": "PO meaning confirmed in original utterance; candidate adoption remains pending",
+        "po_original": "チケットそのものに参照をつけたり実装の一部みたいに扱わないってこと。",
+        "source_quote_ref": "docs/governance/audits/requirements-stage/ops-o1-o2-request-source-snapshot-2026-09-29-r3.md",
+        "meaning": "Ticket自体を参照結節点にせず、成果物がTicketを要求根拠・実装部品として参照しない。",
+        "specific_graph_placement": "new proposal; no adoption or operation authorization"
       }
     },
     {
@@ -7050,7 +7032,7 @@
       },
       {
         "identity": "HELIXOS-L2-047",
-        "registration_id": "MPR-RC-HELIXOS-L2-047-002",
+        "registration_id": "MPR-RC-HELIXOS-L2-047-003",
         "axes": {
           "candidate_adoption": {
             "selection_status": "pending_PO",
@@ -7058,11 +7040,11 @@
             "decision_ref": "candidate-local",
             "exact_revision": {
               "identity": "HELIXOS-L2-047",
-              "registration_id": "MPR-RC-HELIXOS-L2-047-002",
+              "registration_id": "MPR-RC-HELIXOS-L2-047-003",
               "l2_id": "HELIXOS-L2-047",
               "l11_id": "HELIXOS-L11-047",
-              "candidate_semantic_digest": "sha256:0edfc5ca4eab9a39bdb74af507c263db3a0b4b68c5a3054f59b5ea8b959a21d6",
-              "supersedes_registration_id": "MPR-RC-HELIXOS-L2-047-001"
+              "candidate_semantic_digest": "sha256:e19191ce980467fddf5822619ccd480a41c84e6382ad1191ad5ea3ab04192377",
+              "supersedes_registration_id": "MPR-RC-HELIXOS-L2-047-002"
             },
             "options_ref": "new_meaning_choice",
             "recommendation": "A"
@@ -7072,7 +7054,7 @@
             "selected": null,
             "candidate_source_scope": {
               "source_atom_count": 5,
-              "receipt_ref": "docs/governance/audits/requirement-registration/ops-o1-o2-coverage-receipt-2026-09-29-r2.json#HELIXOS-L2-047",
+              "receipt_ref": "docs/governance/audits/requirement-registration/ops-o1-o2-coverage-receipt-2026-09-29-r3.json#HELIXOS-L2-047",
               "coverage": "partial; fifth typed-relation atom context only, placement interpretation PO-unconfirmed; no full source closure"
             },
             "options_ref": "new_meaning_choice",
@@ -7092,29 +7074,11 @@
             "change_rule": "different target requires new exact candidate revision; adoption is not deployment"
           },
           "dependency_interpretation": {
-            "source_quote_ref": "docs/governance/audits/requirements-stage/ops-o1-o2-request-source-snapshot-2026-09-29-r2.md",
-            "selection_status": "pending_PO; distinct from candidate adoption",
+            "selection_status": "PO original clarification recorded; not a new candidate-adoption decision",
             "selected": null,
-            "recommended_option": "A (interpretation proposal only; no authority)",
-            "options": [
-              {
-                "id": "A",
-                "meaning": "Ticket本文へ依存を埋め込まず、必要な依存をOSの既存typed relation graphで管理する"
-              },
-              {
-                "id": "B",
-                "meaning": "Ticketと周辺契約に依存関係自体を持たせない。既存typed relation契約との意味差を別途処分する"
-              },
-              {
-                "id": "C",
-                "meaning": "POが依存禁止の対象と範囲を指定する。影響するTicket/relation要求をその後に改訂する"
-              }
-            ],
-            "affected_requirement_ids": [
-              "HELIXOS-L2-047",
-              "HELIXOS-L2-007"
-            ],
-            "note": "PO原文と旧sourceの間の解釈候補。Aの選択や実装許可を本packetから推定しない。"
+            "source_ref": "docs/governance/audits/requirements-stage/ops-o1-o2-request-source-snapshot-2026-09-29-r3.md",
+            "meaning": "Ticket自体を参照結節点にせず、成果物がTicketを要求根拠・実装部品として参照しない。",
+            "specific_graph_placement": "new proposal; no authority"
           }
         }
       },

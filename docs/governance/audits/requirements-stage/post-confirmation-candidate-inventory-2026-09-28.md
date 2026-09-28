@@ -179,3 +179,7 @@ HYB-002の3 clauseをarchive/baseline別revisionの6 atomとしてこの候補�
 ## O1候補訂正（#2286再レビュー）
 
 上表の `HELIXOS-L2-047` は履歴表示であり、現行登録は `MPR-RC-HELIXOS-L2-047-002`。PO原文と未確認の依存解釈は[判断packet](post-confirmation-25-po-decision-packet-2026-09-28.md)を参照。訂正receiptは `ops-o1-o2-coverage-receipt-2026-09-29-r2.json#HELIXOS-L2-047`、選択5 atomのpartial。採否・依存解釈は未選択。
+
+## O1候補の現行訂正（#2286再レビュー3）
+
+上の047履歴を `MPR-RC-HELIXOS-L2-047-003` で訂正。PO確認回答、対L11、r3 receipt、未採択状態は[判断packet](post-confirmation-25-po-decision-packet-2026-09-28.md)を参照。

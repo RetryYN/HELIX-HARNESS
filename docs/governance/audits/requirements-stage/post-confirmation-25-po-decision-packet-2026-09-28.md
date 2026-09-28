@@ -348,3 +348,7 @@ PO原文は[訂正source snapshot](ops-o1-o2-request-source-snapshot-2026-09-29-
 
 - `HELIXOS-L2-047`の現行候補は `MPR-RC-HELIXOS-L2-047-002`（`-001`を訂正）。L2 digest `sha256:0edfc5ca4eab9a39bdb74af507c263db3a0b4b68c5a3054f59b5ea8b959a21d6`、[訂正receipt](../requirement-registration/ops-o1-o2-coverage-receipt-2026-09-29-r2.json)は選択5 atomのpartial。採否 A採択（推奨）／B保留／C変更は未選択。
 - **別のPO判断軸「依存をつけない」の意味**：A＝Ticket本文に埋め込まずOS typed relation graphで管理（解釈案として推奨）、B＝依存関係自体を設けない、C＝禁止対象と範囲を別途指定。いずれも未選択。B/Cなら既存OS依存契約と影響要求をrevisionで処分する。
+
+## O1 Ticket非参照境界の確認回答（#2286再レビュー3）
+
+PO原文：「チケットそのものに参照をつけたり実装の一部みたいに扱わないってこと。」[r3 snapshot](ops-o1-o2-request-source-snapshot-2026-09-29-r3.md)に固定。Ticketを参照結節点・実装部品にしない条件をOS-047と対L11へ反映した。特定OS graphへの配置は新規案であり、採択しない。現行候補登録 `MPR-RC-HELIXOS-L2-047-003`（-002を訂正）、digest `sha256:e19191ce980467fddf5822619ccd480a41c84e6382ad1191ad5ea3ab04192377`、receipt r3。候補採否A／B／CはいずれもPO未選択。
