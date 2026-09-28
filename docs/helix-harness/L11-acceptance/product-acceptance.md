@@ -836,3 +836,12 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **未見例**：未知のstage/pair/owner/oracleや列挙範囲外のevidenceを与え、根拠がない項目をunknownに保ち、全体closureや不存在を推定しない。
 - **authority境界**：receipt/document/registerの存在、本oracleの静的確認、または登録状態からPO採択、L3承認、実装・実行許可、旧要求coverage closure、実際のstage exitを生成しない。OSは参照と運転状態を記録する側であり、HARNESSの工程意味やexit判断を決めない。
 - **旧source境界**：旧`LEGACY-ASSET-D27D4A1511BFD43623A9`のlines 47–68、70–72は局所照合の対象で、選択した25 line atomsはすべてsource holdingに残し、HARNESS-L2-051へ直接carryしない。旧条件を正式successorとして数えない。各stageの独立review必須化、defer期限・再入場条件も未採択optionであり、このoracleの必須合格条件ではない。旧test/runtimeは参照・実行しない。
+### HARNESS-L11-052 canonical command意味identityと異payload再送の受入候補（未実行）
+
+- **対応要求・状態**：`HARNESS-L2-052`（HELIX-HARNESS単体候補、未採択）。本節は静的oracle案であり、実行・採択・旧case合格・canonicalization実装を主張しない。
+- **正常例**：同じcommand ID、scope、base revision、正規化規則revisionおよび意味payloadを持つ初回要求と再送を与える。両方が同一のcommand意味identity／意味結果へ対応し、再送を別の意味変更として数えないことを確認する。command ID以外の入力が同じであることを比較根拠としてreceiptに残す。
+- **異payloadの負例**：最初のcommand IDを受け付けた後、同じIDで一つの意味payload atomだけを変えた再送を与える。後続要求が`conflict`となり、先行identity・先行意味結果・先行receiptのdigestとrevisionが変わらず、二つ目の意味revisionが生じないことを確認する。payload digestの欠落、scope違いまたは正規化規則revision違いを同一payloadとみなさない。
+- **base競合の負例**：同一command ID・同一payloadでbase revisionのみが古い、または先行登録時と異なる入力を与える。意味identityの照合結果とOSのbase CAS結果を別々に記録し、OSがstale/conflictを返した場合にHARNESSが新しい意味canonicalizationとして受理しないことを確認する。
+- **unknown・欠落例**：command ID、scope、base、payload digest、正規化規則revisionまたは先行identityのいずれかを欠落・不一致にする。値を補完・推測せず`unknown`または`conflict`とし、passにしない。別scope・別revisionのoracleで不足を埋めない。
+- **証拠と責務境界**：oracleは入力各値、正規化規則revision、先行・後続semantic digest、判定、先行receiptの不変性と差戻し先を結ぶ。意味照合結果は、OSの永続化、multi-artifact commit、failure isolation、実際のretry成功、L3承認、要求採択、CIまたは全FR-52/53 closureを主張しない。HOT-HIL-49の異payload conflict条件はoracle設計の参照元として記録するだけで実行しない。
+- **旧sourceとの対応・除外**：旧HIL-FR-52 line 142のcommand idempotencyを保持し、HOT-HIL-49のsame-command/different-payload negative caseで反証可能にする。base CASとartifact故障注入は対HELIXOS-L2/L11-053で扱う。HIL-FR-53 line 143およびHOT-HIL-49に列挙されたrename/split/merge、asset authority/oracle/typed edge保持は本受入の対象外であり、別のsource holdingに保持する。
