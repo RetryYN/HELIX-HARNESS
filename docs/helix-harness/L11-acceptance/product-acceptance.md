@@ -731,3 +731,15 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 **未見例**：作成側に伏せたactive template revisionまたは新しいapplicability branchを与え、対象rule／branchの分母を更新し、positive／boundary-negative例とoracleへの対応を照合する。新revisionやrisk根拠が欠落・矛盾・staleの場合は十分性を主張せずunknown／未評価にする。結果を未選択template、別scope、別revisionへ外挿しない。
 
 **戻し先と境界**：templateのactive版・適用条件不足はHARNESS-L2-009/対象template owner、rule／branch抽出の不足はHARNESS-L2-041相当の契約owner、oracle・検証義務・risk根拠の不足はHARNESS-L2-004/該当ownerへ戻す。例のcoverage結果は要求合意、設計成立、L3承認、候補採択、実装、OS実行または利用者受入を生成しない。旧schemaやruntime固有形式を受入条件にしない。
+
+### HARNESS-L2-044 design obligation portfolioの契約coverage（HELIX-HARNESS内の部品候補）
+
+**対応要求**：HARNESS-L2-044（HELIX-HARNESS内の部品候補、単体能力、`version_target: 1.0`、未採択。個別部品の配置はPO判断待ち）。親L1は`HARNESS-L1-001/004/009`。本候補は旧HIL-FR-54、`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:144`（line SHA-256 `502ef00823463c0fd4218c7b554e4b6959fc28aa9006d6d6eb79f555b86b4f67`）の意味条件を現行の抽象的なcoverage契約へ再導出する。旧PO packet `docs/governance/crosswalks/concept-requirement-po-decision-packet.md:1008`の配置表示は汎用の`HELIX-HARNESS、部品`までで、個別所属は決めない。受入は未実行であり、候補採択を意味しない。
+
+**正常例**：同一対象revision/scopeの適用requirement atom、design obligation、normative contractと対oracleを意味classへ整理し、authority、lifecycle、interface/data/state/event/failure/security/observability/operation、V-pair oracle等の該当条件を各classで追跡する。各classについて、原則一つのnormative contractへの割当、既存契約の再利用、delta追加、新規作成、または根拠付き非適用を確認する。classごとの義務とoracleが割当先に対応し、未被覆classと意味重複がゼロであることをcoverageから再構成できる場合に限り、そのscopeのportfolio閉包を受け入れる。
+
+**誤りを含む例**：適用義務classに契約／oracleがない、同じ意味の義務を複数契約へ無説明で割り当てる、根拠なしに非適用とする、既存normative contractを孤立させる、または未被覆・意味重複を残したまま最小portfolioとする場合は不合格とする。複数契約が必要な場合に境界・理由が示されない例も不合格とする。fieldやmatrixが存在しても、義務内容と契約の意味対応をoracleで照合できなければ受け入れない。
+
+**未見・失敗例**：作成側に伏せた適用義務class、契約revision、またはapplicability branchを加え、分母とportfolio coverageを更新する。新classが未割当なら未被覆として検出され、意味重複があれば該当classとcontractを示す。source atom、active template、適用性、oracle、契約版の欠落・矛盾・staleはunknown／未評価に残し、合格扱いにしない。変更された入力に既存receiptを流用しない。
+
+**戻し先と境界**：要求意味・authority不足は要求owner、template適用と義務導出不足はHARNESS-L2-009/対象template owner、template atom抽出不足はHARNESS-L2-041相当の契約owner、具体設計と対oracle不足はHARNESS-L2-026/022等の該当ownerへ戻す。HARNESS-L2-025のgeneric composite整合やHARNESS-L2-043の例coverageだけで本候補のportfolio閉包を代替しない。候補や受入結果は要求合意、L3承認、設計承認、実装、OS実行、利用者受入を生成せず、旧schema／runtime固有の形式を要求しない。

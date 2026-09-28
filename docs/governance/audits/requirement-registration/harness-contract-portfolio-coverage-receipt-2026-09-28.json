@@ -1,0 +1,57 @@
+{
+  "receipt_id": "MPR-RCPT-HARNESS-CONTRACT-PORTFOLIO-2026-09-28",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### HARNESS-L2-044見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom ID順に改行で区切る。末尾改行なし。",
+  "scope": "旧HIL-FR-54 archive L1要求表144行の単一atomのみを対象とする局所receipt。旧PO packet row 1008は配置をHELIX-HARNESS内の汎用「部品」と記録しており、COREまたは他の個別componentを選んでいない。L2-044は単体能力候補として再導出され、個別部品配置はPO未決。FR55 atom、IR record、その他の旧portfolio関連条件はactive source holdingへ残す。 source-linesのrelation欄にあるL2-025案は旧時点の未合意提案の記録であり、現行の採択済み025を修正・変更する根拠ではない。本候補は独立した044ルートで、025の意味・採択状態は不変。",
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/portfolio-fixture-source-lines-2026-09-28.jsonl#HIL-FR-54",
+  "l11_file_sha256": "sha256:f3049baaa9c8ccba97c3396e7e0cb75eacf1c7d8bc341568a0d9aed5d97664dc",
+  "candidate_state": "registered_proposal; authority_effect:none; PO未採択",
+  "candidates": [
+    {
+      "requirement_identity": "HARNESS-L2-044",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HARNESS-L1-001",
+        "HARNESS-L1-004",
+        "HARNESS-L1-009"
+      ],
+      "candidate_semantic_digest": "sha256:690f2bfa866c778be47459baa99139905260d3ca569739a4d4707c61096212f2",
+      "source_atom_set_digest": "sha256:4f91e2819e94c09ea3590e713032118eb4fec47399d08cbfeeb8689222c15d66",
+      "source_atom_count": 1,
+      "source_collection_scope": "旧HIL-FR-54のarchive L1要求表144行（source atom PORTFOLIO-FIXTURE-HIL-FR-54-L0144）だけを入力とし、契約portfolioのclass-wise coverage閉包条件をHARNESS-L2/L11-044候補へ再導出する。旧HIL-FR-55は別atomとしてactive MPR-SH-PORTFOLIO-FIXTURE-002に残し、本receiptはFR55、旧IR record全体、旧portfolio tool/schema/runtime、実装、受入実行、正式successor割当、候補採択または2 atom holding全体の被覆を主張しない。 source-linesのrelation欄が記録する過去のL2-025変更提案は履歴として保持し、採択済み025の訂正とは扱わない。",
+      "atoms": [
+        {
+          "atom_id": "PORTFOLIO-FIXTURE-HIL-FR-54-L0144",
+          "source_holding_registration_id": "MPR-SH-PORTFOLIO-FIXTURE-001",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 144,
+          "source_line_sha256": "sha256:502ef00823463c0fd4218c7b554e4b6959fc28aa9006d6d6eb79f555b86b4f67",
+          "source_text": "| **HIL-FR-54** | Contract Portfolio Plannerはrequirement atomとDesign Obligation Graphを、authority、lifecycle、interface/data/state/event/failure/security/observability/operation、V-pair oracleの同値classへ分ける。各classにnormative contractを原則1件割り当て、既存契約の再利用、delta追加、新規作成、根拠付きN/Aを判定し、未被覆0かつ意味重複0となる最小portfolioを提案する。 | obligation-to-contract matrix、portfolio manifest、reuse/delta/new/N/A receipt、uncovered/duplicate finding |",
+          "disposition": "carried",
+          "relation": "HARNESS-L2-025と対L11へ原文の具体被覆条件を追補。IR同identityとの重複は独立要求数へ加算しない。"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-harness/L1-planning/product-intent.md#harness-l1-001",
+        "docs/helix-harness/L1-planning/product-intent.md#harness-l1-004",
+        "docs/helix-harness/L1-planning/product-intent.md#harness-l1-009",
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-009",
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-025",
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-026",
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-041",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md#harness-l2-044"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": [],
+      "preserved_pending_registration_refs": [
+        "MPR-SH-PORTFOLIO-FIXTURE-002",
+        "MPR-SH-IR-003"
+      ],
+      "human_decision_disposition_refs": [],
+      "ownership_recommendation": "旧PO packet row 1008が記すHELIX-HARNESS内の汎用「部品」範囲を保持する。HARNESS-COREその他の個別部品名は原sourceから確定できず、候補の所属はPO未決。"
+    }
+  ]
+}
