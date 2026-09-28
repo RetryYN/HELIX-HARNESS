@@ -1,10 +1,10 @@
 {
   "packet_kind": "recommendation_for_PO_decision_only",
-  "basis_commit": "53c19540eef29ffa9aa23ca4d35806edd4279535",
+  "basis_commit": "5f18c8b9fd8364a81fe7c8614cc48f3d34152e6f",
   "as_of": "2026-09-28",
-  "count": 30,
-  "status": "All 30 are live registered proposals (authority_effect none); HELIXOS-L2-039 is added by the current PR and remains pending PO. No adoption, hold, reject, implementation, or acceptance run is inferred from PRs or L2/L11 text.",
-  "decision_grouping": "No shared adoption decision is bundled except the explicit PORTFOLIO-FIXTURE-FR54-FR55-ROUTE item; HELIXOS-L2-039 has its own independent PO choice: HARNESS-L2-043 and HARNESS-L2-044 are jointly routed by its mutually exclusive three options, while the other candidate identities retain their own choices. The packet rows for 043/044 recommend candidate choice A only conditionally on shared route choice B; shared choice A or C means neither candidate is adopted to preserve these old FR54/FR55 conditions. The entries share a rendering format only. In particular, the recommendation for HELIXINTELLIGENCE-L2-072 is limited to its 1.0 shadow subset while its remaining improvement loop stays in source holding; HELIX-LABO-L2-062 preserves 2.0. The post-initial additions HARNESS-L2-042, HELIXOS-L2-038, and HELIXOS-L2-039 retain independent choices; HARNESS-L2-043/044 are jointly routed only by the explicit PORTFOLIO-FIXTURE-FR54-FR55-ROUTE choice above and are not separate PO route selections.",
+  "count": 31,
+  "status": "All 31 are live registered proposals (authority_effect none); HELIXOS-L2-039 and HARNESS-L2-045 remain pending PO and are presented for one paired decision. No adoption, hold, reject, implementation, or acceptance run is inferred from PRs or L2/L11 text.",
+  "decision_grouping": "No shared adoption decision is bundled except PORTFOLIO-FIXTURE-FR54-FR55-ROUTE and HARNESS-OS-WBS-SHAPE-039-045-PAIR. HELIXOS-L2-039/HARNESS-L2-045 are linked by the latter, not independent adoption choices. The earlier R2247 options for 039 were preparation alternatives: A proposed adopting OS-039 alone with registrations blocked while the HARNESS contract was absent; B proposed holding 039 while preparing the HARNESS candidate and re-presenting both exact revisions. The B preparation step is completed by this HARNESS-045 candidate, but no PO selection resulted. The new pair options are A=adopt both exact revisions, B=hold both; neither has been selected, and B is advisory. HARNESS-L2-043/044 remain jointly routed only by the explicit FR54/55 route. Other candidate identities retain independent choices. HELIXINTELLIGENCE-L2-072 remains limited to its 1.0 shadow subset and HELIX-LABO-L2-062 preserves 2.0.",
   "candidates": [
     {
       "identity": "HARNESS-L2-034",
@@ -2290,9 +2290,9 @@
       "identity": "HELIXOS-L2-039",
       "decision_state": "pending_PO; not adopted",
       "source_basis_class": "HDEC-L2D-S0-02-approved WBS-OS-002 candidate row; bounded OS registration-eligibility derivation. Legacy PHCAP-08 equivalence remains unknown.",
-      "new_meaning_choice": "POが二つの排他的案を選ぶ。Aは039 exact L2/L11を今採択する案で、現時点で有効なHARNESS WBS-HARNESS-001契約revisionが無い間は全作業候補の登録をunknownとして保留する。Bは039の採択を保留し、HARNESS WBS-HARNESS-001の現行L2/L11候補を別PRで用意した後、両側のexact revisionを一組として再提示する案。Bは推奨であり、PO未選択・自動deferではない。HDEC-L2D-S0-02は両側候補意味のsplitを承認したが、現行L2/L11への適用や採択ではない。",
+      "new_meaning_choice": "R2247の039単独A/Bは準備段階の提案として記録保持する。旧Aは039単独採択（有効HARNESS契約成立まで登録をunknown保留）、旧Bは039を保留しHARNESS候補を作成して両exact revisionを再提示する案だった。旧Bの準備条件はHARNESS-L2/L11-045候補の作成で満たされたが、PO判断は発生していない。現在の排他的pair案Aは039/045両方のexact L2/L11 revision採択、Bは両方保留。",
       "recommended_choice": "B",
-      "choice_meaning": "保留（HARNESS WBS-HARNESS-001の現行L2/L11候補を別PRで提示後、039と有効契約のexact revisionを一組で再判断。PO未選択であり自動deferではない）",
+      "choice_meaning": "保留（HARNESS-OS-WBS-SHAPE-039-045-PAIRの両側保留案。推奨でありPO未選択）",
       "version_target_as_written": "1.0",
       "title_and_kind": "### HELIXOS-L2-039 WBS作業identityと登録前適格性（単体候補、version_target: 1.0）",
       "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md",
@@ -2347,59 +2347,158 @@
       "internal_PO_choice": {
         "selection_state": "pending_PO; no selection recorded",
         "authority_effect": "none",
-        "current_dependency_status": {
-          "requirement_identity": "WBS-HARNESS-001",
-          "status": "現行HARNESS L2/L11に有効な契約revisionがない。WBS-HARNESS-001のsplit candidate rowは現行候補ファイルにあるが、候補の存在は採択・適用可能な契約を作らない。",
-          "candidate_source": "docs/helix-harness/candidates/wbs-ledger-requirements.md:22",
-          "current_requirement_source": "docs/helix-harness/L2-requirements/product-requirements.md",
-          "current_acceptance_source": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+        "pair_decision_ref": "#candidate_pair_decisions[HARNESS-OS-WBS-SHAPE-039-045-PAIR]",
+        "prior_R2247_preparation_options": {
+          "status": "historical; no PO selection; superseded as current choice set by paired decision",
+          "A": "039 exact L2/L11単独採択。ただし有効HARNESS契約がない間は登録をunknown保留。",
+          "B": "039を保留しHARNESS WBS-HARNESS-001 L2/L11候補を別PRで作成後、両exact revisionを再提示。045候補作成で準備条件は満たされたが、PO判断ではない。"
         },
-        "choices": [
-          {
-            "id": "A",
-            "label": "039 exact L2/L11を今採択",
-            "meaning": "OS側のWBS-OS-002登録前条件を採択する。適用可能な有効HARNESS WBS-HARNESS-001契約revisionが成立するまで、全作業候補の登録は契約applicability unknownとして保留する。候補形が有効契約に適合しない場合の登録拒否を維持し、旧WBS-OS-002の不適合拒否を弱めない。",
-            "impact_ids": [
-              "HELIXOS-L2-039",
-              "HELIXOS-L2-016",
-              "HELIXOS-L2-017",
-              "WBS-HARNESS-001",
-              "HELIXOS-L2-039 L11"
-            ]
-          },
-          {
-            "id": "B",
-            "label": "039採択を保留し、HARNESS契約候補と対で再提示（推奨）",
-            "meaning": "039は未採択のまま保持する。別PRでHARNESS WBS-HARNESS-001の現行L2/L11候補を用意し、そのexact revisionと039のexact L2/L11 revisionを一組にしてPOへ再提示する。これは候補作成側の推奨であり、PO選択や自動deferではない。",
-            "impact_ids": [
-              "HELIXOS-L2-039",
-              "HELIXOS-L2-039 L11",
-              "WBS-HARNESS-001",
-              "HELIXOS-L2-016",
-              "HELIXOS-L2-017"
-            ]
-          }
-        ],
-        "recommended": "B",
-        "recommendation_basis": "現行HARNESS L2/L11には有効なWBS-HARNESS-001契約が無く、039単独採択はすべての作業登録をunknown保留にする。対となる規範契約とOS適用条件を同じPO判断単位で確認できるよう、別PR後に両方のexact revisionを再提示する。",
-        "source_and_authority_limit": "HDEC-L2D-S0-02は承認済みcombined WBS候補の両側意味のsplitを承認したが、現行HELIX-OS/HARNESSのL2/L11適用・採択はしていない。",
-        "mutually_exclusive": true
+        "recommended": "B"
       },
       "paired_l2_id": "HELIXOS-L2-039",
       "paired_l11_id": "HELIXOS-L2-039",
       "affected_requirement_and_consumer_ids": "HELIXOS-L1-002/009; HELIXOS-L2-016/017; WBS-HARNESS-001; 対L11",
-      "rationale": "HDECで承認済みのWBS-OS-002をOS登録前のidentity/適格性判定へ接続する限定候補。現行HARNESS L2/L11にWBS-HARNESS-001有効revisionが無く、039だけを採択すると契約revision/applicability unknownの間は全作業候補が保留となる。別PRでHARNESS契約の現行L2/L11候補を用意し、両側exact revisionを対で再提示する案を推奨する。PO選択は未済。適合契約が成立した後も、不適合作業の登録拒否を維持する。HDECのsplit承認は現行候補の適用・採択ではない。",
+      "rationale": "039単独採択では有効なHARNESS契約成立まで全作業登録がunknown保留となるため、現在はHARNESS-L2/L11-045とのpair decisionを提示する。039のbudget欠如拒否と045のvalue/reference-only・missing/overrun未決境界は一致を推定せず、両側保留Bを推奨する。",
       "previous_register_revision": null,
       "version_target_evidence": {
         "path": "docs/helix-os/L2-requirements/governance-requirements.md",
         "line": 1114,
         "excerpt": "### HELIXOS-L2-039",
         "interpretation": "本文に明記されたversion_target: 1.0。採択、実装許可、受入完了ではない。"
+      },
+      "current_dependency_status": {
+        "requirement_identity": "WBS-HARNESS-001",
+        "status": "HARNESS-L2/L11-045 exact candidate exists in this PR but remains unadopted; no current effective WBS-HARNESS-001 contract exists until pair PO choice.",
+        "candidate_requirement_source": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-045",
+        "candidate_acceptance_source": "docs/helix-harness/L11-acceptance/product-acceptance.md#harness-l2-045",
+        "l2_section_sha256": "sha256:ec7d0031733d13e1fb688de7374c1ad078ce335b3bb3ada48d005b8262410aeb",
+        "l11_section_sha256": "sha256:357e64115366f784f67759479c7d071ed6bc6b639cca1a2177c323e4dc1825cc",
+        "pair_decision_ref": "HARNESS-OS-WBS-SHAPE-039-045-PAIR"
+      }
+    },
+    {
+      "identity": "HARNESS-L2-045",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "HDEC-L2D-S0-02-approved WBS-HARNESS-001 candidate row; bounded work-unit-shape contract. Legacy PHCAP-08 equivalence remains unknown.",
+      "new_meaning_choice": "039/045 exact L2/L11 pairをPOが選択する。045は予算上限・期限の値または適用元参照という必須形の欠落を拒否する。値/単位、参照先未解決時と超過時の運用はPO未決。Aは両側採択、B（推奨）は両側保留であり、PO未選択・自動deferではない。",
+      "recommended_choice": "B",
+      "choice_meaning": "両側保留。045の必須形欠落拒否と039の予算欠如拒否を維持し、値・単位・参照先未解決時・超過時の意味残差をPOへ戻す。PO未選択・自動deferではない。",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HARNESS-L2-045 WBS作業単位の形の規範契約（単体候補、version_target: 1.0）",
+      "requirement_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-045",
+      "acceptance_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "registration_id": "MPR-RC-HARNESS-L2-045-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HARNESS-L1-001",
+        "HARNESS-L1-002",
+        "HARNESS-L1-003",
+        "HARNESS-L1-004"
+      ],
+      "parent_l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+      "parent_l1_sha256_current": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+      "parent_planning_revision_recorded": "docs/helix-harness/L1-planning/product-intent.md@3296c1175bf479e2086dc913c13eb23803d11aa0 sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f（#2198固定L1 revision。045採択は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-wbs-work-shape-coverage-receipt-2026-09-28.json#HARNESS-L2-045",
+      "receipt_id": "MPR-RCPT-HARNESS-WBS-WORK-SHAPE-2026-09-28",
+      "receipt_candidate_digest_rule": "L2の### HARNESS-L2-045見出しから次の同階層候補見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "start_heading_prefix": "### HARNESS-L2-045 ",
+          "end_heading_prefix": "次の同階層候補見出し（###）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:ec7d0031733d13e1fb688de7374c1ad078ce335b3bb3ada48d005b8262410aeb",
+      "receipt_candidate_semantic_digest": "sha256:ec7d0031733d13e1fb688de7374c1ad078ce335b3bb3ada48d005b8262410aeb",
+      "current_candidate_semantic_digest": "sha256:ec7d0031733d13e1fb688de7374c1ad078ce335b3bb3ada48d005b8262410aeb",
+      "candidate_digest_matches_register_and_receipt": true,
+      "acceptance_section_sha256": "sha256:357e64115366f784f67759479c7d071ed6bc6b639cca1a2177c323e4dc1825cc",
+      "acceptance_source_file_sha256": "sha256:1b8353a4dfd3a2713694bab0158dbe19a27bfb32bdbf1feb9609ac39cf6ff20f",
+      "source_atom_count": 1,
+      "source_atom_set_digest": "sha256:ac9b43f63d04066c6642722483f4b2de59a66f054a01a7b71be15939adc01529",
+      "source_reference_examples": [
+        {
+          "path": "docs/governance/candidates/wbs-ledger-requirements.md",
+          "source_commit": "6967ceef8dfe173839ab8fb130e1611af914e4fe",
+          "line": 64,
+          "source_line_sha256": "sha256:272c08cdf1a73b07c3ace81bb57f5ef890a0c7339692377b0e143b9fe2474c3a",
+          "atom_id": "WBS-HARNESS-001",
+          "source_file_sha256": "sha256:34711045caea9a6bac6fa1084b056e393593efe76099b7f124af4e17265a84f6",
+          "source_revision_ref": "6967ceef8dfe173839ab8fb130e1611af914e4fe:docs/governance/candidates/wbs-ledger-requirements.md"
+        },
+        {
+          "path": "docs/helix-harness/candidates/wbs-ledger-requirements.md",
+          "line": 22,
+          "source_line_sha256": "sha256:272c08cdf1a73b07c3ace81bb57f5ef890a0c7339692377b0e143b9fe2474c3a",
+          "atom_id": "WBS-HARNESS-001",
+          "source_file_sha256": "sha256:d411a9d528e2ef5af06403289d0b845615272bd7be15316b3184bf6b51164e05",
+          "source_revision_ref": "current-tree:docs/helix-harness/candidates/wbs-ledger-requirements.md"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.2.md",
+          "legacy_asset_id": "LEGACY-ASSET-BACB1FC117A09D20F273",
+          "line": 516,
+          "source_line_sha256": "sha256:87b212c752d0cd58fe5f77e496bb45e3e9d7a146d12b0ae84bad7926f7b21087",
+          "source_file_sha256": "sha256:41b38c068e91a767f964ce5ce5d7d5568c1984b3b122b808f9eff61e5a0af401",
+          "disposition": "contextual comparison only; unresolved; not carried"
+        }
+      ],
+      "source_reference_note": "HDEC combined row and current split row are same-text lineage. IMP-049 old source is contextual only; its 3 serial reasons/default parallel max 8 are not carried and remain unresolved. Archive rule atoms remain at MPR-SH-LEGACY-RULE-004; PHCAP-08 equivalence unknown.",
+      "internal_PO_choice": {
+        "selection_state": "pending_PO; no selection recorded",
+        "authority_effect": "none",
+        "pair_decision_ref": "#candidate_pair_decisions[HARNESS-OS-WBS-SHAPE-039-045-PAIR]",
+        "mutually_exclusive": true,
+        "choices": [
+          {
+            "id": "A",
+            "label": "039/045両側のexact L2/L11 revisionを採択",
+            "meaning": "HELIXOS-L2/L11-039とHARNESS-L2/L11-045の上記exact revisionを一組として採択する。039の予算欠如作業の登録拒否を維持する。045はbudget/deadlineを値またはsource参照として保持するが、具体値・単位・欠損/超過時の意味やgateは定めない。Aを選んでも残差は自動解決されない。",
+            "impact_ids": [
+              "HELIXOS-L2-039",
+              "HARNESS-L2-045",
+              "HELIXOS-L2-016",
+              "HELIXOS-L2-017",
+              "WBS-OS-002",
+              "WBS-HARNESS-001"
+            ]
+          },
+          {
+            "id": "B",
+            "label": "両側を保留し、budget/deadline意味をPO判断へ戻す（推奨）",
+            "meaning": "039/045をともに未採択で保留し、予算なしを039が拒否する条件と、045のvalue/reference-only境界、予算/期限の単位・具体値・欠損/超過意味、HARNESS-L1親traceがこれらを導かない残差をPO判断へ戻す。旧IMP-049の直列化3理由/default parallel cap 8はasset unresolvedのまま保持する。",
+            "impact_ids": [
+              "HELIXOS-L2-039",
+              "HARNESS-L2-045",
+              "HARNESS-L1-001",
+              "HARNESS-L1-002",
+              "HARNESS-L1-003",
+              "HARNESS-L1-004",
+              "WBS-HARNESS-001",
+              "LEGACY-ASSET-BACB1FC117A09D20F273"
+            ]
+          }
+        ],
+        "recommended": "B",
+        "recommendation_basis": "親L1-001/002/003/004 traceはV-pair、style/quality、change impact/stale、verification/evidence/returnを導くが、budget/deadlineの値・単位・欠損/超過運用を導かない。さらに039はbudget absenceを拒否する一方、045はmissing/overrun gateを定義しない。旧IMP-049詳細も未disposition。意味境界をPOに明示し、対採択を保留するBを推奨する。"
+      },
+      "paired_l2_id": "HARNESS-L2-045",
+      "paired_l11_id": "HARNESS-L2-045",
+      "affected_requirement_and_consumer_ids": "HARNESS-L1-001/002/003/004; HARNESS-L2-001/002/003/004/022/023; HELIXOS-L2-039; HELIXOS-L2-016/017; WBS-OS-002; WBS-HARNESS-001; 対L11",
+      "rationale": "親L1-001/002/003/004 traceはV-pair、style/quality、change impact/stale、verification/evidence/returnを導くが、budget/deadlineの値・単位・欠損/超過運用を導かない。さらに039はbudget absenceを拒否する一方、045はmissing/overrun gateを定義しない。旧IMP-049詳細も未disposition。意味境界をPOに明示し、対採択を保留するBを推奨する。",
+      "previous_register_revision": null,
+      "version_target_evidence": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "line": 1013,
+        "excerpt": "### HARNESS-L2-045",
+        "interpretation": "本文記載のversion_target: 1.0。採択・実装許可・受入完了を意味しない。"
       }
     }
   ],
   "initial_25_basis_commit": "f4b2a2b02cf5ea3134e27be0a65c100395161bad",
-  "progression": "Initial 25 candidates + PR #2241 HARNESS-L2-042 + PR #2238 HELIXOS-L2-038 = historical 27; PR #2245 merged HARNESS-L2-043, giving 28; PR #2246 merged HARNESS-L2-044, giving 29. Current HELIXOS-L2-039 is an independent pending PO candidate, bringing the live decision set to 30.",
+  "progression": "Initial 25 candidates + PR #2241 HARNESS-L2-042 + PR #2238 HELIXOS-L2-038 = historical 27; PR #2245 merged HARNESS-L2-043, giving 28; PR #2246 merged HARNESS-L2-044, giving 29; PR #2247 registered HELIXOS-L2-039, giving 30; current HARNESS-L2-045 brings the live decision set to 31. HELIXOS-L2-039/HARNESS-L2-045 are linked by an unselected paired PO decision.",
   "version_target_evidence": null,
   "portfolio_fixture_fr54_fr55_route": {
     "decision_id": "PORTFOLIO-FIXTURE-FR54-FR55-ROUTE",
@@ -2443,5 +2542,65 @@
     "recommended_choice": "B",
     "recommendation_reason": "FR54のcontract class別portfolio closureとFR55のtemplate rule/branch別example coverageは異なる責務であり、別候補に分ければ採択済み025/026の変更を避けて両source conditionを評価できる。sourceにある汎用HELIX-HARNESS「部品」以上の個別配置は確定扱いにしない。",
     "choice_independence": "本A/B/Cは旧FR54/55の共通routingに対する一つの排他的なPO判断。未選択であり、個別候補推奨、register、receiptから選択を推定しない。"
-  }
+  },
+  "candidate_pair_decisions": [
+    {
+      "decision_id": "HARNESS-OS-WBS-SHAPE-039-045-PAIR",
+      "selection_status": "pending_PO; no selection recorded",
+      "mutually_exclusive": true,
+      "authority_effect": "none",
+      "pair_member_ids": [
+        "HELIXOS-L2-039",
+        "HARNESS-L2-045"
+      ],
+      "exact_revisions": [
+        {
+          "identity": "HELIXOS-L2-039",
+          "l2_section_sha256": "sha256:5a6926062caa7484a9d889a21a1d7f705508cd14f7d4d366df7ec6949cedc671",
+          "l11_section_sha256": "sha256:3d9f396743c27cb79a1930b0a4332a46c982748728d9f3f0ae2ba75f3988458c",
+          "receipt": "docs/governance/audits/requirement-registration/helixos-wbs-work-identity-coverage-receipt-2026-09-28.json"
+        },
+        {
+          "identity": "HARNESS-L2-045",
+          "l2_section_sha256": "sha256:ec7d0031733d13e1fb688de7374c1ad078ce335b3bb3ada48d005b8262410aeb",
+          "l11_section_sha256": "sha256:403b71223790daac7fb2095b7ac9cc591f311b1ee0ab18f937178a30eed85efb",
+          "receipt": "docs/governance/audits/requirement-registration/harness-wbs-work-shape-coverage-receipt-2026-09-28.json"
+        }
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "039/045両側のexact L2/L11 revisionを採択",
+          "meaning": "HELIXOS-L2/L11-039とHARNESS-L2/L11-045の上記exact revisionを一組として採択する。045は予算上限・期限の値または適用元参照という必須形の欠落を拒否し、039は予算欠如作業の登録を拒否する。具体値・単位・参照先未解決時・超過時の運用意味は決めず、Aでも残差は自動解決しない。",
+          "impact_ids": [
+            "HELIXOS-L2-039",
+            "HARNESS-L2-045",
+            "HELIXOS-L2-016",
+            "HELIXOS-L2-017",
+            "WBS-OS-002",
+            "WBS-HARNESS-001"
+          ]
+        },
+        {
+          "id": "B",
+          "label": "両側を保留し、budget/deadline意味をPO判断へ戻す（推奨）",
+          "meaning": "039/045をともに未採択で保留し、045/039の必須形・予算欠如拒否を維持したまま、予算/期限の具体値・単位・参照先未解決時・超過時の運用意味、HARNESS-L1親traceがそれらを導かない残差をPO判断へ戻す。旧IMP-049の直列化3理由/default parallel cap 8はasset unresolvedのまま保持する。",
+          "impact_ids": [
+            "HELIXOS-L2-039",
+            "HARNESS-L2-045",
+            "HARNESS-L1-001",
+            "HARNESS-L1-002",
+            "HARNESS-L1-003",
+            "HARNESS-L1-004",
+            "WBS-HARNESS-001",
+            "LEGACY-ASSET-BACB1FC117A09D20F273"
+          ]
+        }
+      ],
+      "recommended": "B",
+      "recommendation_basis": "親L1-001/002/003/004 traceはV-pair、style/quality、change impact/stale、verification/evidence/returnを導くが、budget/deadlineの値・単位・欠損/超過運用を導かない。さらに039はbudget absenceを拒否する一方、045はmissing/overrun gateを定義しない。旧IMP-049詳細も未disposition。意味境界をPOに明示し、対採択を保留するBを推奨する。",
+      "selection_note": "推奨は候補作成側の助言であり、PO選択・自動hold/deferではない。",
+      "budget_deadline_boundary": "045 requires the budget-cap/deadline value or source-reference fields; omission is shape-ineligible. 039 independently rejects absent budget. Value semantics, units, unresolved reference, and overrun handling remain PO-residual."
+    }
+  ]
 }

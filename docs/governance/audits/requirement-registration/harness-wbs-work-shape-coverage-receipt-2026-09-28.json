@@ -1,0 +1,150 @@
+{
+  "receipt_id": "MPR-RCPT-HARNESS-WBS-WORK-SHAPE-2026-09-28",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### HARNESS-L2-045見出しから次の同階層候補見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、sha256:付きsource_line_sha256をatom順に改行で区切る。末尾改行なし。",
+  "scope": "HDEC-L2D-S0-02がsplit承認したcombined WBS候補のWBS-HARNESS-001行1 atomのみを045候補へ接続する局所receipt。同文の現HARNESS split rowはlineage照合用。旧IMP-049の直列化3理由/default parallel cap 8は比較sourceとして記録するがinput/carryではなくdisposition未解決。archive rule atomsは入力外でcarryせずMPR-SH-LEGACY-RULE-004に残る。旧PHCAP-08同等性unknown。HDEC split approvalは現行045の採択ではない。",
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/harness-wbs-work-shape-source-lines-2026-09-28.jsonl#WBS-HARNESS-001",
+  "candidate_state": "registered_proposal; authority_effect:none; PO未採択",
+  "candidates": [
+    {
+      "requirement_identity": "HARNESS-L2-045",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HARNESS-L1-001",
+        "HARNESS-L1-002",
+        "HARNESS-L1-003",
+        "HARNESS-L1-004"
+      ],
+      "parent_l1_source": {
+        "path": "docs/helix-harness/L1-planning/product-intent.md",
+        "commit": "3296c1175bf479e2086dc913c13eb23803d11aa0",
+        "sha256": "sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+        "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:29",
+        "decision_record_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+        "note": "#2198固定L1 revision。045採択は含まない。"
+      },
+      "parent_l1_trace": [
+        {
+          "id": "HARNESS-L1-001",
+          "line": 31,
+          "line_sha256": "sha256:846091f67827ad98e29ecd2c55843f2a83e10b4c566e54d3b6564733795f74c2",
+          "mapping": "V-pair/対応検証"
+        },
+        {
+          "id": "HARNESS-L1-002",
+          "line": 32,
+          "line_sha256": "sha256:9a506971af4651e93c853427ffd8b19c5bfa7a83fa861870f0be7702e2530931",
+          "mapping": "style/品質維持、変更種別・工程順序・依存と並列/直列"
+        },
+        {
+          "id": "HARNESS-L1-003",
+          "line": 33,
+          "line_sha256": "sha256:a91b0a0fb9095fe1237741a2941fe33ddf21ba1faae48c3b34ff6c4a9f3a786f",
+          "mapping": "変更影響・未接続/stale・scope/依存/revision"
+        },
+        {
+          "id": "HARNESS-L1-004",
+          "line": 34,
+          "line_sha256": "sha256:ad4b058249e8ce1789bbf0f3dcc9a4e04a61c998a9bc7148d26efc79c6964a13",
+          "mapping": "検証義務・反例・証拠・差戻し/停止"
+        }
+      ],
+      "parent_trace_limit": "四親はV-pair、style/quality、change impact/stale、verification/evidence/returnへ対応する。budget/deadlineの具体値・単位・欠損/超過運用はこの親traceから導出せず、PO residual。",
+      "candidate_semantic_digest": "sha256:ec7d0031733d13e1fb688de7374c1ad078ce335b3bb3ada48d005b8262410aeb",
+      "candidate_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-045",
+      "candidate_file_sha256": "sha256:fabae962dcce395ed0e2f9503745a25a6ddc4d38fde712f0f05c385b615a8236",
+      "candidate_section_boundaries": {
+        "start_line": 1013,
+        "end_line": 1023,
+        "start_heading_prefix": "### HARNESS-L2-045 ",
+        "end_heading_prefix": "次の同階層候補見出し（###）"
+      },
+      "acceptance_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "acceptance_file_sha256": "sha256:498a1f76fb5414170f83c5c32ec95c172210d0398136ad2f64824b7811c588b5",
+      "acceptance_section_sha256": "sha256:403b71223790daac7fb2095b7ac9cc591f311b1ee0ab18f937178a30eed85efb",
+      "acceptance_section_boundaries": {
+        "start_line": 747,
+        "end_line": 757,
+        "start_heading_prefix": "### HARNESS-L2-045 ",
+        "end_heading_prefix": "次の同階層候補見出し（###）"
+      },
+      "source_atom_set_digest": "sha256:ac9b43f63d04066c6642722483f4b2de59a66f054a01a7b71be15939adc01529",
+      "source_atom_count": 1,
+      "source_collection_scope": "HDEC承認対象combined candidateのWBS-HARNESS-001表行1 atom。現HARNESS split rowは同文provenance参照。旧PHCAP-08とarchive rule atomsを含めない。",
+      "atoms": [
+        {
+          "atom_id": "WBS-HARNESS-001",
+          "source_path": "docs/governance/candidates/wbs-ledger-requirements.md",
+          "source_commit": "6967ceef8dfe173839ab8fb130e1611af914e4fe",
+          "source_file_sha256": "sha256:34711045caea9a6bac6fa1084b056e393593efe76099b7f124af4e17265a84f6",
+          "source_line": 64,
+          "source_line_sha256": "sha256:272c08cdf1a73b07c3ace81bb57f5ef890a0c7339692377b0e143b9fe2474c3a",
+          "source_text": "| WBS-HARNESS-001 | 作業単位が持つべき形（依存、並列・直列、scope、予算上限、期限、V-pair＝対応する検証、受入条件、変更の種類、工程順序、停止・差戻し条件）を規範として定め、OSはそれを台帳のschemaへ写す | HARNESSは台帳を運転せず、OSは規範を改変しない。規範に無い形の作業単位は台帳に入らない |",
+          "split_candidate_reference": {
+            "path": "docs/helix-harness/candidates/wbs-ledger-requirements.md",
+            "file_sha256": "sha256:d411a9d528e2ef5af06403289d0b845615272bd7be15316b3184bf6b51164e05",
+            "line": 22,
+            "line_sha256": "sha256:272c08cdf1a73b07c3ace81bb57f5ef890a0c7339692377b0e143b9fe2474c3a",
+            "text_identical_to_approved_source": true
+          },
+          "disposition": "carried",
+          "relation": "作業単位形の規範条件をHARNESS-L2/L11-045へ接続する。budget/deadlineの値またはsource参照を保持するが、unit・threshold・missing/overrun gateは定義せずPO residual。旧IMP-049の詳細とは別atomで、carry/dispositionしない。"
+        }
+      ],
+      "contextual_comparison_refs": [
+        {
+          "legacy_asset_id": "LEGACY-ASSET-BACB1FC117A09D20F273",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.2.md",
+          "source_file_sha256": "sha256:41b38c068e91a767f964ce5ce5d7d5568c1984b3b122b808f9eff61e5a0af401",
+          "source_line": 516,
+          "source_line_sha256": "sha256:87b212c752d0cd58fe5f77e496bb45e3e9d7a146d12b0ae84bad7926f7b21087",
+          "relation": "comparison_only_not_atom_input",
+          "asset_disposition": "unresolved",
+          "scope_note": "IMP-049の直列化3理由と既定並列上限8。045はこれらの旧詳細をcarryせず、一般的な依存/工程順序/並列直列条件だけを扱う。意味照合・dispositionは本receipt外。"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-harness/L2-requirements/product-requirements.md",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "docs/helix-harness/L1-planning/product-intent.md",
+        "docs/helix-harness/candidates/wbs-ledger-requirements.md",
+        "docs/helix-os/L2-requirements/governance-requirements.md",
+        "docs/governance/decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md",
+        "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": [],
+      "preserved_pending_registration_refs": [],
+      "legacy_source_boundary": {
+        "archive_rule_holding": "MPR-SH-LEGACY-RULE-004",
+        "archive_rule_atoms_carried": false,
+        "old_imp049": "LEGACY-ASSET-BACB1FC117A09D20F273; unresolved; comparison only, not atom input",
+        "phcap08_equivalence": "unknown"
+      },
+      "semantic_limit": "no_loss applies only to the one HDEC-approved WBS-HARNESS-001 row as normative shape. It does not resolve parent trace for budget/deadline values, adopt 045/039, carry IMP-049 details/archive rule atoms, or establish PHCAP-08 equivalence.",
+      "budget_deadline_po_residual": {
+        "required_shape_presence": "budget cap and deadline value or source reference must be present; omission is shape-ineligible",
+        "still_undecided": "unit, value meaning/range, unresolved reference, overrun operation gate"
+      }
+    }
+  ],
+  "human_decision_provenance": {
+    "decision_id": "HDEC-L2D-S0-02",
+    "decision_record": "docs/governance/decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md",
+    "decision_record_sha256": "sha256:899cc2affe05ae0c72fa873fe1c5dfe9f6bbe3a0e77089ef2e087ed63a4765cf",
+    "approved_candidate_path": "docs/governance/candidates/wbs-ledger-requirements.md",
+    "approved_candidate_commit": "6967ceef8dfe173839ab8fb130e1611af914e4fe",
+    "approved_candidate_sha256": "sha256:34711045caea9a6bac6fa1084b056e393593efe76099b7f124af4e17265a84f6",
+    "approved_row_line": 64,
+    "approved_row_line_sha256": "sha256:272c08cdf1a73b07c3ace81bb57f5ef890a0c7339692377b0e143b9fe2474c3a",
+    "decision_lines": "39, 56-67, 96-107, 189-191, 193-208",
+    "interpretation": "HDEC approved combined candidate/split meaning only; not current 045 L2/L11, not parent mapping, not budget/deadline residual, not OS-039 adoption, and no archive rule atom disposition."
+  },
+  "budget_deadline_po_residual": {
+    "045": "Budget cap/deadline value or source reference presence is required; omission rejects shape. Unit/range, unresolved reference, and overrun operation gate remain PO residual.",
+    "039": "budget absence is a registration rejection/hold condition in the exact current 039 candidate.",
+    "open_decision": "PO should decide whether this pair preserves intended relation and meaning/parent of values, unit, missing/overrun handling, and any gate."
+  },
+  "pair_decision_ref": "HARNESS-OS-WBS-SHAPE-039-045-PAIR"
+}
