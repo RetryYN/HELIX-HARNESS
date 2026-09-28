@@ -1126,3 +1126,18 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 **旧sourceと差分**：`LEGACY-ASSET-D27D4A1511BFD43623A9`（旧`lifecycle-stage-completion-goals.md`、file SHA-256 `21ba24bf781048f1cb03a20172c8049a6112690cda3d0d0f7dd0ba3cb0bd7406`）の選択行47–68、70–72を局所照合した。旧文書はdraftであり、その条件を本候補へcarryせず、正式successorとも数えない。候補のstage/pair/scope/evidence関係は採択済みHARNESS-L2-003/022およびHELIXOS-L2-002/016/017の部分的条件から現行責務へ再導出する。選択した25行はすべてsource holdingに保全する。formal gate/schema、未解決事項の分類、defer属性、自由記述等から完了扱いしない条件も保留し、別判断まで候補入力へ移さない。全stage独立review、期限・再入場条件の必須化も未採択optionとして保留する。旧runtime、旧test、旧process、PHCAP-08全条件を移植しない。
 
 **境界**：coverage receiptは選択した25 source linesをholdingに保全した事実だけを記録し、source atomの候補移管、資産holdingの解除、旧FR全体のsuccessor割当、PHCAP-08の完了、PO合意、stage exitの実績を主張しない。旧sourceに含まれるlines 74–84、関連する別資産・旧case・旧runtimeは対象外である。
+
+
+### HARNESS-L2-053 意味revisionとpath非依存asset identityの候補（HELIX-HARNESS単体、未採択）
+
+**要求候補**：Semantic Revision and Asset Identityは、path・名称の変更から独立したimmutable asset IDとrevision履歴を保持する。意味変更を新revisionとして記録し、rename、move、split、merge、supersedeに伴うidentity/location履歴、authority、acceptance oracle、typed edgeの欠落を識別できることを求める。
+
+**対象と境界**：要求・設計・資産のidentityと意味revisionを扱うHARNESS側の候補である。identityの具体的な符号化、採番方式、永続化方式、split/merge時のauthority裁定手順はこの候補で決めない。旧assetの実体や配置場所の変更だけから意味変更やauthority移転を推定しない。
+
+**履歴とlineage**：rename/moveは同一identityのlocation履歴として追跡する。意味変更は同一identityの新revisionとして差分を示す。split/merge/supersedeは変更前後のidentity、関係の種別、影響を受けるhistory、authority、oracle、typed edgeを対応付け、欠落または対応不明をunknownとして残す。確認可能な候補成果はasset revision、identity/location history、split/merge disposition、semantic diffである。変換結果やreceiptの存在だけでは、意味保存、authority移転、受入を成立扱いしない。
+
+**既存要求との関係**：採択済み`HARNESS-L2-003`の要求変更・差戻し・revision条件、`HARNESS-L2-004`の上下流traceとstale可視化、`HARNESS-L2-016`の差分分類、`HARNESS-L2-042`のsource revisionと再現可能性をそれぞれ参照する。部分的な意味対応であり、本候補はこれらを再定義せず、FR52候補の採択や先行を前提としない。HARNESS-L2/L11-052の別候補が存在する場合も、採択・順序・依存関係を本候補から生成しない。
+
+**旧sourceと差分**：旧`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`（`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md`、file SHA-256 `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`）のline 143、HIL-FR-53を起点とする。保持する意味はpath/name非依存identity、意味変更時のrevision、rename/move/split/merge/supersedeでのhistory・authority・oracle・typed edgeの保持である。現行層への再配置と境界の具体化は意味の再導出であり、旧FR全体の正式successor、実装方式、実行・受入の移管を主張しない。
+
+**authority状態**：source authorityは旧IR上の`specified_frozen`として保持する。target authorityは未採択候補であり、`draft_candidate`相当。候補本文、source atom set、coverage receipt、MPR登録のいずれもPO採択、L3承認、実装・実行許可を生成しない。
