@@ -355,8 +355,8 @@ PO原文：「チケットそのものに参照をつけたり実装の一部み
 
 ## O3・O5追加候補：Worker遊休とreview capacity（判断集合54候補）
 
-- `HELIXOS-L2-049`（Worker稼働観測と低干渉task割当）：旧sourceは旧capacity区分、pool上限とactive WIPの分離、競合しないREADY taskと順序を限定保持。新規案は低干渉taskの適格性、INTELLIGENCE配置案の利用、設定上限と遊休時の別assignmentを新規案として選択する。A＝exact候補採択（推奨）、B＝保留、C＝revision・理由・影響を明示した変更。いずれも未選択。登録 `MPR-RC-HELIXOS-L2-049-002`（-001を訂正）、[receipt r3](../requirement-registration/helixos-worker-utilization-coverage-receipt-2026-09-29-r3.json)は選択spanのみno_loss。source-line remainderはholding。親 HELIXOS-L1-003/HELIXOS-L1-008、影響 OS-L2-004/005/007/008/009。
-- `HELIXOS-L2-050`（独立review capacityの観測と調整）：旧sourceは旧review queue/待ち/rework占有/reviewer稼働率のtyped threshold、lease一意性とbackpressureを限定保持。新規案はreview session増枠・縮退と具体的閾値、PR generationとHEADに束縛する手順を新規案として選択する。A＝exact候補採択（推奨）、B＝保留、C＝revision・理由・影響を明示した変更。いずれも未選択。登録 `MPR-RC-HELIXOS-L2-050-002`（-001を訂正）、[receipt r2](../requirement-registration/helixos-reviewer-capacity-coverage-receipt-2026-09-29-r2.json)は選択spanのみno_loss。source-line remainderはholding。親 HELIXOS-L1-003/HELIXOS-L1-009、影響 OS-L2-004/007; HARNESS-L2-005。
+- `HELIXOS-L2-049`（Worker稼働観測と低干渉task割当）：旧sourceは旧capacity区分、pool上限とactive WIPの分離、競合しないREADY taskと順序を限定保持。新規案は低干渉taskの適格性、INTELLIGENCE配置案の利用、設定上限と遊休時の別assignmentを新規案として選択する。PO条件付き採択。対象はL11訂正後のexact revisionで、訂正PR merge後に判断記録へ固定する。B＝保留、C＝revision・理由・影響を明示した変更。訂正後の生存revisionは `MPR-RC-HELIXOS-L2-049-003`（-002を訂正）、[receipt r4](../requirement-registration/helixos-worker-utilization-coverage-receipt-2026-09-29-r4.json)。L2は不変、対L11 digest `sha256:d5a3a0c361a6d0056a8c608f5230a52d206c000d7ac81ff969aeaba30ad4d810`。割当前に後段検証義務・担当・容量を確保し、新assignment自体のreview/merge完了は前提にしない。選択spanのみno_loss、source-line remainderはholding。条件訂正PRのmerge前であり採択は未成立。親 HELIXOS-L1-003/HELIXOS-L1-008、影響 OS-L2-004/005/007/008/009。
+- `HELIXOS-L2-050`（独立review capacityの観測と調整）：旧sourceは旧review queue/待ち/rework占有/reviewer稼働率のtyped threshold、lease一意性とbackpressureを限定保持。新規案はreview session増枠・縮退と具体的閾値、PR generationとHEADに束縛する手順を新規案として選択する。PO条件付き採択。対象はL11訂正後のexact revisionで、訂正PR merge後に判断記録へ固定する。B＝保留、C＝revision・理由・影響を明示した変更。訂正後の生存revisionは `MPR-RC-HELIXOS-L2-050-003`（-002を訂正）、[receipt r3](../requirement-registration/helixos-reviewer-capacity-coverage-receipt-2026-09-29-r3.json)。L2は不変、対L11 digest `sha256:cf4866f2d8beee83eda5389e3b98100cd37cbd609f7c797617b499c1381bfafb`。capacity追加から新しいmerge権限は生まれず、既存review_merge担当は現行admission成立後にmergeできる。選択spanのみno_loss、source-line remainderはholding。条件訂正PRのmerge前であり採択は未成立。親 HELIXOS-L1-003/HELIXOS-L1-009、影響 OS-L2-004/007; HARNESS-L2-005。
 
 ## O4追加候補：task単位の作成／review配置（判断集合55候補）
 
@@ -375,9 +375,9 @@ PO原文：「チケットそのものに参照をつけたり実装の一部み
 
 | ID | 状態／推奨 | 版／親 | POが選ぶ意味・候補範囲 | 根拠・影響 |
 |---|---|---|---|---|
-| `HELIXCONNECT-L2-009` (L2/L11) | PO未決／推奨 **A** | 1.0; `HELIXCONNECT-L1-001` | A＝direction/order属性＋typed feedback＋既存bounded policy参照。B＝feedback/bidirectional/serial/parallelを4 kind化。C＝direction/feedbackをCONNECT、serial/parallelをHARNESS/OSへ分割する等のscope選択。すべて未選択。 | source atom 0、空集合の`no_loss`。5つの一般旧source行はreference-only。CONNECT-L2-001/002/004/005/007、HARNESS relation語彙、OS-040/044、SECURITY operation authorityを変更しない。 |
+| `HELIXCONNECT-L2-009` (L2/L11) | PO条件付き／推奨 **A** | 1.0; `HELIXCONNECT-L1-001` | A＝direction/order属性＋typed feedback＋既存bounded policy参照。B＝feedback/bidirectional/serial/parallelを4 kind化。C＝direction/feedbackをCONNECT、serial/parallelをHARNESS/OSへ分割する等のscope選択。Aの方向・順序選択は確定、L11 unknown条件の訂正PR mergeが採択条件。 | source atom 0、空集合の`no_loss`。登録`MPR-RC-HELIXCONNECT-L2-009-002`、receipt r2、訂正後対L11 digest `sha256:07e639a165d02d32deb8ae820418aadc9893837b5d3cab5b8387287cd3283ca1`。5つの一般旧source行はreference-only。CONNECT-L2-001/002/004/005/007、HARNESS relation語彙、OS-040/044、SECURITY operation authorityを変更しない。 |
 
-**PO判断frame（未選択）**：A＝direction/orderを属性にし、feedback/returnを理由・端点identity/revision・operation lineage付きtyped edgeとし、loopは既存有限retry/budget/stop policyを参照する。B＝4独立kindを導入し、edge relationとtopology/schedulingの区別を決める。C＝CONNECTとHARNESS/OSに範囲を分ける。どの選択肢も逆方向authority、業務上の解決、採択済みrelation語彙の変更を生成しない。登録`MPR-RC-HELIXCONNECT-L2-009-001`は`registered_proposal` / `authority_effect:none`、PO未決である。
+**PO判断frame**：Aは条件付き選択済み（L11訂正revision mergeが条件）。B/Cは選択肢の記録であり、この判断では選択されていない。A＝direction/orderを属性にし、feedback/returnを理由・端点identity/revision・operation lineage付きtyped edgeとし、loopは既存有限retry/budget/stop policyを参照する。B＝4独立kindを導入し、edge relationとtopology/schedulingの区別を決める。C＝CONNECTとHARNESS/OSに範囲を分ける。どの選択肢も逆方向authority、業務上の解決、採択済みrelation語彙の変更を生成しない。登録`MPR-RC-HELIXCONNECT-L2-009-002`はL11 unknown条件の訂正revisionで、訂正PR mergeまで`registered_proposal` / `authority_effect:none`を保つ。
 
 
 ## O9追加候補：対象と役割型による命名・再利用語彙（判断集合59候補）

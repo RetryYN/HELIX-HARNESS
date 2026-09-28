@@ -4473,8 +4473,8 @@
       "title_and_kind": "### HELIXOS-L2-049 Worker稼働観測と低干渉task割当（単体候補、version_target: 1.0）",
       "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-049",
       "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-049",
-      "registration_id": "MPR-RC-HELIXOS-L2-049-002",
-      "supersedes_registration_id": "MPR-RC-HELIXOS-L2-049-001",
+      "registration_id": "MPR-RC-HELIXOS-L2-049-003",
+      "supersedes_registration_id": "MPR-RC-HELIXOS-L2-049-002",
       "management_state": "registered_proposal",
       "authority_effect": "none",
       "parent_l1_ids": [
@@ -4484,8 +4484,8 @@
       "parent_l1_path": "docs/helix-os/L1-planning/system-intent.md",
       "parent_l1_sha256_current": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
       "parent_planning_revision_recorded": "docs/helix-os/L1-planning/system-intent.md@1aa41a8ba6e750d23a46b832d1513738e84894bb sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e（固定L1本文。候補採択は継承しない）",
-      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-worker-utilization-coverage-receipt-2026-09-29-r3.json#HELIXOS-L2-049",
-      "receipt_id": "MPR-RCPT-HELIXOS-L2-049-CAPACITY-2026-09-29-R3",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-worker-utilization-coverage-receipt-2026-09-29-r4.json#HELIXOS-L2-049",
+      "receipt_id": "MPR-RCPT-HELIXOS-L2-049-CAPACITY-2026-09-29-R4",
       "receipt_candidate_digest_rule": "L2候補見出しから次の同階層候補見出しまで（EOF）。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
       "registered_candidate_semantic_digest": "sha256:e9372f19e5064cb5470141fef25a3212aa65cede5d44ecfff8c9ed86da83668b",
       "receipt_candidate_semantic_digest": "sha256:e9372f19e5064cb5470141fef25a3212aa65cede5d44ecfff8c9ed86da83668b",
@@ -4553,7 +4553,10 @@
       "preserved_pending_registration_refs": [
         "MPR-SH-OPS-LEGACY-L3-001",
         "MPR-SH-CANDIDATE-003#other unselected candidate source lines"
-      ]
+      ],
+      "paired_acceptance_digest": "sha256:d5a3a0c361a6d0056a8c608f5230a52d206c000d7ac81ff969aeaba30ad4d810",
+      "paired_acceptance_file_sha256": "sha256:7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+      "acceptance_revision_status": "corrected L11 exact revision; PO adoption awaits correction PR merge"
     },
     {
       "identity": "HELIXOS-L2-050",
@@ -4566,8 +4569,8 @@
       "title_and_kind": "### HELIXOS-L2-050 独立review capacityの観測と調整（単体候補、version_target: 1.0）",
       "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-050",
       "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-050",
-      "registration_id": "MPR-RC-HELIXOS-L2-050-002",
-      "supersedes_registration_id": "MPR-RC-HELIXOS-L2-050-001",
+      "registration_id": "MPR-RC-HELIXOS-L2-050-003",
+      "supersedes_registration_id": "MPR-RC-HELIXOS-L2-050-002",
       "management_state": "registered_proposal",
       "authority_effect": "none",
       "parent_l1_ids": [
@@ -4577,8 +4580,8 @@
       "parent_l1_path": "docs/helix-os/L1-planning/system-intent.md",
       "parent_l1_sha256_current": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
       "parent_planning_revision_recorded": "docs/helix-os/L1-planning/system-intent.md@1aa41a8ba6e750d23a46b832d1513738e84894bb sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e（固定L1本文。候補採択は継承しない）",
-      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-reviewer-capacity-coverage-receipt-2026-09-29-r2.json#HELIXOS-L2-050",
-      "receipt_id": "MPR-RCPT-HELIXOS-L2-050-CAPACITY-2026-09-29-R2",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-reviewer-capacity-coverage-receipt-2026-09-29-r3.json#HELIXOS-L2-050",
+      "receipt_id": "MPR-RCPT-HELIXOS-L2-050-CAPACITY-2026-09-29-R3",
       "receipt_candidate_digest_rule": "L2候補見出しから次の同階層候補見出しまで（EOF）。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
       "registered_candidate_semantic_digest": "sha256:fab5fdfae9cfd2211f8c2fd6dfad5ce7b065e007ef11ca62f55420baa5033b6d",
       "receipt_candidate_semantic_digest": "sha256:fab5fdfae9cfd2211f8c2fd6dfad5ce7b065e007ef11ca62f55420baa5033b6d",
@@ -4642,7 +4645,10 @@
             "meaning": "amend with exact affected revision/reason/impact"
           }
         ]
-      }
+      },
+      "paired_acceptance_digest": "sha256:cf4866f2d8beee83eda5389e3b98100cd37cbd609f7c797617b499c1381bfafb",
+      "paired_acceptance_file_sha256": "sha256:7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+      "acceptance_revision_status": "corrected L11 exact revision; PO adoption awaits correction PR merge"
     },
     {
       "identity": "HELIXOS-L2-051",
@@ -4842,8 +4848,8 @@
       "title_and_kind": "### HELIXCONNECT-L2-009 接続方向・実行順序属性とfeedback relation（connection候補、version_target: 1.0）",
       "requirement_source_path": "docs/helix-connect/L2-requirements/connect-requirements.md#helixconnect-l2-009",
       "acceptance_source_path": "docs/helix-connect/L11-acceptance/connect-acceptance.md#helixconnect-l11-009",
-      "registration_id": "MPR-RC-HELIXCONNECT-L2-009-001",
-      "supersedes_registration_id": null,
+      "registration_id": "MPR-RC-HELIXCONNECT-L2-009-002",
+      "supersedes_registration_id": "MPR-RC-HELIXCONNECT-L2-009-001",
       "management_state": "registered_proposal",
       "authority_effect": "none",
       "parent_l1_ids": [
@@ -4852,7 +4858,7 @@
       "parent_l1_path": "docs/helix-connect/L1-planning/connect-intent.md",
       "parent_concept_revision_recorded": "docs/concept/helix-concept.md@f6dad2a33e24f000b87d7f09b8d40288257e74cc sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
       "parent_planning_revision_recorded": "docs/helix-connect/L1-planning/connect-intent.md@f6dad2a33e24f000b87d7f09b8d40288257e74cc sha256:9c212572afda81405c6d5ab70151f5b35356722204616e85e132162b45907c70",
-      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/connect-o7-direction-feedback-coverage-receipt-2026-09-29.json",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/connect-o7-direction-feedback-coverage-receipt-2026-09-29-r2.json",
       "registered_candidate_semantic_digest": "sha256:d2fc48f4ce3049a078203b281a69a2d211789456ef4fa6a25cd074f96c04712f",
       "acceptance_section_sha256": "sha256:c056202455a2df17d1c4e3fd017e87ab4f9783c05f93d6e81ec00da1f650b594",
       "source_atom_count": 0,
@@ -4887,7 +4893,11 @@
             "meaning": "Split scope: CONNECT owns direction/feedback, HARNESS or OS owns serial/parallel; optionally represent paired bidirectional as two explicit one-way edges and specify O1/O2/O6 return flows."
           }
         ]
-      }
+      },
+      "receipt_id": "DRAFT-RCPT-HELIXCONNECT-L2-009-O7-DIRECTION-FEEDBACK-2026-09-29-R2",
+      "paired_acceptance_digest": "sha256:07e639a165d02d32deb8ae820418aadc9893837b5d3cab5b8387287cd3283ca1",
+      "paired_acceptance_file_sha256": "sha256:aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9",
+      "acceptance_revision_status": "corrected L11 exact revision; PO adoption awaits correction PR merge"
     },
     {
       "identity": "HARNESS-L2-048",
@@ -7908,19 +7918,21 @@
       },
       {
         "identity": "HELIXOS-L2-049",
-        "registration_id": "MPR-RC-HELIXOS-L2-049-002",
+        "registration_id": "MPR-RC-HELIXOS-L2-049-003",
         "axes": {
           "candidate_adoption": {
-            "selection_status": "pending_PO",
+            "selection_status": "conditional_PO_decision; adoption awaits corrected L11 revision merge",
             "selected": null,
             "decision_ref": "candidate-local",
             "exact_revision": {
               "identity": "HELIXOS-L2-049",
-              "registration_id": "MPR-RC-HELIXOS-L2-049-002",
+              "registration_id": "MPR-RC-HELIXOS-L2-049-003",
               "l2_id": "HELIXOS-L2-049",
               "l11_id": "HELIXOS-L11-049",
               "candidate_semantic_digest": "sha256:e9372f19e5064cb5470141fef25a3212aa65cede5d44ecfff8c9ed86da83668b",
-              "supersedes_registration_id": "MPR-RC-HELIXOS-L2-049-001"
+              "supersedes_registration_id": "MPR-RC-HELIXOS-L2-049-002",
+              "paired_acceptance_digest": "sha256:d5a3a0c361a6d0056a8c608f5230a52d206c000d7ac81ff969aeaba30ad4d810",
+              "paired_acceptance_file_sha256": "sha256:7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd"
             },
             "options_ref": "new_meaning_choice",
             "recommendation": "A"
@@ -7930,7 +7942,7 @@
             "selected": null,
             "candidate_source_scope": {
               "source_atom_count": 5,
-              "receipt_ref": "docs/governance/audits/requirement-registration/helixos-worker-utilization-coverage-receipt-2026-09-29-r3.json#HELIXOS-L2-049",
+              "receipt_ref": "docs/governance/audits/requirement-registration/helixos-worker-utilization-coverage-receipt-2026-09-29-r4.json#HELIXOS-L2-049",
               "coverage": "no_loss; 5 exact selected spans carried; source-line remainders held separately; no wider source closure"
             },
             "options_ref": "new_meaning_choice",
@@ -7953,19 +7965,21 @@
       },
       {
         "identity": "HELIXOS-L2-050",
-        "registration_id": "MPR-RC-HELIXOS-L2-050-002",
+        "registration_id": "MPR-RC-HELIXOS-L2-050-003",
         "axes": {
           "candidate_adoption": {
-            "selection_status": "pending_PO",
+            "selection_status": "conditional_PO_decision; adoption awaits corrected L11 revision merge",
             "selected": null,
             "decision_ref": "candidate-local",
             "exact_revision": {
               "identity": "HELIXOS-L2-050",
-              "registration_id": "MPR-RC-HELIXOS-L2-050-002",
+              "registration_id": "MPR-RC-HELIXOS-L2-050-003",
               "l2_id": "HELIXOS-L2-050",
               "l11_id": "HELIXOS-L11-050",
               "candidate_semantic_digest": "sha256:fab5fdfae9cfd2211f8c2fd6dfad5ce7b065e007ef11ca62f55420baa5033b6d",
-              "supersedes_registration_id": "MPR-RC-HELIXOS-L2-050-001"
+              "supersedes_registration_id": "MPR-RC-HELIXOS-L2-050-002",
+              "paired_acceptance_digest": "sha256:cf4866f2d8beee83eda5389e3b98100cd37cbd609f7c797617b499c1381bfafb",
+              "paired_acceptance_file_sha256": "sha256:7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd"
             },
             "options_ref": "new_meaning_choice",
             "recommendation": "A"
@@ -7975,7 +7989,7 @@
             "selected": null,
             "candidate_source_scope": {
               "source_atom_count": 6,
-              "receipt_ref": "docs/governance/audits/requirement-registration/helixos-reviewer-capacity-coverage-receipt-2026-09-29-r2.json#HELIXOS-L2-050",
+              "receipt_ref": "docs/governance/audits/requirement-registration/helixos-reviewer-capacity-coverage-receipt-2026-09-29-r3.json#HELIXOS-L2-050",
               "coverage": "no_loss; 6 exact selected spans carried; source-line remainders held separately; no wider source closure"
             },
             "options_ref": "new_meaning_choice",
@@ -8090,19 +8104,21 @@
       },
       {
         "identity": "HELIXCONNECT-L2-009",
-        "registration_id": "MPR-RC-HELIXCONNECT-L2-009-001",
+        "registration_id": "MPR-RC-HELIXCONNECT-L2-009-002",
         "axes": {
           "candidate_adoption": {
-            "selection_status": "pending_PO",
+            "selection_status": "conditional_PO_decision; adoption awaits corrected L11 revision merge",
             "selected": null,
             "decision_ref": "candidate-local",
             "exact_revision": {
               "identity": "HELIXCONNECT-L2-009",
-              "registration_id": "MPR-RC-HELIXCONNECT-L2-009-001",
+              "registration_id": "MPR-RC-HELIXCONNECT-L2-009-002",
               "l2_id": "HELIXCONNECT-L2-009",
               "l11_id": "HELIXCONNECT-L11-009",
               "candidate_semantic_digest": "sha256:d2fc48f4ce3049a078203b281a69a2d211789456ef4fa6a25cd074f96c04712f",
-              "supersedes_registration_id": null
+              "supersedes_registration_id": "MPR-RC-HELIXCONNECT-L2-009-001",
+              "paired_acceptance_digest": "sha256:07e639a165d02d32deb8ae820418aadc9893837b5d3cab5b8387287cd3283ca1",
+              "paired_acceptance_file_sha256": "sha256:aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9"
             },
             "options_ref": "new_meaning_choice",
             "recommendation": "A"
@@ -8112,7 +8128,7 @@
             "selected": null,
             "candidate_source_scope": {
               "source_atom_count": 0,
-              "receipt_ref": "docs/governance/audits/requirement-registration/connect-o7-direction-feedback-coverage-receipt-2026-09-29.json",
+              "receipt_ref": "docs/governance/audits/requirement-registration/connect-o7-direction-feedback-coverage-receipt-2026-09-29-r2.json",
               "coverage": "no_loss of empty direct legacy input set; general semantics remain reference-only; bounded search only, no archive-wide absence or semantic closure claimed"
             },
             "options_ref": "new_meaning_choice",
@@ -8379,6 +8395,35 @@
         "selection_status": "clarification/trace follow-up; no PO selection",
         "selected": null,
         "note": "The external review flagged relation clarity only. Preserve HELIXOS-L1-006 as recorded parent, clarify source-to-parent trace if needed; do not infer rejection, new requirement meaning, or new L1 decision."
+      }
+    ]
+  },
+  "l11_correction_status": {
+    "authority_effect": "none; conditional decisions await correction PR merge before their adoption record uses these exact revisions",
+    "items": [
+      {
+        "identity": "HELIXOS-L2-049",
+        "registration_id": "MPR-RC-HELIXOS-L2-049-003",
+        "supersedes_registration_id": "MPR-RC-HELIXOS-L2-049-002",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-worker-utilization-coverage-receipt-2026-09-29-r4.json#HELIXOS-L2-049",
+        "paired_acceptance_digest": "sha256:d5a3a0c361a6d0056a8c608f5230a52d206c000d7ac81ff969aeaba30ad4d810",
+        "paired_acceptance_file_sha256": "sha256:7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd"
+      },
+      {
+        "identity": "HELIXOS-L2-050",
+        "registration_id": "MPR-RC-HELIXOS-L2-050-003",
+        "supersedes_registration_id": "MPR-RC-HELIXOS-L2-050-002",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-reviewer-capacity-coverage-receipt-2026-09-29-r3.json#HELIXOS-L2-050",
+        "paired_acceptance_digest": "sha256:cf4866f2d8beee83eda5389e3b98100cd37cbd609f7c797617b499c1381bfafb",
+        "paired_acceptance_file_sha256": "sha256:7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd"
+      },
+      {
+        "identity": "HELIXCONNECT-L2-009",
+        "registration_id": "MPR-RC-HELIXCONNECT-L2-009-002",
+        "supersedes_registration_id": "MPR-RC-HELIXCONNECT-L2-009-001",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/connect-o7-direction-feedback-coverage-receipt-2026-09-29-r2.json",
+        "paired_acceptance_digest": "sha256:07e639a165d02d32deb8ae820418aadc9893837b5d3cab5b8387287cd3283ca1",
+        "paired_acceptance_file_sha256": "sha256:aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9"
       }
     ]
   }
