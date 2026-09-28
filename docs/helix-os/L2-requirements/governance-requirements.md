@@ -1180,3 +1180,23 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - **禁止する迂回**：pathが`docs/`であることだけを理由に、既存の適用可能なauthority・review・required verificationを省略しない。探索・prototypeのmergeはその限定scopeの証拠共有に限り、本実装やproduction pathへの取り込み許可へ読み替えない。適用中の契約・設定でrequiredとされた確認を、未実施のままskipしてReady／merge可能としない。
 - **既存責務との境界**：`HELIXOS-L2-010／011`のticket、推進、統合計画責務、`HELIXOS-L2-004／007／008`のassignment・authority・証拠・CI運転、HELIX-OSのGitHub運用モデルのPR作成／独立review／merge admissionを置き換えない。検証義務の定義はHARNESS、操作authorityはSECURITY、具体的なrequired条件と除外可否はそれぞれ既存ownerの採択済みcontractが持つ。本候補は新しいapproval、check、scope、skipまたは許可方式を定義しない。
 - **source範囲と限界**：旧RFA-AC-16の一つのacceptance rowだけをこの接続候補へ対応づける。旧RFA候補全体、隣接AC行、旧engine／schema／runtime、全GitHub operationの実装・受入やsource closureは対象外で、旧条件全体のsuccessorを主張しない。
+
+### HELIXOS-L2-047 チケットの理由付き返却と新revision再発行（単体候補、version_target: 1.0）
+
+- **親と状態**：`HELIXOS-L1-009`に接続する未採択候補。採択済みL2-010のticket/Backflow、L2-004のassignment、L2-007のsource/evidence記録を利用する。候補登録は要求採択、ticket実行・再発行の運用許可を生成しない。
+- **提供**：Worker、検収その他の受け手は発行済ticket本文を直接編集せず、作業の誤り・不足・矛盾を、理由、対象条件、根拠source/revisionとともに発行元OSへ返す。返却は元ticket identity、revision、assignmentと因果関係に結び、理由と未完義務を追跡できる。
+- **再発行**：OSは元revisionを保持したまま、返却理由に対処した新ticket revisionを発行する。新旧revisionは既存のtyped relation/lineageで結ぶ。assignment、Attempt、結果、authorityは、新revisionの現行契約が明示的に適格化しない限り継承しない。要求意味・scopeの変更、split等が必要な場合は既存authority/Backflow規則へ戻す。provider、actor、model、session、branch、worktree、lease、現時点の優先順位・進捗・measurement値等の運用属性だけをticket意味revisionの変更理由にしない。
+- **PO確認済みのTicket非参照境界**：POは「チケットそのものに参照をつけたり実装の一部みたいに扱わないってこと。」と確認した。Ticket自体に他Ticket・成果物への参照を付けて依存の結節点にせず、設計・コード・文書等の成果物からTicketを要求根拠・実装部品として参照しない。Ticketは作業指示であり、根拠は要求・設計・契約の正本へ辿る。作業順序の制約が要る場合は、既存OSの計画・typed relation契約（旧`execution-ticket-requirements.md:212-214`）との適合を照合する。Ticket本文外の特定graphへの配置は旧文・PO回答から一意に決まらない新規案であり、本候補はその配置や既存relation型の変更を採択済みとみなさない。
+- **不成立時**：返却理由または根拠が欠落、受け手がticket本文を変更、旧revisionを上書き、再発行時に元revisionを消去、または旧assignment/resultを暗黙継承する場合は不成立。source、対象revision、scope、発行元が不明/stale/conflictなら当該ticketだけを未完としてOSへ返す。
+- **責務境界**：OSがticketの発行・再発行主体であり、LABO/INTELLIGENCE等のproposalだけから発行しない。GitHub Issue/PRはticketのprojectionで、編集・close・mergeからticket意味や完了を作らない。L2-007 feedback lifecycle、L2-009継続/復旧、L2-010 ticket kind/Backflow先を置換せず、新しい承認者・承認を加えない。
+- **旧sourceとの対応と限界**：旧execution-ticket sourceのimmutable/revisioned条件、ticket本文から運用属性を分離する条件、管理側のproposalはticket意味を直接上書きしない条件を保持する。旧runtime/schemaは移植しない。source-lines/coverage receiptは選択したatomへの対応だけを示し、旧source全体の移管・closureを主張しない。
+
+### HELIXOS-L2-048 返却・検証不成立feedbackの評価・還流接続（connection候補、version_target: 1.0）
+
+- **親と状態**：`HELIXOS-L1-006`／`HELIXOS-L1-009`に接続する未採択候補。L2-007 feedback lifecycle、L2-020の検証不足・oracle欠落時の戻し、L2-047のticket返却/revision lineage、LABOの評価候補、INTELLIGENCEの配置proposalを接続する。いずれの既存責務も置換しない。
+- **提供**：ticket返却、検証不能、oracle/input不足のfeedbackを、finding identity、ticket/assignment、対象HEAD/revision/scope、理由、欠けた入力またはoracle、発生元、既存のresolution条件へ結んで運搬する。OSは既存lifecycleでintake、分類、ack、pending、resolutionを区別し、解決証拠が既存条件を満たすまで未解決を保持する。
+- **受渡し**：OSは運転・検証観測をLABOへ評価可能なevidence付きcandidateとして渡す。LABOは理由分類、範囲、counterexample、再評価条件を評価し、提案を返す。INTELLIGENCEはLABO評価済みでtask scopeが適合する証拠だけを次回placement proposalの入力にできる。OSだけがticket発行/再発行・割当・進行を決める。
+- **還流**：再発行後のticket/resultを元findingとの因果relationで結び、LABOが同一条件での再発行後成立状況を評価できる。未評価、未ack、evidence不足、比較不能をsuccess/resolutionへ変換しない。返却が再発行を要する場合はOS-047と既存ticket契約へ戻す。
+- **境界**：LABOは評価とfeedback candidate、INTELLIGENCEは配置案、HARNESSは検証義務/oracle、SECURITYは既存authority/data-use、OSはintake/routing/status/ticket運転を担う。LABOはticket/assignmentを発行・割当せず、INTELLIGENCEはdispatchせず、自由文handoverだけでresolutionにしない。新しいevent schema、status、resolution十分条件、approvalを作らない。
+- **閉じたticketの後日finding**：後日判明した不具合/rollback/recoveryは、evidence relationで元ticketへ接続し、時間の近さや同じpathだけから原因を断定しない。元のclosureは保持し、追補assessmentを別に作る。観測window未満、未追跡、打切りをdefect 0件と数えない。
+- **旧sourceとの対応と限界**：未解決finding/evidenceを保つこと、管理提案からticket意味を直接上書きしないこと、閉じたticketのclosureを保ったまま後日findingを因果relationで接続し追補assessmentを作ることを意味起点とする。旧lifecycle store/schema/runtimeは移植しない。旧source全体のcoverage closureは主張しない。返却率などの指標は新規案であり、本候補だけでは因果効果や改善完了を確定しない。

@@ -164,3 +164,22 @@ A＝exact L2/L11-042の限定採択（推奨）、B＝原atomを保留、C＝sou
 | CONNECT | `HELIXCONNECT-L2-008` MCP profile catalogとtyped descriptor供給（unit、1.0、未採択） | `HELIXCONNECT-L11-008` | `MPR-RC-HELIXCONNECT-L2-008-002（-001のdigest訂正revision）`; `connect-v13-hyb-002-profile-supply-coverage-receipt-2026-09-29.json` |
 
 HYB-002の3 clauseをarchive/baseline別revisionの6 atomとしてこの候補へ対応。既存SECURITY-034候補の6 atomと合わせ12 lineage atom。6/12を候補経路へ割り当てたが、採択・意味closureは0/12。`MPR-SH-SUPPLEMENTARY-003` と `MPR-SH-V13-BASELINE-001` は生存。AのCONNECT供給／SECURITY policy分担を推奨案として起草したがPO未選択。Bの全供給SECURITY所有は責務境界の意味変更候補。SECURITY-034の採択は前提としない。
+
+## O1・O2追加候補（判断集合52候補）
+
+| 機構 | 候補L2本文 | 対のL11 | 生存register revision・coverage receipt |
+|---|---|---|---|
+| OS | [HELIXOS-L2-047：理由付きTicket返却・再発行](../../../helix-os/L2-requirements/governance-requirements.md#helixos-l2-047) | [受入候補](../../../helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-047) | `MPR-RC-HELIXOS-L2-047-001`; `ops-o1-o2-coverage-receipt-2026-09-29.json#HELIXOS-L2-047` |
+| OS | [HELIXOS-L2-048：返却・検証不成立feedbackの還流接続](../../../helix-os/L2-requirements/governance-requirements.md#helixos-l2-048) | [受入候補](../../../helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-048) | `MPR-RC-HELIXOS-L2-048-001`; `ops-o1-o2-coverage-receipt-2026-09-29.json#HELIXOS-L2-048` |
+| LABO | [HELIXLABO-L2-069：Ticket返却・再発行後評価](../../../helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-069) | [受入候補](../../../helix-labo/L11-acceptance/labo-acceptance.md#helixlabo-l2-069) | `MPR-RC-HELIXLABO-L2-069-001`; `ops-o1-o2-coverage-receipt-2026-09-29.json#HELIXLABO-L2-069` |
+| INTELLIGENCE | [HELIXINTELLIGENCE-L2-074：評価済み返却feedbackの配置案入力](../../../helix-intelligence/L2-requirements/intelligence-requirements.md#helixintelligence-l2-074) | [受入候補](../../../helix-intelligence/L11-acceptance/intelligence-acceptance.md#helixintelligence-l2-074) | `MPR-RC-HELIXINTELLIGENCE-L2-074-001`; `ops-o1-o2-coverage-receipt-2026-09-29.json#HELIXINTELLIGENCE-L2-074` |
+
+4候補は`registered_proposal`／`authority_effect:none`としてPO判断待ちに置く。旧Ticket／feedback sourceの選択節と、新しい返却率・理由分類・機構間還流の提案を区別し、選択外の旧条件をsource holdingへ残す。元のローカル依頼文の「PO意図」欄はClaudeによる要約であり、PO一次発話・対象revision付き採択の証拠ではない。[判断packet](post-confirmation-25-po-decision-packet-2026-09-28.md#o1o2追加候補ticket返却と運用feedback判断集合52候補)にA/B/Cの選択肢を置く。採択・実装許可・運転開始は本inventoryから生成しない。
+
+## O1候補訂正（#2286再レビュー）
+
+上表の `HELIXOS-L2-047` は履歴表示であり、現行登録は `MPR-RC-HELIXOS-L2-047-002`。PO原文と未確認の依存解釈は[判断packet](post-confirmation-25-po-decision-packet-2026-09-28.md)を参照。訂正receiptは `ops-o1-o2-coverage-receipt-2026-09-29-r2.json#HELIXOS-L2-047`、選択5 atomのpartial。採否・依存解釈は未選択。
+
+## O1候補の現行訂正（#2286再レビュー3）
+
+上の047履歴を `MPR-RC-HELIXOS-L2-047-003` で訂正。PO確認回答、対L11、r3 receipt、未採択状態は[判断packet](post-confirmation-25-po-decision-packet-2026-09-28.md)を参照。

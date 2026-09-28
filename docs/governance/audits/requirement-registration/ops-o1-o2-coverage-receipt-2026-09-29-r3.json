@@ -1,0 +1,119 @@
+{
+  "receipt_id": "MPR-RCPT-OPS-O1-O2-2026-09-29-R3",
+  "authority_effect": "none",
+  "candidate_state": "registered_proposal only; no PO adoption",
+  "basis_commit": "1aa41a8ba6e750d23a46b832d1513738e84894bb",
+  "source_atom_set_digest_rule": "SHA-256 over ordered UTF-8 lines `atom_id` + space + `sha256:`-prefixed `source_span_sha256`, joined by LF without trailing LF.",
+  "candidate_digest_rule": "L2 section from `### ID` until next `###`; trim trailing blank lines and terminate with one UTF-8 LF.",
+  "source_lines_ref": "docs/governance/audits/requirement-registration/ops-o1-o2-source-lines-2026-09-29-r3.jsonl",
+  "request_source_snapshot": {
+    "path": "docs/governance/audits/requirements-stage/ops-o1-o2-request-source-snapshot-2026-09-29-r3.md",
+    "sha256": "sha256:436b8b41de57a3fcf930813dee9194a4fdb4ed3f7c6eefe0e79f486806fed627",
+    "classification": "PO original confirmation response plus prior original utterance; no adoption of candidate revision"
+  },
+  "scope": "O1 immutable return/reissue plus selected O2 feedback handoff/evaluation/placement atoms. Atom-level no_loss applies only to each candidate’s listed source spans. No full-file, full legacy-ticket, feedback lifecycle, runtime, consumer closure, authority decision, or old-source migration is claimed. Residual old conditions stay in source holding/old asset disposition.",
+  "unresolved_source_scope": [
+    "Execution-ticket source conditions outside the exact listed spans remain unresolved/not mapped, including atomic responsibility, broader admission, retry/recovery routes and other dependency conditions.",
+    "Legacy feedback lifecycle source remainder and runtime/store/schema are not mapped or migrated; current adopted OS-L2-007 remains the lifecycle contract.",
+    "Legacy operations-feedback document uses historical L14/process/runtime framing and is context only.",
+    "No legacy source atom establishes the new LABO metric definitions/denominators/windows or INTELLIGENCE input rule; these are new proposals from the task-input summary, not inherited PO-approved meaning.",
+    "Ticket非参照境界はPO確認済み。ただしOS計画・relation側の具体的な保持先とschemaは新規案であり、本候補から採択しない。"
+  ],
+  "candidates": [
+    {
+      "requirement_identity": "HELIXOS-L2-047",
+      "requirement_kind": "unit",
+      "version_target": "1.0 candidate; no inclusion decision",
+      "parent_l1_ids": [
+        "HELIXOS-L1-009"
+      ],
+      "parent_l1_sources": [
+        {
+          "path": "docs/helix-os/L1-planning/system-intent.md",
+          "revision": "docs/helix-os/L1-planning/system-intent.md@1aa41a8ba6e750d23a46b832d1513738e84894bb sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e（main基準revision。PO判断対象bytesとの一致は既存decision recordを参照）"
+        }
+      ],
+      "candidate_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-047",
+      "candidate_semantic_digest": "sha256:e19191ce980467fddf5822619ccd480a41c84e6382ad1191ad5ea3ab04192377",
+      "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "source_atom_set_digest": "sha256:dc68e4be063c88914c2f21ed1f709f01e5d5b42773edcb04b008591c1dc6d45f",
+      "source_atom_count": 5,
+      "source_collection_scope": "旧source選択5 spanのみ。typed relationは文脈、Ticket非参照境界は別途PO原文を起点とする。特定graph配置は新規案で、旧source全体のclosureを主張しない。",
+      "atoms": [
+        {
+          "atom_id": "O1-TICKET-IMMUTABLE",
+          "legacy_asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+          "source_file_sha256": "sha256:f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+          "source_line": 101,
+          "source_line_sha256": "sha256:bc3891c6ee1b2982656eea46dfedc9b59f73cb90ab3740200b65cf736467ca71",
+          "source_text": "3. Ticketはimmutable/revisioned。exactly-one primary responsibilityとbehavior contractを持つ。曖昧な分解は候補・backflowに留める。",
+          "source_text_span": "Ticketはimmutable/revisioned。",
+          "source_span_sha256": "sha256:c83a0a28156d8de63111e48b82293fcf04ea559e8ef82dd7d8dc6050d8c6f64f",
+          "span_scope_note": "一行の第1文だけ。第2文のexactly-one primary responsibility/behavior contractは本候補の範囲外。"
+        },
+        {
+          "atom_id": "O1-TICKET-NONEXECUTION-ATTRIBUTES",
+          "legacy_asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+          "source_file_sha256": "sha256:f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+          "source_line": 102,
+          "source_line_sha256": "sha256:6fb892ab97f097535a18fd3940948ff171a5c8a5d270ac9c42c464d9de4155e0",
+          "source_text": "4. actor、provider、model、session、branch、worktree、lease、現時点の優先順位・進捗・measurement値はTicket本文へ入れない。",
+          "source_text_span": "4. actor、provider、model、session、branch、worktree、lease、現時点の優先順位・進捗・measurement値はTicket本文へ入れない。",
+          "source_span_sha256": "sha256:6fb892ab97f097535a18fd3940948ff171a5c8a5d270ac9c42c464d9de4155e0",
+          "span_scope_note": "該当する完全なsource line sentence only。隣接する他条件や旧implementationは範囲外。"
+        },
+        {
+          "atom_id": "O1-TICKET-OPERATIONAL-CHANGE-NOT-REVISION",
+          "legacy_asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+          "source_file_sha256": "sha256:f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+          "source_line": 105,
+          "source_line_sha256": "sha256:8237eb2d0b85a33cf0a9f6041b1148ac2d95ff6856215ab3f08699cbf4491506",
+          "source_text": "7. provider変更・観測方針変更・配車順位変更だけでTicketの意味revisionを増やさない。",
+          "source_text_span": "7. provider変更・観測方針変更・配車順位変更だけでTicketの意味revisionを増やさない。",
+          "source_span_sha256": "sha256:8237eb2d0b85a33cf0a9f6041b1148ac2d95ff6856215ab3f08699cbf4491506",
+          "span_scope_note": "該当する完全なsource line sentence only。隣接する他条件や旧implementationは範囲外。"
+        },
+        {
+          "atom_id": "O1-MANAGEMENT-PROPOSAL-NOT-OVERWRITE",
+          "legacy_asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+          "source_file_sha256": "sha256:f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+          "source_line": 282,
+          "source_line_sha256": "sha256:5554ecdf5624fd3e7009fc5f0d9f9992358425a805233de930ee103bf34e8df7",
+          "source_text": "READY/blocked/active、lead time、retry、cost、coverage、measurement integrity、placementを別軸でprojectionする。管理側はreclassify/split/replan/backflow等のproposalを作成できるが、Ticketの意味を直接上書きしない。評価結果の利用可否・配車順は既存policyから説明可能に導出する。",
+          "source_text_span": "READY/blocked/active、lead time、retry、cost、coverage、measurement integrity、placementを別軸でprojectionする。管理側はreclassify/split/replan/backflow等のproposalを作成できるが、Ticketの意味を直接上書きしない。評価結果の利用可否・配車順は既存policyから説明可能に導出する。",
+          "source_span_sha256": "sha256:5554ecdf5624fd3e7009fc5f0d9f9992358425a805233de930ee103bf34e8df7",
+          "span_scope_note": "該当する完全なsource line sentence only。隣接する他条件や旧implementationは範囲外。"
+        },
+        {
+          "atom_id": "O1-TICKET-TYPED-DEPENDENCY-RELATION",
+          "legacy_asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+          "source_file_sha256": "sha256:f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+          "source_line": 214,
+          "source_line_sha256": "sha256:f314c61e813df3af04124c8f0065d950c885b5ff8e041e20b7bff44e2b85ce64",
+          "source_text": "requires/split_from/integrates/verifies/supersedes/recovery_forをtyped relationとして扱う。missing、cycle、自己依存、stale revision/receipt、方向不整合はfail-closeする。単なるIssue closeではなく、その依存契約が要求する完了dispositionと証拠を解決する。固定4階層や全順序を導入しない。",
+          "source_text_span": "requires/split_from/integrates/verifies/supersedes/recovery_forをtyped relationとして扱う。",
+          "source_span_sha256": "sha256:099e1256788cd8c622d07a8e47d409dd6c829fff35c11004180ba280e61e0364",
+          "span_scope_note": "型付きrelationの第1文のみ。POはTicketを参照結節点・実装部品にしないと確認した。旧文は特定graphへの配置を指定しない。",
+          "disposition": "candidate_context_span",
+          "relation": "旧sourceは依存をtyped relationで扱う。Ticket非参照境界は別途PO原文で確認済み。OS側の特定graph配置はなお新規案。"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-004",
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-007",
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-010"
+      ],
+      "coverage_result": "partial",
+      "unaccounted_atom_refs": [],
+      "context_only_source_refs": {
+        "legacy_ticket_asset": "LEGACY-ASSET-3A15E5645D2D2A59DFF5; adjacent ticket lines and HXT dependency/retry conditions remain outside these selected atoms",
+        "po_dependency_interpretation": "PO確認回答はTicket自体を参照結節点・実装部品にしない意味。特定graph配置は未採択の新規案。"
+      }
+    }
+  ]
+}
