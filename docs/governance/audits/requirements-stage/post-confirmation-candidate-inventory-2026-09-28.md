@@ -196,3 +196,7 @@ HYB-002の3 clauseをarchive/baseline別revisionの6 atomとしてこの候補�
 ## INTELLIGENCE-074の現行登録訂正
 
 `MPR-RC-HELIXINTELLIGENCE-L2-074-002`、[空入力集合receipt](../requirement-registration/ops-o1-o2-intelligence-074-empty-coverage-receipt-2026-09-29-r2.json)。旧source意味の被覆は主張しない。
+
+## O6追加候補（未採択）
+
+- [HELIXOS-L2-052：merge後cleanupとbase drift](../../../helix-os/L2-requirements/governance-requirements.md#helixos-l2-052)／[対L11](../../../helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-052)：`MPR-RC-HELIXOS-L2-052-001`、[bounded receipt](../requirement-registration/ops-o6-coverage-receipt-2026-09-29.json)。旧CLAUDE:201とMIC:66 line/remainderは`MPR-SH-OPS-LEGACY-L3-001`へ、旧CI/DB receiptは`MPR-SH-CANDIDATE-003`へ保全。PO採否未選択。
