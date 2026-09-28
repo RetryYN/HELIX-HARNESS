@@ -19,9 +19,9 @@
     "holding_sha256": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
     "holding_path_revision_pair_denominator": 67,
     "holding_record_count": 67,
-    "current_live_source_holding_count": 42,
+    "current_live_source_holding_count": 43,
     "management_register_path": "docs/governance/management-provisional-requirement-register.jsonl",
-    "management_register_sha256": "a6df3eddeac5ba37d3435213a1867e1f49a30211ab28eeabcf36124e7d92a91d",
+    "management_register_sha256": "2bff9bef2e87a28ef24118adfd964618ddcb01ff3084791f1f4bc447484d2c46",
     "selected_source_document_count": 2,
     "selected_path_revision_pair_count": 2,
     "unexplored_path_revision_pair_count": 65,
@@ -37,7 +37,7 @@
     "base_drift_from": "af288f3975d06f483d0c1fe5ba2f85041f06a607",
     "base_drift_to": "b6b4215bc169bad81d8aa73021da04bda669e9e7",
     "base_rebaseline_count": 2,
-    "base_drift_impact": "origin/mainはA1 next-five研究成果（SCF-B-0050、rdp001-reqatom-next5）の追加のみで、MPR-SH-OUTSIDE67-001、holding、selected source、SCF-B-0057入力は不変。差分を静的確認後、isolated worktreeをb6b4215bcへ再baselineした。既存の685c→af288 drift記録も保持する。"
+    "base_drift_impact": "origin/mainはA1 next-five研究成果（SCF-B-0050、rdp001-reqatom-next5）の追加のみで、MPR-SH-OUTSIDE67-001、holding、selected source、SCF-B-0057入力は不変。差分を静的確認後、isolated worktreeをb6b4215bcへ再baselineした。既存の685c→af288 drift記録も保持する。 O10後続appendで新たなcurrent source holding MPR-SH-VDH-O10-001が1件増え、live source holdingは42から43へ変化した。既存OUTSIDE67 holding 67件と選択・source scopeは不変。"
   },
   "source_holding": {
     "registration_id": "MPR-SH-OUTSIDE67-001",

@@ -392,3 +392,14 @@ O9はPO原文を[byte-identical task-source snapshot](../requirement-registratio
 両候補とも全decision axisの`selected`はnullで、推奨Aは助言にとどまる。O9には1.0／後続版の指定がないため、どちらもversion targetを設定せず、PO判断へ残した。HARNESS候補の直接入力は17 selected clause spansのみ。15 full source linesと全remainderはMPR-SH-O9-NAMING-001にsource holdingとして保全し、HIL-FR-53 line 143を含む非選択条件をHARNESS候補へ割り当てない。BRAIN候補は旧atomを直接入力にしない。BRAINは既存L1の領域、Pattern/Unit/Part、根拠・版・反例、製品固有意味の分離を親とする。既存ID、採択済み本文、OS/SECURITY責務名を改名対象にしない。
 
 Exact old file/line/file SHA-256/line SHA-256, selected atom digest, local goal source snapshot, candidate/L11 digests and scope limits are in [source-lines](../requirement-registration/ops-o9-naming-source-lines-2026-09-29.jsonl) and the two receipts. The 15 old line atoms are bounded selections; no closure of either legacy file or archive is claimed. The BRAIN receipt's `no_loss` covers only the empty direct legacy input set.
+
+
+## O10追加候補：HARNESS Visual Design measurement（判断集合60候補）
+
+| ID | 状態／推奨 | 版／親 | POが選ぶ意味・候補範囲 | 根拠・影響 |
+|---|---|---|---|---|
+| `HARNESS-L2-049` (L2/L11) | PO未決／推奨 **A** | 1.0; HARNESS-L1-001/002/004 | A＝rendered prototype・profile・oracle・known fixturesを受け、表示条件・検査精度・文言量を評価。B＝scope縮小/分割。C＝保留。すべて未選択。 | 旧VDH-FR-011の1 spanを選択、残る24 spanを`MPR-SH-VDH-O10-001`に保全。登録`MPR-RC-HARNESS-L2-049-001`。`HARNESS-L2-039`未採択を前提にせず、prototype生成・semantic ID・lifecycle stateは049の外。 |
+
+`HARNESS-L2-049`の単独入力は、scope/revisionと利用許可が結ばれたrenderable prototype、適用profile、oracle、既知のpositive/negative fixtures。049は表示計測・精度の照合・profile由来の簡潔copy候補を返す。O10作業依頼の重点から導くfixture評価とcopy量提案は新規案で、旧sourceに同じ明示規則があったとは主張しない。BRAIN/LABO/INTELLIGENCEは既存接続のまま。
+
+旧FR本文19行は25 non-overlapping spansへ分割し、1 spanをcandidate input、24をsource holdingへ照合した。後続版にはreal-data/user UX、prototype/implementation drift、analytics event linkageを残し、旧211-file intake・sub-check・DB/runtimeは移植しない。PO packet JSONのcandidate countとdecision-axis recordsは60。全axisはpending/unselected、authority effect none。

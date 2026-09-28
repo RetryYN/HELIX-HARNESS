@@ -793,3 +793,16 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **返却例**：role unknown、consumer incompleteness、semantic signature mismatch、public API/CLI、persisted field/event、直接参照される設定keyでは自動修正を拒否し、理由・影響・戻し先を記録する。互換migrationが要る対象を単なるinternal renameで合格にしない。
 - **例外経路**：自動修正不能findingは警告として残し、理由・owner・expiryのある例外が指定されたfixtureでは後続へ進める。期限なし・責任者なしの例外は不合格。
 - **CI非権限**：検査結果と候補提示は証拠であり、採択・merge admission・実装権限を生成しない。受入条件は候補の期待結果であって未構築CIの実行証拠ではない。
+
+### HARNESS-L11-049 画面prototypeの表示計測oracle・検査精度・文言量評価の受入候補
+
+**対応要求**：`HARNESS-L2-049`（HELIX-HARNESS単体候補、`version_target: 1.0`、未採択）。以下は静的な受入oracle案であり、実際の描画、測定、LABO評価、PO合意を実施した証拠ではない。
+
+- **単独成立例：rendered prototypeを測定する**：利用許可とscope/revisionを持つrenderable prototype、適用profile、既知のpositive/negative fixtureを入力する。prototype生成、Pattern selection、screen identity発行が入力に含まれない場合、049はそれらを補わず不足として返す。
+- **正常例：表示と測定**：選択したdevice conditionとview/viewport条件で実際に描画した対象画面、主要stateなどの条件、各測定のoracle/手段/版、証拠が同じ対象revisionへ結ばれる。適用対象についてアクセシビリティ、コントラスト、画面幅別の崩れ・はみ出し、主要状態、profileに基づく文言量の各結果を個別に確認できる。device/view条件が未指定または証拠に結べない測定はunknownとする。適用外または未測定は理由付きで識別し、他項目の結果で埋めない。
+- **正常例：検査精度**：検査項目ごとの既知の正例・反例fixtureと期待分類、実測結果を照合し、誤検出・見逃しを評価できる。選択scopeと異なるfixture・source revisionの結果を流用しない。LABO評価が必要な範囲では既存接続経由の評価結果と未完義務を識別する。
+- **正常例：文字量**：profileが画面・領域・文言の役割と目安を定める範囲で、上限超過、同じ内容の反復、説明のためだけの説明を理由付き候補として作成側へ返す。閾値をprofileや根拠なしに作らず、人の文言判断や修正を承認済みとして扱わない。
+- **状態境界**：機械検査のpassは`implemented`や`ux_verified`を生成しない。両状態の分離は既存`HARNESS-L2-039`候補の範囲と重なるため、049の単独成立・測定結果から状態を主張できない。
+- **不成立例**：表示せずに生成物/静止画だけで測定済みとする、採択されていないPatternやCORE制約を確定済みとして用いる、検査精度がunknownなのにpass根拠へ使う、文字数の一律閾値を追加する、人の合意をAIが代行する、`implemented`から`ux_verified`を推定する、後続版のreal-user UX/drift/analyticsを1.0完了条件に混入する場合は不合格またはunknownとする。
+- **未見例**：追加のdevice condition、view/viewport、画面状態、文言役割を与え、選択scopeのoracle・fixtureにない条件をunknownとして残せることを確認する。未選択の機器・役割・locale等について、実施・合格を推測しない。
+- **受入の限界**：文書上の対応関係、candidate登録、fixture一覧、描画画像の存在だけでは要求採択、実測成功、検査精度、PO合意、実装、実利用者評価、L3/L11の実際の完了を成立させない。O10で後続版へ回したreal-data/user evaluation、prototype-implementation drift、analytics event接続を1.0候補の合格要件にしない。

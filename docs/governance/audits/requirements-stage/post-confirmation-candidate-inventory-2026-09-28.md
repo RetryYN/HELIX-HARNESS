@@ -215,3 +215,8 @@ HYB-002の3 clauseをarchive/baseline別revisionの6 atomとしてこの候補�
 - [HELIXBRAIN-L2-031：役割型の再利用知識](../../../helix-brain/L2-requirements/brain-requirements.md#helixbrain-l2-031)／[対L11](../../../helix-brain/L11-acceptance/brain-acceptance.md#L120)：`MPR-RC-HELIXBRAIN-L2-031-001`、[empty-input receipt](../requirement-registration/o9-brain-coverage-receipt-2026-09-29.json)。BRAIN L1-derived new proposalでありversion target未設定。
 
 両候補のowner・scope・source meaning・adoption・version axesは別々にPO未選択として記録した。source snapshotを含むO9根拠とexact line accountingは[packet](post-confirmation-25-po-decision-packet-2026-09-28.md#o9追加候補対象と役割型による命名再利用語彙判断集合59候補)およびreceiptを参照。
+
+
+## O10追加候補（未採択、判断集合60候補／60 axis records）
+
+- [HARNESS-L2-049：画面prototypeの表示計測・検査精度・文言量候補](../../../helix-harness/L2-requirements/product-requirements.md#harness-l2-049)／[対L11](../../../helix-harness/L11-acceptance/product-acceptance.md#harness-l11-049)：`MPR-RC-HARNESS-L2-049-001`、[coverage receipt](../requirement-registration/o10-visual-design-harness-coverage-receipt-2026-09-29.json)。旧VDH-FR-011の1 source spanを選択し、他24 spansを`MPR-SH-VDH-O10-001`へ保持。O10 task basis由来のprecision fixtures・profile-based concise-copyは新規案。049単独入力はrendered prototype/profile/oracle/known fixturesであり、HARNESS-L2-039の採択・prototype generation・semantic ID発行・lifecycle stateを前提にしない。後続版はreal-user/data UX、drift、analytics。PO未選択。

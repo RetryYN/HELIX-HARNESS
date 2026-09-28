@@ -1066,3 +1066,27 @@ scope拡張候補の受入寄与・最小性を照合するとき、追加機能
 ###### HARNESS-L2-048の適用境界
 
 HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再利用知識として役割語彙の意味・例を提供する候補を別identityで持つ。BRAINの語彙候補はHARNESSの命名規則、製品固有設計の採択、命名decisionを上書きしない。OS/SECURITY等の責務名、既存要求ID、採択済み要求本文の名称変更は本候補に含めない。
+
+### HARNESS-L2-049 画面prototypeの表示計測oracle・検査精度・文言量評価（HELIX-HARNESS unit候補、version_target: 1.0）
+
+**状態**：新規の未採択候補。O10作業依頼を起点に起草した候補であり、要求合意・L3承認・実装・実行を生成しない。既存候補`HARNESS-L2-039`のExperience/UI/Frontend関係やprototype生成・screen contractを置き換えない。049は既に与えられたrenderable prototypeを表示計測するoracleと精度評価だけを所有する。
+
+**親L1**：`HARNESS-L1-001`（V-model pair）、`HARNESS-L1-003`（変更影響とtrace）、`HARNESS-L1-004`（検証義務・反例・証拠）、`HARNESS-L1-006`（prototypeと合意）、`HARNESS-L1-009`（design template）。対象画面、要求revision、scope、適用する既存contractとそのauthority状態を記録する。候補の親は現在のL1 bytesであり、新しいL1要求や採択を推測しない。
+
+**種別・scope**：HELIX-HARNESSに属するVisual Design HARNESSの単体能力候補。既存のV-model層とpairを使い、別工程、独立承認者、独立実行機構を追加しない。入力されたrenderable prototypeと、その画面・領域・文言役割別profileに適用する表示計測oracleを定める。prototype生成、Experience/UI/Frontendの関係構成、semantic identityの発行はこの候補のscope外で、既存`HARNESS-L2-039`候補との重複を避ける。039は未採択であり、049の入力条件として採択を前提にしない。単独で成立する入力は、利用許可とscope/revisionが分かるrenderable prototype、選択された適用profile、および既知のpositive/negative fixtureである。pattern/style/Visual Identityはprototypeまたはprofileに明示的に含まれる場合だけ計測条件として参照し、新しいprofile schemaや固定閾値を作らない。
+
+**入力・出力**：入力はrenderable prototype、対象screen scope/revision、測定対象のdevice classまたはdevice condition、view/viewport条件、適用profile、許可された測定項目とoracle、既知fixtureと期待分類である。prototypeに必要なscreen identityやsource traceがなければ新しく発行せず不足として返す。出力は実際に表示したscope/device/view条件、各測定項目・oracle・手段版・fixture、測定結果と証拠、適用外・未測定・unknown、修正候補、差戻し先を含む。
+
+**表示と機械計測**：入力された対象画面を指定device conditionとview/viewport条件のもとで実際に描画し、その結果に対して適用scopeで定めたアクセシビリティ、コントラスト、画面幅別の崩れ・はみ出し、主要状態（例：empty/loading/error）の有無、文言量を測る。device/view条件が未指定または表示証拠に結べない場合、その条件の測定はunknownとする。測定ごとに対象scope、device/view条件、oracle、手段・版、結果、証拠を結ぶ。O10で新規提案された文言検査は、UI profileの画面・領域・役割別上限目安を根拠に超過、反復、説明のためだけの説明を候補として返す。根拠のない固定上限や閾値は作らない。静止画、DOMの存在、prototypeの生成だけでは表示検証や合格を主張しない。
+
+**検査精度とLABO接続**：各機械検査の適用範囲と判定条件に対し、既知の正例・反例fixtureで誤検出と見逃しを評価可能にする。精度評価が確認できない検査は合格根拠に使わず、warningと未評価範囲を返す。LABOによる検査精度の評価は既存接続の範囲で受ける。評価者・fixtureのauthority、結果保管、配置・実行運転をこの要求が所有しない。候補、fixture、測定回数だけで精度や品質を成立扱いにしない。
+
+**依存・境界**：常時必須は対象scope/revision、UI適用性、既存要求・oracle・profile/source identityと利用許可、結果を結ぶ証拠契約である。Patternを選択する場合は既存BRAIN側の候補または確定済み契約の版・適用条件・反例を照合し、選択しなかったPatternを存在または適格と推定しない。製品固有screen/flow/token/Visual Identityは当該製品のHELIX-HARNESS-COREへ残す。LABOは測定後の評価、INTELLIGENCEは既存の配置案を担う。本候補はBRAIN/LABO/INTELLIGENCEに新しい要求identityや接続を追加せず、各候補が採択済みであるとも扱わない。実行・ticket・state記録・証拠保存は現行の既存owner契約へ渡す。
+
+**authority・状態**：HARNESS/AIはvision、brand、見た目の好み、prototypeへの合意、L3要件freeze、L11利用者受入を自己承認しない。候補出力・機械判定・fixture評価は人の判断を代替しない。049が返す検査状態は測定単位のpass/warning/unknownであり、`implemented`や`ux_verified`を生成しない。O10の状態区別は既存`HARNESS-L2-039`候補と同scopeで重複するため、049単独で状態成立を主張しない。実データ・実利用者によるUX評価、prototypeと実装のdrift検査、計測event結線はO10の後続版へ残す。後続scopeを1.0へ前倒ししない。
+
+**既存要求との境界**：`HARNESS-L2-039`候補はprototype/Experience/UI/Frontendの関係とscreen/profile/binding等のsource contractを広く扱う。049は既にrenderされたscreenについての測定oracleと検査精度・文言量findingだけに限り、039を置換、重複、または前提採択しない。`HARNESS-L2-022`はstageごとのoracle・evidence状態、`HARNESS-L2-005`は選択された検証義務、`HARNESS-L2-034`は選択した場合の計測契約をそれぞれ参照する。BRAIN/LABO/INTELLIGENCEの既存接続は、入力sourceが選択され有効な場合にだけその契約へ返し、新しいrequirement identityを追加しない。
+
+**不成立と戻し先**：prototype/profile/oracle/fixtureの版、scope、authority、利用許可が不明なら測定条件を確定しない。対象の画面が表示されていない、必要な測定・証拠が欠ける、known-positive/negative fixtureで精度を評価できない、profile上限や文言役割の根拠がない場合はpassを返さず、warning/unknownと未完条件を返す。要求意味・見た目の優先順位は上流ownerへ、prototype agreementは`HARNESS-L2-024`の既存境界へ、設計・oracle不足は既存設計ownerへ、検査精度評価はLABOへ戻す。人の判断境界や毎回のapproval gateを追加しない。
+
+**旧sourceと差分**：旧`LEGACY-ASSET-335176749F6322C3CD8D`の`ai-vision-design-harness-engine.md` VDH-FR-011の「主要stateとdevice/view条件」を選択spanとして起点にする。旧`LEGACY-ASSET-4E880D2FCD37879BA300`のdesign-harness-assessment-auditは、実装済みの文書管理と未実装のscreen/prototype機能を区別して改善順を示す背景auditとして参照する。保持点は旧screen state/device/view coverage evidenceである。O10の検査精度fixtureと文言量制約は新規提案であり、情報優先順位は保留した旧VDH-FR-005 spanを意味の参照元にする。既存039候補と重なるprototype生成、Pattern/profile設定、semantic ID発行、人間承認は049へ再導出しない。変更点は現行layer・親L1・既存ownerへ配置し、211-file intake、旧sub-check、旧DB/runtime、旧L0-L14/旧processを移植しない。assessment auditの旧実装状態を現行の実装根拠にしない。対象sourceと保留分はO10 source inventory/coverage receiptに記録する。
