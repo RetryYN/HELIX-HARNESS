@@ -352,3 +352,8 @@ PO原文は[訂正source snapshot](ops-o1-o2-request-source-snapshot-2026-09-29-
 ## O1 Ticket非参照境界の確認回答（#2286再レビュー3）
 
 PO原文：「チケットそのものに参照をつけたり実装の一部みたいに扱わないってこと。」[r3 snapshot](ops-o1-o2-request-source-snapshot-2026-09-29-r3.md)に固定。Ticketを参照結節点・実装部品にしない条件をOS-047と対L11へ反映した。特定OS graphへの配置は新規案であり、採択しない。現行候補登録 `MPR-RC-HELIXOS-L2-047-003`（-002を訂正）、digest `sha256:e19191ce980467fddf5822619ccd480a41c84e6382ad1191ad5ea3ab04192377`、receipt r3。候補採否A／B／CはいずれもPO未選択。
+
+## O3・O5追加候補：Worker遊休とreview capacity（判断集合54候補）
+
+- `HELIXOS-L2-049`（Worker稼働観測と低干渉task割当）：旧sourceは旧capacity区分、pool上限とactive WIPの分離、競合しないREADY taskと順序を限定保持。新規案は低干渉taskの適格性、INTELLIGENCE配置案の利用、設定上限と遊休時の別assignmentを新規案として選択する。A＝exact候補採択（推奨）、B＝保留、C＝revision・理由・影響を明示した変更。いずれも未選択。登録 `MPR-RC-HELIXOS-L2-049-001`、[receipt](../requirement-registration/helixos-worker-utilization-coverage-receipt-2026-09-29.json)は選択spanのみpartial。親 HELIXOS-L1-003/HELIXOS-L1-008、影響 OS-L2-004/005/007/008/009。
+- `HELIXOS-L2-050`（独立review capacityの観測と調整）：旧sourceは旧review queue/待ち/rework占有/reviewer稼働率のtyped threshold、lease一意性とbackpressureを限定保持。新規案はreview session増枠・縮退と具体的閾値、PR generationとHEADに束縛する手順を新規案として選択する。A＝exact候補採択（推奨）、B＝保留、C＝revision・理由・影響を明示した変更。いずれも未選択。登録 `MPR-RC-HELIXOS-L2-050-001`、[receipt](../requirement-registration/helixos-reviewer-capacity-coverage-receipt-2026-09-29.json)は選択spanのみpartial。親 HELIXOS-L1-003/HELIXOS-L1-009、影響 OS-L2-004/007; HARNESS-L2-005。

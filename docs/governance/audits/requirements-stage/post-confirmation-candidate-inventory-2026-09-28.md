@@ -183,3 +183,8 @@ HYB-002の3 clauseをarchive/baseline別revisionの6 atomとしてこの候補�
 ## O1候補の現行訂正（#2286再レビュー3）
 
 上の047履歴を `MPR-RC-HELIXOS-L2-047-003` で訂正。PO確認回答、対L11、r3 receipt、未採択状態は[判断packet](post-confirmation-25-po-decision-packet-2026-09-28.md)を参照。
+
+## O3・O5追加候補（未採択）
+
+- [HELIXOS-L2-049：Worker稼働観測と低干渉task割当](../../../helix-os/L2-requirements/governance-requirements.md#helixos-l2-049)／[対L11](../../../helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-049)：`MPR-RC-HELIXOS-L2-049-001`、[receipt](../requirement-registration/helixos-worker-utilization-coverage-receipt-2026-09-29.json)。判断packetでA/B/C未選択。
+- [HELIXOS-L2-050：独立review capacityの観測と調整](../../../helix-os/L2-requirements/governance-requirements.md#helixos-l2-050)／[対L11](../../../helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-050)：`MPR-RC-HELIXOS-L2-050-001`、[receipt](../requirement-registration/helixos-reviewer-capacity-coverage-receipt-2026-09-29.json)。判断packetでA/B/C未選択。
