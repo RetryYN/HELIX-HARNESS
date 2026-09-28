@@ -38,7 +38,10 @@
       "ir_record_semantic_digest": "sha256:88f8f52e5a3fe1598158a2d261dcc400d86b421b267bfd0a2fd6cd9052e4cb5e",
       "source_authority_state": "specified_frozen",
       "disposition": "semantic_rederivation_candidate",
-      "relation": "旧L1 line 143をstatement atom 1件と右端output atom 4件へ分解して局所対応する。旧IR recordは同じidentityの別holdingに残し別atomとして重複計上しない。旧source holdingは維持し、残りのsemantic-line collectionと他identityも保全する。"
+      "relation": "旧L1 line 143をstatement atom 1件と右端output atom 4件へ分解して局所対応する。旧IR recordは同じidentityの別holdingに残し別atomとして重複計上しない。旧source holdingは維持し、残りのsemantic-line collectionと他identityも保全する。",
+      "source_span_text": "Semantic Revision and Asset Identityはpath・名称から独立したimmutable asset IDを保持し、意味変更を新revisionとして保存する。rename、move、split、merge、supersedeは履歴、authority、oracle、typed edgeを失わず処理する。",
+      "source_span_start_char": 18,
+      "source_span_end_char": 186
     },
     {
       "atom_id": "IDENTITY-HIL-FR-53-ASSET-REVISION-L0143",
@@ -58,7 +61,10 @@
       "ir_record_semantic_digest": "sha256:88f8f52e5a3fe1598158a2d261dcc400d86b421b267bfd0a2fd6cd9052e4cb5e",
       "source_authority_state": "specified_frozen",
       "disposition": "semantic_rederivation_candidate",
-      "relation": "旧L1 line 143をstatement atom 1件と右端output atom 4件へ分解して局所対応する。旧IR recordは同じidentityの別holdingに残し別atomとして重複計上しない。旧source holdingは維持し、残りのsemantic-line collectionと他identityも保全する。"
+      "relation": "旧L1 line 143をstatement atom 1件と右端output atom 4件へ分解して局所対応する。旧IR recordは同じidentityの別holdingに残し別atomとして重複計上しない。旧source holdingは維持し、残りのsemantic-line collectionと他identityも保全する。",
+      "source_span_text": "asset revision",
+      "source_span_start_char": 189,
+      "source_span_end_char": 203
     },
     {
       "atom_id": "IDENTITY-HIL-FR-53-IDENTITY-LOCATION-HISTORY-L0143",
@@ -78,7 +84,10 @@
       "ir_record_semantic_digest": "sha256:88f8f52e5a3fe1598158a2d261dcc400d86b421b267bfd0a2fd6cd9052e4cb5e",
       "source_authority_state": "specified_frozen",
       "disposition": "semantic_rederivation_candidate",
-      "relation": "旧L1 line 143をstatement atom 1件と右端output atom 4件へ分解して局所対応する。旧IR recordは同じidentityの別holdingに残し別atomとして重複計上しない。旧source holdingは維持し、残りのsemantic-line collectionと他identityも保全する。"
+      "relation": "旧L1 line 143をstatement atom 1件と右端output atom 4件へ分解して局所対応する。旧IR recordは同じidentityの別holdingに残し別atomとして重複計上しない。旧source holdingは維持し、残りのsemantic-line collectionと他identityも保全する。",
+      "source_span_text": "identity/location history",
+      "source_span_start_char": 204,
+      "source_span_end_char": 229
     },
     {
       "atom_id": "IDENTITY-HIL-FR-53-SPLIT-MERGE-DISPOSITION-L0143",
@@ -98,7 +107,10 @@
       "ir_record_semantic_digest": "sha256:88f8f52e5a3fe1598158a2d261dcc400d86b421b267bfd0a2fd6cd9052e4cb5e",
       "source_authority_state": "specified_frozen",
       "disposition": "semantic_rederivation_candidate",
-      "relation": "旧L1 line 143をstatement atom 1件と右端output atom 4件へ分解して局所対応する。旧IR recordは同じidentityの別holdingに残し別atomとして重複計上しない。旧source holdingは維持し、残りのsemantic-line collectionと他identityも保全する。"
+      "relation": "旧L1 line 143をstatement atom 1件と右端output atom 4件へ分解して局所対応する。旧IR recordは同じidentityの別holdingに残し別atomとして重複計上しない。旧source holdingは維持し、残りのsemantic-line collectionと他identityも保全する。",
+      "source_span_text": "split/merge disposition",
+      "source_span_start_char": 230,
+      "source_span_end_char": 253
     },
     {
       "atom_id": "IDENTITY-HIL-FR-53-SEMANTIC-DIFF-L0143",
@@ -118,7 +130,10 @@
       "ir_record_semantic_digest": "sha256:88f8f52e5a3fe1598158a2d261dcc400d86b421b267bfd0a2fd6cd9052e4cb5e",
       "source_authority_state": "specified_frozen",
       "disposition": "semantic_rederivation_candidate",
-      "relation": "旧L1 line 143をstatement atom 1件と右端output atom 4件へ分解して局所対応する。旧IR recordは同じidentityの別holdingに残し別atomとして重複計上しない。旧source holdingは維持し、残りのsemantic-line collectionと他identityも保全する。"
+      "relation": "旧L1 line 143をstatement atom 1件と右端output atom 4件へ分解して局所対応する。旧IR recordは同じidentityの別holdingに残し別atomとして重複計上しない。旧source holdingは維持し、残りのsemantic-line collectionと他identityも保全する。",
+      "source_span_text": "semantic diff",
+      "source_span_start_char": 254,
+      "source_span_end_char": 267
     }
   ],
   "atom_coverage": [
@@ -202,11 +217,47 @@
   "unaccounted_atom_refs": [],
   "preserved_pending_registration_refs": [
     "MPR-SH-SEMANTIC-LINE-003#remaining atoms",
-    "MPR-SH-IR-003#HIL-FR-53 record and remaining requirement identities"
+    "MPR-SH-IR-003#HIL-FR-53 record and remaining requirement identities",
+    "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-requirements-L0143"
   ],
   "decision_status": "unadopted_candidate; no decision in this draft establishes adoption",
   "open_boundary": "Identity encoding, identifier issuance, persistence, and split/merge authority adjudication are unresolved. HARNESS-L2/L11-052 and any FR52 candidate are not dependencies; adoption/order is not fixed here.",
   "registration_id": "MPR-RC-HARNESS-L2-053-001",
   "candidate_l2_section_sha256": "sha256:ebc78869f6d94668d9fed00d0a0415d068d85c0f61c0d98f01a9c4ec39710587",
-  "l11_section_sha256": "sha256:c22abfd29780a4016b0fcef74d6b2c29b3628b81c12d0fcb0b1fcabfb48bb61f"
+  "l11_section_sha256": "sha256:c22abfd29780a4016b0fcef74d6b2c29b3628b81c12d0fcb0b1fcabfb48bb61f",
+  "source_span_uncovered_nonsemantic": [
+    {
+      "start_char": 0,
+      "end_char": 18,
+      "text": "| **HIL-FR-53** | "
+    },
+    {
+      "start_char": 186,
+      "end_char": 189,
+      "text": " | "
+    },
+    {
+      "start_char": 203,
+      "end_char": 204,
+      "text": "、"
+    },
+    {
+      "start_char": 229,
+      "end_char": 230,
+      "text": "、"
+    },
+    {
+      "start_char": 253,
+      "end_char": 254,
+      "text": "、"
+    },
+    {
+      "start_char": 267,
+      "end_char": 269,
+      "text": " |"
+    }
+  ],
+  "candidate_l2_file_sha256": "sha256:b8d81434cd0ae28155f507ee6e797d945061496c0c3d8f76dc79b524d2857df3",
+  "paired_acceptance_file_sha256": "sha256:f4b385be3af82090ae43322bff6c1a139b5f785fec8b02ecc616db19416ad834",
+  "o9_holding_relation": "O9 holdingはHARNESS-L2-048の候補入力外という当時の保全記録を維持する。本HARNESS-L2-053はMPR-SH-SEMANTIC-LINE-003から同じFR-53 line 143を5条件に分けて意味候補へ対応付ける。O9 holdingの全行を別source atomとして二重計上せず、旧IR recordも別holdingに残す。過去のunassigned表示は048との関係であり、本053の採択や正式successorを意味しない。"
 }
