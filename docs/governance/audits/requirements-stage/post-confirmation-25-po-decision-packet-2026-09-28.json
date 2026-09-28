@@ -79,6 +79,12 @@
         "candidate_semantic_digest": "sha256:d79e671219cf5325c54675e8bf00e69c8a88f055074da720b5d89a0b9d1cfe81",
         "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-measurement-contract-coverage-receipt-2026-09-28-r2.json",
         "management_state_at_revision": "registered_proposal"
+      },
+      "version_target_evidence": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "line": 693,
+        "excerpt": "### HARNESS-L2-034 要求別の計測契約と完成判定（コアの単体候補、version_target 1.0）",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
       }
     },
     {
@@ -157,6 +163,12 @@
         "candidate_semantic_digest": "sha256:7eabe1b8feefc4f7d954cf182a20d6db5c9f7ebd3e253767cc41c9def6d61896",
         "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-scope-derivation-coverage-receipt-2026-09-28.json",
         "management_state_at_revision": "registered_proposal"
+      },
+      "version_target_evidence": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "line": 721,
+        "excerpt": "- **親・状態**：HARNESS-L1-008。`version_target: 1.0`、未採択の追補候補。既存008/024の要求形成に、scopeの根拠を後付けの候補だけで循環させない照合を具体化する。人の指示を受けて候補を起こすことと、その候補を採用済みにすることを分ける。",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
       }
     },
     {
@@ -231,6 +243,12 @@
         "candidate_semantic_digest": "sha256:f675d55cba85d5e5e947aa39f82d70faf2534af0002456f629decf4cf9b7ab52",
         "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-verification-parity-coverage-receipt-2026-09-28.json",
         "management_state_at_revision": "registered_proposal"
+      },
+      "version_target_evidence": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "line": 732,
+        "excerpt": "**状態**：追加候補。2026-09-28に明示された採択集合には含まれず、未採択。`version_target: 1.0`候補。要求・設計・実装・CIの採択または実装許可を生成しない。",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
       }
     },
     {
@@ -306,6 +324,12 @@
         "candidate_semantic_digest": "sha256:d7a06c9fd6d87b721318463970a204452d91b5d92416c2e9d0e183c4bcad726b",
         "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-w-two-stage-coverage-receipt-2026-09-28.json",
         "management_state_at_revision": "registered_proposal"
+      },
+      "version_target_evidence": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "line": 779,
+        "excerpt": "**状態**：新規L2候補。現行の明示採択集合に含まれず、未採択。`version_target: 1.0`候補。独立した要求identityであり、実装許可、設計承認、要件承認、利用者受入を生成しない。",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
       }
     },
     {
@@ -378,7 +402,13 @@
       "paired_l11_id": "HARNESS-L2-038",
       "affected_requirement_and_consumer_ids": "HARNESS-L1-001/003/004/006/008; HARNESS-L2-019/003/004, 対L11",
       "rationale": "選択されたReverse scope内の内容閉包だけを問う。ユーザー選択scopeを越える全体網羅へ膨らませず、source条件の現行親L1を保持。",
-      "previous_register_revision": null
+      "previous_register_revision": null,
+      "version_target_evidence": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "line": 836,
+        "excerpt": "**状態**：新規unit候補、`version_target: 1.0`候補、未採択。これはrequirements-stageで照合したHIL-FR-22/35の元条件を、利用者が選んだsource/Full Reverse scopeの内容評価へ限定する提案である。候補の記載はPO判断・実装許可・設計承認を生成しない。",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
+      }
     },
     {
       "identity": "HARNESS-L2-039",
@@ -456,6 +486,12 @@
         "candidate_semantic_digest": "sha256:da5a6672f196dffba6fb2bdc7d7133153744a1605460f70d0da1bbb7699580c9",
         "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-experience-contract-coverage-receipt-2026-09-28.json",
         "management_state_at_revision": "registered_proposal"
+      },
+      "version_target_evidence": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "line": 891,
+        "excerpt": "### HARNESS-L2-039 体験・UI・Frontend契約を同一scopeへ結ぶ（HARNESS-CORE composite候補、version_target: 1.0）",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
       }
     },
     {
@@ -517,6 +553,12 @@
         "candidate_semantic_digest": "sha256:c349606d7798e3f4eb5e6cb31e0618a83dcfa05f9fc888b0ce618f6d160757df",
         "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-layer-ledger-extraction-coverage-receipt-2026-09-28.json#HARNESS-L2-040",
         "management_state_at_revision": "registered_proposal"
+      },
+      "version_target_evidence": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "line": 944,
+        "excerpt": "### HARNESS-L2-040 全層ledger契約と層外anchor（HARNESS-CORE unit候補、version_target: 1.0）",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
       }
     },
     {
@@ -579,6 +621,12 @@
         "candidate_semantic_digest": "sha256:d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260",
         "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-layer-ledger-extraction-coverage-receipt-2026-09-28.json#HARNESS-L2-041",
         "management_state_at_revision": "registered_proposal"
+      },
+      "version_target_evidence": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "line": 955,
+        "excerpt": "### HARNESS-L2-041 active templateのobligation抽出とgap提示（HARNESS-CORE unit候補、version_target: 1.0）",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
       }
     },
     {
@@ -678,6 +726,12 @@
         "candidate_semantic_digest": "sha256:ec6cc30ed93863de6856d10be04c2578cc0a9d2cdc50641e18627e83396d2d32",
         "coverage_receipt_ref": "docs/governance/audits/requirement-registration/intelligence-judgment-pack-coverage-receipt-2026-09-28-r3.json",
         "management_state_at_revision": "registered_proposal"
+      },
+      "version_target_evidence": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "line": 561,
+        "excerpt": "### HELIXINTELLIGENCE-L2-072 Judgment pack候補とshadow評価（単体候補、version_target: 1.0）",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
       }
     },
     {
@@ -747,7 +801,13 @@
       "paired_l11_id": "HELIXLABO-L2-061",
       "affected_requirement_and_consumer_ids": "HELIXLABO-L1-005/011; HELIXLABO-L2-055/059/060, 対L11",
       "rationale": "比較task/oracle隔離と履歴完全性をL1-005/011の比較評価へ追補。29 atomは局所receiptの範囲。評価結果や候補採用自体を自動化しない。",
-      "previous_register_revision": null
+      "previous_register_revision": null,
+      "version_target_evidence": {
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "line": 459,
+        "excerpt": "- **親・状態**：HELIXLABO-L1-005 primary／HELIXLABO-L1-011 context。`version_target: 1.0`、未採択の追補候補。既存059の比較評価における入力の完全性を補う。同じ評価エンジンを新設せず、採択済み059の固定revisionへ本追補の採択を遡及しない。",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
+      }
     },
     {
       "identity": "HELIXLABO-L2-062",
@@ -815,7 +875,13 @@
       "paired_l11_id": "HELIXLABO-L2-062",
       "affected_requirement_and_consumer_ids": "HELIXLABO-L1-009; HARNESS-L2-014/022, HELIXLABO-L2-055, 対L11",
       "rationale": "L1-009と旧HR-FR-P8-01/HAC-P8-01a/bに沿って、外部調査claimのsource span・版・公開日と一次検証保留条件を採用する。2.0のversion_targetを維持し、1.0へ前倒ししない。",
-      "previous_register_revision": null
+      "previous_register_revision": null,
+      "version_target_evidence": {
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "line": 472,
+        "excerpt": "- **親・状態**：HELIXLABO-L1-009。`version_target: 2.0`、未採択の追補候補。033/051で受け取る外部sourceの評価を具体化する。内部観測の1.0循環に外部検索を必須化せず、既決の候補採用や外部取得・実行の許可を継承しない。",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
+      }
     },
     {
       "identity": "HELIXLABO-L2-063",
@@ -884,7 +950,13 @@
       "paired_l11_id": "HELIXLABO-L2-063",
       "affected_requirement_and_consumer_ids": "HELIXLABO-L1-007/008; HARNESS-L2-003/004, HELIXLABO-L2-055/060, 対L11",
       "rationale": "修復再発評価から予防候補へ還流するcompositeをL1-007/008へ限定追補。L11で再発評価と候補生成を区別し、予防候補の採択は保たない。",
-      "previous_register_revision": null
+      "previous_register_revision": null,
+      "version_target_evidence": {
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "line": 482,
+        "excerpt": "- **親・状態**：HELIXLABO-L1-007／008。`version_target: 1.0`、未採択の追補候補。050の内部改善循環のうち、成功した修復の知見を保持し、同種の再発から予防候補へ返す条件を具体化する。既存の要求採用、修復の実行許可、個々の改善採否は継承しない。",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
+      }
     },
     {
       "identity": "HELIXLABO-L2-064",
@@ -944,6 +1016,12 @@
         "candidate_semantic_digest": "sha256:adf1027631a9f2425b346bbe7929fe9dd7bc6ead7c6de4479ffefcd82169983f",
         "coverage_receipt_ref": "docs/governance/audits/requirement-registration/labo-worker-blind-coverage-receipt-2026-09-28.json",
         "management_state_at_revision": "registered_proposal"
+      },
+      "version_target_evidence": {
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "line": 493,
+        "excerpt": "- **親・状態**：HELIXLABO-L1-005／011。`version_target: 1.0`、未採択の追補候補。既存055/059/060/061の評価責務を補い、通常履歴集計へblindを一律必須化しない。比較実施を許可するものではない。",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
       }
     },
     {
@@ -1006,7 +1084,13 @@
       "paired_l11_id": "HELIXLABO-L2-065",
       "affected_requirement_and_consumer_ids": "HELIXLABO-L1-005/011; HELIXLABO-L2-055, 対L11",
       "rationale": "候補Workerの資格とtask別性能証拠をL1-005/011に沿って比較資格条件として採用。HIL-FR-61/62は既存IRと意味重複し、要求identityの二重計上をしない。",
-      "previous_register_revision": null
+      "previous_register_revision": null,
+      "version_target_evidence": {
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "line": 505,
+        "excerpt": "**kind / parent / status**：unit、`HELIXLABO-L1-005` primary、`HELIXLABO-L1-011` context、`version_target: 1.0`、`draft_candidate`。採択済みの`HELIXLABO-L2-059`を変更せず、候補runtimeのqualificationと実task scorecardの観測条件を補う未採択候補である。親L1の固定revisionは2026-09-28のHELIX-LABO判断記録を参照し、候補追加から採択・実験実行・Worker割当を生成しない。",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
+      }
     },
     {
       "identity": "HELIXOS-L2-030",
@@ -1015,7 +1099,7 @@
       "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
       "recommended_choice": "A",
       "choice_meaning": "採用（L2/L11 authority decision only）",
-      "version_target_as_written": "未記載（候補本文の版条件を維持）",
+      "version_target_as_written": "1.0",
       "title_and_kind": "### HELIXOS-L2-030 HARNESS packageの生成・consumer検証・段階配布（単体候補）",
       "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md",
       "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
@@ -1079,12 +1163,58 @@
       "paired_l2_id": "HELIXOS-L2-030",
       "paired_l11_id": "HELIXOS-L2-030",
       "affected_requirement_and_consumer_ids": "HELIXOS-L1-005/007; HARNESS-L2-010/011, HELIXOS-L2-014, 対L11",
-      "rationale": "HARNESS package生成・consumer検証・段階配布をOS L1-005/007へ接続。96 selected atomsの限定集合であり、全source/全distributionを主張しない。採択しても配布実行の許可ではない。",
+      "rationale": "HARNESS package生成・consumer検証・段階配布をOS L1-005/007へ接続。96 selected atomsの限定集合であり、全source/全distributionを主張しない。採択しても配布実行の許可ではない。 保証6のWindows互換は1.0判断に直接影響するため、本文L891・対L11 L491・旧HIL-TR-04/NFR-19に基づくA/B選択と検証負担を下記の独立判断事項に示す。",
       "previous_register_revision": {
         "registration_id": "MPR-RC-HELIXOS-L2-030-001",
         "candidate_semantic_digest": "sha256:01beaa64126515611a6ec8d9ac7949aadc2ee52e7014fc98cd571ba28821001b",
         "coverage_receipt_ref": "docs/governance/audits/requirement-registration/os-package-acceptance-coverage-receipt-2026-09-28.json",
         "management_state_at_revision": "registered_proposal"
+      },
+      "version_target_evidence": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "line": 881,
+        "excerpt": "- **状態**：追補候補。新identityであり、現行のPO合意集合へ採択済みとして加えない。候補上の`version_target: 1.0`はHELIXOS-L1-005／007と、既に1.0で採択されたHELIXOS-L2-021のHARNESS構成版配布運転に対応する能力目標である。これ自体からv0.1収載、製品SemVer、実装、配布、release、tag、外部作用の許可を生まない。後続版・適用条件を既決本文から前倒しまたは変更しない。",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
+      },
+      "decision_sensitive_condition": {
+        "condition": "保証6（Windows consumer互換）をversion_target 1.0の候補本文と対L11に含む。Linux primaryの旧方針と別の対応環境・検証負担を明示してPO判断に供する。",
+        "candidate_requirement_ref": "docs/helix-os/L2-requirements/governance-requirements.md:891",
+        "candidate_acceptance_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:491",
+        "legacy_sources": [
+          {
+            "id": "HIL-TR-04",
+            "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "line": 168,
+            "source_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+            "source_line_sha256": "83bd39698247d03a8eeeb6b6bbc2d34a3d123603e15431c37946110adbd1033d"
+          },
+          {
+            "id": "HIL-NFR-19",
+            "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+            "line": 199,
+            "source_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+            "source_line_sha256": "565639d759a5a6241f95982f7caf10a8b581c56d7e975bf44e0dacfd0cc7c276"
+          }
+        ],
+        "current_decision_ref": "docs/governance/decisions/helix-web-product-group-po-decisions-2026-09-26.md:119",
+        "choices": [
+          {
+            "choice": "A",
+            "meaning": "保証6を含む現在のHELIXOS-L2/L11-030 exact候補をversion_target 1.0として採用。Linuxはcore/primary、Windowsは同一source/artifact identityのcompatibility検証として区別。",
+            "impact": "1.0のconsumer検証範囲にWindows互換を含む。対象matrix・実装方式・実行時証拠はL3/L10で確定し、未実施を実施済みにしない。"
+          },
+          {
+            "choice": "B",
+            "meaning": "Linux core/primaryの部分を採用し、保証6と対L11のWindows互換を後続版の候補または保留sourceへ分割して保持。",
+            "impact": "現在の030 exact bytesの一括採用にはならず、本文・register・receiptの訂正revisionと、分割を対象にしたPO判断が必要。Windows条件を削除・retireしない。"
+          }
+        ],
+        "recommendation": "A",
+        "reason": "旧HIL-TR-04/NFR-19と既存package差分監査はLinux primaryとWindows compatibilityを分け、他OS未実施の明示を要求している。Aは旧利用価値を保持しつつ、Windows成功をLinuxの代替証拠としない。1.0の追加検証範囲はPOへ明示して選択する。",
+        "additional_unresolved": [
+          "旧HIL-TR-04のmacOS first-class portable / HIL-NFR-19のmacOS portable suiteは、このOS-030保証6のWindows互換選択から自動処分しない。別の対象環境・版判断としてsourceを保持する。",
+          "Web判断記録L119の「Web提供系のHELIX実行環境を検証済みLinuxに限る」は、OS-030のHARNESS package consumer互換とは対象が異なる。Windows consumer互換をWeb runtime対応へ読み替えない。"
+        ]
       }
     },
     {
@@ -1154,7 +1284,13 @@
       "paired_l11_id": "HELIXOS-L2-031",
       "affected_requirement_and_consumer_ids": "HELIXOS-L1-004/010; HARNESS-L2-022/023, 対L11",
       "rationale": "CI性能計測と正しさを維持する改善回収をL1-004/010へ追補。旧数値や固定工程など別holdingに残したatomは本候補に混ぜず、新世代CIが未構築である現行境界を保つ。",
-      "previous_register_revision": null
+      "previous_register_revision": null,
+      "version_target_evidence": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "line": 902,
+        "excerpt": "- **親・状態**：HELIXOS-L1-004／010。`version_target: 1.0`、未採択の追補候補。020の検収・CI運転に性能観測と回収を追補し、HARNESSのoracleと検証範囲の意味、既決のticket駆動CI方針を変更しない。旧CIを起動せず、本文から実装やmerge許可を生成しない。",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
+      }
     },
     {
       "identity": "HELIXOS-L2-032",
@@ -1163,7 +1299,7 @@
       "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
       "recommended_choice": "A",
       "choice_meaning": "採用（L2/L11 authority decision only）",
-      "version_target_as_written": "未記載（候補本文の版条件を維持）",
+      "version_target_as_written": "1.0",
       "title_and_kind": "### HELIXOS-L2-032 Known failureの限定quarantine（単体候補）",
       "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md",
       "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
@@ -1215,7 +1351,13 @@
       "paired_l11_id": "HELIXOS-L2-032",
       "affected_requirement_and_consumer_ids": "HELIXOS-L1-004; HARNESS-L2-022, HELIXOS-L2-020/021, 対L11",
       "rationale": "Known failureを限定quarantineし、source条件を満たす再現/replayを管理するL1-004候補。quarantineで失敗を隠す・CI greenを作る用途に広げず、receiptの2 atomだけを採る。",
-      "previous_register_revision": null
+      "previous_register_revision": null,
+      "version_target_evidence": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "line": 916,
+        "excerpt": "- **状態・版**：新identityの単体追補候補、`version_target: 1.0`。PO採択・実装・実行許可なし。",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
+      }
     },
     {
       "identity": "HELIXOS-L2-033",
@@ -1224,7 +1366,7 @@
       "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
       "recommended_choice": "A",
       "choice_meaning": "採用（L2/L11 authority decision only）",
-      "version_target_as_written": "未記載（候補本文の版条件を維持）",
+      "version_target_as_written": "1.0",
       "title_and_kind": "### HELIXOS-L2-033 Versioned engine/detector registryと同一snapshot再現証拠（単体候補）",
       "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md",
       "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
@@ -1283,7 +1425,13 @@
       "paired_l11_id": "HELIXOS-L2-033",
       "affected_requirement_and_consumer_ids": "HELIXOS-L1-004; HARNESS-L2-022/023, HELIXOS-L2-020/032, 対L11",
       "rationale": "engine/detectorを版と同一snapshotに束ねる再現証拠をL1-004に接続。7 atomsで対象を限定し、CI実行やregistry運転を現状の完成証拠としない。",
-      "previous_register_revision": null
+      "previous_register_revision": null,
+      "version_target_evidence": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "line": 932,
+        "excerpt": "- **状態・版**：新identityの単体追補候補、`version_target: 1.0`。PO採択・実装・実行許可なし。",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
+      }
     },
     {
       "identity": "HELIXOS-L2-034",
@@ -1358,6 +1506,12 @@
         "candidate_semantic_digest": "sha256:a2ee8fa241d8a7693a6c688e0a1d4604718c93a023a7156975a6386f4f8b95d2",
         "coverage_receipt_ref": "docs/governance/audits/requirement-registration/os-directive-disposition-coverage-receipt-2026-09-28.json",
         "management_state_at_revision": "registered_proposal"
+      },
+      "version_target_evidence": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "line": 956,
+        "excerpt": "- **版**：`version_target: 1.0`候補。HELIXOS-L2-015/019の1.0共通記録土台へつなぐ範囲に限定する。新しいruntime、外部作用、実装許可は導かない。OS-034自体は2026-09-28に採択された明示候補HELIXOS-L2-014〜029に含まれず、未採択候補である。",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
       }
     },
     {
@@ -1367,7 +1521,7 @@
       "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
       "recommended_choice": "A",
       "choice_meaning": "採用（L2/L11 authority decision only）",
-      "version_target_as_written": "未記載（候補本文の版条件を維持）",
+      "version_target_as_written": "1.0",
       "title_and_kind": "### HELIXOS-L2-035 PR lifecycle event intakeと監査job要求の冪等生成（単体候補）",
       "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md",
       "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
@@ -1414,7 +1568,13 @@
       "paired_l11_id": "HELIXOS-L2-035",
       "affected_requirement_and_consumer_ids": "HELIXOS-L1-002/004/008; HARNESS-L2-024, 対L11",
       "rationale": "PR lifecycle event intakeから監査job要求を冪等生成するL1-002/004/008の接続。1 source atom限定。event/jobは採否・完了・要求意味の権威にしない。",
-      "previous_register_revision": null
+      "previous_register_revision": null,
+      "version_target_evidence": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "line": 989,
+        "excerpt": "**状態・種別・版**：HELIX-OS単体unit候補、`version_target: 1.0`候補、未採択。HELIXOS-L2-035は、選択された対象projectのPR lifecycle eventを欠落なく取り込み、同じ観測eventから重複した論理監査jobを生成しないOS能力を定める。旧hook/provider/author runtime、物理queueやdaemonの採用は決めない。候補本文は要求採択・L3承認・実装許可を生成しない。",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
+      }
     },
     {
       "identity": "HELIXOS-L2-036",
@@ -1484,7 +1644,13 @@
       "paired_l11_id": "HELIXOS-L2-036",
       "affected_requirement_and_consumer_ids": "HELIXOS-L1-009/010/002; HARNESS-L2-019/020, 対L11",
       "rationale": "Retrofit preflightをticket/planへ接続し、L1-009/010/002の準備条件を扱う。34 atomsに限定し、preflightは実装・移行実施許可でない。",
-      "previous_register_revision": null
+      "previous_register_revision": null,
+      "version_target_evidence": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "line": 1033,
+        "excerpt": "### HELIXOS-L2-036 Retrofit preflightのticket/plan接続（単体候補、version_target: 1.0）",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
+      }
     },
     {
       "identity": "HELIXOS-L2-037",
@@ -1553,7 +1719,13 @@
       "paired_l11_id": "HELIXOS-L2-037",
       "affected_requirement_and_consumer_ids": "HELIXOS-L1-006/002; HARNESS-L2-008/024, HELIXOS-L2-014/019, 対L11",
       "rationale": "weekly drift/debt観測を既存ticket候補へ渡すconnection候補。L1-006/002に整合するがticket候補から要求採用や優先順位の人間判断を生成しない。",
-      "previous_register_revision": null
+      "previous_register_revision": null,
+      "version_target_evidence": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "line": 1075,
+        "excerpt": "### HELIXOS-L2-037 週次drift・技術負債観測から既存ticket候補への引継ぎ（接続候補、version_target 1.0）",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
+      }
     },
     {
       "identity": "HELIXSECURITY-L2-029",
@@ -1627,6 +1799,12 @@
         "candidate_semantic_digest": "sha256:5adab279ee05cec515cd13870d200754ee0ba2f0e2e18168741cef9ceb80008c",
         "coverage_receipt_ref": "docs/governance/audits/requirement-registration/security-third-party-data-coverage-receipt-2026-09-28.json",
         "management_state_at_revision": "registered_proposal"
+      },
+      "version_target_evidence": {
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "line": 407,
+        "excerpt": "- **親・状態**：HELIXSECURITY-L1-006／007。`version_target: 1.0`、未採択候補。006の外部通信と007のWorker制約へ、旧HIL-NFR-37/39の第三者runtime条件を追補する。候補の登録から現行の通信・runtime採用を許可しない。",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
       }
     },
     {
@@ -1697,7 +1875,13 @@
       "paired_l11_id": "HELIXSECURITY-L2-030",
       "affected_requirement_and_consumer_ids": "HELIXSECURITY-L1-008/010/011; HELIXINTELLIGENCE-L2-010/047, HELIXOS-L2-020, 対L11",
       "rationale": "agentic自動適用範囲を広げる際の確認をL1-008/010/011へ接続。promotion条件は対象範囲のauthority gateとして扱い、既決許可の再利用を妨げる常時人手承認に変えない。",
-      "previous_register_revision": null
+      "previous_register_revision": null,
+      "version_target_evidence": {
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "line": 419,
+        "excerpt": "- **親・状態**：HELIXSECURITY-L1-008／010／011。`version_target: 1.0`、未採択候補。旧HR-NFR-P8-03とHAC-N8-03a/bの、段階導入と自動適用範囲への昇格条件を、008の操作authority、010の更新受入、011の能力差分へ結ぶ。1.xのWeb保護運用を1.0へ前倒ししない。",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
+      }
     },
     {
       "identity": "HELIXSECURITY-L2-031",
@@ -1752,7 +1936,13 @@
       "paired_l11_id": "HELIXSECURITY-L2-031",
       "affected_requirement_and_consumer_ids": "HELIXSECURITY-L1-007/008; HELIXOS-L2-018/020, HELIXINTELLIGENCE-L2-010, 対L11",
       "rationale": "追加Worker runtimeのproposal-only・隔離境界をL1-007/008へ限定追補。実行隔離とauthority境界を保持し、全候補の業務意味をSecurityへ移さない。",
-      "previous_register_revision": null
+      "previous_register_revision": null,
+      "version_target_evidence": {
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "line": 429,
+        "excerpt": "- **状態・版**：未採択候補。`version_target: 1.0`。既存HELIXSECURITY-L2-029が対象とする、主Worker契約の外へ追加接続するruntimeを使うoperationだけを対象とする。通常の主Worker、第三者runtimeを使わないtask、将来別に合意されたtarget範囲へは自動拡張しない。",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
+      }
     }
   ]
 }
