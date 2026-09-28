@@ -1090,3 +1090,20 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 **不成立と戻し先**：prototype/profile/oracle/fixtureの版、scope、authority、利用許可が不明なら測定条件を確定しない。対象の画面が表示されていない、必要な測定・証拠が欠ける、known-positive/negative fixtureで精度を評価できない、profile上限や文言役割の根拠がない場合はpassを返さず、warning/unknownと未完条件を返す。要求意味・見た目の優先順位は上流ownerへ、prototype agreementは`HARNESS-L2-024`の既存境界へ、設計・oracle不足は既存設計ownerへ、検査精度評価はLABOへ戻す。人の判断境界や毎回のapproval gateを追加しない。
 
 **旧sourceと差分**：旧`LEGACY-ASSET-335176749F6322C3CD8D`の`ai-vision-design-harness-engine.md` VDH-FR-011の「主要stateとdevice/view条件」を選択spanとして起点にする。旧`LEGACY-ASSET-4E880D2FCD37879BA300`のdesign-harness-assessment-auditは、実装済みの文書管理と未実装のscreen/prototype機能を区別して改善順を示す背景auditとして参照する。保持点は旧screen state/device/view coverage evidenceである。O10の検査精度fixtureと文言量制約は新規提案であり、情報優先順位は保留した旧VDH-FR-005 spanを意味の参照元にする。既存039候補はExperience/UI/Frontend relationとsource contractを扱うが、Pattern/CORE/profile制約下のprototype generationを定義していない。049はmeasurement-onlyであり、生成範囲は未解決PO frame A/B/Cに保持する。VDH-FR-005のPATTERN spanを含む未選択旧sourceは`MPR-SH-VDH-O10-001`へ保全し、ここで候補入力へ移さない。semantic ID発行や人間承認も049へ再導出しない。変更点は現行layer・親L1・既存ownerへ配置し、211-file intake、旧sub-check、旧DB/runtime、旧L0-L14/旧processを移植しない。assessment auditの旧実装状態を現行の実装根拠にしない。対象sourceと保留分はO10 source inventory/coverage receiptに記録する。
+
+
+### HARNESS-L2-050 レイヤ台帳リファクタリング証跡候補（HELIX-HARNESS単体、未採択）
+
+**authority／状態**：`registered_proposal`、`authority_effect: none`。これはPOが採択した要求ではなく、2026-09-29の57候補判断にも含まれない新候補である。候補登録は要求採択、L3承認、実装・実行許可、旧要求の正式後継割当を生成しない。`version_target`は旧HIL-FR-50に指定がないため付けない。
+
+**親L1**：`HARNESS-L1-001/003/004`。対象layer ledgerの要求・設計・検証pair、変更影響、検証義務とevidenceを結ぶ。対象revisionのConcept/L1親のauthorityはそれぞれの固定revisionに従い、本候補の登録から親の変更・採択を推定しない。
+
+**対象と役割**：HELIX-HARNESSのlayer-ledger refactor候補を作る前段の比較・evidence条件を定める。入力は対象ledger集合とrevision、比較前後のrow/edge snapshot、比較対象scope、関係するupstream/downstreamおよびleft/right consumer、適用oracle・V-pair、変更差分、rollback計画である。ledger重複、責務混在、semantic/name collision、変更波及、孤立edgeを個別に確認し、差分があればexternalize/commonize/objectize/semantic-rename/split/mergeの候補操作と根拠を記録する。操作名だけで自動変更や同一性を推測しない。
+
+**evidenceと候補出力**：一つの対象revision/scopeに対し、検出条件ごとの該当・非該当・unknown、変更前後のledger差分、全上下・左右consumerの列挙根拠、変更前後oracle、対応V-pair、保持・変更されたbehavior/contract/state、rollback前提と戻し先を結ぶ。列挙の母集団・revisionが示せないconsumer、edge、oracleは「なし」でなくunknownとして残す。候補出力は変更案、影響一覧、pair-preservation evidence、routing根拠を含む。必要な比較情報が欠ける間はbehavior-preservingと判定せず、Design Refactor成功候補を出さない。
+
+**routingと責務境界**：要求または公開contractの意味変更は既存HARNESS境界に従いRedesignへ戻す。永続state変更はRetrofitへ戻す。behavior-preservingで必要evidenceが揃った場合も、この候補はrefactor可否の新たな承認者・gateを作らず、採択済み`HARNESS-L2/L11-016`のrefactor条件および採択済み`HARNESS-L2/L11-042`のDesign Refactor判定へ材料を渡す。042の本文・source scopeは変更しない。HARNESSが意味とrouteを持ち、HELIX-OSは有効な既存authorityの下でwriter/snapshot/appendの運転・記録を持つ。OSはledger意味分類やrefactor適格性を決めない。BRAINの語彙は参考知識に限る。
+
+**旧sourceと差分**：直接のsource atomは旧L1 requirements `LEGACY-ASSET-719D5EC9C06FC4AAD0FF`のHIL-FR-50 line 140だけである（file SHA-256 `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`、line SHA-256 `9d9c14e1dac400ad6cf1cacdd6a54d82d4a09374d128af2ba3036652655fde54`）。旧HOT-HIL-47 line 74およびHST-HIL-033 line 60は受入設計のoracle参照にとどまり、source atomとして数えない。差分は、旧caseのledger-specific trigger、consumer/pair/oracle集約、変更種別ごとのrouting、rollback欠落時の扱いを一つの候補scopeへ明示すること。旧API、ledger schema、runtime、実行手順は移植しない。
+
+**隣接候補と未解決範囲**：HARNESS-L2-042は異なるv1.3 source atomsに基づく採択済み一般判断なので、本候補へ拡張・改訂しない。HARNESS-L2-048の選択rename範囲もHIL-FR-50の被覆に読み替えない。OSのwriter条件はHARNESSの意味条件を代替しない。source receiptはこの一行の局所対応だけを記録し、holdingを解放しない。HIL-FR-51〜55、HIL-FR-50全体のformal closure、旧IR全体、旧実装・旧testの実行は対象外である。

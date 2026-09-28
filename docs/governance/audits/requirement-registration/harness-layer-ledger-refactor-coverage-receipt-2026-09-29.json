@@ -1,0 +1,65 @@
+{
+  "receipt_id": "MPR-RCPT-HARNESS-LAYER-LEDGER-REFACTOR-2026-09-29",
+  "receipt_state": "candidate_scope_recorded",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### HARNESS-L2-050見出しからEOFまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256（sha256: prefixなし）を連結。atom順に改行区切り、末尾改行なし。",
+  "scope": "archive旧L1 requirement line 140のHIL-FR-50一atomだけをHARNESS-L2/L11-050の未採択候補へ局所対応する。HOT-HIL-47 line 74およびHST-HIL-033 line 60は受入設計oracle参照でsource atom countに含めない。FR51-55、HIL-FR-50全体closure、旧実装・旧test実行、正式後継割当、採択・実行許可は主張しない。",
+  "candidate_identity": "HARNESS-L2-050",
+  "requirement_kind": "unit",
+  "parent_l1_ids": [
+    "HARNESS-L1-001",
+    "HARNESS-L1-003",
+    "HARNESS-L1-004"
+  ],
+  "candidate_semantic_digest": "sha256:abeb498cf39f62ca8f34ded2c439502fb18215f1e376109147096ebaa69ce1b1",
+  "paired_acceptance_identity": "HARNESS-L2-050",
+  "paired_acceptance_digest": "sha256:44191f5dc431e603cf91cc3639d4798fceb8a53f3c1b9076a8a1f038b6e2e763",
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/harness-layer-ledger-refactor-source-lines-2026-09-29.jsonl",
+  "source_atom_set_digest": "sha256:2e50f4d20f54979472f1e6c6cbb2a6cfc26e0717e9f01246329d35fecff2de25",
+  "source_atom_count": 1,
+  "source_collection_scope": "MPR-SH-SEMANTIC-LINE-003のsource holdingからHIL-FR-50 line 140のidentity一行だけを選択。IR recordは同一要求identityの別holdingであり二重計上しない。残るsource linesとIR identitiesは生存holdingへ保持する。",
+  "atoms": [
+    {
+      "atom_id": "LEDGER-REFACTOR-HIL-FR-50-L0140",
+      "source_holding_registration_id": "MPR-SH-SEMANTIC-LINE-003",
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_line": 140,
+      "source_line_sha256": "sha256:9d9c14e1dac400ad6cf1cacdd6a54d82d4a09374d128af2ba3036652655fde54",
+      "source_text": "| **HIL-FR-50** | Ledger Design Refactorはlayer ledgerの重複、責務混在、semantic/name collision、変更波及、孤立edgeを比較し、externalize/commonize/objectize/semantic-rename/split/merge候補を生成する。全上下・左右consumer、before/after oracle、pair保持、rollbackが揃うbehavior-preserving変更だけをDesignRefactorへ送り、要求/公開contract/永続state変更はRedesign/Retrofitへrerouteする。 | ledger diff、refactor candidate/plan、pair-preservation receipt、reroute receipt |",
+      "source_requirement_id": "HIL-FR-50",
+      "source_item_id": "HIL-FR-50",
+      "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-50",
+      "ir_statement_semantic_digest": "sha256:e0796eda6bbf620164e2082b7fcb3798f0f333ed3f992df83fb7484f56a00fd2",
+      "ir_record_semantic_digest": "sha256:f1f3eef4ce2957347ef9bf7da548f30901eec6e0dc52777ffa9fba99d8295cc1",
+      "disposition": "semantic_rederivation_candidate",
+      "relation": "HIL-FR-50 line 140 is the sole direct source atom for HARNESS-L2/L11-050. Candidate carries ledger-specific triggers, scope-level consumer/oracle/pair evidence, routing and rollback conditions as an unadopted proposal. The adopted 042 source atoms are different and remain unchanged; HOT-HIL-47 and HST-HIL-033 are design-oracle references, not counted requirement atoms. No holding is released."
+    }
+  ],
+  "current_condition_refs": [
+    "docs/concept/helix-concept.md",
+    "docs/helix-harness/L1-planning/product-intent.md#HARNESS-L1-001",
+    "docs/helix-harness/L1-planning/product-intent.md#HARNESS-L1-003",
+    "docs/helix-harness/L1-planning/product-intent.md#HARNESS-L1-004",
+    "docs/helix-harness/L2-requirements/product-requirements.md#HARNESS-L2-003/004/016/042/048",
+    "docs/helix-harness/L11-acceptance/product-acceptance.md#HARNESS-L2-016/042",
+    "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-038",
+    "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+    "docs/governance/audits/requirements-stage/hil-fr50-ledger-refactor-residual-audit-2026-09-29.md",
+    "docs/governance/audits/requirement-registration/harness-layer-ledger-refactor-source-lines-2026-09-29.jsonl"
+  ],
+  "coverage_result": "no_loss",
+  "condition_closure": "not_asserted",
+  "unaccounted_atom_refs": [],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-SEMANTIC-LINE-003#remaining atoms",
+    "MPR-SH-IR-003#HIL-FR-50 record and remaining requirement identities"
+  ],
+  "decision_status": "pending_PO; new candidate is outside the 57-candidate decision and remains unadopted",
+  "open_boundary": "HARNESS-L2-050 proposes a ledger-specific evidence contract. The adopted 042 revision has a different source scope and is not changed or broadened. Existing 003/004/016/042 retain their authority; OS owns writer operation evidence, not semantic classification. FR51-55 remain excluded.",
+  "registration_id": "MPR-RC-HARNESS-L2-050-001",
+  "candidate_l2_file_sha256": "sha256:86abc64cb35a02bac106c51003a65ae74eab22a9f9699c6aceb0bfb046ab72a8",
+  "l11_file_sha256": "sha256:3917b4942feb63809a50dd20a512ed54344c6bbbd8e117e02f7a986326b344ee"
+}

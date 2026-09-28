@@ -811,3 +811,15 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **不成立例**：表示せずに生成物/静止画だけで測定済みとする、採択されていないPatternやCORE制約を確定済みとして用いる、検査精度がunknownなのにpass根拠へ使う、文字数の一律閾値を追加する、人の合意をAIが代行する、`implemented`から`ux_verified`を推定する、後続版のreal-user UX/drift/analyticsを1.0完了条件に混入する場合は不合格またはunknownとする。
 - **未見例**：追加のdevice condition、view/viewport、画面状態、文言役割を与え、選択scopeのoracle・fixtureにない条件をunknownとして残せることを確認する。未選択の機器・役割・locale等について、実施・合格を推測しない。
 - **受入の限界**：文書上の対応関係、candidate登録、fixture一覧、描画画像の存在だけでは要求採択、実測成功、検査精度、PO合意、実装、実利用者評価、L3/L11の実際の完了を成立させない。O10で後続版へ回したreal-data/user evaluation、prototype-implementation drift、analytics event接続を1.0候補の合格要件にしない。
+
+
+### HARNESS-L11-050 レイヤ台帳リファクタリング証跡の受入候補（未実行）
+
+**対応要求**：`HARNESS-L2-050`（HELIX-HARNESS単体候補、未採択、`version_target`未指定）。本節は静的な受入oracle案であり、実行・採択・旧ケースの合格を示さない。
+
+- **正常例**：同一の対象scope/revisionについて変更前後のledger row/edge、重複・責務混在・semantic/name collision・変更波及・孤立edgeの個別評価、上下左右consumerの母集団と列挙結果、before/after oracle、対応V-pair、behavior/contract/state差分、rollback planを結ぶ。evidenceが揃い、behaviorと要求/public contract/persistent stateが不変の場合、候補操作と影響一覧をDesign Refactor判定用材料として記録する。既存016/042の判定をこの受入が代行しない。
+- **異常例：evidence欠落**：consumer母集団またはrevision不明、edge/oracle/pairの対応欠落、前後比較不能、rollback planや戻し先欠落を個別に与える。該当範囲はunknownまたは不成立とし、Design Refactor成功扱いにしない。別revisionのreceiptや別scopeのoracleで不足を補わない。
+- **異常例：意味・状態変更**：public contractまたは要求意味の変更を含む差分はDesign Refactor候補に通さずRedesignへ戻す。永続state変更はRetrofitへ戻す。pair/behavior破壊もbehavior-preserving候補を不成立にする。これらのrouteは既存要求の責務に従い、本候補が新しい承認や操作権限を作らない。
+- **未見例**：作成側に伏せたconsumerまたはorphan edge、同名異義のrow、scope外の隣接ledger revisionを与える。既知母集団外・適用oracle不明の範囲をunknownに保ち、未見consumerなし、影響なし、全体closureと推定しない。
+- **証拠と境界**：receiptは対象revision、scope、evidence参照、未評価範囲、戻し先を識別する。文書・receiptの存在だけで実際の変更、rollback成功、要求採択、L3承認、OS writer実行、CI、受入完了を主張しない。HOT-HIL-47/HST-HIL-033は設計oracleとして参照するだけで、実行しない。
+- **明示的除外**：HIL-FR-51/52/53/54/55をこの対受入へ含めない。HIL-FR-50の全旧条件、HIL-BR-25/HIL-NFR-29の全条件、旧test/runtimeの実行結果についてclosureを主張しない。
