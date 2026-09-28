@@ -62,3 +62,11 @@ HARNESS-L2-042のreceiptは旧v1.3 §4.2 L119の異なる2 source revisionを別
 | HARNESS | [HARNESS-L2-044：design obligation portfolioの契約coverage（単体能力候補、version_target: 1.0）](../../../helix-harness/L2-requirements/product-requirements.md#L1002) | [L11受入候補](../../../helix-harness/L11-acceptance/product-acceptance.md#L735) | `MPR-RC-HARNESS-L2-044-001`；`harness-contract-portfolio-coverage-receipt-2026-09-28.json#HARNESS-L2-044` |
 
 旧HIL-FR-54のarchive L1要求表144行1 atomのみをreceipt対象とする。旧packet row 1008は汎用「部品」で、個別component配置は未決。FR55 atomとIR全体を含むsource holdingはactive `MPR-SH-PORTFOLIO-FIXTURE-002`および`MPR-SH-IR-003`へ保留し、044は旧2 atom holding全体の被覆を主張しない。候補はPO未採択、authority effect none。
+
+## 後続追加：HELIXSECURITY-L2-032（#2255後、判断集合36候補）
+
+| 機構 | 候補・L2本文 | 対のL11 | 生存register revision・coverage receipt |
+|---|---|---|---|
+| SECURITY | [HELIXSECURITY-L2-032：Worker runtimeにおけるpermanent bypass denyの優先順位](../../../helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-032) | [L11受入候補](../../../helix-security/L11-acceptance/security-acceptance.md#helixsecurity-l2-032) | `MPR-RC-HELIXSECURITY-L2-032-001`; `security-v13-worker-bypass-coverage-receipt-2026-09-28.json#HELIXSECURITY-L2-032` |
+
+候補はPO未決・未採択で`authority_effect:none`。旧v1.3 §4.10 HR-FR-P2-07の一行のみを対象とし、旧source captureと他のsource-holding bytesを変更しない。現行36候補packetは[36候補の判断packet](post-confirmation-25-po-decision-packet-2026-09-28.md)と対応するJSONに束縛する。
