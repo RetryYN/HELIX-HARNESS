@@ -23,11 +23,12 @@
 
 ## POへ提示する対象revision付き選択肢
 
-**問い**：上記二旧資産の三者確認（本番変更前のentryとIncidentのexit）を、現行のSECURITY/OS要求へどう引き継ぐか。対象revisionは旧file SHA-256二つ、現行`HELIXSECURITY-L2-008` section SHA-256、上記OS Incident行、およびこの監査のexact PR HEADで固定する。選択自体とその後の候補起草・独立reviewを分ける。
+**問い**：上記二旧資産の三者確認（本番変更前のentryとIncidentのexit）を、現行のSECURITY/OS要求へどう引き継ぐか。対象revisionは旧file SHA-256二つ、現行`HELIXSECURITY-L2-008` section SHA-256、上記OS Incident行、およびこの監査のexact PR HEADで固定する。選択自体とその後の候補起草・独立reviewを分ける。[PO原文の過剰停止への注意](../../sources/requirements-stage-po-handoff-original-2026-09-27.md)（35–36行）、[総合検証の過剰停止防止](integrated-verification-2026-09-27.md)（26行）とSECURITYのPO判断に照らし、Incident例外を通常作業全体へ広げない。旧sourceの三者確認は三つの人間の役割を挙げるが、超個人開発でそれぞれを別人が担えるとは推定しない。
 
 | 案 | POが決める意味 | 影響・後続作業 |
 |---|---|---|
-| **A（推奨：旧保証をIncidentに限定して保持）** | production Incidentの本番変更前にon-call・TL・PMの三者確認を必須にし、exitにも三者の確認記録を残す。read-onlyの観測や通常の開発作業へ一律拡張しない。 | SECURITYの既存操作別authorityに加えるIncident固有条件として、対象L1との導出とL2/L11候補を別PRで起草する。OSのIncident型との受渡し、緊急時に誰が何を確認できるか、欠員時の扱いは推測せず差分として示す。旧条件を弱めず、現行A案の通常作業境界を守る。 |
-| **B（意味変更を明示して置換）** | 旧固定三者quorumを、同じproduction writeに対する現行SECURITY-L2-008の有効なoperation-specific authority判断で置き換える。旧processのexit三者確認もretireする。hotfix収束、恒久対策、postmortem等の他の旧exit条件は本選択の処分対象外として未解決のまま保持する。この案は新しいreceiptやexit oracleを追加しない。 | `RB08-182`と旧processの該当三者条件について、対象revision付きの意味変更・retire理由と影響をPO判断記録に残す。現在の008から自動的に置換済みとは扱わない。必要なL2/L11追随を別PRで起草する。 |
+| **A（旧三者を別人で保持）** | production Incidentの本番変更前とexitにon-call・TL・PMそれぞれ別の人の確認を必須にする。read-only観測や通常作業へ拡張しない。 | 三役を別人で配置できない個人開発や緊急時には本番修正が止まる。有効な既決authorityがあっても三者が欠ければ進めない。欠員時の例外は旧sourceにないため推測で設けない。旧保証は最大限保持するが、過剰停止防止のPO注意と衝突し得る。 |
+| **B（推奨：三役の確認観点を保持し兼任を許す）** | production Incidentの本番変更前とexitに、on-callの復旧、TLの技術的恒久対策、PMのscope・影響を人が確認したことを残す。一人が複数役を兼任できるとし、別人三者quorumは要求しない。AIを三役の人間確認に数えない。通常作業には適用しない。 | 旧三者独立の保証を緩める意味変更であり、POの対象revision付き判断が必要。個人開発でも一人の人間で三観点を確認できるが、その人も不在なら本番変更は止まる。既存SECURITY-L2-008の操作別authorityは別途必要。観点ごとの確認の所在とOS Incidentとの受渡しはPO判断後にL2/L11候補へ起草し、現時点で新しい実行gateを成立させない。 |
+| **C（旧三役を明示的に置換・retire）** | 旧固定三者quorumを、同じproduction writeに対する現行SECURITY-L2-008の有効なoperation-specific authority判断で置き換える。旧processのexit三者確認もretireする。hotfix収束、恒久対策、postmortem等の他の旧exit条件は本選択の処分対象外として未解決のまま保持する。この案は新しいreceiptやexit oracleを追加しない。 | `RB08-182`と旧processの該当三者条件について、対象revision付きの意味変更・retire理由と影響をPO判断記録に残す。旧三者が確認した復旧・技術・影響の観点を必須としては保持しない。現在の008から自動的に置換済みとは扱わず、必要なL2/L11追随を別PRで起草する。 |
 
-どちらも未選択である。推奨Aは旧保証を黙って落とさず、POが既に決めた「通常作業で毎回の人間承認を増やさない」とscopeを分けるための作成側提案であり、既存authorityや旧三者条件の採択ではない。判断までは旧atomと両資産を`unresolved`で保ち、PHCAP-17全体の回復や要求ステージ終了を主張しない。
+三案とも未選択である。推奨Bは旧sourceの三つの確認観点をIncidentに限定して保持し、個人開発で別人三者を常時揃える停止条件を避ける作成側提案である。別人quorumを緩めるため、POの明示的な意味変更判断なしに採択しない。Aは旧保証を最も厳格に保持するが、緊急復旧が止まる可能性を受け入れる案。Cは旧三者条件を明示的に退ける案。判断までは旧atomと両資産を`unresolved`で保ち、PHCAP-17全体の回復や要求ステージ終了を主張しない。
