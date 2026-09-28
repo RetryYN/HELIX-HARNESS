@@ -4909,7 +4909,7 @@
       "version_target_as_written": "O9 source does not state a target; deliberately unassigned pending PO",
       "title_and_kind": "HARNESS-L2-048 役割型と対象による命名・安全なrename候補（unit candidate）",
       "requirement_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-048",
-      "acceptance_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md#L788",
+      "acceptance_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md#L793",
       "registration_id": "MPR-RC-HARNESS-L2-048-001",
       "management_state": "registered_proposal",
       "authority_effect": "none",
