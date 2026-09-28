@@ -1,9 +1,9 @@
 {
   "packet_kind": "recommendation_for_PO_decision_only",
-  "basis_commit": "a690c59183c9e0a3bd4088cdd7dcc93455d31313",
+  "basis_commit": "313439ce4e3903926d7aa20650fdf6c8f474638a",
   "as_of": "2026-09-28",
-  "count": 44,
-  "status": "Initial 25 candidates plus subsequent candidates through HELIXOS-L2-046; all 44 live decision items are registered_proposal / authority_effect:none and remain PO-unadopted unless a separate decision record says otherwise.",
+  "count": 45,
+  "status": "既存44候補（HELIXOS-L2-046まで）にHELIXLABO-L2-067を加えた判断packet。全45件はregistered_proposal / authority_effect:none、PO未採択・未判断。",
   "decision_grouping": "No shared adoption decision is bundled except PORTFOLIO-FIXTURE-FR54-FR55-ROUTE and HARNESS-OS-WBS-SHAPE-039-045-PAIR. HELIXOS-L2-039/HARNESS-L2-045 are linked by the latter, not independent adoption choices. The earlier R2247 options for 039 were preparation alternatives: A proposed adopting OS-039 alone with registrations blocked while the HARNESS contract was absent; B proposed holding 039 while preparing the HARNESS candidate and re-presenting both exact revisions. The B preparation step is completed by this HARNESS-045 candidate, but no PO selection resulted. The new pair options are A=adopt both exact revisions, B=hold both; neither has been selected, and B is advisory. HARNESS-L2-043/044 remain jointly routed only by the explicit FR54/55 route. Other candidate identities retain independent choices. HELIXINTELLIGENCE-L2-072 remains limited to its 1.0 shadow subset and HELIX-LABO-L2-062 preserves 2.0.",
   "candidates": [
     {
@@ -1337,7 +1337,7 @@
         "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
       },
       "acceptance_section_sha256": "0a1d72d7d0fb3b97b14ce6f53738785b76bce642a2f9b7c83c4328a45fc68cce",
-      "acceptance_source_file_sha256": "9b5bbcc0b86acab63eed19bb58c0dc294133ddfcb6607353fc03a7130c443e4f"
+      "acceptance_source_file_sha256": "f21083788b99d438c1e81b2474d0e84f9ca0aa94c9430b8ba3ff21679a41859f"
     },
     {
       "identity": "HELIXOS-L2-030",
@@ -3709,10 +3709,116 @@
           "legacy RFA-AC-16"
         ]
       }
+    },
+    {
+      "identity": "HELIXLABO-L2-067",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "Two bounded derived subatoms (first-eligible boundary and repair-round visibility) from historical candidate line 001656; the separate total Attempt-count subatom remains pending in MPR-SH-CANDIDATE-003.",
+      "new_meaning_choice": "A＝HELIXLABO-L2/L11-067 exact revisionを採択し、最初のeligible candidate境界と同一Attempt内repair-round visibilityだけを、065のfirst_pass/retry_countと059の採択済み比較・費用意味を変更せず観測する。複数Attemptの総Attempt countは本候補に含めずsource holdingへ保全する。B＝067を未採択で保留し、selected subatomsとpending source holdingを保持する。C＝対象subatom・revision・理由・影響を示して意味変更またはretireする。A/B/Cはすべて未選択。",
+      "recommended_choice": "A",
+      "choice_meaning": "AはL2/L11-067だけの採択であり、実験・資格試験・Worker割当・実装を許可しない。Bは候補とatomをsource holdingへ残す。Cは人間判断の対象revisionでsource meaningとconsumer影響を明示する。",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HELIXLABO-L2-067 初回eligible candidateとAttempt内修復の観測（単体追補候補、1.0）",
+      "requirement_source_path": "docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-067",
+      "acceptance_source_path": "docs/helix-labo/L11-acceptance/labo-acceptance.md#helixlabo-l2-067",
+      "registration_id": "MPR-RC-HELIXLABO-L2-067-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXLABO-L1-005",
+        "HELIXLABO-L1-011"
+      ],
+      "parent_l1_path": "docs/helix-labo/L1-planning/labo-intent.md",
+      "parent_concept_revision_recorded": "docs/concept/helix-concept.md@f6dad2a33e24f000b87d7f09b8d40288257e74cc sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+      "parent_planning_revision_recorded": "docs/helix-labo/L1-planning/labo-intent.md@f6dad2a33e24f000b87d7f09b8d40288257e74cc sha256:78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/labo-firstpass-attempt-repair-coverage-receipt-2026-09-28.json#HELIXLABO-L2-067",
+      "registered_candidate_semantic_digest": "sha256:d39bc9f0a20fb6159bf701cf65d38213935d8d00a9e0189c1b81078bdb8d4784",
+      "acceptance_section_sha256": "sha256:7a9adc0a54e009ca370033d5b2a88f8b53bf79a99ff146352169d055ff46d331",
+      "source_atom_count": 2,
+      "source_atom_set_digest": "sha256:bdf621f1ea49649d39c906cb993e4567612a685906c567e8aeb174423c5b6293",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+          "line": 399,
+          "source_file_sha256": "sha256:f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+          "source_line_sha256": "sha256:58be97d309362b845682602ae352b1954ed433fbc4b6552791f89be07d70db4f",
+          "atom_id": "LABO-FIRSTPASS-ATTEMPT-REPAIR-LEGACY-CAND-LINE-001656-S3A-FIRST-ELIGIBLE",
+          "source_holding_registration_id": "MPR-SH-CANDIDATE-003",
+          "selected_span": "First-passの「初回」は最初のeligible candidateとし、",
+          "candidate_input": true
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+          "line": 399,
+          "source_file_sha256": "sha256:f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+          "source_line_sha256": "sha256:58be97d309362b845682602ae352b1954ed433fbc4b6552791f89be07d70db4f",
+          "atom_id": "LABO-FIRSTPASS-ATTEMPT-REPAIR-LEGACY-CAND-LINE-001656-S3B-REPAIR-ROUNDS",
+          "source_holding_registration_id": "MPR-SH-CANDIDATE-003",
+          "selected_span": "内部で何度も修正した後の提出を隠さないためAttempt/repair回数を併記する。",
+          "selected_semantic_fragment": "提出前の修復roundを隠さないためrepair roundsを可視化する部分",
+          "preserved_pending_semantic_fragment": "複数Attemptの総Attempt count",
+          "candidate_input": true
+        }
+      ],
+      "source_reference_note": "入力はLEGACY-CAND-LINE-001656第3文を3 subatomに分けたうち、最初のeligible boundaryとrepair-round visibilityの2 subatomだけ。複数Attemptの総Attempt count subatomはMPR-SH-CANDIDATE-003へpendingで保全し、067は算出しない。行内telemetry列挙とsilent-rename条件、隣接行、旧candidate全体もholdingに残し、source line全体のclosureは主張しない。",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXLABO-L2-067",
+      "paired_l11_id": "HELIXLABO-L2-067",
+      "affected_requirement_and_consumer_ids": "HELIXLABO-L1-005/011; adopted HELIXLABO-L2/L11-059; unadopted HELIXLABO-L2/L11-065; HELIXLABO-L2/L11-067; HELIXOS-L2-014 relation; MPR-SH-CANDIDATE-003",
+      "rationale": "最初のeligible boundaryと同一Attempt内repair roundsは、採択済み059の比較/cost gateに追加せず、未採択065のfirst_pass/retry_countも変更せず表現できる。source sentenceの総Attempt count subatomは未選択でholdingに残すため、065なしにその計数を新設・重複定義しない。限定2 subatomは既存predicate/oracleとOS Attempt/event receiptから成立し、065の採択に依存しない。採択は未決。",
+      "candidate_input_coverage_result": "no_loss",
+      "source_line_coverage_result": "candidate_scoped_no_loss_for_two_selected_subatoms; attempt_count_subatom_pending_in_MPR-SH-CANDIDATE-003; full_line_closure_not_claimed",
+      "preserved_pending_atom_refs": [
+        "LEGACY-CAND-LINE-001656",
+        "LABO-FIRSTPASS-ATTEMPT-REPAIR-LEGACY-CAND-LINE-001656-S3C-ATTEMPT-COUNT-PENDING"
+      ],
+      "candidate_semantic_digest": "sha256:d39bc9f0a20fb6159bf701cf65d38213935d8d00a9e0189c1b81078bdb8d4784",
+      "po_decision_frame": {
+        "selection_status": "pending_PO",
+        "selected_option": null,
+        "recommended_option": "A",
+        "recommendation_is_decision": false,
+        "decision_dimensions": [
+          {
+            "id": "candidate_adoption",
+            "status": "pending",
+            "choices": [
+              "exact L2/L11-067採択",
+              "未採択のまま保留してsource holdingを保持",
+              "対象subatom・revision・理由・影響を特定して意味変更/retire"
+            ]
+          }
+        ],
+        "options": [
+          {
+            "id": "A",
+            "meaning": "HELIXLABO-L2/L11-067 exact revisionだけを採択し、first-eligible boundaryとsame-Attempt repair observationの2 selected subatomsを追加する。総Attempt countは含めずsource holdingに保全する。059/065の定義は変更しない。"
+          },
+          {
+            "id": "B",
+            "meaning": "067を未採択で保留し、2 selected subatomsと総Attempt countを含むsource holdingを保持する。"
+          },
+          {
+            "id": "C",
+            "meaning": "対象source subatom、revision、理由、consumer影響を特定して意味変更またはretireする。"
+          }
+        ],
+        "recommendation_rationale": "旧sourceの残差のうち、first-eligible boundaryとsame-Attempt repair visibilityの2 subatomだけは既存059のcost/quality定義と未採択065のtask-level指標を変えず候補化できる。総Attempt countは065のretry_countに近い集計を新設しないためpendingで保持する。Bを選ぶ場合もsource holdingを生存させる。推奨はPO選択ではない。",
+        "affected_requirement_and_consumer_ids": [
+          "HELIXLABO-L1-005",
+          "HELIXLABO-L1-011",
+          "HELIXLABO-L2/L11-059",
+          "HELIXLABO-L2/L11-065",
+          "HELIXLABO-L2/L11-067",
+          "HELIXOS-L2-014",
+          "MPR-SH-CANDIDATE-003"
+        ]
+      }
     }
   ],
   "initial_25_basis_commit": "f4b2a2b02cf5ea3134e27be0a65c100395161bad",
-  "progression": "Initial 25 candidates + PR #2241 HARNESS-L2-042 + PR #2238 HELIXOS-L2-038 = historical 27; PR #2245 merged HARNESS-L2-043, giving 28; PR #2246 merged HARNESS-L2-044, giving 29; PR #2247 registered HELIXOS-L2-039, giving 30; current HARNESS-L2-045 brings the live decision set to 31. HELIXOS-L2-039/HARNESS-L2-045 are linked by an unselected paired PO decision. Current HELIXOS-L2-040 adds one bounded old HXT-AC-015 retry-route candidate, making 32; no PO selection. Current HELIXINTELLIGENCE-L2-073 adds one bounded old AAFD-R-04 free-text direct-projection boundary candidate, making 33; no PO selection. Current HELIXOS-L2-041 adds one bounded old IPC-R07 safe-continuation candidate from two linked atoms, making 34; no PO selection. Current HELIXLABO-L2-066 adds one bounded old Bugbot candidate-line metric gap, making 35; no PO selection. Its source atom is historical and its current L2/L11 candidate remains unadopted. Current HELIXSECURITY-L2-032 adds one bounded old v1.3 §4.10 HR-FR-P2-07 repository-level bypass precedence candidate, making 36; no PO selection. It applies across provider/runtime instances under the old external AI Worker contract, preserves existing authority when no deny applies, and does not claim §4.10 closure. Current HARNESS-L2-046 adds one bounded v1.3 Full V/Scrum workflow condition candidate from six sentence spans across archive and 6fabd125 baseline revisions, making 37; no PO selection. It preserves the 2026-09-25 four-style definitions/composition permission, requires staged freeze and listed verification for selected Full V only, and applies Scrum backfill/checkpoint/SR4 solely to Scrum-selected/composed scope. Current HELIXOS-L2-042 adds one bounded old v1.3 HR-FR-P2-08 Worker-result strict validation/relaxation candidate from archive line 431, making 38; the identical 6fabd125 baseline line 412 remains a separate pending source atom and is not counted as candidate input. No PO selection. Current HELIXSECURITY-L2-033 adds one bounded old v1.3 §4.10 HR-FR-P2-05 external-worker startup-context / non-authoritative-output candidate from archive line 428 and the distinct 6fabd125 baseline twin line 409, making 39; both atoms are candidate inputs and remain distinct source revisions/holdings. No PO selection. Current HELIXOS-L2-043 adds a bounded old v1.3 §4.10 HR-FR-P2-06 typed-event candidate from archive line 429 and distinct 6fabd125 baseline line 410 (two selected S1 atoms), making 40; no PO selection. The Node-exclusive S2 atoms remain preserved_pending for separate PO choice D (recommended); the full old source line remains partial and no full-line no_loss is claimed. Current HELIXOS-L2-044 adds one bounded old v1.3 HR-AC-HYB-006 prose-only-resolution rejection candidate, making 41; the selected two revision atoms have scoped no_loss while other source clauses remain preserved pending, and no PO selection is recorded. Current HELIXSECURITY-L2-034 adds one bounded old v1.3 HR-FR-HYB-002 MCP tool-profile security candidate, making 42; six selected spans across two source revisions are candidate inputs and the remaining six source spans stay preserved pending, with no PO selection. Current HELIXOS-L2-045 adds a narrowly scoped FR-L1-35 three-class readiness inventory proposal for the selected OS-L1-002 applicability scope, making 43; no PO selection, owner transfer, applicability set, or version target is recorded. Current HELIXOS-L2-046 adds one bounded old RFA-AC-16 dispatch/execution/Ready/merge continuity and bypass-rejection connection candidate from LEGACY-CAND-LINE-003612, making 44; only this acceptance row is mapped, broader RFA source closure is not claimed, and no PO selection is recorded.",
+  "progression": "Initial 25 candidates + PR #2241 HARNESS-L2-042 + PR #2238 HELIXOS-L2-038 = historical 27; PR #2245 merged HARNESS-L2-043, giving 28; PR #2246 merged HARNESS-L2-044, giving 29; PR #2247 registered HELIXOS-L2-039, giving 30; current HARNESS-L2-045 brings the live decision set to 31. HELIXOS-L2-039/HARNESS-L2-045 are linked by an unselected paired PO decision. Current HELIXOS-L2-040 adds one bounded old HXT-AC-015 retry-route candidate, making 32; no PO selection. Current HELIXINTELLIGENCE-L2-073 adds one bounded old AAFD-R-04 free-text direct-projection boundary candidate, making 33; no PO selection. Current HELIXOS-L2-041 adds one bounded old IPC-R07 safe-continuation candidate from two linked atoms, making 34; no PO selection. Current HELIXLABO-L2-066 adds one bounded old Bugbot candidate-line metric gap, making 35; no PO selection. Its source atom is historical and its current L2/L11 candidate remains unadopted. Current HELIXSECURITY-L2-032 adds one bounded old v1.3 §4.10 HR-FR-P2-07 repository-level bypass precedence candidate, making 36; no PO selection. It applies across provider/runtime instances under the old external AI Worker contract, preserves existing authority when no deny applies, and does not claim §4.10 closure. Current HARNESS-L2-046 adds one bounded v1.3 Full V/Scrum workflow condition candidate from six sentence spans across archive and 6fabd125 baseline revisions, making 37; no PO selection. It preserves the 2026-09-25 four-style definitions/composition permission, requires staged freeze and listed verification for selected Full V only, and applies Scrum backfill/checkpoint/SR4 solely to Scrum-selected/composed scope. Current HELIXOS-L2-042 adds one bounded old v1.3 HR-FR-P2-08 Worker-result strict validation/relaxation candidate from archive line 431, making 38; the identical 6fabd125 baseline line 412 remains a separate pending source atom and is not counted as candidate input. No PO selection. Current HELIXSECURITY-L2-033 adds one bounded old v1.3 §4.10 HR-FR-P2-05 external-worker startup-context / non-authoritative-output candidate from archive line 428 and the distinct 6fabd125 baseline twin line 409, making 39; both atoms are candidate inputs and remain distinct source revisions/holdings. No PO selection. Current HELIXOS-L2-043 adds a bounded old v1.3 §4.10 HR-FR-P2-06 typed-event candidate from archive line 429 and distinct 6fabd125 baseline line 410 (two selected S1 atoms), making 40; no PO selection. The Node-exclusive S2 atoms remain preserved_pending for separate PO choice D (recommended); the full old source line remains partial and no full-line no_loss is claimed. Current HELIXOS-L2-044 adds one bounded old v1.3 HR-AC-HYB-006 prose-only-resolution rejection candidate, making 41; the selected two revision atoms have scoped no_loss while other source clauses remain preserved pending, and no PO selection is recorded. Current HELIXSECURITY-L2-034 adds one bounded old v1.3 HR-FR-HYB-002 MCP tool-profile security candidate, making 42; six selected spans across two source revisions are candidate inputs and the remaining six source spans stay preserved pending, with no PO selection. Current HELIXOS-L2-045 adds a narrowly scoped FR-L1-35 three-class readiness inventory proposal for the selected OS-L1-002 applicability scope, making 43; no PO selection, owner transfer, applicability set, or version target is recorded. Current HELIXOS-L2-046 adds one bounded old RFA-AC-16 dispatch/execution/Ready/merge continuity and bypass-rejection connection candidate from LEGACY-CAND-LINE-003612, making 44; only this acceptance row is mapped, broader RFA source closure is not claimed, and no PO selection is recorded. Current HELIXLABO-L2-067 adds one candidate-scoped subatom for first-eligible candidate boundary and same-Attempt repair-round visibility after HELIXOS-L2-046, making 45; no PO selection, no 065 adoption dependency, and no change to adopted 059 or 065 definitions.",
   "version_target_evidence": null,
   "portfolio_fixture_fr54_fr55_route": {
     "decision_id": "PORTFOLIO-FIXTURE-FR54-FR55-ROUTE",
