@@ -91,3 +91,10 @@ sources:
 未登録・未知profile、同一identityの競合宣言、未登録revision、誤った設定型、欠落または型違いdescriptor、変更後にstaleなrevisionをfixtureへ与え、各々が利用可能状態にならず、reasonとprofile/revisionが記録されることを確認する。既定profileへのfallbackや安全性の推定がないことを確認する。read-only descriptorがあっても、それ自体でprobe実行・認可が可能にならないことを確認し、operation safetyの判定先がSECURITYであることを示す。SECURITY-L2-034の未採択候補に属するpolicy oracleをこの候補のpass根拠にしない。
 
 不正identity/config/descriptorの修正先がprofile提供元、policy/safetyのunknownまたは拒否の戻し先がSECURITYと区別され、対象外profileへ失敗が伝播しないfixtureを確認する。確認は文書と静的fixtureの受入 oracle に限定し、旧runtime・旧testや現行MCP runtimeの起動、実probe、tool操作を行わない。証拠がない場合はpassではなくunknownとする。本受入候補の成立は要求の採択、実装、実行許可またはSECURITY-L2-034採択を意味しない。
+### HELIXCONNECT-L11-009 接続方向・実行順序属性とfeedback relationの受入候補
+
+- **正常例（片方向）**：A→Bを`one_way`として登録し、同じoperation/correlation lineage上の結果と一方向feedback B→Aを記録する。B→Aの伝送を実行する場合は、独立して宣言された逆方向connectionとそのoperationに適用される既存authorityを照合する。許可がなければfeedbackは未送信のreturn relationとして記録され、送信成功に見せない。
+- **正常例（bounded loop）**：前向き辺A→Bと、理由・source/target identity・revisionを持つfeedback edge B→A、既存のretry/budget policy参照、期限、終端ownerを与える。各反復のattempt countとoperation lineageを累積し、既存上限到達で停止してOS-040等の既存ownerへ未解決として返す。prose feedbackだけでresolvedにしない（OS-044境界）。
+- **正常例（順序）**：複数edgeをserial指定した場合は宣言順と先行条件を維持する。parallel指定では独立するedgeをそれぞれ追跡し、宣言されたjoinの全条件が満たされるまでcompositeを完了扱いしない。
+- **拒否例**：one-way A→BからB→Aの送信権を推論する、paired bidirectionalの片方向だけauthority確認する、方向またはfeedbackのendpoint/contract revisionを欠いたrelationを利用可能扱いする、理由なしfeedbackをresolutionとして扱う、termination policyなしのloop、反復ごとのretry budget reset、宣言のない順序/join、辺の一部成功を全体成功へ伝播する場合は不合格。
+- **unknown例**：endpoint、接続identity、契約revision、既存authority、feedback reason/source、retry上限／budget、期限、join条件、ACKのいずれかがmissing・unknown・stale・conflictなら、送信／retry／完了を成立させず、missing inputとownerを記録して停止する。

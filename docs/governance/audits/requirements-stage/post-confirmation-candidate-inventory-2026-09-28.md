@@ -200,3 +200,10 @@ HYB-002の3 clauseをarchive/baseline別revisionの6 atomとしてこの候補�
 ## O6追加候補（未採択）
 
 - [HELIXOS-L2-052：merge後cleanupとbase drift](../../../helix-os/L2-requirements/governance-requirements.md#helixos-l2-052)／[対L11](../../../helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-052)：`MPR-RC-HELIXOS-L2-052-001`、[bounded receipt](../requirement-registration/ops-o6-coverage-receipt-2026-09-29.json)。旧CLAUDE:201とMIC:66 line/remainderは`MPR-SH-OPS-LEGACY-L3-001`へ、旧CI/DB receiptは`MPR-SH-CANDIDATE-003`へ保全。PO採否未選択。
+## HELIXCONNECT-L2-009（O7、判断集合57候補）
+
+| 機構 | 候補・L2本文 | 対のL11 | 生存register revision・coverage receipt |
+|---|---|---|---|
+| CONNECT | [HELIXCONNECT-L2-009：接続方向・実行順序属性とfeedback relation（connection候補、version_target: 1.0）](../../../helix-connect/L2-requirements/connect-requirements.md#helixconnect-l2-009) | [L11受入候補](../../../helix-connect/L11-acceptance/connect-acceptance.md#helixconnect-l11-009) | `MPR-RC-HELIXCONNECT-L2-009-001`; `connect-o7-direction-feedback-coverage-receipt-2026-09-29.json` |
+
+候補は新規案である。旧archiveのL3 requirements／governance candidates／L1 requirementsを指定queryで検索し、18件のlexical matchesを読み分けた。UWJ-FR-006の一般workflow loop terminal、HIL-NFR-04の一般上限・stop/checkpoint、MIC-R-02のserial merge後のbase drift再判定等はreference-onlyで、CONNECT relation型の根拠にしない。directionは現行CONNECT-L2-001がすでに接続identityへ含め、retry上限・trace・partial failureも既存CONNECT requirementsが所有する。対象source行・asset・SHA、検索command/result digest/限界、candidate digestは[source-lines](../requirement-registration/connect-o7-direction-feedback-source-lines-2026-09-29.jsonl)と[coverage receipt](../requirement-registration/connect-o7-direction-feedback-coverage-receipt-2026-09-29.json)に記録した。archive-wide absenceや旧意味closureを主張しない。A＝direction/order属性＋typed feedback＋既存policy参照によるbounded loop（推奨）、B＝feedback/bidirectional/serial/parallelを4 kind化、C＝serial/parallelをHARNESS/OSに残す等のscope分割。PO未選択、登録は`registered_proposal` / `authority_effect:none`。O7を同一のcanonical PO decision packetへ追加した（JSON basis `1aa41a8ba6e750d23a46b832d1513738e84894bb`、49候補）。後続候補統合時は最新mainでcountとbasis revisionを再計算する。
