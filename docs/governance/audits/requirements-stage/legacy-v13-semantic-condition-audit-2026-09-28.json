@@ -24,32 +24,32 @@
     {
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
       "sha256": "6d837b02523ea66dc2adb8a56014338dadcf0d45de3ff46c76f50748e6a028f4",
-      "scope": "fixed HARNESS L2 text"
+      "scope": "main 68ffa6f09 HARNESS L2 text, including adopted text and later unadopted candidates"
     },
     {
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
       "sha256": "9c00a1a28443cdd2ef61db62d1a4b34d63455ff799e348d17fab63663502c80a",
-      "scope": "fixed HARNESS L11 text"
+      "scope": "main 68ffa6f09 HARNESS L11 text, including adopted text and later unadopted candidates"
     },
     {
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
       "sha256": "db2b119daa7fbc47b79b1652beba72149fb0d6969af7bb400c1650d77464f2b5",
-      "scope": "fixed OS L2 text"
+      "scope": "main 68ffa6f09 OS L2 text, including adopted text and later unadopted candidates"
     },
     {
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
       "sha256": "86b7949cf7700300588e8dc2ccb4448e31111223d2f1cace81109533452d551e",
-      "scope": "fixed OS L11 text"
+      "scope": "main 68ffa6f09 OS L11 text, including adopted text and later unadopted candidates"
     },
     {
       "path": "docs/helix-security/L2-requirements/security-requirements.md",
       "sha256": "286385d4e59ea69667c095a0a483338d8fb8786c7c7ec2c381c127775b8435ca",
-      "scope": "fixed SECURITY L2 text"
+      "scope": "main 68ffa6f09 SECURITY L2 text, including adopted text and later unadopted candidates"
     },
     {
       "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
       "sha256": "a931c77c099d2fe9dcef184da6c0427db35653308c21d0ac90b6210c02dc4ef5",
-      "scope": "fixed SECURITY L11 text"
+      "scope": "main 68ffa6f09 SECURITY L11 text, including adopted text and later unadopted candidates"
     },
     {
       "path": "docs/governance/audits/requirements-stage/post-po-cross-mechanism-audit-2026-09-28.md",

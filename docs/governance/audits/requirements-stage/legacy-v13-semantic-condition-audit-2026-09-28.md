@@ -1,6 +1,6 @@
 # v1.3 521行の意味条件・行先監査（最終補正版）
 
-対象source: `archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md:1-664`、SHA-256 `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`。664物理行中521非空行。全521行のsource text・line SHA-256をarchive sourceと再照合した。条件になり得る規範文・継続行は保守的に`condition`へ保持し、意味上の非対象と推定しない。旧source全文と固定L2/L11、authority記録を比較した。旧runtime/test/CIは実行していない。
+対象source: `archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md:1-664`、SHA-256 `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`。664物理行中521非空行。全521行のsource text・line SHA-256をarchive sourceと再照合した。条件になり得る規範文・継続行は保守的に`condition`へ保持し、意味上の非対象と推定しない。旧source全文と現main `68ffa6f09` のL2/L11、authority記録を比較した。現mainの本文にはPO固定採択分と後発未採択候補が共存する。旧runtime/test/CIは実行していない。
 
 ## 521行の分類
 
@@ -38,7 +38,7 @@ condition rowsの行先比較結果（条件状態）:
 
 ## 現行authority境界
 
-固定L2/L11の比較対象とSHA-256、route source、判断状態はJSONの`comparison_evidence_sources`と`routing_sources`に列挙した。2026-09-28固定8機構・明示250候補の採択範囲を拡張せず、候補やsection routeから採択を推定しない。REG-03/REG-05等の未解消残件も閉じたと主張しない。
+現main `68ffa6f09` のL2/L11比較対象とSHA-256、route source、判断状態はJSONの`comparison_evidence_sources`と`routing_sources`に列挙した。このSHA-256はPO固定revision `f6dad2a33` のfile SHAではない。coveredの旧L65/66を支えるHARNESS-L2-003のL2:106-107と対L11:41-42の条項は、固定revisionと現mainで同じ文言であることを照合した。2026-09-28固定8機構・明示250候補の採択範囲を拡張せず、候補やsection routeから採択を推定しない。REG-03/REG-05等の未解消残件も閉じたと主張しない。
 
 行ごとのsource text/digest、condition cluster/status、比較理由、target refsは同梱JSONの521 recordsに保持した。後続版／L3具体化／最終割当は対象別pairとauthorityに従う。
 
