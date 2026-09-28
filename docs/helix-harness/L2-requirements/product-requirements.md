@@ -1134,3 +1134,18 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 - **再送・競合条件**：同一command ID・scope・base・payload digestの再送は同一操作identityとして扱い、同じ意味結果へ結ぶ。既に記録されたcommand IDが異なる意味payload digest、scopeまたはbaseに結ばれている場合は`conflict`として返し、先行identityや先行receiptを上書きしない。command IDが同じというだけで異なるpayloadを冪等再送として受理しない。baseのcurrentness／CAS拒否の運転と保存はHELIX-OSの所有であり、本候補はその結果を入力として意味分類する。
 - **境界と既存要求**：`HARNESS-L2-003/004/008/016`の既存意味形成、identity、trace、影響、受入責務を変更しない。要求の採否、authority、canonical revision発行、stale伝播、event/projection/receipt保存、rollback、command記録のdurabilityはOSおよび各既存ownerへ残す。本候補から新しい承認者、毎回の人間承認、永続schema、DB名を導入しない。
 - **旧sourceと差分**：旧HIL-FR-52 line 142のcommand idempotencyを意味identity条件として再導出する。保持するのは同一操作の再送と異payloadの混同拒否である。異payloadを同一command IDへ送るnegative oracleはHOT-HIL-49を限定的な受入設計参照として加える。HARNESS-L2-052は原子的な多artifact保存・projection・rollbackの実行を持たず、`harness.db`を現行機構名や再利用対象としない。HIL-FR-53 line 143のasset lineage、rename/move/split/merge/supersedeは入力にしない。
+
+
+### HARNESS-L2-053 意味revisionとpath非依存asset identityの候補（HELIX-HARNESS単体、未採択）
+
+**要求候補**：Semantic Revision and Asset Identityは、path・名称の変更から独立したimmutable asset IDとrevision履歴を保持する。意味変更を新revisionとして記録し、rename、move、split、merge、supersedeに伴うidentity/location履歴、authority、acceptance oracle、typed edgeの欠落を識別できることを求める。
+
+**対象と境界**：要求・設計・資産のidentityと意味revisionを扱うHARNESS側の候補である。identityの具体的な符号化、採番方式、永続化方式、split/merge時のauthority裁定手順はこの候補で決めない。旧assetの実体や配置場所の変更だけから意味変更やauthority移転を推定しない。
+
+**履歴とlineage**：rename/moveは同一identityのlocation履歴として追跡する。意味変更は同一identityの新revisionとして差分を示す。split/merge/supersedeは変更前後のidentity、関係の種別、影響を受けるhistory、authority、oracle、typed edgeを対応付け、欠落または対応不明をunknownとして残す。確認可能な候補成果はasset revision、identity/location history、split/merge disposition、semantic diffである。変換結果やreceiptの存在だけでは、意味保存、authority移転、受入を成立扱いしない。
+
+**既存要求との関係**：採択済み`HARNESS-L2-003`の要求変更・差戻し・revision条件、`HARNESS-L2-004`の上下流traceとstale可視化、`HARNESS-L2-016`の差分分類、`HARNESS-L2-042`のsource revisionと再現可能性をそれぞれ参照する。部分的な意味対応であり、本候補はこれらを再定義せず、FR52候補の採択や先行を前提としない。HARNESS-L2/L11-052の別候補が存在する場合も、採択・順序・依存関係を本候補から生成しない。
+
+**旧sourceと差分**：旧`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`（`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md`、file SHA-256 `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`）のline 143、HIL-FR-53を起点とする。保持する意味はpath/name非依存identity、意味変更時のrevision、rename/move/split/merge/supersedeでのhistory・authority・oracle・typed edgeの保持である。現行層への再配置と境界の具体化は意味の再導出であり、旧FR全体の正式successor、実装方式、実行・受入の移管を主張しない。
+
+**authority状態**：source authorityは旧IR上の`specified_frozen`として保持する。target authorityは未採択候補であり、`draft_candidate`相当。候補本文、source atom set、coverage receipt、MPR登録のいずれもPO採択、L3承認、実装・実行許可を生成しない。

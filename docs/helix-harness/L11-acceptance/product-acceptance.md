@@ -845,3 +845,19 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **unknown・欠落例**：command ID、scope、base、payload digest、正規化規則revisionまたは先行identityのいずれかを欠落・不一致にする。値を補完・推測せず`unknown`または`conflict`とし、passにしない。別scope・別revisionのoracleで不足を埋めない。
 - **証拠と責務境界**：oracleは入力各値、正規化規則revision、先行・後続semantic digest、判定、先行receiptの不変性と差戻し先を結ぶ。意味照合結果は、OSの永続化、multi-artifact commit、failure isolation、実際のretry成功、L3承認、要求採択、CIまたは全FR-52/53 closureを主張しない。HOT-HIL-49の異payload conflict条件はoracle設計の参照元として記録するだけで実行しない。
 - **旧sourceとの対応・除外**：旧HIL-FR-52 line 142のcommand idempotencyを保持し、HOT-HIL-49のsame-command/different-payload negative caseで反証可能にする。base CASとartifact故障注入は対HELIXOS-L2/L11-053で扱う。HIL-FR-53 line 143およびHOT-HIL-49に列挙されたrename/split/merge、asset authority/oracle/typed edge保持は本受入の対象外であり、別のsource holdingに保持する。
+
+
+### HARNESS-L11-053 意味revisionとasset lineageの受入候補（未実行）
+
+**対応要求**：`HARNESS-L2-053`（HELIX-HARNESS単体候補、未採択）。以下は静的な受入oracle案であり、実行、採択、旧testの合格を示さない。
+
+**確認する候補成果**：`asset revision`は意味変更のrevision記録、`identity/location history`はrename/move後も同一identityを追跡できる履歴、`split/merge disposition`は変換前後のidentityとrelationの対応、`semantic diff`は意味revision間の差分をそれぞれ指す。これらは候補受入で確認する出力名であり、実装済みreceiptの存在を表さない。
+
+- **rename/move**：同じasset IDに対するpathまたは名称の変更前後、location履歴、対象revisionを追跡できる。配置変更だけで新しいidentity、意味revision、authority移転を捏造しない。
+- **意味revision**：意味の変更前後を同一identityの異なるrevisionとして識別し、semantic diffと影響するoracle/typed edgeを対応付ける。変更のないrename/moveのみを意味変更として数えない。
+- **split/merge/supersede**：入力・結果assetのidentity、lineage relation、各revision、authority、oracle、typed edgeの対応を個別に確認できる。親子や統合元の追跡が切れる、または対応が不明な項目は欠落・unknownとして扱い、全履歴保持やauthority移転の成立を主張しない。
+- **authority欠落の負例**：split/merge/supersede後の対象identity・revisionは揃うがauthorityの対応が欠ける入力を与える。該当lineageのauthority保持を合格にせず、その欠落だけをunknownまたは不成立として報告する。
+- **oracle欠落の負例**：対象revisionに必要なacceptance oracleの参照または対応が欠ける入力を与える。履歴やauthorityが揃っていても受入可能とは判定しない。
+- **typed edge欠落の負例**：親子・統合元・後継identity間のtyped edgeが欠ける入力を与える。他の履歴、authority、oracleが揃っていてもlineage closureとは判定しない。
+- **競合・未見条件**：同名異義、同一pathの再利用、identity重複、base revision違い、lineage先の欠落を与え、path/name一致だけで同一assetと判定しない。対応する履歴やauthorityが確認できない箇所をunknownに残す。
+- **受入境界**：静的な候補、receipt、fixture、または文書参照の存在だけでは実際の保存処理、rollback、権限、実装、PO採択、L3承認、旧FRの全条件移管を成立させない。旧runtime、旧test、旧fixtureは実行しない。
