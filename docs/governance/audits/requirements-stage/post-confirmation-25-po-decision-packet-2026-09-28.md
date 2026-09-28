@@ -341,3 +341,10 @@ Incident immediate-releaseのA/B比較は48候補の外に保つ。Aで例外を
 | `HELIXINTELLIGENCE-L2-074` | LABO評価済みの返却情報を適用範囲が合う次回Worker配置proposalの根拠にする単体候補 | 旧観測・配置材料と既存L2-010を利用。次回proposalへの入力契約は新規案で、ticket発行や自動学習を含めない | A＝exact候補を採択（推奨）、B＝保留、C＝入力・適用範囲を対象revisionで変更。未選択 |
 
 4候補の採否はそれぞれ別判断とし、単体候補の採択から接続候補、他機構候補、既存のHARNESS-034/-036・OS-040の採択を推定しない。LABOは割当・起動・ticket発行を行わず、INTELLIGENCEは配置案を出し、OSが既存のauthority・要求・工程・検証契約に沿って発行と指定を判断する。旧Ticket/feedbackの未選択条件、欠落したPO一次文言、分類定義・母数・windowなど判断に必要な値は残差として保持する。
+
+## O1 Ticket依存の解釈と候補訂正（#2286再レビュー）
+
+PO原文は[訂正source snapshot](ops-o1-o2-request-source-snapshot-2026-09-29-r2.md)にそのまま収録した。Claudeの「依存はTicket本文ではなくOSのrelation graphで持つ」は未確認の解釈であり、PO判断まで採択・運転しない。旧Ticketのtyped relationは文脈証拠で、本文外の置場を直接指定しない。
+
+- `HELIXOS-L2-047`の現行候補は `MPR-RC-HELIXOS-L2-047-002`（`-001`を訂正）。L2 digest `sha256:0edfc5ca4eab9a39bdb74af507c263db3a0b4b68c5a3054f59b5ea8b959a21d6`、[訂正receipt](../requirement-registration/ops-o1-o2-coverage-receipt-2026-09-29-r2.json)は選択5 atomのpartial。採否 A採択（推奨）／B保留／C変更は未選択。
+- **別のPO判断軸「依存をつけない」の意味**：A＝Ticket本文に埋め込まずOS typed relation graphで管理（解釈案として推奨）、B＝依存関係自体を設けない、C＝禁止対象と範囲を別途指定。いずれも未選択。B/Cなら既存OS依存契約と影響要求をrevisionで処分する。

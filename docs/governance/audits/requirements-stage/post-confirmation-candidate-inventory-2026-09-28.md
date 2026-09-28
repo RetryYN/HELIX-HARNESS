@@ -175,3 +175,7 @@ HYB-002の3 clauseをarchive/baseline別revisionの6 atomとしてこの候補�
 | INTELLIGENCE | [HELIXINTELLIGENCE-L2-074：評価済み返却feedbackの配置案入力](../../../helix-intelligence/L2-requirements/intelligence-requirements.md#helixintelligence-l2-074) | [受入候補](../../../helix-intelligence/L11-acceptance/intelligence-acceptance.md#helixintelligence-l2-074) | `MPR-RC-HELIXINTELLIGENCE-L2-074-001`; `ops-o1-o2-coverage-receipt-2026-09-29.json#HELIXINTELLIGENCE-L2-074` |
 
 4候補は`registered_proposal`／`authority_effect:none`としてPO判断待ちに置く。旧Ticket／feedback sourceの選択節と、新しい返却率・理由分類・機構間還流の提案を区別し、選択外の旧条件をsource holdingへ残す。元のローカル依頼文の「PO意図」欄はClaudeによる要約であり、PO一次発話・対象revision付き採択の証拠ではない。[判断packet](post-confirmation-25-po-decision-packet-2026-09-28.md#o1o2追加候補ticket返却と運用feedback判断集合52候補)にA/B/Cの選択肢を置く。採択・実装許可・運転開始は本inventoryから生成しない。
+
+## O1候補訂正（#2286再レビュー）
+
+上表の `HELIXOS-L2-047` は履歴表示であり、現行登録は `MPR-RC-HELIXOS-L2-047-002`。PO原文と未確認の依存解釈は[判断packet](post-confirmation-25-po-decision-packet-2026-09-28.md)を参照。訂正receiptは `ops-o1-o2-coverage-receipt-2026-09-29-r2.json#HELIXOS-L2-047`、選択5 atomのpartial。採否・依存解釈は未選択。

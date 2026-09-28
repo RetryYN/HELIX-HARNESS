@@ -798,6 +798,7 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **不合格**：Worker/検収が本文を直接変更する、`r1`を上書きする、理由/evidenceを落とす、別scope/revisionの根拠を流用する、`r2`を`r1`と同一revision扱いする、またはIssue/PR状態だけで再発行・完了を成立させる。
 - **unknown/stale**：target identity、要求revision、返却元、証拠source、scope、既存relationが不明なら再発行成立を推測せず当該ticketを未完で返す。新しいschema/relation型を補作しない。
 - **未見例**：検収側のoracle不足とWorker側の入力不足をそれぞれ与える。どちらも本文変更なしで発行元へ届き、元revision保持と新revision発行が成立する。
+- **依存解釈の候補oracle**：仮解釈Aを選ぶfixtureではticket本文のbytesに依存属性を埋めず、既存OS typed relationの別記録で依存・stale・循環を照合する。本文へ依存を直書きしたり、relationの欠落を成功扱いする例を拒否する。ただしAは未選択であり、このfixtureだけで「依存関係自体を作らない」というPO原文の別解釈を棄却・採択しない。
 - **受入限界**：既存ownerが定めるrevision・relation・authority契約の範囲に限る。実行やCIの合格を主張しない。
 
 ### HELIXOS-L2-048 feedback受渡し・未解決維持の受入候補
