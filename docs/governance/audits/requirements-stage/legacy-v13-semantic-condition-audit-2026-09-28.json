@@ -98,10 +98,10 @@
     "heading_structure": 64
   },
   "condition_status_counts": {
-    "covered": 2,
+    "covered": 3,
     "implementation-only": 31,
-    "partial": 82,
-    "unresolved": 174,
+    "partial": 83,
+    "unresolved": 172,
     "version-target": 14
   },
   "condition_destination_counts": {
@@ -129,7 +129,6 @@
     "adopted_workflow_boundary_with_L3_composition_residual": 5,
     "adopted_workflow_route_partial_old_registry_unadopted": 8,
     "candidate_unadopted_REG03_condition_residual": 3,
-    "candidate_unadopted_and_owner_split": 2,
     "candidate_unadopted_condition_scope; no generic coverage claim": 7,
     "candidate_unadopted_registry_detail": 1,
     "condition_retained_unresolved": 32,
@@ -154,7 +153,9 @@
     "rollback meaning routed; exact sync/restore oracle pending": 1,
     "source_snapshot_only": 4,
     "stage taxonomy condition undecided; retain as comparison fixture": 1,
-    "summary_acceptance_route_back_no_independent_successor": 18
+    "summary_acceptance_route_back_no_independent_successor": 18,
+    "adopted_scrum_reverse_route_exact_pair": 1,
+    "adopted_scrum_reverse_refactor_partial_pair": 1
   },
   "source_exact_join_count": 0,
   "explicit_IR_identity_lines": 7,
@@ -3156,26 +3157,29 @@
       "explicit_confirmed_ids": [],
       "explicit_aux_ids": [],
       "typed_reachable_legacy_ir_ids": [],
-      "current_destination_ids": [],
-      "current_destination_refs": [
-        "HARNESS-L2-005/034、OS-L2-022/031、LABO-L2-055/059/060、INTELLIGENCE-L2-016/017/018"
+      "current_destination_ids": [
+        "HARNESS-L2-002/003"
       ],
-      "destination_adoption_axis": "mixed_parent_plus_unadopted_candidate_or_deferred_detail",
+      "current_destination_refs": [
+        "docs/helix-harness/L2-requirements/product-requirements.md:105 (HARNESS-L2-002/003); docs/helix-harness/L11-acceptance/product-acceptance.md:39 (acceptance row keyed HARNESS-L2-002/003); both clauses identical at PO-fixed f6dad2a33 and current main bf1c30cec"
+      ],
+      "destination_adoption_axis": "adopted_exact_pair_condition_coverage_formal_successor_unassigned",
       "section_route_targets_as_recorded": "HARNESS-L2-005/034、OS-L2-022/031、LABO-L2-055/059/060、INTELLIGENCE-L2-016/017/018",
-      "destination_status": "candidate_unadopted_and_owner_split",
-      "current_review_conclusion": "source→測定→提案→人/owner採否→ticket/回収を分担。計測契約HARNESS-034と性能計測OS-031は後続候補であり、PO baseline 250へ混ぜない。性能recipe/thresholdを適用する条件はsource-specific ticket/L3へ保持。",
-      "condition_status": "unresolved",
+      "destination_status": "adopted_scrum_reverse_route_exact_pair",
+      "current_review_conclusion": "旧L112のSR3差分exactly-one routeは、PO固定revision f6dad2a33のHARNESS-L2-002/003:105でfindingを四つのrouteのexactly oneへ送る条件と直接一致する。対L11:39はroute 0件・複数件を拒否する。後発候補や機構間の計測分担は、この行の被覆根拠に使わない。",
+      "condition_status": "covered",
       "condition_comparison": {
-        "status": "unresolved",
-        "reason": "Owner/L2/L11 family route exists, but this source condition has no individually established adopted successor or exact paired acceptance in the reviewed evidence. Candidate status, source holding, or thematic overlap does not close it.",
-        "route_track": "owner route; condition-level closure unresolved",
+        "status": "covered",
+        "reason": "旧L112のSR3差分exactly-one routeと、PO固定HARNESS-L2-002/003のfinding exactly-one四routeおよび対L11の0件・複数件拒否を条件単位で直接照合した。採択済み本文・受入の条件の被覆のみを表し、旧L113–119の各route詳細や実装成立を一括して閉じない。",
+        "route_track": "adopted_L2_L11",
         "comparison_refs": [
-          "current_review section route",
-          "relevant fixed L2/L11; candidate IDs remain unadopted"
+          "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md:112",
+          "f6dad2a33:docs/helix-harness/L2-requirements/product-requirements.md:105 (HARNESS-L2-002/003)",
+          "f6dad2a33:docs/helix-harness/L11-acceptance/product-acceptance.md:39 (HARNESS-L2-002/003)"
         ],
-        "unresolved_residual": true
+        "unresolved_residual": false
       },
-      "coverage_assertion": "not established; condition-level residual retained",
+      "coverage_assertion": "covered only for old L112 exactly-one route under the fixed adopted L2/L11 pair; formal successor remains unassigned",
       "successor_assignment": "unassigned; no source line in this mapping receives a formal successor",
       "authority_effect": "none"
     },
@@ -3325,26 +3329,31 @@
       "explicit_confirmed_ids": [],
       "explicit_aux_ids": [],
       "typed_reachable_legacy_ir_ids": [],
-      "current_destination_ids": [],
-      "current_destination_refs": [
-        "HARNESS-L2-005/034、OS-L2-022/031、LABO-L2-055/059/060、INTELLIGENCE-L2-016/017/018"
+      "current_destination_ids": [
+        "HARNESS-L2-002/003",
+        "HARNESS-L2-003/004"
       ],
-      "destination_adoption_axis": "mixed_parent_plus_unadopted_candidate_or_deferred_detail",
+      "current_destination_refs": [
+        "f6dad2a33:docs/helix-harness/L2-requirements/product-requirements.md:105,111 (SR3 route/reroute, Refactor and Backflow boundary)",
+        "f6dad2a33:docs/helix-harness/L11-acceptance/product-acceptance.md:39-40 (route rejection, reroute, Performance Refactor measurement rejection)"
+      ],
+      "destination_adoption_axis": "adopted_pair_partial_condition_coverage_formal_successor_unassigned",
       "section_route_targets_as_recorded": "HARNESS-L2-005/034、OS-L2-022/031、LABO-L2-055/059/060、INTELLIGENCE-L2-016/017/018",
-      "destination_status": "candidate_unadopted_and_owner_split",
-      "current_review_conclusion": "source→測定→提案→人/owner採否→ticket/回収を分担。計測契約HARNESS-034と性能計測OS-031は後続候補であり、PO baseline 250へ混ぜない。性能recipe/thresholdを適用する条件はsource-specific ticket/L3へ保持。",
-      "condition_status": "unresolved",
+      "destination_status": "adopted_scrum_reverse_refactor_partial_pair",
+      "current_review_conclusion": "旧L119は複合条件。PO固定revisionのHARNESS-L2:105,111とL11:39-40にSR3 route/reroute、Refactor/Backflow境界、Performance Refactorのbaseline等の事前固定と測定不能な高速化拒否がある。一方、Design Refactor判定のsemantic similarity／consumer／oracle／dependency graph、名称類似だけの統合拒否、機能追加との同一episode混載禁止は固定L2/L11で未確認。性能の詳細はL11に明記されるがL2規範への対応も未特定。後発候補を採択済みと扱わない。",
+      "condition_status": "partial",
       "condition_comparison": {
-        "status": "unresolved",
-        "reason": "Owner/L2/L11 family route exists, but this source condition has no individually established adopted successor or exact paired acceptance in the reviewed evidence. Candidate status, source holding, or thematic overlap does not close it.",
-        "route_track": "owner route; condition-level closure unresolved",
+        "status": "partial",
+        "reason": "旧L119のPerformance Refactorの事前固定・測定不能な高速化拒否は固定L11:40に明記され、SR3 route/rerouteとRefactor境界は固定L2:105,111／L11:39-40で一部照合できる。Design Refactorのsemantic similarity・consumer・oracle・dependency graph判定、名称類似だけの統合拒否、機能追加との同一episode混載禁止は対L2/L11で確認できない。性能詳細もL2規範条件との対が未特定。",
+        "route_track": "adopted_L2_L11_partial",
         "comparison_refs": [
-          "current_review section route",
-          "relevant fixed L2/L11; candidate IDs remain unadopted"
+          "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md:119",
+          "f6dad2a33:docs/helix-harness/L2-requirements/product-requirements.md:105,111",
+          "f6dad2a33:docs/helix-harness/L11-acceptance/product-acceptance.md:39-40"
         ],
         "unresolved_residual": true
       },
-      "coverage_assertion": "not established; condition-level residual retained",
+      "coverage_assertion": "partial evidence only; old L119 composite condition is not fully covered, and formal successor remains unassigned",
       "successor_assignment": "unassigned; no source line in this mapping receives a formal successor",
       "authority_effect": "none"
     },
@@ -20131,8 +20140,15 @@
     ],
     "covered_rows_with_exact_refs": [
       65,
-      66
+      66,
+      112
     ],
-    "uncertainty_rule": "ambiguous normative or continuation material remains condition/unresolved; no semantic nonmember inference from description/not_applicable"
+    "uncertainty_rule": "ambiguous normative or continuation material remains condition/unresolved; no semantic nonmember inference from description/not_applicable",
+    "unresolved_to_covered": [
+      112
+    ],
+    "unresolved_to_partial": [
+      119
+    ]
   }
 }
