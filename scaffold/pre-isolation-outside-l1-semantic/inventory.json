@@ -23,7 +23,7 @@
     "first15_inventory_path": "scaffold/pre-isolation-outside-holding-first15/inventory.json",
     "first15_inventory_sha256": "8fdc22ce260ca23889f114ad85491d055cb656686fd52c829add05e84d9de12d",
     "management_register_path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
-    "management_register_sha256": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b",
+    "management_register_sha256": "33a1816181f604ad8913398e2a2fe12746a9e20ab0ca6ea2ec8f6278a509b25f",
     "management_register_capture_commit": "3df81ad27157c471e004083783f37a5860eaa2ee",
     "decision_record_path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
     "decision_record_sha256": "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2",

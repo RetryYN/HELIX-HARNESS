@@ -11,7 +11,7 @@
     {
       "path": "scaffold/pre-isolation-outside-holding-67-proposal/inventory.json",
       "sha256": "79233238c130fe7fe1000064dffc97d74745539987a05c73f714581d1556f4a8",
-      "note": "67 path pair, independent roster/digest/keyset/formal-doc checks"
+      "note": "67 path pair, independent roster/digest/keyset/formal-doc checks [2026-09-29 OS-038-002 transitive current-pin refresh: updated changed current input `scaffold/pre-isolation-outside-holding-67-proposal/inventory.json` SHA 79233238c130fe7fe1000064dffc97d74745539987a05c73f714581d1556f4a8 -> d5de64b33b266fd6233b6feb997a297828e384f40fb7b760a7e5575b2a8ffb77. Scaffold role, obligations and authority remain unchanged.]"
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-67-proposal/source-items.jsonl",

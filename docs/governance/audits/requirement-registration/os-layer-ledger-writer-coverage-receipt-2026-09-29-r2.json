@@ -1,0 +1,151 @@
+{
+  "receipt_id": "MPR-RCPT-OS-LAYER-LEDGER-WRITER-2026-09-29-R2",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom順に改行で区切る。末尾改行なし。",
+  "scope": "本receiptは旧HIL-FR-46/47のarchive L1要求表2原文行に限るsource coverageを引き継ぎ、OS writer・snapshot・proposal保存のoutcome oracleをHELIXOS-L2/L11-038 revision -002候補へ追補する。旧HST-CASE-030-04/05はこの条件のdesign-defined acceptance evidenceとして参照し、旧IR、HR-FR-HIL-18、HAC/HAT全体や実装/実行の被覆を主張しない。",
+  "candidates": [
+    {
+      "requirement_identity": "HELIXOS-L2-038",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HELIXOS-L1-001",
+        "HELIXOS-L1-002",
+        "HELIXOS-L1-003",
+        "HELIXOS-L1-004",
+        "HELIXOS-L1-008"
+      ],
+      "candidate_semantic_digest": "sha256:c3b0424bd39ac7c91166c87738fbefc1b20a11b904012d9ada768a113ccbe013",
+      "source_atom_set_digest": "sha256:8db63db824ce624b1208b695ed3ea82fc8aa44f5ad734608b1f11de37ec6d940",
+      "source_atom_count": 2,
+      "source_collection_scope": "旧HIL-FR-46/47 archive L1要求表の2原文行に限るsource coverageを維持する。OS writer・snapshot・proposal保存のoutcome oracleを、旧HST-CASE-030-04/05を設計証拠としてHELIXOS-L2/L11-038 revision -002候補へ追補する。旧HST caseは追加source atomに数えず、旧IR等の全量被覆、採択、実装や実行の証拠を主張しない。",
+      "atoms": [
+        {
+          "atom_id": "LAYER-LEDGER-HIL-FR-46-L0136",
+          "source_holding_registration_id": "MPR-SH-HARNESS-LAYER-LEDGER-EXTRACTION-001",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 136,
+          "source_line_sha256": "sha256:a62b63ab18b23ac9564d6c7ffca7580ac9471a6d6e7374f8e4a26c93f0441b6c",
+          "source_text": "| **HIL-FR-46** | Layer Ledger Registryはcanonical L1–L12ごとにledger type、粒度、必須node/edge、authority、input/output、entry/exit gate、template versionを登録する。L0 charterは層外authority anchorとして別登録する。各layer ledgerのrowはstable subject ID、revision、source span、semantic digest、status、owner、downstream/upstream edgeを持つ。 | layer ledger catalog、row revision、layer snapshot、coverage receipt |",
+          "ir_requirement_id": "HIL-FR-46",
+          "ir_source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-46",
+          "ir_statement_semantic_digest": "sha256:0255c7c9107d749eee633f9b94612ee7da059e544021824a3fa65b299afae7b3",
+          "ir_record_semantic_digest": "sha256:e17cdfbced6952ae8236b417fc80a963d73aa02d8650d80f02ae1f3afffbe634",
+          "disposition": "split",
+          "relation": "旧HIL-FR-46の運転/保存部分をHELIXOS-L2-038と対L11の未採択候補へ再導出。意味契約はHARNESS-L2-040と対L11の未採択候補に残し、採択済み後継とは扱わない。R2 source holdingも生存し、旧IR等の追加条件は別照合。"
+        },
+        {
+          "atom_id": "TEMPLATE-EXTRACT-HIL-FR-47-L0137",
+          "source_holding_registration_id": "MPR-SH-HARNESS-LAYER-LEDGER-EXTRACTION-001",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 137,
+          "source_line_sha256": "sha256:785f0998ca9fd2192bcddc638d1ef1233551c251e307e631303642abe7713fad",
+          "source_text": "| **HIL-FR-47** | Template Obligation Extractorは各layerのactive templateから章、field、table row、applicability rule、done-when、pair contractを原子的obligationとして機械抽出し、該当ledgerへ候補行を追加する。未対応template要素、空/TBD、抽出不能、同一obligation重複をfinding化し、LLM自由補完で埋めない。 | template atom、ledger proposal、extractor/version digest、gap finding |",
+          "ir_requirement_id": "HIL-FR-47",
+          "ir_source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-47",
+          "ir_statement_semantic_digest": "sha256:b1a61c1eb5f24a741168801fed3b323578151edabb2f62d1d47e239861dc1dca",
+          "ir_record_semantic_digest": "sha256:830e3870dcece39c096de9d792013f0b993379d5a36291f95f66946ee47f3966",
+          "disposition": "split",
+          "relation": "旧HIL-FR-47の運転/保存部分をHELIXOS-L2-038と対L11の未採択候補へ再導出。意味契約はHARNESS-L2-041と対L11の未採択候補に残し、採択済み後継とは扱わない。R2 source holdingも生存し、旧IR等の追加条件は別照合。"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-038",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-038",
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-040",
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-041",
+        "docs/governance/audits/requirement-registration/harness-layer-ledger-extraction-coverage-receipt-2026-09-28-r2.json",
+        "docs/governance/decisions/po-decision-2026-09-29-57candidates.md#HELIXOS-L2-038",
+        "docs/governance/audits/requirement-registration/harness-layer-ledger-extraction-coverage-receipt-2026-09-29-r3.json#HARNESS-L2-041",
+        "docs/governance/management-provisional-requirement-register.jsonl#MPR-RC-HARNESS-L2-041-003"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": [],
+      "preserved_pending_registration_refs": [
+        "MPR-SH-HARNESS-LAYER-LEDGER-EXTRACTION-001",
+        "MPR-RC-HARNESS-L2-040-002",
+        "MPR-RC-HARNESS-L2-041-002",
+        "MPR-RC-HARNESS-L2-041-003"
+      ],
+      "relation_boundary": "The existing two FR46/47 atoms and scoped no_loss result are retained. OS consumes HARNESS findings and owns only writer outcome/state preservation; HARNESS owns atomization and extraction determinism. HST-CASE-030-04/05 are bounded acceptance evidence, not added requirement atoms or runtime proof. The formal successor of all legacy FR46/47 conditions is not asserted.",
+      "revision_boundary": "MPR-RC-HELIXOS-L2-038-002 is an unadopted correction proposal. PO-adopted -001 bytes and authority remain decision-bound and historical. The additional -002 fixtures depend on HARNESS-L2-041-003, which is also unadopted; no executable condition is asserted until that dependency is separately adopted and enabled."
+    }
+  ],
+  "source_holding_registration_id": "MPR-SH-HARNESS-LAYER-LEDGER-EXTRACTION-001",
+  "source_split_receipt_ref": "docs/governance/audits/requirement-registration/harness-layer-ledger-extraction-coverage-receipt-2026-09-28-r2.json",
+  "l11_file_sha256": "33c901951d857bfe6e11365eafd1f75910091c2062d1c49fb2aefb2213cba957",
+  "candidate_state": "MPR-RC-HELIXOS-L2-038-001 remains the exact PO-adopted revision in the 2026-09-29 decision record. MPR-RC-HELIXOS-L2-038-002 is an unadopted correction proposal and depends on unadopted MPR-RC-HARNESS-L2-041-003 for the two new HARNESS finding conditions; neither adoption nor execution authority is generated.",
+  "supersedes_receipt_id": "MPR-RCPT-OS-LAYER-LEDGER-WRITER-2026-09-28",
+  "decision_boundary": {
+    "formal_decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md#HELIXOS-L2-038",
+    "accepted_revision": "MPR-RC-HELIXOS-L2-038-001",
+    "accepted_l2_semantic_digest": "sha256:603b5db48045408a85d116071a4ad0f8a470064cd073a05beb9bc118f386fd6c",
+    "accepted_l11_semantic_digest": "sha256:eabb68eaafc76f0080fbe9cb9c6904005c88b72e7cee9563f2515b4488de2e5d",
+    "new_revision": "MPR-RC-HELIXOS-L2-038-002",
+    "new_revision_state": "unadopted proposal; this receipt does not modify or extend the prior PO decision",
+    "new_l11_basic_section_digest": "sha256:eabb68eaafc76f0080fbe9cb9c6904005c88b72e7cee9563f2515b4488de2e5d",
+    "new_l11_addendum_heading": "HELIXOS-L2-038 revision -002候補の追加negative oracle（未採択）",
+    "new_l11_addendum_section_digest": "sha256:86287e73d09522940b2a07bf8f304135ff3d495904df055088f07fff077766ed",
+    "new_l11_relation": "The -002 candidate consists of the original identity section plus its identity-named addendum; the PO-adopted -001 section remains fixed separately. Neither section alone is the full -002 acceptance."
+  },
+  "oracle_evidence": {
+    "authority_note": "The assertion/design cases below are legacy design evidence (design-defined, not-implemented), not proof of runtime behavior. OS consumes HARNESS-041 findings; HARNESS retains semantic atomicity and extractor determinism decisions.",
+    "harness_decision_refs": [
+      {
+        "requirement": "HARNESS-L2-040",
+        "registration": "MPR-RC-HARNESS-L2-040-002",
+        "status": "adopted by 2026-09-29 PO record",
+        "semantic_digest": "sha256:c349606d7798e3f4eb5e6cb31e0618a83dcfa05f9fc888b0ce618f6d160757df"
+      },
+      {
+        "requirement": "HARNESS-L2-041",
+        "registration": "MPR-RC-HARNESS-L2-041-002",
+        "status": "adopted by 2026-09-29 PO record",
+        "semantic_digest": "sha256:d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260"
+      }
+    ],
+    "legacy_assertion_cases": [
+      {
+        "case_id": "HST-CASE-030-04",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 293,
+        "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+        "source_line_sha256": "sha256:88e977c12fc8d4c20830e2bbfe2e7da91b8477f6311ed1f6ef8702bfac54a1d9",
+        "os_outcome": "rejected; candidate row increment 0; current projection unchanged"
+      },
+      {
+        "case_id": "HST-CASE-030-05",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 294,
+        "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+        "source_line_sha256": "sha256:2463bc4e08ed5c82aa3ad531f26fe81d455fe07e97a78130b7cd321f767cd58c",
+        "os_outcome": "quarantined; current projection update 0; prior current projection retained"
+      }
+    ],
+    "supporting_design_refs": [
+      {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/layer-ledger-pair-gate.md",
+        "lines": "47-48",
+        "source_file_sha256": "sha256:458c7a428c4ce9a19506cd4061568dda091bdf2674517fafec235fc374d720ad"
+      },
+      {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L6-layer-ledger-pair-gate-unit-test-design.md",
+        "lines": "42-43,145-146",
+        "source_file_sha256": "sha256:a0d9a570e2d4fd7ad77d4671202e21fb76fa29845a5d4bad7b3c374905401217"
+      }
+    ],
+    "harness_unadopted_dependency": {
+      "registration": "MPR-RC-HARNESS-L2-041-003",
+      "status": "unadopted candidate in current register",
+      "source_refs": [
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:711-714",
+        "docs/governance/management-provisional-requirement-register.jsonl#MPR-RC-HARNESS-L2-041-003"
+      ],
+      "scope": "HARNESS-owned atomization mismatch and same-input/version replay-digest mismatch findings. OS consumes the finding only if this source contract is separately adopted and enabled."
+    }
+  }
+}

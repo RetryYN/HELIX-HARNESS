@@ -49,7 +49,7 @@
     {
       "path": "scaffold/fr-implementation-evidence-0109/inventory.json",
       "sha256": "263dd6ca1a7229d14ef88d7843f5967baa7e95b2a8b9778f756311386aedf769",
-      "note": "fixed BASE input digest; static read only"
+      "note": "fixed BASE input digest; static read only [2026-09-29 OS-038-002 transitive current-pin refresh: updated changed current input `scaffold/fr-implementation-evidence-0109/inventory.json` SHA 263dd6ca1a7229d14ef88d7843f5967baa7e95b2a8b9778f756311386aedf769 -> 3b76e02e01fcea80e20f8a838cc307d03e4758d46c47521b619d78f9dee40df1. Scaffold role, obligations and authority remain unchanged.]"
     },
     {
       "path": "scaffold/fr-implementation-evidence-0109/README.md",
