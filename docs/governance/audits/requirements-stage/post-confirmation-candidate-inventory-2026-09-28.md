@@ -192,7 +192,3 @@ HYB-002の3 clauseをarchive/baseline別revisionの6 atomとしてこの候補�
 ## O4追加候補（未採択）
 
 - [HELIXOS-L2-051：task単位の作成／review配置](../../../helix-os/L2-requirements/governance-requirements.md#helixos-l2-051)／[対L11](../../../helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-051)：`MPR-RC-HELIXOS-L2-051-001`、[partial receipt](../requirement-registration/ops-o4-coverage-receipt-2026-09-29.json)。PO採否未選択。
-
-### O4現行登録訂正
-
-上記051の現行登録は `MPR-RC-HELIXOS-L2-051-002`、[r2 receipt](../requirement-registration/ops-o4-coverage-receipt-2026-09-29-r2.json)。-001は履歴。

@@ -361,7 +361,3 @@ PO原文：「チケットそのものに参照をつけたり実装の一部み
 ## O4追加候補：task単位の作成／review配置（判断集合55候補）
 
 - `HELIXOS-L2-051`／対L11-051。旧sourceは役割分離・差戻し・適性evidence・exact-HEAD reviewを選択6 spanで限定保持。逆向き配置、Cursor create-only、Claude優先は新規案。A＝exact候補採択（推奨）、B＝保留、C＝優先範囲/強さと適用scopeをrevision・理由・影響付きで変更。いずれも未選択。登録 `MPR-RC-HELIXOS-L2-051-001`、[partial receipt](../requirement-registration/ops-o4-coverage-receipt-2026-09-29.json)。固定provider matrixはsource holding。
-
-### O4訂正revision（#2288独立review）
-
-現行登録は `MPR-RC-HELIXOS-L2-051-002`。選択6 atomの4 carried・2 preserved_pendingを[訂正receipt](../requirement-registration/ops-o4-coverage-receipt-2026-09-29-r2.json)で示し、`coverage_result:no_loss`。旧source全体のclosureではない。POの逆向き配置、Cursor create-only、Claude優先の採否は未選択で、人間decision参照を捏造しない。

@@ -4651,8 +4651,8 @@
       "title_and_kind": "### HELIXOS-L2-051 作成／reviewレーンのtask単位選択と配置適性（単体候補、version_target: 1.0）",
       "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-051",
       "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-051",
-      "registration_id": "MPR-RC-HELIXOS-L2-051-002",
-      "supersedes_registration_id": "MPR-RC-HELIXOS-L2-051-001",
+      "registration_id": "MPR-RC-HELIXOS-L2-051-001",
+      "supersedes_registration_id": null,
       "management_state": "registered_proposal",
       "authority_effect": "none",
       "parent_l1_ids": [
@@ -4664,8 +4664,8 @@
       "parent_l1_path": "docs/helix-os/L1-planning/system-intent.md",
       "parent_l1_sha256_current": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
       "parent_planning_revision_recorded": "docs/helix-os/L1-planning/system-intent.md@67d1aa46208a55ee4d9c227a7a3362ccee594577 sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e (PO-fixed L1 revision referenced; candidate registration does not alter it)",
-      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/ops-o4-coverage-receipt-2026-09-29-r2.json#HELIXOS-L2-051",
-      "receipt_id": "MPR-RCPT-OPS-O4-2026-09-29-R2",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/ops-o4-coverage-receipt-2026-09-29.json#HELIXOS-L2-051",
+      "receipt_id": "MPR-RCPT-OPS-O4-2026-09-29",
       "receipt_candidate_digest_rule": "L2 section from `### HELIXOS-L2-051` until next `###` or EOF; trim trailing blank lines and terminate with one UTF-8 LF.",
       "registered_candidate_semantic_digest": "sha256:54fd39fbeb3786bc739560856afb14e3cf892b1bb717d98ceb1212df09fe7f2b",
       "receipt_candidate_semantic_digest": "sha256:54fd39fbeb3786bc739560856afb14e3cf892b1bb717d98ceb1212df09fe7f2b",
@@ -7578,7 +7578,7 @@
       },
       {
         "identity": "HELIXOS-L2-051",
-        "registration_id": "MPR-RC-HELIXOS-L2-051-002",
+        "registration_id": "MPR-RC-HELIXOS-L2-051-001",
         "axes": {
           "candidate_adoption": {
             "selection_status": "pending_PO",
@@ -7586,11 +7586,11 @@
             "decision_ref": "candidate-local",
             "exact_revision": {
               "identity": "HELIXOS-L2-051",
-              "registration_id": "MPR-RC-HELIXOS-L2-051-002",
+              "registration_id": "MPR-RC-HELIXOS-L2-051-001",
               "l2_id": "HELIXOS-L2-051",
               "l11_id": "HELIXOS-L11-051",
               "candidate_semantic_digest": "sha256:54fd39fbeb3786bc739560856afb14e3cf892b1bb717d98ceb1212df09fe7f2b",
-              "supersedes_registration_id": "MPR-RC-HELIXOS-L2-051-001"
+              "supersedes_registration_id": null
             },
             "options_ref": "new_meaning_choice",
             "recommendation": "A"
@@ -7600,7 +7600,7 @@
             "selected": null,
             "candidate_source_scope": {
               "source_atom_count": 6,
-              "receipt_ref": "docs/governance/audits/requirement-registration/ops-o4-coverage-receipt-2026-09-29-r2.json#HELIXOS-L2-051",
+              "receipt_ref": "docs/governance/audits/requirement-registration/ops-o4-coverage-receipt-2026-09-29.json#HELIXOS-L2-051",
               "coverage": "selected six atoms no_loss; 4 carried, 2 preserved pending; remaining source conditions held separately"
             },
             "options_ref": "new_meaning_choice",

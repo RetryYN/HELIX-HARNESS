@@ -6,10 +6,10 @@
   "candidate_digest_rule": "L2 section from `### HELIXOS-L2-051` until next `###` or EOF; trim trailing blank lines and terminate with one UTF-8 LF.",
   "source_atom_set_digest_rule": "SHA-256 over ordered UTF-8 lines `atom_id` + space + `sha256:`-prefixed `source_span_sha256`, joined by LF without trailing LF.",
   "source_lines_ref": "docs/governance/audits/requirement-registration/ops-o4-source-lines-2026-09-29.jsonl",
-  "scope": "O4 task-specific role placement and suitability evidence. Old source spans are recorded as narrow provenance; source coverage is partial. No old provider matrix, runtime, workflow, hook, CLI, or implementation migration is claimed.",
-  "source_atom_set_digest": "sha256:71cdc04ad31e066e32f54b415e6c7a338d12f811bf3e1a09c0c0776a8f4aeb78",
+  "scope": "選択6 spanだけを対象に、carried 4・preserved_pending 2として全atomを計上する。各行の選択外条件はMPR-SH-CANDIDATE-003に保全し、旧provider matrixや旧runtimeのsuccessorを主張しない。",
+  "source_atom_set_digest": "sha256:5c5544def17396eead877ea49f0c8dde74026147c067f4d6d11d62ca533e4afc",
   "candidate_digest": "sha256:54fd39fbeb3786bc739560856afb14e3cf892b1bb717d98ceb1212df09fe7f2b",
-  "coverage_result": "partial",
+  "coverage_result": "no_loss",
   "source_holding_refs": [
     "LEGACY-ASSET-A26561A0EF7396D8F017",
     "LEGACY-ASSET-50CA1C554747F12266D3",
@@ -19,7 +19,8 @@
     "旧三lane exact provider/model matrix、専用branch issuance、old control-plane authority/runtimeは本候補へ移さず、意味変更・技術移行の決定も主張しない。",
     "旧sourceの全条件、全consumer、旧資産の移行・retirementは対象外。",
     "taskごとの逆向き配置、Cursor create-only、要求/設計のClaude優先は旧sourceだけでは決まらない新規案でありPO選択を要する。",
-    "適性measurementのthreshold、provider availability rule、固定lane数は定義しない。"
+    "適性measurementのthreshold、provider availability rule、固定lane数は定義しない。",
+    "Cursor旧専用branch設定と旧benchmark参照はこの候補へ移管せず、生存中のMPR-SH-CANDIDATE-003に保全する。"
   ],
   "candidates": [
     {
@@ -33,26 +34,26 @@
         "HELIXOS-L1-010"
       ],
       "candidate_digest": "sha256:54fd39fbeb3786bc739560856afb14e3cf892b1bb717d98ceb1212df09fe7f2b",
-      "source_atom_set_digest": "sha256:71cdc04ad31e066e32f54b415e6c7a338d12f811bf3e1a09c0c0776a8f4aeb78",
+      "source_atom_set_digest": "sha256:5c5544def17396eead877ea49f0c8dde74026147c067f4d6d11d62ca533e4afc",
       "source_atom_count": 6,
-      "source_collection_scope": "旧三社laneの役割分離・Cursor Worker boundary・review return、resident-lane設計Worker suitability、capacity profileのrework lineage/exact-head re-reviewから、O4のtask配置・適性候補へ接続する6 exact source spans。",
-      "coverage_result": "partial",
+      "source_collection_scope": "選択6 spanだけを対象に、carried 4・preserved_pending 2として全atomを計上する。各行の選択外条件はMPR-SH-CANDIDATE-003に保全し、旧provider matrixや旧runtimeのsuccessorを主張しない。",
+      "coverage_result": "no_loss",
       "atoms": [
         {
           "atom_id": "O4-CURSOR-WORKER-BOUNDARY",
           "source_line": 46,
           "source_line_sha256": "sha256:af8bc72bc7b8e6393fd9ca70ad48eab6a36a052d0829f19270aa1b1954ec142e",
           "source_span_sha256": "sha256:af8bc72bc7b8e6393fd9ca70ad48eab6a36a052d0829f19270aa1b1954ec142e",
-          "disposition": "context",
-          "relation": "専用branchを発行してassignmentへ束縛する条件の存在。現行candidateは旧実装詳細を継承せず、作成Workerとreviewerの役割範囲に限る。"
+          "disposition": "preserved_pending",
+          "relation": "MPR-SH-CANDIDATE-003へ保全"
         },
         {
           "atom_id": "O4-INDEPENDENT-REVIEW-RETURN",
           "source_line": 47,
           "source_line_sha256": "sha256:000c8f4364ff411cf54c9a5efbd8fb762be489280c15cb63b503475cfc058871",
-          "source_span_sha256": "sha256:000c8f4364ff411cf54c9a5efbd8fb762be489280c15cb63b503475cfc058871",
+          "source_span_sha256": "sha256:f07c6de479af0591b4e816a075a23d128f9f3d66cf26cfeec0a37498792dc08f",
           "disposition": "carried",
-          "relation": "独立reviewとchanges requestedを元の作成assignmentへ戻す意味。固定Claude reviewerと旧branch運用は継承しない。"
+          "relation": "候補へ保持"
         },
         {
           "atom_id": "O4-DESIGN-WORKER-EVIDENCE",
@@ -60,31 +61,31 @@
           "source_line_sha256": "sha256:a1434ebbc4501d047041fb6115a34d0b13fc1da67dee6c68a8e3507c4e9535fd",
           "source_span_sha256": "sha256:a1434ebbc4501d047041fb6115a34d0b13fc1da67dee6c68a8e3507c4e9535fd",
           "disposition": "carried",
-          "relation": "設計taskをWorkerへ委譲できるが、適性evidenceのあるWorkerに限る意味。固定Codex設計担当は継承しない。"
+          "relation": "候補へ保持"
         },
         {
           "atom_id": "O4-WORKER-SUITABILITY-BENCH",
           "source_line": 688,
           "source_line_sha256": "sha256:ec32d5e1c87f79751723866f7bdee5b4389adbbe4ad2cada9844699ff6602ac7",
           "source_span_sha256": "sha256:ec32d5e1c87f79751723866f7bdee5b4389adbbe4ad2cada9844699ff6602ac7",
-          "disposition": "carried",
-          "relation": "worker適性は既存bench契約に従う意味。新しいbenchやthresholdは候補で作らない。"
+          "disposition": "preserved_pending",
+          "relation": "MPR-SH-CANDIDATE-003へ保全"
         },
         {
           "atom_id": "O4-REWORK-LINEAGE",
           "source_line": 39,
           "source_line_sha256": "sha256:6d5b6f13b932496b6e3031ba2294ae6787b8755cf539cad739ffed1ebe2ac075",
-          "source_span_sha256": "sha256:6d5b6f13b932496b6e3031ba2294ae6787b8755cf539cad739ffed1ebe2ac075",
+          "source_span_sha256": "sha256:ed931667bc080d91bfe31bfa2fb9c6dbf7be1282155a81dd2a794c048aebe8fa",
           "disposition": "carried",
-          "relation": "changes requestedを同一assignment lineageへ返す意味。新provider・model構成は継承しない。"
+          "relation": "候補へ保持"
         },
         {
           "atom_id": "O4-CHANGED-HEAD-REVIEW",
           "source_line": 43,
           "source_line_sha256": "sha256:3b3bd55b559cc8b8d4e7a1e795f227d93d7ddf3fd3fc00a9b0c711d6946e2543",
-          "source_span_sha256": "sha256:3b3bd55b559cc8b8d4e7a1e795f227d93d7ddf3fd3fc00a9b0c711d6946e2543",
+          "source_span_sha256": "sha256:ff474d01bfdd9276e7a8491312a0feabb7c7c2eb32014395d96d52d207b8af8f",
           "disposition": "carried",
-          "relation": "candidate HEAD変更時の独立review再取得と競合解消を作成側へ返す意味。旧Merge Train/runtimeは継承しない。"
+          "relation": "候補へ保持"
         }
       ],
       "new_proposal_scope": [
@@ -100,7 +101,13 @@
         "採択済みHELIX-OS L11 acceptance",
         "docs/governance/github-upstream-operating-model.md:136-142,199"
       ],
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "preserved_pending_registration_refs": [
+        "MPR-SH-CANDIDATE-003"
+      ],
+      "unaccounted_atom_refs": []
     }
-  ]
+  ],
+  "paired_acceptance_identity": "HELIXOS-L11-051",
+  "paired_acceptance_digest": "sha256:e01daa2fbf1ad7c2e9b6df54a9acdf022a3b821123d8904f8a171a4ede87b684"
 }
