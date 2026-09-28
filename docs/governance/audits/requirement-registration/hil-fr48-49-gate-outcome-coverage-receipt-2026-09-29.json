@@ -17,8 +17,8 @@
     "HARNESS-L2-055": "sha256:f1b9332d75fc5e07158165b0dbb0d037983ab1df0219dc5e519ceef3583aa96a",
     "HARNESS-L2-056": "sha256:9a8406bc5c2051eb0bed0bc57571f1e139c856d3559072dee8de3a019111a047"
   },
-  "candidate_l2_file_sha256": "sha256:adae798dbaa9298b59f668f204e7d74ac47654e0fdc6c6f2be4ed6e9513fd40b",
-  "paired_acceptance_file_sha256": "sha256:379fdac40d4a354daf550d06ec5b310f3e57025d45636fbd4f3dd1c92a0bb941",
+  "candidate_l2_file_sha256": "sha256:dc27c92f54e35a33a4095ffaee0642a9fc9186a2168de1578b06341b75f2b630",
+  "paired_acceptance_file_sha256": "sha256:9d38a5f1ebbd1a09a836c5d250e8ac44b13819e598c07e2cc723676813b358b4",
   "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-fr48-49-gate-source-lines-2026-09-29.jsonl",
   "source_atom_count": 8,
   "source_collection_scope": "MPR-SH-SEMANTIC-LINE-003のHIL-FR-48 line 138およびHIL-FR-49 line 139を意味spanへ非重複分解し、FR-48/49のHARNESS gate outcome候補へ割当てた8 atom。HIL-FR-48 stale revision、HIL-FR-49異snapshot、NFR-29 cross-condition、MPR-SH-IR-003のIR rows 81/82はcandidate atomに含めずholdingに保持。assertion 031-04/07/08、032-09/12もNFR-29 oracle参照として非計上。031-09/032-14 meta casesは対象外。",

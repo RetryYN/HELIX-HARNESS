@@ -1150,6 +1150,17 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 
 **authority状態**：source authorityは旧IR上の`specified_frozen`として保持する。target authorityは未採択候補であり、`draft_candidate`相当。候補本文、source atom set、coverage receipt、MPR登録のいずれもPO採択、L3承認、実装・実行許可を生成しない。
 
+
+### HARNESS-L2-054 専門Worker判定・契約のOS割当handoff候補（接続候補、version_target: 1.0）
+
+- **親・状態**：親は採択済み`HARNESS-L1-001/002/004`。`HARNESS-L2-047`の契約意味・muster判断をOSの既存assignment契約へ渡す不足条件だけを記す未採択候補であり、047の本文・採択条件を変更しない。HARNESS ownerの配置は2026-09-29 PO判断の条件付きA配置に従い、配置Bまたは新たな必須artifactの意味が必要なら対象revision付きPO判断へ戻す。仮登録・候補本文は要求採択、L3承認、assignment・Worker起動を生成しない。
+- **適用入力**：047の対象task/ticket identity、scope、要求・oracle revisionに加え、工程表の`layer × drive`、選択済みprocess phase、task-kind、verification pattern、design obligation/oracle、domain/risk、judgment pack revision、single-worker比較条件、適用scopeを持つLABO evidenceと未評価状態を保持する。必要時のみINTELLIGENCE placement proposal、OSのassignment/runtime profile/budget/期限/lifecycle条件、SECURITY authority/制約への参照を結ぶ。`layer`または`drive`の意味対応、適用範囲、revisionが不明・欠落・conflict・staleなら軸を落としたり別値へ推定変換せず`unknown_or_defer`とする。現行process phase等との具体的mappingは本候補で新設せず未決条件として残す。
+- **型付きhandoff結果**：HARNESSはtask/scope/source revisionと上記入力のdigest・適用条件に結んで、`muster_candidate`、`existing_role_sufficient`、`unknown_or_defer`のいずれかの意味をOSへ渡す。`muster_candidate`は047のruntime-neutral specialist Worker contract参照（複数の場合はその集合とdigest）、生成規則revision、理由、比較対象/evidence、guard結果を伴う。`existing_role_sufficient`は対象既存roleと比較根拠を示し、新規専門contractを含めない。`unknown_or_defer`は不足・不確実・stale条件、担当owner、再照合に必要な入力を示し、assignmentへ進めない。OSは受け取ったhandoffの同じtask/scope/revisionを既存assignmentへ結び、assignment・profile適格性または保留理由を既存のOS state/evidenceで追跡する。OSの応答・assignmentが欠落、対象不一致または適用条件不明ならhandoffを完了扱いしない。
+- **軸と形式の限界**：`layer × drive`と047の関連入力軸を保持する意味条件であり、軸のenum、独自wire format、固定Worker数、TeamDefinition/member schema、provider/runtime固有fieldを定義しない。旧Claude/Codex射影は引き継がない。旧TeamDefinition相当の集約表現・複数contractの構成規則が要求意味として必須か、およびlayer/driveから現行phase等への厳密な対応は未確定であり、必要ならPO/L3設計で判断する。
+- **責務・authority境界**：HARNESSは工程・verification意味、必要性判定、runtime-neutral contractとhandoff内容を所有する。OSは割当、runtime profileへのprojection、budget/期限、lease/fencing/失効/retireと実行・結果の記録を既存要求の範囲で所有する。INTELLIGENCEは配置案、LABOは適用可能な能力evidence、SECURITYはoperation authority・制約と隔離の正本を持つ。HARNESS handoff、tool/path候補、contract digest、OS受領記録はauthorityや実行許可を発生させず、各ownerの正本を置換しない。
+- **旧sourceとの差分と保留**：旧HIL-BR-09/30、HIL-FR-59/60の工程表軸、専門化判断、contract出力、OS実行への受け渡しを現行責務へ分けて意味再導出する。旧runtime-specific projection、W-agent／TeamDefinition具体schema、IR上の補助・非選択条件、残る旧要求atomは引き継がず生存中holdingへ残す。旧出力のどの部分がHARNESSの集約contractを要求し、どの部分がOS assignmentで満たされるかの追加意味変更はこの候補で決めない。
+- **不成立と戻し先**：軸・scope・oracle・contract/evidence revisionの欠落や不一致、OS assignment/profile/lifecycle条件不足は保留し、理由を該当ownerへ戻す。muster根拠なし、single-worker十分性の無視、HARNESSによる割当・起動、提案・証拠からのauthority生成、同一provider/modelだけによる独立性判定、unknown軸の推定補完は不成立とする。候補とL11 oracleは未実行であり、HARNESS-L2-047、OS-L2-004/-042/-043、SECURITYの既存要求を変更・代替しない。
+
 ### HARNESS-L2-055 隣接層の双方向trace gate結果候補（HARNESS-CORE unit候補、未採択）
 
 - **状態・親**：未採択候補、`registered_proposal`／`authority_effect: none`。親候補はHARNESS-L1-001/003/004（固定本文はConcept/L1判断記録を参照）。この候補からL1の意味や採否を作らない。

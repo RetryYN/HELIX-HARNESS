@@ -862,6 +862,18 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **競合・未見条件**：同名異義、同一pathの再利用、identity重複、base revision違い、lineage先の欠落を与え、path/name一致だけで同一assetと判定しない。対応する履歴やauthorityが確認できない箇所をunknownに残す。
 - **受入境界**：静的な候補、receipt、fixture、または文書参照の存在だけでは実際の保存処理、rollback、権限、実装、PO採択、L3承認、旧FRの全条件移管を成立させない。旧runtime、旧test、旧fixtureは実行しない。
 
+### HARNESS-L11-054 専門Worker判定・契約のOS割当handoff受入候補（未実行）
+
+**対応要求**：`HARNESS-L2-054`（HELIX-HARNESS connection候補、`version_target: 1.0`、未採択）。既存HARNESS-L2-047の内容oracleとOS-L2-004/-042/-043のassignment・成果・event責務を接続する静的oracle案であり、いずれの要求の採択・実行結果も示さない。
+
+- **muster handoff**：対象task/scope/revision、`layer × drive`、process phase、task-kind、verification pattern/oracle、比較条件、適用LABO evidence状態を入力する。HARNESSの`muster_candidate`とcontract参照・digest・生成規則revision・理由・guard結果が同じ入力revisionへ結ばれ、OSが同じ対象と条件を既存assignmentへ結んだ場合だけhandoff対応を確認する。assignment/resultの記録はHARNESS contractの意味・oracleを変更しない。
+- **既存role十分**：single-worker比較により`existing_role_sufficient`となる入力では既存role参照と比較根拠をhandoffし、追加specialist contractやそれ由来の新規専門assignmentを生成しない。既存の通常assignmentはOS側契約に従う。
+- **unknown/defer**：`layer`、`drive`、軸のsource/revision、task boundary/oracle、比較対象、evidence適用範囲、contract digestまたはOS profile/lifecycle条件を一つずつ欠落・stale・conflictにする。未知値を別軸へ畳み込まず、HARNESSまたは不足を所有する機構へ戻し、該当specialist handoff/assignmentを保留する。layer/driveの現行phase等とのmappingが未定義ならmapping済みとして扱わない。
+- **不成立例**：muster候補がないのにcontractをOSへ渡す、scope/revisionの違うcontractをassignmentへ使う、contract生成receiptをassignment・authority・Worker起動・成果受入として数える、tool/path候補やLABO/INTELLIGENCE材料からSECURITY許可を作る、worker/verifierのidentity・context・authorityの分離を欠く例は不成立とする。provider/modelの一致だけで独立性を否定しない。
+- **未見例と変更**：未見task-kind/domain/riskまたは工程表の別layer/driveを与え、選択入力のrevision、軸、比較範囲、contract outcome、OSへの対応づけと戻し先を再照合する。source/authority/profile/oracleのrevision変更は依存するhandoffをstaleとして再確認する。
+- **型と境界**：旧Claude/Codex専用projection、任意のTeamDefinition/member schema、固定Worker数を受入条件にしない。runtime-neutral contractの意味はHARNESS、assignment/runtime profile/lifecycleはOS、evidence適用性はLABO、placement案はINTELLIGENCE、operation authority/隔離はSECURITYの既存正本へ戻す。具体的なTeamDefinition相当の集約表現またはlayer/driveの厳密mappingが必要という判断は本oracleから生成せず、未決のPO/L3設計項目とする。
+- **受入境界**：source/coverage receipt、候補本文、fixture、OS記録例の存在はoracle実行、実runtime projection、assignment、security許可、利用者受入、要求採択、L3承認を示さない。旧runtime/testを実行しない。
+
 ### HARNESS-L2-055 隣接層の双方向trace gate結果受入候補（未実行）
 
 **対応要求**：HARNESS-L2-055（HARNESS-CORE unit候補、未採択）。以下は静的な内容oracle案であり、実行、採択、L3承認を示さない。
