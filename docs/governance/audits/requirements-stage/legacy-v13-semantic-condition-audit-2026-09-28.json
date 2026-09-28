@@ -3331,25 +3331,27 @@
       "typed_reachable_legacy_ir_ids": [],
       "current_destination_ids": [
         "HARNESS-L2-002/003",
-        "HARNESS-L2-003/004"
+        "HARNESS-L2-003/004",
+        "HARNESS-L2-016"
       ],
       "current_destination_refs": [
         "f6dad2a33:docs/helix-harness/L2-requirements/product-requirements.md:105,111 (SR3 route/reroute, Refactor and Backflow boundary)",
-        "f6dad2a33:docs/helix-harness/L11-acceptance/product-acceptance.md:39-40 (route rejection, reroute, Performance Refactor measurement rejection)"
+        "f6dad2a33:docs/helix-harness/L2-requirements/product-requirements.md:399 (HARNESS-L2-016 Performance Refactor baseline/budget/workload/profile/統計条件/回帰oracle)",
+        "f6dad2a33:docs/helix-harness/L11-acceptance/product-acceptance.md:39-40,292-294 (route rejection, performance measurement and regression rejection)"
       ],
       "destination_adoption_axis": "adopted_pair_partial_condition_coverage_formal_successor_unassigned",
       "section_route_targets_as_recorded": "HARNESS-L2-005/034、OS-L2-022/031、LABO-L2-055/059/060、INTELLIGENCE-L2-016/017/018",
       "destination_status": "adopted_scrum_reverse_refactor_partial_pair",
-      "current_review_conclusion": "旧L119は複合条件。PO固定revisionのHARNESS-L2:105,111とL11:39-40にSR3 route/reroute、Refactor/Backflow境界、Performance Refactorのbaseline等の事前固定と測定不能な高速化拒否がある。一方、Design Refactor判定のsemantic similarity／consumer／oracle／dependency graph、名称類似だけの統合拒否、機能追加との同一episode混載禁止は固定L2/L11で未確認。性能の詳細はL11に明記されるがL2規範への対応も未特定。後発候補を採択済みと扱わない。",
+      "current_review_conclusion": "旧L119は複合条件。PO固定revisionのHARNESS-L2:105,111,399とL11:39-40,292-294にSR3 route/reroute、Refactor/Backflow境界、Performance Refactorのbaseline等の事前固定と測定不能な高速化拒否がある。一方、Design Refactor判定のsemantic similarity／consumer／oracle／dependency graph、名称類似だけの統合拒否、機能追加との同一episode混載禁止は固定L2/L11で未確認。性能条件にL2側の規範がないという前回説明は誤りであり撤回する。後発候補を採択済みと扱わない。",
       "condition_status": "partial",
       "condition_comparison": {
         "status": "partial",
-        "reason": "旧L119のPerformance Refactorの事前固定・測定不能な高速化拒否は固定L11:40に明記され、SR3 route/rerouteとRefactor境界は固定L2:105,111／L11:39-40で一部照合できる。Design Refactorのsemantic similarity・consumer・oracle・dependency graph判定、名称類似だけの統合拒否、機能追加との同一episode混載禁止は対L2/L11で確認できない。性能詳細もL2規範条件との対が未特定。",
+        "reason": "旧L119のPerformance Refactor事前固定は固定HARNESS-L2-016:399に明記され、対L11:292-294とL11:40が測定不能な高速化と回帰を拒否する。SR3 route/rerouteとRefactor境界は固定L2:105,111／L11:39-40で一部照合できる。残差はDesign Refactorのsemantic similarity・consumer・oracle・dependency graph判定、名称類似だけの統合拒否、機能追加との同一episode混載禁止である。",
         "route_track": "adopted_L2_L11_partial",
         "comparison_refs": [
           "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md:119",
-          "f6dad2a33:docs/helix-harness/L2-requirements/product-requirements.md:105,111",
-          "f6dad2a33:docs/helix-harness/L11-acceptance/product-acceptance.md:39-40"
+          "f6dad2a33:docs/helix-harness/L2-requirements/product-requirements.md:105,111,399",
+          "f6dad2a33:docs/helix-harness/L11-acceptance/product-acceptance.md:39-40,292-294"
         ],
         "unresolved_residual": true
       },
@@ -20149,6 +20151,7 @@
     ],
     "unresolved_to_partial": [
       119
-    ]
+    ],
+    "line119_performance_L2_ref_correction": "HARNESS-L2-016:399 and paired L11:292-294 were omitted from prior line119 comparison; partial status unchanged; performance L2 normative gap claim withdrawn"
   }
 }
