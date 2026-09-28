@@ -1,0 +1,54 @@
+{
+  "receipt_id": "MPR-RCPT-OPS-O1-O2-INTELLIGENCE-074-2026-09-29-R2",
+  "authority_effect": "none",
+  "candidate_state": "registered_proposal only; no PO adoption",
+  "basis_commit": "1aa41a8ba6e750d23a46b832d1513738e84894bb",
+  "source_atom_set_digest_rule": "SHA-256 over ordered UTF-8 lines `atom_id` + space + `sha256:`-prefixed `source_span_sha256`, joined by LF without trailing LF.",
+  "candidate_digest_rule": "L2 section from `### ID` until next `###`; trim trailing blank lines and terminate with one UTF-8 LF.",
+  "source_lines_ref": "docs/governance/audits/requirement-registration/ops-o1-o2-source-lines-2026-09-29.jsonl",
+  "request_source_snapshot": {
+    "path": "docs/governance/audits/requirements-stage/ops-o1-o2-request-source-snapshot-2026-09-29-r3.md",
+    "classification": "PO utterance original available; candidate placement-input rule remains unadopted new proposal"
+  },
+  "scope": "INTELLIGENCE-074の候補入力として選択したlegacy atom集合は明示的に空（0件）。no_lossはこの空集合を未計上なく扱った事実だけで、旧source意味の被覆、候補の完全性、採択、運用許可を示さない。",
+  "unresolved_source_scope": [
+    "Execution-ticket source conditions outside the exact listed spans remain unresolved/not mapped, including atomic responsibility, broader admission, retry/recovery routes and other dependency conditions.",
+    "Legacy feedback lifecycle source remainder and runtime/store/schema are not mapped or migrated; current adopted OS-L2-007 remains the lifecycle contract.",
+    "Legacy operations-feedback document uses historical L14/process/runtime framing and is context only.",
+    "No legacy source atom establishes the new LABO metric definitions/denominators/windows or INTELLIGENCE input rule; these are new proposals from the task-input summary, not inherited PO-approved meaning."
+  ],
+  "candidates": [
+    {
+      "requirement_identity": "HELIXINTELLIGENCE-L2-074",
+      "requirement_kind": "unit",
+      "version_target": "1.0 candidate; no inclusion decision",
+      "parent_l1_ids": [
+        "HELIXINTELLIGENCE-L1-010"
+      ],
+      "parent_l1_sources": [
+        {
+          "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+          "revision": "docs/helix-intelligence/L1-planning/intelligence-intent.md@1aa41a8ba6e750d23a46b832d1513738e84894bb sha256:8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8（main基準revision。PO判断対象bytesとの一致は既存decision recordを参照）"
+        }
+      ],
+      "candidate_source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#helixintelligence-l2-074",
+      "candidate_semantic_digest": "sha256:5605649ccd2e582bc795b6937792c4957230bf0045031fa58cf9ffa21871719c",
+      "acceptance_source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "INTELLIGENCE-074の候補入力として選択したlegacy atom集合は明示的に空（0件）。no_lossはこの空集合を未計上なく扱った事実だけで、旧source意味の被覆、候補の完全性、採択、運用許可を示さない。",
+      "atoms": [],
+      "current_condition_refs": [
+        "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#helixintelligence-l2-010",
+        "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#helixintelligence-l2-067"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": [],
+      "context_only_source_refs": {
+        "legacy_ticket_asset": "LEGACY-ASSET-3A15E5645D2D2A59DFF5; archive/.../execution-ticket-requirements.md lines 238,242,323; context only, not all clauses mapped",
+        "legacy_feedback_asset": "LEGACY-ASSET-F6E9EA3422A0EF1DF090; archive/.../feedback-lifecycle.md lines 10,19,86,89,92,94; source/lifecycle meaning already handled by adopted OS-L2-007; old storage/state machine excluded",
+        "legacy_ops_asset": "LEGACY-ASSET-B7C2E013967395CFD83B; archive/.../operations-feedback-boundary.md lines 45-47; historical context only, no old process/runtime carried"
+      }
+    }
+  ]
+}

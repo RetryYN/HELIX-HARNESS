@@ -182,13 +182,17 @@ HYB-002の3 clauseをarchive/baseline別revisionの6 atomとしてこの候補�
 
 ## O1候補の現行訂正（#2286再レビュー3）
 
-上の047履歴を `MPR-RC-HELIXOS-L2-047-003` で訂正。PO確認回答、対L11、r3 receipt、未採択状態は[判断packet](post-confirmation-25-po-decision-packet-2026-09-28.md)を参照。
+上の047履歴を `MPR-RC-HELIXOS-L2-047-004` で訂正。PO確認回答、対L11、r4 receipt、未採択状態は[判断packet](post-confirmation-25-po-decision-packet-2026-09-28.md)を参照。
 
 ## O3・O5追加候補（未採択）
 
-- [HELIXOS-L2-049：Worker稼働観測と低干渉task割当](../../../helix-os/L2-requirements/governance-requirements.md#helixos-l2-049)／[対L11](../../../helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-049)：`MPR-RC-HELIXOS-L2-049-001`、[receipt](../requirement-registration/helixos-worker-utilization-coverage-receipt-2026-09-29.json)。判断packetでA/B/C未選択。
-- [HELIXOS-L2-050：独立review capacityの観測と調整](../../../helix-os/L2-requirements/governance-requirements.md#helixos-l2-050)／[対L11](../../../helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-050)：`MPR-RC-HELIXOS-L2-050-001`、[receipt](../requirement-registration/helixos-reviewer-capacity-coverage-receipt-2026-09-29.json)。判断packetでA/B/C未選択。
+- [HELIXOS-L2-049：Worker稼働観測と低干渉task割当](../../../helix-os/L2-requirements/governance-requirements.md#helixos-l2-049)／[対L11](../../../helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-049)：`MPR-RC-HELIXOS-L2-049-002`（-001を訂正）、[receipt r2](../requirement-registration/helixos-worker-utilization-coverage-receipt-2026-09-29-r2.json)。選択atomのみno_loss、残余はholding。判断packetでA/B/C未選択。
+- [HELIXOS-L2-050：独立review capacityの観測と調整](../../../helix-os/L2-requirements/governance-requirements.md#helixos-l2-050)／[対L11](../../../helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-050)：`MPR-RC-HELIXOS-L2-050-002`（-001を訂正）、[receipt r2](../requirement-registration/helixos-reviewer-capacity-coverage-receipt-2026-09-29-r2.json)。選択atomのみno_loss、残余はholding。判断packetでA/B/C未選択。
 
 ## O4追加候補（未採択）
 
 - [HELIXOS-L2-051：task単位の作成／review配置](../../../helix-os/L2-requirements/governance-requirements.md#helixos-l2-051)／[対L11](../../../helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-051)：`MPR-RC-HELIXOS-L2-051-001`、[partial receipt](../requirement-registration/ops-o4-coverage-receipt-2026-09-29.json)。PO採否未選択。
+
+## INTELLIGENCE-074の現行登録訂正
+
+`MPR-RC-HELIXINTELLIGENCE-L2-074-002`、[空入力集合receipt](../requirement-registration/ops-o1-o2-intelligence-074-empty-coverage-receipt-2026-09-29-r2.json)。旧source意味の被覆は主張しない。

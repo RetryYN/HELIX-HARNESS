@@ -4156,8 +4156,8 @@
       "title_and_kind": "### HELIXOS-L2-047 チケットの理由付き返却と新revision再発行（単体候補、version_target: 1.0）",
       "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-047",
       "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-047",
-      "registration_id": "MPR-RC-HELIXOS-L2-047-003",
-      "supersedes_registration_id": "MPR-RC-HELIXOS-L2-047-002",
+      "registration_id": "MPR-RC-HELIXOS-L2-047-004",
+      "supersedes_registration_id": "MPR-RC-HELIXOS-L2-047-003",
       "management_state": "registered_proposal",
       "authority_effect": "none",
       "parent_l1_ids": [
@@ -4166,8 +4166,8 @@
       "parent_l1_path": "docs/helix-os/L1-planning/system-intent.md",
       "parent_l1_sha256_current": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
       "parent_planning_revision_recorded": "docs/helix-os/L1-planning/system-intent.md@1aa41a8ba6e750d23a46b832d1513738e84894bb sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e（main基準revision。PO判断対象bytesとの一致は既存decision recordを参照）",
-      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/ops-o1-o2-coverage-receipt-2026-09-29-r3.json#HELIXOS-L2-047",
-      "receipt_id": "MPR-RCPT-OPS-O1-O2-2026-09-29-R3",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/ops-o1-o2-coverage-receipt-2026-09-29-r4.json#HELIXOS-L2-047",
+      "receipt_id": "MPR-RCPT-OPS-O1-O2-2026-09-29-R4",
       "receipt_candidate_digest_rule": "L2 section from `### ID` until next `###`; trim trailing blank lines and terminate with one UTF-8 LF.",
       "registered_candidate_semantic_digest": "sha256:e19191ce980467fddf5822619ccd480a41c84e6382ad1191ad5ea3ab04192377",
       "receipt_candidate_semantic_digest": "sha256:e19191ce980467fddf5822619ccd480a41c84e6382ad1191ad5ea3ab04192377",
@@ -4201,14 +4201,14 @@
           "line": 214
         }
       ],
-      "source_reference_note": "選択した5旧source spanに限る。PO確認回答の原文はops-o1-o2-request-source-snapshot-2026-09-29-r3.md。typed relationは文脈で、特定graph配置の直接根拠ではない。",
+      "source_reference_note": "5 selected spans fully accounted: four carried and typed-relation context atom held in MPR-SH-CANDIDATE-003; no wider source closure",
       "internal_PO_choice": null,
       "paired_l2_id": "HELIXOS-L2-047",
       "paired_l11_id": "HELIXOS-L11-047",
       "affected_requirement_and_consumer_ids": "OS-L2-004/007/010/020/022; LABO-L2-010/037/052; INTELLIGENCE-L2-010; HARNESS-L2-005/022/034/036; OS-L2-040/044; applicable source holding",
       "rationale": "現行の責務に沿って限定候補を分ける。ticket発行と運転はOS、評価はLABO、配置案はINTELLIGENCE、検証oracleはHARNESS。",
-      "candidate_input_coverage_result": "partial for five selected spans; fifth is context only",
-      "source_line_coverage_result": "partial; typed relation placement and unselected clauses remain unresolved; no full source closure",
+      "candidate_input_coverage_result": "no_loss",
+      "source_line_coverage_result": "partial",
       "preserved_pending_atom_refs": [
         "MPR-SH-CANDIDATE-003"
       ],
@@ -4412,8 +4412,8 @@
       "title_and_kind": "### HELIXINTELLIGENCE-L2-074 評価済み返却feedbackの配置proposal入力（単体候補、version_target: 1.0）",
       "requirement_source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#helixintelligence-l2-074",
       "acceptance_source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md#helixintelligence-l2-074",
-      "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-074-001",
-      "supersedes_registration_id": null,
+      "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-074-002",
+      "supersedes_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-074-001",
       "management_state": "registered_proposal",
       "authority_effect": "none",
       "parent_l1_ids": [
@@ -4422,8 +4422,8 @@
       "parent_l1_path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
       "parent_l1_sha256_current": "8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8",
       "parent_planning_revision_recorded": "docs/helix-intelligence/L1-planning/intelligence-intent.md@1aa41a8ba6e750d23a46b832d1513738e84894bb sha256:8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8（main基準revision。PO判断対象bytesとの一致は既存decision recordを参照）",
-      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/ops-o1-o2-coverage-receipt-2026-09-29.json#HELIXINTELLIGENCE-L2-074",
-      "receipt_id": "MPR-RCPT-OPS-O1-O2-2026-09-29",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/ops-o1-o2-intelligence-074-empty-coverage-receipt-2026-09-29-r2.json#HELIXINTELLIGENCE-L2-074",
+      "receipt_id": "MPR-RCPT-OPS-O1-O2-INTELLIGENCE-074-2026-09-29-R2",
       "receipt_candidate_digest_rule": "L2 section from `### ID` until next `###`; trim trailing blank lines and terminate with one UTF-8 LF.",
       "registered_candidate_semantic_digest": "sha256:5605649ccd2e582bc795b6937792c4957230bf0045031fa58cf9ffa21871719c",
       "receipt_candidate_semantic_digest": "sha256:5605649ccd2e582bc795b6937792c4957230bf0045031fa58cf9ffa21871719c",
@@ -4438,8 +4438,8 @@
       "paired_l11_id": "HELIXINTELLIGENCE-L11-074",
       "affected_requirement_and_consumer_ids": "OS-L2-004/007/010/020/022; LABO-L2-010/037/052; INTELLIGENCE-L2-010; HARNESS-L2-005/022/034/036; OS-L2-040/044; applicable source holding",
       "rationale": "現行の責務に沿って限定候補を分ける。ticket発行と運転はOS、評価はLABO、配置案はINTELLIGENCE、検証oracleはHARNESS。",
-      "candidate_input_coverage_result": "pending_coverage; new proposal with no legacy atom selected",
-      "source_line_coverage_result": "not_applicable_new_proposal; no legacy atom selected",
+      "candidate_input_coverage_result": "no_loss over explicitly empty selected legacy atom set only",
+      "source_line_coverage_result": "no legacy source meaning coverage claimed; contextual old assets remain outside selected set",
       "preserved_pending_atom_refs": [],
       "po_decision_frame": {
         "selection_status": "pending_PO",
@@ -4473,8 +4473,8 @@
       "title_and_kind": "### HELIXOS-L2-049 Worker稼働観測と低干渉task割当（単体候補、version_target: 1.0）",
       "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-049",
       "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-049",
-      "registration_id": "MPR-RC-HELIXOS-L2-049-001",
-      "supersedes_registration_id": null,
+      "registration_id": "MPR-RC-HELIXOS-L2-049-002",
+      "supersedes_registration_id": "MPR-RC-HELIXOS-L2-049-001",
       "management_state": "registered_proposal",
       "authority_effect": "none",
       "parent_l1_ids": [
@@ -4484,8 +4484,8 @@
       "parent_l1_path": "docs/helix-os/L1-planning/system-intent.md",
       "parent_l1_sha256_current": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
       "parent_planning_revision_recorded": "docs/helix-os/L1-planning/system-intent.md@1aa41a8ba6e750d23a46b832d1513738e84894bb sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e（固定L1本文。候補採択は継承しない）",
-      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-worker-utilization-coverage-receipt-2026-09-29.json#HELIXOS-L2-049",
-      "receipt_id": "MPR-RCPT-HELIXOS-L2-049-CAPACITY-2026-09-29",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-worker-utilization-coverage-receipt-2026-09-29-r2.json#HELIXOS-L2-049",
+      "receipt_id": "MPR-RCPT-HELIXOS-L2-049-CAPACITY-2026-09-29-R2",
       "receipt_candidate_digest_rule": "L2候補見出しから次の同階層候補見出しまで（EOF）。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
       "registered_candidate_semantic_digest": "sha256:e9372f19e5064cb5470141fef25a3212aa65cede5d44ecfff8c9ed86da83668b",
       "receipt_candidate_semantic_digest": "sha256:e9372f19e5064cb5470141fef25a3212aa65cede5d44ecfff8c9ed86da83668b",
@@ -4519,14 +4519,14 @@
           "source_text_span": "依存、changed path、共有正本、"
         }
       ],
-      "source_reference_note": "選択した旧source連続spanだけを対応づけ、同じ行の残余はsource holdingに保全。PO原文はlocal ops-loop goal fileにあり、候補採択・owner/閾値の決定は未記録。",
+      "source_reference_note": "5 exact selected spans carried; source-line remainders held separately; no wider source closure",
       "internal_PO_choice": null,
       "paired_l2_id": "HELIXOS-L2-049",
       "paired_l11_id": "HELIXOS-L11-049",
       "affected_requirement_and_consumer_ids": "OS-L2-004/005/007/008/009; INTELLIGENCE配置案; HARNESS検証; INFRASTRUCTURE resource; SECURITY authority",
       "rationale": "旧capacity区分、pool上限とactive WIPの分離、競合しないREADY taskと順序を限定保持。低干渉taskの適格性、INTELLIGENCE配置案の利用、設定上限と遊休時の別assignmentを新規案として選択する",
-      "candidate_input_coverage_result": "partial; selected source spans only",
-      "source_line_coverage_result": "partial; per-line remainder held pending; no full source closure",
+      "candidate_input_coverage_result": "no_loss",
+      "source_line_coverage_result": "partial",
       "preserved_pending_atom_refs": [
         "MPR-SH-CANDIDATE-003"
       ],
@@ -4562,8 +4562,8 @@
       "title_and_kind": "### HELIXOS-L2-050 独立review capacityの観測と調整（単体候補、version_target: 1.0）",
       "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-050",
       "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-050",
-      "registration_id": "MPR-RC-HELIXOS-L2-050-001",
-      "supersedes_registration_id": null,
+      "registration_id": "MPR-RC-HELIXOS-L2-050-002",
+      "supersedes_registration_id": "MPR-RC-HELIXOS-L2-050-001",
       "management_state": "registered_proposal",
       "authority_effect": "none",
       "parent_l1_ids": [
@@ -4573,8 +4573,8 @@
       "parent_l1_path": "docs/helix-os/L1-planning/system-intent.md",
       "parent_l1_sha256_current": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
       "parent_planning_revision_recorded": "docs/helix-os/L1-planning/system-intent.md@1aa41a8ba6e750d23a46b832d1513738e84894bb sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e（固定L1本文。候補採択は継承しない）",
-      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-reviewer-capacity-coverage-receipt-2026-09-29.json#HELIXOS-L2-050",
-      "receipt_id": "MPR-RCPT-HELIXOS-L2-050-CAPACITY-2026-09-29",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-reviewer-capacity-coverage-receipt-2026-09-29-r2.json#HELIXOS-L2-050",
+      "receipt_id": "MPR-RCPT-HELIXOS-L2-050-CAPACITY-2026-09-29-R2",
       "receipt_candidate_digest_rule": "L2候補見出しから次の同階層候補見出しまで（EOF）。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
       "registered_candidate_semantic_digest": "sha256:fab5fdfae9cfd2211f8c2fd6dfad5ce7b065e007ef11ca62f55420baa5033b6d",
       "receipt_candidate_semantic_digest": "sha256:fab5fdfae9cfd2211f8c2fd6dfad5ce7b065e007ef11ca62f55420baa5033b6d",
@@ -4608,14 +4608,14 @@
           "source_text_span": "pool登録上限、active WIP、review在庫、merge在庫"
         }
       ],
-      "source_reference_note": "選択した旧source連続spanだけを対応づけ、同じ行の残余はsource holdingに保全。PO原文はlocal ops-loop goal fileにあり、候補採択・owner/閾値の決定は未記録。",
+      "source_reference_note": "6 exact selected spans carried; source-line remainders held separately; no wider source closure",
       "internal_PO_choice": null,
       "paired_l2_id": "HELIXOS-L2-050",
       "paired_l11_id": "HELIXOS-L11-050",
       "affected_requirement_and_consumer_ids": "OS-L2-004/007; HARNESS-L2-005; SECURITY authority; 現行GitHub運用モデル",
       "rationale": "旧review queue/待ち/rework占有/reviewer稼働率のtyped threshold、lease一意性とbackpressureを限定保持。review session増枠・縮退と具体的閾値、PR generationとHEADに束縛する手順を新規案として選択する",
-      "candidate_input_coverage_result": "partial; selected source spans only",
-      "source_line_coverage_result": "partial; per-line remainder held pending; no full source closure",
+      "candidate_input_coverage_result": "no_loss",
+      "source_line_coverage_result": "partial",
       "preserved_pending_atom_refs": [
         "MPR-SH-CANDIDATE-003"
       ],
@@ -7301,7 +7301,7 @@
       },
       {
         "identity": "HELIXOS-L2-047",
-        "registration_id": "MPR-RC-HELIXOS-L2-047-003",
+        "registration_id": "MPR-RC-HELIXOS-L2-047-004",
         "axes": {
           "candidate_adoption": {
             "selection_status": "pending_PO",
@@ -7309,11 +7309,11 @@
             "decision_ref": "candidate-local",
             "exact_revision": {
               "identity": "HELIXOS-L2-047",
-              "registration_id": "MPR-RC-HELIXOS-L2-047-003",
+              "registration_id": "MPR-RC-HELIXOS-L2-047-004",
               "l2_id": "HELIXOS-L2-047",
               "l11_id": "HELIXOS-L11-047",
               "candidate_semantic_digest": "sha256:e19191ce980467fddf5822619ccd480a41c84e6382ad1191ad5ea3ab04192377",
-              "supersedes_registration_id": "MPR-RC-HELIXOS-L2-047-002"
+              "supersedes_registration_id": "MPR-RC-HELIXOS-L2-047-003"
             },
             "options_ref": "new_meaning_choice",
             "recommendation": "A"
@@ -7323,8 +7323,8 @@
             "selected": null,
             "candidate_source_scope": {
               "source_atom_count": 5,
-              "receipt_ref": "docs/governance/audits/requirement-registration/ops-o1-o2-coverage-receipt-2026-09-29-r3.json#HELIXOS-L2-047",
-              "coverage": "partial; fifth typed-relation atom context only, placement interpretation PO-unconfirmed; no full source closure"
+              "receipt_ref": "docs/governance/audits/requirement-registration/ops-o1-o2-coverage-receipt-2026-09-29-r4.json#HELIXOS-L2-047",
+              "coverage": "no_loss; 5 selected spans fully accounted: four carried and typed-relation context atom held in MPR-SH-CANDIDATE-003; no wider source closure"
             },
             "options_ref": "new_meaning_choice",
             "separation_rule": "selected spans only; unselected clauses remain holding; meaning change/retire needs affected source revision/reason/consumer impact"
@@ -7443,7 +7443,7 @@
       },
       {
         "identity": "HELIXINTELLIGENCE-L2-074",
-        "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-074-001",
+        "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-074-002",
         "axes": {
           "candidate_adoption": {
             "selection_status": "pending_PO",
@@ -7451,11 +7451,11 @@
             "decision_ref": "candidate-local",
             "exact_revision": {
               "identity": "HELIXINTELLIGENCE-L2-074",
-              "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-074-001",
+              "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-074-002",
               "l2_id": "HELIXINTELLIGENCE-L2-074",
               "l11_id": "HELIXINTELLIGENCE-L11-074",
               "candidate_semantic_digest": "sha256:5605649ccd2e582bc795b6937792c4957230bf0045031fa58cf9ffa21871719c",
-              "supersedes_registration_id": null
+              "supersedes_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-074-001"
             },
             "options_ref": "new_meaning_choice",
             "recommendation": "A"
@@ -7465,8 +7465,8 @@
             "selected": null,
             "candidate_source_scope": {
               "source_atom_count": 0,
-              "receipt_ref": "docs/governance/audits/requirement-registration/ops-o1-o2-coverage-receipt-2026-09-29.json#HELIXINTELLIGENCE-L2-074",
-              "coverage": "not_applicable_new_proposal; no legacy atom selected"
+              "receipt_ref": "docs/governance/audits/requirement-registration/ops-o1-o2-intelligence-074-empty-coverage-receipt-2026-09-29-r2.json#HELIXINTELLIGENCE-L2-074",
+              "coverage": "no_loss only over explicitly empty selected old-source atom set; no old semantic coverage"
             },
             "options_ref": "new_meaning_choice",
             "separation_rule": "selected spans only; unselected clauses remain holding; meaning change/retire needs affected source revision/reason/consumer impact"
@@ -7488,7 +7488,7 @@
       },
       {
         "identity": "HELIXOS-L2-049",
-        "registration_id": "MPR-RC-HELIXOS-L2-049-001",
+        "registration_id": "MPR-RC-HELIXOS-L2-049-002",
         "axes": {
           "candidate_adoption": {
             "selection_status": "pending_PO",
@@ -7496,11 +7496,11 @@
             "decision_ref": "candidate-local",
             "exact_revision": {
               "identity": "HELIXOS-L2-049",
-              "registration_id": "MPR-RC-HELIXOS-L2-049-001",
+              "registration_id": "MPR-RC-HELIXOS-L2-049-002",
               "l2_id": "HELIXOS-L2-049",
               "l11_id": "HELIXOS-L11-049",
               "candidate_semantic_digest": "sha256:e9372f19e5064cb5470141fef25a3212aa65cede5d44ecfff8c9ed86da83668b",
-              "supersedes_registration_id": null
+              "supersedes_registration_id": "MPR-RC-HELIXOS-L2-049-001"
             },
             "options_ref": "new_meaning_choice",
             "recommendation": "A"
@@ -7510,8 +7510,8 @@
             "selected": null,
             "candidate_source_scope": {
               "source_atom_count": 5,
-              "receipt_ref": "docs/governance/audits/requirement-registration/helixos-worker-utilization-coverage-receipt-2026-09-29.json#HELIXOS-L2-049",
-              "coverage": "partial; selected spans only; line remainders held in source holding"
+              "receipt_ref": "docs/governance/audits/requirement-registration/helixos-worker-utilization-coverage-receipt-2026-09-29-r2.json#HELIXOS-L2-049",
+              "coverage": "no_loss; 5 exact selected spans carried; source-line remainders held separately; no wider source closure"
             },
             "options_ref": "new_meaning_choice",
             "separation_rule": "selected spans only; unselected clauses remain holding; meaning change/retire needs affected source revision/reason/consumer impact"
@@ -7533,7 +7533,7 @@
       },
       {
         "identity": "HELIXOS-L2-050",
-        "registration_id": "MPR-RC-HELIXOS-L2-050-001",
+        "registration_id": "MPR-RC-HELIXOS-L2-050-002",
         "axes": {
           "candidate_adoption": {
             "selection_status": "pending_PO",
@@ -7541,11 +7541,11 @@
             "decision_ref": "candidate-local",
             "exact_revision": {
               "identity": "HELIXOS-L2-050",
-              "registration_id": "MPR-RC-HELIXOS-L2-050-001",
+              "registration_id": "MPR-RC-HELIXOS-L2-050-002",
               "l2_id": "HELIXOS-L2-050",
               "l11_id": "HELIXOS-L11-050",
               "candidate_semantic_digest": "sha256:fab5fdfae9cfd2211f8c2fd6dfad5ce7b065e007ef11ca62f55420baa5033b6d",
-              "supersedes_registration_id": null
+              "supersedes_registration_id": "MPR-RC-HELIXOS-L2-050-001"
             },
             "options_ref": "new_meaning_choice",
             "recommendation": "A"
@@ -7555,8 +7555,8 @@
             "selected": null,
             "candidate_source_scope": {
               "source_atom_count": 6,
-              "receipt_ref": "docs/governance/audits/requirement-registration/helixos-reviewer-capacity-coverage-receipt-2026-09-29.json#HELIXOS-L2-050",
-              "coverage": "partial; selected spans only; line remainders held in source holding"
+              "receipt_ref": "docs/governance/audits/requirement-registration/helixos-reviewer-capacity-coverage-receipt-2026-09-29-r2.json#HELIXOS-L2-050",
+              "coverage": "no_loss; 6 exact selected spans carried; source-line remainders held separately; no wider source closure"
             },
             "options_ref": "new_meaning_choice",
             "separation_rule": "selected spans only; unselected clauses remain holding; meaning change/retire needs affected source revision/reason/consumer impact"
