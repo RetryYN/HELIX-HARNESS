@@ -36,6 +36,7 @@ sources:
 | HELIXCONNECT-L11-005 | HELIXCONNECT-L2-005 | unit | 送受信・再送・stale・部分失敗を接続単位に順序追跡できる |
 | HELIXCONNECT-L11-006 | HELIXCONNECT-L2-006 | connection | 片側交換後、固定側を変更せず互換なら通信し、非互換/unknown/staleならfail-closeする |
 | HELIXCONNECT-L11-007 | HELIXCONNECT-L2-007 | composite | 複数の接続辺とoperation lineageを終端まで追跡し、途中失敗時に全体成功を報告しない |
+| HELIXCONNECT-L11-008 | HELIXCONNECT-L2-008 | unit | 登録済みMCP profile catalogと型付き設定・capability・read-only descriptorをrevisionへ束縛し、不明・stale・不整合を利用可能にしない |
 
 ## 単体接続の確認
 
@@ -82,3 +83,12 @@ sources:
 ## 段階ごとの成立範囲
 
 段階リリースに含める接続機能の範囲は、HELIXCONNECT-L2-001〜007のうち、その段階で機能として成立する要求から導出する。独立した段階リリース機能や段階の順序は本受入候補で新設しない。
+
+
+### HELIXCONNECT-L11-008 MCP profile catalogとtyped descriptorの供給
+
+静的fixtureで、登録済みprofile identity/revisionの列挙、設定契約の型、operation/tool capability descriptor、安全・read-only probe descriptorが同じprofile/revisionへ束縛されることを確認する。descriptorにraw secretまたはcredential値が含まれず、descriptorの読出しがauthorization、probe起動、tool実行を生まないことを確認する。
+
+未登録・未知profile、同一identityの競合宣言、未登録revision、誤った設定型、欠落または型違いdescriptor、変更後にstaleなrevisionをfixtureへ与え、各々が利用可能状態にならず、reasonとprofile/revisionが記録されることを確認する。既定profileへのfallbackや安全性の推定がないことを確認する。read-only descriptorがあっても、それ自体でprobe実行・認可が可能にならないことを確認し、operation safetyの判定先がSECURITYであることを示す。SECURITY-L2-034の未採択候補に属するpolicy oracleをこの候補のpass根拠にしない。
+
+不正identity/config/descriptorの修正先がprofile提供元、policy/safetyのunknownまたは拒否の戻し先がSECURITYと区別され、対象外profileへ失敗が伝播しないfixtureを確認する。確認は文書と静的fixtureの受入 oracle に限定し、旧runtime・旧testや現行MCP runtimeの起動、実probe、tool操作を行わない。証拠がない場合はpassではなくunknownとする。本受入候補の成立は要求の採択、実装、実行許可またはSECURITY-L2-034採択を意味しない。

@@ -1,9 +1,9 @@
 {
   "packet_kind": "recommendation_for_PO_decision_only",
-  "basis_commit": "17bb8b6568b4fc065702bdafafdc6a7e4a37af6b",
+  "basis_commit": "fba91c837cc81f368ca1fb0f0d94f82d1366e38d",
   "as_of": "2026-09-29",
-  "count": 47,
-  "status": "既存46候補（HELIXLABO-L2-068まで）にHARNESS-L2-047を加えた判断packet。全47件はregistered_proposal / authority_effect:none、PO未採択・未判断。",
+  "count": 48,
+  "status": "48 candidate decisions pending PO; all remain unadopted unless a recorded PO decision says otherwise.",
   "decision_grouping": "No shared adoption decision is bundled except PORTFOLIO-FIXTURE-FR54-FR55-ROUTE and HARNESS-OS-WBS-SHAPE-039-045-PAIR. HELIXOS-L2-039/HARNESS-L2-045 are linked by the latter, not independent adoption choices. The earlier R2247 options for 039 were preparation alternatives: A proposed adopting OS-039 alone with registrations blocked while the HARNESS contract was absent; B proposed holding 039 while preparing the HARNESS candidate and re-presenting both exact revisions. The B preparation step is completed by this HARNESS-045 candidate, but no PO selection resulted. The new pair options are A=adopt both exact revisions, B=hold both; neither has been selected, and B is advisory. HARNESS-L2-043/044 remain jointly routed only by the explicit FR54/55 route. Other candidate identities retain independent choices. HELIXINTELLIGENCE-L2-072 remains limited to its 1.0 shadow subset and HELIX-LABO-L2-062 preserves 2.0.",
   "candidates": [
     {
@@ -4057,10 +4057,97 @@
         ],
         "recommendation_rationale": "旧BR-09/30がHARNESS所有contract/processを明記し、現行責務境界でHARNESSは工程/検証、INTELLIGENCEはplacement proposal、LABOはevidence、OSはassignment/execution、SECURITYはauthorityを担うためAを推奨する。Bを採る場合はnormative ownerとL1親が変わるためHARNESS identityの採択で代用しない。"
       }
+    },
+    {
+      "identity": "HELIXCONNECT-L2-008",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "HYB-002 S01/S02/S04 mapped as 6 lineage atoms: archive and 6fabd125 baseline are separate revisions; six S03/S05/S06 atoms remain separately routed to SECURITY-034.",
+      "new_meaning_choice": "A＝CONNECTがprofile catalog、identity/config contract、型付きcapability/read-only descriptor供給を担い、SECURITYがpolicyとread-only operation safetyを担う限定候補を採択。B＝profile/probe供給全体をSECURITY所有としCONNECT/SECURITYの責務境界を変更する。C＝6 atomを保留、または対象source revision・理由・影響を特定して意味変更/retireする。A/B/Cはいずれも未選択。",
+      "recommended_choice": "A",
+      "choice_meaning": "Aを推奨案としてL2/L11候補に起草した。AもPO選択・採択ではなく、本候補は権限、probe実行、tool実行または実装許可を生まない。Bは責務境界の意味変更を要する。",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HELIXCONNECT-L2-008 MCP profile catalogとtyped descriptorの供給（unit、単体追補候補、version_target: 1.0）",
+      "requirement_source_path": "docs/helix-connect/L2-requirements/connect-requirements.md#helixconnect-l2-008",
+      "acceptance_source_path": "docs/helix-connect/L11-acceptance/connect-acceptance.md#helixconnect-l11-008",
+      "registration_id": "MPR-RC-HELIXCONNECT-L2-008-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXCONNECT-L1-001"
+      ],
+      "parent_l1_path": "docs/helix-connect/L1-planning/connect-intent.md",
+      "parent_concept_revision_recorded": "docs/concept/helix-concept.md@f6dad2a33e24f000b87d7f09b8d40288257e74cc sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+      "parent_planning_revision_recorded": "docs/helix-connect/L1-planning/connect-intent.md@f6dad2a33e24f000b87d7f09b8d40288257e74cc sha256:9c212572afda81405c6d5ab70151f5b35356722204616e85e132162b45907c70",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/connect-v13-hyb-002-profile-supply-coverage-receipt-2026-09-29.json",
+      "registered_candidate_semantic_digest": "sha256:4b5028444f8dfecc3ddad03d94c7de666e716e63974a2851123285af77472813",
+      "acceptance_section_sha256": "sha256:09dcbb00bee7d4a1680a16176d9f0bbe0c0d385a7d27a4fec61950f5c636b50e",
+      "source_atom_count": 6,
+      "source_atom_set_digest": "sha256:ab1a8c0b752f9bf59671484b198f07308897c5c8e61143dc396a97b102f08cd6",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "line": 286,
+          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "source_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+          "atom_ids": [
+            "V13-ARCHIVE-L0286-HR-FR-HYB-002-S01",
+            "V13-ARCHIVE-L0286-HR-FR-HYB-002-S02",
+            "V13-ARCHIVE-L0286-HR-FR-HYB-002-S04"
+          ],
+          "source_item_id": "REQSRC-SUP-00213"
+        },
+        {
+          "path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+          "line": 271,
+          "source_file_sha256": "sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+          "source_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+          "atom_ids": [
+            "V13-BASE-6FAB-L0271-S01",
+            "V13-BASE-6FAB-L0271-S02",
+            "V13-BASE-6FAB-L0271-S04"
+          ],
+          "source_item_id": "V13-BASE-6FAB-L0271"
+        }
+      ],
+      "source_reference_note": "3 unique selected source spans across archive and baseline yield 6 lineage atoms. Source clause atomization and span pins follow existing SECURITY HYB-002 source inventory. Existing SECURITY-034 routed another 6/12 atoms; total routed 12/12, but adoption/meaning closure remains 0/12. Both source holdings remain live.",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXCONNECT-L2-008",
+      "paired_l11_id": "HELIXCONNECT-L11-008",
+      "affected_requirement_and_consumer_ids": "HELIXCONNECT-L1-001; adopted HELIXCONNECT-L2/L11-001..007; HELIXSECURITY-L2/L11-005..008 adopted policy/safety owner; unadopted HELIXSECURITY-L2/L11-034; MPR-SH-SUPPLEMENTARY-003; MPR-SH-V13-BASELINE-001",
+      "rationale": "Existing CONNECT L1-001 and typed contract/stale boundary support profile catalog and descriptor supply as a bounded connection responsibility. SECURITY remains the owner of policy/operation safety, avoiding authority generation in CONNECT. The source asserts clauses as compound text but does not allocate these responsibilities; A is a recommended split, B records the alternative ownership meaning for PO.",
+      "candidate_input_coverage_result": "no_loss for selected 6 lineage atoms",
+      "source_line_coverage_result": "partial; 12/12 source lineage atoms routed across two candidates, adoption/semantic closure 0/12; source holdings remain live",
+      "preserved_pending_atom_refs": [
+        "MPR-SH-SUPPLEMENTARY-003",
+        "MPR-SH-V13-BASELINE-001"
+      ],
+      "candidate_semantic_digest": "sha256:4b5028444f8dfecc3ddad03d94c7de666e716e63974a2851123285af77472813",
+      "po_decision_frame": {
+        "selection_status": "pending_PO",
+        "selected_option": null,
+        "recommended_option": "A",
+        "recommendation_is_decision": false,
+        "options": [
+          {
+            "id": "A",
+            "meaning": "CONNECT supplies the profile catalog, identity/config contract and typed capability/read-only descriptors; SECURITY owns policy and read-only operation safety. Adopt this candidate exact revision only."
+          },
+          {
+            "id": "B",
+            "meaning": "SECURITY owns profile enumeration/configuration/typed probe supply as well as policy/safety; this changes the CONNECT/SECURITY responsibility boundary and requires explicit PO selection."
+          },
+          {
+            "id": "C",
+            "meaning": "Keep six atoms and candidate pending, or choose a source-specific meaning change/retirement with revision, rationale and affected requirements."
+          }
+        ],
+        "recommendation_rationale": "CONNECT L1-001 owns shared typed contract boundaries; SECURITY adopted L2-005..008 already owns operation and policy safety. Separating descriptor supply from authorization avoids new authority and leaves business meaning with the source mechanism."
+      }
     }
   ],
   "initial_25_basis_commit": "f4b2a2b02cf5ea3134e27be0a65c100395161bad",
-  "progression": "Initial 25 candidates + PR #2241 HARNESS-L2-042 + PR #2238 HELIXOS-L2-038 = historical 27; PR #2245 merged HARNESS-L2-043, giving 28; PR #2246 merged HARNESS-L2-044, giving 29; PR #2247 registered HELIXOS-L2-039, giving 30; current HARNESS-L2-045 brings the live decision set to 31. HELIXOS-L2-039/HARNESS-L2-045 are linked by an unselected paired PO decision. Current HELIXOS-L2-040 adds one bounded old HXT-AC-015 retry-route candidate, making 32; no PO selection. Current HELIXINTELLIGENCE-L2-073 adds one bounded old AAFD-R-04 free-text direct-projection boundary candidate, making 33; no PO selection. Current HELIXOS-L2-041 adds one bounded old IPC-R07 safe-continuation candidate from two linked atoms, making 34; no PO selection. Current HELIXLABO-L2-066 adds one bounded old Bugbot candidate-line metric gap, making 35; no PO selection. Its source atom is historical and its current L2/L11 candidate remains unadopted. Current HELIXSECURITY-L2-032 adds one bounded old v1.3 §4.10 HR-FR-P2-07 repository-level bypass precedence candidate, making 36; no PO selection. It applies across provider/runtime instances under the old external AI Worker contract, preserves existing authority when no deny applies, and does not claim §4.10 closure. Current HARNESS-L2-046 adds one bounded v1.3 Full V/Scrum workflow condition candidate from six sentence spans across archive and 6fabd125 baseline revisions, making 37; no PO selection. It preserves the 2026-09-25 four-style definitions/composition permission, requires staged freeze and listed verification for selected Full V only, and applies Scrum backfill/checkpoint/SR4 solely to Scrum-selected/composed scope. Current HELIXOS-L2-042 adds one bounded old v1.3 HR-FR-P2-08 Worker-result strict validation/relaxation candidate from archive line 431, making 38; the identical 6fabd125 baseline line 412 remains a separate pending source atom and is not counted as candidate input. No PO selection. Current HELIXSECURITY-L2-033 adds one bounded old v1.3 §4.10 HR-FR-P2-05 external-worker startup-context / non-authoritative-output candidate from archive line 428 and the distinct 6fabd125 baseline twin line 409, making 39; both atoms are candidate inputs and remain distinct source revisions/holdings. No PO selection. Current HELIXOS-L2-043 adds a bounded old v1.3 §4.10 HR-FR-P2-06 typed-event candidate from archive line 429 and distinct 6fabd125 baseline line 410 (two selected S1 atoms), making 40; no PO selection. The Node-exclusive S2 atoms remain preserved_pending for separate PO choice D (recommended); the full old source line remains partial and no full-line no_loss is claimed. Current HELIXOS-L2-044 adds one bounded old v1.3 HR-AC-HYB-006 prose-only-resolution rejection candidate, making 41; the selected two revision atoms have scoped no_loss while other source clauses remain preserved pending, and no PO selection is recorded. Current HELIXSECURITY-L2-034 adds one bounded old v1.3 HR-FR-HYB-002 MCP tool-profile security candidate, making 42; six selected spans across two source revisions are candidate inputs and the remaining six source spans stay preserved pending, with no PO selection. Current HELIXOS-L2-045 adds a narrowly scoped FR-L1-35 three-class readiness inventory proposal for the selected OS-L1-002 applicability scope, making 43; no PO selection, owner transfer, applicability set, or version target is recorded. Current HELIXOS-L2-046 adds one bounded old RFA-AC-16 dispatch/execution/Ready/merge continuity and bypass-rejection connection candidate from LEGACY-CAND-LINE-003612, making 44; only this acceptance row is mapped, broader RFA source closure is not claimed, and no PO selection is recorded. Current HELIXLABO-L2-067 adds one candidate-scoped subatom for first-eligible candidate boundary and same-Attempt repair-round visibility after HELIXOS-L2-046, making 45; no PO selection, no 065 adoption dependency, and no change to adopted 059 or unadopted 065 definitions. Current HELIXLABO-L2-068 adds the separately preserved S3C total Attempt-count subatom after #2271/HELIXLABO-L2-067, making 46; no PO selection, no 065 adoption dependency, no retry_count+1 derivation, and unknown is retained when OS record completeness is unproven. Current HARNESS-L2-047 adds one bounded four-line HIL-BR-09/30 and HIL-FR-59/60 specialist Worker contract candidate; the HARNESS A placement is recommended but PO-unselected, and INTELLIGENCE owner B remains an explicit alternative. The candidate separates measured muster decision from runtime-neutral contract generation, keeps OS assignment/runtime lifecycle and SECURITY authority, and does not claim closure of other source atoms. The four semantic-line atoms have scoped no_loss; corresponding IR records remain separately held, and no adoption is recorded.",
+  "progression": "Initial 25 candidates + PR #2241 HARNESS-L2-042 + PR #2238 HELIXOS-L2-038 = historical 27; PR #2245 merged HARNESS-L2-043, giving 28; PR #2246 merged HARNESS-L2-044, giving 29; PR #2247 registered HELIXOS-L2-039, giving 30; current HARNESS-L2-045 brings the live decision set to 31. HELIXOS-L2-039/HARNESS-L2-045 are linked by an unselected paired PO decision. Current HELIXOS-L2-040 adds one bounded old HXT-AC-015 retry-route candidate, making 32; no PO selection. Current HELIXINTELLIGENCE-L2-073 adds one bounded old AAFD-R-04 free-text direct-projection boundary candidate, making 33; no PO selection. Current HELIXOS-L2-041 adds one bounded old IPC-R07 safe-continuation candidate from two linked atoms, making 34; no PO selection. Current HELIXLABO-L2-066 adds one bounded old Bugbot candidate-line metric gap, making 35; no PO selection. Its source atom is historical and its current L2/L11 candidate remains unadopted. Current HELIXSECURITY-L2-032 adds one bounded old v1.3 §4.10 HR-FR-P2-07 repository-level bypass precedence candidate, making 36; no PO selection. It applies across provider/runtime instances under the old external AI Worker contract, preserves existing authority when no deny applies, and does not claim §4.10 closure. Current HARNESS-L2-046 adds one bounded v1.3 Full V/Scrum workflow condition candidate from six sentence spans across archive and 6fabd125 baseline revisions, making 37; no PO selection. It preserves the 2026-09-25 four-style definitions/composition permission, requires staged freeze and listed verification for selected Full V only, and applies Scrum backfill/checkpoint/SR4 solely to Scrum-selected/composed scope. Current HELIXOS-L2-042 adds one bounded old v1.3 HR-FR-P2-08 Worker-result strict validation/relaxation candidate from archive line 431, making 38; the identical 6fabd125 baseline line 412 remains a separate pending source atom and is not counted as candidate input. No PO selection. Current HELIXSECURITY-L2-033 adds one bounded old v1.3 §4.10 HR-FR-P2-05 external-worker startup-context / non-authoritative-output candidate from archive line 428 and the distinct 6fabd125 baseline twin line 409, making 39; both atoms are candidate inputs and remain distinct source revisions/holdings. No PO selection. Current HELIXOS-L2-043 adds a bounded old v1.3 §4.10 HR-FR-P2-06 typed-event candidate from archive line 429 and distinct 6fabd125 baseline line 410 (two selected S1 atoms), making 40; no PO selection. The Node-exclusive S2 atoms remain preserved_pending for separate PO choice D (recommended); the full old source line remains partial and no full-line no_loss is claimed. Current HELIXOS-L2-044 adds one bounded old v1.3 HR-AC-HYB-006 prose-only-resolution rejection candidate, making 41; the selected two revision atoms have scoped no_loss while other source clauses remain preserved pending, and no PO selection is recorded. Current HELIXSECURITY-L2-034 adds one bounded old v1.3 HR-FR-HYB-002 MCP tool-profile security candidate, making 42; six selected spans across two source revisions are candidate inputs and the remaining six source spans stay preserved pending, with no PO selection. Current HELIXOS-L2-045 adds a narrowly scoped FR-L1-35 three-class readiness inventory proposal for the selected OS-L1-002 applicability scope, making 43; no PO selection, owner transfer, applicability set, or version target is recorded. Current HELIXOS-L2-046 adds one bounded old RFA-AC-16 dispatch/execution/Ready/merge continuity and bypass-rejection connection candidate from LEGACY-CAND-LINE-003612, making 44; only this acceptance row is mapped, broader RFA source closure is not claimed, and no PO selection is recorded. Current HELIXLABO-L2-067 adds one candidate-scoped subatom for first-eligible candidate boundary and same-Attempt repair-round visibility after HELIXOS-L2-046, making 45; no PO selection, no 065 adoption dependency, and no change to adopted 059 or unadopted 065 definitions. Current HELIXLABO-L2-068 adds the separately preserved S3C total Attempt-count subatom after #2271/HELIXLABO-L2-067, making 46; no PO selection, no 065 adoption dependency, no retry_count+1 derivation, and unknown is retained when OS record completeness is unproven. Current HARNESS-L2-047 adds one bounded four-line HIL-BR-09/30 and HIL-FR-59/60 specialist Worker contract candidate; the HARNESS A placement is recommended but PO-unselected, and INTELLIGENCE owner B remains an explicit alternative. The candidate separates measured muster decision from runtime-neutral contract generation, keeps OS assignment/runtime lifecycle and SECURITY authority, and does not claim closure of other source atoms. The four semantic-line atoms have scoped no_loss; corresponding IR records remain separately held, and no adoption is recorded. CONNECT-008 adds HYB-002 profile supply conditions as a separate unadopted candidate: 6/12 supply atoms plus 6/12 SECURITY-034 policy atoms are routed, adoption/meaning closure 0/12 and both source holdings remain live. Decision set is 48; no PO selection.",
   "version_target_evidence": null,
   "portfolio_fixture_fr54_fr55_route": {
     "decision_id": "PORTFOLIO-FIXTURE-FR54-FR55-ROUTE",

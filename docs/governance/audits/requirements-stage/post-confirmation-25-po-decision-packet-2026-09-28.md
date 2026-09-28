@@ -302,3 +302,13 @@ P0訂正revision `MPR-RC-HELIXSECURITY-L2-033-002`は、L2/L11-033に資格情�
 | `HARNESS-L2-047` (L2/L11) | PO未決／推奨 **A（HARNESS配置）**。**B（INTELLIGENCE配置）**を代替案として保持 | 1.0; HARNESS-L1-001/002/004 | HIL-BR-09/30のHARNESS process/contract生成と専門化抑制、HIL-FR-59のruntime-neutral contract fields/digests、HIL-FR-60の測定利益・single-worker十分性・適格projection/lifecycleを4 source lineで保持。POはHARNESS対INTELLIGENCEのowner配置を決める | `docs/governance/audits/requirement-registration/harness-specialist-contract-coverage-receipt-2026-09-29.json#HARNESS-L2-047`; source-linesは旧archive `infinity-loop-platform-requirements.md:61,82,149,150`、4 line SHAはreceipt参照 | HARNESS-L2-005/010/011/022; OS-L2-004/042/043; INTELLIGENCE-L2-010; LABO-L2-055/060; SECURITY-L2-007/008 | 旧BR09/30がHARNESSを明記し、現行責務ではHARNESSがprocess/verificationを持つ。INT placement、LABO evidence、OS assignment/runtime lifecycle、SECURITY authorityを重複所有しない。Bを選ぶ場合は別owner/parent/registrationが要る。 |
 
 A＝HARNESS-L2/L11-047 exact candidate revisionを選び、HARNESSをnormative contract-generation ownerとする（推奨）。B＝HARNESS候補を採択せず、同じsource atomsについてHELIX-INTELLIGENCEをownerとする別候補を起草・登録する。C＝4 source line atomsをholdingへ保留。D＝意味変更/retireは対象revision・理由・影響付き。選択は未決で、candidate registerは`registered_proposal` / `authority_effect:none`。必要性判断とruntime-neutral contract生成は別outputで、OSのassignment/runtime projection、SECURITY authority、実行を生成しない。4 semantic line atomsのみのscope no_lossであり、別holdingのIR recordsまたはsource全体のclosureを主張しない。
+
+## HELIXCONNECT-L2-008（判断集合48候補）
+
+旧v1.3 HYB-002のS01/S02/S04（profile列挙・設定、型付きsafety/read-only descriptor、未登録profile拒否）を、archive line 286と6fabd125 baseline line 271の別revisionとして6 lineage atomで候補入力へ対応づける。SECURITY-034候補に先行対応した別6 atom（S03/S05/S06）を含め、総12 atomのうち候補入力は6/12、採択・意味closureは0/12。両source holding `MPR-SH-SUPPLEMENTARY-003` と `MPR-SH-V13-BASELINE-001` は生存し、receiptはHYB-002全体のclosureを主張しない。
+
+| 機構 | 候補・L2本文 | 対のL11 | 登録・coverage |
+|---|---|---|---|
+| CONNECT | [HELIXCONNECT-L2-008](../../../helix-connect/L2-requirements/connect-requirements.md#helixconnect-l2-008) | [HELIXCONNECT-L11-008](../../../helix-connect/L11-acceptance/connect-acceptance.md#helixconnect-l11-008) | `MPR-RC-HELIXCONNECT-L2-008-001`; `connect-v13-hyb-002-profile-supply-coverage-receipt-2026-09-29.json` |
+
+A（推奨）＝CONNECTがprofile catalog/identity/config/typed descriptorを供給し、SECURITYがpolicy/read-only operation safetyを所有。B＝profile/probe供給全体をSECURITYへ移し、責務境界を変更。C＝6 atomを保留、またはrevision・理由・影響付き意味変更/retire。すべて未選択。SECURITY-034は独立未採択候補で、本候補は採択を依存としない。

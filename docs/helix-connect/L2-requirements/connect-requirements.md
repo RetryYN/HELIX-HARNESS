@@ -37,6 +37,7 @@ HELIX-CONNECTは接続登録、契約版照合、通信、再送、追跡を担�
 | HELIXCONNECT-L2-005 | unit | HELIXCONNECT-L1-001 | 接続単位の追跡記録 | 1.0 |
 | HELIXCONNECT-L2-006 | connection | HELIXCONNECT-L1-001 | 片側交換後の互換を保った接続 | 1.0 |
 | HELIXCONNECT-L2-007 | composite | HELIXCONNECT-L1-001 | 複数機構を結ぶ接続構成体 | 1.0 |
+| HELIXCONNECT-L2-008 | unit | HELIXCONNECT-L1-001 | MCP profile catalogとtyped descriptorの供給 | 1.0 |
 
 `version_target`は能力を目標とする版で、実際の契約版・実装版・採択状態を表さない。実際にどの接続を対象とするかは、接続先と接続の棚卸しおよび要求identityとの照合を経て特定する。
 
@@ -269,3 +270,16 @@ HELIX-CONNECTは各接続を固有の接続identityで登録し、接続元・�
 ## この候補の外
 
 段階リリース管理、業務判断・承認、接続先の要求意味の定義、HELIX-WEB-CONNECTORの顧客向け製品要求、provider固有のDB/CLI/runtime構成は本候補の要求にしない。段階ごとの成立範囲は、採択された要求から導く。
+
+
+### HELIXCONNECT-L2-008 MCP profile catalogとtyped descriptorの供給（unit、単体追補候補、version_target: 1.0）
+
+本項はHELIX-CONNECT L1-001に接続する未採択・未実装の要求候補であり、既存L2-001〜007の登録、接続、通信、認可または実装を変更しない。候補は、利用可能として宣言されたMCP profileを列挙し、profile identityとrevisionに束縛された設定契約、operation/tool capability descriptor、および安全・read-only probe descriptorを型付きで供給する。descriptorの存在は実際の安全性、実行資格、許可を証明しない。
+
+profile identity、revision、設定契約、型付きdescriptorの組が欠落・不明・競合する場合、そのprofileを利用可能として返さない。未登録・未知profile、重複identityに異なる宣言、設定型またはdescriptorの不一致は拒否理由と対象revisionを記録し、暗黙の既定profileや互換性の推定へfallbackしない。登録済みprofileの契約revisionが変わった場合は既存HELIXCONNECT-L2-002のstale・再照合条件に従い、再検証まで当該revisionを適格として扱わない。
+
+read-only probeについてCONNECTが供給するのは、操作の型・対象profile/revision・read-only宣言を識別するdescriptorまでである。CONNECTはprobeを起動せず、権限・policy・authorizationを生成または代替しない。操作の安全性と実行可否はSECURITYの責務であり、採択済みSECURITY-L2-005〜008の範囲に従う。関連するSECURITY-L2-034は独立した未採択候補であり、本候補はその採択を前提・依存としない。profile catalog、identity、設定契約および型付きdescriptorの供給はCONNECT、policyとread-only operation safetyはSECURITYが所有し、業務上のprobe意味は元の機構に残す。
+
+不正identity・設定・descriptorの修正先はprofile提供元へ返す。policyまたはoperation safetyの不明・拒否はSECURITYへ返し、CONNECTが判定を上書きしない。失敗は対象profile/revisionと理由に結び付け、無関係なprofileの状態を変更しない。具体的なschema表現、registry技術、provider/runtime、secret値、tool実行方式は本候補で定めない。`version_target: 1.0`は要求候補の対象版であり、採択・実装許可を意味しない。
+
+旧v1.3 HYB-002のS01/S02/S04について、archive revisionと6fabd125 baseline revisionの計6 lineage atomを候補入力に対応づける。S03/S05/S06の6 atomは別のSECURITY-034候補入力であり、本候補の対象外。source-linesとcoverage receiptはこの6 atomに限る。原要求のsource holding `MPR-SH-SUPPLEMENTARY-003` と `MPR-SH-V13-BASELINE-001` は両方とも生存し、HYB-002全体または意味条件のclosureを主張しない。

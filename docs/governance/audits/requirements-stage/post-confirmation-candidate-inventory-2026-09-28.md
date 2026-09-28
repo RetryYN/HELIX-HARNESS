@@ -156,3 +156,11 @@ A＝exact L2/L11-042の限定採択（推奨）、B＝原atomを保留、C＝sou
 ## 後続追加：HARNESS-L2-047（現行判断集合47候補）
 
 旧HIL-BR-09/30・HIL-FR-59/60の4 source lineを、[HARNESS-L2-047](../../../helix-harness/L2-requirements/product-requirements.md#harness-l2-047)と[対L11](../../../helix-harness/L11-acceptance/product-acceptance.md#harness-l2-047)へHARNESS配置A候補として限定再導出した。旧source line SHA、candidate/acceptance digest、対象4 atomは[coverage receipt](../requirement-registration/harness-specialist-contract-coverage-receipt-2026-09-29.json)と[source-lines](../requirement-registration/harness-specialist-contract-source-lines-2026-09-29.jsonl)に記録する。登録`MPR-RC-HARNESS-L2-047-001`は`registered_proposal` / `authority_effect:none`。PO未決・未採択。比較案BのINTELLIGENCE配置をPO packetへ保持し、B選択時は本HARNESS配置案から後継を確定しない。入力は4 semantic line atomsのみであり、別holdingのIR identities、残るsemantic lines、旧source全体のclosureを主張しない。
+
+## HELIXCONNECT-L2-008（#2280後の候補、判断集合48）
+
+| 機構 | 候補 | L11 | 登録・receipt |
+|---|---|---|---|
+| CONNECT | `HELIXCONNECT-L2-008` MCP profile catalogとtyped descriptor供給（unit、1.0、未採択） | `HELIXCONNECT-L11-008` | `MPR-RC-HELIXCONNECT-L2-008-001`; `connect-v13-hyb-002-profile-supply-coverage-receipt-2026-09-29.json` |
+
+HYB-002の3 clauseをarchive/baseline別revisionの6 atomとしてこの候補へ対応。既存SECURITY-034候補の6 atomと合わせ12 lineage atom。6/12を候補経路へ割り当てたが、採択・意味closureは0/12。`MPR-SH-SUPPLEMENTARY-003` と `MPR-SH-V13-BASELINE-001` は生存。AのCONNECT供給／SECURITY policy分担を推奨案として起草したがPO未選択。Bの全供給SECURITY所有は責務境界の意味変更候補。SECURITY-034の採択は前提としない。
