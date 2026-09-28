@@ -667,3 +667,30 @@ party混在、免責/権利根拠の不一致、stage skip、cutover authority�
 - 既存有効authorityと優先順位決定は再利用する。候補未採択を採択済み要求として扱わず、旧CLI・旧schedulerの実行方式を移さない。
 
 **期間欠測の反例**：ある週の観測を中断し、前週の正常結果だけが残るfixtureを与える。今週を未観測/未完と報告し、前週結果の転用や「差分なし」を拒否する。同じfixtureで無関係なticketを同期停止しないこと、同一scopeの既存readiness/authority gateを迂回しないことも確認する。今回の観測receiptなしに観測開始できることと、観測完了の判定を分ける。
+
+### HELIXOS-L2-038 Layer ledger writer・snapshot・proposal append — L11受入候補
+
+未実行の受入oracle候補。OS側の入力束縛・保存・snapshot・append・失敗回復だけを検査し、HARNESS-L2-040/041が定める意味判定やproposal内容を再実装しない。ケースは対象layer、source/template/contract revision、base digest、scope、authority、proposal ID、source atom set、操作相関IDを固定する。出力は対象・revision・digest・選択scope・receipt・未完状態へ束縛する。
+
+### 正常例：contractを使ったlayer snapshotとproposal append
+
+対象revisionで採択・有効化されたHARNESS-COREのL2 ledger契約とactive template revision、L1-L12のうち明示選択したlayer、L0 anchorの別record、HARNESS-L2-040/041に適合するsource-backed atom/proposal/gapを受け取る。これは将来の実行条件を検査するfixtureであり、現時点で040/041または038が採択済みとの主張ではない。OSがauthority/source revisionと既存base digestを照合し、対象layer snapshotを選択scopeとして生成し、proposalをappend-only候補recordとして一度登録する。receiptからHARNESSの原proposal/source atom、OSの対象ledger revision、contract/template version、snapshot digest、authority reference、scope、statusへ相互に辿れる。snapshot/receiptはHARNESSのsemantic approvalや要求採択を示さず、他layerまたは対象全体のcoverage完了も主張しない。
+
+### 誤り例：意味の上書き、stale base、権限拡張、部分成功
+
+- HARNESS proposalの本文/atomをOSが補完・統合・削除し、canonical HARNESS ledgerへ直接採択済みとして書く。失敗し、元proposalとfindingを保持してHARNESS ownerへ返す。
+- proposal生成後にbase ledger revisionまたはactive template/contract revisionが更新されたのに、古いsnapshotをcurrentとして扱う。appendを保留しstale edgeと再照合条件を保持する。
+- 対象scope/authorityが不足したまま全層/全projectへ書き込む、L0をL1-L12 rowとして登録する、PR mergeやreceipt存在をauthorityとして扱う。writeを拒否しunknown/unauthorizedを返す。
+- event/proposalを保存した後snapshotまたはreceiptの書込みに失敗した部分成功を、完了appendと表示する。または再開時に同じproposalを二重追記する。未完位置を残して冪等に再開し、snapshot/receipt整合が回復するまで成功表示しない。
+- HARNESS-L2-040/041が未採択、対象revisionで無効、またはHARNESS-L2-009のactive template適用条件が不明な状態でwriterをcommitする。候補の存在や同じ`version_target: 1.0`を根拠にせず、未完としてwriteを保留する。
+- 同じproposal/correlation IDへ異なるpayloadまたはbase digestを再送し、既存行を上書きする。衝突として両入力と対象revisionを残し、二重appendも成功receiptも出さない。
+- appendの一部だけが保存されsnapshot/receiptが失敗した後、正本への候補行追加が完了したかのように可視化する。未完状態と原proposalを公開し、整合するsnapshot/receiptが再構築されるまで完了状態を出さない。
+- OS proposal appendをrequirement acceptance、PO decision、L3開始許可、HARNESS validation pass、CI/merge/release readinessとして扱う。これらの状態遷移を拒否し、該当authority/判定ownerへ返す。
+
+### 未見例：未知layer/template atomまたは新contract revision
+
+fixtureにないlayer template field/applicability rule/obligation atomまたは新contract versionを入力する。HARNESS契約が新revisionを明示的に支持し、同revisionのsource span、適用scope、atom schema、対象ledger/baseが整合する場合は、内容を補完せず新proposalを通常どおり追記できる。契約対応、atom identity、source span、対象layerのいずれかがunknown/staleなら、空/TBDを埋めずfindingと未完proposalとして保持し、HARNESS契約ownerまたはsource ownerへ戻す。unknownを恒久拒否理由にもcoverage済みにもせず、対応確認まで対象proposalのsnapshot/append状態を未解決にする。無関係な対象/layerへの作業を同期停止しない。
+
+### 境界・受入結果
+
+正常/negative/unseen結果は選択scopeと対象revisionに限る。append writer、snapshot、receiptの成功からHARNESS意味の採択、L3承認、実装/運転の成功、全scopeのcoverageを導かない。authoritative ledgerへの意味変更、requirement acceptance、external publication/releaseは別の明示authority対象であり、本候補の操作に含まれない。実際の受入実行は候補採択・下流設計後の別段階であり、この文書または静的登録を実行証拠としない。
