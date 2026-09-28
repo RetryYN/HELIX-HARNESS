@@ -4069,8 +4069,8 @@
       "title_and_kind": "### HELIXCONNECT-L2-008 MCP profile catalogとtyped descriptorの供給（unit、単体追補候補、version_target: 1.0）",
       "requirement_source_path": "docs/helix-connect/L2-requirements/connect-requirements.md#helixconnect-l2-008",
       "acceptance_source_path": "docs/helix-connect/L11-acceptance/connect-acceptance.md#helixconnect-l11-008",
-      "registration_id": "MPR-RC-HELIXCONNECT-L2-008-001",
-      "supersedes_registration_id": null,
+      "registration_id": "MPR-RC-HELIXCONNECT-L2-008-002",
+      "supersedes_registration_id": "MPR-RC-HELIXCONNECT-L2-008-001",
       "management_state": "registered_proposal",
       "authority_effect": "none",
       "parent_l1_ids": [

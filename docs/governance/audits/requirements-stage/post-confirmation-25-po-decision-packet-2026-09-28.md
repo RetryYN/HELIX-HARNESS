@@ -309,6 +309,6 @@ A＝HARNESS-L2/L11-047 exact candidate revisionを選び、HARNESSをnormative c
 
 | 機構 | 候補・L2本文 | 対のL11 | 登録・coverage |
 |---|---|---|---|
-| CONNECT | [HELIXCONNECT-L2-008](../../../helix-connect/L2-requirements/connect-requirements.md#helixconnect-l2-008) | [HELIXCONNECT-L11-008](../../../helix-connect/L11-acceptance/connect-acceptance.md#helixconnect-l11-008) | `MPR-RC-HELIXCONNECT-L2-008-001`; `connect-v13-hyb-002-profile-supply-coverage-receipt-2026-09-29.json` |
+| CONNECT | [HELIXCONNECT-L2-008](../../../helix-connect/L2-requirements/connect-requirements.md#helixconnect-l2-008) | [HELIXCONNECT-L11-008](../../../helix-connect/L11-acceptance/connect-acceptance.md#helixconnect-l11-008) | `MPR-RC-HELIXCONNECT-L2-008-002（-001のdigest訂正revision）`; `connect-v13-hyb-002-profile-supply-coverage-receipt-2026-09-29.json` |
 
 A（推奨）＝CONNECTがprofile catalog/identity/config/typed descriptorを供給し、SECURITYがpolicy/read-only operation safetyを所有。B＝profile/probe供給全体をSECURITYへ移し、責務境界を変更。C＝6 atomを保留、またはrevision・理由・影響付き意味変更/retire。すべて未選択。SECURITY-034は独立未採択候補で、本候補は採択を依存としない。

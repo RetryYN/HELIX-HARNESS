@@ -161,6 +161,6 @@ A＝exact L2/L11-042の限定採択（推奨）、B＝原atomを保留、C＝sou
 
 | 機構 | 候補 | L11 | 登録・receipt |
 |---|---|---|---|
-| CONNECT | `HELIXCONNECT-L2-008` MCP profile catalogとtyped descriptor供給（unit、1.0、未採択） | `HELIXCONNECT-L11-008` | `MPR-RC-HELIXCONNECT-L2-008-001`; `connect-v13-hyb-002-profile-supply-coverage-receipt-2026-09-29.json` |
+| CONNECT | `HELIXCONNECT-L2-008` MCP profile catalogとtyped descriptor供給（unit、1.0、未採択） | `HELIXCONNECT-L11-008` | `MPR-RC-HELIXCONNECT-L2-008-002（-001のdigest訂正revision）`; `connect-v13-hyb-002-profile-supply-coverage-receipt-2026-09-29.json` |
 
 HYB-002の3 clauseをarchive/baseline別revisionの6 atomとしてこの候補へ対応。既存SECURITY-034候補の6 atomと合わせ12 lineage atom。6/12を候補経路へ割り当てたが、採択・意味closureは0/12。`MPR-SH-SUPPLEMENTARY-003` と `MPR-SH-V13-BASELINE-001` は生存。AのCONNECT供給／SECURITY policy分担を推奨案として起草したがPO未選択。Bの全供給SECURITY所有は責務境界の意味変更候補。SECURITY-034の採択は前提としない。
