@@ -1,10 +1,10 @@
 {
   "packet_kind": "recommendation_for_PO_decision_only",
-  "basis_commit": "f4b2a2b02cf5ea3134e27be0a65c100395161bad",
+  "basis_commit": "945a30bebe20e66097125d27aec5931b8b95cc0c",
   "as_of": "2026-09-28",
-  "count": 25,
-  "status": "All 25 are live registered proposals (authority_effect none); no adoption, hold, reject, implementation, or acceptance run is inferred from merged PRs or presence of L2/L11 text. Recommended A/B/C is advice for PO, not a recorded decision.",
-  "decision_grouping": "No shared adoption decision is bundled: each identity has its own choice. The entries share a rendering format only. In particular, the recommendation for HELIXINTELLIGENCE-L2-072 is limited to its 1.0 shadow subset while its remaining improvement loop stays in source holding; HELIX-LABO-L2-062 preserves 2.0.",
+  "count": 27,
+  "status": "All 27 are live registered proposals (authority_effect none); no adoption, hold, reject, implementation, or acceptance run is inferred from merged PRs or presence of L2/L11 text.",
+  "decision_grouping": "No shared adoption decision is bundled: each identity has its own choice. The entries share a rendering format only. In particular, the recommendation for HELIXINTELLIGENCE-L2-072 is limited to its 1.0 shadow subset while its remaining improvement loop stays in source holding; HELIX-LABO-L2-062 preserves 2.0. The two post-initial additions, HARNESS-L2-042 and HELIXOS-L2-038, are independent PO decisions.",
   "candidates": [
     {
       "identity": "HARNESS-L2-034",
@@ -626,6 +626,76 @@
         "path": "docs/helix-harness/L2-requirements/product-requirements.md",
         "line": 955,
         "excerpt": "### HARNESS-L2-041 active templateのobligation抽出とgap提示（HARNESS-CORE unit候補、version_target: 1.0）",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
+      }
+    },
+    {
+      "identity": "HARNESS-L2-042",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
+      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
+      "recommended_choice": "A",
+      "choice_meaning": "採用（L2/L11 authority decision only）",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HARNESS-L2-042 Design Refactor判定とepisode分離（⑤のunit候補、version_target: 1.0）",
+      "requirement_source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "acceptance_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "registration_id": "MPR-RC-HARNESS-L2-042-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HARNESS-L1-003",
+        "HARNESS-L1-004",
+        "HARNESS-L1-005",
+        "HARNESS-L1-007"
+      ],
+      "parent_l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+      "parent_l1_sha256_current": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+      "parent_planning_revision_recorded": "docs/helix-harness/L1-planning/product-intent.md@e17d833bc55008a5dc6f8f48a718d254c6a12eb1 sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f（対象本文固定。042候補採択は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-refactor-episode-coverage-receipt-2026-09-28.json#HARNESS-L2-042",
+      "receipt_id": "MPR-RCPT-HARNESS-REFACTOR-EPISODE-2026-09-28",
+      "receipt_candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "start_heading_prefix": "### HARNESS-L2-042 ",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:7da6b3394cbc96bdf028a4738000554e1cf7a946595c4abf43504b24968f34eb",
+      "receipt_candidate_semantic_digest": "sha256:7da6b3394cbc96bdf028a4738000554e1cf7a946595c4abf43504b24968f34eb",
+      "current_candidate_semantic_digest": "sha256:7da6b3394cbc96bdf028a4738000554e1cf7a946595c4abf43504b24968f34eb",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 2,
+      "source_atom_set_digest": "sha256:16fcd92b44c6032f432f2d3dac87415a1b72cdc5aaec155944357d1553a9ed61",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "line": 119,
+          "source_line_sha256": "sha256:b8d0bd53395b0c57bf8aed4d6007d792e7aa0e7038480f0880754e0a2d22f0d6",
+          "atom_id": "REQSRC-SUP-00089"
+        },
+        {
+          "path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+          "held_snapshot_path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+          "line": 104,
+          "source_line_sha256": "sha256:b8d0bd53395b0c57bf8aed4d6007d792e7aa0e7038480f0880754e0a2d22f0d6",
+          "atom_id": "V13-BASE-6FAB-L0104"
+        }
+      ],
+      "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/harness-refactor-episode-coverage-receipt-2026-09-28.json#candidates[HARNESS-L2-042] に記録。代表例: archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md:119 (atom REQSRC-SUP-00089); docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt:104 (atom V13-BASE-6FAB-L0104)",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HARNESS-L2-042",
+      "paired_l11_id": "HARNESS-L2-042",
+      "affected_requirement_and_consumer_ids": "HARNESS-L1-003/004/005/007; HARNESS-L2-002/003/004/016/019, 対L11",
+      "rationale": "Design Refactorの判定根拠と機能追加のepisode分離を限定候補として保持する。Performance Refactor条件は既採択HARNESS-L2-016と対L11を参照し、旧sourceの別revision二atomと生存holdingを保つ。042の採択、実装、受入実行、旧v1.3全体の後継は主張しない。",
+      "previous_register_revision": null,
+      "version_target_evidence": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "line": 970,
+        "excerpt": "### HARNESS-L2-042 Design Refactor判定とepisode分離（⑤のunit候補、version_target: 1.0）",
         "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
       }
     },
@@ -1728,6 +1798,77 @@
       }
     },
     {
+      "identity": "HELIXOS-L2-038",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
+      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
+      "recommended_choice": "A",
+      "choice_meaning": "採用（L2/L11 authority decision only）",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HELIXOS-L2-038 Layer ledger writer・snapshot・proposal append（単体候補、version_target: 1.0）",
+      "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "registration_id": "MPR-RC-HELIXOS-L2-038-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXOS-L1-001",
+        "HELIXOS-L1-002",
+        "HELIXOS-L1-003",
+        "HELIXOS-L1-004",
+        "HELIXOS-L1-008"
+      ],
+      "parent_l1_path": "docs/helix-os/L1-planning/system-intent.md",
+      "parent_l1_sha256_current": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+      "parent_planning_revision_recorded": "docs/helix-os/L1-planning/system-intent.md@612ae1e9be85eda42649bf74e46998fd57da3de6 sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e（親本文固定。038候補採択は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/os-layer-ledger-writer-coverage-receipt-2026-09-28.json#HELIXOS-L2-038",
+      "receipt_id": "MPR-RCPT-OS-LAYER-LEDGER-WRITER-2026-09-28",
+      "receipt_candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "start_heading_prefix": "### HELIXOS-L2-038 ",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:603b5db48045408a85d116071a4ad0f8a470064cd073a05beb9bc118f386fd6c",
+      "receipt_candidate_semantic_digest": "sha256:603b5db48045408a85d116071a4ad0f8a470064cd073a05beb9bc118f386fd6c",
+      "current_candidate_semantic_digest": "sha256:603b5db48045408a85d116071a4ad0f8a470064cd073a05beb9bc118f386fd6c",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 2,
+      "source_atom_set_digest": "sha256:8db63db824ce624b1208b695ed3ea82fc8aa44f5ad734608b1f11de37ec6d940",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 136,
+          "source_line_sha256": "sha256:a62b63ab18b23ac9564d6c7ffca7580ac9471a6d6e7374f8e4a26c93f0441b6c",
+          "atom_id": "LAYER-LEDGER-HIL-FR-46-L0136"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 137,
+          "source_line_sha256": "sha256:785f0998ca9fd2192bcddc638d1ef1233551c251e307e631303642abe7713fad",
+          "atom_id": "TEMPLATE-EXTRACT-HIL-FR-47-L0137"
+        }
+      ],
+      "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/os-layer-ledger-writer-coverage-receipt-2026-09-28.json#candidates[HELIXOS-L2-038] に記録。代表例: archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:136 (atom LAYER-LEDGER-HIL-FR-46-L0136); archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:137 (atom TEMPLATE-EXTRACT-HIL-FR-47-L0137)",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXOS-L2-038",
+      "paired_l11_id": "HELIXOS-L2-038",
+      "affected_requirement_and_consumer_ids": "HELIXOS-L1-001/002/003/004/008; HARNESS-L2-040/041, HELIXOS-L2-015/016/017/019, 対L11",
+      "rationale": "HARNESSが所有するledger/templateの意味契約を入力として消費し、OS側のwriter運転・snapshot・proposal appendを分離する限定候補。source receiptは運転/保存部分のみを分割して保持し、HARNESS-040/041や本038の採択・write実行・FR46/47全体の後継を示さない。",
+      "previous_register_revision": null,
+      "version_target_evidence": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "line": 1096,
+        "excerpt": "### HELIXOS-L2-038 Layer ledger writer・snapshot・proposal append（単体候補、version_target: 1.0）",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
+      }
+    },
+    {
       "identity": "HELIXSECURITY-L2-029",
       "decision_state": "pending_PO; not adopted",
       "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
@@ -1944,5 +2085,7 @@
         "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
       }
     }
-  ]
+  ],
+  "initial_25_basis_commit": "f4b2a2b02cf5ea3134e27be0a65c100395161bad",
+  "progression": "初版25候補（initial_25_basis_commit）に、merge済み未採択候補2件（HARNESS-L2-042: PR #2241、HELIXOS-L2-038: PR #2238）を追加し、27候補へ更新。"
 }
