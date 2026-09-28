@@ -1,0 +1,1758 @@
+{
+  "packet_kind": "recommendation_for_PO_decision_only",
+  "basis_commit": "f4b2a2b02cf5ea3134e27be0a65c100395161bad",
+  "as_of": "2026-09-28",
+  "count": 25,
+  "status": "All 25 are live registered proposals (authority_effect none); no adoption, hold, reject, implementation, or acceptance run is inferred from merged PRs or presence of L2/L11 text. Recommended A/B/C is advice for PO, not a recorded decision.",
+  "decision_grouping": "No shared adoption decision is bundled: each identity has its own choice. The entries share a rendering format only. In particular, the recommendation for HELIXINTELLIGENCE-L2-072 is limited to its 1.0 shadow subset while its remaining improvement loop stays in source holding; HELIX-LABO-L2-062 preserves 2.0.",
+  "candidates": [
+    {
+      "identity": "HARNESS-L2-034",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
+      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
+      "recommended_choice": "A",
+      "choice_meaning": "採用（L2/L11 authority decision only）",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HARNESS-L2-034 要求別の計測契約と完成判定（コアの単体候補、version_target 1.0）",
+      "requirement_source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "acceptance_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "registration_id": "MPR-RC-HARNESS-L2-034-003",
+      "supersedes_registration_id": "MPR-RC-HARNESS-L2-034-002",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HARNESS-L1-001",
+        "HARNESS-L1-004",
+        "HARNESS-L1-005"
+      ],
+      "parent_l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+      "parent_l1_sha256_current": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+      "parent_planning_revision_recorded": "docs/helix-harness/L1-planning/product-intent.md@a99ead9f0be52172e9d479ce34c95c054bb63211 sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f（親確認済みbytes、新追補採択は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-measurement-contract-coverage-receipt-2026-09-28-r3.json#HARNESS-L2-034",
+      "receipt_id": "MPR-RCPT-HARNESS-MEASUREMENT-CONTRACT-2026-09-28-R3",
+      "receipt_candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "start_heading_prefix": "### HARNESS-L2-034 ",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156",
+      "receipt_candidate_semantic_digest": "sha256:dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156",
+      "current_candidate_semantic_digest": "sha256:dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 20,
+      "source_atom_set_digest": "sha256:65f6dcaedaa53e245569e0a7b0a9e1b0c8c86e56e96606c5de6c59269170ba04",
+      "source_reference_examples": [
+        {
+          "path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "held_snapshot_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "line": 247,
+          "source_line_sha256": "sha256:833f700a7f273b9533d0dc3714f1df116c0b88a12fec4a66641d26bd5b9dd703",
+          "atom_id": "REQSRC-SUP-00192"
+        },
+        {
+          "path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "held_snapshot_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "line": 249,
+          "source_line_sha256": "sha256:c7c8fdcdba444b6fb68eaae83a193f1a6cd7cd9700dbb50d5cdeeb57c8edc284",
+          "atom_id": "REQSRC-SUP-00193"
+        },
+        {
+          "path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "held_snapshot_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "line": 251,
+          "source_line_sha256": "sha256:30e0e461b391caa2cd948ab0d9cbaa2a8221054f5d1daa8ec608d5ddda131cd9",
+          "atom_id": "REQSRC-SUP-00194"
+        }
+      ],
+      "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/harness-measurement-contract-coverage-receipt-2026-09-28-r3.json#candidates[HARNESS-L2-034] に記録。代表例: docs/governance/requirements-source/helix-requirements_v1.3.md:247 (atom REQSRC-SUP-00192); docs/governance/requirements-source/helix-requirements_v1.3.md:249 (atom REQSRC-SUP-00193); docs/governance/requirements-source/helix-requirements_v1.3.md:251 (atom REQSRC-SUP-00194); …計20 atom（全行・line SHAはreceipt参照）",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HARNESS-L2-034",
+      "paired_l11_id": "HARNESS-L2-034",
+      "affected_requirement_and_consumer_ids": "HARNESS-L1-001, HARNESS-L1-004, HARNESS-L1-005; HARNESS-L2-022/023, 対L11",
+      "rationale": "要求/NFRにひもづく計測と完成判定をL1-001/004/005の品質保証へ具体化。L11に欠測・stale・条件不一致の拒否を対で置く。既存計測6行と補足7要求の重複revisionを独立要求に数えない。",
+      "previous_register_revision": {
+        "registration_id": "MPR-RC-HARNESS-L2-034-002",
+        "candidate_semantic_digest": "sha256:d79e671219cf5325c54675e8bf00e69c8a88f055074da720b5d89a0b9d1cfe81",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-measurement-contract-coverage-receipt-2026-09-28-r2.json",
+        "management_state_at_revision": "registered_proposal"
+      }
+    },
+    {
+      "identity": "HARNESS-L2-035",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
+      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
+      "recommended_choice": "A",
+      "choice_meaning": "採用（L2/L11 authority decision only）",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HARNESS-L2-035 要求候補の導出根拠と受入への寄与の照合（CORE単体追補候補、1.0）",
+      "requirement_source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "acceptance_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "registration_id": "MPR-RC-HARNESS-L2-035-002",
+      "supersedes_registration_id": "MPR-RC-HARNESS-L2-035-001",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HARNESS-L1-008"
+      ],
+      "parent_l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+      "parent_l1_sha256_current": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+      "parent_planning_revision_recorded": "docs/helix-harness/L1-planning/product-intent.md@88c68580588b03be72ab28e2695959eea46ba41b sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f（確認済み親bytes。新候補採用は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-scope-derivation-coverage-receipt-2026-09-28-r2.json#HARNESS-L2-035",
+      "receipt_id": "MPR-RCPT-HARNESS-SCOPE-DERIVATION-2026-09-28-R2",
+      "receipt_candidate_digest_rule": "L2の### HARNESS-L2-035元節と文末## HARNESS-L2-035 scope拡張追補節をこの順で各末尾空行除去+LF1つとして直接連結するUTF-8 SHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "start_heading_prefix": "### HARNESS-L2-035 ",
+          "end_heading_prefix": "### HARNESS-L2-036 "
+        },
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "start_heading_prefix": "## HARNESS-L2-035 scope拡張",
+          "end_heading_prefix": "## 旧HIL-FR-46/47"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:4e37d81ee53b22319a316aa7090b30ccb94688d23ed6547551e914b2903a29c2",
+      "receipt_candidate_semantic_digest": "sha256:4e37d81ee53b22319a316aa7090b30ccb94688d23ed6547551e914b2903a29c2",
+      "current_candidate_semantic_digest": "sha256:4e37d81ee53b22319a316aa7090b30ccb94688d23ed6547551e914b2903a29c2",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 3,
+      "source_atom_set_digest": "sha256:5216dc967e2ffc8e795d6ca848e302142ea257d50a4fcedf35a68ab7117bff35",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 128,
+          "source_line_sha256": "sha256:58fe296f29fa6778ab21d22dee62a8dc65ed416dc8099c45092b564de3329ba8",
+          "atom_id": "SCOPE-DERIVATION-HIL-FR-38-L0128"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 203,
+          "source_line_sha256": "sha256:a85c36b3ae6562e79cb34e58c41d6b061ef45da37a5d8bc5d88f1694c3065291",
+          "atom_id": "SCOPE-DERIVATION-HIL-NFR-23-L0203"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 187,
+          "source_line_sha256": "sha256:0bf32cc3753f24c90def870e54353e6b7a968d01bf0117d5983d6eb648c24b24",
+          "atom_id": "SCOPE-MEASURES-HIL-NFR-07-L0187"
+        }
+      ],
+      "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/harness-scope-derivation-coverage-receipt-2026-09-28-r2.json#candidates[HARNESS-L2-035] に記録。代表例: archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:128 (atom SCOPE-DERIVATION-HIL-FR-38-L0128); archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:203 (atom SCOPE-DERIVATION-HIL-NFR-23-L0203); archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:187 (atom SCOPE-MEASURES-HIL-NFR-07-L0187)",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HARNESS-L2-035",
+      "paired_l11_id": "HARNESS-L2-035",
+      "affected_requirement_and_consumer_ids": "HARNESS-L1-008; HARNESS-L2-008/024, 対L11",
+      "rationale": "L1-008の要求形成にscope根拠と受入寄与の追跡を置く。候補を根拠に候補自身を正当化する循環を避ける。receiptは限定3 atomで、全source集合の完了を主張しない。",
+      "previous_register_revision": {
+        "registration_id": "MPR-RC-HARNESS-L2-035-001",
+        "candidate_semantic_digest": "sha256:7eabe1b8feefc4f7d954cf182a20d6db5c9f7ebd3e253767cc41c9def6d61896",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-scope-derivation-coverage-receipt-2026-09-28.json",
+        "management_state_at_revision": "registered_proposal"
+      }
+    },
+    {
+      "identity": "HARNESS-L2-036",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
+      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
+      "recommended_choice": "A",
+      "choice_meaning": "採用（L2/L11 authority decision only）",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HARNESS-L2-036 検証観点の完全性とローカル・CIの同一契約（CORE単体候補、1.0）",
+      "requirement_source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "acceptance_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "registration_id": "MPR-RC-HARNESS-L2-036-002",
+      "supersedes_registration_id": "MPR-RC-HARNESS-L2-036-001",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HARNESS-L1-001",
+        "HARNESS-L1-004"
+      ],
+      "parent_l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+      "parent_l1_sha256_current": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+      "parent_planning_revision_recorded": "docs/helix-harness/L1-planning/product-intent.md@54563e344b9df28163241b384b9c86733bfb511c sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f（確認済み親bytes。新候補の採用は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-verification-parity-coverage-receipt-2026-09-28-r2.json#HARNESS-L2-036",
+      "receipt_id": "MPR-RCPT-HARNESS-VERIFICATION-PARITY-2026-09-28-R2",
+      "receipt_candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "start_heading_prefix": "### HARNESS-L2-036 ",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:7a18c20e22c0cf65e8edcd3b3ca7eca7996d72c0358c874591407d77dbba4bbb",
+      "receipt_candidate_semantic_digest": "sha256:7a18c20e22c0cf65e8edcd3b3ca7eca7996d72c0358c874591407d77dbba4bbb",
+      "current_candidate_semantic_digest": "sha256:7a18c20e22c0cf65e8edcd3b3ca7eca7996d72c0358c874591407d77dbba4bbb",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 4,
+      "source_atom_set_digest": "sha256:fe865b4ec0eeca48a3337323db0f1e239596e754f18e37356381fb731e78c8b0",
+      "source_reference_examples": [
+        {
+          "path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+          "held_snapshot_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+          "line": 52,
+          "source_line_sha256": "sha256:b54119ad033bcb2f01c1977710d76249ab80a2789422ed02afa3c54d6ac3799b",
+          "atom_id": "VERIFICATION-PARITY-functional-requirements.md-L0052"
+        },
+        {
+          "path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+          "held_snapshot_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+          "line": 53,
+          "source_line_sha256": "sha256:1cc6f208ebbbb6d900d791e546db07b6047e7a07e6a2071817391191b3abbdf9",
+          "atom_id": "VERIFICATION-PARITY-functional-requirements.md-L0053"
+        },
+        {
+          "path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/nfr.md",
+          "held_snapshot_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/nfr.md",
+          "line": 31,
+          "source_line_sha256": "sha256:0e1efa8f6017fd18bc55f46f1c9096c64cf3e0c2d7e73d8abef3bc3ed43c0c80",
+          "atom_id": "VERIFICATION-PARITY-nfr.md-L0031"
+        }
+      ],
+      "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/harness-verification-parity-coverage-receipt-2026-09-28-r2.json#candidates[HARNESS-L2-036] に記録。代表例: docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md:52 (atom VERIFICATION-PARITY-functional-requirements.md-L0052); docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md:53 (atom VERIFICATION-PARITY-functional-requirements.md-L0053); docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/nfr.md:31 (atom VERIFICATION-PARITY-nfr.md-L0031); …計4 atom（全行・line SHAはreceipt参照）",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HARNESS-L2-036",
+      "paired_l11_id": "HARNESS-L2-036",
+      "affected_requirement_and_consumer_ids": "HARNESS-L1-001/004; HARNESS-L2-022, HELIXOS-L2-020, 対L11",
+      "rationale": "L1-001/004の検証サービスに検証観点の完全性とlocal/CI同一契約を置く。CI実行の許可や採択を生成しない。",
+      "previous_register_revision": {
+        "registration_id": "MPR-RC-HARNESS-L2-036-001",
+        "candidate_semantic_digest": "sha256:f675d55cba85d5e5e947aa39f82d70faf2534af0002456f629decf4cf9b7ab52",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-verification-parity-coverage-receipt-2026-09-28.json",
+        "management_state_at_revision": "registered_proposal"
+      }
+    },
+    {
+      "identity": "HARNESS-L2-037",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
+      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
+      "recommended_choice": "A",
+      "choice_meaning": "採用（L2/L11 authority decision only）",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HARNESS-L2-037 HELIX W二段設計を合流する（composite candidate）",
+      "requirement_source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "acceptance_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "registration_id": "MPR-RC-HARNESS-L2-037-002",
+      "supersedes_registration_id": "MPR-RC-HARNESS-L2-037-001",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HARNESS-L1-001",
+        "HARNESS-L1-004",
+        "HARNESS-L1-009"
+      ],
+      "parent_l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+      "parent_l1_sha256_current": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+      "parent_planning_revision_recorded": "docs/helix-harness/L1-planning/product-intent.md@2197a4bc405d37f133bac4d5e96809c5afec58c1 sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f（確認済み親bytes。新候補の採用は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-w-two-stage-coverage-receipt-2026-09-28-r2.json#HARNESS-L2-037",
+      "receipt_id": "MPR-RCPT-HARNESS-W-TWO-STAGE-2026-09-28-R2",
+      "receipt_candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "start_heading_prefix": "### HARNESS-L2-037 ",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:3dcead1bfe0ef30da76a4f781b3e3c0b4817672269e7055a18cb4b35781b95f2",
+      "receipt_candidate_semantic_digest": "sha256:3dcead1bfe0ef30da76a4f781b3e3c0b4817672269e7055a18cb4b35781b95f2",
+      "current_candidate_semantic_digest": "sha256:3dcead1bfe0ef30da76a4f781b3e3c0b4817672269e7055a18cb4b35781b95f2",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 15,
+      "source_atom_set_digest": "sha256:c94feb041e9657b29d69637c4e376118d4f8e57427a53e0c30885c37154b3abc",
+      "source_reference_examples": [
+        {
+          "path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+          "held_snapshot_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+          "line": 59,
+          "source_line_sha256": "sha256:a7b461949218e37e67110567ee4aad528901e8a2536341fc6d23a5cb35590106",
+          "atom_id": "W-TWO-STAGE-functional-requirements.md-L0059"
+        },
+        {
+          "path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/technical-requirements.md",
+          "held_snapshot_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/technical-requirements.md",
+          "line": 169,
+          "source_line_sha256": "sha256:cc12f3fae870d6917c65a8c671f7de283c931f31788c61502561c894c6c52a5b",
+          "atom_id": "W-TWO-STAGE-technical-requirements.md-L0169"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md",
+          "line": 343,
+          "source_line_sha256": "sha256:bea5953013301440a1396cbf2df3ac94a6eeab65acdbd930ebdf465d187cf25b",
+          "atom_id": "W-TWO-STAGE-CONCEPT-L0343"
+        }
+      ],
+      "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/harness-w-two-stage-coverage-receipt-2026-09-28-r2.json#candidates[HARNESS-L2-037] に記録。代表例: docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md:59 (atom W-TWO-STAGE-functional-requirements.md-L0059); docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/technical-requirements.md:169 (atom W-TWO-STAGE-technical-requirements.md-L0169); archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md:343 (atom W-TWO-STAGE-CONCEPT-L0343); …計15 atom（全行・line SHAはreceipt参照）",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HARNESS-L2-037",
+      "paired_l11_id": "HARNESS-L2-037",
+      "affected_requirement_and_consumer_ids": "HARNESS-L1-001/004/009; HARNESS-L2-014/022/023, 対L11",
+      "rationale": "W二段設計の旧要求条件を一つのcomposite identityへ束ね、分割後に片側のみ成立した扱いを防ぐ。15 atomに限定し、未採択状態を明示。",
+      "previous_register_revision": {
+        "registration_id": "MPR-RC-HARNESS-L2-037-001",
+        "candidate_semantic_digest": "sha256:d7a06c9fd6d87b721318463970a204452d91b5d92416c2e9d0e183c4bcad726b",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-w-two-stage-coverage-receipt-2026-09-28.json",
+        "management_state_at_revision": "registered_proposal"
+      }
+    },
+    {
+      "identity": "HARNESS-L2-038",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
+      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
+      "recommended_choice": "A",
+      "choice_meaning": "採用（L2/L11 authority decision only）",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HARNESS-L2-038 候補 — 選択Reverse scopeの内容閉包",
+      "requirement_source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "acceptance_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "registration_id": "MPR-RC-HARNESS-L2-038-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HARNESS-L1-001",
+        "HARNESS-L1-003",
+        "HARNESS-L1-004",
+        "HARNESS-L1-006",
+        "HARNESS-L1-008"
+      ],
+      "parent_l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+      "parent_l1_sha256_current": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+      "parent_planning_revision_recorded": "docs/helix-harness/L1-planning/product-intent.md@7d08eb3d550d451093a5d3290b8d14c58a1d0250 sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f（親確認済み、新候補の採択は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-reverse-substance-coverage-receipt-2026-09-28.json#HARNESS-L2-038",
+      "receipt_id": "MPR-RCPT-HARNESS-REVERSE-SUBSTANCE-2026-09-28",
+      "receipt_candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "start_heading_prefix": "### HARNESS-L2-038 ",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:dd5b5450801617bbd6cc1dfd2e522420399ec58fb7675a286221dd0d9415767c",
+      "receipt_candidate_semantic_digest": "sha256:dd5b5450801617bbd6cc1dfd2e522420399ec58fb7675a286221dd0d9415767c",
+      "current_candidate_semantic_digest": "sha256:dd5b5450801617bbd6cc1dfd2e522420399ec58fb7675a286221dd0d9415767c",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 3,
+      "source_atom_set_digest": "sha256:068afcddf101fdcd7d0da8e743f6d5f2e89509f182888e6efd22674c4ca91cc4",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 112,
+          "source_line_sha256": "sha256:a25967dc2a741b6a422e72e8588a805b3fedb67a11ce3f6faf6231c37a159291",
+          "atom_id": "REVERSE-SUBSTANCE-infinity-loop-platform-requirements.md-L0112"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 125,
+          "source_line_sha256": "sha256:682e43b0cc0fbec1b79e033d7ce095a63722a6f1b41b6f6f4bd419118d043902",
+          "atom_id": "REVERSE-SUBSTANCE-infinity-loop-platform-requirements.md-L0125"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+          "line": 62,
+          "source_line_sha256": "sha256:314bc5eb2070da46663f99806c600611d49e21af3aedb8ce419bbaaa96bfeeea",
+          "atom_id": "REVERSE-SUBSTANCE-L1-infinity-loop-operational-test-design.md-L0062"
+        }
+      ],
+      "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/harness-reverse-substance-coverage-receipt-2026-09-28.json#candidates[HARNESS-L2-038] に記録。代表例: archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:112 (atom REVERSE-SUBSTANCE-infinity-loop-platform-requirements.md-L0112); archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:125 (atom REVERSE-SUBSTANCE-infinity-loop-platform-requirements.md-L0125); archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md:62 (atom REVERSE-SUBSTANCE-L1-infinity-loop-operational-test-design.md-L0062)",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HARNESS-L2-038",
+      "paired_l11_id": "HARNESS-L2-038",
+      "affected_requirement_and_consumer_ids": "HARNESS-L1-001/003/004/006/008; HARNESS-L2-019/003/004, 対L11",
+      "rationale": "選択されたReverse scope内の内容閉包だけを問う。ユーザー選択scopeを越える全体網羅へ膨らませず、source条件の現行親L1を保持。",
+      "previous_register_revision": null
+    },
+    {
+      "identity": "HARNESS-L2-039",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
+      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
+      "recommended_choice": "A",
+      "choice_meaning": "採用（L2/L11 authority decision only）",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HARNESS-L2-039 体験・UI・Frontend契約を同一scopeへ結ぶ（HARNESS-CORE composite候補、version_target: 1.0）",
+      "requirement_source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "acceptance_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "registration_id": "MPR-RC-HARNESS-L2-039-002",
+      "supersedes_registration_id": "MPR-RC-HARNESS-L2-039-001",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HARNESS-L1-001",
+        "HARNESS-L1-003",
+        "HARNESS-L1-004",
+        "HARNESS-L1-006",
+        "HARNESS-L1-008",
+        "HARNESS-L1-009"
+      ],
+      "parent_l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+      "parent_l1_sha256_current": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+      "parent_planning_revision_recorded": "docs/helix-harness/L1-planning/product-intent.md@84bd5e27e4001603744f59df3bd09342bbd513f3 sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f（固定親確認済み、新候補採択は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-experience-contract-coverage-receipt-2026-09-28-r2.json#HARNESS-L2-039",
+      "receipt_id": "MPR-RCPT-HARNESS-EXPERIENCE-CONTRACT-2026-09-28-R2",
+      "receipt_candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "start_heading_prefix": "### HARNESS-L2-039 ",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:63bc33928410b6c7329bef0320676cc4d1223da7b0d604b57786be27166f4422",
+      "receipt_candidate_semantic_digest": "sha256:63bc33928410b6c7329bef0320676cc4d1223da7b0d604b57786be27166f4422",
+      "current_candidate_semantic_digest": "sha256:63bc33928410b6c7329bef0320676cc4d1223da7b0d604b57786be27166f4422",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 22,
+      "source_atom_set_digest": "sha256:b100fb1721c2b29b20e72d118c2a75e469cd051fb1548fde16376060be73ef50",
+      "source_reference_examples": [
+        {
+          "path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "held_snapshot_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "line": 269,
+          "source_line_sha256": "sha256:0597d37a6d5651719e3224e3fd690a25df7c47e90bd1bfe2fb05d518646e36a2",
+          "atom_id": "REQSRC-SUP-00203"
+        },
+        {
+          "path": "docs/governance/helix-harness-requirements_v1.3.md",
+          "held_snapshot_path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+          "line": 254,
+          "source_line_sha256": "sha256:0597d37a6d5651719e3224e3fd690a25df7c47e90bd1bfe2fb05d518646e36a2",
+          "atom_id": "V13-BASE-6FAB-L0254"
+        },
+        {
+          "path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "held_snapshot_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "line": 271,
+          "source_line_sha256": "sha256:b9eac22955283f657a93a4fa32fc5473430a0ec08b984aacba7a19fb36cff62b",
+          "atom_id": "REQSRC-SUP-00204"
+        }
+      ],
+      "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/harness-experience-contract-coverage-receipt-2026-09-28-r2.json#candidates[HARNESS-L2-039] に記録。代表例: docs/governance/requirements-source/helix-requirements_v1.3.md:269 (atom REQSRC-SUP-00203); docs/governance/helix-harness-requirements_v1.3.md:254 (atom V13-BASE-6FAB-L0254; snapshot docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt); docs/governance/requirements-source/helix-requirements_v1.3.md:271 (atom REQSRC-SUP-00204); …計22 atom（全行・line SHAはreceipt参照）",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HARNESS-L2-039",
+      "paired_l11_id": "HARNESS-L2-039",
+      "affected_requirement_and_consumer_ids": "HARNESS-L1-001/003/004/006/008/009; HARNESS-L2-008/014/015/016, 対L11",
+      "rationale": "L1の設計提供・体験・scopeを基にUI/Frontend契約を同一scopeへつなぐcomposite。22 source atomsにある重複revisionを要求数に加算しない。",
+      "previous_register_revision": {
+        "registration_id": "MPR-RC-HARNESS-L2-039-001",
+        "candidate_semantic_digest": "sha256:da5a6672f196dffba6fb2bdc7d7133153744a1605460f70d0da1bbb7699580c9",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-experience-contract-coverage-receipt-2026-09-28.json",
+        "management_state_at_revision": "registered_proposal"
+      }
+    },
+    {
+      "identity": "HARNESS-L2-040",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
+      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
+      "recommended_choice": "A",
+      "choice_meaning": "採用（L2/L11 authority decision only）",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HARNESS-L2-040 全層ledger契約と層外anchor（HARNESS-CORE unit候補、version_target: 1.0）",
+      "requirement_source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "acceptance_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "registration_id": "MPR-RC-HARNESS-L2-040-002",
+      "supersedes_registration_id": "MPR-RC-HARNESS-L2-040-001",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HARNESS-L1-001",
+        "HARNESS-L1-003",
+        "HARNESS-L1-004"
+      ],
+      "parent_l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+      "parent_l1_sha256_current": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+      "parent_planning_revision_recorded": "docs/helix-harness/L1-planning/product-intent.md@559ae3ba4bfe660d666a57f227466d7dcdd440d9 sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f（親本文固定。候補採択は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-layer-ledger-extraction-coverage-receipt-2026-09-28-r2.json#HARNESS-L2-040#HARNESS-L2-040",
+      "receipt_id": "MPR-RCPT-HARNESS-LAYER-LEDGER-EXTRACTION-2026-09-28-R2",
+      "receipt_candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "start_heading_prefix": "### HARNESS-L2-040 ",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:c349606d7798e3f4eb5e6cb31e0618a83dcfa05f9fc888b0ce618f6d160757df",
+      "receipt_candidate_semantic_digest": "sha256:c349606d7798e3f4eb5e6cb31e0618a83dcfa05f9fc888b0ce618f6d160757df",
+      "current_candidate_semantic_digest": "sha256:c349606d7798e3f4eb5e6cb31e0618a83dcfa05f9fc888b0ce618f6d160757df",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 1,
+      "source_atom_set_digest": "sha256:b0c34e7f87f3c70133db44a9be1a38d00a994bc5abe6f65c3c3ca4faa3c290a0",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 136,
+          "source_line_sha256": "sha256:a62b63ab18b23ac9564d6c7ffca7580ac9471a6d6e7374f8e4a26c93f0441b6c",
+          "atom_id": "LAYER-LEDGER-HIL-FR-46-L0136"
+        }
+      ],
+      "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/harness-layer-ledger-extraction-coverage-receipt-2026-09-28-r2.json#HARNESS-L2-040#candidates[HARNESS-L2-040] に記録。代表例: archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:136 (atom LAYER-LEDGER-HIL-FR-46-L0136)",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HARNESS-L2-040",
+      "paired_l11_id": "HARNESS-L2-040",
+      "affected_requirement_and_consumer_ids": "HARNESS-L1-001/003/004; HELIXOS-L2-015/016/017, 対L11",
+      "rationale": "旧FR46の契約意味をHARNESS-COREへ限定採用。ledger writer/snapshot/登録実行は生存holdingへ分離済みで、OSの実行責務をHARNESSへ移さない。",
+      "previous_register_revision": {
+        "registration_id": "MPR-RC-HARNESS-L2-040-001",
+        "candidate_semantic_digest": "sha256:c349606d7798e3f4eb5e6cb31e0618a83dcfa05f9fc888b0ce618f6d160757df",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-layer-ledger-extraction-coverage-receipt-2026-09-28.json#HARNESS-L2-040",
+        "management_state_at_revision": "registered_proposal"
+      }
+    },
+    {
+      "identity": "HARNESS-L2-041",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
+      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
+      "recommended_choice": "A",
+      "choice_meaning": "採用（L2/L11 authority decision only）",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HARNESS-L2-041 active templateのobligation抽出とgap提示（HARNESS-CORE unit候補、version_target: 1.0）",
+      "requirement_source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "acceptance_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "registration_id": "MPR-RC-HARNESS-L2-041-002",
+      "supersedes_registration_id": "MPR-RC-HARNESS-L2-041-001",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HARNESS-L1-001",
+        "HARNESS-L1-003",
+        "HARNESS-L1-004",
+        "HARNESS-L1-009"
+      ],
+      "parent_l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+      "parent_l1_sha256_current": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+      "parent_planning_revision_recorded": "docs/helix-harness/L1-planning/product-intent.md@559ae3ba4bfe660d666a57f227466d7dcdd440d9 sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f（親本文固定。候補採択は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-layer-ledger-extraction-coverage-receipt-2026-09-28-r2.json#HARNESS-L2-041#HARNESS-L2-041",
+      "receipt_id": "MPR-RCPT-HARNESS-LAYER-LEDGER-EXTRACTION-2026-09-28-R2",
+      "receipt_candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "start_heading_prefix": "### HARNESS-L2-041 ",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260",
+      "receipt_candidate_semantic_digest": "sha256:d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260",
+      "current_candidate_semantic_digest": "sha256:d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 1,
+      "source_atom_set_digest": "sha256:a586be988524a1f702b1a2acc9118224cc0248ac16868193f9bebf132dd3e2f0",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 137,
+          "source_line_sha256": "sha256:785f0998ca9fd2192bcddc638d1ef1233551c251e307e631303642abe7713fad",
+          "atom_id": "TEMPLATE-EXTRACT-HIL-FR-47-L0137"
+        }
+      ],
+      "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/harness-layer-ledger-extraction-coverage-receipt-2026-09-28-r2.json#HARNESS-L2-041#candidates[HARNESS-L2-041] に記録。代表例: archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:137 (atom TEMPLATE-EXTRACT-HIL-FR-47-L0137)",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HARNESS-L2-041",
+      "paired_l11_id": "HARNESS-L2-041",
+      "affected_requirement_and_consumer_ids": "HARNESS-L1-001/003/004/009; HELIXOS-L2-015/016/017, 対L11",
+      "rationale": "旧FR47のactive-template obligation抽出とgap提示をCORE契約として限定採用。ledgerへの実登録・snapshot等の実行はholdingに保留し、FR47全体を実装済み扱いしない。",
+      "previous_register_revision": {
+        "registration_id": "MPR-RC-HARNESS-L2-041-001",
+        "candidate_semantic_digest": "sha256:d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-layer-ledger-extraction-coverage-receipt-2026-09-28.json#HARNESS-L2-041",
+        "management_state_at_revision": "registered_proposal"
+      }
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-072",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
+      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
+      "recommended_choice": "A",
+      "choice_meaning": "採用（L2/L11 authority decision only）",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HELIXINTELLIGENCE-L2-072 Judgment pack候補とshadow評価（単体候補、version_target: 1.0）",
+      "requirement_source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "acceptance_source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-072-004",
+      "supersedes_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-072-003",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXINTELLIGENCE-L1-001",
+        "HELIXINTELLIGENCE-L1-002",
+        "HELIXINTELLIGENCE-L1-008",
+        "HELIXINTELLIGENCE-L1-012",
+        "HELIXINTELLIGENCE-L1-013",
+        "HELIXINTELLIGENCE-L1-020"
+      ],
+      "parent_l1_path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+      "parent_l1_sha256_current": "8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8",
+      "parent_planning_revision_recorded": "docs/helix-intelligence/L1-planning/intelligence-intent.md@5c79869daba9a5c4fe426ddf3ad8e1bc380e64ca sha256:8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8（候補状態を保持）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/intelligence-judgment-pack-coverage-receipt-2026-09-28-r4.json#HELIXINTELLIGENCE-L2-072",
+      "receipt_id": "MPR-RCPT-INTELLIGENCE-JUDGMENT-PACK-2026-09-28-R4",
+      "receipt_candidate_digest_rule": "L2の既存HELIXINTELLIGENCE-L2-072節（追補見出し直前まで）、L2末尾追補節、L11の既存HELIXINTELLIGENCE-L2-072受入節（追補見出し直前まで）、L11末尾追補節をこの順に各末尾空行除去・LF1つで正規化し、UTF-8 bytesを直接連結したSHA-256。FR58の1.0保持範囲を限定し、後続版部分は同じsource atomから分割してsource holdingへ保留する。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+          "start_heading_prefix": "### HELIXINTELLIGENCE-L2-072 ",
+          "end_heading_prefix": "#### 旧HIL-FR-57/58"
+        },
+        {
+          "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+          "start_heading_prefix": "#### 旧HIL-FR-57/58",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        },
+        {
+          "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+          "start_heading_prefix": "### HELIXINTELLIGENCE-L2-072 ",
+          "end_heading_prefix": "#### HIL-FR-57/58"
+        },
+        {
+          "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+          "start_heading_prefix": "#### HIL-FR-57/58",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4",
+      "receipt_candidate_semantic_digest": "sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4",
+      "current_candidate_semantic_digest": "sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 3,
+      "source_atom_set_digest": "sha256:e86f73dc7cf95b10fc7ebe7dadaa791a3f43e9a57c958b2e61fbe9594c10429d",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 81,
+          "source_line_sha256": "sha256:7b052ddde5f76436cd96990bbf6eb99a0c7d51c9f168b99d67a5badadb1dd94b",
+          "atom_id": "JUDGMENT-PACK-infinity-loop-platform-requirements.md-L0081"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 147,
+          "source_line_sha256": "sha256:bf400678929dd5a360b3b3a355c96fab10830facda5f7d8111df82dc5fe59f4f",
+          "atom_id": "JUDGMENT-PACK-infinity-loop-platform-requirements.md-L0147"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 148,
+          "source_line_sha256": "sha256:b096435ba2e897bccd82ae2e590475a580a170f614cf3caf7ce6c151a8e1a833",
+          "atom_id": "JUDGMENT-PACK-infinity-loop-platform-requirements.md-L0148"
+        }
+      ],
+      "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/intelligence-judgment-pack-coverage-receipt-2026-09-28-r4.json#candidates[HELIXINTELLIGENCE-L2-072] に記録。代表例: archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:81 (atom JUDGMENT-PACK-infinity-loop-platform-requirements.md-L0081); archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:147 (atom JUDGMENT-PACK-infinity-loop-platform-requirements.md-L0147); archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:148 (atom JUDGMENT-PACK-infinity-loop-platform-requirements.md-L0148)",
+      "internal_PO_choice": {
+        "choices": [
+          "A: HARNESS/OS placement",
+          "B: INTELLIGENCE placement"
+        ],
+        "recommended": "B: INTELLIGENCE placement"
+      },
+      "paired_l2_id": "HELIXINTELLIGENCE-L2-072",
+      "paired_l11_id": "HELIXINTELLIGENCE-L2-072",
+      "affected_requirement_and_consumer_ids": "HELIXINTELLIGENCE-L1-001/002/008/012/013/020; HELIXINTELLIGENCE-L2-010/043, HELIXLABO-L2-055, 対L11",
+      "rationale": "候補L2/L11の1.0 shadow scope採用を推奨。候補本文内の所属案はA=HARNESS/OS、B=INTELLIGENCEの二択であり、B（INTELLIGENCE所属）を推奨する。source atomの改善signal由来loopはMPR-SH-JUDGMENT-PACK-002に保留し、3.0へ回す既決境界を維持。",
+      "previous_register_revision": {
+        "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-072-003",
+        "candidate_semantic_digest": "sha256:ec6cc30ed93863de6856d10be04c2578cc0a9d2cdc50641e18627e83396d2d32",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/intelligence-judgment-pack-coverage-receipt-2026-09-28-r3.json",
+        "management_state_at_revision": "registered_proposal"
+      }
+    },
+    {
+      "identity": "HELIXLABO-L2-061",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
+      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
+      "recommended_choice": "A",
+      "choice_meaning": "採用（L2/L11 authority decision only）",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HELIXLABO-L2-061 比較評価のtask・oracle隔離と履歴の完全性（単体追補候補、1.0）",
+      "requirement_source_path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "acceptance_source_path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "registration_id": "MPR-RC-HELIXLABO-L2-061-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXLABO-L1-005",
+        "HELIXLABO-L1-011"
+      ],
+      "parent_l1_path": "docs/helix-labo/L1-planning/labo-intent.md",
+      "parent_l1_sha256_current": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc",
+      "parent_planning_revision_recorded": "docs/helix-labo/L1-planning/labo-intent.md@ce670fc2b65a1054495d3b416bbecf79695c0e54 sha256:78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc（確認済み親bytes。新候補の採用は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/labo-bench-integrity-coverage-receipt-2026-09-28.json#HELIXLABO-L2-061",
+      "receipt_id": "MPR-RCPT-LABO-BENCH-INTEGRITY-2026-09-28",
+      "receipt_candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+          "start_heading_prefix": "### HELIXLABO-L2-061 ",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:f78b726f14dddee5af773d915b7d97b6d8cdef5ca14cf51034b0d4cd599f6a7f",
+      "receipt_candidate_semantic_digest": "sha256:f78b726f14dddee5af773d915b7d97b6d8cdef5ca14cf51034b0d4cd599f6a7f",
+      "current_candidate_semantic_digest": "sha256:f78b726f14dddee5af773d915b7d97b6d8cdef5ca14cf51034b0d4cd599f6a7f",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 29,
+      "source_atom_set_digest": "sha256:5084e9a321368963b2f688c8f282d0497758386954d8d15be279be857036a7eb",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "line": 96,
+          "source_line_sha256": "sha256:d11749a1c3677353483a801112628fd131db29f62a0b06229c38d0d958d052b8",
+          "atom_id": "BENCH-SRC-28FB139B26CD61CC51EE-L0096"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "line": 98,
+          "source_line_sha256": "sha256:96b01758d66ba31b60ded04503ff7d531cbe4da8a5139a4e566ab94fa938853d",
+          "atom_id": "BENCH-SRC-28FB139B26CD61CC51EE-L0098"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+          "line": 100,
+          "source_line_sha256": "sha256:8f8e0b1e2de94ab6346f8c33cb1a442a1b6209fe8a34e5a3a38d2b2209a84fc6",
+          "atom_id": "BENCH-SRC-28FB139B26CD61CC51EE-L0100"
+        }
+      ],
+      "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/labo-bench-integrity-coverage-receipt-2026-09-28.json#candidates[HELIXLABO-L2-061] に記録。代表例: archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md:96 (atom BENCH-SRC-28FB139B26CD61CC51EE-L0096); archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md:98 (atom BENCH-SRC-28FB139B26CD61CC51EE-L0098); archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md:100 (atom BENCH-SRC-28FB139B26CD61CC51EE-L0100); …計29 atom（全行・line SHAはreceipt参照）",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXLABO-L2-061",
+      "paired_l11_id": "HELIXLABO-L2-061",
+      "affected_requirement_and_consumer_ids": "HELIXLABO-L1-005/011; HELIXLABO-L2-055/059/060, 対L11",
+      "rationale": "比較task/oracle隔離と履歴完全性をL1-005/011の比較評価へ追補。29 atomは局所receiptの範囲。評価結果や候補採用自体を自動化しない。",
+      "previous_register_revision": null
+    },
+    {
+      "identity": "HELIXLABO-L2-062",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
+      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
+      "recommended_choice": "A",
+      "choice_meaning": "採用（L2/L11 authority decision only）",
+      "version_target_as_written": "2.0",
+      "title_and_kind": "### HELIXLABO-L2-062 外部調査の主張と原文箇所の照合（単体追補候補、2.0）",
+      "requirement_source_path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "acceptance_source_path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "registration_id": "MPR-RC-HELIXLABO-L2-062-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXLABO-L1-009"
+      ],
+      "parent_l1_path": "docs/helix-labo/L1-planning/labo-intent.md",
+      "parent_l1_sha256_current": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc",
+      "parent_planning_revision_recorded": "docs/helix-labo/L1-planning/labo-intent.md@97d96c9a6d4e289226cbc06b51fdd4a661e3bc63 sha256:78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc（確認済み親bytes。新候補の採用は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/labo-research-span-coverage-receipt-2026-09-28.json#HELIXLABO-L2-062",
+      "receipt_id": "MPR-RCPT-LABO-RESEARCH-SPAN-2026-09-28",
+      "receipt_candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+          "start_heading_prefix": "### HELIXLABO-L2-062 ",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:9d727cd363b5fe0dd34ad38a5c87ef81cc93a2d4a61c4d3e860adfbb648d2486",
+      "receipt_candidate_semantic_digest": "sha256:9d727cd363b5fe0dd34ad38a5c87ef81cc93a2d4a61c4d3e860adfbb648d2486",
+      "current_candidate_semantic_digest": "sha256:9d727cd363b5fe0dd34ad38a5c87ef81cc93a2d4a61c4d3e860adfbb648d2486",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 6,
+      "source_atom_set_digest": "sha256:86481c0a90be278c5b9e2a2f41d81eacdcb420d5169bc0ebf291fd60d5c819be",
+      "source_reference_examples": [
+        {
+          "path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          "held_snapshot_path": "docs/governance/requirements-source/pillar-functional-baseline-6fabd125.txt",
+          "line": 162,
+          "source_line_sha256": "sha256:4c8cb3d824ff07b025fcf531ae3780996f039aaa1349ee456771b51fe907b7ba",
+          "atom_id": "PILLAR-SPAN-BASELINE-L0162"
+        },
+        {
+          "path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          "held_snapshot_path": "docs/governance/requirements-source/pillar-functional-baseline-6fabd125.txt",
+          "line": 252,
+          "source_line_sha256": "sha256:74915308abcd30533c37226ea01db047a2f0a3e880e8a871db8fd8c6c500646b",
+          "atom_id": "PILLAR-SPAN-BASELINE-L0252"
+        },
+        {
+          "path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          "held_snapshot_path": "docs/governance/requirements-source/pillar-functional-baseline-6fabd125.txt",
+          "line": 253,
+          "source_line_sha256": "sha256:bc824df6a3d4a5cfd243c0a35e5b7d300a33ff46d290cf9567fc88a7cdeb7ec3",
+          "atom_id": "PILLAR-SPAN-BASELINE-L0253"
+        }
+      ],
+      "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/labo-research-span-coverage-receipt-2026-09-28.json#candidates[HELIXLABO-L2-062] に記録。代表例: docs/design/helix/L3-requirements/pillar-functional-requirements.md:162 (atom PILLAR-SPAN-BASELINE-L0162; snapshot docs/governance/requirements-source/pillar-functional-baseline-6fabd125.txt); docs/design/helix/L3-requirements/pillar-functional-requirements.md:252 (atom PILLAR-SPAN-BASELINE-L0252; snapshot docs/governance/requirements-source/pillar-functional-baseline-6fabd125.txt); docs/design/helix/L3-requirements/pillar-functional-requirements.md:253 (atom PILLAR-SPAN-BASELINE-L0253; snapshot docs/governance/requirements-source/pillar-functional-baseline-6fabd125.txt); …計6 atom（全行・line SHAはreceipt参照）",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXLABO-L2-062",
+      "paired_l11_id": "HELIXLABO-L2-062",
+      "affected_requirement_and_consumer_ids": "HELIXLABO-L1-009; HARNESS-L2-014/022, HELIXLABO-L2-055, 対L11",
+      "rationale": "L1-009と旧HR-FR-P8-01/HAC-P8-01a/bに沿って、外部調査claimのsource span・版・公開日と一次検証保留条件を採用する。2.0のversion_targetを維持し、1.0へ前倒ししない。",
+      "previous_register_revision": null
+    },
+    {
+      "identity": "HELIXLABO-L2-063",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
+      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
+      "recommended_choice": "A",
+      "choice_meaning": "採用（L2/L11 authority decision only）",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HELIXLABO-L2-063 修復手順の再発評価と予防候補への還流（構成体追補候補、1.0）",
+      "requirement_source_path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "acceptance_source_path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "registration_id": "MPR-RC-HELIXLABO-L2-063-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXLABO-L1-007",
+        "HELIXLABO-L1-008"
+      ],
+      "parent_l1_path": "docs/helix-labo/L1-planning/labo-intent.md",
+      "parent_l1_sha256_current": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc",
+      "parent_planning_revision_recorded": "docs/helix-labo/L1-planning/labo-intent.md@a5b8e8f3b3487f8ab3ff5b79bec923336ad89546 sha256:78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc（確認済み親bytes。新候補の採用は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/labo-repair-recurrence-coverage-receipt-2026-09-28.json#HELIXLABO-L2-063",
+      "receipt_id": "MPR-RCPT-LABO-REPAIR-RECURRENCE-2026-09-28",
+      "receipt_candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+          "start_heading_prefix": "### HELIXLABO-L2-063 ",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:274ea8f4562f7677b90f72bdbc8ba474540fdb74e3f6ff9e6632ad1274566c1a",
+      "receipt_candidate_semantic_digest": "sha256:274ea8f4562f7677b90f72bdbc8ba474540fdb74e3f6ff9e6632ad1274566c1a",
+      "current_candidate_semantic_digest": "sha256:274ea8f4562f7677b90f72bdbc8ba474540fdb74e3f6ff9e6632ad1274566c1a",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 6,
+      "source_atom_set_digest": "sha256:f425e39573294f16652aa45bf67acecea206f7a31e49627409927583e3afffd9",
+      "source_reference_examples": [
+        {
+          "path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          "held_snapshot_path": "docs/governance/requirements-source/pillar-functional-baseline-6fabd125.txt",
+          "line": 149,
+          "source_line_sha256": "sha256:b2e52e306bb0ff4b19a0571df20b70fa4536a0da0c26e95c6c3fbfe31d76fe94",
+          "atom_id": "PILLAR-RECIPE-BASELINE-L0149"
+        },
+        {
+          "path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          "held_snapshot_path": "docs/governance/requirements-source/pillar-functional-baseline-6fabd125.txt",
+          "line": 230,
+          "source_line_sha256": "sha256:2af0641d543e98f6c438aca84d176135ed4024c2aff0f807a9524cf859c633d5",
+          "atom_id": "PILLAR-RECIPE-BASELINE-L0230"
+        },
+        {
+          "path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          "held_snapshot_path": "docs/governance/requirements-source/pillar-functional-baseline-6fabd125.txt",
+          "line": 231,
+          "source_line_sha256": "sha256:00fbc4a5587007bcee8a7db7e7747f138f3ba4e27423d5a9a997d8c9715cbc52",
+          "atom_id": "PILLAR-RECIPE-BASELINE-L0231"
+        }
+      ],
+      "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/labo-repair-recurrence-coverage-receipt-2026-09-28.json#candidates[HELIXLABO-L2-063] に記録。代表例: docs/design/helix/L3-requirements/pillar-functional-requirements.md:149 (atom PILLAR-RECIPE-BASELINE-L0149; snapshot docs/governance/requirements-source/pillar-functional-baseline-6fabd125.txt); docs/design/helix/L3-requirements/pillar-functional-requirements.md:230 (atom PILLAR-RECIPE-BASELINE-L0230; snapshot docs/governance/requirements-source/pillar-functional-baseline-6fabd125.txt); docs/design/helix/L3-requirements/pillar-functional-requirements.md:231 (atom PILLAR-RECIPE-BASELINE-L0231; snapshot docs/governance/requirements-source/pillar-functional-baseline-6fabd125.txt); …計6 atom（全行・line SHAはreceipt参照）",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXLABO-L2-063",
+      "paired_l11_id": "HELIXLABO-L2-063",
+      "affected_requirement_and_consumer_ids": "HELIXLABO-L1-007/008; HARNESS-L2-003/004, HELIXLABO-L2-055/060, 対L11",
+      "rationale": "修復再発評価から予防候補へ還流するcompositeをL1-007/008へ限定追補。L11で再発評価と候補生成を区別し、予防候補の採択は保たない。",
+      "previous_register_revision": null
+    },
+    {
+      "identity": "HELIXLABO-L2-064",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
+      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
+      "recommended_choice": "A",
+      "choice_meaning": "採用（L2/L11 authority decision only）",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HELIXLABO-L2-064 Worker比較評価の候補名遮蔽と再現条件（単体候補、1.0）",
+      "requirement_source_path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "acceptance_source_path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "registration_id": "MPR-RC-HELIXLABO-L2-064-002",
+      "supersedes_registration_id": "MPR-RC-HELIXLABO-L2-064-001",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXLABO-L1-005",
+        "HELIXLABO-L1-011"
+      ],
+      "parent_l1_path": "docs/helix-labo/L1-planning/labo-intent.md",
+      "parent_l1_sha256_current": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc",
+      "parent_planning_revision_recorded": "docs/helix-labo/L1-planning/labo-intent.md@9ec73ddada62fadef0f6d6e4951937163ca669ac sha256:78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc（確認済み親bytes。新候補の採用は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/labo-worker-blind-coverage-receipt-2026-09-28-r2.json#HELIXLABO-L2-064",
+      "receipt_id": "MPR-RCPT-LABO-WORKER-BLIND-2026-09-28-R2",
+      "receipt_candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+          "start_heading_prefix": "### HELIXLABO-L2-064 ",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:e28da5b2f47c3d1327cc091003d14a7ab572a3282040b2ed7ec6614dae7079b8",
+      "receipt_candidate_semantic_digest": "sha256:e28da5b2f47c3d1327cc091003d14a7ab572a3282040b2ed7ec6614dae7079b8",
+      "current_candidate_semantic_digest": "sha256:e28da5b2f47c3d1327cc091003d14a7ab572a3282040b2ed7ec6614dae7079b8",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 1,
+      "source_atom_set_digest": "sha256:73e52664c1ba40a7a117de5b0d0d0a4547e7f0ed1b22ef1a9258c8d363814f7e",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 215,
+          "source_line_sha256": "sha256:9b5ec86c741f375d416ceb9796bf7a469794c8ddd4204e139adb1447c25bc5aa",
+          "atom_id": "WORKER-BLIND-HIL-NFR-35-L0215"
+        }
+      ],
+      "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/labo-worker-blind-coverage-receipt-2026-09-28-r2.json#candidates[HELIXLABO-L2-064] に記録。代表例: archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:215 (atom WORKER-BLIND-HIL-NFR-35-L0215)",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXLABO-L2-064",
+      "paired_l11_id": "HELIXLABO-L2-064",
+      "affected_requirement_and_consumer_ids": "HELIXLABO-L1-005/011; HELIXLABO-L2-055, 対L11",
+      "rationale": "比較時にWorker候補名を遮蔽し再現条件を保持するL1-005/011のBench能力。候補識別情報の分離を守り、結果の独立採択を生まない。",
+      "previous_register_revision": {
+        "registration_id": "MPR-RC-HELIXLABO-L2-064-001",
+        "candidate_semantic_digest": "sha256:adf1027631a9f2425b346bbe7929fe9dd7bc6ead7c6de4479ffefcd82169983f",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/labo-worker-blind-coverage-receipt-2026-09-28.json",
+        "management_state_at_revision": "registered_proposal"
+      }
+    },
+    {
+      "identity": "HELIXLABO-L2-065",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
+      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
+      "recommended_choice": "A",
+      "choice_meaning": "採用（L2/L11 authority decision only）",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HELIXLABO-L2-065 候補Worker資格とtask別性能証拠（単体候補、1.0）",
+      "requirement_source_path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "acceptance_source_path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "registration_id": "MPR-RC-HELIXLABO-L2-065-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXLABO-L1-005",
+        "HELIXLABO-L1-011"
+      ],
+      "parent_l1_path": "docs/helix-labo/L1-planning/labo-intent.md",
+      "parent_l1_sha256_current": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc",
+      "parent_planning_revision_recorded": "docs/helix-labo/L1-planning/labo-intent.md@5c79869daba9a5c4fe426ddf3ad8e1bc380e64ca sha256:78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc（2026-09-28確認済みL1親bytes。新候補の採択は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/labo-bench-qualification-scorecard-coverage-receipt-2026-09-28.json#HELIXLABO-L2-065",
+      "receipt_id": "MPR-RCPT-LABO-BENCH-QUALIFICATION-SCORECARD-2026-09-28",
+      "receipt_candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+          "start_heading_prefix": "### HELIXLABO-L2-065 ",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:6f50887b94a8d3341c55700393896798cc1273324a868071447bf0e5a95cf019",
+      "receipt_candidate_semantic_digest": "sha256:6f50887b94a8d3341c55700393896798cc1273324a868071447bf0e5a95cf019",
+      "current_candidate_semantic_digest": "sha256:6f50887b94a8d3341c55700393896798cc1273324a868071447bf0e5a95cf019",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 2,
+      "source_atom_set_digest": "sha256:aa4368b78705931ada9594f64010950907b753b3caa969bb5b762aec03fef271",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 151,
+          "source_line_sha256": "sha256:6a253f524c4ab31471c2288d9bda61ffc8134ce8e26092b34078e88ddc2d26cf",
+          "atom_id": "LABO-BENCH-HIL-FR-61-L0151"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 152,
+          "source_line_sha256": "sha256:d49d0dace5f0bcae2eaf3f4325ac09e71daee1aa1b7d2a7a032a699ecbe1cb70",
+          "atom_id": "LABO-BENCH-HIL-FR-62-L0152"
+        }
+      ],
+      "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/labo-bench-qualification-scorecard-coverage-receipt-2026-09-28.json#candidates[HELIXLABO-L2-065] に記録。代表例: archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:151 (atom LABO-BENCH-HIL-FR-61-L0151); archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:152 (atom LABO-BENCH-HIL-FR-62-L0152)",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXLABO-L2-065",
+      "paired_l11_id": "HELIXLABO-L2-065",
+      "affected_requirement_and_consumer_ids": "HELIXLABO-L1-005/011; HELIXLABO-L2-055, 対L11",
+      "rationale": "候補Workerの資格とtask別性能証拠をL1-005/011に沿って比較資格条件として採用。HIL-FR-61/62は既存IRと意味重複し、要求identityの二重計上をしない。",
+      "previous_register_revision": null
+    },
+    {
+      "identity": "HELIXOS-L2-030",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
+      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
+      "recommended_choice": "A",
+      "choice_meaning": "採用（L2/L11 authority decision only）",
+      "version_target_as_written": "未記載（候補本文の版条件を維持）",
+      "title_and_kind": "### HELIXOS-L2-030 HARNESS packageの生成・consumer検証・段階配布（単体候補）",
+      "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "registration_id": "MPR-RC-HELIXOS-L2-030-002",
+      "supersedes_registration_id": "MPR-RC-HELIXOS-L2-030-001",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXOS-L1-005",
+        "HELIXOS-L1-007"
+      ],
+      "parent_l1_path": "docs/helix-os/L1-planning/system-intent.md",
+      "parent_l1_sha256_current": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+      "parent_planning_revision_recorded": "docs/helix-os/L1-planning/system-intent.md@42a63af75a65d3b52a0be0c72d142979e1caf4ea sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e（確認済み親bytes、新候補の採用は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/os-package-acceptance-coverage-receipt-2026-09-28-r2.json#HELIXOS-L2-030",
+      "receipt_id": "MPR-RCPT-OS-PACKAGE-ACCEPTANCE-2026-09-28-R2",
+      "receipt_candidate_digest_rule": "L2の### HELIXOS-L2-030本文節と、文末## HELIXOS-L2-030生成index追補節をこの順に各末尾空行除去・LF1つで正規化して直接連結したUTF-8 SHA-256。既存行は移動/変更しない。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "start_heading_prefix": "### HELIXOS-L2-030 ",
+          "end_heading_prefix": "### HELIXOS-L2-031 "
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "start_heading_prefix": "## HELIXOS-L2-030 生成index",
+          "end_heading_prefix": "### HELIXOS-L2-037 "
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:4e51938b15f6d1217f50d1406df702d4346e3c02fd373f2a8cb6b4c5749f2af5",
+      "receipt_candidate_semantic_digest": "sha256:4e51938b15f6d1217f50d1406df702d4346e3c02fd373f2a8cb6b4c5749f2af5",
+      "current_candidate_semantic_digest": "sha256:4e51938b15f6d1217f50d1406df702d4346e3c02fd373f2a8cb6b4c5749f2af5",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 96,
+      "source_atom_set_digest": "sha256:022f39f2d7ee65b6615474d85d09d55972ab48f97dbb3925c99bda223b601f2c",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "line": 296,
+          "source_line_sha256": "sha256:1b7b9ab4319b1119d3ed92e0eb78b9c12c4ee83d74155785b66eb85dd3dce32f",
+          "atom_id": "REQSRC-SUP-00222"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "line": 298,
+          "source_line_sha256": "sha256:c9be7c1a6df50937ac0b1ec5da1acc44620f27b07acbda66ab4d02f6a417efe8",
+          "atom_id": "REQSRC-SUP-00223"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "line": 299,
+          "source_line_sha256": "sha256:9612b8055e09b8b625dedcf51972ea22c4f494775eb4bce0fdd3d09cc747f196",
+          "atom_id": "REQSRC-SUP-00224"
+        }
+      ],
+      "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/os-package-acceptance-coverage-receipt-2026-09-28-r2.json#candidates[HELIXOS-L2-030] に記録。代表例: archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md:296 (atom REQSRC-SUP-00222); archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md:298 (atom REQSRC-SUP-00223); archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md:299 (atom REQSRC-SUP-00224); …計96 atom（全行・line SHAはreceipt参照）",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXOS-L2-030",
+      "paired_l11_id": "HELIXOS-L2-030",
+      "affected_requirement_and_consumer_ids": "HELIXOS-L1-005/007; HARNESS-L2-010/011, HELIXOS-L2-014, 対L11",
+      "rationale": "HARNESS package生成・consumer検証・段階配布をOS L1-005/007へ接続。96 selected atomsの限定集合であり、全source/全distributionを主張しない。採択しても配布実行の許可ではない。",
+      "previous_register_revision": {
+        "registration_id": "MPR-RC-HELIXOS-L2-030-001",
+        "candidate_semantic_digest": "sha256:01beaa64126515611a6ec8d9ac7949aadc2ee52e7014fc98cd571ba28821001b",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/os-package-acceptance-coverage-receipt-2026-09-28.json",
+        "management_state_at_revision": "registered_proposal"
+      }
+    },
+    {
+      "identity": "HELIXOS-L2-031",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
+      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
+      "recommended_choice": "A",
+      "choice_meaning": "採用（L2/L11 authority decision only）",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HELIXOS-L2-031 CIの性能計測と正しさを維持する改善回収（単体追補候補、1.0）",
+      "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "registration_id": "MPR-RC-HELIXOS-L2-031-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXOS-L1-004",
+        "HELIXOS-L1-010"
+      ],
+      "parent_l1_path": "docs/helix-os/L1-planning/system-intent.md",
+      "parent_l1_sha256_current": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+      "parent_planning_revision_recorded": "docs/helix-os/L1-planning/system-intent.md@c0c0a8362f3000275dd01918ce6383ab6b346cc9 sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e（確認済み親bytes。新追補の採用は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/os-ci-performance-coverage-receipt-2026-09-28.json#HELIXOS-L2-031",
+      "receipt_id": "MPR-RCPT-OS-CI-PERFORMANCE-2026-09-28",
+      "receipt_candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "start_heading_prefix": "### HELIXOS-L2-031 ",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:a78fb330ca244dd067b1f13376d1c9245d0e96a43b716f0d53c3e4c2b7f36462",
+      "receipt_candidate_semantic_digest": "sha256:a78fb330ca244dd067b1f13376d1c9245d0e96a43b716f0d53c3e4c2b7f36462",
+      "current_candidate_semantic_digest": "sha256:a78fb330ca244dd067b1f13376d1c9245d0e96a43b716f0d53c3e4c2b7f36462",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 51,
+      "source_atom_set_digest": "sha256:c8ce735a02e4554bf8eec5f41b5ae000fc54aff4b25d6ccbd7037646086747ad",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-ci-performance-requirements.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-ci-performance-requirements.md",
+          "line": 14,
+          "source_line_sha256": "sha256:1e4aa32f3d9b6cbd4fd8af51250ed99e6ec486ac1a8d6279fbba9b55e82cc5f1",
+          "atom_id": "CI-PERF-79B70809D0A1EE2D5392-L0014"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-ci-performance-requirements.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-ci-performance-requirements.md",
+          "line": 16,
+          "source_line_sha256": "sha256:81d9158417f3c149157f6db3338973b7ee263e5ab9d078af8a2acb5eb1850a72",
+          "atom_id": "CI-PERF-79B70809D0A1EE2D5392-L0016"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-ci-performance-requirements.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-ci-performance-requirements.md",
+          "line": 17,
+          "source_line_sha256": "sha256:1364a836016d81af481282a69939956654ecadf9b9edc939c2340f6d40594340",
+          "atom_id": "CI-PERF-79B70809D0A1EE2D5392-L0017"
+        }
+      ],
+      "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/os-ci-performance-coverage-receipt-2026-09-28.json#candidates[HELIXOS-L2-031] に記録。代表例: archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-ci-performance-requirements.md:14 (atom CI-PERF-79B70809D0A1EE2D5392-L0014); archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-ci-performance-requirements.md:16 (atom CI-PERF-79B70809D0A1EE2D5392-L0016); archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-ci-performance-requirements.md:17 (atom CI-PERF-79B70809D0A1EE2D5392-L0017); …計51 atom（全行・line SHAはreceipt参照）",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXOS-L2-031",
+      "paired_l11_id": "HELIXOS-L2-031",
+      "affected_requirement_and_consumer_ids": "HELIXOS-L1-004/010; HARNESS-L2-022/023, 対L11",
+      "rationale": "CI性能計測と正しさを維持する改善回収をL1-004/010へ追補。旧数値や固定工程など別holdingに残したatomは本候補に混ぜず、新世代CIが未構築である現行境界を保つ。",
+      "previous_register_revision": null
+    },
+    {
+      "identity": "HELIXOS-L2-032",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
+      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
+      "recommended_choice": "A",
+      "choice_meaning": "採用（L2/L11 authority decision only）",
+      "version_target_as_written": "未記載（候補本文の版条件を維持）",
+      "title_and_kind": "### HELIXOS-L2-032 Known failureの限定quarantine（単体候補）",
+      "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "registration_id": "MPR-RC-HELIXOS-L2-032-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXOS-L1-004"
+      ],
+      "parent_l1_path": "docs/helix-os/L1-planning/system-intent.md",
+      "parent_l1_sha256_current": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+      "parent_planning_revision_recorded": "docs/helix-os/L1-planning/system-intent.md@c828cbaee2b60761d5061d6aee1560d95b9a72af sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e（確認済み親bytes。新候補の採用は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/os-quarantine-replay-coverage-receipt-2026-09-28.json#HELIXOS-L2-032",
+      "receipt_id": "MPR-RCPT-OS-QUARANTINE-REPLAY-2026-09-28",
+      "receipt_candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "start_heading_prefix": "### HELIXOS-L2-032 ",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:a506a984a1ef3e16895b5ed9d7c311093d66d64a3400a017239a007e6d4dd202",
+      "receipt_candidate_semantic_digest": "sha256:a506a984a1ef3e16895b5ed9d7c311093d66d64a3400a017239a007e6d4dd202",
+      "current_candidate_semantic_digest": "sha256:a506a984a1ef3e16895b5ed9d7c311093d66d64a3400a017239a007e6d4dd202",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 2,
+      "source_atom_set_digest": "sha256:01900cf9b49333a3c16a9306fb3b4c4ebf77c95427c910d50e2bda6f5fe50eca",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 119,
+          "source_line_sha256": "sha256:6d870c3962afee8d65d8da733500a313e7fd72892dfe8f502733e86e67c6e70f",
+          "atom_id": "QUARANTINE-REPLAY-032-IR-L0119"
+        },
+        {
+          "path": "docs/governance/legacy-migration/requirement/legacy-requirement-supplementary-source-carry-forward.jsonl",
+          "held_snapshot_path": "docs/governance/legacy-migration/requirement/legacy-requirement-supplementary-source-carry-forward.jsonl",
+          "line": 539,
+          "source_line_sha256": "sha256:b6d5abc761a4f7cfd1ae63b701c106a422d78f4724e69fd1e8338edab54199b9",
+          "atom_id": "QUARANTINE-REPLAY-032-AUX-L0539"
+        }
+      ],
+      "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/os-quarantine-replay-coverage-receipt-2026-09-28.json#candidates[HELIXOS-L2-032] に記録。代表例: archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:119 (atom QUARANTINE-REPLAY-032-IR-L0119); docs/governance/legacy-migration/requirement/legacy-requirement-supplementary-source-carry-forward.jsonl:539 (atom QUARANTINE-REPLAY-032-AUX-L0539)",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXOS-L2-032",
+      "paired_l11_id": "HELIXOS-L2-032",
+      "affected_requirement_and_consumer_ids": "HELIXOS-L1-004; HARNESS-L2-022, HELIXOS-L2-020/021, 対L11",
+      "rationale": "Known failureを限定quarantineし、source条件を満たす再現/replayを管理するL1-004候補。quarantineで失敗を隠す・CI greenを作る用途に広げず、receiptの2 atomだけを採る。",
+      "previous_register_revision": null
+    },
+    {
+      "identity": "HELIXOS-L2-033",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
+      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
+      "recommended_choice": "A",
+      "choice_meaning": "採用（L2/L11 authority decision only）",
+      "version_target_as_written": "未記載（候補本文の版条件を維持）",
+      "title_and_kind": "### HELIXOS-L2-033 Versioned engine/detector registryと同一snapshot再現証拠（単体候補）",
+      "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "registration_id": "MPR-RC-HELIXOS-L2-033-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXOS-L1-004"
+      ],
+      "parent_l1_path": "docs/helix-os/L1-planning/system-intent.md",
+      "parent_l1_sha256_current": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+      "parent_planning_revision_recorded": "docs/helix-os/L1-planning/system-intent.md@c828cbaee2b60761d5061d6aee1560d95b9a72af sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e（確認済み親bytes。新候補の採用は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/os-quarantine-replay-coverage-receipt-2026-09-28.json#HELIXOS-L2-033",
+      "receipt_id": "MPR-RCPT-OS-QUARANTINE-REPLAY-2026-09-28",
+      "receipt_candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "start_heading_prefix": "### HELIXOS-L2-033 ",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:580778c8ef3c0e4c4676d13de203c821f990893e9aa078d8d1d2f0b8901d2dbc",
+      "receipt_candidate_semantic_digest": "sha256:580778c8ef3c0e4c4676d13de203c821f990893e9aa078d8d1d2f0b8901d2dbc",
+      "current_candidate_semantic_digest": "sha256:580778c8ef3c0e4c4676d13de203c821f990893e9aa078d8d1d2f0b8901d2dbc",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 7,
+      "source_atom_set_digest": "sha256:e1c7c3e01724205c287ffb86177af2b47cfa96a04397bc4764ceaae39736f21e",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 115,
+          "source_line_sha256": "sha256:c28b208b2be946d06c8b068c1e7ae13123e68be2630864af5a2f586edc4601d9",
+          "atom_id": "QUARANTINE-REPLAY-033-IR-L0115"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 116,
+          "source_line_sha256": "sha256:5b18e75312a53e0f2b848393592508360a27b9918e18dd64201e1da8de209b18",
+          "atom_id": "QUARANTINE-REPLAY-033-IR-L0116"
+        },
+        {
+          "path": "docs/governance/legacy-migration/requirement/legacy-requirement-supplementary-source-carry-forward.jsonl",
+          "held_snapshot_path": "docs/governance/legacy-migration/requirement/legacy-requirement-supplementary-source-carry-forward.jsonl",
+          "line": 549,
+          "source_line_sha256": "sha256:46de48c6964dbaee66b12508be9f360b27096558aa4c19dc9082f8d457206528",
+          "atom_id": "QUARANTINE-REPLAY-033-AUX-L0549"
+        }
+      ],
+      "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/os-quarantine-replay-coverage-receipt-2026-09-28.json#candidates[HELIXOS-L2-033] に記録。代表例: archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:115 (atom QUARANTINE-REPLAY-033-IR-L0115); archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:116 (atom QUARANTINE-REPLAY-033-IR-L0116); docs/governance/legacy-migration/requirement/legacy-requirement-supplementary-source-carry-forward.jsonl:549 (atom QUARANTINE-REPLAY-033-AUX-L0549); …計7 atom（全行・line SHAはreceipt参照）",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXOS-L2-033",
+      "paired_l11_id": "HELIXOS-L2-033",
+      "affected_requirement_and_consumer_ids": "HELIXOS-L1-004; HARNESS-L2-022/023, HELIXOS-L2-020/032, 対L11",
+      "rationale": "engine/detectorを版と同一snapshotに束ねる再現証拠をL1-004に接続。7 atomsで対象を限定し、CI実行やregistry運転を現状の完成証拠としない。",
+      "previous_register_revision": null
+    },
+    {
+      "identity": "HELIXOS-L2-034",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
+      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
+      "recommended_choice": "A",
+      "choice_meaning": "採用（L2/L11 authority decision only）",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HELIXOS-L2-034 原指示・finding disposition証拠と異議履歴（単体候補、1.0）",
+      "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "registration_id": "MPR-RC-HELIXOS-L2-034-002",
+      "supersedes_registration_id": "MPR-RC-HELIXOS-L2-034-001",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXOS-L1-001",
+        "HELIXOS-L1-002",
+        "HELIXOS-L1-008"
+      ],
+      "parent_l1_path": "docs/helix-os/L1-planning/system-intent.md",
+      "parent_l1_sha256_current": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+      "parent_planning_revision_recorded": "docs/helix-os/L1-planning/system-intent.md@e51243ba38de14b6f9d9a64ba38497d5e0a04449 sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e（親確認済み、新候補の採択は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/os-directive-disposition-coverage-receipt-2026-09-28-r2.json#HELIXOS-L2-034",
+      "receipt_id": "MPR-RCPT-OS-DIRECTIVE-DISPOSITION-2026-09-28-R2",
+      "receipt_candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "start_heading_prefix": "### HELIXOS-L2-034 ",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:b4b8a68a15eabdc3dcf40d069fdf262389a43eec1f8ce8647e66ca22e7b9a600",
+      "receipt_candidate_semantic_digest": "sha256:b4b8a68a15eabdc3dcf40d069fdf262389a43eec1f8ce8647e66ca22e7b9a600",
+      "current_candidate_semantic_digest": "sha256:b4b8a68a15eabdc3dcf40d069fdf262389a43eec1f8ce8647e66ca22e7b9a600",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 5,
+      "source_atom_set_digest": "sha256:a4b5c63b2d483ebc5abbfd86ea0f6c6aa00da8009156c045f50dca84e1235f65",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 59,
+          "source_line_sha256": "sha256:f0e61fc0481c4643c32404f290014a58f14c4f856ec91e3dbfa086eb0f857e21",
+          "atom_id": "DIRECTIVE-DISPOSITION-infinity-loop-platform-requirements.md-L0059"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 126,
+          "source_line_sha256": "sha256:8df266db7301f4875642a310ae8d29b3d212dfcbb35307dbec4cb7be1b24317e",
+          "atom_id": "DIRECTIVE-DISPOSITION-infinity-loop-platform-requirements.md-L0126"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+          "line": 63,
+          "source_line_sha256": "sha256:bfca43fdb9b39778e7acc076f69dd827c646cfea917cf19ad8a71eb7f5fb0725",
+          "atom_id": "DIRECTIVE-DISPOSITION-L1-infinity-loop-operational-test-design.md-L0063"
+        }
+      ],
+      "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/os-directive-disposition-coverage-receipt-2026-09-28-r2.json#candidates[HELIXOS-L2-034] に記録。代表例: archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:59 (atom DIRECTIVE-DISPOSITION-infinity-loop-platform-requirements.md-L0059); archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:126 (atom DIRECTIVE-DISPOSITION-infinity-loop-platform-requirements.md-L0126); archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md:63 (atom DIRECTIVE-DISPOSITION-L1-infinity-loop-operational-test-design.md-L0063); …計5 atom（全行・line SHAはreceipt参照）",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXOS-L2-034",
+      "paired_l11_id": "HELIXOS-L2-034",
+      "affected_requirement_and_consumer_ids": "HELIXOS-L1-001/002/008; HARNESS-L2-024, HELIXOS-L2-019/020, 対L11",
+      "rationale": "原指示からfinding dispositionと異議履歴をL1-001/002/008へつなぎ、source/revision単位の追跡を保つ。5 atoms限定で、異議から要求意味や承認を自動生成しない。",
+      "previous_register_revision": {
+        "registration_id": "MPR-RC-HELIXOS-L2-034-001",
+        "candidate_semantic_digest": "sha256:a2ee8fa241d8a7693a6c688e0a1d4604718c93a023a7156975a6386f4f8b95d2",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/os-directive-disposition-coverage-receipt-2026-09-28.json",
+        "management_state_at_revision": "registered_proposal"
+      }
+    },
+    {
+      "identity": "HELIXOS-L2-035",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
+      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
+      "recommended_choice": "A",
+      "choice_meaning": "採用（L2/L11 authority decision only）",
+      "version_target_as_written": "未記載（候補本文の版条件を維持）",
+      "title_and_kind": "### HELIXOS-L2-035 PR lifecycle event intakeと監査job要求の冪等生成（単体候補）",
+      "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "registration_id": "MPR-RC-HELIXOS-L2-035-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXOS-L1-002",
+        "HELIXOS-L1-004",
+        "HELIXOS-L1-008"
+      ],
+      "parent_l1_path": "docs/helix-os/L1-planning/system-intent.md",
+      "parent_l1_sha256_current": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+      "parent_planning_revision_recorded": "docs/helix-os/L1-planning/system-intent.md@c50aabedca8edbdf3e5bb3110deecbdb49167f51 sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e（親確認済み、新候補の採択は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/os-pr-event-intake-coverage-receipt-2026-09-28.json#HELIXOS-L2-035",
+      "receipt_id": "MPR-RCPT-OS-PR-EVENT-INTAKE-2026-09-28",
+      "receipt_candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "start_heading_prefix": "### HELIXOS-L2-035 ",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:01ab4c9e572c5af909e4dbf46fb8f44866dd6cc7701dddc88b8dabbe14fb6c03",
+      "receipt_candidate_semantic_digest": "sha256:01ab4c9e572c5af909e4dbf46fb8f44866dd6cc7701dddc88b8dabbe14fb6c03",
+      "current_candidate_semantic_digest": "sha256:01ab4c9e572c5af909e4dbf46fb8f44866dd6cc7701dddc88b8dabbe14fb6c03",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 1,
+      "source_atom_set_digest": "sha256:e311d94a17014d05195a5c850c46d26af10d2de5b7cf51189e6fa856c0fd528e",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 54,
+          "source_line_sha256": "sha256:efbb1519b99cd0994be2ac840e6efd3f9e5706e131472ca4ac67e3ec78b013fa",
+          "atom_id": "PR-EVENT-INTAKE-infinity-loop-platform-requirements.md-L0054"
+        }
+      ],
+      "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/os-pr-event-intake-coverage-receipt-2026-09-28.json#candidates[HELIXOS-L2-035] に記録。代表例: archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:54 (atom PR-EVENT-INTAKE-infinity-loop-platform-requirements.md-L0054)",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXOS-L2-035",
+      "paired_l11_id": "HELIXOS-L2-035",
+      "affected_requirement_and_consumer_ids": "HELIXOS-L1-002/004/008; HARNESS-L2-024, 対L11",
+      "rationale": "PR lifecycle event intakeから監査job要求を冪等生成するL1-002/004/008の接続。1 source atom限定。event/jobは採否・完了・要求意味の権威にしない。",
+      "previous_register_revision": null
+    },
+    {
+      "identity": "HELIXOS-L2-036",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
+      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
+      "recommended_choice": "A",
+      "choice_meaning": "採用（L2/L11 authority decision only）",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HELIXOS-L2-036 Retrofit preflightのticket/plan接続（単体候補、version_target: 1.0）",
+      "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "registration_id": "MPR-RC-HELIXOS-L2-036-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXOS-L1-009",
+        "HELIXOS-L1-010",
+        "HELIXOS-L1-002"
+      ],
+      "parent_l1_path": "docs/helix-os/L1-planning/system-intent.md",
+      "parent_l1_sha256_current": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+      "parent_planning_revision_recorded": "docs/helix-os/L1-planning/system-intent.md@4e32651360504b7b206087960b37aefe27c4c1aa sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/os-retrofit-preflight-coverage-receipt-2026-09-28.json#HELIXOS-L2-036",
+      "receipt_id": "MPR-RCPT-OS-RETROFIT-PREFLIGHT-2026-09-28",
+      "receipt_candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "start_heading_prefix": "### HELIXOS-L2-036 ",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:82c3fc7c25b023604463f4c44c284440b9666342a0cf8a3bd6b1996394cb33b9",
+      "receipt_candidate_semantic_digest": "sha256:82c3fc7c25b023604463f4c44c284440b9666342a0cf8a3bd6b1996394cb33b9",
+      "current_candidate_semantic_digest": "sha256:82c3fc7c25b023604463f4c44c284440b9666342a0cf8a3bd6b1996394cb33b9",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 34,
+      "source_atom_set_digest": "sha256:6bee29220caab226fbc57eec6489319233721930a11bd63ab8d330b88b6d800a",
+      "source_reference_examples": [
+        {
+          "path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "held_snapshot_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "line": 624,
+          "source_line_sha256": "sha256:abe6948306eff0bd417364df922710b962f944be6c61f33edc9f50a24e03e140",
+          "atom_id": "REQSRC-SUP-00483"
+        },
+        {
+          "path": "docs/governance/helix-harness-requirements_v1.3.md",
+          "held_snapshot_path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+          "line": 605,
+          "source_line_sha256": "sha256:abe6948306eff0bd417364df922710b962f944be6c61f33edc9f50a24e03e140",
+          "atom_id": "V13-BASE-6FAB-L0605"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/retrofit.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/retrofit.md",
+          "line": 30,
+          "source_line_sha256": "sha256:5f2de82143e68e4ba6a83e5650157da9c37d3a87707a27f751191ff463bc9483",
+          "atom_id": "RETROFIT-PREFLIGHT-retrofit.md-L0030"
+        }
+      ],
+      "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/os-retrofit-preflight-coverage-receipt-2026-09-28.json#candidates[HELIXOS-L2-036] に記録。代表例: docs/governance/requirements-source/helix-requirements_v1.3.md:624 (atom REQSRC-SUP-00483); docs/governance/helix-harness-requirements_v1.3.md:605 (atom V13-BASE-6FAB-L0605; snapshot docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt); archive/legacy-generation-2026-09-14/root/docs/process/modes/retrofit.md:30 (atom RETROFIT-PREFLIGHT-retrofit.md-L0030); …計34 atom（全行・line SHAはreceipt参照）",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXOS-L2-036",
+      "paired_l11_id": "HELIXOS-L2-036",
+      "affected_requirement_and_consumer_ids": "HELIXOS-L1-009/010/002; HARNESS-L2-019/020, 対L11",
+      "rationale": "Retrofit preflightをticket/planへ接続し、L1-009/010/002の準備条件を扱う。34 atomsに限定し、preflightは実装・移行実施許可でない。",
+      "previous_register_revision": null
+    },
+    {
+      "identity": "HELIXOS-L2-037",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
+      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
+      "recommended_choice": "A",
+      "choice_meaning": "採用（L2/L11 authority decision only）",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HELIXOS-L2-037 週次drift・技術負債観測から既存ticket候補への引継ぎ（接続候補、version_target 1.0）",
+      "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "registration_id": "MPR-RC-HELIXOS-L2-037-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXOS-L1-006",
+        "HELIXOS-L1-002"
+      ],
+      "parent_l1_path": "docs/helix-os/L1-planning/system-intent.md",
+      "parent_l1_sha256_current": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+      "parent_planning_revision_recorded": "docs/helix-os/L1-planning/system-intent.md@fa50cfe2f5ff7e1439e5dea6127c51d078390309 sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/os-debt-drift-coverage-receipt-2026-09-28.json#HELIXOS-L2-037",
+      "receipt_id": "MPR-RCPT-OS-DEBT-DRIFT-2026-09-28",
+      "receipt_candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "start_heading_prefix": "### HELIXOS-L2-037 ",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:29563f1fdde0d9ace0b0850a5fc57bc6f6b595f460a5caa293c7eefb60905d64",
+      "receipt_candidate_semantic_digest": "sha256:29563f1fdde0d9ace0b0850a5fc57bc6f6b595f460a5caa293c7eefb60905d64",
+      "current_candidate_semantic_digest": "sha256:29563f1fdde0d9ace0b0850a5fc57bc6f6b595f460a5caa293c7eefb60905d64",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 5,
+      "source_atom_set_digest": "sha256:5d864aef04d5feabe92c7acc156147e4518b38c1e3f01f4d6062fd96044202cd",
+      "source_reference_examples": [
+        {
+          "path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+          "held_snapshot_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+          "line": 42,
+          "source_line_sha256": "sha256:cbfb45891382f2d4e88c5e18ad09c90a4df1f18f880dca3b32b04df63737563a",
+          "atom_id": "DEBT-DRIFT-functional-requirements.md-L0042"
+        },
+        {
+          "path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md",
+          "held_snapshot_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md",
+          "line": 133,
+          "source_line_sha256": "sha256:d8e47c20dd56ba978a50ddb82b24f8e0e36c7e1b448dcffd90ebb1eaab585fef",
+          "atom_id": "DEBT-DRIFT-business-requirements.md-L0133"
+        },
+        {
+          "path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md",
+          "held_snapshot_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md",
+          "line": 134,
+          "source_line_sha256": "sha256:e52575621c82fa6fefae723e090abd122fc16d63c81f8c2dad340aaec6e66587",
+          "atom_id": "DEBT-DRIFT-business-requirements.md-L0134"
+        }
+      ],
+      "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/os-debt-drift-coverage-receipt-2026-09-28.json#candidates[HELIXOS-L2-037] に記録。代表例: docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md:42 (atom DEBT-DRIFT-functional-requirements.md-L0042); docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md:133 (atom DEBT-DRIFT-business-requirements.md-L0133); docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md:134 (atom DEBT-DRIFT-business-requirements.md-L0134); …計5 atom（全行・line SHAはreceipt参照）",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXOS-L2-037",
+      "paired_l11_id": "HELIXOS-L2-037",
+      "affected_requirement_and_consumer_ids": "HELIXOS-L1-006/002; HARNESS-L2-008/024, HELIXOS-L2-014/019, 対L11",
+      "rationale": "weekly drift/debt観測を既存ticket候補へ渡すconnection候補。L1-006/002に整合するがticket候補から要求採用や優先順位の人間判断を生成しない。",
+      "previous_register_revision": null
+    },
+    {
+      "identity": "HELIXSECURITY-L2-029",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
+      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
+      "recommended_choice": "A",
+      "choice_meaning": "採用（L2/L11 authority decision only）",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HELIXSECURITY-L2-029 第三者runtimeへの委譲データと訓練利用条件（単体追補候補、1.0）",
+      "requirement_source_path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "acceptance_source_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "registration_id": "MPR-RC-HELIXSECURITY-L2-029-002",
+      "supersedes_registration_id": "MPR-RC-HELIXSECURITY-L2-029-001",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXSECURITY-L1-006",
+        "HELIXSECURITY-L1-007"
+      ],
+      "parent_l1_path": "docs/helix-security/L1-planning/security-intent.md",
+      "parent_l1_sha256_current": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d",
+      "parent_planning_revision_recorded": "docs/helix-security/L1-planning/security-intent.md@963a12a66e2d7356eb0ae0e082e18e9133257520 sha256:b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d（確認済み親bytes。新候補の採用は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/security-third-party-data-coverage-receipt-2026-09-28-r2.json#HELIXSECURITY-L2-029",
+      "receipt_id": "MPR-RCPT-SECURITY-THIRD-PARTY-DATA-2026-09-28-R2",
+      "receipt_candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "start_heading_prefix": "### HELIXSECURITY-L2-029 ",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:0faf8ac952341e621c2f76f7ef44249f03a673ac0a37180f0034914df00f4745",
+      "receipt_candidate_semantic_digest": "sha256:0faf8ac952341e621c2f76f7ef44249f03a673ac0a37180f0034914df00f4745",
+      "current_candidate_semantic_digest": "sha256:0faf8ac952341e621c2f76f7ef44249f03a673ac0a37180f0034914df00f4745",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 3,
+      "source_atom_set_digest": "sha256:9ec98ccc95deca5b0d0dd8aee54df08129862506e9b40c6c1becb3c8da1378a6",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 84,
+          "source_line_sha256": "sha256:3118efe1554c4ca3438938e76112b255450c927e1b10a515ec4b3216e505b830",
+          "atom_id": "THIRD-PARTY-DATA-HIL-BR-32-L0084"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 217,
+          "source_line_sha256": "sha256:e493bf6afa43ccf38100d8cec75a25bf7616d8b1d1937553a5b7f813a097923b",
+          "atom_id": "THIRD-PARTY-DATA-HIL-NFR-37-L0217"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 219,
+          "source_line_sha256": "sha256:401872570b54c51ecd23f4aee8c09f9ae0a729c10aba0260759038de35a3bc5e",
+          "atom_id": "THIRD-PARTY-DATA-HIL-NFR-39-L0219"
+        }
+      ],
+      "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/security-third-party-data-coverage-receipt-2026-09-28-r2.json#candidates[HELIXSECURITY-L2-029] に記録。代表例: archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:84 (atom THIRD-PARTY-DATA-HIL-BR-32-L0084); archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:217 (atom THIRD-PARTY-DATA-HIL-NFR-37-L0217); archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:219 (atom THIRD-PARTY-DATA-HIL-NFR-39-L0219)",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXSECURITY-L2-029",
+      "paired_l11_id": "HELIXSECURITY-L2-029",
+      "affected_requirement_and_consumer_ids": "HELIXSECURITY-L1-006/007; HELIXSECURITY-L2-006/007, HELIXOS-L2-018, 対L11",
+      "rationale": "第三者runtimeへの委譲データ分類、opt-out条件とローカル検証をL1-006/007へ追補。残るHIL-BR-32条件はMPR-SH-THIRD-PARTY-DATA-002/REG-06に保留し、この候補単独で全BRを被覆しない。",
+      "previous_register_revision": {
+        "registration_id": "MPR-RC-HELIXSECURITY-L2-029-001",
+        "candidate_semantic_digest": "sha256:5adab279ee05cec515cd13870d200754ee0ba2f0e2e18168741cef9ceb80008c",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/security-third-party-data-coverage-receipt-2026-09-28.json",
+        "management_state_at_revision": "registered_proposal"
+      }
+    },
+    {
+      "identity": "HELIXSECURITY-L2-030",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
+      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
+      "recommended_choice": "A",
+      "choice_meaning": "採用（L2/L11 authority decision only）",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HELIXSECURITY-L2-030 agentic機能の自動適用範囲を広げるときの確認（単体追補候補、1.0）",
+      "requirement_source_path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "acceptance_source_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "registration_id": "MPR-RC-HELIXSECURITY-L2-030-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXSECURITY-L1-008",
+        "HELIXSECURITY-L1-010",
+        "HELIXSECURITY-L1-011"
+      ],
+      "parent_l1_path": "docs/helix-security/L1-planning/security-intent.md",
+      "parent_l1_sha256_current": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d",
+      "parent_planning_revision_recorded": "docs/helix-security/L1-planning/security-intent.md@2a717b77edec37a2c2b7bc55eed918274b08255f sha256:b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d（確認済み親bytes。新候補の採用は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/security-agentic-promotion-coverage-receipt-2026-09-28.json#HELIXSECURITY-L2-030",
+      "receipt_id": "MPR-RCPT-SECURITY-AGENTIC-PROMOTION-2026-09-28",
+      "receipt_candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "start_heading_prefix": "### HELIXSECURITY-L2-030 ",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:9986b0be6d71313db5ad7de6125e90cb278d7d47f7c93d8eee88357e3d1688e8",
+      "receipt_candidate_semantic_digest": "sha256:9986b0be6d71313db5ad7de6125e90cb278d7d47f7c93d8eee88357e3d1688e8",
+      "current_candidate_semantic_digest": "sha256:9986b0be6d71313db5ad7de6125e90cb278d7d47f7c93d8eee88357e3d1688e8",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 6,
+      "source_atom_set_digest": "sha256:63f6187a13dcbd3c24e0ca1ecd8653a67afb018d979db6ec81af122eb0447c59",
+      "source_reference_examples": [
+        {
+          "path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          "held_snapshot_path": "docs/governance/requirements-source/pillar-functional-baseline-6fabd125.txt",
+          "line": 181,
+          "source_line_sha256": "sha256:0c9cc40080245f8f08c5f7e3089260f2e6c4166d5dc6245f22f1cd60ef941040",
+          "atom_id": "AGENTIC-PROMOTION-baseline-HR-NFR-P8-03-L0181"
+        },
+        {
+          "path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          "held_snapshot_path": "docs/governance/requirements-source/pillar-functional-baseline-6fabd125.txt",
+          "line": 290,
+          "source_line_sha256": "sha256:10991f417d1ca4e5419eece3d206c078850874269ba0fff95dc4af758b9d4bfb",
+          "atom_id": "AGENTIC-PROMOTION-baseline-HAC-N8-03a-L0290"
+        },
+        {
+          "path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          "held_snapshot_path": "docs/governance/requirements-source/pillar-functional-baseline-6fabd125.txt",
+          "line": 291,
+          "source_line_sha256": "sha256:fe54db8b1031c079cbfb8956dd6dd494fdb2bed46ebd9b41a9140c237548070d",
+          "atom_id": "AGENTIC-PROMOTION-baseline-HAC-N8-03b-L0291"
+        }
+      ],
+      "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/security-agentic-promotion-coverage-receipt-2026-09-28.json#candidates[HELIXSECURITY-L2-030] に記録。代表例: docs/design/helix/L3-requirements/pillar-functional-requirements.md:181 (atom AGENTIC-PROMOTION-baseline-HR-NFR-P8-03-L0181; snapshot docs/governance/requirements-source/pillar-functional-baseline-6fabd125.txt); docs/design/helix/L3-requirements/pillar-functional-requirements.md:290 (atom AGENTIC-PROMOTION-baseline-HAC-N8-03a-L0290; snapshot docs/governance/requirements-source/pillar-functional-baseline-6fabd125.txt); docs/design/helix/L3-requirements/pillar-functional-requirements.md:291 (atom AGENTIC-PROMOTION-baseline-HAC-N8-03b-L0291; snapshot docs/governance/requirements-source/pillar-functional-baseline-6fabd125.txt); …計6 atom（全行・line SHAはreceipt参照）",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXSECURITY-L2-030",
+      "paired_l11_id": "HELIXSECURITY-L2-030",
+      "affected_requirement_and_consumer_ids": "HELIXSECURITY-L1-008/010/011; HELIXINTELLIGENCE-L2-010/047, HELIXOS-L2-020, 対L11",
+      "rationale": "agentic自動適用範囲を広げる際の確認をL1-008/010/011へ接続。promotion条件は対象範囲のauthority gateとして扱い、既決許可の再利用を妨げる常時人手承認に変えない。",
+      "previous_register_revision": null
+    },
+    {
+      "identity": "HELIXSECURITY-L2-031",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
+      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
+      "recommended_choice": "A",
+      "choice_meaning": "採用（L2/L11 authority decision only）",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HELIXSECURITY-L2-031 追加worker runtimeのproposal-only・隔離境界（単体追補候補、1.0）",
+      "requirement_source_path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "acceptance_source_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "registration_id": "MPR-RC-HELIXSECURITY-L2-031-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXSECURITY-L1-007",
+        "HELIXSECURITY-L1-008"
+      ],
+      "parent_l1_path": "docs/helix-security/L1-planning/security-intent.md",
+      "parent_l1_sha256_current": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d",
+      "parent_planning_revision_recorded": "docs/helix-security/L1-planning/security-intent.md@2beddd2b9e295f46bd6086de5f14148421144513 sha256:b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d（確認済み親bytes。新候補の採用は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/security-additional-worker-coverage-receipt-2026-09-28.json#HELIXSECURITY-L2-031",
+      "receipt_id": "MPR-RCPT-SECURITY-ADDITIONAL-WORKER-2026-09-28",
+      "receipt_candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "start_heading_prefix": "### HELIXSECURITY-L2-031 ",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:db2fd29654cc210b3c06568f4e421560b069d36f8d69f04fbe413d83ad532765",
+      "receipt_candidate_semantic_digest": "sha256:db2fd29654cc210b3c06568f4e421560b069d36f8d69f04fbe413d83ad532765",
+      "current_candidate_semantic_digest": "sha256:db2fd29654cc210b3c06568f4e421560b069d36f8d69f04fbe413d83ad532765",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 1,
+      "source_atom_set_digest": "sha256:742e42bee0bfc000378aa350c1ab0d5384b30e08c0dcabeaf1ff326edb669a1e",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 84,
+          "source_line_sha256": "sha256:3118efe1554c4ca3438938e76112b255450c927e1b10a515ec4b3216e505b830",
+          "atom_id": "THIRD-PARTY-DATA-HIL-BR-32-L0084"
+        }
+      ],
+      "source_reference_note": "全atomの原source path・行・行SHA-256はreceipt内の docs/governance/audits/requirement-registration/security-additional-worker-coverage-receipt-2026-09-28.json#candidates[HELIXSECURITY-L2-031] に記録。代表例: archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:84 (atom THIRD-PARTY-DATA-HIL-BR-32-L0084)",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXSECURITY-L2-031",
+      "paired_l11_id": "HELIXSECURITY-L2-031",
+      "affected_requirement_and_consumer_ids": "HELIXSECURITY-L1-007/008; HELIXOS-L2-018/020, HELIXINTELLIGENCE-L2-010, 対L11",
+      "rationale": "追加Worker runtimeのproposal-only・隔離境界をL1-007/008へ限定追補。実行隔離とauthority境界を保持し、全候補の業務意味をSecurityへ移さない。",
+      "previous_register_revision": null
+    }
+  ]
+}
