@@ -50,3 +50,7 @@ HARNESS-L2-042のreceiptは旧v1.3 §4.2 L119の異なる2 source revisionを別
 ## 後続訂正：HARNESS-L2-039のUX証拠条件
 
 初版25件の基準表は登録`MPR-RC-HARNESS-L2-039-002`を保持する。旧v1.3 §10 L650とbaseline L631の同文別revisionを候補039へ追補した後の生存registerは`MPR-RC-HARNESS-L2-039-003`であり、r3 coverage receiptは24 revision atomsを局所対象とする。対L11もUX完成主張時の7軸current evidence欠落・stale拒否を追補した。候補039は引き続き未採択で、27件の総数は変わらない。
+
+## 後続追加：HARNESS-L2-043
+
+旧HIL-FR-55のTemplate Example Calibratorの意味条件を、[HARNESS-L2-043](../../../helix-harness/L2-requirements/product-requirements.md#L986)と[対L11](../../../helix-harness/L11-acceptance/product-acceptance.md#L723)へ単体候補として再導出した。登録`MPR-RC-HARNESS-L2-043-001`、[coverage receipt](../requirement-registration/harness-template-example-coverage-receipt-2026-09-28.json)は旧原文1行の局所無損失を示す。候補は未採択であり、初版25件の履歴と#2238/#2241後の27件の履歴を変更しない。生存候補の判断集合は28件となる。

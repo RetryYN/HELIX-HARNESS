@@ -1,10 +1,10 @@
 {
   "packet_kind": "recommendation_for_PO_decision_only",
-  "basis_commit": "aad1f3fd906fd0508a9b53b5a9a66608f6e2f44b",
+  "basis_commit": "3296c1175bf479e2086dc913c13eb23803d11aa0",
   "as_of": "2026-09-28",
-  "count": 27,
-  "status": "All 27 are live registered proposals (authority_effect none); no adoption, hold, reject, implementation, or acceptance run is inferred from merged PRs or presence of L2/L11 text.",
-  "decision_grouping": "No shared adoption decision is bundled: each identity has its own choice. The entries share a rendering format only. In particular, the recommendation for HELIXINTELLIGENCE-L2-072 is limited to its 1.0 shadow subset while its remaining improvement loop stays in source holding; HELIX-LABO-L2-062 preserves 2.0. The two post-initial additions, HARNESS-L2-042 and HELIXOS-L2-038, are independent PO decisions.",
+  "count": 28,
+  "status": "All 28 are live registered proposals (authority_effect none); HARNESS-L2-043 is added by the current PR and is not yet merged. No adoption, hold, reject, implementation, or acceptance run is inferred from PRs or L2/L11 text.",
+  "decision_grouping": "No shared adoption decision is bundled: each identity has its own choice. The entries share a rendering format only. In particular, the recommendation for HELIXINTELLIGENCE-L2-072 is limited to its 1.0 shadow subset while its remaining improvement loop stays in source holding; HELIX-LABO-L2-062 preserves 2.0. The three post-initial additions, HARNESS-L2-042, HELIXOS-L2-038 and HARNESS-L2-043, are independent PO decisions.",
   "candidates": [
     {
       "identity": "HARNESS-L2-034",
@@ -718,6 +718,68 @@
         "path": "docs/helix-harness/L2-requirements/product-requirements.md",
         "line": 970,
         "excerpt": "### HARNESS-L2-042 Design Refactor判定とepisode分離（⑤のunit候補、version_target: 1.0）",
+        "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
+      }
+    },
+    {
+      "identity": "HARNESS-L2-043",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "source-backed bounded carry-forward/re-derivation; precise atom mapping is in the cited coverage receipt",
+      "new_meaning_choice": "PO is asked to accept or defer the exact candidate identity, split/composite boundary, scope and consumer contract. A source atom or receipt supports provenance but does not imply that this exact L2 meaning was already decided.",
+      "recommended_choice": "A",
+      "choice_meaning": "採用（L2/L11 authority decision only）",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HARNESS-L2-043 active templateのrule／branch別例coverage（HARNESS-CORE unit候補、version_target: 1.0）",
+      "requirement_source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "acceptance_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "registration_id": "MPR-RC-HARNESS-L2-043-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HARNESS-L1-001",
+        "HARNESS-L1-004",
+        "HARNESS-L1-009"
+      ],
+      "parent_l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+      "parent_l1_sha256_current": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+      "parent_planning_revision_recorded": "docs/helix-harness/L1-planning/product-intent.md@3296c1175bf479e2086dc913c13eb23803d11aa0 sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f（対象本文固定。043候補採択は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-template-example-coverage-receipt-2026-09-28.json#HARNESS-L2-043",
+      "receipt_id": "MPR-RCPT-HARNESS-TEMPLATE-EXAMPLE-2026-09-28",
+      "receipt_candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "start_heading_prefix": "### HARNESS-L2-043 ",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:847498df092d017760007e4b52e3fd3a230ac7e075cde44083f8149e47aace29",
+      "receipt_candidate_semantic_digest": "sha256:847498df092d017760007e4b52e3fd3a230ac7e075cde44083f8149e47aace29",
+      "current_candidate_semantic_digest": "sha256:847498df092d017760007e4b52e3fd3a230ac7e075cde44083f8149e47aace29",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 1,
+      "source_atom_set_digest": "sha256:9293e8accee00d8e5d4bfb32f7844f16365c99498ebd945fed0df71942c4a4c4",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "held_snapshot_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 145,
+          "source_line_sha256": "sha256:78a2e6c819e73153ce2bbd832c0f87777dba08750fa1b84fcafc916fa7cafa30",
+          "atom_id": "TEMPLATE-EXAMPLE-HIL-FR-55-L0145"
+        }
+      ],
+      "source_reference_note": "旧HIL-FR-55原文1行のasset/path/行/file・line SHA-256はcoverage receiptのHARNESS-L2-043節とsource-lines台帳に保持。IR HIL-FR-55およびHR-FR-HIL-20/HAC/HATは関連sourceとして残し、この局所receiptの全量被覆へ換算しない。",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HARNESS-L2-043",
+      "paired_l11_id": "HARNESS-L2-043",
+      "affected_requirement_and_consumer_ids": "HARNESS-L1-001/004/009; HARNESS-L2-004/009/025/026/041, 対L11",
+      "rationale": "旧HIL-FR-55のTemplate Example Calibratorを、041のobligation抽出と分けたCORE単体候補として保持する。適用rule/branchごとのcanonical positiveと境界negativeを最低一対、risk未被覆時だけ追加例を要求し、例数でなくcoverage十分性を判定する。旧template engine/schema/runtimeやIR補助契約全体の移植・採択は主張しない。",
+      "previous_register_revision": null,
+      "version_target_evidence": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "line": 986,
+        "excerpt": "### HARNESS-L2-043 active templateのrule／branch別例coverage（HARNESS-CORE unit候補、version_target: 1.0）",
         "interpretation": "本文に明記された候補の版印。採択、v0.1収載、実装許可ではない。"
       }
     },
@@ -2109,5 +2171,5 @@
     }
   ],
   "initial_25_basis_commit": "f4b2a2b02cf5ea3134e27be0a65c100395161bad",
-  "progression": "初版25候補（initial_25_basis_commit）に、merge済み未採択候補2件（HARNESS-L2-042: PR #2241、HELIXOS-L2-038: PR #2238）を追加し、27候補へ更新。 HARNESS-L2-039はこの更新でr2→r3/登録-002→-003へ訂正（旧v1.3 L650とbaseline L631の7軸UX証拠を追加）。件数27は不変。"
+  "progression": "初版25候補にmerge済み未採択のHARNESS-L2-042/HELIXOS-L2-038を加え27候補。#2244でHARNESS-L2-039のr3/登録-003を統合。今回のPRで旧HIL-FR-55のHARNESS-L2-043を追加し、判断集合は28候補。043は未採択のままで、旧IR・補助契約全体のsuccessorを生成しない。"
 }

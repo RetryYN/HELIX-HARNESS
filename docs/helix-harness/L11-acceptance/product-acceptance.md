@@ -719,3 +719,15 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 **未見例**：未公開の同scope consumerまたは依存関係を含む変更候補を与え、固定された契約とoracleに照らしてDesign Refactorの根拠を照合する。consumer、oracle、依存graphまたは対象revisionを特定できない範囲はunknown／未評価に残す。判定の成功を別scope・別revision、機能追加、下流の実行結果へ外挿しない。
 
 **戻し先**：意味判定・consumer・graphの不足はsource／設計／契約ownerへ、対設計の欠落は`HARNESS-L2-019`へ、要求または契約の意味変更は`HARNESS-L2-003/004/016`のBackflow先へ戻す。実行・ticket・CIの成否は該当OSまたは利用者の運転契約で扱う。
+
+### HARNESS-L2-043 active templateのrule／branch別例coverage
+
+**対応要求**：HARNESS-L2-043（HARNESS-CORE unit候補、`version_target: 1.0`、未採択）。親L1はHARNESS-L1-001/004/009。043は例coverage契約を定め、template選択・適用はL2-009、active templateの要素抽出は041、設計unit/compositeと対oracleは026/025へ分ける。旧sourceはHIL-FR-55、`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:145`（line SHA-256 `78a2e6c819e73153ce2bbd832c0f87777dba08750fa1b84fcafc916fa7cafa30`）。
+
+**正常例**：選択されたactive template revisionと適用scopeの全validation rule／applicability branchを分母として確定する。各rule／branchにcanonical positive例と境界negative例を最低1件ずつ対応付け、例ごとに適用条件、期待する受理／拒否、oracle、source spanを照合する。状態遷移、failure、security、migration、multi-runtime差異については対象risk分析で未被覆と特定された場合だけ追加例と理由を示す。例の数ではなく、適用rule／branchと該当riskが内容上検査されたかを判定する。
+
+**誤りを含む例**：いずれかの適用rule／branchについてpositiveまたは境界negativeを欠く、positive例がrule条件を満たさない、negative例が境界条件を試さない、期待結果とoracleが結び付かない、適用branchを飛ばす、または例数だけで十分とする入力は不合格または未評価とする。risk分析で未被覆とされた領域に追加例がない場合もcoverage未完とする。TBD・unknown・適用性不明を推測で埋めない。
+
+**未見例**：作成側に伏せたactive template revisionまたは新しいapplicability branchを与え、対象rule／branchの分母を更新し、positive／boundary-negative例とoracleへの対応を照合する。新revisionやrisk根拠が欠落・矛盾・staleの場合は十分性を主張せずunknown／未評価にする。結果を未選択template、別scope、別revisionへ外挿しない。
+
+**戻し先と境界**：templateのactive版・適用条件不足はHARNESS-L2-009/対象template owner、rule／branch抽出の不足はHARNESS-L2-041相当の契約owner、oracle・検証義務・risk根拠の不足はHARNESS-L2-004/該当ownerへ戻す。例のcoverage結果は要求合意、設計成立、L3承認、候補採択、実装、OS実行または利用者受入を生成しない。旧schemaやruntime固有形式を受入条件にしない。

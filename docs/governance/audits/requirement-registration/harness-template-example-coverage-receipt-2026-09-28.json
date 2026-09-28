@@ -1,0 +1,58 @@
+{
+  "receipt_id": "MPR-RCPT-HARNESS-TEMPLATE-EXAMPLE-2026-09-28",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom ID順に改行で区切る。末尾改行なし。",
+  "scope": "旧HIL-FR-55のarchive L1要求表145行だけを入力とし、active templateのvalidation rule/applicability branch別の例coverage十分性をHARNESS-CORE 043候補へ再導出する。旧IR recordとHR-FR-HIL-20/HAC/HATの関連は別source holdingに残し、全system contract、旧template engine、実装、受入実行、正式successor割当、採択の被覆を主張しない。",
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/harness-template-example-source-lines-2026-09-28.jsonl#HIL-FR-55",
+  "l11_file_sha256": "sha256:e214cbf69301dd44ce45421041747fd5047c2ff8c349da23efb8131d48a07320",
+  "candidate_state": "registered_proposal; authority_effect:none; PO未採択",
+  "candidates": [
+    {
+      "requirement_identity": "HARNESS-L2-043",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HARNESS-L1-001",
+        "HARNESS-L1-004",
+        "HARNESS-L1-009"
+      ],
+      "candidate_semantic_digest": "sha256:847498df092d017760007e4b52e3fd3a230ac7e075cde44083f8149e47aace29",
+      "source_atom_set_digest": "sha256:9293e8accee00d8e5d4bfb32f7844f16365c99498ebd945fed0df71942c4a4c4",
+      "source_atom_count": 1,
+      "source_collection_scope": "旧HIL-FR-55のarchive L1要求表145行だけを入力とし、active templateのvalidation rule/applicability branch別の例coverage十分性をHARNESS-CORE 043候補へ再導出する。旧IR recordとHR-FR-HIL-20/HAC/HATの関連は別source holdingに残し、全system contract、旧template engine、実装、受入実行、正式successor割当、採択の被覆を主張しない。",
+      "atoms": [
+        {
+          "atom_id": "TEMPLATE-EXAMPLE-HIL-FR-55-L0145",
+          "source_holding_registration_id": "MPR-SH-HARNESS-TEMPLATE-EXAMPLE-001",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 145,
+          "source_line_sha256": "sha256:78a2e6c819e73153ce2bbd832c0f87777dba08750fa1b84fcafc916fa7cafa30",
+          "source_text": "| **HIL-FR-55** | Template Example Calibratorはactive templateの各validation ruleとapplicability branchに対し、最低限canonical positive 1件と境界negative 1件を要求する。状態遷移、failure、security、migration、multi-runtime差異はrisk分析で未被覆の場合だけ例を追加し、例の個数ではなくrule/branch/risk coverageで十分性を判定する。 | example adequacy matrix、positive/negative fixture、risk追加理由、redundancy finding |",
+          "ir_requirement_id": "HIL-FR-55",
+          "ir_source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-55",
+          "ir_statement_semantic_digest": "sha256:a79393484c93dc7d7f6c107b0781583e9648f79111cabc74cd8058c695fcb801",
+          "ir_record_semantic_digest": "sha256:7a9e90a2f23df3c38ff878f6f4d9bffbf70e8f7a717f6dee2178894da0d01d81",
+          "disposition": "semantic_rederivation_candidate",
+          "relation": "保持: HARNESS-L2/L11-043候補がrule/branchごとcanonical positiveと境界negativeの最低一対、risk未被覆時だけ追加例、件数でなくcoverage十分性を定める。旧example adequacy matrixの意味は候補出力へ保持する。変更: 旧L1–L12固定template engine/schema/runtimeは現行HARNESS-L2-009/041/025/026との責務分担へ再導出し、必須実装方式としない。旧IR、HR-FR-HIL-20と対HAC/HAT全体は本atom局所receiptに含めず生存holdingへ残す。"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-harness/L1-planning/product-intent.md#harness-l1-001",
+        "docs/helix-harness/L1-planning/product-intent.md#harness-l1-004",
+        "docs/helix-harness/L1-planning/product-intent.md#harness-l1-009",
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-009",
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-041",
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-025",
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-026"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": [],
+      "preserved_pending_registration_refs": [
+        "MPR-SH-IR-003",
+        "MPR-SH-SUPPLEMENTARY-003"
+      ]
+    }
+  ]
+}
