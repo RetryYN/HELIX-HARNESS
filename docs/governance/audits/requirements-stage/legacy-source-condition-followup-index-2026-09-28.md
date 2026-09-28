@@ -21,3 +21,7 @@
 ## 次の判定
 
 手順5の終了には、旧sourceの機能・要求・受入・運用保証の各条件に保持／再導出／置換／後続版保全／記録付き廃止の行き先が必要である。今回のPHCAP照合は代表assetにboundedした監査であり、旧4,020資産の全consumer閉包を証明しない。手順6の終了には、未採択候補の採否と最後の総合整理の指摘0件が別途必要である。いずれも本記録だけでは成立しない。
+
+## 後続追加：HR-FR-P2-07／HELIXSECURITY-L2-032
+
+旧v1.3 §4.10 HR-FR-P2-07（REQSRC-SUP-00332、archive line 430）の意味条件に、[HELIXSECURITY-L2-032](../../../helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-032)と対L11を未採択候補として追補した。source line/file digestと候補coverageは`security-v13-worker-bypass-coverage-receipt-2026-09-28.json`に固定し、生存registerは`MPR-RC-HELIXSECURITY-L2-032-001`である。#2255後の現在のPO判断集合は[36候補packet](post-confirmation-25-po-decision-packet-2026-09-28.md)へ更新された。候補存在から条件閉鎖や採択を推定しない。

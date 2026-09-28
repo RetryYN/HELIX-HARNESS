@@ -1,9 +1,9 @@
 {
   "packet_kind": "recommendation_for_PO_decision_only",
-  "basis_commit": "0027f338c3115e63bdda9e7f49328519ad23047a",
+  "basis_commit": "1b8d93b360e3c414eb263b0cee0c8c4b55ab59c9",
   "as_of": "2026-09-28",
-  "count": 35,
-  "status": "初版25候補と後続10候補の判断packet。全35件はregistered_proposal / authority_effect:none、PO未採択・未判断。",
+  "count": 36,
+  "status": "初版25候補と後続11候補の判断packet。全36件はregistered_proposal / authority_effect:none、PO未採択・未判断。",
   "decision_grouping": "No shared adoption decision is bundled except PORTFOLIO-FIXTURE-FR54-FR55-ROUTE and HARNESS-OS-WBS-SHAPE-039-045-PAIR. HELIXOS-L2-039/HARNESS-L2-045 are linked by the latter, not independent adoption choices. The earlier R2247 options for 039 were preparation alternatives: A proposed adopting OS-039 alone with registrations blocked while the HARNESS contract was absent; B proposed holding 039 while preparing the HARNESS candidate and re-presenting both exact revisions. The B preparation step is completed by this HARNESS-045 candidate, but no PO selection resulted. The new pair options are A=adopt both exact revisions, B=hold both; neither has been selected, and B is advisory. HARNESS-L2-043/044 remain jointly routed only by the explicit FR54/55 route. Other candidate identities retain independent choices. HELIXINTELLIGENCE-L2-072 remains limited to its 1.0 shadow subset and HELIX-LABO-L2-062 preserves 2.0.",
   "candidates": [
     {
@@ -2808,10 +2808,79 @@
           ]
         }
       ]
+    },
+    {
+      "identity": "HELIXSECURITY-L2-032",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "Single exact old v1.3 §4.10 condition HR-FR-P2-07; bounded current L2/L11 re-derivation. Exact source line remains in existing supplementary source holding.",
+      "new_meaning_choice": "A: accept exact L2/L11-032 authority meaning for POI decision only: when an applicable repository-level permanent bypass deny is active, one-shot marker/provider flag cannot override or release it; unknown/stale policy applicability follows existing fail-close; confirmed non-applicability returns to existing operation authority. B: defer with source atom unresolved. C: decide a meaning change/retire against the exact source revision and impacts.",
+      "recommended_choice": "A",
+      "choice_meaning": "限定A推奨。適用対象の有効なpermanent bypass denyは下位marker/flagで解除できない。policy/適用状態unknownまたはstaleでは既存fail-close、denyが適用されないと確認できた場合は既存operation authorityへ戻す。本候補だけで全repositoryのdeny設定や許可/拒否を追加しない。",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HELIXSECURITY-L2-032 Worker runtimeにおけるpermanent bypass denyの優先順位（単体追補候補、1.0）",
+      "requirement_source_path": "docs/helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-032",
+      "acceptance_source_path": "docs/helix-security/L11-acceptance/security-acceptance.md#helixsecurity-l2-032",
+      "registration_id": "MPR-RC-HELIXSECURITY-L2-032-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXSECURITY-L1-007",
+        "HELIXSECURITY-L1-008"
+      ],
+      "parent_l1_path": "docs/helix-security/L1-planning/security-intent.md",
+      "parent_l1_sha256_current": "sha256:b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d",
+      "parent_planning_revision_recorded": "docs/helix-security/L1-planning/security-intent.md@1b8d93b360e3c414eb263b0cee0c8c4b55ab59c9 sha256:b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d（確認済み親bytes。新候補の採用は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/security-v13-worker-bypass-coverage-receipt-2026-09-28.json#HELIXSECURITY-L2-032",
+      "receipt_id": "MPR-RCPT-SECURITY-V13-WORKER-BYPASS-2026-09-28",
+      "receipt_candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "start_heading_prefix": "### HELIXSECURITY-L2-032 ",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        },
+        {
+          "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+          "start_heading_prefix": "### HELIXSECURITY-L2-032 ",
+          "end_heading_prefix": "EOF"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:ccdd634fb92621105310b91465e01bd089238cc430491ff3c8ac51a3d80403c8",
+      "receipt_candidate_semantic_digest": "sha256:ccdd634fb92621105310b91465e01bd089238cc430491ff3c8ac51a3d80403c8",
+      "current_candidate_semantic_digest": "sha256:ccdd634fb92621105310b91465e01bd089238cc430491ff3c8ac51a3d80403c8",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 1,
+      "source_atom_set_digest": "sha256:e135f8a5ad6eeb9e4907d6429bd0e1b22353cc841c8484ca9c68d423e4bdb88b",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "line": 430,
+          "source_line_sha256": "sha256:a93331748e84ab0fd111c3bc6e9bfa147e681b3ddb30774293c7a577c61c3dd7",
+          "atom_id": "V13-ARCHIVE-L0430-HR-FR-P2-07",
+          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "source_revision_ref": "archive/current-file-sha"
+        }
+      ],
+      "source_reference_note": "旧v1.3 supplementary holding MPR-SH-SUPPLEMENTARY-003のsource item REQSRC-SUP-00332（archive HR-FR-P2-07の430行1件）をcoverage receipt/source-linesで固定する。L2/L11-032候補は適用denyの優先順位だけを再導出し、denyが非適用と確認されたときは既存authorityへ戻す。§4.10の他条件やv1.3全体を対象にしない。",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXSECURITY-L2-032",
+      "paired_l11_id": "HELIXSECURITY-L2-032",
+      "affected_requirement_and_consumer_ids": "HELIXSECURITY-L1-007/008; HELIXSECURITY-L2-007/008/031; 対L11; existing SECURITY policy and Worker execution enforcement",
+      "rationale": "現行SECURITY-L2/L11-031はbypass常態化防止を範囲外としており、HR-FR-P2-07を個別に充足しない。032は同source conditionのpriority関係を対で扱う。deny非適用確定時に既存authorityへ戻すことで新たなblanket allow/denyを作らない。",
+      "previous_register_revision": null,
+      "version_target_evidence": {
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "line": 449,
+        "excerpt": "**親・状態**：HELIXSECURITY-L1-007／008。`version_target: 1.0`、未採択候補。",
+        "interpretation": "本文に明記された候補の版印。採択、実装許可ではない。"
+      },
+      "acceptance_section_sha256": "sha256:5dcf1c19728badff041220d610a85c3507a6c6f70fea57c0081ae9902705c6f1",
+      "acceptance_source_file_sha256": "sha256:64ce1f5536bbffdfb8b86ae7e605ff5fc301948f6c75569bb80e2d2f2c6814d0"
     }
   ],
   "initial_25_basis_commit": "f4b2a2b02cf5ea3134e27be0a65c100395161bad",
-  "progression": "Initial 25 candidates + PR #2241 HARNESS-L2-042 + PR #2238 HELIXOS-L2-038 = historical 27; PR #2245 merged HARNESS-L2-043, giving 28; PR #2246 merged HARNESS-L2-044, giving 29; PR #2247 registered HELIXOS-L2-039, giving 30; current HARNESS-L2-045 brings the live decision set to 31. HELIXOS-L2-039/HARNESS-L2-045 are linked by an unselected paired PO decision. Current HELIXOS-L2-040 adds one bounded old HXT-AC-015 retry-route candidate, making 32; no PO selection. Current HELIXINTELLIGENCE-L2-073 adds one bounded old AAFD-R-04 free-text direct-projection boundary candidate, making 33; no PO selection. Current HELIXOS-L2-041 adds one bounded old IPC-R07 safe-continuation candidate from two linked atoms, making 34; no PO selection. Current HELIXLABO-L2-066 adds one bounded old Bugbot candidate-line metric gap, making 35; no PO selection. Its source atom is historical and its current L2/L11 candidate remains unadopted.",
+  "progression": "Initial 25 candidates + PR #2241 HARNESS-L2-042 + PR #2238 HELIXOS-L2-038 = historical 27; PR #2245 merged HARNESS-L2-043, giving 28; PR #2246 merged HARNESS-L2-044, giving 29; PR #2247 registered HELIXOS-L2-039, giving 30; current HARNESS-L2-045 brings the live decision set to 31. HELIXOS-L2-039/HARNESS-L2-045 are linked by an unselected paired PO decision. Current HELIXOS-L2-040 adds one bounded old HXT-AC-015 retry-route candidate, making 32; no PO selection. Current HELIXINTELLIGENCE-L2-073 adds one bounded old AAFD-R-04 free-text direct-projection boundary candidate, making 33; no PO selection. Current HELIXOS-L2-041 adds one bounded old IPC-R07 safe-continuation candidate from two linked atoms, making 34; no PO selection. Current HELIXLABO-L2-066 adds one bounded old Bugbot candidate-line metric gap, making 35; no PO selection. Its source atom is historical and its current L2/L11 candidate remains unadopted. Current HELIXSECURITY-L2-032 adds one bounded old v1.3 §4.10 HR-FR-P2-07 repository-level bypass precedence candidate, making 36; no PO selection. It applies across provider/runtime instances under the old external AI Worker contract, preserves existing authority when no deny applies, and does not claim §4.10 closure.",
   "version_target_evidence": null,
   "portfolio_fixture_fr54_fr55_route": {
     "decision_id": "PORTFOLIO-FIXTURE-FR54-FR55-ROUTE",

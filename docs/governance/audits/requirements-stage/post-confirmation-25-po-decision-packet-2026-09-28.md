@@ -1,6 +1,6 @@
-# 8機構確認後の追加候補：PO判断パケット（初版25 + 後続10 = 35）
+# 8機構確認後の追加候補：PO判断パケット（初版25 + 後続11 = 36）
 
-基準HEAD: `0027f338c3115e63bdda9e7f49328519ad23047a`（merge済み#2254後）。この基準HEADの判断集合は34候補。PR #2252で`HELIXOS-L2-040`、PR #2253で`HELIXINTELLIGENCE-L2-073`がmergeされ、#2254で`HELIXOS-L2-041`の候補本文が追加されたが、いずれも候補の採択ではない。今回`HELIXLABO-L2-066`を追加し、判断集合は35候補となる。全候補のregister生存末端は`registered_proposal` / `authority_effect:none`。066は基準HEADに含まれないPO未採択候補である。PR mergeやL2/L11本文の存在から採択・実装・受入完了は推定しない。
+基準HEAD: `1b8d93b360e3c414eb263b0cee0c8c4b55ab59c9`（merge済み#2255後）。この基準HEADにある35候補へ、HELIXSECURITY-L2-032を追加し、判断集合は36候補となる。032は未採択のbounded candidateであり、全候補は`registered_proposal` / `authority_effect:none`、PO未採択・未判断である。PR mergeやL2/L11本文・registerの存在から採択・実装・受入完了は推定しない。
 
 ## 選択肢
 
@@ -159,3 +159,11 @@ PO選択肢は、**A（推奨）** exact L2/L11候補を1.0として採用、**B
 旧`IPC-R07`の連続する45–46行（`LEGACY-CAND-LINE-003082/003083`）を一組とし、再読込不能時の安全なsession transition／coordination-only continuation、旧指示・撤回claim・secret・private reasoningの非継承、必要な外部正本の再取得を[HELIXOS-L2-041](../../../../docs/helix-os/L2-requirements/governance-requirements.md#L1134)と[対L11](../../../../docs/helix-os/L11-acceptance/governance-acceptance.md#L736)へ限定再導出した。登録`MPR-RC-HELIXOS-L2-041-001`、[source-lines](../requirement-registration/helixos-safe-continuation-source-lines-2026-09-28.jsonl)と[coverage receipt](../requirement-registration/helixos-safe-continuation-coverage-receipt-2026-09-28.json)は両行atomだけを対象とする。旧L45を説明とした誤分類は[独立監査](legacy-candidate-line-003082-reclassification-2026-09-28.md)で訂正し、旧routing snapshotを変更しない。
 
 本候補は未採択で、外部authority sourceの意味・選択、coordination-onlyの厳密なruntime意味、provider機構を新設しない。POにはA＝041 exact revisionの採択、B＝両旧atomを保留、C＝対象revision付きの意味変更・retireを提示し、Aを推奨する。推奨はPO判断ではなく、既存OS-009の継続・復旧責務やSECURITY-005のraw secret境界を超えて旧IPC family全体を被覆したと主張しない。
+
+## 後続追加：HELIXSECURITY-L2-032（判断集合36候補）
+
+| ID | 状態／推奨 | 版／対象L1親 | source basis／POが決める意味境界 | 根拠（旧sourceの正確なreceipt） | 影響する要求・consumer | 推奨理由 |
+|---|---|---|---|---|---|---|
+| `HELIXSECURITY-L2-032` (L2/L11) | PO未決／推奨 **A** | 1.0; HELIXSECURITY-L1-007, HELIXSECURITY-L1-008 | HR-FR-P2-07の意味を限定再導出。適用deny優先、unknown/staleは既存fail-close、deny非適用確定時は既存operation authorityへ戻す。exact scope/authority meaningはPO判断 | `docs/governance/audits/requirement-registration/security-v13-worker-bypass-coverage-receipt-2026-09-28.json#HELIXSECURITY-L2-032`; atom V13-ARCHIVE-L0430-HR-FR-P2-07は旧archive line 430、file SHA-256 `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`、line SHA-256 `a93331748e84ab0fd111c3bc6e9bfa147e681b3ddb30774293c7a577c61c3dd7` | `HELIXSECURITY-L2-032` (L2/L11); HELIXSECURITY-L1-007/008、既存L2-007/008/031 | 現行031はbypass常態化防止を範囲外としている。032はprovider/runtime区分を限定せず優先順位だけを補い、deny非適用時の許否を新設しない。全§4.10条件の被覆は主張しない。 |
+
+この候補の最新machine-readable decision packetは[36候補JSON](post-confirmation-25-po-decision-packet-2026-09-28.json)であり、base pinはmain `1b8d93b360e3c414eb263b0cee0c8c4b55ab59c9`。候補は`MPR-RC-HELIXSECURITY-L2-032-001`へ仮登録され、PO判断は未決である。
