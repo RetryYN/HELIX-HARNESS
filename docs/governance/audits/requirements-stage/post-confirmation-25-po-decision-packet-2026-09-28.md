@@ -1,6 +1,6 @@
-# 8機構確認後の追加候補：PO判断パケット（初版25 + 後続17 = 42）
+# 8機構確認後の追加候補：PO判断パケット（初版25 + 後続18 = 43）
 
-基準HEAD: `b68cee0582420e9020a0465870c759e83e28e6f6`（候補追加の起点main）。この基準HEADで維持される候補41件を収載し、本草稿でHELIXSECURITY-L2-034を追加して判断集合42件とする。034を含む全候補は`registered_proposal` / `authority_effect:none`、PO未採択・未判断である。PR mergeやL2/L11本文・registerの存在から採択・実装・受入完了は推定しない。
+基準HEAD: `249b1f648ce8ece4c6de82917910a752fa94a449`（候補追加の起点main）。この基準HEADで維持される候補42件を収載し、本追補でHELIXOS-L2-045を追加して判断集合43件とする。全候補は`registered_proposal` / `authority_effect:none`、PO未採択・未判断である。PR mergeやL2/L11本文・registerの存在から採択・実装・受入完了は推定しない。
 
 ## 選択肢
 
@@ -236,3 +236,11 @@ A＝exact L2/L11-044限定候補を採択（推奨）、B＝selected source atom
 旧v1.3 HR-FR-HYB-002のarchive line 286（REQSRC-SUP-00213）と6fabd125 baseline line 271を別revisionとして各6 spansへ分割した。SECURITY候補入力はprofile単位credential/egress/tool capability fail-close、secret要求拒否、write可能probe拒否の6 atom。profile列挙・設定、typed safety/read-only-probe供給、未登録profile拒否の6 atomはsource holdingに保全し、旧2行全体のsemantic closureはpartialである。file/line/span SHAは[source-lines](../requirement-registration/security-v13-hyb-002-profile-source-lines-2026-09-28.jsonl)、coverage receiptは[receipt](../requirement-registration/security-v13-hyb-002-profile-coverage-receipt-2026-09-28.json)を参照する。
 
 登録`MPR-RC-HELIXSECURITY-L2-034-001`は`registered_proposal` / `authority_effect:none`、PO未決・未採択。A＝限定されたL2/L11-034を採択、B＝candidate inputと残source atomsを保留、C＝対象source revision・理由・影響を示して意味変更/retire。本候補はCONNECTのprofile catalog/adapter ownershipをSECURITYへ移さず、SECURITYが既存policyに沿って選択profile単位の判断を行う。新しいregistry/schema/authority/provider選定、毎回の人間承認、無関係taskの一律停止を追加しない。
+
+## 後続候補：HELIXOS-L2-045（FR-L1-35 readiness inventory）
+
+| ID | 状態／推奨 | 版／対象L1親 | source basis／POが決める意味境界 | 根拠・範囲 | 影響する要求・consumer | 推奨理由 |
+|---|---|---|---|---|---|---|
+| `HELIXOS-L2-045` (L2/L11) | PO未決／推奨 **A**（旧条件保持。対象集合・owner・versionは別途未決） | 版未指定; `HELIXOS-L1-002` | 旧confirmed FR-L1-35の「実装済み／設計済み・実装未／未設計」による検証・test・検出基盤一覧を、OS-L1-002で選択された適用範囲へ限定する未採択rehome候補。現行機構集合・将来Web・version targetは確定しない。A＝旧意味を保つ候補を採択、B＝既採択OS-016の一般状態へ置換/retire。A/B未選択。owner移管も未採択。 | `archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md:66`（file SHA `a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008`; line SHA `7bff35b2a785e51c8eeebeded9e93ac720efd2f9ca8315552e14d8d6ea66be90`）。候補入力no_lossは選択atomのmapping記録のみ。適用対象集合・semantic successor・owner移管・採択・holding解消を主張しない。version target未指定。 | OS-L1-002; adopted OS-L2/L11-016; unadopted OS-L2/L11-045 | L2/L11-016が持たない3区分inventoryだけを限定して提示。BR-06/UX-02のdashboard/UI/realtime意味、L2-016のgeneral state再定義、版の前倒しを含めない。 |
+
+別revisionの`V13-BASE-6FAB-L0638`（`docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt:638`、holding `MPR-SH-V13-BASELINE-001`）はDesign HARNESSの実装済み／設計済み／UX検証済み状態とtrace欠落を扱う別atomであり、FR-L1-35と同一視・統合せず今回の候補入力に含めない。候補mapping・receiptはformal successor/adoptionを証明しない。

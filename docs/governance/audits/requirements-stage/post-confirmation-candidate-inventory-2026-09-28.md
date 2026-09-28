@@ -109,3 +109,11 @@ A＝exact L2/L11-042の限定採択（推奨）、B＝原atomを保留、C＝sou
 ## 後続候補：HELIXSECURITY-L2-034
 
 旧v1.3 HR-FR-HYB-002 archive line 286（REQSRC-SUP-00213）と6fabd125 baseline line 271を別revisionとして扱い、profile別credential/egress/tool capability fail-close、secret要求拒否、write可能probe拒否の6 selected spansをHELIXSECURITY-L2/L11-034へ未採択候補として再導出した。profile列挙/設定、typed safety/read-only-probe供給、未登録profile拒否の残り6 spansはsource holdingに保全し、旧2行全体のsemantic closureはpartial。詳細は[42候補PO packet](post-confirmation-25-po-decision-packet-2026-09-28.md#後続追加helixsecurity-l2-034判断集合42候補)、[source-lines](../requirement-registration/security-v13-hyb-002-profile-source-lines-2026-09-28.jsonl)、[coverage receipt](../requirement-registration/security-v13-hyb-002-profile-coverage-receipt-2026-09-28.json)を参照。登録`MPR-RC-HELIXSECURITY-L2-034-001`は`registered_proposal` / `authority_effect:none`、PO未決・未採択。CONNECTのprofile catalog供給・adapter ownershipをSECURITYへ移管しない。
+
+## 後続草稿：HELIXOS-L2-045（判断集合43候補）
+
+| 機構 | 候補・L2本文 | 対のL11 | 生存register revision・coverage receipt |
+|---|---|---|---|
+| OS | [HELIXOS-L2-045：各機構の検証・test・検出基盤readiness一覧（単体候補）](../../../helix-os/L2-requirements/governance-requirements.md#helixos-l2-045) | [L11受入候補](../../../helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-045) | `MPR-RC-HELIXOS-L2-045-001`; `os-fr-l1-35-readiness-coverage-receipt-2026-09-28.json` |
+
+旧confirmed175のFR-L1-35 archive atom 1件をcandidate inputとして対応づける。旧3区分の意味だけを保持し、対象集合はOS-L1-002の適用対象として選択された範囲に限定する候補。現行機構群・将来Web・version targetを確定しない。OSへのrehome/owner移管と採択は未決。候補inputのno_lossはsource mapping範囲のみでsemantic successorや旧holding解消を示さない。既採択OS-L1-002/OS-L2/L11-016への接続を保ち、016のgeneral stateを再定義しない。BR-06/UX-02のdashboard、専用UI、realtime表示は含めない。別revision `V13-BASE-6FAB-L0638`（`MPR-SH-V13-BASELINE-001`）は別atomとして保留し、混合しない。PO packetは同一ファイルで43候補、basis main `249b1f648ce8ece4c6de82917910a752fa94a449`へ追随。

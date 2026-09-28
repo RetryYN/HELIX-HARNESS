@@ -774,3 +774,11 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **Negative oracle**：既存project・要求revisionに結び付くfeedback findingと、findingに関するprose handoverだけを与える。handover文だけをresolution evidenceまたはresolved状態として記録した場合は不合格とする。既存のfeedback lifecycle/evidence contractを満たしたか確認できないfindingは未解決／pendingのままとし、理由と未完状態を既存OS evidenceへ残す。
 - **境界とunknown**：resolutionに必要な証拠の新しいschema、充分条件、承認者をこの候補で定義しない。source/revisionや既存status/evidenceがunknown・stale・conflictならresolution成立を推測せず該当findingだけ保留し、無関係なfindingや作業を一律停止しない。
 - **範囲**：このoracleは旧HR-AC-HYB-006の「prose handoverだけの解決」否定条件に限る。未ack finding消失、source HEAD不一致、event/projectionとSessionStart surfaceの受入は対象外で、同行のno_lossや旧条件全体のclosureを主張しない。
+
+### HELIXOS-L2-045 各機構の検証・test・検出基盤readiness一覧の受入候補
+
+- **状態・対象**：HELIXOS-L2-045と対になる未採択・未実行候補。fixtureで選択されたOS-L1-002の適用対象に限り、検証・test・検出基盤の整備状況を旧FR-L1-35の「実装済み／設計済み・実装未／未設計」で一覧する条件だけを扱う。現行機構群・将来Web対象・version targetはこの候補で確定しない。
+- **正常例**：HELIXOS-L2-045の適用対象として選択された複数機構について、検証・test・検出基盤ごとの整備状況入力を与える。出力一覧に対象が欠けず、既知の状態が旧sourceの3区分のいずれかとして個別に表示されることを確認する。
+- **不成立例**：対象基盤を一覧から落とす、状態区分を一括の「完了／未完了」等へまとめる、または3区分と異なる値へ置換した場合は、この候補の旧条件を満たさない。
+- **unknown/stale**：対象revisionまたは状態の根拠を確認できないfixtureは、正常例へ分類せず、既採択HELIXOS-L2-016／L11-016のunknown/stale扱いを維持する。unknown/staleを三分類のいずれかに推測で割り当てない。
+- **境界と受入限界**：この候補は選択済み適用対象に対する一覧条件に限定し、専用UI、dashboard、リアルタイム性、PO向けroster表示を要求しない。L2-016のgeneral portfolio stateを再定義せず、全対象・将来版への適用、旧HARNESSからOSへのowner移管、候補採択、実装、受入実行を主張しない。旧sourceの保持／置換・retireに関するPO判断は未決のまま残す。
