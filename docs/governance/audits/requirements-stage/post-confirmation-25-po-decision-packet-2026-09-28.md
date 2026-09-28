@@ -241,6 +241,14 @@ A＝exact L2/L11-044限定候補を採択（推奨）、B＝selected source atom
 
 | ID | 状態／推奨 | 版／対象L1親 | source basis／POが決める意味境界 | 根拠・範囲 | 影響する要求・consumer | 推奨理由 |
 |---|---|---|---|---|---|---|
-| `HELIXOS-L2-045` (L2/L11) | PO未決／推奨 **A**（旧条件保持。対象集合・owner・versionは別途未決） | 版未指定; `HELIXOS-L1-002` | 旧confirmed FR-L1-35の「実装済み／設計済み・実装未／未設計」による検証・test・検出基盤一覧を、OS-L1-002で選択された適用範囲へ限定する未採択rehome候補。現行機構集合・将来Web・version targetは確定しない。A＝旧意味を保つ候補を採択、B＝既採択OS-016の一般状態へ置換/retire。A/B未選択。owner移管も未採択。 | `archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md:66`（file SHA `a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008`; line SHA `7bff35b2a785e51c8eeebeded9e93ac720efd2f9ca8315552e14d8d6ea66be90`）。候補入力no_lossは選択atomのmapping記録のみ。適用対象集合・semantic successor・owner移管・採択・holding解消を主張しない。version target未指定。 | OS-L1-002; adopted OS-L2/L11-016; unadopted OS-L2/L11-045 | L2/L11-016が持たない3区分inventoryだけを限定して提示。BR-06/UX-02のdashboard/UI/realtime意味、L2-016のgeneral state再定義、版の前倒しを含めない。 |
+| `HELIXOS-L2-045` (L2/L11) | PO未決／推奨 **C 保留**（version・対象機構集合・ownerのPO入力待ち） | 版未指定; `HELIXOS-L1-002` | 旧confirmed FR-L1-35の「実装済み／設計済み・実装未／未設計」による検証・test・検出基盤一覧を、OS-L1-002で選択された適用範囲へ限定する未採択rehome候補。現行機構集合・将来Web・version targetは確定しない。A＝3区分の旧意味を保つ045を採択し、source ownerをOSへrehomeする。version・対象機構集合を明示。B＝既採択OS-016の一般状態へ置換/retire。C＝holdingを維持し045を未採択で保留、上記PO入力を待つ（推奨）。HARNESS owner維持はC経路で、別HARNESS側候補を検討する。A/B/C未選択。 | `archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md:66`（file SHA `a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008`; line SHA `7bff35b2a785e51c8eeebeded9e93ac720efd2f9ca8315552e14d8d6ea66be90`）。候補入力no_lossは選択atomのmapping記録のみ。適用対象集合・semantic successor・owner移管・採択・holding解消を主張しない。version target未指定。 | OS-L1-002; adopted OS-L2/L11-016; unadopted OS-L2/L11-045 | L2/L11-016が持たない3区分inventoryだけを限定して提示。version target（1.0／後続版）、OS-L1-002適用対象内の機構集合、旧HARNESS source ownerの維持／OS rehomeが未決なのでC（保留）を推奨する。これは選択・採択ではない。BR-06/UX-02のdashboard/UI/realtime意味、L2-016のgeneral state再定義、版の前倒しを含めない。 |
+
+**PO判断frame（未決・未選択）**
+
+- **version target**：`1.0`／後続版を対象revisionで選択。
+- **対象機構集合**：OS-L1-002の適用対象として選ぶ機構集合を具体化する。現行全機構・将来Webを自動選択しない。
+- **source owner**：旧HARNESSで維持／OSへrehomeを対象revisionで選択。
+- **選択肢**：A＝OSへownerをrehomeして旧3区分を保持する045を採択、B＝016の一般stateへ置換/retire、C＝source holdingを保ち045を未採択で保留し上記入力を待つ。HARNESS owner維持はC経路。**推奨C**。`internal_PO_choice`は未決（null）であり、推奨は決定を意味しない。
+- **理由・影響**：3区分の保持先が現行016にない一方、version・scope・ownerが未確定で、HARNESS owner維持はOS-045採択と両立しない。影響はlegacy FR-L1-35、OS-L1-002、採択済みOS-L2/L11-016、未採択OS-L2/L11-045。
 
 別revisionの`V13-BASE-6FAB-L0638`（`docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt:638`、holding `MPR-SH-V13-BASELINE-001`）はDesign HARNESSの実装済み／設計済み／UX検証済み状態とtrace欠落を扱う別atomであり、FR-L1-35と同一視・統合せず今回の候補入力に含めない。候補mapping・receiptはformal successor/adoptionを証明しない。

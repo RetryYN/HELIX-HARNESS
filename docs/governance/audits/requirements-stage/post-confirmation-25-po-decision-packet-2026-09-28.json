@@ -3497,9 +3497,9 @@
       "identity": "HELIXOS-L2-045",
       "decision_state": "pending_PO; not adopted",
       "source_basis_class": "Confirmed old FR-L1-35 single-identity atom, rederived as a bounded OS readiness-inventory candidate. Source mapping does not confirm a semantic successor, ownership transfer, or adoption.",
-      "new_meaning_choice": "A＝旧FR-L1-35の3区分readiness inventoryを維持するexact HELIXOS-L2/L11-045 rehome候補を採択。B＝旧inventory価値を既採択OS-L2/L11-016の一般portfolio stateへ置換/retireし、045を採択しない。既存confirmed175 residual auditの未決A/Bを保ち、選択なし。",
-      "recommended_choice": "A",
-      "choice_meaning": "A/B remain unselected. Candidate preserves exactly the three old readiness labels for selected OS-L1-002 applicability scope only. It does not select current/future target mechanisms, Web scope, or version; no dashboard/UI/realtime scope. Adoption and HARNESS→OS owner transfer remain pending.",
+      "new_meaning_choice": "A＝旧FR-L1-35の3区分readiness inventoryをHELIXOS-L2/L11-045として採択し、source ownerをOSへrehomeする。version target・対象機構集合を対象revisionで明示する。B＝旧inventory価値を採択済みOS-L2/L11-016の一般stateへ置換/retireし、045を採択しない。C＝旧source holdingを生存・045を未採択で保留し、version・対象機構集合・owner方針が決まるまで延期する。HARNESS owner維持はC経路であり、別HARNESS側候補を検討する。A/B/Cはすべて未選択。",
+      "recommended_choice": "C",
+      "choice_meaning": "A/B/C remain unselected. A adopts OS-L2/L11-045 and requires owner rehome to OS, with version and target mechanisms selected. B replaces/retires the old value into adopted general state 016. C keeps the source holding live and 045 unadopted until version, target mechanism set, and owner path are selected. Keeping HARNESS as owner is a C path and requires a separate HARNESS-side candidate; it cannot be combined with adopting OS-045. No current all-mechanism set, future Web scope, or version is inferred.",
       "version_target_as_written": null,
       "title_and_kind": "### HELIXOS-L2-045 各機構の検証・test・検出基盤readiness一覧（単体候補）",
       "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-045",
@@ -3553,13 +3553,64 @@
       "paired_l2_id": "HELIXOS-L2-045",
       "paired_l11_id": "HELIXOS-L2-045",
       "affected_requirement_and_consumer_ids": "HELIXOS-L1-002; adopted HELIXOS-L2/L11-016 general portfolio state; HELIXOS-L2/L11-045 (unadopted rehome proposal); legacy confirmed FR-L1-35",
-      "rationale": "旧confirmed FR-L1-35は具体的な3区分readiness inventoryを明示し、採択済みL2/L11-016のgeneral stateはこの区別を保持しないため、旧条件を落とさないAを推奨する。これは未採択候補への推奨であり、OS-L1-002の対象集合、owner移管、version targetを決めない。",
+      "rationale": "version target（1.0／後続版）、OS-L1-002のどの対象機構へ適用するか、source owner方針が未決。OS-L2/L11-045採択とHARNESS owner維持は両立しない。旧confirmed FR-L1-35と採択済みL2/L11-016の差分は確認済みだが、owner/version/scopeが定まるまでC（保留）を推奨する。HARNESS ownerを保つ場合は別候補経路となる。推奨は選択ではない。影響: legacy FR-L1-35、OS-L1-002対象集合、adopted OS-L2/L11-016、unadopted OS-L2/L11-045。",
       "previous_register_revision": null,
       "version_target_evidence": "旧FR-L1-35はP2要求。現行OS candidateのversion_targetは未指定。現行8機構、将来Web、または1.0等への割当てを推定しない。",
       "source_line_coverage_result": "candidate_input_scoped; semantic_successor_not_confirmed; disposition_pending_PO",
       "candidate_input_coverage_result": "no_loss",
       "preserved_pending_atom_refs": [],
-      "candidate_semantic_digest": "sha256:87b2bc8fc6a5285ae300dff95ea46d461e754207bb71c5e5fb2729b34bcf1968"
+      "candidate_semantic_digest": "sha256:87b2bc8fc6a5285ae300dff95ea46d461e754207bb71c5e5fb2729b34bcf1968",
+      "po_decision_frame": {
+        "selection_status": "pending_PO",
+        "selected_option": null,
+        "recommended_option": "C",
+        "recommendation_is_decision": false,
+        "decision_dimensions": [
+          {
+            "id": "version_target",
+            "status": "pending",
+            "choices": [
+              "1.0",
+              "後続版（対象revisionでversionを指定）"
+            ]
+          },
+          {
+            "id": "target_mechanism_set",
+            "status": "pending",
+            "choice_prompt": "OS-L1-002の適用対象として扱う機構集合を対象revisionで具体的に選択する。現行全機構・将来Webを自動選択しない。"
+          },
+          {
+            "id": "source_owner",
+            "status": "pending",
+            "choices": [
+              "OSへrehomeしてHELIXOS-L2/L11-045のownerを担う（Aを選ぶ場合の前提）",
+              "旧HARNESS source ownerを維持し、OS-045は保留して別途HARNESS側候補を起こす（C経路）"
+            ],
+            "constraint": "OS-L2/L11-045を採択するAとHARNESS owner維持は同時選択できない。HARNESS owner維持なら045を保留し、別のHARNESS側候補経路を検討する。"
+          }
+        ],
+        "options": [
+          {
+            "id": "A",
+            "meaning": "旧FR-L1-35の3区分readiness inventoryをOS-L2/L11-045として採択し、source ownerをOSへrehomeする。version targetと対象機構集合は対象revisionで明示する。"
+          },
+          {
+            "id": "B",
+            "meaning": "旧inventory価値を採択済みOS-L2/L11-016の一般stateへ置換/retireし、045を採択しない。対象revision、理由、version/scope、owner disposition、consumer影響を明示する。"
+          },
+          {
+            "id": "C",
+            "meaning": "旧source holdingを生存させ、045を未採択で保留する。HARNESS owner維持または別の候補経路も含め、version target、対象機構集合、owner方針を対象revisionで選ぶまで決定を延期する。"
+          }
+        ],
+        "recommendation_rationale": "version target（1.0／後続版）、OS-L1-002の具体的対象機構集合、source owner方針が未決。特にHARNESS owner維持とOS-L2/L11-045採択は両立しないため、入力確定までCを推奨する。",
+        "affected_requirement_and_consumer_ids": [
+          "legacy confirmed FR-L1-35",
+          "HELIXOS-L1-002",
+          "adopted HELIXOS-L2/L11-016",
+          "unadopted HELIXOS-L2/L11-045"
+        ]
+      }
     }
   ],
   "initial_25_basis_commit": "f4b2a2b02cf5ea3134e27be0a65c100395161bad",
