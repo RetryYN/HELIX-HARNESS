@@ -1,6 +1,6 @@
-# 8機構確認後の追加候補：PO判断パケット（初版25 + 後続16 = 41）
+# 8機構確認後の追加候補：PO判断パケット（初版25 + 後続17 = 42）
 
-基準HEAD: `223e7e567df1500046fe0abc1bb279e4b2440d86`（今回基準main）。この基準HEADの候補40件を維持し、本草稿でHELIXOS-L2-044を追加して判断集合41件とする。044を含む全候補は`registered_proposal` / `authority_effect:none`、PO未採択・未判断である。PR mergeやL2/L11本文・registerの存在から採択・実装・受入完了は推定しない。
+基準HEAD: `b68cee0582420e9020a0465870c759e83e28e6f6`（候補追加の起点main）。この基準HEADで維持される候補41件を収載し、本草稿でHELIXSECURITY-L2-034を追加して判断集合42件とする。034を含む全候補は`registered_proposal` / `authority_effect:none`、PO未採択・未判断である。PR mergeやL2/L11本文・registerの存在から採択・実装・受入完了は推定しない。
 
 ## 選択肢
 
@@ -229,3 +229,10 @@ Aは推奨に留まりPO選択ではない。どの案もACP adoptionを決め�
 | `HELIXOS-L2-044` (L2/L11) | PO未決／限定negative oracle **A**推奨 | 1.0; HELIXOS-L1-006 | HR-AC-HYB-006のprose-only resolution rejectionだけを候補化。既採択OS-007 evidence sufficiencyは再定義しない | `docs/governance/audits/requirement-registration/os-v13-hyb-006-feedback-resolution-coverage-receipt-2026-09-28.json`; archive line 290 + baseline line 275、各source/line/span SHAとatomはreceipt/source-lines参照 | HELIXOS-L2/L11-044; adopted HELIXOS-L2/L11-007; HELIXOS-L1-006 | prose handoverだけではresolutionにならないnegative oracleに限定。FR event/projection/SessionStart、unacked finding loss、source HEAD mismatchは残差として保全し、旧行全体のcoverage/closureを主張しない。
 
 A＝exact L2/L11-044限定候補を採択（推奨）、B＝selected source atomsをholdingに保留、C＝対象revision・理由・影響付きの意味変更/retire。登録草稿`MPR-RC-HELIXOS-L2-044-001`は`registered_proposal` / `authority_effect:none`、PO未決。候補は新しいevidence schema/十分条件/承認者/event/projection/SessionStart条件を定義しない。
+
+
+## 後続追加：HELIXSECURITY-L2-034（判断集合42候補）
+
+旧v1.3 HR-FR-HYB-002のarchive line 286（REQSRC-SUP-00213）と6fabd125 baseline line 271を別revisionとして各6 spansへ分割した。SECURITY候補入力はprofile単位credential/egress/tool capability fail-close、secret要求拒否、write可能probe拒否の6 atom。profile列挙・設定、typed safety/read-only-probe供給、未登録profile拒否の6 atomはsource holdingに保全し、旧2行全体のsemantic closureはpartialである。file/line/span SHAは[source-lines](../requirement-registration/security-v13-hyb-002-profile-source-lines-2026-09-28.jsonl)、coverage receiptは[receipt](../requirement-registration/security-v13-hyb-002-profile-coverage-receipt-2026-09-28.json)を参照する。
+
+登録`MPR-RC-HELIXSECURITY-L2-034-001`は`registered_proposal` / `authority_effect:none`、PO未決・未採択。A＝限定されたL2/L11-034を採択、B＝candidate inputと残source atomsを保留、C＝対象source revision・理由・影響を示して意味変更/retire。本候補はCONNECTのprofile catalog/adapter ownershipをSECURITYへ移さず、SECURITYが既存policyに沿って選択profile単位の判断を行う。新しいregistry/schema/authority/provider選定、毎回の人間承認、無関係taskの一律停止を追加しない。

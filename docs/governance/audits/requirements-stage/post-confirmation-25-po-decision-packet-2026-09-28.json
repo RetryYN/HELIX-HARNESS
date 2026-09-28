@@ -1,9 +1,9 @@
 {
   "packet_kind": "recommendation_for_PO_decision_only",
-  "basis_commit": "223e7e567df1500046fe0abc1bb279e4b2440d86",
+  "basis_commit": "b68cee0582420e9020a0465870c759e83e28e6f6",
   "as_of": "2026-09-28",
-  "count": 41,
-  "status": "初版25候補と後続16候補の判断packet。全41件はregistered_proposal / authority_effect:none、PO未採択・未判断。",
+  "count": 42,
+  "status": "初版25候補と後続17候補の判断packet。全42件はregistered_proposal / authority_effect:none、PO未採択・未判断。",
   "decision_grouping": "No shared adoption decision is bundled except PORTFOLIO-FIXTURE-FR54-FR55-ROUTE and HARNESS-OS-WBS-SHAPE-039-045-PAIR. HELIXOS-L2-039/HARNESS-L2-045 are linked by the latter, not independent adoption choices. The earlier R2247 options for 039 were preparation alternatives: A proposed adopting OS-039 alone with registrations blocked while the HARNESS contract was absent; B proposed holding 039 while preparing the HARNESS candidate and re-presenting both exact revisions. The B preparation step is completed by this HARNESS-045 candidate, but no PO selection resulted. The new pair options are A=adopt both exact revisions, B=hold both; neither has been selected, and B is advisory. HARNESS-L2-043/044 remain jointly routed only by the explicit FR54/55 route. Other candidate identities retain independent choices. HELIXINTELLIGENCE-L2-072 remains limited to its 1.0 shadow subset and HELIX-LABO-L2-062 preserves 2.0.",
   "candidates": [
     {
@@ -3401,6 +3401,97 @@
         "V13-BASE-6FAB-L0275-HR-FR-HYB-006-AC-UNACK",
         "V13-BASE-6FAB-L0275-HR-FR-HYB-006-AC-HEAD-MISMATCH"
       ]
+    },
+    {
+      "identity": "HELIXSECURITY-L2-034",
+      "decision_state": "pending_PO; not adopted",
+      "source_basis_class": "旧v1.3 HR-FR-HYB-002 archive line 286（REQSRC-SUP-00213）と6fabd125 baseline line 271を別revisionとしてatom化。profile別credential/egress/tool capability fail-close、secret要求拒否、write可能probe拒否の6 selected atomsを候補入力とする。両source line計12 spanのうちprofile catalog列挙・設定、typed safety/read-only-probe供給、未登録profile拒否の6 spanは両holdingへpreserved_pending。旧2行全体の意味closureはpartial。",
+      "new_meaning_choice": "A: exact L2/L11-034を採択し、選択済みMCP profileごとの既存SECURITY credential/egress/tool-capability条件とread-only probeのwrite拒否を適用する。B: 6 selected atomsを未採択のまま候補/holdingに保留する。C: 対象source revision・理由・影響を特定して意味変更またはretireを判断する。profile catalog/type/config/probe供給と未登録profileの意味は本候補外に保全する。",
+      "recommended_choice": "A",
+      "choice_meaning": "限定A推奨。profileのidentity/adapter/transport/互換はCONNECTの既存責務として参照し、SECURITYは既存policy内でprofile別credential/egress/capability条件を評価する。新registry/schema/provider選定、authority、毎回の人間承認、一般作業一律停止は作らず、残る6 source spansはpartial closureとして両holdingへ残す。",
+      "version_target_as_written": "1.0",
+      "title_and_kind": "### HELIXSECURITY-L2-034 MCP tool profileごとの能力・probe・安全条件の閉鎖（単体追補候補、version_target: 1.0）",
+      "requirement_source_path": "docs/helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-034",
+      "acceptance_source_path": "docs/helix-security/L11-acceptance/security-acceptance.md#helixsecurity-l2-034",
+      "registration_id": "MPR-RC-HELIXSECURITY-L2-034-001",
+      "supersedes_registration_id": null,
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_l1_ids": [
+        "HELIXSECURITY-L1-004",
+        "HELIXSECURITY-L1-005",
+        "HELIXSECURITY-L1-006",
+        "HELIXSECURITY-L1-007"
+      ],
+      "parent_l1_path": "docs/helix-security/L1-planning/security-intent.md",
+      "parent_l1_sha256_current": "sha256:b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d",
+      "parent_planning_revision_recorded": "docs/helix-security/L1-planning/security-intent.md@f6dad2a33e24f000b87d7f09b8d40288257e74cc sha256:b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d（#2203で確定した親bytes。034採択は継承しない）",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/security-v13-hyb-002-profile-coverage-receipt-2026-09-28.json#candidates[HELIXSECURITY-L2-034]",
+      "receipt_id": "MPR-RCPT-SECURITY-V13-HYB-002-PROFILE-2026-09-28",
+      "receipt_candidate_digest_rule": "L2の### HELIXSECURITY-L2-034見出しから次の見出し（見出しlevel問わず）まで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+      "candidate_section_boundaries": [
+        {
+          "path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "start_heading_prefix": "### HELIXSECURITY-L2-034 ",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        },
+        {
+          "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+          "start_heading_prefix": "### HELIXSECURITY-L2-034 ",
+          "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+        }
+      ],
+      "registered_candidate_semantic_digest": "sha256:9543e2848037912dd04c10d46438be064961b808a26bad58b090d868308eb166",
+      "receipt_candidate_semantic_digest": "sha256:9543e2848037912dd04c10d46438be064961b808a26bad58b090d868308eb166",
+      "current_candidate_semantic_digest": "sha256:9543e2848037912dd04c10d46438be064961b808a26bad58b090d868308eb166",
+      "candidate_digest_matches_register_and_receipt": true,
+      "source_atom_count": 6,
+      "source_atom_set_digest": "sha256:5eb6244f7a7a84da692c2531e00014a9bd965577a58c4bb932aac57592ff432e",
+      "source_reference_examples": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "line": 286,
+          "source_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+          "atom_id": "V13-ARCHIVE-L0286-HR-FR-HYB-002-S03",
+          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "source_item_id": "REQSRC-SUP-00213",
+          "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-003",
+          "source_revision_ref": "archive/current-file-sha"
+        },
+        {
+          "path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+          "line": 271,
+          "source_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85444175a3884c",
+          "atom_id": "V13-BASE-6FAB-L0271-S03",
+          "source_file_sha256": "sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+          "source_item_id": "V13-BASE-6FAB-L0271",
+          "source_holding_registration_id": "MPR-SH-V13-BASELINE-001",
+          "source_revision_ref": "6fabd12512a3659fff4a956692cdd61faeeb16ce"
+        }
+      ],
+      "source_reference_note": "receipt/source-linesにarchive/baseline各6 span計12 atomを列挙。candidate_inputはS03/S05/S06の6 atomだけ。S01/S02/S04はCONNECT L2-001/002、SECURITY L2-004/018等との関連は部分的に記録するが意味closureを主張せず、MPR-SH-SUPPLEMENTARY-003とMPR-SH-V13-BASELINE-001で保全する。no_lossは6 candidate input atomsに限定し、旧2行全体のsemantic closureはpartial。",
+      "internal_PO_choice": null,
+      "paired_l2_id": "HELIXSECURITY-L2-034",
+      "paired_l11_id": "HELIXSECURITY-L2-034",
+      "affected_requirement_and_consumer_ids": [
+        "HELIXSECURITY-L1-004",
+        "HELIXSECURITY-L1-005",
+        "HELIXSECURITY-L1-006",
+        "HELIXSECURITY-L1-007",
+        "HELIXSECURITY-L2-004",
+        "HELIXSECURITY-L2-005",
+        "HELIXSECURITY-L2-006",
+        "HELIXSECURITY-L2-007",
+        "HELIXSECURITY-L2-008",
+        "HELIXSECURITY-L2-018",
+        "HELIXCONNECT-L2-001",
+        "HELIXCONNECT-L2-002"
+      ],
+      "rationale": "現行SECURITYはconfig integrity、credential、egress、Worker constraint、operation authorityを持ち、CONNECTはconnection/contract/adapter/transport identityと互換性を持つ。profile単位に安全条件を結ぶ具体契約は採択L2/L11に見当たらない。候補はSECURITY policy側に限定し、CONNECTのprofile catalog供給契約・列挙/設定とprobe typed supplyの未closureを明記する。",
+      "previous_register_revision": null,
+      "version_target_evidence": "security L2 candidate explicitly says version_target: 1.0; this does not assert an implemented or adopted version.",
+      "acceptance_section_sha256": "sha256:3ff1762c435c7343ba96541f5b149dbf5b6264152306b2ace486a9efa54dbc77",
+      "acceptance_source_file_sha256": "sha256:fd4aab3343b8a2c16447ebfda0859d9c1374d8f049a80aa993f4e65320dcba41"
     }
   ],
   "initial_25_basis_commit": "f4b2a2b02cf5ea3134e27be0a65c100395161bad",
