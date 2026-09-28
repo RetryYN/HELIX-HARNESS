@@ -70,7 +70,7 @@ CANONICAL_SCOPE_VALUES={
     'holding_record_count':67,
     'current_live_source_holding_count':14,
     'management_register_path':REGISTER_REL,
-    'management_register_sha256':'e4c3bdd1543f0ba13d3b5f511cb57465d524f508643f567961b958b3a0d0d6ae',
+    'management_register_sha256':'2fe67d6d061607c94abaf6b5383ee33f5ac9d8a2e48ebcfbf4ded805f8dc18ab',
     'previous_reviewed_path_revision_pair_count':2,
     'previous_reviewed_ids':['OUTSIDE67-PATH-008','OUTSIDE67-PATH-011'],
     'remaining_before_batch':65,
