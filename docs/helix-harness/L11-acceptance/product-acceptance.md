@@ -823,3 +823,16 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **未見例**：作成側に伏せたconsumerまたはorphan edge、同名異義のrow、scope外の隣接ledger revisionを与える。既知母集団外・適用oracle不明の範囲をunknownに保ち、未見consumerなし、影響なし、全体closureと推定しない。
 - **証拠と境界**：receiptは対象revision、scope、evidence参照、未評価範囲、戻し先を識別する。文書・receiptの存在だけで実際の変更、rollback成功、要求採択、L3承認、OS writer実行、CI、受入完了を主張しない。HOT-HIL-47/HST-HIL-033は設計oracleとして参照するだけで、実行しない。
 - **明示的除外**：HIL-FR-51/52/53/54/55をこの対受入へ含めない。HIL-FR-50の全旧条件、HIL-BR-25/HIL-NFR-29の全条件、旧test/runtimeの実行結果についてclosureを主張しない。
+
+
+### HARNESS-L11-051 工程終了 evidence 対応の受入候補（未実行）
+
+**対応要求**：`HARNESS-L2-051`（HELIX-HARNESS単体候補、未採択）。本節は静的oracle案であり、実行・採択・stage exitを示さない。L11がL2の受入oracleを担い、L10や下位pairの結果だけでL11の受入を代替しない。
+
+- **正常例**：一つの対象stage/scope/revisionで、stage goal、canonical/paired layer、owner、required output、適用oracle、evidence参照、未完条件の分類を相互に追える。適用stageに必要な既存pairの根拠が揃い、未解決事項がない場合は、その対象scopeで確認できた状態だけを示す。既存責務へ型付きで引き継いだ項目は、stage終了と区別して残る。
+- **未完例**：必要なpair、oracle、対象revision、evidence参照が欠けるか互いに不一致の場合、欠落箇所をunknown/未完として特定し、完了・遷移可能とは扱わない。別stage、別scope、別revisionのpassやreceiptで補わない。
+- **誤り例**：下位stage pass、CI green、文書/receiptの存在、OS ticketのclosedだけを入力し、stage exit済みと主張する。対象stageの根拠がなければ未完またはunknownに留める。
+- **未解決事項**：空集合、既存の型付き後続義務への引継ぎ、または未完を保つdeferの区別を確認する。採択済み要求の未完・停止条件を保ち、期限、再入場条件、stageごとの独立reviewを必須とする解釈は本oracleの合格条件に含めず、別案として保留する。
+- **未見例**：未知のstage/pair/owner/oracleや列挙範囲外のevidenceを与え、根拠がない項目をunknownに保ち、全体closureや不存在を推定しない。
+- **authority境界**：receipt/document/registerの存在、本oracleの静的確認、または登録状態からPO採択、L3承認、実装・実行許可、旧要求coverage closure、実際のstage exitを生成しない。OSは参照と運転状態を記録する側であり、HARNESSの工程意味やexit判断を決めない。
+- **旧source境界**：旧`LEGACY-ASSET-D27D4A1511BFD43623A9`のlines 47–68、70–72は局所照合の対象で、選択した25 line atomsはすべてsource holdingに残し、HARNESS-L2-051へ直接carryしない。旧条件を正式successorとして数えない。各stageの独立review必須化、defer期限・再入場条件も未採択optionであり、このoracleの必須合格条件ではない。旧test/runtimeは参照・実行しない。
