@@ -11,7 +11,7 @@ O10が示す1.0項目を既存候補と重ならないよう配置した。
 
 | O10項目 | 候補上の配置 |
 |---|---|
-| Pattern/CORE/profileの制約内でrenderable prototypeを作る | 既存HARNESS-L2-039候補が広いExperience/UI/Frontend contract内で扱う。049は生成者にならず、039の採択も前提にしない。 |
+| Pattern/CORE/profileの制約内でrenderable prototypeを作る | 未解決。現行HARNESS-L2-039はこの生成能力を定めていない。PO frame: A＝将来の049 exact revisionへ追加、B＝別candidate、C＝defer。いずれも未選択。VDH-FR-005 PATTERN spanはMPR-SH-VDH-O10-001に保持し、現在の049測定scopeは変えない。 |
 | semantic identityとExperience/UI/Frontendの関係 | 既存039候補の領域。049はidentityを発行せず、入力に不足すれば戻す。 |
 | 表示結果を測る（accessibility、contrast、viewport、主要state、文言量） | 049の責務。対象screen/device/view/stateのsource spanだけ旧VDH-FR-011から選択する。 |
 | 検査精度をknown positive/negative fixtureで評価し、不確かな検査はwarningにする | O10 task basisからの新規提案。既存LABO接続へ評価を渡し、LABOに新要求を追加しない。 |
@@ -19,7 +19,11 @@ O10が示す1.0項目を既存候補と重ならないよう配置した。
 | vision/brand/prototype agreementと受入は人、`implemented`と`ux_verified`は別 | 049は機械計測結果からこれらの状態を生成しない。既存039候補が同領域を含むため、049は状態の所有・判定を追加しない。 |
 | real-data/user UX、prototype-implementation drift、analytics event linkage | O10指定どおり1.0候補から除外し後続版へ保留。211-file intake、legacy sub-check、DB/runtimeも移植しない。 |
 
-単独で成立する049のinputは、利用許可とscope/revisionが結ばれたrenderable prototype、適用profile、検査oracle、既知のpositive/negative fixtureである。これらを受け、049は描画条件と各測定の結果・証拠・unknown/warning・差戻し先を返す。別のprototype producerや039の採択を前提にしない。
+単独で成立する現在の049 measurement inputは、利用許可とscope/revisionが結ばれたrenderable prototype、適用profile、検査oracle、既知のpositive/negative fixtureである。O10が示す制約内prototype生成は未解決PO scope axisであり、049は測定専用のまま保つ。これらを受け、049は描画条件と各測定の結果・証拠・unknown/warning・差戻し先を返す。別のprototype producerや039の採択を前提にしない。
+
+## PO未決scope：制約内prototype生成
+
+Pattern/製品CORE/UI profileの制約内でrenderable prototypeを作るO10 1.0方向は、現行039に割当済みと扱わない。PO frameは A＝将来の049 exact revisionへ追加、B＝別candidate、C＝defer。選択前はcurrent 049本文を拡大せず、VDH-FR-005 PATTERN spanは`MPR-SH-VDH-O10-001`のsource holdingに残す。このframeはrequirement adoption・実装許可を生成しない。
 
 ## 旧source spanと保留
 

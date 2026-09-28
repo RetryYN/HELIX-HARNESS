@@ -5090,15 +5090,15 @@
       "identity": "HARNESS-L2-049",
       "decision_state": "pending_PO; not adopted",
       "source_basis_class": "one bounded legacy source span plus O10 task-basis proposals; 24 other exact spans held; no whole-source closure",
-      "new_meaning_choice": "A＝HARNESS-049は利用許可・scope/revision付きrendered prototype、適用profile、oracle、既知fixtureを入力に、device/view/state条件で測定・精度評価・文言量候補を返す。B＝候補の測定scopeを縮小または分割する。C＝候補を保留する。いずれも未選択。",
+      "new_meaning_choice": "現行HARNESS-L2-049はmeasurement-only。別のO10 1.0方向であるPattern/CORE/UI-profile制約下のrenderable prototype構築について、A＝将来の049 exact revisionへ追加、B＝別candidate、C＝deferをPOが選ぶ。すべて未選択。measurement candidateの採択、owner変更、実装許可はこのframeから生成しない。",
       "recommended_choice": "A",
-      "choice_meaning": "推奨はPO選択ではなく、candidate adoption、source disposition、owner、scope、version target、L3承認、実装・運用許可を生成しない。",
+      "choice_meaning": "推奨はPO選択ではなく、candidate adoption、prototype producer scope、source disposition、owner、scope、version target、L3承認、実装・運用許可を生成しない。",
       "version_target_as_written": "1.0",
       "title_and_kind": "### HARNESS-L2-049 画面prototypeの表示計測・検査精度・文言量候補（unit candidate、version_target: 1.0）",
       "requirement_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-049",
       "acceptance_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md#harness-l11-049",
-      "registration_id": "MPR-RC-HARNESS-L2-049-001",
-      "supersedes_registration_id": null,
+      "registration_id": "MPR-RC-HARNESS-L2-049-002",
+      "supersedes_registration_id": "MPR-RC-HARNESS-L2-049-001",
       "management_state": "registered_proposal",
       "authority_effect": "none",
       "parent_l1_ids": [
@@ -5110,16 +5110,16 @@
       "parent_l1_sha256_current": "sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
       "parent_concept_revision_recorded": "docs/concept/helix-concept.md@5d9e1fc3a6d45a791014b44ee9a729c852db8a41 sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78 (read revision; no adoption inherited)",
       "parent_planning_revision_recorded": "docs/helix-harness/L1-planning/product-intent.md@5d9e1fc3a6d45a791014b44ee9a729c852db8a41 sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
-      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/o10-visual-design-harness-coverage-receipt-2026-09-29.json",
-      "receipt_id": "DRAFT-RCPT-HARNESS-L2-049-O10-VISUAL-DESIGN-2026-09-29",
+      "coverage_receipt_ref": "docs/governance/audits/requirement-registration/o10-visual-design-harness-coverage-receipt-2026-09-29-r2.json",
+      "receipt_id": "DRAFT-RCPT-HARNESS-L2-049-O10-VISUAL-DESIGN-2026-09-29-r2",
       "receipt_candidate_digest_rule": "UTF-8 bytes from ### HARNESS-L2-049 heading to EOF, trailing blank lines removed, exactly one LF at end.",
       "candidate_section_boundaries": {
         "l2": "from ### HARNESS-L2-049 to EOF",
         "l11": "from ### HARNESS-L11-049 to EOF"
       },
-      "registered_candidate_semantic_digest": "sha256:deba7e763a3ad79f96dabbcc635930675092ea1b0976927b697466eecf61eefa",
-      "receipt_candidate_semantic_digest": "sha256:deba7e763a3ad79f96dabbcc635930675092ea1b0976927b697466eecf61eefa",
-      "current_candidate_semantic_digest": "sha256:deba7e763a3ad79f96dabbcc635930675092ea1b0976927b697466eecf61eefa",
+      "registered_candidate_semantic_digest": "sha256:a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116",
+      "receipt_candidate_semantic_digest": "sha256:a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116",
+      "current_candidate_semantic_digest": "sha256:a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116",
       "candidate_digest_matches_register_and_receipt": true,
       "acceptance_section_sha256": "sha256:37c83d82ef76a0198bdfb22317052d67e0249946d1cc21b406d5f6e5109230b8",
       "acceptance_source_file_sha256": "sha256:3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
@@ -5145,7 +5145,7 @@
         "HELIXBRAIN-L2-006",
         "HELIXBRAIN-L2-023"
       ],
-      "rationale": "既存039の採択を前提にせず、049単独ではrendered prototype/profile/known fixturesを受けて計測と照合を担う。prototype生成、semantic identity発行、Experience/UI/Frontend relation、implemented/ux_verified stateは所有しない。",
+      "rationale": "R2293-01 correction: current HARNESS-L2-039 specifies relation/source contracts but not Pattern/CORE/profile-constrained prototype construction. Current 049 consumes a rendered prototype for measurement only; it does not assume 039 is adopted or provides a producer. O10 producer-scope A/B/C remains open.",
       "previous_register_revision": "5d9e1fc3a6d45a791014b44ee9a729c852db8a41",
       "version_target_evidence": "O10 tracked source snapshot states candidate direction is 1.0; future versions retain real-data/user UX, prototype/implementation drift, and analytics linkage."
     }
@@ -8252,7 +8252,7 @@
       },
       {
         "identity": "HARNESS-L2-049",
-        "registration_id": "MPR-RC-HARNESS-L2-049-001",
+        "registration_id": "MPR-RC-HARNESS-L2-049-002",
         "axes": {
           "candidate_adoption": {
             "selection_status": "pending_PO",
@@ -8260,10 +8260,11 @@
             "decision_ref": "candidate-local",
             "exact_revision": {
               "identity": "HARNESS-L2-049",
-              "registration_id": "MPR-RC-HARNESS-L2-049-001",
+              "registration_id": "MPR-RC-HARNESS-L2-049-002",
               "l2_id": "HARNESS-L2-049",
               "l11_id": "HARNESS-L11-049",
-              "candidate_semantic_digest": "sha256:deba7e763a3ad79f96dabbcc635930675092ea1b0976927b697466eecf61eefa"
+              "candidate_semantic_digest": "sha256:a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116",
+              "supersedes_registration_id": "MPR-RC-HARNESS-L2-049-001"
             },
             "options_ref": "new_meaning_choice",
             "recommendation": "A"
@@ -8273,8 +8274,8 @@
             "selected": null,
             "candidate_source_scope": {
               "source_atom_count": 1,
-              "receipt_ref": "docs/governance/audits/requirement-registration/o10-visual-design-harness-coverage-receipt-2026-09-29.json",
-              "coverage": "no_loss across one carried span plus 24 source-held spans; see receipt and holding inventory"
+              "receipt_ref": "docs/governance/audits/requirement-registration/o10-visual-design-harness-coverage-receipt-2026-09-29-r2.json",
+              "coverage": "same source partition as r1: one selected FR-011 span, 24 held spans, no unaccounted spans; r2 corrects candidate scope wording and preserves VDH-FR-005 PATTERN in MPR-SH-VDH-O10-001."
             },
             "options_ref": "new_meaning_choice",
             "separation_rule": "Candidate adoption covers only the one registered source span; the remaining 24 spans stay in MPR-SH-VDH-O10-001. New task-basis meaning and later source disposition remain separate."
@@ -8304,7 +8305,36 @@
             "change_rule": "Later-version items stay deferred; a different target requires exact revised candidate revision."
           }
         },
-        "candidate_specific_axes": []
+        "candidate_specific_axes": [
+          {
+            "axis_id": "O10-PROTOTYPE-CONSTRUCTION-SCOPE",
+            "selection_status": "pending_PO; unresolved scope; not selected",
+            "selected": null,
+            "authority_effect": "none",
+            "source_ref": "docs/governance/audits/requirements-stage/o10-visual-design-harness-request-source-snapshot-2026-09-29.md#O10",
+            "legacy_source_atom_ref": "O10-VDH-FR-005-PATTERN",
+            "legacy_source_disposition": "held under MPR-SH-VDH-O10-001",
+            "question": "Where should Pattern/CORE/UI-profile-constrained renderable prototype construction be specified, given current HARNESS-L2-039 does not define it?",
+            "choices": [
+              {
+                "id": "A",
+                "label": "Add to 049 future revision",
+                "meaning": "Direct a future exact HARNESS-L2-049 revision to add constrained prototype construction; this does not change/adopt the current measurement-only revision."
+              },
+              {
+                "id": "B",
+                "label": "Separate candidate",
+                "meaning": "Create a separate bounded candidate for constrained prototype construction, with an exact L2/L11 pair and independent source/scope accounting."
+              },
+              {
+                "id": "C",
+                "label": "Defer",
+                "meaning": "Defer the construction capability; do not attribute it to current HARNESS-L2-039 or HARNESS-L2-049."
+              }
+            ],
+            "current_candidate_scope": "HARNESS-L2-049 remains measurement-only until a selected direction is reflected in an exact revised candidate; no option selected."
+          }
+        ]
       }
     ],
     "shared_frames": [
