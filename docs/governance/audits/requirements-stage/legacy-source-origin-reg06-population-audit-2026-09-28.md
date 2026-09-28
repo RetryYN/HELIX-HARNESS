@@ -16,7 +16,7 @@
 | confirmed文書identity | 175 = residual 17 + audited non-residual 158。 | 175/175 `confirmed::preserved_pending_rehome`、formal successor 0。158の「non-residual」は監査分類であり再配置完了ではない。 |
 | 補助source | 134 = system contract 24 + refinement 14 + acceptance 72 + system test 24。 | 全件relation未完。旧schemaのtyped edges: contracts→IR identity 153 edge/153 unique target、AC→contract 72、HAT→contract 24、refinement→contract 39 edge/12 target。これらは旧構造relationで、現行successor・意味duplicate・受入実行を示さない。 |
 | v1.3 source lines | 664 physical / 521 nonempty lines、全行に`REQSRC-SUP`・line digest。 | 521/521 `preserved_pending_atomization`、formal successor 0。condition audit: 303 condition / 154 description / 64 heading-structure。303 condition行のstatusは3 bounded covered / 84 partial / 171 unresolved / 31 implementation-only / 14 version-target（合計303）。残る218 not-applicableは非condition行154 description + 64 heading-structure。 |
-| 旧candidate source lines | 92 files / 4,755 nonempty lines。 | `historical_candidate`→`draft_candidate`、全行pending atomization。分類870 requirement_atom（141 relation-only・coverage未解決、155 unadopted candidate relation、574 unknown）、2,959 explanation、926 structure。explanationにも条件false-negativeの可能性あり。 |
+| 旧candidate source lines | 92 files / 4,755 nonempty lines。 | `historical_candidate`→`draft_candidate`、全行pending atomization。固定snapshotは870 requirement_atom（141 relation-only・coverage未解決、155 unadopted candidate relation、574 unknown）、2,959 explanation、926 structure。後続の[AAFD L45訂正](legacy-candidate-r04-line45-classification-correction-2026-09-28.md)と[IPC L45訂正](legacy-candidate-line-003082-reclassification-2026-09-28.md)を累積すると872 requirement_atom（unknown 576）、2,957 explanation、926 structure。原JSONLは書き換えず、行ごとの訂正根拠を別監査として保持する。 |
 | semantic line inventory | 2,386 spans = ID-anchored 328 + pending atomization 2,058（721 review units）。 | 328は175 confirmedと153 IRへline routeしたsource spansで、要求数やno-duplicate証明ではない。残る2,058は要求と確定していないが、non-requirementとも判定していない。 |
 | PHCAP | 20 capability rows。01 rederived, 02–06/09–20 degraded (17), 07 formally not reimplemented, 08 semantic equivalence unresolved。 | bounded recovery auditは02–18から19を除外+20の18件: adopted-relevant-partial 16、unknown-primary 2、phase execution closure 0。PHCAP-19は別auditで要求意味rederivedだがimplementation recovered false。能力rowはrequirement identityと重複計上しない。 |
 
@@ -33,7 +33,7 @@
 | AC72/HAT24/refinement14 ↔ system contract24 | archive JSONにtyped parent edgesあり。各contractは3 ACと1 HAT。refinementは39 primary/related edgesで12 distinct contractsへ接続。 | 旧schema edgeは現行の要求・受入判定、採択、テスト実行を意味しない。 |
 | PHCAP20 ↔ requirement populations | 各phaseは代表assetとcurrent requirement refsを持つ。18 bounded auditの16件はadopted-relevant条項とのpartial、2件はunknown-primary。 | 近接L2 refsは能力全体や実装/実行closureではない。PHCAP-07/08 unknownを隠さず、PHCAP-19別判定を18行集計へ混ぜない。 |
 
-v1.3 semantic auditは source exact join 0、明示IR 7、明示confirmed 0、明示auxiliary 2、typed reachable IR 36、formal successor 0を記録する。旧candidate 4,755 auditは4 batchの全coverage claimをfalseとし、5 false-negative rowsを後から発見・追加したが再reviewは未実施。source relation 141行も coverage claim=false。
+v1.3 semantic auditは source exact join 0、明示IR 7、明示confirmed 0、明示auxiliary 2、typed reachable IR 36、formal successor 0を記録する。旧candidate 4,755 auditは4 batchの全coverage claimをfalseとする。固定snapshotの5 false-negative rowsに加え、後続のAAFD L45とIPC L45の2件が説明行から要求atomへ訂正された。両訂正は条件routeや採択後継を閉じず、source relation 141行のcoverage claimもfalseのままである。
 
 ## 次の条件別照合の入口
 
@@ -41,7 +41,7 @@ v1.3 semantic auditは source exact join 0、明示IR 7、明示confirmed 0、�
 2. **confirmed 175:** 17 residualを先行し、続いて158 non-residualも全てsource-qualified identity/path/line digestで条件を読んで処置する。全件successorなし。
 3. **aux 134:** 24 contractをtyped IR edgeごとに条件化し、各positive/negative AC/HATをparentと一緒に確認。14 refinementは全件relation unmappedを解消せず、候補statusを保つ。
 4. **v1.3 521:** 171 unresolvedと84 partialから条件・受入を追い、218 not-applicable claimsも理由/条件単位で確認。31 implementation-only/14 version-targetを採択軸と分ける。3 covered行もsuccessor未割当。
-5. **candidate 4,755:** 5 correction rowsと574 unknown atom rowsを先にreviewし、141 relation-only/155 unadopted-routeを意味条件単位で判定。2,959 explanation rowsも再走査し、source authorityをhistorical/draftのまま維持。
+5. **candidate 4,755:** 固定snapshotの5訂正行と後続2訂正行、累積576 unknown atom rowsを先にreviewし、141 relation-only/155 unadopted-routeを意味条件単位で判定。累積2,957 explanation rowsも再走査し、source authorityをhistorical/draftのまま維持。
 6. **semantic lines 2,386:** 2,058 pending spansを721 review unitから分類し、328 anchored linesと機械統合しない。partial/duplicate/conflict/nonmemberはいずれもsource-evidence付き別statusへ。
 7. **PHCAP 20:** 18 bounded recordsの現行refを能力条件別に検証、PHCAP-07/08 unknownを維持し、PHCAP-19は意味recoveryとimplementation未回復を別報告する。
 
