@@ -1,0 +1,195 @@
+{
+  "schema_version": "legacy-ir108-disposition-overlay.v1",
+  "audit_id": "legacy-ir108-fr42-fr45-disposition-overlay-2026-09-28",
+  "basis_main_commit": "d6cc00f21efcc1e3b8eb2a9cb9e6ef0ebfeaba03",
+  "authority_effect": "none",
+  "audit_mode": "read_only_append_only_disposition_overlay",
+  "base_matrix": {
+    "path": "docs/governance/audits/requirements-stage/legacy-ir108-disposition-matrix-2026-09-28.json",
+    "last_changed_commit": "17965750e526fad599673880d81d955678c8b296",
+    "snapshot_baseline_commit": "559ae3ba4bfe660d666a57f227466d7dcdd440d9",
+    "sha256": "0e26f66e4d593f7f710e17b8c2349dffd5849467f208fc5fbdda635e31dd224d"
+  },
+  "condition_audit": {
+    "path": "docs/governance/audits/requirements-stage/legacy-ir108-fr42-fr45-condition-correction-2026-09-28.md",
+    "merged_by_commit": "d6cc00f21efcc1e3b8eb2a9cb9e6ef0ebfeaba03",
+    "reviewed_content_head": "d2325c6143afcda466760620e4b6e179a9c627a4",
+    "sha256": "912ecbd83a8be83669a3524a892414b9ace2ece832ffa01f9c7e5c39703ec5ad"
+  },
+  "review_basis": {
+    "review_id": "RH-PR2275-REVIEW-03",
+    "pr": 2275,
+    "reviewed_head": "d2325c6143afcda466760620e4b6e179a9c627a4",
+    "comment_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2275#issuecomment-5871765096",
+    "finding_count": 0,
+    "authority_effect": "none"
+  },
+  "legacy_sources": {
+    "requirement_document": {
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+    },
+    "requirements_ir": {
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688"
+    }
+  },
+  "resolution_precedence": {
+    "effective_fields": ["dispositions", "remaining_condition"],
+    "non_overlaid_matrix_fields": "All other matrix fields, including current_target_ids, recheck_conclusion, acceptance_state_note, and evidence arrays, remain exactly as stored in the base matrix and are not revalidated or promoted to effective overlay evidence by this record.",
+    "rule": "For HIL-FR-42 and HIL-FR-45, replace only dispositions and remaining_condition with effective_overlay_fields after the base matrix SHA-256, matrix pointer, identity, archive source path, source line, and source line SHA-256 all match. On any mismatch, emit no effective classification, mark the row unresolved, and stop aggregation; the base matrix value is history only, not a fallback truth. The base matrix is never edited.",
+    "mismatch_action": "unresolved_stop_aggregation",
+    "scope": "This rule applies only to the two identities in this overlay."
+  },
+  "items": [
+    {
+      "identity": "HIL-FR-42",
+      "matrix_pointer": "/items/46",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "line": 132,
+        "line_sha256": "346e683c5f9c58018a57c29e652b84b79612466a24a3df6124d271ac0ddeddb8",
+        "requirements_ir_pointer": "/HIL-FR-42",
+        "requirements_ir_statement_semantic_digest": "sha256:d6ac9d8a9b359a2a9860550bfcfdddac56f9414d9fc7483ac0566b76b4f36eda"
+      },
+      "snapshot_values": {
+        "dispositions": ["adopted_meaning"],
+        "remaining_condition": null
+      },
+      "effective_overlay_fields": {
+        "dispositions": ["adopted_meaning", "true_missing_condition_needing_candidate"],
+        "remaining_condition": "未消込、孤児、placeholder、根拠のないN/A、aggregate一括消込が1件でもあればpair-freezeを拒否する条件が残る。採択済み条件は追跡・設計義務・N/A・Backflow・消込および要求source atomのno-lossを扱うが、全設計義務の未解決件数が0であることをpair-freeze条件として判定しない。"
+      },
+      "retained_adopted_conditions": [
+        {
+          "condition_key": "HIL-FR-42-A1",
+          "meaning": "要求変更から影響する設計・testと再検証範囲を導き、versioned templateから設計義務を導出し、trace欠落・適用差・required input不足を識別して戻す。",
+          "current_requirement_refs": ["HARNESS-L2-004", "HARNESS-L2-009"],
+          "acceptance_evidence": [
+            {"path": "docs/helix-harness/L11-acceptance/product-acceptance.md", "lines": [24, 29, 69, 129, 130]}
+          ],
+          "audit_basis": "legacy-ir108-fr42-fr45-condition-correction-2026-09-28.md: HIL-FR-42 section"
+        },
+        {
+          "condition_key": "HIL-FR-42-A2",
+          "meaning": "要求から設計要素・oracleへの双方向trace、構成体固有義務、unknown/不一致時の差戻しを扱う。",
+          "current_requirement_refs": ["HARNESS-L2-025", "HARNESS-L2-026"],
+          "acceptance_evidence": [
+            {"path": "docs/helix-harness/L11-acceptance/product-acceptance.md", "lines": [332, 360]}
+          ],
+          "audit_basis": "legacy-ir108-fr42-fr45-condition-correction-2026-09-28.md: HIL-FR-42 section"
+        },
+        {
+          "condition_key": "HIL-FR-42-A3",
+          "meaning": "要求source atomの完全集合・行先・HARNESS無損失receiptを登録し、未計上、stale、digest不一致等があれば要求PRをmerge可能にしない。template候補・選定版、設計義務、N/A、Backflow、消込を追跡し、template欠落時の自由形式fallbackを拒否する。",
+          "current_requirement_refs": ["HELIXOS-L2-001", "HELIXOS-L2-002", "HELIXOS-L2-005", "HELIXOS-L2-007", "HELIXOS-L2-013"],
+          "acceptance_evidence": [
+            {"path": "docs/helix-os/L2-requirements/governance-requirements.md", "lines": [23, 25]},
+            {"path": "docs/helix-os/L11-acceptance/governance-acceptance.md", "lines": [44, 45]}
+          ],
+          "adoption_limit": "OSのsource-atom no-loss gateは要求PRのmergeとsource atom計上を対象にする。全設計義務の消込完了をpair-freeze前提にする条件ではない。",
+          "audit_basis": "legacy-ir108-fr42-fr45-condition-correction-2026-09-28.md: HIL-FR-42 section"
+        }
+      ],
+      "remaining_condition_atoms": [
+        {
+          "condition_key": "HIL-FR-42-R1",
+          "source_clause": "未消込、孤児、placeholder、根拠のないN/A、aggregate一括消込が1件でもあればpair-freezeを拒否する。",
+          "source_span_is_verbatim": true,
+          "remaining_meaning": "pair-freeze時に全設計義務の消込を確認し、上記の未解決状態が1件でもあれば拒否するclosed-set gateは、採択済みの個別義務追跡および要求source-atom no-loss条件からは確認できない。",
+          "unadopted_analogous_refs": ["HARNESS-L2-041", "HARNESS-L2-044"],
+          "relation_limit": "HARNESS-L2-041はHIL-FR-47由来、HARNESS-L2-044はHIL-FR-54由来の未採択候補であり、FR-42のsuccessorまたは採択済みcoverageではない。",
+          "audit_basis": "legacy-ir108-fr42-fr45-condition-correction-2026-09-28.md: HIL-FR-42 section"
+        }
+      ],
+      "matrix_target_review": {
+        "all_target_ids_checked": true,
+        "current_target_ids": ["HARNESS-L2-003", "HARNESS-L2-004", "HARNESS-L2-005", "HARNESS-L2-008", "HARNESS-L2-010", "HARNESS-L2-011", "HARNESS-L2-014", "HARNESS-L2-022", "HARNESS-L2-025", "HARNESS-L2-026", "HELIXOS-L2-015", "HELIXOS-L2-016", "HELIXOS-L2-019", "HELIXOS-L2-020"],
+        "scope_note": "全targetを確認したが、いずれも未消込設計義務が1件以上ある場合のpair-freeze拒否gateを明記しない。追加関連条件としてHARNESS-L2-004/009、OS L2:23/25・L11:44/45も照合した。"
+      },
+      "formal_successor_ids": [],
+      "carry_forward_authority": "preserved_pending_rehome"
+    },
+    {
+      "identity": "HIL-FR-45",
+      "matrix_pointer": "/items/48",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "line": 135,
+        "line_sha256": "618f08eec7918d50938b2b09914da9be34524d5f9662b5bdfd1dfa43aed4b871",
+        "requirements_ir_pointer": "/HIL-FR-45",
+        "requirements_ir_statement_semantic_digest": "sha256:e13451d529dd90b9d37e1b42eb180f20b183ec7b20f5ece2e6b8b02acdd7acda"
+      },
+      "snapshot_values": {
+        "dispositions": ["adopted_meaning"],
+        "remaining_condition": null
+      },
+      "effective_overlay_fields": {
+        "dispositions": ["adopted_meaning", "true_missing_condition_needing_candidate"],
+        "remaining_condition": "split/merge/rename/supersede/reject/N/Aのうち適用するidentity-change operationを特定し、そのoperationに対応するbefore/after両semantic digestをoperation固有のchange/applicability receiptへ束縛してから適用する条件が残る。source atomの行先、no-loss、stale/digest不整合の拒否、人間decision境界は採択済み一般条件が保持するため、残差として重ねて要求しない。"
+      },
+      "retained_adopted_conditions": [
+        {
+          "condition_key": "HIL-FR-45-A1",
+          "meaning": "stable requirement identity/revisionとsource、authority、digest、typed relation/stateを追跡し、missing/conflict/staleを扱う。",
+          "current_requirement_refs": ["HELIXOS-L2-015", "HELIXOS-L2-016", "HELIXOS-L2-019"],
+          "acceptance_evidence": [
+            {"path": "docs/helix-os/L11-acceptance/governance-acceptance.md", "lines": [331, 336, 352, 360]}
+          ],
+          "audit_basis": "legacy-ir108-fr42-fr45-condition-correction-2026-09-28.md: HIL-FR-45 section"
+        },
+        {
+          "condition_key": "HIL-FR-45-A2",
+          "meaning": "意味変更・縮退・retireを人間decisionなしに登録せず、入力source atom全件に保持先または人間decision対象を割り当て、source集合digest・候補semantic digest・無損失receipt・authority_effectを束縛する。未計上atom、stale、digest不一致、wrong product、仮登録欠落があれば要求PRをmerge可能にしない。",
+          "current_requirement_refs": ["HELIXOS-L2-001", "HELIXOS-L2-002", "HELIXOS-L2-007", "HELIXOS-L2-013"],
+          "acceptance_evidence": [
+            {"path": "docs/helix-os/L2-requirements/governance-requirements.md", "lines": [23, 25]},
+            {"path": "docs/helix-os/L11-acceptance/governance-acceptance.md", "lines": [44]}
+          ],
+          "audit_basis": "legacy-ir108-fr42-fr45-condition-correction-2026-09-28.md: HIL-FR-45 section"
+        }
+      ],
+      "remaining_condition_atoms": [
+        {
+          "condition_key": "HIL-FR-45-R1",
+          "source_clause": "split/merge/rename/supersede/reject/N/Aはbefore/after semantic digest、全source atom disposition、downstream stale、review authorityを持つreceiptがある場合だけ適用する。",
+          "source_span_is_verbatim": true,
+          "remaining_meaning": "採択済みOS条件は候補semantic digestおよびsource atom集合digest、no-loss receipt、各atom行先を束縛するが、identity-change operationを特定し、そのoperationに対応する前後両semantic digestをoperation固有receiptへ束縛してから適用する条件までは定めない。source atom disposition・stale・review authorityの一般的な保持をoperation固有receiptへ重ねて要求しない。",
+          "identity_change_operations": ["split", "merge", "rename", "supersede", "reject", "N/A"],
+          "unadopted_analogous_refs": [],
+          "audit_basis": "legacy-ir108-fr42-fr45-condition-correction-2026-09-28.md: HIL-FR-45 section"
+        }
+      ],
+      "matrix_target_review": {
+        "all_target_ids_checked": true,
+        "current_target_ids": ["HARNESS-L2-003", "HARNESS-L2-004", "HARNESS-L2-005", "HARNESS-L2-008", "HARNESS-L2-010", "HARNESS-L2-011", "HARNESS-L2-014", "HARNESS-L2-022", "HELIXOS-L2-015", "HELIXOS-L2-016", "HELIXOS-L2-019", "HELIXOS-L2-020"],
+        "scope_note": "全targetを確認した。これらはprovenance、authority/human-decision、変更影響・検証/受入、pack/call条件、stale/trace/continuity/検収stateを扱うが、identity-change operation固有のbefore/after receipt gateを明記しない。追加関連条件としてOS L2:23/25・L11:44を照合した。"
+      },
+      "formal_successor_ids": [],
+      "carry_forward_authority": "preserved_pending_rehome"
+    }
+  ],
+  "authority_boundaries": {
+    "ir_carry_forward_state": "preserved_pending_rehome",
+    "formal_successor_assignments": 0,
+    "po_adoption_claimed": false,
+    "meaning_change_or_retirement_claimed": false,
+    "acceptance_execution_claimed": false,
+    "implementation_or_release_permission_claimed": false,
+    "requirements_stage_completion_claimed": false
+  },
+  "static_assertions": {
+    "target_identities_exactly": ["HIL-FR-42", "HIL-FR-45"],
+    "matrix_pointers_and_source_line_digests_match": true,
+    "requirements_ir_pointers_match_identity": true,
+    "source_file_hashes_match": true,
+    "snapshot_values_match": true,
+    "effective_rows_have_adopted_and_residual_classifications": true,
+    "effective_rows_have_non_null_remaining_condition": true,
+    "formal_successors_remain_unassigned": true,
+    "authority_effect_is_none": true,
+    "claude_review_findings": 0
+  }
+}
