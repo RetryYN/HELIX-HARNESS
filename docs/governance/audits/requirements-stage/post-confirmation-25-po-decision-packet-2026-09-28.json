@@ -4742,9 +4742,9 @@
       "identity": "HELIXOS-L2-052",
       "decision_state": "pending_PO; not adopted",
       "source_basis_class": "旧source選択3 spanから衝突時の作成側返却・先行merge後のbase drift再判定を限定保持。旧delete-branch-on-merge設定はcontextとしてsource holdingに残し、remote削除authorityを継承しない。",
-      "new_meaning_choice": "A＝post-merge read-after後の所有確認済みlocal cleanup、後続PRの最新base trial merge/stale/依存再照合と作成側返却、修正HEADの独立reviewをexact候補として採択（推奨）。remote削除は対象/ref/delete作用の有効authority内に限る。B＝保留。C＝cleanup対象・remote削除作用・auto-rebase例外を対象revision/理由/影響付きで別途変更。いずれも未選択。",
+      "new_meaning_choice": "A＝post-merge read-after後の所有確認済みlocal cleanup、後続PRの最新base trial merge/stale/依存再照合と作成側返却、修正HEADの独立reviewをexact候補として採択（推奨）。remote削除は対象/ref/delete作用の有効authority内に限る。A2＝Aに加え、作成側が所有するmerge済みPR branchのremote ref削除も片付けに含める。ただし対象repository・ref・delete作用を明示したPOの許可またはrepository設定の許可判断を別途確認し、削除対象・結果・復元手段の有無を記録する。B＝保留。C＝cleanup対象・remote削除作用・auto-rebase例外を対象revision/理由/影響付きで別途変更。いずれも未選択。",
       "recommended_choice": "A",
-      "choice_meaning": "Aは登録されたL2/L11のexact候補だけを選ぶ。既存採択済み条件を置換せず、接続先候補を自動採択しない。L3承認、実装、運転、releaseを生成しない。",
+      "choice_meaning": "Aは登録されたL2/L11のexact候補だけを選ぶ。A2はremote refの外部削除作用を追加し、復元に別手段が要る場合がある。A2の選択だけでは削除許可にならず、対象repository/ref/delete作用の許可を別に要する。既存採択済み条件を置換せず、接続先候補を自動採択しない。L3承認、実装、運転、releaseを生成しない。",
       "version_target_as_written": "1.0",
       "title_and_kind": "### HELIXOS-L2-052 merge後のlocal cleanupと後続PRの再照合（connection候補、version_target: 1.0）",
       "requirement_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-052",
@@ -7610,7 +7610,7 @@
             "selected": null,
             "candidate_source_scope": {
               "source_atom_count": 5,
-              "receipt_ref": "docs/governance/audits/requirement-registration/helixos-worker-utilization-coverage-receipt-2026-09-29-r2.json#HELIXOS-L2-049",
+              "receipt_ref": "docs/governance/audits/requirement-registration/helixos-worker-utilization-coverage-receipt-2026-09-29-r3.json#HELIXOS-L2-049",
               "coverage": "no_loss; 5 exact selected spans carried; source-line remainders held separately; no wider source closure"
             },
             "options_ref": "new_meaning_choice",
@@ -7700,7 +7700,7 @@
             "selected": null,
             "candidate_source_scope": {
               "source_atom_count": 6,
-              "receipt_ref": "docs/governance/audits/requirement-registration/ops-o4-coverage-receipt-2026-09-29.json#HELIXOS-L2-051",
+              "receipt_ref": "docs/governance/audits/requirement-registration/ops-o4-coverage-receipt-2026-09-29-r2.json#HELIXOS-L2-051",
               "coverage": "selected six atoms no_loss; 4 carried, 2 preserved pending; remaining source conditions held separately"
             },
             "options_ref": "new_meaning_choice",
@@ -7721,6 +7721,52 @@
           }
         },
         "supersedes_registration_id": "MPR-RC-HELIXOS-L2-051-001"
+      },
+      {
+        "identity": "HELIXOS-L2-052",
+        "registration_id": "MPR-RC-HELIXOS-L2-052-001",
+        "axes": {
+          "candidate_adoption": {
+            "selection_status": "pending_PO",
+            "selected": null,
+            "decision_ref": "candidate-local",
+            "exact_revision": {
+              "identity": "HELIXOS-L2-052",
+              "registration_id": "MPR-RC-HELIXOS-L2-052-001",
+              "l2_id": "HELIXOS-L2-052",
+              "l11_id": "HELIXOS-L11-052",
+              "candidate_semantic_digest": "sha256:d9e839c319c54f826bb065ce065ca5a8af126a11abd8f15c9f3183964a4e5345",
+              "supersedes_registration_id": null
+            },
+            "options_ref": "new_meaning_choice",
+            "recommendation": "A"
+          },
+          "source_meaning_disposition": {
+            "selection_status": "pending_PO; source disposition distinct from candidate adoption",
+            "selected": null,
+            "candidate_source_scope": {
+              "source_atom_count": 3,
+              "receipt_ref": "docs/governance/audits/requirement-registration/ops-o6-coverage-receipt-2026-09-29.json#HELIXOS-L2-052",
+              "coverage": "selected 3 spans no_loss; 2 carried, 1 preserved pending; exact source-line remainders held separately"
+            },
+            "options_ref": "new_meaning_choice",
+            "separation_rule": "selected spans only; unselected clauses remain holding; meaning change/retire needs affected source revision/reason/consumer impact"
+          },
+          "owner_placement": {
+            "selection_status": "proposal owner only; no separate PO selection recorded",
+            "selected": null,
+            "proposed_owner": "HELIX-OS",
+            "source_ref": "candidate identity and L1 parent; proposed, not adopted"
+          },
+          "version_target": {
+            "selection_status": "proposal value only; no independent PO selection",
+            "selected": null,
+            "proposed_value": "1.0",
+            "source_ref": "L2 candidate heading",
+            "change_rule": "different target requires new exact candidate revision; adoption is not deployment"
+          }
+        },
+        "supersedes_registration_id": null
       }
     ],
     "shared_frames": [
