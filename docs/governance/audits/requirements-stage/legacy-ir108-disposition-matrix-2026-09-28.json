@@ -4718,9 +4718,13 @@
     "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
   },
   "input_recheck_snapshot_sha256": {
-    "/tmp/ir-w1-recheck.md": "9ed0fef46013d4da52324737c4ce0f0aaa91c8e400edc5d7de11f6ef1ea32792",
-    "/tmp/ir-w2-recheck.md": "852bf651468c739f3ad3c53c19ab80df9aa6c60cfe5792640d92414539250675",
-    "/tmp/ir-w3-recheck.md": "74d339e4b44987eade8f16bb9dd964a91c7f62580062250fee3c75e421579d81",
-    "/tmp/ir-w4-recheck.md": "e7282e979876b4d27dd0c1fd81c8bc066ec792c3aed880c56f8f37b6a7b0a4a3"
+    "docs/governance/audits/requirements-stage/legacy-ir-business-source-recheck-2026-09-28.md": "9ed0fef46013d4da52324737c4ce0f0aaa91c8e400edc5d7de11f6ef1ea32792",
+    "docs/governance/audits/requirements-stage/legacy-ir-functional-source-recheck-2026-09-28.md": "1eaf6a9c97854e38f7adc52857ab5546ea656c745b5da7ace34461c75b3b134d",
+    "docs/governance/audits/requirements-stage/legacy-ir-quality-source-recheck-2026-09-28.md": "74d339e4b44987eade8f16bb9dd964a91c7f62580062250fee3c75e421579d81",
+    "docs/governance/audits/requirements-stage/legacy-ir-technical-source-recheck-2026-09-28.md": "e7282e979876b4d27dd0c1fd81c8bc066ec792c3aed880c56f8f37b6a7b0a4a3"
+  },
+  "input_recheck_working_intermediate": {
+    "W2_sha256": "852bf651468c739f3ad3c53c19ab80df9aa6c60cfe5792640d92414539250675",
+    "difference_from_repository_snapshot": "The working W2 draft had the former reference path on line 7. The repository functional recheck replaced that single reference path with the repository relative path; source-condition findings and rows are unchanged. The repository W2 SHA in input_recheck_snapshot_sha256 is the reviewed input."
   }
 }
