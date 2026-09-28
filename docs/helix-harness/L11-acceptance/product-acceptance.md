@@ -708,6 +708,11 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 
 **戻し先と境界**：template選択・必須input・適用性の不足はHARNESS-L2-009/該当ownerへ、ledger/pair契約の不足はHARNESS-L2-040相当の契約ownerへ返す。OSの保存/実行receipt欠落はOS側未実行/未確認として保持する。HARNESS-L2-025/026の設計生成・pair oracleと責務を混同しない。
 
+**追加oracle候補（登録revision `MPR-RC-HARNESS-L2-041-003`、未採択；HARNESS-L2-041 L11）**：
+
+- **原子的obligationの拒否例**：固定したactive template revisionと適用scopeに、異なる二つの義務がある。抽出結果が両方を一つの複合atomへまとめた場合、二つのsource spanに対応する個別atomが揃っていない不一致を示し、そのscopeを抽出済みとしない。各義務が別々のatomとして出る場合だけ、この原子性条件を満たす。これは抽出結果が要素ごとのatom対応を満たすかだけを判定する。
+- **同一入力・同一extractor/versionの再抽出不一致例**：同じactive template bytes/revision、scope、applicability入力、extractor identity/versionで独立に得た二つの抽出結果を比較する。semantic digestが異なる場合、非決定的抽出として差分をfindingにし、一致した抽出結果として扱わず、そのscopeを未解決に保つ。同じdigestが得られた場合も、この比較に限った一致であり、抽出器の一般的な決定性や他scopeの成立へ外挿しない。判定範囲はこの入力scopeに対する抽出結果の一致に限る。
+
 ### HARNESS-L2-042 Design Refactor判定とepisode分離の受入候補
 
 **対応要求**：`HARNESS-L2-042`（⑤のunit候補、`version_target: 1.0`、未採択）。親は`HARNESS-L1-003/004/005/007`。本節の例は未実行の内容oracleであり、文書の存在で候補採択・実装・利用者受入を生成しない。Performance Refactorの条件は採択済み`HARNESS-L2-016`と対L11に従う。

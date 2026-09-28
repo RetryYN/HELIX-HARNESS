@@ -1,0 +1,106 @@
+{
+  "receipt_id": "MPR-RCPT-HARNESS-LAYER-LEDGER-EXTRACTION-2026-09-29-R3",
+  "receipt_state": "candidate_acceptance_revision_recorded",
+  "authority_effect": "none",
+  "change_kind": "targeted_acceptance_oracle_candidate_revision",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "acceptance_digest_rule": "L11 identityの###見出しから次の同階層または上位見出しまでを取り、末尾空行を除きUTF-8 LF一つで終えるbytesのSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom順に改行で区切る。末尾改行なし。",
+  "correction_reason": "#2298の静的source-to-current照合で不足したHST-CASE-030-04/-05のHARNESS抽出oracleをL11へ限定追補する。L2候補意味digestとHIL-FR-47 source atom集合は不変。旧caseのOS writer commit/row-count/quarantine/current-update結果はHARNESS受入に含めず、現行OS owner未確定の運転条件としてsource holdingへ保留する。",
+  "adoption_state": "unadopted_candidate; PO decision required before HARNESS-L2-041-003 becomes an approved_revision",
+  "candidate_identity": "HARNESS-L2-041",
+  "candidate_kind": "unit",
+  "l2_source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+  "l2_file_sha256": "sha256:111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+  "l2_section_digest": "sha256:d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260",
+  "l11_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+  "l11_file_sha256": "sha256:8f12b0e5b11d6dcba21974bdbf1999bc0ff28fc54686207cbe4cedc3ef4aa70e",
+  "l11_section_digest": "sha256:11759276200a6707762e76eeeefd901443e691bd1b0ff51b55cd3b6551fed58b",
+  "base_revision": {
+    "commit": "187beb01f09bb327658469f0e3faafa949ff362d",
+    "previous_registration_id": "MPR-RC-HARNESS-L2-041-002",
+    "previous_pinned_l2_section_digest": "sha256:d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260",
+    "previous_pinned_l11_section_digest": "sha256:259c383203d86b79c159395b64c0d03d88db665486d28f5fc2aea8f7556a73a8",
+    "previous_pinned_l2_file_sha256": "sha256:111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+    "previous_pinned_l11_file_sha256": "sha256:3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+    "authority_relation": "The 2026-09-29 PO decision remains fixed to registration 002 and its exact L2/L11 digests. This proposed 003 revision is not covered by that decision."
+  },
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/harness-layer-ledger-extraction-source-lines-2026-09-28.jsonl#HIL-FR-47",
+  "source_atom_set_digest": "sha256:a586be988524a1f702b1a2acc9118224cc0248ac16868193f9bebf132dd3e2f0",
+  "source_atom_count": 1,
+  "source_collection_scope": "The sole carried legacy requirement atom is HIL-FR-47 line 137. HST-CASE-030-04/-05 are acceptance-oracle references, not additional requirement atoms in this input set. HST-CASE-030-04 maps to cross-condition HIL-NFR-29 and is not claimed as an independently adopted atom. No closure over HIL-NFR-29, HST-HIL-030, HAC/HAT, or the legacy family is claimed.",
+  "atoms": [
+    {
+      "atom_id": "TEMPLATE-EXTRACT-HIL-FR-47-L0137",
+      "source_holding_registration_id": "MPR-SH-HARNESS-LAYER-LEDGER-EXTRACTION-001",
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_line": 137,
+      "source_line_sha256": "sha256:785f0998ca9fd2192bcddc638d1ef1233551c251e307e631303642abe7713fad",
+      "source_text": "| **HIL-FR-47** | Template Obligation Extractorは各layerのactive templateから章、field、table row、applicability rule、done-when、pair contractを原子的obligationとして機械抽出し、該当ledgerへ候補行を追加する。未対応template要素、空/TBD、抽出不能、同一obligation重複をfinding化し、LLM自由補完で埋めない。 | template atom、ledger proposal、extractor/version digest、gap finding |",
+      "disposition": "split; retained by HARNESS-L2-041 candidate",
+      "relationship": "HARNESS owns extraction meaning, atom/proposal, and gap semantics; actual ledger writer, commit, and persisted row effects remain outside HARNESS-L2-041."
+    }
+  ],
+  "oracle_source_pins": [
+    {
+      "case_id": "HST-CASE-030-04",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+      "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+      "source_line": 293,
+      "source_line_sha256": "sha256:88e977c12fc8d4c20830e2bbfe2e7da91b8477f6311ed1f6ef8702bfac54a1d9",
+      "condition": "A source line contains two extracted obligations.",
+      "legacy_expected_behavior": "ledger commit rejected; row increment 0; HIL_LAYER_OBLIGATION_NOT_ATOMIC",
+      "candidate_harness_oracle": "if extraction returns one composite atom for two distinct obligations, report atomization mismatch/gap and do not report the scoped extraction as complete; do not assert OS commit or persisted row outcome."
+    },
+    {
+      "case_id": "HST-CASE-030-05",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+      "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+      "source_line": 294,
+      "source_line_sha256": "sha256:2463bc4e08ed5c82aa3ad531f26fe81d455fe07e97a78130b7cd321f767cd58c",
+      "condition": "A digest is recorded for the same input/version and extraction is replayed.",
+      "legacy_expected_behavior": "quarantined; current update 0; HIL_LAYER_EXTRACTION_NONDETERMINISTIC",
+      "candidate_harness_oracle": "for identical input/template revision/scope/applicability and extractor identity/version, compare independent extraction semantic digests; a mismatch is a nondeterministic-extraction finding and leaves the scoped result unresolved, not accepted as a matching extraction. Do not assert quarantine, current-ledger update, or storage outcome."
+    }
+  ],
+  "legacy_test_design_reference": {
+    "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L9-infinity-loop-platform-system-test-design.md",
+    "source_file_sha256": "sha256:e518b0cfe15ca4b999bd85120b8d74941a18ab0939ff6cda3dc20a8b7611b705",
+    "source_line": 57,
+    "source_line_sha256": "sha256:0aeff64c458704a4817a9ded0126109dc725d6b0357a3fb27563c8009767140a",
+    "note": "HST-HIL-030 row is a broader design summary; it does not replace the two exact governance case oracles. Both are legacy design only and not executed."
+  },
+  "current_condition_refs": [
+    "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-041",
+    "docs/helix-harness/L11-acceptance/product-acceptance.md#harness-l2-041",
+    "docs/governance/audits/requirements-stage/hil-fr46-47-layer-ledger-oracle-audit-2026-09-29.md",
+    "docs/governance/authority-state-model.md",
+    "docs/governance/decisions/po-decision-2026-09-29-57candidates.md#HARNESS-L2-041",
+    "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-038",
+    "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-038"
+  ],
+  "coverage_result": "no_loss",
+  "carried_atom_refs": [
+    "TEMPLATE-EXTRACT-HIL-FR-47-L0137"
+  ],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-HARNESS-LAYER-LEDGER-EXTRACTION-001"
+  ],
+  "unaccounted_atom_refs": [],
+  "open_os_holding": {
+    "registration_ref": "MPR-SH-HARNESS-LAYER-LEDGER-EXTRACTION-001",
+    "unresolved_conditions": [
+      "HST-CASE-030-04: writer commit rejection and persisted row increment behavior.",
+      "HST-CASE-030-05: quarantine disposition and current-ledger update suppression for divergent extraction replay."
+    ],
+    "boundary": "No OS owner/requirement or current storage behavior is inferred by this HARNESS L11 candidate."
+  },
+  "execution_state": "not_run; static source-to-current oracle clarification only",
+  "registration_id": "MPR-RC-HARNESS-L2-041-003",
+  "supersedes_registration_id": "MPR-RC-HARNESS-L2-041-002",
+  "l2_candidate_semantics_unchanged": true,
+  "supersedes_receipt_ref": "docs/governance/audits/requirement-registration/harness-layer-ledger-extraction-coverage-receipt-2026-09-28-r2.json#HARNESS-L2-041",
+  "coverage_scope_note": "coverage_result:no_loss applies only to the one selected source atom TEMPLATE-EXTRACT-HIL-FR-47-L0137; the two assertion cases are oracle references and no HST-HIL-030/family closure is claimed."
+}
