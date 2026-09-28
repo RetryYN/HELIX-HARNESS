@@ -1,6 +1,6 @@
-# 8機構確認後の追加候補：PO判断パケット（初版25 + 後続11 = 36）
+# 8機構確認後の追加候補：PO判断パケット（初版25 + 後続12 = 37）
 
-基準HEAD: `1b8d93b360e3c414eb263b0cee0c8c4b55ab59c9`（merge済み#2255後）。この基準HEADにある35候補へ、HELIXSECURITY-L2-032を追加し、判断集合は36候補となる。032は未採択のbounded candidateであり、全候補は`registered_proposal` / `authority_effect:none`、PO未採択・未判断である。PR mergeやL2/L11本文・registerの存在から採択・実装・受入完了は推定しない。
+基準HEAD: `78b402e1e2eb06b7cc08ae35bb722fadc90dae91`（merge済み#2256後）。この基準HEADの36候補へ、HARNESS-L2-046を追加し、判断集合は37候補となる。046は未採択のbounded candidateであり、全候補は`registered_proposal` / `authority_effect:none`、PO未採択・未判断である。PR mergeやL2/L11本文・registerの存在から採択・実装・受入完了は推定しない。
 
 ## 選択肢
 
@@ -166,4 +166,13 @@ PO選択肢は、**A（推奨）** exact L2/L11候補を1.0として採用、**B
 |---|---|---|---|---|---|---|
 | `HELIXSECURITY-L2-032` (L2/L11) | PO未決／推奨 **A** | 1.0; HELIXSECURITY-L1-007, HELIXSECURITY-L1-008 | HR-FR-P2-07の意味を限定再導出。適用deny優先、unknown/staleは既存fail-close、deny非適用確定時は既存operation authorityへ戻す。exact scope/authority meaningはPO判断 | `docs/governance/audits/requirement-registration/security-v13-worker-bypass-coverage-receipt-2026-09-28.json#HELIXSECURITY-L2-032`; atom V13-ARCHIVE-L0430-HR-FR-P2-07は旧archive line 430、file SHA-256 `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`、line SHA-256 `a93331748e84ab0fd111c3bc6e9bfa147e681b3ddb30774293c7a577c61c3dd7` | `HELIXSECURITY-L2-032` (L2/L11); HELIXSECURITY-L1-007/008、既存L2-007/008/031 | 現行031はbypass常態化防止を範囲外としている。032はprovider/runtime区分を限定せず優先順位だけを補い、deny非適用時の許否を新設しない。全§4.10条件の被覆は主張しない。 |
 
-この候補の最新machine-readable decision packetは[36候補JSON](post-confirmation-25-po-decision-packet-2026-09-28.json)であり、base pinはmain `1b8d93b360e3c414eb263b0cee0c8c4b55ab59c9`。候補は`MPR-RC-HELIXSECURITY-L2-032-001`へ仮登録され、PO判断は未決である。
+HELIXSECURITY-L2-032追加時のmachine-readable decision packetは[36候補JSON](post-confirmation-25-po-decision-packet-2026-09-28.json)であり、base pinはmain `1b8d93b360e3c414eb263b0cee0c8c4b55ab59c9`。候補は`MPR-RC-HELIXSECURITY-L2-032-001`へ仮登録され、PO判断は未決である。
+
+
+## 後続追加：HARNESS-L2-046（判断集合37候補）
+
+| ID | 状態／推奨 | 版／対象L1親 | source basis／POが決める意味境界 | 根拠（旧sourceの正確なreceipt） | 影響する要求・consumer | 推奨理由 |
+|---|---|---|---|---|---|---|
+| `HARNESS-L2-046` (L2/L11) | PO未決／推奨 **A** | 1.0; HARNESS-L1-001/002/004 | 旧v1.3 L259第1文のFull V段階freeze・列挙検証と第2文のProduction Scrum backfill/SR4をscope分離。4方式定義・製品特性に合わせた合成許可を維持。Full VへScrum receiptを要求しない | `docs/governance/audits/requirement-registration/harness-fullv-scrum-coverage-receipt-2026-09-28.json#HARNESS-L2-046`; 6 sentence span/2 source revisions、物理行はarchive L259/L647と6fab baseline L244/L628。file SHA-256、line SHA-256、span SHA-256はreceiptとsource-linesを参照 | `HARNESS-L2-046` (L2/L11); HARNESS-L1-001/002/004; 既存L2-001/002/003/004/022/023 | Full V全workflowのstage freeze/verificationとScrum固有backfillを限定scopeへ接続し、誤った一律SR4適用を避ける。 |
+
+MPR-RC-HARNESS-L2-046-001を`registered_proposal` / `authority_effect:none`として追記したが、POの選択は未決・未採択。A＝exact L2/L11の限定採用、B＝6 spanをsource holdingに保持して保留、C＝対象revision・理由・影響付きの意味変更/retire。L647はL259の二条件を要約する部分重複sourceで、第3独立条件とは数えない。6fabd125 revisionの3 sentence spanもarchiveへ統合せず保持する。いずれの選択肢もFull VにScrum checkpoint/SR4を課さず、他候補の採否、実装許可、旧v1.3全体のcoverageを生成しない。

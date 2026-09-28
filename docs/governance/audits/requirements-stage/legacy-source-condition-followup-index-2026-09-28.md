@@ -25,3 +25,8 @@
 ## 後続追加：HR-FR-P2-07／HELIXSECURITY-L2-032
 
 旧v1.3 §4.10 HR-FR-P2-07（REQSRC-SUP-00332、archive line 430）の意味条件に、[HELIXSECURITY-L2-032](../../../helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-032)と対L11を未採択候補として追補した。source line/file digestと候補coverageは`security-v13-worker-bypass-coverage-receipt-2026-09-28.json`に固定し、生存registerは`MPR-RC-HELIXSECURITY-L2-032-001`である。#2255後の現在のPO判断集合は[36候補packet](post-confirmation-25-po-decision-packet-2026-09-28.md)へ更新された。候補存在から条件閉鎖や採択を推定しない。
+
+
+## 後続追加：HARNESS-L2-046／現行37候補
+
+旧v1.3 §4.4 L259の二文（Full V段階freeze/検証、Production Scrum delta/backfill/SR4）と§10 L647の要約文を、archive revisionおよび6fabd125監査基準revisionで照合し、6 sentence spansを[HARNESS-L2-046](../../../helix-harness/L2-requirements/product-requirements.md#harness-l2-046)と対L11へ未採択候補として追補した。L647は部分重複要約で第3の独立条件ではない。生存registerは`MPR-RC-HARNESS-L2-046-001`、source-lines/coverage receiptは`harness-fullv-scrum-source-lines-2026-09-28.jsonl`と`harness-fullv-scrum-coverage-receipt-2026-09-28.json`。Full VにScrum slice/checkpoint/SR4を適用せず、Scrum適用scopeだけにbackfill条件を置く。2026-09-25 PO判断の4方式定義・合成許可を維持する。source holding/capture不変。現在の候補集合は37件で、採否は未決。

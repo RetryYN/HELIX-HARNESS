@@ -69,4 +69,11 @@ HARNESS-L2-042のreceiptは旧v1.3 §4.2 L119の異なる2 source revisionを別
 |---|---|---|---|
 | SECURITY | [HELIXSECURITY-L2-032：Worker runtimeにおけるpermanent bypass denyの優先順位](../../../helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-032) | [L11受入候補](../../../helix-security/L11-acceptance/security-acceptance.md#helixsecurity-l2-032) | `MPR-RC-HELIXSECURITY-L2-032-001`; `security-v13-worker-bypass-coverage-receipt-2026-09-28.json#HELIXSECURITY-L2-032` |
 
-候補はPO未決・未採択で`authority_effect:none`。旧v1.3 §4.10 HR-FR-P2-07の一行のみを対象とし、旧source captureと他のsource-holding bytesを変更しない。現行36候補packetは[36候補の判断packet](post-confirmation-25-po-decision-packet-2026-09-28.md)と対応するJSONに束縛する。
+候補はPO未決・未採択で`authority_effect:none`。旧v1.3 §4.10 HR-FR-P2-07の一行のみを対象とし、旧source captureと他のsource-holding bytesを変更しない。HELIXSECURITY-L2-032追加時の36候補packetは[36候補の判断packet](post-confirmation-25-po-decision-packet-2026-09-28.md)と対応するJSONに束縛する。
+
+
+## 後続追加：HARNESS-L2-046（現行判断集合37候補）
+
+旧v1.3 §4.4 L259の二文をFull V段階freeze/検証とProduction Scrum slice/backfill条件の別sentence spanに分け、§10 L647を一部重複する要約spanとして[HARNESS-L2-046](../../../helix-harness/L2-requirements/product-requirements.md#harness-l2-046)と[対L11](../../../helix-harness/L11-acceptance/product-acceptance.md#harness-l2-046)へ限定再導出した。source-linesとcoverage receiptは旧archiveおよび6fabd125基準revisionの6 span/4 physical lineを個別保持する。L647は第3独立条件に加算しない。
+
+登録`MPR-RC-HARNESS-L2-046-001`は`registered_proposal` / `authority_effect:none`、PO未採択。Full Vは適用するL1〜L5層で段階freezeし列挙条件を検証する。Scrum slice/backfill/checkpoint/SR4はProduction Scrumまたは既存L2-002/003に従うScrum適用部分だけに限る。2026-09-25 PO判断の方式定義・合成許可を維持し、source holding二集合および固定captureは変更しない。現行37候補packetは[37候補の判断packet](post-confirmation-25-po-decision-packet-2026-09-28.md)と対応JSONに束縛する。
