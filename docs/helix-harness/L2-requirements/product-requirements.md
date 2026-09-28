@@ -1160,3 +1160,19 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 - **責務・authority境界**：HARNESSは工程・verification意味、必要性判定、runtime-neutral contractとhandoff内容を所有する。OSは割当、runtime profileへのprojection、budget/期限、lease/fencing/失効/retireと実行・結果の記録を既存要求の範囲で所有する。INTELLIGENCEは配置案、LABOは適用可能な能力evidence、SECURITYはoperation authority・制約と隔離の正本を持つ。HARNESS handoff、tool/path候補、contract digest、OS受領記録はauthorityや実行許可を発生させず、各ownerの正本を置換しない。
 - **旧sourceとの差分と保留**：旧HIL-BR-09/30、HIL-FR-59/60の工程表軸、専門化判断、contract出力、OS実行への受け渡しを現行責務へ分けて意味再導出する。旧runtime-specific projection、W-agent／TeamDefinition具体schema、IR上の補助・非選択条件、残る旧要求atomは引き継がず生存中holdingへ残す。旧出力のどの部分がHARNESSの集約contractを要求し、どの部分がOS assignmentで満たされるかの追加意味変更はこの候補で決めない。
 - **不成立と戻し先**：軸・scope・oracle・contract/evidence revisionの欠落や不一致、OS assignment/profile/lifecycle条件不足は保留し、理由を該当ownerへ戻す。muster根拠なし、single-worker十分性の無視、HARNESSによる割当・起動、提案・証拠からのauthority生成、同一provider/modelだけによる独立性判定、unknown軸の推定補完は不成立とする。候補とL11 oracleは未実行であり、HARNESS-L2-047、OS-L2-004/-042/-043、SECURITYの既存要求を変更・代替しない。
+
+### HARNESS-L2-055 隣接層の双方向trace gate結果候補（HARNESS-CORE unit候補、未採択）
+
+- **状態・親**：未採択候補、`registered_proposal`／`authority_effect: none`。親候補はHARNESS-L1-001/003/004（固定本文はConcept/L1判断記録を参照）。この候補からL1の意味や採否を作らない。
+- **要求候補**：HARNESSは指定scopeの隣接layer間について、上位義務が下位へ追跡され、下位で得た発見が上位へ戻る双方向の関係を照合し、scopeごとの未解決 descent と backflow を別に見える結果として提示できる。隣接関係でないedge、親より粗いchild obligation、個別義務を一括aggregateで覆う関係は、その理由を識別できる不成立結果とする。正常、各方向の欠落、粒度・隣接性の不一致を区別する意味契約までを候補とし、評価アルゴリズム、ledger schema、receipt形式、永続化手段はL3以降の設計へ残す。
+- **適合・不明時**：対象scopeの隣接layer、row、source revisionまたは必要な関係が確定しない場合はunknown/未完とし、gate成立を示さない。一方向だけ成立しても双方向の成立へ推定しない。stale revision、semantic revision差、snapshot差の判定はNFR-29のcross-conditionとして別holdingに残し、本候補のcoverageへ混ぜない。
+- **所有境界**：HARNESSは利用者へ渡す隣接層traceの意味と結果条件を定める。OSは別途合意された契約に基づくledger登録・保存・snapshot・ticket・実行を担う。候補はwriter、実行器、authority、個別の人間確認や新しい許可条件を導入しない。HARNESS-L2-040の層/pair/row catalog、L2-022の段階検証、L2-025/026の設計・対oracle構成を変更せず、これらの存在だけからgate結果を推定しない。
+- **差分**：旧HIL-FR-48 line 138と旧assertion 031-01/02/03/05/06の意味を、利用者が確認できる双方向trace gateの結果へ再導出する。保持する旧条件は対応するsource atomとreceiptに限定して記録する。旧API、code、fixture、receipt schema、旧runtime/testの実行結果は移さない。
+
+### HARNESS-L2-056 canonical V-pair gate結果とfeedback候補（HARNESS-CORE composite候補、未採択）
+
+- **状態・親**：未採択候補、`registered_proposal`／`authority_effect: none`。親候補はHARNESS-L1-001/003/004。L0 charterは層外の既存authority anchorとしてのみ参照する。
+- **要求候補**：HARNESSはcanonicalな6つのV-pair（L1↔L12、L2↔L11、L3↔L10、L4↔L9、L5↔L8、L6↔L7）をpairごとのatomic oracle対応で照合し、成立したpairと欠落・不一致のpairを局所化して提示できる。L12運用feedbackはL1企画と層外L0 charterの両方へ戻る関係を識別する。pairの片側設計義務または検証証拠がない、設計側と検証側のoracle identityが一致しない、もしくは必要なoracleの実行結果がない場合、該当pairを完了・green扱いにしない。具体的なjoinアルゴリズム、証拠schema、保存・実行機構は後続設計へ残し、L0を第7のpairへ加えない。
+- **適合・不明時**：pair定義、対応するatomic oracle、適用scope、feedback先または結果証拠が不明・欠落している範囲はunknownまたは未完として残し、成立範囲を超えて全6組のgate完了としない。異snapshot・stale revisionのcross-conditionはNFR-29 holdingに分離し、この候補のsource atomとして数えない。
+- **所有境界**：HARNESSはpair対応と受入結果の意味を定める。OSは実行、保存、登録、運転の契約を別途担う。候補はL1のauthority、L0 charterの意味、実行許可、人手approval、実装方式を変更しない。採択済みHARNESS-L2-040のpair catalog、L2-022の段階別受入、L2-025/026の設計・oracle構成とは別の利用者向けgate結果候補であり、既存節を改訂しない。
+- **差分**：旧HIL-FR-49 line 139とassertion 032-01〜08/10/11/13から、canonical pair単位の結果、L12→L1/L0 feedback、片側欠落と未実行oracleの不成立意味を限定再導出する。assertionの`design-defined`/`not-implemented`は結果意味の参考であり旧test実行実績ではない。
