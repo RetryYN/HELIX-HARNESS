@@ -76,4 +76,11 @@ HARNESS-L2-042のreceiptは旧v1.3 §4.2 L119の異なる2 source revisionを別
 
 旧v1.3 §4.4 L259の二文をFull V段階freeze/検証とProduction Scrum slice/backfill条件の別sentence spanに分け、§10 L647を一部重複する要約spanとして[HARNESS-L2-046](../../../helix-harness/L2-requirements/product-requirements.md#harness-l2-046)と[対L11](../../../helix-harness/L11-acceptance/product-acceptance.md#harness-l2-046)へ限定再導出した。source-linesとcoverage receiptは旧archiveおよび6fabd125基準revisionの6 span/4 physical lineを個別保持する。L647は第3独立条件に加算しない。
 
-登録`MPR-RC-HARNESS-L2-046-001`は`registered_proposal` / `authority_effect:none`、PO未採択。Full Vは適用するL1〜L5層で段階freezeし列挙条件を検証する。Scrum slice/backfill/checkpoint/SR4はProduction Scrumまたは既存L2-002/003に従うScrum適用部分だけに限る。2026-09-25 PO判断の方式定義・合成許可を維持し、source holding二集合および固定captureは変更しない。現行37候補packetは[37候補の判断packet](post-confirmation-25-po-decision-packet-2026-09-28.md)と対応JSONに束縛する。
+登録`MPR-RC-HARNESS-L2-046-001`は`registered_proposal` / `authority_effect:none`、PO未採択。Full Vは適用するL1〜L5層で段階freezeし列挙条件を検証する。Scrum slice/backfill/checkpoint/SR4はProduction Scrumまたは既存L2-002/003に従うScrum適用部分だけに限る。2026-09-25 PO判断の方式定義・合成許可を維持し、source holding二集合および固定captureは変更しない。HARNESS-L2-046追加時の37候補packetは[37候補の判断packet](post-confirmation-25-po-decision-packet-2026-09-28.md)と対応JSONに束縛する。
+
+
+## 後続追加：#2257後のHELIXOS-L2-042（現行判断集合38候補）
+
+旧v1.3 §4.10 HR-FR-P2-08のarchive line 431（REQSRC-SUP-00333、source holding `MPR-SH-SUPPLEMENTARY-003`）1 atomを、[HELIXOS-L2-042](../../../helix-os/L2-requirements/governance-requirements.md#helixos-l2-042)と[対L11](../../../helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-042)へ、strict schema／digest defaultと緩和時の対象・理由・期限・再検証receiptの意味保持候補として局所対応させた。完全同文のbaseline atom `V13-BASE-6FAB-L0412`（6fabd125 line 412）は別revision・別atomとして`MPR-SH-V13-BASELINE-001`へ保全し、archive atomとの同一視・合算はしない。`docs/governance/audits/requirement-registration/os-v13-worker-output-coverage-receipt-2026-09-28.json`および`os-v13-worker-output-source-lines-2026-09-28.jsonl`がsource/candidate digestsを固定する。登録`MPR-RC-HELIXOS-L2-042-001`は`registered_proposal` / `authority_effect:none`。PO未決・未採択。
+
+A＝exact L2/L11-042の限定採択（推奨）、B＝原atomを保留、C＝source revision・理由・影響を特定した意味変更/retire。OSは成果状態を既存assignmentへ束ね、HARNESS-L2-005のverification oracleとSECURITY-L2-007/008の既存authorityを維持する。旧schema/runtime/receiptの移植、候補採択、source holding解除、coverage closure、実装許可は主張しない。machine packetは#2257後main `34c1f48663bec1bcb7071b1889adb3c3a2e20e51`から38候補。

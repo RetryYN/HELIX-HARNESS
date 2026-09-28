@@ -1,6 +1,6 @@
-# 8機構確認後の追加候補：PO判断パケット（初版25 + 後続12 = 37）
+# 8機構確認後の追加候補：PO判断パケット（初版25 + 後続13 = 38）
 
-基準HEAD: `78b402e1e2eb06b7cc08ae35bb722fadc90dae91`（merge済み#2256後）。この基準HEADの36候補へ、HARNESS-L2-046を追加し、判断集合は37候補となる。046は未採択のbounded candidateであり、全候補は`registered_proposal` / `authority_effect:none`、PO未採択・未判断である。PR mergeやL2/L11本文・registerの存在から採択・実装・受入完了は推定しない。
+基準HEAD: `34c1f48663bec1bcb7071b1889adb3c3a2e20e51`（merge済み#2257後）。この基準HEADの37候補へ、HELIXOS-L2-042を追加し、判断集合は38候補となる。042は未採択のbounded candidateであり、全候補は`registered_proposal` / `authority_effect:none`、PO未採択・未判断である。PR mergeやL2/L11本文・registerの存在から採択・実装・受入完了は推定しない。
 
 ## 選択肢
 
@@ -176,3 +176,12 @@ HELIXSECURITY-L2-032追加時のmachine-readable decision packetは[36候補JSON
 | `HARNESS-L2-046` (L2/L11) | PO未決／推奨 **A** | 1.0; HARNESS-L1-001/002/004 | 旧v1.3 L259第1文のFull V段階freeze・列挙検証と第2文のProduction Scrum backfill/SR4をscope分離。4方式定義・製品特性に合わせた合成許可を維持。Full VへScrum receiptを要求しない | `docs/governance/audits/requirement-registration/harness-fullv-scrum-coverage-receipt-2026-09-28.json#HARNESS-L2-046`; 6 sentence span/2 source revisions、物理行はarchive L259/L647と6fab baseline L244/L628。file SHA-256、line SHA-256、span SHA-256はreceiptとsource-linesを参照 | `HARNESS-L2-046` (L2/L11); HARNESS-L1-001/002/004; 既存L2-001/002/003/004/022/023 | Full V全workflowのstage freeze/verificationとScrum固有backfillを限定scopeへ接続し、誤った一律SR4適用を避ける。 |
 
 MPR-RC-HARNESS-L2-046-001を`registered_proposal` / `authority_effect:none`として追記したが、POの選択は未決・未採択。A＝exact L2/L11の限定採用、B＝6 spanをsource holdingに保持して保留、C＝対象revision・理由・影響付きの意味変更/retire。L647はL259の二条件を要約する部分重複sourceで、第3独立条件とは数えない。6fabd125 revisionの3 sentence spanもarchiveへ統合せず保持する。いずれの選択肢もFull VにScrum checkpoint/SR4を課さず、他候補の採否、実装許可、旧v1.3全体のcoverageを生成しない。
+
+
+## 後続追加：HELIXOS-L2-042（判断集合38候補）
+
+| ID | 状態／推奨 | 版／対象L1親 | source basis／POが決める意味境界 | 根拠（旧sourceの正確なreceipt） | 影響する要求・consumer | 推奨理由 |
+|---|---|---|---|---|---|---|
+| `HELIXOS-L2-042` (L2/L11) | PO未決／推奨 **A** | 1.0; HELIXOS-L1-003 | HR-FR-P2-08のstrict schema／digest既定と、緩和時の対象・理由・期限・再検証receiptを保持する限定候補。OSのassignment成果状態への接続と、HARNESS oracle／SECURITY authorityの責務境界を含む意味はPO判断 | `docs/governance/audits/requirement-registration/os-v13-worker-output-coverage-receipt-2026-09-28.json`; atom V13-ARCHIVE-L0431-HR-FR-P2-08はarchive line 431、file SHA-256 `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`、line SHA-256 `53d8b2cd66448f9c5d4828b8fbe99d3bffed93b237fe86e0f515b3d1d7ad933f` | `HELIXOS-L2-042` (L2/L11); OS-L1-003、既存OS-L2-004/007/019、HARNESS-L2-005、SECURITY-L2-007/008 | strict defaultと緩和条件は現行OS責務に明示されず、worker assignment／成果回収へ限定追補する。HARNESSがoracle、SECURITYがauthorityを維持し、旧実装やreceipt formatを移植しない。 |
+
+A＝exact L2/L11-042の限定採択、B＝原atomを保留、C＝対象source revision・理由・影響付きの意味変更/retire。登録`MPR-RC-HELIXOS-L2-042-001`は`registered_proposal` / `authority_effect:none`で、PO選択は未決。source inputはarchive atom 1件だけ。完全同文のbaseline atom `V13-BASE-6FAB-L0412`（6fabd125 line 412、file SHA-256 `1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1`、同line SHA）は別revision・別atomとして`MPR-SH-V13-BASELINE-001`へ保全し、archive atomと合算しない。旧v1.3全体のcoverage closure、source holding解除、schema/runtime実装、実行許可を生成しない。現行machine packet countは38。
