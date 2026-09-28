@@ -703,3 +703,15 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 **未見例**：同scopeの伏せた新template revisionまたは新しいapplicability分岐を与え、全要素を抽出できれば対応atomへ、未対応ならsource span付きgapへ返すことを確認する。選択されていない別templateの内容は未観測と記録し、万能な抽出保証へ外挿しない。結果は指定template/scopeでの契約受入であり、ledgerへの登録、設計成立、利用者受入、OS実行を意味しない。
 
 **戻し先と境界**：template選択・必須input・適用性の不足はHARNESS-L2-009/該当ownerへ、ledger/pair契約の不足はHARNESS-L2-040相当の契約ownerへ返す。OSの保存/実行receipt欠落はOS側未実行/未確認として保持する。HARNESS-L2-025/026の設計生成・pair oracleと責務を混同しない。
+
+### HARNESS-L2-042 Design Refactor判定とepisode分離の受入候補
+
+**対応要求**：`HARNESS-L2-042`（⑤のunit候補、`version_target: 1.0`、未採択）。親は`HARNESS-L1-003/004/005/007`。本節の例は未実行の内容oracleであり、文書の存在で候補採択・実装・利用者受入を生成しない。Performance Refactorの条件は採択済み`HARNESS-L2-016`と対L11に従う。
+
+**正常例**：同じ対象revision・scopeの二つの改善対象について、名称だけでなくsemantic similarity、影響するconsumer、既存oracle、依存graphを照合し、各条件の根拠からDesign Refactorの可否と理由を返す。変更前後の対象scopeの振る舞い・契約・要求が維持されることを016のoracleで確認する。機能追加があれば別episodeへ分け、Design／Performance Refactorの当該episodeへ混ぜない。Performance Refactorを選ぶ場合は016の事前固定と実測比較の受入を別途満たす。
+
+**誤りを含む例**：名称が似るだけで統合する例に加え、semantic similarityの根拠、関連consumer、oracle、依存graphのうち一つだけを欠く例を各々投入し、根拠不足を個別に不成立または未評価とする。機能追加をDesign RefactorまたはPerformance Refactorと同一episodeへ入れる例も拒否する。公開契約・要求・永続状態の意味が変わる例をRefactor成功として受け入れず、該当する左の層へBackflowする。性能の測定不能・回帰は016の対L11で拒否し、本節の成功で相殺しない。
+
+**未見例**：未公開の同scope consumerまたは依存関係を含む変更候補を与え、固定された契約とoracleに照らしてDesign Refactorの根拠を照合する。consumer、oracle、依存graphまたは対象revisionを特定できない範囲はunknown／未評価に残す。判定の成功を別scope・別revision、機能追加、下流の実行結果へ外挿しない。
+
+**戻し先**：意味判定・consumer・graphの不足はsource／設計／契約ownerへ、対設計の欠落は`HARNESS-L2-019`へ、要求または契約の意味変更は`HARNESS-L2-003/004/016`のBackflow先へ戻す。実行・ticket・CIの成否は該当OSまたは利用者の運転契約で扱う。

@@ -1,0 +1,70 @@
+{
+  "receipt_id": "MPR-RCPT-HARNESS-REFACTOR-EPISODE-2026-09-28",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom ID順に改行で区切る。末尾改行なし。",
+  "scope": "旧v1.3 §4.2 L119の隔離前・監査基準revisionの同文2行atomに限る。Performance Refactorの既採択条件はHARNESS-L2/L11-016を参照し、Design Refactor判定と機能追加の同一episode混載禁止の未採択候補を042に保全する。2 revisionを同値として1 atomに畳み込まない。旧v1.3全521行、旧実装・運転、正式後継割当、採択・受入実行の全量被覆は主張しない。",
+  "candidates": [
+    {
+      "requirement_identity": "HARNESS-L2-042",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HARNESS-L1-003",
+        "HARNESS-L1-004",
+        "HARNESS-L1-005",
+        "HARNESS-L1-007"
+      ],
+      "candidate_semantic_digest": "sha256:7da6b3394cbc96bdf028a4738000554e1cf7a946595c4abf43504b24968f34eb",
+      "source_atom_set_digest": "sha256:16fcd92b44c6032f432f2d3dac87415a1b72cdc5aaec155944357d1553a9ed61",
+      "source_atom_count": 2,
+      "source_collection_scope": "旧v1.3 §4.2 L119の隔離前・監査基準revisionの同文2行atomに限る。Performance Refactorの既採択条件はHARNESS-L2/L11-016を参照し、Design Refactor判定と機能追加の同一episode混載禁止の未採択候補を042に保全する。2 revisionを同値として1 atomに畳み込まない。旧v1.3全521行、旧実装・運転、正式後継割当、採択・受入実行の全量被覆は主張しない。",
+      "atoms": [
+        {
+          "atom_id": "REQSRC-SUP-00089",
+          "legacy_asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+          "paired_revision_atom_id": "V13-BASE-6FAB-L0104",
+          "revision_relation": "same source text and line digest in distinct source revisions; keep both atom identities",
+          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-003",
+          "source_line": 119,
+          "source_line_sha256": "sha256:b8d0bd53395b0c57bf8aed4d6007d792e7aa0e7038480f0880754e0a2d22f0d6",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "source_text": "Design Refactorはsemantic similarity、consumer、oracle、dependency graphで判断し、名称類似だけで統合しない。Performance Refactorは変更前baseline、budget、workload、profile、統計条件、回帰oracleを先に凍結し、測定不能な「高速化」を禁止する。どちらも機能追加と同一episodeへ混載しない。",
+          "disposition": "split",
+          "relation": "同一旧行のPerformance Refactor部分は既採択HARNESS-L2/L11-016に照合済み。Design Refactor判定とDesign/Performance両方の同一episode機能追加禁止は未採択042と対L11候補へ保全。二revisionのatom identityと生存holdingを保持し、正式なsuccessor割当や採択は行わない。"
+        },
+        {
+          "atom_id": "V13-BASE-6FAB-L0104",
+          "legacy_asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+          "paired_revision_atom_id": "REQSRC-SUP-00089",
+          "revision_relation": "same source text and line digest in distinct source revisions; keep both atom identities",
+          "source_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+          "source_file_sha256": "sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+          "source_holding_registration_id": "MPR-SH-V13-BASELINE-001",
+          "source_line": 104,
+          "source_line_sha256": "sha256:b8d0bd53395b0c57bf8aed4d6007d792e7aa0e7038480f0880754e0a2d22f0d6",
+          "source_path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+          "source_text": "Design Refactorはsemantic similarity、consumer、oracle、dependency graphで判断し、名称類似だけで統合しない。Performance Refactorは変更前baseline、budget、workload、profile、統計条件、回帰oracleを先に凍結し、測定不能な「高速化」を禁止する。どちらも機能追加と同一episodeへ混載しない。",
+          "disposition": "split",
+          "relation": "同一旧行のPerformance Refactor部分は既採択HARNESS-L2/L11-016に照合済み。Design Refactor判定とDesign/Performance両方の同一episode機能追加禁止は未採択042と対L11候補へ保全。二revisionのatom identityと生存holdingを保持し、正式なsuccessor割当や採択は行わない。"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-016",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md#harness-l2-016",
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-042",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md#harness-l2-042"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": [],
+      "preserved_pending_registration_refs": [
+        "MPR-SH-SUPPLEMENTARY-003",
+        "MPR-SH-V13-BASELINE-001"
+      ],
+      "relation_boundary": "2旧source revisionの行全体を既採択016との重複と未採択042への残差にsplitして保全。候補の存在を採択・正式後継・実行済み受入に読み替えない。"
+    }
+  ],
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/harness-refactor-episode-source-lines-2026-09-28.jsonl",
+  "l11_file_sha256": "sha256:27900d9a7f311c46d875bf80d4dec3708837dfdf6e2e9aefc8763b07d50d31ec",
+  "candidate_state": "unadopted; the 2026-09-28 HARNESS PO decision does not cover HARNESS-L2-042"
+}

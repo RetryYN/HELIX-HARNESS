@@ -964,3 +964,17 @@ scope拡張候補の受入寄与・最小性を照合するとき、追加機能
 - **既存候補との境界**：HARNESS-L2-025/026は承認済み要件から具体設計と対oracleを構成・検査する。041はactive templateの要求要素を漏れなく候補化し、空所や抽出限界を明示する前段のCORE契約であり、設計内容・oracle結果を新たに生成したり、025/026を置換・前提化したりしない。
 
 原文sourceとsource holdingは`docs/governance/audits/requirement-registration/harness-layer-ledger-extraction-source-lines-2026-09-28.jsonl`および同じ監査ディレクトリのcoverage receiptに記録する。旧候補行の追加は候補出力の意味として保持し、実際のregistry更新・snapshot・ticket実行は個別に認められたOS側契約へ戻す。
+
+## 旧v1.3 §4.2から再導出するRefactor判定候補
+
+### HARNESS-L2-042 Design Refactor判定とepisode分離（⑤のunit候補、version_target: 1.0）
+
+**authority・親**：本節は未採択候補であり、`HARNESS-L1-003/004/005/007`を親とする。旧requirements v1.3 §4.2 L119（`REQSRC-SUP-00089`、監査基準revision `V13-BASE-6FAB-L0104`）のうち、既採択の`HARNESS-L2-016`と対L11に明記されていないDesign Refactor判定と、Design／Performance Refactorへの機能追加混載禁止を保持する。旧source一行のPerformance Refactor条件は既採択016の契約を参照し、同じ条件の別authorityを作らない。旧source行と監査基準行は同文でも別revisionのatomとして被覆receiptに残す。
+
+- **受け取るもの**：対象artifact・revisionと変更scope、変更前の対設計・契約・要求とoracle、候補の意味上の類似または差異、影響するconsumer、変更前後の依存graph、機能追加の有無。Design RefactorとPerformance Refactorのrouteは`HARNESS-L2-002/003`のSR3条件に従う。
+- **提供するもの**：Design Refactorとして進めるかの理由付き判定と、比較した意味・consumer・oracle・依存の根拠、維持すべき契約、拒否またはBackflowが必要な差分を示す。結果は対象scopeとrevisionに限り、名称の一致やticket名だけを判定根拠にしない。
+- **保証すること**：Design Refactorとして統合または共通化する判断にsemantic similarity、consumer、oracle、dependency graphを使い、名称文字列が似ていることだけで統合しない。対象の振る舞い・契約・要求を保つ条件は`HARNESS-L2-016`に従う。Design RefactorとPerformance Refactorのいずれも機能追加と同一episodeへ混載しない。機能追加は別episodeへ分け、意味変更が必要なら`HARNESS-L2-003/004/016`のBackflowで該当する左の層へ戻す。Performance Refactorのbaseline・budget・workload・profile・統計条件・回帰oracleは`HARNESS-L2-016`とその対L11の契約を使い、本候補で数値閾値や新しい性能権限を加えない。
+- **依存区分**：**常時必須**＝対象revision・scope、対の設計・契約・要求、既存oracle、`HARNESS-L2-016`のRefactor／Backflow契約。**特定操作時のみ**＝SR3のfindingを処理するときの`HARNESS-L2-002/003`のroute、および実際にPerformance Refactorを選ぶときの016の計測契約。**選択した入力元に応じて必須**＝選んだ設計・consumer・dependency graphの版と適用範囲。**参照資料のみ**＝旧runtime、旧workflow、名称類似だけの候補、未選択の改善案。これらを現行authorityや受入証拠にしない。
+- **不成立と戻し先**：semantic similarity、consumer、oracle、dependency graphのいずれかが未確認なら判定を未評価に保ち、出典のownerと設計・契約ownerへ不足を戻す。対の設計・契約がない対象は`HARNESS-L2-019`のReverse入口へ、要求・公開契約・永続状態等の意味変更は`HARNESS-L2-003/004/016`の該当Backflow先へ戻す。機能追加の混載は同一episodeのRefactor成立を拒否し、追加要求を別episodeへ分ける。本候補の文書・receipt・登録だけで要求採択、L3要件承認、実装、実行、受入を成立させない。
+
+原文・旧資産・別revisionの関係とsplit被覆は`docs/governance/audits/requirement-registration/harness-refactor-episode-coverage-receipt-2026-09-28.json`に記録する。
