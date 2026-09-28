@@ -470,7 +470,7 @@
         "meaning": "HARNESS L11 draft acceptance and product verification boundary",
         "ref_id": "CUR-HARNESS-L11",
         "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-        "file_sha256": "f4b385be3af82090ae43322bff6c1a139b5f785fec8b02ecc616db19416ad834",
+        "file_sha256": "ca1a10492d70c84950a3a8a89bbf39a90c0d1a76ecdba44c9e3276eae673f9b2",
         "product": "HELIX-HARNESS",
         "classification": "phase_direct_current_ref",
         "line_sha256": "3fac88fc66f7d0b4f23eb9e60dcc52e548e96e8c98b8fd8909d03aa65792c66c"
