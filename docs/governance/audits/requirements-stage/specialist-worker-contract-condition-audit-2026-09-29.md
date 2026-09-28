@@ -26,7 +26,7 @@ IR108 dispositionに残る専門Worker条件について、旧4条件それぞ�
 
 ## 責務境界の参照
 
-- HARNESS-L2-047と受入候補: `docs/helix-harness/L2-requirements/product-requirements.md:1039-1058`、`docs/helix-harness/L11-acceptance/product-acceptance.md:773-790`。L11にはmuster、existing-role、unknown/defer、根拠不足、権限昇格、worker/verifier separation、lifecycle/stale、中断、未見例がある。
+- HARNESS-L2-047と受入候補: `docs/helix-harness/L2-requirements/product-requirements.md:1039-1054`、`docs/helix-harness/L11-acceptance/product-acceptance.md:773-787`。L11にはmuster、existing-role、unknown/defer、根拠不足、権限昇格、worker/verifier separation、lifecycle/stale、中断、未見例がある。
 - HARNESS-L2-047のPO状態: `docs/governance/decisions/po-decision-2026-09-29-57candidates.md:52`。本文metadataとの食い違いは上記のとおりdecision record優先で読む。
 - OS Worker execution/assignment: `docs/helix-os/L2-requirements/governance-requirements.md:57`（L2-004系）、`:1143-1168`（L2-042/-043追補）と `docs/helix-os/L11-acceptance/governance-acceptance.md:24,37-50,79-80`。OSはassignment・実行状態・result/evidence・revocationを持つ。
 - SECURITY execution restrictions/authority/revoke: `docs/helix-security/L2-requirements/security-requirements.md:130-157` と `docs/helix-security/L11-acceptance/security-acceptance.md:31-33,69-79`。HARNESS contract fieldはauthorityを発生させず、SECURITYはOSの配置を所有しない。
