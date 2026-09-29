@@ -948,3 +948,16 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **負の oracle**：現行入力にnewと分類されたdebtがあるのにratchetを成立/passとする結果は不合格。baselineにあるdebtが現行にもあることだけを理由にnew debt扱いしない一方、baselineの残存を免除・受容した扱いにする結果も不適格。
 - **未評価 oracle**：baseline authority/identity/revision、scope、current debt集合、baseline/current間で共通に適用するdebt分類基準または比較対象がmissing／unknown／stale／conflictなら、unknown/未評価として示し、成立/passへ変換しない。未確定な基準を推測して補わない。
 - **受入限界**：本候補は一つの入力scopeに対する比較と結果意味だけを扱う。baseline authority/更新者/鮮度、threshold、debt taxonomy、対象全体、実行器、ticket/CI gate、既存debtの返済条件は本候補では決めない。旧runtime/testは実行せず、候補oracleの実行も未実施。
+
+### HARNESS-L2-063 source-authority binding and freeze closure
+
+この候補L11はHARNESS利用者が確認する意味条件であり、OSの登録writer/state更新/ticket実行、実装、旧runtime/testの実行結果を受入証拠にしない。正常oracleと各不成立oracleを別々に評価する。
+
+- **Positive — complete revision**：固定source snapshotの各選択atomに原文spanとauthority revisionが結び、source authorityの既存dispositionが有効で、challengeが対象revisionに対して解消済みまたは明示的に非該当の根拠を持つ。選択template revision・applicability・040の契約と041のatom/gapが同じscope/revisionへ結び、すべての要求edge・design obligation・L11 oracleに型付き対応がある。全required oracleに正例と境界/負例の契約があり、change/stale receiptが同じ前後revisionと影響範囲を指す。未解消gapがなく、評価結果はそのrevisionだけを`eligible`として返す。OSのactive登録は別の既存state契約による記録がある場合だけ確認し、HARNESS receipt単独から保存済みactive状態を主張しない。
+- **Negative — source authority欠落／衝突**：source span、source digest、authority参照、対象revisionのいずれかを欠落・改変・別revisionへ置き換える。atomは`incomplete`または`unknown`となり、候補やPR上の説明からauthorityを補わず、eligibleを返さない。
+- **Negative — challenge未解決**：選択atomへの異議・challengeを未処理、対象外の裁定を流用、またはdisposition根拠なしのN/Aとして与える。対象revisionをfreeze eligibleにしない。新しい人間approvalを自動要求せず、既存authority状態と要求意味に従う戻し先を示す。
+- **Negative — atom/edge/oracle closure不足**：TBD/aggregate atom、orphan、片向き・誤型・誤端点のedge、受入oracleの片側欠落、required oracle未実行、根拠のないN/Aを一つずつ与える。該当closureが個別に未完と表示され、別atom・別revisionの合格で相殺しない。未選択scopeの不足は未観測のままにする。
+- **Negative — change/stale receipt漏れ**：source/template/edge/oracleの依存revisionを変更しても前revisionのreceiptを提示する、または影響範囲のedge/oracleを省いたchange receiptを提示する。影響するclosureだけをstaleまたはunknownとし、旧receiptから現在revisionのeligibleを生成しない。
+- **Negative — template gapの早期active化**：041のgapが未解消、独立review対象revisionが異なる、reviewerが作成者と同一、finding/dispositionが欠落、またはレビュー前にactive扱いした入力を与える。gapは未解消として残り、候補状態やOSのticket/PR/project表示からactiveを推定しない。
+- **Unknown — 未選択または未観測source**：対象外template、oracle、依存機構の記録がない場合、N/A・pass・failureへ推測変換せず`unknown`とする。入力選択を変えた場合はそのscopeの契約を新たに確認する。
+- **境界**：HARNESS-L2-009のtemplate選択・適用、041の抽出とgap列挙、040のcatalog/pair/edge契約、035の上流根拠と受入寄与の各oracleを再実装しない。OS state/ticket/保存の実行成功、L3承認、要求合意、実装完了、全HR-FR-HIL-17のno-lossを判定しない。
