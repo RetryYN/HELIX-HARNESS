@@ -89,9 +89,9 @@
         "identity": "HELIXOS-L2-037",
         "path": "docs/helix-os/L2-requirements/governance-requirements.md",
         "section_digest": "sha256:29563f1fdde0d9ace0b0850a5fc57bc6f6b595f460a5caa293c7eefb60905d64",
-        "covers": "未採択の週次drift/debt観測とLABO/ticketへの運転上の引継ぎ候補",
-        "gap": "HARNESS debt classification/baseline authority/ratchet oracleを定義せず、隣接候補としてもowner決定を生まない",
-        "decision_status": "unadopted adjacent candidate"
+        "covers": "採択済みの週次drift/debt観測とLABO/ticketへの運転上の引継ぎ要求",
+        "gap": "HARNESS debt classification/baseline authority/ratchet oracleを定義せず、この採択済み要求もratchetのowner決定を生まない",
+        "decision_status": "adopted in HDEC-REQUIREMENTS-57-2026-09-29"
       }
     ],
     "existing_l11": [
@@ -105,7 +105,7 @@
   "unresolved_owner_and_receipt": {
     "owner_transfer": "pending; do not change MPR-SH-CONFIRMED-003 ownership/attribution based on this candidate",
     "baseline_contract": "pending; source does not identify baseline authority, identity/revision, scope, freshness, debt classification criteria or update rules",
-    "adjacent_os_candidate": "HELIXOS-L2-037 remains a proximate unadopted observation/ticket handoff candidate; it neither adopts nor defines this ratchet condition",
+    "adjacent_os_candidate": "HELIXOS-L2-037 is adopted in HDEC-REQUIREMENTS-57-2026-09-29 as an adjacent observation/ticket handoff requirement; it neither adopts nor defines this ratchet condition",
     "acceptance_receipt": "static oracle proposal only; no implementation, runtime/test receipt or acceptance execution"
   },
   "source_holding_remains_live": true,
