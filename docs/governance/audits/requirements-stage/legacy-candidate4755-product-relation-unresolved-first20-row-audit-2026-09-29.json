@@ -271,7 +271,8 @@
         "asset_authority_status": "historical",
         "asset_product_target": "unresolved",
         "asset_ledger_line_sha256": "0e3015a8f72de5dbbbc40e89d56d9011d88a60dab849d285507518916f81566c",
-        "asset_ledger_line": 787
+        "asset_ledger_line": 787,
+        "physical_line_bytes_sha256": "sha256:9be798b70f2de174a4332c0e2f9a8976b566ed343f65fb51c88c75e30904aa27"
       },
       "comparison": "AAFD-AC-008/R-08はunknown→0等への変換とdeltaからRequirementへのdirect writeを拒む。現HARNESS-L2-004のrouting relationは一般の割当/独立review境界を示すが、当該source IDのadopted requirement IDなし。",
       "current_relation_summary": "HARNESS-L2-028/-029の現行文面は保存済み設計revisionとのsource-bound observation、unknown/staleの非承認、影響scopeとproposal-only境界を保持する。HARNESS-L2-028/-029のMPR登録はsource_atom_count=0、authority_effect=noneで、旧AAFD行を取込んだ証拠にはならない。",
@@ -331,7 +332,8 @@
         "asset_authority_status": "historical",
         "asset_product_target": "unresolved",
         "asset_ledger_line_sha256": "0e3015a8f72de5dbbbc40e89d56d9011d88a60dab849d285507518916f81566c",
-        "asset_ledger_line": 787
+        "asset_ledger_line": 787,
+        "physical_line_bytes_sha256": "sha256:e2656bd51b6702ee533174e54f96e86731478a4a50026735efd6daf7cdc322cb"
       },
       "comparison": "AAFD-AC-016相当の「unknownを0/neutral/unchanged/observedへ変換」拒否。HARNESS 028/029はunknownを非承認とする一般意味関係。列挙された全変換先の個別negative oracleは確認できない。",
       "current_relation_summary": "HARNESS-L2-028/-029の現行文面は保存済み設計revisionとのsource-bound observation、unknown/staleの非承認、影響scopeとproposal-only境界を保持する。HARNESS-L2-028/-029のMPR登録はsource_atom_count=0、authority_effect=noneで、旧AAFD行を取込んだ証拠にはならない。",
@@ -391,7 +393,8 @@
         "asset_authority_status": "historical",
         "asset_product_target": "unresolved",
         "asset_ledger_line_sha256": "0e3015a8f72de5dbbbc40e89d56d9011d88a60dab849d285507518916f81566c",
-        "asset_ledger_line": 787
+        "asset_ledger_line": 787,
+        "physical_line_bytes_sha256": "sha256:7e33bd66a80ce3ee1cdc0b9972aad27ad1b9117eed4a894261fd2c92f69cd307"
       },
       "comparison": "AAFD-AC-017相当のstale projection/directive再利用拒否。HARNESS 028/029とL11のrevision/stale境界は関係するが、この旧mutationに対するexact test oracleは未確認。",
       "current_relation_summary": "HARNESS-L2-028/-029の現行文面は保存済み設計revisionとのsource-bound observation、unknown/staleの非承認、影響scopeとproposal-only境界を保持する。HARNESS-L2-028/-029のMPR登録はsource_atom_count=0、authority_effect=noneで、旧AAFD行を取込んだ証拠にはならない。",
@@ -451,7 +454,8 @@
         "asset_authority_status": "historical",
         "asset_product_target": "unresolved",
         "asset_ledger_line_sha256": "0e3015a8f72de5dbbbc40e89d56d9011d88a60dab849d285507518916f81566c",
-        "asset_ledger_line": 787
+        "asset_ledger_line": 787,
+        "physical_line_bytes_sha256": "sha256:260c9c48386ba90c0e2727fb4cb1269eb063c46d7839755f4bce2977ad90bc91"
       },
       "comparison": "AAFD-AC-018相当のdeltaからRequirement/Design/Release/Assignmentへのdirect write拒否。proposal-only/authority境界は関係するが、列挙された4対象別の拒否証拠は未確認。",
       "current_relation_summary": "HARNESS-L2-028/-029の現行文面は保存済み設計revisionとのsource-bound observation、unknown/staleの非承認、影響scopeとproposal-only境界を保持する。HARNESS-L2-028/-029のMPR登録はsource_atom_count=0、authority_effect=noneで、旧AAFD行を取込んだ証拠にはならない。",
@@ -511,7 +515,8 @@
         "asset_authority_status": "historical",
         "asset_product_target": "unresolved",
         "asset_ledger_line_sha256": "0e3015a8f72de5dbbbc40e89d56d9011d88a60dab849d285507518916f81566c",
-        "asset_ledger_line": 787
+        "asset_ledger_line": 787,
+        "physical_line_bytes_sha256": "sha256:86a5ef54fc2c5cec74cfa5c0a809d649e366cac551b13bd0dad5e4c6bb466734"
       },
       "comparison": "AAFD-AC-019相当のhistorical model receiptをcurrent revisionへ書き換える拒否。revision-bound observationと履歴保持は関係するが、receipt mutationを直接試す採択済みoracleは未確認。",
       "current_relation_summary": "HARNESS-L2-028/-029の現行文面は保存済み設計revisionとのsource-bound observation、unknown/staleの非承認、影響scopeとproposal-only境界を保持する。HARNESS-L2-028/-029のMPR登録はsource_atom_count=0、authority_effect=noneで、旧AAFD行を取込んだ証拠にはならない。",
@@ -571,7 +576,8 @@
         "asset_authority_status": "historical",
         "asset_product_target": "unresolved",
         "asset_ledger_line_sha256": "0e3015a8f72de5dbbbc40e89d56d9011d88a60dab849d285507518916f81566c",
-        "asset_ledger_line": 787
+        "asset_ledger_line": 787,
+        "physical_line_bytes_sha256": "sha256:4704d17ce64b8bf4a29eaf4bd64bd9dde3317a5096842d2099c7d55f4f7b7ea2"
       },
       "comparison": "AAFD-AC-020相当のduplicate finding/deltaでepisodeを無限生成しない拒否。source-bound proposal/影響scopeの関係はあるが、idempotency・episode identityのexact adopted oracleは未確認。",
       "current_relation_summary": "HARNESS-L2-028/-029の現行文面は保存済み設計revisionとのsource-bound observation、unknown/staleの非承認、影響scopeとproposal-only境界を保持する。HARNESS-L2-028/-029のMPR登録はsource_atom_count=0、authority_effect=noneで、旧AAFD行を取込んだ証拠にはならない。",
@@ -631,7 +637,8 @@
         "asset_authority_status": "historical",
         "asset_product_target": "unresolved",
         "asset_ledger_line_sha256": "64ade03f3caed823f572e07b263fa6eb231ba8a179ccaff7bd80912a541739f6",
-        "asset_ledger_line": 789
+        "asset_ledger_line": 789,
+        "physical_line_bytes_sha256": "sha256:2cf5280f3a589db1031b01298892e76a6dfa1eb29d1e3a9ab397ab36a2773923"
       },
       "comparison": "AAFD-R要求はreproduction recipe, counterevidence, confidence, expiry, finding/remediation advisory, proposal digestを要求。OS L2-005/007の改善source/provenance・共通証拠へのowner relationを確認。OS infra connect auditはprobe schema、独立再現、delta invalidation詳細を未採択と明記。",
       "current_relation_summary": "OS L2-005/007の改善登録・証拠provenanceと責務分割に部分関連する。関連付けは現行source crosswalk/監査記録に基づく。",
@@ -693,7 +700,8 @@
         "asset_authority_status": "historical",
         "asset_product_target": "unresolved",
         "asset_ledger_line_sha256": "64ade03f3caed823f572e07b263fa6eb231ba8a179ccaff7bd80912a541739f6",
-        "asset_ledger_line": 789
+        "asset_ledger_line": 789,
+        "physical_line_bytes_sha256": "sha256:87775c82f09ac25ab5238a941179089aa05d0495e7688a5a73d295122d5e54ef"
       },
       "comparison": "AAFD-R要求は仮定exact set、再合成要否、差分digestを保持。OS L2-005/007とsource/scope/disposition責務へ部分関連するが、exact setのschema、recomposition判定、digest invalidationは未採択/未trace。",
       "current_relation_summary": "OS L2-005/007の改善登録・証拠provenanceと責務分割に部分関連する。関連付けは現行source crosswalk/監査記録に基づく。",
@@ -760,7 +768,8 @@
         "asset_authority_status": "historical",
         "asset_product_target": "unresolved",
         "asset_ledger_line_sha256": "90c173b94c91cd1d6f1000c5867b5b88aaed133fb5c1b11803a233d913ea200e",
-        "asset_ledger_line": 814
+        "asset_ledger_line": 814,
+        "physical_line_bytes_sha256": "sha256:6f7db686fb7b9375f3c5ef317dce9cd2a2f7841ae61a65048f8e5adce8afcf7b"
       },
       "comparison": "旧TicketはAssignmentのIssue/PLAN択一を未切替scopeで存続させ、新schema version内の単一導出契約を要求。",
       "current_relation_summary": "現行HELIX-OS L2のsource crosswalkは当該Execution Ticket旧source範囲をL2-004/007/008/009/010/011/014へ広く関連づける。L2-014はPO採択済みの段階release要件であり、Ticket個別oracle全体の後継やcoverage receiptではない。source crosswalk自身も旧atomの個別割当・完全traceを主張しない。",
@@ -826,7 +835,8 @@
         "asset_authority_status": "historical",
         "asset_product_target": "unresolved",
         "asset_ledger_line_sha256": "90c173b94c91cd1d6f1000c5867b5b88aaed133fb5c1b11803a233d913ea200e",
-        "asset_ledger_line": 814
+        "asset_ledger_line": 814,
+        "physical_line_bytes_sha256": "sha256:727bfaf459555653bfcaea1e593920597fce6f1a0a6e94ec51a04ab635e075f3"
       },
       "comparison": "allowed/forbidden pathsはplanning constraintで、実行先identity/runtime targetは既存broker/Assignmentが決める。Ticket自身に自由なpath execution authorityを持たせない。",
       "current_relation_summary": "現行HELIX-OS L2のsource crosswalkは当該Execution Ticket旧source範囲をL2-004/007/008/009/010/011/014へ広く関連づける。L2-014はPO採択済みの段階release要件であり、Ticket個別oracle全体の後継やcoverage receiptではない。source crosswalk自身も旧atomの個別割当・完全traceを主張しない。",
@@ -892,7 +902,8 @@
         "asset_authority_status": "historical",
         "asset_product_target": "unresolved",
         "asset_ledger_line_sha256": "90c173b94c91cd1d6f1000c5867b5b88aaed133fb5c1b11803a233d913ea200e",
-        "asset_ledger_line": 814
+        "asset_ledger_line": 814,
+        "physical_line_bytes_sha256": "sha256:fefe4e32897359bf09e4a0d6c9d254e347be433250d6da10e7a4ec33ca1186d6"
       },
       "comparison": "同一論理作業の旧Assignmentと新Ticket revision claim間にcross-revision fenceを要求。",
       "current_relation_summary": "現行HELIX-OS L2のsource crosswalkは当該Execution Ticket旧source範囲をL2-004/007/008/009/010/011/014へ広く関連づける。L2-014はPO採択済みの段階release要件であり、Ticket個別oracle全体の後継やcoverage receiptではない。source crosswalk自身も旧atomの個別割当・完全traceを主張しない。",
@@ -958,7 +969,8 @@
         "asset_authority_status": "historical",
         "asset_product_target": "unresolved",
         "asset_ledger_line_sha256": "90c173b94c91cd1d6f1000c5867b5b88aaed133fb5c1b11803a233d913ea200e",
-        "asset_ledger_line": 814
+        "asset_ledger_line": 814,
+        "physical_line_bytes_sha256": "sha256:5b739ea3d786cb397351698cf05b9a9a5c1840e403127c608184aef2efb9e18c"
       },
       "comparison": "L3承認/canonical freeze/IR admission前にcandidateをexecution judgementへ使わず、PLAN/doc draft不一致を自動解決しない。",
       "current_relation_summary": "現行HELIX-OS L2のsource crosswalkは当該Execution Ticket旧source範囲をL2-004/007/008/009/010/011/014へ広く関連づける。L2-014はPO採択済みの段階release要件であり、Ticket個別oracle全体の後継やcoverage receiptではない。source crosswalk自身も旧atomの個別割当・完全traceを主張しない。",
@@ -1024,7 +1036,8 @@
         "asset_authority_status": "historical",
         "asset_product_target": "unresolved",
         "asset_ledger_line_sha256": "90c173b94c91cd1d6f1000c5867b5b88aaed133fb5c1b11803a233d913ea200e",
-        "asset_ledger_line": 814
+        "asset_ledger_line": 814,
+        "physical_line_bytes_sha256": "sha256:60e2bf78c20bbadf2a128936b1c48295139a0a615ce92f286c4ccf39bdfbf63e"
       },
       "comparison": "HXT/HXBはcandidate-local tracking IDで、既存FRをtraceし重複登録せず、canonicalization時に登録/revisionする。",
       "current_relation_summary": "現行HELIX-OS L2のsource crosswalkは当該Execution Ticket旧source範囲をL2-004/007/008/009/010/011/014へ広く関連づける。L2-014はPO採択済みの段階release要件であり、Ticket個別oracle全体の後継やcoverage receiptではない。source crosswalk自身も旧atomの個別割当・完全traceを主張しない。",
@@ -1090,7 +1103,8 @@
         "asset_authority_status": "historical",
         "asset_product_target": "unresolved",
         "asset_ledger_line_sha256": "90c173b94c91cd1d6f1000c5867b5b88aaed133fb5c1b11803a233d913ea200e",
-        "asset_ledger_line": 814
+        "asset_ledger_line": 814,
+        "physical_line_bytes_sha256": "sha256:6064e5aa9fb92d7af858060522b137f0d25d97ba75ddb8827afcb4749a69665b"
       },
       "comparison": "measurement modeとworkflow/execution modeを分離し、Ticket revisionとscorer/policy revisionを別identityにする。",
       "current_relation_summary": "現行HELIX-OS L2のsource crosswalkは当該Execution Ticket旧source範囲をL2-004/007/008/009/010/011/014へ広く関連づける。L2-014はPO採択済みの段階release要件であり、Ticket個別oracle全体の後継やcoverage receiptではない。source crosswalk自身も旧atomの個別割当・完全traceを主張しない。",
@@ -1156,7 +1170,8 @@
         "asset_authority_status": "historical",
         "asset_product_target": "unresolved",
         "asset_ledger_line_sha256": "90c173b94c91cd1d6f1000c5867b5b88aaed133fb5c1b11803a233d913ea200e",
-        "asset_ledger_line": 814
+        "asset_ledger_line": 814,
+        "physical_line_bytes_sha256": "sha256:081fc2f1b0462dc6954800603a9adba64f0fa869c84d771d82ce8272a7804d8c"
       },
       "comparison": "このintakeは新API、billing、auth、public/prod ops、old-engine switchを実装しない。",
       "current_relation_summary": "現行HELIX-OS L2のsource crosswalkは当該Execution Ticket旧source範囲をL2-004/007/008/009/010/011/014へ広く関連づける。L2-014はPO採択済みの段階release要件であり、Ticket個別oracle全体の後継やcoverage receiptではない。source crosswalk自身も旧atomの個別割当・完全traceを主張しない。",
@@ -1222,7 +1237,8 @@
         "asset_authority_status": "historical",
         "asset_product_target": "unresolved",
         "asset_ledger_line_sha256": "90c173b94c91cd1d6f1000c5867b5b88aaed133fb5c1b11803a233d913ea200e",
-        "asset_ledger_line": 814
+        "asset_ledger_line": 814,
+        "physical_line_bytes_sha256": "sha256:6fb18fd3b67446f378780e698f98e51fa6f08e79c9184e3ff02e89de4cc0a624"
       },
       "comparison": "admitted Ticket・valid Assignment・required lease/fenceを通常開発の前提とし、bootstrap/read-only/formal/shadow profilesを区別する。",
       "current_relation_summary": "現行HELIX-OS L2のsource crosswalkは当該Execution Ticket旧source範囲をL2-004/007/008/009/010/011/014へ広く関連づける。L2-014はPO採択済みの段階release要件であり、Ticket個別oracle全体の後継やcoverage receiptではない。source crosswalk自身も旧atomの個別割当・完全traceを主張しない。",
@@ -1288,7 +1304,8 @@
         "asset_authority_status": "historical",
         "asset_product_target": "unresolved",
         "asset_ledger_line_sha256": "90c173b94c91cd1d6f1000c5867b5b88aaed133fb5c1b11803a233d913ea200e",
-        "asset_ledger_line": 814
+        "asset_ledger_line": 814,
+        "physical_line_bytes_sha256": "sha256:60bd833d4a8c6d07f0a4a485508ad55862c27c02fd8882caa739dac87cc34dc7"
       },
       "comparison": "Ticketはrequirements/Design/PLANから導出され、それらを置換せずPLANのatomic-change ruleを弱めない。",
       "current_relation_summary": "現行HELIX-OS L2のsource crosswalkは当該Execution Ticket旧source範囲をL2-004/007/008/009/010/011/014へ広く関連づける。L2-014はPO採択済みの段階release要件であり、Ticket個別oracle全体の後継やcoverage receiptではない。source crosswalk自身も旧atomの個別割当・完全traceを主張しない。",
@@ -1354,7 +1371,8 @@
         "asset_authority_status": "historical",
         "asset_product_target": "unresolved",
         "asset_ledger_line_sha256": "90c173b94c91cd1d6f1000c5867b5b88aaed133fb5c1b11803a233d913ea200e",
-        "asset_ledger_line": 814
+        "asset_ledger_line": 814,
+        "physical_line_bytes_sha256": "sha256:af0e46c4090fa751a7f4cc73209f6bd3a0703fc81f40b5ab2154b47d7ed978f6"
       },
       "comparison": "immutable/revisioned Ticketにexactly-one primary responsibilityとbehavior contractを要求し、曖昧な分割はproposal/backflowへ残す。OPS-O1/O2 r4 receiptはTicket物理line 101の短いimmutable fragmentだけを限定採取し、この行全体のcoverage/採択ではない。",
       "current_relation_summary": "現行HELIX-OS L2のsource crosswalkは当該Execution Ticket旧source範囲をL2-004/007/008/009/010/011/014へ広く関連づける。L2-014はPO採択済みの段階release要件であり、Ticket個別oracle全体の後継やcoverage receiptではない。source crosswalk自身も旧atomの個別割当・完全traceを主張しない。",
@@ -1420,7 +1438,8 @@
         "asset_authority_status": "historical",
         "asset_product_target": "unresolved",
         "asset_ledger_line_sha256": "90c173b94c91cd1d6f1000c5867b5b88aaed133fb5c1b11803a233d913ea200e",
-        "asset_ledger_line": 814
+        "asset_ledger_line": 814,
+        "physical_line_bytes_sha256": "sha256:2b7cc5036e22885670d6706401694ae8ed8b432959e1cef974bd7be37964d0de"
       },
       "comparison": "actor/provider/model/session/branch/worktree/lease/priority/progress/measurementをTicket bodyから除く。OPS-O1/O2 r4は旧物理line 102をexact selected spanとして記録するが、候補はregistered_proposal/authority noneでありPO採択/旧atom closureではない。",
       "current_relation_summary": "現行HELIX-OS L2のsource crosswalkは当該Execution Ticket旧source範囲をL2-004/007/008/009/010/011/014へ広く関連づける。L2-014はPO採択済みの段階release要件であり、Ticket個別oracle全体の後継やcoverage receiptではない。source crosswalk自身も旧atomの個別割当・完全traceを主張しない。",
@@ -1486,7 +1505,8 @@
         "asset_authority_status": "historical",
         "asset_product_target": "unresolved",
         "asset_ledger_line_sha256": "90c173b94c91cd1d6f1000c5867b5b88aaed133fb5c1b11803a233d913ea200e",
-        "asset_ledger_line": 814
+        "asset_ledger_line": 814,
+        "physical_line_bytes_sha256": "sha256:e5b0d662f8fd317c5d684695f778d68d8d846a4091b18b6cde2ff9f81ecf58af"
       },
       "comparison": "Ticket revision, Assignment revision, Attempt, treatment, replicate, event IDを別identityに保つ。",
       "current_relation_summary": "現行HELIX-OS L2のsource crosswalkは当該Execution Ticket旧source範囲をL2-004/007/008/009/010/011/014へ広く関連づける。L2-014はPO採択済みの段階release要件であり、Ticket個別oracle全体の後継やcoverage receiptではない。source crosswalk自身も旧atomの個別割当・完全traceを主張しない。",
