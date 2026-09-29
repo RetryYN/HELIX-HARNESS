@@ -40,23 +40,40 @@
       "path": "docs/governance/audits/source-rebaseline/new-generation-refactoring-trigger-source-crosswalk.md",
       "sha256": "db64502c27e258312f1be82c51eb96fed621653be252c9a4412749f8abc72783",
       "use": "older bounded RTG reclassification context; not adoption evidence"
+    },
+    {
+      "path": "/home/tenni/HELIX-HARNESS/scaffold/review-handoff/local/po-decision-2026-09-29-55candidates.md",
+      "sha256": "a476b3f96f389269e77a1c183cbc70cc975d12ae957f70fb8ddccb05449246f7",
+      "use": "元のPO受領handoff。外部source pathは保存copyと区別"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/po-decision-received-handoff-2026-09-29.md",
+      "sha256": "9216e14a6dffefbb9e6a11755dffc203f9f61630097236fa0469f9fadb888409",
+      "use": "保存copy。POの第3版確定発言と42/11/4の境界"
+    },
+    {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "use": "確定PO判断。exact revisionに対する採択・条件付き採択を読む"
     }
   ],
   "count_status": {
-    "effective_class_counts": {
+    "effective_counts_as_pinned_in_count_audit": {
       "structure": 926,
       "explanation": 2947,
       "condition": 882,
       "condition_route_unknown": 586,
       "total": 4755
     },
-    "unknown_count_effect": "unchanged; this audit neither assigns an adopted route nor changes the 586 condition_route_unknown baseline",
-    "reason": "All ten remain unknown for effective successor/coverage routing until the separate authority/review decision; partial/related comparisons in this audit are not coverage registration."
+    "count_artifact_mutated": false,
+    "snapshot_basis": "legacy-candidate-effective-classification-counts-2026-09-29.json is a pinned cumulative reconciliation input (condition_route_unknown=586); this appended crosswalk does not rewrite or retroactively redefine that historical calculation.",
+    "this_audit_route_outcomes": "This audit now records post-decision outcomes for the ten selected source IDs. One exact old row (003612) is covered_limited by adopted OS-046; line 001656 is partial with three decision-bound subatoms and remaining candidate/holding conditions. The other eight retain their prior outcomes.",
+    "cumulative_recount": "not performed; do not report 586 as a recomputed post-decision current count or subtract this bounded set from the cumulative population without a separately pinned population reconciliation."
   },
   "classification_vocabulary": {
-    "covered_limited": "adopted exact current L2/L11 explicitly covers only a bounded subset of the old condition",
-    "partial": "adopted current conditions or bounded pending candidates overlap only part; missing atoms remain, and pending candidates are not successors",
-    "unresolved": "no applicable adopted or exact bounded candidate condition establishes this old condition; analogous general rules do not close it"
+    "covered_limited": "An adopted exact current L2/L11 and decision record cover the selected bounded source condition. This does not assert closure outside that exact source scope or a formal successor.",
+    "partial": "Some source condition atoms have adopted or conditionally adopted exact treatment, or a bounded candidate route; other atoms remain candidate-only or unresolved.",
+    "unresolved": "No applicable adopted or conditionally adopted exact treatment closes the selected old condition; analogous rules do not close it."
   },
   "rows": [
     {
@@ -124,6 +141,14 @@
           "file_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
           "locator": "採択されたHELIXOS-L2-014..029集合",
           "decision_state": "OSの構造改善候補を採択した記録ではない"
+        },
+        {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "locator": "57-candidate decision boundary: no formal successors or automatic old-source closure",
+          "decision_state": "57-candidate decision boundary: no formal successors or automatic old-source closure",
+          "line_start": 147,
+          "line_sha256": "9d27ffc9d300c15fb961b509307d34b8e706cdf611f5d3cdd06938ccf72b307d"
         }
       ],
       "disposition": "partial",
@@ -142,7 +167,9 @@
         "single-metric等だけでadmitしない反例を持つ対象別L11"
       ],
       "next_owner_or_po_boundary": "構造改善の利用者価値と対象別L1は既存PO境界。L2/L11への再採否と owner は要求側が既存 authority の範囲で整理し、意味・対象・採択条件を変える候補を出す場合だけPO判断へ。",
-      "formal_successor_claimed": false
+      "formal_successor_claimed": false,
+      "route_outcome": "partial",
+      "decision_update_effect": "The 2026-09-29 decision does not identify this source_item_id or a direct source atom as input to a newly adopted candidate. Earlier comparison/disposition is retained; no inferred route upgrade is made from unrelated PO-adopted identities."
     },
     {
       "source_item_id": "LEGACY-CAND-LINE-003504",
@@ -200,6 +227,14 @@
           "file_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
           "locator": "採択されたHELIXOS-L2-014..029集合",
           "decision_state": "RTG trigger候補不在"
+        },
+        {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "locator": "57-candidate decision boundary: no formal successors or automatic old-source closure",
+          "decision_state": "57-candidate decision boundary: no formal successors or automatic old-source closure",
+          "line_start": 147,
+          "line_sha256": "9d27ffc9d300c15fb961b509307d34b8e706cdf611f5d3cdd06938ccf72b307d"
         }
       ],
       "disposition": "partial",
@@ -218,7 +253,9 @@
         "stale/baseline/window negative oracle"
       ],
       "next_owner_or_po_boundary": "構造改善の必要性・利用者scopeを先に確定する既存上流境界。数値/threshold policyを新設せず、必要性が選択されれば対象owner候補とPO選択肢を要求整理側が示す。",
-      "formal_successor_claimed": false
+      "formal_successor_claimed": false,
+      "route_outcome": "partial",
+      "decision_update_effect": "The 2026-09-29 decision does not identify this source_item_id or a direct source atom as input to a newly adopted candidate. Earlier comparison/disposition is retained; no inferred route upgrade is made from unrelated PO-adopted identities."
     },
     {
       "source_item_id": "LEGACY-CAND-LINE-003514",
@@ -279,6 +316,14 @@
           "file_sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0",
           "locator": "採択されたHELIXLABO候補53件（L2-059を含む）",
           "decision_state": "旧RTG-AC-012固有metric集合・adoption ruleの採択なし"
+        },
+        {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "locator": "57-candidate decision boundary: no formal successors or automatic old-source closure",
+          "decision_state": "57-candidate decision boundary: no formal successors or automatic old-source closure",
+          "line_start": 147,
+          "line_sha256": "9d27ffc9d300c15fb961b509307d34b8e706cdf611f5d3cdd06938ccf72b307d"
         }
       ],
       "disposition": "partial",
@@ -296,7 +341,9 @@
         "個別改善値だけでadoptionしないtrigger採否条件"
       ],
       "next_owner_or_po_boundary": "LABOは測定方法・比較証拠の責務を持つ。改善candidateのadmission/authorityはHELIX-OSと対象ownerへ残る。対象scopeやmetric意味の変更が必要ならPOへ選択肢を提示。",
-      "formal_successor_claimed": false
+      "formal_successor_claimed": false,
+      "route_outcome": "partial",
+      "decision_update_effect": "The 2026-09-29 decision does not identify this source_item_id or a direct source atom as input to a newly adopted candidate. Earlier comparison/disposition is retained; no inferred route upgrade is made from unrelated PO-adopted identities."
     },
     {
       "source_item_id": "LEGACY-CAND-LINE-003612",
@@ -383,31 +430,64 @@
           "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
           "file_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
           "locator": "採用する明示候補集合 (L48)",
-          "decision_state": "HELIXOS-L2-046は採択集合外。PO decision pending"
+          "decision_state": "履歴上の2026-09-28時点では046は採択集合外だった。2026-09-29のHDEC-REQUIREMENTS-57-2026-09-29が同一の固定revisionを採択し、この旧pending状態を置換する。"
         },
         {
           "path": "docs/governance/audits/requirements-stage/post-confirmation-25-po-decision-packet-2026-09-28.json",
           "file_sha256": "a6c0bcbc2732713f7f184351c300decace672ec21ed18bfc81303902ee922f90",
           "locator": "HELIXOS-L2-046 entry",
-          "decision_state": "A recommended but unresolved; 046 remains unadopted"
+          "decision_state": "履歴上の2026-09-28時点ではA推奨・未解決だった。2026-09-29のHDEC-REQUIREMENTS-57-2026-09-29が同一の固定revisionを採択し、この旧未採択状態を置換する。"
+        },
+        {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "locator": "2026-09-29 PO採択 table row: OS-046, MPR-...-001",
+          "decision_state": "2026-09-29 PO採択 table row: OS-046, MPR-...-001",
+          "line_start": 69,
+          "line_sha256": "23be4662d87c825df19a1fa91ee2c0f0e851c83799d20923738936a30646302c"
+        },
+        {
+          "path": "docs/governance/audits/requirement-registration/helixos-rfa-scope-coverage-receipt-2026-09-28.json",
+          "file_sha256": "691bbe181787f65891d3728ba0c4069a2bb151701b400ef7192ff62ff8634128",
+          "locator": "candidate_input_atom_refs[0]=LEGACY-CAND-LINE-003612; source row is exactly one receipt input",
+          "decision_state": "local source mapping evidence only; receipt itself has authority_effect none"
+        },
+        {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "locator": "採択からformal successorを作らない共通境界",
+          "decision_state": "採択からformal successorを作らない共通境界",
+          "line_start": 147,
+          "line_sha256": "9d27ffc9d300c15fb961b509307d34b8e706cdf611f5d3cdd06938ccf72b307d"
         }
       ],
-      "disposition": "partial",
-      "disposition_reason": "採択済みOS-004/007/008/010/011およびGitHub上流運用モデルは既存authority/evidence/CI/review/merge admissionの局所条件を保持する。さらにOS-046候補はこの旧行だけを限定入力として接続条件化し、candidate receiptも1 source row mappingを明記する。しかしL2-046/L11-046は未採択で、OS PO decisionの明示採用集合にない。既存条件を跨ぐ一つのadopted successorはない。",
+      "disposition": "covered_limited",
+      "disposition_reason": "POの57候補判断記録はHELIXOS-L2-046のexact L2/L11 revision（MPR-RC-HELIXOS-L2-046-001）を採択した。RFA scope receiptはLEGACY-CAND-LINE-003612の一行だけを046のcandidate inputとして限定対応し、046のL2/L11本文はその一行のauthority/HEAD/scope連続性と三つの迂回拒否を保持する。よってこの一つの選択source conditionは限定範囲で採択済みpairにより扱われる。一方、旧RFA全体のclosureやformal successor assignmentは明示的に主張しない。",
       "positive_comparison": [
-        "採択済み運用はexact HEAD/base/scope、独立review、stale、required verification、現行merge admissionを別々に照合する。",
-        "未採択OS-046はauthority/HEAD/scope継続と同じ行に列挙された迂回拒否を限定scopeで記述する。"
+        "OS-046は採択済み（57候補PO decision table、MPR-RC-HELIXOS-L2-046-001）。対象となるsource receiptはこの旧row ID一件だけである。",
+        "L2/L11-046はdispatch、実行、Ready、mergeの間で同一対象・authority・HEAD・scope・既存検証義務を照合し、docs path免除、exploratory mergeの実装許可化、required verification skipを拒否する。",
+        "独立receiptはこのrow一件のcandidate input no-lossを記録し、採択判断記録はreceiptが固定する同じL2/L11 revisionを対象とする。"
       ],
       "negative_comparison": [
-        "未採択046候補から採択・運用許可・正式後継は生じない。",
-        "OS-046は新しいrequired listやCIを定義せず、旧RFA行全体や他AC条件のclosureも主張しない。"
+        "PO採択はL2/L11-046の固定revisionだけに適用し、RFAの他AC行や旧candidate全文を採択しない。",
+        "PO判断記録は旧条件対応を類似条件の部分保持とし、formal successor assignment、実装/運用、merge許可または受入実行を生成しない。",
+        "OS-046は具体的required list、新CI、追加承認、旧engine/schema/runtimeを定めない。"
       ],
-      "remaining_missing_conditions": [
-        "046 exact L2/L11採否についてPO decision",
-        "移行条件・他RFA rowsを含むsource closure。現行既存contractのowner単位の条件はそのまま維持"
-      ],
-      "next_owner_or_po_boundary": "OSの既存運用責務を跨ぐ候補046の採否はPO境界（既存packetのA/B/C）。HARNESSはverification duty、SECURITYは操作authority、OSは運転/統合を既存採択条件のまま所有。",
-      "formal_successor_claimed": false
+      "remaining_missing_conditions": [],
+      "next_owner_or_po_boundary": "OSは採択済み046の固定revisionで既存の運転/統合責務を持つ。RFA-AC-16の当該一行は限定対応済みとして扱い、その他のRFA条件、source全体closure、formal successor割当は未決。既存L2の意味・対象・採択範囲を変える必要が出た場合だけ既存PO境界へ戻す。",
+      "formal_successor_claimed": false,
+      "route_outcome": "covered_limited",
+      "source_scope_limit": "Covered scope is exactly LEGACY-CAND-LINE-003612 / RFA-AC-16 only. Other RFA conditions, source closure, implementation/operation and formal successor assignment remain outside this bounded outcome.",
+      "condition_atom_outcomes": [
+        {
+          "source_condition": "LEGACY-CAND-LINE-003612: entire RFA-AC-16 row",
+          "current_route": "covered_limited",
+          "current_pair": "HELIXOS-L2/L11-046",
+          "authority_status": "adopted",
+          "registration_id": "MPR-RC-HELIXOS-L2-046-001",
+          "formal_successor": false
+        }
+      ]
     },
     {
       "source_item_id": "LEGACY-CAND-LINE-001588",
@@ -475,6 +555,14 @@
           "file_sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0",
           "locator": "採用する明示候補集合",
           "decision_state": "LABO-L2-059採択。generic comparison basis only"
+        },
+        {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "locator": "57-candidate decision boundary: no formal successors or automatic old-source closure",
+          "decision_state": "57-candidate decision boundary: no formal successors or automatic old-source closure",
+          "line_start": 147,
+          "line_sha256": "9d27ffc9d300c15fb961b509307d34b8e706cdf611f5d3cdd06938ccf72b307d"
         }
       ],
       "disposition": "partial",
@@ -494,7 +582,9 @@
         "ticket close/Bench scoreだけによるqualified判定を拒否する具体oracle"
       ],
       "next_owner_or_po_boundary": "対象がHARNESS提供サービスかHELIX自身のstageかを既存製品責務境界で分ける。Release contractはHARNESS/OSの担当境界内で具体化し、version/scopeや採択範囲の意味を選ぶ場合はPO判断。",
-      "formal_successor_claimed": false
+      "formal_successor_claimed": false,
+      "route_outcome": "partial",
+      "decision_update_effect": "The 2026-09-29 decision does not identify this source_item_id or a direct source atom as input to a newly adopted candidate. Earlier comparison/disposition is retained; no inferred route upgrade is made from unrelated PO-adopted identities."
     },
     {
       "source_item_id": "LEGACY-CAND-LINE-001558",
@@ -602,6 +692,14 @@
           "file_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
           "locator": "L2-001..029対象本文の合意と明示候補集合",
           "decision_state": "L2-004/007/008/010/011 adopted; no exact old readiness projection replacement"
+        },
+        {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "locator": "57-candidate decision boundary: no formal successors or automatic old-source closure",
+          "decision_state": "57-candidate decision boundary: no formal successors or automatic old-source closure",
+          "line_start": 147,
+          "line_sha256": "9d27ffc9d300c15fb961b509307d34b8e706cdf611f5d3cdd06938ccf72b307d"
         }
       ],
       "disposition": "partial",
@@ -620,7 +718,9 @@
         "capacity/lease/budget/freshness unknown時の個別拒否条件"
       ],
       "next_owner_or_po_boundary": "OSがassignment、ticket、統合計画、resource/dispatch運転の既存責務を持つ。作業意味・eligibilityを再定義せず、具体化proposalが既存L2の範囲変更を含む時だけPO境界へ戻す。",
-      "formal_successor_claimed": false
+      "formal_successor_claimed": false,
+      "route_outcome": "partial",
+      "decision_update_effect": "The 2026-09-29 decision does not identify this source_item_id or a direct source atom as input to a newly adopted candidate. Earlier comparison/disposition is retained; no inferred route upgrade is made from unrelated PO-adopted identities."
     },
     {
       "source_item_id": "LEGACY-CAND-LINE-001656",
@@ -634,10 +734,12 @@
       },
       "effective_classification_input": "condition / unknown (per 2026-09-28 overlay)",
       "condition_atoms": [
-        "第3文のfirst-pass初回境界は最初のeligible candidate",
-        "同一Attempt内の修復round数を見えるようにする",
-        "総Attempt countを併記する",
-        "隣接する列挙telemetryとのcross-referenceを失わない"
+        "S1: first-pass acceptance metricはLABO-065の最初のAttempt resultとして条件付き採択D1。旧行399第3文の最初のeligible candidate境界とは別指標。",
+        "S1: Attempt countはHELIXLABO-L2/L11-068で採択。Attempt identityの完全性・scope条件を維持し、retry/repairから換算しない。",
+        "S1: repair roundsはHELIXLABO-L2/L11-067で条件付き採択D1。同一Attempt内の観測だけを保持。",
+        "S1: queue/active/review/Human待ち、escaped defects、rollback/Recovery、observer overhead、evidence freshness、S3 co-presentationの9 selected supplemental atomsはHELIXLABO-L2/L11-070の候補scopeにあるが、57候補PO判断の採択集合外。",
+        "S1/S2: coverageの分母/対象/oracle、および既存12 metricとのidentity/version relationはsource-holding unresolved。",
+        "「など」の列挙tailと隣接行はこの14-condition denominatorの外。"
       ],
       "target_sections": [
         {
@@ -651,7 +753,7 @@
         },
         {
           "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
-          "locator": "未採択LABO first-eligible/repair候補",
+          "locator": "LABO-067 L2本文; PO adopted conditionally under D1",
           "line_start": 529,
           "line_end": 540,
           "file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
@@ -660,7 +762,7 @@
         },
         {
           "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
-          "locator": "未採択LABO Attempt count候補",
+          "locator": "LABO-068 L2本文; PO adopted",
           "line_start": 541,
           "line_end": 551,
           "file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
@@ -669,7 +771,7 @@
         },
         {
           "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
-          "locator": "未実行LABO-067受入候補",
+          "locator": "LABO-067 L11 acceptance本文; PO adopted conditionally under D1",
           "line_start": 269,
           "line_end": 277,
           "file_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
@@ -678,12 +780,68 @@
         },
         {
           "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
-          "locator": "未実行LABO-068受入候補",
+          "locator": "LABO-068 L11 acceptance本文; PO adopted",
           "line_start": 278,
           "line_end": 287,
           "file_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
           "section_sha256": "376c8f24a39275b944e8b41eaa84b8aa4a247a98f301e8ec00d216adf422202f",
           "digest_basis": "exact UTF-8 section bytes from heading through line before next level-3 heading"
+        },
+        {
+          "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+          "locator": "LABO-065 first-Attempt metric; conditionally adopted D1",
+          "line_start": 503,
+          "line_end": 517,
+          "file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+          "section_sha256": "60692c91117266c2fb4e4a5743bcc81bdc632d4e262e454a914b0d893ff812de",
+          "digest_basis": "exact UTF-8 section bytes from heading through line before next level-3 heading"
+        },
+        {
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "locator": "LABO-065 L11; conditionally adopted D1",
+          "line_start": 241,
+          "line_end": 260,
+          "file_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+          "section_sha256": "11e08f87148faf9b862d962efeace5371fac4fb74a16917788e317962ede0b1c",
+          "digest_basis": "exact UTF-8 section bytes from heading through line before next level-3 heading"
+        },
+        {
+          "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+          "locator": "LABO-070 supplemental telemetry candidate; not in PO 57 decision",
+          "line_start": 561,
+          "line_end": 575,
+          "file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+          "section_sha256": "82b94ab1ed63d1ab15476e61bfd4fec07c202a2b5874d5f3dffa6161969da064",
+          "digest_basis": "exact UTF-8 section bytes from heading through line before next level-3 heading"
+        },
+        {
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "locator": "LABO-070 L11 candidate; not in PO 57 decision",
+          "line_start": 297,
+          "line_end": 308,
+          "file_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+          "section_sha256": "47b15dbcdddca5da7dd3136555bd74539c759758fa408506db800f94763e1125",
+          "digest_basis": "exact UTF-8 section bytes from heading through line before next level-3 heading"
+        },
+        {
+          "path": "docs/governance/audits/requirement-registration/labo-supplemental-telemetry-coverage-receipt-2026-09-29.json",
+          "locator": "scope + source_boundary_review + selected_atom_set",
+          "line_start": null,
+          "line_end": null,
+          "file_sha256": "9bd1f96d31282dd22a60642ac7b4d4944ed1c722b9ed38279c09070fccb79633",
+          "section_sha256": null,
+          "digest_basis": "whole-file SHA-256; JSON object/JSONL rows identified by locator",
+          "evidence_status": "9 candidate-scoped supplemental atoms under 070; 3 separately mapped atoms (067=2, 068=1); 2 meaning-unresolved atoms; does not assert PO adoption"
+        },
+        {
+          "path": "docs/governance/audits/requirement-registration/labo-supplemental-telemetry-source-lines-2026-09-29.jsonl",
+          "locator": "LEGACY-CAND-LINE-001656 source spans",
+          "line_start": null,
+          "line_end": null,
+          "file_sha256": "444779d090bf12a79adc2fca89dd31e5eef81e84fdb523875a47d2482f32cff7",
+          "section_sha256": null,
+          "digest_basis": "whole-file SHA-256; JSON object/JSONL rows identified by locator",
+          "evidence_status": "atom spans for the nine 070 candidate inputs"
         }
       ],
       "decision_refs": [
@@ -704,26 +862,114 @@
           "file_sha256": "a6c0bcbc2732713f7f184351c300decace672ec21ed18bfc81303902ee922f90",
           "locator": "HELIXLABO-L2-068 entry",
           "decision_state": "unadopted candidate scope only"
+        },
+        {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "locator": "2026-09-29 PO decision: conditional adoption D1; first Attempt result, separate from 067",
+          "decision_state": "2026-09-29 PO decision: conditional adoption D1; first Attempt result, separate from 067",
+          "line_start": 80,
+          "line_sha256": "4da9b1a4c726fe61731598a555d52f3e655d0cfa5e1c60eb78d79dbfe618b763"
+        },
+        {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "locator": "2026-09-29 PO decision: conditional adoption D1; first eligible candidate result + within-Attempt repair",
+          "decision_state": "2026-09-29 PO decision: conditional adoption D1; first eligible candidate result + within-Attempt repair",
+          "line_start": 82,
+          "line_sha256": "43c0a571d50108e4a7d72790d38c4e91cb4637567f2bd89fa3efb1bdc901b139"
+        },
+        {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "locator": "2026-09-29 PO decision: adopted Attempt count",
+          "decision_state": "2026-09-29 PO decision: adopted Attempt count",
+          "line_start": 83,
+          "line_sha256": "a8357dd44d10f4ee76a0df75bf4aefdd935e8247303c24d0d4461857dc6e2d15"
+        },
+        {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "locator": "2026-09-29 decision exact 57-identity table ends before 070; does not map line399 telemetry",
+          "decision_state": "2026-09-29 decision exact 57-identity table ends before 070; does not map line399 telemetry",
+          "line_start": 84,
+          "line_sha256": "d2fcd71739876ef48716f86a04e8070ccca7c921f70d32952ee5c8eee7e9953a"
+        },
+        {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "locator": "decision application boundary: exact identities only; similar conditions partial; no formal successors",
+          "decision_state": "decision application boundary: exact identities only; similar conditions partial; no formal successors",
+          "line_start": 146,
+          "line_sha256": "c65e61a7bf3d2562474a02cf8438a7d020881497dd0da923ca768030c615ccde"
         }
       ],
       "disposition": "partial",
-      "disposition_reason": "採択済みLABO-059は比較基準のみ。局所source auditは旧行の2 subatomをL2/L11-067候補、総Attempt countをL2/L11-068候補へ切り分け、個別receiptはselected atomのみをcandidate scopedで対応づける。両候補ともPO未採択・L11未実行であり、行の他telemetry/既存12指標差/開放列挙tailは残る。",
+      "disposition_reason": "PO判断で、旧行399のS3A/S3BはHELIXLABO-L2/L11-067へ条件付き採択（D1）、S3Cのtotal Attempt countはHELIXLABO-L2/L11-068へ採択された。LABO-065も条件付き採択D1で、初回Attempt resultとfirst-eligible-candidate resultを別指標として併存させる。これにより第3文の3 selected subatomについて、POの固定された処置（067はD1条件付き、068は採択）が確認できる。一方、同じsource lineの14明示条件のうち9補助telemetryはL2/L11-070のcandidate-scoped receiptに記録されるだけでPO 57件に含まれず、coverageとsilent-rename identity/version relationの2条件はsource holdingに未解決で残る。「など」のopen tailと旧candidate全体も未closure。",
       "positive_comparison": [
-        "候補067はfirst-eligible boundaryと同一Attempt内repair-round visibilityを明示する。",
-        "候補068はOSのdistinct Attempt identity数を完全記録が確認できる場合だけ返し、065/067から換算しない。",
-        "採択済み059との意味境界を保持し、059の測定基準が個別telemetryを満たすとはしていない。"
+        "57候補のPO判断はHELIXLABO-L2-065/-067をD1で条件付き採択し、068を採択した。L2/L11 identityとregistration revisionはそれぞれ決定記録で固定される。",
+        "D1は065のtask-level first Attempt resultと067のfirst-eligible-candidate result / same-Attempt repair roundsを区別し、相互換算・統合をしない。068のAttempt countもdistinct OS Attempt identityから独立に数える。",
+        "Labo supplemental receiptは全14明示条件をpartitionし、既存3 atom（067=2、068=1）を070へ重複投入せず、残る9 atomだけをcandidate-scopedに分けている。"
       ],
       "negative_comparison": [
-        "067/068の存在・receipt・registerは採択や正式successorを成立させない。",
-        "旧line399の他telemetry（各待ち時間、escaped defects、rollback/recovery、coverage、observer overhead、freshness等）、silent rename禁止と「など」のtailをこのsource-line coverageが解決しない。"
+        "L2/L11-067の条件付き採択はPO-selected D1の定義に限り、source line全体のformal successorまたはclosureを与えない。",
+        "L2/L11-070の9 telemetry atomsは仮登録/candidate scopeに留まり、PO 57決定では未採択。LABO-069の採択は別candidate（ticket返却・再発行後評価）であり、line399をカバーしない。",
+        "Coverage分母/oracleとsilent-rename identity/version対応はsource holding内で未解決。open-ended tailも不明のまま残す。"
       ],
       "remaining_missing_conditions": [
-        "POによる067/068採否およびfirst-pass定義整合選択",
-        "source line 399の全列挙telemetry/既存12 metric差/併記条件の個別処置",
-        "open-ended「など」の未確定tail"
+        "L2/L11-070の9 supplemental telemetry atomsの採否または保留判断",
+        "coverageの対象・分母・oracle",
+        "既存12指標と追加telemetryのidentity/version relation",
+        "「など」の列挙外tail（監査14条件の分母外）"
       ],
       "next_owner_or_po_boundary": "LABOは計測・比較証拠の責務、OSはassignment/Attempt event、task/要求ownerはeligibility/oracleを持つ。候補067/068の採否・意味変更/retireは既存PO packetの選択肢に限定。",
-      "formal_successor_claimed": false
+      "formal_successor_claimed": false,
+      "route_outcome": "partial",
+      "condition_atom_outcomes": [
+        {
+          "source_atom": "S3A first-eligible-candidate result",
+          "current_route": "partial / conditionally adopted bounded atom",
+          "identity": "HELIXLABO-L2/L11-067",
+          "registration_id": "MPR-RC-HELIXLABO-L2-067-001",
+          "PO_condition": "D1; distinct from 065 first-Attempt result"
+        },
+        {
+          "source_atom": "S3B same-Attempt repair-round visibility",
+          "current_route": "partial / conditionally adopted bounded atom",
+          "identity": "HELIXLABO-L2/L11-067",
+          "registration_id": "MPR-RC-HELIXLABO-L2-067-001",
+          "PO_condition": "D1; do not add to Attempt count"
+        },
+        {
+          "source_atom": "S3C total Attempt count",
+          "current_route": "partial / adopted bounded atom",
+          "identity": "HELIXLABO-L2/L11-068",
+          "registration_id": "MPR-RC-HELIXLABO-L2-068-001",
+          "PO_condition": "distinct OS Attempt identity; do not infer from retry/repair"
+        },
+        {
+          "source_atom": "first-pass acceptance metric",
+          "current_route": "conditional adoption D1, separate metric",
+          "identity": "HELIXLABO-L2/L11-065",
+          "registration_id": "MPR-RC-HELIXLABO-L2-065-001",
+          "PO_condition": "first Attempt result; distinct from first eligible candidate"
+        },
+        {
+          "source_atoms": "9 supplemental telemetry atoms",
+          "current_route": "candidate_scope_only; not adopted in 57-candidate record",
+          "identity": "HELIXLABO-L2/L11-070",
+          "registration_id": "see pinned supplemental receipt",
+          "PO_condition": "none recorded in the 57-candidate PO decision"
+        },
+        {
+          "source_atoms": "coverage and no-silent-rename relation",
+          "current_route": "unresolved/source holding",
+          "identity": null,
+          "registration_id": "MPR-SH-CANDIDATE-003",
+          "PO_condition": "no meaning decision"
+        }
+      ],
+      "source_scope_limit": "Only 3 selected atoms have exact 067/068 PO disposition; 065 D1 separately clarifies the first-Attempt measure. The 9 supplemental metrics are candidate-only in 070; two meaning conditions remain unresolved; the open tail and whole legacy candidate are outside closure."
     },
     {
       "source_item_id": "LEGACY-CAND-LINE-001548",
@@ -776,6 +1022,14 @@
           "file_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
           "locator": "採択する明示候補集合",
           "decision_state": "HARNESS-L2-024 adopted; requirement-engine candidate absent from explicit 24 set"
+        },
+        {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "locator": "57-candidate decision boundary: no formal successors or automatic old-source closure",
+          "decision_state": "57-candidate decision boundary: no formal successors or automatic old-source closure",
+          "line_start": 147,
+          "line_sha256": "9d27ffc9d300c15fb961b509307d34b8e706cdf611f5d3cdd06938ccf72b307d"
         }
       ],
       "disposition": "partial",
@@ -795,7 +1049,9 @@
         "Release/priority/measurement policyの外部binding境界"
       ],
       "next_owner_or_po_boundary": "HARNESS要求engineのprovider責務は候補文書にあるが候補自体は未採択。要求engine capabilityの採否とその上流scope変更はPO境界で判断し、OSへ要求意味正本を移さない。",
-      "formal_successor_claimed": false
+      "formal_successor_claimed": false,
+      "route_outcome": "partial",
+      "decision_update_effect": "The 2026-09-29 decision does not identify this source_item_id or a direct source atom as input to a newly adopted candidate. Earlier comparison/disposition is retained; no inferred route upgrade is made from unrelated PO-adopted identities."
     },
     {
       "source_item_id": "LEGACY-CAND-LINE-001709",
@@ -848,6 +1104,14 @@
           "file_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
           "locator": "採用する明示候補集合",
           "decision_state": "OS-L2-014 adopted but only HELIX internal stage-release semantics; migration-specific condition remains outside its scope"
+        },
+        {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "locator": "57-candidate decision boundary: no formal successors or automatic old-source closure",
+          "decision_state": "57-candidate decision boundary: no formal successors or automatic old-source closure",
+          "line_start": 147,
+          "line_sha256": "9d27ffc9d300c15fb961b509307d34b8e706cdf611f5d3cdd06938ccf72b307d"
         }
       ],
       "disposition": "unresolved",
@@ -865,7 +1129,9 @@
         "恒久dual-write禁止およびshadow方式の識別条件"
       ],
       "next_owner_or_po_boundary": "現行対象・対象製品・版・適用範囲が未確定のため候補ownerを固定しない。対象と必要意味のL1/L2位置を要求整理で特定し、意味・1.0適用範囲の選択はPOへ。",
-      "formal_successor_claimed": false
+      "formal_successor_claimed": false,
+      "route_outcome": "unresolved",
+      "decision_update_effect": "The 2026-09-29 decision does not identify this source_item_id or a direct source atom as input to a newly adopted candidate. Earlier comparison/disposition is retained; no inferred route upgrade is made from unrelated PO-adopted identities."
     },
     {
       "source_item_id": "LEGACY-CAND-LINE-003614",
@@ -935,6 +1201,14 @@
           "file_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
           "locator": "採択範囲と未完引継ぎ",
           "decision_state": "L2/11 fixed revision does not decide full source-to-L12 old RFA chain"
+        },
+        {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "locator": "57-candidate decision boundary: no formal successors or automatic old-source closure",
+          "decision_state": "57-candidate decision boundary: no formal successors or automatic old-source closure",
+          "line_start": 147,
+          "line_sha256": "9d27ffc9d300c15fb961b509307d34b8e706cdf611f5d3cdd06938ccf72b307d"
         }
       ],
       "disposition": "unresolved",
@@ -953,7 +1227,9 @@
         "候補保存だけでは全体完了にならない受入例"
       ],
       "next_owner_or_po_boundary": "OSはproject/ticket/workflow運転、HARNESSは工程・verification契約、対象機構ownerは要求/受入の意味を持つ。対象L1/L2/L11に跨る完了scopeと既存上流判断を確定する必要がある場合はPOへ返す。",
-      "formal_successor_claimed": false
+      "formal_successor_claimed": false,
+      "route_outcome": "unresolved",
+      "decision_update_effect": "The 2026-09-29 decision does not identify this source_item_id or a direct source atom as input to a newly adopted candidate. Earlier comparison/disposition is retained; no inferred route upgrade is made from unrelated PO-adopted identities."
     }
   ],
   "validation": {
@@ -963,6 +1239,54 @@
     "all_source_excerpts_match_archive_bytes": true,
     "all_target_section_and_file_digests_computed": true,
     "formal_successors_claimed": 0,
-    "legacy_cli_runtime_test_ci_executed": false
+    "legacy_cli_runtime_test_ci_executed": false,
+    "po_handoff_original_and_saved_copy_hashes_verified": true,
+    "po_57_decision_record_sha256_verified": true,
+    "os046_exact_identity_adopted": true,
+    "labo065_067_conditional_adoption_d1_verified": true,
+    "labo068_exact_identity_adopted": true,
+    "labo070_not_in_57_candidate_decision_verified": true
+  },
+  "authority_update": {
+    "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+    "decision_record_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+    "source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+    "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
+    "authority_effect": "effective_when_this_record_is_admitted_to_main_for_only_explicitly_fixed_revisions",
+    "recorded_scope": "PO判断記録は42件を採択、11件を明記条件付きで採択、4件を保留。57 exact identities外の要求やsource atomへ自動拡張しない。",
+    "relevant_exact_identities": {
+      "HELIXOS-L2-046": {
+        "status": "adopted",
+        "registration_id": "MPR-RC-HELIXOS-L2-046-001",
+        "decision_line": 69
+      },
+      "HELIXLABO-L2-065": {
+        "status": "conditional_adoption_D1",
+        "registration_id": "MPR-RC-HELIXLABO-L2-065-001",
+        "decision_line": 80
+      },
+      "HELIXLABO-L2-067": {
+        "status": "conditional_adoption_D1",
+        "registration_id": "MPR-RC-HELIXLABO-L2-067-001",
+        "decision_line": 82
+      },
+      "HELIXLABO-L2-068": {
+        "status": "adopted",
+        "registration_id": "MPR-RC-HELIXLABO-L2-068-001",
+        "decision_line": 83
+      }
+    },
+    "other_relevant_boundary": "HELIXLABO-L2-070 is not among the decision record’s 57 identities; its nine source subatoms remain only candidate-scoped. The decision explicitly forbids turning adopted similar conditions into formal successor assignments."
+  },
+  "po_decision_source": {
+    "original_handoff_path": "/home/tenni/HELIX-HARNESS/scaffold/review-handoff/local/po-decision-2026-09-29-55candidates.md",
+    "original_handoff_sha256": "a476b3f96f389269e77a1c183cbc70cc975d12ae957f70fb8ddccb05449246f7",
+    "saved_copy_path": "docs/governance/audits/requirements-stage/po-decision-received-handoff-2026-09-29.md",
+    "saved_copy_sha256": "9216e14a6dffefbb9e6a11755dffc203f9f61630097236fa0469f9fadb888409",
+    "confirmed_decision_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+    "confirmed_decision_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+    "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+    "source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+    "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68"
   }
 }
