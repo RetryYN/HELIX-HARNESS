@@ -26,6 +26,10 @@
 
 対象はCI concurrency 3行、Concept/Vision intake 11行。CI側3行はproduct atomとして維持し、intake側9行をmanagement process condition、2行をexplanationへ分類する。原文とfile/line digest、改行を含むphysical-line SHA-256、入力pin、#2363除外集合は同名JSONに記録した。
 
+## 母集団への影響（提案の算術）
+
+この14行への分類案を重ねた場合、condition −2、explanation +2、management process condition +9、product requirement atom −11、product unknown route −11、management successor unresolved +9、not_condition +2となる。製品unknownの減少は分類の見直しによるもので、旧条件の現行要求への引継ぎや残条件の解消を数えたものではない。3行の製品atomはunknownのまま保持する。依存する#2361/#2363の確定後に、最新main上の母集団とpinを再計算する。
+
 ## 検証
 
 14件のID一意性、#2363の16 IDとの非重複、台帳からの原文・line digest一致、旧archive file SHAとbytesの一致を静的確認した。旧runtime・CLI・test・hook・CIは実行していない。

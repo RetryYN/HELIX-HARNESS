@@ -207,7 +207,7 @@
         "context_only_source_line_ids": []
       },
       "reason": "特定の受領資料のsource照合条件を示しており、外部製品の動作・受入条件ではない。",
-      "route_effect": "none; no route relation, successor, coverage, acceptance, or adoption is proposed",
+      "route_effect": "proposed classification moves this row out of product unknown route population into management_successor_unresolved; this is no handoff, resolution, successor, coverage, or adoption claim",
       "physical_line_bytes_sha256": "1f707b9be3524767eb0cf8cd91b250f41e6921192cda40032887a5760e1f16dd"
     },
     {
@@ -238,7 +238,7 @@
         "context_only_source_line_ids": []
       },
       "reason": "歴史的資料の数値を現行計測値と誤認しないための管理条件であり、外部製品の動作・受入条件ではない。",
-      "route_effect": "none; no route relation, successor, coverage, acceptance, or adoption is proposed",
+      "route_effect": "proposed classification moves this row out of product unknown route population into management_successor_unresolved; this is no handoff, resolution, successor, coverage, or adoption claim",
       "physical_line_bytes_sha256": "778d79690a24af84ecb9e602071c409c1cb7482e641220457a4a1e4d3145b490"
     },
     {
@@ -269,7 +269,7 @@
         "context_only_source_line_ids": []
       },
       "reason": "入力、差分、source照合、または移行証拠の管理条件であり、特定作業の完了手順を定める。",
-      "route_effect": "none; no route relation, successor, coverage, acceptance, or adoption is proposed",
+      "route_effect": "proposed classification moves this row out of product unknown route population into management_successor_unresolved; this is no handoff, resolution, successor, coverage, or adoption claim",
       "physical_line_bytes_sha256": "a88b79d31f6e8a0f577a0f1ef64fcbbd893122fdbefdb72444437447d018a07f"
     },
     {
@@ -300,7 +300,7 @@
         "context_only_source_line_ids": []
       },
       "reason": "入力、差分、source照合、または移行証拠の管理条件であり、特定作業の完了手順を定める。",
-      "route_effect": "none; no route relation, successor, coverage, acceptance, or adoption is proposed",
+      "route_effect": "proposed classification moves this row out of product unknown route population into management_successor_unresolved; this is no handoff, resolution, successor, coverage, or adoption claim",
       "physical_line_bytes_sha256": "dc755b6eef8535a5c2aa98784efea117269947fee4e3cb7e904bb284f8638521"
     },
     {
@@ -331,7 +331,7 @@
         "context_only_source_line_ids": []
       },
       "reason": "入力、差分、source照合、または移行証拠の管理条件であり、特定作業の完了手順を定める。",
-      "route_effect": "none; no route relation, successor, coverage, acceptance, or adoption is proposed",
+      "route_effect": "proposed classification moves this row out of product unknown route population into management_successor_unresolved; this is no handoff, resolution, successor, coverage, or adoption claim",
       "physical_line_bytes_sha256": "e8c16ee904a8812e81484fcf9dec4b8bc7c01b2a209fe1ca7a5f11fccf39bc10"
     },
     {
@@ -362,7 +362,7 @@
         "context_only_source_line_ids": []
       },
       "reason": "入力、差分、source照合、または移行証拠の管理条件であり、特定作業の完了手順を定める。",
-      "route_effect": "none; no route relation, successor, coverage, acceptance, or adoption is proposed",
+      "route_effect": "proposed classification moves this row out of product unknown route population into management_successor_unresolved; this is no handoff, resolution, successor, coverage, or adoption claim",
       "physical_line_bytes_sha256": "e0d2fcaf8a9882cee6be5dcd36d809b9c3fa4ddb24f8d5c33bd76551f400b803"
     },
     {
@@ -393,7 +393,7 @@
         "context_only_source_line_ids": []
       },
       "reason": "入力、差分、source照合、または移行証拠の管理条件であり、特定作業の完了手順を定める。",
-      "route_effect": "none; no route relation, successor, coverage, acceptance, or adoption is proposed",
+      "route_effect": "proposed classification moves this row out of product unknown route population into management_successor_unresolved; this is no handoff, resolution, successor, coverage, or adoption claim",
       "physical_line_bytes_sha256": "01fd685d6a465a3b435ae3d36255ec351f27d3522a6eb7325e08a314fe994af6"
     },
     {
@@ -424,7 +424,7 @@
         "context_only_source_line_ids": []
       },
       "reason": "過去に行った保存や照合の記録であり、新たな製品条件や現在の作業条件を示さない。",
-      "route_effect": "none; no route relation, successor, coverage, acceptance, or adoption is proposed",
+      "route_effect": "proposed classification moves this row out of condition/product unknown route population into not_condition; this is no handoff, resolution, successor, coverage, or adoption claim",
       "physical_line_bytes_sha256": "62825e48531b0d934019d06e0db0bd3fe0832357190bfbebf0f7a48c594517cd"
     },
     {
@@ -455,7 +455,7 @@
         "context_only_source_line_ids": []
       },
       "reason": "特定作業の独立検収を追跡する管理条件であり、外部製品の動作条件ではない。",
-      "route_effect": "none; no route relation, successor, coverage, acceptance, or adoption is proposed",
+      "route_effect": "proposed classification moves this row out of product unknown route population into management_successor_unresolved; this is no handoff, resolution, successor, coverage, or adoption claim",
       "physical_line_bytes_sha256": "11b1547f4715e778660dbaf3330931c26b5631a1fbb2d9c725d23c2002fe908c"
     },
     {
@@ -486,7 +486,7 @@
         "context_only_source_line_ids": []
       },
       "reason": "過去のsource保存・可用性を記す状態記録であり、新たな製品条件や現在の作業条件を示さない。",
-      "route_effect": "none; no route relation, successor, coverage, acceptance, or adoption is proposed",
+      "route_effect": "proposed classification moves this row out of condition/product unknown route population into not_condition; this is no handoff, resolution, successor, coverage, or adoption claim",
       "physical_line_bytes_sha256": "f19218b36838d82a5296348999a35defd83786303ccd4bb18d1509edb7d58762"
     },
     {
@@ -517,7 +517,7 @@
         "context_only_source_line_ids": []
       },
       "reason": "外部原文の扱いと言語検査baselineの維持に関する管理条件であり、外部製品の動作条件ではない。",
-      "route_effect": "none; no route relation, successor, coverage, acceptance, or adoption is proposed",
+      "route_effect": "proposed classification moves this row out of product unknown route population into management_successor_unresolved; this is no handoff, resolution, successor, coverage, or adoption claim",
       "physical_line_bytes_sha256": "a909158e0e0f4a9ce96207beb95297a49b373b26266d9a48e174d39fb74bfd13"
     }
   ],
@@ -533,5 +533,15 @@
     "source_file_sha256_matches_archive_bytes": true,
     "all_lines_have_exact_text_and_line_digest": true,
     "prior_2363_ids_excluded": true
+  },
+  "impact_if_overlay_applied": {
+    "condition": -2,
+    "explanation": 2,
+    "management_process_condition": 9,
+    "product_requirement_atom": -11,
+    "product_route_unknown": -11,
+    "management_successor_unresolved": 9,
+    "not_condition": 2,
+    "interpretation": "Arithmetic classification correction only; the reduction is not a count of old conditions handed off or resolved."
   }
 }
