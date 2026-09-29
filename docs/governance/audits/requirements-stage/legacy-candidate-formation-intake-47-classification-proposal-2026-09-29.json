@@ -1,14 +1,14 @@
 {
   "schema_version": "legacy-candidate-formation-intake-47-classification-proposal.v1",
   "audit_id": "legacy-candidate-formation-intake-47-classification-proposal-2026-09-29",
-  "base_commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
+  "base_commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
   "authority_effect": "none",
   "audit_mode": "read_only_source_classification_proposal",
   "scope": {
     "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
     "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
     "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
-    "effective_baseline": "The 47 target source IDs remain condition/product_requirement_atom/unknown in the #2361 full-source population after applying the disjoint merged #2363 and #2366 classification proposals. Proposed product-unknown arithmetic starts at 521 after those two proposals; 519 is superseded.",
+    "effective_baseline": "The 47 target source IDs remain condition/product_requirement_atom/unknown in the #2361 full-source population after applying the disjoint merged #2363 and #2366 classification proposals. The merged #2367 51-row proposal is also disjoint. Proposed product-unknown arithmetic starts at 521 after #2363/#2366 proposals; 519 is superseded.",
     "row_count": 47,
     "classification_count": {
       "product_requirement_atom": 26,
@@ -16,15 +16,15 @@
       "explanation": 14
     },
     "rows_leaving_product_unknown_population": 21,
-    "population_note": "This 47-row proposal alone moves 21 rows out of product unknown: 521−21=500. #2367 is an open proposal under correction; its current exact HEAD was checked for ID overlap only. Its delta and any combined arithmetic remain pending corrected HEAD review/merge.",
+    "population_note": "This 47-row proposal alone moves 21 rows out of product unknown: 521−21=500. The merged #2367 proposal has 51 disjoint IDs and delta −14; combined hypothetical proposal arithmetic is 521−14−21=486. Both are audit-only proposals; no authority or closure effect is produced.",
     "product_unknown_baseline_after_2363_2366_proposals": 521,
     "resulting_product_unknown_population_from_521": 500,
     "proposal_overlap_checks": {
-      "pr_2367_open_head_snapshot": "639929ddb285ce4f193aca75d235edd7835e3b9e",
-      "pr_2367_row_count_at_snapshot": 51,
-      "overlap_count_at_snapshot": 0,
-      "overlap_ids_at_snapshot": [],
-      "status": "The pinned exact open HEAD 639929d is the only source revision verified here; a later R2367-01 interim classification summary was communicated but has no exact commit/path/SHA pin. Recheck source IDs after the corrected HEAD is fixed."
+      "pr_2367_merged_commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
+      "pr_2367_row_count": 51,
+      "overlap_count": 0,
+      "overlap_ids": [],
+      "status": "Verified against the exact merged #2367 final audit rows. Both this proposal and #2367 remain audit-only, authority_effect none."
     }
   },
   "pinned_inputs": [
@@ -131,12 +131,12 @@
       "sha256": "9ef3942001682e11f18e507c5b8577192f97b14672ce9544b684e837493cb6e3"
     },
     {
-      "role": "open_2367_head_snapshot_for_id_nonoverlap_only",
-      "commit": "639929ddb285ce4f193aca75d235edd7835e3b9e",
+      "role": "overlay_2367_merged_final_classification_for_nonoverlap_and_cumulative_proposal_arithmetic",
+      "commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
-      "sha256": "d76900f020b51519b952987f2aea9a45255f48f3ca400ffa42aa1011fd5af2c5",
-      "authority_effect": "none; open proposal under correction",
-      "role_note": "51-row current-open-head source-ID set checked for nonoverlap only; proposal delta and cumulative arithmetic are pending corrected HEAD review/merge"
+      "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d",
+      "authority_effect": "none; merged classification proposal only",
+      "role_note": "Final 51-row classification input used to independently verify disjoint IDs and proposal arithmetic."
     }
   ],
   "classification_rules": [
@@ -1221,42 +1221,30 @@
       "product_unknown_delta": -21,
       "standalone_proposed_product_unknown": 500
     },
-    "authority_effect": "none; classification proposal only",
-    "cumulative_with_2367": "Pending corrected #2367 exact HEAD review/merge and refreshed ID overlap. If the communicated interim delta −14 is confirmed and disjoint, the arithmetic would be 521−14−21=486; this is not a finalized count.",
-    "interpretation": "Only this 47-row proposal standalone arithmetic is finalized in this audit: 521−21=500. #2367 current/open or interim classifications are not applied.",
-    "pr_2367_open_exact_pinned_head_snapshot": {
-      "source_revision": "639929ddb285ce4f193aca75d235edd7835e3b9e",
-      "classification_count": {
-        "product_requirement_atom": 29,
-        "management_process_condition": 13,
-        "explanation": 9
-      },
-      "product_unknown_delta": -22,
-      "status": "The pinned audit snapshot is under correction; do not use this delta as final or cumulative."
+    "pr_2367_merged_51_row_proposal": {
+      "product_requirement_atom_retained": 37,
+      "management_process_condition": 11,
+      "explanation": 3,
+      "product_unknown_delta": -14,
+      "standalone_proposed_product_unknown": 507,
+      "authority_effect": "none; merged audit proposal only"
     },
-    "pr_2367_r2367_01_interim_unpinned": {
-      "row_count": 51,
-      "reported_classification_count": {
-        "product_requirement_atom": 37,
-        "management_process_condition": 11,
-        "explanation": 3
-      },
-      "reported_product_unknown_delta": -14,
-      "reported_standalone_scenario_from_521": 507,
-      "exact_commit_path_sha256": "pending corrected #2367 HEAD",
-      "status": "Provisional communicated summary only; not pinned, authority_effect none, excluded from this proposal calculation."
-    }
+    "combined_if_both_disjoint_classification_proposals_were_applied": {
+      "total_delta": -35,
+      "proposed_product_unknown": 486,
+      "arithmetic": "521 - 14 (#2367) - 21 (47-row proposal) = 486"
+    },
+    "interpretation": "Standalone 47-row arithmetic (521→500) and the combined hypothetical proposal arithmetic (521→486) are separate. Neither establishes adoption, successor, handoff, coverage, resolution, acceptance, implementation, or closure."
   },
   "verification": {
     "row_count": 47,
     "unique_source_ids": true,
-    "open_2367_exact_head_id_nonoverlap_snapshot": true,
-    "open_2367_final_delta_or_cumulative_effect_claimed": false,
     "full_population_recount_performed": false,
     "all_direct_pins_path_commit_sha256_verified": true,
     "all_47_source_file_line_and_physical_hashes_verified": true,
     "standalone_521_to_500_arithmetic_verified": true,
-    "pr_2367_current_pinned_snapshot_nonoverlap_only": true,
-    "pr_2367_corrected_interim_not_pinned_or_applied": true
+    "merged_2367_final_rows_nonoverlap_with_47_source_ids": true,
+    "merged_2367_521_to_507_delta_verified": true,
+    "combined_proposal_arithmetic_521_to_486_verified": true
   }
 }

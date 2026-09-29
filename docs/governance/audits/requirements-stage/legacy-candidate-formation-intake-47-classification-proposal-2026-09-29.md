@@ -3,7 +3,8 @@
 - 対象: merged #2366 exact `a9b36cd43866d30aaca7c1edc654a44a36e47eb3`を含む提案overlay文脈の47行。#2366監査JSONのSHA-256は `d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6`。
 - 原文: `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md`。
 - authority effect: `none`。分類案のみで、採用・successor・coverage・受入・実装・完了を示さない。
-- 集計: 製品要求atomを26行維持、管理・工程条件へ7行、説明・来歴・状態へ14行。#2363/#2366の分類提案後の521を基準に、この47行案だけを重ねると500となる算術案。
+- 追加入力: merged #2367 exact `b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7`（51行提案、JSON SHA-256 `c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d`）。47行案とはsource IDが重複しない。
+- 集計: 製品要求atomを26行維持、管理・工程条件へ7行、説明・来歴・状態へ14行。#2363/#2366提案後の521を基準に、47行案単独では500、#2367案単独では507。両案を重ねる仮定の算術は486。
 
 ## 行別分類案
 
@@ -70,13 +71,13 @@
 | 説明・来歴・状態 | 14 | conditionからexplanationへ移す案 |
 | 合計 | 47 | 製品unknownを21行減らす算術案 |
 
-merged #2361 baseline 544に#2363提案の−12、#2366提案の−11を重ねた提案上の母集団は521。今回の47行案は単独で−21となり、521−21=500。これは分類算術のみで、残る行の製品意味・採否・coverageを判定しない。
+merged #2361 baseline 544に#2363提案の−12、#2366提案の−11を重ねたproposal baselineは521。今回の47行案は単独で−21となり、521−21=500。merged #2367案は別途−14で521→507。両proposalのID集合は重複しないため、両方を仮に重ねる算術は521−14−21=486。いずれもproposalの分類算術のみで、採否・coverageや要求の完了を判定しない。
 
-#2367は独立した51行の分類提案で、現時点でpinしたopen exact HEAD `639929ddb285ce4f193aca75d235edd7835e3b9e`に対する47 IDとの重複は0件。このpinのSHAはJSONに固定した。Claude Major指摘R2367-01の修正は進行中で、親から別途共有された暫定分類は37 product／11 management／3 explanation（差分−14、521→507）だが、修正後exact commit/path/SHAは未提示のため入力pinとして扱わない。現pinの29/13/9・−22も修正前snapshotであり、最終値としない。authority effectはnone。47行案の単独算術521−21=500だけを記録し、#2367との累積はpendingとする。暫定−14が確定し重複なしなら算術上521−14−21=486だが、これは未確定シナリオであり最終countではない。修正後HEAD・merge後にID重複と件数影響を再確認する。
+#2367はmerged exact `b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7`の独立51行分類提案で、47 IDとの重複は0件。最終JSONのpathとSHAはJSON pinに記録した。#2367の分類提案は37 product／11 management／3 explanation、product unknown差分−14で、521基準の単独提案算術は507。authority effectはnone。今回の47行案の単独算術は521−21=500。両proposalを同時に重ねる仮定の算術は521−14−21=486。これは分類proposal間の件数計算であり、採択・successor・handoff・coverage・解決・受入・実装・closureを示さない。
 
 ## 入力pins
 
-JSONの `pinned_inputs` に、#2353/#2356/#2360/#2363/#2366各merged commitの分類案、#2361 effective recount、#2367現在のopen HEAD snapshot（ID非重複確認のみ）、source ledger、router、archive source、および隣接旧要求・decision-history資料のpathとSHA-256を記録した。#2367の累積countは修正後に確定する。
+JSONの `pinned_inputs` に、#2353/#2356/#2360/#2363/#2366/#2367のmerged commitと各監査JSONのSHA-256、#2361 effective recount、source ledger、router、archive source、および隣接旧要求・decision-history資料のpathとSHA-256を記録した。#2367 final merged rowsと47行のID非重複を再検算した。
 
 ## 根拠と境界
 
