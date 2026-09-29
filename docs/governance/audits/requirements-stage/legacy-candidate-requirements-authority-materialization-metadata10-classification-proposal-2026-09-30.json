@@ -1,0 +1,906 @@
+{
+  "schema_version": "legacy-candidate-classification-correction-overlay.v1",
+  "audit_id": "legacy-candidate-requirements-authority-materialization-metadata10-classification-proposal-2026-09-30",
+  "created_against_commit": "d4f1c4739fb920abdc5f951646e43a5c3e501af5",
+  "classification_basis_commit": "97672630b7de70fd4433827730c390cbabd90a99",
+  "authority_effect": "none",
+  "audit_mode": "append_only_bounded_source_classification_correction_proposal",
+  "scope": {
+    "reason": "#2380 R2380-02 flagged ten RAMG identity/status/reference rows for classification review. Exact source review proposes explanation classification because the rows are metadata/reference pointers rather than standalone product condition predicates.",
+    "source_ids": [
+      "LEGACY-CAND-LINE-003940",
+      "LEGACY-CAND-LINE-003941",
+      "LEGACY-CAND-LINE-003942",
+      "LEGACY-CAND-LINE-003961",
+      "LEGACY-CAND-LINE-003962",
+      "LEGACY-CAND-LINE-003963",
+      "LEGACY-CAND-LINE-003964",
+      "LEGACY-CAND-LINE-003984",
+      "LEGACY-CAND-LINE-003985",
+      "LEGACY-CAND-LINE-003986"
+    ],
+    "all_ids_are_product_requirement_atoms_before_this_proposal": true,
+    "not_a_route_coverage_or_requirement_adoption_audit": true,
+    "prior_route_audit_status": "All ten IDs were selected in #2380; this overlay does not rewrite that historical route audit."
+  },
+  "classification_basis": [
+    "#2356 classifies document IDs, status fields, and Behavior Contract identifiers without independent normative predicates as explanation while preserving substantive requirement rows under separate source IDs.",
+    "#2372 flags source-context/reference rows for reassessment but leaves its route snapshot unchanged; separate classification proposals record correction without mutating route audits.",
+    "Only fixture-reference rows 003961–003964 are included. The adjacent fixture-exclusion/epoch-freeze oracle at 003965 remains condition/product_requirement_atom/unknown."
+  ],
+  "pinned_inputs": [
+    {
+      "role": "baseline_2353_row_records",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+      "commit": "d4f1c4739fb920abdc5f951646e43a5c3e501af5"
+    },
+    {
+      "role": "flagging_route_audit_2380",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-27-route-audit-2026-09-30.json",
+      "sha256": "341b97fd4109118c747c3a5b5c62f10f092ef4df330d45e4eaae9910f6994f56",
+      "commit": "d4f1c4739fb920abdc5f951646e43a5c3e501af5"
+    },
+    {
+      "role": "flagging_route_audit_2380_markdown",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-27-route-audit-2026-09-30.md",
+      "sha256": "74678266a78cc8a9619666231a558d32d4691b241945f8ac499f1a2e33c9c04e",
+      "commit": "d4f1c4739fb920abdc5f951646e43a5c3e501af5"
+    },
+    {
+      "role": "prior_metadata_classification_overlay_2356",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164",
+      "commit": "d4f1c4739fb920abdc5f951646e43a5c3e501af5"
+    },
+    {
+      "role": "review_handoff_precedent_2372",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-execution-ticket-family-route-audit-2026-09-30.json",
+      "sha256": "97834622a32edbf054767b89bdf0cef7acbcb09e4f3d73ee0b9fa25a35f54f27",
+      "commit": "d4f1c4739fb920abdc5f951646e43a5c3e501af5"
+    },
+    {
+      "role": "semantic_router",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+      "sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
+      "commit": "d4f1c4739fb920abdc5f951646e43a5c3e501af5"
+    },
+    {
+      "role": "source_line_carry_forward_ledger",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+      "commit": "d4f1c4739fb920abdc5f951646e43a5c3e501af5"
+    },
+    {
+      "role": "legacy_asset_disposition_ledger",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "commit": "d4f1c4739fb920abdc5f951646e43a5c3e501af5"
+    },
+    {
+      "role": "prior_overlay_intersection_check",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164",
+      "commit": "d4f1c4739fb920abdc5f951646e43a5c3e501af5",
+      "overlay_ref": "#2356"
+    },
+    {
+      "role": "prior_overlay_intersection_check",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+      "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb",
+      "commit": "d4f1c4739fb920abdc5f951646e43a5c3e501af5",
+      "overlay_ref": "#2360"
+    },
+    {
+      "role": "prior_overlay_intersection_check",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+      "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384",
+      "commit": "d4f1c4739fb920abdc5f951646e43a5c3e501af5",
+      "overlay_ref": "#2363"
+    },
+    {
+      "role": "prior_overlay_intersection_check",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+      "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6",
+      "commit": "d4f1c4739fb920abdc5f951646e43a5c3e501af5",
+      "overlay_ref": "#2366"
+    },
+    {
+      "role": "prior_overlay_intersection_check",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
+      "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d",
+      "commit": "d4f1c4739fb920abdc5f951646e43a5c3e501af5",
+      "overlay_ref": "#2367"
+    },
+    {
+      "role": "prior_overlay_intersection_check",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
+      "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95",
+      "commit": "d4f1c4739fb920abdc5f951646e43a5c3e501af5",
+      "overlay_ref": "#2368"
+    },
+    {
+      "role": "prior_overlay_intersection_check",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30.json",
+      "sha256": "5ed02b037f78ca25991b396e232e8b1ee754b0c91b056ed6640c9fb1c47cf0c0",
+      "commit": "d4f1c4739fb920abdc5f951646e43a5c3e501af5",
+      "overlay_ref": "#2369"
+    }
+  ],
+  "overlay_intersection_checks": {
+    "prior_classification_overlay_ids_checked": [
+      {
+        "ref": "#2356",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+        "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164",
+        "intersection_count": 0
+      },
+      {
+        "ref": "#2360",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+        "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb",
+        "intersection_count": 0
+      },
+      {
+        "ref": "#2363",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+        "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384",
+        "intersection_count": 0
+      },
+      {
+        "ref": "#2366",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+        "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6",
+        "intersection_count": 0
+      },
+      {
+        "ref": "#2367",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
+        "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d",
+        "intersection_count": 0
+      },
+      {
+        "ref": "#2368",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
+        "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95",
+        "intersection_count": 0
+      },
+      {
+        "ref": "#2369",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30.json",
+        "sha256": "5ed02b037f78ca25991b396e232e8b1ee754b0c91b056ed6640c9fb1c47cf0c0",
+        "intersection_count": 0
+      }
+    ],
+    "all_ten_disjoint_from_2356_2360_2363_2366_2367_2368_2369": true,
+    "no_unlisted_ids_changed": true,
+    "proof": "rows contains exactly scope.source_ids; no range, family, neighboring row, or file-wide edit is represented."
+  },
+  "preserved_neighbor": {
+    "source_item_id": "LEGACY-CAND-LINE-003965",
+    "asset_id": "LEGACY-ASSET-76608A4341AF0CF64422",
+    "source_path": "docs/governance/candidates/requirements-authority-materialization-requests.md",
+    "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirements-authority-materialization-requests.md",
+    "source_line": 62,
+    "source_file_sha256": "5d3393f7f733249ff8c248a0f6b8563a8974712d9832acdccc93feda1d42b502",
+    "source_line_sha256": "sha256:e8b670e6f655cf67a5a7fe57ca7198d8d83b28330ca67730505b050281b67ff2",
+    "effective_before_and_after_proposal": {
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "route_status": "unknown"
+    },
+    "reason": "This row states fixture exclusion and the C-01/C-02 epoch/freeze oracle. It is normative behavior and intentionally outside the ten-row metadata scope."
+  },
+  "rows": [
+    {
+      "source_item_id": "LEGACY-CAND-LINE-003940",
+      "source_path": "docs/governance/candidates/requirements-authority-materialization-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirements-authority-materialization-requests.md",
+      "source_line": 19,
+      "asset_id": "LEGACY-ASSET-76608A4341AF0CF64422",
+      "source_file_sha256": "5d3393f7f733249ff8c248a0f6b8563a8974712d9832acdccc93feda1d42b502",
+      "source_line_sha256": "sha256:3d041e4a6093cfb8ac2d850982e702a241c91e951e0e01c82721c27a9c097b0f",
+      "physical_line_bytes_sha256": "bd6bc2e515be09181aaae87f9b3725a335f76600c607d38bfa168cf8cd8a39f6",
+      "physical_line_bytes_base64": "LSDmlofmm7hJRDogYEhFTElYLVJBTUctQlJRLTAwMWAK",
+      "source_text": "- 文書ID: `HELIX-RAMG-BRQ-001`",
+      "neighboring_source_context": [
+        {
+          "physical_line": 16,
+          "line_text": ""
+        },
+        {
+          "physical_line": 17,
+          "line_text": "# 要求・要件authority materialization gate要求"
+        },
+        {
+          "physical_line": 18,
+          "line_text": ""
+        },
+        {
+          "physical_line": 20,
+          "line_text": "- 状態: `draft_candidate / plan固有human gate済み・独立review前`"
+        },
+        {
+          "physical_line": 21,
+          "line_text": "- Behavior Contract: `REQUIREMENTS-AUTHORITY-MATERIALIZATION-GATE-001`"
+        },
+        {
+          "physical_line": 22,
+          "line_text": ""
+        }
+      ],
+      "router_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "batch": 2,
+        "semantic_family_cluster": "requirements_authority_materialization",
+        "semantic_cluster_id": "requirements_authority_materialization::HELIX-RAMG-BRQ-001"
+      },
+      "effective_before_this_proposal": {
+        "effective_classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposal_pool_and_prior_audit_check": {
+        "member_of_proposal_effective_488": true,
+        "prior_290_intersection": [],
+        "later_overlay_intersections": [],
+        "included_in_2380_selected_ids": true,
+        "classification_review_candidate": {
+          "flag": true,
+          "finding": "#2372 R2372-02; metadata/reference-only source line, not itself a product condition predicate",
+          "disposition": "retain #2353 baseline effective classification, product_requirement_atom subtype, route_status, and 488-pool membership; no reclassification in this audit",
+          "basis": "exact source text identifies a document ID, status, behavior-contract ID, prior issue references, or fixture exclusion/reference rather than a standalone product-condition predicate"
+        }
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "proposed_route_status": "not_condition",
+      "reason": "文書IDだけを示す識別metadata。製品挙動・条件・受入述語はなく、後続のRAMG要求本文は別source IDで保持する。"
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-003941",
+      "source_path": "docs/governance/candidates/requirements-authority-materialization-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirements-authority-materialization-requests.md",
+      "source_line": 20,
+      "asset_id": "LEGACY-ASSET-76608A4341AF0CF64422",
+      "source_file_sha256": "5d3393f7f733249ff8c248a0f6b8563a8974712d9832acdccc93feda1d42b502",
+      "source_line_sha256": "sha256:ca3d7c54a81ae24ec5232e843cc90410b2ea737d802be6bdaac8eb200bbc84f4",
+      "physical_line_bytes_sha256": "08afbfaeb02bc4c4ca7c73f3c58565992d7e0bc85c1b340b2a3b6ae377e6667e",
+      "physical_line_bytes_base64": "LSDnirbmhYs6IGBkcmFmdF9jYW5kaWRhdGUgLyBwbGFu5Zu65pyJaHVtYW4gZ2F0Zea4iOOBv+ODu+eLrOeri3Jldmlld+WJjWAK",
+      "source_text": "- 状態: `draft_candidate / plan固有human gate済み・独立review前`",
+      "neighboring_source_context": [
+        {
+          "physical_line": 17,
+          "line_text": "# 要求・要件authority materialization gate要求"
+        },
+        {
+          "physical_line": 18,
+          "line_text": ""
+        },
+        {
+          "physical_line": 19,
+          "line_text": "- 文書ID: `HELIX-RAMG-BRQ-001`"
+        },
+        {
+          "physical_line": 21,
+          "line_text": "- Behavior Contract: `REQUIREMENTS-AUTHORITY-MATERIALIZATION-GATE-001`"
+        },
+        {
+          "physical_line": 22,
+          "line_text": ""
+        },
+        {
+          "physical_line": 23,
+          "line_text": "## 要求"
+        }
+      ],
+      "router_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "batch": 3,
+        "semantic_family_cluster": "requirements_authority_materialization",
+        "semantic_cluster_id": "requirements_authority_materialization::authority_materialization_gate"
+      },
+      "effective_before_this_proposal": {
+        "effective_classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposal_pool_and_prior_audit_check": {
+        "member_of_proposal_effective_488": true,
+        "prior_290_intersection": [],
+        "later_overlay_intersections": [],
+        "included_in_2380_selected_ids": true,
+        "classification_review_candidate": {
+          "flag": true,
+          "finding": "#2372 R2372-02; metadata/reference-only source line, not itself a product condition predicate",
+          "disposition": "retain #2353 baseline effective classification, product_requirement_atom subtype, route_status, and 488-pool membership; no reclassification in this audit",
+          "basis": "exact source text identifies a document ID, status, behavior-contract ID, prior issue references, or fixture exclusion/reference rather than a standalone product-condition predicate"
+        }
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "proposed_route_status": "not_condition",
+      "reason": "draft_candidateとplan固有human gate／独立review状態を報告する文書status metadata。旧statusから現行authority・承認状態を生成しない。"
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-003942",
+      "source_path": "docs/governance/candidates/requirements-authority-materialization-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirements-authority-materialization-requests.md",
+      "source_line": 21,
+      "asset_id": "LEGACY-ASSET-76608A4341AF0CF64422",
+      "source_file_sha256": "5d3393f7f733249ff8c248a0f6b8563a8974712d9832acdccc93feda1d42b502",
+      "source_line_sha256": "sha256:9a694a58f289d245935ba55a4c570270e7faca09303a2477646ec3139a4fd896",
+      "physical_line_bytes_sha256": "89e3c79c79d3a515964a92f12c5e558194c3e8123246aa9b791e9322f9240472",
+      "physical_line_bytes_base64": "LSBCZWhhdmlvciBDb250cmFjdDogYFJFUVVJUkVNRU5UUy1BVVRIT1JJVFktTUFURVJJQUxJWkFUSU9OLUdBVEUtMDAxYAo=",
+      "source_text": "- Behavior Contract: `REQUIREMENTS-AUTHORITY-MATERIALIZATION-GATE-001`",
+      "neighboring_source_context": [
+        {
+          "physical_line": 18,
+          "line_text": ""
+        },
+        {
+          "physical_line": 19,
+          "line_text": "- 文書ID: `HELIX-RAMG-BRQ-001`"
+        },
+        {
+          "physical_line": 20,
+          "line_text": "- 状態: `draft_candidate / plan固有human gate済み・独立review前`"
+        },
+        {
+          "physical_line": 22,
+          "line_text": ""
+        },
+        {
+          "physical_line": 23,
+          "line_text": "## 要求"
+        },
+        {
+          "physical_line": 24,
+          "line_text": ""
+        }
+      ],
+      "router_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "batch": 3,
+        "semantic_family_cluster": "requirements_authority_materialization",
+        "semantic_cluster_id": "requirements_authority_materialization::authority_materialization_gate"
+      },
+      "effective_before_this_proposal": {
+        "effective_classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposal_pool_and_prior_audit_check": {
+        "member_of_proposal_effective_488": true,
+        "prior_290_intersection": [],
+        "later_overlay_intersections": [],
+        "included_in_2380_selected_ids": true,
+        "classification_review_candidate": {
+          "flag": true,
+          "finding": "#2372 R2372-02; metadata/reference-only source line, not itself a product condition predicate",
+          "disposition": "retain #2353 baseline effective classification, product_requirement_atom subtype, route_status, and 488-pool membership; no reclassification in this audit",
+          "basis": "exact source text identifies a document ID, status, behavior-contract ID, prior issue references, or fixture exclusion/reference rather than a standalone product-condition predicate"
+        }
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "proposed_route_status": "not_condition",
+      "reason": "Behavior Contractの識別子だけを示すmetadata。契約条件は後続のRAMG要求本文にあり、識別子自体は要求atomではない。"
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-003961",
+      "source_path": "docs/governance/candidates/requirements-authority-materialization-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirements-authority-materialization-requests.md",
+      "source_line": 57,
+      "asset_id": "LEGACY-ASSET-76608A4341AF0CF64422",
+      "source_file_sha256": "5d3393f7f733249ff8c248a0f6b8563a8974712d9832acdccc93feda1d42b502",
+      "source_line_sha256": "sha256:e4161c4266d233ce8efae663e5c425f660e0fc1266eeea81094053244734d085",
+      "physical_line_bytes_sha256": "a737144ef9af0149b5c7ecbed4f4281070fe77052bf4edd771f7be84776550f3",
+      "physical_line_bytes_base64": "LSAjMTE2OSBSZXF1aXJlbWVudCBSZS1lbnRyeQo=",
+      "source_text": "- #1169 Requirement Re-entry",
+      "neighboring_source_context": [
+        {
+          "physical_line": 54,
+          "line_text": ""
+        },
+        {
+          "physical_line": 55,
+          "line_text": "## 初期監査fixture"
+        },
+        {
+          "physical_line": 56,
+          "line_text": ""
+        },
+        {
+          "physical_line": 58,
+          "line_text": "- #1017 Upstream Validation First"
+        },
+        {
+          "physical_line": 59,
+          "line_text": "- #1292 Agile Prototype Triangle"
+        },
+        {
+          "physical_line": 60,
+          "line_text": "- #1318 Responsibility System TDD"
+        }
+      ],
+      "router_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "batch": 3,
+        "semantic_family_cluster": "requirements_authority_materialization",
+        "semantic_cluster_id": "requirements_authority_materialization::fixture"
+      },
+      "effective_before_this_proposal": {
+        "effective_classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposal_pool_and_prior_audit_check": {
+        "member_of_proposal_effective_488": true,
+        "prior_290_intersection": [],
+        "later_overlay_intersections": [],
+        "included_in_2380_selected_ids": true,
+        "classification_review_candidate": {
+          "flag": true,
+          "finding": "#2372 R2372-02; metadata/reference-only source line, not itself a product condition predicate",
+          "disposition": "retain #2353 baseline effective classification, product_requirement_atom subtype, route_status, and 488-pool membership; no reclassification in this audit",
+          "basis": "exact source text identifies a document ID, status, behavior-contract ID, prior issue references, or fixture exclusion/reference rather than a standalone product-condition predicate"
+        }
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "proposed_route_status": "not_condition",
+      "reason": "初期fixture見出し配下のIssue参照pointer。行自体はIssue番号と名前を列挙するだけで、振る舞い・判定述語を定めない。"
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-003962",
+      "source_path": "docs/governance/candidates/requirements-authority-materialization-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirements-authority-materialization-requests.md",
+      "source_line": 58,
+      "asset_id": "LEGACY-ASSET-76608A4341AF0CF64422",
+      "source_file_sha256": "5d3393f7f733249ff8c248a0f6b8563a8974712d9832acdccc93feda1d42b502",
+      "source_line_sha256": "sha256:1c6715241b7170e54385b77ff58d516bfa2416842784c0e1c9727cc9b510fa2f",
+      "physical_line_bytes_sha256": "ce7fd2ad31b414c4c98fd1ba15273272f573ee9eff895663602e547d0ebfe386",
+      "physical_line_bytes_base64": "LSAjMTAxNyBVcHN0cmVhbSBWYWxpZGF0aW9uIEZpcnN0Cg==",
+      "source_text": "- #1017 Upstream Validation First",
+      "neighboring_source_context": [
+        {
+          "physical_line": 55,
+          "line_text": "## 初期監査fixture"
+        },
+        {
+          "physical_line": 56,
+          "line_text": ""
+        },
+        {
+          "physical_line": 57,
+          "line_text": "- #1169 Requirement Re-entry"
+        },
+        {
+          "physical_line": 59,
+          "line_text": "- #1292 Agile Prototype Triangle"
+        },
+        {
+          "physical_line": 60,
+          "line_text": "- #1318 Responsibility System TDD"
+        },
+        {
+          "physical_line": 61,
+          "line_text": ""
+        }
+      ],
+      "router_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "batch": 3,
+        "semantic_family_cluster": "requirements_authority_materialization",
+        "semantic_cluster_id": "requirements_authority_materialization::fixture"
+      },
+      "effective_before_this_proposal": {
+        "effective_classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposal_pool_and_prior_audit_check": {
+        "member_of_proposal_effective_488": true,
+        "prior_290_intersection": [],
+        "later_overlay_intersections": [],
+        "included_in_2380_selected_ids": true,
+        "classification_review_candidate": {
+          "flag": true,
+          "finding": "#2372 R2372-02; metadata/reference-only source line, not itself a product condition predicate",
+          "disposition": "retain #2353 baseline effective classification, product_requirement_atom subtype, route_status, and 488-pool membership; no reclassification in this audit",
+          "basis": "exact source text identifies a document ID, status, behavior-contract ID, prior issue references, or fixture exclusion/reference rather than a standalone product-condition predicate"
+        }
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "proposed_route_status": "not_condition",
+      "reason": "初期fixture見出し配下のIssue参照pointer。行自体はIssue番号と名前を列挙するだけで、振る舞い・判定述語を定めない。"
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-003963",
+      "source_path": "docs/governance/candidates/requirements-authority-materialization-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirements-authority-materialization-requests.md",
+      "source_line": 59,
+      "asset_id": "LEGACY-ASSET-76608A4341AF0CF64422",
+      "source_file_sha256": "5d3393f7f733249ff8c248a0f6b8563a8974712d9832acdccc93feda1d42b502",
+      "source_line_sha256": "sha256:7fa2ca9d9f261a28bc398afca4f43d876d3b2a6ab12a0808bb158560eead546f",
+      "physical_line_bytes_sha256": "e9db9713023cc561627ebbd5b803fdf294d5b4ec8cca8cdac0cd1a558e743dd0",
+      "physical_line_bytes_base64": "LSAjMTI5MiBBZ2lsZSBQcm90b3R5cGUgVHJpYW5nbGUK",
+      "source_text": "- #1292 Agile Prototype Triangle",
+      "neighboring_source_context": [
+        {
+          "physical_line": 56,
+          "line_text": ""
+        },
+        {
+          "physical_line": 57,
+          "line_text": "- #1169 Requirement Re-entry"
+        },
+        {
+          "physical_line": 58,
+          "line_text": "- #1017 Upstream Validation First"
+        },
+        {
+          "physical_line": 60,
+          "line_text": "- #1318 Responsibility System TDD"
+        },
+        {
+          "physical_line": 61,
+          "line_text": ""
+        },
+        {
+          "physical_line": 62,
+          "line_text": "#1358/#1363系列は初期fixtureへ含めない。authority collision監査のC-01/C-02を本gateのepoch／freeze oracleとして扱う。"
+        }
+      ],
+      "router_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "batch": 3,
+        "semantic_family_cluster": "requirements_authority_materialization",
+        "semantic_cluster_id": "requirements_authority_materialization::fixture"
+      },
+      "effective_before_this_proposal": {
+        "effective_classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposal_pool_and_prior_audit_check": {
+        "member_of_proposal_effective_488": true,
+        "prior_290_intersection": [],
+        "later_overlay_intersections": [],
+        "included_in_2380_selected_ids": true,
+        "classification_review_candidate": {
+          "flag": true,
+          "finding": "#2372 R2372-02; metadata/reference-only source line, not itself a product condition predicate",
+          "disposition": "retain #2353 baseline effective classification, product_requirement_atom subtype, route_status, and 488-pool membership; no reclassification in this audit",
+          "basis": "exact source text identifies a document ID, status, behavior-contract ID, prior issue references, or fixture exclusion/reference rather than a standalone product-condition predicate"
+        }
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "proposed_route_status": "not_condition",
+      "reason": "初期fixture見出し配下のIssue参照pointer。行自体はIssue番号と名前を列挙するだけで、振る舞い・判定述語を定めない。"
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-003964",
+      "source_path": "docs/governance/candidates/requirements-authority-materialization-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirements-authority-materialization-requests.md",
+      "source_line": 60,
+      "asset_id": "LEGACY-ASSET-76608A4341AF0CF64422",
+      "source_file_sha256": "5d3393f7f733249ff8c248a0f6b8563a8974712d9832acdccc93feda1d42b502",
+      "source_line_sha256": "sha256:f288ae0fa8a2e47e3df7cba33eaad60f859b9445de899d9e0fd6879c463de5e5",
+      "physical_line_bytes_sha256": "2f8fd425564cbd29ec88b7306956fc126694f3dd201be3e1dbf7aae82dc937a7",
+      "physical_line_bytes_base64": "LSAjMTMxOCBSZXNwb25zaWJpbGl0eSBTeXN0ZW0gVERECg==",
+      "source_text": "- #1318 Responsibility System TDD",
+      "neighboring_source_context": [
+        {
+          "physical_line": 57,
+          "line_text": "- #1169 Requirement Re-entry"
+        },
+        {
+          "physical_line": 58,
+          "line_text": "- #1017 Upstream Validation First"
+        },
+        {
+          "physical_line": 59,
+          "line_text": "- #1292 Agile Prototype Triangle"
+        },
+        {
+          "physical_line": 61,
+          "line_text": ""
+        },
+        {
+          "physical_line": 62,
+          "line_text": "#1358/#1363系列は初期fixtureへ含めない。authority collision監査のC-01/C-02を本gateのepoch／freeze oracleとして扱う。"
+        },
+        {
+          "physical_line": 63,
+          "line_text": "本candidateは独立技術reviewとcanonical promotionが成立するまでcurrent authorityへ加算しない。"
+        }
+      ],
+      "router_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "batch": 3,
+        "semantic_family_cluster": "requirements_authority_materialization",
+        "semantic_cluster_id": "requirements_authority_materialization::fixture"
+      },
+      "effective_before_this_proposal": {
+        "effective_classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposal_pool_and_prior_audit_check": {
+        "member_of_proposal_effective_488": true,
+        "prior_290_intersection": [],
+        "later_overlay_intersections": [],
+        "included_in_2380_selected_ids": true,
+        "classification_review_candidate": {
+          "flag": true,
+          "finding": "#2372 R2372-02; metadata/reference-only source line, not itself a product condition predicate",
+          "disposition": "retain #2353 baseline effective classification, product_requirement_atom subtype, route_status, and 488-pool membership; no reclassification in this audit",
+          "basis": "exact source text identifies a document ID, status, behavior-contract ID, prior issue references, or fixture exclusion/reference rather than a standalone product-condition predicate"
+        }
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "proposed_route_status": "not_condition",
+      "reason": "初期fixture見出し配下のIssue参照pointer。行自体はIssue番号と名前を列挙するだけで、振る舞い・判定述語を定めない。"
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-003984",
+      "source_path": "docs/governance/candidates/requirements-authority-materialization-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirements-authority-materialization-requirements.md",
+      "source_line": 20,
+      "asset_id": "LEGACY-ASSET-34FCBDC6DA5E5ECDC5C5",
+      "source_file_sha256": "7d9aa41c2ea2da9b29b92717bfeab94c35c28849be63b70301ddfc961cb21578",
+      "source_line_sha256": "sha256:ae762b71c42d2d7d1622a154a5fdb80158816e2196d62a2a7986eae0022ef5d8",
+      "physical_line_bytes_sha256": "bdb1d0b5b0f47cf319c25aac3c17c4969c9c2ccb3477624da475b34e71d5262d",
+      "physical_line_bytes_base64": "LSDmlofmm7hJRDogYEhFTElYLVJBTUctUkVRLTAwMWAK",
+      "source_text": "- 文書ID: `HELIX-RAMG-REQ-001`",
+      "neighboring_source_context": [
+        {
+          "physical_line": 17,
+          "line_text": ""
+        },
+        {
+          "physical_line": 18,
+          "line_text": "# 要求・要件authority materialization gate要件"
+        },
+        {
+          "physical_line": 19,
+          "line_text": ""
+        },
+        {
+          "physical_line": 21,
+          "line_text": "- 状態: `draft_candidate / plan固有human gate済み・独立review前`"
+        },
+        {
+          "physical_line": 22,
+          "line_text": "- 主Issue: `#1364`"
+        },
+        {
+          "physical_line": 23,
+          "line_text": ""
+        }
+      ],
+      "router_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "batch": 2,
+        "semantic_family_cluster": "requirements_authority_materialization",
+        "semantic_cluster_id": "requirements_authority_materialization::HELIX-RAMG-REQ-001"
+      },
+      "effective_before_this_proposal": {
+        "effective_classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposal_pool_and_prior_audit_check": {
+        "member_of_proposal_effective_488": true,
+        "prior_290_intersection": [],
+        "later_overlay_intersections": [],
+        "included_in_2380_selected_ids": true,
+        "classification_review_candidate": {
+          "flag": true,
+          "finding": "#2372 R2372-02; metadata/reference-only source line, not itself a product condition predicate",
+          "disposition": "retain #2353 baseline effective classification, product_requirement_atom subtype, route_status, and 488-pool membership; no reclassification in this audit",
+          "basis": "exact source text identifies a document ID, status, behavior-contract ID, prior issue references, or fixture exclusion/reference rather than a standalone product-condition predicate"
+        }
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "proposed_route_status": "not_condition",
+      "reason": "文書IDだけを示す識別metadata。Feature契約と要求本文は後続の別source行に保持する。"
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-003985",
+      "source_path": "docs/governance/candidates/requirements-authority-materialization-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirements-authority-materialization-requirements.md",
+      "source_line": 21,
+      "asset_id": "LEGACY-ASSET-34FCBDC6DA5E5ECDC5C5",
+      "source_file_sha256": "7d9aa41c2ea2da9b29b92717bfeab94c35c28849be63b70301ddfc961cb21578",
+      "source_line_sha256": "sha256:ca3d7c54a81ae24ec5232e843cc90410b2ea737d802be6bdaac8eb200bbc84f4",
+      "physical_line_bytes_sha256": "08afbfaeb02bc4c4ca7c73f3c58565992d7e0bc85c1b340b2a3b6ae377e6667e",
+      "physical_line_bytes_base64": "LSDnirbmhYs6IGBkcmFmdF9jYW5kaWRhdGUgLyBwbGFu5Zu65pyJaHVtYW4gZ2F0Zea4iOOBv+ODu+eLrOeri3Jldmlld+WJjWAK",
+      "source_text": "- 状態: `draft_candidate / plan固有human gate済み・独立review前`",
+      "neighboring_source_context": [
+        {
+          "physical_line": 18,
+          "line_text": "# 要求・要件authority materialization gate要件"
+        },
+        {
+          "physical_line": 19,
+          "line_text": ""
+        },
+        {
+          "physical_line": 20,
+          "line_text": "- 文書ID: `HELIX-RAMG-REQ-001`"
+        },
+        {
+          "physical_line": 22,
+          "line_text": "- 主Issue: `#1364`"
+        },
+        {
+          "physical_line": 23,
+          "line_text": ""
+        },
+        {
+          "physical_line": 24,
+          "line_text": "## Feature契約"
+        }
+      ],
+      "router_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "batch": 3,
+        "semantic_family_cluster": "requirements_authority_materialization",
+        "semantic_cluster_id": "requirements_authority_materialization::authority_materialization_gate"
+      },
+      "effective_before_this_proposal": {
+        "effective_classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposal_pool_and_prior_audit_check": {
+        "member_of_proposal_effective_488": true,
+        "prior_290_intersection": [],
+        "later_overlay_intersections": [],
+        "included_in_2380_selected_ids": true,
+        "classification_review_candidate": {
+          "flag": true,
+          "finding": "#2372 R2372-02; metadata/reference-only source line, not itself a product condition predicate",
+          "disposition": "retain #2353 baseline effective classification, product_requirement_atom subtype, route_status, and 488-pool membership; no reclassification in this audit",
+          "basis": "exact source text identifies a document ID, status, behavior-contract ID, prior issue references, or fixture exclusion/reference rather than a standalone product-condition predicate"
+        }
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "proposed_route_status": "not_condition",
+      "reason": "draft_candidate／canonical未昇格を報告する文書status metadata。過去の候補承認状態を現行authorityへ読み替えない。"
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-003986",
+      "source_path": "docs/governance/candidates/requirements-authority-materialization-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirements-authority-materialization-requirements.md",
+      "source_line": 22,
+      "asset_id": "LEGACY-ASSET-34FCBDC6DA5E5ECDC5C5",
+      "source_file_sha256": "7d9aa41c2ea2da9b29b92717bfeab94c35c28849be63b70301ddfc961cb21578",
+      "source_line_sha256": "sha256:392077288bc189f0b59cd1da4265d6c1ed4b89b12794598d6c9de823c0f7926b",
+      "physical_line_bytes_sha256": "4783e029b60b806560d95e501dad9762782cd6ea896ec72a0e3f2975151eb9c8",
+      "physical_line_bytes_base64": "LSDkuLtJc3N1ZTogYCMxMzY0YAo=",
+      "source_text": "- 主Issue: `#1364`",
+      "neighboring_source_context": [
+        {
+          "physical_line": 19,
+          "line_text": ""
+        },
+        {
+          "physical_line": 20,
+          "line_text": "- 文書ID: `HELIX-RAMG-REQ-001`"
+        },
+        {
+          "physical_line": 21,
+          "line_text": "- 状態: `draft_candidate / plan固有human gate済み・独立review前`"
+        },
+        {
+          "physical_line": 23,
+          "line_text": ""
+        },
+        {
+          "physical_line": 24,
+          "line_text": "## Feature契約"
+        },
+        {
+          "physical_line": 25,
+          "line_text": ""
+        }
+      ],
+      "router_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "batch": 3,
+        "semantic_family_cluster": "requirements_authority_materialization",
+        "semantic_cluster_id": "requirements_authority_materialization::authority_materialization_gate"
+      },
+      "effective_before_this_proposal": {
+        "effective_classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposal_pool_and_prior_audit_check": {
+        "member_of_proposal_effective_488": true,
+        "prior_290_intersection": [],
+        "later_overlay_intersections": [],
+        "included_in_2380_selected_ids": true,
+        "classification_review_candidate": {
+          "flag": true,
+          "finding": "#2372 R2372-02; metadata/reference-only source line, not itself a product condition predicate",
+          "disposition": "retain #2353 baseline effective classification, product_requirement_atom subtype, route_status, and 488-pool membership; no reclassification in this audit",
+          "basis": "exact source text identifies a document ID, status, behavior-contract ID, prior issue references, or fixture exclusion/reference rather than a standalone product-condition predicate"
+        }
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "proposed_route_status": "not_condition",
+      "reason": "主Issue番号だけを示すprovenance/reference pointer。Issue identityから要求条件・承認・successorを推論しない。"
+    }
+  ],
+  "proposed_classification_delta_if_overlay_applied": {
+    "condition": -10,
+    "explanation": 10,
+    "management_process_condition": 0,
+    "product_requirement_atom": -10,
+    "management_successor_unresolved": 0,
+    "product_route_unknown": -10,
+    "source_rows_total": 0
+  },
+  "conditional_pool_arithmetic": {
+    "current_proposal_effective_pool_before_this_overlay": 488,
+    "removed_from_product_unknown_pool": 10,
+    "proposal_effective_pool_if_applied": 478,
+    "prior_route_audit_union_count_through_2378": 290,
+    "route_audit_selected_ids_2380": 27,
+    "cumulative_audited_union_count_through_2380": 317,
+    "pool_audited_intersection_before_overlay": 298,
+    "pool_audited_intersection_if_applied": 288,
+    "unreviewed_pool_before_overlay": 190,
+    "unreviewed_pool_if_applied": 190,
+    "equation": "488 - 10 = 478; 298 - 10 = 288; 478 - 288 = 190; audited union stays 290 + 27 = 317.",
+    "status": "conditional proposal arithmetic only; not yet the effective classification baseline"
+  },
+  "limits": [
+    "No archive/source bytes, router snapshot, carry-forward ledger, L1/L2/L11, decision, or receipt is edited.",
+    "This overlay proposes classification only; it does not adopt, retire, or rewrite old requirement meaning.",
+    "No authority state, requirement successor, coverage, acceptance, implementation, execution, or closure is generated.",
+    "This proposal does not rewrite #2380 historical route rows; a later recount should apply the overlay before selecting its next route batch.",
+    "The four fixture references are classified as explanation while the adjacent normative fixture-selection and epoch/freeze constraint at 003965 is retained. If fixture-list membership itself is later shown to be a separate normative atom, reassess its whole source span rather than silently treating each Issue pointer as a requirement."
+  ]
+}
