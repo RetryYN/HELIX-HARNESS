@@ -18,6 +18,7 @@ POはハイブリッド設計ドキュメントについて「これをHELIXコ�
 | `ハイブリッド設計ドキュメント_v1.zip` | `76fa65d8b69e366047bfa5ad248d2f1a2337e2d1144d689f8c4bbe28e9175193` | 703 | 2026-09-25にPOが提供したファイル | なし（旧HELIXの管理外） |
 | `hybrid-core-requirements-rebaseline-v0.5.0.zip` | `04e9c88a9214e77654787b9e1301eb35bc69a2f264d179d14211e849c58aca61` | 208 | git blob `d1fbeccaf8c4006f5ba0ee077d9c1e887caff6c0`（commit `694b45bf8`、2026-07-18追加） | [hybrid-core-rebaseline.v0.5.0](../legacy-generation-2026-09-14/root/docs/migration/source-manifests/hybrid-core-rebaseline.v0.5.0.json)。`archive_sha256`と一致 |
 | `hybrid-core-requirements-rebaseline-v0.5.1.zip` | `1e14a8576715f5a249f270fb5472e02023400526e00866baa709befe9edb48fd` | 211 | git blob `a20f09e0888e80f0e13374ef10dab52e1e6aeee7`（commit `c6e30ef1f`、2026-07-18追加） | [hybrid-core-rebaseline.v0.5.1](../legacy-generation-2026-09-14/root/docs/migration/source-manifests/hybrid-core-rebaseline.v0.5.1.json)。`archive_sha256`と一致 |
+| `system-design-ops-playbook-2026-09-29.zip` | `f8b34013192a7e0f70030bab36f442502dbfd238f4fde80383d689ba632d0d73` | 15 | 2026-09-29にPOが作業treeの未追跡フォルダ`system-design-ops-playbook/`として提供したClaude用skill。各entryのbytesは元のファイルと一致を確認済み。entryの日時は2026-09-29 00:00に揃え、元のフォルダは変換後に削除した | なし（旧HELIXの管理外） |
 
 ### ハイブリッド設計ドキュメントの2版の関係
 
@@ -29,6 +30,11 @@ POはハイブリッド設計ドキュメントについて「これをHELIXコ�
   - `build/signals.json`
 - `v1-fixed`は、`tools/assign.py`と`tools/schedule.py`に、Scrum実装状態の読み取り、`docs/assign.yaml`との連携、`id_utils`を足している。したがって、`_v1.zip`が修正前、`v1-fixed`が修正後の版と読める。
 - 旧HELIXが採用判断に使ったのは`v1-fixed`である（[L12 Vモデル ZIP 採用マトリクス](../legacy-generation-2026-09-14/root/docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md)）。
+
+### system-design-ops-playbookの扱い
+
+- POの依頼は「このスキルを設計テンプレに変換してフォルダ削除まで進めておくれ」である。変換結果（seed候補）は`scaffold/design-template-seed-sdop-20260929/`に置き、[SCF-B-0152](../../scaffold/bindings/SCF-B-0152.json)で束縛した。
+- 本ZIPは変換の出典として保存する。中身のコード・設定例は実行しない。
 
 ## 見つからなかったもの
 
