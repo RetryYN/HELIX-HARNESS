@@ -10,7 +10,7 @@
     "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF"
   },
   "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-fr03-issue-contract-source-lines-2026-09-29.jsonl",
-  "source_atom_set_digest": "sha256:880348619c7c3facbb1a00369e7509f2a3472363f09a857ee92e5a570622ea86",
+  "source_atom_set_digest": "sha256:c772c0e8e869a4a0ac2f2adc357f34461ecbc915a56d9e838d8860bc02008b4a",
   "source_atom_count": 2,
   "atom_coverage": [
     {
@@ -22,19 +22,25 @@
         "HARNESS-L11-059#正常例",
         "HARNESS-L11-059#個別拒否例"
       ],
-      "coverage_disposition": "mapped_to_unadopted_candidate"
+      "coverage_disposition": "mapped_to_unadopted_candidate",
+      "candidate_subset_digest": "sha256:2f146a253c6f4ae61456b828a6ad34ae5fc1252328909c3976223780a71f860b"
     },
     {
       "atom_id": "FR03-VERSIONED-CONTRACT-DIGEST-OUTPUT-L0093",
       "covered_by_l2": [
-        "HARNESS-L2-059#要求候補",
         "HELIXOS-L2-102#耐久projection"
       ],
       "covered_by_l11": [
-        "HARNESS-L11-059#version/digest不一致例",
         "HELIXOS-L11-102#正常例"
       ],
-      "coverage_disposition": "mapped_to_unadopted_candidate"
+      "coverage_disposition": "mapped_to_unadopted_candidate",
+      "semantic_reference_l2_noncounted": [
+        "HARNESS-L2-059#要求候補"
+      ],
+      "semantic_reference_l11_noncounted": [
+        "HARNESS-L11-059#version/digest不一致例"
+      ],
+      "candidate_subset_digest": "sha256:ebbbba0bb3a9fb0b96cc23d600a1a85d9aad88752f7edda3fd6cf4420a9908ec"
     }
   ],
   "coverage_result": "no_loss",
@@ -74,5 +80,12 @@
     "docs/helix-harness/L11-acceptance/product-acceptance.md#HARNESS-L2-047",
     "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-017/019/023",
     "docs/helix-os/L11-acceptance/governance-acceptance.md#HELIXOS-L2-017/019/023"
-  ]
+  ],
+  "source_atom_file_sha256": "sha256:c772c0e8e869a4a0ac2f2adc357f34461ecbc915a56d9e838d8860bc02008b4a",
+  "source_atom_set_digest_rule": "全2 atom JSONLのUTF-8 file bytesのSHA-256。候補別subset digestとは別。",
+  "candidate_subset_digest_rule": "atom_idを昇順に並べ、各atomの `atom_id SP source_line_sha256（sha256:を除く） LF` のUTF-8 bytesを連結してSHA-256。候補ごとのsubsetに限る。",
+  "candidate_source_atom_set_digests": {
+    "HARNESS-L2-059": "sha256:2f146a253c6f4ae61456b828a6ad34ae5fc1252328909c3976223780a71f860b",
+    "HELIXOS-L2-102": "sha256:ebbbba0bb3a9fb0b96cc23d600a1a85d9aad88752f7edda3fd6cf4420a9908ec"
+  }
 }
