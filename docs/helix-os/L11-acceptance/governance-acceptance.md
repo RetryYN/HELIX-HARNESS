@@ -941,3 +941,32 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **unknown例**：再帰先target、target owner、target revisionまたは既存状態が欠ける／unknown／conflict／staleのfixtureでは、適合やcurrent authorityを推測しない。未解決状態を保持し、既存ownerへの確認が必要なまま示す。
 - **受入境界**：fixtureの列挙範囲内だけを照合する。全repository census、unbounded scanner、schema、compatibility/expiry/history判定の追加規則、再帰深度/performance、finding taxonomy、auto-repair/delete/edge rewriteは検査・要求しない。静的fixture結果は実運転・実装の証拠でなく、旧runtime/test/CIは実行しない。
 - **旧sourceと未解決**：旧`LEGACY-ASSET-D201753B1A0CC6EA3980`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md:50`（file SHA-256 `81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66`、line SHA-256 `77e1d9bc1f98f2a1f1cf0094dd280fb83d001ffe8ee422f1c951da2d72898212`）の一 atomに限る。source owner移管、適用target集合、formal successor、旧source全体のclosureおよび採択は未確定のまま残す。`MPR-SH-CONFIRMED-003`を生存させ、候補receiptから状態や権限を追加しない。
+
+### HELIXOS-L11-107 finding taxonomy/mapping revision-pinned handoff受入候補（未実行）
+
+- **対応要求・状態**：HELIXOS-L2-107の未採択候補に対する静的oracle案。`authority_effect: none`。finding taxonomyの採択、owner移管、runtime/scannerの実行、ticket発行・修正操作、要求採択または旧DAC-FR-008のclosureを示さない。
+- **明示mappingがある例**：既存sourceが付したfinding type identity、source／対象revision・digest・scope、既存authority記録でcurrentかつ対応が一意と示されたtaxonomy revisionとmapping revisionを与える。OSがtype/source/各revisionをそのまま保持し、mappingが指定するdestination referenceをhandoff情報として結び付ける。type名の再分類、別destinationへのfallback、ticket/Issueの作成や修正は行わない。
+- **missing／ambiguous例**：mappingの欠落、複数候補、別taxonomy revisionへの参照、taxonomy-mapping対応のunknown/conflict/stale、または明示されないdestinationを個別に与える。各findingはtype/source/revisionを保ってrouting unresolvedとなり、destinationを推測しない。該当findingだけが未解決であり、他findingの照合を一律停止しない。
+- **分類状態境界**：入力findingのtypeが未解決または曖昧な場合、その状態を維持し、候補がtaxonomy typeを選択・生成しない。taxonomy revisionの差替えで既存typeを新typeへ自動変換しない。旧DAC-R-007に記載されたtype名をfixture既定値や現行taxonomyとして採択しない。
+- **不変・非実行条件**：handoff候補の記録からsource artifactを変更・削除する、authorityを昇格する、approvalを生成する、route先で修正を開始する、findingをresolvedにする例は不成立とする。実際のticket/workflow、修正、owner判断は既存契約・担当へ残す。
+- **限界と保留**：normal fixtureは選択済みmappingを使う境界だけを確認し、具体type taxonomy、分類predicate、type→現行owner表、mapping作成者・採択権限は検査・決定しない。旧DAC-FR-008の分類meaning atomはpendingのままで、旧source全体のno-loss/closure、実装・実行・受入を主張しない。旧sourceおよび旧DAC-R-007/012は文脈参照のみで、旧test/runtime/CLI/CIを実行しない。
+
+
+### HELIXOS-L11-108 artifactからconsumerへの逆向きgraph受入候補（未実行）
+
+- **対応要求・状態**：未採択`HELIXOS-L2-108`の静的oracle候補。静的fixture確認はcensus実行、startup、生成、formal successor、採択、runtime実装または受入実行を示さない。
+- **正常例**：一つの対象HEADと明示scopeについて、source ownerが提示したauthoritative forward artifact→consumer relationと、そこから独立して作るreverse projectionを別fixture入力／出力にする。artifact identity/revision/digest、consumer identity/revision、直接edge、consumer startup入口、生成関係を特定する。両方向を照合し、全forward edgeを逆引きでき、各reverse edgeがforward relationに存在し、startup reachabilityと生成伝播を別々に辿れ、元のidentity/revisionを保つことを確認する。確認結果は入力されたscopeに限り、未列挙範囲はcompleteと報告しない。
+- **反例**：forward relationの同scope edgeを一つ欠落させたfixtureと、reverse projection側のedgeを一つ欠落させたfixtureを別々に与える。独立したforward入力との双方向照合により、各々の不一致を検出する。consumerのstartup入口をinactiveまたは別revisionにするfixtureではstartup reachabilityの不一致を示し、別のgeneration edgeから補完しない。生成関係だけを欠落/不一致にしたfixtureではgeneration伝播の不一致を示し、startup reachabilityと混同しない。
+- **unknown例**：authoritative forward relationがsource ownerから未提示、scopeの閉包、consumer owner、入口、revision、digestまたはedge宣言が欠落・unknown・conflict・staleなら完全性を推定せずunknownを残し、確認先を既存ownerへ結ぶ。入力scope外のartifactやconsumerを探索済みと報告しない。
+- **受入境界**：これは入力済みrelationに対する静的oracle案である。HARNESSのartifact/pack意味と検証義務、CONNECTの明示connection identityと通信、全repo census、consumer taxonomy、startup/generator実行、severity/disposition、typed finding/routing、修復・削除・edge書換えは検証しない。旧runtime/test/CIは実行しない。
+- **旧sourceと未解決**：旧`LEGACY-ASSET-D201753B1A0CC6EA3980`のarchive `document-authority-census-requests.md:51`（file SHA-256 `81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66`、line SHA-256 `9eeafcb6a2c3c4b4bd65ad22a1b0b8da22c9ce7e51bdc4a3423a6fbe19fe61c4`）の一 atomを候補scopeにした。source owner、formal successor、consumer全域、適用範囲、採択および実行受入は未確定。`MPR-SH-CONFIRMED-003`を生存させる。
+
+
+### HELIXOS-L11-109 source-to-consumer provenance chain受入候補（未実行）
+
+- **対応要求・状態**：未採択`HELIXOS-L2-109`の静的oracle候補。source authorityやgenerator実行、consumer起動、formal successor、採択、runtime実装または受入実行を示さない。
+- **正常例**：一つの選択scopeとchainについて、source identity/revision/digest、generator identity/revision、generated artifact identity/revision/content digest、consumer identity/revision、および各edgeをfixtureにする。同じchain上をsourceからconsumerまで順に辿れ、各node/edgeとdigestが入力と一致することを確認する。入力されたchainだけを対象とし、全censusとは報告しない。
+- **反例**：generator revisionをchainのsource/出力と不一致にする、generated artifact digestを置換する、または別consumer/revisionのedgeを混ぜるfixtureを個別に与える。各不一致を当該node/edgeで示し、別chainの一致値を使って補正しない。generator、artifactまたはconsumer edgeを欠落させたfixtureも不完全として示す。
+- **unknown例**：scope、node identity/revision/digest、ownerまたはedgeが欠落・unknown・conflict・staleのfixtureでは、provenance chainの成立を推定せず未解決状態を保つ。文書名、path一致、generatorの存在だけでedgeを作らない。
+- **受入境界**：これは選択済みchainの静的relation oracle案であり、全artifact census、generatorの実行/正当性、artifact生成、consumer startup、HARNESS packの意味契約、CONNECT通信、severity/disposition algorithm、finding taxonomy/routing、修復・削除、旧runtime/test/CIを検査しない。旧sourceにない固定版やclosureも追加しない。
+- **旧sourceと未解決**：旧`LEGACY-ASSET-D201753B1A0CC6EA3980`のarchive `document-authority-census-requests.md:52`（file SHA-256 `81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66`、line SHA-256 `d032e840fb88ab1cf46f096553a8ba597473f2faa903ba71cf264e11cda4755d`）の一 atomを候補scopeにした。FR-004/006〜008、source owner移管、formal successor、採択、実行受入およびsource holding closureは未確定。`MPR-SH-CONFIRMED-003`を生存させる。

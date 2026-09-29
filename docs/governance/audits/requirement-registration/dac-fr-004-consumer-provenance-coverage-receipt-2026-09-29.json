@@ -1,0 +1,159 @@
+{
+  "receipt_id": "DRAFT-RCPT-HELIXOS-L2-108-DAC-FR-004-2026-09-29",
+  "receipt_state": "draft_unadopted_candidate_scope_recorded",
+  "authority_effect": "none",
+  "basis_main_commit": "5ee0a48faecf6a02ac029068bc2999d7c2d888b1",
+  "candidate_identity": "HELIXOS-L2-108",
+  "requirement_kind": "unit",
+  "candidate_semantic_digest": "sha256:c02375c00cf35908f37dd50c82d017a42c987282535852e34b28797671670a0d",
+  "candidate_digest_rule": "docs/helix-os/L2-requirements/governance-requirements.mdの「### HELIXOS-L2-108 」から次の同階層見出し直前まで（最終節の場合はEOFまで）をUTF-8 bytesで取得し、末尾空行を除き改行1つで終えるSHA-256。",
+  "candidate_l2_file_sha256": "sha256:d50016d766d0b5920e1c3c0dae4770c85e660c70caea4d82afc0ac68d05f52da",
+  "paired_acceptance_identity": "HELIXOS-L11-108",
+  "paired_acceptance_digest": "sha256:bdfa0e185074583db9e0150e41de12069ed10d1a91f006bab0793578ca81a36e",
+  "l11_digest_rule": "docs/helix-os/L11-acceptance/governance-acceptance.mdの「### HELIXOS-L11-108 」から次の同階層見出し直前まで（最終節の場合はEOFまで）をUTF-8 bytesで取得し、末尾空行を除き改行1つで終えるSHA-256。",
+  "l11_file_sha256": "sha256:b5807091dc3d664adb6d398ea7d594448e8989450086407ecc771fd73b336ab2",
+  "source_lines_ref": "docs/governance/audits/requirement-registration/dac-fr-004-005-consumer-provenance-source-lines-2026-09-29.jsonl#CONFIRMED-DAC-FR-004",
+  "source_atom_set_digest": "sha256:30ec3712794f336541537ec85b61ba381f8a2ec9a70d32d8e0fe65341eddc6e0",
+  "source_atom_set_digest_rule": "atom_id昇順。atom_id、半角空白、sha256:接頭辞を含むsource_line_sha256をUTF-8で連結。subset内は複数atomの場合LFで区切り末尾LFなし。",
+  "source_collection_scope": "MPR-SH-CONFIRMED-003の175 confirmed identityのうち、archive DAC-FR-004 line 51のsource-qualified requirement identity一atomのみ。DAC-FR-005〜008、全source consumer閉包、scanner実装、旧consumer集合は含めない。",
+  "source_collection_atom_count": 1,
+  "candidate_input_atom_refs": [
+    "CONFIRMED-DAC-FR-004"
+  ],
+  "candidate_input_atom_count": 1,
+  "candidate_input_atom_set_digest": "sha256:30ec3712794f336541537ec85b61ba381f8a2ec9a70d32d8e0fe65341eddc6e0",
+  "candidate_input_accounting_status": "選択した1 atomをHELIXOS-L2-108/HELIXOS-L11-108の限定候補scopeへ対応記録。no_lossはこのcandidate input accountingだけを表す。formal successor、owner transfer、applicability、採択または条件closureを示さない。",
+  "source_line_coverage_result": "candidate_input_scoped; formal_successor_owner_scope_and_adoption_unconfirmed",
+  "condition_closure": "not_asserted",
+  "candidate_input_coverage_result": "no_loss",
+  "unaccounted_atom_refs": [],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-CONFIRMED-003#CONFIRMED-DAC-FR-004: source identity remains live; formal successor, responsible owner transfer, applicability and adoption remain unconfirmed"
+  ],
+  "preserved_pending_atom_refs": [],
+  "atoms": [
+    {
+      "atom_id": "CONFIRMED-DAC-FR-004",
+      "source_holding_registration_id": "MPR-SH-CONFIRMED-003",
+      "source_qualified_requirement_id": "helix/L1-requirements/document-authority-census-requests.md::DAC-FR-004",
+      "legacy_asset_id": "LEGACY-ASSET-D201753B1A0CC6EA3980",
+      "source_revision_kind": "archive",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md",
+      "source_file_sha256": "sha256:81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66",
+      "source_line": 51,
+      "source_line_sha256": "sha256:9eeafcb6a2c3c4b4bd65ad22a1b0b8da22c9ce7e51bdc4a3423a6fbe19fe61c4",
+      "source_text": "| `DAC-FR-004` | artifactからconsumerへの逆向きgraphを構築し、startup reachabilityと生成伝播を明示する。 |",
+      "source_clause_kind": "functional_requirement",
+      "atomization_rationale": "一つのsource-qualified requirement identityとして、artifactからconsumerへの逆引きとstartup reachability/生成伝播の明示を一atomに保つ。隣接identityや全census範囲は入力しない。",
+      "disposition": "candidate_scope",
+      "candidate_input": true,
+      "relation": "HELIXOS-L2/L11-108の限定候補入力。MPR-SH-CONFIRMED-003とDAC-FR-004のsource stateは未変更。候補対応はformal successor、owner移管、scope選定、採択を意味しない。",
+      "audit_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#DAC-FR-004",
+      "candidate_semantic_digest": "sha256:f482235a9fbf4dd9097323cb84e50d5e5770e67af23361e6f9bae745eab01606",
+      "source_holding_remains_live": true
+    }
+  ],
+  "parent_l1": {
+    "identities": [
+      "HELIXOS-L1-001",
+      "HELIXOS-L1-008"
+    ],
+    "path": "docs/helix-os/L1-planning/system-intent.md",
+    "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "source_file_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+    "adoption_basis": "2026-09-28 HELIX-OS PO decision fixes this exact L1 revision. L1-001 covers target authority/source tracking; L1-008 covers detecting and reconstructing projection inconsistencies. The candidate applicability and adoption are not inherited."
+  },
+  "current_owner_and_mapping": {
+    "candidate_owner": "HELIX-OS management (proposed; legacy source ownership transfer not confirmed)",
+    "existing_relations": [
+      {
+        "identity": "HELIXOS-L2-015 / HELIXOS-L11-015",
+        "relation": "adopted authority source/revision/digest and unresolved-state recording",
+        "gap": "HELIXOS-L2-015 stores source/revision/digest and unresolved authority state, but the adopted L2/L11 has no positive oracle for reverse artifact-to-consumer enumeration with separate startup reachability and generation propagation, nor negative oracle for a missing declared edge."
+      }
+    ],
+    "responsibility_boundary": "HELIX-OS records/projections only explicitly supplied relation inputs. HARNESS owns artifact/pack meaning, inputs/outputs, dependency and verification contracts. HELIX-CONNECT owns explicit inter-mechanism connection identity/compatibility/communication when such a connection exists; these candidates do not reinterpret local graph edges as connections."
+  },
+  "static_acceptance_scope": [
+    "normal: 対象HEADと明示scopeの入力にあるartifact、declared consumer edge、startup入口、generation relationがartifactからconsumer方向へ逆引きでき、startup reachabilityと生成伝播を別々に辿れる。",
+    "negative: declared consumer edgeの欠落、consumer startup入口のinactive/別revision、generation relationの欠落を個別に与え、該当関係だけを不一致として示し、他関係から補完しない。",
+    "unknown: scope閉包、consumer owner/入口、revision、digestまたはrelationが不明ならunknownを保ち、scope外を完全と報告しない。"
+  ],
+  "unresolved_owner_and_receipt": {
+    "owner_transfer": "pending; source holding does not transfer the legacy requirement owner to OS",
+    "applicability": "pending; no full artifact/consumer class or all-repository scan scope is selected",
+    "acceptance_receipt": "static oracle proposal only; no runtime/test/old-runtime receipt and no acceptance executed"
+  },
+  "version_target": null,
+  "formal_successor_status": "not_confirmed_pending_PO",
+  "source_holding_remains_live": true,
+  "source_holding_note": "MPR-SH-CONFIRMED-003 remains unchanged and live; this receipt does not supersede or close it.",
+  "receipt_limits": "This receipt records provenance and one selected old-line candidate mapping only. It does not assert formal successor assignment, source applicability/owner/version disposition, adoption, implementation, runtime execution, L11 execution, or full condition closure.",
+  "authority_and_adoption": "none; exact candidate revision adoption is pending.",
+  "responsibility_contracts": [
+    {
+      "mechanism": "HELIX-OS",
+      "identities": [
+        "HELIXOS-L2-015",
+        "HELIXOS-L11-015"
+      ],
+      "basis_commit": "5ee0a48faecf6a02ac029068bc2999d7c2d888b1",
+      "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "l2_file_sha256": "sha256:9b4a26cb92654b133b6154dffec903ab745132be96173cc049782c5faa6a5f3a",
+      "l2_section_sha256": "sha256:f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef",
+      "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "l11_file_sha256": "sha256:8ac93048fbc05032e6b1e578a944620089c0eae528bd7fb1d3cf2a125faf4e2e",
+      "l11_section_lines": "324-330",
+      "relation": "adopted general source/authority provenance and unresolved-state handling; no whole consumer graph or DAC chain positive/negative oracle"
+    },
+    {
+      "mechanism": "HELIX-HARNESS",
+      "identities": [
+        "HARNESS-L2-010",
+        "HARNESS-L2-011"
+      ],
+      "basis_commit": "5ee0a48faecf6a02ac029068bc2999d7c2d888b1",
+      "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "l2_file_sha256": "sha256:45955ffba1293b603f3c513ec1e9e328dd7bcf24b038463eb20dd480d1dc2108",
+      "l2_section_sha256": {
+        "HARNESS-L2-010": "sha256:9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
+        "HARNESS-L2-011": "sha256:30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952"
+      },
+      "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "l11_file_sha256": "sha256:411b1e5067c50d0fef789a9635d83031816bd984662906028844173a96b295be",
+      "l11_refs": "205-206",
+      "relation": "HARNESS owns artifact/pack meaning, declared input/output/dependency/version and verification/call contract; OS candidates only project explicitly supplied relations"
+    },
+    {
+      "mechanism": "HELIX-CONNECT",
+      "identities": [
+        "HELIXCONNECT-L2-001",
+        "HELIXCONNECT-L2-005",
+        "HELIXCONNECT-L2-007"
+      ],
+      "basis_commit": "5ee0a48faecf6a02ac029068bc2999d7c2d888b1",
+      "l2_path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "l2_file_sha256": "sha256:94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1",
+      "l2_section_sha256": {
+        "HELIXCONNECT-L2-001": "sha256:895fae2d3c5cd5c725a31e6c16a6d7032e17da08f4e2e509fabb52f0cd85da18",
+        "HELIXCONNECT-L2-005": "sha256:9b1831761d44eae4e274a2ea2abaae7a02cb7b4757292bf5b610f90cc6d76dce",
+        "HELIXCONNECT-L2-007": "sha256:8dd4bb75de117f85ecc032faebee13226fe42dbb5ec8750618d2a0e03e728eb6"
+      },
+      "l11_path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "l11_file_sha256": "sha256:aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9",
+      "l11_section_sha256": {
+        "HELIXCONNECT-L11-001": "sha256:437f822eee764595ff677ca31b6789e9d51179cfc6c6f1bb461eaaed54a0d056",
+        "HELIXCONNECT-L11-005": "sha256:33ffea75e33df1c80740eb39e1ade9d0d41d032249e89bd982bb7071db552732",
+        "HELIXCONNECT-L11-007": "sha256:c5ad605f5bc3b7107760bb2e29a64fade222bfbd787260caa80109759a055808"
+      },
+      "relation": "CONNECT owns explicitly declared connection identity, compatibility, transmission trace and composite connection; repo-local graph edges are not inferred to be CONNECT operations"
+    }
+  ],
+  "po_decision_boundary": {
+    "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+    "decision_record_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+    "decision_target_revision": "explicit identity/L2/L11 bytes enumerated in that record only",
+    "candidate_identity_in_57_identity_set": false,
+    "effect": "none; these new candidate identities do not inherit adoption, conditional adoption, hold, source disposition, or authority from the 57-candidate decision"
+  }
+}

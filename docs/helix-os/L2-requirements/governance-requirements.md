@@ -1332,3 +1332,35 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - **境界**：HELIXOS-L2-015のsource identity/revision/digest/authority出所追跡を維持し、その一般記録要件を置換しない。全文書census、全repo scanner、binding schema、互換性・失効・履歴化の新たな判定規則、再帰深度・性能、finding taxonomy、修復・削除・edge書換え、旧CLI/runtime/test/CIを定めない。参照されたtarget ownerが既存状態を提示しない場合、本候補から状態を作らない。
 - **旧source・限定範囲**：`LEGACY-ASSET-D201753B1A0CC6EA3980`、旧`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md:50`、source file SHA-256 `81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66`、line SHA-256 `77e1d9bc1f98f2a1f1cf0094dd280fb83d001ffe8ee422f1c951da2d72898212`を起点とする。この旧line atomの限定的な再導出候補であり、DAC-FR-003の全条件、文書Authority Census全体、旧source ownerの移管、formal successor、実装・実行・採択の成立を主張しない。`MPR-SH-CONFIRMED-003`は生存させる。
 - **version_target**：旧source文書のversion 1.0を参照情報として記録する。対象適用範囲と本候補の版採択は未確定である。
+
+### HELIXOS-L2-107 finding taxonomy/mapping revision-pinned handoff候補（connection候補、未採択）
+
+- **authority／状態**：HELIX-OSの未採択候補、`registered_proposal`／`authority_effect: none`。2026-09-28に固定されたL1・L2/L11 decisionの採択集合には含まれず、本候補から要求採択、L3承認、実装・実行許可、旧DAC-FR-008のformal successor割当を生成しない。旧source ownerのHELIX-OSへの移管も決めない。
+- **親L1・owner候補**：HELIXOS-L1-001／008／009に接続する管理・projection検出・推進経路のhandoff候補。HELIX-OSは、別途選択され現行として参照可能なtaxonomy/mapping revisionに沿うfinding参照を既存owner/workflowへ渡す責務の候補である。finding taxonomyの意味・type判定とtypeごとの所管は本候補のownerとして確定しない。
+- **入力と保持**：既に発生元が付したfinding参照、その既存type identityまたは未解決type状態、source identity・対象revision/digest・scope、及び明示的に選択されたtaxonomy revisionとtype-to-destination mapping revisionを入力にする。HELIX-OSはfindingのtype、source、revisionを上書き・省略せず、両参照先のrevisionと対応関係をhandoffに保持する。taxonomy上のtypeを新設、再分類、翻訳、列挙しない。
+- **mapping handoff**：参照されたtaxonomy/mapping revisionとその関係が既存authority記録でcurrentかつ一意に確認できる場合だけ、そのmappingに明記されたdestination referenceをfindingに結び付け、既存owner/workflowへhandoff情報として渡せる。候補は新しいowner、route、ticket、dispatch、修正操作や永続化schemaを作らず、mapping targetの意味を再解釈しない。
+- **未解決時**：taxonomy/mappingまたは対応関係がmissing、stale、unknown、conflict、ambiguous、未登録なら、そのfindingのtype/source/revisionを保ったままroutingをunresolvedとして返し、destinationを推測・fallback選択しない。影響を受けない別findingの評価を一律停止しない。分類そのものが曖昧な入力は、既存の未解決type状態をそのまま保持し、候補側でtypeを決めない。
+- **既存要求との境界**：HELIXOS-L2-015のsource identity/revision/digestとauthority記録、L2-017のticket/workflow、L2-019の証拠・continuityを重複定義しない。既存契約へ渡す型付きhandoffのidentity／revision関係に限る。HARNESS-L2-004/005のverification／backflow義務、HARNESS-L2-008の要求kind再分類、HELIXOS-L2-040のretry上限routeを置換・拡張しない。HELIXOS-L2-106はDAC-FR-003のみを扱い、本候補へ拡張しない。
+- **旧source・保留**：`LEGACY-ASSET-D201753B1A0CC6EA3980`の旧`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md:55`から、修正先を推測しないhandoff境界を限定再導出する。旧lineの「findingをtyped taxonomyで発行」およびtaxonomyを使う曖昧分類の意味はsource holdingに保留する。旧`DAC-R-007`のtype名列挙と`DAC-R-012`のscanner責務は関連contextであり、本候補のsource atom集合へ含めない。`DAC-BR-004`の旧Recovery／Redesign／Refactoring／Requirement Re-entry名を現行routeやownerへ一対一対応させない。型分類、採用taxonomy、mappingの所管・適用範囲、旧source owner、formal successorは未決であり、旧scanner/runtime/CLI/test/CIを使わない。
+
+### HELIXOS-L2-108 artifactからconsumerへの逆向きgraph候補（単体候補、未採択）
+
+- **状態・authority**：HELIX-OSの未採択候補。`registered_proposal`／`authority_effect: none`。候補本文、登録、静的確認は要求採択、census実行、startup、生成または受入完了を生成しない。
+- **親L1・責務**：採択済み`HELIXOS-L1-001`／`HELIXOS-L1-008`へ接続する候補。OS管理は、入力として特定されたartifactとconsumerの参照関係を保持し、artifact側からconsumer側へ逆引きできるgraph projectionを示す。L2-015のsource identity/revision/digest/authority出所記録を使う。
+- **入力範囲と関係**：照合入力は、対象HEAD、artifact identity/revision/digest、consumer identity/revision、各consumerのstartup入口、生成関係、およびその入力が明示するscopeと対象classを特定する。source ownerが提示するauthoritative forward artifact→consumer relationと、OSがそこから作るreverse projectionは別の入力／出力として保持する。forward relationの期待集合はreverse projectionから作らない。consumerのstartup reachabilityと生成伝播も別々の関係として示す。forward relation、scope、または対象classが不明・未提示・閉じていない場合、未列挙範囲を完全として扱わず`unknown`に保つ。
+- **結果**：同じ対象HEADと明示scopeについて、authoritative forward relationとreverse projectionを双方向に照合し、各artifactから宣言consumerを逆引きできること、各reverse edgeに対応するforward edgeがあること、およびforward edgeの欠落を検出できることを示す。startup reachabilityと生成伝播も別々に追跡する。scope外、inactive、またはrevision不一致は個別に示し、他の関係から補完しない。
+- **境界**：既存L2-015の一般authority記録、L2-016のportfolio state、HARNESS-L2-010/011のartifact/package入出力・依存・検証契約を置換しない。HARNESSはartifactとpackの意味および検証義務を定め、OSは明示入力上の参照とreachabilityを投影する。明示された機構間operationがある場合のconnection identity・契約互換・送受信はHELIX-CONNECTの既存契約を使い、本候補からrepo-local relationをconnectionと見なさない。全repo census、consumer classの選定、未入力sourceの探索、startupの実行、生成の実行、owner/class/statusの新 taxonomy、finding severity/routing、修復・削除・edge書換え、旧CLI/runtime/test/CIは定めない。
+- **未解決と差戻し**：target ownerがconsumer、startup入口、生成関係またはscopeを提示しない場合、OSはrelationを推測せずunknownとして保持し、既存source/target ownerへ確認を返す。意味上の不足は対応する既存authorityへ戻す。
+- **旧source・限定範囲**：`LEGACY-ASSET-D201753B1A0CC6EA3980`のarchive `document-authority-census-requests.md:51`（source file SHA-256 `81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66`、line SHA-256 `9eeafcb6a2c3c4b4bd65ad22a1b0b8da22c9ce7e51bdc4a3423a6fbe19fe61c4`）のDAC-FR-004一atomから意味を再導出する候補。全source consumer閉包、source owner移管、formal successor、採択、実装・実行・L11受入は未確定。`MPR-SH-CONFIRMED-003`は生存させる。
+- **version_target**：未指定。旧source identityが記す版を現行適用版へ読み替えない。
+
+### HELIXOS-L2-109 source-to-consumer provenance chain候補（単体候補、未採択）
+
+- **状態・authority**：HELIX-OSの未採択候補。`registered_proposal`／`authority_effect: none`。候補本文、登録、静的確認は要求採択、source authority、生成実行、consumer起動または受入完了を生成しない。
+- **親L1・責務**：採択済み`HELIXOS-L1-001`／`HELIXOS-L1-008`へ接続する候補。OS管理は、入力として選ばれた一つのsource-to-consumer provenance chainのidentity/revision/digestと各関係を同一chain上で追跡できるようにする。sourceの意味とgeneratorの動作はそれぞれの既存ownerが持つ。
+- **chain条件**：入力は対象HEADと選択scopeを明示し、source identity/revision/digest、generator identity/revision、generated artifact identity/revision/content digest、およびconsumer identity/revisionを関係付きで特定する。各edgeの両端identityとrevisionがchain内で一致し、同じ生成artifactを同じconsumer relationへ辿れることを記録する。入力に欠けた要素や開いたscopeは`unknown`として残す。
+- **結果**：一つの選択chainの各node/edgeとdigestを順に辿れ、異なるchain・revision・digestを混ぜない関係記録を示す。chain内のsource、generator、artifact、consumerのどれかが欠ける、revision/digestが一致しない、またはconsumer edgeが未宣言なら不完全として示す。
+- **境界**：既存L2-015/007/019のauthority provenance・共通証拠・event continuityを置換しない。HARNESS-L2-010/011が所有するartifact/package意味、生成可能性、呼出し契約と、明示された機構間通信に対するHELIX-CONNECT契約をOSが再定義しない。本候補は選択されたsource-to-consumer relationの記録結合に限り、全artifact census、generatorの実行/検証、consumerのstartup実行、外部接続の生成、chainの自動発見、全体severity/disposition、finding taxonomy、routing、修復・削除、旧CLI/runtime/test/CIを定めない。
+- **未解決と差戻し**：node/edgeのauthority、revision、digest、適用範囲またはownerが欠落・unknown・conflict・staleなら、chain適合を推定せず未解決として保持し、source、generator、artifactまたはconsumerの既存ownerへ確認を返す。
+- **旧source・限定範囲**：`LEGACY-ASSET-D201753B1A0CC6EA3980`のarchive `document-authority-census-requests.md:52`（source file SHA-256 `81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66`、line SHA-256 `d032e840fb88ab1cf46f096553a8ba597473f2faa903ba71cf264e11cda4755d`）のDAC-FR-005一atomから意味を再導出する候補。DAC-FR-004やDAC-FR-006〜008、文書census全体、source owner移管、formal successor、採択、実装・実行・L11受入は未確定。`MPR-SH-CONFIRMED-003`は生存させる。
+- **version_target**：未指定。旧source identityが記す版を現行適用版へ読み替えない。

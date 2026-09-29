@@ -1,0 +1,152 @@
+{
+  "receipt_id": "DRAFT-RCPT-HELIXOS-L2-107-DAC-FR-008-2026-09-29",
+  "receipt_state": "draft_unadopted_candidate_scope_recorded",
+  "authority_effect": "none",
+  "source_revision": "5ee0a48faecf6a02ac029068bc2999d7c2d888b1",
+  "candidate_identity": "HELIXOS-L2-107",
+  "requirement_kind": "connection",
+  "candidate_semantic_digest": "sha256:a84e0711dc74d36aa31d283b254ebbc29b34e45b51e17805c24253b8cac17caf",
+  "candidate_digest_rule": "governance-requirements.mdの「### HELIXOS-L2-107 」見出し行からファイル末尾までをUTF-8で取り、末尾空行を除き改行1つで終える。そのSHA-256をsha256:付きで記す。",
+  "candidate_l2_file_sha256": "sha256:154a73ab301e7b1e1c0b855bfa07cc57f17834a932f7ef3d97dbec86b769511d",
+  "paired_acceptance_identity": "HELIXOS-L11-107",
+  "paired_acceptance_digest": "sha256:0e626d8d212fbfe2b9d52f07df24be84ab916b2f2b5a218a27c38da0b994f8db",
+  "l11_digest_rule": "governance-acceptance.mdの「### HELIXOS-L11-107 」見出し行からファイル末尾までをUTF-8で取り、末尾空行を除き改行1つで終える。そのSHA-256をsha256:付きで記す。",
+  "l11_file_sha256": "sha256:3e9cd17fd073cd53f6630d91753658fe6da20045ec5abcaae296f2e64cf2366e",
+  "source_lines_ref": "docs/governance/audits/requirement-registration/dac-fr-008-handoff-source-lines-2026-09-29.jsonl",
+  "source_atom_set_digest": "sha256:b7cdda3d605bcf31ef209dced8d2da77871d1e3500b7a0389d0d143552e737e7",
+  "source_atom_set_digest_rule": "atom_id昇順。各行をatom_id、半角空白、sha256:を含むsource_line_sha256で構成し、LFで連結する。末尾LFは付けず、UTF-8 bytesのSHA-256をsha256:付きで記す。",
+  "source_collection_scope": "MPR-SH-CONFIRMED-003が保全するconfirmed identity DAC-FR-008 line 55を、typed-taxonomy発行meaning（pending）と、曖昧な分類／修正先を推測しないhandoff境界（候補入力）へ非重複分割。旧DAC-R-007/012およびDAC-BR-004は関連contextのみでcandidate source atomに含めない。",
+  "source_collection_atom_count": 2,
+  "candidate_input_atom_refs": [
+    "CONFIRMED-DAC-FR-008-NO-GUESS-HANDOFF"
+  ],
+  "candidate_input_atom_count": 1,
+  "candidate_input_atom_set_digest": "sha256:b7cdda3d605bcf31ef209dced8d2da77871d1e3500b7a0389d0d143552e737e7",
+  "candidate_input_accounting_status": "選択したno-guess handoff atom 1件だけをHELIXOS-L2/L11-107の限定候補へ対応記録。残るtyped taxonomyによるfinding発行meaningは生存source holdingに保留。no_lossは選択candidate input範囲に限り、FR-008全体、source owner移管、formal successor、taxonomy採択、実装または実行のclosureを示さない。",
+  "source_line_coverage_result": "candidate_input_scoped; classification_meaning_owner_mapping_and_adoption_pending",
+  "condition_closure": "not_asserted",
+  "candidate_input_coverage_result": "no_loss",
+  "unaccounted_atom_refs": [],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-CONFIRMED-003#REQSRC-LINE-01389 (CONFIRMED-DAC-FR-008-TYPED-CLASSIFICATION pending; source identity remains preserved_pending_rehome; successor_requirement_ids: [])"
+  ],
+  "preserved_pending_atom_refs": [
+    "CONFIRMED-DAC-FR-008-TYPED-CLASSIFICATION"
+  ],
+  "atoms": [
+    {
+      "atom_id": "CONFIRMED-DAC-FR-008-NO-GUESS-HANDOFF",
+      "source_holding_registration_id": "MPR-SH-CONFIRMED-003",
+      "source_qualified_requirement_id": "helix/L1-requirements/document-authority-census-requests.md::DAC-FR-008",
+      "legacy_asset_id": "LEGACY-ASSET-D201753B1A0CC6EA3980",
+      "source_revision_kind": "archive",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md",
+      "source_file_sha256": "sha256:81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66",
+      "source_line": 55,
+      "source_line_sha256": "sha256:13b0b5a9231121837b7237368eed3718214a0095129f9b9ad31a5c69dd3be2e6",
+      "source_text": "曖昧な分類や修正先を推測しない。",
+      "source_span_start_char": 44,
+      "source_span_end_char": 60,
+      "source_line_text": "| `DAC-FR-008` | findingをtyped taxonomyで発行し、曖昧な分類や修正先を推測しない。 |",
+      "disposition": "candidate_scope",
+      "candidate_input": true,
+      "relation": "Selected handoff boundary: do not guess ambiguous classification or remediation destination; this candidate consumes only the no-guess handoff portion and carries any existing type/source reference without classifying.",
+      "candidate_semantic_digest": "sha256:a84e0711dc74d36aa31d283b254ebbc29b34e45b51e17805c24253b8cac17caf",
+      "source_holding_remains_live": true
+    },
+    {
+      "atom_id": "CONFIRMED-DAC-FR-008-TYPED-CLASSIFICATION",
+      "source_holding_registration_id": "MPR-SH-CONFIRMED-003",
+      "source_qualified_requirement_id": "helix/L1-requirements/document-authority-census-requests.md::DAC-FR-008",
+      "legacy_asset_id": "LEGACY-ASSET-D201753B1A0CC6EA3980",
+      "source_revision_kind": "archive",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md",
+      "source_file_sha256": "sha256:81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66",
+      "source_line": 55,
+      "source_line_sha256": "sha256:13b0b5a9231121837b7237368eed3718214a0095129f9b9ad31a5c69dd3be2e6",
+      "source_text": "findingをtyped taxonomyで発行し、",
+      "source_span_start_char": 17,
+      "source_span_end_char": 44,
+      "source_line_text": "| `DAC-FR-008` | findingをtyped taxonomyで発行し、曖昧な分類や修正先を推測しない。 |",
+      "disposition": "preserved_pending",
+      "candidate_input": false,
+      "relation": "Held classification meaning: issuing findings according to a typed taxonomy remains pending; this candidate does not define the taxonomy, labels, or classification predicate.",
+      "candidate_semantic_digest": null,
+      "source_holding_remains_live": true
+    }
+  ],
+  "parent_l1": {
+    "identities": [
+      "HELIXOS-L1-001",
+      "HELIXOS-L1-008",
+      "HELIXOS-L1-009"
+    ],
+    "path": "docs/helix-os/L1-planning/system-intent.md",
+    "source_commit": "5ee0a48faecf6a02ac029068bc2999d7c2d888b1",
+    "source_file_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+    "adoption_basis": "2026-09-28 HELIX-OS PO decisionで固定されたL1 parent bytes。候補のowner、適用scope、採択は継承しない。"
+  },
+  "related_legacy_context": {
+    "asset_id": "LEGACY-ASSET-D201753B1A0CC6EA3980",
+    "dac_br_004": {
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md",
+      "source_file_sha256": "sha256:81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66",
+      "source_line": 41,
+      "source_line_sha256": "sha256:a67d3a4ab1a56b24bc39497b9f94c1171e80725b5e59f57e393416d8ab575c68",
+      "role": "旧route vocabulary context only; not a candidate atom"
+    },
+    "dac_r_007": {
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/document-authority-census-requirements.md",
+      "source_file_sha256": "sha256:e05adb62d9ad07507f962cf060b3dbe66c161afc3f09391b29b3144ced57535c",
+      "source_line": 62,
+      "source_line_sha256": "sha256:429dec99bde99da47c744a2f790ab4b6dd45e3ad34aefc9f4c35c6071d2ee542",
+      "role": "old taxonomy label list context only; not adopted or counted"
+    },
+    "dac_r_012": {
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/document-authority-census-requirements.md",
+      "source_file_sha256": "sha256:e05adb62d9ad07507f962cf060b3dbe66c161afc3f09391b29b3144ced57535c",
+      "source_line": 67,
+      "source_line_sha256": "sha256:ecdedfc5098a13225fba3c69b561995465f725c94dcfd9e7cf89b2ddf02cda38",
+      "role": "old scanner/remediation boundary context only; not counted"
+    }
+  },
+  "current_requirement_relations": {
+    "candidate_owner": "HELIX-OS management, proposed only; legacy product target unresolved and source owner transfer unconfirmed",
+    "existing_os_l2": [
+      "HELIXOS-L2-015",
+      "HELIXOS-L2-017",
+      "HELIXOS-L2-019"
+    ],
+    "existing_harness_l2": [
+      "HARNESS-L2-004",
+      "HARNESS-L2-005",
+      "HARNESS-L2-008"
+    ],
+    "adjacent_candidate": "HELIXOS-L2-106 covers DAC-FR-003 only; not extended to DAC-FR-008"
+  },
+  "current_file_pins": {
+    "os_l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+    "os_l2_sha256": "sha256:154a73ab301e7b1e1c0b855bfa07cc57f17834a932f7ef3d97dbec86b769511d",
+    "os_l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+    "os_l11_sha256": "sha256:3e9cd17fd073cd53f6630d91753658fe6da20045ec5abcaae296f2e64cf2366e",
+    "os_l1_path": "docs/helix-os/L1-planning/system-intent.md",
+    "os_l1_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e"
+  },
+  "unresolved_owner_and_meaning": [
+    "旧DAC-FR-008のtaxonomy分類・type predicate・taxonomy listを現行候補で採用するかは未決。",
+    "finding typeからcurrent destination/ownerへのmapping authorityとmapping producer/approverは未決。",
+    "旧DAC-BR-004のRecovery/Redesign/Refactoring/Requirement Re-entryと現行OS lane/ownerの一対一対応は未決。",
+    "旧source ownerのrehome、DAC-FR-008全体のformal successor、適用対象は未決。"
+  ],
+  "formal_successor_status": "not_confirmed_pending_PO",
+  "source_holding_remains_live": true,
+  "receipt_limits": "This receipt records only the selected no-guess routing handoff span. Typed classification meaning remains pending and related DAC-R-007/012 are context only. It does not assert complete DAC-FR-008 coverage, formal successor, owner transfer, adoption, implementation, runtime execution or acceptance.",
+  "static_acceptance_scope": [
+    "normal: explicitly current taxonomy/mapping revisions with a unique destination preserve finding type/source/revisions and handoff the exact destination reference without creating a ticket or mutation",
+    "negative: missing/ambiguous/stale/conflicting mapping remains unresolved and does not produce guessed destination; affected finding retains its type/source and unrelated findings remain assessable",
+    "boundary: candidate does not issue/classify finding types or adopt old taxonomy labels; ambiguous type state remains unresolved"
+  ],
+  "source_lines_file_sha256": "sha256:960678723eacb0a061a099472974f53eb01875e53cbc78a8dd56a32b843b1dee",
+  "candidate_registration_id": "MPR-RC-HELIXOS-L2-107-001",
+  "registered_at_worktree": "2026-09-29T14:09:45+09:00"
+}
