@@ -1,6 +1,6 @@
 # HIL-FR-60 typed team output／OS handoff 条件監査
 
-基準HEAD: `f3a081a32e551d3532b1073c0af46d0e502935a8`（2026-09-29）  
+基準HEAD: `f3a081a32e551d3532b1073c0af46d0e502935a8`（2026-09-29）
 記録種別: Stage 5の読取専用source監査。`authority_effect: none`。この記録は要求候補、PO判断、L3承認、実装・実行・受入、旧source closureを生成しない。
 
 ## 対象sourceと範囲
