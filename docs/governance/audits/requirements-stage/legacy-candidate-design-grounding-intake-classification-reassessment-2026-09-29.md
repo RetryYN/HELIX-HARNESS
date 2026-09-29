@@ -16,27 +16,33 @@
 
 | 現在の行状態 | 提案 | 件数 |
 |---|---|---:|
-| condition / product_requirement_atom / unknown | 維持 | 29 |
-| condition / product_requirement_atom / unknown | condition / management_process_condition | 13 |
-| condition / product_requirement_atom / unknown | explanation | 9 |
+| condition / product_requirement_atom / unknown | 維持 | 37 |
+| condition / product_requirement_atom / unknown | condition / management_process_condition | 11 |
+| condition / product_requirement_atom / unknown | explanation | 3 |
 
-対象51行内の差分は condition −9、explanation ＋9、product atom −22、management condition ＋13。merged #2361の正確なeffective baselineはcondition 901、explanation 2928、product atom 893、management condition 7、product route unknown 544。今回の51行案だけを単独適用するとcondition 892、explanation 2937、product atom 871、management condition 20、unknown 522となる。別集合の#2363案−12と#2366案−11を重ねた提案上baselineは544−12−11＝521で、そこへこの51行案を加えた算術値は499。これらはproposal-onlyの分類算術であり、採択、handoff、successor assignment、coverage、resolution、closureを意味しない。unknown routeは被覆を意味しない。
+R2367-01修正後の対象51行内の差分は condition −3、explanation ＋3、product atom −14、management condition ＋11。merged #2361の正確なeffective baselineはcondition 901、explanation 2928、product atom 893、management condition 7、product route unknown 544。今回の51行案だけを単独適用するとcondition 898、explanation 2931、product atom 879、management condition 18、unknown 530となる。別集合の#2363案−12と#2366案−11を重ねた提案上baselineは544−12−11＝521で、そこへ修正後の51行案を加えた算術値は507。これらはproposal-onlyの分類算術であり、採択、handoff、successor assignment、coverage、resolution、closureを意味しない。unknown routeは被覆を意味しない。
+
+## R2367-01対応
+
+`000840`と`000850`をcondition/product_requirement_atom/unknownに維持し、`000851–856`も000850の接続対象を具体化する同一atomに含めた。既存機構の再利用・非並立はプロジェクト実施手順ではなく、#2363の`000542/000546`とこの監査の`000993`に整合する製品/システム設計制約である。6つの一覧行だけをexplanationへ分ける理由もないため、§5の品質例と同様に制約の対象を具体化する行としてproduct atomにする。
+
+`000857`（source line 56）の明示禁止文はこの51行scope外で、#2353 baselineではexplanationである。同じ非並立境界を強く補強するため、後続のbounded classification review候補として記録した。今回の51行ID、delta、countsは変更しない。
 
 ## 行別分類案
 
 | source ID | archive physical line | 提案 | 原文（source ledger） | atom境界と判断 |
 |---|---:|---|---|---|
-| `LEGACY-CAND-LINE-000840` | 31 | 再分類: management condition | 現行 HELIX Design Harness を作り直してはならない。 | §1「現行実装を前提」冒頭の規範。既存Design Harnessを作り直さないという作業・構成指示で、独立した利用者向け動作条件は定義しない。 管理条件。実装接続範囲を制約する指示として原文を保持する。 |
+| `LEGACY-CAND-LINE-000840` | 31 | 維持: product atom | 現行 HELIX Design Harness を作り直してはならない。 | §0–1の非置換・既存責務再利用制約。既存Design Harnessを再構築しない条件は、#2363の000542/000546および000993の再利用境界と同じproduct atomとして保持する。 |
 | `LEGACY-CAND-LINE-000842` | 34 | 再分類: explanation | 1. **Design Grounding** — 良い設計判断をするための前提・外部知識を揃える | §0の3項目リスト（原稿物理行34–36）。3領域の概要ラベルであり、規範の詳細は後続§2–4にある。 説明。概要を独立した製品要件へ重複計上しない。 |
 | `LEGACY-CAND-LINE-000843` | 35 | 再分類: explanation | 2. **Human Reaction Semantics** — 人間の「違う・使いにくい・ダサい・分かりにくい」を意味分類する | §0の3項目リスト（原稿物理行34–36）。3領域の概要ラベルであり、規範の詳細は後続§2–4にある。 説明。概要を独立した製品要件へ重複計上しない。 |
 | `LEGACY-CAND-LINE-000844` | 36 | 再分類: explanation | 3. **Design Convergence** — 人間との反復で何が受容・拒否・未解決かを保持し、収束を判定する | §0の3項目リスト（原稿物理行34–36）。3領域の概要ラベルであり、規範の詳細は後続§2–4にある。 説明。概要を独立した製品要件へ重複計上しない。 |
-| `LEGACY-CAND-LINE-000850` | 47 | 再分類: management condition | 少なくとも現行で確認済みの以下は「新規実装候補」ではなく接続先として扱う。 | §1導入文と直後の物理行49–54の既存機構一覧。既存を調査し接続先として扱う作業指示と、根拠となる現状一覧を分けて分類する。 管理条件。実装調査・統合方法を定め、プロダクトの外部動作を定義しない。 |
-| `LEGACY-CAND-LINE-000851` | 49 | 再分類: explanation | - Screen Applicability 系の判定・永続化 | §1の既存機構一覧（物理行49–54）。censusで確認した当時の実装・契約を接続先として記録する一覧。 説明。既存責務の由来・構造を示す情報である。 |
-| `LEGACY-CAND-LINE-000852` | 50 | 再分類: explanation | - Prototype / Walkthrough / human decision / finding / back-propagation を扱う既存契約 | §1の既存機構一覧（物理行49–54）。censusで確認した当時の実装・契約を接続先として記録する一覧。 説明。既存責務の由来・構造を示す情報である。 |
-| `LEGACY-CAND-LINE-000853` | 51 | 再分類: explanation | - Design Registry の revision・authority・binding・supersession | §1の既存機構一覧（物理行49–54）。censusで確認した当時の実装・契約を接続先として記録する一覧。 説明。既存責務の由来・構造を示す情報である。 |
-| `LEGACY-CAND-LINE-000854` | 52 | 再分類: explanation | - UI domain / pattern profile | §1の既存機構一覧（物理行49–54）。censusで確認した当時の実装・契約を接続先として記録する一覧。 説明。既存責務の由来・構造を示す情報である。 |
-| `LEGACY-CAND-LINE-000855` | 53 | 再分類: explanation | - Visual / Interaction / Accessibility / Performance 等の既存 evidence role | §1の既存機構一覧（物理行49–54）。censusで確認した当時の実装・契約を接続先として記録する一覧。 説明。既存責務の由来・構造を示す情報である。 |
-| `LEGACY-CAND-LINE-000856` | 54 | 再分類: explanation | - 既存 Research skill / project explorer / tech docs / OSS research 系能力 | §1の既存機構一覧（物理行49–54）。censusで確認した当時の実装・契約を接続先として記録する一覧。 説明。既存責務の由来・構造を示す情報である。 |
+| `LEGACY-CAND-LINE-000850` | 47 | 維持: product atom | 少なくとも現行で確認済みの以下は「新規実装候補」ではなく接続先として扱う。 | §1の導入規範。新規実装候補ではなく既存の接続先を使う制約で、直後の000851–856は対象を具体化する同じatomの一部。#2363の000542/000546および000993と意味が揃う。 |
+| `LEGACY-CAND-LINE-000851` | 49 | 維持: product atom | - Screen Applicability 系の判定・永続化 | §1の000850に続く既存機構・契約の対象一覧（物理行49–54）。各行は「接続先として扱う」非置換制約の対象を具体化するため、000840/850と同じproduct atomに束ねる。 |
+| `LEGACY-CAND-LINE-000852` | 50 | 維持: product atom | - Prototype / Walkthrough / human decision / finding / back-propagation を扱う既存契約 | §1の000850に続く既存機構・契約の対象一覧（物理行49–54）。各行は「接続先として扱う」非置換制約の対象を具体化するため、000840/850と同じproduct atomに束ねる。 |
+| `LEGACY-CAND-LINE-000853` | 51 | 維持: product atom | - Design Registry の revision・authority・binding・supersession | §1の000850に続く既存機構・契約の対象一覧（物理行49–54）。各行は「接続先として扱う」非置換制約の対象を具体化するため、000840/850と同じproduct atomに束ねる。 |
+| `LEGACY-CAND-LINE-000854` | 52 | 維持: product atom | - UI domain / pattern profile | §1の000850に続く既存機構・契約の対象一覧（物理行49–54）。各行は「接続先として扱う」非置換制約の対象を具体化するため、000840/850と同じproduct atomに束ねる。 |
+| `LEGACY-CAND-LINE-000855` | 53 | 維持: product atom | - Visual / Interaction / Accessibility / Performance 等の既存 evidence role | §1の000850に続く既存機構・契約の対象一覧（物理行49–54）。各行は「接続先として扱う」非置換制約の対象を具体化するため、000840/850と同じproduct atomに束ねる。 |
+| `LEGACY-CAND-LINE-000856` | 54 | 維持: product atom | - 既存 Research skill / project explorer / tech docs / OSS research 系能力 | §1の000850に続く既存機構・契約の対象一覧（物理行49–54）。各行は「接続先として扱う」非置換制約の対象を具体化するため、000840/850と同じproduct atomに束ねる。 |
 | `LEGACY-CAND-LINE-000942` | 178 | 維持: product atom | - accessibility | §5の「機械判定可能なものは極力HELIXへ委任」直下の例示リスト（物理行178–184）。例示一式で委任対象の品質領域を具体化する。 製品動作要件の適用領域を定める例示として保持。 |
 | `LEGACY-CAND-LINE-000943` | 179 | 維持: product atom | - interaction/state correctness | §5の「機械判定可能なものは極力HELIXへ委任」直下の例示リスト（物理行178–184）。例示一式で委任対象の品質領域を具体化する。 製品動作要件の適用領域を定める例示として保持。 |
 | `LEGACY-CAND-LINE-000944` | 180 | 維持: product atom | - navigation dead-end | §5の「機械判定可能なものは極力HELIXへ委任」直下の例示リスト（物理行178–184）。例示一式で委任対象の品質領域を具体化する。 製品動作要件の適用領域を定める例示として保持。 |
@@ -84,11 +90,9 @@
 
 | source ID | 提案 | 境界が曖昧な理由 |
 |---|---|---|
-| `LEGACY-CAND-LINE-000840` | 再分類: management condition | 既存実装を再構築しない制約は統合設計へ影響するが、製品の観測可能な動作より作業者への実装制約として書かれているためmanagement condition案。 |
 | `LEGACY-CAND-LINE-000842` | 再分類: explanation | Design Groundingは要求領域名にも読める。ここでは詳細な§2の要件群に先行する概要項目としてexplanation案。 |
 | `LEGACY-CAND-LINE-000843` | 再分類: explanation | Human Reaction Semanticsは要求領域名にも読める。詳細な§3の要件群に先行する概要項目としてexplanation案。 |
 | `LEGACY-CAND-LINE-000844` | 再分類: explanation | Design Convergenceは要求領域名にも読める。詳細な§4の要件群に先行する概要項目としてexplanation案。 |
-| `LEGACY-CAND-LINE-000850` | 再分類: management condition | 既存機構へ接続するという規範はアーキテクチャ要件にも読めるが、§1のimplementation censusに向けた作業指示としてmanagement condition案。 |
 | `LEGACY-CAND-LINE-000978` | 維持: product atom | Issue階層は管理プロセスの分類にも見えるが、既存Issue連携の維持をプロダクトが満たす統合動作と読み、product atomを維持。 |
 
 ## 旧sourceと判断史の照合
@@ -99,6 +103,8 @@
 - merged #2363の16 ID、#2366の14 ID、後続の#2364 521-cutoff sampleの20 IDは本51 IDと重複しない。#2364は別の後続route sampleであり、今回の51行分類proposalの選定を遡及変更しない。また、#2364をstage全体の最終sampleとは扱わない。#2356/#2360の対象IDも別行で、今回の51 IDへ適用差分はない。
 
 ## 制約
+
+- `000857`は#2353 baselineのexplanationとして範囲外に保持するが、非並立の明示禁止文として分類見直し候補に記録した。この51行の件数には含めない。
 
 - この51行は独立したbounded classification proposalであり、#2364の後続route sampleと統合しない。#2364との重複は0件。#2364のsample選定は遡及変更せず、stage全体の最終sampleとも表現しない。
 

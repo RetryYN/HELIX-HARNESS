@@ -10,9 +10,9 @@
     "current_effective_population": "All 51 exact rows whose effective state is condition/product_requirement_atom/unknown after #2353/#2356/#2360. #2363/#2366 are later disjoint classification proposals and do not change these rows; the subsequent #2364 521-cutoff route sample is also disjoint and does not revise this bounded classification scope.",
     "remaining_row_count": 51,
     "classification_count": {
-      "retain_product_requirement_atom": 29,
-      "management_process_condition": 13,
-      "explanation": 9
+      "retain_product_requirement_atom": 37,
+      "management_process_condition": 11,
+      "explanation": 3
     },
     "excluded_prior_proposals": [
       {
@@ -193,33 +193,31 @@
       "condition_product_requirement_atom_unknown": 51
     },
     "proposed_scope": {
-      "condition_product_requirement_atom": 29,
-      "condition_management_process_condition": 13,
-      "explanation": 9
+      "condition_product_requirement_atom": 37,
+      "condition_management_process_condition": 11,
+      "explanation": 3
     },
     "net_scope_delta": {
-      "condition": -9,
-      "explanation": 9,
-      "product_requirement_atom": -22,
-      "management_process_condition": 13,
-      "product_unknown_route": -22
+      "condition": -3,
+      "explanation": 3,
+      "product_requirement_atom": -14,
+      "management_process_condition": 11,
+      "product_unknown_route": -14
     },
-    "global_comparison_basis": "#2361 merged cumulative recount current effective baseline after #2353/#2356/#2360: classification structure 926, explanation 2928, condition 901; product_requirement_atom 893, management_process_condition 7, concept_condition 1; product route unknown 544. Applying this 51-row proposal alone yields condition 892, explanation 2937; product_requirement_atom 871, management_process_condition 20, concept_condition 1; unknown product route 522. These are classification/route labels, not coverage or adoption.",
+    "global_comparison_basis": "#2361 merged cumulative recount current effective baseline after #2353/#2356/#2360: classification structure 926, explanation 2928, condition 901; product_requirement_atom 893, management_process_condition 7, concept_condition 1; product route unknown 544. Applying this 51-row proposal alone yields condition 898, explanation 2931; product_requirement_atom 879, management_process_condition 18, concept_condition 1; unknown product route 530. These are classification/route labels, not coverage or adoption.",
     "cumulative_proposal_context": {
       "basis": "The disjoint #2363 and #2366 classification proposals are later proposal overlays over the #2361 current effective baseline; they do not change the effective state of this 51-row scope.",
       "product_unknown_baseline_after_2363_2366_proposals": 521,
-      "current_51_row_proposal_delta": -22,
-      "product_unknown_after_all_three_proposals": 499,
-      "arithmetic": "544 - 12 (#2363 proposal) - 11 (#2366 proposal) = 521; 521 - 22 (this 51-row proposal) = 499.",
+      "current_51_row_proposal_delta": -14,
+      "product_unknown_after_all_three_proposals": 507,
+      "arithmetic": "544 - 12 (#2363 proposal) - 11 (#2366 proposal) = 521; 521 - 14 (this corrected 51-row proposal) = 507.",
       "authority_effect": "none; proposal arithmetic does not establish adoption, successor assignment, handoff, coverage, resolution, or closure."
     }
   },
   "ambiguous_rows": [
-    "LEGACY-CAND-LINE-000840",
     "LEGACY-CAND-LINE-000842",
     "LEGACY-CAND-LINE-000843",
     "LEGACY-CAND-LINE-000844",
-    "LEGACY-CAND-LINE-000850",
     "LEGACY-CAND-LINE-000978"
   ],
   "rows": [
@@ -238,18 +236,25 @@
         "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
       },
       "proposed_classification": "condition",
-      "proposed_condition_subtype": "management_process_condition",
-      "classification_action": "reclassify_subtype",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
       "atom_boundary": {
-        "atom_id": "DGH-intake.reuse-boundary",
-        "boundary": "§1「現行実装を前提」冒頭の規範。既存Design Harnessを作り直さないという作業・構成指示で、独立した利用者向け動作条件は定義しない。",
+        "atom_id": "DGH-intake.nonreplacement-integration-constraint",
+        "boundary": "§0–1の非置換・既存責務再利用という一つの製品/システム設計制約。000840は既存Design Harnessを再構築しない規範、000850は新規実装候補ではなく接続先として扱う導入規範、000851–856は対象となる既存機構・契約の列挙で、この同じ制約を具体化する。これは受入8の000993、およびmerged #2363の000542/000546と同じ再利用・非並立境界である。範囲外の000857は明示禁止として同じ境界を補強するが、本proposalの分類件数には含めず別途再評価候補とする。",
         "source_line_ids": [
-          "LEGACY-CAND-LINE-000840"
+          "LEGACY-CAND-LINE-000840",
+          "LEGACY-CAND-LINE-000850",
+          "LEGACY-CAND-LINE-000851",
+          "LEGACY-CAND-LINE-000852",
+          "LEGACY-CAND-LINE-000853",
+          "LEGACY-CAND-LINE-000854",
+          "LEGACY-CAND-LINE-000855",
+          "LEGACY-CAND-LINE-000856"
         ]
       },
-      "reason": "管理条件。実装接続範囲を制約する指示として原文を保持する。",
+      "reason": "既存のDesign Harnessと列挙された責務を接続先として再利用し、同等責務の再構築・並立を避ける製品/システム設計制約。#2363の000542/000546と000993の非置換・非並立条件に意味が揃うため、condition/product_requirement_atom/unknownを維持する。",
       "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
-      "ambiguous": true
+      "ambiguous": false
     },
     {
       "source_id": "LEGACY-CAND-LINE-000842",
@@ -350,18 +355,25 @@
         "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
       },
       "proposed_classification": "condition",
-      "proposed_condition_subtype": "management_process_condition",
-      "classification_action": "reclassify_subtype",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
       "atom_boundary": {
-        "atom_id": "DGH-intake.existing-implementation-census",
-        "boundary": "§1導入文と直後の物理行49–54の既存機構一覧。既存を調査し接続先として扱う作業指示と、根拠となる現状一覧を分けて分類する。",
+        "atom_id": "DGH-intake.nonreplacement-integration-constraint",
+        "boundary": "§0–1の非置換・既存責務再利用という一つの製品/システム設計制約。000840は既存Design Harnessを再構築しない規範、000850は新規実装候補ではなく接続先として扱う導入規範、000851–856は対象となる既存機構・契約の列挙で、この同じ制約を具体化する。これは受入8の000993、およびmerged #2363の000542/000546と同じ再利用・非並立境界である。範囲外の000857は明示禁止として同じ境界を補強するが、本proposalの分類件数には含めず別途再評価候補とする。",
         "source_line_ids": [
-          "LEGACY-CAND-LINE-000850"
+          "LEGACY-CAND-LINE-000840",
+          "LEGACY-CAND-LINE-000850",
+          "LEGACY-CAND-LINE-000851",
+          "LEGACY-CAND-LINE-000852",
+          "LEGACY-CAND-LINE-000853",
+          "LEGACY-CAND-LINE-000854",
+          "LEGACY-CAND-LINE-000855",
+          "LEGACY-CAND-LINE-000856"
         ]
       },
-      "reason": "管理条件。実装調査・統合方法を定め、プロダクトの外部動作を定義しない。",
+      "reason": "既存のDesign Harnessと列挙された責務を接続先として再利用し、同等責務の再構築・並立を避ける製品/システム設計制約。#2363の000542/000546と000993の非置換・非並立条件に意味が揃うため、condition/product_requirement_atom/unknownを維持する。",
       "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
-      "ambiguous": true
+      "ambiguous": false
     },
     {
       "source_id": "LEGACY-CAND-LINE-000851",
@@ -377,17 +389,24 @@
         "route_status": "unknown",
         "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
       },
-      "proposed_classification": "explanation",
-      "proposed_condition_subtype": null,
-      "classification_action": "reclassify_classification",
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
       "atom_boundary": {
-        "atom_id": "DGH-intake.existing-implementation-census",
-        "boundary": "§1の既存機構一覧（物理行49–54）。censusで確認した当時の実装・契約を接続先として記録する一覧。",
+        "atom_id": "DGH-intake.nonreplacement-integration-constraint",
+        "boundary": "§0–1の非置換・既存責務再利用という一つの製品/システム設計制約。000840は既存Design Harnessを再構築しない規範、000850は新規実装候補ではなく接続先として扱う導入規範、000851–856は対象となる既存機構・契約の列挙で、この同じ制約を具体化する。これは受入8の000993、およびmerged #2363の000542/000546と同じ再利用・非並立境界である。範囲外の000857は明示禁止として同じ境界を補強するが、本proposalの分類件数には含めず別途再評価候補とする。",
         "source_line_ids": [
-          "LEGACY-CAND-LINE-000851"
+          "LEGACY-CAND-LINE-000840",
+          "LEGACY-CAND-LINE-000850",
+          "LEGACY-CAND-LINE-000851",
+          "LEGACY-CAND-LINE-000852",
+          "LEGACY-CAND-LINE-000853",
+          "LEGACY-CAND-LINE-000854",
+          "LEGACY-CAND-LINE-000855",
+          "LEGACY-CAND-LINE-000856"
         ]
       },
-      "reason": "説明。既存責務の由来・構造を示す情報である。",
+      "reason": "既存のDesign Harnessと列挙された責務を接続先として再利用し、同等責務の再構築・並立を避ける製品/システム設計制約。#2363の000542/000546と000993の非置換・非並立条件に意味が揃うため、condition/product_requirement_atom/unknownを維持する。",
       "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
       "ambiguous": false
     },
@@ -405,17 +424,24 @@
         "route_status": "unknown",
         "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
       },
-      "proposed_classification": "explanation",
-      "proposed_condition_subtype": null,
-      "classification_action": "reclassify_classification",
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
       "atom_boundary": {
-        "atom_id": "DGH-intake.existing-implementation-census",
-        "boundary": "§1の既存機構一覧（物理行49–54）。censusで確認した当時の実装・契約を接続先として記録する一覧。",
+        "atom_id": "DGH-intake.nonreplacement-integration-constraint",
+        "boundary": "§0–1の非置換・既存責務再利用という一つの製品/システム設計制約。000840は既存Design Harnessを再構築しない規範、000850は新規実装候補ではなく接続先として扱う導入規範、000851–856は対象となる既存機構・契約の列挙で、この同じ制約を具体化する。これは受入8の000993、およびmerged #2363の000542/000546と同じ再利用・非並立境界である。範囲外の000857は明示禁止として同じ境界を補強するが、本proposalの分類件数には含めず別途再評価候補とする。",
         "source_line_ids": [
-          "LEGACY-CAND-LINE-000852"
+          "LEGACY-CAND-LINE-000840",
+          "LEGACY-CAND-LINE-000850",
+          "LEGACY-CAND-LINE-000851",
+          "LEGACY-CAND-LINE-000852",
+          "LEGACY-CAND-LINE-000853",
+          "LEGACY-CAND-LINE-000854",
+          "LEGACY-CAND-LINE-000855",
+          "LEGACY-CAND-LINE-000856"
         ]
       },
-      "reason": "説明。既存責務の由来・構造を示す情報である。",
+      "reason": "既存のDesign Harnessと列挙された責務を接続先として再利用し、同等責務の再構築・並立を避ける製品/システム設計制約。#2363の000542/000546と000993の非置換・非並立条件に意味が揃うため、condition/product_requirement_atom/unknownを維持する。",
       "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
       "ambiguous": false
     },
@@ -433,17 +459,24 @@
         "route_status": "unknown",
         "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
       },
-      "proposed_classification": "explanation",
-      "proposed_condition_subtype": null,
-      "classification_action": "reclassify_classification",
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
       "atom_boundary": {
-        "atom_id": "DGH-intake.existing-implementation-census",
-        "boundary": "§1の既存機構一覧（物理行49–54）。censusで確認した当時の実装・契約を接続先として記録する一覧。",
+        "atom_id": "DGH-intake.nonreplacement-integration-constraint",
+        "boundary": "§0–1の非置換・既存責務再利用という一つの製品/システム設計制約。000840は既存Design Harnessを再構築しない規範、000850は新規実装候補ではなく接続先として扱う導入規範、000851–856は対象となる既存機構・契約の列挙で、この同じ制約を具体化する。これは受入8の000993、およびmerged #2363の000542/000546と同じ再利用・非並立境界である。範囲外の000857は明示禁止として同じ境界を補強するが、本proposalの分類件数には含めず別途再評価候補とする。",
         "source_line_ids": [
-          "LEGACY-CAND-LINE-000853"
+          "LEGACY-CAND-LINE-000840",
+          "LEGACY-CAND-LINE-000850",
+          "LEGACY-CAND-LINE-000851",
+          "LEGACY-CAND-LINE-000852",
+          "LEGACY-CAND-LINE-000853",
+          "LEGACY-CAND-LINE-000854",
+          "LEGACY-CAND-LINE-000855",
+          "LEGACY-CAND-LINE-000856"
         ]
       },
-      "reason": "説明。既存責務の由来・構造を示す情報である。",
+      "reason": "既存のDesign Harnessと列挙された責務を接続先として再利用し、同等責務の再構築・並立を避ける製品/システム設計制約。#2363の000542/000546と000993の非置換・非並立条件に意味が揃うため、condition/product_requirement_atom/unknownを維持する。",
       "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
       "ambiguous": false
     },
@@ -461,17 +494,24 @@
         "route_status": "unknown",
         "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
       },
-      "proposed_classification": "explanation",
-      "proposed_condition_subtype": null,
-      "classification_action": "reclassify_classification",
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
       "atom_boundary": {
-        "atom_id": "DGH-intake.existing-implementation-census",
-        "boundary": "§1の既存機構一覧（物理行49–54）。censusで確認した当時の実装・契約を接続先として記録する一覧。",
+        "atom_id": "DGH-intake.nonreplacement-integration-constraint",
+        "boundary": "§0–1の非置換・既存責務再利用という一つの製品/システム設計制約。000840は既存Design Harnessを再構築しない規範、000850は新規実装候補ではなく接続先として扱う導入規範、000851–856は対象となる既存機構・契約の列挙で、この同じ制約を具体化する。これは受入8の000993、およびmerged #2363の000542/000546と同じ再利用・非並立境界である。範囲外の000857は明示禁止として同じ境界を補強するが、本proposalの分類件数には含めず別途再評価候補とする。",
         "source_line_ids": [
-          "LEGACY-CAND-LINE-000854"
+          "LEGACY-CAND-LINE-000840",
+          "LEGACY-CAND-LINE-000850",
+          "LEGACY-CAND-LINE-000851",
+          "LEGACY-CAND-LINE-000852",
+          "LEGACY-CAND-LINE-000853",
+          "LEGACY-CAND-LINE-000854",
+          "LEGACY-CAND-LINE-000855",
+          "LEGACY-CAND-LINE-000856"
         ]
       },
-      "reason": "説明。既存責務の由来・構造を示す情報である。",
+      "reason": "既存のDesign Harnessと列挙された責務を接続先として再利用し、同等責務の再構築・並立を避ける製品/システム設計制約。#2363の000542/000546と000993の非置換・非並立条件に意味が揃うため、condition/product_requirement_atom/unknownを維持する。",
       "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
       "ambiguous": false
     },
@@ -489,17 +529,24 @@
         "route_status": "unknown",
         "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
       },
-      "proposed_classification": "explanation",
-      "proposed_condition_subtype": null,
-      "classification_action": "reclassify_classification",
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
       "atom_boundary": {
-        "atom_id": "DGH-intake.existing-implementation-census",
-        "boundary": "§1の既存機構一覧（物理行49–54）。censusで確認した当時の実装・契約を接続先として記録する一覧。",
+        "atom_id": "DGH-intake.nonreplacement-integration-constraint",
+        "boundary": "§0–1の非置換・既存責務再利用という一つの製品/システム設計制約。000840は既存Design Harnessを再構築しない規範、000850は新規実装候補ではなく接続先として扱う導入規範、000851–856は対象となる既存機構・契約の列挙で、この同じ制約を具体化する。これは受入8の000993、およびmerged #2363の000542/000546と同じ再利用・非並立境界である。範囲外の000857は明示禁止として同じ境界を補強するが、本proposalの分類件数には含めず別途再評価候補とする。",
         "source_line_ids": [
-          "LEGACY-CAND-LINE-000855"
+          "LEGACY-CAND-LINE-000840",
+          "LEGACY-CAND-LINE-000850",
+          "LEGACY-CAND-LINE-000851",
+          "LEGACY-CAND-LINE-000852",
+          "LEGACY-CAND-LINE-000853",
+          "LEGACY-CAND-LINE-000854",
+          "LEGACY-CAND-LINE-000855",
+          "LEGACY-CAND-LINE-000856"
         ]
       },
-      "reason": "説明。既存責務の由来・構造を示す情報である。",
+      "reason": "既存のDesign Harnessと列挙された責務を接続先として再利用し、同等責務の再構築・並立を避ける製品/システム設計制約。#2363の000542/000546と000993の非置換・非並立条件に意味が揃うため、condition/product_requirement_atom/unknownを維持する。",
       "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
       "ambiguous": false
     },
@@ -517,17 +564,24 @@
         "route_status": "unknown",
         "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
       },
-      "proposed_classification": "explanation",
-      "proposed_condition_subtype": null,
-      "classification_action": "reclassify_classification",
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
       "atom_boundary": {
-        "atom_id": "DGH-intake.existing-implementation-census",
-        "boundary": "§1の既存機構一覧（物理行49–54）。censusで確認した当時の実装・契約を接続先として記録する一覧。",
+        "atom_id": "DGH-intake.nonreplacement-integration-constraint",
+        "boundary": "§0–1の非置換・既存責務再利用という一つの製品/システム設計制約。000840は既存Design Harnessを再構築しない規範、000850は新規実装候補ではなく接続先として扱う導入規範、000851–856は対象となる既存機構・契約の列挙で、この同じ制約を具体化する。これは受入8の000993、およびmerged #2363の000542/000546と同じ再利用・非並立境界である。範囲外の000857は明示禁止として同じ境界を補強するが、本proposalの分類件数には含めず別途再評価候補とする。",
         "source_line_ids": [
+          "LEGACY-CAND-LINE-000840",
+          "LEGACY-CAND-LINE-000850",
+          "LEGACY-CAND-LINE-000851",
+          "LEGACY-CAND-LINE-000852",
+          "LEGACY-CAND-LINE-000853",
+          "LEGACY-CAND-LINE-000854",
+          "LEGACY-CAND-LINE-000855",
           "LEGACY-CAND-LINE-000856"
         ]
       },
-      "reason": "説明。既存責務の由来・構造を示す情報である。",
+      "reason": "既存のDesign Harnessと列挙された責務を接続先として再利用し、同等責務の再構築・並立を避ける製品/システム設計制約。#2363の000542/000546と000993の非置換・非並立条件に意味が揃うため、condition/product_requirement_atom/unknownを維持する。",
       "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
       "ambiguous": false
     },
@@ -1682,5 +1736,19 @@
     "overlap_with_this_51_row_scope": [],
     "selection_effect": "none; this later sample does not retroactively alter the bounded 51-row classification proposal or its source identities",
     "pin_note": "The #2364 521-cutoff selection is a separate open proposal. Its exact review and merge status are tracked in that PR; this bounded 51-row classification does not depend on its authority."
-  }
+  },
+  "out_of_scope_classification_concerns": [
+    {
+      "source_id": "LEGACY-CAND-LINE-000857",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 56,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:07d75a8d2acdb6f1a5f354dd87f376bac0499114ba5ddbb9532fe2bb07ab55e3",
+      "physical_line_bytes_sha256": "sha256:e855306302133f887359f72c0da8667236963509e71c41c6f425731bcfa8d2b3",
+      "exact_source_text": "**禁止:** 同等責務の別Engine、別Registry、別Prototype Gate、別Research subsystemを並立させること。",
+      "baseline_classification": "explanation per #2353 baseline",
+      "concern": "Explicit prohibition that semantically reinforces the nonreplacement product atom formed by in-scope 000840 and 000850–856.",
+      "follow_up": "Reassess classification in a later bounded proposal; preserve out-of-scope status here and do not alter the 51-row counts."
+    }
+  ]
 }
