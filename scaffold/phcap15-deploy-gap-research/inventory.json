@@ -59,7 +59,7 @@
       "refs": [
         {"path": "docs/concept/product-boundary.md", "line_start": 55, "line_end": 65, "span_sha256": "73a15d9b1da22b4495969156361d6615662ca617dad8d9fcd2c2a24330c445a6", "file_sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"},
         {"path": "docs/helix-os/L1-planning/system-intent.md", "line_start": 22, "line_end": 35, "span_sha256": "31e8343dc8719fd0a5efae909b20a4828167da2721939b88e2475e83e8c14f36", "file_sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8"},
-        {"path": "docs/helix-os/L2-requirements/governance-requirements.md", "line_start": 59, "line_end": 63, "span_sha256": "32fc70a4b810003142b7d37df276c312121d586a21de781aabb0800ec61d5903", "file_sha256": "30f9635d077c07116a66c05f1636324b72f1aa7f8a2ceccc260e9b83f319caf1"}
+        {"path": "docs/helix-os/L2-requirements/governance-requirements.md", "line_start": 59, "line_end": 63, "span_sha256": "32fc70a4b810003142b7d37df276c312121d586a21de781aabb0800ec61d5903", "file_sha256": "c90be67dc90240434568491074d0e12fb593759ad9121ee9ef9bd3f932a41610"}
       ]
     },
     {
