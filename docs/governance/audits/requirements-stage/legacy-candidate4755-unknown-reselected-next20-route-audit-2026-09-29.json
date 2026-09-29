@@ -1,0 +1,753 @@
+{
+  "schema_version": "helix-stage5-unknown-reselected20-route-audit/v1",
+  "audit_id": "legacy-candidate4755-unknown-reselected-next20-route-audit-2026-09-29",
+  "authority_effect": "none",
+  "base_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+  "pinned_inputs": {
+    "cumulative_audit": {
+      "commit": "8a75e5392a44e005bb05197d977bdbcf75b93cf0",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "sha256": "57fce8a0e05ed73c46346f2177c439e862a17a06ecea65446389f24dc34160c5"
+    },
+    "metadata_proposal_2356": {
+      "commit": "b213b41735067d1716c143c92e0fa6c71d8e92d9",
+      "md_path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.md",
+      "md_sha256": "5b0283bc893d2666a575f7313e0508d7343a1eed8a7464641eb7d0a06346f6ea",
+      "json_path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "json_sha256": "53c8acc872f30cf19e88499bc68b0f11c830a677f5c346d646a148dd3ca7853b"
+    },
+    "prior_2350_route_audit": {
+      "source_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-unknown-product-atoms-first20-route-audit-2026-09-29.json",
+      "sha256": "c91406a58328d8820b6413a7f699c8a6d71ab89f289652e73d374643b6117273",
+      "selected_ids": [
+        "LEGACY-CAND-LINE-000021",
+        "LEGACY-CAND-LINE-000022",
+        "LEGACY-CAND-LINE-000023",
+        "LEGACY-CAND-LINE-000024",
+        "LEGACY-CAND-LINE-000025",
+        "LEGACY-CAND-LINE-000026",
+        "LEGACY-CAND-LINE-000027",
+        "LEGACY-CAND-LINE-000031",
+        "LEGACY-CAND-LINE-000037",
+        "LEGACY-CAND-LINE-000051",
+        "LEGACY-CAND-LINE-000054",
+        "LEGACY-CAND-LINE-000069",
+        "LEGACY-CAND-LINE-000070",
+        "LEGACY-CAND-LINE-000071",
+        "LEGACY-CAND-LINE-000072",
+        "LEGACY-CAND-LINE-000073",
+        "LEGACY-CAND-LINE-000074",
+        "LEGACY-CAND-LINE-000080",
+        "LEGACY-CAND-LINE-000091",
+        "LEGACY-CAND-LINE-000103"
+      ]
+    },
+    "old_sources": "Archive sources and current carry-forward/semantic-router records are byte-pinned per row below; no unpublished next20 audit used for selection or as authority."
+  },
+  "selection": {
+    "population": "#2353 effective condition/product_requirement_atom/unknown; 558 product atoms before exclusions",
+    "excluded_2350_original_ids_count": 20,
+    "excluded_2356_reclassified_ids_count": 9,
+    "excluded_union_count": 29,
+    "remaining_population_count": 548,
+    "rule": "Ascending numeric source ID from #2353 effective cumulative row records; exclude all 20 original #2350 IDs and exact 9 #2356 proposed reclassification IDs; take first 20.",
+    "selected_ids": [
+      "LEGACY-CAND-LINE-000052",
+      "LEGACY-CAND-LINE-000108",
+      "LEGACY-CAND-LINE-000109",
+      "LEGACY-CAND-LINE-000110",
+      "LEGACY-CAND-LINE-000140",
+      "LEGACY-CAND-LINE-000142",
+      "LEGACY-CAND-LINE-000143",
+      "LEGACY-CAND-LINE-000180",
+      "LEGACY-CAND-LINE-000331",
+      "LEGACY-CAND-LINE-000356",
+      "LEGACY-CAND-LINE-000396",
+      "LEGACY-CAND-LINE-000425",
+      "LEGACY-CAND-LINE-000468",
+      "LEGACY-CAND-LINE-000470",
+      "LEGACY-CAND-LINE-000472",
+      "LEGACY-CAND-LINE-000474",
+      "LEGACY-CAND-LINE-000476",
+      "LEGACY-CAND-LINE-000477",
+      "LEGACY-CAND-LINE-000478",
+      "LEGACY-CAND-LINE-000491"
+    ]
+  },
+  "route_labels": {
+    "adopted_relevant_partial": "Exact adopted L2/L11 relation exists but only covers a subset of the old atom conditions; residual listed per row.",
+    "unadopted_candidate_relation_only": "Exact relation exists only in a candidate/proposal, not the adopted 250 requirement set.",
+    "true_unknown": "No exact adopted or unadopted candidate successor relation established in inspected source; semantic similarity/ID absence is not used as route."
+  },
+  "counts": {
+    "adopted_relevant_partial": 8,
+    "unadopted_candidate_relation_only": 9,
+    "true_unknown": 3
+  },
+  "classification_metadata_concerns": [
+    {
+      "priority": "route_blocking_for_these_rows",
+      "source_ids": [
+        "LEGACY-CAND-LINE-000140",
+        "LEGACY-CAND-LINE-000142",
+        "LEGACY-CAND-LINE-000143",
+        "LEGACY-CAND-LINE-000180"
+      ],
+      "concern": "The pinned router classifies 000140/000142/000180 as explanation; 000143 is requirement_atom with explicit correction. #2353 cumulative effective overlay includes all four as product_requirement_atom/unknown. In addition, 000140 is a continuation inside AAFD-R-03 and 000142/000143 split one sentence at a physical-line boundary (000142 ends “Issue、”, 000143 begins “Requirement…”); 000180 is a process/promotion gate sentence whose subtype may need review. Keep the selected identities because selection is defined over #2353 effective state, but mark all four route classifications provisional until overlay provenance, atom boundaries and product-vs-process subtype are reconciled. Re-run the next batch selector after any correction."
+    },
+    {
+      "priority": "classification_review",
+      "source_ids": [
+        "LEGACY-CAND-LINE-000476",
+        "LEGACY-CAND-LINE-000477"
+      ],
+      "concern": "The lines are counts and references to CIG requirement/acceptance IDs (“exact 4件” / “exact 7件”). They may be explanation/source metadata, not standalone product atoms. Their candidate-only route is provisional and should be removed from route population if reclassified."
+    },
+    {
+      "priority": "classification_review",
+      "source_ids": [
+        "LEGACY-CAND-LINE-000331"
+      ],
+      "concern": "The line combines independent-oracle/mutation acceptance content with “実証は未実施” (implementation-status metadata). Partial-route reasoning concerns the criterion clause only; check whether status metadata is not being treated as part of the condition atom."
+    }
+  ],
+  "authority_context": {
+    "adopted_requirement_baseline": "Eight mechanism L2/L11 sets and 250 explicit candidates, per docs/governance/new-generation-start-here.md (2026-09-28 table) and each mechanism PO decision record. Only adopted subset is used for adopted_relevant_partial.",
+    "relevant_receipts": [
+      "MPR-RC-HELIXINTELLIGENCE-L2-009-003",
+      "MPR-RC-HELIXINTELLIGENCE-L2-015-003",
+      "MPR-RC-HELIXINTELLIGENCE-L2-016-003"
+    ],
+    "candidate_only_receipt_context": "HELIXINTELLIGENCE-L2-073 is listed in post-confirmation-25 packet as PO undecided/recommended A, not as adopted. Next-generation-ci documents identify CIG source files as candidates, not accepted requirements.",
+    "scope_limit": "No L3/10 transition, execution/CI readiness, semantic adoption, source closure, or authority change inferred.",
+    "registration_receipt_limit": "The registration artifacts cited for adopted INTELLIGENCE identities record source_atom_count=0 and explicitly do not transfer or adopt legacy source atoms. The 2026-09-28 PO decision adopts the exact current L2/L11 candidates; the partial route labels below indicate semantic relation to those current contracts only, never legacy atom coverage or successor closure."
+  },
+  "rows": [
+    {
+      "source_id": "LEGACY-CAND-LINE-000052",
+      "old_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+      "source_line": 17,
+      "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+      "source_file_sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+      "source_line_sha256": "sha256:e50c8b6e7d5d0ace1402cc202cbb32e65dca197cc3a4eeebdfcf78c5b5cfec31",
+      "physical_line_bytes_sha256": "705f011792c69e5f36616c7652070a9b6653ad2a5a76ac6f6567a62809c54540",
+      "source_text": "| AAFD-AC-003 | AAFD-R-03 | AI自己評価、再現なしP0、duplicate、expired、counterevidenceありをverifiedへ昇格しない |",
+      "classification_at_pinned_cumulative": {
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route": "unknown"
+      },
+      "router_review_snapshot": {
+        "classification": "explanation",
+        "classification_correction": null,
+        "review_outcome": "non_requirement_source_structure_or_explanation",
+        "semantic_cluster_id": "agentic_audit_future_state_delta::AAFD-AC-003"
+      },
+      "route_assessment": "adopted_relevant_partial",
+      "current_relation_and_residual": "HELIXINTELLIGENCE-L2-009 / L11 の監査finding、反証trace、evidence不明時unknown保持に部分関係する。旧行の「AI自己評価・未再現P0・duplicate・expired・counterevidenceをverifiedへ昇格しない」という条件集合を、採択本文は個別に採択・検証する範囲まで示していない。",
+      "current_authority_refs": [
+        "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#HELIXINTELLIGENCE-L2-009",
+        "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md#HELIXINTELLIGENCE-L2-009",
+        "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md#MPR-RC-HELIXINTELLIGENCE-L2-009-003",
+        "docs/governance/audits/requirement-registration/intelligence-content-quality-coverage-receipt-2026-09-27-r2.json",
+        "docs/governance/audits/requirement-registration/helixintelligence-functional-units-coverage-receipt-2026-09-27.json (source_atom_count=0; authority_effect=none)"
+      ],
+      "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
+      "route_assessment_status": "assessed_from_effective_classification"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000108",
+      "old_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requests.md",
+      "source_line": 42,
+      "asset_id": "LEGACY-ASSET-8247A056F30FF91E4B8D",
+      "source_file_sha256": "d78bbcc0ca184bfb87dc2bbc932291f97a58bf9f0fd703481489f15944be9b76",
+      "source_line_sha256": "sha256:637a4fac389276debb8d7e330e7fff61ba1c1cc43bb42c0a03a45a4e5eb9b949",
+      "physical_line_bytes_sha256": "7a1f0496432248372804d8c9006a33a2061e559aa099077d8384a5a4d2a2de13",
+      "source_text": "- 新しいworkflow route、development style、DB authority、resident laneを作らない。",
+      "classification_at_pinned_cumulative": {
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route": "unknown"
+      },
+      "router_review_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "review_outcome": "unknown_after_semantic_check",
+        "semantic_cluster_id": "agentic_audit_future_state_delta::"
+      },
+      "route_assessment": "true_unknown",
+      "current_relation_and_residual": "新workflow route・development style・DB authority・resident laneの4対象を一括で禁止する同一scopeの採択L2/L11を特定できない。現行の一般authority境界からこの旧candidateの個別条件を補わない。",
+      "current_authority_refs": [
+        "docs/governance/new-generation-start-here.md#current-authority",
+        "docs/governance/authority-state-model.md"
+      ],
+      "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
+      "route_assessment_status": "assessed_from_effective_classification"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000109",
+      "old_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requests.md",
+      "source_line": 43,
+      "asset_id": "LEGACY-ASSET-8247A056F30FF91E4B8D",
+      "source_file_sha256": "d78bbcc0ca184bfb87dc2bbc932291f97a58bf9f0fd703481489f15944be9b76",
+      "source_line_sha256": "sha256:e43d17cce7a5d83313e3d84cf982c7330588655d35f5bc94a22d4bab91de991e",
+      "physical_line_bytes_sha256": "2b3312f643ba720d43b508bae6a57c575340c183ec6d73635397640747bee725",
+      "source_text": "- UIL、TER、Future Synthesis、System Synthesis、Learning Systemを再実装しない。",
+      "classification_at_pinned_cumulative": {
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route": "unknown"
+      },
+      "router_review_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "review_outcome": "unknown_after_semantic_check",
+        "semantic_cluster_id": "agentic_audit_future_state_delta::"
+      },
+      "route_assessment": "adopted_relevant_partial",
+      "current_relation_and_residual": "HELIXINTELLIGENCE-L2-009 / L11 はAAFDを既存candidateとして扱い、UIL/TER/Future Synthesisの責務を重複実装しない境界を明記する。Learning Systemを含む列挙全体や個別consumer条件は採択されていない。",
+      "current_authority_refs": [
+        "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#HELIXINTELLIGENCE-L2-009",
+        "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md#HELIXINTELLIGENCE-L2-009",
+        "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md#MPR-RC-HELIXINTELLIGENCE-L2-009-003",
+        "docs/governance/audits/requirement-registration/intelligence-content-quality-coverage-receipt-2026-09-27-r2.json",
+        "docs/governance/audits/requirement-registration/helixintelligence-functional-units-coverage-receipt-2026-09-27.json (source_atom_count=0; authority_effect=none)"
+      ],
+      "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
+      "route_assessment_status": "assessed_from_effective_classification"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000110",
+      "old_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requests.md",
+      "source_line": 44,
+      "asset_id": "LEGACY-ASSET-8247A056F30FF91E4B8D",
+      "source_file_sha256": "d78bbcc0ca184bfb87dc2bbc932291f97a58bf9f0fd703481489f15944be9b76",
+      "source_line_sha256": "sha256:4fe03d54e822da4ee7f304ebee2a9de6f5bd9fffbc3ccf107f1f82ca445b242b",
+      "physical_line_bytes_sha256": "5f3d9c69c042dd32929a867c9126c5055d91d648bcdd47a18f7f4f6e5f93874d",
+      "source_text": "- AI監査、delta、future directiveはRequirement、Design、Release、Assignment、merge authorityを直接変更しない。",
+      "classification_at_pinned_cumulative": {
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route": "unknown"
+      },
+      "router_review_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "review_outcome": "unknown_after_semantic_check",
+        "semantic_cluster_id": "agentic_audit_future_state_delta::"
+      },
+      "route_assessment": "adopted_relevant_partial",
+      "current_relation_and_residual": "HELIXINTELLIGENCE-L2-009 / L11 と現行authority境界に、自由文だけでauthorityを変更しない関係がある。Requirement/Design/Release/Assignment/mergeの5領域すべてに対するAAFD/delta/future directive固有の禁止条件を一括で移管した証拠はない。",
+      "current_authority_refs": [
+        "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#HELIXINTELLIGENCE-L2-009",
+        "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md#HELIXINTELLIGENCE-L2-009",
+        "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md#MPR-RC-HELIXINTELLIGENCE-L2-009-003",
+        "docs/governance/audits/requirement-registration/intelligence-content-quality-coverage-receipt-2026-09-27-r2.json",
+        "docs/governance/audits/requirement-registration/helixintelligence-functional-units-coverage-receipt-2026-09-27.json (source_atom_count=0; authority_effect=none)"
+      ],
+      "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
+      "route_assessment_status": "assessed_from_effective_classification"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000140",
+      "old_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "source_line": 41,
+      "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+      "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "source_line_sha256": "sha256:0e46c073ca7c854ba00923ca1d5804d470c8a3beea6c85713411e74be9ac101e",
+      "physical_line_bytes_sha256": "14b6aefa2f868c2fbea31c521008894d6fffc0b78d2f2cd07d9392b8359a343e",
+      "source_text": "反証、expiry、supersessionをUIL-01〜04へ渡す。finding proposalとremediation proposalは別identity、別判定とする。",
+      "classification_at_pinned_cumulative": {
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route": "unknown"
+      },
+      "router_review_snapshot": {
+        "classification": "explanation",
+        "classification_correction": null,
+        "review_outcome": "non_requirement_source_structure_or_explanation",
+        "semantic_cluster_id": "agentic_audit_future_state_delta::AAFD-R-03"
+      },
+      "route_assessment": "true_unknown",
+      "current_relation_and_residual": "UILへ渡す反証・expiry・supersession、finding/remediation別identity・別判定の全条件について、adopted L2/L11にexact span relationを確認できない。AAFDの監査一般契約との近さだけで採択coverageを推定しない。",
+      "current_authority_refs": [
+        "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#HELIXINTELLIGENCE-L2-009",
+        "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md#HELIXINTELLIGENCE-L2-009",
+        "docs/governance/audits/requirement-registration/intelligence-content-quality-coverage-receipt-2026-09-27-r2.json",
+        "docs/governance/audits/requirement-registration/helixintelligence-functional-units-coverage-receipt-2026-09-27.json (source_atom_count=0; authority_effect=none)"
+      ],
+      "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
+      "route_assessment_status": "provisional_pending_classification_review",
+      "classification_review_residual": "#2353 effective cumulative row class is product_requirement_atom, while pinned semantic-router snapshot is explanation for these rows (000143 has an explicit router correction). The selected class follows #2353 as required, but row atom boundary/type must be reconciled before this route is treated as stable."
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000142",
+      "old_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "source_line": 45,
+      "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+      "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "source_line_sha256": "sha256:e7d58c59ce05eff5e2807b1a123e36e30d95dd8eddea9b26ae8de88406fa0de3",
+      "physical_line_bytes_sha256": "6f8048c7df26a70f062fd0da63733eea540f236223202e8affa55401fb519691",
+      "source_text": "Agentic Audit Probeは未知finding探索のsource profileであり、UILのdeterministic detectorを置換しない。自由文を直接Issue、",
+      "classification_at_pinned_cumulative": {
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route": "unknown"
+      },
+      "router_review_snapshot": {
+        "classification": "explanation",
+        "classification_correction": null,
+        "review_outcome": "non_requirement_source_structure_or_explanation",
+        "semantic_cluster_id": "agentic_audit_future_state_delta::AAFD-R-04"
+      },
+      "route_assessment": "unadopted_candidate_relation_only",
+      "current_relation_and_residual": "HELIXINTELLIGENCE-L2-073 proposalは旧AAFD-R-04 lines 45–46を限定再導出し、ProbeをUIL deterministic detectorの置換にしない範囲を示す。ただしL2-073はPO未決候補で、採択routeではない。",
+      "current_authority_refs": [
+        "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#HELIXINTELLIGENCE-L2-073",
+        "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md#HELIXINTELLIGENCE-L2-073",
+        "docs/governance/audits/requirement-registration/intelligence-free-text-boundary-coverage-receipt-2026-09-28-r2.json",
+        "docs/governance/audits/requirements-stage/post-confirmation-25-po-decision-packet-2026-09-28.md"
+      ],
+      "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
+      "route_assessment_status": "provisional_pending_classification_review",
+      "classification_review_residual": "#2353 effective cumulative row class is product_requirement_atom, while pinned semantic-router snapshot is explanation for these rows (000143 has an explicit router correction). The selected class follows #2353 as required, but row atom boundary/type must be reconciled before this route is treated as stable."
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000143",
+      "old_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "source_line": 46,
+      "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+      "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "source_line_sha256": "sha256:333d4deb1ee4f9c39d411fb9749a8e3d6c5d397972bf29b5c5d52f03ba696412",
+      "physical_line_bytes_sha256": "a068685bb9cbca246771cd91b0ebf2ad0e1d6350c00d777b62c2abefe8e4d523",
+      "source_text": "Requirement、CI、merge authorityへ投影しない。",
+      "classification_at_pinned_cumulative": {
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route": "unknown"
+      },
+      "router_review_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": "This is an explicit prohibited projection into Requirement, CI, or merge authority.",
+        "review_outcome": "unknown",
+        "semantic_cluster_id": "agentic_audit_future_state_delta::AAFD-R-04"
+      },
+      "route_assessment": "adopted_relevant_partial",
+      "current_relation_and_residual": "HELIXINTELLIGENCE-L2-009 / L11は自由文findingからauthorityを変えない境界を採択済みとして持つ。Requirement/CI/mergeへの直接投影という全宛先とAAFD probe限定の条件は、別のL2-073未決proposalにも現れ、全体は部分関係に留まる。",
+      "current_authority_refs": [
+        "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#HELIXINTELLIGENCE-L2-009",
+        "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md#HELIXINTELLIGENCE-L2-009",
+        "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md#MPR-RC-HELIXINTELLIGENCE-L2-009-003",
+        "docs/governance/audits/requirement-registration/intelligence-content-quality-coverage-receipt-2026-09-27-r2.json",
+        "docs/governance/audits/requirement-registration/helixintelligence-functional-units-coverage-receipt-2026-09-27.json (source_atom_count=0; authority_effect=none)"
+      ],
+      "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
+      "route_assessment_status": "provisional_pending_classification_review",
+      "classification_review_residual": "#2353 effective cumulative row class is product_requirement_atom, while pinned semantic-router snapshot is explanation for these rows (000143 has an explicit router correction). The selected class follows #2353 as required, but row atom boundary/type must be reconciled before this route is treated as stable."
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000180",
+      "old_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "source_line": 109,
+      "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+      "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "source_line_sha256": "sha256:2a5f6c6fdeb935227cf06f85d055b111fe12eaa283308018e1345a0569e9caf7",
+      "physical_line_bytes_sha256": "56bd3f21dda0e993a0bfb0c5ed2b9227609bfd4c76e2ce628d33da767065578b",
+      "source_text": "Designを自動変更しない。昇格は#1035/#1384の独立VERIFY、counterexample、expiry、human gateへ従う。",
+      "classification_at_pinned_cumulative": {
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route": "unknown"
+      },
+      "router_review_snapshot": {
+        "classification": "explanation",
+        "classification_correction": null,
+        "review_outcome": "non_requirement_source_structure_or_explanation",
+        "semantic_cluster_id": "agentic_audit_future_state_delta::AAFD-R-15"
+      },
+      "route_assessment": "true_unknown",
+      "current_relation_and_residual": "Design自動変更禁止、#1035/#1384の独立VERIFY・counterexample・expiry・human gateという複合条件を、該当scopeの採択L2/L11へ写せない。旧Issue番号やhistorical candidateだけから現行手続きを導かない。",
+      "current_authority_refs": [
+        "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#HELIXINTELLIGENCE-L2-009",
+        "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md#HELIXINTELLIGENCE-L2-009",
+        "docs/governance/audits/requirement-registration/intelligence-content-quality-coverage-receipt-2026-09-27-r2.json",
+        "docs/governance/audits/requirement-registration/helixintelligence-functional-units-coverage-receipt-2026-09-27.json (source_atom_count=0; authority_effect=none)"
+      ],
+      "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
+      "route_assessment_status": "provisional_pending_classification_review",
+      "classification_review_residual": "#2353 effective cumulative row class is product_requirement_atom, while pinned semantic-router snapshot is explanation for these rows (000143 has an explicit router correction). The selected class follows #2353 as required, but row atom boundary/type must be reconciled before this route is treated as stable."
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000331",
+      "old_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-acceptance.md",
+      "source_line": 16,
+      "asset_id": "LEGACY-ASSET-901CD182B52024593E41",
+      "source_file_sha256": "cd2fdd3dcfaa98935db0fef6b876d6cdb7133b11b8c8877363c3d0138c4b8cbc",
+      "source_line_sha256": "sha256:beadd151c9fe589483e609ae50fd573fbbef1137c7bca0a68f019b99896dab5c",
+      "physical_line_bytes_sha256": "d494e1584b017b4d4bd6d4eeed1db075bc9726e47bc40586dd30cda3ad8183cb",
+      "source_text": "各反例は独立oracle・mutationで拒否を検証し、合法入力が通る対照例を持つ。実証は未実施。",
+      "classification_at_pinned_cumulative": {
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route": "unknown"
+      },
+      "router_review_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "review_outcome": "unknown_after_semantic_check",
+        "semantic_cluster_id": "bugbot_bounded_repair::"
+      },
+      "route_assessment": "adopted_relevant_partial",
+      "current_relation_and_residual": "HELIXINTELLIGENCE-L2-015/016 と対L11はBugbot候補・限定修復のscope、反例、既存oracle維持に関係する。独立oracle・mutation拒否・合法対照例・実証未実施というこの受入行の全oracle一式が採択済みだとは確認できない。",
+      "current_authority_refs": [
+        "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#HELIXINTELLIGENCE-L2-015",
+        "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md#HELIXINTELLIGENCE-L2-015",
+        "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md#MPR-RC-HELIXINTELLIGENCE-L2-015-003",
+        "docs/governance/audits/requirement-registration/intelligence-content-quality-coverage-receipt-2026-09-27-r2.json",
+        "docs/governance/audits/requirement-registration/helixintelligence-functional-units-coverage-receipt-2026-09-27.json (source_atom_count=0; authority_effect=none)"
+      ],
+      "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
+      "route_assessment_status": "provisional_pending_classification_review",
+      "classification_review_residual": "The operative oracle text is substantive, but the trailing “実証は未実施” reports status. Confirm that status metadata is not being treated as part of the condition atom; partial relation applies to the operative criterion only."
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000356",
+      "old_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requests.md",
+      "source_line": 15,
+      "asset_id": "LEGACY-ASSET-35F5F438E0F8755B1CCE",
+      "source_file_sha256": "20f549aa879d84e92196976ab2106bacedb393767d7a9946483c4d308576024e",
+      "source_line_sha256": "sha256:1dea27a09c927f543a9af4df919a95b432b98e417601f0c6182983eb20c64f8e",
+      "physical_line_bytes_sha256": "196f33bfe82a5e3477005a15330d4c02103c09f57823f1681fad39474421f7eb",
+      "source_text": "BBR-BR01: 開発者・workerが定型逸脱の修正往復を減らし、意味判断が必要な仕事へ集中できること。",
+      "classification_at_pinned_cumulative": {
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route": "unknown"
+      },
+      "router_review_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "review_outcome": "unknown_after_semantic_check",
+        "semantic_cluster_id": "bugbot_bounded_repair::"
+      },
+      "route_assessment": "adopted_relevant_partial",
+      "current_relation_and_residual": "HELIXINTELLIGENCE-L2-015は反復failureからBugbot candidateを作る採択範囲であり、workerの定型逸脱修正往復を減らす目的に部分関係する。具体的な効率目標や成功基準は同一ではない。",
+      "current_authority_refs": [
+        "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#HELIXINTELLIGENCE-L2-015",
+        "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md#HELIXINTELLIGENCE-L2-015",
+        "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md#MPR-RC-HELIXINTELLIGENCE-L2-015-003",
+        "docs/governance/audits/requirement-registration/intelligence-content-quality-coverage-receipt-2026-09-27-r2.json",
+        "docs/governance/audits/requirement-registration/helixintelligence-functional-units-coverage-receipt-2026-09-27.json (source_atom_count=0; authority_effect=none)"
+      ],
+      "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
+      "route_assessment_status": "assessed_from_effective_classification"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000396",
+      "old_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "source_line": 37,
+      "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+      "source_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+      "source_line_sha256": "sha256:9fb5e1138e5db9ff236f7b041a3c021a239b950a12d5bde9d0b7e4fa231e50ff",
+      "physical_line_bytes_sha256": "a479f426ab770fcfa095bdaa768a486582bf354eaf56c2b8cf36ae5607a51cae",
+      "source_text": "適用条件と安全性を検証できる登録済み処理のみ機械修復する。複数解・意味判断は既存workerへproposalとして返す。",
+      "classification_at_pinned_cumulative": {
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route": "unknown"
+      },
+      "router_review_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "review_outcome": "unknown_after_semantic_check",
+        "semantic_cluster_id": "bugbot_bounded_repair::BBR-R02_B02"
+      },
+      "route_assessment": "adopted_relevant_partial",
+      "current_relation_and_residual": "HELIXINTELLIGENCE-L2-015/016 とL11は再現性・scope・repairability、固定target/write-set/side effectに関係する。登録済み処理だけの実適用と意味判断時worker proposalへの戻しを旧行全体として採択したかは不明。",
+      "current_authority_refs": [
+        "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#HELIXINTELLIGENCE-L2-015",
+        "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md#HELIXINTELLIGENCE-L2-015",
+        "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md#MPR-RC-HELIXINTELLIGENCE-L2-015-003",
+        "docs/governance/audits/requirement-registration/intelligence-content-quality-coverage-receipt-2026-09-27-r2.json",
+        "docs/governance/audits/requirement-registration/helixintelligence-functional-units-coverage-receipt-2026-09-27.json (source_atom_count=0; authority_effect=none)"
+      ],
+      "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
+      "route_assessment_status": "assessed_from_effective_classification"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000425",
+      "old_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "source_line": 75,
+      "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+      "source_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+      "source_line_sha256": "sha256:9facff56cbc42f9f7157dd85f1078605951af16a52fef5ec698bb62fd46681bc",
+      "physical_line_bytes_sha256": "678d10fb645494bf12216a7dd4a4ff9f45a6cb88e4dfc6d7d23d9de30a15fbe8",
+      "source_text": "成功件数だけで評価せず、Aと同条件の費用・時間・手戻り・誤修復・未解消数を測定する。",
+      "classification_at_pinned_cumulative": {
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route": "unknown"
+      },
+      "router_review_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": "This line states measurable acceptance dimensions and a comparison constraint.",
+        "review_outcome": "unknown",
+        "semantic_cluster_id": "bugbot_bounded_repair::"
+      },
+      "route_assessment": "adopted_relevant_partial",
+      "current_relation_and_residual": "HELIXINTELLIGENCE-L2-015はfalse-positive・scope・repairabilityの比較軸を採択するが、A条件との同条件比較、費用・時間・手戻り・誤修復・未解消数一式は一致しない。INTELLIGENCE-L2-024は3.0で、本体8機構の1.0 adopted successorではない。",
+      "current_authority_refs": [
+        "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#HELIXINTELLIGENCE-L2-015",
+        "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md#HELIXINTELLIGENCE-L2-015",
+        "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md#MPR-RC-HELIXINTELLIGENCE-L2-015-003",
+        "docs/governance/audits/requirement-registration/intelligence-content-quality-coverage-receipt-2026-09-27-r2.json",
+        "docs/governance/audits/requirement-registration/helixintelligence-functional-units-coverage-receipt-2026-09-27.json (source_atom_count=0; authority_effect=none)"
+      ],
+      "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
+      "route_assessment_status": "assessed_from_effective_classification"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000468",
+      "old_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "source_line": 14,
+      "asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
+      "source_file_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+      "source_line_sha256": "sha256:77c358b5bc3253bac4d39a55685fae93570d3e4288ca161de1a195b676eea412",
+      "physical_line_bytes_sha256": "2e5ee3f63f1c03cc2806ef4fcd4de7ee55a607c8a1482966a1810c5183b9a550",
+      "source_text": "| `CIG-AC-001` | `CIG-R-01` | event class、PR ID、HEAD、run ID、attemptを一件ずつ欠落・改変する | generation identityが決定的に一致し、不正入力を個別拒否する |",
+      "classification_at_pinned_cumulative": {
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route": "unknown"
+      },
+      "router_review_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "review_outcome": "unknown_after_semantic_check",
+        "semantic_cluster_id": "ci_event_concurrency_generation::CIG-AC-001"
+      },
+      "route_assessment": "unadopted_candidate_relation_only",
+      "current_relation_and_residual": "HELIX-OS/HARNESSのnext-generation-ci candidateが旧CIG requests/requirements/acceptanceをsourceとして明示する。event class/PR/HEAD/run/attempt identityの現行採択CI oracleとは確認できず、source relationは未採択candidateのみ。",
+      "current_authority_refs": [
+        "docs/helix-os/candidates/next-generation-ci-requirements.md:12-14",
+        "docs/helix-harness/candidates/next-generation-ci-requirements.md"
+      ],
+      "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
+      "route_assessment_status": "assessed_from_effective_classification"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000470",
+      "old_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "source_line": 16,
+      "asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
+      "source_file_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+      "source_line_sha256": "sha256:fb2423c3a926b76c2a65cd69371c3956fa9c08cc2043435ed4048d3adfa46948",
+      "physical_line_bytes_sha256": "312eee698e48fd7a608b69d96c7905b39116a8806c864b75cde733177f4789e0",
+      "source_text": "| `CIG-AC-003` | `CIG-R-02` | scheduleを連続起動し、queue上限とTTLを超える | older scheduleだけを置換し、無制限並走・silent dropを拒否する |",
+      "classification_at_pinned_cumulative": {
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route": "unknown"
+      },
+      "router_review_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "review_outcome": "unknown_after_semantic_check",
+        "semantic_cluster_id": "ci_event_concurrency_generation::CIG-AC-003"
+      },
+      "route_assessment": "unadopted_candidate_relation_only",
+      "current_relation_and_residual": "next-generation-ci candidateのsource chainに含まれるCIG acceptance row。queue上限/TTLでolder scheduleだけを置換しsilent dropや無制限並走を拒否する条件を採択済みL2/L11へ結べない。",
+      "current_authority_refs": [
+        "docs/helix-os/candidates/next-generation-ci-requirements.md:12-14",
+        "docs/helix-harness/candidates/next-generation-ci-requirements.md"
+      ],
+      "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
+      "route_assessment_status": "assessed_from_effective_classification"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000472",
+      "old_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "source_line": 18,
+      "asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
+      "source_file_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+      "source_line_sha256": "sha256:9ac1a187a2ea4dcbe41985270a5b6a174271f6b800d463e244ffae336107c35f",
+      "physical_line_bytes_sha256": "f1b603679ec74c3ce0433cb8c6d440c52e426c06abae97fdf6ef589b08f003d6",
+      "source_text": "| `CIG-AC-005` | `CIG-R-04` | cancelled runをpost-main、review、deferred successへ注入する | 全consumerが採用を拒否する |",
+      "classification_at_pinned_cumulative": {
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route": "unknown"
+      },
+      "router_review_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "review_outcome": "unknown_after_semantic_check",
+        "semantic_cluster_id": "ci_event_concurrency_generation::CIG-AC-005"
+      },
+      "route_assessment": "unadopted_candidate_relation_only",
+      "current_relation_and_residual": "next-generation-ci candidateのsource chainに含まれるCIG acceptance row。cancelled runをpost-main/review/deferred successへ混入させない個別oracleは採択済みでない。",
+      "current_authority_refs": [
+        "docs/helix-os/candidates/next-generation-ci-requirements.md:12-14",
+        "docs/helix-harness/candidates/next-generation-ci-requirements.md"
+      ],
+      "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
+      "route_assessment_status": "assessed_from_effective_classification"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000474",
+      "old_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "source_line": 20,
+      "asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
+      "source_file_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+      "source_line_sha256": "sha256:e7b182f7fac60e7b7cc039bf14435a71b8f47cc40a4ac45392fac4e0dd7c30bb",
+      "physical_line_bytes_sha256": "3cf674bea99ecc0a18df1c3d73509ad5ad9519eacff86349be251ada4ff0fe67",
+      "source_text": "| `CIG-AC-007` | `CIG-R-01..04` | bounded GitHub rehearsalまたは自然scheduleを実行する | run ID付きread-afterでcurrent main pushとscheduleが独立terminalになり、cancel／handoff receiptを再構築できる |",
+      "classification_at_pinned_cumulative": {
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route": "unknown"
+      },
+      "router_review_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "review_outcome": "unknown_after_semantic_check",
+        "semantic_cluster_id": "ci_event_concurrency_generation::CIG-AC-007"
+      },
+      "route_assessment": "unadopted_candidate_relation_only",
+      "current_relation_and_residual": "next-generation-ci candidateのsource chainに含まれるCIG acceptance row。run ID付きread-afterでpush/schedule terminalとcancel/handoff receiptを再構築するCI rehearsal oracleは未採択candidate relationのみ。",
+      "current_authority_refs": [
+        "docs/helix-os/candidates/next-generation-ci-requirements.md:12-14",
+        "docs/helix-harness/candidates/next-generation-ci-requirements.md"
+      ],
+      "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
+      "route_assessment_status": "assessed_from_effective_classification"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000476",
+      "old_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "source_line": 24,
+      "asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
+      "source_file_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+      "source_line_sha256": "sha256:f3a6695b665bea71103a8a4ccee1629d5361b36616ff4209bc942bd012bf811b",
+      "physical_line_bytes_sha256": "27f3b4aa1bfee5d71760eb1a3002d943eeb860763c18b674e3a9dbb533f063ba",
+      "source_text": "- supporting requirements: `CIG-R-01..04` exact 4件。",
+      "classification_at_pinned_cumulative": {
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route": "unknown"
+      },
+      "router_review_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "review_outcome": "unknown_after_semantic_check",
+        "semantic_cluster_id": "ci_event_concurrency_generation::CIG-R-01"
+      },
+      "route_assessment": "unadopted_candidate_relation_only",
+      "current_relation_and_residual": "next-generation-ci candidateがCIG-R-01..04をsupporting requirementsとして参照する。ただしこの行は要求IDと件数のsource metadataで、内容条件を追加しない可能性があり、atom性の再分類が先行論点。",
+      "current_authority_refs": [
+        "docs/helix-os/candidates/next-generation-ci-requirements.md:12-14",
+        "docs/helix-harness/candidates/next-generation-ci-requirements.md"
+      ],
+      "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
+      "route_assessment_status": "provisional_pending_classification_review",
+      "classification_review_residual": "The source row appears to enumerate IDs/counts rather than state standalone behavior. Product-atom classification is provisional pending metadata-vs-atom review; route is candidate-only only if the row remains in product-atom population."
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000477",
+      "old_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "source_line": 25,
+      "asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
+      "source_file_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+      "source_line_sha256": "sha256:8ee2102ac11ad3c280f018f089a749f33f472dae9fdc4541b225665a325f176f",
+      "physical_line_bytes_sha256": "5749f0b5273a0c03a32011d49215680fc313e571604cc31b781de734cdf8f8c8",
+      "source_text": "- acceptance: `CIG-AC-001..007` exact 7件。",
+      "classification_at_pinned_cumulative": {
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route": "unknown"
+      },
+      "router_review_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "review_outcome": "unknown_after_semantic_check",
+        "semantic_cluster_id": "ci_event_concurrency_generation::CIG-AC-001"
+      },
+      "route_assessment": "unadopted_candidate_relation_only",
+      "current_relation_and_residual": "next-generation-ci candidateがCIG-AC-001..007をacceptanceとして参照する。この行もID/件数metadataの可能性があり、product atomとしての分類を再確認する必要がある。",
+      "current_authority_refs": [
+        "docs/helix-os/candidates/next-generation-ci-requirements.md:12-14",
+        "docs/helix-harness/candidates/next-generation-ci-requirements.md"
+      ],
+      "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
+      "route_assessment_status": "provisional_pending_classification_review",
+      "classification_review_residual": "The source row appears to enumerate IDs/counts rather than state standalone behavior. Product-atom classification is provisional pending metadata-vs-atom review; route is candidate-only only if the row remains in product-atom population."
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000478",
+      "old_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "source_line": 26,
+      "asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
+      "source_file_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+      "source_line_sha256": "sha256:f64f96877f9bfe869f2a5e7da26b8ee8aacec271229efd9cd06bbfc97b67bae7",
+      "physical_line_bytes_sha256": "084f18350aab9814a72fbe3d66608f8f8768a1786031d549714b6234af464206",
+      "source_text": "- runtime実装、DB migration、live rehearsalはcanonical promotion後の別PLANで検証する。",
+      "classification_at_pinned_cumulative": {
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route": "unknown"
+      },
+      "router_review_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "review_outcome": "unknown_after_semantic_check",
+        "semantic_cluster_id": "ci_event_concurrency_generation::"
+      },
+      "route_assessment": "unadopted_candidate_relation_only",
+      "current_relation_and_residual": "next-generation-ci candidateのsource chainにあり、canonical promotion後のruntime/DB migration/live rehearsalを別PLANへ送る候補境界を示す。新世代CIの実行許可や採択済み工程条件ではない。",
+      "current_authority_refs": [
+        "docs/helix-os/candidates/next-generation-ci-requirements.md:12-14",
+        "docs/helix-harness/candidates/next-generation-ci-requirements.md"
+      ],
+      "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
+      "route_assessment_status": "assessed_from_effective_classification"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000491",
+      "old_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_line": 17,
+      "asset_id": "LEGACY-ASSET-8B78505C1E059419875F",
+      "source_file_sha256": "7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "source_line_sha256": "sha256:d6306c202a8228b8bfa541ca02afcf978f39fe1380586ffe7abcd810b918ece3",
+      "physical_line_bytes_sha256": "027edb4aa41f2930ca0f06db3edb418e6a5dc061c75bdbb08645459b3a7339b0",
+      "source_text": "特に、current main HEADのpost-main検収をscheduleまたはmanual safety-netがcancelしてはならない。",
+      "classification_at_pinned_cumulative": {
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route": "unknown"
+      },
+      "router_review_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "review_outcome": "unknown_after_semantic_check",
+        "semantic_cluster_id": "ci_event_concurrency_generation::"
+      },
+      "route_assessment": "unadopted_candidate_relation_only",
+      "current_relation_and_residual": "next-generation-ci candidateがCIG requests文書をsourceとして明示する。current main post-main検収をschedule/manual safety-netがcancelしない具体的CI operation条件は採択済みL2/L11にない。",
+      "current_authority_refs": [
+        "docs/helix-os/candidates/next-generation-ci-requirements.md:12-14",
+        "docs/helix-harness/candidates/next-generation-ci-requirements.md"
+      ],
+      "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
+      "route_assessment_status": "assessed_from_effective_classification"
+    }
+  ],
+  "validation": {
+    "expected_rows": 20,
+    "selected_ids_unique": true,
+    "source_lines_and_hashes_to_be_checked": true,
+    "cumulative_and_overlay_byte_pins_to_be_checked": true,
+    "static_tools": "scfctl validate; govcheck.py; gen_rulebook.py --check; git diff --check",
+    "forbidden_legacy_executions": "No old runtime/CLI/test/CI/hook executed."
+  }
+}
