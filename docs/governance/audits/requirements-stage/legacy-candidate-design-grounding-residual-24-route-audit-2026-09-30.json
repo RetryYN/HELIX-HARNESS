@@ -223,12 +223,36 @@
       "relation_assessment": "true_unknown",
       "adopted_current_requirement_refs": [],
       "compared_adopted_requirement_ids": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-004",
         "HARNESS-L2-005",
         "HARNESS-L2-025",
-        "HARNESS-L2-026"
+        "HARNESS-L2-026",
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-003",
+        "HELIXOS-L2-007"
       ],
-      "route_evidence": "比較した採択要求IDは`HARNESS-L2-005`、`HARNESS-L2-025`、`HARNESS-L2-026`。比較した採択predicateはHARNESS-L2-005の対象・oracle別検証、HARNESS-L2-025およびHARNESS-L2-026の承認済み要求から設計要素・対oracleへの構成と整合である。旧行の一般的な「requirement consistency」検査またはその合否oracleを定義しておらず、同一predicateは確認できない。設計・要求という話題の近さだけでは関係を付けない。",
-      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。"
+      "route_evidence": "比較した採択要求IDは`HARNESS-L2-003`、`HARNESS-L2-004`、`HARNESS-L2-005`、`HARNESS-L2-025`、`HARNESS-L2-026`、`HELIXOS-L2-001`、`HELIXOS-L2-002`、`HELIXOS-L2-003`、`HELIXOS-L2-007`。「requirement consistency」は一般的な整合検査・合否oracleを求める。DGH-BR-01の根拠付き候補比較とDGH-BR-02/03の反復・反応条件は、その一般oracleを定めない。 根拠locator: 採択exact revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`のHELIX-OS L2 `governance-requirements.md:429-445`、OS L11 `governance-acceptance.md:209-216`、HARNESS L2 `product-requirements.md:195-198`。 既存predicate照合: 比較した採択predicateはHARNESS-L2-005の対象・oracle別検証、HARNESS-L2-025およびHARNESS-L2-026の承認済み要求から設計要素・対oracleへの構成と整合である。旧行の一般的な「requirement consistency」検査またはその合否oracleを定義しておらず、同一predicateは確認できない。設計・要求という話題の近さだけでは関係を付けない。",
+      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。",
+      "dgh_predicate_review": {
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HELIXOS-L2-002",
+          "HELIXOS-L2-003",
+          "HELIXOS-L2-007",
+          "HARNESS-L2-003",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:429-445",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209-216",
+          "docs/helix-harness/L2-requirements/product-requirements.md:195-198"
+        ],
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "assessment": "「requirement consistency」は一般的な整合検査・合否oracleを求める。DGH-BR-01の根拠付き候補比較とDGH-BR-02/03の反復・反応条件は、その一般oracleを定めない。"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-000948",
@@ -253,8 +277,26 @@
         "HARNESS-L2-039"
       ],
       "compared_adopted_requirement_ids": [],
-      "route_evidence": "比較した採択要求IDは`HARNESS-L2-025`、`HARNESS-L2-026`、`HARNESS-L2-039`。採択predicateのうちHARNESS-L2-025およびHARNESS-L2-026は、同一要求/L3 revisionの設計要素・対oracleの双方向traceを要求し、異なるrevision、片方向trace、欠けたrelationを不成立にする。HARNESS-L2-039は選択UI sourceのidentity/revision/scope/authorityとUX evidenceの束縛を定める。この範囲は「evidence/revision consistency」に直接重なる。一方、すべてのevidence種別・全sourceの一般整合性までを定めない。",
-      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。"
+      "route_evidence": "比較した採択要求IDは`HARNESS-L2-025`、`HARNESS-L2-026`、`HARNESS-L2-039`。採択predicateのうちHARNESS-L2-025およびHARNESS-L2-026は、同一要求/L3 revisionの設計要素・対oracleの双方向traceを要求し、異なるrevision、片方向trace、欠けたrelationを不成立にする。HARNESS-L2-039は選択UI sourceのidentity/revision/scope/authorityとUX evidenceの束縛を定める。この範囲は「evidence/revision consistency」に直接重なる。一方、すべてのevidence種別・全sourceの一般整合性までを定めない。 DGH-BR predicateの追加照合: 既存partialはHARNESS-L2-025/026/039の同一revision design/evidence traceに限る。DGH-BR-01の外部実例・既存資産の論点別引用は全evidence種別の一般整合性を追加で定めない。 根拠locator: 採択exact revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`のHELIX-OS L2 `governance-requirements.md:429-445`、OS L11 `governance-acceptance.md:209-216`、HARNESS L2 `product-requirements.md:195-198`。",
+      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。",
+      "dgh_predicate_review": {
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HELIXOS-L2-002",
+          "HELIXOS-L2-003",
+          "HELIXOS-L2-007",
+          "HARNESS-L2-003",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:429-445",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209-216",
+          "docs/helix-harness/L2-requirements/product-requirements.md:195-198"
+        ],
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "assessment": "既存partialはHARNESS-L2-025/026/039の同一revision design/evidence traceに限る。DGH-BR-01の外部実例・既存資産の論点別引用は全evidence種別の一般整合性を追加で定めない。"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-000949",
@@ -277,8 +319,26 @@
         "HARNESS-L2-024"
       ],
       "compared_adopted_requirement_ids": [],
-      "route_evidence": "比較した採択要求IDは`HARNESS-L2-024`。HARNESS-L2-024は人間専決値をengineが補完せず、原文・選択肢・推奨・影響候補を持つ判断待ちへ送る。モデルが単独で最終決定しないというauthority境界に直接重なる。残差として、以下のデザイン意味カテゴリを人間専決値と特定するpredicateまではHARNESS-L2-024にない。",
-      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。"
+      "route_evidence": "比較した採択要求IDは`HARNESS-L2-024`。HARNESS-L2-024は人間専決値をengineが補完せず、原文・選択肢・推奨・影響候補を持つ判断待ちへ送る。モデルが単独で最終決定しないというauthority境界に直接重なる。残差として、以下のデザイン意味カテゴリを人間専決値と特定するpredicateまではHARNESS-L2-024にない。 DGH-BR predicateの追加照合: 既存partialはHARNESS-L2-024の人間専決値をAIが補完しない境界に限る。DGH-BR本文はデザイン意味カテゴリ自体を人間専決値として分類しない。 根拠locator: 採択exact revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`のHELIX-OS L2 `governance-requirements.md:429-445`、OS L11 `governance-acceptance.md:209-216`、HARNESS L2 `product-requirements.md:195-198`。",
+      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。",
+      "dgh_predicate_review": {
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HELIXOS-L2-002",
+          "HELIXOS-L2-003",
+          "HELIXOS-L2-007",
+          "HARNESS-L2-003",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:429-445",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209-216",
+          "docs/helix-harness/L2-requirements/product-requirements.md:195-198"
+        ],
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "assessment": "既存partialはHARNESS-L2-024の人間専決値をAIが補完しない境界に限る。DGH-BR本文はデザイン意味カテゴリ自体を人間専決値として分類しない。"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-000950",
@@ -299,11 +359,36 @@
       "relation_assessment": "true_unknown",
       "adopted_current_requirement_refs": [],
       "compared_adopted_requirement_ids": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005",
         "HARNESS-L2-024",
-        "HARNESS-L2-039"
+        "HARNESS-L2-039",
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-003",
+        "HELIXOS-L2-007"
       ],
-      "route_evidence": "比較した採択要求IDは`HARNESS-L2-024`、`HARNESS-L2-039`。HARNESS-L2-024は人間専決値の未補完を定め、HARNESS-L2-039は選択UI sourceとUX evidenceのscope束縛を定める。どちらも美的好みを独立した人間判断対象として分類するpredicateを持たない。",
-      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。"
+      "route_evidence": "比較した採択要求IDは`HARNESS-L2-003`、`HARNESS-L2-004`、`HARNESS-L2-005`、`HARNESS-L2-024`、`HARNESS-L2-039`、`HELIXOS-L2-001`、`HELIXOS-L2-002`、`HELIXOS-L2-003`、`HELIXOS-L2-007`。DGH-BR-02は人間反応とAI解釈を分け、客観品質と主観受容を相殺しないが、美的好み自体を人間専決値に分類するpredicateはない。 根拠locator: 採択exact revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`のHELIX-OS L2 `governance-requirements.md:429-445`、OS L11 `governance-acceptance.md:209-216`、HARNESS L2 `product-requirements.md:195-198`。 既存predicate照合: HARNESS-L2-024は人間専決値の未補完を定め、HARNESS-L2-039は選択UI sourceとUX evidenceのscope束縛を定める。どちらも美的好みを独立した人間判断対象として分類するpredicateを持たない。",
+      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。",
+      "dgh_predicate_review": {
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HELIXOS-L2-002",
+          "HELIXOS-L2-003",
+          "HELIXOS-L2-007",
+          "HARNESS-L2-003",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:429-445",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209-216",
+          "docs/helix-harness/L2-requirements/product-requirements.md:195-198"
+        ],
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "assessment": "DGH-BR-02は人間反応とAI解釈を分け、客観品質と主観受容を相殺しないが、美的好み自体を人間専決値に分類するpredicateはない。"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-000951",
@@ -324,11 +409,36 @@
       "relation_assessment": "true_unknown",
       "adopted_current_requirement_refs": [],
       "compared_adopted_requirement_ids": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005",
         "HARNESS-L2-024",
-        "HARNESS-L2-039"
+        "HARNESS-L2-039",
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-003",
+        "HELIXOS-L2-007"
       ],
-      "route_evidence": "比較した採択要求IDは`HARNESS-L2-024`、`HARNESS-L2-039`。HARNESS-L2-024は人間専決値を補完せず判断待ちにするが、ブランドらしさをその値として特定していない。HARNESS-L2-039のUI source束縛もブランド判断のpredicateではない。",
-      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。"
+      "route_evidence": "比較した採択要求IDは`HARNESS-L2-003`、`HARNESS-L2-004`、`HARNESS-L2-005`、`HARNESS-L2-024`、`HARNESS-L2-039`、`HELIXOS-L2-001`、`HELIXOS-L2-002`、`HELIXOS-L2-003`、`HELIXOS-L2-007`。DGH-BR-02の反応/解釈分離は、ブランドらしさを人間専決値に分類するpredicateではない。 根拠locator: 採択exact revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`のHELIX-OS L2 `governance-requirements.md:429-445`、OS L11 `governance-acceptance.md:209-216`、HARNESS L2 `product-requirements.md:195-198`。 既存predicate照合: HARNESS-L2-024は人間専決値を補完せず判断待ちにするが、ブランドらしさをその値として特定していない。HARNESS-L2-039のUI source束縛もブランド判断のpredicateではない。",
+      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。",
+      "dgh_predicate_review": {
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HELIXOS-L2-002",
+          "HELIXOS-L2-003",
+          "HELIXOS-L2-007",
+          "HARNESS-L2-003",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:429-445",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209-216",
+          "docs/helix-harness/L2-requirements/product-requirements.md:195-198"
+        ],
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "assessment": "DGH-BR-02の反応/解釈分離は、ブランドらしさを人間専決値に分類するpredicateではない。"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-000952",
@@ -349,11 +459,36 @@
       "relation_assessment": "true_unknown",
       "adopted_current_requirement_refs": [],
       "compared_adopted_requirement_ids": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005",
         "HARNESS-L2-024",
-        "HARNESS-L2-039"
+        "HARNESS-L2-039",
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-003",
+        "HELIXOS-L2-007"
       ],
-      "route_evidence": "比較した採択要求IDは`HARNESS-L2-024`、`HARNESS-L2-039`。HARNESS-L2-024は人間専決値の判断待ちを扱うが、世界観を専決対象として列挙・判定するpredicateはない。HARNESS-L2-039のUX evidence/source境界も世界観判断を扱わない。",
-      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。"
+      "route_evidence": "比較した採択要求IDは`HARNESS-L2-003`、`HARNESS-L2-004`、`HARNESS-L2-005`、`HARNESS-L2-024`、`HARNESS-L2-039`、`HELIXOS-L2-001`、`HELIXOS-L2-002`、`HELIXOS-L2-003`、`HELIXOS-L2-007`。DGH-BR-02の客観品質/主観受容の非相殺は、世界観固有のauthority predicateではない。 根拠locator: 採択exact revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`のHELIX-OS L2 `governance-requirements.md:429-445`、OS L11 `governance-acceptance.md:209-216`、HARNESS L2 `product-requirements.md:195-198`。 既存predicate照合: HARNESS-L2-024は人間専決値の判断待ちを扱うが、世界観を専決対象として列挙・判定するpredicateはない。HARNESS-L2-039のUX evidence/source境界も世界観判断を扱わない。",
+      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。",
+      "dgh_predicate_review": {
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HELIXOS-L2-002",
+          "HELIXOS-L2-003",
+          "HELIXOS-L2-007",
+          "HARNESS-L2-003",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:429-445",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209-216",
+          "docs/helix-harness/L2-requirements/product-requirements.md:195-198"
+        ],
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "assessment": "DGH-BR-02の客観品質/主観受容の非相殺は、世界観固有のauthority predicateではない。"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-000953",
@@ -374,11 +509,36 @@
       "relation_assessment": "true_unknown",
       "adopted_current_requirement_refs": [],
       "compared_adopted_requirement_ids": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005",
         "HARNESS-L2-024",
-        "HARNESS-L2-039"
+        "HARNESS-L2-039",
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-003",
+        "HELIXOS-L2-007"
       ],
-      "route_evidence": "比較した採択要求IDは`HARNESS-L2-024`、`HARNESS-L2-039`。HARNESS-L2-024は人間専決値の補完禁止を定めるが、「高級」「親しみやすい」等の主観意味をその値に分類する条件はない。HARNESS-L2-039もUX evidence/source scopeを束縛するだけで、主観意味のauthority predicateを持たない。",
-      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。"
+      "route_evidence": "比較した採択要求IDは`HARNESS-L2-003`、`HARNESS-L2-004`、`HARNESS-L2-005`、`HARNESS-L2-024`、`HARNESS-L2-039`、`HELIXOS-L2-001`、`HELIXOS-L2-002`、`HELIXOS-L2-003`、`HELIXOS-L2-007`。DGH-BR-02は主観受容を客観品質と相殺しないが、「高級」「親しみやすい」等を人間専決値に分類する条件はない。 根拠locator: 採択exact revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`のHELIX-OS L2 `governance-requirements.md:429-445`、OS L11 `governance-acceptance.md:209-216`、HARNESS L2 `product-requirements.md:195-198`。 既存predicate照合: HARNESS-L2-024は人間専決値の補完禁止を定めるが、「高級」「親しみやすい」等の主観意味をその値に分類する条件はない。HARNESS-L2-039もUX evidence/source scopeを束縛するだけで、主観意味のauthority predicateを持たない。",
+      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。",
+      "dgh_predicate_review": {
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HELIXOS-L2-002",
+          "HELIXOS-L2-003",
+          "HELIXOS-L2-007",
+          "HARNESS-L2-003",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:429-445",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209-216",
+          "docs/helix-harness/L2-requirements/product-requirements.md:195-198"
+        ],
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "assessment": "DGH-BR-02は主観受容を客観品質と相殺しないが、「高級」「親しみやすい」等を人間専決値に分類する条件はない。"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-000954",
@@ -399,11 +559,36 @@
       "relation_assessment": "true_unknown",
       "adopted_current_requirement_refs": [],
       "compared_adopted_requirement_ids": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005",
         "HARNESS-L2-024",
-        "HARNESS-L2-039"
+        "HARNESS-L2-039",
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-003",
+        "HELIXOS-L2-007"
       ],
-      "route_evidence": "比較した採択要求IDは`HARNESS-L2-024`、`HARNESS-L2-039`。HARNESS-L2-024は質問・要求形成の人間専決値を補完しないが、表現・文章ニュアンスをその対象として定めない。HARNESS-L2-039にも文章ニュアンスのpredicateはない。",
-      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。"
+      "route_evidence": "比較した採択要求IDは`HARNESS-L2-003`、`HARNESS-L2-004`、`HARNESS-L2-005`、`HARNESS-L2-024`、`HARNESS-L2-039`、`HELIXOS-L2-001`、`HELIXOS-L2-002`、`HELIXOS-L2-003`、`HELIXOS-L2-007`。DGH-BR-02は人間反応とAI解釈を区別するが、表現・文章ニュアンスを人間専決値に分類するpredicateはない。 根拠locator: 採択exact revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`のHELIX-OS L2 `governance-requirements.md:429-445`、OS L11 `governance-acceptance.md:209-216`、HARNESS L2 `product-requirements.md:195-198`。 既存predicate照合: HARNESS-L2-024は質問・要求形成の人間専決値を補完しないが、表現・文章ニュアンスをその対象として定めない。HARNESS-L2-039にも文章ニュアンスのpredicateはない。",
+      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。",
+      "dgh_predicate_review": {
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HELIXOS-L2-002",
+          "HELIXOS-L2-003",
+          "HELIXOS-L2-007",
+          "HARNESS-L2-003",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:429-445",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209-216",
+          "docs/helix-harness/L2-requirements/product-requirements.md:195-198"
+        ],
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "assessment": "DGH-BR-02は人間反応とAI解釈を区別するが、表現・文章ニュアンスを人間専決値に分類するpredicateはない。"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-000955",
@@ -424,11 +609,36 @@
       "relation_assessment": "true_unknown",
       "adopted_current_requirement_refs": [],
       "compared_adopted_requirement_ids": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005",
         "HARNESS-L2-024",
-        "HARNESS-L2-039"
+        "HARNESS-L2-039",
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-003",
+        "HELIXOS-L2-007"
       ],
-      "route_evidence": "比較した採択要求IDは`HARNESS-L2-024`、`HARNESS-L2-039`。HARNESS-L2-024は人間専決値を判断待ちへ送る一方、保持希望のVisual/UX preferenceを個別分類しない。HARNESS-L2-039は選択UI sourceとevidenceの適用を扱うが、人間が保持する選好のauthorityを定めない。",
-      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。"
+      "route_evidence": "比較した採択要求IDは`HARNESS-L2-003`、`HARNESS-L2-004`、`HARNESS-L2-005`、`HARNESS-L2-024`、`HARNESS-L2-039`、`HELIXOS-L2-001`、`HELIXOS-L2-002`、`HELIXOS-L2-003`、`HELIXOS-L2-007`。DGH-BR-02の主観受容の非相殺は、個別Visual/UX preferenceの保持・変更権限を定めない。 根拠locator: 採択exact revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`のHELIX-OS L2 `governance-requirements.md:429-445`、OS L11 `governance-acceptance.md:209-216`、HARNESS L2 `product-requirements.md:195-198`。 既存predicate照合: HARNESS-L2-024は人間専決値を判断待ちへ送る一方、保持希望のVisual/UX preferenceを個別分類しない。HARNESS-L2-039は選択UI sourceとevidenceの適用を扱うが、人間が保持する選好のauthorityを定めない。",
+      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。",
+      "dgh_predicate_review": {
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HELIXOS-L2-002",
+          "HELIXOS-L2-003",
+          "HELIXOS-L2-007",
+          "HARNESS-L2-003",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:429-445",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209-216",
+          "docs/helix-harness/L2-requirements/product-requirements.md:195-198"
+        ],
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "assessment": "DGH-BR-02の主観受容の非相殺は、個別Visual/UX preferenceの保持・変更権限を定めない。"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-000978",
@@ -449,12 +659,37 @@
       "relation_assessment": "true_unknown",
       "adopted_current_requirement_refs": [],
       "compared_adopted_requirement_ids": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005",
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-003",
+        "HELIXOS-L2-007",
         "HELIXOS-L2-010",
         "HELIXOS-L2-015",
         "HELIXOS-L2-016"
       ],
-      "route_evidence": "比較した採択要求IDは`HELIXOS-L2-010`、`HELIXOS-L2-015`、`HELIXOS-L2-016`。比較したOS predicateは同一ticketでの工程・作業種別・因果追跡、管理authority record、およびportfolio traceである。Issueのroot/capability/task/findingというGitHub階層の不変条件や、階層を壊した場合の拒否predicateはなく、同じ条件を採択したとは確認できない。",
-      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。"
+      "route_evidence": "比較した採択要求IDは`HARNESS-L2-003`、`HARNESS-L2-004`、`HARNESS-L2-005`、`HELIXOS-L2-001`、`HELIXOS-L2-002`、`HELIXOS-L2-003`、`HELIXOS-L2-007`、`HELIXOS-L2-010`、`HELIXOS-L2-015`、`HELIXOS-L2-016`。DGH-BR-01/02/03とHARNESS-L2-003/004/005は、Issueのroot/capability/task/finding階層の不変条件や、階層を壊した場合の拒否predicateを定めない。 根拠locator: 採択exact revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`のHELIX-OS L2 `governance-requirements.md:429-445`、OS L11 `governance-acceptance.md:209-216`、HARNESS L2 `product-requirements.md:195-198`。 既存predicate照合: 比較したOS predicateは同一ticketでの工程・作業種別・因果追跡、管理authority record、およびportfolio traceである。Issueのroot/capability/task/findingというGitHub階層の不変条件や、階層を壊した場合の拒否predicateはなく、同じ条件を採択したとは確認できない。",
+      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。",
+      "dgh_predicate_review": {
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HELIXOS-L2-002",
+          "HELIXOS-L2-003",
+          "HELIXOS-L2-007",
+          "HARNESS-L2-003",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:429-445",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209-216",
+          "docs/helix-harness/L2-requirements/product-requirements.md:195-198"
+        ],
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "assessment": "DGH-BR-01/02/03とHARNESS-L2-003/004/005は、Issueのroot/capability/task/finding階層の不変条件や、階層を壊した場合の拒否predicateを定めない。"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-000979",
@@ -475,12 +710,37 @@
       "relation_assessment": "true_unknown",
       "adopted_current_requirement_refs": [],
       "compared_adopted_requirement_ids": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005",
         "HARNESS-L2-024",
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-003",
+        "HELIXOS-L2-007",
         "HELIXOS-L2-015",
         "HELIXOS-L2-016"
       ],
-      "route_evidence": "比較した採択要求IDは`HARNESS-L2-024`、`HELIXOS-L2-015`、`HELIXOS-L2-016`。HARNESS-L2-024は要求形成の候補・open item・合意待ちを分け、HELIXOS-L2-015およびHELIXOS-L2-016は管理recordやportfolio状態を扱う。いずれもDesign形成状態をIssue階層とは別semantic stateとして保持するpredicateを定義していない。",
-      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。"
+      "route_evidence": "比較した採択要求IDは`HARNESS-L2-003`、`HARNESS-L2-004`、`HARNESS-L2-005`、`HARNESS-L2-024`、`HELIXOS-L2-001`、`HELIXOS-L2-002`、`HELIXOS-L2-003`、`HELIXOS-L2-007`、`HELIXOS-L2-015`、`HELIXOS-L2-016`。DGH-BR-01/02/03とHARNESS-L2-003/004/005は、Design形成状態をIssue階層と別のsemantic stateとして保持するpredicateを定めない。 根拠locator: 採択exact revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`のHELIX-OS L2 `governance-requirements.md:429-445`、OS L11 `governance-acceptance.md:209-216`、HARNESS L2 `product-requirements.md:195-198`。 既存predicate照合: HARNESS-L2-024は要求形成の候補・open item・合意待ちを分け、HELIXOS-L2-015およびHELIXOS-L2-016は管理recordやportfolio状態を扱う。いずれもDesign形成状態をIssue階層とは別semantic stateとして保持するpredicateを定義していない。",
+      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。",
+      "dgh_predicate_review": {
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HELIXOS-L2-002",
+          "HELIXOS-L2-003",
+          "HELIXOS-L2-007",
+          "HARNESS-L2-003",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:429-445",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209-216",
+          "docs/helix-harness/L2-requirements/product-requirements.md:195-198"
+        ],
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "assessment": "DGH-BR-01/02/03とHARNESS-L2-003/004/005は、Design形成状態をIssue階層と別のsemantic stateとして保持するpredicateを定めない。"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-000980",
@@ -505,8 +765,26 @@
         "HARNESS-L2-039"
       ],
       "compared_adopted_requirement_ids": [],
-      "route_evidence": "比較した採択要求IDは`HARNESS-L2-025`、`HARNESS-L2-026`、`HARNESS-L2-039`。HARNESS-L2-025およびHARNESS-L2-026は要求/L3 revisionから設計要素・対oracleまでの相互traceとrevision一致を定め、HARNESS-L2-039は選択UI/design sourceのrevision・scope・authority・evidence relationを束縛する。このsource Requirement・evidence・prototype revisionとDesign作業を結ぶ条件に部分的に直接重なる。Design problemを独立identityとする点、各Design作業単位の全trace closureまでは採択predicateにない。",
-      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。"
+      "route_evidence": "比較した採択要求IDは`HARNESS-L2-025`、`HARNESS-L2-026`、`HARNESS-L2-039`。HARNESS-L2-025およびHARNESS-L2-026は要求/L3 revisionから設計要素・対oracleまでの相互traceとrevision一致を定め、HARNESS-L2-039は選択UI/design sourceのrevision・scope・authority・evidence relationを束縛する。このsource Requirement・evidence・prototype revisionとDesign作業を結ぶ条件に部分的に直接重なる。Design problemを独立identityとする点、各Design作業単位の全trace closureまでは採択predicateにない。 DGH-BR predicateの追加照合: 既存partialはHARNESS-L2-025/026/039にある要求/L3、design/evidence、prototype revisionのtraceに限る。DGH-BR-01/03を照合しても、Design problem identityや全作業単位の全trace closureは追加されない。 根拠locator: 採択exact revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`のHELIX-OS L2 `governance-requirements.md:429-445`、OS L11 `governance-acceptance.md:209-216`、HARNESS L2 `product-requirements.md:195-198`。",
+      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。",
+      "dgh_predicate_review": {
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HELIXOS-L2-002",
+          "HELIXOS-L2-003",
+          "HELIXOS-L2-007",
+          "HARNESS-L2-003",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:429-445",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209-216",
+          "docs/helix-harness/L2-requirements/product-requirements.md:195-198"
+        ],
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "assessment": "既存partialはHARNESS-L2-025/026/039にある要求/L3、design/evidence、prototype revisionのtraceに限る。DGH-BR-01/03を照合しても、Design problem identityや全作業単位の全trace closureは追加されない。"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-000981",
@@ -524,15 +802,34 @@
       "classification_review_candidate": false,
       "classification_reason": "プロダクト要件として維持。",
       "source_atom_id": "DGH-intake.github-workflow.scope-limited-hold",
-      "relation_assessment": "true_unknown",
-      "adopted_current_requirement_refs": [],
-      "compared_adopted_requirement_ids": [
-        "HELIXOS-L2-010",
-        "HELIXOS-L2-016",
-        "HARNESS-L2-024"
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HARNESS-L2-004",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-003",
+        "HELIXOS-L2-007"
       ],
-      "route_evidence": "比較した採択要求IDは`HELIXOS-L2-010`、`HELIXOS-L2-016`、`HARNESS-L2-024`。HELIXOS-L2-010およびHELIXOS-L2-016はticket種別・工程・因果traceを規定し、HARNESS-L2-024は未決質問を同一open itemで維持する。しかし、局所Research不足や人間判断待ちがあっても無関係な承認済み作業を継続させる非block条件・非伝播predicateは見当たらない。",
-      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。"
+      "compared_adopted_requirement_ids": [],
+      "route_evidence": "比較した採択要求IDは`HARNESS-L2-004`、`HELIXOS-L2-002`、`HELIXOS-L2-003`、`HELIXOS-L2-007`。DGH-BR-02とHARNESS-L2-004は、「一部のResearch不足・人間判断待ちを理由に、影響しない承認済み作業まで止めない／影響scopeだけを再作業する」というpredicateで直接重なる。残差は、Research不足・人間判断待ちを具体的な停止理由として定めること、および継続routeの詳細である。 根拠locator: 採択exact revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`のHELIX-OS L2 `governance-requirements.md:429-445`、OS L11 `governance-acceptance.md:209-216`、HARNESS L2 `product-requirements.md:195-198`。",
+      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。",
+      "dgh_predicate_review": {
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HELIXOS-L2-002",
+          "HELIXOS-L2-003",
+          "HELIXOS-L2-007",
+          "HARNESS-L2-003",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:429-445",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209-216",
+          "docs/helix-harness/L2-requirements/product-requirements.md:195-198"
+        ],
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "assessment": "DGH-BR-02とHARNESS-L2-004は、「一部のResearch不足・人間判断待ちを理由に、影響しない承認済み作業まで止めない／影響scopeだけを再作業する」というpredicateで直接重なる。残差は、Research不足・人間判断待ちを具体的な停止理由として定めること、および継続routeの詳細である。"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-000982",
@@ -557,8 +854,26 @@
         "HARNESS-L2-039"
       ],
       "compared_adopted_requirement_ids": [],
-      "route_evidence": "比較した採択要求IDは`HARNESS-L2-025`、`HARNESS-L2-026`、`HARNESS-L2-039`。HARNESS-L2-025およびHARNESS-L2-026は対象要求/L3 revision、設計要素、oracleのtraceとrevision整合を必須とし、HARNESS-L2-039は選択UI sourceのidentity/revision/scope/authorityおよびUX evidence relationを照合する。この原文のexact revision/provenance/evidence bindingという核に直接重なる。全結果と全種別のprovenanceの包括条件までは示さない。",
-      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。"
+      "route_evidence": "比較した採択要求IDは`HARNESS-L2-025`、`HARNESS-L2-026`、`HARNESS-L2-039`。HARNESS-L2-025およびHARNESS-L2-026は対象要求/L3 revision、設計要素、oracleのtraceとrevision整合を必須とし、HARNESS-L2-039は選択UI sourceのidentity/revision/scope/authorityおよびUX evidence relationを照合する。この原文のexact revision/provenance/evidence bindingという核に直接重なる。全結果と全種別のprovenanceの包括条件までは示さない。 DGH-BR predicateの追加照合: 既存partialはHARNESS-L2-025/026/039のtarget revision・design/oracle trace・UI source/evidence bindingに限る。OS-L2-007の証拠記録も照合したが、全結果・全種別の包括的provenance predicateまではない。 根拠locator: 採択exact revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`のHELIX-OS L2 `governance-requirements.md:429-445`、OS L11 `governance-acceptance.md:209-216`、HARNESS L2 `product-requirements.md:195-198`。",
+      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。",
+      "dgh_predicate_review": {
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HELIXOS-L2-002",
+          "HELIXOS-L2-003",
+          "HELIXOS-L2-007",
+          "HARNESS-L2-003",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:429-445",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209-216",
+          "docs/helix-harness/L2-requirements/product-requirements.md:195-198"
+        ],
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "assessment": "既存partialはHARNESS-L2-025/026/039のtarget revision・design/oracle trace・UI source/evidence bindingに限る。OS-L2-007の証拠記録も照合したが、全結果・全種別の包括的provenance predicateまではない。"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-000986",
@@ -576,15 +891,34 @@
       "classification_review_candidate": false,
       "classification_reason": "プロダクト受入要件として維持。",
       "source_atom_id": "DGH-intake.acceptance.AC1",
-      "relation_assessment": "true_unknown",
-      "adopted_current_requirement_refs": [],
-      "compared_adopted_requirement_ids": [
-        "HARNESS-L2-024",
-        "HARNESS-L2-026",
-        "HELIXOS-L2-010"
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-005",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-007"
       ],
-      "route_evidence": "比較した採択要求IDは`HARNESS-L2-024`、`HARNESS-L2-026`、`HELIXOS-L2-010`。HARNESS-L2-026は承認済みL3要件、Design Template、CORE/BRAIN connector等を入力条件にし、HELIXOS-L2-010はPoC/Prototype/Researchのtask目的・戻し先を区別する。HARNESS-L2-024は該当時prototype agreementを収束根拠にする。未知Design taskの外部事例researchなしではprototypeをgateするpredicateやresearch adequacy判定はない。",
-      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。"
+      "compared_adopted_requirement_ids": [],
+      "route_evidence": "比較した採択要求IDは`HARNESS-L2-003`、`HARNESS-L2-005`、`HELIXOS-L2-002`、`HELIXOS-L2-007`。DGH-BR-01とHARNESS-L2-003/005は、外部実例・既存資産を根拠としてDesign候補を比較し、根拠が欠ける場合に未確認と扱うpredicateで直接重なる。残差は、未知Design taskでResearchなしPrototypeをgateすること、およびResearch十分性を判定する具体条件で、採択本文にはない。 根拠locator: 採択exact revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`のHELIX-OS L2 `governance-requirements.md:429-445`、OS L11 `governance-acceptance.md:209-216`、HARNESS L2 `product-requirements.md:195-198`。",
+      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。",
+      "dgh_predicate_review": {
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HELIXOS-L2-002",
+          "HELIXOS-L2-003",
+          "HELIXOS-L2-007",
+          "HARNESS-L2-003",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:429-445",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209-216",
+          "docs/helix-harness/L2-requirements/product-requirements.md:195-198"
+        ],
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "assessment": "DGH-BR-01とHARNESS-L2-003/005は、外部実例・既存資産を根拠としてDesign候補を比較し、根拠が欠ける場合に未確認と扱うpredicateで直接重なる。残差は、未知Design taskでResearchなしPrototypeをgateすること、およびResearch十分性を判定する具体条件で、採択本文にはない。"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-000987",
@@ -602,15 +936,34 @@
       "classification_review_candidate": false,
       "classification_reason": "プロダクト受入要件として維持。",
       "source_atom_id": "DGH-intake.acceptance.AC2",
-      "relation_assessment": "true_unknown",
-      "adopted_current_requirement_refs": [],
-      "compared_adopted_requirement_ids": [
-        "HARNESS-L2-025",
-        "HARNESS-L2-026",
-        "HARNESS-L2-039"
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-005",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-007"
       ],
-      "route_evidence": "比較した採択要求IDは`HARNESS-L2-025`、`HARNESS-L2-026`、`HARNESS-L2-039`。HARNESS-L2-025およびHARNESS-L2-026は要求/L3-to-design-to-oracle trace、HARNESS-L2-039は選択UI sourceとUX evidenceのrelationを定める。Research Evidenceから何をDesignへ取り込んだかの採用・不採用理由をtraceするpredicateとは入力種別・関係が異なり、同じとは確認できない。",
-      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。"
+      "compared_adopted_requirement_ids": [],
+      "route_evidence": "比較した採択要求IDは`HARNESS-L2-003`、`HARNESS-L2-005`、`HELIXOS-L2-002`、`HELIXOS-L2-007`。DGH-BR-01とHARNESS-L2-003/005は、根拠に基づいてDesign候補を比較し、そのtraceを保つpredicateで直接重なる。残差は、各Research Evidenceについて何を採用・不採用とし、なぜかを個別記録するschemaである。 根拠locator: 採択exact revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`のHELIX-OS L2 `governance-requirements.md:429-445`、OS L11 `governance-acceptance.md:209-216`、HARNESS L2 `product-requirements.md:195-198`。",
+      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。",
+      "dgh_predicate_review": {
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HELIXOS-L2-002",
+          "HELIXOS-L2-003",
+          "HELIXOS-L2-007",
+          "HARNESS-L2-003",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:429-445",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209-216",
+          "docs/helix-harness/L2-requirements/product-requirements.md:195-198"
+        ],
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "assessment": "DGH-BR-01とHARNESS-L2-003/005は、根拠に基づいてDesign候補を比較し、そのtraceを保つpredicateで直接重なる。残差は、各Research Evidenceについて何を採用・不採用とし、なぜかを個別記録するschemaである。"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-000988",
@@ -631,11 +984,36 @@
       "relation_assessment": "true_unknown",
       "adopted_current_requirement_refs": [],
       "compared_adopted_requirement_ids": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005",
         "HARNESS-L2-024",
-        "HARNESS-L2-039"
+        "HARNESS-L2-039",
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-003",
+        "HELIXOS-L2-007"
       ],
-      "route_evidence": "比較した採択要求IDは`HARNESS-L2-024`、`HARNESS-L2-039`。HARNESS-L2-024は要求質問・矛盾・defer・未解決を保持し、HARNESS-L2-039はUI scopeのevidence/verificationを扱うが、人間反応の意味カテゴリ（美的・可読性・表示対象不足等）を複数分類しfindingとして保持するpredicateはない。",
-      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。"
+      "route_evidence": "比較した採択要求IDは`HARNESS-L2-003`、`HARNESS-L2-004`、`HARNESS-L2-005`、`HARNESS-L2-024`、`HARNESS-L2-039`、`HELIXOS-L2-001`、`HELIXOS-L2-002`、`HELIXOS-L2-003`、`HELIXOS-L2-007`。DGH-BR-02は人間反応とAI解釈の分離、客観/主観の非相殺を定める。一方、美的・可読性・表示対象不足など複数の人間反応カテゴリを意味分類し、別findingとして保持するontologyは定めない。 根拠locator: 採択exact revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`のHELIX-OS L2 `governance-requirements.md:429-445`、OS L11 `governance-acceptance.md:209-216`、HARNESS L2 `product-requirements.md:195-198`。 既存predicate照合: HARNESS-L2-024は要求質問・矛盾・defer・未解決を保持し、HARNESS-L2-039はUI scopeのevidence/verificationを扱うが、人間反応の意味カテゴリ（美的・可読性・表示対象不足等）を複数分類しfindingとして保持するpredicateはない。",
+      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。",
+      "dgh_predicate_review": {
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HELIXOS-L2-002",
+          "HELIXOS-L2-003",
+          "HELIXOS-L2-007",
+          "HARNESS-L2-003",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:429-445",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209-216",
+          "docs/helix-harness/L2-requirements/product-requirements.md:195-198"
+        ],
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "assessment": "DGH-BR-02は人間反応とAI解釈の分離、客観/主観の非相殺を定める。一方、美的・可読性・表示対象不足など複数の人間反応カテゴリを意味分類し、別findingとして保持するontologyは定めない。"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-000989",
@@ -656,11 +1034,36 @@
       "relation_assessment": "true_unknown",
       "adopted_current_requirement_refs": [],
       "compared_adopted_requirement_ids": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005",
         "HARNESS-L2-024",
-        "HARNESS-L2-039"
+        "HARNESS-L2-039",
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-003",
+        "HELIXOS-L2-007"
       ],
-      "route_evidence": "比較した採択要求IDは`HARNESS-L2-024`、`HARNESS-L2-039`。HARNESS-L2-024はcancel/failure/timeout/recovery状態を要求形成工程で扱い、HARNESS-L2-039はUI sourceと検証範囲を扱う。Prototype communication failureだけを原因としてDesign生成を再実行しないという原因別route predicateはない。",
-      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。"
+      "route_evidence": "比較した採択要求IDは`HARNESS-L2-003`、`HARNESS-L2-004`、`HARNESS-L2-005`、`HARNESS-L2-024`、`HARNESS-L2-039`、`HELIXOS-L2-001`、`HELIXOS-L2-002`、`HELIXOS-L2-003`、`HELIXOS-L2-007`。DGH-BR-02とOS L11は影響scopeだけの再作業、および不満を再現済みbugへ自動変換しない条件を定める。しかしPrototype communication failureの原因を判別してDesign再生成を抑止するcause-specific routeは定めない。 根拠locator: 採択exact revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`のHELIX-OS L2 `governance-requirements.md:429-445`、OS L11 `governance-acceptance.md:209-216`、HARNESS L2 `product-requirements.md:195-198`。 既存predicate照合: HARNESS-L2-024はcancel/failure/timeout/recovery状態を要求形成工程で扱い、HARNESS-L2-039はUI sourceと検証範囲を扱う。Prototype communication failureだけを原因としてDesign生成を再実行しないという原因別route predicateはない。",
+      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。",
+      "dgh_predicate_review": {
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HELIXOS-L2-002",
+          "HELIXOS-L2-003",
+          "HELIXOS-L2-007",
+          "HARNESS-L2-003",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:429-445",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209-216",
+          "docs/helix-harness/L2-requirements/product-requirements.md:195-198"
+        ],
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "assessment": "DGH-BR-02とOS L11は影響scopeだけの再作業、および不満を再現済みbugへ自動変換しない条件を定める。しかしPrototype communication failureの原因を判別してDesign再生成を抑止するcause-specific routeは定めない。"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-000990",
@@ -678,15 +1081,35 @@
       "classification_review_candidate": false,
       "classification_reason": "プロダクト受入要件として維持。",
       "source_atom_id": "DGH-intake.acceptance.AC5",
-      "relation_assessment": "true_unknown",
-      "adopted_current_requirement_refs": [],
-      "compared_adopted_requirement_ids": [
-        "HARNESS-L2-025",
-        "HARNESS-L2-026",
-        "HARNESS-L2-039"
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-005",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-003",
+        "HELIXOS-L2-007"
       ],
-      "route_evidence": "比較した採択要求IDは`HARNESS-L2-025`、`HARNESS-L2-026`、`HARNESS-L2-039`。HARNESS-L2-025およびHARNESS-L2-026は対象revisionの設計整合・oracleを扱い、HARNESS-L2-039は選択UI sourceのrevision drift/verificationを扱う。しかし、以前人が受容したstable design axisを次revisionで特定し、権限根拠のない破壊を検出する履歴predicateはない。",
-      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。"
+      "compared_adopted_requirement_ids": [],
+      "route_evidence": "比較した採択要求IDは`HARNESS-L2-003`、`HARNESS-L2-005`、`HELIXOS-L2-002`、`HELIXOS-L2-003`、`HELIXOS-L2-007`。DGH-BR-03とOS L11は、受容済み軸と変更した軸をprototype反復の前後で比較・保持するpredicateで直接重なる。残差は、以前受容した軸の無権限な破壊を検出する専用oracleと、その完全なauthority/history規則である。 根拠locator: 採択exact revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`のHELIX-OS L2 `governance-requirements.md:429-445`、OS L11 `governance-acceptance.md:209-216`、HARNESS L2 `product-requirements.md:195-198`。",
+      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。",
+      "dgh_predicate_review": {
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HELIXOS-L2-002",
+          "HELIXOS-L2-003",
+          "HELIXOS-L2-007",
+          "HARNESS-L2-003",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:429-445",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209-216",
+          "docs/helix-harness/L2-requirements/product-requirements.md:195-198"
+        ],
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "assessment": "DGH-BR-03とOS L11は、受容済み軸と変更した軸をprototype反復の前後で比較・保持するpredicateで直接重なる。残差は、以前受容した軸の無権限な破壊を検出する専用oracleと、その完全なauthority/history規則である。"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-000991",
@@ -704,14 +1127,33 @@
       "classification_review_candidate": false,
       "classification_reason": "プロダクト受入要件として維持。",
       "source_atom_id": "DGH-intake.acceptance.AC6",
-      "relation_assessment": "true_unknown",
-      "adopted_current_requirement_refs": [],
-      "compared_adopted_requirement_ids": [
-        "HARNESS-L2-024",
-        "HARNESS-L2-039"
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HARNESS-L2-004",
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-007"
       ],
-      "route_evidence": "比較した採択要求IDは`HARNESS-L2-024`、`HARNESS-L2-039`。HARNESS-L2-024は形成情報の不足と人間確認・合意待ちを分けるが、objective UXのgreenとhuman preferenceのrejectを同時状態として表現するpredicateはない。HARNESS-L2-039もrisk-based UX evidenceを扱い、human preference stateとの並存を定義していない。",
-      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。"
+      "compared_adopted_requirement_ids": [],
+      "route_evidence": "比較した採択要求IDは`HARNESS-L2-004`、`HELIXOS-L2-001`、`HELIXOS-L2-007`。DGH-BR-02とOS L11は、客観品質と主観的な人間受容を相殺せず、客観検証と人間反応を比較するpredicateで直接重なる。残差は、objective UX greenとhuman preference rejectを同時状態として表現する具体schema・遷移である。 根拠locator: 採択exact revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`のHELIX-OS L2 `governance-requirements.md:429-445`、OS L11 `governance-acceptance.md:209-216`、HARNESS L2 `product-requirements.md:195-198`。",
+      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。",
+      "dgh_predicate_review": {
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HELIXOS-L2-002",
+          "HELIXOS-L2-003",
+          "HELIXOS-L2-007",
+          "HARNESS-L2-003",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:429-445",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209-216",
+          "docs/helix-harness/L2-requirements/product-requirements.md:195-198"
+        ],
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "assessment": "DGH-BR-02とOS L11は、客観品質と主観的な人間受容を相殺せず、客観検証と人間反応を比較するpredicateで直接重なる。残差は、objective UX greenとhuman preference rejectを同時状態として表現する具体schema・遷移である。"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-000992",
@@ -729,15 +1171,34 @@
       "classification_review_candidate": false,
       "classification_reason": "プロダクト受入要件として維持。",
       "source_atom_id": "DGH-intake.acceptance.AC7",
-      "relation_assessment": "true_unknown",
-      "adopted_current_requirement_refs": [],
-      "compared_adopted_requirement_ids": [
-        "HARNESS-L2-024",
-        "HELIXOS-L2-015",
-        "HARNESS-L2-039"
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-005",
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-007"
       ],
-      "route_evidence": "比較した採択要求IDは`HARNESS-L2-024`、`HELIXOS-L2-015`、`HARNESS-L2-039`。HARNESS-L2-024は利用者指示/回答と候補差分を扱うが、人間reaction原文を改変不能な別evidenceとして保持しAI interpretationと別digest/referenceにするpredicateはない。HELIXOS-L2-015のauthority record、HARNESS-L2-039のUI evidence bindingもこの原文/解釈分離を定めない。",
-      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。"
+      "compared_adopted_requirement_ids": [],
+      "route_evidence": "比較した採択要求IDは`HARNESS-L2-003`、`HARNESS-L2-005`、`HELIXOS-L2-001`、`HELIXOS-L2-007`。DGH-BR-02とOS L11は、人間反応とAI解釈を分けて確認・比較するpredicateで直接重なる。残差は、人間反応の原文を改変不能な別evidenceとして保持し、別digest/referenceで結ぶ具体表現である。 根拠locator: 採択exact revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`のHELIX-OS L2 `governance-requirements.md:429-445`、OS L11 `governance-acceptance.md:209-216`、HARNESS L2 `product-requirements.md:195-198`。",
+      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。",
+      "dgh_predicate_review": {
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HELIXOS-L2-002",
+          "HELIXOS-L2-003",
+          "HELIXOS-L2-007",
+          "HARNESS-L2-003",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:429-445",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209-216",
+          "docs/helix-harness/L2-requirements/product-requirements.md:195-198"
+        ],
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "assessment": "DGH-BR-02とOS L11は、人間反応とAI解釈を分けて確認・比較するpredicateで直接重なる。残差は、人間反応の原文を改変不能な別evidenceとして保持し、別digest/referenceで結ぶ具体表現である。"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-000993",
@@ -759,13 +1220,37 @@
       "adopted_current_requirement_refs": [],
       "compared_adopted_requirement_ids": [
         "HARNESS-L2-003",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005",
         "HARNESS-L2-014",
         "HARNESS-L2-025",
         "HARNESS-L2-026",
-        "HARNESS-L2-039"
+        "HARNESS-L2-039",
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-003",
+        "HELIXOS-L2-007"
       ],
-      "route_evidence": "比較した採択要求IDは`HARNESS-L2-003`、`HARNESS-L2-014`、`HARNESS-L2-025`、`HARNESS-L2-026`、`HARNESS-L2-039`。HARNESS-L2-003はScreen Applicabilityに沿うL2.5適用判定、HARNESS-L2-014は設計サービス境界、HARNESS-L2-025/HARNESS-L2-026はdesign unit/compositeの分担、HARNESS-L2-039は既存HARNESS-L2-024/HARNESS-L2-025/HARNESS-L2-026境界に接続する。これらは既存能力を入力・依存として利用するが、Design Registry/Screen Applicabilityの責務を複製しないという同じ禁止predicate、またはRegistryの個別lifecycleを採択していない。",
-      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。"
+      "route_evidence": "比較した採択要求IDは`HARNESS-L2-003`、`HARNESS-L2-004`、`HARNESS-L2-005`、`HARNESS-L2-014`、`HARNESS-L2-025`、`HARNESS-L2-026`、`HARNESS-L2-039`、`HELIXOS-L2-001`、`HELIXOS-L2-002`、`HELIXOS-L2-003`、`HELIXOS-L2-007`。HARNESS-L2-003/005とDGH-BR-01/03は要求形成・根拠付き比較・受容軸/未解決findingを扱うが、Design Registry/Screen Applicabilityの責務を複製しないという同一の禁止predicateやRegistry lifecycleは定めない。 根拠locator: 採択exact revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`のHELIX-OS L2 `governance-requirements.md:429-445`、OS L11 `governance-acceptance.md:209-216`、HARNESS L2 `product-requirements.md:195-198`。 既存predicate照合: HARNESS-L2-003はScreen Applicabilityに沿うL2.5適用判定、HARNESS-L2-014は設計サービス境界、HARNESS-L2-025/HARNESS-L2-026はdesign unit/compositeの分担、HARNESS-L2-039は既存HARNESS-L2-024/HARNESS-L2-025/HARNESS-L2-026境界に接続する。これらは既存能力を入力・依存として利用するが、Design Registry/Screen Applicabilityの責務を複製しないという同じ禁止predicate、またはRegistryの個別lifecycleを採択していない。",
+      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。",
+      "dgh_predicate_review": {
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HELIXOS-L2-002",
+          "HELIXOS-L2-003",
+          "HELIXOS-L2-007",
+          "HARNESS-L2-003",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:429-445",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209-216",
+          "docs/helix-harness/L2-requirements/product-requirements.md:195-198"
+        ],
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "assessment": "HARNESS-L2-003/005とDGH-BR-01/03は要求形成・根拠付き比較・受容軸/未解決findingを扱うが、Design Registry/Screen Applicabilityの責務を複製しないという同一の禁止predicateやRegistry lifecycleは定めない。"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-000994",
@@ -790,8 +1275,26 @@
         "HARNESS-L2-039"
       ],
       "compared_adopted_requirement_ids": [],
-      "route_evidence": "比較した採択要求IDは`HARNESS-L2-025`、`HARNESS-L2-026`、`HARNESS-L2-039`。HARNESS-L2-025およびHARNESS-L2-026はtarget requirement/L3 revision、design要素、oracle間の相互traceとauthority入力を要求し、HARNESS-L2-039はUI sourceのrevision/scope/authority/evidence bindingを要求する。結果のrevision・authority・evidence束縛に直接重なる。対象全結果・全authority種別を閉じる包括predicateまでは採択していない。",
-      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。"
+      "route_evidence": "比較した採択要求IDは`HARNESS-L2-025`、`HARNESS-L2-026`、`HARNESS-L2-039`。HARNESS-L2-025およびHARNESS-L2-026はtarget requirement/L3 revision、design要素、oracle間の相互traceとauthority入力を要求し、HARNESS-L2-039はUI sourceのrevision/scope/authority/evidence bindingを要求する。結果のrevision・authority・evidence束縛に直接重なる。対象全結果・全authority種別を閉じる包括predicateまでは採択していない。 DGH-BR predicateの追加照合: 既存partialはHARNESS-L2-025/026/039のrevision・authority・evidence bindingに限る。DGH-BR-01/02/03とOS-L2-007も照合したが、全結果・全authority種別を閉じる包括条件はない。 根拠locator: 採択exact revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`のHELIX-OS L2 `governance-requirements.md:429-445`、OS L11 `governance-acceptance.md:209-216`、HARNESS L2 `product-requirements.md:195-198`。",
+      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。",
+      "dgh_predicate_review": {
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HELIXOS-L2-002",
+          "HELIXOS-L2-003",
+          "HELIXOS-L2-007",
+          "HARNESS-L2-003",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:429-445",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209-216",
+          "docs/helix-harness/L2-requirements/product-requirements.md:195-198"
+        ],
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "assessment": "既存partialはHARNESS-L2-025/026/039のrevision・authority・evidence bindingに限る。DGH-BR-01/02/03とOS-L2-007も照合したが、全結果・全authority種別を閉じる包括条件はない。"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-000995",
@@ -812,12 +1315,37 @@
       "relation_assessment": "true_unknown",
       "adopted_current_requirement_refs": [],
       "compared_adopted_requirement_ids": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005",
         "HARNESS-L2-006",
         "HARNESS-L2-026",
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-003",
+        "HELIXOS-L2-007",
         "HELIXOS-L2-014"
       ],
-      "route_evidence": "比較した採択要求IDは`HARNESS-L2-006`、`HARNESS-L2-026`、`HELIXOS-L2-014`。HARNESS-L2-006は旧Lite/Fullや固定提供構成を分母にしない条件、HARNESS-L2-026は1.0の設計構成能力、HELIXOS-L2-014は段階pack/依存/更新復旧の確認を定める。Fullと将来Lite consumerの間で最小契約だけ配るdependency boundary、Lite側consumer closureというpredicateは採択していない。",
-      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。"
+      "route_evidence": "比較した採択要求IDは`HARNESS-L2-003`、`HARNESS-L2-004`、`HARNESS-L2-005`、`HARNESS-L2-006`、`HARNESS-L2-026`、`HELIXOS-L2-001`、`HELIXOS-L2-002`、`HELIXOS-L2-003`、`HELIXOS-L2-007`、`HELIXOS-L2-014`。DGH-BR-01/02/03とHARNESS-L2-003/004/005は、Full HELIXと将来Lite consumer間の最小契約・consumer closureを定めない。 根拠locator: 採択exact revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`のHELIX-OS L2 `governance-requirements.md:429-445`、OS L11 `governance-acceptance.md:209-216`、HARNESS L2 `product-requirements.md:195-198`。 既存predicate照合: HARNESS-L2-006は旧Lite/Fullや固定提供構成を分母にしない条件、HARNESS-L2-026は1.0の設計構成能力、HELIXOS-L2-014は段階pack/依存/更新復旧の確認を定める。Fullと将来Lite consumerの間で最小契約だけ配るdependency boundary、Lite側consumer closureというpredicateは採択していない。",
+      "residual": "このroute関係は旧sourceの採用・successor割当・全量被覆・受入・実装・完了を意味しない。",
+      "dgh_predicate_review": {
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HELIXOS-L2-002",
+          "HELIXOS-L2-003",
+          "HELIXOS-L2-007",
+          "HARNESS-L2-003",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:429-445",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209-216",
+          "docs/helix-harness/L2-requirements/product-requirements.md:195-198"
+        ],
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "assessment": "DGH-BR-01/02/03とHARNESS-L2-003/004/005は、Full HELIXと将来Lite consumer間の最小契約・consumer closureを定めない。"
+      }
     }
   ],
   "previous_audit_comparison": {
@@ -865,8 +1393,8 @@
     "selected": 24,
     "effective_condition_product_requirement_atom_unknown": 24,
     "relation_assessment": {
-      "adopted_relevant_partial": 5,
-      "true_unknown": 19
+      "true_unknown": 13,
+      "adopted_relevant_partial": 11
     },
     "classification_review_candidate": 0,
     "adoption_successor_coverage_acceptance_implementation_completion_claims": 0
@@ -892,6 +1420,13 @@
     "classification_review_candidates_separate": true,
     "merged_input_only": true,
     "all_compared_ids_appear_in_route_evidence": true,
-    "route_evidence_has_no_abbreviated_requirement_ids": true
+    "route_evidence_has_no_abbreviated_requirement_ids": true,
+    "route_relation_counts": {
+      "adopted_relevant_partial": 11,
+      "true_unknown": 13
+    },
+    "all_dgh_rows_recompared": true,
+    "dgh_predicate_review_row_count": 24,
+    "all_dgh_locator_and_residual_present": true
   }
 }
