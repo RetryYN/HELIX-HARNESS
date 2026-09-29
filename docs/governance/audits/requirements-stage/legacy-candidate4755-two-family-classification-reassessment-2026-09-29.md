@@ -1,8 +1,9 @@
 # 旧candidate 2系列のStage 5分類再評価
 
 - audit id: `legacy-candidate4755-two-family-classification-reassessment-2026-09-29`
-- 入力: #2361 exact `aab65a4f1bc2f679530604cb7f89519683b9156c`。#2353/#2356/#2360 overlay後の該当2文書14行。
-- 除外: #2363 exact `5c2fcc39daaeb0a7433ef34d4182a1a82a70a3d4`で提案済みの16 ID（JSONに全IDを固定）。
+- 基準: merged #2361 exact `132a56f3f2cbb1d02ad3bc08bab4f23ef93369cc`。#2353/#2356/#2360 overlay後の該当2文書14行。#2361累積監査JSONのSHA-256は `e29aadd8c84dda8fcfca65010ffa62331b6631ffce3ac22ef5d174270bb92b20`。
+- 関連入力: merged #2362 exact `847f7262d1248de2de5165d029a9175e027bda6c`の5行route提案を別pinで固定。対象14行とは別集合で、この4755行分類baselineを変えない。
+- 除外: merged #2363 exact `e7f5f54c86e45c2904c129cd24c94d589bafb4bd`の16 ID（JSONに全IDを固定）。最終監査JSONのSHA-256は `12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384`。
 - authority effect: `none`。proposalは候補分類とatom境界のみを示す。採択、successor、coverage、受入、実装を示さない。
 
 ## 分類案
@@ -26,10 +27,12 @@
 
 対象はCI concurrency 3行、Concept/Vision intake 11行。CI側3行はproduct atomとして維持し、intake側9行をmanagement process condition、2行をexplanationへ分類する。原文とfile/line digest、改行を含むphysical-line SHA-256、入力pin、#2363除外集合は同名JSONに記録した。
 
-## 母集団への影響（提案の算術）
+## 母集団への影響（分類算術とhandoff／closureを分離）
 
-この14行への分類案を重ねた場合、condition −2、explanation +2、management process condition +9、product requirement atom −11、product unknown route −11、management successor unresolved +9、not_condition +2となる。製品unknownの減少は分類の見直しによるもので、旧条件の現行要求への引継ぎや残条件の解消を数えたものではない。3行の製品atomはunknownのまま保持する。依存する#2361/#2363の確定後に、最新main上の母集団とpinを再計算する。
+merged #2361の確定baselineではproduct route unknownは544件。merged #2363の最終監査はこのbaselineを使用し、分類差分−12により提案上532件とする。今回の#2366分類差分は、condition −2、explanation +2、management process condition +9、product requirement atom −11、product route unknown −11、management successor unresolved +9、not_condition +2。両提案を重ねた分類算術は544−12−11=521件となる。これは#2361と#2363のmerged proposalに今回のbounded proposalを加えた提案上の数であり、全量累積recountを新たに実施した値ではない。
+
+unknown −11は9行をmanagement process condition、2行をexplanationへ再分類する集計差分である。これは11件のhandoff、successor assignment、coverage、resolution、closureを意味しない。9行の管理条件は未解決のまま残る。3行のproduct atomもunknownのまま保持する。authority effectはnoneであり、採択・successor・coverage・受入・実装を生成しない。
 
 ## 検証
 
-14件のID一意性、#2363の16 IDとの非重複、台帳からの原文・line digest一致、旧archive file SHAとbytesの一致を静的確認した。旧runtime・CLI・test・hook・CIは実行していない。
+14件のID一意性、#2363 merged proposalの16 IDとの非重複、台帳からの原文・line digest一致、旧archive file SHAとbytesの一致を静的確認した。#2361/#2362/#2363のmerged audit pinをJSONに記録した。分類差分はhandoff、successor assignment、coverage、resolution、acceptance、implementation、closureを示さない。旧runtime・CLI・test・hook・CIは実行していない。

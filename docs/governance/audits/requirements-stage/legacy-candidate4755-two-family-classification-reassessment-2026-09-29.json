@@ -1,13 +1,13 @@
 {
   "schema_version": "legacy-candidate4755-two-family-classification-reassessment.v1",
   "audit_id": "legacy-candidate4755-two-family-classification-reassessment-2026-09-29",
-  "base_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+  "base_commit": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
   "authority_effect": "none",
   "audit_mode": "read_only_bounded_source_classification_and_atom_boundary_proposal",
   "scope": {
-    "population": "current effective condition/product_requirement_atom/unknown rows in the two named old candidate files at #2361 exact HEAD, after #2353/#2356/#2360 overlays",
+    "population": "Current effective condition/product_requirement_atom/unknown rows in the two named old candidate files at merged #2361 cumulative recount (132a56f3f2cbb1d02ad3bc08bab4f23ef93369cc), after #2353/#2356/#2360 overlays; #2362 merged five-row route proposal is separately pinned and does not change this 4755-row classification baseline.",
     "remaining_row_count": 14,
-    "excluded_prior_proposal": "#2363 exact commit 5c2fcc39daaeb0a7433ef34d4182a1a82a70a3d4; its 16 rows inspected for context and excluded",
+    "excluded_prior_proposal": "#2363 merged exact commit e7f5f54c86e45c2904c129cd24c94d589bafb4bd; its final 16-row classification proposal is pinned for disjoint-set verification and context.",
     "excluded_ids": [
       "LEGACY-CAND-LINE-000514",
       "LEGACY-CAND-LINE-000515",
@@ -35,10 +35,10 @@
   },
   "pinned_inputs": [
     {
-      "role": "cumulative_stage5_recount_and_overlay_identity",
-      "commit": "aab65a4f1bc2f679530604cb7f89519683b9156c",
+      "role": "merged #2361 cumulative Stage 5 recount; definitive pre-proposal baseline is 544 product route unknown",
+      "commit": "132a56f3f2cbb1d02ad3bc08bab4f23ef93369cc",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-stage5-recount-after-2353-2356-2360-2026-09-29.json",
-      "sha256": "ff1da2c7e563f25b7044318670e1808a6463afcac82857764d917878fb5046a5",
+      "sha256": "e29aadd8c84dda8fcfca65010ffa62331b6631ffce3ac22ef5d174270bb92b20",
       "overlay_ids": [
         "#2353 base state",
         "#2356",
@@ -46,26 +46,32 @@
       ]
     },
     {
-      "role": "prior_16_row_reassessment_exclusion_and_context",
-      "commit": "5c2fcc39daaeb0a7433ef34d4182a1a82a70a3d4",
+      "role": "merged #2362 five-row route proposal; source set is disjoint from this 14-row classification proposal and does not create closure",
+      "commit": "847f7262d1248de2de5165d029a9175e027bda6c",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-five-replacement-route-proposal-2026-09-29.json",
+      "sha256": "ba58027e729ab177f869cbaae8d509a496bab63e19b9a97f3f4070a7247d38ea"
+    },
+    {
+      "role": "#2363 merged 16-row classification proposal; excluded IDs and final proposed −12 delta",
+      "commit": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
-      "sha256": "8d1a2e222d46b794f96ae93fd8a9957e0d4fd9568e374e43a13ccfe7b81fca42"
+      "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384"
     },
     {
       "role": "source_line_identity_ledger",
-      "commit": "aab65a4f1bc2f679530604cb7f89519683b9156c",
+      "commit": "847f7262d1248de2de5165d029a9175e027bda6c",
       "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
       "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
     },
     {
       "role": "original_archive_source",
-      "commit": "aab65a4f1bc2f679530604cb7f89519683b9156c",
+      "commit": "847f7262d1248de2de5165d029a9175e027bda6c",
       "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
       "sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6"
     },
     {
       "role": "original_archive_source",
-      "commit": "aab65a4f1bc2f679530604cb7f89519683b9156c",
+      "commit": "847f7262d1248de2de5165d029a9175e027bda6c",
       "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
       "sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e"
     }
@@ -532,7 +538,10 @@
     "all_source_ids_resolved_in_ledger": true,
     "source_file_sha256_matches_archive_bytes": true,
     "all_lines_have_exact_text_and_line_digest": true,
-    "prior_2363_ids_excluded": true
+    "prior_2363_ids_excluded": true,
+    "all_direct_input_path_commit_sha256_pins_verified": true,
+    "merged_2363_final_544_to_532_arithmetic_verified": true,
+    "full_population_recount_performed": false
   },
   "impact_if_overlay_applied": {
     "condition": -2,
@@ -542,6 +551,22 @@
     "product_route_unknown": -11,
     "management_successor_unresolved": 9,
     "not_condition": 2,
-    "interpretation": "Arithmetic classification correction only; the reduction is not a count of old conditions handed off or resolved."
+    "interpretation": "Classification arithmetic only. The −11 product-route-unknown count comprises nine rows classified as management process conditions and two as explanation; it is not 11 handoffs, successor assignments, coverage findings, resolutions, or closures. The nine management rows remain unresolved.",
+    "handoff_or_closure_delta": 0,
+    "handoff_or_closure_interpretation": "No handoff, successor assignment, source coverage, acceptance, implementation, or closure is proposed."
+  },
+  "projected_cumulative_arithmetic": {
+    "merged_pr_2361_product_route_unknown_baseline": 544,
+    "merged_pr_2363_classification_delta": -12,
+    "proposed_product_route_unknown_after_pr_2363": 532,
+    "this_pr_2366_classification_delta": -11,
+    "proposed_product_route_unknown_after_pr_2363_and_pr_2366": 521,
+    "status": "Proposed classification arithmetic from exact merged inputs #2361 and #2363 plus this bounded #2366 overlay. This is not adoption, handoff, successor completion, coverage, resolution, acceptance, implementation, or a claim that a new full-population recount has been run."
+  },
+  "follow_up_status": {
+    "pr_2361": "merged and read-after at 132a56f3f2cbb1d02ad3bc08bab4f23ef93369cc; exact audit content pinned",
+    "pr_2362": "merged at 847f7262d1248de2de5165d029a9175e027bda6c; exact route-proposal audit content pinned",
+    "pr_2363": "merged and read-after at e7f5f54c86e45c2904c129cd24c94d589bafb4bd; exact final audit content pinned; merged proposal records 544→532 classification arithmetic",
+    "commit_readiness": "merged input pins and bounded source checks complete; local commit permitted; no push performed"
   }
 }
