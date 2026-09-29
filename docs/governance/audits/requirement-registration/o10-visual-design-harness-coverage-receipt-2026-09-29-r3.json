@@ -9,8 +9,8 @@
   "candidate_l2_file_sha256": "sha256:45955ffba1293b603f3c513ec1e9e328dd7bcf24b038463eb20dd480d1dc2108",
   "candidate_digest_rule": "UTF-8 bytes from ### HARNESS-L2-049 through the byte before the next level-3 candidate heading, trailing blank lines removed, exactly one LF at end.",
   "paired_acceptance_identity": "HARNESS-L11-049",
-  "paired_acceptance_digest": "sha256:a7853f2b6f45a84d3c89f3efcde7344eb45ae7b6603f06a166dc23cf17cf1daf",
-  "candidate_l11_file_sha256": "sha256:c69fe972a96631e101839e0bb3ea3fa60c00f0a798b983629ba98dc445d1c582",
+  "paired_acceptance_digest": "sha256:f3fb47da21371084e9f8c7c7f7ca6dd945c8e98ae7c7b70597c3fc44e4e08ee7",
+  "candidate_l11_file_sha256": "sha256:411b1e5067c50d0fef789a9635d83031816bd984662906028844173a96b295be",
   "l11_digest_rule": "UTF-8 bytes from ### HARNESS-L11-049 through the byte before the next level-3 acceptance heading, trailing blank lines removed, exactly one LF at end.",
   "source_lines_ref": "docs/governance/audits/requirement-registration/o10-visual-design-harness-source-lines-2026-09-29.jsonl",
   "source_file_sha256": "sha256:7dd1aff53747c60d080cdc367407751fb707e20b839ad64a9462537bb525cb2d",
@@ -113,7 +113,7 @@
   "receipt_limits": "このreceiptはO10 selected source spanのno-loss partitionとcandidate pair digestを照合する。candidate/adoption、039採択、1.0実装、描画・測定・LABO評価の実施、検査精度、PO agreement、operation permissionは証明しない。",
   "supersedes_receipt_id": "DRAFT-RCPT-HARNESS-L2-049-O10-VISUAL-DESIGN-2026-09-29-r2",
   "registration_id": "MPR-RC-HARNESS-L2-049-003",
-  "correction_reason": "Align the L11 standalone measurement example with HARNESS-L2-049: a supplied screen ID bound to the target revision, use permission, applicable profile, and measurement conditions is sufficient to enter measurement. Do not require prototype-generation, Pattern-selection, or screen-ID-issuance evidence. An absent or revision-unbound screen ID remains missing/unknown. L2 bytes and the selected/held source atom partition are unchanged. This exact revision remains unadopted pending PO re-confirmation.",
+  "correction_reason": "Align the L11 standalone measurement example with HARNESS-L2-049: a supplied screen ID bound to the target revision, use permission, applicable profile, and measurement conditions is sufficient to enter measurement. Do not require prototype-generation, Pattern-selection, or screen-ID-issuance evidence. An absent or revision-unbound screen ID remains missing/unknown. Preserve the prior counterexample that an unadopted Pattern or CORE constraint must not be treated as adopted, while absence of Pattern-selection evidence alone does not block measurement. L2 bytes and the selected/held source atom partition are unchanged. This exact revision remains unadopted pending PO re-confirmation.",
   "open_po_scope_axes": [
     {
       "axis_id": "O10-PROTOTYPE-CONSTRUCTION-SCOPE",

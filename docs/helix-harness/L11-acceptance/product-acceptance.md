@@ -809,7 +809,7 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **正常例：検査精度**：検査項目ごとの既知の正例・反例fixtureと期待分類、実測結果を照合し、誤検出・見逃しを評価できる。選択scopeと異なるfixture・source revisionの結果を流用しない。LABO評価が必要な範囲では既存接続経由の評価結果と未完義務を識別する。
 - **正常例：文字量**：profileが画面・領域・文言の役割と目安を定める範囲で、上限超過、同じ内容の反復、説明のためだけの説明を理由付き候補として作成側へ返す。閾値をprofileや根拠なしに作らず、人の文言判断や修正を承認済みとして扱わない。
 - **状態境界**：機械検査のpassは`implemented`や`ux_verified`を生成しない。両状態の分離は既存`HARNESS-L2-039`候補の範囲と重なるため、049の単独成立・測定結果から状態を主張できない。
-- **不成立例**：表示せずに生成物/静止画だけで測定済みとする、screen IDまたは対象revisionが欠落・不整合なのに測定をpassにする、検査精度がunknownなのにpass根拠へ使う、文字数の一律閾値を追加する、人の合意をAIが代行する、`implemented`から`ux_verified`を推定する、後続版のreal-user UX/drift/analyticsを1.0完了条件に混入する場合は不合格またはunknownとする。prototype生成、Pattern selection、screen ID発行の証拠が無いことだけでは失敗にしない。
+- **不成立例**：表示せずに生成物/静止画だけで測定済みとする、screen IDまたは対象revisionが欠落・不整合なのに測定をpassにする、採択されていないPatternやCORE制約を確定済みとして用いる、検査精度がunknownなのにpass根拠へ使う、文字数の一律閾値を追加する、人の合意をAIが代行する、`implemented`から`ux_verified`を推定する、後続版のreal-user UX/drift/analyticsを1.0完了条件に混入する場合は不合格またはunknownとする。prototype生成、Pattern selection、screen ID発行の証拠が無いことだけでは失敗にしない。
 - **未見例**：追加のdevice condition、view/viewport、画面状態、文言役割を与え、選択scopeのoracle・fixtureにない条件をunknownとして残せることを確認する。未選択の機器・役割・locale等について、実施・合格を推測しない。
 - **受入の限界**：文書上の対応関係、candidate登録、fixture一覧、描画画像の存在だけでは要求採択、実測成功、検査精度、PO合意、実装、実利用者評価、L3/L11の実際の完了を成立させない。O10で後続版へ回したreal-data/user evaluation、prototype-implementation drift、analytics event接続を1.0候補の合格要件にしない。
 
