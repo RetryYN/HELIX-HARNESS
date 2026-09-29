@@ -1,0 +1,216 @@
+{
+  "record_type": "append_only_candidate_audit_worksheet",
+  "worksheet_id": "PO-WS-HARNESS-L2-063-2026-09-29",
+  "base_revision": "6e9e91d1a50acfb83ee64795e6ddbd1dfdff2485",
+  "scope": [
+    "HARNESS-L2-063"
+  ],
+  "status": {
+    "management_state": "registered_proposal",
+    "authority_effect": "none",
+    "adoption_state": "unadopted",
+    "version_target": null,
+    "version_target_status": "unspecified"
+  },
+  "relation_to_existing_worksheets": {
+    "historical_packet_union_identity_count": 25,
+    "historical_union_modified": false,
+    "harness_l2_063_in_historical_union": false,
+    "live_disposition_snapshot": {
+      "path": "docs/governance/audits/requirements-stage/live-candidate-effective-disposition-2026-09-29.json",
+      "sha256": "510363fed121e6a8c8ba338330699c6e0a0be98f058c63325ccea37afd541ba8",
+      "as_of_commit": "d0a58b1fa10456e5cf36d6d62a33a6117da9e1ae",
+      "register_rows": 637,
+      "unclassified_identity_count": 25,
+      "freshness": "stale relative to this worksheet base; exact current census not performed"
+    },
+    "current_count_context": {
+      "added_live_registration": "MPR-RC-HARNESS-L2-063-001",
+      "simple_addition_to_stale_unclassified_snapshot": 26,
+      "count_status": "expected arithmetic only; exact current census not performed",
+      "meaning": "The historical 25-packet union stays intact. The current candidate inventory is a separate population and must not be reported as exactly 26 without recensus."
+    },
+    "17_candidate_packet": {
+      "path": "docs/governance/audits/requirements-stage/po-decision-packet-live-17-candidates-2026-09-29.md",
+      "base_revision": "a8dbf0daac7c7b6332521e9b73080e977a788222",
+      "sha256": "507858288483e5fafed5fe50c7a96986b9057b0430bd6171eec5f52a7166d018",
+      "contains_harness_l2_063": false
+    },
+    "8_candidate_supplement": {
+      "path": "docs/governance/audits/requirements-stage/po-decision-packet-live-8-candidates-supplement-2026-09-29.md",
+      "base_revision": "3eed8fdbf4cb195e413bfe4f65fca11da6739273",
+      "sha256": "001a5bb62204b013429d416cb10af817860163a0e6ee33c5530be0acbb5b13d0",
+      "contains_harness_l2_063": false
+    }
+  },
+  "candidate": {
+    "identity": "HARNESS-L2-063",
+    "requirement_kind": "unit",
+    "product_target": "HELIX-HARNESS",
+    "registration": {
+      "registration_id": "MPR-RC-HARNESS-L2-063-001",
+      "supersedes_registration_id": null,
+      "register_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "register_line": 638,
+      "register_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+      "candidate_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-063",
+      "candidate_semantic_digest": "sha256:f0a1014c9514d70e8cbee63faca3ae6679c43240c89e095c4b484b161ed75b46",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "parent_concept_revision": "docs/concept/helix-concept.md@bf758c8d771a9d0bb70b0c793e6b66cd6fa1271e sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+      "parent_planning_revision": "docs/helix-harness/L1-planning/product-intent.md@f6dad2a33e24f000b87d7f09b8d40288257e74cc sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f"
+    },
+    "l2": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "section": "HARNESS-L2-063",
+      "section_sha256": "sha256:f0a1014c9514d70e8cbee63faca3ae6679c43240c89e095c4b484b161ed75b46",
+      "file_sha256": "sha256:78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6"
+    },
+    "l11": {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "section": "HARNESS-L2-063",
+      "section_sha256": "sha256:fb545fc06feb1b032899cc24e8b579bb2032747a4e65f40ae354103b0bda2233",
+      "file_sha256": "sha256:a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e",
+      "execution_state": "not_run"
+    }
+  },
+  "source_receipt": {
+    "path": "docs/governance/audits/requirement-registration/hr17-residual-coverage-receipt-2026-09-29.json",
+    "receipt_id": "MPR-RCPT-HARNESS-HIL17-RESIDUAL-2026-09-29-001",
+    "file_sha256": "sha256:a4e0e656275cf5d942741af6fdca6dfcfb1b0ffcd6c395ad6abb6d44a45d8b1f",
+    "coverage_result": "no_loss",
+    "coverage_scope": "selected 3 non-overlapping HR-FR-HIL-17 meaning slices only",
+    "authority_effect": "none",
+    "source_atom_set": {
+      "path": "docs/governance/audits/requirement-registration/hr17-residual-source-atoms-2026-09-29.jsonl",
+      "file_sha256": "sha256:6534d8207e46d3ec3c5958e5862bb44bf534338fdc3437e3ff0350646fadf522",
+      "set_ref": "docs/governance/audits/requirement-registration/hr17-residual-source-atoms-2026-09-29.jsonl#HR-FR-HIL-17-RESIDUAL",
+      "set_digest": "sha256:4eee79ed1c3f5200eae9cee1b852fe7ba6d475639cdb4168c073124e002cfdff",
+      "atom_count": 3,
+      "atom_ids": [
+        "HR-FR-HIL-17-BEHAVIOR",
+        "HR-FR-HIL-17-TRANSITION",
+        "HR-FR-HIL-17-FAILURE-EVIDENCE"
+      ],
+      "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-003"
+    },
+    "legacy_asset": {
+      "asset_id": "LEGACY-ASSET-67761C517521603F844C",
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json#/HR-FR-HIL-17",
+      "file_sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "related_acceptance_cases": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+        "file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+        "items": [
+          "HAC-HIL-17a",
+          "HAC-HIL-17b",
+          "HAC-HIL-17c"
+        ]
+      },
+      "related_system_tests": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+        "file_sha256": "sha256:7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+        "item": "HAT-HIL-17",
+        "execution_state": "not_run"
+      },
+      "refinement_contracts": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/refinement_contracts.json",
+        "file_sha256": "sha256:6230d6c0ae341ea45eba1e9bf1d40389363b9f1f12c158e5b5c15799122e1443",
+        "direct_successor_found": false
+      },
+      "disposition_ledger_ref": "docs/governance/legacy-asset-disposition.jsonl:2867"
+    },
+    "scope_limits": [
+      "No full HR-FR-HIL-17 coverage or formal successor assignment is claimed.",
+      "The 11 requirement IDs, the whole system contract, the full IR, and full HAC/HAT population remain outside the selected atom set.",
+      "MPR-SH-SUPPLEMENTARY-003 remains live; source ownership transfer is not confirmed.",
+      "Receipt no_loss is limited to the selected three source atoms."
+    ],
+    "source_holding": {
+      "registration_id": "MPR-SH-SUPPLEMENTARY-003",
+      "register_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "register_line": 18,
+      "register_sha256": "sha256:ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+      "source_atom_set_ref_as_registered": "docs/governance/legacy-requirement-supplementary-source-carry-forward.jsonl",
+      "current_source_atom_set_path": "docs/governance/legacy-migration/requirement/legacy-requirement-supplementary-source-carry-forward.jsonl",
+      "current_source_atom_set_file_sha256": "sha256:1a0591e1da6f9579d970aedfccff90ac6a8e1aefbbe0f4047e3aeb950a8449bb",
+      "source_atom_set_digest": "sha256:1a0591e1da6f9579d970aedfccff90ac6a8e1aefbbe0f4047e3aeb950a8449bb",
+      "source_atom_count": 655,
+      "management_state": "registered_source_holding",
+      "product_target": "unassigned_cross_product",
+      "authority_effect": "none",
+      "note": "MPR holding ref retains its pre-relocation path; current ledger location is identified by the 2026-09-26 PO relocation record.",
+      "relocation_decision_ref": "docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md"
+    }
+  },
+  "po_options": [
+    {
+      "option": "adopt",
+      "target": "exact current L2/L11/MPR revision only",
+      "required_explicit_choice": "No version_target choice is required for adoption; retain unspecified and do not promote to 1.0.",
+      "impact": [
+        "Adopt only HARNESS-side source-authority binding and freeze-closure function semantics within the three-atom receipt scope; retain version_target as unspecified.",
+        "Do not infer OS state/ticket/storage operation, SECURITY operation authority, L3 approval, implementation, or executed acceptance.",
+        "Do not close source holding or claim full HR-FR-HIL-17 successor/coverage."
+      ]
+    },
+    {
+      "option": "hold",
+      "target": "exact current L2/L11/MPR revision",
+      "impact": [
+        "Candidate remains registered_proposal with authority_effect none.",
+        "MPR-SH-SUPPLEMENTARY-003 remains live.",
+        "No candidate-based freeze eligibility or source closure is authoritative."
+      ],
+      "condition": "Use when the PO has an unresolved objection to candidate meaning, scope, or owner boundary."
+    },
+    {
+      "option": "reject",
+      "target": "exact current L2/L11/MPR revision",
+      "impact": [
+        "Decline this candidate revision with a reason recorded under existing authority rules.",
+        "Do not retire source holding or assign a successor to the residual source population.",
+        "A changed candidate needs a new revision and source/coverage receipt."
+      ]
+    }
+  ],
+  "recommendation": {
+    "option": "adopt",
+    "scope": "exact current HARNESS-L2-063 L2/L11/MPR revision; selected three source atoms only",
+    "version_target": "unspecified; retain as-is, do not change to 1.0",
+    "basis": [
+      "The source receipt is explicitly limited to three non-overlapping atoms and preserves MPR-SH-SUPPLEMENTARY-003.",
+      "L2/L11 define positive, negative, and unknown behavior plus HARNESS/OS/SECURITY owner boundaries.",
+      "The candidate references the adopted HARNESS-L2-009/035/040/041 contracts without replacing their responsibilities.",
+      "The 2026-09-29 11-candidate decision says candidates with unspecified introduction version may be adopted for function meaning only without changing version_target to 1.0."
+    ],
+    "impact": "Adoption selects this candidate meaning only. The 655-item source holding remains live; no source owner transfer, full HR-FR-HIL-17 successor/closure, L3 approval, executed acceptance, or stage completion follows.",
+    "authority_effect": "none",
+    "precedent": {
+      "decision_path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+      "decision_file_sha256": "sha256:6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+      "rule": "Unspecified introduction version permits adoption of function meaning only; adoption does not set version_target to 1.0."
+    }
+  },
+  "unresolved_scope": [
+    "version_target remains unspecified; even if the PO adopts the function meaning, it is not promoted to 1.0 and no later-version assignment is inferred.",
+    "Only three selected source slices are covered; the other HR-FR-HIL-17 IDs and full source closure are not included.",
+    "MPR-SH-SUPPLEMENTARY-003 preserves the 655-item source holding; owner transfer and remaining atom assignments are unresolved.",
+    "HARNESS semantics, OS state/ticket/storage operations, and SECURITY operation authority remain separate responsibilities.",
+    "L11 oracles are design conditions only and have not been executed.",
+    "The append-only source-holding MPR row retains a pre-relocation ledger path; the current ledger was read at docs/governance/legacy-migration/requirement/legacy-requirement-supplementary-source-carry-forward.jsonl. This worksheet does not rewrite the register or assert source-holding closure.",
+    "The live effective-disposition snapshot is stale at 637 MPR rows / 25 unclassified identities; adding the later 063 registration yields an expected arithmetic count of 26, but exact current census has not been performed."
+  ],
+  "audit_boundary": {
+    "does_not_declare_stage_complete": true,
+    "does_not_adopt_candidate": true,
+    "does_not_modify_historical_17_or_8_snapshots": true,
+    "does_not_modify_register_or_receipt": true,
+    "does_not_run_legacy_runtime_test_ci": true,
+    "17_packet_recommendation_completeness": "separate follow-up audit; not assessed by this 063-only worksheet",
+    "historical_packet_union_identity_count": 25,
+    "historical_union_modified": false,
+    "current_unclassified_expected_count_from_stale_snapshot": 26,
+    "exact_current_census": "not performed"
+  }
+}
