@@ -909,3 +909,14 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **対応する例**：現行適用契約に基づくHARNESS stage outcomeと、同一scope/revisionのOS event/referenceを与える。OS projectionからappend-only event、current state、利用可能なparent/cause lineageを相互に辿れ、HARNESS outcomeの意味を変更せず引き継ぐことを確認する。
 - **拒否・unknown例**：event欠落、異なるrevision/scope、parent/cause参照の孤立、duplicate/conflicting eventを個別に与える。欠落を補ったり状態遷移を推定したりせず、未解決記録・復旧義務を残す。event/receipt/projectionの存在だけから工程pass、pair-freeze、merge、承認、完了を作らない。
 - **受入限界**：HARNESSが定めるstage順・遷移条件や旧InfinityLoopEvent schemaを受け入れoracleへ導入しない。旧HIL-FR-01全体、隣接要求、旧runtime/test/CIの実行・成功は対象外。HR-FR-HIL-02、HAC-HIL-02a/b/cは関連oracle参照に限り実行しない。
+
+### HELIXOS-L11-104 操作authority・実行隔離・品質受入の独立記録候補（未実行）
+
+- **対応要求・状態**：HELIXOS-L2-104と対になる未採択・未実行の静的oracle案。実operation、隔離の実適用、品質検証の実行、要求採択または受入を示さない。
+- **三つの独立oracle**：同一operation／要求revision／scopeについて、(1) SECURITYが返す操作authority結果、(2) Worker実行環境が返すSECURITY制約の適用観測、(3) HARNESSが要求revisionと対応L11 oracleに基づいて返す品質検証・受入結果を、それぞれ別のowner/source結果として確認する。OSは結果を作らず参照を結ぶ。
+- **正常例**：三つの結果がそれぞれのownerから得られ、operation／要求revision／scopeが一致するfixtureでは、三結果を別々に参照できることを確認する。結果の存在や全件の肯定状態から、この静的oracleを実行済み受入としない。
+- **操作authority oracle**：authorization記録がある場合、それだけでSandbox適用観測または品質oracleを成立扱いしない。authorizationが明示的にdenyであるnegative例も、隔離または品質結果を書き換えない。authorization記録が欠落・unknownなら、隔離または品質結果から補完しない。
+- **実行隔離 oracle**：隔離の適用観測がある場合、それだけでSECURITYのoperation authorityまたは品質oracleを成立扱いしない。制約の未適用を示すnegative例も、他二結果を書き換えない。適用観測が欠落・unknownなら、authorityまたは品質結果から補完しない。
+- **品質受入 oracle**：HARNESSの品質oracle結果がある場合、それだけでSECURITYのauthorityまたはWorker環境の隔離適用を成立扱いしない。要求oracleのnegative結果も、他二結果を書き換えない。品質oracleまたは対応L11結果が欠落・unknownなら、他二結果から補完しない。
+- **identity不一致例**：三結果のうち一つでもoperation、要求revisionまたはscopeが異なるfixtureでは、同一operationの三つの結果として結ばない。scopeやrevisionを推測で補正しない。
+- **限界**：本受入案はowner・対象・結果の分離と非代用を読む静的oracleであり、具体的なstate enum、実行方式、Sandbox製品、追加停止規則、人手承認を定義しない。旧sourceの同一line atom以外、security／Worker／HARNESS各契約の完全性、実装・実行結果およびformal successor closureを主張しない。

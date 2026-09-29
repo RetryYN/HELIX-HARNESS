@@ -1,0 +1,52 @@
+{
+  "receipt_id": "MPR-RCPT-HELIXOS-L2-104-2026-09-29",
+  "authority_effect": "none",
+  "candidate_digest_rule": "docs/helix-os/L2-requirements/governance-requirements.mdの「### HELIXOS-L2-104 」見出し行から、次の「#」で始まる行の直前までをUTF-8で取り、末尾の空行を除いて改行1つで終える。そのSHA-256をsha256:付きで記す。",
+  "candidate_semantic_digest": "sha256:a6346a95c796b0d1c2e72e5f24e150767ced6329b9f6137a9547370e82ad502d",
+  "paired_l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md#HELIXOS-L11-104",
+  "paired_l11_semantic_digest": "sha256:b899b8da8d4bb85c5972b7e116e2f3837e61dd20a337018baeadb2a2a5dfe90f",
+  "source_holding": "MPR-SH-CANDIDATE-003（docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl）",
+  "source_file": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+  "source_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+  "source_atom_set_digest": "sha256:b16d9f9532dd8ac5a6ec5752f8b665a94e18c457f8852ef9181c5efd1e044252",
+  "source_atom_count": 1,
+  "source_collection_scope": "旧Concept crosswalk候補のline 14に限る一つのsemantic atom。三つのowner resultの非代用関係をOS接続責務へ導出する。隣接行、旧crosswalk全体、別inventoryとの重複・包含関係、旧要求群のformal successorは含めない。",
+  "atoms": [
+    {
+      "atom_id": "LEGACY-CAND-LINE-000603",
+      "source_line": 14,
+      "source_line_sha256": "sha256:579bede1d203b2aea9b95c21471bb1a652b84a04d1ba67619304040e4d6a22f6",
+      "disposition": "carried"
+    }
+  ],
+  "owner_mapping": {
+    "operation_authority": "HELIX-SECURITYが方針と操作authorityを持つ。既存HELIXSECURITY-L1-008、L2-008/022。",
+    "execution_isolation": "SECURITYが制約を定め（L1-007）、Worker実行環境が強制と適用観測を担う。OSは既存assignment/run証拠を追跡する。",
+    "quality_acceptance": "HELIX-HARNESSが契約とoracleを持つ。既存HARNESS-L2-022と対応L11。",
+    "OS_candidate_scope": "同一operation/revision/scopeの三結果を対応付けて別々に保つ。OSはownerの結果を生成しない。"
+  },
+  "oracles": [
+    {
+      "dimension": "operation_authority",
+      "normal": "authority ownerの結果を独立して参照できる。",
+      "negative": "denyはdenyのままであり、隔離や品質の成立を示さない。",
+      "unknown": "authorityの欠落/unknownを別次元から推定しない。"
+    },
+    {
+      "dimension": "execution_isolation",
+      "normal": "Worker実行環境の適用観測を独立して参照できる。",
+      "negative": "制約未適用はauthorityや品質の結果を書き換えない。",
+      "unknown": "適用観測の欠落/unknownを別次元から推定しない。"
+    },
+    {
+      "dimension": "quality_acceptance",
+      "normal": "HARNESS要求/L11 oracleの結果を独立して参照できる。",
+      "negative": "quality oracle failureはauthorityや隔離の結果を書き換えない。",
+      "unknown": "品質結果の欠落/unknownを別次元から推定しない。"
+    }
+  ],
+  "coverage_result": "no_loss",
+  "unaccounted_atom_refs": [],
+  "preserved_pending_registration_refs": [],
+  "scope_limit": "Static source-to-candidate partition only. The source routing/adoption audit and carry-forward ledger remain unchanged at unknown/preserved_pending_atomization; no adopted requirement ID, formal successor, L1 approval, implementation, runtime execution, acceptance pass, or full legacy candidate closure is claimed."
+}

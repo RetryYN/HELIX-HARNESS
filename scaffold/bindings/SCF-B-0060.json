@@ -60,7 +60,7 @@
     },
     {
       "path": "scaffold/phcap15-deploy-next12-research/inventory.json",
-      "sha256": "37d25f436ea4cfa8a4e871c640c1583f08495199a6c387e06b52f3493cbe5bf9",
+      "sha256": "285abb9df2ecdca9423eade27a9d9689847cdcb9f76b2105f2cabd0967fa4e53",
       "note": "pool/exclusion/selection/source/decision/failure/consumer inventory [2026-09-29 OS-038-002 transitive current-pin refresh: updated changed current input `scaffold/phcap15-deploy-next12-research/inventory.json` SHA 7bf5d33866afb8b69800124a3ac0d7334d5ec205b014e734b0dba2d1f685d21c -> 04af0e0fb64b8f45e909627f63983055f4ea84ea7cdd062e28b392caff63725c. Scaffold role, obligations and authority remain unchanged.] [2026-09-29 R2301-01/02/03 correction: current upstream pin follows reviewed OS-038-002 candidate or PHCAP-20 validator; fixed research input snapshots and adopted revision remain unchanged; authority unaffected.]"
     },
     {
