@@ -940,3 +940,11 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **PO例外の正常例**：review未完の対象revision・scope、未完の4軸または証拠、通過を許す理由をPO自身が明示し、その記録が監査可能に保持される場合に限り、該当文書review条件についてgate通過の例外を示せる。結果には未実施・unknownを残し、レビュー済みや4軸合格と表示しない。他のgate条件、採択、approval、merge、releaseはこの記録から許可しない。
 - **PO例外の拒否例**：AI・reviewer・gate運転者が自分で例外を宣言する、POの対象revision/scopeまたは理由が無い、記録が監査不能、別revisionの記録を再利用する、review未完を消して合格に見せる例ではgateを通過させない。旧環境変数や旧保存先の存在だけをPO判断の代わりにしない。
 - **受入限界**：候補は三trigger、4軸、記録付きPO例外という選択source意味を検査する案であり、旧role/path/bypass実装、旧gate ID、旧runtime/testの移植・実行、旧FR-L1-45全体のclosureは対象外。
+
+
+### HARNESS-L2-062 baseline debtと新規debt ratchetの受入候補（未実行）
+
+- **正常 oracle**：適用可能な既存authorityからbaseline debt集合・対象revision・比較scopeが与えられ、同じscope・共通のdebt分類基準によるcurrent debt集合と照合される。current集合のうちbaseline集合に含まれる項目と含まれない項目が区別される。差分なしではbaseline debtをnew debtと誤分類せず、baseline debt自体を許容・解消済みとも表示しない。
+- **負の oracle**：現行入力にnewと分類されたdebtがあるのにratchetを成立/passとする結果は不合格。baselineにあるdebtが現行にもあることだけを理由にnew debt扱いしない一方、baselineの残存を免除・受容した扱いにする結果も不適格。
+- **未評価 oracle**：baseline authority/identity/revision、scope、current debt集合、baseline/current間で共通に適用するdebt分類基準または比較対象がmissing／unknown／stale／conflictなら、unknown/未評価として示し、成立/passへ変換しない。未確定な基準を推測して補わない。
+- **受入限界**：本候補は一つの入力scopeに対する比較と結果意味だけを扱う。baseline authority/更新者/鮮度、threshold、debt taxonomy、対象全体、実行器、ticket/CI gate、既存debtの返済条件は本候補では決めない。旧runtime/testは実行せず、候補oracleの実行も未実施。

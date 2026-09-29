@@ -1,0 +1,194 @@
+{
+  "receipt_id": "DRAFT-RCPT-HARNESS-L2-062-DAC-FR-007-2026-09-29",
+  "receipt_state": "draft_unadopted_candidate_scope_recorded",
+  "authority_effect": "none",
+  "candidate_identity": "HARNESS-L2-062",
+  "requirement_kind": "unit",
+  "candidate_semantic_digest": "sha256:4a78f0b63d2d06aa8caa4b7a1854b433845c7b8c99af80d08e030fa801d30dcf",
+  "candidate_digest_rule": "product-requirements.mdの「### HARNESS-L2-062 」見出しからファイル末尾までをUTF-8で取り、末尾空行を除いて改行1つで終える。そのSHA-256をsha256:付きで記す。",
+  "candidate_l2_file_sha256": "sha256:060b1701532d05c68ef4156347ef91a8c078d486437adc571be57fed1e82e679",
+  "paired_acceptance_identity": "HARNESS-L2-062",
+  "paired_acceptance_digest": "sha256:d9563d543205df982a5cef0c003417ca65b7ef73ab3b5950335cf3c52882c19b",
+  "l11_digest_rule": "product-acceptance.mdの「### HARNESS-L2-062 」見出しからファイル末尾までをUTF-8で取り、末尾空行を除いて改行1つで終える。そのSHA-256をsha256:付きで記す。",
+  "l11_file_sha256": "sha256:ab94b4cec9535c70b5fd1a8553b41bdce51411fd59f65e64c5ddedc4fbacf878",
+  "source_lines_ref": "docs/governance/audits/requirement-registration/dac-fr-007-ratchet-source-lines-2026-09-29.jsonl",
+  "source_atom_set_digest": "sha256:9ab4ac116c4d7b694b6f3255e200de6336f6464512c5d728ea2a92604921ff95",
+  "source_atom_set_digest_rule": "atom_id昇順。各行をatom_id、半角空白、sha256:を含むsource_line_sha256で構成し、LFで連結する。末尾LFなしのUTF-8 bytesのSHA-256をsha256:付きで記す。",
+  "source_collection_scope": "MPR-SH-CONFIRMED-003が保全するconfirmed175 identityのうち、archive DAC-FR-007 line 54のsource-qualified requirement identity一atomだけ。隣接DAC-FR/NFR、DAC-BR-005、旧文書全体、旧runtime/test/consumer集合は含めない。",
+  "source_collection_atom_count": 1,
+  "candidate_input_atom_refs": [
+    "CONFIRMED-DAC-FR-007"
+  ],
+  "candidate_input_atom_count": 1,
+  "candidate_input_atom_set_digest": "sha256:9ab4ac116c4d7b694b6f3255e200de6336f6464512c5d728ea2a92604921ff95",
+  "candidate_input_accounting_status": "選択した1 atomをL2-062/L11-062の未採択候補へ限定対応した。no_lossは当該atomのcandidate mappingに限る。baseline authority/threshold/更新規則やdebt taxonomyの確定、formal successor、owner移管、採択、条件closureを示さない。",
+  "source_line_coverage_result": "candidate_input_scoped; formal_successor_owner_scope_and_adoption_unconfirmed",
+  "condition_closure": "not_asserted",
+  "candidate_input_coverage_result": "no_loss",
+  "unaccounted_atom_refs": [],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-CONFIRMED-003#DAC-FR-007: source identity remains live; formal successor, requirement meaning disposition, owner transfer, applicable baseline authority/revision/scope/classification/update criteria, and adoption remain unconfirmed"
+  ],
+  "preserved_pending_atom_refs": [
+    "DAC-FR-007 baseline authority/identity/revision/scope/freshness, debt classification criteria, and baseline update semantics are not specified by source line 54 and remain unresolved"
+  ],
+  "atoms": [
+    {
+      "atom_id": "CONFIRMED-DAC-FR-007",
+      "source_holding_registration_id": "MPR-SH-CONFIRMED-003",
+      "source_qualified_requirement_id": "helix/L1-requirements/document-authority-census-requests.md::DAC-FR-007",
+      "legacy_asset_id": "LEGACY-ASSET-D201753B1A0CC6EA3980",
+      "source_revision_kind": "archive",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md",
+      "source_file_sha256": "sha256:81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66",
+      "source_line": 54,
+      "source_line_sha256": "sha256:66c50b0225ca6e331174adccf608cd149f41f50496e14a2e64215c437c5be3bf",
+      "source_text": "| `DAC-FR-007` | baseline debtと新規debtを分離し、new debt ratchetをfail-closeで適用する。 |",
+      "source_clause_kind": "functional_requirement",
+      "atomization_rationale": "DAC-FR-007の要求行一行を一atomとして保持する。隣接FR/NFR、同書の目的やBR-005、scanner/DB/CLI等の後続実装記述、旧source全体は候補入力へ含めない。",
+      "disposition": "candidate_scope",
+      "candidate_input": true,
+      "relation": "HARNESS-L2/L11-062の限定候補入力。候補はbaseline/new debtの区別とnew-debt ratchetのfail-close結果意味に限る。MPR-SH-CONFIRMED-003、source owner、formal successor、適用scope、採択を変更しない。",
+      "audit_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#DAC-FR-007",
+      "candidate_semantic_digest": "sha256:f105dbf0d0b52622db60ec58725f53b4a52a61a7092c7e11e73d2f4770e67175",
+      "source_holding_remains_live": true
+    }
+  ],
+  "parent_l1": {
+    "identities": [
+      "HARNESS-L1-004"
+    ],
+    "path": "docs/helix-harness/L1-planning/product-intent.md",
+    "source_commit": "7bbfe0c735f160cea7320ac1c0e44c97647a0539",
+    "source_file_sha256": "sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+    "adoption_basis": "固定HARNESS L1 revisionのL1-004は対象revision/riskに合う検証義務・反例・証拠・差戻し条件を持つ。候補採択や親意味の変更は継承しない。"
+  },
+  "current_owner_and_mapping": {
+    "candidate_owner": "HELIX-HARNESS (proposed verification and acceptance meaning only; legacy source owner transfer not confirmed)",
+    "existing_l2": [
+      {
+        "identity": "HARNESS-L2-004",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "covers": "変更影響と必要な検証の追跡",
+        "gap": "baseline debtとnew debtを比較し、new debt ratchetのfail-close oracleは明記しない"
+      },
+      {
+        "identity": "HARNESS-L2-005",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "covers": "ticket/change/layer/riskに応じた検証義務とunknownの扱い",
+        "gap": "baseline/new debt分離とratchet結果のspecific oracleはない"
+      },
+      {
+        "identity": "HELIXOS-L2-015",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "covers": "対象・source identity/revision/digest/authority provenanceと未解決状態の管理",
+        "gap": "verification semanticsやnew-debt fail-close ratchetを定義しない",
+        "decision_status": "fixed/adopted parent requirement"
+      },
+      {
+        "identity": "HELIXOS-L2-037",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "section_digest": "sha256:29563f1fdde0d9ace0b0850a5fc57bc6f6b595f460a5caa293c7eefb60905d64",
+        "covers": "未採択の週次drift/debt観測とLABO/ticketへの運転上の引継ぎ候補",
+        "gap": "HARNESS debt classification/baseline authority/ratchet oracleを定義せず、隣接候補としてもowner決定を生まない",
+        "decision_status": "unadopted adjacent candidate"
+      }
+    ],
+    "existing_l11": [
+      {
+        "identity": "HARNESS-L2-004/005 paired acceptance",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "gap": "具体的なbaseline-vs-new debt positive/negative oracleはない"
+      }
+    ]
+  },
+  "unresolved_owner_and_receipt": {
+    "owner_transfer": "pending; do not change MPR-SH-CONFIRMED-003 ownership/attribution based on this candidate",
+    "baseline_contract": "pending; source does not identify baseline authority, identity/revision, scope, freshness, debt classification criteria or update rules",
+    "adjacent_os_candidate": "HELIXOS-L2-037 remains a proximate unadopted observation/ticket handoff candidate; it neither adopts nor defines this ratchet condition",
+    "acceptance_receipt": "static oracle proposal only; no implementation, runtime/test receipt or acceptance execution"
+  },
+  "source_holding_remains_live": true,
+  "source_holding_note": "MPR-SH-CONFIRMED-003 remains unchanged and live. Candidate registration does not supersede holding.",
+  "receipt_limits": "This receipt pins one selected old source line and two unadopted candidate sections. It does not assign formal successor, decide owner transfer or baseline contract, close DAC-FR-007, adopt the candidate, prove implementation/runtime, authorize operation, or cover adjacent source conditions.",
+  "authority_and_adoption": "none; exact candidate revision is unadopted and human decision remains pending.",
+  "static_acceptance_scope": [
+    "normal: using already-authoritative baseline inputs, distinguish baseline debt from debt classified as new within the supplied comparison scope; do not treat baseline presence alone as acceptance or remediation",
+    "negative: when new debt is classified, do not report ratchet pass/success",
+    "unknown: missing/unknown/stale/conflicting baseline, scope, classification or comparison input remains unevaluated and is not inferred"
+  ],
+  "source_atom_file_sha256": "sha256:9acde1f570f6cb851672cacd634893c945532605b10e09974c92d0441854b406",
+  "audit_and_decision_status": {
+    "confirmed175_full_audit_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#DAC-FR-007",
+    "confirmed175_full_audit_file_sha256": "sha256:ca08a81d97e39e94aa02151c7cc4e48f621f9d30baccc1cf9b715331fed38f45",
+    "source_declared_status": "confirmed",
+    "carry_status": "preserved_pending_rehome",
+    "successor_requirement_ids": [],
+    "requirement_change_authority": "explicit_human_decision_only",
+    "audit_classification": "existing crosswalk reports rederived/retained; atom-by-atom carry-forward remains unassigned",
+    "audit_open_condition": "HARNESS unknown/uncompleted status and required verification are preserved, but baseline/new debt comparison and ratchet fail-close lack explicit oracle in existing conditions.",
+    "candidate_decision": "HARNESS-L2-062/L11-062 remain unadopted registered proposal; authority_effect none; no target-revision PO decision or formal successor assignment is recorded."
+  },
+  "current_condition_refs": [
+    {
+      "identity": "HARNESS-L2-004",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "line": 55,
+      "decision_status": "fixed/adopted parent requirement",
+      "coverage": "change impact and verification trace; no baseline/new debt comparison oracle"
+    },
+    {
+      "identity": "HARNESS-L2-005",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "line": 56,
+      "decision_status": "fixed/adopted parent requirement",
+      "coverage": "risk-derived verification duty and unknown handling; no baseline/new debt ratchet oracle"
+    },
+    {
+      "identity": "HARNESS-L2-004/005",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "lines": [
+        24,
+        25
+      ],
+      "decision_status": "paired acceptance conditions for adopted parent requirements",
+      "coverage": "general verification conditions; no explicit positive/negative baseline comparison oracle"
+    },
+    {
+      "identity": "HELIXOS-L2-015",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "line": 642,
+      "decision_status": "fixed/adopted management/authority requirement",
+      "coverage": "identity/revision/digest and unresolved state management; not debt classification/ratchet semantics"
+    },
+    {
+      "identity": "HELIXOS-L2-015",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "line": 320,
+      "decision_status": "paired acceptance for adopted OS-015",
+      "coverage": "authority/provenance records; no new-debt ratchet oracle"
+    },
+    {
+      "identity": "HELIXOS-L2-037",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "section_digest": "sha256:29563f1fdde0d9ace0b0850a5fc57bc6f6b595f460a5caa293c7eefb60905d64",
+      "decision_status": "unadopted adjacent observation/ticket handoff candidate",
+      "coverage": "does not assign debt taxonomy/baseline authority or define HARNESS ratchet"
+    }
+  ],
+  "remaining_oracle_and_meaning_gaps": {
+    "positive_oracle_missing_in_current_requirements": "No current accepted L2/L11 condition shows baseline-classified debt separated from debt classified as new under a supplied comparison input.",
+    "negative_oracle_missing_in_current_requirements": "No current accepted L2/L11 condition explicitly rejects a pass/success result when new debt is classified.",
+    "pending_meaning": "The old source does not define baseline selector/authority, identity/revision, applicability scope, freshness, debt taxonomy/classification criteria, thresholds, or baseline update rules. This candidate does not define them.",
+    "candidate_static_oracles": "The proposed pair records scoped normal/negative/unknown examples, but is unexecuted and does not establish implementation or operational gate behavior."
+  },
+  "base_revision": "5ee0a48faecf6a02ac029068bc2999d7c2d888b1",
+  "current_condition_file_pins": {
+    "docs/helix-harness/L2-requirements/product-requirements.md": "sha256:060b1701532d05c68ef4156347ef91a8c078d486437adc571be57fed1e82e679",
+    "docs/helix-harness/L11-acceptance/product-acceptance.md": "sha256:ab94b4cec9535c70b5fd1a8553b41bdce51411fd59f65e64c5ddedc4fbacf878",
+    "docs/helix-os/L2-requirements/governance-requirements.md": "sha256:9b4a26cb92654b133b6154dffec903ab745132be96173cc049782c5faa6a5f3a",
+    "docs/helix-os/L11-acceptance/governance-acceptance.md": "sha256:8ac93048fbc05032e6b1e578a944620089c0eae528bd7fb1d3cf2a125faf4e2e",
+    "docs/helix-harness/L1-planning/product-intent.md": "sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+    "docs/helix-os/L1-planning/system-intent.md": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e"
+  }
+}

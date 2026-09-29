@@ -82,3 +82,8 @@
 ## 後続限定監査：confirmed175 DAC-FR-004〜008
 
 旧`LEGACY-ASSET-D201753B1A0CC6EA3980`のconfirmed identities `DAC-FR-004`〜`DAC-FR-008`（archive `document-authority-census-requests.md:51–55`、file SHA-256 `81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66`）を、17eb59cd基準main上のOS/HARNESS L2/L11に照合した。[条件別crosswalk](confirmed175-dac-fr004-008-condition-crosswalk-2026-09-29.md)はL2-015等の既決要求へのrelationと、逆consumer graph、provenance chain、severity/disposition、debt ratchet、typed finding taxonomyの未達positive/negative oracleまたは未確定意味を分けて記録する。5 atomは引き続き`preserved_pending_rehome`でsuccessor未割当。近接FR-003監査のL2-106候補をこの5 atomへ拡張せず、候補採択・owner移管・source closure・実装・L11実行を主張しない。
+
+
+## confirmed175 DAC-FR-007 ratchet限定候補（2026-09-29）
+
+旧`LEGACY-ASSET-D201753B1A0CC6EA3980`、archive `document-authority-census-requests.md:54`（file SHA-256 `81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66`、line SHA-256 `66c50b0225ca6e331174adccf608cd149f41f50496e14a2e64215c437c5be3bf`）の一行を、HARNESS-L2/L11-062の未採択candidateへ限定対応した。現行H004/005は一般の検証義務/trace、OS015はauthorityとstate管理を担うが、baseline/new debt ratchetの具体oracleはない。近接HELIXOS-L2-037候補は負債観測からticketへの運転接続であり、debt基準/baseline authority/ratchet意味を定めない。source-linesとcoverage receiptは`dac-fr-007-ratchet-source-lines-2026-09-29.jsonl`および`dac-fr-007-ratchet-coverage-receipt-2026-09-29.json`。`MPR-SH-CONFIRMED-003`は生存し、baseline authority/identity/revision/scope/freshness、負債分類基準、閾値・更新条件、owner移管、formal successor、採択、runtime/実装/全条件closureは未決。
