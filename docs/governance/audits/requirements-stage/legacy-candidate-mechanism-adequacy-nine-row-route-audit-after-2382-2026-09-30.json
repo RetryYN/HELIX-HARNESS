@@ -177,6 +177,14 @@
       "HELIXOS_L11": {
         "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
         "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+      },
+      "LABO_L2": {
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed"
+      },
+      "LABO_L11": {
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200"
       }
     },
     "comparison_rule": "PO decision records and the exact f6dad2a33e24f000b87d7f09b8d40288257e74cc L2/L11 file pins define the adopted comparison. Compare substantive requirement rows and their paired acceptance rows only. Record direct predicates separately from residual or merely related concepts; do not infer adoption or route from text similarity, metadata, or IDs.",
@@ -262,8 +270,53 @@
           "reason": "選択行は要求述語であり、文書ID・status・Issue参照などのmetadata行ではない。"
         }
       },
-      "route_assessment": "unknown",
+      "route_assessment": "partial",
       "compared_adopted_requirements": [
+        {
+          "id": "HELIXLABO-L2-004",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "line": 97,
+            "basis": "fixed substantive adopted requirement row; LABO decision record adopts full L2/L11 revision"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "line": 48,
+            "basis": "fixed paired adopted acceptance row"
+          },
+          "direct_predicate_scope": "既存方式のevidence、purpose/condition/structureの部分比較に限る。"
+        },
+        {
+          "id": "HELIXLABO-L2-005",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "line": 105,
+            "basis": "fixed substantive adopted requirement row; LABO decision record adopts full L2/L11 revision"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "line": 49,
+            "basis": "fixed paired adopted acceptance row"
+          },
+          "direct_predicate_scope": "既存機構への吸収・再構成も比較対象にし、新機構の数を目的化しない。"
+        },
+        {
+          "id": "HELIXLABO-L2-009",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "line": 137,
+            "basis": "fixed substantive adopted requirement row; LABO decision record adopts full L2/L11 revision"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "line": 53,
+            "basis": "fixed paired adopted acceptance row"
+          },
+          "direct_predicate_scope": "有限episodeから一般構造へ根拠なく広げず反例で範囲を狭める。"
+        },
         {
           "id": "HELIXOS-L2-005",
           "direct_predicate": false,
@@ -280,9 +333,13 @@
           "direct_predicate_scope": "観測・失敗・改善候補の出典とscope付き登録は関連するが、限定環境でのMA不足判定を定めない。"
         }
       ],
-      "directly_matched_adopted_requirement_ids": [],
-      "direct_overlap": "「不足」判定の限定環境・反例・既存技術調査・世界初不認定を組にした採択predicateは固定L2/L11にない。OS-L2-005の改善候補登録は隣接する証拠還流責務であり、route一致とはしない。",
-      "residual_or_difference": "不足判定方法、確認済み機構集合、有限反例から全方式の不存在を断定しない制約は未採択残差。",
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXLABO-L2-004",
+        "HELIXLABO-L2-005",
+        "HELIXLABO-L2-009"
+      ],
+      "direct_overlap": "既存方式のsource evidence・目的・条件・部分構造の比較はLABO-L2-004/L11:48、既存機構への吸収・再構成を候補に残し仕組み増加を目的化しない条件はLABO-L2-005/L11:49、一事例から一般構造へ根拠なく広げない条件はLABO-L2-009/L11:53に直接重なる。OS-L2-005の還流は関連するがMA不足判定の直接一致ではない。",
+      "residual_or_difference": "限定された要求・環境・変更範囲と確認済み機構集合内で、必要情報／状態／操作／保証の不足を再現例・反例・構造制約から判定するMA固有基準、「世界初」「全方式不可能」を断定せず未調査を保つ判定は未特定。",
       "authority_effect": "none"
     },
     {
@@ -429,8 +486,68 @@
           "reason": "選択行は要求述語であり、文書ID・status・Issue参照などのmetadata行ではない。"
         }
       },
-      "route_assessment": "unknown",
+      "route_assessment": "partial",
       "compared_adopted_requirements": [
+        {
+          "id": "HELIXLABO-L2-004",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "line": 97,
+            "basis": "fixed substantive adopted requirement row; LABO decision record adopts full L2/L11 revision"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "line": 48,
+            "basis": "fixed paired adopted acceptance row"
+          },
+          "direct_predicate_scope": "既存方式とsource evidence、purpose/condition/structureを含む比較仮説を入力にする。"
+        },
+        {
+          "id": "HELIXLABO-L2-005",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "line": 105,
+            "basis": "fixed substantive adopted requirement row; LABO decision record adopts full L2/L11 revision"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "line": 49,
+            "basis": "fixed paired adopted acceptance row"
+          },
+          "direct_predicate_scope": "保持・変更する意味と適用条件を持つtransform candidateを出す。"
+        },
+        {
+          "id": "HELIXLABO-L2-006",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "line": 113,
+            "basis": "fixed substantive adopted requirement row; LABO decision record adopts full L2/L11 revision"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "line": 50,
+            "basis": "fixed paired adopted acceptance row"
+          },
+          "direct_predicate_scope": "比較仮説、条件、oracle、反例、適用範囲、費用、限界を保持する。"
+        },
+        {
+          "id": "HELIXLABO-L2-010",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "line": 145,
+            "basis": "fixed substantive adopted requirement row; LABO decision record adopts full L2/L11 revision"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "line": 54,
+            "basis": "fixed paired adopted acceptance row"
+          },
+          "direct_predicate_scope": "target別Feedback candidateにevidence、scope、counterexample、risk、revalidation条件を保持する。"
+        },
         {
           "id": "HARNESS-L2-008",
           "direct_predicate": false,
@@ -447,9 +564,14 @@
           "direct_predicate_scope": "要求形成・候補の合意境界は関連するが、MA設計候補への束ねた入力と出力を定めない。"
         }
       ],
-      "directly_matched_adopted_requirement_ids": [],
-      "direct_overlap": "要求候補から不足能力の設計案を生成する直接採択predicateはない。HARNESS-L2-008は利用者指示・根拠から要求を形成し、質問や要求候補へ戻す意味導出責務であり、MA設計候補を直接routeしない。",
-      "residual_or_difference": "対象のAI設計出力、最小反例、期待効果、副作用、移行／rollbackを含むMechanism Adequacy設計候補契約は未採択。",
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXLABO-L2-004",
+        "HELIXLABO-L2-005",
+        "HELIXLABO-L2-006",
+        "HELIXLABO-L2-010"
+      ],
+      "direct_overlap": "要求・条件・既存方式のsource evidenceを比較仮説へ束ねる部分はLABO-L2-004、意味と適用条件付き変換候補はL2-005、反例・範囲・費用・限界を伴う比較はL2-006、target別候補のevidence/counterexample/riskはL2-010と対のL11:48/49/50/54へ直接重なる。HARNESS-L2-008の要求形成はMA設計候補とは別。",
+      "residual_or_difference": "MA固有の不足能力・最小構造変更・既存部品再利用・期待効果/副作用・移行/rollbackを一体にする設計handoff契約は未特定。",
       "authority_effect": "none"
     },
     {
@@ -544,14 +666,29 @@
             "line": 43,
             "basis": "fixed paired adopted acceptance row"
           },
-          "direct_predicate_scope": "原eventを保持し、後から異なるschemaで再分類しても原eventを改変せずprojectionを再構築できる範囲のみ。MA専用判定receiptとAI仮説分離は含まない。"
+          "direct_predicate_scope": "原event保持、後続分類・projectionを原eventと分ける。"
         },
         {
-          "id": "DGH-BR-02",
+          "id": "HELIXOS-L2-019",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 686,
+            "basis": "fixed substantive adopted requirement row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 357,
+            "basis": "fixed paired adopted acceptance row"
+          },
+          "direct_predicate_scope": "原記録から再構築用projectionを作り、projection失敗時には原eventから再構築する。PO decision :27/:48で対象revision採択済み。"
+        },
+        {
+          "id": "HELIXOS-L2-002",
           "direct_predicate": false,
           "L2_locator": {
             "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-            "line": 444,
+            "line": 55,
             "basis": "fixed compared requirement row; no direct MA predicate"
           },
           "L11_acceptance_locator_separate": {
@@ -559,14 +696,15 @@
             "line": 214,
             "basis": "fixed compared acceptance row; no direct MA predicate"
           },
-          "direct_predicate_scope": "人間反応とAI解釈の区別は関連するが、機械的MA判定とAI仮説の分離とは別述語。"
+          "direct_predicate_scope": "DGH-BR-02由来の人間反応とAI解釈の分離は比較したが、MAの機械判定とAI仮説の分離とは別述語。"
         }
       ],
       "directly_matched_adopted_requirement_ids": [
-        "HELIXOS-L2-007"
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-019"
       ],
-      "direct_overlap": "原eventを正本としてprojectionを再構築し、分類結果を原eventへ混入しない範囲はHELIXOS-L2-007と対のL11:43に重なる。OS L11:357にもevent再構築があるが、対のHELIXOS-L2-019は単体候補のため採択済みの直接一致として数えない。OS L2:444の人間反応とAI解釈の分離はMA機械判定とAI仮説の分離とは異なる。",
-      "residual_or_difference": "MA判定の決定論的再生成、model/session/context/output digest記録、AI不在時の保留・配車統制は未特定。",
+      "direct_overlap": "原eventを保持し分類projectionを分ける部分はHELIXOS-L2-007／L11:43、原記録からのprojection再構築と失敗時の原event replayはPOが採択したHELIXOS-L2-019／L11:357に直接重なる。L2:444のDGH-BR-02由来条件は人間反応とAI解釈の分離であり、MAの機械判定とAI仮説の分離とは別。",
+      "residual_or_difference": "MA判定を同一入力・policy・証拠で決定論的に再生成すること、AI model/session/context/output digest、AI不在時のMA保留・配車統制、およびMA固有のevent-journal DB projection限定は未特定。",
       "authority_effect": "none"
     },
     {
@@ -698,11 +836,11 @@
       "route_assessment": "partial",
       "compared_adopted_requirements": [
         {
-          "id": "RFA-BR-03",
+          "id": "HELIXOS-L2-002",
           "direct_predicate": true,
           "L2_locator": {
             "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-            "line": 442,
+            "line": 55,
             "basis": "fixed substantive adopted requirement row"
           },
           "L11_acceptance_locator_separate": {
@@ -710,22 +848,22 @@
             "line": 215,
             "basis": "fixed paired adopted acceptance row"
           },
-          "direct_predicate_scope": "影響する要求・検証・writerだけを再確定し、無関係な有効作業を継続する範囲。OS L2:449も候補完成を無関係なCI改善等の待機条件にしない。"
+          "direct_predicate_scope": "L2:442のRFA-BR-03とL2:449により、影響scopeのみを再確定し無関係な有効作業を継続する。OS L2:427-429でRFAをL2-002へ対応づける。"
         },
         {
           "id": "HARNESS-L2-004",
-          "direct_predicate": false,
+          "direct_predicate": true,
           "L2_locator": {
             "path": "docs/helix-harness/L2-requirements/product-requirements.md",
             "line": 55,
-            "basis": "fixed compared requirement row; no direct MA predicate"
+            "basis": "fixed substantive adopted requirement row"
           },
           "L11_acceptance_locator_separate": {
             "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
             "line": 24,
-            "basis": "fixed compared acceptance row; no direct MA predicate"
+            "basis": "fixed paired adopted acceptance row"
           },
-          "direct_predicate_scope": "変更時の再検証範囲を導く点は関連するが、MA判定保留時の作業継続や判定撤回を単独では規定しない。"
+          "direct_predicate_scope": "L2:195がRFA-BR-03をL2-004へ対応づけ、変更影響外の有効作業を一律失効させない。"
         },
         {
           "id": "HARNESS-L2-005",
@@ -740,29 +878,30 @@
             "line": 25,
             "basis": "fixed compared acceptance row; no direct MA predicate"
           },
-          "direct_predicate_scope": "汎用の検証oracle・証拠契約であり、MA固有のAI主張拒否と既存解による撤回を規定しない。"
+          "direct_predicate_scope": "汎用の検証oracle・証拠契約はMA固有のAI主張拒否と既存解による撤回を規定しない。"
         }
       ],
       "directly_matched_adopted_requirement_ids": [
-        "RFA-BR-03"
+        "HELIXOS-L2-002",
+        "HARNESS-L2-004"
       ],
-      "direct_overlap": "判定保留の影響scopeを局所化し、無関係な有効作業を止めない範囲はOSのRFA-BR-03（L2:442）と対のL11:215、候補完成を無関係なCI改善等の待機条件にしないL2:449に直接重なる。HARNESS-L2-004は影響範囲の関連条件として比較したが、MA判定の直接routeには数えない。",
+      "direct_overlap": "保留の影響scopeを局所化し無関係な有効作業を止めない部分はHELIXOS-L2-002へ対応づけられたRFA-BR-03（OS L2:427-429,442,449／L11:215）とHARNESS-L2-004（HARNESS L2:195／L11:24）に直接重なる。RFA-BR-03は旧source provenanceであり採択要求ID欄には置かない。",
       "residual_or_difference": "不足根拠のないAI主張の拒否基準と、既存解が見つかった際の新機構判定撤回は固定L2/L11では未特定。",
       "authority_effect": "none"
     }
   ],
   "counts": {
     "selected": 9,
-    "partial": 6,
-    "unknown": 3,
+    "partial": 8,
+    "unknown": 1,
     "proposal_pool_out_of_population": 0,
     "prior_317_intersection": 0,
     "later_overlay_intersection": 0,
     "hmc_2379_intersection": 0,
     "classification_review_candidate_count": 0,
     "route_counts": {
-      "partial": 6,
-      "unknown": 3
+      "partial": 8,
+      "unknown": 1
     }
   },
   "limitations": [

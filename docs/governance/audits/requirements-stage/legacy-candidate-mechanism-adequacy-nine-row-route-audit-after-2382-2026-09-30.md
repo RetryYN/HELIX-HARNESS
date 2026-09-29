@@ -23,27 +23,29 @@
   - HARNESS-L2-005 `product-requirements.md:56` / paired L11 `product-acceptance.md:25`（検証義務、oracle、expected failure、証拠条件）。
   - HARNESS-L2-008 `product-requirements.md:59` / paired L11 `product-acceptance.md:28`（要求候補やengine出力を合意・操作権限へ自動昇格させない境界）。
   - HELIXOS-L2-005 `docs/helix-os/L2-requirements/governance-requirements.md:58` / paired L11 `docs/helix-os/L11-acceptance/governance-acceptance.md:25`（観測・失敗・改善候補を出典とscope付きで還流し、再検証まで追跡）。
-  - HELIXOS-L2-007 `governance-requirements.md:60` / L11 `governance-acceptance.md:43`（原eventを保持し、分類・projectionを原eventへ混入せず再構築する）。L11:357の原event再構築は対のL2-019が候補なので、採択済みの直接一致として数えない。
-  - OSのRFA-BR-03 `governance-requirements.md:442` / L11 `governance-acceptance.md:215` とL2:449（影響範囲だけを再確定し、無関係な有効作業を継続する）。HARNESS-L2-004は再検証範囲の関連条件として比較する。
+  - HELIXOS-L2-007 `governance-requirements.md:60` / L11 `governance-acceptance.md:43`（原eventを保持し、分類・projectionを原eventへ混入せず再構築する）。
+  - HELIXOS-L2-019 `governance-requirements.md:686,689` / L11 `governance-acceptance.md:357`（原記録からのprojection再構築）。固定時本文の「候補」表記よりも、対象revisionとL2-019を明示採択したOSのPO判断記録27・48行を優先する。
+  - HELIXOS-L2-002に対応づけられたRFA-BR-03 `governance-requirements.md:427-429,442,449` / L11 `governance-acceptance.md:215` とHARNESS-L2-004 `product-requirements.md:195` / L11 `product-acceptance.md:24`（影響範囲だけを再確定し、無関係な有効作業を継続する）。RFA-BR-03は出典であり、採択要求IDとして数えない。
+  - HELIXLABO-L2-004/005/006/009/010 `docs/helix-labo/L2-requirements/labo-requirements.md:97,105,113,137,145` / 同IDのL11 `docs/helix-labo/L11-acceptance/labo-acceptance.md:48-50,53-54`（既存方式の条件比較、変換候補、反例と範囲、target別Feedback）。LABOのPO判断記録31行が固定L2/L11一式を採択している。
 - `partial`は上記predicateに明示した直接一致部分に限定し、その行固有の追加義務は残差に分けた。`unknown`は直接一致predicateを特定できなかった行であり、要求意味不存在を意味しない。
 
 ## 対象行
 
 | Source ID | 旧source行 | route | 直接一致／残差 |
 |---|---:|---|---|
-| `LEGACY-CAND-LINE-003267` | 46 | unknown | 限定環境で不足を反証可能に示す基準、既存技術調査、世界初を断定しない規則は固定L2/L11にない。OS-L2-005の証拠還流は関連責務に留まり、直接一致としない。 |
+| `LEGACY-CAND-LINE-003267` | 46 | partial | 既存方式をsource evidence・目的・条件・構造で比較する点はLABO-L2-004、新機構の増加を目的化しない点はL2-005、有限例からの一般化を避ける点はL2-009に重なる。限定scopeでのMA不足判定と「世界初」等を断定しない固有基準は残差。 |
 | `LEGACY-CAND-LINE-003271` | 54 | partial | 再現例・反例をfindingの証拠として扱う一部がOS-L2-005の観測・失敗登録およびHARNESS-L2-004の要求／設計／test traceと重なる。新機構の必要判定・形式確認・有限例から全方式を否定しない基準は残差。 |
 | `LEGACY-CAND-LINE-003272` | 56 | partial | 既存解・反証・新証拠から改善候補を見直す一部がOS-L2-005の出典・適用範囲付き還流と重なる。撤回・再分類の状態遷移と判定履歴保持は残差。 |
-| `LEGACY-CAND-LINE-003274` | 60 | unknown | MA専用の設計候補へ要求・制約・実績差分・反例を束ねる直接predicateはない。HARNESS-L2-008は利用者指示からの要求形成であり、MA設計案へのrouteとは見なさない。 |
+| `LEGACY-CAND-LINE-003274` | 60 | partial | 既存方式と条件の比較仮説はLABO-L2-004、意味と適用条件付き変換候補は005、反例・scope・費用・限界の比較は006、target別候補の根拠・反例・riskは010に重なる。MA固有の不足能力・最小構造変更・移行/rollbackを一体にする設計handoffは残差。 |
 | `LEGACY-CAND-LINE-003275` | 62 | partial | 判定／候補生成だけで実装・merge・publishを許可しない境界はHARNESS-L2-008の「要求候補から合意・操作権限を自動昇格しない」と重なる。設計品質・保証保持・既存契約への接続手順は残差。 |
-| `LEGACY-CAND-LINE-003278` | 68 | partial | 原eventを正本にしてprojectionを再構築する部分がHELIXOS-L2-007／L11:43と重なる。決定論的MA判定、AI仮説との分離、model/session/context/output digest記録は残差。L11:357の対のL2-019は候補なので直接一致へ数えない。 |
+| `LEGACY-CAND-LINE-003278` | 68 | partial | 原eventを正本にして分類projectionを分ける部分はHELIXOS-L2-007／L11:43、projection失敗後の原eventからの再構築は採択済みHELIXOS-L2-019／L11:357に重なる。決定論的MA判定、AI仮説との分離、model/session/context/output digest記録は残差。 |
 | `LEGACY-CAND-LINE-003281` | 74 | partial | 効果・退行を出典とscope付きで還流し、採否後の変更・再検証へ追う一部がOS-L2-005に重なる。同条件before/after、予測／実測／欠測、baseline/candidate/post-main比較は残差。 |
 | `LEGACY-CAND-LINE-003284` | 80 | unknown | HARNESS-L2-005の汎用oracle／expected-failure／evidence条件は関連するが、6分類それぞれの独立正例・反例と列挙された誤認原因を直接定めない。 |
-| `LEGACY-CAND-LINE-003285` | 81 | partial | 無関係な有効作業を継続する部分がOSのRFA-BR-03／L11:215とL2:449に重なる。HARNESS-L2-004は影響範囲の関連条件。AI主張の拒否と既存解による新機構判定撤回は残差。 |
+| `LEGACY-CAND-LINE-003285` | 81 | partial | 無関係な有効作業を継続する部分がHELIXOS-L2-002に対応するRFA-BR-03／L11:215・L2:449とHARNESS-L2-004／L11:24に重なる。AI主張の拒否と既存解による新機構判定撤回は残差。 |
 
 ## 結果と限界
 
-- route count: `partial=6`, `unknown=3`, total 9。分類review候補は0件で、選択した9行はいずれも要求述語であり、ID/status/Issue pointerだけのmetadata行ではない。003284は汎用検証契約だけではMA六分類の判定述語へ直接一致しないため`unknown`とした。003278・003285の`partial`は上記の明示的な原event再構築・無関係作業継続の部分だけに限る。
+- route count: `partial=8`, `unknown=1`, total 9。分類review候補は0件で、選択した9行はいずれも要求述語であり、ID/status/Issue pointerだけのmetadata行ではない。003284は汎用検証契約だけではMA六分類の判定述語へ直接一致しないため`unknown`とした。各`partial`は上記の直接一致に限り、MA固有の判定・設計handoff・撤回などは残差に保持する。
 - 「partial」は固定L2/L11にある一致箇所だけを記録する。残差は一致や採択へ含めない。「unknown」は対象行に一致する採択predicateを見出せなかったという限定的なroute判定である。
 - #2382の478/317/288/190はproposal-effective分類と監査unionの件数であり、採択、successor、全量coverage、受入、実装、実行、Stage 5 closureを生成しない。#2379の30件は347全体unionに含むが、product-targeted 317や本poolへ加算しない。
 - archive内のworkflow、CLI、hook、adapter、test、CI、runtimeは実行していない。文書、ID、revision、hash、固定条項locator、pool/union交差の静的照合に限定した。
