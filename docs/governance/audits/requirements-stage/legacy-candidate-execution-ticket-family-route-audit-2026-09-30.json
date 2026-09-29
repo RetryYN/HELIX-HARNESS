@@ -1,0 +1,1777 @@
+{
+  "schema_version": "helix-stage5-execution-ticket-family-route-audit/v1",
+  "audit_id": "legacy-candidate-execution-ticket-family-route-audit-2026-09-30",
+  "created_against_commit": "6b935dcb1043d3ca680396e4a247fb3b4937d6b0",
+  "authority_effect": "none",
+  "population_and_selection": {
+    "proposal_effective_population": 488,
+    "definition": "product requirement atoms with effective classification condition/product_requirement_atom/unknown after #2353 plus #2356/#2360/#2363/#2366/#2367/#2368/#2369 exact-ID overlays; source note citations from #2370 audit, not recomputed by this family audit",
+    "exclusion_source_ids": "union of selected IDs from #2350, corrected #2359, #2364, and #2370",
+    "exclusion_union_count": 80,
+    "intersection_with_population_count": 61,
+    "remaining_population_count": 427,
+    "execution_ticket_family_rows_selected": 51,
+    "family_rows_intersecting_exclusion_union": 0,
+    "selection_limit": "51 source rows are the complete Execution Ticket family within the proposal-effective unknown population under the pinned #2353/#2356/#2360 effective row identity and subsequent overlay source-ID scope. No out-of-population execution-ticket line is included."
+  },
+  "pinned_inputs": [
+    {
+      "role": "#2353 PR HEAD full row_records snapshot; used to identify original rows/source identity",
+      "commit": "9926aebfbec7813d14a84490758783153422d99e",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "sha256": "5d810a881d29711b0640e8641df2678b6fe9ee41767936d0289e0cf0e4948110"
+    },
+    {
+      "role": "#2353 merged cumulative classification baseline as pinned in #2369 population audit",
+      "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c"
+    },
+    {
+      "role": "#2356 metadata classification overlay",
+      "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164"
+    },
+    {
+      "role": "#2360 seven-row classification overlay",
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+      "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb"
+    },
+    {
+      "role": "#2370 selected pool and rowwise selection/exclusion audit",
+      "commit": "8fd5f12ad",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-product-unknown-next20-route-audit-after-2369-2026-09-30.json",
+      "sha256": "69cc7136961d7cd2aba64627903a134732bc858dc351780791f288bb05e7af48"
+    },
+    {
+      "role": "prior ticket semantic and ticket-ID redo audit",
+      "commit": "6b935dcb1043d3ca680396e4a247fb3b4937d6b0",
+      "path": "docs/governance/audits/source-rebaseline/ticket-id-redo-audit-2026-09-26.md",
+      "sha256": "835b34bbc54d42a6973801f7d0142f50bea9ccbb01a6e243bd5e6fea4ae1ce78"
+    },
+    {
+      "role": "asset disposition and old-source identity",
+      "commit": "6b935dcb1043d3ca680396e4a247fb3b4937d6b0",
+      "path": "docs/governance/legacy-asset-disposition.jsonl#LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+      "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5"
+    }
+  ],
+  "adopted_exact_revision_pins": [
+    {
+      "mechanism": "HELIX-HARNESS",
+      "decision_record": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "decision_record_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "fixed_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+      },
+      "fixed_l11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+      }
+    },
+    {
+      "mechanism": "HELIX-OS",
+      "decision_record": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "decision_record_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "fixed_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+      },
+      "fixed_l11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+      }
+    },
+    {
+      "mechanism": "HELIX-BRAIN",
+      "decision_record": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+      "decision_record_sha256": "fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a",
+      "fixed_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2": {
+        "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+        "sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03"
+      },
+      "fixed_l11": {
+        "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+        "sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b"
+      }
+    },
+    {
+      "mechanism": "HELIX-LABO",
+      "decision_record": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      "decision_record_sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0",
+      "fixed_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2": {
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed"
+      },
+      "fixed_l11": {
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200"
+      }
+    },
+    {
+      "mechanism": "HELIX-INTELLIGENCE",
+      "decision_record": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "decision_record_sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+      "fixed_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260"
+      },
+      "fixed_l11": {
+        "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a"
+      }
+    },
+    {
+      "mechanism": "HELIX-SECURITY",
+      "decision_record": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+      "decision_record_sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+      "fixed_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2": {
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c"
+      },
+      "fixed_l11": {
+        "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01"
+      }
+    },
+    {
+      "mechanism": "HELIX-INFRASTRUCTURE",
+      "decision_record": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+      "decision_record_sha256": "0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f",
+      "fixed_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2": {
+        "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+        "sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b"
+      },
+      "fixed_l11": {
+        "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+        "sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada"
+      }
+    },
+    {
+      "mechanism": "HELIX-CONNECT",
+      "decision_record": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md",
+      "decision_record_sha256": "82db2060dbaa77b5b9e6f38fa11219ec811b108b1870e6a86ca112810f9bae69",
+      "fixed_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2": {
+        "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+        "sha256": "31e3f234172bb5a92b26d41db2de21534cd4301274fc7e2800b4f8a935ce598b"
+      },
+      "fixed_l11": {
+        "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+        "sha256": "bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad"
+      }
+    },
+    {
+      "mechanism": "HELIX-HARNESS (later explicit HARNESS-L2-039 adoption revision)",
+      "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "decision_record_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "fixed_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "fixed_l2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "section_digest": "e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0"
+      },
+      "fixed_l11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "section_digest": "63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746"
+      },
+      "decision_scope": "HARNESS-L2-039 only; replaces earlier fixed predicate for this ID where this later decision applies"
+    }
+  ],
+  "semantic_atom_groups": {
+    "TICKET-LEASE-REVISION": {
+      "label": "Ticket revision、lease、Assignmentのrevision/scope束縛",
+      "shared_relation_basis": "旧sourceの話題を整理するための分類ラベル。各行のroute判定は個別のsource predicateと採択済み固定L2/L11 predicateの照合結果に限る。",
+      "row_count": 5
+    },
+    "TICKET-AUTHORITY-BOUNDARY": {
+      "label": "Ticketとoperation authority／情報境界",
+      "shared_relation_basis": "旧sourceの話題を整理するための分類ラベル。各行のroute判定は個別のsource predicateと採択済み固定L2/L11 predicateの照合結果に限る。",
+      "row_count": 7
+    },
+    "REVIEW-RECEIPT-INDEPENDENCE": {
+      "label": "独立review、stale receipt、worker provenance",
+      "shared_relation_basis": "旧sourceの話題を整理するための分類ラベル。各行のroute判定は個別のsource predicateと採択済み固定L2/L11 predicateの照合結果に限る。",
+      "row_count": 3
+    },
+    "BENCH-ADVISORY-FEEDBACK": {
+      "label": "Bench結果をadvisoryとしてownerへ戻す",
+      "shared_relation_basis": "旧sourceの話題を整理するための分類ラベル。各行のroute判定は個別のsource predicateと採択済み固定L2/L11 predicateの照合結果に限る。",
+      "row_count": 2
+    },
+    "BENCH-EXPERIMENT-SNAPSHOT": {
+      "label": "実験identity、比較可能性、source/provenance",
+      "shared_relation_basis": "旧sourceの話題を整理するための分類ラベル。各行のroute判定は個別のsource predicateと採択済み固定L2/L11 predicateの照合結果に限る。",
+      "row_count": 4
+    },
+    "BENCH-LIFECYCLE-SAFETY": {
+      "label": "測定運転、canary、cutover、durable audit",
+      "shared_relation_basis": "旧sourceの話題を整理するための分類ラベル。各行のroute判定は個別のsource predicateと採択済み固定L2/L11 predicateの照合結果に限る。",
+      "row_count": 5
+    },
+    "BENCH-SOURCE-CONTEXT": {
+      "label": "出典表記・旧benchmark資産参照",
+      "shared_relation_basis": "旧sourceの話題を整理するための分類ラベル。各行のroute判定は個別のsource predicateと採択済み固定L2/L11 predicateの照合結果に限る。",
+      "row_count": 11
+    },
+    "LEGACY-LAYER-ATTRIBUTION": {
+      "label": "旧層ラベルの現行層への出典注記",
+      "shared_relation_basis": "旧sourceの話題を整理するための分類ラベル。各行のroute判定は個別のsource predicateと採択済み固定L2/L11 predicateの照合結果に限る。",
+      "row_count": 1
+    },
+    "BENCH-RECOGNITION-OBSERVATION": {
+      "label": "観測、欠測、lag、結果解釈",
+      "shared_relation_basis": "旧sourceの話題を整理するための分類ラベル。各行のroute判定は個別のsource predicateと採択済み固定L2/L11 predicateの照合結果に限る。",
+      "row_count": 3
+    },
+    "BENCH-COST-STATISTICS": {
+      "label": "評価費用、統計比較、反復、MeasurementRequest",
+      "shared_relation_basis": "旧sourceの話題を整理するための分類ラベル。各行のroute判定は個別のsource predicateと採択済み固定L2/L11 predicateの照合結果に限る。",
+      "row_count": 7
+    },
+    "LEGACY-TRACE-RECONSTRUCTION": {
+      "label": "旧候補原稿を再構成する手順のtraceability",
+      "shared_relation_basis": "旧sourceの話題を整理するための分類ラベル。各行のroute判定は個別のsource predicateと採択済み固定L2/L11 predicateの照合結果に限る。",
+      "row_count": 1
+    },
+    "BENCH-SUCCESS-CRITERION": {
+      "label": "評価の成功基準とnegative/unknown結果",
+      "shared_relation_basis": "旧sourceの話題を整理するための分類ラベル。各行のroute判定は個別のsource predicateと採択済み固定L2/L11 predicateの照合結果に限る。",
+      "row_count": 2
+    }
+  },
+  "rows": [
+    {
+      "source_id": "LEGACY-CAND-LINE-001083",
+      "semantic_atom_group": "TICKET-LEASE-REVISION",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+        "line": 17,
+        "source_text": "追加の反例: 同一logical Ticketの旧revision有効leaseを残して新revisionをclaimする操作を拒否する。",
+        "file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+        "line_content_sha256": "715fe76c2fd1d13204bbe49c8857b5cfc52f2d5d96338c833a390a41ea100cb1",
+        "physical_line_bytes_sha256": "445a1221bd842ca6c926124f69db4f36687c67e001b1fb187a489dc5a37ddf5c"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は追加の反例: 同一logical Ticketの旧revision有効leaseを残して新revisionをclaimする操作を拒否する。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "旧ticket/assignment schemaの全field、digest計算法、実path判定、旧lease state machineを採択L2/L11が網羅しない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001084",
+      "semantic_atom_group": "TICKET-LEASE-REVISION",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+        "line": 18,
+        "source_text": "実path検証を計画path文字列だけで代替する操作、未切替AssignmentへのTicket fieldの黙示追加も拒否する。",
+        "file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+        "line_content_sha256": "ae8e394d60afab1b42373f1061aa21c7d56e3f2dea1b034c27367b1a9d485b7c",
+        "physical_line_bytes_sha256": "55193743ff7d3852d853c3c857e64a85d8e7ab2ebc34404c99d26da97c7de3e0"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は実path検証を計画path文字列だけで代替する操作、未切替AssignmentへのTicket fieldの黙示追加も拒否する。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "旧ticket/assignment schemaの全field、digest計算法、実path判定、旧lease state machineを採択L2/L11が網羅しない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001097",
+      "semantic_atom_group": "TICKET-LEASE-REVISION",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+        "line": 35,
+        "source_text": "| HXT-AC-007 | Ticket本文にprovider/assignee/branch/lease/progress/scoreを埋め込む入力を拒否する | HXT-FR-001,009 |",
+        "file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+        "line_content_sha256": "1960ae610c464635c4831192f16890a184980e06a605cd4b52b1c367e0f07e79",
+        "physical_line_bytes_sha256": "13d3ea32016f1d8d93184931515b0abdde3ed476fdd7430f607b14b9a94f7888"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は| HXT-AC-007 | Ticket本文にprovider/assignee/branch/lease/progress/scoreを埋め込む入力を拒否する | HXT-FR-001,009 |を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "旧ticket/assignment schemaの全field、digest計算法、実path判定、旧lease state machineを採択L2/L11が網羅しない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001098",
+      "semantic_atom_group": "TICKET-LEASE-REVISION",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+        "line": 36,
+        "source_text": "| HXT-AC-008 | AssignmentのTicket revision/digest不一致を拒否する | HXT-FR-009 |",
+        "file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+        "line_content_sha256": "566627476a746a09ce2280bb81159f6b9996e6e32c16312042e2e28431357fa6",
+        "physical_line_bytes_sha256": "fba4c7a8051eb17a0409b2b29d81435a7ae8919d291e0100b6a4386d0d92214c"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は| HXT-AC-008 | AssignmentのTicket revision/digest不一致を拒否する | HXT-FR-009 |を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "旧ticket/assignment schemaの全field、digest計算法、実path判定、旧lease state machineを採択L2/L11が網羅しない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001101",
+      "semantic_atom_group": "TICKET-AUTHORITY-BOUNDARY",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+        "line": 39,
+        "source_text": "| HXT-AC-011 | Ticket scope外のwrite/leaseを拒否する | HXT-FR-010 |",
+        "file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+        "line_content_sha256": "977e6680bb078c3893202d0345b26f2bb648a385983efd710443702b1bad5284",
+        "physical_line_bytes_sha256": "7ff56b0ec8cd170b4986e50ab1fece7441488910c294a17ec652b5216c25bf81"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "adopted_relevant_partial",
+      "adopted_exact_revision_refs": [
+        "HELIXSECURITY-L2-008"
+      ],
+      "relation_basis": "Securityの採択L2-008は操作ごとのauthorityを定め、許可された対象・操作の範囲を越えるwrite/leaseを許さない。旧行のscope外書込み拒否に限って同じ条件を比較する。",
+      "residual": "旧Ticket固有のscope表現、lease状態遷移、実装形式の採択は示さない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": [
+        {
+          "requirement_id": "HELIXSECURITY-L2-008",
+          "fixed_revision_mechanism": "HELIXSECURITY",
+          "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+          "line": 32,
+          "predicate_excerpt_or_locator": "read/write/execute/network/install/delete/merge/release/deploy等の操作ごとに別authorityを要求し、actor/target/operation scopeを照合する。"
+        }
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001105",
+      "semantic_atom_group": "TICKET-AUTHORITY-BOUNDARY",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+        "line": 43,
+        "source_text": "| HXT-AC-015 | retry上限超過をtyped Recovery/backflowへ送る | HXT-FR-014 |",
+        "file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+        "line_content_sha256": "f412f81552711a0846872ed733042aebc93d82bdb508b85b53a124ef5a202e29",
+        "physical_line_bytes_sha256": "870ad165536e0233a5124db170f349386e7355fad08edca2b91795c28cd42b5e"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は| HXT-AC-015 | retry上限超過をtyped Recovery/backflowへ送る | HXT-FR-014 |を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "旧formal/shadow、legacy direct assignment cutover、redaction/restricted raw policyの実装形式・判定表は旧source残差。対応する操作権限はSECURITY所有で、今回のrouteは旧atom adoptionではない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001111",
+      "semantic_atom_group": "TICKET-LEASE-REVISION",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+        "line": 49,
+        "source_text": "| HXT-AC-021 | scope変更で同revisionを上書きできない | HXT-FR-005,010 |",
+        "file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+        "line_content_sha256": "07ba901c21e7f9a19d6245c7ad8484c8e09a89581575ef92373d416c0cd2883d",
+        "physical_line_bytes_sha256": "2d0324c8d4530b1e1dd68349c2c383bce4f34b6be82e117757a8582626af8f42"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は| HXT-AC-021 | scope変更で同revisionを上書きできない | HXT-FR-005,010 |を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "旧ticket/assignment schemaの全field、digest計算法、実path判定、旧lease state machineを採択L2/L11が網羅しない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001115",
+      "semantic_atom_group": "TICKET-AUTHORITY-BOUNDARY",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+        "line": 53,
+        "source_text": "| HXT-AC-025 | secret/PII/private transcriptを通常Ticket/metricへ保存しない。必要rawはrestricted policyで扱う | HXT-FR-022 |",
+        "file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+        "line_content_sha256": "16e6ac83104ca15681de2c3940ac48cba4d00b3e812bb9913e814e9f47981aa6",
+        "physical_line_bytes_sha256": "40dbc738b37f5ab94d8e32a53b2f699b9131160e899e0f341f0a423ed3df8cea"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は| HXT-AC-025 | secret/PII/private transcriptを通常Ticket/metricへ保存しない。必要rawはrestricted policyで扱う | HXT-FR-022 |を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "旧formal/shadow、legacy direct assignment cutover、redaction/restricted raw policyの実装形式・判定表は旧source残差。対応する操作権限はSECURITY所有で、今回のrouteは旧atom adoptionではない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001120",
+      "semantic_atom_group": "TICKET-AUTHORITY-BOUNDARY",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+        "line": 58,
+        "source_text": "| HXT-AC-030 | cutover後のTicket-required経路で新規legacy direct Assignmentを拒否する | HXT-FR-025 |",
+        "file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+        "line_content_sha256": "d27351bac5ead15f8cba363e9a7caeefe31106da4a276840d534bbf2595c0fb6",
+        "physical_line_bytes_sha256": "eebd165aae96a064b77c7e2ce60e8e159288ffbb50b895fe6c79a4d968d78089"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は| HXT-AC-030 | cutover後のTicket-required経路で新規legacy direct Assignmentを拒否する | HXT-FR-025 |を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "旧formal/shadow、legacy direct assignment cutover、redaction/restricted raw policyの実装形式・判定表は旧source残差。対応する操作権限はSECURITY所有で、今回のrouteは旧atom adoptionではない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001122",
+      "semantic_atom_group": "BENCH-EXPERIMENT-SNAPSHOT",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+        "line": 60,
+        "source_text": "| HXT-AC-032 | 同一Ticket/task snapshotをRaw/HELIX群へ束縛し、変化factorと固定条件を区別できる | HXT-FR-020 |",
+        "file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+        "line_content_sha256": "f7b3a1d5cddf9bc04f6e84cb00176ec3857e68de5e35d4198c8dde1c995032b6",
+        "physical_line_bytes_sha256": "2575de7a0b36f23b637679564dc3a09978d938b049a29b59bc20f0d0f708941b"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "adopted_relevant_partial",
+      "adopted_exact_revision_refs": [
+        "HELIXLABO-L2-006",
+        "HELIXLABO-L2-015"
+      ],
+      "relation_basis": "LABO L2-006/015は比較する実験の条件・入力を特定し、比較可能性を保持する。旧行の同一Ticket/task snapshotを揃えて変化factorと固定条件を分ける部分だけが重なる。",
+      "residual": "snapshotの完全なtuple、Ticketへの束縛形式、全factor一覧は採択されていない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": [
+        {
+          "requirement_id": "HELIXLABO-L2-006",
+          "fixed_revision_mechanism": "HELIXLABO",
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "line": 50,
+          "predicate_excerpt_or_locator": "同条件current/candidate/hybrid実験を実行し、ticket/assignmentと結果を同じexperiment・対象版へ結ぶ。"
+        },
+        {
+          "requirement_id": "HELIXLABO-L2-015",
+          "fixed_revision_mechanism": "HELIXLABO",
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "line": 66,
+          "predicate_excerpt_or_locator": "各比較側の版・条件・oracle・scopeをexperiment inputで区別する。"
+        }
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001123",
+      "semantic_atom_group": "TICKET-AUTHORITY-BOUNDARY",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+        "line": 61,
+        "source_text": "| HXT-AC-033 | formal/shadow Attemptから通常repoのPR merge/publish/deployを実行できない | HXT-FR-010,020 |",
+        "file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+        "line_content_sha256": "42d6e5aaea2a2a921ff4dd0d9fdf4cf374969291744cf527fc3c017bc262c232",
+        "physical_line_bytes_sha256": "b32438729c520518e416789db90f2235a496383caa186a11b78efc58689a15f2"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は| HXT-AC-033 | formal/shadow Attemptから通常repoのPR merge/publish/deployを実行できない | HXT-FR-010,020 |を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "旧formal/shadow、legacy direct assignment cutover、redaction/restricted raw policyの実装形式・判定表は旧source残差。対応する操作権限はSECURITY所有で、今回のrouteは旧atom adoptionではない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001127",
+      "semantic_atom_group": "TICKET-AUTHORITY-BOUNDARY",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+        "line": 65,
+        "source_text": "| HXT-AC-037 | Ticket/PLANから要求正本を独自上書きできない | HXT-FR-002 |",
+        "file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+        "line_content_sha256": "74f410574eb9847eb399c677d8481298f8550cc05ded443bedeb32b0fdb93534",
+        "physical_line_bytes_sha256": "3b35f5baacf9842958d8626a78dc388dacfa6423efdeb8e4dd3696dccc264125"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "adopted_relevant_partial",
+      "adopted_exact_revision_refs": [
+        "HELIXOS-L2-001"
+      ],
+      "relation_basis": "OS L2-001は要求正本、採否、合意revisionと判断の出所を確認し、GitHub状態から要求を推定しない。旧行のTicket/PLANが要求正本を上書きできないというauthority境界と同じpredicateである。",
+      "residual": "旧Ticket/PLAN schema、更新拒否の具体的oracleは採択されていない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": [
+        {
+          "requirement_id": "HELIXOS-L2-001",
+          "fixed_revision_mechanism": "HELIXOS",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 54,
+          "predicate_excerpt_or_locator": "要求正本・採否・合意revisionと判断の出所を確認し、GitHub状態から要求を推定しない。"
+        }
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001132",
+      "semantic_atom_group": "REVIEW-RECEIPT-INDEPENDENCE",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+        "line": 70,
+        "source_text": "| HXT-AC-042 | stale reviewer receiptを拒否する | HXT-FR-015 |",
+        "file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+        "line_content_sha256": "aeb89a701cb30607465d44c4e116f85949465c784a00abe9da192438f5fdf7cb",
+        "physical_line_bytes_sha256": "5aae37f20af11a8a7d3995c191795b8bc2986462f4801bd1807d6b89517ccb87"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "adopted_relevant_partial",
+      "adopted_exact_revision_refs": [
+        "HARNESS-L2-005"
+      ],
+      "relation_basis": "HARNESS L2-005は検証条件に対象要求revisionと証拠有効期限を含め、unknownをskipへ変換しない。旧行のstale reviewer receiptを有効な検証証拠として受理しない条件に限り対応する。",
+      "residual": "reviewer receiptのschema、staleness算定、identity/session/context検査全体は採択されていない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": [
+        {
+          "requirement_id": "HARNESS-L2-005",
+          "fixed_revision_mechanism": "HARNESS",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "line": 121,
+          "predicate_excerpt_or_locator": "検証条件に対象要求revisionと証拠有効期限を含め、unknownをskipへ変換しない。"
+        }
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001133",
+      "semantic_atom_group": "REVIEW-RECEIPT-INDEPENDENCE",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+        "line": 71,
+        "source_text": "| HXT-AC-043 | worker/reviewerの独立性をidentity/session/context/provenanceで検査し、共有汚染を拒否する | HXT-FR-015,022 |",
+        "file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+        "line_content_sha256": "b86ccf4872499ac378c316621153d2f92624a2be58ca8270a2b5dcf7f1d47a5c",
+        "physical_line_bytes_sha256": "56f72c7c7e58df7f85447e90296fde349ffc13aafb8817909d68ee91eea3bc4d"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "adopted_relevant_partial",
+      "adopted_exact_revision_refs": [
+        "HELIXOS-L2-004"
+      ],
+      "relation_basis": "OS L2-004は自己承認を防ぎ、独立reviewを割当・実行から分ける。旧行のworker/reviewer非同一性に関する部分だけが一致する。",
+      "residual": "identity/session/context/provenanceを横断する共有汚染検査とその完全oracleは採択されていない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": [
+        {
+          "requirement_id": "HELIXOS-L2-004",
+          "fixed_revision_mechanism": "HELIXOS",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 57,
+          "predicate_excerpt_or_locator": "優先度・予算等の制約内でWorkerを割り当て、自己承認を防ぐ。"
+        }
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001137",
+      "semantic_atom_group": "TICKET-AUTHORITY-BOUNDARY",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+        "line": 75,
+        "source_text": "| HXT-AC-047 | destructive操作を普通のlow-risk作業へ隠して実行できない | HXT-FR-022 |",
+        "file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+        "line_content_sha256": "de1b80595353300e59647e12ae96d256f6f47f6399946379d171840a9d5631c9",
+        "physical_line_bytes_sha256": "490dd072623547fb0c698da963d37496db42c0bb402bb4eefb2a8076c3bff431"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は| HXT-AC-047 | destructive操作を普通のlow-risk作業へ隠して実行できない | HXT-FR-022 |を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "旧formal/shadow、legacy direct assignment cutover、redaction/restricted raw policyの実装形式・判定表は旧source残差。対応する操作権限はSECURITY所有で、今回のrouteは旧atom adoptionではない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001151",
+      "semantic_atom_group": "BENCH-ADVISORY-FEEDBACK",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+        "line": 91,
+        "source_text": "| HXB-AC-008 | 本線closureと分析sinkの間に循環待ちがなく、遅着結果を追補できる | HXB-FR-004 |",
+        "file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+        "line_content_sha256": "9ba53f3b50a26ee9c8ac143377bd6b1c12881ee02327be039384dd0c8aa8817c",
+        "physical_line_bytes_sha256": "8c7100e30e914abac765c0a7a6458011e31b24f567ac21421420b04ea6c07e87"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は| HXB-AC-008 | 本線closureと分析sinkの間に循環待ちがなく、遅着結果を追補できる | HXB-FR-004 |を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "遅着sinkの状態、実験追加時の予算予約、特定dashboard fieldsのexact acceptanceは独立した旧詳細条件として残る。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001168",
+      "semantic_atom_group": "BENCH-COST-STATISTICS",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+        "line": 108,
+        "source_text": "| HXB-AC-025 | 有限予算を予約してから追加実験を起動し、retryを含む累積上限で停止する | HXB-FR-013 |",
+        "file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+        "line_content_sha256": "cf26a5faeb9abbcc31de0452a57c1a2526845c0eed1173db5a930669104ec512",
+        "physical_line_bytes_sha256": "d9b578e2665e3d8b8fabf7434b2a76e345019164bd7669f061860fa3753d1454"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "adopted_relevant_partial",
+      "adopted_exact_revision_refs": [
+        "HELIXOS-L2-004",
+        "HELIXOS-L2-009"
+      ],
+      "relation_basis": "OS L2-004は予算制約内の割当・実行を定め、L2-009は中断・担当交代後も累積予算を保持する。旧行のretryを含む累積上限で停止する条件に限って一致する。",
+      "residual": "追加実験前の予約、cost schema、具体的上限値、typed stop/recoveryは採択されていない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": [
+        {
+          "requirement_id": "HELIXOS-L2-004",
+          "fixed_revision_mechanism": "HELIXOS",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 57,
+          "predicate_excerpt_or_locator": "優先度・予算等の制約内でWorkerを割り当て、自己承認を防ぐ。"
+        },
+        {
+          "requirement_id": "HELIXOS-L2-009",
+          "fixed_revision_mechanism": "HELIXOS",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 62,
+          "predicate_excerpt_or_locator": "復旧時も累積予算・期限・未完義務を保持する。"
+        }
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001182",
+      "semantic_atom_group": "BENCH-COST-STATISTICS",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+        "line": 122,
+        "source_text": "| HXB-AC-039 | dashboardが母数/欠測/window/mode/cost確度を示し、実装完成率と測定成功率を分離する | HXB-FR-020 |",
+        "file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+        "line_content_sha256": "6cdd8bdc5a82124946e551ab1a070b77b59b5f84afa36ecb68c33cb1e447455d",
+        "physical_line_bytes_sha256": "8873f95a5c700ddfef4395270ee33a875717ab21c75f8ff76c1a447c214f15b3"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は| HXB-AC-039 | dashboardが母数/欠測/window/mode/cost確度を示し、実装完成率と測定成功率を分離する | HXB-FR-020 |を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "費用配賦・currency/effective-time、統計計画、selection bias補正、measurement trigger/dedupe、具体的停止値は採択本文に同一条件なし。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001231",
+      "semantic_atom_group": "BENCH-SOURCE-CONTEXT",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
+        "line": 54,
+        "source_text": "v0.1への追記集ではなく、接続を前提に整合性を見直した統合版である。`HXT-FR-001〜025`、`HXT-NFR-001〜010`、旧受入50件の追跡性を維持し、Bench接続責務を`HXB-FR-001〜020`、追加受入を`HXB-AC-001〜040`として分離する。要求番号・文書版は提案内IDであり、リポジトリの正規採番を代行しない。",
+        "file_sha256": "951c8a89cbb839f3cbe70f04c436751db81c474303ebdcc97cf066cd7155836c",
+        "line_content_sha256": "0da6c8882c73bb089d1494708f2935d96e4f38a04fc7d7494b88ae77ce3b2132",
+        "physical_line_bytes_sha256": "63aea3e74931d53a4588763b6eff902c652c11df9e3cf3ed941d5174ce0e0670"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行はv0.1への追記集ではなく、接続を前提に整合性を見直した統合版である。`HXT-FR-001〜025`、`HXT-NFR-001〜010`、旧受入50件の追跡性を維持し、Bench接続責務を`HXB-FR-001〜020`、追加受入を`HXB-AC-001〜040`として分離する。要求番号・文書版は提案内IDであり、リポジトリの正規採番を代行しない。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "source link/Issue/legacy codeはここでは歴史的referenceのみ。必要な旧意味は該当する別source rowで照合し、引用だけで要求を移さない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001238",
+      "semantic_atom_group": "BENCH-EXPERIMENT-SNAPSHOT",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
+        "line": 62,
+        "source_text": "| 同一モデル比較 | worker identityを偽装せず、`experiment / treatment / replicate / attempt`を分離する |",
+        "file_sha256": "951c8a89cbb839f3cbe70f04c436751db81c474303ebdcc97cf066cd7155836c",
+        "line_content_sha256": "f42a4f45a9642aff061826f6eb6db6ed567454c269c126c3b1bc79d2e2dfd8f1",
+        "physical_line_bytes_sha256": "8f4c33b97e34062c8e162474c4970e3df770a3483d834f12ad5515b34b541f9d"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は| 同一モデル比較 | worker identityを偽装せず、`experiment / treatment / replicate / attempt`を分離する |を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "task/fixture/base/protocol/scorerの厳密tuple、treatment/replicate/attempt/cohort、統計手法と重複標本の判定は採択predicateに含めない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001256",
+      "semantic_atom_group": "BENCH-EXPERIMENT-SNAPSHOT",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
+        "line": 85,
+        "source_text": "| `helix-bench-task-dataset.ts` [S06] | task ID/version、fixture、base、oracle、seed等のsnapshot契約が既存 | 「Ticketがないと同一仕事を比較できない」は言い過ぎ。欠けるのは通常開発との共通binding |",
+        "file_sha256": "951c8a89cbb839f3cbe70f04c436751db81c474303ebdcc97cf066cd7155836c",
+        "line_content_sha256": "f5f0a3855056edde9d7e1565a247a40fa23f83e595cc61ba50c0dbf58d5ee254",
+        "physical_line_bytes_sha256": "da8f6b7e3d64897dcd02fa456505214f398486a0ef11f68aa91d2350a2911127"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は| `helix-bench-task-dataset.ts` [S06] | task ID/version、fixture、base、oracle、seed等のsnapshot契約が既存 | 『Ticketがないと同一仕事を比較できない』は言い過ぎ。欠けるのは通常開発との共通binding |を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "task/fixture/base/protocol/scorerの厳密tuple、treatment/replicate/attempt/cohort、統計手法と重複標本の判定は採択predicateに含めない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001258",
+      "semantic_atom_group": "REVIEW-RECEIPT-INDEPENDENCE",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
+        "line": 87,
+        "source_text": "| `worker-blind-benchmark.ts` [S08] | provenanceが同じ候補の重複を拒否。judgeとworkerの同一性も検査 | 同一モデル・別profile・反復試行は上位の実験identityで扱う。独立review制約は維持 |",
+        "file_sha256": "951c8a89cbb839f3cbe70f04c436751db81c474303ebdcc97cf066cd7155836c",
+        "line_content_sha256": "17b29f0db60e2ee30febb02eb2ced3f353e8f9c2f8839828099130071bc7d27f",
+        "physical_line_bytes_sha256": "32b5b9765762b2e903a6a66d8e3b81c6a392d2c5bbb74da6156713ee060c7b7f"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は| `worker-blind-benchmark.ts` [S08] | provenanceが同じ候補の重複を拒否。judgeとworkerの同一性も検査 | 同一モデル・別profile・反復試行は上位の実験identityで扱う。独立review制約は維持 |を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "session/context汚染、receipt freshness、independenceの完全oracle・具体的証拠列はHARNESS/OS固定本文の同一predicateとして網羅されていない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001288",
+      "semantic_atom_group": "BENCH-LIFECYCLE-SAFETY",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
+        "line": 126,
+        "source_text": "**依存を循環させない。** live observerはformal scorerが未完成でもevent/receiptを保存できる。既存formal runnerはTicket全面移行前でも測定できる。Ticketは将来の測定結果を待ってadmitしない。能力評価に最低evidenceが必要なworkerは既存baseline/canaryの正式経路で資格を得るのであり、無権限の本番試行でbootstrappingしない。",
+        "file_sha256": "951c8a89cbb839f3cbe70f04c436751db81c474303ebdcc97cf066cd7155836c",
+        "line_content_sha256": "037a27b3b21ca61a5fc2e96dd2ba64c9fe8e1fc1a3777c42c57b2f6790471e9a",
+        "physical_line_bytes_sha256": "d0cac7f1cd0612a989788f3c0ec1219ad32bef45c23db5f6c17965246217e0ad"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は**依存を循環させない。** live observerはformal scorerが未完成でもevent/receiptを保存できる。既存formal runnerはTicket全面移行前でも測定できる。Ticketは将来の測定結果を待ってadmitしない。能力評価に最低evidenceが必要なworkerは既存baseline/canaryの正式経路で資格を得るのであり、無権限の本番試行でbootstrappingしない。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "spool上限・lag閾値、canary/cutover receipt schema、external action reconciliationと操作実行許可の個別詳細は残る。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001289",
+      "semantic_atom_group": "BENCH-LIFECYCLE-SAFETY",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
+        "line": 128,
+        "source_text": "**展開の最小単位:** 一つのproject/責務/実行profileを対象とするcanaryを選び、scope別cutover receiptを持つ。全repo・全providerへの一斉有効化を前提にしない。各sliceのversion target、Module/Bundle/Functional Release Sliceは既存Portfolioから解決し、未確定のversion番号を本書で捏造しない。",
+        "file_sha256": "951c8a89cbb839f3cbe70f04c436751db81c474303ebdcc97cf066cd7155836c",
+        "line_content_sha256": "30d99dd36926bc7e408b309c0add0090d449be84a237aa983fc19cfe1bec7ae4",
+        "physical_line_bytes_sha256": "3b3e18b8d645f3c7350fe8518b0704749da830a0684a18ea4817baea86d787dc"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は**展開の最小単位:** 一つのproject/責務/実行profileを対象とするcanaryを選び、scope別cutover receiptを持つ。全repo・全providerへの一斉有効化を前提にしない。各sliceのversion target、Module/Bundle/Functional Release Sliceは既存Portfolioから解決し、未確定のversion番号を本書で捏造しない。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "spool上限・lag閾値、canary/cutover receipt schema、external action reconciliationと操作実行許可の個別詳細は残る。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001297",
+      "semantic_atom_group": "BENCH-LIFECYCLE-SAFETY",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
+        "line": 139,
+        "source_text": "| HXT-FR-006 | Ticket生成前にactual diff/candidate HEADを必要とすると未来証拠を要求する | 事前scope検査と実diff後検査を区別 |",
+        "file_sha256": "951c8a89cbb839f3cbe70f04c436751db81c474303ebdcc97cf066cd7155836c",
+        "line_content_sha256": "1a6b2bbfabbb304894d5997d2d72925509db3279a90928ae5a435e099264ae5b",
+        "physical_line_bytes_sha256": "5571f0549c98e28f4021312db9aea17d30eec624beb0eed97afa6d49c6366b8c"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は| HXT-FR-006 | Ticket生成前にactual diff/candidate HEADを必要とすると未来証拠を要求する | 事前scope検査と実diff後検査を区別 |を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "spool上限・lag閾値、canary/cutover receipt schema、external action reconciliationと操作実行許可の個別詳細は残る。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001309",
+      "semantic_atom_group": "BENCH-LIFECYCLE-SAFETY",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
+        "line": 151,
+        "source_text": "| 観測常駐化 | collector故障で開発停止、または記録欠損を隠す恐れ | durable auditとanalytics可用性を分離し、影響scope別に扱う |",
+        "file_sha256": "951c8a89cbb839f3cbe70f04c436751db81c474303ebdcc97cf066cd7155836c",
+        "line_content_sha256": "7dcccf0405ccec61aa9812de5815f75513285b7c983cb8474208a61281925d48",
+        "physical_line_bytes_sha256": "3db1daedb4d4b3fe4228d15d21e5cb6307331649b7b6774f9336fc6f672eb1b4"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は| 観測常駐化 | collector故障で開発停止、または記録欠損を隠す恐れ | durable auditとanalytics可用性を分離し、影響scope別に扱う |を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "spool上限・lag閾値、canary/cutover receipt schema、external action reconciliationと操作実行許可の個別詳細は残る。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001335",
+      "semantic_atom_group": "BENCH-SOURCE-CONTEXT",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
+        "line": 199,
+        "source_text": "- [S01] [main確認／固定commit](https://github.com/RetryYN/HELIX-HARNESS/commit/16f930c4da06b35be44ae88871dd0f1e572b0c67)",
+        "file_sha256": "951c8a89cbb839f3cbe70f04c436751db81c474303ebdcc97cf066cd7155836c",
+        "line_content_sha256": "c124b5e4731a21fbfba942f7afa6d0ad991f03adbb9708e89e45d9632ffd8e3c",
+        "physical_line_bytes_sha256": "97e96fb202db149b7c04cf9b440089ea1d888fd3f39f9dd5e312048551e00cd7"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は- [S01] [main確認／固定commit](https://github.com/RetryYN/HELIX-HARNESS/commit/16f930c4da06b35be44ae88871dd0f1e572b0c67)を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "source link/Issue/legacy codeはここでは歴史的referenceのみ。必要な旧意味は該当する別source rowで照合し、引用だけで要求を移さない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001336",
+      "semantic_atom_group": "BENCH-SOURCE-CONTEXT",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
+        "line": 201,
+        "source_text": "- [S02] [PLAN-L3-49: 評価契約の目的・下位bench非重複](https://github.com/RetryYN/HELIX-HARNESS/blob/16f930c4da06b35be44ae88871dd0f1e572b0c67/docs/plans/PLAN-L3-49-helix-bench-evaluation.md)",
+        "file_sha256": "951c8a89cbb839f3cbe70f04c436751db81c474303ebdcc97cf066cd7155836c",
+        "line_content_sha256": "655ef836b85dec8ada0c97c4f18adcf1990ec6acf64a3176bb3fa66cfeb7726f",
+        "physical_line_bytes_sha256": "a51d25a82dd66f51e27b569b6aa68c41d490de6d5bf4dac4b1729068c06bb906"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は- [S02] [PLAN-L3-49: 評価契約の目的・下位bench非重複](https://github.com/RetryYN/HELIX-HARNESS/blob/16f930c4da06b35be44ae88871dd0f1e572b0c67/docs/plans/PLAN-L3-49-helix-bench-evaluation.md)を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "source link/Issue/legacy codeはここでは歴史的referenceのみ。必要な旧意味は該当する別source rowで照合し、引用だけで要求を移さない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001337",
+      "semantic_atom_group": "BENCH-SOURCE-CONTEXT",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
+        "line": 203,
+        "source_text": "- [S03] [HELIX-Bench L3: 5カテゴリ・12指標・4 profile・protocol・scoring・cost・integrity](https://github.com/RetryYN/HELIX-HARNESS/blob/16f930c4da06b35be44ae88871dd0f1e572b0c67/docs/design/helix/L3-requirements/helix-bench-evaluation.md)",
+        "file_sha256": "951c8a89cbb839f3cbe70f04c436751db81c474303ebdcc97cf066cd7155836c",
+        "line_content_sha256": "0ca6cd78d90790d75752e5342d960a9c7624033593683284b79b7b0c3a29806a",
+        "physical_line_bytes_sha256": "84360a4b8a90b11b1a5b03634cb1af7a1f04e1870905d0d806629244e318aa90"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は- [S03] [HELIX-Bench L3: 5カテゴリ・12指標・4 profile・protocol・scoring・cost・integrity](https://github.com/RetryYN/HELIX-HARNESS/blob/16f930c4da06b35be44ae88871dd0f1e572b0c67/docs/design/helix/L3-requirements/helix-bench-evaluation.md)を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "source link/Issue/legacy codeはここでは歴史的referenceのみ。必要な旧意味は該当する別source rowで照合し、引用だけで要求を移さない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001338",
+      "semantic_atom_group": "BENCH-SOURCE-CONTEXT",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
+        "line": 205,
+        "source_text": "- [S04] [#1294: task dataset/fixtureの完了Issue](https://github.com/RetryYN/HELIX-HARNESS/issues/1294)",
+        "file_sha256": "951c8a89cbb839f3cbe70f04c436751db81c474303ebdcc97cf066cd7155836c",
+        "line_content_sha256": "41d3f07e079b1bb0a6675249490b3f75a205ff10aa23a571bc370b9c31932bba",
+        "physical_line_bytes_sha256": "d087b0ba9317e89766cbd2056c8199a1235db4ca399a30415a9eb5fa47cb9260"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は- [S04] [#1294: task dataset/fixtureの完了Issue](https://github.com/RetryYN/HELIX-HARNESS/issues/1294)を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "source link/Issue/legacy codeはここでは歴史的referenceのみ。必要な旧意味は該当する別source rowで照合し、引用だけで要求を移さない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001339",
+      "semantic_atom_group": "BENCH-SOURCE-CONTEXT",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
+        "line": 207,
+        "source_text": "- [S05] [#1295: runner/scorer/raw receiptのopen Issue](https://github.com/RetryYN/HELIX-HARNESS/issues/1295)",
+        "file_sha256": "951c8a89cbb839f3cbe70f04c436751db81c474303ebdcc97cf066cd7155836c",
+        "line_content_sha256": "db8be6882063ffc2044e2522c387160ba0bafd2d3eba10a7929e1d07970f84cc",
+        "physical_line_bytes_sha256": "1af02c25ed53784a2e2570d10b4e78c84a1585fe11e4147ba5981d4ad7a147d9"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は- [S05] [#1295: runner/scorer/raw receiptのopen Issue](https://github.com/RetryYN/HELIX-HARNESS/issues/1295)を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "source link/Issue/legacy codeはここでは歴史的referenceのみ。必要な旧意味は該当する別source rowで照合し、引用だけで要求を移さない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001340",
+      "semantic_atom_group": "BENCH-SOURCE-CONTEXT",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
+        "line": 209,
+        "source_text": "- [S06] [task snapshot既存型・dataset validator](https://github.com/RetryYN/HELIX-HARNESS/blob/16f930c4da06b35be44ae88871dd0f1e572b0c67/src/runtime/helix-bench-task-dataset.ts)",
+        "file_sha256": "951c8a89cbb839f3cbe70f04c436751db81c474303ebdcc97cf066cd7155836c",
+        "line_content_sha256": "c439790216fb2f0e674e38532a1801cbfe8b4498b0d168645148d5f14629f951",
+        "physical_line_bytes_sha256": "ce10b6caa559ffc1b7ff53195b2e624a7f1b87c01d9d212911d48fb97c0c5da1"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は- [S06] [task snapshot既存型・dataset validator](https://github.com/RetryYN/HELIX-HARNESS/blob/16f930c4da06b35be44ae88871dd0f1e572b0c67/src/runtime/helix-bench-task-dataset.ts)を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "source link/Issue/legacy codeはここでは歴史的referenceのみ。必要な旧意味は該当する別source rowで照合し、引用だけで要求を移さない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001341",
+      "semantic_atom_group": "BENCH-SOURCE-CONTEXT",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
+        "line": 211,
+        "source_text": "- [S07] [#225: worker descriptor/context/blind admission](https://github.com/RetryYN/HELIX-HARNESS/issues/225)（取込補足：下位worker検証の参照）",
+        "file_sha256": "951c8a89cbb839f3cbe70f04c436751db81c474303ebdcc97cf066cd7155836c",
+        "line_content_sha256": "049bf84864168ccfa5d9c801eb42d84569b29f1f398d0400c0d54e4360c645b9",
+        "physical_line_bytes_sha256": "663884a585a4e6e891a5792cbd5a59e7ae149faf1d2e8ea2392cb01bb81c739b"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は- [S07] [#225: worker descriptor/context/blind admission](https://github.com/RetryYN/HELIX-HARNESS/issues/225)（取込補足：下位worker検証の参照）を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "source link/Issue/legacy codeはここでは歴史的referenceのみ。必要な旧意味は該当する別source rowで照合し、引用だけで要求を移さない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001342",
+      "semantic_atom_group": "BENCH-SOURCE-CONTEXT",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
+        "line": 213,
+        "source_text": "- [S08] [worker-blind-benchmark: provenance重複判定・独立judge](https://github.com/RetryYN/HELIX-HARNESS/blob/16f930c4da06b35be44ae88871dd0f1e572b0c67/src/runtime/worker-blind-benchmark.ts#L313-L411)",
+        "file_sha256": "951c8a89cbb839f3cbe70f04c436751db81c474303ebdcc97cf066cd7155836c",
+        "line_content_sha256": "af674b51d2bf90dabf5f6c834dafdccfce71c2be855fd15ba79b9c6090be2bb0",
+        "physical_line_bytes_sha256": "e8df8a991a216891c519b2fc9598658daded0b634416140b7bc15d706391e312"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は- [S08] [worker-blind-benchmark: provenance重複判定・独立judge](https://github.com/RetryYN/HELIX-HARNESS/blob/16f930c4da06b35be44ae88871dd0f1e572b0c67/src/runtime/worker-blind-benchmark.ts#L313-L411)を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "source link/Issue/legacy codeはここでは歴史的referenceのみ。必要な旧意味は該当する別source rowで照合し、引用だけで要求を移さない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001343",
+      "semantic_atom_group": "BENCH-SOURCE-CONTEXT",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
+        "line": 215,
+        "source_text": "- [S09] [#861: Runtime Capability RegistryとBench advisory境界](https://github.com/RetryYN/HELIX-HARNESS/issues/861)",
+        "file_sha256": "951c8a89cbb839f3cbe70f04c436751db81c474303ebdcc97cf066cd7155836c",
+        "line_content_sha256": "20f2ea339a2946c62c0c10d22e72e9ca608512dc35cb42025e59b68798a28600",
+        "physical_line_bytes_sha256": "e7ff3d0b47fbe55abed3f6b124debd5cbcf3607fe6f441a23977f85ad1832a0e"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は- [S09] [#861: Runtime Capability RegistryとBench advisory境界](https://github.com/RetryYN/HELIX-HARNESS/issues/861)を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "source link/Issue/legacy codeはここでは歴史的referenceのみ。必要な旧意味は該当する別source rowで照合し、引用だけで要求を移さない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001344",
+      "semantic_atom_group": "BENCH-SOURCE-CONTEXT",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
+        "line": 217,
+        "source_text": "- [S10] [#251: 既存評価契約のscope/指標/再現性](https://github.com/RetryYN/HELIX-HARNESS/issues/251)",
+        "file_sha256": "951c8a89cbb839f3cbe70f04c436751db81c474303ebdcc97cf066cd7155836c",
+        "line_content_sha256": "ac956015ac8f92d7c7d15c2eacc178bb51447155fee2ad3d0f5601a83c4bf35f",
+        "physical_line_bytes_sha256": "f2505b1cff6b583229d5241a783669de75d3cb2f7ab21e12f7beb4689d91babc"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は- [S10] [#251: 既存評価契約のscope/指標/再現性](https://github.com/RetryYN/HELIX-HARNESS/issues/251)を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "source link/Issue/legacy codeはここでは歴史的referenceのみ。必要な旧意味は該当する別source rowで照合し、引用だけで要求を移さない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001361",
+      "semantic_atom_group": "BENCH-RECOGNITION-OBSERVATION",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-recognition.md",
+        "line": 16,
+        "source_text": "- 長時間canaryで観測coverage、欠番、lag、再開時間、費用と負荷を測定する。",
+        "file_sha256": "77515e07604b3b6dc15125d3fdcbc164a6d180522b16f889a1e4f52d174904ca",
+        "line_content_sha256": "be3a38ca0ba98dbb78406a86eb9b271cc47c1b9f6c709f16cc592da808e18ffe",
+        "physical_line_bytes_sha256": "c1503b4febad276236ce5fbac3b746d5622097bcd80f60f6e49c0b2ce998c936"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は- 長時間canaryで観測coverage、欠番、lag、再開時間、費用と負荷を測定する。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "長時間canaryでの具体的coverage/lag/retention/SLO metric、baseline値は未採択。未測定値を決めない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001362",
+      "semantic_atom_group": "BENCH-RECOGNITION-OBSERVATION",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-recognition.md",
+        "line": 17,
+        "source_text": "- sink停止とaudit記録不能を分け、前者のみで全開発を停止しない。",
+        "file_sha256": "77515e07604b3b6dc15125d3fdcbc164a6d180522b16f889a1e4f52d174904ca",
+        "line_content_sha256": "92487e8895d86a88d4657481f0f578240b05d81397b34c226fff50f5ca6be805",
+        "physical_line_bytes_sha256": "1e469f6b81836a4da1941122b9bb5d7ed189a4ed69aeb686ad115a8f564fafc0"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は- sink停止とaudit記録不能を分け、前者のみで全開発を停止しない。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "長時間canaryでの具体的coverage/lag/retention/SLO metric、baseline値は未採択。未測定値を決めない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001363",
+      "semantic_atom_group": "BENCH-ADVISORY-FEEDBACK",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-recognition.md",
+        "line": 18,
+        "source_text": "- 後日不具合を元closureの改ざんなしに追補し、根拠付きで既存改善経路へ返す。",
+        "file_sha256": "77515e07604b3b6dc15125d3fdcbc164a6d180522b16f889a1e4f52d174904ca",
+        "line_content_sha256": "4643555a45185d143c5d4ad511dd23c472214c5fe77b601cdcfee1b91b667648",
+        "physical_line_bytes_sha256": "fb7f777fcb31d87ac8e6ae2818cd505a9806d8c6ee61bdb9e43b36eb0f7abb18"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は- 後日不具合を元closureの改ざんなしに追補し、根拠付きで既存改善経路へ返す。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "遅着sinkの状態、実験追加時の予算予約、特定dashboard fieldsのexact acceptanceは独立した旧詳細条件として残る。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001364",
+      "semantic_atom_group": "BENCH-SUCCESS-CRITERION",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-recognition.md",
+        "line": 19,
+        "source_text": "- 改善なし・劣化・inconclusiveも正当な結果とし、比較結果を実装完成率にしない。",
+        "file_sha256": "77515e07604b3b6dc15125d3fdcbc164a6d180522b16f889a1e4f52d174904ca",
+        "line_content_sha256": "bdc7439fd929ef2c5fbf7b560c90c4841fb1b7312f780fb35c4757cc3e7f5bdd",
+        "physical_line_bytes_sha256": "273106e03d12da6f93090f3366020b4f87d9f08fb1680770145157d248db942b"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "adopted_relevant_partial",
+      "adopted_exact_revision_refs": [
+        "HELIXLABO-L2-001",
+        "HELIXLABO-L2-003",
+        "HELIXLABO-L2-006"
+      ],
+      "relation_basis": "LABO L2-001/003/006は失敗・unknown・比較不能を成功へ変換せず、結果状態を評価から区別する。旧行の改善なし・劣化・inconclusiveを正当な結果として保持する部分が一致する。",
+      "residual": "全metric、再現性契約、閾値、実装完成率との表示連携は採択されていない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": [
+        {
+          "requirement_id": "HELIXLABO-L2-001",
+          "fixed_revision_mechanism": "HELIXLABO",
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "line": 45,
+          "predicate_excerpt_or_locator": "許可された成功・失敗・拒否・取消・blocked・unknown・not_observedとsource identity/revisionを保持する。"
+        },
+        {
+          "requirement_id": "HELIXLABO-L2-003",
+          "fixed_revision_mechanism": "HELIXLABO",
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "line": 47,
+          "predicate_excerpt_or_locator": "success/failure等を別々に分類し、unknownを推測で分類しない。"
+        },
+        {
+          "requirement_id": "HELIXLABO-L2-006",
+          "fixed_revision_mechanism": "HELIXLABO",
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "line": 50,
+          "predicate_excerpt_or_locator": "同条件current/candidate/hybrid実験を実行し、ticket/assignmentと結果を同じexperiment・対象版へ結ぶ。"
+        }
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001365",
+      "semantic_atom_group": "BENCH-RECOGNITION-OBSERVATION",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-recognition.md",
+        "line": 20,
+        "source_text": "- baseline、観測窓、SLO、retentionは実測と要件freezeで確定する。未測定値を捏造しない。",
+        "file_sha256": "77515e07604b3b6dc15125d3fdcbc164a6d180522b16f889a1e4f52d174904ca",
+        "line_content_sha256": "a04eff8fee7e4c7079cc58837aafb983259cac0116e88e3c165f65886673ed53",
+        "physical_line_bytes_sha256": "cf203f29d75ecd6f47ba13c73db065c54af11a3bcb45eb35ef6db5a7e0fafb2b"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は- baseline、観測窓、SLO、retentionは実測と要件freezeで確定する。未測定値を捏造しない。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "長時間canaryでの具体的coverage/lag/retention/SLO metric、baseline値は未採択。未測定値を決めない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001380",
+      "semantic_atom_group": "LEGACY-LAYER-ATTRIBUTION",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requests.md",
+        "line": 16,
+        "source_text": "原稿§2の「L1要求」は出典表記として保持する。現行層では企画をL1、以下の利用要求をL2、検証をL11へ分離する。",
+        "file_sha256": "b9ffa16c10602ccef0fbf6f9124bd67d67c0e672f3c8208c94eea97fc36f259c",
+        "line_content_sha256": "9c14740c4c49251dda0d8253638d0d4424e6e8b036c54e521748d3e6ff376c2b",
+        "physical_line_bytes_sha256": "ba593087e6803617d76d5838e8240f637d4d1d502d2fc696c4b30ae4194b20fd"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は原稿§2の『L1要求』は出典表記として保持する。現行層では企画をL1、以下の利用要求をL2、検証をL11へ分離する。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "層対応の記述保持と要求意味の採択は別。source attribution以上のsuccessorは未確定。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001607",
+      "semantic_atom_group": "BENCH-COST-STATISTICS",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "line": 315,
+        "source_text": "親・worker・verifier・CI・再試行・sandbox・観測処理の費用とtokenを取得可能な範囲で区分する。API実請求、subscription配賦、API相当推計、compute/CI/保存コストを混ぜず、source/currency/effective time/課金区分を記録する。欠測を0円へ変換しない。accepted changeが0のとき成功あたり費用や削減率を有限の成功値にしない。共有CI費用は配賦policyを固定し、二重加算しない。",
+        "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "line_content_sha256": "4c09f25b0cc7f01c9531bf619990007745e72141bd97f7247812a3ac73d30d8f",
+        "physical_line_bytes_sha256": "6ee1d0e321f2153eac369567363eae6d71c0426cff80ed14467098d12e576ba2"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は親・worker・verifier・CI・再試行・sandbox・観測処理の費用とtokenを取得可能な範囲で区分する。API実請求、subscription配賦、API相当推計、compute/CI/保存コストを混ぜず、source/currency/effective time/課金区分を記録する。欠測を0円へ変換しない。accepted changeが0のとき成功あたり費用や削減率を有限の成功値にしない。共有CI費用は配賦policyを固定し、二重加算しない。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "費用配賦・currency/effective-time、統計計画、selection bias補正、measurement trigger/dedupe、具体的停止値は採択本文に同一条件なし。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001611",
+      "semantic_atom_group": "BENCH-COST-STATISTICS",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "line": 323,
+        "source_text": "formalは同一task snapshot・fixture・共通base・protocol・scorer等の比較条件を満たすものだけを比較する。複数Ticketの集計は事前定義したresponsibility/task family/risk/難度等のcohort規則に従い、同じTicketと偽らない。割当方法、標本数、欠測、選択確率、反復のクラスタ、効果量/信頼区間、観測窓を記録する。liveの難しい仕事だけが高性能モデルへ回る選択biasを無視しない。前後比較だけで効果を断定しない。",
+        "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "line_content_sha256": "0ecc546791004d8e09d42c93f39350a91987791fac56d39f93eea39cf1d1d17a",
+        "physical_line_bytes_sha256": "f48b0ed81592e78c499a3389352aca9028218d3e954ba63e250cf82ddb75a686"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "adopted_relevant_partial",
+      "adopted_exact_revision_refs": [
+        "HELIXLABO-L2-006",
+        "HELIXLABO-L2-015"
+      ],
+      "relation_basis": "LABO L2-006/015は同じ条件・対象版に基づく比較とその入力範囲を定める。旧行の同一task snapshot/fixture/base/protocol/scorer等を揃えた比較条件に限り一致する。",
+      "residual": "cohort規則、標本数、欠測、選択確率、クラスタ化、効果量/信頼区間、観測窓などの統計計画は採択されていない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": [
+        {
+          "requirement_id": "HELIXLABO-L2-006",
+          "fixed_revision_mechanism": "HELIXLABO",
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "line": 50,
+          "predicate_excerpt_or_locator": "同条件current/candidate/hybrid実験を実行し、ticket/assignmentと結果を同じexperiment・対象版へ結ぶ。"
+        },
+        {
+          "requirement_id": "HELIXLABO-L2-015",
+          "fixed_revision_mechanism": "HELIXLABO",
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "line": 66,
+          "predicate_excerpt_or_locator": "各比較側の版・条件・oracle・scopeをexperiment inputで区別する。"
+        }
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001615",
+      "semantic_atom_group": "BENCH-EXPERIMENT-SNAPSHOT",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "line": 331,
+        "source_text": "同じprovider/model/worker identityでも、別treatment・別replicateを上位Experimentで識別して反復できること。既存worker-blind選定のprovenance重複拒否やworker/judge独立性を削除して対応しない。下位のsealed output/observation/judge検証を再利用し、同一候補の二重取り込みと正当な反復を区別する。同一結果を複製して標本数を増やさない。",
+        "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "line_content_sha256": "8b7a9fe773b007bef036eb4e56e6acf77d5b35a9b21a00b9053d87c4dc7254d3",
+        "physical_line_bytes_sha256": "eb1398f6e50210836b9362d097a86366927b4b9a8ea24a8bebb2eb9efe08712a"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は同じprovider/model/worker identityでも、別treatment・別replicateを上位Experimentで識別して反復できること。既存worker-blind選定のprovenance重複拒否やworker/judge独立性を削除して対応しない。下位のsealed output/observation/judge検証を再利用し、同一候補の二重取り込みと正当な反復を区別する。同一結果を複製して標本数を増やさない。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "task/fixture/base/protocol/scorerの厳密tuple、treatment/replicate/attempt/cohort、統計手法と重複標本の判定は採択predicateに含めない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001619",
+      "semantic_atom_group": "BENCH-COST-STATISTICS",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "line": 339,
+        "source_text": "profile/context/adapter/model descriptor/scorer/fixture変更、evidence期限切れ、drift、明示Release obligation、manual request等をpolicyで分類し、必要なMeasurementRequestを生成する。subjectと変更digest、reason、measurement policy、time windowをdedupe keyへ束縛する。短時間の関連変更はcoalesceできる。measurement自身の完了を同じ実験の再発火原因にせず、cause/depth/budgetで再帰増殖を防ぐ。毎commit・毎Ticketの全組合せ再試験を強制しない。",
+        "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "line_content_sha256": "2488a33344b3539535108401e35b30306b7c683e6f023e255abe46e46bde047c",
+        "physical_line_bytes_sha256": "edb548e1a9a31f5a8f139acebb7e5b0e8b275d773ffadd7f32b9007a66305dbd"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行はprofile/context/adapter/model descriptor/scorer/fixture変更、evidence期限切れ、drift、明示Release obligation、manual request等をpolicyで分類し、必要なMeasurementRequestを生成する。subjectと変更digest、reason、measurement policy、time windowをdedupe keyへ束縛する。短時間の関連変更はcoalesceできる。measurement自身の完了を同じ実験の再発火原因にせず、cause/depth/budgetで再帰増殖を防ぐ。毎commit・毎Ticketの全組合せ再試験を強制しない。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "費用配賦・currency/effective-time、統計計画、selection bias補正、measurement trigger/dedupe、具体的停止値は採択本文に同一条件なし。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001621",
+      "semantic_atom_group": "BENCH-COST-STATISTICS",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "line": 343,
+        "source_text": "既存#214/#188のcapacity・quota・priorityへ接続し、本線と実験のbudget/queue classを分離する。sampling、max attempts/repeats、token/課金/CI時間、期限、最小evidence条件を事前policyに束縛する。追加実行前に上限を予約し、retryも累積予算へ算入する。料金/実行量上限を安全に評価できない場合は新規課金実験を保留する。無制限catch-up、無限retry、review lane占有を禁止する。",
+        "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "line_content_sha256": "abf4867abe73c778b17e030913373fe583a711e4b196070284c5ba4ab1da89f0",
+        "physical_line_bytes_sha256": "4eeee2a69ffec22c394f5419b4dab97d2eab467795d53ae4493402eeff077971"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "adopted_relevant_partial",
+      "adopted_exact_revision_refs": [
+        "HELIXOS-L2-004",
+        "HELIXOS-L2-009"
+      ],
+      "relation_basis": "OS L2-004は予算制約内の実行、L2-009は累積予算・期限・未完義務を保持する。旧行のretryを累積予算へ算入し、上限で停止する条件に限って一致する。",
+      "residual": "事前予約、quota/queue接続、具体的上限、危険評価不能時の課金実験保留は採択されていない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": [
+        {
+          "requirement_id": "HELIXOS-L2-004",
+          "fixed_revision_mechanism": "HELIXOS",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 57,
+          "predicate_excerpt_or_locator": "優先度・予算等の制約内でWorkerを割り当て、自己承認を防ぐ。"
+        },
+        {
+          "requirement_id": "HELIXOS-L2-009",
+          "fixed_revision_mechanism": "HELIXOS",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 62,
+          "predicate_excerpt_or_locator": "復旧時も累積予算・期限・未完義務を保持する。"
+        }
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001627",
+      "semantic_atom_group": "BENCH-LIFECYCLE-SAFETY",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "line": 355,
+        "source_text": "分析sink/dashboard停止時は、audit eventが耐久記録できる限り本線を継続し、degraded/pendingとlagを表示する。上限付きspoolと再開処理を持つ。audit/authority/lease/必要evidenceを記録・検証できない場合は影響する新規変更を停止する。すでに行われた外部操作は未確定状態として照合し、失敗と決め付けた盲目的retryをしない。",
+        "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "line_content_sha256": "fc8fd42019379767e0e1699d9c62c4b45c8d484f988923aa385904f3f2b68542",
+        "physical_line_bytes_sha256": "48db88c86808ad2055a3109e286ecc403a40e335cd70cf56ff78cd3a7583fc9d"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は分析sink/dashboard停止時は、audit eventが耐久記録できる限り本線を継続し、degraded/pendingとlagを表示する。上限付きspoolと再開処理を持つ。audit/authority/lease/必要evidenceを記録・検証できない場合は影響する新規変更を停止する。すでに行われた外部操作は未確定状態として照合し、失敗と決め付けた盲目的retryをしない。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "spool上限・lag閾値、canary/cutover receipt schema、external action reconciliationと操作実行許可の個別詳細は残る。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001661",
+      "semantic_atom_group": "BENCH-COST-STATISTICS",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "line": 409,
+        "source_text": "同一task内の反復を独立task数に水増ししない。比較方法、割当方法、minimum evidence、停止条件は事前定義する。shadowの選択bias、liveのrouting bias、時間依存のAPI変更を明示する。結果が弱い場合は`inconclusive`とする。",
+        "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "line_content_sha256": "2324729cebae1c327ed554e3d3529a2d37c561b2936c3028ac71e52e20b55f54",
+        "physical_line_bytes_sha256": "a10f7a35699eb69427595d19c699ecf417e0ba5eb3525c2df6105d464c815191"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は同一task内の反復を独立task数に水増ししない。比較方法、割当方法、minimum evidence、停止条件は事前定義する。shadowの選択bias、liveのrouting bias、時間依存のAPI変更を明示する。結果が弱い場合は`inconclusive`とする。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "費用配賦・currency/effective-time、統計計画、selection bias補正、measurement trigger/dedupe、具体的停止値は採択本文に同一条件なし。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001953",
+      "semantic_atom_group": "LEGACY-TRACE-RECONSTRUCTION",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
+        "line": 249,
+        "source_text": "元原稿の再構成は次で再検証できる。日本語の取込補足を除去し、ヘッダのMarkdown改行記法を原稿へ戻す。",
+        "file_sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d",
+        "line_content_sha256": "247639117afb012e2a2d1ea7868372b1a051f3561b35f49dc7e108eed7807e62",
+        "physical_line_bytes_sha256": "0cc11e650dbca58e9c9d69512c908c640705d4635e2c82d57e0a9ca491a1f221"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "true_unknown",
+      "adopted_exact_revision_refs": [],
+      "relation_basis": "この旧行は元原稿の再構成は次で再検証できる。日本語の取込補足を除去し、ヘッダのMarkdown改行記法を原稿へ戻す。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "residual": "元ファイルbyte reconstructionの目的・検証方法はsource preservation evidenceで、製品要求採択/implementation statusではない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002016",
+      "semantic_atom_group": "BENCH-SUCCESS-CRITERION",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-vision.md",
+        "line": 18,
+        "source_text": "成功はスコア上昇ではなく、欠損・劣化も隠さず再現可能に評価できること。",
+        "file_sha256": "720abc2c59c61c06482bfd34e6d9b0c8e7d59d7ce564c591d839189776dfccab",
+        "line_content_sha256": "a57a38e969bb0a4c9ce78da1d52fb65d9c7fba02a885c85b1d467db760c51ab7",
+        "physical_line_bytes_sha256": "3ac0d328690cfb3997caf137ea1df71a2a0e660e64b1f8b46ed3adc4f4a40d47"
+      },
+      "proposal_effective_selection": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "selected_pool_count": 488,
+        "excluded_sample_union_intersection": false
+      },
+      "route_relation": "adopted_relevant_partial",
+      "adopted_exact_revision_refs": [
+        "HELIXLABO-L2-001",
+        "HELIXLABO-L2-003",
+        "HELIXLABO-L2-006"
+      ],
+      "relation_basis": "LABO L2-001/003/006は失敗・欠測・unknownや比較結果の状態を保持し、単一の上昇値を成功とみなさない。旧行の欠損・劣化を隠さず評価する部分に限り一致する。",
+      "residual": "全metricの再現可能性、閾値、受入条件とscore以外の評価方法は採択されていない。",
+      "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
+      "adopted_predicate_evidence": [
+        {
+          "requirement_id": "HELIXLABO-L2-001",
+          "fixed_revision_mechanism": "HELIXLABO",
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "line": 45,
+          "predicate_excerpt_or_locator": "許可された成功・失敗・拒否・取消・blocked・unknown・not_observedとsource identity/revisionを保持する。"
+        },
+        {
+          "requirement_id": "HELIXLABO-L2-003",
+          "fixed_revision_mechanism": "HELIXLABO",
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "line": 47,
+          "predicate_excerpt_or_locator": "success/failure等を別々に分類し、unknownを推測で分類しない。"
+        },
+        {
+          "requirement_id": "HELIXLABO-L2-006",
+          "fixed_revision_mechanism": "HELIXLABO",
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "line": 50,
+          "predicate_excerpt_or_locator": "同条件current/candidate/hybrid実験を実行し、ticket/assignmentと結果を同じexperiment・対象版へ結ぶ。"
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "source_rows": 51,
+    "route_relation_counts": {
+      "true_unknown": 41,
+      "adopted_relevant_partial": 10
+    },
+    "source_file_count_with_selected_rows": 7,
+    "semantic_group_count": 12
+  },
+  "legacy_context": {
+    "asset_identity_scope": "下記は候補群全体を単一assetとみなすものではなく、各source fileに対応する旧asset IDの一覧。",
+    "source_file_asset_ids": {
+      "execution-ticket-acceptance.md": "LEGACY-ASSET-BE8B151A0094B754FF20",
+      "execution-ticket-intake.md": "LEGACY-ASSET-E365F83763C0FB340328",
+      "execution-ticket-recognition.md": "LEGACY-ASSET-AF22C9A05FE4E28F4E91",
+      "execution-ticket-requests.md": "LEGACY-ASSET-48383451734A0832AF87",
+      "execution-ticket-requirements.md": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+      "execution-ticket-trace.md": "LEGACY-ASSET-5F709CA13975179DB7CD",
+      "execution-ticket-validation.md": "LEGACY-ASSET-0AA076D5CAF7C591F23D",
+      "execution-ticket-vision.md": "LEGACY-ASSET-9D7EB95274484717CC7B"
+    },
+    "source_and_consumer_context": "ticket-id-redo-audit-2026-09-26.mdおよび旧source本文を参照し、identity/input/dependency/admission、assignment、attempt/retry、evidence/review、lifecycle/projection/replay/security、Bench接続の旧文脈を確認した。consumer文脈はOSのticket・assignment・progression、HARNESSの工程/検証契約、LABOの評価・feedback、SECURITYのoperation authority。これは採択・successor・実装を意味しない。",
+    "source_file_inventory_note": "archive内のexecution-ticket-*.md全8ファイルを調査。対象pool行数はacceptance 18、intake 18、recognition 5、requests 1、requirements 7、trace 1、validation 0、vision 1。各行のasset IDはsource_path対応で旧asset台帳と照合。"
+  },
+  "limitations": [
+    "#2370 population and 61 intersection are carried from the pinned cumulative selection audit; this family audit does not reimplement the #2353/#2356/#2360/#2363/#2366/#2367/#2368/#2369 full-population arithmetic.",
+    "The family source rows remain historical_candidate / draft_candidate / preserved_pending_atomization; relation labels do not mean source adoption, successor assignment, exact coverage, or closure.",
+    "All 51 rows contain heterogeneous acceptance, intake, recognition, request, requirement, trace, and vision material. Grouping is an audit aid over source predicates and does not merge IDs or promote source identity.",
+    "No complete old execution-ticket candidate family intake/acceptance contract is adopted. Broad OS/HARNESS/SECURITY/LABO predicates are recorded only as partial where a same-predicate relation exists; source citation rows and layer labels remain unknown.",
+    "The fixed L2/L11 revisions are historical decision-pinned bytes; later revisions are not substituted except the explicit later HARNESS-L2-039 decision row.",
+    "No archive runtime, CLI, hooks, adapter, test, workflow, CI, or source was executed."
+  ],
+  "family_source_file_inventory": [
+    {
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "selected_pool_rows": 18,
+      "legacy_asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20"
+    },
+    {
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
+      "sha256": "951c8a89cbb839f3cbe70f04c436751db81c474303ebdcc97cf066cd7155836c",
+      "selected_pool_rows": 18,
+      "legacy_asset_id": "LEGACY-ASSET-E365F83763C0FB340328"
+    },
+    {
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-recognition.md",
+      "sha256": "77515e07604b3b6dc15125d3fdcbc164a6d180522b16f889a1e4f52d174904ca",
+      "selected_pool_rows": 5,
+      "legacy_asset_id": "LEGACY-ASSET-AF22C9A05FE4E28F4E91"
+    },
+    {
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requests.md",
+      "sha256": "b9ffa16c10602ccef0fbf6f9124bd67d67c0e672f3c8208c94eea97fc36f259c",
+      "selected_pool_rows": 1,
+      "legacy_asset_id": "LEGACY-ASSET-48383451734A0832AF87"
+    },
+    {
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "selected_pool_rows": 7,
+      "legacy_asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5"
+    },
+    {
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
+      "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d",
+      "selected_pool_rows": 1,
+      "legacy_asset_id": "LEGACY-ASSET-5F709CA13975179DB7CD"
+    },
+    {
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-validation.md",
+      "sha256": "fea63c221b36d5e81a58fa206ff6ed8969227aa9a720af622463f369850a9fa1",
+      "selected_pool_rows": 0,
+      "legacy_asset_id": "LEGACY-ASSET-0AA076D5CAF7C591F23D"
+    },
+    {
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-vision.md",
+      "sha256": "720abc2c59c61c06482bfd34e6d9b0c8e7d59d7ce564c591d839189776dfccab",
+      "selected_pool_rows": 1,
+      "legacy_asset_id": "LEGACY-ASSET-9D7EB95274484717CC7B"
+    }
+  ]
+}
