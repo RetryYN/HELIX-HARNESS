@@ -24,7 +24,7 @@ Draft PR #2359 が再確認対象とした `LEGACY-CAND-LINE-000140/142/143/180/
 
 7行への分類差分は`condition -2`、`explanation +2`、`management_process_condition +0`、`product_requirement_atom -2`、`product population -2`。route差分は`unknown -5`、`adopted_relevant_partial +3`、`not_condition +2`。`000142/143/331`は`unknown`から`adopted_relevant_partial`へ移り、`000180`は製品atomかつ`unknown`に残る。`000476/477`は`not_condition`となる。各行のrouteは上表およびJSONに同じ語で記録した。
 
-この訂正が採用された場合、#2359の20行sampleはproduct atom 20行の母集団選択ではなくなる。選択規則に従う次batchを作る前に、#2353/#2356 proposal overlay後の有効集合から`000476/477`の2 IDを除外して再選択する必要がある。上記route差分はこの7行の算術であり、全母集団件数は依存監査のmerge済みoverlayと本提案を反映する最新mainで再計算する必要がある。
+この訂正が採用された場合、#2359の20行sampleはunknown product atom 20行の集合でなくなる。`000142/143/331`は採択済み要求との部分関係へ移り、`000476/477`はconditionから外れるため、計5 IDを元sampleから除外して再選択する。`000180`はunknown product atomとして残す。上記route差分はこの7行の算術であり、全母集団件数は依存監査のmerge済みoverlayと本提案を反映する最新mainで再計算する必要がある。
 
 ### 依存pinの更新（R2360-03、完了）
 
