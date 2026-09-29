@@ -305,3 +305,12 @@ L2-064と対になる未採択受入候補、1.0。
 - **未解決atom・既存指標境界**：旧source `coverage`の対象/分母/oracleと、追加telemetryと旧12指標とのidentity/version relationはこの受入候補の判定対象外であり、未解決・source-heldのままにする。これらをDesign Trace Completeness等へ同一視する、旧指標の名前・定義・receiptを新fieldへ割り当てる、またはsilent rename可否を判定するoracleをこの候補内で作る場合は不合格。067のS3A/S3B、068のS3Cは各既存receiptで管理し、このreceiptの分母やcarried atomへ重複計上しない。
 - **責務・authority境界**：source event/assignmentは既存source owner、quality/acceptance oracleは要求owner、data/execution許可は適用SECURITY契約に従う。LABOは観測・提示だけを行う。scorecard、receipt、unknown/unavailable状態から採択、実験許可、Worker assignment、rollback実施、L3要件承認または完了を作らない。固定数値threshold、age期限、統計推論または自動決定を追加しない。
 - **旧sourceと局所scope**：source line 399の9 selected atomに限定する。2 unresolved atom、既存候補へ別receiptで対応する3 atom、列挙外tail、隣接行、旧candidate全文の後継/完了を主張しない。source atomと判定scopeは[source-lines](../../governance/audits/requirement-registration/labo-supplemental-telemetry-source-lines-2026-09-29.jsonl)と[coverage receipt](../../governance/audits/requirement-registration/labo-supplemental-telemetry-coverage-receipt-2026-09-29.json)で確認する。
+
+### HELIXLABO-L2-071 GitHub監査task class別qualificationの受入候補（単体、1.0）
+
+対象task classとmodel revision、評価範囲、根拠、qualification状態が一つの記録で対応し、称号、qualification、permission/authority、assignment roleを独立して読めることを確認する。qualificationから権限・配置を発生させない。
+
+- **正常例**：評価証拠が特定task classとmodel revisionに結び付いている場合、そのrevisionに対するqualification状態と適用範囲を証拠に沿って返す。表示用称号、permission/authority、assignment roleが別に保持され、評価結果がそれらを変更しない。
+- **失効例**：資格対象revisionの評価にmajor missが記録された場合、そのrevisionのqualificationを失効させ、資格状態を保持する。model revisionが更新された場合も旧revisionのqualificationを失効させ、新revisionへ引き継がない。新revisionは独立した評価根拠が記録されるまで未評価とする。
+- **unknown例**：task class、model revision、評価範囲または根拠のいずれかを特定できない記録は`unknown`/未評価とし、別revisionの資格、称号、permissionまたはassignment roleから補わない。major missの有無が判別できない場合もqualificationを有効と推定しない。
+- **不成立・差戻し**：class/revision/evidenceの対応不一致、失効済み資格の継承、資格からのpermission・authority・割当変更、qualificationと称号等の同一視を拒否し、不足した評価根拠はそのsource ownerへ戻す。major miss rubric、数値threshold、class既定値、再評価scheduleを本acceptanceで追加しない。
