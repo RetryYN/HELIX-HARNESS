@@ -911,3 +911,12 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - `telemetry`は観測ownerとexpiryの両方を記録する。いずれかが欠ける例はpendingのままとする。四つのnon-actionable分類はいずれも元findingをappend-onlyに保持し、receiptとappeal/reopen routeを残す。
 - `accepted_risk`のPO receiptはPOの既存判断権限を結ぶ。これはuser directiveのcancel/supersede receiptや取消権限と同一視しない。
 - 参照oracle：旧`HST-CASE-005-05`（`infinity-loop-system-assertion-cases.md:367`）は証拠付き非終端receiptとappeal routeを要求する。旧`HOT-HIL-29`と`HR-FR-HIL-03`はcurrent/successor分岐の参照根拠。旧L5 §3、旧L4 §4.2、旧HIL-NFR-21の条件を照合済み。すべて未実装の旧設計資料であり、実行証拠ではない。
+
+### HARNESS-L11-059 Issue contract field omission受入候補（未実行）
+
+- **対応要求・状態**：HARNESS-L2-059に対応する未採択候補。以下は旧assertionを基にした静的oracle期待であり、実行、要求採択、L3承認、実装完了を示さない。
+- **正常例**：11個の別field (`objective`, `acceptance oracle`, `development style`, `case-driven activation`, `specialist capabilities`, `runtime mode`, `affected layers`, `style target`, `risk`, `scope budget`, `digest`)を全て識別できる契約入力について、versioned issue contractとdigestが同じcontract revisionに結び付いている状態を候補適合として識別する。値の意味内容やencodingの正解は本oracleで決めない。
+- **個別拒否例**：完全入力からfieldを一つだけ欠落させるfixtureを11通り別々に作り、各々で欠落field名を示して不成立とする。複数fieldの同時欠落を個別field omissionの代替証拠にしない。field名の変更、fieldの結合、digest欠落も別の欠落として示す。
+- **version/digest不一致例**：contract revisionと結び付かないdigest、または異なるcontract revisionのdigestが提示される場合、同じversioned contractのdigestとして成立扱いにしない。計算方式、暗号方式、serialization、競合解決はoracleで新設せず未解決にする。
+- **OS handoff境界**：OS projection/intakeでfieldが欠落・改名・結合されたfixtureは、HARNESSの11-field contractを保持したhandoffとして適合扱いにしない。OS受領・durable receiptの形式や保存機構はHELIXOS-L2-102側の責務であり、HARNESSの意味oracleを代行しない。
+- **oracle出典と保留**：旧`infinity-loop-assertion-coverage-ledger.md:71`のHIL-FR-03 assertionは各fieldの単独omitを拒否する設計条件を示す (`HIL_ISSUE_CONTRACT_INCOMPLETE`; HOT-HIL-03/HST-HIL-001, draft-defined/not-implemented)。旧`system_contracts.json`、acceptance case、test/runtimeの実行結果を移管・再実行しない。11 fieldの具体意味、型・値域、version/digest encoding、旧IRその他の必須条件の現行対応は未決のまま保全する。

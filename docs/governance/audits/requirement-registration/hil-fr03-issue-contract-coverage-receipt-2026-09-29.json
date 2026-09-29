@@ -1,0 +1,78 @@
+{
+  "receipt_id": "HIL-FR-03-ISSUE-CONTRACT-L0093-COVERAGE-2026-09-29",
+  "source_scope": {
+    "requirement_id": "HIL-FR-03",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+    "line": 93,
+    "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+    "source_line_sha256": "sha256:44f9ee43ff9055522406219010b168994477b8da21e0a076b6b5efd903159e58",
+    "source_holding_registration_id": "MPR-SH-SEMANTIC-LINE-003",
+    "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF"
+  },
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-fr03-issue-contract-source-lines-2026-09-29.jsonl",
+  "source_atom_set_digest": "sha256:880348619c7c3facbb1a00369e7509f2a3472363f09a857ee92e5a570622ea86",
+  "source_atom_count": 2,
+  "atom_coverage": [
+    {
+      "atom_id": "FR03-ISSUE-CONTRACT-FIELDS-L0093",
+      "covered_by_l2": [
+        "HARNESS-L2-059#要求候補"
+      ],
+      "covered_by_l11": [
+        "HARNESS-L11-059#正常例",
+        "HARNESS-L11-059#個別拒否例"
+      ],
+      "coverage_disposition": "mapped_to_unadopted_candidate"
+    },
+    {
+      "atom_id": "FR03-VERSIONED-CONTRACT-DIGEST-OUTPUT-L0093",
+      "covered_by_l2": [
+        "HARNESS-L2-059#要求候補",
+        "HELIXOS-L2-102#耐久projection"
+      ],
+      "covered_by_l11": [
+        "HARNESS-L11-059#version/digest不一致例",
+        "HELIXOS-L11-102#正常例"
+      ],
+      "coverage_disposition": "mapped_to_unadopted_candidate"
+    }
+  ],
+  "coverage_result": "no_loss",
+  "condition_closure": "not_asserted",
+  "unaccounted_atom_refs": [],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-IR-003#HIL-FR-03; preserved_pending_rehome; successor_requirement_ids: []",
+    "MPR-SH-SEMANTIC-LINE-003#remaining semantic-line collection",
+    "旧HIL-FR-03 assertion/system-contract/acceptance/test-design conditions outside line 93"
+  ],
+  "decision_status": "unadopted_candidate; no decision in this draft establishes adoption",
+  "open_boundary": "11 fieldの具体意味・型/値域・適用条件、version/digest encoding、旧IRおよびsystem contractのline 93外条件の対応は未解決。OS schema/retry/error semanticsも新設しない。",
+  "candidate_refs": {
+    "harness_l2": "HARNESS-L2-059",
+    "harness_l11": "HARNESS-L11-059",
+    "os_l2": "HELIXOS-L2-102",
+    "os_l11": "HELIXOS-L11-102"
+  },
+  "candidate_l2_section_sha256": "sha256:9ebafbcc5b738dbaccaa53bfaff0b5843b0dd5fba30cc68beb51fe1dbe2e267f",
+  "harness_l11_section_sha256": "sha256:830646bc2f5bafcce50d20c88fb3d657ad7f5e2353dcf148628151a7c0992198",
+  "os_l2_section_sha256": "sha256:5d020c09b0e5686e01876e3c52d2ce10e8aded44a799a9f6374542d31de31218",
+  "os_l11_section_sha256": "sha256:0bfce78875f0e59ded0a2f2ecd31f39e795e043105d33c762d38e15251ea8459",
+  "current_condition_refs": [
+    "docs/concept/helix-concept.md",
+    "docs/helix-harness/L1-planning/product-intent.md#HARNESS-L1-001/002/003/004/008",
+    "docs/helix-os/L1-planning/system-intent.md#HELIXOS-L1-001/003/004/008/009",
+    "docs/governance/management-provisional-requirement-registration.md"
+  ],
+  "scope_limit": "line 93 source-line atom partition only; no claim over whole legacy file, all IR, assertions, system contract, acceptance cases, implementation, runtime, old tests, formal successor, or source holding retirement.",
+  "oracle_evidence_refs": [
+    "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-assertion-coverage-ledger.md:71",
+    "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json:2-23",
+    "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json:2-31"
+  ],
+  "current_partial_coverage_refs": [
+    "docs/helix-harness/L2-requirements/product-requirements.md#HARNESS-L2-047",
+    "docs/helix-harness/L11-acceptance/product-acceptance.md#HARNESS-L2-047",
+    "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-017/019/023",
+    "docs/helix-os/L11-acceptance/governance-acceptance.md#HELIXOS-L2-017/019/023"
+  ]
+}
