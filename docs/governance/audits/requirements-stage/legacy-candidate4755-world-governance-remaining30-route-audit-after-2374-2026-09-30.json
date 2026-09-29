@@ -1,0 +1,2547 @@
+{
+  "schema_version": "legacy-candidate-world-governance-route-audit.v1",
+  "audit_id": "legacy-candidate4755-world-governance-remaining30-route-audit-after-2374-2026-09-30",
+  "authority_effect": "none",
+  "base_commit": "abe412c109a0be15ddf2bad2e1fa110d44fa9e80",
+  "selection": {
+    "population_basis": "#2353 full row_records plus exact-ID proposal overlays #2356/#2360/#2363/#2366/#2367/#2368/#2369; #2370 records 488 proposal-effective condition/product_requirement_atom/unknown rows. Exact source-ID join found 60 World Governance source rows in that 488-row pool; this audit selects the complementary remaining 30.",
+    "family_pool_count": 60,
+    "prior_exclusion_union_count": 181,
+    "prior_route_sets": {
+      "#2350": {
+        "count": 20,
+        "source_ids": [
+          "LEGACY-CAND-LINE-000021",
+          "LEGACY-CAND-LINE-000022",
+          "LEGACY-CAND-LINE-000023",
+          "LEGACY-CAND-LINE-000024",
+          "LEGACY-CAND-LINE-000025",
+          "LEGACY-CAND-LINE-000026",
+          "LEGACY-CAND-LINE-000027",
+          "LEGACY-CAND-LINE-000031",
+          "LEGACY-CAND-LINE-000037",
+          "LEGACY-CAND-LINE-000051",
+          "LEGACY-CAND-LINE-000054",
+          "LEGACY-CAND-LINE-000069",
+          "LEGACY-CAND-LINE-000070",
+          "LEGACY-CAND-LINE-000071",
+          "LEGACY-CAND-LINE-000072",
+          "LEGACY-CAND-LINE-000073",
+          "LEGACY-CAND-LINE-000074",
+          "LEGACY-CAND-LINE-000080",
+          "LEGACY-CAND-LINE-000091",
+          "LEGACY-CAND-LINE-000103"
+        ]
+      },
+      "#2359": {
+        "count": 20,
+        "source_ids": [
+          "LEGACY-CAND-LINE-000052",
+          "LEGACY-CAND-LINE-000108",
+          "LEGACY-CAND-LINE-000109",
+          "LEGACY-CAND-LINE-000110",
+          "LEGACY-CAND-LINE-000140",
+          "LEGACY-CAND-LINE-000180",
+          "LEGACY-CAND-LINE-000356",
+          "LEGACY-CAND-LINE-000396",
+          "LEGACY-CAND-LINE-000425",
+          "LEGACY-CAND-LINE-000468",
+          "LEGACY-CAND-LINE-000470",
+          "LEGACY-CAND-LINE-000472",
+          "LEGACY-CAND-LINE-000474",
+          "LEGACY-CAND-LINE-000478",
+          "LEGACY-CAND-LINE-000491",
+          "LEGACY-CAND-LINE-000492",
+          "LEGACY-CAND-LINE-000496",
+          "LEGACY-CAND-LINE-000497",
+          "LEGACY-CAND-LINE-000499",
+          "LEGACY-CAND-LINE-000500"
+        ]
+      },
+      "#2364": {
+        "count": 20,
+        "source_ids": [
+          "LEGACY-CAND-LINE-000501",
+          "LEGACY-CAND-LINE-000502",
+          "LEGACY-CAND-LINE-000528",
+          "LEGACY-CAND-LINE-000532",
+          "LEGACY-CAND-LINE-000533",
+          "LEGACY-CAND-LINE-000542",
+          "LEGACY-CAND-LINE-000543",
+          "LEGACY-CAND-LINE-000545",
+          "LEGACY-CAND-LINE-000546",
+          "LEGACY-CAND-LINE-000598",
+          "LEGACY-CAND-LINE-000603",
+          "LEGACY-CAND-LINE-000613",
+          "LEGACY-CAND-LINE-000633",
+          "LEGACY-CAND-LINE-000638",
+          "LEGACY-CAND-LINE-000653",
+          "LEGACY-CAND-LINE-000661",
+          "LEGACY-CAND-LINE-000663",
+          "LEGACY-CAND-LINE-000664",
+          "LEGACY-CAND-LINE-000665",
+          "LEGACY-CAND-LINE-000667"
+        ]
+      },
+      "#2370": {
+        "count": 20,
+        "source_ids": [
+          "LEGACY-CAND-LINE-000703",
+          "LEGACY-CAND-LINE-000705",
+          "LEGACY-CAND-LINE-000706",
+          "LEGACY-CAND-LINE-000725",
+          "LEGACY-CAND-LINE-000771",
+          "LEGACY-CAND-LINE-000840",
+          "LEGACY-CAND-LINE-000841",
+          "LEGACY-CAND-LINE-000850",
+          "LEGACY-CAND-LINE-000851",
+          "LEGACY-CAND-LINE-000852",
+          "LEGACY-CAND-LINE-000853",
+          "LEGACY-CAND-LINE-000854",
+          "LEGACY-CAND-LINE-000855",
+          "LEGACY-CAND-LINE-000856",
+          "LEGACY-CAND-LINE-000857",
+          "LEGACY-CAND-LINE-000942",
+          "LEGACY-CAND-LINE-000943",
+          "LEGACY-CAND-LINE-000944",
+          "LEGACY-CAND-LINE-000945",
+          "LEGACY-CAND-LINE-000946"
+        ]
+      },
+      "#2372": {
+        "count": 51,
+        "source_ids": [
+          "LEGACY-CAND-LINE-001083",
+          "LEGACY-CAND-LINE-001084",
+          "LEGACY-CAND-LINE-001097",
+          "LEGACY-CAND-LINE-001098",
+          "LEGACY-CAND-LINE-001101",
+          "LEGACY-CAND-LINE-001105",
+          "LEGACY-CAND-LINE-001111",
+          "LEGACY-CAND-LINE-001115",
+          "LEGACY-CAND-LINE-001120",
+          "LEGACY-CAND-LINE-001122",
+          "LEGACY-CAND-LINE-001123",
+          "LEGACY-CAND-LINE-001127",
+          "LEGACY-CAND-LINE-001132",
+          "LEGACY-CAND-LINE-001133",
+          "LEGACY-CAND-LINE-001137",
+          "LEGACY-CAND-LINE-001151",
+          "LEGACY-CAND-LINE-001168",
+          "LEGACY-CAND-LINE-001182",
+          "LEGACY-CAND-LINE-001231",
+          "LEGACY-CAND-LINE-001238",
+          "LEGACY-CAND-LINE-001256",
+          "LEGACY-CAND-LINE-001258",
+          "LEGACY-CAND-LINE-001288",
+          "LEGACY-CAND-LINE-001289",
+          "LEGACY-CAND-LINE-001297",
+          "LEGACY-CAND-LINE-001309",
+          "LEGACY-CAND-LINE-001335",
+          "LEGACY-CAND-LINE-001336",
+          "LEGACY-CAND-LINE-001337",
+          "LEGACY-CAND-LINE-001338",
+          "LEGACY-CAND-LINE-001339",
+          "LEGACY-CAND-LINE-001340",
+          "LEGACY-CAND-LINE-001341",
+          "LEGACY-CAND-LINE-001342",
+          "LEGACY-CAND-LINE-001343",
+          "LEGACY-CAND-LINE-001344",
+          "LEGACY-CAND-LINE-001361",
+          "LEGACY-CAND-LINE-001362",
+          "LEGACY-CAND-LINE-001363",
+          "LEGACY-CAND-LINE-001364",
+          "LEGACY-CAND-LINE-001365",
+          "LEGACY-CAND-LINE-001380",
+          "LEGACY-CAND-LINE-001607",
+          "LEGACY-CAND-LINE-001611",
+          "LEGACY-CAND-LINE-001615",
+          "LEGACY-CAND-LINE-001619",
+          "LEGACY-CAND-LINE-001621",
+          "LEGACY-CAND-LINE-001627",
+          "LEGACY-CAND-LINE-001661",
+          "LEGACY-CAND-LINE-001953",
+          "LEGACY-CAND-LINE-002016"
+        ]
+      },
+      "#2373": {
+        "count": 24,
+        "source_ids": [
+          "LEGACY-CAND-LINE-000947",
+          "LEGACY-CAND-LINE-000948",
+          "LEGACY-CAND-LINE-000949",
+          "LEGACY-CAND-LINE-000950",
+          "LEGACY-CAND-LINE-000951",
+          "LEGACY-CAND-LINE-000952",
+          "LEGACY-CAND-LINE-000953",
+          "LEGACY-CAND-LINE-000954",
+          "LEGACY-CAND-LINE-000955",
+          "LEGACY-CAND-LINE-000978",
+          "LEGACY-CAND-LINE-000979",
+          "LEGACY-CAND-LINE-000980",
+          "LEGACY-CAND-LINE-000981",
+          "LEGACY-CAND-LINE-000982",
+          "LEGACY-CAND-LINE-000986",
+          "LEGACY-CAND-LINE-000987",
+          "LEGACY-CAND-LINE-000988",
+          "LEGACY-CAND-LINE-000989",
+          "LEGACY-CAND-LINE-000990",
+          "LEGACY-CAND-LINE-000991",
+          "LEGACY-CAND-LINE-000992",
+          "LEGACY-CAND-LINE-000993",
+          "LEGACY-CAND-LINE-000994",
+          "LEGACY-CAND-LINE-000995"
+        ]
+      },
+      "#2374 RFA26": {
+        "count": 26,
+        "source_ids": [
+          "LEGACY-CAND-LINE-003678",
+          "LEGACY-CAND-LINE-003679",
+          "LEGACY-CAND-LINE-003685",
+          "LEGACY-CAND-LINE-003686",
+          "LEGACY-CAND-LINE-003687",
+          "LEGACY-CAND-LINE-003690",
+          "LEGACY-CAND-LINE-003697",
+          "LEGACY-CAND-LINE-003710",
+          "LEGACY-CAND-LINE-003711",
+          "LEGACY-CAND-LINE-003712",
+          "LEGACY-CAND-LINE-003713",
+          "LEGACY-CAND-LINE-003714",
+          "LEGACY-CAND-LINE-003715",
+          "LEGACY-CAND-LINE-003755",
+          "LEGACY-CAND-LINE-003756",
+          "LEGACY-CAND-LINE-003757",
+          "LEGACY-CAND-LINE-003762",
+          "LEGACY-CAND-LINE-003763",
+          "LEGACY-CAND-LINE-003764",
+          "LEGACY-CAND-LINE-003771",
+          "LEGACY-CAND-LINE-003774",
+          "LEGACY-CAND-LINE-003775",
+          "LEGACY-CAND-LINE-003776",
+          "LEGACY-CAND-LINE-003777",
+          "LEGACY-CAND-LINE-003778",
+          "LEGACY-CAND-LINE-003779"
+        ]
+      }
+    },
+    "prior_union_intersection_count": 0,
+    "selection_rule": "Select the first 30 eligible World Governance lines in scope, spanning the four legacy sources; preserve exact proposal pool class, do not infer adoption or successor.",
+    "selected_count": 30,
+    "selected_ids": [
+      "LEGACY-CAND-LINE-004530",
+      "LEGACY-CAND-LINE-004532",
+      "LEGACY-CAND-LINE-004535",
+      "LEGACY-CAND-LINE-004590",
+      "LEGACY-CAND-LINE-004611",
+      "LEGACY-CAND-LINE-004620",
+      "LEGACY-CAND-LINE-004622",
+      "LEGACY-CAND-LINE-004628",
+      "LEGACY-CAND-LINE-004632",
+      "LEGACY-CAND-LINE-004634",
+      "LEGACY-CAND-LINE-004652",
+      "LEGACY-CAND-LINE-004662",
+      "LEGACY-CAND-LINE-004665",
+      "LEGACY-CAND-LINE-004666",
+      "LEGACY-CAND-LINE-004667",
+      "LEGACY-CAND-LINE-004668",
+      "LEGACY-CAND-LINE-004684",
+      "LEGACY-CAND-LINE-004700",
+      "LEGACY-CAND-LINE-004702",
+      "LEGACY-CAND-LINE-004715",
+      "LEGACY-CAND-LINE-004736",
+      "LEGACY-CAND-LINE-004744",
+      "LEGACY-CAND-LINE-004745",
+      "LEGACY-CAND-LINE-004746",
+      "LEGACY-CAND-LINE-004747",
+      "LEGACY-CAND-LINE-004748",
+      "LEGACY-CAND-LINE-004751",
+      "LEGACY-CAND-LINE-004753",
+      "LEGACY-CAND-LINE-004754",
+      "LEGACY-CAND-LINE-004755"
+    ],
+    "remaining_in_family_pool_count": 0,
+    "out_of_population_selected_ids": [],
+    "prior_excluded_ids": [
+      "LEGACY-CAND-LINE-000021",
+      "LEGACY-CAND-LINE-000022",
+      "LEGACY-CAND-LINE-000023",
+      "LEGACY-CAND-LINE-000024",
+      "LEGACY-CAND-LINE-000025",
+      "LEGACY-CAND-LINE-000026",
+      "LEGACY-CAND-LINE-000027",
+      "LEGACY-CAND-LINE-000031",
+      "LEGACY-CAND-LINE-000037",
+      "LEGACY-CAND-LINE-000051",
+      "LEGACY-CAND-LINE-000052",
+      "LEGACY-CAND-LINE-000054",
+      "LEGACY-CAND-LINE-000069",
+      "LEGACY-CAND-LINE-000070",
+      "LEGACY-CAND-LINE-000071",
+      "LEGACY-CAND-LINE-000072",
+      "LEGACY-CAND-LINE-000073",
+      "LEGACY-CAND-LINE-000074",
+      "LEGACY-CAND-LINE-000080",
+      "LEGACY-CAND-LINE-000091",
+      "LEGACY-CAND-LINE-000103",
+      "LEGACY-CAND-LINE-000108",
+      "LEGACY-CAND-LINE-000109",
+      "LEGACY-CAND-LINE-000110",
+      "LEGACY-CAND-LINE-000140",
+      "LEGACY-CAND-LINE-000180",
+      "LEGACY-CAND-LINE-000356",
+      "LEGACY-CAND-LINE-000396",
+      "LEGACY-CAND-LINE-000425",
+      "LEGACY-CAND-LINE-000468",
+      "LEGACY-CAND-LINE-000470",
+      "LEGACY-CAND-LINE-000472",
+      "LEGACY-CAND-LINE-000474",
+      "LEGACY-CAND-LINE-000478",
+      "LEGACY-CAND-LINE-000491",
+      "LEGACY-CAND-LINE-000492",
+      "LEGACY-CAND-LINE-000496",
+      "LEGACY-CAND-LINE-000497",
+      "LEGACY-CAND-LINE-000499",
+      "LEGACY-CAND-LINE-000500",
+      "LEGACY-CAND-LINE-000501",
+      "LEGACY-CAND-LINE-000502",
+      "LEGACY-CAND-LINE-000528",
+      "LEGACY-CAND-LINE-000532",
+      "LEGACY-CAND-LINE-000533",
+      "LEGACY-CAND-LINE-000542",
+      "LEGACY-CAND-LINE-000543",
+      "LEGACY-CAND-LINE-000545",
+      "LEGACY-CAND-LINE-000546",
+      "LEGACY-CAND-LINE-000598",
+      "LEGACY-CAND-LINE-000603",
+      "LEGACY-CAND-LINE-000613",
+      "LEGACY-CAND-LINE-000633",
+      "LEGACY-CAND-LINE-000638",
+      "LEGACY-CAND-LINE-000653",
+      "LEGACY-CAND-LINE-000661",
+      "LEGACY-CAND-LINE-000663",
+      "LEGACY-CAND-LINE-000664",
+      "LEGACY-CAND-LINE-000665",
+      "LEGACY-CAND-LINE-000667",
+      "LEGACY-CAND-LINE-000703",
+      "LEGACY-CAND-LINE-000705",
+      "LEGACY-CAND-LINE-000706",
+      "LEGACY-CAND-LINE-000725",
+      "LEGACY-CAND-LINE-000771",
+      "LEGACY-CAND-LINE-000840",
+      "LEGACY-CAND-LINE-000841",
+      "LEGACY-CAND-LINE-000850",
+      "LEGACY-CAND-LINE-000851",
+      "LEGACY-CAND-LINE-000852",
+      "LEGACY-CAND-LINE-000853",
+      "LEGACY-CAND-LINE-000854",
+      "LEGACY-CAND-LINE-000855",
+      "LEGACY-CAND-LINE-000856",
+      "LEGACY-CAND-LINE-000857",
+      "LEGACY-CAND-LINE-000942",
+      "LEGACY-CAND-LINE-000943",
+      "LEGACY-CAND-LINE-000944",
+      "LEGACY-CAND-LINE-000945",
+      "LEGACY-CAND-LINE-000946",
+      "LEGACY-CAND-LINE-000947",
+      "LEGACY-CAND-LINE-000948",
+      "LEGACY-CAND-LINE-000949",
+      "LEGACY-CAND-LINE-000950",
+      "LEGACY-CAND-LINE-000951",
+      "LEGACY-CAND-LINE-000952",
+      "LEGACY-CAND-LINE-000953",
+      "LEGACY-CAND-LINE-000954",
+      "LEGACY-CAND-LINE-000955",
+      "LEGACY-CAND-LINE-000978",
+      "LEGACY-CAND-LINE-000979",
+      "LEGACY-CAND-LINE-000980",
+      "LEGACY-CAND-LINE-000981",
+      "LEGACY-CAND-LINE-000982",
+      "LEGACY-CAND-LINE-000986",
+      "LEGACY-CAND-LINE-000987",
+      "LEGACY-CAND-LINE-000988",
+      "LEGACY-CAND-LINE-000989",
+      "LEGACY-CAND-LINE-000990",
+      "LEGACY-CAND-LINE-000991",
+      "LEGACY-CAND-LINE-000992",
+      "LEGACY-CAND-LINE-000993",
+      "LEGACY-CAND-LINE-000994",
+      "LEGACY-CAND-LINE-000995",
+      "LEGACY-CAND-LINE-001083",
+      "LEGACY-CAND-LINE-001084",
+      "LEGACY-CAND-LINE-001097",
+      "LEGACY-CAND-LINE-001098",
+      "LEGACY-CAND-LINE-001101",
+      "LEGACY-CAND-LINE-001105",
+      "LEGACY-CAND-LINE-001111",
+      "LEGACY-CAND-LINE-001115",
+      "LEGACY-CAND-LINE-001120",
+      "LEGACY-CAND-LINE-001122",
+      "LEGACY-CAND-LINE-001123",
+      "LEGACY-CAND-LINE-001127",
+      "LEGACY-CAND-LINE-001132",
+      "LEGACY-CAND-LINE-001133",
+      "LEGACY-CAND-LINE-001137",
+      "LEGACY-CAND-LINE-001151",
+      "LEGACY-CAND-LINE-001168",
+      "LEGACY-CAND-LINE-001182",
+      "LEGACY-CAND-LINE-001231",
+      "LEGACY-CAND-LINE-001238",
+      "LEGACY-CAND-LINE-001256",
+      "LEGACY-CAND-LINE-001258",
+      "LEGACY-CAND-LINE-001288",
+      "LEGACY-CAND-LINE-001289",
+      "LEGACY-CAND-LINE-001297",
+      "LEGACY-CAND-LINE-001309",
+      "LEGACY-CAND-LINE-001335",
+      "LEGACY-CAND-LINE-001336",
+      "LEGACY-CAND-LINE-001337",
+      "LEGACY-CAND-LINE-001338",
+      "LEGACY-CAND-LINE-001339",
+      "LEGACY-CAND-LINE-001340",
+      "LEGACY-CAND-LINE-001341",
+      "LEGACY-CAND-LINE-001342",
+      "LEGACY-CAND-LINE-001343",
+      "LEGACY-CAND-LINE-001344",
+      "LEGACY-CAND-LINE-001361",
+      "LEGACY-CAND-LINE-001362",
+      "LEGACY-CAND-LINE-001363",
+      "LEGACY-CAND-LINE-001364",
+      "LEGACY-CAND-LINE-001365",
+      "LEGACY-CAND-LINE-001380",
+      "LEGACY-CAND-LINE-001607",
+      "LEGACY-CAND-LINE-001611",
+      "LEGACY-CAND-LINE-001615",
+      "LEGACY-CAND-LINE-001619",
+      "LEGACY-CAND-LINE-001621",
+      "LEGACY-CAND-LINE-001627",
+      "LEGACY-CAND-LINE-001661",
+      "LEGACY-CAND-LINE-001953",
+      "LEGACY-CAND-LINE-002016",
+      "LEGACY-CAND-LINE-003678",
+      "LEGACY-CAND-LINE-003679",
+      "LEGACY-CAND-LINE-003685",
+      "LEGACY-CAND-LINE-003686",
+      "LEGACY-CAND-LINE-003687",
+      "LEGACY-CAND-LINE-003690",
+      "LEGACY-CAND-LINE-003697",
+      "LEGACY-CAND-LINE-003710",
+      "LEGACY-CAND-LINE-003711",
+      "LEGACY-CAND-LINE-003712",
+      "LEGACY-CAND-LINE-003713",
+      "LEGACY-CAND-LINE-003714",
+      "LEGACY-CAND-LINE-003715",
+      "LEGACY-CAND-LINE-003755",
+      "LEGACY-CAND-LINE-003756",
+      "LEGACY-CAND-LINE-003757",
+      "LEGACY-CAND-LINE-003762",
+      "LEGACY-CAND-LINE-003763",
+      "LEGACY-CAND-LINE-003764",
+      "LEGACY-CAND-LINE-003771",
+      "LEGACY-CAND-LINE-003774",
+      "LEGACY-CAND-LINE-003775",
+      "LEGACY-CAND-LINE-003776",
+      "LEGACY-CAND-LINE-003777",
+      "LEGACY-CAND-LINE-003778",
+      "LEGACY-CAND-LINE-003779"
+    ],
+    "world_family_total": 60,
+    "world_family_ids": [
+      "LEGACY-CAND-LINE-004528",
+      "LEGACY-CAND-LINE-004529",
+      "LEGACY-CAND-LINE-004530",
+      "LEGACY-CAND-LINE-004532",
+      "LEGACY-CAND-LINE-004533",
+      "LEGACY-CAND-LINE-004534",
+      "LEGACY-CAND-LINE-004535",
+      "LEGACY-CAND-LINE-004590",
+      "LEGACY-CAND-LINE-004597",
+      "LEGACY-CAND-LINE-004601",
+      "LEGACY-CAND-LINE-004606",
+      "LEGACY-CAND-LINE-004607",
+      "LEGACY-CAND-LINE-004608",
+      "LEGACY-CAND-LINE-004611",
+      "LEGACY-CAND-LINE-004613",
+      "LEGACY-CAND-LINE-004619",
+      "LEGACY-CAND-LINE-004620",
+      "LEGACY-CAND-LINE-004621",
+      "LEGACY-CAND-LINE-004622",
+      "LEGACY-CAND-LINE-004623",
+      "LEGACY-CAND-LINE-004626",
+      "LEGACY-CAND-LINE-004627",
+      "LEGACY-CAND-LINE-004628",
+      "LEGACY-CAND-LINE-004629",
+      "LEGACY-CAND-LINE-004630",
+      "LEGACY-CAND-LINE-004631",
+      "LEGACY-CAND-LINE-004632",
+      "LEGACY-CAND-LINE-004633",
+      "LEGACY-CAND-LINE-004634",
+      "LEGACY-CAND-LINE-004635",
+      "LEGACY-CAND-LINE-004652",
+      "LEGACY-CAND-LINE-004662",
+      "LEGACY-CAND-LINE-004665",
+      "LEGACY-CAND-LINE-004666",
+      "LEGACY-CAND-LINE-004667",
+      "LEGACY-CAND-LINE-004668",
+      "LEGACY-CAND-LINE-004684",
+      "LEGACY-CAND-LINE-004698",
+      "LEGACY-CAND-LINE-004699",
+      "LEGACY-CAND-LINE-004700",
+      "LEGACY-CAND-LINE-004702",
+      "LEGACY-CAND-LINE-004715",
+      "LEGACY-CAND-LINE-004722",
+      "LEGACY-CAND-LINE-004726",
+      "LEGACY-CAND-LINE-004731",
+      "LEGACY-CAND-LINE-004732",
+      "LEGACY-CAND-LINE-004733",
+      "LEGACY-CAND-LINE-004736",
+      "LEGACY-CAND-LINE-004738",
+      "LEGACY-CAND-LINE-004744",
+      "LEGACY-CAND-LINE-004745",
+      "LEGACY-CAND-LINE-004746",
+      "LEGACY-CAND-LINE-004747",
+      "LEGACY-CAND-LINE-004748",
+      "LEGACY-CAND-LINE-004750",
+      "LEGACY-CAND-LINE-004751",
+      "LEGACY-CAND-LINE-004752",
+      "LEGACY-CAND-LINE-004753",
+      "LEGACY-CAND-LINE-004754",
+      "LEGACY-CAND-LINE-004755"
+    ],
+    "all_world_family_ids_accounted_for": true,
+    "first30_merged_audit": {
+      "artifact_name": "legacy-candidate4755-world-governance-30-route-audit-after-2374-2026-09-30.json",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-world-governance-30-route-audit-after-2374-2026-09-30.json",
+      "commit": "abe412c109a0be15ddf2bad2e1fa110d44fa9e80",
+      "sha256": "9cc3a46ef31e49fecac20a3b2d7f899423a462e12edb66b90bba37e2551b6d6b",
+      "selected_ids": [
+        "LEGACY-CAND-LINE-004528",
+        "LEGACY-CAND-LINE-004529",
+        "LEGACY-CAND-LINE-004533",
+        "LEGACY-CAND-LINE-004534",
+        "LEGACY-CAND-LINE-004597",
+        "LEGACY-CAND-LINE-004601",
+        "LEGACY-CAND-LINE-004606",
+        "LEGACY-CAND-LINE-004607",
+        "LEGACY-CAND-LINE-004608",
+        "LEGACY-CAND-LINE-004613",
+        "LEGACY-CAND-LINE-004619",
+        "LEGACY-CAND-LINE-004621",
+        "LEGACY-CAND-LINE-004623",
+        "LEGACY-CAND-LINE-004626",
+        "LEGACY-CAND-LINE-004627",
+        "LEGACY-CAND-LINE-004629",
+        "LEGACY-CAND-LINE-004630",
+        "LEGACY-CAND-LINE-004631",
+        "LEGACY-CAND-LINE-004633",
+        "LEGACY-CAND-LINE-004635",
+        "LEGACY-CAND-LINE-004698",
+        "LEGACY-CAND-LINE-004699",
+        "LEGACY-CAND-LINE-004722",
+        "LEGACY-CAND-LINE-004726",
+        "LEGACY-CAND-LINE-004731",
+        "LEGACY-CAND-LINE-004732",
+        "LEGACY-CAND-LINE-004733",
+        "LEGACY-CAND-LINE-004738",
+        "LEGACY-CAND-LINE-004750",
+        "LEGACY-CAND-LINE-004752"
+      ],
+      "authority_effect": "none"
+    }
+  },
+  "pinned_inputs": [
+    {
+      "role": "#2353 full classification baseline",
+      "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c"
+    },
+    {
+      "role": "#2356 classification overlay",
+      "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164"
+    },
+    {
+      "role": "#2360 classification overlay",
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+      "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb"
+    },
+    {
+      "role": "#2363 merged proposal",
+      "commit": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+      "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384"
+    },
+    {
+      "role": "#2366 merged proposal",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+      "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6"
+    },
+    {
+      "role": "#2367 merged proposal",
+      "commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
+      "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d"
+    },
+    {
+      "role": "#2369 merged proposal",
+      "commit": "081b0b6612b802cfcb02b3cecda1559dd9a3ce13",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30.json",
+      "sha256": "5ed02b037f78ca25991b396e232e8b1ee754b0c91b056ed6640c9fb1c47cf0c0"
+    },
+    {
+      "role": "#2368 merged proposal",
+      "commit": "f89f71e0371440e9e10636499192c2311872b024",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
+      "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95"
+    }
+  ],
+  "prior_route_audit_files": [
+    {
+      "label": "#2350",
+      "commit": "a7b207ac7685e55bb94ba175de8fb2ad8bb696b7",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-unknown-product-atoms-first20-route-audit-2026-09-29.json",
+      "sha256": "c91406a58328d8820b6413a7f699c8a6d71ab89f289652e73d374643b6117273",
+      "selected_id_count": 20,
+      "selected_ids": [
+        "LEGACY-CAND-LINE-000021",
+        "LEGACY-CAND-LINE-000022",
+        "LEGACY-CAND-LINE-000023",
+        "LEGACY-CAND-LINE-000024",
+        "LEGACY-CAND-LINE-000025",
+        "LEGACY-CAND-LINE-000026",
+        "LEGACY-CAND-LINE-000027",
+        "LEGACY-CAND-LINE-000031",
+        "LEGACY-CAND-LINE-000037",
+        "LEGACY-CAND-LINE-000051",
+        "LEGACY-CAND-LINE-000054",
+        "LEGACY-CAND-LINE-000069",
+        "LEGACY-CAND-LINE-000070",
+        "LEGACY-CAND-LINE-000071",
+        "LEGACY-CAND-LINE-000072",
+        "LEGACY-CAND-LINE-000073",
+        "LEGACY-CAND-LINE-000074",
+        "LEGACY-CAND-LINE-000080",
+        "LEGACY-CAND-LINE-000091",
+        "LEGACY-CAND-LINE-000103"
+      ]
+    },
+    {
+      "label": "#2359",
+      "commit": "2de55a5113b2a8173873538f53c1e8e2b9ca5b96",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-unknown-reselected-next20-route-audit-2026-09-29.json",
+      "sha256": "106caeda69f2fb519d9a216958f1d42c5a477f1d025b77a938b89fc630119cae",
+      "selected_id_count": 20,
+      "selected_ids": [
+        "LEGACY-CAND-LINE-000052",
+        "LEGACY-CAND-LINE-000108",
+        "LEGACY-CAND-LINE-000109",
+        "LEGACY-CAND-LINE-000110",
+        "LEGACY-CAND-LINE-000140",
+        "LEGACY-CAND-LINE-000180",
+        "LEGACY-CAND-LINE-000356",
+        "LEGACY-CAND-LINE-000396",
+        "LEGACY-CAND-LINE-000425",
+        "LEGACY-CAND-LINE-000468",
+        "LEGACY-CAND-LINE-000470",
+        "LEGACY-CAND-LINE-000472",
+        "LEGACY-CAND-LINE-000474",
+        "LEGACY-CAND-LINE-000478",
+        "LEGACY-CAND-LINE-000491",
+        "LEGACY-CAND-LINE-000492",
+        "LEGACY-CAND-LINE-000496",
+        "LEGACY-CAND-LINE-000497",
+        "LEGACY-CAND-LINE-000499",
+        "LEGACY-CAND-LINE-000500"
+      ]
+    },
+    {
+      "label": "#2364",
+      "commit": "5097e3464e06879f833ab7779eec2a279cca690c",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-unknown-next20-route-audit-after-2359-2026-09-29.json",
+      "sha256": "4d4d4d3e3bfc04c30f5d1615b2868e1cadca9004fd89a09d098bef770a099dc6",
+      "selected_id_count": 20,
+      "selected_ids": [
+        "LEGACY-CAND-LINE-000501",
+        "LEGACY-CAND-LINE-000502",
+        "LEGACY-CAND-LINE-000528",
+        "LEGACY-CAND-LINE-000532",
+        "LEGACY-CAND-LINE-000533",
+        "LEGACY-CAND-LINE-000542",
+        "LEGACY-CAND-LINE-000543",
+        "LEGACY-CAND-LINE-000545",
+        "LEGACY-CAND-LINE-000546",
+        "LEGACY-CAND-LINE-000598",
+        "LEGACY-CAND-LINE-000603",
+        "LEGACY-CAND-LINE-000613",
+        "LEGACY-CAND-LINE-000633",
+        "LEGACY-CAND-LINE-000638",
+        "LEGACY-CAND-LINE-000653",
+        "LEGACY-CAND-LINE-000661",
+        "LEGACY-CAND-LINE-000663",
+        "LEGACY-CAND-LINE-000664",
+        "LEGACY-CAND-LINE-000665",
+        "LEGACY-CAND-LINE-000667"
+      ]
+    },
+    {
+      "label": "#2370",
+      "commit": "8fd5f12ad8eeaa2dceecdb9c29da670bf37f034e",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-product-unknown-next20-route-audit-after-2369-2026-09-30.json",
+      "sha256": "69cc7136961d7cd2aba64627903a134732bc858dc351780791f288bb05e7af48",
+      "selected_id_count": 20,
+      "selected_ids": [
+        "LEGACY-CAND-LINE-000703",
+        "LEGACY-CAND-LINE-000705",
+        "LEGACY-CAND-LINE-000706",
+        "LEGACY-CAND-LINE-000725",
+        "LEGACY-CAND-LINE-000771",
+        "LEGACY-CAND-LINE-000840",
+        "LEGACY-CAND-LINE-000841",
+        "LEGACY-CAND-LINE-000850",
+        "LEGACY-CAND-LINE-000851",
+        "LEGACY-CAND-LINE-000852",
+        "LEGACY-CAND-LINE-000853",
+        "LEGACY-CAND-LINE-000854",
+        "LEGACY-CAND-LINE-000855",
+        "LEGACY-CAND-LINE-000856",
+        "LEGACY-CAND-LINE-000857",
+        "LEGACY-CAND-LINE-000942",
+        "LEGACY-CAND-LINE-000943",
+        "LEGACY-CAND-LINE-000944",
+        "LEGACY-CAND-LINE-000945",
+        "LEGACY-CAND-LINE-000946"
+      ]
+    },
+    {
+      "label": "#2372",
+      "commit": "492ecc38e977f105bb0ffcce26cb7978afca9b04",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-execution-ticket-family-route-audit-2026-09-30.json",
+      "sha256": "97834622a32edbf054767b89bdf0cef7acbcb09e4f3d73ee0b9fa25a35f54f27",
+      "selected_id_count": 51,
+      "selected_ids": [
+        "LEGACY-CAND-LINE-001083",
+        "LEGACY-CAND-LINE-001084",
+        "LEGACY-CAND-LINE-001097",
+        "LEGACY-CAND-LINE-001098",
+        "LEGACY-CAND-LINE-001101",
+        "LEGACY-CAND-LINE-001105",
+        "LEGACY-CAND-LINE-001111",
+        "LEGACY-CAND-LINE-001115",
+        "LEGACY-CAND-LINE-001120",
+        "LEGACY-CAND-LINE-001122",
+        "LEGACY-CAND-LINE-001123",
+        "LEGACY-CAND-LINE-001127",
+        "LEGACY-CAND-LINE-001132",
+        "LEGACY-CAND-LINE-001133",
+        "LEGACY-CAND-LINE-001137",
+        "LEGACY-CAND-LINE-001151",
+        "LEGACY-CAND-LINE-001168",
+        "LEGACY-CAND-LINE-001182",
+        "LEGACY-CAND-LINE-001231",
+        "LEGACY-CAND-LINE-001238",
+        "LEGACY-CAND-LINE-001256",
+        "LEGACY-CAND-LINE-001258",
+        "LEGACY-CAND-LINE-001288",
+        "LEGACY-CAND-LINE-001289",
+        "LEGACY-CAND-LINE-001297",
+        "LEGACY-CAND-LINE-001309",
+        "LEGACY-CAND-LINE-001335",
+        "LEGACY-CAND-LINE-001336",
+        "LEGACY-CAND-LINE-001337",
+        "LEGACY-CAND-LINE-001338",
+        "LEGACY-CAND-LINE-001339",
+        "LEGACY-CAND-LINE-001340",
+        "LEGACY-CAND-LINE-001341",
+        "LEGACY-CAND-LINE-001342",
+        "LEGACY-CAND-LINE-001343",
+        "LEGACY-CAND-LINE-001344",
+        "LEGACY-CAND-LINE-001361",
+        "LEGACY-CAND-LINE-001362",
+        "LEGACY-CAND-LINE-001363",
+        "LEGACY-CAND-LINE-001364",
+        "LEGACY-CAND-LINE-001365",
+        "LEGACY-CAND-LINE-001380",
+        "LEGACY-CAND-LINE-001607",
+        "LEGACY-CAND-LINE-001611",
+        "LEGACY-CAND-LINE-001615",
+        "LEGACY-CAND-LINE-001619",
+        "LEGACY-CAND-LINE-001621",
+        "LEGACY-CAND-LINE-001627",
+        "LEGACY-CAND-LINE-001661",
+        "LEGACY-CAND-LINE-001953",
+        "LEGACY-CAND-LINE-002016"
+      ]
+    },
+    {
+      "label": "#2373",
+      "commit": "216398f7d5a3b65d6f8bb081f2069757e0c68f05",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-residual-24-route-audit-2026-09-30.json",
+      "sha256": "1b0e42001028f4ccb7f346f0436cf0136058e2f9b7818367977bd320711baffa",
+      "selected_id_count": 24,
+      "selected_ids": [
+        "LEGACY-CAND-LINE-000947",
+        "LEGACY-CAND-LINE-000948",
+        "LEGACY-CAND-LINE-000949",
+        "LEGACY-CAND-LINE-000950",
+        "LEGACY-CAND-LINE-000951",
+        "LEGACY-CAND-LINE-000952",
+        "LEGACY-CAND-LINE-000953",
+        "LEGACY-CAND-LINE-000954",
+        "LEGACY-CAND-LINE-000955",
+        "LEGACY-CAND-LINE-000978",
+        "LEGACY-CAND-LINE-000979",
+        "LEGACY-CAND-LINE-000980",
+        "LEGACY-CAND-LINE-000981",
+        "LEGACY-CAND-LINE-000982",
+        "LEGACY-CAND-LINE-000986",
+        "LEGACY-CAND-LINE-000987",
+        "LEGACY-CAND-LINE-000988",
+        "LEGACY-CAND-LINE-000989",
+        "LEGACY-CAND-LINE-000990",
+        "LEGACY-CAND-LINE-000991",
+        "LEGACY-CAND-LINE-000992",
+        "LEGACY-CAND-LINE-000993",
+        "LEGACY-CAND-LINE-000994",
+        "LEGACY-CAND-LINE-000995"
+      ]
+    },
+    {
+      "label": "#2374",
+      "commit": "e6fad0b0fa6720d1988a1043492fa31e0c93d9ce",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-rfa-scoped-admission-26-route-audit-after-2373-2026-09-30.json",
+      "sha256": "d9a362c6305449167cc996199e42781e8756b5107e2fb61a4c9fab9b669ec5b6",
+      "selected_id_count": 26,
+      "selected_ids": [
+        "LEGACY-CAND-LINE-003678",
+        "LEGACY-CAND-LINE-003679",
+        "LEGACY-CAND-LINE-003685",
+        "LEGACY-CAND-LINE-003686",
+        "LEGACY-CAND-LINE-003687",
+        "LEGACY-CAND-LINE-003690",
+        "LEGACY-CAND-LINE-003697",
+        "LEGACY-CAND-LINE-003710",
+        "LEGACY-CAND-LINE-003711",
+        "LEGACY-CAND-LINE-003712",
+        "LEGACY-CAND-LINE-003713",
+        "LEGACY-CAND-LINE-003714",
+        "LEGACY-CAND-LINE-003715",
+        "LEGACY-CAND-LINE-003755",
+        "LEGACY-CAND-LINE-003756",
+        "LEGACY-CAND-LINE-003757",
+        "LEGACY-CAND-LINE-003762",
+        "LEGACY-CAND-LINE-003763",
+        "LEGACY-CAND-LINE-003764",
+        "LEGACY-CAND-LINE-003771",
+        "LEGACY-CAND-LINE-003774",
+        "LEGACY-CAND-LINE-003775",
+        "LEGACY-CAND-LINE-003776",
+        "LEGACY-CAND-LINE-003777",
+        "LEGACY-CAND-LINE-003778",
+        "LEGACY-CAND-LINE-003779"
+      ]
+    },
+    {
+      "label": "#2375 World Governance first 30",
+      "commit": "abe412c109a0be15ddf2bad2e1fa110d44fa9e80",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-world-governance-30-route-audit-after-2374-2026-09-30.json",
+      "sha256": "9cc3a46ef31e49fecac20a3b2d7f899423a462e12edb66b90bba37e2551b6d6b",
+      "selected_id_count": 30,
+      "selected_ids": [
+        "LEGACY-CAND-LINE-004528",
+        "LEGACY-CAND-LINE-004529",
+        "LEGACY-CAND-LINE-004533",
+        "LEGACY-CAND-LINE-004534",
+        "LEGACY-CAND-LINE-004597",
+        "LEGACY-CAND-LINE-004601",
+        "LEGACY-CAND-LINE-004606",
+        "LEGACY-CAND-LINE-004607",
+        "LEGACY-CAND-LINE-004608",
+        "LEGACY-CAND-LINE-004613",
+        "LEGACY-CAND-LINE-004619",
+        "LEGACY-CAND-LINE-004621",
+        "LEGACY-CAND-LINE-004623",
+        "LEGACY-CAND-LINE-004626",
+        "LEGACY-CAND-LINE-004627",
+        "LEGACY-CAND-LINE-004629",
+        "LEGACY-CAND-LINE-004630",
+        "LEGACY-CAND-LINE-004631",
+        "LEGACY-CAND-LINE-004633",
+        "LEGACY-CAND-LINE-004635",
+        "LEGACY-CAND-LINE-004698",
+        "LEGACY-CAND-LINE-004699",
+        "LEGACY-CAND-LINE-004722",
+        "LEGACY-CAND-LINE-004726",
+        "LEGACY-CAND-LINE-004731",
+        "LEGACY-CAND-LINE-004732",
+        "LEGACY-CAND-LINE-004733",
+        "LEGACY-CAND-LINE-004738",
+        "LEGACY-CAND-LINE-004750",
+        "LEGACY-CAND-LINE-004752"
+      ]
+    }
+  ],
+  "adopted_requirement_pins": [
+    {
+      "owner": "HELIX-OS",
+      "layer": "L2",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "requirement_ids": "L2-001..007",
+      "fixed_locator_lines": "54-60",
+      "role": "PO-adopted exact requirement revision; direct predicate comparator"
+    },
+    {
+      "owner": "HELIX-OS",
+      "layer": "L11",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "requirement_ids": "L2-001..007",
+      "fixed_locator_lines": "21-27;15-17;66-69",
+      "role": "PO-adopted exact requirement revision; direct predicate comparator"
+    },
+    {
+      "owner": "HELIX-HARNESS",
+      "layer": "L2",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "requirement_ids": "L2-003..006,L2-008",
+      "fixed_locator_lines": "54-57,59,193-198",
+      "role": "PO-adopted exact requirement revision; direct predicate comparator"
+    },
+    {
+      "owner": "HELIX-HARNESS",
+      "layer": "L11",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "requirement_ids": "L2-003..006,L2-008",
+      "fixed_locator_lines": "23-26,28,65-66,108-111",
+      "role": "PO-adopted exact requirement revision; direct predicate comparator"
+    },
+    {
+      "owner": "HELIX-SECURITY",
+      "layer": "L2",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+      "requirement_ids": "L2-008,L2-009",
+      "fixed_locator_lines": "140-158",
+      "role": "PO-adopted exact requirement revision; direct predicate comparator"
+    },
+    {
+      "owner": "HELIX-SECURITY",
+      "layer": "L11",
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01",
+      "requirement_ids": "L2-008,L2-009",
+      "fixed_locator_lines": "32-33",
+      "role": "PO-adopted exact requirement revision; direct predicate comparator"
+    }
+  ],
+  "current_requirement_snapshots": [
+    {
+      "owner": "HELIX-OS",
+      "layer": "L2",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "commit": "abe412c109a0be15ddf2bad2e1fa110d44fa9e80",
+      "sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+      "role": "current-main comparison snapshot only; not the adopted revision"
+    },
+    {
+      "owner": "HELIX-OS",
+      "layer": "L11",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "commit": "abe412c109a0be15ddf2bad2e1fa110d44fa9e80",
+      "sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+      "role": "current-main comparison snapshot only; not the adopted revision"
+    },
+    {
+      "owner": "HELIX-HARNESS",
+      "layer": "L2",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "commit": "abe412c109a0be15ddf2bad2e1fa110d44fa9e80",
+      "sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
+      "role": "current-main comparison snapshot only; not the adopted revision"
+    },
+    {
+      "owner": "HELIX-HARNESS",
+      "layer": "L11",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "commit": "abe412c109a0be15ddf2bad2e1fa110d44fa9e80",
+      "sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e",
+      "role": "current-main comparison snapshot only; not the adopted revision"
+    },
+    {
+      "owner": "HELIX-SECURITY",
+      "layer": "L2",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "commit": "abe412c109a0be15ddf2bad2e1fa110d44fa9e80",
+      "sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+      "role": "current-main comparison snapshot only; not the adopted revision"
+    },
+    {
+      "owner": "HELIX-SECURITY",
+      "layer": "L11",
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "commit": "abe412c109a0be15ddf2bad2e1fa110d44fa9e80",
+      "sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
+      "role": "current-main comparison snapshot only; not the adopted revision"
+    }
+  ],
+  "legacy_inventory": {
+    "archive_root": "archive/legacy-generation-2026-09-14/",
+    "manifest_path": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+    "manifest_sha256": "10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6",
+    "asset_ledger_path": "docs/governance/legacy-asset-disposition.jsonl",
+    "asset_ledger_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+    "source_line_inventory_path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+    "source_line_inventory_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+    "assets": {
+      "world-governance-acceptance.md": {
+        "asset_id": "LEGACY-ASSET-6E496F15A88DE2181CF8",
+        "sha256": "e023e956ba29ce79d742ed37a632994a4c9c308b3caa4cac2e9f8a6b28da9c8b"
+      },
+      "world-governance-intake.md": {
+        "asset_id": "LEGACY-ASSET-D78FDF31EAE827955BA1",
+        "sha256": "a3b4eff68e05f3bb06fc1a1b257b60f3d09624aec5483425ba16b73854614256"
+      },
+      "world-governance-requests.md": {
+        "asset_id": "LEGACY-ASSET-916722580D7518F96EB3",
+        "sha256": "eed8d1960bbf27e0c43da5d966c6f6f64d798f8cea076483870352cfb12d857a"
+      },
+      "world-governance-requirements.md": {
+        "asset_id": "LEGACY-ASSET-24BF2999B13E304B77D2",
+        "sha256": "824974d0b8d0231b854d7c0bf01312c6d761dcd9451fd6e18b8f1a7ce113f7eb"
+      }
+    },
+    "ledger_status": "four rows carry revision=1, product_target=unresolved, disposition=unresolved, implementation_status=unknown, authority_status=historical, consumer_refs=[]; empty consumer_refs are not evidence that consumers do not exist."
+  },
+  "route_scope": {
+    "owners": "HELIX-OS is a mechanism, not a product; HELIX-HARNESS is an externally provided product and also part of the mechanism. World Governance source has unresolved product_target, therefore product-use predicates and internal governance-mechanism predicates remain distinct.",
+    "security": "SECURITY-008/009 are adopted operation-specific authority and incident/revocation predicates; semantic mention of policy/admission/permission alone is not a match.",
+    "harness": "HARNESS-006 is customer-facing service 1–7 release selection/state; it does not establish an internal World Governance registry/release owner. HARNESS process conditions and verification remain product scoped.",
+    "L11": "L11 locator columns are separate from L2 and refer only to acceptance predicates or asset-disposition rules.",
+    "legacy_context": "The archived HWG design names world graph/policy/admission, canonical JSON, old owners and old Issue/PLAN/PR arrangements. These are historical proposals. Old approval and architecture are not reused as current authority."
+  },
+  "rows": [
+    {
+      "source_id": "LEGACY-CAND-LINE-004530",
+      "source_path": "docs/governance/candidates/world-governance-acceptance.md",
+      "source_line": 30,
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-acceptance.md",
+      "source_asset_id": "LEGACY-ASSET-6E496F15A88DE2181CF8",
+      "source_file_sha256": "e023e956ba29ce79d742ed37a632994a4c9c308b3caa4cac2e9f8a6b28da9c8b",
+      "source_line_sha256": "sha256:994ac13c976c504fef2f384ef99fb2876cb3ec3c6c8e097e1f15016845182fcd",
+      "physical_line_bytes_sha256": "0ad88ca2f7c6aaf5dcc8e5454deb2f3a948aa2028ece6f04cdcaa51136d0526b",
+      "source_text": "- HWG-OP-03 → BR-03: Slice提供資格と未完了を説明し、導入前後の誤停止・待ち時間・p95・再実行費用を比較する。公開は実consumer／更新rollback／操作許可の証拠で判定する。",
+      "proposal_effective_pool": {
+        "member": true,
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "matched_later_overlay_ids": [],
+        "baseline_router_snapshot": {
+          "source_item_id": "LEGACY-CAND-LINE-004530",
+          "source_classification": "requirement_atom",
+          "semantic_family_cluster": "world_governance",
+          "semantic_cluster_id": null,
+          "routing_status": "unknown"
+        },
+        "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
+      },
+      "route_assessment": "unknown",
+      "compared_adopted_requirement_ids": [
+        "HARNESS-L2-005",
+        "HELIXOS-L2-002"
+      ],
+      "L2_direct_predicate_locators": [],
+      "L2_comparison_kind": "topic-only or no direct predicate identified",
+      "L11_acceptance_locators_separate": [
+        "該当する直接predicate locatorなし"
+      ],
+      "direct_overlap": "直接一致したpredicateはない。比較した候補IDと不一致locatorは別欄に記録し、語彙・話題の近さをrouteにしていない。",
+      "residual_or_difference": "誤停止・待ち時間・p95・再実行費用・許容値の比較は固定採択L2/L11にない。HARNESSの顧客向けprocess conditionやOSの証拠記録と語彙が近いだけで、HWGの性能合否へ接続しない。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [],
+      "L2_considered_but_not_matched_locators": [
+        "HELIX-HARNESS L2 product-requirements.md:56",
+        "HELIX-OS L2 governance-requirements.md:55"
+      ],
+      "L11_considered_but_not_matched_locators_separate": [
+        "HELIX-HARNESS L11 product-acceptance.md:25",
+        "HELIX-OS L11 governance-acceptance.md:22"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-004532",
+      "source_path": "docs/governance/candidates/world-governance-acceptance.md",
+      "source_line": 34,
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-acceptance.md",
+      "source_asset_id": "LEGACY-ASSET-6E496F15A88DE2181CF8",
+      "source_file_sha256": "e023e956ba29ce79d742ed37a632994a4c9c308b3caa4cac2e9f8a6b28da9c8b",
+      "source_line_sha256": "sha256:1e86a9f8b6be18c4648a1d8625564a15aaca8f8ad4b8ede5017dd63b34a77110",
+      "physical_line_bytes_sha256": "3ff2007df24a17093cfc70e3177b0818d5e32519223e8f6180476b8632fd5ed0",
+      "source_text": "1. HWG-P1（authority）: BR/要件/AC/ownerの欠落なし、#1500着手制約改版、必要承認・正本更新・IR収載。文書作成をcore完成としない。",
+      "proposal_effective_pool": {
+        "member": true,
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "matched_later_overlay_ids": [],
+        "baseline_router_snapshot": {
+          "source_item_id": "LEGACY-CAND-LINE-004532",
+          "source_classification": "requirement_atom",
+          "semantic_family_cluster": "world_governance",
+          "semantic_cluster_id": null,
+          "routing_status": "unknown"
+        },
+        "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirement_ids": [
+        "HARNESS-L2-003",
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-007"
+      ],
+      "L2_direct_predicate_locators": [
+        "HELIX-OS L2 governance-requirements.md:54,60",
+        "HELIX-HARNESS L2 product-requirements.md:193"
+      ],
+      "L2_comparison_kind": "direct partial predicate",
+      "L11_acceptance_locators_separate": [
+        "HELIX-OS L11 governance-acceptance.md:21,27",
+        "HELIX-HARNESS L11 product-acceptance.md:23"
+      ],
+      "direct_overlap": "要求出所・合意revisionと作業証拠を辿るOS predicateに加え、HARNESS-L2-003のscope/revision照合と「委任済み技術具体化は反復承認不要、未委任の意味・権限変更は別判断」という境界に限り直接重なる。#1500改版・IR収載・core完成は残差。",
+      "residual_or_difference": "要求の出所・合意revision・作業証拠のtrace部分だけが直接重なる。#1500改版、必要承認、IR収載、HWG core完成の出口条件はこの採択述語にない。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-007",
+        "HARNESS-L2-003"
+      ],
+      "L2_considered_but_not_matched_locators": [
+        "HELIX-OS L2 governance-requirements.md:441-442"
+      ],
+      "L11_considered_but_not_matched_locators_separate": [
+        "HELIX-OS L11 governance-acceptance.md:213,215"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-004535",
+      "source_path": "docs/governance/candidates/world-governance-acceptance.md",
+      "source_line": 37,
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-acceptance.md",
+      "source_asset_id": "LEGACY-ASSET-6E496F15A88DE2181CF8",
+      "source_file_sha256": "e023e956ba29ce79d742ed37a632994a4c9c308b3caa4cac2e9f8a6b28da9c8b",
+      "source_line_sha256": "sha256:d8f30b924d16563860b6141fdeab953cea422d0e706419971f93fd435e728f4e",
+      "physical_line_bytes_sha256": "eba129077dde538b9edeaae78955691fafc750eb18a4ee4606d05aa6e4899125",
+      "source_text": "4. HWG-P4（全域接続）: 許可された母集合の全入口・提供対応を照合、AC07と全AC再実行。未解決を残件として保持し、外部配布検収は別ownerへ戻す。",
+      "proposal_effective_pool": {
+        "member": true,
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "matched_later_overlay_ids": [],
+        "baseline_router_snapshot": {
+          "source_item_id": "LEGACY-CAND-LINE-004535",
+          "source_classification": "requirement_atom",
+          "semantic_family_cluster": "world_governance",
+          "semantic_cluster_id": null,
+          "routing_status": "unknown"
+        },
+        "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-007"
+      ],
+      "L2_direct_predicate_locators": [
+        "HELIX-OS L2 governance-requirements.md:55,60"
+      ],
+      "L2_comparison_kind": "direct partial predicate",
+      "L11_acceptance_locators_separate": [
+        "HELIX-OS L11 governance-acceptance.md:22,27"
+      ],
+      "direct_overlap": "許可母集合内の要求から作業・実装・検証・提供まで追跡し欠落を把握する HELIXOS-L2-002 と、対象要求revisionから検証証拠を参照して未検証/欠落を識別する HELIXOS-L2-007 に部分一致する。",
+      "residual_or_difference": "全Worldの許可母集合・入口を漏れなく定義する保証、AC07を含む全ACの再実行義務、外部配布検収のowner振分けは採択predicateにない。採択OSのtraceは対象projectの追跡条件であり、HWGのworld-wide inventoryと同一ではない。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-007"
+      ],
+      "L2_considered_but_not_matched_locators": [],
+      "L11_considered_but_not_matched_locators_separate": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-004590",
+      "source_path": "docs/governance/candidates/world-governance-intake.md",
+      "source_line": 72,
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-intake.md",
+      "source_asset_id": "LEGACY-ASSET-D78FDF31EAE827955BA1",
+      "source_file_sha256": "a3b4eff68e05f3bb06fc1a1b257b60f3d09624aec5483425ba16b73854614256",
+      "source_line_sha256": "sha256:f5a2daf0417d95252471cb6a861168f88ff6132f08161737e6bcbfe08674f410",
+      "physical_line_bytes_sha256": "396c1106d4b4b134185249a55f3205a944fb86c56cd94df62cb0aa52fd9363ad",
+      "source_text": "現行#1500の「Epoch exit後にmanagement runtime着手」と今回の優先化を明示的に照合する。着手制限を改版し、観測と新規差分の入口統制を先行、全域強制適用を後段へ分離する。ラベル変更や本書だけで現行制約を迂回しない。",
+      "proposal_effective_pool": {
+        "member": true,
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "matched_later_overlay_ids": [],
+        "baseline_router_snapshot": {
+          "source_item_id": "LEGACY-CAND-LINE-004590",
+          "source_classification": "requirement_atom",
+          "semantic_family_cluster": "world_governance",
+          "semantic_cluster_id": null,
+          "routing_status": "unknown"
+        },
+        "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
+      },
+      "route_assessment": "unknown",
+      "compared_adopted_requirement_ids": [
+        "HARNESS-L2-003",
+        "HELIXOS-L2-004"
+      ],
+      "L2_direct_predicate_locators": [],
+      "L2_comparison_kind": "topic-only or no direct predicate identified",
+      "L11_acceptance_locators_separate": [
+        "該当する直接predicate locatorなし"
+      ],
+      "direct_overlap": "直接一致したpredicateはない。比較した候補IDと不一致locatorは別欄に記録し、語彙・話題の近さをrouteにしていない。",
+      "residual_or_difference": "現行#1500の着手制約の改版、read-only/shadow先行、全域enforce後段化は既存採択述語から導けない。旧Issueの制約をこの監査で変えない。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [],
+      "L2_considered_but_not_matched_locators": [
+        "HELIX-HARNESS L2 product-requirements.md:193",
+        "HELIX-OS L2 governance-requirements.md:441-442"
+      ],
+      "L11_considered_but_not_matched_locators_separate": [
+        "HELIX-OS L11 governance-acceptance.md:213,215"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-004611",
+      "source_path": "docs/governance/candidates/world-governance-intake.md",
+      "source_line": 103,
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-intake.md",
+      "source_asset_id": "LEGACY-ASSET-D78FDF31EAE827955BA1",
+      "source_file_sha256": "a3b4eff68e05f3bb06fc1a1b257b60f3d09624aec5483425ba16b73854614256",
+      "source_line_sha256": "sha256:d3ce282ffc906a854b5bca2f562e561b71c16be80c9c64c974dcf1cb19278adb",
+      "physical_line_bytes_sha256": "c32366e4106e4581401dddc1999a43d8c8ba89c3362c69dc93759599a7dd270f",
+      "source_text": "旧Module数・名前・Bundle構成を固定せず、利用目的と検証・更新・rollbackの独立性から再評価する。Moduleは責務所有、Sliceは昇格単位、Bundleは利用目的別構成、Waveは導入順序として分離する。各要求を提供先または理由付き非対象/保留へ対応付ける。内部利用限定にもowner・理由・再評価条件を付け、未所属の逃げ道にしない。完成したSliceを全体完成待ちにしない。",
+      "proposal_effective_pool": {
+        "member": true,
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "matched_later_overlay_ids": [],
+        "baseline_router_snapshot": {
+          "source_item_id": "LEGACY-CAND-LINE-004611",
+          "source_classification": "requirement_atom",
+          "semantic_family_cluster": "world_governance",
+          "semantic_cluster_id": null,
+          "routing_status": "unknown"
+        },
+        "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-002",
+        "HARNESS-L2-004"
+      ],
+      "L2_direct_predicate_locators": [
+        "HELIX-OS L2 governance-requirements.md:55,442",
+        "HELIX-HARNESS L2 product-requirements.md:195"
+      ],
+      "L2_comparison_kind": "direct partial predicate",
+      "L11_acceptance_locators_separate": [
+        "HELIX-OS L11 governance-acceptance.md:22,215",
+        "HELIX-HARNESS L11 product-acceptance.md:24"
+      ],
+      "direct_overlap": "完成Sliceを全体完了待ちにしない部分が、要求変更の影響範囲を限定して再検証し、無関係な有効作業を継続させるOS-L2-002 / RFA-BR-03とHARNESS-L2-004の条件に部分一致する。",
+      "residual_or_difference": "Module/Slice/Bundle/Waveの分割・責務・昇格・構成モデル、各requirementの提供先/保留分類、独立更新/rollback単位、内部利用のowner/再評価条件は採択されていない。全体完了待ちの禁止からSlice概念やWorld全体の出荷方式を採択したと推定しない。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-002",
+        "HARNESS-L2-004"
+      ],
+      "L2_considered_but_not_matched_locators": [],
+      "L11_considered_but_not_matched_locators_separate": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-004620",
+      "source_path": "docs/governance/candidates/world-governance-intake.md",
+      "source_line": 116,
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-intake.md",
+      "source_asset_id": "LEGACY-ASSET-D78FDF31EAE827955BA1",
+      "source_file_sha256": "a3b4eff68e05f3bb06fc1a1b257b60f3d09624aec5483425ba16b73854614256",
+      "source_line_sha256": "sha256:c0950778627707ea7e9931b7492da72558c612b873a3f8dfa4fbe2f5b723626e",
+      "physical_line_bytes_sha256": "c121120a0ac6f82779b9a888a1627dc0fdb08c69a8f3b80eafbd76745b6a569f",
+      "source_text": "2. read-only棚卸しとsnapshot/receiptを実装する。文書完成とcore完成を分ける。",
+      "proposal_effective_pool": {
+        "member": true,
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "matched_later_overlay_ids": [],
+        "baseline_router_snapshot": {
+          "source_item_id": "LEGACY-CAND-LINE-004620",
+          "source_classification": "requirement_atom",
+          "semantic_family_cluster": "world_governance",
+          "semantic_cluster_id": null,
+          "routing_status": "unknown"
+        },
+        "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-007"
+      ],
+      "L2_direct_predicate_locators": [
+        "HELIX-OS L2 governance-requirements.md:60"
+      ],
+      "L2_comparison_kind": "direct partial predicate",
+      "L11_acceptance_locators_separate": [
+        "HELIX-OS L11 governance-acceptance.md:27"
+      ],
+      "direct_overlap": "read-only棚卸しやsnapshot/receiptそのものではなく、対象要求revisionから検証ログ・証拠へ辿り、欠落/重複/古さを識別してログだけを承認/完了に使わない HELIXOS-L2-007 に部分一致する。",
+      "residual_or_difference": "全Worldを対象にしたread-only inventory、snapshotの母集合/走査範囲、receiptの形式・受領条件、文書完成とcore完成の区別は採択predicateにない。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-007"
+      ],
+      "L2_considered_but_not_matched_locators": [],
+      "L11_considered_but_not_matched_locators_separate": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-004622",
+      "source_path": "docs/governance/candidates/world-governance-intake.md",
+      "source_line": 118,
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-intake.md",
+      "source_asset_id": "LEGACY-ASSET-D78FDF31EAE827955BA1",
+      "source_file_sha256": "a3b4eff68e05f3bb06fc1a1b257b60f3d09624aec5483425ba16b73854614256",
+      "source_line_sha256": "sha256:220b8926a1a0e7a4f379e763878bc192dfa11164d6436cb95162fe0f79add71b",
+      "physical_line_bytes_sha256": "b588ca93ac0dd8fec42bf7005edf3affaec63a25779399faff4f1fe97e14be62",
+      "source_text": "4. 既存機能・責務・Releaseを対応付け、全入口へ拡張する。外部配布は別途検収する。",
+      "proposal_effective_pool": {
+        "member": true,
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "matched_later_overlay_ids": [],
+        "baseline_router_snapshot": {
+          "source_item_id": "LEGACY-CAND-LINE-004622",
+          "source_classification": "requirement_atom",
+          "semantic_family_cluster": "world_governance",
+          "semantic_cluster_id": null,
+          "routing_status": "unknown"
+        },
+        "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirement_ids": [
+        "HARNESS-L2-003",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-006"
+      ],
+      "L2_direct_predicate_locators": [
+        "HELIX-OS L2 governance-requirements.md:55"
+      ],
+      "L2_comparison_kind": "direct partial predicate",
+      "L11_acceptance_locators_separate": [
+        "HELIX-OS L11 governance-acceptance.md:22"
+      ],
+      "direct_overlap": "既存の機能/責務を要求から提供状態までproject traceで対応づけ、提供状態を追跡する HELIXOS-L2-002 に部分一致する。",
+      "residual_or_difference": "全Worldの入口への全量展開、Worldの内部責務/Release catalog、外部配布検収の分担は採択されていない。HELIXOS-L2-006とHARNESS-L2-006はサービス①〜⑦の顧客向け提供predicateであり、product_target未解決のWorld sourceへ直接割り当てない。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-002"
+      ],
+      "L2_considered_but_not_matched_locators": [
+        "HELIX-HARNESS L2 product-requirements.md:54",
+        "HELIX-OS L2 governance-requirements.md:59"
+      ],
+      "L11_considered_but_not_matched_locators_separate": [
+        "HELIX-HARNESS L11 product-acceptance.md:23",
+        "HELIX-OS L11 governance-acceptance.md:26"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-004628",
+      "source_path": "docs/governance/candidates/world-governance-intake.md",
+      "source_line": 127,
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-intake.md",
+      "source_asset_id": "LEGACY-ASSET-D78FDF31EAE827955BA1",
+      "source_file_sha256": "a3b4eff68e05f3bb06fc1a1b257b60f3d09624aec5483425ba16b73854614256",
+      "source_line_sha256": "sha256:888232d1d7d8a904f434d4692aa933cc7970069d2d6f752e49124797a25bdb1e",
+      "physical_line_bytes_sha256": "4b877bcaa71d42a8291f9c26f1831cd277eab27af9a29dfc0fa25ac37a7bc41a",
+      "source_text": "3. 正当な再利用を通し、類似名だけの自動統合を拒否する。",
+      "proposal_effective_pool": {
+        "member": true,
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "matched_later_overlay_ids": [],
+        "baseline_router_snapshot": {
+          "source_item_id": "LEGACY-CAND-LINE-004628",
+          "source_classification": "requirement_atom",
+          "semantic_family_cluster": "world_governance",
+          "semantic_cluster_id": null,
+          "routing_status": "unknown"
+        },
+        "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
+      },
+      "route_assessment": "unknown",
+      "compared_adopted_requirement_ids": [
+        "HARNESS-L2-008"
+      ],
+      "L2_direct_predicate_locators": [],
+      "L2_comparison_kind": "topic-only or no direct predicate identified",
+      "L11_acceptance_locators_separate": [
+        "該当する直接predicate locatorなし"
+      ],
+      "direct_overlap": "直接一致したpredicateはない。比較した候補IDと不一致locatorは別欄に記録し、語彙・話題の近さをrouteにしていない。",
+      "residual_or_difference": "類似名だけで統合しないというsemantic reuse判定規則は採択L2/L11にない。HARNESS-L2-008が要求候補からauthority/操作許可を生成しないこととは別predicate。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [],
+      "L2_considered_but_not_matched_locators": [
+        "HELIX-HARNESS L2 product-requirements.md:59"
+      ],
+      "L11_considered_but_not_matched_locators_separate": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-004632",
+      "source_path": "docs/governance/candidates/world-governance-intake.md",
+      "source_line": 131,
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-intake.md",
+      "source_asset_id": "LEGACY-ASSET-D78FDF31EAE827955BA1",
+      "source_file_sha256": "a3b4eff68e05f3bb06fc1a1b257b60f3d09624aec5483425ba16b73854614256",
+      "source_line_sha256": "sha256:b17665a9b3247c64676290227f268679d339275c16844d51243537dfdd61270e",
+      "physical_line_bytes_sha256": "57e3b714413c219c79e7bedf89e90856d7abd7906effee7d3c99f4143eca5fe6",
+      "source_text": "7. 内部利用を公開完了扱いせず、未検証Sliceのstable混入を拒否する。",
+      "proposal_effective_pool": {
+        "member": true,
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "matched_later_overlay_ids": [],
+        "baseline_router_snapshot": {
+          "source_item_id": "LEGACY-CAND-LINE-004632",
+          "source_classification": "requirement_atom",
+          "semantic_family_cluster": "world_governance",
+          "semantic_cluster_id": null,
+          "routing_status": "unknown"
+        },
+        "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirement_ids": [
+        "HARNESS-L2-003",
+        "HELIXOS-L2-002"
+      ],
+      "L2_direct_predicate_locators": [
+        "HELIX-OS L2 governance-requirements.md:55"
+      ],
+      "L2_comparison_kind": "direct partial predicate",
+      "L11_acceptance_locators_separate": [
+        "HELIX-OS L11 governance-acceptance.md:22"
+      ],
+      "direct_overlap": "projectの提供状態を追跡し、未接続/未合意/未実装/未検証を区別する HELIXOS-L2-002 に限って部分一致する。",
+      "residual_or_difference": "内部利用を公開完了とみなさない規則、未検証Sliceをstableへ混入させないentry gate、HWG独自のSlice公開判定は採択されていない。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-002"
+      ],
+      "L2_considered_but_not_matched_locators": [
+        "HELIX-HARNESS L2 product-requirements.md:193",
+        "HELIX-OS L2 governance-requirements.md:442"
+      ],
+      "L11_considered_but_not_matched_locators_separate": [
+        "HELIX-OS L11 governance-acceptance.md:213"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-004634",
+      "source_path": "docs/governance/candidates/world-governance-intake.md",
+      "source_line": 133,
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-intake.md",
+      "source_asset_id": "LEGACY-ASSET-D78FDF31EAE827955BA1",
+      "source_file_sha256": "a3b4eff68e05f3bb06fc1a1b257b60f3d09624aec5483425ba16b73854614256",
+      "source_line_sha256": "sha256:7d2f4efe08903d33cc1ea1795efc1f41bf89735e18ee07cf65226a748790f23c",
+      "physical_line_bytes_sha256": "7c5c1cb98d465c4d7aa44cb012c1daaaf682e61eada0eae2d13cc6d1905932ad",
+      "source_text": "9. shadow/enforce切替とrollbackを検証し、旧保護を維持する。",
+      "proposal_effective_pool": {
+        "member": true,
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "matched_later_overlay_ids": [],
+        "baseline_router_snapshot": {
+          "source_item_id": "LEGACY-CAND-LINE-004634",
+          "source_classification": "requirement_atom",
+          "semantic_family_cluster": "world_governance",
+          "semantic_cluster_id": null,
+          "routing_status": "unknown"
+        },
+        "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirement_ids": [
+        "HARNESS-L2-003",
+        "HELIXSECURITY-L2-008",
+        "HELIXSECURITY-L2-009"
+      ],
+      "L2_direct_predicate_locators": [
+        "HELIX-SECURITY L2 security-requirements.md:140-148"
+      ],
+      "L2_comparison_kind": "direct partial predicate",
+      "L11_acceptance_locators_separate": [
+        "HELIX-SECURITY L11 security-acceptance.md:32"
+      ],
+      "direct_overlap": "shadow/enforceの切替やrollback操作を実行する場合も、security-change等を別operationとしてactor/target/revision/environment/scope/expiryを照合する HELIXSECURITY-L2-008 に限って部分一致する。",
+      "residual_or_difference": "shadowからenforceへの昇格条件、rollback検証手順、旧保護の保持確認は採択されていない。L2-009は異常時のrevoke/quarantine伝播predicateであり、この行のrollback/保護維持要件との直接一致とは数えない。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXSECURITY-L2-008"
+      ],
+      "L2_considered_but_not_matched_locators": [
+        "HELIX-HARNESS L2 product-requirements.md:54",
+        "HELIX-SECURITY L2 security-requirements.md:150-158"
+      ],
+      "L11_considered_but_not_matched_locators_separate": [
+        "HELIX-SECURITY L11 security-acceptance.md:33"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-004652",
+      "source_path": "docs/governance/candidates/world-governance-intake.md",
+      "source_line": 160,
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-intake.md",
+      "source_asset_id": "LEGACY-ASSET-D78FDF31EAE827955BA1",
+      "source_file_sha256": "a3b4eff68e05f3bb06fc1a1b257b60f3d09624aec5483425ba16b73854614256",
+      "source_line_sha256": "sha256:a173a9684b1c6060986b6f3158f2ab736f0c2bbde213ee92898971695741330d",
+      "physical_line_bytes_sha256": "98312fd5c85c295e5c9e94520aac9a68b1912f17215987ab545a9abadb3db409",
+      "source_text": "| [#1538 外部横断監査入力の保全](https://github.com/RetryYN/HELIX-HARNESS/issues/1538) | #1500配下だが監査入力の保全を所有し、Portfolio runtimeは非対象。 | 子Issueが進んでも、管理機構が実装されたとは数えない。入力保存・機能実装・運用を分離する。 |",
+      "proposal_effective_pool": {
+        "member": true,
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "matched_later_overlay_ids": [],
+        "baseline_router_snapshot": {
+          "source_item_id": "LEGACY-CAND-LINE-004652",
+          "source_classification": "requirement_atom",
+          "semantic_family_cluster": "world_governance",
+          "semantic_cluster_id": null,
+          "routing_status": "unknown"
+        },
+        "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
+      },
+      "route_assessment": "unknown",
+      "compared_adopted_requirement_ids": [],
+      "L2_direct_predicate_locators": [],
+      "L2_comparison_kind": "topic-only or no direct predicate identified",
+      "L11_acceptance_locators_separate": [
+        "該当する直接predicate locatorなし"
+      ],
+      "direct_overlap": "直接一致したpredicateはない。比較した候補IDと不一致locatorは別欄に記録し、語彙・話題の近さをrouteにしていない。",
+      "residual_or_difference": "外部横断監査入力の保全、Portfolio runtimeとの非対象分離、保存と機能実装と運用の区分は対象L2/L11の直接predicateでない。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [],
+      "L2_considered_but_not_matched_locators": [],
+      "L11_considered_but_not_matched_locators_separate": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-004662",
+      "source_path": "docs/governance/candidates/world-governance-intake.md",
+      "source_line": 175,
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-intake.md",
+      "source_asset_id": "LEGACY-ASSET-D78FDF31EAE827955BA1",
+      "source_file_sha256": "a3b4eff68e05f3bb06fc1a1b257b60f3d09624aec5483425ba16b73854614256",
+      "source_line_sha256": "sha256:8e87ad750d574ff5d719a72f619bf82e663f05d634230c5d81a38b2b38e559aa",
+      "physical_line_bytes_sha256": "cc740f55ab0029591f9ccf774cd58d72bac2c6bef600f1f8e2e07c1b3cf762b9",
+      "source_text": "したがって、World Registryを手編集して「この機能が正本」と決める設計は不可。Issue・設計候補・graph・runtimeの観測を保持することと、それを現行要件として採用することは分離する。未収載の宣言は削除せず、候補または未接続として可視化する。",
+      "proposal_effective_pool": {
+        "member": true,
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "matched_later_overlay_ids": [],
+        "baseline_router_snapshot": {
+          "source_item_id": "LEGACY-CAND-LINE-004662",
+          "source_classification": "requirement_atom",
+          "semantic_family_cluster": "world_governance",
+          "semantic_cluster_id": null,
+          "routing_status": "unknown"
+        },
+        "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirement_ids": [
+        "HARNESS-L2-008",
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-007"
+      ],
+      "L2_direct_predicate_locators": [
+        "HELIX-OS L2 governance-requirements.md:54,60",
+        "HELIX-HARNESS L2 product-requirements.md:193-198",
+        "HELIX-HARNESS L2 product-requirements.md:59"
+      ],
+      "L2_comparison_kind": "direct partial predicate",
+      "L11_acceptance_locators_separate": [
+        "HELIX-OS L11 governance-acceptance.md:21,27",
+        "HELIX-HARNESS L11 product-acceptance.md:28"
+      ],
+      "direct_overlap": "要求作成物・Issue・graph・runtimeの観測と権威ある採択を区別する部分は、HARNESS-L2-008の要求形成出力から要求合意や操作許可を生成しない条件に直接重なる。OS-L2-001/007は要求出所・証拠revisionのtraceを補助する。World Registryを現行正本にしない設計自体は採択されていない。",
+      "residual_or_difference": "要求判断の出所・合意revisionを確認し、記録の存在だけで承認/完了としない証拠条件に限り直接重なる。World Registry、Issue、graph、runtimeをauthority sourceにしない設計は採択されていない。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-007",
+        "HARNESS-L2-008"
+      ],
+      "L2_considered_but_not_matched_locators": [],
+      "L11_considered_but_not_matched_locators_separate": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-004665",
+      "source_path": "docs/governance/candidates/world-governance-intake.md",
+      "source_line": 181,
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-intake.md",
+      "source_asset_id": "LEGACY-ASSET-D78FDF31EAE827955BA1",
+      "source_file_sha256": "a3b4eff68e05f3bb06fc1a1b257b60f3d09624aec5483425ba16b73854614256",
+      "source_line_sha256": "sha256:412a446933f514b0f9af8371548db9e07ed820f219b092087f57ef6733a9b307",
+      "physical_line_bytes_sha256": "a45e3180866f38954e6f315fa4aefd820b9c9c559254fcc9c0faff1b719c5a6f",
+      "source_text": "これは既存の関係表示・探索用処理に対する観測であり、現行の全admissionが安全性欠陥を持つと断定するものではない。ただしHWGで実行許可の根拠へ使うなら、次を区別する必要がある。",
+      "proposal_effective_pool": {
+        "member": true,
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "matched_later_overlay_ids": [],
+        "baseline_router_snapshot": {
+          "source_item_id": "LEGACY-CAND-LINE-004665",
+          "source_classification": "requirement_atom",
+          "semantic_family_cluster": "world_governance",
+          "semantic_cluster_id": null,
+          "routing_status": "unknown"
+        },
+        "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirement_ids": [
+        "HELIXSECURITY-L2-008"
+      ],
+      "L2_direct_predicate_locators": [
+        "HELIX-SECURITY L2 security-requirements.md:140-148"
+      ],
+      "L2_comparison_kind": "direct partial predicate",
+      "L11_acceptance_locators_separate": [
+        "HELIX-SECURITY L11 security-acceptance.md:32"
+      ],
+      "direct_overlap": "関係表示/探索結果を実行許可の根拠に使う場合に限り、actor/target/operation/revision/environment/scope/expiryを満たすoperation-specific authorityを求める HELIXSECURITY-L2-008 に直接一致する。",
+      "residual_or_difference": "旧関係表示処理が安全性欠陥を持つとの断定、全admissionの安全評価、探索用関係からpermissionを生成する機能は採択されていない。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXSECURITY-L2-008"
+      ],
+      "L2_considered_but_not_matched_locators": [],
+      "L11_considered_but_not_matched_locators_separate": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-004666",
+      "source_path": "docs/governance/candidates/world-governance-intake.md",
+      "source_line": 183,
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-intake.md",
+      "source_asset_id": "LEGACY-ASSET-D78FDF31EAE827955BA1",
+      "source_file_sha256": "a3b4eff68e05f3bb06fc1a1b257b60f3d09624aec5483425ba16b73854614256",
+      "source_line_sha256": "sha256:b0f11bebb3342c0f3f9887869753863c13483bfb5648b675b4c1f2c2538d891e",
+      "physical_line_bytes_sha256": "1dc7e314a645cfdac91d746534082c4850f08bb5b4993cab982e0757752e5d51",
+      "source_text": "- 正常取得した空集合と、取得不能・parse失敗・部分取得。",
+      "proposal_effective_pool": {
+        "member": true,
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "matched_later_overlay_ids": [],
+        "baseline_router_snapshot": {
+          "source_item_id": "LEGACY-CAND-LINE-004666",
+          "source_classification": "requirement_atom",
+          "semantic_family_cluster": "world_governance",
+          "semantic_cluster_id": null,
+          "routing_status": "unknown"
+        },
+        "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-007",
+        "HELIXSECURITY-L2-009"
+      ],
+      "L2_direct_predicate_locators": [
+        "HELIX-OS L2 governance-requirements.md:60"
+      ],
+      "L2_comparison_kind": "direct partial predicate",
+      "L11_acceptance_locators_separate": [
+        "HELIX-OS L11 governance-acceptance.md:27"
+      ],
+      "direct_overlap": "取得不能/parse失敗/部分取得を正常な空結果と混同しない点は、対象revisionの証拠の欠落/重複/古さを識別し、証拠の存在だけで成功を成立させない HELIXOS-L2-007 に限って部分一致する。",
+      "residual_or_difference": "採択OSはHWG graph-loaderの正常emptyと取得/parse errorを表す具体state schemaを定義しない。HELIXSECURITY-L2-009はsecurity incident等のunknownを対象operationへ伝播する条件であり、任意のloader errorをsecurity stopへ広げない。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-007"
+      ],
+      "L2_considered_but_not_matched_locators": [
+        "HELIX-SECURITY L2 security-requirements.md:150-158"
+      ],
+      "L11_considered_but_not_matched_locators_separate": [
+        "HELIX-SECURITY L11 security-acceptance.md:33"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-004667",
+      "source_path": "docs/governance/candidates/world-governance-intake.md",
+      "source_line": 184,
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-intake.md",
+      "source_asset_id": "LEGACY-ASSET-D78FDF31EAE827955BA1",
+      "source_file_sha256": "a3b4eff68e05f3bb06fc1a1b257b60f3d09624aec5483425ba16b73854614256",
+      "source_line_sha256": "sha256:84a74e0b925f0172639afea6108aa2ae9ac961163f5d8278920a6ad5fdf69769",
+      "physical_line_bytes_sha256": "19b97e845b1f18f947b6024012b129a94355681d9b0ee74d62a1c011796740d2",
+      "source_text": "- 宣言された関係、名前などから推定した候補関係、実行結果による検証証拠。",
+      "proposal_effective_pool": {
+        "member": true,
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "matched_later_overlay_ids": [],
+        "baseline_router_snapshot": {
+          "source_item_id": "LEGACY-CAND-LINE-004667",
+          "source_classification": "requirement_atom",
+          "semantic_family_cluster": "world_governance",
+          "semantic_cluster_id": null,
+          "routing_status": "unknown"
+        },
+        "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirement_ids": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-005",
+        "HELIXOS-L2-007"
+      ],
+      "L2_direct_predicate_locators": [
+        "HELIX-OS L2 governance-requirements.md:60",
+        "HELIX-HARNESS L2 product-requirements.md:193"
+      ],
+      "L2_comparison_kind": "direct partial predicate",
+      "L11_acceptance_locators_separate": [
+        "HELIX-OS L11 governance-acceptance.md:27",
+        "HELIX-HARNESS L11 product-acceptance.md:23"
+      ],
+      "direct_overlap": "宣言された関係・名前推定・実行検証証拠を区別するうち、HARNESS-L2-003/005が指示・候補を技術的正しさ/検証証拠へ転用しない条件とOS-L2-007の検証証拠traceに直接重なる。World graphの3種edge schemaは残差。",
+      "residual_or_difference": "検証ログ・証拠を要求revisionから参照し、証拠の欠落/重複/staleを判定する条件に限り直接重なる。宣言edge・推定候補edge・実行検証edgeのWorld graph分類体系は採択されていない。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-007",
+        "HARNESS-L2-003"
+      ],
+      "L2_considered_but_not_matched_locators": [
+        "HELIX-HARNESS L2 product-requirements.md:194"
+      ],
+      "L11_considered_but_not_matched_locators_separate": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-004668",
+      "source_path": "docs/governance/candidates/world-governance-intake.md",
+      "source_line": 185,
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-intake.md",
+      "source_asset_id": "LEGACY-ASSET-D78FDF31EAE827955BA1",
+      "source_file_sha256": "a3b4eff68e05f3bb06fc1a1b257b60f3d09624aec5483425ba16b73854614256",
+      "source_line_sha256": "sha256:c42061cedbf1906300e01c98cffad75bfd2dbd27cc1a4c024bde8bcd237d3d7a",
+      "physical_line_bytes_sha256": "3ae7df8db274ed8e433374e4e98a97df5d874978bef34638ecec54fe57f215ca",
+      "source_text": "- 対応するテストファイルの存在と、対象revisionで必要な受入が実際に成立したこと。",
+      "proposal_effective_pool": {
+        "member": true,
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "matched_later_overlay_ids": [],
+        "baseline_router_snapshot": {
+          "source_item_id": "LEGACY-CAND-LINE-004668",
+          "source_classification": "requirement_atom",
+          "semantic_family_cluster": "world_governance",
+          "semantic_cluster_id": null,
+          "routing_status": "unknown"
+        },
+        "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirement_ids": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-005",
+        "HELIXOS-L2-007"
+      ],
+      "L2_direct_predicate_locators": [
+        "HELIX-OS L2 governance-requirements.md:60",
+        "HELIX-HARNESS L2 product-requirements.md:193"
+      ],
+      "L2_comparison_kind": "direct partial predicate",
+      "L11_acceptance_locators_separate": [
+        "HELIX-OS L11 governance-acceptance.md:27",
+        "HELIX-HARNESS L11 product-acceptance.md:23"
+      ],
+      "direct_overlap": "HARNESS-L2-003/005とOS-L2-007の検証・証拠条件は、test artifactの存在だけで技術的正しさや対象revisionの受入を示さない点で直接重なる。HWG固有のテスト発見規則とAC07を含む全AC再実行は採択されていない。",
+      "residual_or_difference": "証拠の存在だけで承認/完了を成立させず、対象revisionの受入状態を追う条件に限って重なる。テストファイル存在とAC成否のHWG-specific判定規則は採択されていない。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-007",
+        "HARNESS-L2-003"
+      ],
+      "L2_considered_but_not_matched_locators": [
+        "HELIX-HARNESS L2 product-requirements.md:194"
+      ],
+      "L11_considered_but_not_matched_locators_separate": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-004684",
+      "source_path": "docs/governance/candidates/world-governance-intake.md",
+      "source_line": 211,
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-intake.md",
+      "source_asset_id": "LEGACY-ASSET-D78FDF31EAE827955BA1",
+      "source_file_sha256": "a3b4eff68e05f3bb06fc1a1b257b60f3d09624aec5483425ba16b73854614256",
+      "source_line_sha256": "sha256:cf1b0491358c6f4bcc25639824fc2d4f1755a0c0bca9078eb257cc9222c319c7",
+      "physical_line_bytes_sha256": "837c5b1547e654f819abcf027d7f1ff5896575fa9d219425e600e495c6a83ce2",
+      "source_text": "既存#1500の着手順序は、今回の高優先要求と衝突し得るため改版対象にする。ただし、今回の会話を#1500以外の全保留解除、既存policyの緩和、全機能の一括実装許可へ拡張してはならない。",
+      "proposal_effective_pool": {
+        "member": true,
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "matched_later_overlay_ids": [],
+        "baseline_router_snapshot": {
+          "source_item_id": "LEGACY-CAND-LINE-004684",
+          "source_classification": "requirement_atom",
+          "semantic_family_cluster": "world_governance",
+          "semantic_cluster_id": null,
+          "routing_status": "unknown"
+        },
+        "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
+      },
+      "route_assessment": "unknown",
+      "compared_adopted_requirement_ids": [
+        "HARNESS-L2-003",
+        "HELIXOS-L2-004"
+      ],
+      "L2_direct_predicate_locators": [],
+      "L2_comparison_kind": "topic-only or no direct predicate identified",
+      "L11_acceptance_locators_separate": [
+        "該当する直接predicate locatorなし"
+      ],
+      "direct_overlap": "直接一致したpredicateはない。比較した候補IDと不一致locatorは別欄に記録し、語彙・話題の近さをrouteにしていない。",
+      "residual_or_difference": "既存#1500の順序変更、他の保留解除やpolicy緩和へ要求を拡張しない境界は候補固有の意思・手続きであり、採択L2/L11からは導けない。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [],
+      "L2_considered_but_not_matched_locators": [
+        "HELIX-HARNESS L2 product-requirements.md:193",
+        "HELIX-OS L2 governance-requirements.md:441-442"
+      ],
+      "L11_considered_but_not_matched_locators_separate": [
+        "HELIX-OS L11 governance-acceptance.md:213,215"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-004700",
+      "source_path": "docs/governance/candidates/world-governance-requests.md",
+      "source_line": 15,
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-requests.md",
+      "source_asset_id": "LEGACY-ASSET-916722580D7518F96EB3",
+      "source_file_sha256": "eed8d1960bbf27e0c43da5d966c6f6f64d798f8cea076483870352cfb12d857a",
+      "source_line_sha256": "sha256:413d60692f8ac4898157f41286dc4f39eba2a4bb045800915e5b6c080a72ef43",
+      "physical_line_bytes_sha256": "9f5d8d1a90c66f1206d4c1f2776375814d93c2816ad136ca66eedeb1469fd841",
+      "source_text": "- HWG-BR-03: 利用可能な機能を独立した提供単位として届け、統制コストも測りながら段階導入できる。HWG-R06／R09へ分解する。",
+      "proposal_effective_pool": {
+        "member": true,
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "matched_later_overlay_ids": [],
+        "baseline_router_snapshot": {
+          "source_item_id": "LEGACY-CAND-LINE-004700",
+          "source_classification": "requirement_atom",
+          "semantic_family_cluster": "world_governance",
+          "semantic_cluster_id": null,
+          "routing_status": "unknown"
+        },
+        "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-006",
+        "HARNESS-L2-006"
+      ],
+      "L2_direct_predicate_locators": [
+        "HELIX-OS L2 governance-requirements.md:55"
+      ],
+      "L2_comparison_kind": "direct partial predicate",
+      "L11_acceptance_locators_separate": [
+        "HELIX-OS L11 governance-acceptance.md:22"
+      ],
+      "direct_overlap": "提供状態をproject traceに載せ、release kanbanの状態として追跡する HELIXOS-L2-002 に部分一致する。",
+      "residual_or_difference": "HWG機能を独立した提供単位へ分解する粒度、段階導入、統制コスト指標は採択predicateにない。HELIXOS/HARNESS-L2-006は外部顧客向けサービス①〜⑦の提供単位であり、product_target未解決のHWG internal sliceへ転用しない。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-002"
+      ],
+      "L2_considered_but_not_matched_locators": [
+        "HELIX-OS L2 governance-requirements.md:59",
+        "HELIX-HARNESS L2 product-requirements.md:56"
+      ],
+      "L11_considered_but_not_matched_locators_separate": [
+        "HELIX-OS L11 governance-acceptance.md:26",
+        "HELIX-HARNESS L11 product-acceptance.md:28"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-004702",
+      "source_path": "docs/governance/candidates/world-governance-requests.md",
+      "source_line": 18,
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-requests.md",
+      "source_asset_id": "LEGACY-ASSET-916722580D7518F96EB3",
+      "source_file_sha256": "eed8d1960bbf27e0c43da5d966c6f6f64d798f8cea076483870352cfb12d857a",
+      "source_line_sha256": "sha256:6baf51fe846b3bd2900c027f4c0625192e307aac185d862aa8944808b8ef8eb2",
+      "physical_line_bytes_sha256": "a62d2c14301429a22970f92d643cbfb4a95f8b9f417fbb9bf6f3a14a67ccbcca",
+      "source_text": "全件棚卸しの対象にはHWG自身を含む。「全部統制する」は一括実装・一括停止・既存policy解除の許可ではない。",
+      "proposal_effective_pool": {
+        "member": true,
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "matched_later_overlay_ids": [],
+        "baseline_router_snapshot": {
+          "source_item_id": "LEGACY-CAND-LINE-004702",
+          "source_classification": "requirement_atom",
+          "semantic_family_cluster": "world_governance",
+          "semantic_cluster_id": null,
+          "routing_status": "unknown"
+        },
+        "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-005",
+        "HARNESS-L2-008"
+      ],
+      "L2_direct_predicate_locators": [
+        "HELIX-OS L2 governance-requirements.md:58",
+        "HELIX-HARNESS L2 product-requirements.md:59"
+      ],
+      "L2_comparison_kind": "direct partial predicate",
+      "L11_acceptance_locators_separate": [
+        "HELIX-OS L11 governance-acceptance.md:23",
+        "HELIX-HARNESS L11 product-acceptance.md:28"
+      ],
+      "direct_overlap": "HARNESS自身への適用を含む観測範囲（OS-L2-005）と、要求形成出力だけで要求合意/操作許可を生成しないHARNESS-L2-008に限定して直接関連する。World Governance全量に自己を含める規則や包括統制権限は含まれない。",
+      "residual_or_difference": "HELIXOS-L2-005の対象はHARNESS自身への適用を含む観測・改善候補であり、World Governanceが全世界母集合に自分を加えて棚卸しする規則ではない。「全部統制する」を一括実装・一括停止・既存policy解除の許可に変換しない。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-005",
+        "HARNESS-L2-008"
+      ],
+      "L2_considered_but_not_matched_locators": [],
+      "L11_considered_but_not_matched_locators_separate": [
+        "HELIX-OS L11 governance-acceptance.md:25"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-004715",
+      "source_path": "docs/governance/candidates/world-governance-requirements.md",
+      "source_line": 18,
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-requirements.md",
+      "source_asset_id": "LEGACY-ASSET-24BF2999B13E304B77D2",
+      "source_file_sha256": "824974d0b8d0231b854d7c0bf01312c6d761dcd9451fd6e18b8f1a7ce113f7eb",
+      "source_line_sha256": "sha256:f5a2daf0417d95252471cb6a861168f88ff6132f08161737e6bcbfe08674f410",
+      "physical_line_bytes_sha256": "396c1106d4b4b134185249a55f3205a944fb86c56cd94df62cb0aa52fd9363ad",
+      "source_text": "現行#1500の「Epoch exit後にmanagement runtime着手」と今回の優先化を明示的に照合する。着手制限を改版し、観測と新規差分の入口統制を先行、全域強制適用を後段へ分離する。ラベル変更や本書だけで現行制約を迂回しない。",
+      "proposal_effective_pool": {
+        "member": true,
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "matched_later_overlay_ids": [],
+        "baseline_router_snapshot": {
+          "source_item_id": "LEGACY-CAND-LINE-004715",
+          "source_classification": "requirement_atom",
+          "semantic_family_cluster": "world_governance",
+          "semantic_cluster_id": null,
+          "routing_status": "unknown"
+        },
+        "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
+      },
+      "route_assessment": "unknown",
+      "compared_adopted_requirement_ids": [
+        "HARNESS-L2-003",
+        "HELIXOS-L2-004"
+      ],
+      "L2_direct_predicate_locators": [],
+      "L2_comparison_kind": "topic-only or no direct predicate identified",
+      "L11_acceptance_locators_separate": [
+        "該当する直接predicate locatorなし"
+      ],
+      "direct_overlap": "直接一致したpredicateはない。比較した候補IDと不一致locatorは別欄に記録し、語彙・話題の近さをrouteにしていない。",
+      "residual_or_difference": "現行#1500の着手制約の改版、read-only/shadow先行、全域enforce後段化は既存採択述語から導けない。旧Issueの制約をこの監査で変えない。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [],
+      "L2_considered_but_not_matched_locators": [
+        "HELIX-HARNESS L2 product-requirements.md:193",
+        "HELIX-OS L2 governance-requirements.md:441-442"
+      ],
+      "L11_considered_but_not_matched_locators_separate": [
+        "HELIX-OS L11 governance-acceptance.md:213,215"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-004736",
+      "source_path": "docs/governance/candidates/world-governance-requirements.md",
+      "source_line": 49,
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-requirements.md",
+      "source_asset_id": "LEGACY-ASSET-24BF2999B13E304B77D2",
+      "source_file_sha256": "824974d0b8d0231b854d7c0bf01312c6d761dcd9451fd6e18b8f1a7ce113f7eb",
+      "source_line_sha256": "sha256:d3ce282ffc906a854b5bca2f562e561b71c16be80c9c64c974dcf1cb19278adb",
+      "physical_line_bytes_sha256": "c32366e4106e4581401dddc1999a43d8c8ba89c3362c69dc93759599a7dd270f",
+      "source_text": "旧Module数・名前・Bundle構成を固定せず、利用目的と検証・更新・rollbackの独立性から再評価する。Moduleは責務所有、Sliceは昇格単位、Bundleは利用目的別構成、Waveは導入順序として分離する。各要求を提供先または理由付き非対象/保留へ対応付ける。内部利用限定にもowner・理由・再評価条件を付け、未所属の逃げ道にしない。完成したSliceを全体完成待ちにしない。",
+      "proposal_effective_pool": {
+        "member": true,
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "matched_later_overlay_ids": [],
+        "baseline_router_snapshot": {
+          "source_item_id": "LEGACY-CAND-LINE-004736",
+          "source_classification": "requirement_atom",
+          "semantic_family_cluster": "world_governance",
+          "semantic_cluster_id": null,
+          "routing_status": "unknown"
+        },
+        "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-002",
+        "HARNESS-L2-004"
+      ],
+      "L2_direct_predicate_locators": [
+        "HELIX-OS L2 governance-requirements.md:55,442",
+        "HELIX-HARNESS L2 product-requirements.md:195"
+      ],
+      "L2_comparison_kind": "direct partial predicate",
+      "L11_acceptance_locators_separate": [
+        "HELIX-OS L11 governance-acceptance.md:22,215",
+        "HELIX-HARNESS L11 product-acceptance.md:24"
+      ],
+      "direct_overlap": "完成Sliceを全体完了待ちにしない部分が、要求変更の影響範囲を限定して再検証し、無関係な有効作業を継続させるOS-L2-002 / RFA-BR-03とHARNESS-L2-004の条件に部分一致する。",
+      "residual_or_difference": "Module/Slice/Bundle/Waveの分割・責務・昇格・構成モデル、各requirementの提供先/保留分類、独立更新/rollback単位、内部利用のowner/再評価条件は採択されていない。全体完了待ちの禁止からSlice概念やWorld全体の出荷方式を採択したと推定しない。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-002",
+        "HARNESS-L2-004"
+      ],
+      "L2_considered_but_not_matched_locators": [],
+      "L11_considered_but_not_matched_locators_separate": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-004744",
+      "source_path": "docs/governance/candidates/world-governance-requirements.md",
+      "source_line": 61,
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-requirements.md",
+      "source_asset_id": "LEGACY-ASSET-24BF2999B13E304B77D2",
+      "source_file_sha256": "824974d0b8d0231b854d7c0bf01312c6d761dcd9451fd6e18b8f1a7ce113f7eb",
+      "source_line_sha256": "sha256:75adb82ba11d8f9a7cc2fd50634e34f7c836a4771cea187f6eeffc188bd7c52d",
+      "physical_line_bytes_sha256": "953b66df3dc850d25f18b2d12d0f65428d6ed1a8c9672ad831813f6e6e09f896",
+      "source_text": "1. owner・残工程・着手制限を照合し、L1/L3/L10・trace、必要な決定・正本改版・IR収載を行う。",
+      "proposal_effective_pool": {
+        "member": true,
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "matched_later_overlay_ids": [],
+        "baseline_router_snapshot": {
+          "source_item_id": "LEGACY-CAND-LINE-004744",
+          "source_classification": "requirement_atom",
+          "semantic_family_cluster": "world_governance",
+          "semantic_cluster_id": null,
+          "routing_status": "unknown"
+        },
+        "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirement_ids": [
+        "HARNESS-L2-003",
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-007"
+      ],
+      "L2_direct_predicate_locators": [
+        "HELIX-OS L2 governance-requirements.md:54-55,60",
+        "HELIX-HARNESS L2 product-requirements.md:193"
+      ],
+      "L2_comparison_kind": "direct partial predicate",
+      "L11_acceptance_locators_separate": [
+        "HELIX-OS L11 governance-acceptance.md:21-22,27",
+        "HELIX-HARNESS L11 product-acceptance.md:23"
+      ],
+      "direct_overlap": "企画/要求の正本・合意revision・責務の出所を示すOS-L2-001とwork/evidence trace（OS-L2-002/007）、さらにHARNESS-L2-003の委任scope/意味変更区分が直接重なる。必須のL1/L3/L10改版順序、個別PO決定、IR収載は残差。",
+      "residual_or_difference": "企画/要求正本と担当責務、work/evidence trace、証拠状態を辿る範囲に限り直接重なる。L1/L3/L10改版、個別PO決定、正本改版、IR収載の必須順序は採択述語から追加しない。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-007",
+        "HARNESS-L2-003"
+      ],
+      "L2_considered_but_not_matched_locators": [
+        "HELIX-OS L2 governance-requirements.md:54-55,441-442"
+      ],
+      "L11_considered_but_not_matched_locators_separate": [
+        "HELIX-OS L11 governance-acceptance.md:213,215"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-004745",
+      "source_path": "docs/governance/candidates/world-governance-requirements.md",
+      "source_line": 62,
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-requirements.md",
+      "source_asset_id": "LEGACY-ASSET-24BF2999B13E304B77D2",
+      "source_file_sha256": "824974d0b8d0231b854d7c0bf01312c6d761dcd9451fd6e18b8f1a7ce113f7eb",
+      "source_line_sha256": "sha256:c0950778627707ea7e9931b7492da72558c612b873a3f8dfa4fbe2f5b723626e",
+      "physical_line_bytes_sha256": "c121120a0ac6f82779b9a888a1627dc0fdb08c69a8f3b80eafbd76745b6a569f",
+      "source_text": "2. read-only棚卸しとsnapshot/receiptを実装する。文書完成とcore完成を分ける。",
+      "proposal_effective_pool": {
+        "member": true,
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "matched_later_overlay_ids": [],
+        "baseline_router_snapshot": {
+          "source_item_id": "LEGACY-CAND-LINE-004745",
+          "source_classification": "requirement_atom",
+          "semantic_family_cluster": "world_governance",
+          "semantic_cluster_id": null,
+          "routing_status": "unknown"
+        },
+        "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-007"
+      ],
+      "L2_direct_predicate_locators": [
+        "HELIX-OS L2 governance-requirements.md:60"
+      ],
+      "L2_comparison_kind": "direct partial predicate",
+      "L11_acceptance_locators_separate": [
+        "HELIX-OS L11 governance-acceptance.md:27"
+      ],
+      "direct_overlap": "read-only棚卸しやsnapshot/receiptそのものではなく、対象要求revisionから検証ログ・証拠へ辿り、欠落/重複/古さを識別してログだけを承認/完了に使わない HELIXOS-L2-007 に部分一致する。",
+      "residual_or_difference": "全Worldを対象にしたread-only inventory、snapshotの母集合/走査範囲、receiptの形式・受領条件、文書完成とcore完成の区別は採択predicateにない。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-007"
+      ],
+      "L2_considered_but_not_matched_locators": [],
+      "L11_considered_but_not_matched_locators_separate": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-004746",
+      "source_path": "docs/governance/candidates/world-governance-requirements.md",
+      "source_line": 63,
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-requirements.md",
+      "source_asset_id": "LEGACY-ASSET-24BF2999B13E304B77D2",
+      "source_file_sha256": "824974d0b8d0231b854d7c0bf01312c6d761dcd9451fd6e18b8f1a7ce113f7eb",
+      "source_line_sha256": "sha256:21788a2f61d2117533b0b8f492fab7c6a80687886758cceef94ca52953992b26",
+      "physical_line_bytes_sha256": "583e7d23afadcec2d8ce58a4c4b9125d9942fcc01e6c8eaa9dc58ef457bc5d61",
+      "source_text": "3. 新規差分をshadow検査し、検証済み範囲の入口統制を有効化する。HWG自身でもdogfoodする。",
+      "proposal_effective_pool": {
+        "member": true,
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "matched_later_overlay_ids": [],
+        "baseline_router_snapshot": {
+          "source_item_id": "LEGACY-CAND-LINE-004746",
+          "source_classification": "requirement_atom",
+          "semantic_family_cluster": "world_governance",
+          "semantic_cluster_id": null,
+          "routing_status": "unknown"
+        },
+        "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirement_ids": [
+        "HARNESS-L2-003",
+        "HELIXSECURITY-L2-008",
+        "HELIXSECURITY-L2-009"
+      ],
+      "L2_direct_predicate_locators": [
+        "HELIX-SECURITY L2 security-requirements.md:140-148"
+      ],
+      "L2_comparison_kind": "direct partial predicate",
+      "L11_acceptance_locators_separate": [
+        "HELIX-SECURITY L11 security-acceptance.md:32"
+      ],
+      "direct_overlap": "検証済みscopeで入口統制を有効化する操作は、target/scope/revision/environment/expiryに限定した個別operation authorityを要する HELIXSECURITY-L2-008 に部分一致する。",
+      "residual_or_difference": "新規差分のshadow検査、scope検証をenforceへ昇格する段階条件、HWG自身のdogfoodは採択されていない。L2-009はfinding発生時のrevoke/quarantine伝播であり、この有効化 gateとの直接一致とは数えない。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXSECURITY-L2-008"
+      ],
+      "L2_considered_but_not_matched_locators": [
+        "HELIX-HARNESS L2 product-requirements.md:54",
+        "HELIX-SECURITY L2 security-requirements.md:150-158"
+      ],
+      "L11_considered_but_not_matched_locators_separate": [
+        "HELIX-SECURITY L11 security-acceptance.md:33"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-004747",
+      "source_path": "docs/governance/candidates/world-governance-requirements.md",
+      "source_line": 64,
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-requirements.md",
+      "source_asset_id": "LEGACY-ASSET-24BF2999B13E304B77D2",
+      "source_file_sha256": "824974d0b8d0231b854d7c0bf01312c6d761dcd9451fd6e18b8f1a7ce113f7eb",
+      "source_line_sha256": "sha256:220b8926a1a0e7a4f379e763878bc192dfa11164d6436cb95162fe0f79add71b",
+      "physical_line_bytes_sha256": "b588ca93ac0dd8fec42bf7005edf3affaec63a25779399faff4f1fe97e14be62",
+      "source_text": "4. 既存機能・責務・Releaseを対応付け、全入口へ拡張する。外部配布は別途検収する。",
+      "proposal_effective_pool": {
+        "member": true,
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "matched_later_overlay_ids": [],
+        "baseline_router_snapshot": {
+          "source_item_id": "LEGACY-CAND-LINE-004747",
+          "source_classification": "requirement_atom",
+          "semantic_family_cluster": "world_governance",
+          "semantic_cluster_id": null,
+          "routing_status": "unknown"
+        },
+        "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirement_ids": [
+        "HARNESS-L2-003",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-006"
+      ],
+      "L2_direct_predicate_locators": [
+        "HELIX-OS L2 governance-requirements.md:55"
+      ],
+      "L2_comparison_kind": "direct partial predicate",
+      "L11_acceptance_locators_separate": [
+        "HELIX-OS L11 governance-acceptance.md:22"
+      ],
+      "direct_overlap": "既存の機能/責務を要求から提供状態までproject traceで対応づけ、提供状態を追跡する HELIXOS-L2-002 に部分一致する。",
+      "residual_or_difference": "全Worldの入口への全量展開、Worldの内部責務/Release catalog、外部配布検収の分担は採択されていない。HELIXOS-L2-006とHARNESS-L2-006はサービス①〜⑦の顧客向け提供predicateであり、product_target未解決のWorld sourceへ直接割り当てない。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-002"
+      ],
+      "L2_considered_but_not_matched_locators": [
+        "HELIX-HARNESS L2 product-requirements.md:54",
+        "HELIX-OS L2 governance-requirements.md:59"
+      ],
+      "L11_considered_but_not_matched_locators_separate": [
+        "HELIX-HARNESS L11 product-acceptance.md:23",
+        "HELIX-OS L11 governance-acceptance.md:26"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-004748",
+      "source_path": "docs/governance/candidates/world-governance-requirements.md",
+      "source_line": 66,
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-requirements.md",
+      "source_asset_id": "LEGACY-ASSET-24BF2999B13E304B77D2",
+      "source_file_sha256": "824974d0b8d0231b854d7c0bf01312c6d761dcd9451fd6e18b8f1a7ce113f7eb",
+      "source_line_sha256": "sha256:3abcc8390d562d32fd875abbe2d109fd79d34f7a21b92a65712d22c9479195bc",
+      "physical_line_bytes_sha256": "db187ded1700cf5123798d74b82c4d60d6a5c3391edec16018738efc1081b60d",
+      "source_text": "段階ごとに責務単位のPLAN/PR、依存閉包、AC、解除条件、観測、rollbackを持つ。既存全件の是正を段階2/3の開始条件にしない。導入例外はscope/owner/期限付きとし、緊急復旧も既存の監査可能な経路を維持する。HWG自身のpolicy変更は旧policyと独立検証で審査し、自己承認しない。",
+      "proposal_effective_pool": {
+        "member": true,
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "matched_later_overlay_ids": [],
+        "baseline_router_snapshot": {
+          "source_item_id": "LEGACY-CAND-LINE-004748",
+          "source_classification": "requirement_atom",
+          "semantic_family_cluster": "world_governance",
+          "semantic_cluster_id": null,
+          "routing_status": "unknown"
+        },
+        "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-004",
+        "HARNESS-L2-003",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005",
+        "HELIXSECURITY-L2-008",
+        "HELIXSECURITY-L2-009"
+      ],
+      "L2_direct_predicate_locators": [
+        "HELIX-OS L2 governance-requirements.md:55,442",
+        "HELIX-HARNESS L2 product-requirements.md:193-195",
+        "HELIX-SECURITY L2 security-requirements.md:140-158"
+      ],
+      "L2_comparison_kind": "direct partial predicate",
+      "L11_acceptance_locators_separate": [
+        "HELIX-OS L11 governance-acceptance.md:22,24,215",
+        "HELIX-HARNESS L11 product-acceptance.md:23-25",
+        "HELIX-SECURITY L11 security-acceptance.md:32-33"
+      ],
+      "direct_overlap": "変更影響の要求・検証・writerだけを再確定して無関係な有効作業を継続するRFA-BR-03（OS-L2-002 / HARNESS-L2-004）と、工程状態/検証義務および操作scope権限・停止条件が直接重なる。",
+      "residual_or_difference": "段階ごとのPLAN/PR/AC/rollbackを全件必須にする規則、独自の例外形式、HWG自身のpolicyを旧policyから独立審査する規則は固定採択されていない。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-002",
+        "HARNESS-L2-003",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005",
+        "HELIXSECURITY-L2-008",
+        "HELIXSECURITY-L2-009"
+      ],
+      "L2_considered_but_not_matched_locators": [
+        "HELIX-OS L2 governance-requirements.md:57"
+      ],
+      "L11_considered_but_not_matched_locators_separate": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-004751",
+      "source_path": "docs/governance/candidates/world-governance-requirements.md",
+      "source_line": 72,
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-requirements.md",
+      "source_asset_id": "LEGACY-ASSET-24BF2999B13E304B77D2",
+      "source_file_sha256": "824974d0b8d0231b854d7c0bf01312c6d761dcd9451fd6e18b8f1a7ce113f7eb",
+      "source_line_sha256": "sha256:d0fb8e62a0f7dbee18e8beb0140c140cffed68e6611de23aed5d0c1b2ad38f21",
+      "physical_line_bytes_sha256": "33036860f726a3033b9fd5daf20f0706d018726eb556f6b2bf5190c68438c18e",
+      "source_text": "- #1500のepoch終了待ちは「先行するread-only／shadow」と「検証済みscopeのみenforce」へ改版する候補である。候補mergeだけでは着手制約が変更されたと扱わない。必要な正本改版・依存改版のreceiptをPhase 1出口に持つ。",
+      "proposal_effective_pool": {
+        "member": true,
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "matched_later_overlay_ids": [],
+        "baseline_router_snapshot": {
+          "source_item_id": "LEGACY-CAND-LINE-004751",
+          "source_classification": "requirement_atom",
+          "semantic_family_cluster": "world_governance",
+          "semantic_cluster_id": null,
+          "routing_status": "unknown"
+        },
+        "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
+      },
+      "route_assessment": "unknown",
+      "compared_adopted_requirement_ids": [
+        "HARNESS-L2-003",
+        "HELIXOS-L2-004"
+      ],
+      "L2_direct_predicate_locators": [],
+      "L2_comparison_kind": "topic-only or no direct predicate identified",
+      "L11_acceptance_locators_separate": [
+        "該当する直接predicate locatorなし"
+      ],
+      "direct_overlap": "直接一致したpredicateはない。比較した候補IDと不一致locatorは別欄に記録し、語彙・話題の近さをrouteにしていない。",
+      "residual_or_difference": "候補mergeだけで#1500の着手制約変更を成立扱いしないという候補手続き。現行L2/L11にreceipt付きPhase 1 exitはない。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [],
+      "L2_considered_but_not_matched_locators": [
+        "HELIX-HARNESS L2 product-requirements.md:193",
+        "HELIX-OS L2 governance-requirements.md:441-442"
+      ],
+      "L11_considered_but_not_matched_locators_separate": [
+        "HELIX-OS L11 governance-acceptance.md:213,215"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-004753",
+      "source_path": "docs/governance/candidates/world-governance-requirements.md",
+      "source_line": 74,
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-requirements.md",
+      "source_asset_id": "LEGACY-ASSET-24BF2999B13E304B77D2",
+      "source_file_sha256": "824974d0b8d0231b854d7c0bf01312c6d761dcd9451fd6e18b8f1a7ce113f7eb",
+      "source_line_sha256": "sha256:86b9dbf5c0bbd50fc469d4351a3ee9747d1d2609f8c726d885a7cab58881e94a",
+      "physical_line_bytes_sha256": "e39924f1d687c8207c246cd18b28fb56dac87452ab7cc2d3ab8a0b6405f76a3f",
+      "source_text": "- enforceの性能・誤停止・見逃し許容値は未確定である。Phase 2でbaselineを測定し、比較窓・測定母集団・許容値・超過時shadow復帰を要件化するまでPhase 3を有効化しない。架空の閾値を補わない。",
+      "proposal_effective_pool": {
+        "member": true,
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "matched_later_overlay_ids": [],
+        "baseline_router_snapshot": {
+          "source_item_id": "LEGACY-CAND-LINE-004753",
+          "source_classification": "requirement_atom",
+          "semantic_family_cluster": "world_governance",
+          "semantic_cluster_id": null,
+          "routing_status": "unknown"
+        },
+        "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
+      },
+      "route_assessment": "unknown",
+      "compared_adopted_requirement_ids": [
+        "HARNESS-L2-005"
+      ],
+      "L2_direct_predicate_locators": [],
+      "L2_comparison_kind": "topic-only or no direct predicate identified",
+      "L11_acceptance_locators_separate": [
+        "該当する直接predicate locatorなし"
+      ],
+      "direct_overlap": "直接一致したpredicateはない。比較した候補IDと不一致locatorは別欄に記録し、語彙・話題の近さをrouteにしていない。",
+      "residual_or_difference": "性能・誤停止・見逃しbaseline、比較窓、母集団、許容値、shadow復帰閾値は採択述語にない。架空の数値閾値を導入しない。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [],
+      "L2_considered_but_not_matched_locators": [
+        "HELIX-HARNESS L2 product-requirements.md:194-196"
+      ],
+      "L11_considered_but_not_matched_locators_separate": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-004754",
+      "source_path": "docs/governance/candidates/world-governance-requirements.md",
+      "source_line": 75,
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-requirements.md",
+      "source_asset_id": "LEGACY-ASSET-24BF2999B13E304B77D2",
+      "source_file_sha256": "824974d0b8d0231b854d7c0bf01312c6d761dcd9451fd6e18b8f1a7ce113f7eb",
+      "source_line_sha256": "sha256:a50a46c2b9b00d046f5c29a9af45e1d6d30630e727d4dc959a6c75fb13224b56",
+      "physical_line_bytes_sha256": "4766ae2103a11b98a680ea4a72b5a0a5758ede2fa759ac556526c4cf6f04ec37",
+      "source_text": "- 永続的な設計選択の根拠はADR等の既存正本、協調連絡は期限付きmemoryとする。memoryやHWG表示から承認を発明しない。",
+      "proposal_effective_pool": {
+        "member": true,
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "matched_later_overlay_ids": [],
+        "baseline_router_snapshot": {
+          "source_item_id": "LEGACY-CAND-LINE-004754",
+          "source_classification": "requirement_atom",
+          "semantic_family_cluster": "world_governance",
+          "semantic_cluster_id": null,
+          "routing_status": "unknown"
+        },
+        "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirement_ids": [
+        "HARNESS-L2-008",
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-007"
+      ],
+      "L2_direct_predicate_locators": [
+        "HELIX-OS L2 governance-requirements.md:54,60",
+        "HELIX-HARNESS L2 product-requirements.md:59"
+      ],
+      "L2_comparison_kind": "direct partial predicate",
+      "L11_acceptance_locators_separate": [
+        "HELIX-OS L11 governance-acceptance.md:21,27",
+        "HELIX-HARNESS L11 product-acceptance.md:28"
+      ],
+      "direct_overlap": "ADR等の長期判断根拠と一時連絡/記録を区別し、記録だけで承認を生成しない点はHARNESS-L2-008とOS-L2-001/007に直接重なる。ADRの必須保存形式・memory期限を候補から継承しない。",
+      "residual_or_difference": "判断の出所/合意revisionを辿り、memoryやログだけで承認を成立させない部分に限り直接重なる。ADR/memoryの保存方法と寿命はこのL2/L11が定義しない。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-007",
+        "HARNESS-L2-008"
+      ],
+      "L2_considered_but_not_matched_locators": [
+        "HELIX-OS L2 governance-requirements.md:435"
+      ],
+      "L11_considered_but_not_matched_locators_separate": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-004755",
+      "source_path": "docs/governance/candidates/world-governance-requirements.md",
+      "source_line": 76,
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-requirements.md",
+      "source_asset_id": "LEGACY-ASSET-24BF2999B13E304B77D2",
+      "source_file_sha256": "824974d0b8d0231b854d7c0bf01312c6d761dcd9451fd6e18b8f1a7ce113f7eb",
+      "source_line_sha256": "sha256:4a3847f8ac85b20a32496530de79ee8b66d22f34902cf2e8de03b400f61e4f90",
+      "physical_line_bytes_sha256": "c56e9f4df665e4eabd6200fd15c6e1c8aff693f8dd51ee3ecdd49f2a5401853d",
+      "source_text": "- 非対象はWeb、World Intelligence、新学習／推論engine、全体書換え、自動削除、無承認publish、既存機構の複製である。",
+      "proposal_effective_pool": {
+        "member": true,
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "matched_later_overlay_ids": [],
+        "baseline_router_snapshot": {
+          "source_item_id": "LEGACY-CAND-LINE-004755",
+          "source_classification": "requirement_atom",
+          "semantic_family_cluster": "world_governance",
+          "semantic_cluster_id": null,
+          "routing_status": "unknown"
+        },
+        "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
+      },
+      "route_assessment": "unknown",
+      "compared_adopted_requirement_ids": [
+        "HARNESS-L2-006"
+      ],
+      "L2_direct_predicate_locators": [],
+      "L2_comparison_kind": "topic-only or no direct predicate identified",
+      "L11_acceptance_locators_separate": [],
+      "direct_overlap": "直接一致したpredicateはない。比較した候補IDと不一致locatorは別欄に記録し、語彙・話題の近さをrouteにしていない。",
+      "residual_or_difference": "Web、World Intelligence、新学習／推論engine、全体書換え、自動削除、無承認publish、既存機構複製の除外対象は、固定採択L2/L11の直接predicateに対応付かない。HARNESS Version 1範囲からWeb完成を除外する別の固定境界に類似して見えても、この比較pinに含まれる採択L2/L11 locatorとはしない。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [],
+      "L2_considered_but_not_matched_locators": [
+        "HELIX-HARNESS L2 product-requirements.md:56"
+      ],
+      "L11_considered_but_not_matched_locators_separate": [
+        "HELIX-HARNESS L11 product-acceptance.md:108-112"
+      ]
+    }
+  ],
+  "counts": {
+    "selected": 30,
+    "proposal_effective_pool_members": 30,
+    "partial_direct_predicate_relation": 21,
+    "true_unknown_or_topic_only": 9,
+    "outside_pool": 0,
+    "prior_overlap": 0,
+    "overlap_with_first30_world_governance_audit": 0
+  },
+  "limitations": [
+    "This is a bounded source-route comparison only. It does not adopt candidates, assign successor IDs, claim whole-family coverage, establish runtime behavior, or assert that all 60 World Governance rows were audited.",
+    "The 30-row source subset is not proof of product target or owner. Product target and disposition remain unresolved in the asset ledger.",
+    "Current-main file hashes are snapshot locators only; they do not supersede the fixed PO-adopted requirement revision pins.",
+    "No archived workflow, CLI, hook, runtime, test or CI was executed."
+  ],
+  "verification": {
+    "static_checks": [
+      "exact source path/line/text and SHA-256 values read from carry-forward source-line inventory; source file bytes match archive SHA and asset ledger",
+      "source line text and physical line bytes rehashed; physical line hash includes ending LF",
+      "all 30 IDs join the #2353 route snapshot as world_governance requirement atoms with unknown route; all are absent from exact-ID overlay source IDs #2356/#2360/#2363/#2366/#2367/#2368/#2369, and remain in the #2370 488-row proposal-effective pool",
+      "first30 #2375 merged audit and this remaining30 selection are pinned by repo-relative path/SHA at the same base; their disjoint union has exactly 60 unique World Governance IDs",
+      "all six adopted blobs hash-match the fixed PO-adopted revision; current-main snapshots are pinned separately by commit/hash",
+      "direct comparison uses actual adopted L2 IDs and separately named L11 acceptance locators; no row is treated as adopted/successor/coverage/implementation",
+      "current-main L2/L11 snapshot hashes are recomputed at abe412c109a0be15ddf2bad2e1fa110d44fa9e80; adopted comparator remains pinned independently at f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "prior pins copied from #2375 merged audit: seven historical route files #2350/#2359/#2364/#2370/#2372/#2373/#2374 with exact source commits/SHA re-read; selected counts 20/20/20/20/51/24/26 sum to 181 unique IDs",
+      "#2375 World Governance first30 JSON is separately pinned as the eighth route-reference artifact at abe412c109a0be15ddf2bad2e1fa110d44fa9e80; first30 plus remaining30 have 60 unique family IDs and intersect prior union by 0"
+    ],
+    "result": "passed"
+  }
+}
