@@ -1376,4 +1376,3 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - **既存要求との境界**：HELIXOS-L2-015のsource identity/revision/digest/authorityとunknown保持を使うが、一般要件を置換しない。HELIXOS-L2-108のartifact→consumer relation projectionおよびL2-109のsource-to-consumer provenance chainを再定義・拡張しない。各候補が別に選択したscope/edgeだけを本入力へ渡せる。severity、優先順位、auto-repair、本文書換え、削除、owner rehome、formal successor、全repo census、未提示consumerの完全性、旧runtime/CLI/test/CIは定めない。
 - **旧source・限定範囲**：`LEGACY-ASSET-D201753B1A0CC6EA3980`の旧DAC-FR-010 line 57一atomをcandidate inputとする。旧DAC-R-010 line 65とDAC-AC-016 line 41は旧source上の差分対象とoracle名を確認する関連contextであり、candidate input atomに含めない。旧DAC-NFR-002 line 64はhistorical/compatibility/referenceの非finding境界の根拠として参照し、その全条件やactive-decision拒否意味はcandidate inputに含めない。`MPR-SH-CONFIRMED-003`を生存させ、旧source owner、formal successor、適用対象、source全体のclosure、採択、実装・実行・受入を未確定に保つ。
 - **version_target**：旧DAC sourceのversion 1.0を参照情報として記録する。現行適用版と候補採択は未確定。
-

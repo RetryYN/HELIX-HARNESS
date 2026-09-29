@@ -6,7 +6,7 @@
   "product": "HELIX-OS",
   "owner_candidate": "PHCAP-15 Deploy第六12旧assetのsource／decision／failure／consumer evidenceと四製品候補のsemantic review（正式owner未解決）",
   "state": "registered",
-  "reason": "PHCAP-15 pool 78件から既レビュー6束（#2001 7件、#2004 12件、SCF-B-0037 3件、SCF-B-0059 third12 12件、SCF-B-0060 next12 12件、SCF-B-0063 fifth12 12件）の58件を除外し、残分母20件から第六12件を選択する。改善backlog、plan、test-design、requirement snapshot、implementation sourceを横断し、source SHAと24 exact spanを静的に保持する。4A7Aのappend-only decision 2件、copy/read-after 1件、consumer refs 2件は履歴として保持するが、current authority、phase admission、product owner、implementation、degradation、failure outcome、consumer closure、acceptance、release、deploymentは未解決のまま残す。残り8件は未レビュー分母として固定する。",
+  "reason": "PHCAP-15 pool 78件から既レビュー6束（#2001 7件、#2004 12件、SCF-B-0037 3件、SCF-B-0059 third12 12件、SCF-B-0060 next12 12件、SCF-B-0063 fifth12 12件）の58件を除外し、残分母20件から第六12件を選択する。改善backlog、plan、test-design、requirement snapshot、implementation sourceを横断し、source SHAと24 exact spanを静的に保持する。4A7Aのappend-only decision 2件、copy/read-after 1件、consumer refs 2件は履歴として保持するが、current authority、phase admission、product owner、implementation、degradation、failure outcome、consumer closure、acceptance、release、deploymentは未解決のまま残す。残り8件は未レビュー分母として固定する。 [2026-09-29 DAC-FR-010 current-pin cascade: upstream current inventory/binding SHA changed only after OS L2/L11 whole-file trailing-blank cleanup and current pin refresh (scaffold/phcap15-deploy-sixth12-research/inventory.json deeacd1c2c36e77e09b1befae02884487c75c4e214f236bb0301bd8df55844b3 -> ec4fe5f0c17347d29a5a8fb7898a562fa1fc79b37aaeecd91c4ec55552b691cd). Binding role, scope, obligations, verification, replacement and authority remain unchanged.]",
   "upstream": [
     {
       "path": "docs/governance/phase-capability-inventory.json",
@@ -65,7 +65,7 @@
     },
     {
       "path": "scaffold/phcap15-deploy-sixth12-research/inventory.json",
-      "sha256": "deeacd1c2c36e77e09b1befae02884487c75c4e214f236bb0301bd8df55844b3",
+      "sha256": "ec4fe5f0c17347d29a5a8fb7898a562fa1fc79b37aaeecd91c4ec55552b691cd",
       "note": "pool/exclusion/selection/source/decision/failure/consumer inventory [2026-09-29 OS-038-002 transitive current-pin refresh: updated changed current input `scaffold/phcap15-deploy-sixth12-research/inventory.json` SHA 40e8e7c3e4e7d70c970e3397b78694a316c51efdaaef0caeb183de4d696d682c -> 74dc932c17b58d2a3d274ab1964c8d8552e08f2981dfabce7a1d57f8fe5a8211. Scaffold role, obligations and authority remain unchanged.] [2026-09-29 R2301-01/02/03 correction: current upstream pin follows reviewed OS-038-002 candidate or PHCAP-20 validator; fixed research input snapshots and adopted revision remain unchanged; authority unaffected.] [2026-09-29 current-pin read-after: scaffold/phcap15-deploy-sixth12-research/inventory.json follows current candidate/register bytes; previous=05c6308b1987b2c53e500baf9337b9678a51c1142334c75bab3c49bfce7417e3; current=deeacd1c2c36e77e09b1befae02884487c75c4e214f236bb0301bd8df55844b3; binding role/obligations/connections/operations/verification/replacement and authority unchanged.]"
     },
     {

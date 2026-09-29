@@ -643,7 +643,7 @@
       {
         "ref_id": "CUR-OS-L2-WORKER-CI",
         "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-        "sha256": "53aeaa520b0ae5f3371b9494ce312d21cef8aa11e1b0f548ce5fe70811cd6439",
+        "sha256": "a36e05f87aa83975e8b344f77d8df0ed2fbd28f3aa19b1a5d22b6e3f85d057fd",
         "line_start": 57,
         "line_end": 61,
         "line_sha256": "13b8ed92c354f97babca39063363561736e965bd1931262ee9c892e5b6ade1ec",

@@ -978,4 +978,3 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **negative fixture**： (a) active consumer pinがcurrent epoch/digestとsource identity/scopeまで一致する、または (b) compatibility/historical/reference artifactにold pinはあるがactive decision consumer edgeが示されない入力を与える。いずれも本候補findingを出さない。artifactの存在・古さ・digest不一致のみで代替findingを推測しない。
 - **unknown fixture**：semantic epoch evidenceを欠落させた入力、またはsource revision/digest、active性、consumer edge、scopeの一つをmissing/unknown/stale/conflictにした入力を与える。epoch変更・stale・適合のいずれも推定せずunknownを保持する。digest差だけでpositiveへ昇格しない。
 - **受入境界**：fixturesは明示入力1 source/consumer関係の結果を静的に照合する。severity、全consumer列挙、リポジトリcensus、findingの分類/route追加、owner移管、ticket発行、修復、削除、要求採択、L3承認を評価しない。旧DAC-R-010/DAC-AC-016の記述は期待結果の根拠として参照するだけで、旧test/runtime/CLI/CIは実行しない。
-
