@@ -1,0 +1,253 @@
+{
+  "schema_version": "legacy-candidate-two-row-classification-proposal/v1",
+  "audit_id": "legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30",
+  "base_commit": "f89f71e0371440e9e10636499192c2311872b024",
+  "authority_effect": "none",
+  "audit_mode": "read_only_two_row_classification_proposal",
+  "scope": {
+    "source_ids": [
+      "LEGACY-CAND-LINE-000841",
+      "LEGACY-CAND-LINE-000857"
+    ],
+    "source_asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+    "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+    "source_rows": [
+      {
+        "source_id": "LEGACY-CAND-LINE-000841",
+        "source_line": 32,
+        "current_classification_at_2353_baseline": {
+          "classification": "explanation",
+          "condition_subtype": null,
+          "route_status": "not_condition"
+        },
+        "effective_state_after_2353_2356_2360": {
+          "classification": "explanation",
+          "condition_subtype": null,
+          "route_status": "not_condition",
+          "reason": "#2356 and #2360 exact-ID overlays do not include 000841; #2361 cumulative recount establishes 544 product atom/unknown rows."
+        },
+        "proposed_classification": {
+          "classification": "condition",
+          "condition_subtype": "product_requirement_atom",
+          "route_status": "unknown"
+        },
+        "classification_action": "reclassify_classification_and_add_product_unknown_row"
+      },
+      {
+        "source_id": "LEGACY-CAND-LINE-000857",
+        "source_line": 56,
+        "current_classification_at_2353_baseline": {
+          "classification": "explanation",
+          "condition_subtype": null,
+          "route_status": "not_condition"
+        },
+        "effective_state_after_2353_2356_2360": {
+          "classification": "explanation",
+          "condition_subtype": null,
+          "route_status": "not_condition",
+          "reason": "#2356 and #2360 exact-ID overlays do not include 000857; #2361 cumulative recount establishes 544 product atom/unknown rows."
+        },
+        "proposed_classification": {
+          "classification": "condition",
+          "condition_subtype": "product_requirement_atom",
+          "route_status": "unknown"
+        },
+        "classification_action": "reclassify_classification_and_add_product_unknown_row"
+      }
+    ],
+    "classification_basis_commit": "97672630b7de70fd4433827730c390cbabd90a99",
+    "bounded_two_row_scope": true,
+    "no_adoption_successor_coverage_or_closure_claim": true
+  },
+  "source_evidence": {
+    "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+    "rows": [
+      {
+        "source_id": "LEGACY-CAND-LINE-000841",
+        "source_line": 32,
+        "source_line_sha256": "sha256:0c2279d2b25a0425095a2020912d997e88582a1b67ecfac2dfc044ee5013feb5",
+        "physical_line_bytes_sha256": "sha256:c49910ddff2c15e8e2e9f4c0b7ee2b91528e4d5001abce9c07033ac46e13a009",
+        "exact_source_text": "既に存在する **Screen Applicability / Prototype・Walkthrough / Design Registry / UI Domain Pattern / Evidence Binding** を正本として再利用し、現在弱い次の3領域だけを強化する。"
+      },
+      {
+        "source_id": "LEGACY-CAND-LINE-000857",
+        "source_line": 56,
+        "source_line_sha256": "sha256:07d75a8d2acdb6f1a5f354dd87f376bac0499114ba5ddbb9532fe2bb07ab55e3",
+        "physical_line_bytes_sha256": "sha256:e855306302133f887359f72c0da8667236963509e71c41c6f425731bcfa8d2b3",
+        "exact_source_text": "**禁止:** 同等責務の別Engine、別Registry、別Prototype Gate、別Research subsystemを並立させること。"
+      }
+    ],
+    "source_authority_state": "historical_candidate",
+    "target_authority_state": "draft_candidate",
+    "atomization_status": "preserved_pending_atomization",
+    "successor_requirement_ids": []
+  },
+  "classification_reason": "000841 directs reuse of existing named mechanisms as the source of truth and limits strengthening to three weak areas; 000857 explicitly prohibits parallel mechanisms with equivalent responsibilities. Together with the existing #2367 nonreplacement/integration atom, the two rows express the same product/system design boundary. Both remain draft-candidate/unknown; no adoption or successor is inferred.",
+  "proposed_atom_relation": {
+    "existing_atom_id": "DGH-intake.nonreplacement-integration-constraint",
+    "existing_atom_source_ids": [
+      "LEGACY-CAND-LINE-000840",
+      "LEGACY-CAND-LINE-000850",
+      "LEGACY-CAND-LINE-000851",
+      "LEGACY-CAND-LINE-000852",
+      "LEGACY-CAND-LINE-000853",
+      "LEGACY-CAND-LINE-000854",
+      "LEGACY-CAND-LINE-000855",
+      "LEGACY-CAND-LINE-000856"
+    ],
+    "proposed_atom_source_ids": [
+      "LEGACY-CAND-LINE-000841",
+      "LEGACY-CAND-LINE-000840",
+      "LEGACY-CAND-LINE-000850",
+      "LEGACY-CAND-LINE-000851",
+      "LEGACY-CAND-LINE-000852",
+      "LEGACY-CAND-LINE-000853",
+      "LEGACY-CAND-LINE-000854",
+      "LEGACY-CAND-LINE-000855",
+      "LEGACY-CAND-LINE-000856",
+      "LEGACY-CAND-LINE-000857"
+    ],
+    "semantic_relation": "000840 prohibits rebuilding the existing Design Harness; 000841 directs reuse of named existing mechanisms and restricts strengthening to the three weak areas; 000850 directs reuse of verified integration targets and 000851–856 list them; 000857 explicitly prohibits parallel equivalents. Together they state the same nonreplacement design boundary.",
+    "source_change": "This is a separate proposal only. The merged #2367 audit and its exact 8-member source list remain immutable.",
+    "proposed_added_source_ids": [
+      "LEGACY-CAND-LINE-000841",
+      "LEGACY-CAND-LINE-000857"
+    ]
+  },
+  "count_impact": {
+    "two_row_delta": {
+      "condition": 2,
+      "explanation": -2,
+      "product_requirement_atom": 2,
+      "management_process_condition": 0,
+      "product_route_unknown": 2
+    },
+    "current_effective_basis_after_2353_2356_2360": {
+      "condition": 901,
+      "explanation": 2928,
+      "product_requirement_atom": 893,
+      "management_process_condition": 7,
+      "concept_condition": 1,
+      "product_route_unknown": 544
+    },
+    "if_this_two_row_proposal_alone_is_applied": {
+      "condition": 903,
+      "explanation": 2926,
+      "product_requirement_atom": 895,
+      "management_process_condition": 7,
+      "concept_condition": 1,
+      "product_route_unknown": 546
+    },
+    "merged_audit_proposal_chain": {
+      "after_2361_current_effective_recount": 544,
+      "after_2363_proposal_delta": -12,
+      "after_2366_proposal_delta": -11,
+      "after_2367_51_row_proposal_delta": -14,
+      "after_2368_47_row_proposal_delta": -21,
+      "before_000841_000857_proposal": 486,
+      "this_two_row_proposal_delta": 2,
+      "after_000841_000857_proposal": 488,
+      "equation": "544 - 12 (#2363) - 11 (#2366) - 14 (#2367 51-row proposal) - 21 (#2368 47-row proposal) + 2 (000841/000857 proposal) = 488",
+      "status": "Proposal arithmetic only; #2363/#2366/#2367/#2368 are classification-audit proposals, not effective authority overlays. This bounded two-row correction adds two proposal counts and does not establish adoption, handoff, successor assignment, coverage, resolution, or closure."
+    }
+  },
+  "pinned_inputs": [
+    {
+      "role": "#2353 baseline row classification",
+      "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c"
+    },
+    {
+      "role": "#2356 classification overlay membership",
+      "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164"
+    },
+    {
+      "role": "#2360 classification overlay membership",
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+      "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb"
+    },
+    {
+      "role": "#2361 merged effective route recount",
+      "commit": "132a56f3f2cbb1d02ad3bc08bab4f23ef93369cc",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-stage5-recount-after-2353-2356-2360-2026-09-29.json",
+      "sha256": "e29aadd8c84dda8fcfca65010ffa62331b6631ffce3ac22ef5d174270bb92b20"
+    },
+    {
+      "role": "#2363 nonreplacement analog and proposal count",
+      "commit": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+      "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384"
+    },
+    {
+      "role": "#2366 proposal count context",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+      "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6"
+    },
+    {
+      "role": "immutable merged #2367 classification proposal JSON",
+      "commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
+      "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d"
+    },
+    {
+      "role": "immutable merged #2367 classification proposal MD",
+      "commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.md",
+      "sha256": "3add9db6bddc4d63e1c573586d633fe662c5562c687c59fdf208ca9a0740064b"
+    },
+    {
+      "role": "source-line identity/carry-forward ledger",
+      "commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+    },
+    {
+      "role": "legacy asset disposition ledger",
+      "commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "role": "archive manifest",
+      "commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
+      "path": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+      "sha256": "10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6"
+    },
+    {
+      "role": "exact old intake source",
+      "commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+    },
+    {
+      "role": "merged #2368 47-row classification proposal JSON",
+      "commit": "f89f71e0371440e9e10636499192c2311872b024",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
+      "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95"
+    },
+    {
+      "role": "merged #2368 47-row classification proposal MD",
+      "commit": "f89f71e0371440e9e10636499192c2311872b024",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.md",
+      "sha256": "e4d2696cec0bb49078fd5bb2a570dce414e8b5ad4729dde20170d5a9ee77b327"
+    }
+  ],
+  "limitations": [
+    "This proposal is bounded to 000841 and 000857 only; other adjacent source rows are not classified or included in the count.",
+    "No source adoption, requirement registration, successor assignment, coverage, L3 transition, implementation, acceptance, or closure is inferred.",
+    "The exact merged #2367 MD/JSON are pinned as immutable evidence; this new proposal does not rewrite them.",
+    "The merged #2368 47-row audit is pinned for the current proposal-count context; its sample excludes 000841 and 000857. The separate #2364 route sample is not a classification or authority input."
+  ],
+  "validation": {
+    "source_file_line_and_physical_bytes_rechecked": true,
+    "baseline_rows_000841_000857_rechecked": true,
+    "baseline_and_merge_pins_rechecked": true,
+    "two_row_count_arithmetic_rechecked": true,
+    "authority_effect_none": true
+  }
+}
