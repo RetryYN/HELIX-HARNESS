@@ -1,12 +1,17 @@
 # 現行MPR候補8件のPO判断影響追補（2026-09-29）
 
-基準tree: `d8c39fd06f51bc0137c63db7fd9c6facf5974cfb`（作業開始時の`origin/main`）。本書は[既存の8件packet](po-decision-packet-live-8-candidates-supplement-2026-09-29.md)を更新せず、8候補それぞれについて採択・保留・不採択の意味、推奨方向、残る具体的判断を補うappend-only監査worksheetである。
+基準tree: `693a0e3d5dd00bf3eb4db6c3267ccadcff5ff83b`（PR #2346 merge後の`origin/main`）。本書は[既存の8件packet](po-decision-packet-live-8-candidates-supplement-2026-09-29.md)を更新せず、8候補それぞれについて採択・保留・不採択の意味、推奨方向、残る具体的判断を補うappend-only監査worksheetである。
 
 本書はPO判断を記録しない。候補は最新登録の`registered_proposal`／`authority_effect: none`のままであり、採択・保留・不採択、L3承認、実装許可、要求Stage完了、版変更を生成しない。採択推奨は候補意味だけの提案で、実装やreceipt発行許可ではない。
 
 ## 対象と範囲
 
-対象は既存8件packetに固定された8 identityのみ。旧17件packet、旧25件union/effective-disposition censusは歴史的資料として保持し、本追補で現在の完全な未分類件数を主張しない。17件側の候補別推奨・選択肢影響には別の後続監査が必要である。HELIXOS-L2-104は対象外。本書はStage 6完了を示さない。
+対象を次の二つのworksheet集合に固定する。
+
+- **17件集合:** PR #2346でmerge済みの[17候補別選択肢・推奨追補](po-decision-packet-live-17-options-supplement-2026-09-29.md)の対象。`HARNESS-L2-049`, `HARNESS-L2-055`, `HARNESS-L2-056`, `HARNESS-L2-057`, `HARNESS-L2-058`, `HARNESS-L2-059`, `HARNESS-L2-060`, `HARNESS-L2-061`, `HELIXLABO-L2-070`, `HELIXOS-L2-034`, `HELIXOS-L2-054`, `HELIXOS-L2-055`, `HELIXOS-L2-101`, `HELIXOS-L2-102`, `HELIXOS-L2-103`, `HELIXOS-L2-104`, `HELIXOS-L2-105`。
+- **8件集合:** 先行8件packetと本追補の対象。`HARNESS-L2-062`, `HELIXLABO-L2-071`, `HELIXOS-L2-106`, `HELIXOS-L2-107`, `HELIXOS-L2-108`, `HELIXOS-L2-109`, `HELIXOS-L2-110`, `HELIXOS-L2-111`。
+
+二集合は重複せず、計25 identityである。この25はworksheet対象の合計であり、現在の完全な未分類MPR件数を表さない。旧25件union/effective-disposition censusを現行censusとして扱わない。HELIXOS-L2-104は17件集合のみで、本8件判断には含めない。本書はStage 6完了を示さない。
 
 各候補のL2/L11 section SHA-256、現行ファイルSHA-256、最新MPR row、source atom set、coverage receipt、旧sourceとasset IDは[機械可読追補](po-decision-packet-live-8-candidates-impact-followup-2026-09-29.json)に固定した。coverage `no_loss`は採択判断ではない。候補の版表記も候補sectionどおりに保つ。071は`version_target: 1.0`、106/110は旧source版1.0を参照情報に留め現行適用版を未確定、108/109/111は未指定と明記、062/107はsectionに版指定がない。本追補は版を推定・既定化・移行しない。
 
@@ -150,8 +155,8 @@
 
 ## 静的検証
 
-- 基準treeのHEADとworktreeは`d8c39fd06f51bc0137c63db7fd9c6facf5974cfb`。
+- `origin/main`基準treeは`693a0e3d5dd00bf3eb4db6c3267ccadcff5ff83b`（PR #2346 merge commit）。候補source pinsはこのtree上で再照合した。
 - 8件それぞれの最新registration ID、`registered_proposal`、`authority_effect: none`、L2/L11 section digestを現物照合。
 - MPR register全体、各対象L2/L11 file、coverage receipt、source atom set、LABO PO decision recordのexact SHA-256をJSONに記録。
-- 8 identityのみを照合し、旧17件packetや現行完全censusとのunion照合は行っていない。
+- PR #2346の17 identityと本worksheetの8 identityを集合照合し、交差0・worksheet union 25を確認。現在の完全censusとは照合していない。
 - JSON parse、pins/hash再計算、MD/JSON候補ID・推奨・影響内容一致、Markdown相対リンク存在、diff whitespaceを検証する。旧runtime/test/CIは実行しない。
