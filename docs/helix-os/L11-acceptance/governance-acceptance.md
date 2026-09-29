@@ -880,3 +880,12 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **拒否例**：Issueがready表示でもticket／assignment authorityがない、対象revision／scopeが異なる、または適用されるReverse／Redesign／pair-freezeのいずれかが未完了のfixtureでは、tool起動前にclaimを拒否しblocked reasonと未完義務を記録する。期限切れまたは別assignmentに属するleaseを使ったclaimも拒否する。
 - **unknown例**：ready判定、authority、scope、revision、lease、またはすでに適用すると確定した工程の状態がmissing／unknown／conflict／staleなら、OSは成立を推測せず理由付きで保留し、ticket発行元または該当ownerへ返す。工程の適用自体が未定義なら、適用済み／非適用のどちらにも推定で分類せず、既存authority ownerへ照会する。これを全scopeで工程完了を要求する新gateとして扱わない。
 - **責務境界と限界**：Codex固有実行器を検査せず、OSが割り当てるprovider中立Workerとして照合する。旧FR-08の工程一律条件から現行のscope適用条件への差分を受け入れ、全scopeの工程適用規則をこの候補で新設しない。lease時間、更新、競合解決、実runtimeのtool起動動作は既存契約または別の対象revisionに委ねる。blocked receiptやIssue statusは承認・要求採択・完了を生成しない。旧HST-CASE-002-10は読取り専用のnegative oracle参照であり実行しない。
+
+### HELIXOS-L2-101 finding disposition receiptと異議連結の受入候補（未実行）
+
+- **対応要求・状態**：HELIXOS-L2-101（HELIX-OS単体候補、未採択）。静的oracle候補であり、要求採択、実装・実行、Issue操作またはformal successor割当を示さない。
+- 旧sourceが名指すClaude providerの固定を受入条件にしない。作成側と別のreviewer identity・context・authority・routeがある例はreview役割を満たし、providerが同じという理由だけでは失敗にしない。providerが違うだけでは独立review合格にしない。
+- 各receipt候補は入力finding identity、source/対象revision、evidence参照、affected layer、提案された分類、独立review参照を相互に追跡できる。いずれかが不足・stale・競合する例は未解決のまま示し、accepted receiptとして扱わない。
+- 旧HIL-FR-09の非actionable分類として扱われる例でも、元findingへの参照、独立review結果、appeal経路を保持し、findingを削除・不可視化・終端化しない。appealが行われたとき先行receiptを上書きせず履歴を追跡できる。
+- receiptやIssue projectionだけから要求採択、Issue完了、取消権限または下流実行許可を作らない。六分類のうちどれが非actionableかと各分類の確定者が未決である例は、追加判定をでっち上げず未決として返す。
+- 参照oracle：旧`HST-CASE-005-05`（`infinity-loop-system-assertion-cases.md:367`）は証拠付き非終端receiptとappeal routeの設計条件を記す。旧`HOT-HIL-36`（`L1-infinity-loop-operational-test-design.md:63`）はdirectiveにも適用する条件を含むため、findingへ持ち込む意味を区別する。いずれも実行証拠ではない。

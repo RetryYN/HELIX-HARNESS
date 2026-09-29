@@ -1,7 +1,7 @@
 {
   "receipt_id": "HIL-FR-09-DISPOSITION-COVERAGE-2026-09-29",
   "receipt_status": "bounded_source_atom_partition",
-  "source_revision": "26e547515d620bb53036c2f085cfc3f0293888d4",
+  "source_revision": "8b8cdbbef09dc1d8ded6f6fc9a19645ee7091e10",
   "source_holding_registration_id": "MPR-SH-DIRECTIVE-DISPOSITION-002",
   "source_requirement_holding_ref": "MPR-SH-IR-003#HIL-FR-09 (legacy IR downstream pair remains pending; no formal successor assignment)",
   "legacy_requirement_id": "HIL-FR-09",
@@ -10,7 +10,7 @@
   "source_atom_file": "docs/governance/audits/requirement-registration/hil-fr09-disposition-source-atoms-2026-09-29.jsonl",
   "source_atom_file_sha256": "sha256:1c55edfd841c923942028d5a037d5f9bcbb62b07143d1ab671d6e1530a453e9e",
   "source_atom_count": 16,
-  "source_atom_scope": "旧HIL-FR-09 line 99のみを15個の非重複意味atomへ分割。Legacy IR record、system contract、assertion cases、HOTはcontext/oracle referenceでありsource atom計数には含めない。",
+  "source_atom_scope": "旧HIL-FR-09 line 99のみを16個の非重複意味atomへ分割。Legacy IR record、system contract、assertion cases、HOTはcontext/oracle referenceでありsource atom計数には含めない。",
   "source_line": {
     "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
     "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
@@ -35,7 +35,8 @@
         "FR09-TYPE-TELEMETRY-L0099"
       ],
       "source_atom_set_digest": "sha256:9762e53e451312098b79c4c798a0adc18594734f93c670d68dacc4bf8c9f74b8",
-      "source_atom_count": 8
+      "source_atom_count": 8,
+      "paired_l11_section_digest": "sha256:d874b30eae749d7b219a85bd6966f2e24035592253576361f0035e218c849099"
     },
     "HELIXOS-L2-101": {
       "candidate_semantic_digest": "sha256:d158873aeaf1ee443d6511d01a60e9fb764cdec05cd5aa2991e62635bcc2fb95",
@@ -52,7 +53,8 @@
         "FR09-OUTPUT-TYPED-NONTERMINAL-RECEIPT-L0099"
       ],
       "source_atom_set_digest": "sha256:682fc514631a7b62e50816a27b90a81bc3bbd8cc080e18055a60b4662805f3a1",
-      "source_atom_count": 8
+      "source_atom_count": 8,
+      "paired_l11_section_digest": "sha256:b420614d1948b68797eafd826b6609753bab358bfa3696a7ec5e0e6f1e26c822"
     }
   },
   "preserved_pending_atom_refs": [],
