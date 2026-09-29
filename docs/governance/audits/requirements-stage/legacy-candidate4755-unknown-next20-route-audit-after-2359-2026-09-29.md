@@ -5,15 +5,15 @@
 - authority effect: `none`。relation評価だけを記録し、採択・successor・coverage/closure・受入・Stage 5完了は生成しない。
 - 入力pin: #2353/#2356/#2360/#2361/#2363/#2366とsource router・carry-forward等のexact JSON/SHAはJSON台帳参照。#2366 merge時点で固定し、後続overlayは織り込まない。
 - 選定: effective `condition/product_requirement_atom/unknown` 521件から、#2350 original selected20と、#2361が記録する訂正後#2359 selected20を除外。重複0、eligible 500件。numeric source ID順で先頭20件。
-- #2359 merged sampleの履歴は pin しているが、除外集合は誤選定を含む旧#2359 HEADではなく、#2361で訂正された `updated_selected_ids`。
+- #2359 merged sampleの履歴はpinしているが、除外集合は訂正後の#2361 `updated_selected_ids`。routeは同merged #2359のadopted-predicate criterionを20行すべてへ適用した。
 
-|順|Source ID|旧source行|relation|provisional|
+|順|Source ID|旧source行|relation|atom境界暫定|
 |---:|---|---|---|---|
-|1|`LEGACY-CAND-LINE-000501`|`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md:30`|`true_unknown`|no|
+|1|`LEGACY-CAND-LINE-000501`|`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md:30`|`adopted_relevant_partial`|no|
 |2|`LEGACY-CAND-LINE-000502`|`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md:31`|`adopted_relevant_partial`|no|
 |3|`LEGACY-CAND-LINE-000528`|`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md:31`|`adopted_relevant_partial`|no|
 |4|`LEGACY-CAND-LINE-000532`|`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md:38`|`unadopted_candidate_relation_only`|no|
-|5|`LEGACY-CAND-LINE-000533`|`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md:39`|`unadopted_candidate_relation_only`|no|
+|5|`LEGACY-CAND-LINE-000533`|`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md:39`|`adopted_relevant_partial`|no|
 |6|`LEGACY-CAND-LINE-000542`|`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md:53`|`true_unknown`|yes|
 |7|`LEGACY-CAND-LINE-000543`|`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md:54`|`true_unknown`|yes|
 |8|`LEGACY-CAND-LINE-000545`|`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md:56`|`true_unknown`|yes|
@@ -30,17 +30,17 @@
 |19|`LEGACY-CAND-LINE-000665`|`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md:92`|`true_unknown`|no|
 |20|`LEGACY-CAND-LINE-000667`|`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md:95`|`true_unknown`|no|
 
-内訳: adopted relevant partial 2、unadopted candidate relation only 2、true unknown 16。fresh 12件（000501, 000598, 000603, 000613, 000633, 000638, 000653, 000661, 000663, 000664, 000665, 000667）はすべてtrue unknown。
+内訳: adopted relevant partial 4、unadopted candidate relation only 1、true unknown 15。
 
 ## 判断境界
 
-- 000501の旧sourceはcancel/supersede/handoffの理由と対象を後から再構築できることを求める。新世代crosswalkはCIG-BR-03/CIG-R-04からNCI-OS-003/004へのfamily-level候補対応を示すが、source atom固有のrelationや採択IDは示さないためtrue unknownを維持した。
-- 新規選定のうち000598、000613、000633、000638、000653、000661、000663、000664、000665、000667はrouterの意味確認でatom固有のrouteなし。000603にもcurrent/candidate/adopted IDはなく、別のbounded registration receiptは`authority_effect:none`でありrouteを決めない。
-- 既存8件のrelation結論は前sampleから維持した。source text、source file SHA、line text SHA、physical-line bytes SHA、carry-forward stateとatomizationはJSONへ固定した。
-- classification/atom境界の再確認印は000542、000543、000545、000546に限り維持した。これはこのauditで分類変更する提案ではない。
+- adopted relevant partialは、採択済みL2/L11の具体的source predicateとの狭い関係に限る。000501はL2-019/023のevidence-bound reconstruction/handoff、000528はL2-019/020のstale evidence/current verification区別、000533はL2-023のhandoff/unfinished-duty predicateに限り部分relationとした。cancel/supersedeの意味、schedule置換、generation予約、CIG固有receiptは残余としている。
+- 000542、000543、000545、000546は#2363でcondition/product_requirement_atom/unknownとして保持されたため、ここでの再分類候補一覧から外した。#2363由来のatom boundary暫定印は000545のみ保持する。
+- 000501のcrosswalk mappingはCIG familyからdraft candidateへの関係であり、採択relationを作らない。#2363 route history、000603のbounded receiptも採択・coverageを作らない。2026-09-30のOS-104 review referenceは#2366 cutoff外で、authority decision record pinがないため対象外。
+- 既存8件のrouteもuniform criterionで再確認し、matched predicateとresidualをJSONの各rowに記録した。全source text、source file SHA、line text SHA、physical-line bytes SHAはJSONに固定した。
 
 ## 静的確認
 
 - #2353 full row_recordsへ#2356/#2360/#2363/#2366をsource ID単位で適用し、521行を再計算。#2350と#2361 updated #2359のselected20を除外し、eligible 500件とnext20を再計算した。
-- 20件の全source ID、archive file digest、text SHA、physical-line SHAを照合した。旧runtime/CLI/test/hook/CIは実行していない。
+- 20件の全source ID、archive file digest、text SHA、physical-line SHAを照合した。JSON/MD relation countsとrow labelsを照合し、旧runtime/CLI/test/hook/CIは実行していない。
 - この選定は#2366 merge cutoffの記録。これ以後の母集団変更を反映したnext20を主張しない。

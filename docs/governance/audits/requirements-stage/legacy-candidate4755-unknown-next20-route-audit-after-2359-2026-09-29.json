@@ -259,12 +259,51 @@
       "line": 86,
       "decision_id": "MPR-RC-HELIXINTELLIGENCE-L2-073-002",
       "relation_to_selected_rows": "none asserted"
+    },
+    "HELIXOS-L2-019": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "lines": [
+        682,
+        685,
+        686,
+        687,
+        689
+      ],
+      "accepted_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "authority_decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "decision_line": 48
+    },
+    "HELIXOS-L2-020": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "lines": [
+        692,
+        695,
+        696,
+        697,
+        699
+      ],
+      "accepted_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "authority_decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "decision_line": 48
+    },
+    "HELIXOS-L2-023": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "lines": [
+        722,
+        725,
+        726,
+        727,
+        729
+      ],
+      "accepted_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "authority_decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "decision_line": 48
     }
   },
   "authority_context": {
     "accepted_L2_L11_state": "PO decisions for the fixed eight-mechanism L2/L11 revisions are read by exact identity/revision, not candidate frontmatter. HARNESS-L2-005 partial comparisons below are bounded to that accepted revision.",
     "L2_073_caveat": "HELIXINTELLIGENCE-L2-073 exact L2/L11 revision is adopted by MPR-RC-HELIXINTELLIGENCE-L2-073-002 (2026-09-29 decision table line 86); stale candidate/frontmatter text does not negate that adoption. None of these 20 selected rows is AAFD-R-04 000142/000143; this adoption does not create a relation for these rows.",
-    "candidate_boundary": "docs/helix-os/candidates/next-generation-ci-requirements.md is draft_candidate/awaiting_human_approval; its NCI-OS content is used only for candidate_relation_only, never as adopted coverage."
+    "candidate_boundary": "docs/helix-os/candidates/next-generation-ci-requirements.md is draft_candidate/awaiting_human_approval; its NCI-OS content is used only for candidate_relation_only, never as adopted coverage. The 2026-09-30 OS-104 review reference is outside this #2366 cutoff and lacks a pinned authority decision record."
   },
   "relation_labels": [
     "adopted_relevant_partial",
@@ -272,9 +311,9 @@
     "true_unknown"
   ],
   "counts": {
-    "adopted_relevant_partial": 2,
-    "unadopted_candidate_relation_only": 2,
-    "true_unknown": 16
+    "adopted_relevant_partial": 4,
+    "unadopted_candidate_relation_only": 1,
+    "true_unknown": 15
   },
   "rows": [
     {
@@ -290,15 +329,28 @@
       "effective_classification": "condition",
       "condition_subtype": "product_requirement_atom",
       "effective_route_status": "unknown",
-      "relation_assessment": "true_unknown",
-      "current_relation_evidence": "Router found no atom-specific current or exact later-candidate relation. The current crosswalk maps family CIG-BR-03/CIG-R-04 to candidate NCI-OS-003/004 only; this family-level mapping is not an atom-specific route.",
-      "residual": "The line requires reconstructing cancel/supersede/handoff reason and target. The crosswalk family mapping is draft candidate context only, with no exact source-atom relation or adopted ID; route remains true_unknown.",
-      "current_authority_refs": [],
+      "relation_assessment": "adopted_relevant_partial",
+      "current_relation_evidence": "HELIXOS-L2-019/L11 preserves provenance and reconstructable evidence; HELIXOS-L2-023/L11 binds handoff evidence to revision, scope, unfinished duties, stop reason and causal evidence.",
+      "residual": "Matched only the adopted evidence-based handoff/reconstruction predicate. The source-specific distinction among cancel, supersede and handoff, the exact target, generation reservation, and CIG terminal receipt semantics remain unadopted; no CIG-specific supersede behavior is claimed.",
+      "current_authority_refs": [
+        {
+          "id": "HELIXOS-L2-019"
+        },
+        {
+          "id": "HELIXOS-L2-023"
+        }
+      ],
       "classification_atom_boundary_provisional": false,
       "provisional_reclassification_candidate": null,
       "carry_forward_state": "draft_candidate",
       "atomization_status": "preserved_pending_atomization",
-      "successor_requirement_ids": []
+      "successor_requirement_ids": [],
+      "candidate_only_refs": [
+        "NCI-OS-003",
+        "NCI-OS-004"
+      ],
+      "matched_adopted_predicate": "HELIXOS-L2-019/L11 requires provenance and reconstructable evidence; HELIXOS-L2-023/L11 binds a handoff to revision, causal identity, scope, unfinished duties, stop reason and evidence. This matches only the evidence-bound reconstruction/handoff predicate, not CIG-specific cancel/supersede semantics.",
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion"
     },
     {
       "source_id": "LEGACY-CAND-LINE-000502",
@@ -328,7 +380,9 @@
       "provisional_reclassification_candidate": null,
       "carry_forward_state": "draft_candidate",
       "atomization_status": "preserved_pending_atomization",
-      "successor_requirement_ids": []
+      "successor_requirement_ids": [],
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
+      "matched_adopted_predicate": "HARNESS-L2-005/HCV4-L11-003 preserve the selected verification duty/oracle and do not permit missing, cancelled, or unrelated results to satisfy it. This matches the source prohibition on reducing required verification or treating a cancelled run as success; cross-event-class reuse remains residual."
     },
     {
       "source_id": "LEGACY-CAND-LINE-000528",
@@ -344,21 +398,23 @@
       "condition_subtype": "product_requirement_atom",
       "effective_route_status": "unknown",
       "relation_assessment": "adopted_relevant_partial",
-      "current_relation_evidence": "HARNESS-L2-005 / HCV4-L11-003",
-      "residual": "検証選択をrisk・変更内容に合わせrequired obligationsを維持する採択済み契約と部分的に対応する。schedule/headごとの置換規則、cancel-in-progress意味、event-specific orderingは残る。",
+      "current_relation_evidence": "HELIXOS-L2-019/L11 distinguishes stale evidence from success; HELIXOS-L2-020/L11 binds a current result to exact HEAD, oracle, environment and run identity and distinguishes stale/interrupted states.",
+      "residual": "Matched only the predicate that stale/older evidence cannot appear as current successful evidence. The source-specific HEAD-versus-schedule replacement eligibility, schedule ordering, queue/TTL, and cancel-in-progress semantics are not adopted.",
       "current_authority_refs": [
         {
-          "id": "HARNESS-L2-005"
+          "id": "HELIXOS-L2-019"
         },
         {
-          "id": "HCV4-L11-003"
+          "id": "HELIXOS-L2-020"
         }
       ],
       "classification_atom_boundary_provisional": false,
       "provisional_reclassification_candidate": null,
       "carry_forward_state": "draft_candidate",
       "atomization_status": "preserved_pending_atomization",
-      "successor_requirement_ids": []
+      "successor_requirement_ids": [],
+      "matched_adopted_predicate": "HELIXOS-L2-019/L11 separates stale or unexecuted evidence from success; HELIXOS-L2-020/L11 binds results to exact HEAD/run identity and marks stale/interrupted state. This matches only the source concern that old evidence not be treated as current verification.",
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion"
     },
     {
       "source_id": "LEGACY-CAND-LINE-000532",
@@ -374,7 +430,7 @@
       "condition_subtype": "product_requirement_atom",
       "effective_route_status": "unknown",
       "relation_assessment": "unadopted_candidate_relation_only",
-      "current_relation_evidence": "NCI-OS-004 / NCI-OS-005 / NCI-OS-008 (candidate only)",
+      "current_relation_evidence": "NCI-OS-004 / NCI-OS-005 / NCI-OS-008 (candidate only) No concrete predicate in the pinned adopted L2/L11 revisions has the same source meaning; this remains candidate-only under the shared #2359 criterion.",
       "residual": "現行draftの新世代CI候補はfailure/cancel状態、required oracle維持、verification obligation relationを候補として扱うが、採択関係ではない。newer main push supersession条件、generation確保、obligation handoff receipt、terminal read-afterは候補にも個別化されず残る。採択OS L2-008/011のCI実行・base再計画の一般契約はあるが、この旧atomへのexact event/supersession relationとは認めない。",
       "current_authority_refs": [
         {
@@ -391,7 +447,14 @@
       "provisional_reclassification_candidate": null,
       "carry_forward_state": "draft_candidate",
       "atomization_status": "preserved_pending_atomization",
-      "successor_requirement_ids": []
+      "successor_requirement_ids": [],
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
+      "matched_adopted_predicate": null,
+      "candidate_only_refs": [
+        "NCI-OS-004",
+        "NCI-OS-005",
+        "NCI-OS-008"
+      ]
     },
     {
       "source_id": "LEGACY-CAND-LINE-000533",
@@ -406,25 +469,26 @@
       "effective_classification": "condition",
       "condition_subtype": "product_requirement_atom",
       "effective_route_status": "unknown",
-      "relation_assessment": "unadopted_candidate_relation_only",
-      "current_relation_evidence": "NCI-OS-004 / NCI-OS-005 / NCI-OS-008 (candidate only)",
-      "residual": "現行draftの新世代CI候補はcancel/failure区分、required oracle維持、obligation relationを扱うが、採択関係ではない。handoff receiptの内容・検証、generation確保、terminal read-afterとsupersession許容条件は候補にも個別化されず残る。採択OS L2-008/011の一般CI/base契約は、この旧atomへのexact event/supersession relationを証明しない。",
+      "relation_assessment": "adopted_relevant_partial",
+      "current_relation_evidence": "HELIXOS-L2-023/L11 binds each handoff to target revision/digest, causal identity, scope, unfinished duties, stop reason and evidence, and keeps handoff success separate from unit success.",
+      "residual": "Matched only the adopted handoff receipt and unfinished-duty predicate. CIG generation reservation, exact receipt schema, terminal read-after, and the supersession conditions that permit handoff remain unadopted. NCI candidate material remains draft only.",
       "current_authority_refs": [
         {
-          "id": "NCI-OS-004"
-        },
-        {
-          "id": "NCI-OS-005"
-        },
-        {
-          "id": "NCI-OS-008 (candidate only)"
+          "id": "HELIXOS-L2-023"
         }
       ],
       "classification_atom_boundary_provisional": false,
       "provisional_reclassification_candidate": null,
       "carry_forward_state": "draft_candidate",
       "atomization_status": "preserved_pending_atomization",
-      "successor_requirement_ids": []
+      "successor_requirement_ids": [],
+      "candidate_only_refs": [
+        "NCI-OS-004",
+        "NCI-OS-005",
+        "NCI-OS-008"
+      ],
+      "matched_adopted_predicate": "HELIXOS-L2-023/L11 requires revision/digest, causal identity, scope, unfinished duties, stop reason and evidence at handoff, and does not infer connection success from unit success. This matches the handoff/unmet-duty predicate only.",
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion"
     },
     {
       "source_id": "LEGACY-CAND-LINE-000542",
@@ -440,14 +504,22 @@
       "condition_subtype": "product_requirement_atom",
       "effective_route_status": "unknown",
       "relation_assessment": "true_unknown",
-      "current_relation_evidence": "none",
+      "current_relation_evidence": "none No concrete predicate in the pinned adopted L2/L11 revisions has the same source meaning; the shared #2359 criterion does not allow topical or candidate-only resemblance to count.",
       "residual": "旧#908 bounded cancel provider参照を再利用し、別cancel authorityを作らないという参照／境界文。provider/cancelの具体意味と現行要求への割当はこの行から特定できず、source-contextを保持したまま未解決。",
       "current_authority_refs": [],
       "classification_atom_boundary_provisional": true,
-      "provisional_reclassification_candidate": "explanation_or_compatibility_trace_metadata",
+      "provisional_reclassification_candidate": null,
       "carry_forward_state": "draft_candidate",
       "atomization_status": "preserved_pending_atomization",
-      "successor_requirement_ids": []
+      "successor_requirement_ids": [],
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
+      "matched_adopted_predicate": null,
+      "classification_review_reference": {
+        "audit_id": "legacy-candidate4755-next20-classification-reassessment-2026-09-29",
+        "source_id": "LEGACY-CAND-LINE-000542",
+        "decision": "retained condition/product_requirement_atom/unknown",
+        "reason": "This is a normative product execution boundary: cancellation reuses the bounded cancel provider and must not create a second cancel-execution authority. Like the adjacent substantive nonreplacement constraint at line 57, it constrains how the product performs cancellation; it is not only a source-specific management process. Preserve it as condition/product_requirement_atom/unknown without inferring a current successor or coverage."
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-000543",
@@ -463,14 +535,22 @@
       "condition_subtype": "product_requirement_atom",
       "effective_route_status": "unknown",
       "relation_assessment": "true_unknown",
-      "current_relation_evidence": "none",
+      "current_relation_evidence": "none No concrete predicate in the pinned adopted L2/L11 revisions has the same source meaning; the shared #2359 criterion does not allow topical or candidate-only resemblance to count.",
       "residual": "旧#735 ci_evidence_generation fieldの内部互換参照。field identity/consumer obligationが行単独から定まらず、現行L2/L11採択要求への関係は不明。metadata/atom境界の再確認が必要。",
       "current_authority_refs": [],
       "classification_atom_boundary_provisional": true,
-      "provisional_reclassification_candidate": "explanation_or_compatibility_trace_metadata",
+      "provisional_reclassification_candidate": null,
       "carry_forward_state": "draft_candidate",
       "atomization_status": "preserved_pending_atomization",
-      "successor_requirement_ids": []
+      "successor_requirement_ids": [],
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
+      "matched_adopted_predicate": null,
+      "classification_review_reference": {
+        "audit_id": "legacy-candidate4755-next20-classification-reassessment-2026-09-29",
+        "source_id": "LEGACY-CAND-LINE-000543",
+        "decision": "retained condition/product_requirement_atom/unknown",
+        "reason": "This line imposes an explicit compatibility constraint on an internal field and forbids redefining the existing identity string. It is more than provenance metadata; retain it as an unresolved technical/product constraint pending atomization and route review."
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-000545",
@@ -486,14 +566,22 @@
       "condition_subtype": "product_requirement_atom",
       "effective_route_status": "unknown",
       "relation_assessment": "true_unknown",
-      "current_relation_evidence": "none",
+      "current_relation_evidence": "none No concrete predicate in the pinned adopted L2/L11 revisions has the same source meaning; the shared #2359 criterion does not allow topical or candidate-only resemblance to count.",
       "residual": "CIS-R ID群と拡張関係を示すtrace/説明文。ID群ごとの行別意味を混ぜており、1物理行=1 product atom分類にatom境界懸念。個別意味は各要求本文で再照合が必要。",
       "current_authority_refs": [],
       "classification_atom_boundary_provisional": true,
-      "provisional_reclassification_candidate": "explanation_or_compatibility_trace_metadata",
+      "provisional_reclassification_candidate": null,
       "carry_forward_state": "draft_candidate",
       "atomization_status": "preserved_pending_atomization",
-      "successor_requirement_ids": []
+      "successor_requirement_ids": [],
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
+      "matched_adopted_predicate": null,
+      "classification_review_reference": {
+        "audit_id": "legacy-candidate4755-next20-classification-reassessment-2026-09-29",
+        "source_id": "LEGACY-CAND-LINE-000545",
+        "decision": "retained condition/product_requirement_atom/unknown",
+        "reason": "The verb “extend” directs the candidate to extend the listed telemetry identity, bounded cancellation, and deferred recovery responsibilities. That is normative technical direction, not a list of IDs alone. Keep it as an unresolved product atom for now, but mark the physical row’s multi-identity atom boundary provisional; atomize against the referenced bodies before assigning successor or coverage."
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-000546",
@@ -509,14 +597,22 @@
       "condition_subtype": "product_requirement_atom",
       "effective_route_status": "unknown",
       "relation_assessment": "true_unknown",
-      "current_relation_evidence": "none",
+      "current_relation_evidence": "none No concrete predicate in the pinned adopted L2/L11 revisions has the same source meaning; the shared #2359 criterion does not allow topical or candidate-only resemblance to count.",
       "residual": "旧要求#1106/#1137/#538/#848/#1322の実装／責務参照。再実装しない境界は示すが、各旧機能の要求意味と現行の個別採択関係はこの行だけでは決められない。atomよりtrace/reference metadataの可能性を要確認。",
       "current_authority_refs": [],
       "classification_atom_boundary_provisional": true,
-      "provisional_reclassification_candidate": "explanation_or_compatibility_trace_metadata",
+      "provisional_reclassification_candidate": null,
       "carry_forward_state": "draft_candidate",
       "atomization_status": "preserved_pending_atomization",
-      "successor_requirement_ids": []
+      "successor_requirement_ids": [],
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
+      "matched_adopted_predicate": null,
+      "classification_review_reference": {
+        "audit_id": "legacy-candidate4755-next20-classification-reassessment-2026-09-29",
+        "source_id": "LEGACY-CAND-LINE-000546",
+        "decision": "retained condition/product_requirement_atom/unknown",
+        "reason": "The explicit “do not reimplement” boundary excludes named Windows lease, receipt invalidation, and audit responsibilities from this candidate. This is a substantive nonreplacement/design constraint, not only a pointer; retain it as an unresolved atom without inferring coverage from the cited IDs."
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-000598",
@@ -532,14 +628,16 @@
       "condition_subtype": "product_requirement_atom",
       "effective_route_status": "unknown",
       "relation_assessment": "true_unknown",
-      "current_relation_evidence": "No atom-specific current, later-candidate, or adopted relation is established by the pinned semantic router.",
+      "current_relation_evidence": "No atom-specific current, later-candidate, or adopted relation is established by the pinned semantic router. No concrete predicate in the pinned adopted L2/L11 revisions has the same source meaning; the shared #2359 criterion does not allow topical or candidate-only resemblance to count.",
       "residual": "Source-level relation remains unknown after checking the exact historical line and pinned current L2/L11/candidate material; family resemblance or ID absence is not treated as coverage or nonmembership.",
       "current_authority_refs": [],
       "classification_atom_boundary_provisional": false,
       "provisional_reclassification_candidate": null,
       "carry_forward_state": "draft_candidate",
       "atomization_status": "preserved_pending_atomization",
-      "successor_requirement_ids": []
+      "successor_requirement_ids": [],
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
+      "matched_adopted_predicate": null
     },
     {
       "source_id": "LEGACY-CAND-LINE-000603",
@@ -555,14 +653,16 @@
       "condition_subtype": "product_requirement_atom",
       "effective_route_status": "unknown",
       "relation_assessment": "true_unknown",
-      "current_relation_evidence": "Router has no current, later-candidate, or adopted IDs. The separate three-check receipt says authority_effect:none and limits its no_loss result to bounded registration; its scope leaves routing/adoption unknown.",
+      "current_relation_evidence": "Router has no current, later-candidate, or adopted IDs. The separate three-check receipt says authority_effect:none and limits its no_loss result to bounded registration; its scope leaves routing/adoption unknown. No concrete predicate in the pinned adopted L2/L11 revisions has the same source meaning; the shared #2359 criterion does not allow topical or candidate-only resemblance to count.",
       "residual": "The line separates authorization, sandbox isolation, and quality acceptance. The bounded registration receipt does not establish an adopted route, successor, or coverage; route remains true_unknown.",
       "current_authority_refs": [],
       "classification_atom_boundary_provisional": false,
       "provisional_reclassification_candidate": null,
       "carry_forward_state": "draft_candidate",
       "atomization_status": "preserved_pending_atomization",
-      "successor_requirement_ids": []
+      "successor_requirement_ids": [],
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
+      "matched_adopted_predicate": null
     },
     {
       "source_id": "LEGACY-CAND-LINE-000613",
@@ -578,14 +678,16 @@
       "condition_subtype": "product_requirement_atom",
       "effective_route_status": "unknown",
       "relation_assessment": "true_unknown",
-      "current_relation_evidence": "No atom-specific current, later-candidate, or adopted relation is established by the pinned semantic router.",
+      "current_relation_evidence": "No atom-specific current, later-candidate, or adopted relation is established by the pinned semantic router. No concrete predicate in the pinned adopted L2/L11 revisions has the same source meaning; the shared #2359 criterion does not allow topical or candidate-only resemblance to count.",
       "residual": "Source-level relation remains unknown after checking the exact historical line and pinned current L2/L11/candidate material; family resemblance or ID absence is not treated as coverage or nonmembership.",
       "current_authority_refs": [],
       "classification_atom_boundary_provisional": false,
       "provisional_reclassification_candidate": null,
       "carry_forward_state": "draft_candidate",
       "atomization_status": "preserved_pending_atomization",
-      "successor_requirement_ids": []
+      "successor_requirement_ids": [],
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
+      "matched_adopted_predicate": null
     },
     {
       "source_id": "LEGACY-CAND-LINE-000633",
@@ -601,14 +703,16 @@
       "condition_subtype": "product_requirement_atom",
       "effective_route_status": "unknown",
       "relation_assessment": "true_unknown",
-      "current_relation_evidence": "No atom-specific current, later-candidate, or adopted relation is established by the pinned semantic router.",
+      "current_relation_evidence": "No atom-specific current, later-candidate, or adopted relation is established by the pinned semantic router. No concrete predicate in the pinned adopted L2/L11 revisions has the same source meaning; the shared #2359 criterion does not allow topical or candidate-only resemblance to count.",
       "residual": "Source-level relation remains unknown after checking the exact historical line and pinned current L2/L11/candidate material; family resemblance or ID absence is not treated as coverage or nonmembership.",
       "current_authority_refs": [],
       "classification_atom_boundary_provisional": false,
       "provisional_reclassification_candidate": null,
       "carry_forward_state": "draft_candidate",
       "atomization_status": "preserved_pending_atomization",
-      "successor_requirement_ids": []
+      "successor_requirement_ids": [],
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
+      "matched_adopted_predicate": null
     },
     {
       "source_id": "LEGACY-CAND-LINE-000638",
@@ -624,14 +728,16 @@
       "condition_subtype": "product_requirement_atom",
       "effective_route_status": "unknown",
       "relation_assessment": "true_unknown",
-      "current_relation_evidence": "No atom-specific current, later-candidate, or adopted relation is established by the pinned semantic router.",
+      "current_relation_evidence": "No atom-specific current, later-candidate, or adopted relation is established by the pinned semantic router. No concrete predicate in the pinned adopted L2/L11 revisions has the same source meaning; the shared #2359 criterion does not allow topical or candidate-only resemblance to count.",
       "residual": "Source-level relation remains unknown after checking the exact historical line and pinned current L2/L11/candidate material; family resemblance or ID absence is not treated as coverage or nonmembership.",
       "current_authority_refs": [],
       "classification_atom_boundary_provisional": false,
       "provisional_reclassification_candidate": null,
       "carry_forward_state": "draft_candidate",
       "atomization_status": "preserved_pending_atomization",
-      "successor_requirement_ids": []
+      "successor_requirement_ids": [],
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
+      "matched_adopted_predicate": null
     },
     {
       "source_id": "LEGACY-CAND-LINE-000653",
@@ -647,14 +753,16 @@
       "condition_subtype": "product_requirement_atom",
       "effective_route_status": "unknown",
       "relation_assessment": "true_unknown",
-      "current_relation_evidence": "No atom-specific current, later-candidate, or adopted relation is established by the pinned semantic router.",
+      "current_relation_evidence": "No atom-specific current, later-candidate, or adopted relation is established by the pinned semantic router. No concrete predicate in the pinned adopted L2/L11 revisions has the same source meaning; the shared #2359 criterion does not allow topical or candidate-only resemblance to count.",
       "residual": "Source-level relation remains unknown after checking the exact historical line and pinned current L2/L11/candidate material; family resemblance or ID absence is not treated as coverage or nonmembership.",
       "current_authority_refs": [],
       "classification_atom_boundary_provisional": false,
       "provisional_reclassification_candidate": null,
       "carry_forward_state": "draft_candidate",
       "atomization_status": "preserved_pending_atomization",
-      "successor_requirement_ids": []
+      "successor_requirement_ids": [],
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
+      "matched_adopted_predicate": null
     },
     {
       "source_id": "LEGACY-CAND-LINE-000661",
@@ -670,14 +778,16 @@
       "condition_subtype": "product_requirement_atom",
       "effective_route_status": "unknown",
       "relation_assessment": "true_unknown",
-      "current_relation_evidence": "No atom-specific current, later-candidate, or adopted relation is established by the pinned semantic router.",
+      "current_relation_evidence": "No atom-specific current, later-candidate, or adopted relation is established by the pinned semantic router. No concrete predicate in the pinned adopted L2/L11 revisions has the same source meaning; the shared #2359 criterion does not allow topical or candidate-only resemblance to count.",
       "residual": "Source-level relation remains unknown after checking the exact historical line and pinned current L2/L11/candidate material; family resemblance or ID absence is not treated as coverage or nonmembership.",
       "current_authority_refs": [],
       "classification_atom_boundary_provisional": false,
       "provisional_reclassification_candidate": null,
       "carry_forward_state": "draft_candidate",
       "atomization_status": "preserved_pending_atomization",
-      "successor_requirement_ids": []
+      "successor_requirement_ids": [],
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
+      "matched_adopted_predicate": null
     },
     {
       "source_id": "LEGACY-CAND-LINE-000663",
@@ -693,14 +803,16 @@
       "condition_subtype": "product_requirement_atom",
       "effective_route_status": "unknown",
       "relation_assessment": "true_unknown",
-      "current_relation_evidence": "No atom-specific current, later-candidate, or adopted relation is established by the pinned semantic router.",
+      "current_relation_evidence": "No atom-specific current, later-candidate, or adopted relation is established by the pinned semantic router. No concrete predicate in the pinned adopted L2/L11 revisions has the same source meaning; the shared #2359 criterion does not allow topical or candidate-only resemblance to count.",
       "residual": "Source-level relation remains unknown after checking the exact historical line and pinned current L2/L11/candidate material; family resemblance or ID absence is not treated as coverage or nonmembership.",
       "current_authority_refs": [],
       "classification_atom_boundary_provisional": false,
       "provisional_reclassification_candidate": null,
       "carry_forward_state": "draft_candidate",
       "atomization_status": "preserved_pending_atomization",
-      "successor_requirement_ids": []
+      "successor_requirement_ids": [],
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
+      "matched_adopted_predicate": null
     },
     {
       "source_id": "LEGACY-CAND-LINE-000664",
@@ -716,14 +828,16 @@
       "condition_subtype": "product_requirement_atom",
       "effective_route_status": "unknown",
       "relation_assessment": "true_unknown",
-      "current_relation_evidence": "No atom-specific current, later-candidate, or adopted relation is established by the pinned semantic router.",
+      "current_relation_evidence": "No atom-specific current, later-candidate, or adopted relation is established by the pinned semantic router. No concrete predicate in the pinned adopted L2/L11 revisions has the same source meaning; the shared #2359 criterion does not allow topical or candidate-only resemblance to count.",
       "residual": "Source-level relation remains unknown after checking the exact historical line and pinned current L2/L11/candidate material; family resemblance or ID absence is not treated as coverage or nonmembership.",
       "current_authority_refs": [],
       "classification_atom_boundary_provisional": false,
       "provisional_reclassification_candidate": null,
       "carry_forward_state": "draft_candidate",
       "atomization_status": "preserved_pending_atomization",
-      "successor_requirement_ids": []
+      "successor_requirement_ids": [],
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
+      "matched_adopted_predicate": null
     },
     {
       "source_id": "LEGACY-CAND-LINE-000665",
@@ -739,14 +853,16 @@
       "condition_subtype": "product_requirement_atom",
       "effective_route_status": "unknown",
       "relation_assessment": "true_unknown",
-      "current_relation_evidence": "No atom-specific current, later-candidate, or adopted relation is established by the pinned semantic router.",
+      "current_relation_evidence": "No atom-specific current, later-candidate, or adopted relation is established by the pinned semantic router. No concrete predicate in the pinned adopted L2/L11 revisions has the same source meaning; the shared #2359 criterion does not allow topical or candidate-only resemblance to count.",
       "residual": "Source-level relation remains unknown after checking the exact historical line and pinned current L2/L11/candidate material; family resemblance or ID absence is not treated as coverage or nonmembership.",
       "current_authority_refs": [],
       "classification_atom_boundary_provisional": false,
       "provisional_reclassification_candidate": null,
       "carry_forward_state": "draft_candidate",
       "atomization_status": "preserved_pending_atomization",
-      "successor_requirement_ids": []
+      "successor_requirement_ids": [],
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
+      "matched_adopted_predicate": null
     },
     {
       "source_id": "LEGACY-CAND-LINE-000667",
@@ -762,44 +878,26 @@
       "condition_subtype": "product_requirement_atom",
       "effective_route_status": "unknown",
       "relation_assessment": "true_unknown",
-      "current_relation_evidence": "No atom-specific current, later-candidate, or adopted relation is established by the pinned semantic router.",
+      "current_relation_evidence": "No atom-specific current, later-candidate, or adopted relation is established by the pinned semantic router. No concrete predicate in the pinned adopted L2/L11 revisions has the same source meaning; the shared #2359 criterion does not allow topical or candidate-only resemblance to count.",
       "residual": "Source-level relation remains unknown after checking the exact historical line and pinned current L2/L11/candidate material; family resemblance or ID absence is not treated as coverage or nonmembership.",
       "current_authority_refs": [],
       "classification_atom_boundary_provisional": false,
       "provisional_reclassification_candidate": null,
       "carry_forward_state": "draft_candidate",
       "atomization_status": "preserved_pending_atomization",
-      "successor_requirement_ids": []
+      "successor_requirement_ids": [],
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
+      "matched_adopted_predicate": null
     }
   ],
-  "provisional_reclassification_candidates": [
-    {
-      "source_id": "LEGACY-CAND-LINE-000542",
-      "candidate_reclassification": "explanation_or_compatibility_trace_metadata",
-      "disposition": "review only; no effective classification change"
-    },
-    {
-      "source_id": "LEGACY-CAND-LINE-000543",
-      "candidate_reclassification": "explanation_or_compatibility_trace_metadata",
-      "disposition": "review only; no effective classification change"
-    },
-    {
-      "source_id": "LEGACY-CAND-LINE-000545",
-      "candidate_reclassification": "explanation_or_compatibility_trace_metadata",
-      "disposition": "review only; no effective classification change"
-    },
-    {
-      "source_id": "LEGACY-CAND-LINE-000546",
-      "candidate_reclassification": "explanation_or_compatibility_trace_metadata",
-      "disposition": "review only; no effective classification change"
-    }
-  ],
+  "provisional_reclassification_candidates": [],
   "limitations": [
     "The sample is frozen at the #2366 merge cutoff. Any later classification overlay that changes the effective unknown-product population requires a separately recorded resampling.",
     "All source rows remain historical candidate / draft candidate / preserved pending atomization; no adoption, successor, coverage/closure, acceptance, or Stage 5 completion is created.",
-    "Relation assessments are bounded source-to-current-text comparisons, not requirement decisions.",
-    "Four unchanged selected rows (000542, 000543, 000545, 000546) retain classification/atom-boundary concerns from the prior audit; they remain in this sample because the effective population is fixed by the pinned #2366 cutoff.",
-    "The source-level crosswalk mapping referenced for 000501 is family-level candidate context only; it does not establish an atom-specific candidate relation. The bounded 000603 registration receipt does not establish route, adoption, successor, or coverage.",
+    "All 20 route rows were assessed against the single #2359 adopted-predicate criterion. adopted_relevant_partial records a bounded semantic relation only, not source adoption or coverage.",
+    "Rows 000542, 000543, 000545, and 000546 were retained as product requirement atoms by #2363 and are no longer proposed for reclassification in this audit. #2363 preserves a provisional atom-boundary note for 000545 only.",
+    "The source-level crosswalk mapping referenced for 000501 remains family-level candidate context. The 2026-09-30 OS-104 review reference is outside this #2366 cutoff and has no pinned authority decision record; it does not change the 000603 route or any row here.",
+    "The bounded 000603 registration receipt does not establish route, adoption, successor, or coverage.",
     "Old source text and physical byte hashes are based on the exact archive bytes pinned by the source-line ledger."
   ],
   "validation": {
@@ -810,5 +908,107 @@
     "all_rows_unknown_product_atoms_at_effective_input": true,
     "authority_effect": "none",
     "legacy_execution": "none"
-  }
+  },
+  "route_criterion": {
+    "rule": "adopted_relevant_partial requires at least one concrete source predicate that has the same meaning in an exact adopted L2/L11 revision; the row must name the matched predicate and the unadopted residual. A topical/system-name match, candidate-only reference, or general authority boundary is insufficient. Partial is relation only, not source adoption or coverage.",
+    "adopted_l2_l11_revision_pins": [
+      {
+        "mechanism": "HELIX-OS",
+        "decision": "HDEC-HELIXOS-REQUIREMENTS-PO-2026-09-28",
+        "fixed_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "l2_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+        "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "l11_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+        "used_predicates": [
+          "HELIXOS-L2-019/L11",
+          "HELIXOS-L2-020/L11",
+          "HELIXOS-L2-023/L11"
+        ]
+      },
+      {
+        "mechanism": "HELIX-HARNESS",
+        "decision": "HDEC-HARNESS-REQUIREMENTS-2026-09-28",
+        "fixed_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "used_predicates": [
+          "HARNESS-L2-004/L11",
+          "HARNESS-L2-005/L11"
+        ]
+      },
+      {
+        "mechanism": "HELIX-INTELLIGENCE",
+        "decision": "HDEC-HELIXINTELLIGENCE-REQUIREMENTS-2026-09-28",
+        "fixed_revision_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+        "l2_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "l2_sha256": "14c6947262f7e7cc92e7200cafd301ebd49c4146c97f665f0548c6b2b2e9e16d",
+        "l11_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "l11_sha256": "7467fad5256db9af823e7be860e21e52df58efb43ad4855c7127c2053106214d",
+        "used_predicates": [
+          "HELIXINTELLIGENCE-L2-009/L11",
+          "HELIXINTELLIGENCE-L2-015/L11",
+          "HELIXINTELLIGENCE-L2-016/L11"
+        ],
+        "decision_path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+        "decision_sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad"
+      },
+      {
+        "mechanism": "HELIX-INTELLIGENCE examined_nonmatching_scope",
+        "decision": "HELIXINTELLIGENCE-L2-073 adopted by MPR-RC-HELIXINTELLIGENCE-L2-073-002",
+        "fixed_revision_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+        "decision_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "l2_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "l2_sha256": "14c6947262f7e7cc92e7200cafd301ebd49c4146c97f665f0548c6b2b2e9e16d",
+        "l11_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "l11_sha256": "7467fad5256db9af823e7be860e21e52df58efb43ad4855c7127c2053106214d",
+        "l2_section_sha256": "4425189d3870de92165ebdbc790902317dc2799d89f760156ab17441662a2eb5",
+        "l11_section_sha256": "d98488d23fc02992143edb4a1e689a0c12dcc91d0ec1c9adabe1b8e334dd9ef1",
+        "match_disposition": "not_a_match_for_AAFD-R-15; adopted source scope is AAFD-R-04 lines 45-46 only"
+      }
+    ]
+  },
+  "classification_review_references": [
+    {
+      "audit_id": "legacy-candidate4755-next20-classification-reassessment-2026-09-29",
+      "source_id": "LEGACY-CAND-LINE-000542",
+      "decision": "retained condition/product_requirement_atom/unknown",
+      "reason": "This is a normative product execution boundary: cancellation reuses the bounded cancel provider and must not create a second cancel-execution authority. Like the adjacent substantive nonreplacement constraint at line 57, it constrains how the product performs cancellation; it is not only a source-specific management process. Preserve it as condition/product_requirement_atom/unknown without inferring a current successor or coverage."
+    },
+    {
+      "audit_id": "legacy-candidate4755-next20-classification-reassessment-2026-09-29",
+      "source_id": "LEGACY-CAND-LINE-000543",
+      "decision": "retained condition/product_requirement_atom/unknown",
+      "reason": "This line imposes an explicit compatibility constraint on an internal field and forbids redefining the existing identity string. It is more than provenance metadata; retain it as an unresolved technical/product constraint pending atomization and route review."
+    },
+    {
+      "audit_id": "legacy-candidate4755-next20-classification-reassessment-2026-09-29",
+      "source_id": "LEGACY-CAND-LINE-000545",
+      "decision": "retained condition/product_requirement_atom/unknown",
+      "reason": "The verb “extend” directs the candidate to extend the listed telemetry identity, bounded cancellation, and deferred recovery responsibilities. That is normative technical direction, not a list of IDs alone. Keep it as an unresolved product atom for now, but mark the physical row’s multi-identity atom boundary provisional; atomize against the referenced bodies before assigning successor or coverage."
+    },
+    {
+      "audit_id": "legacy-candidate4755-next20-classification-reassessment-2026-09-29",
+      "source_id": "LEGACY-CAND-LINE-000546",
+      "decision": "retained condition/product_requirement_atom/unknown",
+      "reason": "The explicit “do not reimplement” boundary excludes named Windows lease, receipt invalidation, and audit responsibilities from this candidate. This is a substantive nonreplacement/design constraint, not only a pointer; retain it as an unresolved atom without inferring coverage from the cited IDs."
+    }
+  ],
+  "review_findings": [
+    {
+      "id": "R2364-01",
+      "severity": "Major",
+      "status": "addressed",
+      "change": "Applied the merged #2359 adopted-predicate criterion to all 20 selected rows. Added matched adopted predicates and explicit residuals for each partial relation. 000501, 000528, and 000533 now have narrow adopted relevant partial relations to HELIXOS-L2-019/023, L2-019/020, and L2-023 respectively; no CIG-specific supersede semantics are asserted. Counts are 4 adopted_relevant_partial, 1 unadopted_candidate_relation_only, and 15 true_unknown."
+    },
+    {
+      "id": "R2364-02",
+      "severity": "Minor",
+      "status": "addressed",
+      "change": "Removed 000542/000543/000545/000546 from provisional reclassification candidates and recorded #2363 retained product-atom findings per source ID. Kept only the #2363 atom-boundary caveat for 000545. The 2026-09-30 OS-104 review reference remains outside this #2366 cutoff and has no pinned authority decision record."
+    }
+  ]
 }
