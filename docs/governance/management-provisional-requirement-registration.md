@@ -120,4 +120,4 @@ G7ではPO原文と現行Conceptの共通部品の行を親に、HELIX-CONNECT�
 
 ## confirmed175 DAC-FR-007 ratchet限定候補の仮登録（2026-09-29）
 
-`MPR-RC-HARNESS-L2-062-001`は旧DAC-FR-007 line 54一atomだけをHARNESS-L2/L11-062未採択候補へ対応する。source-lines／coverage receiptは`docs/governance/audits/requirement-registration/dac-fr-007-ratchet-source-lines-2026-09-29.jsonl`と`dac-fr-007-ratchet-coverage-receipt-2026-09-29.json`。`no_loss`は当該atomの限定candidate mappingであり、formal successor、source owner移管、baseline authority/revision/scope、分類規則・閾値・更新条件、採択、runtimeまたは条件closureを意味しない。`MPR-SH-CONFIRMED-003`を変更せず保持する。近接するHELIXOS-L2-037は別の未採択運転引継ぎ候補で、ratchet条件を定義しない。
+`MPR-RC-HARNESS-L2-062-001`は旧DAC-FR-007 line 54一atomだけをHARNESS-L2/L11-062未採択候補へ対応する。source-lines／coverage receiptは`docs/governance/audits/requirement-registration/dac-fr-007-ratchet-source-lines-2026-09-29.jsonl`と`dac-fr-007-ratchet-coverage-receipt-2026-09-29.json`。`no_loss`は当該atomの限定candidate mappingであり、formal successor、source owner移管、baseline authority/revision/scope、分類規則・閾値・更新条件、採択、runtimeまたは条件closureを意味しない。`MPR-SH-CONFIRMED-003`を変更せず保持する。近接する採択済みHELIXOS-L2-037（57候補判断）は別の運転引継ぎ要求で、ratchet条件を定義しない。

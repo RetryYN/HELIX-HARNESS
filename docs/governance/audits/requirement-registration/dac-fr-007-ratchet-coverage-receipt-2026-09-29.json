@@ -4,16 +4,16 @@
   "authority_effect": "none",
   "candidate_identity": "HARNESS-L2-062",
   "requirement_kind": "unit",
-  "candidate_semantic_digest": "sha256:4a78f0b63d2d06aa8caa4b7a1854b433845c7b8c99af80d08e030fa801d30dcf",
+  "candidate_semantic_digest": "sha256:e795e90ec1de20b94d81bf31fb083e8c4001363f88f1528d9833a67a01865f44",
   "candidate_digest_rule": "product-requirements.mdの「### HARNESS-L2-062 」見出しからファイル末尾までをUTF-8で取り、末尾空行を除いて改行1つで終える。そのSHA-256をsha256:付きで記す。",
-  "candidate_l2_file_sha256": "sha256:060b1701532d05c68ef4156347ef91a8c078d486437adc571be57fed1e82e679",
+  "candidate_l2_file_sha256": "sha256:ece844e9c26797035d9ce7e5e5a7b3f7653fadaa8b333b0f56269bd1f2d23aee",
   "paired_acceptance_identity": "HARNESS-L2-062",
   "paired_acceptance_digest": "sha256:d9563d543205df982a5cef0c003417ca65b7ef73ab3b5950335cf3c52882c19b",
   "l11_digest_rule": "product-acceptance.mdの「### HARNESS-L2-062 」見出しからファイル末尾までをUTF-8で取り、末尾空行を除いて改行1つで終える。そのSHA-256をsha256:付きで記す。",
   "l11_file_sha256": "sha256:ab94b4cec9535c70b5fd1a8553b41bdce51411fd59f65e64c5ddedc4fbacf878",
   "source_lines_ref": "docs/governance/audits/requirement-registration/dac-fr-007-ratchet-source-lines-2026-09-29.jsonl",
   "source_atom_set_digest": "sha256:9ab4ac116c4d7b694b6f3255e200de6336f6464512c5d728ea2a92604921ff95",
-  "source_atom_set_digest_rule": "atom_id昇順。各行をatom_id、半角空白、sha256:を含むsource_line_sha256で構成し、LFで連結する。末尾LFなしのUTF-8 bytesのSHA-256をsha256:付きで記す。",
+  "source_atom_set_digest_rule": "atom_id昇順。各atomの `atom_id SP source_line_sha256（sha256:を除く） LF` のUTF-8 bytesを連結してSHA-256をsha256:付きで記す。候補subsetに限る。",
   "source_collection_scope": "MPR-SH-CONFIRMED-003が保全するconfirmed175 identityのうち、archive DAC-FR-007 line 54のsource-qualified requirement identity一atomだけ。隣接DAC-FR/NFR、DAC-BR-005、旧文書全体、旧runtime/test/consumer集合は含めない。",
   "source_collection_atom_count": 1,
   "candidate_input_atom_refs": [
@@ -172,7 +172,7 @@
       "identity": "HELIXOS-L2-037",
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
       "section_digest": "sha256:29563f1fdde0d9ace0b0850a5fc57bc6f6b595f460a5caa293c7eefb60905d64",
-      "decision_status": "unadopted adjacent observation/ticket handoff candidate",
+      "decision_status": "adopted in HDEC-REQUIREMENTS-57-2026-09-29",
       "coverage": "does not assign debt taxonomy/baseline authority or define HARNESS ratchet"
     }
   ],
@@ -184,10 +184,10 @@
   },
   "base_revision": "5ee0a48faecf6a02ac029068bc2999d7c2d888b1",
   "current_condition_file_pins": {
-    "docs/helix-harness/L2-requirements/product-requirements.md": "sha256:060b1701532d05c68ef4156347ef91a8c078d486437adc571be57fed1e82e679",
+    "docs/helix-harness/L2-requirements/product-requirements.md": "sha256:ece844e9c26797035d9ce7e5e5a7b3f7653fadaa8b333b0f56269bd1f2d23aee",
     "docs/helix-harness/L11-acceptance/product-acceptance.md": "sha256:ab94b4cec9535c70b5fd1a8553b41bdce51411fd59f65e64c5ddedc4fbacf878",
-    "docs/helix-os/L2-requirements/governance-requirements.md": "sha256:9b4a26cb92654b133b6154dffec903ab745132be96173cc049782c5faa6a5f3a",
-    "docs/helix-os/L11-acceptance/governance-acceptance.md": "sha256:8ac93048fbc05032e6b1e578a944620089c0eae528bd7fb1d3cf2a125faf4e2e",
+    "docs/helix-os/L2-requirements/governance-requirements.md": "sha256:911e8f1eef71d35a7ad0ab381ea96cba9bffc01c4606c586687c63f16bbd02e7",
+    "docs/helix-os/L11-acceptance/governance-acceptance.md": "sha256:c67fdd664f3682dcdb865110451d0b6c31380c0b2abaadc427bc7e9a6b476d5c",
     "docs/helix-harness/L1-planning/product-intent.md": "sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
     "docs/helix-os/L1-planning/system-intent.md": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e"
   }

@@ -1232,5 +1232,5 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 - **状態・親**：未採択の要求意味候補、`registered_proposal`／`authority_effect: none`。主親は`HARNESS-L1-004`（対象revisionとriskに合う検証義務・反例・証拠・差戻し条件）。既存のHARNESS-L2-004/005とL11は変更しない。
 - **候補条件**：適用可能な既存authorityが与えるbaseline debt集合と、同一scope・比較対象のcurrent debt集合を照合し、baselineに含まれるdebtとbaselineに含まれないnew debtを結果上で区別する。new debtが比較で得られた場合、ratchet結果を成立/passとして返さない（fail-close）。baseline debtの存在だけから許容・免除・解消を推定しない。
 - **未確定入力**：baselineのauthority、identity/revision、適用scope、鮮度、current debt集合、両集合に共通して適用するdebt分類基準、baseline更新規則または比較に必要な入力が欠落・unknown・stale・conflictなら、比較結果はunknown/未評価として保持し、ratchet成立を示さない。これらの値や決定者を本候補で新設せず、上流または適用ownerの既存契約へ戻す。閾値やdebt種別も追加しない。
-- **所有境界**：HARNESSは対象revisionの検証oracleとfail-close結果の意味を定める。HELIX-OSのL1/L2は管理記録、状態、実行・運転を扱う。近接する未採択HELIXOS-L2-037の週次drift/debt観測・ticket引継ぎ候補は別の運転接続であり、HARNESSのdebt分類・baseline authorityやratchet判定を与えない。source owner移管は推定しない。
+- **所有境界**：HARNESSは対象revisionの検証oracleとfail-close結果の意味を定める。HELIX-OSのL1/L2は管理記録、状態、実行・運転を扱う。近接する採択済みHELIXOS-L2-037（57候補判断）の週次drift/debt観測・ticket引継ぎ候補は別の運転接続であり、HARNESSのdebt分類・baseline authorityやratchet判定を与えない。source owner移管は推定しない。
 - **差分と保留**：旧DAC-FR-007 line 54のbaseline/new debt分離とnew-debt fail-closeを限定して再導出する。旧要求はbaseline定義、baseline選定権限、分類閾値、更新条件を指定しないため本候補も定義しない。候補は比較結果の意味だけであり、censusの実装・全repo scope・許可、既存debtの受容、旧source全体のformal successor、採択、実装・実行を主張しない。
