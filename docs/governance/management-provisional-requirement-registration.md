@@ -64,6 +64,32 @@ terminal revisionと、そのrevisionが指す対象はいずれも生存先と�
 
 PR merge、Issue作成・close、review、CI、文書ファイルの存在だけでは仮登録や`no_loss`を生成しない。register recordが無い、古い、対象が違う、被覆集合が不明、未計上atomがある場合はfail-closeする。
 
+## registerのbytes追記とPR前確認
+
+registerはrecord単位だけでなくbytes単位でもappend-onlyとする。追加・訂正では、新しいUTF-8 JSON objectの行だけをEOFへ書く。既存file全体をparseしてserializeし直してはならない。既存recordの空白、key順、separator、行末を含むcommit済みprefixの各byteをそのまま保つ。追記前に対象base revisionのregister bytesを読み、LFで終わることを確認してから、LF終端のJSON object行を追記する。訂正も`supersedes_registration_id`を持つ新しい行とし、参照先の既存行は書き換えない。
+
+書き込みはprepared recordを1行だけencodeしてbinary appendする。実際の登録値・ID重複・schemaを確認した後、writerは次の形で suffix を追加する。`register`全体をJSON arrayやlistとしてdumpして置き換える処理を使わない。
+
+```python
+line = json.dumps(record, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+assert register_path.read_bytes().startswith(base_bytes)
+with register_path.open("ab") as stream:
+    stream.write(line + b"\n")
+```
+
+書き込み後は、下記checkerで対象base bytesとのprefix一致とsuffixの行単位妥当性を確認する。
+
+PR作成前に意図するbaseをfetchし、exact base commitを指定してread-only byte-prefix checkerを実行する。
+
+```sh
+git fetch origin
+python3 docs/governance/tools/verify_management_register_append.py "$(git rev-parse origin/main)"
+```
+
+checkerは`git show`でbase側fileを取得し、worktreeのregister bytesと比較する。base全bytesが厳密なprefixでなければfailする。追記suffixもJSONLとしてparseし、空行・不正行・`registration_id`の欠落／重複・最後のLF欠落を拒否する。出力をPRの静的検証記録へ含める。baseが進んだ場合は対象mergeのexact baseを指定して再実行する。並行追記と衝突したら最新base bytesをprefixとして保ち、このPRの行だけを追加して再検査する。意味上のread-afterやdigest一致はbyte-prefix確認の代替にならない。
+
+この補正は既存のappend-only登録意味を保ったまま、bytes単位の書込手順を明確にする。上記の現行契約と、旧`HIL-NFR-21`のappend-only原則（`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:201`）を保持し、後続dispositionで原recordを削除・不可視化・終端化しない。2026-09-29のregister prefix指摘は、別候補の追加時に既存`MPR-SH-LEGACY-RULE-001`を再serializeしたことが原因だった。修正後はbaseの全bytesを保持し、新候補の行だけをappendする。
+
 ## bootstrap source holding
 
 3df81ad時点のpre-append snapshot（`management-provisional-requirement-register-pre-append-3df81ad.jsonl`）は32 revision、13 source集合、13生存中`registered_source_holding`で固定する。現在のregisterはappend-onlyに33 revision、14生存中holdingとなり、追加行`MPR-SH-OUTSIDE67-001`はoutside-67の67 `path_revision_pair`を保全する。追加行は`unassigned_cross_product`、`source_preserved_unassigned`、`authority_effect: none`であり、要求atom、product owner、phase authority、semantic dispositionを生成しない。
