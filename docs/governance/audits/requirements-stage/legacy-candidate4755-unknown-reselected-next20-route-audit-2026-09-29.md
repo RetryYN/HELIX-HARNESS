@@ -14,7 +14,7 @@
 |3|`LEGACY-CAND-LINE-000109`|`docs/governance/candidates/agentic-audit-future-state-delta-requests.md`|43|`adopted_relevant_partial`|
 |4|`LEGACY-CAND-LINE-000110`|`docs/governance/candidates/agentic-audit-future-state-delta-requests.md`|44|`adopted_relevant_partial`|
 |5|`LEGACY-CAND-LINE-000140`|`docs/governance/candidates/agentic-audit-future-state-delta-requirements.md`|41|`true_unknown`|
-|6|`LEGACY-CAND-LINE-000142`|`docs/governance/candidates/agentic-audit-future-state-delta-requirements.md`|45|`unadopted_candidate_relation_only`|
+|6|`LEGACY-CAND-LINE-000142`|`docs/governance/candidates/agentic-audit-future-state-delta-requirements.md`|45|`adopted_relevant_partial`|
 |7|`LEGACY-CAND-LINE-000143`|`docs/governance/candidates/agentic-audit-future-state-delta-requirements.md`|46|`adopted_relevant_partial`|
 |8|`LEGACY-CAND-LINE-000180`|`docs/governance/candidates/agentic-audit-future-state-delta-requirements.md`|109|`true_unknown`|
 |9|`LEGACY-CAND-LINE-000331`|`docs/governance/candidates/bugbot-bounded-repair-acceptance.md`|16|`adopted_relevant_partial`|
@@ -32,7 +32,7 @@
 
 ## route relation とauthority caveat
 
-内訳は `adopted_relevant_partial` 8件、`unadopted_candidate_relation_only` 9件、`true_unknown` 3件。各行の現行relationと残差はJSONに記録した。分類が揺れる7行は`provisional_pending_classification_review`としており、名目route内訳は確定route件数ではない。採択済みINTELLIGENCE-L2-009/015/016は対L11と2026-09-28 PO判断recordが特定するexact revisionに限って部分関係として扱う。対応するregistration receiptsはsource_atom_count=0 / authority_effect=noneであり、旧source atomの移管やcoverageを示さない。L2-073は未決candidateであり採択routeではない。CIGのnext-generation-ci relationもcandidate-onlyである。
+内訳は `adopted_relevant_partial` 9件、`unadopted_candidate_relation_only` 8件、`true_unknown` 3件。各行の現行relationと残差はJSONに記録した。分類が揺れる7行は`provisional_pending_classification_review`としており、名目route内訳は確定route件数ではない。INTELLIGENCE-L2-009/015/016は2026-09-28、L2-073は2026-09-29のPO判断記録が特定するexact L2/L11 revisionに限って採択関係を扱う。L2-073のr2 registration receiptは旧AAFD-R-04の二つのsource lineを限定して対応付けるが、AAFD全体の移管やcoverage/closureは示さない。L2-009/015/016の別receiptにあるsource_atom_count=0 / authority_effect=noneも旧source atomの移管を示さない。CIGのnext-generation-ci relationもcandidate-onlyである。
 
 旧source 8 assetはasset disposition ledger上すべて`Historical / historical / unresolved`で、carry-forward状態は`draft_candidate / preserved_pending_atomization`、successor IDは空である。routeラベルは意味relation分類であって、要求採択・変更・retire、successor登録、coverage/closure、L3以降の許可を生成しない。
 

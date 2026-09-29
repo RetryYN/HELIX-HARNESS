@@ -81,9 +81,9 @@
     "true_unknown": "No exact adopted or unadopted candidate successor relation established in inspected source; semantic similarity/ID absence is not used as route."
   },
   "counts": {
-    "adopted_relevant_partial": 8,
-    "unadopted_candidate_relation_only": 9,
-    "true_unknown": 3
+    "adopted_relevant_partial": 9,
+    "true_unknown": 3,
+    "unadopted_candidate_relation_only": 8
   },
   "classification_metadata_concerns": [
     {
@@ -121,7 +121,8 @@
     ],
     "candidate_only_receipt_context": "HELIXINTELLIGENCE-L2-073 is listed in post-confirmation-25 packet as PO undecided/recommended A, not as adopted. Next-generation-ci documents identify CIG source files as candidates, not accepted requirements.",
     "scope_limit": "No L3/10 transition, execution/CI readiness, semantic adoption, source closure, or authority change inferred.",
-    "registration_receipt_limit": "The registration artifacts cited for adopted INTELLIGENCE identities record source_atom_count=0 and explicitly do not transfer or adopt legacy source atoms. The 2026-09-28 PO decision adopts the exact current L2/L11 candidates; the partial route labels below indicate semantic relation to those current contracts only, never legacy atom coverage or successor closure."
+    "registration_receipt_limit": "The registration artifacts cited for adopted INTELLIGENCE identities record source_atom_count=0 and explicitly do not transfer or adopt legacy source atoms. The 2026-09-28 PO decision adopts the exact current L2/L11 candidates; the partial route labels below indicate semantic relation to those current contracts only, never legacy atom coverage or successor closure.",
+    "adopted_l2_073": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md; exact L2/L11 revision adopted, current candidate wording and older receipt predecision status remain historical."
   },
   "rows": [
     {
@@ -301,17 +302,18 @@
         "review_outcome": "non_requirement_source_structure_or_explanation",
         "semantic_cluster_id": "agentic_audit_future_state_delta::AAFD-R-04"
       },
-      "route_assessment": "unadopted_candidate_relation_only",
-      "current_relation_and_residual": "HELIXINTELLIGENCE-L2-073 proposalは旧AAFD-R-04 lines 45–46を限定再導出し、ProbeをUIL deterministic detectorの置換にしない範囲を示す。ただしL2-073はPO未決候補で、採択routeではない。",
+      "route_assessment": "adopted_relevant_partial",
+      "current_relation_and_residual": "HELIXINTELLIGENCE-L2-073の対象exact L2/L11 revisionは2026-09-29 PO判断記録で採択済み。旧AAFD-R-04 line 45–46のdetector非置換と自由文からの直接投影禁止に部分関係する。ただしregistration receiptのsource atom coverageと旧候補全体の移管・closureは別問題であり、この物理行単独のfull coverageは主張しない。",
       "current_authority_refs": [
         "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#HELIXINTELLIGENCE-L2-073",
         "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md#HELIXINTELLIGENCE-L2-073",
         "docs/governance/audits/requirement-registration/intelligence-free-text-boundary-coverage-receipt-2026-09-28-r2.json",
-        "docs/governance/audits/requirements-stage/post-confirmation-25-po-decision-packet-2026-09-28.md"
+        "docs/governance/audits/requirements-stage/post-confirmation-25-po-decision-packet-2026-09-28.md",
+        "docs/governance/decisions/po-decision-2026-09-29-57candidates.md#HELIXINTELLIGENCE-L2-073 (exact L2/L11 revision decision)"
       ],
       "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
       "route_assessment_status": "provisional_pending_classification_review",
-      "classification_review_residual": "#2353 effective cumulative row class is product_requirement_atom, while pinned semantic-router snapshot is explanation for these rows (000143 has an explicit router correction). The selected class follows #2353 as required, but row atom boundary/type must be reconciled before this route is treated as stable."
+      "classification_review_residual": "#2353 effective cumulative row class is product_requirement_atom, while pinned semantic-router snapshot is explanation for these rows (000143 has an explicit router correction). The selected class follows #2353 as required, but row atom boundary/type must be reconciled before this route is treated as stable. PO decision for exact L2/L11-073 revision is adopted on 2026-09-29; current candidate wording in source file/older receipt is stale for authority status."
     },
     {
       "source_id": "LEGACY-CAND-LINE-000143",
@@ -334,17 +336,18 @@
         "semantic_cluster_id": "agentic_audit_future_state_delta::AAFD-R-04"
       },
       "route_assessment": "adopted_relevant_partial",
-      "current_relation_and_residual": "HELIXINTELLIGENCE-L2-009 / L11は自由文findingからauthorityを変えない境界を採択済みとして持つ。Requirement/CI/mergeへの直接投影という全宛先とAAFD probe限定の条件は、別のL2-073未決proposalにも現れ、全体は部分関係に留まる。",
+      "current_relation_and_residual": "HELIXINTELLIGENCE-L2-073の対象exact L2/L11 revisionは2026-09-29 PO判断記録で採択済み。旧AAFD-R-04 line 45–46のdetector非置換と自由文からの直接投影禁止に部分関係する。ただしregistration receiptのsource atom coverageと旧候補全体の移管・closureは別問題であり、この物理行単独のfull coverageは主張しない。",
       "current_authority_refs": [
         "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#HELIXINTELLIGENCE-L2-009",
         "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md#HELIXINTELLIGENCE-L2-009",
         "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md#MPR-RC-HELIXINTELLIGENCE-L2-009-003",
         "docs/governance/audits/requirement-registration/intelligence-content-quality-coverage-receipt-2026-09-27-r2.json",
-        "docs/governance/audits/requirement-registration/helixintelligence-functional-units-coverage-receipt-2026-09-27.json (source_atom_count=0; authority_effect=none)"
+        "docs/governance/audits/requirement-registration/helixintelligence-functional-units-coverage-receipt-2026-09-27.json (source_atom_count=0; authority_effect=none)",
+        "docs/governance/decisions/po-decision-2026-09-29-57candidates.md#HELIXINTELLIGENCE-L2-073 (exact L2/L11 revision decision)"
       ],
       "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
       "route_assessment_status": "provisional_pending_classification_review",
-      "classification_review_residual": "#2353 effective cumulative row class is product_requirement_atom, while pinned semantic-router snapshot is explanation for these rows (000143 has an explicit router correction). The selected class follows #2353 as required, but row atom boundary/type must be reconciled before this route is treated as stable."
+      "classification_review_residual": "#2353 effective cumulative row class is product_requirement_atom, while pinned semantic-router snapshot is explanation for these rows (000143 has an explicit router correction). The selected class follows #2353 as required, but row atom boundary/type must be reconciled before this route is treated as stable. PO decision for exact L2/L11-073 revision is adopted on 2026-09-29; current candidate wording in source file/older receipt is stale for authority status."
     },
     {
       "source_id": "LEGACY-CAND-LINE-000180",
