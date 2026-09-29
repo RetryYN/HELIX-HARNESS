@@ -2,7 +2,7 @@
   "audit_kind": "read_only_current_receipt_mapping_audit",
   "title": "HELIXOS-L2-111 三入力receiptの現行mapping調査",
   "as_of_date": "2026-09-29",
-  "created_from_commit": "159cfedcdc3cc9a2fff4fbd6a053cf412c2f2ae0",
+  "created_from_commit": "a7b207ac7685e55bb94ba175de8fb2ad8bb696b7",
   "status": "evidence audit and PO-options worksheet only; no PO decision, adoption, owner transfer, implementation permission, receipt issuance, source closure, or stage completion",
   "scope": {
     "candidate": "HELIXOS-L2-111",

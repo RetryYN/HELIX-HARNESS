@@ -1,6 +1,6 @@
 # HELIXOS-L2-111 三入力receiptの現行mapping調査（2026-09-29）
 
-基準tree: `159cfedcdc3cc9a2fff4fbd6a053cf412c2f2ae0`（2026-09-29時点の`origin/main`）。現行repository evidenceをread-onlyで照合し、HELIXOS-L2-111が参照する三入力receiptについて、現在のexact identity・owner・green status authority・revision/scope mappingを特定できるか記録する。
+基準tree: `a7b207ac7685e55bb94ba175de8fb2ad8bb696b7`（2026-09-29時点の`origin/main`）。現行repository evidenceをread-onlyで照合し、HELIXOS-L2-111が参照する三入力receiptについて、現在のexact identity・owner・green status authority・revision/scope mappingを特定できるか記録する。
 
 ## 結論
 
@@ -57,7 +57,7 @@ Issue inventoryはremote上の現状の再取得ではなく、main内に保存�
 
 ## Exact pins
 
-- Baseline: `159cfedcdc3cc9a2fff4fbd6a053cf412c2f2ae0`.
+- Baseline: `a7b207ac7685e55bb94ba175de8fb2ad8bb696b7`.
 - MPR candidate: `636`行 `8fd6f2757862c5307faa28933eebab735697a1609af81c3791f4f8a322ace39a` (row SHA-256); `registered_proposal` / `authority_effect: none`.
 - L2 section: `sha256:265d5e7d1a8c06919b21691ddbf15354e51dbc204f310f07a448a7b33dc8173b`; L11 section: `sha256:8efe5d58a4ebe0c4a7078aa7b311f3f2e1a7892b125b603d6a3e45ff4fc5ef14`.
 - Current candidate coverage receipt file: `sha256:0893126ccf73b62b1750322a102f2049ef3b6ff51f75b428d832e973302820e1`; its status is `candidate_static_scope_only`, authority effect `none`. Its embedded register digest `sha256:4103da5113303e1db77c1c1c4eb384fae6e1d5ad91e7357592c1f7b3ecc887c3` differs from the current register digest `sha256:ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a`.
