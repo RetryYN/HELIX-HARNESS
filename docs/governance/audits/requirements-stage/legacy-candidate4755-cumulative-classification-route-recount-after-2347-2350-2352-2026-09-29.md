@@ -1,8 +1,9 @@
 # 旧candidate 4,755行の累積分類・route再集計（#2347、#2350、#2352提案overlay）
 
 - 監査基準: `bf00aca56add8ca29d9a56af9a989fdeb0a7d969`（#2352 merge後のorigin/main）。
-- authority effect: `none`。全92旧archiveファイルと4,755物理行をsource ID、path、line、file/line SHAで突合した。行ごとの原文、物理行SHA、各段階の分類・routeは[JSON台帳](legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json)に固定した。
+- authority effect: `none`。全92旧archiveファイルと4,755物理行をsource ID、path、line、file/line SHAで突合した。行ごとのsource ID、行内容・物理行SHA、提案overlay後の分類・routeは[JSON台帳](legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json)に固定した。
 - overlay順: #2347の全量baseline → #2350の20行route overlay → merge済み監査 #2352 の9行分類案。#2352 overlayは提案の影響を数えるためだけに適用し、採択状態へ変更しない。
+- 行別原文・中間状態の重複を避け、JSONには最終分類・routeと行SHA、20対象IDへの29件のbounded overlay適用のみを記録する。旧原文と中間状態はpin付きrouter・carry-forward台帳・archiveに保持する。
 
 ## 累積結果
 
