@@ -25,8 +25,8 @@
     },
     {
       "path": "archive/reference-sources/README.md",
-      "sha256": "f84432f477fa9daebc87345fd5fe43ae65c0c3533c6bc25a31a52d9a5a5589ba",
-      "note": "ZIP同定、2版差分、read-only境界"
+      "sha256": "9a3acb9ba122893148edf3845a3bc13b2bf5a2513780d1169033b3e10e2b9120",
+      "note": "ZIP同定、2版差分、read-only境界 [2026-09-29 system-design-ops-playbook ZIPの追加 read-after: README.mdは収録物の表に`system-design-ops-playbook-2026-09-29.zip`の1行と「system-design-ops-playbookの扱い」節を加えただけで、ハイブリッド設計ドキュメント2版の同定・差分・read-only境界・旧HELIXとの違いの記述は不変。本bindingのrole・obligations・connections・replacement・artifactは、追加したZIPとSCF-B-0152に依存しないことをbinding全体で確認した。前receipt=f84432f477fa9daebc87345fd5fe43ae65c0c3533c6bc25a31a52d9a5a5589ba; 現receipt=9a3acb9ba122893148edf3845a3bc13b2bf5a2513780d1169033b3e10e2b9120; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/migration/source-manifests/hybrid-vmodel-source.v1.json",

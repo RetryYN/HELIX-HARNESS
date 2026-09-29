@@ -1,0 +1,123 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0152",
+  "kind": "scaffold",
+  "title": "システム設計・運用保守プレイブックの設計テンプレseed候補（採否なし）",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-BRAIN（汎用template・seed）とHELIX-HARNESS-CORE（製品への適用）。OSの司会進行の材料はHELIX-OS（formal owner未確定）",
+  "state": "registered",
+  "reason": "2026-09-29のPO依頼「このスキルを設計テンプレに変換してフォルダ削除まで進めておくれ」により、作業用skill（15ファイル）を参照用ZIPへ保存したうえで、設計テンプレのseed候補7件とHELIX-OSの決める事項の司会進行の材料へ変換する。DST-HARNESS-005（seed template pack）が未採択のため、scaffoldに置き、採否・要求・設計・authorityを生成しない。",
+  "upstream": [
+    {
+      "path": "archive/reference-sources/system-design-ops-playbook-2026-09-29.zip",
+      "sha256": "f8b34013192a7e0f70030bab36f442502dbfd238f4fde80383d689ba632d0d73",
+      "note": "変換元skillの15ファイルを保存したZIP。読むだけの参照、実行しない"
+    },
+    {
+      "path": "docs/helix-brain/candidates/design-template-system-requirements.md",
+      "sha256": "113cb18db8fd99a05842b0c78539af06156c984a7821cb4710b3f458a1a78013",
+      "note": "template契約の項目（DST-HARNESS-002・005）と担当の読み替え。採否なし"
+    },
+    {
+      "path": "docs/helix-os/candidates/wbs-ledger-requirements.md",
+      "sha256": "b39cea19a06f65345cd738cc061aebbc0af5847214a25e3bf72a06f4d3302d0a",
+      "note": "OSのWBS台帳候補。司会進行の材料を照合する既存候補"
+    },
+    {
+      "path": "docs/helix-os/sources/decision-facilitation-po-original-2026-09-29.md",
+      "sha256": "2673b2ef49626dcd4f059feff08e417b55c5a6b4aa00e9ac340f31184130eebe",
+      "note": "作業中のPO発言1〜4の原文。要求の採否なし"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "note": "旧Design Template JSON契約の項目。静的read-only参照のみ"
+    }
+  ],
+  "role": "設計テンプレseed候補（ログ、非機能、保守・運用、ロジック、依存、AWS初期設計、設計review）と、OSの決める事項の司会進行への入力材料",
+  "obligations": [
+    "各templateに、ID、版、状態、想定する持ち主、適用条件、必須入力、関係、出典、限界、不成立例、完了条件を持たせる",
+    "元の15ファイルそれぞれの行き先または採らない理由をREADMEに記録する",
+    "数値・製品名・設定例を例として扱い、要求の値や採用として書かない",
+    "Web展開後に扱うSecurity・インフラの内容を1.0の必須条件へ前倒ししない",
+    "POの発言を原文のまま保存し、要求の採択やL1・L2の改訂を生成しない",
+    "既存のWBS台帳候補・HARNESS-L2-045・HARNESS-L2-008／012との関係を照合前の見立てとして記録する",
+    "ZIP内の例（コード、設定、Terraform）を実行せず、現行pathの実装へcopyしない"
+  ],
+  "connections": {
+    "consumers": [
+      "HELIX-BRAINの企画（L1）後のDST-HARNESS-005とseed templateの採否",
+      "HELIX-OSのWBS台帳・決める事項の司会進行の要求候補化",
+      "HELIX-HARNESSのL2.5（Prototype・PoC）工程の要求候補化"
+    ],
+    "dependencies": [
+      "archive/reference-sources/system-design-ops-playbook-2026-09-29.zip（read-only参照）",
+      "docs/helix-brain/candidates/design-template-system-requirements.md",
+      "docs/helix-os/candidates/wbs-ledger-requirements.md",
+      "docs/helix-os/sources/decision-facilitation-po-original-2026-09-29.md"
+    ],
+    "boundary": "scaffold/配下のseed候補・材料とbindingのみ。採否・要求・設計・承認・完了を確定しない。ZIPの例を実行・実装へcopyしない。"
+  },
+  "operations": {
+    "allowed": [
+      "read-only source inspection",
+      "write this scaffold seed candidates and binding",
+      "python3 scaffold/tools/scfctl.py stale|validate|residuals|selftest",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "execute code, configuration, or Terraform examples from the ZIP",
+      "旧archiveは実行しない",
+      "copy ZIP examples into current implementation paths",
+      "decide adoption, rejection, approval, requirement meaning, or completion",
+      "write outside scaffold/ except the recorded source snapshot and reference-source archive"
+    ]
+  },
+  "artifacts": [
+    "scaffold/design-template-seed-sdop-20260929/README.md",
+    "scaffold/design-template-seed-sdop-20260929/os-decision-facilitation-input.md",
+    "scaffold/design-template-seed-sdop-20260929/templates/DT-SDOP-001-logging.md",
+    "scaffold/design-template-seed-sdop-20260929/templates/DT-SDOP-002-nonfunctional.md",
+    "scaffold/design-template-seed-sdop-20260929/templates/DT-SDOP-003-maintainability-runbook.md",
+    "scaffold/design-template-seed-sdop-20260929/templates/DT-SDOP-004-logic-design.md",
+    "scaffold/design-template-seed-sdop-20260929/templates/DT-SDOP-005-dependencies.md",
+    "scaffold/design-template-seed-sdop-20260929/templates/DT-SDOP-006-aws-foundation.md",
+    "scaffold/design-template-seed-sdop-20260929/templates/DT-SDOP-007-design-review-quickcheck.md",
+    "scaffold/bindings/SCF-B-0152.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "manual static comparison of each template against the ZIP source files",
+      "ZIP entry bytes equal to the original 15 files before deletion",
+      "python3 scaffold/tools/scfctl.py stale",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "seed候補をBRAINの採択済みseedやcurrent templateとして扱わない",
+      "POの発言からOS・HARNESSの要求採択を生成しない",
+      "AWS templateをAWS以外の対象や1.0の必須条件へ当てない",
+      "Renovateの自動merge例をHELIXの運用規則として採らない"
+    ]
+  },
+  "replacement": {
+    "role_target": "formal HELIX-BRAIN design template registry and seed pack, and HELIX-OS decision facilitation requirements, if separately derived and authorized",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-29",
+  "updated": "2026-09-29"
+}
