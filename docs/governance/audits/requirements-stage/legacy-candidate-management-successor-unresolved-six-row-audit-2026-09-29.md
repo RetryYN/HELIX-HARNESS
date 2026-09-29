@@ -29,6 +29,6 @@ READMEはasset `LEGACY-ASSET-A9F7F40B7F61D64C4F8F`、investment intakeは`LEGACY
 
 ## 固定sourceと限界
 
-archive lineの内容SHAと物理bytes SHA/base64、archive asset、line-ledger状態、現行比較資料とdecisionのSHA-256/行参照を[JSON証跡](legacy-candidate-management-successor-unresolved-six-row-audit-2026-09-29.json)へ記録した。#2353 proposal JSONはbranch `codex/stage5-cumulative-recount`のHEAD `9926aebfbec7813d14a84490758783153422d99e`、SHA-256 `5d810a881d29711b0640e8641df2678b6fe9ee41767936d0289e0cf0e4948110`に固定。
+archive lineの内容SHAと物理bytes SHA/base64、archive asset、line-ledger状態、現行比較資料とdecisionのSHA-256/行参照を[JSON証跡](legacy-candidate-management-successor-unresolved-six-row-audit-2026-09-29.json)へ記録した。#2353 proposal JSONはbranch `codex/stage5-cumulative-recount`のHEAD `8a75e5392a44e005bb05197d977bdbcf75b93cf0`、SHA-256 `57fce8a0e05ed73c46346f2177c439e862a17a06ecea65446389f24dc34160c5`に固定。
 
 本監査はsource-to-current関係候補と残余gapを記録する。formal successor、採択、target approval、coverage/closure、Issue完了、製品L2/L11 route、実装許可は成立しない。旧CLI/runtime/hook/test/CIは実行していない。
