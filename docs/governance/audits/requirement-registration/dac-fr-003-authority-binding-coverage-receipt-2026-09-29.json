@@ -13,6 +13,7 @@
   "l11_file_sha256": "sha256:8ac93048fbc05032e6b1e578a944620089c0eae528bd7fb1d3cf2a125faf4e2e",
   "source_lines_ref": "docs/governance/audits/requirement-registration/dac-fr-003-authority-binding-source-lines-2026-09-29.jsonl",
   "source_atom_set_digest": "sha256:f02d818abee8f2b6700c78d40348a21b7a07bf37da1f411e2f6b8e13f57a8c31",
+  "source_atom_set_digest_rule": "atom_id昇順。各行をatom_id、半角空白、sha256:を含むsource_line_sha256で構成し、LFで連結する。末尾LFは付けず、UTF-8 bytesのSHA-256をsha256:付きで記す。",
   "source_collection_scope": "MPR-SH-CONFIRMED-003が保全するconfirmed175 identityのうち、archive DAC-FR-003 line 50のsource-qualified requirement identity一atomだけ。隣接DAC-FR/NFR、旧文書全体、runtime/test/consumer集合は含めない。",
   "source_collection_atom_count": 1,
   "candidate_input_atom_refs": [
