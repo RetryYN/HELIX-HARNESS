@@ -1,0 +1,1537 @@
+{
+  "schema_version": "1.0",
+  "audit_id": "legacy-candidate4755-product-relation-unresolved-first20-row-audit-2026-09-29",
+  "created_against_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+  "authority_effect": "none",
+  "audit_mode": "bounded_read_only_row_audit",
+  "scope": {
+    "basis_audit": "legacy-candidate4755-cumulative-condition-route-recount-after-2345-2026-09-29",
+    "basis_route_state": "source_relation_coverage_unresolved",
+    "selection": "ID昇順で該当141 product_requirement_atomから先頭20行",
+    "selected_count": 20,
+    "eligible_count_from_historical_baseline": 141,
+    "source_asset_count": 3,
+    "limitations": [
+      "#2347の4,755行censusはこの追補で再実施していない。#2347の件数とrouting snapshotはhistory pinであり、現時点censusではない。",
+      "この調査はsource relationが記録された20行のcondition-level coverage未解決部分だけを比較する。remaining 121行は対象外。",
+      "route labelはcoverage/adoption/successor/closureへ昇格しない。",
+      "旧source、既存監査、carry-forward、asset disposition、MPR registerは変更しない。",
+      "旧CLI/runtime/test/CIは実行していない。"
+    ],
+    "excluded_from_stage5_route_unknown_audit": "#2350 unknown-product先頭20とは別集合。集合積は0。",
+    "historical_eligible_count": 141,
+    "current_exact_census": "not performed; #2347 is a historical census baseline only",
+    "remaining_baseline_rows_not_reviewed": 121
+  },
+  "pinned_inputs": [
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-condition-route-recount-after-2345-2026-09-29.json",
+      "sha256": "25d940277af5a6a343e4eda066bdfe4e3f770fb97f4f56c4586e00b4f025233e"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+      "sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3"
+    },
+    {
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e"
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf"
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+    },
+    {
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-regression-harness-security-2026-09-28.md",
+      "sha256": "86b1df541d81adadc31bafb587c656570887fcbc8dc824ec5ab868023f9f394f"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/helix-harness-internal-resolution-2026-09-27.md",
+      "sha256": "931d0b74debe07cc542a7af48adb3fea885facc4c06e28cd859d805c8814669d"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-regression-os-infra-connect-2026-09-28.md",
+      "sha256": "a436db088b34a0cd1a192727d024ef2dde72b073b9c08d9beadef12b41130b8a"
+    },
+    {
+      "path": "docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json",
+      "sha256": "c6c3b2863eaf026ac61c4e272acc197c6021c24e74b4899a23631c74b67b8860"
+    },
+    {
+      "path": "docs/governance/audits/requirement-registration/helixos-l2-014-coverage-receipt-2026-09-27-r2.json",
+      "sha256": "203ce675f5e83c9bcca38c0544dbaa9752116045955dd2573e0e417c036ce5a4"
+    },
+    {
+      "path": "docs/governance/audits/requirement-registration/ops-o1-o2-coverage-receipt-2026-09-29-r4.json",
+      "sha256": "32aea723fff881d911bb055a5cae936e4ca87fdaab9c98a53ff8da1ccfa019cb"
+    },
+    {
+      "path": "docs/governance/audits/requirement-registration/ops-o1-o2-source-lines-2026-09-29-r3.jsonl",
+      "sha256": "30d47c308ae4ad3fde1c91c2698dccfaf83cd3f127737e20d767973f74dd9ba6"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-unknown-product-atoms-first20-route-audit-2026-09-29.json",
+      "sha256": "c91406a58328d8820b6413a7f699c8a6d71ab89f289652e73d374643b6117273"
+    }
+  ],
+  "pinned_mpr_records": [
+    {
+      "line": 418,
+      "registration_id": "MPR-RC-HARNESS-L2-028-001",
+      "requirement_identity": "HARNESS-L2-028",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "source_atom_count": 0,
+      "sha256": "1e842ba971a6faef2f41c30b87a2749d7981cd64611c428e6934d87326cbd2a3"
+    },
+    {
+      "line": 419,
+      "registration_id": "MPR-RC-HARNESS-L2-029-001",
+      "requirement_identity": "HARNESS-L2-029",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "source_atom_count": 0,
+      "sha256": "4d14a070c6cf18b44f34009554d610b71de47da9531230d4e51b8128048413e8"
+    },
+    {
+      "line": 420,
+      "registration_id": "MPR-RC-HARNESS-L2-028-002",
+      "requirement_identity": "HARNESS-L2-028",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "source_atom_count": 0,
+      "sha256": "27f7d9ffccbf061d4ec668e93d7ec676cad23f8d2efe899c94ea496a41622123"
+    },
+    {
+      "line": 421,
+      "registration_id": "MPR-RC-HARNESS-L2-029-002",
+      "requirement_identity": "HARNESS-L2-029",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "source_atom_count": 0,
+      "sha256": "3fc0cf0a45eb7a4c058e795609d304d21c16e4f1cb49edca742bea9b12b56aae"
+    },
+    {
+      "line": 445,
+      "registration_id": "MPR-RC-HARNESS-L2-028-003",
+      "requirement_identity": "HARNESS-L2-028",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "source_atom_count": 0,
+      "sha256": "572742dd06a064deb8eec4f8a996bc829d34ece2f90dbb8a54c9b9f142fbf1b4"
+    },
+    {
+      "line": 446,
+      "registration_id": "MPR-RC-HARNESS-L2-029-003",
+      "requirement_identity": "HARNESS-L2-029",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "source_atom_count": 0,
+      "sha256": "ea8f292d49e79409998f4f2864f21efa49c7e555ee5c3a72684a318a56dbeb68"
+    },
+    {
+      "line": 47,
+      "registration_id": "MPR-RC-HELIXOS-L2-014-001",
+      "requirement_identity": "HELIXOS-L2-014",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "source_atom_count": 6,
+      "sha256": "5b8f5ea8bef975335d7a6d6f98374c5edab20173b523f66c1d3470d441abe9ea"
+    },
+    {
+      "line": 48,
+      "registration_id": "MPR-RC-HELIXOS-L2-014-002",
+      "requirement_identity": "HELIXOS-L2-014",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "source_atom_count": 6,
+      "sha256": "bb5e90b150798954061d6e2cbb7ec752deffdb09701ca72a9384b68214a59fc0"
+    },
+    {
+      "line": 575,
+      "registration_id": "MPR-RC-HELIXOS-L2-047-001",
+      "requirement_identity": "HELIXOS-L2-047",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "source_atom_count": 4,
+      "sha256": "1d93a1566c3a6ba6648bf37782df5e88e24aa2aaaf39155f647f2954dbffcb43"
+    },
+    {
+      "line": 579,
+      "registration_id": "MPR-RC-HELIXOS-L2-047-002",
+      "requirement_identity": "HELIXOS-L2-047",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "source_atom_count": 5,
+      "sha256": "483642b63b9819f4e1e13a78adb3f12c6028e93e67d69e48ccf44c69701e3157"
+    },
+    {
+      "line": 580,
+      "registration_id": "MPR-RC-HELIXOS-L2-047-003",
+      "requirement_identity": "HELIXOS-L2-047",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "source_atom_count": 5,
+      "sha256": "2e30bbac3e9fa526d60ae85d1390710027b5bb94f3d6d1377a68d94a5c4691e7"
+    },
+    {
+      "line": 584,
+      "registration_id": "MPR-RC-HELIXOS-L2-047-004",
+      "requirement_identity": "HELIXOS-L2-047",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "source_atom_count": 5,
+      "sha256": "5d02e1d16f524572a1625bbc3de2c4430e490ae03ee6da9777cd20968432b042"
+    }
+  ],
+  "separate_audit_overlap": {
+    "audit_id": "legacy-candidate-unknown-product-atoms-first20-route-audit-2026-09-29",
+    "source_file": "docs/governance/audits/requirements-stage/legacy-candidate-unknown-product-atoms-first20-route-audit-2026-09-29.json",
+    "other_selected_id_count": 20,
+    "intersection_count": 0,
+    "intersection_ids": []
+  },
+  "historical_census_baseline": {
+    "basis_commit": "d8c39fd06f51bc0137c63db7fd9c6facf5974cfb",
+    "source_audit_sha256": "25d940277af5a6a343e4eda066bdfe4e3f770fb97f4f56c4586e00b4f025233e",
+    "product_route_counts_as_of_that_audit": {
+      "source_relation_coverage_unresolved": 141,
+      "product_known": 336,
+      "product_unknown": 577
+    },
+    "current_exact_census": "not_performed"
+  },
+  "items": [
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000057",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "route_status": "source_relation_coverage_unresolved",
+      "route_snapshot": {
+        "source_item_id": "LEGACY-CAND-LINE-000057",
+        "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "source_line": 22,
+        "source_line_sha256": "sha256:1fbbf05f1c152a77fd8b56e2bd67b0ea7935393571959bbebb77bda7d07a0305",
+        "source_file_sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "semantic_family_cluster": "agentic_audit_future_state_delta",
+        "semantic_cluster_id": "agentic_audit_future_state_delta::AAFD-AC-008",
+        "routing_status": "documented_relation",
+        "current_ids": [
+          "HARNESS-L2-004"
+        ],
+        "later_25_candidate_ids": [],
+        "adopted_current_requirement_ids": [],
+        "adoption_boundary": "no_unmatched_claim",
+        "batch": null,
+        "review_outcome": "documented_relation",
+        "review_evidence": null,
+        "candidate_identity": null
+      },
+      "legacy_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "physical_line": 22,
+        "line_text": "| AAFD-AC-008 | AAFD-R-08 | unknown→0/unchanged/observed mutationとdeltaからのRequirement direct writeを拒否する |",
+        "file_sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+        "line_sha256": "sha256:1fbbf05f1c152a77fd8b56e2bd67b0ea7935393571959bbebb77bda7d07a0305",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "successor_requirement_ids": [],
+        "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+        "asset_disposition": "unresolved",
+        "asset_authority_status": "historical",
+        "asset_product_target": "unresolved",
+        "asset_ledger_line_sha256": "0e3015a8f72de5dbbbc40e89d56d9011d88a60dab849d285507518916f81566c",
+        "asset_ledger_line": 787,
+        "physical_line_bytes_sha256": "sha256:9be798b70f2de174a4332c0e2f9a8976b566ed343f65fb51c88c75e30904aa27"
+      },
+      "comparison": "AAFD-AC-008/R-08はunknown→0等への変換とdeltaからRequirementへのdirect writeを拒む。現HARNESS-L2-004のrouting relationは一般の割当/独立review境界を示すが、当該source IDのadopted requirement IDなし。",
+      "current_relation_summary": "HARNESS-L2-028/-029の現行文面は保存済み設計revisionとのsource-bound observation、unknown/staleの非承認、影響scopeとproposal-only境界を保持する。HARNESS-L2-028/-029のMPR登録はsource_atom_count=0、authority_effect=noneで、旧AAFD行を取込んだ証拠にはならない。",
+      "unresolved_row_condition": "HARNESS-L2-004はroutingに出るがadopted_current_requirement_idsは空。unknown→0等のconversionとdeltaからRequirementへ直書きする拒否条件について、current adopted L2/L11のどのoracleが同じmutationsを拒むかを特定する。",
+      "current_evidence_refs": [
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-028",
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-029",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md#harness-l2-028",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md#harness-l2-029",
+        "docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json"
+      ],
+      "candidate_or_adopted_requirement_refs": [
+        "MPR-RC-HARNESS-L2-028-003",
+        "MPR-RC-HARNESS-L2-029-003"
+      ]
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000075",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "route_status": "source_relation_coverage_unresolved",
+      "route_snapshot": {
+        "source_item_id": "LEGACY-CAND-LINE-000075",
+        "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "source_line": 42,
+        "source_line_sha256": "sha256:7d50011aa393e8ec509658d7bf71faaf25c81e3379b2650b309ae04ce2f53697",
+        "source_file_sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "semantic_family_cluster": "agentic_audit_future_state_delta",
+        "semantic_cluster_id": "agentic_audit_future_state_delta::oracle",
+        "routing_status": "unknown",
+        "current_ids": [
+          "HARNESS-L2-028",
+          "HARNESS-L2-029"
+        ],
+        "later_25_candidate_ids": [],
+        "adopted_current_requirement_ids": [],
+        "adoption_boundary": "source_basis_relation_only",
+        "batch": 4,
+        "review_outcome": "mapped_source_basis_coverage_unresolved",
+        "review_evidence": "Exact AAFD acceptance slice is cited in docs/governance/audits/requirements-stage/legacy-regression-harness-security-2026-09-28.md:28 and helix-harness-internal-resolution-2026-09-27.md:16 as limited saved-design comparison/proposal behavior; it does not establish full acceptance coverage.",
+        "candidate_identity": null
+      },
+      "legacy_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "physical_line": 42,
+        "line_text": "- unknownを0、neutral、unchanged、observedへ変換する。",
+        "file_sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+        "line_sha256": "sha256:7d50011aa393e8ec509658d7bf71faaf25c81e3379b2650b309ae04ce2f53697",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "successor_requirement_ids": [],
+        "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+        "asset_disposition": "unresolved",
+        "asset_authority_status": "historical",
+        "asset_product_target": "unresolved",
+        "asset_ledger_line_sha256": "0e3015a8f72de5dbbbc40e89d56d9011d88a60dab849d285507518916f81566c",
+        "asset_ledger_line": 787,
+        "physical_line_bytes_sha256": "sha256:e2656bd51b6702ee533174e54f96e86731478a4a50026735efd6daf7cdc322cb"
+      },
+      "comparison": "AAFD-AC-016相当の「unknownを0/neutral/unchanged/observedへ変換」拒否。HARNESS 028/029はunknownを非承認とする一般意味関係。列挙された全変換先の個別negative oracleは確認できない。",
+      "current_relation_summary": "HARNESS-L2-028/-029の現行文面は保存済み設計revisionとのsource-bound observation、unknown/staleの非承認、影響scopeとproposal-only境界を保持する。HARNESS-L2-028/-029のMPR登録はsource_atom_count=0、authority_effect=noneで、旧AAFD行を取込んだ証拠にはならない。",
+      "unresolved_row_condition": "unknownの4つの変換先（0/neutral/unchanged/observed）を個別に与えた場合の拒否oracleと、HARNESS-L2-028/029のunknown-not-approved境界との一致は未確認。",
+      "current_evidence_refs": [
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-028",
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-029",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md#harness-l2-028",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md#harness-l2-029",
+        "docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json"
+      ],
+      "candidate_or_adopted_requirement_refs": [
+        "MPR-RC-HARNESS-L2-028-003",
+        "MPR-RC-HARNESS-L2-029-003"
+      ]
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000076",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "route_status": "source_relation_coverage_unresolved",
+      "route_snapshot": {
+        "source_item_id": "LEGACY-CAND-LINE-000076",
+        "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "source_line": 43,
+        "source_line_sha256": "sha256:7000eed2475515520044bb46df43fd7393b26de4e213b767b9ff99851b6c661e",
+        "source_file_sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "semantic_family_cluster": "agentic_audit_future_state_delta",
+        "semantic_cluster_id": "agentic_audit_future_state_delta::oracle",
+        "routing_status": "unknown",
+        "current_ids": [
+          "HARNESS-L2-028",
+          "HARNESS-L2-029"
+        ],
+        "later_25_candidate_ids": [],
+        "adopted_current_requirement_ids": [],
+        "adoption_boundary": "source_basis_relation_only",
+        "batch": 4,
+        "review_outcome": "mapped_source_basis_coverage_unresolved",
+        "review_evidence": "Exact AAFD acceptance slice is cited in docs/governance/audits/requirements-stage/legacy-regression-harness-security-2026-09-28.md:28 and helix-harness-internal-resolution-2026-09-27.md:16 as limited saved-design comparison/proposal behavior; it does not establish full acceptance coverage.",
+        "candidate_identity": null
+      },
+      "legacy_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "physical_line": 43,
+        "line_text": "- stale projectionまたはdirectiveを再利用する。",
+        "file_sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+        "line_sha256": "sha256:7000eed2475515520044bb46df43fd7393b26de4e213b767b9ff99851b6c661e",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "successor_requirement_ids": [],
+        "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+        "asset_disposition": "unresolved",
+        "asset_authority_status": "historical",
+        "asset_product_target": "unresolved",
+        "asset_ledger_line_sha256": "0e3015a8f72de5dbbbc40e89d56d9011d88a60dab849d285507518916f81566c",
+        "asset_ledger_line": 787,
+        "physical_line_bytes_sha256": "sha256:7e33bd66a80ce3ee1cdc0b9972aad27ad1b9117eed4a894261fd2c92f69cd307"
+      },
+      "comparison": "AAFD-AC-017相当のstale projection/directive再利用拒否。HARNESS 028/029とL11のrevision/stale境界は関係するが、この旧mutationに対するexact test oracleは未確認。",
+      "current_relation_summary": "HARNESS-L2-028/-029の現行文面は保存済み設計revisionとのsource-bound observation、unknown/staleの非承認、影響scopeとproposal-only境界を保持する。HARNESS-L2-028/-029のMPR登録はsource_atom_count=0、authority_effect=noneで、旧AAFD行を取込んだ証拠にはならない。",
+      "unresolved_row_condition": "stale projectionとstale directiveの再利用を別々に試す採択済みnegative oracleは未確認。L2/L11のrevision/stale境界との同値範囲を特定する。",
+      "current_evidence_refs": [
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-028",
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-029",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md#harness-l2-028",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md#harness-l2-029",
+        "docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json"
+      ],
+      "candidate_or_adopted_requirement_refs": [
+        "MPR-RC-HARNESS-L2-028-003",
+        "MPR-RC-HARNESS-L2-029-003"
+      ]
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000077",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "route_status": "source_relation_coverage_unresolved",
+      "route_snapshot": {
+        "source_item_id": "LEGACY-CAND-LINE-000077",
+        "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "source_line": 44,
+        "source_line_sha256": "sha256:5e9af37e29ad6d515d1e4f98a6ad9cd257e293f552021145269acffb69582535",
+        "source_file_sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "semantic_family_cluster": "agentic_audit_future_state_delta",
+        "semantic_cluster_id": "agentic_audit_future_state_delta::oracle",
+        "routing_status": "unknown",
+        "current_ids": [
+          "HARNESS-L2-028",
+          "HARNESS-L2-029"
+        ],
+        "later_25_candidate_ids": [],
+        "adopted_current_requirement_ids": [],
+        "adoption_boundary": "source_basis_relation_only",
+        "batch": 4,
+        "review_outcome": "mapped_source_basis_coverage_unresolved",
+        "review_evidence": "Exact AAFD acceptance slice is cited in docs/governance/audits/requirements-stage/legacy-regression-harness-security-2026-09-28.md:28 and helix-harness-internal-resolution-2026-09-27.md:16 as limited saved-design comparison/proposal behavior; it does not establish full acceptance coverage.",
+        "candidate_identity": null
+      },
+      "legacy_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "physical_line": 44,
+        "line_text": "- deltaからRequirement、Design、Release、Assignmentを直接変更する。",
+        "file_sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+        "line_sha256": "sha256:5e9af37e29ad6d515d1e4f98a6ad9cd257e293f552021145269acffb69582535",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "successor_requirement_ids": [],
+        "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+        "asset_disposition": "unresolved",
+        "asset_authority_status": "historical",
+        "asset_product_target": "unresolved",
+        "asset_ledger_line_sha256": "0e3015a8f72de5dbbbc40e89d56d9011d88a60dab849d285507518916f81566c",
+        "asset_ledger_line": 787,
+        "physical_line_bytes_sha256": "sha256:260c9c48386ba90c0e2727fb4cb1269eb063c46d7839755f4bce2977ad90bc91"
+      },
+      "comparison": "AAFD-AC-018相当のdeltaからRequirement/Design/Release/Assignmentへのdirect write拒否。proposal-only/authority境界は関係するが、列挙された4対象別の拒否証拠は未確認。",
+      "current_relation_summary": "HARNESS-L2-028/-029の現行文面は保存済み設計revisionとのsource-bound observation、unknown/staleの非承認、影響scopeとproposal-only境界を保持する。HARNESS-L2-028/-029のMPR登録はsource_atom_count=0、authority_effect=noneで、旧AAFD行を取込んだ証拠にはならない。",
+      "unresolved_row_condition": "Requirement/Design/Release/Assignmentへの書込み先4種ごとの拒否oracleは未確認。proposal-only境界が各成果物へのwriteを禁止する関係を個別に確かめる。",
+      "current_evidence_refs": [
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-028",
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-029",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md#harness-l2-028",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md#harness-l2-029",
+        "docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json"
+      ],
+      "candidate_or_adopted_requirement_refs": [
+        "MPR-RC-HARNESS-L2-028-003",
+        "MPR-RC-HARNESS-L2-029-003"
+      ]
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000078",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "route_status": "source_relation_coverage_unresolved",
+      "route_snapshot": {
+        "source_item_id": "LEGACY-CAND-LINE-000078",
+        "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "source_line": 45,
+        "source_line_sha256": "sha256:ec1bc62c3f014602f5ed4005e699cd2a74581ef0a9ca2c43d3f4ea73a784b224",
+        "source_file_sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "semantic_family_cluster": "agentic_audit_future_state_delta",
+        "semantic_cluster_id": "agentic_audit_future_state_delta::oracle",
+        "routing_status": "unknown",
+        "current_ids": [
+          "HARNESS-L2-028",
+          "HARNESS-L2-029"
+        ],
+        "later_25_candidate_ids": [],
+        "adopted_current_requirement_ids": [],
+        "adoption_boundary": "source_basis_relation_only",
+        "batch": 4,
+        "review_outcome": "mapped_source_basis_coverage_unresolved",
+        "review_evidence": "Exact AAFD acceptance slice is cited in docs/governance/audits/requirements-stage/legacy-regression-harness-security-2026-09-28.md:28 and helix-harness-internal-resolution-2026-09-27.md:16 as limited saved-design comparison/proposal behavior; it does not establish full acceptance coverage.",
+        "candidate_identity": null
+      },
+      "legacy_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "physical_line": 45,
+        "line_text": "- historical model receiptをcurrent revisionへ書き換える。",
+        "file_sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+        "line_sha256": "sha256:ec1bc62c3f014602f5ed4005e699cd2a74581ef0a9ca2c43d3f4ea73a784b224",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "successor_requirement_ids": [],
+        "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+        "asset_disposition": "unresolved",
+        "asset_authority_status": "historical",
+        "asset_product_target": "unresolved",
+        "asset_ledger_line_sha256": "0e3015a8f72de5dbbbc40e89d56d9011d88a60dab849d285507518916f81566c",
+        "asset_ledger_line": 787,
+        "physical_line_bytes_sha256": "sha256:86a5ef54fc2c5cec74cfa5c0a809d649e366cac551b13bd0dad5e4c6bb466734"
+      },
+      "comparison": "AAFD-AC-019相当のhistorical model receiptをcurrent revisionへ書き換える拒否。revision-bound observationと履歴保持は関係するが、receipt mutationを直接試す採択済みoracleは未確認。",
+      "current_relation_summary": "HARNESS-L2-028/-029の現行文面は保存済み設計revisionとのsource-bound observation、unknown/staleの非承認、影響scopeとproposal-only境界を保持する。HARNESS-L2-028/-029のMPR登録はsource_atom_count=0、authority_effect=noneで、旧AAFD行を取込んだ証拠にはならない。",
+      "unresolved_row_condition": "過去revisionのmodel receiptを書換えるmutationをcurrent adopted L2/L11が拒むか未確認。保存・revision-bound observationとreceipt immutabilityの関係を特定する。",
+      "current_evidence_refs": [
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-028",
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-029",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md#harness-l2-028",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md#harness-l2-029",
+        "docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json"
+      ],
+      "candidate_or_adopted_requirement_refs": [
+        "MPR-RC-HARNESS-L2-028-003",
+        "MPR-RC-HARNESS-L2-029-003"
+      ]
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000079",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "route_status": "source_relation_coverage_unresolved",
+      "route_snapshot": {
+        "source_item_id": "LEGACY-CAND-LINE-000079",
+        "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "source_line": 46,
+        "source_line_sha256": "sha256:575548b04c5bd84053ae12bd538e70b634727c39dc59bde5846da11e0099dbbf",
+        "source_file_sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "semantic_family_cluster": "agentic_audit_future_state_delta",
+        "semantic_cluster_id": "agentic_audit_future_state_delta::oracle",
+        "routing_status": "unknown",
+        "current_ids": [
+          "HARNESS-L2-028",
+          "HARNESS-L2-029"
+        ],
+        "later_25_candidate_ids": [],
+        "adopted_current_requirement_ids": [],
+        "adoption_boundary": "source_basis_relation_only",
+        "batch": 4,
+        "review_outcome": "mapped_source_basis_coverage_unresolved",
+        "review_evidence": "Exact AAFD acceptance slice is cited in docs/governance/audits/requirements-stage/legacy-regression-harness-security-2026-09-28.md:28 and helix-harness-internal-resolution-2026-09-27.md:16 as limited saved-design comparison/proposal behavior; it does not establish full acceptance coverage.",
+        "candidate_identity": null
+      },
+      "legacy_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "physical_line": 46,
+        "line_text": "- duplicate finding/deltaを別episodeとして無限生成する。",
+        "file_sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+        "line_sha256": "sha256:575548b04c5bd84053ae12bd538e70b634727c39dc59bde5846da11e0099dbbf",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "successor_requirement_ids": [],
+        "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+        "asset_disposition": "unresolved",
+        "asset_authority_status": "historical",
+        "asset_product_target": "unresolved",
+        "asset_ledger_line_sha256": "0e3015a8f72de5dbbbc40e89d56d9011d88a60dab849d285507518916f81566c",
+        "asset_ledger_line": 787,
+        "physical_line_bytes_sha256": "sha256:4704d17ce64b8bf4a29eaf4bd64bd9dde3317a5096842d2099c7d55f4f7b7ea2"
+      },
+      "comparison": "AAFD-AC-020相当のduplicate finding/deltaでepisodeを無限生成しない拒否。source-bound proposal/影響scopeの関係はあるが、idempotency・episode identityのexact adopted oracleは未確認。",
+      "current_relation_summary": "HARNESS-L2-028/-029の現行文面は保存済み設計revisionとのsource-bound observation、unknown/staleの非承認、影響scopeとproposal-only境界を保持する。HARNESS-L2-028/-029のMPR登録はsource_atom_count=0、authority_effect=noneで、旧AAFD行を取込んだ証拠にはならない。",
+      "unresolved_row_condition": "同一finding/delta再入力時のepisode identity/idempotency oracleは未確認。proposal scope relationだけで無限episode防止を満たすとはしない。",
+      "current_evidence_refs": [
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-028",
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-029",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md#harness-l2-028",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md#harness-l2-029",
+        "docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json"
+      ],
+      "candidate_or_adopted_requirement_refs": [
+        "MPR-RC-HARNESS-L2-028-003",
+        "MPR-RC-HARNESS-L2-029-003"
+      ]
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000134",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "route_status": "source_relation_coverage_unresolved",
+      "route_snapshot": {
+        "source_item_id": "LEGACY-CAND-LINE-000134",
+        "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+        "source_line": 31,
+        "source_line_sha256": "sha256:32d48b40393347e88cfd853e9c738ce724ccb759c7770aa2e2dd81b7252e1c9a",
+        "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "semantic_family_cluster": "agentic_audit_future_state_delta",
+        "semantic_cluster_id": "agentic_audit_future_state_delta::AAFD-R-01",
+        "routing_status": "unknown",
+        "current_ids": [
+          "HELIXOS-L2-005",
+          "HELIXOS-L2-007"
+        ],
+        "later_25_candidate_ids": [],
+        "adopted_current_requirement_ids": [],
+        "adoption_boundary": "source_basis_relation_only",
+        "batch": 4,
+        "review_outcome": "mapped_source_basis_coverage_unresolved",
+        "review_evidence": "Exact AAFD requirement source span is audited in docs/governance/audits/requirements-stage/legacy-regression-os-infra-connect-2026-09-28.md:44; the current owner split routes audit proposal/evidence to INTELLIGENCE and OS to source/scope/disposition routing. Probe schema, independent reproduction, and delta invalidation details are not adopted. No full atom coverage.",
+        "candidate_identity": null
+      },
+      "legacy_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+        "physical_line": 31,
+        "line_text": "reproduction recipe、counterevidence、confidence、expiry、finding advisory、remediation advisory、proposal digestを持つ。",
+        "file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+        "line_sha256": "sha256:32d48b40393347e88cfd853e9c738ce724ccb759c7770aa2e2dd81b7252e1c9a",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "successor_requirement_ids": [],
+        "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+        "asset_disposition": "unresolved",
+        "asset_authority_status": "historical",
+        "asset_product_target": "unresolved",
+        "asset_ledger_line_sha256": "64ade03f3caed823f572e07b263fa6eb231ba8a179ccaff7bd80912a541739f6",
+        "asset_ledger_line": 789,
+        "physical_line_bytes_sha256": "sha256:2cf5280f3a589db1031b01298892e76a6dfa1eb29d1e3a9ab397ab36a2773923"
+      },
+      "comparison": "AAFD-R要求はreproduction recipe, counterevidence, confidence, expiry, finding/remediation advisory, proposal digestを要求。OS L2-005/007の改善source/provenance・共通証拠へのowner relationを確認。OS infra connect auditはprobe schema、独立再現、delta invalidation詳細を未採択と明記。",
+      "current_relation_summary": "OS L2-005/007の改善登録・証拠provenanceと責務分割に部分関連する。関連付けは現行source crosswalk/監査記録に基づく。",
+      "unresolved_row_condition": "recipe、counterevidence、confidence、expiry、finding advisory、remediation advisory、proposal digestの各fieldについて、採択済みOS requirement/L11の保持先・owner・不在時挙動を対応づける。audit記録はprobe schemaと独立再現等を未採択詳細と記す。",
+      "current_evidence_refs": [
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-005",
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-007",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-005",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-007",
+        "docs/governance/audits/requirements-stage/legacy-regression-os-infra-connect-2026-09-28.md"
+      ],
+      "candidate_or_adopted_requirement_refs": [
+        "HELIXOS-L2-005",
+        "HELIXOS-L2-007 (関連先。該当旧detailの採択/atom coverageは未確認)"
+      ]
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000151",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "route_status": "source_relation_coverage_unresolved",
+      "route_snapshot": {
+        "source_item_id": "LEGACY-CAND-LINE-000151",
+        "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+        "source_line": 59,
+        "source_line_sha256": "sha256:7c942afd939ddff22a9d224c5b59f654f98915354047966d17dede7fa21bb2ca",
+        "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "semantic_family_cluster": "agentic_audit_future_state_delta",
+        "semantic_cluster_id": "agentic_audit_future_state_delta::AAFD-R-06",
+        "routing_status": "unknown",
+        "current_ids": [
+          "HARNESS-L2-028",
+          "HARNESS-L2-029",
+          "HELIXOS-L2-005",
+          "HELIXOS-L2-007"
+        ],
+        "later_25_candidate_ids": [],
+        "adopted_current_requirement_ids": [],
+        "adoption_boundary": "source_basis_relation_only",
+        "batch": 4,
+        "review_outcome": "mapped_source_basis_coverage_unresolved",
+        "review_evidence": "Exact AAFD requirement source span is audited in docs/governance/audits/requirements-stage/legacy-regression-os-infra-connect-2026-09-28.md:44; the current owner split routes audit proposal/evidence to INTELLIGENCE and OS to source/scope/disposition routing. Probe schema, independent reproduction, and delta invalidation details are not adopted. No full atom coverage. The exact delta slice also maps as reference input to HARNESS L2-028/029 in docs/governance/audits/requirements-stage/legacy-regression-harness-security-2026-09-28.md:28 and helix-harness-internal-resolution-2026-09-27.md:16; proposal remains non-authoritative.",
+        "candidate_identity": null
+      },
+      "legacy_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+        "physical_line": 59,
+        "line_text": "仮定exact set、再合成要否、差分digestを持つ。",
+        "file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+        "line_sha256": "sha256:7c942afd939ddff22a9d224c5b59f654f98915354047966d17dede7fa21bb2ca",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "successor_requirement_ids": [],
+        "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+        "asset_disposition": "unresolved",
+        "asset_authority_status": "historical",
+        "asset_product_target": "unresolved",
+        "asset_ledger_line_sha256": "64ade03f3caed823f572e07b263fa6eb231ba8a179ccaff7bd80912a541739f6",
+        "asset_ledger_line": 789,
+        "physical_line_bytes_sha256": "sha256:87775c82f09ac25ab5238a941179089aa05d0495e7688a5a73d295122d5e54ef"
+      },
+      "comparison": "AAFD-R要求は仮定exact set、再合成要否、差分digestを保持。OS L2-005/007とsource/scope/disposition責務へ部分関連するが、exact setのschema、recomposition判定、digest invalidationは未採択/未trace。",
+      "current_relation_summary": "OS L2-005/007の改善登録・証拠provenanceと責務分割に部分関連する。関連付けは現行source crosswalk/監査記録に基づく。",
+      "unresolved_row_condition": "仮定exact set、再合成要否、差分digestのschema・producer・比較規則と、どの変更で再合成/invalidationとなるかを特定する。L2-005/007へのbroad relationでは条件確定にならない。",
+      "current_evidence_refs": [
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-005",
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-007",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-005",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-007",
+        "docs/governance/audits/requirements-stage/legacy-regression-os-infra-connect-2026-09-28.md"
+      ],
+      "candidate_or_adopted_requirement_refs": [
+        "HELIXOS-L2-005",
+        "HELIXOS-L2-007 (関連先。該当旧detailの採択/atom coverageは未確認)"
+      ]
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-001410",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "route_status": "source_relation_coverage_unresolved",
+      "route_snapshot": {
+        "source_item_id": "LEGACY-CAND-LINE-001410",
+        "source_path": "docs/governance/candidates/execution-ticket-requirements.md",
+        "source_line": 20,
+        "source_line_sha256": "sha256:6e57857eba84850055add5f3ce3e9ce6217f73fc6dd89f7c68311cff51d9cb79",
+        "source_file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "semantic_family_cluster": "execution_ticket",
+        "semantic_cluster_id": "execution_ticket::",
+        "routing_status": "unknown",
+        "current_ids": [
+          "HELIXOS-L2-004",
+          "HELIXOS-L2-007",
+          "HELIXOS-L2-008",
+          "HELIXOS-L2-009",
+          "HELIXOS-L2-010",
+          "HELIXOS-L2-011",
+          "HELIXOS-L2-014"
+        ],
+        "later_25_candidate_ids": [],
+        "adopted_current_requirement_ids": [
+          "HELIXOS-L2-014"
+        ],
+        "adoption_boundary": "current_adopted_L2_source_relation",
+        "batch": 1,
+        "review_outcome": "mapped_source_basis_coverage_unresolved",
+        "review_evidence": "docs/helix-os/L2-requirements/governance-requirements.md:781 names exact archive source + SHA + line spans + retained themes and destination L2s; relation does not prove every atom is covered",
+        "candidate_identity": "LEGACY-ASSET-3A15E5645D2D2A59DFF5"
+      },
+      "legacy_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "physical_line": 20,
+        "line_text": "- 現行AssignmentのIssue／PLAN択一は未切替scopeで存続する。Ticket採用scopeは新schema versionで一つの導出契約へ束縛し、三つを同時にscope authorityにしない。",
+        "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "line_sha256": "sha256:6e57857eba84850055add5f3ce3e9ce6217f73fc6dd89f7c68311cff51d9cb79",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "successor_requirement_ids": [],
+        "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+        "asset_disposition": "unresolved",
+        "asset_authority_status": "historical",
+        "asset_product_target": "unresolved",
+        "asset_ledger_line_sha256": "90c173b94c91cd1d6f1000c5867b5b88aaed133fb5c1b11803a233d913ea200e",
+        "asset_ledger_line": 814,
+        "physical_line_bytes_sha256": "sha256:6f7db686fb7b9375f3c5ef317dce9cd2a2f7841ae61a65048f8e5adce8afcf7b"
+      },
+      "comparison": "旧TicketはAssignmentのIssue/PLAN択一を未切替scopeで存続させ、新schema version内の単一導出契約を要求。",
+      "current_relation_summary": "現行HELIX-OS L2のsource crosswalkは当該Execution Ticket旧source範囲をL2-004/007/008/009/010/011/014へ広く関連づける。L2-014はPO採択済みの段階release要件であり、Ticket個別oracle全体の後継やcoverage receiptではない。source crosswalk自身も旧atomの個別割当・完全traceを主張しない。",
+      "unresolved_row_condition": "新schema version内のsingle derivation contractがどの採択済みrequirementで維持され、未切替scopeのAssignment Issue/PLAN択一とどのように併存するかをexact revision/scopeで対応づける。",
+      "current_evidence_refs": [
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-004",
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-014",
+        "docs/helix-os/L2-requirements/governance-requirements.md#legacy-source-crosswalk",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-014",
+        "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md"
+      ],
+      "candidate_or_adopted_requirement_refs": [
+        "HELIXOS-L2-014 (採択済み本文。旧Ticket atom coverageを意味しない)"
+      ]
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-001411",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "route_status": "source_relation_coverage_unresolved",
+      "route_snapshot": {
+        "source_item_id": "LEGACY-CAND-LINE-001411",
+        "source_path": "docs/governance/candidates/execution-ticket-requirements.md",
+        "source_line": 21,
+        "source_line_sha256": "sha256:a8ef45f339625bd500fab0df91378d451fc360e69ac22792821d8194f79d2468",
+        "source_file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "semantic_family_cluster": "execution_ticket",
+        "semantic_cluster_id": "execution_ticket::",
+        "routing_status": "unknown",
+        "current_ids": [
+          "HELIXOS-L2-004",
+          "HELIXOS-L2-007",
+          "HELIXOS-L2-008",
+          "HELIXOS-L2-009",
+          "HELIXOS-L2-010",
+          "HELIXOS-L2-011",
+          "HELIXOS-L2-014"
+        ],
+        "later_25_candidate_ids": [],
+        "adopted_current_requirement_ids": [
+          "HELIXOS-L2-014"
+        ],
+        "adoption_boundary": "current_adopted_L2_source_relation",
+        "batch": 1,
+        "review_outcome": "mapped_source_basis_coverage_unresolved",
+        "review_evidence": "docs/helix-os/L2-requirements/governance-requirements.md:781 names exact archive source + SHA + line spans + retained themes and destination L2s; relation does not prove every atom is covered",
+        "candidate_identity": "LEGACY-ASSET-3A15E5645D2D2A59DFF5"
+      },
+      "legacy_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "physical_line": 21,
+        "line_text": "- Ticket内allowed/forbidden pathsは計画上の制約であり、physical identityと実行時targetの解決は既存broker／Assignmentが担う。自由文字列pathを実行許可にしない。",
+        "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "line_sha256": "sha256:a8ef45f339625bd500fab0df91378d451fc360e69ac22792821d8194f79d2468",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "successor_requirement_ids": [],
+        "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+        "asset_disposition": "unresolved",
+        "asset_authority_status": "historical",
+        "asset_product_target": "unresolved",
+        "asset_ledger_line_sha256": "90c173b94c91cd1d6f1000c5867b5b88aaed133fb5c1b11803a233d913ea200e",
+        "asset_ledger_line": 814,
+        "physical_line_bytes_sha256": "sha256:727bfaf459555653bfcaea1e593920597fce6f1a0a6e94ec51a04ab635e075f3"
+      },
+      "comparison": "allowed/forbidden pathsはplanning constraintで、実行先identity/runtime targetは既存broker/Assignmentが決める。Ticket自身に自由なpath execution authorityを持たせない。",
+      "current_relation_summary": "現行HELIX-OS L2のsource crosswalkは当該Execution Ticket旧source範囲をL2-004/007/008/009/010/011/014へ広く関連づける。L2-014はPO採択済みの段階release要件であり、Ticket個別oracle全体の後継やcoverage receiptではない。source crosswalk自身も旧atomの個別割当・完全traceを主張しない。",
+      "unresolved_row_condition": "allowed/forbidden pathの制約と実行先identityを既存broker/Assignmentが保持する境界について、採択済みrequirement/L11の具体的oracleと現行責任者を特定する。",
+      "current_evidence_refs": [
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-004",
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-014",
+        "docs/helix-os/L2-requirements/governance-requirements.md#legacy-source-crosswalk",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-014",
+        "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md"
+      ],
+      "candidate_or_adopted_requirement_refs": [
+        "HELIXOS-L2-014 (採択済み本文。旧Ticket atom coverageを意味しない)"
+      ]
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-001412",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "route_status": "source_relation_coverage_unresolved",
+      "route_snapshot": {
+        "source_item_id": "LEGACY-CAND-LINE-001412",
+        "source_path": "docs/governance/candidates/execution-ticket-requirements.md",
+        "source_line": 22,
+        "source_line_sha256": "sha256:b04d474fb45239237c53451271500362ef3097d0dd9e85acc190296404da7f5b",
+        "source_file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "semantic_family_cluster": "execution_ticket",
+        "semantic_cluster_id": "execution_ticket::",
+        "routing_status": "unknown",
+        "current_ids": [
+          "HELIXOS-L2-004",
+          "HELIXOS-L2-007",
+          "HELIXOS-L2-008",
+          "HELIXOS-L2-009",
+          "HELIXOS-L2-010",
+          "HELIXOS-L2-011",
+          "HELIXOS-L2-014"
+        ],
+        "later_25_candidate_ids": [],
+        "adopted_current_requirement_ids": [
+          "HELIXOS-L2-014"
+        ],
+        "adoption_boundary": "current_adopted_L2_source_relation",
+        "batch": 1,
+        "review_outcome": "mapped_source_basis_coverage_unresolved",
+        "review_evidence": "docs/helix-os/L2-requirements/governance-requirements.md:781 names exact archive source + SHA + line spans + retained themes and destination L2s; relation does not prove every atom is covered",
+        "candidate_identity": "LEGACY-ASSET-3A15E5645D2D2A59DFF5"
+      },
+      "legacy_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "physical_line": 22,
+        "line_text": "- 異なるTicket revision間も同一logical workの旧変更Assignmentをfenceしてから新revisionをclaimする。revision別一writerだけで旧新二重writerを許さない。",
+        "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "line_sha256": "sha256:b04d474fb45239237c53451271500362ef3097d0dd9e85acc190296404da7f5b",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "successor_requirement_ids": [],
+        "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+        "asset_disposition": "unresolved",
+        "asset_authority_status": "historical",
+        "asset_product_target": "unresolved",
+        "asset_ledger_line_sha256": "90c173b94c91cd1d6f1000c5867b5b88aaed133fb5c1b11803a233d913ea200e",
+        "asset_ledger_line": 814,
+        "physical_line_bytes_sha256": "sha256:fefe4e32897359bf09e4a0d6c9d254e347be433250d6da10e7a4ec33ca1186d6"
+      },
+      "comparison": "同一論理作業の旧Assignmentと新Ticket revision claim間にcross-revision fenceを要求。",
+      "current_relation_summary": "現行HELIX-OS L2のsource crosswalkは当該Execution Ticket旧source範囲をL2-004/007/008/009/010/011/014へ広く関連づける。L2-014はPO採択済みの段階release要件であり、Ticket個別oracle全体の後継やcoverage receiptではない。source crosswalk自身も旧atomの個別割当・完全traceを主張しない。",
+      "unresolved_row_condition": "旧Assignmentと新Ticket revision claimを跨ぐ同一作業について、fence対象identity、発火条件、拒否/隔離結果を現行adopted oracleへ対応づける。",
+      "current_evidence_refs": [
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-004",
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-014",
+        "docs/helix-os/L2-requirements/governance-requirements.md#legacy-source-crosswalk",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-014",
+        "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md"
+      ],
+      "candidate_or_adopted_requirement_refs": [
+        "HELIXOS-L2-014 (採択済み本文。旧Ticket atom coverageを意味しない)"
+      ]
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-001413",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "route_status": "source_relation_coverage_unresolved",
+      "route_snapshot": {
+        "source_item_id": "LEGACY-CAND-LINE-001413",
+        "source_path": "docs/governance/candidates/execution-ticket-requirements.md",
+        "source_line": 23,
+        "source_line_sha256": "sha256:85ee66549e9454bafe274ef6255c465475222306bcb12ad5bcce215edc27d52b",
+        "source_file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "semantic_family_cluster": "execution_ticket",
+        "semantic_cluster_id": "execution_ticket::",
+        "routing_status": "unknown",
+        "current_ids": [
+          "HELIXOS-L2-004",
+          "HELIXOS-L2-007",
+          "HELIXOS-L2-008",
+          "HELIXOS-L2-009",
+          "HELIXOS-L2-010",
+          "HELIXOS-L2-011",
+          "HELIXOS-L2-014"
+        ],
+        "later_25_candidate_ids": [],
+        "adopted_current_requirement_ids": [
+          "HELIXOS-L2-014"
+        ],
+        "adoption_boundary": "current_adopted_L2_source_relation",
+        "batch": 1,
+        "review_outcome": "mapped_source_basis_coverage_unresolved",
+        "review_evidence": "docs/helix-os/L2-requirements/governance-requirements.md:781 names exact archive source + SHA + line spans + retained themes and destination L2s; relation does not prove every atom is covered",
+        "candidate_identity": "LEGACY-ASSET-3A15E5645D2D2A59DFF5"
+      },
+      "legacy_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "physical_line": 23,
+        "line_text": "- L3承認・canonical freeze・IR admission前に本候補を実行判定へ使用しない。既存BenchのPLAN confirmedと文書draftの不一致は自動昇格せず#251で解決する。",
+        "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "line_sha256": "sha256:85ee66549e9454bafe274ef6255c465475222306bcb12ad5bcce215edc27d52b",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "successor_requirement_ids": [],
+        "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+        "asset_disposition": "unresolved",
+        "asset_authority_status": "historical",
+        "asset_product_target": "unresolved",
+        "asset_ledger_line_sha256": "90c173b94c91cd1d6f1000c5867b5b88aaed133fb5c1b11803a233d913ea200e",
+        "asset_ledger_line": 814,
+        "physical_line_bytes_sha256": "sha256:5b739ea3d786cb397351698cf05b9a9a5c1840e403127c608184aef2efb9e18c"
+      },
+      "comparison": "L3承認/canonical freeze/IR admission前にcandidateをexecution judgementへ使わず、PLAN/doc draft不一致を自動解決しない。",
+      "current_relation_summary": "現行HELIX-OS L2のsource crosswalkは当該Execution Ticket旧source範囲をL2-004/007/008/009/010/011/014へ広く関連づける。L2-014はPO採択済みの段階release要件であり、Ticket個別oracle全体の後継やcoverage receiptではない。source crosswalk自身も旧atomの個別割当・完全traceを主張しない。",
+      "unresolved_row_condition": "L3 approval/canonical freeze/IR admission各gateの順序と、PLAN confirmed対doc draft不一致の非自動解決を現行authority/sourceで確認する。過去のIssue参照やcandidate文を現行決定扱いしない。",
+      "current_evidence_refs": [
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-004",
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-014",
+        "docs/helix-os/L2-requirements/governance-requirements.md#legacy-source-crosswalk",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-014",
+        "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md"
+      ],
+      "candidate_or_adopted_requirement_refs": [
+        "HELIXOS-L2-014 (採択済み本文。旧Ticket atom coverageを意味しない)"
+      ]
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-001414",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "route_status": "source_relation_coverage_unresolved",
+      "route_snapshot": {
+        "source_item_id": "LEGACY-CAND-LINE-001414",
+        "source_path": "docs/governance/candidates/execution-ticket-requirements.md",
+        "source_line": 24,
+        "source_line_sha256": "sha256:666fb295081589730b8683d45140b239cb0d444ad9eb2026efd3649f561fc2ed",
+        "source_file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "semantic_family_cluster": "execution_ticket",
+        "semantic_cluster_id": "execution_ticket::",
+        "routing_status": "unknown",
+        "current_ids": [
+          "HELIXOS-L2-004",
+          "HELIXOS-L2-007",
+          "HELIXOS-L2-008",
+          "HELIXOS-L2-009",
+          "HELIXOS-L2-010",
+          "HELIXOS-L2-011",
+          "HELIXOS-L2-014"
+        ],
+        "later_25_candidate_ids": [],
+        "adopted_current_requirement_ids": [
+          "HELIXOS-L2-014"
+        ],
+        "adoption_boundary": "current_adopted_L2_source_relation",
+        "batch": 1,
+        "review_outcome": "mapped_source_basis_coverage_unresolved",
+        "review_evidence": "docs/helix-os/L2-requirements/governance-requirements.md:781 names exact archive source + SHA + line spans + retained themes and destination L2s; relation does not prove every atom is covered",
+        "candidate_identity": "LEGACY-ASSET-3A15E5645D2D2A59DFF5"
+      },
+      "legacy_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "physical_line": 24,
+        "line_text": "- HXT/HXBは本候補内追跡ID。既存FRとの同義重複はtraceの再利用先へ接続し、current FRを二重定義しない。登録／改版はcanonical化時に行う。",
+        "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "line_sha256": "sha256:666fb295081589730b8683d45140b239cb0d444ad9eb2026efd3649f561fc2ed",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "successor_requirement_ids": [],
+        "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+        "asset_disposition": "unresolved",
+        "asset_authority_status": "historical",
+        "asset_product_target": "unresolved",
+        "asset_ledger_line_sha256": "90c173b94c91cd1d6f1000c5867b5b88aaed133fb5c1b11803a233d913ea200e",
+        "asset_ledger_line": 814,
+        "physical_line_bytes_sha256": "sha256:60e2bf78c20bbadf2a128936b1c48295139a0a615ce92f286c4ccf39bdfbf63e"
+      },
+      "comparison": "HXT/HXBはcandidate-local tracking IDで、既存FRをtraceし重複登録せず、canonicalization時に登録/revisionする。",
+      "current_relation_summary": "現行HELIX-OS L2のsource crosswalkは当該Execution Ticket旧source範囲をL2-004/007/008/009/010/011/014へ広く関連づける。L2-014はPO採択済みの段階release要件であり、Ticket個別oracle全体の後継やcoverage receiptではない。source crosswalk自身も旧atomの個別割当・完全traceを主張しない。",
+      "unresolved_row_condition": "HXT/HXBをcandidate-local IDに留め、既存FRへtraceしcanonicalization時に登録するという各段階の重複防止規則が現行採択要件にあるかを特定する。",
+      "current_evidence_refs": [
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-004",
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-014",
+        "docs/helix-os/L2-requirements/governance-requirements.md#legacy-source-crosswalk",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-014",
+        "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md"
+      ],
+      "candidate_or_adopted_requirement_refs": [
+        "HELIXOS-L2-014 (採択済み本文。旧Ticket atom coverageを意味しない)"
+      ]
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-001415",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "route_status": "source_relation_coverage_unresolved",
+      "route_snapshot": {
+        "source_item_id": "LEGACY-CAND-LINE-001415",
+        "source_path": "docs/governance/candidates/execution-ticket-requirements.md",
+        "source_line": 25,
+        "source_line_sha256": "sha256:18effe3a9f0be472f34bba5a7f4cf08f5537f77f9294e09342888930b4ef51c9",
+        "source_file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "semantic_family_cluster": "execution_ticket",
+        "semantic_cluster_id": "execution_ticket::",
+        "routing_status": "unknown",
+        "current_ids": [
+          "HELIXOS-L2-004",
+          "HELIXOS-L2-007",
+          "HELIXOS-L2-008",
+          "HELIXOS-L2-009",
+          "HELIXOS-L2-010",
+          "HELIXOS-L2-011",
+          "HELIXOS-L2-014"
+        ],
+        "later_25_candidate_ids": [],
+        "adopted_current_requirement_ids": [
+          "HELIXOS-L2-014"
+        ],
+        "adoption_boundary": "current_adopted_L2_source_relation",
+        "batch": 1,
+        "review_outcome": "mapped_source_basis_coverage_unresolved",
+        "review_evidence": "docs/helix-os/L2-requirements/governance-requirements.md:781 names exact archive source + SHA + line spans + retained themes and destination L2s; relation does not prove every atom is covered",
+        "candidate_identity": "LEGACY-ASSET-3A15E5645D2D2A59DFF5"
+      },
+      "legacy_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "physical_line": 25,
+        "line_text": "- measurement modeはworkflow identityやexecution modeとは別軸。Ticket revisionとscorer／policy revisionを混同しない。",
+        "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "line_sha256": "sha256:18effe3a9f0be472f34bba5a7f4cf08f5537f77f9294e09342888930b4ef51c9",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "successor_requirement_ids": [],
+        "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+        "asset_disposition": "unresolved",
+        "asset_authority_status": "historical",
+        "asset_product_target": "unresolved",
+        "asset_ledger_line_sha256": "90c173b94c91cd1d6f1000c5867b5b88aaed133fb5c1b11803a233d913ea200e",
+        "asset_ledger_line": 814,
+        "physical_line_bytes_sha256": "sha256:6064e5aa9fb92d7af858060522b137f0d25d97ba75ddb8827afcb4749a69665b"
+      },
+      "comparison": "measurement modeとworkflow/execution modeを分離し、Ticket revisionとscorer/policy revisionを別identityにする。",
+      "current_relation_summary": "現行HELIX-OS L2のsource crosswalkは当該Execution Ticket旧source範囲をL2-004/007/008/009/010/011/014へ広く関連づける。L2-014はPO採択済みの段階release要件であり、Ticket個別oracle全体の後継やcoverage receiptではない。source crosswalk自身も旧atomの個別割当・完全traceを主張しない。",
+      "unresolved_row_condition": "measurement mode/workflow/execution mode、およびTicket revision/scorer-policy revisionの独立identity・join条件を現行採択要件とL11で対応づける。",
+      "current_evidence_refs": [
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-004",
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-014",
+        "docs/helix-os/L2-requirements/governance-requirements.md#legacy-source-crosswalk",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-014",
+        "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md"
+      ],
+      "candidate_or_adopted_requirement_refs": [
+        "HELIXOS-L2-014 (採択済み本文。旧Ticket atom coverageを意味しない)"
+      ]
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-001416",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "route_status": "source_relation_coverage_unresolved",
+      "route_snapshot": {
+        "source_item_id": "LEGACY-CAND-LINE-001416",
+        "source_path": "docs/governance/candidates/execution-ticket-requirements.md",
+        "source_line": 26,
+        "source_line_sha256": "sha256:171d43daec92697677410cef54ff27ab1437fe9eaf7520c4e9cf5016f8a0981c",
+        "source_file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "semantic_family_cluster": "execution_ticket",
+        "semantic_cluster_id": "execution_ticket::",
+        "routing_status": "unknown",
+        "current_ids": [
+          "HELIXOS-L2-004",
+          "HELIXOS-L2-007",
+          "HELIXOS-L2-008",
+          "HELIXOS-L2-009",
+          "HELIXOS-L2-010",
+          "HELIXOS-L2-011",
+          "HELIXOS-L2-014"
+        ],
+        "later_25_candidate_ids": [],
+        "adopted_current_requirement_ids": [
+          "HELIXOS-L2-014"
+        ],
+        "adoption_boundary": "current_adopted_L2_source_relation",
+        "batch": 1,
+        "review_outcome": "mapped_source_basis_coverage_unresolved",
+        "review_evidence": "docs/helix-os/L2-requirements/governance-requirements.md:781 names exact archive source + SHA + line spans + retained themes and destination L2s; relation does not prove every atom is covered",
+        "candidate_identity": "LEGACY-ASSET-3A15E5645D2D2A59DFF5"
+      },
+      "legacy_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "physical_line": 26,
+        "line_text": "- 本取込は新規API、課金、認証設定、公開、production操作、旧engine切替を実施しない。",
+        "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "line_sha256": "sha256:171d43daec92697677410cef54ff27ab1437fe9eaf7520c4e9cf5016f8a0981c",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "successor_requirement_ids": [],
+        "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+        "asset_disposition": "unresolved",
+        "asset_authority_status": "historical",
+        "asset_product_target": "unresolved",
+        "asset_ledger_line_sha256": "90c173b94c91cd1d6f1000c5867b5b88aaed133fb5c1b11803a233d913ea200e",
+        "asset_ledger_line": 814,
+        "physical_line_bytes_sha256": "sha256:081fc2f1b0462dc6954800603a9adba64f0fa869c84d771d82ce8272a7804d8c"
+      },
+      "comparison": "このintakeは新API、billing、auth、public/prod ops、old-engine switchを実装しない。",
+      "current_relation_summary": "現行HELIX-OS L2のsource crosswalkは当該Execution Ticket旧source範囲をL2-004/007/008/009/010/011/014へ広く関連づける。L2-014はPO採択済みの段階release要件であり、Ticket個別oracle全体の後継やcoverage receiptではない。source crosswalk自身も旧atomの個別割当・完全traceを主張しない。",
+      "unresolved_row_condition": "非対象（API/billing/auth/public-prod/old-engine switch）の行はintake境界を示す。現行の対応する権限外範囲/対象scopeを特定し、旧candidateの否定形から新規制約を作らない。",
+      "current_evidence_refs": [
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-004",
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-014",
+        "docs/helix-os/L2-requirements/governance-requirements.md#legacy-source-crosswalk",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-014",
+        "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md"
+      ],
+      "candidate_or_adopted_requirement_refs": [
+        "HELIXOS-L2-014 (採択済み本文。旧Ticket atom coverageを意味しない)"
+      ]
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-001477",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "route_status": "source_relation_coverage_unresolved",
+      "route_snapshot": {
+        "source_item_id": "LEGACY-CAND-LINE-001477",
+        "source_path": "docs/governance/candidates/execution-ticket-requirements.md",
+        "source_line": 99,
+        "source_line_sha256": "sha256:a485e05cbaa15a72e09e2b1f1f7aa82ac9710425054c138a1bf271a828d9d9ef",
+        "source_file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "semantic_family_cluster": "execution_ticket",
+        "semantic_cluster_id": "execution_ticket::5",
+        "routing_status": "unknown",
+        "current_ids": [
+          "HELIXOS-L2-004",
+          "HELIXOS-L2-007",
+          "HELIXOS-L2-008",
+          "HELIXOS-L2-009",
+          "HELIXOS-L2-010",
+          "HELIXOS-L2-011",
+          "HELIXOS-L2-014"
+        ],
+        "later_25_candidate_ids": [],
+        "adopted_current_requirement_ids": [
+          "HELIXOS-L2-014"
+        ],
+        "adoption_boundary": "current_adopted_L2_source_relation",
+        "batch": 1,
+        "review_outcome": "mapped_source_basis_coverage_unresolved",
+        "review_evidence": "docs/helix-os/L2-requirements/governance-requirements.md:781 names exact archive source + SHA + line spans + retained themes and destination L2s; relation does not prove every atom is covered",
+        "candidate_identity": "LEGACY-ASSET-3A15E5645D2D2A59DFF5"
+      },
+      "legacy_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "physical_line": 99,
+        "line_text": "1. 切替済みの通常開発経路では、admitted Ticket・有効Assignment・必要なlease/fenceなしに変更実行しない。bootstrap、read-only診断、formal/shadowは別の明示的実行profileで扱い、抜け道にしない。",
+        "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "line_sha256": "sha256:a485e05cbaa15a72e09e2b1f1f7aa82ac9710425054c138a1bf271a828d9d9ef",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "successor_requirement_ids": [],
+        "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+        "asset_disposition": "unresolved",
+        "asset_authority_status": "historical",
+        "asset_product_target": "unresolved",
+        "asset_ledger_line_sha256": "90c173b94c91cd1d6f1000c5867b5b88aaed133fb5c1b11803a233d913ea200e",
+        "asset_ledger_line": 814,
+        "physical_line_bytes_sha256": "sha256:6fb18fd3b67446f378780e698f98e51fa6f08e79c9184e3ff02e89de4cc0a624"
+      },
+      "comparison": "admitted Ticket・valid Assignment・required lease/fenceを通常開発の前提とし、bootstrap/read-only/formal/shadow profilesを区別する。",
+      "current_relation_summary": "現行HELIX-OS L2のsource crosswalkは当該Execution Ticket旧source範囲をL2-004/007/008/009/010/011/014へ広く関連づける。L2-014はPO採択済みの段階release要件であり、Ticket個別oracle全体の後継やcoverage receiptではない。source crosswalk自身も旧atomの個別割当・完全traceを主張しない。",
+      "unresolved_row_condition": "admitted Ticket、valid Assignment、lease/fenceを要する条件と4つのprofile区別について、現行source/authority revisionとL11各profile oracleを特定する。",
+      "current_evidence_refs": [
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-004",
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-014",
+        "docs/helix-os/L2-requirements/governance-requirements.md#legacy-source-crosswalk",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-014",
+        "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md"
+      ],
+      "candidate_or_adopted_requirement_refs": [
+        "HELIXOS-L2-014 (採択済み本文。旧Ticket atom coverageを意味しない)"
+      ]
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-001478",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "route_status": "source_relation_coverage_unresolved",
+      "route_snapshot": {
+        "source_item_id": "LEGACY-CAND-LINE-001478",
+        "source_path": "docs/governance/candidates/execution-ticket-requirements.md",
+        "source_line": 100,
+        "source_line_sha256": "sha256:825ad366a28f909fc91dd318544b912e854bdacdce5030a59e494c797fcbbe74",
+        "source_file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "semantic_family_cluster": "execution_ticket",
+        "semantic_cluster_id": "execution_ticket::5",
+        "routing_status": "unknown",
+        "current_ids": [
+          "HELIXOS-L2-004",
+          "HELIXOS-L2-007",
+          "HELIXOS-L2-008",
+          "HELIXOS-L2-009",
+          "HELIXOS-L2-010",
+          "HELIXOS-L2-011",
+          "HELIXOS-L2-014"
+        ],
+        "later_25_candidate_ids": [],
+        "adopted_current_requirement_ids": [
+          "HELIXOS-L2-014"
+        ],
+        "adoption_boundary": "current_adopted_L2_source_relation",
+        "batch": 1,
+        "review_outcome": "mapped_source_basis_coverage_unresolved",
+        "review_evidence": "docs/helix-os/L2-requirements/governance-requirements.md:781 names exact archive source + SHA + line spans + retained themes and destination L2s; relation does not prove every atom is covered",
+        "candidate_identity": "LEGACY-ASSET-3A15E5645D2D2A59DFF5"
+      },
+      "legacy_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "physical_line": 100,
+        "line_text": "2. Ticketは要求・要件へ遡及する導出契約であり、要求・要件正本を置き換えない。PLANのatomic change規律をTicket細分化で弱めない。",
+        "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "line_sha256": "sha256:825ad366a28f909fc91dd318544b912e854bdacdce5030a59e494c797fcbbe74",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "successor_requirement_ids": [],
+        "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+        "asset_disposition": "unresolved",
+        "asset_authority_status": "historical",
+        "asset_product_target": "unresolved",
+        "asset_ledger_line_sha256": "90c173b94c91cd1d6f1000c5867b5b88aaed133fb5c1b11803a233d913ea200e",
+        "asset_ledger_line": 814,
+        "physical_line_bytes_sha256": "sha256:60bd833d4a8c6d07f0a4a485508ad55862c27c02fd8882caa739dac87cc34dc7"
+      },
+      "comparison": "Ticketはrequirements/Design/PLANから導出され、それらを置換せずPLANのatomic-change ruleを弱めない。",
+      "current_relation_summary": "現行HELIX-OS L2のsource crosswalkは当該Execution Ticket旧source範囲をL2-004/007/008/009/010/011/014へ広く関連づける。L2-014はPO採択済みの段階release要件であり、Ticket個別oracle全体の後継やcoverage receiptではない。source crosswalk自身も旧atomの個別割当・完全traceを主張しない。",
+      "unresolved_row_condition": "requirements/Design/PLANの導出元・非置換関係とPLAN atomic-change規則を弱めない条件について、現行採択文とL11 oracleのexact mappingを特定する。",
+      "current_evidence_refs": [
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-004",
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-014",
+        "docs/helix-os/L2-requirements/governance-requirements.md#legacy-source-crosswalk",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-014",
+        "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md"
+      ],
+      "candidate_or_adopted_requirement_refs": [
+        "HELIXOS-L2-014 (採択済み本文。旧Ticket atom coverageを意味しない)"
+      ]
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-001479",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "route_status": "source_relation_coverage_unresolved",
+      "route_snapshot": {
+        "source_item_id": "LEGACY-CAND-LINE-001479",
+        "source_path": "docs/governance/candidates/execution-ticket-requirements.md",
+        "source_line": 101,
+        "source_line_sha256": "sha256:bc3891c6ee1b2982656eea46dfedc9b59f73cb90ab3740200b65cf736467ca71",
+        "source_file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "semantic_family_cluster": "execution_ticket",
+        "semantic_cluster_id": "execution_ticket::5",
+        "routing_status": "unknown",
+        "current_ids": [
+          "HELIXOS-L2-004",
+          "HELIXOS-L2-007",
+          "HELIXOS-L2-008",
+          "HELIXOS-L2-009",
+          "HELIXOS-L2-010",
+          "HELIXOS-L2-011",
+          "HELIXOS-L2-014"
+        ],
+        "later_25_candidate_ids": [],
+        "adopted_current_requirement_ids": [
+          "HELIXOS-L2-014"
+        ],
+        "adoption_boundary": "current_adopted_L2_source_relation",
+        "batch": 1,
+        "review_outcome": "mapped_source_basis_coverage_unresolved",
+        "review_evidence": "docs/helix-os/L2-requirements/governance-requirements.md:781 names exact archive source + SHA + line spans + retained themes and destination L2s; relation does not prove every atom is covered",
+        "candidate_identity": "LEGACY-ASSET-3A15E5645D2D2A59DFF5"
+      },
+      "legacy_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "physical_line": 101,
+        "line_text": "3. Ticketはimmutable/revisioned。exactly-one primary responsibilityとbehavior contractを持つ。曖昧な分解は候補・backflowに留める。",
+        "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "line_sha256": "sha256:bc3891c6ee1b2982656eea46dfedc9b59f73cb90ab3740200b65cf736467ca71",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "successor_requirement_ids": [],
+        "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+        "asset_disposition": "unresolved",
+        "asset_authority_status": "historical",
+        "asset_product_target": "unresolved",
+        "asset_ledger_line_sha256": "90c173b94c91cd1d6f1000c5867b5b88aaed133fb5c1b11803a233d913ea200e",
+        "asset_ledger_line": 814,
+        "physical_line_bytes_sha256": "sha256:af0e46c4090fa751a7f4cc73209f6bd3a0703fc81f40b5ab2154b47d7ed978f6"
+      },
+      "comparison": "immutable/revisioned Ticketにexactly-one primary responsibilityとbehavior contractを要求し、曖昧な分割はproposal/backflowへ残す。OPS-O1/O2 r4 receiptはTicket物理line 101の短いimmutable fragmentだけを限定採取し、この行全体のcoverage/採択ではない。",
+      "current_relation_summary": "現行HELIX-OS L2のsource crosswalkは当該Execution Ticket旧source範囲をL2-004/007/008/009/010/011/014へ広く関連づける。L2-014はPO採択済みの段階release要件であり、Ticket個別oracle全体の後継やcoverage receiptではない。source crosswalk自身も旧atomの個別割当・完全traceを主張しない。",
+      "unresolved_row_condition": "r4の採取spanはline 101内の「Ticketはimmutable/revisioned。」だけ。exactly-one responsibility、behavior contract、曖昧分割時backflowの3条件が現行採択要件/L11のどこで保持されるか未解決。r4 MPRはregistered proposal・authority none。",
+      "current_evidence_refs": [
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-004",
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-014",
+        "docs/helix-os/L2-requirements/governance-requirements.md#legacy-source-crosswalk",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-014",
+        "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md"
+      ],
+      "candidate_or_adopted_requirement_refs": [
+        "HELIXOS-L2-014 (採択済み本文。旧Ticket atom coverageを意味しない)"
+      ]
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-001480",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "route_status": "source_relation_coverage_unresolved",
+      "route_snapshot": {
+        "source_item_id": "LEGACY-CAND-LINE-001480",
+        "source_path": "docs/governance/candidates/execution-ticket-requirements.md",
+        "source_line": 102,
+        "source_line_sha256": "sha256:6fb892ab97f097535a18fd3940948ff171a5c8a5d270ac9c42c464d9de4155e0",
+        "source_file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "semantic_family_cluster": "execution_ticket",
+        "semantic_cluster_id": "execution_ticket::5",
+        "routing_status": "unknown",
+        "current_ids": [
+          "HELIXOS-L2-004",
+          "HELIXOS-L2-007",
+          "HELIXOS-L2-008",
+          "HELIXOS-L2-009",
+          "HELIXOS-L2-010",
+          "HELIXOS-L2-011",
+          "HELIXOS-L2-014"
+        ],
+        "later_25_candidate_ids": [],
+        "adopted_current_requirement_ids": [
+          "HELIXOS-L2-014"
+        ],
+        "adoption_boundary": "current_adopted_L2_source_relation",
+        "batch": 1,
+        "review_outcome": "mapped_source_basis_coverage_unresolved",
+        "review_evidence": "docs/helix-os/L2-requirements/governance-requirements.md:781 names exact archive source + SHA + line spans + retained themes and destination L2s; relation does not prove every atom is covered",
+        "candidate_identity": "LEGACY-ASSET-3A15E5645D2D2A59DFF5"
+      },
+      "legacy_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "physical_line": 102,
+        "line_text": "4. actor、provider、model、session、branch、worktree、lease、現時点の優先順位・進捗・measurement値はTicket本文へ入れない。",
+        "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "line_sha256": "sha256:6fb892ab97f097535a18fd3940948ff171a5c8a5d270ac9c42c464d9de4155e0",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "successor_requirement_ids": [],
+        "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+        "asset_disposition": "unresolved",
+        "asset_authority_status": "historical",
+        "asset_product_target": "unresolved",
+        "asset_ledger_line_sha256": "90c173b94c91cd1d6f1000c5867b5b88aaed133fb5c1b11803a233d913ea200e",
+        "asset_ledger_line": 814,
+        "physical_line_bytes_sha256": "sha256:2b7cc5036e22885670d6706401694ae8ed8b432959e1cef974bd7be37964d0de"
+      },
+      "comparison": "actor/provider/model/session/branch/worktree/lease/priority/progress/measurementをTicket bodyから除く。OPS-O1/O2 r4は旧物理line 102をexact selected spanとして記録するが、候補はregistered_proposal/authority noneでありPO採択/旧atom closureではない。",
+      "current_relation_summary": "現行HELIX-OS L2のsource crosswalkは当該Execution Ticket旧source範囲をL2-004/007/008/009/010/011/014へ広く関連づける。L2-014はPO採択済みの段階release要件であり、Ticket個別oracle全体の後継やcoverage receiptではない。source crosswalk自身も旧atomの個別割当・完全traceを主張しない。",
+      "unresolved_row_condition": "line 102は完全sentenceを選択spanとしてreceiptに持つが、r4はregistered proposal・authority none。各実行属性のTicket外配置先と禁止oracleが採択済みかは未解決。",
+      "current_evidence_refs": [
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-004",
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-014",
+        "docs/helix-os/L2-requirements/governance-requirements.md#legacy-source-crosswalk",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-014",
+        "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md"
+      ],
+      "candidate_or_adopted_requirement_refs": [
+        "HELIXOS-L2-014 (採択済み本文。旧Ticket atom coverageを意味しない)"
+      ]
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-001481",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "route_status": "source_relation_coverage_unresolved",
+      "route_snapshot": {
+        "source_item_id": "LEGACY-CAND-LINE-001481",
+        "source_path": "docs/governance/candidates/execution-ticket-requirements.md",
+        "source_line": 103,
+        "source_line_sha256": "sha256:d7f629f704280284f176115129af6a5c038b7d97b9dd7dad96c6cdaa1cbc0e65",
+        "source_file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "semantic_family_cluster": "execution_ticket",
+        "semantic_cluster_id": "execution_ticket::5",
+        "routing_status": "unknown",
+        "current_ids": [
+          "HELIXOS-L2-004",
+          "HELIXOS-L2-007",
+          "HELIXOS-L2-008",
+          "HELIXOS-L2-009",
+          "HELIXOS-L2-010",
+          "HELIXOS-L2-011",
+          "HELIXOS-L2-014"
+        ],
+        "later_25_candidate_ids": [],
+        "adopted_current_requirement_ids": [
+          "HELIXOS-L2-014"
+        ],
+        "adoption_boundary": "current_adopted_L2_source_relation",
+        "batch": 1,
+        "review_outcome": "mapped_source_basis_coverage_unresolved",
+        "review_evidence": "docs/helix-os/L2-requirements/governance-requirements.md:781 names exact archive source + SHA + line spans + retained themes and destination L2s; relation does not prove every atom is covered",
+        "candidate_identity": "LEGACY-ASSET-3A15E5645D2D2A59DFF5"
+      },
+      "legacy_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "physical_line": 103,
+        "line_text": "5. Ticket revision、Assignment revision、Attempt、treatment、replicate、event IDは別identityとする。",
+        "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "line_sha256": "sha256:d7f629f704280284f176115129af6a5c038b7d97b9dd7dad96c6cdaa1cbc0e65",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "successor_requirement_ids": [],
+        "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+        "asset_disposition": "unresolved",
+        "asset_authority_status": "historical",
+        "asset_product_target": "unresolved",
+        "asset_ledger_line_sha256": "90c173b94c91cd1d6f1000c5867b5b88aaed133fb5c1b11803a233d913ea200e",
+        "asset_ledger_line": 814,
+        "physical_line_bytes_sha256": "sha256:e5b0d662f8fd317c5d684695f778d68d8d846a4091b18b6cde2ff9f81ecf58af"
+      },
+      "comparison": "Ticket revision, Assignment revision, Attempt, treatment, replicate, event IDを別identityに保つ。",
+      "current_relation_summary": "現行HELIX-OS L2のsource crosswalkは当該Execution Ticket旧source範囲をL2-004/007/008/009/010/011/014へ広く関連づける。L2-014はPO採択済みの段階release要件であり、Ticket個別oracle全体の後継やcoverage receiptではない。source crosswalk自身も旧atomの個別割当・完全traceを主張しない。",
+      "unresolved_row_condition": "Ticket revision/Assignment revision/Attempt/treatment/replicate/event IDを別identityとして保ち、相互joinするcurrent schema/oracleの対応づけが未確認。",
+      "current_evidence_refs": [
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-004",
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-014",
+        "docs/helix-os/L2-requirements/governance-requirements.md#legacy-source-crosswalk",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-014",
+        "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md"
+      ],
+      "candidate_or_adopted_requirement_refs": [
+        "HELIXOS-L2-014 (採択済み本文。旧Ticket atom coverageを意味しない)"
+      ]
+    }
+  ],
+  "static_validation": {
+    "selected_ids_match_expected": true,
+    "selected_count": 20,
+    "order": "ascending",
+    "source_file_and_physical_line_bytes_rehashed": true,
+    "md_json_same_row_data": true,
+    "historical_files_modified": false,
+    "register_modified": false,
+    "other_audit_overlap_count": 0
+  },
+  "interpretive_boundary": "relation means discoverable current textual/registration relationship only. It does not prove atom-level satisfaction, formal successor, old-source closure, adoption unless explicitly cited for a limited current requirement, implementation authority, or acceptance."
+}
