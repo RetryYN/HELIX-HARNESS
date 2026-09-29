@@ -441,29 +441,30 @@ POは各exact current L2/L11/MPR revisionについて採択・保留・不採択
 
 - **Live registration:** `MPR-RC-HELIXOS-L2-111-001`; candidate digest `sha256:265d5e7d1a8c06919b21691ddbf15354e51dbc204f310f07a448a7b33dc8173b`; registration row SHA-256 `sha256:8fd6f2757862c5307faa28933eebab735697a1609af81c3791f4f8a322ace39a`; `registered_proposal` / `authority_effect: none`.
 - **L2/L11 target:** `HELIXOS-L2-111` / `HELIXOS-L11-111`. L2 section SHA-256 `sha256:265d5e7d1a8c06919b21691ddbf15354e51dbc204f310f07a448a7b33dc8173b`; L11 section SHA-256 `sha256:8efe5d58a4ebe0c4a7078aa7b311f3f2e1a7892b125b603d6a3e45ff4fc5ef14`. Files: `docs/helix-os/L2-requirements/governance-requirements.md`; `docs/helix-os/L11-acceptance/governance-acceptance.md`.
-- **Candidate meaning:** 三者ANDは明瞭だが、入力の実体である旧#825、#1370、Document Authority Censusに対応するcurrent receipt identity、各receiptのrevision/scope、明示greenのowner/authorityが不明とL2自体が明記。これらは単なるsource closureでなくANDの各真理値の意味を決める必須入力契約。#206は第四receiptではない。
+- **Candidate meaning:** 三receiptが各々明示greenの場合だけaggregate greenとする抽象AND意味を候補とする。各入力のidentity、revision、scope、provenance、statusを独立して保持し、missing/stale/unknown等をgreenにしない。旧#825、#1370、Document Authority Censusに対応するcurrent receipt identity、owner、green status authority、revision/scope mappingは未特定のままであり、候補本文もこれらを生成しない。#206は第四receiptではない。
 - **Selected original source:** atoms `CONFIRMED-DAC-FR-009-THREE-RECEIPT-AND`; atom-set SHA-256 `sha256:6015b2a646b070ca092b962523e70c4988f0cf2198e1fee130d1788c5c133ef7`. Source anchor(s): `docs/governance/audits/requirement-registration/dac-fr-009-three-receipt-source-lines-2026-09-29.jsonl#HELIXOS-L2-111`.
 > 原文 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md:56` (line SHA-256 `sha256:881e9a2aa919c8bb082c075f7ab2648bc78c7a185e6689af6042ca8dbe16a004`): | `DAC-FR-009` | #825の要求materialization監査、#1370のstartup projection、#206の旧surface是正と責務を重複させずAND条件で接続する。 |
 - **PO choices:**
-  - 採択 — 三つの別個のcurrent receiptが各自のidentity/revision/scope/provenanceを保って明示greenの場合だけaggregate green。どれかnon-green/missing/stale/unknownならgreenにしない。Issue stateからstatusを作らない。receipt identity/owner mappingが別途供給されることが必要。
-  - 保留 — 採択前に三つの入力のcurrent identityとstatus authority/scopeを名前付きで対応付ける。これがないと何を3つの真理値としてANDするか定まらないため、aggregate green semanticsは保留する。
+  - 採択 — 三つの独立receiptが各々明示greenの場合だけaggregate greenとする抽象AND意味を選ぶ。入力のidentity/revision/scope/provenance/statusは独立して保持し、mappingが未特定であることも維持する。採択はcurrent receipt identity、owner、status authority、revision/scope mapping、receipt発行、実際のaggregate statusを作らず、運用時に実receiptをgreenと扱う根拠にもならない。
+  - 保留 — POが具体receiptのidentity、既存owner/status authority、revision/scope mappingの対応付けを抽象意味の採択にも必要と判断する場合に選ぶ。Issue stateや候補coverage receiptをgreenへ読み替えず、175 source holding全体のclosureや新しいformal owner割当を要求しない。
   - 不採択 — この三receipt aggregationを要件に含めない。source holdingと各receipt ownerの独立authorityを残し、Issue・Census状況からgreen条件を推定しない。
-- **Recommendation (not a decision):** 保留を推奨。三入力の意味はAND結果の意味そのものなので、匿名/未マップ入力のまま機能意味を採択することはできない。これは未完source一般を理由とした保留ではなく、真理値入力の識別不能が具体的阻害条件。
-- **Open meaning/input:** 要求materialization audit、startup projection、Document Authority Censusそれぞれのcurrent receipt identity、対象revision/scope、発行owner、greenの既存意味を特定し、旧番号との対応が正しいこと。POは三者ANDという論理自体を採用するかも選ぶ。
+- **Recommendation (not a decision):** #2351の現行mapping監査を踏まえ、抽象的な三receipt AND意味のみの採択を推奨する。旧sourceは三receiptの独立性と全件green条件を示し、現行候補は各入力状態とprovenanceを保ち、mapping不明をgreenへ変換しない。current receipt identity、owner、green status authority、revision/scope mappingは未特定のまま残す。候補coverage receiptは`candidate_static_scope_only`／`authority_effect: none`であり、current register digestとも一致しないため運用入力receiptとして扱わない。これは#2348の過去の保留推奨を誤りとする判断ではなく、採択判断と具体mapping・運用bindingを分ける推奨変更である。PO判断は記録していない。
+- **Open meaning/input:** POは抽象AND意味だけを選ぶかを判断する。POが具体receiptのidentity、既存owner/status authority、revision/scope mappingを抽象意味の採択前提とする場合は、上記の条件付き保留を選べる。具体mappingがない間、実receiptやaggregate statusの運用判断は未解決のままにする。
 - **Authority limit:** 採択でも当該候補意味の選択だけ。source holding、formal successor、OS/SECURITYの別責務、L3/implementation/execution/actual acceptance/stage completionは含まない。
-- **Worksheet:** [候補別impact worksheet](../../../../docs/governance/audits/requirements-stage/po-decision-packet-live-8-candidates-impact-followup-2026-09-29.md); exact file/section/source/receipt pinsは各worksheet JSON [17件](po-decision-packet-live-17-options-supplement-2026-09-29.json), [8件](po-decision-packet-live-8-candidates-impact-followup-2026-09-29.json), [063](po-decision-packet-harness-l2-063-supplement-2026-09-29.json)。
+- **Worksheet and mapping audit:** [#2348 候補別impact worksheet](../../../../docs/governance/audits/requirements-stage/po-decision-packet-live-8-candidates-impact-followup-2026-09-29.md); [#2351 現行receipt mapping監査](helixos-l2-111-current-input-receipt-mapping-audit-2026-09-29.md) は全3入力のcurrent identity/owner/status authority/revision-scope mapping未特定を記録し、抽象AND意味のみの採択を推奨する。exact file/section/source/receipt pinsは各worksheet JSON [17件](po-decision-packet-live-17-options-supplement-2026-09-29.json), [8件](po-decision-packet-live-8-candidates-impact-followup-2026-09-29.json), [063](po-decision-packet-harness-l2-063-supplement-2026-09-29.json)と[#2351監査JSON](helixos-l2-111-current-input-receipt-mapping-audit-2026-09-29.json)を参照。
 
 ## 既に特定されている条件付き論点
 
-**HELIXOS-L2-111:** 三つの入力receiptについてcurrent identity、revision/scope、発行owner、明示greenのauthorityを名前付きで対応付ける必要がある。匿名/未map入力ではANDの真理値契約が定まらないため、worksheetは保留を推奨する。#206は第四receiptではない。これはsource残余一般ではなく、aggregate greenの入力identity欠落という限定論点である。
+**HELIXOS-L2-111:** #2351の現行mapping監査により、三つのcurrent receipt identity、owner、green status authority、revision/scope mappingはいずれも未特定と確認された。監査の推奨は、抽象的な三receipt AND意味のみを採択し、mappingと運用bindingを未解決のまま保つこと。POが具体mappingを抽象意味の採択条件と判断する場合に限り、候補別の条件付き保留を選べる。#206は第四receiptではない。この推奨変更はPO判断を記録せず、実receiptやaggregate greenの現況も主張しない。
 
-保留推奨の他候補は、`HARNESS-L2-060`（input stage scopeのA/B選択）、`HARNESS-L2-061`（doc-only review trigger/routingの意味）、`HELIXOS-L2-055`（一律gateから適用stage限定への意味差分）、`HELIXOS-L2-103`（HARNESS-060のinput-stage選択に依存）である。各詳細worksheetにある正確な選択条件を使い、本索引は条件を追加しない。
+保留推奨は4件である: `HARNESS-L2-060`（input stage scopeのA/B選択）、`HARNESS-L2-061`（doc-only review trigger/routingの意味）、`HELIXOS-L2-055`（一律gateから適用stage限定への意味差分）、`HELIXOS-L2-103`（HARNESS-060のinput-stage選択に依存）。各詳細worksheetにある正確な選択条件を使い、本索引は条件を追加しない。
 
 ## Basis and scope pins
 
 - #2344: `po-decision-packet-harness-l2-063-supplement-2026-09-29.md/.json` (1).
 - #2346: `po-decision-packet-live-17-options-supplement-2026-09-29.md/.json` (17).
 - #2348: `po-decision-packet-live-8-candidates-impact-followup-2026-09-29.md/.json` (8).
+- #2351: [現行receipt mapping監査](helixos-l2-111-current-input-receipt-mapping-audit-2026-09-29.md), SHA-256 `6e342dc47806ef33f1b491eadf5e5307e9ff6086b56e313c8c4507f02f545864`; [JSON](helixos-l2-111-current-input-receipt-mapping-audit-2026-09-29.json), SHA-256 `bc1915379a5efa5351a187c80b1be0eee45c16635ddd4a1ebe48755cfdddee0f`. Both record unresolved current mappings and recommend adoption of abstract AND meaning only. #2348 worksheet SHA-256 `52b9fc80a972e59ef838a6000954c0b2d5273e3ccbd934a8ed93cfa3c3ec59b0` remains the historical hold recommendation; #2351 retains it as historical evidence.
 - #2349: `live-candidate-effective-disposition-recount-after-2348-2026-09-29.md/.json` (638 register rows, 340 live identities, 26 unclassified).
 - Index base: `bf00aca56add8ca29d9a56af9a989fdeb0a7d969`; #2349 census base: `8b23be9cd996279617219fe06733c7e274b4bb0a`. Each included candidate registration and L2/L11 pin was checked against census/worksheet.
 - No PO decision, source classification/closure, successor assignment, L3 approval, implementation, execution, or stage completion is recorded here.
