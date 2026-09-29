@@ -1,0 +1,132 @@
+{
+  "receipt_id": "DRAFT-RCPT-HARNESS-L2-049-O10-VISUAL-DESIGN-2026-09-29-r3",
+  "receipt_state": "draft_unadopted_new_proposal_scope_recorded",
+  "authority_effect": "none",
+  "requirement_identity": "HARNESS-L2-049",
+  "requirement_kind": "unit",
+  "version_target": "1.0",
+  "candidate_semantic_digest": "sha256:a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116",
+  "candidate_l2_file_sha256": "sha256:45955ffba1293b603f3c513ec1e9e328dd7bcf24b038463eb20dd480d1dc2108",
+  "candidate_digest_rule": "UTF-8 bytes from ### HARNESS-L2-049 through the byte before the next level-3 candidate heading, trailing blank lines removed, exactly one LF at end.",
+  "paired_acceptance_identity": "HARNESS-L11-049",
+  "paired_acceptance_digest": "sha256:f3fb47da21371084e9f8c7c7f7ca6dd945c8e98ae7c7b70597c3fc44e4e08ee7",
+  "candidate_l11_file_sha256": "sha256:411b1e5067c50d0fef789a9635d83031816bd984662906028844173a96b295be",
+  "l11_digest_rule": "UTF-8 bytes from ### HARNESS-L11-049 through the byte before the next level-3 acceptance heading, trailing blank lines removed, exactly one LF at end.",
+  "source_lines_ref": "docs/governance/audits/requirement-registration/o10-visual-design-harness-source-lines-2026-09-29.jsonl",
+  "source_file_sha256": "sha256:7dd1aff53747c60d080cdc367407751fb707e20b839ad64a9462537bb525cb2d",
+  "legacy_asset_id": "LEGACY-ASSET-335176749F6322C3CD8D",
+  "source_collection_scope": "旧ai-vision-design-harness-engine.md §2のVDH-FR-001〜019本文cellのみ。19行を25個の非重複semantic spansに分け、VDH-FR-011の主要state/device/view条件1 spanを049候補へ、他24 spanをsource_holdingへ保全。旧AC、HR/IR、211 file、runtime/schema、設計書全体または後続義務のsuccessor割当は主張しない。",
+  "source_atom_count": 1,
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/o10-visual-design-harness-source-lines-2026-09-29.jsonl#candidate_input=true",
+  "source_atom_set_digest": "sha256:8de980629fff7d1240f93b41b2e15160ab26dd295f4bdbb176ec6bad66b88d39",
+  "candidate_input_atom_refs": [
+    "O10-VDH-FR-011-STATE-DEVICE-VIEW"
+  ],
+  "carried_atom_refs": [
+    "O10-VDH-FR-011-STATE-DEVICE-VIEW"
+  ],
+  "preserved_atom_refs": [
+    "O10-VDH-FR-001-HOLD-01",
+    "O10-VDH-FR-002-HOLD-01",
+    "O10-VDH-FR-003",
+    "O10-VDH-FR-004-HOLD-01",
+    "O10-VDH-FR-005-PATTERN",
+    "O10-VDH-FR-005-INFO-PRIORITY",
+    "O10-VDH-FR-005-HOLD-03",
+    "O10-VDH-FR-005-PRODUCT-ISOLATION",
+    "O10-VDH-FR-006-HOLD-01",
+    "O10-VDH-FR-007-HOLD-01",
+    "O10-VDH-FR-008-HOLD-01",
+    "O10-VDH-FR-009-HOLD-01",
+    "O10-VDH-FR-010-HOLD-01",
+    "O10-VDH-FR-010-IMPLEMENTED",
+    "O10-VDH-FR-010-HOLD-03",
+    "O10-VDH-FR-011-HOLD-01",
+    "O10-VDH-FR-012-HOLD-01",
+    "O10-VDH-FR-013",
+    "O10-VDH-FR-014-HOLD-01",
+    "O10-VDH-FR-015-HOLD-01",
+    "O10-VDH-FR-016-HOLD-01",
+    "O10-VDH-FR-017-HOLD-01",
+    "O10-VDH-FR-018-HOLD-01",
+    "O10-VDH-FR-019-HOLD-01"
+  ],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-VDH-O10-001"
+  ],
+  "unaccounted_atom_refs": [],
+  "coverage_result": "no_loss",
+  "source_holding_ref": "MPR-SH-VDH-O10-001",
+  "source_holding_inventory": "docs/governance/audits/requirement-registration/o10-visual-design-harness-source-holding-lines-2026-09-29.jsonl",
+  "source_holding_atom_count": 24,
+  "source_holding_atom_set_digest": "sha256:8b07549350b29d342d91f08d93ea156ccf468941d3c11fcce3c5594bf0b347da",
+  "source_partition_rule": "19 VDH-FR本文cellを25個の非重複spanに分割。candidate input 1 spanとsource_holding 24 spanで全cellを覆い、unaccounted=0。",
+  "legacy_reference_only": [
+    {
+      "asset_id": "LEGACY-ASSET-4E880D2FCD37879BA300",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/design-harness-assessment-audit-2026-07-19.md",
+      "file_sha256": "sha256:9699f18b937dae6ec9edcbf18aba8d3d0854192baa217a02fee7ca67914cef56",
+      "use": "旧文書管理実装と未実装screen/prototype能力を区別した背景audit。現行実装・採択の証拠にしない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+      "line": "84",
+      "use": "旧自律境界の人間デザイン判断を参照。現行層番号へ転写しない。"
+    }
+  ],
+  "task_basis": {
+    "source_type": "tracked_work_request_snapshot_not_legacy_requirement",
+    "source_path": "docs/governance/audits/requirements-stage/o10-visual-design-harness-request-source-snapshot-2026-09-29.md",
+    "source_file_sha256": "sha256:f4f67a505eebe192b95cc0eb78af7f8c57dab98e3da8c17a4b551bf646903749",
+    "source_lines": "O10 subsection, source lines 148-191",
+    "request_source_path": "scaffold/review-handoff/local/codex-goals-2026-09-28-ops-loop.md",
+    "request_source_sha256": "sha256:e4cfe94cb2072098058828ea3d41e8b5e0150d562457992a58a7c6414d931002",
+    "authority_effect": "none; task provenance only, not requirement/adoption/operation authority"
+  },
+  "new_proposal_items": [
+    "per-check known positive/negative fixtures to evaluate false positives and misses through existing LABO connection; unvalidated precision is warning only",
+    "profile-based copy role/limit and concise-copy candidate detection; no matching explicit legacy volume rule found in bounded source search"
+  ],
+  "deferred_by_O10": [
+    "Pattern/CORE/UI-profile-constrained renderable prototype construction remains unmet: current HARNESS-L2-039 does not define this capability. The source span O10-VDH-FR-005-PATTERN remains held under MPR-SH-VDH-O10-001. PO scope frame is A add construction to a future 049 revision, B create a separate candidate, or C defer; current 049 measurement scope stays unchanged.",
+    "semantic identity generation and Experience/UI/Frontend contract relation, already in separate L2-039 candidate",
+    "implemented/ux_verified lifecycle separation, already in L2-039 candidate; 049 measurement statuses do not create either state",
+    "real-data/user UX evaluation",
+    "prototype/implementation drift",
+    "analytics event linkage",
+    "legacy 211-file intake, sub-check, DB/runtime"
+  ],
+  "bounded_legacy_search": {
+    "scopes": [
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L2-screen"
+    ],
+    "query_terms": "文字数|文字量|冗長|情報優先順位|Content Block|文言",
+    "result": "FR-005 contains information priority; L2-screen has a MarkdownRenderer row, but no explicit UI copy amount/redundancy rule was found. Search scope is bounded; archive-wide absence is not claimed."
+  },
+  "current_boundary": {
+    "harness": "HARNESS-L2-039 remains separate and unadopted. L2-049 consumes rendered prototype/profile and owns measurement oracle, checker precision fixtures, and concise-copy findings only.",
+    "brain": "Existing Visual Design/UX Pattern source when explicitly selected; no new BRAIN identity or adopted connection inferred.",
+    "labo": "Existing connection for evaluation of check accuracy; no new LABO requirement identity is created.",
+    "intelligence": "Existing placement proposal connection only; no new INTELLIGENCE requirement identity is created."
+  },
+  "receipt_limits": "このreceiptはO10 selected source spanのno-loss partitionとcandidate pair digestを照合する。candidate/adoption、039採択、1.0実装、描画・測定・LABO評価の実施、検査精度、PO agreement、operation permissionは証明しない。",
+  "supersedes_receipt_id": "DRAFT-RCPT-HARNESS-L2-049-O10-VISUAL-DESIGN-2026-09-29-r2",
+  "registration_id": "MPR-RC-HARNESS-L2-049-003",
+  "correction_reason": "Align the L11 standalone measurement example with HARNESS-L2-049: a supplied screen ID bound to the target revision, use permission, applicable profile, and measurement conditions is sufficient to enter measurement. Do not require prototype-generation, Pattern-selection, or screen-ID-issuance evidence. An absent or revision-unbound screen ID remains missing/unknown. Preserve the prior counterexample that an unadopted Pattern or CORE constraint must not be treated as adopted, while absence of Pattern-selection evidence alone does not block measurement. L2 bytes and the selected/held source atom partition are unchanged. This exact revision remains unadopted pending PO re-confirmation.",
+  "open_po_scope_axes": [
+    {
+      "axis_id": "O10-PROTOTYPE-CONSTRUCTION-SCOPE",
+      "selection_status": "pending_PO",
+      "selected": null,
+      "choices": {
+        "A": "Add Pattern/CORE/UI-profile-constrained prototype construction to a future exact HARNESS-L2-049 revision; current measurement candidate is unchanged.",
+        "B": "Create a separate bounded HARNESS candidate for constrained prototype construction.",
+        "C": "Defer constrained prototype construction; do not imply current 039 or 049 provides it."
+      },
+      "source_atom_ref": "O10-VDH-FR-005-PATTERN",
+      "source_holding_ref": "MPR-SH-VDH-O10-001",
+      "authority_effect": "none"
+    }
+  ]
+}

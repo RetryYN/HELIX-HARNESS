@@ -394,7 +394,7 @@
         "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
         "start_line": 46,
         "end_line": 52,
-        "sha256": "11ff00b74f2b7e0286ed115ae35d62f34b9f65f72a19fb8b7265eda1b795e40b",
+        "sha256": "411b1e5067c50d0fef789a9635d83031816bd984662906028844173a96b295be",
         "line_sha256": "a0db864fa3de0db5b3566645ec78df6636ff608ed8805fc34a57656bc75876f0",
         "exact_text": "本書はHARNESSの利用者による工程規則の確認である。OS側のWorker・CI・ログ保存の実機能検証とは分ける。\n\n旧資産退役条件はLAR-HARNESS要求の採用revision確定後に評価する。全件未実行。\n\n- 旧path削除や旧test greenだけを与え、要求、behavior、設計、検証、consumer、後継上流IDの欠落を移管済みにしない。\n- replacementのpair、oracle、expected failure、利用者受入、差戻し条件の一つを欠かし、退役を不成立にする。\n- archive内の旧承認・成功証拠をcurrent authority、検証済み能力、工程完了として採用しない。\n",
         "meaning": "HARNESS利用受入は全件未実行で、旧成功証拠をcurrent authorityへ昇格させない境界候補",
