@@ -1,8 +1,8 @@
 # PHCAP-13／GH-FR-018 旧DB収束条件の現行base照合
 
-基準main: `968e9c517366112093090ba4d874b3ca6b18af6b`（origin/main、2026-09-29）  
-監査種別: 読取専用の条件別crosswalk。`authority_effect: none`、`meaning_change_applied: false`、formal successorなし。  
-対象: 旧GH-FR-018の同一HEAD review／`harness.db`収束／stale化条件と、基準mainのGitHub merge運用。  
+基準main: `968e9c517366112093090ba4d874b3ca6b18af6b`（origin/main、2026-09-29）
+監査種別: 読取専用の条件別crosswalk。`authority_effect: none`、`meaning_change_applied: false`、formal successorなし。
+対象: 旧GH-FR-018の同一HEAD review／`harness.db`収束／stale化条件と、基準mainのGitHub merge運用。
 除外: 要求採択、旧sourceのretire、実装許可、L3/L10またはPHCAP-13の完了、旧CI・旧runtime・旧CLI・旧testの実行。
 
 ## 判定
