@@ -2,7 +2,7 @@
   "audit_kind": "read_only_current_receipt_mapping_audit",
   "title": "HELIXOS-L2-111 三入力receiptの現行mapping調査",
   "as_of_date": "2026-09-29",
-  "created_from_commit": "8b23be9cd996279617219fe06733c7e274b4bb0a",
+  "created_from_commit": "159cfedcdc3cc9a2fff4fbd6a053cf412c2f2ae0",
   "status": "evidence audit and PO-options worksheet only; no PO decision, adoption, owner transfer, implementation permission, receipt issuance, source closure, or stage completion",
   "scope": {
     "candidate": "HELIXOS-L2-111",
@@ -351,7 +351,14 @@
         "line": 115,
         "finding": "a numeric #1370 citation appears as context for exact-head review in a scaffold rule; it identifies no startup projection receipt, producer, status authority, revision, or scope"
       }
-    ]
+    ],
+    "prior_pr_2348_packet": {
+      "path": "docs/governance/audits/requirements-stage/po-decision-packet-live-8-candidates-impact-followup-2026-09-29.md",
+      "file_sha256": "sha256:52b9fc80a972e59ef838a6000954c0b2d5273e3ccbd934a8ed93cfa3c3ec59b0",
+      "candidate_section": "HELIXOS-L2-111 / MPR-RC-HELIXOS-L2-111-001",
+      "historical_recommendation": "Hold adoption until current receipt identities, each receipt revision/scope, and existing green owner/authority are mapped, because these are treated as required inputs to define each AND truth value.",
+      "treatment": "Retain the #2348 recommendation as a historical audit record; this worksheet does not edit or relabel it as incorrect."
+    }
   },
   "validation_method": {
     "read_only": true,
@@ -359,5 +366,13 @@
     "queries_used": "rg filename/content searches under docs/scaffold; exact line/row reads; MPR/register and SHA-256 checks",
     "sha256_format": "SHA-256 exact UTF-8/file bytes unless source-line hash; JSONL row pin excludes trailing newline",
     "current_search_does_not_claim": "No web/GitHub live lookup or runtime receipt retrieval; conclusion is repository-evidence bounded."
+  },
+  "recommendation_revision_review": {
+    "kind": "changed_recommendation_proposal_not_a_PO_decision",
+    "prior_recommendation_source": "docs/governance/audits/requirements-stage/po-decision-packet-live-8-candidates-impact-followup-2026-09-29.md#HELIXOS-L2-111",
+    "prior_blocker_recognition": "Without current receipt identity, target revision/scope, and an existing authority that can assert explicit green, the concrete three AND operands and their truth values cannot be evaluated. This remains a blocker to operational use and claiming an actual aggregate status.",
+    "additional_mapping_audit_evidence": "A bounded current-repository audit searched docs/scaffold, decisions, registration receipts, saved issue projection inventories, and pinned old source. No current operand identity/owner/status-authority/revision-scope mapping was found. The only named candidate coverage receipt is source-atom coverage with authority_effect none; its embedded register digest differs from current main.",
+    "reason_for_revising_recommendation": "L2-111 and L11-111 explicitly preserve each input identity/revision/scope/provenance/status, keep missing/stale/unknown non-green, and define neither status conversion nor precedence. Therefore PO can adopt only the abstract all-three-explicit-green AND meaning while leaving concrete operands unmapped; no actual input or aggregate green is asserted. This separates the semantic adoption choice from later operational binding. It is a changed recommendation based on the bounded mapping evidence and explicit unknown-preserving candidate semantics, not a finding that the historical #2348 recommendation was erroneous.",
+    "new_recommendation": "Adopt the abstract AND meaning only; keep current mappings unresolved and do not imply operational use or actual aggregate status."
   }
 }
