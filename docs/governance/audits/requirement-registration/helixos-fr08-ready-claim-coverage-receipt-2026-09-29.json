@@ -1,0 +1,52 @@
+{
+  "schema_revision": 1,
+  "registration_id": "MPR-RC-HELIXOS-L2-055-001",
+  "candidate_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-055",
+  "paired_acceptance_path": "docs/helix-os/L11-acceptance/governance-acceptance.md#HELIXOS-L11-055",
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/helixos-fr08-ready-claim-source-lines-2026-09-29.jsonl",
+  "source_atom_set_digest": "sha256:628dd461d925e8006e7593fd6fdd374344a496f48776ee24fda5ad13a4eb8014",
+  "source_atom_count": 3,
+  "digest_calculation": "SHA-256 over exact UTF-8 bytes of the source JSONL file, with one compact JSON object per line and a trailing LF; source set contains only requirement atoms, not oracle references.",
+  "carried_atom_refs": [
+    "FR08-READY-ISSUE-CLAIM-L0098-S1",
+    "FR08-READY-ISSUE-CLAIM-L0098-S3"
+  ],
+  "preserved_pending_atom_routes": {
+    "FR08-READY-ISSUE-CLAIM-L0098-S2": "MPR-SH-IR-003#HIL-FR-08"
+  },
+  "source_atom_routes": {
+    "FR08-READY-ISSUE-CLAIM-L0098-S1": "carried",
+    "FR08-READY-ISSUE-CLAIM-L0098-S2": "preserved_pending",
+    "FR08-READY-ISSUE-CLAIM-L0098-S3": "carried"
+  },
+  "oracle_reference": {
+    "oracle_id": "FR08-READY-ISSUE-CLAIM-ORACLE-HST-CASE-002-10",
+    "reference_kind": "oracle_reference",
+    "legacy_asset_id": "LEGACY-ASSET-7B1C7AED3AA401868455",
+    "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+    "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+    "source_line": 366,
+    "source_line_sha256": "sha256:fa5480b0680ed80f5bb1e429614a92a09d5cc8091b3e3a61379519c60fb1e00a",
+    "source_text": "| HST-CASE-002-10 | HST-HIL-002 | HIL-FR-08 | Reverse、Redesign、pair-freezeのいずれかが未完了 | Codex claimを要求する | assertion_input_ready | assertion_pass | tool起動前にclaim拒否とblocked reasonを返す | HIL_IMPLEMENTATION_NOT_READY | FX-HST-002-10 | design-defined | not-implemented |",
+    "use": "legacy negative acceptance oracle reference only; excluded from source_atom_count, source_atom_set_digest, and requirement atom partition; not executed"
+  },
+  "coverage_result": "no_loss",
+  "condition_closure": "not_asserted",
+  "unaccounted_atom_refs": [],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-IR-003#HIL-FR-08; old uniform Reverse/Redesign/pair-freeze gate atom preserved_pending_rehome; successor_requirement_ids remain empty",
+    "MPR-SH-IR-003#all unselected IR rows remain unchanged"
+  ],
+  "source_collection_scope": "HIL-FR-08 source line 98 only, decomposed into exactly three non-overlapping UTF-8 byte spans: ready Issue claim; old uniform Reverse/Redesign/pair-freeze gate; claim lease and blocked reason outputs. First and third spans are carried. The old uniform gate is preserved pending because the unadopted current-scope proposal differs in meaning. Assertion line 366 is separate oracle reference and is not counted. No adjacent HIL-FR-08 source, IR namespace, or workflow closure is claimed.",
+  "decision_status": "pending_PO; HELIXOS-L2-055/L11-055 remain unadopted; conditional gate proposal does not replace the held legacy gate atom",
+  "authority_effect": "none",
+  "candidate_digest_calculation": "candidate_semantic_digest is SHA-256 over the exact UTF-8 bytes from the HELIXOS-L2-055 heading through EOF in the L2 file; this is also l2_section_sha256 below.",
+  "candidate_revision_evidence": {
+    "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+    "l2_file_sha256": "sha256:ce8f30a5bd1f301472b280bc9b448bb0677474f9b86b9864e1fbd626d49cecf1",
+    "l2_section_sha256": "sha256:6d23a405ce2c0c6d56a65a4b02d9c39ead8533db3064058dcd7027b641fb9052",
+    "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+    "l11_file_sha256": "sha256:1796b46f7a5c8b6b0c41dd93c1140ae7c26c0f7fa1760bae531900e24fcdfa3f",
+    "l11_section_sha256": "sha256:6bc639b45df952b7cf6cb7433ba3e2bfad978265681ac4ef0fbf03bdc4eb33a2"
+  }
+}

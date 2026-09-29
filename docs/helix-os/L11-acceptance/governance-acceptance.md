@@ -872,3 +872,11 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **receiptと状態分離**：closure receiptを欠落させたclose要求、Issue closeだけ存在する状態、閉じたchild Issueだけ存在する状態を与え、receipt、close可否、実際のclose結果、要求受入、stage完了をそれぞれ独立に識別する。PR／CI／Issueの表示やreceiptの存在だけで要求承認・完了を示さない。
 - **memory意味の未確定**：旧memory compaction atomはholdingのまま`memory条件: 未判定（holding）`と別表示する。候補対象のPR／CI／audit等の評価をこの未決だけで止めず、provider memory/summaryを旧receiptと同値にも扱わない。OS-L2-019 continuityとの同値、memory作業の適用scope、現行close条件は本受入から補作しない。
 - **旧oracleと実施状態**：旧assertion HST-CASE-023-01〜05/07およびHOT-HIL-05は候補oracle参照である。旧記録にある`design-defined`／`not-implemented`を実績扱いせず、旧runtime・test・CLI・CIを実行しない。候補receipt、source atom、文書上の正常例は受入実行、Issue close、旧IR全体のclosureを示さない。
+
+### HELIXOS-L11-055 ready Issue claim前の工程・authority照合受入候補（未実行）
+
+- **状態・範囲**：HELIXOS-L2-055と対になる未採択・未実行の静的oracle案。実装、runtime、要求採択、ticket発行または操作authorityの成立を示さない。既存のOS Worker assignment／leaseとauthority契約をfixture入力として扱う。
+- **正常例**：有効なticket／assignment authority、readyなIssue projectionとの対応、一致する対象revision／scope、および現行契約またはticketで適用すると確定したReverse／Redesign／pair-freeze条件の完了証拠を与える。OSがWorkerへclaimを割り当て、既存lease契約へ結び、assignment・対象revision・scope・期限・結果を追跡する。Workerはそのassignment内でのみ実装toolを開始する。現行decisionで非適用と確定した工程は適用外根拠を記録し、未実施でも阻害条件にしない。
+- **拒否例**：Issueがready表示でもticket／assignment authorityがない、対象revision／scopeが異なる、または適用されるReverse／Redesign／pair-freezeのいずれかが未完了のfixtureでは、tool起動前にclaimを拒否しblocked reasonと未完義務を記録する。期限切れまたは別assignmentに属するleaseを使ったclaimも拒否する。
+- **unknown例**：ready判定、authority、scope、revision、lease、またはすでに適用すると確定した工程の状態がmissing／unknown／conflict／staleなら、OSは成立を推測せず理由付きで保留し、ticket発行元または該当ownerへ返す。工程の適用自体が未定義なら、適用済み／非適用のどちらにも推定で分類せず、既存authority ownerへ照会する。これを全scopeで工程完了を要求する新gateとして扱わない。
+- **責務境界と限界**：Codex固有実行器を検査せず、OSが割り当てるprovider中立Workerとして照合する。旧FR-08の工程一律条件から現行のscope適用条件への差分を受け入れ、全scopeの工程適用規則をこの候補で新設しない。lease時間、更新、競合解決、実runtimeのtool起動動作は既存契約または別の対象revisionに委ねる。blocked receiptやIssue statusは承認・要求採択・完了を生成しない。旧HST-CASE-002-10は読取り専用のnegative oracle参照であり実行しない。
