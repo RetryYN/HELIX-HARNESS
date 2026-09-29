@@ -35,6 +35,8 @@
 
 製品requirement atomのroute-knownは346、unknownは558。route-knownには未採択candidate relationと限定crosswalkを含み、coverage/closureを意味しない。
 
+非conditionのroute値は同義の`not_condition` 3,837行と、#2352由来の`not_applicable_noncondition` 7行の計3,844行である。累積viewでは両値を同じ「conditionではない」状態として数える。#2352の元の提案値は履歴として保ち、911 condition行のroute集計には影響しない。
+
 ## overlay差分の照合
 
 #2347 baselineはstructure 926 / explanation 2,911 / condition 918、product atom 913であった。#2350は20件中4件を`adopted_relevant_partial`、6件を`unadopted_candidate_relation_only`、10件を`true_unknown`としてroute評価した。これにより#2347のroute statusから unknown 10件が前二者へ移る。

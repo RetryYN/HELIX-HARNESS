@@ -38456,7 +38456,21 @@
         "after_2350_route_overlay": "adopted_relevant_partial",
         "proposed_2352_classification_overlay": null
       }
-    ]
+    ],
+    "noncondition_route_status_equivalence": {
+      "canonical_meaning": "not_condition",
+      "aliases": [
+        "not_condition",
+        "not_applicable_noncondition"
+      ],
+      "counts_in_this_view": {
+        "not_condition": 3837,
+        "not_applicable_noncondition": 7
+      },
+      "total_noncondition_rows": 3844,
+      "source_of_alias": "The seven #2352 explanation reclassifications copied its proposed_route_status not_applicable_noncondition; this denotes the same noncondition state as #2347 not_condition. Historical #2352 value is retained, and consumers of this cumulative view must count both values together.",
+      "condition_route_counts_affected": false
+    }
   },
   "validation": {
     "router_rows": 4755,
