@@ -1,8 +1,8 @@
 {
   "schema_version": "legacy-candidate-classification-correction-overlay.v1",
   "audit_id": "legacy-candidate-source-metadata-reclassification-2026-09-29",
-  "created_against_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
-  "classification_basis_commit": "8a75e5392a44e005bb05197d977bdbcf75b93cf0",
+  "created_against_commit": "d8736eeabc90b3d549ba73acec803eea4df6a75c",
+  "classification_basis_commit": "97672630b7de70fd4433827730c390cbabd90a99",
   "authority_effect": "none",
   "audit_mode": "append_only_bounded_source_classification_correction_proposal",
   "scope": {
@@ -24,13 +24,13 @@
   "pinned_inputs": [
     {
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
-      "source_commit": "8a75e5392a44e005bb05197d977bdbcf75b93cf0",
-      "sha256": "57fce8a0e05ed73c46346f2177c439e862a17a06ecea65446389f24dc34160c5"
+      "source_commit": "97672630b7de70fd4433827730c390cbabd90a99",
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c"
     },
     {
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.md",
-      "source_commit": "8a75e5392a44e005bb05197d977bdbcf75b93cf0",
-      "sha256": "203250dba053db1df94c3a6eb340238988a47681c34781eaae2f5856a4ce679c"
+      "source_commit": "97672630b7de70fd4433827730c390cbabd90a99",
+      "sha256": "d5a0efd07e1e719b87560eb2925167b97a9d40d455ea71a112ea6ad2a20d0711"
     },
     {
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
