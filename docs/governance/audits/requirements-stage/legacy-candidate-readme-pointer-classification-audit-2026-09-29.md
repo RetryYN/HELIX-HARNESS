@@ -2,7 +2,7 @@
 
 ## 範囲と結果
 
-基準commitは `a7b207ac7685e55bb94ba175de8fb2ad8bb696b7`（#2350 merge後）。対象は旧README `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md` 一文書で、本文37 source rowsの見出し・箇条書き・前後文脈を読み直した。#2347の4,755行recount上、このREADMEで `product_requirement_atom` かつroute `unknown` と分類された行は下表の9 IDだけであり、全て#2350のfirst-20 auditに `true_unknown` として含まれていた。
+作業基準commitは `98411231e2eb111ca779d8b83478e6667c6cb7b3`（#2351 merge後）。分類・routeの比較基準は `a7b207ac7685e55bb94ba175de8fb2ad8bb696b7`（#2350 merge後）で、#2351は対象source・router・先行監査を変更していない。対象は旧README `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md` 一文書で、本文37 source rowsの見出し・箇条書き・前後文脈を読み直した。#2347の4,755行recount上、このREADMEで `product_requirement_atom` かつroute `unknown` と分類された行は下表の9 IDだけであり、全て#2350のfirst-20 auditに `true_unknown` として含まれていた。
 
 9行のうち7行は候補ファイル名、対象層、README projection、source参照先を示すnavigation/explanationで、product requirement atomの条件を述べないため `explanation` へ再分類する。`000021` はv4.0承認対象bytes保持とU1再整備の承認対象分離、`000037` は存在しない分冊原稿ではなく統合文書中のINV個別カードを参照先にするsource解決条件として、それぞれ `management_process_condition` に再分類する。現行の管理条件とは完全一致せず、successorや製品L2/L11 routeは割り当てない。
 
