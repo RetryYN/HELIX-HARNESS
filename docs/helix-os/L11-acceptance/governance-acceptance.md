@@ -574,7 +574,7 @@ fixture内のID・source textは合成値であり、普遍的なticket番号、
 
 照合した現行本文の固定commit：`2197a4bc405d37f133bac4d5e96809c5afec58c1`。旧L1のBR-07は59行、FR-36は126行、旧運転受入HOT-HIL-36は63行。旧原文のIssue語を現行の原event/local ticketと協調projectionへ分離して再導出し、原指示の意味上の取消権限を緩めない。
 
-**findingのリスク受容：正常・反例**：review findingに、対象revision/scope、根拠、残るrisk、独立review receiptとappeal経路を与える。上流意味の変更がなければPO receiptを一律追加せず、accepted-riskの非終端記録を原findingへ結ぶ。独立reviewなしにリスク受容する、directiveのPO要件を流用して通常findingのaccepted-riskを止める、review済みを理由に原記録を削除/不可視化/終端化する、appeal経路を失う場合は不合格。上流意味を変える場合は人の既存判断へ戻す。出所の種別が不明なら推測せず確認先へ返す。
+**findingのリスク受容：正常・反例**：review findingに、対象revision/scope、根拠、残るrisk、独立review receiptとappeal経路を与える。directiveのcancel／supersede用PO receiptをfindingへ一般化せず、review findingの`accepted_risk`には旧L5 §3のaction-binding PO receiptと旧HIL-NFR-21の独立review receiptの両方を結び、非終端記録を原findingへ残す。いずれかが欠けたリスク受容、review済みを理由とする原記録の削除/不可視化/終端化、appeal経路の喪失は不合格。上流意味を変える場合は人の既存判断へ戻す。出所の種別が不明なら推測せず確認先へ返す。
 
 **原文追補**：旧L1 `infinity-loop-platform-requirements.md:99,201`（HIL-FR-09/NFR-21、L2と同じasset/SHA）により、findingの証拠付き非終端dispositionと独立reviewを保持する。current_pr_fix/successor_issueの分類全体をこの受入だけで閉じない。
 
@@ -886,6 +886,9 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **対応要求・状態**：HELIXOS-L2-101（HELIX-OS単体候補、未採択）。静的oracle候補であり、要求採択、実装・実行、Issue操作またはformal successor割当を示さない。
 - 旧sourceが名指すClaude providerの固定を受入条件にしない。作成側と別のreviewer identity・context・authority・routeがある例はreview役割を満たし、providerが同じという理由だけでは失敗にしない。providerが違うだけでは独立review合格にしない。
 - 各receipt候補は入力finding identity、source/対象revision、evidence参照、affected layer、提案された分類、独立review参照を相互に追跡できる。いずれかが不足・stale・競合する例は未解決のまま示し、accepted receiptとして扱わない。
-- 旧HIL-FR-09の非actionable分類として扱われる例でも、元findingへの参照、独立review結果、appeal経路を保持し、findingを削除・不可視化・終端化しない。appealが行われたとき先行receiptを上書きせず履歴を追跡できる。
-- receiptやIssue projectionだけから要求採択、Issue完了、取消権限または下流実行許可を作らない。六分類のうちどれが非actionableかと各分類の確定者が未決である例は、追加判定をでっち上げず未決として返す。
-- 参照oracle：旧`HST-CASE-005-05`（`infinity-loop-system-assertion-cases.md:367`）は証拠付き非終端receiptとappeal routeの設計条件を記す。旧`HOT-HIL-36`（`L1-infinity-loop-operational-test-design.md:63`）はdirectiveにも適用する条件を含むため、findingへ持ち込む意味を区別する。いずれも実行証拠ではない。
+- `duplicate`は生存targetとacceptance oracle包含証拠をreceiptへ結ぶ。片方が欠ける例は`disposition_pending`。
+- `false_positive`は別verifierの反証と独立reviewの両方を記録し、片方が欠ける例は`disposition_pending`。
+- `accepted_risk`は独立reviewと、受容対象actionへ結び付いたPO receiptの両方を記録し、片方が欠ける例は`disposition_pending`。directiveのcancel/supersede権限からこのPO receiptを導出しない。
+- `telemetry`は観測ownerとexpiryをreceiptへ記録し、片方が欠ける例は`disposition_pending`。
+- 四つのnon-actionable分類はいずれも元findingをappend-onlyで保持し、typed receiptとappeal/reopen routeを残す。証拠不足のfindingを終端化しない。
+- receiptやIssue projectionだけから要求採択、Issue完了、取消権限または下流実行許可を作らない。

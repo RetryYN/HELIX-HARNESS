@@ -14,19 +14,18 @@
 - **HELIXOS-L2-101／L11-101**：finding、根拠、affected layer、型付きnonterminal receipt、independent review、appeal参照を管理する候補。既存OS-L2-034の原記録・処分証拠・異議履歴との責務境界を保ち、directive固有PO権限をfindingへ移さない。
 - **ID選択**：起票元main `26e547515d620bb53036c2f085cfc3f0293888d4`でHELIXOS-L2-056は歴史的mappingに使われ、歴史的な`ticket-id-connection-audit-2026-09-25.md:115`がDECIDE ticketの非採用routeへ割り当て、監査のID範囲は100までを含む。既存監査を変更せず、重複identityを避けて101を使う。HELIXOS-L2-101は同mainのL2/L11本文・MPRで未使用。HARNESS-L2-058も同mainで未使用。
 
-## POに確認する意味
+## 旧sourceで確定している分類条件と残る判断
 
-以下は不足の内容を示す質問案であり、回答・承認・新手続きは作成していない。
+旧L5 `github-pr-audit-promotion.md` §3（68–70行）、旧L4 `infinity-loop-platform-basic-design.md` §4.2（277–280行）、旧HIL-NFR-21（201行）を読み直した。旧FR-09のnon-actionableは`duplicate`／`false_positive`／`accepted_risk`／`telemetry`の4分類である。`duplicate`には生存targetとacceptance oracle包含証拠、`false_positive`には別verifierの反証と独立review、`accepted_risk`には独立reviewと受容actionに結び付いたPO receipt、`telemetry`には観測ownerとexpiryを要する。証拠不足は`disposition_pending`に残し、元finding・appeal/reopen routeを保持する。これらは今回の候補L2/L11へ戻し、POへの未決質問から外した。directiveのcancel／supersede権限はfindingへ一般化しない。
 
-- PR findingで`duplicate`と確定するには、同一findingの比較キーと生存中targetのどのoracle包含証拠が必要か。旧HIL-FR-36の「生存target＋oracle包含」をPR findingにも適用するか。
-- `false_positive`に必要な独立反証の範囲、対象revisionの固定方法、分類者からの独立性をどう定義するか。既存OS-L2-034の候補範囲で足りるか。
-- review findingの`accepted_risk`を確定できる主体・既存authority・対象revision／scopeは何か。旧directiveだけに記述されたPO-only cancel/supersedeをfindingへ拡張する意味は含まれていない。
-- `telemetry`はどの観測を表し、findingを非終端にしたまま何へ利用・保持できるか。他分類との併存・移行を許すか。
-- 六分類のうちどれを旧FR-09の「non-actionable」に含めるか。原文はこの集合を明記していない。
-- 独立reviewの対象・独立性と、appealを受ける既存主体、再審範囲、再open条件は何か。appeal中に元findingと先行receiptをどう保持するか。
-- `current_pr_fix`と`successor_issue`の境界は、旧HIL-BR-17／FR-30にある同一責務・既存scopeの安全な局所修正と独立責務・別設計・lifecycle・性能改善を引き継ぐか。contract違反、correctness/security/data loss、必須oracle/main/evidenceの影響をどう優先するか。
-- `successor_issue`後のIssue contract、Reverse、memory summary、queueへの同一cause接続までをこの要求の意味に含めるか、別責務へ分けるか。
-- 各dispositionの提案者と確定者、分類変更履歴、evidence receiptの十分性をどの既存契約が所有するか。
+| 残る判断 | 該当旧source | 選択肢と推奨 | 影響する要求 |
+|---|---|---|---|
+| current/successorの詳細境界へ旧HIL-BR-17／FR-30をどこまで取り込むか | 旧FR-09:99、BR-17:69、FR-30:120 | A: 旧99行のcurrent contract影響・責務境界だけを本候補に残し、追加routing/promotionは別要求へ保持（推奨）。B: BR-17／FR-30の詳細まで本候補へ含め、source atomと受入を拡張する。 | HARNESS-L2/L11-058、HELIXOS-L2/L11-101、旧HR-FR-HIL-03 |
+| 旧Claude/Codex identity比較の現行Worker独立性への対応 | 旧L5 §2、2026-09-26 PO Worker判断 | A: 既存PO判断のreviewer identity/context/authority/routeを適用し、provider名は固定しない（推奨）。B: provider family同一なら常に不成立とする旧条件を保持し、現行判断との意味差をPOへ戻す。 | HELIXOS-L2/L11-101、既存Worker契約 |
+| telemetryのexpiryと観測ownerの現行参照先 | 旧L5 §3:70 | A: 既存の観測owner・期限契約が確認できるscopeだけで確定し、不明ならpending（推奨）。B: 新しい期限とowner契約を別候補として起こす。 | HARNESS-L2/L11-058、HELIXOS-L2/L11-101、LABO観測境界 |
+| accepted_riskのaction-binding PO receiptの現行形式 | 旧L5 §3:69、旧L4 §4.2:279、旧NFR-21:201 | A: 旧の意味を保持し、既存PO authorityの対象action/scope/revisionを結ぶ形式を後続で具体化（推奨）。B: PO receiptの要否・対象を変更する意味変更として対象revisionのPO判断へ出す。 | HELIXOS-L2/L11-034・101、HARNESS-L2/L11-058 |
+
+選択肢は検討材料であり、この記録によってPOの選択や候補採択を生成しない。上の旧sourceに答えがある4分類の証拠条件は問い直さない。
 
 ## 被覆と保留
 

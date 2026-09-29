@@ -1,0 +1,157 @@
+{
+  "receipt_id": "HIL-FR-09-DISPOSITION-COVERAGE-2026-09-29-R2",
+  "receipt_status": "bounded_source_atom_partition",
+  "source_revision": "8b8cdbbef09dc1d8ded6f6fc9a19645ee7091e10",
+  "source_holding_registration_id": "MPR-SH-DIRECTIVE-DISPOSITION-002",
+  "source_requirement_holding_ref": "MPR-SH-IR-003#HIL-FR-09 (legacy IR downstream pair remains pending; no formal successor assignment)",
+  "legacy_requirement_id": "HIL-FR-09",
+  "legacy_requirement_state": "preserved_pending_rehome",
+  "formal_successor_assignment": false,
+  "source_atom_file": "docs/governance/audits/requirement-registration/hil-fr09-disposition-source-atoms-2026-09-29.jsonl",
+  "source_atom_file_sha256": "sha256:1c55edfd841c923942028d5a037d5f9bcbb62b07143d1ab671d6e1530a453e9e",
+  "source_atom_count": 16,
+  "source_atom_scope": "旧HIL-FR-09 line 99のみを16個の非重複意味atomへ分割。Legacy IR record、system contract、assertion cases、HOTはcontext/oracle referenceでありsource atom計数には含めない。",
+  "source_line": {
+    "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+    "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+    "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+    "source_line": 99,
+    "source_line_sha256": "sha256:1f941a539d063d9601488bfe21a55b5b3afd2b7bc81d97fa443023456e4b1902",
+    "source_text": "| **HIL-FR-09** | Claude監査器はDB relation/coverage/contract/impact viewとPR差分を突合し、findingを`current_pr_fix/successor_issue/duplicate/false_positive/accepted_risk/telemetry`へ証拠付きdispositionする。`current_pr_fix`と`successor_issue`はseverityではなくcurrent contract影響と責務境界で分ける。非actionable分類はfindingを削除/終端化せず、独立reviewとappeal routeを持つ。 | audit finding、affected layer、typed非終端disposition receipt |"
+  },
+  "candidate_subsets": {
+    "HARNESS-L2-058": {
+      "candidate_semantic_digest": "sha256:c50e2183bb1186bb585fbb80b924d628be74aaaf363515f047c74ef906d71bc3",
+      "candidate_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-058",
+      "candidate_section_sha256": "sha256:c50e2183bb1186bb585fbb80b924d628be74aaaf363515f047c74ef906d71bc3",
+      "atom_ids": [
+        "FR09-CURRENT-SUCCESSOR-AXIS-L0099",
+        "FR09-INPUT-VIEWS-L0099",
+        "FR09-TYPE-ACCEPTED-RISK-L0099",
+        "FR09-TYPE-CURRENT-PR-FIX-L0099",
+        "FR09-TYPE-DUPLICATE-L0099",
+        "FR09-TYPE-FALSE-POSITIVE-L0099",
+        "FR09-TYPE-SUCCESSOR-ISSUE-L0099",
+        "FR09-TYPE-TELEMETRY-L0099"
+      ],
+      "source_atom_set_digest": "sha256:9762e53e451312098b79c4c798a0adc18594734f93c670d68dacc4bf8c9f74b8",
+      "source_atom_count": 8,
+      "paired_l11_section_digest": "sha256:5dfc18281d1ab48e2d0cf81d4c9cfb6f3d7f035a38a5955cfcedc33d0f1875c9"
+    },
+    "HELIXOS-L2-101": {
+      "candidate_semantic_digest": "sha256:03ee1bbc860f879b9362eccc024f1cfa056b8cc3e364c16b4683ed18fe9598b5",
+      "candidate_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-101",
+      "candidate_section_sha256": "sha256:03ee1bbc860f879b9362eccc024f1cfa056b8cc3e364c16b4683ed18fe9598b5",
+      "atom_ids": [
+        "FR09-ACTOR-CLAUDE-AUDITOR-L0099",
+        "FR09-APPEAL-ROUTE-L0099",
+        "FR09-EVIDENCE-BACKED-L0099",
+        "FR09-INDEPENDENT-REVIEW-L0099",
+        "FR09-NONACTIONABLE-NO-DROP-L0099",
+        "FR09-OUTPUT-AFFECTED-LAYER-L0099",
+        "FR09-OUTPUT-AUDIT-FINDING-L0099",
+        "FR09-OUTPUT-TYPED-NONTERMINAL-RECEIPT-L0099"
+      ],
+      "source_atom_set_digest": "sha256:682fc514631a7b62e50816a27b90a81bc3bbd8cc080e18055a60b4662805f3a1",
+      "source_atom_count": 8,
+      "paired_l11_section_digest": "sha256:bea9231cf52c1491768397621ecb9fd42f54f07b3eb323a3cfaa68aff08d818a"
+    }
+  },
+  "preserved_pending_atom_refs": [],
+  "coverage_result": "no_loss",
+  "unaccounted_atom_refs": [],
+  "partition": {
+    "carried_to_HARNESS_L2_058": 8,
+    "preserved_pending": 0,
+    "relation": "旧line 99の全16明示意味atomを二候補へ一度ずつ割当。Claude監査器というactor atomは既存の2026-09-26 PO Worker実行モデル判断によりprovider-neutralな独立reviewer roleへ再導出した。no_lossは明示内容と記録済み人間判断の完全計上であり、未定義の分類条件・authority・旧IR全体を補完しない。",
+    "carried_to_HELIXOS_L2_101": 8
+  },
+  "preserved_pending_registration_refs": [
+    "MPR-SH-DIRECTIVE-DISPOSITION-002#DIRECTIVE-DISPOSITION-infinity-loop-platform-requirements.md-L0099 (原source holdingを存続)",
+    "MPR-SH-IR-003#HIL-FR-09 (IR downstream obligation remains pending_pair_descent; no successor IDs)",
+    "MPR-SH-DIRECTIVE-DISPOSITION-002#HIL-NFR-21 context; findingとdirectiveのauthorityを混同しない"
+  ],
+  "assertion_oracle_refs": [
+    {
+      "case_id": "HST-CASE-005-05",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+      "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+      "line": 367,
+      "line_sha256": "sha256:291c811b136aea0e86971c5221af6cae0e53dda7a583ba2ece5630e1bbcef7d0",
+      "oracle_note": "各disposition候補の証拠付き非終端receiptとappeal route。設計記述で未実装、実行証拠ではない."
+    }
+  ],
+  "context_refs": [
+    {
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-09",
+      "source_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "evidence_role": "legacy IR identity, HR-FR-HIL-03 / HAC-HIL-03a/b/c / HAT-HIL-03 links; migration/pair remains pending"
+    },
+    {
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json#HR-FR-HIL-03",
+      "source_file_sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "evidence_role": "source contract links HIL-FR-09, but expands current/successor promotion behavior; context only, not adopted wholesale"
+    },
+    {
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:69,120",
+      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "evidence_role": "HIL-BR-17 and HIL-FR-30 provide related current/successor axis and promotion pipeline; context only, their full behaviors remain outside this bounded partition"
+    },
+    {
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md:56,63",
+      "source_file_sha256": "sha256:4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+      "evidence_role": "HOT-HIL-29/HOT-HIL-36 reference cases; design only, not executed; directive authority remains separate"
+    },
+    {
+      "source_path": "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-034",
+      "source_role": "current OS candidate with existing finding evidence/appeal boundary; read as candidate, not adoption"
+    },
+    {
+      "source_path": "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-035",
+      "source_role": "current PR intake candidate; not treated as disposition implementation"
+    },
+    {
+      "source_path": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
+      "source_file_sha256": "sha256:1c93bf0aadccfdf6b536a32d3923a17fbd00a1fd830850f9369b5b6d6b12efb2",
+      "sections": [
+        "独立reviewとレーン",
+        "Workerの要求の置き場所"
+      ],
+      "evidence_role": "PO decision rederives fixed Claude actor as role-based lane/reviewer and assigns OS ownership for Worker assignment/execution state/evidence; HARNESS keeps requirement meaning. Existing human decision, not a new approval."
+    },
+    {
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/github-pr-audit-promotion.md",
+      "source_file_sha256": "sha256:bbb2f1662d44196d399066da8c4f29ba2dfdea4815a9d4a58f3f898925800eb2",
+      "source_lines": "68-70",
+      "evidence_role": "four non-actionable evidence conditions and disposition_pending, finding accepted_risk action-binding PO receipt"
+    },
+    {
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+      "source_file_sha256": "sha256:2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357",
+      "source_lines": "277-280",
+      "evidence_role": "separate verifier refutation, PO receipt for accepted_risk, appeal/reopen and pending disposition"
+    },
+    {
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_line": 201,
+      "source_line_sha256": "sha256:9b5c8f5d590e7cf8293cf9366f5bb5b87f6609dfa5ca19cb9eac8bb4ac1dbadd",
+      "evidence_role": "independent review for false_positive and accepted_risk, append-only finding"
+    }
+  ],
+  "open_po_meaning_gaps": [
+    "旧HIL-BR-17／HIL-FR-30の詳細なcurrent/successor routingとpromotion条件をこの候補へ取り込む範囲",
+    "旧L5 §2のClaude/Codex provider-family比較と現行Worker独立性の具体的対応。2026-09-26 PO判断のreviewer identity/context/authority/routeを優先し、旧provider固定は継承しない",
+    "telemetry expiry／観測ownerの現行契約への具体的参照先。旧条件自体は保持",
+    "accepted_riskのaction-binding PO receiptを現行source/revision/scopeへ結ぶ形式。必要性と独立reviewは旧sourceから保持"
+  ],
+  "authority_effect": "none",
+  "decision_status": "candidate_only_unadopted",
+  "execution_status": "not_executed",
+  "old_runtime_or_test_execution": false,
+  "blanket_ir_closure": false,
+  "registered_at_worktree": "2026-09-29T09:49:49+09:00",
+  "source_atom_set_digest_rule": "全source JSONLのUTF-8 serialized line bytesをそのままSHA-256。各subsetのMPR digestはatom_id ascendingで `atom_id SP source_line_sha256 without sha256: LF` をSHA-256。Assertion/context refsはsource atoms外.",
+  "supersedes_receipt_ref": "docs/governance/audits/requirement-registration/hil-fr09-disposition-coverage-receipt-2026-09-29.json",
+  "review_correction": "R2314-01: old L5 §3, L4 §4.2 and HIL-NFR-21 already define non-actionable four-class evidence and finding accepted_risk action-binding PO receipt; candidate L2/L11 restored them."
+}
