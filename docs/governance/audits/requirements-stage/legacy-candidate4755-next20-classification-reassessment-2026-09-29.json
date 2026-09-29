@@ -1,7 +1,7 @@
 {
   "schema_version": "legacy-candidate4755-next20-classification-reassessment.v1",
   "audit_id": "legacy-candidate4755-next20-classification-reassessment-2026-09-29",
-  "base_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+  "base_commit": "847f7262d1248de2de5165d029a9175e027bda6c",
   "authority_effect": "none",
   "audit_mode": "read_only_bounded_classification_and_atom_boundary_proposal",
   "scope": {
@@ -13,27 +13,27 @@
   "pinned_inputs": [
     {
       "role": "classification_2353",
-      "commit": "8a75e5392a44e005bb05197d977bdbcf75b93cf0",
+      "commit": "97672630b7de70fd4433827730c390cbabd90a99",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
-      "sha256": "57fce8a0e05ed73c46346f2177c439e862a17a06ecea65446389f24dc34160c5"
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c"
     },
     {
       "role": "classification_2356",
-      "commit": "b213b41735067d1716c143c92e0fa6c71d8e92d9",
+      "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
-      "sha256": "53c8acc872f30cf19e88499bc68b0f11c830a677f5c346d646a148dd3ca7853b"
+      "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164"
     },
     {
       "role": "classification_2360",
-      "commit": "89a5f57cbc8dc6b0dc6828233992640c919fb03c",
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
-      "sha256": "71fa35e0b3f8bfeb9781cbe2b9b21322d8e5be7866c71bce2abbca8cdca43ddd"
+      "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb"
     },
     {
       "role": "effective_recount_2361",
-      "commit": "aab65a4f1bc2f679530604cb7f89519683b9156c",
+      "commit": "132a56f3f2cbb1d02ad3bc08bab4f23ef93369cc",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-stage5-recount-after-2353-2356-2360-2026-09-29.json",
-      "sha256": "ff1da2c7e563f25b7044318670e1808a6463afcac82857764d917878fb5046a5"
+      "sha256": "e29aadd8c84dda8fcfca65010ffa62331b6631ffce3ac22ef5d174270bb92b20"
     },
     {
       "role": "next20_sample_json",
@@ -51,17 +51,17 @@
   "classification_criteria": [
     {
       "source": "#2353 cumulative classification proposal",
-      "sha256": "57fce8a0e05ed73c46346f2177c439e862a17a06ecea65446389f24dc34160c5",
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
       "use": "Effective baseline is condition/product_requirement_atom/unknown after its listed overlays; still an audit proposal."
     },
     {
       "source": "#2356 source-metadata correction proposal",
-      "sha256": "53c8acc872f30cf19e88499bc68b0f11c830a677f5c346d646a148dd3ca7853",
+      "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164",
       "use": "ID/provenance/status-only rows are explanation; an explicit source/process/authority boundary can remain condition/management_process_condition."
     },
     {
       "source": "#2360 seven-row reconciliation proposal",
-      "sha256": "71fa35e0b3f8bfeb9781cbe2b9b21322d8e5be7866c71bce2abbca8cdca43ddd",
+      "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb",
       "use": "Pure ID/count metadata is explanation; normative substantive conditions remain atoms with their semantic boundary preserved; historical promotion/source handling is separated from product behavior."
     }
   ],
@@ -388,9 +388,9 @@
     }
   ],
   "impact_if_overlay_applied": {
-    "effective_unknown_product_atom_population_before": 543,
+    "effective_unknown_product_atom_population_before": 544,
     "selected_rows_reclassified_out_of_product_unknown": 12,
-    "effective_unknown_product_atom_population_after_provisional_delta": 531,
+    "effective_unknown_product_atom_population_after_provisional_delta": 532,
     "sample_true_unknown_product_atom_rows_before": 16,
     "sample_true_unknown_product_atom_rows_after_provisional_delta": 4,
     "sample_product_atom_unknown_ids_after_proposal": [
@@ -415,7 +415,8 @@
     "Source-specific management_process_condition rows remain historical and unresolved; they do not establish a current recurring process or successor.",
     "000545 remains product atom because of its normative “extend” statement, with atom boundary provisional across multiple requirements.",
     "This proposal does not modify the next20 route audit or any source/authority document.",
-    "No archive runtime, CLI, test, hook, or CI was executed."
+    "No archive runtime, CLI, test, hook, or CI was executed.",
+    "The 20-row route sample is a fixed historical sample pinned to its exact original selection inputs. It is not the current next20 sample after #2361; #2364 must resample from the updated #2359 selection and may not inherit this audit’s row-specific conclusions for different IDs."
   ],
   "validation": {
     "source_ids_unique": true,
@@ -428,5 +429,6 @@
     },
     "authority_effect": "none",
     "legacy_execution": "none"
-  }
+  },
+  "sample_scope_note": "This reassessment applies only to the 20 IDs in the pinned historical next20 route sample. It does not regenerate that sample or stand in for #2364’s next20 selection after the updated #2359 sample."
 }

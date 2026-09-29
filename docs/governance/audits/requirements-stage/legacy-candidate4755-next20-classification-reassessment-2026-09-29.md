@@ -1,9 +1,9 @@
 # 旧candidate未route次の20件に対する分類再評価案（2026-09-29）
 
 - audit id: `legacy-candidate4755-next20-classification-reassessment-2026-09-29`
-- base: `bf00aca56add8ca29d9a56af9a989fdeb0a7d969`
+- base: `847f7262d1248de2de5165d029a9175e027bda6c`
 - authority effect: `none`。選定sample中16行の分類・atom境界案であり、採択・successor・coverage/closure・retire・Stage 5完了を生成しない。
-- #2353/#2356/#2360/#2361とnext20 route sampleのexact commit/path/digestはJSONに固定した。next20 route sampleは別worktreeから読み取り、編集していない。
+- #2353/#2356/#2360/#2361とnext20 route sampleのexact commit/path/digestはJSONに固定した。ここでの20件は固定historical sampleのID別再評価であり、更新後の#2359 selectionからの現在next20選定ではない。後続#2364は更新後selectionから別途再標本化し、この再評価のID別結論を別IDへ拡張しない。next20 route sampleは別worktreeから読み取り、編集していない。
 
 ## 判定
 
@@ -40,7 +40,7 @@ source identityや歴史的receipt/evidenceだけを記録する行は`explanati
 
 ## 母集団への影響
 
-#2361のeffective unknown product atom 543件から12行をproduct-route母集団外へ移す提案となり、暫定差引値は531件。sampleの16 true_unknown行中、4行（`000542/543/545/546`）はproduct atom unknownを維持し、2行（`000581/582`）はmanagement successor unresolvedへ移り、10行はexplanationになる。この12件の減少は分類訂正による算術差分であり、旧条件の引継ぎ、carry-forward完了、coverage、解消、closureの件数ではない。全4,755行の累積再走査前の算術値であり、確定母集団ではない。
+#2361 merged recountのeffective unknown product atom 544件から12行をproduct-route母集団外へ移す提案となり、暫定差引値は532件。sampleの16 true_unknown行中、4行（`000542/543/545/546`）はproduct atom unknownを維持し、2行（`000581/582`）はmanagement successor unresolvedへ移り、10行はexplanationになる。この12件の減少は分類訂正による算術差分であり、旧条件の引継ぎ、carry-forward完了、coverage、解消、closureの件数ではない。全4,755行の累積再走査前の算術値であり、確定母集団ではない。
 
 ## 根拠・検証
 
