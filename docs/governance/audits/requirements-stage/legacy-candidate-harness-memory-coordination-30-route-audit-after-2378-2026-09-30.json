@@ -75,37 +75,7 @@
       "baseline": {
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
         "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
-        "selected_id_intersection": [
-          "LEGACY-CAND-LINE-002582",
-          "LEGACY-CAND-LINE-002583",
-          "LEGACY-CAND-LINE-002584",
-          "LEGACY-CAND-LINE-002585",
-          "LEGACY-CAND-LINE-002586",
-          "LEGACY-CAND-LINE-002587",
-          "LEGACY-CAND-LINE-002590",
-          "LEGACY-CAND-LINE-002592",
-          "LEGACY-CAND-LINE-002593",
-          "LEGACY-CAND-LINE-002594",
-          "LEGACY-CAND-LINE-002802",
-          "LEGACY-CAND-LINE-002803",
-          "LEGACY-CAND-LINE-002804",
-          "LEGACY-CAND-LINE-002805",
-          "LEGACY-CAND-LINE-002806",
-          "LEGACY-CAND-LINE-002807",
-          "LEGACY-CAND-LINE-002808",
-          "LEGACY-CAND-LINE-002809",
-          "LEGACY-CAND-LINE-002812",
-          "LEGACY-CAND-LINE-002858",
-          "LEGACY-CAND-LINE-002911",
-          "LEGACY-CAND-LINE-002912",
-          "LEGACY-CAND-LINE-002913",
-          "LEGACY-CAND-LINE-002914",
-          "LEGACY-CAND-LINE-002915",
-          "LEGACY-CAND-LINE-002916",
-          "LEGACY-CAND-LINE-002917",
-          "LEGACY-CAND-LINE-002918",
-          "LEGACY-CAND-LINE-002919"
-        ]
+        "selected_id_intersection": []
       },
       "later_overlays": [
         {
@@ -152,9 +122,18 @@
         }
       ],
       "proposal_effective_pool_count": 488,
-      "selected_pool_membership_count": 30,
-      "out_of_pool_count": 0,
-      "exact_join_rule": "#2353 full row_recordsの行identityへ#2356/#2360/#2363/#2366/#2367/#2368/#2369をexact source-IDで適用したproposal-effective condition/product_requirement_atom/unknown populationから選択IDを照合。30件すべてはcondition/product_requirement_atom/unknownで、後続overlayとの交差は0。これは提案pool membershipでありauthority effectはnone。"
+      "selected_pool_membership_count": 0,
+      "out_of_pool_count": 30,
+      "exact_join_rule": "#2353 full reconciliation.row_recordsをsource_item_idでexact joinし、行hashとphysical-line hashも一致確認。30行すべてroute_status=unadopted_candidate_relation_onlyのrelation-only product_requirement_atomであり、proposal-effective 488 pool外。#2356/#2360/#2363/#2366/#2367/#2368/#2369もexact source IDで照合し、この30行のoverlay membershipはない。後続分類から488へ再流入した行は0。",
+      "baseline_row_records_evidence": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+        "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+        "record_count": 4755,
+        "selected_exact_match_count": 30,
+        "selected_route_status": "unadopted_candidate_relation_only",
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+      },
+      "selection_basis": "関係系列の比較目的で選んだ30行。488 proposal-effective poolの次バッチではなく、#2353 route_statusでrelation-onlyと確定したpool外行。"
     },
     "prior_route_union_count": 290,
     "prior_route_union_components": {
@@ -344,22 +323,101 @@
         "text": "  - HMC-BR-001"
       },
       "proposal_pool_check": {
-        "member_of_proposal_effective_488": true,
+        "member_of_proposal_effective_488": false,
         "#2353_effective_classification": "condition",
         "#2353_condition_subtype": "product_requirement_atom",
-        "#2353_route_status": "unknown",
+        "#2353_route_status": "unadopted_candidate_relation_only",
         "later_overlay_intersections": [],
         "prior_181_intersection": [],
         "prior_261_intersection": [],
         "prior_290_intersection": [],
-        "#2378_next29_intersection": []
+        "#2378_next29_intersection": [],
+        "#2353_row_record_evidence": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "source_item_id": "LEGACY-CAND-LINE-002408",
+          "source_line_sha256": "sha256:252263131c580ed45da5f71230cc9204f690f735fa44ce197c053b0c8f3d3f22",
+          "physical_line_bytes_sha256": "9fa8bdec00079a12590cc25d48c2cf844694900349ca8255ea497938f51dd55c",
+          "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+        }
       },
-      "route_assessment": "unknown",
-      "compared_adopted_requirements": [],
+      "route_assessment": "unadopted_candidate_relation_only",
+      "compared_adopted_requirements": [
+        {
+          "id": "HELIXOS-L2-004",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 57,
+            "substantive_body_lines": [
+              57,
+              360
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 174,
+            "substantive_body_lines": [
+              104,
+              164,
+              174
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-009",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 62,
+            "substantive_body_lines": [
+              62,
+              360
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 174,
+            "substantive_body_lines": [
+              104,
+              164,
+              174
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        }
+      ],
       "directly_matched_adopted_requirement_ids": [],
-      "direct_overlap": "この行はrefines欄の親identity列挙で、固定採択要求に同じHMC-BR親identityや同等の全6項目refinement契約はない。",
-      "residual_or_difference": "親要求の存在・revision・意味、各refines関係の採否とtraceは未照合であり、この列挙自体からsuccessorを割り当てない。",
-      "authority_effect": "none"
+      "direct_overlap": "この行は旧refines欄の親identity列挙で、採択済みOS L2のHMC-BR crosswalkに同じ親IDの接続関係がある。ただし、この行自体は機能predicateではなく、候補の意味被覆としての直接一致はない。",
+      "residual_or_difference": "旧親要求の本文・revision、旧source candidateの各predicateの採否、完全なrefinement意味、successor relationは未確認。OS L2:356はHMC candidateのIR/runtime昇格を否定しており、crosswalkは採択・継承を意味しない。",
+      "authority_effect": "none",
+      "hmc_adopted_relation_evidence": {
+        "mapped_parent": "HMC-BR-001",
+        "L2_crosswalk": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": [
+            360
+          ],
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+        },
+        "L11_acceptance": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": [
+            174
+          ],
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "basis": "PO決定で固定されたHELIX-OS L2/L11 revision。HMC-BR crosswalk / acceptanceはrelation evidenceであり、source candidate rowの採択・L3承認を意味しない。",
+        "source_family_mapping": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 502,
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "meaning": "HMC-FR-001..006 source family is mapped to HELIXOS-L2-001/004/005/007/009; candidate connection only, not complete semantic coverage or L3 adoption."
+        }
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002409",
@@ -373,17 +431,25 @@
         "text": "  - HMC-BR-002"
       },
       "proposal_pool_check": {
-        "member_of_proposal_effective_488": true,
+        "member_of_proposal_effective_488": false,
         "#2353_effective_classification": "condition",
         "#2353_condition_subtype": "product_requirement_atom",
-        "#2353_route_status": "unknown",
+        "#2353_route_status": "unadopted_candidate_relation_only",
         "later_overlay_intersections": [],
         "prior_181_intersection": [],
         "prior_261_intersection": [],
         "prior_290_intersection": [],
-        "#2378_next29_intersection": []
+        "#2378_next29_intersection": [],
+        "#2353_row_record_evidence": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "source_item_id": "LEGACY-CAND-LINE-002409",
+          "source_line_sha256": "sha256:aeab1b52eeeea5e76412777e383cdcc36652c2d0b081e096d7ab461ba328464f",
+          "physical_line_bytes_sha256": "72ae62201bb7b7311ecc89e1f8a81aa97374409fe2b9e2c392ea5ee0f9058288",
+          "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+        }
       },
-      "route_assessment": "unknown",
+      "route_assessment": "unadopted_candidate_relation_only",
       "compared_adopted_requirements": [
         {
           "id": "HARNESS-L2-008",
@@ -410,12 +476,86 @@
             ],
             "basis": "fixed paired acceptance body"
           }
+        },
+        {
+          "id": "HELIXOS-L2-001",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 54,
+            "substantive_body_lines": [
+              54,
+              361
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 167,
+            "substantive_body_lines": [
+              88,
+              110,
+              164,
+              167,
+              168
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-009",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 62,
+            "substantive_body_lines": [
+              62,
+              361
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 167,
+            "substantive_body_lines": [
+              104,
+              164,
+              167,
+              168
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
         }
       ],
       "directly_matched_adopted_requirement_ids": [],
-      "direct_overlap": "HARNESS-L2-008は要求形成入力と人の訂正・合意境界を扱うが、HMC-BR-002という旧親identityを固定しない。",
-      "residual_or_difference": "親identityの照合、意味の対応、旧L3 candidateを現行の親へ結ぶ根拠が残る。",
-      "authority_effect": "none"
+      "direct_overlap": "この行は旧refines欄の親identity列挙で、採択済みOS L2のHMC-BR crosswalkに同じ親IDの接続関係がある。ただし、この行自体は機能predicateではなく、候補の意味被覆としての直接一致はない。",
+      "residual_or_difference": "旧親要求の本文・revision、旧source candidateの各predicateの採否、完全なrefinement意味、successor relationは未確認。OS L2:356はHMC candidateのIR/runtime昇格を否定しており、crosswalkは採択・継承を意味しない。",
+      "authority_effect": "none",
+      "hmc_adopted_relation_evidence": {
+        "mapped_parent": "HMC-BR-002",
+        "L2_crosswalk": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": [
+            361
+          ],
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+        },
+        "L11_acceptance": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": [
+            167,
+            168
+          ],
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "basis": "PO決定で固定されたHELIX-OS L2/L11 revision。HMC-BR crosswalk / acceptanceはrelation evidenceであり、source candidate rowの採択・L3承認を意味しない。",
+        "source_family_mapping": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 502,
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "meaning": "HMC-FR-001..006 source family is mapped to HELIXOS-L2-001/004/005/007/009; candidate connection only, not complete semantic coverage or L3 adoption."
+        }
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002410",
@@ -429,17 +569,25 @@
         "text": "  - HMC-BR-003"
       },
       "proposal_pool_check": {
-        "member_of_proposal_effective_488": true,
+        "member_of_proposal_effective_488": false,
         "#2353_effective_classification": "condition",
         "#2353_condition_subtype": "product_requirement_atom",
-        "#2353_route_status": "unknown",
+        "#2353_route_status": "unadopted_candidate_relation_only",
         "later_overlay_intersections": [],
         "prior_181_intersection": [],
         "prior_261_intersection": [],
         "prior_290_intersection": [],
-        "#2378_next29_intersection": []
+        "#2378_next29_intersection": [],
+        "#2353_row_record_evidence": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "source_item_id": "LEGACY-CAND-LINE-002410",
+          "source_line_sha256": "sha256:bfe352d0fd1ade641c4b30fc7ac0bc151e8230f2342b9fb7d64231bcbe1203b6",
+          "physical_line_bytes_sha256": "5d4fb6f860cff73a939a3f4ec291c543b65d8395967ce1d859b6760d07432b0e",
+          "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+        }
       },
-      "route_assessment": "unknown",
+      "route_assessment": "unadopted_candidate_relation_only",
       "compared_adopted_requirements": [
         {
           "id": "HARNESS-L2-008",
@@ -466,12 +614,87 @@
             ],
             "basis": "fixed paired acceptance body"
           }
+        },
+        {
+          "id": "HELIXOS-L2-001",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 54,
+            "substantive_body_lines": [
+              54,
+              362
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 171,
+            "substantive_body_lines": [
+              88,
+              110,
+              164,
+              171,
+              175
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-005",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 58,
+            "substantive_body_lines": [
+              58,
+              362
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 171,
+            "substantive_body_lines": [
+              88,
+              140,
+              164,
+              171,
+              175
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
         }
       ],
       "directly_matched_adopted_requirement_ids": [],
-      "direct_overlap": "HARNESS-L2-008は要求意味の形成と合意を扱うが、親ID HMC-BR-003を採択本文として列挙しない。",
-      "residual_or_difference": "HMC-BR-003のscopeと継承関係を採択済み要求に結ぶ証拠がない。",
-      "authority_effect": "none"
+      "direct_overlap": "この行は旧refines欄の親identity列挙で、採択済みOS L2のHMC-BR crosswalkに同じ親IDの接続関係がある。ただし、この行自体は機能predicateではなく、候補の意味被覆としての直接一致はない。",
+      "residual_or_difference": "旧親要求の本文・revision、旧source candidateの各predicateの採否、完全なrefinement意味、successor relationは未確認。OS L2:356はHMC candidateのIR/runtime昇格を否定しており、crosswalkは採択・継承を意味しない。",
+      "authority_effect": "none",
+      "hmc_adopted_relation_evidence": {
+        "mapped_parent": "HMC-BR-003",
+        "L2_crosswalk": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": [
+            362
+          ],
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+        },
+        "L11_acceptance": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": [
+            171,
+            175
+          ],
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "basis": "PO決定で固定されたHELIX-OS L2/L11 revision。HMC-BR crosswalk / acceptanceはrelation evidenceであり、source candidate rowの採択・L3承認を意味しない。",
+        "source_family_mapping": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 502,
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "meaning": "HMC-FR-001..006 source family is mapped to HELIXOS-L2-001/004/005/007/009; candidate connection only, not complete semantic coverage or L3 adoption."
+        }
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002411",
@@ -485,17 +708,25 @@
         "text": "  - HMC-BR-004"
       },
       "proposal_pool_check": {
-        "member_of_proposal_effective_488": true,
+        "member_of_proposal_effective_488": false,
         "#2353_effective_classification": "condition",
         "#2353_condition_subtype": "product_requirement_atom",
-        "#2353_route_status": "unknown",
+        "#2353_route_status": "unadopted_candidate_relation_only",
         "later_overlay_intersections": [],
         "prior_181_intersection": [],
         "prior_261_intersection": [],
         "prior_290_intersection": [],
-        "#2378_next29_intersection": []
+        "#2378_next29_intersection": [],
+        "#2353_row_record_evidence": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "source_item_id": "LEGACY-CAND-LINE-002411",
+          "source_line_sha256": "sha256:18af42638d4873f45fe9090d05bcf708c377d545024e537107a5a4bf741f88f2",
+          "physical_line_bytes_sha256": "98a5294ab3b4d060133c3b709fafc9be8cfa7c468f39cca396c30e550a8c98a7",
+          "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+        }
       },
-      "route_assessment": "unknown",
+      "route_assessment": "unadopted_candidate_relation_only",
       "compared_adopted_requirements": [
         {
           "id": "HELIXOS-L2-015",
@@ -528,12 +759,87 @@
             ],
             "basis": "fixed paired acceptance body"
           }
+        },
+        {
+          "id": "HELIXOS-L2-001",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 54,
+            "substantive_body_lines": [
+              54,
+              363
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 170,
+            "substantive_body_lines": [
+              88,
+              110,
+              164,
+              170,
+              176
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-007",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 60,
+            "substantive_body_lines": [
+              60,
+              363
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 170,
+            "substantive_body_lines": [
+              88,
+              104,
+              164,
+              170,
+              176
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
         }
       ],
       "directly_matched_adopted_requirement_ids": [],
-      "direct_overlap": "HELIXOS-L2-015はauthority recordの出典・revision・訂正履歴を保持するが、HMC-BR-004という親identityを指定しない。",
-      "residual_or_difference": "親identityへのsemantic successor、責務ownerの同一性は未確定。",
-      "authority_effect": "none"
+      "direct_overlap": "この行は旧refines欄の親identity列挙で、採択済みOS L2のHMC-BR crosswalkに同じ親IDの接続関係がある。ただし、この行自体は機能predicateではなく、候補の意味被覆としての直接一致はない。",
+      "residual_or_difference": "旧親要求の本文・revision、旧source candidateの各predicateの採否、完全なrefinement意味、successor relationは未確認。OS L2:356はHMC candidateのIR/runtime昇格を否定しており、crosswalkは採択・継承を意味しない。",
+      "authority_effect": "none",
+      "hmc_adopted_relation_evidence": {
+        "mapped_parent": "HMC-BR-004",
+        "L2_crosswalk": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": [
+            363
+          ],
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+        },
+        "L11_acceptance": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": [
+            170,
+            176
+          ],
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "basis": "PO決定で固定されたHELIX-OS L2/L11 revision。HMC-BR crosswalk / acceptanceはrelation evidenceであり、source candidate rowの採択・L3承認を意味しない。",
+        "source_family_mapping": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 502,
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "meaning": "HMC-FR-001..006 source family is mapped to HELIXOS-L2-001/004/005/007/009; candidate connection only, not complete semantic coverage or L3 adoption."
+        }
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002412",
@@ -547,17 +853,25 @@
         "text": "  - HMC-BR-005"
       },
       "proposal_pool_check": {
-        "member_of_proposal_effective_488": true,
+        "member_of_proposal_effective_488": false,
         "#2353_effective_classification": "condition",
         "#2353_condition_subtype": "product_requirement_atom",
-        "#2353_route_status": "unknown",
+        "#2353_route_status": "unadopted_candidate_relation_only",
         "later_overlay_intersections": [],
         "prior_181_intersection": [],
         "prior_261_intersection": [],
         "prior_290_intersection": [],
-        "#2378_next29_intersection": []
+        "#2378_next29_intersection": [],
+        "#2353_row_record_evidence": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "source_item_id": "LEGACY-CAND-LINE-002412",
+          "source_line_sha256": "sha256:3629c0ddf464c4326eac681b19699920c3e37fe83081d1d024d374a1eefb24ac",
+          "physical_line_bytes_sha256": "122317e29ba4e04878792bd30e420e5467542d3c58b0a494c18c5788a7ea6d55",
+          "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+        }
       },
-      "route_assessment": "unknown",
+      "route_assessment": "unadopted_candidate_relation_only",
       "compared_adopted_requirements": [
         {
           "id": "HELIXOS-L2-019",
@@ -590,12 +904,85 @@
             ],
             "basis": "fixed paired acceptance body"
           }
+        },
+        {
+          "id": "HELIXOS-L2-004",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 57,
+            "substantive_body_lines": [
+              57,
+              364
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 169,
+            "substantive_body_lines": [
+              104,
+              164,
+              169,
+              177
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-009",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 62,
+            "substantive_body_lines": [
+              62,
+              364
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 169,
+            "substantive_body_lines": [
+              104,
+              164,
+              169,
+              177
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
         }
       ],
       "directly_matched_adopted_requirement_ids": [],
-      "direct_overlap": "HELIXOS-L2-019は証拠とcontinuityを扱うが、HMC-BR-005という親identityを固定しない。",
-      "residual_or_difference": "親のmeaning/refinement relationを確定する述語がない。",
-      "authority_effect": "none"
+      "direct_overlap": "この行は旧refines欄の親identity列挙で、採択済みOS L2のHMC-BR crosswalkに同じ親IDの接続関係がある。ただし、この行自体は機能predicateではなく、候補の意味被覆としての直接一致はない。",
+      "residual_or_difference": "旧親要求の本文・revision、旧source candidateの各predicateの採否、完全なrefinement意味、successor relationは未確認。OS L2:356はHMC candidateのIR/runtime昇格を否定しており、crosswalkは採択・継承を意味しない。",
+      "authority_effect": "none",
+      "hmc_adopted_relation_evidence": {
+        "mapped_parent": "HMC-BR-005",
+        "L2_crosswalk": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": [
+            364
+          ],
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+        },
+        "L11_acceptance": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": [
+            169,
+            177
+          ],
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "basis": "PO決定で固定されたHELIX-OS L2/L11 revision。HMC-BR crosswalk / acceptanceはrelation evidenceであり、source candidate rowの採択・L3承認を意味しない。",
+        "source_family_mapping": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 502,
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "meaning": "HMC-FR-001..006 source family is mapped to HELIXOS-L2-001/004/005/007/009; candidate connection only, not complete semantic coverage or L3 adoption."
+        }
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002413",
@@ -609,17 +996,25 @@
         "text": "  - HMC-BR-006"
       },
       "proposal_pool_check": {
-        "member_of_proposal_effective_488": true,
+        "member_of_proposal_effective_488": false,
         "#2353_effective_classification": "condition",
         "#2353_condition_subtype": "product_requirement_atom",
-        "#2353_route_status": "unknown",
+        "#2353_route_status": "unadopted_candidate_relation_only",
         "later_overlay_intersections": [],
         "prior_181_intersection": [],
         "prior_261_intersection": [],
         "prior_290_intersection": [],
-        "#2378_next29_intersection": []
+        "#2378_next29_intersection": [],
+        "#2353_row_record_evidence": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "source_item_id": "LEGACY-CAND-LINE-002413",
+          "source_line_sha256": "sha256:0a9d2c1ffed51037a6b2b94c9713d61c50a6331142aec62f44fef173c4a31381",
+          "physical_line_bytes_sha256": "30a53cbf7240412982201590a4103105a0b808b12ebde3bc0348878ddc9d893c",
+          "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+        }
       },
-      "route_assessment": "unknown",
+      "route_assessment": "unadopted_candidate_relation_only",
       "compared_adopted_requirements": [
         {
           "id": "HELIXSECURITY-L2-008",
@@ -647,12 +1042,82 @@
             ],
             "basis": "fixed paired acceptance body"
           }
+        },
+        {
+          "id": "HELIXOS-L2-004",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 57,
+            "substantive_body_lines": [
+              57,
+              365
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 171,
+            "substantive_body_lines": [
+              104,
+              164,
+              171
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-009",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 62,
+            "substantive_body_lines": [
+              62,
+              365
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 171,
+            "substantive_body_lines": [
+              104,
+              164,
+              171
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
         }
       ],
       "directly_matched_adopted_requirement_ids": [],
-      "direct_overlap": "HELIXSECURITY-L2-008は操作authorityを扱うが、HMC-BR-006を採択したり、親子関係を作ったりしない。",
-      "residual_or_difference": "親identityとauthority本文間の対応はこの候補metadataだけでは導けない。",
-      "authority_effect": "none"
+      "direct_overlap": "この行は旧refines欄の親identity列挙で、採択済みOS L2のHMC-BR crosswalkに同じ親IDの接続関係がある。ただし、この行自体は機能predicateではなく、候補の意味被覆としての直接一致はない。",
+      "residual_or_difference": "旧親要求の本文・revision、旧source candidateの各predicateの採否、完全なrefinement意味、successor relationは未確認。OS L2:356はHMC candidateのIR/runtime昇格を否定しており、crosswalkは採択・継承を意味しない。",
+      "authority_effect": "none",
+      "hmc_adopted_relation_evidence": {
+        "mapped_parent": "HMC-BR-006",
+        "L2_crosswalk": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": [
+            365
+          ],
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+        },
+        "L11_acceptance": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": [
+            171
+          ],
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "basis": "PO決定で固定されたHELIX-OS L2/L11 revision。HMC-BR crosswalk / acceptanceはrelation evidenceであり、source candidate rowの採択・L3承認を意味しない。",
+        "source_family_mapping": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 502,
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "meaning": "HMC-FR-001..006 source family is mapped to HELIXOS-L2-001/004/005/007/009; candidate connection only, not complete semantic coverage or L3 adoption."
+        }
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002420",
@@ -666,17 +1131,25 @@
         "text": "- `HMC-R-01`: envelopeは`message_kind`、`source_lane`、`target_lane`、`assignment_id`、`scope_authority`、"
       },
       "proposal_pool_check": {
-        "member_of_proposal_effective_488": true,
+        "member_of_proposal_effective_488": false,
         "#2353_effective_classification": "condition",
         "#2353_condition_subtype": "product_requirement_atom",
-        "#2353_route_status": "unknown",
+        "#2353_route_status": "unadopted_candidate_relation_only",
         "later_overlay_intersections": [],
         "prior_181_intersection": [],
         "prior_261_intersection": [],
         "prior_290_intersection": [],
-        "#2378_next29_intersection": []
+        "#2378_next29_intersection": [],
+        "#2353_row_record_evidence": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "source_item_id": "LEGACY-CAND-LINE-002420",
+          "source_line_sha256": "sha256:709de422442075e0bb96850b52a615b3e1bf3d037c2018599e311c254ea50410",
+          "physical_line_bytes_sha256": "3ee000162dc7a877709808adbd6bc5c76da2a41e7b7eba9095fd09fc72d60289",
+          "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+        }
       },
-      "route_assessment": "unknown",
+      "route_assessment": "true_unknown",
       "compared_adopted_requirements": [
         {
           "id": "HELIXOS-L2-007",
@@ -726,12 +1199,85 @@
             ],
             "basis": "fixed paired acceptance body"
           }
+        },
+        {
+          "id": "HELIXOS-L2-004",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 57,
+            "substantive_body_lines": [
+              57,
+              360
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 164,
+            "substantive_body_lines": [
+              104,
+              164,
+              164,
+              174
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-009",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 62,
+            "substantive_body_lines": [
+              62,
+              360
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 164,
+            "substantive_body_lines": [
+              104,
+              164,
+              164,
+              174
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
         }
       ],
       "directly_matched_adopted_requirement_ids": [],
-      "direct_overlap": "証拠provenanceと操作権限は関連するが、固定本文に登録field allowlist、envelope形、長文・secret・absolute path拒否のpredicateはない。",
-      "residual_or_difference": "typed field集合、schema version、拒否条件と機密情報境界の詳細が残る。",
-      "authority_effect": "none"
+      "direct_overlap": "通知envelopeの各fieldを定めるこの行について、固定L2/L11に同じfield schema、allowlist、長文・secret・absolute path拒否のpredicateは見つからない。HMC-BR-001との関係は機構上の近接に留まり、#2359基準の直接一致には数えない。",
+      "residual_or_difference": "message_kind等のfield集合、schema version、受信拒否条件、機密情報境界は候補固有の残差で、採択述語によるrouteはunknown。",
+      "authority_effect": "none",
+      "hmc_adopted_relation_evidence": {
+        "mapped_parent": "HMC-BR-001",
+        "L2_crosswalk": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": [
+            360
+          ],
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+        },
+        "L11_acceptance": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": [
+            164,
+            174
+          ],
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "basis": "PO決定で固定されたHELIX-OS L2/L11 revision。HMC-BR crosswalk / acceptanceはrelation evidenceであり、source candidate rowの採択・L3承認を意味しない。",
+        "source_family_mapping": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 502,
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "meaning": "HMC-FR-001..006 source family is mapped to HELIXOS-L2-001/004/005/007/009; candidate connection only, not complete semantic coverage or L3 adoption."
+        }
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002422",
@@ -745,17 +1291,25 @@
         "text": "  `next_fetch_pointer`、`sender_attestation`を持つ。未登録field、長文本文、秘密情報、absolute pathを受理しない。"
       },
       "proposal_pool_check": {
-        "member_of_proposal_effective_488": true,
+        "member_of_proposal_effective_488": false,
         "#2353_effective_classification": "condition",
         "#2353_condition_subtype": "product_requirement_atom",
-        "#2353_route_status": "unknown",
+        "#2353_route_status": "unadopted_candidate_relation_only",
         "later_overlay_intersections": [],
         "prior_181_intersection": [],
         "prior_261_intersection": [],
         "prior_290_intersection": [],
-        "#2378_next29_intersection": []
+        "#2378_next29_intersection": [],
+        "#2353_row_record_evidence": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "source_item_id": "LEGACY-CAND-LINE-002422",
+          "source_line_sha256": "sha256:a54582e6cdd35adb6bd44f967dc345e05bbbcaede535804d4042bcbe18f59421",
+          "physical_line_bytes_sha256": "8c5da812459ceab0ee1a062fcf63baa819f80f4befb3c7c8d9947a77fff3493c",
+          "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+        }
       },
-      "route_assessment": "unknown",
+      "route_assessment": "adopted_relevant_partial",
       "compared_adopted_requirements": [
         {
           "id": "HELIXOS-L2-007",
@@ -805,12 +1359,89 @@
             ],
             "basis": "fixed paired acceptance body"
           }
+        },
+        {
+          "id": "HELIXOS-L2-001",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 54,
+            "substantive_body_lines": [
+              54,
+              361
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 167,
+            "substantive_body_lines": [
+              88,
+              110,
+              164,
+              167,
+              168
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-009",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 62,
+            "substantive_body_lines": [
+              62,
+              361
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 167,
+            "substantive_body_lines": [
+              104,
+              164,
+              167,
+              168
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
         }
       ],
-      "directly_matched_adopted_requirement_ids": [],
-      "direct_overlap": "HELIXOS-L2-007は証拠の欠落・重複・staleを識別し、SECURITY-L2-008は操作権限を照合するが、unknown envelope fieldやabsolute pathを拒否するschema predicateはない。",
-      "residual_or_difference": "field allowlistとpayload/path validationの個別negative conditionは残る。",
-      "authority_effect": "none"
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-009"
+      ],
+      "direct_overlap": "next_fetch_pointerにより通知から正本を再取得する部分はHMC-BR-002（OS L2:361／L11:167-168）と採択HELIXOS-L2-001/009に重なる。",
+      "residual_or_difference": "sender_attestation、field allowlist、長文・secret・absolute pathの拒否、schema validationの詳細は採択述語にない。",
+      "authority_effect": "none",
+      "hmc_adopted_relation_evidence": {
+        "mapped_parent": "HMC-BR-002",
+        "L2_crosswalk": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": [
+            361
+          ],
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+        },
+        "L11_acceptance": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": [
+            167,
+            168
+          ],
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "basis": "PO決定で固定されたHELIX-OS L2/L11 revision。HMC-BR crosswalk / acceptanceはrelation evidenceであり、source candidate rowの採択・L3承認を意味しない。",
+        "source_family_mapping": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 502,
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "meaning": "HMC-FR-001..006 source family is mapped to HELIXOS-L2-001/004/005/007/009; candidate connection only, not complete semantic coverage or L3 adoption."
+        }
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002423",
@@ -824,17 +1455,25 @@
         "text": "- `HMC-R-02`: `scope_authority`はIssueまたはPLANのtyped pointerを必要に応じて一つだけ持ち、対象ID、revision、"
       },
       "proposal_pool_check": {
-        "member_of_proposal_effective_488": true,
+        "member_of_proposal_effective_488": false,
         "#2353_effective_classification": "condition",
         "#2353_condition_subtype": "product_requirement_atom",
-        "#2353_route_status": "unknown",
+        "#2353_route_status": "unadopted_candidate_relation_only",
         "later_overlay_intersections": [],
         "prior_181_intersection": [],
         "prior_261_intersection": [],
         "prior_290_intersection": [],
-        "#2378_next29_intersection": []
+        "#2378_next29_intersection": [],
+        "#2353_row_record_evidence": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "source_item_id": "LEGACY-CAND-LINE-002423",
+          "source_line_sha256": "sha256:25dc1e61fe5e0e1e48bc7801113a732c48022a5bab62fdca0cad54a34b957597",
+          "physical_line_bytes_sha256": "5f4f2728750faafe7f405d98eb79e4132cd949226061851d07994ee5de747558",
+          "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+        }
       },
-      "route_assessment": "partial",
+      "route_assessment": "adopted_relevant_partial",
       "compared_adopted_requirements": [
         {
           "id": "HELIXOS-L2-015",
@@ -894,14 +1533,90 @@
             ],
             "basis": "fixed paired acceptance body"
           }
+        },
+        {
+          "id": "HELIXOS-L2-001",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 54,
+            "substantive_body_lines": [
+              54,
+              361
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 167,
+            "substantive_body_lines": [
+              88,
+              110,
+              164,
+              167,
+              168
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-009",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 62,
+            "substantive_body_lines": [
+              62,
+              361
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 167,
+            "substantive_body_lines": [
+              104,
+              164,
+              167,
+              168
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
         }
       ],
       "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-009",
         "HELIXOS-L2-015"
       ],
-      "direct_overlap": "source identity、対象revision、digest、判断出所を正本へ辿るpredicateはHELIXOS-L2-015と重なる。",
-      "residual_or_difference": "Issue/PLANを一つだけ許すcardinality、repositoryを含むtyped pointer schema、memoryから対象を推測しない契約は固定本文で閉じない。",
-      "authority_effect": "none"
+      "direct_overlap": "typed pointerと対象ID/revision/digestから正本へ戻り、Issueを要求正本としない部分はHMC-BR-002（OS L2:361／372-373、L11:167-168）および採択HELIXOS-L2-015に重なる。",
+      "residual_or_difference": "Issue/PLANを一つだけ許すcardinalityとrepository-qualified schemaは候補固有の残差。OS L2:356はHMC candidateをIR/runtimeへ昇格させないとする。",
+      "authority_effect": "none",
+      "hmc_adopted_relation_evidence": {
+        "mapped_parent": "HMC-BR-002",
+        "L2_crosswalk": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": [
+            361
+          ],
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+        },
+        "L11_acceptance": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": [
+            167,
+            168
+          ],
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "basis": "PO決定で固定されたHELIX-OS L2/L11 revision。HMC-BR crosswalk / acceptanceはrelation evidenceであり、source candidate rowの採択・L3承認を意味しない。",
+        "source_family_mapping": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 502,
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "meaning": "HMC-FR-001..006 source family is mapped to HELIXOS-L2-001/004/005/007/009; candidate connection only, not complete semantic coverage or L3 adoption."
+        }
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002425",
@@ -915,21 +1630,29 @@
         "text": "- `HMC-R-03`: at-least-once配送、ack、retry、dedupe、TTL、backpressure、dead-letter、消費済み状態を保持するが、"
       },
       "proposal_pool_check": {
-        "member_of_proposal_effective_488": true,
+        "member_of_proposal_effective_488": false,
         "#2353_effective_classification": "condition",
         "#2353_condition_subtype": "product_requirement_atom",
-        "#2353_route_status": "unknown",
+        "#2353_route_status": "unadopted_candidate_relation_only",
         "later_overlay_intersections": [],
         "prior_181_intersection": [],
         "prior_261_intersection": [],
         "prior_290_intersection": [],
-        "#2378_next29_intersection": []
+        "#2378_next29_intersection": [],
+        "#2353_row_record_evidence": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "source_item_id": "LEGACY-CAND-LINE-002425",
+          "source_line_sha256": "sha256:4e954de58d84a47344e43869923420f9b389171201849c14f2199e1d3eb4cef5",
+          "physical_line_bytes_sha256": "f7ed7f517356cd1b082e382d84c14ee4703ab033043d135da3b53450ccbed944",
+          "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+        }
       },
-      "route_assessment": "partial",
+      "route_assessment": "adopted_relevant_partial",
       "compared_adopted_requirements": [
         {
           "id": "HELIXOS-L2-019",
-          "direct_predicate": true,
+          "direct_predicate": false,
           "L2_locator": {
             "path": "docs/helix-os/L2-requirements/governance-requirements.md",
             "line": 682,
@@ -958,14 +1681,88 @@
             ],
             "basis": "fixed paired acceptance body"
           }
+        },
+        {
+          "id": "HELIXOS-L2-004",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 57,
+            "substantive_body_lines": [
+              57,
+              364
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 169,
+            "substantive_body_lines": [
+              104,
+              164,
+              169,
+              177
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-009",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 62,
+            "substantive_body_lines": [
+              62,
+              364
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 169,
+            "substantive_body_lines": [
+              104,
+              164,
+              169,
+              177
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
         }
       ],
       "directly_matched_adopted_requirement_ids": [
-        "HELIXOS-L2-019"
+        "HELIXOS-L2-004",
+        "HELIXOS-L2-009"
       ],
-      "direct_overlap": "HELIXOS-L2-019/L11は重複eventによる二重副作用を拒否し、原記録からの再構築と再開時の未完義務保持を要求する。",
-      "residual_or_difference": "at-least-once、ack/retry/backpressure/dead-letter/消費済み状態の全fieldや受信側冪等性の個別条件は固定本文に列挙されない。",
-      "authority_effect": "none"
+      "direct_overlap": "重複配送・再送・消費・期限切れを扱う部分はHMC-BR-005（OS L2:364、L11:169,177）と採択HELIXOS-L2-019のevent重複・再構築・継続性predicateに部分一致する。",
+      "residual_or_difference": "at-least-once、ack/retry順序、backpressure、dead-letter、消費済みfieldの全protocol保証は固定本文に列挙されない。",
+      "authority_effect": "none",
+      "hmc_adopted_relation_evidence": {
+        "mapped_parent": "HMC-BR-005",
+        "L2_crosswalk": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": [
+            364
+          ],
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+        },
+        "L11_acceptance": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": [
+            169,
+            177
+          ],
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "basis": "PO決定で固定されたHELIX-OS L2/L11 revision。HMC-BR crosswalk / acceptanceはrelation evidenceであり、source candidate rowの採択・L3承認を意味しない。",
+        "source_family_mapping": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 502,
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "meaning": "HMC-FR-001..006 source family is mapped to HELIXOS-L2-001/004/005/007/009; candidate connection only, not complete semantic coverage or L3 adoption."
+        }
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002428",
@@ -979,17 +1776,25 @@
         "text": "- `HMC-R-04`: 受信側は`next_fetch_pointer`からcurrent assignment／Issue／PLAN／PR／HEAD／leaseを再取得し、"
       },
       "proposal_pool_check": {
-        "member_of_proposal_effective_488": true,
+        "member_of_proposal_effective_488": false,
         "#2353_effective_classification": "condition",
         "#2353_condition_subtype": "product_requirement_atom",
-        "#2353_route_status": "unknown",
+        "#2353_route_status": "unadopted_candidate_relation_only",
         "later_overlay_intersections": [],
         "prior_181_intersection": [],
         "prior_261_intersection": [],
         "prior_290_intersection": [],
-        "#2378_next29_intersection": []
+        "#2378_next29_intersection": [],
+        "#2353_row_record_evidence": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "source_item_id": "LEGACY-CAND-LINE-002428",
+          "source_line_sha256": "sha256:a94e320be9d0defed875c25d410682148049c58285e682a496b5ebda3de81e3b",
+          "physical_line_bytes_sha256": "865c810cb00d52f49f42eff7281f4a302a5a8ceadd10cac609ac9b5a32a41f31",
+          "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+        }
       },
-      "route_assessment": "partial",
+      "route_assessment": "adopted_relevant_partial",
       "compared_adopted_requirements": [
         {
           "id": "HELIXOS-L2-015",
@@ -1054,14 +1859,90 @@
             ],
             "basis": "fixed paired acceptance body"
           }
+        },
+        {
+          "id": "HELIXOS-L2-001",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 54,
+            "substantive_body_lines": [
+              54,
+              361
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 167,
+            "substantive_body_lines": [
+              88,
+              110,
+              164,
+              167,
+              168
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-009",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 62,
+            "substantive_body_lines": [
+              62,
+              361
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 167,
+            "substantive_body_lines": [
+              104,
+              164,
+              167,
+              168
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
         }
       ],
       "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-009",
         "HELIXOS-L2-015"
       ],
-      "direct_overlap": "source provenanceと正本/ projectionの境界、およびepisode再構築のために根拠を保持するpredicateと重なる。",
-      "residual_or_difference": "各pointerでassignment/Issue/PLAN/PR/HEAD/leaseを再取得する具体的なread pathとmemory本文を作業入力から除外する契約は残る。",
-      "authority_effect": "none"
+      "direct_overlap": "pointerからassignment/source/HEAD/leaseを再取得する部分はHMC-BR-002（OS L2:361／L11:167-168）と採択HELIXOS-L2-015の正本・source参照に重なる。",
+      "residual_or_difference": "全対象の厳密なread sequence、PR/HEAD/leaseの網羅、memory本文を作業入力から除く条件は残る。",
+      "authority_effect": "none",
+      "hmc_adopted_relation_evidence": {
+        "mapped_parent": "HMC-BR-002",
+        "L2_crosswalk": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": [
+            361
+          ],
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+        },
+        "L11_acceptance": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": [
+            167,
+            168
+          ],
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "basis": "PO決定で固定されたHELIX-OS L2/L11 revision。HMC-BR crosswalk / acceptanceはrelation evidenceであり、source candidate rowの採択・L3承認を意味しない。",
+        "source_family_mapping": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 502,
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "meaning": "HMC-FR-001..006 source family is mapped to HELIXOS-L2-001/004/005/007/009; candidate connection only, not complete semantic coverage or L3 adoption."
+        }
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002430",
@@ -1075,17 +1956,25 @@
         "text": "- `HMC-R-05`: pointerのHEAD、branch owner、lease／fence、assignment state、scope digestのいずれかがcurrent値と"
       },
       "proposal_pool_check": {
-        "member_of_proposal_effective_488": true,
+        "member_of_proposal_effective_488": false,
         "#2353_effective_classification": "condition",
         "#2353_condition_subtype": "product_requirement_atom",
-        "#2353_route_status": "unknown",
+        "#2353_route_status": "unadopted_candidate_relation_only",
         "later_overlay_intersections": [],
         "prior_181_intersection": [],
         "prior_261_intersection": [],
         "prior_290_intersection": [],
-        "#2378_next29_intersection": []
+        "#2378_next29_intersection": [],
+        "#2353_row_record_evidence": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "source_item_id": "LEGACY-CAND-LINE-002430",
+          "source_line_sha256": "sha256:0b8e88acc4952017377584e2af41c6fd1691973698004b513fad37a9297e029f",
+          "physical_line_bytes_sha256": "0196a1f6dc3ada5a6636137dc28e892110b0491c5cf0ac352d3252c357802728",
+          "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+        }
       },
-      "route_assessment": "partial",
+      "route_assessment": "adopted_relevant_partial",
       "compared_adopted_requirements": [
         {
           "id": "HELIXOS-L2-009",
@@ -1095,18 +1984,21 @@
             "line": 62,
             "substantive_body_lines": [
               62,
-              297
+              297,
+              361
             ],
-            "basis": "fixed adopted requirement body"
+            "basis": "fixed adopted requirement body; exact HMC-BR crosswalk line 361"
           },
           "L11_acceptance_locator_separate": {
             "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
             "line": 29,
             "substantive_body_lines": [
               29,
-              55
+              55,
+              167,
+              168
             ],
-            "basis": "fixed paired acceptance body"
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
           }
         },
         {
@@ -1135,14 +2027,87 @@
             ],
             "basis": "fixed paired acceptance body"
           }
+        },
+        {
+          "id": "HELIXOS-L2-001",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 54,
+            "substantive_body_lines": [
+              54,
+              361
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 167,
+            "substantive_body_lines": [
+              88,
+              110,
+              164,
+              167,
+              168
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-015",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 649,
+            "substantive_body_lines": [
+              649
+            ],
+            "basis": "PO決定で採択されたHELIXOS-L2要求本文。source/revision/authority条件との具体的predicate比較。"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 164,
+            "substantive_body_lines": [
+              164,
+              168
+            ],
+            "basis": "PO合意済み対L11本文。HMC条件またはprovenance/correction acceptance locator。"
+          }
         }
       ],
       "directly_matched_adopted_requirement_ids": [
-        "HELIXOS-L2-009"
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-009",
+        "HELIXOS-L2-015"
       ],
-      "direct_overlap": "中断・担当交代後もassignment制約を引き継ぎ二重実行を防ぐHELIXOS-L2-009の条件と、現在値再照合の一部が重なる。",
-      "residual_or_difference": "branch owner、fence、assignment state、scope digestの全一致tupleと`stale_coordination`分類は固定本文に明記されない。",
-      "authority_effect": "none"
+      "direct_overlap": "対象pointer/HEADのcurrent値不一致を検出する部分はHMC-BR-002（OS L2:361／L11:168）および採択HELIXOS-L2-015のrevision不一致を未解決にするpredicateに重なる。",
+      "residual_or_difference": "branch owner/fence/lease/assignment/scope digestの完全tupleとstale_coordinationという名付き状態は未規定。",
+      "authority_effect": "none",
+      "hmc_adopted_relation_evidence": {
+        "mapped_parent": "HMC-BR-002",
+        "L2_crosswalk": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": [
+            361
+          ],
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+        },
+        "L11_acceptance": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": [
+            167,
+            168
+          ],
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "basis": "PO決定で固定されたHELIX-OS L2/L11 revision。HMC-BR crosswalk / acceptanceはrelation evidenceであり、source candidate rowの採択・L3承認を意味しない。",
+        "source_family_mapping": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 502,
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "meaning": "HMC-FR-001..006 source family is mapped to HELIXOS-L2-001/004/005/007/009; candidate connection only, not complete semantic coverage or L3 adoption."
+        }
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002431",
@@ -1156,17 +2121,25 @@
         "text": "  一致しない場合は`stale_coordination`として拒否する。unknown、取得不能、曖昧な対象は成功へ補完しない。"
       },
       "proposal_pool_check": {
-        "member_of_proposal_effective_488": true,
+        "member_of_proposal_effective_488": false,
         "#2353_effective_classification": "condition",
         "#2353_condition_subtype": "product_requirement_atom",
-        "#2353_route_status": "unknown",
+        "#2353_route_status": "unadopted_candidate_relation_only",
         "later_overlay_intersections": [],
         "prior_181_intersection": [],
         "prior_261_intersection": [],
         "prior_290_intersection": [],
-        "#2378_next29_intersection": []
+        "#2378_next29_intersection": [],
+        "#2353_row_record_evidence": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "source_item_id": "LEGACY-CAND-LINE-002431",
+          "source_line_sha256": "sha256:0b24ca2ac09e0365b6e5f957bac35ea2d1944208a10b8e4747cdf1e756096b91",
+          "physical_line_bytes_sha256": "c2bbf4bedff9f9aa420904db2e26ef844202914e39382c2d449d740cce49d1e3",
+          "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+        }
       },
-      "route_assessment": "partial",
+      "route_assessment": "adopted_relevant_partial",
       "compared_adopted_requirements": [
         {
           "id": "HELIXOS-L2-009",
@@ -1176,23 +2149,25 @@
             "line": 62,
             "substantive_body_lines": [
               62,
-              297
+              297,
+              361
             ],
-            "basis": "fixed adopted requirement body"
+            "basis": "fixed adopted requirement body; exact HMC-BR crosswalk line 361"
           },
           "L11_acceptance_locator_separate": {
             "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
             "line": 29,
             "substantive_body_lines": [
               29,
-              55
+              55,
+              168
             ],
-            "basis": "fixed paired acceptance body"
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
           }
         },
         {
           "id": "HELIXOS-L2-019",
-          "direct_predicate": true,
+          "direct_predicate": false,
           "L2_locator": {
             "path": "docs/helix-os/L2-requirements/governance-requirements.md",
             "line": 682,
@@ -1221,15 +2196,85 @@
             ],
             "basis": "fixed paired acceptance body"
           }
+        },
+        {
+          "id": "HELIXOS-L2-001",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 54,
+            "substantive_body_lines": [
+              54,
+              361
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 168,
+            "substantive_body_lines": [
+              88,
+              110,
+              164,
+              168
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-015",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 649,
+            "substantive_body_lines": [
+              649
+            ],
+            "basis": "PO決定で採択されたHELIXOS-L2要求本文。source/revision/authority条件との具体的predicate比較。"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 164,
+            "substantive_body_lines": [
+              164,
+              168
+            ],
+            "basis": "PO合意済み対L11本文。HMC条件またはprovenance/correction acceptance locator。"
+          }
         }
       ],
       "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
         "HELIXOS-L2-009",
-        "HELIXOS-L2-019"
+        "HELIXOS-L2-015"
       ],
-      "direct_overlap": "unknown/stale時に成功やcheckpointへ補完せず、中断後の制約を保持するHELIXOS-L2-009／019の述語と重なる。",
-      "residual_or_difference": "HEAD/lease/fence等の項目ごとのfail-closed oracleと状態名`stale_coordination`は個別列挙されない。",
-      "authority_effect": "none"
+      "direct_overlap": "unknown/stale/ambiguousを成功に補完しない部分はHMC-BR-002（OS L2:361／L11:168）および採択HELIXOS-L2-015の不一致を未解決に保つpredicateに重なる。",
+      "residual_or_difference": "各field別fail-closed oracle、named stale_coordination stateの全条件は候補固有残差。",
+      "authority_effect": "none",
+      "hmc_adopted_relation_evidence": {
+        "mapped_parent": "HMC-BR-002",
+        "L2_crosswalk": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": [
+            361
+          ],
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+        },
+        "L11_acceptance": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": [
+            168
+          ],
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "basis": "PO決定で固定されたHELIX-OS L2/L11 revision。HMC-BR crosswalk / acceptanceはrelation evidenceであり、source candidate rowの採択・L3承認を意味しない。",
+        "source_family_mapping": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 502,
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "meaning": "HMC-FR-001..006 source family is mapped to HELIXOS-L2-001/004/005/007/009; candidate connection only, not complete semantic coverage or L3 adoption."
+        }
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002432",
@@ -1243,21 +2288,29 @@
         "text": "- `HMC-R-06`: memoryはRequirement、Design、ADR、Acceptance、Release、Assignment、PLAN status、progress、lease、"
       },
       "proposal_pool_check": {
-        "member_of_proposal_effective_488": true,
+        "member_of_proposal_effective_488": false,
         "#2353_effective_classification": "condition",
         "#2353_condition_subtype": "product_requirement_atom",
-        "#2353_route_status": "unknown",
+        "#2353_route_status": "unadopted_candidate_relation_only",
         "later_overlay_intersections": [],
         "prior_181_intersection": [],
         "prior_261_intersection": [],
         "prior_290_intersection": [],
-        "#2378_next29_intersection": []
+        "#2378_next29_intersection": [],
+        "#2353_row_record_evidence": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "source_item_id": "LEGACY-CAND-LINE-002432",
+          "source_line_sha256": "sha256:5c16020db6da5b69b0f234553fa8eb9d22b4aa0c1b7547528ca93bfdc499216a",
+          "physical_line_bytes_sha256": "9b044a78cd8c6e914c434e4798b020eefda2eee8c640cba8626226d7a1aac8e3",
+          "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+        }
       },
-      "route_assessment": "partial",
+      "route_assessment": "adopted_relevant_partial",
       "compared_adopted_requirements": [
         {
           "id": "HELIXOS-L2-015",
-          "direct_predicate": true,
+          "direct_predicate": false,
           "L2_locator": {
             "path": "docs/helix-os/L2-requirements/governance-requirements.md",
             "line": 642,
@@ -1345,14 +2398,90 @@
             ],
             "basis": "fixed paired acceptance body"
           }
+        },
+        {
+          "id": "HELIXOS-L2-001",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 54,
+            "substantive_body_lines": [
+              54,
+              362
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 171,
+            "substantive_body_lines": [
+              88,
+              110,
+              164,
+              171,
+              175
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-005",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 58,
+            "substantive_body_lines": [
+              58,
+              362
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 171,
+            "substantive_body_lines": [
+              88,
+              140,
+              164,
+              171,
+              175
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
         }
       ],
       "directly_matched_adopted_requirement_ids": [
-        "HELIXOS-L2-015"
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-005"
       ],
-      "direct_overlap": "memoryのみをauthorityにせず、原記録とprojectionを区別し、source authorityへ戻す条件はHELIXOS-L2-015と一致する。",
-      "residual_or_difference": "禁止する正本typeの全列挙、provider設定・嗜好・個人profile・AI解釈それぞれの隔離、pointer-onlyの型は固定本文にない。",
-      "authority_effect": "none"
+      "direct_overlap": "要求・設計・受入・運用規則・利用者設定をmemoryの正本にしない部分はHMC-BR-003（OS L2:362／L11:171,175）に一致する。",
+      "residual_or_difference": "正本にしない対象の全列挙、provider設定・個人設定・AI解釈の個別隔離条件、pointerのみを使う型は固定述語にない。",
+      "authority_effect": "none",
+      "hmc_adopted_relation_evidence": {
+        "mapped_parent": "HMC-BR-003",
+        "L2_crosswalk": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": [
+            362
+          ],
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+        },
+        "L11_acceptance": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": [
+            171,
+            175
+          ],
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "basis": "PO決定で固定されたHELIX-OS L2/L11 revision。HMC-BR crosswalk / acceptanceはrelation evidenceであり、source candidate rowの採択・L3承認を意味しない。",
+        "source_family_mapping": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 502,
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "meaning": "HMC-FR-001..006 source family is mapped to HELIXOS-L2-001/004/005/007/009; candidate connection only, not complete semantic coverage or L3 adoption."
+        }
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002435",
@@ -1366,21 +2495,29 @@
         "text": "- `HMC-R-07`: 相談、質問、仮説、叱責、作業依頼、AI解釈をapproval、decision、directive、completion claimへ変換しない。"
       },
       "proposal_pool_check": {
-        "member_of_proposal_effective_488": true,
+        "member_of_proposal_effective_488": false,
         "#2353_effective_classification": "condition",
         "#2353_condition_subtype": "product_requirement_atom",
-        "#2353_route_status": "unknown",
+        "#2353_route_status": "unadopted_candidate_relation_only",
         "later_overlay_intersections": [],
         "prior_181_intersection": [],
         "prior_261_intersection": [],
         "prior_290_intersection": [],
-        "#2378_next29_intersection": []
+        "#2378_next29_intersection": [],
+        "#2353_row_record_evidence": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "source_item_id": "LEGACY-CAND-LINE-002435",
+          "source_line_sha256": "sha256:fd1be267e70bef3bbdfe0822de76f292406788627850ffae784ccf9243b97785",
+          "physical_line_bytes_sha256": "a85a2c1031e3f585a73578b64733554abc6828f699f123dc6fecc96293fcabb8",
+          "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+        }
       },
-      "route_assessment": "partial",
+      "route_assessment": "adopted_relevant_partial",
       "compared_adopted_requirements": [
         {
           "id": "HARNESS-L2-008",
-          "direct_predicate": true,
+          "direct_predicate": false,
           "L2_locator": {
             "path": "docs/helix-harness/L2-requirements/product-requirements.md",
             "line": 59,
@@ -1406,7 +2543,7 @@
         },
         {
           "id": "HELIXOS-L2-015",
-          "direct_predicate": true,
+          "direct_predicate": false,
           "L2_locator": {
             "path": "docs/helix-os/L2-requirements/governance-requirements.md",
             "line": 642,
@@ -1435,15 +2572,90 @@
             ],
             "basis": "fixed paired acceptance body"
           }
+        },
+        {
+          "id": "HELIXOS-L2-001",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 54,
+            "substantive_body_lines": [
+              54,
+              363
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 170,
+            "substantive_body_lines": [
+              88,
+              110,
+              164,
+              170,
+              176
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-007",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 60,
+            "substantive_body_lines": [
+              60,
+              363
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 170,
+            "substantive_body_lines": [
+              88,
+              104,
+              164,
+              170,
+              176
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
         }
       ],
       "directly_matched_adopted_requirement_ids": [
-        "HARNESS-L2-008",
-        "HELIXOS-L2-015"
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-007"
       ],
-      "direct_overlap": "要求候補の形成出力やmemoryだけから要求合意・操作権限を生成しない境界がHARNESS-L2-008／HELIXOS-L2-015にある。",
-      "residual_or_difference": "相談、叱責、作業依頼、AI解釈の個別分類と#1449語彙接続、generic decisionを作らない限定型契約は固定本文に全列挙されない。",
-      "authority_effect": "none"
+      "direct_overlap": "相談・質問・仮説・叱責・作業依頼・AI解釈を承認・決定・完了扱いへ昇格しない部分はHMC-BR-004（OS L2:363,374／L11:170,176）に一致する。",
+      "residual_or_difference": "全入力の分類、#1449語彙との接続、限定型の決定記録は固定L2/L11に列挙されない。",
+      "authority_effect": "none",
+      "hmc_adopted_relation_evidence": {
+        "mapped_parent": "HMC-BR-004",
+        "L2_crosswalk": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": [
+            363
+          ],
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+        },
+        "L11_acceptance": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": [
+            170,
+            176
+          ],
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "basis": "PO決定で固定されたHELIX-OS L2/L11 revision。HMC-BR crosswalk / acceptanceはrelation evidenceであり、source candidate rowの採択・L3承認を意味しない。",
+        "source_family_mapping": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 502,
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "meaning": "HMC-FR-001..006 source family is mapped to HELIXOS-L2-001/004/005/007/009; candidate connection only, not complete semantic coverage or L3 adoption."
+        }
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002437",
@@ -1457,21 +2669,29 @@
         "text": "- `HMC-R-08`: wrapper session、provider session、runtime、model、origin、sender laneを別fieldで束縛し、`cli-memory`等の"
       },
       "proposal_pool_check": {
-        "member_of_proposal_effective_488": true,
+        "member_of_proposal_effective_488": false,
         "#2353_effective_classification": "condition",
         "#2353_condition_subtype": "product_requirement_atom",
-        "#2353_route_status": "unknown",
+        "#2353_route_status": "unadopted_candidate_relation_only",
         "later_overlay_intersections": [],
         "prior_181_intersection": [],
         "prior_261_intersection": [],
         "prior_290_intersection": [],
-        "#2378_next29_intersection": []
+        "#2378_next29_intersection": [],
+        "#2353_row_record_evidence": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "source_item_id": "LEGACY-CAND-LINE-002437",
+          "source_line_sha256": "sha256:853165f3c0e6861bf95136765a566bdbf30b8c4c12036b03aaa69ea198c442e8",
+          "physical_line_bytes_sha256": "f7a3a614c5a5eee2df3280e1e8d9d5fb49fb528b0438dfe124660bf4e5bdc560",
+          "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+        }
       },
-      "route_assessment": "partial",
+      "route_assessment": "adopted_relevant_partial",
       "compared_adopted_requirements": [
         {
           "id": "HELIXOS-L2-007",
-          "direct_predicate": true,
+          "direct_predicate": false,
           "L2_locator": {
             "path": "docs/helix-os/L2-requirements/governance-requirements.md",
             "line": 60,
@@ -1517,14 +2737,106 @@
             ],
             "basis": "fixed paired acceptance body"
           }
+        },
+        {
+          "id": "HELIXOS-L2-004",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 57,
+            "substantive_body_lines": [
+              57,
+              360
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 174,
+            "substantive_body_lines": [
+              104,
+              164,
+              174
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-009",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 62,
+            "substantive_body_lines": [
+              62,
+              360
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 174,
+            "substantive_body_lines": [
+              104,
+              164,
+              174
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-015",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 645,
+            "substantive_body_lines": [
+              645
+            ],
+            "basis": "PO決定で採択されたHELIXOS-L2要求本文。source/revision/authority条件との具体的predicate比較。"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 164,
+            "substantive_body_lines": [
+              164,
+              171,
+              172
+            ],
+            "basis": "PO合意済み対L11本文。HMC条件またはprovenance/correction acceptance locator。"
+          }
         }
       ],
       "directly_matched_adopted_requirement_ids": [
-        "HELIXOS-L2-007"
+        "HELIXOS-L2-015"
       ],
-      "direct_overlap": "actor/runtimeのprovenanceを残し、操作authorityをactor等に照合する述語と部分的に一致する。",
-      "residual_or_difference": "wrapper session/provider session/model/origin/sender laneの分離field、文字列だけでhuman actor・cross-agent reviewを成立させない検査は明記されない。",
-      "authority_effect": "none"
+      "direct_overlap": "actorを記録する部分は採択HELIXOS-L2-015のauthority記録（入力にactor・時点、出所を記録）と重なる。固定OS L2:360／L11:174はcross-runtime受け渡しの比較文脈。",
+      "residual_or_difference": "wrapper/provider session、runtime、model、origin、sender laneの分離fieldや文字列だけのactor主張を拒む条件は採択本文にない。",
+      "authority_effect": "none",
+      "hmc_adopted_relation_evidence": {
+        "mapped_parent": "HMC-BR-001",
+        "L2_crosswalk": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": [
+            360
+          ],
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+        },
+        "L11_acceptance": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": [
+            174
+          ],
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "basis": "PO決定で固定されたHELIX-OS L2/L11 revision。HMC-BR crosswalk / acceptanceはrelation evidenceであり、source candidate rowの採択・L3承認を意味しない。",
+        "source_family_mapping": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 502,
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "meaning": "HMC-FR-001..006 source family is mapped to HELIXOS-L2-001/004/005/007/009; candidate connection only, not complete semantic coverage or L3 adoption."
+        }
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002439",
@@ -1538,17 +2850,25 @@
         "text": "- `HMC-R-09`: human authorityを参照する場合は、対象authority ID、typed source locator、source revision／digest、actor、"
       },
       "proposal_pool_check": {
-        "member_of_proposal_effective_488": true,
+        "member_of_proposal_effective_488": false,
         "#2353_effective_classification": "condition",
         "#2353_condition_subtype": "product_requirement_atom",
-        "#2353_route_status": "unknown",
+        "#2353_route_status": "unadopted_candidate_relation_only",
         "later_overlay_intersections": [],
         "prior_181_intersection": [],
         "prior_261_intersection": [],
         "prior_290_intersection": [],
-        "#2378_next29_intersection": []
+        "#2378_next29_intersection": [],
+        "#2353_row_record_evidence": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "source_item_id": "LEGACY-CAND-LINE-002439",
+          "source_line_sha256": "sha256:965d90456c500edb0f6dfc0c3268228fe7df6584e6d6890ca321712cff6505c3",
+          "physical_line_bytes_sha256": "642abc835f07fab225ebc6ac48138e016ff742b7736e2a97d6874c230613146a",
+          "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+        }
       },
-      "route_assessment": "partial",
+      "route_assessment": "adopted_relevant_partial",
       "compared_adopted_requirements": [
         {
           "id": "HELIXOS-L2-015",
@@ -1608,14 +2928,89 @@
             ],
             "basis": "fixed paired acceptance body"
           }
+        },
+        {
+          "id": "HELIXOS-L2-001",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 54,
+            "substantive_body_lines": [
+              54,
+              363
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 170,
+            "substantive_body_lines": [
+              88,
+              110,
+              164,
+              170,
+              176
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-007",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 60,
+            "substantive_body_lines": [
+              60,
+              363
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 170,
+            "substantive_body_lines": [
+              88,
+              104,
+              164,
+              170,
+              176
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
         }
       ],
       "directly_matched_adopted_requirement_ids": [
         "HELIXOS-L2-015"
       ],
-      "direct_overlap": "authority ID、typed source、revision/digest、actorを正本へ追跡し、対象scopeのauthorityを照合する点が採択述語に重なる。",
-      "residual_or_difference": "observed session/expiryを含む正規receipt schemaへのpointer、欠落時の`unverified_human_claim`隔離は個別に規定されない。",
-      "authority_effect": "none"
+      "direct_overlap": "authority ID、typed source locator、revision/digest、actorは採択HELIXOS-L2-015のsource/actor入力・出所追跡predicateに重なる。HMC-BR-004のL2:363／L11:170,176は関連する非昇格境界。",
+      "residual_or_difference": "observed session/expiry receiptへのtyped pointerと、欠落時のunverified_human_claim隔離は固定述語にない。",
+      "authority_effect": "none",
+      "hmc_adopted_relation_evidence": {
+        "mapped_parent": "HMC-BR-004",
+        "L2_crosswalk": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": [
+            363
+          ],
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+        },
+        "L11_acceptance": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": [
+            170,
+            176
+          ],
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "basis": "PO決定で固定されたHELIX-OS L2/L11 revision。HMC-BR crosswalk / acceptanceはrelation evidenceであり、source candidate rowの採択・L3承認を意味しない。",
+        "source_family_mapping": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 502,
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "meaning": "HMC-FR-001..006 source family is mapped to HELIXOS-L2-001/004/005/007/009; candidate connection only, not complete semantic coverage or L3 adoption."
+        }
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002440",
@@ -1629,17 +3024,25 @@
         "text": "  observed session、expiry（必要時）を持つ正規receiptへのpointerを要求し、欠落時は`unverified_human_claim`へ隔離する。"
       },
       "proposal_pool_check": {
-        "member_of_proposal_effective_488": true,
+        "member_of_proposal_effective_488": false,
         "#2353_effective_classification": "condition",
         "#2353_condition_subtype": "product_requirement_atom",
-        "#2353_route_status": "unknown",
+        "#2353_route_status": "unadopted_candidate_relation_only",
         "later_overlay_intersections": [],
         "prior_181_intersection": [],
         "prior_261_intersection": [],
         "prior_290_intersection": [],
-        "#2378_next29_intersection": []
+        "#2378_next29_intersection": [],
+        "#2353_row_record_evidence": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "source_item_id": "LEGACY-CAND-LINE-002440",
+          "source_line_sha256": "sha256:0c0d74f69b3938cc23bf293366079fe37b93ef73b8cb369fad6711c907770622",
+          "physical_line_bytes_sha256": "57cdabf6634568fd49feca7df0b28b4cc6b7118d315ccaad10d81958733861dd",
+          "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+        }
       },
-      "route_assessment": "partial",
+      "route_assessment": "adopted_relevant_partial",
       "compared_adopted_requirements": [
         {
           "id": "HELIXOS-L2-015",
@@ -1699,14 +3102,89 @@
             ],
             "basis": "fixed paired acceptance body"
           }
+        },
+        {
+          "id": "HELIXOS-L2-001",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 54,
+            "substantive_body_lines": [
+              54,
+              363
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 170,
+            "substantive_body_lines": [
+              88,
+              110,
+              164,
+              170,
+              176
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-007",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 60,
+            "substantive_body_lines": [
+              60,
+              363
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 170,
+            "substantive_body_lines": [
+              88,
+              104,
+              164,
+              170,
+              176
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
         }
       ],
       "directly_matched_adopted_requirement_ids": [
         "HELIXOS-L2-015"
       ],
-      "direct_overlap": "判断出所とsource revision/digestへのtraceがHELIXOS-L2-015と一致する。",
-      "residual_or_difference": "actor/session/expiryの必須組、欠落時の専用隔離状態は固定本文に含まれない。",
-      "authority_effect": "none"
+      "direct_overlap": "判断出所・source revision/digest・actorの追跡は採択HELIXOS-L2-015に重なる。",
+      "residual_or_difference": "actor/session/expiryの必須receipt組と欠落時の専用隔離状態は固定本文に含まれない。",
+      "authority_effect": "none",
+      "hmc_adopted_relation_evidence": {
+        "mapped_parent": "HMC-BR-004",
+        "L2_crosswalk": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": [
+            363
+          ],
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+        },
+        "L11_acceptance": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": [
+            170,
+            176
+          ],
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "basis": "PO決定で固定されたHELIX-OS L2/L11 revision。HMC-BR crosswalk / acceptanceはrelation evidenceであり、source candidate rowの採択・L3承認を意味しない。",
+        "source_family_mapping": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 502,
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "meaning": "HMC-FR-001..006 source family is mapped to HELIXOS-L2-001/004/005/007/009; candidate connection only, not complete semantic coverage or L3 adoption."
+        }
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002442",
@@ -1720,17 +3198,25 @@
         "text": "- `HMC-R-10`: entry lifecycleは`active`、`consumed`、`expired`、`superseded`、`retracted`、`invalid`、`audit_history`を区別し、"
       },
       "proposal_pool_check": {
-        "member_of_proposal_effective_488": true,
+        "member_of_proposal_effective_488": false,
         "#2353_effective_classification": "condition",
         "#2353_condition_subtype": "product_requirement_atom",
-        "#2353_route_status": "unknown",
+        "#2353_route_status": "unadopted_candidate_relation_only",
         "later_overlay_intersections": [],
         "prior_181_intersection": [],
         "prior_261_intersection": [],
         "prior_290_intersection": [],
-        "#2378_next29_intersection": []
+        "#2378_next29_intersection": [],
+        "#2353_row_record_evidence": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "source_item_id": "LEGACY-CAND-LINE-002442",
+          "source_line_sha256": "sha256:02463a8e2e4c96525c1715670477d271f6de3bf0d6207ea96a28ded073bf44f5",
+          "physical_line_bytes_sha256": "a746d026de648206f6650a9fb5c2e5fd1025615f33b47c0f2999b337593a4494",
+          "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+        }
       },
-      "route_assessment": "partial",
+      "route_assessment": "adopted_relevant_partial",
       "compared_adopted_requirements": [
         {
           "id": "HELIXOS-L2-019",
@@ -1763,14 +3249,111 @@
             ],
             "basis": "fixed paired acceptance body"
           }
+        },
+        {
+          "id": "HELIXOS-L2-004",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 57,
+            "substantive_body_lines": [
+              57,
+              364
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 169,
+            "substantive_body_lines": [
+              104,
+              164,
+              169,
+              177
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-009",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 62,
+            "substantive_body_lines": [
+              62,
+              364
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 169,
+            "substantive_body_lines": [
+              104,
+              164,
+              169,
+              177
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-015",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 647,
+            "substantive_body_lines": [
+              647
+            ],
+            "basis": "PO決定で採択されたHELIXOS-L2要求本文。source/revision/authority条件との具体的predicate比較。"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 164,
+            "substantive_body_lines": [
+              164,
+              172
+            ],
+            "basis": "PO合意済み対L11本文。HMC条件またはprovenance/correction acceptance locator。"
+          }
         }
       ],
       "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-004",
+        "HELIXOS-L2-009",
+        "HELIXOS-L2-015",
         "HELIXOS-L2-019"
       ],
-      "direct_overlap": "provenanceと訂正履歴からepisodeを再構築し、stale/拒否/未実行を成功と区別する条件に部分一致する。",
-      "residual_or_difference": "active/consumed/expired/superseded/retracted/invalid/audit_historyのexact lifecycle enumと、各projectionでの抑止条件は採択本文にない。",
-      "authority_effect": "none"
+      "direct_overlap": "consumed/expired/corrected noticeのlifecycleを扱う部分はHMC-BR-005（OS L2:364／L11:169,177）および採択HELIXOS-L2-019の訂正履歴・再構築predicateに重なる。",
+      "residual_or_difference": "active/consumed/expired/superseded/retracted/invalid/audit_historyの全状態と各projectionでの抑止条件は固定本文にない。",
+      "authority_effect": "none",
+      "hmc_adopted_relation_evidence": {
+        "mapped_parent": "HMC-BR-005",
+        "L2_crosswalk": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": [
+            364
+          ],
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+        },
+        "L11_acceptance": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": [
+            169,
+            177
+          ],
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "basis": "PO決定で固定されたHELIX-OS L2/L11 revision。HMC-BR crosswalk / acceptanceはrelation evidenceであり、source candidate rowの採択・L3承認を意味しない。",
+        "source_family_mapping": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 502,
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "meaning": "HMC-FR-001..006 source family is mapped to HELIXOS-L2-001/004/005/007/009; candidate connection only, not complete semantic coverage or L3 adoption."
+        }
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002444",
@@ -1784,17 +3367,25 @@
         "text": "- `HMC-R-11`:訂正は旧entryの本文を書き換えず、typed lifecycle transitionと後続entryをappendする。active referenceを追加するだけで"
       },
       "proposal_pool_check": {
-        "member_of_proposal_effective_488": true,
+        "member_of_proposal_effective_488": false,
         "#2353_effective_classification": "condition",
         "#2353_condition_subtype": "product_requirement_atom",
-        "#2353_route_status": "unknown",
+        "#2353_route_status": "unadopted_candidate_relation_only",
         "later_overlay_intersections": [],
         "prior_181_intersection": [],
         "prior_261_intersection": [],
         "prior_290_intersection": [],
-        "#2378_next29_intersection": []
+        "#2378_next29_intersection": [],
+        "#2353_row_record_evidence": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "source_item_id": "LEGACY-CAND-LINE-002444",
+          "source_line_sha256": "sha256:a1856f190d93a72fe46fc6d2fef0b7fb799806364f99dac10c6688bc32478290",
+          "physical_line_bytes_sha256": "99747664409df359c420211b51c7bd013b4362dc0ac8c41005e53c5df2a88359",
+          "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+        }
       },
-      "route_assessment": "partial",
+      "route_assessment": "adopted_relevant_partial",
       "compared_adopted_requirements": [
         {
           "id": "HELIXOS-L2-015",
@@ -1830,7 +3421,7 @@
         },
         {
           "id": "HELIXOS-L2-019",
-          "direct_predicate": false,
+          "direct_predicate": true,
           "L2_locator": {
             "path": "docs/helix-os/L2-requirements/governance-requirements.md",
             "line": 682,
@@ -1859,14 +3450,90 @@
             ],
             "basis": "fixed paired acceptance body"
           }
+        },
+        {
+          "id": "HELIXOS-L2-004",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 57,
+            "substantive_body_lines": [
+              57,
+              364
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 169,
+            "substantive_body_lines": [
+              104,
+              164,
+              169,
+              177
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-009",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 62,
+            "substantive_body_lines": [
+              62,
+              364
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 169,
+            "substantive_body_lines": [
+              104,
+              164,
+              169,
+              177
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
         }
       ],
       "directly_matched_adopted_requirement_ids": [
-        "HELIXOS-L2-015"
+        "HELIXOS-L2-004",
+        "HELIXOS-L2-009",
+        "HELIXOS-L2-015",
+        "HELIXOS-L2-019"
       ],
-      "direct_overlap": "原eventを上書きせず訂正履歴を追うHELIXOS-L2-015のpredicateに一致する。",
-      "residual_or_difference": "typed lifecycle transitionと後続entry appendという実装表現、active referenceでinvalid entryを再有効化しないoracleは固定本文にない。",
-      "authority_effect": "none"
+      "direct_overlap": "旧entryを上書きせず訂正履歴を保つ部分は、HMC-BR-005（OS L2:364／L11:169,177）および採択HELIXOS-L2-015の原event不変・訂正追跡predicateに重なる。",
+      "residual_or_difference": "typed lifecycle transitionと後続entryの形式、active referenceからinvalid entryを再有効化しない具体oracleは固定本文にない。",
+      "authority_effect": "none",
+      "hmc_adopted_relation_evidence": {
+        "mapped_parent": "HMC-BR-005",
+        "L2_crosswalk": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": [
+            364
+          ],
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+        },
+        "L11_acceptance": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": [
+            169,
+            177
+          ],
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "basis": "PO決定で固定されたHELIX-OS L2/L11 revision。HMC-BR crosswalk / acceptanceはrelation evidenceであり、source candidate rowの採択・L3承認を意味しない。",
+        "source_family_mapping": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 502,
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "meaning": "HMC-FR-001..006 source family is mapped to HELIXOS-L2-001/004/005/007/009; candidate connection only, not complete semantic coverage or L3 adoption."
+        }
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002445",
@@ -1880,17 +3547,25 @@
         "text": "  無効entryをcurrentへ戻してはならない。"
       },
       "proposal_pool_check": {
-        "member_of_proposal_effective_488": true,
+        "member_of_proposal_effective_488": false,
         "#2353_effective_classification": "condition",
         "#2353_condition_subtype": "product_requirement_atom",
-        "#2353_route_status": "unknown",
+        "#2353_route_status": "unadopted_candidate_relation_only",
         "later_overlay_intersections": [],
         "prior_181_intersection": [],
         "prior_261_intersection": [],
         "prior_290_intersection": [],
-        "#2378_next29_intersection": []
+        "#2378_next29_intersection": [],
+        "#2353_row_record_evidence": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "source_item_id": "LEGACY-CAND-LINE-002445",
+          "source_line_sha256": "sha256:4153be7f81e80fea7d0aff67ecb86e18210ace0b3c644870f909adc0ee6e05ce",
+          "physical_line_bytes_sha256": "881434770e8eaa71a2f33b8d4bd7ff28bc6846567078fd1768a594c412103c29",
+          "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+        }
       },
-      "route_assessment": "partial",
+      "route_assessment": "adopted_relevant_partial",
       "compared_adopted_requirements": [
         {
           "id": "HELIXOS-L2-015",
@@ -1926,7 +3601,7 @@
         },
         {
           "id": "HELIXOS-L2-019",
-          "direct_predicate": false,
+          "direct_predicate": true,
           "L2_locator": {
             "path": "docs/helix-os/L2-requirements/governance-requirements.md",
             "line": 682,
@@ -1955,14 +3630,90 @@
             ],
             "basis": "fixed paired acceptance body"
           }
+        },
+        {
+          "id": "HELIXOS-L2-004",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 57,
+            "substantive_body_lines": [
+              57,
+              364
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 168,
+            "substantive_body_lines": [
+              104,
+              164,
+              168,
+              177
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-009",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 62,
+            "substantive_body_lines": [
+              62,
+              364
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 168,
+            "substantive_body_lines": [
+              104,
+              164,
+              168,
+              177
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
         }
       ],
       "directly_matched_adopted_requirement_ids": [
-        "HELIXOS-L2-015"
+        "HELIXOS-L2-004",
+        "HELIXOS-L2-009",
+        "HELIXOS-L2-015",
+        "HELIXOS-L2-019"
       ],
-      "direct_overlap": "原event保持と訂正追跡がHELIXOS-L2-015の合意済み意味に含まれる。",
-      "residual_or_difference": "lifecycle transitionの具体型と復活拒否条件は固定L2/L11で定めない。",
-      "authority_effect": "none"
+      "direct_overlap": "無効entryをcurrentに戻さない部分はHMC-BR-005（OS L2:364／L11:168,177）と採択HELIXOS-L2-015の訂正履歴・不変event predicateに重なる。",
+      "residual_or_difference": "具体的な状態遷移と全invalid entryケースの判定oracleは候補固有の残差。",
+      "authority_effect": "none",
+      "hmc_adopted_relation_evidence": {
+        "mapped_parent": "HMC-BR-005",
+        "L2_crosswalk": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": [
+            364
+          ],
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+        },
+        "L11_acceptance": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": [
+            168,
+            177
+          ],
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "basis": "PO決定で固定されたHELIX-OS L2/L11 revision。HMC-BR crosswalk / acceptanceはrelation evidenceであり、source candidate rowの採択・L3承認を意味しない。",
+        "source_family_mapping": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 502,
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "meaning": "HMC-FR-001..006 source family is mapped to HELIXOS-L2-001/004/005/007/009; candidate connection only, not complete semantic coverage or L3 adoption."
+        }
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002446",
@@ -1976,17 +3727,25 @@
         "text": "- `HMC-R-12`: current resolved view、SessionStart、DB projection、JSONL compactionは、同一HEAD、schema、policy、event setに対して"
       },
       "proposal_pool_check": {
-        "member_of_proposal_effective_488": true,
+        "member_of_proposal_effective_488": false,
         "#2353_effective_classification": "condition",
         "#2353_condition_subtype": "product_requirement_atom",
-        "#2353_route_status": "unknown",
+        "#2353_route_status": "unadopted_candidate_relation_only",
         "later_overlay_intersections": [],
         "prior_181_intersection": [],
         "prior_261_intersection": [],
         "prior_290_intersection": [],
-        "#2378_next29_intersection": []
+        "#2378_next29_intersection": [],
+        "#2353_row_record_evidence": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "source_item_id": "LEGACY-CAND-LINE-002446",
+          "source_line_sha256": "sha256:348c0671fa695184c0993f913f69e8e5b07b95303327cdbcdba310bdc7fba6cc",
+          "physical_line_bytes_sha256": "2c1cd193b322553d7a0df9ed761685190b4a214e06d6679c9ebab3d2f97e478b",
+          "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+        }
       },
-      "route_assessment": "partial",
+      "route_assessment": "adopted_relevant_partial",
       "compared_adopted_requirements": [
         {
           "id": "HELIXOS-L2-019",
@@ -2051,14 +3810,89 @@
             ],
             "basis": "fixed paired acceptance body"
           }
+        },
+        {
+          "id": "HELIXOS-L2-004",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 57,
+            "substantive_body_lines": [
+              57,
+              364
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 169,
+            "substantive_body_lines": [
+              104,
+              164,
+              169,
+              177
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-009",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 62,
+            "substantive_body_lines": [
+              62,
+              364
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 169,
+            "substantive_body_lines": [
+              104,
+              164,
+              169,
+              177
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
         }
       ],
       "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-004",
+        "HELIXOS-L2-009",
         "HELIXOS-L2-019"
       ],
-      "direct_overlap": "projection失敗時にcheckpoint/continuation successを公開せず、根拠から状態を再構築する条件がHELIXOS-L2-019と重なる。",
-      "residual_or_difference": "同一HEAD/schema/policy/event setから同一active exact set/digestを返すcross-projection deterministic equalityは固定本文にない。",
-      "authority_effect": "none"
+      "direct_overlap": "再起動・projection replay時にも中断状態と未完義務を保つ部分はHMC-BR-005（OS L2:364／L11:169,177）と採択HELIXOS-L2-019の再構築・継続性predicateに重なる。",
+      "residual_or_difference": "同じHEAD/schema/policy/event setから全projectionで同一active set/digestを返す決定論的等価性は明記されない。",
+      "authority_effect": "none",
+      "hmc_adopted_relation_evidence": {
+        "mapped_parent": "HMC-BR-005",
+        "L2_crosswalk": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": [
+            364
+          ],
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+        },
+        "L11_acceptance": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": [
+            169,
+            177
+          ],
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "basis": "PO決定で固定されたHELIX-OS L2/L11 revision。HMC-BR crosswalk / acceptanceはrelation evidenceであり、source candidate rowの採択・L3承認を意味しない。",
+        "source_family_mapping": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 502,
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "meaning": "HMC-FR-001..006 source family is mapped to HELIXOS-L2-001/004/005/007/009; candidate connection only, not complete semantic coverage or L3 adoption."
+        }
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002448",
@@ -2072,17 +3906,25 @@
         "text": "- `HMC-R-13`: 同一eventの再送、消費済みentryの再取得、クラッシュ後の再開、期限切れentry、dead-letterからの再試行を決定的に再生できる。"
       },
       "proposal_pool_check": {
-        "member_of_proposal_effective_488": true,
+        "member_of_proposal_effective_488": false,
         "#2353_effective_classification": "condition",
         "#2353_condition_subtype": "product_requirement_atom",
-        "#2353_route_status": "unknown",
+        "#2353_route_status": "unadopted_candidate_relation_only",
         "later_overlay_intersections": [],
         "prior_181_intersection": [],
         "prior_261_intersection": [],
         "prior_290_intersection": [],
-        "#2378_next29_intersection": []
+        "#2378_next29_intersection": [],
+        "#2353_row_record_evidence": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "source_item_id": "LEGACY-CAND-LINE-002448",
+          "source_line_sha256": "sha256:a836e7b0db4c4262ca398b2912c018b2fed4fd94f91effddb07c1bcec2b38de6",
+          "physical_line_bytes_sha256": "f5bdbc2c25292e1ef369430206447083154762c66bce170a7d9a73a99b9c0871",
+          "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+        }
       },
-      "route_assessment": "partial",
+      "route_assessment": "adopted_relevant_partial",
       "compared_adopted_requirements": [
         {
           "id": "HELIXOS-L2-019",
@@ -2115,14 +3957,89 @@
             ],
             "basis": "fixed paired acceptance body"
           }
+        },
+        {
+          "id": "HELIXOS-L2-004",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 57,
+            "substantive_body_lines": [
+              57,
+              364
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 169,
+            "substantive_body_lines": [
+              104,
+              164,
+              169,
+              177
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-009",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 62,
+            "substantive_body_lines": [
+              62,
+              364
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 169,
+            "substantive_body_lines": [
+              104,
+              164,
+              169,
+              177
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
         }
       ],
       "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-004",
+        "HELIXOS-L2-009",
         "HELIXOS-L2-019"
       ],
-      "direct_overlap": "重複event・中断再開・再構築後に二重副作用を防ぎ、same work/evidenceへ戻す述語が一致する。",
-      "residual_or_difference": "expired entry/dead-letter再試行を含む全caseの決定論的replayは固定受入に個別列挙されない。",
-      "authority_effect": "none"
+      "direct_overlap": "duplicate/consumed/expired/corrected noticeを再生しても二重実行せず、invalid entryを現行指示に再利用しない部分はHMC-BR-005（OS L2:364／L11:169,177）と採択HELIXOS-L2-019に重なる。",
+      "residual_or_difference": "dead-letter再試行を含む全failure pointでの完全な決定論的replay条件は固定L2/L11に個別列挙されない。",
+      "authority_effect": "none",
+      "hmc_adopted_relation_evidence": {
+        "mapped_parent": "HMC-BR-005",
+        "L2_crosswalk": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": [
+            364
+          ],
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+        },
+        "L11_acceptance": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": [
+            169,
+            177
+          ],
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "basis": "PO決定で固定されたHELIX-OS L2/L11 revision。HMC-BR crosswalk / acceptanceはrelation evidenceであり、source candidate rowの採択・L3承認を意味しない。",
+        "source_family_mapping": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 502,
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "meaning": "HMC-FR-001..006 source family is mapped to HELIXOS-L2-001/004/005/007/009; candidate connection only, not complete semantic coverage or L3 adoption."
+        }
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002450",
@@ -2136,17 +4053,25 @@
         "text": "- `HMC-R-14`: 既存harness／project memoryを`valid_coordination_pointer`、`project_authority`、`runtime_interpretation`、"
       },
       "proposal_pool_check": {
-        "member_of_proposal_effective_488": true,
+        "member_of_proposal_effective_488": false,
         "#2353_effective_classification": "condition",
         "#2353_condition_subtype": "product_requirement_atom",
-        "#2353_route_status": "unknown",
+        "#2353_route_status": "unadopted_candidate_relation_only",
         "later_overlay_intersections": [],
         "prior_181_intersection": [],
         "prior_261_intersection": [],
         "prior_290_intersection": [],
-        "#2378_next29_intersection": []
+        "#2378_next29_intersection": [],
+        "#2353_row_record_evidence": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "source_item_id": "LEGACY-CAND-LINE-002450",
+          "source_line_sha256": "sha256:ff770933c9bcc108e4a03c448b1f900876103d29a301ce68e90d687321009e91",
+          "physical_line_bytes_sha256": "e48fbae50cf6e99a981f4fc22eeb4ad5b20dafb6ad2d19c372bb113632b2bc1d",
+          "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+        }
       },
-      "route_assessment": "unknown",
+      "route_assessment": "adopted_relevant_partial",
       "compared_adopted_requirements": [
         {
           "id": "HELIXOS-L2-007",
@@ -2172,7 +4097,7 @@
         },
         {
           "id": "HELIXOS-L2-015",
-          "direct_predicate": false,
+          "direct_predicate": true,
           "L2_locator": {
             "path": "docs/helix-os/L2-requirements/governance-requirements.md",
             "line": 642,
@@ -2201,12 +4126,91 @@
             ],
             "basis": "fixed paired acceptance body"
           }
+        },
+        {
+          "id": "HELIXOS-L2-001",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 54,
+            "substantive_body_lines": [
+              54,
+              362
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 171,
+            "substantive_body_lines": [
+              88,
+              110,
+              164,
+              171,
+              175
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-005",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 58,
+            "substantive_body_lines": [
+              58,
+              362
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 171,
+            "substantive_body_lines": [
+              88,
+              140,
+              164,
+              171,
+              175
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
         }
       ],
-      "directly_matched_adopted_requirement_ids": [],
-      "direct_overlap": "証拠のprovenanceと欠落/stale状態の識別は関連するが、legacy memoryを7つのnamed classへ分類する採択predicateはない。",
-      "residual_or_difference": "valid pointer/project authority/runtime interpretation/personalization/wrong plan provenance/retracted/audit historyの分類規則と未分類停止条件が残る。",
-      "authority_effect": "none"
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-005",
+        "HELIXOS-L2-015"
+      ],
+      "direct_overlap": "project authorityとruntime interpretation/personalizationを分け、要求等をmemoryの正本にしない部分はHMC-BR-003（OS L2:362／L11:171,175）に重なる。",
+      "residual_or_difference": "7種の分類名と未分類entryの扱いは採択済みtaxonomyではない。",
+      "authority_effect": "none",
+      "hmc_adopted_relation_evidence": {
+        "mapped_parent": "HMC-BR-003",
+        "L2_crosswalk": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": [
+            362
+          ],
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+        },
+        "L11_acceptance": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": [
+            171,
+            175
+          ],
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "basis": "PO決定で固定されたHELIX-OS L2/L11 revision。HMC-BR crosswalk / acceptanceはrelation evidenceであり、source candidate rowの採択・L3承認を意味しない。",
+        "source_family_mapping": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 502,
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "meaning": "HMC-FR-001..006 source family is mapped to HELIXOS-L2-001/004/005/007/009; candidate connection only, not complete semantic coverage or L3 adoption."
+        }
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002452",
@@ -2220,17 +4224,25 @@
         "text": "- `HMC-R-15`: `project_authority`、`personalization`、`runtime_interpretation`、`wrong_plan_provenance`は、履歴を改竄または"
       },
       "proposal_pool_check": {
-        "member_of_proposal_effective_488": true,
+        "member_of_proposal_effective_488": false,
         "#2353_effective_classification": "condition",
         "#2353_condition_subtype": "product_requirement_atom",
-        "#2353_route_status": "unknown",
+        "#2353_route_status": "unadopted_candidate_relation_only",
         "later_overlay_intersections": [],
         "prior_181_intersection": [],
         "prior_261_intersection": [],
         "prior_290_intersection": [],
-        "#2378_next29_intersection": []
+        "#2378_next29_intersection": [],
+        "#2353_row_record_evidence": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "source_item_id": "LEGACY-CAND-LINE-002452",
+          "source_line_sha256": "sha256:6088044d2b448f26a4d09ec655ca7805b94fe887fc2fe211edc1b226d20c7c5a",
+          "physical_line_bytes_sha256": "fcf23335357d91ad2610f2819fe48c47ce301f7a386f5deca8ad5aab0f1e5c89",
+          "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+        }
       },
-      "route_assessment": "partial",
+      "route_assessment": "adopted_relevant_partial",
       "compared_adopted_requirements": [
         {
           "id": "HELIXOS-L2-015",
@@ -2289,14 +4301,91 @@
             ],
             "basis": "fixed paired acceptance body"
           }
+        },
+        {
+          "id": "HELIXOS-L2-001",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 54,
+            "substantive_body_lines": [
+              54,
+              362
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 171,
+            "substantive_body_lines": [
+              88,
+              110,
+              164,
+              171,
+              175
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-005",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 58,
+            "substantive_body_lines": [
+              58,
+              362
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 171,
+            "substantive_body_lines": [
+              88,
+              140,
+              164,
+              171,
+              175
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
         }
       ],
       "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-005",
         "HELIXOS-L2-015"
       ],
-      "direct_overlap": "memory/projectionだけからauthority・合意を作らず、原記録へ戻す境界が採択条件に含まれる。",
-      "residual_or_difference": "personalization/runtime interpretation/wrong-plan provenanceを履歴改変なしで各view/startup/approval/merge pathから隔離する全scopeは固定本文にない。",
-      "authority_effect": "none"
+      "direct_overlap": "利用者設定・runtime解釈・誤ったPLAN由来の情報で正本を書き換えない部分はHMC-BR-003（OS L2:362／L11:171,175）および採択HELIXOS-L2-015のauthority不生成条件に重なる。",
+      "residual_or_difference": "各view/startup/approval/merge経路の全隔離表と履歴を保持するprojection条件は候補固有の残差。",
+      "authority_effect": "none",
+      "hmc_adopted_relation_evidence": {
+        "mapped_parent": "HMC-BR-003",
+        "L2_crosswalk": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": [
+            362
+          ],
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+        },
+        "L11_acceptance": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": [
+            171,
+            175
+          ],
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "basis": "PO決定で固定されたHELIX-OS L2/L11 revision。HMC-BR crosswalk / acceptanceはrelation evidenceであり、source candidate rowの採択・L3承認を意味しない。",
+        "source_family_mapping": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 502,
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "meaning": "HMC-FR-001..006 source family is mapped to HELIXOS-L2-001/004/005/007/009; candidate connection only, not complete semantic coverage or L3 adoption."
+        }
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002454",
@@ -2310,17 +4399,25 @@
         "text": "- `HMC-R-16`: current-planをmemory writeへ暗黙継承しない。PLAN scoped writeは明示PLAN IDと存在／scope／revision照合を要求し、"
       },
       "proposal_pool_check": {
-        "member_of_proposal_effective_488": true,
+        "member_of_proposal_effective_488": false,
         "#2353_effective_classification": "condition",
         "#2353_condition_subtype": "product_requirement_atom",
-        "#2353_route_status": "unknown",
+        "#2353_route_status": "unadopted_candidate_relation_only",
         "later_overlay_intersections": [],
         "prior_181_intersection": [],
         "prior_261_intersection": [],
         "prior_290_intersection": [],
-        "#2378_next29_intersection": []
+        "#2378_next29_intersection": [],
+        "#2353_row_record_evidence": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "source_item_id": "LEGACY-CAND-LINE-002454",
+          "source_line_sha256": "sha256:ab2b8da96dd93e109855bb9f81a926e8db2543f9198b2b98f8f2e0f1644dd125",
+          "physical_line_bytes_sha256": "bd882973b88df9660918223517f84ce1cbea67713bc4ca9905b903d21554cbcd",
+          "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+        }
       },
-      "route_assessment": "partial",
+      "route_assessment": "adopted_relevant_partial",
       "compared_adopted_requirements": [
         {
           "id": "HELIXOS-L2-015",
@@ -2380,14 +4477,90 @@
             ],
             "basis": "fixed paired acceptance body"
           }
+        },
+        {
+          "id": "HELIXOS-L2-001",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 54,
+            "substantive_body_lines": [
+              54,
+              361
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 167,
+            "substantive_body_lines": [
+              88,
+              110,
+              164,
+              167,
+              168
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-009",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 62,
+            "substantive_body_lines": [
+              62,
+              361
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 167,
+            "substantive_body_lines": [
+              104,
+              164,
+              167,
+              168
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
         }
       ],
       "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-009",
         "HELIXOS-L2-015"
       ],
-      "direct_overlap": "対象scopeとsource/revisionをauthority recordへ束縛する条件に重なる。",
-      "residual_or_difference": "current-plan implicit inheritance禁止、存在検査、cross-PR/globalの`plan_id: null` conventionは具体規則として定義されない。",
-      "authority_effect": "none"
+      "direct_overlap": "明示scopeとsource revisionを確認する部分はHMC-BR-002（OS L2:361,372-373／L11:167-168）および採択HELIXOS-L2-015の対象・出所束縛に重なる。",
+      "residual_or_difference": "current-planの暗黙継承禁止、存在/scope照合、cross-PR/globalのplan_id:null規則は明記されない。",
+      "authority_effect": "none",
+      "hmc_adopted_relation_evidence": {
+        "mapped_parent": "HMC-BR-002",
+        "L2_crosswalk": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": [
+            361
+          ],
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+        },
+        "L11_acceptance": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": [
+            167,
+            168
+          ],
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "basis": "PO決定で固定されたHELIX-OS L2/L11 revision。HMC-BR crosswalk / acceptanceはrelation evidenceであり、source candidate rowの採択・L3承認を意味しない。",
+        "source_family_mapping": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 502,
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "meaning": "HMC-FR-001..006 source family is mapped to HELIXOS-L2-001/004/005/007/009; candidate connection only, not complete semantic coverage or L3 adoption."
+        }
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002456",
@@ -2401,17 +4574,25 @@
         "text": "- `HMC-R-17`: provider native memory、session history、user settingsはshared coordination memoryの入力またはauthorityとして"
       },
       "proposal_pool_check": {
-        "member_of_proposal_effective_488": true,
+        "member_of_proposal_effective_488": false,
         "#2353_effective_classification": "condition",
         "#2353_condition_subtype": "product_requirement_atom",
-        "#2353_route_status": "unknown",
+        "#2353_route_status": "unadopted_candidate_relation_only",
         "later_overlay_intersections": [],
         "prior_181_intersection": [],
         "prior_261_intersection": [],
         "prior_290_intersection": [],
-        "#2378_next29_intersection": []
+        "#2378_next29_intersection": [],
+        "#2353_row_record_evidence": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "source_item_id": "LEGACY-CAND-LINE-002456",
+          "source_line_sha256": "sha256:6abeacc000ff8cb334a3fcd2883626607bc14878d4e787be96dcb64235880439",
+          "physical_line_bytes_sha256": "ed021dec87a22f6ab6e90d359246050b26a93418f4dda654eef30c264719ace4",
+          "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+        }
       },
-      "route_assessment": "unknown",
+      "route_assessment": "adopted_relevant_partial",
       "compared_adopted_requirements": [
         {
           "id": "HELIXOS-L2-007",
@@ -2461,12 +4642,107 @@
             ],
             "basis": "fixed paired acceptance body"
           }
+        },
+        {
+          "id": "HELIXOS-L2-004",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 57,
+            "substantive_body_lines": [
+              57,
+              365
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 171,
+            "substantive_body_lines": [
+              104,
+              164,
+              171
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-009",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 62,
+            "substantive_body_lines": [
+              62,
+              365
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 171,
+            "substantive_body_lines": [
+              104,
+              164,
+              171
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-019",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 687,
+            "substantive_body_lines": [
+              687
+            ],
+            "basis": "PO決定で採択されたHELIXOS-L2要求本文。source/revision/authority条件との具体的predicate比較。"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 164,
+            "substantive_body_lines": [
+              164,
+              171
+            ],
+            "basis": "PO合意済み対L11本文。HMC条件またはprovenance/correction acceptance locator。"
+          }
         }
       ],
-      "directly_matched_adopted_requirement_ids": [],
-      "direct_overlap": "provider configurationやactor authorityは比較対象となるが、provider-native memory/session/settingsを共有入力から排除し、effective config検証を別契約へ分離する述語はない。",
-      "residual_or_difference": "provider-source non-authority、adapter parity、fallback禁止をどの境界で判定するかが残る。",
-      "authority_effect": "none"
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-004",
+        "HELIXOS-L2-009",
+        "HELIXOS-L2-019"
+      ],
+      "direct_overlap": "provider-native memoryを使わず、session history/user settingsを共有authorityへ混ぜない部分はHMC-BR-006（OS L2:365／L11:171）および採択HELIXOS-L2-019のprovider memoryをcontinuity正本にしないpredicateに重なる。",
+      "residual_or_difference": "provider configurationの責務分解、adapter parity、effective configuration validationの実装条件は候補固有の残差。OS L2:375はprovider configuration詳細を別責務に置く。",
+      "authority_effect": "none",
+      "hmc_adopted_relation_evidence": {
+        "mapped_parent": "HMC-BR-006",
+        "L2_crosswalk": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": [
+            365
+          ],
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+        },
+        "L11_acceptance": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": [
+            171
+          ],
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "basis": "PO決定で固定されたHELIX-OS L2/L11 revision。HMC-BR crosswalk / acceptanceはrelation evidenceであり、source candidate rowの採択・L3承認を意味しない。",
+        "source_family_mapping": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 502,
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "meaning": "HMC-FR-001..006 source family is mapped to HELIXOS-L2-001/004/005/007/009; candidate connection only, not complete semantic coverage or L3 adoption."
+        }
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002459",
@@ -2480,17 +4756,25 @@
         "text": "- `HMC-R-18`: writer、SessionStart、compaction、DB projector、Claude／Codex adapter、doctorは同一のcoordination schema、"
       },
       "proposal_pool_check": {
-        "member_of_proposal_effective_488": true,
+        "member_of_proposal_effective_488": false,
         "#2353_effective_classification": "condition",
         "#2353_condition_subtype": "product_requirement_atom",
-        "#2353_route_status": "unknown",
+        "#2353_route_status": "unadopted_candidate_relation_only",
         "later_overlay_intersections": [],
         "prior_181_intersection": [],
         "prior_261_intersection": [],
         "prior_290_intersection": [],
-        "#2378_next29_intersection": []
+        "#2378_next29_intersection": [],
+        "#2353_row_record_evidence": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "source_item_id": "LEGACY-CAND-LINE-002459",
+          "source_line_sha256": "sha256:54cbeaba0f1103315c59c9f4a3285777c2f0063727b97d7d5c536cbe40bb58c7",
+          "physical_line_bytes_sha256": "d8dfd7c9db5fc6693d292967646a914b62d63667b51cbaac3b0fd7f0526b89da",
+          "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+        }
       },
-      "route_assessment": "unknown",
+      "route_assessment": "true_unknown",
       "compared_adopted_requirements": [
         {
           "id": "HELIXOS-L2-007",
@@ -2577,12 +4861,82 @@
             ],
             "basis": "fixed paired acceptance body"
           }
+        },
+        {
+          "id": "HELIXOS-L2-004",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 57,
+            "substantive_body_lines": [
+              57,
+              360
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 174,
+            "substantive_body_lines": [
+              104,
+              164,
+              174
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-009",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 62,
+            "substantive_body_lines": [
+              62,
+              360
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 174,
+            "substantive_body_lines": [
+              104,
+              164,
+              174
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
         }
       ],
       "directly_matched_adopted_requirement_ids": [],
-      "direct_overlap": "common evidenceと後続状態の個別判定は関係するが、全writer/SessionStart/compaction/projector/adapter/doctorに同じschema/lifecycle/pointer validationを適用する述語は固定本文にない。",
-      "residual_or_difference": "cross-consumer parity、one-side-green拒否、全componentでのexact same schema検証が残る。",
-      "authority_effect": "none"
+      "direct_overlap": "同一schema/lifecycleを全writer・reader・projectorに強制する述語は固定L2/L11に見つからず、HMC-BR-001のcross-runtime通知受け渡しとも同じ意味ではない。",
+      "residual_or_difference": "SessionStart、compaction、adapter、DB projector、doctor全体のparity、one-side-green拒否、全consumerで同じvalidationを行う条件に直接一致する採択predicateがない。",
+      "authority_effect": "none",
+      "hmc_adopted_relation_evidence": {
+        "mapped_parent": "HMC-BR-001",
+        "L2_crosswalk": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": [
+            360
+          ],
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+        },
+        "L11_acceptance": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": [
+            174
+          ],
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "basis": "PO決定で固定されたHELIX-OS L2/L11 revision。HMC-BR crosswalk / acceptanceはrelation evidenceであり、source candidate rowの採択・L3承認を意味しない。",
+        "source_family_mapping": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 502,
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "meaning": "HMC-FR-001..006 source family is mapped to HELIXOS-L2-001/004/005/007/009; candidate connection only, not complete semantic coverage or L3 adoption."
+        }
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002461",
@@ -2596,17 +4950,25 @@
         "text": "- `HMC-R-19`: memoryからRequirement、Design、ADR、Approval、Release、Assignment、current PLAN statusへ直接書き込む経路を"
       },
       "proposal_pool_check": {
-        "member_of_proposal_effective_488": true,
+        "member_of_proposal_effective_488": false,
         "#2353_effective_classification": "condition",
         "#2353_condition_subtype": "product_requirement_atom",
-        "#2353_route_status": "unknown",
+        "#2353_route_status": "unadopted_candidate_relation_only",
         "later_overlay_intersections": [],
         "prior_181_intersection": [],
         "prior_261_intersection": [],
         "prior_290_intersection": [],
-        "#2378_next29_intersection": []
+        "#2378_next29_intersection": [],
+        "#2353_row_record_evidence": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "source_item_id": "LEGACY-CAND-LINE-002461",
+          "source_line_sha256": "sha256:0eae00b715312a8c53097033ecc5d92e8ab7fdc5651d44d5f47e1b1ed3eb7895",
+          "physical_line_bytes_sha256": "d5b156db0f74fcae72d9e668b5ca9e6b6623ccfd02d0e7d379346ce95854bedf",
+          "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+        }
       },
-      "route_assessment": "partial",
+      "route_assessment": "adopted_relevant_partial",
       "compared_adopted_requirements": [
         {
           "id": "HELIXOS-L2-015",
@@ -2665,14 +5027,91 @@
             ],
             "basis": "fixed paired acceptance body"
           }
+        },
+        {
+          "id": "HELIXOS-L2-001",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 54,
+            "substantive_body_lines": [
+              54,
+              362
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 170,
+            "substantive_body_lines": [
+              88,
+              110,
+              164,
+              170,
+              175
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-005",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 58,
+            "substantive_body_lines": [
+              58,
+              362
+            ],
+            "basis": "fixed adopted OS L2 requirement body plus exact HMC-BR crosswalk row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 170,
+            "substantive_body_lines": [
+              88,
+              140,
+              164,
+              170,
+              175
+            ],
+            "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
+          }
         }
       ],
       "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-005",
         "HELIXOS-L2-015"
       ],
-      "direct_overlap": "正本/ projectionを分け、memoryや候補生成だけでrequirement authorityやapprovalを作らない条件が一致する。",
-      "residual_or_difference": "列挙した各canonical artifactへdirect write経路を禁じ、既存workflowへのtyped pointer routingを保証する完全なwrite-path matrixは固定本文にない。",
-      "authority_effect": "none"
+      "direct_overlap": "memoryから正本へ要求意味や承認を生成しない部分は採択HELIXOS-L2-015（memoryから要求意味・人間decisionを生成しない）と重なる。HMC-BR-003はmemoryを正本にしない条件を補う。",
+      "residual_or_difference": "列挙された各canonical artifactへのdirect-write禁止と、既存workflowへtyped pointerでroutingする全経路matrixは固定本文に規定されない.",
+      "authority_effect": "none",
+      "hmc_adopted_relation_evidence": {
+        "mapped_parent": "HMC-BR-003",
+        "L2_crosswalk": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": [
+            362
+          ],
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+        },
+        "L11_acceptance": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": [
+            170,
+            175
+          ],
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "basis": "PO決定で固定されたHELIX-OS L2/L11 revision。HMC-BR crosswalk / acceptanceはrelation evidenceであり、source candidate rowの採択・L3承認を意味しない。",
+        "source_family_mapping": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 502,
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "meaning": "HMC-FR-001..006 source family is mapped to HELIXOS-L2-001/004/005/007/009; candidate connection only, not complete semantic coverage or L3 adoption."
+        }
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002463",
@@ -2686,17 +5125,25 @@
         "text": "- `HMC-R-20`: retention／purgeは#1188へ委譲し、物理削除可能な識別、audit history、backup／restore、PII／secret除去の境界を保持する。"
       },
       "proposal_pool_check": {
-        "member_of_proposal_effective_488": true,
+        "member_of_proposal_effective_488": false,
         "#2353_effective_classification": "condition",
         "#2353_condition_subtype": "product_requirement_atom",
-        "#2353_route_status": "unknown",
+        "#2353_route_status": "unadopted_candidate_relation_only",
         "later_overlay_intersections": [],
         "prior_181_intersection": [],
         "prior_261_intersection": [],
         "prior_290_intersection": [],
-        "#2378_next29_intersection": []
+        "#2378_next29_intersection": [],
+        "#2353_row_record_evidence": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "source_item_id": "LEGACY-CAND-LINE-002463",
+          "source_line_sha256": "sha256:49ed71912ef5214f7fe735bf10a35ab3c4a6ab061078da40b4416b1ab4102003",
+          "physical_line_bytes_sha256": "96b05c8bc30f2dad4193946e6d4ae542790e3fe896d2e52a25db5933d365063b",
+          "commit": "97672630b7de70fd4433827730c390cbabd90a99"
+        }
       },
-      "route_assessment": "unknown",
+      "route_assessment": "true_unknown",
       "compared_adopted_requirements": [
         {
           "id": "HELIXSECURITY-L2-008",
@@ -2749,24 +5196,52 @@
         }
       ],
       "directly_matched_adopted_requirement_ids": [],
-      "direct_overlap": "SECURITY-L2-008はdelete操作に操作ごとのauthorityを求めるが、retention/purge policy、物理削除識別、backup/restore、audit retentionの述語ではない。",
-      "residual_or_difference": "retention owner #1188への移譲、削除可能性の識別、audit history/backup restore、PII/secret除去境界と期間未決を扱う固定predicateが見つからない。",
-      "authority_effect": "none"
+      "direct_overlap": "固定OS L2:370はretention/purge期間と既存記録削除を本要求案で決めないと明記する。これは未決範囲の確認であり、この行の採択述語一致や被覆を意味しない。",
+      "residual_or_difference": "retention owner移管、物理削除可能識別、audit retention、backup/restore、PII/secret境界と期間に関する採択predicateはない。",
+      "authority_effect": "none",
+      "hmc_adopted_relation_evidence": {
+        "mapped_parent": null,
+        "L2_crosswalk": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": [],
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+        },
+        "L11_acceptance": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": [],
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "basis": "PO決定で固定されたHELIX-OS L2/L11 revision。HMC-BR crosswalk / acceptanceはrelation evidenceであり、source candidate rowの採択・L3承認を意味しない。",
+        "source_family_mapping": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 502,
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "meaning": "HMC-FR-001..006 source family is mapped to HELIXOS-L2-001/004/005/007/009; candidate connection only, not complete semantic coverage or L3 adoption."
+        }
+      }
     }
   ],
   "counts": {
     "selected": 30,
-    "partial": 18,
-    "unknown": 12,
-    "proposal_pool_out_of_population": 0,
+    "adopted_relevant_partial": 21,
+    "unadopted_candidate_relation_only": 6,
+    "true_unknown": 3,
+    "proposal_pool_out_of_population": 30,
+    "proposal_pool_selected_member_count": 0,
     "prior_290_intersection": 0,
-    "prior_261_intersection": 0
+    "prior_261_intersection": 0,
+    "prior_2378_intersection": 0
   },
   "limitations": [
-    "比較対象は#28 Sep PO decision recordsが確定した8機構L2/L11 revision f6dad2a33e24f000b87d7f09b8d40288257e74ccのみ。",
-    "partialは採択済みpredicateとsource statementの実際の部分一致に限定し、残差をcoveredへ含めない。unknownは近接だけでdirect predicateがないことを示す。",
-    "旧HMC文書は旧L3 candidateである。source metadataのdraft_candidate、PLAN承認記述、asset ID、GitHub Issue/PRやこのroute auditから、現行採択、successor、製品scope、L3承認、runtime authority、実装・受入を生成しない。",
-    "旧sourceの意味におけるretention policy owner #1188、#1449 glossary、memory contractを現行で採択済みと扱わない。",
-    "旧CLI、runtime、hook、adapter、test、CIは実行していない。"
-  ]
+    "30件は#2353 row_recordsのroute_status=unadopted_candidate_relation_onlyであり、proposal-effective 488 poolの構成員ではない。本監査を488 coverageまたはpool-unreviewed残数の減算として扱わない。",
+    "比較対象はPO decision recordが固定した8機構L2/L11 revision f6dad2a33e24f000b87d7f09b8d40288257e74cc。OSのHMC-BR crosswalkとL11条件はrelation/ predicate comparison evidenceであり、旧candidate rowの採択やL3 approvalではない。",
+    "partialはsource文のうち固定採択predicateへ実際に接続する部分に限る。残差をcoveredへ含めない。unknownは直接一致する述語がなく、relation mappingだけまたは話題の近接しかない行。",
+    "旧HMC文書は旧L3 candidateである。source metadata、PLAN承認記述、asset ID、Issue/PR、auditから現行採択、successor、製品scope、L3承認、runtime authority、implementation/acceptanceを生成しない。",
+    "retention owner #1188とglossary #1449は現行採択と扱わない。旧CLI/runtime/hook/adapter/test/CIは実行していない。"
+  ],
+  "route_criterion": {
+    "source_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-unknown-next20-route-audit-after-2359-2026-09-29.json",
+    "source_sha256": "4d4d4d3e3bfc04c30f5d1615b2868e1cadca9004fd89a09d098bef770a099dc6",
+    "rule": "adopted_relevant_partialは、exact adopted L2/L11 revisionと同じ意味を持つ具体的source predicateがあり、matched predicateと未採択残差を行ごとに示す場合だけ。話題／system名の一致、candidate-only参照、一般的authority境界ではpartialにしない。partialはrelation評価であり、source採択・coverageではない。"
+  }
 }
