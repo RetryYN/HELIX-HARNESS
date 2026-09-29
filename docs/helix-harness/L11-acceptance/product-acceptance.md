@@ -891,3 +891,13 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **不成立例**：6組のうち1組だけで片側edgeまたは対応する実行結果を欠落させたとき、そのpairと不足条件を特定し、そのpairをcomplete/greenにしない。設計側と検証側でoracle identityが異なるpairも対応済みとして扱わない。別の5組の成立を欠落組の証拠へ流用しない。L12→L1またはL12→L0のどちらか一方だけがある場合、欠けた出口をfeedback未完として示す。
 - **unknown例**：canonical pair定義、対象scope、oracle identity/適用関係、feedback先または結果証拠が不明・矛盾する入力はunknown/未完に保つ。異snapshot・stale revisionはNFR-29 cross-conditionへ残し、本候補のFR-49 atomに混ぜない。
 - **戻し先と境界**：pair/feedbackの要求意味不足はHARNESS側の該当ownerへ、OSの実行・保存・登録証拠の不足はOS側ownerへ返す。候補受入の期待結果を旧実装の合格、L3承認、採択、実行許可または要求stage終了へ読み替えない。
+
+### HARNESS-L2-057 closure gate意味条件の受入候補（未実行）
+
+- **対応要求・状態**：HARNESS-L2-057（HARNESS-CORE unit候補、未採択）。以下は静的oracle案で、候補判断、受入実行、Issue close、formal successor割当を示さない。
+- **正常例**：固定scope/revisionについてPR、CI、独立audit、選択済みstyleへのmerge、oracle、memory receipt、子Issue状態の各入力を別々に識別する。すべての必須入力がcurrentで未解決条件がない場合に限り、そのscopeのclosure-ready／close可の意味結果を示す。これを実際のclose operation、要求受入、stage完了と同一視しない。
+- **欠落例**：旧HST-CASE-023-02/03/04/05および023-07をoracle参照とし、audit、memory receipt、child Issue、oracle receiptを個別に欠落させた入力では各理由を保ったままHARNESSがclose可と返さないことを確認する。HARNESSはreceiptを発行せず、すべてcurrentで未解決条件がない場合だけclosure-readyをOSへ返す。旧caseのclose 0件／receipt発行結果はOS運転のoracle参照であり、設計oracleであって実行済み結果ではない。
+- **異状態例**：PR mergeやCI greenはあるが独立auditまたは必須oracleがmissingの入力、child Issueがopenの入力、別revisionのreceiptを混ぜた入力を与える。merge/CIから不足evidenceを推測せず、open childや不一致・stale・unknownをclosure-readyへ丸めない。
+- **memory receipt境界**：memory receipt欠落ならclose 0件とする旧負例を保持する。provider memoryやsummaryだけをreceipt扱いしない。OS-L2-019 continuityとの意味同値、旧memory compactionの適用scope、current判定は未照合のためunknownを保ち、適用時だけ要求する等の条件変更をこのoracleで決めない。
+- **責務handoff**：HARNESS結果はclosure条件の意味だけを返し、PR/CI/audit/Issue情報の収集・保存・close運転はOS-L2-054候補の対象とする。OS側receiptがなくてもHARNESSの意味判定を運転完了とみなさず、逆にOSのclose結果だけでHARNESSの条件充足を推定しない。
+- **受入限界**：旧HIL-FR-07 line 97とHST-CASE-023-01〜05/07はsource／oracle参照であり、旧test・runtime・CIを実行しない。新世代CI未構築のため必要なCI結果がunknownならclose可と判定しない。具体style定義、各sourceのvalidation schema、旧memory compactionの現行対応、候補採択、L3承認、実装・実行許可は本受入の対象外。
