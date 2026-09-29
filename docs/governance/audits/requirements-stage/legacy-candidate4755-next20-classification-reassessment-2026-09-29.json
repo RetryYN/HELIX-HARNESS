@@ -1,0 +1,430 @@
+{
+  "schema_version": "legacy-candidate4755-next20-classification-reassessment.v1",
+  "audit_id": "legacy-candidate4755-next20-classification-reassessment-2026-09-29",
+  "base_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+  "authority_effect": "none",
+  "audit_mode": "read_only_bounded_classification_and_atom_boundary_proposal",
+  "scope": {
+    "selected_sample_audit_id": "legacy-candidate4755-unknown-next20-route-audit-after-2359-2026-09-29",
+    "selected_row_count": 20,
+    "reassessed_suspected_false_product_atom_count": 16,
+    "other_four_rows": "classification unchanged; retain route-audit values"
+  },
+  "pinned_inputs": [
+    {
+      "role": "classification_2353",
+      "commit": "8a75e5392a44e005bb05197d977bdbcf75b93cf0",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "sha256": "57fce8a0e05ed73c46346f2177c439e862a17a06ecea65446389f24dc34160c5"
+    },
+    {
+      "role": "classification_2356",
+      "commit": "b213b41735067d1716c143c92e0fa6c71d8e92d9",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "sha256": "53c8acc872f30cf19e88499bc68b0f11c830a677f5c346d646a148dd3ca7853b"
+    },
+    {
+      "role": "classification_2360",
+      "commit": "89a5f57cbc8dc6b0dc6828233992640c919fb03c",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+      "sha256": "71fa35e0b3f8bfeb9781cbe2b9b21322d8e5be7866c71bce2abbca8cdca43ddd"
+    },
+    {
+      "role": "effective_recount_2361",
+      "commit": "aab65a4f1bc2f679530604cb7f89519683b9156c",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-stage5-recount-after-2353-2356-2360-2026-09-29.json",
+      "sha256": "ff1da2c7e563f25b7044318670e1808a6463afcac82857764d917878fb5046a5"
+    },
+    {
+      "role": "next20_sample_json",
+      "commit": "ec5d95b214ad34dd0f09279400d94727df09af57",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-unknown-next20-route-audit-after-2359-2026-09-29.json",
+      "sha256": "75735e7b74d91c7430de3552ce1445e598662e7209ff1e2ddb4067e152b099ac"
+    },
+    {
+      "role": "next20_sample_md",
+      "commit": "ec5d95b214ad34dd0f09279400d94727df09af57",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-unknown-next20-route-audit-after-2359-2026-09-29.md",
+      "sha256": "a934dcd97d6c92fa4738a5cc4c4791608e39b60d5f24486e11728a0fb6cc306c"
+    }
+  ],
+  "classification_criteria": [
+    {
+      "source": "#2353 cumulative classification proposal",
+      "sha256": "57fce8a0e05ed73c46346f2177c439e862a17a06ecea65446389f24dc34160c5",
+      "use": "Effective baseline is condition/product_requirement_atom/unknown after its listed overlays; still an audit proposal."
+    },
+    {
+      "source": "#2356 source-metadata correction proposal",
+      "sha256": "53c8acc872f30cf19e88499bc68b0f11c830a677f5c346d646a148dd3ca7853",
+      "use": "ID/provenance/status-only rows are explanation; an explicit source/process/authority boundary can remain condition/management_process_condition."
+    },
+    {
+      "source": "#2360 seven-row reconciliation proposal",
+      "sha256": "71fa35e0b3f8bfeb9781cbe2b9b21322d8e5be7866c71bce2abbca8cdca43ddd",
+      "use": "Pure ID/count metadata is explanation; normative substantive conditions remain atoms with their semantic boundary preserved; historical promotion/source handling is separated from product behavior."
+    }
+  ],
+  "rows": [
+    {
+      "source_id": "LEGACY-CAND-LINE-000514",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 10,
+      "source_file_sha256": "sha256:11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "sha256:a9c98c2db6601b0c963c5835fa5a2295cb5adc01b94a6712e07f9d39c4da11ff",
+      "physical_line_bytes_sha256": "sha256:3853f56a065d410e1b1d84991fb5181b6bee614792b8e78c4aa9a6c46a4525f3",
+      "source_text": "  - CIS-R-01",
+      "effective_before_reassessment": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "proposed_route_status": "not_condition",
+      "classification_atom_boundary_provisional": false,
+      "reason": "Frontmatter `refines` YAML list element identifies a linked source requirement. This ID pointer defines no independent behavior, acceptance criterion, or authority boundary. Preserve it as trace metadata.",
+      "carry_forward_effect": "Preserve the exact historical source row and draft-candidate status; no adoption, successor, coverage, retirement, or closure is generated."
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000515",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 11,
+      "source_file_sha256": "sha256:11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "sha256:790816e4fdbf63a259b6f342011143d0c75eb6621bccdb61259bae2f5d62c5ab",
+      "physical_line_bytes_sha256": "sha256:04a26bc048bb494da4557f50409b9d1c20e62fdc71873c3bcb6dcfb355f99edf",
+      "source_text": "  - CIS-R-02",
+      "effective_before_reassessment": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "proposed_route_status": "not_condition",
+      "classification_atom_boundary_provisional": false,
+      "reason": "Same `refines` list: a source identity pointer, not an independent requirement atom. Preserve the reference relation; do not count the pointer itself as product unknown.",
+      "carry_forward_effect": "Preserve the exact historical source row and draft-candidate status; no adoption, successor, coverage, retirement, or closure is generated."
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000516",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 12,
+      "source_file_sha256": "sha256:11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "sha256:594afac37e6f88bca6b72a3d94bfe657a7433b0d9a7d43f483c203403ce078fb",
+      "physical_line_bytes_sha256": "sha256:2843ec2068703af880dd2e69d7626adfa9bda89edce27420bb8415d284c34268",
+      "source_text": "  - CIS-R-12",
+      "effective_before_reassessment": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "proposed_route_status": "not_condition",
+      "classification_atom_boundary_provisional": false,
+      "reason": "Same `refines` list: a source identity pointer, not an independent requirement atom. Preserve the reference relation; do not count the pointer itself as product unknown.",
+      "carry_forward_effect": "Preserve the exact historical source row and draft-candidate status; no adoption, successor, coverage, retirement, or closure is generated."
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000517",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 13,
+      "source_file_sha256": "sha256:11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "sha256:d1129cc6f437fc3699294414ffe9167c2d6a50ff3b66e2c0675e132622d5a25f",
+      "physical_line_bytes_sha256": "sha256:5a2aa98ddc913cab0523e8aeee6fa1275111dcf1cf1564c6800d3f9d55697de5",
+      "source_text": "  - CIS-R-13",
+      "effective_before_reassessment": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "proposed_route_status": "not_condition",
+      "classification_atom_boundary_provisional": false,
+      "reason": "Same `refines` list: a source identity pointer, not an independent requirement atom. Preserve the reference relation; do not count the pointer itself as product unknown.",
+      "carry_forward_effect": "Preserve the exact historical source row and draft-candidate status; no adoption, successor, coverage, retirement, or closure is generated."
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000542",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 53,
+      "source_file_sha256": "sha256:11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "sha256:9e3df8e53bb1c3db0d8178a1cbc5e78d008c8ed2ee6cf2aa93daf2149b260245",
+      "physical_line_bytes_sha256": "sha256:29ca0f4359a98d4b8ca756c9f4fef4433b15013717ff0cfafcf381ac4e59e5cd",
+      "source_text": "- #908のbounded cancel providerを再利用し、別cancel実行authorityを作らない。",
+      "effective_before_reassessment": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "management_process_condition",
+      "proposed_route_status": "management_successor_unresolved",
+      "classification_atom_boundary_provisional": false,
+      "reason": "The line normatively requires reusing the bounded-cancel provider and prohibits a second cancel-execution authority. Preserve this as a historical candidate process/authority boundary; it is not an external product behavior and has no current management successor assigned.",
+      "carry_forward_effect": "Preserve the exact historical source row and draft-candidate status; no adoption, successor, coverage, retirement, or closure is generated."
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000543",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 54,
+      "source_file_sha256": "sha256:11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "sha256:13106439c50d7dee0b506bb5cf74315b2a61b2fe57e560803659e776157c2d37",
+      "physical_line_bytes_sha256": "sha256:b5caf9650c7fabe95050b64bd777f7a722431d734126dccf634e0733bb0d92ab",
+      "source_text": "- #735の`ci_evidence_generation`を上位互換の内部fieldとして保持し、既存の",
+      "effective_before_reassessment": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "proposed_route_status": "unknown",
+      "classification_atom_boundary_provisional": false,
+      "reason": "This line imposes an explicit compatibility constraint on an internal field and forbids redefining the existing identity string. It is more than provenance metadata; retain it as an unresolved technical/product constraint pending atomization and route review.",
+      "carry_forward_effect": "Preserve the exact historical source row and draft-candidate status; no adoption, successor, coverage, retirement, or closure is generated."
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000545",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 56,
+      "source_file_sha256": "sha256:11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "sha256:eced38e93daa999abd770028670a93df2622b4509dea6aeab3e054c695271293",
+      "physical_line_bytes_sha256": "sha256:c3500609c5ac3b4faef74af81d4b14e46bd2e7a50700f69dd5de3348512b19a1",
+      "source_text": "- CIS-R-01〜03のtelemetry identity、CIS-R-12のbounded cancellation、CIS-R-13のdeferred recoveryを拡張する。",
+      "effective_before_reassessment": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "proposed_route_status": "unknown",
+      "classification_atom_boundary_provisional": true,
+      "reason": "The verb “extend” directs the candidate to extend the listed telemetry identity, bounded cancellation, and deferred recovery responsibilities. That is normative technical direction, not a list of IDs alone. Keep it as an unresolved product atom for now, but mark the physical row’s multi-identity atom boundary provisional; atomize against the referenced bodies before assigning successor or coverage.",
+      "carry_forward_effect": "Preserve the exact historical source row and draft-candidate status; no adoption, successor, coverage, retirement, or closure is generated."
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000546",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 57,
+      "source_file_sha256": "sha256:11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "sha256:879f995a2a0bc0fc5d1fdf875c3a0967eb56b5f2b117db482c8c67d20b0d0be3",
+      "physical_line_bytes_sha256": "sha256:59591f22d45f48c02a8657ea879a67d68a14747548afa667fc86ae206a5b7694",
+      "source_text": "- #1106/#1137のWindows lease、#538のreceipt失効、#848/#1322の監査内容を再実装しない。",
+      "effective_before_reassessment": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "proposed_route_status": "unknown",
+      "classification_atom_boundary_provisional": false,
+      "reason": "The explicit “do not reimplement” boundary excludes named Windows lease, receipt invalidation, and audit responsibilities from this candidate. This is a substantive nonreplacement/design constraint, not only a pointer; retain it as an unresolved atom without inferring coverage from the cited IDs.",
+      "carry_forward_effect": "Preserve the exact historical source row and draft-candidate status; no adoption, successor, coverage, retirement, or closure is generated."
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000552",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 7,
+      "source_file_sha256": "sha256:3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "sha256:4df0a72f624230fa7b8a1f38a5309f3568b5ca3d80f1962943ba013bb34468d4",
+      "physical_line_bytes_sha256": "sha256:65cead7e2c0a69d5ca4117714b255d2296379ad3cbddf41cf0fc7e6734dbe652",
+      "source_text": "- 入力: `HELIX_Concept＆Vision.zip`、2026-09-06受領。",
+      "effective_before_reassessment": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "proposed_route_status": "not_condition",
+      "classification_atom_boundary_provisional": false,
+      "reason": "This line records the name and receipt date of an intake ZIP. It is historical provenance, not an ongoing product condition.",
+      "carry_forward_effect": "Preserve the exact historical source row and draft-candidate status; no adoption, successor, coverage, retirement, or closure is generated."
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000553",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 8,
+      "source_file_sha256": "sha256:3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "sha256:a78940a0a8eb32f0ba25a4ba2566955baac3f417ece801ae6ce12f7ef024579b",
+      "physical_line_bytes_sha256": "sha256:0d90c1ec28140b1a5b92b9a19599a710651b6353673203dee5a7e7a4cbbd6dd6",
+      "source_text": "- ZIP SHA-256: `c6faf07352063a1715f07aedb4b2c551716f2f401611ff4db1ff2624f01a90b0`",
+      "effective_before_reassessment": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "proposed_route_status": "not_condition",
+      "classification_atom_boundary_provisional": false,
+      "reason": "A ZIP digest records the historical input bytes. It does not express product behavior or establish a current target revision.",
+      "carry_forward_effect": "Preserve the exact historical source row and draft-candidate status; no adoption, successor, coverage, retirement, or closure is generated."
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000554",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 9,
+      "source_file_sha256": "sha256:3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "sha256:d3070c2d5b01f162f376b39f79c723ff6ca694710de7bc0975d5c549b2a976f8",
+      "physical_line_bytes_sha256": "sha256:68c50a10d63cedd2c65c0df02db60d8768fb5b3409731f31ddae03c2f890b1a2",
+      "source_text": "- 照合基準main: `0f733a9a034759521ad38ac6b92c8c5a39f7b9a1`",
+      "effective_before_reassessment": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "proposed_route_status": "not_condition",
+      "classification_atom_boundary_provisional": false,
+      "reason": "A past main commit used as the intake comparison baseline is historical provenance, not a product requirement.",
+      "carry_forward_effect": "Preserve the exact historical source row and draft-candidate status; no adoption, successor, coverage, retirement, or closure is generated."
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000555",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 10,
+      "source_file_sha256": "sha256:3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "sha256:4187ef6986a125621e41585ea16def521cc5b2b80f6fb40ad4f4232c6f57b800",
+      "physical_line_bytes_sha256": "sha256:209a66a1146fd7f6023906acc6ee43c30bacf43c376b1133e675573aa00a2b71",
+      "source_text": "- ZIP memberとして受領した10 Markdown文書は、同じZIP memberのSHA256SUMSと一致。これは受領ZIP内部の整合であり、第三者署名による真正性証明ではない。パスに絶対パス・親ディレクトリ参照なし。",
+      "effective_before_reassessment": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "proposed_route_status": "not_condition",
+      "classification_atom_boundary_provisional": false,
+      "reason": "This reports historical checksum/path inspection results and their limit. It is evidence metadata about the received package, not an acceptance condition for the current product.",
+      "carry_forward_effect": "Preserve the exact historical source row and draft-candidate status; no adoption, successor, coverage, retirement, or closure is generated."
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000556",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 11,
+      "source_file_sha256": "sha256:3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "sha256:5ce3ecb52cfb507712ccbcd56c1b0342d5525175547699d4e26f670b259cda8f",
+      "physical_line_bytes_sha256": "sha256:0ec483c64325b41ef53c4845264aadaee0343538611505e19e3753e38cdc7d4c",
+      "source_text": "- 全10文書を通読済み。階層調査evidenceの主張と現在mainとの独立照合は未完了。",
+      "effective_before_reassessment": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "proposed_route_status": "not_condition",
+      "classification_atom_boundary_provisional": false,
+      "reason": "This reports what the past reviewer read and which independent comparison remained unfinished. It is a historical work-status statement, not a product condition.",
+      "carry_forward_effect": "Preserve the exact historical source row and draft-candidate status; no adoption, successor, coverage, retirement, or closure is generated."
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000557",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 12,
+      "source_file_sha256": "sha256:3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "sha256:3139810b649553d3839453ca8fa45a06f8af7f386aebec04d32adbc5be22c9f4",
+      "physical_line_bytes_sha256": "sha256:34e4daadf9760668a1b17114e1924af19fcca19fd69ffc6eeb68770fca9cc0a3",
+      "source_text": "- 保存先: `docs/archive/intake/2026-09-06-concept-vision/`。10文書と受領時のSHA256SUMSをbyte一致で保存し、`sha256sum -c SHA256SUMS.txt` は10/10一致、exit 0。原文は編集せず、出典の未同梱状態も変更しない。",
+      "effective_before_reassessment": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "proposed_route_status": "not_condition",
+      "classification_atom_boundary_provisional": false,
+      "reason": "This records a historical save location, checksum result, and preservation state. It describes intake evidence and past handling, not an ongoing product requirement.",
+      "carry_forward_effect": "Preserve the exact historical source row and draft-candidate status; no adoption, successor, coverage, retirement, or closure is generated."
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000581",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 45,
+      "source_file_sha256": "sha256:3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "sha256:482aec57e7413f56f8840bb1cf802a8d2721e3a9493e88a9cf35faec0d145d30",
+      "physical_line_bytes_sha256": "sha256:9e7f4d4fcefaa4bcedc549025d00721bea7ba8e5c20dd3f47b0f5ea74befb43a",
+      "source_text": "1. Conceptの `basis/` 参照4件は同梱配置と不一致。編集版で同梱文書の実配置へ修正する。",
+      "effective_before_reassessment": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "management_process_condition",
+      "proposed_route_status": "management_successor_unresolved",
+      "classification_atom_boundary_provisional": false,
+      "reason": "This is an imperative correction item for the edited version of a specific historical intake package. Preserve it as a source-specific historical editing/source-reconciliation condition, not as product behavior or a newly recurring current process.",
+      "carry_forward_effect": "Preserve the exact historical source row and draft-candidate status; no adoption, successor, coverage, retirement, or closure is generated."
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000582",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 46,
+      "source_file_sha256": "sha256:3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "sha256:63ea1bb378d3763dd7fa58ce5d219ff4457d010ae414706836fe93369cb19be1",
+      "physical_line_bytes_sha256": "sha256:98dc5f88f433e65547e4e0badf3fa7eef99b4728c8811494fcd5a1839bba8012",
+      "source_text": "2. Visionの別ZIP・roadmap JSON同梱という記述は今回の入力に一致しない。編集版は実inventoryに合わせる。",
+      "effective_before_reassessment": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "management_process_condition",
+      "proposed_route_status": "management_successor_unresolved",
+      "classification_atom_boundary_provisional": false,
+      "reason": "This is an imperative correction item to align a historical Vision/roadmap description with that package’s actual inventory. Preserve the source-specific historical editing condition; do not generalize it into a current process or product requirement.",
+      "carry_forward_effect": "Preserve the exact historical source row and draft-candidate status; no adoption, successor, coverage, retirement, or closure is generated."
+    }
+  ],
+  "impact_if_overlay_applied": {
+    "effective_unknown_product_atom_population_before": 543,
+    "selected_rows_reclassified_out_of_product_unknown": 13,
+    "effective_unknown_product_atom_population_after_provisional_delta": 530,
+    "sample_true_unknown_product_atom_rows_before": 16,
+    "sample_true_unknown_product_atom_rows_after_provisional_delta": 3,
+    "sample_product_atom_unknown_ids_after_proposal": [
+      "LEGACY-CAND-LINE-000543",
+      "LEGACY-CAND-LINE-000545",
+      "LEGACY-CAND-LINE-000546"
+    ],
+    "classification_deltas": {
+      "condition": -10,
+      "explanation": 10,
+      "management_process_condition": 3,
+      "product_requirement_atom": -13,
+      "product_route_unknown": -13,
+      "management_successor_unresolved": 3
+    },
+    "status": "Provisional arithmetic on pinned baseline plus bounded proposal; cumulative full-population recount is required."
+  },
+  "limitations": [
+    "The three retained product atoms are not evidence of current route coverage or adoption.",
+    "Source-specific management_process_condition rows remain historical and unresolved; they do not establish a current recurring process or successor.",
+    "000545 remains product atom because of its normative “extend” statement, with atom boundary provisional across multiple requirements.",
+    "This proposal does not modify the next20 route audit or any source/authority document.",
+    "No archive runtime, CLI, test, hook, or CI was executed."
+  ],
+  "validation": {
+    "source_ids_unique": true,
+    "all_16_ids_present_in_pinned_sample": true,
+    "source_file_line_and_physical_sha256_recomputed": true,
+    "proposal_class_counts": {
+      "explanation": 10,
+      "management_process_condition": 3,
+      "product_requirement_atom": 3
+    },
+    "authority_effect": "none",
+    "legacy_execution": "none"
+  }
+}
