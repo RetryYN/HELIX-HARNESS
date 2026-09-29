@@ -1,0 +1,1648 @@
+{
+  "schema_version": "legacy-candidate-design-grounding-intake-classification-reassessment.v1",
+  "audit_id": "legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29",
+  "base_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+  "effective_overlay_head": "baaab5bac9db0cf650db3afa67b003c1770efef2",
+  "authority_effect": "none",
+  "audit_mode": "read_only_source_classification_and_atom_boundary_proposal",
+  "scope": {
+    "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+    "current_effective_population": "All 51 exact rows whose effective state is condition/product_requirement_atom/unknown after #2353/#2356/#2360; #2363/#2366 proposal IDs are excluded if overlapping, but exact-ID overlap is zero.",
+    "remaining_row_count": 51,
+    "classification_count": {
+      "retain_product_requirement_atom": 29,
+      "management_process_condition": 13,
+      "explanation": 9
+    },
+    "excluded_prior_proposals": [
+      {
+        "overlay": "#2363",
+        "commit": "5c2fcc39daaeb0a7433ef34d4182a1a82a70a3d4",
+        "source_ids": [
+          "LEGACY-CAND-LINE-000514",
+          "LEGACY-CAND-LINE-000515",
+          "LEGACY-CAND-LINE-000516",
+          "LEGACY-CAND-LINE-000517",
+          "LEGACY-CAND-LINE-000542",
+          "LEGACY-CAND-LINE-000543",
+          "LEGACY-CAND-LINE-000545",
+          "LEGACY-CAND-LINE-000546",
+          "LEGACY-CAND-LINE-000552",
+          "LEGACY-CAND-LINE-000553",
+          "LEGACY-CAND-LINE-000554",
+          "LEGACY-CAND-LINE-000555",
+          "LEGACY-CAND-LINE-000556",
+          "LEGACY-CAND-LINE-000557",
+          "LEGACY-CAND-LINE-000581",
+          "LEGACY-CAND-LINE-000582"
+        ],
+        "overlap_with_scope": []
+      },
+      {
+        "overlay": "#2366",
+        "commit": "baaab5bac9db0cf650db3afa67b003c1770efef2",
+        "source_ids": [
+          "LEGACY-CAND-LINE-000528",
+          "LEGACY-CAND-LINE-000532",
+          "LEGACY-CAND-LINE-000533",
+          "LEGACY-CAND-LINE-000583",
+          "LEGACY-CAND-LINE-000584",
+          "LEGACY-CAND-LINE-000586",
+          "LEGACY-CAND-LINE-000587",
+          "LEGACY-CAND-LINE-000588",
+          "LEGACY-CAND-LINE-000589",
+          "LEGACY-CAND-LINE-000590",
+          "LEGACY-CAND-LINE-000591",
+          "LEGACY-CAND-LINE-000592",
+          "LEGACY-CAND-LINE-000593",
+          "LEGACY-CAND-LINE-000594"
+        ],
+        "overlap_with_scope": []
+      }
+    ],
+    "no_successor_coverage_or_adoption_claim": true
+  },
+  "overlay_order": [
+    {
+      "pr": "#2353",
+      "head": "8a75e5392a44e005bb05197d977bdbcf75b93cf0",
+      "effect": "base cumulative classification/route state"
+    },
+    {
+      "pr": "#2356",
+      "head": "b213b41735067d1716c143c92e0fa6c71d8e92d9",
+      "effect": "applied exact-ID metadata classification overlay"
+    },
+    {
+      "pr": "#2360",
+      "head": "89a5f57cbc8dc6b0dc6828233992640c919fb03c",
+      "effect": "applied exact-ID seven-row classification overlay"
+    },
+    {
+      "pr": "#2363",
+      "head": "5c2fcc39daaeb0a7433ef34d4182a1a82a70a3d4",
+      "effect": "checked prior proposal IDs; no overlap"
+    },
+    {
+      "pr": "#2366",
+      "head": "baaab5bac9db0cf650db3afa67b003c1770efef2",
+      "effect": "checked latest proposal IDs; no overlap"
+    }
+  ],
+  "pinned_inputs": [
+    {
+      "role": "pre-overlay full-population row-state input",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-condition-route-recount-after-2345-2026-09-29.json",
+      "sha256": "25d940277af5a6a343e4eda066bdfe4e3f770fb97f4f56c4586e00b4f025233e"
+    },
+    {
+      "role": "cumulative state after #2353/#2356/#2360",
+      "commit": "aab65a4f1bc2f679530604cb7f89519683b9156c",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-stage5-recount-after-2353-2356-2360-2026-09-29.json",
+      "sha256": "ff1da2c7e563f25b7044318670e1808a6463afcac82857764d917878fb5046a5"
+    },
+    {
+      "role": "source-line identity ledger",
+      "commit": "aab65a4f1bc2f679530604cb7f89519683b9156c",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+    },
+    {
+      "role": "original archive source",
+      "commit": "aab65a4f1bc2f679530604cb7f89519683b9156c",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+    },
+    {
+      "role": "#2353 cumulative classification/route baseline",
+      "commit": "8a75e5392a44e005bb05197d977bdbcf75b93cf0",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "sha256": "57fce8a0e05ed73c46346f2177c439e862a17a06ecea65446389f24dc34160c5"
+    },
+    {
+      "role": "#2356 metadata classification overlay",
+      "commit": "b213b41735067d1716c143c92e0fa6c71d8e92d9",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "sha256": "53c8acc872f30cf19e88499bc68b0f11c830a677f5c346d646a148dd3ca7853b"
+    },
+    {
+      "role": "#2360 seven-row classification overlay",
+      "commit": "89a5f57cbc8dc6b0dc6828233992640c919fb03c",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+      "sha256": "71fa35e0b3f8bfeb9781cbe2b9b21322d8e5be7866c71bce2abbca8cdca43ddd"
+    },
+    {
+      "role": "#2363 prior 16-row proposal/exclusion set",
+      "commit": "5c2fcc39daaeb0a7433ef34d4182a1a82a70a3d4",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+      "sha256": "8d1a2e222d46b794f96ae93fd8a9957e0d4fd9568e374e43a13ccfe7b81fca42"
+    },
+    {
+      "role": "#2366 latest two-family proposal/exclusion set",
+      "commit": "baaab5bac9db0cf650db3afa67b003c1770efef2",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+      "sha256": "a300695c9e37a95cbc5e17748c0b0c477390a5673ee597461e20bb1d8d831244"
+    },
+    {
+      "role": "adjacent old source/decision-history context",
+      "commit": "aab65a4f1bc2f679530604cb7f89519683b9156c",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requests.md",
+      "sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3"
+    },
+    {
+      "role": "adjacent old source/decision-history context",
+      "commit": "aab65a4f1bc2f679530604cb7f89519683b9156c",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+      "sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687"
+    },
+    {
+      "role": "adjacent old source/decision-history context",
+      "commit": "aab65a4f1bc2f679530604cb7f89519683b9156c",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241"
+    },
+    {
+      "role": "adjacent old source/decision-history context",
+      "commit": "aab65a4f1bc2f679530604cb7f89519683b9156c",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-91-design-grounding-human-convergence.md",
+      "sha256": "51efc02a9c2d92ead3bc8f8056d42ad1793d3fdbe38232e21b34b5e05064e215"
+    },
+    {
+      "role": "adjacent old source/decision-history context",
+      "commit": "aab65a4f1bc2f679530604cb7f89519683b9156c",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requirements.md",
+      "sha256": "97e1e5341beb48e735aacab3b3957b0707fa6aef2e70d0af8c0051607082e155"
+    },
+    {
+      "role": "legacy asset inventory entry for source asset LEGACY-ASSET-A422448C3CACBCA75D0C",
+      "commit": "aab65a4f1bc2f679530604cb7f89519683b9156c",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    }
+  ],
+  "classification_basis": [
+    "Normative product/system behavior, integration behavior, authority boundary, traceability, or acceptance behavior remains condition/product_requirement_atom.",
+    "Task execution order, census, implementation scope, or issue maintenance instructions are condition/management_process_condition.",
+    "Scope overview labels and descriptions of existing capabilities or their provenance are explanation.",
+    "The classification changes no source text or atom semantics; atom boundaries are recorded against source context and physical lines.",
+    "No current successor, coverage, adoption, acceptance, implementation, or closure is inferred."
+  ],
+  "count_impact": {
+    "input_scope": {
+      "condition_product_requirement_atom_unknown": 51
+    },
+    "proposed_scope": {
+      "condition_product_requirement_atom": 29,
+      "condition_management_process_condition": 13,
+      "explanation": 9
+    },
+    "net_scope_delta": {
+      "condition": -9,
+      "explanation": 9,
+      "product_requirement_atom": -22,
+      "management_process_condition": 13,
+      "product_unknown_route": -22
+    },
+    "global_comparison_basis": "#2361 cumulative recount counts after #2353/#2356/#2360: classification condition 901, explanation 2928; subtype product_requirement_atom 892, management_process_condition 8, concept_condition 1; product route unknown 543. Applying this proposal alone would give condition 892, explanation 2937; product_requirement_atom 870, management_process_condition 21; unknown product route 521. Route counts here are still only labels and not coverage/adoption."
+  },
+  "ambiguous_rows": [
+    "LEGACY-CAND-LINE-000840",
+    "LEGACY-CAND-LINE-000842",
+    "LEGACY-CAND-LINE-000843",
+    "LEGACY-CAND-LINE-000844",
+    "LEGACY-CAND-LINE-000850",
+    "LEGACY-CAND-LINE-000978"
+  ],
+  "rows": [
+    {
+      "source_id": "LEGACY-CAND-LINE-000840",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 31,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:bb58519837a1ea95331bd5057d9da59c509da8beccdca1a6e78946256442eb40",
+      "physical_line_bytes_sha256": "sha256:ce83ec4bfefc22dba96178fd5b5963f832f47efbfe0086781cd75ef2909648e0",
+      "exact_source_text": "現行 HELIX Design Harness を作り直してはならない。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "management_process_condition",
+      "classification_action": "reclassify_subtype",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.reuse-boundary",
+        "boundary": "§1「現行実装を前提」冒頭の規範。既存Design Harnessを作り直さないという作業・構成指示で、独立した利用者向け動作条件は定義しない。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000840"
+        ]
+      },
+      "reason": "管理条件。実装接続範囲を制約する指示として原文を保持する。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": true
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000842",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 34,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:141bc9ddc731990a62afb6b6a3f65fa11664168c4ca17489db30ea2477576340",
+      "physical_line_bytes_sha256": "sha256:ea2cbdd45cf56e7cbd395d371ca8da56099d9e4df299af7efc28d58175873545",
+      "exact_source_text": "1. **Design Grounding** — 良い設計判断をするための前提・外部知識を揃える",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "classification_action": "reclassify_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.purpose-scope-overview",
+        "boundary": "§0の3項目リスト（原稿物理行34–36）。3領域の概要ラベルであり、規範の詳細は後続§2–4にある。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000842"
+        ]
+      },
+      "reason": "説明。概要を独立した製品要件へ重複計上しない。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": true
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000843",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 35,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:baa6f9db0b8279c4d75b1d495837511d75beba7bf7d592960118c81c2659455e",
+      "physical_line_bytes_sha256": "sha256:d3c7664193732827e5c8318d78925e3db321f22f86898886e9f1919f632b62c3",
+      "exact_source_text": "2. **Human Reaction Semantics** — 人間の「違う・使いにくい・ダサい・分かりにくい」を意味分類する",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "classification_action": "reclassify_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.purpose-scope-overview",
+        "boundary": "§0の3項目リスト（原稿物理行34–36）。3領域の概要ラベルであり、規範の詳細は後続§2–4にある。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000843"
+        ]
+      },
+      "reason": "説明。概要を独立した製品要件へ重複計上しない。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": true
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000844",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 36,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:2377bfd3bc7189ad46f6138f4387f22ad331173951865035f97b2f423340eda6",
+      "physical_line_bytes_sha256": "sha256:d43cec719cb2418bff1c72e2c96f074e878b577811efe40f1c73825e895e71de",
+      "exact_source_text": "3. **Design Convergence** — 人間との反復で何が受容・拒否・未解決かを保持し、収束を判定する",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "classification_action": "reclassify_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.purpose-scope-overview",
+        "boundary": "§0の3項目リスト（原稿物理行34–36）。3領域の概要ラベルであり、規範の詳細は後続§2–4にある。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000844"
+        ]
+      },
+      "reason": "説明。概要を独立した製品要件へ重複計上しない。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": true
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000850",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 47,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:0d42cd77f84de99a1943521a6e386f6cdab2290e3bc9d84590f1039800109e00",
+      "physical_line_bytes_sha256": "sha256:3b4b1b2138fbf99bee07f7a78c2f21c520ada842205bd6589f73c60044974a56",
+      "exact_source_text": "少なくとも現行で確認済みの以下は「新規実装候補」ではなく接続先として扱う。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "management_process_condition",
+      "classification_action": "reclassify_subtype",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.existing-implementation-census",
+        "boundary": "§1導入文と直後の物理行49–54の既存機構一覧。既存を調査し接続先として扱う作業指示と、根拠となる現状一覧を分けて分類する。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000850"
+        ]
+      },
+      "reason": "管理条件。実装調査・統合方法を定め、プロダクトの外部動作を定義しない。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": true
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000851",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 49,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:9f9a7650e5b39ac8a2554ba6fac8428e0453895a8e8ac33d142647c5f729c47b",
+      "physical_line_bytes_sha256": "sha256:19297e5cd2e93979399cd9341ea98ad51a42326a83bece6fa053308fb2b78141",
+      "exact_source_text": "- Screen Applicability 系の判定・永続化",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "classification_action": "reclassify_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.existing-implementation-census",
+        "boundary": "§1の既存機構一覧（物理行49–54）。censusで確認した当時の実装・契約を接続先として記録する一覧。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000851"
+        ]
+      },
+      "reason": "説明。既存責務の由来・構造を示す情報である。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000852",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 50,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:139f607ae7a7644a838c94aa7d61d01bb79341a1dd081d7bac9d0da7a600786c",
+      "physical_line_bytes_sha256": "sha256:2e4577ac42e845ced061a56be1ea6d4c9d12be990379854c00dc5aa9185d9373",
+      "exact_source_text": "- Prototype / Walkthrough / human decision / finding / back-propagation を扱う既存契約",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "classification_action": "reclassify_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.existing-implementation-census",
+        "boundary": "§1の既存機構一覧（物理行49–54）。censusで確認した当時の実装・契約を接続先として記録する一覧。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000852"
+        ]
+      },
+      "reason": "説明。既存責務の由来・構造を示す情報である。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000853",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 51,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:630ab7d37aff55681080bc698fbb15e8515fb6f1c458d521b03ea9d9e5551f81",
+      "physical_line_bytes_sha256": "sha256:2ba2ea8de16b1d9dc27e47001fdf7cbe00afd2fc58eb615d9cf88dab9216eed4",
+      "exact_source_text": "- Design Registry の revision・authority・binding・supersession",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "classification_action": "reclassify_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.existing-implementation-census",
+        "boundary": "§1の既存機構一覧（物理行49–54）。censusで確認した当時の実装・契約を接続先として記録する一覧。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000853"
+        ]
+      },
+      "reason": "説明。既存責務の由来・構造を示す情報である。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000854",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 52,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:57ba773d5f2123e37c71066ddd52bbcdf12d9cc77f8a6249e9d9e65aa388df79",
+      "physical_line_bytes_sha256": "sha256:5efa7a4e05f40e4d8aa9f58edd17975db02fae24b191fffbc89174b621eaf2a6",
+      "exact_source_text": "- UI domain / pattern profile",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "classification_action": "reclassify_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.existing-implementation-census",
+        "boundary": "§1の既存機構一覧（物理行49–54）。censusで確認した当時の実装・契約を接続先として記録する一覧。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000854"
+        ]
+      },
+      "reason": "説明。既存責務の由来・構造を示す情報である。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000855",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 53,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:618337037951c82b25b7972b1f076f45205664e6643ce813f4d2914bda3f9213",
+      "physical_line_bytes_sha256": "sha256:09b5be750a57f98939e3c364b52e4de3c9da04b75139aa626ce6f47fafc5123b",
+      "exact_source_text": "- Visual / Interaction / Accessibility / Performance 等の既存 evidence role",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "classification_action": "reclassify_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.existing-implementation-census",
+        "boundary": "§1の既存機構一覧（物理行49–54）。censusで確認した当時の実装・契約を接続先として記録する一覧。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000855"
+        ]
+      },
+      "reason": "説明。既存責務の由来・構造を示す情報である。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000856",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 54,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:ce2c90a2bdecbd8fa81c84f1e2b46f03e1c15cea0922a306e68986127ca976eb",
+      "physical_line_bytes_sha256": "sha256:e4507ed8b6cc9f8906a87c2825adbf7392295de9061fc60b8a418c3fc0e29974",
+      "exact_source_text": "- 既存 Research skill / project explorer / tech docs / OSS research 系能力",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "classification_action": "reclassify_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.existing-implementation-census",
+        "boundary": "§1の既存機構一覧（物理行49–54）。censusで確認した当時の実装・契約を接続先として記録する一覧。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000856"
+        ]
+      },
+      "reason": "説明。既存責務の由来・構造を示す情報である。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000942",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 178,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:06fe6aed01845e2dfb8f8532ce7ea9933795b78bb97cdedc1537a9945addd884",
+      "physical_line_bytes_sha256": "sha256:27cd0e0f95310a29368fe01e95473bd2945d96c4fdadee8f80d56158d58e4048",
+      "exact_source_text": "- accessibility",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.objective-ux-examples",
+        "boundary": "§5の「機械判定可能なものは極力HELIXへ委任」直下の例示リスト（物理行178–184）。例示一式で委任対象の品質領域を具体化する。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000942"
+        ]
+      },
+      "reason": "製品動作要件の適用領域を定める例示として保持。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000943",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 179,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:629a494db695cdeb109070c90cf6a83bc83bbcbc5102e8c5f9268ef3d78a278e",
+      "physical_line_bytes_sha256": "sha256:449c8b6abcfc73c6d9c234c556694ae82cda807411d271e09a6551ff6d412559",
+      "exact_source_text": "- interaction/state correctness",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.objective-ux-examples",
+        "boundary": "§5の「機械判定可能なものは極力HELIXへ委任」直下の例示リスト（物理行178–184）。例示一式で委任対象の品質領域を具体化する。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000943"
+        ]
+      },
+      "reason": "製品動作要件の適用領域を定める例示として保持。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000944",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 180,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:0f6436bb891ce62485ebe5e99b1fb086abcfaf7744e0cd3dfd9ee9153bf06e82",
+      "physical_line_bytes_sha256": "sha256:a21fe757afec0ee65c9e96ca4283b4b7a7a27dc7a055e362e5c464431da0bced",
+      "exact_source_text": "- navigation dead-end",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.objective-ux-examples",
+        "boundary": "§5の「機械判定可能なものは極力HELIXへ委任」直下の例示リスト（物理行178–184）。例示一式で委任対象の品質領域を具体化する。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000944"
+        ]
+      },
+      "reason": "製品動作要件の適用領域を定める例示として保持。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000945",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 181,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:1a8d2078b904de735d820e24a1e4fe46171810f3b7e4fcfe08d223d859b3abff",
+      "physical_line_bytes_sha256": "sha256:226ae183129a82223de6d3e1f09291108f693d4e7175016b94615cb9a9dfd990",
+      "exact_source_text": "- responsive",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.objective-ux-examples",
+        "boundary": "§5の「機械判定可能なものは極力HELIXへ委任」直下の例示リスト（物理行178–184）。例示一式で委任対象の品質領域を具体化する。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000945"
+        ]
+      },
+      "reason": "製品動作要件の適用領域を定める例示として保持。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000946",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 182,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:84fa207b012f372090825a52403a1f2e7a2f6f4da7de8e9c0ff7deb7683fd979",
+      "physical_line_bytes_sha256": "sha256:f6fddf594f1d95ec212b7a4eaf3bc410a1aa453cb09aef8bd29565cb22dffa5e",
+      "exact_source_text": "- performance",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.objective-ux-examples",
+        "boundary": "§5の「機械判定可能なものは極力HELIXへ委任」直下の例示リスト（物理行178–184）。例示一式で委任対象の品質領域を具体化する。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000946"
+        ]
+      },
+      "reason": "製品動作要件の適用領域を定める例示として保持。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000947",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 183,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:fee6a17bcd46e66e84b2fd4a6d2b6967be644d0bd4b99eee769c4af3282bc6a7",
+      "physical_line_bytes_sha256": "sha256:71be729d3c205663cc16e6fcfcd64f71c2612ff085b938986013f0ac14344e19",
+      "exact_source_text": "- requirement consistency",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.objective-ux-examples",
+        "boundary": "§5の「機械判定可能なものは極力HELIXへ委任」直下の例示リスト（物理行178–184）。例示一式で委任対象の品質領域を具体化する。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000947"
+        ]
+      },
+      "reason": "製品動作要件の適用領域を定める例示として保持。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000948",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 184,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:36b479adca2075e7806cac99aee06a0c7a6c1db215bef1df0f905735b5e11686",
+      "physical_line_bytes_sha256": "sha256:f67eaff6ea9b034d5cdf8db4238272af46693673184604e08b539f9ed7975831",
+      "exact_source_text": "- evidence/revision consistency",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.objective-ux-examples",
+        "boundary": "§5の「機械判定可能なものは極力HELIXへ委任」直下の例示リスト（物理行178–184）。例示一式で委任対象の品質領域を具体化する。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000948"
+        ]
+      },
+      "reason": "製品動作要件の適用領域を定める例示として保持。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000949",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 186,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:4d929cbe6f6ae0ea6ad5907c90affde9ef00f09f8c491faf58b9aa0d051a51d1",
+      "physical_line_bytes_sha256": "sha256:75fe89539d482a74be51163a6efe842cdc9a6c227f532ada9a9f060839869aa8",
+      "exact_source_text": "一方、以下をモデル単独で最終決定してはならない。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.human-meaning-boundary",
+        "boundary": "§5の「以下をモデル単独で最終決定してはならない」と例示リスト（物理行186–193）。禁止の対象意味を限定する一つの規範単位。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000949"
+        ]
+      },
+      "reason": "プロダクトauthority境界として維持。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000950",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 188,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:f6ccb344f0fad21c04636fdb3cca34a291ca4505bbec434655769c4a30989706",
+      "physical_line_bytes_sha256": "sha256:9bb60e288ae033151c6deb285e3c1d473f1268cf7f5c8b3e35545756c3ea2d16",
+      "exact_source_text": "- 美的好み",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.human-meaning-boundary",
+        "boundary": "§5の「以下をモデル単独で最終決定してはならない」と例示リスト（物理行186–193）。禁止の対象意味を限定する一つの規範単位。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000950"
+        ]
+      },
+      "reason": "プロダクトauthority境界として維持。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000951",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 189,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:76ed88c0769926613be61569cd859c0d9d3d3c9f31501c26253c73cc22ac8fd4",
+      "physical_line_bytes_sha256": "sha256:85b23706a72de4dff800eda483a243bcffc283163dc1500d0f3a8bdad74da024",
+      "exact_source_text": "- ブランドらしさ",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.human-meaning-boundary",
+        "boundary": "§5の「以下をモデル単独で最終決定してはならない」と例示リスト（物理行186–193）。禁止の対象意味を限定する一つの規範単位。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000951"
+        ]
+      },
+      "reason": "プロダクトauthority境界として維持。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000952",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 190,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:817ca4df1914fa9f14ebc638d0801bf0d11e32ff495d60f14573325b2e8c0df6",
+      "physical_line_bytes_sha256": "sha256:27221d621390c4125203ca44d07af60c7aa9ebb153fcf4425fdf6ebf37de1e1c",
+      "exact_source_text": "- 世界観",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.human-meaning-boundary",
+        "boundary": "§5の「以下をモデル単独で最終決定してはならない」と例示リスト（物理行186–193）。禁止の対象意味を限定する一つの規範単位。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000952"
+        ]
+      },
+      "reason": "プロダクトauthority境界として維持。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000953",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 191,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:c5e74194e873eda49c9f4c5051854bc51c19bd3fff6ebcbade052b9c4ed34cbe",
+      "physical_line_bytes_sha256": "sha256:a68a2574255d113e65c9e438784db582598df0748ec36a4575e38c065e48d664",
+      "exact_source_text": "- 「高級」「親しみやすい」等の主観意味",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.human-meaning-boundary",
+        "boundary": "§5の「以下をモデル単独で最終決定してはならない」と例示リスト（物理行186–193）。禁止の対象意味を限定する一つの規範単位。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000953"
+        ]
+      },
+      "reason": "プロダクトauthority境界として維持。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000954",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 192,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:e57fb4ca63e593f95c255d1918ba22888b7068894b8c7d2b44e20addf10d33a9",
+      "physical_line_bytes_sha256": "sha256:e365dce8896148fb4ef99d9711689fcb3d4d61c67877b23377d2670f6681fceb",
+      "exact_source_text": "- 表現・文章ニュアンス",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.human-meaning-boundary",
+        "boundary": "§5の「以下をモデル単独で最終決定してはならない」と例示リスト（物理行186–193）。禁止の対象意味を限定する一つの規範単位。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000954"
+        ]
+      },
+      "reason": "プロダクトauthority境界として維持。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000955",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 193,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:b5ae6c415b41a343b110ec18c9bf1e43ef7f7682c7ef80a3ecd567e5e9c7edde",
+      "physical_line_bytes_sha256": "sha256:035fec048c95bae7a3d43442294114021c716d5832985e74d3124823e3410220",
+      "exact_source_text": "- 人間が明示的に保持したいVisual/UX preference",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.human-meaning-boundary",
+        "boundary": "§5の「以下をモデル単独で最終決定してはならない」と例示リスト（物理行186–193）。禁止の対象意味を限定する一つの規範単位。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000955"
+        ]
+      },
+      "reason": "プロダクトauthority境界として維持。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000978",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 225,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:ac24f124962b469236970e0a0a635ce13e575adfc67fadd02c748d1282d98b63",
+      "physical_line_bytes_sha256": "sha256:d67903a6f4e13440493153c9537d5795644f95965fee86f46dadf024da62eced",
+      "exact_source_text": "- Issueの `root/capability/task/finding` 階層を壊さない。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.github-workflow.issue-hierarchy",
+        "boundary": "§7の各独立bullet（原稿物理行225–230）。既存Issue階層を保つ統合契約として機構の作業追跡に影響する。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000978"
+        ]
+      },
+      "reason": "プロダクト要件として維持。issue階層を保つ動作境界であり、単なる作業計画ではない。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": true
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000979",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 226,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:0b8760b518e22b7d7adc8f2c1e96fe31e4f9e39004c9cb1e0584dbb8bfaa4f97",
+      "physical_line_bytes_sha256": "sha256:5b37906ce3c570f8cbf69d58beedc25148bb0ac5fc59e80dc135f5bb0293c1e2",
+      "exact_source_text": "- Design形成状態を必要なら別semantic stateとして持つ。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.github-workflow.formation-state",
+        "boundary": "§7の独立bullet。形成状態をIssue階層と分けて表現するシステム構成・追跡条件。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000979"
+        ]
+      },
+      "reason": "プロダクト要件として維持。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000980",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 227,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:ccd73333767fb3bfe09ffc684b46821aed478bdee6c26fce136916d38bf271a0",
+      "physical_line_bytes_sha256": "sha256:3434b8614688ffacbc269957c2a545b7121f40d1a6b57386cb8fb57a97d713f9",
+      "exact_source_text": "- 各Design作業は source Requirement / Design problem / Evidence / Prototype revision にtrace可能であること。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.github-workflow.traceability",
+        "boundary": "§7の独立bullet。各Design workのsource Requirement等へのtrace条件。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000980"
+        ]
+      },
+      "reason": "プロダクト要件として維持。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000981",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 228,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:bebbea03310c62bb84bc17f958b3570b1a24f22bf5577b66b6262c66eb9e7529",
+      "physical_line_bytes_sha256": "sha256:26678257f0e88a2ea688fc6093782de2e6befeb60cc534998e56d46be8fd9f66",
+      "exact_source_text": "- Research不足・Human decision待ちが一部にあっても、影響しない承認済み作業まで全停止させない。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.github-workflow.scope-limited-hold",
+        "boundary": "§7の独立bullet。未解決が局所にあるときの無関係な承認済み作業の継続動作。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000981"
+        ]
+      },
+      "reason": "プロダクト要件として維持。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000982",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 229,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:ce90b32b2af9f4815874ca868e26fea312e4c8858bb5e08f95d7b0b3e84e97dc",
+      "physical_line_bytes_sha256": "sha256:c61f90b7292f129ce96f75643ba82704362f55d487c979df6901d5380b1d81b7",
+      "exact_source_text": "- exact revision / provenance / evidence bindingを維持する。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.github-workflow.provenance-binding",
+        "boundary": "§7の独立bullet。revision・provenance・evidence bindingの整合動作。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000982"
+        ]
+      },
+      "reason": "プロダクト要件として維持。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000983",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 230,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:d3c2c9bcd1a7bca030b4f0794695f8293274dd06fe8f232e7574d65b6b84b99e",
+      "physical_line_bytes_sha256": "sha256:149126ac1736b9d4a558a1626010830a2fef9cd7534325ff4224640169b8e67d",
+      "exact_source_text": "- Issueが古い場合はmain実装を優先し、重複機構を起票しない。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "management_process_condition",
+      "classification_action": "reclassify_subtype",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.github-workflow.stale-issue-reentry",
+        "boundary": "§7の独立bullet。古いIssueと現行mainを比較して重複起票を避ける運用指示。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000983"
+        ]
+      },
+      "reason": "管理条件。時点依存のIssue運用/census指示で、ユーザー向け動作契約ではない。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000986",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 236,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:c471178b5e5b994cff224395252058d8be6fc8d86070c22f4d6599dea6474d7d",
+      "physical_line_bytes_sha256": "sha256:cd01a9692c1d714a8a2c8e2886a70e2e5fc9ae5fa726e02a30c2791734dbd222",
+      "exact_source_text": "1. 外部事例が豊富な未知Design taskで、調査なしPrototype生成をGateできる。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.acceptance.AC1",
+        "boundary": "§8の独立受入条件1。必要前提・調査とDesign Ready判定を結ぶ。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000986"
+        ]
+      },
+      "reason": "プロダクト受入要件として維持。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000987",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 237,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:b0b2e514e913345edadcac1cb0e36dd085c80e308b71956db4e27829f251c181",
+      "physical_line_bytes_sha256": "sha256:c0749faa0001ec6df434690749d633416939875a0589f515cbd387ff3a7f11be",
+      "exact_source_text": "2. Research Evidenceから「何をDesignへ取り込んだか」を追跡できる。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.acceptance.AC2",
+        "boundary": "§8の独立受入条件2。Research evidenceから設計判断へのtraceを検査する。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000987"
+        ]
+      },
+      "reason": "プロダクト受入要件として維持。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000988",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 238,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:22b8ec531bb3983efc66f8f4a8d4bd91d8d29b057867053c4c408985116bdf7f",
+      "physical_line_bytes_sha256": "sha256:9178115692003bef704406db878ee9bb201efdf3fff70e72600ed46bf8e06f03",
+      "exact_source_text": "3. 「ダサい」「分かりにくい」「何を見ればよいか分からない」を同一Findingとして扱わず意味分類できる。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.acceptance.AC3",
+        "boundary": "§8の独立受入条件3。反応意味を分類し単一findingへの誤統合を防ぐ。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000988"
+        ]
+      },
+      "reason": "プロダクト受入要件として維持。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000989",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 239,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:26680ebb886ea3e01ff7d7b0aa7933e276c0aa9a02a98b8c14c81ab09ad50dea",
+      "physical_line_bytes_sha256": "sha256:96c971c44e8c4c038bc13cda517bebb2d32e7b7e9522cf23db71ec322ac9657c",
+      "exact_source_text": "4. Prototype communication failure時にDesign自体を不要に再生成しない。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.acceptance.AC4",
+        "boundary": "§8の独立受入条件4。communication failureに対する再作業の限定動作を検査する。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000989"
+        ]
+      },
+      "reason": "プロダクト受入要件として維持。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000990",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 240,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:491a49029d811bf9cdebabeba4ac37b1c7f1b5aa0e8fd0cbc7a282a9e136e686",
+      "physical_line_bytes_sha256": "sha256:683c4559ff98223bfab513388f0865c863b1069fdc89d9e39f5f210d9fa1d141",
+      "exact_source_text": "5. Human acceptedな設計軸が次revisionで壊れたことを検出できる。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.acceptance.AC5",
+        "boundary": "§8の独立受入条件5。受容済み設計軸の変更検知を検査する。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000990"
+        ]
+      },
+      "reason": "プロダクト受入要件として維持。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000991",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 241,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:5bf7ccffefe1871010d2f156bfa0a985702f1c7b983b07560060032a5cf3fe7e",
+      "physical_line_bytes_sha256": "sha256:80f205b3688daf70be4de7a28dd1d0e87ddb4f596784b6fe742f27ec4547d618",
+      "exact_source_text": "6. objective UX green / human preference reject を同時に表現できる。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.acceptance.AC6",
+        "boundary": "§8の独立受入条件6。客観品質と人間選好の同時表現を検査する。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000991"
+        ]
+      },
+      "reason": "プロダクト受入要件として維持。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000992",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 242,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:d4619714fd6fe2246853e9c687e6096a57c38eb6a347fc17ddc2fc01f4fecde2",
+      "physical_line_bytes_sha256": "sha256:033b97867cb05a5d3717afe4cc0f1cff8626296eb3403d57af24c5a55ebda31c",
+      "exact_source_text": "7. Human reaction原文とAI interpretationが分離される。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.acceptance.AC7",
+        "boundary": "§8の独立受入条件7。原文とAI解釈の分離を検査する。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000992"
+        ]
+      },
+      "reason": "プロダクト受入要件として維持。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000993",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 243,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:c6531fc763c9e21452f37920d3a7a00ec22062edb13f686d488ec40fccb2e8fd",
+      "physical_line_bytes_sha256": "sha256:39168a29494cee626e781f2c7f4905b47a96f7da8b45fecd59f904d442db738b",
+      "exact_source_text": "8. Design Registry・Screen Applicability等の既存責務を複製しない。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.acceptance.AC8",
+        "boundary": "§8の独立受入条件8。既存責務の重複を抑止する統合境界を検査する。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000993"
+        ]
+      },
+      "reason": "プロダクト受入要件として維持。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000994",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 244,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:29027c0a1405f0d9acd454a18146e6e05b3579d7d5a7ef52854286836e715c28",
+      "physical_line_bytes_sha256": "sha256:d0ff3e7b2d6c637486e023fa5bc116231fdc427fd40a83e3e9bb9d5b0dd9a736",
+      "exact_source_text": "9. 全結果がcurrent revision / authority / evidenceへ束縛される。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.acceptance.AC9",
+        "boundary": "§8の独立受入条件9。revision・authority・evidenceの正当性を検査する。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000994"
+        ]
+      },
+      "reason": "プロダクト受入要件として維持。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000995",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 245,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:c4ec8525bb07022e494209c7d0e0b47340711aa6397e7a46bafa6aacf4b6f2a2",
+      "physical_line_bytes_sha256": "sha256:459b33c86de6d6bedf3d8b173284d0b1c967d508f488627ffcca31907f6bd0df",
+      "exact_source_text": "10. Full HELIXで動作し、将来HELIX Lite consumerへ必要最小契約だけ配布可能な責務境界にする。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.acceptance.AC10",
+        "boundary": "§8の独立受入条件10。Fullと将来Liteで異なるconsumer/dependency境界を検査する。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000995"
+        ]
+      },
+      "reason": "将来条件を含むプロダクト受入要件として維持。採用や実装時期はここでは示さない。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000998",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 251,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:60120f8d8075d9b6bd58710f60d5ae58a9b990b2aec6dceb7099e91e49f9d5e2",
+      "physical_line_bytes_sha256": "sha256:6bfba8ce8cfda8fa9c541ecb13dd80dbb62eb10043039afee39b2ee721b07b1a",
+      "exact_source_text": "1. **Current Design Harness implementation census**",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "management_process_condition",
+      "classification_action": "reclassify_subtype",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.section9.delivery-sequence",
+        "boundary": "§9の10段階の順序付き導入手順（物理行251–260）。各step IDを保ち、全体として一つの履歴的な作業順序を構成する。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000998"
+        ]
+      },
+      "reason": "管理プロセス条件。後続requirements/Issueはauthority-first順序へ是正しているが、このsource行の規範意味・順序は書き換えない。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000999",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 252,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:b439d769784d1de901619e922112c1941bfcd05f860991dfeb13c8625e39a169",
+      "physical_line_bytes_sha256": "sha256:0b04bc6ceb66438077b02a3bc84db7cc99a90f4e8ee942939bd50aea248d915a",
+      "exact_source_text": "2. 既存責務とのowner/contract map作成",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "management_process_condition",
+      "classification_action": "reclassify_subtype",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.section9.delivery-sequence",
+        "boundary": "§9の10段階の順序付き導入手順（物理行251–260）。各step IDを保ち、全体として一つの履歴的な作業順序を構成する。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000999"
+        ]
+      },
+      "reason": "管理プロセス条件。後続requirements/Issueはauthority-first順序へ是正しているが、このsource行の規範意味・順序は書き換えない。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001000",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 253,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:83804c24a96e8be393e8ef2865adf204efc032085cf9f79f05803508e62992fc",
+      "physical_line_bytes_sha256": "sha256:25a8765ab1b5f25350ed80b943bd03d2705ecececedc57addb28b6b4e42cf8ea",
+      "exact_source_text": "3. Design Premise / Research Adequacy",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "management_process_condition",
+      "classification_action": "reclassify_subtype",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.section9.delivery-sequence",
+        "boundary": "§9の10段階の順序付き導入手順（物理行251–260）。各step IDを保ち、全体として一つの履歴的な作業順序を構成する。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-001000"
+        ]
+      },
+      "reason": "管理プロセス条件。後続requirements/Issueはauthority-first順序へ是正しているが、このsource行の規範意味・順序は書き換えない。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001001",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 254,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:b03d1fd2d484006b099eda7d9f65ea19e76e3d4b40e19c7b8ccaa1cd297527e4",
+      "physical_line_bytes_sha256": "sha256:58e2b392f56558bdabc228c195ac48d8524b2890a8e3cc817c30c9a4bb6cd26a",
+      "exact_source_text": "4. Human Reaction schema + routing",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "management_process_condition",
+      "classification_action": "reclassify_subtype",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.section9.delivery-sequence",
+        "boundary": "§9の10段階の順序付き導入手順（物理行251–260）。各step IDを保ち、全体として一つの履歴的な作業順序を構成する。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-001001"
+        ]
+      },
+      "reason": "管理プロセス条件。後続requirements/Issueはauthority-first順序へ是正しているが、このsource行の規範意味・順序は書き換えない。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001002",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 255,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:b39fdd4061892b120c763dcd6e1928ff5e03079363687a4c92693bf073e0a48e",
+      "physical_line_bytes_sha256": "sha256:ed285e6122bfe37681cc9b3f00b80b013b4a40d5a5385ab727ead8a26165c7d0",
+      "exact_source_text": "5. Design Axis / Finding lineage",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "management_process_condition",
+      "classification_action": "reclassify_subtype",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.section9.delivery-sequence",
+        "boundary": "§9の10段階の順序付き導入手順（物理行251–260）。各step IDを保ち、全体として一つの履歴的な作業順序を構成する。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-001002"
+        ]
+      },
+      "reason": "管理プロセス条件。後続requirements/Issueはauthority-first順序へ是正しているが、このsource行の規範意味・順序は書き換えない。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001003",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 256,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:4209b8c3fdb181d91afaa6419eed5153ad07041011ef1287b377292b65f8e90d",
+      "physical_line_bytes_sha256": "sha256:0c274b0e431ee03950afaccd3920db5418018a53e6f14fe5213be59e653307bb",
+      "exact_source_text": "6. Convergence evaluator",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "management_process_condition",
+      "classification_action": "reclassify_subtype",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.section9.delivery-sequence",
+        "boundary": "§9の10段階の順序付き導入手順（物理行251–260）。各step IDを保ち、全体として一つの履歴的な作業順序を構成する。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-001003"
+        ]
+      },
+      "reason": "管理プロセス条件。後続requirements/Issueはauthority-first順序へ是正しているが、このsource行の規範意味・順序は書き換えない。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001004",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 257,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:bb248a64d4e5eb0dc4bdf2d922d557db8b8662a60b6ef2dc2dc0e1a3ae147949",
+      "physical_line_bytes_sha256": "sha256:b8449e5a06263cd53cfd720fc7da9a07a2420d1fede94106aeaf4dfbeac8c8a1",
+      "exact_source_text": "7. 既存Screen Applicability / Design Registryへの接続",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "management_process_condition",
+      "classification_action": "reclassify_subtype",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.section9.delivery-sequence",
+        "boundary": "§9の10段階の順序付き導入手順（物理行251–260）。各step IDを保ち、全体として一つの履歴的な作業順序を構成する。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-001004"
+        ]
+      },
+      "reason": "管理プロセス条件。後続requirements/Issueはauthority-first順序へ是正しているが、このsource行の規範意味・順序は書き換えない。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001005",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 258,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:be1a4b909b3f2969d8fec5ae6e02c7a8ee070c3c21af313aadc2c6e7bb001153",
+      "physical_line_bytes_sha256": "sha256:f95a027e5791f711668260e2693f03b250c0c3ec97ebb7e92a3b811abe3408df",
+      "exact_source_text": "8. deterministic test / mutation / stale revision test",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "management_process_condition",
+      "classification_action": "reclassify_subtype",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.section9.delivery-sequence",
+        "boundary": "§9の10段階の順序付き導入手順（物理行251–260）。各step IDを保ち、全体として一つの履歴的な作業順序を構成する。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-001005"
+        ]
+      },
+      "reason": "管理プロセス条件。後続requirements/Issueはauthority-first順序へ是正しているが、このsource行の規範意味・順序は書き換えない。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001006",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 259,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:fe79be7018b3263aacdd897c6b1bdcf171f5131d5a9e847050b07cc2a65f5b1b",
+      "physical_line_bytes_sha256": "sha256:d89cfc3a78721c8ff7a6133d60553b544a9a0f92dc8d3f7de918c51b42721c98",
+      "exact_source_text": "9. 実プロジェクトでdogfood",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "management_process_condition",
+      "classification_action": "reclassify_subtype",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.section9.delivery-sequence",
+        "boundary": "§9の10段階の順序付き導入手順（物理行251–260）。各step IDを保ち、全体として一つの履歴的な作業順序を構成する。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-001006"
+        ]
+      },
+      "reason": "管理プロセス条件。後続requirements/Issueはauthority-first順序へ是正しているが、このsource行の規範意味・順序は書き換えない。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001007",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 260,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "sha256:bd42f749beb4de560bd0809126b5e62086221fa978ad6a786c9e958bc5b6bda2",
+      "physical_line_bytes_sha256": "sha256:944c80809bd22ea214468ee2ee80cee4ce0abd84fdcff10977f9a7d8080923ba",
+      "exact_source_text": "10. Evidenceを確認してからcanonical requirement/version-up",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 cumulative state after #2353/#2356/#2360; #2363/#2366 overlay rows are exact-ID-disjoint"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "management_process_condition",
+      "classification_action": "reclassify_subtype",
+      "atom_boundary": {
+        "atom_id": "DGH-intake.section9.delivery-sequence",
+        "boundary": "§9の10段階の順序付き導入手順（物理行251–260）。各step IDを保ち、全体として一つの履歴的な作業順序を構成する。",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-001007"
+        ]
+      },
+      "reason": "管理プロセス条件。後続requirements/Issueはauthority-first順序へ是正しているが、このsource行の規範意味・順序は書き換えない。",
+      "route_effect": "none; no successor relation, coverage, acceptance, implementation, or adoption is proposed; retained product atoms remain unknown",
+      "ambiguous": false
+    }
+  ],
+  "source_asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C"
+}
