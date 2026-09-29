@@ -1,0 +1,890 @@
+{
+  "schema_version": "legacy-candidate-readme-pointer-classification-audit.v1",
+  "audit_id": "legacy-candidate-readme-pointer-classification-audit-2026-09-29",
+  "created_against_commit": "98411231e2eb111ca779d8b83478e6667c6cb7b3",
+  "authority_effect": "none",
+  "audit_mode": "bounded_source-context_classification_reassessment",
+  "scope": {
+    "source_file": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+    "archive_asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+    "entire_readme_nonempty_source_lines": 37,
+    "current_effective_product_atom_unknown_rows_in_this_readme": 9,
+    "selected_source_item_ids": [
+      "LEGACY-CAND-LINE-000021",
+      "LEGACY-CAND-LINE-000022",
+      "LEGACY-CAND-LINE-000023",
+      "LEGACY-CAND-LINE-000024",
+      "LEGACY-CAND-LINE-000025",
+      "LEGACY-CAND-LINE-000026",
+      "LEGACY-CAND-LINE-000027",
+      "LEGACY-CAND-LINE-000031",
+      "LEGACY-CAND-LINE-000037"
+    ],
+    "selection_complete_for_same_readme_subset": true,
+    "classification_scope": "Only the nine README source lines enumerated below are reclassified for the audit overlay. Referenced documents and adjacent README source IDs remain independently identified and unchanged."
+  },
+  "source_pins": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+      "sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+      "role": "exact old README source file"
+    },
+    {
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+      "role": "all source item ID/path/line/hash/authority states"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+      "sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
+      "role": "historical source router snapshot"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-condition-route-recount-after-2345-2026-09-29.json",
+      "sha256": "25d940277af5a6a343e4eda066bdfe4e3f770fb97f4f56c4586e00b4f025233e",
+      "role": "#2347 full-population historical classification/route baseline"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-condition-route-recount-after-2345-2026-09-29.md",
+      "sha256": "ff1b752faa852f971d69e6b9d7ec21d8b10e002107df40203f34092da3ccfbb2",
+      "role": "#2347 full-population historical audit narrative"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-unknown-product-atoms-first20-route-audit-2026-09-29.json",
+      "sha256": "c91406a58328d8820b6413a7f699c8a6d71ab89f289652e73d374643b6117273",
+      "role": "#2350 first-20 route audit source rows"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-unknown-product-atoms-first20-route-audit-2026-09-29.md",
+      "sha256": "3f416d41fa6d5571df65101920541ee762850c07d01a86cb9327de41a1dbf601",
+      "role": "#2350 first-20 audit narrative"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "role": "archive asset identity"
+    },
+    {
+      "path": "docs/governance/authority-state-model.md",
+      "sha256": "812f423b4b9952666b0ef91e741fec62f54caa3c884124ec534abbbe70be4616",
+      "role": "current authority/source-target distinction"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-carry-forward-policy.md",
+      "sha256": "ae0fc042804f5b608b3284adfd146a114df98857fb10f600e248edca12380c8b",
+      "role": "source preservation and route boundary"
+    },
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "94ba0d22bf33338960db9c9fa1a61f438ec24e9b44643631c8bf1cdcf19bb154",
+      "role": "current scope and authority entry"
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "sha256": "06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+      "role": "current Concept comparison"
+    },
+    {
+      "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+      "sha256": "8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8",
+      "role": "#2350 comparison material; not asserted as successor for README index rows"
+    },
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "sha256": "14c6947262f7e7cc92e7200cafd301ebd49c4146c97f665f0548c6b2b2e9e16d",
+      "role": "#2350 comparison material; not asserted as successor for README index rows"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "sha256": "7467fad5256db9af823e7be860e21e52df58efb43ad4855c7127c2053106214d",
+      "role": "#2350 comparison material; not asserted as successor for README index rows"
+    },
+    {
+      "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+      "role": "#2350 comparison material; not asserted as successor for README index rows"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md",
+      "sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+      "role": "separate source rows; README pointer correction does not reclassify or route these rows"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-requests.md",
+      "sha256": "36b153222a39a31f2f52829fc82301bb72f03bcfc3160dd45ed5798c7aace63a",
+      "role": "separate source rows; README pointer correction does not reclassify or route these rows"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-requirements.md",
+      "sha256": "1e94e78d52fc6f226ac98c501da176b0fa33b57c298fb28ce561178de66a4c76",
+      "role": "separate source rows; README pointer correction does not reclassify or route these rows"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-acceptance.md",
+      "sha256": "59acaf43daa674a16ae3f42941e1623c5910f9715f6986fbf55cb43e2c374e30",
+      "role": "separate source rows; README pointer correction does not reclassify or route these rows"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-capability-delta.md",
+      "sha256": "af5a4cd6ad6dcb85be811bba8213a185d64a17239bfc3b5d69e728bfb03ac0cc",
+      "role": "separate source rows; README pointer correction does not reclassify or route these rows"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-readme-projection.md",
+      "sha256": "d38b8e37b21440cdd5056f0863c7b6bf569205d6342e7c55d25b7de38239b789",
+      "role": "separate source rows; README pointer correction does not reclassify or route these rows"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+      "sha256": "3cb6ee8a4d342b7f667c0960d08eb0a18fa44372ecb03bd85e0576e59baa4cca",
+      "role": "separate source rows; README pointer correction does not reclassify or route these rows"
+    }
+  ],
+  "referenced_target_files": [
+    {
+      "referenced_file": "helix-concept-v4.0.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md",
+      "file_sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+      "retained_source_item_count": 161,
+      "first_source_item_id": "LEGACY-CAND-LINE-002760",
+      "last_source_item_id": "LEGACY-CAND-LINE-002920",
+      "relationship": "separate source rows; README pointer correction does not reclassify or route these rows"
+    },
+    {
+      "referenced_file": "helix-concept-v4-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-requests.md",
+      "file_sha256": "36b153222a39a31f2f52829fc82301bb72f03bcfc3160dd45ed5798c7aace63a",
+      "retained_source_item_count": 26,
+      "first_source_item_id": "LEGACY-CAND-LINE-002695",
+      "last_source_item_id": "LEGACY-CAND-LINE-002720",
+      "relationship": "separate source rows; README pointer correction does not reclassify or route these rows"
+    },
+    {
+      "referenced_file": "helix-concept-v4-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-requirements.md",
+      "file_sha256": "1e94e78d52fc6f226ac98c501da176b0fa33b57c298fb28ce561178de66a4c76",
+      "retained_source_item_count": 39,
+      "first_source_item_id": "LEGACY-CAND-LINE-002721",
+      "last_source_item_id": "LEGACY-CAND-LINE-002759",
+      "relationship": "separate source rows; README pointer correction does not reclassify or route these rows"
+    },
+    {
+      "referenced_file": "helix-concept-v4-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-acceptance.md",
+      "file_sha256": "59acaf43daa674a16ae3f42941e1623c5910f9715f6986fbf55cb43e2c374e30",
+      "retained_source_item_count": 31,
+      "first_source_item_id": "LEGACY-CAND-LINE-002574",
+      "last_source_item_id": "LEGACY-CAND-LINE-002604",
+      "relationship": "separate source rows; README pointer correction does not reclassify or route these rows"
+    },
+    {
+      "referenced_file": "helix-concept-v4-capability-delta.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-capability-delta.md",
+      "file_sha256": "af5a4cd6ad6dcb85be811bba8213a185d64a17239bfc3b5d69e728bfb03ac0cc",
+      "retained_source_item_count": 45,
+      "first_source_item_id": "LEGACY-CAND-LINE-002605",
+      "last_source_item_id": "LEGACY-CAND-LINE-002649",
+      "relationship": "separate source rows; README pointer correction does not reclassify or route these rows"
+    },
+    {
+      "referenced_file": "helix-concept-v4-readme-projection.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-readme-projection.md",
+      "file_sha256": "d38b8e37b21440cdd5056f0863c7b6bf569205d6342e7c55d25b7de38239b789",
+      "retained_source_item_count": 45,
+      "first_source_item_id": "LEGACY-CAND-LINE-002650",
+      "last_source_item_id": "LEGACY-CAND-LINE-002694",
+      "relationship": "separate source rows; README pointer correction does not reclassify or route these rows"
+    },
+    {
+      "referenced_file": "development-investment-stage-directives-intake_v1.0.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+      "file_sha256": "3cb6ee8a4d342b7f667c0960d08eb0a18fa44372ecb03bd85e0576e59baa4cca",
+      "retained_source_item_count": 13,
+      "first_source_item_id": "LEGACY-CAND-LINE-001056",
+      "last_source_item_id": "LEGACY-CAND-LINE-001068",
+      "relationship": "separate source rows; README pointer correction does not reclassify or route these rows"
+    }
+  ],
+  "referenced_but_absent_file": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.1.md",
+    "exists_at_pinned_commit": false,
+    "interpretation": "The v4.1 filename pointer does not resolve to an archived file in this source directory; the line itself still contains an explicit historical approval-boundary condition and is retained as a management/process condition, not discarded."
+  },
+  "neighboring_source_identity_context": [
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000018",
+      "physical_line": 28,
+      "text": "Issue #1728の未承認候補である。既存ownerへの接続を先に行い、この候補だけでSLO値、production操作、",
+      "effective_classification_before_this_audit": "condition",
+      "condition_subtype_before_this_audit": "management_process_condition",
+      "route_status_before_this_audit": "management_successor_unresolved",
+      "changed_by_this_audit": false
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000019",
+      "physical_line": 29,
+      "text": "包括的な自動修復権限、実装・運用完了を成立させない。",
+      "effective_classification_before_this_audit": "explanation",
+      "condition_subtype_before_this_audit": null,
+      "route_status_before_this_audit": "not_condition",
+      "changed_by_this_audit": false
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000028",
+      "physical_line": 42,
+      "text": "正本化するときは、候補をこのdirectoryに残したままcurrentと二重authorityにしない。昇格先、",
+      "effective_classification_before_this_audit": "condition",
+      "condition_subtype_before_this_audit": "management_process_condition",
+      "route_status_before_this_audit": "management_successor_unresolved",
+      "changed_by_this_audit": false
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000029",
+      "physical_line": 43,
+      "text": "compatibility／archive移動、参照更新を同一migrationで閉じる。",
+      "effective_classification_before_this_audit": "explanation",
+      "condition_subtype_before_this_audit": null,
+      "route_status_before_this_audit": "not_condition",
+      "changed_by_this_audit": false
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000033",
+      "physical_line": 50,
+      "text": "この文書のINV IDとP0〜P4は、Requirement ID、障害severity、L1〜L12、Release Waveではない。",
+      "effective_classification_before_this_audit": "explanation",
+      "condition_subtype_before_this_audit": null,
+      "route_status_before_this_audit": "not_condition",
+      "changed_by_this_audit": false
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000034",
+      "physical_line": 51,
+      "text": "候補文書だけで72件を承認・v1必須化・一括Issue化・実装済み扱いにしない。選択したINVごとに",
+      "effective_classification_before_this_audit": "condition",
+      "condition_subtype_before_this_audit": "management_process_condition",
+      "route_status_before_this_audit": "management_successor_unresolved",
+      "changed_by_this_audit": false
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000035",
+      "physical_line": 52,
+      "text": "current Requirement／Capability／Issue／Release ownerを再解決し、意味・受入・権限の差分だけを",
+      "effective_classification_before_this_audit": "explanation",
+      "condition_subtype_before_this_audit": null,
+      "route_status_before_this_audit": "not_condition",
+      "changed_by_this_audit": false
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000036",
+      "physical_line": 53,
+      "text": "正規の要求改訂へ送る。分冊原稿が参照していた`06_ITEM_DIRECTIVES.md`は実在せず、統合版内の",
+      "effective_classification_before_this_audit": "explanation",
+      "condition_subtype_before_this_audit": null,
+      "route_status_before_this_audit": "not_condition",
+      "changed_by_this_audit": false
+    }
+  ],
+  "preceding_audits": {
+    "2347": {
+      "audit_id": "legacy-candidate4755-cumulative-condition-route-recount-after-2345-2026-09-29",
+      "created_against_commit": "d8c39fd06f51bc0137c63db7fd9c6facf5974cfb",
+      "classification_counts": {
+        "structure": 926,
+        "explanation": 2911,
+        "condition": 918,
+        "condition_subtype_counts": {
+          "concept_condition": 1,
+          "management_process_condition": 4,
+          "product_requirement_atom": 913
+        },
+        "product_requirement_atom_subtype": 913,
+        "total": 4755
+      },
+      "route_counts": {
+        "condition_rows": 918,
+        "route_status_counts": {
+          "adopted_relevant_partial": 20,
+          "covered_limited": 1,
+          "management_successor_unresolved": 4,
+          "partial": 16,
+          "source_relation_coverage_unresolved": 141,
+          "unadopted_candidate_relation_only": 156,
+          "unknown": 578,
+          "unresolved": 2
+        },
+        "product_condition_route_known": 336,
+        "product_condition_route_unknown": 577,
+        "unknown_including_concept_condition": 578,
+        "management_process_route_unresolved_without_product_L2_L11_route": 4,
+        "all_statuses_partition_condition_rows": true,
+        "coverage_or_closure_claim": false
+      },
+      "sha256": "25d940277af5a6a343e4eda066bdfe4e3f770fb97f4f56c4586e00b4f025233e",
+      "status": "historical baseline; totals stale after #2350 overlays and this classification audit"
+    },
+    "2350": {
+      "audit_id": "legacy-candidate-unknown-product-atoms-first20-route-audit-2026-09-29",
+      "created_against_commit": "8b23be9cd996279617219fe06733c7e274b4bb0a",
+      "selected_id_count": 20,
+      "selected_ids": [
+        "LEGACY-CAND-LINE-000021",
+        "LEGACY-CAND-LINE-000022",
+        "LEGACY-CAND-LINE-000023",
+        "LEGACY-CAND-LINE-000024",
+        "LEGACY-CAND-LINE-000025",
+        "LEGACY-CAND-LINE-000026",
+        "LEGACY-CAND-LINE-000027",
+        "LEGACY-CAND-LINE-000031",
+        "LEGACY-CAND-LINE-000037",
+        "LEGACY-CAND-LINE-000051",
+        "LEGACY-CAND-LINE-000054",
+        "LEGACY-CAND-LINE-000069",
+        "LEGACY-CAND-LINE-000070",
+        "LEGACY-CAND-LINE-000071",
+        "LEGACY-CAND-LINE-000072",
+        "LEGACY-CAND-LINE-000073",
+        "LEGACY-CAND-LINE-000074",
+        "LEGACY-CAND-LINE-000080",
+        "LEGACY-CAND-LINE-000091",
+        "LEGACY-CAND-LINE-000103"
+      ],
+      "route_assessment_counts": {
+        "adopted_relevant_partial": 4,
+        "unadopted_candidate_relation_only": 6,
+        "true_unknown": 10
+      },
+      "source_sha256": "c91406a58328d8820b6413a7f699c8a6d71ab89f289652e73d374643b6117273",
+      "narrative_sha256": "3f416d41fa6d5571df65101920541ee762850c07d01a86cb9327de41a1dbf601",
+      "targeted_nine_all_were_true_unknown": true,
+      "status": "historical selection/route assessment for the old assumed product_atom/unknown subset; the nine README rows no longer qualify for that product-route selection under the audit overlay. Do not retain these nine as current true_unknown product route rows or claim the #2350 first-20 selection remains the current first 20."
+    }
+  },
+  "reclassification_sets": {
+    "product_requirement_atom_to_explanation": [
+      "LEGACY-CAND-LINE-000022",
+      "LEGACY-CAND-LINE-000023",
+      "LEGACY-CAND-LINE-000024",
+      "LEGACY-CAND-LINE-000025",
+      "LEGACY-CAND-LINE-000026",
+      "LEGACY-CAND-LINE-000027",
+      "LEGACY-CAND-LINE-000031"
+    ],
+    "product_requirement_atom_to_management_process_condition": [
+      "LEGACY-CAND-LINE-000021",
+      "LEGACY-CAND-LINE-000037"
+    ],
+    "counts": {
+      "product_atom_to_explanation": 7,
+      "product_atom_to_management_process_condition": 2,
+      "all_target_rows_reclassified": 9
+    }
+  },
+  "route_count_impact": {
+    "baseline_audit_id": "legacy-candidate4755-cumulative-condition-route-recount-after-2345-2026-09-29",
+    "baseline_classification_counts": {
+      "structure": 926,
+      "explanation": 2911,
+      "condition": 918,
+      "condition_subtype_counts": {
+        "concept_condition": 1,
+        "management_process_condition": 4,
+        "product_requirement_atom": 913
+      },
+      "product_requirement_atom_subtype": 913,
+      "total": 4755
+    },
+    "baseline_route_count": {
+      "condition_rows": 918,
+      "route_status_counts": {
+        "adopted_relevant_partial": 20,
+        "covered_limited": 1,
+        "management_successor_unresolved": 4,
+        "partial": 16,
+        "source_relation_coverage_unresolved": 141,
+        "unadopted_candidate_relation_only": 156,
+        "unknown": 578,
+        "unresolved": 2
+      },
+      "product_condition_route_known": 336,
+      "product_condition_route_unknown": 577,
+      "unknown_including_concept_condition": 578,
+      "management_process_route_unresolved_without_product_L2_L11_route": 4,
+      "all_statuses_partition_condition_rows": true,
+      "coverage_or_closure_claim": false
+    },
+    "deltas_from_this_bounded_overlay": {
+      "structure": 0,
+      "explanation": 7,
+      "condition": -7,
+      "product_requirement_atom_subtype": -9,
+      "management_process_condition_subtype": 2,
+      "concept_condition_subtype": 0,
+      "product_condition_route_unknown": -9,
+      "unknown_including_concept_condition": -9,
+      "management_successor_unresolved_route": 2,
+      "product_condition_route_known": 0,
+      "route_status_rows_in_condition_bucket": -7
+    },
+    "staleness": "Delta-only projection. #2347 effective classification and route totals are historical/stale after applying these corrections and #2350 route overlays. Do not publish projected aggregate totals as current until all 4,755 rows and all applicable overlays are re-enumerated."
+  },
+  "items": [
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000021",
+      "archive_asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+      "source_path": "docs/governance/candidates/README.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+      "physical_line": 33,
+      "source_file_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+      "source_line_sha256_without_terminator": "sha256:bf86a45298099c430e302e59df5135cd9027e87cd95ceb691ac42332999ad10c",
+      "physical_line_bytes_sha256": "32abd5b4f19e1186c811a1ea0b736cffa746911ab041dd1eac26348ae658d038",
+      "source_line_bytes_base64_including_terminator": "LSBgaGVsaXgtY29uY2VwdC12NC4xLm1kYDog5pyA5paw44GuSEFSTkVTU++8j0hFTElYLU9T77yP5YCL5Yil6KO95ZOB5aKD55WM44KS5Y+N5pig44GX44Gf5qyhcmV2aXNpb27lgJnoo5zjgIJ2NC4w44Gu5om/6KqN5a++6LGhYnl0ZXPjgpLlpInmm7TjgZvjgZrjgIFVMeS4iua1geWGjeaVtOWCmeOBruaJv+iqjeWvvuixoeOCkuWIhuOBkeOCiwo=",
+      "source_line_text": "- `helix-concept-v4.1.md`: 最新のHARNESS／HELIX-OS／個別製品境界を反映した次revision候補。v4.0の承認対象bytesを変更せず、U1上流再整備の承認対象を分ける",
+      "source_authority_state": "historical_candidate",
+      "target_authority_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "formal_successor_requirement_ids": [],
+      "historical_router": {
+        "snapshot_classification": "requirement_atom",
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "current_ids": [],
+        "later_25_candidate_ids": []
+      },
+      "after_2347_route_recount_state": {
+        "source_item_id": "LEGACY-CAND-LINE-000021",
+        "snapshot_classification": "requirement_atom",
+        "snapshot_review_outcome": "unknown_after_semantic_check",
+        "effective_classification": "condition",
+        "condition_subtype_or_null": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "after_2350_route_audit": {
+        "selection_rank": 1,
+        "route_assessment": "true_unknown",
+        "prior_cumulative_route_state": "unknown",
+        "exact_relation_refs": [],
+        "review_note": "旧READMEはConcept v4.1候補の参照更新・U1承認対象分離を述べる。現行Concept/L1の承認revisionにこのREADME行そのものを結ぶ条件routeは確認できず、同じ主題だけで被覆扱いしない。"
+      },
+      "audit_reclassification": {
+        "effective_classification": "condition",
+        "condition_subtype": "management_process_condition",
+        "proposed_route_status": "management_successor_unresolved",
+        "current_product_requirement_route": null,
+        "current_management_successor": null,
+        "coverage_claim": false,
+        "formal_successor_id": null,
+        "rationale": "候補revisionの取扱いについて、旧v4.0承認bytesを保持しU1再整備の承認対象を分離する条件が明記される。機能能力ではなく、旧候補のdecision/source boundaryである。historical_candidate状態を保持し、現行の反復承認手続きへ昇格させない。"
+      }
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000022",
+      "archive_asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+      "source_path": "docs/governance/candidates/README.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+      "physical_line": 35,
+      "source_file_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+      "source_line_sha256_without_terminator": "sha256:87496e4d9c1005c774b702938ad20b3fcfb61c92a3ee40c415bc37ff7251e140",
+      "physical_line_bytes_sha256": "916723b5617f33335279806f25c6bef03377251e7e1b20e715f2bf452539413b",
+      "source_line_bytes_base64_including_terminator": "LSBgaGVsaXgtY29uY2VwdC12NC4wLm1kYDogVmVyaWZpZWQgQ2hhbmdlIE9wZXJhdGluZyBTeXN0ZW3jgbjjga5Db25jZXB05YCZ6KOcCg==",
+      "source_line_text": "- `helix-concept-v4.0.md`: Verified Change Operating SystemへのConcept候補",
+      "source_authority_state": "historical_candidate",
+      "target_authority_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "formal_successor_requirement_ids": [],
+      "historical_router": {
+        "snapshot_classification": "requirement_atom",
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "current_ids": [],
+        "later_25_candidate_ids": []
+      },
+      "after_2347_route_recount_state": {
+        "source_item_id": "LEGACY-CAND-LINE-000022",
+        "snapshot_classification": "requirement_atom",
+        "snapshot_review_outcome": "unknown_after_semantic_check",
+        "effective_classification": "condition",
+        "condition_subtype_or_null": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "after_2350_route_audit": {
+        "selection_rank": 2,
+        "route_assessment": "true_unknown",
+        "prior_cumulative_route_state": "unknown",
+        "exact_relation_refs": [],
+        "review_note": "旧READMEのVerified Change Operating SystemというConcept候補タイトル。現Concept v4.3や対象別L1との同一意味・後継関係はこの行だけから確定できない。"
+      },
+      "audit_reclassification": {
+        "effective_classification": "explanation",
+        "condition_subtype": null,
+        "proposed_route_status": "not_applicable_noncondition",
+        "current_product_requirement_route": null,
+        "current_management_successor": null,
+        "coverage_claim": false,
+        "formal_successor_id": null,
+        "rationale": "Concept候補ファイルとその主題を列挙する索引行。機能の要求・適用条件・受入oracleは述べない。"
+      }
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000023",
+      "archive_asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+      "source_path": "docs/governance/candidates/README.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+      "physical_line": 36,
+      "source_file_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+      "source_line_sha256_without_terminator": "sha256:ded8adfb295405ea4e8e0af8f9642038db0e709c8eeed302a38c8d3f5e0db99a",
+      "physical_line_bytes_sha256": "27d855df5637bb3cc41c527a0bbcfb2982411b9dae38b44e2ca4ecf28d620368",
+      "source_line_bytes_base64_including_terminator": "LSBgaGVsaXgtY29uY2VwdC12NC1yZXF1ZXN0cy5tZGA6IEwx6KaB5rGC5YCZ6KOcCg==",
+      "source_line_text": "- `helix-concept-v4-requests.md`: L1要求候補",
+      "source_authority_state": "historical_candidate",
+      "target_authority_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "formal_successor_requirement_ids": [],
+      "historical_router": {
+        "snapshot_classification": "requirement_atom",
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "current_ids": [],
+        "later_25_candidate_ids": []
+      },
+      "after_2347_route_recount_state": {
+        "source_item_id": "LEGACY-CAND-LINE-000023",
+        "snapshot_classification": "requirement_atom",
+        "snapshot_review_outcome": "unknown_after_semantic_check",
+        "effective_classification": "condition",
+        "condition_subtype_or_null": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "after_2350_route_audit": {
+        "selection_rank": 3,
+        "route_assessment": "true_unknown",
+        "prior_cumulative_route_state": "unknown",
+        "exact_relation_refs": [],
+        "review_note": "旧READMEがConcept v4のrequests候補ファイルを指す。現行L1/L2に個別要求atomとしての同一性・移行先を示すsource relationなし。"
+      },
+      "audit_reclassification": {
+        "effective_classification": "explanation",
+        "condition_subtype": null,
+        "proposed_route_status": "not_applicable_noncondition",
+        "current_product_requirement_route": null,
+        "current_management_successor": null,
+        "coverage_claim": false,
+        "formal_successor_id": null,
+        "rationale": "L1要求候補ファイルへの層付きポインタだけで、L1要求の個別意味は参照先に別source rowsとして存在する。"
+      }
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000024",
+      "archive_asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+      "source_path": "docs/governance/candidates/README.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+      "physical_line": 37,
+      "source_file_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+      "source_line_sha256_without_terminator": "sha256:7704c350ce091c3215113b00e2ef0ec1d498ce210dd7ba228bc62ca424c62ab6",
+      "physical_line_bytes_sha256": "ff681d6275948efb9f0e19441d854a7fb0428c6734fd7d884a264d2974df6b06",
+      "source_line_bytes_base64_including_terminator": "LSBgaGVsaXgtY29uY2VwdC12NC1yZXF1aXJlbWVudHMubWRgOiBMM+imgeS7tuWAmeijnAo=",
+      "source_line_text": "- `helix-concept-v4-requirements.md`: L3要件候補",
+      "source_authority_state": "historical_candidate",
+      "target_authority_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "formal_successor_requirement_ids": [],
+      "historical_router": {
+        "snapshot_classification": "requirement_atom",
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "current_ids": [],
+        "later_25_candidate_ids": []
+      },
+      "after_2347_route_recount_state": {
+        "source_item_id": "LEGACY-CAND-LINE-000024",
+        "snapshot_classification": "requirement_atom",
+        "snapshot_review_outcome": "unknown_after_semantic_check",
+        "effective_classification": "condition",
+        "condition_subtype_or_null": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "after_2350_route_audit": {
+        "selection_rank": 4,
+        "route_assessment": "true_unknown",
+        "prior_cumulative_route_state": "unknown",
+        "exact_relation_refs": [],
+        "review_note": "旧READMEがrequirements candidateを参照する。現行L3承認・要件はこのStage5 bounded audit対象外であり、L1/L2/L11とのrelationもこの参照行からは確定しない。"
+      },
+      "audit_reclassification": {
+        "effective_classification": "explanation",
+        "condition_subtype": null,
+        "proposed_route_status": "not_applicable_noncondition",
+        "current_product_requirement_route": null,
+        "current_management_successor": null,
+        "coverage_claim": false,
+        "formal_successor_id": null,
+        "rationale": "L3要件候補ファイルへのポインタだけで、個別要件の要求条件や承認結果をこの行は定めない。"
+      }
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000025",
+      "archive_asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+      "source_path": "docs/governance/candidates/README.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+      "physical_line": 38,
+      "source_file_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+      "source_line_sha256_without_terminator": "sha256:7416a4ebf60be5195d25edf43298700b4a3ff595743ab2707d0a2565b6016b4d",
+      "physical_line_bytes_sha256": "69d4a66f67f5d63994425e1b7f34d950bd54857f39568010b0f54c4cec1e5f00",
+      "source_line_bytes_base64_including_terminator": "LSBgaGVsaXgtY29uY2VwdC12NC1hY2NlcHRhbmNlLm1kYDogTDEw5Y+X5YWl5YCZ6KOcCg==",
+      "source_line_text": "- `helix-concept-v4-acceptance.md`: L10受入候補",
+      "source_authority_state": "historical_candidate",
+      "target_authority_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "formal_successor_requirement_ids": [],
+      "historical_router": {
+        "snapshot_classification": "requirement_atom",
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "current_ids": [],
+        "later_25_candidate_ids": []
+      },
+      "after_2347_route_recount_state": {
+        "source_item_id": "LEGACY-CAND-LINE-000025",
+        "snapshot_classification": "requirement_atom",
+        "snapshot_review_outcome": "unknown_after_semantic_check",
+        "effective_classification": "condition",
+        "condition_subtype_or_null": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "after_2350_route_audit": {
+        "selection_rank": 5,
+        "route_assessment": "true_unknown",
+        "prior_cumulative_route_state": "unknown",
+        "exact_relation_refs": [],
+        "review_note": "旧READMEがacceptance candidateを参照する。現行L11は別の対象revision・候補集合であり、このREADMEポインタ行を同一条件と見なせない。"
+      },
+      "audit_reclassification": {
+        "effective_classification": "explanation",
+        "condition_subtype": null,
+        "proposed_route_status": "not_applicable_noncondition",
+        "current_product_requirement_route": null,
+        "current_management_successor": null,
+        "coverage_claim": false,
+        "formal_successor_id": null,
+        "rationale": "L10受入候補ファイルへのポインタだけで、受入条件・oracle・実行結果をこの行は定めない。"
+      }
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000026",
+      "archive_asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+      "source_path": "docs/governance/candidates/README.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+      "physical_line": 39,
+      "source_file_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+      "source_line_sha256_without_terminator": "sha256:fed62dc2eb8bb7033568cc93b30c9d159bcbb4505dd1996ff4864f8979835ac6",
+      "physical_line_bytes_sha256": "10d4e095860253afe68d8a716c2915c4398a857c11a13b355f31d4f1c00f36a2",
+      "source_line_bytes_base64_including_terminator": "LSBgaGVsaXgtY29uY2VwdC12NC1jYXBhYmlsaXR5LWRlbHRhLm1kYDogYmFzZWxpbmUgY2FwYWJpbGl0eeOBqOOBruWun+a4rOW3ruWIhgo=",
+      "source_line_text": "- `helix-concept-v4-capability-delta.md`: baseline capabilityとの実測差分",
+      "source_authority_state": "historical_candidate",
+      "target_authority_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "formal_successor_requirement_ids": [],
+      "historical_router": {
+        "snapshot_classification": "requirement_atom",
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "current_ids": [],
+        "later_25_candidate_ids": []
+      },
+      "after_2347_route_recount_state": {
+        "source_item_id": "LEGACY-CAND-LINE-000026",
+        "snapshot_classification": "requirement_atom",
+        "snapshot_review_outcome": "unknown_after_semantic_check",
+        "effective_classification": "condition",
+        "condition_subtype_or_null": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "after_2350_route_audit": {
+        "selection_rank": 6,
+        "route_assessment": "true_unknown",
+        "prior_cumulative_route_state": "unknown",
+        "exact_relation_refs": [],
+        "review_note": "旧READMEのcapability delta参照。現行のConcept capability/対象L1または要件とのsource-edgeは特定されない。"
+      },
+      "audit_reclassification": {
+        "effective_classification": "explanation",
+        "condition_subtype": null,
+        "proposed_route_status": "not_applicable_noncondition",
+        "current_product_requirement_route": null,
+        "current_management_successor": null,
+        "coverage_claim": false,
+        "formal_successor_id": null,
+        "rationale": "capability-delta候補への短い説明だけで、対象baseline、差分判定、受入を定義しない。"
+      }
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000027",
+      "archive_asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+      "source_path": "docs/governance/candidates/README.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+      "physical_line": 40,
+      "source_file_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+      "source_line_sha256_without_terminator": "sha256:4e46c2cbbad130aa91ec6075bf3b7fc1049534b812f875f3d4478f56395655ad",
+      "physical_line_bytes_sha256": "f5eb27bae5cd8ad976d30e762b10e1f5c64f04bd171e5db8130bf677ef6083c7",
+      "source_line_bytes_base64_including_terminator": "LSBgaGVsaXgtY29uY2VwdC12NC1yZWFkbWUtcHJvamVjdGlvbi5tZGA6IOS6uumWk+WQkeOBkVJFQURNReiqrOaYjuWAmeijnO+8iOmdnmF1dGhvcml0ee+8iQo=",
+      "source_line_text": "- `helix-concept-v4-readme-projection.md`: 人間向けREADME説明候補（非authority）",
+      "source_authority_state": "historical_candidate",
+      "target_authority_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "formal_successor_requirement_ids": [],
+      "historical_router": {
+        "snapshot_classification": "requirement_atom",
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "current_ids": [],
+        "later_25_candidate_ids": []
+      },
+      "after_2347_route_recount_state": {
+        "source_item_id": "LEGACY-CAND-LINE-000027",
+        "snapshot_classification": "requirement_atom",
+        "snapshot_review_outcome": "unknown_after_semantic_check",
+        "effective_classification": "condition",
+        "condition_subtype_or_null": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "after_2350_route_audit": {
+        "selection_rank": 7,
+        "route_assessment": "true_unknown",
+        "prior_cumulative_route_state": "unknown",
+        "exact_relation_refs": [],
+        "review_note": "旧READMEの人間向けREADME projection（非authority）参照。現行docs/README類とのsource lineageは未確定。"
+      },
+      "audit_reclassification": {
+        "effective_classification": "explanation",
+        "condition_subtype": null,
+        "proposed_route_status": "not_applicable_noncondition",
+        "current_product_requirement_route": null,
+        "current_management_successor": null,
+        "coverage_claim": false,
+        "formal_successor_id": null,
+        "rationale": "非authorityの人間向けREADME説明候補へのポインタ。README投影の存在をproduct behaviorへ変換しない。"
+      }
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000031",
+      "archive_asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+      "source_path": "docs/governance/candidates/README.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+      "physical_line": 47,
+      "source_file_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+      "source_line_sha256_without_terminator": "sha256:8039315b98be37e9e130befcfec5e24e43c976cf2dbb8edb5760b471fd811a62",
+      "physical_line_bytes_sha256": "1b4abcb8cb8ecf108d4218660e77a584082e9cba1f1545e34acc4da0f04fa182",
+      "source_line_bytes_base64_including_terminator": "LSBgZGV2ZWxvcG1lbnQtaW52ZXN0bWVudC1zdGFnZS1kaXJlY3RpdmVzLWludGFrZV92MS4wLm1kYDog6ZaL55m644Kz44K544OI5YmK5rib44O755+l6IO95YyW44Gr6Zai44GZ44KLCg==",
+      "source_line_text": "- `development-investment-stage-directives-intake_v1.0.md`: 開発コスト削減・知能化に関する",
+      "source_authority_state": "historical_candidate",
+      "target_authority_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "formal_successor_requirement_ids": [],
+      "historical_router": {
+        "snapshot_classification": "requirement_atom",
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "current_ids": [],
+        "later_25_candidate_ids": []
+      },
+      "after_2347_route_recount_state": {
+        "source_item_id": "LEGACY-CAND-LINE-000031",
+        "snapshot_classification": "requirement_atom",
+        "snapshot_review_outcome": "unknown_after_semantic_check",
+        "effective_classification": "condition",
+        "condition_subtype_or_null": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "after_2350_route_audit": {
+        "selection_rank": 8,
+        "route_assessment": "true_unknown",
+        "prior_cumulative_route_state": "unknown",
+        "exact_relation_refs": [],
+        "review_note": "物理行は開発投資stage directives候補へのポインタ/短い説明だけを含む。隣接するREADME行の注意書きをこのsource atom自体の意味へ混ぜず、現行L1/L2/L11の対象要求と結ぶexact routeは確認できない。"
+      },
+      "audit_reclassification": {
+        "effective_classification": "explanation",
+        "condition_subtype": null,
+        "proposed_route_status": "not_applicable_noncondition",
+        "current_product_requirement_route": null,
+        "current_management_successor": null,
+        "coverage_claim": false,
+        "formal_successor_id": null,
+        "rationale": "投資directive intake候補ファイルとテーマへのポインタ。個別INVの条件は参照先本文とその固有source_item_idへ保持し、この見出し的説明行に集約しない。"
+      }
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000037",
+      "archive_asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+      "source_path": "docs/governance/candidates/README.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+      "physical_line": 54,
+      "source_file_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+      "source_line_sha256_without_terminator": "sha256:237c6ccbe88f272922ff4b7e0918625cb896ffb5d745f672053763b9dfe2b261",
+      "physical_line_bytes_sha256": "9e32b35c8b6239b92cd93c00ac62e73649ffb9423718974ec43301839696017a",
+      "source_line_bytes_base64_including_terminator": "44CMSU5WLTAwMeOAnDA3MiDlgIvliKXlrp/mlr3jgqvjg7zjg4njgI3jgpLjgZ3jga7lj4LnhaflhYjjgajjgZfjgabmibHjgYbjgIIK",
+      "source_line_text": "「INV-001〜072 個別実施カード」をその参照先として扱う。",
+      "source_authority_state": "historical_candidate",
+      "target_authority_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "formal_successor_requirement_ids": [],
+      "historical_router": {
+        "snapshot_classification": "requirement_atom",
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "current_ids": [],
+        "later_25_candidate_ids": []
+      },
+      "after_2347_route_recount_state": {
+        "source_item_id": "LEGACY-CAND-LINE-000037",
+        "snapshot_classification": "requirement_atom",
+        "snapshot_review_outcome": "unknown_after_semantic_check",
+        "effective_classification": "condition",
+        "condition_subtype_or_null": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "after_2350_route_audit": {
+        "selection_rank": 9,
+        "route_assessment": "true_unknown",
+        "prior_cumulative_route_state": "unknown",
+        "exact_relation_refs": [],
+        "review_note": "旧READMEのINV候補入口・候補ID/P0-P4をRequirement等へ誤読しない、selected itemごとownerを再解決する条件。現行Concept/L1でinvestmentsまたはINV群に対応するexact target routeを確定できない。"
+      },
+      "audit_reclassification": {
+        "effective_classification": "condition",
+        "condition_subtype": "management_process_condition",
+        "proposed_route_status": "management_successor_unresolved",
+        "current_product_requirement_route": null,
+        "current_management_successor": null,
+        "coverage_claim": false,
+        "formal_successor_id": null,
+        "rationale": "README:50-54のsource-location修正の末尾であり、存在しない分冊原稿ではなく統合文書中のINV個別実施カードを参照先にするよう指示する、歴史的source解決/移管条件。INV自体の採否やproduct requirement意味とは分けて管理process条件として保持し、current successorは割り当てない。"
+      }
+    }
+  ],
+  "historical_authority_and_limits": [
+    "All nine carry-forward rows remain source_authority_state=historical_candidate, target_authority_state=draft_candidate, atomization_status=preserved_pending_atomization; this audit creates no authority effect, adoption, retirement, or successor.",
+    "The condition in 000021 is a historical management/process boundary, not a new recurrent approval rule. Current authority-state rules are related context but no exact current successor is assigned.",
+    "The eight pointer/explanation rows do not carry referenced document contents into their own source identity. Their target documents’ rows remain separately preserved in the 4,755-line population.",
+    "Adjacent README condition IDs 000018, 000028, and 000034 (including continuing text at 000019/000029) remain separate and unchanged.",
+    "This bounded audit does not modify the old source file, carry-forward ledger, routing snapshot, #2347 cumulative audit, or #2350 first-20 audit. It asserts no full-source no-loss, route closure, L2/L11 coverage, or stage completion."
+  ],
+  "static_validation": {
+    "selected_nine_are_all_product_atom_unknown_in_same_readme_at_baseline": true,
+    "all_nine_are_in_2350_selected_first20_and_true_unknown": true,
+    "all_line_bytes_and_hashes_verified_against_archive_and_ledger": true,
+    "source_file_hash_verified": true,
+    "neighboring_condition_ids_unchanged": true,
+    "referenced_files_have_distinct_source_id_ranges": true,
+    "historical_audits_modified": false,
+    "legacy_runtime_cli_hook_test_ci_executed": false
+  }
+}
