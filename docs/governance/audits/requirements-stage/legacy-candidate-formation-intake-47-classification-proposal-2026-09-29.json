@@ -1,0 +1,1199 @@
+{
+  "schema_version": "legacy-candidate-formation-intake-47-classification-proposal.v1",
+  "audit_id": "legacy-candidate-formation-intake-47-classification-proposal-2026-09-29",
+  "base_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+  "authority_effect": "none",
+  "audit_mode": "read_only_source_classification_proposal",
+  "scope": {
+    "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+    "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+    "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+    "effective_baseline": "47 rows represented by condition / product_requirement_atom / unknown after the proposed #2353/#2356/#2360/#2363/#2366 overlay context at #2366 exact HEAD",
+    "row_count": 47,
+    "classification_count": {
+      "product_requirement_atom": 26,
+      "management_process_condition": 7,
+      "explanation": 14
+    },
+    "rows_leaving_product_unknown_population": 21,
+    "resulting_product_unknown_population_from_519": 498,
+    "population_note": "#2366 states the combined proposed #2363/#2366 overlay result as 519 from #2361 population 543; applying this 47-row proposal yields 498 if prior proposals remain unchanged. This is count arithmetic only."
+  },
+  "pinned_inputs": [
+    {
+      "role": "effective_unknown_population_before_this_proposal",
+      "commit": "aab65a4f1bc2f679530604cb7f89519683b9156c",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-stage5-recount-after-2353-2356-2360-2026-09-29.json",
+      "sha256": "ff1da2c7e563f25b7044318670e1808a6463afcac82857764d917878fb5046a5"
+    },
+    {
+      "role": "row_identity_and_prior_route_snapshot",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+      "sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3"
+    },
+    {
+      "role": "source_line_ledger",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+    },
+    {
+      "role": "archive_source",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d"
+    },
+    {
+      "role": "overlay_2353",
+      "commit": "8a75e5392a44e005bb05197d977bdbcf75b93cf0",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "sha256": "57fce8a0e05ed73c46346f2177c439e862a17a06ecea65446389f24dc34160c5"
+    },
+    {
+      "role": "overlay_2356",
+      "commit": "b213b41735067d1716c143c92e0fa6c71d8e92d9",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "sha256": "53c8acc872f30cf19e88499bc68b0f11c830a677f5c346d646a148dd3ca7853b"
+    },
+    {
+      "role": "overlay_2360",
+      "commit": "89a5f57cbc8dc6b0dc6828233992640c919fb03c",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+      "sha256": "71fa35e0b3f8bfeb9781cbe2b9b21322d8e5be7866c71bce2abbca8cdca43ddd"
+    },
+    {
+      "role": "overlay_2363",
+      "commit": "5c2fcc39daaeb0a7433ef34d4182a1a82a70a3d4",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+      "sha256": "8d1a2e222d46b794f96ae93fd8a9957e0d4fd9568e374e43a13ccfe7b81fca42"
+    },
+    {
+      "role": "overlay_2366",
+      "commit": "baaab5bac9db0cf650db3afa67b003c1770efef2",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+      "sha256": "a300695c9e37a95cbc5e17748c0b0c477390a5673ee597461e20bb1d8d831244"
+    },
+    {
+      "role": "adjacent_old_request_source",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requests.md",
+      "sha256": "f6379e1294bf4c68c93430903f24949d5373a60b82e5286ac34d51a5eb614a2e"
+    },
+    {
+      "role": "adjacent_old_requirement_source",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requirements.md",
+      "sha256": "97e1e5341beb48e735aacab3b3957b0707fa6aef2e70d0af8c0051607082e155"
+    },
+    {
+      "role": "adjacent_old_acceptance_source",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-acceptance.md",
+      "sha256": "c3f62478904e620eced270996360274e2840f9d94eca117d838d0e6dfeda7a86"
+    },
+    {
+      "role": "adjacent_old_recognition_source",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-recognition.md",
+      "sha256": "93114a3ca0c550a370f0c06e96e9f5bafb922a2eddbdbf211c557919c58e6f74"
+    },
+    {
+      "role": "adjacent_old_plan_decision_history",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-90-requirement-formation-scoped-admission.md",
+      "sha256": "220ff1d7cc3bbc316d4347698aee3b8e81308e27638bfe5e6669baec400a2b35"
+    },
+    {
+      "role": "adjacent_old_requirement_reentry_contract",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4"
+    },
+    {
+      "role": "adjacent_old_admission_contract",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6"
+    },
+    {
+      "role": "historical_source_retention_record",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/request-source-cleanup-2026-09-06.md",
+      "sha256": "9ef3942001682e11f18e507c5b8577192f97b14672ce9544b684e837493cb6e3"
+    }
+  ],
+  "classification_rules": [
+    "製品/システムが利用者へ示す規範的動作・受入条件は product_requirement_atom とする。source line atomを分割せず各行の境界を維持する。",
+    "特定の旧作業、候補の取扱い、責務配置、scope/authority運用を指示する条件は management_process_condition とする。",
+    "履歴、provenance、過去の検証結果、説明、状態報告で現在の動作条件を構成しない記述は explanation とする。",
+    "混合行は元の一行境界を維持し、主要な規範機能に基づく暫定分類と曖昧さを別記する。"
+  ],
+  "historical_context_read": [
+    {
+      "source": "Issue #1556 body and comments; PLAN-L3-90 historical approval record",
+      "use": "Establishes this family as a candidate intake and records a bounded L3 candidate decision; does not make this classification proposal an adoption or runtime claim."
+    },
+    {
+      "source": "Issue #1169; Issue #217 archived/current bodies",
+      "use": "Read to distinguish the old Requirement Re-entry and authoring admission contracts from the candidate’s proposed precedence changes."
+    },
+    {
+      "source": "Adjacent RFA requests/requirements/acceptance/recognition files and PLAN-L3-90",
+      "use": "Used to identify which intake rows correspond to RF/RC/GH product behaviors, which are operation/evaluation duties, and which are provenance/status."
+    }
+  ],
+  "ambiguous_rows": [
+    {
+      "source_id": "LEGACY-CAND-LINE-003674",
+      "proposed_classification": "management_process_condition",
+      "reason": "One source line combines the old #1169 contract comparison with a proposal to clarify applicability between ordinary authoring and requirement changes. The comparison is explanatory while the final sentence is a management/process change directive; line-level atom boundary prevents clean intra-line separation."
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003746",
+      "proposed_classification": "management_process_condition",
+      "reason": "One source line combines historical contract-state descriptions with the explicit direction to revise applicability. Its intended product behavior maps to the adjacent RC requirements, but this paragraph itself is change rationale and process direction."
+    }
+  ],
+  "rows": [
+    {
+      "source_id": "LEGACY-CAND-LINE-003617",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 3,
+      "source_line_sha256": "sha256:ede28e52092702050f97ff21b7360834d1a241c2bac0dfdccd903dba4b2cdcbd",
+      "physical_line_sha256": "sha256:9b9f40604497f55db750c989320437b85d35053af215bfa48edaaae16b4e72ac",
+      "source_text": "- 状態：要求候補の取込台帳。#1556 / PLAN-L3-90。承認・正本化は同名requirementsへ照合し、本台帳でruntime完成を主張しない。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "explanation",
+      "ambiguity": "none",
+      "basis": "表題直下の状態・Issue/PLAN由来・非完了注記。旧台帳のstatus/provenance。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003618",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 4,
+      "source_line_sha256": "sha256:ecf9da7b3b31d9543772af3dbdafe32082bd1399fc366b8ad3a2ad09d10898a7",
+      "physical_line_sha256": "sha256:f1c3ab329a0bba7e538108bf1619deb6c06a56420bbc7a3a9fc84aa15ce2a76e",
+      "source_text": "- 照合基準main：56225a2ceff228813e8c9b4184d3eb6104584fdb。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "explanation",
+      "ambiguity": "none",
+      "basis": "照合に使った旧main revisionの来歴情報。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003619",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 5,
+      "source_line_sha256": "sha256:7221bdae251d145b68bebef0064bdf1394f03bde4fb34c4b1b0da4c2996d87f3",
+      "physical_line_sha256": "sha256:f13731342aad78ff57fd758695fd95f441e0ba580bff95fdafae940da5c5ca22",
+      "source_text": "- 原稿の監査結果は提案者の報告。#1169の一律human条件と#217の六outcomeはGitHub本文で確認。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "explanation",
+      "ambiguity": "none",
+      "basis": "提案者報告と参照Issue確認の履歴。要求動作の規範ではない。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003620",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 6,
+      "source_line_sha256": "sha256:1c96f6d8fba9359e6546221f23b4d0df0885755ae67227499fd09a53dc51a619",
+      "physical_line_sha256": "sha256:a7cd20140fb8ef4acff556b64bcbf475794eeb7d2f1eb838291867530da3ec33",
+      "source_text": "- source保存欄はhistorical input-only。候補正本はrequests/requirements/acceptance/recognitionの4文書。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "explanation",
+      "ambiguity": "none",
+      "basis": "原文欄と候補正本の配置・役割を示す台帳説明。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003621",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 7,
+      "source_line_sha256": "sha256:861ea63dedfa6d6cb35c66fac7781132a6b0fcda888dc5f3dba69bc66113bf61",
+      "physical_line_sha256": "sha256:217bd8b14856ad5f578e8a86a068ef56eb4c0fc7f1334cc481b14ecfe6f6389f",
+      "source_text": "- 原稿の「判断」は意味選択・技術評価・承認・実行認可へ分離。既存machine field名は変えない。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "management_process_condition",
+      "ambiguity": "none",
+      "basis": "既存field名を維持し判断概念を分ける旧編集・schema取扱い指示。製品動作ではない。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003622",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 8,
+      "source_line_sha256": "sha256:405a70b1cb5ead3c0be102f77e1b45bd1db34ddf1a855fb4e114d9924063e7b0",
+      "physical_line_sha256": "sha256:fba1ade14138f2ebc955387b92587b3ba362e574daf3e0f0cfce994c2fbaf295",
+      "source_text": "- RF/RC/GHを別責務とし、新しい並列制御系や承認engineを追加しない。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "management_process_condition",
+      "ambiguity": "none",
+      "basis": "RF/RC/GHの責務分割と別engineを作らない旧設計・作業範囲指示。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003655",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 49,
+      "source_line_sha256": "sha256:a04ad74ef4f3cf50f60563d6c0d8ef447dc77ca15386b6a5d0b7370b2df0aefa",
+      "physical_line_sha256": "sha256:1b634bc9b5d092eea04ea18bd9918aa9db2f45c687bc33762e9d6990e5b26525",
+      "source_text": "- 原稿2件の全文が以下の保全欄と一致することをNode assertで確認した。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "explanation",
+      "ambiguity": "none",
+      "basis": "2026-09-05に行った原稿照合の過去検証記録。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003656",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 50,
+      "source_line_sha256": "sha256:7640a93ac93e2666b650b78590b4ac20b6d1bbf3abf1078bf4099a41fe65a44b",
+      "physical_line_sha256": "sha256:32c1d7f98d763820bb98ad8cb71c6432a9f69060ec679da97731dee8b84d47a2",
+      "source_text": "- 要件ID12件の一意性、全IDが受入へ参照されること、AC18行を検査して成功。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "explanation",
+      "ambiguity": "none",
+      "basis": "旧ID/受入検査の成功報告。現在の要求動作ではない。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003657",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 51,
+      "source_line_sha256": "sha256:e612a9b68537456c538d78658d6ac9d54a7f32c6525e9f3c357be311b1d15257",
+      "physical_line_sha256": "sha256:9d4b144cf099267f8088a863f46dc5664b570fbe50b574ac984024153b75a5f9",
+      "source_text": "- PLAN lint（番号重複・typed entry routing・V-pairを含む）成功。既存advisoryは増加なし。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "explanation",
+      "ambiguity": "none",
+      "basis": "旧PLAN lintの成功報告とadvisory状態。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003658",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 52,
+      "source_line_sha256": "sha256:e6a821a19697f7498bfa2512281031ae672813d389038d329cc43b75104a0ed2",
+      "physical_line_sha256": "sha256:ea9d7e018ee15b120b7e7c24cce5da4a6cfeb7de9121dc6c6520bd0864134b1c",
+      "source_text": "- 正規の `helix db rebuild` 成功。outstanding件数と対象PLAN集合は `docs/governance/generated/outstanding-snapshot.json` を正本とする。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "explanation",
+      "ambiguity": "none",
+      "basis": "旧DB rebuild結果とoutstanding snapshot参照の過去状態。旧CLI/runtimeを要求として再分類しない。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003659",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 53,
+      "source_line_sha256": "sha256:1464a8658d16bc8674c66322ed790f146e93a00a3f0f1e9cb656d6ffdd43ab62",
+      "physical_line_sha256": "sha256:6f24a4ea4be6d83f9ee809b8cc61535e27e4a625a690dd6645036e1da5b23438",
+      "source_text": "- 独立review・CI・main統合は未実施。これらをローカル取込検証で代替しない。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "explanation",
+      "ambiguity": "none",
+      "basis": "独立review/CI/main統合の当時の未実施状態を記録。末尾も当時の検証範囲説明。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003664",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 62,
+      "source_line_sha256": "sha256:b410f3fe7e5a6d9e65e48cefddb6a9945a02bb5cbee9cfedd0d97ab5b50c8b21",
+      "physical_line_sha256": "sha256:5ecc9d1f8be8ff3390f68d0100d92b855c576a76e5cc7bb090ed9ca19c7d463b",
+      "source_text": "- 状態：要求提案。新しい承認ポリシーの発効・実装許可ではない。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "explanation",
+      "ambiguity": "none",
+      "basis": "入力1の候補statusとauthority非発効を示す履歴metadata。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003665",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 63,
+      "source_line_sha256": "sha256:7eeb9f1a1cb86b818adbd15323c297988d90c120a1847e09be714f4db4267353",
+      "physical_line_sha256": "sha256:df231f41e26c62c6b4a8bc85ebb5f8a32a694c0cd980138cfe43290d4537a35d",
+      "source_text": "- 照合基準：2026-09-05、HELIX-HARNESS main `56225a2ceff228813e8c9b4184d3eb6104584fdb`。Issueは確認時点の公開記録。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "explanation",
+      "ambiguity": "none",
+      "basis": "入力1の照合日・基準revisionとIssueの観測時点。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003666",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 64,
+      "source_line_sha256": "sha256:53ac9d16a987eccf3e85bf51e52418f1a5a68b636e54c2643356141075d1dd41",
+      "physical_line_sha256": "sha256:3595360bcc63d2a73ff94dfaaa28d3c96a30f12f8d2b8de4f60eff15ae53b67a",
+      "source_text": "- 対象：HELIX本体の要求形成、Authoring Admission、Requirement Re-entry、IR、GitHub実行境界。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "explanation",
+      "ambiguity": "none",
+      "basis": "候補作成時に自己設定した対象範囲のprovenance。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003667",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 65,
+      "source_line_sha256": "sha256:9cb5c0a2922c3f672b75f4c3e28d59136567528a307ecd8535e4dadeeaf764ee",
+      "physical_line_sha256": "sha256:7380dd7600536863a0d50aac40cdfd1b359e4462c7c0b7831e45547f25fe66b7",
+      "source_text": "- 非対象：HELIXWeb、利用者データ集約基盤、新しい独立Research／Approval Engine、別DB・scheduler・routeの増設、全体plannerの保留解除、外部公開・課金・破壊操作の包括許可。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "management_process_condition",
+      "ambiguity": "none",
+      "basis": "対象外と包括認可否定の旧scope/権限境界。候補工程の制約で、製品機能要求ではない。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003668",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 66,
+      "source_line_sha256": "sha256:5087931323a61c6a2c10b4b9c1f04d1fba43c64cee13c4fb0a2d775a1b401c57",
+      "physical_line_sha256": "sha256:4a69a6f856e2f8c7db29fa380378b093e3caa1b907a17a312f4da6ab909f3e8f",
+      "source_text": "- この文書のためにGitHubのIssue・PR・コード・設定は変更していない。停止経路の実行再現やテスト実行は未実施。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "explanation",
+      "ambiguity": "none",
+      "basis": "旧文書作成時の未実施作業・監査範囲報告。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003673",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 76,
+      "source_line_sha256": "sha256:f3381ca1c204a3c1c77e8bff2e16e4c3adbeeb20e267f5e15d887bc909e24cd9",
+      "physical_line_sha256": "sha256:47191dbbb68a0a394d745a907cb7c219bf5e0612e70518f86de50beb7b2b3af0",
+      "source_text": "正本 `requirements-ir/system_contracts.json` の `HR-FR-HIL-19` は、意味差分・authority・pair・impactを検査した自動Admissionを規定し、過剰確認もfailureに含む。#192／#217も可逆policy内変更を人間待ちにしない方針を持つ。[S1][S2]",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "explanation",
+      "ambiguity": "none",
+      "basis": "既存契約とIssueの当時の内容を説明する根拠文。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003674",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 78,
+      "source_line_sha256": "sha256:4459e0ff2f5c4a28946b8684344858a25e691f3506a9d3ab304e70071484a62b",
+      "physical_line_sha256": "sha256:3451bd301f392e08fe5026f1b3808eff0cce71fe562da4ac315375620a88456e",
+      "source_text": "一方、#1169は `human_decision_required` と `refreeze_required` を別fieldで持ち、状態遷移では人間判断をauthority境界に限定するが、受入ではRequirement変更時のhuman decisionとL3再freezeを省略不可としている。通常AuthoringとRequirement変更が重なる場合の優先・適用境界を明文化する必要がある。これをそのままruntime不具合の証明とは扱わない。[S3]",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "management_process_condition",
+      "ambiguity": "review_required",
+      "basis": "旧#1169 acceptanceとの適用境界を明文化する作業指示を含む。前半は過去の契約比較であり混合行。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003675",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 80,
+      "source_line_sha256": "sha256:26dd9d7f6f3a16acd1d69ab0c77d5e5f4988bbc087ebff0b1d67ba706935e9a4",
+      "physical_line_sha256": "sha256:7c4ed527354a803b1799761f91fc783f6a8b777a226bfe3e86dffb8cbab527b6",
+      "source_text": "#282／#185／#186／#396はclosed済みの先行責務である。今回の意味拡張で過去の完了を撤回せず、実装・契約を再利用するversion-up後続へ分離する。[S4][S5][S6][S7]",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "management_process_condition",
+      "ambiguity": "none",
+      "basis": "closed済みIssueを再openせず後続差分で扱う旧project/change management指示。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003678",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 86,
+      "source_line_sha256": "sha256:d8d1b88737bb784d584b4ffdf052cc334946aeebbfcb3bcdfd77a306f902e8e0",
+      "physical_line_sha256": "sha256:706f82bddfa16eeaf4e3f00bb6c48618308ee86f25c7609aeeb2e848a22e0d1f",
+      "source_text": "A-1. 企画の目的・期待結果・非対象・制約・人間の好みと、AIの解釈を分離する。既存資産、確認済み事実、仮説、未知、古い情報、矛盾から、今回の判断に必要な調査義務を導出する。既存research skill、interview／unresolved、Requirement Translatorを再利用する。[S4][S5][S8]",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "product_requirement_atom",
+      "ambiguity": "none",
+      "basis": "RF-01。企画の意図・AI解釈を分け、前提から調査義務を導出するHELIX要求形成の製品動作。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003679",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 88,
+      "source_line_sha256": "sha256:97ecf7f10e3ddfeed5ea43c40a0696e9b556c673d8af797d74fd290eb8c9ecdb",
+      "physical_line_sha256": "sha256:692c81349625dcddb9826596912be0879fb175af1474527ec2c5563ef78892a7",
+      "source_text": "A-2. 前提整理は「何を判断する仕事か」、探索調査は「どんな実現方法・要求候補があり得るか」を扱う。公式仕様、実コード、実物の操作・表示、既存事例を論点に応じて取得し、出典・版・取得時刻・適用条件・限界を束縛する。検索結果の件数、URLの存在、AIの自己評価だけで充足としない。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "product_requirement_atom",
+      "ambiguity": "none",
+      "basis": "RF-02。前提整理と探索を区別し、論点別の証拠・版・条件・限界を扱う製品動作。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003685",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 100,
+      "source_line_sha256": "sha256:691e7871ff786ff4abd93c3cea213154b371001980244e85c1aac225efc0a488",
+      "physical_line_sha256": "sha256:96e9f47782a68cc5a18576cc67d58ab220909c4e4dcd38607b2bbe7efb584ec2",
+      "source_text": "- 人間の意味・価値の採否：何を欲しいとするか、何を許容するか。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "product_requirement_atom",
+      "ambiguity": "none",
+      "basis": "RC-02の意味/価値採否境界。三つの判断を独立させる規範的責務の一片。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003686",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 101,
+      "source_line_sha256": "sha256:06fe1d584e2b36e885df64dd2517218b7033a13e2ee66b62bffdd18014d3a78f",
+      "physical_line_sha256": "sha256:5b48f1be8fe656aecc01a023e9a16913388fac904c517341a69448e23ad7c7ad",
+      "source_text": "- 技術的な正本化：revision、意味差分、trace、L3/L10、必要な検証とIRの確定。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "product_requirement_atom",
+      "ambiguity": "none",
+      "basis": "RC-02の技術的正本化境界。意味差分・revision・trace・検証を確定する責務の一片。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003687",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 102,
+      "source_line_sha256": "sha256:1d8eadc12e996e6fa551a4ccdb855370a6b4e5fe5499e7496e76ae77b58e6222",
+      "physical_line_sha256": "sha256:b610b2aca3c72a0a1f831b93ca635abf52145c354451e43aaef5a9f3734eee2e",
+      "source_text": "- 実行の許可：どの対象へ、誰が、どの権限・予算で作用できるか。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "product_requirement_atom",
+      "ambiguity": "none",
+      "basis": "RC-02の実行認可境界。対象・actor・権限・予算を分ける規範的責務の一片。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003690",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 108,
+      "source_line_sha256": "sha256:4045fa33cca95899d060cf759d5a2ab131cc8e1392e3400c551939d9a2851b1d",
+      "physical_line_sha256": "sha256:51a237d8217f27bb1d143666c48eb53d47c3e35e2fcbf8a18f2a7182d1de9e93",
+      "source_text": "B-3. 未委任の趣向・ビジュアル・動画演出・言葉・体験、目的・業務上の価値・非対象・許容損失の変更は、関係する候補と差分だけを人間へ返す。視覚領域でも承認済み規則内の機械的修復は再承認不要にできる。非視覚でも予算超過、秘密情報の外部送信、公開、不可逆操作など既存許可境界の越境は人間判断を残す。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "product_requirement_atom",
+      "ambiguity": "none",
+      "basis": "RC-03。未委任の意味差分と許可境界越境を影響範囲に限って人へ返す製品動作。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003697",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 122,
+      "source_line_sha256": "sha256:982296f6032aa05cd61f887e7c0f3d882957b6883f7792e2933eaf3fb8783212",
+      "physical_line_sha256": "sha256:b6c62ae35bbd3b52d640cc76214ce1037b200e77f5c2869090cdb8854441921c",
+      "source_text": "C-3. 要件未確定でも、明示的に許可された調査・PoC・プロト仕事は発行できる。通常実装とは権限を分離し、候補文書の保存は候補の採用ではない。Ticket未移行scopeは現行Issue／PLAN＋Assignmentの正規経路を使い、Ticket全体の完成を新しい停止条件にしない。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "product_requirement_atom",
+      "ambiguity": "none",
+      "basis": "C-3。明示許可済みの探索仕事と通常実装を分離し、候補保存を採用へ変換しないAdmission動作。Issue/PLANからTicketへの互換接続も一体条件として保持。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003710",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 142,
+      "source_line_sha256": "sha256:8a2f53ffb73e73558cedd6d4cc3b34c9629d809b4a37e1a86d33b521dae63387",
+      "physical_line_sha256": "sha256:9cee491df053a36819d2433c8a13dece05edaeccf578b478e440dd49afeef1d9",
+      "source_text": "1. 十分な根拠と既存委任内の技術差分は、PO割込みなしで版確定・検証・前進できる。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "product_requirement_atom",
+      "ambiguity": "none",
+      "basis": "候補AC-01。十分な根拠と有効な委任内差分を重複PO割込みなしに検証・進行する挙動。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003711",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 143,
+      "source_line_sha256": "sha256:3a06e7375b37dc6d8b59211729621fa48a1615af57b50a5fe241df3d27cda195",
+      "physical_line_sha256": "sha256:fd5f86052b7d2d5cae5bf78d335a0dd581610f8d76ac6b87b4c6324769d8e66d",
+      "source_text": "2. 調査sourceが多数でも、必要論点・適用根拠が欠ければ該当設計のreadyにしない。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "product_requirement_atom",
+      "ambiguity": "none",
+      "basis": "候補AC-02。出典数ではなく論点充足をready条件とする挙動。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003712",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 144,
+      "source_line_sha256": "sha256:34dfa1838e918c35af4650b72dc9842df7ad6b7c1e5929063decbbf260f1ac23",
+      "physical_line_sha256": "sha256:938966e0af9e51d5a4ff719200dadc212f57d5816645de8c9e9c5a2df9dbe764",
+      "source_text": "3. 人間の好み・目的の変更は対象だけを提示し、無関係な実装は続行できる。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "product_requirement_atom",
+      "ambiguity": "none",
+      "basis": "候補AC-03。価値変更の対象差分だけ返し、無関係scopeを継続する挙動。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003713",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 145,
+      "source_line_sha256": "sha256:8733cf8c4d335d34d24f0cd25c799119d227b154253f7d66381209ce927c7c1c",
+      "physical_line_sha256": "sha256:4c5c7fff187a13222e95592b10da337b192651de67ee980265b3893f50d0d589",
+      "source_text": "4. 未承認候補から本実装への越境、旧承認流用、policy自己拡張、期限切れ・撤回済みdecisionを拒否する。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "product_requirement_atom",
+      "ambiguity": "none",
+      "basis": "候補AC-04。無承認実装越境・承認流用・自己拡張・失効decisionを拒否する挙動。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003714",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 146,
+      "source_line_sha256": "sha256:4e604771c7eebb7170ffb3c0ab4b75557da94eaa828ff262ab262eacd8cb0be1",
+      "physical_line_sha256": "sha256:8976f062a522631ecce0b6048797578b5cbed4015e2ae03f9a0fea03e407f688",
+      "source_text": "5. freeze前の許可済み調査／PoC／プロトは実行可能だが、本番write権限を得ない。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "product_requirement_atom",
+      "ambiguity": "none",
+      "basis": "候補AC-05。L3前の限定探索を許可しつつ本番write権限と分離する挙動。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003715",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 147,
+      "source_line_sha256": "sha256:2ae03e5e4c864648b2f3d90726088ca89199f94f78f34ba17d0ad6fa2e2e24a9",
+      "physical_line_sha256": "sha256:4d6812ace1f726725608e33a11b5370cd873f8952c1c121a56a23109cbd0cdaa",
+      "source_text": "6. 同一入力の判定・receiptを再現でき、未知の影響範囲、partial IR更新、古いworker packetを検出する。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "product_requirement_atom",
+      "ambiguity": "none",
+      "basis": "候補AC-06。再現性と未知影響・partial update・stale packet検出を求める製品受入条件。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003746",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 188,
+      "source_line_sha256": "sha256:4244294f9b566949e2dc7d5db187c83eb431fbc1fa818977cae5546304301e55",
+      "physical_line_sha256": "sha256:88a3cc9072c33bfd1d09968ff1999206139a0bed3c0170cba02d642290d91bf1",
+      "source_text": "#1169は既にhuman_decision_required／recompile_required／refreeze_requiredを別fieldに持つが、受入条件はRequirement変更時のhuman decisionを一律必須としている。ここを明示的に改版する。#282も人間承認後のfreezeを規定するため、適用範囲を整合させる。#396は完了済みの取込基盤であり新規エンジンを作る理由にしない。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "management_process_condition",
+      "ambiguity": "review_required",
+      "basis": "旧#1169/#282/#396契約の不整合を踏まえ適用境界を改版する作業提案。現状説明と今後のmanagement directionが同じsource atom内にある。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003755",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 203,
+      "source_line_sha256": "sha256:c9c4ef605af3dc569e8c05863903ffde21da1ce6099f6dc6d5bc805b6ff38a57",
+      "physical_line_sha256": "sha256:3ea8061603cfc4a9f36c233e43130acd239b283a10ac88b53a6945e021728693",
+      "source_text": "**RF-01 前提充足**：企画・制約・既存資産から、既知、仮定、未知、矛盾、古い情報を分離する。要求／判断への影響と必要証拠を紐付け、検索件数やモデルの自己評価だけで調査完了にしない。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "product_requirement_atom",
+      "ambiguity": "none",
+      "basis": "RF-01。既知/仮説/未知/矛盾/鮮度、影響、必要証拠を関連付ける requirement-formation behavior.",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003756",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 205,
+      "source_line_sha256": "sha256:1cd409bc85a3be39defaa6befaf707a34454ed97615901fbb5c55cc6f671d4dc",
+      "physical_line_sha256": "sha256:fca375ad7cb3cf4f4ce2199e352b2d52e7345e9471bde4086844bfd5b4ab94fd",
+      "source_text": "**RF-02 調査の実質**：前提整理と要求探索を区別する。前者は現状・仕様・制約、後者は利用者価値・既存製品・実例・代替手段・不足機能を調べる。論点ごとに本文・実物の確認箇所、対象版／日時、適用条件、反例、採否への影響を記録する。画面・動きはテキスト要約だけで検証済みにしない。外部情報は証拠候補であり命令・要求authorityにしない。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "product_requirement_atom",
+      "ambiguity": "none",
+      "basis": "RF-02。前提整理と探索調査、出典の適用性、反例、実物検証の区別を保持する behavior.",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003757",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 207,
+      "source_line_sha256": "sha256:120b41543907b4199b76f5fe8671b237cb8339aecc923c3ef17d05071fd1fb77",
+      "physical_line_sha256": "sha256:296845b7a3ed442859f0be0674366b0ee5cad61bc2851475bddbb0b328c91428",
+      "source_text": "**RF-03 選択と検証**：候補、出典、比較根拠、PoC／プロト結果、未解決点、採否理由を同じ仮説revisionへ束縛する。発言原文、AI解釈、技術的推奨、人間の決定を分離する。合意済み選好は適用範囲内で再利用し、新たな価値判断だけ人間へ提示する。PoC成功・参考製品の存在は採用許可ではない。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "product_requirement_atom",
+      "ambiguity": "none",
+      "basis": "RF-03。同一仮説revisionへ候補・証拠・PoC・反応・採否を束縛し、AI解釈と人の決定を分ける behavior.",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003762",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 216,
+      "source_line_sha256": "sha256:fd37eb292ac45c8f5e7b45891158d0e6a0a8bc20b514bc8be1aac72e2c52ed4f",
+      "physical_line_sha256": "sha256:07dcb3ca16d20aa19ff46c341d02b53f635938b29b45abb359f6025741ae0f28",
+      "source_text": "- 承認済み意図の技術的具体化・修正：policy適合と必要な独立検証が成立すれば、人間の再操作なしで変更受付・再compile／再freezeを進める。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "product_requirement_atom",
+      "ambiguity": "none",
+      "basis": "RC-02の既承認意図内での技術派生・再freeze判断。再承認なし進行条件を定義する一片。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003763",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 217,
+      "source_line_sha256": "sha256:7d6fadef4b13fa7f3a2b64cde5d48619a0806f7c6ca3fc9080927b09890617b1",
+      "physical_line_sha256": "sha256:ec53faa76d3c31ee6670eb7cb45965f441bb467c5d9e5c5438c458491ee3ba77",
+      "source_text": "- 人間が今回明示した新要求：対象・意味差分・制約が明確で、policy上有効な指示は一度の決定として消費する。同じ採否をL3化の都合だけで再質問しない。一般的なGOを対象未指定の包括承認にしない。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "product_requirement_atom",
+      "ambiguity": "none",
+      "basis": "RC-02の明示された新要求を一度の対象付き決定として消費する挙動。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003764",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 218,
+      "source_line_sha256": "sha256:deeec531961898cd6d3fa79738511ac0eb471285dbd4a1a38968b445611a1f10",
+      "physical_line_sha256": "sha256:986bedba0b670c625d8056c74bd51dd3eef11cf11f910cd9cfeab91f6a9a98f3",
+      "source_text": "- 新たな意味判断・許可拡張・曖昧さ：影響差分だけ人間へ返す。既承認全文の再確認は求めない。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "product_requirement_atom",
+      "ambiguity": "none",
+      "basis": "RC-02の新たな価値/権限判断や曖昧さを影響差分だけ人へ戻す挙動。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003771",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 232,
+      "source_line_sha256": "sha256:3fe7f51ed7335fd8a5858a68b5ac8f91ca6a972248369054abda83daf3d8db68",
+      "physical_line_sha256": "sha256:1b081fac11e6db92619d845d6b6c0ec2420fa82ad22a42c53b9a84451d21cb05",
+      "source_text": "**GH-03 互換移行**：Ticket未移行scopeは既存Issue／PLAN bindingで同じ許可条件を検証し、#1534全体完成を待たない。移行後はTicket／Assignmentへ接続する。人間の判断待ち一覧と、技術検証・調査待ち一覧を分離する。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "product_requirement_atom",
+      "ambiguity": "none",
+      "basis": "GH-03。移行前後のIssue/PLAN/Ticketで同じ許可条件と待ち分類を保つ互換動作。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003774",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 237,
+      "source_line_sha256": "sha256:8916fe7a0f05af77cecb813cd101fddb93c497650934cc595227270a50454a4a",
+      "physical_line_sha256": "sha256:026e4a775a796ff3e7a01da6e657deb00ffc69b0cf58f6f23d5528cff1d3d6ac",
+      "source_text": "1. 出典数だけ多い調査、版違い、反例未解決、選択意図不明をreadyにしない。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "product_requirement_atom",
+      "ambiguity": "none",
+      "basis": "候補AC-01。証拠の量だけではreadyにしない受入条件。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003775",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 238,
+      "source_line_sha256": "sha256:62f62f76fa3d3a7bb41f27c63c1c49136537f7c5f57b13f966cf7c8d9cdebcd0",
+      "physical_line_sha256": "sha256:0ca79410c9d853374702b645920efba888540166f0d58c640a07ac2cfa6b0439",
+      "source_text": "2. bounded研究・試作はL3前でも許可範囲で進み、本実装／外部writeへ昇格しない。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "product_requirement_atom",
+      "ambiguity": "none",
+      "basis": "候補AC-02。限定研究/試作と本実装・外部write権限を分離する受入条件。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003776",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 239,
+      "source_line_sha256": "sha256:cc96e1a43d403ec7deecd9b1b36ab22143aeef20e3f72153edc14e35bac48f73",
+      "physical_line_sha256": "sha256:deb40f0a18caa5e1fcdf75a4befe891e0ccc54f04f5db7891e50110726efc8ea",
+      "source_text": "3. 承認済み範囲の技術差分と明示済み指示は重複承認0で進む。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "product_requirement_atom",
+      "ambiguity": "none",
+      "basis": "候補AC-03。委任内技術差分・既決指示に重複承認を求めない受入条件。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003777",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 240,
+      "source_line_sha256": "sha256:17f06cd6879019bef153d470f346b3f449c1628e54ea3832a803a7913dd590a7",
+      "physical_line_sha256": "sha256:ae2b782d5e9b16f1c18fd61b05e571cf1d07fed2a5b630048672e0e6c8e86d58",
+      "source_text": "4. 新しい価値判断・予算／権限拡張・policy自己拡張は自動通過しない。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "product_requirement_atom",
+      "ambiguity": "none",
+      "basis": "候補AC-04。価値判断・予算/権限拡張・policy自己拡張を自動通過させない受入条件。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003778",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 241,
+      "source_line_sha256": "sha256:e781f9f74c70e0ce72652e187ff8ec21fd8e45d443663bc93d653f67cc6f5b00",
+      "physical_line_sha256": "sha256:5042a36237eb8fb761cd0c56b009151eeb220044bb6b9605f9443a81ca9f85f9",
+      "source_text": "5. 変更scopeの旧writer／stale証拠を拒否し、無関係scopeは継続する。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "product_requirement_atom",
+      "ambiguity": "none",
+      "basis": "候補AC-05。stale writerと根拠を拒否し、無関係scopeを継続する受入条件。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003779",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 242,
+      "source_line_sha256": "sha256:1df43258a43805d3bc098a1d91e5f0c9be88f92b8da9c58577c2f7c60a45b69a",
+      "physical_line_sha256": "sha256:5aee76a5b69ae6b6ac67ecddabaadfeafb36f7b38020b8bb33d20b59ede0020c",
+      "source_text": "6. 偽造・取消・期限切れ根拠、競合revision、部分JSON更新、required判定のskipを拒否する。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "product_requirement_atom",
+      "ambiguity": "none",
+      "basis": "候補AC-06。根拠偽造/失効、revision競合、部分更新、required判定skipを拒否する受入条件。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003780",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "physical_line": 243,
+      "source_line_sha256": "sha256:1e5f10955eb38dc1d40ceef72a113f1988b3edea1a9f433563efb27d34ef43c5",
+      "physical_line_sha256": "sha256:40a6e84ee16b397fdc11558d9b7aeec38b4399d3935dd1d94746b8947016c700",
+      "source_text": "7. 統合テスト後も、意図訂正回数、再作業、PO介入回数、承認待ち時間、調査費用、逸脱・誤停止を測る。介入減だけで成功としない。",
+      "current_effective_classification": {
+        "semantic_class": "condition",
+        "atom_subtype": "product_requirement_atom",
+        "product_route": "unknown"
+      },
+      "prior_snapshot_classification": "requirement_atom",
+      "prior_snapshot_route": "unknown",
+      "proposed_classification": "management_process_condition",
+      "ambiguity": "none",
+      "basis": "統合後に組織運用の成果指標を継続測定する旧評価/recognition義務。外部製品の機能受入ではない。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    }
+  ],
+  "nonclaims": [
+    "No source requirement adoption or requirement meaning decision.",
+    "No successor assignment, relation, coverage, acceptance, implementation, or closure claim.",
+    "All source rows remain immutable historical_candidate bytes; proposed category is audit-only."
+  ]
+}
