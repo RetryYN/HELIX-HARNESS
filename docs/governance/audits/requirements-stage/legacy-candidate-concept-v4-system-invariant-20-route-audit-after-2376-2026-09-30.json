@@ -823,19 +823,19 @@
         "prior_181_intersection": [],
         "world_governance_60_intersection": []
       },
-      "route_assessment": "unknown",
+      "route_assessment": "partial",
       "compared_adopted_requirements": [
         {
           "id": "HELIXOS-L2-004",
-          "direct_predicate": false,
+          "direct_predicate": true,
           "L2_locator": {
             "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-            "line": 57,
+            "line": 293,
             "basis": "requirement_body_or_section"
           },
           "L11_acceptance_locator_separate": {
             "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-            "line": 24,
+            "line": 37,
             "basis": "acceptance_body_or_test_section"
           }
         },
@@ -882,9 +882,11 @@
           }
         }
       ],
-      "directly_matched_adopted_requirement_ids": [],
-      "direct_overlap": "採択述語との直接一致を特定できない。OS-L2-004の作成Worker自身/Subagent reviewを独立reviewに数えない条件と、OS-L2-008の上流意味review/下流CI分離を比較したが、author runtime内reviewを独立reviewへ昇格しない全境界とは同一でない。",
-      "residual_or_difference": "author runtime internal reviewと独立reviewの資格・経路を定める述語は固定採択L2/L11にない。",
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-004"
+      ],
+      "direct_overlap": "HELIXOS-L2-004の具体条件は、作成Worker自身またはそのSubagentによるreviewを独立reviewへ数えない。author runtime内reviewを独立reviewへ昇格しない旧述語のこの資格境界に部分一致する。",
+      "residual_or_difference": "author runtime全体の独立性判定（runtime、route、権限境界を含む）や、作成Worker/Subagent以外の自己review経路まではこの条件が列挙しない。",
       "authority_effect": "none"
     },
     {
@@ -1394,50 +1396,8 @@
         "prior_181_intersection": [],
         "world_governance_60_intersection": []
       },
-      "route_assessment": "unknown",
+      "route_assessment": "partial",
       "compared_adopted_requirements": [
-        {
-          "id": "HELIXOS-L2-009",
-          "direct_predicate": false,
-          "L2_locator": {
-            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-            "line": 62,
-            "basis": "requirement_body_or_section"
-          },
-          "L11_acceptance_locator_separate": {
-            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-            "line": 29,
-            "basis": "acceptance_body_or_test_section"
-          }
-        },
-        {
-          "id": "HELIXOS-L2-007",
-          "direct_predicate": false,
-          "L2_locator": {
-            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-            "line": 60,
-            "basis": "requirement_body_or_section"
-          },
-          "L11_acceptance_locator_separate": {
-            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-            "line": 27,
-            "basis": "acceptance_body_or_test_section"
-          }
-        },
-        {
-          "id": "HELIXOS-L2-002",
-          "direct_predicate": false,
-          "L2_locator": {
-            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-            "line": 55,
-            "basis": "requirement_body_or_section"
-          },
-          "L11_acceptance_locator_separate": {
-            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-            "line": 22,
-            "basis": "acceptance_body_or_test_section"
-          }
-        },
         {
           "id": "HARNESS-L2-010",
           "direct_predicate": false,
@@ -1465,11 +1425,71 @@
             "line": 206,
             "basis": "acceptance_body_or_test_section"
           }
+        },
+        {
+          "id": "HELIXOS-L2-001",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 54,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 43,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-002",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 55,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 43,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-007",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 60,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 43,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-009",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 62,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 29,
+            "basis": "acceptance_body_or_test_section"
+          }
         }
       ],
-      "directly_matched_adopted_requirement_ids": [],
-      "direct_overlap": "採択述語との直接一致を特定できない。OS-L2-009のevent projection冪等性とOS-L2-007の証拠記録を比較したが、同authority/eventから同一projectionを決定論的に再構築する条件を示さない。",
-      "residual_or_difference": "idempotent recovery projectionは同一入力からの決定論的再構築と同じ述語ではない。",
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-007"
+      ],
+      "direct_overlap": "HELIXOS-L2-001／002／007に結ばれたL11受入行は、原eventの出典・因果関係を再構築し、異なるengine/schema版でも原eventを保持して旧分類・stale・新projectionを別に確認する。原eventから再構築する条件も明記され、同じauthority/eventのprojection再構築という旧述語に部分一致する。",
+      "residual_or_difference": "同一authority/event入力から同じprojectionを決定論的に得ること、全projection種別の安定性やschema migration時の同値性は明示されない。",
       "authority_effect": "none"
     },
     {
@@ -1494,34 +1514,6 @@
       },
       "route_assessment": "unknown",
       "compared_adopted_requirements": [
-        {
-          "id": "HELIXOS-L2-007",
-          "direct_predicate": false,
-          "L2_locator": {
-            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-            "line": 60,
-            "basis": "requirement_body_or_section"
-          },
-          "L11_acceptance_locator_separate": {
-            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-            "line": 27,
-            "basis": "acceptance_body_or_test_section"
-          }
-        },
-        {
-          "id": "HELIXOS-L2-005",
-          "direct_predicate": false,
-          "L2_locator": {
-            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-            "line": 58,
-            "basis": "requirement_body_or_section"
-          },
-          "L11_acceptance_locator_separate": {
-            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-            "line": 25,
-            "basis": "acceptance_body_or_test_section"
-          }
-        },
         {
           "id": "HELIXLABO-L2-002",
           "direct_predicate": false,
@@ -1549,12 +1541,69 @@
             "line": 54,
             "basis": "acceptance_body_or_test_section"
           }
+        },
+        {
+          "id": "HELIXOS-L2-005",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 58,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 25,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-007",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 60,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 27,
+            "basis": "acceptance_body_or_test_section"
+          }
         }
       ],
       "directly_matched_adopted_requirement_ids": [],
-      "direct_overlap": "採択述語との直接一致を特定できない。OS-L2-007の証拠保持とLABO-L2-002の相関relation訂正を比較したが、receipt/finding/memoryに適用するtyped correctionまたはsupersessionを定義しない。",
-      "residual_or_difference": "relation訂正は元eventを書き換えない条件に限る。異種recordのtyped correction/supersessionとconsumer伝播は固定採択predicateにない。",
-      "authority_effect": "none"
+      "direct_overlap": "採択済みpredicateとの直接一致は認定しない。HELIXOS-L2-007の証拠保持、LABO-L2-002のrelation訂正に加え、固定f6のOS L2-015:647／L11:327候補文は原eventを保持した別revision訂正を扱うが、当該L2-015はL2:642の未採択単体候補で、L11:322も未実行案と明記するため採択根拠から除外する。",
+      "residual_or_difference": "receipt／finding／memoryそれぞれのtyped correction/supersession、record型間の適用、consumer伝播を定める採択済み述語が確認できない。候補文との意味関係は参考に記録し、採択状態・successorは生成しない。",
+      "authority_effect": "none",
+      "unadopted_candidate_comparison": {
+        "id": "HELIXOS-L2-015",
+        "L2_locators": [
+          {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 642,
+            "basis": "candidate_requirement_heading"
+          },
+          {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 647,
+            "basis": "candidate_requirement_clause"
+          }
+        ],
+        "L11_locators": [
+          {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 324,
+            "basis": "candidate_acceptance_heading"
+          },
+          {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 327,
+            "basis": "candidate_acceptance_clause"
+          }
+        ],
+        "relation": "原eventを保持した別revisionの訂正・分類の追跡という意味上の近接がある。",
+        "unadopted_reason": "L2:642は「単体候補」と明記し、L11:322はL2-015〜025を未実行の受入案と明記する。したがって採択済み要求の比較対象には含めない。"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002894",
@@ -2146,11 +2195,11 @@
         "prior_181_intersection": [],
         "world_governance_60_intersection": []
       },
-      "route_assessment": "unknown",
+      "route_assessment": "partial",
       "compared_adopted_requirements": [
         {
           "id": "HARNESS-L2-003",
-          "direct_predicate": false,
+          "direct_predicate": true,
           "L2_locator": {
             "path": "docs/helix-harness/L2-requirements/product-requirements.md",
             "line": 54,
@@ -2158,7 +2207,7 @@
           },
           "L11_acceptance_locator_separate": {
             "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-            "line": 23,
+            "line": 43,
             "basis": "acceptance_body_or_test_section"
           }
         },
@@ -2247,16 +2296,18 @@
           }
         }
       ],
-      "directly_matched_adopted_requirement_ids": [],
-      "direct_overlap": "採択述語との直接一致を特定できない。HARNESSのRelease/運用段階、OSの提供状態、LABO/INFRASTRUCTUREのincident履歴を比較したが、release successをdeployment successまたはincident closureへ変換しない直接predicateを特定できない。",
-      "residual_or_difference": "各stageのtrace/observabilityは同一視禁止・閉鎖条件と同義ではない。",
+      "directly_matched_adopted_requirement_ids": [
+        "HARNESS-L2-003"
+      ],
+      "direct_overlap": "HARNESS-L2-003のL11受入条件は、実装済み・総合検証済み・利用者受入済み・運用評価済みを区別し、一状態から残りを推定しない。Release successをDeployment成功やIncident closureと同一視しない旧条件に、状態間の非推定という部分で一致する。",
+      "residual_or_difference": "release／deployment／incident各状態の定義、因果関係、個別の成功判定・incident closure条件は固定条件に列挙されない。",
       "authority_effect": "none"
     }
   ],
   "counts": {
     "selected": 20,
-    "partial": 11,
-    "unknown": 9,
+    "partial": 14,
+    "unknown": 6,
     "proposal_pool_out_of_population": 0,
     "overlay_intersection": 0,
     "prior_181_intersection": 0,
