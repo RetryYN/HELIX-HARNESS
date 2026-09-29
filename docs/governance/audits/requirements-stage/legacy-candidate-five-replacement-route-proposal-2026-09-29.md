@@ -28,13 +28,13 @@ HARNESS-L2-004/005および対L11は、`docs/governance/decisions/helix-harness-
 
 旧source `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md` の物理file SHA-256は `7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc`。行本文、archive行番号、newlineを含むphysical-line SHA-256は隣接JSONに固定した。asset IDは`legacy-asset-disposition.jsonl`のpath照会が必要であり、このproposalではIDを推測しない。
 
-`#2360`はmerge/read-after済み（merge commit `5ca82b8ff4122a6f2141ed15e25420fafc01e4e0`）で、JSON本文のpath/commit/SHA-256 pinを反映した。#2361は訂正中で未mergeのため、その最終JSON pinはmerge/read-after後に確定する。R2362-02に従う全入力のpath/commit/SHA-256形式への更新も未完であり、現時点で#2362はReady/merge可能な状態ではない。
+`#2360`と#2361はいずれもmerge/read-after済みで、JSONの`audit_pins`に直接入力をpath/commit/実SHA-256で固定した。#2361 final pinは15 retained（000180を含む）と5 replacementの確定selectionを反映する。これらのpinはrelation提案の入力を特定するもので、旧要求採択やcoverageを意味しない。
 
-## 保留中の依存pin
+## 依存pinと選択の確認
 
 - #2360の最終JSON: `docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json`; merge commit `5ca82b8ff4122a6f2141ed15e25420fafc01e4e0`; SHA-256 `4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb`.
-- #2361の最終JSON: `docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-stage5-recount-after-2353-2356-2360-2026-09-29.json`。000180保持・置換5件を確認し、merge後のcommitと実SHA-256を取得する。
-- R2362-02の全lineage pin修正（PR audit inputsを含む）は別途未完。上記未確定のpinを使って選択の確定やmerge readinessを主張しない。
+- #2361の最終JSON: `docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-stage5-recount-after-2353-2356-2360-2026-09-29.json`; merge commit `132a56f3f2cbb1d02ad3bc08bab4f23ef93369cc`; SHA-256 `e29aadd8c84dda8fcfca65010ffa62331b6631ffce3ac22ef5d174270bb92b20`. 内容は000180を含む15 retainedとreplacement 000492/000496/000497/000499/000500を示す。
+- R2362-02で要求された全直接入力を隣接JSONの`audit_pins`にpath/commit/SHA-256で固定し、各file bytesを照合した。
 
 ## 境界
 

@@ -9,30 +9,105 @@
     "authority_state": "historical_candidate",
     "target_authority_state": "draft_candidate",
     "product_target": "unknown_cross_boundary_candidate_scope",
-    "product_target_note": "Current responsibility split suggests HARNESS verification obligations and OS CI execution/evidence, but the five old rows have no adopted product assignment."
+    "product_target_note": "Current responsibility split suggests HARNESS verification obligations and OS CI execution/evidence, but the five old rows have no adopted product assignment.",
+    "revision_commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0"
   },
   "audit_pins": {
     "pr_2361": {
-      "head": "aab65a4f1bc2f679530604cb7f89519683b9156c",
-      "role": "Expected corrected cumulative recount and five-row resample; relation assessment explicitly not performed. Current HEAD pin predates the final #2360/#2361 merge-pinned resample and is historical only."
+      "commit": "132a56f3f2cbb1d02ad3bc08bab4f23ef93369cc",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-stage5-recount-after-2353-2356-2360-2026-09-29.json",
+      "sha256": "e29aadd8c84dda8fcfca65010ffa62331b6631ffce3ac22ef5d174270bb92b20",
+      "role": "merged corrected cumulative recount and five-row resample; 15 retained including 000180"
     },
     "pr_2353": {
-      "head": "8a75e5392a44e005bb05197d977bdbcf75b93cf0",
-      "role": "base 4755-row cumulative classification and route recount"
+      "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+      "role": "merged 4755-row cumulative classification and route selector"
     },
     "pr_2356": {
-      "head": "b213b41735067d1716c143c92e0fa6c71d8e92d9",
-      "role": "nine-row classification overlay"
+      "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164",
+      "role": "merged nine-row classification overlay"
     },
     "pr_2360": {
       "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
       "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb",
-      "role": "merged corrected seven-row classification/atom overlay; exact merged file bytes"
+      "role": "merged corrected seven-row classification/atom overlay"
     },
-    "pr_2359_sample": {
-      "head": "4096b10020fd75fe8fc4f200855f27435912fc6f",
-      "role": "Original 20-row sample ID source; corrected selection retains 15 (including 000180) and replaces five."
+    "pr_2359_original_sample": {
+      "commit": "4096b10020fd75fe8fc4f200855f27435912fc6f",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-unknown-reselected-next20-route-audit-2026-09-29.json",
+      "sha256": "761628e1b5e190d6cc1a52cd13ec27558bec7b128f796ab391237e472ce27e15",
+      "role": "original 20-ID source set before resampling; not the superseded six-row route audit"
+    },
+    "legacy_cig_source": {
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "sha256": "7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "role": "old normative request source for the five CIG rows"
+    },
+    "harness_l2": {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "role": "adopted exact L2-004/005 revision"
+    },
+    "harness_l11": {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "role": "L11 text paired with adopted HARNESS L2-004/005 revision"
+    },
+    "os_l2": {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "role": "adopted exact OS L2-019/020/023 revision"
+    },
+    "os_l11": {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "role": "L11 text paired with adopted OS L2-019/020/023 revision"
+    },
+    "harness_po_decision": {
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "role": "authority basis for HARNESS paired L2/L11 agreement"
+    },
+    "os_po_decision": {
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "role": "authority basis for OS paired L2/L11 agreement and adopted candidate IDs"
+    },
+    "nci_harness_candidate": {
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+      "path": "docs/helix-harness/candidates/next-generation-ci-requirements.md",
+      "sha256": "565a2107e1e31cdfd2d6c53cdb1385be151a99c35f1d3a228b09d1ee4533f9cb",
+      "role": "unadopted candidate-only relation context"
+    },
+    "nci_os_candidate": {
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+      "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
+      "sha256": "4eae5f8dd485ed8c77d2ea7b6b0407028093c02566e5b92fce9d05a89307a49d",
+      "role": "unadopted candidate-only relation context"
+    },
+    "intelligence_l2_073_decision_context": {
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "role": "context caveat only; not used to route any CIG source row"
+    },
+    "mpr_register_l2_073_context": {
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+      "role": "context caveat only for MPR-RC-HELIXINTELLIGENCE-L2-073-002; not route evidence"
     }
   },
   "adopted_exact_revision_context": [
@@ -47,7 +122,10 @@
       "l2_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
       "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
       "l11_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
-      "scope": "adopted L2/L11 exact document revisions; generic/partial relation to CIG, no event-class details"
+      "scope": "adopted L2/L11 exact document revisions; generic/partial relation to CIG, no event-class details",
+      "decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "decision_commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+      "decision_file_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
     },
     {
       "ids": [
@@ -61,7 +139,10 @@
       "l2_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
       "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
       "l11_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
-      "scope": "adopted L2-001..029/L11 exact document revisions; generic/partial relation to CIG, no event-class details"
+      "scope": "adopted L2-001..029/L11 exact document revisions; generic/partial relation to CIG, no event-class details",
+      "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "decision_commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+      "decision_file_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
     }
   ],
   "unadopted_candidate_refs": [
@@ -73,7 +154,9 @@
         "NCI-HARNESS-003",
         "NCI-HARNESS-004"
       ],
-      "authority": "draft_candidate"
+      "authority": "draft_candidate",
+      "revision_commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+      "sha256": "565a2107e1e31cdfd2d6c53cdb1385be151a99c35f1d3a228b09d1ee4533f9cb"
     },
     {
       "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
@@ -87,7 +170,9 @@
         "NCI-OS-007",
         "NCI-OS-008"
       ],
-      "authority": "draft_candidate"
+      "authority": "draft_candidate",
+      "revision_commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+      "sha256": "4eae5f8dd485ed8c77d2ea7b6b0407028093c02566e5b92fce9d05a89307a49d"
     }
   ],
   "rows": [
@@ -211,14 +296,22 @@
     "The source rows remain historical candidates; no adoption, formal successor, full source coverage, acceptance, implementation, or Stage 5 closure is inferred."
   ],
   "old_runtime_cli_tests_hooks_ci_executed": false,
-  "pending_follow_up": {
-    "dependency_pin_refresh_status": "pending_after_pr_2361_merge",
-    "full_lineage_pin_status": "pending_R2362_02",
-    "required_actions": [
-      "After #2361 merge/read-after, pin its final JSON with merge commit, path, and actual SHA-256.",
-      "#2361 must confirm 15 retained rows including 000180 and replacements 000492/000496/000497/000499/000500.",
-      "Complete R2362-02 by replacing remaining head-only audit_pins with path/commit/SHA-256 for each input."
-    ],
+  "post_merge_verification": {
+    "dependency_pin_refresh_status": "complete_after_pr_2361_merge_read_after",
+    "full_lineage_pin_status": "complete_for_all_direct_inputs",
+    "verified_selection": {
+      "retained_count": 15,
+      "retained_includes": "LEGACY-CAND-LINE-000180",
+      "replacement_ids": [
+        "LEGACY-CAND-LINE-000492",
+        "LEGACY-CAND-LINE-000496",
+        "LEGACY-CAND-LINE-000497",
+        "LEGACY-CAND-LINE-000499",
+        "LEGACY-CAND-LINE-000500"
+      ],
+      "excluded_superseded_id": "LEGACY-CAND-LINE-000501"
+    },
+    "required_actions": [],
     "authority_effect": "none"
   }
 }
