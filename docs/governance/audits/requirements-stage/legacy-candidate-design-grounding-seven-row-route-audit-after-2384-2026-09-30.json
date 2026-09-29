@@ -368,6 +368,14 @@
       "HELIXOS_L11": {
         "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
         "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+      },
+      "SECURITY_L2": {
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c"
+      },
+      "SECURITY_L11": {
+        "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01"
       }
     },
     "comparison_rule": "Use exact f6dad2 L2/L11 bytes paired with the 2026-09-28 PO decision records. Compare explicit accepted requirement identities and the paired acceptance predicates only. The text notes that AVS/DGH remain draft candidates; citing a DGH predicate does not adopt the old DGH source, create successor/coverage, or inherit old candidate metadata.",
@@ -396,6 +404,15 @@
           52
         ],
         "basis": "The PO confirms the fixed L2/L11 set and adopts the explicit 16 candidate identities; HELIXOS-L2-001/002/003/007 are in the fixed agreed requirement set."
+      },
+      {
+        "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+        "sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+        "relevant_lines": [
+          18,
+          46
+        ],
+        "basis": "The fixed security L2/L11 set and accepted explicit candidate identities include HELIXSECURITY-L2-008; this authority predicate is related to release operations only."
       }
     ],
     "comparison_locators": [
@@ -472,6 +489,24 @@
         "specific_l2": "docs/helix-os/L2-requirements/governance-requirements.md:429-445",
         "specific_l11": "docs/helix-os/L11-acceptance/governance-acceptance.md:209-216",
         "scope": "Common logs/evidence keyed to project and requirement revision; DGH reactions/interpretations and objective/human acceptance comparison in fixed paired text."
+      },
+      {
+        "id": "HARNESS-L2-006",
+        "l2": "docs/helix-harness/L2-requirements/product-requirements.md:57",
+        "paired_l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:26",
+        "scope": "Consumer-facing service provision, selected service scope, dependencies, and release-catalog status."
+      },
+      {
+        "id": "HELIXOS-L2-014",
+        "l2": "docs/helix-os/L2-requirements/governance-requirements.md:617,619-628",
+        "paired_l11": "docs/helix-os/L11-acceptance/governance-acceptance.md:317",
+        "scope": "HELIX self-stage configuration and separate 1.0 arrival judgment; each stage declares its own capabilities and limitations."
+      },
+      {
+        "id": "HELIXSECURITY-L2-008",
+        "l2": "docs/helix-security/L2-requirements/security-requirements.md:46,140-148",
+        "paired_l11": "docs/helix-security/L11-acceptance/security-acceptance.md:32",
+        "scope": "Operation-specific authority for high-impact operations including release/deploy; it does not define Full/Lite acceptance or promotion semantics."
       }
     ]
   },
@@ -892,17 +927,33 @@
       "route_assessment": "unknown",
       "compared_adopted_requirement_ids": [],
       "compared_adopted_requirement_refs": [],
-      "direct_overlap": "",
-      "residual_or_difference": "Full acceptanceとLite consumer-safe subsetの別受入、およびLiteへの自動昇格・公開禁止を明示する同一predicateはない。Version 1からHELIX-Web完了を除く条件やリリース状態の追跡だけでは不足する。",
+      "direct_overlap": "No direct overlap identified. The references below are scope-adjacent only: service delivery, staged HELIX composition, design trace, and authority for high-impact operations do not define Full-versus-Lite acceptance or a Lite promotion/publication transition.",
+      "residual_or_difference": "No adopted predicate explicitly requires separate Full verification and Lite consumer-safe subset acceptance, or prohibits automatic Lite promotion/publication. The related predicates below do not supply that acceptance/transition condition.",
       "authority_effect": "none",
       "related_comparison_only_refs": [
         {
-          "id": "HARNESS-L2-007",
-          "l2": "docs/helix-harness/L2-requirements/product-requirements.md:58",
-          "paired_l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:27",
-          "reason": "Version 1/Web completion boundary is only a scope-adjacent check; it contains no Full-versus-Lite acceptance or Lite-promotion predicate.",
-          "specific_clause_l2": "docs/helix-harness/L2-requirements/product-requirements.md:58",
-          "specific_clause_l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:27"
+          "id": "HARNESS-L2-006",
+          "l2": "docs/helix-harness/L2-requirements/product-requirements.md:57",
+          "paired_l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:26",
+          "reason": "Related only: consumer-facing service scope, provided version, dependencies, and installation conditions; no Full-versus-Lite acceptance split or Lite-promotion/publication predicate.",
+          "specific_clause_l2": "docs/helix-harness/L2-requirements/product-requirements.md:57",
+          "specific_clause_l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:26"
+        },
+        {
+          "id": "HELIXOS-L2-014",
+          "l2": "docs/helix-os/L2-requirements/governance-requirements.md:617,619-628",
+          "paired_l11": "docs/helix-os/L11-acceptance/governance-acceptance.md:317",
+          "reason": "Related only: distinguishes HELIX stage release from 1.0 and requires stage capability boundaries; it says nothing about a Full/Lite consumer acceptance split or Lite promotion/publication.",
+          "specific_clause_l2": "docs/helix-os/L2-requirements/governance-requirements.md:619,627-628",
+          "specific_clause_l11": "docs/helix-os/L11-acceptance/governance-acceptance.md:317"
+        },
+        {
+          "id": "HELIXSECURITY-L2-008",
+          "l2": "docs/helix-security/L2-requirements/security-requirements.md:46,140-148",
+          "paired_l11": "docs/helix-security/L11-acceptance/security-acceptance.md:32",
+          "reason": "Related only: constrains authority for operations such as release/deploy, but does not define Full/Lite acceptance or the promotion/publication state transition.",
+          "specific_clause_l2": "docs/helix-security/L2-requirements/security-requirements.md:140-148",
+          "specific_clause_l11": "docs/helix-security/L11-acceptance/security-acceptance.md:32"
         }
       ]
     }

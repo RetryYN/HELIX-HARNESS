@@ -17,9 +17,9 @@
 
 ## 固定採択比較
 
-比較revisionは `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。L2/L11本文とPO decision-record SHAはJSONにpinした。OS DGH-BR-02本文はOS L2:429–445とpaired L11:209–216。HARNESS DGH節はL2:193–198、paired L11:120–122。比較は採択predicateの限定的な意味重なりだけを示す。DGH draft記述や旧candidate metadataから採用・successor・coverageは主張しない。
+比較revisionは `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。HARNESS/OS L2/L11本文およびそのPO decision-record SHAに加え、SECURITY-L2-008のL2/L11とPO判断もJSONにpinした。OS DGH-BR-02本文はOS L2:429–445とpaired L11:209–216。HARNESS DGH節はL2:193–198、paired L11:120–122。比較は採択predicateの限定的な意味重なりだけを示す。DGH draft記述や旧candidate metadataから採用・successor・coverageは主張しない。
 
-Locator略記: `H2` = `docs/helix-harness/L2-requirements/product-requirements.md`; `H11` = `docs/helix-harness/L11-acceptance/product-acceptance.md`; `O2` = `docs/helix-os/L2-requirements/governance-requirements.md`; `O11` = `docs/helix-os/L11-acceptance/governance-acceptance.md`. 各IDのpaired L2/L11行および specific clause はJSONに完全なpathで記録した。
+Locator略記: `H2` = `docs/helix-harness/L2-requirements/product-requirements.md`; `H11` = `docs/helix-harness/L11-acceptance/product-acceptance.md`; `O2` = `docs/helix-os/L2-requirements/governance-requirements.md`; `O11` = `docs/helix-os/L11-acceptance/governance-acceptance.md`; `S2` / `S11` = SECURITY L2/L11 files pinned in JSON. 各IDのpaired L2/L11行および specific clause はJSONに完全なpathで記録した。
 
 ## 行別route
 
@@ -31,7 +31,7 @@ Locator略記: `H2` = `docs/helix-harness/L2-requirements/product-requirements.m
 | `001052` / requirements:33 | partial | `HARNESS-L2-003` H2:54 / H11:23; L2.5 prototype/PoCを使う条件。 | existing contractの範囲、候補からimplementation authorityへ越境しない全条件、budget/repetition/deadline exhaustion時のunresolved terminal。 |
 | `001053` / requirements:34 | partial | `HARNESS-L2-004` H2:55 / H11:24; clause H2:195 / H11:121–122. `HARNESS-L2-026` H2:530–543 / H11:332–341. `HARNESS-L2-025` H2:544–558 / H11:342–360. `HELIXOS-L2-002` O2:55 / O11:22; clause O2:440–445 / O11:213–216. `HELIXOS-L2-007` O2:60 / O11:27; clause O2:443–445 / O11:214–216. | Issue階層と形成状態、Design problem identity、scoped hold/stale replacement refusalを含む全trace schemaと終端条件。 |
 | `001054` / requirements:35 | partial | `HARNESS-L2-003` H2:54 / H11:23; `HARNESS-L2-004` H2:55 / H11:24; `HELIXOS-L2-002` O2:55 / O11:22. 要求・prototype・design・verificationの一部追跡に限る。 | 候補→承認→canonical L1/L3/L10→IR→design/runtime→verification/dogfood→revisionの全順序、dogfood後canonical化是正、#397 IR連携。 |
-| `001055` / requirements:36 | unknown | 同一predicateなし。関連のみ: `HARNESS-L2-007` H2:58 / H11:27 (Web completion exclusionはFull/Lite acceptance predicateではない)。 | FullとLiteの別acceptance、およびLiteへの自動昇格・公開禁止。 |
+| `001055` / requirements:36 | unknown | 同一predicateなし。関連のみ: `HARNESS-L2-006` H2:57 / H11:26（サービス提供範囲）、`HELIXOS-L2-014` O2:617,619–628 / O11:317（HELIX段階と1.0の分離）、`HELIXSECURITY-L2-008` S2:46,140–148 / S11:32（release/deploy authority）。いずれもFull/Lite受入やLite遷移を定義しない。 | Full verificationとLite consumer-safe subsetの別acceptance、およびLiteへの自動昇格・公開禁止を定めるpredicateはない。関連predicateからこの欠落を補わない。 |
 
 ## 先行DGH意味監査との関係
 
