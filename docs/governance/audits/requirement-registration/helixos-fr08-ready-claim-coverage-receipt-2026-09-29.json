@@ -43,10 +43,10 @@
   "candidate_digest_calculation": "candidate_semantic_digest is SHA-256 over the exact UTF-8 bytes from the HELIXOS-L2-055 heading through EOF in the L2 file; this is also l2_section_sha256 below.",
   "candidate_revision_evidence": {
     "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
-    "l2_file_sha256": "sha256:ce8f30a5bd1f301472b280bc9b448bb0677474f9b86b9864e1fbd626d49cecf1",
+    "l2_file_sha256": "sha256:d95b401cd63bf6db7c83da44403e7b002657c9f36e996e927b2502b143b4148f",
     "l2_section_sha256": "sha256:6d23a405ce2c0c6d56a65a4b02d9c39ead8533db3064058dcd7027b641fb9052",
     "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-    "l11_file_sha256": "sha256:1796b46f7a5c8b6b0c41dd93c1140ae7c26c0f7fa1760bae531900e24fcdfa3f",
+    "l11_file_sha256": "sha256:6b18944a5dce92ec730755c723923cf54bcc44f027bfaf47a9073eee0a0ef7e1",
     "l11_section_sha256": "sha256:6bc639b45df952b7cf6cb7433ba3e2bfad978265681ac4ef0fbf03bdc4eb33a2"
   }
 }
