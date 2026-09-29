@@ -59,7 +59,8 @@
     {
       "role": "authority_state_model",
       "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
-      "path": "docs/governance/authority-state-model.md"
+      "path": "docs/governance/authority-state-model.md",
+      "sha256": "812f423b4b9952666b0ef91e741fec62f54caa3c884124ec534abbbe70be4616"
     },
     {
       "role": "current_intelligence_po_decision",
@@ -177,11 +178,11 @@
       "physical_line_bytes_sha256": "56bd3f21dda0e993a0bfb0c5ed2b9227609bfd4c76e2ce628d33da767065578b",
       "router_classification": "explanation",
       "cumulative_proposal_classification": "condition/product_requirement_atom",
-      "proposed_classification": "condition/management_process_condition",
-      "classification_delta": "subtype product_requirement_atom to management_process_condition; condition remains",
-      "atom_boundary": "Single mixed scope-control condition. Preserve auto-Design-change prohibition and the stated old promotion evidence as historical qualifiers; do not treat the human gate as a current recurring approval requirement.",
-      "proposed_route": "outside_product_route_population",
-      "reason": "The clause governs promotion/change-control procedure and human authority rather than an external product capability. Classification follows the process-boundary distinction documented for source 000111 in #2356, without importing its authority effect.",
+      "proposed_classification": "condition/product_requirement_atom",
+      "classification_delta": "none",
+      "atom_boundary": "AAFD-R-15 is one composite normative atom across archive lines 108-109: benchmark results are candidate evidence for Learning System; a single model revision result must not automatically change rule, provider routing, Requirement, or Design. The line-109 promotion-evidence clause qualifies this same boundary. Preserve the entire composite; do not split off the Design phrase or lose the rule/provider-routing/Requirement prohibitions from line 108.",
+      "proposed_route": "unknown",
+      "reason": "This is a product promotion boundary on Learning System benchmark evidence: a single model revision cannot automatically change rule, provider routing, Requirement, or Design. The listed #1035/#1384 independent VERIFY, counterexample, expiry, and human gate are historical candidate qualifiers for promotion evidence; they are not imported as a new current recurring approval procedure.",
       "authority_effect": "none"
     },
     {
@@ -215,7 +216,7 @@
       "proposed_classification": "explanation",
       "classification_delta": "condition to explanation; product atom removed",
       "atom_boundary": "Metadata only: list of four supporting requirement IDs and count. Do not form an independent atom.",
-      "proposed_route": "outside_product_route_population",
+      "proposed_route": "not_condition",
       "reason": "Under the '量閉じ' heading, this line reports counts and references. Behavioral acceptance conditions appear in distinct source rows 14-20.",
       "authority_effect": "none"
     },
@@ -232,7 +233,7 @@
       "proposed_classification": "explanation",
       "classification_delta": "condition to explanation; product atom removed",
       "atom_boundary": "Metadata only: list of seven acceptance IDs and count. Do not form an independent atom.",
-      "proposed_route": "outside_product_route_population",
+      "proposed_route": "not_condition",
       "reason": "Under the '量閉じ' heading, this line reports counts and references. Acceptance criteria are separately enumerated in source rows 14-20.",
       "authority_effect": "none"
     }
@@ -240,9 +241,12 @@
   "proposed_delta": {
     "condition": -2,
     "explanation": 2,
-    "management_process_condition": 1,
-    "product_requirement_atom": -3,
-    "product_route_unknown": -3,
+    "management_process_condition": 0,
+    "product_requirement_atom": -2,
+    "product_population": -2,
+    "product_route_unknown": -5,
+    "product_route_adopted_relevant_partial": 3,
+    "product_route_not_condition": 2,
     "requires_resampling_next_batch": true
   },
   "authority_limits": [
@@ -251,5 +255,33 @@
     "The historical human gate in source line 109 is not elevated into a new current approval procedure.",
     "Explanation classification preserves the original archive row and does not delete source history."
   ],
-  "validation_scope": "Document and JSON consistency, source pin/line digest checks, and current static validation only; no archive runtime, CLI, test, CI, hook, or config was executed."
+  "validation_scope": "Document and JSON consistency, source pin/line digest checks, and current static validation only; no archive runtime, CLI, test, CI, hook, or config was executed.",
+  "review_findings": [
+    {
+      "id": "R2360-01",
+      "status": "addressed",
+      "change": "000180 remains condition/product_requirement_atom and records AAFD-R-15 as a single composite atom across source lines 108-109."
+    },
+    {
+      "id": "R2360-02",
+      "status": "addressed",
+      "change": "Route delta reconciles three product rows moving from unknown to adopted_relevant_partial and two rows moving to not_condition; 000180 remains unknown."
+    },
+    {
+      "id": "R2360-03",
+      "status": "deferred_until_dependencies_merge",
+      "change": "The #2353/#2356 pins remain fixed to their reviewed PR snapshots. Refresh these pins after both dependencies merge; this proposal is not merge-ready against the future merged main until refreshed."
+    },
+    {
+      "id": "R2360-04",
+      "status": "addressed",
+      "change": "Use not_condition for explanation rows, retain management_successor_unresolved only for management process conditions, and add the authority-state-model SHA-256."
+    }
+  ],
+  "dependency_pin_refresh": {
+    "status": "deferred_until_2353_and_2356_merge",
+    "current_pins_are_reviewed_pr_snapshots": true,
+    "after_merge_action": "Refresh the #2353 and #2356 pinned_inputs to merged commit/path bytes, rebase or regenerate this audit on current main, and rerun the full-population route recount before merge admission.",
+    "merge_admission": "not_satisfied_until_refresh"
+  }
 }
