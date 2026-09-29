@@ -12,15 +12,15 @@
   "l11_digest_rule": "labo-acceptance.mdの「### HELIXLABO-L2-071 」見出しから末尾までをUTF-8で取り、末尾空行を除いて改行1つで終える。そのSHA-256をsha256:付きで記す。",
   "l11_file_sha256": "sha256:39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
   "source_lines_ref": "docs/governance/audits/requirement-registration/labo-github-audit-qualification-source-lines-2026-09-29.jsonl",
-  "source_atom_set_digest": "sha256:6670853b7077e46a48577f334644a4e3e20f8f99cbf38f227ce4cc336e9679ee",
+  "source_atom_set_digest": "sha256:3bc3f3302f1894ae15ed60347bf31c40dc2dee6d04a32774fcfe646a55e6c616",
   "source_atom_set_digest_rule": "atom_id昇順。各atomの `atom_id SP source_line_sha256（sha256:を除く） LF` のUTF-8 bytesを連結してSHA-256をsha256:付きで記す。候補subsetに限る。",
-  "source_collection_scope": "MPR-SH-CONFIRMED-003が保全するconfirmed175 identityのうち、3L-BR-008 line 69本文一atomのみ。line 67見出しはsource identity確認用で入力atomに重複計上しない。旧L3詳細、test design、runtime/consumer closureは含めない。",
+  "source_collection_scope": "MPR-SH-CONFIRMED-003 holds the confirmed 3L-BR-008 source identity anchored by old L1 line 67; this candidate selects its attached body span at line 69 as one local input atom. The holding row/atom remains unchanged; line 69 is not represented as a separate held row. Old L3 lines 77-79, old test-design lines 23-35, neighboring BRs, runtime and consumer closure are context only and excluded.",
   "source_collection_atom_count": 1,
   "candidate_input_atom_refs": [
     "CONFIRMED-3L-BR-008"
   ],
   "candidate_input_atom_count": 1,
-  "candidate_input_atom_set_digest": "sha256:6670853b7077e46a48577f334644a4e3e20f8f99cbf38f227ce4cc336e9679ee",
+  "candidate_input_atom_set_digest": "sha256:3bc3f3302f1894ae15ed60347bf31c40dc2dee6d04a32774fcfe646a55e6c616",
   "candidate_input_accounting_status": "選択した1 atomをHELIXLABO-L2/L11-071の未採択候補へ限定対応した。no_lossはこのcandidate mappingのみに限る。formal successor、owner移管、scope、採否、qualification rubric・threshold・schedule、runtimeまたは条件closureを示さない。",
   "source_line_coverage_result": "candidate_input_scoped; formal_successor_owner_scope_and_adoption_unconfirmed",
   "condition_closure": "not_asserted",
@@ -42,7 +42,7 @@
       "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
       "source_file_sha256": "sha256:e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765",
       "source_line": 69,
-      "source_line_sha256": "sha256:c3b70c8c3575ca3b19b5dee7e744734ecb5386a8c0c369458dfd4f40b662de91",
+      "source_line_sha256": "sha256:cdb797e688296917ee4c54a9bf77ff12ac650ae56dc8dcf414f4e100c0e71969",
       "source_text": "HELIX-BenchはGitHub監査task classごとにmodel revisionを評価し、称号、資格、権限、assignment roleを分離する。重大missやmodel更新で資格を失効させる。",
       "source_clause_kind": "business_requirement",
       "atomization_rationale": "MPR-SH-CONFIRMED-003が保全する3L-BR-008 identityに属する本文一行を一atomとして選択した。見出しline 67はidentity確認用で候補入力atomに重複計上しない。旧L3のclass列挙、状態遷移、期限、provider/lane、test design、runtime、consumer closureは入力外。",
@@ -97,11 +97,10 @@
   "legacy_failure_and_consumer": {
     "asset_disposition": "source_snapshot_preservation; non_executable_read_only_source",
     "consumer_refs": [
-      "requirement-carry-forward-ledgers",
-      "requirement-atomization-review"
+      "LEGACY-ASSET-A6926200F28B26300432 asset-level refs: requirement-carry-forward-ledgers; requirement-atomization-review"
     ],
     "failure_or_runtime_evidence": "not established by selected L1/L3/test-design source documents; old test-design is a static recognition design, not an execution receipt",
-    "closure_status": "pending; this candidate does not claim old runtime implementation, test execution, or consumer closure"
+    "closure_status": "Those are source-snapshot preservation/atomization process refs only, not runtime consumer closure. Old L3/test-design refs are context only, not holding atoms, selected input, or consumer evidence."
   },
   "evidence_refs": [
     "docs/concept/helix-concept.md",
@@ -119,5 +118,9 @@
     "docs/governance/management-provisional-requirement-registration.md"
   ],
   "registered_at": "2026-09-29T15:43:00+09:00",
-  "coverage_baseline_head": "0930015061b4ada2de003eff9f3d60faab33f6a2"
+  "coverage_baseline_head": "0930015061b4ada2de003eff9f3d60faab33f6a2",
+  "context_only_refs": [
+    "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/three-lane-cloud-governance-requirements.md:77-79",
+    "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/three-lane-cloud-governance-recognition.md:23-35"
+  ]
 }
