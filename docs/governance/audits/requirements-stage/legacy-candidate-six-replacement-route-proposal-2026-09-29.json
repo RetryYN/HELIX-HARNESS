@@ -1,0 +1,235 @@
+{
+  "schema_version": "helix-legacy-candidate-six-replacement-route-proposal.v1",
+  "proposal_id": "legacy-candidate-six-replacement-route-proposal-2026-09-29",
+  "authority_effect": "none",
+  "proposal_status": "static_semantic_relation_proposal",
+  "source": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+    "file_sha256": "7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+    "authority_state": "historical_candidate",
+    "target_authority_state": "draft_candidate",
+    "product_target": "unknown_cross_boundary_candidate_scope",
+    "product_target_note": "Current responsibility split suggests HARNESS verification obligations and OS CI execution/evidence, but the six old rows have no adopted product assignment."
+  },
+  "audit_pins": {
+    "pr_2361": {
+      "head": "aab65a4f1bc2f679530604cb7f89519683b9156c",
+      "role": "cumulative recount and six-row resample; relation assessment explicitly not performed"
+    },
+    "pr_2353": {
+      "head": "8a75e5392a44e005bb05197d977bdbcf75b93cf0",
+      "role": "base 4755-row cumulative classification and route recount"
+    },
+    "pr_2356": {
+      "head": "b213b41735067d1716c143c92e0fa6c71d8e92d9",
+      "role": "nine-row classification overlay"
+    },
+    "pr_2360": {
+      "head": "89a5f57cbc8dc6b0dc6828233992640c919fb03c",
+      "role": "seven-row classification/atom overlay"
+    },
+    "pr_2359_sample": {
+      "head": "4096b10020fd75fe8fc4f200855f27435912fc6f",
+      "role": "20-row sample source; 14 retained and six replaced"
+    }
+  },
+  "adopted_exact_revision_context": [
+    {
+      "ids": [
+        "HARNESS-L2-004",
+        "HARNESS-L2-005"
+      ],
+      "decision": "HDEC-HARNESS-REQUIREMENTS-2026-09-28",
+      "fixed_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "l2_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "l11_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "scope": "adopted L2/L11 exact document revisions; generic/partial relation to CIG, no event-class details"
+    },
+    {
+      "ids": [
+        "HELIXOS-L2-019",
+        "HELIXOS-L2-020",
+        "HELIXOS-L2-023"
+      ],
+      "decision": "HDEC-HELIXOS-REQUIREMENTS-PO-2026-09-28",
+      "fixed_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "l2_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "l11_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "scope": "adopted L2-001..029/L11 exact document revisions; generic/partial relation to CIG, no event-class details"
+    }
+  ],
+  "unadopted_candidate_refs": [
+    {
+      "path": "docs/helix-harness/candidates/next-generation-ci-requirements.md",
+      "ids": [
+        "NCI-HARNESS-001",
+        "NCI-HARNESS-002",
+        "NCI-HARNESS-003",
+        "NCI-HARNESS-004"
+      ],
+      "authority": "draft_candidate"
+    },
+    {
+      "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
+      "ids": [
+        "NCI-OS-001",
+        "NCI-OS-002",
+        "NCI-OS-003",
+        "NCI-OS-004",
+        "NCI-OS-005",
+        "NCI-OS-006",
+        "NCI-OS-007",
+        "NCI-OS-008"
+      ],
+      "authority": "draft_candidate"
+    }
+  ],
+  "rows": [
+    {
+      "source_id": "LEGACY-CAND-LINE-000492",
+      "source_line": 18,
+      "source_text": "一方で、単に全runを並走させてqueue、費用、古い証拠を無制限化してはならない。",
+      "source_line_sha256_without_eol": "59574435a104ef3b087ee55aae7d0b6b5dd67fa50bc9710085d420b37cfc2526",
+      "physical_line_bytes_sha256": "c0a71bfad91d864fcd46424021908cfa160889d91e63a4421c5d4eff9acfb0e8",
+      "proposed_route": "adopted_relevant_partial",
+      "adopted_refs": [
+        "HARNESS-L2-005/L11",
+        "HELIXOS-L2-020/L11"
+      ],
+      "candidate_only_refs": [
+        "NCI-HARNESS-001..004",
+        "NCI-OS-005"
+      ],
+      "true_unknowns": [
+        "event-class specific proof duties",
+        "parallelism/queue/cost bounds",
+        "policy preventing unbounded stale evidence"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000496",
+      "source_line": 23,
+      "source_text": "| `CIG-BR-02` | current mainの検収を失わず、stale世代だけを有界に置換できる | `CIG-R-02`, `CIG-R-03` |",
+      "source_line_sha256_without_eol": "54da727c33e1c968dde952d86d8c87554125586c0933489b3f6fdbafd3979f8a",
+      "physical_line_bytes_sha256": "905a84864320d563f74a95c8b11978834ee28d0c645b8da6f95b3239afff688a",
+      "proposed_route": "adopted_relevant_partial",
+      "adopted_refs": [
+        "HARNESS-L2-004/L11",
+        "HARNESS-L2-005/L11",
+        "HELIXOS-L2-020/L11"
+      ],
+      "candidate_only_refs": [
+        "NCI-HARNESS-004",
+        "NCI-OS-001",
+        "NCI-OS-003",
+        "NCI-OS-005"
+      ],
+      "true_unknowns": [
+        "current-main protection during supersession",
+        "bounded stale-generation replacement rule",
+        "event-class non-interference"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000497",
+      "source_line": 24,
+      "source_text": "| `CIG-BR-03` | cancel・handoff・terminal結果を証拠から再構築できる | `CIG-R-03`, `CIG-R-04` |",
+      "source_line_sha256_without_eol": "42f14d5e3d614691ce97ac6ad86307e00cde4e2638c74d13b512a9b1576cb621",
+      "physical_line_bytes_sha256": "d0367d7f95ab67596c8a5e72804b6635017f49fae9289cf8e9ef5bd31f36eafb",
+      "proposed_route": "adopted_relevant_partial",
+      "adopted_refs": [
+        "HELIXOS-L2-019/L11",
+        "HELIXOS-L2-020/L11"
+      ],
+      "candidate_only_refs": [
+        "NCI-OS-003",
+        "NCI-OS-004",
+        "NCI-OS-008"
+      ],
+      "true_unknowns": [
+        "CIG-specific terminal evidence schema",
+        "cancel/handoff causal chain",
+        "event-class terminal rules"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000499",
+      "source_line": 28,
+      "source_text": "- current canonical HEADのterminal証拠を安定して取得できる。",
+      "source_line_sha256_without_eol": "ec626939ed95bf2fe355d787c4e39f80f6ab28d73d1b0645631297a6df02c9e0",
+      "physical_line_bytes_sha256": "714d981e667b0d70072b630d0e3d0e54941a418a1bc7cd6664cb995d69e1130a",
+      "proposed_route": "adopted_relevant_partial",
+      "adopted_refs": [
+        "HARNESS-L2-005/L11",
+        "HELIXOS-L2-019/L11",
+        "HELIXOS-L2-020/L11"
+      ],
+      "candidate_only_refs": [
+        "NCI-HARNESS-002",
+        "NCI-HARNESS-004",
+        "NCI-OS-003"
+      ],
+      "true_unknowns": [
+        "canonical HEAD definition",
+        "HEAD update race handling",
+        "stable terminal evidence retrieval condition"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000500",
+      "source_line": 29,
+      "source_text": "- stale PR HEADと重複scheduleは、別event classへ影響せずboundedに置換できる。",
+      "source_line_sha256_without_eol": "71b9164791062edec41697b3ed306f6f6bcb46b56fa608261765691a4e42e4a4",
+      "physical_line_bytes_sha256": "5ea593b6abccc58a2f3fc9eb4f564d9ed3f635fa2b8bb4b73e7bead0d043f51b",
+      "proposed_route": "adopted_relevant_partial",
+      "adopted_refs": [
+        "HARNESS-L2-005/L11",
+        "HELIXOS-L2-020/L11"
+      ],
+      "candidate_only_refs": [
+        "NCI-OS-003",
+        "NCI-OS-005",
+        "NCI-OS-008"
+      ],
+      "true_unknowns": [
+        "stale PR vs duplicate schedule identity",
+        "cross-event-class isolation",
+        "bounded supersession policy"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000501",
+      "source_line": 30,
+      "source_text": "- cancel、supersede、handoffの理由と対象を後から再構築できる。",
+      "source_line_sha256_without_eol": "8bca62507e48cc19085a00746131d39a653aaa28866431c81b5bbf527b3566da",
+      "physical_line_bytes_sha256": "a71d4dd9c98f1ec4497e70e54497aac1894c815687ebacfea5e1e8aab61e12c1",
+      "proposed_route": "adopted_relevant_partial",
+      "adopted_refs": [
+        "HELIXOS-L2-019/L11",
+        "HELIXOS-L2-023/L11",
+        "HELIXOS-L2-020/L11"
+      ],
+      "candidate_only_refs": [
+        "NCI-OS-003",
+        "NCI-OS-004",
+        "NCI-OS-008"
+      ],
+      "true_unknowns": [
+        "CIG-specific reason/target fields",
+        "cancel/supersede authority binding",
+        "reconstruction rules"
+      ]
+    }
+  ],
+  "authority_caveats": [
+    "Every proposed adopted_relevant_partial relation is an audit proposal to already-adopted generic exact revisions; it does not assign an old-row successor or prove coverage.",
+    "NCI candidate relation alone is unadopted_candidate_only and cannot be upgraded by similar wording or a route count.",
+    "HELIXINTELLIGENCE-L2-073 is adopted under MPR-RC-HELIXINTELLIGENCE-L2-073-002 by docs/governance/decisions/po-decision-2026-09-29-57candidates.md:86 at the exact L2/L11 digests recorded there; its stale candidate metadata is predecision snapshot. It is unrelated to the six CIG source atoms and is not used as their route.",
+    "The source rows remain historical candidates; no adoption, formal successor, full source coverage, acceptance, implementation, or Stage 5 closure is inferred."
+  ],
+  "old_runtime_cli_tests_hooks_ci_executed": false
+}
