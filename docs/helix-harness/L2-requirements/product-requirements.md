@@ -1225,3 +1225,12 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 - **4軸の結果**：review結果は整合、網羅、一貫、明確をそれぞれ独立に示し、各軸の根拠となる対象文書revision・scope・箇所または参照・理由を結ぶ。軸を相殺・集約して個別結果を失わない。指摘がない軸も、その対象と確認結果を明示する。所見は修正案の提示を含められるが、review能力は対象文書を変更しない。
 - **不成立・境界**：該当triggerでreviewが未実施、結果・4軸・根拠revision/scopeが欠落またはunknown/staleの場合、対応する文書品質条件をcompleteとせず、適用stage/gateの品質証拠は未完またはunknownとして返す。その品質条件がgateの適用前提なら、reviewが揃うまで当該gateを通過させない。ただしPOは、対象revision・scope・未完の条件・通過を許す理由を明示して記録を残し、当該gateのこの文書review条件だけを例外として通過させられる。記録は監査可能に保持し、review未実施・unknownの事実を消さない。AI、reviewer、gate運転者は自分で例外を作れず、POの記録がない場合は通過できない。この例外は他の品質・安全・authority条件の免除、要求採択、approval、merge、releaseの許可ではない。旧G1/G3/G7/G11を現行の固定gate集合として再導入しない。
 - **既存責務との関係・差分**：HARNESS-L2-005のticket/risk別検証選択、HARNESS-L2-022の段階別oracle/evidence、HELIXOS-L2-018の作成と独立review、exact HEADを対象とする現行GitHub reviewは一般・隣接契約として残るが、BR-08/FR-L1-45の三triggerと4軸を個別に保証する契約とは同値でない。本候補はその不足条件と旧FR-L1-45の記録付きPO例外の意味を限定再導出し、各既存要求を改訂・置換しない。旧role名、`.helix/audit`記録先、G1/G3/G7/G11の固定gate集合、`HELIX_DOC_REVIEWER_BYPASS`環境変数は方式として採用しない。保持する点はPOだけが理由を記録して該当文書review条件を例外処置できること、変更する点はその操作方法を旧環境変数・旧保存先へ固定しないことである。旧環境変数だけでは対象revision・scope・未完条件・理由を記録へ結べないため、現行の証拠・authority境界に沿う記録条件へ再導出する。その他の旧方式とsource line全体のclosureは保留し、旧source holdingを維持する。
+
+
+### HARNESS-L2-062 baseline debtと新規debt ratchet候補（HARNESS-CORE単体、未採択）
+
+- **状態・親**：未採択の要求意味候補、`registered_proposal`／`authority_effect: none`。主親は`HARNESS-L1-004`（対象revisionとriskに合う検証義務・反例・証拠・差戻し条件）。既存のHARNESS-L2-004/005とL11は変更しない。
+- **候補条件**：適用可能な既存authorityが与えるbaseline debt集合と、同一scope・比較対象のcurrent debt集合を照合し、baselineに含まれるdebtとbaselineに含まれないnew debtを結果上で区別する。new debtが比較で得られた場合、ratchet結果を成立/passとして返さない（fail-close）。baseline debtの存在だけから許容・免除・解消を推定しない。
+- **未確定入力**：baselineのauthority、identity/revision、適用scope、鮮度、current debt集合、両集合に共通して適用するdebt分類基準、baseline更新規則または比較に必要な入力が欠落・unknown・stale・conflictなら、比較結果はunknown/未評価として保持し、ratchet成立を示さない。これらの値や決定者を本候補で新設せず、上流または適用ownerの既存契約へ戻す。閾値やdebt種別も追加しない。
+- **所有境界**：HARNESSは対象revisionの検証oracleとfail-close結果の意味を定める。HELIX-OSのL1/L2は管理記録、状態、実行・運転を扱う。近接する採択済みHELIXOS-L2-037（57候補判断）の週次drift/debt観測・ticket引継ぎ候補は別の運転接続であり、HARNESSのdebt分類・baseline authorityやratchet判定を与えない。source owner移管は推定しない。
+- **差分と保留**：旧DAC-FR-007 line 54のbaseline/new debt分離とnew-debt fail-closeを限定して再導出する。旧要求はbaseline定義、baseline選定権限、分類閾値、更新条件を指定しないため本候補も定義しない。候補は比較結果の意味だけであり、censusの実装・全repo scope・許可、既存debtの受容、旧source全体のformal successor、採択、実装・実行を主張しない。
