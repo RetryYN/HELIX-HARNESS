@@ -1,0 +1,749 @@
+{
+  "schema_version": "legacy-candidate-classification-correction-overlay.v1",
+  "audit_id": "legacy-candidate-source-metadata-reclassification-2026-09-29",
+  "created_against_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+  "classification_basis_commit": "9926aebfbec7813d14a84490758783153422d99e",
+  "authority_effect": "none",
+  "audit_mode": "append_only_bounded_source_classification_correction_proposal",
+  "scope": {
+    "reason": "Reassess status/identity/provenance rows that #2353 still counts as product_requirement_atom / unknown, including the two rows explicitly flagged by parent review.",
+    "source_ids": [
+      "LEGACY-CAND-LINE-000111",
+      "LEGACY-CAND-LINE-000250",
+      "LEGACY-CAND-LINE-000251",
+      "LEGACY-CAND-LINE-000252",
+      "LEGACY-CAND-LINE-000287",
+      "LEGACY-CAND-LINE-000288",
+      "LEGACY-CAND-LINE-000289",
+      "LEGACY-CAND-LINE-000290",
+      "LEGACY-CAND-LINE-000382"
+    ],
+    "all_ids_are_product_requirement_atoms_before_this_proposal": true,
+    "not_a_route_coverage_or_requirement_adoption_audit": true
+  },
+  "pinned_inputs": [
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "source_commit": "9926aebfbec7813d14a84490758783153422d99e",
+      "sha256": "5d810a881d29711b0640e8641df2678b6fe9ee41767936d0289e0cf0e4948110"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.md",
+      "source_commit": "9926aebfbec7813d14a84490758783153422d99e",
+      "sha256": "203250dba053db1df94c3a6eb340238988a47681c34781eaae2f5856a4ce679c"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+      "source_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "source_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-readme-pointer-classification-audit-2026-09-29.md",
+      "source_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "sha256": "36098e56476a0d45c20b6b104a7754b0043c3454b8ac978d045516666f02fd50"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-readme-pointer-classification-audit-2026-09-29.json",
+      "source_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "sha256": "b6623006ada51b38d8d90e9a0aaffd186135fc46fbac5f164cda92c049f20262"
+    },
+    {
+      "path": "docs/governance/decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md",
+      "source_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "sha256": "899cc2affe05ae0c72fa873fe1c5dfe9f6bbe3a0e77089ef2e087ed63a4765cf"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md",
+      "source_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "sha256": "f2c2db07995b10ee8a384fdafc8c54b2e2bb9d4a5fc64d8057f28a8daa569c46"
+    },
+    {
+      "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+      "source_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "sha256": "8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8"
+    },
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "source_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "sha256": "14c6947262f7e7cc92e7200cafd301ebd49c4146c97f665f0548c6b2b2e9e16d"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "source_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "sha256": "7467fad5256db9af823e7be860e21e52df58efb43ad4855c7127c2053106214d"
+    },
+    {
+      "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "source_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "source_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "sha256": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e"
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "source_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf"
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "source_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112"
+    },
+    {
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "source_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
+    },
+    {
+      "path": "docs/helix-intelligence/candidates/audit-bounded-repair-requirements.md",
+      "source_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "sha256": "c7cbeec9123ebcbc75ab7a6740bbe00244bd7c173fffe44ad3dec390ff76834a"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "source_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "sha256": "7467fad5256db9af823e7be860e21e52df58efb43ad4855c7127c2053106214d"
+    },
+    {
+      "path": "docs/governance/authority-state-model.md",
+      "source_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "sha256": "812f423b4b9952666b0ef91e741fec62f54caa3c884124ec534abbbe70be4616"
+    }
+  ],
+  "proposed_classification_delta_if_overlay_applied": {
+    "condition": -8,
+    "explanation": 8,
+    "management_process_condition": 1,
+    "product_requirement_atom": -9,
+    "product_route_unknown": -9,
+    "management_successor_unresolved": 1,
+    "source_rows_total": 0
+  },
+  "rows": [
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000111",
+      "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requests.md",
+      "source_line": 45,
+      "asset_id": "LEGACY-ASSET-8247A056F30FF91E4B8D",
+      "source_file_sha256": "d78bbcc0ca184bfb87dc2bbc932291f97a58bf9f0fd703481489f15944be9b76",
+      "source_line_sha256": "sha256:19417f7abca0212162b69e660785f73158be91d6efe984d4836247173a3ac2f3",
+      "physical_line_bytes_sha256": "feffff9aa1a3e27fc434dc04928ac2c2f490d7fe54c236963a323823d616fc58",
+      "physical_line_bytes_base64": "LSDmnKzmlofjga9jYW5kaWRhdGXjgafjgYLjgorjgIFwbGFu5Zu65pyJTDPmib/oqo3liY3jga9jdXJyZW50IGF1dGhvcml0eeOBp+OBr+OBquOBhOOAggo=",
+      "source_text": "- 本文はcandidateであり、plan固有L3承認前はcurrent authorityではない。",
+      "neighboring_source_context": [
+        {
+          "physical_line": 40,
+          "line_text": "## 境界"
+        },
+        {
+          "physical_line": 41,
+          "line_text": ""
+        },
+        {
+          "physical_line": 42,
+          "line_text": "- 新しいworkflow route、development style、DB authority、resident laneを作らない。"
+        },
+        {
+          "physical_line": 43,
+          "line_text": "- UIL、TER、Future Synthesis、System Synthesis、Learning Systemを再実装しない。"
+        },
+        {
+          "physical_line": 44,
+          "line_text": "- AI監査、delta、future directiveはRequirement、Design、Release、Assignment、merge authorityを直接変更しない。"
+        }
+      ],
+      "router_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "batch": 4,
+        "semantic_cluster_id": "agentic_audit_future_state_delta::"
+      },
+      "effective_before_this_proposal": {
+        "effective_classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "management_process_condition",
+      "proposed_route_status": "management_successor_unresolved",
+      "reason": "旧候補のauthority状態とplan固有L3承認の境界を明示する文。製品の振る舞いではなく、承認前のcandidate sourceをcurrent authorityとして扱わない管理process condition。#2352の`000021`のように承認対象分離を明示した行と同じく、status metadataだけの行とは異なる。"
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000250",
+      "source_path": "docs/governance/candidates/authority-vocabulary-requests.md",
+      "source_line": 19,
+      "asset_id": "LEGACY-ASSET-E9BDD9DCA6CF67CBE424",
+      "source_file_sha256": "5c29cba6331dff96082f74612ceaf755fe4a30a10e75be62797e8073de7fec99",
+      "source_line_sha256": "sha256:bbab9164f3b5527cb3bf963126fd73a3c9bff518895cbd29018efe4ef0479b15",
+      "physical_line_bytes_sha256": "5cde3cf236245ce41bc9663bf787d3fa088189adbe0f81513c3fa97e62540e06",
+      "physical_line_bytes_base64": "LSDmlofmm7hJRDogYEhFTElYLUFWUy1CUlEtMDAxYAo=",
+      "source_text": "- 文書ID: `HELIX-AVS-BRQ-001`",
+      "neighboring_source_context": [
+        {
+          "physical_line": 17,
+          "line_text": "# authority語彙分離要求"
+        },
+        {
+          "physical_line": 18,
+          "line_text": ""
+        },
+        {
+          "physical_line": 20,
+          "line_text": "- 状態: `draft_candidate / plan固有承認前`"
+        },
+        {
+          "physical_line": 21,
+          "line_text": "- Behavior Contract: `AUTHORITY-VOCABULARY-SEPARATION-001`"
+        },
+        {
+          "physical_line": 22,
+          "line_text": ""
+        },
+        {
+          "physical_line": 23,
+          "line_text": "## 要求"
+        },
+        {
+          "physical_line": 24,
+          "line_text": ""
+        }
+      ],
+      "router_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "batch": 2,
+        "semantic_cluster_id": "authority_vocabulary::HELIX-AVS-BRQ-001"
+      },
+      "effective_before_this_proposal": {
+        "effective_classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "proposed_route_status": "not_condition",
+      "reason": "文書IDの自己記述metadata。能力、望ましい振る舞い、適用条件、拒否条件を述べず、本文の要求は後続AVS-BR行に別source atomとして記録される。"
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000251",
+      "source_path": "docs/governance/candidates/authority-vocabulary-requests.md",
+      "source_line": 20,
+      "asset_id": "LEGACY-ASSET-E9BDD9DCA6CF67CBE424",
+      "source_file_sha256": "5c29cba6331dff96082f74612ceaf755fe4a30a10e75be62797e8073de7fec99",
+      "source_line_sha256": "sha256:89c55cf0e058a9e378c7990479f023775651e0bd6025fa3575069deed4123b5e",
+      "physical_line_bytes_sha256": "3f42ae5658ed0c5d586916a5683742555067175ca5947f9a16e35c23ed537530",
+      "physical_line_bytes_base64": "LSDnirbmhYs6IGBkcmFmdF9jYW5kaWRhdGUgLyBwbGFu5Zu65pyJ5om/6KqN5YmNYAo=",
+      "source_text": "- 状態: `draft_candidate / plan固有承認前`",
+      "neighboring_source_context": [
+        {
+          "physical_line": 17,
+          "line_text": "# authority語彙分離要求"
+        },
+        {
+          "physical_line": 18,
+          "line_text": ""
+        },
+        {
+          "physical_line": 19,
+          "line_text": "- 文書ID: `HELIX-AVS-BRQ-001`"
+        },
+        {
+          "physical_line": 21,
+          "line_text": "- Behavior Contract: `AUTHORITY-VOCABULARY-SEPARATION-001`"
+        },
+        {
+          "physical_line": 22,
+          "line_text": ""
+        },
+        {
+          "physical_line": 23,
+          "line_text": "## 要求"
+        },
+        {
+          "physical_line": 24,
+          "line_text": ""
+        }
+      ],
+      "router_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "batch": 2,
+        "semantic_cluster_id": "authority_vocabulary::authority"
+      },
+      "effective_before_this_proposal": {
+        "effective_classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "proposed_route_status": "not_condition",
+      "reason": "`draft_candidate / plan固有承認前`は文書状態metadata。ID行とBehavior Contract行の間にあるstatus記録で、命令・条件・期待する製品振る舞いを定めない。approval前の有効性境界を独立に述べる000111とは異なり、状態を報告する説明行。"
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000252",
+      "source_path": "docs/governance/candidates/authority-vocabulary-requests.md",
+      "source_line": 21,
+      "asset_id": "LEGACY-ASSET-E9BDD9DCA6CF67CBE424",
+      "source_file_sha256": "5c29cba6331dff96082f74612ceaf755fe4a30a10e75be62797e8073de7fec99",
+      "source_line_sha256": "sha256:12865bf5dc80920dbc3724350cf464de149907fa041d0cedb8d1c1ed47ef9375",
+      "physical_line_bytes_sha256": "b00b4302bb9feefdd0f3dfd832b71ccb05f14f89754c40427cdd046c9e0faff4",
+      "physical_line_bytes_base64": "LSBCZWhhdmlvciBDb250cmFjdDogYEFVVEhPUklUWS1WT0NBQlVMQVJZLVNFUEFSQVRJT04tMDAxYAo=",
+      "source_text": "- Behavior Contract: `AUTHORITY-VOCABULARY-SEPARATION-001`",
+      "neighboring_source_context": [
+        {
+          "physical_line": 17,
+          "line_text": "# authority語彙分離要求"
+        },
+        {
+          "physical_line": 18,
+          "line_text": ""
+        },
+        {
+          "physical_line": 19,
+          "line_text": "- 文書ID: `HELIX-AVS-BRQ-001`"
+        },
+        {
+          "physical_line": 20,
+          "line_text": "- 状態: `draft_candidate / plan固有承認前`"
+        },
+        {
+          "physical_line": 22,
+          "line_text": ""
+        },
+        {
+          "physical_line": 23,
+          "line_text": "## 要求"
+        },
+        {
+          "physical_line": 24,
+          "line_text": ""
+        },
+        {
+          "physical_line": 25,
+          "line_text": "### AVS-BR-001 人間authorityを会話解釈から生成しない"
+        }
+      ],
+      "router_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "batch": 2,
+        "semantic_cluster_id": "authority_vocabulary::authority"
+      },
+      "effective_before_this_proposal": {
+        "effective_classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "proposed_route_status": "not_condition",
+      "reason": "Behavior Contractの識別子を示すmetadataであり、contractの条件自体は本文のAVS-BR以下に分離されている。ID文字列そのものはproduct atomではない。"
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000287",
+      "source_path": "docs/governance/candidates/authority-vocabulary-requirements.md",
+      "source_line": 20,
+      "asset_id": "LEGACY-ASSET-17E4FD7C3DB0B3C82210",
+      "source_file_sha256": "cb97e7594b38cfada7d4fedb948937bab9e9d8f3e7c7123eca82a7ce6e8f8eb4",
+      "source_line_sha256": "sha256:506eb349ee90bc143e7e54d1517b6cbb619cfe7940281fef3edcd110c3d405ac",
+      "physical_line_bytes_sha256": "13571f0a4b139e761bcb19e81f4c8b62af21e598c70e7108bc37da510d18e44e",
+      "physical_line_bytes_base64": "LSDmlofmm7hJRDogYEhFTElYLUFWUy1SRVEtMDAxYAo=",
+      "source_text": "- 文書ID: `HELIX-AVS-REQ-001`",
+      "neighboring_source_context": [
+        {
+          "physical_line": 18,
+          "line_text": "# authority語彙分離要件"
+        },
+        {
+          "physical_line": 19,
+          "line_text": ""
+        },
+        {
+          "physical_line": 21,
+          "line_text": "- 状態: `draft_candidate / L3候補承認済み・canonical未昇格`"
+        },
+        {
+          "physical_line": 22,
+          "line_text": "- 主Issue: `#1449`"
+        },
+        {
+          "physical_line": 23,
+          "line_text": "- 承認record: [`L3-PO-1449-001`](https://github.com/RetryYN/HELIX-HARNESS/issues/1449#issuecomment-5544538084)"
+        },
+        {
+          "physical_line": 24,
+          "line_text": ""
+        },
+        {
+          "physical_line": 25,
+          "line_text": "## Feature契約"
+        },
+        {
+          "physical_line": 26,
+          "line_text": ""
+        },
+        {
+          "physical_line": 27,
+          "line_text": "### AVS-FR-001 入力分類"
+        },
+        {
+          "physical_line": 28,
+          "line_text": ""
+        },
+        {
+          "physical_line": 29,
+          "line_text": "- `AVS-R-01`: 会話入力を`consultation_input/feedback_signal/request_directive/selection_candidate/approval_candidate/decision_candidate`のexact setへ分類し、分類根拠とsource revisionを保持する。"
+        }
+      ],
+      "router_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "batch": 2,
+        "semantic_cluster_id": "authority_vocabulary::HELIX-AVS-REQ-001"
+      },
+      "effective_before_this_proposal": {
+        "effective_classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "proposed_route_status": "not_condition",
+      "reason": "文書ID metadata。AVS-FR/AVS-Rの要求条件は後続の独立source rowsにあり、この行はIDだけを宣言する。"
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000288",
+      "source_path": "docs/governance/candidates/authority-vocabulary-requirements.md",
+      "source_line": 21,
+      "asset_id": "LEGACY-ASSET-17E4FD7C3DB0B3C82210",
+      "source_file_sha256": "cb97e7594b38cfada7d4fedb948937bab9e9d8f3e7c7123eca82a7ce6e8f8eb4",
+      "source_line_sha256": "sha256:deb834dd197b560009ac95258e20ff4ccffbea7ca971da29249c9743038cb321",
+      "physical_line_bytes_sha256": "86864fc59a0c996cea5fe177859c90d1c47e2ed1f814de34dd42e505ed0da27e",
+      "physical_line_bytes_base64": "LSDnirbmhYs6IGBkcmFmdF9jYW5kaWRhdGUgLyBMM+WAmeijnOaJv+iqjea4iOOBv+ODu2Nhbm9uaWNhbOacquaYh+agvGAK",
+      "source_text": "- 状態: `draft_candidate / L3候補承認済み・canonical未昇格`",
+      "neighboring_source_context": [
+        {
+          "physical_line": 18,
+          "line_text": "# authority語彙分離要件"
+        },
+        {
+          "physical_line": 19,
+          "line_text": ""
+        },
+        {
+          "physical_line": 20,
+          "line_text": "- 文書ID: `HELIX-AVS-REQ-001`"
+        },
+        {
+          "physical_line": 22,
+          "line_text": "- 主Issue: `#1449`"
+        },
+        {
+          "physical_line": 23,
+          "line_text": "- 承認record: [`L3-PO-1449-001`](https://github.com/RetryYN/HELIX-HARNESS/issues/1449#issuecomment-5544538084)"
+        },
+        {
+          "physical_line": 24,
+          "line_text": ""
+        },
+        {
+          "physical_line": 25,
+          "line_text": "## Feature契約"
+        },
+        {
+          "physical_line": 26,
+          "line_text": ""
+        },
+        {
+          "physical_line": 27,
+          "line_text": "### AVS-FR-001 入力分類"
+        },
+        {
+          "physical_line": 28,
+          "line_text": ""
+        },
+        {
+          "physical_line": 29,
+          "line_text": "- `AVS-R-01`: 会話入力を`consultation_input/feedback_signal/request_directive/selection_candidate/approval_candidate/decision_candidate`のexact setへ分類し、分類根拠とsource revisionを保持する。"
+        }
+      ],
+      "router_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "batch": 2,
+        "semantic_cluster_id": "authority_vocabulary::authority"
+      },
+      "effective_before_this_proposal": {
+        "effective_classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "proposed_route_status": "not_condition",
+      "reason": "`draft_candidate / L3候補承認済み・canonical未昇格`はdocument authority/status metadataで、製品条件やprocess directiveではなく、要求本文に先行する状態報告。古いIssue approvalの現行authority効果は別途推論しない。"
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000289",
+      "source_path": "docs/governance/candidates/authority-vocabulary-requirements.md",
+      "source_line": 22,
+      "asset_id": "LEGACY-ASSET-17E4FD7C3DB0B3C82210",
+      "source_file_sha256": "cb97e7594b38cfada7d4fedb948937bab9e9d8f3e7c7123eca82a7ce6e8f8eb4",
+      "source_line_sha256": "sha256:812d37b10be0cd711bb006f57fd027a526b8b9b967209051a28b631f5f0c9358",
+      "physical_line_bytes_sha256": "ea2ec1d8ab33bf8e118bd3c707515e6bb7ec066936ea0f1df3e092817f4d535b",
+      "physical_line_bytes_base64": "LSDkuLtJc3N1ZTogYCMxNDQ5YAo=",
+      "source_text": "- 主Issue: `#1449`",
+      "neighboring_source_context": [
+        {
+          "physical_line": 18,
+          "line_text": "# authority語彙分離要件"
+        },
+        {
+          "physical_line": 19,
+          "line_text": ""
+        },
+        {
+          "physical_line": 20,
+          "line_text": "- 文書ID: `HELIX-AVS-REQ-001`"
+        },
+        {
+          "physical_line": 21,
+          "line_text": "- 状態: `draft_candidate / L3候補承認済み・canonical未昇格`"
+        },
+        {
+          "physical_line": 23,
+          "line_text": "- 承認record: [`L3-PO-1449-001`](https://github.com/RetryYN/HELIX-HARNESS/issues/1449#issuecomment-5544538084)"
+        },
+        {
+          "physical_line": 24,
+          "line_text": ""
+        },
+        {
+          "physical_line": 25,
+          "line_text": "## Feature契約"
+        },
+        {
+          "physical_line": 26,
+          "line_text": ""
+        },
+        {
+          "physical_line": 27,
+          "line_text": "### AVS-FR-001 入力分類"
+        },
+        {
+          "physical_line": 28,
+          "line_text": ""
+        },
+        {
+          "physical_line": 29,
+          "line_text": "- `AVS-R-01`: 会話入力を`consultation_input/feedback_signal/request_directive/selection_candidate/approval_candidate/decision_candidate`のexact setへ分類し、分類根拠とsource revisionを保持する。"
+        }
+      ],
+      "router_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "batch": 2,
+        "semantic_cluster_id": "authority_vocabulary::authority"
+      },
+      "effective_before_this_proposal": {
+        "effective_classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "proposed_route_status": "not_condition",
+      "reason": "Main Issue番号へのprovenance pointer。Issue identity自体は要求条件もproduct behaviorも定義せず、承認sourceとの接続は次行に独立記載される。"
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000290",
+      "source_path": "docs/governance/candidates/authority-vocabulary-requirements.md",
+      "source_line": 23,
+      "asset_id": "LEGACY-ASSET-17E4FD7C3DB0B3C82210",
+      "source_file_sha256": "cb97e7594b38cfada7d4fedb948937bab9e9d8f3e7c7123eca82a7ce6e8f8eb4",
+      "source_line_sha256": "sha256:7f754bd1a4cff72f2f42bd0a41fc33f63a2ce3981c097dcbe362fec565aeb1ee",
+      "physical_line_bytes_sha256": "e083f31eb8c01902d0daeb861801261bb48a01d3c2693e242b067dc79612f28a",
+      "physical_line_bytes_base64": "LSDmib/oqo1yZWNvcmQ6IFtgTDMtUE8tMTQ0OS0wMDFgXShodHRwczovL2dpdGh1Yi5jb20vUmV0cnlZTi9IRUxJWC1IQVJORVNTL2lzc3Vlcy8xNDQ5I2lzc3VlY29tbWVudC01NTQ0NTM4MDg0KQo=",
+      "source_text": "- 承認record: [`L3-PO-1449-001`](https://github.com/RetryYN/HELIX-HARNESS/issues/1449#issuecomment-5544538084)",
+      "neighboring_source_context": [
+        {
+          "physical_line": 18,
+          "line_text": "# authority語彙分離要件"
+        },
+        {
+          "physical_line": 19,
+          "line_text": ""
+        },
+        {
+          "physical_line": 20,
+          "line_text": "- 文書ID: `HELIX-AVS-REQ-001`"
+        },
+        {
+          "physical_line": 21,
+          "line_text": "- 状態: `draft_candidate / L3候補承認済み・canonical未昇格`"
+        },
+        {
+          "physical_line": 22,
+          "line_text": "- 主Issue: `#1449`"
+        },
+        {
+          "physical_line": 24,
+          "line_text": ""
+        },
+        {
+          "physical_line": 25,
+          "line_text": "## Feature契約"
+        },
+        {
+          "physical_line": 26,
+          "line_text": ""
+        },
+        {
+          "physical_line": 27,
+          "line_text": "### AVS-FR-001 入力分類"
+        },
+        {
+          "physical_line": 28,
+          "line_text": ""
+        },
+        {
+          "physical_line": 29,
+          "line_text": "- `AVS-R-01`: 会話入力を`consultation_input/feedback_signal/request_directive/selection_candidate/approval_candidate/decision_candidate`のexact setへ分類し、分類根拠とsource revisionを保持する。"
+        }
+      ],
+      "router_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "batch": 2,
+        "semantic_cluster_id": "authority_vocabulary::PO-1449-001"
+      },
+      "effective_before_this_proposal": {
+        "effective_classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "proposed_route_status": "not_condition",
+      "reason": "旧approval recordへのprovenance pointer。receipt ID/URLは判断sourceの参照metadataであり、承認条件・製品挙動ではない。receiptが存在することから現行採択を生成しない。"
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000382",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "source_line": 17,
+      "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+      "source_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+      "source_line_sha256": "sha256:8bd83b72ded3d53a7a8437d8c3671244543949072857ad19c8384242bbf5e900",
+      "physical_line_bytes_sha256": "ccb38624f9f6a399cb80a6ae6681f9ec893ef58e687b6b11930e9651196201eb",
+      "physical_line_bytes_base64": "Y2Fub25pY2FsIHByb21vdGlvbuODu+ipsuW9k0lSIGFkbWlzc2lvbuODu+Wun+ijheODu+mZkOWumuWun+iovOOBuOmAsuihjOOBp+OBjeOCi+OBjOOAgeOBneOBruaIkOeri+OBr+acquWujOS6huOAggo=",
+      "source_text": "canonical promotion・該当IR admission・実装・限定実証へ進行できるが、その成立は未完了。",
+      "neighboring_source_context": [
+        {
+          "physical_line": 13,
+          "line_text": "# 逸脱検出・限定修復"
+        },
+        {
+          "physical_line": 14,
+          "line_text": ""
+        },
+        {
+          "physical_line": 15,
+          "line_text": "本書は追加契約候補であり、自動適用権限を発行しない。BBR IDは候補内ID。"
+        },
+        {
+          "physical_line": 16,
+          "line_text": "L1/L10・専用PLANは同名候補に接続する。候補は`L3-PO-1642-001`で承認済み。"
+        },
+        {
+          "physical_line": 18,
+          "line_text": "既存GH-FR-011のCI自己修復権限内の機械化と、新しい適用対象・契機・権限差分を分ける。"
+        },
+        {
+          "physical_line": 19,
+          "line_text": "#1595は別途の自動修復を対象外としている。その承認をBへ継承しない。"
+        },
+        {
+          "physical_line": 20,
+          "line_text": ""
+        },
+        {
+          "physical_line": 21,
+          "line_text": "## 既存権限と追加差分の判別"
+        },
+        {
+          "physical_line": 22,
+          "line_text": ""
+        },
+        {
+          "physical_line": 23,
+          "line_text": "GH-FR-011はAI作成PRのCI失敗を同一episodeで修正する責務であり、登録済み修復器へ"
+        },
+        {
+          "physical_line": 24,
+          "line_text": "任意の自動write権限を発行する契約ではない。対象PR・契機・episode・所有scope・既存操作権限の"
+        },
+        {
+          "physical_line": 25,
+          "line_text": "すべてが既存契約内なら、その検収済み経路を再利用する。修復器登録だけではこの充足を認めない。"
+        },
+        {
+          "physical_line": 26,
+          "line_text": "自動適用の対象・契機・write-set・副作用・権限が拡張される部分は追加差分としてL1/L3/L10へ戻す。"
+        },
+        {
+          "physical_line": 27,
+          "line_text": "不足が不明なら観測・proposalに留め、その不足を理由に既存の許可済み自己修復や調査を一律停止しない。"
+        }
+      ],
+      "router_snapshot": {
+        "classification": "requirement_atom",
+        "classification_correction": null,
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "batch": 4,
+        "semantic_cluster_id": "bugbot_bounded_repair::"
+      },
+      "effective_before_this_proposal": {
+        "effective_classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "proposed_route_status": "not_condition",
+      "reason": "canonical promotion・IR admission・実装・限定実証へ進行可能だが未完了という作業状態要約。文のsubjectは候補工程の進捗で、許可条件や製品挙動を定義しない。前後の別行にあるcandidate/no-auto-rightsやscope boundaryの意味をこのstatus rowへ混ぜない。"
+    }
+  ],
+  "limits": [
+    "No source bytes, router snapshot, carry-forward register, L1/L2/L11, decision, or receipt is edited.",
+    "Overlay changes classification only; it does not adopt, retire, or rewrite old requirement meaning.",
+    "management_process_condition rows retain unresolved successor; no current process requirement ID is assigned.",
+    "Explanation rows are excluded from requirement-atom route counts if this proposal is applied.",
+    "This separate proposal does not revise the prior 20-row route audit or claim a new cumulative recount."
+  ]
+}
