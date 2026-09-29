@@ -1681,6 +1681,6 @@
     ],
     "overlap_with_this_51_row_scope": [],
     "selection_effect": "none; this later sample does not retroactively alter the bounded 51-row classification proposal or its source identities",
-    "pin_note": "The exact reviewed #2364 selection revision is not included here; the current open PR snapshot still contains a superseded 543-row selection."
+    "pin_note": "The #2364 521-cutoff selection is a separate open proposal. Its exact review and merge status are tracked in that PR; this bounded 51-row classification does not depend on its authority."
   }
 }
