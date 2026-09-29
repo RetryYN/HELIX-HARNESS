@@ -29,7 +29,16 @@
     ],
     "source_item_count": 9,
     "source_range": "003503, 003506–003513",
-    "excluded": "All other RTG rows (including AC-002/003/012 already handled by legacy-ten-condition-crosswalk-audit-2026-09-29), all other source families, classification edits, candidate adoption/rejection/retirement, L2/L11 edits, formal successor assignment, implementation, execution, acceptance execution, stage completion, and L3 transition."
+    "excluded": "All other RTG rows (including AC-002/003/012 already handled by legacy-ten-condition-crosswalk-audit-2026-09-29), all other source families, edits to the original routing ledger, candidate adoption/rejection/retirement, L2/L11 edits, formal successor assignment, implementation, execution, acceptance execution, stage completion, and L3 transition."
+  },
+  "prior_count_status_after_this_audit": {
+    "prior_artifact": "docs/governance/audits/requirements-stage/legacy-candidate-effective-classification-counts-2026-09-29.json",
+    "prior_artifact_sha256": "e0a28bfdd650d47539bdb717ea1cc213ef0fab507b4c80edd5e2e323a9629e91",
+    "prior_effective_counts": {"structure": 926, "explanation": 2947, "condition": 882, "condition_route_unknown": 586, "total": 4755},
+    "new_corrections_not_in_prior_count": 7,
+    "status_after_this_audit_merges": "historical_stale_for_effective_classification_counts",
+    "current_cumulative_counts": "not established until the 4755-line population is repinned and recounted",
+    "prior_artifact_mutated": false
   },
   "pinned_inputs": [
     {

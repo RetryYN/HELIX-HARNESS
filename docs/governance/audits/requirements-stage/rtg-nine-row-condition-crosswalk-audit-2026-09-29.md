@@ -5,13 +5,14 @@
 - 記録種別: Stage 5 read-only source audit。`authority_effect: none`。
 - 旧asset: `LEGACY-ASSET-AE48728497244121EEC3`。旧source file SHA-256: `66609d952094050336a3e29abf088c18178590fb5998dbbd06dc1fecb4b79251`。
 - 対象は未照合の9 ID `003503`, `003506`–`003513`。AC-002/003/012等、先行10行監査の対象を再計上しない。
-- 方法: source line台帳のID・本文・digestと旧原文を照合し、positive conditionとnegative oracleを採択済み現行L2/L11に比較。条件列とnegative oracle列を持つ7行はexplanationからrequirement_atomへeffective correctionし、元分類と理由を保持する。累積件数差分は全populationの再pin/recountなしに主張しない。formal successor・authority・受入実行を推定しない。
+- 方法: source line台帳のID・本文・digestと旧原文を照合し、positive conditionとnegative oracleを採択済み現行L2/L11に比較。条件列とnegative oracle列を持つ7行はexplanationからrequirement_atomへeffective correctionし、元分類と理由を保持する。formal successor・authority・受入実行を推定しない。
+- 件数の境界: [先行する累積分類監査](legacy-candidate-effective-classification-counts-2026-09-29.json)の882条件／2,947説明／経路不明586件は、この7行の訂正を含まない。本監査のmerge後、同値を現在の累積有効値として使わない。全4,755行の新しい累積値は、母集団を再pinして再集計するまで未確定である。先行監査の固定値は書き換えない。
 
 ## 結果一覧
 
 | Source item | 旧AC | 台帳route | 比較結果 | 主な残差 |
 |---|---|---|---|---|
-| `LEGACY-CAND-LINE-003503` | RTG-AC-001 | `explanation` → `requirement_atom` | partial | 同じtrigger input tupleからのtrigger evidence exact set/digest決定性、event permutation/retry不変性の現行の採択済みpairには、trigger evidence exact set/digestの決定性とevent順序/retry不変性を扱うRTG個別oracleを確認できない。現行の採択済みpairには、runtime hardcode・event順序・retry不変性を扱うRTG個別oracleを確認できない。 |
+| `LEGACY-CAND-LINE-003503` | RTG-AC-001 | `explanation` → `requirement_atom` | partial | 採択済みpairでは、同じtrigger入力から同じ証拠集合・digestを返す決定性と、runtime hardcode・event順序・retryによる結果変化を拒否する個別oracleを確認できない。 |
 | `LEGACY-CAND-LINE-003506` | RTG-AC-004 | `requirement_atom` (維持) | partial | safety-net単独時にcoverage-onlyとなる条件、substantive findingとRF0 admissionを禁止する現行の採択済みpairには、safety-net単独時のcoverage-onlyとsubstantive finding/RF0 admission拒否を扱う個別oracleを確認できない。 |
 | `LEGACY-CAND-LINE-003507` | RTG-AC-005 | `explanation` → `requirement_atom` | partial | 現行の採択済みpairには、旧tuple全項目のexact match、unknown scopeのfallback拒否、RF0へのadmissionを扱うRTG個別oracleを確認できない。 |
 | `LEGACY-CAND-LINE-003508` | RTG-AC-006 | `explanation` → `requirement_atom` | partial | 現行の採択済みpairには、旧三route・provider drift分類・REFACTORING route名を固定する個別oracleを確認できない。 |
