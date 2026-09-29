@@ -1310,3 +1310,14 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - **不足・不一致**：三つの記録のいずれかが欠落、scope／revision不一致、unknownまたはstaleなら、その次元を未解決として示し、他の次元の結果で補完しない。各ownerの既存契約に従う処置・差戻しを変えず、本候補から一律停止、追加の人手確認、実装許可またはstage完了を導かない。
 - **旧sourceと差分**：`LEGACY-ASSET-BD058F87FFAF55080296`、旧`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md:14`（file SHA-256 `0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb`、line SHA-256 `579bede1d203b2aea9b95c21471bb1a652b84a04d1ba67619304040e4d6a22f6`）を起点とする。Guard・Sandbox・品質検証の別責務と相互非代用を保持する。旧crosswalkのPKG-D07にはprimary Module未確定とあるため、それだけから機構所有を決めず、現行の採択済み責務へ再配置した。旧Guard/Sandbox名やruntimeを現行owner・実装として復活させず、機構間の判定結果をOSが代行しない。
 - **範囲限界**：この候補は旧line atomだけを扱い、SECURITY／HARNESS／OSの要求一式、旧Concept候補全体、runtime実装・実行・受入実績、旧候補全体のsuccessor closureを主張しない。
+
+
+### HELIXOS-L2-105 incident episodeの復旧証拠相関（単体候補、未採択）
+
+- **状態・authority**：HELIX-OSの未採択候補。`registered_proposal`／`authority_effect: none`。候補登録、receiptまたは文書上のoracleは、要求採択、ticket発行、runtime実行、incident close、production変更権限または受入実行を生成しない。旧sourceに版指定がないため`version_target`を追加しない。
+- **親L1と責務**：採択済み`HELIXOS-L1-002`をprimary、`HELIXOS-L1-006`をcontextとする。OSは、既存契約によりincidentとして記録された一つのproduction事象に、現行の復旧確認証拠と復旧手順・rollback記録が同一事象を指す関係を保って登録し、その証拠関係の充足状態を表示する。HARNESS/対象ownerが持つ適用可能な回復確認oracleの意味、OS-L2-010が持つticket/workflow種別・発行・戻り先・工程構成、既存L2-007の共通証拠形式は変更しない。
+- **証拠相関**：OSは既存のincident identity/refと同一episodeを示す安定した参照を使い、対象project、scope、影響revision、および同一episodeへ属する(i)既存ownerの回復確認結果とそのsource/oracle revision、(ii)回復に使ったprocedureの記録、(iii)実施・未実施を区別できるrollback記録を関連付ける。OSは製品固有SLO/KPIやthresholdを新設・推定せず、各証拠の内容を作成・判定しない。既存system-of-recordから証拠とidentityを参照できない場合は不足を表示する。
+- **証拠状態**：三つの関係が同じincident identity、project/scope、影響revisionに結ばれ、sourceが現行で、適用可能な回復確認結果がownerから得られた場合だけ、OSは「記録上の復旧証拠一式が揃う」と報告できる。欠落または不一致があれば「不足」、freshness・適用範囲・owner判定が不明なら`unknown`として保持する。これはincident ticketのclose、製品のhealth、rollback成功、恒久修正、postmortem、またはreleaseの判定ではない。
+- **重複しない境界**：HELIXOS-L2-010／L11のincident種別、ticket発行、workflow、恒久対策の戻り先、およびHELIX-HARNESS旧FR-L1-16の緊急対応・hotfix・release・収束後のbackfillを再定義しない。本候補は既存incident参照に紐づく復旧証拠の相関と記録上の充足状態に限る。旧sourceのimmediate production release、既定severity、固定応答時間、旧PLAN/token/CLI/runtimeは含めない。
+- **人間判断の保全**：旧`incident.md`のon-call／TL／PM三者承認や旧`incident-runbook.md`のproduction change前approvalは、新世代へ移管・撤回・置換しない。既存SECURITY操作authorityと有効な既決権限を参照し、追加の人間承認、承認主体、承認時点を新設しない。これらの旧meaning decisionは生存中source holdingで保持する。
+- **旧sourceからの再導出と限界**：旧`LEGACY-ASSET-9E033C3E39BE107D4CF1`のline 43から「収束確認」と「復旧手順・rollback記録」の二spanだけを、同一incident episodeに対する証拠関係として限定再導出する。source/file/line/span digestは専用source-lines ledgerとreceiptに固定する。source fileの他条件、旧runbook、旧PLANとそのtest、PHCAP-17全体、Web-OS service incidentsは本候補の被覆範囲外であり、生存中source holdingに残す。
