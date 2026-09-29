@@ -1,7 +1,7 @@
 # 旧candidate source metadata 9行の分類修正提案（2026-09-29）
 
 - 基準main: `bf00aca56add8ca29d9a56af9a989fdeb0a7d969`
-- 分類・route基準: #2353 cumulative audit commit `9926aebfbec7813d14a84490758783153422d99e`
+- 分類・route基準: #2353 cumulative audit commit `8a75e5392a44e005bb05197d977bdbcf75b93cf0`
 - authority effect: `none`。append-onlyのbounded classification proposalであり、source atom inventory/routerや元のroute auditを書き換えない。
 - 対象は#2353で依然 `condition / product_requirement_atom / unknown` とされた9行。うち8行を`explanation`、1行を`condition / management_process_condition`へ提案分類する。
 
