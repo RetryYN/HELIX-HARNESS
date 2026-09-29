@@ -106,3 +106,7 @@ source atomは[`dac-fr-008-handoff-source-lines`](../requirement-registration/da
 ## 後続判断枠：confirmed175 DAC-FR-006 severity/disposition（2026-09-29）
 
 旧`DAC-FR-006` line 53、`DAC-R-008` line 63、旧受入`DAC-AC-012/013`を、origin/main `41b9d9a455df647115505e8f6e74bfd205481a8d`上の採択済み`HELIXOS-L2/L11-015`と照合した。[PO判断枠](dac-fr-006-severity-disposition-po-decision-frame-2026-09-29.md)は、旧例の端点（consumerなしのhistorical文書を高severity/削除へ分類しない、startup reachable candidateをcurrentとして読むとP0拒否）と、未定義のseverity/disposition語彙・mapping・競合規則・ownerを区別する。推奨Bは`MPR-SH-CONFIRMED-003`のholding継続であり、FR-006候補、successor、採択、closure、owner移管を作らない。`HELIXOS-L2/L11-015`はauthority出所・revision・digestとunknown/conflict/stale保持の採択済み条件として維持し、106–109の別atom・未採択範囲をFR-006へ拡張しない。
+
+## 後続限定監査：HR-FR-HIL-14／HAC-HIL-14c scope
+
+`41b9d9a455df647115505e8f6e74bfd205481a8d`基準で、旧`HR-FR-HIL-14`・HAC-HIL-14a/b/c・HAT-HIL-14のtyped link、asset/path/file/line digest、旧consumer/failure設計、採択済みOS/HARNESS/SECURITY契約を限定照合した[scope判断フレーム](hil14c-online-offline-lock-sbom-policy-scope-frame-2026-09-29.md)。HAC-HIL-14cのonline/offline同一lock/SBOM/policy条件は、採択済み一般provenance/CI/配布契約で閉じたと確認できず、HAC-HIL-14aの3 OS support tier、HAC-HIL-14bのadapter/path/process/lock負境界とも別に保全する。製品scopeかHELIX-HARNESS repository固有acceptanceかは未決。successor、owner、候補採択、要求意味のretire/変更は記録していない。推奨DはPO判断まで旧sourceを保全して保留すること。旧source closure、実装、実行、L11受入を主張しない。
