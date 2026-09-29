@@ -1,0 +1,155 @@
+{
+  "schema_version": "legacy-candidate-effective-classification-counts.v1",
+  "audit_id": "legacy-candidate-effective-classification-counts-2026-09-29",
+  "created_against_commit": "d0a58b1fa10456e5cf36d6d62a33a6117da9e1ae",
+  "authority_effect": "none",
+  "audit_mode": "read_only_append_only_effective_count_reconciliation",
+  "population": {
+    "name": "legacy candidate source lines",
+    "source_item_id_field": "source_item_id",
+    "expected_count": 4755,
+    "observed_count": 4755,
+    "unique_source_item_id_count": 4755,
+    "base_routing_jsonl": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+    "base_routing_jsonl_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
+    "source_identity_validation": {
+      "ledger": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "ledger_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+      "matched_source_item_id_count": 4755,
+      "matched_source_path_line_file_sha256_line_sha256": true
+    }
+  },
+  "pinned_inputs": [
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+      "sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3"
+    },
+    {
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+    },
+    {
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-inventory.md",
+      "sha256": "58bdcae95d51edeebff57169c1e67da11c6ed879830249c52a1e700bc09bb171"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-r04-line45-classification-correction-2026-09-28.md",
+      "sha256": "5a2ac3cd1702169a0e5c80b66628f2c45b75d04621deeb169cb021f301a636ea"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-line-003082-reclassification-2026-09-28.md",
+      "sha256": "f2c7ed6f012413334426ab77dc7cdaf21638a8b9b261a9047c4a74e2b4499f79"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-description-condition-overlay-2026-09-28.json",
+      "sha256": "21721a19d6f50cac3c9d747516c18c0818f85afdee08d7242bd75d65f558edb7"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/current-authority-overlay-2026-09-29.md",
+      "sha256": "cd24a6716535383766245268eb922691381c3e1592c3d6d215a6c67986ad2a7b"
+    }
+  ],
+  "base_snapshot_counts": {
+    "structure": 926,
+    "explanation": 2959,
+    "requirement_atom": 870,
+    "requirement_atom_route_unknown": 574,
+    "other_requirement_atom_route_buckets": {
+      "source_relation_coverage_unresolved": 141,
+      "unadopted_candidate_relation_only": 155
+    }
+  },
+  "correction_applications": [
+    {
+      "correction_id": "R2253-01",
+      "audit_path": "docs/governance/audits/requirements-stage/legacy-candidate-r04-line45-classification-correction-2026-09-28.md",
+      "audit_sha256": "5a2ac3cd1702169a0e5c80b66628f2c45b75d04621deeb169cb021f301a636ea",
+      "source_item_ids": [
+        "LEGACY-CAND-LINE-000142"
+      ],
+      "snapshot_classification": "explanation",
+      "effective_classification": "condition",
+      "effective_route": "unknown"
+    },
+    {
+      "correction_id": "R2254-01",
+      "audit_path": "docs/governance/audits/requirements-stage/legacy-candidate-line-003082-reclassification-2026-09-28.md",
+      "audit_sha256": "f2c7ed6f012413334426ab77dc7cdaf21638a8b9b261a9047c4a74e2b4499f79",
+      "source_item_ids": [
+        "LEGACY-CAND-LINE-003082"
+      ],
+      "snapshot_classification": "explanation",
+      "effective_classification": "condition",
+      "effective_route": "unknown"
+    },
+    {
+      "correction_id": "description-condition-overlay-2026-09-28",
+      "audit_path": "docs/governance/audits/requirements-stage/legacy-candidate-description-condition-overlay-2026-09-28.json",
+      "audit_sha256": "21721a19d6f50cac3c9d747516c18c0818f85afdee08d7242bd75d65f558edb7",
+      "source_item_ids": [
+        "LEGACY-CAND-LINE-003505",
+        "LEGACY-CAND-LINE-003504",
+        "LEGACY-CAND-LINE-003514",
+        "LEGACY-CAND-LINE-003612",
+        "LEGACY-CAND-LINE-001588",
+        "LEGACY-CAND-LINE-001558",
+        "LEGACY-CAND-LINE-001656",
+        "LEGACY-CAND-LINE-001548",
+        "LEGACY-CAND-LINE-001709",
+        "LEGACY-CAND-LINE-003614"
+      ],
+      "source_item_id_count": 10,
+      "snapshot_classification": "explanation",
+      "effective_classification": "condition",
+      "effective_route": "unknown"
+    }
+  ],
+  "set_checks": {
+    "correction_sets_pairwise_disjoint": true,
+    "prior_corrections_disjoint_from_ten_line_overlay": true,
+    "correction_union_count": 12,
+    "all_corrected_ids_present_once_in_base_snapshot": true,
+    "all_corrected_ids_snapshot_class_explanation": true
+  },
+  "effective_counts": {
+    "structure": 926,
+    "explanation": 2947,
+    "condition": 882,
+    "condition_route_unknown": 586,
+    "total": 4755
+  },
+  "calculation": {
+    "condition_ids_added": "{000142} union {003082} union overlay.included_source_item_ids (10 unique IDs); all sets keyed by full source_item_id and pairwise disjoint",
+    "formula": "effective = base snapshot counts plus/minus cardinality of the 12-ID correction union; unknown conditions = 574 original requirement_atom unknown routes + 12 corrected rows, each explicitly unknown",
+    "computed": true
+  },
+  "current_authority_overlay_count_status": {
+    "path": "docs/governance/audits/requirements-stage/current-authority-overlay-2026-09-29.md",
+    "sha256": "cd24a6716535383766245268eb922691381c3e1592c3d6d215a6c67986ad2a7b",
+    "values_as_printed": {
+      "structure": 926,
+      "explanation": 2957,
+      "condition": 872,
+      "condition_route_unknown": 576,
+      "total": 4755
+    },
+    "status": "historical_stale_for_effective_classification_counts",
+    "reason": "This later authority overlay reports the post-R2253/R2254 baseline but predates/application omits the ten disjoint description-condition rows. Use this audit effective_counts for the cumulative classification count at the pinned input set.",
+    "authority_overlay_remains_authoritative_for": "its stated PO authority scope; its historical candidate count table is not current after the ten-row classification overlay."
+  },
+  "limits": [
+    "Classification count reconciliation only; no source condition coverage, formal successor, or PO decision is created.",
+    "All 12 corrected rows remain condition_route_unknown; current or adopted ID references do not establish coverage.",
+    "The underlying legacy candidate source authority remains historical_candidate and no requirement adoption, acceptance, implementation, source retirement, or stage completion is claimed.",
+    "The original routing JSONL and all prior correction overlays are immutable inputs and are not changed."
+  ],
+  "static_validation": {
+    "base_jsonl_exactly_4755_rows": true,
+    "base_jsonl_sha256_pinned": true,
+    "all_4755_source_rows_match_carry_forward_ledger_identity_and_digests": true,
+    "correction_id_sets_pairwise_disjoint": true,
+    "effective_class_counts_sum_to_4755": true,
+    "unknown_count_is_subset_of_condition_count": true,
+    "legacy_cli_runtime_test_ci_executed": false
+  }
+}
