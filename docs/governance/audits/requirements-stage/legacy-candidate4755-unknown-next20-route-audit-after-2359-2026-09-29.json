@@ -1,0 +1,826 @@
+{
+  "schema_version": "helix-stage5-unknown-next20-route-audit/v1",
+  "audit_id": "legacy-candidate4755-unknown-next20-route-audit-after-2359-2026-09-29",
+  "base_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+  "authority_effect": "none",
+  "selection": {
+    "population": "Effective classification condition/product_requirement_atom/unknown from pinned #2353 plus #2356/#2360 overlays and #2361 recount; 543 rows.",
+    "excluded_2350_original_selected20_count": 20,
+    "excluded_2359_exact_head_4a32ab782_selected20_count": 20,
+    "excluded_ids_overlap": 0,
+    "eligible_population_after_exclusions": 522,
+    "rule": "Join full #2353 row_records; apply pinned #2356 and #2360 classifications by exact source ID; retain condition/product_requirement_atom/unknown; exclude #2350 original selected_ids and current #2359 #4a32ab782 selection.selected_ids; choose lowest numeric source IDs.",
+    "selected_ids": [
+      "LEGACY-CAND-LINE-000502",
+      "LEGACY-CAND-LINE-000514",
+      "LEGACY-CAND-LINE-000515",
+      "LEGACY-CAND-LINE-000516",
+      "LEGACY-CAND-LINE-000517",
+      "LEGACY-CAND-LINE-000528",
+      "LEGACY-CAND-LINE-000532",
+      "LEGACY-CAND-LINE-000533",
+      "LEGACY-CAND-LINE-000542",
+      "LEGACY-CAND-LINE-000543",
+      "LEGACY-CAND-LINE-000545",
+      "LEGACY-CAND-LINE-000546",
+      "LEGACY-CAND-LINE-000552",
+      "LEGACY-CAND-LINE-000553",
+      "LEGACY-CAND-LINE-000554",
+      "LEGACY-CAND-LINE-000555",
+      "LEGACY-CAND-LINE-000556",
+      "LEGACY-CAND-LINE-000557",
+      "LEGACY-CAND-LINE-000581",
+      "LEGACY-CAND-LINE-000582"
+    ]
+  },
+  "pinned_inputs": [
+    {
+      "role": "origin_main_base",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "",
+      "sha256": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969"
+    },
+    {
+      "role": "classification_2353",
+      "commit": "8a75e5392a44e005bb05197d977bdbcf75b93cf0",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "sha256": "57fce8a0e05ed73c46346f2177c439e862a17a06ecea65446389f24dc34160c5"
+    },
+    {
+      "role": "classification_2356",
+      "commit": "b213b41735067d1716c143c92e0fa6c71d8e92d9",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "sha256": "53c8acc872f30cf19e88499bc68b0f11c830a677f5c346d646a148dd3ca7853b"
+    },
+    {
+      "role": "classification_2360",
+      "commit": "89a5f57cbc8dc6b0dc6828233992640c919fb03c",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+      "sha256": "71fa35e0b3f8bfeb9781cbe2b9b21322d8e5be7866c71bce2abbca8cdca43ddd"
+    },
+    {
+      "role": "effective_recount_2361",
+      "commit": "aab65a4f1bc2f679530604cb7f89519683b9156c",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-stage5-recount-after-2353-2356-2360-2026-09-29.json",
+      "sha256": "ff1da2c7e563f25b7044318670e1808a6463afcac82857764d917878fb5046a5"
+    },
+    {
+      "role": "excluded_2350_selected20",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-unknown-product-atoms-first20-route-audit-2026-09-29.json",
+      "sha256": "c91406a58328d8820b6413a7f699c8a6d71ab89f289652e73d374643b6117273"
+    },
+    {
+      "role": "excluded_current_2359_selected20",
+      "commit": "4a32ab782aa199c69d8fe6f98aed77669ee0d1b5",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-unknown-reselected-next20-route-audit-2026-09-29.json",
+      "sha256": "ae5d0ecd60dfca42c98d4c57baa4e3a2e2a0923f349977b38f562d8257b5885c"
+    },
+    {
+      "role": "source_router",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+      "sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3"
+    },
+    {
+      "role": "carry_forward_ledger",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+    }
+  ],
+  "current_semantic_review_pins": [
+    {
+      "role": "adopted_HARNESS_L2_L11",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+    },
+    {
+      "role": "adopted_HARNESS_L2_L11",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+    },
+    {
+      "role": "adopted_HARNESS_PO_decision",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+    },
+    {
+      "role": "unadopted_CI_candidate_relation",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
+      "sha256": "4eae5f8dd485ed8c77d2ea7b6b0407028093c02566e5b92fce9d05a89307a49d"
+    },
+    {
+      "role": "adopted_OS_L2_L11",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+    },
+    {
+      "role": "adopted_OS_L2_L11",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+    },
+    {
+      "role": "adopted_OS_PO_decision",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
+    },
+    {
+      "role": "authority_decision_2357",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+    },
+    {
+      "role": "adopted_L2_073_caveat",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "sha256": "14c6947262f7e7cc92e7200cafd301ebd49c4146c97f665f0548c6b2b2e9e16d"
+    },
+    {
+      "role": "adopted_L2_073_caveat",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "sha256": "7467fad5256db9af823e7be860e21e52df58efb43ad4855c7127c2053106214d"
+    }
+  ],
+  "current_authority_references": {
+    "HARNESS-L2-005": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "lines": [
+        56,
+        118,
+        119
+      ],
+      "authority_decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "decision_line": 25
+    },
+    "HCV4-L11-003": {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "lines": [
+        24,
+        46,
+        47,
+        48
+      ]
+    },
+    "HELIXOS-L2-008": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "line": 61,
+      "accepted_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "authority_decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md"
+    },
+    "HELIXOS-L2-011": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "line": 64,
+      "accepted_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+    },
+    "HELIXOS-L11-008": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "line": 28,
+      "accepted_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+    },
+    "HELIXOS-L11-011": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "line": 31,
+      "accepted_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+    },
+    "NCI-OS-004": {
+      "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
+      "line": 47,
+      "authority_status": "draft_candidate/awaiting_human_approval"
+    },
+    "NCI-OS-005": {
+      "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
+      "line": 48,
+      "authority_status": "draft_candidate/awaiting_human_approval"
+    },
+    "NCI-OS-008": {
+      "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
+      "line": 51,
+      "authority_status": "draft_candidate/awaiting_human_approval"
+    },
+    "HELIXINTELLIGENCE-L2-073": {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "line": 86,
+      "decision_id": "MPR-RC-HELIXINTELLIGENCE-L2-073-002",
+      "relation_to_selected_rows": "none asserted"
+    }
+  },
+  "authority_context": {
+    "accepted_L2_L11_state": "PO decisions for the fixed eight-mechanism L2/L11 revisions are read by exact identity/revision, not candidate frontmatter. HARNESS-L2-005 partial comparisons below are bounded to that accepted revision.",
+    "L2_073_caveat": "HELIXINTELLIGENCE-L2-073 exact L2/L11 revision is adopted by MPR-RC-HELIXINTELLIGENCE-L2-073-002 (2026-09-29 decision table line 86); stale candidate/frontmatter text does not negate that adoption. None of these 20 selected rows is AAFD-R-04 000142/000143; this adoption does not create a relation for these rows.",
+    "candidate_boundary": "docs/helix-os/candidates/next-generation-ci-requirements.md is draft_candidate/awaiting_human_approval; its NCI-OS content is used only for candidate_relation_only, never as adopted coverage."
+  },
+  "relation_labels": [
+    "adopted_relevant_partial",
+    "unadopted_candidate_relation_only",
+    "true_unknown"
+  ],
+  "counts": {
+    "adopted_relevant_partial": 2,
+    "unadopted_candidate_relation_only": 2,
+    "true_unknown": 16
+  },
+  "rows": [
+    {
+      "source_id": "LEGACY-CAND-LINE-000502",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_line": 31,
+      "asset_id": null,
+      "source_file_sha256": "7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "source_line_sha256": "92d0a3258e8a2db7342d86a0706f7850c8a141c0a64af3c116f7ffcc8f86514e",
+      "physical_line_bytes_sha256": "797094e2172994a89a557a8a39d31e351dd0d105256d0d763a90acbc0b56870c",
+      "source_text": "- required verificationの削減、cancelled runの成功扱い、別event classの結果流用を高速化として認めない。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "relation_assessment": "adopted_relevant_partial",
+      "current_relation_evidence": "HARNESS-L2-005 / HCV4-L11-003",
+      "residual": "検証削減・cancelled run成功扱い・別event class結果流用を認めない拒否意味は、required oracleを維持する採択済み契約と一部対応。取消時の状態、event class分離、結果再利用の具体条件は当該L2/L11に明示されず残る。",
+      "current_authority_refs": [
+        {
+          "id": "HARNESS-L2-005"
+        },
+        {
+          "id": "HCV4-L11-003"
+        }
+      ],
+      "classification_atom_boundary_provisional": false,
+      "provisional_reclassification_candidate": null,
+      "carry_forward_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "successor_requirement_ids": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000514",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 10,
+      "asset_id": null,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "a9c98c2db6601b0c963c5835fa5a2295cb5adc01b94a6712e07f9d39c4da11ff",
+      "physical_line_bytes_sha256": "3853f56a065d410e1b1d84991fb5181b6bee614792b8e78c4aa9a6c46a4525f3",
+      "source_text": "  - CIS-R-01",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "relation_assessment": "true_unknown",
+      "current_relation_evidence": "none",
+      "residual": "行はCIS-R-01というIDのみ。参照先要求の意味を独立atomとして復元できず、採択L2/L11との対応も確定できない。親見出し・実要求本文をatom境界として再照合する必要がある。",
+      "current_authority_refs": [],
+      "classification_atom_boundary_provisional": true,
+      "provisional_reclassification_candidate": "explanation_or_reference_metadata",
+      "carry_forward_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "successor_requirement_ids": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000515",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 11,
+      "asset_id": null,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "790816e4fdbf63a259b6f342011143d0c75eb6621bccdb61259bae2f5d62c5ab",
+      "physical_line_bytes_sha256": "04a26bc048bb494da4557f50409b9d1c20e62fdc71873c3bcb6dcfb355f99edf",
+      "source_text": "  - CIS-R-02",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "relation_assessment": "true_unknown",
+      "current_relation_evidence": "none",
+      "residual": "行はCIS-R-02というIDのみ。参照先要求の意味を独立atomとして復元できず、採択L2/L11との対応も確定できない。親見出し・実要求本文をatom境界として再照合する必要がある。",
+      "current_authority_refs": [],
+      "classification_atom_boundary_provisional": true,
+      "provisional_reclassification_candidate": "explanation_or_reference_metadata",
+      "carry_forward_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "successor_requirement_ids": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000516",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 12,
+      "asset_id": null,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "594afac37e6f88bca6b72a3d94bfe657a7433b0d9a7d43f483c203403ce078fb",
+      "physical_line_bytes_sha256": "2843ec2068703af880dd2e69d7626adfa9bda89edce27420bb8415d284c34268",
+      "source_text": "  - CIS-R-12",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "relation_assessment": "true_unknown",
+      "current_relation_evidence": "none",
+      "residual": "行はCIS-R-12というIDのみ。参照先要求の意味を独立atomとして復元できず、採択L2/L11との対応も確定できない。親見出し・実要求本文をatom境界として再照合する必要がある。",
+      "current_authority_refs": [],
+      "classification_atom_boundary_provisional": true,
+      "provisional_reclassification_candidate": "explanation_or_reference_metadata",
+      "carry_forward_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "successor_requirement_ids": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000517",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 13,
+      "asset_id": null,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "d1129cc6f437fc3699294414ffe9167c2d6a50ff3b66e2c0675e132622d5a25f",
+      "physical_line_bytes_sha256": "5a2aa98ddc913cab0523e8aeee6fa1275111dcf1cf1564c6800d3f9d55697de5",
+      "source_text": "  - CIS-R-13",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "relation_assessment": "true_unknown",
+      "current_relation_evidence": "none",
+      "residual": "行はCIS-R-13というIDのみ。参照先要求の意味を独立atomとして復元できず、採択L2/L11との対応も確定できない。親見出し・実要求本文をatom境界として再照合する必要がある。",
+      "current_authority_refs": [],
+      "classification_atom_boundary_provisional": true,
+      "provisional_reclassification_candidate": "explanation_or_reference_metadata",
+      "carry_forward_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "successor_requirement_ids": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000528",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 31,
+      "asset_id": null,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "77f4af292cd562b2686f881a43a3044af2e3f3fa0230b687acaac5407e3f418c",
+      "physical_line_bytes_sha256": "7334620e57e8ce8e58d653a4d87b2ca4077ffea588edb516e1b90e05362640a2",
+      "source_text": "HEADだけを置換でき、newer scheduleはolder scheduleだけを置換できる。`cancel-in-progress:false`だけによる",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "relation_assessment": "adopted_relevant_partial",
+      "current_relation_evidence": "HARNESS-L2-005 / HCV4-L11-003",
+      "residual": "検証選択をrisk・変更内容に合わせrequired obligationsを維持する採択済み契約と部分的に対応する。schedule/headごとの置換規則、cancel-in-progress意味、event-specific orderingは残る。",
+      "current_authority_refs": [
+        {
+          "id": "HARNESS-L2-005"
+        },
+        {
+          "id": "HCV4-L11-003"
+        }
+      ],
+      "classification_atom_boundary_provisional": false,
+      "provisional_reclassification_candidate": null,
+      "carry_forward_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "successor_requirement_ids": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000532",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 38,
+      "asset_id": null,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "b191ed5b193417fa4069e11c72e6aae8b39c265cd4d20524acd5ebe505958dfc",
+      "physical_line_bytes_sha256": "4d8cfdfd2907beab2eff883824737d5d791e28c9a38dc0f1442c73bf0eb551c1",
+      "source_text": "newer main pushがolder main pushをsupersedeできるのは、older HEADがcurrent mainでないこと、新current HEADの",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "relation_assessment": "unadopted_candidate_relation_only",
+      "current_relation_evidence": "NCI-OS-004 / NCI-OS-005 / NCI-OS-008 (candidate only)",
+      "residual": "現行draftの新世代CI候補はfailure/cancel状態、required oracle維持、verification obligation relationを候補として扱うが、採択関係ではない。newer main push supersession条件、generation確保、obligation handoff receipt、terminal read-afterは候補にも個別化されず残る。採択OS L2-008/011のCI実行・base再計画の一般契約はあるが、この旧atomへのexact event/supersession relationとは認めない。",
+      "current_authority_refs": [
+        {
+          "id": "NCI-OS-004"
+        },
+        {
+          "id": "NCI-OS-005"
+        },
+        {
+          "id": "NCI-OS-008 (candidate only)"
+        }
+      ],
+      "classification_atom_boundary_provisional": false,
+      "provisional_reclassification_candidate": null,
+      "carry_forward_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "successor_requirement_ids": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000533",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 39,
+      "asset_id": null,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "169a1fca26a7de62864df613bb2c7e4536988023a3638f98645b023700d5c607",
+      "physical_line_bytes_sha256": "f0a0af6bd52d657f46a65255427a4c335fe7ff79d14a299c268f7cc1b2c66e2e",
+      "source_text": "generation確保、required obligationのhandoff receipt、terminal read-afterを検証できる場合だけとする。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "relation_assessment": "unadopted_candidate_relation_only",
+      "current_relation_evidence": "NCI-OS-004 / NCI-OS-005 / NCI-OS-008 (candidate only)",
+      "residual": "現行draftの新世代CI候補はcancel/failure区分、required oracle維持、obligation relationを扱うが、採択関係ではない。handoff receiptの内容・検証、generation確保、terminal read-afterとsupersession許容条件は候補にも個別化されず残る。採択OS L2-008/011の一般CI/base契約は、この旧atomへのexact event/supersession relationを証明しない。",
+      "current_authority_refs": [
+        {
+          "id": "NCI-OS-004"
+        },
+        {
+          "id": "NCI-OS-005"
+        },
+        {
+          "id": "NCI-OS-008 (candidate only)"
+        }
+      ],
+      "classification_atom_boundary_provisional": false,
+      "provisional_reclassification_candidate": null,
+      "carry_forward_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "successor_requirement_ids": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000542",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 53,
+      "asset_id": null,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "9e3df8e53bb1c3db0d8178a1cbc5e78d008c8ed2ee6cf2aa93daf2149b260245",
+      "physical_line_bytes_sha256": "29ca0f4359a98d4b8ca756c9f4fef4433b15013717ff0cfafcf381ac4e59e5cd",
+      "source_text": "- #908のbounded cancel providerを再利用し、別cancel実行authorityを作らない。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "relation_assessment": "true_unknown",
+      "current_relation_evidence": "none",
+      "residual": "旧#908 bounded cancel provider参照を再利用し、別cancel authorityを作らないという参照／境界文。provider/cancelの具体意味と現行要求への割当はこの行から特定できず、source-contextを保持したまま未解決。",
+      "current_authority_refs": [],
+      "classification_atom_boundary_provisional": true,
+      "provisional_reclassification_candidate": "explanation_or_compatibility_trace_metadata",
+      "carry_forward_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "successor_requirement_ids": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000543",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 54,
+      "asset_id": null,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "13106439c50d7dee0b506bb5cf74315b2a61b2fe57e560803659e776157c2d37",
+      "physical_line_bytes_sha256": "b5caf9650c7fabe95050b64bd777f7a722431d734126dccf634e0733bb0d92ab",
+      "source_text": "- #735の`ci_evidence_generation`を上位互換の内部fieldとして保持し、既存の",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "relation_assessment": "true_unknown",
+      "current_relation_evidence": "none",
+      "residual": "旧#735 ci_evidence_generation fieldの内部互換参照。field identity/consumer obligationが行単独から定まらず、現行L2/L11採択要求への関係は不明。metadata/atom境界の再確認が必要。",
+      "current_authority_refs": [],
+      "classification_atom_boundary_provisional": true,
+      "provisional_reclassification_candidate": "explanation_or_compatibility_trace_metadata",
+      "carry_forward_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "successor_requirement_ids": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000545",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 56,
+      "asset_id": null,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "eced38e93daa999abd770028670a93df2622b4509dea6aeab3e054c695271293",
+      "physical_line_bytes_sha256": "c3500609c5ac3b4faef74af81d4b14e46bd2e7a50700f69dd5de3348512b19a1",
+      "source_text": "- CIS-R-01〜03のtelemetry identity、CIS-R-12のbounded cancellation、CIS-R-13のdeferred recoveryを拡張する。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "relation_assessment": "true_unknown",
+      "current_relation_evidence": "none",
+      "residual": "CIS-R ID群と拡張関係を示すtrace/説明文。ID群ごとの行別意味を混ぜており、1物理行=1 product atom分類にatom境界懸念。個別意味は各要求本文で再照合が必要。",
+      "current_authority_refs": [],
+      "classification_atom_boundary_provisional": true,
+      "provisional_reclassification_candidate": "explanation_or_compatibility_trace_metadata",
+      "carry_forward_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "successor_requirement_ids": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000546",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 57,
+      "asset_id": null,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "879f995a2a0bc0fc5d1fdf875c3a0967eb56b5f2b117db482c8c67d20b0d0be3",
+      "physical_line_bytes_sha256": "59591f22d45f48c02a8657ea879a67d68a14747548afa667fc86ae206a5b7694",
+      "source_text": "- #1106/#1137のWindows lease、#538のreceipt失効、#848/#1322の監査内容を再実装しない。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "relation_assessment": "true_unknown",
+      "current_relation_evidence": "none",
+      "residual": "旧要求#1106/#1137/#538/#848/#1322の実装／責務参照。再実装しない境界は示すが、各旧機能の要求意味と現行の個別採択関係はこの行だけでは決められない。atomよりtrace/reference metadataの可能性を要確認。",
+      "current_authority_refs": [],
+      "classification_atom_boundary_provisional": true,
+      "provisional_reclassification_candidate": "explanation_or_compatibility_trace_metadata",
+      "carry_forward_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "successor_requirement_ids": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000552",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_path": "docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 7,
+      "asset_id": null,
+      "source_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "4df0a72f624230fa7b8a1f38a5309f3568b5ca3d80f1962943ba013bb34468d4",
+      "physical_line_bytes_sha256": "65cead7e2c0a69d5ca4117714b255d2296379ad3cbddf41cf0fc7e6734dbe652",
+      "source_text": "- 入力: `HELIX_Concept＆Vision.zip`、2026-09-06受領。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "relation_assessment": "true_unknown",
+      "current_relation_evidence": "none",
+      "residual": "特定日受領のZIP名を記録するintake provenance。受領資料の版・意味は現行Concept/L1/採択L2要求のrelation evidenceにならず、product atom分類は暫定。",
+      "current_authority_refs": [],
+      "classification_atom_boundary_provisional": true,
+      "provisional_reclassification_candidate": "explanation_or_intake_provenance",
+      "carry_forward_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "successor_requirement_ids": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000553",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_path": "docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 8,
+      "asset_id": null,
+      "source_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "a78940a0a8eb32f0ba25a4ba2566955baac3f417ece801ae6ce12f7ef024579b",
+      "physical_line_bytes_sha256": "0d90c1ec28140b1a5b92b9a19599a710651b6353673203dee5a7e7a4cbbd6dd6",
+      "source_text": "- ZIP SHA-256: `c6faf07352063a1715f07aedb4b2c551716f2f401611ff4db1ff2624f01a90b0`",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "relation_assessment": "true_unknown",
+      "current_relation_evidence": "none",
+      "residual": "受領ZIPのdigestというprovenance/evidence claim。現行対象の要求意味や同一sourceとの照合結果を示さず、product atom分類・境界を要再確認。",
+      "current_authority_refs": [],
+      "classification_atom_boundary_provisional": true,
+      "provisional_reclassification_candidate": "explanation_or_intake_provenance",
+      "carry_forward_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "successor_requirement_ids": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000554",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_path": "docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 9,
+      "asset_id": null,
+      "source_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "d3070c2d5b01f162f376b39f79c723ff6ca694710de7bc0975d5c549b2a976f8",
+      "physical_line_bytes_sha256": "68c50a10d63cedd2c65c0df02db60d8768fb5b3409731f31ddae03c2f890b1a2",
+      "source_text": "- 照合基準main: `0f733a9a034759521ad38ac6b92c8c5a39f7b9a1`",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "relation_assessment": "true_unknown",
+      "current_relation_evidence": "none",
+      "residual": "過去のmain照合基準commitのprovenance。現行承認revisionとの同一性や要求意味を示さず、要求atomよりsource metadataの可能性がある。",
+      "current_authority_refs": [],
+      "classification_atom_boundary_provisional": true,
+      "provisional_reclassification_candidate": "explanation_or_intake_provenance",
+      "carry_forward_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "successor_requirement_ids": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000555",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_path": "docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 10,
+      "asset_id": null,
+      "source_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "4187ef6986a125621e41585ea16def521cc5b2b80f6fb40ad4f4232c6f57b800",
+      "physical_line_bytes_sha256": "209a66a1146fd7f6023906acc6ee43c30bacf43c376b1133e675573aa00a2b71",
+      "source_text": "- ZIP memberとして受領した10 Markdown文書は、同じZIP memberのSHA256SUMSと一致。これは受領ZIP内部の整合であり、第三者署名による真正性証明ではない。パスに絶対パス・親ディレクトリ参照なし。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "relation_assessment": "true_unknown",
+      "current_relation_evidence": "none",
+      "residual": "過去のZIP内部checksum/path検査結果と限界を報告するevidence。現在の要求の受入意味とは結び付かず、explanation/evidence lineとproduct atomの境界が暫定。",
+      "current_authority_refs": [],
+      "classification_atom_boundary_provisional": true,
+      "provisional_reclassification_candidate": "explanation_or_intake_provenance",
+      "carry_forward_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "successor_requirement_ids": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000556",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_path": "docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 11,
+      "asset_id": null,
+      "source_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "5ce3ecb52cfb507712ccbcd56c1b0342d5525175547699d4e26f670b259cda8f",
+      "physical_line_bytes_sha256": "0ec483c64325b41ef53c4845264aadaee0343538611505e19e3753e38cdc7d4c",
+      "source_text": "- 全10文書を通読済み。階層調査evidenceの主張と現在mainとの独立照合は未完了。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "relation_assessment": "true_unknown",
+      "current_relation_evidence": "none",
+      "residual": "過去の読了・独立照合未完了statusを記録する。受領時の調査状態であり製品要求意味とは異なる可能性が高い。説明／status metadataとatom境界の分類を要確認。",
+      "current_authority_refs": [],
+      "classification_atom_boundary_provisional": true,
+      "provisional_reclassification_candidate": "explanation_or_intake_provenance",
+      "carry_forward_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "successor_requirement_ids": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000557",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_path": "docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 12,
+      "asset_id": null,
+      "source_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "3139810b649553d3839453ca8fa45a06f8af7f386aebec04d32adbc5be22c9f4",
+      "physical_line_bytes_sha256": "34e4daadf9760668a1b17114e1924af19fcca19fd69ffc6eeb68770fca9cc0a3",
+      "source_text": "- 保存先: `docs/archive/intake/2026-09-06-concept-vision/`。10文書と受領時のSHA256SUMSをbyte一致で保存し、`sha256sum -c SHA256SUMS.txt` は10/10一致、exit 0。原文は編集せず、出典の未同梱状態も変更しない。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "relation_assessment": "true_unknown",
+      "current_relation_evidence": "none",
+      "residual": "過去の保存位置・検査結果・原文不変の記録。現行のauthority/retention契約を構成する根拠は確認できず、historical intake evidenceとproduct atomの境界が暫定。",
+      "current_authority_refs": [],
+      "classification_atom_boundary_provisional": true,
+      "provisional_reclassification_candidate": "explanation_or_intake_provenance",
+      "carry_forward_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "successor_requirement_ids": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000581",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_path": "docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 45,
+      "asset_id": null,
+      "source_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "482aec57e7413f56f8840bb1cf802a8d2721e3a9493e88a9cf35faec0d145d30",
+      "physical_line_bytes_sha256": "9e7f4d4fcefaa4bcedc549025d00721bea7ba8e5c20dd3f47b0f5ea74befb43a",
+      "source_text": "1. Conceptの `basis/` 参照4件は同梱配置と不一致。編集版で同梱文書の実配置へ修正する。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "relation_assessment": "true_unknown",
+      "current_relation_evidence": "none",
+      "residual": "過去のConcept basis pathを編集版で修正する提案。特定packageの差分対応で、現行Conceptの意味や採択要求に対する意味relationは確認できない。候補の変更処理記録とproduct atom分類の境界が要確認。",
+      "current_authority_refs": [],
+      "classification_atom_boundary_provisional": true,
+      "provisional_reclassification_candidate": "explanation_or_historical_edit_instruction",
+      "carry_forward_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "successor_requirement_ids": []
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000582",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_path": "docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 46,
+      "asset_id": null,
+      "source_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "63ea1bb378d3763dd7fa58ce5d219ff4457d010ae414706836fe93369cb19be1",
+      "physical_line_bytes_sha256": "98dc5f88f433e65547e4e0badf3fa7eef99b4728c8811494fcd5a1839bba8012",
+      "source_text": "2. Visionの別ZIP・roadmap JSON同梱という記述は今回の入力に一致しない。編集版は実inventoryに合わせる。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "relation_assessment": "true_unknown",
+      "current_relation_evidence": "none",
+      "residual": "過去のVision/roadmap package記述を実inventoryへ合わせる提案。archive intake文書内の修正指示であり、現行requirementsに対するrelationは未確定。product atom分類は暫定。",
+      "current_authority_refs": [],
+      "classification_atom_boundary_provisional": true,
+      "provisional_reclassification_candidate": "explanation_or_historical_edit_instruction",
+      "carry_forward_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "successor_requirement_ids": []
+    }
+  ],
+  "provisional_reclassification_candidates": [
+    {
+      "source_id": "LEGACY-CAND-LINE-000514",
+      "candidate_reclassification": "explanation_or_reference_metadata",
+      "disposition": "review only; no effective classification change"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000515",
+      "candidate_reclassification": "explanation_or_reference_metadata",
+      "disposition": "review only; no effective classification change"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000516",
+      "candidate_reclassification": "explanation_or_reference_metadata",
+      "disposition": "review only; no effective classification change"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000517",
+      "candidate_reclassification": "explanation_or_reference_metadata",
+      "disposition": "review only; no effective classification change"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000542",
+      "candidate_reclassification": "explanation_or_compatibility_trace_metadata",
+      "disposition": "review only; no effective classification change"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000543",
+      "candidate_reclassification": "explanation_or_compatibility_trace_metadata",
+      "disposition": "review only; no effective classification change"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000545",
+      "candidate_reclassification": "explanation_or_compatibility_trace_metadata",
+      "disposition": "review only; no effective classification change"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000546",
+      "candidate_reclassification": "explanation_or_compatibility_trace_metadata",
+      "disposition": "review only; no effective classification change"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000552",
+      "candidate_reclassification": "explanation_or_intake_provenance",
+      "disposition": "review only; no effective classification change"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000553",
+      "candidate_reclassification": "explanation_or_intake_provenance",
+      "disposition": "review only; no effective classification change"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000554",
+      "candidate_reclassification": "explanation_or_intake_provenance",
+      "disposition": "review only; no effective classification change"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000555",
+      "candidate_reclassification": "explanation_or_intake_provenance",
+      "disposition": "review only; no effective classification change"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000556",
+      "candidate_reclassification": "explanation_or_intake_provenance",
+      "disposition": "review only; no effective classification change"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000557",
+      "candidate_reclassification": "explanation_or_intake_provenance",
+      "disposition": "review only; no effective classification change"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000581",
+      "candidate_reclassification": "explanation_or_historical_edit_instruction",
+      "disposition": "review only; no effective classification change"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000582",
+      "candidate_reclassification": "explanation_or_historical_edit_instruction",
+      "disposition": "review only; no effective classification change"
+    }
+  ],
+  "limitations": [
+    "The 16 true_unknown count is provisional because 16 selected physical lines have classification/atom boundary concerns; it is not a final unknown relation count.",
+    "All source rows remain historical candidate / draft candidate / preserved pending atomization; no adoption, successor, coverage/closure, acceptance, or Stage 5 completion is created.",
+    "Relation assessments are bounded source-to-current-text comparisons, not requirement decisions.",
+    "Selected lines with classification_atom_boundary_provisional=true require classification/atom boundary re-review; they remain in the selected population because the task fixes the effective #2361 classification input.",
+    "Old source text and physical byte hashes are based on the exact archive bytes at origin/main."
+  ],
+  "validation": {
+    "selected_20": true,
+    "ids_unique": true,
+    "matches_recomputed_numeric_next20": true,
+    "old_archive_file_and_physical_line_hashes_computed_from_exact_base": true,
+    "all_rows_unknown_product_atoms_at_effective_input": true,
+    "authority_effect": "none",
+    "legacy_execution": "none"
+  }
+}
