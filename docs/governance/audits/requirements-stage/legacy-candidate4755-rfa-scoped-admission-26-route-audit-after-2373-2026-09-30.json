@@ -1,0 +1,2427 @@
+{
+  "schema_version": "legacy-candidate-route-audit.v1",
+  "audit_id": "legacy-candidate4755-rfa-scoped-admission-26-route-audit-after-2373-2026-09-30",
+  "authority_effect": "none",
+  "base_commit": "c1e1cf726d3cb6be96869b3491ff57d7e3cc464d",
+  "selection": {
+    "population_basis": "#2368 merged 47-row formation-intake proposal effective classification. Select exactly 26 named requirement-formation/scoped-admission source rows that remain condition/product_requirement_atom/unknown; route review does not change proposal classification, authority, adoption, or coverage.",
+    "source_asset_id": "LEGACY-ASSET-D6A372AEFBA19BE1C63C",
+    "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+    "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+    "selected_ids": [
+      "LEGACY-CAND-LINE-003678",
+      "LEGACY-CAND-LINE-003679",
+      "LEGACY-CAND-LINE-003685",
+      "LEGACY-CAND-LINE-003686",
+      "LEGACY-CAND-LINE-003687",
+      "LEGACY-CAND-LINE-003690",
+      "LEGACY-CAND-LINE-003697",
+      "LEGACY-CAND-LINE-003710",
+      "LEGACY-CAND-LINE-003711",
+      "LEGACY-CAND-LINE-003712",
+      "LEGACY-CAND-LINE-003713",
+      "LEGACY-CAND-LINE-003714",
+      "LEGACY-CAND-LINE-003715",
+      "LEGACY-CAND-LINE-003755",
+      "LEGACY-CAND-LINE-003756",
+      "LEGACY-CAND-LINE-003757",
+      "LEGACY-CAND-LINE-003762",
+      "LEGACY-CAND-LINE-003763",
+      "LEGACY-CAND-LINE-003764",
+      "LEGACY-CAND-LINE-003771",
+      "LEGACY-CAND-LINE-003774",
+      "LEGACY-CAND-LINE-003775",
+      "LEGACY-CAND-LINE-003776",
+      "LEGACY-CAND-LINE-003777",
+      "LEGACY-CAND-LINE-003778",
+      "LEGACY-CAND-LINE-003779"
+    ],
+    "selected_count": 26,
+    "excluded_prior_route_sets": [
+      {
+        "prior_route": "#2350",
+        "count": 20,
+        "selected_ids": [
+          "LEGACY-CAND-LINE-000021",
+          "LEGACY-CAND-LINE-000022",
+          "LEGACY-CAND-LINE-000023",
+          "LEGACY-CAND-LINE-000024",
+          "LEGACY-CAND-LINE-000025",
+          "LEGACY-CAND-LINE-000026",
+          "LEGACY-CAND-LINE-000027",
+          "LEGACY-CAND-LINE-000031",
+          "LEGACY-CAND-LINE-000037",
+          "LEGACY-CAND-LINE-000051",
+          "LEGACY-CAND-LINE-000054",
+          "LEGACY-CAND-LINE-000069",
+          "LEGACY-CAND-LINE-000070",
+          "LEGACY-CAND-LINE-000071",
+          "LEGACY-CAND-LINE-000072",
+          "LEGACY-CAND-LINE-000073",
+          "LEGACY-CAND-LINE-000074",
+          "LEGACY-CAND-LINE-000080",
+          "LEGACY-CAND-LINE-000091",
+          "LEGACY-CAND-LINE-000103"
+        ]
+      },
+      {
+        "prior_route": "#2359",
+        "count": 20,
+        "selected_ids": [
+          "LEGACY-CAND-LINE-000052",
+          "LEGACY-CAND-LINE-000108",
+          "LEGACY-CAND-LINE-000109",
+          "LEGACY-CAND-LINE-000110",
+          "LEGACY-CAND-LINE-000140",
+          "LEGACY-CAND-LINE-000180",
+          "LEGACY-CAND-LINE-000356",
+          "LEGACY-CAND-LINE-000396",
+          "LEGACY-CAND-LINE-000425",
+          "LEGACY-CAND-LINE-000468",
+          "LEGACY-CAND-LINE-000470",
+          "LEGACY-CAND-LINE-000472",
+          "LEGACY-CAND-LINE-000474",
+          "LEGACY-CAND-LINE-000478",
+          "LEGACY-CAND-LINE-000491",
+          "LEGACY-CAND-LINE-000492",
+          "LEGACY-CAND-LINE-000496",
+          "LEGACY-CAND-LINE-000497",
+          "LEGACY-CAND-LINE-000499",
+          "LEGACY-CAND-LINE-000500"
+        ]
+      },
+      {
+        "prior_route": "#2364",
+        "count": 20,
+        "selected_ids": [
+          "LEGACY-CAND-LINE-000501",
+          "LEGACY-CAND-LINE-000502",
+          "LEGACY-CAND-LINE-000528",
+          "LEGACY-CAND-LINE-000532",
+          "LEGACY-CAND-LINE-000533",
+          "LEGACY-CAND-LINE-000542",
+          "LEGACY-CAND-LINE-000543",
+          "LEGACY-CAND-LINE-000545",
+          "LEGACY-CAND-LINE-000546",
+          "LEGACY-CAND-LINE-000598",
+          "LEGACY-CAND-LINE-000603",
+          "LEGACY-CAND-LINE-000613",
+          "LEGACY-CAND-LINE-000633",
+          "LEGACY-CAND-LINE-000638",
+          "LEGACY-CAND-LINE-000653",
+          "LEGACY-CAND-LINE-000661",
+          "LEGACY-CAND-LINE-000663",
+          "LEGACY-CAND-LINE-000664",
+          "LEGACY-CAND-LINE-000665",
+          "LEGACY-CAND-LINE-000667"
+        ]
+      },
+      {
+        "prior_route": "#2370",
+        "count": 20,
+        "selected_ids": [
+          "LEGACY-CAND-LINE-000703",
+          "LEGACY-CAND-LINE-000705",
+          "LEGACY-CAND-LINE-000706",
+          "LEGACY-CAND-LINE-000725",
+          "LEGACY-CAND-LINE-000771",
+          "LEGACY-CAND-LINE-000840",
+          "LEGACY-CAND-LINE-000841",
+          "LEGACY-CAND-LINE-000850",
+          "LEGACY-CAND-LINE-000851",
+          "LEGACY-CAND-LINE-000852",
+          "LEGACY-CAND-LINE-000853",
+          "LEGACY-CAND-LINE-000854",
+          "LEGACY-CAND-LINE-000855",
+          "LEGACY-CAND-LINE-000856",
+          "LEGACY-CAND-LINE-000857",
+          "LEGACY-CAND-LINE-000942",
+          "LEGACY-CAND-LINE-000943",
+          "LEGACY-CAND-LINE-000944",
+          "LEGACY-CAND-LINE-000945",
+          "LEGACY-CAND-LINE-000946"
+        ]
+      },
+      {
+        "prior_route": "#2372",
+        "count": 51,
+        "selected_ids": [
+          "LEGACY-CAND-LINE-001083",
+          "LEGACY-CAND-LINE-001084",
+          "LEGACY-CAND-LINE-001097",
+          "LEGACY-CAND-LINE-001098",
+          "LEGACY-CAND-LINE-001101",
+          "LEGACY-CAND-LINE-001105",
+          "LEGACY-CAND-LINE-001111",
+          "LEGACY-CAND-LINE-001115",
+          "LEGACY-CAND-LINE-001120",
+          "LEGACY-CAND-LINE-001122",
+          "LEGACY-CAND-LINE-001123",
+          "LEGACY-CAND-LINE-001127",
+          "LEGACY-CAND-LINE-001132",
+          "LEGACY-CAND-LINE-001133",
+          "LEGACY-CAND-LINE-001137",
+          "LEGACY-CAND-LINE-001151",
+          "LEGACY-CAND-LINE-001168",
+          "LEGACY-CAND-LINE-001182",
+          "LEGACY-CAND-LINE-001231",
+          "LEGACY-CAND-LINE-001238",
+          "LEGACY-CAND-LINE-001256",
+          "LEGACY-CAND-LINE-001258",
+          "LEGACY-CAND-LINE-001288",
+          "LEGACY-CAND-LINE-001289",
+          "LEGACY-CAND-LINE-001297",
+          "LEGACY-CAND-LINE-001309",
+          "LEGACY-CAND-LINE-001335",
+          "LEGACY-CAND-LINE-001336",
+          "LEGACY-CAND-LINE-001337",
+          "LEGACY-CAND-LINE-001338",
+          "LEGACY-CAND-LINE-001339",
+          "LEGACY-CAND-LINE-001340",
+          "LEGACY-CAND-LINE-001341",
+          "LEGACY-CAND-LINE-001342",
+          "LEGACY-CAND-LINE-001343",
+          "LEGACY-CAND-LINE-001344",
+          "LEGACY-CAND-LINE-001361",
+          "LEGACY-CAND-LINE-001362",
+          "LEGACY-CAND-LINE-001363",
+          "LEGACY-CAND-LINE-001364",
+          "LEGACY-CAND-LINE-001365",
+          "LEGACY-CAND-LINE-001380",
+          "LEGACY-CAND-LINE-001607",
+          "LEGACY-CAND-LINE-001611",
+          "LEGACY-CAND-LINE-001615",
+          "LEGACY-CAND-LINE-001619",
+          "LEGACY-CAND-LINE-001621",
+          "LEGACY-CAND-LINE-001627",
+          "LEGACY-CAND-LINE-001661",
+          "LEGACY-CAND-LINE-001953",
+          "LEGACY-CAND-LINE-002016"
+        ]
+      },
+      {
+        "prior_route": "#2373",
+        "count": 24,
+        "selected_ids": [
+          "LEGACY-CAND-LINE-000947",
+          "LEGACY-CAND-LINE-000948",
+          "LEGACY-CAND-LINE-000949",
+          "LEGACY-CAND-LINE-000950",
+          "LEGACY-CAND-LINE-000951",
+          "LEGACY-CAND-LINE-000952",
+          "LEGACY-CAND-LINE-000953",
+          "LEGACY-CAND-LINE-000954",
+          "LEGACY-CAND-LINE-000955",
+          "LEGACY-CAND-LINE-000978",
+          "LEGACY-CAND-LINE-000979",
+          "LEGACY-CAND-LINE-000980",
+          "LEGACY-CAND-LINE-000981",
+          "LEGACY-CAND-LINE-000982",
+          "LEGACY-CAND-LINE-000986",
+          "LEGACY-CAND-LINE-000987",
+          "LEGACY-CAND-LINE-000988",
+          "LEGACY-CAND-LINE-000989",
+          "LEGACY-CAND-LINE-000990",
+          "LEGACY-CAND-LINE-000991",
+          "LEGACY-CAND-LINE-000992",
+          "LEGACY-CAND-LINE-000993",
+          "LEGACY-CAND-LINE-000994",
+          "LEGACY-CAND-LINE-000995"
+        ]
+      }
+    ],
+    "excluded_prior_route_id_union_count": 155,
+    "overlap_check": {
+      "candidate_ids": 26,
+      "prior_excluded_union_ids": 155,
+      "candidate_intersection_count": 0,
+      "candidate_intersection_ids": [],
+      "method": "exact full source IDs; prior route sets are #2370 embedded #2350/#2359/#2364 exclusions plus #2370 selected IDs, #2372 rows, #2373 selected IDs"
+    },
+    "scope_note": "#2350/#2359/#2364/#2370/#2372/#2373 rows are excluded. All #2368 family rows not listed here are out of scope."
+  },
+  "pinned_inputs": [
+    {
+      "role": "exact merged base / current static source snapshot",
+      "commit": "c1e1cf726d3cb6be96869b3491ff57d7e3cc464d",
+      "path": "AGENTS.md",
+      "sha256": "96e0ae7e0c23d95481133c65103004422806503528628f2057ddd56926076302",
+      "merge_status": "origin/main at #2373 merge"
+    },
+    {
+      "role": "merged #2368 classification proposal; proposal-effective source row identities",
+      "commit": "caa81766939926c708f22302759623d84068038c",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
+      "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95",
+      "merge_status": "merged proposal present in base"
+    },
+    {
+      "role": "merged #2370 residual-route audit; carries #2350/#2359/#2364 exclusions and #2370 selected IDs",
+      "commit": "cb439457d7d512906a141897deb04c3fd9f1b3a3",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-product-unknown-next20-route-audit-after-2369-2026-09-30.json",
+      "sha256": "69cc7136961d7cd2aba64627903a134732bc858dc351780791f288bb05e7af48",
+      "merge_status": "merged audit present in base"
+    },
+    {
+      "role": "merged #2372 execution-ticket family route audit; prior IDs excluded",
+      "commit": "6f3fa4615a5ae0b9b91dc222a3dccc9d42bc6a98",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-execution-ticket-family-route-audit-2026-09-30.json",
+      "sha256": "97834622a32edbf054767b89bdf0cef7acbcb09e4f3d73ee0b9fa25a35f54f27",
+      "merge_status": "merged audit present in base"
+    },
+    {
+      "role": "merged #2373 design-grounding residual audit; prior IDs excluded",
+      "commit": "c1e1cf726d3cb6be96869b3491ff57d7e3cc464d",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-residual-24-route-audit-2026-09-30.json",
+      "sha256": "1b0e42001028f4ccb7f346f0436cf0136058e2f9b7818367977bd320711baffa",
+      "merge_status": "merged #2373 artifact present in current base"
+    },
+    {
+      "role": "source line identity ledger",
+      "commit": "c1e1cf726d3cb6be96869b3491ff57d7e3cc464d",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+      "merge_status": "present in exact base"
+    },
+    {
+      "role": "legacy asset disposition ledger",
+      "commit": "c1e1cf726d3cb6be96869b3491ff57d7e3cc464d",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "merge_status": "present in exact base"
+    },
+    {
+      "role": "archive source manifest",
+      "commit": "c1e1cf726d3cb6be96869b3491ff57d7e3cc464d",
+      "path": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+      "sha256": "10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6",
+      "merge_status": "present in exact base"
+    },
+    {
+      "role": "intake source",
+      "commit": "c1e1cf726d3cb6be96869b3491ff57d7e3cc464d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "merge_status": "archive source at exact base; read-only"
+    },
+    {
+      "role": "related requests",
+      "commit": "c1e1cf726d3cb6be96869b3491ff57d7e3cc464d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requests.md",
+      "sha256": "f6379e1294bf4c68c93430903f24949d5373a60b82e5286ac34d51a5eb614a2e",
+      "merge_status": "archive source at exact base; read-only"
+    },
+    {
+      "role": "related requirements",
+      "commit": "c1e1cf726d3cb6be96869b3491ff57d7e3cc464d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requirements.md",
+      "sha256": "97e1e5341beb48e735aacab3b3957b0707fa6aef2e70d0af8c0051607082e155",
+      "merge_status": "archive source at exact base; read-only"
+    },
+    {
+      "role": "related acceptance",
+      "commit": "c1e1cf726d3cb6be96869b3491ff57d7e3cc464d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-acceptance.md",
+      "sha256": "c3f62478904e620eced270996360274e2840f9d94eca117d838d0e6dfeda7a86",
+      "merge_status": "archive source at exact base; read-only"
+    },
+    {
+      "role": "legacy PLAN/consumer and failure context",
+      "commit": "c1e1cf726d3cb6be96869b3491ff57d7e3cc464d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-90-requirement-formation-scoped-admission.md",
+      "sha256": "220ff1d7cc3bbc316d4347698aee3b8e81308e27638bfe5e6669baec400a2b35",
+      "merge_status": "archive source at exact base; read-only"
+    }
+  ],
+  "adopted_requirement_pins": {
+    "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "HELIXOS": {
+      "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "decision_record_id": "HDEC-HELIXOS-REQUIREMENTS-PO-2026-09-28",
+      "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "l2_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "l11_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "relevant_predicate_locators": [
+        "docs/helix-os/L2-requirements/governance-requirements.md:425-449",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:206-216"
+      ],
+      "source_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+    },
+    "HARNESS": {
+      "decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "decision_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "decision_record_id": "HDEC-HARNESS-REQUIREMENTS-2026-09-28",
+      "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "l2_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "l11_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "relevant_predicate_locators": [
+        "docs/helix-harness/L2-requirements/product-requirements.md:54-60,185-198",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:23-28,37-51"
+      ],
+      "source_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+    },
+    "SECURITY": {
+      "decision_path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+      "decision_sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+      "decision_record_id": "HDEC-SECURITY-REQUIREMENTS-2026-09-28",
+      "l2_path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "l2_sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+      "l11_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "l11_sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01",
+      "relevant_predicate_locators": [
+        "docs/helix-security/L2-requirements/security-requirements.md:140-146",
+        "docs/helix-security/L11-acceptance/security-acceptance.md:32"
+      ],
+      "source_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+    }
+  },
+  "legacy_inventory": {
+    "asset_id": "LEGACY-ASSET-D6A372AEFBA19BE1C63C",
+    "asset_revision": 1,
+    "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+    "source_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+    "source_authority_state": "historical",
+    "disposition": "unresolved",
+    "product_target": "unresolved",
+    "consumer_refs": [],
+    "implementation_status": "unknown",
+    "rights_status": "unreviewed",
+    "executability_status": "unreviewed",
+    "secret_status": "unreviewed",
+    "external_effect_status": "unreviewed",
+    "archive_related_sources": [
+      {
+        "role": "intake source",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+        "sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+        "read_only": true
+      },
+      {
+        "role": "related requests",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requests.md",
+        "sha256": "f6379e1294bf4c68c93430903f24949d5373a60b82e5286ac34d51a5eb614a2e",
+        "read_only": true
+      },
+      {
+        "role": "related requirements",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requirements.md",
+        "sha256": "97e1e5341beb48e735aacab3b3957b0707fa6aef2e70d0af8c0051607082e155",
+        "read_only": true
+      },
+      {
+        "role": "related acceptance",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-acceptance.md",
+        "sha256": "c3f62478904e620eced270996360274e2840f9d94eca117d838d0e6dfeda7a86",
+        "read_only": true
+      },
+      {
+        "role": "legacy PLAN/consumer and failure context",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-90-requirement-formation-scoped-admission.md",
+        "sha256": "220ff1d7cc3bbc316d4347698aee3b8e81308e27638bfe5e6669baec400a2b35",
+        "read_only": true
+      }
+    ],
+    "failure_and_consumer_context": [
+      "Intake states that the candidate proposal is not runtime completion and that canonical promotion, #397 IR, RF/RC/GH runtime, E2E/L12 remain follow-up obligations.",
+      "PLAN-L3-90 has historical issue/dependency references (#1556, #282, #185, #186, #192, #217, #218, #1169, #1292, #396, #397, #592, #188, #1534, #1494, #1500, #1580); asset ledger consumer_refs is empty, so this is historical context only, not a current consumer claim.",
+      "PLAN contract_failures names consultation-as-approval, self-authority expansion, reuse of old approval, omitted source material, and stopping unrelated scope. These are preserved as candidate intent, not runtime-observed failures.",
+      "Archive intake reports an earlier source-removal guard failure followed by a later successful removal; that is historical process context, not new-generation validation evidence."
+    ]
+  },
+  "predicate_scope": {
+    "fixed_RFA_BRs": [
+      "RFA-BR-01",
+      "RFA-BR-02",
+      "RFA-BR-03"
+    ],
+    "adopted_OS_requirements": [
+      "HELIXOS-L2-001",
+      "HELIXOS-L2-002",
+      "HELIXOS-L2-003",
+      "HELIXOS-L2-007"
+    ],
+    "adopted_HARNESS_requirements": [
+      "HARNESS-L2-003",
+      "HARNESS-L2-004",
+      "HARNESS-L2-005",
+      "HARNESS-L2-008"
+    ],
+    "adopted_SECURITY_requirements": [
+      "HELIXSECURITY-L2-008"
+    ],
+    "direct_overlap_rule": "relation=adopted_relevant_partial only when the legacy line directly states a condition also stated by one or more compared adopted L2/L11 predicates. Shared topic alone is insufficient. Partial is bounded to the named common condition; residual remains explicit. No row is marked complete.",
+    "RFA_BR_summary": {
+      "RFA-BR-01": "目的・前提・選択肢・根拠を比較し、利用者意図との食い違いを確認する。",
+      "RFA-BR-02": "委任済み意図内の技術的具体化は反復承認なしに進み、未委任の意味/権限変更を区別する。",
+      "RFA-BR-03": "変更影響を受ける要求・検証・writerだけ再確定し、無関係な有効作業を続ける。"
+    },
+    "readers_note": "OS L2 425-449 maps RFA to HELIXOS-L2-001/002/003/007 and says not to create another engine; OS L11 206-216 evaluates request/adoption/approval/operation authority distinctions, delegated scope, human reaction vs AI interpretation, unaffected work, and unverified missing evidence. HARNESS L2 185-198 maps RFA-BR-02 to L2-003, RFA-BR-03 to L2-004, RFA-BR-01 to L2-003/005; its L2-008 and L11 predicates keep intent/candidate formation separate from agreement/authority. SECURITY L2-008/L11-008 apply only where legacy rows discuss operation authority."
+  },
+  "counts": {
+    "selected_count": 26,
+    "adopted_relevant_partial": 26,
+    "true_unknown": 0,
+    "complete": 0,
+    "classification_changed": 0,
+    "source_authority_changed": 0,
+    "adoption_effect": 0,
+    "coverage_claimed": 0
+  },
+  "rows": [
+    {
+      "source_id": "LEGACY-CAND-LINE-003678",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_line": 86,
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "source_line_sha256": "sha256:d8d1b88737bb784d584b4ffdf052cc334946aeebbfcb3bcdfd77a306f902e8e0",
+      "physical_line_bytes_sha256": "sha256:706f82bddfa16eeaf4e3f00bb6c48618308ee86f25c7609aeeb2e848a22e0d1f",
+      "source_text": "A-1. 企画の目的・期待結果・非対象・制約・人間の好みと、AIの解釈を分離する。既存資産、確認済み事実、仮説、未知、古い情報、矛盾から、今回の判断に必要な調査義務を導出する。既存research skill、interview／unresolved、Requirement Translatorを再利用する。[S4][S5][S8]",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "classification_action": "retain_classification",
+      "classification_review_candidate": false,
+      "classification_reason": "#2368 merged proposalのeffective overlayはcondition/product_requirement_atom/unknown。route照合は分類・採択状態を変更しない。",
+      "source_atom_id": "RFA-intake-line-003678",
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HELIXOS-L2-001",
+        "HARNESS-L2-008"
+      ],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HARNESS-L2-008"
+      ],
+      "route_evidence": "比較した採択L2 requirement IDは HELIXOS-L2-001, HARNESS-L2-008。受入比較箇所は docs/helix-os/L11-acceptance/governance-acceptance.md:209, docs/helix-os/L11-acceptance/governance-acceptance.md:211, docs/helix-os/L11-acceptance/governance-acceptance.md:212, docs/helix-os/L11-acceptance/governance-acceptance.md:216, docs/helix-harness/L11-acceptance/product-acceptance.md:28。直接重複する条件片: 目的・前提・選択肢・根拠を意図と比較し候補を形成する条件に直接重なる。残差: 既知/仮説/未知/矛盾/旧情報の分類語彙、既存資産の再利用判定、調査義務の導出と完了oracleまでは採択 predicate が定めない。",
+      "residual": "既知/仮説/未知/矛盾/旧情報の分類語彙、既存資産の再利用判定、調査義務の導出と完了oracleまでは採択 predicate が定めない。",
+      "fixed_adopted_rfa_review": {
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HARNESS-L2-008"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:425-449",
+          "docs/helix-harness/L2-requirements/product-requirements.md:54-60,185-198"
+        ],
+        "direct_overlap": "目的・前提・選択肢・根拠を意図と比較し候補を形成する条件に直接重なる。",
+        "residual_difference": "既知/仮説/未知/矛盾/旧情報の分類語彙、既存資産の再利用判定、調査義務の導出と完了oracleまでは採択 predicate が定めない。",
+        "assessment": "adopted_relevant_partial",
+        "compared_acceptance_locators": [
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:211",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:212",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:216",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:28"
+        ]
+      },
+      "authority_effect": "none",
+      "compared_acceptance_locators": [
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:209",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:211",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:212",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:216",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:28"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003679",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_line": 88,
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "source_line_sha256": "sha256:97ecf7f10e3ddfeed5ea43c40a0696e9b556c673d8af797d74fd290eb8c9ecdb",
+      "physical_line_bytes_sha256": "sha256:692c81349625dcddb9826596912be0879fb175af1474527ec2c5563ef78892a7",
+      "source_text": "A-2. 前提整理は「何を判断する仕事か」、探索調査は「どんな実現方法・要求候補があり得るか」を扱う。公式仕様、実コード、実物の操作・表示、既存事例を論点に応じて取得し、出典・版・取得時刻・適用条件・限界を束縛する。検索結果の件数、URLの存在、AIの自己評価だけで充足としない。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "classification_action": "retain_classification",
+      "classification_review_candidate": false,
+      "classification_reason": "#2368 merged proposalのeffective overlayはcondition/product_requirement_atom/unknown。route照合は分類・採択状態を変更しない。",
+      "source_atom_id": "RFA-intake-line-003679",
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HARNESS-L2-008",
+        "HARNESS-L2-005",
+        "HELIXOS-L2-007"
+      ],
+      "compared_adopted_requirement_ids": [
+        "HARNESS-L2-008",
+        "HARNESS-L2-005",
+        "HELIXOS-L2-007"
+      ],
+      "route_evidence": "比較した採択L2 requirement IDは HARNESS-L2-008, HARNESS-L2-005, HELIXOS-L2-007。受入比較箇所は docs/helix-os/L11-acceptance/governance-acceptance.md:211, docs/helix-os/L11-acceptance/governance-acceptance.md:212, docs/helix-os/L11-acceptance/governance-acceptance.md:216, docs/helix-harness/L11-acceptance/product-acceptance.md:28, docs/helix-harness/L11-acceptance/product-acceptance.md:25, docs/helix-harness/L11-acceptance/product-acceptance.md:46, docs/helix-harness/L11-acceptance/product-acceptance.md:47, docs/helix-harness/L11-acceptance/product-acceptance.md:48, docs/helix-harness/L11-acceptance/product-acceptance.md:49, docs/helix-harness/L11-acceptance/product-acceptance.md:50, docs/helix-harness/L11-acceptance/product-acceptance.md:51。直接重複する条件片: 候補形成に用いる証拠・出典・revisionと、指示/要求authorityを区別する条件に重なる。残差: source version・取得時刻・適用条件・限界・実物確認および件数/URL/自己評価を退ける個別の証拠充足基準は同じpredicateにない。",
+      "residual": "source version・取得時刻・適用条件・限界・実物確認および件数/URL/自己評価を退ける個別の証拠充足基準は同じpredicateにない。",
+      "fixed_adopted_rfa_review": {
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "compared_adopted_requirement_ids": [
+          "HARNESS-L2-008",
+          "HARNESS-L2-005",
+          "HELIXOS-L2-007"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-harness/L2-requirements/product-requirements.md:54-60,185-198",
+          "docs/helix-os/L2-requirements/governance-requirements.md:425-449"
+        ],
+        "direct_overlap": "候補形成に用いる証拠・出典・revisionと、指示/要求authorityを区別する条件に重なる。",
+        "residual_difference": "source version・取得時刻・適用条件・限界・実物確認および件数/URL/自己評価を退ける個別の証拠充足基準は同じpredicateにない。",
+        "assessment": "adopted_relevant_partial",
+        "compared_acceptance_locators": [
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:211",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:212",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:216",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:28",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:25",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:46",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:47",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:48",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:49",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:50",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:51"
+        ]
+      },
+      "authority_effect": "none",
+      "compared_acceptance_locators": [
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:211",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:212",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:216",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:28",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:25",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:46",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:47",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:48",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:49",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:50",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:51"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003685",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_line": 100,
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "source_line_sha256": "sha256:691e7871ff786ff4abd93c3cea213154b371001980244e85c1aac225efc0a488",
+      "physical_line_bytes_sha256": "sha256:96e9f47782a68cc5a18576cc67d58ab220909c4e4dcd38607b2bbe7efb584ec2",
+      "source_text": "- 人間の意味・価値の採否：何を欲しいとするか、何を許容するか。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "classification_action": "retain_classification",
+      "classification_review_candidate": false,
+      "classification_reason": "#2368 merged proposalのeffective overlayはcondition/product_requirement_atom/unknown。route照合は分類・採択状態を変更しない。",
+      "source_atom_id": "RFA-intake-line-003685",
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HELIXOS-L2-001",
+        "HARNESS-L2-003",
+        "HARNESS-L2-008"
+      ],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HARNESS-L2-003",
+        "HARNESS-L2-008"
+      ],
+      "route_evidence": "比較した採択L2 requirement IDは HELIXOS-L2-001, HARNESS-L2-003, HARNESS-L2-008。受入比較箇所は docs/helix-os/L11-acceptance/governance-acceptance.md:209, docs/helix-os/L11-acceptance/governance-acceptance.md:211, docs/helix-os/L11-acceptance/governance-acceptance.md:212, docs/helix-os/L11-acceptance/governance-acceptance.md:216, docs/helix-harness/L11-acceptance/product-acceptance.md:23, docs/helix-harness/L11-acceptance/product-acceptance.md:37, docs/helix-harness/L11-acceptance/product-acceptance.md:38, docs/helix-harness/L11-acceptance/product-acceptance.md:42, docs/helix-harness/L11-acceptance/product-acceptance.md:43, docs/helix-harness/L11-acceptance/product-acceptance.md:28。直接重複する条件片: 人間の意図/意味判断と技術的な形成・工程判断を区別し、要求候補を自動合意にしない部分に重なる。残差: 何を欲する/許容する価値選択と、その決定主体・提示形式は旧行固有で、現行のRFA-BRはscope外の意味変更を区別するが価値決定自体を代行しない。",
+      "residual": "何を欲する/許容する価値選択と、その決定主体・提示形式は旧行固有で、現行のRFA-BRはscope外の意味変更を区別するが価値決定自体を代行しない。",
+      "fixed_adopted_rfa_review": {
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HARNESS-L2-003",
+          "HARNESS-L2-008"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:425-449",
+          "docs/helix-harness/L2-requirements/product-requirements.md:54-60,185-198"
+        ],
+        "direct_overlap": "人間の意図/意味判断と技術的な形成・工程判断を区別し、要求候補を自動合意にしない部分に重なる。",
+        "residual_difference": "何を欲する/許容する価値選択と、その決定主体・提示形式は旧行固有で、現行のRFA-BRはscope外の意味変更を区別するが価値決定自体を代行しない。",
+        "assessment": "adopted_relevant_partial",
+        "compared_acceptance_locators": [
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:211",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:212",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:216",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:43",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:28"
+        ]
+      },
+      "authority_effect": "none",
+      "compared_acceptance_locators": [
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:209",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:211",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:212",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:216",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:43",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:28"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003686",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_line": 101,
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "source_line_sha256": "sha256:06fe1d584e2b36e885df64dd2517218b7033a13e2ee66b62bffdd18014d3a78f",
+      "physical_line_bytes_sha256": "sha256:5b48f1be8fe656aecc01a023e9a16913388fac904c517341a69448e23ad7c7ad",
+      "source_text": "- 技術的な正本化：revision、意味差分、trace、L3/L10、必要な検証とIRの確定。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "classification_action": "retain_classification",
+      "classification_review_candidate": false,
+      "classification_reason": "#2368 merged proposalのeffective overlayはcondition/product_requirement_atom/unknown。route照合は分類・採択状態を変更しない。",
+      "source_atom_id": "RFA-intake-line-003686",
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-007",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005"
+      ],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-007",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005"
+      ],
+      "route_evidence": "比較した採択L2 requirement IDは HELIXOS-L2-001, HELIXOS-L2-002, HELIXOS-L2-007, HARNESS-L2-004, HARNESS-L2-005。受入比較箇所は docs/helix-harness/L11-acceptance/product-acceptance.md:24, docs/helix-harness/L11-acceptance/product-acceptance.md:44, docs/helix-harness/L11-acceptance/product-acceptance.md:45, docs/helix-harness/L11-acceptance/product-acceptance.md:54, docs/helix-harness/L11-acceptance/product-acceptance.md:55, docs/helix-harness/L11-acceptance/product-acceptance.md:25, docs/helix-harness/L11-acceptance/product-acceptance.md:46, docs/helix-harness/L11-acceptance/product-acceptance.md:47, docs/helix-harness/L11-acceptance/product-acceptance.md:48, docs/helix-harness/L11-acceptance/product-acceptance.md:49, docs/helix-harness/L11-acceptance/product-acceptance.md:50, docs/helix-harness/L11-acceptance/product-acceptance.md:51。直接重複する条件片: revision/trace、影響する要求・検証の再確定に直接重なる。残差: canonical L3/L10正本化、IR transaction確定および個々のverification/IR schemaはこのRFA predicateで規定されない。",
+      "residual": "canonical L3/L10正本化、IR transaction確定および個々のverification/IR schemaはこのRFA predicateで規定されない。",
+      "fixed_adopted_rfa_review": {
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HELIXOS-L2-002",
+          "HELIXOS-L2-007",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:425-449",
+          "docs/helix-harness/L2-requirements/product-requirements.md:54-60,185-198"
+        ],
+        "direct_overlap": "revision/trace、影響する要求・検証の再確定に直接重なる。",
+        "residual_difference": "canonical L3/L10正本化、IR transaction確定および個々のverification/IR schemaはこのRFA predicateで規定されない。",
+        "assessment": "adopted_relevant_partial",
+        "compared_acceptance_locators": [
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:24",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:44",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:45",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:54",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:55",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:25",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:46",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:47",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:48",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:49",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:50",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:51"
+        ]
+      },
+      "authority_effect": "none",
+      "compared_acceptance_locators": [
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:24",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:44",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:45",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:54",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:55",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:25",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:46",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:47",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:48",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:49",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:50",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:51"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003687",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_line": 102,
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "source_line_sha256": "sha256:1d8eadc12e996e6fa551a4ccdb855370a6b4e5fe5499e7496e76ae77b58e6222",
+      "physical_line_bytes_sha256": "sha256:b610b2aca3c72a0a1f831b93ca635abf52145c354451e43aaef5a9f3734eee2e",
+      "source_text": "- 実行の許可：どの対象へ、誰が、どの権限・予算で作用できるか。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "classification_action": "retain_classification",
+      "classification_review_candidate": false,
+      "classification_reason": "#2368 merged proposalのeffective overlayはcondition/product_requirement_atom/unknown。route照合は分類・採択状態を変更しない。",
+      "source_atom_id": "RFA-intake-line-003687",
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-003",
+        "HARNESS-L2-003",
+        "HELIXSECURITY-L2-008"
+      ],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-003",
+        "HARNESS-L2-003",
+        "HELIXSECURITY-L2-008"
+      ],
+      "route_evidence": "比較した採択L2 requirement IDは HELIXOS-L2-001, HELIXOS-L2-003, HARNESS-L2-003, HELIXSECURITY-L2-008。受入比較箇所は docs/helix-os/L11-acceptance/governance-acceptance.md:209, docs/helix-os/L11-acceptance/governance-acceptance.md:211, docs/helix-os/L11-acceptance/governance-acceptance.md:212, docs/helix-os/L11-acceptance/governance-acceptance.md:216, docs/helix-os/L11-acceptance/governance-acceptance.md:213, docs/helix-os/L11-acceptance/governance-acceptance.md:215, docs/helix-harness/L11-acceptance/product-acceptance.md:23, docs/helix-harness/L11-acceptance/product-acceptance.md:37, docs/helix-harness/L11-acceptance/product-acceptance.md:38, docs/helix-harness/L11-acceptance/product-acceptance.md:42, docs/helix-harness/L11-acceptance/product-acceptance.md:43, docs/helix-security/L11-acceptance/security-acceptance.md:32。直接重複する条件片: 変更作業の委任scopeとoperationごとのactor/target/operation/revision/env/scope/expiry authorityを区別する部分に重なる。残差: 実際のrole、予算意味、予算計測・消費、具体的なpolicyは旧行だけでは確定せず、security authority tupleも予算値/機構を発明しない。",
+      "residual": "実際のrole、予算意味、予算計測・消費、具体的なpolicyは旧行だけでは確定せず、security authority tupleも予算値/機構を発明しない。",
+      "fixed_adopted_rfa_review": {
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HELIXOS-L2-003",
+          "HARNESS-L2-003",
+          "HELIXSECURITY-L2-008"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:425-449",
+          "docs/helix-harness/L2-requirements/product-requirements.md:54-60,185-198",
+          "docs/helix-security/L2-requirements/security-requirements.md:140-146"
+        ],
+        "direct_overlap": "変更作業の委任scopeとoperationごとのactor/target/operation/revision/env/scope/expiry authorityを区別する部分に重なる。",
+        "residual_difference": "実際のrole、予算意味、予算計測・消費、具体的なpolicyは旧行だけでは確定せず、security authority tupleも予算値/機構を発明しない。",
+        "assessment": "adopted_relevant_partial",
+        "compared_acceptance_locators": [
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:211",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:212",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:216",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:213",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:215",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:43",
+          "docs/helix-security/L11-acceptance/security-acceptance.md:32"
+        ]
+      },
+      "authority_effect": "none",
+      "compared_acceptance_locators": [
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:209",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:211",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:212",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:216",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:213",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:215",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:43",
+        "docs/helix-security/L11-acceptance/security-acceptance.md:32"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003690",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_line": 108,
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "source_line_sha256": "sha256:4045fa33cca95899d060cf759d5a2ab131cc8e1392e3400c551939d9a2851b1d",
+      "physical_line_bytes_sha256": "sha256:51a237d8217f27bb1d143666c48eb53d47c3e35e2fcbf8a18f2a7182d1de9e93",
+      "source_text": "B-3. 未委任の趣向・ビジュアル・動画演出・言葉・体験、目的・業務上の価値・非対象・許容損失の変更は、関係する候補と差分だけを人間へ返す。視覚領域でも承認済み規則内の機械的修復は再承認不要にできる。非視覚でも予算超過、秘密情報の外部送信、公開、不可逆操作など既存許可境界の越境は人間判断を残す。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "classification_action": "retain_classification",
+      "classification_review_candidate": false,
+      "classification_reason": "#2368 merged proposalのeffective overlayはcondition/product_requirement_atom/unknown。route照合は分類・採択状態を変更しない。",
+      "source_atom_id": "RFA-intake-line-003690",
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HELIXOS-L2-003",
+        "HARNESS-L2-003",
+        "HARNESS-L2-004",
+        "HELIXSECURITY-L2-008"
+      ],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-003",
+        "HARNESS-L2-003",
+        "HARNESS-L2-004",
+        "HELIXSECURITY-L2-008"
+      ],
+      "route_evidence": "比較した採択L2 requirement IDは HELIXOS-L2-003, HARNESS-L2-003, HARNESS-L2-004, HELIXSECURITY-L2-008。受入比較箇所は docs/helix-os/L11-acceptance/governance-acceptance.md:213, docs/helix-os/L11-acceptance/governance-acceptance.md:215, docs/helix-harness/L11-acceptance/product-acceptance.md:23, docs/helix-harness/L11-acceptance/product-acceptance.md:37, docs/helix-harness/L11-acceptance/product-acceptance.md:38, docs/helix-harness/L11-acceptance/product-acceptance.md:42, docs/helix-harness/L11-acceptance/product-acceptance.md:43, docs/helix-harness/L11-acceptance/product-acceptance.md:24, docs/helix-harness/L11-acceptance/product-acceptance.md:44, docs/helix-harness/L11-acceptance/product-acceptance.md:45, docs/helix-harness/L11-acceptance/product-acceptance.md:54, docs/helix-harness/L11-acceptance/product-acceptance.md:55, docs/helix-security/L11-acceptance/security-acceptance.md:32。直接重複する条件片: 未委任の意味/権限変更と影響scopeを分離し、対象だけ再確定する条件に重なる。残差: どの視覚/非視覚変化が機械修復か、各機械修復のreviewer/criteria、および外部送信等の具体的操作分類は旧候補の詳細で未採択。",
+      "residual": "どの視覚/非視覚変化が機械修復か、各機械修復のreviewer/criteria、および外部送信等の具体的操作分類は旧候補の詳細で未採択。",
+      "fixed_adopted_rfa_review": {
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-003",
+          "HARNESS-L2-003",
+          "HARNESS-L2-004",
+          "HELIXSECURITY-L2-008"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:425-449",
+          "docs/helix-harness/L2-requirements/product-requirements.md:54-60,185-198",
+          "docs/helix-security/L2-requirements/security-requirements.md:140-146"
+        ],
+        "direct_overlap": "未委任の意味/権限変更と影響scopeを分離し、対象だけ再確定する条件に重なる。",
+        "residual_difference": "どの視覚/非視覚変化が機械修復か、各機械修復のreviewer/criteria、および外部送信等の具体的操作分類は旧候補の詳細で未採択。",
+        "assessment": "adopted_relevant_partial",
+        "compared_acceptance_locators": [
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:213",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:215",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:43",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:24",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:44",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:45",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:54",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:55",
+          "docs/helix-security/L11-acceptance/security-acceptance.md:32"
+        ]
+      },
+      "authority_effect": "none",
+      "compared_acceptance_locators": [
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:213",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:215",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:43",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:24",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:44",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:45",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:54",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:55",
+        "docs/helix-security/L11-acceptance/security-acceptance.md:32"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003697",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_line": 122,
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "source_line_sha256": "sha256:982296f6032aa05cd61f887e7c0f3d882957b6883f7792e2933eaf3fb8783212",
+      "physical_line_bytes_sha256": "sha256:b6c62ae35bbd3b52d640cc76214ce1037b200e77f5c2869090cdb8854441921c",
+      "source_text": "C-3. 要件未確定でも、明示的に許可された調査・PoC・プロト仕事は発行できる。通常実装とは権限を分離し、候補文書の保存は候補の採用ではない。Ticket未移行scopeは現行Issue／PLAN＋Assignmentの正規経路を使い、Ticket全体の完成を新しい停止条件にしない。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "classification_action": "retain_classification",
+      "classification_review_candidate": false,
+      "classification_reason": "#2368 merged proposalのeffective overlayはcondition/product_requirement_atom/unknown。route照合は分類・採択状態を変更しない。",
+      "source_atom_id": "RFA-intake-line-003697",
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-008",
+        "HELIXSECURITY-L2-008"
+      ],
+      "compared_adopted_requirement_ids": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-008",
+        "HELIXSECURITY-L2-008"
+      ],
+      "route_evidence": "比較した採択L2 requirement IDは HARNESS-L2-003, HARNESS-L2-008, HELIXSECURITY-L2-008。受入比較箇所は docs/helix-harness/L11-acceptance/product-acceptance.md:23, docs/helix-harness/L11-acceptance/product-acceptance.md:37, docs/helix-harness/L11-acceptance/product-acceptance.md:38, docs/helix-harness/L11-acceptance/product-acceptance.md:42, docs/helix-harness/L11-acceptance/product-acceptance.md:43, docs/helix-harness/L11-acceptance/product-acceptance.md:28, docs/helix-security/L11-acceptance/security-acceptance.md:32。直接重複する条件片: 候補/PoC成果を承認済み要求または実行権限へ自動昇格させず、明示scopeのoperation authorityを維持する部分に重なる。残差: freeze前の正のbounded research/PoC/prototype発行条件、既存Issue/PLAN+AssignmentへのTicket移行と未移行scopeの処理はこのpredicate群に明示されない。",
+      "residual": "freeze前の正のbounded research/PoC/prototype発行条件、既存Issue/PLAN+AssignmentへのTicket移行と未移行scopeの処理はこのpredicate群に明示されない。",
+      "fixed_adopted_rfa_review": {
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "compared_adopted_requirement_ids": [
+          "HARNESS-L2-003",
+          "HARNESS-L2-008",
+          "HELIXSECURITY-L2-008"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-harness/L2-requirements/product-requirements.md:54-60,185-198",
+          "docs/helix-security/L2-requirements/security-requirements.md:140-146"
+        ],
+        "direct_overlap": "候補/PoC成果を承認済み要求または実行権限へ自動昇格させず、明示scopeのoperation authorityを維持する部分に重なる。",
+        "residual_difference": "freeze前の正のbounded research/PoC/prototype発行条件、既存Issue/PLAN+AssignmentへのTicket移行と未移行scopeの処理はこのpredicate群に明示されない。",
+        "assessment": "adopted_relevant_partial",
+        "compared_acceptance_locators": [
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:43",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:28",
+          "docs/helix-security/L11-acceptance/security-acceptance.md:32"
+        ]
+      },
+      "authority_effect": "none",
+      "compared_acceptance_locators": [
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:43",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:28",
+        "docs/helix-security/L11-acceptance/security-acceptance.md:32"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003710",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_line": 142,
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "source_line_sha256": "sha256:8a2f53ffb73e73558cedd6d4cc3b34c9629d809b4a37e1a86d33b521dae63387",
+      "physical_line_bytes_sha256": "sha256:9cee491df053a36819d2433c8a13dece05edaeccf578b478e440dd49afeef1d9",
+      "source_text": "1. 十分な根拠と既存委任内の技術差分は、PO割込みなしで版確定・検証・前進できる。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "classification_action": "retain_classification",
+      "classification_review_candidate": false,
+      "classification_reason": "#2368 merged proposalのeffective overlayはcondition/product_requirement_atom/unknown。route照合は分類・採択状態を変更しない。",
+      "source_atom_id": "RFA-intake-line-003710",
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HELIXOS-L2-003",
+        "HARNESS-L2-003"
+      ],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-003",
+        "HARNESS-L2-003"
+      ],
+      "route_evidence": "比較した採択L2 requirement IDは HELIXOS-L2-003, HARNESS-L2-003。受入比較箇所は docs/helix-harness/L11-acceptance/product-acceptance.md:23, docs/helix-harness/L11-acceptance/product-acceptance.md:37, docs/helix-harness/L11-acceptance/product-acceptance.md:38, docs/helix-harness/L11-acceptance/product-acceptance.md:42, docs/helix-harness/L11-acceptance/product-acceptance.md:43。直接重複する条件片: 委任済み意図内の技術的具体化に反復承認を要求しない条件に直接重なる。残差: 「十分な根拠」のevidence sufficiency oracle、independent validationの方法、および版確定の具体transactionは旧行固有であり、採択RFA-BR-02は根拠の十分性を定義しない。",
+      "residual": "「十分な根拠」のevidence sufficiency oracle、independent validationの方法、および版確定の具体transactionは旧行固有であり、採択RFA-BR-02は根拠の十分性を定義しない。",
+      "fixed_adopted_rfa_review": {
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-003",
+          "HARNESS-L2-003"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:425-449",
+          "docs/helix-harness/L2-requirements/product-requirements.md:54-60,185-198"
+        ],
+        "direct_overlap": "委任済み意図内の技術的具体化に反復承認を要求しない条件に直接重なる。",
+        "residual_difference": "「十分な根拠」のevidence sufficiency oracle、independent validationの方法、および版確定の具体transactionは旧行固有であり、採択RFA-BR-02は根拠の十分性を定義しない。",
+        "assessment": "adopted_relevant_partial",
+        "compared_acceptance_locators": [
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:43"
+        ]
+      },
+      "authority_effect": "none",
+      "compared_acceptance_locators": [
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:43"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003711",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_line": 143,
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "source_line_sha256": "sha256:3a06e7375b37dc6d8b59211729621fa48a1615af57b50a5fe241df3d27cda195",
+      "physical_line_bytes_sha256": "sha256:fd5f86052b7d2d5cae5bf78d335a0dd581610f8d76ac6b87b4c6324769d8e66d",
+      "source_text": "2. 調査sourceが多数でも、必要論点・適用根拠が欠ければ該当設計のreadyにしない。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "classification_action": "retain_classification",
+      "classification_review_candidate": false,
+      "classification_reason": "#2368 merged proposalのeffective overlayはcondition/product_requirement_atom/unknown。route照合は分類・採択状態を変更しない。",
+      "source_atom_id": "RFA-intake-line-003711",
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HELIXOS-L2-001",
+        "HARNESS-L2-003",
+        "HARNESS-L2-005"
+      ],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HARNESS-L2-003",
+        "HARNESS-L2-005"
+      ],
+      "route_evidence": "比較した採択L2 requirement IDは HELIXOS-L2-001, HARNESS-L2-003, HARNESS-L2-005。受入比較箇所は docs/helix-os/L11-acceptance/governance-acceptance.md:209, docs/helix-os/L11-acceptance/governance-acceptance.md:211, docs/helix-os/L11-acceptance/governance-acceptance.md:212, docs/helix-os/L11-acceptance/governance-acceptance.md:216, docs/helix-harness/L11-acceptance/product-acceptance.md:23, docs/helix-harness/L11-acceptance/product-acceptance.md:37, docs/helix-harness/L11-acceptance/product-acceptance.md:38, docs/helix-harness/L11-acceptance/product-acceptance.md:42, docs/helix-harness/L11-acceptance/product-acceptance.md:43, docs/helix-harness/L11-acceptance/product-acceptance.md:25, docs/helix-harness/L11-acceptance/product-acceptance.md:46, docs/helix-harness/L11-acceptance/product-acceptance.md:47, docs/helix-harness/L11-acceptance/product-acceptance.md:48, docs/helix-harness/L11-acceptance/product-acceptance.md:49, docs/helix-harness/L11-acceptance/product-acceptance.md:50, docs/helix-harness/L11-acceptance/product-acceptance.md:51。直接重複する条件片: source件数だけで ready にせず未検証/未合意を止める条件に重なる。残差: どの論点・必要根拠が該当設計のreadyをblockするかという要件別充足規則は旧行/現行固定predicate間で特定されていない。",
+      "residual": "どの論点・必要根拠が該当設計のreadyをblockするかという要件別充足規則は旧行/現行固定predicate間で特定されていない。",
+      "fixed_adopted_rfa_review": {
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HARNESS-L2-003",
+          "HARNESS-L2-005"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:425-449",
+          "docs/helix-harness/L2-requirements/product-requirements.md:54-60,185-198"
+        ],
+        "direct_overlap": "source件数だけで ready にせず未検証/未合意を止める条件に重なる。",
+        "residual_difference": "どの論点・必要根拠が該当設計のreadyをblockするかという要件別充足規則は旧行/現行固定predicate間で特定されていない。",
+        "assessment": "adopted_relevant_partial",
+        "compared_acceptance_locators": [
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:211",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:212",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:216",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:43",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:25",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:46",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:47",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:48",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:49",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:50",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:51"
+        ]
+      },
+      "authority_effect": "none",
+      "compared_acceptance_locators": [
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:209",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:211",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:212",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:216",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:43",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:25",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:46",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:47",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:48",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:49",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:50",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:51"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003712",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_line": 144,
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "source_line_sha256": "sha256:34dfa1838e918c35af4650b72dc9842df7ad6b7c1e5929063decbbf260f1ac23",
+      "physical_line_bytes_sha256": "sha256:938966e0af9e51d5a4ff719200dadc212f57d5816645de8c9e9c5a2df9dbe764",
+      "source_text": "3. 人間の好み・目的の変更は対象だけを提示し、無関係な実装は続行できる。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "classification_action": "retain_classification",
+      "classification_review_candidate": false,
+      "classification_reason": "#2368 merged proposalのeffective overlayはcondition/product_requirement_atom/unknown。route照合は分類・採択状態を変更しない。",
+      "source_atom_id": "RFA-intake-line-003712",
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HELIXOS-L2-003",
+        "HARNESS-L2-004"
+      ],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-003",
+        "HARNESS-L2-004"
+      ],
+      "route_evidence": "比較した採択L2 requirement IDは HELIXOS-L2-003, HARNESS-L2-004。受入比較箇所は docs/helix-os/L11-acceptance/governance-acceptance.md:213, docs/helix-os/L11-acceptance/governance-acceptance.md:215, docs/helix-harness/L11-acceptance/product-acceptance.md:24, docs/helix-harness/L11-acceptance/product-acceptance.md:44, docs/helix-harness/L11-acceptance/product-acceptance.md:45, docs/helix-harness/L11-acceptance/product-acceptance.md:54, docs/helix-harness/L11-acceptance/product-acceptance.md:55。直接重複する条件片: 影響するscopeだけ再確定し無関係な有効作業を続ける条件に直接重なる。残差: 具体的な依存closureをどのevidenceで確定し、どの候補/設計/検証を閉じるかは旧行だけでは決まらない。",
+      "residual": "具体的な依存closureをどのevidenceで確定し、どの候補/設計/検証を閉じるかは旧行だけでは決まらない。",
+      "fixed_adopted_rfa_review": {
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-003",
+          "HARNESS-L2-004"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:425-449",
+          "docs/helix-harness/L2-requirements/product-requirements.md:54-60,185-198"
+        ],
+        "direct_overlap": "影響するscopeだけ再確定し無関係な有効作業を続ける条件に直接重なる。",
+        "residual_difference": "具体的な依存closureをどのevidenceで確定し、どの候補/設計/検証を閉じるかは旧行だけでは決まらない。",
+        "assessment": "adopted_relevant_partial",
+        "compared_acceptance_locators": [
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:213",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:215",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:24",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:44",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:45",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:54",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:55"
+        ]
+      },
+      "authority_effect": "none",
+      "compared_acceptance_locators": [
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:213",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:215",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:24",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:44",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:45",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:54",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:55"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003713",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_line": 145,
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "source_line_sha256": "sha256:8733cf8c4d335d34d24f0cd25c799119d227b154253f7d66381209ce927c7c1c",
+      "physical_line_bytes_sha256": "sha256:4c5c7fff187a13222e95592b10da337b192651de67ee980265b3893f50d0d589",
+      "source_text": "4. 未承認候補から本実装への越境、旧承認流用、policy自己拡張、期限切れ・撤回済みdecisionを拒否する。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "classification_action": "retain_classification",
+      "classification_review_candidate": false,
+      "classification_reason": "#2368 merged proposalのeffective overlayはcondition/product_requirement_atom/unknown。route照合は分類・採択状態を変更しない。",
+      "source_atom_id": "RFA-intake-line-003713",
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HELIXOS-L2-001",
+        "HARNESS-L2-003",
+        "HARNESS-L2-008",
+        "HELIXSECURITY-L2-008"
+      ],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HARNESS-L2-003",
+        "HARNESS-L2-008",
+        "HELIXSECURITY-L2-008"
+      ],
+      "route_evidence": "比較した採択L2 requirement IDは HELIXOS-L2-001, HARNESS-L2-003, HARNESS-L2-008, HELIXSECURITY-L2-008。受入比較箇所は docs/helix-os/L11-acceptance/governance-acceptance.md:209, docs/helix-os/L11-acceptance/governance-acceptance.md:211, docs/helix-os/L11-acceptance/governance-acceptance.md:212, docs/helix-os/L11-acceptance/governance-acceptance.md:216, docs/helix-harness/L11-acceptance/product-acceptance.md:23, docs/helix-harness/L11-acceptance/product-acceptance.md:37, docs/helix-harness/L11-acceptance/product-acceptance.md:38, docs/helix-harness/L11-acceptance/product-acceptance.md:42, docs/helix-harness/L11-acceptance/product-acceptance.md:43, docs/helix-harness/L11-acceptance/product-acceptance.md:28, docs/helix-security/L11-acceptance/security-acceptance.md:32。直接重複する条件片: 候補と採用要求/操作authorityの分離および期限/対象scope付きauthorityに重なる。残差: 過去承認のcarryover条件、self-expanding policyの検出規則、取消済みと期限切れの証拠modelは固定predicateの一般記述を超える。",
+      "residual": "過去承認のcarryover条件、self-expanding policyの検出規則、取消済みと期限切れの証拠modelは固定predicateの一般記述を超える。",
+      "fixed_adopted_rfa_review": {
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HARNESS-L2-003",
+          "HARNESS-L2-008",
+          "HELIXSECURITY-L2-008"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:425-449",
+          "docs/helix-harness/L2-requirements/product-requirements.md:54-60,185-198",
+          "docs/helix-security/L2-requirements/security-requirements.md:140-146"
+        ],
+        "direct_overlap": "候補と採用要求/操作authorityの分離および期限/対象scope付きauthorityに重なる。",
+        "residual_difference": "過去承認のcarryover条件、self-expanding policyの検出規則、取消済みと期限切れの証拠modelは固定predicateの一般記述を超える。",
+        "assessment": "adopted_relevant_partial",
+        "compared_acceptance_locators": [
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:211",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:212",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:216",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:43",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:28",
+          "docs/helix-security/L11-acceptance/security-acceptance.md:32"
+        ]
+      },
+      "authority_effect": "none",
+      "compared_acceptance_locators": [
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:209",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:211",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:212",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:216",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:43",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:28",
+        "docs/helix-security/L11-acceptance/security-acceptance.md:32"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003714",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_line": 146,
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "source_line_sha256": "sha256:4e604771c7eebb7170ffb3c0ab4b75557da94eaa828ff262ab262eacd8cb0be1",
+      "physical_line_bytes_sha256": "sha256:8976f062a522631ecce0b6048797578b5cbed4015e2ae03f9a0fea03e407f688",
+      "source_text": "5. freeze前の許可済み調査／PoC／プロトは実行可能だが、本番write権限を得ない。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "classification_action": "retain_classification",
+      "classification_review_candidate": false,
+      "classification_reason": "#2368 merged proposalのeffective overlayはcondition/product_requirement_atom/unknown。route照合は分類・採択状態を変更しない。",
+      "source_atom_id": "RFA-intake-line-003714",
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-008",
+        "HELIXSECURITY-L2-008"
+      ],
+      "compared_adopted_requirement_ids": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-008",
+        "HELIXSECURITY-L2-008"
+      ],
+      "route_evidence": "比較した採択L2 requirement IDは HARNESS-L2-003, HARNESS-L2-008, HELIXSECURITY-L2-008。受入比較箇所は docs/helix-harness/L11-acceptance/product-acceptance.md:23, docs/helix-harness/L11-acceptance/product-acceptance.md:37, docs/helix-harness/L11-acceptance/product-acceptance.md:38, docs/helix-harness/L11-acceptance/product-acceptance.md:42, docs/helix-harness/L11-acceptance/product-acceptance.md:43, docs/helix-harness/L11-acceptance/product-acceptance.md:28, docs/helix-security/L11-acceptance/security-acceptance.md:32。直接重複する条件片: PoC/候補結果はL2.5/要求形成の証拠であって要求合意やoperation authorityを自動生成しない点に重なる。残差: L3前の許可済みresearch/PoC/prototypeをどのoperation scopeで実行可能とするかというpositive authorization routeは当該L2/L11に記載されない。",
+      "residual": "L3前の許可済みresearch/PoC/prototypeをどのoperation scopeで実行可能とするかというpositive authorization routeは当該L2/L11に記載されない。",
+      "fixed_adopted_rfa_review": {
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "compared_adopted_requirement_ids": [
+          "HARNESS-L2-003",
+          "HARNESS-L2-008",
+          "HELIXSECURITY-L2-008"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-harness/L2-requirements/product-requirements.md:54-60,185-198",
+          "docs/helix-security/L2-requirements/security-requirements.md:140-146"
+        ],
+        "direct_overlap": "PoC/候補結果はL2.5/要求形成の証拠であって要求合意やoperation authorityを自動生成しない点に重なる。",
+        "residual_difference": "L3前の許可済みresearch/PoC/prototypeをどのoperation scopeで実行可能とするかというpositive authorization routeは当該L2/L11に記載されない。",
+        "assessment": "adopted_relevant_partial",
+        "compared_acceptance_locators": [
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:43",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:28",
+          "docs/helix-security/L11-acceptance/security-acceptance.md:32"
+        ]
+      },
+      "authority_effect": "none",
+      "compared_acceptance_locators": [
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:43",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:28",
+        "docs/helix-security/L11-acceptance/security-acceptance.md:32"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003715",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_line": 147,
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "source_line_sha256": "sha256:2ae03e5e4c864648b2f3d90726088ca89199f94f78f34ba17d0ad6fa2e2e24a9",
+      "physical_line_bytes_sha256": "sha256:4d6812ace1f726725608e33a11b5370cd873f8952c1c121a56a23109cbd0cdaa",
+      "source_text": "6. 同一入力の判定・receiptを再現でき、未知の影響範囲、partial IR更新、古いworker packetを検出する。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "classification_action": "retain_classification",
+      "classification_review_candidate": false,
+      "classification_reason": "#2368 merged proposalのeffective overlayはcondition/product_requirement_atom/unknown。route照合は分類・採択状態を変更しない。",
+      "source_atom_id": "RFA-intake-line-003715",
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-007",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005"
+      ],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-007",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005"
+      ],
+      "route_evidence": "比較した採択L2 requirement IDは HELIXOS-L2-002, HELIXOS-L2-007, HARNESS-L2-004, HARNESS-L2-005。受入比較箇所は docs/helix-os/L11-acceptance/governance-acceptance.md:215, docs/helix-os/L11-acceptance/governance-acceptance.md:211, docs/helix-os/L11-acceptance/governance-acceptance.md:212, docs/helix-os/L11-acceptance/governance-acceptance.md:216, docs/helix-harness/L11-acceptance/product-acceptance.md:24, docs/helix-harness/L11-acceptance/product-acceptance.md:44, docs/helix-harness/L11-acceptance/product-acceptance.md:45, docs/helix-harness/L11-acceptance/product-acceptance.md:54, docs/helix-harness/L11-acceptance/product-acceptance.md:55, docs/helix-harness/L11-acceptance/product-acceptance.md:25, docs/helix-harness/L11-acceptance/product-acceptance.md:46, docs/helix-harness/L11-acceptance/product-acceptance.md:47, docs/helix-harness/L11-acceptance/product-acceptance.md:48, docs/helix-harness/L11-acceptance/product-acceptance.md:49, docs/helix-harness/L11-acceptance/product-acceptance.md:50, docs/helix-harness/L11-acceptance/product-acceptance.md:51。直接重複する条件片: 不明/stale/欠けた証拠を成功とせず、変更影響と検証scopeを保持する部分に重なる。残差: 同一入力の機械評価/receipt再現、部分IR transaction、worker packet freshnessの判定契約は固定RFA predicateにない。",
+      "residual": "同一入力の機械評価/receipt再現、部分IR transaction、worker packet freshnessの判定契約は固定RFA predicateにない。",
+      "fixed_adopted_rfa_review": {
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-002",
+          "HELIXOS-L2-007",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:425-449",
+          "docs/helix-harness/L2-requirements/product-requirements.md:54-60,185-198"
+        ],
+        "direct_overlap": "不明/stale/欠けた証拠を成功とせず、変更影響と検証scopeを保持する部分に重なる。",
+        "residual_difference": "同一入力の機械評価/receipt再現、部分IR transaction、worker packet freshnessの判定契約は固定RFA predicateにない。",
+        "assessment": "adopted_relevant_partial",
+        "compared_acceptance_locators": [
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:215",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:211",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:212",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:216",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:24",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:44",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:45",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:54",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:55",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:25",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:46",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:47",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:48",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:49",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:50",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:51"
+        ]
+      },
+      "authority_effect": "none",
+      "compared_acceptance_locators": [
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:215",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:211",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:212",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:216",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:24",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:44",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:45",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:54",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:55",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:25",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:46",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:47",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:48",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:49",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:50",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:51"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003755",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_line": 203,
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "source_line_sha256": "sha256:c9c4ef605af3dc569e8c05863903ffde21da1ce6099f6dc6d5bc805b6ff38a57",
+      "physical_line_bytes_sha256": "sha256:3ea8061603cfc4a9f36c233e43130acd239b283a10ac88b53a6945e021728693",
+      "source_text": "**RF-01 前提充足**：企画・制約・既存資産から、既知、仮定、未知、矛盾、古い情報を分離する。要求／判断への影響と必要証拠を紐付け、検索件数やモデルの自己評価だけで調査完了にしない。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "classification_action": "retain_classification",
+      "classification_review_candidate": false,
+      "classification_reason": "#2368 merged proposalのeffective overlayはcondition/product_requirement_atom/unknown。route照合は分類・採択状態を変更しない。",
+      "source_atom_id": "RFA-intake-line-003755",
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HELIXOS-L2-001",
+        "HARNESS-L2-008"
+      ],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HARNESS-L2-008"
+      ],
+      "route_evidence": "比較した採択L2 requirement IDは HELIXOS-L2-001, HARNESS-L2-008。受入比較箇所は docs/helix-os/L11-acceptance/governance-acceptance.md:209, docs/helix-os/L11-acceptance/governance-acceptance.md:211, docs/helix-os/L11-acceptance/governance-acceptance.md:212, docs/helix-os/L11-acceptance/governance-acceptance.md:216, docs/helix-harness/L11-acceptance/product-acceptance.md:28。直接重複する条件片: 目的・前提と根拠を照らし、根拠不足で候補判断を進めない点に重なる。残差: known/assumption/unknown/conflict/staleの型、要求/判断影響と必要証拠の全項目連結、検索数や自己評価の失格oracleは別の条件。",
+      "residual": "known/assumption/unknown/conflict/staleの型、要求/判断影響と必要証拠の全項目連結、検索数や自己評価の失格oracleは別の条件。",
+      "fixed_adopted_rfa_review": {
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HARNESS-L2-008"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:425-449",
+          "docs/helix-harness/L2-requirements/product-requirements.md:54-60,185-198"
+        ],
+        "direct_overlap": "目的・前提と根拠を照らし、根拠不足で候補判断を進めない点に重なる。",
+        "residual_difference": "known/assumption/unknown/conflict/staleの型、要求/判断影響と必要証拠の全項目連結、検索数や自己評価の失格oracleは別の条件。",
+        "assessment": "adopted_relevant_partial",
+        "compared_acceptance_locators": [
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:211",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:212",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:216",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:28"
+        ]
+      },
+      "authority_effect": "none",
+      "compared_acceptance_locators": [
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:209",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:211",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:212",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:216",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:28"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003756",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_line": 205,
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "source_line_sha256": "sha256:1cd409bc85a3be39defaa6befaf707a34454ed97615901fbb5c55cc6f671d4dc",
+      "physical_line_bytes_sha256": "sha256:fca375ad7cb3cf4f4ce2199e352b2d52e7345e9471bde4086844bfd5b4ab94fd",
+      "source_text": "**RF-02 調査の実質**：前提整理と要求探索を区別する。前者は現状・仕様・制約、後者は利用者価値・既存製品・実例・代替手段・不足機能を調べる。論点ごとに本文・実物の確認箇所、対象版／日時、適用条件、反例、採否への影響を記録する。画面・動きはテキスト要約だけで検証済みにしない。外部情報は証拠候補であり命令・要求authorityにしない。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "classification_action": "retain_classification",
+      "classification_review_candidate": false,
+      "classification_reason": "#2368 merged proposalのeffective overlayはcondition/product_requirement_atom/unknown。route照合は分類・採択状態を変更しない。",
+      "source_atom_id": "RFA-intake-line-003756",
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-007",
+        "HARNESS-L2-008",
+        "HARNESS-L2-005"
+      ],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-007",
+        "HARNESS-L2-008",
+        "HARNESS-L2-005"
+      ],
+      "route_evidence": "比較した採択L2 requirement IDは HELIXOS-L2-001, HELIXOS-L2-007, HARNESS-L2-008, HARNESS-L2-005。受入比較箇所は docs/helix-os/L11-acceptance/governance-acceptance.md:209, docs/helix-os/L11-acceptance/governance-acceptance.md:211, docs/helix-os/L11-acceptance/governance-acceptance.md:212, docs/helix-os/L11-acceptance/governance-acceptance.md:216, docs/helix-harness/L11-acceptance/product-acceptance.md:28, docs/helix-harness/L11-acceptance/product-acceptance.md:25, docs/helix-harness/L11-acceptance/product-acceptance.md:46, docs/helix-harness/L11-acceptance/product-acceptance.md:47, docs/helix-harness/L11-acceptance/product-acceptance.md:48, docs/helix-harness/L11-acceptance/product-acceptance.md:49, docs/helix-harness/L11-acceptance/product-acceptance.md:50, docs/helix-harness/L11-acceptance/product-acceptance.md:51。直接重複する条件片: 外部sourceは根拠候補であってauthorityでなく、要求形成/verificationへ接続する点に重なる。残差: 本文/実物のlocator、source版・日時・適用条件・反例・採否影響を各論点に結ぶ規則は固定predicateに網羅されない。",
+      "residual": "本文/実物のlocator、source版・日時・適用条件・反例・採否影響を各論点に結ぶ規則は固定predicateに網羅されない。",
+      "fixed_adopted_rfa_review": {
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HELIXOS-L2-007",
+          "HARNESS-L2-008",
+          "HARNESS-L2-005"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:425-449",
+          "docs/helix-harness/L2-requirements/product-requirements.md:54-60,185-198"
+        ],
+        "direct_overlap": "外部sourceは根拠候補であってauthorityでなく、要求形成/verificationへ接続する点に重なる。",
+        "residual_difference": "本文/実物のlocator、source版・日時・適用条件・反例・採否影響を各論点に結ぶ規則は固定predicateに網羅されない。",
+        "assessment": "adopted_relevant_partial",
+        "compared_acceptance_locators": [
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:211",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:212",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:216",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:28",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:25",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:46",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:47",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:48",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:49",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:50",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:51"
+        ]
+      },
+      "authority_effect": "none",
+      "compared_acceptance_locators": [
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:209",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:211",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:212",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:216",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:28",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:25",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:46",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:47",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:48",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:49",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:50",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:51"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003757",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_line": 207,
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "source_line_sha256": "sha256:120b41543907b4199b76f5fe8671b237cb8339aecc923c3ef17d05071fd1fb77",
+      "physical_line_bytes_sha256": "sha256:296845b7a3ed442859f0be0674366b0ee5cad61bc2851475bddbb0b328c91428",
+      "source_text": "**RF-03 選択と検証**：候補、出典、比較根拠、PoC／プロト結果、未解決点、採否理由を同じ仮説revisionへ束縛する。発言原文、AI解釈、技術的推奨、人間の決定を分離する。合意済み選好は適用範囲内で再利用し、新たな価値判断だけ人間へ提示する。PoC成功・参考製品の存在は採用許可ではない。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "classification_action": "retain_classification",
+      "classification_review_candidate": false,
+      "classification_reason": "#2368 merged proposalのeffective overlayはcondition/product_requirement_atom/unknown。route照合は分類・採択状態を変更しない。",
+      "source_atom_id": "RFA-intake-line-003757",
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-007",
+        "HARNESS-L2-003",
+        "HARNESS-L2-008",
+        "HARNESS-L2-004"
+      ],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-007",
+        "HARNESS-L2-003",
+        "HARNESS-L2-008",
+        "HARNESS-L2-004"
+      ],
+      "route_evidence": "比較した採択L2 requirement IDは HELIXOS-L2-001, HELIXOS-L2-007, HARNESS-L2-003, HARNESS-L2-008, HARNESS-L2-004。受入比較箇所は docs/helix-os/L11-acceptance/governance-acceptance.md:209, docs/helix-os/L11-acceptance/governance-acceptance.md:211, docs/helix-os/L11-acceptance/governance-acceptance.md:212, docs/helix-os/L11-acceptance/governance-acceptance.md:216, docs/helix-harness/L11-acceptance/product-acceptance.md:23, docs/helix-harness/L11-acceptance/product-acceptance.md:37, docs/helix-harness/L11-acceptance/product-acceptance.md:38, docs/helix-harness/L11-acceptance/product-acceptance.md:42, docs/helix-harness/L11-acceptance/product-acceptance.md:43, docs/helix-harness/L11-acceptance/product-acceptance.md:28, docs/helix-harness/L11-acceptance/product-acceptance.md:24, docs/helix-harness/L11-acceptance/product-acceptance.md:44, docs/helix-harness/L11-acceptance/product-acceptance.md:45, docs/helix-harness/L11-acceptance/product-acceptance.md:54, docs/helix-harness/L11-acceptance/product-acceptance.md:55。直接重複する条件片: 同一revisionの根拠・変更impactを追跡し、人間判断/AI解釈/採用を混同しない条件に重なる。残差: 候補ごとの採否4 outcome、hypothesis revision、原発言/解釈/推奨/決定の正確なschemaと結果還流は固定predicateだけでは定義されない。",
+      "residual": "候補ごとの採否4 outcome、hypothesis revision、原発言/解釈/推奨/決定の正確なschemaと結果還流は固定predicateだけでは定義されない。",
+      "fixed_adopted_rfa_review": {
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HELIXOS-L2-007",
+          "HARNESS-L2-003",
+          "HARNESS-L2-008",
+          "HARNESS-L2-004"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:425-449",
+          "docs/helix-harness/L2-requirements/product-requirements.md:54-60,185-198"
+        ],
+        "direct_overlap": "同一revisionの根拠・変更impactを追跡し、人間判断/AI解釈/採用を混同しない条件に重なる。",
+        "residual_difference": "候補ごとの採否4 outcome、hypothesis revision、原発言/解釈/推奨/決定の正確なschemaと結果還流は固定predicateだけでは定義されない。",
+        "assessment": "adopted_relevant_partial",
+        "compared_acceptance_locators": [
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:211",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:212",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:216",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:43",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:28",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:24",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:44",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:45",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:54",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:55"
+        ]
+      },
+      "authority_effect": "none",
+      "compared_acceptance_locators": [
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:209",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:211",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:212",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:216",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:43",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:28",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:24",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:44",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:45",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:54",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:55"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003762",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_line": 216,
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "source_line_sha256": "sha256:fd37eb292ac45c8f5e7b45891158d0e6a0a8bc20b514bc8be1aac72e2c52ed4f",
+      "physical_line_bytes_sha256": "sha256:07dcb3ca16d20aa19ff46c341d02b53f635938b29b45abb359f6025741ae0f28",
+      "source_text": "- 承認済み意図の技術的具体化・修正：policy適合と必要な独立検証が成立すれば、人間の再操作なしで変更受付・再compile／再freezeを進める。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "classification_action": "retain_classification",
+      "classification_review_candidate": false,
+      "classification_reason": "#2368 merged proposalのeffective overlayはcondition/product_requirement_atom/unknown。route照合は分類・採択状態を変更しない。",
+      "source_atom_id": "RFA-intake-line-003762",
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HELIXOS-L2-003",
+        "HARNESS-L2-003"
+      ],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-003",
+        "HARNESS-L2-003"
+      ],
+      "route_evidence": "比較した採択L2 requirement IDは HELIXOS-L2-003, HARNESS-L2-003。受入比較箇所は docs/helix-harness/L11-acceptance/product-acceptance.md:23, docs/helix-harness/L11-acceptance/product-acceptance.md:37, docs/helix-harness/L11-acceptance/product-acceptance.md:38, docs/helix-harness/L11-acceptance/product-acceptance.md:42, docs/helix-harness/L11-acceptance/product-acceptance.md:43。直接重複する条件片: 委任済みscope内の技術的具体化を反復承認なしに進める点に直接重なる。残差: 適用policyへの準拠判定と必要な独立検証のoracle、変更受付/recompile/refreezeの具体的実行経路はRFA-BR-02の抽象predicateを超える。",
+      "residual": "適用policyへの準拠判定と必要な独立検証のoracle、変更受付/recompile/refreezeの具体的実行経路はRFA-BR-02の抽象predicateを超える。",
+      "fixed_adopted_rfa_review": {
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-003",
+          "HARNESS-L2-003"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:425-449",
+          "docs/helix-harness/L2-requirements/product-requirements.md:54-60,185-198"
+        ],
+        "direct_overlap": "委任済みscope内の技術的具体化を反復承認なしに進める点に直接重なる。",
+        "residual_difference": "適用policyへの準拠判定と必要な独立検証のoracle、変更受付/recompile/refreezeの具体的実行経路はRFA-BR-02の抽象predicateを超える。",
+        "assessment": "adopted_relevant_partial",
+        "compared_acceptance_locators": [
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:43"
+        ]
+      },
+      "authority_effect": "none",
+      "compared_acceptance_locators": [
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:43"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003763",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_line": 217,
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "source_line_sha256": "sha256:7d6fadef4b13fa7f3a2b64cde5d48619a0806f7c6ca3fc9080927b09890617b1",
+      "physical_line_bytes_sha256": "sha256:ec53faa76d3c31ee6670eb7cb45965f441bb467c5d9e5c5438c458491ee3ba77",
+      "source_text": "- 人間が今回明示した新要求：対象・意味差分・制約が明確で、policy上有効な指示は一度の決定として消費する。同じ採否をL3化の都合だけで再質問しない。一般的なGOを対象未指定の包括承認にしない。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "classification_action": "retain_classification",
+      "classification_review_candidate": false,
+      "classification_reason": "#2368 merged proposalのeffective overlayはcondition/product_requirement_atom/unknown。route照合は分類・採択状態を変更しない。",
+      "source_atom_id": "RFA-intake-line-003763",
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HELIXOS-L2-001",
+        "HARNESS-L2-003",
+        "HELIXSECURITY-L2-008"
+      ],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HARNESS-L2-003",
+        "HELIXSECURITY-L2-008"
+      ],
+      "route_evidence": "比較した採択L2 requirement IDは HELIXOS-L2-001, HARNESS-L2-003, HELIXSECURITY-L2-008。受入比較箇所は docs/helix-os/L11-acceptance/governance-acceptance.md:209, docs/helix-os/L11-acceptance/governance-acceptance.md:211, docs/helix-os/L11-acceptance/governance-acceptance.md:212, docs/helix-os/L11-acceptance/governance-acceptance.md:216, docs/helix-harness/L11-acceptance/product-acceptance.md:23, docs/helix-harness/L11-acceptance/product-acceptance.md:37, docs/helix-harness/L11-acceptance/product-acceptance.md:38, docs/helix-harness/L11-acceptance/product-acceptance.md:42, docs/helix-harness/L11-acceptance/product-acceptance.md:43, docs/helix-security/L11-acceptance/security-acceptance.md:32。直接重複する条件片: 対象・scope明確な明示指示を人間意思として扱いつつ、包括/operation authorityを別途照合する点に重なる。残差: 一度限りのdecision消費、L3都合の再質問防止、generic GO判定と明示対象の認識条件は固定RFA predicateでは定義されない。",
+      "residual": "一度限りのdecision消費、L3都合の再質問防止、generic GO判定と明示対象の認識条件は固定RFA predicateでは定義されない。",
+      "fixed_adopted_rfa_review": {
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HARNESS-L2-003",
+          "HELIXSECURITY-L2-008"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:425-449",
+          "docs/helix-harness/L2-requirements/product-requirements.md:54-60,185-198",
+          "docs/helix-security/L2-requirements/security-requirements.md:140-146"
+        ],
+        "direct_overlap": "対象・scope明確な明示指示を人間意思として扱いつつ、包括/operation authorityを別途照合する点に重なる。",
+        "residual_difference": "一度限りのdecision消費、L3都合の再質問防止、generic GO判定と明示対象の認識条件は固定RFA predicateでは定義されない。",
+        "assessment": "adopted_relevant_partial",
+        "compared_acceptance_locators": [
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:211",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:212",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:216",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:43",
+          "docs/helix-security/L11-acceptance/security-acceptance.md:32"
+        ]
+      },
+      "authority_effect": "none",
+      "compared_acceptance_locators": [
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:209",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:211",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:212",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:216",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:43",
+        "docs/helix-security/L11-acceptance/security-acceptance.md:32"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003764",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_line": 218,
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "source_line_sha256": "sha256:deeec531961898cd6d3fa79738511ac0eb471285dbd4a1a38968b445611a1f10",
+      "physical_line_bytes_sha256": "sha256:986bedba0b670c625d8056c74bd51dd3eef11cf11f910cd9cfeab91f6a9a98f3",
+      "source_text": "- 新たな意味判断・許可拡張・曖昧さ：影響差分だけ人間へ返す。既承認全文の再確認は求めない。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "classification_action": "retain_classification",
+      "classification_review_candidate": false,
+      "classification_reason": "#2368 merged proposalのeffective overlayはcondition/product_requirement_atom/unknown。route照合は分類・採択状態を変更しない。",
+      "source_atom_id": "RFA-intake-line-003764",
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HELIXOS-L2-003",
+        "HARNESS-L2-003",
+        "HARNESS-L2-004"
+      ],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-003",
+        "HARNESS-L2-003",
+        "HARNESS-L2-004"
+      ],
+      "route_evidence": "比較した採択L2 requirement IDは HELIXOS-L2-003, HARNESS-L2-003, HARNESS-L2-004。受入比較箇所は docs/helix-os/L11-acceptance/governance-acceptance.md:213, docs/helix-os/L11-acceptance/governance-acceptance.md:215, docs/helix-harness/L11-acceptance/product-acceptance.md:23, docs/helix-harness/L11-acceptance/product-acceptance.md:37, docs/helix-harness/L11-acceptance/product-acceptance.md:38, docs/helix-harness/L11-acceptance/product-acceptance.md:42, docs/helix-harness/L11-acceptance/product-acceptance.md:43, docs/helix-harness/L11-acceptance/product-acceptance.md:24, docs/helix-harness/L11-acceptance/product-acceptance.md:44, docs/helix-harness/L11-acceptance/product-acceptance.md:45, docs/helix-harness/L11-acceptance/product-acceptance.md:54, docs/helix-harness/L11-acceptance/product-acceptance.md:55。直接重複する条件片: 未委任の意味変更/権限拡張を区別し影響差分だけ再確定する条件に重なる。残差: 既承認全文の再確認を避けるときの差分証明と再確認単位、共有不変条件のclosure oracleは具体化されない。",
+      "residual": "既承認全文の再確認を避けるときの差分証明と再確認単位、共有不変条件のclosure oracleは具体化されない。",
+      "fixed_adopted_rfa_review": {
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-003",
+          "HARNESS-L2-003",
+          "HARNESS-L2-004"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:425-449",
+          "docs/helix-harness/L2-requirements/product-requirements.md:54-60,185-198"
+        ],
+        "direct_overlap": "未委任の意味変更/権限拡張を区別し影響差分だけ再確定する条件に重なる。",
+        "residual_difference": "既承認全文の再確認を避けるときの差分証明と再確認単位、共有不変条件のclosure oracleは具体化されない。",
+        "assessment": "adopted_relevant_partial",
+        "compared_acceptance_locators": [
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:213",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:215",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:43",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:24",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:44",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:45",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:54",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:55"
+        ]
+      },
+      "authority_effect": "none",
+      "compared_acceptance_locators": [
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:213",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:215",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:43",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:24",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:44",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:45",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:54",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:55"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003771",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_line": 232,
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "source_line_sha256": "sha256:3fe7f51ed7335fd8a5858a68b5ac8f91ca6a972248369054abda83daf3d8db68",
+      "physical_line_bytes_sha256": "sha256:1b081fac11e6db92619d845d6b6c0ec2420fa82ad22a42c53b9a84451d21cb05",
+      "source_text": "**GH-03 互換移行**：Ticket未移行scopeは既存Issue／PLAN bindingで同じ許可条件を検証し、#1534全体完成を待たない。移行後はTicket／Assignmentへ接続する。人間の判断待ち一覧と、技術検証・調査待ち一覧を分離する。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "classification_action": "retain_classification",
+      "classification_review_candidate": false,
+      "classification_reason": "#2368 merged proposalのeffective overlayはcondition/product_requirement_atom/unknown。route照合は分類・採択状態を変更しない。",
+      "source_atom_id": "RFA-intake-line-003771",
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-003",
+        "HARNESS-L2-003",
+        "HARNESS-L2-004",
+        "HELIXSECURITY-L2-008"
+      ],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-003",
+        "HARNESS-L2-003",
+        "HARNESS-L2-004",
+        "HELIXSECURITY-L2-008"
+      ],
+      "route_evidence": "比較した採択L2 requirement IDは HELIXOS-L2-002, HELIXOS-L2-003, HARNESS-L2-003, HARNESS-L2-004, HELIXSECURITY-L2-008。受入比較箇所は docs/helix-os/L11-acceptance/governance-acceptance.md:215, docs/helix-os/L11-acceptance/governance-acceptance.md:213, docs/helix-harness/L11-acceptance/product-acceptance.md:23, docs/helix-harness/L11-acceptance/product-acceptance.md:37, docs/helix-harness/L11-acceptance/product-acceptance.md:38, docs/helix-harness/L11-acceptance/product-acceptance.md:42, docs/helix-harness/L11-acceptance/product-acceptance.md:43, docs/helix-harness/L11-acceptance/product-acceptance.md:24, docs/helix-harness/L11-acceptance/product-acceptance.md:44, docs/helix-harness/L11-acceptance/product-acceptance.md:45, docs/helix-harness/L11-acceptance/product-acceptance.md:54, docs/helix-harness/L11-acceptance/product-acceptance.md:55, docs/helix-security/L11-acceptance/security-acceptance.md:32。直接重複する条件片: 同じscopeに対する既存operation authorityおよび影響範囲だけの作業継続に部分的に重なる。残差: 未移行Ticket scopeのIssue/PLAN+Assignment同等性、Ticket/Assignmentへの移行、#1534全体待ち除外という旧workflow consumer ruleは含まれない。",
+      "residual": "未移行Ticket scopeのIssue/PLAN+Assignment同等性、Ticket/Assignmentへの移行、#1534全体待ち除外という旧workflow consumer ruleは含まれない。",
+      "fixed_adopted_rfa_review": {
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-002",
+          "HELIXOS-L2-003",
+          "HARNESS-L2-003",
+          "HARNESS-L2-004",
+          "HELIXSECURITY-L2-008"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:425-449",
+          "docs/helix-harness/L2-requirements/product-requirements.md:54-60,185-198",
+          "docs/helix-security/L2-requirements/security-requirements.md:140-146"
+        ],
+        "direct_overlap": "同じscopeに対する既存operation authorityおよび影響範囲だけの作業継続に部分的に重なる。",
+        "residual_difference": "未移行Ticket scopeのIssue/PLAN+Assignment同等性、Ticket/Assignmentへの移行、#1534全体待ち除外という旧workflow consumer ruleは含まれない。",
+        "assessment": "adopted_relevant_partial",
+        "compared_acceptance_locators": [
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:215",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:213",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:43",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:24",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:44",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:45",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:54",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:55",
+          "docs/helix-security/L11-acceptance/security-acceptance.md:32"
+        ]
+      },
+      "authority_effect": "none",
+      "compared_acceptance_locators": [
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:215",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:213",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:43",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:24",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:44",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:45",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:54",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:55",
+        "docs/helix-security/L11-acceptance/security-acceptance.md:32"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003774",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_line": 237,
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "source_line_sha256": "sha256:8916fe7a0f05af77cecb813cd101fddb93c497650934cc595227270a50454a4a",
+      "physical_line_bytes_sha256": "sha256:026e4a775a796ff3e7a01da6e657deb00ffc69b0cf58f6f23d5528cff1d3d6ac",
+      "source_text": "1. 出典数だけ多い調査、版違い、反例未解決、選択意図不明をreadyにしない。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "classification_action": "retain_classification",
+      "classification_review_candidate": false,
+      "classification_reason": "#2368 merged proposalのeffective overlayはcondition/product_requirement_atom/unknown。route照合は分類・採択状態を変更しない。",
+      "source_atom_id": "RFA-intake-line-003774",
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HELIXOS-L2-001",
+        "HARNESS-L2-003",
+        "HARNESS-L2-005"
+      ],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HARNESS-L2-003",
+        "HARNESS-L2-005"
+      ],
+      "route_evidence": "比較した採択L2 requirement IDは HELIXOS-L2-001, HARNESS-L2-003, HARNESS-L2-005。受入比較箇所は docs/helix-os/L11-acceptance/governance-acceptance.md:209, docs/helix-os/L11-acceptance/governance-acceptance.md:211, docs/helix-os/L11-acceptance/governance-acceptance.md:212, docs/helix-os/L11-acceptance/governance-acceptance.md:216, docs/helix-harness/L11-acceptance/product-acceptance.md:23, docs/helix-harness/L11-acceptance/product-acceptance.md:37, docs/helix-harness/L11-acceptance/product-acceptance.md:38, docs/helix-harness/L11-acceptance/product-acceptance.md:42, docs/helix-harness/L11-acceptance/product-acceptance.md:43, docs/helix-harness/L11-acceptance/product-acceptance.md:25, docs/helix-harness/L11-acceptance/product-acceptance.md:46, docs/helix-harness/L11-acceptance/product-acceptance.md:47, docs/helix-harness/L11-acceptance/product-acceptance.md:48, docs/helix-harness/L11-acceptance/product-acceptance.md:49, docs/helix-harness/L11-acceptance/product-acceptance.md:50, docs/helix-harness/L11-acceptance/product-acceptance.md:51。直接重複する条件片: source数をverification/readyの根拠にせず、未解決証拠を成功にしない部分に重なる。残差: source version違い、反例、選択意図不明を個別判定する証拠十分性/ready oracleを固定predicateは定めない。",
+      "residual": "source version違い、反例、選択意図不明を個別判定する証拠十分性/ready oracleを固定predicateは定めない。",
+      "fixed_adopted_rfa_review": {
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-001",
+          "HARNESS-L2-003",
+          "HARNESS-L2-005"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:425-449",
+          "docs/helix-harness/L2-requirements/product-requirements.md:54-60,185-198"
+        ],
+        "direct_overlap": "source数をverification/readyの根拠にせず、未解決証拠を成功にしない部分に重なる。",
+        "residual_difference": "source version違い、反例、選択意図不明を個別判定する証拠十分性/ready oracleを固定predicateは定めない。",
+        "assessment": "adopted_relevant_partial",
+        "compared_acceptance_locators": [
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:209",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:211",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:212",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:216",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:43",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:25",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:46",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:47",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:48",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:49",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:50",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:51"
+        ]
+      },
+      "authority_effect": "none",
+      "compared_acceptance_locators": [
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:209",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:211",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:212",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:216",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:43",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:25",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:46",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:47",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:48",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:49",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:50",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:51"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003775",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_line": 238,
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "source_line_sha256": "sha256:62f62f76fa3d3a7bb41f27c63c1c49136537f7c5f57b13f966cf7c8d9cdebcd0",
+      "physical_line_bytes_sha256": "sha256:0ca79410c9d853374702b645920efba888540166f0d58c640a07ac2cfa6b0439",
+      "source_text": "2. bounded研究・試作はL3前でも許可範囲で進み、本実装／外部writeへ昇格しない。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "classification_action": "retain_classification",
+      "classification_review_candidate": false,
+      "classification_reason": "#2368 merged proposalのeffective overlayはcondition/product_requirement_atom/unknown。route照合は分類・採択状態を変更しない。",
+      "source_atom_id": "RFA-intake-line-003775",
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-008",
+        "HELIXSECURITY-L2-008"
+      ],
+      "compared_adopted_requirement_ids": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-008",
+        "HELIXSECURITY-L2-008"
+      ],
+      "route_evidence": "比較した採択L2 requirement IDは HARNESS-L2-003, HARNESS-L2-008, HELIXSECURITY-L2-008。受入比較箇所は docs/helix-harness/L11-acceptance/product-acceptance.md:23, docs/helix-harness/L11-acceptance/product-acceptance.md:37, docs/helix-harness/L11-acceptance/product-acceptance.md:38, docs/helix-harness/L11-acceptance/product-acceptance.md:42, docs/helix-harness/L11-acceptance/product-acceptance.md:43, docs/helix-harness/L11-acceptance/product-acceptance.md:28, docs/helix-security/L11-acceptance/security-acceptance.md:32。直接重複する条件片: 候補形成/PoC出力だけで要求合意やwrite authorityを成立させない条件に重なる。残差: 事前許可済みのbounded research/prototypeをL3前に積極的に実行する条件と許可profileの選択方法は定まらない。",
+      "residual": "事前許可済みのbounded research/prototypeをL3前に積極的に実行する条件と許可profileの選択方法は定まらない。",
+      "fixed_adopted_rfa_review": {
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "compared_adopted_requirement_ids": [
+          "HARNESS-L2-003",
+          "HARNESS-L2-008",
+          "HELIXSECURITY-L2-008"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-harness/L2-requirements/product-requirements.md:54-60,185-198",
+          "docs/helix-security/L2-requirements/security-requirements.md:140-146"
+        ],
+        "direct_overlap": "候補形成/PoC出力だけで要求合意やwrite authorityを成立させない条件に重なる。",
+        "residual_difference": "事前許可済みのbounded research/prototypeをL3前に積極的に実行する条件と許可profileの選択方法は定まらない。",
+        "assessment": "adopted_relevant_partial",
+        "compared_acceptance_locators": [
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:43",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:28",
+          "docs/helix-security/L11-acceptance/security-acceptance.md:32"
+        ]
+      },
+      "authority_effect": "none",
+      "compared_acceptance_locators": [
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:43",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:28",
+        "docs/helix-security/L11-acceptance/security-acceptance.md:32"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003776",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_line": 239,
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "source_line_sha256": "sha256:cc96e1a43d403ec7deecd9b1b36ab22143aeef20e3f72153edc14e35bac48f73",
+      "physical_line_bytes_sha256": "sha256:deb40f0a18caa5e1fcdf75a4befe891e0ccc54f04f5db7891e50110726efc8ea",
+      "source_text": "3. 承認済み範囲の技術差分と明示済み指示は重複承認0で進む。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "classification_action": "retain_classification",
+      "classification_review_candidate": false,
+      "classification_reason": "#2368 merged proposalのeffective overlayはcondition/product_requirement_atom/unknown。route照合は分類・採択状態を変更しない。",
+      "source_atom_id": "RFA-intake-line-003776",
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HELIXOS-L2-003",
+        "HARNESS-L2-003"
+      ],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-003",
+        "HARNESS-L2-003"
+      ],
+      "route_evidence": "比較した採択L2 requirement IDは HELIXOS-L2-003, HARNESS-L2-003。受入比較箇所は docs/helix-harness/L11-acceptance/product-acceptance.md:23, docs/helix-harness/L11-acceptance/product-acceptance.md:37, docs/helix-harness/L11-acceptance/product-acceptance.md:38, docs/helix-harness/L11-acceptance/product-acceptance.md:42, docs/helix-harness/L11-acceptance/product-acceptance.md:43。直接重複する条件片: 委任済み意図の技術差分に重複承認を求めない点に直接重なる。残差: 一回の指示/decisionの消費とreceipt、同一decisionをL3化の都合で再質問しない判定は採択predicateが具体化しない。",
+      "residual": "一回の指示/decisionの消費とreceipt、同一decisionをL3化の都合で再質問しない判定は採択predicateが具体化しない。",
+      "fixed_adopted_rfa_review": {
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-003",
+          "HARNESS-L2-003"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:425-449",
+          "docs/helix-harness/L2-requirements/product-requirements.md:54-60,185-198"
+        ],
+        "direct_overlap": "委任済み意図の技術差分に重複承認を求めない点に直接重なる。",
+        "residual_difference": "一回の指示/decisionの消費とreceipt、同一decisionをL3化の都合で再質問しない判定は採択predicateが具体化しない。",
+        "assessment": "adopted_relevant_partial",
+        "compared_acceptance_locators": [
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:43"
+        ]
+      },
+      "authority_effect": "none",
+      "compared_acceptance_locators": [
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:43"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003777",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_line": 240,
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "source_line_sha256": "sha256:17f06cd6879019bef153d470f346b3f449c1628e54ea3832a803a7913dd590a7",
+      "physical_line_bytes_sha256": "sha256:ae2b782d5e9b16f1c18fd61b05e571cf1d07fed2a5b630048672e0e6c8e86d58",
+      "source_text": "4. 新しい価値判断・予算／権限拡張・policy自己拡張は自動通過しない。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "classification_action": "retain_classification",
+      "classification_review_candidate": false,
+      "classification_reason": "#2368 merged proposalのeffective overlayはcondition/product_requirement_atom/unknown。route照合は分類・採択状態を変更しない。",
+      "source_atom_id": "RFA-intake-line-003777",
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HELIXOS-L2-003",
+        "HARNESS-L2-003",
+        "HELIXSECURITY-L2-008"
+      ],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-003",
+        "HARNESS-L2-003",
+        "HELIXSECURITY-L2-008"
+      ],
+      "route_evidence": "比較した採択L2 requirement IDは HELIXOS-L2-003, HARNESS-L2-003, HELIXSECURITY-L2-008。受入比較箇所は docs/helix-harness/L11-acceptance/product-acceptance.md:23, docs/helix-harness/L11-acceptance/product-acceptance.md:37, docs/helix-harness/L11-acceptance/product-acceptance.md:38, docs/helix-harness/L11-acceptance/product-acceptance.md:42, docs/helix-harness/L11-acceptance/product-acceptance.md:43, docs/helix-security/L11-acceptance/security-acceptance.md:32。直接重複する条件片: 未委任の価値変更とoperation permission extensionを同じ暗黙の技術処理に混ぜない点に重なる。残差: budget expansionとpolicy self-extensionの検出/拒否詳細はsecurity operation tupleだけでは定義されない。",
+      "residual": "budget expansionとpolicy self-extensionの検出/拒否詳細はsecurity operation tupleだけでは定義されない。",
+      "fixed_adopted_rfa_review": {
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-003",
+          "HARNESS-L2-003",
+          "HELIXSECURITY-L2-008"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:425-449",
+          "docs/helix-harness/L2-requirements/product-requirements.md:54-60,185-198",
+          "docs/helix-security/L2-requirements/security-requirements.md:140-146"
+        ],
+        "direct_overlap": "未委任の価値変更とoperation permission extensionを同じ暗黙の技術処理に混ぜない点に重なる。",
+        "residual_difference": "budget expansionとpolicy self-extensionの検出/拒否詳細はsecurity operation tupleだけでは定義されない。",
+        "assessment": "adopted_relevant_partial",
+        "compared_acceptance_locators": [
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:43",
+          "docs/helix-security/L11-acceptance/security-acceptance.md:32"
+        ]
+      },
+      "authority_effect": "none",
+      "compared_acceptance_locators": [
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:43",
+        "docs/helix-security/L11-acceptance/security-acceptance.md:32"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003778",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_line": 241,
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "source_line_sha256": "sha256:e781f9f74c70e0ce72652e187ff8ec21fd8e45d443663bc93d653f67cc6f5b00",
+      "physical_line_bytes_sha256": "sha256:5042a36237eb8fb761cd0c56b009151eeb220044bb6b9605f9443a81ca9f85f9",
+      "source_text": "5. 変更scopeの旧writer／stale証拠を拒否し、無関係scopeは継続する。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "classification_action": "retain_classification",
+      "classification_review_candidate": false,
+      "classification_reason": "#2368 merged proposalのeffective overlayはcondition/product_requirement_atom/unknown。route照合は分類・採択状態を変更しない。",
+      "source_atom_id": "RFA-intake-line-003778",
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HELIXOS-L2-003",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005",
+        "HELIXSECURITY-L2-008"
+      ],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-003",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005",
+        "HELIXSECURITY-L2-008"
+      ],
+      "route_evidence": "比較した採択L2 requirement IDは HELIXOS-L2-003, HARNESS-L2-004, HARNESS-L2-005, HELIXSECURITY-L2-008。受入比較箇所は docs/helix-os/L11-acceptance/governance-acceptance.md:213, docs/helix-os/L11-acceptance/governance-acceptance.md:215, docs/helix-harness/L11-acceptance/product-acceptance.md:24, docs/helix-harness/L11-acceptance/product-acceptance.md:44, docs/helix-harness/L11-acceptance/product-acceptance.md:45, docs/helix-harness/L11-acceptance/product-acceptance.md:54, docs/helix-harness/L11-acceptance/product-acceptance.md:55, docs/helix-harness/L11-acceptance/product-acceptance.md:25, docs/helix-harness/L11-acceptance/product-acceptance.md:46, docs/helix-harness/L11-acceptance/product-acceptance.md:47, docs/helix-harness/L11-acceptance/product-acceptance.md:48, docs/helix-harness/L11-acceptance/product-acceptance.md:49, docs/helix-harness/L11-acceptance/product-acceptance.md:50, docs/helix-harness/L11-acceptance/product-acceptance.md:51, docs/helix-security/L11-acceptance/security-acceptance.md:32。直接重複する条件片: 変更したscope/verificationだけ再確定し無関係な有効workを保ち、stale/期限切れauthorityを通さない条件に重なる。残差: 旧writer拒否とstale evidenceの完全な判定/provenance契約、および変更閉鎖を証明するclosure規則は採択predicate一式でも不足する。",
+      "residual": "旧writer拒否とstale evidenceの完全な判定/provenance契約、および変更閉鎖を証明するclosure規則は採択predicate一式でも不足する。",
+      "fixed_adopted_rfa_review": {
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-003",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005",
+          "HELIXSECURITY-L2-008"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:425-449",
+          "docs/helix-harness/L2-requirements/product-requirements.md:54-60,185-198",
+          "docs/helix-security/L2-requirements/security-requirements.md:140-146"
+        ],
+        "direct_overlap": "変更したscope/verificationだけ再確定し無関係な有効workを保ち、stale/期限切れauthorityを通さない条件に重なる。",
+        "residual_difference": "旧writer拒否とstale evidenceの完全な判定/provenance契約、および変更閉鎖を証明するclosure規則は採択predicate一式でも不足する。",
+        "assessment": "adopted_relevant_partial",
+        "compared_acceptance_locators": [
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:213",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:215",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:24",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:44",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:45",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:54",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:55",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:25",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:46",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:47",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:48",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:49",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:50",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:51",
+          "docs/helix-security/L11-acceptance/security-acceptance.md:32"
+        ]
+      },
+      "authority_effect": "none",
+      "compared_acceptance_locators": [
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:213",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:215",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:24",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:44",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:45",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:54",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:55",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:25",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:46",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:47",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:48",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:49",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:50",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:51",
+        "docs/helix-security/L11-acceptance/security-acceptance.md:32"
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003779",
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "source_line": 242,
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "source_line_sha256": "sha256:1df43258a43805d3bc098a1d91e5f0c9be88f92b8da9c58577c2f7c60a45b69a",
+      "physical_line_bytes_sha256": "sha256:5aee76a5b69ae6b6ac67ecddabaadfeafb36f7b38020b8bb33d20b59ede0020c",
+      "source_text": "6. 偽造・取消・期限切れ根拠、競合revision、部分JSON更新、required判定のskipを拒否する。",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "effective_route_status": "unknown",
+      "classification_action": "retain_classification",
+      "classification_review_candidate": false,
+      "classification_reason": "#2368 merged proposalのeffective overlayはcondition/product_requirement_atom/unknown。route照合は分類・採択状態を変更しない。",
+      "source_atom_id": "RFA-intake-line-003779",
+      "relation_assessment": "adopted_relevant_partial",
+      "adopted_current_requirement_refs": [
+        "HELIXOS-L2-007",
+        "HARNESS-L2-003",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005",
+        "HELIXSECURITY-L2-008"
+      ],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-007",
+        "HARNESS-L2-003",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005",
+        "HELIXSECURITY-L2-008"
+      ],
+      "route_evidence": "比較した採択L2 requirement IDは HELIXOS-L2-007, HARNESS-L2-003, HARNESS-L2-004, HARNESS-L2-005, HELIXSECURITY-L2-008。受入比較箇所は docs/helix-os/L11-acceptance/governance-acceptance.md:211, docs/helix-os/L11-acceptance/governance-acceptance.md:212, docs/helix-os/L11-acceptance/governance-acceptance.md:216, docs/helix-harness/L11-acceptance/product-acceptance.md:23, docs/helix-harness/L11-acceptance/product-acceptance.md:37, docs/helix-harness/L11-acceptance/product-acceptance.md:38, docs/helix-harness/L11-acceptance/product-acceptance.md:42, docs/helix-harness/L11-acceptance/product-acceptance.md:43, docs/helix-harness/L11-acceptance/product-acceptance.md:24, docs/helix-harness/L11-acceptance/product-acceptance.md:44, docs/helix-harness/L11-acceptance/product-acceptance.md:45, docs/helix-harness/L11-acceptance/product-acceptance.md:54, docs/helix-harness/L11-acceptance/product-acceptance.md:55, docs/helix-harness/L11-acceptance/product-acceptance.md:25, docs/helix-harness/L11-acceptance/product-acceptance.md:46, docs/helix-harness/L11-acceptance/product-acceptance.md:47, docs/helix-harness/L11-acceptance/product-acceptance.md:48, docs/helix-harness/L11-acceptance/product-acceptance.md:49, docs/helix-harness/L11-acceptance/product-acceptance.md:50, docs/helix-harness/L11-acceptance/product-acceptance.md:51, docs/helix-security/L11-acceptance/security-acceptance.md:32。直接重複する条件片: 偽造/取消/期限切れ/競合・欠落を成功にせず、operation authorityと必要verificationを照合する点に重なる。残差: 偽造検知、競合revision、partial JSON atomicity、required判定skip防止を一つの具体的negative oracleへ結ぶ契約は固定predicateの記載だけで閉じない。",
+      "residual": "偽造検知、競合revision、partial JSON atomicity、required判定skip防止を一つの具体的negative oracleへ結ぶ契約は固定predicateの記載だけで閉じない。",
+      "fixed_adopted_rfa_review": {
+        "exact_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "compared_adopted_requirement_ids": [
+          "HELIXOS-L2-007",
+          "HARNESS-L2-003",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005",
+          "HELIXSECURITY-L2-008"
+        ],
+        "pinned_text_locators": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:425-449",
+          "docs/helix-harness/L2-requirements/product-requirements.md:54-60,185-198",
+          "docs/helix-security/L2-requirements/security-requirements.md:140-146"
+        ],
+        "direct_overlap": "偽造/取消/期限切れ/競合・欠落を成功にせず、operation authorityと必要verificationを照合する点に重なる。",
+        "residual_difference": "偽造検知、競合revision、partial JSON atomicity、required判定skip防止を一つの具体的negative oracleへ結ぶ契約は固定predicateの記載だけで閉じない。",
+        "assessment": "adopted_relevant_partial",
+        "compared_acceptance_locators": [
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:211",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:212",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:216",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:43",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:24",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:44",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:45",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:54",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:55",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:25",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:46",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:47",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:48",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:49",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:50",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:51",
+          "docs/helix-security/L11-acceptance/security-acceptance.md:32"
+        ]
+      },
+      "authority_effect": "none",
+      "compared_acceptance_locators": [
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:211",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:212",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md:216",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:37",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:38",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:42",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:43",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:24",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:44",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:45",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:54",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:55",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:25",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:46",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:47",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:48",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:49",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:50",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:51",
+        "docs/helix-security/L11-acceptance/security-acceptance.md:32"
+      ]
+    }
+  ],
+  "limitations": [
+    "This is a route audit of selected legacy candidate rows; it does not adopt/promote the legacy candidate or assign successor coverage.",
+    "All 26 rows are partial relation assessments only; the explicit residual prevents the shared predicate from being read as full equivalence.",
+    "Legacy runtime, tests, validators, CLI, hooks, and archived workflows were not executed.",
+    "No fixed adopted predicate is modified; route findings create no authority, approval, implementation permission, requirement closure, or completion claim."
+  ],
+  "verification": {
+    "static_checks": [
+      "base commit is exact current origin/main after merged #2373",
+      "26 IDs exist in #2368 proposal and source carry-forward ledger",
+      "all archive rows match source-line and physical-byte hashes",
+      "candidate IDs have zero overlap with excluded #2350/#2359/#2364/#2370/#2372/#2373 ID union",
+      "each row compared against exact PO-adopted L2/L11 pins at f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "JSON round-trip succeeds"
+    ],
+    "old_tools_executed": false,
+    "authority_effect": "none"
+  },
+  "current_requirement_snapshots": {
+    "commit": "c1e1cf726d3cb6be96869b3491ff57d7e3cc464d",
+    "documents": [
+      {
+        "owner": "HELIXOS",
+        "layer": "L2",
+        "commit": "c1e1cf726d3cb6be96869b3491ff57d7e3cc464d",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+        "snapshot_role": "current main bytes; not adopted exact revision"
+      },
+      {
+        "owner": "HELIXOS",
+        "layer": "L11",
+        "commit": "c1e1cf726d3cb6be96869b3491ff57d7e3cc464d",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+        "snapshot_role": "current main bytes; not adopted exact revision"
+      },
+      {
+        "owner": "HARNESS",
+        "layer": "L2",
+        "commit": "c1e1cf726d3cb6be96869b3491ff57d7e3cc464d",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
+        "snapshot_role": "current main bytes; not adopted exact revision"
+      },
+      {
+        "owner": "HARNESS",
+        "layer": "L11",
+        "commit": "c1e1cf726d3cb6be96869b3491ff57d7e3cc464d",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e",
+        "snapshot_role": "current main bytes; not adopted exact revision"
+      },
+      {
+        "owner": "SECURITY",
+        "layer": "L2",
+        "commit": "c1e1cf726d3cb6be96869b3491ff57d7e3cc464d",
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+        "snapshot_role": "current main bytes; not adopted exact revision"
+      },
+      {
+        "owner": "SECURITY",
+        "layer": "L11",
+        "commit": "c1e1cf726d3cb6be96869b3491ff57d7e3cc464d",
+        "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
+        "snapshot_role": "current main bytes; not adopted exact revision"
+      }
+    ],
+    "note": "Current-main snapshots are pinned for drift visibility only; adopted comparisons use the PO-fixed f6dad2a33e24f000b87d7f09b8d40288257e74cc bytes and hashes above."
+  }
+}
