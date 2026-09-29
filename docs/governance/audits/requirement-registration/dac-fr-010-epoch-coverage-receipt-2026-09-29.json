@@ -1,0 +1,131 @@
+{
+  "receipt_id": "DRAFT-RCPT-HELIXOS-L2-110-DAC-FR-010-2026-09-29",
+  "receipt_state": "draft_unadopted_candidate_scope_recorded",
+  "authority_effect": "none",
+  "candidate_identity": "HELIXOS-L2-110",
+  "requirement_kind": "unit",
+  "candidate_semantic_digest": "sha256:fe250f3cb0be2fdd417904f59041c4c39535f2060394f569b2c9bea8d86e43be",
+  "candidate_digest_rule": "governance-requirements.mdの「### HELIXOS-L2-110 」見出しから次の見出し直前までをUTF-8で取り、末尾空行を除いてLF 1つで終えるSHA-256。",
+  "candidate_l2_file_sha256": "sha256:a36e05f87aa83975e8b344f77d8df0ed2fbd28f3aa19b1a5d22b6e3f85d057fd",
+  "paired_acceptance_identity": "HELIXOS-L2-110",
+  "paired_acceptance_digest": "sha256:56926a9d2aad1e679c0fe7d2d0c7858fd96ba627351130c6dd795dae18452d34",
+  "l11_digest_rule": "governance-acceptance.mdの「### HELIXOS-L11-110 」見出しからファイル末尾までをUTF-8で取り、末尾空行を除いてLF 1つで終えるSHA-256。",
+  "l11_file_sha256": "sha256:cd9fbe5299ec89430cb318adaa2d7f8f039b0cc267801eb071e833da28ad48ae",
+  "source_lines_ref": "docs/governance/audits/requirement-registration/dac-fr-010-epoch-source-lines-2026-09-29.jsonl",
+  "source_atom_set_digest": "sha256:8b97fb4623e8f809b9620694936e0c6510f691697daffcf7c3b72272fff8a841",
+  "source_atom_set_digest_rule": "atom_id昇順。各atomの `atom_id SP source_line_sha256（sha256:を除く） LF` bytesを連結しSHA-256をsha256:付きで記す。candidate subsetのみ。",
+  "source_collection_scope": "MPR-SH-CONFIRMED-003が保全するconfirmed175 identityのうち、archive DAC-FR-010 line 57一atomのみ。隣接FR/NFR、旧R-010/AC-016、旧source全体、未提示consumer集合は含めない。",
+  "source_collection_atom_count": 1,
+  "candidate_input_atom_refs": [
+    "CONFIRMED-DAC-FR-010"
+  ],
+  "candidate_input_atom_count": 1,
+  "candidate_input_atom_set_digest": "sha256:8b97fb4623e8f809b9620694936e0c6510f691697daffcf7c3b72272fff8a841",
+  "candidate_input_accounting_status": "一つの旧source atomだけをHELIXOS-L2/L11-110の未採択候補へ限定対応した。旧R-010/AC-016/NFR-002は関連contextであり、全source closure・formal successor・owner transfer・採択を示さない。",
+  "source_line_coverage_result": "candidate_input_scoped; formal_successor_owner_scope_and_adoption_unconfirmed",
+  "condition_closure": "not_asserted",
+  "candidate_input_coverage_result": "no_loss",
+  "unaccounted_atom_refs": [],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-CONFIRMED-003#CONFIRMED-DAC-FR-010: source identity remains live; formal successor, owner, applicability and adoption remain unconfirmed"
+  ],
+  "preserved_pending_atom_refs": [
+    "CONFIRMED-DAC-FR-010 source identity remains pending rehome outside this candidate scope"
+  ],
+  "atoms": [
+    {
+      "atom_id": "CONFIRMED-DAC-FR-010",
+      "source_holding_registration_id": "MPR-SH-CONFIRMED-003",
+      "source_qualified_requirement_id": "helix/L1-requirements/document-authority-census-requests.md::DAC-FR-010",
+      "legacy_asset_id": "LEGACY-ASSET-D201753B1A0CC6EA3980",
+      "source_revision_kind": "archive",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md",
+      "source_file_sha256": "sha256:81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66",
+      "source_line": 57,
+      "source_line_sha256": "sha256:a60b7e32cea56eb79ae7839c89b34d49add9a777e5bbe5721cc9a738fd149046",
+      "source_text": "| `DAC-FR-010` | Concept、requirements、README等のsemantic epochが変わったとき、旧epochのactive claimとconsumerを検出する。 |",
+      "source_clause_kind": "functional_requirement",
+      "atomization_rationale": "DAC-FR-010の要求表1行を一atomとして保持する。DAC-R-010、DAC-AC-016、DAC-NFR-002は別ファイルの関連contextでcandidate inputに含めない。",
+      "disposition": "candidate_scope",
+      "candidate_input": true,
+      "relation": "HELIXOS-L2/L11-110の限定candidate input。semantic epoch変更後に旧epochをactive consumerがcurrentとして読む関係を検出する範囲。",
+      "candidate_semantic_digest": "sha256:fe250f3cb0be2fdd417904f59041c4c39535f2060394f569b2c9bea8d86e43be",
+      "source_holding_remains_live": true
+    }
+  ],
+  "related_legacy_context": [
+    {
+      "identity": "DAC-R-010",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/document-authority-census-requirements.md",
+      "source_file_sha256": "sha256:e05adb62d9ad07507f962cf060b3dbe66c161afc3f09391b29b3144ced57535c",
+      "source_line": 65,
+      "source_line_sha256": "sha256:5d1aec9d95fcb2085a2eb4cbfeae3ffe4a37a4bde96558663b72a90212814e3b",
+      "source_text": "| `DAC-R-010` | semantic epoch変更時は、旧epochをcurrentとして読むconsumer、digest pin、README、startup packetをstaleとして検出する。 | `DAC-FR-010` |",
+      "role": "related_semantic_context_only; excluded_from_candidate_input"
+    },
+    {
+      "identity": "DAC-AC-016",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/document-authority-census-acceptance.md",
+      "source_file_sha256": "sha256:d8cddea062fa44774a44f1c2cfff5f5d1f01cd186b4abdf8d631b9577f6fd4a6",
+      "source_line": 41,
+      "source_line_sha256": "sha256:0769303001a13a9afd63a699757336f2dbd015b3f7e0c0eb0116f53cca481290",
+      "source_text": "| `DAC-AC-016` | `DAC-R-010` | semantic epoch更新後も旧digest pinをconsumerへ残す | `SEMANTIC_EPOCH_DRIFT`でredになる |",
+      "role": "related_semantic_context_only; excluded_from_candidate_input"
+    },
+    {
+      "identity": "DAC-NFR-002",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md",
+      "source_file_sha256": "sha256:81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66",
+      "source_line": 64,
+      "source_line_sha256": "sha256:fa28c9426e876631ba56fae5df7c7e04313cd18e28f70c1693d928587f5f6c8f",
+      "source_text": "| `DAC-NFR-002` | compatibility、historical、referenceの存在を欠陥扱いせず、active decision利用だけを拒否する。 |",
+      "role": "related_semantic_context_only; excluded_from_candidate_input"
+    }
+  ],
+  "parent_l1": {
+    "identities": [
+      "HELIXOS-L1-001",
+      "HELIXOS-L1-008"
+    ],
+    "path": "docs/helix-os/L1-planning/system-intent.md",
+    "source_commit": "41b9d9a455df647115505e8f6e74bfd205481a8d",
+    "source_file_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+    "adoption_basis": "main 41b9d9a上で読んだ固定L1 parent bytes。候補のowner/applicability/adoptionは継承しない。"
+  },
+  "current_requirement_relations": {
+    "candidate_owner": "HELIX-OS management projection only; source/consumer owner transfer unconfirmed",
+    "existing_os_l2": [
+      "HELIXOS-L2-015",
+      "HELIXOS-L2-108",
+      "HELIXOS-L2-109"
+    ],
+    "existing_os_l11": [
+      "HELIXOS-L2-015 paired acceptance"
+    ],
+    "decision_status": "HELIXOS-L2-015はPO採用済みの一般authority記録。L2-108/109は隣接未採択候補であり、本候補はそれらのscopeを拡張しない。"
+  },
+  "current_file_pins": {
+    "os_l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+    "os_l2_sha256": "sha256:a36e05f87aa83975e8b344f77d8df0ed2fbd28f3aa19b1a5d22b6e3f85d057fd",
+    "os_l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+    "os_l11_sha256": "sha256:cd9fbe5299ec89430cb318adaa2d7f8f039b0cc267801eb071e833da28ad48ae",
+    "os_l1_path": "docs/helix-os/L1-planning/system-intent.md",
+    "os_l1_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+    "concept_path": "docs/concept/helix-concept.md",
+    "concept_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78"
+  },
+  "unresolved_owner_and_meaning": [
+    "semantic epochのauthority/evidence形式と意味は未確定。",
+    "active consumer/decision inputの分類・完全集合は未確定。",
+    "severity、finding ordering、修復、owner rehome、formal successor、旧source全体closure、採択は未確定。"
+  ],
+  "static_acceptance_scope": [
+    "positive: 明示されたsemantic epoch変更と同一sourceをcurrentとして読むactive decision consumerのold epoch/digest pin関係のみ候補SEMANTIC_EPOCH_DRIFTに対応づける。",
+    "negative: current epochとpinが一致するactive consumer、およびactive edgeのないcompatibility/historical/reference artifactはfindingしない。",
+    "unknown: epoch/source revision/digest/consumer active性/edge/scope evidence欠落・stale・conflictでは推定せずunknown。"
+  ],
+  "source_atom_file_sha256": "sha256:0df47daa69af29c15045b5c098012bd729419f4513f471671ea906fd66439ea1",
+  "candidate_registration_id": "MPR-RC-HELIXOS-L2-110-001",
+  "registered_at_worktree": "2026-09-29T15:12:23+09:00",
+  "receipt_limits": "Static scoped proposal only. Does not implement scanner, define severity, census repository consumers, authorize repair/deletion, rehome ownership, assign formal successor, adopt requirements or execute acceptance."
+}

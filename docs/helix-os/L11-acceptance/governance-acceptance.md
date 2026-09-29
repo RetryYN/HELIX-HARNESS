@@ -970,3 +970,11 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **unknown例**：scope、node identity/revision/digest、ownerまたはedgeが欠落・unknown・conflict・staleのfixtureでは、provenance chainの成立を推定せず未解決状態を保つ。文書名、path一致、generatorの存在だけでedgeを作らない。
 - **受入境界**：これは選択済みchainの静的relation oracle案であり、全artifact census、generatorの実行/正当性、artifact生成、consumer startup、HARNESS packの意味契約、CONNECT通信、severity/disposition algorithm、finding taxonomy/routing、修復・削除、旧runtime/test/CIを検査しない。旧sourceにない固定版やclosureも追加しない。
 - **旧sourceと未解決**：旧`LEGACY-ASSET-D201753B1A0CC6EA3980`のarchive `document-authority-census-requests.md:52`（file SHA-256 `81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66`、line SHA-256 `d032e840fb88ab1cf46f096553a8ba597473f2faa903ba71cf264e11cda4755d`）の一 atomを候補scopeにした。FR-004/006〜008、source owner移管、formal successor、採択、実行受入およびsource holding closureは未確定。`MPR-SH-CONFIRMED-003`を生存させる。
+
+### HELIXOS-L11-110 semantic epoch / active consumer pin差分の受入候補（未実行）
+
+- **対応要求・状態**：HELIXOS-L2-110に対する未採択・未実行の静的oracle案。旧DAC-FR-010全体のclosure、runtime/scanner実装、要求採択または実acceptanceを示さない。
+- **positive fixture**：source ownerが同一source identity/scopeについて`epoch-old`と`epoch-current`およびrevision-bound digestを提示し、明示されたactive decision consumerが同じsourceをcurrentとして読む一方で`epoch-old`/old digestをpinしている入力を与える。選択されたsource-consumer関係に限り、候補finding `SEMANTIC_EPOCH_DRIFT`と旧/current evidence参照を対応づけ、finding本文から自動変更やseverityを導かない。
+- **negative fixture**： (a) active consumer pinがcurrent epoch/digestとsource identity/scopeまで一致する、または (b) compatibility/historical/reference artifactにold pinはあるがactive decision consumer edgeが示されない入力を与える。いずれも本候補findingを出さない。artifactの存在・古さ・digest不一致のみで代替findingを推測しない。
+- **unknown fixture**：semantic epoch evidenceを欠落させた入力、またはsource revision/digest、active性、consumer edge、scopeの一つをmissing/unknown/stale/conflictにした入力を与える。epoch変更・stale・適合のいずれも推定せずunknownを保持する。digest差だけでpositiveへ昇格しない。
+- **受入境界**：fixturesは明示入力1 source/consumer関係の結果を静的に照合する。severity、全consumer列挙、リポジトリcensus、findingの分類/route追加、owner移管、ticket発行、修復、削除、要求採択、L3承認を評価しない。旧DAC-R-010/DAC-AC-016の記述は期待結果の根拠として参照するだけで、旧test/runtime/CLI/CIは実行しない。
