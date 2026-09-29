@@ -1,0 +1,108 @@
+{
+  "receipt_id": "BR08-FR45-DOC-REVIEW-COVERAGE-2026-09-29",
+  "source_scope": {
+    "requirements": [
+      "BR-08",
+      "FR-L1-45"
+    ],
+    "source_lines": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+        "line": 48,
+        "file_sha256": "sha256:09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+        "line_sha256": "sha256:45c182bcd3eb0eb9261eb2de58c12dca8c1a4e1de60f4d4c0263fa4ccc631c2f"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+        "line": 76,
+        "file_sha256": "sha256:a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+        "line_sha256": "sha256:c88465a7d0f5f2f881791256b0d45ba182573df4e1919f13d80b20ba1e0505d7"
+      }
+    ],
+    "source_holding_registration_id": "MPR-SH-CONFIRMED-003",
+    "identity_status": "confirmed; successor_requirement_ids remain empty until human decision"
+  },
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/doc-quality-review-source-lines-2026-09-29.jsonl",
+  "source_atom_file_sha256": "sha256:c506574a6024968f808f0ca84b77c77b5520cb485297dd2dc4bb3c2dec9100d4",
+  "source_atom_set_digest": "sha256:bd658eeb6011b57fb769b6ca8cf54436459fb164f3eb43dddabde5f995fc3e52",
+  "source_atom_count": 2,
+  "source_atom_set_digest_rule": "atom_idを昇順にし、各 atom_id SP source_line_sha256（sha256:を除く） LF のUTF-8 bytesを連結してSHA-256。",
+  "atom_coverage": [
+    {
+      "atom_id": "BR08-DOC-REVIEW-L0048",
+      "covered_by_l2": [
+        "HARNESS-L2-061#提供条件",
+        "HARNESS-L2-061#4軸の結果"
+      ],
+      "covered_by_l11": [
+        "HARNESS-L2-061#trigger例",
+        "HARNESS-L2-061#4軸例"
+      ],
+      "coverage_disposition": "mapped_to_unadopted_candidate",
+      "semantic_line_inventory_ref": "docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl#REQSRC-LINE-00017",
+      "duplicate_counted": false
+    },
+    {
+      "atom_id": "FR45-DOC-REVIEW-L0076",
+      "covered_by_l2": [
+        "HARNESS-L2-061#提供条件",
+        "HARNESS-L2-061#4軸の結果"
+      ],
+      "covered_by_l11": [
+        "HARNESS-L2-061#trigger例",
+        "HARNESS-L2-061#4軸例"
+      ],
+      "coverage_disposition": "mapped_to_unadopted_candidate",
+      "semantic_line_inventory_ref": "docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl#REQSRC-LINE-00290",
+      "duplicate_counted": false
+    }
+  ],
+  "coverage_result": "no_loss",
+  "condition_closure": "not_asserted",
+  "unaccounted_atom_refs": [],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-CONFIRMED-003#BR-08; preserved_pending_rehome; successor_requirement_ids: []",
+    "MPR-SH-CONFIRMED-003#FR-L1-45; preserved_pending_rehome; successor_requirement_ids: []",
+    "MPR-SH-SEMANTIC-LINE-003#REQSRC-LINE-00017 and #REQSRC-LINE-00290 are duplicate provenance representations; remaining semantic-line collection and all unselected atoms remain held",
+    "FR-L1-45 role definition, record path/format, fixed G1/G3/G7/G11 gates, environment-variable bypass implementation and other unselected conditions remain in source holding"
+  ],
+  "decision_status": "P1 audit recommends option A only as a draft direction; no target-revision PO decision/adoption exists. Option B (semantic replacement/retire into general review) remains open; source identity human decision authority is explicit_human_decision_only.",
+  "candidate_refs": {
+    "harness_l2": "HARNESS-L2-061",
+    "harness_l11": "HARNESS-L2-061"
+  },
+  "candidate_section_sha256": {
+    "HARNESS-L2-061": "sha256:c44ffb80fec07ed6c0fe68e95bbd68358d87632b28d77caad96d28f231badb1a",
+    "HARNESS-L2-061@L11": "sha256:2323039d4fce66098d165d290c7bba20eadd59a86ff1f28069115ae45c82919a"
+  },
+  "current_condition_refs": [
+    "docs/concept/helix-concept.md",
+    "docs/helix-harness/L1-planning/product-intent.md#HARNESS-L1-001/004",
+    "docs/helix-harness/L2-requirements/product-requirements.md#HARNESS-L2-005/022",
+    "docs/helix-harness/L11-acceptance/product-acceptance.md#HARNESS-L2-005/022",
+    "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-018",
+    "docs/helix-os/L11-acceptance/governance-acceptance.md#HELIXOS-L2-018",
+    "docs/governance/audits/requirements-stage/p1-product-data-document-review-release-disposition-2026-09-29.md"
+  ],
+  "current_partial_coverage_refs": [
+    "HARNESS-L2/L11-005 risk-derived test selection",
+    "HARNESS-L2/L11-022 stage-specific oracle/evidence",
+    "HELIXOS-L2/L11-018 creation/independent-review separation",
+    "exact-HEAD GitHub review operating model"
+  ],
+  "coverage_gap": "既存の一般review契約には、BR-08／FR-L1-45の三trigger、整合・網羅・一貫・明確の4軸、および未召喚時fail-closeと記録付きPO例外の対が揃っていない。本候補はこの不足条件だけを扱い、既存契約を改訂しない。",
+  "scope_limit": "Only the two selected source-line semantic atoms and listed candidate sections. No claim over whole source files, all related old requirements, runtime, implementation, operation, test execution, formal successor closure, source holding retirement, or adopted authority.",
+  "source_authority_status": "The source identities are confirmed and their semantic change authority is explicit_human_decision_only. This proposal is unadopted, authority_effect none.",
+  "candidate_l2_section_sha256": "sha256:c44ffb80fec07ed6c0fe68e95bbd68358d87632b28d77caad96d28f231badb1a",
+  "harness_l11_section_sha256": "sha256:2323039d4fce66098d165d290c7bba20eadd59a86ff1f28069115ae45c82919a",
+  "selected_semantic_exception": {
+    "source_requirement_id": "FR-L1-45",
+    "meaning": "POが対象revision・scope・未完条件・理由を監査可能な記録に残した場合だけ、該当文書review条件についてgate通過を例外として許す。review未完の事実と他のgate条件は維持する。",
+    "legacy_method_excluded": [
+      "HELIX_DOC_REVIEWER_BYPASS=1",
+      ".helix/audit/doc-reviews/<timestamp>.json",
+      "fixed G1/G3/G7/G11 gate set"
+    ],
+    "finding_ref": "R2318-01"
+  }
+}
