@@ -1,0 +1,1764 @@
+{
+  "schema_version": "legacy-candidate-management-successor-unresolved-six-row-audit.v1",
+  "audit_id": "legacy-candidate-management-successor-unresolved-six-row-audit-2026-09-29",
+  "created_against_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+  "authority_effect": "none",
+  "audit_mode": "bounded_old-source_and_current-governance_relation_audit",
+  "scope": {
+    "population": "six management_process_condition rows routed management_successor_unresolved in #2353 proposed 4,755-row recount",
+    "row_count": 6,
+    "source_item_ids": [
+      "LEGACY-CAND-LINE-000018",
+      "LEGACY-CAND-LINE-000028",
+      "LEGACY-CAND-LINE-000034",
+      "LEGACY-CAND-LINE-001067",
+      "LEGACY-CAND-LINE-000021",
+      "LEGACY-CAND-LINE-000037"
+    ],
+    "product_l2_l11_successor_assignments": 0,
+    "source_meaning_changes": 0
+  },
+  "interpretive_limits": [
+    "現行参照先は意味比較の候補であり、formal successor、adoption、coverage、closureではない。",
+    "source/target authorityとatomization stateは本監査で変更しない。",
+    "旧4行と#2352追加2行を#2353累積recountで集計した状態を対象にする。",
+    "新しい規則、承認、移管手続き、製品L2/L11要求を作らない。"
+  ],
+  "pinned_inputs": [
+    {
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+      "role": "candidate source line and authority state ledger"
+    },
+    {
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-inventory.md",
+      "sha256": "58bdcae95d51edeebff57169c1e67da11c6ed879830249c52a1e700bc09bb171",
+      "role": "candidate source inventory"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "role": "archive asset identity/disposition"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-next-conditions-2026-09-29.json",
+      "sha256": "a742bb1606bee3ae1e86cd1e3d87f21b461108df9c1c96dc3bdb699c5b92b4b2",
+      "role": "prior four-row management-condition evidence"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-readme-pointer-classification-audit-2026-09-29.json",
+      "sha256": "b6623006ada51b38d8d90e9a0aaffd186135fc46fbac5f164cda92c049f20262",
+      "role": "#2352 two-row classification proposal and source evidence"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-readme-pointer-classification-audit-2026-09-29.md",
+      "sha256": "36098e56476a0d45c20b6b104a7754b0043c3454b8ac978d045516666f02fd50",
+      "role": "#2352 source-context assessment"
+    },
+    {
+      "path": "docs/governance/authority-state-model.md",
+      "sha256": "812f423b4b9952666b0ef91e741fec62f54caa3c884124ec534abbbe70be4616",
+      "role": "current authority model"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-registration.md",
+      "sha256": "1c0041f2b48c7607f380c789f3e19ae263c186e6f57b0587f9cb2721446d9344",
+      "role": "current management registration contract"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-carry-forward-policy.md",
+      "sha256": "ae0fc042804f5b608b3284adfd146a114df98857fb10f600e248edca12380c8b",
+      "role": "current carry-forward policy"
+    },
+    {
+      "path": "docs/governance/requirement-carry-forward-status.md",
+      "sha256": "034cbbe54defe5ed48518499183a4be9c623a243830254b40473ce42d2a710bb",
+      "role": "current carry-forward status"
+    },
+    {
+      "path": "docs/governance/requirement-disposition-review-program.md",
+      "sha256": "161abbca4589d350df9e68f6bc48e455b51f5bd21692d34eaab7d01907376b4b",
+      "role": "current disposition review program"
+    },
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "94ba0d22bf33338960db9c9fa1a61f438ec24e9b44643631c8bf1cdcf19bb154",
+      "role": "current scope/authority/operation entry"
+    },
+    {
+      "path": "scaffold/README.md",
+      "sha256": "be1e196dc5d65bfff642754e50fe604537e7085ca686675b609578a95c1dc1e6",
+      "role": "current scaffold replacement lifecycle"
+    },
+    {
+      "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+      "sha256": "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2",
+      "role": "related exact-revision Concept decision"
+    },
+    {
+      "path": "docs/governance/decisions/concept-v4.2-goal-owners-approval-2026-09-24.md",
+      "sha256": "6914552339c856a2732adc3f94ba429d93be92aab7d72fcf708fe1446f8ec7fd",
+      "role": "related exact-revision Concept decision"
+    },
+    {
+      "path": "docs/governance/decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md",
+      "sha256": "899cc2affe05ae0c72fa873fe1c5dfe9f6bbe3a0e77089ef2e087ed63a4765cf",
+      "role": "related scaffold-binding/authority-vocabulary decision"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+      "sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+      "role": "exact archived source file"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+      "sha256": "3cb6ee8a4d342b7f667c0960d08eb0a18fa44372ecb03bd85e0576e59baa4cca",
+      "role": "exact archived source file"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "sha256": "5d810a881d29711b0640e8641df2678b6fe9ee41767936d0289e0cf0e4948110",
+      "role": "#2353 proposed cumulative recount selecting the six rows",
+      "source_ref": "origin/codex/stage5-cumulative-recount@9926aebfbec7813d14a84490758783153422d99e"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-intake.md",
+      "sha256": "d37b511d623a3ae2a5fc23fb48e28affaafc5224cf79b7b3893f260962dcdc2e",
+      "role": "#1728 linked unapproved intake and old owner table"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l1-request-candidates.md",
+      "sha256": "17c7a6f8781768e4daf6da9fc2d9f09320a19d51bf17c4dfb8ca789ea3b51f01",
+      "role": "#1728 linked unapproved L1 candidate"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md",
+      "sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6",
+      "role": "#1728 linked unapproved L3 candidate and owner-connection rules"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l10-acceptance-candidates.md",
+      "sha256": "009abecf1ef9bb6ac0d69da4bc472e15461481001d88df23ae172147cfedc620",
+      "role": "#1728 linked unapproved L10 candidate"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/development-investment-stage-directives-source_v1.0.md",
+      "sha256": "7b7d0600bccd9045aa1c11f9762886c982b38e9446197f9dcf00637116833b04",
+      "role": "integrated old source containing 72 cards and correcting the missing booklet target"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md",
+      "sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+      "role": "old Concept v4.0 exact candidate and approval-scope metadata"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-84-helix-concept-v4-upgrade.md",
+      "sha256": "f1445011ec98a0060fa0753335e73d2c2d04d617114ccac58f038904c459851c",
+      "role": "old candidate exact-set human approval and canonical-promotion boundary"
+    }
+  ],
+  "rows": [
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000018",
+      "archive_asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+      "archive_asset_revision": 1,
+      "source_path": "docs/governance/candidates/README.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+      "source_file_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+      "source_line": 28,
+      "source_line_text": "Issue #1728の未承認候補である。既存ownerへの接続を先に行い、この候補だけでSLO値、production操作、",
+      "source_line_sha256": "sha256:8d4eb68e08285455bdb07fcfb93e14930dbeeff751a0336f483318dc8ab6e2e5",
+      "source_line_physical_bytes_sha256": "5e70e4932d1644cd0c7438a1ab95708b0a9d699d46cc373360c7bdba3f70077b",
+      "source_line_physical_bytes_base64": "SXNzdWUgIzE3Mjjjga7mnKrmib/oqo3lgJnoo5zjgafjgYLjgovjgILml6LlrZhvd25lcuOBuOOBruaOpee2muOCkuWFiOOBq+ihjOOBhOOAgeOBk+OBruWAmeijnOOBoOOBkeOBp1NMT+WApOOAgXByb2R1Y3Rpb27mk43kvZzjgIEK",
+      "context_lines": [
+        {
+          "line": 27,
+          "text": "",
+          "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        },
+        {
+          "line": 28,
+          "text": "Issue #1728の未承認候補である。既存ownerへの接続を先に行い、この候補だけでSLO値、production操作、",
+          "physical_line_bytes_sha256": "5e70e4932d1644cd0c7438a1ab95708b0a9d699d46cc373360c7bdba3f70077b"
+        },
+        {
+          "line": 29,
+          "text": "包括的な自動修復権限、実装・運用完了を成立させない。",
+          "physical_line_bytes_sha256": "d90313e5e106b55b46bbf8f0de3a4430234e672a7d57c1741fa07b4a9ba65e03"
+        }
+      ],
+      "legacy_source_authority_state": "historical_candidate",
+      "legacy_target_authority_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "decision_record": null,
+      "asset_disposition": "unresolved",
+      "asset_product_target": "unresolved",
+      "asset_decision_record_ref": null,
+      "management_process_condition": "Issue #1728は未承認候補。既存ownerへ先に接続し、この候補単独でSLO値、本番操作、自動修復権限、実装・運用完了を成立させない。",
+      "candidate_current_text_relations": [
+        {
+          "path": "docs/governance/authority-state-model.md",
+          "lines": "17-23, 36, 69",
+          "relation": "partial_semantic_overlap",
+          "note": "Issue/PR状態から採否を生成せず、仮登録authorityもnone。#1728固有のowner、SLO、本番、自動修復制約とのmappingはない。"
+        },
+        {
+          "path": "docs/governance/management-provisional-requirement-registration.md",
+          "lines": "10-12, 23-38, 50, 65",
+          "relation": "partial_semantic_overlap",
+          "note": "source/候補の位置、product target、管理責務を記録する一般契約。#1728固有のownerやcondition IDはない。"
+        },
+        {
+          "path": "docs/governance/new-generation-start-here.md",
+          "lines": "110-120",
+          "relation": "partial_semantic_overlap",
+          "note": "Issue等から採否・承認・受入を生成しない。旧候補のSLO等の後継条項ではない。"
+        }
+      ],
+      "remaining_gap": "#1728のowner、本文、SLO値・本番操作・自動修復・完了各atomの現行配置は未確認。",
+      "related_decision_records": [],
+      "formal_successor_assigned": false,
+      "product_l2_l11_route_assigned": false,
+      "authority_effect": "none",
+      "related_old_source_evidence": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-intake.md",
+          "file_sha256": "d37b511d623a3ae2a5fc23fb48e28affaafc5224cf79b7b3893f260962dcdc2e",
+          "lines": [
+            {
+              "line": 1,
+              "text": "# インフラ・運用・保守・logging品質要求の候補取込み",
+              "physical_line_bytes_sha256": "b4bec719ff62f3395f6df326e873f4f439cdc3cfcbf22cabd25b12f4a58ca197"
+            },
+            {
+              "line": 2,
+              "text": "",
+              "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+            },
+            {
+              "line": 3,
+              "text": "状態: candidate / unapproved。owner: #1728。入力日: 2026-09-11。",
+              "physical_line_bytes_sha256": "c41e87787dd56621f1f6f2f6cf4b092417b3ba88c5be594cfed6bb1d4c0a9438"
+            },
+            {
+              "line": 12,
+              "text": "本書群はL1/L3/L10への昇格候補であり、canonical Requirement、runtime write authority、SLO値、",
+              "physical_line_bytes_sha256": "4e7a6158874d1aa029f8963f393b620dc9e8cbe390f34368e6654f7cb8e3dfd1"
+            },
+            {
+              "line": 13,
+              "text": "production操作権限、自動修復権限ではない。既存ownerを再利用し、候補だけで実装済み・運用済みとしない。",
+              "physical_line_bytes_sha256": "9d0b658074dc67354287aa5e288ec188b4c53b59070be0c9d934ab90d5c605d0"
+            },
+            {
+              "line": 17,
+              "text": "| ID | 要求群 | 主な既存owner |",
+              "physical_line_bytes_sha256": "049af8849aa8ec33bb3938b74612534fcb16a6ffe46bcdb9aca2ee76ad922ed6"
+            },
+            {
+              "line": 18,
+              "text": "|---|---|---|",
+              "physical_line_bytes_sha256": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea"
+            },
+            {
+              "line": 19,
+              "text": "| NIO-CAND-01 | 用語・状態・責務境界 | #1160 / #1033 |",
+              "physical_line_bytes_sha256": "a979cc27b32990f3e2d8d01b006be1da87ff0ae37d42e4c1c3b55540c4b2eec6"
+            },
+            {
+              "line": 20,
+              "text": "| NIO-CAND-02 | knowledge・rule・skillへの根拠供給 | #1035 / #1594 / #1595 |",
+              "physical_line_bytes_sha256": "ffc57f546f1375e7120b3d066b0c13ea8a303852641c85722d74f898be2f5102"
+            },
+            {
+              "line": 21,
+              "text": "| NIO-CAND-03 | 要求形成時の運用品質導出 | #282 / #186 / #1318 |",
+              "physical_line_bytes_sha256": "4db5706b7db585b6bfd3e7cb64725ce491efe544813ffa0295c8472757d18e55"
+            },
+            {
+              "line": 22,
+              "text": "| NIO-CAND-04 | L4/L5の運用設計義務 | #290 / #1033 |",
+              "physical_line_bytes_sha256": "1ea66d54b6fb88cf86ed73f405c156637924e6f8be5b9371681d0536e795532c"
+            },
+            {
+              "line": 23,
+              "text": "| NIO-CAND-05 | measurement・observability・logging | #219 / #220 / #221 / #222 |",
+              "physical_line_bytes_sha256": "0a9a78f1dd0f1cd88703919714bd4e9d4574becf73e4b4a577e072db2e0edfb2"
+            },
+            {
+              "line": 24,
+              "text": "| NIO-CAND-06 | alert・incident・recovery・maintenance | #223 / #1160 |",
+              "physical_line_bytes_sha256": "fa1a7e05287813a5d3677f6825d0fc3009a8970e3005ca698af92192ef32a03d"
+            },
+            {
+              "line": 25,
+              "text": "| NIO-CAND-07 | fault injection・restore・rollback検証 | #221 / #1160 |",
+              "physical_line_bytes_sha256": "bacc338d22ae1ce87ff00be494bb2cfa90a0375e9fa419f9d755909702284525"
+            },
+            {
+              "line": 26,
+              "text": "| NIO-CAND-08 | 双方向trace・Requirement Re-entry | #1169 / #1033 |",
+              "physical_line_bytes_sha256": "58bd2c9e000ba054429738c0cef8ffe380dd3a479ec31ec33b5437a455bedd41"
+            },
+            {
+              "line": 27,
+              "text": "| NIO-CAND-09 | designed/implemented/verified/observed/operatedの分離 | #1160 / #1033 |",
+              "physical_line_bytes_sha256": "854b39ce8d9a7a79f1af26c0bcd3b661c7cdcd1b650eee319e6001658d86d325"
+            },
+            {
+              "line": 28,
+              "text": "",
+              "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+            },
+            {
+              "line": 29,
+              "text": "closed Issueは局所sliceの証拠であり、9要求群の統合成立を代替しない。各ownerへ",
+              "physical_line_bytes_sha256": "16e1d177828e2d3f7c58395cbc578d077b742117e6c131dfa2a811f351f01f6b"
+            },
+            {
+              "line": 30,
+              "text": "`reuse / delta / new / N/A`を記録し、同じlogging・incident・recovery engineを別に作らない。",
+              "physical_line_bytes_sha256": "9157a2d9b09a6ffc0a423106479f7800aff4458ea491c19befdc25f0414090eb"
+            }
+          ]
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l1-request-candidates.md",
+          "file_sha256": "17c7a6f8781768e4daf6da9fc2d9f09320a19d51bf17c4dfb8ca789ea3b51f01",
+          "lines": [
+            {
+              "line": 1,
+              "text": "# インフラ・運用品質 L1要求候補",
+              "physical_line_bytes_sha256": "062a9f89841bfa4cf9927884bbeef7053d78e6a18031d17f98c824d48b6a5d7b"
+            },
+            {
+              "line": 2,
+              "text": "",
+              "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+            },
+            {
+              "line": 3,
+              "text": "状態: candidate / unapproved。source: #1728。",
+              "physical_line_bytes_sha256": "dc647dd57bf1269d2c40474a6c72662376d156410ee10a409df9090e7adea407"
+            },
+            {
+              "line": 4,
+              "text": "",
+              "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+            },
+            {
+              "line": 5,
+              "text": "| ID | 利用者要求候補 |",
+              "physical_line_bytes_sha256": "28d62273059d0096188565479495bb41cea518921ec9824120a25bc0b7547022"
+            },
+            {
+              "line": 6,
+              "text": "|---|---|",
+              "physical_line_bytes_sha256": "ac92d1b091b25afced4265ab8cc2f40af0ad8ffa13d3ba560710a1caa14bfa06"
+            },
+            {
+              "line": 7,
+              "text": "| NIO-L1-01 | HELIXは要求形成時に、対象systemの可用性・信頼性・性能・容量・費用・security・privacy・運用・保守・回復・observabilityの適用性を導出し、未決を隠さない。 |",
+              "physical_line_bytes_sha256": "55d651461d9320f678c1359d631fd5741b7224f66d51cd3756ce8f775137a16c"
+            },
+            {
+              "line": 8,
+              "text": "| NIO-L1-02 | HELIXは設計から運用まで同じrequirement identityを追跡し、実運用で得たincident・metric・log・recovery evidenceを要求へ戻す。 |",
+              "physical_line_bytes_sha256": "0aef424697a92ba134a3bcc46cc7d7825737bb31ab62cef5b39da253d88de58c"
+            },
+            {
+              "line": 9,
+              "text": "| NIO-L1-03 | HELIXは「設計済み」「実装済み」「検証済み」「観測済み」「運用成立」を別状態として提示し、下位状態を上位状態へ読み替えない。 |",
+              "physical_line_bytes_sha256": "e3b945c7b09387b3e86d2d802b41944d0cc7dc5a88a899161d8d7e82687679f5"
+            },
+            {
+              "line": 10,
+              "text": "| NIO-L1-04 | HELIXは既存の計測・event・logging・incident・lifecycle機構を統合利用し、同じ責務の第二正本や第二engineを作らない。 |",
+              "physical_line_bytes_sha256": "7083b5fb14a1ede29aa64c7daad3eba9c1473ef2a6f321dece54b63884610cf2"
+            },
+            {
+              "line": 11,
+              "text": "| NIO-L1-05 | HELIXは承認済みscope内を自走し、範囲外の意味・権限・金銭・公開・法的不可逆差分だけを人間へ戻す。 |",
+              "physical_line_bytes_sha256": "f9bbcc071535f0d328c6bc03944733c8726da3f1c23c08df498418e72df2aad2"
+            },
+            {
+              "line": 12,
+              "text": "",
+              "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+            },
+            {
+              "line": 13,
+              "text": "数値SLO、target環境、予算、保持期間、blast radiusは対象RequirementまたはRelease契約で別途承認する。",
+              "physical_line_bytes_sha256": "3bc463a4ce57c4bd4f5733bc8728f2010cf2e704fac0895ce99c8a86902d8a5b"
+            }
+          ]
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md",
+          "file_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6",
+          "lines": [
+            {
+              "line": 1,
+              "text": "# インフラ・運用品質 L3要求候補",
+              "physical_line_bytes_sha256": "2f3b70498e40ef52764af5d84d1fbc40c2ed0a0166a4d6d5ac006cd8854c21bf"
+            },
+            {
+              "line": 2,
+              "text": "",
+              "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+            },
+            {
+              "line": 3,
+              "text": "状態: candidate / unapproved。source: #1728。",
+              "physical_line_bytes_sha256": "dc647dd57bf1269d2c40474a6c72662376d156410ee10a409df9090e7adea407"
+            },
+            {
+              "line": 4,
+              "text": "",
+              "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+            },
+            {
+              "line": 5,
+              "text": "| ID | 機能・非機能要求候補 |",
+              "physical_line_bytes_sha256": "c0d4bbb2d42beb7c9ca1ca19ff7984726e8c434d0ad99b785000bf6bf25c84a5"
+            },
+            {
+              "line": 6,
+              "text": "|---|---|",
+              "physical_line_bytes_sha256": "ac92d1b091b25afced4265ab8cc2f40af0ad8ffa13d3ba560710a1caa14bfa06"
+            },
+            {
+              "line": 7,
+              "text": "| NIO-L3-01 | Requirement formationは対象、環境、workload、failure mode、data criticality、RTO/RPO候補、観測可能性、運用ownerをtyped inputとして収集し、未知をunknownのまま保持する。 |",
+              "physical_line_bytes_sha256": "6b7272555c6ee856b3e42cf4e0c3beb0f64665a8877c9e5397cecf0379365963"
+            },
+            {
+              "line": 8,
+              "text": "| NIO-L3-02 | Design Obligation Graphはdeployment、configuration、secret、capacity、telemetry、logging、alert、incident、backup、restore、rollback、maintenance、decommission、costの適用性を全件導出する。 |",
+              "physical_line_bytes_sha256": "922d2577cdd46808d3d2f8d01bb0ac829d73a96ac4dd74be719c0862ce80b3e9"
+            },
+            {
+              "line": 9,
+              "text": "| NIO-L3-03 | measurement evidenceはmetric定義、単位、scope、source、authority、timestamp、freshness、collector health、sample count、digestを持つ。 |",
+              "physical_line_bytes_sha256": "9174666dbd02a290fc26d2629a0fe3e8da79243b5a4b2ec1158258a4d3274ea4"
+            },
+            {
+              "line": 10,
+              "text": "| NIO-L3-04 | logging contractはevent identity、severity、correlation、redaction、retention、loss/duplication、ordering、clock、schema evolutionを扱い、secret/PIIを既定denyする。 |",
+              "physical_line_bytes_sha256": "a5e01c7feb3e7a18bf885bf76568478a3d63aa05cc7969366d1a607b75351ec0"
+            },
+            {
+              "line": 11,
+              "text": "| NIO-L3-05 | alertはtyped findingからincident/recovery ownerへ決定的にrouteし、重複・storm・silence・ack・expiryを管理する。 |",
+              "physical_line_bytes_sha256": "e00d1ff381c273ef124942f52a41167ee13d495af59f863a23464402657baee6"
+            },
+            {
+              "line": 12,
+              "text": "| NIO-L3-06 | backup/restore、rollback、failover、degraded operationは実行可能なprocedureとfault injectionを持ち、名称や文書の存在を成功証拠にしない。 |",
+              "physical_line_bytes_sha256": "c0035f65772024d1d666e733ca4ad98ecaffef0ecd91fd7c0d7fb3ea8e2fac44"
+            },
+            {
+              "line": 13,
+              "text": "| NIO-L3-07 | operation evidenceはrequirement/design/test/runtime/release identityへ双方向traceし、差分をRequirement Re-entryへ送る。 |",
+              "physical_line_bytes_sha256": "d0caca995c087060a88bdda99e9d32dde9c85a417286c238ed8d39d096596f2b"
+            },
+            {
+              "line": 14,
+              "text": "| NIO-L3-08 | 自動修復は対象契約、actor、tool、target、params、budget、blast radius、rollback、独立検証、consumer evidenceが成立した範囲だけruntime admissionする。 |",
+              "physical_line_bytes_sha256": "c95204a3a565aaaac87fee894bcf4a4c21d2b74a9090872a35430d668786c843"
+            },
+            {
+              "line": 15,
+              "text": "| NIO-L3-09 | designed/implemented/verified/observed/operatedの状態遷移は証拠付きで、collector停止・欠測・staleをhealthyへ変換しない。 |",
+              "physical_line_bytes_sha256": "b597885c64469f1adba640edf8e28d898df9134039850f37f0094848480d93a7"
+            },
+            {
+              "line": 16,
+              "text": "",
+              "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+            },
+            {
+              "line": 17,
+              "text": "## 既存owner接続規律",
+              "physical_line_bytes_sha256": "7d12eccd93b2a5a8ff701d84d9fc4916d78d4e4a67990fffde752a5988f6fb24"
+            },
+            {
+              "line": 18,
+              "text": "",
+              "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+            },
+            {
+              "line": 19,
+              "text": "- #219〜#223を計測・event・logging・routingのownerとして再利用する。",
+              "physical_line_bytes_sha256": "7404107a33a68a361f281008403a210e215958109c9ebab244df5953c159eaea"
+            },
+            {
+              "line": 20,
+              "text": "- #1160をdeployment以後、#1169を要求還流、#1033/#290を横断構成のownerとして再利用する。",
+              "physical_line_bytes_sha256": "7a2bfffc2a873fcdba1ce9668ac18a39492d717059a9c69dafd5628c85f640c4"
+            },
+            {
+              "line": 21,
+              "text": "- #282/#186/#1318を要求導出・機械生成・TDD接続へ利用する。",
+              "physical_line_bytes_sha256": "376798e08e2d107df78777dfb652439df3a825edba4fb5938416442e495ef807"
+            },
+            {
+              "line": 22,
+              "text": "- owner未確定時は新実装へ落とさず、未被覆findingとして統制側へ返す。",
+              "physical_line_bytes_sha256": "4ee0e5109fe20714604fc7ec7da89a7980be148a47502d019a099566c2fccccd"
+            }
+          ]
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l10-acceptance-candidates.md",
+          "file_sha256": "009abecf1ef9bb6ac0d69da4bc472e15461481001d88df23ae172147cfedc620",
+          "lines": [
+            {
+              "line": 1,
+              "text": "# インフラ・運用品質 L10受入候補",
+              "physical_line_bytes_sha256": "7451f79172165a18c9a70b0d8f95e091fa5742c5a9a9de3621e7adf62ab5aa32"
+            },
+            {
+              "line": 2,
+              "text": "",
+              "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+            },
+            {
+              "line": 3,
+              "text": "状態: candidate / unapproved。source: #1728。",
+              "physical_line_bytes_sha256": "dc647dd57bf1269d2c40474a6c72662376d156410ee10a409df9090e7adea407"
+            },
+            {
+              "line": 4,
+              "text": "",
+              "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+            },
+            {
+              "line": 5,
+              "text": "| ID | 反例・受入候補 |",
+              "physical_line_bytes_sha256": "75faa45f2ae6dcf284815e39445407fe5e269b6dd88b44e9a19a252012827600"
+            },
+            {
+              "line": 6,
+              "text": "|---|---|",
+              "physical_line_bytes_sha256": "ac92d1b091b25afced4265ab8cc2f40af0ad8ffa13d3ba560710a1caa14bfa06"
+            },
+            {
+              "line": 7,
+              "text": "| NIO-L10-01 | 根拠のないSLO数値・閾値・保持期間を生成した場合はRED。unknownを明示すれば通過候補。 |",
+              "physical_line_bytes_sha256": "13a2130172d84529bf1464997b61f4c40519d6531d9fbbb96b5dfee4163dce52"
+            },
+            {
+              "line": 8,
+              "text": "| NIO-L10-02 | collector停止、欠測、stale evidenceをhealthyへ写像した場合はRED。typed degraded/unknown/failureへ分離する。 |",
+              "physical_line_bytes_sha256": "1bf5aa9f1444209c1a59b9934d776baffe6c1f42492d9c487271379a237fe4b9"
+            },
+            {
+              "line": 9,
+              "text": "| NIO-L10-03 | synthetic/canary成功だけでproduction運用成立を主張した場合はRED。環境identity別の証拠を要求する。 |",
+              "physical_line_bytes_sha256": "400c3baaf66f27be5ac4327814fd5068093a59704c475a284bf1d9561c7fd42c"
+            },
+            {
+              "line": 10,
+              "text": "| NIO-L10-04 | backup名・snapshot存在だけでrestore成功を主張した場合はRED。隔離restoreとintegrity検証を要求する。 |",
+              "physical_line_bytes_sha256": "158b1fde325bb1bff9ce8e3a96691677460b46ec33fc22b4f9fe00d8a8543541"
+            },
+            {
+              "line": 11,
+              "text": "| NIO-L10-05 | rollback成功だけで恒久修復・再発防止完了を主張した場合はRED。原因・修復・再検証を別状態にする。 |",
+              "physical_line_bytes_sha256": "c385e8df5cb86d6d5d04ba087fe6580b1c92ac1840e111d2afe39a1c3fd55e9f"
+            },
+            {
+              "line": 12,
+              "text": "| NIO-L10-06 | secret/PIIをlog、example、evidenceへ平文出力した場合はRED。redactionとnegative scanを要求する。 |",
+              "physical_line_bytes_sha256": "0f08e15261b2d95d6ea2ace827b2e3c1435976403ba9eea44abb0f1f7653096d"
+            },
+            {
+              "line": 13,
+              "text": "| NIO-L10-07 | 未承認scopeへ自動修復、公開、課金、production writeを広げた場合はRED。runtime admissionで拒否する。 |",
+              "physical_line_bytes_sha256": "8817dceee9961d597058baef2b70f455e4a6d3342e4fdaa7a72f48fef6a52b9a"
+            },
+            {
+              "line": 14,
+              "text": "| NIO-L10-08 | requirement→design→implementation→verification→operation→re-entryの必須edgeが欠ける場合はRED。 |",
+              "physical_line_bytes_sha256": "23e2771985d454451c44896b3bfb22e1fa32f8f740c72c3955052bf392b4dbd2"
+            },
+            {
+              "line": 15,
+              "text": "| NIO-L10-09 | closed Issueや文書存在だけで統合能力をcompleteへ昇格した場合はRED。実consumer evidenceを要求する。 |",
+              "physical_line_bytes_sha256": "f687789d249cdb2fde9b69c02e3375960b24acaf7877b20f6ff14407b9bd863d"
+            },
+            {
+              "line": 16,
+              "text": "",
+              "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+            },
+            {
+              "line": 17,
+              "text": "これらは候補oracleであり、canonical promotion時に対象requirement revision、test path、実行環境、証拠schemaへ束縛する。",
+              "physical_line_bytes_sha256": "cc8297940643cfc9a35b13eee934b250eba52704d6c7a03bab0a050081b2c947"
+            }
+          ]
+        }
+      ],
+      "related_old_source_finding": "The README restriction refers to a distinct unapproved #1728 candidate set. Its intake names nine responsibility groups and existing issue owners; L1/L3/L10 remain candidate/unapproved. The linked L3 candidate says owner-unknown must return as uncovered rather than proceed to new implementation. These old candidate owners have not been mapped to current approved requirement IDs here."
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000028",
+      "archive_asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+      "archive_asset_revision": 1,
+      "source_path": "docs/governance/candidates/README.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+      "source_file_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+      "source_line": 42,
+      "source_line_text": "正本化するときは、候補をこのdirectoryに残したままcurrentと二重authorityにしない。昇格先、",
+      "source_line_sha256": "sha256:0e85c51447058834213a09603f07cde3a9fbe839db276a4fd0c3315f36d186f0",
+      "source_line_physical_bytes_sha256": "4f8b6047ac3294609d4a9075bba8d35be7a473a1faa7126522f98060a0fe4f2b",
+      "source_line_physical_bytes_base64": "5q2j5pys5YyW44GZ44KL44Go44GN44Gv44CB5YCZ6KOc44KS44GT44GuZGlyZWN0b3J544Gr5q6L44GX44Gf44G+44G+Y3VycmVudOOBqOS6jOmHjWF1dGhvcml0eeOBq+OBl+OBquOBhOOAguaYh+agvOWFiOOAgQo=",
+      "context_lines": [
+        {
+          "line": 41,
+          "text": "",
+          "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        },
+        {
+          "line": 42,
+          "text": "正本化するときは、候補をこのdirectoryに残したままcurrentと二重authorityにしない。昇格先、",
+          "physical_line_bytes_sha256": "4f8b6047ac3294609d4a9075bba8d35be7a473a1faa7126522f98060a0fe4f2b"
+        },
+        {
+          "line": 43,
+          "text": "compatibility／archive移動、参照更新を同一migrationで閉じる。",
+          "physical_line_bytes_sha256": "1fcc64b2a5d07e50cb45c2756a1f392efa8bb614cc2677bcc0b415cba5ca536e"
+        }
+      ],
+      "legacy_source_authority_state": "historical_candidate",
+      "legacy_target_authority_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "decision_record": null,
+      "asset_disposition": "unresolved",
+      "asset_product_target": "unresolved",
+      "asset_decision_record_ref": null,
+      "management_process_condition": "正本化時に旧candidateをcurrentとの二重authorityにせず、昇格先、compatibility/archive移動、参照更新を同一migrationで閉じる。",
+      "candidate_current_text_relations": [
+        {
+          "path": "scaffold/README.md",
+          "lines": "34-39, 64-68",
+          "relation": "partial_semantic_overlap",
+          "note": "Scaffold Bindingでは正式物の後にcheck-replacement、read-after、retireを行う。旧Concept candidateの正本化/compatibility/archive/reference条件へ適用する決定ではない。"
+        },
+        {
+          "path": "docs/governance/authority-state-model.md",
+          "lines": "41-69",
+          "relation": "partial_semantic_overlap",
+          "note": "source/target authorityとsuccessor coverageを分離するが、旧候補directory移動等を閉じる条件ではない。"
+        },
+        {
+          "path": "docs/governance/legacy-requirement-carry-forward-policy.md",
+          "lines": "49-72",
+          "relation": "partial_semantic_overlap",
+          "note": "successor、atom、pending、decision、candidate state保持を規定。READMEの同一migration条件とのexact relationなし。"
+        }
+      ],
+      "remaining_gap": "旧Concept candidateの昇格先、互換性、archive、参照更新を閉じる適用decisionはない。Scaffold Binding手順を旧sourceへ拡張しない。",
+      "related_decision_records": [
+        "docs/governance/decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md"
+      ],
+      "formal_successor_assigned": false,
+      "product_l2_l11_route_assigned": false,
+      "authority_effect": "none"
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000034",
+      "archive_asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+      "archive_asset_revision": 1,
+      "source_path": "docs/governance/candidates/README.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+      "source_file_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+      "source_line": 51,
+      "source_line_text": "候補文書だけで72件を承認・v1必須化・一括Issue化・実装済み扱いにしない。選択したINVごとに",
+      "source_line_sha256": "sha256:1f186f89f029ac05595c2133ed4d1cda921046b5905e61f981a41891534f9121",
+      "source_line_physical_bytes_sha256": "7ab68d9f2d2f9a870a911ae6f2f8ec9b364bdac240df74cb3104060789015755",
+      "source_line_physical_bytes_base64": "5YCZ6KOc5paH5pu444Gg44GR44GnNzLku7bjgpLmib/oqo3jg7t2MeW/hemgiOWMluODu+S4gOaLrElzc3Vl5YyW44O75a6f6KOF5riI44G/5omx44GE44Gr44GX44Gq44GE44CC6YG45oqe44GX44GfSU5W44GU44Go44GrCg==",
+      "context_lines": [
+        {
+          "line": 50,
+          "text": "この文書のINV IDとP0〜P4は、Requirement ID、障害severity、L1〜L12、Release Waveではない。",
+          "physical_line_bytes_sha256": "0faedce1c159a6414fb3e29387ec5520862efed08d7d761f53bd4727fad6a8f9"
+        },
+        {
+          "line": 51,
+          "text": "候補文書だけで72件を承認・v1必須化・一括Issue化・実装済み扱いにしない。選択したINVごとに",
+          "physical_line_bytes_sha256": "7ab68d9f2d2f9a870a911ae6f2f8ec9b364bdac240df74cb3104060789015755"
+        },
+        {
+          "line": 52,
+          "text": "current Requirement／Capability／Issue／Release ownerを再解決し、意味・受入・権限の差分だけを",
+          "physical_line_bytes_sha256": "791656a1a2708754a9fb5600e6ae9fc98da48bd113794947e64275f2ac2cf35f"
+        }
+      ],
+      "legacy_source_authority_state": "historical_candidate",
+      "legacy_target_authority_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "decision_record": null,
+      "asset_disposition": "unresolved",
+      "asset_product_target": "unresolved",
+      "asset_decision_record_ref": null,
+      "management_process_condition": "72 INVだけで承認・v1必須化・一括Issue化・実装済み扱いにせず、選択INVごとにcurrent Requirement/Capability/Issue/Release ownerと意味・受入・権限差分を再解決する。",
+      "candidate_current_text_relations": [
+        {
+          "path": "docs/governance/requirement-disposition-review-program.md",
+          "lines": "22-36, 41-56, 73-80, 94-105",
+          "relation": "partial_semantic_overlap",
+          "note": "旧sourceをholdingからatom化しidentity単位でdispositionする現在の一般process。72 INVの選択状態/current owner mappingはない。"
+        },
+        {
+          "path": "docs/governance/legacy-requirement-carry-forward-policy.md",
+          "lines": "49-67",
+          "relation": "partial_semantic_overlap",
+          "note": "原文、successor、coverage、pending、decisionを記録しcandidate状態を保つ。INV owner割当条項ではない。"
+        },
+        {
+          "path": "docs/governance/authority-state-model.md",
+          "lines": "27-36, 69",
+          "relation": "partial_semantic_overlap",
+          "note": "Issue/PR/実装から採否を生成せず、coveredを証拠条件に限定。INV固有の段階条件はない。"
+        }
+      ],
+      "remaining_gap": "72 INVの個別source IDs、選択状態、現行owner、意味/受入/権限差分を結ぶcurrent crosswalkは未確認。",
+      "related_decision_records": [],
+      "formal_successor_assigned": false,
+      "product_l2_l11_route_assigned": false,
+      "authority_effect": "none"
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-001067",
+      "archive_asset_id": "LEGACY-ASSET-429B017144C61B9C906D",
+      "archive_asset_revision": 1,
+      "source_path": "docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+      "source_file_sha256": "3cb6ee8a4d342b7f667c0960d08eb0a18fa44372ecb03bd85e0576e59baa4cca",
+      "source_line": 17,
+      "source_line_text": "各候補は`adopt / defer / reject / already_covered / needs_requirement_delta`へ分類し、既存ownerを",
+      "source_line_sha256": "sha256:9ae53bf307203724a1664b140b857e32d84e96d57ddb2ddf1bfca2c9ddce29cc",
+      "source_line_physical_bytes_sha256": "d49644bd883b15a84bc56dc0ea95a1101d63cce25605fdc423d7e6cc66e25a25",
+      "source_line_physical_bytes_base64": "5ZCE5YCZ6KOc44GvYGFkb3B0IC8gZGVmZXIgLyByZWplY3QgLyBhbHJlYWR5X2NvdmVyZWQgLyBuZWVkc19yZXF1aXJlbWVudF9kZWx0YWDjgbjliIbpoZ7jgZfjgIHml6LlrZhvd25lcuOCkgo=",
+      "context_lines": [
+        {
+          "line": 16,
+          "text": "P0〜P4は導入帯であり、障害severity、V-model layer、M0〜M5、Release Waveではない。",
+          "physical_line_bytes_sha256": "0a723e5d3b4302afa0da3e35ffa5ad6a06f0095208645bedcb08a7bf3e1ad26c"
+        },
+        {
+          "line": 17,
+          "text": "各候補は`adopt / defer / reject / already_covered / needs_requirement_delta`へ分類し、既存ownerを",
+          "physical_line_bytes_sha256": "d49644bd883b15a84bc56dc0ea95a1101d63cce25605fdc423d7e6cc66e25a25"
+        },
+        {
+          "line": 18,
+          "text": "再利用する。履歴入力の記述だけで現在の実装状態や採否を確定しない。",
+          "physical_line_bytes_sha256": "59cfb643aae3ef9be43420538b82f2584f343c2aad39362045f0988cc7c10e44"
+        }
+      ],
+      "legacy_source_authority_state": "historical_candidate",
+      "legacy_target_authority_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "decision_record": null,
+      "asset_disposition": "unresolved",
+      "asset_product_target": "unresolved",
+      "asset_decision_record_ref": null,
+      "management_process_condition": "投資stage候補を旧5区分（adopt, defer, reject, already_covered, needs_requirement_delta）へ分類しownerを再利用する。履歴だけで実装状態や採否は決めない。",
+      "candidate_current_text_relations": [
+        {
+          "path": "docs/governance/requirement-disposition-review-program.md",
+          "lines": "41-55, 73-80",
+          "relation": "partial_semantic_overlap",
+          "note": "現行候補dispositionは別の語彙と確定条件を持つ。旧5値とのmapping、INV単位owner移管先はない。"
+        },
+        {
+          "path": "docs/governance/authority-state-model.md",
+          "lines": "17-23, 27-36",
+          "relation": "partial_semantic_overlap",
+          "note": "authority軸を分離し、Issue/PRから採否を作らない。旧分類値をcurrent statusへ読み替えない。"
+        }
+      ],
+      "remaining_gap": "旧5分類とRDP候補dispositionのmeaning relation、適用INV、owner identity/transfer先が未確定。",
+      "related_decision_records": [],
+      "formal_successor_assigned": false,
+      "product_l2_l11_route_assigned": false,
+      "authority_effect": "none"
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000021",
+      "archive_asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+      "archive_asset_revision": 1,
+      "source_path": "docs/governance/candidates/README.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+      "source_file_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+      "source_line": 33,
+      "source_line_text": "- `helix-concept-v4.1.md`: 最新のHARNESS／HELIX-OS／個別製品境界を反映した次revision候補。v4.0の承認対象bytesを変更せず、U1上流再整備の承認対象を分ける",
+      "source_line_sha256": "sha256:bf86a45298099c430e302e59df5135cd9027e87cd95ceb691ac42332999ad10c",
+      "source_line_physical_bytes_sha256": "32abd5b4f19e1186c811a1ea0b736cffa746911ab041dd1eac26348ae658d038",
+      "source_line_physical_bytes_base64": "LSBgaGVsaXgtY29uY2VwdC12NC4xLm1kYDog5pyA5paw44GuSEFSTkVTU++8j0hFTElYLU9T77yP5YCL5Yil6KO95ZOB5aKD55WM44KS5Y+N5pig44GX44Gf5qyhcmV2aXNpb27lgJnoo5zjgIJ2NC4w44Gu5om/6KqN5a++6LGhYnl0ZXPjgpLlpInmm7TjgZvjgZrjgIFVMeS4iua1geWGjeaVtOWCmeOBruaJv+iqjeWvvuixoeOCkuWIhuOBkeOCiwo=",
+      "context_lines": [
+        {
+          "line": 32,
+          "text": "",
+          "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        },
+        {
+          "line": 33,
+          "text": "- `helix-concept-v4.1.md`: 最新のHARNESS／HELIX-OS／個別製品境界を反映した次revision候補。v4.0の承認対象bytesを変更せず、U1上流再整備の承認対象を分ける",
+          "physical_line_bytes_sha256": "32abd5b4f19e1186c811a1ea0b736cffa746911ab041dd1eac26348ae658d038"
+        },
+        {
+          "line": 34,
+          "text": "",
+          "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        }
+      ],
+      "legacy_source_authority_state": "historical_candidate",
+      "legacy_target_authority_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "decision_record": null,
+      "asset_disposition": "unresolved",
+      "asset_product_target": "unresolved",
+      "asset_decision_record_ref": null,
+      "management_process_condition": "旧Concept v4.1候補で、v4.0承認対象bytesを変えず、U1上流再整備の承認対象を分ける。",
+      "candidate_current_text_relations": [
+        {
+          "path": "docs/governance/new-generation-start-here.md",
+          "lines": "72-78",
+          "relation": "partial_semantic_overlap_with_explicit_change",
+          "note": "現行Conceptは同じ1ファイルを改訂し、版別複製や改訂ごとの承認recordを置かない。旧版別file modelとの差分。"
+        },
+        {
+          "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+          "lines": "34-64",
+          "relation": "decision_evidence_not_successor",
+          "note": "特定v4.1 exact本文と4対象L1を承認。要求successor割当やarchive移管完了は含まない。"
+        },
+        {
+          "path": "docs/governance/decisions/concept-v4.2-goal-owners-approval-2026-09-24.md",
+          "lines": "27-54",
+          "relation": "decision_evidence_not_successor",
+          "note": "exact revision承認と旧v4.1履歴維持を記録。U1固有の承認対象分離条件そのものではない。"
+        }
+      ],
+      "remaining_gap": "The old v4.0 exact candidate-set approval is pinned, while README line 33 proposes a distinct v4.1/U1 approval-target split. Its relation to the current single-Concept-file revision method and current exact-revision decisions is not fully mapped. Do not turn the old condition into repeated approval or infer v4.0 byte preservation/supersession beyond its old exact-set decision.",
+      "related_decision_records": [
+        "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+        "docs/governance/decisions/concept-v4.2-goal-owners-approval-2026-09-24.md"
+      ],
+      "formal_successor_assigned": false,
+      "product_l2_l11_route_assigned": false,
+      "authority_effect": "none",
+      "related_old_source_evidence": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md",
+          "file_sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+          "lines": [
+            {
+              "line": 1,
+              "text": "---",
+              "physical_line_bytes_sha256": "f52d711103d50a437830c6fbcd04fb4bab49a0f82f6d26d1c791c6e8488dd090"
+            },
+            {
+              "line": 2,
+              "text": "document_id: HELIX-CONCEPT-V4",
+              "physical_line_bytes_sha256": "a0f186af92af2a15b0d169a1baf696c53d743399eed0c81f8da68b9d657836dd"
+            },
+            {
+              "line": 3,
+              "text": "concept_version: \"4.0\"",
+              "physical_line_bytes_sha256": "a758a86d91d7a2d35e75b4afad824c2fa024e89761d48af6fd311fbf4f6ce4ec"
+            },
+            {
+              "line": 4,
+              "text": "status: draft_candidate",
+              "physical_line_bytes_sha256": "b8e0419afbe1b1eea382ff37243bd4cc306439e777c20b65ae2f96126c8bf0dc"
+            },
+            {
+              "line": 5,
+              "text": "authority_status: approved_pending_canonical_promotion",
+              "physical_line_bytes_sha256": "ab62b043eed04620bfd56b09da5aeab7ef352611ea7bc5d9d4931371c28aabb3"
+            },
+            {
+              "line": 6,
+              "text": "approval_record_id: L3-PO-1496-001",
+              "physical_line_bytes_sha256": "f6ad02c0a59258a27637102e126f8b6fb70843c65a0c6be11c3255e75470aca2"
+            },
+            {
+              "line": 7,
+              "text": "approval_scope: candidate_exact_set_only",
+              "physical_line_bytes_sha256": "af1457198bc4c92527a684c85c5539821491a7c395c034819a4acaa94105f6d7"
+            },
+            {
+              "line": 8,
+              "text": "approval_plan: docs/plans/PLAN-L3-84-helix-concept-v4-upgrade.md",
+              "physical_line_bytes_sha256": "0bc76941e801e231cc096ea4faf7800e4809c1b2802d5419c60173d1028bd23e"
+            },
+            {
+              "line": 9,
+              "text": "approved_body_sha256: 9b6ee7a9f9ed16ecc82e1dd4a5d06601cc0cb313fa03daa5887cfe8772a2e8ea",
+              "physical_line_bytes_sha256": "93508c6e11bcf1f4e0f472b0b6f578c974c1df6bf61af45ee0acad02c21037ed"
+            },
+            {
+              "line": 10,
+              "text": "authority_note: \"本文の未承認・v3.1 current表記は承認前原稿の履歴。PLAN-L3-84の候補承認と2026-09-13 startup是正に従い、v4を新要求の必読入力とする。canonical promotion・IR admission・runtime適用は未完了であり、このmetadataで完了を主張しない。\"",
+              "physical_line_bytes_sha256": "c8b8cdb9ac05683dd105c10de10691a3d1c3db74a0db46fd15ad739de693e1b3"
+            },
+            {
+              "line": 11,
+              "text": "github_issue_id: 1496",
+              "physical_line_bytes_sha256": "c354c56085a0be70d33274c04a0725f8f473bc31ca50aa2754bcfe1a31e2245f"
+            },
+            {
+              "line": 12,
+              "text": "behavior_contract_id: HELIX-CONCEPT-V4-UPGRADE-001",
+              "physical_line_bytes_sha256": "0a5bd92ec0c822bf5ef9facd005382eafef2b5d1aa29ba8e8ab828c9f7379fa9"
+            },
+            {
+              "line": 13,
+              "text": "supersedes_after_approval: docs/governance/helix-harness-concept_v3.1.md",
+              "physical_line_bytes_sha256": "60d1b010440a5927f8d7ae840ae1ba0288c4be96049d075d56aee5322df849fe"
+            },
+            {
+              "line": 14,
+              "text": "evidence_baseline: a122bf933d89a9df8ec9048f26bf4e554dfc5d63",
+              "physical_line_bytes_sha256": "8c8d934f5179edeac8718826e97b69902fcee15fc149bc8b121b5c7cd8e37be5"
+            },
+            {
+              "line": 15,
+              "text": "---",
+              "physical_line_bytes_sha256": "f52d711103d50a437830c6fbcd04fb4bab49a0f82f6d26d1c791c6e8488dd090"
+            },
+            {
+              "line": 24,
+              "text": "## Authority境界",
+              "physical_line_bytes_sha256": "4341b8eef69f74212effe1732ee55548a7418a5cdca6f004bb40cb1a52cbb0c7"
+            },
+            {
+              "line": 25,
+              "text": "",
+              "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+            },
+            {
+              "line": 26,
+              "text": "本書は未承認候補であり、現行conceptを置換しない。L1／L3／L10への分解、plan固有human approval、",
+              "physical_line_bytes_sha256": "39964a378bd503618e3595270f9560dbc1a3c934b59505ac2c56da0d742e3d0b"
+            },
+            {
+              "line": 27,
+              "text": "canonical merge、Requirement IR admission、main反映後の再読が完了した場合だけv4.0へ昇格する。",
+              "physical_line_bytes_sha256": "14bd1d943e56413066174e3f8b2c77ccdbbd6a610801d95548cae45b6070c61c"
+            },
+            {
+              "line": 28,
+              "text": "それまではv3.1と現行requirementsがcurrent authorityである。",
+              "physical_line_bytes_sha256": "b7b91a7572fecc47d514733944b6694fb76f4903b2f28c3b89bf28f42578e0c4"
+            }
+          ]
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-84-helix-concept-v4-upgrade.md",
+          "file_sha256": "f1445011ec98a0060fa0753335e73d2c2d04d617114ccac58f038904c459851c",
+          "lines": [
+            {
+              "line": 1,
+              "text": "---",
+              "physical_line_bytes_sha256": "f52d711103d50a437830c6fbcd04fb4bab49a0f82f6d26d1c791c6e8488dd090"
+            },
+            {
+              "line": 2,
+              "text": "plan_id: PLAN-L3-84-helix-concept-v4-upgrade",
+              "physical_line_bytes_sha256": "0d29089509ce05a1ce3d0c55491ccdd020c568dc044eca2850f2334616289d63"
+            },
+            {
+              "line": 3,
+              "text": "title: \"PLAN-L3-84 (redesign): HELIX Concept v4.0への更新\"",
+              "physical_line_bytes_sha256": "4debaadb9d4815310af7780d1ccd7784af3080970daea98d5e8678ef422955ab"
+            },
+            {
+              "line": 4,
+              "text": "kind: add-design",
+              "physical_line_bytes_sha256": "422f9e45563fe1136e8821b78b9ff42763a5fd920a63fc95fce3d554ec269456"
+            },
+            {
+              "line": 5,
+              "text": "layer: L3",
+              "physical_line_bytes_sha256": "7ada9466731a1e75e6acc9c1f44cf584ea6e0caee58de2733e92b792b5a4e71a"
+            },
+            {
+              "line": 6,
+              "text": "drive: agent",
+              "physical_line_bytes_sha256": "ee607784f39119a5b11c615243736fe7c6946a30c0498c6439d1aa5a5b802b6b"
+            },
+            {
+              "line": 7,
+              "text": "status: draft",
+              "physical_line_bytes_sha256": "1f08cd1f5486938b851d21aaebf264a658045575cb9668c5d5859b1fe639c794"
+            },
+            {
+              "line": 8,
+              "text": "completion_claim_allowed: false",
+              "physical_line_bytes_sha256": "06412d57791f0170517550af9f55da6a706db9cfd8db3cb9af95f134737a630b"
+            },
+            {
+              "line": 9,
+              "text": "l3_human_approval:",
+              "physical_line_bytes_sha256": "2b5f2afaacabad01a06842a73be652933553dd35581bbfc0dd54f5d6337d7a94"
+            },
+            {
+              "line": 10,
+              "text": "  schema_version: helix-l3-human-approval.v1",
+              "physical_line_bytes_sha256": "e6a9456a66a0298ce540f9bd02779391ea39ffea44ccebdf0457c30f3e1ca5b7"
+            },
+            {
+              "line": 11,
+              "text": "  approval_kind: human_po",
+              "physical_line_bytes_sha256": "279aebbb9c2bd4371faac11411b747d61fe3383df31ff9b1b618e5325854451d"
+            },
+            {
+              "line": 12,
+              "text": "  decision: approve",
+              "physical_line_bytes_sha256": "1b4148b0b8a7a869a792369c05fe3b6d8825cb79c928c7b7914c1390e5d2e97b"
+            },
+            {
+              "line": 13,
+              "text": "  approver: RetryYN",
+              "physical_line_bytes_sha256": "6cf21c0d5611ae32e5b9238478c421067cb7e026350ce77279fd2f0825639f04"
+            },
+            {
+              "line": 14,
+              "text": "  approved_at: \"2026-09-04T18:03:15Z\"",
+              "physical_line_bytes_sha256": "8745bef314b249ad34bdd0756f7cf66d8a1cd662d21ff46ade18877a9801aad8"
+            },
+            {
+              "line": 15,
+              "text": "  plan_id: PLAN-L3-84-helix-concept-v4-upgrade",
+              "physical_line_bytes_sha256": "657579f05ed3daf43fcf6fb4a5201d480edac4c15c07a99783da1e23657ad6db"
+            },
+            {
+              "line": 16,
+              "text": "  approval_record_id: L3-PO-1496-001",
+              "physical_line_bytes_sha256": "a7d9c34f2f9106ce3c2735dae66f835bbc49233014aeb0bf2d0a2a751bb91499"
+            },
+            {
+              "line": 17,
+              "text": "  approval_source: human_gate_record",
+              "physical_line_bytes_sha256": "9fcc0cfa23bd2c145d20d5d3de65a8edf812451c08d8f14342cfb90e377662ad"
+            },
+            {
+              "line": 18,
+              "text": "  approval_source_url: \"https://github.com/RetryYN/HELIX-HARNESS/issues/1496#issuecomment-5544537992\"",
+              "physical_line_bytes_sha256": "36c1912bbc40e8656936798f8ea69ce20c3088047a240db0c081cf6768790baf"
+            },
+            {
+              "line": 96,
+              "text": "# HELIX Concept v4.0更新PLAN",
+              "physical_line_bytes_sha256": "9acd341cf4355884d08e52a0fe55eaef67e8a11a134cc6d11b21fa72cbdfc862"
+            },
+            {
+              "line": 97,
+              "text": "",
+              "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+            },
+            {
+              "line": 98,
+              "text": "## Authority境界",
+              "physical_line_bytes_sha256": "4341b8eef69f74212effe1732ee55548a7418a5cdca6f004bb40cb1a52cbb0c7"
+            },
+            {
+              "line": 99,
+              "text": "",
+              "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+            },
+            {
+              "line": 100,
+              "text": "本PLANはIssue #1496のtyped human gate recordでL3候補承認済みである。承認は候補を正本化工程へ進めるものであり、",
+              "physical_line_bytes_sha256": "047c7ce6547349eef3a2e1c12e738bea5913d71e3442daa9f016dc49d2685df6"
+            },
+            {
+              "line": 101,
+              "text": "current Concept、Requirement IR、runtime、DB、root READMEへの昇格を自動許可しない。`status: draft`と",
+              "physical_line_bytes_sha256": "18702e8a4e4aff5d329f19c7829076c2cec6e7445cd472ecfd776d7ed5a0ba4c"
+            },
+            {
+              "line": 102,
+              "text": "`completion_claim_allowed: false`は後続のcanonical promotionと実装・検証が閉じるまで維持する。",
+              "physical_line_bytes_sha256": "751ebb73c42f9f4b09e3a2c4b18a7d36b94e21750af2711f3caadaceecf69d69"
+            },
+            {
+              "line": 103,
+              "text": "",
+              "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+            },
+            {
+              "line": 104,
+              "text": "承認対象は承認時点main `ab6126a89262c91ecc4b87a0b8f0b9724917c84b` のcandidate exact setである。frontmatterを除いた",
+              "physical_line_bytes_sha256": "c0d05abc7924c4726245215adb2b9419044306efef151093bf1fe060581760d7"
+            },
+            {
+              "line": 105,
+              "text": "SHA-256はconcept `9b6ee7a9f9ed16ecc82e1dd4a5d06601cc0cb313fa03daa5887cfe8772a2e8ea`、requests",
+              "physical_line_bytes_sha256": "7ea8bd940c370a61c32aa15a059fdccad484243275fae79b4258ddb255f827e3"
+            },
+            {
+              "line": 106,
+              "text": "`73e110258b8051906e1ac529d7c1ca857fc78a4c87b42291645348fa6f4f776a`、requirements",
+              "physical_line_bytes_sha256": "97b723e7d11a94755f302af1d96e37aad0273845a8355021c08a541e4a3e6506"
+            },
+            {
+              "line": 107,
+              "text": "`5ef79685facb3c0641ddd5b9ff716ba5e1043ba931217f9ce73904ecd948136e`、acceptance",
+              "physical_line_bytes_sha256": "daf53545da0a65d9e4410dbdccffeac34e2299e0b29ed49a86fb9672a5f2e2da"
+            },
+            {
+              "line": 108,
+              "text": "`59acaf43daa674a16ae3f42941e1623c5910f9715f6986fbf55cb43e2c374e30`、capability delta",
+              "physical_line_bytes_sha256": "a9aa86bd7031c3bc7d0bfe0b1c09dc3a5d18a2850216ead954bfd1d0f981e8f4"
+            },
+            {
+              "line": 109,
+              "text": "`af5a4cd6ad6dcb85be811bba8213a185d64a17239bfc3b5d69e728bfb03ac0cc`、README projection",
+              "physical_line_bytes_sha256": "169fdae0a5bc97be4a29088ca5cd57c4575c1c21a234b222c9966a0d97f862d8"
+            },
+            {
+              "line": 110,
+              "text": "`d38b8e37b21440cdd5056f0863c7b6bf569205d6342e7c55d25b7de38239b789`で、意味集合はHCV4-BR 6件、",
+              "physical_line_bytes_sha256": "4771482a7e954a1f986fefeeb5193c760c08dea814450f6088d74e717f1e5b43"
+            },
+            {
+              "line": 111,
+              "text": "HCV4-FR 18件、HCV4-AC 22件とする。",
+              "physical_line_bytes_sha256": "cccba1dbae0438e469825bb3a12eb46e378ca0841fda7a7a7414ffb97f50f386"
+            }
+          ]
+        }
+      ],
+      "related_old_source_finding": "The old v4.0 candidate records approval_record_id L3-PO-1496-001, scope candidate_exact_set_only, and approved body digest 9b6ee7...; its authority note says canonical promotion and IR admission were not complete. The old PLAN confirms that the approval applied to an exact six-document candidate set, not current Concept/IR/runtime. This context supports reading line 33 as a versioned-source/approval-scope boundary. It does not make the later v4.1 README target or its U1 reorganization approved, nor assign a current successor."
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000037",
+      "archive_asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+      "archive_asset_revision": 1,
+      "source_path": "docs/governance/candidates/README.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+      "source_file_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+      "source_line": 54,
+      "source_line_text": "「INV-001〜072 個別実施カード」をその参照先として扱う。",
+      "source_line_sha256": "sha256:237c6ccbe88f272922ff4b7e0918625cb896ffb5d745f672053763b9dfe2b261",
+      "source_line_physical_bytes_sha256": "9e32b35c8b6239b92cd93c00ac62e73649ffb9423718974ec43301839696017a",
+      "source_line_physical_bytes_base64": "44CMSU5WLTAwMeOAnDA3MiDlgIvliKXlrp/mlr3jgqvjg7zjg4njgI3jgpLjgZ3jga7lj4LnhaflhYjjgajjgZfjgabmibHjgYbjgIIK",
+      "context_lines": [
+        {
+          "line": 53,
+          "text": "正規の要求改訂へ送る。分冊原稿が参照していた`06_ITEM_DIRECTIVES.md`は実在せず、統合版内の",
+          "physical_line_bytes_sha256": "66e3255f45f4f74443d781775a57c464696a7721e96ec74756904589311887b5"
+        },
+        {
+          "line": 54,
+          "text": "「INV-001〜072 個別実施カード」をその参照先として扱う。",
+          "physical_line_bytes_sha256": "9e32b35c8b6239b92cd93c00ac62e73649ffb9423718974ec43301839696017a"
+        }
+      ],
+      "legacy_source_authority_state": "historical_candidate",
+      "legacy_target_authority_state": "draft_candidate",
+      "atomization_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "decision_record": null,
+      "asset_disposition": "unresolved",
+      "asset_product_target": "unresolved",
+      "asset_decision_record_ref": null,
+      "management_process_condition": "不存在の06_ITEM_DIRECTIVES.mdでなく、統合版の「INV-001〜072 個別実施カード」を参照先とするsource-resolution条件。",
+      "candidate_current_text_relations": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/development-investment-stage-directives-source_v1.0.md",
+          "lines": "preserved source; card spans pending atomization",
+          "relation": "preserved_source_location_not_successor",
+          "note": "これは旧統合原文の保存先。source pointerであってcurrent authorityではない。"
+        },
+        {
+          "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+          "lines": "source IDs 001056-001068",
+          "relation": "preserved_inventory_not_successor",
+          "note": "intake文書行を保持するledger。INVカードの意味relation/採否/current ownerは確定しない。"
+        },
+        {
+          "path": "docs/governance/requirement-disposition-review-program.md",
+          "lines": "22-36, 73-80",
+          "relation": "partial_semantic_overlap",
+          "note": "blob/pathをatom化する一般方針であり、旧欠落分冊pointerのmapping decisionではない。"
+        }
+      ],
+      "remaining_gap": "INV-001〜072のcard span、ID-to-card mapping、current successor/ownerは未整理。pointer correctionだけでadoption/mappingは生じない。",
+      "related_decision_records": [],
+      "formal_successor_assigned": false,
+      "product_l2_l11_route_assigned": false,
+      "authority_effect": "none",
+      "related_old_source_evidence": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/development-investment-stage-directives-source_v1.0.md",
+          "file_sha256": "7b7d0600bccd9045aa1c11f9762886c982b38e9446197f9dcf00637116833b04",
+          "lines": [
+            {
+              "line": 1,
+              "text": "# HELIX 開発コスト削減・知能化：段階指示書 統合版",
+              "physical_line_bytes_sha256": "014c619c785039889c023f47db720e76afb208e3724fa3776668b94d29f1baba"
+            },
+            {
+              "line": 2,
+              "text": "",
+              "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+            },
+            {
+              "line": 3,
+              "text": "共通指示＋P0〜P4＋72個別カード＋全件対応＋共通受入を一ファイルに収録。保存・取込み用であり、毎回全量をAIへ読ませるものではない。実作業は共通指示＋選択段階＋該当INVの範囲を取得する。",
+              "physical_line_bytes_sha256": "076e2defe285328930b41b389d70a8d4fb528ce690fdd3e0a65ed79c7cce4eb8"
+            },
+            {
+              "line": 4,
+              "text": "",
+              "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+            },
+            {
+              "line": 5,
+              "text": "# HELIX 開発コスト削減・判断軽量化・段階自動化 — 共通指示書",
+              "physical_line_bytes_sha256": "a1591d4bed2c6b3cc842e15855febf770a9fcc22919a61cbf7e4726c9c6d37d0"
+            },
+            {
+              "line": 6,
+              "text": "",
+              "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+            },
+            {
+              "line": 7,
+              "text": "版1.0｜2026-09-08 JST｜対象：RetryYN/HELIX-HARNESS",
+              "physical_line_bytes_sha256": "647d47bbde145161b7cf6d5d9cb755a661bf6dbe816e032ddb3e9514bf2fae2b"
+            },
+            {
+              "line": 8,
+              "text": "原資料：投資候補一覧v1.0、INV-001〜072。原資料の照合mainは83a0ab069f0ab7d90151df6ad236a08c25073534。本書作成時の現行HEAD・実装状況は再監査していない。",
+              "physical_line_bytes_sha256": "20fe83573d8d36e6a22f90f4a481373976263512d1a51de44a547e06d868b715"
+            },
+            {
+              "line": 9,
+              "text": "",
+              "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+            },
+            {
+              "line": 10,
+              "text": "## 1．目的と実行範囲",
+              "physical_line_bytes_sha256": "0e8ee7e3e75e9ca6b6f74008361aa4574d74132bc2378293ace52643d77036d2"
+            },
+            {
+              "line": 11,
+              "text": "不要な作業を消し、定型判断・計算・転記を機械へ移し、検証済み経験を再利用して、同じ品質条件で受入まで完了する仕事の総費用と足踏みを減らす。AIには未知の意味判断、設計、反証、独立検収を残す。",
+              "physical_line_bytes_sha256": "2984b37db26a3946a885e1da6f5d17b2b88daa6e41b77d5756528350288616c4"
+            },
+            {
+              "line": 12,
+              "text": "",
+              "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+            },
+            {
+              "line": 13,
+              "text": "本書は72投資候補を実施へ移す段階別指示であり、72新要求の承認・一括実装・v1分母追加ではない。P0〜P4は導入帯で、障害重要度P0/P1、既存M0〜M5、Release Waveとは別軸。後続研究をv1完成条件へ逆輸入しない。",
+              "physical_line_bytes_sha256": "3181e2cb0f05d8317349127501d07387e537c09f2eeae31e0395a431c21834ab"
+            },
+            {
+              "line": 14,
+              "text": "",
+              "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+            },
+            {
+              "line": 15,
+              "text": "## 2．最初に行うこと",
+              "physical_line_bytes_sha256": "62495ad93d6447879efd0251f514adb42133896f60345ca65f48b3cab7da565c"
+            },
+            {
+              "line": 16,
+              "text": "選択対象についてだけ、最新main、要求ID/revision、承認範囲、IR、実装・consumer・既存PLAN/PR、現役writerを照合する。関連Issue番号は接続候補であり、存在だけで実装・承認済みとしない。",
+              "physical_line_bytes_sha256": "8331a03acc4baaa89f5c84f1958fb24109b4335658146026ec8f68e607a8da18"
+            },
+            {
+              "line": 17,
+              "text": "",
+              "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+            },
+            {
+              "line": 18,
+              "text": "既存ownerへ次のいずれかとして接続する。",
+              "physical_line_bytes_sha256": "dfabe00f869c8513ca5a4e000eceecf3c40c0e71d40482929eb8e2852a0365cd"
+            },
+            {
+              "line": 19,
+              "text": "- 既存要求の実装・接続／意味不変の改善：既存の変更・検収経路で進め、一律再承認しない。",
+              "physical_line_bytes_sha256": "fab089ae747d7e8c8baeaaa9b56e4e03ec7f5c743ac9e281405db6d022c9ed42"
+            },
+            {
+              "line": 20,
+              "text": "- 意味・受入・公開境界の改訂：差分だけ正規の要求改訂へ送る。",
+              "physical_line_bytes_sha256": "bb3a005ec83f43156adf95401dc43025c58318743b8982488b0a6dbc19222a83"
+            },
+            {
+              "line": 21,
+              "text": "- 未定義の自動適用対象・契機・権限：追加差分を明示し、必要な承認・正本化・当該IR後に有効化する。",
+              "physical_line_bytes_sha256": "b656f25987aaacf623b4e94c52791fbfa23a9aee6d7494d89198b174abc93613"
+            },
+            {
+              "line": 22,
+              "text": "- 既に実用済み／不要／将来研究：証拠、理由、再評価契機を残す。既存要求を勝手に免除しない。",
+              "physical_line_bytes_sha256": "2628a8016f5b98dfadecff13d160416c5ecb937aad326ecfd5f12c6c4d0b2868"
+            },
+            {
+              "line": 23,
+              "text": "",
+              "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+            },
+            {
+              "line": 24,
+              "text": "72件の初期照合を順次記録するが、全件調査完了を最初の改善やCI/Cursor運用の前提にしない。文書内INV IDを新しい恒久正本や72個のIssueへ自動変換しない。",
+              "physical_line_bytes_sha256": "c16fab710a88928fcf46ee5329814b2138aa0cded99b16c079ac11fbdc208127"
+            },
+            {
+              "line": 328,
+              "text": "# INV-001〜072 個別実施カード",
+              "physical_line_bytes_sha256": "d4ab3be7d7f0a54f6faf2c8db92cfbc39d2aef4a003f365bdb835abb229ad2d4"
+            },
+            {
+              "line": 329,
+              "text": "",
+              "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+            },
+            {
+              "line": 330,
+              "text": "版1.0｜原資料の72 ID・主導入帯・入力能力依存を維持。",
+              "physical_line_bytes_sha256": "9adc32551a023fe559d10ed5ec71238fbe62ce3d00a202b15305e46ebadcedc6"
+            },
+            {
+              "line": 331,
+              "text": "このカードの正常系/反例は受入の具体化案で、登録済みoracle IDではない。既存ACと照合し、適用範囲を正本へ反映する。カード一枚を一Issue/一PRへ強制分割せず、同一原子契約の既存PLANへ接続する。",
+              "physical_line_bytes_sha256": "243ab5bc275f3963e2c2f87221a77e78969ed7eac36ae1bafceb09eb1f1c6854"
+            },
+            {
+              "line": 332,
+              "text": "相対規模は工期・金額ではない。各カードの関連Issueは既存owner候補で、最新状態の再監査ではない。",
+              "physical_line_bytes_sha256": "1dd0c9b304c0f785f29b5f7dffae0c488e17029b090a4f1f780969cc2a02af99"
+            },
+            {
+              "line": 333,
+              "text": "",
+              "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+            },
+            {
+              "line": 334,
+              "text": "## INV-001 — 対象・受入・提供先の現在地を自動投影",
+              "physical_line_bytes_sha256": "5aba386b51fa34d4cb2c500df6437dc08c0332ece3664d9d9c5702e35ad54774"
+            },
+            {
+              "line": 335,
+              "text": "",
+              "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+            },
+            {
+              "line": 336,
+              "text": "主配置：P0／導入束：B7／責務枠候補：G2／相対規模：M",
+              "physical_line_bytes_sha256": "0789aa59a6ab57e7f7ec5766509558a915cdcc04281875ff8eb23948402ab3fc"
+            },
+            {
+              "line": 337,
+              "text": "取り込み区分（原資料の仮分類）：既存要求の具体化・接続候補。着手時に再照合する。",
+              "physical_line_bytes_sha256": "cb9f34d840584a613554ebfe06981eaa6106cbcb14b028364ed0613071ffe478"
+            },
+            {
+              "line": 338,
+              "text": "",
+              "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+            },
+            {
+              "line": 2078,
+              "text": "その他、INV-061の初期計測は既存ログから開始し、INV-010による自動証拠採取を完成前提にしない。INV-043のCursor実案件は必要な正規入力と安全能力だけを前提とし、本投資群の完成待ちにしない。INV-067の将来学習準備とは独立に、既存の保存・権利記録は前段から継続する。",
+              "physical_line_bytes_sha256": "4bbce8699dc069a55fdba611be0b552cd4cff6edb0752609278c73eaea2d7095"
+            },
+            {
+              "line": 2079,
+              "text": "",
+              "physical_line_bytes_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+            },
+            {
+              "line": 2080,
+              "text": "## 全件対応表",
+              "physical_line_bytes_sha256": "555b0e5d6e0645aedcf36aa443cbb785eb6fa82576dda8761dc16e47ec7cf1fb"
+            },
+            {
+              "line": 2081,
+              "text": "| INV | 主段階 | 導入束 | 入力能力候補 | 責務枠候補 | 実施指示 |",
+              "physical_line_bytes_sha256": "03dd47df5c1ed5969bc81ecdd2f88bc08de8c4ca8e22cd80df88f7d7fbd5c9f4"
+            },
+            {
+              "line": 2082,
+              "text": "|---|---|---|---|---|---|",
+              "physical_line_bytes_sha256": "386dd7132ff82a3235473307d1e9d483ef7e0a9ae30607085abe2edd440cdcf7"
+            },
+            {
+              "line": 2083,
+              "text": "| INV-001 | P0 | B7 | 既存入力 | G2 | [対象・受入・提供先の現在地を自動投影](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "fe332c9aa8048bf12817168329da39bc9366a825e1509b4613928f957e698bdc"
+            },
+            {
+              "line": 2084,
+              "text": "| INV-002 | P0 | B2 | 既存入力 | G2 | [所有関係と着手前提の分離](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "57af8c84cdd2cd036f701db27c6da0bca40fb4cf7599e793d9660657b4857fe6"
+            },
+            {
+              "line": 2085,
+              "text": "| INV-003 | P1 | B2 | INV-002, INV-035 | G2 | [Gateの循環・合法経路の到達性検査](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "bcb7d40729246f09581bf84bae03c9cda7279ac90264824073a78d95572d884d"
+            },
+            {
+              "line": 2086,
+              "text": "| INV-004 | P1 | B6 | INV-001 | G2 | [進捗指紋による空回り検出](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "6514b9d115054b083e10c3872d1d2fc89a618aa833c71ce80a488886a220066c"
+            },
+            {
+              "line": 2087,
+              "text": "| INV-005 | P0 | B2 | 既存入力 | G2 | [停止理由から不足条件だけを返す](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "e1861b868e325db36d4c5418e7276c6d54537cbb9dbba71ad89fc5d3f62eaa9f"
+            },
+            {
+              "line": 2088,
+              "text": "| INV-006 | P1 | B6 | INV-061 | G2 | [ボトルネック連動WIPと検収枠確保](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "38bbcb96fcaee47dbac670032d8619bb78016b29cad12386f5643b1dfd6ad7d0"
+            },
+            {
+              "line": 2089,
+              "text": "| INV-007 | P0 | B1 | 既存入力 | C1/G1 | [push前の一括prepare](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "236758ef7f59f80f2207f43343c6e589f82ae29211d275466ed2fe7a0bb8cb0d"
+            },
+            {
+              "line": 2090,
+              "text": "| INV-008 | P1 | B4 | INV-007 | C1/G1 | [PLAN・PRの構造化authoring](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "d333805e2acf20c050526a3f3ea67e0874be292f70f99d861be15ee7538635ae"
+            },
+            {
+              "line": 2091,
+              "text": "| INV-009 | P2 | B4 | INV-008 | C1/G1 | [契約起点の型・接続骨格生成](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "46a5dc49f2057837474e6a892ce52bd7ae96d529c82b9641fee23292673331db"
+            },
+            {
+              "line": 2092,
+              "text": "| INV-010 | P1 | B4 | INV-012 | C1/G1 | [実行と証拠採取の同一操作化](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "6fe9b96db83f59179550e80552e1b45cd1d3175960ac77d7521ddd90150225cb"
+            },
+            {
+              "line": 2093,
+              "text": "| INV-011 | P2 | B4 | INV-010, INV-035 | C1/G1 | [完了状態の機械導出](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "3d3f1de6390cc1ad8f6adbc18bee1a45ebcd9bba96a0ac4f8e4d57a7f0002194"
+            },
+            {
+              "line": 2094,
+              "text": "| INV-012 | P1 | B4 | 既存入力 | C1/G1 | [typed操作と冪等transaction](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "0b7996c329167172476fccd46d6a38078a0eebfccffa533194f7a2d4953f5511"
+            },
+            {
+              "line": 2095,
+              "text": "| INV-013 | P0 | B3 | 既存入力 | C1/G2 | [Branch Checkerの差分運用](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "5055bfbec991497a4f4c2906211f7de4ca6befb43bc193a5fdc68c3c8fc694d6"
+            },
+            {
+              "line": 2096,
+              "text": "| INV-014 | P1 | B3 | INV-013 | C1/G2 | [着手前write-set予約と競合予測](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "e646343d5819758bc6f9aaa76dd9268dfe91e6343a35998647672007b770ed65"
+            },
+            {
+              "line": 2097,
+              "text": "| INV-015 | P1 | B3 | INV-001, INV-002, INV-013 | C1/G2 | [依存・危険度・公平性で統合順を導出](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "f9d9d3c332c43130b3287e48c3e00dd5a41b6d190615ae7a889d1b1bb9fb2ccb"
+            },
+            {
+              "line": 2098,
+              "text": "| INV-016 | P1 | B3 | INV-013, INV-014 | C1/G2 | [条件付きAuto Sync／Auto Rebase](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "c5db83fbc194f4033688830d4806e01094d05f3bf7b5ff90a884272c304e99b4"
+            },
+            {
+              "line": 2099,
+              "text": "| INV-017 | P1 | B3 | INV-015, INV-016 | C1/G2 | [JIT finalizationとbounded merge train](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "6fa7b26bfcea14672f582bba39d92bb5646990ba59ad69221a0acb865a3202b4"
+            },
+            {
+              "line": 2100,
+              "text": "| INV-018 | P1 | B3 | INV-008 | C1/G2 | [共有生成物をsingle integration writerへ](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "bfa4a7924feef332100e68adefcde37ec645ca0ba32929094d6f02fd3ef0e91c"
+            },
+            {
+              "line": 2101,
+              "text": "| INV-019 | P0 | B1 | 既存入力 | C1 | [cheap-first／fail-fast CI](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "8da79ccd1f1f6469211da69d2aa11f873998d9fa6c856cf83cc0f6942658b77b"
+            },
+            {
+              "line": 2102,
+              "text": "| INV-020 | P1 | B5 | INV-001 | C1 | [意味影響と検証義務の導出](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "b5c76308ccd0c702481556a74bdf40fb8fc08c7711514e224ee3baedd2f0670e"
+            },
+            {
+              "line": 2103,
+              "text": "| INV-021 | P2 | B5 | 既存入力 | C1 | [入力閉包ベースの計算・artifact cache](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "8d88710a3db4d94d05ac4f2f540984112842347feba466d89af7996f9c380fce"
+            },
+            {
+              "line": 2104,
+              "text": "| INV-022 | P1 | B5 | 既存入力 | C1 | [AST・依存indexを一度だけ解析](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "716444441e0ee34b7ad88b916b61c3fdd8d78fb09d8d2cdd6da3e1c57b934af2"
+            },
+            {
+              "line": 2105,
+              "text": "| INV-023 | P2 | B5 | INV-021 | C1 | [差分DB／projection＋全再構築照合](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "94cf9a4566c75d0d6eaedd0fac18593ffc26f4ac4bee2b65cfda31a05c602a4e"
+            },
+            {
+              "line": 2106,
+              "text": "| INV-024 | P1 | B5 | INV-061 | C1 | [実測shardingとfixture準備共有](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "b7d09d09f35f85cd1ba01c3277a20d14339460311a09f063a0e024e33bcd957a"
+            },
+            {
+              "line": 2107,
+              "text": "| INV-025 | P0 | B1 | 既存入力 | C1/G1 | [Failure Fingerprint＋既知修復表](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "a7fd662068f9fd089f67a9ec85bcae21f15bbb253b828ff5da41e84593d7d5bf"
+            },
+            {
+              "line": 2108,
+              "text": "| INV-026 | P1 | B8 | INV-025 | C1/G1 | [同根finding集約とIssue重複抑制](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "5bdc836f33af9380d6841ed1a4135f5e0558ebe5671f0e99c6e1ef45af9b337e"
+            },
+            {
+              "line": 2109,
+              "text": "| INV-027 | P1 | B6 | INV-025 | C1/G1 | [product／infra／flakeの分類と限定再試行](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "16cb263b53d077e38f8213532285e758dbca3b1b833c23ceef3fd7574244265a"
+            },
+            {
+              "line": 2110,
+              "text": "| INV-028 | P1 | B5 | INV-010 | C1/G1 | [最小再現・failure replay packet](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "39848b6f9fdf2de72e109bac328ea5cfddcbfba963d61b477f42d6adb47c9d84"
+            },
+            {
+              "line": 2111,
+              "text": "| INV-029 | P2 | B5 | 既存入力 | C1/G1 | [契約から反例・property testの候補生成](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "b708f915f7cdfa8ac80ffe779047642705b65f49d71b5ededc4e2d13316fa938"
+            },
+            {
+              "line": 2112,
+              "text": "| INV-030 | P1 | B6 | INV-004, INV-025 | C1/G1 | [修復振動・retry嵐のcircuit breaker](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "69e7871a12642b09a11cd6c94a89f74050619e0fe702e916a3d482794118dd07"
+            },
+            {
+              "line": 2113,
+              "text": "| INV-031 | P1 | B4 | INV-010 | G1 | [Review Delta Packet](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "32920d2488591aa51a5dfc4e94925bd7a5f842ee2360fb09b005e34833ebeb96"
+            },
+            {
+              "line": 2114,
+              "text": "| INV-032 | P1 | B4 | INV-010, INV-011 | G1 | [未解決findingとreviewer交代の正規引継ぎ](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "3efa660d915bb5a6ba6a7d03d81a9cc1d3e186f2d62ae0e4d86488e704b9209d"
+            },
+            {
+              "line": 2115,
+              "text": "| INV-033 | P2 | B5 | INV-016, INV-020, INV-031 | G1 | [base同期後の条件付き差分再検収](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "fbcd8673c3d1f78ea706b4104eb5ccd47eef61663f7e6d9d4c7e4de42d547dbe"
+            },
+            {
+              "line": 2116,
+              "text": "| INV-034 | P1 | B4 | 既存入力 | G1 | [line pinをstable anchorへ](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "c8616b8da6e9f0687f7d37c88d31443743e09aba5721edb80977c4430449182d"
+            },
+            {
+              "line": 2117,
+              "text": "| INV-035 | P0 | B2 | 既存入力 | G1 | [事実採取と合格判定を分離](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "7d1e4072faad3e8d2ef5052b69224f161d1e180d0c9b632935e72ae81b662965"
+            },
+            {
+              "line": 2118,
+              "text": "| INV-036 | P1 | B4 | INV-010 | G1 | [表示・実行・検証実体の一致検査](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "7081e0f3c480f555f93bd66d12e99a782260c9ac8e5b4375637582319b362c71"
+            },
+            {
+              "line": 2119,
+              "text": "| INV-037 | P2 | B6 | 既存入力 | C2/G1 | [有効版の最小instruction供給](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "1d36e827a8a3778f57fbbabef079a8727990642ed592eba33129d06096ff2248"
+            },
+            {
+              "line": 2120,
+              "text": "| INV-038 | P1 | B6 | INV-037 | C2/G1 | [Skill遅延読込・task別tool profile](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "e31a5cb765e7c25366145388f03906fa1d06e6cf1869f29ce33b71b5a6eff041"
+            },
+            {
+              "line": 2121,
+              "text": "| INV-039 | P1 | B6 | 既存入力 | C2/G1 | [作業状態の継続外部化](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "02fde807673e627f93e362f1099843e50dff3db4ed03cbdc85fde1168d20704a"
+            },
+            {
+              "line": 2122,
+              "text": "| INV-040 | P2 | B6 | INV-037, INV-039, INV-042 | C2/G1 | [compact／新sessionの選択的再構成](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "a52bc7449cf8728db5fd9d534823ba1e4625daa4168e548f72c447c08e05dd81"
+            },
+            {
+              "line": 2123,
+              "text": "| INV-041 | P0 | B1 | 既存入力 | C2/G1 | [tool出力の差分・参照化](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "b516508301ed4720fe616dadc4fcb17d11a5d79524f5811003201c294d229872"
+            },
+            {
+              "line": 2124,
+              "text": "| INV-042 | P2 | B6 | INV-039 | C2/G1 | [責務別の根拠付き知識packet](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "ec4048a859f344c30e48889f60e06121c5cd646ccc74dbc89549395d14ba95ba"
+            },
+            {
+              "line": 2125,
+              "text": "| INV-043 | P1 | B6 | 既存入力 | C2 | [Cursor実案件の早期E2E運用](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "e4c7bc994f939bb125605e791c930eb8838388065d6395ad3ab34c65c58a23c2"
+            },
+            {
+              "line": 2126,
+              "text": "| INV-044 | P1 | B6 | 既存入力 | C2 | [再現可能なwarm環境](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "07c09a9c3d87a4fda32a3474d2a38b6a9669ba7a3c3085c791c4fcab4b9b893d"
+            },
+            {
+              "line": 2127,
+              "text": "| INV-045 | P2 | B6 | INV-061 | C2 | [host/remote資源連動admission](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "b3dc382e7ebed689e073cc3f163f4dffd4b1965f1af97ce679c234324e7fc1b6"
+            },
+            {
+              "line": 2128,
+              "text": "| INV-046 | P2 | B6 | INV-061, INV-064 | C2 | [task適性・総費用に基づくmodel/effort選択](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "cb15376420ac8f29e18ce5d3f9c7b3d2876e52bb97133b7cabdcd4c2f9b82cdc"
+            },
+            {
+              "line": 2129,
+              "text": "| INV-047 | P0 | B2 | 既存入力 | C2 | [イベント待機・重複wake抑制](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "a99ce0a3263d005496cac27418c2fb6cdb94aadbfffdeaae61a48c174a424beb"
+            },
+            {
+              "line": 2130,
+              "text": "| INV-048 | P1 | B6 | INV-013 | C2 | [worktree・ログ・artifactの安全な整理](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "840fc4b1ea35635b21f23bdfc993694be9b14971c81c399f77dad55e1b9a378f"
+            },
+            {
+              "line": 2131,
+              "text": "| INV-049 | P2 | B7 | 既存入力 | R1/C1 | [巨大CLIの薄い入口化](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "fdbf9cb046d657250378a133b609f4b66c6ea13c913d37c45ec2cd22af64906d"
+            },
+            {
+              "line": 2132,
+              "text": "| INV-050 | P2 | B7 | 既存入力 | R1/C1 | [同義判定・二重writerの責務統合](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "e0abfea6648f28373c2105a229c6282a398d48b89bbb1c83bb3a6208b89c2d06"
+            },
+            {
+              "line": 2133,
+              "text": "| INV-051 | P2 | B7 | INV-012, INV-037 | R1/C1 | [desired-state差分適用](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "a0d425087f0a078505f0cc8dba15c6405f780e457ff0398196c1893e3bb10d00"
+            },
+            {
+              "line": 2134,
+              "text": "| INV-052 | P2 | B7 | INV-013 | R1/C1 | [後継導入と旧consumer退役を一組に](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "5bc903f130de411b55392b453503ace731b51d65fd152c2c68529c6c802a178d"
+            },
+            {
+              "line": 2135,
+              "text": "| INV-053 | P2 | B7 | INV-001 | R1/C1 | [必要依存だけのPackage提供](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "9c2f62f40690d2b7c180598d1770bc6b7ccf4bd1f8e39e116f47cfbed9bc1399"
+            },
+            {
+              "line": 2136,
+              "text": "| INV-054 | P3 | B7 | INV-061, INV-063 | R1/C1 | [既製品・toolchain更新の費用対効果選定](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "763d93f1567db543b62565aca4b757ccf475889d21b96f4c27bdc6d0b6691aff"
+            },
+            {
+              "line": 2137,
+              "text": "| INV-055 | P1 | B7 | 既存入力 | G2/成長 | [Policy・決定表からGuard／診断／Helpを導出](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "b168dd977caa5e3175ad29a3f3bf0d58241c78bc8eb3fe64b63856f718153c2e"
+            },
+            {
+              "line": 2138,
+              "text": "| INV-056 | P0 | B7 | INV-001 | G2/成長 | [no_actionと再調査条件の記録](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "59f7ff97bc26aa24a64104110b7e36d54de8a129ad787baf6ebdc4fa4c0304f4"
+            },
+            {
+              "line": 2139,
+              "text": "| INV-057 | P2 | B8 | INV-025, INV-042, INV-063 | G2/成長 | [検証済みrecipe／playbook再利用](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "4461d62ab37b4b4b16e30dd47c0c9fc0e4fd77d7cce3d9fdc70036383e3d646d"
+            },
+            {
+              "line": 2140,
+              "text": "| INV-058 | P2 | B8 | INV-025 | G2/成長 | [不足情報を絞る次観測選択](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "d8fe8d38a1bd3bd3208b5e4c82713b1de88c0c3232642bbcea32a9ebb0716749"
+            },
+            {
+              "line": 2141,
+              "text": "| INV-059 | P3 | B8 | INV-002, INV-006, INV-015 | G2/成長 | [有限制約solverで実行候補を絞る](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "5ed7a1df3bc9839a9ef2626350b9a6231063264724ee15a4f2e888ab27963652"
+            },
+            {
+              "line": 2142,
+              "text": "| INV-060 | P2 | B5 | INV-020, INV-042 | G2/成長 | [判断の有効範囲に応じたmemoization](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "f27fdd808b7046cae3e5d1136bdb03aa1331b8fb96f6d1724e30cbc58b5305cb"
+            },
+            {
+              "line": 2143,
+              "text": "| INV-061 | P0 | B0 | 既存入力 | 成長/G2 | [episode単位のCost Ledger](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "5b403b74957d696d22e8c27b0198a3361b8ad283e1603920cb9aa48288b20fda"
+            },
+            {
+              "line": 2144,
+              "text": "| INV-062 | P0 | B0 | INV-061 | 成長/G2 | [投資回収・二重計上防止](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "c08cabe81f4eca3a829853282553a09af92fb835ce4316c257543a64c794d84b"
+            },
+            {
+              "line": 2145,
+              "text": "| INV-063 | P1 | B8 | INV-061, INV-066 | 成長/G2 | [shadow／ablationによる採否検証](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "be59761ddc8f98eb87af7dfba199274b04186a1f4d0e1e3cebe5bee975fe777f"
+            },
+            {
+              "line": 2146,
+              "text": "| INV-064 | P2 | B8 | INV-061 | 成長/G2 | [model/provider/tool更新時の限定再資格確認](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "cdf96671df4d630386774570f1d9289bfd81a28778281ed8aeeb4391a606535a"
+            },
+            {
+              "line": 2147,
+              "text": "| INV-065 | P3 | B8 | INV-001, INV-061 | 成長/G2 | [延期・代替・実施の将来比較](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "2932685d9316539caaebd9ac6389679d09bcb78c1c0e3ab266694d67807aa227"
+            },
+            {
+              "line": 2148,
+              "text": "| INV-066 | P0 | B0 | 既存入力 | 成長/G2 | [改善機構自体の予算・停止・撤回](06_ITEM_DIRECTIVES.md) |",
+              "physical_line_bytes_sha256": "b08402b06050f7a2917eabf7abb2d7ad1861aa05e5cc1bcab37523ec1f391389"
+            }
+          ]
+        }
+      ],
+      "related_old_source_finding": "The integrated source says it contains the common instructions, P0-P4, 72 cards and shared acceptance; its individual-card section begins at line 328. The all-items index at lines 2083-2150 still contains links to the absent 06_ITEM_DIRECTIVES.md. The README line resolves that pointer to the cards in this integrated file. This repairs historical source location only; it does not map cards to current successors."
+    }
+  ],
+  "validation": {
+    "exact_archive_source_file_hashes_checked": true,
+    "source_line_content_and_physical_bytes_hashes_checked": true,
+    "ledger_state_joined_for_all_six_ids": true,
+    "six_ids_unique": true,
+    "all_source_states_unchanged": true,
+    "formal_successor_assignments": 0,
+    "authority_effect": "none",
+    "linked_old_candidate_context_read_for_issue_1728_and_inv_cards": true,
+    "linked_integrated_source_card_index_read": true,
+    "old_v4_candidate_and_exact_set_decision_context_read": true
+  }
+}
