@@ -892,3 +892,12 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - `telemetry`は観測ownerとexpiryをreceiptへ記録し、片方が欠ける例は`disposition_pending`。
 - 四つのnon-actionable分類はいずれも元findingをappend-onlyで保持し、typed receiptとappeal/reopen routeを残す。証拠不足のfindingを終端化しない。
 - receiptやIssue projectionだけから要求採択、Issue完了、取消権限または下流実行許可を作らない。
+
+### HELIXOS-L11-102 Issue contract durable handoff受入候補（未実行）
+
+- **対応要求・状態**：HELIXOS-L2-102に対応する未採択connection候補。静的oracle案であり、OS runtime実行、durable writeの実証、要求採択またはauthority成立を示さない。
+- **正常例**：HARNESS-L2-059で定義される11個の別field、contract revision、digestをOS intakeからprojection/handoffの各既存境界で対応付けるfixtureでは、同一source identity・contract revision・digestを保ったhandoffとして識別する。OSはfield意味や値の妥当性を判定しない。
+- **個別field保持例**：各fieldを一つずつ欠落、改名または他fieldと結合したprojection fixtureを別々に扱い、HARNESS contractの11-field表現をそのまま保持できないhandoffとして不成立または未完を示す。OSがfieldを補完して正常化しない。
+- **revision/digest不一致例**：source intakeとprojectionでcontract revisionが異なる、digestが別revisionを指す、source identityが違う、またはdigest欠落のfixtureは同一contractのdurable handoffとして扱わない。具体的なエラー状態・rollback・retry意味は本候補で追加せず、既存OS契約の状態を参照する。
+- **authorityと意味の分離**：OSのdurable projection、receipt、Issue/GitHub表示だけがある入力からHARNESS要求の採択、field意味の妥当性、実行許可または上流decisionを生成しない。HARNESS側のcontract意味判定が欠ける場合、OS intake成功をHARNESS適合の代替にしない。
+- **oracle出典と限界**：旧line 93 output atomのdurable handoff接続候補である。現行L11-017/019/023は隣接するworkflow/continuity/handoffだけを扱い、field contractを検証しない。旧`system_contracts.json:14-16`のexactly-once/duplicate/quarantine条件や旧test/runtimeはこのoracleへ含めず実行しない。永続ストレージ境界、schema、retry/error semantics、運用上の拒否分類、候補採択は未解決のまま残す。

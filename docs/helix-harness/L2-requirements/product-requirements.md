@@ -1200,3 +1200,11 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 - **受入候補**：同じsource revision・PR差分・契約snapshotを与えたとき、六つの分類語を互いに混同せずtyped候補として表せること。current contract影響と責務境界を変えseverityだけを変えた入力はcurrent/successorの意味を変えない。分類基準または根拠が欠ける例は確定分類を返さず、未解決条件を示す。oracleの実行結果を主張しない。
 - **未完保持**：四つのnon-actionable分類は前記source条件を満たす証拠だけを受け入れる。証拠が欠けるケースは`disposition_pending`に保持する。current/successorの詳細な境界条件、HIL-BR-17／FR-30の具体化をこの候補へ含める範囲は、PO意味確認と下流の独立reviewまで決めない。候補登録から採択・下流pairの完了を作らない。
 - **旧source**：`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、旧`infinity-loop-platform-requirements.md:99`（HIL-FR-09）。比較対象の分類軸は同`:69`（HIL-BR-17）と`:120`（HIL-FR-30）で照合した。IR上の`HIL-FR-09`は`HR-FR-HIL-03`を参照する。旧runtime、DB、assertionを実行・移植しない。
+
+### HARNESS-L2-059 Issue contractの意味fieldと必須存在候補（unit候補、未採択）
+
+- **状態・親**：未採択候補、`registered_proposal`／`authority_effect: none`。HARNESS-L1-001/002/003/004/008に接続する。source lineにない`version_target`、field default、適用条件を追加しない。
+- **要求候補**：HARNESSはIssue contractの意味を所有し、以下の11項目をそれぞれ独立した名前付きfieldとして保持する：`objective`、`acceptance oracle`、`development style`、`case-driven activation`、`specialist capabilities`、`runtime mode`、`affected layers`、`style target`、`risk`、`scope budget`、`digest`。各項目をfieldとして識別でき、他fieldへ結合・省略されていないことを契約revision上で確認できる。出力はversioned issue contractとそのdigestであり、OSの投影や受領によってfield名・意味・requirednessを再定義しない。
+- **必須存在の境界**：旧source assertionは11 fieldそれぞれを一つずつ省略した場合の拒否をoracle条件としている。本候補も個別field omissionを不成立とするが、各fieldの型、値域、生成方法、field間依存、適用対象の選び方、値そのものの妥当性規則は定義しない。旧contractの具体的なschema/version/digest encodingは未解決として残す。
+- **責務・connection**：HARNESSが11 fieldの意味とversioned contract＋digestを定める。HELIX-OSはHARNESSが発行した同じcontract revision/digestを、既存OSのdurable source intake、projection、routing/handoff上で保持・参照する。OSはfieldをrename、merge、drop、補完、別requiredness化せず、contract意味の正本にならない。OSの保存・受領記録はHARNESSの意味判定または上流authorityを生成しない。
+- **既存要求・旧sourceとの差分**：HARNESS-L1-001/002/003/004/008の要求・style選択・oracle/traceの意味に置く。OS-L2-001/007/009等の正本revision、provenance、projection責務を置換しない。旧LEGACY-ASSET-719D5EC9C06FC4AAD0FF line 93のstatement atomを11別fieldと必須presence条件へ対応させ、旧右端output atomは同一のversioned contract＋digestの形で保持する。既存HARNESS-L2-047はspecialist capabilityの判断・contract生成を一部扱うが、FR-03の11 field、個別omission、Issue contract全体は定めない。OS-L2-017/019/023はticket、continuity、handoffの隣接運転を扱うが同じfield契約の正本ではない。旧IR record、assertion/system contract全体、source-line collection全体、schema細部や候補採択は本候補のclosure範囲外であり、別holdingに残す。
