@@ -1,7 +1,7 @@
 # 旧candidate Stage 5 累積再集計と#2359再標本化
 
 - audit id: `legacy-candidate4755-cumulative-stage5-recount-after-2353-2356-2360-2026-09-29`
-- 対象: `origin/main` `bf00aca56add8ca29d9a56af9a989fdeb0a7d969` の4,755 source rowsに、#2353/#2356/#2360のexact overlay proposalを適用した機械集計。R2361-02の件数・再標本化補正を反映済み。R2361-01（#2353/#2356/#2360のmerged pinと最新main basisへの更新）は#2360 merge後に実施するため保留。
+- 対象: `origin/main` `5ca82b8ff4122a6f2141ed15e25420fafc01e4e0` の4,755 source rowsに、#2353/#2356/#2360のmerged exact overlayを適用した機械集計。R2361-02の件数・再標本化補正とR2361-01のmerged pin/latest-main basis更新を反映済み。
 - authority effect: `none`。分類、subtype、routeラベルは監査proposalの有効値であり、要求採択・successor・source coverage・受入・Stage 5完了を示さない。
 - 方法: #2353 JSONの4,755 `row_records`を全件読み、#2356の9 IDs、#2360の7 IDsを完全一致の`source_item_id`で適用し、重複なく再集計した。row identity・archive line digestは同JSONの固定入力に依存する。
 

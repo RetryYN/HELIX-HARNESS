@@ -1,27 +1,27 @@
 {
   "schema_version": "helix-legacy-candidate4755-stage5-cumulative-recount.v1",
   "audit_id": "legacy-candidate4755-cumulative-stage5-recount-after-2353-2356-2360-2026-09-29",
-  "base_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+  "base_commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
   "authority_effect": "none",
   "method": "Read all 4755 row_records from exact #2353 cumulative proposal; apply exact #2356 and #2360 overlay rows by source ID; recount classification, subtype, route status, and #2359 resampling without semantic relation inference.",
   "pinned_inputs": [
     {
       "role": "cumulative_4755_row_recount",
-      "commit": "8a75e5392a44e005bb05197d977bdbcf75b93cf0",
+      "commit": "97672630b7de70fd4433827730c390cbabd90a99",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
-      "sha256": "57fce8a0e05ed73c46346f2177c439e862a17a06ecea65446389f24dc34160c5"
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c"
     },
     {
       "role": "metadata_classification_overlay",
-      "commit": "b213b41735067d1716c143c92e0fa6c71d8e92d9",
+      "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
-      "sha256": "53c8acc872f30cf19e88499bc68b0f11c830a677f5c346d646a148dd3ca7853b"
+      "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164"
     },
     {
       "role": "seven_row_classification_overlay",
-      "commit": "89a5f57cbc8dc6b0dc6828233992640c919fb03c",
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
-      "sha256": "71fa35e0b3f8bfeb9781cbe2b9b21322d8e5be7866c71bce2abbca8cdca43ddd"
+      "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb"
     },
     {
       "role": "sample_under_resampling",
@@ -313,7 +313,7 @@
     "Candidate wording and prior receipt status do not override the exact 2026-09-29 PO decision for L2/L11-073; no legacy row relation is assigned here."
   ],
   "follow_up_status": {
-    "R2361-01": "pending_after_2360_merge; refresh dependency pins and regenerate/rebase against the exact merged main before merge admission",
+    "R2361-01": "addressed; refreshed #2353/#2356/#2360 merged commit and content pins, and based this recount on exact main 5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
     "R2361-02": "addressed_in_this_revision; corrected counts and #2359 resampling while preserving the original sample history"
   }
 }
