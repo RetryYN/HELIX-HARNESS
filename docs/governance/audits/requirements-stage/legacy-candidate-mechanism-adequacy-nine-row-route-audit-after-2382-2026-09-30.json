@@ -1,0 +1,683 @@
+{
+  "schema_version": "legacy-candidate-mechanism-adequacy-nine-row-route-audit/v1",
+  "audit_id": "legacy-candidate-mechanism-adequacy-nine-row-route-audit-after-2382-2026-09-30",
+  "authority_effect": "none",
+  "base_commit": "193974e00b9dbd3d15b11c3945840bcb941c36a4",
+  "selection": {
+    "selected_count": 9,
+    "selected_ids": [
+      "LEGACY-CAND-LINE-003267",
+      "LEGACY-CAND-LINE-003271",
+      "LEGACY-CAND-LINE-003272",
+      "LEGACY-CAND-LINE-003274",
+      "LEGACY-CAND-LINE-003275",
+      "LEGACY-CAND-LINE-003278",
+      "LEGACY-CAND-LINE-003281",
+      "LEGACY-CAND-LINE-003284",
+      "LEGACY-CAND-LINE-003285"
+    ],
+    "source_groups": {
+      "mechanism_adequacy_requests": [
+        "LEGACY-CAND-LINE-003267",
+        "LEGACY-CAND-LINE-003271",
+        "LEGACY-CAND-LINE-003272",
+        "LEGACY-CAND-LINE-003274",
+        "LEGACY-CAND-LINE-003275",
+        "LEGACY-CAND-LINE-003278",
+        "LEGACY-CAND-LINE-003281",
+        "LEGACY-CAND-LINE-003284",
+        "LEGACY-CAND-LINE-003285"
+      ]
+    },
+    "pool_evidence": {
+      "recount_after_2381": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-effective-classification-recount-after-2381-2026-09-30.json",
+        "sha256": "92c713d6c74ecc138f43d2169b4387f511e31a0b26ba9ca538994c8df80a9932",
+        "base_commit": "6e62f76986f19d14281cb2a96eca460c5430dcc6",
+        "post_2381_product_unknown_pool": 478,
+        "product_targeted_route_union": 317,
+        "pool_intersection": 288,
+        "unreviewed_pool": 190,
+        "equation": "478 post-2381 product/unknown rows - 288 intersections with the 317-ID product-targeted route union = 190 unreviewed rows."
+      },
+      "prior_union_2378": {
+        "count": 290,
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate-concept-v4-main-acceptance-29-route-audit-2026-09-30.json",
+        "sha256": "91be699983dfe769869e08cc030cc1352abb42184a6ccd0d8bed09d7f84c0510"
+      },
+      "selected_2380": {
+        "count": 27,
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-27-route-audit-2026-09-30.json",
+        "sha256": "341b97fd4109118c747c3a5b5c62f10f092ef4df330d45e4eaae9910f6994f56"
+      },
+      "all_route_union_including_HMC": {
+        "count": 347,
+        "product_targeted_count": 317,
+        "out_of_pool_HMC_count": 30,
+        "hmc_path": "docs/governance/audits/requirements-stage/legacy-candidate-harness-memory-coordination-30-route-audit-after-2378-2026-09-30.json",
+        "hmc_sha256": "c8259d55f50c8f86f20619e850848b5f77cf72c378872ecc9c6c0da1ff8699ec",
+        "hmc_pool_intersection": 0
+      },
+      "classification_overlays": [
+        {
+          "ref": "#2356",
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+          "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164"
+        },
+        {
+          "ref": "#2360",
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+          "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb"
+        },
+        {
+          "ref": "#2363",
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+          "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384"
+        },
+        {
+          "ref": "#2366",
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+          "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6"
+        },
+        {
+          "ref": "#2367",
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
+          "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d"
+        },
+        {
+          "ref": "#2368",
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
+          "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95"
+        },
+        {
+          "ref": "#2369",
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30.json",
+          "sha256": "5ed02b037f78ca25991b396e232e8b1ee754b0c91b056ed6640c9fb1c47cf0c0"
+        },
+        {
+          "ref": "#2381",
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-metadata10-classification-proposal-2026-09-30.json",
+          "sha256": "512f9ceafe935648d459d6b268ff4d3952f0e8264298213ad278256236b5f40e"
+        }
+      ],
+      "overlay_2381_exact_ids": [
+        "LEGACY-CAND-LINE-003940",
+        "LEGACY-CAND-LINE-003941",
+        "LEGACY-CAND-LINE-003942",
+        "LEGACY-CAND-LINE-003961",
+        "LEGACY-CAND-LINE-003962",
+        "LEGACY-CAND-LINE-003963",
+        "LEGACY-CAND-LINE-003964",
+        "LEGACY-CAND-LINE-003984",
+        "LEGACY-CAND-LINE-003985",
+        "LEGACY-CAND-LINE-003986"
+      ],
+      "overlay_2381_intersection_with_selected": 0,
+      "hmc_2379_exact_ids": [
+        "LEGACY-CAND-LINE-002408",
+        "LEGACY-CAND-LINE-002409",
+        "LEGACY-CAND-LINE-002410",
+        "LEGACY-CAND-LINE-002411",
+        "LEGACY-CAND-LINE-002412",
+        "LEGACY-CAND-LINE-002413",
+        "LEGACY-CAND-LINE-002420",
+        "LEGACY-CAND-LINE-002422",
+        "LEGACY-CAND-LINE-002423",
+        "LEGACY-CAND-LINE-002425",
+        "LEGACY-CAND-LINE-002428",
+        "LEGACY-CAND-LINE-002430",
+        "LEGACY-CAND-LINE-002431",
+        "LEGACY-CAND-LINE-002432",
+        "LEGACY-CAND-LINE-002435",
+        "LEGACY-CAND-LINE-002437",
+        "LEGACY-CAND-LINE-002439",
+        "LEGACY-CAND-LINE-002440",
+        "LEGACY-CAND-LINE-002442",
+        "LEGACY-CAND-LINE-002444",
+        "LEGACY-CAND-LINE-002445",
+        "LEGACY-CAND-LINE-002446",
+        "LEGACY-CAND-LINE-002448",
+        "LEGACY-CAND-LINE-002450",
+        "LEGACY-CAND-LINE-002452",
+        "LEGACY-CAND-LINE-002454",
+        "LEGACY-CAND-LINE-002456",
+        "LEGACY-CAND-LINE-002459",
+        "LEGACY-CAND-LINE-002461",
+        "LEGACY-CAND-LINE-002463"
+      ],
+      "hmc_2379_intersection_with_selected": 0,
+      "selected_overlay_intersection": 0,
+      "selected_prior_union_intersection": 0,
+      "selected_out_of_pool": 0
+    }
+  },
+  "legacy_sources": [
+    {
+      "asset_id": "LEGACY-ASSET-D506685DD301D161D6ED",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/mechanism-adequacy-requests.md",
+      "source_file_sha256": "6fe1be08ba67f63cd684b55ffd0b481b66ad3c063a9e255304fe860dca670244",
+      "source_line_range_note": "selected non-contiguous lines 46,54,56,60,62,68,74,80,81"
+    }
+  ],
+  "fixed_adopted_comparison": {
+    "po_decision_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "mechanisms": {
+      "HARNESS_L2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+      },
+      "HARNESS_L11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+      },
+      "HELIXOS_L2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+      },
+      "HELIXOS_L11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+      }
+    },
+    "comparison_rule": "PO decision records and the exact f6dad2a33e24f000b87d7f09b8d40288257e74cc L2/L11 file pins define the adopted comparison. Compare substantive requirement rows and their paired acceptance rows only. Record direct predicates separately from residual or merely related concepts; do not infer adoption or route from text similarity, metadata, or IDs.",
+    "authority_decision_record": {
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "commit": "a60c0afaf27c2c5d4cf3028efad7ebf65f05bd80",
+      "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "relevant_lines": [
+        27,
+        42,
+        46,
+        48
+      ],
+      "adoption_basis": "固定8機構L2/L11の本文を確認対象として合意。HELIXOS-L2-014..029採用を明記し、candidate/draft metadataよりdecision recordを優先する。"
+    },
+    "mechanism_decision_records": [
+      {
+        "decision_record_id": "HDEC-BRAIN-REQUIREMENTS-PO-2026-09-28",
+        "path": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+        "sha256": "fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a"
+      },
+      {
+        "decision_record_id": "HDEC-HELIXCONNECT-REQUIREMENTS-PO-2026-09-28",
+        "path": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md",
+        "sha256": "82db2060dbaa77b5b9e6f38fa11219ec811b108b1870e6a86ca112810f9bae69"
+      },
+      {
+        "decision_record_id": "HDEC-HARNESS-REQUIREMENTS-2026-09-28",
+        "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+      },
+      {
+        "decision_record_id": "HDEC-HELIXINFRASTRUCTURE-REQUIREMENTS-PO-2026-09-28",
+        "path": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+        "sha256": "0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f"
+      },
+      {
+        "decision_record_id": "HDEC-INTELLIGENCE-REQUIREMENTS-PO-2026-09-28",
+        "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+        "sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad"
+      },
+      {
+        "decision_record_id": "HDEC-LABO-REQUIREMENTS-PO-2026-09-28",
+        "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+        "sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0"
+      },
+      {
+        "decision_record_id": "HDEC-HELIXOS-REQUIREMENTS-PO-2026-09-28",
+        "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+        "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
+      },
+      {
+        "decision_record_id": "HDEC-SECURITY-REQUIREMENTS-2026-09-28",
+        "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+        "sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff"
+      }
+    ]
+  },
+  "rows": [
+    {
+      "source_id": "LEGACY-CAND-LINE-003267",
+      "source": {
+        "asset_id": "LEGACY-ASSET-D506685DD301D161D6ED",
+        "source_path": "docs/governance/candidates/mechanism-adequacy-requests.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/mechanism-adequacy-requests.md",
+        "line": 46,
+        "source_file_sha256": "6fe1be08ba67f63cd684b55ffd0b481b66ad3c063a9e255304fe860dca670244",
+        "source_line_sha256": "sha256:edd21090c77723ec5fe05f9921c44438c5987d84e94a7d33a174e9ace7827da8",
+        "physical_line_bytes_sha256": "11e37490d053ceeb5a6df1112ab521afadd862f745cc5aabcfcba5ff46504a58",
+        "text": "④は、限定した要求・環境・変更範囲・確認済み機構集合について、必要な情報／状態／操作／保証の不足を、再現例・反例・構造上の制約から説明できる場合に限る。「世界中の既存方式では不可能」「世界初」とは認定しない。既存技術の導入・転用で満たせる場合も調べ、独自発明を目的化しない。"
+      },
+      "proposal_pool_check": {
+        "member_of_post_2381_proposal_effective_478": true,
+        "#2353_effective_classification": "condition",
+        "#2353_condition_subtype": "product_requirement_atom",
+        "#2353_route_status": "unknown",
+        "later_overlay_intersections": [],
+        "post_2381_pool_status_basis": "#2382 full-row recount: row ID does not occur in #2356/#2360/#2363/#2366/#2367/#2368/#2369/#2381 overlay IDs; its #2353 unknown/product atom state is retained.",
+        "product_targeted_route_union_intersection": [],
+        "HMC_2379_out_of_pool_union_intersection": [],
+        "classification_review_candidate": {
+          "flag": false,
+          "reason": "選択行は要求述語であり、文書ID・status・Issue参照などのmetadata行ではない。"
+        }
+      },
+      "route_assessment": "unknown",
+      "compared_adopted_requirements": [],
+      "directly_matched_adopted_requirement_ids": [],
+      "direct_overlap": "「不足」判定の限定環境・反例・既存技術調査・世界初不認定を組にした採択predicateは固定L2/L11にない。OS-L2-005の改善候補登録は隣接する証拠還流責務であり、route一致とはしない。",
+      "residual_or_difference": "不足判定方法、確認済み機構集合、有限反例から全方式の不存在を断定しない制約は未採択残差。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003271",
+      "source": {
+        "asset_id": "LEGACY-ASSET-D506685DD301D161D6ED",
+        "source_path": "docs/governance/candidates/mechanism-adequacy-requests.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/mechanism-adequacy-requests.md",
+        "line": 54,
+        "source_file_sha256": "6fe1be08ba67f63cd684b55ffd0b481b66ad3c063a9e255304fe860dca670244",
+        "source_line_sha256": "sha256:d05aa3e8cc1a5b7856fc4f3893730289b688f1e8df6c514290cf0167129e9018",
+        "physical_line_bytes_sha256": "de7da2b783111a012926c4ffa2fe0e4b9e7ddbfad0b4acc9851281a72276fd2b",
+        "text": "現行機構では区別できない二事例に異なる処理が必要、許可された操作では必須状態へ到達できない、既存方式の制約下では目標と保証を両立できない等の根拠を示す。形式的に確認できる範囲は機械検証し、未確認部分は仮説として残す。有限の失敗例から全方式の不可能を断定しない。"
+      },
+      "proposal_pool_check": {
+        "member_of_post_2381_proposal_effective_478": true,
+        "#2353_effective_classification": "condition",
+        "#2353_condition_subtype": "product_requirement_atom",
+        "#2353_route_status": "unknown",
+        "later_overlay_intersections": [],
+        "post_2381_pool_status_basis": "#2382 full-row recount: row ID does not occur in #2356/#2360/#2363/#2366/#2367/#2368/#2369/#2381 overlay IDs; its #2353 unknown/product atom state is retained.",
+        "product_targeted_route_union_intersection": [],
+        "HMC_2379_out_of_pool_union_intersection": [],
+        "classification_review_candidate": {
+          "flag": false,
+          "reason": "選択行は要求述語であり、文書ID・status・Issue参照などのmetadata行ではない。"
+        }
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirements": [
+        {
+          "id": "HELIXOS-L2-005",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 58,
+            "basis": "fixed substantive adopted requirement row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 25,
+            "basis": "fixed paired adopted acceptance row"
+          },
+          "direct_predicate_scope": "出典・適用範囲付きの観測／失敗findingを改善候補へ登録して還流する範囲だけ。反例・構造制約による新機構必要判定は一致に含めない。"
+        },
+        {
+          "id": "HARNESS-L2-004",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 55,
+            "basis": "fixed substantive adopted requirement row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 24,
+            "basis": "fixed paired adopted acceptance row"
+          },
+          "direct_predicate_scope": "要求から設計・テストへのtraceと変更時の再検証範囲の追跡のみ。"
+        }
+      ],
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-005",
+        "HARNESS-L2-004"
+      ],
+      "direct_overlap": "再現例・反例等を根拠付きfindingとして扱う一部はOSの観測／失敗登録とHARNESSのtraceに重なる。新機構の必要十分判定や形式確認義務は採択predicateでない。",
+      "residual_or_difference": "反例の妥当性評価、構造上の不可能性確認、有限失敗から全方式の不可能を推論しない判断基準。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003272",
+      "source": {
+        "asset_id": "LEGACY-ASSET-D506685DD301D161D6ED",
+        "source_path": "docs/governance/candidates/mechanism-adequacy-requests.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/mechanism-adequacy-requests.md",
+        "line": 56,
+        "source_file_sha256": "6fe1be08ba67f63cd684b55ffd0b481b66ad3c063a9e255304fe860dca670244",
+        "source_line_sha256": "sha256:6955435e547ecfdd3320f986f0a9da44470c0ca61e2a0f347f83beed093213bf",
+        "physical_line_bytes_sha256": "7c39769a0d7b5c5bdfeb494ecc523802ee9fdac93e176992ce8ad57822791d79",
+        "text": "既存解・反証・新証拠が得られたら判定を撤回／再分類できること。前回判定は改変せず履歴と理由を残す。"
+      },
+      "proposal_pool_check": {
+        "member_of_post_2381_proposal_effective_478": true,
+        "#2353_effective_classification": "condition",
+        "#2353_condition_subtype": "product_requirement_atom",
+        "#2353_route_status": "unknown",
+        "later_overlay_intersections": [],
+        "post_2381_pool_status_basis": "#2382 full-row recount: row ID does not occur in #2356/#2360/#2363/#2366/#2367/#2368/#2369/#2381 overlay IDs; its #2353 unknown/product atom state is retained.",
+        "product_targeted_route_union_intersection": [],
+        "HMC_2379_out_of_pool_union_intersection": [],
+        "classification_review_candidate": {
+          "flag": false,
+          "reason": "選択行は要求述語であり、文書ID・status・Issue参照などのmetadata行ではない。"
+        }
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirements": [
+        {
+          "id": "HELIXOS-L2-005",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 58,
+            "basis": "fixed substantive adopted requirement row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 25,
+            "basis": "fixed paired adopted acceptance row"
+          },
+          "direct_predicate_scope": "改善候補・観測を出典／適用範囲と還流先込みで追跡する一部。既存解・反証取得時の分類撤回と履歴保持は特定されない。"
+        }
+      ],
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-005"
+      ],
+      "direct_overlap": "改善候補・findingを出典と適用範囲付きで登録し、採否・変更・再検証へ追跡する点の一部が重なる。",
+      "residual_or_difference": "新しい証拠で旧判定を撤回・再分類するstate transition、改変不能な評価履歴、再評価条件は固定L2/L11にない。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003274",
+      "source": {
+        "asset_id": "LEGACY-ASSET-D506685DD301D161D6ED",
+        "source_path": "docs/governance/candidates/mechanism-adequacy-requests.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/mechanism-adequacy-requests.md",
+        "line": 60,
+        "source_file_sha256": "6fe1be08ba67f63cd684b55ffd0b481b66ad3c063a9e255304fe860dca670244",
+        "source_line_sha256": "sha256:338ce178f75bfedb340a0f7a7fc583c03c773b08e53d2986b960ab5ae5992884",
+        "physical_line_bytes_sha256": "1f65b10315d541658ed2869ec41fbc8ebd00d13306d23ff13e982e380818018f",
+        "text": "AIには要求・制約・関連設計・実績差分・照合済み方式・最小反例を束ねて渡す。出力は、不足能力、成立すべき条件、最小の構造変更、既存部品の再利用、検証方法、期待効果、副作用、移行／rollbackを持つ設計候補とする。"
+      },
+      "proposal_pool_check": {
+        "member_of_post_2381_proposal_effective_478": true,
+        "#2353_effective_classification": "condition",
+        "#2353_condition_subtype": "product_requirement_atom",
+        "#2353_route_status": "unknown",
+        "later_overlay_intersections": [],
+        "post_2381_pool_status_basis": "#2382 full-row recount: row ID does not occur in #2356/#2360/#2363/#2366/#2367/#2368/#2369/#2381 overlay IDs; its #2353 unknown/product atom state is retained.",
+        "product_targeted_route_union_intersection": [],
+        "HMC_2379_out_of_pool_union_intersection": [],
+        "classification_review_candidate": {
+          "flag": false,
+          "reason": "選択行は要求述語であり、文書ID・status・Issue参照などのmetadata行ではない。"
+        }
+      },
+      "route_assessment": "unknown",
+      "compared_adopted_requirements": [],
+      "directly_matched_adopted_requirement_ids": [],
+      "direct_overlap": "要求候補から不足能力の設計案を生成する直接採択predicateはない。HARNESS-L2-008は利用者指示・根拠から要求を形成し、質問や要求候補へ戻す意味導出責務であり、MA設計候補を直接routeしない。",
+      "residual_or_difference": "対象のAI設計出力、最小反例、期待効果、副作用、移行／rollbackを含むMechanism Adequacy設計候補契約は未採択。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003275",
+      "source": {
+        "asset_id": "LEGACY-ASSET-D506685DD301D161D6ED",
+        "source_path": "docs/governance/candidates/mechanism-adequacy-requests.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/mechanism-adequacy-requests.md",
+        "line": 62,
+        "source_file_sha256": "6fe1be08ba67f63cd684b55ffd0b481b66ad3c063a9e255304fe860dca670244",
+        "source_line_sha256": "sha256:1af26d48ebb4503539b8e6bc84aba1cd12ac066073d1a2387abc6bae9c759c72",
+        "physical_line_bytes_sha256": "02947ec93446ada76de2398a09e5240216e003a756984b17b022a2bcdb678d36",
+        "text": "候補は状態表現・責務境界・データ構造・制御方式・アルゴリズム等を対象にできるが、既存保証を緩めて改善を装わない。判断基準そのものの変更も別の意味変更として扱う。要求変更はRequirement Re-entry、意味保存の再構成は該当Refactoring、新能力はADD_FEATURE等へ既存契約で接続する。判定・候補生成だけで実装・merge・publishを許可しない。"
+      },
+      "proposal_pool_check": {
+        "member_of_post_2381_proposal_effective_478": true,
+        "#2353_effective_classification": "condition",
+        "#2353_condition_subtype": "product_requirement_atom",
+        "#2353_route_status": "unknown",
+        "later_overlay_intersections": [],
+        "post_2381_pool_status_basis": "#2382 full-row recount: row ID does not occur in #2356/#2360/#2363/#2366/#2367/#2368/#2369/#2381 overlay IDs; its #2353 unknown/product atom state is retained.",
+        "product_targeted_route_union_intersection": [],
+        "HMC_2379_out_of_pool_union_intersection": [],
+        "classification_review_candidate": {
+          "flag": false,
+          "reason": "選択行は要求述語であり、文書ID・status・Issue参照などのmetadata行ではない。"
+        }
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirements": [
+        {
+          "id": "HARNESS-L2-008",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 59,
+            "basis": "fixed substantive adopted requirement row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 28,
+            "basis": "fixed paired adopted acceptance row"
+          },
+          "direct_predicate_scope": "候補や要求engine出力から承認済み要求・操作権限を自動生成しない境界のみ。"
+        }
+      ],
+      "directly_matched_adopted_requirement_ids": [
+        "HARNESS-L2-008"
+      ],
+      "direct_overlap": "候補生成や機能提案から実装許可を自動で導かない部分が、要求候補／engine出力から要求合意・操作権限へ昇格しないHARNESS境界に一致する。",
+      "residual_or_difference": "既存保証を緩めない設計審査、Requirement Re-entry／Refactoring／ADD_FEATUREへの個別接続、merge/publish権限の全状態契約は固定predicateにない。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003278",
+      "source": {
+        "asset_id": "LEGACY-ASSET-D506685DD301D161D6ED",
+        "source_path": "docs/governance/candidates/mechanism-adequacy-requests.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/mechanism-adequacy-requests.md",
+        "line": 68,
+        "source_file_sha256": "6fe1be08ba67f63cd684b55ffd0b481b66ad3c063a9e255304fe860dca670244",
+        "source_line_sha256": "sha256:e2ad3a0323e5988ee574820b482ee229041f926b0c4745ab7decbc974ade56bc",
+        "physical_line_bytes_sha256": "c1927da67c3a06b7a1df8b806dde9e0ec7c6fa08f8ab13695978d18a84227718",
+        "text": "機械判定とAI仮説を分離する。同一の確定入力・policy・検証済み証拠から同一判定を再生成し、AI利用時はmodel／session／context／出力digestを記録する。AI不在でも観測・既知判定・保留・配車統制は維持する。DBは既存event journalから再構築可能なprojectionに限る。"
+      },
+      "proposal_pool_check": {
+        "member_of_post_2381_proposal_effective_478": true,
+        "#2353_effective_classification": "condition",
+        "#2353_condition_subtype": "product_requirement_atom",
+        "#2353_route_status": "unknown",
+        "later_overlay_intersections": [],
+        "post_2381_pool_status_basis": "#2382 full-row recount: row ID does not occur in #2356/#2360/#2363/#2366/#2367/#2368/#2369/#2381 overlay IDs; its #2353 unknown/product atom state is retained.",
+        "product_targeted_route_union_intersection": [],
+        "HMC_2379_out_of_pool_union_intersection": [],
+        "classification_review_candidate": {
+          "flag": false,
+          "reason": "選択行は要求述語であり、文書ID・status・Issue参照などのmetadata行ではない。"
+        }
+      },
+      "route_assessment": "unknown",
+      "compared_adopted_requirements": [],
+      "directly_matched_adopted_requirement_ids": [],
+      "direct_overlap": "同一の確定入力からの再現、AI仮説との分離、model/session/context/output digestを伴うAssessment契約は採択L2/L11にない。OS-L2-005は結果の出典・scope登録と還流の境界であり、決定論的判定predicateとはしない。",
+      "residual_or_difference": "機械評価再現性、AI出力provenance、AI不在時も成立する保持要件は未採択。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003281",
+      "source": {
+        "asset_id": "LEGACY-ASSET-D506685DD301D161D6ED",
+        "source_path": "docs/governance/candidates/mechanism-adequacy-requests.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/mechanism-adequacy-requests.md",
+        "line": 74,
+        "source_file_sha256": "6fe1be08ba67f63cd684b55ffd0b481b66ad3c063a9e255304fe860dca670244",
+        "source_line_sha256": "sha256:52fdc1697846de58385cdb6e06e2eb402732b590832ca66c69d7460cc959be70",
+        "physical_line_bytes_sha256": "a9f657fda5614ec8501eaa1502430968fa40318649e34fcc24ccca7b37d09c0a",
+        "text": "採用後はbefore／after、品質、費用、副作用、再発を同じ適用条件で測り、予測・実測・欠測を分ける。baseline／candidate／post-mainを混同せず、判定誤りも学習材料として記録する。"
+      },
+      "proposal_pool_check": {
+        "member_of_post_2381_proposal_effective_478": true,
+        "#2353_effective_classification": "condition",
+        "#2353_condition_subtype": "product_requirement_atom",
+        "#2353_route_status": "unknown",
+        "later_overlay_intersections": [],
+        "post_2381_pool_status_basis": "#2382 full-row recount: row ID does not occur in #2356/#2360/#2363/#2366/#2367/#2368/#2369/#2381 overlay IDs; its #2353 unknown/product atom state is retained.",
+        "product_targeted_route_union_intersection": [],
+        "HMC_2379_out_of_pool_union_intersection": [],
+        "classification_review_candidate": {
+          "flag": false,
+          "reason": "選択行は要求述語であり、文書ID・status・Issue参照などのmetadata行ではない。"
+        }
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirements": [
+        {
+          "id": "HELIXOS-L2-005",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 58,
+            "basis": "fixed substantive adopted requirement row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 25,
+            "basis": "fixed paired adopted acceptance row"
+          },
+          "direct_predicate_scope": "観測・作業結果の出典付き登録、改善の還流と再検証の追跡。before/after指標の計測手順は含めない。"
+        }
+      ],
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-005"
+      ],
+      "direct_overlap": "採用後の観測・効果・退行情報を還流し、改善候補を採否・変更・再検証まで追跡する一部が一致する。",
+      "residual_or_difference": "同一適用条件でのbefore/after測定、予測／実測／欠測の別、baseline/candidate/post-main比較、判定誤りの学習契約は固定L2/L11にない。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003284",
+      "source": {
+        "asset_id": "LEGACY-ASSET-D506685DD301D161D6ED",
+        "source_path": "docs/governance/candidates/mechanism-adequacy-requests.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/mechanism-adequacy-requests.md",
+        "line": 80,
+        "source_file_sha256": "6fe1be08ba67f63cd684b55ffd0b481b66ad3c063a9e255304fe860dca670244",
+        "source_line_sha256": "sha256:f718abd32a05ca550cb29add25bbb61cd9727ff5fe69353087e1bd21f781dfad",
+        "physical_line_bytes_sha256": "db50448d1aed82550061fbff1a6dbb1694e38ff8017ed780a3a3fd5ada81227e",
+        "text": "1. 六分類それぞれに独立した正例／反例を用意する。未接続、誤設定、要求矛盾、調査打切り、既存解の検索漏れを新機構必要と誤認しない。"
+      },
+      "proposal_pool_check": {
+        "member_of_post_2381_proposal_effective_478": true,
+        "#2353_effective_classification": "condition",
+        "#2353_condition_subtype": "product_requirement_atom",
+        "#2353_route_status": "unknown",
+        "later_overlay_intersections": [],
+        "post_2381_pool_status_basis": "#2382 full-row recount: row ID does not occur in #2356/#2360/#2363/#2366/#2367/#2368/#2369/#2381 overlay IDs; its #2353 unknown/product atom state is retained.",
+        "product_targeted_route_union_intersection": [],
+        "HMC_2379_out_of_pool_union_intersection": [],
+        "classification_review_candidate": {
+          "flag": false,
+          "reason": "選択行は要求述語であり、文書ID・status・Issue参照などのmetadata行ではない。"
+        }
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirements": [
+        {
+          "id": "HARNESS-L2-005",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 56,
+            "basis": "fixed substantive adopted requirement row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 25,
+            "basis": "fixed paired adopted acceptance row"
+          },
+          "direct_predicate_scope": "検証義務・oracle・expected failureと証拠条件の導出、および検査省略の記録。6分類個々の例と反例要求は含めない。"
+        }
+      ],
+      "directly_matched_adopted_requirement_ids": [
+        "HARNESS-L2-005"
+      ],
+      "direct_overlap": "正例・反例を持つ判定の検証義務を立て、誤分類が通るfailureを検査する部分が、採択検証oracle／expected-failure／evidence条件と重なる。",
+      "residual_or_difference": "6分類ごとの独立oracle、各誤認原因の全組合せ、個別の新機構必要判定基準は未採択。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-003285",
+      "source": {
+        "asset_id": "LEGACY-ASSET-D506685DD301D161D6ED",
+        "source_path": "docs/governance/candidates/mechanism-adequacy-requests.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/mechanism-adequacy-requests.md",
+        "line": 81,
+        "source_file_sha256": "6fe1be08ba67f63cd684b55ffd0b481b66ad3c063a9e255304fe860dca670244",
+        "source_line_sha256": "sha256:623d68b82fd9bf726cf60a1c7c5a251872b8fc0e79cfe0095029e76a39afae66",
+        "physical_line_bytes_sha256": "c4e370537a8146e6a5c75d6ad08e3395d37196c3ec3f2123a815893b9aa59139",
+        "text": "2. 不足根拠のないAI主張を拒否し、既存解の提示で新機構判定を撤回できる。判定保留中も無関係な開発を止めない。"
+      },
+      "proposal_pool_check": {
+        "member_of_post_2381_proposal_effective_478": true,
+        "#2353_effective_classification": "condition",
+        "#2353_condition_subtype": "product_requirement_atom",
+        "#2353_route_status": "unknown",
+        "later_overlay_intersections": [],
+        "post_2381_pool_status_basis": "#2382 full-row recount: row ID does not occur in #2356/#2360/#2363/#2366/#2367/#2368/#2369/#2381 overlay IDs; its #2353 unknown/product atom state is retained.",
+        "product_targeted_route_union_intersection": [],
+        "HMC_2379_out_of_pool_union_intersection": [],
+        "classification_review_candidate": {
+          "flag": false,
+          "reason": "選択行は要求述語であり、文書ID・status・Issue参照などのmetadata行ではない。"
+        }
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirements": [
+        {
+          "id": "HARNESS-L2-005",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 56,
+            "basis": "fixed substantive adopted requirement row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 25,
+            "basis": "fixed paired adopted acceptance row"
+          },
+          "direct_predicate_scope": "反証・既存解を用いる検証のoracle/evidence義務を導く一部。候補判定撤回や無関係開発継続までは含めない。"
+        }
+      ],
+      "directly_matched_adopted_requirement_ids": [
+        "HARNESS-L2-005"
+      ],
+      "direct_overlap": "不足根拠を要求し、既存解が示された時に候補を維持しない検査の一部が、expected failureを明示した検証義務に重なる。",
+      "residual_or_difference": "AI主張の拒否基準、既存解提示時の撤回遷移、保留中の無関係作業継続の判定は固定L2/L11にない。",
+      "authority_effect": "none"
+    }
+  ],
+  "counts": {
+    "selected": 9,
+    "partial": 6,
+    "unknown": 3,
+    "proposal_pool_out_of_population": 0,
+    "prior_317_intersection": 0,
+    "later_overlay_intersection": 0,
+    "hmc_2379_intersection": 0,
+    "classification_review_candidate_count": 0,
+    "route_counts": {
+      "partial": 6,
+      "unknown": 3
+    }
+  },
+  "limitations": [
+    "partial identifies only the specifically stated adopted predicate overlap; all residual duties remain unadopted/unresolved.",
+    "unknown means no directly matched fixed adopted L2/L11 predicate was identified; it does not mean the old requirement has no meaning.",
+    "The 478 pool, 317 product-targeted route union, 347 all-route union, 288 intersection, and 190 residual are recount/selection facts only, not adoption or coverage.",
+    "No requirement adoption, successor assignment, complete source coverage, acceptance, implementation, runtime status, or Stage 5 closure is inferred.",
+    "The #2379 HMC 30-row audit is outside this product/unknown pool; no membership or route is inferred from it.",
+    "No archive workflow, CLI, hook, adapter, test, CI, or runtime was executed. Static source, hash, revision, ID, route, and authority-boundary checks only."
+  ]
+}
