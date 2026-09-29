@@ -1,0 +1,925 @@
+{
+  "artifact_type": "bounded_po_decision_readiness_supplement",
+  "created_from_origin_main": "6e9e91d1a50acfb83ee64795e6ddbd1dfdff2485",
+  "created_at": "2026-09-29",
+  "scope": "The exact 17 candidate identities in the referenced live worksheet; not the additional eight-candidate packet and not candidates added later.",
+  "po_decision": null,
+  "po_decision_recorded": false,
+  "authority_effect": "none",
+  "no_adoption_inference": true,
+  "source_pins": {
+    "management_provisional_requirement_register.jsonl": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+    "live_17_packet": "docs/governance/audits/requirements-stage/po-decision-packet-live-17-candidates-2026-09-29.md",
+    "live_17_packet_sha256": "507858288483e5fafed5fe50c7a96986b9057b0430bd6171eec5f52a7166d018",
+    "docs/helix-harness/L2-requirements/product-requirements.md": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
+    "docs/helix-harness/L11-acceptance/product-acceptance.md": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e",
+    "docs/helix-labo/L2-requirements/labo-requirements.md": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+    "docs/helix-labo/L11-acceptance/labo-acceptance.md": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+    "docs/helix-os/L2-requirements/governance-requirements.md": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+    "docs/helix-os/L11-acceptance/governance-acceptance.md": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112"
+  },
+  "decision_semantics": {
+    "adopt": "select only this exact registration and pinned L2/L11 bytes; does not imply implementation, full legacy-source coverage, or release of unrelated holding.",
+    "hold": "leave candidate unadopted and preserve its source holding independently.",
+    "reject": "reject only the exact candidate revision; does not automatically retire source holding or assign a successor."
+  },
+  "uncertainty_notes": [
+    "For HARNESS-L2-060 and HELIXOS-L2-103, A/B options are reported in the live worksheet as previously presented at issue #2316. The issue primary text was not independently verified within the repository; no choice is treated as selected.",
+    "HARNESS-L2-049 current -003 supersedes -002; earlier PO materials for -002/older L11 do not decide -003.",
+    "HELIXOS-L2-034 -003 retains the existing worksheet B recommendation only; this is not a PO decision.",
+    "HELIXOS-L2-104 registration states draft_candidate; exact parent approval not claimed."
+  ],
+  "candidates": [
+    {
+      "candidate_identity": "HARNESS-L2-049",
+      "registration_id": "MPR-RC-HARNESS-L2-049-003",
+      "candidate_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-049",
+      "candidate_semantic_digest": "sha256:a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116",
+      "candidate_l2_source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "candidate_l2_source_sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
+      "l2_section_sha256": "a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116",
+      "l11_identity": "HARNESS-L11-049",
+      "candidate_l11_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "candidate_l11_source_sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e",
+      "l11_section_sha256": "f3fb47da21371084e9f8c7c7f7ca6dd945c8e98ae7c7b70597c3fc44e4e08ee7",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/o10-visual-design-harness-source-lines-2026-09-29.jsonl#candidate_input=true",
+      "source_atom_set_digest": "sha256:8de980629fff7d1240f93b41b2e15160ab26dd295f4bdbb176ec6bad66b88d39",
+      "source_atom_count": 1,
+      "source_scope": "旧ai-vision-design-harness-engine.md §2のVDH-FR-001〜019本文cellのみ。19行を25個の非重複semantic spansに分け、VDH-FR-011の主要state/device/view条件1 spanを049候補へ、他24 spanをsource_holdingへ保全。旧AC、HR/IR、211 file、runtime/schema、設計書全体または後続義務のsuccessor割当は主張しない。 R2293-01でscope説明を訂正。source atom partitionは不変。VDH-FR-005-PATTERNはselectedに含めずMPR-SH-VDH-O10-001に保持。",
+      "selected_source_atom_refs": [
+        "O10-VDH-FR-011-STATE-DEVICE-VIEW"
+      ],
+      "preserved_holding_refs": [
+        "MPR-SH-VDH-O10-001"
+      ],
+      "receipt_ref": "docs/governance/audits/requirement-registration/o10-visual-design-harness-coverage-receipt-2026-09-29-r3.json#HARNESS-L2-049",
+      "receipt_sha256": "a889afeb32f0c602c81006fa6eb469de4e7dbdc0044ee4c62a804143a0584843",
+      "source_anchors": [
+        "docs/governance/audits/requirement-registration/o10-visual-design-harness-source-lines-2026-09-29.jsonl",
+        "archive/legacy-generation-2026-09-14/root/docs/governance/design-harness-assessment-audit-2026-07-19.md"
+      ],
+      "current_authority_state": "registered_proposal",
+      "authority_effect": "none",
+      "po_decision_recorded": false,
+      "candidate_meaning_summary": "prototypeを生成せず、利用許可のある表示可能prototypeをprofile/oracle条件で計測する。",
+      "options": {
+        "adopt_exact_revision": {
+          "impact": "採択: `-003`と訂正済みL11 oracleの組だけを選ぶ。prototype生成能力・Pattern選択・screen ID発行を追加せず、計測責務を固定する。"
+        },
+        "hold": {
+          "impact": "保留: 現行`-003`のL11訂正後bytesをPOが再確認するまでsource holdingを維持する。旧`-002`向けの判断材料を流用しない。"
+        },
+        "reject_exact_revision": {
+          "impact": "不採択: このexact measurement revisionを選ばない。source holdingは維持し、生成機能のsuccessorを自動指定しない。"
+        }
+      },
+      "directional_recommendation": "保留を推奨。11候補判断は旧`-002`/旧L11を対象としており、現行`-003`の明示再確認が未了。",
+      "unresolved_owner_or_meaning": "POによる現行`-003`とL11 oracleの再確認。生成機能を追加するかは別scope判断。",
+      "registration_row_sha256": "74d82b03c7580be677647d89037d353f40285fa6264eedeb8298c8509e1a0a88"
+    },
+    {
+      "candidate_identity": "HARNESS-L2-055",
+      "registration_id": "MPR-RC-HARNESS-L2-055-001",
+      "candidate_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-055",
+      "candidate_semantic_digest": "sha256:9f1e63176242d81d93a89a0c3823d3fbe689b8ebd0ae0de2f5a786b88e8787b5",
+      "candidate_l2_source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "candidate_l2_source_sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
+      "l2_section_sha256": "9f1e63176242d81d93a89a0c3823d3fbe689b8ebd0ae0de2f5a786b88e8787b5",
+      "l11_identity": "HARNESS-L2-055",
+      "candidate_l11_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "candidate_l11_source_sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e",
+      "l11_section_sha256": "f1b9332d75fc5e07158165b0dbb0d037983ab1df0219dc5e519ceef3583aa96a",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-fr48-49-gate-source-lines-2026-09-29.jsonl#HARNESS-L2-055",
+      "source_atom_set_digest": "sha256:85c6ec0ba4f29b7fdbbb03a55ba4c33c28075486db3b6b799ab175a0ce995781",
+      "source_atom_count": 4,
+      "source_scope": "MPR-SH-SEMANTIC-LINE-003のHIL-FR-48 line 138およびHIL-FR-49 line 139を意味spanへ非重複分解し、FR-48/49のHARNESS gate outcome候補へ割当てた8 atom。HIL-FR-48 stale revision、HIL-FR-49異snapshot、NFR-29 cross-condition、MPR-SH-IR-003のIR rows 81/82はcandidate atomに含めずholdingに保持。assertion 031-04/07/08、032-09/12もNFR-29 oracle参照として非計上。031-09/032-14 meta casesは対象外。",
+      "selected_source_atom_refs": [
+        "FR48-ADJACENT-BIDIRECTIONAL-L0138",
+        "FR48-GRANULARITY-L0138",
+        "FR48-AGGREGATE-PAIR-L0138",
+        "FR48-EDGE-RECEIPT-FINDING-L0138"
+      ],
+      "preserved_holding_refs": [
+        "MPR-SH-SEMANTIC-LINE-003#remaining semantic-line atoms and excluded NFR-29 cross-conditions",
+        "MPR-SH-IR-003#HIL-FR-48 and HIL-FR-49 IR rows; preserved_pending_rehome; successor_requirement_ids: []",
+        "docs/governance/audits/requirements-stage/hil-fr48-49-pair-gate-condition-audit-2026-09-29.md#NFR-29 cross-condition",
+        "docs/governance/audits/requirements-stage/hil-fr48-49-local-condition-boundary-audit-c258bfe-2026-09-29.md#condition boundary"
+      ],
+      "receipt_ref": "docs/governance/audits/requirement-registration/hil-fr48-49-gate-outcome-coverage-receipt-2026-09-29.json",
+      "receipt_sha256": "c17aaaa42e516c153f8a06c11907c9d7c6b34fb92a2a6d6cd7ab39f139c4f3a7",
+      "source_anchors": [
+        "docs/governance/audits/requirement-registration/hil-fr48-49-gate-source-lines-2026-09-29.jsonl",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:138-139",
+        "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md:301-321"
+      ],
+      "current_authority_state": "registered_proposal",
+      "authority_effect": "none",
+      "po_decision_recorded": false,
+      "candidate_meaning_summary": "HIL-FR-48の隣接layer双方向trace gate結果を報告する。receipt対象外のstale revision/NFR-29/IR条件はholding。",
+      "options": {
+        "adopt_exact_revision": {
+          "impact": "採択: 選択済みFR-48 gate atomに限って候補意味を選び、残余holdingを解除しない。"
+        },
+        "hold": {
+          "impact": "保留: scope充足性が決まるまで現行holdingを保つ。"
+        },
+        "reject_exact_revision": {
+          "impact": "不採択: FR-48候補revisionのみを選ばず、別案やFR-49を代替採択しない。"
+        }
+      },
+      "directional_recommendation": "保留を推奨。source receiptは局所atomだけで、stale/NFR-29/IR境界は未解決のまま。",
+      "unresolved_owner_or_meaning": "HARNESS POが限定FR-48 scopeの十分性と残余holdingとの運用境界を確定する。",
+      "registration_row_sha256": "7ececa71e4a7bb030492ba3c3709f69c1a2740264e42278e4859614b83a5f3c3"
+    },
+    {
+      "candidate_identity": "HARNESS-L2-056",
+      "registration_id": "MPR-RC-HARNESS-L2-056-001",
+      "candidate_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-056",
+      "candidate_semantic_digest": "sha256:993283110e6faba06d7811df397179743b22a3f666e8a2e002da91c794eeade0",
+      "candidate_l2_source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "candidate_l2_source_sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
+      "l2_section_sha256": "993283110e6faba06d7811df397179743b22a3f666e8a2e002da91c794eeade0",
+      "l11_identity": "HARNESS-L2-056",
+      "candidate_l11_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "candidate_l11_source_sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e",
+      "l11_section_sha256": "9a8406bc5c2051eb0bed0bc57571f1e139c856d3559072dee8de3a019111a047",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-fr48-49-gate-source-lines-2026-09-29.jsonl#HARNESS-L2-056",
+      "source_atom_set_digest": "sha256:bd48f1e083e34ec41a6cba58ca7745a6ac90d2c40026b930f9e4437483f9e5de",
+      "source_atom_count": 4,
+      "source_scope": "MPR-SH-SEMANTIC-LINE-003のHIL-FR-48 line 138およびHIL-FR-49 line 139を意味spanへ非重複分解し、FR-48/49のHARNESS gate outcome候補へ割当てた8 atom。HIL-FR-48 stale revision、HIL-FR-49異snapshot、NFR-29 cross-condition、MPR-SH-IR-003のIR rows 81/82はcandidate atomに含めずholdingに保持。assertion 031-04/07/08、032-09/12もNFR-29 oracle参照として非計上。031-09/032-14 meta casesは対象外。",
+      "selected_source_atom_refs": [
+        "FR49-CANONICAL-ATOMIC-VPAIRS-L0139",
+        "FR49-L12-FEEDBACK-DESTINATIONS-L0139",
+        "FR49-ONE-SIDED-EVIDENCE-MISSING-L0139",
+        "FR49-UNEXECUTED-ORACLE-L0139"
+      ],
+      "preserved_holding_refs": [
+        "MPR-SH-SEMANTIC-LINE-003#remaining semantic-line atoms and excluded NFR-29 cross-conditions",
+        "MPR-SH-IR-003#HIL-FR-48 and HIL-FR-49 IR rows; preserved_pending_rehome; successor_requirement_ids: []",
+        "docs/governance/audits/requirements-stage/hil-fr48-49-pair-gate-condition-audit-2026-09-29.md#NFR-29 cross-condition",
+        "docs/governance/audits/requirements-stage/hil-fr48-49-local-condition-boundary-audit-c258bfe-2026-09-29.md#condition boundary"
+      ],
+      "receipt_ref": "docs/governance/audits/requirement-registration/hil-fr48-49-gate-outcome-coverage-receipt-2026-09-29.json",
+      "receipt_sha256": "c17aaaa42e516c153f8a06c11907c9d7c6b34fb92a2a6d6cd7ab39f139c4f3a7",
+      "source_anchors": [
+        "docs/governance/audits/requirement-registration/hil-fr48-49-gate-source-lines-2026-09-29.jsonl",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:138-139",
+        "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md:301-321"
+      ],
+      "current_authority_state": "registered_proposal",
+      "authority_effect": "none",
+      "po_decision_recorded": false,
+      "candidate_meaning_summary": "HIL-FR-49の6 canonical V-pairを不可分に扱い、欠落evidence/oracleがあるpairを未完とする。",
+      "options": {
+        "adopt_exact_revision": {
+          "impact": "採択: 選択FR-49 atomに限る。NFR-29/snapshot/IR条件を採択したことにはしない。"
+        },
+        "hold": {
+          "impact": "保留: scope境界が明らかになるまで保持。"
+        },
+        "reject_exact_revision": {
+          "impact": "不採択: このpair候補のみを選ばず、FR-48候補へ判断を伝播させない。"
+        }
+      },
+      "directional_recommendation": "保留を推奨。receiptの選択範囲と保留中のNFR-29等の境界をPOが照合していない。",
+      "unresolved_owner_or_meaning": "HARNESS POが限定pair意味と別条件のholding境界を確定する。",
+      "registration_row_sha256": "949c36f360b6e73448b0b9631b928b5770885ee7564a9b45dbe665abccfed236"
+    },
+    {
+      "candidate_identity": "HARNESS-L2-057",
+      "registration_id": "MPR-RC-HARNESS-L2-057-001",
+      "candidate_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-057",
+      "candidate_semantic_digest": "sha256:2c487f5408d31f0f982ab210be3df4d1d824bd75169b96bd1321cb0edd2a23ac",
+      "candidate_l2_source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "candidate_l2_source_sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
+      "l2_section_sha256": "2c487f5408d31f0f982ab210be3df4d1d824bd75169b96bd1321cb0edd2a23ac",
+      "l11_identity": "HARNESS-L2-057",
+      "candidate_l11_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "candidate_l11_source_sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e",
+      "l11_section_sha256": "8cc4692c5b2eb356809f30b47a3addb9206c0c4e0f4c11d9f505426cf7fe83e1",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-fr07-closure-source-lines-2026-09-29.jsonl#HARNESS-L2-057",
+      "source_atom_set_digest": "sha256:506bb21c46ac47403729bb9fc41f3f0df792738ab8979b914954b1e169214b34",
+      "source_atom_count": 2,
+      "source_scope": "Only the selected HARNESS meaning atoms from HIL-FR-07 line 97: oracle meaning and close-eligibility output. The output closure receipt operation is assigned to the OS candidate. Memory-compaction atom is excluded and remains pending in the live semantic source holding. Assertion cases are oracle references, not source atoms or execution evidence.",
+      "selected_source_atom_refs": [
+        "FR07-EVIDENCE-ORACLE-L0097",
+        "FR07-OUTPUT-CLOSE-ELIGIBILITY-L0097"
+      ],
+      "preserved_holding_refs": [
+        "MPR-SH-SEMANTIC-LINE-003#REQSRC-LINE-01848 (FR07-EVIDENCE-MEMORY-COMPACTION-L0097 preserved pending)",
+        "MPR-SH-IR-003#HIL-FR-07; preserved_pending_rehome; successor_requirement_ids: []"
+      ],
+      "receipt_ref": "docs/governance/audits/requirement-registration/hil-fr07-closure-coverage-receipt-2026-09-29.json",
+      "receipt_sha256": "357b701b91aa48704bff4f55c09cf747be758ecd9cceb62d69963722e55207d9",
+      "source_anchors": [
+        "docs/governance/audits/requirement-registration/hil-fr07-closure-source-lines-2026-09-29.jsonl",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:97",
+        "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md:179-183,365",
+        "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md:32"
+      ],
+      "current_authority_state": "registered_proposal",
+      "authority_effect": "none",
+      "po_decision_recorded": false,
+      "candidate_meaning_summary": "HIL-FR-07のHARNESS側gate outcome意味とclose適格条件を定める。",
+      "options": {
+        "adopt_exact_revision": {
+          "impact": "採択: HARNESS gate意味/close適格条件のみを選び、OS handoff運転は別判断に残す。"
+        },
+        "hold": {
+          "impact": "保留: gateの意味とOS-054接続境界が確定するまで保持。"
+        },
+        "reject_exact_revision": {
+          "impact": "不採択: このHARNESS gate候補だけを選ばず、OS-054の処分も推定しない。"
+        }
+      },
+      "directional_recommendation": "保留を推奨。HARNESS gate意味とOS-054のPR/CI/audit/closure運転の接続が未決。",
+      "unresolved_owner_or_meaning": "HARNESS POがgate/close意味とOS-054の依存・非代替境界を確定する。",
+      "registration_row_sha256": "18b8f50e4ff47c738ef07509b7915ea68ddd85ac0f42c90a6d05eba0efcf4616"
+    },
+    {
+      "candidate_identity": "HARNESS-L2-058",
+      "registration_id": "MPR-RC-HARNESS-L2-058-002",
+      "candidate_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-058",
+      "candidate_semantic_digest": "sha256:c50e2183bb1186bb585fbb80b924d628be74aaaf363515f047c74ef906d71bc3",
+      "candidate_l2_source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "candidate_l2_source_sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
+      "l2_section_sha256": "c50e2183bb1186bb585fbb80b924d628be74aaaf363515f047c74ef906d71bc3",
+      "l11_identity": "HARNESS-L2-058",
+      "candidate_l11_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "candidate_l11_source_sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e",
+      "l11_section_sha256": "5dfc18281d1ab48e2d0cf81d4c9cfb6f3d7f035a38a5955cfcedc33d0f1875c9",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-fr09-disposition-source-atoms-2026-09-29.jsonl#HARNESS-L2-058",
+      "source_atom_set_digest": "sha256:9762e53e451312098b79c4c798a0adc18594734f93c670d68dacc4bf8c9f74b8",
+      "source_atom_count": 8,
+      "source_scope": "旧HIL-FR-09 line 99の意味atomをHARNESSの分類意味／OSの証拠receipt責務へ分割。IR全文、system contract全体、system assertions/旧HOTの全条件被覆は主張しない。",
+      "selected_source_atom_refs": [
+        "FR09-CURRENT-SUCCESSOR-AXIS-L0099",
+        "FR09-INPUT-VIEWS-L0099",
+        "FR09-TYPE-ACCEPTED-RISK-L0099",
+        "FR09-TYPE-CURRENT-PR-FIX-L0099",
+        "FR09-TYPE-DUPLICATE-L0099",
+        "FR09-TYPE-FALSE-POSITIVE-L0099",
+        "FR09-TYPE-SUCCESSOR-ISSUE-L0099",
+        "FR09-TYPE-TELEMETRY-L0099"
+      ],
+      "preserved_holding_refs": [
+        "MPR-SH-DIRECTIVE-DISPOSITION-002#DIRECTIVE-DISPOSITION-infinity-loop-platform-requirements.md-L0099 (原文holdingを存続)",
+        "MPR-SH-IR-003#HIL-FR-09 (IRのDOWNSTREAM-HIL-FR-09 remains pending_pair_descent; formal successor IDs remain empty)",
+        "MPR-RC-HELIXOS-L2-101-001 (対の責務partition; candidate only; no authority transfer)"
+      ],
+      "receipt_ref": "docs/governance/audits/requirement-registration/hil-fr09-disposition-coverage-receipt-2026-09-29-r3.json",
+      "receipt_sha256": "888e9070b52003893d8fd3215ee1e4e6fbd870d09a2508ef9a7de4fd61d91aa2",
+      "source_anchors": [
+        "docs/governance/audits/requirement-registration/hil-fr09-disposition-source-atoms-2026-09-29.jsonl",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:99",
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-09",
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json#HR-FR-HIL-03",
+        "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md#HST-CASE-005-05",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/github-pr-audit-promotion.md:68-70",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md:277-280",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:201"
+      ],
+      "current_authority_state": "registered_proposal",
+      "authority_effect": "none",
+      "po_decision_recorded": false,
+      "candidate_meaning_summary": "PR findingを6区分に分類し、current/successor scopeを判定する。accepted_risk条件はOS-034 `-003`に連動。",
+      "options": {
+        "adopt_exact_revision": {
+          "impact": "採択: 6分類をexact revisionで選択し、accepted_riskをOS-034 `-003`のaction-binding receipt要件に揃える。"
+        },
+        "hold": {
+          "impact": "保留: OS-034 A/Bが決まるまでaccepted_risk意味を現行候補として採択しない。"
+        },
+        "reject_exact_revision": {
+          "impact": "不採択: この分類revisionを選ばず、旧directive-disposition holdingは別途維持する。"
+        }
+      },
+      "directional_recommendation": "保留を推奨。accepted_riskはOS-034 `-003`の未決条件と一体判断が必要。",
+      "unresolved_owner_or_meaning": "POがOS-034と共通のaccepted_risk条件を決める。",
+      "registration_row_sha256": "08b7240268f58fc32c1e6ab0ee8c9ac3dfe5ef3fbf672e423aed815fdf850306"
+    },
+    {
+      "candidate_identity": "HARNESS-L2-059",
+      "registration_id": "MPR-RC-HARNESS-L2-059-001",
+      "candidate_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-059",
+      "candidate_semantic_digest": "sha256:9ebafbcc5b738dbaccaa53bfaff0b5843b0dd5fba30cc68beb51fe1dbe2e267f",
+      "candidate_l2_source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "candidate_l2_source_sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
+      "l2_section_sha256": "9ebafbcc5b738dbaccaa53bfaff0b5843b0dd5fba30cc68beb51fe1dbe2e267f",
+      "l11_identity": "HARNESS-L11-059",
+      "candidate_l11_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "candidate_l11_source_sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e",
+      "l11_section_sha256": "830646bc2f5bafcce50d20c88fb3d657ad7f5e2353dcf148628151a7c0992198",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-fr03-issue-contract-source-lines-2026-09-29.jsonl#FR03-ISSUE-CONTRACT-FIELDS-L0093",
+      "source_atom_set_digest": "sha256:2f146a253c6f4ae61456b828a6ad34ae5fc1252328909c3976223780a71f860b",
+      "source_atom_count": 1,
+      "source_scope": "旧HIL-FR-03のarchive L1 requirements line 93のみ。line statement fields atomはHARNESS-L2-059、右端versioned issue contract＋digest output atomはHELIXOS-L2-102へ非重複に対応する。個別field omission oracleはline 93を受入意味として参照する。旧IR record、assertion/system contract全体、他line、実装・実行・採択・formal successor closureは含めない。source holdingsは存続する。",
+      "selected_source_atom_refs": [
+        "FR03-ISSUE-CONTRACT-FIELDS-L0093"
+      ],
+      "preserved_holding_refs": [
+        "MPR-SH-IR-003#HIL-FR-03; preserved_pending_rehome; successor_requirement_ids: []",
+        "MPR-SH-SEMANTIC-LINE-003#remaining semantic-line collection"
+      ],
+      "receipt_ref": "docs/governance/audits/requirement-registration/hil-fr03-issue-contract-coverage-receipt-2026-09-29.json#HARNESS-L2-059",
+      "receipt_sha256": "c2bef4ca1ccd9aa27d9496234e092c35554796ed1919c671d8547100d08be43c",
+      "source_anchors": [
+        "docs/governance/audits/requirement-registration/hil-fr03-issue-contract-source-lines-2026-09-29.jsonl",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:93",
+        "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-assertion-coverage-ledger.md:71",
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json:2-23"
+      ],
+      "current_authority_state": "registered_proposal",
+      "authority_effect": "none",
+      "po_decision_recorded": false,
+      "candidate_meaning_summary": "11-field Issue contract意味と欠落時扱いをHARNESS側で定義する。",
+      "options": {
+        "adopt_exact_revision": {
+          "impact": "採択: 11-field意味をHARNESS所有として選び、OS-102との接続互換性を個別に確認する。"
+        },
+        "hold": {
+          "impact": "保留: 11 fieldの意味・欠落時扱いをPOが確認するまで保持。"
+        },
+        "reject_exact_revision": {
+          "impact": "不採択: このcontract revisionを選ばず、OS-102からfield意味を推定しない。"
+        }
+      },
+      "directional_recommendation": "保留を推奨。OS-102接続だけではHARNESS field意味や未選択IR条件は確定しない。",
+      "unresolved_owner_or_meaning": "HARNESS POが11-field意味と必須/欠落時扱いを確定。",
+      "registration_row_sha256": "5534980f116b982e4e343c62f5b0cff2179533168580f35d875f4a8df8a77f0d"
+    },
+    {
+      "candidate_identity": "HARNESS-L2-060",
+      "registration_id": "MPR-RC-HARNESS-L2-060-001",
+      "candidate_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-060",
+      "candidate_semantic_digest": "sha256:d4f0419f2095828ac041a28ca906f45d4dd79b5bfa83000097111f5d13235c30",
+      "candidate_l2_source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "candidate_l2_source_sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
+      "l2_section_sha256": "d4f0419f2095828ac041a28ca906f45d4dd79b5bfa83000097111f5d13235c30",
+      "l11_identity": "HARNESS-L11-060",
+      "candidate_l11_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "candidate_l11_source_sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e",
+      "l11_section_sha256": "d4714dd28d70de6e7bc4a1c8ca4fe18784d825507ebd019ee2c6c716306b35b5",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-fr01-harness-source-atoms-2026-09-29.jsonl",
+      "source_atom_set_digest": "sha256:3c4462ef36e9f3b1ed2a8250f3009495c1c3e6b211b08c7a1d3cd63a4724459a",
+      "source_atom_count": 1,
+      "source_scope": "Only the selected HIL-FR-01 input commit/tree digest atom from legacy IR statement and raw line 91; no legacy stage sequence, predecessor-receipt rule, adjacent requirement, or full IR closure.",
+      "selected_source_atom_refs": [
+        "FR01-INPUT-COMMIT-TREE-DIGEST-L0091"
+      ],
+      "preserved_holding_refs": [
+        "MPR-SH-IR-003#HIL-FR-01 (legacy event intake, universal stage sequence, predecessor-receipt atom remain preserved_pending_rehome; successor_requirement_ids remain empty)",
+        "MPR-SH-IR-003#all unselected IR rows remain unchanged"
+      ],
+      "receipt_ref": "docs/governance/audits/requirement-registration/hil-fr01-path-coverage-receipt-2026-09-29.json#HARNESS-L2-060",
+      "receipt_sha256": "b78919987783bbcea724baaa44f4d77c8204bc881884be2e4cdbcab9d7678f4f",
+      "source_anchors": [
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:91",
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-01",
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json#/HR-FR-HIL-02",
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json#/HAC-HIL-02a..02c"
+      ],
+      "current_authority_state": "registered_proposal",
+      "authority_effect": "none",
+      "po_decision_recorded": false,
+      "candidate_meaning_summary": "工程入力commit/tree revisionとscopeをstage evidenceへ結び、別revision evidenceを読めないようにする。",
+      "options": {
+        "adopt_exact_revision": {
+          "impact": "採択: 適用契約で確定したstageの入力revision結合に限定する。全工程の順序/predecessor receipt義務を付加しない。"
+        },
+        "hold": {
+          "impact": "保留: #2316で報告されたA/B意味のどちらかを正式確認するまで保持。"
+        },
+        "reject_exact_revision": {
+          "impact": "不採択: この入力結合候補のみ選ばず、OS-103のevent/projection意味へ判断を伝播しない。"
+        }
+      },
+      "directional_recommendation": "保留を推奨。A/Bは17件packetが報告する#2316由来の選択肢だが、Issue一次本文をこのrepo内で検証できず、選択済みPO決定も確認できない。",
+      "unresolved_owner_or_meaning": "HARNESS POが入力stage scopeを選択。#2316一次根拠と現行stage契約を照合。",
+      "registration_row_sha256": "f6c12b4f5b8f983c5fa71089d742b592bdb031cc705c8adad16ffccab84c8ce3"
+    },
+    {
+      "candidate_identity": "HARNESS-L2-061",
+      "registration_id": "MPR-RC-HARNESS-L2-061-001",
+      "candidate_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-061",
+      "candidate_semantic_digest": "sha256:c44ffb80fec07ed6c0fe68e95bbd68358d87632b28d77caad96d28f231badb1a",
+      "candidate_l2_source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "candidate_l2_source_sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
+      "l2_section_sha256": "c44ffb80fec07ed6c0fe68e95bbd68358d87632b28d77caad96d28f231badb1a",
+      "l11_identity": "HARNESS-L2-061",
+      "candidate_l11_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "candidate_l11_source_sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e",
+      "l11_section_sha256": "2323039d4fce66098d165d290c7bba20eadd59a86ff1f28069115ae45c82919a",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/doc-quality-review-source-lines-2026-09-29.jsonl",
+      "source_atom_set_digest": "sha256:bd658eeb6011b57fb769b6ca8cf54436459fb164f3eb43dddabde5f995fc3e52",
+      "source_atom_count": 2,
+      "source_scope": "旧business BR-08 line 48とfunctional FR-L1-45 line 76から文書専用read-only品質review能力、3 trigger、4軸、未召喚時fail-closeとPOの記録付き例外を各source line一 atomで選択。旧role/path/format/環境変数方式/fixed gate ID、周辺条件・旧実装・formal successor全体は含めず生存中holdingに残す。semantic-line inventory上の同じ2行は重複provenanceであり計上しない。",
+      "selected_source_atom_refs": [
+        "BR08-DOC-REVIEW-L0048",
+        "FR45-DOC-REVIEW-L0076"
+      ],
+      "preserved_holding_refs": [
+        "MPR-SH-CONFIRMED-003#BR-08; preserved_pending_rehome; successor_requirement_ids: []",
+        "MPR-SH-CONFIRMED-003#FR-L1-45; preserved_pending_rehome; successor_requirement_ids: []",
+        "MPR-SH-SEMANTIC-LINE-003#remaining semantic-line collection; duplicate provenance rows REQSRC-LINE-00017/00290 are not additional atoms"
+      ],
+      "receipt_ref": "docs/governance/audits/requirement-registration/doc-quality-review-coverage-receipt-2026-09-29.json#BR08-FR45-DOC-REVIEW-COVERAGE-2026-09-29",
+      "receipt_sha256": "264fa4ce84c912cdaa2f840244224e2644b028d32301e8a26a4b0c2b96269bb1",
+      "source_anchors": [
+        "docs/governance/audits/requirement-registration/doc-quality-review-source-lines-2026-09-29.jsonl",
+        "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md:48",
+        "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md:76"
+      ],
+      "current_authority_state": "registered_proposal",
+      "authority_effect": "none",
+      "po_decision_recorded": false,
+      "candidate_meaning_summary": "文書のみのread-only quality reviewの起動条件、4観点、未起動時fail-closed、記録付きPO例外を定める。",
+      "options": {
+        "adopt_exact_revision": {
+          "impact": "採択: この限定review責務を選び、既存review routingとの相互作用を確認する。"
+        },
+        "hold": {
+          "impact": "保留: PO例外の意味、4観点/起動条件の十分性、専用triggerを既存reviewへ重ねる条件が決まるまで保持。"
+        },
+        "reject_exact_revision": {
+          "impact": "不採択: この専用candidate revisionを選ばず、一般のexact-head review運用を変えない。"
+        }
+      },
+      "directional_recommendation": "保留を推奨。監査sourceは既存exact-head reviewを維持し新gateを自動追加しないよう示すが、この候補の専用trigger意味はPO未決。",
+      "unresolved_owner_or_meaning": "HARNESS POが専用doc-only trigger・4観点・例外意味を決定する。",
+      "registration_row_sha256": "38447b4a473ddfb837ba6870b68033e430a9f9c6c81d7c2df182fba3f94ec9aa"
+    },
+    {
+      "candidate_identity": "HELIXLABO-L2-070",
+      "registration_id": "MPR-RC-HELIXLABO-L2-070-001",
+      "candidate_source_path": "docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-070",
+      "candidate_semantic_digest": "sha256:07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533",
+      "candidate_l2_source_path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "candidate_l2_source_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+      "l2_section_sha256": "07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533",
+      "l11_identity": "HELIXLABO-L2-070",
+      "candidate_l11_source_path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "candidate_l11_source_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+      "l11_section_sha256": "c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/labo-supplemental-telemetry-coverage-receipt-2026-09-29.json#HELIXLABO-L2-070",
+      "source_atom_set_digest": "sha256:2e4aed7b9172559ed2c34c7fd64cdd8f349a840e138f97a191083c8b24feb722",
+      "source_atom_count": 9,
+      "source_scope": "LEGACY-CAND-LINE-001656の監査対象14明示条件からnew_candidate_neededに分類された9 atom（4 timing facets、escaped-defect、rollback/Recovery、observer overhead、evidence freshness、同一scorecardでの併記）だけを選択する。既存候補3 atomと2 meaning_unresolved atomを含めない。",
+      "selected_source_atom_refs": [
+        "LABO-MEASUREMENT-LEGACY-CAND-LINE-001656-S1-QUEUE-WAIT",
+        "LABO-MEASUREMENT-LEGACY-CAND-LINE-001656-S1-ACTIVE-WAIT",
+        "LABO-MEASUREMENT-LEGACY-CAND-LINE-001656-S1-REVIEW-WAIT",
+        "LABO-MEASUREMENT-LEGACY-CAND-LINE-001656-S1-HUMAN-WAIT",
+        "LABO-MEASUREMENT-LEGACY-CAND-LINE-001656-S1-ESCAPED-DEFECTS",
+        "LABO-MEASUREMENT-LEGACY-CAND-LINE-001656-S1-ROLLBACK-RECOVERY",
+        "LABO-MEASUREMENT-LEGACY-CAND-LINE-001656-S1-OBSERVER-OVERHEAD",
+        "LABO-MEASUREMENT-LEGACY-CAND-LINE-001656-S1-EVIDENCE-FRESHNESS",
+        "LABO-MEASUREMENT-LEGACY-CAND-LINE-001656-S3-COPRESENT"
+      ],
+      "preserved_holding_refs": [
+        "MPR-SH-CANDIDATE-003"
+      ],
+      "receipt_ref": "docs/governance/audits/requirement-registration/labo-supplemental-telemetry-coverage-receipt-2026-09-29.json",
+      "receipt_sha256": "9bd1f96d31282dd22a60642ac7b4d4944ed1c722b9ed38279c09070fccb79633",
+      "source_anchors": [
+        "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "docs/governance/audits/requirement-registration/labo-supplemental-telemetry-source-lines-2026-09-29.jsonl"
+      ],
+      "current_authority_state": "registered_proposal",
+      "authority_effect": "none",
+      "po_decision_recorded": false,
+      "candidate_meaning_summary": "補助telemetry scorecardに待ち時間、escaped defects、rollback/recovery、observer overhead、freshnessを示し限定metricを併記。",
+      "options": {
+        "adopt_exact_revision": {
+          "impact": "採択: 9 selected atomsだけをscope付きscorecardにし、既採択LABO候補を置換しない。"
+        },
+        "hold": {
+          "impact": "保留: 選択telemetry scope、計測負担、unknown/unavailable動作が確認されるまで保持。"
+        },
+        "reject_exact_revision": {
+          "impact": "不採択: このscorecard revisionだけを選ばず、残る意味未解決atomも自動retireしない。"
+        }
+      },
+      "directional_recommendation": "保留を推奨。新たな計測・提示負担と unavailable 意味をLABO owner/POが確認する必要がある。",
+      "unresolved_owner_or_meaning": "LABO owner/POがtelemetry scopeと計測負担、unknown/unavailable処理を確定する。",
+      "registration_row_sha256": "da3d0cca4f09b6f607621ac4acad9d4e34f745b8781c7037526d5c85d5d235ed"
+    },
+    {
+      "candidate_identity": "HELIXOS-L2-034",
+      "registration_id": "MPR-RC-HELIXOS-L2-034-003",
+      "candidate_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-034",
+      "candidate_semantic_digest": "sha256:6b019294047fce2e1c8b5d1b5e8d379fa9111f5912274f6dca918ffd81c0e1e8",
+      "candidate_l2_source_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "candidate_l2_source_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+      "l2_section_sha256": "6b019294047fce2e1c8b5d1b5e8d379fa9111f5912274f6dca918ffd81c0e1e8",
+      "l11_identity": "HELIXOS-L2-034",
+      "candidate_l11_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "candidate_l11_source_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+      "l11_section_sha256": "b89f63d709b38de1ddc8b7ca7d51de595b9cae587da320e027aefed67a3a4e4b",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/os-directive-disposition-coverage-receipt-2026-09-28-r2.json#HELIXOS-L2-034",
+      "source_atom_set_digest": "sha256:a4b5c63b2d483ebc5abbfd86ea0f6c6aa00da8009156c045f50dca84e1235f65",
+      "source_atom_count": 5,
+      "source_scope": "旧HIL-BR07/FR36とHOT-HIL36の原文3行。原記録/処分根拠/異議履歴を意味再導出。IR全文または旧運転受入全件の被覆を主張しない。 旧FR09/NFR21を追加。FR09の処分分類全体は未完保持。",
+      "selected_source_atom_refs": [
+        "DIRECTIVE-DISPOSITION-infinity-loop-platform-requirements.md-L0059",
+        "DIRECTIVE-DISPOSITION-infinity-loop-platform-requirements.md-L0126",
+        "DIRECTIVE-DISPOSITION-L1-infinity-loop-operational-test-design.md-L0063",
+        "DIRECTIVE-DISPOSITION-infinity-loop-platform-requirements.md-L0201"
+      ],
+      "preserved_holding_refs": [
+        "MPR-SH-DIRECTIVE-DISPOSITION-002"
+      ],
+      "receipt_ref": "docs/governance/audits/requirement-registration/os-directive-disposition-coverage-receipt-2026-09-28-r3.json",
+      "receipt_sha256": "9425c52646f4c9836e62c7beecea2ca431e434d3763e67267878a6fd274fbc28",
+      "source_anchors": [
+        "docs/governance/audits/requirement-registration/directive-disposition-source-lines-2026-09-28.jsonl",
+        "docs/governance/audits/requirement-registration/directive-disposition-source-lines-2026-09-28-r2.jsonl",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/github-pr-audit-promotion.md:68-70",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md:277-280",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:201"
+      ],
+      "current_authority_state": "registered_proposal",
+      "authority_effect": "none",
+      "po_decision_recorded": false,
+      "candidate_meaning_summary": "指示/finding処分証拠を保持し、`-003`はaccepted_riskに独立reviewとaction-binding PO receiptを要求。",
+      "options": {
+        "adopt_exact_revision": {
+          "impact": "採択(B): exact `-003`とHARNESS-058/OS-101条件を同時に選ぶ。独立review+action-binding receiptを要求し人の確認負担を増す。"
+        },
+        "hold": {
+          "impact": "保留: 現在の`-002`採択意味を有効のまま保ち、`-003`の選択を保留する。"
+        },
+        "reject_exact_revision": {
+          "impact": "不採択(A): exact `-003`を選ばず`-002`意味を維持。`-003`だけの不採択でsource holdingや関連候補を処分しない。"
+        }
+      },
+      "directional_recommendation": "既存worksheetのsource-based B推奨を維持する。これはPO判断ではない。Bは旧L5 §3/L4 §4.2/NFR-21に沿うと同packetが述べる一方、確認負担を増し058/101との一体決定を要する。",
+      "unresolved_owner_or_meaning": "POがA/Bを選び、HARNESS-058とOS-101の同一accepted_risk条件を合わせて決定する。",
+      "registration_row_sha256": "54017211ab892bfd9d660df1edc3584b2be31b4224b38b8d3f6d8e21f5bdf0b6"
+    },
+    {
+      "candidate_identity": "HELIXOS-L2-054",
+      "registration_id": "MPR-RC-HELIXOS-L2-054-001",
+      "candidate_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-054",
+      "candidate_semantic_digest": "sha256:a9c1561ab310399fa27d5aca8bd9ebca8264176516357470157526df8c297eef",
+      "candidate_l2_source_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "candidate_l2_source_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+      "l2_section_sha256": "a9c1561ab310399fa27d5aca8bd9ebca8264176516357470157526df8c297eef",
+      "l11_identity": "HELIXOS-L2-054",
+      "candidate_l11_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "candidate_l11_source_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+      "l11_section_sha256": "1021d37a8c3a94113c94aa1b92d3e8a79ae758f274aa40b570b5d151f7233aac",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-fr07-closure-source-lines-2026-09-29.jsonl#HELIXOS-L2-054",
+      "source_atom_set_digest": "sha256:014d2801ebc0237064a6dfafddc155c65d14df051e9f2bacf6c3ec880a14432a",
+      "source_atom_count": 6,
+      "source_scope": "Only the selected OS operation/evidence atoms from HIL-FR-07 line 97: PR, CI, independent audit, selected-style merge, child Issue state, and closure-receipt output. HARNESS oracle and close-eligibility semantics remain with HARNESS-L2-057. Memory-compaction atom is excluded and remains pending in the live semantic source holding. Assertion cases are oracle references, not source atoms or execution evidence.",
+      "selected_source_atom_refs": [
+        "FR07-EVIDENCE-PR-L0097",
+        "FR07-EVIDENCE-CI-L0097",
+        "FR07-EVIDENCE-INDEPENDENT-AUDIT-L0097",
+        "FR07-EVIDENCE-SELECTED-STYLE-MERGE-L0097",
+        "FR07-EVIDENCE-CHILD-ISSUE-STATE-L0097",
+        "FR07-OUTPUT-CLOSURE-RECEIPT-L0097"
+      ],
+      "preserved_holding_refs": [
+        "MPR-SH-SEMANTIC-LINE-003#REQSRC-LINE-01848 (FR07-EVIDENCE-MEMORY-COMPACTION-L0097 preserved pending)",
+        "MPR-SH-IR-003#HIL-FR-07; preserved_pending_rehome; successor_requirement_ids: []"
+      ],
+      "receipt_ref": "docs/governance/audits/requirement-registration/hil-fr07-closure-coverage-receipt-2026-09-29.json",
+      "receipt_sha256": "357b701b91aa48704bff4f55c09cf747be758ecd9cceb62d69963722e55207d9",
+      "source_anchors": [
+        "docs/governance/audits/requirement-registration/hil-fr07-closure-source-lines-2026-09-29.jsonl",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:97",
+        "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md:179-183,365",
+        "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md:32"
+      ],
+      "current_authority_state": "registered_proposal",
+      "authority_effect": "none",
+      "po_decision_recorded": false,
+      "candidate_meaning_summary": "OS側でclosure evidence参照を照合し、PR/CI/audit/merge方式/child Issue/closure receiptのclose handoffを運転する。",
+      "options": {
+        "adopt_exact_revision": {
+          "impact": "採択: OS handoff運転のみ選び、HARNESS-057のgate意味・merge admissionを代替しない。"
+        },
+        "hold": {
+          "impact": "保留: HARNESS-057 gate outcome/close適格条件との境界が決まるまで保持。"
+        },
+        "reject_exact_revision": {
+          "impact": "不採択: OS handoff候補だけを選ばず、HARNESS gate判断を代替しない。"
+        }
+      },
+      "directional_recommendation": "保留を推奨。HARNESS-057 gate意味との依存が未解決。",
+      "unresolved_owner_or_meaning": "POがHARNESS-057のgate/close条件との入力・出力境界を確定する。",
+      "registration_row_sha256": "86dcc0777864c942afdb027c97ace516afcca70976b133c9d552aca917952e74"
+    },
+    {
+      "candidate_identity": "HELIXOS-L2-055",
+      "registration_id": "MPR-RC-HELIXOS-L2-055-001",
+      "candidate_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-055",
+      "candidate_semantic_digest": "sha256:6d23a405ce2c0c6d56a65a4b02d9c39ead8533db3064058dcd7027b641fb9052",
+      "candidate_l2_source_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "candidate_l2_source_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+      "l2_section_sha256": "6d23a405ce2c0c6d56a65a4b02d9c39ead8533db3064058dcd7027b641fb9052",
+      "l11_identity": "HELIXOS-L11-055",
+      "candidate_l11_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "candidate_l11_source_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+      "l11_section_sha256": "6bc639b45df952b7cf6cb7433ba3e2bfad978265681ac4ef0fbf03bdc4eb33a2",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/helixos-fr08-ready-claim-source-lines-2026-09-29.jsonl",
+      "source_atom_set_digest": "sha256:628dd461d925e8006e7593fd6fdd374344a496f48776ee24fda5ad13a4eb8014",
+      "source_atom_count": 3,
+      "source_scope": "HIL-FR-08 source line 98 only, decomposed into exactly three non-overlapping UTF-8 byte spans: ready Issue claim; old uniform Reverse/Redesign/pair-freeze gate; claim lease and blocked reason outputs. First and third spans are carried. The old uniform gate is preserved pending because the unadopted current-scope proposal differs in meaning. Assertion line 366 is separate oracle reference and is not counted. No adjacent HIL-FR-08 source, IR namespace, or workflow closure is claimed.",
+      "selected_source_atom_refs": [
+        "FR08-READY-ISSUE-CLAIM-L0098-S1",
+        "FR08-READY-ISSUE-CLAIM-L0098-S3"
+      ],
+      "preserved_holding_refs": [
+        "MPR-SH-IR-003#HIL-FR-08; old uniform gate atom preserved_pending_rehome; successor_requirement_ids: []",
+        "MPR-SH-IR-003#unselected IR rows remain unchanged"
+      ],
+      "receipt_ref": "docs/governance/audits/requirement-registration/helixos-fr08-ready-claim-coverage-receipt-2026-09-29.json",
+      "receipt_sha256": "be91edbc91c975dd96df7a46ae7061dc38982da41e49a7b4152a69eeaf442976",
+      "source_anchors": [
+        "docs/governance/audits/requirement-registration/helixos-fr08-ready-claim-source-lines-2026-09-29.jsonl",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:98",
+        "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md:366"
+      ],
+      "current_authority_state": "registered_proposal",
+      "authority_effect": "none",
+      "po_decision_recorded": false,
+      "candidate_meaning_summary": "実装開始前のready Issue claim/leaseと工程・authority照合結果を記録する。",
+      "options": {
+        "adopt_exact_revision": {
+          "impact": "採択: claim/lease/output atomに限定し、保留中のuniform reverse/redesign/pair-freeze gateを追加しない。"
+        },
+        "hold": {
+          "impact": "保留: claim適用範囲と既存authority/gate条件の再利用関係が決まるまで保持。"
+        },
+        "reject_exact_revision": {
+          "impact": "不採択: このclaim/lease候補revisionだけを選ばず、旧FR-08全体を閉じない。"
+        }
+      },
+      "directional_recommendation": "保留を推奨。receiptはclaim/lease/output subsetのみ。uniform gateは意味差ありとしてholding。",
+      "unresolved_owner_or_meaning": "OS POがclaim適用範囲とHARNESS/OS既存authority/gate条件との責務境界を確定する。",
+      "registration_row_sha256": "75a880c3508cb957b7008bea07087330a055fe901a10823c241b4960c0a46694"
+    },
+    {
+      "candidate_identity": "HELIXOS-L2-101",
+      "registration_id": "MPR-RC-HELIXOS-L2-101-002",
+      "candidate_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-101",
+      "candidate_semantic_digest": "sha256:03ee1bbc860f879b9362eccc024f1cfa056b8cc3e364c16b4683ed18fe9598b5",
+      "candidate_l2_source_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "candidate_l2_source_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+      "l2_section_sha256": "03ee1bbc860f879b9362eccc024f1cfa056b8cc3e364c16b4683ed18fe9598b5",
+      "l11_identity": "HELIXOS-L2-101",
+      "candidate_l11_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "candidate_l11_source_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+      "l11_section_sha256": "bea9231cf52c1491768397621ecb9fd42f54f07b3eb323a3cfaa68aff08d818a",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-fr09-disposition-source-atoms-2026-09-29.jsonl#HELIXOS-L2-101",
+      "source_atom_set_digest": "sha256:682fc514631a7b62e50816a27b90a81bc3bbd8cc080e18055a60b4662805f3a1",
+      "source_atom_count": 8,
+      "source_scope": "旧HIL-FR-09 line 99の意味atomをHARNESSの分類意味／OSの証拠receipt責務へ分割。IR全文、system contract全体、system assertions/旧HOTの全条件被覆は主張しない。",
+      "selected_source_atom_refs": [
+        "FR09-ACTOR-CLAUDE-AUDITOR-L0099",
+        "FR09-APPEAL-ROUTE-L0099",
+        "FR09-EVIDENCE-BACKED-L0099",
+        "FR09-INDEPENDENT-REVIEW-L0099",
+        "FR09-NONACTIONABLE-NO-DROP-L0099",
+        "FR09-OUTPUT-AFFECTED-LAYER-L0099",
+        "FR09-OUTPUT-AUDIT-FINDING-L0099",
+        "FR09-OUTPUT-TYPED-NONTERMINAL-RECEIPT-L0099"
+      ],
+      "preserved_holding_refs": [
+        "MPR-SH-DIRECTIVE-DISPOSITION-002#DIRECTIVE-DISPOSITION-infinity-loop-platform-requirements.md-L0099 (原文holdingを存続)",
+        "MPR-SH-IR-003#HIL-FR-09 (IRのDOWNSTREAM-HIL-FR-09 remains pending_pair_descent; formal successor IDs remain empty)",
+        "MPR-RC-HARNESS-L2-058-001 (対の責務partition; candidate only; no authority transfer)"
+      ],
+      "receipt_ref": "docs/governance/audits/requirement-registration/hil-fr09-disposition-coverage-receipt-2026-09-29-r3.json",
+      "receipt_sha256": "888e9070b52003893d8fd3215ee1e4e6fbd870d09a2508ef9a7de4fd61d91aa2",
+      "source_anchors": [
+        "docs/governance/audits/requirement-registration/hil-fr09-disposition-source-atoms-2026-09-29.jsonl",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:99",
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-09",
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json#HR-FR-HIL-03",
+        "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md#HST-CASE-005-05",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/github-pr-audit-promotion.md:68-70",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md:277-280",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:201"
+      ],
+      "current_authority_state": "registered_proposal",
+      "authority_effect": "none",
+      "po_decision_recorded": false,
+      "candidate_meaning_summary": "HARNESS finding意味を裁定せず、PR disposition receiptを永続化してappealを証拠へ連結する。accepted_riskはOS-034 `-003`と結合。",
+      "options": {
+        "adopt_exact_revision": {
+          "impact": "採択: receipt/appeal接続を選択し、accepted_risk条件はOS-034 `-003`と一体化する。"
+        },
+        "hold": {
+          "impact": "保留: HARNESS-058分類fieldおよびOS-034 accepted_risk選択が確認されるまで保持。"
+        },
+        "reject_exact_revision": {
+          "impact": "不採択: このOS evidence/appeal revisionのみを選ばず、HARNESS意味判断をOSへ移さない。"
+        }
+      },
+      "directional_recommendation": "保留を推奨。058とのfield/partition互換および034依存が未決。",
+      "unresolved_owner_or_meaning": "POがOS-034/ HARNESS-058との同一accepted_risk条件とreceipt/appealの接続を決める。",
+      "registration_row_sha256": "544096a393c6a2569fc91dbe08695ac069a01be068d894184ed0e1dcfac25dc4"
+    },
+    {
+      "candidate_identity": "HELIXOS-L2-102",
+      "registration_id": "MPR-RC-HELIXOS-L2-102-001",
+      "candidate_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-102",
+      "candidate_semantic_digest": "sha256:5d020c09b0e5686e01876e3c52d2ce10e8aded44a799a9f6374542d31de31218",
+      "candidate_l2_source_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "candidate_l2_source_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+      "l2_section_sha256": "5d020c09b0e5686e01876e3c52d2ce10e8aded44a799a9f6374542d31de31218",
+      "l11_identity": "HELIXOS-L11-102",
+      "candidate_l11_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "candidate_l11_source_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+      "l11_section_sha256": "0bfce78875f0e59ded0a2f2ecd31f39e795e043105d33c762d38e15251ea8459",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-fr03-issue-contract-source-lines-2026-09-29.jsonl#FR03-VERSIONED-CONTRACT-DIGEST-OUTPUT-L0093",
+      "source_atom_set_digest": "sha256:ebbbba0bb3a9fb0b96cc23d600a1a85d9aad88752f7edda3fd6cf4420a9908ec",
+      "source_atom_count": 1,
+      "source_scope": "旧HIL-FR-03のarchive L1 requirements line 93のみ。line statement fields atomはHARNESS-L2-059、右端versioned issue contract＋digest output atomはHELIXOS-L2-102へ非重複に対応する。個別field omission oracleはline 93を受入意味として参照する。旧IR record、assertion/system contract全体、他line、実装・実行・採択・formal successor closureは含めない。source holdingsは存続する。 HARNESS-L2-059のoutput意味参照はこのatom計上外であり、OSが同一revision/digestをdurable保持する。",
+      "selected_source_atom_refs": [
+        "FR03-VERSIONED-CONTRACT-DIGEST-OUTPUT-L0093"
+      ],
+      "preserved_holding_refs": [
+        "MPR-SH-IR-003#HIL-FR-03; preserved_pending_rehome; successor_requirement_ids: []",
+        "MPR-SH-SEMANTIC-LINE-003#remaining semantic-line collection"
+      ],
+      "receipt_ref": "docs/governance/audits/requirement-registration/hil-fr03-issue-contract-coverage-receipt-2026-09-29.json#HELIXOS-L2-102",
+      "receipt_sha256": "c2bef4ca1ccd9aa27d9496234e092c35554796ed1919c671d8547100d08be43c",
+      "source_anchors": [
+        "docs/governance/audits/requirement-registration/hil-fr03-issue-contract-source-lines-2026-09-29.jsonl",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:93",
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json:2-23"
+      ],
+      "current_authority_state": "registered_proposal",
+      "authority_effect": "none",
+      "po_decision_recorded": false,
+      "candidate_meaning_summary": "source identity、11-field表現、contract revision/digestを保持し、HARNESS contractをdurableにintake/projection/handoffする。",
+      "options": {
+        "adopt_exact_revision": {
+          "impact": "採択: durable接続責務に限定し、field意味はHARNESS-059に従属させる。"
+        },
+        "hold": {
+          "impact": "保留: HARNESS field意味と旧exactly-once等の未採用条件との境界が解決するまで保持。"
+        },
+        "reject_exact_revision": {
+          "impact": "不採択: 接続候補だけを選ばず、HARNESS-059の意味を代替しない。"
+        }
+      },
+      "directional_recommendation": "保留を推奨。契約意味はHARNESS-059に依存し、旧storage/IR条件を復活させない境界も必要。",
+      "unresolved_owner_or_meaning": "POがHARNESS-059との互換性および旧exactly-once/conflict/quarantine等を範囲外に保つ境界を確定する。",
+      "registration_row_sha256": "2ee7bbc3bc3088864ba50c8e7868ff6a5af5fa7f40dfd451a9e93a0a74f29b94"
+    },
+    {
+      "candidate_identity": "HELIXOS-L2-103",
+      "registration_id": "MPR-RC-HELIXOS-L2-103-001",
+      "candidate_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-103",
+      "candidate_semantic_digest": "sha256:6115a7190bad6a5ff449574a3150116dcdcd31e69f70e6a5b1625a59e171c7dc",
+      "candidate_l2_source_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "candidate_l2_source_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+      "l2_section_sha256": "6115a7190bad6a5ff449574a3150116dcdcd31e69f70e6a5b1625a59e171c7dc",
+      "l11_identity": "HELIXOS-L11-103",
+      "candidate_l11_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "candidate_l11_source_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+      "l11_section_sha256": "b9d2360893edeb64152899f8a8bf71afa3ab3d9ec387300c8358885dfca823a0",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-fr01-os-source-atoms-2026-09-29.jsonl",
+      "source_atom_set_digest": "sha256:2c8361749a4afe3c728de7ccafadbc600a9fb66b0d02936259ea993607b46a75",
+      "source_atom_count": 3,
+      "source_scope": "Only the selected HIL-FR-01 append-only event/current-state/parent-cause output atoms from legacy IR observable output and raw line 91; no fixed legacy event schema, stage sequence, adjacent requirement, or full IR closure.",
+      "selected_source_atom_refs": [
+        "FR01-APPEND-ONLY-EVENT-L0091",
+        "FR01-CURRENT-STATE-PROJECTION-L0091",
+        "FR01-PARENT-CAUSE-LINEAGE-L0091"
+      ],
+      "preserved_holding_refs": [
+        "MPR-SH-IR-003#HIL-FR-01 (legacy event intake, universal stage sequence, predecessor-receipt atom remain preserved_pending_rehome; successor_requirement_ids remain empty)",
+        "MPR-SH-IR-003#all unselected IR rows remain unchanged"
+      ],
+      "receipt_ref": "docs/governance/audits/requirement-registration/hil-fr01-path-coverage-receipt-2026-09-29.json#HELIXOS-L2-103",
+      "receipt_sha256": "b78919987783bbcea724baaa44f4d77c8204bc881884be2e4cdbcab9d7678f4f",
+      "source_anchors": [
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:91",
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-01",
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json#/HR-FR-HIL-02",
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json#/HAC-HIL-02a..02c"
+      ],
+      "current_authority_state": "registered_proposal",
+      "authority_effect": "none",
+      "po_decision_recorded": false,
+      "candidate_meaning_summary": "exact scope/revisionに対するappend-only stage event、current projection、parent/cause lineageを相互参照可能にする。",
+      "options": {
+        "adopt_exact_revision": {
+          "impact": "採択: event/projection/lineage接続のみを選び、HARNESS-060で決まるstage入力意味に従う。"
+        },
+        "hold": {
+          "impact": "保留: HARNESS-060入力scopeと#2316 A/Bが未解決のため保持。"
+        },
+        "reject_exact_revision": {
+          "impact": "不採択: OS event/projection候補のみを選ばず、stage順序やpredecessor条件を決めない。"
+        }
+      },
+      "directional_recommendation": "保留を推奨。#2316 A/Bはworksheetによる二次報告で、選択結果/一次本文が未検証。HARNESS-060との意味連結も未決。",
+      "unresolved_owner_or_meaning": "POがHARNESS-060入力stage scopeとOS-103のevent/projection接続を分けて決定する。",
+      "registration_row_sha256": "043b9a771812af90828a50287c9accfc92730c5b84637fd2cd80580ece1ca2e9"
+    },
+    {
+      "candidate_identity": "HELIXOS-L2-104",
+      "registration_id": "MPR-RC-HELIXOS-L2-104-001",
+      "candidate_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-104",
+      "candidate_semantic_digest": "sha256:a6346a95c796b0d1c2e72e5f24e150767ced6329b9f6137a9547370e82ad502d",
+      "candidate_l2_source_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "candidate_l2_source_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+      "l2_section_sha256": "a6346a95c796b0d1c2e72e5f24e150767ced6329b9f6137a9547370e82ad502d",
+      "l11_identity": "HELIXOS-L11-104",
+      "candidate_l11_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "candidate_l11_source_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+      "l11_section_sha256": "b899b8da8d4bb85c5972b7e116e2f3837e61dd20a337018baeadb2a2a5dfe90f",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/legacy-candidate-line-000603-source-atoms-2026-09-29.jsonl#LEGACY-CAND-LINE-000603",
+      "source_atom_set_digest": "sha256:b16d9f9532dd8ac5a6ec5752f8b665a94e18c457f8852ef9181c5efd1e044252",
+      "source_atom_count": 1,
+      "source_scope": "旧Concept crosswalk候補のline 14に限る一つのsemantic atom。三つのowner resultの非代用関係をOS接続責務へ導出する。隣接行、旧crosswalk全体、別inventoryとの重複・包含関係、旧要求群のformal successorは含めない。",
+      "selected_source_atom_refs": [
+        "LEGACY-CAND-LINE-000603"
+      ],
+      "preserved_holding_refs": [],
+      "receipt_ref": "docs/governance/audits/requirement-registration/legacy-candidate-line-000603-three-checks-coverage-receipt-2026-09-29.json#HELIXOS-L2-104",
+      "receipt_sha256": "d94d59060139ff5d135cb0a50af68b88a1a45c321da378dbda604cc80bdb2611",
+      "source_anchors": [
+        "docs/governance/audits/requirement-registration/legacy-candidate-line-000603-source-atoms-2026-09-29.jsonl",
+        "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md:14"
+      ],
+      "current_authority_state": "registered_proposal",
+      "authority_effect": "none",
+      "po_decision_recorded": false,
+      "candidate_meaning_summary": "SECURITY authority、worker-isolation観測、HARNESS quality acceptanceの3 owner結果をoperation/scope/revisionに連結する。",
+      "options": {
+        "adopt_exact_revision": {
+          "impact": "採択: 親L1 exact revision authorityを別途確認後、3 owner結果の連結だけを選ぶ。新gate/deny authorityは加えない。"
+        },
+        "hold": {
+          "impact": "保留: `draft_candidate; exact parent approval not claimed`の親planning revisionを確認するまで保持。"
+        },
+        "reject_exact_revision": {
+          "impact": "不採択: この候補revisionを選ばず、既存owner contractに代わる権限を生成しない。"
+        }
+      },
+      "directional_recommendation": "保留を推奨。登録上parent L1 approvalが未主張で、receiptは旧crosswalkの1 atomだけ。",
+      "unresolved_owner_or_meaning": "OS L1 owner/POが親L1 authority/revisionを明示確認する。",
+      "registration_row_sha256": "f0b6168471c7b610f0b5831d55adee7f8a71db4556c88cbfad7c243d38459f48"
+    },
+    {
+      "candidate_identity": "HELIXOS-L2-105",
+      "registration_id": "MPR-RC-HELIXOS-L2-105-001",
+      "candidate_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-105",
+      "candidate_semantic_digest": "sha256:81e6de13e8876410f69cf586f8aba014765864664d11ec68305d0fede366ad4c",
+      "candidate_l2_source_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "candidate_l2_source_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+      "l2_section_sha256": "81e6de13e8876410f69cf586f8aba014765864664d11ec68305d0fede366ad4c",
+      "l11_identity": "HELIXOS-L11-105",
+      "candidate_l11_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "candidate_l11_source_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+      "l11_section_sha256": "5d075dc35360a2fe87839d2bb2acba4bdee6e6295fdcdbc6e64b60a85a5fcef2",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/phcap17-incident-episode-source-lines-2026-09-29.jsonl",
+      "source_atom_set_digest": "sha256:b8a384d9bdea4d585a07b598d7c2355442950ecb1d6914deb3bf03ac6acb1272",
+      "source_atom_count": 2,
+      "source_scope": "Only the two selected spans from PHCAP-17 incident.md line 43: recovery confirmation and recovery procedure/rollback record. No other line/file semantics included.",
+      "selected_source_atom_refs": [
+        "PHCAP17-INCIDENT-RECOVERY-CHECK-L0043",
+        "PHCAP17-INCIDENT-PROCEDURE-ROLLBACK-L0043"
+      ],
+      "preserved_holding_refs": [
+        "MPR-SH-PHCAP17-INCIDENT-001#all unselected file content and pending role/timing/release/runtime questions remain in holding",
+        "MPR-SH-IR-003#HIL-FR-16 remains outside candidate scope; immediate release/backfill meaning pending"
+      ],
+      "receipt_ref": "docs/governance/audits/requirement-registration/phcap17-incident-episode-coverage-receipt-2026-09-29.json",
+      "receipt_sha256": "ae20e40388e05db595d3e2f596e2afc185f6bdc176d5f5ea8d154263b1660d8c",
+      "source_anchors": [
+        "docs/governance/audits/requirement-registration/phcap17-incident-episode-source-lines-2026-09-29.jsonl",
+        "archive/legacy-generation-2026-09-14/root/docs/process/modes/incident.md",
+        "archive/legacy-generation-2026-09-14/root/docs/skills/incident-runbook.md",
+        "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-129-incident-route-token-coverage.md"
+      ],
+      "current_authority_state": "registered_proposal",
+      "authority_effect": "none",
+      "po_decision_recorded": false,
+      "candidate_meaning_summary": "限定incident episodeのrecovery-check/source revisionをprocedure/rollback記録へ結び、rollback未実施も明示。記録充足だけを報告。",
+      "options": {
+        "adopt_exact_revision": {
+          "impact": "採択: 2選択atomと限定episode記録責務だけを選ぶ。incident close/health/release authorityは含めない。"
+        },
+        "hold": {
+          "impact": "保留: episode相関境界とincident procedure/rollbackとの関係が決まるまでholdingを保つ。"
+        },
+        "reject_exact_revision": {
+          "impact": "不採択: このexact episode candidateを選ばず、PHCAP17 holdingやHIL-FR-16を自動retireしない。"
+        }
+      },
+      "directional_recommendation": "保留を推奨。scopeは狭いが、record correlation境界をPOが確認し、immediate release/backfill責務と分離する必要がある。",
+      "unresolved_owner_or_meaning": "OS/PHCAP17 owner/POがepisode記録の相関境界を確定し、HIL-FR-16/immediate release/backfillを別holdingとして維持する。",
+      "registration_row_sha256": "3732ecb6e64abe178ba717c9e01356247183220a20952df530ee7f8abc9be7a0"
+    }
+  ]
+}
