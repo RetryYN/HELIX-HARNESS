@@ -293,3 +293,15 @@ L2-064と対になる未採択受入候補、1.0。
 - **比較不能例**：母数またはsource completenessが不明、revisionがstale、再発行ticketと元findingの因果relationがない場合はrate/resultを評価不能とし、欠けた証拠を指定してOS/source ownerへ返す。
 - **未見例**：検収から届いたoracle不足findingを入力し、発生源と理由classを保持して評価する。適用分類がない場合は自由に新classを作らずunknown/未分類として返す。
 - **受入限界**：固定threshold、因果推論手法、実験の割付方式や自動学習は要求しない。評価結果からticket採択・改善完了・配置変更を導かない。
+
+### HELIXLABO-L2-070 補助運用telemetryとAttempt scorecard併記の受入候補（構成体、1.0）
+
+未実行の受入候補。親は`HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context。合格は、この候補の9 selected atomに限る測定出力・receipt契約の充足を意味し、source line全体のclosure、L2採択、実験許可、実装または受入実行を示さない。
+
+- **正常例**：明示scope/revision/windowに属する観測receiptを受け取り、queue wait、active time、review wait、Human waitを異なるfieldとして出す。各durationに定義元、開始/終了event identity、clock/unit、`occurred_at`/`observed_at`が結び、別scopeのeventが混ざらない。同じscopeでowner指定oracleとrevisionが確認できる受入済み対象のescaped-defect event、rollback/Recovery eventとresult state、observer overheadの直接計測値、evidence freshness ageを、それぞれ元receiptへ辿れるfieldとして出す。既存059の費用/時間は同じevent receiptへの参照を保持し一度だけ算入する。必要な067/068 candidate revisionとreceiptがこのscopeで有効な場合は、first-eligible result、same-Attempt repair-round count、distinct Attempt countを同一scorecardで併記する。metric identity、grain、定義revision、receiptは各々別fieldのままであり、値の換算・合算・代替を行わない。
+- **個別反例**：4種のdurationを一つの時間へ合算する、event境界のない待ちを推定する、overlapping waitを排他的と仮定して按分する、欠測durationを0にする、結果後にoracle/windowを選びescaped-defectを数える、未確認findingをescaped defectと断定する、rollback費用を059へ重複算入する、計測負荷を対象作業の費用として重複算入する、observer overheadを根拠なく推計する、source timestampがないのにfreshness ageを確定する、age thresholdから採否/許可を作る、067 repair roundをAttempt countへ加える、または068 countを067/065から換算する。それぞれ該当fieldを不成立/unknownとし、他の値で埋めない。
+- **欠落・比較不能**：scope/window、source completeness、event identity、definition revision、単位、oracle、対象とのrelationまたはreceiptのいずれかが不足・stale・矛盾する場合は、該当fieldをunknown/invalid/unavailableとして不足を明記する。分子・分母の適用可能性が証明できない場合はrateを出さない。scope不一致の値を同一scorecardへ結合せず、unknownを0、対象外または成功へ読み替えない。
+- **Attempt共提示の欠落**：067/068のexact candidateが採択されていない、receiptがない、またはscope/revisionが揃わない場合は当該fieldの理由付きunavailable/unknownを表示し、complete co-present scorecardとしない。070の候補採択が067/068を採択したことにしない。逆に、067/068の採否は070の要求意味を変更しない。
+- **未解決atom・既存指標境界**：旧source `coverage`の対象/分母/oracleと、追加telemetryと旧12指標とのidentity/version relationはこの受入候補の判定対象外であり、未解決・source-heldのままにする。これらをDesign Trace Completeness等へ同一視する、旧指標の名前・定義・receiptを新fieldへ割り当てる、またはsilent rename可否を判定するoracleをこの候補内で作る場合は不合格。067のS3A/S3B、068のS3Cは各既存receiptで管理し、このreceiptの分母やcarried atomへ重複計上しない。
+- **責務・authority境界**：source event/assignmentは既存source owner、quality/acceptance oracleは要求owner、data/execution許可は適用SECURITY契約に従う。LABOは観測・提示だけを行う。scorecard、receipt、unknown/unavailable状態から採択、実験許可、Worker assignment、rollback実施、L3要件承認または完了を作らない。固定数値threshold、age期限、統計推論または自動決定を追加しない。
+- **旧sourceと局所scope**：source line 399の9 selected atomに限定する。2 unresolved atom、既存候補へ別receiptで対応する3 atom、列挙外tail、隣接行、旧candidate全文の後継/完了を主張しない。source atomと判定scopeは[source-lines](../../governance/audits/requirement-registration/labo-supplemental-telemetry-source-lines-2026-09-29.jsonl)と[coverage receipt](../../governance/audits/requirement-registration/labo-supplemental-telemetry-coverage-receipt-2026-09-29.json)で確認する。
