@@ -1,0 +1,255 @@
+{
+  "schema_version": "helix-stage5-seven-classification-reconciliation/v1",
+  "audit_id": "legacy-candidate-seven-classification-reconciliation-2026-09-29",
+  "status": "audit_proposal",
+  "authority_effect": "none",
+  "base_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+  "pinned_inputs": [
+    {
+      "role": "cumulative_recount_proposal_2353",
+      "commit": "8a75e5392a44e005bb05197d977bdbcf75b93cf0",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "sha256": "57fce8a0e05ed73c46346f2177c439e862a17a06ecea65446389f24dc34160c5"
+    },
+    {
+      "role": "metadata_reclassification_proposal_2356",
+      "commit": "b213b41735067d1716c143c92e0fa6c71d8e92d9",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "sha256": "53c8acc872f30cf19e88499bc68b0f11c830a677f5c346d646a148dd3ca7853b"
+    },
+    {
+      "role": "router_snapshot",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+      "sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3"
+    },
+    {
+      "role": "prior_bounded_condition_audit",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-next-conditions-2026-09-29.json",
+      "sha256": "a742bb1606bee3ae1e86cd1e3d87f21b461108df9c1c96dc3bdb699c5b92b4b2"
+    },
+    {
+      "role": "legacy_aaFd_requirement_source",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+      "sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a"
+    },
+    {
+      "role": "legacy_bugbot_acceptance_source",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-acceptance.md",
+      "asset_id": "LEGACY-ASSET-901CD182B52024593E41",
+      "sha256": "cd2fdd3dcfaa98935db0fef6b876d6cdb7133b11b8c8877363c3d0138c4b8cbc"
+    },
+    {
+      "role": "legacy_cig_acceptance_source",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
+      "sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc"
+    },
+    {
+      "role": "relevant_existing_metadata_audit_2356",
+      "commit": "b213b41735067d1716c143c92e0fa6c71d8e92d9",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.md",
+      "sha256": "5b0283bc893d2666a575f7313e0508d7343a1eed8a7464641eb7d0a06346f6ea"
+    },
+    {
+      "role": "authority_state_model",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "docs/governance/authority-state-model.md"
+    },
+    {
+      "role": "current_intelligence_po_decision",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad"
+    },
+    {
+      "role": "current_intelligence_l2_source",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "sha256": "14c6947262f7e7cc92e7200cafd301ebd49c4146c97f665f0548c6b2b2e9e16d"
+    },
+    {
+      "role": "current_intelligence_l11_source",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "sha256": "7467fad5256db9af823e7be860e21e52df58efb43ad4855c7127c2053106214d"
+    },
+    {
+      "role": "r2253_classification_correction_record",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-r04-line45-classification-correction-2026-09-28.md",
+      "sha256": "5a2ac3cd1702169a0e5c80b66628f2c45b75d04621deeb169cb021f301a636ea"
+    },
+    {
+      "role": "unadopted_l2_073_authority_context",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "docs/governance/audits/requirements-stage/post-confirmation-25-po-decision-packet-2026-09-28.md",
+      "sha256": "00de0b2653019f059375356653aa1e429ccf675ec633d5153201eca214ccede2"
+    },
+    {
+      "role": "r2_source_atom_inventory",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "docs/governance/audits/requirement-registration/intelligence-free-text-boundary-source-lines-2026-09-28-r2.jsonl",
+      "sha256": "b1ef1bbb5ab479490934d4eaceb62d2734f0b4a97e1f456a3520cfe33d25659d"
+    },
+    {
+      "role": "registered_r2_two_atom_mapping",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+      "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-073-002"
+    },
+    {
+      "role": "po_decision_l2_073_exact_revision",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "decision": "HELIXINTELLIGENCE-L2-073 adopted exact L2/L11 revision"
+    }
+  ],
+  "rows": [
+    {
+      "source_id": "LEGACY-CAND-LINE-000140",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "source_line": 41,
+      "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+      "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "source_line_sha256": "sha256:0e46c073ca7c854ba00923ca1d5804d470c8a3beea6c85713411e74be9ac101e",
+      "physical_line_bytes_sha256": "14b6aefa2f868c2fbea31c521008894d6fffc0b78d2f2cd07d9392b8359a343e",
+      "router_classification": "explanation",
+      "cumulative_proposal_classification": "condition/product_requirement_atom",
+      "proposed_classification": "condition/product_requirement_atom",
+      "classification_delta": "none",
+      "atom_boundary": "Group archive lines 40-41 as one composite AAFD-R-03 condition; line 41 is not a separate standalone atom.",
+      "proposed_route": "unknown",
+      "reason": "Line 41 continues the normative AAFD-R-03 control sentence from line 40 and states separate required handling for counterevidence, expiry, supersession, and finding/remediation identity. Preserve as a condition while grouping the semantic atom across the two physical lines.",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000142",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "source_line": 45,
+      "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+      "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "source_line_sha256": "sha256:e7d58c59ce05eff5e2807b1a123e36e30d95dd8eddea9b26ae8de88406fa0de3",
+      "physical_line_bytes_sha256": "6f8048c7df26a70f062fd0da63733eea540f236223202e8affa55401fb519691",
+      "router_classification": "explanation",
+      "prior_correction": "R2253-01: explanation to requirement_atom",
+      "cumulative_proposal_classification": "condition/product_requirement_atom",
+      "proposed_classification": "condition/product_requirement_atom",
+      "classification_delta": "none",
+      "atom_boundary": "Line 45 is one complete detector-nonreplacement atom and also supplies the start of a second direct-projection prohibition atom that continues through line 46.",
+      "proposed_route": "adopted_relevant_partial",
+      "current_relation_ref": "HELIXINTELLIGENCE-L2-073 exact L2/L11 revision adopted by 2026-09-29 PO decision; partial old-source relation, no full candidate coverage or closure",
+      "reason": "Normative AAFD-R-04 condition; the exact HELIXINTELLIGENCE-L2-073 L2/L11 revision was adopted by the 2026-09-29 PO decision. Physical-line relation remains partial and does not imply full AAFD source coverage, successor assignment, or closure.",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000143",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "source_line": 46,
+      "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+      "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "source_line_sha256": "sha256:333d4deb1ee4f9c39d411fb9749a8e3d6c5d397972bf29b5c5d52f03ba696412",
+      "physical_line_bytes_sha256": "a068685bb9cbca246771cd91b0ebf2ad0e1d6350c00d777b62c2abefe8e4d523",
+      "router_classification": "requirement_atom",
+      "cumulative_proposal_classification": "condition/product_requirement_atom",
+      "proposed_classification": "condition/product_requirement_atom",
+      "classification_delta": "none",
+      "atom_boundary": "Line 46 alone is not an independent atom; join it to the direct-projection prohibition begun in line 45. Retain two atoms total: detector nonreplacement (line 45) and direct projection prohibition (lines 45-46). Line 45 may support both semantic atoms.",
+      "proposed_route": "adopted_relevant_partial",
+      "current_relation_ref": "HELIXINTELLIGENCE-L2-073 exact L2/L11 revision adopted by 2026-09-29 PO decision; partial old-source relation, no full candidate coverage or closure",
+      "reason": "Normative AAFD-R-04 condition; the exact HELIXINTELLIGENCE-L2-073 L2/L11 revision was adopted by the 2026-09-29 PO decision. Physical-line relation remains partial and does not imply full AAFD source coverage, successor assignment, or closure.",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000180",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "source_line": 109,
+      "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+      "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "source_line_sha256": "sha256:2a5f6c6fdeb935227cf06f85d055b111fe12eaa283308018e1345a0569e9caf7",
+      "physical_line_bytes_sha256": "56bd3f21dda0e993a0bfb0c5ed2b9227609bfd4c76e2ce628d33da767065578b",
+      "router_classification": "explanation",
+      "cumulative_proposal_classification": "condition/product_requirement_atom",
+      "proposed_classification": "condition/management_process_condition",
+      "classification_delta": "subtype product_requirement_atom to management_process_condition; condition remains",
+      "atom_boundary": "Single mixed scope-control condition. Preserve auto-Design-change prohibition and the stated old promotion evidence as historical qualifiers; do not treat the human gate as a current recurring approval requirement.",
+      "proposed_route": "outside_product_route_population",
+      "reason": "The clause governs promotion/change-control procedure and human authority rather than an external product capability. Classification follows the process-boundary distinction documented for source 000111 in #2356, without importing its authority effect.",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000331",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-acceptance.md",
+      "source_line": 16,
+      "asset_id": "LEGACY-ASSET-901CD182B52024593E41",
+      "source_file_sha256": "cd2fdd3dcfaa98935db0fef6b876d6cdb7133b11b8c8877363c3d0138c4b8cbc",
+      "source_line_sha256": "sha256:beadd151c9fe589483e609ae50fd573fbbef1137c7bca0a68f019b99896dab5c",
+      "physical_line_bytes_sha256": "d494e1584b017b4d4bd6d4eeed1db075bc9726e47bc40586dd30cda3ad8183cb",
+      "router_classification": "requirement_atom",
+      "cumulative_proposal_classification": "condition/product_requirement_atom",
+      "proposed_classification": "condition/product_requirement_atom",
+      "classification_delta": "none",
+      "atom_boundary": "Keep the operative independent-oracle/mutation rejection plus legal-input control criterion as the condition atom. Exclude trailing '実証は未実施' from that atom as status metadata.",
+      "proposed_route": "adopted_relevant_partial",
+      "current_relation_ref": "HELIXINTELLIGENCE-L2-015/016 and paired L11; relation applies to the operative criterion only",
+      "reason": "Substantive acceptance oracle is present; the last sentence fragment reports evidence status rather than an additional pass/fail condition.",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000476",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "source_line": 24,
+      "asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
+      "source_file_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+      "source_line_sha256": "sha256:f3a6695b665bea71103a8a4ccee1629d5361b36616ff4209bc942bd012bf811b",
+      "physical_line_bytes_sha256": "27f3b4aa1bfee5d71760eb1a3002d943eeb860763c18b674e3a9dbb533f063ba",
+      "router_classification": "requirement_atom",
+      "cumulative_proposal_classification": "condition/product_requirement_atom",
+      "proposed_classification": "explanation",
+      "classification_delta": "condition to explanation; product atom removed",
+      "atom_boundary": "Metadata only: list of four supporting requirement IDs and count. Do not form an independent atom.",
+      "proposed_route": "outside_product_route_population",
+      "reason": "Under the '量閉じ' heading, this line reports counts and references. Behavioral acceptance conditions appear in distinct source rows 14-20.",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000477",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "source_line": 25,
+      "asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
+      "source_file_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+      "source_line_sha256": "sha256:8ee2102ac11ad3c280f018f089a749f33f472dae9fdc4541b225665a325f176f",
+      "physical_line_bytes_sha256": "5749f0b5273a0c03a32011d49215680fc313e571604cc31b781de734cdf8f8c8",
+      "router_classification": "requirement_atom",
+      "cumulative_proposal_classification": "condition/product_requirement_atom",
+      "proposed_classification": "explanation",
+      "classification_delta": "condition to explanation; product atom removed",
+      "atom_boundary": "Metadata only: list of seven acceptance IDs and count. Do not form an independent atom.",
+      "proposed_route": "outside_product_route_population",
+      "reason": "Under the '量閉じ' heading, this line reports counts and references. Acceptance criteria are separately enumerated in source rows 14-20.",
+      "authority_effect": "none"
+    }
+  ],
+  "proposed_delta": {
+    "condition": -2,
+    "explanation": 2,
+    "management_process_condition": 1,
+    "product_requirement_atom": -3,
+    "product_route_unknown": -3,
+    "requires_resampling_next_batch": true
+  },
+  "authority_limits": [
+    "No adoption, meaning change, retirement, formal successor, source coverage/closure, L3, implementation, execution, or acceptance permission is generated.",
+    "HELIXINTELLIGENCE-L2-073 is adopted only at the exact L2/L11 revision in the 2026-09-29 PO decision; next-generation-CI remains candidate material. Current candidate wording and old receipt status are predecision records.",
+    "The historical human gate in source line 109 is not elevated into a new current approval procedure.",
+    "Explanation classification preserves the original archive row and does not delete source history."
+  ],
+  "validation_scope": "Document and JSON consistency, source pin/line digest checks, and current static validation only; no archive runtime, CLI, test, CI, hook, or config was executed."
+}
