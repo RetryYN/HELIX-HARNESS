@@ -1,0 +1,1409 @@
+{
+  "schema_version": "helix-legacy-candidate-unknown-product-atom-route-audit/v1",
+  "audit_id": "legacy-candidate-unknown-product-atoms-first20-route-audit-2026-09-29",
+  "created_against_commit": "8b23be9cd996279617219fe06733c7e274b4bb0a",
+  "authority_effect": "none",
+  "scope": {
+    "population": "4,755 source rows in cumulative condition-route recount after #2345; only effective condition + product_requirement_atom + route unknown",
+    "selection": "ascending numeric source ID; first 20 after removing all source IDs in #2341 classification/route overlays, #2342 20-row crosswalk, and #2345 12-row audit",
+    "excluded_overlay_ids_count": 53,
+    "selected_ids": [
+      "LEGACY-CAND-LINE-000021",
+      "LEGACY-CAND-LINE-000022",
+      "LEGACY-CAND-LINE-000023",
+      "LEGACY-CAND-LINE-000024",
+      "LEGACY-CAND-LINE-000025",
+      "LEGACY-CAND-LINE-000026",
+      "LEGACY-CAND-LINE-000027",
+      "LEGACY-CAND-LINE-000031",
+      "LEGACY-CAND-LINE-000037",
+      "LEGACY-CAND-LINE-000051",
+      "LEGACY-CAND-LINE-000054",
+      "LEGACY-CAND-LINE-000069",
+      "LEGACY-CAND-LINE-000070",
+      "LEGACY-CAND-LINE-000071",
+      "LEGACY-CAND-LINE-000072",
+      "LEGACY-CAND-LINE-000073",
+      "LEGACY-CAND-LINE-000074",
+      "LEGACY-CAND-LINE-000080",
+      "LEGACY-CAND-LINE-000091",
+      "LEGACY-CAND-LINE-000103"
+    ],
+    "limit": "This is not a full recount, source-closure/successor inference, adoption decision, L3/L11 execution, or requirements/register edit."
+  },
+  "pinned_inputs": [
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-condition-route-recount-after-2345-2026-09-29.json",
+      "sha256": "25d940277af5a6a343e4eda066bdfe4e3f770fb97f4f56c4586e00b4f025233e"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+      "sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3"
+    },
+    {
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-next-conditions-2026-09-29.json",
+      "sha256": "a742bb1606bee3ae1e86cd1e3d87f21b461108df9c1c96dc3bdb699c5b92b4b2"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/rtg-parent-20-condition-crosswalk-audit-2026-09-29.json",
+      "sha256": "db8778d950433cf4e70f73e225e7893085160457e9a765d0d6f140e8fc73efa3"
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "sha256": "06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78"
+    },
+    {
+      "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+      "sha256": "8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8"
+    },
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "sha256": "14c6947262f7e7cc92e7200cafd301ebd49c4146c97f665f0548c6b2b2e9e16d"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "sha256": "7467fad5256db9af823e7be860e21e52df58efb43ad4855c7127c2053106214d"
+    },
+    {
+      "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad"
+    },
+    {
+      "path": "docs/helix-intelligence/candidates/audit-bounded-repair-requirements.md",
+      "sha256": "c7cbeec9123ebcbc75ab7a6740bbe00244bd7c173fffe44ad3dec390ff76834a"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/current-authority-overlay-2026-09-29.md",
+      "sha256": "cd24a6716535383766245268eb922691381c3e1592c3d6d215a6c67986ad2a7b"
+    }
+  ],
+  "route_labels": {
+    "adopted_relevant_partial": "Exact partial semantic relation to a current adopted L1/L2/L11 condition; residual remains and this does not mean the old atom is adopted or closed.",
+    "unadopted_candidate_relation_only": "Exact relation to a current unadopted candidate source or oracle, not adopted coverage.",
+    "true_unknown": "No exact adopted or unadopted current relation established for this bounded row."
+  },
+  "rows": [
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000021",
+      "source_order": 21,
+      "snapshot_classification": "requirement_atom",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "cumulative_route_state": "unknown",
+      "route_assessment": "true_unknown",
+      "route_assessment_is_new_audit_not_authority": true,
+      "source": {
+        "asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+        "source_path_in_snapshot": "docs/governance/candidates/README.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+        "physical_line": 33,
+        "line_text": "- `helix-concept-v4.1.md`: 最新のHARNESS／HELIX-OS／個別製品境界を反映した次revision候補。v4.0の承認対象bytesを変更せず、U1上流再整備の承認対象を分ける",
+        "source_file_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+        "source_line_sha256": "sha256:bf86a45298099c430e302e59df5135cd9027e87cd95ceb691ac42332999ad10c",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization"
+      },
+      "current_relation_evidence": {
+        "considered_refs": [
+          {
+            "path": "docs/concept/helix-concept.md",
+            "lines": "version scope and mechanism role; pinned file SHA",
+            "relation": "reviewed for Concept-title/version claims; no direct old-line successor inferred"
+          },
+          {
+            "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+            "lines": "51, 53, 106-107",
+            "relation": "adopted L1-009/L1-011 where applicable; exact row route stated separately"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "90-113, 427-448",
+            "relation": "adopted L2-008/009/011 and explicit AAFD candidate-only source table"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "69-72, 123, 161-164",
+            "relation": "adopted acceptance rows and explicit AAFD candidate boundary"
+          }
+        ],
+        "exact_relation_refs": [],
+        "adopted_l1": [],
+        "adopted_l2": [],
+        "adopted_l11": [],
+        "unadopted_candidate_path": null,
+        "notes": "旧READMEはConcept v4.1候補の参照更新・U1承認対象分離を述べる。現行Concept/L1の承認revisionにこのREADME行そのものを結ぶ条件routeは確認できず、同じ主題だけで被覆扱いしない。"
+      },
+      "incomplete_semantic_conditions": "現行ConceptとHELIX-HARNESS/OS等の承認済みL1で、v4.1 candidateのどの意味条件が現行化されたか。READMEの参照行を要求atomとする分類妥当性も未検証。",
+      "uncertainty": "The current relation is a bounded source-level assessment. It does not establish complete coverage, successor identity, source closure, or adoption of detailed AAFD candidate oracles."
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000022",
+      "source_order": 22,
+      "snapshot_classification": "requirement_atom",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "cumulative_route_state": "unknown",
+      "route_assessment": "true_unknown",
+      "route_assessment_is_new_audit_not_authority": true,
+      "source": {
+        "asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+        "source_path_in_snapshot": "docs/governance/candidates/README.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+        "physical_line": 35,
+        "line_text": "- `helix-concept-v4.0.md`: Verified Change Operating SystemへのConcept候補",
+        "source_file_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+        "source_line_sha256": "sha256:87496e4d9c1005c774b702938ad20b3fcfb61c92a3ee40c415bc37ff7251e140",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization"
+      },
+      "current_relation_evidence": {
+        "considered_refs": [
+          {
+            "path": "docs/concept/helix-concept.md",
+            "lines": "version scope and mechanism role; pinned file SHA",
+            "relation": "reviewed for Concept-title/version claims; no direct old-line successor inferred"
+          },
+          {
+            "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+            "lines": "51, 53, 106-107",
+            "relation": "adopted L1-009/L1-011 where applicable; exact row route stated separately"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "90-113, 427-448",
+            "relation": "adopted L2-008/009/011 and explicit AAFD candidate-only source table"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "69-72, 123, 161-164",
+            "relation": "adopted acceptance rows and explicit AAFD candidate boundary"
+          }
+        ],
+        "exact_relation_refs": [],
+        "adopted_l1": [],
+        "adopted_l2": [],
+        "adopted_l11": [],
+        "unadopted_candidate_path": null,
+        "notes": "旧READMEのVerified Change Operating SystemというConcept候補タイトル。現Concept v4.3や対象別L1との同一意味・後継関係はこの行だけから確定できない。"
+      },
+      "incomplete_semantic_conditions": "Concept候補の標語と現行Concept/L1の意味対応・残差。旧候補の後継/closureは未確定。",
+      "uncertainty": "The current relation is a bounded source-level assessment. It does not establish complete coverage, successor identity, source closure, or adoption of detailed AAFD candidate oracles."
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000023",
+      "source_order": 23,
+      "snapshot_classification": "requirement_atom",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "cumulative_route_state": "unknown",
+      "route_assessment": "true_unknown",
+      "route_assessment_is_new_audit_not_authority": true,
+      "source": {
+        "asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+        "source_path_in_snapshot": "docs/governance/candidates/README.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+        "physical_line": 36,
+        "line_text": "- `helix-concept-v4-requests.md`: L1要求候補",
+        "source_file_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+        "source_line_sha256": "sha256:ded8adfb295405ea4e8e0af8f9642038db0e709c8eeed302a38c8d3f5e0db99a",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization"
+      },
+      "current_relation_evidence": {
+        "considered_refs": [
+          {
+            "path": "docs/concept/helix-concept.md",
+            "lines": "version scope and mechanism role; pinned file SHA",
+            "relation": "reviewed for Concept-title/version claims; no direct old-line successor inferred"
+          },
+          {
+            "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+            "lines": "51, 53, 106-107",
+            "relation": "adopted L1-009/L1-011 where applicable; exact row route stated separately"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "90-113, 427-448",
+            "relation": "adopted L2-008/009/011 and explicit AAFD candidate-only source table"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "69-72, 123, 161-164",
+            "relation": "adopted acceptance rows and explicit AAFD candidate boundary"
+          }
+        ],
+        "exact_relation_refs": [],
+        "adopted_l1": [],
+        "adopted_l2": [],
+        "adopted_l11": [],
+        "unadopted_candidate_path": null,
+        "notes": "旧READMEがConcept v4のrequests候補ファイルを指す。現行L1/L2に個別要求atomとしての同一性・移行先を示すsource relationなし。"
+      },
+      "incomplete_semantic_conditions": "requests候補の各要求を別atomで照合する必要。ファイルへの参照自体の要求価値もunknown。",
+      "uncertainty": "The current relation is a bounded source-level assessment. It does not establish complete coverage, successor identity, source closure, or adoption of detailed AAFD candidate oracles."
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000024",
+      "source_order": 24,
+      "snapshot_classification": "requirement_atom",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "cumulative_route_state": "unknown",
+      "route_assessment": "true_unknown",
+      "route_assessment_is_new_audit_not_authority": true,
+      "source": {
+        "asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+        "source_path_in_snapshot": "docs/governance/candidates/README.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+        "physical_line": 37,
+        "line_text": "- `helix-concept-v4-requirements.md`: L3要件候補",
+        "source_file_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+        "source_line_sha256": "sha256:7704c350ce091c3215113b00e2ef0ec1d498ce210dd7ba228bc62ca424c62ab6",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization"
+      },
+      "current_relation_evidence": {
+        "considered_refs": [
+          {
+            "path": "docs/concept/helix-concept.md",
+            "lines": "version scope and mechanism role; pinned file SHA",
+            "relation": "reviewed for Concept-title/version claims; no direct old-line successor inferred"
+          },
+          {
+            "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+            "lines": "51, 53, 106-107",
+            "relation": "adopted L1-009/L1-011 where applicable; exact row route stated separately"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "90-113, 427-448",
+            "relation": "adopted L2-008/009/011 and explicit AAFD candidate-only source table"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "69-72, 123, 161-164",
+            "relation": "adopted acceptance rows and explicit AAFD candidate boundary"
+          }
+        ],
+        "exact_relation_refs": [],
+        "adopted_l1": [],
+        "adopted_l2": [],
+        "adopted_l11": [],
+        "unadopted_candidate_path": null,
+        "notes": "旧READMEがrequirements candidateを参照する。現行L3承認・要件はこのStage5 bounded audit対象外であり、L1/L2/L11とのrelationもこの参照行からは確定しない。"
+      },
+      "incomplete_semantic_conditions": "候補L3の後続状態、個々の要件とのsource relation。L3の承認/受入を推定しない。",
+      "uncertainty": "The current relation is a bounded source-level assessment. It does not establish complete coverage, successor identity, source closure, or adoption of detailed AAFD candidate oracles."
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000025",
+      "source_order": 25,
+      "snapshot_classification": "requirement_atom",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "cumulative_route_state": "unknown",
+      "route_assessment": "true_unknown",
+      "route_assessment_is_new_audit_not_authority": true,
+      "source": {
+        "asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+        "source_path_in_snapshot": "docs/governance/candidates/README.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+        "physical_line": 38,
+        "line_text": "- `helix-concept-v4-acceptance.md`: L10受入候補",
+        "source_file_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+        "source_line_sha256": "sha256:7416a4ebf60be5195d25edf43298700b4a3ff595743ab2707d0a2565b6016b4d",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization"
+      },
+      "current_relation_evidence": {
+        "considered_refs": [
+          {
+            "path": "docs/concept/helix-concept.md",
+            "lines": "version scope and mechanism role; pinned file SHA",
+            "relation": "reviewed for Concept-title/version claims; no direct old-line successor inferred"
+          },
+          {
+            "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+            "lines": "51, 53, 106-107",
+            "relation": "adopted L1-009/L1-011 where applicable; exact row route stated separately"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "90-113, 427-448",
+            "relation": "adopted L2-008/009/011 and explicit AAFD candidate-only source table"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "69-72, 123, 161-164",
+            "relation": "adopted acceptance rows and explicit AAFD candidate boundary"
+          }
+        ],
+        "exact_relation_refs": [],
+        "adopted_l1": [],
+        "adopted_l2": [],
+        "adopted_l11": [],
+        "unadopted_candidate_path": null,
+        "notes": "旧READMEがacceptance candidateを参照する。現行L11は別の対象revision・候補集合であり、このREADMEポインタ行を同一条件と見なせない。"
+      },
+      "incomplete_semantic_conditions": "旧acceptance候補の意味atomと現行L11の限定条件の対応。受入実行・旧採否は不明。",
+      "uncertainty": "The current relation is a bounded source-level assessment. It does not establish complete coverage, successor identity, source closure, or adoption of detailed AAFD candidate oracles."
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000026",
+      "source_order": 26,
+      "snapshot_classification": "requirement_atom",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "cumulative_route_state": "unknown",
+      "route_assessment": "true_unknown",
+      "route_assessment_is_new_audit_not_authority": true,
+      "source": {
+        "asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+        "source_path_in_snapshot": "docs/governance/candidates/README.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+        "physical_line": 39,
+        "line_text": "- `helix-concept-v4-capability-delta.md`: baseline capabilityとの実測差分",
+        "source_file_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+        "source_line_sha256": "sha256:fed62dc2eb8bb7033568cc93b30c9d159bcbb4505dd1996ff4864f8979835ac6",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization"
+      },
+      "current_relation_evidence": {
+        "considered_refs": [
+          {
+            "path": "docs/concept/helix-concept.md",
+            "lines": "version scope and mechanism role; pinned file SHA",
+            "relation": "reviewed for Concept-title/version claims; no direct old-line successor inferred"
+          },
+          {
+            "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+            "lines": "51, 53, 106-107",
+            "relation": "adopted L1-009/L1-011 where applicable; exact row route stated separately"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "90-113, 427-448",
+            "relation": "adopted L2-008/009/011 and explicit AAFD candidate-only source table"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "69-72, 123, 161-164",
+            "relation": "adopted acceptance rows and explicit AAFD candidate boundary"
+          }
+        ],
+        "exact_relation_refs": [],
+        "adopted_l1": [],
+        "adopted_l2": [],
+        "adopted_l11": [],
+        "unadopted_candidate_path": null,
+        "notes": "旧READMEのcapability delta参照。現行のConcept capability/対象L1または要件とのsource-edgeは特定されない。"
+      },
+      "incomplete_semantic_conditions": "baseline capability差分のどの要求条件を保持するか。差分が閉じたと推定しない。",
+      "uncertainty": "The current relation is a bounded source-level assessment. It does not establish complete coverage, successor identity, source closure, or adoption of detailed AAFD candidate oracles."
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000027",
+      "source_order": 27,
+      "snapshot_classification": "requirement_atom",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "cumulative_route_state": "unknown",
+      "route_assessment": "true_unknown",
+      "route_assessment_is_new_audit_not_authority": true,
+      "source": {
+        "asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+        "source_path_in_snapshot": "docs/governance/candidates/README.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+        "physical_line": 40,
+        "line_text": "- `helix-concept-v4-readme-projection.md`: 人間向けREADME説明候補（非authority）",
+        "source_file_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+        "source_line_sha256": "sha256:4e46c2cbbad130aa91ec6075bf3b7fc1049534b812f875f3d4478f56395655ad",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization"
+      },
+      "current_relation_evidence": {
+        "considered_refs": [
+          {
+            "path": "docs/concept/helix-concept.md",
+            "lines": "version scope and mechanism role; pinned file SHA",
+            "relation": "reviewed for Concept-title/version claims; no direct old-line successor inferred"
+          },
+          {
+            "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+            "lines": "51, 53, 106-107",
+            "relation": "adopted L1-009/L1-011 where applicable; exact row route stated separately"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "90-113, 427-448",
+            "relation": "adopted L2-008/009/011 and explicit AAFD candidate-only source table"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "69-72, 123, 161-164",
+            "relation": "adopted acceptance rows and explicit AAFD candidate boundary"
+          }
+        ],
+        "exact_relation_refs": [],
+        "adopted_l1": [],
+        "adopted_l2": [],
+        "adopted_l11": [],
+        "unadopted_candidate_path": null,
+        "notes": "旧READMEの人間向けREADME projection（非authority）参照。現行docs/README類とのsource lineageは未確定。"
+      },
+      "incomplete_semantic_conditions": "projectionの要求意味、現行正本との関係、およびそもそも独立product requirement atomかどうか。",
+      "uncertainty": "The current relation is a bounded source-level assessment. It does not establish complete coverage, successor identity, source closure, or adoption of detailed AAFD candidate oracles."
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000031",
+      "source_order": 31,
+      "snapshot_classification": "requirement_atom",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "cumulative_route_state": "unknown",
+      "route_assessment": "true_unknown",
+      "route_assessment_is_new_audit_not_authority": true,
+      "source": {
+        "asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+        "source_path_in_snapshot": "docs/governance/candidates/README.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+        "physical_line": 47,
+        "line_text": "- `development-investment-stage-directives-intake_v1.0.md`: 開発コスト削減・知能化に関する",
+        "source_file_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+        "source_line_sha256": "sha256:8039315b98be37e9e130befcfec5e24e43c976cf2dbb8edb5760b471fd811a62",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization"
+      },
+      "current_relation_evidence": {
+        "considered_refs": [
+          {
+            "path": "docs/concept/helix-concept.md",
+            "lines": "version scope and mechanism role; pinned file SHA",
+            "relation": "reviewed for Concept-title/version claims; no direct old-line successor inferred"
+          },
+          {
+            "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+            "lines": "51, 53, 106-107",
+            "relation": "adopted L1-009/L1-011 where applicable; exact row route stated separately"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "90-113, 427-448",
+            "relation": "adopted L2-008/009/011 and explicit AAFD candidate-only source table"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "69-72, 123, 161-164",
+            "relation": "adopted acceptance rows and explicit AAFD candidate boundary"
+          }
+        ],
+        "exact_relation_refs": [],
+        "adopted_l1": [],
+        "adopted_l2": [],
+        "adopted_l11": [],
+        "unadopted_candidate_path": null,
+        "notes": "物理行は開発投資stage directives候補へのポインタ/短い説明だけを含む。隣接するREADME行の注意書きをこのsource atom自体の意味へ混ぜず、現行L1/L2/L11の対象要求と結ぶexact routeは確認できない。"
+      },
+      "incomplete_semantic_conditions": "参照先の個別投資条件と現行対象別L1/L2/L11の対応。ポインタ行自体を独立したproduct requirement atomとする分類も未検証。",
+      "uncertainty": "The current relation is a bounded source-level assessment. It does not establish complete coverage, successor identity, source closure, or adoption of detailed AAFD candidate oracles."
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000037",
+      "source_order": 37,
+      "snapshot_classification": "requirement_atom",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "cumulative_route_state": "unknown",
+      "route_assessment": "true_unknown",
+      "route_assessment_is_new_audit_not_authority": true,
+      "source": {
+        "asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+        "source_path_in_snapshot": "docs/governance/candidates/README.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+        "physical_line": 54,
+        "line_text": "「INV-001〜072 個別実施カード」をその参照先として扱う。",
+        "source_file_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+        "source_line_sha256": "sha256:237c6ccbe88f272922ff4b7e0918625cb896ffb5d745f672053763b9dfe2b261",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization"
+      },
+      "current_relation_evidence": {
+        "considered_refs": [
+          {
+            "path": "docs/concept/helix-concept.md",
+            "lines": "version scope and mechanism role; pinned file SHA",
+            "relation": "reviewed for Concept-title/version claims; no direct old-line successor inferred"
+          },
+          {
+            "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+            "lines": "51, 53, 106-107",
+            "relation": "adopted L1-009/L1-011 where applicable; exact row route stated separately"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "90-113, 427-448",
+            "relation": "adopted L2-008/009/011 and explicit AAFD candidate-only source table"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "69-72, 123, 161-164",
+            "relation": "adopted acceptance rows and explicit AAFD candidate boundary"
+          }
+        ],
+        "exact_relation_refs": [],
+        "adopted_l1": [],
+        "adopted_l2": [],
+        "adopted_l11": [],
+        "unadopted_candidate_path": null,
+        "notes": "旧READMEのINV候補入口・候補ID/P0-P4をRequirement等へ誤読しない、selected itemごとownerを再解決する条件。現行Concept/L1でinvestmentsまたはINV群に対応するexact target routeを確定できない。"
+      },
+      "incomplete_semantic_conditions": "INV intakeと現行5大目標/機構L1/候補のroute、選択・owner条件。これはprocess/meta条件の可能性も残る。",
+      "uncertainty": "The current relation is a bounded source-level assessment. It does not establish complete coverage, successor identity, source closure, or adoption of detailed AAFD candidate oracles."
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000051",
+      "source_order": 51,
+      "snapshot_classification": "requirement_atom",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "cumulative_route_state": "unknown",
+      "route_assessment": "unadopted_candidate_relation_only",
+      "route_assessment_is_new_audit_not_authority": true,
+      "source": {
+        "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+        "source_path_in_snapshot": "docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "physical_line": 16,
+        "line_text": "| AAFD-AC-002 | AAFD-R-02 | wrong HEAD、worktree、authority、session、owner、evidenceの各mutationを個別reasonで拒否する |",
+        "source_file_sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+        "source_line_sha256": "sha256:8936ee3c03122a898b13a701aedf077e3ce5e65360a45f80cd9e7be0d86bda78",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization"
+      },
+      "current_relation_evidence": {
+        "considered_refs": [
+          {
+            "path": "docs/concept/helix-concept.md",
+            "lines": "version scope and mechanism role; pinned file SHA",
+            "relation": "reviewed for Concept-title/version claims; no direct old-line successor inferred"
+          },
+          {
+            "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+            "lines": "51, 53, 106-107",
+            "relation": "adopted L1-009/L1-011 where applicable; exact row route stated separately"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "90-113, 427-448",
+            "relation": "adopted L2-008/009/011 and explicit AAFD candidate-only source table"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "69-72, 123, 161-164",
+            "relation": "adopted acceptance rows and explicit AAFD candidate boundary"
+          }
+        ],
+        "exact_relation_refs": [
+          {
+            "path": "docs/helix-intelligence/candidates/audit-bounded-repair-requirements.md",
+            "lines": "60-65",
+            "relation": "unadopted AAFD-BR summary; detailed old AC conditions are not stated here"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "433-435, 448",
+            "relation": "AAFD requests/requirements remain source candidate; candidate details not automatically adopted"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "123-125",
+            "relation": "AAFD-BR/R are retained as candidate; stale/unknown projection boundary stated at 123"
+          }
+        ],
+        "adopted_l1": [],
+        "adopted_l2": [],
+        "adopted_l11": [],
+        "unadopted_candidate_path": "docs/helix-intelligence/candidates/audit-bounded-repair-requirements.md",
+        "notes": "AAFD-AC-002はwrong HEAD/worktree/authority/session/owner/evidence mutationを個別理由で拒否する受入oracle。現行INTELLIGENCE候補audit-bounded-repairと旧AAFD系は関係するが、採択済みL2-009はtrace/source evidenceと自由文authority変更を対象にし、各mutation reason oracleまでは定義しない。"
+      },
+      "incomplete_semantic_conditions": "candidate acceptance detailと採択済みL2-009のtrace/boundary間の未採択分。対象となるproposal identity/session/worktreeのexact fieldsとowner範囲。",
+      "uncertainty": "The current relation is a bounded source-level assessment. It does not establish complete coverage, successor identity, source closure, or adoption of detailed AAFD candidate oracles."
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000054",
+      "source_order": 54,
+      "snapshot_classification": "requirement_atom",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "cumulative_route_state": "unknown",
+      "route_assessment": "unadopted_candidate_relation_only",
+      "route_assessment_is_new_audit_not_authority": true,
+      "source": {
+        "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+        "source_path_in_snapshot": "docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "physical_line": 19,
+        "line_text": "| AAFD-AC-005 | AAFD-R-05 | internal/UILとexternal/TERを正しく分離し、owner swap mutationを拒否する |",
+        "source_file_sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+        "source_line_sha256": "sha256:036c027a10d1ed6f071b19a01026db2c5a15c94974749593ff5561510557ac71",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization"
+      },
+      "current_relation_evidence": {
+        "considered_refs": [
+          {
+            "path": "docs/concept/helix-concept.md",
+            "lines": "version scope and mechanism role; pinned file SHA",
+            "relation": "reviewed for Concept-title/version claims; no direct old-line successor inferred"
+          },
+          {
+            "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+            "lines": "51, 53, 106-107",
+            "relation": "adopted L1-009/L1-011 where applicable; exact row route stated separately"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "90-113, 427-448",
+            "relation": "adopted L2-008/009/011 and explicit AAFD candidate-only source table"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "69-72, 123, 161-164",
+            "relation": "adopted acceptance rows and explicit AAFD candidate boundary"
+          }
+        ],
+        "exact_relation_refs": [
+          {
+            "path": "docs/helix-intelligence/candidates/audit-bounded-repair-requirements.md",
+            "lines": "60-65",
+            "relation": "unadopted AAFD-BR summary; detailed old AC conditions are not stated here"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "433-435, 448",
+            "relation": "AAFD requests/requirements remain source candidate; candidate details not automatically adopted"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "123-125",
+            "relation": "AAFD-BR/R are retained as candidate; stale/unknown projection boundary stated at 123"
+          }
+        ],
+        "adopted_l1": [],
+        "adopted_l2": [],
+        "adopted_l11": [],
+        "unadopted_candidate_path": "docs/helix-intelligence/candidates/audit-bounded-repair-requirements.md",
+        "notes": "AAFD-AC-005のUIL/internal対TER/external分離とowner swap拒否は、INTELLIGENCE候補のAAFD-BR-02および既存UIL/TER owner境界へ対応する。ただしL1/L2/L11の採択済み範囲にowner-swap mutationのoracleはない。"
+      },
+      "incomplete_semantic_conditions": "UIL/TERのsource class、owner、誤分類・swap拒否の具体的条件と採択対象範囲。候補参照を採択へ拡張しない。",
+      "uncertainty": "The current relation is a bounded source-level assessment. It does not establish complete coverage, successor identity, source closure, or adoption of detailed AAFD candidate oracles."
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000069",
+      "source_order": 69,
+      "snapshot_classification": "requirement_atom",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "cumulative_route_state": "unknown",
+      "route_assessment": "unadopted_candidate_relation_only",
+      "route_assessment_is_new_audit_not_authority": true,
+      "source": {
+        "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+        "source_path_in_snapshot": "docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "physical_line": 36,
+        "line_text": "- 既存PR監査用`AuditFindingProposalV1`をsystem audit contractへ再解釈する。",
+        "source_file_sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+        "source_line_sha256": "sha256:5b90a6b2a78dea5426bdb268c13f295c749d5f1500bdfb137301191ede9d3c8b",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization"
+      },
+      "current_relation_evidence": {
+        "considered_refs": [
+          {
+            "path": "docs/concept/helix-concept.md",
+            "lines": "version scope and mechanism role; pinned file SHA",
+            "relation": "reviewed for Concept-title/version claims; no direct old-line successor inferred"
+          },
+          {
+            "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+            "lines": "51, 53, 106-107",
+            "relation": "adopted L1-009/L1-011 where applicable; exact row route stated separately"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "90-113, 427-448",
+            "relation": "adopted L2-008/009/011 and explicit AAFD candidate-only source table"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "69-72, 123, 161-164",
+            "relation": "adopted acceptance rows and explicit AAFD candidate boundary"
+          }
+        ],
+        "exact_relation_refs": [
+          {
+            "path": "docs/helix-intelligence/candidates/audit-bounded-repair-requirements.md",
+            "lines": "60-65",
+            "relation": "unadopted AAFD-BR summary; detailed old AC conditions are not stated here"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "433-435, 448",
+            "relation": "AAFD requests/requirements remain source candidate; candidate details not automatically adopted"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "123-125",
+            "relation": "AAFD-BR/R are retained as candidate; stale/unknown projection boundary stated at 123"
+          }
+        ],
+        "adopted_l1": [],
+        "adopted_l2": [],
+        "adopted_l11": [],
+        "unadopted_candidate_path": "docs/helix-intelligence/candidates/audit-bounded-repair-requirements.md",
+        "notes": "AAFD否定oracleは既存PR AuditFindingProposalV1をsystem audit contractへ再解釈することを拒む。採択済みL2-009はfindingからHEAD等へtraceし自由文authority変更を禁ずる部分関係だが、proposal schemaをsystem contractとして再利用しないoracleは現行採択文にない。"
+      },
+      "incomplete_semantic_conditions": "提案schema reuseの拒否条件、UIL既存契約との互換境界。L2-009への限定relationはあるが、このexact oracleの採択は未確認。",
+      "uncertainty": "The current relation is a bounded source-level assessment. It does not establish complete coverage, successor identity, source closure, or adoption of detailed AAFD candidate oracles."
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000070",
+      "source_order": 70,
+      "snapshot_classification": "requirement_atom",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "cumulative_route_state": "unknown",
+      "route_assessment": "adopted_relevant_partial",
+      "route_assessment_is_new_audit_not_authority": true,
+      "source": {
+        "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+        "source_path_in_snapshot": "docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "physical_line": 37,
+        "line_text": "- Fable等の修正案を直接実装authorityとして採用する。",
+        "source_file_sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+        "source_line_sha256": "sha256:65872dfecd7661a2c6edc1d83cf885340c310d4370523398ee8040c1748e348a",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization"
+      },
+      "current_relation_evidence": {
+        "considered_refs": [
+          {
+            "path": "docs/concept/helix-concept.md",
+            "lines": "version scope and mechanism role; pinned file SHA",
+            "relation": "reviewed for Concept-title/version claims; no direct old-line successor inferred"
+          },
+          {
+            "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+            "lines": "51, 53, 106-107",
+            "relation": "adopted L1-009/L1-011 where applicable; exact row route stated separately"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "90-113, 427-448",
+            "relation": "adopted L2-008/009/011 and explicit AAFD candidate-only source table"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "69-72, 123, 161-164",
+            "relation": "adopted acceptance rows and explicit AAFD candidate boundary"
+          }
+        ],
+        "exact_relation_refs": [
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "433-435, 448",
+            "relation": "AAFD requests/requirements remain source candidate; candidate details not automatically adopted"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "123-125",
+            "relation": "AAFD-BR/R are retained as candidate; stale/unknown projection boundary stated at 123"
+          },
+          {
+            "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+            "lines": "51, 106, 121",
+            "relation": "adopted L1-009 and source mapping for AAFD-BR-01..03"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "96-101",
+            "relation": "adopted L2-009 source trace/reproduction/falsification/free-text boundary"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "69-70, 162",
+            "relation": "adopted L2-008/009 oracle; only partial relation to exact old rejection oracle"
+          }
+        ],
+        "adopted_l1": [
+          "HELIXINTELLIGENCE-L1-009"
+        ],
+        "adopted_l2": [
+          "HELIXINTELLIGENCE-L2-009"
+        ],
+        "adopted_l11": [
+          "L2-008/009 acceptance rows"
+        ],
+        "unadopted_candidate_path": null,
+        "notes": "AAFD否定oracleはFable等の修正案をimplementation authorityとして採用することを拒む。採択済みHELIXINTELLIGENCE-L1-009/L2-009はfindingの根拠traceと自由文単独でauthorityを変えない境界を持ち、この拒否意味へ部分的に関係する。修正案一般の直接実装拒否手順までは同一視しない。"
+      },
+      "incomplete_semantic_conditions": "L2-009のsource/evidence traceと具体的な修正案の実行authority境界。どの既存authority routeでproposalを提示し、実装案の判断を担うか。",
+      "uncertainty": "The current relation is a bounded source-level assessment. It does not establish complete coverage, successor identity, source closure, or adoption of detailed AAFD candidate oracles."
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000071",
+      "source_order": 71,
+      "snapshot_classification": "requirement_atom",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "cumulative_route_state": "unknown",
+      "route_assessment": "adopted_relevant_partial",
+      "route_assessment_is_new_audit_not_authority": true,
+      "source": {
+        "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+        "source_path_in_snapshot": "docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "physical_line": 38,
+        "line_text": "- AI findingを独立再現なしでP0確定する。",
+        "source_file_sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+        "source_line_sha256": "sha256:6c7b54162d74859a5f03398da13a3c208b420f6bab521faededa4c2c6aecfb2c",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization"
+      },
+      "current_relation_evidence": {
+        "considered_refs": [
+          {
+            "path": "docs/concept/helix-concept.md",
+            "lines": "version scope and mechanism role; pinned file SHA",
+            "relation": "reviewed for Concept-title/version claims; no direct old-line successor inferred"
+          },
+          {
+            "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+            "lines": "51, 53, 106-107",
+            "relation": "adopted L1-009/L1-011 where applicable; exact row route stated separately"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "90-113, 427-448",
+            "relation": "adopted L2-008/009/011 and explicit AAFD candidate-only source table"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "69-72, 123, 161-164",
+            "relation": "adopted acceptance rows and explicit AAFD candidate boundary"
+          }
+        ],
+        "exact_relation_refs": [
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "433-435, 448",
+            "relation": "AAFD requests/requirements remain source candidate; candidate details not automatically adopted"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "123-125",
+            "relation": "AAFD-BR/R are retained as candidate; stale/unknown projection boundary stated at 123"
+          },
+          {
+            "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+            "lines": "51, 106, 121",
+            "relation": "adopted L1-009 and source mapping for AAFD-BR-01..03"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "96-101",
+            "relation": "adopted L2-009 source trace/reproduction/falsification/free-text boundary"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "69-70, 162",
+            "relation": "adopted L2-008/009 oracle; only partial relation to exact old rejection oracle"
+          }
+        ],
+        "adopted_l1": [
+          "HELIXINTELLIGENCE-L1-009"
+        ],
+        "adopted_l2": [
+          "HELIXINTELLIGENCE-L2-008",
+          "HELIXINTELLIGENCE-L2-009"
+        ],
+        "adopted_l11": [
+          "L2-008/009 acceptance rows"
+        ],
+        "unadopted_candidate_path": null,
+        "notes": "AAFD否定oracleは独立再現なしのAI findingをP0へ確定しない。採択済みL2-008/009はreproduction/counterexample/falsification traceを要求し、証拠不足をincomplete/owner照合へ戻すので部分関係がある。一方、P0 severityの定義やverification遷移は旧oracle固有。"
+      },
+      "incomplete_semantic_conditions": "P0 severity/independent reproductionの明示基準とL2-008/009のincomplete境界。閾値・review gateを新設しない。",
+      "uncertainty": "The current relation is a bounded source-level assessment. It does not establish complete coverage, successor identity, source closure, or adoption of detailed AAFD candidate oracles."
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000072",
+      "source_order": 72,
+      "snapshot_classification": "requirement_atom",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "cumulative_route_state": "unknown",
+      "route_assessment": "unadopted_candidate_relation_only",
+      "route_assessment_is_new_audit_not_authority": true,
+      "source": {
+        "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+        "source_path_in_snapshot": "docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "physical_line": 39,
+        "line_text": "- external release検出だけでHELIX defectと確定する。",
+        "source_file_sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+        "source_line_sha256": "sha256:eac5fa0aa74c754967ceb8e2d8fe94ccec7358f0824274f3550c2bf7156863d3",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization"
+      },
+      "current_relation_evidence": {
+        "considered_refs": [
+          {
+            "path": "docs/concept/helix-concept.md",
+            "lines": "version scope and mechanism role; pinned file SHA",
+            "relation": "reviewed for Concept-title/version claims; no direct old-line successor inferred"
+          },
+          {
+            "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+            "lines": "51, 53, 106-107",
+            "relation": "adopted L1-009/L1-011 where applicable; exact row route stated separately"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "90-113, 427-448",
+            "relation": "adopted L2-008/009/011 and explicit AAFD candidate-only source table"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "69-72, 123, 161-164",
+            "relation": "adopted acceptance rows and explicit AAFD candidate boundary"
+          }
+        ],
+        "exact_relation_refs": [
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "433-435, 448",
+            "relation": "AAFD requests/requirements remain source candidate; candidate details not automatically adopted"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "123-125",
+            "relation": "AAFD-BR/R are retained as candidate; stale/unknown projection boundary stated at 123"
+          }
+        ],
+        "adopted_l1": [],
+        "adopted_l2": [],
+        "adopted_l11": [],
+        "unadopted_candidate_path": "docs/helix-intelligence/candidates/audit-bounded-repair-requirements.md",
+        "notes": "AAFD否定oracleはexternal release detectionだけでHELIX defectと確定することを拒む。現行INTELLIGENCEのAAFD-BR candidateは監査提案/外部変化を候補として扱うが、このspecific defect attribution oracleは未採択L2/L11本文にはない。"
+      },
+      "incomplete_semantic_conditions": "external release signalをHELIX defectへ帰属する条件、対象owner、反証証拠。候補familyとの関係のみで既採択 coverageにしない。",
+      "uncertainty": "The current relation is a bounded source-level assessment. It does not establish complete coverage, successor identity, source closure, or adoption of detailed AAFD candidate oracles."
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000073",
+      "source_order": 73,
+      "snapshot_classification": "requirement_atom",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "cumulative_route_state": "unknown",
+      "route_assessment": "unadopted_candidate_relation_only",
+      "route_assessment_is_new_audit_not_authority": true,
+      "source": {
+        "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+        "source_path_in_snapshot": "docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "physical_line": 40,
+        "line_text": "- internal driftをTER、external driftをUILだけで閉じる。",
+        "source_file_sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+        "source_line_sha256": "sha256:52bf73f110d7e553eef81e041d9a0f07b009985ff98136dc10c503ecf5d32c2c",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization"
+      },
+      "current_relation_evidence": {
+        "considered_refs": [
+          {
+            "path": "docs/concept/helix-concept.md",
+            "lines": "version scope and mechanism role; pinned file SHA",
+            "relation": "reviewed for Concept-title/version claims; no direct old-line successor inferred"
+          },
+          {
+            "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+            "lines": "51, 53, 106-107",
+            "relation": "adopted L1-009/L1-011 where applicable; exact row route stated separately"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "90-113, 427-448",
+            "relation": "adopted L2-008/009/011 and explicit AAFD candidate-only source table"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "69-72, 123, 161-164",
+            "relation": "adopted acceptance rows and explicit AAFD candidate boundary"
+          }
+        ],
+        "exact_relation_refs": [
+          {
+            "path": "docs/helix-intelligence/candidates/audit-bounded-repair-requirements.md",
+            "lines": "60-65",
+            "relation": "unadopted AAFD-BR summary; detailed old AC conditions are not stated here"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "433-435, 448",
+            "relation": "AAFD requests/requirements remain source candidate; candidate details not automatically adopted"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "123-125",
+            "relation": "AAFD-BR/R are retained as candidate; stale/unknown projection boundary stated at 123"
+          }
+        ],
+        "adopted_l1": [],
+        "adopted_l2": [],
+        "adopted_l11": [],
+        "unadopted_candidate_path": "docs/helix-intelligence/candidates/audit-bounded-repair-requirements.md",
+        "notes": "AAFD否定oracleはinternal driftをTERだけで、external driftをUILだけで閉じることを拒む。INTELLIGENCE候補AAFD-BR-02はinternal UIL/external TER分離を明示。採択済みL2-009は重複実装を避けるが、分類oracleそのものはcandidate-only。"
+      },
+      "incomplete_semantic_conditions": "対象別UIL/TERのclassify/owner boundaryとswap mutationの採択状態。L1-009の一般監査範囲へ具体oracleを読み込まない。",
+      "uncertainty": "The current relation is a bounded source-level assessment. It does not establish complete coverage, successor identity, source closure, or adoption of detailed AAFD candidate oracles."
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000074",
+      "source_order": 74,
+      "snapshot_classification": "requirement_atom",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "cumulative_route_state": "unknown",
+      "route_assessment": "unadopted_candidate_relation_only",
+      "route_assessment_is_new_audit_not_authority": true,
+      "source": {
+        "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+        "source_path_in_snapshot": "docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "physical_line": 41,
+        "line_text": "- UIL／TERを飛ばしてFuture Synthesisへ自由文を投入する。",
+        "source_file_sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+        "source_line_sha256": "sha256:d7e3ab53390a25c2c242d66cc90e79e8d6c3d7ffc6e5cc674f2fbccc602f737d",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization"
+      },
+      "current_relation_evidence": {
+        "considered_refs": [
+          {
+            "path": "docs/concept/helix-concept.md",
+            "lines": "version scope and mechanism role; pinned file SHA",
+            "relation": "reviewed for Concept-title/version claims; no direct old-line successor inferred"
+          },
+          {
+            "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+            "lines": "51, 53, 106-107",
+            "relation": "adopted L1-009/L1-011 where applicable; exact row route stated separately"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "90-113, 427-448",
+            "relation": "adopted L2-008/009/011 and explicit AAFD candidate-only source table"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "69-72, 123, 161-164",
+            "relation": "adopted acceptance rows and explicit AAFD candidate boundary"
+          }
+        ],
+        "exact_relation_refs": [
+          {
+            "path": "docs/helix-intelligence/candidates/audit-bounded-repair-requirements.md",
+            "lines": "60-65",
+            "relation": "unadopted AAFD-BR summary; detailed old AC conditions are not stated here"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "433-435, 448",
+            "relation": "AAFD requests/requirements remain source candidate; candidate details not automatically adopted"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "123-125",
+            "relation": "AAFD-BR/R are retained as candidate; stale/unknown projection boundary stated at 123"
+          }
+        ],
+        "adopted_l1": [],
+        "adopted_l2": [],
+        "adopted_l11": [],
+        "unadopted_candidate_path": "docs/helix-intelligence/candidates/audit-bounded-repair-requirements.md",
+        "notes": "AAFD否定oracleはUIL/TERを飛ばしFuture Synthesisへfree textを投入することを拒む。INTELLIGENCE候補AAFD-BR-02は既存UIL/TERからFuture Synthesisへ接続するが、採択済みL2-009はUIL/TER/Future Synthesisの重複実装を拒むにとどまり、段階順序や受付oracleを明示しない。"
+      },
+      "incomplete_semantic_conditions": "owner handoffと接続順序の具体契約、自由文受領条件。新規workflow routeは推測しない。",
+      "uncertainty": "The current relation is a bounded source-level assessment. It does not establish complete coverage, successor identity, source closure, or adoption of detailed AAFD candidate oracles."
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000080",
+      "source_order": 80,
+      "snapshot_classification": "requirement_atom",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "cumulative_route_state": "unknown",
+      "route_assessment": "adopted_relevant_partial",
+      "route_assessment_is_new_audit_not_authority": true,
+      "source": {
+        "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+        "source_path_in_snapshot": "docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "physical_line": 47,
+        "line_text": "- model upgradeだけを理由にqualificationを自動継承する。",
+        "source_file_sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+        "source_line_sha256": "sha256:6402553e2bf4436ba7eab08a9e65b860d009168ab5482d4f2ef9ce1a7289ef0e",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization"
+      },
+      "current_relation_evidence": {
+        "considered_refs": [
+          {
+            "path": "docs/concept/helix-concept.md",
+            "lines": "version scope and mechanism role; pinned file SHA",
+            "relation": "reviewed for Concept-title/version claims; no direct old-line successor inferred"
+          },
+          {
+            "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+            "lines": "51, 53, 106-107",
+            "relation": "adopted L1-009/L1-011 where applicable; exact row route stated separately"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "90-113, 427-448",
+            "relation": "adopted L2-008/009/011 and explicit AAFD candidate-only source table"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "69-72, 123, 161-164",
+            "relation": "adopted acceptance rows and explicit AAFD candidate boundary"
+          }
+        ],
+        "exact_relation_refs": [
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "433-435, 448",
+            "relation": "AAFD requests/requirements remain source candidate; candidate details not automatically adopted"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "123-125",
+            "relation": "AAFD-BR/R are retained as candidate; stale/unknown projection boundary stated at 123"
+          },
+          {
+            "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+            "lines": "53, 107, 122",
+            "relation": "adopted L1-011 and AAFD-BR-04 source mapping"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "108-113",
+            "relation": "adopted L2-011 same corpus/scope; model-update-only superiority prohibited"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "72, 164",
+            "relation": "adopted comparison oracle; no full old qualification-revalidation contract"
+          }
+        ],
+        "adopted_l1": [
+          "HELIXINTELLIGENCE-L1-011"
+        ],
+        "adopted_l2": [
+          "HELIXINTELLIGENCE-L2-011"
+        ],
+        "adopted_l11": [
+          "L2-011 acceptance row"
+        ],
+        "unadopted_candidate_path": null,
+        "notes": "AAFD否定oracleはmodel upgradeだけを理由にqualificationを自動継承しない。採択済みHELIXINTELLIGENCE-L1-011/L2-011はsame corpus/responsibility scopeで比較し更新名だけで優位判定せず、条件違いを比較不能として戻すため部分的に関係する。qualification receipt/revalidationの全契約は現行L2-011の外側。"
+      },
+      "incomplete_semantic_conditions": "qualificationのowner、対象revision、適格範囲、失効・再検証receipt。モデル更新以外の既存資格継承条件。",
+      "uncertainty": "The current relation is a bounded source-level assessment. It does not establish complete coverage, successor identity, source closure, or adoption of detailed AAFD candidate oracles."
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000091",
+      "source_order": 91,
+      "snapshot_classification": "requirement_atom",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "cumulative_route_state": "unknown",
+      "route_assessment": "true_unknown",
+      "route_assessment_is_new_audit_not_authority": true,
+      "source": {
+        "asset_id": "LEGACY-ASSET-8247A056F30FF91E4B8D",
+        "source_path_in_snapshot": "docs/governance/candidates/agentic-audit-future-state-delta-requests.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requests.md",
+        "physical_line": 14,
+        "line_text": "HELIXは内部変化をUIL、外部技術変化をTER、未来比較をFuture Synthesisで扱う。しかし、AI監査の自由文を",
+        "source_file_sha256": "d78bbcc0ca184bfb87dc2bbc932291f97a58bf9f0fd703481489f15944be9b76",
+        "source_line_sha256": "sha256:2605c22e94c8558e4915cf03fb9aea89aed9397b134068972472545bc904b59d",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization"
+      },
+      "current_relation_evidence": {
+        "considered_refs": [
+          {
+            "path": "docs/concept/helix-concept.md",
+            "lines": "version scope and mechanism role; pinned file SHA",
+            "relation": "reviewed for Concept-title/version claims; no direct old-line successor inferred"
+          },
+          {
+            "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+            "lines": "51, 53, 106-107",
+            "relation": "adopted L1-009/L1-011 where applicable; exact row route stated separately"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "90-113, 427-448",
+            "relation": "adopted L2-008/009/011 and explicit AAFD candidate-only source table"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "69-72, 123, 161-164",
+            "relation": "adopted acceptance rows and explicit AAFD candidate boundary"
+          }
+        ],
+        "exact_relation_refs": [
+          {
+            "path": "docs/helix-intelligence/candidates/audit-bounded-repair-requirements.md",
+            "lines": "60-65",
+            "relation": "unadopted AAFD-BR summary; detailed old AC conditions are not stated here"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "433-435, 448",
+            "relation": "AAFD requests/requirements remain source candidate; candidate details not automatically adopted"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "123-125",
+            "relation": "AAFD-BR/R are retained as candidate; stale/unknown projection boundary stated at 123"
+          }
+        ],
+        "adopted_l1": [],
+        "adopted_l2": [],
+        "adopted_l11": [],
+        "unadopted_candidate_path": null,
+        "notes": "AAFD-BRの背景行は、自由文監査を再現可能観測candidateへ変える入口と、UIL/TERで確定した変化をFuture Synthesisへ渡す契約がないという旧sourceの問題記述。現L1/L2は類似課題を持つが、この歴史的gap statementの現在妥当性/atom statusは未確定。"
+      },
+      "incomplete_semantic_conditions": "背景の問題記述を現行未充足conditionとして扱うか、実際のrequired behaviorへ分解するか。",
+      "uncertainty": "The current relation is a bounded source-level assessment. It does not establish complete coverage, successor identity, source closure, or adoption of detailed AAFD candidate oracles."
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000103",
+      "source_order": 103,
+      "snapshot_classification": "requirement_atom",
+      "effective_classification": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "cumulative_route_state": "unknown",
+      "route_assessment": "adopted_relevant_partial",
+      "route_assessment_is_new_audit_not_authority": true,
+      "source": {
+        "asset_id": "LEGACY-ASSET-8247A056F30FF91E4B8D",
+        "source_path_in_snapshot": "docs/governance/candidates/agentic-audit-future-state-delta-requests.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requests.md",
+        "physical_line": 33,
+        "line_text": "再合成できなければならない。stale directiveからassignment、release、retireを実行してはならない。",
+        "source_file_sha256": "d78bbcc0ca184bfb87dc2bbc932291f97a58bf9f0fd703481489f15944be9b76",
+        "source_line_sha256": "sha256:b60145271669e2cc56e730eadfa143beb507323dcd6b9eec32efb98413f14f7e",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization"
+      },
+      "current_relation_evidence": {
+        "considered_refs": [
+          {
+            "path": "docs/concept/helix-concept.md",
+            "lines": "version scope and mechanism role; pinned file SHA",
+            "relation": "reviewed for Concept-title/version claims; no direct old-line successor inferred"
+          },
+          {
+            "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+            "lines": "51, 53, 106-107",
+            "relation": "adopted L1-009/L1-011 where applicable; exact row route stated separately"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "90-113, 427-448",
+            "relation": "adopted L2-008/009/011 and explicit AAFD candidate-only source table"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "69-72, 123, 161-164",
+            "relation": "adopted acceptance rows and explicit AAFD candidate boundary"
+          }
+        ],
+        "exact_relation_refs": [
+          {
+            "path": "docs/helix-intelligence/candidates/audit-bounded-repair-requirements.md",
+            "lines": "60-65",
+            "relation": "unadopted AAFD-BR summary; detailed old AC conditions are not stated here"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "lines": "433-435, 448",
+            "relation": "AAFD requests/requirements remain source candidate; candidate details not automatically adopted"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "123-125",
+            "relation": "AAFD-BR/R are retained as candidate; stale/unknown projection boundary stated at 123"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "lines": "123",
+            "relation": "AAFD candidate boundary: stale/unknown projection not used for assignment/release/retire; not exact-set invalidation/re-synthesis"
+          }
+        ],
+        "adopted_l1": [],
+        "adopted_l2": [],
+        "adopted_l11": [
+          "L11 boundary row 123 (limited, candidate-state text)"
+        ],
+        "unadopted_candidate_path": null,
+        "notes": "AAFD-BR-03は影響を受けるfuture projection/assumption/directiveだけをstale化・再合成し、stale directiveでassignment/release/retireしない条件。現行L11-acceptance.mdの候補状態境界はstale/unknown projectionのassignment/release/retire利用を禁じるため、この否定部分とは部分関係がある。採択済みL1/L2はaffected exact setの無効化・再合成までは定義しない。"
+      },
+      "incomplete_semantic_conditions": "stale/unknown結果を使わない境界を越え、affected exact setの決定・限定再合成・不affected保持をどの採択契約が担うか。candidate-onlyのFuture Synthesisを採択済みと扱わない。",
+      "uncertainty": "The current relation is a bounded source-level assessment. It does not establish complete coverage, successor identity, source closure, or adoption of detailed AAFD candidate oracles."
+    }
+  ],
+  "limitations": [
+    "All source items remain historical_candidate/draft_candidate/preserved_pending_atomization as shown in the carry-forward ledger; this audit applies no authority change.",
+    "Do not infer that remaining 558 product atoms, 4,755 rows, or any source family is closed or has a successor.",
+    "Current L11 file frontmatter is not used to determine authority; the PO decision record pins the accepted 2026-09-28 L1/L2/L11 revision and candidate set.",
+    "Some selected README/background lines may be meta/process statements despite the cumulative source subtype product_requirement_atom; classification is carried as input and not revised by this route audit.",
+    "No legacy runtime, test, hook, CLI, or CI was executed."
+  ]
+}
