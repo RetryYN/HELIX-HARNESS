@@ -920,3 +920,14 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **品質受入 oracle**：HARNESSの品質oracle結果がある場合、それだけでSECURITYのauthorityまたはWorker環境の隔離適用を成立扱いしない。要求oracleのnegative結果も、他二結果を書き換えない。品質oracleまたは対応L11結果が欠落・unknownなら、他二結果から補完しない。
 - **identity不一致例**：三結果のうち一つでもoperation、要求revisionまたはscopeが異なるfixtureでは、同一operationの三つの結果として結ばない。scopeやrevisionを推測で補正しない。
 - **限界**：本受入案はowner・対象・結果の分離と非代用を読む静的oracleであり、具体的なstate enum、実行方式、Sandbox製品、追加停止規則、人手承認を定義しない。旧sourceの同一line atom以外、security／Worker／HARNESS各契約の完全性、実装・実行結果およびformal successor closureを主張しない。
+
+
+### HELIXOS-L11-105 incident episodeの復旧証拠相関受入候補（未実行）
+
+- **対応要求・authority**：未採択`HELIXOS-L2-105`の静的oracle案。fixture上の参照整合を確認するだけであり、runtime実行、production対応、要求採択、incident close、release許可または受入実行を示さない。
+- **正常例**：既存のincident recordに対応する同一episode identity、対象project/scope/影響revision、ownerが提示した適用可能な回復確認oracleとそのsource/revision、回復procedure record、rollback recordを与える。三証拠が同じepisode/scope/revisionへ結ばれ、各sourceがcurrentであるとき、OSのevidence projectionが各owner/source参照と関係を保ち「記録上の証拠一式が揃う」と表示できることを確認する。rollbackが実施されなかった場合も、その事実を表すrecordを独立に確認し、rollback成功とは読み替えない。
+- **拒否例：identity／scopeの取り違え**：回復確認だけを別incident identityから参照する、procedure/rollback記録だけ対象scopeまたは影響revisionが異なる、同一episode identityを異なるincidentへ重複割当するfixtureを個別に与える。OSは異なるepisodeの証拠を合成せず、一致しない関係を不成立として表示し、誤った一式completeを拒否する。
+- **拒否例：証拠の代理使用**：ticketがclosed、rollback成功、production状態がhealthy、またはprocedure文書が存在する一方で、適用可能な回復確認結果またはその同一episodeへのrelationがないfixtureを与える。これらの状態から証拠一式の充足、incident close、恒久修正またはreleaseを生成しない。
+- **unknown例**：回復確認のoracle owner/source/revisionが欠落・stale・conflict・適用範囲不明、incident identityと既存記録のrelationが不明、または必要recordの読取結果が得られないfixtureを与える。当該dimensionを`unknown`として残し、他の証拠や文書名から補完しない。
+- **受入境界**：本候補はincident episodeの既存参照に対する復旧証拠相関だけを読む。HELIXOS-L2-010／L11のticket種別、発行、workflow、恒久対策routeを再検証せず、旧FR-L1-16のhotfix、即時production release、後続backfillをoracleにしない。旧sourceの固定severityや応答時間、on-call／TL／PMの承認役割・時点も要求しない。既存SECURITY authorityにない操作許可や人間承認を追加しない。
+- **旧source範囲と未解決**：`LEGACY-ASSET-9E033C3E39BE107D4CF1`のline 43から選んだ「SLO/KPI正常化確認」と「復旧手順・rollback記録」の2 spansだけに対応する。旧lineのPLAN/tool名、incident sourceの他line、旧runbook/PLAN/runtime、旧承認条件、Web-OS運用は未被覆のsource holdingに残る。ここで記す静的oracleから旧条件全体のformal successor、実装、実行、closureを推定しない。

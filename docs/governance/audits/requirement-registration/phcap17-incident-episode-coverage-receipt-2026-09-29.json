@@ -1,0 +1,125 @@
+{
+  "receipt_id": "MPR-RCPT-HELIXOS-L2-105-2026-09-29",
+  "authority_effect": "none",
+  "candidate_digest_rule": "候補見出し行から次の同じlevelの見出し直前まで（または末尾）、末尾空行を除きUTF-8 LF一つで終えたbytesのSHA-256。",
+  "source_atom_set_digest_rule": "atom_id昇順で、各atomの「atom_id + 半角空白 + source_line_sha256（sha256:除去） + LF」をUTF-8連結しSHA-256。",
+  "source_holding": {
+    "registration_id": "MPR-SH-PHCAP17-INCIDENT-001",
+    "receipt_ref": "docs/governance/audits/requirement-registration/phcap17-incident-pending-source-snapshot-2026-09-29.json",
+    "snapshot_items": [
+      {
+        "legacy_asset_id": "LEGACY-ASSET-9E033C3E39BE107D4CF1",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/incident.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/incident.md",
+        "semantic_disposition": "pending / not carried except selected spans separately atomized",
+        "source_file_sha256": "sha256:bad6448a63dbc6b7867b9845ca8caf96ee144802961504f3793667f49fc28f7c",
+        "revision_role": "archive source revision, read-only preservation reference"
+      },
+      {
+        "legacy_asset_id": "LEGACY-ASSET-4618C7243C283228809A",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/skills/incident-runbook.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/skills/incident-runbook.md",
+        "semantic_disposition": "pending / not carried except selected spans separately atomized",
+        "source_file_sha256": "sha256:f5ba60755a67d7aff8a38eb2fd4212a17fa3c9186a63ce4763843f25a458e402",
+        "revision_role": "archive source revision, read-only preservation reference"
+      },
+      {
+        "legacy_asset_id": "LEGACY-ASSET-6582F09E55B33723B679",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-129-incident-route-token-coverage.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-129-incident-route-token-coverage.md",
+        "semantic_disposition": "pending / not carried except selected spans separately atomized",
+        "source_file_sha256": "sha256:d557803078abd240241793e76afc398e28c660999b69809d78bed3a87ab04306",
+        "revision_role": "archive source revision, read-only preservation reference"
+      }
+    ],
+    "snapshot_set_digest": "sha256:bc160d4ff44c12ed22877380fe530dda70a84da15fbaf3b01d91ff7e0d682421"
+  },
+  "source_atom_file": "docs/governance/audits/requirement-registration/phcap17-incident-episode-source-lines-2026-09-29.jsonl",
+  "source_atom_file_sha256": "sha256:c3165e6628ad904d1919b1d29f18692096af6d4f42e673054fcab69d5ca01383",
+  "source_atom_set_digest": "sha256:b8a384d9bdea4d585a07b598d7c2355442950ecb1d6914deb3bf03ac6acb1272",
+  "source_atom_count": 2,
+  "source_collection_scope": "PHCAP-17 source from incident.md line 43 only: two selected spans, recovery confirmation and recovery procedure/rollback record. The rest of the line and other source files are preserved but not candidate atoms.",
+  "candidate_parent_l1": {
+    "primary": "HELIXOS-L1-002",
+    "context": "HELIXOS-L1-006",
+    "source_path": "docs/helix-os/L1-planning/system-intent.md",
+    "source_revision": "a1e660c4cae170a613857ea319f5844e335a646c",
+    "source_file_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+    "authority_basis": "2026-09-28 HELIX-OS requirements PO decision; parent L1 meanings fixed, candidate adoption not inherited"
+  },
+  "decision_ref": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+  "candidates": [
+    {
+      "requirement_identity": "HELIXOS-L2-105",
+      "requirement_kind": "unit",
+      "candidate_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-105",
+      "candidate_semantic_digest": "sha256:81e6de13e8876410f69cf586f8aba014765864664d11ec68305d0fede366ad4c",
+      "candidate_file_sha256": "sha256:e514fdf3bd8036d1cba0d3214368cd3bf03ba62fca4b372c946e5ae960dd9354",
+      "candidate_semantic_scope": "Incident episode identity/recovery evidence correlation and record-level completeness only.",
+      "candidate_source_atoms": [
+        "PHCAP17-INCIDENT-RECOVERY-CHECK-L0043",
+        "PHCAP17-INCIDENT-PROCEDURE-ROLLBACK-L0043"
+      ]
+    },
+    {
+      "requirement_identity": "HELIXOS-L11-105",
+      "requirement_kind": "acceptance",
+      "candidate_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l11-105",
+      "candidate_semantic_digest": "sha256:5d075dc35360a2fe87839d2bb2acba4bdee6e6295fdcdbc6e64b60a85a5fcef2",
+      "candidate_file_sha256": "sha256:b537e5c456e054e3f5c6292c0f07f908404cbbed7db18672628a90ac2dabce2e",
+      "candidate_semantic_scope": "Static normal/negative/unknown oracle for identity/scope/revision relation, evidence non-substitution and authority boundary."
+    }
+  ],
+  "atoms": [
+    {
+      "atom_id": "PHCAP17-INCIDENT-RECOVERY-CHECK-L0043",
+      "source_holding_registration_id": "MPR-SH-PHCAP17-INCIDENT-001",
+      "legacy_asset_id": "LEGACY-ASSET-9E033C3E39BE107D4CF1",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/incident.md",
+      "source_file_sha256": "sha256:bad6448a63dbc6b7867b9845ca8caf96ee144802961504f3793667f49fc28f7c",
+      "source_line": 43,
+      "source_line_sha256": "sha256:316b4001b67c6a5f5cb5a9a50dfa84fbc8a7d71232637508f66357359962e64b",
+      "source_text": "5. **収束確認**: SLO/KPI 正常化確認。`kind=recovery` PLAN で復旧手順・ロールバック記録",
+      "source_pointer": "archive/legacy-generation-2026-09-14/root/docs/process/modes/incident.md#L43",
+      "source_span": "SLO/KPI 正常化確認",
+      "source_span_sha256": "sha256:45c954d01f0f2bf2dc9f8caea456f0fa65047866f9d54524be510e0d1eddeec8",
+      "meaning_clause": "episode recovery confirmation",
+      "disposition": "carried",
+      "relation": "Only this exact span from line 43 is carried as same-episode evidence correlation; the surrounding PLAN wrapper and other process conditions remain outside candidate scope."
+    },
+    {
+      "atom_id": "PHCAP17-INCIDENT-PROCEDURE-ROLLBACK-L0043",
+      "source_holding_registration_id": "MPR-SH-PHCAP17-INCIDENT-001",
+      "legacy_asset_id": "LEGACY-ASSET-9E033C3E39BE107D4CF1",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/incident.md",
+      "source_file_sha256": "sha256:bad6448a63dbc6b7867b9845ca8caf96ee144802961504f3793667f49fc28f7c",
+      "source_line": 43,
+      "source_line_sha256": "sha256:316b4001b67c6a5f5cb5a9a50dfa84fbc8a7d71232637508f66357359962e64b",
+      "source_text": "5. **収束確認**: SLO/KPI 正常化確認。`kind=recovery` PLAN で復旧手順・ロールバック記録",
+      "source_pointer": "archive/legacy-generation-2026-09-14/root/docs/process/modes/incident.md#L43",
+      "source_span": "復旧手順・ロールバック記録",
+      "source_span_sha256": "sha256:5e618aa53042a0999158a24cda47d8b7d728426b5a94a08721570087b07418b9",
+      "meaning_clause": "recovery procedure and rollback record",
+      "disposition": "carried",
+      "relation": "Only this exact span from line 43 is carried as same-episode evidence correlation; the surrounding PLAN wrapper and other process conditions remain outside candidate scope."
+    }
+  ],
+  "carried_atom_refs": [
+    "PHCAP17-INCIDENT-RECOVERY-CHECK-L0043",
+    "PHCAP17-INCIDENT-PROCEDURE-ROLLBACK-L0043"
+  ],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-PHCAP17-INCIDENT-001#all source items outside the two selected spans; exact bytes and pending semantic questions",
+    "MPR-SH-IR-003#HIL-FR-16 remains unresolved and is not treated as closure by this candidate"
+  ],
+  "human_decision_disposition_refs": [],
+  "unaccounted_atom_refs": [],
+  "coverage_result": "no_loss",
+  "condition_closure": "not_asserted",
+  "decision_status": "pending_PO; not part of any PO-selected requirement adoption set",
+  "open_boundary": "No immediate production release, old approval roles/timing, severity/response-time, old runtime/CLI, workflow routing, or postmortem meaning is transferred. No overlap with OS-L2-010 workflow/ticket scope or FR-L1-16 release/backfill meaning. Pending holding preserves excluded semantics; this receipt only asserts local atom accounting for the two selected source spans.",
+  "legacy_source_file_sha256": "sha256:bad6448a63dbc6b7867b9845ca8caf96ee144802961504f3793667f49fc28f7c",
+  "legacy_source_line": 43,
+  "legacy_source_line_sha256": "sha256:316b4001b67c6a5f5cb5a9a50dfa84fbc8a7d71232637508f66357359962e64b",
+  "registration_id": "MPR-RC-HELIXOS-L2-105-001"
+}
