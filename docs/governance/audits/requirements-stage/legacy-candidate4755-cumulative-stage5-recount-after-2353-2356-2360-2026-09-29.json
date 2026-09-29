@@ -84,33 +84,33 @@
       "total": 4755
     },
     "condition_subtype": {
-      "product_requirement_atom": 892,
-      "management_process_condition": 8,
+      "product_requirement_atom": 893,
+      "management_process_condition": 7,
       "concept_condition": 1,
       "total": 901
     },
     "condition_route_status": {
-      "unknown": 544,
+      "unknown": 545,
       "source_relation_coverage_unresolved": 141,
       "unadopted_candidate_relation_only": 162,
       "adopted_relevant_partial": 27,
       "partial": 16,
       "management_successor_unresolved": 7,
       "unresolved": 2,
-      "outside_product_route_population": 1,
+      "outside_product_route_population": 0,
       "covered_limited": 1,
       "total": 901
     },
     "product_requirement_atom_route": {
       "known": 349,
-      "unknown": 543,
-      "total": 892,
+      "unknown": 544,
+      "total": 893,
       "known_definition": "condition subtype product_requirement_atom with route_status other than unknown; this is a route label count, not coverage or adoption"
     },
     "equations": {
       "classification": "#2353 926/2918/911 + #2356 0/+8/-8 + #2360 0/+2/-2 = 926/2928/901",
-      "subtype": "#2353 product 904, management 6, concept 1; #2356 product -9/management +1; #2360 product -3/management +1 = product 892, management 8, concept 1",
-      "product_route": "#2353 known 346/unknown 558; #2356 removes 9 unknown product rows; #2360 moves three product rows unknown to adopted_relevant_partial and removes 000180/476/477 from product unknown = known 349/unknown 543"
+      "subtype": "#2353 product 904, management 6, concept 1; #2356 product -9/management +1; #2360 product -2/management 0 = product 893, management 7, concept 1",
+      "product_route": "#2353 known 346/unknown 558; #2356 removes 9 unknown product rows; #2360 moves three product rows from unknown to adopted_relevant_partial, removes 476/477 from the product-condition population, and retains 000180 as product/unknown = known 349/unknown 544"
     }
   },
   "resampling_2359": {
@@ -140,7 +140,6 @@
     "removed_by_2360": [
       "LEGACY-CAND-LINE-000142",
       "LEGACY-CAND-LINE-000143",
-      "LEGACY-CAND-LINE-000180",
       "LEGACY-CAND-LINE-000331",
       "LEGACY-CAND-LINE-000476",
       "LEGACY-CAND-LINE-000477"
@@ -151,6 +150,7 @@
       "LEGACY-CAND-LINE-000109",
       "LEGACY-CAND-LINE-000110",
       "LEGACY-CAND-LINE-000140",
+      "LEGACY-CAND-LINE-000180",
       "LEGACY-CAND-LINE-000356",
       "LEGACY-CAND-LINE-000396",
       "LEGACY-CAND-LINE-000425",
@@ -162,16 +162,15 @@
       "LEGACY-CAND-LINE-000491"
     ],
     "replacement_selection": {
-      "rule": "From cumulative effective condition/product_requirement_atom/unknown IDs ascending, exclude the #2350 20 IDs, #2356 nine IDs, and all original #2359 sample IDs; select the next six IDs.",
-      "unknown_product_population": 543,
+      "rule": "From cumulative effective condition/product_requirement_atom/unknown IDs ascending, exclude the #2350 20 IDs, #2356 nine IDs, and all original #2359 sample IDs; select the next five IDs.",
+      "unknown_product_population": 544,
       "eligible_after_prior_sample_exclusions": 528,
       "replacement_ids": [
         "LEGACY-CAND-LINE-000492",
         "LEGACY-CAND-LINE-000496",
         "LEGACY-CAND-LINE-000497",
         "LEGACY-CAND-LINE-000499",
-        "LEGACY-CAND-LINE-000500",
-        "LEGACY-CAND-LINE-000501"
+        "LEGACY-CAND-LINE-000500"
       ],
       "updated_selected_ids": [
         "LEGACY-CAND-LINE-000052",
@@ -179,6 +178,7 @@
         "LEGACY-CAND-LINE-000109",
         "LEGACY-CAND-LINE-000110",
         "LEGACY-CAND-LINE-000140",
+        "LEGACY-CAND-LINE-000180",
         "LEGACY-CAND-LINE-000356",
         "LEGACY-CAND-LINE-000396",
         "LEGACY-CAND-LINE-000425",
@@ -192,8 +192,7 @@
         "LEGACY-CAND-LINE-000496",
         "LEGACY-CAND-LINE-000497",
         "LEGACY-CAND-LINE-000499",
-        "LEGACY-CAND-LINE-000500",
-        "LEGACY-CAND-LINE-000501"
+        "LEGACY-CAND-LINE-000500"
       ],
       "replacement_rows": [
         {
@@ -255,18 +254,6 @@
           "condition_subtype": "product_requirement_atom",
           "route_status": "unknown",
           "relation_assessment": "not_performed"
-        },
-        {
-          "source_id": "LEGACY-CAND-LINE-000501",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
-          "source_line": 30,
-          "source_file_sha256": "7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
-          "source_line_sha256": "sha256:8bca62507e48cc19085a00746131d39a653aaa28866431c81b5bbf527b3566da",
-          "physical_line_bytes_sha256": "a71d4dd9c98f1ec4497e70e54497aac1894c815687ebacfea5e1e8aab61e12c1",
-          "effective_classification": "condition",
-          "condition_subtype": "product_requirement_atom",
-          "route_status": "unknown",
-          "relation_assessment": "not_performed"
         }
       ]
     },
@@ -324,5 +311,9 @@
     "Route known counts mean only that the stored route label is not unknown; they do not mean covered or adopted.",
     "Replacement-row relation assessments were not performed and must not be inferred from source family, filename, neighboring IDs, or this selection.",
     "Candidate wording and prior receipt status do not override the exact 2026-09-29 PO decision for L2/L11-073; no legacy row relation is assigned here."
-  ]
+  ],
+  "follow_up_status": {
+    "R2361-01": "pending_after_2360_merge; refresh dependency pins and regenerate/rebase against the exact merged main before merge admission",
+    "R2361-02": "addressed_in_this_revision; corrected counts and #2359 resampling while preserving the original sample history"
+  }
 }
