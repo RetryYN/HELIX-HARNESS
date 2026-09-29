@@ -1,9 +1,10 @@
 # 旧candidate product relation未解決行の次20件・限定照合（2026-09-29）
 
-- 基準tree: `bf00aca56add8ca29d9a56af9a989fdeb0a7d969`。#2353 proposed cumulative auditを選定基準として使用。
+- source/L2/L11比較の基準tree: `bf00aca56add8ca29d9a56af9a989fdeb0a7d969`。選定入力は、後にmainへmergeされた#2353/#2354の次のJSON本文で固定する。
 - authority effect: `none`。旧source条件と採択済みHELIX-OS L2/L11の対応・残差を20行単位で記録する。要求採択、旧source closure、exact coverage、formal successor、実装・実行・受入許可を生成しない。
 - scope: #2353のproposed-overlay有効分類で`product_requirement_atom`かつ`source_relation_coverage_unresolved`のID昇順から、#2354で監査済みの20 IDを除いた先頭20件。母数121件。
 - #2353の分類overlayは提案状態のselectorであり、現行全数censusではない。対象は全てexecution-ticket-requirements.mdの番号付き条件または明示的なrecord/schema relationで、header・README pointer・obvious metadata/structure行は含まれない。分類自体は変更しない。
+- 選定入力pin: #2353 cumulative proposed audit JSON — merge commit `97672630b7de70fd4433827730c390cbabd90a99`, `docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json`, SHA-256 `2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c`; #2354 prior first20 audit JSON — merge commit `d8736eeabc90b3d549ba73acec803eea4df6a75c`, `docs/governance/audits/requirements-stage/legacy-candidate4755-product-relation-unresolved-first20-row-audit-2026-09-29.json`, SHA-256 `27e847d026844808d73f96d26e18c1a817b12e6bd26d1f73c9377b4f27379322`. `created_against_commit`/比較基準treeは元の比較対象の記録であり、これらのselector pinとは別である。
 
 ## PO判断のauthorityと比較範囲
 

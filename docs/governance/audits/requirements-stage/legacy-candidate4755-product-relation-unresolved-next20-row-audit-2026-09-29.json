@@ -60,13 +60,13 @@
     {
       "label": "cumulative_proposed_audit_json",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
-      "revision": "8a75e5392a44e005bb05197d977bdbcf75b93cf0",
-      "sha256": "57fce8a0e05ed73c46346f2177c439e862a17a06ecea65446389f24dc34160c5"
+      "revision": "97672630b7de70fd4433827730c390cbabd90a99",
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c"
     },
     {
       "label": "prior_first20_audit_json",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-product-relation-unresolved-first20-row-audit-2026-09-29.json",
-      "revision": "6d18ecf986589cef75e2b0690cc9681d3015d5da",
+      "revision": "d8736eeabc90b3d549ba73acec803eea4df6a75c",
       "sha256": "27e847d026844808d73f96d26e18c1a817b12e6bd26d1f73c9377b4f27379322"
     },
     {
