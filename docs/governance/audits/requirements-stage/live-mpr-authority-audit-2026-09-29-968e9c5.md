@@ -22,6 +22,8 @@
 
 採択310件の算術は`250 + 53 + 8 - 1 = 310`。8は11候補判断で新たに採択されたlive identity（HARNESS-048、BRAIN-031、HARNESS-050〜054、OS-053）。HARNESS-041とOS-038は同判断で後続registrationが採択されたが、identity自体は先行250／57件の採択集合に含まれるため二重計上しない。`-1`は、先に採択されたHELIXOS-L2-034 `-002`を後続未判断revision `-003`がsupersedeした分である。4件の保留は57候補判断の明示保留であり、合計は`310 + 4 + 18 = 332`。
 
+この`-1`はlive exact revisionの集計上の差分であり、採択済みの意味の撤回ではない。HELIXOS-L2-034のlive `-003`は未判断である。57候補判断が採択した`-002`（semantic digest `sha256:b4b8a68a15eabdc3dcf40d069fdf262389a43eec1f8ce8647e66ca22e7b9a600`）の意味は引き続き有効で、`-003`のA／B判断をHARNESS-058／OS-101の同じ`accepted_risk`条件と一体で記録するまでは、その`-002`の意味を適用する。
+
 ## 現行の保留・未判断revision
 
 ### 保留4件
