@@ -1,0 +1,130 @@
+{
+  "receipt_id": "MPR-RCPT-OS-DIRECTIVE-DISPOSITION-2026-09-28-R3",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom順に改行で区切る。末尾改行なし。",
+  "scope": "旧HIL-BR07/FR36とHOT-HIL36の原文3行。原記録/処分根拠/異議履歴を意味再導出。IR全文または旧運転受入全件の被覆を主張しない。 旧FR09/NFR21を追加。FR09の処分分類全体は未完保持。",
+  "candidates": [
+    {
+      "requirement_identity": "HELIXOS-L2-034",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HELIXOS-L1-001",
+        "HELIXOS-L1-002",
+        "HELIXOS-L1-008"
+      ],
+      "candidate_semantic_digest": "sha256:6b019294047fce2e1c8b5d1b5e8d379fa9111f5912274f6dca918ffd81c0e1e8",
+      "source_atom_set_digest": "sha256:a4b5c63b2d483ebc5abbfd86ea0f6c6aa00da8009156c045f50dca84e1235f65",
+      "source_atom_count": 5,
+      "source_collection_scope": "旧HIL-BR07/FR36とHOT-HIL36の原文3行。原記録/処分根拠/異議履歴を意味再導出。IR全文または旧運転受入全件の被覆を主張しない。 旧FR09/NFR21を追加。FR09の処分分類全体は未完保持。",
+      "atoms": [
+        {
+          "atom_id": "DIRECTIVE-DISPOSITION-infinity-loop-platform-requirements.md-L0059",
+          "source_holding_registration_id": "MPR-SH-DIRECTIVE-DISPOSITION-002",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 59,
+          "source_line_sha256": "sha256:f0e61fc0481c4643c32404f290014a58f14c4f856ec91e3dbfa086eb0f857e21",
+          "source_text": "| **HIL-BR-07** | user directiveとIssueは分類前にdurable intake receiptを持ち、AIが不要判断だけでreject/drop/close/cancelできない。AIの非actionable dispositionは非終端で、cancel/supersedeはPOだけが行える。closure receiptが無いcloseは拒否または再openする。 |",
+          "disposition": "carried",
+          "relation": "分類前のdurable原指示、disposition別の証拠、既存PO取消権限、appeal/reopenとclosure条件をOS034/L11へ保持。旧Issueは原event/local ticketと協調projectionに分離。"
+        },
+        {
+          "atom_id": "DIRECTIVE-DISPOSITION-infinity-loop-platform-requirements.md-L0126",
+          "source_holding_registration_id": "MPR-SH-DIRECTIVE-DISPOSITION-002",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 126,
+          "source_line_sha256": "sha256:8df266db7301f4875642a310ae8d29b3d212dfcbb35307dbec4cb7be1b24317e",
+          "source_text": "| **HIL-FR-36** | Directive Custody Gateはuser directiveを受信直後に原文参照、source span、actor、received_at、digest、supersession chain付きで永続化する。duplicateは生存targetとoracle包含証拠、false-positiveは独立反証、accepted-risk/cancel/supersedeはPO receiptを要求する。 | durable intake、disposition challenge、appeal/reopen receipt |",
+          "disposition": "carried",
+          "relation": "分類前のdurable原指示、disposition別の証拠、既存PO取消権限、appeal/reopenとclosure条件をOS034/L11へ保持。旧Issueは原event/local ticketと協調projectionに分離。"
+        },
+        {
+          "atom_id": "DIRECTIVE-DISPOSITION-L1-infinity-loop-operational-test-design.md-L0063",
+          "source_holding_registration_id": "MPR-SH-DIRECTIVE-DISPOSITION-002",
+          "legacy_asset_id": "LEGACY-ASSET-AFE91778057B7E76BEEC",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+          "source_file_sha256": "sha256:4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+          "source_line": 63,
+          "source_line_sha256": "sha256:bfca43fdb9b39778e7acc076f69dd827c646cfea917cf19ad8a71eb7f5fb0725",
+          "source_text": "| **HOT-HIL-36** | HIL-BR-07, HIL-FR-09/36, HIL-NFR-21 | user directive/findingをAIがduplicate/false-positive/telemetry/cancelへ分類する | 原記録はdurable、duplicate先生存＋oracle包含、false-positive独立反証、cancel/supersede PO receipt、appeal route欠落なら非終端 |",
+          "disposition": "carried",
+          "relation": "分類前のdurable原指示、disposition別の証拠、既存PO取消権限、appeal/reopenとclosure条件をOS034/L11へ保持。旧Issueは原event/local ticketと協調projectionに分離。"
+        },
+        {
+          "atom_id": "DIRECTIVE-DISPOSITION-infinity-loop-platform-requirements.md-L0099",
+          "source_holding_registration_id": "MPR-SH-DIRECTIVE-DISPOSITION-002",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 99,
+          "source_line_sha256": "sha256:1f941a539d063d9601488bfe21a55b5b3afd2b7bc81d97fa443023456e4b1902",
+          "source_text": "| **HIL-FR-09** | Claude監査器はDB relation/coverage/contract/impact viewとPR差分を突合し、findingを`current_pr_fix/successor_issue/duplicate/false_positive/accepted_risk/telemetry`へ証拠付きdispositionする。`current_pr_fix`と`successor_issue`はseverityではなくcurrent contract影響と責務境界で分ける。非actionable分類はfindingを削除/終端化せず、独立reviewとappeal routeを持つ。 | audit finding、affected layer、typed非終端disposition receipt |",
+          "disposition": "preserved_pending",
+          "relation": "非actionable findingの独立review/appeal/非終端を034へ。current_pr_fix/successor_issue分類全体は未完保持。"
+        },
+        {
+          "atom_id": "DIRECTIVE-DISPOSITION-infinity-loop-platform-requirements.md-L0201",
+          "source_holding_registration_id": "MPR-SH-DIRECTIVE-DISPOSITION-002",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 201,
+          "source_line_sha256": "sha256:9b5c8f5d590e7cf8293cf9366f5bb5b87f6609dfa5ca19cb9eac8bb4ac1dbadd",
+          "source_text": "| **HIL-NFR-21** | user directive/findingの原記録はappend-onlyで、AI dispositionは原記録を削除・不可視化・終端化しない。PO以外のcancel/supersedeと、独立reviewなしのfalse-positive/accepted-riskを拒否する。 |",
+          "disposition": "carried",
+          "relation": "append-only原記録とPO取消権限、false-positive/accepted-risk独立reviewの境界を保持。"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-015",
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-019",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-034"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": [],
+      "paired_l11_section_digest": "sha256:b89f63d709b38de1ddc8b7ca7d51de595b9cae587da320e027aefed67a3a4e4b"
+    }
+  ],
+  "supersedes_receipt_ref": "docs/governance/audits/requirement-registration/os-directive-disposition-coverage-receipt-2026-09-28-r2.json",
+  "review_correction": "R2314-01: old L5/L4 finding accepted_risk PO receipt restored as a proposal; R2314-02: this reverses adopted OS034-002 meaning. OS034-003 remains unadopted, inherits no adoption, and requires PO decision on exact candidate revision. Directive cancel/supersede PO authority remains distinct.",
+  "additional_legacy_context_refs": [
+    {
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/github-pr-audit-promotion.md",
+      "source_file_sha256": "sha256:bbb2f1662d44196d399066da8c4f29ba2dfdea4815a9d4a58f3f898925800eb2",
+      "source_lines": "68-70",
+      "evidence_role": "four non-actionable evidence conditions and disposition_pending, finding accepted_risk action-binding PO receipt"
+    },
+    {
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+      "source_file_sha256": "sha256:2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357",
+      "source_lines": "277-280",
+      "evidence_role": "separate verifier refutation, PO receipt for accepted_risk, appeal/reopen and pending disposition"
+    },
+    {
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_line": 201,
+      "source_line_sha256": "sha256:9b5c8f5d590e7cf8293cf9366f5bb5b87f6609dfa5ca19cb9eac8bb4ac1dbadd",
+      "evidence_role": "independent review for false_positive and accepted_risk, append-only finding"
+    }
+  ],
+  "accepted_risk_revision_boundary": {
+    "historical_adopted_registration": "MPR-RC-HELIXOS-L2-034-002",
+    "historical_adoption_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+    "candidate_registration": "MPR-RC-HELIXOS-L2-034-003",
+    "candidate_status": "registered_proposal_unadopted",
+    "adoption_inherited": false,
+    "meaning_change": "finding accepted_riskに独立reviewとaction-binding PO receiptの両方を要する条件は、採択済み-002のPO要件を一律追加しない条件を反転する。",
+    "required_decision": "HELIXOS-L2-034 -003のexact candidate revisionへのPO判断。未判断中は-002の採択済み意味だけが有効。",
+    "same_decision_dependency": [
+      "HARNESS-L2-058",
+      "HELIXOS-L2-101"
+    ],
+    "candidate_semantic_digest": "sha256:6b019294047fce2e1c8b5d1b5e8d379fa9111f5912274f6dca918ffd81c0e1e8",
+    "authority_effect": "none"
+  }
+}

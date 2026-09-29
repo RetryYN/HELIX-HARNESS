@@ -574,7 +574,7 @@ fixture内のID・source textは合成値であり、普遍的なticket番号、
 
 照合した現行本文の固定commit：`2197a4bc405d37f133bac4d5e96809c5afec58c1`。旧L1のBR-07は59行、FR-36は126行、旧運転受入HOT-HIL-36は63行。旧原文のIssue語を現行の原event/local ticketと協調projectionへ分離して再導出し、原指示の意味上の取消権限を緩めない。
 
-**findingのリスク受容：正常・反例**：review findingに、対象revision/scope、根拠、残るrisk、独立review receiptとappeal経路を与える。上流意味の変更がなければPO receiptを一律追加せず、accepted-riskの非終端記録を原findingへ結ぶ。独立reviewなしにリスク受容する、directiveのPO要件を流用して通常findingのaccepted-riskを止める、review済みを理由に原記録を削除/不可視化/終端化する、appeal経路を失う場合は不合格。上流意味を変える場合は人の既存判断へ戻す。出所の種別が不明なら推測せず確認先へ返す。
+**findingのリスク受容：正常・反例**：review findingに、対象revision/scope、根拠、残るrisk、独立review receiptとappeal経路を与える。directiveのcancel／supersede用PO receiptをfindingへ一般化せず、review findingの`accepted_risk`には旧L5 §3のaction-binding PO receiptと旧HIL-NFR-21の独立review receiptの両方を結び、非終端記録を原findingへ残す。いずれかが欠けたリスク受容、review済みを理由とする原記録の削除/不可視化/終端化、appeal経路の喪失は不合格。上流意味を変える場合は人の既存判断へ戻す。出所の種別が不明なら推測せず確認先へ返す。
 
 **原文追補**：旧L1 `infinity-loop-platform-requirements.md:99,201`（HIL-FR-09/NFR-21、L2と同じasset/SHA）により、findingの証拠付き非終端dispositionと独立reviewを保持する。current_pr_fix/successor_issueの分類全体をこの受入だけで閉じない。
 
@@ -880,3 +880,15 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **拒否例**：Issueがready表示でもticket／assignment authorityがない、対象revision／scopeが異なる、または適用されるReverse／Redesign／pair-freezeのいずれかが未完了のfixtureでは、tool起動前にclaimを拒否しblocked reasonと未完義務を記録する。期限切れまたは別assignmentに属するleaseを使ったclaimも拒否する。
 - **unknown例**：ready判定、authority、scope、revision、lease、またはすでに適用すると確定した工程の状態がmissing／unknown／conflict／staleなら、OSは成立を推測せず理由付きで保留し、ticket発行元または該当ownerへ返す。工程の適用自体が未定義なら、適用済み／非適用のどちらにも推定で分類せず、既存authority ownerへ照会する。これを全scopeで工程完了を要求する新gateとして扱わない。
 - **責務境界と限界**：Codex固有実行器を検査せず、OSが割り当てるprovider中立Workerとして照合する。旧FR-08の工程一律条件から現行のscope適用条件への差分を受け入れ、全scopeの工程適用規則をこの候補で新設しない。lease時間、更新、競合解決、実runtimeのtool起動動作は既存契約または別の対象revisionに委ねる。blocked receiptやIssue statusは承認・要求採択・完了を生成しない。旧HST-CASE-002-10は読取り専用のnegative oracle参照であり実行しない。
+
+### HELIXOS-L2-101 finding disposition receiptと異議連結の受入候補（未実行）
+
+- **対応要求・状態**：HELIXOS-L2-101（HELIX-OS単体候補、未採択）。静的oracle候補であり、要求採択、実装・実行、Issue操作またはformal successor割当を示さない。
+- 旧sourceが名指すClaude providerの固定を受入条件にしない。作成側と別のreviewer identity・context・authority・routeがある例はreview役割を満たし、providerが同じという理由だけでは失敗にしない。providerが違うだけでは独立review合格にしない。
+- 各receipt候補は入力finding identity、source/対象revision、evidence参照、affected layer、提案された分類、独立review参照を相互に追跡できる。いずれかが不足・stale・競合する例は未解決のまま示し、accepted receiptとして扱わない。
+- `duplicate`は生存targetとacceptance oracle包含証拠をreceiptへ結ぶ。片方が欠ける例は`disposition_pending`。
+- `false_positive`は別verifierの反証と独立reviewの両方を記録し、片方が欠ける例は`disposition_pending`。
+- `accepted_risk`は独立reviewと、受容対象actionへ結び付いたPO receiptの両方を記録し、片方が欠ける例は`disposition_pending`。directiveのcancel/supersede権限からこのPO receiptを導出しない。
+- `telemetry`は観測ownerとexpiryをreceiptへ記録し、片方が欠ける例は`disposition_pending`。
+- 四つのnon-actionable分類はいずれも元findingをappend-onlyで保持し、typed receiptとappeal/reopen routeを残す。証拠不足のfindingを終端化しない。
+- receiptやIssue projectionだけから要求採択、Issue完了、取消権限または下流実行許可を作らない。

@@ -1186,3 +1186,17 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 - **memory条件の保留表示**：旧HIL-FR-07のmemory compaction atomと旧HST-CASE-023-03のmemory receipt欠落時close 0件の負例は、source holdingに保全する。今回候補の結果には`memory条件: 未判定（holding）`を別項目として示し、これだけを理由に候補へ移した他の条件の評価を止めない。旧memory receiptの現行証拠との同値、適用scope、欠落時の現行close運転は本候補で決めない。OS-L2-019 continuityやprovider memoryを旧receiptと同一視しない。旧HIL-FR-10 line 100の別event・promote／supersede／no-promotionの意味、IR45のHMC置換／意味変更候補という分類もholdingで参照し、今回候補の採択対象やclose拒否条件へ昇格させない。
 - **CI・GitHub projection境界**：新世代CIは未構築であり、旧CIやGitHubのPR／merge状態からCI成功、要求採択、受入、完了を作らない。今回候補で適用が必要なCI証拠を得られない対象はunknownとして候補対象条件を成立にしない。この候補はCI実装・起動や旧CI fallbackを要求しない。
 - **差分と保留**：旧HIL-FR-07の七つの検査対象と二つの出力欄のうち、今回候補へ移した8 atomだけを意味入力として扱い、memory compactionの1 atomはholdingへ残す。IR45に従い、oracle／verification／acceptance段階の証拠は各ownerで分離し、一つのclosure receiptへ意味を集約しない。旧assertionは欠落時の反例oracle参照として使う。選択styleの具体的定義、旧memory compactionと現行continuityの対応、CI未構築下での対象別適用、各evidenceのcurrent判定の詳細は本候補で新設せず保留する。旧HIL-FR-07のIR行は`preserved_pending_rehome`のまま保持し、本候補登録からIR全体のclosureを主張しない。
+
+### HARNESS-L2-058 PR findingの六分類とcurrent/successor判定意味候補（HARNESS-CORE unit候補、未採択）
+
+- **親L1**：`HARNESS-L1-004`（検証義務・反例・証拠・差戻し条件）を主親とし、`HARNESS-L1-003`（変更影響の追跡）へ接続する候補。親の意味は変更しない。
+- **候補状態**：新identityの意味再導出候補。未採択であり、PR audit、Issue発行、修正、merge、要求受入を実行・許可しない。
+- **対象と境界**：選択されたPR監査で観測されたfindingについて、HARNESSはfindingの意味分類とaffected layerを示すためのoracle条件を定める。旧sourceの六つの分類名は`current_pr_fix`、`successor_issue`、`duplicate`、`false_positive`、`accepted_risk`、`telemetry`。現在の要求契約への影響と責務境界を使う`current_pr_fix`／`successor_issue`の区別を保持し、severityだけで分けない。HARNESSはOSの記録・Issue運転・merge authorityを所有しない。
+- **比較入力**：既存の要求・contract・impact・coverage relationとPR差分を比較し、各判断のsource revisionとfinding identityを特定できること。source、契約、差分またはaffected layerがmissing／unknown／stale／conflictなら分類根拠を補完せず、未解決として返す。
+- **分類意味**：`current_pr_fix`と`successor_issue`の区別には、severityでなく現行contractへの影響と責務境界を使う。旧HIL-FR-09は区別軸を示すが、全境界条件はこの要求で追加しない。non-actionableの四分類は`duplicate`、`false_positive`、`accepted_risk`、`telemetry`である。
+- **non-actionableの証拠条件**：`duplicate`には生存targetと、そのtargetが該当acceptance oracleを包含する証拠を要する。`false_positive`には別verifierによる反証と独立reviewを要する。`accepted_risk`には、独立reviewに加え、受容するactionへ結び付いたPO receiptを要する。`telemetry`には観測ownerとexpiryを要する。これらの必要証拠が不足するfindingは確定分類せず`disposition_pending`のままにする。
+- **根拠と未完保持**：六分類とcurrent/successorの区別軸は旧HIL-FR-09 line 99、non-actionable条件は旧L5 `github-pr-audit-promotion.md` §3 lines 68–70、旧L4 `infinity-loop-platform-basic-design.md` §4.2 lines 277–280、旧HIL-NFR-21 line 201に基づく。旧HIL-BR-17 line 69／HIL-FR-30 line 120の追加判定・promotion条件をこの候補へ取り込む範囲はPOの意味確認事項として保留する。旧sourceのruntime実装・詳細schemaは移さない。
+- **単独成立の依存**：HARNESS-L2-004／005の検証義務・oracleと、OSが提供するfinding/evidence provenanceが選択対象revisionで利用可能であること。HR-FR-HIL-03、HIL-BR-17、HIL-FR-30は旧source上の関係・設計根拠であり、現行採択やformal successor割当を意味しない。
+- **受入候補**：同じsource revision・PR差分・契約snapshotを与えたとき、六つの分類語を互いに混同せずtyped候補として表せること。current contract影響と責務境界を変えseverityだけを変えた入力はcurrent/successorの意味を変えない。分類基準または根拠が欠ける例は確定分類を返さず、未解決条件を示す。oracleの実行結果を主張しない。
+- **未完保持**：四つのnon-actionable分類は前記source条件を満たす証拠だけを受け入れる。証拠が欠けるケースは`disposition_pending`に保持する。current/successorの詳細な境界条件、HIL-BR-17／FR-30の具体化をこの候補へ含める範囲は、PO意味確認と下流の独立reviewまで決めない。候補登録から採択・下流pairの完了を作らない。
+- **旧source**：`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、旧`infinity-loop-platform-requirements.md:99`（HIL-FR-09）。比較対象の分類軸は同`:69`（HIL-BR-17）と`:120`（HIL-FR-30）で照合した。IR上の`HIL-FR-09`は`HR-FR-HIL-03`を参照する。旧runtime、DB、assertionを実行・移植しない。
