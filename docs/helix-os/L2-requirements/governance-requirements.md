@@ -1321,3 +1321,14 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - **重複しない境界**：HELIXOS-L2-010／L11のincident種別、ticket発行、workflow、恒久対策の戻り先、およびHELIX-HARNESS旧FR-L1-16の緊急対応・hotfix・release・収束後のbackfillを再定義しない。本候補は既存incident参照に紐づく復旧証拠の相関と記録上の充足状態に限る。旧sourceのimmediate production release、既定severity、固定応答時間、旧PLAN/token/CLI/runtimeは含めない。
 - **人間判断の保全**：旧`incident.md`のon-call／TL／PM三者承認や旧`incident-runbook.md`のproduction change前approvalは、新世代へ移管・撤回・置換しない。既存SECURITY操作authorityと有効な既決権限を参照し、追加の人間承認、承認主体、承認時点を新設しない。これらの旧meaning decisionは生存中source holdingで保持する。
 - **旧sourceからの再導出と限界**：旧`LEGACY-ASSET-9E033C3E39BE107D4CF1`のline 43から「収束確認」と「復旧手順・rollback記録」の二spanだけを、同一incident episodeに対する証拠関係として限定再導出する。source/file/line/span digestは専用source-lines ledgerとreceiptに固定する。source fileの他条件、旧runbook、旧PLANとそのtest、PHCAP-17全体、Web-OS service incidentsは本候補の被覆範囲外であり、生存中source holdingに残す。
+
+
+### HELIXOS-L2-106 authority binding参照先の再帰検査候補（単体候補、未採択）
+
+- **状態・authority**：HELIX-OSの未採択候補。`registered_proposal`／`authority_effect: none`。本候補の記載、登録、静的確認は要求採択、権限の成立、scanner/runtimeの実装・実行または受入を生成しない。
+- **親L1・owner候補**：採択済みHELIXOS-L1-001／008に接続する候補。HELIX-OS管理はL2-015で管理するauthority記録の対象となる参照関係の提示と未解決状態の保持を担う。これは旧要求のowner移管または本候補の採択を確定しない。
+- **対象条件**：既存のauthority binding recordが参照するtargetについて、recordの参照先を再帰的に確認し、既存のtarget ownerが当該targetを失効・互換・履歴状態として示す場合、そのtargetへのcurrent edgeを有効なauthority参照として扱わない。判定対象は入力として特定されたbinding/reference chainとその参照先に限る。
+- **状態・差戻し**：target、edge、対象revisionまたはtarget ownerの状態が欠落・unknown・conflict・staleなら適合と推定せず、未解決として保持し、既存のsource/target ownerへ確認を戻す。状態語の意味と適用可否は各target ownerの既存契約に従う。
+- **境界**：HELIXOS-L2-015のsource identity/revision/digest/authority出所追跡を維持し、その一般記録要件を置換しない。全文書census、全repo scanner、binding schema、互換性・失効・履歴化の新たな判定規則、再帰深度・性能、finding taxonomy、修復・削除・edge書換え、旧CLI/runtime/test/CIを定めない。参照されたtarget ownerが既存状態を提示しない場合、本候補から状態を作らない。
+- **旧source・限定範囲**：`LEGACY-ASSET-D201753B1A0CC6EA3980`、旧`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md:50`、source file SHA-256 `81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66`、line SHA-256 `77e1d9bc1f98f2a1f1cf0094dd280fb83d001ffe8ee422f1c951da2d72898212`を起点とする。この旧line atomの限定的な再導出候補であり、DAC-FR-003の全条件、文書Authority Census全体、旧source ownerの移管、formal successor、実装・実行・採択の成立を主張しない。`MPR-SH-CONFIRMED-003`は生存させる。
+- **version_target**：旧source文書のversion 1.0を参照情報として記録する。対象適用範囲と本候補の版採択は未確定である。

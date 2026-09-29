@@ -112,3 +112,7 @@ G7ではPO原文と現行Conceptの共通部品の行を親に、HELIX-CONNECT�
 ## HIL-FR-01 lifecycle path候補の仮登録（2026-09-29）
 
 旧HIL-FR-01 line 91から7つのliteral facetを分け、HARNESS-L2-060へ入力revision/digest atom 1件、HELIXOS-L2-103へevent/state/causality atom 3件を候補登録した。旧`InfinityLoopEvent` intake、旧stage sequence、前段receipt必須化atomは`MPR-SH-IR-003#HIL-FR-01`へ保留し、全体を普遍的stage規則にしない。被覆receiptはこのsource lineの局所partitionのみを記録し、旧IR全体、関連system contract、consumerまたはformal successorのclosureを主張しない。
+
+## confirmed175 DAC-FR-003限定候補の仮登録（2026-09-29）
+
+`MPR-RC-HELIXOS-L2-106-001`は、confirmed175の`DAC-FR-003` source line 50を1 atomだけ入力したHELIXOS-L2/L11-106未採択候補である。candidate source-lines／coverage receiptは`docs/governance/audits/requirement-registration/dac-fr-003-authority-binding-source-lines-2026-09-29.jsonl`と`dac-fr-003-authority-binding-coverage-receipt-2026-09-29.json`。`no_loss`はこの限定atomのcandidate mappingに限り、formal successor、owner移管、適用範囲、状態semantics、採択または条件closureを示さない。生存中`MPR-SH-CONFIRMED-003`は変更せず、source holdingとして保持する。
