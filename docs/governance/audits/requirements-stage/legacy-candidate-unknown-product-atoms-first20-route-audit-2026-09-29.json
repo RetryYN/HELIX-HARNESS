@@ -34,7 +34,8 @@
   "pinned_inputs": [
     {
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-condition-route-recount-after-2345-2026-09-29.json",
-      "sha256": "25d940277af5a6a343e4eda066bdfe4e3f770fb97f4f56c4586e00b4f025233e"
+      "sha256": "25d940277af5a6a343e4eda066bdfe4e3f770fb97f4f56c4586e00b4f025233e",
+      "role": "#2347 cumulative recount baseline; it predates this audit and does not include the 10 route assessments"
     },
     {
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
@@ -1401,9 +1402,34 @@
   ],
   "limitations": [
     "All source items remain historical_candidate/draft_candidate/preserved_pending_atomization as shown in the carry-forward ledger; this audit applies no authority change.",
-    "Do not infer that remaining 558 product atoms, 4,755 rows, or any source family is closed or has a successor.",
     "Current L11 file frontmatter is not used to determine authority; the PO decision record pins the accepted 2026-09-28 L1/L2/L11 revision and candidate set.",
     "Some selected README/background lines may be meta/process statements despite the cumulative source subtype product_requirement_atom; classification is carried as input and not revised by this route audit.",
-    "No legacy runtime, test, hook, CLI, or CI was executed."
-  ]
+    "No legacy runtime, test, hook, CLI, or CI was executed.",
+    "The #2347 cumulative route bucket counts predate this 10-row route overlay and are historical/stale once it is incorporated. Exact new route totals are not asserted until all 4,755 rows and applicable overlays are re-enumerated/reconciled. Classification counts remain unchanged because no classification was changed."
+  ],
+  "population_count_boundary": {
+    "baseline_artifact": {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-condition-route-recount-after-2345-2026-09-29.json",
+      "sha256": "25d940277af5a6a343e4eda066bdfe4e3f770fb97f4f56c4586e00b4f025233e",
+      "issue": "#2347"
+    },
+    "baseline_classification_counts": {
+      "structure": 926,
+      "explanation": 2911,
+      "condition": 918,
+      "total": 4755,
+      "status_after_this_audit": "unchanged; this audit changes no row classification"
+    },
+    "baseline_product_route_counts": {
+      "known": 336,
+      "unknown": 577,
+      "status": "historical_stale_after_this_audits_route_overlay_is_incorporated"
+    },
+    "this_audit_route_assessments": {
+      "adopted_relevant_partial": 4,
+      "unadopted_candidate_relation_only": 6,
+      "true_unknown": 10
+    },
+    "recount_requirement": "Do not derive or report new cumulative route bucket totals by adding/subtracting these bounded row assessments. Re-enumerate and reconcile all 4,755 rows and applicable route overlays before asserting cumulative route totals."
+  }
 }

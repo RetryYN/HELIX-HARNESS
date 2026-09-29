@@ -9,6 +9,13 @@
 
 除外集合は累積recount JSONの#2341 source classification/route IDs、#2342 20 crosswalk IDs、#2345 12 condition audit IDsの和集合（53 IDs）。選定はJSONの4,755 `row_state_records`をID昇順に走査し、effective classification/subtype/routeと突合して先頭20件を取った。
 
+### #2347基準件数とroute overlayの境界
+
+基準recount [#2347 JSON](legacy-candidate4755-cumulative-condition-route-recount-after-2345-2026-09-29.json) (`docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-condition-route-recount-after-2345-2026-09-29.json`, SHA-256 `25d940277af5a6a343e4eda066bdfe4e3f770fb97f4f56c4586e00b4f025233e`）のproduct route件数はknown 336 / unknown 577であり、本監査のroute評価4件（採択済み部分関係）+6件（未採択candidate関係）を含まない。本監査のroute overlayが累積へ取り込まれた後、この#2347 route件数はhistorical/staleとなる。ここから新しい累積route値を加減算で確定せず、4,755全行と適用overlayを再列挙・突合した後にだけroute総数を記録する。
+
+本監査は分類を変更していないため、#2347のclassification counts（structure 926 / explanation 2,911 / condition 918、total 4,755）は影響を受けず、この監査でも同じ値である。これはroute bucket数が不変という意味ではない。
+
+
 - `adopted_relevant_partial`: 採択済み現行L1/L2/L11とsource意味に限定的関係があるが、残余oracleや旧atom全体の被覆を意味しない。
 - `unadopted_candidate_relation_only`: 現行の未採択candidateへのsource関係だけが確認でき、採択済みcoverageではない。
 - `true_unknown`: このbounded readでsource atomを直接結ぶcurrent relationを特定できない。
