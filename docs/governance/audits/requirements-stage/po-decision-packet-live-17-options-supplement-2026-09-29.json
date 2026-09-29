@@ -16,7 +16,9 @@
     "docs/helix-labo/L2-requirements/labo-requirements.md": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
     "docs/helix-labo/L11-acceptance/labo-acceptance.md": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
     "docs/helix-os/L2-requirements/governance-requirements.md": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
-    "docs/helix-os/L11-acceptance/governance-acceptance.md": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112"
+    "docs/helix-os/L11-acceptance/governance-acceptance.md": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+    "os104_parent_l1": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+    "os_requirements_po_decision": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
   },
   "decision_semantics": {
     "adopt": "select only this exact registration and pinned L2/L11 bytes; does not imply implementation, full legacy-source coverage, or release of unrelated holding.",
@@ -27,7 +29,7 @@
     "For HARNESS-L2-060 and HELIXOS-L2-103, A/B options are reported in the live worksheet as previously presented at issue #2316. The issue primary text was not independently verified within the repository; no choice is treated as selected.",
     "HARNESS-L2-049 current -003 supersedes -002; earlier PO materials for -002/older L11 do not decide -003.",
     "HELIXOS-L2-034 -003 retains the existing worksheet B recommendation only; this is not a PO decision.",
-    "HELIXOS-L2-104 registration states draft_candidate; exact parent approval not claimed."
+    "Correction: the 2026-09-28 OS PO decision fixes system-intent.md bytes sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e as the confirmed parent revision (decision :31). The MPR parenthetical and earlier live-8 packet parent-boundary section are historical/misleading assessments, not current parent authority. This supplement corrects the assessment; it does not edit append-only MPR or the historical 8-candidate packet."
   ],
   "candidates": [
     {
@@ -933,23 +935,38 @@
       "candidate_meaning_summary": "SECURITY authority、worker-isolation観測、HARNESS quality acceptanceの3 owner結果をoperation/scope/revisionに連結する。",
       "options": {
         "adopt_exact_revision": {
-          "impact": "採択: 親L1 exact revision authorityを別途確認後、3 owner結果の連結だけを選ぶ。新gate/deny authorityは加えない。"
+          "impact": "採択: このexact L2/L11/MPR revisionと、旧crosswalk line 14から選んだ1 atomに限り、同じoperation・要求revision・scopeのSECURITY authority、Worker isolation適用観測、HARNESS quality acceptanceの3結果を相互非代用のまま関連付ける。ownerの判定、Worker実行、拒否gate、追加承認は作らず、旧crosswalk全体のformal successor/closureも主張しない。"
         },
         "hold": {
-          "impact": "保留: `draft_candidate; exact parent approval not claimed`の親planning revisionを確認するまで保持。"
+          "impact": "保留: POが3 owner outcomeの同一operation/scope/revisionへの連結意味に具体的な異論を持つ場合、このOS connection candidateを選ばず、各ownerの既存authority/resultをそのまま独立して扱う。親L1未承認を理由にしない."
         },
         "reject_exact_revision": {
-          "impact": "不採択: この候補revisionを選ばず、既存owner contractに代わる権限を生成しない。"
+          "impact": "不採択: このexact cross-owner connection revisionだけを選ばず、SECURITY/Worker/HARNESSの既存判定・実行境界を変更しない。旧crosswalk全体のretireやformal successor割当を生成しない。"
         }
       },
-      "directional_recommendation": "保留を推奨。candidate MPR自身が親L1を `draft_candidate; exact parent approval not claimed` としており、親authorityが成立した根拠がない。",
-      "unresolved_owner_or_meaning": "OS L1 owner/POが対象parent L1のexact revision authorityを確認すること。旧crosswalk残差は保留根拠ではない。",
+      "directional_recommendation": "限定機能意味の採択を推奨。同一operation/scope/revisionに対する3 owner結果の連結と相互非代用だけを定め、新gate・deny authority・追加承認・実行を作らない。",
+      "unresolved_owner_or_meaning": "candidate内のparent authority/owner boundaryに採択を阻む未解決点はない。POがこの限定連結意味自体に具体的異論を持つ場合に保留を選べる。source全体のdispositionは対象外。",
       "registration_row_sha256": "f0b6168471c7b610f0b5831d55adee7f8a71db4556c88cbfad7c243d38459f48",
       "recommendation_basis": [
-        "旧Concept crosswalk line 14の一atomから、SECURITY/Worker/HARNESS各owner結果を代用せず関連付ける管理接続を導出している。",
-        "registerのparent_planning_revisionが `draft_candidate; exact parent approval not claimed` と明示している。候補の親authorityが明確になるまで採択推奨は出さない。"
+        "HELIXOS-L1 parent `docs/helix-os/L1-planning/system-intent.md` bytes SHA-256 `2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e` は、`docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md:31` がPO確認対象revisionとして明示的に確定する。MPR行のparenthetical `draft_candidate; exact parent approval not claimed` とL1 front-matterのdraft labelはauthority decisionではなく、そのdecisionにより確定した同一bytesの承認状態を覆さない。",
+        "候補意味はoperation・要求revision・scopeに対するSECURITY authority、Worker isolation適用観測、HARNESS quality acceptanceの3結果を結ぶだけで、互いに代用しない。各owner判定、Worker実行、gate/deny/approvalを新設しない。",
+        "source receiptは旧Concept crosswalk line 14の1 semantic atomに限定する。旧crosswalk全体、隣接候補/line、owner移管またはformal successor closureを主張しない。",
+        "MPR registerはappend-onlyであり誤ったparenthetical注記を書き換えない。この追補と過去auditの区別を明示して訂正する。"
       ],
-      "recommendation_option": "hold"
+      "recommendation_option": "adopt",
+      "parent_authority_evidence": {
+        "parent_planning_path": "docs/helix-os/L1-planning/system-intent.md",
+        "parent_planning_sha256": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+        "po_decision_ref": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md:31",
+        "po_decision_file_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+        "decision_fixes_same_parent_bytes": true,
+        "mpr_parenthetical_is_not_authority_state": true,
+        "append_only_register_modified": false,
+        "historical_assessments_corrected_here": [
+          "docs/governance/audits/requirements-stage/po-decision-packet-live-8-candidates-supplement-2026-09-29.md#OS-104の親authority境界",
+          "PR #2346 review finding R2346-01"
+        ]
+      }
     },
     {
       "candidate_identity": "HELIXOS-L2-105",
@@ -1038,7 +1055,15 @@
         ],
         "direction": "adopt together for the exact current pair; HARNESS owns meaning, OS carries identity/revision/digest"
       }
-    ]
+    ],
+    "os104_parent_authority_correction": "The original 8-candidate supplement’s OS-104 cross-boundary note and the MPR row parenthetical are historical assessments. The PO decision at helix-os-requirements-po-decision-2026-09-28.md:31 fixes the exact same system-intent.md SHA-256 2bb62571... as confirmed parent bytes. This supplement corrects the interpretation and leaves both historical packet and append-only MPR row unchanged."
   },
-  "rebased_onto_origin_main": "d8c39fd06f51bc0137c63db7fd9c6facf5974cfb"
+  "rebased_onto_origin_main": "d8c39fd06f51bc0137c63db7fd9c6facf5974cfb",
+  "recommendation_counts": {
+    "candidate_count": 17,
+    "adopt_direction": 13,
+    "hold_direction": 4,
+    "reject_direction": 0,
+    "po_decisions_recorded": 0
+  }
 }

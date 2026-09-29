@@ -1,12 +1,12 @@
 # 現行17候補のPO判断準備追補（候補別選択肢と影響）
 
-現在のbranch base: `d8c39fd06f51bc0137c63db7fd9c6facf5974cfb`（origin/main、#2345後）。候補pinを最初に監査したsource baselineは`6e9e91d1a50acfb83ee64795e6ddbd1dfdff2485`で、最新mainへのrebase後も17候補のregister row/L2/L11/receipt SHA-256は不変。元worksheetはその既存17件revisionを特定する。本追補は候補別decision-readinessを補うもので、PO判断記録ではない。17件のMPR状態は `registered_proposal` / `authority_effect:none` のまま扱い、採択・保留・不採択はいずれも未選択である。
+現在のbranch base: `d8c39fd06f51bc0137c63db7fd9c6facf5974cfb`（origin/main、#2345後）。候補pinを最初に監査したsource baselineは`6e9e91d1a50acfb83ee64795e6ddbd1dfdff2485`で、最新mainへのrebase後も17候補のregister row/L2/L11/receipt SHA-256は不変。元worksheetはその既存17件revisionを特定する。本追補は候補別decision-readinessを補うもので、PO判断記録ではない。17件のMPR状態は `registered_proposal` / `authority_effect:none` のまま扱い、方向案は採択13件・保留4件・不採択0件であり、POの選択は17件すべて未記録である。
 
 機械可読版: [`po-decision-packet-live-17-options-supplement-2026-09-29.json`](po-decision-packet-live-17-options-supplement-2026-09-29.json)。各行のMPR exact row hash、L2/L11 section・whole-file SHA-256、source receipt SHA-256、source atom refsはJSONに固定した。
 
 ## 判断共通ルール
 
-- 採択方向はworksheet上のPO判断案であり、採択状態を生成しない。候補registrationおよび選んだL2/L11 bytesだけを判断対象とし、実装・L3承認・旧source全体の被覆やunrelated holding解消を意味しない。
+- 採択方向はworksheet上のPO判断案であり、採択状態を生成しない。候補registrationおよび選んだL2/L11 bytesだけを判断対象とし、実装・L3承認・旧source全体の被覆やunrelated holding解消を意味しない。方向案は採択13／保留4／不採択0。
 - 保留は、意味・責務境界・親authorityに実質的な未解決点がある場合に限って方向として示す。source残余の存在またはPO未確認のみを保留理由にしない。
 - 不採択はexact candidate revisionのみを対象とし、source holdingのretireやsuccessor割当を自動生成しない。
 - 限定atom candidateは、receiptで選択した意味sliceだけを採択し、残余を既存holdingで維持する選択が可能である。この扱いは[HARNESS-L2-063 PO worksheet / PR #2344](https://github.com/RetryYN/HELIX-HARNESS/pull/2344)の3-atom限定採択推奨と整合する。導入版未指定時は[11候補判断](../../decisions/po-decision-2026-09-29-11candidates.md#L42)に従い機能意味のみを選び、1.0を新設しない。
@@ -212,15 +212,14 @@
 
 候補意味: SECURITY authority、worker-isolation観測、HARNESS quality acceptanceの3 owner結果をoperation/scope/revisionに連結する。
 
-- **採択の影響:** 採択: 親L1 exact revision authorityを別途確認後、3 owner結果の連結だけを選ぶ。新gate/deny authorityは加えない。
-- **保留の影響:** 保留: `draft_candidate; exact parent approval not claimed`の親planning revisionを確認するまで保持。
-- **不採択の影響:** 不採択: この候補revisionを選ばず、既存owner contractに代わる権限を生成しない。
-- **方向性:** 保留を推奨。candidate MPR自身が親L1を `draft_candidate; exact parent approval not claimed` としており、親authorityが成立した根拠がない。
-- **根拠:** 旧Concept crosswalk line 14の一atomから、SECURITY/Worker/HARNESS各owner結果を代用せず関連付ける管理接続を導出している。 registerのparent_planning_revisionが `draft_candidate; exact parent approval not claimed` と明示している。候補の親authorityが明確になるまで採択推奨は出さない。
-- **未解決owner/meaning:** OS L1 owner/POが対象parent L1のexact revision authorityを確認すること。旧crosswalk残差は保留根拠ではない。
+- **採択の影響:** 採択: このexact L2/L11/MPR revisionと、旧crosswalk line 14の1 atomに限り、同一operation・要求revision・scopeのSECURITY authority、Worker isolation適用観測、HARNESS quality acceptanceを相互非代用のまま関連付ける。各owner判定、Worker実行、新gate/deny authority/追加承認は作らず、旧crosswalk全体のformal successor/closureも主張しない。
+- **保留の影響:** 保留: POが3 owner outcomeの限定連結意味に具体的な異論を持つ場合、このOS connection candidateを選ばず、ownerごとの既存authority/resultを独立して扱う。親L1未承認を理由にしない。
+- **不採択の影響:** 不採択: このexact cross-owner connection revisionだけを選ばず、SECURITY/Worker/HARNESSの既存判定・実行境界を変更しない。旧crosswalk全体のretireやformal successor割当を生成しない。
+- **方向性:** 限定機能意味の採択を推奨。同一operation/scope/revisionに対する3 owner結果の連結と相互非代用だけを定め、新gate・deny authority・追加承認・実行を作らない。
+- **根拠:** PO判断記録[HELIX-OS requirements decision:31](../../decisions/helix-os-requirements-po-decision-2026-09-28.md#L31)は親 `system-intent.md` のSHA-256 `2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e`を確認対象revisionとして確定する。MPRの`draft_candidate; exact parent approval not claimed` parentheticalはL1 front-matterのdraft表示を承認状態と取り違えて記録された誤った authority 評価で、承認decisionではない。L2の「起草時」表記は起草当時の表示を述べるものとして扱い、現在のparent authorityはPO decisionから読む。candidateは旧Concept crosswalk line 14の1 atomだけを、三owner結果の非代用関係へ再導出する。候補のowner境界とmeaningは限定・明示され、残余sourceのfull closureを主張しない。
+- **未解決owner/meaning:** candidate内のparent authority/owner boundaryに採択を阻む未解決点はない。POがこの限定連結意味自体に具体的異論を持つ場合に保留を選べる。source全体のdispositionは対象外。
 - **source/receipt:** `docs/governance/audits/requirement-registration/legacy-candidate-line-000603-source-atoms-2026-09-29.jsonl#LEGACY-CAND-LINE-000603`; `docs/governance/audits/requirement-registration/legacy-candidate-line-000603-three-checks-coverage-receipt-2026-09-29.json#HELIXOS-L2-104`
 - **exact bytes:** L2 source `docs/helix-os/L2-requirements/governance-requirements.md`; L2 section SHA-256 `a6346a95c796b0d1c2e72e5f24e150767ced6329b9f6137a9547370e82ad502d`. L11 source `docs/helix-os/L11-acceptance/governance-acceptance.md`; section identity `HELIXOS-L11-104`; L11 section SHA-256 `b899b8da8d4bb85c5972b7e116e2f3837e61dd20a337018baeadb2a2a5dfe90f`.
-
 ### `HELIXOS-L2-105` — `MPR-RC-HELIXOS-L2-105-001`
 
 候補意味: 限定incident episodeのrecovery-check/source revisionをprocedure/rollback記録へ結び、rollback未実施も明示。記録充足だけを報告。
@@ -245,7 +244,7 @@
 - HARNESS-060 / HELIXOS-103のA/Bは元17件worksheetがIssue #2316で提示済みと報告する選択肢。本repositoryからIssue一次本文/選択結果は検証できず、選択済みとは扱わない。入力stageの意味と下流event projectionのつながりが未確定なので両者は保留方向とした。
 - HARNESS-061は専用doc-only trigger、4軸、未起動時fail-closed、PO例外の意味を現行exact-head review routingへ適用する点が未解決。`confirmed175-three-condition-meaning-delta-2026-09-28.md:31-41`は現行reviewを保ち新gateを自動追加しない根拠であり、この専用triggerの採択推奨には使わない。
 - HELIXOS-055は旧HIL-FR-08の一律Reverse/Redesign/pair-freeze条件から、適用stageが確定した場合に限るclaim条件へmeaningを狭める候補。旧uniform gateは登録上holdingに保たれているが、その選択意味変更は別途PO判断が必要である。
-- HELIXOS-104の登録は親planning revisionを`draft_candidate; exact parent approval not claimed`と記録する。親authority確認前は保留方向とした。
+- **OS-104 parent authorityの訂正:** 09-28 PO判断:31で親L1 `system-intent.md` SHA-256 `2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e`は確認対象revisionとして確定済みである。MPR行の`draft_candidate; exact parent approval not claimed`はfront-matter表示をauthorityと誤認して記録された誤ったparentheticalである。本追補は意味解釈を訂正し、append-only register自体は変更しない。既存[8件追補のOS-104親authority境界](po-decision-packet-live-8-candidates-supplement-2026-09-29.md#os-104の親authority境界)も過去監査の記録として保持し、その誤認は本追補で訂正する。
 - HARNESS-049の現 -003は訂正済みのL11 measurement oracle。旧 -002に対する不採択記録を継承せず、exact -003を今回POが判断する。
 - すべての方向性はPO decisionではなく、本JSONの`po_decision`はnullのまま。
 
