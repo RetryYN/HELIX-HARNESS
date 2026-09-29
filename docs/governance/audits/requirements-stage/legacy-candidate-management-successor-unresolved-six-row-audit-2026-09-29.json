@@ -1,11 +1,11 @@
 {
   "schema_version": "legacy-candidate-management-successor-unresolved-six-row-audit.v1",
   "audit_id": "legacy-candidate-management-successor-unresolved-six-row-audit-2026-09-29",
-  "created_against_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+  "created_against_commit": "d8736eeabc90b3d549ba73acec803eea4df6a75c",
   "authority_effect": "none",
   "audit_mode": "bounded_old-source_and_current-governance_relation_audit",
   "scope": {
-    "population": "six management_process_condition rows routed management_successor_unresolved in #2353 proposed 4,755-row recount",
+    "population": "six management_process_condition rows routed management_successor_unresolved in the merged #2353 cumulative audit recount; classification and route remain audit-proposal state",
     "row_count": 6,
     "source_item_ids": [
       "LEGACY-CAND-LINE-000018",
@@ -117,9 +117,10 @@
     },
     {
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
-      "sha256": "57fce8a0e05ed73c46346f2177c439e862a17a06ecea65446389f24dc34160c5",
-      "role": "#2353 proposed cumulative recount selecting the six rows",
-      "source_ref": "origin/codex/stage5-cumulative-recount@8a75e5392a44e005bb05197d977bdbcf75b93cf0"
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+      "role": "#2353 merged cumulative recount input pin; classification remains a non-authority audit proposal",
+      "source_ref": "origin/main@97672630b7de70fd4433827730c390cbabd90a99",
+      "commit": "97672630b7de70fd4433827730c390cbabd90a99"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-intake.md",

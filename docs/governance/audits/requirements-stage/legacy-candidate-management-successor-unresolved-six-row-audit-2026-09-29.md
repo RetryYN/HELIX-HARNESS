@@ -1,7 +1,7 @@
-# 旧candidate管理条件6行の現行関係監査（#2353 proposed recount）
+# 旧candidate管理条件6行の現行関係監査（#2353 merged recount）
 
-- 監査基準: `bf00aca56add8ca29d9a56af9a989fdeb0a7d969`（#2352 merge後のorigin/main）。
-- 対象: #2353提案4,755行recountで`management_successor_unresolved`となる6行。旧4行に#2352で加わったREADMEの2行を累積した集合。
+- 再照合基準: `d8736eeabc90b3d549ba73acec803eea4df6a75c`（#2354 merge後のorigin/main）。当初のsource比較基準は`bf00aca56add8ca29d9a56af9a989fdeb0a7d969`。
+- 対象: merge済み#2353の4,755行累積recountで`management_successor_unresolved`となる6行。旧4行に#2352で加わったREADMEの2行を累積した集合。
 - authority effect: `none`。旧source bytes・line ledger・archive asset状態を固定し、現行文書は関係候補として比較した。
 - 結果: 現行の関連文言・保存先は特定したが、6行ともexact formal successor、採択、製品L2/L11 routeを割り当てない。
 
@@ -29,6 +29,6 @@ READMEはasset `LEGACY-ASSET-A9F7F40B7F61D64C4F8F`、investment intakeは`LEGACY
 
 ## 固定sourceと限界
 
-archive lineの内容SHAと物理bytes SHA/base64、archive asset、line-ledger状態、現行比較資料とdecisionのSHA-256/行参照を[JSON証跡](legacy-candidate-management-successor-unresolved-six-row-audit-2026-09-29.json)へ記録した。#2353 proposal JSONはbranch `codex/stage5-cumulative-recount`のHEAD `8a75e5392a44e005bb05197d977bdbcf75b93cf0`、SHA-256 `57fce8a0e05ed73c46346f2177c439e862a17a06ecea65446389f24dc34160c5`に固定。
+archive lineの内容SHAと物理bytes SHA/base64、archive asset、line-ledger状態、現行比較資料とdecisionのSHA-256/行参照を[JSON証跡](legacy-candidate-management-successor-unresolved-six-row-audit-2026-09-29.json)へ記録した。#2353 cumulative recountはmerge commit `97672630b7de70fd4433827730c390cbabd90a99`上のJSON、SHA-256 `2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c`に固定した。
 
 本監査はsource-to-current関係候補と残余gapを記録する。formal successor、採択、target approval、coverage/closure、Issue完了、製品L2/L11 route、実装許可は成立しない。旧CLI/runtime/hook/test/CIは実行していない。
