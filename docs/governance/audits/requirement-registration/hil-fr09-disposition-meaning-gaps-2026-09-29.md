@@ -16,16 +16,18 @@
 
 ## 旧sourceで確定している分類条件と残る判断
 
-旧L5 `github-pr-audit-promotion.md` §3（68–70行）、旧L4 `infinity-loop-platform-basic-design.md` §4.2（277–280行）、旧HIL-NFR-21（201行）を読み直した。旧FR-09のnon-actionableは`duplicate`／`false_positive`／`accepted_risk`／`telemetry`の4分類である。`duplicate`には生存targetとacceptance oracle包含証拠、`false_positive`には別verifierの反証と独立review、`accepted_risk`には独立reviewと受容actionに結び付いたPO receipt、`telemetry`には観測ownerとexpiryを要する。証拠不足は`disposition_pending`に残し、元finding・appeal/reopen routeを保持する。これらは今回の候補L2/L11へ戻し、POへの未決質問から外した。directiveのcancel／supersede権限はfindingへ一般化しない。
+旧L5 `github-pr-audit-promotion.md` §3（68–70行）、旧L4 `infinity-loop-platform-basic-design.md` §4.2（277–280行）、旧HIL-NFR-21（201行）を読み直した。旧FR-09のnon-actionableは`duplicate`／`false_positive`／`accepted_risk`／`telemetry`の4分類である。`duplicate`には生存targetとacceptance oracle包含証拠、`false_positive`には別verifierの反証と独立review、`accepted_risk`には独立reviewと受容actionに結び付いたPO receipt、`telemetry`には観測ownerとexpiryを要する。証拠不足は`disposition_pending`に残し、元finding・appeal/reopen routeを保持する。旧sourceに書かれた証拠条件自体は確定している。ただし`accepted_risk`のPO条件を、歴史的なOS034-002候補の意味から変えてOS034-003へ適用するかは別の上流意味判断であり、exact revision付きPO判断が未了である。directiveのcancel／supersede権限はfindingへ一般化しない。
 
 | 残る判断 | 該当旧source | 選択肢と推奨 | 影響する要求 |
 |---|---|---|---|
 | current/successorの詳細境界へ旧HIL-BR-17／FR-30をどこまで取り込むか | 旧FR-09:99、BR-17:69、FR-30:120 | A: 旧99行のcurrent contract影響・責務境界だけを本候補に残し、追加routing/promotionは別要求へ保持（推奨）。B: BR-17／FR-30の詳細まで本候補へ含め、source atomと受入を拡張する。 | HARNESS-L2/L11-058、HELIXOS-L2/L11-101、旧HR-FR-HIL-03 |
 | 旧Claude/Codex identity比較の現行Worker独立性への対応 | 旧L5 §2、2026-09-26 PO Worker判断 | A: 既存PO判断のreviewer identity/context/authority/routeを適用し、provider名は固定しない（推奨）。B: provider family同一なら常に不成立とする旧条件を保持し、現行判断との意味差をPOへ戻す。 | HELIXOS-L2/L11-101、既存Worker契約 |
 | telemetryのexpiryと観測ownerの現行参照先 | 旧L5 §3:70 | A: 既存の観測owner・期限契約が確認できるscopeだけで確定し、不明ならpending（推奨）。B: 新しい期限とowner契約を別候補として起こす。 | HARNESS-L2/L11-058、HELIXOS-L2/L11-101、LABO観測境界 |
-| accepted_riskのaction-binding PO receiptの現行形式 | 旧L5 §3:69、旧L4 §4.2:279、旧NFR-21:201 | A: 旧の意味を保持し、既存PO authorityの対象action/scope/revisionを結ぶ形式を後続で具体化（推奨）。B: PO receiptの要否・対象を変更する意味変更として対象revisionのPO判断へ出す。 | HELIXOS-L2/L11-034・101、HARNESS-L2/L11-058 |
+| accepted_riskにPO receiptを求める意味と、OS034の承認済み履歴との差分 | 旧L5 `github-pr-audit-promotion.md` §3:69（`LEGACY-ASSET-1BE290A45D9095E0F803`）、旧L4 `infinity-loop-platform-basic-design.md` §4.2:279（`LEGACY-ASSET-C35E93F2D36777CD7462`）、旧HIL-NFR-21:201（`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`） | **旧source**：findingの`accepted_risk`にaction-binding PO receiptを要求し、HIL-NFR-21は独立reviewも要求する。**保持**：directiveのcancel／supersedeに対するPO専属権限をfindingへ一般化しない。旧条件はfindingの`accepted_risk`に限る。**変更**：OS034-002の歴史的な「findingへPO要件を過剰適用しない」という意味から、OS034-003はfindingの`accepted_risk`にもaction-binding PO receiptを要求する意味へ反転している。**A**: 採択済みOS034-002の意味を保持し、旧FR-09の当該条件を未解決のままholdingへ残す。**B（推奨）**: 旧sourceの条件をOS034-003へ反映する意味変更を選び、HARNESS-L2/L11-058とHELIXOS-L2/L11-101の同じ`accepted_risk`条件へ同一decisionを結ぶ。Bを推奨する理由は旧L5/L4がfindingの`accepted_risk`にもaction-binding PO receiptを明記しており、別verifierの独立reviewだけではその条件を満たさないため。判断前はAの採択済み意味だけが有効で、OS034-003・HARNESS-058・OS101は未採択とする。差分理由は旧sourceが当該条件を明示する一方、OS034-002の歴史的意味がそれを除外しており、旧意味からの自動継承も候補訂正からの自動採択も認められないためである。 | HELIXOS-L2/L11-034・101、HARNESS-L2/L11-058 |
 
-選択肢は検討材料であり、この記録によってPOの選択や候補採択を生成しない。上の旧sourceに答えがある4分類の証拠条件は問い直さない。
+OS034-002の登録・判断履歴は不変の歴史的記録として保持する。今回の訂正行OS034-003は`registered_proposal`かつ未採択であり、-002の採択を継承しない。`accepted_risk`の意味をBへ変える場合、POがOS034-003のexact candidate revision（semantic digest `sha256:6b019294047fce2e1c8b5d1b5e8d379fa9111f5912274f6dca918ffd81c0e1e8`）を判断する必要がある。revisionが固定されていない判断、OS034-002に対する判断、またはこの監査・MPR訂正行の存在だけでは充足しない。PO判断が記録されるまで、HARNESS-L2/L11-058とHELIXOS-L2/L11-101は同じaccepted_risk条件について独立に採択・確定せず、証拠不足時の`disposition_pending`を保持する。詳細は[coverage receipt r3](hil-fr09-disposition-coverage-receipt-2026-09-29-r3.json)に結ぶ。
+
+選択肢は検討材料であり、この記録によってPOの選択や候補採択を生成しない。上の旧sourceに明記された4分類の証拠条件そのものは問い直さない。OS034-002からOS034-003への意味変更とその対象revisionへの適用だけが未決であり、r3 coverage receiptと仮登録で同じdecision dependencyをHARNESS-058／OS101へつなぐ。
 
 ## 被覆と保留
 

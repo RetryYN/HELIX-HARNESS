@@ -90,7 +90,7 @@
     }
   ],
   "supersedes_receipt_ref": "docs/governance/audits/requirement-registration/os-directive-disposition-coverage-receipt-2026-09-28-r2.json",
-  "review_correction": "R2314-01: OS034 R2222-01 note previously omitted old L5/L4 finding accepted_risk PO receipt; clarification separates this specific finding condition from directive cancel/supersede authority.",
+  "review_correction": "R2314-01: old L5/L4 finding accepted_risk PO receipt restored as a proposal; R2314-02: this reverses adopted OS034-002 meaning. OS034-003 remains unadopted, inherits no adoption, and requires PO decision on exact candidate revision. Directive cancel/supersede PO authority remains distinct.",
   "additional_legacy_context_refs": [
     {
       "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/github-pr-audit-promotion.md",
@@ -111,5 +111,20 @@
       "source_line_sha256": "sha256:9b5c8f5d590e7cf8293cf9366f5bb5b87f6609dfa5ca19cb9eac8bb4ac1dbadd",
       "evidence_role": "independent review for false_positive and accepted_risk, append-only finding"
     }
-  ]
+  ],
+  "accepted_risk_revision_boundary": {
+    "historical_adopted_registration": "MPR-RC-HELIXOS-L2-034-002",
+    "historical_adoption_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+    "candidate_registration": "MPR-RC-HELIXOS-L2-034-003",
+    "candidate_status": "registered_proposal_unadopted",
+    "adoption_inherited": false,
+    "meaning_change": "finding accepted_riskに独立reviewとaction-binding PO receiptの両方を要する条件は、採択済み-002のPO要件を一律追加しない条件を反転する。",
+    "required_decision": "HELIXOS-L2-034 -003のexact candidate revisionへのPO判断。未判断中は-002の採択済み意味だけが有効。",
+    "same_decision_dependency": [
+      "HARNESS-L2-058",
+      "HELIXOS-L2-101"
+    ],
+    "candidate_semantic_digest": "sha256:6b019294047fce2e1c8b5d1b5e8d379fa9111f5912274f6dca918ffd81c0e1e8",
+    "authority_effect": "none"
+  }
 }
