@@ -1548,18 +1548,24 @@
         "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
       },
       "route_assessment": "unknown",
-      "compared_adopted_requirement_ids": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-005",
+        "HELIXOS-L2-007"
+      ],
       "L2_direct_predicate_locators": [],
       "L2_comparison_kind": "topic-only or no direct predicate identified",
-      "L11_acceptance_locators_separate": [
-        "該当する直接predicate locatorなし"
-      ],
-      "direct_overlap": "直接一致したpredicateはない。比較した候補IDと不一致locatorは別欄に記録し、語彙・話題の近さをrouteにしていない。",
-      "residual_or_difference": "外部横断監査入力の保全、Portfolio runtimeとの非対象分離、保存と機能実装と運用の区分は対象L2/L11の直接predicateでない。",
+      "L11_acceptance_locators_separate": [],
+      "direct_overlap": "Issue #1538が監査入力の保全を所有し、Portfolio runtimeを除外し、子Issue進行と機構実装を分ける記述について、OS-L2-002（project work/verification/operation trace）、OS-L2-005（出典・scope付きobservation登録）、OS-L2-007（証拠保存）を比較した。これらは外部横断監査入力の保存ownerやPortfolio runtime除外を定めず、直接一致なし。",
+      "residual_or_difference": "本行はIssueリンク付き表の責務説明であり、監査入力保存、特定Portfolio runtimeの非対象、入力保存/機能実装/運用の切分けは採択L2/L11の直接predicateでない。candidate line分類自体もrequirement atomか説明/ownership boundaryか再点検余地があるため、その分類を採択扱いしない。",
       "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
       "directly_matched_adopted_requirement_ids": [],
-      "L2_considered_but_not_matched_locators": [],
-      "L11_considered_but_not_matched_locators_separate": []
+      "L2_considered_but_not_matched_locators": [
+        "HELIX-OS L2 governance-requirements.md:55,58,60"
+      ],
+      "L11_considered_but_not_matched_locators_separate": [
+        "HELIX-OS L11 governance-acceptance.md:22,25,27"
+      ]
     },
     {
       "source_id": "LEGACY-CAND-LINE-004662",
@@ -2084,33 +2090,20 @@
         },
         "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
       },
-      "route_assessment": "partial",
+      "route_assessment": "unknown",
       "compared_adopted_requirement_ids": [
-        "HARNESS-L2-003",
         "HELIXOS-L2-001",
-        "HELIXOS-L2-002",
-        "HELIXOS-L2-007"
+        "HELIXOS-L2-002"
       ],
-      "L2_direct_predicate_locators": [
-        "HELIX-OS L2 governance-requirements.md:54-55,60",
-        "HELIX-HARNESS L2 product-requirements.md:193"
-      ],
-      "L2_comparison_kind": "direct partial predicate",
-      "L11_acceptance_locators_separate": [
-        "HELIX-OS L11 governance-acceptance.md:21-22,27",
-        "HELIX-HARNESS L11 product-acceptance.md:23"
-      ],
-      "direct_overlap": "企画/要求の正本・合意revision・責務の出所を示すOS-L2-001とwork/evidence trace（OS-L2-002/007）、さらにHARNESS-L2-003の委任scope/意味変更区分が直接重なる。必須のL1/L3/L10改版順序、個別PO決定、IR収載は残差。",
-      "residual_or_difference": "企画/要求正本と担当責務、work/evidence trace、証拠状態を辿る範囲に限り直接重なる。L1/L3/L10改版、個別PO決定、正本改版、IR収載の必須順序は採択述語から追加しない。",
+      "L2_direct_predicate_locators": [],
+      "L2_comparison_kind": "topic-only or no direct predicate identified",
+      "L11_acceptance_locators_separate": [],
+      "direct_overlap": "同じ旧source文の先行#2375行004619と同様に、owner/残工程/着手制限とL1/L3/L10改版・IR収載をOS-L2-001/002と比較したが、採択predicateは要求・責務のrevision提示とwork traceを定めるだけで、上流層改版やIR登録を要求しない。直接一致なし。",
+      "residual_or_difference": "L1/L3/L10改版、必要決定、正本改版、IR収載を行う旧工程stepを要求する直接採択predicateは確認できない。先行#2375の同文行004619のunknown判定に今回の行も揃え、前回のremaining draft partial評価を撤回する。",
       "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
-      "directly_matched_adopted_requirement_ids": [
-        "HELIXOS-L2-001",
-        "HELIXOS-L2-002",
-        "HELIXOS-L2-007",
-        "HARNESS-L2-003"
-      ],
+      "directly_matched_adopted_requirement_ids": [],
       "L2_considered_but_not_matched_locators": [
-        "HELIX-OS L2 governance-requirements.md:54-55,441-442"
+        "HELIX-OS L2 governance-requirements.md:54-55"
       ],
       "L11_considered_but_not_matched_locators_separate": [
         "HELIX-OS L11 governance-acceptance.md:213,215"
@@ -2186,31 +2179,25 @@
         },
         "membership_check_basis": "#2353 route snapshot and pinned #2360-#2369 exact-ID overlays; no selected ID was reclassified outside the #2370 488-row proposal-effective pool."
       },
-      "route_assessment": "partial",
+      "route_assessment": "unknown",
       "compared_adopted_requirement_ids": [
-        "HARNESS-L2-003",
-        "HELIXSECURITY-L2-008",
-        "HELIXSECURITY-L2-009"
-      ],
-      "L2_direct_predicate_locators": [
-        "HELIX-SECURITY L2 security-requirements.md:140-148"
-      ],
-      "L2_comparison_kind": "direct partial predicate",
-      "L11_acceptance_locators_separate": [
-        "HELIX-SECURITY L11 security-acceptance.md:32"
-      ],
-      "direct_overlap": "検証済みscopeで入口統制を有効化する操作は、target/scope/revision/environment/expiryに限定した個別operation authorityを要する HELIXSECURITY-L2-008 に部分一致する。",
-      "residual_or_difference": "新規差分のshadow検査、scope検証をenforceへ昇格する段階条件、HWG自身のdogfoodは採択されていない。L2-009はfinding発生時のrevoke/quarantine伝播であり、この有効化 gateとの直接一致とは数えない。",
-      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
-      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-002",
         "HELIXSECURITY-L2-008"
       ],
+      "L2_direct_predicate_locators": [],
+      "L2_comparison_kind": "topic-only or no direct predicate identified",
+      "L11_acceptance_locators_separate": [],
+      "direct_overlap": "同じ旧source文の先行#2375行004621と同様に、OSのproject traceとSECURITYのoperation-specific permissionは比較したが、どちらもshadow検査済み範囲を入口統制へ昇格するstage predicateではない。直接一致なし。",
+      "residual_or_difference": "検証済みscopeのshadow検査、entry-control有効化、HWG自身でのdogfoodを段階遷移条件とする採択L2/L11はない。SECURITY-L2-008は実操作の個別認可を規定するが、旧候補のshadow-to-enforce gateとは別。先行#2375行004621のunknown判定に今回の行を揃える。",
+      "authority_effect": "none; candidate classification, adoption, successor, coverage and implementation unchanged",
+      "directly_matched_adopted_requirement_ids": [],
       "L2_considered_but_not_matched_locators": [
-        "HELIX-HARNESS L2 product-requirements.md:54",
-        "HELIX-SECURITY L2 security-requirements.md:150-158"
+        "HELIX-OS L2 governance-requirements.md:55",
+        "HELIX-SECURITY L2 security-requirements.md:140-148"
       ],
       "L11_considered_but_not_matched_locators_separate": [
-        "HELIX-SECURITY L11 security-acceptance.md:33"
+        "HELIX-OS L11 governance-acceptance.md:213,215",
+        "HELIX-SECURITY L11 security-acceptance.md:32-33"
       ]
     },
     {
@@ -2518,8 +2505,8 @@
   "counts": {
     "selected": 30,
     "proposal_effective_pool_members": 30,
-    "partial_direct_predicate_relation": 21,
-    "true_unknown_or_topic_only": 9,
+    "partial_direct_predicate_relation": 19,
+    "true_unknown_or_topic_only": 11,
     "outside_pool": 0,
     "prior_overlap": 0,
     "overlap_with_first30_world_governance_audit": 0
@@ -2540,8 +2527,73 @@
       "direct comparison uses actual adopted L2 IDs and separately named L11 acceptance locators; no row is treated as adopted/successor/coverage/implementation",
       "current-main L2/L11 snapshot hashes are recomputed at abe412c109a0be15ddf2bad2e1fa110d44fa9e80; adopted comparator remains pinned independently at f6dad2a33e24f000b87d7f09b8d40288257e74cc",
       "prior pins copied from #2375 merged audit: seven historical route files #2350/#2359/#2364/#2370/#2372/#2373/#2374 with exact source commits/SHA re-read; selected counts 20/20/20/20/51/24/26 sum to 181 unique IDs",
-      "#2375 World Governance first30 JSON is separately pinned as the eighth route-reference artifact at abe412c109a0be15ddf2bad2e1fa110d44fa9e80; first30 plus remaining30 have 60 unique family IDs and intersect prior union by 0"
+      "#2375 World Governance first30 JSON is separately pinned as the eighth route-reference artifact at abe412c109a0be15ddf2bad2e1fa110d44fa9e80; first30 plus remaining30 have 60 unique family IDs and intersect prior union by 0",
+      "cross-set exact-text reconciliation over #2375 first30 and remaining30 found three pairs; route differences in 004619/004744 and 004621/004746 were resolved to unknown, and #2375 merged JSON was not modified",
+      "identical-text pair 004623/004748 remains partial in both audits; differing direct predicate ID sets are recorded explicitly as a follow-up finding"
     ],
     "result": "passed"
+  },
+  "cross_audit_duplicate_text_reconciliation": {
+    "compared_sets": [
+      "#2375 merged first30",
+      "#2376 remaining30 draft"
+    ],
+    "cross_set_exact_duplicate_group_count": 3,
+    "route_mismatch_count_before_alignment": 2,
+    "route_mismatch_count_after_alignment": 0,
+    "groups": [
+      {
+        "source_text_sha256": "sha256:75adb82ba11d8f9a7cc2fd50634e34f7c836a4771cea187f6eeffc188bd7c52d",
+        "prior_row": "#2375/LEGACY-CAND-LINE-004619",
+        "remaining_row": "LEGACY-CAND-LINE-004744",
+        "exact_source_text_match": true,
+        "prior_route": "unknown",
+        "remaining_draft_route_before_alignment": "partial",
+        "remaining_route_after_alignment": "unknown",
+        "route_agrees_after_alignment": true,
+        "prior_direct_ids": [],
+        "remaining_direct_ids": [],
+        "finding": "draft route mismatch corrected to #2375 unknown after exact predicate comparison; prior merged row retained unchanged"
+      },
+      {
+        "source_text_sha256": "sha256:21788a2f61d2117533b0b8f492fab7c6a80687886758cceef94ca52953992b26",
+        "prior_row": "#2375/LEGACY-CAND-LINE-004621",
+        "remaining_row": "LEGACY-CAND-LINE-004746",
+        "exact_source_text_match": true,
+        "prior_route": "unknown",
+        "remaining_draft_route_before_alignment": "partial",
+        "remaining_route_after_alignment": "unknown",
+        "route_agrees_after_alignment": true,
+        "prior_direct_ids": [],
+        "remaining_direct_ids": [],
+        "finding": "draft route mismatch corrected to #2375 unknown after exact predicate comparison; prior merged row retained unchanged"
+      },
+      {
+        "source_text_sha256": "sha256:3abcc8390d562d32fd875abbe2d109fd79d34f7a21b92a65712d22c9479195bc",
+        "prior_row": "#2375/LEGACY-CAND-LINE-004623",
+        "remaining_row": "LEGACY-CAND-LINE-004748",
+        "exact_source_text_match": true,
+        "prior_route": "partial",
+        "remaining_draft_route_before_alignment": "partial",
+        "remaining_route_after_alignment": "partial",
+        "route_agrees_after_alignment": true,
+        "prior_direct_ids": [
+          "HELIXOS-L2-003",
+          "HELIXOS-L2-004",
+          "HELIXSECURITY-L2-008",
+          "HELIXSECURITY-L2-009"
+        ],
+        "remaining_direct_ids": [
+          "HELIXOS-L2-002",
+          "HARNESS-L2-003",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005",
+          "HELIXSECURITY-L2-008",
+          "HELIXSECURITY-L2-009"
+        ],
+        "finding": "route agrees (partial), but direct predicate sets differ: #2375 row 004623 includes OS-L2-003/004 and SECURITY-L2-008/009, while this row adds OS-L2-002/RFA-BR-03 and HARNESS-L2-003/004/005; record the discrepancy for follow-up without editing merged #2375"
+      }
+    ],
+    "review_note": "Across all 60 rows there are 3 exact-text duplicate pairs crossing the first30/remaining30 split. The other exact-text duplicates are within one audit subset. Two remaining-draft partial labels (004744/004746) were aligned to the same-text #2375 unknown rows 004619/004621 because no direct adopted predicate was established. The merged audit remains unchanged. Row 004623/004748 routes both remain partial; predicate ID differences are called out for future follow-up."
   }
 }
