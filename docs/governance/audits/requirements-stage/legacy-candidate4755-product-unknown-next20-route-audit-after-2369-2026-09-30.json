@@ -75,8 +75,8 @@
       ]
     },
     "excluded_id_union_count": 60,
-    "eligible_population_after_exclusions": 428,
-    "rule": "Join pinned #2353 row_records; apply exact-ID classification overlays #2356, #2360, #2363, #2366, #2367, #2368, and #2369. Exclude selected IDs from #2350, updated #2359, and #2364; select lowest numeric remaining unknown product requirement atom IDs.",
+    "eligible_population_after_exclusions": 447,
+    "rule": "Join pinned #2353 row_records; apply exact-ID classification overlays #2356, #2360, #2363, #2366, #2367, #2368, and #2369. Exclude the selected-ID union from #2350, updated #2359, and #2364; 60 unique IDs are in the union, of which 41 belong to the 488-row effective population (19 are outside it), leaving 447 eligible rows. Select the lowest numeric remaining unknown product requirement atom IDs.",
     "selected_ids": [
       "LEGACY-CAND-LINE-000703",
       "LEGACY-CAND-LINE-000705",
@@ -99,7 +99,9 @@
       "LEGACY-CAND-LINE-000945",
       "LEGACY-CAND-LINE-000946"
     ],
-    "selected_count": 20
+    "selected_count": 20,
+    "excluded_id_union_members_in_population_count": 41,
+    "excluded_id_union_members_outside_population_count": 19
   },
   "pinned_inputs": [
     {
@@ -441,9 +443,9 @@
     }
   },
   "counts": {
-    "adopted_relevant_partial": 10,
+    "adopted_relevant_partial": 14,
     "unadopted_candidate_relation_only": 0,
-    "true_unknown": 10
+    "true_unknown": 6
   },
   "rows": [
     {
@@ -465,7 +467,7 @@
         "HELIXSECURITY-L2-003",
         "HELIXSECURITY-L2-005"
       ],
-      "route_evidence": "Exact adopted SECURITY predicates block implicit project/tenant crossing and raw-secret exposure into AI context. The source line additionally refuses revoked claims/cancellation authority, private reasoning, and other task context; these residuals are not covered by this match.",
+      "route_evidence": "採択済みSECURITYのpredicateは、明示されていないproject/tenant間の越境と、AI contextへのraw secret露出を防ぐ。旧source行はこれに加え、撤回済みclaim、取消権限、private reasoning、他案件contextも拒否するが、これらの残差は今回の一致では扱わない。",
       "residual": "No source adoption, successor assignment, full coverage, acceptance, or implementation is inferred."
     },
     {
@@ -484,7 +486,7 @@
       "shared_atom_id": null,
       "shared_atom_source_ids": [],
       "adopted_current_requirement_refs": [],
-      "route_evidence": "No atom-specific predicate found in exact adopted L2/L11 revisions. Current OS recovery and HARNESS verification boundaries are broader neighboring duties and do not adopt same-task model comparison, provider-update reproducibility, or the line-specific metric bundle.",
+      "route_evidence": "採択済みの正確なL2/L11 revisionに、このatom固有のpredicateは見つからなかった。現行OSの復旧とHARNESSの検証境界は周辺責務として関連するが、同一taskでのmodel比較、provider更新後の再現性、またはこの行固有のmetric一式を採択していない。",
       "residual": "No source adoption, successor assignment, full coverage, acceptance, or implementation is inferred."
     },
     {
@@ -503,7 +505,7 @@
       "shared_atom_id": null,
       "shared_atom_source_ids": [],
       "adopted_current_requirement_refs": [],
-      "route_evidence": "No atom-specific predicate found in exact adopted L2/L11 revisions. Current OS recovery and HARNESS verification boundaries are broader neighboring duties and do not adopt same-task model comparison, provider-update reproducibility, or the line-specific metric bundle.",
+      "route_evidence": "採択済みの正確なL2/L11 revisionに、このatom固有のpredicateは見つからなかった。現行OSの復旧とHARNESSの検証境界は周辺責務として関連するが、同一taskでのmodel比較、provider更新後の再現性、またはこの行固有のmetric一式を採択していない。",
       "residual": "No source adoption, successor assignment, full coverage, acceptance, or implementation is inferred."
     },
     {
@@ -524,7 +526,7 @@
       "adopted_current_requirement_refs": [
         "HELIXOS-L2-009"
       ],
-      "route_evidence": "Exact adopted OS predicate supports safe continuation/recovery after interruption while preserving cumulative limits and preventing duplicate effects. The source adds reconstruction from external canonical state and a particular logical-lane/session model, which remain unadopted.",
+      "route_evidence": "採択済みOS predicateは、中断後の安全な継続・復旧を支え、累積上限を保ち重複作用を防ぐ。旧sourceが加える外部のcanonical stateからの再構成と、特定のlogical-lane/session modelは、この一致では採択されていない。",
       "residual": "No source adoption, successor assignment, full coverage, acceptance, or implementation is inferred."
     },
     {
@@ -543,7 +545,7 @@
       "shared_atom_id": null,
       "shared_atom_source_ids": [],
       "adopted_current_requirement_refs": [],
-      "route_evidence": "No atom-specific predicate found in exact adopted L2/L11 revisions. Current OS recovery and HARNESS verification boundaries are broader neighboring duties and do not adopt same-task model comparison, provider-update reproducibility, or the line-specific metric bundle.",
+      "route_evidence": "採択済みの正確なL2/L11 revisionに、このatom固有のpredicateは見つからなかった。現行OSの復旧とHARNESSの検証境界は周辺責務として関連するが、同一taskでのmodel比較、provider更新後の再現性、またはこの行固有のmetric一式を採択していない。",
       "residual": "No source adoption, successor assignment, full coverage, acceptance, or implementation is inferred."
     },
     {
@@ -578,7 +580,7 @@
         "HARNESS-L2-025",
         "HARNESS-L2-026"
       ],
-      "route_evidence": "Exact adopted HARNESS-L2-039 describes a CORE composite that composes existing 024/025/026 contracts and does not establish a new service. This partially relates to the broad instruction to use existing Design Harness capability as the base. Residual: it does not adopt the complete old Design Harness inventory or every same-responsibility implementation constraint.",
+      "route_evidence": "採択済みHARNESS-L2-039は、既存の024/025/026契約を組み合わせるCORE compositeであり、新たなserviceを設けないと定める。これは既存Design Harness能力を土台として使うという広い指示に部分的に関係する。残差として、旧Design Harnessの全inventoryや、同じ責務を実装するあらゆる場合までは採択していない。",
       "residual": "No source adoption, successor assignment, full coverage, acceptance, or implementation is inferred."
     },
     {
@@ -611,7 +613,7 @@
         "HARNESS-L2-039/L11",
         "HARNESS-L2-024"
       ],
-      "route_evidence": "The exact adopted 039 revision binds selected UI/prototype sources and composes the existing 024 agreement/prototype boundary; it supplies a partial relation to the source list’s Prototype/Walkthrough mechanism. Residual: the Screen Applicability, Design Registry, UI Domain Pattern, Evidence Binding names and all their legacy contracts are not each separately adopted by this predicate.",
+      "route_evidence": "採択済み039は選択されたUI/prototype sourceを束縛し、既存024のagreement/prototype境界を組み合わせるため、source一覧のPrototype/Walkthrough部分に部分的に関係する。残差として、Screen Applicability、Design Registry、UI Domain Pattern、Evidence Bindingの名称およびそれぞれの旧契約を、このpredicateが個別に採択したわけではない。",
       "residual": "No source adoption, successor assignment, full coverage, acceptance, or implementation is inferred."
     },
     {
@@ -641,7 +643,7 @@
         "LEGACY-CAND-LINE-000857"
       ],
       "adopted_current_requirement_refs": [],
-      "route_evidence": "The source identifies a broad list of existing capabilities as connection targets. Exact adopted 039 composes only named 024/025/026 contracts and selected UI source types; it does not enumerate this line’s full target set. No exact predicate for this row is established.",
+      "route_evidence": "旧sourceは既存能力の広い一覧を接続先として指定する。採択済み039は024/025/026の名指しされた契約と選択UI sourceを組み合わせるが、この行に記された接続先全体を列挙していない。この行と一致する正確なpredicateは確立できない。",
       "residual": "No source adoption, successor assignment, full coverage, acceptance, or implementation is inferred."
     },
     {
@@ -673,7 +675,7 @@
       "adopted_current_requirement_refs": [
         "HARNESS-L2-039/L11"
       ],
-      "route_evidence": "Exact adopted 039 defines applicability to Experience/UI/Frontend scope and selected UI source identity, revision, scope, authority binding; unknown applicability cannot be treated as N/A. This partially matches applicability determination. Residual: it does not adopt the old persistence mechanism as a standalone successor.",
+      "route_evidence": "採択済み039はExperience/UI/Frontend scopeへの適用性と、選択されたUI sourceのidentity、revision、scope、authorityの束縛を定め、適用性unknownをN/Aとして扱わない。これは適用性の判定に部分的に一致する。残差として、旧persistence機構を単独のsuccessorとして採択していない。",
       "residual": "No source adoption, successor assignment, full coverage, acceptance, or implementation is inferred."
     },
     {
@@ -706,7 +708,7 @@
         "HARNESS-L2-039/L11",
         "HARNESS-L2-024"
       ],
-      "route_evidence": "Exact adopted 039 uses the existing 024 agreement/prototype boundary and requires an operable prototype plus same-scope walkthrough evidence when prototype agreement/closure is claimed. This partially matches the named prototype/walkthrough part. Residual: the complete human-decision, finding, and back-propagation contract is not established as the old source successor.",
+      "route_evidence": "採択済み039は既存024のagreement/prototype境界を使い、prototypeのagreement/closureを主張する場合に、操作可能なprototypeと同一scopeのwalkthrough evidenceを要求する。これは名前の挙がるprototype/walkthrough部分に部分的に一致する。残差として、人のdecision、finding、back-propagationの完全な契約が旧sourceのsuccessorとして確立されていない。",
       "residual": "No source adoption, successor assignment, full coverage, acceptance, or implementation is inferred."
     },
     {
@@ -738,7 +740,7 @@
       "adopted_current_requirement_refs": [
         "HARNESS-L2-039/L11"
       ],
-      "route_evidence": "Exact adopted 039 requires selected UI/design source identity, revision, scope, and authority, with stale or missing relations remaining unknown. This partially matches revision/authority/binding semantics. Residual: the old Design Registry lifecycle and supersession model is not established.",
+      "route_evidence": "採択済み039は選択されたUI/design sourceのidentity、revision、scope、authorityを要求し、relation evidenceのstaleまたは欠落をunknownとして扱う。これはrevision/authority/bindingの意味に部分的に一致する。残差として、旧Design Registryのlifecycleとsupersession modelは確立されていない。",
       "residual": "No source adoption, successor assignment, full coverage, acceptance, or implementation is inferred."
     },
     {
@@ -770,7 +772,7 @@
       "adopted_current_requirement_refs": [
         "HARNESS-L2-039/L11"
       ],
-      "route_evidence": "Exact adopted 039 admits selected Pattern/design-system inputs with identity, revision, scope, and authority. This partially matches the named UI Domain Pattern input. Residual: the legacy domain/profile model is not adopted.",
+      "route_evidence": "採択済み039は選択されたPattern/design-system inputをidentity、revision、scope、authorityとともに受け取る。これは名前の挙がるUI Domain Pattern inputに部分的に一致する。残差として、旧domain/profile modelは採択されていない。",
       "residual": "No source adoption, successor assignment, full coverage, acceptance, or implementation is inferred."
     },
     {
@@ -802,7 +804,7 @@
       "adopted_current_requirement_refs": [
         "HARNESS-L2-039/L11"
       ],
-      "route_evidence": "Exact adopted 039 ties UX evidence and visual, interaction, accessibility, responsive, motion, and performance conditions to selected UI scope and risk-based verification. This partially matches reuse of those evidence roles. Residual: old evidence schemas and fixed role taxonomy are not adopted.",
+      "route_evidence": "採択済み039はUX evidenceとvisual、interaction、accessibility、responsive、motion、performanceの条件を、選択UI scopeおよびrisk-based verificationに結び付ける。これはそれらのevidence roleを再利用することに部分的に一致する。残差として、旧evidence schemaと固定role taxonomyは採択されていない。",
       "residual": "No source adoption, successor assignment, full coverage, acceptance, or implementation is inferred."
     },
     {
@@ -832,7 +834,7 @@
         "LEGACY-CAND-LINE-000857"
       ],
       "adopted_current_requirement_refs": [],
-      "route_evidence": "Exact adopted 039 does not define a Research subsystem or adopt the listed Research skill/project-explorer/technical-document/OSS-research capabilities. The row remains unresolved.",
+      "route_evidence": "採択済み039はResearch subsystemを定義せず、列挙されたResearch skill/project-explorer/technical-document/OSS-research能力も採択していない。この行は未解決のままである。",
       "residual": "No source adoption, successor assignment, full coverage, acceptance, or implementation is inferred."
     },
     {
@@ -867,7 +869,7 @@
         "HARNESS-L2-025",
         "HARNESS-L2-026"
       ],
-      "route_evidence": "Exact adopted 039 states the composite uses existing 024/025/026 contracts and is not a new service. This partially relates to the source prohibition for those named UI/design responsibilities. Residual: it does not establish a blanket prohibition for every separate engine, registry, prototype gate, and research subsystem.",
+      "route_evidence": "採択済み039は、compositeが既存024/025/026契約を使い、新しいserviceではないと定める。これは該当するUI/design責務について、並行実装を禁じる旧sourceの規則に部分的に関係する。残差として、別のすべてのengine、registry、prototype gate、research subsystemを対象とする包括的な禁止までは確立していない。",
       "residual": "No source adoption, successor assignment, full coverage, acceptance, or implementation is inferred."
     },
     {
@@ -882,11 +884,13 @@
       "effective_classification": "condition",
       "condition_subtype": "product_requirement_atom",
       "effective_route_status": "unknown",
-      "relation_assessment": "true_unknown",
+      "relation_assessment": "adopted_relevant_partial",
       "shared_atom_id": null,
       "shared_atom_source_ids": [],
-      "adopted_current_requirement_refs": [],
-      "route_evidence": "Exact adopted BRAIN-L2-006 names accessibility/responsive/navigation as reusable design-knowledge categories, but the old line is an objective verification/check item. A topic/category match does not establish the same operational predicate; no exact adopted acceptance check was found.",
+      "adopted_current_requirement_refs": [
+        "HARNESS-L2-039/L11"
+      ],
+      "route_evidence": "採択済みHARNESS-L2-039の正確なrevisionはaccessibilityの適用条件の差を識別し、選択されたUI scopeにrisk-based verificationとUX evidenceを要求する。これはaccessibilityをHELIXが検証する客観的なUX条件として扱うpredicateの種類に一致するため、部分関係とした。残差として、039は包括的な委任方針、accessibilityの合否threshold、この固定checklistをsuccessorとして採択していない。",
       "residual": "No source adoption, successor assignment, full coverage, acceptance, or implementation is inferred."
     },
     {
@@ -901,11 +905,13 @@
       "effective_classification": "condition",
       "condition_subtype": "product_requirement_atom",
       "effective_route_status": "unknown",
-      "relation_assessment": "true_unknown",
+      "relation_assessment": "adopted_relevant_partial",
       "shared_atom_id": null,
       "shared_atom_source_ids": [],
-      "adopted_current_requirement_refs": [],
-      "route_evidence": "Exact adopted BRAIN-L2-006 names accessibility/responsive/navigation as reusable design-knowledge categories, but the old line is an objective verification/check item. A topic/category match does not establish the same operational predicate; no exact adopted acceptance check was found.",
+      "adopted_current_requirement_refs": [
+        "HARNESS-L2-039/L11"
+      ],
+      "route_evidence": "採択済みHARNESS-L2-039の正確なrevisionはinteractionからE2Eへのdriftと、選択されたUI scopeのrisk-based verificationを扱う。これはinteraction/state correctnessをHELIXが検証する客観的なUX条件として扱うことに部分的に一致する。残差として、039は包括的な委任方針、state correctnessのoracle/threshold、この固定checklistをsuccessorとして採択していない。",
       "residual": "No source adoption, successor assignment, full coverage, acceptance, or implementation is inferred."
     },
     {
@@ -924,7 +930,7 @@
       "shared_atom_id": null,
       "shared_atom_source_ids": [],
       "adopted_current_requirement_refs": [],
-      "route_evidence": "Exact adopted BRAIN-L2-006 names accessibility/responsive/navigation as reusable design-knowledge categories, but the old line is an objective verification/check item. A topic/category match does not establish the same operational predicate; no exact adopted acceptance check was found.",
+      "route_evidence": "採択済みHARNESS-L2-039の正確なrevisionはscreen/flow/interactionのtraceとinteractionからE2Eへのdriftを扱うが、navigation dead-end predicateやroute-graph受入oracleは定義していない。旧source行は特定の検査を示しており、採択済みpredicateとの正確な一致を確立できないためunknownのままとする。",
       "residual": "No source adoption, successor assignment, full coverage, acceptance, or implementation is inferred."
     },
     {
@@ -939,11 +945,13 @@
       "effective_classification": "condition",
       "condition_subtype": "product_requirement_atom",
       "effective_route_status": "unknown",
-      "relation_assessment": "true_unknown",
+      "relation_assessment": "adopted_relevant_partial",
       "shared_atom_id": null,
       "shared_atom_source_ids": [],
-      "adopted_current_requirement_refs": [],
-      "route_evidence": "Exact adopted BRAIN-L2-006 names accessibility/responsive/navigation as reusable design-knowledge categories, but the old line is an objective verification/check item. A topic/category match does not establish the same operational predicate; no exact adopted acceptance check was found.",
+      "adopted_current_requirement_refs": [
+        "HARNESS-L2-039/L11"
+      ],
+      "route_evidence": "採択済みHARNESS-L2-039の正確なrevisionはresponsive適用条件の差を識別し、選択されたUI scopeにrisk-based verificationを要求する。これはresponsive動作をHELIXが検証する客観的なUX条件として扱うことに部分的に一致する。残差として、039は包括的な委任方針、responsiveの合否threshold、この固定checklistをsuccessorとして採択していない。",
       "residual": "No source adoption, successor assignment, full coverage, acceptance, or implementation is inferred."
     },
     {
@@ -958,11 +966,13 @@
       "effective_classification": "condition",
       "condition_subtype": "product_requirement_atom",
       "effective_route_status": "unknown",
-      "relation_assessment": "true_unknown",
+      "relation_assessment": "adopted_relevant_partial",
       "shared_atom_id": null,
       "shared_atom_source_ids": [],
-      "adopted_current_requirement_refs": [],
-      "route_evidence": "Exact adopted BRAIN-L2-006 names accessibility/responsive/navigation as reusable design-knowledge categories, but the old line is an objective verification/check item. A topic/category match does not establish the same operational predicate; no exact adopted acceptance check was found.",
+      "adopted_current_requirement_refs": [
+        "HARNESS-L2-039/L11"
+      ],
+      "route_evidence": "採択済みHARNESS-L2-039の正確なrevisionはperformance条件を選択されたUI scope、risk-based verification、UX evidenceに結び付ける。これはperformanceをHELIXが検証する客観的なUX条件として扱うことに部分的に一致する。残差として、039は包括的な委任方針、performance threshold、この固定checklistをsuccessorとして採択していない。",
       "residual": "No source adoption, successor assignment, full coverage, acceptance, or implementation is inferred."
     }
   ],
@@ -983,6 +993,14 @@
     "authority_effect": "none",
     "legacy_execution": "none",
     "exact_adopted_039_revision_pinned": true,
-    "candidate_only_label_not_used_for_039": true
+    "candidate_only_label_not_used_for_039": true,
+    "exclusion_union_intersection_with_population_count": 41,
+    "eligible_population_after_exclusions": 447,
+    "route_counts_recomputed": true,
+    "route_counts": {
+      "adopted_relevant_partial": 14,
+      "unadopted_candidate_relation_only": 0,
+      "true_unknown": 6
+    }
   }
 }
