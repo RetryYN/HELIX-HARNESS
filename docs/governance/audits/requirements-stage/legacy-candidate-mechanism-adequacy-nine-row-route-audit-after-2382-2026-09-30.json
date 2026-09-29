@@ -581,29 +581,11 @@
           "reason": "選択行は要求述語であり、文書ID・status・Issue参照などのmetadata行ではない。"
         }
       },
-      "route_assessment": "partial",
-      "compared_adopted_requirements": [
-        {
-          "id": "HARNESS-L2-005",
-          "direct_predicate": true,
-          "L2_locator": {
-            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-            "line": 56,
-            "basis": "fixed substantive adopted requirement row"
-          },
-          "L11_acceptance_locator_separate": {
-            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-            "line": 25,
-            "basis": "fixed paired adopted acceptance row"
-          },
-          "direct_predicate_scope": "検証義務・oracle・expected failureと証拠条件の導出、および検査省略の記録。6分類個々の例と反例要求は含めない。"
-        }
-      ],
-      "directly_matched_adopted_requirement_ids": [
-        "HARNESS-L2-005"
-      ],
-      "direct_overlap": "正例・反例を持つ判定の検証義務を立て、誤分類が通るfailureを検査する部分が、採択検証oracle／expected-failure／evidence条件と重なる。",
-      "residual_or_difference": "6分類ごとの独立oracle、各誤認原因の全組合せ、個別の新機構必要判定基準は未採択。",
+      "route_assessment": "unknown",
+      "compared_adopted_requirements": [],
+      "directly_matched_adopted_requirement_ids": [],
+      "direct_overlap": "HARNESS-L2-005/L11の汎用oracle・expected failure契約は関連するが、六分類それぞれの独立正例／反例と誤認原因を直接定めないため、route一致としない。",
+      "residual_or_difference": "六分類ごとの独立正例／反例、未接続・誤設定・要求矛盾・調査打切り・既存解検索漏れを新機構必要と誤認しない判定条件は固定L2/L11では未特定。",
       "authority_effect": "none"
     },
     {
@@ -632,44 +614,26 @@
           "reason": "選択行は要求述語であり、文書ID・status・Issue参照などのmetadata行ではない。"
         }
       },
-      "route_assessment": "partial",
-      "compared_adopted_requirements": [
-        {
-          "id": "HARNESS-L2-005",
-          "direct_predicate": true,
-          "L2_locator": {
-            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-            "line": 56,
-            "basis": "fixed substantive adopted requirement row"
-          },
-          "L11_acceptance_locator_separate": {
-            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-            "line": 25,
-            "basis": "fixed paired adopted acceptance row"
-          },
-          "direct_predicate_scope": "反証・既存解を用いる検証のoracle/evidence義務を導く一部。候補判定撤回や無関係開発継続までは含めない。"
-        }
-      ],
-      "directly_matched_adopted_requirement_ids": [
-        "HARNESS-L2-005"
-      ],
-      "direct_overlap": "不足根拠を要求し、既存解が示された時に候補を維持しない検査の一部が、expected failureを明示した検証義務に重なる。",
-      "residual_or_difference": "AI主張の拒否基準、既存解提示時の撤回遷移、保留中の無関係作業継続の判定は固定L2/L11にない。",
+      "route_assessment": "unknown",
+      "compared_adopted_requirements": [],
+      "directly_matched_adopted_requirement_ids": [],
+      "direct_overlap": "HARNESS-L2-005/L11の汎用oracle・証拠契約は関連するが、不足根拠のないAI主張の拒否、既存解による撤回、保留中の無関係作業継続を直接定めないため、route一致としない。",
+      "residual_or_difference": "AI主張の拒否基準、既存解提示時の新機構判定撤回、保留中の無関係開発継続は固定L2/L11では未特定。",
       "authority_effect": "none"
     }
   ],
   "counts": {
     "selected": 9,
-    "partial": 6,
-    "unknown": 3,
+    "partial": 4,
+    "unknown": 5,
     "proposal_pool_out_of_population": 0,
     "prior_317_intersection": 0,
     "later_overlay_intersection": 0,
     "hmc_2379_intersection": 0,
     "classification_review_candidate_count": 0,
     "route_counts": {
-      "partial": 6,
-      "unknown": 3
+      "partial": 4,
+      "unknown": 5
     }
   },
   "limitations": [

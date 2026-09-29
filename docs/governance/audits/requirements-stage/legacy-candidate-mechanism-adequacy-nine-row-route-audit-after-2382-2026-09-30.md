@@ -36,12 +36,12 @@
 | `LEGACY-CAND-LINE-003275` | 62 | partial | 判定／候補生成だけで実装・merge・publishを許可しない境界はHARNESS-L2-008の「要求候補から合意・操作権限を自動昇格しない」と重なる。設計品質・保証保持・既存契約への接続手順は残差。 |
 | `LEGACY-CAND-LINE-003278` | 68 | unknown | 同一確定入力からの決定論的評価、AI仮説との分離、model/session/context/output digest記録は固定L2/L11にない。OS-L2-005の出典付き観測登録だけでは直接一致しない。 |
 | `LEGACY-CAND-LINE-003281` | 74 | partial | 効果・退行を出典とscope付きで還流し、採否後の変更・再検証へ追う一部がOS-L2-005に重なる。同条件before/after、予測／実測／欠測、baseline/candidate/post-main比較は残差。 |
-| `LEGACY-CAND-LINE-003284` | 80 | partial | 判定の正例・反例を検証oracleにする一部がHARNESS-L2-005のoracle／expected-failure／evidence条件と重なる。6分類ごとの独立oracleとMA固有判定基準は残差。 |
-| `LEGACY-CAND-LINE-003285` | 81 | partial | 根拠不足の主張や反証された判定を受け入れない検査の一部がHARNESS-L2-005のexpected-failure/evidence義務と重なる。既存解提示時の撤回と保留中の無関係作業継続は残差。 |
+| `LEGACY-CAND-LINE-003284` | 80 | unknown | HARNESS-L2-005の汎用oracle／expected-failure／evidence条件は関連するが、6分類それぞれの独立正例・反例と列挙された誤認原因を直接定めない。 |
+| `LEGACY-CAND-LINE-003285` | 81 | unknown | HARNESS-L2-005の汎用検証契約は関連するが、不足根拠のないAI主張の拒否、既存解による判定撤回、保留中の無関係な開発継続を直接定めない。 |
 
 ## 結果と限界
 
-- route count: `partial=6`, `unknown=3`, total 9。分類review候補は0件で、選択した9行はいずれも要求述語であり、ID/status/Issue pointerだけのmetadata行ではない。
+- route count: `partial=4`, `unknown=5`, total 9。分類review候補は0件で、選択した9行はいずれも要求述語であり、ID/status/Issue pointerだけのmetadata行ではない。003284・003285は、汎用の検証契約を適用できることと、MA固有の判定述語が採択済みであることを区別して`unknown`とした。
 - 「partial」は固定L2/L11にある一致箇所だけを記録する。残差は一致や採択へ含めない。「unknown」は対象行に一致する採択predicateを見出せなかったという限定的なroute判定である。
 - #2382の478/317/288/190はproposal-effective分類と監査unionの件数であり、採択、successor、全量coverage、受入、実装、実行、Stage 5 closureを生成しない。#2379の30件は347全体unionに含むが、product-targeted 317や本poolへ加算しない。
 - archive内のworkflow、CLI、hook、adapter、test、CI、runtimeは実行していない。文書、ID、revision、hash、固定条項locator、pool/union交差の静的照合に限定した。
