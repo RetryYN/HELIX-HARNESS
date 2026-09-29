@@ -901,3 +901,11 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **revision/digest不一致例**：source intakeとprojectionでcontract revisionが異なる、digestが別revisionを指す、source identityが違う、またはdigest欠落のfixtureは同一contractのdurable handoffとして扱わない。具体的なエラー状態・rollback・retry意味は本候補で追加せず、既存OS契約の状態を参照する。
 - **authorityと意味の分離**：OSのdurable projection、receipt、Issue/GitHub表示だけがある入力からHARNESS要求の採択、field意味の妥当性、実行許可または上流decisionを生成しない。HARNESS側のcontract意味判定が欠ける場合、OS intake成功をHARNESS適合の代替にしない。
 - **oracle出典と限界**：旧line 93 output atomのdurable handoff接続候補である。現行L11-017/019/023は隣接するworkflow/continuity/handoffだけを扱い、field contractを検証しない。旧`system_contracts.json:14-16`のexactly-once/duplicate/quarantine条件や旧test/runtimeはこのoracleへ含めず実行しない。永続ストレージ境界、schema、retry/error semantics、運用上の拒否分類、候補採択は未解決のまま残す。
+
+
+### HELIXOS-L11-103 工程event・projection因果記録の受入候補（未実行）
+
+- **対応要求・状態**：HELIXOS-L2-103と対になる未採択・未実行の静的oracle案。event発生、実runtime、要求採択、工程完了を主張しない。
+- **対応する例**：現行適用契約に基づくHARNESS stage outcomeと、同一scope/revisionのOS event/referenceを与える。OS projectionからappend-only event、current state、利用可能なparent/cause lineageを相互に辿れ、HARNESS outcomeの意味を変更せず引き継ぐことを確認する。
+- **拒否・unknown例**：event欠落、異なるrevision/scope、parent/cause参照の孤立、duplicate/conflicting eventを個別に与える。欠落を補ったり状態遷移を推定したりせず、未解決記録・復旧義務を残す。event/receipt/projectionの存在だけから工程pass、pair-freeze、merge、承認、完了を作らない。
+- **受入限界**：HARNESSが定めるstage順・遷移条件や旧InfinityLoopEvent schemaを受け入れoracleへ導入しない。旧HIL-FR-01全体、隣接要求、旧runtime/test/CIの実行・成功は対象外。HR-FR-HIL-02、HAC-HIL-02a/b/cは関連oracle参照に限り実行しない。

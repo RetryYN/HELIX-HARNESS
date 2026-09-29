@@ -920,3 +920,12 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **version/digest不一致例**：contract revisionと結び付かないdigest、または異なるcontract revisionのdigestが提示される場合、同じversioned contractのdigestとして成立扱いにしない。計算方式、暗号方式、serialization、競合解決はoracleで新設せず未解決にする。
 - **OS handoff境界**：OS projection/intakeでfieldが欠落・改名・結合されたfixtureは、HARNESSの11-field contractを保持したhandoffとして適合扱いにしない。OS受領・durable receiptの形式や保存機構はHELIXOS-L2-102側の責務であり、HARNESSの意味oracleを代行しない。
 - **oracle出典と保留**：旧`infinity-loop-assertion-coverage-ledger.md:71`のHIL-FR-03 assertionは各fieldの単独omitを拒否する設計条件を示す (`HIL_ISSUE_CONTRACT_INCOMPLETE`; HOT-HIL-03/HST-HIL-001, draft-defined/not-implemented)。旧`system_contracts.json`、acceptance case、test/runtimeの実行結果を移管・再実行しない。11 fieldの具体意味、型・値域、version/digest encoding、旧IRその他の必須条件の現行対応は未決のまま保全する。
+
+
+### HARNESS-L11-060 工程入力revision対応の受入候補（未実行）
+
+- **対応要求・状態**：HARNESS-L2-060と対になる未採択・未実行の静的oracle案。要求採択、stage完了、L3承認、実行を主張しない。
+- **対応する例**：適用契約が明示するstage、対象scope、入力source revision/digest、当該stageの結果/evidenceを与える。同一対象revisionへ対応したものだけが当該stageの証拠として追跡できる。
+- **拒否・unknown例**：入力digestを欠く、異なる対象revisionの結果を結ぶ、scopeが異なる、またはstage契約が不明/staleの例ではstage成立を示さず、欠落・不一致を返す。
+- **境界例**：下流stageの証拠だけで上流stage成立を推定する、evidenceの存在からpair-freeze/完了を表示する、旧sourceの工程名を現行契約にないscopeへ適用する例は不成立。旧工程列、InfinityLoopEvent schema、前段receiptの普遍必須化はoracleに含めない。OSの保存結果はOS側契約の対象であり、HARNESSのstage意味判定と混同しない。
+- **受入限界**：source atom一件の意味を限定して照合する案であり、旧HIL-FR-01全条件、consumer closure、旧runtime/test/CI、実受入は対象外。HR-FR-HIL-02およびHAC-HIL-02a/b/cは関連source/oracle参照の範囲で、実行しない。
