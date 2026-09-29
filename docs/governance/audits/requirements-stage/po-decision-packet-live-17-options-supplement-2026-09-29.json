@@ -1039,5 +1039,6 @@
         "direction": "adopt together for the exact current pair; HARNESS owns meaning, OS carries identity/revision/digest"
       }
     ]
-  }
+  },
+  "rebased_onto_origin_main": "d8c39fd06f51bc0137c63db7fd9c6facf5974cfb"
 }

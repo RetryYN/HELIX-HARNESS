@@ -1,6 +1,6 @@
 # 現行17候補のPO判断準備追補（候補別選択肢と影響）
 
-基準commit: `6e9e91d1a50acfb83ee64795e6ddbd1dfdff2485`（origin/main）。本追補は既存17件worksheetの候補別decision-readinessを補う。PO判断記録ではない。17件のMPR状態は `registered_proposal` / `authority_effect:none` のまま扱い、採択・保留・不採択はいずれも未選択である。
+現在のbranch base: `d8c39fd06f51bc0137c63db7fd9c6facf5974cfb`（origin/main、#2345後）。候補pinを最初に監査したsource baselineは`6e9e91d1a50acfb83ee64795e6ddbd1dfdff2485`で、最新mainへのrebase後も17候補のregister row/L2/L11/receipt SHA-256は不変。元worksheetはその既存17件revisionを特定する。本追補は候補別decision-readinessを補うもので、PO判断記録ではない。17件のMPR状態は `registered_proposal` / `authority_effect:none` のまま扱い、採択・保留・不採択はいずれも未選択である。
 
 機械可読版: [`po-decision-packet-live-17-options-supplement-2026-09-29.json`](po-decision-packet-live-17-options-supplement-2026-09-29.json)。各行のMPR exact row hash、L2/L11 section・whole-file SHA-256、source receipt SHA-256、source atom refsはJSONに固定した。
 
