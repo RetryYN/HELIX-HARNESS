@@ -1,0 +1,712 @@
+{
+  "schema_version": "legacy-candidate-classification-correction-overlay.v1",
+  "audit_id": "legacy-candidate-dsi-frs-metadata-seven-classification-proposal-2026-09-30",
+  "created_against_commit": "888d8c79660a670829db46c75f25f39a3b7ce1d3",
+  "classification_basis_commit": "97672630b7de70fd4433827730c390cbabd90a99",
+  "authority_effect": "none",
+  "audit_mode": "append_only_bounded_source_classification_correction_proposal",
+  "scope": {
+    "reason": "Seven IDs were selected for bounded correction from product_requirement_atom/unknown. Six are inventory counts, taxonomy, or category metadata and become explanation. 001065 is a source-resolution management condition, matching prior merged 000037; it leaves the product-unknown pool and enters management_successor_unresolved. Preserve adjacent FRS process/test predicates 002076–002077 for a separate route audit.",
+    "source_ids": [
+      "LEGACY-CAND-LINE-001062",
+      "LEGACY-CAND-LINE-001063",
+      "LEGACY-CAND-LINE-001064",
+      "LEGACY-CAND-LINE-001065",
+      "LEGACY-CAND-LINE-002073",
+      "LEGACY-CAND-LINE-002074",
+      "LEGACY-CAND-LINE-002075"
+    ],
+    "all_ids_are_product_requirement_atoms_before_this_proposal": true,
+    "not_a_route_coverage_or_requirement_adoption_audit": true,
+    "prior_route_audit_status": "None of the seven IDs is selected or included in the carried prior union through #2384. This proposal does not modify any route audit.",
+    "excluded_adjacent_predicate_ids": [
+      "LEGACY-CAND-LINE-002076",
+      "LEGACY-CAND-LINE-002077"
+    ],
+    "excluded_adjacent_predicate_reason": "002076 states a proposed demonstration order; 002077 states independent negative/unknown/stale/unauthorized-write acceptance. Both are substantive predicate candidates and remain condition/product_requirement_atom/unknown for separate route audit.",
+    "pool_membership_check": {
+      "product_unknown_pool_after_2381": 478,
+      "selected_ids_in_pool": 7,
+      "selected_ids_outside_pool": [],
+      "basis": "#2353 exact row_records with #2356→#2360→#2363→#2366→#2367→#2368→#2369→#2381 exact-ID overlays; independently reconstructed, matching #2382 progression."
+    },
+    "management_condition_precedent": {
+      "source_id": "LEGACY-CAND-LINE-000037",
+      "audit_id": "legacy-candidate-management-successor-unresolved-six-row-audit-2026-09-29",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-management-successor-unresolved-six-row-audit-2026-09-29.json",
+      "sha256": "e5c59d3265f99630c4b4e26b045db011de4898d8364dca3dbcfe7be7755ff889",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+      "source_line": 54,
+      "classification": "condition/management_process_condition/management_successor_unresolved",
+      "semantic_relation": "Same pointer-correction/source-resolution condition: a nonexistent 06_ITEM_DIRECTIVES.md link is redirected to the integrated historical INV-001–072 cards. Neither row establishes current successor or adoption.",
+      "source_line_sha256": "sha256:237c6ccbe88f272922ff4b7e0918625cb896ffb5d745f672053763b9dfe2b261",
+      "asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+      "remaining_gap": "INV card spans, ID-to-card mapping, current successor and owner remain unresolved; resolving the source pointer alone does not create adoption or mapping."
+    }
+  },
+  "classification_basis": [
+    "The fixed #2353 baseline row records classify all seven exact IDs as condition/product_requirement_atom/unknown; subsequent #2356–#2381 overlays are exact-ID disjoint from these seven.",
+    "#2356 precedent classifies document IDs, status fields, and Behavior Contract identifiers without independent predicates as explanation while preserving substantive rows under separate source IDs.",
+    "The DSI source states candidate/unapproved and says its inventory alone does not establish approval, v1 mandate, bulk issues, runtime permission, or implementation completion (archive lines 3–7).",
+    "The FRS rows 63–65 are count/range statements in §2. The source remains draft_candidate; historical approval of v0.2 acceptance conditions does not confer current target authority or make count rows acceptance predicates.",
+    "For six IDs, the exact source text is inventory counts, taxonomy/category labels, or a source trace pointer without an independent product predicate. 001065 is different: it directs resolution of a missing split-file reference to the preserved integrated source, matching the management source-resolution condition in prior row 000037.",
+    "001065 has a substantive source-location correction, not mere trace metadata: it redirects a nonexistent split-file reference to the preserved integrated INV card set. This matches prior merged 000037 at archive governance/candidates/README.md:54, classified condition/management_process_condition/management_successor_unresolved in the six-row audit. The unresolved successor status and no-adoption boundary are preserved."
+  ],
+  "source_groups": [
+    {
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+      "asset_id": "LEGACY-ASSET-429B017144C61B9C906D",
+      "source_file_sha256": "3cb6ee8a4d342b7f667c0960d08eb0a18fa44372ecb03bd85e0576e59baa4cca",
+      "source_ids": [
+        "LEGACY-CAND-LINE-001062",
+        "LEGACY-CAND-LINE-001063",
+        "LEGACY-CAND-LINE-001064",
+        "LEGACY-CAND-LINE-001065"
+      ],
+      "authority_context": [],
+      "asset_authority_status": "historical",
+      "asset_disposition": "unresolved",
+      "source_authority_context": "Archive lines 3–7: `candidate / unapproved`; inventory is only an entry to compare 72 candidates against existing Requirement/Capability/Issue and explicitly does not establish approval, v1 mandate, bulk issue creation, runtime permission, or implementation completion."
+    },
+    {
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+      "asset_id": "LEGACY-ASSET-67ADFAB856D954B3C5D2",
+      "source_file_sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+      "source_ids": [
+        "LEGACY-CAND-LINE-002073",
+        "LEGACY-CAND-LINE-002074",
+        "LEGACY-CAND-LINE-002075"
+      ],
+      "authority_context": [],
+      "asset_authority_status": "historical",
+      "asset_disposition": "unresolved",
+      "source_authority_context": "Frontmatter status `draft_candidate`; §0 records approval of v0.2 acceptance conditions only, and expressly says it does not establish implementation acceptance, independent review, canonical promotion, #397 IR admission, publish, or cutover. This classification correction does not revoke or expand that historical approval."
+    }
+  ],
+  "rows": [
+    {
+      "source_id": "LEGACY-CAND-LINE-001062",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+      "source_line": 11,
+      "source_line_sha256": "sha256:19a7edd3abb51a9d68e3ba58c8a63d14670b56e631810fcd39ff0c7b8ba689a6",
+      "physical_line_bytes_sha256": "sha256:09526366d2abf891d35d47cc617ea2e7132a391b86fa3d73958d7249688ffe73",
+      "exact_source_text": "- INV-001〜072の72候補",
+      "proposed_classification": {
+        "classification": "explanation",
+        "condition_subtype": null,
+        "route_status": "not_condition",
+        "route_status_basis": "classification label only; no route relation or successor asserted"
+      },
+      "classification_action": "reclassify_condition_to_explanation",
+      "reason": "72件の候補数を列挙するsource-scope metadata。個別behavior、受入oracle、適用条件を定義しない。",
+      "effective_before_this_proposal": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      }
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001063",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+      "source_line": 12,
+      "source_line_sha256": "sha256:66e6b2d0bd0ba60b0c6523530eb552f21a5cd0d4570baff47bdcd93d98499c4d",
+      "physical_line_bytes_sha256": "sha256:78b8982e4892b9c4c247ccdfe0391ff2e569315fb9c41bc34895bad25d2b423d",
+      "exact_source_text": "- 導入帯P0〜P4",
+      "proposed_classification": {
+        "classification": "explanation",
+        "condition_subtype": null,
+        "route_status": "not_condition",
+        "route_status_basis": "classification label only; no route relation or successor asserted"
+      },
+      "classification_action": "reclassify_condition_to_explanation",
+      "reason": "P0–P4という導入帯のラベルを列挙する分類metadata。本文16行目でseverity、V-model layer、M0–M5、Release Waveとも区別され、単独の製品条件を定義しない。",
+      "effective_before_this_proposal": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      }
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001064",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+      "source_line": 13,
+      "source_line_sha256": "sha256:34ec461594a0a7906fa6dabe98b24e04d27836c8d93d1f359d8c63c75769d3a4",
+      "physical_line_bytes_sha256": "sha256:eff3434d7c2d3055c324cdd8fd1114356824467efcf3255a64828b0b865d4aab",
+      "exact_source_text": "- 能力依存、既存導入束、共通受入、採否、段階引継ぎ、出典",
+      "proposed_classification": {
+        "classification": "explanation",
+        "condition_subtype": null,
+        "route_status": "not_condition",
+        "route_status_basis": "classification label only; no route relation or successor asserted"
+      },
+      "classification_action": "reclassify_condition_to_explanation",
+      "reason": "照合対象に保持する属性カテゴリの列挙であり、いずれかの能力依存、bundle、acceptance、disposition、handoff動作のpredicateを与えない。",
+      "effective_before_this_proposal": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      }
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001065",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+      "source_line": 14,
+      "source_line_sha256": "sha256:390b7fa7bf094ac29037c833c15c24a19003590863ee62bff1608b4daf7a07ca",
+      "physical_line_bytes_sha256": "sha256:24b065676269df12bf96e63d11c5449b9c854af3bb02871c1e9193b7a8748534",
+      "exact_source_text": "- 分冊が参照した`06_ITEM_DIRECTIVES.md`は、履歴入力内の「INV-001〜072 個別実施カード」へ解決する",
+      "proposed_classification": {
+        "classification": "condition",
+        "condition_subtype": "management_process_condition",
+        "route_status": "management_successor_unresolved",
+        "route_status_basis": "source-resolution condition remains unresolved as to a current successor/owner; this route label assigns none"
+      },
+      "classification_action": "reclassify_product_requirement_atom_to_management_process_condition",
+      "reason": "The row resolves the split-dossier pointer `06_ITEM_DIRECTIVES.md` to the integrated historical INV-001–072 individual cards. This is an operational source-resolution condition needed to locate the preserved candidate records, not a product behavior predicate. It has the same meaning as LEGACY-CAND-LINE-000037 (archive governance/candidates/README.md:54), already classified condition/management_process_condition/management_successor_unresolved in the merged six-row audit. Current card spans, ID-to-card mapping, successor, and owner remain unresolved; pointer resolution creates no adoption or successor.",
+      "effective_before_this_proposal": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      }
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002073",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+      "source_line": 63,
+      "source_line_sha256": "sha256:29e96702267ecf98d1bc84e7a52acabb6f1ce6d84e5b7fab99c400af4167b4fc",
+      "physical_line_bytes_sha256": "sha256:3cd85825e065df46f3133d9c1b06194dffc163d442a53eb7d6e394efbdce4836",
+      "exact_source_text": "- feature contract: `FRS-FR-001..006` exact 6件。",
+      "proposed_classification": {
+        "classification": "explanation",
+        "condition_subtype": null,
+        "route_status": "not_condition",
+        "route_status_basis": "classification label only; no route relation or successor asserted"
+      },
+      "classification_action": "reclassify_condition_to_explanation",
+      "reason": "FRSのfeature contract件数・ID範囲を示す量閉じmetadata。個別FR predicateやoracleはこの行では定義しない。",
+      "effective_before_this_proposal": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      }
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002074",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+      "source_line": 64,
+      "source_line_sha256": "sha256:f391be1de08a58dfe2c7bdc7be63b4b89f4d50b382afa27e64c77df829c034c5",
+      "physical_line_bytes_sha256": "sha256:4853ce88e21d780decd7516c6890e386ae64a4a09920f619dc806a0148fc18db",
+      "exact_source_text": "- supporting requirement: `FRS-R-01..24` exact 24件。",
+      "proposed_classification": {
+        "classification": "explanation",
+        "condition_subtype": null,
+        "route_status": "not_condition",
+        "route_status_basis": "classification label only; no route relation or successor asserted"
+      },
+      "classification_action": "reclassify_condition_to_explanation",
+      "reason": "FRS supporting requirement件数・ID範囲を示す量閉じmetadata。個別requirement predicateはこの行では定義しない。",
+      "effective_before_this_proposal": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      }
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002075",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+      "source_line": 65,
+      "source_line_sha256": "sha256:24c5ce0ae09fb1dff4d8918da374cd9d94810fea8c26c94df1b3c6b5c6651570",
+      "physical_line_bytes_sha256": "sha256:63715dbfbfd80589546718f5dd7bf31a3fc619fec55976859fb9e9a10ada1590",
+      "exact_source_text": "- acceptance: `FRS-AC-001..026` exact 26件。",
+      "proposed_classification": {
+        "classification": "explanation",
+        "condition_subtype": null,
+        "route_status": "not_condition",
+        "route_status_basis": "classification label only; no route relation or successor asserted"
+      },
+      "classification_action": "reclassify_condition_to_explanation",
+      "reason": "FRS acceptance件数・ID範囲を示す量閉じmetadata。個別acceptance oracleはこの行では定義しない。",
+      "effective_before_this_proposal": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      }
+    }
+  ],
+  "source_evidence": {
+    "source_rows": [
+      {
+        "source_id": "LEGACY-CAND-LINE-001062",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+        "source_line": 11,
+        "source_line_sha256": "sha256:19a7edd3abb51a9d68e3ba58c8a63d14670b56e631810fcd39ff0c7b8ba689a6",
+        "physical_line_bytes_sha256": "sha256:09526366d2abf891d35d47cc617ea2e7132a391b86fa3d73958d7249688ffe73",
+        "exact_source_text": "- INV-001〜072の72候補",
+        "proposed_classification": {
+          "classification": "explanation",
+          "condition_subtype": null,
+          "route_status": "not_condition",
+          "route_status_basis": "classification label only; no route relation or successor asserted"
+        },
+        "classification_action": "reclassify_condition_to_explanation",
+        "reason": "72件の候補数を列挙するsource-scope metadata。個別behavior、受入oracle、適用条件を定義しない。",
+        "effective_before_this_proposal": {
+          "classification": "condition",
+          "condition_subtype": "product_requirement_atom",
+          "route_status": "unknown"
+        }
+      },
+      {
+        "source_id": "LEGACY-CAND-LINE-001063",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+        "source_line": 12,
+        "source_line_sha256": "sha256:66e6b2d0bd0ba60b0c6523530eb552f21a5cd0d4570baff47bdcd93d98499c4d",
+        "physical_line_bytes_sha256": "sha256:78b8982e4892b9c4c247ccdfe0391ff2e569315fb9c41bc34895bad25d2b423d",
+        "exact_source_text": "- 導入帯P0〜P4",
+        "proposed_classification": {
+          "classification": "explanation",
+          "condition_subtype": null,
+          "route_status": "not_condition",
+          "route_status_basis": "classification label only; no route relation or successor asserted"
+        },
+        "classification_action": "reclassify_condition_to_explanation",
+        "reason": "P0–P4という導入帯のラベルを列挙する分類metadata。本文16行目でseverity、V-model layer、M0–M5、Release Waveとも区別され、単独の製品条件を定義しない。",
+        "effective_before_this_proposal": {
+          "classification": "condition",
+          "condition_subtype": "product_requirement_atom",
+          "route_status": "unknown"
+        }
+      },
+      {
+        "source_id": "LEGACY-CAND-LINE-001064",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+        "source_line": 13,
+        "source_line_sha256": "sha256:34ec461594a0a7906fa6dabe98b24e04d27836c8d93d1f359d8c63c75769d3a4",
+        "physical_line_bytes_sha256": "sha256:eff3434d7c2d3055c324cdd8fd1114356824467efcf3255a64828b0b865d4aab",
+        "exact_source_text": "- 能力依存、既存導入束、共通受入、採否、段階引継ぎ、出典",
+        "proposed_classification": {
+          "classification": "explanation",
+          "condition_subtype": null,
+          "route_status": "not_condition",
+          "route_status_basis": "classification label only; no route relation or successor asserted"
+        },
+        "classification_action": "reclassify_condition_to_explanation",
+        "reason": "照合対象に保持する属性カテゴリの列挙であり、いずれかの能力依存、bundle、acceptance、disposition、handoff動作のpredicateを与えない。",
+        "effective_before_this_proposal": {
+          "classification": "condition",
+          "condition_subtype": "product_requirement_atom",
+          "route_status": "unknown"
+        }
+      },
+      {
+        "source_id": "LEGACY-CAND-LINE-001065",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+        "source_line": 14,
+        "source_line_sha256": "sha256:390b7fa7bf094ac29037c833c15c24a19003590863ee62bff1608b4daf7a07ca",
+        "physical_line_bytes_sha256": "sha256:24b065676269df12bf96e63d11c5449b9c854af3bb02871c1e9193b7a8748534",
+        "exact_source_text": "- 分冊が参照した`06_ITEM_DIRECTIVES.md`は、履歴入力内の「INV-001〜072 個別実施カード」へ解決する",
+        "proposed_classification": {
+          "classification": "condition",
+          "condition_subtype": "management_process_condition",
+          "route_status": "management_successor_unresolved",
+          "route_status_basis": "source-resolution condition remains unresolved as to a current successor/owner; this route label assigns none"
+        },
+        "classification_action": "reclassify_product_requirement_atom_to_management_process_condition",
+        "reason": "The row resolves the split-dossier pointer `06_ITEM_DIRECTIVES.md` to the integrated historical INV-001–072 individual cards. This is an operational source-resolution condition needed to locate the preserved candidate records, not a product behavior predicate. It has the same meaning as LEGACY-CAND-LINE-000037 (archive governance/candidates/README.md:54), already classified condition/management_process_condition/management_successor_unresolved in the merged six-row audit. Current card spans, ID-to-card mapping, successor, and owner remain unresolved; pointer resolution creates no adoption or successor.",
+        "effective_before_this_proposal": {
+          "classification": "condition",
+          "condition_subtype": "product_requirement_atom",
+          "route_status": "unknown"
+        }
+      },
+      {
+        "source_id": "LEGACY-CAND-LINE-002073",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+        "source_line": 63,
+        "source_line_sha256": "sha256:29e96702267ecf98d1bc84e7a52acabb6f1ce6d84e5b7fab99c400af4167b4fc",
+        "physical_line_bytes_sha256": "sha256:3cd85825e065df46f3133d9c1b06194dffc163d442a53eb7d6e394efbdce4836",
+        "exact_source_text": "- feature contract: `FRS-FR-001..006` exact 6件。",
+        "proposed_classification": {
+          "classification": "explanation",
+          "condition_subtype": null,
+          "route_status": "not_condition",
+          "route_status_basis": "classification label only; no route relation or successor asserted"
+        },
+        "classification_action": "reclassify_condition_to_explanation",
+        "reason": "FRSのfeature contract件数・ID範囲を示す量閉じmetadata。個別FR predicateやoracleはこの行では定義しない。",
+        "effective_before_this_proposal": {
+          "classification": "condition",
+          "condition_subtype": "product_requirement_atom",
+          "route_status": "unknown"
+        }
+      },
+      {
+        "source_id": "LEGACY-CAND-LINE-002074",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+        "source_line": 64,
+        "source_line_sha256": "sha256:f391be1de08a58dfe2c7bdc7be63b4b89f4d50b382afa27e64c77df829c034c5",
+        "physical_line_bytes_sha256": "sha256:4853ce88e21d780decd7516c6890e386ae64a4a09920f619dc806a0148fc18db",
+        "exact_source_text": "- supporting requirement: `FRS-R-01..24` exact 24件。",
+        "proposed_classification": {
+          "classification": "explanation",
+          "condition_subtype": null,
+          "route_status": "not_condition",
+          "route_status_basis": "classification label only; no route relation or successor asserted"
+        },
+        "classification_action": "reclassify_condition_to_explanation",
+        "reason": "FRS supporting requirement件数・ID範囲を示す量閉じmetadata。個別requirement predicateはこの行では定義しない。",
+        "effective_before_this_proposal": {
+          "classification": "condition",
+          "condition_subtype": "product_requirement_atom",
+          "route_status": "unknown"
+        }
+      },
+      {
+        "source_id": "LEGACY-CAND-LINE-002075",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+        "source_line": 65,
+        "source_line_sha256": "sha256:24c5ce0ae09fb1dff4d8918da374cd9d94810fea8c26c94df1b3c6b5c6651570",
+        "physical_line_bytes_sha256": "sha256:63715dbfbfd80589546718f5dd7bf31a3fc619fec55976859fb9e9a10ada1590",
+        "exact_source_text": "- acceptance: `FRS-AC-001..026` exact 26件。",
+        "proposed_classification": {
+          "classification": "explanation",
+          "condition_subtype": null,
+          "route_status": "not_condition",
+          "route_status_basis": "classification label only; no route relation or successor asserted"
+        },
+        "classification_action": "reclassify_condition_to_explanation",
+        "reason": "FRS acceptance件数・ID範囲を示す量閉じmetadata。個別acceptance oracleはこの行では定義しない。",
+        "effective_before_this_proposal": {
+          "classification": "condition",
+          "condition_subtype": "product_requirement_atom",
+          "route_status": "unknown"
+        }
+      }
+    ],
+    "source_authority_state": "historical_candidate",
+    "target_authority_state": "draft_candidate",
+    "atomization_status": "preserved_pending_atomization",
+    "successor_requirement_ids": [],
+    "source_files": [
+      {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+        "asset_id": "LEGACY-ASSET-429B017144C61B9C906D",
+        "source_file_sha256": "3cb6ee8a4d342b7f667c0960d08eb0a18fa44372ecb03bd85e0576e59baa4cca",
+        "asset_authority_status": "historical",
+        "asset_disposition": "unresolved",
+        "source_authority_context": "Archive lines 3–7: `candidate / unapproved`; inventory is only an entry to compare 72 candidates against existing Requirement/Capability/Issue and explicitly does not establish approval, v1 mandate, bulk issue creation, runtime permission, or implementation completion."
+      },
+      {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+        "asset_id": "LEGACY-ASSET-67ADFAB856D954B3C5D2",
+        "source_file_sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+        "asset_authority_status": "historical",
+        "asset_disposition": "unresolved",
+        "source_authority_context": "Frontmatter status `draft_candidate`; §0 records approval of v0.2 acceptance conditions only, and expressly says it does not establish implementation acceptance, independent review, canonical promotion, #397 IR admission, publish, or cutover. This classification correction does not revoke or expand that historical approval."
+      }
+    ]
+  },
+  "overlay_intersection_checks": {
+    "prior_classification_overlay_ids_checked": [
+      {
+        "ref": "#2356",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+        "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
+        "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164",
+        "intersection_ids": [],
+        "intersection_count": 0
+      },
+      {
+        "ref": "#2360",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+        "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+        "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb",
+        "intersection_ids": [],
+        "intersection_count": 0
+      },
+      {
+        "ref": "#2363",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+        "commit": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
+        "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384",
+        "intersection_ids": [],
+        "intersection_count": 0
+      },
+      {
+        "ref": "#2366",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+        "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
+        "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6",
+        "intersection_ids": [],
+        "intersection_count": 0
+      },
+      {
+        "ref": "#2367",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
+        "commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
+        "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d",
+        "intersection_ids": [],
+        "intersection_count": 0
+      },
+      {
+        "ref": "#2368",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
+        "commit": "f89f71e0371440e9e10636499192c2311872b024",
+        "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95",
+        "intersection_ids": [],
+        "intersection_count": 0
+      },
+      {
+        "ref": "#2369",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30.json",
+        "commit": "081b0b6612b802cfcb02b3cecda1559dd9a3ce13",
+        "sha256": "5ed02b037f78ca25991b396e232e8b1ee754b0c91b056ed6640c9fb1c47cf0c0",
+        "intersection_ids": [],
+        "intersection_count": 0
+      },
+      {
+        "ref": "#2381",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-metadata10-classification-proposal-2026-09-30.json",
+        "commit": "6e62f76986f19d14281cb2a96eca460c5430dcc6",
+        "sha256": "512f9ceafe935648d459d6b268ff4d3952f0e8264298213ad278256236b5f40e",
+        "intersection_ids": [],
+        "intersection_count": 0
+      }
+    ],
+    "selected_ids_intersecting_prior_classification_overlays": 0
+  },
+  "route_union_intersection_checks": [
+    {
+      "ref": "#2378",
+      "prior_or_selected_count": 290,
+      "intersects_corrected_ids": []
+    },
+    {
+      "ref": "#2380",
+      "prior_or_selected_count": 317,
+      "intersects_corrected_ids": []
+    },
+    {
+      "ref": "#2379",
+      "prior_or_selected_count": 30,
+      "intersects_corrected_ids": []
+    },
+    {
+      "ref": "#2383",
+      "prior_or_selected_count": 9,
+      "intersects_corrected_ids": []
+    },
+    {
+      "ref": "#2384",
+      "prior_or_selected_count": 8,
+      "intersects_corrected_ids": []
+    }
+  ],
+  "count_impact": {
+    "current_effective_basis_after_2381_and_2384_route_audit": {
+      "product_requirement_atom_unknown_pool": 478,
+      "source_ids_selected_for_correction": 7,
+      "current_classification": "condition/product_requirement_atom/unknown",
+      "product_pool_intersection_with_audited_union": 305,
+      "unreviewed_product_unknown_pool": 173,
+      "condition_count": 864,
+      "explanation_count": 2965,
+      "management_process_condition_count": 36,
+      "management_successor_unresolved_count": 36
+    },
+    "proposal_if_applied": {
+      "product_requirement_atom_unknown_pool": 471,
+      "classification": "six explanation rows plus one condition/management_process_condition/management_successor_unresolved row",
+      "effective_classification_counts": {
+        "condition": 858,
+        "explanation": 2971,
+        "structure": 926,
+        "total": 4755
+      },
+      "condition_subtype_counts": {
+        "product_requirement_atom": 820,
+        "management_process_condition": 37,
+        "concept_condition": 1,
+        "condition_total": 858
+      },
+      "condition_route_counts_delta": {
+        "unknown": -7,
+        "management_successor_unresolved": 1
+      }
+    },
+    "delta": {
+      "condition": -6,
+      "explanation": 6,
+      "product_requirement_atom": -7,
+      "management_process_condition": 1,
+      "product_route_unknown": -7,
+      "management_successor_unresolved": 1
+    },
+    "route_union_effect": {
+      "all_route_union_count_through_2384": 364,
+      "product_targeted_route_union_count_through_2384": 334,
+      "product_pool_intersection_before_proposal": 305,
+      "product_pool_intersection_after_proposal": 305,
+      "unreviewed_product_unknown_pool_before": 173,
+      "unreviewed_product_unknown_pool_after": 166,
+      "equation": "478 - 305 = 173; 471 - 305 = 166; route union unchanged",
+      "status": "Conditional proposal arithmetic only. Six IDs leave the product pool as explanations; 001065 leaves it as a management condition. Route union is unchanged; management_successor_unresolved increases by one without assigning a successor."
+    },
+    "status": "conditional proposal arithmetic only; #2384 was route-only and did not alter classification. Recount required if a later merged classification overlay changes the source pool."
+  },
+  "limits": [
+    "No route relation, adopted requirement successor, coverage, acceptance, implementation, or closure is proposed.",
+    "No human approval or revocation is inferred from either legacy source status or this classification proposal.",
+    "The old FRS acceptance approval remains a historical approval of its old conditions only; this proposal does not assert those conditions were rejected.",
+    "The proposal excludes 002076 and 002077 and does not reclassify their process/test predicates.",
+    "No old archive scripts, CLI, hooks, tests, runtime, workflow, or CI were run.",
+    "001065 remains an unresolved management/source-resolution condition like 000037; management_successor_unresolved is not a formal successor assignment or adoption."
+  ],
+  "pinned_inputs": [
+    {
+      "role": "classification_baseline_2353",
+      "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+      "git_blob_sha": "2b0e305c68da5610f354a802c7410363ede1261c"
+    },
+    {
+      "role": "effective_pool_recount_2382",
+      "commit": "193974e",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-effective-classification-recount-after-2381-2026-09-30.json",
+      "sha256": "92c713d6c74ecc138f43d2169b4387f511e31a0b26ba9ca538994c8df80a9932",
+      "git_blob_sha": "6c44b02dc1720c135e1d9525bf81567d338dee57"
+    },
+    {
+      "role": "source_line_carry_forward_ledger",
+      "commit": "888d8c79660a670829db46c75f25f39a3b7ce1d3",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+      "git_blob_sha": "50dfb2ff47da1550e54dbd6e5d5239b5d3382dfc"
+    },
+    {
+      "role": "legacy_asset_disposition_ledger",
+      "commit": "888d8c79660a670829db46c75f25f39a3b7ce1d3",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "git_blob_sha": "cfa4a48dff89fb4b4066d958c1513ba405c2a3dd"
+    },
+    {
+      "role": "fixed_authority_entrypoint",
+      "commit": "f6dad2",
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "25e552246344f168e9e14caa5049cec96227cbc62b09a82fdfd020449625899a",
+      "git_blob_sha": "1c1474522bddce04a2b818c4412a3512d1e746ea"
+    },
+    {
+      "role": "current_harness_l2_l11_decision_record",
+      "commit": "888d8c79660a670829db46c75f25f39a3b7ce1d3",
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "git_blob_sha": "019b328e875808f7b587bef97dcdaa310dae0acd"
+    },
+    {
+      "role": "dsi_source",
+      "commit": "f6dad2",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+      "sha256": "3cb6ee8a4d342b7f667c0960d08eb0a18fa44372ecb03bd85e0576e59baa4cca",
+      "git_blob_sha": "b091afe2feee02ea23f374e77d2e6f13b02be40b"
+    },
+    {
+      "role": "frs_source",
+      "commit": "f6dad2",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+      "sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+      "git_blob_sha": "7f20c379e4b031e4b2606fb575be7f2f3963bff5"
+    },
+    {
+      "role": "prior_classification_overlay_2356",
+      "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164"
+    },
+    {
+      "role": "prior_classification_overlay_2360",
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+      "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb"
+    },
+    {
+      "role": "prior_classification_overlay_2363",
+      "commit": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+      "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384"
+    },
+    {
+      "role": "prior_classification_overlay_2366",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+      "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6"
+    },
+    {
+      "role": "prior_classification_overlay_2367",
+      "commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
+      "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d"
+    },
+    {
+      "role": "prior_classification_overlay_2368",
+      "commit": "f89f71e0371440e9e10636499192c2311872b024",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
+      "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95"
+    },
+    {
+      "role": "prior_classification_overlay_2369",
+      "commit": "081b0b6612b802cfcb02b3cecda1559dd9a3ce13",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30.json",
+      "sha256": "5ed02b037f78ca25991b396e232e8b1ee754b0c91b056ed6640c9fb1c47cf0c0"
+    },
+    {
+      "role": "prior_classification_overlay_2381",
+      "commit": "6e62f76986f19d14281cb2a96eca460c5430dcc6",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-metadata10-classification-proposal-2026-09-30.json",
+      "sha256": "512f9ceafe935648d459d6b268ff4d3952f0e8264298213ad278256236b5f40e"
+    },
+    {
+      "role": "prior_route_audit_2378",
+      "commit": "cc451e22b6b520aad4d61b2410220a7503c47e12",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-concept-v4-main-acceptance-29-route-audit-2026-09-30.json",
+      "sha256": "91be699983dfe769869e08cc030cc1352abb42184a6ccd0d8bed09d7f84c0510",
+      "git_blob_sha": "52840c1d6299f80c7d36761bc16250393c860879"
+    },
+    {
+      "role": "prior_route_audit_2380",
+      "commit": "d4f1c4739fb920abdc5f951646e43a5c3e501af5",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-27-route-audit-2026-09-30.json",
+      "sha256": "341b97fd4109118c747c3a5b5c62f10f092ef4df330d45e4eaae9910f6994f56",
+      "git_blob_sha": "eaad720f04e7d2b8b19ed7b1404bd5703d6e26df"
+    },
+    {
+      "role": "prior_route_audit_2379",
+      "commit": "6f1f05b40a2adbdbe6ab1402e192e23994ddda71",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-harness-memory-coordination-30-route-audit-after-2378-2026-09-30.json",
+      "sha256": "c8259d55f50c8f86f20619e850848b5f77cf72c378872ecc9c6c0da1ff8699ec",
+      "git_blob_sha": "caad5bba6b233c6e07ee19dfd916ff56f7f4df66"
+    },
+    {
+      "role": "prior_route_audit_2383",
+      "commit": "2d3a85ee8",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-mechanism-adequacy-nine-row-route-audit-after-2382-2026-09-30.json",
+      "sha256": "f59b4f7b6252ef0dbc084f0904659c06cfa2a2fce5da45f3511e40c1896b797d",
+      "git_blob_sha": "abbe1f233dd0797601437873de93724644238210"
+    },
+    {
+      "role": "prior_route_audit_2384",
+      "commit": "888d8c79660a670829db46c75f25f39a3b7ce1d3",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-ma-requirements-acceptance-eight-row-route-audit-after-2383-2026-09-30.json",
+      "sha256": "86c301decb960d50ca7ba730e688371103aa41139c53b1c5ea5f1d100ff26832",
+      "git_blob_sha": "3a1e023b03a9cd05b7e4cbe9f70e38ed0e5d82f5"
+    },
+    {
+      "role": "prior_management_condition_precedent_000037",
+      "commit": "d6125d141176e1a2afe29d59b863fc0a92139473",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-management-successor-unresolved-six-row-audit-2026-09-29.json",
+      "sha256": "e5c59d3265f99630c4b4e26b045db011de4898d8364dca3dbcfe7be7755ff889",
+      "git_blob_sha": "2244b565c3d6e70b4a76059e285e6b8804fa8b96"
+    }
+  ]
+}
