@@ -862,3 +862,13 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **command再送の負例**：同じcommand identityとpayloadで再送した場合はsemantic revisionを二重作成しない。同じcommand IDで異payloadの場合はHARNESS-L2-052の意味判定を参照してconflictにし、先行current・revision・receiptを保持する。HARNESS候補が未採択またはその判定evidenceがない状態を、OSが独自のpayload意味判定で補わない。
 - **unknown・receipt欠落例**：write対象owner、base、必須projection、receipt link、failure位置または復旧先を欠落・不一致にする。全成功・rollback成功・再試行安全性を推測せず、currentを成立表示しない。receiptが書けないfailureでは別の既存証拠経路を参照できない限りunknownを返す。
 - **責務・受入境界**：成功時もHARNESS要求の採否や上流authorityを生成しない。receipt／register／PRの存在を実runtime実行や原子性の実証と扱わない。本候補はHOT-HIL-49のFR-52部分を受入設計へ再導出するだけで、FR-53のidentity/location history、rename/move/split/merge、authority・oracle・typed edge保持や旧test実行を含まない。
+
+### HELIXOS-L2-054 Closure Gate証拠照合・close運転handoffの受入候補（未実行）
+
+- **対応要求・状態**：HELIXOS-L2-054（HELIX-OS connection候補、未採択）。静的なoracle案であり、実証、要求採択、Issue close authorityやoperationの許可を示さない。
+- **HARNESS handoff不成立**：HARNESSの候補対象条件の評価結果がない、別scope/revisionの結果が渡る、または候補対象条件がunknown/withheldのfixtureではOSがclose operationを行わず、不足・不一致のownerへ返す。OS独自にoracleやrequirement meaningを埋めてはならない。
+- **証拠欠落**：PR、CI、独立audit、選択済みstyleへのmerge、oracle、子Issue状態を一つずつmissing/stale/unknown/conflictにする。欠落項目を特定して候補対象条件を未成立とし、その結果だけでcloseを進めず、他の証拠や別scopeのreceiptで補わない。旧memory receipt欠落の負例は別のholding oracleとして表示し、この候補のclose拒否条件へ組み込まない。CIが未構築で必要結果を得られない場合はunknownとして保留し、旧CI resultで通さない。
+- **正常例の境界**：今回候補の証拠とHARNESSの評価結果が同じscope/revisionでcurrentであり、close operationに対する既存authorityと未移管条件を含む適用契約によるclose可否が別途確認できるfixtureでは、OSが運転結果とclosure receiptを対応付けて記録する期待を確認する。旧HST-CASE-023-01の`merged_closed`はsource oracleの期待として参照するだけで、close API、具体schema、実行結果を新たに決めない。
+- **receiptと状態分離**：closure receiptを欠落させたclose要求、Issue closeだけ存在する状態、閉じたchild Issueだけ存在する状態を与え、receipt、close可否、実際のclose結果、要求受入、stage完了をそれぞれ独立に識別する。PR／CI／Issueの表示やreceiptの存在だけで要求承認・完了を示さない。
+- **memory意味の未確定**：旧memory compaction atomはholdingのまま`memory条件: 未判定（holding）`と別表示する。候補対象のPR／CI／audit等の評価をこの未決だけで止めず、provider memory/summaryを旧receiptと同値にも扱わない。OS-L2-019 continuityとの同値、memory作業の適用scope、現行close条件は本受入から補作しない。
+- **旧oracleと実施状態**：旧assertion HST-CASE-023-01〜05/07およびHOT-HIL-05は候補oracle参照である。旧記録にある`design-defined`／`not-implemented`を実績扱いせず、旧runtime・test・CLI・CIを実行しない。候補receipt、source atom、文書上の正常例は受入実行、Issue close、旧IR全体のclosureを示さない。

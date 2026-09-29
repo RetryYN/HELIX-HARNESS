@@ -1,0 +1,184 @@
+{
+  "receipt_id": "HIL-FR-07-CLOSURE-COVERAGE-2026-09-29",
+  "receipt_status": "bounded_source_atom_partition",
+  "source_revision": "9c635c475100c17e13da69f5fde5295570f0b1ae",
+  "source_holding_registration_id": "MPR-SH-SEMANTIC-LINE-003",
+  "source_requirement_holding_ref": "MPR-SH-IR-003#HIL-FR-07",
+  "legacy_requirement_id": "HIL-FR-07",
+  "legacy_requirement_state": "preserved_pending_rehome",
+  "formal_successor_assignment": false,
+  "source_atom_file": "docs/governance/audits/requirement-registration/hil-fr07-closure-source-lines-2026-09-29.jsonl",
+  "source_atom_file_sha256": "sha256:8f49295605e48ae7d05ab7340e583624c76702626eb1181d658f5124922d4652",
+  "source_atom_count": 9,
+  "source_atom_scope": "HIL-FR-07 source line 97 only; nine non-overlapping requirement/output atoms. Assertion cases are separate oracle refs and are not requirement atoms. HIL-FR-10 line 100 is contextual memory-compaction meaning, not counted.",
+  "source_line": {
+    "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+    "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+    "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+    "source_line": 97,
+    "source_line_sha256": "sha256:4ffc176ae20e82e3d31c25abf80ec260b2e9850daaf7373f657c661e8b22f08c",
+    "source_text": "| **HIL-FR-07** | Closure GateはPR、CI、独立audit、選択済みstyleへのmerge、oracle、memory compaction、子Issue状態を検査する。 | closure receipt、close可否 |",
+    "source_table_output_column": "観測可能な出力"
+  },
+  "candidate_subsets": {
+    "HARNESS-L2-057": {
+      "candidate_registration_id": "MPR-RC-HARNESS-L2-057-001",
+      "source_atom_count": 2,
+      "source_atom_set_digest": "sha256:506bb21c46ac47403729bb9fc41f3f0df792738ab8979b914954b1e169214b34",
+      "carried_atom_refs": [
+        "FR07-EVIDENCE-ORACLE-L0097",
+        "FR07-OUTPUT-CLOSE-ELIGIBILITY-L0097"
+      ],
+      "candidate_semantic_digest": "sha256:2c487f5408d31f0f982ab210be3df4d1d824bd75169b96bd1321cb0edd2a23ac",
+      "paired_l11_section_digest": "sha256:8cc4692c5b2eb356809f30b47a3addb9206c0c4e0f4c11d9f505426cf7fe83e1",
+      "source_l1_revision": "docs/helix-harness/L1-planning/product-intent.md@9c635c475100c17e13da69f5fde5295570f0b1ae sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f"
+    },
+    "HELIXOS-L2-054": {
+      "candidate_registration_id": "MPR-RC-HELIXOS-L2-054-001",
+      "source_atom_count": 6,
+      "source_atom_set_digest": "sha256:014d2801ebc0237064a6dfafddc155c65d14df051e9f2bacf6c3ec880a14432a",
+      "carried_atom_refs": [
+        "FR07-EVIDENCE-PR-L0097",
+        "FR07-EVIDENCE-CI-L0097",
+        "FR07-EVIDENCE-INDEPENDENT-AUDIT-L0097",
+        "FR07-EVIDENCE-SELECTED-STYLE-MERGE-L0097",
+        "FR07-EVIDENCE-CHILD-ISSUE-STATE-L0097",
+        "FR07-OUTPUT-CLOSURE-RECEIPT-L0097"
+      ],
+      "candidate_semantic_digest": "sha256:a9c1561ab310399fa27d5aca8bd9ebca8264176516357470157526df8c297eef",
+      "paired_l11_section_digest": "sha256:1021d37a8c3a94113c94aa1b92d3e8a79ae758f274aa40b570b5d151f7233aac",
+      "source_l1_revision": "docs/helix-os/L1-planning/system-intent.md@9c635c475100c17e13da69f5fde5295570f0b1ae sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e"
+    }
+  },
+  "preserved_pending_atom_refs": [
+    "FR07-EVIDENCE-MEMORY-COMPACTION-L0097"
+  ],
+  "coverage_result": "no_loss",
+  "unaccounted_atom_refs": [],
+  "partition": {
+    "carried_to_HARNESS_L2_057": 2,
+    "carried_to_HELIXOS_L2_054": 6,
+    "preserved_pending": 1,
+    "relation": "Each of the nine selected HIL-FR-07 line atoms appears exactly once in one partition. The two output atoms depend on the held memory-compaction atom: HARNESS-L2-057 returns only the carried-condition result, and HELIXOS-L2-054 records the final closure receipt only if full close eligibility is established separately. This is a candidate responsibility partition, not adoption or formal successor assignment."
+  },
+  "preserved_pending_registration_refs": [
+    "MPR-SH-SEMANTIC-LINE-003#REQSRC-LINE-01848 (FR07-EVIDENCE-MEMORY-COMPACTION-L0097 preserved pending)",
+    "MPR-SH-IR-003#HIL-FR-07; preserved_pending_rehome; successor_requirement_ids: []"
+  ],
+  "assertion_oracle_refs": [
+    {
+      "case_id": "HST-CASE-023-01",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+      "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+      "line": 179,
+      "line_sha256": "sha256:d696b755b7284591c199553d852beab2123173489d7fb4c6c4ae529652e83e03",
+      "oracle_note": "all closure receipts current -> merged_closed; design-defined/not-implemented, not execution evidence"
+    },
+    {
+      "case_id": "HST-CASE-023-02",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+      "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+      "line": 180,
+      "line_sha256": "sha256:520192508ebb762ed472bd0c490ad10c108d1ccf66bdc7f24177ea1b215d435e",
+      "oracle_note": "audit receipt missing -> close 0"
+    },
+    {
+      "case_id": "HST-CASE-023-03",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+      "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+      "line": 181,
+      "line_sha256": "sha256:4c4179dd3c14624ebff2935140206be65a02cf052ab129913ab77b9f4723e58f",
+      "oracle_note": "memory receipt missing -> close 0"
+    },
+    {
+      "case_id": "HST-CASE-023-04",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+      "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+      "line": 182,
+      "line_sha256": "sha256:2205b699b180718060f59b69c8251b533c5b0f602df87df69095040fad42feec",
+      "oracle_note": "child Issue open -> close 0"
+    },
+    {
+      "case_id": "HST-CASE-023-05",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+      "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+      "line": 183,
+      "line_sha256": "sha256:2f5cfa0a1ef07bcb975b319821240d42aaadc916dc697013860a94903e49b414",
+      "oracle_note": "oracle receipt missing -> close 0"
+    },
+    {
+      "case_id": "HST-CASE-023-07",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+      "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+      "line": 365,
+      "line_sha256": "sha256:1f63ed5322e7bc233d06f03e99b6672851f68e136dab0e05ce7acbd8074426d6",
+      "oracle_note": "each required-evidence omission negative; all current before closure receipt"
+    },
+    {
+      "case_id": "HOT-HIL-05",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+      "source_file_sha256": "sha256:4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+      "line": 32,
+      "line_sha256": "sha256:159ed2436354e130e4b89916ce8d35dcbf9c296d433e2b087ab6ef65c0cd5397",
+      "oracle_note": "no receipt -> reject or reopen/unauthorized closure event/merge impossible; reference only, not executed"
+    }
+  ],
+  "context_refs": [
+    {
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_line": 100,
+      "source_line_sha256": "sha256:98607f726a0fd0a7af99ad4e1be260795fa5b87ea62b7944c1dab8560b247fdb",
+      "source_text": "| **HIL-FR-10** | Memory CompactorはIssue admission時の問題・判断要約とCodex completion時の永続知識を別event種別で圧縮し、promote/supersede/no-promotionを記録する。進捗/raw logはmemoryへ複製しない。 | issue-summary、compressed memoryまたはno-promotion receipt |",
+      "evidence_role": "HIL-FR-10 semantic context only; not counted as HIL-FR-07 source atom"
+    },
+    {
+      "source_path": "docs/governance/audits/requirements-stage/legacy-ir45-remaining-disposition-2026-09-28.md",
+      "source_line": 32,
+      "evidence_role": "HIL-FR-07 memory compaction is not adopted as retained; HMC replacement/meaning change candidate; oracle/verification/acceptance evidence stays with each owner"
+    },
+    {
+      "source_path": "docs/helix-os/L2-requirements/governance-requirements.md@9c635c475100c17e13da69f5fde5295570f0b1ae",
+      "source_file_sha256": "sha256:bd8dfe66c527175506db95d9268ba0c9f5f71840182fa4063887f491ea774bd8",
+      "source_lines": "354-365, 682-687",
+      "evidence_role": "HMC-BR conditions are an independent candidate pending inspection/canonicalization, not promoted to IR/runtime; OS-L2-019 forbids provider memory as continuity authority"
+    },
+    {
+      "source_path": "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md",
+      "evidence_role": "PO memory boundary: harness memory limited to Codex/Claude coordination and rule meaning absorbed into mechanisms; provider memory prohibition carried in current OS candidate"
+    }
+  ],
+  "current_boundary_refs": {
+    "harness_l2_022": "docs/helix-harness/L2-requirements/product-requirements.md#HARNESS-L2-022",
+    "os_l2_017_019_023": [
+      "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-017",
+      "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-019",
+      "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-023"
+    ],
+    "current_po_decisions": [
+      "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "docs/governance/decisions/po-decision-2026-09-29-57candidates.md"
+    ],
+    "po_57_scope_note": "Neither new candidate is in the exact 57-candidate identity/revision set; no adoption is inherited."
+  },
+  "open_po_meaning_gaps": [
+    "旧memory compaction（HIL-FR-10のIssue admission要約とcompletion知識の別event・promote/supersede/no-promotion）がClosure Gateのrequired evidenceとして現行にどう対応するか",
+    "現行OS-L2-019 continuity証拠またはHMC candidateのどの意味を旧memory receiptに対応させるか。いずれも現状では正式採択・IR移管ではない",
+    "旧memory receipt欠落時close 0件を保持しながら、HMC適用scope外の対象を区別できるか。適用時のみへの変更は意味変更",
+    "新世代CI未構築下でCI checkを対象別に適用する条件。必要CI結果なしをunknown/close不可とする候補の保持または意味変更",
+    "選択済みstyleへのmergeの現行意味と、PR/audit/merge/child evidenceのcurrent判定の境界"
+  ],
+  "authority_effect": "none",
+  "decision_status": "candidate_only_unadopted",
+  "execution_status": "not_executed",
+  "old_runtime_or_test_execution": false,
+  "blanket_ir_closure": false,
+  "registered_at_worktree": "2026-09-29T09:06:33+09:00",
+  "source_atom_set_digest_rule": "For each candidate subset, select only source atom JSONL rows whose candidate_identity is that exact candidate; sort by atom_id ascending; concatenate UTF-8 lines `atom_id + U+0020 + source_line_sha256 with sha256: prefix removed + LF`; SHA-256 the resulting bytes. Oracle references are not source atoms and are excluded. The pending memory-compaction atom is excluded from both candidate subsets and remains in the pending partition.",
+  "output_atom_relations": {
+    "FR07-OUTPUT-CLOSE-ELIGIBILITY-L0097": "HARNESS-L2-057は候補へ移した8条件の成立結果のみを担う。memory条件を含む旧HIL-FR-07全体のclose可否は、holdingのFR07-EVIDENCE-MEMORY-COMPACTION-L0097の扱いが決まるまで確定しない。",
+    "FR07-OUTPUT-CLOSURE-RECEIPT-L0097": "HELIXOS-L2-054は候補対象条件の成立結果を受け、holdingのFR07-EVIDENCE-MEMORY-COMPACTION-L0097を含む旧要求全体のclose可否が別途確認できた場合に限り、実際のclose operation結果とclosure receiptを対応付ける。"
+  }
+}

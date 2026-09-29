@@ -1176,3 +1176,13 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 - **適合・不明時**：pair定義、対応するatomic oracle、適用scope、feedback先または結果証拠が不明・欠落している範囲はunknownまたは未完として残し、成立範囲を超えて全6組のgate完了としない。異snapshot・stale revisionのcross-conditionはNFR-29 holdingに分離し、この候補のsource atomとして数えない。
 - **所有境界**：HARNESSはpair対応と受入結果の意味を定める。OSは実行、保存、登録、運転の契約を別途担う。候補はL1のauthority、L0 charterの意味、実行許可、人手approval、実装方式を変更しない。採択済みHARNESS-L2-040のpair catalog、L2-022の段階別受入、L2-025/026の設計・oracle構成とは別の利用者向けgate結果候補であり、既存節を改訂しない。
 - **差分**：旧HIL-FR-49 line 139とassertion 032-01〜08/10/11/13から、canonical pair単位の結果、L12→L1/L0 feedback、片側欠落と未実行oracleの不成立意味を限定再導出する。assertionの`design-defined`/`not-implemented`は結果意味の参考であり旧test実行実績ではない。
+
+### HARNESS-L2-057 closure gate意味条件候補（HARNESS-CORE unit候補、未採択）
+
+- **authority／状態**：未採択候補、`registered_proposal`／`authority_effect: none`。2026-09-29の57候補判断が固定した集合に含まれず、採択・L3承認・実装／実行許可・HIL-FR-07のformal successor割当を生成しない。旧sourceに`version_target`はないため付けない。
+- **責務**：HARNESSは今回候補へ移したClosure Gate条件の意味と成立判定oracleを所有する。旧要求全体のclose可否は保留条件を含む別判定として残す。今回候補へ移したPR、CI、独立audit、選択済みstyleへのmerge、oracle、子Issue状態は互いに別の入力・証拠として識別し、一つの状態から他を推測しない。memory compactionは未移管の旧source条件として別項目に表示する。証拠の収集・保存・Issue状態更新とclose操作の運転はHELIX-OS側の候補契約へ渡し、HARNESS自身は実行主体やclose authorityを定めない。
+- **対象境界**：一つの指定されたIssue／closure scopeと対象revisionについてだけ評価する。今回候補へ移したPR、CI、audit、merge、oracle、子Issueについて、そのscopeへの適用を既存契約から特定できない、または入力がmissing／stale／unknown／conflictなら候補対象条件を充足とは判定しない。空集合、global closure、他revisionの証拠を補ってはならない。
+- **closure条件**：選択されたstyleへのmergeを含む各適用入力の結果・scope・対象revisionが確認でき、必須oracleの結果がcurrentであり、子Issueを含む今回候補の条件に未解決がない場合に限り、そのscopeの候補対象条件の成立結果を返す。この結果だけで旧HIL-FR-07全体のclose可否や実際のcloseを確定しない。merge済みやCI greenだけからoracle合格やIssue closeを生成せず、候補対象条件の成立をIssue close可能、要求受入、stage完了または上流意思決定と同一視しない。
+- **memory条件の保留表示**：旧HIL-FR-07のmemory compaction atomと旧HST-CASE-023-03のmemory receipt欠落時close 0件の負例は、source holdingに保全する。今回候補の結果には`memory条件: 未判定（holding）`を別項目として示し、これだけを理由に候補へ移した他の条件の評価を止めない。旧memory receiptの現行証拠との同値、適用scope、欠落時の現行close運転は本候補で決めない。OS-L2-019 continuityやprovider memoryを旧receiptと同一視しない。旧HIL-FR-10 line 100の別event・promote／supersede／no-promotionの意味、IR45のHMC置換／意味変更候補という分類もholdingで参照し、今回候補の採択対象やclose拒否条件へ昇格させない。
+- **CI・GitHub projection境界**：新世代CIは未構築であり、旧CIやGitHubのPR／merge状態からCI成功、要求採択、受入、完了を作らない。今回候補で適用が必要なCI証拠を得られない対象はunknownとして候補対象条件を成立にしない。この候補はCI実装・起動や旧CI fallbackを要求しない。
+- **差分と保留**：旧HIL-FR-07の七つの検査対象と二つの出力欄のうち、今回候補へ移した8 atomだけを意味入力として扱い、memory compactionの1 atomはholdingへ残す。IR45に従い、oracle／verification／acceptance段階の証拠は各ownerで分離し、一つのclosure receiptへ意味を集約しない。旧assertionは欠落時の反例oracle参照として使う。選択styleの具体的定義、旧memory compactionと現行continuityの対応、CI未構築下での対象別適用、各evidenceのcurrent判定の詳細は本候補で新設せず保留する。旧HIL-FR-07のIR行は`preserved_pending_rehome`のまま保持し、本候補登録からIR全体のclosureを主張しない。
