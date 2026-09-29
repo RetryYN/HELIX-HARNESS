@@ -160,10 +160,10 @@
         "route_status": "unknown"
       },
       "proposed_classification": "condition",
-      "proposed_condition_subtype": "management_process_condition",
-      "proposed_route_status": "management_successor_unresolved",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "proposed_route_status": "unknown",
       "classification_atom_boundary_provisional": false,
-      "reason": "The line normatively requires reusing the bounded-cancel provider and prohibits a second cancel-execution authority. Preserve this as a historical candidate process/authority boundary; it is not an external product behavior and has no current management successor assigned.",
+      "reason": "This is a normative product execution boundary: cancellation reuses the bounded cancel provider and must not create a second cancel-execution authority. Like the adjacent substantive nonreplacement constraint at line 57, it constrains how the product performs cancellation; it is not only a source-specific management process. Preserve it as condition/product_requirement_atom/unknown without inferring a current successor or coverage.",
       "carry_forward_effect": "Preserve the exact historical source row and draft-candidate status; no adoption, successor, coverage, retirement, or closure is generated."
     },
     {
@@ -389,22 +389,24 @@
   ],
   "impact_if_overlay_applied": {
     "effective_unknown_product_atom_population_before": 543,
-    "selected_rows_reclassified_out_of_product_unknown": 13,
-    "effective_unknown_product_atom_population_after_provisional_delta": 530,
+    "selected_rows_reclassified_out_of_product_unknown": 12,
+    "effective_unknown_product_atom_population_after_provisional_delta": 531,
     "sample_true_unknown_product_atom_rows_before": 16,
-    "sample_true_unknown_product_atom_rows_after_provisional_delta": 3,
+    "sample_true_unknown_product_atom_rows_after_provisional_delta": 4,
     "sample_product_atom_unknown_ids_after_proposal": [
+      "LEGACY-CAND-LINE-000542",
       "LEGACY-CAND-LINE-000543",
       "LEGACY-CAND-LINE-000545",
       "LEGACY-CAND-LINE-000546"
     ],
+    "reduction_interpretation": "This is a provisional classification correction only. It does not count old-condition handoff, carry-forward completion, coverage, resolution, or closure.",
     "classification_deltas": {
       "condition": -10,
       "explanation": 10,
-      "management_process_condition": 3,
-      "product_requirement_atom": -13,
-      "product_route_unknown": -13,
-      "management_successor_unresolved": 3
+      "management_process_condition": 2,
+      "product_requirement_atom": -12,
+      "product_route_unknown": -12,
+      "management_successor_unresolved": 2
     },
     "status": "Provisional arithmetic on pinned baseline plus bounded proposal; cumulative full-population recount is required."
   },
@@ -421,8 +423,8 @@
     "source_file_line_and_physical_sha256_recomputed": true,
     "proposal_class_counts": {
       "explanation": 10,
-      "management_process_condition": 3,
-      "product_requirement_atom": 3
+      "management_process_condition": 2,
+      "product_requirement_atom": 4
     },
     "authority_effect": "none",
     "legacy_execution": "none"

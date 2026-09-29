@@ -7,7 +7,7 @@
 
 ## 判定
 
-source identityや歴史的receipt/evidenceだけを記録する行は`explanation`へ提案する。旧source固有のauthority、source-location、editing directiveは`management_process_condition`として歴史的意味を保全するが、current recurring processには昇格させない。実質的な規範的technical constraintはproduct atomとして残し、route unknownを維持する。
+source identityや歴史的receipt/evidenceだけを記録する行は`explanation`へ提案する。歴史的なsource-locationやediting directiveは`management_process_condition`として保全するが、current recurring processには昇格させない。製品の実行境界を定める規範条件と実質的なtechnical constraintは`product_requirement_atom`として残し、route unknownを維持する。
 
 |Source ID|旧source path:line|提案分類/subtype|route案|atom境界|
 |---|---|---|---|---|
@@ -15,7 +15,7 @@ source identityや歴史的receipt/evidenceだけを記録する行は`explanati
 |`LEGACY-CAND-LINE-000515`|`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md:11`|`explanation`|`not_condition`|line review|
 |`LEGACY-CAND-LINE-000516`|`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md:12`|`explanation`|`not_condition`|line review|
 |`LEGACY-CAND-LINE-000517`|`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md:13`|`explanation`|`not_condition`|line review|
-|`LEGACY-CAND-LINE-000542`|`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md:53`|`condition/management_process_condition`|`management_successor_unresolved`|line review|
+|`LEGACY-CAND-LINE-000542`|`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md:53`|`condition/product_requirement_atom`|`unknown`|line review|
 |`LEGACY-CAND-LINE-000543`|`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md:54`|`condition/product_requirement_atom`|`unknown`|line review|
 |`LEGACY-CAND-LINE-000545`|`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md:56`|`condition/product_requirement_atom`|`unknown`|暫定|
 |`LEGACY-CAND-LINE-000546`|`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md:57`|`condition/product_requirement_atom`|`unknown`|line review|
@@ -31,7 +31,7 @@ source identityや歴史的receipt/evidenceだけを記録する行は`explanati
 ### 行ごとの意味
 
 - `000514–000517`: frontmatter `refines`のID列挙。参照identityは保ち、各ID行は独立したproduct atomに数えない。
-- `000542`: bounded cancel providerの再利用と別cancel execution authority禁止というsource固有のauthority/process directive。歴史的management conditionとして保ち、現行successorは未割当。
+- `000542`: bounded cancel providerを再利用し、別のcancel execution authorityを作らないという製品の実行境界。隣接する`000546`と同じく、再利用／二重実装を制約する規範条件なので`condition/product_requirement_atom/unknown`として保持する。現行coverageやsuccessorは推定しない。
 - `000543`: 既存internal fieldとidentity文字列の互換性を保つtechnical constraint。`condition/product_requirement_atom/unknown`を維持。
 - `000545`: “拡張する”が既存telemetry/cancel/recovery責務への規範的technical directionを含むため、`condition/product_requirement_atom/unknown`を維持。1物理行に複数CIS-R意味があるためatom境界は暫定とし、後続のatom化が必要。
 - `000546`: Windows lease、receipt失効、監査内容の再実装禁止という実質的なnonreplacement/design constraint。`condition/product_requirement_atom/unknown`を維持。ID参照だけからcoverageは推定しない。
@@ -40,7 +40,7 @@ source identityや歴史的receipt/evidenceだけを記録する行は`explanati
 
 ## 母集団への影響
 
-#2361のeffective unknown product atom 543件から13行をproduct-route母集団外へ移す提案となり、暫定差引値は530件。sampleの16 true_unknown行中、3行（`000543/545/546`）はproduct atom unknownを維持し、3行（`000542/581/582`）はmanagement successor unresolvedへ移り、10行はexplanationになる。全4,755行の累積再走査前の算術値であり、確定母集団ではない。
+#2361のeffective unknown product atom 543件から12行をproduct-route母集団外へ移す提案となり、暫定差引値は531件。sampleの16 true_unknown行中、4行（`000542/543/545/546`）はproduct atom unknownを維持し、2行（`000581/582`）はmanagement successor unresolvedへ移り、10行はexplanationになる。この12件の減少は分類訂正による算術差分であり、旧条件の引継ぎ、carry-forward完了、coverage、解消、closureの件数ではない。全4,755行の累積再走査前の算術値であり、確定母集団ではない。
 
 ## 根拠・検証
 
