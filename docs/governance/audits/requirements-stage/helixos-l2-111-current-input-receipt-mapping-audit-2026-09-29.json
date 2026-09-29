@@ -1,0 +1,363 @@
+{
+  "audit_kind": "read_only_current_receipt_mapping_audit",
+  "title": "HELIXOS-L2-111 三入力receiptの現行mapping調査",
+  "as_of_date": "2026-09-29",
+  "created_from_commit": "8b23be9cd996279617219fe06733c7e274b4bb0a",
+  "status": "evidence audit and PO-options worksheet only; no PO decision, adoption, owner transfer, implementation permission, receipt issuance, source closure, or stage completion",
+  "scope": {
+    "candidate": "HELIXOS-L2-111",
+    "three_input_roles": [
+      "requirement materialization audit",
+      "startup projection",
+      "Document Authority Census"
+    ],
+    "out_of_scope": [
+      "#206 is a responsibility-boundary reference, not a fourth receipt",
+      "runtime, old CLI, old tests, old CI, network/GitHub writes",
+      "adopting a candidate or changing historical source/register/decision records"
+    ]
+  },
+  "conclusion": {
+    "current_exact_identity_mapping_found": false,
+    "current_receipt_owner_mapping_found": false,
+    "current_green_status_authority_mapping_found": false,
+    "current_revision_scope_mapping_found": false,
+    "legacy_issue_identity_found": true,
+    "legacy_issue_identity_is_current_receipt_authority": false,
+    "candidate_coverage_receipt_is_one_of_operational_inputs": false,
+    "po_recommendation": "adopt the abstract three-receipt AND meaning only; keep current receipt identity/owner/status-authority/revision-scope mappings unresolved, and do not imply operational use or aggregate status",
+    "recommendation_basis": "Legacy DAC-FR-009 line 56 and DAC-R-011 line 66 explicitly identify three distinct receipts and all-three-green semantics; DAC-AC-017 line 42 supports that either audit alone without Census is insufficient. Current L2/L11 candidates preserve each input identity/revision/scope/provenance/status while explicitly refusing to infer exact current mappings from Issue labels. Thus the mapping absence is a real audit finding but is intentionally left unresolved by the candidate and does not block PO adoption of the abstract semantics. Adoption creates no current receipt, owner, status authority, mapping, issuance, implementation permission, or actual aggregate status. Without concrete inputs, there is no basis to assert any actual aggregate green."
+  },
+  "inputs": [
+    {
+      "role": "requirement materialization audit",
+      "legacy_identity": "Issue #825",
+      "legacy_title": "audit(requirements): 要求漏れ・要件定義漏れ（IR未登録・trace孤児）を検査し取込経路へ収束させる",
+      "legacy_body_sha256": "sha256:a0772f88be63b5ff74fa28678d956dc6ad4816674e048e759869aff170a905b3",
+      "current_exact_receipt_identity": null,
+      "current_owner": null,
+      "green_status_authority": null,
+      "current_revision_scope_mapping": null,
+      "finding": "Historic issue identity is pinned, but no current receipt object, owner, green authority, revision/scope contract, or exact adoption mapping is recorded. The current RAMG source family is an older draft/re-adoption candidate, not this operational receipt."
+    },
+    {
+      "role": "startup projection",
+      "legacy_identity": "Issue #1370",
+      "legacy_title": "fix(governance): Effective Agent Startup ContractをRequirement IR・Workflow・Runtime policyへ収束する",
+      "legacy_body_sha256": "sha256:926c50f908408c99519aea5b5fea0786ef206d87770a414fdd4ea8621a5f3e66",
+      "current_exact_receipt_identity": null,
+      "current_owner": null,
+      "green_status_authority": null,
+      "current_revision_scope_mapping": null,
+      "finding": "Historic issue identity is pinned, but no current startup projection receipt or status-producing owner/revision/scope mapping is recorded. AIDOC-OS is broader candidate material; its existence does not establish an exact output receipt or adoption."
+    },
+    {
+      "role": "Document Authority Census",
+      "legacy_identity": "the Census referenced by legacy DAC-R-011",
+      "legacy_title": null,
+      "legacy_body_sha256": null,
+      "current_exact_receipt_identity": null,
+      "current_owner": null,
+      "green_status_authority": null,
+      "current_revision_scope_mapping": null,
+      "finding": "No current Census result receipt identity, producer, status authority, or target revision/scope was found. The named DAC-FR-009 candidate coverage receipt is a source atom coverage record, not the operational Census receipt."
+    }
+  ],
+  "po_options": [
+    {
+      "option": "採択（推奨）",
+      "impact": "三receiptが各々明示greenの場合だけaggregate greenとする抽象3入力AND意味を確定する。current receipt identity、owner、revision/scope mappingは生成せず、具体operandが未特定の状態を保持する。実運用に使う段階ではexact mappingとstatus根拠が必要になるが、今回それを採択の追加条件にはしない。",
+      "remaining": "具体receipt identity、既存owner/status authority、revision/scope/provenanceは未解決。採択はreceipt発行・実装許可・現在のaggregate statusを作らない。"
+    },
+    {
+      "option": "保留",
+      "impact": "POが三receiptの具体identityと既存owner/status authority/revision/scopeを先に対応付けることを、抽象意味の採択にも必要と判断する場合に選ぶ。Issue statusや候補coverage receiptをgreenへ読み替えず、175 source holding全体のclosureや新しいformal owner割当は要求しない。",
+      "remaining": "候補本文が意図的に未確定としているmappingを採択前に要求するという判断自体が必要。"
+    },
+    {
+      "option": "不採択",
+      "impact": "三receipt conjunctionをHELIX-OS requirementに加えない。独立するaudit/Censusの既存責務は別に扱い、旧source holdingを維持する。",
+      "remaining": "POが三receipt横断aggregateそのものを不要と判断するか。"
+    }
+  ],
+  "search_scope": [
+    {
+      "roots": [
+        "docs",
+        "scaffold"
+      ],
+      "file_types": [
+        ".md",
+        ".json",
+        ".jsonl"
+      ],
+      "patterns": [
+        "#825",
+        "materialization audit",
+        "IR未登録",
+        "trace孤児",
+        "requirement materialization"
+      ],
+      "result": "Matches are limited to HELIXOS-L2/L11-111 and its source/coverage/audit references, legacy source snapshots or GitHub projection inventories; no named current operational materialization receipt or exact current mapping."
+    },
+    {
+      "roots": [
+        "docs",
+        "scaffold"
+      ],
+      "file_types": [
+        ".md",
+        ".json",
+        ".jsonl"
+      ],
+      "patterns": [
+        "#1370",
+        "startup projection",
+        "Effective Agent Startup"
+      ],
+      "result": "Matches include archived/project issue metadata, the L2/L11-111 proposal, AIDOC candidate material, and one scaffold rule citation to Issue #1370 for exact-head review; no operational startup projection receipt/status contract."
+    },
+    {
+      "roots": [
+        "docs",
+        "scaffold"
+      ],
+      "file_types": [
+        ".md",
+        ".json",
+        ".jsonl"
+      ],
+      "patterns": [
+        "Document Authority Census receipt",
+        "document-authority-census.*receipt",
+        "Census receipt"
+      ],
+      "result": "Matches identify legacy source and candidate coverage receipt only; no current operational Census output receipt found."
+    },
+    {
+      "roots": [
+        "docs/governance/decisions"
+      ],
+      "file_types": [
+        ".md",
+        ".json",
+        ".jsonl"
+      ],
+      "patterns": [
+        "DAC-FR-009",
+        "#825",
+        "#1370",
+        "Document Authority Census"
+      ],
+      "result": "No exact mapping/adoption decision hit."
+    },
+    {
+      "roots": [
+        "docs/governance/audits/requirement-registration"
+      ],
+      "file_types": [
+        "*"
+      ],
+      "patterns": [
+        "receipt filenames and JSON/JSONL content containing #825/#1370/DAC-FR-009/HELIXOS-L2-111"
+      ],
+      "result": "The only exact named pair is dac-fr-009-three-receipt-source-lines-2026-09-29.jsonl and dac-fr-009-three-receipt-coverage-receipt-2026-09-29.json; they pin candidate source scope, not the three operational receipts."
+    },
+    {
+      "roots": [
+        "docs/governance/audits/source-rebaseline"
+      ],
+      "file_types": [
+        "JSONL inventories"
+      ],
+      "patterns": [
+        "content_number 825/1370; issue_number 825/1370/206"
+      ],
+      "result": "Historic source identities/title/body digest and projection dispositions are identified; inventory explicitly records no requirement authority/adoption and unresolved semantic disposition."
+    }
+  ],
+  "source_pins": {
+    "current_candidate": {
+      "identity": "HELIXOS-L2-111",
+      "registration_id": "MPR-RC-HELIXOS-L2-111-001",
+      "register_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "register_sha256": "sha256:ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+      "registration_row": {
+        "line": 636,
+        "sha256": "sha256:8fd6f2757862c5307faa28933eebab735697a1609af81c3791f4f8a322ace39a",
+        "management_state": "registered_proposal",
+        "authority_effect": "none"
+      },
+      "source_holding_registration_id": "MPR-SH-CONFIRMED-003",
+      "holding_row": {
+        "line": 16,
+        "sha256": "sha256:3f1ce3bf82e84237e4c3da167274208bd5380de6144dcf705211da5e7637a071",
+        "product_target": "unassigned_cross_product",
+        "management_state": "registered_source_holding",
+        "authority_effect": "none"
+      },
+      "l2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "file_sha256": "sha256:bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+        "heading_line": 1380,
+        "section_sha256": "sha256:265d5e7d1a8c06919b21691ddbf15354e51dbc204f310f07a448a7b33dc8173b"
+      },
+      "l11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "file_sha256": "sha256:cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+        "heading_line": 982,
+        "section_sha256": "sha256:8efe5d58a4ebe0c4a7078aa7b311f3f2e1a7892b125b603d6a3e45ff4fc5ef14"
+      },
+      "candidate_coverage_receipt": {
+        "path": "docs/governance/audits/requirement-registration/dac-fr-009-three-receipt-coverage-receipt-2026-09-29.json",
+        "file_sha256": "sha256:0893126ccf73b62b1750322a102f2049ef3b6ff51f75b428d832e973302820e1",
+        "receipt_id": "DAC-FR-009-HELIXOS-L2-111-COVERAGE-2026-09-29",
+        "status": "candidate_static_scope_only",
+        "authority_effect": "none",
+        "role": "source-atom candidate coverage evidence; not one of the three operational input receipts",
+        "embedded_management_register_sha256": "sha256:4103da5113303e1db77c1c1c4eb384fae6e1d5ad91e7357592c1f7b3ecc887c3",
+        "embedded_management_register_sha256_matches_current": false,
+        "current_management_register_sha256": "sha256:ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+        "pin_finding": "The embedded register digest differs from the current register file digest; together with candidate_static_scope_only/authority_effect none, this file is not a current operational input receipt."
+      },
+      "source_atom_set": {
+        "path": "docs/governance/audits/requirement-registration/dac-fr-009-three-receipt-source-lines-2026-09-29.jsonl",
+        "file_sha256": "sha256:8cc7c6197192fe4d34a482992e85b0fd36bb897ec92ce669a5475634662be8cd",
+        "candidate_atom_digest": "sha256:6015b2a646b070ca092b962523e70c4988f0cf2198e1fee130d1788c5c133ef7",
+        "candidate_atom_count": 1
+      }
+    },
+    "current_legacy_issue_projection": {
+      "project_inventory": {
+        "path": "docs/governance/audits/source-rebaseline/github-project-1-item-inventory.jsonl",
+        "file_sha256": "sha256:41726dd6258b9592d8b36aa51d2d8fdb1056be14dcf735eac2295218fabbf5bf",
+        "825": {
+          "line": 127,
+          "line_sha256": "sha256:a824b52d58048d82555b709a7e0c26709631e2943ecba8484d7902cd730ea83a"
+        },
+        "1370": {
+          "line": 128,
+          "line_sha256": "sha256:95f6be212aa7d84b9a781f9534fdfeff393d53bf93023d45393e5ae4c7db1584"
+        }
+      },
+      "issue_retirement_inventory": {
+        "path": "docs/governance/audits/source-rebaseline/github-open-issue-retirement-inventory.jsonl",
+        "file_sha256": "sha256:1e1333d82ea4a04cfd56b215bce7e53190a5205939004a46ff292d6091e34d8d",
+        "206": {
+          "line": 42,
+          "line_sha256": "sha256:94b6d5105c2868939303020950025542d5e97fb4228301f2c8b96c11ea5bc970"
+        },
+        "825": {
+          "line": 176,
+          "line_sha256": "sha256:c672198d91bbecf978736f5f99cc75366af4aff4af04240924ff572c2d329f17"
+        },
+        "1370": {
+          "line": 339,
+          "line_sha256": "sha256:bba4e20c0c1821ad6eb3a63f5ab0e045d29e9e1911cb2ab4d532030c0b917b6a"
+        }
+      },
+      "observed_disposition": "#825 and #1370 exact historic identities/titles/body digests are recorded, but their current-source projections have semantic_disposition unresolved, requirement_authority false, local_adoption_ref null. Project statuses Done pre-retirement are historical project projections; issue rows record closed/not_planned, projection-only closure. None is a current receipt status."
+    },
+    "legacy_source": {
+      "FR009": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md",
+        "asset_id": "LEGACY-ASSET-D201753B1A0CC6EA3980",
+        "file_sha256": "sha256:81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66",
+        "line": 56,
+        "line_sha256": "sha256:881e9a2aa919c8bb082c075f7ab2648bc78c7a185e6689af6042ca8dbe16a004",
+        "meaning": "#825 requirement-materialization audit, #1370 startup projection, and #206 old-surface responsibility are connected by AND; #206 is not an input receipt per current atomization."
+      },
+      "R011": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/document-authority-census-requirements.md",
+        "asset_id": "LEGACY-ASSET-C6936A5DA79A6DAE4FE4",
+        "file_sha256": "sha256:e05adb62d9ad07507f962cf060b3dbe66c161afc3f09391b29b3144ced57535c",
+        "line": 66,
+        "line_sha256": "sha256:2c23e1baa276622f0708c40ff631e2eaadbd335e45e9a02bb8a58a935d3a23ba",
+        "meaning": "#825, #1370, and this Census each return independent receipts; all three green required."
+      },
+      "AC017": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/document-authority-census-acceptance.md",
+        "asset_id": "LEGACY-ASSET-BBD687399574FEE23807",
+        "file_sha256": "sha256:d8cddea062fa44774a44f1c2cfff5f5d1f01cd186b4abdf8d631b9577f6fd4a6",
+        "line": 42,
+        "line_sha256": "sha256:ae85dc265a15434d43c8e9f844be42f2ff62743d167c26909721aeb329300b20",
+        "meaning": "#825 or #1370 alone green must leave aggregate non-green without Census."
+      }
+    },
+    "legacy_asset_disposition": {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "file_sha256": "sha256:cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "source_asset_row": {
+        "line": 421,
+        "sha256": "sha256:eeace2db2a8183a6563428d4c486dedeb7a0ba0286703b195948c5cd4e749f56",
+        "product_target": "unresolved",
+        "target_authority_state": "draft_candidate",
+        "carry_forward_state": "preserved_pending_rehome",
+        "decision_status": "pending_human_confirmation"
+      },
+      "context_r011_row": {
+        "line": 446,
+        "sha256": "sha256:3e81375618cc5954c94490de14cf74a8ce9a01d3f73fb58785c5ab1f172aba33",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved"
+      },
+      "context_ac017_row": {
+        "line": 2807,
+        "sha256": "sha256:30020de517c41fd86bb8811c455d689f60c6efec060dd45398bbf53903ac8d3f",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved"
+      }
+    },
+    "related_current_research": [
+      {
+        "path": "docs/governance/audits/requirements-stage/legacy-source-condition-followup-index-2026-09-28.md",
+        "file_sha256": "sha256:76c2833defa0132c6ebff12405e2d2dc8bcf63189ad097a3939eba4239811bb5",
+        "lines": "120-124",
+        "finding": "explicitly records #825/#1370/#206 exact current mapping as unknown, keeping owner/successor/adoption unresolved"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json",
+        "file_sha256": "sha256:ca08a81d97e39e94aa02151c7cc4e48f621f9d30baccc1cf9b715331fed38f45",
+        "finding": "DAC-FR-009 is OPEN, mapped to none, successor unassigned; prior audit says current acceptance of an AND dashboard/audit joining the three issue identities is unconfirmed"
+      },
+      {
+        "path": "docs/governance/audits/source-rebaseline/source-audit.md",
+        "file_sha256": "sha256:d346374f28ec1243c1e404cd03f026593cd5573dafb1526951d0eecc7dd373cd",
+        "lines": "110-120",
+        "finding": "requirements-authority-materialization old source is L1/L12 draft; its acceptance is L3/L10 and not proof of adopted L2/L11 input receipt contract"
+      },
+      {
+        "path": "docs/governance/audits/source-rebaseline/l2-source-adoption-sequence.md",
+        "file_sha256": "sha256:3cf362f528b394e5c4105e63b85ae8e3630269615976474de478b53417158eb3",
+        "line": 73,
+        "finding": "L2D-S1-04 requirements-authority-materialization remains re-adoption pending"
+      },
+      {
+        "path": "docs/governance/audits/source-rebaseline/candidate-source-target-inventory.md",
+        "file_sha256": "sha256:f9fabd2106d29db63e1a09e266ee8857b014d4334f2d359ecf4112fabb5fa5fb",
+        "line": 42,
+        "finding": "the source-family target is a candidate, not a current receipt mapping"
+      },
+      {
+        "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+        "file_sha256": "sha256:6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+        "finding": "AIDOC-OS-001..008 describe broad AI-readable authority inputs; no exact mapping to #1370 startup projection receipt or its output status/revision/scope"
+      },
+      {
+        "path": "scaffold/governance/rules/RUL-FRM-02.md",
+        "file_sha256": "sha256:0fcfe73dc3edd75ac63c0de69f3b7353e35b2a2ed4c7c3a0586f3b5f1fe09d2f",
+        "line": 115,
+        "finding": "a numeric #1370 citation appears as context for exact-head review in a scaffold rule; it identifies no startup projection receipt, producer, status authority, revision, or scope"
+      }
+    ]
+  },
+  "validation_method": {
+    "read_only": true,
+    "archive_execution_performed": false,
+    "queries_used": "rg filename/content searches under docs/scaffold; exact line/row reads; MPR/register and SHA-256 checks",
+    "sha256_format": "SHA-256 exact UTF-8/file bytes unless source-line hash; JSONL row pin excludes trailing newline",
+    "current_search_does_not_claim": "No web/GitHub live lookup or runtime receipt retrieval; conclusion is repository-evidence bounded."
+  }
+}
