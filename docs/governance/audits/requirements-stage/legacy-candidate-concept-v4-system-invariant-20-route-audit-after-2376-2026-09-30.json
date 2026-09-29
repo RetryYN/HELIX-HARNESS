@@ -1,0 +1,2271 @@
+{
+  "schema_version": "legacy-candidate-concept-v4-system-invariant-route-audit.v1",
+  "audit_id": "legacy-candidate-concept-v4-system-invariant-20-route-audit-after-2376-2026-09-30",
+  "authority_effect": "none",
+  "base_commit": "a60c0afaf27c2c5d4cf3028efad7ebf65f05bd80",
+  "selection": {
+    "source_line_range": "LEGACY-CAND-LINE-002880..002899",
+    "source_document": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md",
+    "source_lines": "160-179",
+    "selected_count": 20,
+    "selected_ids": [
+      "LEGACY-CAND-LINE-002880",
+      "LEGACY-CAND-LINE-002881",
+      "LEGACY-CAND-LINE-002882",
+      "LEGACY-CAND-LINE-002883",
+      "LEGACY-CAND-LINE-002884",
+      "LEGACY-CAND-LINE-002885",
+      "LEGACY-CAND-LINE-002886",
+      "LEGACY-CAND-LINE-002887",
+      "LEGACY-CAND-LINE-002888",
+      "LEGACY-CAND-LINE-002889",
+      "LEGACY-CAND-LINE-002890",
+      "LEGACY-CAND-LINE-002891",
+      "LEGACY-CAND-LINE-002892",
+      "LEGACY-CAND-LINE-002893",
+      "LEGACY-CAND-LINE-002894",
+      "LEGACY-CAND-LINE-002895",
+      "LEGACY-CAND-LINE-002896",
+      "LEGACY-CAND-LINE-002897",
+      "LEGACY-CAND-LINE-002898",
+      "LEGACY-CAND-LINE-002899"
+    ],
+    "pool_evidence": {
+      "baseline": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+        "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c"
+      },
+      "later_overlays": [
+        {
+          "ref": "#2356",
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+          "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164",
+          "intersection": []
+        },
+        {
+          "ref": "#2360",
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+          "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb",
+          "intersection": []
+        },
+        {
+          "ref": "#2363",
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+          "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384",
+          "intersection": []
+        },
+        {
+          "ref": "#2366",
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+          "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6",
+          "intersection": []
+        },
+        {
+          "ref": "#2367",
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
+          "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d",
+          "intersection": []
+        },
+        {
+          "ref": "#2368",
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
+          "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95",
+          "intersection": []
+        },
+        {
+          "ref": "#2369",
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30.json",
+          "sha256": "5ed02b037f78ca25991b396e232e8b1ee754b0c91b056ed6640c9fb1c47cf0c0",
+          "intersection": []
+        }
+      ],
+      "proposal_effective_pool_count": 488,
+      "all_baseline_rows": "condition/product_requirement_atom/unknown"
+    },
+    "prior_route_union_count": 181,
+    "prior_route_audits": [
+      {
+        "audit_id": "legacy-candidate4755-world-governance-30-route-audit-after-2374-2026-09-30",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-world-governance-30-route-audit-after-2374-2026-09-30.json",
+        "base_commit": "e6fad0b0fa6720d1988a1043492fa31e0c93d9ce",
+        "sha256": "9cc3a46ef31e49fecac20a3b2d7f899423a462e12edb66b90bba37e2551b6d6b",
+        "selected_count": 30
+      },
+      {
+        "audit_id": "legacy-candidate4755-world-governance-remaining30-route-audit-after-2374-2026-09-30",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-world-governance-remaining30-route-audit-after-2374-2026-09-30.json",
+        "base_commit": "abe412c109a0be15ddf2bad2e1fa110d44fa9e80",
+        "sha256": "39a1f19f0e4dc19c6759a06f58b150cbcbecb3263653eea52d46d4cd9d952b54",
+        "selected_count": 30
+      }
+    ],
+    "prior_route_intersection": [],
+    "world_governance_family_count": 60,
+    "world_governance_intersection": []
+  },
+  "legacy_source": {
+    "asset_id": "LEGACY-ASSET-653A097F9C9EE51F6FDD",
+    "source_sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+    "line_ledger": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+    "asset_ledger": "docs/governance/legacy-asset-disposition.jsonl",
+    "manifest": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+    "inventory_first_basis": "archive/legacy-generation-2026-09-14/root/CLAUDE.md:75-80",
+    "history": "064280b5c archive quarantine; pre-archive path at parent commit has same SHA-256"
+  },
+  "fixed_adopted_comparison": {
+    "po_decision_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "mechanisms": {
+      "HARNESS_L2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+      },
+      "HARNESS_L11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+      },
+      "HELIXOS_L2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+      },
+      "HELIXOS_L11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+      },
+      "HELIXBRAIN_L2": {
+        "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+        "sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03"
+      },
+      "HELIXBRAIN_L11": {
+        "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+        "sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b"
+      },
+      "HELIXLABO_L2": {
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed"
+      },
+      "HELIXLABO_L11": {
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200"
+      },
+      "HELIXINTELLIGENCE_L2": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260"
+      },
+      "HELIXINTELLIGENCE_L11": {
+        "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a"
+      },
+      "HELIXSECURITY_L2": {
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c"
+      },
+      "HELIXSECURITY_L11": {
+        "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01"
+      },
+      "HELIXINFRASTRUCTURE_L2": {
+        "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+        "sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b"
+      },
+      "HELIXINFRASTRUCTURE_L11": {
+        "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+        "sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada"
+      },
+      "HELIXCONNECT_L2": {
+        "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+        "sha256": "31e3f234172bb5a92b26d41db2de21534cd4301274fc7e2800b4f8a935ce598b"
+      },
+      "HELIXCONNECT_L11": {
+        "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+        "sha256": "bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad"
+      }
+    },
+    "comparison_rule": "Compare only fixed PO-adopted L2/L11 bytes; exact compared IDs and separate L2/L11 locators are attached to each row."
+  },
+  "rows": [
+    {
+      "source_id": "LEGACY-CAND-LINE-002880",
+      "source": {
+        "asset_id": "LEGACY-ASSET-653A097F9C9EE51F6FDD",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md",
+        "line": 160,
+        "source_file_sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+        "source_line_sha256": "sha256:e28685ac3cc351b1b32ec967f60fbb17c0a987ab4f0b0c1e11eff82866a7edbc",
+        "physical_line_bytes_sha256": "c33619f035211ad3f266f1fe2c3e54534dc1c6689722e4a64ef6e92266a36f54",
+        "text": "1. canonical authorityより先にruntime behaviorをcurrent化しない。"
+      },
+      "proposal_pool_check": {
+        "member_of_proposal_effective_488": true,
+        "#2353_effective_classification": "condition",
+        "#2353_condition_subtype": "product_requirement_atom",
+        "#2353_route_status": "unknown",
+        "later_overlay_intersections": [],
+        "prior_181_intersection": [],
+        "world_governance_60_intersection": []
+      },
+      "route_assessment": "unknown",
+      "compared_adopted_requirements": [
+        {
+          "id": "HELIXOS-L2-001",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 54,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 21,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-002",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 55,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 22,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-004",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 57,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 24,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HARNESS-L2-003",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 54,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 23,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HARNESS-L2-004",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 55,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 24,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HARNESS-L2-008",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 59,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 28,
+            "basis": "acceptance_body_or_test_section"
+          }
+        }
+      ],
+      "directly_matched_adopted_requirement_ids": [],
+      "direct_overlap": "採択述語との直接一致を特定できない。OSの正本・判断出所とHARNESSの工程開始条件を比較したが、いずれもcanonical authorityがruntime behavior current化に先行する必須順序を定義しない。",
+      "residual_or_difference": "canonical authority確認、または工程gateという話題の近さだけでは当該順序を導けない。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002881",
+      "source": {
+        "asset_id": "LEGACY-ASSET-653A097F9C9EE51F6FDD",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md",
+        "line": 161,
+        "source_file_sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+        "source_line_sha256": "sha256:3bbde0f09c60913b49581c9deb7d95ec5634ac63efa84954f65e4e1a900c06dd",
+        "physical_line_bytes_sha256": "0b04f9318bb6b5de5412eaba5adebf3b1033b8bbec0e5dbdc8d199491b002cb4",
+        "text": "2. actionable behavior、finding、learning asset、release pathはexactly-one primary ownerを持つ。"
+      },
+      "proposal_pool_check": {
+        "member_of_proposal_effective_488": true,
+        "#2353_effective_classification": "condition",
+        "#2353_condition_subtype": "product_requirement_atom",
+        "#2353_route_status": "unknown",
+        "later_overlay_intersections": [],
+        "prior_181_intersection": [],
+        "world_governance_60_intersection": []
+      },
+      "route_assessment": "unknown",
+      "compared_adopted_requirements": [
+        {
+          "id": "HELIXOS-L2-004",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 57,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 24,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-005",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 58,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 25,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-007",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 60,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 27,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HARNESS-L2-008",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 59,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 28,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXLABO-L2-010",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "line": 141,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "line": 54,
+            "basis": "acceptance_body_or_test_section"
+          }
+        }
+      ],
+      "directly_matched_adopted_requirement_ids": [],
+      "direct_overlap": "採択述語との直接一致を特定できない。OS-L2-004のWorker二重割当防止等を比較したが、finding・learning asset・release pathのexactly-one primary owner条件とは異なる。",
+      "residual_or_difference": "旧行の全4種対象に及ぶ一意owner制約は残る。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002882",
+      "source": {
+        "asset_id": "LEGACY-ASSET-653A097F9C9EE51F6FDD",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md",
+        "line": 162,
+        "source_file_sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+        "source_line_sha256": "sha256:80b67de6283f3750b67c1844949d0c22dab05d1ba09de59bc011d75d9f1a7083",
+        "physical_line_bytes_sha256": "5b26d9c7b7748789d8260bf5781946e8986837ff47559de9e6d940788590c399",
+        "text": "3. provenanceのないhuman authority claimを生成しない。"
+      },
+      "proposal_pool_check": {
+        "member_of_proposal_effective_488": true,
+        "#2353_effective_classification": "condition",
+        "#2353_condition_subtype": "product_requirement_atom",
+        "#2353_route_status": "unknown",
+        "later_overlay_intersections": [],
+        "prior_181_intersection": [],
+        "world_governance_60_intersection": []
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirements": [
+        {
+          "id": "HELIXOS-L2-001",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 54,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 21,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-005",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 58,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 25,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-007",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 60,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 27,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HARNESS-L2-008",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 59,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 28,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXSECURITY-L2-008",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "line": 140,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "line": 32,
+            "basis": "acceptance_body_or_test_section"
+          }
+        }
+      ],
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HARNESS-L2-008"
+      ],
+      "direct_overlap": "要求の判断出所/合意revisionを辿り、形成出力から要求合意・操作権限を自動生成しない条件に一致。",
+      "residual_or_difference": "あらゆるhuman authority claimのprovenance schemaまでは定めない。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002883",
+      "source": {
+        "asset_id": "LEGACY-ASSET-653A097F9C9EE51F6FDD",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md",
+        "line": 163,
+        "source_file_sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+        "source_line_sha256": "sha256:c9e5cab14068af9dd2609890a88f5031e4dcf956a3f64ee784d0040348082788",
+        "physical_line_bytes_sha256": "5f8de8b70a007cb666036d585f41ecb966dd55691ac87b304342469a76324df5",
+        "text": "4. memory、session summary、AI interpretationからapproval／decisionを作らない。"
+      },
+      "proposal_pool_check": {
+        "member_of_proposal_effective_488": true,
+        "#2353_effective_classification": "condition",
+        "#2353_condition_subtype": "product_requirement_atom",
+        "#2353_route_status": "unknown",
+        "later_overlay_intersections": [],
+        "prior_181_intersection": [],
+        "world_governance_60_intersection": []
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirements": [
+        {
+          "id": "HELIXOS-L2-001",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 54,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 21,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-005",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 58,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 25,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-007",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 60,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 27,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HARNESS-L2-008",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 59,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 28,
+            "basis": "acceptance_body_or_test_section"
+          }
+        }
+      ],
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-005",
+        "HARNESS-L2-008"
+      ],
+      "direct_overlap": "記録から要求意味を逆生成せず、経験を正本へ昇格せず、要求形成出力を合意へ昇格しない条件に一致。",
+      "residual_or_difference": "session summary/AI interpretationの網羅分類・authority resolverは残る。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002884",
+      "source": {
+        "asset_id": "LEGACY-ASSET-653A097F9C9EE51F6FDD",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md",
+        "line": 164,
+        "source_file_sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+        "source_line_sha256": "sha256:55ec6733b417c379dcbf927c82e346beec20a865fd0c436193688951c02252a8",
+        "physical_line_bytes_sha256": "b20cbed303f426093d19c7ff74b42b5403f5251e961733a4c016739e5c50a633",
+        "text": "5. authority root、assignment、HEAD、lane、capabilityが未解決ならworkerを起動しない。"
+      },
+      "proposal_pool_check": {
+        "member_of_proposal_effective_488": true,
+        "#2353_effective_classification": "condition",
+        "#2353_condition_subtype": "product_requirement_atom",
+        "#2353_route_status": "unknown",
+        "later_overlay_intersections": [],
+        "prior_181_intersection": [],
+        "world_governance_60_intersection": []
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirements": [
+        {
+          "id": "HELIXOS-L2-004",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 57,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 24,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-009",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 62,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 29,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXSECURITY-L2-004",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "line": 100,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "line": 28,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXSECURITY-L2-007",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "line": 130,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "line": 31,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXSECURITY-L2-008",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "line": 140,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "line": 32,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXSECURITY-L2-022",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "line": 282,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "line": 46,
+            "basis": "acceptance_body_or_test_section"
+          }
+        }
+      ],
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-004",
+        "HELIXSECURITY-L2-004",
+        "HELIXSECURITY-L2-007",
+        "HELIXSECURITY-L2-008",
+        "HELIXSECURITY-L2-022"
+      ],
+      "direct_overlap": "Worker割当/実行scope、project/root/HEAD/revision照合、execution制約、operation authorityを要求→OS割当→Workerへ束縛する。",
+      "residual_or_difference": "root/lane/capabilityを統合したlaunch gateとして明記する規則は残る。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002885",
+      "source": {
+        "asset_id": "LEGACY-ASSET-653A097F9C9EE51F6FDD",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md",
+        "line": 165,
+        "source_file_sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+        "source_line_sha256": "sha256:3c6200d975f3ac106fc1c8e0f890cd16e3e362c67ec87c6dc8f0a722b14d81b4",
+        "physical_line_bytes_sha256": "b415147f21f88f5d1de22545269eabc7c2690a5d0be211c3b5f82e62be8aadeb",
+        "text": "6. scope、branch、lease、budget、allowed pathのないworkerを実行しない。"
+      },
+      "proposal_pool_check": {
+        "member_of_proposal_effective_488": true,
+        "#2353_effective_classification": "condition",
+        "#2353_condition_subtype": "product_requirement_atom",
+        "#2353_route_status": "unknown",
+        "later_overlay_intersections": [],
+        "prior_181_intersection": [],
+        "world_governance_60_intersection": []
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirements": [
+        {
+          "id": "HELIXOS-L2-004",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 57,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 24,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-009",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 62,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 29,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXSECURITY-L2-007",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "line": 130,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "line": 31,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXSECURITY-L2-008",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "line": 140,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "line": 32,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXSECURITY-L2-022",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "line": 282,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "line": 46,
+            "basis": "acceptance_body_or_test_section"
+          }
+        }
+      ],
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-004",
+        "HELIXOS-L2-009",
+        "HELIXSECURITY-L2-007",
+        "HELIXSECURITY-L2-008"
+      ],
+      "direct_overlap": "scope/予算/期限、累積制約、Worker環境のpath/network/resource強制、operation authorityに一致。",
+      "residual_or_difference": "branch/leaseの表現・値とallowed path網羅規則は残る。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002886",
+      "source": {
+        "asset_id": "LEGACY-ASSET-653A097F9C9EE51F6FDD",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md",
+        "line": 166,
+        "source_file_sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+        "source_line_sha256": "sha256:5b13764dd0e17ab460f1ab185b068ecf45b91e7c9546ed200529325cf2e37e9e",
+        "physical_line_bytes_sha256": "00cc791c9b89f0c2f8cc24d08fd70cb1e809803525c8a1913ea7804c1aaf6fab",
+        "text": "7. author runtimeの内部reviewを独立reviewへ昇格しない。"
+      },
+      "proposal_pool_check": {
+        "member_of_proposal_effective_488": true,
+        "#2353_effective_classification": "condition",
+        "#2353_condition_subtype": "product_requirement_atom",
+        "#2353_route_status": "unknown",
+        "later_overlay_intersections": [],
+        "prior_181_intersection": [],
+        "world_governance_60_intersection": []
+      },
+      "route_assessment": "unknown",
+      "compared_adopted_requirements": [
+        {
+          "id": "HELIXOS-L2-004",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 57,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 24,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-007",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 60,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 27,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-008",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 61,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 28,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HARNESS-L2-005",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 56,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 25,
+            "basis": "acceptance_body_or_test_section"
+          }
+        }
+      ],
+      "directly_matched_adopted_requirement_ids": [],
+      "direct_overlap": "採択述語との直接一致を特定できない。OS-L2-004の作成Worker自身/Subagent reviewを独立reviewに数えない条件と、OS-L2-008の上流意味review/下流CI分離を比較したが、author runtime内reviewを独立reviewへ昇格しない全境界とは同一でない。",
+      "residual_or_difference": "author runtime internal reviewと独立reviewの資格・経路を定める述語は固定採択L2/L11にない。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002887",
+      "source": {
+        "asset_id": "LEGACY-ASSET-653A097F9C9EE51F6FDD",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md",
+        "line": 167,
+        "source_file_sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+        "source_line_sha256": "sha256:11069219a3efaa970d847d8756b70de7e9342c94c95634deb96d24f5ae1a2a68",
+        "physical_line_bytes_sha256": "13ebabd42e2c5d1e2a7c6f5b7b615468b808499bc89adc280a8b1898aa4ec39b",
+        "text": "8. wrong HEAD／generation／projectionのreviewを再利用しない。"
+      },
+      "proposal_pool_check": {
+        "member_of_proposal_effective_488": true,
+        "#2353_effective_classification": "condition",
+        "#2353_condition_subtype": "product_requirement_atom",
+        "#2353_route_status": "unknown",
+        "later_overlay_intersections": [],
+        "prior_181_intersection": [],
+        "world_governance_60_intersection": []
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirements": [
+        {
+          "id": "HELIXOS-L2-004",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 57,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 24,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-007",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 60,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 27,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-008",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 61,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 28,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HARNESS-L2-004",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 55,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 24,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HARNESS-L2-005",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 56,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 25,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXSECURITY-L2-004",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "line": 100,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "line": 28,
+            "basis": "acceptance_body_or_test_section"
+          }
+        }
+      ],
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-008",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005",
+        "HELIXSECURITY-L2-004"
+      ],
+      "direct_overlap": "evidenceを要求revision/HEAD/environment/run generationへ束縛し、staleを分け、変更時に再検証範囲を導出する。",
+      "residual_or_difference": "generation/projectionの全型とreview再利用条件の列挙は残る。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002888",
+      "source": {
+        "asset_id": "LEGACY-ASSET-653A097F9C9EE51F6FDD",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md",
+        "line": 168,
+        "source_file_sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+        "source_line_sha256": "sha256:91e36e72899489f551d73c6440941dd26f8bee73798ba76ae16ab186c7e286dd",
+        "physical_line_bytes_sha256": "2d7ee12df6195ae351e2b9d3013f825c693a9015b942d81b0336f853de285961",
+        "text": "9. marker、path存在、digest形式、自己申告だけでevidenceを成立させない。"
+      },
+      "proposal_pool_check": {
+        "member_of_proposal_effective_488": true,
+        "#2353_effective_classification": "condition",
+        "#2353_condition_subtype": "product_requirement_atom",
+        "#2353_route_status": "unknown",
+        "later_overlay_intersections": [],
+        "prior_181_intersection": [],
+        "world_governance_60_intersection": []
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirements": [
+        {
+          "id": "HELIXOS-L2-007",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 60,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 27,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-008",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 61,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 28,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HARNESS-L2-005",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 56,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 25,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXSECURITY-L2-013",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "line": 190,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "line": 37,
+            "basis": "acceptance_body_or_test_section"
+          }
+        }
+      ],
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-008",
+        "HARNESS-L2-005",
+        "HELIXSECURITY-L2-013"
+      ],
+      "direct_overlap": "記録だけで承認/完了にせず、verificationをoracle/HEAD/envへ束縛し、digest一致だけでpass推定しない。",
+      "residual_or_difference": "marker/path/self-assertionのevidence acceptance schema全体は定めない。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002889",
+      "source": {
+        "asset_id": "LEGACY-ASSET-653A097F9C9EE51F6FDD",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md",
+        "line": 169,
+        "source_file_sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+        "source_line_sha256": "sha256:2bbcec1dff32d59e1609ec854d0c90d1c9568eedebf3255ebcbfd6b7023e4663",
+        "physical_line_bytes_sha256": "30a2ed5312df76484fbc432278886c921479d6ec9a31af98f8b058964ae43190",
+        "text": "10. gateが対象を検査していない状態をpassにしない。"
+      },
+      "proposal_pool_check": {
+        "member_of_proposal_effective_488": true,
+        "#2353_effective_classification": "condition",
+        "#2353_condition_subtype": "product_requirement_atom",
+        "#2353_route_status": "unknown",
+        "later_overlay_intersections": [],
+        "prior_181_intersection": [],
+        "world_governance_60_intersection": []
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirements": [
+        {
+          "id": "HELIXOS-L2-007",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 60,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 27,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-008",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 61,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 28,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HARNESS-L2-005",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 56,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 25,
+            "basis": "acceptance_body_or_test_section"
+          }
+        }
+      ],
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-008",
+        "HARNESS-L2-005"
+      ],
+      "direct_overlap": "必要な検証義務を導出し、未実行/中断/staleをpassと区別する。",
+      "residual_or_difference": "gateごとの検査対象identityと未検査時の状態遷移全体は残る。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002890",
+      "source": {
+        "asset_id": "LEGACY-ASSET-653A097F9C9EE51F6FDD",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md",
+        "line": 170,
+        "source_file_sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+        "source_line_sha256": "sha256:bc2f220b751cf98c1a5fc3ead5daa91f5e3dd3bcc4ac316c8e92464d47398e3b",
+        "physical_line_bytes_sha256": "d46778bff64d183be4591d135bb85d29ac000612cb103a3aabeccb609932e21e",
+        "text": "11. unknownをnone、unchanged、healthy、greenへ変換しない。"
+      },
+      "proposal_pool_check": {
+        "member_of_proposal_effective_488": true,
+        "#2353_effective_classification": "condition",
+        "#2353_condition_subtype": "product_requirement_atom",
+        "#2353_route_status": "unknown",
+        "later_overlay_intersections": [],
+        "prior_181_intersection": [],
+        "world_governance_60_intersection": []
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirements": [
+        {
+          "id": "HELIXOS-L2-002",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 55,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 22,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-007",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 60,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 27,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-008",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 61,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 28,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HARNESS-L2-003",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 54,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 23,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HARNESS-L2-005",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 56,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 25,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXSECURITY-L2-007",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "line": 130,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "line": 31,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXSECURITY-L2-008",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "line": 140,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "line": 32,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXSECURITY-L2-009",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "line": 150,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "line": 33,
+            "basis": "acceptance_body_or_test_section"
+          }
+        }
+      ],
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-008",
+        "HARNESS-L2-003",
+        "HELIXSECURITY-L2-007",
+        "HELIXSECURITY-L2-008",
+        "HELIXSECURITY-L2-009"
+      ],
+      "direct_overlap": "未検証/unknownを分け、記録だけで完了にせず、scope drift/unknownをoperationへ適用する。",
+      "residual_or_difference": "unknownをnone/unchanged/healthy/greenに写像しない一般型規則は残る。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002891",
+      "source": {
+        "asset_id": "LEGACY-ASSET-653A097F9C9EE51F6FDD",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md",
+        "line": 171,
+        "source_file_sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+        "source_line_sha256": "sha256:acef72238308f5ba8d4396920cfeac5b7e0e1569ee36136401e4fb5ff8cf2baa",
+        "physical_line_bytes_sha256": "07d863da4730f2a3add9fdd08347a0b5f69b079392c134d82293dc49865fcd69",
+        "text": "12. compatibility greenでcurrent failureを相殺しない。"
+      },
+      "proposal_pool_check": {
+        "member_of_proposal_effective_488": true,
+        "#2353_effective_classification": "condition",
+        "#2353_condition_subtype": "product_requirement_atom",
+        "#2353_route_status": "unknown",
+        "later_overlay_intersections": [],
+        "prior_181_intersection": [],
+        "world_governance_60_intersection": []
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirements": [
+        {
+          "id": "HELIXOS-L2-008",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 61,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 28,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HARNESS-L2-005",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 56,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 25,
+            "basis": "acceptance_body_or_test_section"
+          }
+        }
+      ],
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-008",
+        "HARNESS-L2-005"
+      ],
+      "direct_overlap": "旧CI greenで新世代の未実行/review/approvalを代替せず、失敗・staleを区別する。",
+      "residual_or_difference": "全compatibility/current suiteの集約規則は残る。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002892",
+      "source": {
+        "asset_id": "LEGACY-ASSET-653A097F9C9EE51F6FDD",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md",
+        "line": 172,
+        "source_file_sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+        "source_line_sha256": "sha256:5b228deb360570c7368e80d6fe6da3762dc409c50ae562c7b4d5003adb43fd2b",
+        "physical_line_bytes_sha256": "a833f0376040a79f3d716deafea842b15a46519e507bebf19ea2458fb482f897",
+        "text": "13. 同じauthority／eventから同じprojectionを再構築する。"
+      },
+      "proposal_pool_check": {
+        "member_of_proposal_effective_488": true,
+        "#2353_effective_classification": "condition",
+        "#2353_condition_subtype": "product_requirement_atom",
+        "#2353_route_status": "unknown",
+        "later_overlay_intersections": [],
+        "prior_181_intersection": [],
+        "world_governance_60_intersection": []
+      },
+      "route_assessment": "unknown",
+      "compared_adopted_requirements": [
+        {
+          "id": "HELIXOS-L2-009",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 62,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 29,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-007",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 60,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 27,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-002",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 55,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 22,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HARNESS-L2-010",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 340,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 205,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HARNESS-L2-011",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 352,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 206,
+            "basis": "acceptance_body_or_test_section"
+          }
+        }
+      ],
+      "directly_matched_adopted_requirement_ids": [],
+      "direct_overlap": "採択述語との直接一致を特定できない。OS-L2-009のevent projection冪等性とOS-L2-007の証拠記録を比較したが、同authority/eventから同一projectionを決定論的に再構築する条件を示さない。",
+      "residual_or_difference": "idempotent recovery projectionは同一入力からの決定論的再構築と同じ述語ではない。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002893",
+      "source": {
+        "asset_id": "LEGACY-ASSET-653A097F9C9EE51F6FDD",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md",
+        "line": 173,
+        "source_file_sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+        "source_line_sha256": "sha256:cb566cf54bc1235bf822913c347da505e8144ef395f00dc2e79eee8216576c65",
+        "physical_line_bytes_sha256": "4e184a38a0355172b2c2af17b16fdf8d416deeb7431876ba67668153a92ecbe7",
+        "text": "14. 誤ったreceipt／finding／memoryはtyped correction／supersessionで正す。"
+      },
+      "proposal_pool_check": {
+        "member_of_proposal_effective_488": true,
+        "#2353_effective_classification": "condition",
+        "#2353_condition_subtype": "product_requirement_atom",
+        "#2353_route_status": "unknown",
+        "later_overlay_intersections": [],
+        "prior_181_intersection": [],
+        "world_governance_60_intersection": []
+      },
+      "route_assessment": "unknown",
+      "compared_adopted_requirements": [
+        {
+          "id": "HELIXOS-L2-007",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 60,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 27,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-005",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 58,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 25,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXLABO-L2-002",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "line": 77,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "line": 46,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXLABO-L2-010",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "line": 141,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "line": 54,
+            "basis": "acceptance_body_or_test_section"
+          }
+        }
+      ],
+      "directly_matched_adopted_requirement_ids": [],
+      "direct_overlap": "採択述語との直接一致を特定できない。OS-L2-007の証拠保持とLABO-L2-002の相関relation訂正を比較したが、receipt/finding/memoryに適用するtyped correctionまたはsupersessionを定義しない。",
+      "residual_or_difference": "relation訂正は元eventを書き換えない条件に限る。異種recordのtyped correction/supersessionとconsumer伝播は固定採択predicateにない。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002894",
+      "source": {
+        "asset_id": "LEGACY-ASSET-653A097F9C9EE51F6FDD",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md",
+        "line": 174,
+        "source_file_sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+        "source_line_sha256": "sha256:4e63dedfe47e573cf93b819e9f24f2e688e5fcce900ffed51a098b6c7b3fcf1f",
+        "physical_line_bytes_sha256": "6b93e64274a058a7caa910a936e860b86975485e4fc90e4a6879f0fcc3f2468e",
+        "text": "15. adaptation subsystemはauthorityへ直接writeしない。"
+      },
+      "proposal_pool_check": {
+        "member_of_proposal_effective_488": true,
+        "#2353_effective_classification": "condition",
+        "#2353_condition_subtype": "product_requirement_atom",
+        "#2353_route_status": "unknown",
+        "later_overlay_intersections": [],
+        "prior_181_intersection": [],
+        "world_governance_60_intersection": []
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirements": [
+        {
+          "id": "HELIXOS-L2-005",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 58,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 25,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-007",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 60,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 27,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXLABO-L2-005",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "line": 101,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "line": 49,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXLABO-L2-007",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "line": 117,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "line": 51,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXLABO-L2-010",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "line": 141,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "line": 54,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HARNESS-L2-008",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 59,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 28,
+            "basis": "acceptance_body_or_test_section"
+          }
+        }
+      ],
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-005",
+        "HELIXLABO-L2-005",
+        "HELIXLABO-L2-010",
+        "HARNESS-L2-008"
+      ],
+      "direct_overlap": "改善は候補、Feedbackは提案でauthorityでなく、target ownerが変更し、形成出力が合意へ自動昇格しない。",
+      "residual_or_difference": "全adaptation subsystemのauthority root直接write禁止は列挙されない。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002895",
+      "source": {
+        "asset_id": "LEGACY-ASSET-653A097F9C9EE51F6FDD",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md",
+        "line": 175,
+        "source_file_sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+        "source_line_sha256": "sha256:d90108d9bb2ecc41e97607c35791b22be5f879574674cf5fa9c509589590c7cd",
+        "physical_line_bytes_sha256": "69fea3ce0c5f9dd0ade1369c20a6b9550da55d1ed8f6057c97ec26f189027b01",
+        "text": "16. 単一episodeだけで一般規則やmechanismへ昇格しない。"
+      },
+      "proposal_pool_check": {
+        "member_of_proposal_effective_488": true,
+        "#2353_effective_classification": "condition",
+        "#2353_condition_subtype": "product_requirement_atom",
+        "#2353_route_status": "unknown",
+        "later_overlay_intersections": [],
+        "prior_181_intersection": [],
+        "world_governance_60_intersection": []
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirements": [
+        {
+          "id": "HELIXLABO-L2-003",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "line": 85,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "line": 47,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXLABO-L2-006",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "line": 109,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "line": 50,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXLABO-L2-009",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "line": 133,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "line": 53,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXLABO-L2-010",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "line": 141,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "line": 54,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXBRAIN-L2-007",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "line": 150,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+            "line": 35,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXBRAIN-L2-INFRA-017",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "line": 382,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+            "line": 57,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-005",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 58,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 25,
+            "basis": "acceptance_body_or_test_section"
+          }
+        }
+      ],
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXLABO-L2-003",
+        "HELIXLABO-L2-006",
+        "HELIXLABO-L2-009",
+        "HELIXOS-L2-005"
+      ],
+      "direct_overlap": "single episodeの範囲、条件依存/反例/評価限界を保持し、単一実績から一般化・改善認定しない。",
+      "residual_or_difference": "一般化禁止の適用対象/昇格状態全体は残る。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002896",
+      "source": {
+        "asset_id": "LEGACY-ASSET-653A097F9C9EE51F6FDD",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md",
+        "line": 176,
+        "source_file_sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+        "source_line_sha256": "sha256:edd657399c6650abdd65d7618a8f41553ad400e7ae0e67ff2b25a62baf2e4655",
+        "physical_line_bytes_sha256": "3fc6f3e70a480052d8ce94b1bf8affd9a75f16e2992a7ed5cfa14499dd4437a1",
+        "text": "17. 高価な監査をadmissionなしで起動しない。"
+      },
+      "proposal_pool_check": {
+        "member_of_proposal_effective_488": true,
+        "#2353_effective_classification": "condition",
+        "#2353_condition_subtype": "product_requirement_atom",
+        "#2353_route_status": "unknown",
+        "later_overlay_intersections": [],
+        "prior_181_intersection": [],
+        "world_governance_60_intersection": []
+      },
+      "route_assessment": "unknown",
+      "compared_adopted_requirements": [
+        {
+          "id": "HELIXOS-L2-004",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 57,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 24,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-008",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 61,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 28,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HARNESS-L2-005",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 56,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 25,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXLABO-L2-006",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "line": 109,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "line": 50,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXLABO-L2-007",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "line": 117,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "line": 51,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXSECURITY-L2-008",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "line": 140,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "line": 32,
+            "basis": "acceptance_body_or_test_section"
+          }
+        }
+      ],
+      "directly_matched_adopted_requirement_ids": [],
+      "direct_overlap": "採択述語との直接一致を特定できない。OSの予算内進行、HARNESSの検証義務、LABOのsystem化評価を比較したが、高価なauditをadmissionなしで起動しない条件を定めない。",
+      "residual_or_difference": "高価な監査の開始admission、費用/深さの判定主体は固定採択predicateにない。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002897",
+      "source": {
+        "asset_id": "LEGACY-ASSET-653A097F9C9EE51F6FDD",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md",
+        "line": 177,
+        "source_file_sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+        "source_line_sha256": "sha256:063edff24d6c895e199e12022cc863c6d846f90c7e6f0f0a21ca17da1c2226b9",
+        "physical_line_bytes_sha256": "2c3a491c3814f596d80b3d36acbc2d2ee65dbb4557185e9706c4edaf0d249ef8",
+        "text": "18. 未適格Sliceをstable Bundleへ暗黙包含しない。"
+      },
+      "proposal_pool_check": {
+        "member_of_proposal_effective_488": true,
+        "#2353_effective_classification": "condition",
+        "#2353_condition_subtype": "product_requirement_atom",
+        "#2353_route_status": "unknown",
+        "later_overlay_intersections": [],
+        "prior_181_intersection": [],
+        "world_governance_60_intersection": []
+      },
+      "route_assessment": "unknown",
+      "compared_adopted_requirements": [
+        {
+          "id": "HARNESS-L2-002",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 53,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 22,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HARNESS-L2-003",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 54,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 23,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HARNESS-L2-006",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 57,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 26,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-002",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 55,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 22,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-006",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 59,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 26,
+            "basis": "acceptance_body_or_test_section"
+          }
+        }
+      ],
+      "directly_matched_adopted_requirement_ids": [],
+      "direct_overlap": "採択述語との直接一致を特定できない。HARNESSのpack適格性・process state、OSのrelease trackingを比較したが、未適格Sliceをstable Bundleへ暗黙包含しない条件を定めない。",
+      "residual_or_difference": "Slice/Bundleのidentity・適格性・stable昇格条件は採択述語にない。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002898",
+      "source": {
+        "asset_id": "LEGACY-ASSET-653A097F9C9EE51F6FDD",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md",
+        "line": 178,
+        "source_file_sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+        "source_line_sha256": "sha256:95e77a2d5ef166810673e436a934d73ea22509f363a6df5b218908f8ee1a72ed",
+        "physical_line_bytes_sha256": "87118e250f72a9debec96aeb27fe34819908e7337448a48fec44124f41d973a6",
+        "text": "19. replacement evidenceなしでcapabilityをretireしない。"
+      },
+      "proposal_pool_check": {
+        "member_of_proposal_effective_488": true,
+        "#2353_effective_classification": "condition",
+        "#2353_condition_subtype": "product_requirement_atom",
+        "#2353_route_status": "unknown",
+        "later_overlay_intersections": [],
+        "prior_181_intersection": [],
+        "world_governance_60_intersection": []
+      },
+      "route_assessment": "unknown",
+      "compared_adopted_requirements": [
+        {
+          "id": "HARNESS-L2-010",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 340,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 205,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HARNESS-L2-011",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 352,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 206,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-006",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 59,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 26,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXSECURITY-L2-010",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "line": 160,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "line": 34,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXSECURITY-L2-013",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "line": 190,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "line": 37,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXLABO-L2-005",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "line": 101,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "line": 49,
+            "basis": "acceptance_body_or_test_section"
+          }
+        }
+      ],
+      "directly_matched_adopted_requirement_ids": [],
+      "direct_overlap": "採択述語との直接一致を特定できない。HARNESSのpack交換、SECURITYの更新integrity、LABOのRETIRE candidateを比較したが、replacement evidenceなしにcapabilityをretireしない一貫した条件は定義されない。",
+      "residual_or_difference": "交換可能性、更新証拠、retirement候補の記録はreplacement evidence prerequisiteとは異なる。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002899",
+      "source": {
+        "asset_id": "LEGACY-ASSET-653A097F9C9EE51F6FDD",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md",
+        "line": 179,
+        "source_file_sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+        "source_line_sha256": "sha256:4274a83afd907482dddd0dabdc9f70237a1b386dd12f4783ce3254f9bc44ac2c",
+        "physical_line_bytes_sha256": "9602e647065160962645eb8187c9ad96f79da5fe5de92462301754bf5b14a3fe",
+        "text": "20. Release成功をDeployment成功やIncident closureと同一視しない。"
+      },
+      "proposal_pool_check": {
+        "member_of_proposal_effective_488": true,
+        "#2353_effective_classification": "condition",
+        "#2353_condition_subtype": "product_requirement_atom",
+        "#2353_route_status": "unknown",
+        "later_overlay_intersections": [],
+        "prior_181_intersection": [],
+        "world_governance_60_intersection": []
+      },
+      "route_assessment": "unknown",
+      "compared_adopted_requirements": [
+        {
+          "id": "HARNESS-L2-003",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 54,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 23,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HARNESS-L2-017",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 403,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 212,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HARNESS-L2-018",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 411,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 213,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-002",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 55,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 22,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXOS-L2-006",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 59,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 26,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXINFRASTRUCTURE-L2-004",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+            "line": 62,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+            "line": 64,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXLABO-L2-002",
+          "direct_predicate": false,
+          "L2_locator": {
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "line": 77,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "line": 46,
+            "basis": "acceptance_body_or_test_section"
+          }
+        }
+      ],
+      "directly_matched_adopted_requirement_ids": [],
+      "direct_overlap": "採択述語との直接一致を特定できない。HARNESSのRelease/運用段階、OSの提供状態、LABO/INFRASTRUCTUREのincident履歴を比較したが、release successをdeployment successまたはincident closureへ変換しない直接predicateを特定できない。",
+      "residual_or_difference": "各stageのtrace/observabilityは同一視禁止・閉鎖条件と同義ではない。",
+      "authority_effect": "none"
+    }
+  ],
+  "counts": {
+    "selected": 20,
+    "partial": 11,
+    "unknown": 9,
+    "proposal_pool_out_of_population": 0,
+    "overlay_intersection": 0,
+    "prior_181_intersection": 0,
+    "world60_intersection": 0
+  },
+  "limitations": [
+    "旧Concept v4.0 rows remain historical candidates; no legacy PO wording is promoted into current adoption.",
+    "This bounded predicate comparison does not change candidate classification, adoption, successor, coverage, or implementation.",
+    "partial means only the named predicate portion overlaps; residuals remain explicit.",
+    "No archived workflow, CLI, hook, adapter, runtime, test, or CI was executed."
+  ]
+}
