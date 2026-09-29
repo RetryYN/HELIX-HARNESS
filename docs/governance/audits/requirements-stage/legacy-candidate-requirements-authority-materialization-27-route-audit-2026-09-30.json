@@ -635,7 +635,13 @@
       "directly_matched_adopted_requirement_ids": [],
       "direct_overlap": "sourceの文書ID自体をcurrent canonical identityへ結ぶ採択predicateは確認できない。",
       "residual_or_difference": "文書IDから現行要求ID、対象scope、採否revisionへのrouteはunknown。",
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "classification_review_candidate": {
+        "flag": true,
+        "finding": "#2372 R2372-02; metadata/reference-only source line, not itself a product condition predicate",
+        "disposition": "retain #2353 baseline effective classification, product_requirement_atom subtype, route_status, and 488-pool membership; no reclassification in this audit",
+        "basis": "exact source text identifies a document ID, status, behavior-contract ID, prior issue references, or fixture exclusion/reference rather than a standalone product-condition predicate"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-003941",
@@ -691,7 +697,13 @@
       "directly_matched_adopted_requirement_ids": [],
       "direct_overlap": "candidate statusとplan固有human gate statusをcurrent authority stateとして扱う固定predicateはない。",
       "residual_or_difference": "旧metadataの状態を現行採択・承認・独立review状態へ読み替えるrelationはunknown。",
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "classification_review_candidate": {
+        "flag": true,
+        "finding": "#2372 R2372-02; metadata/reference-only source line, not itself a product condition predicate",
+        "disposition": "retain #2353 baseline effective classification, product_requirement_atom subtype, route_status, and 488-pool membership; no reclassification in this audit",
+        "basis": "exact source text identifies a document ID, status, behavior-contract ID, prior issue references, or fixture exclusion/reference rather than a standalone product-condition predicate"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-003942",
@@ -747,7 +759,13 @@
       "directly_matched_adopted_requirement_ids": [],
       "direct_overlap": "Behavior Contract identityを要求正本へ登録する同一の採択predicateは確認できない。",
       "residual_or_difference": "この契約IDのcurrent owner・canonical source・採否routeはunknown。",
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "classification_review_candidate": {
+        "flag": true,
+        "finding": "#2372 R2372-02; metadata/reference-only source line, not itself a product condition predicate",
+        "disposition": "retain #2353 baseline effective classification, product_requirement_atom subtype, route_status, and 488-pool membership; no reclassification in this audit",
+        "basis": "exact source text identifies a document ID, status, behavior-contract ID, prior issue references, or fixture exclusion/reference rather than a standalone product-condition predicate"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-003951",
@@ -769,11 +787,31 @@
         "later_overlay_intersections": [],
         "prior_290_intersection": []
       },
-      "route_assessment": "unknown",
+      "route_assessment": "partial",
       "compared_adopted_requirements": [
         {
+          "id": "HELIXOS-L2-002",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 55,
+            "basis": "fixed substantive requirement row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 22,
+            "basis": "fixed paired acceptance row"
+          },
+          "additional_fixed_clause_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 442,
+            "clause": "RFA-BR-03",
+            "basis": "fixed adopted detail: re-confirm only impacted requirements/design/verification; do not invalidate unaffected valid work"
+          }
+        },
+        {
           "id": "HELIXOS-L2-004",
-          "direct_predicate": false,
+          "direct_predicate": true,
           "L2_locator": {
             "path": "docs/helix-os/L2-requirements/governance-requirements.md",
             "line": 57,
@@ -783,11 +821,17 @@
             "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
             "line": 24,
             "basis": "fixed paired acceptance row"
+          },
+          "additional_fixed_clause_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 491,
+            "clause": "FRS-BR-009",
+            "basis": "fixed adopted detail: stop when a required safety dependency is missing without making unrelated foundation completion a blanket wait condition"
           }
         },
         {
           "id": "HARNESS-L2-004",
-          "direct_predicate": false,
+          "direct_predicate": true,
           "L2_locator": {
             "path": "docs/helix-harness/L2-requirements/product-requirements.md",
             "line": 55,
@@ -797,13 +841,35 @@
             "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
             "line": 24,
             "basis": "fixed paired acceptance row"
+          },
+          "additional_fixed_clause_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 449,
+            "basis": "adopted boundary: no separate requirement-formation engine or approval ledger is required; included as residual boundary, not positive route match"
           }
         }
       ],
-      "directly_matched_adopted_requirement_ids": [],
-      "direct_overlap": "OS-L2-004はWorker assignment上の依存を扱い、HARNESS-L2-004は要求・設計・検証間の影響traceを扱う。いずれもIssue全体とslice単位のdependencyを分けるpredicateではない。",
-      "residual_or_difference": "必要なslice開始時だけexact dependencyを強制する契約とそのownerは固定L2/L11にない。",
-      "authority_effect": "none"
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-004",
+        "HARNESS-L2-004"
+      ],
+      "direct_overlap": "必要なsliceの開始時だけ別authority依存を強制し、それ以前の有効な作業を過剰blockしない部分が、固定OS L2のRFA-BR-03（:442）による影響範囲に限った再確定、FRS-BR-009（:491）による必要な安全依存の不足時停止と無関係な基盤完成の一律待ち禁止、およびHARNESS-L2-004（:195）の影響工程条件に部分一致する。#2375の004611/004736は「完成Sliceを全体完了待ちにしない」部分を同じOS-L2-002/HARNESS-L2-004へ部分対応した先行例だが、今回の一致根拠は当該旧行と固定predicateの個別比較である。",
+      "residual_or_difference": "slice単位authorityの定義、Issue全体依存との分離、slice開始時に必要なexact dependencyのhard-bind条件・owner・判定/解消契約は固定L2/L11にない。line449は別Requirement Engine/承認台帳を要求しない境界であり、RAMG固有の機構採択根拠ではない。先行#2375のPartial判定を意味類似だけで移植しない。",
+      "authority_effect": "none",
+      "prior_partial_precedent_comparison": {
+        "audit": "docs/governance/audits/requirements-stage/legacy-candidate4755-world-governance-remaining30-route-audit-after-2374-2026-09-30.json",
+        "source_ids": [
+          "LEGACY-CAND-LINE-004611",
+          "LEGACY-CAND-LINE-004736"
+        ],
+        "comparison": "same prior-source sentence; partial only for not waiting on unrelated slices, under HELIXOS-L2-002 and HARNESS-L2-004. Precedent is consistency context, not independent proof or automatic route transfer."
+      },
+      "additional_boundary_locator": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "line": 449,
+        "basis": "fixed adopted boundary: no separate requirement-formation engine or approval ledger is required; boundary/residual only, not positive route match"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-003958",
@@ -917,7 +983,13 @@
       "directly_matched_adopted_requirement_ids": [],
       "direct_overlap": "fixtureの参照ID自体に対するcurrent L2/L11 predicateはない。",
       "residual_or_difference": "参照された旧Issueの内容や関係を現行要求のrouteとして推測しない。",
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "classification_review_candidate": {
+        "flag": true,
+        "finding": "#2372 R2372-02; metadata/reference-only source line, not itself a product condition predicate",
+        "disposition": "retain #2353 baseline effective classification, product_requirement_atom subtype, route_status, and 488-pool membership; no reclassification in this audit",
+        "basis": "exact source text identifies a document ID, status, behavior-contract ID, prior issue references, or fixture exclusion/reference rather than a standalone product-condition predicate"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-003962",
@@ -973,7 +1045,13 @@
       "directly_matched_adopted_requirement_ids": [],
       "direct_overlap": "fixtureの参照ID自体に対するcurrent L2/L11 predicateはない。",
       "residual_or_difference": "参照された旧Issueの内容や関係を現行要求のrouteとして推測しない。",
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "classification_review_candidate": {
+        "flag": true,
+        "finding": "#2372 R2372-02; metadata/reference-only source line, not itself a product condition predicate",
+        "disposition": "retain #2353 baseline effective classification, product_requirement_atom subtype, route_status, and 488-pool membership; no reclassification in this audit",
+        "basis": "exact source text identifies a document ID, status, behavior-contract ID, prior issue references, or fixture exclusion/reference rather than a standalone product-condition predicate"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-003963",
@@ -1029,7 +1107,13 @@
       "directly_matched_adopted_requirement_ids": [],
       "direct_overlap": "fixtureの参照ID自体に対するcurrent L2/L11 predicateはない。",
       "residual_or_difference": "参照された旧Issueの内容や関係を現行要求のrouteとして推測しない。",
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "classification_review_candidate": {
+        "flag": true,
+        "finding": "#2372 R2372-02; metadata/reference-only source line, not itself a product condition predicate",
+        "disposition": "retain #2353 baseline effective classification, product_requirement_atom subtype, route_status, and 488-pool membership; no reclassification in this audit",
+        "basis": "exact source text identifies a document ID, status, behavior-contract ID, prior issue references, or fixture exclusion/reference rather than a standalone product-condition predicate"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-003964",
@@ -1085,7 +1169,13 @@
       "directly_matched_adopted_requirement_ids": [],
       "direct_overlap": "fixtureの参照ID自体に対するcurrent L2/L11 predicateはない。",
       "residual_or_difference": "参照された旧Issueの内容や関係を現行要求のrouteとして推測しない。",
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "classification_review_candidate": {
+        "flag": true,
+        "finding": "#2372 R2372-02; metadata/reference-only source line, not itself a product condition predicate",
+        "disposition": "retain #2353 baseline effective classification, product_requirement_atom subtype, route_status, and 488-pool membership; no reclassification in this audit",
+        "basis": "exact source text identifies a document ID, status, behavior-contract ID, prior issue references, or fixture exclusion/reference rather than a standalone product-condition predicate"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-003965",
@@ -1197,7 +1287,13 @@
       "directly_matched_adopted_requirement_ids": [],
       "direct_overlap": "文書ID自体をcurrent canonical identityへ結ぶ採択predicateは確認できない。",
       "residual_or_difference": "文書IDから現行要求ID、対象scope、採否revisionへのrouteはunknown。",
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "classification_review_candidate": {
+        "flag": true,
+        "finding": "#2372 R2372-02; metadata/reference-only source line, not itself a product condition predicate",
+        "disposition": "retain #2353 baseline effective classification, product_requirement_atom subtype, route_status, and 488-pool membership; no reclassification in this audit",
+        "basis": "exact source text identifies a document ID, status, behavior-contract ID, prior issue references, or fixture exclusion/reference rather than a standalone product-condition predicate"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-003985",
@@ -1253,7 +1349,13 @@
       "directly_matched_adopted_requirement_ids": [],
       "direct_overlap": "candidate statusとplan固有human gate statusをcurrent authority stateとして扱う固定predicateはない。",
       "residual_or_difference": "旧metadataの状態を現行採択・承認・独立review状態へ読み替えるrelationはunknown。",
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "classification_review_candidate": {
+        "flag": true,
+        "finding": "#2372 R2372-02; metadata/reference-only source line, not itself a product condition predicate",
+        "disposition": "retain #2353 baseline effective classification, product_requirement_atom subtype, route_status, and 488-pool membership; no reclassification in this audit",
+        "basis": "exact source text identifies a document ID, status, behavior-contract ID, prior issue references, or fixture exclusion/reference rather than a standalone product-condition predicate"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-003986",
@@ -1309,7 +1411,13 @@
       "directly_matched_adopted_requirement_ids": [],
       "direct_overlap": "主Issue IDをcurrent requirement authorityへ結ぶ同一predicateは確認できない。",
       "residual_or_difference": "Issue番号だけからcurrent source authority・admission・successorを推測しない。",
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "classification_review_candidate": {
+        "flag": true,
+        "finding": "#2372 R2372-02; metadata/reference-only source line, not itself a product condition predicate",
+        "disposition": "retain #2353 baseline effective classification, product_requirement_atom subtype, route_status, and 488-pool membership; no reclassification in this audit",
+        "basis": "exact source text identifies a document ID, status, behavior-contract ID, prior issue references, or fixture exclusion/reference rather than a standalone product-condition predicate"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-003989",
@@ -1830,11 +1938,31 @@
         "later_overlay_intersections": [],
         "prior_290_intersection": []
       },
-      "route_assessment": "unknown",
+      "route_assessment": "partial",
       "compared_adopted_requirements": [
         {
+          "id": "HELIXOS-L2-002",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 55,
+            "basis": "fixed substantive requirement row"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 22,
+            "basis": "fixed paired acceptance row"
+          },
+          "additional_fixed_clause_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 442,
+            "clause": "RFA-BR-03",
+            "basis": "fixed adopted detail: re-confirm only impacted requirements/design/verification; do not invalidate unaffected valid work"
+          }
+        },
+        {
           "id": "HELIXOS-L2-004",
-          "direct_predicate": false,
+          "direct_predicate": true,
           "L2_locator": {
             "path": "docs/helix-os/L2-requirements/governance-requirements.md",
             "line": 57,
@@ -1844,11 +1972,17 @@
             "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
             "line": 24,
             "basis": "fixed paired acceptance row"
+          },
+          "additional_fixed_clause_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 491,
+            "clause": "FRS-BR-009",
+            "basis": "fixed adopted detail: stop when a required safety dependency is missing without making unrelated foundation completion a blanket wait condition"
           }
         },
         {
           "id": "HARNESS-L2-004",
-          "direct_predicate": false,
+          "direct_predicate": true,
           "L2_locator": {
             "path": "docs/helix-harness/L2-requirements/product-requirements.md",
             "line": 55,
@@ -1858,13 +1992,35 @@
             "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
             "line": 24,
             "basis": "fixed paired acceptance row"
+          },
+          "additional_fixed_clause_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 449,
+            "basis": "adopted boundary: no separate requirement-formation engine or approval ledger is required; included as residual boundary, not positive route match"
           }
         }
       ],
-      "directly_matched_adopted_requirement_ids": [],
-      "direct_overlap": "OS-L2-004は作業割当の依存、HARNESS-L2-004は要求・設計・検証の影響relationであり、Issue依存とslice依存のexact bindingは定めない。",
-      "residual_or_difference": "Issue全体とslice単位の依存分離、必要なslice開始時だけのhard-bind predicateはunknown。",
-      "authority_effect": "none"
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-004",
+        "HARNESS-L2-004"
+      ],
+      "direct_overlap": "Issue全体ではなく、依存を必要とするsliceだけをhard-bindして他sliceを一律待機させない効果が、固定OS L2のRFA-BR-03（:442）とFRS-BR-009（:491）、HARNESS-L2-004（:195）の「影響しない有効作業を一律失効させない」条件に部分一致する。#2375の004611/004736は完成Sliceを全体完了待ちにしない点の先行部分一致であり、本行では依存述語を個別に比較した。",
+      "residual_or_difference": "Issue単位とslice単位のdependency identity/closure分離、必要なsliceに対するexact hard-bindと開始時のenforcement、dependency ownerおよびmissing/stale時のoracleは採択L2/L11にない。固定OS L2:449は別の要求形成engineや承認台帳を要求しない境界であり、本RAMG提案の採択を意味しない。先行#2375のPartial判定はrouteを自動決めない。",
+      "authority_effect": "none",
+      "prior_partial_precedent_comparison": {
+        "audit": "docs/governance/audits/requirements-stage/legacy-candidate4755-world-governance-remaining30-route-audit-after-2374-2026-09-30.json",
+        "source_ids": [
+          "LEGACY-CAND-LINE-004611",
+          "LEGACY-CAND-LINE-004736"
+        ],
+        "comparison": "same prior-source sentence; partial only for not waiting on unrelated slices, under HELIXOS-L2-002 and HARNESS-L2-004. Precedent is consistency context, not independent proof or automatic route transfer."
+      },
+      "additional_boundary_locator": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "line": 449,
+        "basis": "fixed adopted boundary: no separate requirement-formation engine or approval ledger is required; boundary/residual only, not positive route match"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-004002",
@@ -2176,11 +2332,39 @@
   ],
   "counts": {
     "selected": 27,
-    "partial": 14,
-    "unknown": 13,
+    "partial": 16,
+    "unknown": 11,
     "proposal_pool_out_of_population": 0,
     "prior_290_intersection": 0,
-    "later_overlay_intersection": 0
+    "later_overlay_intersection": 0,
+    "route_counts": {
+      "unknown": 11,
+      "partial": 16
+    },
+    "classification_review_candidate_count": 10,
+    "classification_review_candidate_ids": [
+      "LEGACY-CAND-LINE-003940",
+      "LEGACY-CAND-LINE-003941",
+      "LEGACY-CAND-LINE-003942",
+      "LEGACY-CAND-LINE-003961",
+      "LEGACY-CAND-LINE-003962",
+      "LEGACY-CAND-LINE-003963",
+      "LEGACY-CAND-LINE-003964",
+      "LEGACY-CAND-LINE-003984",
+      "LEGACY-CAND-LINE-003985",
+      "LEGACY-CAND-LINE-003986"
+    ],
+    "route_count_check": {
+      "basis": "counted directly from 27 rows after row-level updates",
+      "partial": 16,
+      "unknown": 11,
+      "total": 27
+    },
+    "classification_review_count_check": {
+      "basis": "counted exact IDs flagged in row_records; baseline class/subtype/route preserved",
+      "count": 10,
+      "total_rows": 27
+    }
   },
   "limitations": [
     "route_assessment is a bounded row-level comparison against adopted L2/L11 predicates only; partial identifies the listed matched predicate and does not close the recorded residual.",
