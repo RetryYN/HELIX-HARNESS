@@ -5,9 +5,10 @@
 - scope: #2353のproposed-overlay有効分類で`product_requirement_atom`かつ`source_relation_coverage_unresolved`のID昇順から、#2354で監査済みの20 IDを除いた先頭20件。母数121件。
 - #2353の分類overlayは提案状態のselectorであり、現行全数censusではない。対象は全てexecution-ticket-requirements.mdの番号付き条件または明示的なrecord/schema relationで、header・README pointer・obvious metadata/structure行は含まれない。分類自体は変更しない。
 
-## 採択authorityと比較範囲
+## PO判断のauthorityと比較範囲
 
-- HELIX-OS L1/L2/L11の対象revision・L2-014〜029候補集合は`HDEC-HELIXOS-REQUIREMENTS-PO-2026-09-28`に従う。L2-014〜029採用は、以下20旧atomの採用や全source coverageを意味しない。
+- PO判断記録 `HDEC-HELIXOS-REQUIREMENTS-PO-2026-09-28` のline 27は、固定L1対象revisionを確定し、HELIXOS-L2-001〜029と各L2に対する固定L11受入本文一式への合意を記録する。line 46〜48の明示候補採用集合はHELIXOS-L2-014〜029の16件であり、各version_targetと適用条件を保持する。この二つの範囲を区別する。
+- JSONの`adopted_related_requirement_ids`は、POが合意したL2/L11本文範囲内の関連要求を指す。これ自体は各IDが明示候補採用集合に属すること、以下20旧atomの採用、または全source coverageを意味しない。
 - 比較した現行関係: L2-017 ticket/workflow、018 Worker assignment/attempt、019 evidence/continuity、020検収、023 handoff、各既存L2 004/007/009/010/011、並びに対応するL11受入。L2-014 stage-release要求はExecution Ticket条件への対応要求ではなく、旧route snapshotに挙がることだけではcoverage関係にしない。
 - MPR-RC-HELIXOS-L2-017/018/019/020/023/024/025はfunctional-units receiptを参照し、source_atom_count=0・authority_effect=none。これらは旧Execution Ticket atomの行単位mappingではない。2026-09-28 PO decisionを採択authorityとし、receiptの`no_loss`を旧行coverageへ拡張しない。
 - 各「部分関係」は採択L2/L11本文にある一般責務・境界を示すだけで、旧行全体を満たす保証やoracleではない。残差欄に不足条件を列挙する。

@@ -128,10 +128,38 @@
   ],
   "adoption_decision": {
     "decision_id": "HDEC-HELIXOS-REQUIREMENTS-PO-2026-09-28",
-    "adopted_ids": "HELIXOS-L2-014 through HELIXOS-L2-029 explicit candidate set at decision-pinned L1/L2/L11 bytes",
+    "paired_l2_l11_textual_agreement": {
+      "l2_scope": "HELIXOS-L2-001 through HELIXOS-L2-029",
+      "paired_l11_scope": "the fixed L11 acceptance text paired with HELIXOS-L2-001 through HELIXOS-L2-029",
+      "source_decision_record_line": 27,
+      "meaning": "PO confirmed the fixed L1 target revision and agreed to the paired L2/L11 requirement text as a set."
+    },
+    "explicit_candidate_adoption": {
+      "ids": [
+        "HELIXOS-L2-014",
+        "HELIXOS-L2-015",
+        "HELIXOS-L2-016",
+        "HELIXOS-L2-017",
+        "HELIXOS-L2-018",
+        "HELIXOS-L2-019",
+        "HELIXOS-L2-020",
+        "HELIXOS-L2-021",
+        "HELIXOS-L2-022",
+        "HELIXOS-L2-023",
+        "HELIXOS-L2-024",
+        "HELIXOS-L2-025",
+        "HELIXOS-L2-026",
+        "HELIXOS-L2-027",
+        "HELIXOS-L2-028",
+        "HELIXOS-L2-029"
+      ],
+      "source_decision_record_lines": "46-48",
+      "meaning": "PO adopted these 16 explicit candidate IDs with the version_target and applicable conditions recorded for each."
+    },
+    "related_requirement_ids_interpretation": "Each item's adopted_related_requirement_ids identifies related requirements within the paired L2/L11 textual agreement above. This relation does not enlarge the explicit candidate adoption set, adopt legacy source atoms, or establish exact coverage.",
     "decision_status": "recorded; effective when admitted to main",
     "authority_source": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
-    "limit": "Decision adopts the stated current candidate set/revision; does not adopt these old source atoms or establish their exact coverage."
+    "limit": "The explicit candidate adoption set is limited to the IDs listed above. The paired L2/L11 textual agreement is a distinct decision scope; neither scope adopts these old source atoms or establishes their exact coverage."
   },
   "authority_limits": [
     "No requirement adoption, retirement, meaning change, successor assignment, source closure, exact coverage, Stage 5 completion, implementation, execution, acceptance, release, or L3 permission is inferred.",
