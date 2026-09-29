@@ -2430,20 +2430,20 @@
         "prior_181_intersection": [],
         "prior_261_intersection": []
       },
-      "route_assessment": "unknown",
+      "route_assessment": "partial",
       "compared_adopted_requirements": [
         {
           "id": "HELIXOS-L2-004",
-          "direct_predicate": false,
+          "direct_predicate": true,
           "L2_locator": {
             "path": "docs/helix-os/L2-requirements/governance-requirements.md",
             "line": 57,
-            "basis": "fixed substantive requirement row"
+            "basis": "requirement_body_or_section"
           },
           "L11_acceptance_locator_separate": {
             "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
             "line": 24,
-            "basis": "fixed paired acceptance row"
+            "basis": "acceptance_body_or_test_section"
           }
         },
         {
@@ -2452,33 +2452,86 @@
           "L2_locator": {
             "path": "docs/helix-os/L2-requirements/governance-requirements.md",
             "line": 62,
-            "basis": "fixed substantive requirement row"
+            "basis": "requirement_body_or_section"
           },
           "L11_acceptance_locator_separate": {
             "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
             "line": 29,
-            "basis": "fixed paired acceptance row"
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXSECURITY-L2-004",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "line": 100,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "line": 28,
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXSECURITY-L2-007",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "line": 130,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "line": 31,
+            "basis": "acceptance_body_or_test_section"
           }
         },
         {
           "id": "HELIXSECURITY-L2-008",
-          "direct_predicate": false,
+          "direct_predicate": true,
           "L2_locator": {
             "path": "docs/helix-security/L2-requirements/security-requirements.md",
             "line": 140,
-            "basis": "fixed requirement detail heading"
+            "basis": "requirement_body_or_section"
           },
           "L11_acceptance_locator_separate": {
             "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
             "line": 32,
-            "basis": "fixed paired acceptance row"
+            "basis": "acceptance_body_or_test_section"
+          }
+        },
+        {
+          "id": "HELIXSECURITY-L2-022",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "line": 282,
+            "basis": "requirement_body_or_section"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "line": 46,
+            "basis": "acceptance_body_or_test_section"
           }
         }
       ],
-      "directly_matched_adopted_requirement_ids": [],
-      "direct_overlap": "authority root/assignment/HEAD/lease/capabilityの各欠落を個別rejectするstartup oracleは採択条項に列挙されない。",
-      "residual_or_difference": "authority root、assignment、HEAD、lease、capabilityの欠落をそれぞれstartupで拒否するcaseが残る。",
-      "authority_effect": "none"
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-004",
+        "HELIXSECURITY-L2-004",
+        "HELIXSECURITY-L2-007",
+        "HELIXSECURITY-L2-008",
+        "HELIXSECURITY-L2-022"
+      ],
+      "direct_overlap": "HELIXOS-L2-004とHELIXSECURITY-L2-004／007／008／022は、assignment、project/root/HEAD/revision、Worker制約、operation authorityを照合し、未解決の実行条件を通さない。旧startup条件のうちroot・assignment・HEAD・capabilityを束縛するpredicateと重なる。",
+      "residual_or_difference": "旧受入行が要求するauthority root・assignment・HEAD・lease・capabilityの5項目それぞれの欠落negative caseと、いずれか欠落時のWorker起動拒否を一つずつ検証するstartup oracleは固定採択L2/L11に列挙されない。",
+      "authority_effect": "none",
+      "comparison_precedent": {
+        "audit_id": "legacy-candidate-concept-v4-system-invariant-20-route-audit-after-2376-2026-09-30",
+        "source_id": "LEGACY-CAND-LINE-002884",
+        "relationship": "同じ「authority root・assignment・HEAD・実行制約が未解決ならWorkerを起動しない」という採択predicate比較を再利用。旧行002583はlaneでなくleaseを列挙するので個別negative-case残差をその差分に合わせた。"
+      }
     },
     {
       "source_id": "LEGACY-CAND-LINE-002584",
@@ -2945,25 +2998,32 @@
         "prior_181_intersection": [],
         "prior_261_intersection": []
       },
-      "route_assessment": "unknown",
+      "route_assessment": "partial",
       "compared_adopted_requirements": [
         {
           "id": "HARNESS-L2-003",
-          "direct_predicate": false,
+          "direct_predicate": true,
           "L2_locator": {
             "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-            "line": 54,
-            "basis": "fixed substantive requirement row"
+            "line": 193,
+            "basis": "fixed RFA-BR-02 mapped condition under adopted HARNESS-L2-003"
           },
           "L11_acceptance_locator_separate": {
             "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
             "line": 23,
             "basis": "fixed paired acceptance row"
-          }
+          },
+          "additional_L11_acceptance_locators": [
+            {
+              "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+              "line": 54,
+              "basis": "fixed impact-specific Backflow acceptance clause"
+            }
+          ]
         },
         {
           "id": "HARNESS-L2-004",
-          "direct_predicate": false,
+          "direct_predicate": true,
           "L2_locator": {
             "path": "docs/helix-harness/L2-requirements/product-requirements.md",
             "line": 55,
@@ -2973,7 +3033,19 @@
             "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
             "line": 24,
             "basis": "fixed paired acceptance row"
-          }
+          },
+          "additional_L11_acceptance_locators": [
+            {
+              "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+              "line": 44,
+              "basis": "fixed changed-requirement impact/revalidation acceptance clause"
+            },
+            {
+              "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+              "line": 54,
+              "basis": "fixed impact-specific Backflow acceptance clause"
+            }
+          ]
         },
         {
           "id": "HELIXOS-L2-007",
@@ -3004,10 +3076,28 @@
           }
         }
       ],
-      "directly_matched_adopted_requirement_ids": [],
-      "direct_overlap": "finding起点の影響/stale/human gate/再freeze/Forward re-entryを追跡する統合受入述語は固定acceptanceにない。",
-      "residual_or_difference": "findingから影響layer/stale target/human gate/re-freeze/Forward re-entryまでを一連に追跡するoracleが残る。",
-      "authority_effect": "none"
+      "directly_matched_adopted_requirement_ids": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-004"
+      ],
+      "direct_overlap": "HARNESS-L2-004とL11:44は、変更要求から影響する設計/V-pairと必要な検証を導き、無関係な要求を再承認対象へ巻き込まない。L11:54は契約・境界・要求・製品価値のずれを対応する上流layerへBackflowし、対象範囲を照合する。HARNESS-L2-003のRFA-BR-02条件は、委任済み意図の技術具体化を反復承認なしで進め、未委任の意味・権限変更を別判断にする。これらはfindingから影響範囲・human gateへ戻す意味の部分と重なる。",
+      "residual_or_difference": "finding identityからstale targetを特定する関係、再freezeの明示状態・証拠、Forward re-entryへの遷移と各段の条件は固定L2/L11で一連の追跡契約として定義されない。RFA-BR-02自体もこれらの具体手順を規定しない。",
+      "authority_effect": "none",
+      "comparison_context": [
+        {
+          "ref": "#2374 RFA scoped admission audit",
+          "audit_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-rfa-scoped-admission-26-route-audit-after-2373-2026-09-30.json",
+          "source_id": "LEGACY-CAND-LINE-003762",
+          "basis": "当該監査はRFA-BR-02行（委任済みscope内の技術具体化、policy適合、独立検証、変更受付/recompile/refreeze）をHELIXOS-L2-003/HARNESS-L2-003およびHARNESS-L11:23,37,38,42,43に照らしpartialとし、recompile/refreezeの具体経路を残差にした。今回の002593ではL11:44/54が示す影響範囲・Backflow条件を加えて比較し、Forward再進入等は未規定として残す。これはsource contextであり、追加の採択IDではない。"
+        },
+        {
+          "ref": "RFA-BR-02",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requests.md",
+          "line": 24,
+          "text": "委任済み意図の技術的具体化を反復承認なしで進め、未委任の意味・権限は保護する",
+          "authority_effect": "none; comparison context only"
+        }
+      ]
     },
     {
       "source_id": "LEGACY-CAND-LINE-002594",
@@ -3082,8 +3172,8 @@
   ],
   "counts": {
     "selected": 29,
-    "partial": 11,
-    "unknown": 18,
+    "partial": 13,
+    "unknown": 16,
     "proposal_pool_out_of_population": 0,
     "prior_261_intersection": 0,
     "prior_181_intersection": 0
