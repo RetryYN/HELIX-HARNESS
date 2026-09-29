@@ -1,0 +1,422 @@
+{
+  "schema_version": "helix-legacy-candidate4755-effective-classification-recount.v1",
+  "audit_id": "legacy-candidate4755-effective-classification-recount-after-2381-2026-09-30",
+  "created_against_commit": "6e62f76986f19d14281cb2a96eca460c5430dcc6",
+  "authority_effect": "none",
+  "method": "Read all 4755 exact #2353 row_records and apply merged classification overlays in order by exact source ID. Recount effective class, condition subtype, condition route, product unknown pool, and audited union membership without semantic route inference.",
+  "pinned_inputs": [
+    {
+      "role": "full_row_records_baseline",
+      "ref": "#2353",
+      "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+      "git_blob_sha": "2b0e305c68da5610f354a802c7410363ede1261c"
+    },
+    {
+      "role": "classification_or_route_input",
+      "ref": "#2356",
+      "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164",
+      "git_blob_sha": "dc63bbecb141641fc2d7ee0063f85a2498656f46"
+    },
+    {
+      "role": "classification_or_route_input",
+      "ref": "#2360",
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+      "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb",
+      "git_blob_sha": "7cc1dc2000fa015c1dc70740d553797e0e0212e2"
+    },
+    {
+      "role": "classification_or_route_input",
+      "ref": "#2363",
+      "commit": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+      "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384",
+      "git_blob_sha": "cce740a8524e841f3fff82b58bf33e32c8b7078f"
+    },
+    {
+      "role": "classification_or_route_input",
+      "ref": "#2366",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+      "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6",
+      "git_blob_sha": "aed14db05a2e4b80e54eeef334051ce857252ef6"
+    },
+    {
+      "role": "classification_or_route_input",
+      "ref": "#2367",
+      "commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
+      "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d",
+      "git_blob_sha": "b9ea3d6c0d6565301246504a76af9b2d012b8159"
+    },
+    {
+      "role": "classification_or_route_input",
+      "ref": "#2368",
+      "commit": "f89f71e0371440e9e10636499192c2311872b024",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
+      "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95",
+      "git_blob_sha": "c69efe80c47457c48e8f5b7555b1ac7cd7d8c295"
+    },
+    {
+      "role": "classification_or_route_input",
+      "ref": "#2369",
+      "commit": "081b0b6612b802cfcb02b3cecda1559dd9a3ce13",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30.json",
+      "sha256": "5ed02b037f78ca25991b396e232e8b1ee754b0c91b056ed6640c9fb1c47cf0c0",
+      "git_blob_sha": "63c2f8d02de7d21eecc2f2d1be8fea0d0f4a41b6"
+    },
+    {
+      "role": "classification_or_route_input",
+      "ref": "#2381",
+      "commit": "6e62f76986f19d14281cb2a96eca460c5430dcc6",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-metadata10-classification-proposal-2026-09-30.json",
+      "sha256": "512f9ceafe935648d459d6b268ff4d3952f0e8264298213ad278256236b5f40e",
+      "git_blob_sha": "47d52add2120ccfe2f278130c42119e9bfcf8354"
+    },
+    {
+      "role": "classification_or_route_input",
+      "ref": "#2378",
+      "commit": "cc451e22b6b520aad4d61b2410220a7503c47e12",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-concept-v4-main-acceptance-29-route-audit-2026-09-30.json",
+      "sha256": "91be699983dfe769869e08cc030cc1352abb42184a6ccd0d8bed09d7f84c0510",
+      "git_blob_sha": "52840c1d6299f80c7d36761bc16250393c860879"
+    },
+    {
+      "role": "classification_or_route_input",
+      "ref": "#2380",
+      "commit": "d4f1c4739fb920abdc5f951646e43a5c3e501af5",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-27-route-audit-2026-09-30.json",
+      "sha256": "341b97fd4109118c747c3a5b5c62f10f092ef4df330d45e4eaae9910f6994f56",
+      "git_blob_sha": "eaad720f04e7d2b8b19ed7b1404bd5703d6e26df"
+    }
+  ],
+  "row_population": {
+    "source_row_count": 4755,
+    "unique_source_item_ids": 4755,
+    "row_record_source": "#2353 reconciliation.row_records",
+    "no_rows_added_or_removed": true
+  },
+  "overlay_order": [
+    {
+      "pr": "#2356",
+      "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164",
+      "row_count": 9,
+      "joined_ids_count": 9,
+      "sorted_id_set_sha256": "04f668455f0bb5a50026a04c23080f9ef4a123c36084db325efd72f40ad79c67",
+      "intersection_with_prior_overlay_ids": 0,
+      "delta": {
+        "classification": {
+          "condition": -8,
+          "explanation": 8
+        },
+        "subtype": {
+          "management_process_condition": 1,
+          "product_requirement_atom": -9
+        },
+        "route": {
+          "management_successor_unresolved": 1,
+          "unknown": -9
+        },
+        "product_route": {
+          "unknown": -9
+        }
+      }
+    },
+    {
+      "pr": "#2360",
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+      "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb",
+      "row_count": 7,
+      "joined_ids_count": 7,
+      "sorted_id_set_sha256": "4cb7647b5d12bd9ca5f7c4bdd986689ae43e303875ecbe2f2339580dbf568dcf",
+      "intersection_with_prior_overlay_ids": 0,
+      "delta": {
+        "classification": {
+          "condition": -2,
+          "explanation": 2
+        },
+        "subtype": {
+          "product_requirement_atom": -2
+        },
+        "route": {
+          "adopted_relevant_partial": 3,
+          "unknown": -5
+        },
+        "product_route": {
+          "adopted_relevant_partial": 3,
+          "unknown": -5
+        }
+      }
+    },
+    {
+      "pr": "#2363",
+      "commit": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+      "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384",
+      "row_count": 16,
+      "joined_ids_count": 16,
+      "sorted_id_set_sha256": "965673b88bc94e008fce8c7f45d266ec22e560e6ebbe981c53672989c38f7973",
+      "intersection_with_prior_overlay_ids": 0,
+      "delta": {
+        "classification": {
+          "condition": -10,
+          "explanation": 10
+        },
+        "subtype": {
+          "management_process_condition": 2,
+          "product_requirement_atom": -12
+        },
+        "route": {
+          "management_successor_unresolved": 2,
+          "unknown": -12
+        },
+        "product_route": {
+          "unknown": -12
+        }
+      }
+    },
+    {
+      "pr": "#2366",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+      "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6",
+      "row_count": 14,
+      "joined_ids_count": 14,
+      "sorted_id_set_sha256": "3d2dfb959362e4d1683b03f4f73562ee4628e802bc14aa3fc5f7c8a9e4147e8d",
+      "intersection_with_prior_overlay_ids": 0,
+      "delta": {
+        "classification": {
+          "condition": -2,
+          "explanation": 2
+        },
+        "subtype": {
+          "management_process_condition": 9,
+          "product_requirement_atom": -11
+        },
+        "route": {
+          "management_successor_unresolved": 9,
+          "unknown": -11
+        },
+        "product_route": {
+          "unknown": -11
+        }
+      }
+    },
+    {
+      "pr": "#2367",
+      "commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
+      "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d",
+      "row_count": 51,
+      "joined_ids_count": 51,
+      "sorted_id_set_sha256": "668a311bda3a165d02b88ee4d53f4020b29f289783a87772006e9d3f3a87c12a",
+      "intersection_with_prior_overlay_ids": 0,
+      "delta": {
+        "classification": {
+          "condition": -3,
+          "explanation": 3
+        },
+        "subtype": {
+          "management_process_condition": 11,
+          "product_requirement_atom": -14
+        },
+        "route": {
+          "management_successor_unresolved": 11,
+          "unknown": -14
+        },
+        "product_route": {
+          "unknown": -14
+        }
+      }
+    },
+    {
+      "pr": "#2368",
+      "commit": "f89f71e0371440e9e10636499192c2311872b024",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
+      "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95",
+      "row_count": 47,
+      "joined_ids_count": 47,
+      "sorted_id_set_sha256": "e415858b278523689d4d5addf93210d53ee02eedcb9b882cbb86ef7d70377352",
+      "intersection_with_prior_overlay_ids": 0,
+      "delta": {
+        "classification": {
+          "condition": -14,
+          "explanation": 14
+        },
+        "subtype": {
+          "management_process_condition": 7,
+          "product_requirement_atom": -21
+        },
+        "route": {
+          "management_successor_unresolved": 7,
+          "unknown": -21
+        },
+        "product_route": {
+          "unknown": -21
+        }
+      }
+    },
+    {
+      "pr": "#2369",
+      "commit": "081b0b6612b802cfcb02b3cecda1559dd9a3ce13",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30.json",
+      "sha256": "5ed02b037f78ca25991b396e232e8b1ee754b0c91b056ed6640c9fb1c47cf0c0",
+      "row_count": 2,
+      "joined_ids_count": 2,
+      "sorted_id_set_sha256": "356e434eefbd6ad60f7c30ea65aca899e2d4936becec958c161a1999354a0a43",
+      "intersection_with_prior_overlay_ids": 0,
+      "delta": {
+        "classification": {
+          "condition": 2,
+          "explanation": -2
+        },
+        "subtype": {
+          "product_requirement_atom": 2
+        },
+        "route": {
+          "unknown": 2
+        },
+        "product_route": {
+          "unknown": 2
+        }
+      }
+    },
+    {
+      "pr": "#2381",
+      "commit": "6e62f76986f19d14281cb2a96eca460c5430dcc6",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-metadata10-classification-proposal-2026-09-30.json",
+      "sha256": "512f9ceafe935648d459d6b268ff4d3952f0e8264298213ad278256236b5f40e",
+      "row_count": 10,
+      "joined_ids_count": 10,
+      "sorted_id_set_sha256": "0c8e489c29d41e917003d696c20df94ec66b0f37753a53cf87a5e8b6958bf35a",
+      "intersection_with_prior_overlay_ids": 0,
+      "delta": {
+        "classification": {
+          "condition": -10,
+          "explanation": 10
+        },
+        "subtype": {
+          "product_requirement_atom": -10
+        },
+        "route": {
+          "unknown": -10
+        },
+        "product_route": {
+          "unknown": -10
+        }
+      },
+      "git_blob_sha": "47d52add2120ccfe2f278130c42119e9bfcf8354"
+    }
+  ],
+  "exact_id_precedence": "No overlay ID sets overlap. Every overlay ID joins exactly once to one #2353 row_record; later overlays cannot overwrite earlier overlay assignments. #2369 adds two condition/product/unknown rows to its prior explanation state.",
+  "overlay_pool_progression": {
+    "#2353": 558,
+    "#2356": 549,
+    "#2360": 544,
+    "#2363": 532,
+    "#2366": 521,
+    "#2367": 507,
+    "#2368": 486,
+    "#2369": 488,
+    "#2381": 478
+  },
+  "counts": {
+    "effective_classification": {
+      "condition": 864,
+      "explanation": 2965,
+      "structure": 926,
+      "total": 4755
+    },
+    "condition_subtype": {
+      "concept_condition": 1,
+      "management_process_condition": 36,
+      "product_requirement_atom": 827,
+      "total": 864
+    },
+    "condition_route_status": {
+      "adopted_relevant_partial": 27,
+      "covered_limited": 1,
+      "management_successor_unresolved": 36,
+      "partial": 16,
+      "source_relation_coverage_unresolved": 141,
+      "unadopted_candidate_relation_only": 162,
+      "unknown": 479,
+      "unresolved": 2,
+      "outside_product_route_population": 0,
+      "total": 864
+    },
+    "product_requirement_atom_route": {
+      "known": 349,
+      "unknown": 478,
+      "total": 827,
+      "known_definition": "condition subtype product_requirement_atom with route_status other than unknown; a label count, not coverage or adoption"
+    }
+  },
+  "audited_union": {
+    "prior_through_2378": {
+      "count": 290,
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-concept-v4-main-acceptance-29-route-audit-2026-09-30.json",
+      "sha256": "91be699983dfe769869e08cc030cc1352abb42184a6ccd0d8bed09d7f84c0510",
+      "composition": "261 prior_route_union_ids + 29 selected_ids; disjoint"
+    },
+    "selected_2380": {
+      "count": 27,
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-27-route-audit-2026-09-30.json",
+      "sha256": "341b97fd4109118c747c3a5b5c62f10f092ef4df330d45e4eaae9910f6994f56",
+      "overlap_with_prior_290": 0
+    },
+    "cumulative_unique_union_through_2380": 317,
+    "post_2381_pool_intersection": 288,
+    "post_2381_unreviewed_pool": 190,
+    "equation": "478 product/unknown - 288 audited members = 190 unreviewed; union stays 290 + 27 = 317."
+  },
+  "preserved_003965": {
+    "source_item_id": "LEGACY-CAND-LINE-003965",
+    "state_after_all_overlays": {
+      "classification": "condition",
+      "subtype": "product_requirement_atom",
+      "route": "unknown"
+    },
+    "overlap_with_2381_ids": false
+  },
+  "historical_2380": {
+    "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-27-route-audit-2026-09-30.json",
+    "commit": "d4f1c4739fb920abdc5f951646e43a5c3e501af5",
+    "sha256_before_and_after_recount": "341b97fd4109118c747c3a5b5c62f10f092ef4df330d45e4eaae9910f6994f56",
+    "rewritten": false,
+    "selected_count": 27,
+    "route_counts": {
+      "partial": 16,
+      "unknown": 11
+    }
+  },
+  "validation": {
+    "all_4755_row_records_read": true,
+    "source_item_ids_unique_and_contiguous": true,
+    "overlay_ids_joined_exactly_once": true,
+    "overlay_pairwise_intersections_empty": true,
+    "overlay_delta_and_cumulative_counts_reconcile": true,
+    "classification_counts_sum_to_4755": true,
+    "condition_subtype_counts_sum_to_condition": true,
+    "condition_route_counts_sum_to_condition": true,
+    "product_route_counts_sum_to_product_subtype": true,
+    "pool_intersection_and_unreviewed_counts_recomputed_from_full_rows": true,
+    "003965_retained": true,
+    "historical_2380_sha_unchanged": true,
+    "legacy_runtime_cli_hook_test_ci_executed": false,
+    "authority_effect": "none",
+    "audited_union_ids_unique_and_within_4755": true
+  },
+  "limitations": [
+    "This is a proposal-effective classification recount only. It does not establish adoption, a successor requirement, source coverage, acceptance, implementation, execution, or Stage 5 closure.",
+    "The #2380 route audit remains an unchanged historical record; this recount changes only the effective classification proposal state after #2381.",
+    "No old archive workflow, CLI, hook, adapter, runtime, test, or CI was executed."
+  ]
+}
