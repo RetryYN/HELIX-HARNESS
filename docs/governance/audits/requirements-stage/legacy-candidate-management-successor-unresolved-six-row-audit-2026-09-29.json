@@ -840,7 +840,7 @@
           "path": "docs/governance/new-generation-start-here.md",
           "lines": "72-78",
           "relation": "partial_semantic_overlap_with_explicit_change",
-          "note": "現行Conceptは同じ1ファイルを改訂し、版別複製や改訂ごとの承認recordを置かない。旧版別file modelとの差分。"
+          "note": "現行Conceptは同じ1ファイルを改訂し、版別の本文複製を置かない。対象revisionの人間decisionは別の判断記録に残す。旧版別file modelとの差分。"
         },
         {
           "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",

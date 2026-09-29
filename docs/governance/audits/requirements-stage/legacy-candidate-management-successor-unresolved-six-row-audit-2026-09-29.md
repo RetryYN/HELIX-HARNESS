@@ -7,7 +7,7 @@
 
 ## 行別結果
 
-| Source ID | 旧sourceの意味 | 現行候補関係 | 残るgap |
+| Source ID・旧sourceの意味 | 旧source位置 | 現行候補関係 | 残るgap |
 |---|---|---|---|
 | `LEGACY-CAND-LINE-000018` — Issue #1728のowner接続とSLO／production／自動修復境界 | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md:28` | `docs/governance/authority-state-model.md:17-23, 36, 69` (partial_semantic_overlap); `docs/governance/management-provisional-requirement-registration.md:10-12, 23-38, 50, 65` (partial_semantic_overlap); `docs/governance/new-generation-start-here.md:110-120` (partial_semantic_overlap) | #1728のowner、本文、SLO値・本番操作・自動修復・完了各atomの現行配置は未確認。 |
 | `LEGACY-CAND-LINE-000028` — 候補の正本化、二重authority防止、archive・参照更新 | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md:42` | `scaffold/README.md:34-39, 64-68` (partial_semantic_overlap); `docs/governance/authority-state-model.md:41-69` (partial_semantic_overlap); `docs/governance/legacy-requirement-carry-forward-policy.md:49-72` (partial_semantic_overlap) | 旧Concept candidateの昇格先、互換性、archive、参照更新を閉じる適用decisionはない。Scaffold Binding手順を旧sourceへ拡張しない。 |
@@ -24,7 +24,7 @@ READMEはasset `LEGACY-ASSET-A9F7F40B7F61D64C4F8F`、investment intakeは`LEGACY
 - **#000028:** Scaffold Bindingの`check-replacement`→read-after→`retire`はscaffold内の置換手順。旧Concept候補の正本化・compatibility・archive・参照更新に適用するdecisionはない。
 - **#000034:** RDP-001とcarry-forward policyはsource atomとidentity単位の一般dispositionを管理する。72 INVの個別selection/current owner/delta crosswalkはない。
 - **#001067:** 現行RDP候補dispositionは旧5区分と異なる集合。名称類似で対応づけず、旧候補ごとのmappingは未決。
-- **#000021:** 現行入口はConceptを同じ1 fileで改訂し、版別複製や改訂ごとの承認recordを置かない。旧v4.0候補は旧PLAN上で`candidate_exact_set_only`として承認され、canonical promotion/IR admissionは未完了と記録されている。README line 33は次のv4.1/U1整理を別対象に分ける記述だが、そのcurrent relationは未確定。現行9/17・9/24 decisionは各対象revisionの判断であり、line 33の後継decisionではない。現行はConceptを同一ファイルで改訂するため旧version-file運用と差分がある。毎回承認の手続きは追加しない。
+- **#000021:** 現行入口はConceptを同じ1 fileで改訂し、版別の本文複製を置かない。対象revisionの人間decisionは別の判断記録に残す。旧v4.0候補は旧PLAN上で`candidate_exact_set_only`として承認され、canonical promotion/IR admissionは未完了と記録されている。README line 33は次のv4.1/U1整理を別対象に分ける記述だが、そのcurrent relationは未確定。現行9/17・9/24 decisionは各対象revisionの判断であり、line 33の後継decisionではない。現行はConceptを同一ファイルで改訂するため旧version-file運用と差分がある。毎回承認の手続きは追加しない。
 - **#000037:** 統合版内の個別カードへの旧source pointerとarchive sourceは確認。current line ledgerはsource行を保全するが、INV card単位のmapping/owner/successorを確定しない。
 
 ## 固定sourceと限界
