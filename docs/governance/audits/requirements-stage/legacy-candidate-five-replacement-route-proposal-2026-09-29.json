@@ -1,6 +1,6 @@
 {
-  "schema_version": "helix-legacy-candidate-six-replacement-route-proposal.v1",
-  "proposal_id": "legacy-candidate-six-replacement-route-proposal-2026-09-29",
+  "schema_version": "helix-legacy-candidate-five-replacement-route-proposal.v1",
+  "proposal_id": "legacy-candidate-five-replacement-route-proposal-2026-09-29",
   "authority_effect": "none",
   "proposal_status": "static_semantic_relation_proposal",
   "source": {
@@ -9,12 +9,12 @@
     "authority_state": "historical_candidate",
     "target_authority_state": "draft_candidate",
     "product_target": "unknown_cross_boundary_candidate_scope",
-    "product_target_note": "Current responsibility split suggests HARNESS verification obligations and OS CI execution/evidence, but the six old rows have no adopted product assignment."
+    "product_target_note": "Current responsibility split suggests HARNESS verification obligations and OS CI execution/evidence, but the five old rows have no adopted product assignment."
   },
   "audit_pins": {
     "pr_2361": {
       "head": "aab65a4f1bc2f679530604cb7f89519683b9156c",
-      "role": "cumulative recount and six-row resample; relation assessment explicitly not performed"
+      "role": "Expected corrected cumulative recount and five-row resample; relation assessment explicitly not performed. Current HEAD pin predates the final #2360/#2361 merge-pinned resample and is historical only."
     },
     "pr_2353": {
       "head": "8a75e5392a44e005bb05197d977bdbcf75b93cf0",
@@ -25,12 +25,14 @@
       "role": "nine-row classification overlay"
     },
     "pr_2360": {
-      "head": "89a5f57cbc8dc6b0dc6828233992640c919fb03c",
-      "role": "seven-row classification/atom overlay"
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+      "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb",
+      "role": "merged corrected seven-row classification/atom overlay; exact merged file bytes"
     },
     "pr_2359_sample": {
       "head": "4096b10020fd75fe8fc4f200855f27435912fc6f",
-      "role": "20-row sample source; 14 retained and six replaced"
+      "role": "Original 20-row sample ID source; corrected selection retains 15 (including 000180) and replaces five."
     }
   },
   "adopted_exact_revision_context": [
@@ -200,36 +202,23 @@
         "cross-event-class isolation",
         "bounded supersession policy"
       ]
-    },
-    {
-      "source_id": "LEGACY-CAND-LINE-000501",
-      "source_line": 30,
-      "source_text": "- cancel、supersede、handoffの理由と対象を後から再構築できる。",
-      "source_line_sha256_without_eol": "8bca62507e48cc19085a00746131d39a653aaa28866431c81b5bbf527b3566da",
-      "physical_line_bytes_sha256": "a71d4dd9c98f1ec4497e70e54497aac1894c815687ebacfea5e1e8aab61e12c1",
-      "proposed_route": "adopted_relevant_partial",
-      "adopted_refs": [
-        "HELIXOS-L2-019/L11",
-        "HELIXOS-L2-023/L11",
-        "HELIXOS-L2-020/L11"
-      ],
-      "candidate_only_refs": [
-        "NCI-OS-003",
-        "NCI-OS-004",
-        "NCI-OS-008"
-      ],
-      "true_unknowns": [
-        "CIG-specific reason/target fields",
-        "cancel/supersede authority binding",
-        "reconstruction rules"
-      ]
     }
   ],
   "authority_caveats": [
     "Every proposed adopted_relevant_partial relation is an audit proposal to already-adopted generic exact revisions; it does not assign an old-row successor or prove coverage.",
     "NCI candidate relation alone is unadopted_candidate_only and cannot be upgraded by similar wording or a route count.",
-    "HELIXINTELLIGENCE-L2-073 is adopted under MPR-RC-HELIXINTELLIGENCE-L2-073-002 by docs/governance/decisions/po-decision-2026-09-29-57candidates.md:86 at the exact L2/L11 digests recorded there; its stale candidate metadata is predecision snapshot. It is unrelated to the six CIG source atoms and is not used as their route.",
+    "HELIXINTELLIGENCE-L2-073 is adopted under MPR-RC-HELIXINTELLIGENCE-L2-073-002 by docs/governance/decisions/po-decision-2026-09-29-57candidates.md:86 at the exact L2/L11 digests recorded there; its stale candidate metadata is predecision snapshot. It is unrelated to the five CIG source atoms and is not used as their route.",
     "The source rows remain historical candidates; no adoption, formal successor, full source coverage, acceptance, implementation, or Stage 5 closure is inferred."
   ],
-  "old_runtime_cli_tests_hooks_ci_executed": false
+  "old_runtime_cli_tests_hooks_ci_executed": false,
+  "pending_follow_up": {
+    "dependency_pin_refresh_status": "pending_after_pr_2361_merge",
+    "full_lineage_pin_status": "pending_R2362_02",
+    "required_actions": [
+      "After #2361 merge/read-after, pin its final JSON with merge commit, path, and actual SHA-256.",
+      "#2361 must confirm 15 retained rows including 000180 and replacements 000492/000496/000497/000499/000500.",
+      "Complete R2362-02 by replacing remaining head-only audit_pins with path/commit/SHA-256 for each input."
+    ],
+    "authority_effect": "none"
+  }
 }

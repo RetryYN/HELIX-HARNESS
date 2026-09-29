@@ -1,8 +1,8 @@
-# 旧candidate 6件のreplacement route proposal
+# 旧candidate 5件のreplacement route proposal
 
-- 対象母集団: #2361が#2359のsampleを再構成した6件。対象sourceはすべて旧candidateであり、authority effectは`none`。
+- 対象母集団: #2360の訂正を反映した#2361の再選択で確定する5件（`000492/000496/000497/000499/000500`）。`000180`を含む15件を保持し、`000501`は選択対象から外す。対象sourceはすべて旧candidateであり、authority effectは`none`。
 - 位置づけ: 以下のrouteは、現行のexact adopted L2/L11と照合した限定的な監査提案である。旧行の採択、formal successor、source coverage、実装・受入・Stage 5完了を生成しない。
-- #2361は6行の意味relationを評価していない。本記録で追加するのは意味relationの提案のみで、#2361の分類・集計値は変更しない。
+- #2361は対象5行の意味relationを評価していない。本記録で追加するのは5行の意味relation提案のみで、#2361の分類・集計値は変更しない。
 
 ## authorityと読み方
 
@@ -10,7 +10,7 @@ HARNESS-L2-004/005および対L11は、`docs/governance/decisions/helix-harness-
 
 `NCI-HARNESS-001..004`と`NCI-OS-001..008`は現行candidate文書に残る未採択の具体化である。これらへの関係はcandidate-onlyとして記録し、adopted relationへ昇格させない。
 
-`HELIXINTELLIGENCE-L2-073`は2026-09-29 PO decisionの`MPR-RC-HELIXINTELLIGENCE-L2-073-002`により、特定L2/L11 revisionで採択済みである。本文・古いreceiptのcandidate表示は判断前snapshotである。ただし同要求の旧AAFD-R-04 source atomsと本6行にはrelationがないため、本proposalはL2-073をsource routeに使わない。
+`HELIXINTELLIGENCE-L2-073`は2026-09-29 PO decisionの`MPR-RC-HELIXINTELLIGENCE-L2-073-002`により、特定L2/L11 revisionで採択済みである。本文・古いreceiptのcandidate表示は判断前snapshotである。ただし同要求の旧AAFD-R-04 source atomsと本5行にはrelationがないため、本proposalはL2-073をsource routeに使わない。
 
 ## 行別提案
 
@@ -21,7 +21,6 @@ HARNESS-L2-004/005および対L11は、`docs/governance/decisions/helix-harness-
 | `000497` | OS-L2-019/020/L11: event/source revision・実行結果を保持し、cancel/interrupted等と成功を区別して再構築する契約に関連。 | NCI-OS-003/004/008 | CIG固有のterminal evidence schema、cancel/handoffの因果関係とevent class別の終端規則は未確定。 |
 | `000499` | HARNESS-L2-005/L11: 検証義務と証拠条件。OS-L2-019/020/L11: source revision、exact head/run identity、実行結果の証拠化に関連。 | NCI-HARNESS-002/004; NCI-OS-003 | canonical HEADの定義・更新競合・terminal evidenceの安定取得条件は、この粒度では確定していない。 |
 | `000500` | HARNESS-L2-005/L11およびOS-L2-020/L11: 必要oracleを維持し、stale結果を区別する一般契約に関連。 | NCI-OS-003/005/008 | stale PRとduplicate scheduleの同一/別event class境界、bounded supersedeと影響隔離は未確定。 |
-| `000501` | OS-L2-019/023/L11: event provenance、対象scope/revision、handoff、未完義務の保持に関連。OS-L2-020/L11はCI終端状態の一般区分に関連。 | NCI-OS-003/004/008 | cancel/supersede/handoffの理由・対象・authorityを結ぶCIG専用receiptと再構築規則は未確定。 |
 
 「採択済みpartial relation」はこの提案の意味照合結果であり、既存decisionに旧行IDやこのrelationが記録済みという意味ではない。特定L2/L11 revisionの適用範囲に限る。
 
@@ -29,7 +28,13 @@ HARNESS-L2-004/005および対L11は、`docs/governance/decisions/helix-harness-
 
 旧source `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md` の物理file SHA-256は `7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc`。行本文、archive行番号、newlineを含むphysical-line SHA-256は隣接JSONに固定した。asset IDは`legacy-asset-disposition.jsonl`のpath照会が必要であり、このproposalではIDを推測しない。
 
-監査基準は#2361 exact HEAD `aab65a4f1bc2f679530604cb7f89519683b9156c`、#2353 `8a75e5392a44e005bb05197d977bdbcf75b93cf0`、#2356 `b213b41735067d1716c143c92e0fa6c71d8e92d9`、#2360 `89a5f57cbc8dc6b0dc6828233992640c919fb03c`、および#2359 sample `4096b10020fd75fe8fc4f200855f27435912fc6f`。#2361のJSONに記録された全source/file/line pinsを再利用した。
+`#2360`はmerge/read-after済み（merge commit `5ca82b8ff4122a6f2141ed15e25420fafc01e4e0`）で、JSON本文のpath/commit/SHA-256 pinを反映した。#2361は訂正中で未mergeのため、その最終JSON pinはmerge/read-after後に確定する。R2362-02に従う全入力のpath/commit/SHA-256形式への更新も未完であり、現時点で#2362はReady/merge可能な状態ではない。
+
+## 保留中の依存pin
+
+- #2360の最終JSON: `docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json`; merge commit `5ca82b8ff4122a6f2141ed15e25420fafc01e4e0`; SHA-256 `4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb`.
+- #2361の最終JSON: `docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-stage5-recount-after-2353-2356-2360-2026-09-29.json`。000180保持・置換5件を確認し、merge後のcommitと実SHA-256を取得する。
+- R2362-02の全lineage pin修正（PR audit inputsを含む）は別途未完。上記未確定のpinを使って選択の確定やmerge readinessを主張しない。
 
 ## 境界
 
