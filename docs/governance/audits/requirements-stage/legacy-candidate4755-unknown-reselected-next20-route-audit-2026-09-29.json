@@ -2,19 +2,19 @@
   "schema_version": "helix-stage5-unknown-reselected20-route-audit/v1",
   "audit_id": "legacy-candidate4755-unknown-reselected-next20-route-audit-2026-09-29",
   "authority_effect": "none",
-  "base_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+  "base_commit": "847f7262d1248de2de5165d029a9175e027bda6c",
   "pinned_inputs": {
     "cumulative_audit": {
-      "commit": "8a75e5392a44e005bb05197d977bdbcf75b93cf0",
+      "commit": "97672630b7de70fd4433827730c390cbabd90a99",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
-      "sha256": "57fce8a0e05ed73c46346f2177c439e862a17a06ecea65446389f24dc34160c5"
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c"
     },
     "metadata_proposal_2356": {
-      "commit": "b213b41735067d1716c143c92e0fa6c71d8e92d9",
+      "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
       "md_path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.md",
-      "md_sha256": "5b0283bc893d2666a575f7313e0508d7343a1eed8a7464641eb7d0a06346f6ea",
+      "md_sha256": "de9329d28c79c56f6e258f088859c5cc74aa0a7823579a38c6f27f89f58f330c",
       "json_path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
-      "json_sha256": "53c8acc872f30cf19e88499bc68b0f11c830a677f5c346d646a148dd3ca7853b"
+      "json_sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164"
     },
     "prior_2350_route_audit": {
       "source_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
@@ -45,50 +45,51 @@
     },
     "old_sources": "Archive sources and current carry-forward/semantic-router records are byte-pinned per row below; no unpublished next20 audit used for selection or as authority.",
     "classification_2360_md": {
-      "commit": "89a5f57cbc8dc6b0dc6828233992640c919fb03c",
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.md",
-      "sha256": "7775c6e7af569f0f145f7762c6d9e75914710759697828fc761c9bc4665b1517"
+      "sha256": "0f043c55c1d426a3c56b182525eb1b353f2a6106a2a2830a1f0e9a3b298e5c6a"
     },
     "classification_2360_json": {
-      "commit": "89a5f57cbc8dc6b0dc6828233992640c919fb03c",
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
-      "sha256": "71fa35e0b3f8bfeb9781cbe2b9b21322d8e5be7866c71bce2abbca8cdca43ddd"
+      "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb"
     },
     "resampling_2361_md": {
-      "commit": "aab65a4f1bc2f679530604cb7f89519683b9156c",
+      "commit": "132a56f3f2cbb1d02ad3bc08bab4f23ef93369cc",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-stage5-recount-after-2353-2356-2360-2026-09-29.md",
-      "sha256": "fce08c27fc2760a653cb35c76946f2d24354959a0d11853160860aca4bbd7e2a"
+      "sha256": "7e758f293731f9c335dccef39d239624176a02c6dc21f0d1d455e5f30108c193"
     },
     "resampling_2361_json": {
-      "commit": "aab65a4f1bc2f679530604cb7f89519683b9156c",
+      "commit": "132a56f3f2cbb1d02ad3bc08bab4f23ef93369cc",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-stage5-recount-after-2353-2356-2360-2026-09-29.json",
-      "sha256": "ff1da2c7e563f25b7044318670e1808a6463afcac82857764d917878fb5046a5"
+      "sha256": "e29aadd8c84dda8fcfca65010ffa62331b6631ffce3ac22ef5d174270bb92b20"
     },
     "route_proposal_2362_md": {
-      "commit": "01eba41aebf8403c78b8d1e8f6f10532088eae23",
-      "path": "docs/governance/audits/requirements-stage/legacy-candidate-six-replacement-route-proposal-2026-09-29.md",
-      "sha256": "f0af9791256cbf5f827f489aca0820dc6498b1d57dbdfd55fc47ea4f94dbc28f"
+      "commit": "847f7262d1248de2de5165d029a9175e027bda6c",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-five-replacement-route-proposal-2026-09-29.md",
+      "sha256": "339f31c71e079a8e3eeca4ae2ac9816065f97583ba742f28f376af8d776fb920"
     },
     "route_proposal_2362_json": {
-      "commit": "01eba41aebf8403c78b8d1e8f6f10532088eae23",
-      "path": "docs/governance/audits/requirements-stage/legacy-candidate-six-replacement-route-proposal-2026-09-29.json",
-      "sha256": "61fd36405f34ee3e7d05d2381fee3b0cd7859144098989c07d7891170de4d0d6"
+      "commit": "847f7262d1248de2de5165d029a9175e027bda6c",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-five-replacement-route-proposal-2026-09-29.json",
+      "sha256": "ba58027e729ab177f869cbaae8d509a496bab63e19b9a97f3f4070a7247d38ea"
     }
   },
   "selection": {
-    "population": "#2361 cumulative effective condition/product_requirement_atom/unknown after #2353/#2356/#2360 overlays; 543 product atoms.",
+    "population": "#2361 merged effective product_requirement_atom/unknown population; 544 rows.",
     "excluded_2350_original_ids_count": 20,
     "excluded_2356_reclassified_ids_count": 9,
-    "excluded_2360_non_product_unknown_ids_count": 3,
+    "excluded_2360_non_product_unknown_ids_count": 2,
     "excluded_prior_2359_sample_ids_count": 20,
     "remaining_population_count": 528,
-    "rule": "From cumulative effective condition/product_requirement_atom/unknown IDs ascending, exclude the #2350 20 IDs, #2356 nine IDs, and all original #2359 sample IDs; select the next six IDs.",
+    "rule": "From cumulative effective condition/product_requirement_atom/unknown IDs ascending, exclude the #2350 20 IDs, #2356 nine IDs, and all original #2359 sample IDs; select the next five IDs.",
     "retained_ids": [
       "LEGACY-CAND-LINE-000052",
       "LEGACY-CAND-LINE-000108",
       "LEGACY-CAND-LINE-000109",
       "LEGACY-CAND-LINE-000110",
       "LEGACY-CAND-LINE-000140",
+      "LEGACY-CAND-LINE-000180",
       "LEGACY-CAND-LINE-000356",
       "LEGACY-CAND-LINE-000396",
       "LEGACY-CAND-LINE-000425",
@@ -102,7 +103,6 @@
     "removed_by_2360": [
       "LEGACY-CAND-LINE-000142",
       "LEGACY-CAND-LINE-000143",
-      "LEGACY-CAND-LINE-000180",
       "LEGACY-CAND-LINE-000331",
       "LEGACY-CAND-LINE-000476",
       "LEGACY-CAND-LINE-000477"
@@ -112,8 +112,7 @@
       "LEGACY-CAND-LINE-000496",
       "LEGACY-CAND-LINE-000497",
       "LEGACY-CAND-LINE-000499",
-      "LEGACY-CAND-LINE-000500",
-      "LEGACY-CAND-LINE-000501"
+      "LEGACY-CAND-LINE-000500"
     ],
     "selected_ids": [
       "LEGACY-CAND-LINE-000052",
@@ -121,6 +120,7 @@
       "LEGACY-CAND-LINE-000109",
       "LEGACY-CAND-LINE-000110",
       "LEGACY-CAND-LINE-000140",
+      "LEGACY-CAND-LINE-000180",
       "LEGACY-CAND-LINE-000356",
       "LEGACY-CAND-LINE-000396",
       "LEGACY-CAND-LINE-000425",
@@ -134,19 +134,146 @@
       "LEGACY-CAND-LINE-000496",
       "LEGACY-CAND-LINE-000497",
       "LEGACY-CAND-LINE-000499",
-      "LEGACY-CAND-LINE-000500",
-      "LEGACY-CAND-LINE-000501"
-    ]
+      "LEGACY-CAND-LINE-000500"
+    ],
+    "excluded_2360_known_product_route_ids_count": 3,
+    "replacement_selection": {
+      "rule": "From cumulative effective condition/product_requirement_atom/unknown IDs ascending, exclude the #2350 20 IDs, #2356 nine IDs, and all original #2359 sample IDs; select the next five IDs.",
+      "unknown_product_population": 544,
+      "eligible_after_prior_sample_exclusions": 528,
+      "replacement_ids": [
+        "LEGACY-CAND-LINE-000492",
+        "LEGACY-CAND-LINE-000496",
+        "LEGACY-CAND-LINE-000497",
+        "LEGACY-CAND-LINE-000499",
+        "LEGACY-CAND-LINE-000500"
+      ],
+      "updated_selected_ids": [
+        "LEGACY-CAND-LINE-000052",
+        "LEGACY-CAND-LINE-000108",
+        "LEGACY-CAND-LINE-000109",
+        "LEGACY-CAND-LINE-000110",
+        "LEGACY-CAND-LINE-000140",
+        "LEGACY-CAND-LINE-000180",
+        "LEGACY-CAND-LINE-000356",
+        "LEGACY-CAND-LINE-000396",
+        "LEGACY-CAND-LINE-000425",
+        "LEGACY-CAND-LINE-000468",
+        "LEGACY-CAND-LINE-000470",
+        "LEGACY-CAND-LINE-000472",
+        "LEGACY-CAND-LINE-000474",
+        "LEGACY-CAND-LINE-000478",
+        "LEGACY-CAND-LINE-000491",
+        "LEGACY-CAND-LINE-000492",
+        "LEGACY-CAND-LINE-000496",
+        "LEGACY-CAND-LINE-000497",
+        "LEGACY-CAND-LINE-000499",
+        "LEGACY-CAND-LINE-000500"
+      ],
+      "replacement_rows": [
+        {
+          "source_id": "LEGACY-CAND-LINE-000492",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+          "source_line": 18,
+          "source_file_sha256": "7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+          "source_line_sha256": "sha256:59574435a104ef3b087ee55aae7d0b6b5dd67fa50bc9710085d420b37cfc2526",
+          "physical_line_bytes_sha256": "c0a71bfad91d864fcd46424021908cfa160889d91e63a4421c5d4eff9acfb0e8",
+          "effective_classification": "condition",
+          "condition_subtype": "product_requirement_atom",
+          "route_status": "unknown",
+          "relation_assessment": "not_performed"
+        },
+        {
+          "source_id": "LEGACY-CAND-LINE-000496",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+          "source_line": 23,
+          "source_file_sha256": "7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+          "source_line_sha256": "sha256:54da727c33e1c968dde952d86d8c87554125586c0933489b3f6fdbafd3979f8a",
+          "physical_line_bytes_sha256": "905a84864320d563f74a95c8b11978834ee28d0c645b8da6f95b3239afff688a",
+          "effective_classification": "condition",
+          "condition_subtype": "product_requirement_atom",
+          "route_status": "unknown",
+          "relation_assessment": "not_performed"
+        },
+        {
+          "source_id": "LEGACY-CAND-LINE-000497",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+          "source_line": 24,
+          "source_file_sha256": "7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+          "source_line_sha256": "sha256:42f14d5e3d614691ce97ac6ad86307e00cde4e2638c74d13b512a9b1576cb621",
+          "physical_line_bytes_sha256": "d0367d7f95ab67596c8a5e72804b6635017f49fae9289cf8e9ef5bd31f36eafb",
+          "effective_classification": "condition",
+          "condition_subtype": "product_requirement_atom",
+          "route_status": "unknown",
+          "relation_assessment": "not_performed"
+        },
+        {
+          "source_id": "LEGACY-CAND-LINE-000499",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+          "source_line": 28,
+          "source_file_sha256": "7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+          "source_line_sha256": "sha256:ec626939ed95bf2fe355d787c4e39f80f6ab28d73d1b0645631297a6df02c9e0",
+          "physical_line_bytes_sha256": "714d981e667b0d70072b630d0e3d0e54941a418a1bc7cd6664cb995d69e1130a",
+          "effective_classification": "condition",
+          "condition_subtype": "product_requirement_atom",
+          "route_status": "unknown",
+          "relation_assessment": "not_performed"
+        },
+        {
+          "source_id": "LEGACY-CAND-LINE-000500",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+          "source_line": 29,
+          "source_file_sha256": "7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+          "source_line_sha256": "sha256:71b9164791062edec41697b3ed306f6f6bcb46b56fa608261765691a4e42e4a4",
+          "physical_line_bytes_sha256": "5ea593b6abccc58a2f3fc9eb4f564d9ed3f635fa2b8bb4b73e7bead0d043f51b",
+          "effective_classification": "condition",
+          "condition_subtype": "product_requirement_atom",
+          "route_status": "unknown",
+          "relation_assessment": "not_performed"
+        }
+      ]
+    },
+    "historical_original_sample": {
+      "head": "4096b10020fd75fe8fc4f200855f27435912fc6f",
+      "selected_ids": [
+        "LEGACY-CAND-LINE-000052",
+        "LEGACY-CAND-LINE-000108",
+        "LEGACY-CAND-LINE-000109",
+        "LEGACY-CAND-LINE-000110",
+        "LEGACY-CAND-LINE-000140",
+        "LEGACY-CAND-LINE-000142",
+        "LEGACY-CAND-LINE-000143",
+        "LEGACY-CAND-LINE-000180",
+        "LEGACY-CAND-LINE-000331",
+        "LEGACY-CAND-LINE-000356",
+        "LEGACY-CAND-LINE-000396",
+        "LEGACY-CAND-LINE-000425",
+        "LEGACY-CAND-LINE-000468",
+        "LEGACY-CAND-LINE-000470",
+        "LEGACY-CAND-LINE-000472",
+        "LEGACY-CAND-LINE-000474",
+        "LEGACY-CAND-LINE-000476",
+        "LEGACY-CAND-LINE-000477",
+        "LEGACY-CAND-LINE-000478",
+        "LEGACY-CAND-LINE-000491"
+      ],
+      "preserved_as": "selection exclusion history only; not the current route audit sample"
+    },
+    "current_sample_source": {
+      "commit": "132a56f3f2cbb1d02ad3bc08bab4f23ef93369cc",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-stage5-recount-after-2353-2356-2360-2026-09-29.json",
+      "selection_pointer": "resampling_2359.replacement_selection.updated_selected_ids"
+    }
   },
   "route_labels": {
-    "adopted_relevant_partial": "Exact adopted L2/L11 relation exists but only covers a subset of the old atom conditions; residual listed per row.",
-    "unadopted_candidate_relation_only": "Exact relation exists only in a candidate/proposal, not the adopted 250 requirement set.",
-    "true_unknown": "No exact adopted or unadopted candidate successor relation established in inspected source; semantic similarity/ID absence is not used as route."
+    "adopted_relevant_partial": "adopted_relevant_partial requires at least one concrete source predicate that has the same meaning in an exact adopted L2/L11 revision; the row must name the matched predicate and the unadopted residual. A topical/system-name match, candidate-only reference, or general authority boundary is insufficient. Partial is relation only, not source adoption or coverage.",
+    "unadopted_candidate_relation_only": "An exact source/successor relation exists only in an unadopted candidate or proposal; no concrete predicate in the exact adopted L2/L11 basis was found.",
+    "true_unknown": "No concrete predicate meaning-related to an exact adopted L2/L11 revision and no exact unadopted candidate successor relation were established in the inspected source."
   },
   "counts": {
-    "adopted_relevant_partial": 12,
-    "true_unknown": 2,
-    "unadopted_candidate_relation_only": 6
+    "adopted_relevant_partial": 15,
+    "true_unknown": 3,
+    "unadopted_candidate_relation_only": 2
   },
   "classification_metadata_concerns": [
     {
@@ -159,11 +286,11 @@
       "concern": "#2360は000140/142/143をcondition/product_requirement_atomとして維持し、物理行・atom境界の読みを訂正した。000142/143は選定から除外され、000140のみ残る。各行の意味を別atomとして混同せず、000140はunknownを維持する。"
     },
     {
-      "priority": "excluded_by_2360_effective_classification",
+      "priority": "retained_by_2360_corrected_classification_and_selected_by_2361",
       "source_ids": [
         "LEGACY-CAND-LINE-000180"
       ],
-      "concern": "#2360は旧Issue・VERIFY・human gate等のpromotion procedure rowをmanagement_process_conditionへ分類し、product-route母集団から除外した。旧記述から現在の追加承認手続きは導かない。"
+      "concern": "#2360 corrected 000180 to condition/product_requirement_atom/unknown; it remains in the product unknown population and is retained in #2361 current selection. The AAFD-R-15 promotion boundary has no matching predicate in adopted HELIXINTELLIGENCE-L2-073/L11, which is scoped to AAFD-R-04 free-text direct-projection boundaries."
     },
     {
       "priority": "excluded_by_2360_effective_classification",
@@ -187,10 +314,9 @@
         "LEGACY-CAND-LINE-000496",
         "LEGACY-CAND-LINE-000497",
         "LEGACY-CAND-LINE-000499",
-        "LEGACY-CAND-LINE-000500",
-        "LEGACY-CAND-LINE-000501"
+        "LEGACY-CAND-LINE-000500"
       ],
-      "concern": "#2362の採択済みgeneric L2/L11とのrelationを監査proposalのpartial labelとして反映した。行ごとの具体CIG residualを保持する。NCI candidate refsはcandidate-onlyで、adopted relationやcoverageには数えない。"
+      "concern": "#2362 current review snapshot is the corrected five-row route proposal and matches #2361 selected replacements. Its route values were independently reassessed here under the sample-wide concrete-predicate rule; NCI references remain candidate-only and are excluded from adopted partial counts."
     }
   ],
   "authority_context": {
@@ -200,10 +326,10 @@
       "MPR-RC-HELIXINTELLIGENCE-L2-015-003",
       "MPR-RC-HELIXINTELLIGENCE-L2-016-003"
     ],
-    "candidate_only_receipt_context": "HELIXINTELLIGENCE-L2-073 exact L2/L11 revision was adopted by MPR-RC-HELIXINTELLIGENCE-L2-073-002 on 2026-09-29, but its old AAFD R-04 atoms (000142/000143) were removed from this resampled selected set. This adoption neither routes the six CIG replacement rows nor establishes AAFD-wide coverage. NCI-HARNESS/NCI-OS rows remain unadopted candidate references.",
-    "scope_limit": "No source adoption, successor registration, coverage/closure, semantic adoption, L3/10 transition, execution/CI readiness, or Stage 5 completion inferred.",
+    "candidate_only_receipt_context": "HELIXINTELLIGENCE-L2-073 exact L2/L11 revision was adopted by MPR-RC-HELIXINTELLIGENCE-L2-073-002 on 2026-09-29, but its source scope is AAFD-R-04 lines 45-46 only. It does not match retained AAFD-R-15 row 000180 and does not route that row. NCI-HARNESS/NCI-OS references remain unadopted candidate-only and are not counted in adopted partial routes.",
+    "scope_limit": "No source adoption, successor registration, coverage/closure, semantic adoption, L3/10 transition, execution/CI readiness, or Stage 5 completion inferred. Partial labels mean only the named concrete predicate relates to exact adopted revision; residual source conditions remain historical candidate.",
     "registration_receipt_limit": "Registration artifacts cited for adopted INTELLIGENCE identities record source_atom_count=0 and do not transfer/adopt legacy atoms. Adopted exact L2/L11 contracts and audit route labels describe limited semantic relations only, never source coverage or closure.",
-    "adopted_l2_073": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:86; exact L2/L11 clause digests sha256:4425189d3870de92165ebdbc790902317dc2799d89f760156ab17441662a2eb5 and sha256:d98488d23fc02992143edb4a1e689a0c12dcc91d0ec1c9adabe1b8e334dd9ef1. Adopted revision context only; 000142/000143 are excluded from this selected set and adoption does not establish source coverage."
+    "adopted_l2_073": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:86; exact L2/L11 clause digests sha256:4425189d3870de92165ebdbc790902317dc2799d89f760156ab17441662a2eb5 and sha256:d98488d23fc02992143edb4a1e689a0c12dcc91d0ec1c9adabe1b8e334dd9ef1. It covers AAFD-R-04 lines 45-46 only; 000142/000143 are not selected, retained 000180 is AAFD-R-15 and remains true_unknown. Adoption does not establish AAFD source coverage."
   },
   "rows": [
     {
@@ -227,7 +353,7 @@
         "semantic_cluster_id": "agentic_audit_future_state_delta::AAFD-AC-003"
       },
       "route_assessment": "adopted_relevant_partial",
-      "current_relation_and_residual": "HELIXINTELLIGENCE-L2-009 / L11 の監査finding、反証trace、evidence不明時unknown保持に部分関係する。旧行の「AI自己評価・未再現P0・duplicate・expired・counterevidenceをverifiedへ昇格しない」という条件集合を、採択本文は個別に採択・検証する範囲まで示していない。",
+      "current_relation_and_residual": "AAFD-AC-003 additionally names AI self-evaluation, duplicate, expiry, and counterevidence as separate rejection cases; these named cases and a verified-promotion rule are not fully adopted.",
       "current_authority_refs": [
         "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#HELIXINTELLIGENCE-L2-009",
         "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md#HELIXINTELLIGENCE-L2-009",
@@ -236,7 +362,8 @@
         "docs/governance/audits/requirement-registration/helixintelligence-functional-units-coverage-receipt-2026-09-27.json (source_atom_count=0; authority_effect=none)"
       ],
       "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
-      "route_assessment_status": "assessed_from_effective_classification"
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
+      "matched_adopted_predicate": "HELIXINTELLIGENCE-L2-009/L11 requires findings to trace to evidence, reproduction, and falsification; missing evidence remains unknown/incomplete. This matches only the unreproduced-P0 non-promotion predicate."
     },
     {
       "source_id": "LEGACY-CAND-LINE-000108",
@@ -259,7 +386,7 @@
         "semantic_cluster_id": "agentic_audit_future_state_delta::"
       },
       "route_assessment": "true_unknown",
-      "current_relation_and_residual": "新workflow route・development style・DB authority・resident laneの4対象を一括で禁止する同一scopeの採択L2/L11を特定できない。現行の一般authority境界からこの旧candidateの個別条件を補わない。",
+      "current_relation_and_residual": "No adopted L2/L11 or exact candidate successor relation was found for the four combined prohibitions on new workflow route, development style, DB authority and resident lane.",
       "current_authority_refs": [
         "docs/governance/new-generation-start-here.md#current-authority",
         "docs/governance/authority-state-model.md"
@@ -288,7 +415,7 @@
         "semantic_cluster_id": "agentic_audit_future_state_delta::"
       },
       "route_assessment": "adopted_relevant_partial",
-      "current_relation_and_residual": "HELIXINTELLIGENCE-L2-009 / L11 はAAFDを既存candidateとして扱い、UIL/TER/Future Synthesisの責務を重複実装しない境界を明記する。Learning Systemを含む列挙全体や個別consumer条件は採択されていない。",
+      "current_relation_and_residual": "System Synthesis and Learning System are not named in that adopted predicate; detailed interface/consumer behavior remains outside scope.",
       "current_authority_refs": [
         "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#HELIXINTELLIGENCE-L2-009",
         "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md#HELIXINTELLIGENCE-L2-009",
@@ -297,7 +424,8 @@
         "docs/governance/audits/requirement-registration/helixintelligence-functional-units-coverage-receipt-2026-09-27.json (source_atom_count=0; authority_effect=none)"
       ],
       "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
-      "route_assessment_status": "assessed_from_effective_classification"
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
+      "matched_adopted_predicate": "HELIXINTELLIGENCE-L2-009/L11 explicitly keeps AAFD as an existing candidate and retains UIL/TER/Future Synthesis owners, matching the no-reimplementation boundary for those named owners."
     },
     {
       "source_id": "LEGACY-CAND-LINE-000110",
@@ -320,7 +448,7 @@
         "semantic_cluster_id": "agentic_audit_future_state_delta::"
       },
       "route_assessment": "adopted_relevant_partial",
-      "current_relation_and_residual": "HELIXINTELLIGENCE-L2-009 / L11 と現行authority境界に、自由文だけでauthorityを変更しない関係がある。Requirement/Design/Release/Assignment/mergeの5領域すべてに対するAAFD/delta/future directive固有の禁止条件を一括で移管した証拠はない。",
+      "current_relation_and_residual": "The source also lists Design, Release, Assignment and merge authority, and extends the no-write rule to delta/future directives; these destinations and source classes are not all specified by L2-009.",
       "current_authority_refs": [
         "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#HELIXINTELLIGENCE-L2-009",
         "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md#HELIXINTELLIGENCE-L2-009",
@@ -329,7 +457,8 @@
         "docs/governance/audits/requirement-registration/helixintelligence-functional-units-coverage-receipt-2026-09-27.json (source_atom_count=0; authority_effect=none)"
       ],
       "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
-      "route_assessment_status": "assessed_from_effective_classification"
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
+      "matched_adopted_predicate": "HELIXINTELLIGENCE-L2-009/L11 says free text alone does not change authority; this matches only the source predicate that AAFD audit output cannot directly change Requirement authority."
     },
     {
       "source_id": "LEGACY-CAND-LINE-000140",
@@ -352,7 +481,7 @@
         "semantic_cluster_id": "agentic_audit_future_state_delta::AAFD-R-03"
       },
       "route_assessment": "true_unknown",
-      "current_relation_and_residual": "UILへ渡す反証・expiry・supersession、finding/remediation別identity・別判定の全条件について、adopted L2/L11にexact span relationを確認できない。AAFDの監査一般契約との近さだけで採択coverageを推定しない。",
+      "current_relation_and_residual": "No exact adopted predicate covers handing counterevidence/expiry/supersession to UIL and separating finding/remediation identities. AAFD-wide topical similarity is insufficient.",
       "current_authority_refs": [
         "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#HELIXINTELLIGENCE-L2-009",
         "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md#HELIXINTELLIGENCE-L2-009",
@@ -362,6 +491,37 @@
       "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
       "route_assessment_status": "assessed_after_2360_classification_reconciliation",
       "classification_review_residual": "#2353 effective cumulative row class is product_requirement_atom, while pinned semantic-router snapshot is explanation for these rows (000143 has an explicit router correction). The selected class follows #2353 as required, but row atom boundary/type must be reconciled before this route is treated as stable."
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000180",
+      "old_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "source_line": 109,
+      "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+      "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "source_line_sha256": "sha256:2a5f6c6fdeb935227cf06f85d055b111fe12eaa283308018e1345a0569e9caf7",
+      "physical_line_bytes_sha256": "56bd3f21dda0e993a0bfb0c5ed2b9227609bfd4c76e2ce628d33da767065578b",
+      "source_text": "Designを自動変更しない。昇格は#1035/#1384の独立VERIFY、counterexample、expiry、human gateへ従う。",
+      "classification_at_pinned_cumulative": {
+        "classification": "condition",
+        "subtype": "product_requirement_atom",
+        "route": "unknown"
+      },
+      "router_review_snapshot": {
+        "classification": "explanation",
+        "classification_correction": null,
+        "review_outcome": "non_requirement_source_structure_or_explanation",
+        "semantic_cluster_id": "agentic_audit_future_state_delta::AAFD-R-15"
+      },
+      "route_assessment": "true_unknown",
+      "current_relation_and_residual": "AAFD-R-15はLearning System benchmark結果からrule/provider routing/Requirement/Designを自動変更しないpromotion boundaryであり、複合atomはarchive line 108-109。採択済みHELIXINTELLIGENCE-L2-073/L11は未知finding探索の自由文によるdirect projectionのみを対象とし、採択記録が対応sourceをAAFD-R-04 lines 45-46に限定、R-15は明示範囲外。Requirement/Designという語の共通やAAFDの一般監査境界からbenchmark promotion relationを推測できない。#1035/#1384 VERIFY、counterexample、expiry、human gateも旧candidateのままである。",
+      "current_authority_refs": [
+        "docs/governance/decisions/po-decision-2026-09-29-57candidates.md#HELIXINTELLIGENCE-L2-073",
+        "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#HELIXINTELLIGENCE-L2-073",
+        "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md#HELIXINTELLIGENCE-L2-073"
+      ],
+      "authority_caveat": "本routeは意味relationの不在を分類するだけで、旧要求の採択・変更・退役、successor登録、source coverage/closure、L3/実装/受入許可を生成しない。",
+      "route_assessment_status": "assessed_against_exact_adopted_scope_after_2360_classification_reconciliation",
+      "classification_review_residual": "#2360はAAFD-R-15 composite atomをcondition/product_requirement_atom/unknownとして維持した。物理line 109はline 108の同一atomを限定する。router snapshotのexplanation分類だけでeffective proposal classificationを置き換えない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-000356",
@@ -384,7 +544,7 @@
         "semantic_cluster_id": "bugbot_bounded_repair::"
       },
       "route_assessment": "adopted_relevant_partial",
-      "current_relation_and_residual": "HELIXINTELLIGENCE-L2-015は反復failureからBugbot candidateを作る採択範囲であり、workerの定型逸脱修正往復を減らす目的に部分関係する。具体的な効率目標や成功基準は同一ではない。",
+      "current_relation_and_residual": "The adopted predicate creates/evaluates a candidate; it does not guarantee fewer repair rounds, worker focus, or a measured efficiency improvement.",
       "current_authority_refs": [
         "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#HELIXINTELLIGENCE-L2-015",
         "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md#HELIXINTELLIGENCE-L2-015",
@@ -393,7 +553,8 @@
         "docs/governance/audits/requirement-registration/helixintelligence-functional-units-coverage-receipt-2026-09-27.json (source_atom_count=0; authority_effect=none)"
       ],
       "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
-      "route_assessment_status": "assessed_from_effective_classification"
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
+      "matched_adopted_predicate": "HELIXINTELLIGENCE-L2-015/L11 takes repeated CI/execution failure history and its patterns as input to a bounded Bugbot candidate; this is a concrete relation to the source concern about repeated repair cycles."
     },
     {
       "source_id": "LEGACY-CAND-LINE-000396",
@@ -416,7 +577,7 @@
         "semantic_cluster_id": "bugbot_bounded_repair::BBR-R02_B02"
       },
       "route_assessment": "adopted_relevant_partial",
-      "current_relation_and_residual": "HELIXINTELLIGENCE-L2-015/016 とL11は再現性・scope・repairability、固定target/write-set/side effectに関係する。登録済み処理だけの実適用と意味判断時worker proposalへの戻しを旧行全体として採択したかは不明。",
+      "current_relation_and_residual": "The source additionally mandates registered-process-only repair and returning multiple-solution/semantic choices to an existing worker proposal; those exact routing rules are not adopted.",
       "current_authority_refs": [
         "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#HELIXINTELLIGENCE-L2-015",
         "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md#HELIXINTELLIGENCE-L2-015",
@@ -425,7 +586,8 @@
         "docs/governance/audits/requirement-registration/helixintelligence-functional-units-coverage-receipt-2026-09-27.json (source_atom_count=0; authority_effect=none)"
       ],
       "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
-      "route_assessment_status": "assessed_from_effective_classification"
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
+      "matched_adopted_predicate": "HELIXINTELLIGENCE-L2-016/L11 binds a repair candidate to target revision, scope, write-set, side effects and recovery; unknown side effects or scope violations do not succeed. This matches the source safety/scope predicate for machine repair."
     },
     {
       "source_id": "LEGACY-CAND-LINE-000425",
@@ -448,7 +610,7 @@
         "semantic_cluster_id": "bugbot_bounded_repair::"
       },
       "route_assessment": "adopted_relevant_partial",
-      "current_relation_and_residual": "HELIXINTELLIGENCE-L2-015はfalse-positive・scope・repairabilityの比較軸を採択するが、A条件との同条件比較、費用・時間・手戻り・誤修復・未解消数一式は一致しない。INTELLIGENCE-L2-024は3.0で、本体8機構の1.0 adopted successorではない。",
+      "current_relation_and_residual": "It does not adopt the source same-condition baseline A, cost, time, rework, unresolved-count metric set, nor an efficiency threshold. L2-024 is 3.0 and is not a 1.0 adopted successor.",
       "current_authority_refs": [
         "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#HELIXINTELLIGENCE-L2-015",
         "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md#HELIXINTELLIGENCE-L2-015",
@@ -457,7 +619,8 @@
         "docs/governance/audits/requirement-registration/helixintelligence-functional-units-coverage-receipt-2026-09-27.json (source_atom_count=0; authority_effect=none)"
       ],
       "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
-      "route_assessment_status": "assessed_from_effective_classification"
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
+      "matched_adopted_predicate": "HELIXINTELLIGENCE-L2-015/L11 evaluates false-positive, scope and repairability evidence; these concrete evaluation dimensions relate to the source false-repair criterion."
     },
     {
       "source_id": "LEGACY-CAND-LINE-000468",
@@ -479,14 +642,19 @@
         "review_outcome": "unknown_after_semantic_check",
         "semantic_cluster_id": "ci_event_concurrency_generation::CIG-AC-001"
       },
-      "route_assessment": "unadopted_candidate_relation_only",
-      "current_relation_and_residual": "HELIX-OS/HARNESSのnext-generation-ci candidateが旧CIG requests/requirements/acceptanceをsourceとして明示する。event class/PR/HEAD/run/attempt identityの現行採択CI oracleとは確認できず、source relationは未採択candidateのみ。",
+      "route_assessment": "adopted_relevant_partial",
+      "current_relation_and_residual": "Event class, PR ID, attempt, the composite generation key, deterministic equality, and per-field malformed-input rejection are not adopted CIG-specific oracles.",
       "current_authority_refs": [
         "docs/helix-os/candidates/next-generation-ci-requirements.md:12-14",
         "docs/helix-harness/candidates/next-generation-ci-requirements.md"
       ],
       "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
-      "route_assessment_status": "assessed_from_effective_classification"
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
+      "matched_adopted_predicate": "HELIXOS-L2-020/L11 explicitly binds execution evidence to exact HEAD and run identity. This matches the HEAD and run-ID identity predicates among the tested CIG fields.",
+      "candidate_only_refs": [
+        "docs/helix-os/candidates/next-generation-ci-requirements.md:12-14",
+        "docs/helix-harness/candidates/next-generation-ci-requirements.md"
+      ]
     },
     {
       "source_id": "LEGACY-CAND-LINE-000470",
@@ -508,14 +676,19 @@
         "review_outcome": "unknown_after_semantic_check",
         "semantic_cluster_id": "ci_event_concurrency_generation::CIG-AC-003"
       },
-      "route_assessment": "unadopted_candidate_relation_only",
-      "current_relation_and_residual": "next-generation-ci candidateのsource chainに含まれるCIG acceptance row。queue上限/TTLでolder scheduleだけを置換しsilent dropや無制限並走を拒否する条件を採択済みL2/L11へ結べない。",
+      "route_assessment": "adopted_relevant_partial",
+      "current_relation_and_residual": "No adopted predicate sets queue/TTL limits, supersedes only the older schedule, prevents dropping a queued schedule, or bounds parallelism. Status distinction does not itself guarantee schedule retention or replacement.",
       "current_authority_refs": [
         "docs/helix-os/candidates/next-generation-ci-requirements.md:12-14",
         "docs/helix-harness/candidates/next-generation-ci-requirements.md"
       ],
       "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
-      "route_assessment_status": "assessed_from_effective_classification"
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
+      "matched_adopted_predicate": "HELIXOS-L2-019/L11 separates missing/unexecuted evidence from success, and L2-020/L11 distinguishes stale/interrupted run state. This matches only the source requirement that a silently absent/older run not appear as successful current evidence.",
+      "candidate_only_refs": [
+        "docs/helix-os/candidates/next-generation-ci-requirements.md:12-14",
+        "docs/helix-harness/candidates/next-generation-ci-requirements.md"
+      ]
     },
     {
       "source_id": "LEGACY-CAND-LINE-000472",
@@ -537,14 +710,19 @@
         "review_outcome": "unknown_after_semantic_check",
         "semantic_cluster_id": "ci_event_concurrency_generation::CIG-AC-005"
       },
-      "route_assessment": "unadopted_candidate_relation_only",
-      "current_relation_and_residual": "next-generation-ci candidateのsource chainに含まれるCIG acceptance row。cancelled runをpost-main/review/deferred successへ混入させない個別oracleは採択済みでない。",
+      "route_assessment": "adopted_relevant_partial",
+      "current_relation_and_residual": "The source-specific refusal by every post-main/review/deferred-success consumer, and propagation to those consumers, is not adopted as a CIG contract.",
       "current_authority_refs": [
         "docs/helix-os/candidates/next-generation-ci-requirements.md:12-14",
         "docs/helix-harness/candidates/next-generation-ci-requirements.md"
       ],
       "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
-      "route_assessment_status": "assessed_from_effective_classification"
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
+      "matched_adopted_predicate": "HELIXOS-L2-020/L11 distinguishes interrupted from success, and L2-019/L11 preserves unexecuted/failed evidence separately. This matches the cancelled-run-not-success predicate.",
+      "candidate_only_refs": [
+        "docs/helix-os/candidates/next-generation-ci-requirements.md:12-14",
+        "docs/helix-harness/candidates/next-generation-ci-requirements.md"
+      ]
     },
     {
       "source_id": "LEGACY-CAND-LINE-000474",
@@ -566,14 +744,19 @@
         "review_outcome": "unknown_after_semantic_check",
         "semantic_cluster_id": "ci_event_concurrency_generation::CIG-AC-007"
       },
-      "route_assessment": "unadopted_candidate_relation_only",
-      "current_relation_and_residual": "next-generation-ci candidateのsource chainに含まれるCIG acceptance row。run ID付きread-afterでpush/schedule terminalとcancel/handoff receiptを再構築するCI rehearsal oracleは未採択candidate relationのみ。",
+      "route_assessment": "adopted_relevant_partial",
+      "current_relation_and_residual": "Independent terminal outcomes for main push versus schedule, the CIG cancel/handoff receipt schema, causality, and bounded live rehearsal are not adopted.",
       "current_authority_refs": [
         "docs/helix-os/candidates/next-generation-ci-requirements.md:12-14",
         "docs/helix-harness/candidates/next-generation-ci-requirements.md"
       ],
       "authority_caveat": "旧sourceはhistorical candidate。carry-forward ledgerではtarget_authority_state=draft_candidate、atomization_status=preserved_pending_atomization、successor_requirement_ids=[]。このroute判定はrelation分類のみで、旧要求の採択・変更・退役、successor登録、coverage/closure、L3/実装/受入許可を生成しない。",
-      "route_assessment_status": "assessed_from_effective_classification"
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
+      "matched_adopted_predicate": "HELIXOS-L2-019/L11 requires provenance and reconstructable evidence; L2-020/L11 binds terminal result to exact run identity; L2-023/L11 binds handoff evidence to revision, scope, unfinished duties and stop reason. These match the read-after run/evidence/handoff predicates.",
+      "candidate_only_refs": [
+        "docs/helix-os/candidates/next-generation-ci-requirements.md:12-14",
+        "docs/helix-harness/candidates/next-generation-ci-requirements.md"
+      ]
     },
     {
       "source_id": "LEGACY-CAND-LINE-000478",
@@ -596,7 +779,7 @@
         "semantic_cluster_id": "ci_event_concurrency_generation::"
       },
       "route_assessment": "unadopted_candidate_relation_only",
-      "current_relation_and_residual": "next-generation-ci candidateのsource chainにあり、canonical promotion後のruntime/DB migration/live rehearsalを別PLANへ送る候補境界を示す。新世代CIの実行許可や採択済み工程条件ではない。",
+      "current_relation_and_residual": "The separate-plan-after-canonical-promotion boundary is present only in the unadopted next-generation-CI candidate chain; adopted OS L2-020 says new-generation CI is unbuilt and old CI is not a substitute, but does not prescribe this post-promotion plan boundary.",
       "current_authority_refs": [
         "docs/helix-os/candidates/next-generation-ci-requirements.md:12-14",
         "docs/helix-harness/candidates/next-generation-ci-requirements.md"
@@ -625,7 +808,7 @@
         "semantic_cluster_id": "ci_event_concurrency_generation::"
       },
       "route_assessment": "unadopted_candidate_relation_only",
-      "current_relation_and_residual": "next-generation-ci candidateがCIG requests文書をsourceとして明示する。current main post-main検収をschedule/manual safety-netがcancelしない具体的CI operation条件は採択済みL2/L11にない。",
+      "current_relation_and_residual": "No exact adopted predicate prevents a schedule/manual safety-net from cancelling current-main post-main verification. OS-020 stale/interrupted status handling records outcome and unfinished evidence but does not provide cancellation protection or event-class non-interference.",
       "current_authority_refs": [
         "docs/helix-os/candidates/next-generation-ci-requirements.md:12-14",
         "docs/helix-harness/candidates/next-generation-ci-requirements.md"
@@ -654,7 +837,7 @@
         "semantic_cluster_id": "ci_event_concurrency_generation::"
       },
       "route_assessment": "adopted_relevant_partial",
-      "current_relation_and_residual": "HARNESS-L2-005/L11は必要検証義務を保ち全件実行を既定にしない契約、HELIXOS-L2-020/L11はCI profileの組立・実行状態の境界に部分関係する。残差: event classごとの証明義務、並列数・queue/cost上限、古い証拠を無制限化しない具体policy。",
+      "current_relation_and_residual": "HARNESS-L2-005 does not set concurrency limits. No adopted predicate bounds parallel runs, queue length, cost, evidence retention/age, or run replacement. NCI-HARNESS/OS references remain candidate-only.",
       "current_authority_refs": [
         "HARNESS-L2-005/L11",
         "HELIXOS-L2-020/L11",
@@ -662,7 +845,7 @@
         "NCI-OS-005"
       ],
       "authority_caveat": "#2362の限定的な意味relation提案を転記。採択済みgeneric L2/L11 revisionへの部分関係であり、旧行IDのsuccessor登録、旧要求の採択、coverage/closure、実装・受入許可を意味しない。NCI candidate refsは未採択であり、adopted relationへ加算していない。",
-      "route_assessment_status": "proposed_from_2362_exact_revision_context",
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
       "candidate_only_refs": [
         "NCI-HARNESS-001..004",
         "NCI-OS-005"
@@ -671,7 +854,8 @@
         "event-class specific proof duties",
         "parallelism/queue/cost bounds",
         "policy preventing unbounded stale evidence"
-      ]
+      ],
+      "matched_adopted_predicate": "HELIXOS-L2-020/L11 distinguishes stale evidence from a current exact-HEAD/run result. This matches only the source concern that old evidence must not be treated as current verification."
     },
     {
       "source_id": "LEGACY-CAND-LINE-000496",
@@ -694,7 +878,7 @@
         "semantic_cluster_id": "ci_event_concurrency_generation::CIG-BR-02"
       },
       "route_assessment": "adopted_relevant_partial",
-      "current_relation_and_residual": "HARNESS-L2-004/005/L11は変更revisionと再検証義務のtrace、HELIXOS-L2-020/L11はexact head/run identityとstale状態に部分関係する。残差: current-main検収を保護したbounded replacement規則とevent class間の非干渉。",
+      "current_relation_and_residual": "Protection of current-main runs, bounded supersession policy, schedule/PR event-class non-interference, and replacement limits are not adopted.",
       "current_authority_refs": [
         "HARNESS-L2-004/L11",
         "HARNESS-L2-005/L11",
@@ -705,7 +889,7 @@
         "NCI-OS-005"
       ],
       "authority_caveat": "#2362の限定的な意味relation提案を転記。採択済みgeneric L2/L11 revisionへの部分関係であり、旧行IDのsuccessor登録、旧要求の採択、coverage/closure、実装・受入許可を意味しない。NCI candidate refsは未採択であり、adopted relationへ加算していない。",
-      "route_assessment_status": "proposed_from_2362_exact_revision_context",
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
       "candidate_only_refs": [
         "NCI-HARNESS-004",
         "NCI-OS-001",
@@ -716,7 +900,8 @@
         "current-main protection during supersession",
         "bounded stale-generation replacement rule",
         "event-class non-interference"
-      ]
+      ],
+      "matched_adopted_predicate": "HELIXOS-L2-020/L11 binds results to exact HEAD and distinguishes stale results; HARNESS-L2-004/005/L11 require affected-scope/revision-based revalidation. These match the current-versus-stale evidence predicate."
     },
     {
       "source_id": "LEGACY-CAND-LINE-000497",
@@ -739,7 +924,7 @@
         "semantic_cluster_id": "ci_event_concurrency_generation::CIG-BR-03"
       },
       "route_assessment": "adopted_relevant_partial",
-      "current_relation_and_residual": "HELIXOS-L2-019/020/L11はevent/source revision・実行結果を保持しcancel/interrupted等と成功を区別して再構築する契約に部分関係する。残差: CIG固有terminal evidence schema、cancel/handoff因果関係、event class別終端規則。",
+      "current_relation_and_residual": "CIG terminal evidence schema, cancel/handoff causal chain, and event-class terminal rules are not adopted.",
       "current_authority_refs": [
         "HELIXOS-L2-019/L11",
         "HELIXOS-L2-020/L11",
@@ -748,7 +933,7 @@
         "NCI-OS-008"
       ],
       "authority_caveat": "#2362の限定的な意味relation提案を転記。採択済みgeneric L2/L11 revisionへの部分関係であり、旧行IDのsuccessor登録、旧要求の採択、coverage/closure、実装・受入許可を意味しない。NCI candidate refsは未採択であり、adopted relationへ加算していない。",
-      "route_assessment_status": "proposed_from_2362_exact_revision_context",
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
       "candidate_only_refs": [
         "NCI-OS-003",
         "NCI-OS-004",
@@ -758,7 +943,8 @@
         "CIG-specific terminal evidence schema",
         "cancel/handoff causal chain",
         "event-class terminal rules"
-      ]
+      ],
+      "matched_adopted_predicate": "HELIXOS-L2-019/L11 preserves event/source revision, execution result and reconstructable evidence; L2-023/L11 binds handoff to causality, scope, unfinished duties, stop reason and evidence. This matches evidence-based terminal/handoff reconstruction."
     },
     {
       "source_id": "LEGACY-CAND-LINE-000499",
@@ -781,7 +967,7 @@
         "semantic_cluster_id": "ci_event_concurrency_generation::"
       },
       "route_assessment": "adopted_relevant_partial",
-      "current_relation_and_residual": "HARNESS-L2-005/L11の検証義務・証拠条件、およびHELIXOS-L2-019/020/L11のsource revision、exact head/run identity、実行結果の証拠化に部分関係する。残差: canonical HEAD定義、更新競合、terminal evidence安定取得条件。",
+      "current_relation_and_residual": "Canonical HEAD definition, race/update handling, and stable terminal evidence acquisition are not specified by adopted L2/L11.",
       "current_authority_refs": [
         "HARNESS-L2-005/L11",
         "HELIXOS-L2-019/L11",
@@ -791,7 +977,7 @@
         "NCI-OS-003"
       ],
       "authority_caveat": "#2362の限定的な意味relation提案を転記。採択済みgeneric L2/L11 revisionへの部分関係であり、旧行IDのsuccessor登録、旧要求の採択、coverage/closure、実装・受入許可を意味しない。NCI candidate refsは未採択であり、adopted relationへ加算していない。",
-      "route_assessment_status": "proposed_from_2362_exact_revision_context",
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
       "candidate_only_refs": [
         "NCI-HARNESS-002",
         "NCI-HARNESS-004",
@@ -801,7 +987,8 @@
         "canonical HEAD definition",
         "HEAD update race handling",
         "stable terminal evidence retrieval condition"
-      ]
+      ],
+      "matched_adopted_predicate": "HELIXOS-L2-020/L11 binds a result to exact HEAD/run identity, and L2-019/L11 preserves provenance and evidence. This matches the source predicate for terminal evidence tied to current canonical HEAD."
     },
     {
       "source_id": "LEGACY-CAND-LINE-000500",
@@ -824,7 +1011,7 @@
         "semantic_cluster_id": "ci_event_concurrency_generation::"
       },
       "route_assessment": "adopted_relevant_partial",
-      "current_relation_and_residual": "HARNESS-L2-005/L11とHELIXOS-L2-020/L11の一般契約（必要oracle維持、stale結果区別）に部分関係する。残差: stale PRとduplicate scheduleのevent class境界、bounded supersede、影響隔離。",
+      "current_relation_and_residual": "Duplicate-schedule identity, bounded replacement/supersession, cross-event-class isolation, and effects on other events are not adopted.",
       "current_authority_refs": [
         "HARNESS-L2-005/L11",
         "HELIXOS-L2-020/L11",
@@ -833,7 +1020,7 @@
         "NCI-OS-008"
       ],
       "authority_caveat": "#2362の限定的な意味relation提案を転記。採択済みgeneric L2/L11 revisionへの部分関係であり、旧行IDのsuccessor登録、旧要求の採択、coverage/closure、実装・受入許可を意味しない。NCI candidate refsは未採択であり、adopted relationへ加算していない。",
-      "route_assessment_status": "proposed_from_2362_exact_revision_context",
+      "route_assessment_status": "assessed_against_uniform_adopted_predicate_criterion",
       "candidate_only_refs": [
         "NCI-OS-003",
         "NCI-OS-005",
@@ -843,50 +1030,8 @@
         "stale PR vs duplicate schedule identity",
         "cross-event-class isolation",
         "bounded supersession policy"
-      ]
-    },
-    {
-      "source_id": "LEGACY-CAND-LINE-000501",
-      "old_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
-      "source_line": 30,
-      "asset_id": "LEGACY-ASSET-8B78505C1E059419875F",
-      "source_file_sha256": "7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
-      "source_line_sha256": "sha256:8bca62507e48cc19085a00746131d39a653aaa28866431c81b5bbf527b3566da",
-      "physical_line_bytes_sha256": "a71d4dd9c98f1ec4497e70e54497aac1894c815687ebacfea5e1e8aab61e12c1",
-      "source_text": "- cancel、supersede、handoffの理由と対象を後から再構築できる。",
-      "classification_at_pinned_cumulative": {
-        "classification": "condition",
-        "subtype": "product_requirement_atom",
-        "route": "unknown"
-      },
-      "router_review_snapshot": {
-        "classification": "requirement_atom",
-        "classification_correction": null,
-        "review_outcome": "unknown_after_semantic_check",
-        "semantic_cluster_id": "ci_event_concurrency_generation::"
-      },
-      "route_assessment": "adopted_relevant_partial",
-      "current_relation_and_residual": "HELIXOS-L2-019/023/020/L11のevent provenance、scope/revision、handoff、未完義務とCI terminal状態の一般区分に部分関係する。残差: CIG専用reason/target/authority receiptと再構築規則.",
-      "current_authority_refs": [
-        "HELIXOS-L2-019/L11",
-        "HELIXOS-L2-023/L11",
-        "HELIXOS-L2-020/L11",
-        "NCI-OS-003",
-        "NCI-OS-004",
-        "NCI-OS-008"
       ],
-      "authority_caveat": "#2362の限定的な意味relation提案を転記。採択済みgeneric L2/L11 revisionへの部分関係であり、旧行IDのsuccessor登録、旧要求の採択、coverage/closure、実装・受入許可を意味しない。NCI candidate refsは未採択であり、adopted relationへ加算していない。",
-      "route_assessment_status": "proposed_from_2362_exact_revision_context",
-      "candidate_only_refs": [
-        "NCI-OS-003",
-        "NCI-OS-004",
-        "NCI-OS-008"
-      ],
-      "true_unknowns": [
-        "CIG-specific reason/target fields",
-        "cancel/supersede authority binding",
-        "reconstruction rules"
-      ]
+      "matched_adopted_predicate": "HELIXOS-L2-020/L11 binds results to exact HEAD and distinguishes stale status. This matches the stale-PR-HEAD/current-result predicate only."
     }
   ],
   "validation": {
@@ -897,6 +1042,85 @@
     "replacement_source_file_line_and_physical_hashes_checked": true,
     "cumulative_and_overlay_pins_recorded": true,
     "static_tools": "scfctl validate; govcheck.py; gen_rulebook.py --check; git diff --check",
-    "forbidden_legacy_executions": "No old runtime/CLI/test/CI/hook executed."
-  }
+    "forbidden_legacy_executions": "No old runtime/CLI/test/CI/hook executed.",
+    "route_count_matches_rows": true,
+    "dependency_merge_pin_refresh": "Merged inputs pinned to exact merge bytes: #2353 @97672630, #2356 @9ae89434, #2360 @5ca82b8f, #2361 @132a56f3, #2362 @847f7262.",
+    "full_population_route_recount": "not_performed",
+    "all_dependency_pins_finalized": true,
+    "latest_main_baseline": "847f7262d1248de2de5165d029a9175e027bda6c"
+  },
+  "route_criterion": {
+    "rule": "adopted_relevant_partial requires at least one concrete source predicate that has the same meaning in an exact adopted L2/L11 revision; the row must name the matched predicate and the unadopted residual. A topical/system-name match, candidate-only reference, or general authority boundary is insufficient. Partial is relation only, not source adoption or coverage.",
+    "adopted_l2_l11_revision_pins": [
+      {
+        "mechanism": "HELIX-OS",
+        "decision": "HDEC-HELIXOS-REQUIREMENTS-PO-2026-09-28",
+        "fixed_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "l2_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+        "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "l11_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+        "used_predicates": [
+          "HELIXOS-L2-019/L11",
+          "HELIXOS-L2-020/L11",
+          "HELIXOS-L2-023/L11"
+        ]
+      },
+      {
+        "mechanism": "HELIX-HARNESS",
+        "decision": "HDEC-HARNESS-REQUIREMENTS-2026-09-28",
+        "fixed_revision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "used_predicates": [
+          "HARNESS-L2-004/L11",
+          "HARNESS-L2-005/L11"
+        ]
+      },
+      {
+        "mechanism": "HELIX-INTELLIGENCE",
+        "decision": "HDEC-HELIXINTELLIGENCE-REQUIREMENTS-2026-09-28",
+        "fixed_revision_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+        "l2_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "l2_sha256": "14c6947262f7e7cc92e7200cafd301ebd49c4146c97f665f0548c6b2b2e9e16d",
+        "l11_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "l11_sha256": "7467fad5256db9af823e7be860e21e52df58efb43ad4855c7127c2053106214d",
+        "used_predicates": [
+          "HELIXINTELLIGENCE-L2-009/L11",
+          "HELIXINTELLIGENCE-L2-015/L11",
+          "HELIXINTELLIGENCE-L2-016/L11"
+        ],
+        "decision_path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+        "decision_sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad"
+      },
+      {
+        "mechanism": "HELIX-INTELLIGENCE examined_nonmatching_scope",
+        "decision": "HELIXINTELLIGENCE-L2-073 adopted by MPR-RC-HELIXINTELLIGENCE-L2-073-002",
+        "fixed_revision_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+        "decision_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "l2_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "l2_sha256": "14c6947262f7e7cc92e7200cafd301ebd49c4146c97f665f0548c6b2b2e9e16d",
+        "l11_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "l11_sha256": "7467fad5256db9af823e7be860e21e52df58efb43ad4855c7127c2053106214d",
+        "l2_section_sha256": "4425189d3870de92165ebdbc790902317dc2799d89f760156ab17441662a2eb5",
+        "l11_section_sha256": "d98488d23fc02992143edb4a1e689a0c12dcc91d0ec1c9adabe1b8e334dd9ef1",
+        "match_disposition": "not_a_match_for_AAFD-R-15; adopted source scope is AAFD-R-04 lines 45-46 only"
+      }
+    ]
+  },
+  "review_findings": [
+    {
+      "id": "R2359-01",
+      "status": "addressed",
+      "change": "Set one concrete adopted-L2/L11 predicate criterion across all 20 rows; list each matched predicate and residual. Reassessed all retained and replacement rows, resulting in 15 adopted_relevant_partial, 3 true_unknown and 2 unadopted_candidate_relation_only. 000470/492 relations are limited to stale/missing evidence distinctions; queue, TTL, concurrency, cost, replacement and event-class policies remain residual."
+    },
+    {
+      "id": "R2359-02",
+      "status": "addressed_for_current_dependencies",
+      "change": "Updated selection to merged #2361 20 IDs (15 retained incl. 000180 plus five replacements 492/496/497/499/500); removed 501; rebased to current main #2362 merge 847f7262. Pinned #2353, #2356, #2360, #2361 and #2362 merge bytes. No source adoption, coverage/closure, or merge admission is asserted."
+    }
+  ]
 }
