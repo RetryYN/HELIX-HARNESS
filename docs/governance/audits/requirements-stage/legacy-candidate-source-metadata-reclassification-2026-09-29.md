@@ -11,7 +11,7 @@
 - `draft_candidate`や`candidate approved / canonical not promoted`の単純status fieldはproduct behaviorでも規範的process conditionでもなくexplanationとする。approval前にcurrent authorityへ扱わない明示境界文（000111）はmanagement_process_conditionとして保持し、successorは未解決のままにする。
 - `000382`は工程を進行できるが未完了というstatus statementであり、規範的適用条件ではないためexplanationとする。隣接行のcandidate/no-auto-rights制約はその別IDの意味として混ぜない。
 - 先例の#2352 README監査は、候補revisionの承認対象分離を述べる`000021`とsource-location修正条件の`000037`のみmanagement_process_conditionにし、参照ポインタ7行をexplanationとして分類した（[監査](legacy-candidate-readme-pointer-classification-audit-2026-09-29.md), [JSON](legacy-candidate-readme-pointer-classification-audit-2026-09-29.json)）。今回も旧sourceの意味役割に合わせ、明示された承認対象分離条件と単なるstatus/ID/receipt参照を分ける。
-- #2353 router自身は「requirement atom / unknown」と「no atom-specific route» を記録しており、metadata rowsのclassification根拠・隣接source scopeを再審査していない。したがってこのproposalは既存classificationの理由とsource contextを補うだけで、意味採択を行わない。
+- #2353 router自身は「requirement atom / unknown」と「no atom-specific route」 を記録しており、metadata rowsのclassification根拠・隣接source scopeを再審査していない。したがってこのproposalは既存classificationの理由とsource contextを補うだけで、意味採択を行わない。
 
 ## 対象行と提案delta
 
@@ -215,4 +215,4 @@ JSONには9対象すべての物理line bytes SHA/base64、file SHA、line SHA�
 
 - Formal successorやmanagement successor IDを割り当てない。
 - 旧source semantic closure、candidate approval/canonicalization、requirements-stage完了、全母集団recountを主張しない。
-- 6 explanation / 3 management_process_conditionのoverlay proposalであり、元route auditを改訂しない。
+- 8 explanation / 1 management_process_conditionのoverlay proposalであり、元route auditを改訂しない。
