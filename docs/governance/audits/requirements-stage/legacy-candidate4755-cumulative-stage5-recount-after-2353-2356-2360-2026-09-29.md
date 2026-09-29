@@ -31,7 +31,7 @@
 | unresolved | 2 | 0 | 0 | 2 |
 | outside_product_route_population | 0 | 0 | 0 | 0 |
 | covered_limited | 1 | 0 | 0 | 1 |
-| **condition total** | **911** | **0** | **0** | **901** |
+| **condition total** | **911** | **-8** | **-2** | **901** |
 
 product subtypeは`893 = known 349 + unknown 544`。#2356はproduct/unknown 9行を8 explanationと1 management conditionへ移した。#2360は000142/143/331をproduct/unknownから`adopted_relevant_partial`へ移し、000476/477をexplanationへ移す一方、000180はproduct subtype・unknown routeのまま保持したため、product/unknownはさらに5減った（うち3行はroute status変更）。`known`はunknown以外のroute labelの件数で、coverageや採択を意味しない。
 
