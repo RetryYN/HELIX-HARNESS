@@ -411,7 +411,7 @@
     "status": "Provisional arithmetic on pinned baseline plus bounded proposal; cumulative full-population recount is required."
   },
   "limitations": [
-    "The three retained product atoms are not evidence of current route coverage or adoption.",
+    "The four retained product atoms are not evidence of current route coverage or adoption.",
     "Source-specific management_process_condition rows remain historical and unresolved; they do not establish a current recurring process or successor.",
     "000545 remains product atom because of its normative “extend” statement, with atom boundary provisional across multiple requirements.",
     "This proposal does not modify the next20 route audit or any source/authority document.",
