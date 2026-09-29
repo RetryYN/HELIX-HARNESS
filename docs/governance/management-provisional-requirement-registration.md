@@ -107,3 +107,8 @@ L1被覆判定や候補文書の説明から12要求を生成しない。各reco
 G7ではPO原文と現行Conceptの共通部品の行を親に、HELIX-CONNECTのL1企画候補とL2／L11候補を起こす。上の「共通部品CONNECTは対象別L1がまだない」は追補時点の説明として保持し、今回の候補起草後は`product_target: HELIX-CONNECT`を記録できる。本fieldから外販製品属性を生成しない。対象別L1のrevision確認はPOに残し、候補親のpath・本文digest・候補状態を明示する。仮登録からL1の確認、要求の採択、実装許可を生成しない。
 
 原文と判断記録の参照は今回のCONNECT候補に置く。この追補は既存の候補親の記録方法をCONNECTにも適用するものであり、被覆・生存参照・訂正revision・独立reviewの条件を変更しない。旧`archive/legacy-generation-2026-09-14/root/CLAUDE.md`82〜85行の「人が上流を持ち、AIが起草する」分担を保持し、旧層番号とruntimeを継承しない。
+
+
+## HIL-FR-01 lifecycle path候補の仮登録（2026-09-29）
+
+旧HIL-FR-01 line 91から7つのliteral facetを分け、HARNESS-L2-060へ入力revision/digest atom 1件、HELIXOS-L2-103へevent/state/causality atom 3件を候補登録した。旧`InfinityLoopEvent` intake、旧stage sequence、前段receipt必須化atomは`MPR-SH-IR-003#HIL-FR-01`へ保留し、全体を普遍的stage規則にしない。被覆receiptはこのsource lineの局所partitionのみを記録し、旧IR全体、関連system contract、consumerまたはformal successorのclosureを主張しない。

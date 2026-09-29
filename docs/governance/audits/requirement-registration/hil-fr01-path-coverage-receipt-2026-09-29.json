@@ -1,0 +1,77 @@
+{
+  "schema_revision": 1,
+  "receipt_id": "HIL-FR-01-PATH-COVERAGE-2026-09-29",
+  "legacy_ir_source": {
+    "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+    "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-01",
+    "source_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+    "statement_semantic_digest": "sha256:bf1e51a051e81e130843ed584640fcc1df69d9b5d84f22f22aa29c261b03c3b7"
+  },
+  "legacy_raw_source": {
+    "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+    "line": 91,
+    "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+    "source_line_sha256": "sha256:983c31d78a55a7e06f4a491e48c2bf31fbc0d44ca9612d0c1587873f806c642b"
+  },
+  "source_partition_ref": "docs/governance/audits/requirement-registration/hil-fr01-source-partition-2026-09-29.jsonl",
+  "source_partition_digest": "sha256:9a4467ce6e1b4302651c3947dbfb94c0ade82701fbce1c27b2479c477541a58e",
+  "source_partition_count": 7,
+  "candidate_partitions": [
+    {
+      "requirement_identity": "HARNESS-L2-060",
+      "product_target": "HELIX-HARNESS",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-fr01-harness-source-atoms-2026-09-29.jsonl",
+      "source_atom_set_digest": "sha256:3c4462ef36e9f3b1ed2a8250f3009495c1c3e6b211b08c7a1d3cd63a4724459a",
+      "source_atom_count": 1,
+      "carried_atom_refs": [
+        "FR01-INPUT-COMMIT-TREE-DIGEST-L0091"
+      ],
+      "candidate_l2_section_sha256": "sha256:d4f0419f2095828ac041a28ca906f45d4dd79b5bfa83000097111f5d13235c30",
+      "candidate_l11_section_sha256": "sha256:d4714dd28d70de6e7bc4a1c8ca4fe18784d825507ebd019ee2c6c716306b35b5"
+    },
+    {
+      "requirement_identity": "HELIXOS-L2-103",
+      "product_target": "HELIX-OS",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-fr01-os-source-atoms-2026-09-29.jsonl",
+      "source_atom_set_digest": "sha256:2c8361749a4afe3c728de7ccafadbc600a9fb66b0d02936259ea993607b46a75",
+      "source_atom_count": 3,
+      "carried_atom_refs": [
+        "FR01-APPEND-ONLY-EVENT-L0091",
+        "FR01-CURRENT-STATE-PROJECTION-L0091",
+        "FR01-PARENT-CAUSE-LINEAGE-L0091"
+      ],
+      "candidate_l2_section_sha256": "sha256:6115a7190bad6a5ff449574a3150116dcdcd31e69f70e6a5b1625a59e171c7dc",
+      "candidate_l11_section_sha256": "sha256:b9d2360893edeb64152899f8a8bf71afa3ab3d9ec387300c8358885dfca823a0"
+    }
+  ],
+  "preserved_pending_atom_routes": {
+    "FR01-EVENT-INTAKE-L0091": "MPR-SH-IR-003#HIL-FR-01",
+    "FR01-LEGACY-STAGE-SEQUENCE-L0091": "MPR-SH-IR-003#HIL-FR-01",
+    "FR01-PREDECESSOR-RECEIPT-BINDING-L0091": "MPR-SH-IR-003#HIL-FR-01"
+  },
+  "full_ir_closure_claimed": false,
+  "consumer_closure": "pending",
+  "authority_effect": "none",
+  "decision_status": "candidate_only_pending_independent_review_and_any_required_upstream_decision; IDs reassigned after confirming #2315 reserved 059/102 for HIL-FR-03",
+  "source_collection_scope": "Only HIL-FR-01 statement plus its observable-output cell from the old requirement IR, cross-checked against raw legacy L1 requirement line 91. Seven literal facets partition these selected bytes. One HARNESS atom and three OS atoms are carried to narrow candidate drafts; three atoms remain in the live IR source holding. No adjacent HIL requirements, system contract, assertion/test corpus, design/runtime implementation, or consumer closure is included. The old lifecycle sequence is explicitly held pending because its universal applicability does not follow from current PO-adopted process/stage decisions.",
+  "related_legacy_context_refs": [
+    {
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json#/HR-FR-HIL-02",
+      "source_file_sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "semantic_digest": "sha256:f93ee6920757f8e8b5f3cb31789adda184a2047e05a110c1b19d3cc3edf1920c",
+      "use": "related context only; defined-order Forward, causality join, budget checkpoint; excluded from source_atom_count and not executed"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json#/HAC-HIL-02a..02c",
+      "source_file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "semantic_digests": [
+        "sha256:4e2c54d09460de3492370a327f9e78202510d8cfc541708ab2b56ee52758b904",
+        "sha256:8923be171df039838f2f57fb2d9328dc96663cd75c7551f364a580008391f498",
+        "sha256:7a56dc596ae5be5d595bcbdf81685582cdb096ad4777a1cfa2da93aaee284c80"
+      ],
+      "use": "related old oracle references only; excluded from source atomization and not executed"
+    }
+  ]
+}
