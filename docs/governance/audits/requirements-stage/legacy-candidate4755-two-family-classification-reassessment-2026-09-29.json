@@ -1,0 +1,572 @@
+{
+  "schema_version": "legacy-candidate4755-two-family-classification-reassessment.v1",
+  "audit_id": "legacy-candidate4755-two-family-classification-reassessment-2026-09-29",
+  "base_commit": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
+  "authority_effect": "none",
+  "audit_mode": "read_only_bounded_source_classification_and_atom_boundary_proposal",
+  "scope": {
+    "population": "Current effective condition/product_requirement_atom/unknown rows in the two named old candidate files at merged #2361 cumulative recount (132a56f3f2cbb1d02ad3bc08bab4f23ef93369cc), after #2353/#2356/#2360 overlays; #2362 merged five-row route proposal is separately pinned and does not change this 4755-row classification baseline.",
+    "remaining_row_count": 14,
+    "excluded_prior_proposal": "#2363 merged exact commit e7f5f54c86e45c2904c129cd24c94d589bafb4bd; its final 16-row classification proposal is pinned for disjoint-set verification and context.",
+    "excluded_ids": [
+      "LEGACY-CAND-LINE-000514",
+      "LEGACY-CAND-LINE-000515",
+      "LEGACY-CAND-LINE-000516",
+      "LEGACY-CAND-LINE-000517",
+      "LEGACY-CAND-LINE-000542",
+      "LEGACY-CAND-LINE-000543",
+      "LEGACY-CAND-LINE-000545",
+      "LEGACY-CAND-LINE-000546",
+      "LEGACY-CAND-LINE-000552",
+      "LEGACY-CAND-LINE-000553",
+      "LEGACY-CAND-LINE-000554",
+      "LEGACY-CAND-LINE-000555",
+      "LEGACY-CAND-LINE-000556",
+      "LEGACY-CAND-LINE-000557",
+      "LEGACY-CAND-LINE-000581",
+      "LEGACY-CAND-LINE-000582"
+    ],
+    "proposal_count": 11,
+    "classification_count": {
+      "retain_product_requirement_atom": 3,
+      "management_process_condition": 9,
+      "explanation": 2
+    }
+  },
+  "pinned_inputs": [
+    {
+      "role": "merged #2361 cumulative Stage 5 recount; definitive pre-proposal baseline is 544 product route unknown",
+      "commit": "132a56f3f2cbb1d02ad3bc08bab4f23ef93369cc",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-stage5-recount-after-2353-2356-2360-2026-09-29.json",
+      "sha256": "e29aadd8c84dda8fcfca65010ffa62331b6631ffce3ac22ef5d174270bb92b20",
+      "overlay_ids": [
+        "#2353 base state",
+        "#2356",
+        "#2360"
+      ]
+    },
+    {
+      "role": "merged #2362 five-row route proposal; source set is disjoint from this 14-row classification proposal and does not create closure",
+      "commit": "847f7262d1248de2de5165d029a9175e027bda6c",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-five-replacement-route-proposal-2026-09-29.json",
+      "sha256": "ba58027e729ab177f869cbaae8d509a496bab63e19b9a97f3f4070a7247d38ea"
+    },
+    {
+      "role": "#2363 merged 16-row classification proposal; excluded IDs and final proposed −12 delta",
+      "commit": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+      "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384"
+    },
+    {
+      "role": "source_line_identity_ledger",
+      "commit": "847f7262d1248de2de5165d029a9175e027bda6c",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+    },
+    {
+      "role": "original_archive_source",
+      "commit": "847f7262d1248de2de5165d029a9175e027bda6c",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6"
+    },
+    {
+      "role": "original_archive_source",
+      "commit": "847f7262d1248de2de5165d029a9175e027bda6c",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e"
+    }
+  ],
+  "classification_basis": [
+    "規範的な製品・システム動作はproduct_requirement_atomとする。",
+    "歴史的な入力、照合、証拠、受入の作業条件はmanagement_process_conditionとする。",
+    "現在の条件を含まない過去状態・由来の報告はexplanationとする。",
+    "archive原文と前後の節を確認し、参照IDだけから採用やrelationを推定しない。"
+  ],
+  "rows": [
+    {
+      "source_id": "LEGACY-CAND-LINE-000528",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 31,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "sha256:77f4af292cd562b2686f881a43a3044af2e3f3fa0230b687acaac5407e3f418c",
+      "exact_source_text": "HEADだけを置換でき、newer scheduleはolder scheduleだけを置換できる。`cancel-in-progress:false`だけによる",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 exact cumulative recount after #2353/#2356/#2360 overlays"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "boundary": "CIG-R-02の段落（archive 30〜32行）。対象の31行は前行から続き、次行まで文が続く。",
+        "atom_id": "CIG-R-02 bounded replacement condition",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000527",
+          "LEGACY-CAND-LINE-000528",
+          "LEGACY-CAND-LINE-000529"
+        ],
+        "selected_source_line_ids": [
+          "LEGACY-CAND-LINE-000528"
+        ],
+        "context_only_source_line_ids": [
+          "LEGACY-CAND-LINE-000527",
+          "LEGACY-CAND-LINE-000529"
+        ]
+      },
+      "reason": "CI生成のcancel／terminal handoff挙動を定める技術条件であり、プロジェクト管理条件ではない。分類を維持し、routeはunknownのままとする。",
+      "route_effect": "none; no route relation, successor, coverage, acceptance, or adoption is proposed",
+      "physical_line_bytes_sha256": "7334620e57e8ce8e58d653a4d87b2ca4077ffea588edb516e1b90e05362640a2"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000532",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 38,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "sha256:b191ed5b193417fa4069e11c72e6aae8b39c265cd4d20524acd5ebe505958dfc",
+      "exact_source_text": "newer main pushがolder main pushをsupersedeできるのは、older HEADがcurrent mainでないこと、新current HEADの",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 exact cumulative recount after #2353/#2356/#2360 overlays"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "boundary": "CIG-R-03の38〜39行の文。2行を合わせてmain pushの条件付きsupersede規則を構成する。",
+        "atom_id": "CIG-R-03 main-push supersession condition",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000532",
+          "LEGACY-CAND-LINE-000533"
+        ],
+        "selected_source_line_ids": [
+          "LEGACY-CAND-LINE-000532",
+          "LEGACY-CAND-LINE-000533"
+        ],
+        "context_only_source_line_ids": []
+      },
+      "reason": "CI生成の状態依存supersede挙動を定める製品・システム条件であり、プロジェクト管理条件ではない。分類を維持し、routeはunknownのままとする。",
+      "route_effect": "none; no route relation, successor, coverage, acceptance, or adoption is proposed",
+      "physical_line_bytes_sha256": "4d8cfdfd2907beab2eff883824737d5d791e28c9a38dc0f1442c73bf0eb551c1"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000533",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 39,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "sha256:169a1fca26a7de62864df613bb2c7e4536988023a3638f98645b023700d5c607",
+      "exact_source_text": "generation確保、required obligationのhandoff receipt、terminal read-afterを検証できる場合だけとする。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 exact cumulative recount after #2353/#2356/#2360 overlays"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "product_requirement_atom",
+      "classification_action": "retain_classification",
+      "atom_boundary": {
+        "boundary": "CIG-R-03の38〜39行の文。2行を合わせてmain pushの条件付きsupersede規則を構成する。",
+        "atom_id": "CIG-R-03 main-push supersession condition",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000532",
+          "LEGACY-CAND-LINE-000533"
+        ],
+        "selected_source_line_ids": [
+          "LEGACY-CAND-LINE-000532",
+          "LEGACY-CAND-LINE-000533"
+        ],
+        "context_only_source_line_ids": []
+      },
+      "reason": "CI生成の状態依存supersede挙動を定める製品・システム条件であり、プロジェクト管理条件ではない。分類を維持し、routeはunknownのままとする。",
+      "route_effect": "none; no route relation, successor, coverage, acceptance, or adoption is proposed",
+      "physical_line_bytes_sha256": "f0a0af6bd52d657f46a65255427a4c335fe7ff79d14a299c268f7cc1b2c66e2e"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000583",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 47,
+      "source_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "sha256:6a43009f11f895c3013bd9d72a9b78c8ee3d928b72cb433ad80f4d2f0c4396d6",
+      "exact_source_text": "3. `DECISIONS_v0.6.md` と `history/v0.5/HELIX_RELEASE_AND_GENERATION_RESEARCH_v0.5.md` はZIPにない。出典欠落として表示し、内容を創作しない。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 exact cumulative recount after #2353/#2356/#2360 overlays"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "management_process_condition",
+      "classification_action": "reclassify",
+      "atom_boundary": {
+        "boundary": "「入力文書の補正対象」節にあるsource照合の補正項目（archive 47行）。",
+        "atom_id": "LEGACY-CAND-LINE-000583-management-condition",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000583"
+        ],
+        "selected_source_line_ids": [
+          "LEGACY-CAND-LINE-000583"
+        ],
+        "context_only_source_line_ids": []
+      },
+      "reason": "特定の受領資料のsource照合条件を示しており、外部製品の動作・受入条件ではない。",
+      "route_effect": "proposed classification moves this row out of product unknown route population into management_successor_unresolved; this is no handoff, resolution, successor, coverage, or adoption claim",
+      "physical_line_bytes_sha256": "1f707b9be3524767eb0cf8cd91b250f41e6921192cda40032887a5760e1f16dd"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000584",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 48,
+      "source_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "sha256:a692e2d877a97207ec7c663b3b3a8684cef446e7c75d467cb28379b4292009ae",
+      "exact_source_text": "4. 原文で「46 Slice」とされた旧成果、325 node、295 relation、35 Gate、29受渡しは入力資料の主張。現在mainの実測件数へ転用しない。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 exact cumulative recount after #2353/#2356/#2360 overlays"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "management_process_condition",
+      "classification_action": "reclassify",
+      "atom_boundary": {
+        "boundary": "「入力文書の補正対象」節にある数値の扱いに関する補正項目（archive 48行）。",
+        "atom_id": "LEGACY-CAND-LINE-000584-management-condition",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000584"
+        ],
+        "selected_source_line_ids": [
+          "LEGACY-CAND-LINE-000584"
+        ],
+        "context_only_source_line_ids": []
+      },
+      "reason": "歴史的資料の数値を現行計測値と誤認しないための管理条件であり、外部製品の動作・受入条件ではない。",
+      "route_effect": "proposed classification moves this row out of product unknown route population into management_successor_unresolved; this is no handoff, resolution, successor, coverage, or adoption claim",
+      "physical_line_bytes_sha256": "778d79690a24af84ecb9e602071c409c1cb7482e641220457a4a1e4d3145b490"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000586",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 52,
+      "source_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "sha256:16210ceac23002706072406e67b2df4ff7ce2f8d511dc60911f469eeadf6eb72",
+      "exact_source_text": "- 全入力文書を保持し、編集版との差分を追跡する。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 exact cumulative recount after #2353/#2356/#2360 overlays"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "management_process_condition",
+      "classification_action": "reclassify",
+      "atom_boundary": {
+        "boundary": "「完了条件と削除条件」節の独立したチェック項目（archive 52〜56行）。各項目を別条件として保持する。",
+        "atom_id": "LEGACY-CAND-LINE-000586-management-condition",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000586"
+        ],
+        "selected_source_line_ids": [
+          "LEGACY-CAND-LINE-000586"
+        ],
+        "context_only_source_line_ids": []
+      },
+      "reason": "入力、差分、source照合、または移行証拠の管理条件であり、特定作業の完了手順を定める。",
+      "route_effect": "proposed classification moves this row out of product unknown route population into management_successor_unresolved; this is no handoff, resolution, successor, coverage, or adoption claim",
+      "physical_line_bytes_sha256": "a88b79d31f6e8a0f577a0f1ef64fcbbd893122fdbefdb72444437447d018a07f"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000587",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 53,
+      "source_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "sha256:42146a6fd8f1b0c07cd9d7432b79fffa181ff3c5879c394a922a2643325f6adc",
+      "exact_source_text": "- Concept/Visionの説明と要求変更を分け、要求変更は既存要求・受入へ戻す。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 exact cumulative recount after #2353/#2356/#2360 overlays"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "management_process_condition",
+      "classification_action": "reclassify",
+      "atom_boundary": {
+        "boundary": "「完了条件と削除条件」節の独立したチェック項目（archive 52〜56行）。各項目を別条件として保持する。",
+        "atom_id": "LEGACY-CAND-LINE-000587-management-condition",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000587"
+        ],
+        "selected_source_line_ids": [
+          "LEGACY-CAND-LINE-000587"
+        ],
+        "context_only_source_line_ids": []
+      },
+      "reason": "入力、差分、source照合、または移行証拠の管理条件であり、特定作業の完了手順を定める。",
+      "route_effect": "proposed classification moves this row out of product unknown route population into management_successor_unresolved; this is no handoff, resolution, successor, coverage, or adoption claim",
+      "physical_line_bytes_sha256": "dc755b6eef8535a5c2aa98784efea117269947fee4e3cb7e904bb284f8638521"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000588",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 54,
+      "source_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "sha256:dea433be208fb7a6456e81889cc902168fb50e9e0b20442e1c7a3e5d022bae7d",
+      "exact_source_text": "- 旧成果の全件対応で欠落・二重所有・未所属を明示する。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 exact cumulative recount after #2353/#2356/#2360 overlays"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "management_process_condition",
+      "classification_action": "reclassify",
+      "atom_boundary": {
+        "boundary": "「完了条件と削除条件」節の独立したチェック項目（archive 52〜56行）。各項目を別条件として保持する。",
+        "atom_id": "LEGACY-CAND-LINE-000588-management-condition",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000588"
+        ],
+        "selected_source_line_ids": [
+          "LEGACY-CAND-LINE-000588"
+        ],
+        "context_only_source_line_ids": []
+      },
+      "reason": "入力、差分、source照合、または移行証拠の管理条件であり、特定作業の完了手順を定める。",
+      "route_effect": "proposed classification moves this row out of product unknown route population into management_successor_unresolved; this is no handoff, resolution, successor, coverage, or adoption claim",
+      "physical_line_bytes_sha256": "e8c16ee904a8812e81484fcf9dec4b8bc7c01b2a209fe1ca7a5f11fccf39bc10"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000589",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 55,
+      "source_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "sha256:aff7171099d3ac12f85a53d24aba6987a9b9bd0919f1b7c160c5c35f0aaea2f7",
+      "exact_source_text": "- 参照解決、文書版、原文digest、既存要求への対応を検証する。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 exact cumulative recount after #2353/#2356/#2360 overlays"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "management_process_condition",
+      "classification_action": "reclassify",
+      "atom_boundary": {
+        "boundary": "「完了条件と削除条件」節の独立したチェック項目（archive 52〜56行）。各項目を別条件として保持する。",
+        "atom_id": "LEGACY-CAND-LINE-000589-management-condition",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000589"
+        ],
+        "selected_source_line_ids": [
+          "LEGACY-CAND-LINE-000589"
+        ],
+        "context_only_source_line_ids": []
+      },
+      "reason": "入力、差分、source照合、または移行証拠の管理条件であり、特定作業の完了手順を定める。",
+      "route_effect": "proposed classification moves this row out of product unknown route population into management_successor_unresolved; this is no handoff, resolution, successor, coverage, or adoption claim",
+      "physical_line_bytes_sha256": "e0d2fcaf8a9882cee6be5dcd36d809b9c3fa4ddb24f8d5c33bd76551f400b803"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000590",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 56,
+      "source_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "sha256:594b6818364d5a6a4875773de3a45d35356a03bbc9cd6456f536a7479d01697d",
+      "exact_source_text": "- 保存先がcommitで復元可能になり、内容保存を再検証してから元ZIPを削除する。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 exact cumulative recount after #2353/#2356/#2360 overlays"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "management_process_condition",
+      "classification_action": "reclassify",
+      "atom_boundary": {
+        "boundary": "「完了条件と削除条件」節の独立したチェック項目（archive 52〜56行）。各項目を別条件として保持する。",
+        "atom_id": "LEGACY-CAND-LINE-000590-management-condition",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000590"
+        ],
+        "selected_source_line_ids": [
+          "LEGACY-CAND-LINE-000590"
+        ],
+        "context_only_source_line_ids": []
+      },
+      "reason": "入力、差分、source照合、または移行証拠の管理条件であり、特定作業の完了手順を定める。",
+      "route_effect": "proposed classification moves this row out of product unknown route population into management_successor_unresolved; this is no handoff, resolution, successor, coverage, or adoption claim",
+      "physical_line_bytes_sha256": "01fd685d6a465a3b435ae3d36255ec351f27d3522a6eb7325e08a314fe994af6"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000591",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 57,
+      "source_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "sha256:b4d4e546c59611a3d63a5ed528c90b629e766552433c3354b8b5f1279ea69128",
+      "exact_source_text": "- 原文・整理版はcommit `17f00abeb`で保存してremote branchへpush済み。原文hash 10/10、PLAN lint、DB rebuild、commit後snapshot照合は成功。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 exact cumulative recount after #2353/#2356/#2360 overlays"
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "classification_action": "reclassify",
+      "atom_boundary": {
+        "boundary": "「完了条件と削除条件」節にある過去の保存・検証状況（archive 57行）。",
+        "atom_id": null,
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000591"
+        ],
+        "selected_source_line_ids": [
+          "LEGACY-CAND-LINE-000591"
+        ],
+        "context_only_source_line_ids": []
+      },
+      "reason": "過去に行った保存や照合の記録であり、新たな製品条件や現在の作業条件を示さない。",
+      "route_effect": "proposed classification moves this row out of condition/product unknown route population into not_condition; this is no handoff, resolution, successor, coverage, or adoption claim",
+      "physical_line_bytes_sha256": "62825e48531b0d934019d06e0db0bd3fe0832357190bfbebf0f7a48c594517cd"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000592",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 58,
+      "source_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "sha256:b9d1b2f0b6f9d2b401eef69df0b3425ca59e3873e6ea0beb8224fe7b18eaa2d9",
+      "exact_source_text": "- PR #1576で独立検収を追跡する。要求差分は整理版に受入候補と対で記録したが、既存L1/L3/L10正本への昇格・runtime版管理の実装・main統合は未完了。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 exact cumulative recount after #2353/#2356/#2360 overlays"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "management_process_condition",
+      "classification_action": "reclassify",
+      "atom_boundary": {
+        "boundary": "過去の作業状況を記した58行の前半は独立検収の追跡手順、後半は当時の状態記録。",
+        "atom_id": "LEGACY-CAND-LINE-000592-management-condition",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000592"
+        ],
+        "selected_source_line_ids": [
+          "LEGACY-CAND-LINE-000592"
+        ],
+        "context_only_source_line_ids": []
+      },
+      "reason": "特定作業の独立検収を追跡する管理条件であり、外部製品の動作条件ではない。",
+      "route_effect": "proposed classification moves this row out of product unknown route population into management_successor_unresolved; this is no handoff, resolution, successor, coverage, or adoption claim",
+      "physical_line_bytes_sha256": "11b1547f4715e778660dbaf3330931c26b5631a1fbb2d9c725d23c2002fe908c"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000593",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 59,
+      "source_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "sha256:3bcc7e957a8fad82df368e2bafe0ec76d5b6bd3bda36b9fe003df6ac6f0c0313",
+      "exact_source_text": "- 元ZIP `/home/tenni/HELIX-HARNESS/HELIX_Concept＆Vision.zip` は2026-09-06に削除済み。原文10文書と同梱checksumはcommit `17f00abeb`から復元できるが、main未到達のため現在はremote branch `docs/1500-concept-vision-intake`に依存する。ZIPそのもののバイナリはGitへ追加していない。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 exact cumulative recount after #2353/#2356/#2360 overlays"
+      },
+      "proposed_classification": "explanation",
+      "proposed_condition_subtype": null,
+      "classification_action": "reclassify",
+      "atom_boundary": {
+        "boundary": "「完了条件と削除条件」節にあるZIP削除と原文復元元の過去状態（archive 59行）。",
+        "atom_id": null,
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000593"
+        ],
+        "selected_source_line_ids": [
+          "LEGACY-CAND-LINE-000593"
+        ],
+        "context_only_source_line_ids": []
+      },
+      "reason": "過去のsource保存・可用性を記す状態記録であり、新たな製品条件や現在の作業条件を示さない。",
+      "route_effect": "proposed classification moves this row out of condition/product unknown route population into not_condition; this is no handoff, resolution, successor, coverage, or adoption claim",
+      "physical_line_bytes_sha256": "f19218b36838d82a5296348999a35defd83786303ccd4bb18d1509edb7d58762"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-000594",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 60,
+      "source_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "sha256:c238b9ee9e51d6b23fc7adb34abacd6ba2cf8dd37623a7efef30a588221a4ed5",
+      "exact_source_text": "- CI run `33999795382`で外部原文の英語表記14件を検出。原文を変更する対処を撤回し、byte保存域 `docs/archive/intake/` を言語正本の対象から除外した。U-DESLANG-018が外部原文の除外と通常governance文書の検出継続を対照する。baselineは変更しない。",
+      "current_effective": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown",
+        "basis": "#2361 exact cumulative recount after #2353/#2356/#2360 overlays"
+      },
+      "proposed_classification": "condition",
+      "proposed_condition_subtype": "management_process_condition",
+      "classification_action": "reclassify",
+      "atom_boundary": {
+        "boundary": "過去のCIと言語修正を記す60行。末尾のbaseline維持を管理条件として切り出し、先行する検出・対応経緯は状態文脈とする。",
+        "atom_id": "LEGACY-CAND-LINE-000594-management-condition",
+        "source_line_ids": [
+          "LEGACY-CAND-LINE-000594"
+        ],
+        "selected_source_line_ids": [
+          "LEGACY-CAND-LINE-000594"
+        ],
+        "context_only_source_line_ids": []
+      },
+      "reason": "外部原文の扱いと言語検査baselineの維持に関する管理条件であり、外部製品の動作条件ではない。",
+      "route_effect": "proposed classification moves this row out of product unknown route population into management_successor_unresolved; this is no handoff, resolution, successor, coverage, or adoption claim",
+      "physical_line_bytes_sha256": "a909158e0e0f4a9ce96207beb95297a49b373b26266d9a48e174d39fb74bfd13"
+    }
+  ],
+  "limitations": [
+    "All rows retain historical_candidate/draft_candidate authority; this proposal changes no authority state.",
+    "No successor, route status, source coverage, acceptance, implementation, or Stage 5 completion is asserted.",
+    "Limited to this exact 14-row population; adjacent rows are not changed.",
+    "No archive runtime, CLI, test, hook, or CI was executed."
+  ],
+  "validation": {
+    "unique_source_ids": 14,
+    "all_source_ids_resolved_in_ledger": true,
+    "source_file_sha256_matches_archive_bytes": true,
+    "all_lines_have_exact_text_and_line_digest": true,
+    "prior_2363_ids_excluded": true,
+    "all_direct_input_path_commit_sha256_pins_verified": true,
+    "merged_2363_final_544_to_532_arithmetic_verified": true,
+    "full_population_recount_performed": false
+  },
+  "impact_if_overlay_applied": {
+    "condition": -2,
+    "explanation": 2,
+    "management_process_condition": 9,
+    "product_requirement_atom": -11,
+    "product_route_unknown": -11,
+    "management_successor_unresolved": 9,
+    "not_condition": 2,
+    "interpretation": "Classification arithmetic only. The −11 product-route-unknown count comprises nine rows classified as management process conditions and two as explanation; it is not 11 handoffs, successor assignments, coverage findings, resolutions, or closures. The nine management rows remain unresolved.",
+    "handoff_or_closure_delta": 0,
+    "handoff_or_closure_interpretation": "No handoff, successor assignment, source coverage, acceptance, implementation, or closure is proposed."
+  },
+  "projected_cumulative_arithmetic": {
+    "merged_pr_2361_product_route_unknown_baseline": 544,
+    "merged_pr_2363_classification_delta": -12,
+    "proposed_product_route_unknown_after_pr_2363": 532,
+    "this_pr_2366_classification_delta": -11,
+    "proposed_product_route_unknown_after_pr_2363_and_pr_2366": 521,
+    "status": "Proposed classification arithmetic from exact merged inputs #2361 and #2363 plus this bounded #2366 overlay. This is not adoption, handoff, successor completion, coverage, resolution, acceptance, implementation, or a claim that a new full-population recount has been run."
+  },
+  "follow_up_status": {
+    "pr_2361": "merged and read-after at 132a56f3f2cbb1d02ad3bc08bab4f23ef93369cc; exact audit content pinned",
+    "pr_2362": "merged at 847f7262d1248de2de5165d029a9175e027bda6c; exact route-proposal audit content pinned",
+    "pr_2363": "merged and read-after at e7f5f54c86e45c2904c129cd24c94d589bafb4bd; exact final audit content pinned; merged proposal records 544→532 classification arithmetic",
+    "commit_readiness": "merged input pins and bounded source checks complete; local commit permitted; no push performed"
+  }
+}
