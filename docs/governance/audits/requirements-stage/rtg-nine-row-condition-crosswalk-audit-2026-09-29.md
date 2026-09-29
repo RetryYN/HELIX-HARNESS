@@ -11,15 +11,15 @@
 
 | Source item | 旧AC | 台帳route | 比較結果 | 主な残差 |
 |---|---|---|---|---|
-| `LEGACY-CAND-LINE-003503` | RTG-AC-001 | `explanation` → `requirement_atom` | partial | 同じtrigger input tupleからのtrigger evidence exact set/digest決定性、event permutation/retry不変性の採択済みRTG oracleはない。旧runtime hardcode oracleも不採用。 |
-| `LEGACY-CAND-LINE-003506` | RTG-AC-004 | `requirement_atom` (維持) | partial | safety-net単独時にcoverage-onlyとなる条件、substantive findingとRF0 admissionを禁止する個別 oracle はない。 |
-| `LEGACY-CAND-LINE-003507` | RTG-AC-005 | `explanation` → `requirement_atom` | partial | 旧tuple全項目のexact matchによるadmission、unknown scopeを特定状態へfallbackしないoracle、RF0は採択されていない。 |
-| `LEGACY-CAND-LINE-003508` | RTG-AC-006 | `explanation` → `requirement_atom` | partial | 旧三route分類、provider drift分類、およびREFACTORING route名を固定する採択済み oracle はない。 |
-| `LEGACY-CAND-LINE-003509` | RTG-AC-007 | `explanation` → `requirement_atom` | partial | primary scopeが厳密に一つである条件、複数primary/unknown owner/related scope欠落の個別negative oracleはない。 |
-| `LEGACY-CAND-LINE-003510` | RTG-AC-008 | `explanation` → `requirement_atom` | partial | authority_pending enum、再freezeの条件、current 9という旧scope集合は現行決定として採択されていない。 |
-| `LEGACY-CAND-LINE-003511` | RTG-AC-009 | `requirement_atom` (維持) | partial | 全scopeを列挙する旧receipt schema、source exact set/policy digest/finding countの一体契約、partial/stale scanのRTG個別negative oracleは未採択。 |
-| `LEGACY-CAND-LINE-003512` | RTG-AC-010 | `explanation` → `requirement_atom` | partial | 現行L11に状態分離はあるが、評価済みfindingなしからterminal no_actionへの遷移条件、scan実行がcandidateを終端させない個別oracleは未確認。 |
-| `LEGACY-CAND-LINE-003513` | RTG-AC-011 | `explanation` → `requirement_atom` | partial | shadow admission状態・UIL-04〜06 gate・RF0実行禁止を一体化した現行段階/side-effect oracleはない。Issue/PLAN/authorityへの遷移は現行OS/authority境界から別途導く。 |
+| `LEGACY-CAND-LINE-003503` | RTG-AC-001 | `explanation` → `requirement_atom` | partial | 同じtrigger input tupleからのtrigger evidence exact set/digest決定性、event permutation/retry不変性の現行の採択済みpairには、trigger evidence exact set/digestの決定性とevent順序/retry不変性を扱うRTG個別oracleを確認できない。現行の採択済みpairには、runtime hardcode・event順序・retry不変性を扱うRTG個別oracleを確認できない。 |
+| `LEGACY-CAND-LINE-003506` | RTG-AC-004 | `requirement_atom` (維持) | partial | safety-net単独時にcoverage-onlyとなる条件、substantive findingとRF0 admissionを禁止する現行の採択済みpairには、safety-net単独時のcoverage-onlyとsubstantive finding/RF0 admission拒否を扱う個別oracleを確認できない。 |
+| `LEGACY-CAND-LINE-003507` | RTG-AC-005 | `explanation` → `requirement_atom` | partial | 現行の採択済みpairには、旧tuple全項目のexact match、unknown scopeのfallback拒否、RF0へのadmissionを扱うRTG個別oracleを確認できない。 |
+| `LEGACY-CAND-LINE-003508` | RTG-AC-006 | `explanation` → `requirement_atom` | partial | 現行の採択済みpairには、旧三route・provider drift分類・REFACTORING route名を固定する個別oracleを確認できない。 |
+| `LEGACY-CAND-LINE-003509` | RTG-AC-007 | `explanation` → `requirement_atom` | partial | 採択済みpairには、primary scopeが一つである条件や複数primary/unknown owner/related scope欠落を判定する個別negative oracleを確認できない。 |
+| `LEGACY-CAND-LINE-003510` | RTG-AC-008 | `explanation` → `requirement_atom` | partial | 現行crosswalkは旧authority_pending enum・再freeze条件・current 9 scopeを固定せず、採択済みpairにもこれらを扱う個別oracleを確認できない。 |
+| `LEGACY-CAND-LINE-003511` | RTG-AC-009 | `requirement_atom` (維持) | partial | 現行の採択済みpairには、全scopeの列挙、source exact set/policy digest/finding countの一体契約、partial/stale scanのRTG個別negative oracleを確認できない。 |
+| `LEGACY-CAND-LINE-003512` | RTG-AC-010 | `explanation` → `requirement_atom` | partial | 現行L11に状態分離はあるが、採択済みpairには評価済みfindingなしからterminal no_actionへの遷移条件や、scan実行がcandidateを終端させない個別oracleを確認できない。 |
+| `LEGACY-CAND-LINE-003513` | RTG-AC-011 | `explanation` → `requirement_atom` | partial | 採択済みpairにはshadow admission状態・UIL-04〜06 gate・RF0実行禁止を一体化した現行段階/side-effect oracleを確認できない。Issue/PLAN/authorityへの遷移は現行OS/authority境界から別途導く。 |
 
 ## 共通の現行根拠と境界
 
@@ -39,7 +39,7 @@
 - negative oracle: runtime hardcode・event順序・retryで結果を変えない。
 - 台帳route: `explanation` / `non_requirement_source_structure_or_explanation`。この監査でrequirement_atomへeffective correctionし、条件とnegative oracleの双方を保存する。累積件数差分は全populationの再pin/recount前には主張しない。
 - 現行との関係: HELIXOS-L2-007の出典・revision・証拠参照、L2-009のdurable event/idempotent projection等は再現可能な記録の土台として関係する。
-- 不足・残差: 同じtrigger input tupleからのtrigger evidence exact set/digest決定性、event permutation/retry不変性の採択済みRTG oracleはない。旧runtime hardcode oracleも不採用。
+- 不足・残差: 同じtrigger input tupleからのtrigger evidence exact set/digest決定性、event permutation/retry不変性の現行の採択済みpairには、trigger evidence exact set/digestの決定性とevent順序/retry不変性を扱うRTG個別oracleを確認できない。現行の採択済みpairには、runtime hardcode・event順序・retry不変性を扱うRTG個別oracleを確認できない。
 - 次owner / PO境界: trigger identityとevidence derivationの現行ownerを要求整理で特定し、必要なら決定性・順序・再送のnegative oracleをL11候補に分ける。
 - 結果: **partial**。formal successorなし、authority effectなし。
 
@@ -51,7 +51,7 @@
 - negative oracle: substantive finding/RF0 admissionを生成しない。
 - 台帳route: `requirement_atom` / `unknown`。分類変更なし。
 - 現行との関係: HELIXOS-L2-005/007とL11の構造改善境界は観測・finding・候補・採否を分離し、単一metricや定期scanだけによる候補採択/実行を拒否する。
-- 不足・残差: safety-net単独時にcoverage-onlyとなる条件、substantive findingとRF0 admissionを禁止する個別 oracle はない。
+- 不足・残差: safety-net単独時にcoverage-onlyとなる条件、substantive findingとRF0 admissionを禁止する現行の採択済みpairには、safety-net単独時のcoverage-onlyとsubstantive finding/RF0 admission拒否を扱う個別oracleを確認できない。
 - 次owner / PO境界: 観測・findingの責務ownerはOS要求側、refactoring findingの意味はHARNESS要求側で整理する。legacy RF0を前提にせず、対象価値が選ばれた場合のみPO境界へ意味選択を上げる。
 - 結果: **partial**。formal successorなし、authority effectなし。
 
@@ -63,7 +63,7 @@
 - negative oracle: unknown scopeをcode_cleanへfallbackしない。
 - 台帳route: `explanation` / `non_requirement_source_structure_or_explanation`。この監査でrequirement_atomへeffective correctionし、条件とnegative oracleの双方を保存する。累積件数差分は全populationの再pin/recount前には主張しない。
 - 現行との関係: HARNESS-L2-004/005は変更影響・検証範囲を保持し、HELIXOS-L2-002/007はscope・provenance・欠落/staleを扱う。
-- 不足・残差: 旧tuple全項目のexact matchによるadmission、unknown scopeを特定状態へfallbackしないoracle、RF0は採択されていない。
+- 不足・残差: 現行の採択済みpairには、旧tuple全項目のexact match、unknown scopeのfallback拒否、RF0へのadmissionを扱うRTG個別oracleを確認できない。
 - 次owner / PO境界: 要求意味とverification obligationはHARNESS、finding/scope/provenance stateはOSの既存責務で要求側が分解する。意味・scope選択を変えるときだけPOへ。
 - 結果: **partial**。formal successorなし、authority effectなし。
 
@@ -75,7 +75,7 @@
 - negative oracle: 非refactorをREFACTORINGへ丸めない。
 - 台帳route: `explanation` / `non_requirement_source_structure_or_explanation`。この監査でrequirement_atomへeffective correctionし、条件とnegative oracleの双方を保存する。累積件数差分は全populationの再pin/recount前には主張しない。
 - 現行との関係: HARNESS-L2-004/005は意味保存、影響、必要再検証を、OS-L2-003/005は変更影響伝播と候補還流を扱う。
-- 不足・残差: 旧三route分類、provider drift分類、およびREFACTORING route名を固定する採択済み oracle はない。
+- 不足・残差: 現行の採択済みpairには、旧三route・provider drift分類・REFACTORING route名を固定する個別oracleを確認できない。
 - 次owner / PO境界: HARNESS要求側が意味変更と故障時の検証責務を扱い、provider/environmentのsource ownerとOS側route境界を要求整理で特定する。旧routeを再導入する意味判断はPO境界。
 - 結果: **partial**。formal successorなし、authority effectなし。
 
@@ -87,7 +87,7 @@
 - negative oracle: primary複数・owner不明・related欠落をgreenにしない。
 - 台帳route: `explanation` / `non_requirement_source_structure_or_explanation`。この監査でrequirement_atomへeffective correctionし、条件とnegative oracleの双方を保存する。累積件数差分は全populationの再pin/recount前には主張しない。
 - 現行との関係: HELIXOS-L2-001/002は対象・正本・revisionへのtraceとscope間の欠落/競合/未検証の非相殺を要求し、L2-005は出典付きscopeを扱う。
-- 不足・残差: primary scopeが厳密に一つである条件、複数primary/unknown owner/related scope欠落の個別negative oracleはない。
+- 不足・残差: 採択済みpairには、primary scopeが一つである条件や複数primary/unknown owner/related scope欠落を判定する個別negative oracleを確認できない。
 - 次owner / PO境界: 影響対象を所有するOS/product owner候補は要求側が既存L1と責務境界から特定する。新scopeやprimary所有意味を選択する場合はPO判断へ。
 - 結果: **partial**。formal successorなし、authority effectなし。
 
@@ -99,7 +99,7 @@
 - negative oracle: current 9 scopeへ暗黙追加しない。
 - 台帳route: `explanation` / `non_requirement_source_structure_or_explanation`。この監査でrequirement_atomへeffective correctionし、条件とnegative oracleの双方を保存する。累積件数差分は全populationの再pin/recount前には主張しない。
 - 現行との関係: 現行authority modelとHELIXOS-L2-001/003は対象revision・共通統制とproduct scopeを区別する。source crosswalkは旧pending状態とcurrent 9 scopeを固定しないと明記する。
-- 不足・残差: authority_pending enum、再freezeの条件、current 9という旧scope集合は現行決定として採択されていない。
+- 不足・残差: 現行crosswalkは旧authority_pending enum・再freeze条件・current 9 scopeを固定せず、採択済みpairにもこれらを扱う個別oracleを確認できない。
 - 次owner / PO境界: 既存authority state modelに照らして未知/未確定の状態を保持し、scope/authority意味を増減する候補だけPO境界へ。要求側は旧enumを現行契約と仮定しない。
 - 結果: **partial**。formal successorなし、authority effectなし。
 
@@ -111,7 +111,7 @@
 - negative oracle: missing source・partial scan・stale policyを全評価済みにしない。
 - 台帳route: `requirement_atom` / `unknown`。分類変更なし。
 - 現行との関係: HELIXOS-L2-002/007とL11は評価の未完/欠落/stale/partialを保持し、source/provenanceとrevisionを追える一般基盤を持つ。
-- 不足・残差: 全scopeを列挙する旧receipt schema、source exact set/policy digest/finding countの一体契約、partial/stale scanのRTG個別negative oracleは未採択。
+- 不足・残差: 現行の採択済みpairには、全scopeの列挙、source exact set/policy digest/finding countの一体契約、partial/stale scanのRTG個別negative oracleを確認できない。
 - 次owner / PO境界: OS要求側が評価scopeと証拠状態を既存契約へ割り付け、HARNESSが必要な判定oracleの意味を定める。policy/digest schemaを新設する意味選択はPOへ。
 - 結果: **partial**。formal successorなし、authority effectなし。
 
@@ -123,7 +123,7 @@
 - negative oracle: scan実行をcandidate終端へ丸めない。
 - 台帳route: `explanation` / `non_requirement_source_structure_or_explanation`。この監査でrequirement_atomへeffective correctionし、条件とnegative oracleの双方を保存する。累積件数差分は全populationの再pin/recount前には主張しない。
 - 現行との関係: HELIXOS-L2-005/007およびL11は未評価・unknown/stale/partial・findingなし・no actionを相互に補完しない状態として保持する。
-- 不足・残差: 現行L11に状態分離はあるが、評価済みfindingなしからterminal no_actionへの遷移条件、scan実行がcandidateを終端させない個別oracleは未確認。
+- 不足・残差: 現行L11に状態分離はあるが、採択済みpairには評価済みfindingなしからterminal no_actionへの遷移条件や、scan実行がcandidateを終端させない個別oracleを確認できない。
 - 次owner / PO境界: OS要求側が状態遷移・終端条件を、HARNESS要求側がfinding意味を整理する。terminal意味を変える場合は既存POの要求意味判断へ。
 - 結果: **partial**。formal successorなし、authority effectなし。
 
@@ -135,7 +135,7 @@
 - negative oracle: RF0実行・Issue/PLAN/authority writeを行わない。
 - 台帳route: `explanation` / `non_requirement_source_structure_or_explanation`。この監査でrequirement_atomへeffective correctionし、条件とnegative oracleの双方を保存する。累積件数差分は全populationの再pin/recount前には主張しない。
 - 現行との関係: HELIXOS-L2-005とL11は観測・候補・採否・有効化を分け、観測だけ・旧UIL/RF0/CIだけから候補採択や実行を生成しない。
-- 不足・残差: shadow admission状態・UIL-04〜06 gate・RF0実行禁止を一体化した現行段階/side-effect oracleはない。Issue/PLAN/authorityへの遷移は現行OS/authority境界から別途導く。
+- 不足・残差: 採択済みpairにはshadow admission状態・UIL-04〜06 gate・RF0実行禁止を一体化した現行段階/side-effect oracleを確認できない。Issue/PLAN/authorityへの遷移は現行OS/authority境界から別途導く。
 - 次owner / PO境界: OS要求側が候補状態と許可済み既存workflowへのhandoffを整理し、HARNESSが検証義務を定義する。旧UIL/RF0段階や新しいauthority手続きは作らず、要求意味変更だけPOへ。
 - 結果: **partial**。formal successorなし、authority effectなし。
 
