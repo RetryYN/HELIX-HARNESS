@@ -14,7 +14,7 @@
 | 未分類（live exact revisionへの判断なし） | 25 |
 | 合計 | 339 |
 
-「未分類」は採択・保留・不採択の判断を意味しない。MPRの`registered_proposal`や`authority_effect: none`から採否を補わない。HARNESS-L2-049は#11判断が`MPR-RC-HARNESS-L2-049-002`を対象に現revisionを採択しないと明記する一方、live `-003`はそのexact registrationではないため未分類に置く。不採択件数は0。
+「未分類」は採択・保留・不採択の判断を意味しない。MPRの`registered_proposal`や`authority_effect: none`から採否を補わない。HARNESS-L2-049は11候補判断（`po-decision-2026-09-29-11candidates.md`）が`MPR-RC-HARNESS-L2-049-002`を対象に現revisionを採択しないと明記する一方、live `-003`はそのexact registrationではないため未分類に置く。不採択件数は0。
 
 ## 未分類25件（PO review用一覧）
 
@@ -53,9 +53,9 @@
 - MPR registerの行順で各`requirement_identity`の最後のregistrationを選んだ。source_holding 67行は候補identityではないため339 live candidate identityの分母に含めない。
 - 2026-09-28の各PO記録に結び付く固定確認packet commitから当時のMPR最新registrationを読み、250 identityすべてで現在のlatest registration IDと`candidate_semantic_digest`が一致することを確認した。packet commitごとの件数とSHAはJSONの`eight_mechanism_packet_exact_checks`に記録した。
 - 8機構の2026-09-28判断記録の明示候補集合は計250 identity。2026-09-29の57候補判断は42無条件採択・11条件付き採択・4保留。後続11候補判断は8無条件採択・2条件付き採択で、HARNESS-041 `-003`とHELIXOS-038 `-002`について57候補判断より新しいlive revisionを明示する。
-- 同じidentityに複数の判断記録がある場合、live registration IDに完全一致する記録だけを有効化する。#11判断によりHARNESS-041 `-003`とHELIXOS-038 `-002`を扱い、それぞれ古い57候補判断のregistrationから判断を継承しない。
-- 57候補判断とのregistration mismatchはHARNESS-041、HELIXOS-038、HELIXOS-034で確認した。前二者は#11が最新registrationを明示して判断する。HELIXOS-L2-034は#57が`-002`を採択したが、live `-003`はL2 digestが`b4b8…`から`6b019…`へ変わり、L11 section digestも`6809…`からJSON記録のlive値へ変わっている。MPR `correction_reason`はR2314-02の意味反転を記し、exact `-003`へのPO判断を要求する。後続PO判断は見つからず、未分類に残した。HARNESS-049も#11の非採択対象`-002`とlive `-003`が異なるため、未分類である。
-- 暫定集計311採択／24未分類は行単位照合で再現しなかった。exact latest registrationの結果は310採択（297無条件、13条件付き）／4保留／0不採択／25未分類。差の1件はHELIXOS-L2-034 `-003`で、#57採択の`-002`とは意味digestが異なり、後続PO判断がない。
+- 同じidentityに複数の判断記録がある場合、live registration IDに完全一致する記録だけを有効化する。11候補判断（`po-decision-2026-09-29-11candidates.md`）によりHARNESS-041 `-003`とHELIXOS-038 `-002`を扱い、それぞれ古い57候補判断のregistrationから判断を継承しない。
+- 57候補判断とのregistration mismatchはHARNESS-041、HELIXOS-038、HELIXOS-034で確認した。前二者は11候補判断（`po-decision-2026-09-29-11candidates.md`）が最新registrationを明示して判断する。HELIXOS-L2-034は57候補判断（`po-decision-2026-09-29-57candidates.md`）が`-002`を採択したが、live `-003`はL2 digestが`b4b8…`から`6b019…`へ変わり、L11 section digestも`6809…`からJSON記録のlive値へ変わっている。MPR `correction_reason`はR2314-02の意味反転を記し、exact `-003`へのPO判断を要求する。後続PO判断は見つからず、live `-003`を未分類に残した。ただし57候補判断で採択された`-002`の意味は、HARNESS-L2-058／HELIXOS-L2-101と一体に行う`-003`のA／B判断まで有効である。HARNESS-049も11候補判断（`po-decision-2026-09-29-11candidates.md`）の非採択対象`-002`とlive `-003`が異なるため、未分類である。
+- 暫定集計311採択／24未分類は行単位照合で再現しなかった。exact latest registrationの結果は310採択（297無条件、13条件付き）／4保留／0不採択／25未分類。差の1件はHELIXOS-L2-034 `-003`で、57候補判断（`po-decision-2026-09-29-57candidates.md`）で採択の`-002`とは意味digestが異なり、後続PO判断がない。
 - MPRの`registered_proposal`、`authority_effect`、PR/CI等から判断を推定していない。Decision file bytesとMPR bytesのSHA-256は付属JSONの`source_pins`に記録した。
 - これは候補revisionのL1/L2 authority censusであり、旧sourceの全coverage、formal successor、L3承認、実装・受入、配布許可、要求Stage完了を示さない。既存source-first監査に記載された旧source境界を越えていない。
 - 旧HELIXの対応起点は旧`archive/legacy-generation-2026-09-14/root/CLAUDE.md:72-85`のinventory-first／自律境界。旧archiveは参照資料としてのみ扱い、旧CLI・runtime・test・CIは実行していない。

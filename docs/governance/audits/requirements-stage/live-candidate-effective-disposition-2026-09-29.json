@@ -4942,7 +4942,18 @@
       },
       "effective_disposition": "unclassified",
       "decision_record": null,
-      "condition_or_hold_basis": null
+      "condition_or_hold_basis": null,
+      "prior_adopted_revision": {
+        "registration_id": "MPR-RC-HELIXOS-L2-034-002",
+        "candidate_section_digest": "sha256:b4b8a68a15eabdc3dcf40d069fdf262389a43eec1f8ce8647e66ca22e7b9a600",
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "status": "adopted_meaning_effective_until_exact_003_decision",
+        "decision_needed_for_live_revision": "HELIXOS-L2-034 -003のaccepted_risk条件をHARNESS-L2-058/HELIXOS-L2-101と一体でA/B判断する",
+        "evidence_refs": [
+          "docs/governance/audits/requirements-stage/live-mpr-authority-audit-2026-09-29-968e9c5.md",
+          "docs/governance/audits/requirement-registration/os-directive-disposition-coverage-receipt-2026-09-28-r3.json"
+        ]
+      }
     },
     {
       "requirement_identity": "HELIXOS-L2-035",
