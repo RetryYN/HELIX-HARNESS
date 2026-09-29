@@ -1,9 +1,9 @@
 # 旧要求形成Admission intake 47行の分類案
 
-- 対象: #2366 exact HEAD `baaab5bac9db0cf650db3afa67b003c1770efef2`を含む提案overlay文脈の47行。
+- 対象: merged #2366 exact `a9b36cd43866d30aaca7c1edc654a44a36e47eb3`を含む提案overlay文脈の47行。#2366監査JSONのSHA-256は `d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6`。
 - 原文: `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md`。
 - authority effect: `none`。分類案のみで、採用・successor・coverage・受入・実装・完了を示さない。
-- 集計: 製品要求atomを26行維持、管理・工程条件へ7行、説明・来歴・状態へ14行。製品unknown母集団は21行減り、#2366提示値519を起点に498となる算術案。
+- 集計: 製品要求atomを26行維持、管理・工程条件へ7行、説明・来歴・状態へ14行。#2363/#2366の分類提案後の521を基準に、この47行案だけを重ねると500となる算術案。
 
 ## 行別分類案
 
@@ -70,11 +70,13 @@
 | 説明・来歴・状態 | 14 | conditionからexplanationへ移す案 |
 | 合計 | 47 | 製品unknownを21行減らす算術案 |
 
-既存の#2363/#2366 overlay後の提示母集団519を基準にすると、今回の21行差引後は498。これは件数の算術だけで、残る行の製品意味・採否・coverageを判定しない。
+merged #2361 baseline 544に#2363提案の−12、#2366提案の−11を重ねた提案上の母集団は521。今回の47行案は単独で−21となり、521−21=500。これは分類算術のみで、残る行の製品意味・採否・coverageを判定しない。
+
+#2367は独立した51行の分類提案で、現時点でpinしたopen exact HEAD `639929ddb285ce4f193aca75d235edd7835e3b9e`に対する47 IDとの重複は0件。このpinのSHAはJSONに固定した。Claude Major指摘R2367-01の修正は進行中で、親から別途共有された暫定分類は37 product／11 management／3 explanation（差分−14、521→507）だが、修正後exact commit/path/SHAは未提示のため入力pinとして扱わない。現pinの29/13/9・−22も修正前snapshotであり、最終値としない。authority effectはnone。47行案の単独算術521−21=500だけを記録し、#2367との累積はpendingとする。暫定−14が確定し重複なしなら算術上521−14−21=486だが、これは未確定シナリオであり最終countではない。修正後HEAD・merge後にID重複と件数影響を再確認する。
 
 ## 入力pins
 
-JSONの `pinned_inputs` に、#2353/#2356/#2360/#2363/#2366各exact commitの分類案、#2361 effective recount、source ledger、router、archive source、および隣接旧要求・decision-history資料のpathとSHA-256を記録した。
+JSONの `pinned_inputs` に、#2353/#2356/#2360/#2363/#2366各merged commitの分類案、#2361 effective recount、#2367現在のopen HEAD snapshot（ID非重複確認のみ）、source ledger、router、archive source、および隣接旧要求・decision-history資料のpathとSHA-256を記録した。#2367の累積countは修正後に確定する。
 
 ## 根拠と境界
 

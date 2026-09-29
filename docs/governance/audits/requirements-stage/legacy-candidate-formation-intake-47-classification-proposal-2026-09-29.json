@@ -1,14 +1,14 @@
 {
   "schema_version": "legacy-candidate-formation-intake-47-classification-proposal.v1",
   "audit_id": "legacy-candidate-formation-intake-47-classification-proposal-2026-09-29",
-  "base_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+  "base_commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
   "authority_effect": "none",
   "audit_mode": "read_only_source_classification_proposal",
   "scope": {
     "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
     "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
     "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
-    "effective_baseline": "47 rows represented by condition / product_requirement_atom / unknown after the proposed #2353/#2356/#2360/#2363/#2366 overlay context at #2366 exact HEAD",
+    "effective_baseline": "The 47 target source IDs remain condition/product_requirement_atom/unknown in the #2361 full-source population after applying the disjoint merged #2363 and #2366 classification proposals. Proposed product-unknown arithmetic starts at 521 after those two proposals; 519 is superseded.",
     "row_count": 47,
     "classification_count": {
       "product_requirement_atom": 26,
@@ -16,111 +16,127 @@
       "explanation": 14
     },
     "rows_leaving_product_unknown_population": 21,
-    "resulting_product_unknown_population_from_519": 498,
-    "population_note": "#2366 states the combined proposed #2363/#2366 overlay result as 519 from #2361 population 543; applying this 47-row proposal yields 498 if prior proposals remain unchanged. This is count arithmetic only."
+    "population_note": "This 47-row proposal alone moves 21 rows out of product unknown: 521−21=500. #2367 is an open proposal under correction; its current exact HEAD was checked for ID overlap only. Its delta and any combined arithmetic remain pending corrected HEAD review/merge.",
+    "product_unknown_baseline_after_2363_2366_proposals": 521,
+    "resulting_product_unknown_population_from_521": 500,
+    "proposal_overlap_checks": {
+      "pr_2367_open_head_snapshot": "639929ddb285ce4f193aca75d235edd7835e3b9e",
+      "pr_2367_row_count_at_snapshot": 51,
+      "overlap_count_at_snapshot": 0,
+      "overlap_ids_at_snapshot": [],
+      "status": "The pinned exact open HEAD 639929d is the only source revision verified here; a later R2367-01 interim classification summary was communicated but has no exact commit/path/SHA pin. Recheck source IDs after the corrected HEAD is fixed."
+    }
   },
   "pinned_inputs": [
     {
-      "role": "effective_unknown_population_before_this_proposal",
-      "commit": "aab65a4f1bc2f679530604cb7f89519683b9156c",
+      "role": "pr_2361_product_unknown_baseline_before_2363_2366_proposals",
+      "commit": "132a56f3f2cbb1d02ad3bc08bab4f23ef93369cc",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-stage5-recount-after-2353-2356-2360-2026-09-29.json",
-      "sha256": "ff1da2c7e563f25b7044318670e1808a6463afcac82857764d917878fb5046a5"
+      "sha256": "e29aadd8c84dda8fcfca65010ffa62331b6631ffce3ac22ef5d174270bb92b20"
     },
     {
       "role": "row_identity_and_prior_route_snapshot",
-      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
       "sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3"
     },
     {
       "role": "source_line_ledger",
-      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
       "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
       "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
     },
     {
       "role": "archive_source",
-      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
       "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
       "sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d"
     },
     {
       "role": "overlay_2353",
-      "commit": "8a75e5392a44e005bb05197d977bdbcf75b93cf0",
+      "commit": "97672630b7de70fd4433827730c390cbabd90a99",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
-      "sha256": "57fce8a0e05ed73c46346f2177c439e862a17a06ecea65446389f24dc34160c5"
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c"
     },
     {
       "role": "overlay_2356",
-      "commit": "b213b41735067d1716c143c92e0fa6c71d8e92d9",
+      "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
-      "sha256": "53c8acc872f30cf19e88499bc68b0f11c830a677f5c346d646a148dd3ca7853b"
+      "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164"
     },
     {
       "role": "overlay_2360",
-      "commit": "89a5f57cbc8dc6b0dc6828233992640c919fb03c",
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
-      "sha256": "71fa35e0b3f8bfeb9781cbe2b9b21322d8e5be7866c71bce2abbca8cdca43ddd"
+      "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb"
     },
     {
       "role": "overlay_2363",
-      "commit": "5c2fcc39daaeb0a7433ef34d4182a1a82a70a3d4",
+      "commit": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
-      "sha256": "8d1a2e222d46b794f96ae93fd8a9957e0d4fd9568e374e43a13ccfe7b81fca42"
+      "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384"
     },
     {
       "role": "overlay_2366",
-      "commit": "baaab5bac9db0cf650db3afa67b003c1770efef2",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
-      "sha256": "a300695c9e37a95cbc5e17748c0b0c477390a5673ee597461e20bb1d8d831244"
+      "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6"
     },
     {
       "role": "adjacent_old_request_source",
-      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
       "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requests.md",
       "sha256": "f6379e1294bf4c68c93430903f24949d5373a60b82e5286ac34d51a5eb614a2e"
     },
     {
       "role": "adjacent_old_requirement_source",
-      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
       "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requirements.md",
       "sha256": "97e1e5341beb48e735aacab3b3957b0707fa6aef2e70d0af8c0051607082e155"
     },
     {
       "role": "adjacent_old_acceptance_source",
-      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
       "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-acceptance.md",
       "sha256": "c3f62478904e620eced270996360274e2840f9d94eca117d838d0e6dfeda7a86"
     },
     {
       "role": "adjacent_old_recognition_source",
-      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
       "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-recognition.md",
       "sha256": "93114a3ca0c550a370f0c06e96e9f5bafb922a2eddbdbf211c557919c58e6f74"
     },
     {
       "role": "adjacent_old_plan_decision_history",
-      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
       "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-90-requirement-formation-scoped-admission.md",
       "sha256": "220ff1d7cc3bbc316d4347698aee3b8e81308e27638bfe5e6669baec400a2b35"
     },
     {
       "role": "adjacent_old_requirement_reentry_contract",
-      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
       "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
       "sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4"
     },
     {
       "role": "adjacent_old_admission_contract",
-      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
       "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
       "sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6"
     },
     {
       "role": "historical_source_retention_record",
-      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
       "path": "archive/legacy-generation-2026-09-14/root/docs/governance/request-source-cleanup-2026-09-06.md",
       "sha256": "9ef3942001682e11f18e507c5b8577192f97b14672ce9544b684e837493cb6e3"
+    },
+    {
+      "role": "open_2367_head_snapshot_for_id_nonoverlap_only",
+      "commit": "639929ddb285ce4f193aca75d235edd7835e3b9e",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
+      "sha256": "d76900f020b51519b952987f2aea9a45255f48f3ca400ffa42aa1011fd5af2c5",
+      "authority_effect": "none; open proposal under correction",
+      "role_note": "51-row current-open-head source-ID set checked for nonoverlap only; proposal delta and cumulative arithmetic are pending corrected HEAD review/merge"
     }
   ],
   "classification_rules": [
@@ -1195,5 +1211,52 @@
     "No source requirement adoption or requirement meaning decision.",
     "No successor assignment, relation, coverage, acceptance, implementation, or closure claim.",
     "All source rows remain immutable historical_candidate bytes; proposed category is audit-only."
-  ]
+  ],
+  "count_impact": {
+    "baseline_after_2363_and_2366_proposals": 521,
+    "this_47_row_proposal": {
+      "product_requirement_atom_retained": 26,
+      "management_process_condition": 7,
+      "explanation": 14,
+      "product_unknown_delta": -21,
+      "standalone_proposed_product_unknown": 500
+    },
+    "authority_effect": "none; classification proposal only",
+    "cumulative_with_2367": "Pending corrected #2367 exact HEAD review/merge and refreshed ID overlap. If the communicated interim delta −14 is confirmed and disjoint, the arithmetic would be 521−14−21=486; this is not a finalized count.",
+    "interpretation": "Only this 47-row proposal standalone arithmetic is finalized in this audit: 521−21=500. #2367 current/open or interim classifications are not applied.",
+    "pr_2367_open_exact_pinned_head_snapshot": {
+      "source_revision": "639929ddb285ce4f193aca75d235edd7835e3b9e",
+      "classification_count": {
+        "product_requirement_atom": 29,
+        "management_process_condition": 13,
+        "explanation": 9
+      },
+      "product_unknown_delta": -22,
+      "status": "The pinned audit snapshot is under correction; do not use this delta as final or cumulative."
+    },
+    "pr_2367_r2367_01_interim_unpinned": {
+      "row_count": 51,
+      "reported_classification_count": {
+        "product_requirement_atom": 37,
+        "management_process_condition": 11,
+        "explanation": 3
+      },
+      "reported_product_unknown_delta": -14,
+      "reported_standalone_scenario_from_521": 507,
+      "exact_commit_path_sha256": "pending corrected #2367 HEAD",
+      "status": "Provisional communicated summary only; not pinned, authority_effect none, excluded from this proposal calculation."
+    }
+  },
+  "verification": {
+    "row_count": 47,
+    "unique_source_ids": true,
+    "open_2367_exact_head_id_nonoverlap_snapshot": true,
+    "open_2367_final_delta_or_cumulative_effect_claimed": false,
+    "full_population_recount_performed": false,
+    "all_direct_pins_path_commit_sha256_verified": true,
+    "all_47_source_file_line_and_physical_hashes_verified": true,
+    "standalone_521_to_500_arithmetic_verified": true,
+    "pr_2367_current_pinned_snapshot_nonoverlap_only": true,
+    "pr_2367_corrected_interim_not_pinned_or_applied": true
+  }
 }
