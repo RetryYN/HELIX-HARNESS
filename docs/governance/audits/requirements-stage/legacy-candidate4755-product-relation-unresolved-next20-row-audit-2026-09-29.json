@@ -60,8 +60,8 @@
     {
       "label": "cumulative_proposed_audit_json",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
-      "revision": "9926aebfbec7813d14a84490758783153422d99e",
-      "sha256": "5d810a881d29711b0640e8641df2678b6fe9ee41767936d0289e0cf0e4948110"
+      "revision": "8a75e5392a44e005bb05197d977bdbcf75b93cf0",
+      "sha256": "57fce8a0e05ed73c46346f2177c439e862a17a06ecea65446389f24dc34160c5"
     },
     {
       "label": "prior_first20_audit_json",
