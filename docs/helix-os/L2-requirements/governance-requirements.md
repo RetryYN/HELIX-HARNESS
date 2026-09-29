@@ -1376,3 +1376,14 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - **既存要求との境界**：HELIXOS-L2-015のsource identity/revision/digest/authorityとunknown保持を使うが、一般要件を置換しない。HELIXOS-L2-108のartifact→consumer relation projectionおよびL2-109のsource-to-consumer provenance chainを再定義・拡張しない。各候補が別に選択したscope/edgeだけを本入力へ渡せる。severity、優先順位、auto-repair、本文書換え、削除、owner rehome、formal successor、全repo census、未提示consumerの完全性、旧runtime/CLI/test/CIは定めない。
 - **旧source・限定範囲**：`LEGACY-ASSET-D201753B1A0CC6EA3980`の旧DAC-FR-010 line 57一atomをcandidate inputとする。旧DAC-R-010 line 65とDAC-AC-016 line 41は旧source上の差分対象とoracle名を確認する関連contextであり、candidate input atomに含めない。旧DAC-NFR-002 line 64はhistorical/compatibility/referenceの非finding境界の根拠として参照し、その全条件やactive-decision拒否意味はcandidate inputに含めない。`MPR-SH-CONFIRMED-003`を生存させ、旧source owner、formal successor、適用対象、source全体のclosure、採択、実装・実行・受入を未確定に保つ。
 - **version_target**：旧DAC sourceのversion 1.0を参照情報として記録する。現行適用版と候補採択は未確定。
+
+### HELIXOS-L2-111 三つの独立receiptのAND結合候補（未採択）
+
+- **状態・authority**：HELIX-OSの未採択候補。仮登録は`registered_proposal`／`authority_effect: none`。候補本文と静的receipt案は、要求採択、実装、receipt発行、Census完了、または受入を示さない。
+- **親L1・責務候補**：採択済み`HELIXOS-L1-001`、`HELIXOS-L1-004`、`HELIXOS-L1-008`に接続する管理上の結合候補。各receiptの意味、生成者、scope、authority、証拠はそれぞれの既存ownerが持ち、この候補はownerや責務を移さない。
+- **入力集合候補**：candidate input atomは`MPR-SH-CONFIRMED-003`が保持する旧DAC-FR-009 line 56の一atomだけとする。この行が示す要求materialization監査（`#825`）、startup projection（`#1370`）、Document Authority Censusの三receiptを別々の入力として受け取る。各receiptのidentity、対象revision、scope、provenance、および明示statusを独立して保持する。Issue番号は旧source上の参照ラベルであり、現在の要求・契約・receipt identityとのexact mappingは未確認のため推定しない。
+- **結合条件候補**：aggregateを`green`とするのは、上記三つの独立receiptがすべて明示的に`green`を返す場合だけとする。一つでも明示的な非greenがある場合はaggregateをgreenにしない。receiptがmissing、stale、unknown、または別の非green状態を示す場合、その入力状態とprovenanceを保持し、aggregateをgreenにしない。aggregate状態の優先順位、状態変換、欠損の修復、receipt内容の再評価は定めない。
+- **分離境界**：旧DAC-FR-009が併記する`#206`は旧surface是正の責務境界を示す参照として記録するが、旧DAC-R-011が列挙する三つの独立receiptには含めない。`#206`を第四receiptとして扱わず、その現行契約・責務対応も推定しない。
+- **既存要求との境界**：既存のL2要求やCI・review・Censusの具体的な監査条件を再定義しない。三receiptの内部schema、green判定根拠、監査方法、receipt発行者、issue lifecycle、severity、merge admissionを定めず、GitHub Issue状態からreceipt statusを生成しない。
+- **旧source・限定範囲**：candidate input atomは旧DAC-FR-009 line 56一行だけとする。DAC-R-011 line 66とDAC-AC-017 line 42は三receiptの独立性と境界を確認する関連context/oracle evidenceであり、confirmed175 holdingやcandidate input atomとして数えない。`MPR-SH-CONFIRMED-003`を生存させ、旧source owner、formal successor、対象適用範囲、採択、実装・実行・受入およびsource全体のclosureを未確定に保つ。
+- **version_target**：未指定。旧sourceのversion 1.0を現行適用版や候補採択へ読み替えない。

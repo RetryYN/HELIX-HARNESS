@@ -978,3 +978,13 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **negative fixture**： (a) active consumer pinがcurrent epoch/digestとsource identity/scopeまで一致する、または (b) compatibility/historical/reference artifactにold pinはあるがactive decision consumer edgeが示されない入力を与える。いずれも本候補findingを出さない。artifactの存在・古さ・digest不一致のみで代替findingを推測しない。
 - **unknown fixture**：semantic epoch evidenceを欠落させた入力、またはsource revision/digest、active性、consumer edge、scopeの一つをmissing/unknown/stale/conflictにした入力を与える。epoch変更・stale・適合のいずれも推定せずunknownを保持する。digest差だけでpositiveへ昇格しない。
 - **受入境界**：fixturesは明示入力1 source/consumer関係の結果を静的に照合する。severity、全consumer列挙、リポジトリcensus、findingの分類/route追加、owner移管、ticket発行、修復、削除、要求採択、L3承認を評価しない。旧DAC-R-010/DAC-AC-016の記述は期待結果の根拠として参照するだけで、旧test/runtime/CLI/CIは実行しない。
+
+### HELIXOS-L11-111 独立した三receiptのAND結合受入候補（未実行）
+
+- **対応要求・状態**：未採択`HELIXOS-L2-111`の静的oracle候補。receipt発行、旧Census runtime、要求採択、実装または実acceptanceを示さない。
+- **positive fixture**：三つの別々の入力receiptを用意し、それぞれが明示status `green`、異なるreceipt identityとsource provenanceを持つ例を与える。aggregateがgreenとなる条件が三つすべての明示greenであること、および各入力のidentity・revision・scope・provenanceが混同されず保持されることを照合する。
+- **negative fixture**：一receiptずつ、三入力のうち一つを明示的な非greenにした例を与える。どの一つでも非greenならaggregateをgreenにしないことを確認する。残る二つのgreenで不足receiptを代替しない。
+- **missing／stale／unknown fixture**：三receiptのいずれかをmissing、stale、unknown、または明示された別の非green状態にする例を個別に与える。該当statusとprovenanceをそのまま残し、aggregateをgreenにしない。status間の優先順位、変換、欠損の補完はfixture条件にしない。
+- **receipt分離境界**：旧source上の`#825`、`#1370`、Census receiptの三つだけを入力集合に含める。`#206`はFR-009にある責務境界の参照として扱い、receipt入力や第四のgreen条件に追加しない。Issue番号やIssue状態だけをreceipt、authority、greenの根拠にしない。
+- **受入境界**：fixtureで照合するのは明示入力receiptの独立性、status保持、三者AND条件だけである。各監査の意味・方法・内部schema、current issueやreceiptへのmapping、owner移管、旧source全体closure、実Census／startup／materialization実行、severity、repair、merge可否を検証しない。旧runtime／CLI／test／CIは実行しない。
+- **旧sourceと未解決**：candidate input atomは`MPR-SH-CONFIRMED-003`が保持するDAC-FR-009 line 56一atomに限定する。DAC-R-011 line 66とDAC-AC-017 line 42は独立receiptと負例の関連context/oracle evidenceであり、confirmed175 holdingまたはcandidate inputではない。各source owner、formal successor、適用scope、採択、実行受入を未確定のまま維持する。

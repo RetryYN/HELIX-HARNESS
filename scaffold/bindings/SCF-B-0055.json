@@ -60,7 +60,7 @@
     },
     {
       "path": "scaffold/phcap15-deploy-followup-research/inventory.json",
-      "sha256": "e95f10202f99cc3bbe60c4c635093fff93674f70005c7b1df1cdd4e4bab92926",
+      "sha256": "2dae2879c9d2fe98cdf7a1481513013a126f3a973f09ee8b2ca7bae40ebe880e",
       "note": "pool／exclusion／12 selected asset static inventory [2026-09-29 OS-038-002 transitive current-pin refresh: updated changed current input `scaffold/phcap15-deploy-followup-research/inventory.json` SHA 97f9872a8c8bf5717c8a51408cd60993f476937768d7d66446db29842cc9d617 -> b5abccbf33ae44796b62d8e062a9230a6e106dc2e21684a7a1578b8f7b19614f. Scaffold role, obligations and authority remain unchanged.] [2026-09-29 R2301-01/02/03 correction: current upstream pin follows reviewed OS-038-002 candidate or PHCAP-20 validator; fixed research input snapshots and adopted revision remain unchanged; authority unaffected.] [2026-09-29 current-pin read-after: scaffold/phcap15-deploy-followup-research/inventory.json follows current candidate/register bytes; previous=1d7998270962cad321627ceb2a9883b65d1a53086ff5e639a02e02fc9d6d4323; current=a8ae0976090e406031482d89f92832a0bd94c21d9bb66eb03ac633b7723d1c40; binding role/obligations/connections/operations/verification/replacement and authority unchanged.]"
     },
     {
