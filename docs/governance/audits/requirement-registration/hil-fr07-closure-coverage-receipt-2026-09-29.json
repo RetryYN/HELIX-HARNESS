@@ -29,8 +29,8 @@
         "FR07-EVIDENCE-ORACLE-L0097",
         "FR07-OUTPUT-CLOSE-ELIGIBILITY-L0097"
       ],
-      "candidate_semantic_digest": "sha256:92629740d40f74a4b6629f814ee8b68b0da1b2d61dfc2205318203f56977c3f6",
-      "paired_l11_section_digest": "sha256:2d8b255d4b678f616056db615d81faa818fb30c3fd91cd73e71ade87f6d01718",
+      "candidate_semantic_digest": "sha256:2c487f5408d31f0f982ab210be3df4d1d824bd75169b96bd1321cb0edd2a23ac",
+      "paired_l11_section_digest": "sha256:8cc4692c5b2eb356809f30b47a3addb9206c0c4e0f4c11d9f505426cf7fe83e1",
       "source_l1_revision": "docs/helix-harness/L1-planning/product-intent.md@9c635c475100c17e13da69f5fde5295570f0b1ae sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f"
     },
     "HELIXOS-L2-054": {
@@ -45,8 +45,8 @@
         "FR07-EVIDENCE-CHILD-ISSUE-STATE-L0097",
         "FR07-OUTPUT-CLOSURE-RECEIPT-L0097"
       ],
-      "candidate_semantic_digest": "sha256:d44693a9c442e471e354ce0445955da6289f1d3bece953d0cca3d8f26e9ec1c9",
-      "paired_l11_section_digest": "sha256:fe8e399636b849e9f4cc6d4013b76ef32b9e97737c8811e8ba881a1e99fb838c",
+      "candidate_semantic_digest": "sha256:a9c1561ab310399fa27d5aca8bd9ebca8264176516357470157526df8c297eef",
+      "paired_l11_section_digest": "sha256:1021d37a8c3a94113c94aa1b92d3e8a79ae758f274aa40b570b5d151f7233aac",
       "source_l1_revision": "docs/helix-os/L1-planning/system-intent.md@9c635c475100c17e13da69f5fde5295570f0b1ae sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e"
     }
   },
