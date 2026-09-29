@@ -8,7 +8,7 @@
   "legacy_requirement_state": "preserved_pending_rehome",
   "formal_successor_assignment": false,
   "source_atom_file": "docs/governance/audits/requirement-registration/hil-fr07-closure-source-lines-2026-09-29.jsonl",
-  "source_atom_file_sha256": "sha256:c1ad716449aff755aebfbc362516b4b434384ea3ba7c5edadcdd5f91b4eac136",
+  "source_atom_file_sha256": "sha256:8f49295605e48ae7d05ab7340e583624c76702626eb1181d658f5124922d4652",
   "source_atom_count": 9,
   "source_atom_scope": "HIL-FR-07 source line 97 only; nine non-overlapping requirement/output atoms. Assertion cases are separate oracle refs and are not requirement atoms. HIL-FR-10 line 100 is contextual memory-compaction meaning, not counted.",
   "source_line": {
@@ -59,7 +59,7 @@
     "carried_to_HARNESS_L2_057": 2,
     "carried_to_HELIXOS_L2_054": 6,
     "preserved_pending": 1,
-    "relation": "Each of the nine selected HIL-FR-07 line atoms appears exactly once in one partition. This split is a candidate responsibility partition, not adoption or formal successor assignment."
+    "relation": "Each of the nine selected HIL-FR-07 line atoms appears exactly once in one partition. The two output atoms depend on the held memory-compaction atom: HARNESS-L2-057 returns only the carried-condition result, and HELIXOS-L2-054 records the final closure receipt only if full close eligibility is established separately. This is a candidate responsibility partition, not adoption or formal successor assignment."
   },
   "preserved_pending_registration_refs": [
     "MPR-SH-SEMANTIC-LINE-003#REQSRC-LINE-01848 (FR07-EVIDENCE-MEMORY-COMPACTION-L0097 preserved pending)",
@@ -176,5 +176,9 @@
   "old_runtime_or_test_execution": false,
   "blanket_ir_closure": false,
   "registered_at_worktree": "2026-09-29T09:06:33+09:00",
-  "source_atom_set_digest_rule": "For each candidate subset, select only source atom JSONL rows whose candidate_identity is that exact candidate; sort by atom_id ascending; concatenate UTF-8 lines `atom_id + U+0020 + source_line_sha256 with sha256: prefix removed + LF`; SHA-256 the resulting bytes. Oracle references are not source atoms and are excluded. The pending memory-compaction atom is excluded from both candidate subsets and remains in the pending partition."
+  "source_atom_set_digest_rule": "For each candidate subset, select only source atom JSONL rows whose candidate_identity is that exact candidate; sort by atom_id ascending; concatenate UTF-8 lines `atom_id + U+0020 + source_line_sha256 with sha256: prefix removed + LF`; SHA-256 the resulting bytes. Oracle references are not source atoms and are excluded. The pending memory-compaction atom is excluded from both candidate subsets and remains in the pending partition.",
+  "output_atom_relations": {
+    "FR07-OUTPUT-CLOSE-ELIGIBILITY-L0097": "HARNESS-L2-057は候補へ移した8条件の成立結果のみを担う。memory条件を含む旧HIL-FR-07全体のclose可否は、holdingのFR07-EVIDENCE-MEMORY-COMPACTION-L0097の扱いが決まるまで確定しない。",
+    "FR07-OUTPUT-CLOSURE-RECEIPT-L0097": "HELIXOS-L2-054は候補対象条件の成立結果を受け、holdingのFR07-EVIDENCE-MEMORY-COMPACTION-L0097を含む旧要求全体のclose可否が別途確認できた場合に限り、実際のclose operation結果とclosure receiptを対応付ける。"
+  }
 }
