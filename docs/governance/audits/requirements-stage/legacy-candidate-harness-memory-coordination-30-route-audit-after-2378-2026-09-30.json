@@ -629,12 +629,12 @@
           },
           "L11_acceptance_locator_separate": {
             "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-            "line": 171,
+            "line": 175,
             "substantive_body_lines": [
               88,
               110,
               164,
-              171,
+              172,
               175
             ],
             "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
@@ -654,12 +654,12 @@
           },
           "L11_acceptance_locator_separate": {
             "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-            "line": 171,
+            "line": 175,
             "substantive_body_lines": [
               88,
               140,
               164,
-              171,
+              172,
               175
             ],
             "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
@@ -2413,12 +2413,12 @@
           },
           "L11_acceptance_locator_separate": {
             "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-            "line": 171,
+            "line": 175,
             "substantive_body_lines": [
               88,
               110,
               164,
-              171,
+              172,
               175
             ],
             "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
@@ -2438,12 +2438,12 @@
           },
           "L11_acceptance_locator_separate": {
             "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-            "line": 171,
+            "line": 175,
             "substantive_body_lines": [
               88,
               140,
               164,
-              171,
+              172,
               175
             ],
             "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
@@ -2454,7 +2454,7 @@
         "HELIXOS-L2-001",
         "HELIXOS-L2-005"
       ],
-      "direct_overlap": "要求・設計・受入・運用規則・利用者設定をmemoryの正本にしない部分はHMC-BR-003（OS L2:362／L11:171,175）に一致する。",
+      "direct_overlap": "要求・設計・受入・運用規則・利用者設定をmemoryの正本にしない部分はHMC-BR-003（OS L2:362／L11:172,175）に一致する。",
       "residual_or_difference": "正本にしない対象の全列挙、provider設定・個人設定・AI解釈の個別隔離条件、pointerのみを使う型は固定述語にない。",
       "authority_effect": "none",
       "hmc_adopted_relation_evidence": {
@@ -4141,12 +4141,12 @@
           },
           "L11_acceptance_locator_separate": {
             "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-            "line": 171,
+            "line": 175,
             "substantive_body_lines": [
               88,
               110,
               164,
-              171,
+              172,
               175
             ],
             "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
@@ -4166,12 +4166,12 @@
           },
           "L11_acceptance_locator_separate": {
             "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-            "line": 171,
+            "line": 175,
             "substantive_body_lines": [
               88,
               140,
               164,
-              171,
+              172,
               175
             ],
             "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
@@ -4183,7 +4183,7 @@
         "HELIXOS-L2-005",
         "HELIXOS-L2-015"
       ],
-      "direct_overlap": "project authorityとruntime interpretation/personalizationを分け、要求等をmemoryの正本にしない部分はHMC-BR-003（OS L2:362／L11:171,175）に重なる。",
+      "direct_overlap": "project authorityとruntime interpretation/personalizationを分け、要求等をmemoryの正本にしない部分はHMC-BR-003（OS L2:362／L11:172,175）に重なる。",
       "residual_or_difference": "7種の分類名と未分類entryの扱いは採択済みtaxonomyではない。",
       "authority_effect": "none",
       "hmc_adopted_relation_evidence": {
@@ -4316,12 +4316,12 @@
           },
           "L11_acceptance_locator_separate": {
             "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-            "line": 171,
+            "line": 175,
             "substantive_body_lines": [
               88,
               110,
               164,
-              171,
+              172,
               175
             ],
             "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
@@ -4341,12 +4341,12 @@
           },
           "L11_acceptance_locator_separate": {
             "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-            "line": 171,
+            "line": 175,
             "substantive_body_lines": [
               88,
               140,
               164,
-              171,
+              172,
               175
             ],
             "basis": "fixed paired L11 acceptance body; HMC-specific condition locator"
@@ -4358,7 +4358,7 @@
         "HELIXOS-L2-005",
         "HELIXOS-L2-015"
       ],
-      "direct_overlap": "利用者設定・runtime解釈・誤ったPLAN由来の情報で正本を書き換えない部分はHMC-BR-003（OS L2:362／L11:171,175）および採択HELIXOS-L2-015のauthority不生成条件に重なる。",
+      "direct_overlap": "利用者設定・runtime解釈・誤ったPLAN由来の情報で正本を書き換えない部分はHMC-BR-003（OS L2:362／L11:172,175）および採択HELIXOS-L2-015のauthority不生成条件に重なる。",
       "residual_or_difference": "各view/startup/approval/merge経路の全隔離表と履歴を保持するprojection条件は候補固有の残差。",
       "authority_effect": "none",
       "hmc_adopted_relation_evidence": {
