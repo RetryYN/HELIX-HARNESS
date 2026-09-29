@@ -78,3 +78,7 @@
 ## 後続限定監査：PHCAP-13／GH-FR-018 DB収束条件
 
 旧`LEGACY-ASSET-8686BB8CF396BAF57F2E`（`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-merge-admission-requirements.md`、file SHA-256 `cdd4f9fd0ab9b4862ec52c6b6dbcd9fd5f97c5e7bb5440f1b2cda69d37c504f8`）のGH-FR-018 lines 27–29が定める隔離`harness.db`収束receipt条件を、origin/main `968e9c517366112093090ba4d874b3ca6b18af6b`のmerge operationへ局所照合した。[限定crosswalk](phcap13-ghfr018-db-convergence-crosswalk-2026-09-29.md)は、現行`scfctl stale=0`とmerge後read-afterを旧DB event/projection/checkpoint/rebuild oracleと同一視せず、旧条件の保持・再導出・置換・retireやsuccessorを決めない。旧PHCAP-13のconsumer／実装closure、要求stage完了は未証明のまま残す。
+
+## 後続限定監査：confirmed175 DAC-FR-004〜008
+
+旧`LEGACY-ASSET-D201753B1A0CC6EA3980`のconfirmed identities `DAC-FR-004`〜`DAC-FR-008`（archive `document-authority-census-requests.md:51–55`、file SHA-256 `81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66`）を、17eb59cd基準main上のOS/HARNESS L2/L11に照合した。[条件別crosswalk](confirmed175-dac-fr004-008-condition-crosswalk-2026-09-29.md)はL2-015等の既決要求へのrelationと、逆consumer graph、provenance chain、severity/disposition、debt ratchet、typed finding taxonomyの未達positive/negative oracleまたは未確定意味を分けて記録する。5 atomは引き続き`preserved_pending_rehome`でsuccessor未割当。近接FR-003監査のL2-106候補をこの5 atomへ拡張せず、候補採択・owner移管・source closure・実装・L11実行を主張しない。
