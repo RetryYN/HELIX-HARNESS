@@ -1,0 +1,328 @@
+{
+  "schema_version": "helix-legacy-candidate4755-stage5-cumulative-recount.v1",
+  "audit_id": "legacy-candidate4755-cumulative-stage5-recount-after-2353-2356-2360-2026-09-29",
+  "base_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+  "authority_effect": "none",
+  "method": "Read all 4755 row_records from exact #2353 cumulative proposal; apply exact #2356 and #2360 overlay rows by source ID; recount classification, subtype, route status, and #2359 resampling without semantic relation inference.",
+  "pinned_inputs": [
+    {
+      "role": "cumulative_4755_row_recount",
+      "commit": "8a75e5392a44e005bb05197d977bdbcf75b93cf0",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "sha256": "57fce8a0e05ed73c46346f2177c439e862a17a06ecea65446389f24dc34160c5"
+    },
+    {
+      "role": "metadata_classification_overlay",
+      "commit": "b213b41735067d1716c143c92e0fa6c71d8e92d9",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "sha256": "53c8acc872f30cf19e88499bc68b0f11c830a677f5c346d646a148dd3ca7853b"
+    },
+    {
+      "role": "seven_row_classification_overlay",
+      "commit": "89a5f57cbc8dc6b0dc6828233992640c919fb03c",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+      "sha256": "71fa35e0b3f8bfeb9781cbe2b9b21322d8e5be7866c71bce2abbca8cdca43ddd"
+    },
+    {
+      "role": "sample_under_resampling",
+      "commit": "4096b10020fd75fe8fc4f200855f27435912fc6f",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-unknown-reselected-next20-route-audit-2026-09-29.json",
+      "sha256": "761628e1b5e190d6cc1a52cd13ec27558bec7b128f796ab391237e472ce27e15"
+    },
+    {
+      "role": "prior_first20_exclusion_ids",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-unknown-product-atoms-first20-route-audit-2026-09-29.json",
+      "sha256": "c91406a58328d8820b6413a7f699c8a6d71ab89f289652e73d374643b6117273"
+    },
+    {
+      "role": "source_router",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+      "sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3"
+    },
+    {
+      "role": "source_line_carry_forward_ledger",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+    },
+    {
+      "role": "authority_decision",
+      "commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+    }
+  ],
+  "overlay_ids": {
+    "2356": [
+      "LEGACY-CAND-LINE-000111",
+      "LEGACY-CAND-LINE-000250",
+      "LEGACY-CAND-LINE-000251",
+      "LEGACY-CAND-LINE-000252",
+      "LEGACY-CAND-LINE-000287",
+      "LEGACY-CAND-LINE-000288",
+      "LEGACY-CAND-LINE-000289",
+      "LEGACY-CAND-LINE-000290",
+      "LEGACY-CAND-LINE-000382"
+    ],
+    "2360": [
+      "LEGACY-CAND-LINE-000140",
+      "LEGACY-CAND-LINE-000142",
+      "LEGACY-CAND-LINE-000143",
+      "LEGACY-CAND-LINE-000180",
+      "LEGACY-CAND-LINE-000331",
+      "LEGACY-CAND-LINE-000476",
+      "LEGACY-CAND-LINE-000477"
+    ]
+  },
+  "counts": {
+    "effective_classification": {
+      "structure": 926,
+      "explanation": 2928,
+      "condition": 901,
+      "total": 4755
+    },
+    "condition_subtype": {
+      "product_requirement_atom": 892,
+      "management_process_condition": 8,
+      "concept_condition": 1,
+      "total": 901
+    },
+    "condition_route_status": {
+      "unknown": 544,
+      "source_relation_coverage_unresolved": 141,
+      "unadopted_candidate_relation_only": 162,
+      "adopted_relevant_partial": 27,
+      "partial": 16,
+      "management_successor_unresolved": 7,
+      "unresolved": 2,
+      "outside_product_route_population": 1,
+      "covered_limited": 1,
+      "total": 901
+    },
+    "product_requirement_atom_route": {
+      "known": 349,
+      "unknown": 543,
+      "total": 892,
+      "known_definition": "condition subtype product_requirement_atom with route_status other than unknown; this is a route label count, not coverage or adoption"
+    },
+    "equations": {
+      "classification": "#2353 926/2918/911 + #2356 0/+8/-8 + #2360 0/+2/-2 = 926/2928/901",
+      "subtype": "#2353 product 904, management 6, concept 1; #2356 product -9/management +1; #2360 product -3/management +1 = product 892, management 8, concept 1",
+      "product_route": "#2353 known 346/unknown 558; #2356 removes 9 unknown product rows; #2360 moves three product rows unknown to adopted_relevant_partial and removes 000180/476/477 from product unknown = known 349/unknown 543"
+    }
+  },
+  "resampling_2359": {
+    "original_head": "4096b10020fd75fe8fc4f200855f27435912fc6f",
+    "original_selected_ids": [
+      "LEGACY-CAND-LINE-000052",
+      "LEGACY-CAND-LINE-000108",
+      "LEGACY-CAND-LINE-000109",
+      "LEGACY-CAND-LINE-000110",
+      "LEGACY-CAND-LINE-000140",
+      "LEGACY-CAND-LINE-000142",
+      "LEGACY-CAND-LINE-000143",
+      "LEGACY-CAND-LINE-000180",
+      "LEGACY-CAND-LINE-000331",
+      "LEGACY-CAND-LINE-000356",
+      "LEGACY-CAND-LINE-000396",
+      "LEGACY-CAND-LINE-000425",
+      "LEGACY-CAND-LINE-000468",
+      "LEGACY-CAND-LINE-000470",
+      "LEGACY-CAND-LINE-000472",
+      "LEGACY-CAND-LINE-000474",
+      "LEGACY-CAND-LINE-000476",
+      "LEGACY-CAND-LINE-000477",
+      "LEGACY-CAND-LINE-000478",
+      "LEGACY-CAND-LINE-000491"
+    ],
+    "removed_by_2360": [
+      "LEGACY-CAND-LINE-000142",
+      "LEGACY-CAND-LINE-000143",
+      "LEGACY-CAND-LINE-000180",
+      "LEGACY-CAND-LINE-000331",
+      "LEGACY-CAND-LINE-000476",
+      "LEGACY-CAND-LINE-000477"
+    ],
+    "retained_ids": [
+      "LEGACY-CAND-LINE-000052",
+      "LEGACY-CAND-LINE-000108",
+      "LEGACY-CAND-LINE-000109",
+      "LEGACY-CAND-LINE-000110",
+      "LEGACY-CAND-LINE-000140",
+      "LEGACY-CAND-LINE-000356",
+      "LEGACY-CAND-LINE-000396",
+      "LEGACY-CAND-LINE-000425",
+      "LEGACY-CAND-LINE-000468",
+      "LEGACY-CAND-LINE-000470",
+      "LEGACY-CAND-LINE-000472",
+      "LEGACY-CAND-LINE-000474",
+      "LEGACY-CAND-LINE-000478",
+      "LEGACY-CAND-LINE-000491"
+    ],
+    "replacement_selection": {
+      "rule": "From cumulative effective condition/product_requirement_atom/unknown IDs ascending, exclude the #2350 20 IDs, #2356 nine IDs, and all original #2359 sample IDs; select the next six IDs.",
+      "unknown_product_population": 543,
+      "eligible_after_prior_sample_exclusions": 528,
+      "replacement_ids": [
+        "LEGACY-CAND-LINE-000492",
+        "LEGACY-CAND-LINE-000496",
+        "LEGACY-CAND-LINE-000497",
+        "LEGACY-CAND-LINE-000499",
+        "LEGACY-CAND-LINE-000500",
+        "LEGACY-CAND-LINE-000501"
+      ],
+      "updated_selected_ids": [
+        "LEGACY-CAND-LINE-000052",
+        "LEGACY-CAND-LINE-000108",
+        "LEGACY-CAND-LINE-000109",
+        "LEGACY-CAND-LINE-000110",
+        "LEGACY-CAND-LINE-000140",
+        "LEGACY-CAND-LINE-000356",
+        "LEGACY-CAND-LINE-000396",
+        "LEGACY-CAND-LINE-000425",
+        "LEGACY-CAND-LINE-000468",
+        "LEGACY-CAND-LINE-000470",
+        "LEGACY-CAND-LINE-000472",
+        "LEGACY-CAND-LINE-000474",
+        "LEGACY-CAND-LINE-000478",
+        "LEGACY-CAND-LINE-000491",
+        "LEGACY-CAND-LINE-000492",
+        "LEGACY-CAND-LINE-000496",
+        "LEGACY-CAND-LINE-000497",
+        "LEGACY-CAND-LINE-000499",
+        "LEGACY-CAND-LINE-000500",
+        "LEGACY-CAND-LINE-000501"
+      ],
+      "replacement_rows": [
+        {
+          "source_id": "LEGACY-CAND-LINE-000492",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+          "source_line": 18,
+          "source_file_sha256": "7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+          "source_line_sha256": "sha256:59574435a104ef3b087ee55aae7d0b6b5dd67fa50bc9710085d420b37cfc2526",
+          "physical_line_bytes_sha256": "c0a71bfad91d864fcd46424021908cfa160889d91e63a4421c5d4eff9acfb0e8",
+          "effective_classification": "condition",
+          "condition_subtype": "product_requirement_atom",
+          "route_status": "unknown",
+          "relation_assessment": "not_performed"
+        },
+        {
+          "source_id": "LEGACY-CAND-LINE-000496",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+          "source_line": 23,
+          "source_file_sha256": "7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+          "source_line_sha256": "sha256:54da727c33e1c968dde952d86d8c87554125586c0933489b3f6fdbafd3979f8a",
+          "physical_line_bytes_sha256": "905a84864320d563f74a95c8b11978834ee28d0c645b8da6f95b3239afff688a",
+          "effective_classification": "condition",
+          "condition_subtype": "product_requirement_atom",
+          "route_status": "unknown",
+          "relation_assessment": "not_performed"
+        },
+        {
+          "source_id": "LEGACY-CAND-LINE-000497",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+          "source_line": 24,
+          "source_file_sha256": "7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+          "source_line_sha256": "sha256:42f14d5e3d614691ce97ac6ad86307e00cde4e2638c74d13b512a9b1576cb621",
+          "physical_line_bytes_sha256": "d0367d7f95ab67596c8a5e72804b6635017f49fae9289cf8e9ef5bd31f36eafb",
+          "effective_classification": "condition",
+          "condition_subtype": "product_requirement_atom",
+          "route_status": "unknown",
+          "relation_assessment": "not_performed"
+        },
+        {
+          "source_id": "LEGACY-CAND-LINE-000499",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+          "source_line": 28,
+          "source_file_sha256": "7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+          "source_line_sha256": "sha256:ec626939ed95bf2fe355d787c4e39f80f6ab28d73d1b0645631297a6df02c9e0",
+          "physical_line_bytes_sha256": "714d981e667b0d70072b630d0e3d0e54941a418a1bc7cd6664cb995d69e1130a",
+          "effective_classification": "condition",
+          "condition_subtype": "product_requirement_atom",
+          "route_status": "unknown",
+          "relation_assessment": "not_performed"
+        },
+        {
+          "source_id": "LEGACY-CAND-LINE-000500",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+          "source_line": 29,
+          "source_file_sha256": "7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+          "source_line_sha256": "sha256:71b9164791062edec41697b3ed306f6f6bcb46b56fa608261765691a4e42e4a4",
+          "physical_line_bytes_sha256": "5ea593b6abccc58a2f3fc9eb4f564d9ed3f635fa2b8bb4b73e7bead0d043f51b",
+          "effective_classification": "condition",
+          "condition_subtype": "product_requirement_atom",
+          "route_status": "unknown",
+          "relation_assessment": "not_performed"
+        },
+        {
+          "source_id": "LEGACY-CAND-LINE-000501",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+          "source_line": 30,
+          "source_file_sha256": "7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+          "source_line_sha256": "sha256:8bca62507e48cc19085a00746131d39a653aaa28866431c81b5bbf527b3566da",
+          "physical_line_bytes_sha256": "a71d4dd9c98f1ec4497e70e54497aac1894c815687ebacfea5e1e8aab61e12c1",
+          "effective_classification": "condition",
+          "condition_subtype": "product_requirement_atom",
+          "route_status": "unknown",
+          "relation_assessment": "not_performed"
+        }
+      ]
+    },
+    "prior_2350_excluded_ids": [
+      "LEGACY-CAND-LINE-000021",
+      "LEGACY-CAND-LINE-000022",
+      "LEGACY-CAND-LINE-000023",
+      "LEGACY-CAND-LINE-000024",
+      "LEGACY-CAND-LINE-000025",
+      "LEGACY-CAND-LINE-000026",
+      "LEGACY-CAND-LINE-000027",
+      "LEGACY-CAND-LINE-000031",
+      "LEGACY-CAND-LINE-000037",
+      "LEGACY-CAND-LINE-000051",
+      "LEGACY-CAND-LINE-000054",
+      "LEGACY-CAND-LINE-000069",
+      "LEGACY-CAND-LINE-000070",
+      "LEGACY-CAND-LINE-000071",
+      "LEGACY-CAND-LINE-000072",
+      "LEGACY-CAND-LINE-000073",
+      "LEGACY-CAND-LINE-000074",
+      "LEGACY-CAND-LINE-000080",
+      "LEGACY-CAND-LINE-000091",
+      "LEGACY-CAND-LINE-000103"
+    ]
+  },
+  "authority_snapshot": {
+    "requirement_id": "HELIXINTELLIGENCE-L2-073",
+    "decision_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+    "decision_line": 86,
+    "decision_id": "MPR-RC-HELIXINTELLIGENCE-L2-073-002",
+    "status": "adopted_for_exact_L2_L11_revision",
+    "l2_file_sha256": "14c6947262f7e7cc92e7200cafd301ebd49c4146c97f665f0548c6b2b2e9e16d",
+    "l2_section_sha256": "sha256:4425189d3870de92165ebdbc790902317dc2799d89f760156ab17441662a2eb5",
+    "l11_file_sha256": "7467fad5256db9af823e7be860e21e52df58efb43ad4855c7127c2053106214d",
+    "l11_section_sha256": "sha256:d98488d23fc02992143edb4a1e689a0c12dcc91d0ec1c9adabe1b8e334dd9ef1",
+    "prior_receipt_status": "historical_only_for_authority_snapshot",
+    "legacy_row_relation_inferred": false
+  },
+  "validation": {
+    "row_count": 4755,
+    "source_item_ids_unique_and_contiguous": true,
+    "overlay_2356_ids_joined_exactly_once": true,
+    "overlay_2360_ids_joined_exactly_once": true,
+    "classification_counts_sum_to_population": true,
+    "subtype_counts_sum_to_conditions": true,
+    "route_counts_sum_to_conditions": true,
+    "replacement_ids_are_ascending_next_unknown_rows": true,
+    "replacement_physical_line_hashes_verified": true,
+    "authority_effect": "none",
+    "legacy_runtime_cli_test_hook_ci_executed": false
+  },
+  "limitations": [
+    "Classification and route results are a static audit overlay; they do not create adoption, formal successors, full source coverage, acceptance, implementation, or stage completion.",
+    "Route known counts mean only that the stored route label is not unknown; they do not mean covered or adopted.",
+    "Replacement-row relation assessments were not performed and must not be inferred from source family, filename, neighboring IDs, or this selection.",
+    "Candidate wording and prior receipt status do not override the exact 2026-09-29 PO decision for L2/L11-073; no legacy row relation is assigned here."
+  ]
+}
