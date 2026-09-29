@@ -936,4 +936,6 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **trigger例**：適用契約で大規模改定と分類された文書改定、gate evidence提出、pair freezeの各例で、対象revision/scopeに対応するread-onlyレビュー結果が必要となる。大規模の分類根拠が無い例では適用性をunknownのまま示し、任意の閾値を足さない。
 - **4軸例**：正常例では整合・網羅・一貫・明確を別々に示し、各軸の対象revision/scopeと根拠を結ぶ。各軸を一つずつ欠落させた例、または別revision/scopeの根拠を結ぶ例は、その軸または全体をcompleteとしない。findingあり／findingなしの両方で対象を改変しない。
 - **未完・境界例**：該当triggerでレビューが無い、結果がunknown/stale、軸または対象対応が欠ける場合、該当範囲の品質条件を完了扱いせず、その品質条件が適用gateの前提なら当該gateを通過させない。旧G1/G3/G7/G11を現行の固定集合として再導入しない。レビュー済み表示だけで採択・承認・merge・releaseを作らず、reviewer自身によるsource editや新しい人間sign-offを要求しない。
-- **受入限界**：候補は三triggerと4軸という選択source意味を検査する案であり、旧role/path/bypass、旧gate ID、旧runtime/testの移植・実行、旧FR-L1-45全体のclosureは対象外。
+- **PO例外の正常例**：review未完の対象revision・scope、未完の4軸または証拠、通過を許す理由をPO自身が明示し、その記録が監査可能に保持される場合に限り、該当文書review条件についてgate通過の例外を示せる。結果には未実施・unknownを残し、レビュー済みや4軸合格と表示しない。他のgate条件、採択、approval、merge、releaseはこの記録から許可しない。
+- **PO例外の拒否例**：AI・reviewer・gate運転者が自分で例外を宣言する、POの対象revision/scopeまたは理由が無い、記録が監査不能、別revisionの記録を再利用する、review未完を消して合格に見せる例ではgateを通過させない。旧環境変数や旧保存先の存在だけをPO判断の代わりにしない。
+- **受入限界**：候補は三trigger、4軸、記録付きPO例外という選択source意味を検査する案であり、旧role/path/bypass実装、旧gate ID、旧runtime/testの移植・実行、旧FR-L1-45全体のclosureは対象外。
