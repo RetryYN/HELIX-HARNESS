@@ -6,7 +6,7 @@
   "authority_effect": "none",
   "audit_mode": "append_only_bounded_source_classification_correction_proposal",
   "scope": {
-    "reason": "Seven rows currently counted as product_requirement_atom/unknown contain only inventory counts, category labels, and trace resolution pointers. Their exact text supplies no independent product-condition predicate. Preserve the two adjacent FRS process/test predicates (002076–002077) for a separate route audit.",
+    "reason": "Seven IDs were selected for bounded correction from product_requirement_atom/unknown. Six are inventory counts, taxonomy, or category metadata and become explanation. 001065 is a source-resolution management condition, matching prior merged 000037; it leaves the product-unknown pool and enters management_successor_unresolved. Preserve adjacent FRS process/test predicates 002076–002077 for a separate route audit.",
     "source_ids": [
       "LEGACY-CAND-LINE-001062",
       "LEGACY-CAND-LINE-001063",
@@ -29,14 +29,28 @@
       "selected_ids_in_pool": 7,
       "selected_ids_outside_pool": [],
       "basis": "#2353 exact row_records with #2356→#2360→#2363→#2366→#2367→#2368→#2369→#2381 exact-ID overlays; independently reconstructed, matching #2382 progression."
+    },
+    "management_condition_precedent": {
+      "source_id": "LEGACY-CAND-LINE-000037",
+      "audit_id": "legacy-candidate-management-successor-unresolved-six-row-audit-2026-09-29",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-management-successor-unresolved-six-row-audit-2026-09-29.json",
+      "sha256": "e5c59d3265f99630c4b4e26b045db011de4898d8364dca3dbcfe7be7755ff889",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+      "source_line": 54,
+      "classification": "condition/management_process_condition/management_successor_unresolved",
+      "semantic_relation": "Same pointer-correction/source-resolution condition: a nonexistent 06_ITEM_DIRECTIVES.md link is redirected to the integrated historical INV-001–072 cards. Neither row establishes current successor or adoption.",
+      "source_line_sha256": "sha256:237c6ccbe88f272922ff4b7e0918625cb896ffb5d745f672053763b9dfe2b261",
+      "asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+      "remaining_gap": "INV card spans, ID-to-card mapping, current successor and owner remain unresolved; resolving the source pointer alone does not create adoption or mapping."
     }
   },
   "classification_basis": [
-    "The fixed #2353 baseline row records classify these exact seven IDs as condition/product_requirement_atom/unknown; subsequent #2356–#2381 overlays are exact-ID disjoint from the seven.",
+    "The fixed #2353 baseline row records classify all seven exact IDs as condition/product_requirement_atom/unknown; subsequent #2356–#2381 overlays are exact-ID disjoint from these seven.",
     "#2356 precedent classifies document IDs, status fields, and Behavior Contract identifiers without independent predicates as explanation while preserving substantive rows under separate source IDs.",
     "The DSI source states candidate/unapproved and says its inventory alone does not establish approval, v1 mandate, bulk issues, runtime permission, or implementation completion (archive lines 3–7).",
     "The FRS rows 63–65 are count/range statements in §2. The source remains draft_candidate; historical approval of v0.2 acceptance conditions does not confer current target authority or make count rows acceptance predicates.",
-    "This proposal changes only classification labels for seven exact source-line IDs. It does not change source bytes, source authority, target authority, successor mapping, adoption, coverage, or the separately audited 002076–002077 predicates."
+    "For six IDs, the exact source text is inventory counts, taxonomy/category labels, or a source trace pointer without an independent product predicate. 001065 is different: it directs resolution of a missing split-file reference to the preserved integrated source, matching the management source-resolution condition in prior row 000037.",
+    "001065 has a substantive source-location correction, not mere trace metadata: it redirects a nonexistent split-file reference to the preserved integrated INV card set. This matches prior merged 000037 at archive governance/candidates/README.md:54, classified condition/management_process_condition/management_successor_unresolved in the six-row audit. The unresolved successor status and no-adoption boundary are preserved."
   ],
   "source_groups": [
     {
@@ -141,13 +155,13 @@
       "physical_line_bytes_sha256": "sha256:24b065676269df12bf96e63d11c5449b9c854af3bb02871c1e9193b7a8748534",
       "exact_source_text": "- 分冊が参照した`06_ITEM_DIRECTIVES.md`は、履歴入力内の「INV-001〜072 個別実施カード」へ解決する",
       "proposed_classification": {
-        "classification": "explanation",
-        "condition_subtype": null,
-        "route_status": "not_condition",
-        "route_status_basis": "classification label only; no route relation or successor asserted"
+        "classification": "condition",
+        "condition_subtype": "management_process_condition",
+        "route_status": "management_successor_unresolved",
+        "route_status_basis": "source-resolution condition remains unresolved as to a current successor/owner; this route label assigns none"
       },
-      "classification_action": "reclassify_condition_to_explanation",
-      "reason": "分冊内の別file名を履歴入力上の候補カードへ解決するtrace pointer。後続cardsは別source IDsで保持し、このpointer自身はbehavior/acceptance conditionではない。",
+      "classification_action": "reclassify_product_requirement_atom_to_management_process_condition",
+      "reason": "The row resolves the split-dossier pointer `06_ITEM_DIRECTIVES.md` to the integrated historical INV-001–072 individual cards. This is an operational source-resolution condition needed to locate the preserved candidate records, not a product behavior predicate. It has the same meaning as LEGACY-CAND-LINE-000037 (archive governance/candidates/README.md:54), already classified condition/management_process_condition/management_successor_unresolved in the merged six-row audit. Current card spans, ID-to-card mapping, successor, and owner remain unresolved; pointer resolution creates no adoption or successor.",
       "effective_before_this_proposal": {
         "classification": "condition",
         "condition_subtype": "product_requirement_atom",
@@ -230,10 +244,16 @@
         "proposed_classification": {
           "classification": "explanation",
           "condition_subtype": null,
-          "route_status": "not_condition"
+          "route_status": "not_condition",
+          "route_status_basis": "classification label only; no route relation or successor asserted"
         },
         "classification_action": "reclassify_condition_to_explanation",
-        "reason": "72件の候補数を列挙するsource-scope metadata。個別behavior、受入oracle、適用条件を定義しない。"
+        "reason": "72件の候補数を列挙するsource-scope metadata。個別behavior、受入oracle、適用条件を定義しない。",
+        "effective_before_this_proposal": {
+          "classification": "condition",
+          "condition_subtype": "product_requirement_atom",
+          "route_status": "unknown"
+        }
       },
       {
         "source_id": "LEGACY-CAND-LINE-001063",
@@ -245,10 +265,16 @@
         "proposed_classification": {
           "classification": "explanation",
           "condition_subtype": null,
-          "route_status": "not_condition"
+          "route_status": "not_condition",
+          "route_status_basis": "classification label only; no route relation or successor asserted"
         },
         "classification_action": "reclassify_condition_to_explanation",
-        "reason": "P0–P4という導入帯のラベルを列挙する分類metadata。本文16行目でseverity、V-model layer、M0–M5、Release Waveとも区別され、単独の製品条件を定義しない。"
+        "reason": "P0–P4という導入帯のラベルを列挙する分類metadata。本文16行目でseverity、V-model layer、M0–M5、Release Waveとも区別され、単独の製品条件を定義しない。",
+        "effective_before_this_proposal": {
+          "classification": "condition",
+          "condition_subtype": "product_requirement_atom",
+          "route_status": "unknown"
+        }
       },
       {
         "source_id": "LEGACY-CAND-LINE-001064",
@@ -260,10 +286,16 @@
         "proposed_classification": {
           "classification": "explanation",
           "condition_subtype": null,
-          "route_status": "not_condition"
+          "route_status": "not_condition",
+          "route_status_basis": "classification label only; no route relation or successor asserted"
         },
         "classification_action": "reclassify_condition_to_explanation",
-        "reason": "照合対象に保持する属性カテゴリの列挙であり、いずれかの能力依存、bundle、acceptance、disposition、handoff動作のpredicateを与えない。"
+        "reason": "照合対象に保持する属性カテゴリの列挙であり、いずれかの能力依存、bundle、acceptance、disposition、handoff動作のpredicateを与えない。",
+        "effective_before_this_proposal": {
+          "classification": "condition",
+          "condition_subtype": "product_requirement_atom",
+          "route_status": "unknown"
+        }
       },
       {
         "source_id": "LEGACY-CAND-LINE-001065",
@@ -273,12 +305,18 @@
         "physical_line_bytes_sha256": "sha256:24b065676269df12bf96e63d11c5449b9c854af3bb02871c1e9193b7a8748534",
         "exact_source_text": "- 分冊が参照した`06_ITEM_DIRECTIVES.md`は、履歴入力内の「INV-001〜072 個別実施カード」へ解決する",
         "proposed_classification": {
-          "classification": "explanation",
-          "condition_subtype": null,
-          "route_status": "not_condition"
+          "classification": "condition",
+          "condition_subtype": "management_process_condition",
+          "route_status": "management_successor_unresolved",
+          "route_status_basis": "source-resolution condition remains unresolved as to a current successor/owner; this route label assigns none"
         },
-        "classification_action": "reclassify_condition_to_explanation",
-        "reason": "分冊内の別file名を履歴入力上の候補カードへ解決するtrace pointer。後続cardsは別source IDsで保持し、このpointer自身はbehavior/acceptance conditionではない。"
+        "classification_action": "reclassify_product_requirement_atom_to_management_process_condition",
+        "reason": "The row resolves the split-dossier pointer `06_ITEM_DIRECTIVES.md` to the integrated historical INV-001–072 individual cards. This is an operational source-resolution condition needed to locate the preserved candidate records, not a product behavior predicate. It has the same meaning as LEGACY-CAND-LINE-000037 (archive governance/candidates/README.md:54), already classified condition/management_process_condition/management_successor_unresolved in the merged six-row audit. Current card spans, ID-to-card mapping, successor, and owner remain unresolved; pointer resolution creates no adoption or successor.",
+        "effective_before_this_proposal": {
+          "classification": "condition",
+          "condition_subtype": "product_requirement_atom",
+          "route_status": "unknown"
+        }
       },
       {
         "source_id": "LEGACY-CAND-LINE-002073",
@@ -290,10 +328,16 @@
         "proposed_classification": {
           "classification": "explanation",
           "condition_subtype": null,
-          "route_status": "not_condition"
+          "route_status": "not_condition",
+          "route_status_basis": "classification label only; no route relation or successor asserted"
         },
         "classification_action": "reclassify_condition_to_explanation",
-        "reason": "FRSのfeature contract件数・ID範囲を示す量閉じmetadata。個別FR predicateやoracleはこの行では定義しない。"
+        "reason": "FRSのfeature contract件数・ID範囲を示す量閉じmetadata。個別FR predicateやoracleはこの行では定義しない。",
+        "effective_before_this_proposal": {
+          "classification": "condition",
+          "condition_subtype": "product_requirement_atom",
+          "route_status": "unknown"
+        }
       },
       {
         "source_id": "LEGACY-CAND-LINE-002074",
@@ -305,10 +349,16 @@
         "proposed_classification": {
           "classification": "explanation",
           "condition_subtype": null,
-          "route_status": "not_condition"
+          "route_status": "not_condition",
+          "route_status_basis": "classification label only; no route relation or successor asserted"
         },
         "classification_action": "reclassify_condition_to_explanation",
-        "reason": "FRS supporting requirement件数・ID範囲を示す量閉じmetadata。個別requirement predicateはこの行では定義しない。"
+        "reason": "FRS supporting requirement件数・ID範囲を示す量閉じmetadata。個別requirement predicateはこの行では定義しない。",
+        "effective_before_this_proposal": {
+          "classification": "condition",
+          "condition_subtype": "product_requirement_atom",
+          "route_status": "unknown"
+        }
       },
       {
         "source_id": "LEGACY-CAND-LINE-002075",
@@ -320,10 +370,16 @@
         "proposed_classification": {
           "classification": "explanation",
           "condition_subtype": null,
-          "route_status": "not_condition"
+          "route_status": "not_condition",
+          "route_status_basis": "classification label only; no route relation or successor asserted"
         },
         "classification_action": "reclassify_condition_to_explanation",
-        "reason": "FRS acceptance件数・ID範囲を示す量閉じmetadata。個別acceptance oracleはこの行では定義しない。"
+        "reason": "FRS acceptance件数・ID範囲を示す量閉じmetadata。個別acceptance oracleはこの行では定義しない。",
+        "effective_before_this_proposal": {
+          "classification": "condition",
+          "condition_subtype": "product_requirement_atom",
+          "route_status": "unknown"
+        }
       }
     ],
     "source_authority_state": "historical_candidate",
@@ -451,17 +507,39 @@
       "source_ids_selected_for_correction": 7,
       "current_classification": "condition/product_requirement_atom/unknown",
       "product_pool_intersection_with_audited_union": 305,
-      "unreviewed_product_unknown_pool": 173
+      "unreviewed_product_unknown_pool": 173,
+      "condition_count": 864,
+      "explanation_count": 2965,
+      "management_process_condition_count": 36,
+      "management_successor_unresolved_count": 36
     },
     "proposal_if_applied": {
       "product_requirement_atom_unknown_pool": 471,
-      "classification": "explanation/no_subtype/not_condition"
+      "classification": "six explanation rows plus one condition/management_process_condition/management_successor_unresolved row",
+      "effective_classification_counts": {
+        "condition": 858,
+        "explanation": 2971,
+        "structure": 926,
+        "total": 4755
+      },
+      "condition_subtype_counts": {
+        "product_requirement_atom": 820,
+        "management_process_condition": 37,
+        "concept_condition": 1,
+        "condition_total": 858
+      },
+      "condition_route_counts_delta": {
+        "unknown": -7,
+        "management_successor_unresolved": 1
+      }
     },
     "delta": {
-      "condition": -7,
-      "explanation": 7,
+      "condition": -6,
+      "explanation": 6,
       "product_requirement_atom": -7,
-      "product_route_unknown": -7
+      "management_process_condition": 1,
+      "product_route_unknown": -7,
+      "management_successor_unresolved": 1
     },
     "route_union_effect": {
       "all_route_union_count_through_2384": 364,
@@ -471,7 +549,7 @@
       "unreviewed_product_unknown_pool_before": 173,
       "unreviewed_product_unknown_pool_after": 166,
       "equation": "478 - 305 = 173; 471 - 305 = 166; route union unchanged",
-      "status": "conditional proposal arithmetic only; route audits are immutable and classification correction does not alter their decisions."
+      "status": "Conditional proposal arithmetic only. Six IDs leave the product pool as explanations; 001065 leaves it as a management condition. Route union is unchanged; management_successor_unresolved increases by one without assigning a successor."
     },
     "status": "conditional proposal arithmetic only; #2384 was route-only and did not alter classification. Recount required if a later merged classification overlay changes the source pool."
   },
@@ -480,7 +558,8 @@
     "No human approval or revocation is inferred from either legacy source status or this classification proposal.",
     "The old FRS acceptance approval remains a historical approval of its old conditions only; this proposal does not assert those conditions were rejected.",
     "The proposal excludes 002076 and 002077 and does not reclassify their process/test predicates.",
-    "No old archive scripts, CLI, hooks, tests, runtime, workflow, or CI were run."
+    "No old archive scripts, CLI, hooks, tests, runtime, workflow, or CI were run.",
+    "001065 remains an unresolved management/source-resolution condition like 000037; management_successor_unresolved is not a formal successor assignment or adoption."
   ],
   "pinned_inputs": [
     {
@@ -621,6 +700,13 @@
       "path": "docs/governance/audits/requirements-stage/legacy-candidate-ma-requirements-acceptance-eight-row-route-audit-after-2383-2026-09-30.json",
       "sha256": "86c301decb960d50ca7ba730e688371103aa41139c53b1c5ea5f1d100ff26832",
       "git_blob_sha": "3a1e023b03a9cd05b7e4cbe9f70e38ed0e5d82f5"
+    },
+    {
+      "role": "prior_management_condition_precedent_000037",
+      "commit": "d6125d141176e1a2afe29d59b863fc0a92139473",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-management-successor-unresolved-six-row-audit-2026-09-29.json",
+      "sha256": "e5c59d3265f99630c4b4e26b045db011de4898d8364dca3dbcfe7be7755ff889",
+      "git_blob_sha": "2244b565c3d6e70b4a76059e285e6b8804fa8b96"
     }
   ]
 }
