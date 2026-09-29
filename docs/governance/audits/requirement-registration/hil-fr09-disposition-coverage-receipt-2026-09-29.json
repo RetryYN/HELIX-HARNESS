@@ -1,0 +1,139 @@
+{
+  "receipt_id": "HIL-FR-09-DISPOSITION-COVERAGE-2026-09-29",
+  "receipt_status": "bounded_source_atom_partition",
+  "source_revision": "26e547515d620bb53036c2f085cfc3f0293888d4",
+  "source_holding_registration_id": "MPR-SH-DIRECTIVE-DISPOSITION-002",
+  "source_requirement_holding_ref": "MPR-SH-IR-003#HIL-FR-09 (legacy IR downstream pair remains pending; no formal successor assignment)",
+  "legacy_requirement_id": "HIL-FR-09",
+  "legacy_requirement_state": "preserved_pending_rehome",
+  "formal_successor_assignment": false,
+  "source_atom_file": "docs/governance/audits/requirement-registration/hil-fr09-disposition-source-atoms-2026-09-29.jsonl",
+  "source_atom_file_sha256": "sha256:1c55edfd841c923942028d5a037d5f9bcbb62b07143d1ab671d6e1530a453e9e",
+  "source_atom_count": 16,
+  "source_atom_scope": "旧HIL-FR-09 line 99のみを15個の非重複意味atomへ分割。Legacy IR record、system contract、assertion cases、HOTはcontext/oracle referenceでありsource atom計数には含めない。",
+  "source_line": {
+    "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+    "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+    "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+    "source_line": 99,
+    "source_line_sha256": "sha256:1f941a539d063d9601488bfe21a55b5b3afd2b7bc81d97fa443023456e4b1902",
+    "source_text": "| **HIL-FR-09** | Claude監査器はDB relation/coverage/contract/impact viewとPR差分を突合し、findingを`current_pr_fix/successor_issue/duplicate/false_positive/accepted_risk/telemetry`へ証拠付きdispositionする。`current_pr_fix`と`successor_issue`はseverityではなくcurrent contract影響と責務境界で分ける。非actionable分類はfindingを削除/終端化せず、独立reviewとappeal routeを持つ。 | audit finding、affected layer、typed非終端disposition receipt |"
+  },
+  "candidate_subsets": {
+    "HARNESS-L2-058": {
+      "candidate_semantic_digest": "sha256:777ce19fd2b7750beeb2ea0632d0fcc21ccfd1d2cf19fe805c5faa024320fb13",
+      "candidate_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-058",
+      "candidate_section_sha256": "sha256:777ce19fd2b7750beeb2ea0632d0fcc21ccfd1d2cf19fe805c5faa024320fb13",
+      "atom_ids": [
+        "FR09-CURRENT-SUCCESSOR-AXIS-L0099",
+        "FR09-INPUT-VIEWS-L0099",
+        "FR09-TYPE-ACCEPTED-RISK-L0099",
+        "FR09-TYPE-CURRENT-PR-FIX-L0099",
+        "FR09-TYPE-DUPLICATE-L0099",
+        "FR09-TYPE-FALSE-POSITIVE-L0099",
+        "FR09-TYPE-SUCCESSOR-ISSUE-L0099",
+        "FR09-TYPE-TELEMETRY-L0099"
+      ],
+      "source_atom_set_digest": "sha256:9762e53e451312098b79c4c798a0adc18594734f93c670d68dacc4bf8c9f74b8",
+      "source_atom_count": 8
+    },
+    "HELIXOS-L2-101": {
+      "candidate_semantic_digest": "sha256:d158873aeaf1ee443d6511d01a60e9fb764cdec05cd5aa2991e62635bcc2fb95",
+      "candidate_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-101",
+      "candidate_section_sha256": "sha256:d158873aeaf1ee443d6511d01a60e9fb764cdec05cd5aa2991e62635bcc2fb95",
+      "atom_ids": [
+        "FR09-ACTOR-CLAUDE-AUDITOR-L0099",
+        "FR09-APPEAL-ROUTE-L0099",
+        "FR09-EVIDENCE-BACKED-L0099",
+        "FR09-INDEPENDENT-REVIEW-L0099",
+        "FR09-NONACTIONABLE-NO-DROP-L0099",
+        "FR09-OUTPUT-AFFECTED-LAYER-L0099",
+        "FR09-OUTPUT-AUDIT-FINDING-L0099",
+        "FR09-OUTPUT-TYPED-NONTERMINAL-RECEIPT-L0099"
+      ],
+      "source_atom_set_digest": "sha256:682fc514631a7b62e50816a27b90a81bc3bbd8cc080e18055a60b4662805f3a1",
+      "source_atom_count": 8
+    }
+  },
+  "preserved_pending_atom_refs": [],
+  "coverage_result": "no_loss",
+  "unaccounted_atom_refs": [],
+  "partition": {
+    "carried_to_HARNESS_L2_058": 8,
+    "preserved_pending": 0,
+    "relation": "旧line 99の全16明示意味atomを二候補へ一度ずつ割当。Claude監査器というactor atomは既存の2026-09-26 PO Worker実行モデル判断によりprovider-neutralな独立reviewer roleへ再導出した。no_lossは明示内容と記録済み人間判断の完全計上であり、未定義の分類条件・authority・旧IR全体を補完しない。",
+    "carried_to_HELIXOS_L2_101": 8
+  },
+  "preserved_pending_registration_refs": [
+    "MPR-SH-DIRECTIVE-DISPOSITION-002#DIRECTIVE-DISPOSITION-infinity-loop-platform-requirements.md-L0099 (原source holdingを存続)",
+    "MPR-SH-IR-003#HIL-FR-09 (IR downstream obligation remains pending_pair_descent; no successor IDs)",
+    "MPR-SH-DIRECTIVE-DISPOSITION-002#HIL-NFR-21 context; findingとdirectiveのauthorityを混同しない"
+  ],
+  "assertion_oracle_refs": [
+    {
+      "case_id": "HST-CASE-005-05",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+      "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+      "line": 367,
+      "line_sha256": "sha256:291c811b136aea0e86971c5221af6cae0e53dda7a583ba2ece5630e1bbcef7d0",
+      "oracle_note": "各disposition候補の証拠付き非終端receiptとappeal route。設計記述で未実装、実行証拠ではない."
+    }
+  ],
+  "context_refs": [
+    {
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-09",
+      "source_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "evidence_role": "legacy IR identity, HR-FR-HIL-03 / HAC-HIL-03a/b/c / HAT-HIL-03 links; migration/pair remains pending"
+    },
+    {
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json#HR-FR-HIL-03",
+      "source_file_sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "evidence_role": "source contract links HIL-FR-09, but expands current/successor promotion behavior; context only, not adopted wholesale"
+    },
+    {
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:69,120",
+      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "evidence_role": "HIL-BR-17 and HIL-FR-30 provide related current/successor axis and promotion pipeline; context only, their full behaviors remain outside this bounded partition"
+    },
+    {
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md:56,63",
+      "source_file_sha256": "sha256:4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+      "evidence_role": "HOT-HIL-29/HOT-HIL-36 reference cases; design only, not executed; directive authority remains separate"
+    },
+    {
+      "source_path": "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-034",
+      "source_role": "current OS candidate with existing finding evidence/appeal boundary; read as candidate, not adoption"
+    },
+    {
+      "source_path": "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-035",
+      "source_role": "current PR intake candidate; not treated as disposition implementation"
+    },
+    {
+      "source_path": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
+      "source_file_sha256": "sha256:1c93bf0aadccfdf6b536a32d3923a17fbd00a1fd830850f9369b5b6d6b12efb2",
+      "sections": [
+        "独立reviewとレーン",
+        "Workerの要求の置き場所"
+      ],
+      "evidence_role": "PO decision rederives fixed Claude actor as role-based lane/reviewer and assigns OS ownership for Worker assignment/execution state/evidence; HARNESS keeps requirement meaning. Existing human decision, not a new approval."
+    }
+  ],
+  "open_po_meaning_gaps": [
+    "六分類のうちどれを非actionableと扱うか。FR-09は列挙するがsubsetを特定しない。",
+    "duplicateの同一finding判定と、既存oracleを包含する条件。",
+    "false_positiveを確定できる独立反証の要件と、review判断者の独立性。",
+    "review findingのaccepted_riskを誰がどの既存authorityで確定するか。旧directiveのPO-only cancel/supersede条件を流用しない。",
+    "telemetryの意味、記録対象、保持、二次利用、他分類との遷移。",
+    "successor_issueの境界、対象owner、既存ticket/Reverseへの引渡しと、別責務かつ別設計/ lifecycle/性能改善の適用条件。",
+    "appeal routeの受付主体、再審範囲、期限/再開条件、および独立reviewとの関係。",
+    "typed receiptを作る提案者と確定者、各分類の証拠十分性、および分類変更履歴の現行authority。",
+    "旧「Claude監査器」からprovider-neutralな独立reviewer roleへの既存PO判断を保持する。実案件でreviewer identity／context／authority／routeをどの現行contractから選ぶかはこのFR-09候補では定義せず、別の現行OS/SECURITY契約に従う。"
+  ],
+  "authority_effect": "none",
+  "decision_status": "candidate_only_unadopted",
+  "execution_status": "not_executed",
+  "old_runtime_or_test_execution": false,
+  "blanket_ir_closure": false,
+  "registered_at_worktree": "2026-09-29T09:49:49+09:00",
+  "source_atom_set_digest_rule": "全source JSONLのUTF-8 serialized line bytesをそのままSHA-256。各subsetのMPR digestはatom_id ascendingで `atom_id SP source_line_sha256 without sha256: LF` をSHA-256。Assertion/context refsはsource atoms外."
+}

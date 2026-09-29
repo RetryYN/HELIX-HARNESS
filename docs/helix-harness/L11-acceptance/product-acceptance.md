@@ -901,3 +901,11 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **memory receipt境界**：旧HST-CASE-023-03のmemory receipt欠落時close 0件はholdingのoracle参照として表示する。候補対象の他条件は評価を続け、memory条件の現行意味・適用scope・close可否をこの受入で判定しない。provider memoryやsummaryだけを旧receipt扱いせず、負例を採択済み条件や実行結果へ変換しない。
 - **責務handoff**：HARNESS結果は今回候補の条件の意味だけを返し、PR/CI/audit/Issue情報の収集・保存・close運転はOS-L2-054候補の対象とする。OS側receiptがなくてもHARNESSの意味判定を運転完了とみなさず、逆にOSのclose結果だけでHARNESSの条件充足を推定しない。
 - **受入限界**：旧HIL-FR-07 line 97とHST-CASE-023-01〜05/07はsource／oracle参照であり、旧test・runtime・CIを実行しない。新世代CI未構築のため今回候補に必要なCI結果がunknownなら候補対象条件を成立と判定しない。具体style定義、各sourceのvalidation schema、旧memory compactionの現行対応、候補採択、L3承認、実装・実行許可は本受入の対象外。
+
+### HARNESS-L2-058 六分類とcurrent/successor判定の受入候補（未実行）
+
+- **対応要求・状態**：HARNESS-L2-058（HARNESS-CORE unit候補、未採択）。この節は静的oracle候補であり、候補採択、旧system assertionの実行、audit運転、Issue発行またはformal successor割当を示さない。
+- 同一のPR差分、contract/impact/coverage snapshot、finding identityを入力した場合、finding分類候補は`current_pr_fix`、`successor_issue`、`duplicate`、`false_positive`、`accepted_risk`、`telemetry`のいずれかを型付きで識別する。入力または根拠が不足するときは分類確定でなく未解決を返す。
+- current contractへの影響と責務境界を固定しseverityだけを変えた対では、`current_pr_fix`／`successor_issue`の判断軸を変えない。現行要求への影響・責務境界を変えた対では、根拠とともに判定理由を区別できる。
+- 六分類のうちどれが非actionableに当たるか、各分類の確定根拠と判断主体は本候補で未確定である。これらをテスト期待値として補わず、未決findingとして示す。
+- 参照oracle：旧`HST-CASE-005-05`（`infinity-loop-system-assertion-cases.md:367`）は各分類候補について証拠付き非終端receiptとappeal routeを要求する設計記述。旧`HOT-HIL-29`と`HR-FR-HIL-03`はcurrent/successor分岐の参照根拠。すべて未実装の旧設計資料であり、実行証拠ではない。
