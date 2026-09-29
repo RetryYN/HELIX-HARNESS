@@ -1,0 +1,79 @@
+{
+  "receipt_id": "DAC-FR-009-HELIXOS-L2-111-COVERAGE-2026-09-29",
+  "status": "candidate_static_scope_only",
+  "authority_effect": "none",
+  "candidate_identity": "HELIXOS-L2-111",
+  "source_holding_registration_id": "MPR-SH-CONFIRMED-003",
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/dac-fr-009-three-receipt-source-lines-2026-09-29.jsonl",
+  "source_atom_set_digest": "sha256:6015b2a646b070ca092b962523e70c4988f0cf2198e1fee130d1788c5c133ef7",
+  "source_atom_count": 1,
+  "source_collection_scope": "One candidate input atom: confirmed175 DAC-FR-009 line 56. DAC-R-011 line 66 and DAC-AC-017 line 42 are retained as related context/oracle evidence only; no holding or candidate-input claim is made for them.",
+  "candidate_input_atom_refs": [
+    "CONFIRMED-DAC-FR-009-THREE-RECEIPT-AND"
+  ],
+  "candidate_input_scope_result": "no_loss_limited_to_single_confirmed_atom",
+  "unaccounted_atom_refs": [],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-CONFIRMED-003#CONFIRMED-DAC-FR-009: only this candidate atom is held; owner/successor/adoption remain unconfirmed"
+  ],
+  "legacy_receipt_set": [
+    "#825 materialization audit receipt",
+    "#1370 startup projection receipt",
+    "Document Authority Census receipt"
+  ],
+  "legacy_receipt_set_is_complete_only_for_candidate_scope": true,
+  "legacy_issue_labels_exact_current_mapping": "unknown",
+  "boundary_reference_not_receipt": "#206 legacy-surface correction responsibility reference; not a fourth aggregate receipt",
+  "aggregate_green_condition": "all three independent input receipts explicitly report green",
+  "non_green_and_unknown_handling": "Preserve each input's explicit status and provenance; never emit aggregate green unless all three explicitly report green. Do not define cross-state precedence or transform missing/stale/non-green/unknown states.",
+  "candidate_registration_id": "MPR-RC-HELIXOS-L2-111-001",
+  "candidate_source_lines_file_sha256": "sha256:8cc7c6197192fe4d34a482992e85b0fd36bb897ec92ce669a5475634662be8cd",
+  "static_acceptance_scope": [
+    "positive: all three distinct receipts explicitly green yields aggregate green while retaining separate identity/revision/scope/provenance",
+    "negative: each receipt individually non-green prevents aggregate green",
+    "boundary: missing/stale/unknown/other explicit non-green remains explicit and aggregate does not become green; no invented priority or conversion",
+    "boundary: #206 is not a receipt; current mappings for #825/#1370/#206 remain unknown"
+  ],
+  "source_lines_file_sha256": "sha256:8cc7c6197192fe4d34a482992e85b0fd36bb897ec92ce669a5475634662be8cd",
+  "registered_at_worktree": "2026-09-29T15:35:54+09:00",
+  "source_atom_set_digest_algorithm": "Sort candidate input rows by atom_id ascending; for each row append UTF-8 bytes of atom_id + one ASCII space + source_line_sha256 with the sha256: prefix removed + LF; SHA-256 the resulting bytes.",
+  "related_context_rows": [
+    {
+      "atom_id": "LEGACY-DAC-R-011-CONTEXT",
+      "source_qualified_requirement_id": "helix/L3-requirements/document-authority-census-requirements.md::DAC-R-011",
+      "legacy_asset_id": "LEGACY-ASSET-C6936A5DA79A6DAE4FE4",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/document-authority-census-requirements.md",
+      "source_line": 66,
+      "source_file_sha256": "sha256:e05adb62d9ad07507f962cf060b3dbe66c161afc3f09391b29b3144ced57535c",
+      "source_line_sha256": "sha256:2c23e1baa276622f0708c40ff631e2eaadbd335e45e9a02bb8a58a935d3a23ba",
+      "confirmed175_holding": "not_asserted",
+      "candidate_input": false
+    },
+    {
+      "atom_id": "LEGACY-DAC-AC-017-CONTEXT",
+      "source_qualified_requirement_id": "helix/test-design/document-authority-census-acceptance.md::DAC-AC-017",
+      "legacy_asset_id": "LEGACY-ASSET-BBD687399574FEE23807",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/document-authority-census-acceptance.md",
+      "source_line": 42,
+      "source_file_sha256": "sha256:d8cddea062fa44774a44f1c2cfff5f5d1f01cd186b4abdf8d631b9577f6fd4a6",
+      "source_line_sha256": "sha256:ae85dc265a15434d43c8e9f844be42f2ff62743d167c26909721aeb329300b20",
+      "confirmed175_holding": "not_asserted",
+      "candidate_input": false
+    }
+  ],
+  "current_management_register_sha256": "sha256:4103da5113303e1db77c1c1c4eb384fae6e1d5ad91e7357592c1f7b3ecc887c3",
+  "candidate_sections": {
+    "l2": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "anchor": "helixos-l2-111",
+      "semantic_digest": "sha256:265d5e7d1a8c06919b21691ddbf15354e51dbc204f310f07a448a7b33dc8173b",
+      "file_sha256": "sha256:bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf"
+    },
+    "l11": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "anchor": "helixos-l11-111",
+      "semantic_digest": "sha256:8efe5d58a4ebe0c4a7078aa7b311f3f2e1a7892b125b603d6a3e45ff4fc5ef14",
+      "file_sha256": "sha256:cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112"
+    }
+  }
+}
