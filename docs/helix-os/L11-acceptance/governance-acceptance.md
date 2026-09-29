@@ -931,3 +931,13 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **unknown例**：回復確認のoracle owner/source/revisionが欠落・stale・conflict・適用範囲不明、incident identityと既存記録のrelationが不明、または必要recordの読取結果が得られないfixtureを与える。当該dimensionを`unknown`として残し、他の証拠や文書名から補完しない。
 - **受入境界**：本候補はincident episodeの既存参照に対する復旧証拠相関だけを読む。HELIXOS-L2-010／L11のticket種別、発行、workflow、恒久対策routeを再検証せず、旧FR-L1-16のhotfix、即時production release、後続backfillをoracleにしない。旧sourceの固定severityや応答時間、on-call／TL／PMの承認役割・時点も要求しない。既存SECURITY authorityにない操作許可や人間承認を追加しない。
 - **旧source範囲と未解決**：`LEGACY-ASSET-9E033C3E39BE107D4CF1`のline 43から選んだ「SLO/KPI正常化確認」と「復旧手順・rollback記録」の2 spansだけに対応する。旧lineのPLAN/tool名、incident sourceの他line、旧runbook/PLAN/runtime、旧承認条件、Web-OS運用は未被覆のsource holdingに残る。ここで記す静的oracleから旧条件全体のformal successor、実装、実行、closureを推定しない。
+
+
+### HELIXOS-L11-106 authority binding参照先の再帰検査受入候補（未実行）
+
+- **対応要求・状態**：HELIXOS-L2-106の未採択候補に対する静的oracle案。`authority_effect: none`。runtime/scannerの実行、要求採択、authority成立、実装・受入完了を示さない。
+- **正常例**：既存ownerがcurrentとして示すbindingから、既存ownerがcurrentとして示す参照先を経て、対象ownerの既存状態・revisionへ辿れるfixtureを与える。入力した参照関係が再帰的に確認され、L2-015のsource identity/revision/digest出所を保ったまま状態を確認できることを静的に照合する。
+- **反例**：直接edgeではなく下位参照先に、既存ownerが失効、互換、または履歴として示すtargetがあるfixtureを与える。該当targetへのcurrent edgeを有効なauthority参照として扱わないことを確認する。ownerの状態記録をfixtureに明示し、その意味をこのoracleが独自に定義しない。
+- **unknown例**：再帰先target、target owner、target revisionまたは既存状態が欠ける／unknown／conflict／staleのfixtureでは、適合やcurrent authorityを推測しない。未解決状態を保持し、既存ownerへの確認が必要なまま示す。
+- **受入境界**：fixtureの列挙範囲内だけを照合する。全repository census、unbounded scanner、schema、compatibility/expiry/history判定の追加規則、再帰深度/performance、finding taxonomy、auto-repair/delete/edge rewriteは検査・要求しない。静的fixture結果は実運転・実装の証拠でなく、旧runtime/test/CIは実行しない。
+- **旧sourceと未解決**：旧`LEGACY-ASSET-D201753B1A0CC6EA3980`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md:50`（file SHA-256 `81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66`、line SHA-256 `77e1d9bc1f98f2a1f1cf0094dd280fb83d001ffe8ee422f1c951da2d72898212`）の一 atomに限る。source owner移管、適用target集合、formal successor、旧source全体のclosureおよび採択は未確定のまま残す。`MPR-SH-CONFIRMED-003`を生存させ、候補receiptから状態や権限を追加しない。
