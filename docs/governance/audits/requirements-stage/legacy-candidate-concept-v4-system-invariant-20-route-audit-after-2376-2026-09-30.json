@@ -180,7 +180,20 @@
         "sha256": "bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad"
       }
     },
-    "comparison_rule": "Compare only fixed PO-adopted L2/L11 bytes; exact compared IDs and separate L2/L11 locators are attached to each row."
+    "comparison_rule": "Compare only fixed PO-adopted L2/L11 bytes; exact compared IDs and separate L2/L11 locators are attached to each row.",
+    "authority_decision_record": {
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "commit": "a60c0afaf27c2c5d4cf3028efad7ebf65f05bd80",
+      "blob_sha": "c30870995516c7aed5fbff4a067e704ef3b4e544",
+      "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "relevant_lines": [
+        27,
+        42,
+        46,
+        48
+      ],
+      "adoption_basis": "Lines 27 and 42 fix the agreed HELIXOS-L2-001..029 bodies and paired L11 text and state this decision record is authoritative over draft/candidate metadata; lines 46-48 explicitly adopt HELIXOS-L2-014..029 including L2-015 and L2-019. Do not use candidate metadata in the fixed bytes alone to exclude these IDs from adopted comparison."
+    }
   },
   "rows": [
     {
@@ -1481,15 +1494,30 @@
             "line": 29,
             "basis": "acceptance_body_or_test_section"
           }
+        },
+        {
+          "id": "HELIXOS-L2-019",
+          "direct_predicate": true,
+          "L2_locator": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 686,
+            "basis": "adopted_clause_per_PO_decision_record"
+          },
+          "L11_acceptance_locator_separate": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 357,
+            "basis": "adopted_clause_per_PO_decision_record"
+          }
         }
       ],
       "directly_matched_adopted_requirement_ids": [
         "HELIXOS-L2-001",
         "HELIXOS-L2-002",
-        "HELIXOS-L2-007"
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-019"
       ],
-      "direct_overlap": "HELIXOS-L2-001／002／007に結ばれたL11受入行は、原eventの出典・因果関係を再構築し、異なるengine/schema版でも原eventを保持して旧分類・stale・新projectionを別に確認する。原eventから再構築する条件も明記され、同じauthority/eventのprojection再構築という旧述語に部分一致する。",
-      "residual_or_difference": "同一authority/event入力から同じprojectionを決定論的に得ること、全projection種別の安定性やschema migration時の同値性は明示されない。",
+      "direct_overlap": "HELIXOS-L2-001／002／007に結ばれた採択L11:43は、原eventの出典・因果関係を再構築し、分類projectionを分けて確認する。PO decision recordはHELIXOS-L2-019と対応L11も採択し、L11:357は保存/projection失敗時に原eventから再構築する。これらは同じauthority/eventからprojectionを再構築する旧述語に部分一致する。",
+      "residual_or_difference": "同一authority/eventの同じ入力から同じprojectionを決定論的に得ること、projectionの再現可能性・schema migration時の同値性は明示されない。",
       "authority_effect": "none"
     },
     {
@@ -1512,7 +1540,7 @@
         "prior_181_intersection": [],
         "world_governance_60_intersection": []
       },
-      "route_assessment": "unknown",
+      "route_assessment": "partial",
       "compared_adopted_requirements": [
         {
           "id": "HELIXLABO-L2-002",
@@ -1569,41 +1597,28 @@
             "line": 27,
             "basis": "acceptance_body_or_test_section"
           }
-        }
-      ],
-      "directly_matched_adopted_requirement_ids": [],
-      "direct_overlap": "採択済みpredicateとの直接一致は認定しない。HELIXOS-L2-007の証拠保持、LABO-L2-002のrelation訂正に加え、固定f6のOS L2-015:647／L11:327候補文は原eventを保持した別revision訂正を扱うが、当該L2-015はL2:642の未採択単体候補で、L11:322も未実行案と明記するため採択根拠から除外する。",
-      "residual_or_difference": "receipt／finding／memoryそれぞれのtyped correction/supersession、record型間の適用、consumer伝播を定める採択済み述語が確認できない。候補文との意味関係は参考に記録し、採択状態・successorは生成しない。",
-      "authority_effect": "none",
-      "unadopted_candidate_comparison": {
-        "id": "HELIXOS-L2-015",
-        "L2_locators": [
-          {
-            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-            "line": 642,
-            "basis": "candidate_requirement_heading"
-          },
-          {
+        },
+        {
+          "id": "HELIXOS-L2-015",
+          "direct_predicate": true,
+          "L2_locator": {
             "path": "docs/helix-os/L2-requirements/governance-requirements.md",
             "line": 647,
-            "basis": "candidate_requirement_clause"
-          }
-        ],
-        "L11_locators": [
-          {
-            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-            "line": 324,
-            "basis": "candidate_acceptance_heading"
+            "basis": "adopted_clause_per_PO_decision_record"
           },
-          {
+          "L11_acceptance_locator_separate": {
             "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
             "line": 327,
-            "basis": "candidate_acceptance_clause"
+            "basis": "adopted_clause_per_PO_decision_record"
           }
-        ],
-        "relation": "原eventを保持した別revisionの訂正・分類の追跡という意味上の近接がある。",
-        "unadopted_reason": "L2:642は「単体候補」と明記し、L11:322はL2-015〜025を未実行の受入案と明記する。したがって採択済み要求の比較対象には含めない。"
-      }
+        }
+      ],
+      "directly_matched_adopted_requirement_ids": [
+        "HELIXOS-L2-015"
+      ],
+      "direct_overlap": "HELIXOS-L2-015の固定L2/L11本文は、原eventを保持したまま別revisionの訂正・分類を追跡すると定める。PO decision recordはL2-015と対になるL11本文を採択し、固定本文内の候補metadataより採択状態の正本となるため、旧条件の訂正履歴保持に部分一致する。",
+      "residual_or_difference": "receipt／finding／memoryそれぞれのtyped correction/supersessionのrecord型、訂正理由・対象のschema、superseded状態のconsumer伝播と再検証は明示されない。",
+      "authority_effect": "none"
     },
     {
       "source_id": "LEGACY-CAND-LINE-002894",
@@ -2306,8 +2321,8 @@
   ],
   "counts": {
     "selected": 20,
-    "partial": 14,
-    "unknown": 6,
+    "partial": 15,
+    "unknown": 5,
     "proposal_pool_out_of_population": 0,
     "overlay_intersection": 0,
     "prior_181_intersection": 0,
