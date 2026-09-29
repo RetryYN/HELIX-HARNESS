@@ -1,13 +1,13 @@
 {
   "schema_version": "legacy-candidate-design-grounding-intake-classification-reassessment.v1",
   "audit_id": "legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29",
-  "base_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
-  "effective_overlay_head": "baaab5bac9db0cf650db3afa67b003c1770efef2",
+  "base_commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
+  "effective_overlay_head": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
   "authority_effect": "none",
   "audit_mode": "read_only_source_classification_and_atom_boundary_proposal",
   "scope": {
     "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
-    "current_effective_population": "All 51 exact rows whose effective state is condition/product_requirement_atom/unknown after #2353/#2356/#2360; #2363/#2366 proposal IDs are excluded if overlapping, but exact-ID overlap is zero.",
+    "current_effective_population": "All 51 exact rows whose effective state is condition/product_requirement_atom/unknown after #2353/#2356/#2360. #2363/#2366 are later disjoint classification proposals and do not change these rows; the subsequent #2364 521-cutoff route sample is also disjoint and does not revise this bounded classification scope.",
     "remaining_row_count": 51,
     "classification_count": {
       "retain_product_requirement_atom": 29,
@@ -17,7 +17,7 @@
     "excluded_prior_proposals": [
       {
         "overlay": "#2363",
-        "commit": "5c2fcc39daaeb0a7433ef34d4182a1a82a70a3d4",
+        "commit": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
         "source_ids": [
           "LEGACY-CAND-LINE-000514",
           "LEGACY-CAND-LINE-000515",
@@ -40,7 +40,7 @@
       },
       {
         "overlay": "#2366",
-        "commit": "baaab5bac9db0cf650db3afa67b003c1770efef2",
+        "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
         "source_ids": [
           "LEGACY-CAND-LINE-000528",
           "LEGACY-CAND-LINE-000532",
@@ -65,27 +65,27 @@
   "overlay_order": [
     {
       "pr": "#2353",
-      "head": "8a75e5392a44e005bb05197d977bdbcf75b93cf0",
+      "head": "97672630b7de70fd4433827730c390cbabd90a99",
       "effect": "base cumulative classification/route state"
     },
     {
       "pr": "#2356",
-      "head": "b213b41735067d1716c143c92e0fa6c71d8e92d9",
+      "head": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
       "effect": "applied exact-ID metadata classification overlay"
     },
     {
       "pr": "#2360",
-      "head": "89a5f57cbc8dc6b0dc6828233992640c919fb03c",
+      "head": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
       "effect": "applied exact-ID seven-row classification overlay"
     },
     {
       "pr": "#2363",
-      "head": "5c2fcc39daaeb0a7433ef34d4182a1a82a70a3d4",
+      "head": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
       "effect": "checked prior proposal IDs; no overlap"
     },
     {
       "pr": "#2366",
-      "head": "baaab5bac9db0cf650db3afa67b003c1770efef2",
+      "head": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
       "effect": "checked latest proposal IDs; no overlap"
     }
   ],
@@ -98,51 +98,51 @@
     },
     {
       "role": "cumulative state after #2353/#2356/#2360",
-      "commit": "aab65a4f1bc2f679530604cb7f89519683b9156c",
+      "commit": "132a56f3f2cbb1d02ad3bc08bab4f23ef93369cc",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-stage5-recount-after-2353-2356-2360-2026-09-29.json",
-      "sha256": "ff1da2c7e563f25b7044318670e1808a6463afcac82857764d917878fb5046a5"
+      "sha256": "e29aadd8c84dda8fcfca65010ffa62331b6631ffce3ac22ef5d174270bb92b20"
     },
     {
       "role": "source-line identity ledger",
-      "commit": "aab65a4f1bc2f679530604cb7f89519683b9156c",
+      "commit": "132a56f3f2cbb1d02ad3bc08bab4f23ef93369cc",
       "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
       "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
     },
     {
       "role": "original archive source",
-      "commit": "aab65a4f1bc2f679530604cb7f89519683b9156c",
+      "commit": "132a56f3f2cbb1d02ad3bc08bab4f23ef93369cc",
       "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
       "sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
     },
     {
       "role": "#2353 cumulative classification/route baseline",
-      "commit": "8a75e5392a44e005bb05197d977bdbcf75b93cf0",
+      "commit": "97672630b7de70fd4433827730c390cbabd90a99",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
-      "sha256": "57fce8a0e05ed73c46346f2177c439e862a17a06ecea65446389f24dc34160c5"
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c"
     },
     {
       "role": "#2356 metadata classification overlay",
-      "commit": "b213b41735067d1716c143c92e0fa6c71d8e92d9",
+      "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
-      "sha256": "53c8acc872f30cf19e88499bc68b0f11c830a677f5c346d646a148dd3ca7853b"
+      "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164"
     },
     {
       "role": "#2360 seven-row classification overlay",
-      "commit": "89a5f57cbc8dc6b0dc6828233992640c919fb03c",
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
-      "sha256": "71fa35e0b3f8bfeb9781cbe2b9b21322d8e5be7866c71bce2abbca8cdca43ddd"
+      "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb"
     },
     {
       "role": "#2363 prior 16-row proposal/exclusion set",
-      "commit": "5c2fcc39daaeb0a7433ef34d4182a1a82a70a3d4",
+      "commit": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
-      "sha256": "8d1a2e222d46b794f96ae93fd8a9957e0d4fd9568e374e43a13ccfe7b81fca42"
+      "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384"
     },
     {
       "role": "#2366 latest two-family proposal/exclusion set",
-      "commit": "baaab5bac9db0cf650db3afa67b003c1770efef2",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
-      "sha256": "a300695c9e37a95cbc5e17748c0b0c477390a5673ee597461e20bb1d8d831244"
+      "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6"
     },
     {
       "role": "adjacent old source/decision-history context",
@@ -204,7 +204,15 @@
       "management_process_condition": 13,
       "product_unknown_route": -22
     },
-    "global_comparison_basis": "#2361 cumulative recount counts after #2353/#2356/#2360: classification condition 901, explanation 2928; subtype product_requirement_atom 892, management_process_condition 8, concept_condition 1; product route unknown 543. Applying this proposal alone would give condition 892, explanation 2937; product_requirement_atom 870, management_process_condition 21; unknown product route 521. Route counts here are still only labels and not coverage/adoption."
+    "global_comparison_basis": "#2361 merged cumulative recount current effective baseline after #2353/#2356/#2360: classification structure 926, explanation 2928, condition 901; product_requirement_atom 893, management_process_condition 7, concept_condition 1; product route unknown 544. Applying this 51-row proposal alone yields condition 892, explanation 2937; product_requirement_atom 871, management_process_condition 20, concept_condition 1; unknown product route 522. These are classification/route labels, not coverage or adoption.",
+    "cumulative_proposal_context": {
+      "basis": "The disjoint #2363 and #2366 classification proposals are later proposal overlays over the #2361 current effective baseline; they do not change the effective state of this 51-row scope.",
+      "product_unknown_baseline_after_2363_2366_proposals": 521,
+      "current_51_row_proposal_delta": -22,
+      "product_unknown_after_all_three_proposals": 499,
+      "arithmetic": "544 - 12 (#2363 proposal) - 11 (#2366 proposal) = 521; 521 - 22 (this 51-row proposal) = 499.",
+      "authority_effect": "none; proposal arithmetic does not establish adoption, successor assignment, handoff, coverage, resolution, or closure."
+    }
   },
   "ambiguous_rows": [
     "LEGACY-CAND-LINE-000840",
@@ -1644,5 +1652,35 @@
       "ambiguous": false
     }
   ],
-  "source_asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C"
+  "source_asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+  "follow_on_sample_overlap_check": {
+    "issue": "#2364",
+    "population_cutoff": 521,
+    "selection_status": "subsequent candidate route sample; not a global final sample",
+    "selected_ids": [
+      "LEGACY-CAND-LINE-000501",
+      "LEGACY-CAND-LINE-000502",
+      "LEGACY-CAND-LINE-000528",
+      "LEGACY-CAND-LINE-000532",
+      "LEGACY-CAND-LINE-000533",
+      "LEGACY-CAND-LINE-000542",
+      "LEGACY-CAND-LINE-000543",
+      "LEGACY-CAND-LINE-000545",
+      "LEGACY-CAND-LINE-000546",
+      "LEGACY-CAND-LINE-000598",
+      "LEGACY-CAND-LINE-000603",
+      "LEGACY-CAND-LINE-000613",
+      "LEGACY-CAND-LINE-000633",
+      "LEGACY-CAND-LINE-000638",
+      "LEGACY-CAND-LINE-000653",
+      "LEGACY-CAND-LINE-000661",
+      "LEGACY-CAND-LINE-000663",
+      "LEGACY-CAND-LINE-000664",
+      "LEGACY-CAND-LINE-000665",
+      "LEGACY-CAND-LINE-000667"
+    ],
+    "overlap_with_this_51_row_scope": [],
+    "selection_effect": "none; this later sample does not retroactively alter the bounded 51-row classification proposal or its source identities",
+    "pin_note": "The exact reviewed #2364 selection revision is not included here; the current open PR snapshot still contains a superseded 543-row selection."
+  }
 }

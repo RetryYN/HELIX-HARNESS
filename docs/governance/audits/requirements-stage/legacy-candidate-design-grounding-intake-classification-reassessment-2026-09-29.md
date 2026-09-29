@@ -1,9 +1,9 @@
 # 旧Design Grounding取込台帳の51行分類案
 
 - audit id: `legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29`
-- 対象状態: #2353/#2356/#2360適用後の51行。最新対象head: `baaab5bac9db0cf650db3afa67b003c1770efef2` (#2366)
+- 対象状態: #2353/#2356/#2360適用後の51行。最新baseline: merged main `a9b36cd43866d30aaca7c1edc654a44a36e47eb3` (#2366 merge)。
 - authority effect: `none`。分類・atom境界の提案のみ。採択、successor、coverage、受入、実装、完了を示さない。
-- 入力: 同名JSONにcommit/path/SHA-256を固定。source asset `LEGACY-ASSET-A422448C3CACBCA75D0C`、原稿全体、対応requests/requirements/acceptance、PLAN-L3-91を読了。
+- 入力: 同名JSONにcommit/path/SHA-256を固定し、merge済み依存pinを更新・再照合。source asset `LEGACY-ASSET-A422448C3CACBCA75D0C`、原稿全体、対応requests/requirements/acceptance、PLAN-L3-91を読了。
 
 ## 分類基準
 
@@ -20,7 +20,7 @@
 | condition / product_requirement_atom / unknown | condition / management_process_condition | 13 |
 | condition / product_requirement_atom / unknown | explanation | 9 |
 
-対象51行内の差分は condition −9、explanation ＋9、product atom −22、management condition ＋13。#2361累積集計へ単独適用すると condition 901→892、explanation 2928→2937、product atom 892→870、management condition 8→21、product route unknown 543→521。unknown routeは被覆を意味しない。
+対象51行内の差分は condition −9、explanation ＋9、product atom −22、management condition ＋13。merged #2361の正確なeffective baselineはcondition 901、explanation 2928、product atom 893、management condition 7、product route unknown 544。今回の51行案だけを単独適用するとcondition 892、explanation 2937、product atom 871、management condition 20、unknown 522となる。別集合の#2363案−12と#2366案−11を重ねた提案上baselineは544−12−11＝521で、そこへこの51行案を加えた算術値は499。これらはproposal-onlyの分類算術であり、採択、handoff、successor assignment、coverage、resolution、closureを意味しない。unknown routeは被覆を意味しない。
 
 ## 行別分類案
 
@@ -96,10 +96,12 @@
 - intake §0–1の概要・実装censusと、同名requests/requirements/acceptanceを照合した。requestsは3 BRを要求の親として持ち、requirementsはDG/HR/DCとIssue追跡、scope限定、authority境界を機能契約として具体化している。
 - PLAN-L3-91は#1558所有の候補整理、runtime/canonical変更なし、原稿保全とtraceを記す。旧intakeの§9順序は、隣接requirementsおよび#1558本文でauthority-firstへ是正されている。ここでは旧順序をsource historyとして保ち、順序内容は書き換えず、管理条件に分類する。
 - #1558の公開Issue本文（2026-09-29閲覧）は、DG/HR/DC契約、Issue形成状態とtrace、影響scope限定、候補/authority分離を説明する。Issue状態はsource分類の入力権限や要求採択の根拠に使っていない。
-- #2363の16 IDおよび#2366の14 IDとのsource ID重複は0件。#2356/#2360の対象IDも別行で、今回の51 IDへ適用差分はない。
+- merged #2363の16 ID、#2366の14 ID、後続の#2364 521-cutoff sampleの20 IDは本51 IDと重複しない。#2364は別の後続route sampleであり、今回の51行分類proposalの選定を遡及変更しない。また、#2364をstage全体の最終sampleとは扱わない。#2356/#2360の対象IDも別行で、今回の51 IDへ適用差分はない。
 
 ## 制約
 
+- この51行は独立したbounded classification proposalであり、#2364の後続route sampleと統合しない。#2364との重複は0件。#2364のsample選定は遡及変更せず、stage全体の最終sampleとも表現しない。
+
 - 全51行のcurrent route labelは `unknown`。保持するproduct atom 29行もunknownのままとする。
 - management conditionへの再分類はproduct successorの不存在やretireを意味しない。explanationへの再分類もsourceの規範文を削除・無効化しない。
-- 原文・source line SHA・physical line bytes SHAは同名JSONに収録。静的なsource identity/count整合だけを検証し、旧runtime、CLI、test、CI、hookは実行していない。
+- 原文・source line SHA・physical line bytes SHAは同名JSONに収録。静的なsource identity/count整合、merged dependency pins、#2363/#2366/#2364とのID非重複だけを検証し、旧runtime、CLI、test、CI、hookは実行していない。
