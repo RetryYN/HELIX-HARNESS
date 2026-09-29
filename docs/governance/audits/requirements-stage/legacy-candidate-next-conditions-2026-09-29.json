@@ -165,7 +165,10 @@
       "residual": "candidate#1728に限定したhistorical process boundary。現行management contractへの移管・有効性・owner・後続文書への接続は未確認。製品L2要件atomとして数えない。",
       "coverage_claim": false,
       "formal_successor_assigned": false,
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "condition_count_bucket": "condition",
+      "condition_subtype": "management_process_condition",
+      "counted_as_product_requirement_atom": false
     },
     {
       "source_item_id": "LEGACY-CAND-LINE-000028",
@@ -211,7 +214,10 @@
       "residual": "対象候補とmigrationの完了条件。現行のScaffold Binding/management registerのどれが後継か未照合。製品L2要件atomとして数えない。",
       "coverage_claim": false,
       "formal_successor_assigned": false,
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "condition_count_bucket": "condition",
+      "condition_subtype": "management_process_condition",
+      "counted_as_product_requirement_atom": false
     },
     {
       "source_item_id": "LEGACY-CAND-LINE-000034",
@@ -257,7 +263,10 @@
       "residual": "72-item母集団、INV個別選択、owner解決の適用範囲。製品L2要件atomとして数えず、現在の候補採否は生成しない。",
       "coverage_claim": false,
       "formal_successor_assigned": false,
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "condition_count_bucket": "condition",
+      "condition_subtype": "management_process_condition",
+      "counted_as_product_requirement_atom": false
     },
     {
       "source_item_id": "LEGACY-CAND-LINE-000052",
@@ -303,7 +312,10 @@
       "residual": "独立再現、duplicate/expiry/counterevidence判定、verified遷移oracle。AAFDのhistorical candidate authorityを維持し、採択済みcoverageとはしない。",
       "coverage_claim": false,
       "formal_successor_assigned": false,
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "condition_count_bucket": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "counted_as_product_requirement_atom": true
     },
     {
       "source_item_id": "LEGACY-CAND-LINE-000140",
@@ -349,7 +361,10 @@
       "residual": "正確なUIL handoff、独立した失効/supersession処理、finding/remediationの異なるidentityに対する受入条件。coverage claimなし。",
       "coverage_claim": false,
       "formal_successor_assigned": false,
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "condition_count_bucket": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "counted_as_product_requirement_atom": true
     },
     {
       "source_item_id": "LEGACY-CAND-LINE-000180",
@@ -395,7 +410,10 @@
       "residual": "独立検証・counterexample・expiryのexact qualification contractと旧昇格条件の現在適用性が未確定。新しい承認手続きは提案しない。",
       "coverage_claim": false,
       "formal_successor_assigned": false,
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "condition_count_bucket": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "counted_as_product_requirement_atom": true
     },
     {
       "source_item_id": "LEGACY-CAND-LINE-001067",
@@ -441,7 +459,10 @@
       "residual": "5つの区分と現在のauthority dispositionとの意味/版関係、owner-resolution操作、現在の適用範囲。製品L2要件atomとして数えない。",
       "coverage_claim": false,
       "formal_successor_assigned": false,
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "condition_count_bucket": "condition",
+      "condition_subtype": "management_process_condition",
+      "counted_as_product_requirement_atom": false
     },
     {
       "source_item_id": "LEGACY-CAND-LINE-001661",
@@ -497,7 +518,10 @@
       "residual": "独立task identity、割当/停止criteria、列挙されたbias/API drift、inconclusiveのexact oracleは採択済みL2/L11で未確認。route unknownを維持する。",
       "coverage_claim": false,
       "formal_successor_assigned": false,
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "condition_count_bucket": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "counted_as_product_requirement_atom": true
     },
     {
       "source_item_id": "LEGACY-CAND-LINE-002205",
@@ -543,7 +567,10 @@
       "residual": "channel state machine/entry criteria、identity/digest binding、drift時の再検証/隔離oracle。旧候補channelを現行release authorityにしない。",
       "coverage_claim": false,
       "formal_successor_assigned": false,
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "condition_count_bucket": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "counted_as_product_requirement_atom": true
     },
     {
       "source_item_id": "LEGACY-CAND-LINE-002426",
@@ -589,7 +616,10 @@
       "residual": "transport delivery semanticsおよびreceiver idempotency oracleは隣接するprojection契約では閉じない。product target/owner/adoptionは未確定。",
       "coverage_claim": false,
       "formal_successor_assigned": false,
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "condition_count_bucket": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "counted_as_product_requirement_atom": true
     },
     {
       "source_item_id": "LEGACY-CAND-LINE-002861",
@@ -635,7 +665,10 @@
       "residual": "audit tier/admissionが現在の上流意味に残るか、そのscopeとsuccessor。歴史的Concept conditionとして保持し、現行runtime scheduleとしない。",
       "coverage_claim": false,
       "formal_successor_assigned": false,
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "condition_count_bucket": "condition",
+      "condition_subtype": "concept_condition",
+      "counted_as_product_requirement_atom": false
     },
     {
       "source_item_id": "LEGACY-CAND-LINE-004084",
@@ -681,22 +714,81 @@
       "residual": "RCLS owner identity、exact successor、採択/target version、詳細なL11証拠は未決。coveredに数えない。",
       "coverage_claim": false,
       "formal_successor_assigned": false,
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "condition_count_bucket": "condition",
+      "condition_subtype": "product_requirement_atom",
+      "counted_as_product_requirement_atom": true
     }
   ],
   "aggregate_claims": {
     "source_lines_reviewed": 12,
-    "snapshot_explanation_rows_reclassified_as_condition": 12,
+    "condition_count_bucket_rows": 12,
+    "condition_subtype_counts": {
+      "product_requirement_atom": 7,
+      "management_process_condition": 4,
+      "concept_condition": 1
+    },
     "product_requirement_atom_corrections": 7,
-    "management_or_concept_conditions_not_counted_as_requirement_atoms": 5,
+    "non_product_requirement_condition_rows": 5,
+    "snapshot_explanation_rows_reclassified_as_condition": 12,
     "route_outcomes": {
       "management_successor_unresolved": 4,
       "unadopted_candidate_only": 1,
       "unknown": 7
     },
+    "route_status_meaning": {
+      "management_successor_unresolved": "Historical management/process condition; no product L2/L11 route or formal successor assigned.",
+      "unknown": "Related adopted L2/L11 requirements were compared where applicable, but exact adopted coverage for the source condition is not established; retain unknown.",
+      "unadopted_candidate_only": "Candidate relation only; no adopted L2/L11 coverage or formal successor."
+    },
     "full_population_no_loss": false,
+    "full_population_recount_performed": false,
     "formal_successor_assignments": 0,
     "stage5_closure_claim": false
   },
-  "limitations": "This bounded review corrects only the selected explanation-classified rows. Related current requirements, source-family references, and general authority principles do not establish exact adopted coverage. All source rows remain historical_candidate/draft_candidate. The old #1035/#1384 independent verification/counterexample/expiry/human gate language remains a historical condition and is not reactivated as recurring approval."
+  "limitations": "This bounded review corrects only the selected 12 explanation-classified rows. All 12 belong in the condition count bucket; only 7 are product requirement_atom subtype. The other 4 are management/process conditions and 1 is a historical Concept condition. Related current requirements, source-family references, and general authority principles do not establish exact adopted coverage. All source rows remain historical_candidate/draft_candidate. The old #1035/#1384 independent verification/counterexample/expiry/human gate language remains a historical condition and is not reactivated as recurring approval. The #2341 full-population recount is historical/stale after later corrections in #2342 (17 rows) and this bounded audit (12 rows); no updated cumulative count is claimed. A fresh total requires full re-enumeration.",
+  "historical_cumulative_recount": {
+    "status": "historical_stale_after_later_condition_corrections",
+    "historical_recount": {
+      "pr": 2341,
+      "merge_commit": "ee8152770667d69cccac2a7eca06f7e989b256f8",
+      "markdown_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-current-classification-route-recount-2026-09-29.md",
+      "markdown_sha256": "b04680c6108b37a7d8bf94ce0ceee9ce7e271f89c23a227e61d76cf246432696",
+      "json_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-current-classification-route-recount-2026-09-29.json",
+      "json_sha256": "074790b73e4f2aef1d8daf04600cb126f601c726dff0fe41ef9d63d23cad5cc0",
+      "historical_totals_at_that_revision": {
+        "structure": 926,
+        "explanation": 2940,
+        "condition": 889,
+        "route_unknown": 574,
+        "total": 4755
+      },
+      "status_note": "These totals predate the 17 condition corrections recorded in PR #2342 and the 12 condition corrections recorded in this audit; they are not current effective totals."
+    },
+    "subsequent_corrections": [
+      {
+        "pr": 2342,
+        "audit_id": "rtg-parent-20-condition-crosswalk-audit-2026-09-29",
+        "basis_commit": "ee8152770667d69cccac2a7eca06f7e989b256f8",
+        "markdown_path": "docs/governance/audits/requirements-stage/rtg-parent-20-condition-crosswalk-audit-2026-09-29.md",
+        "markdown_sha256": "9480df69599f57d474560d7b695b7c3c86a60868e19cc5a6cefcbea24363ec27",
+        "json_path": "docs/governance/audits/requirements-stage/rtg-parent-20-condition-crosswalk-audit-2026-09-29.json",
+        "json_sha256": "db8778d950433cf4e70f73e225e7893085160457e9a765d0d6f140e8fc73efa3",
+        "condition_corrections": 17
+      },
+      {
+        "audit_id": "legacy-candidate-next-conditions-2026-09-29",
+        "basis_commit": "6e9e91d1a50acfb83ee64795e6ddbd1dfdff2485",
+        "condition_corrections": 12,
+        "condition_subtypes": {
+          "product_requirement_atom": 7,
+          "management_process_condition": 4,
+          "concept_condition": 1
+        }
+      }
+    ],
+    "current_cumulative_recount_performed": false,
+    "recount_rule": "Do not derive a new 4,755-row cumulative total by adding these bounded audits to the historical totals. Re-enumerate all 4,755 source rows and reconcile every correction and route overlay first.",
+    "historical_audits_modified": false
+  }
 }
