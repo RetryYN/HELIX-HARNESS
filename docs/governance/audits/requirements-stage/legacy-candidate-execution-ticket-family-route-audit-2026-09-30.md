@@ -31,7 +31,8 @@
 - `001115`は`#2370 000703`（撤回claim・取消権限・AI context内secret等）を比較した。固定SECURITY-L2-005のraw credential非露出と一部の情報種別は関連するが、raw credentialを通常Ticket/metric recordに残さない範囲だけSECURITY-L2-005と部分一致。PII/private transcript全般、metric分類、restricted raw policyは残差。
 - `001098`は`#2364 000533`（CI generation/supersession時のhandoff receipt・terminal read-after）と比較したが別predicate。別途、採択OS-L2-018のticket revision/digestを含むAssignment input/exact bindingに加え、OS-L2-023の対象revision/digest handoff照合・不一致時未成立が旧行と部分一致する。
 - `001105`は同familyの`001168`/`001621`（事前budget reservation・retryを含む累積budget）および`#2370 000725`（安全な継続・復旧）を比較した。retryをresetせず累積制約に算入する部分をOS-L2-018/009と部分対応とした。具体的retry上限を超えた際のtyped Recovery/backflowは残差。
-- `001123`は`001101`（Ticket scope外write/lease拒否）、`001137`も`001101`と比較した。formal/shadow modeだけを根拠とするmerge/publish/deploy ban、destructive operationにも操作ごとのauthorityが必要な範囲でSECURITY-L2-008と部分対応とした。risk-class偽装の検知oracleは残差で、001101のscope拒否とは別predicate。
+- `001123`は`001101`（Ticket scope外write/lease拒否）およびSECURITY-L2-008と比較した。採択条件はformal/shadow modeから通常repoへのmerge/publish/deploy禁止を定めていないため、`true_unknown`を維持する。
+- `001137`も`001101`と比較した。destructive operationに操作ごとのauthorityが必要な範囲だけSECURITY-L2-008と部分対応とした。risk-class偽装の検知oracleは残差で、001101のscope拒否とは別predicate。
 
 ### classification再確認候補（今回のroute監査では変更しない）
 
