@@ -1,7 +1,7 @@
 {
   "schema_version": "helix-stage5-execution-ticket-family-route-audit/v1",
   "audit_id": "legacy-candidate-execution-ticket-family-route-audit-2026-09-30",
-  "created_against_commit": "6b935dcb1043d3ca680396e4a247fb3b4937d6b0",
+  "created_against_commit": "f4ccddb0e34c25d5f5176a9e97fecf4b53481fd1",
   "authority_effect": "none",
   "population_and_selection": {
     "proposal_effective_population": 488,
@@ -12,17 +12,25 @@
     "remaining_population_count": 427,
     "execution_ticket_family_rows_selected": 51,
     "family_rows_intersecting_exclusion_union": 0,
-    "selection_limit": "51 source rows are the complete Execution Ticket family within the proposal-effective unknown population under the pinned #2353/#2356/#2360 effective row identity and subsequent overlay source-ID scope. No out-of-population execution-ticket line is included."
+    "selection_limit": "51 source rows are the complete Execution Ticket family within the proposal-effective unknown population under the pinned #2353/#2356/#2360 effective row identity and subsequent overlay source-ID scope. No out-of-population execution-ticket line is included.",
+    "row_identity_reconciliation": {
+      "classification_and_effective_route_authority_commit": "97672630b7de70fd4433827730c390cbabd90a99",
+      "row_record_source": "pinned #2353 merged baseline row_records",
+      "family_identity_join_key": [
+        "source_id=source_item_id",
+        "source.file_sha256=archive file SHA-256",
+        "source.line_content_sha256=source_line_sha256",
+        "source.physical_line_bytes_sha256=physical_line_bytes_sha256"
+      ],
+      "family_rows_joined": 51,
+      "family_rows_mismatched": 0,
+      "ordered_4755_row_count": 4755,
+      "authority_note": "#2353のmerged baselineのみをclassification・effective route・row identityの権威pinとして使用。familyのsource path/line/textは別pinしたarchive bytesへ直接joinし、premerge PR HEAD snapshotには依存しない。"
+    }
   },
   "pinned_inputs": [
     {
-      "role": "#2353 PR HEAD full row_records snapshot; used to identify original rows/source identity",
-      "commit": "9926aebfbec7813d14a84490758783153422d99e",
-      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
-      "sha256": "5d810a881d29711b0640e8641df2678b6fe9ee41767936d0289e0cf0e4948110"
-    },
-    {
-      "role": "#2353 merged cumulative classification baseline as pinned in #2369 population audit",
+      "role": "#2353 merged cumulative classification baseline; population and effective route authority",
       "commit": "97672630b7de70fd4433827730c390cbabd90a99",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
       "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c"
@@ -40,10 +48,46 @@
       "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb"
     },
     {
+      "role": "#2363 merged proposal",
+      "commit": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+      "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384"
+    },
+    {
+      "role": "#2366 merged proposal",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+      "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6"
+    },
+    {
+      "role": "#2367 merged proposal",
+      "commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
+      "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d"
+    },
+    {
+      "role": "#2368 merged proposal",
+      "commit": "f89f71e0371440e9e10636499192c2311872b024",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
+      "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95"
+    },
+    {
+      "role": "#2369 merged proposal",
+      "commit": "081b0b6612b802cfcb02b3cecda1559dd9a3ce13",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30.json",
+      "sha256": "5ed02b037f78ca25991b396e232e8b1ee754b0c91b056ed6640c9fb1c47cf0c0"
+    },
+    {
       "role": "#2370 selected pool and rowwise selection/exclusion audit",
-      "commit": "8fd5f12ad",
+      "commit": "8fd5f12ad8eeaa2dceecdb9c29da670bf37f034e",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-product-unknown-next20-route-audit-after-2369-2026-09-30.json",
       "sha256": "69cc7136961d7cd2aba64627903a134732bc858dc351780791f288bb05e7af48"
+    },
+    {
+      "role": "#2364 selected pool source evidence used only for predicate contrast",
+      "commit": "5097e3464e06879f833ab7779eec2a279cca690c",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-unknown-next20-route-audit-after-2359-2026-09-29.json",
+      "sha256": "4d4d4d3e3bfc04c30f5d1615b2868e1cadca9004fd89a09d098bef770a099dc6"
     },
     {
       "role": "prior ticket semantic and ticket-ID redo audit",
@@ -272,10 +316,16 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は追加の反例: 同一logical Ticketの旧revision有効leaseを残して新revisionをclaimする操作を拒否する。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-018, HELIXOS-L2-019, HELIXOS-L2-009。旧行は同一logical Ticketで新revisionのclaimを拒否するlease競合条件。採択OSはticket/assignment/evidence revision、lease失効後の引継ぎ、二重実行防止を扱うが、同一logical Ticketの旧revision leaseが残るときのclaim判定そのものを固定しない。",
       "residual": "旧ticket/assignment schemaの全field、digest計算法、実path判定、旧lease state machineを採択L2/L11が網羅しない。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-018",
+        "HELIXOS-L2-019",
+        "HELIXOS-L2-009"
+      ],
+      "predicate_comparison": "旧行は同一logical Ticketで新revisionのclaimを拒否するlease競合条件。採択OSはticket/assignment/evidence revision、lease失効後の引継ぎ、二重実行防止を扱うが、同一logical Ticketの旧revision leaseが残るときのclaim判定そのものを固定しない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001084",
@@ -297,10 +347,16 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は実path検証を計画path文字列だけで代替する操作、未切替AssignmentへのTicket fieldの黙示追加も拒否する。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-018, HELIXOS-L2-019, HELIXSECURITY-L2-008。旧行は実path検証と未切替Assignmentへのfield黙示追加拒否。採択OSはassignment/evidenceのbinding、Securityはoperation scopeを扱うが、path解決・未切替状態でのfield migration oracleは定めない。",
       "residual": "旧ticket/assignment schemaの全field、digest計算法、実path判定、旧lease state machineを採択L2/L11が網羅しない。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-018",
+        "HELIXOS-L2-019",
+        "HELIXSECURITY-L2-008"
+      ],
+      "predicate_comparison": "旧行は実path検証と未切替Assignmentへのfield黙示追加拒否。採択OSはassignment/evidenceのbinding、Securityはoperation scopeを扱うが、path解決・未切替状態でのfield migration oracleは定めない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001097",
@@ -322,10 +378,15 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は| HXT-AC-007 | Ticket本文にprovider/assignee/branch/lease/progress/scoreを埋め込む入力を拒否する | HXT-FR-001,009 |を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-017, HELIXOS-L2-018。旧行はTicket本文にprovider/assignee/branch/lease/progress/scoreを持たせないschema境界。採択OSは割当とTicket/workflowを分離するが、禁止field一覧と入力拒否schemaは固定しない。",
       "residual": "旧ticket/assignment schemaの全field、digest計算法、実path判定、旧lease state machineを採択L2/L11が網羅しない。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-017",
+        "HELIXOS-L2-018"
+      ],
+      "predicate_comparison": "旧行はTicket本文にprovider/assignee/branch/lease/progress/scoreを持たせないschema境界。採択OSは割当とTicket/workflowを分離するが、禁止field一覧と入力拒否schemaは固定しない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001098",
@@ -345,12 +406,48 @@
         "selected_pool_count": 488,
         "excluded_sample_union_intersection": false
       },
-      "route_relation": "true_unknown",
-      "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は| HXT-AC-008 | AssignmentのTicket revision/digest不一致を拒否する | HXT-FR-009 |を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
-      "residual": "旧ticket/assignment schemaの全field、digest計算法、実path判定、旧lease state machineを採択L2/L11が網羅しない。",
+      "route_relation": "adopted_relevant_partial",
+      "adopted_exact_revision_refs": [
+        "HELIXOS-L2-018",
+        "HELIXOS-L2-023"
+      ],
+      "relation_basis": "採択OS L2-018はAssignment入力にticket revision/digestを含め、ticket・要求revision・authority等のexact bindingと不一致時停止を定める。OS L2-023はhandoffを対象revision/digestへ束縛し、不一致handoffを未成立として発生側へ返す。旧行のAssignment/Ticket revision/digest不一致を通さない条件に部分一致する。",
+      "residual": "旧Ticket/Assignment固有のdigest算出方式、比較対象field一覧、Assignment固有の完全な不一致oracleは採択されていない。#2364 000533はCI generation/supersession handoff条件であり、このrouteの根拠にしていない。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [
+        {
+          "requirement_id": "HELIXOS-L2-018",
+          "fixed_revision_mechanism": "HELIXOS",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 675,
+          "section_heading_line": 672,
+          "predicate_excerpt_or_locator": "Assignment入力にticket revision/digestを含める。"
+        },
+        {
+          "requirement_id": "HELIXOS-L2-018",
+          "fixed_revision_mechanism": "HELIXOS",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line": 348,
+          "section_heading_line": 345,
+          "predicate_excerpt_or_locator": "各recordのexact bindingを辿り、不一致時は起動・継続を止める。"
+        },
+        {
+          "requirement_id": "HELIXOS-L2-023",
+          "fixed_revision_mechanism": "HELIXOS",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line": 383,
+          "section_heading_line": 380,
+          "predicate_excerpt_or_locator": "handoffごとの対象revision/digest一致を確認し、受渡しの不一致でconnectionを未成立にする。"
+        }
+      ],
+      "related_candidate_rows_reviewed": [
+        {
+          "source_id": "LEGACY-CAND-LINE-000533",
+          "audit_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-unknown-next20-route-audit-after-2359-2026-09-29.json",
+          "source_text": "generation確保、required obligationのhandoff receipt、terminal read-afterを検証できる場合だけとする。",
+          "comparison_result": "#2364 selected sourceのCI generation/handoff predicate。本行のAssignment ticket revision/digest mismatchとは別。L2-018の直接採択predicateを根拠にpartialとする。"
+        }
+      ]
     },
     {
       "source_id": "LEGACY-CAND-LINE-001101",
@@ -405,12 +502,47 @@
         "selected_pool_count": 488,
         "excluded_sample_union_intersection": false
       },
-      "route_relation": "true_unknown",
-      "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は| HXT-AC-015 | retry上限超過をtyped Recovery/backflowへ送る | HXT-FR-014 |を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
-      "residual": "旧formal/shadow、legacy direct assignment cutover、redaction/restricted raw policyの実装形式・判定表は旧source残差。対応する操作権限はSECURITY所有で、今回のrouteは旧atom adoptionではない。",
+      "route_relation": "adopted_relevant_partial",
+      "adopted_exact_revision_refs": [
+        "HELIXOS-L2-018",
+        "HELIXOS-L2-009"
+      ],
+      "relation_basis": "採択OS L2-018 L11は失敗回数をresetせず累積させ、L2-009は累積予算・未完義務を保持する。旧行のretry上限を無制限にやり直さず累積制約として扱う部分に限って一致する。",
+      "residual": "retryの具体的回数上限を超えた後にtyped Recovery/backflowへ遷移する型と戻し先は採択されていない。#2370 000725の継続・復旧もretry-cap routeを直接定めない。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [
+        {
+          "requirement_id": "HELIXOS-L2-018",
+          "fixed_revision_mechanism": "HELIXOS",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line": 349,
+          "predicate_excerpt_or_locator": "反例に期限/budget/失敗回数のresetを含め、累積カウントを保つ。",
+          "section_heading_line": 345
+        },
+        {
+          "requirement_id": "HELIXOS-L2-009",
+          "fixed_revision_mechanism": "HELIXOS",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 62,
+          "predicate_excerpt_or_locator": "累積予算・期限・未完義務を保持し、範囲外操作と二重実行を防ぐ。"
+        }
+      ],
+      "related_candidate_rows_reviewed": [
+        {
+          "source_id": "LEGACY-CAND-LINE-001168",
+          "comparison_result": "同じ旧候補family内の事前budget reservation/cumulative budget ceiling。retry回数上限とtyped Recovery遷移は同一predicateでない。"
+        },
+        {
+          "source_id": "LEGACY-CAND-LINE-001621",
+          "comparison_result": "同じ旧候補family内のretryを累積budgetへ算入する条件。試行回数上限とtyped Recovery遷移は同一predicateでない。"
+        },
+        {
+          "source_id": "LEGACY-CAND-LINE-000725",
+          "audit_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-product-unknown-next20-route-audit-after-2369-2026-09-30.json",
+          "source_text": "再構成し、論理laneと仕事を安全かつ継続的に運転できるようにする。",
+          "comparison_result": "#2370はOS-L2-009の安全な継続・復旧との部分一致。具体的retry limit/typed Recoveryはその部分一致から導けない。"
+        }
+      ]
     },
     {
       "source_id": "LEGACY-CAND-LINE-001111",
@@ -432,10 +564,15 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は| HXT-AC-021 | scope変更で同revisionを上書きできない | HXT-FR-005,010 |を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-018, HELIXOS-L2-019。旧行はscope変更時に同revisionを上書きできないimmutability条件。採択OSはrevisionとassignment/evidenceを追跡するが、scope変更時のrevision発行・上書き拒否の具体的遷移は固定しない。",
       "residual": "旧ticket/assignment schemaの全field、digest計算法、実path判定、旧lease state machineを採択L2/L11が網羅しない。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-018",
+        "HELIXOS-L2-019"
+      ],
+      "predicate_comparison": "旧行はscope変更時に同revisionを上書きできないimmutability条件。採択OSはrevisionとassignment/evidenceを追跡するが、scope変更時のrevision発行・上書き拒否の具体的遷移は固定しない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001115",
@@ -455,12 +592,30 @@
         "selected_pool_count": 488,
         "excluded_sample_union_intersection": false
       },
-      "route_relation": "true_unknown",
-      "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は| HXT-AC-025 | secret/PII/private transcriptを通常Ticket/metricへ保存しない。必要rawはrestricted policyで扱う | HXT-FR-022 |を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
-      "residual": "旧formal/shadow、legacy direct assignment cutover、redaction/restricted raw policyの実装形式・判定表は旧source残差。対応する操作権限はSECURITY所有で、今回のrouteは旧atom adoptionではない。",
+      "route_relation": "adopted_relevant_partial",
+      "adopted_exact_revision_refs": [
+        "HELIXSECURITY-L2-005"
+      ],
+      "relation_basis": "採択SECURITY L2-005/L11-005はraw credentialをcontext/log/artifactへ露出させない。旧行のsecretのうちraw credentialを通常Ticket/metric recordに永続化しない部分が部分一致する。",
+      "residual": "PII/private transcript全般の保存制限、metricのdata class、restricted raw retention/access policyは採択predicateに含まれない。#2370 000703はAI context内secret等を扱う別source atomで、この部分対応を機械的に移したものではない。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [
+        {
+          "requirement_id": "HELIXSECURITY-L2-005",
+          "fixed_revision_mechanism": "HELIXSECURITY",
+          "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+          "line": 29,
+          "predicate_excerpt_or_locator": "raw credentialはcontext/log/artifactに現れず、期限等の範囲付き利用だけが許可される。"
+        }
+      ],
+      "related_candidate_rows_reviewed": [
+        {
+          "source_id": "LEGACY-CAND-LINE-000703",
+          "audit_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-product-unknown-next20-route-audit-after-2369-2026-09-30.json",
+          "source_text": "必要情報不足時は分割取得または保留となり、撤回claim、取消権限、secret、private reasoning、他案件情報、作成側私的文脈を拒否する。",
+          "comparison_result": "#2370はAI contextへのraw secret露出などの部分一致を記録。Ticket/metricへのsecret/PII/private transcript retentionという本行のpredicateとは対象面が異なり、routeを機械継承しない。"
+        }
+      ]
     },
     {
       "source_id": "LEGACY-CAND-LINE-001120",
@@ -482,10 +637,16 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は| HXT-AC-030 | cutover後のTicket-required経路で新規legacy direct Assignmentを拒否する | HXT-FR-025 |を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-017, HELIXOS-L2-018, HELIXSECURITY-L2-008。旧行はcutover後Ticket-required経路で新規legacy direct Assignmentを拒否する移行時期条件。採択OSのTicket/workflowとSecurityのoperation authorityは、cutover後に旧経路を廃止するpredicateを含まない。",
       "residual": "旧formal/shadow、legacy direct assignment cutover、redaction/restricted raw policyの実装形式・判定表は旧source残差。対応する操作権限はSECURITY所有で、今回のrouteは旧atom adoptionではない。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-017",
+        "HELIXOS-L2-018",
+        "HELIXSECURITY-L2-008"
+      ],
+      "predicate_comparison": "旧行はcutover後Ticket-required経路で新規legacy direct Assignmentを拒否する移行時期条件。採択OSのTicket/workflowとSecurityのoperation authorityは、cutover後に旧経路を廃止するpredicateを含まない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001122",
@@ -550,10 +711,22 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は| HXT-AC-033 | formal/shadow Attemptから通常repoのPR merge/publish/deployを実行できない | HXT-FR-010,020 |を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-018, HELIXOS-L2-020, HELIXSECURITY-L2-008。旧行はformal/shadow AttemptというmodeからPR merge/publish/deployを一律禁止するmode-specific ban。採択SECURITY-L2-008は操作ごとのauthorityを照合し、OSはassignment/review/CIを分担するが、そのmodeだけを根拠に通常repo外部操作を禁止する条件ではない。001101のscope外write/lease拒否とも同一ではない。",
       "residual": "旧formal/shadow、legacy direct assignment cutover、redaction/restricted raw policyの実装形式・判定表は旧source残差。対応する操作権限はSECURITY所有で、今回のrouteは旧atom adoptionではない。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-018",
+        "HELIXOS-L2-020",
+        "HELIXSECURITY-L2-008"
+      ],
+      "predicate_comparison": "旧行はformal/shadow AttemptというmodeからPR merge/publish/deployを一律禁止するmode-specific ban。採択SECURITY-L2-008は操作ごとのauthorityを照合し、OSはassignment/review/CIを分担するが、そのmodeだけを根拠に通常repo外部操作を禁止する条件ではない。001101のscope外write/lease拒否とも同一ではない。",
+      "related_candidate_rows_reviewed": [
+        {
+          "source_id": "LEGACY-CAND-LINE-001101",
+          "comparison_result": "001101はTicket scope外write/lease拒否。本行はformal/shadow modeからmerge/publish/deployを禁止するmode-specific banであり、対象predicateが異なる。"
+        }
+      ]
     },
     {
       "source_id": "LEGACY-CAND-LINE-001127",
@@ -678,12 +851,28 @@
         "selected_pool_count": 488,
         "excluded_sample_union_intersection": false
       },
-      "route_relation": "true_unknown",
-      "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は| HXT-AC-047 | destructive操作を普通のlow-risk作業へ隠して実行できない | HXT-FR-022 |を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
-      "residual": "旧formal/shadow、legacy direct assignment cutover、redaction/restricted raw policyの実装形式・判定表は旧source残差。対応する操作権限はSECURITY所有で、今回のrouteは旧atom adoptionではない。",
+      "route_relation": "adopted_relevant_partial",
+      "adopted_exact_revision_refs": [
+        "HELIXSECURITY-L2-008"
+      ],
+      "relation_basis": "採択SECURITY L2-008/L11-008はimpactのあるoperationごとに別authorityを要求し、actor/target/operation/revision/environment/scope/expiryが一致する場合だけ許可する。destructive operationをlow-risk扱いにしてもoperation単位の権限を省略できない点で部分一致する。",
+      "residual": "destructive/risk classの定義、low-risk偽装の検知方法、分類衝突時のoracleは採択されていない。001101のscope外write/lease拒否とは区別する。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [
+        {
+          "requirement_id": "HELIXSECURITY-L2-008",
+          "fixed_revision_mechanism": "HELIXSECURITY",
+          "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+          "line": 32,
+          "predicate_excerpt_or_locator": "impact operationごとに別authorityを要求し、actor/target/operation/revision/environment/scope/expiryを照合する。"
+        }
+      ],
+      "related_candidate_rows_reviewed": [
+        {
+          "source_id": "LEGACY-CAND-LINE-001101",
+          "comparison_result": "001101はTicket scope外write/lease拒否。本行はdestructive operationのrisk class偽装検知で、scope違反の拒否とは異なる。"
+        }
+      ]
     },
     {
       "source_id": "LEGACY-CAND-LINE-001151",
@@ -705,10 +894,17 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は| HXB-AC-008 | 本線closureと分析sinkの間に循環待ちがなく、遅着結果を追補できる | HXB-FR-004 |を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-005, HELIXOS-L2-009, HELIXOS-L2-022, HELIXLABO-L2-010。旧行は本線closureが分析sinkを待たず、遅着結果を元closureへ循環せず追補するlifecycle条件。OS/LABOのfeedback還流はあるがsink待ちの非循環性と遅着追補の状態機械は定めない。",
       "residual": "遅着sinkの状態、実験追加時の予算予約、特定dashboard fieldsのexact acceptanceは独立した旧詳細条件として残る。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-005",
+        "HELIXOS-L2-009",
+        "HELIXOS-L2-022",
+        "HELIXLABO-L2-010"
+      ],
+      "predicate_comparison": "旧行は本線closureが分析sinkを待たず、遅着結果を元closureへ循環せず追補するlifecycle条件。OS/LABOのfeedback還流はあるがsink待ちの非循環性と遅着追補の状態機械は定めない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001168",
@@ -773,10 +969,16 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は| HXB-AC-039 | dashboardが母数/欠測/window/mode/cost確度を示し、実装完成率と測定成功率を分離する | HXB-FR-020 |を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXLABO-L2-006, HELIXLABO-L2-055, HELIXOS-L2-007。旧行はdashboardの分母、欠測、window、mode、cost confidenceを提示し、実装完成率と測定成功率を分ける表示契約。LABO評価と観測証拠は関連するが、このmetric schema/denominator/display contractを固定しない。",
       "residual": "費用配賦・currency/effective-time、統計計画、selection bias補正、measurement trigger/dedupe、具体的停止値は採択本文に同一条件なし。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXLABO-L2-006",
+        "HELIXLABO-L2-055",
+        "HELIXOS-L2-007"
+      ],
+      "predicate_comparison": "旧行はdashboardの分母、欠測、window、mode、cost confidenceを提示し、実装完成率と測定成功率を分ける表示契約。LABO評価と観測証拠は関連するが、このmetric schema/denominator/display contractを固定しない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001231",
@@ -798,10 +1000,16 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行はv0.1への追記集ではなく、接続を前提に整合性を見直した統合版である。`HXT-FR-001〜025`、`HXT-NFR-001〜010`、旧受入50件の追跡性を維持し、Bench接続責務を`HXB-FR-001〜020`、追加受入を`HXB-AC-001〜040`として分離する。要求番号・文書版は提案内IDであり、リポジトリの正規採番を代行しない。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-001, HELIXOS-L2-005, HARNESS-L2-005。旧行は統合版の由来、提案内IDの追跡保持と正規採番ではないというsource attribution。OSの判断出所、HARNESS検証義務は関連参照対象だが、旧文書の統合編集履歴を新要求として定めない。",
       "residual": "source link/Issue/legacy codeはここでは歴史的referenceのみ。必要な旧意味は該当する別source rowで照合し、引用だけで要求を移さない。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-005",
+        "HARNESS-L2-005"
+      ],
+      "predicate_comparison": "旧行は統合版の由来、提案内IDの追跡保持と正規採番ではないというsource attribution。OSの判断出所、HARNESS検証義務は関連参照対象だが、旧文書の統合編集履歴を新要求として定めない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001238",
@@ -823,10 +1031,16 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は| 同一モデル比較 | worker identityを偽装せず、`experiment / treatment / replicate / attempt`を分離する |を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXLABO-L2-006, HELIXLABO-L2-015, HELIXOS-L2-018。旧行は同一モデル比較でworker identityを偽装せずexperiment/treatment/replicate/attemptを別tupleとして扱う条件。LABOは比較とexperiment scopeを定めるが、このidentity tupleとreplicate/attemptの独立性全体を固定しない。",
       "residual": "task/fixture/base/protocol/scorerの厳密tuple、treatment/replicate/attempt/cohort、統計手法と重複標本の判定は採択predicateに含めない。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXLABO-L2-006",
+        "HELIXLABO-L2-015",
+        "HELIXOS-L2-018"
+      ],
+      "predicate_comparison": "旧行は同一モデル比較でworker identityを偽装せずexperiment/treatment/replicate/attemptを別tupleとして扱う条件。LABOは比較とexperiment scopeを定めるが、このidentity tupleとreplicate/attemptの独立性全体を固定しない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001256",
@@ -848,10 +1062,15 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は| `helix-bench-task-dataset.ts` [S06] | task ID/version、fixture、base、oracle、seed等のsnapshot契約が既存 | 『Ticketがないと同一仕事を比較できない』は言い過ぎ。欠けるのは通常開発との共通binding |を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXLABO-L2-006, HELIXLABO-L2-015。旧行はdataset/task snapshot資産の存在と通常開発との共通Ticket binding不足の分析。LABO比較条件は関連するが、旧asset記述は採択義務やTicket必須性を表明しない。",
       "residual": "task/fixture/base/protocol/scorerの厳密tuple、treatment/replicate/attempt/cohort、統計手法と重複標本の判定は採択predicateに含めない。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXLABO-L2-006",
+        "HELIXLABO-L2-015"
+      ],
+      "predicate_comparison": "旧行はdataset/task snapshot資産の存在と通常開発との共通Ticket binding不足の分析。LABO比較条件は関連するが、旧asset記述は採択義務やTicket必須性を表明しない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001258",
@@ -873,10 +1092,16 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は| `worker-blind-benchmark.ts` [S08] | provenanceが同じ候補の重複を拒否。judgeとworkerの同一性も検査 | 同一モデル・別profile・反復試行は上位の実験identityで扱う。独立review制約は維持 |を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXLABO-L2-006, HELIXLABO-L2-015, HELIXOS-L2-018。旧行は旧worker-blind実装のprovenance重複拒否・worker/judge identity検査と上位Experimentでの正当な反復の説明。採択LABO/OSの比較・独立reviewは関連するが、旧implementationの重複判定oracleやidentity tupleを固定しない。",
       "residual": "session/context汚染、receipt freshness、independenceの完全oracle・具体的証拠列はHARNESS/OS固定本文の同一predicateとして網羅されていない。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXLABO-L2-006",
+        "HELIXLABO-L2-015",
+        "HELIXOS-L2-018"
+      ],
+      "predicate_comparison": "旧行は旧worker-blind実装のprovenance重複拒否・worker/judge identity検査と上位Experimentでの正当な反復の説明。採択LABO/OSの比較・独立reviewは関連するが、旧implementationの重複判定oracleやidentity tupleを固定しない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001288",
@@ -898,10 +1123,18 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は**依存を循環させない。** live observerはformal scorerが未完成でもevent/receiptを保存できる。既存formal runnerはTicket全面移行前でも測定できる。Ticketは将来の測定結果を待ってadmitしない。能力評価に最低evidenceが必要なworkerは既存baseline/canaryの正式経路で資格を得るのであり、無権限の本番試行でbootstrappingしない。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-017, HELIXOS-L2-020, HELIXLABO-L2-006, HELIXLABO-L2-055, HELIXSECURITY-L2-008。旧行はobserver/scorer/Ticket migration依存を非循環化し、baseline/canary以外の無権限production trialで資格をbootstrappingしない条件。採択OS/LABOはassignment/evaluationとSecurity authorityを分けるが、observer保存可能時点・資格bootstrap経路の条件までは定めない。",
       "residual": "spool上限・lag閾値、canary/cutover receipt schema、external action reconciliationと操作実行許可の個別詳細は残る。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-017",
+        "HELIXOS-L2-020",
+        "HELIXLABO-L2-006",
+        "HELIXLABO-L2-055",
+        "HELIXSECURITY-L2-008"
+      ],
+      "predicate_comparison": "旧行はobserver/scorer/Ticket migration依存を非循環化し、baseline/canary以外の無権限production trialで資格をbootstrappingしない条件。採択OS/LABOはassignment/evaluationとSecurity authorityを分けるが、observer保存可能時点・資格bootstrap経路の条件までは定めない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001289",
@@ -923,10 +1156,16 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は**展開の最小単位:** 一つのproject/責務/実行profileを対象とするcanaryを選び、scope別cutover receiptを持つ。全repo・全providerへの一斉有効化を前提にしない。各sliceのversion target、Module/Bundle/Functional Release Sliceは既存Portfolioから解決し、未確定のversion番号を本書で捏造しない。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-017, HELIXOS-L2-018, HELIXSECURITY-L2-008。旧行はproject/responsibility/profile単位canary、sliceごとのcutover receiptとversion selection条件。採択OS assignment、Security authorityは関連するが、canary slice/cutover receipt schemaは採択されていない。",
       "residual": "spool上限・lag閾値、canary/cutover receipt schema、external action reconciliationと操作実行許可の個別詳細は残る。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-017",
+        "HELIXOS-L2-018",
+        "HELIXSECURITY-L2-008"
+      ],
+      "predicate_comparison": "旧行はproject/responsibility/profile単位canary、sliceごとのcutover receiptとversion selection条件。採択OS assignment、Security authorityは関連するが、canary slice/cutover receipt schemaは採択されていない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001297",
@@ -948,10 +1187,15 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は| HXT-FR-006 | Ticket生成前にactual diff/candidate HEADを必要とすると未来証拠を要求する | 事前scope検査と実diff後検査を区別 |を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-017, HARNESS-L2-005。旧行はTicket生成前の事前scope検査と実diff後の実検査を区別し、future evidenceを要求しない条件。採択HARNESS検証条件は対象revision/oracle/evidenceを定めるが、pre-diff/post-diff timing oracleは明記しない。",
       "residual": "spool上限・lag閾値、canary/cutover receipt schema、external action reconciliationと操作実行許可の個別詳細は残る。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-017",
+        "HARNESS-L2-005"
+      ],
+      "predicate_comparison": "旧行はTicket生成前の事前scope検査と実diff後の実検査を区別し、future evidenceを要求しない条件。採択HARNESS検証条件は対象revision/oracle/evidenceを定めるが、pre-diff/post-diff timing oracleは明記しない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001309",
@@ -973,10 +1217,17 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は| 観測常駐化 | collector故障で開発停止、または記録欠損を隠す恐れ | durable auditとanalytics可用性を分離し、影響scope別に扱う |を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-007, HELIXOS-L2-009, HELIXOS-L2-019, HELIXSECURITY-L2-008。旧行はcollector停止時にaudit耐久性とanalytics可用性を分離し影響scopeごとに扱う。OS evidence/continuityとSecurity authorityは関連するが、collector故障時の継続・欠損・影響範囲の細則は固定しない。",
       "residual": "spool上限・lag閾値、canary/cutover receipt schema、external action reconciliationと操作実行許可の個別詳細は残る。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-009",
+        "HELIXOS-L2-019",
+        "HELIXSECURITY-L2-008"
+      ],
+      "predicate_comparison": "旧行はcollector停止時にaudit耐久性とanalytics可用性を分離し影響scopeごとに扱う。OS evidence/continuityとSecurity authorityは関連するが、collector故障時の継続・欠損・影響範囲の細則は固定しない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001335",
@@ -998,10 +1249,17 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は- [S01] [main確認／固定commit](https://github.com/RetryYN/HELIX-HARNESS/commit/16f930c4da06b35be44ae88871dd0f1e572b0c67)を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-001, HELIXOS-L2-007, HARNESS-L2-005, HELIXLABO-L2-001。旧行は旧main確認commitの参照行。OSの判断出所、evidence trace、HARNESSの検証証拠は比較対象だが、この参照記載は要求predicateではない。",
       "residual": "source link/Issue/legacy codeはここでは歴史的referenceのみ。必要な旧意味は該当する別source rowで照合し、引用だけで要求を移さない。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-007",
+        "HARNESS-L2-005",
+        "HELIXLABO-L2-001"
+      ],
+      "predicate_comparison": "旧行は旧main確認commitの参照行。OSの判断出所、evidence trace、HARNESSの検証証拠は比較対象だが、この参照記載は要求predicateではない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001336",
@@ -1023,10 +1281,17 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は- [S02] [PLAN-L3-49: 評価契約の目的・下位bench非重複](https://github.com/RetryYN/HELIX-HARNESS/blob/16f930c4da06b35be44ae88871dd0f1e572b0c67/docs/plans/PLAN-L3-49-helix-bench-evaluation.md)を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-001, HELIXOS-L2-007, HARNESS-L2-005, HELIXLABO-L2-001。旧行は旧PLANの参照行。OSの判断出所、evidence trace、HARNESSの検証証拠は比較対象だが、この参照記載は評価契約の採択を立証しない。",
       "residual": "source link/Issue/legacy codeはここでは歴史的referenceのみ。必要な旧意味は該当する別source rowで照合し、引用だけで要求を移さない。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-007",
+        "HARNESS-L2-005",
+        "HELIXLABO-L2-001"
+      ],
+      "predicate_comparison": "旧行は旧PLANの参照行。OSの判断出所、evidence trace、HARNESSの検証証拠は比較対象だが、この参照記載は評価契約の採択を立証しない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001337",
@@ -1048,10 +1313,17 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は- [S03] [HELIX-Bench L3: 5カテゴリ・12指標・4 profile・protocol・scoring・cost・integrity](https://github.com/RetryYN/HELIX-HARNESS/blob/16f930c4da06b35be44ae88871dd0f1e572b0c67/docs/design/helix/L3-requirements/helix-bench-evaluation.md)を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-001, HELIXOS-L2-007, HARNESS-L2-005, HELIXLABO-L2-001。旧行は旧HELIX-Bench L3設計文書の参照行。採択LABO評価、OS出典、HARNESS検証は比較対象だが、引用だけではmetric/protocol/scoring/cost predicatesを採択しない。",
       "residual": "source link/Issue/legacy codeはここでは歴史的referenceのみ。必要な旧意味は該当する別source rowで照合し、引用だけで要求を移さない。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-007",
+        "HARNESS-L2-005",
+        "HELIXLABO-L2-001"
+      ],
+      "predicate_comparison": "旧行は旧HELIX-Bench L3設計文書の参照行。採択LABO評価、OS出典、HARNESS検証は比較対象だが、引用だけではmetric/protocol/scoring/cost predicatesを採択しない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001338",
@@ -1073,10 +1345,17 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は- [S04] [#1294: task dataset/fixtureの完了Issue](https://github.com/RetryYN/HELIX-HARNESS/issues/1294)を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-001, HELIXOS-L2-007, HARNESS-L2-005, HELIXLABO-L2-001。旧行は完了済み旧Issueの参照行。Issue状態は採択・実装の証拠にならず、採択L2のsource/evidence条件とも同一predicateではない。",
       "residual": "source link/Issue/legacy codeはここでは歴史的referenceのみ。必要な旧意味は該当する別source rowで照合し、引用だけで要求を移さない。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-007",
+        "HARNESS-L2-005",
+        "HELIXLABO-L2-001"
+      ],
+      "predicate_comparison": "旧行は完了済み旧Issueの参照行。Issue状態は採択・実装の証拠にならず、採択L2のsource/evidence条件とも同一predicateではない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001339",
@@ -1098,10 +1377,17 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は- [S05] [#1295: runner/scorer/raw receiptのopen Issue](https://github.com/RetryYN/HELIX-HARNESS/issues/1295)を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-001, HELIXOS-L2-007, HARNESS-L2-005, HELIXLABO-L2-001。旧行はopen旧Issueの参照行。Issue状態は未完義務の現行追跡・採択を示さず、採択L2/L11に同じIssue-link requirementはない。",
       "residual": "source link/Issue/legacy codeはここでは歴史的referenceのみ。必要な旧意味は該当する別source rowで照合し、引用だけで要求を移さない。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-007",
+        "HARNESS-L2-005",
+        "HELIXLABO-L2-001"
+      ],
+      "predicate_comparison": "旧行はopen旧Issueの参照行。Issue状態は未完義務の現行追跡・採択を示さず、採択L2/L11に同じIssue-link requirementはない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001340",
@@ -1123,10 +1409,17 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は- [S06] [task snapshot既存型・dataset validator](https://github.com/RetryYN/HELIX-HARNESS/blob/16f930c4da06b35be44ae88871dd0f1e572b0c67/src/runtime/helix-bench-task-dataset.ts)を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-001, HELIXOS-L2-007, HARNESS-L2-005, HELIXLABO-L2-001。旧行は旧task snapshot実装の参照行。旧runtime sourceを採択LABO comparator inputsやHARNESS evidence contractの実装証拠として使えない。",
       "residual": "source link/Issue/legacy codeはここでは歴史的referenceのみ。必要な旧意味は該当する別source rowで照合し、引用だけで要求を移さない。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-007",
+        "HARNESS-L2-005",
+        "HELIXLABO-L2-001"
+      ],
+      "predicate_comparison": "旧行は旧task snapshot実装の参照行。旧runtime sourceを採択LABO comparator inputsやHARNESS evidence contractの実装証拠として使えない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001341",
@@ -1148,10 +1441,17 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は- [S07] [#225: worker descriptor/context/blind admission](https://github.com/RetryYN/HELIX-HARNESS/issues/225)（取込補足：下位worker検証の参照）を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-001, HELIXOS-L2-007, HARNESS-L2-005, HELIXLABO-L2-001。旧行は旧worker descriptor/context/blind admission Issueの参照行。採択OS assignmentやLABO evaluationと話題は近いが、Issue reference自体はidentity/provenance predicateではない。",
       "residual": "source link/Issue/legacy codeはここでは歴史的referenceのみ。必要な旧意味は該当する別source rowで照合し、引用だけで要求を移さない。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-007",
+        "HARNESS-L2-005",
+        "HELIXLABO-L2-001"
+      ],
+      "predicate_comparison": "旧行は旧worker descriptor/context/blind admission Issueの参照行。採択OS assignmentやLABO evaluationと話題は近いが、Issue reference自体はidentity/provenance predicateではない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001342",
@@ -1173,10 +1473,17 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は- [S08] [worker-blind-benchmark: provenance重複判定・独立judge](https://github.com/RetryYN/HELIX-HARNESS/blob/16f930c4da06b35be44ae88871dd0f1e572b0c67/src/runtime/worker-blind-benchmark.ts#L313-L411)を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-001, HELIXOS-L2-007, HARNESS-L2-005, HELIXLABO-L2-001。旧行は旧worker-blind benchmark implementationの参照行。採択LABO/OS条件は比較対象にしたが、旧runtimeのprovenance重複判定は現行predicateでも実行証拠でもない。",
       "residual": "source link/Issue/legacy codeはここでは歴史的referenceのみ。必要な旧意味は該当する別source rowで照合し、引用だけで要求を移さない。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-007",
+        "HARNESS-L2-005",
+        "HELIXLABO-L2-001"
+      ],
+      "predicate_comparison": "旧行は旧worker-blind benchmark implementationの参照行。採択LABO/OS条件は比較対象にしたが、旧runtimeのprovenance重複判定は現行predicateでも実行証拠でもない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001343",
@@ -1198,10 +1505,17 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は- [S09] [#861: Runtime Capability RegistryとBench advisory境界](https://github.com/RetryYN/HELIX-HARNESS/issues/861)を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-001, HELIXOS-L2-007, HARNESS-L2-005, HELIXLABO-L2-001。旧行は旧Runtime Capability Registry/advisory Issueの参照行。現行OS/LABOのauthorityとfeedbackは比較対象だが、旧Issue link自体はadvisory boundaryの採択を示さない。",
       "residual": "source link/Issue/legacy codeはここでは歴史的referenceのみ。必要な旧意味は該当する別source rowで照合し、引用だけで要求を移さない。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-007",
+        "HARNESS-L2-005",
+        "HELIXLABO-L2-001"
+      ],
+      "predicate_comparison": "旧行は旧Runtime Capability Registry/advisory Issueの参照行。現行OS/LABOのauthorityとfeedbackは比較対象だが、旧Issue link自体はadvisory boundaryの採択を示さない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001344",
@@ -1223,10 +1537,17 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は- [S10] [#251: 既存評価契約のscope/指標/再現性](https://github.com/RetryYN/HELIX-HARNESS/issues/251)を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-001, HELIXOS-L2-007, HARNESS-L2-005, HELIXLABO-L2-001。旧行は旧evaluation scope/metrics/reproducibility Issueの参照行。LABO評価条件は比較対象だが、Issue reference自体はscope/metric/reproducibility predicateを採択しない。",
       "residual": "source link/Issue/legacy codeはここでは歴史的referenceのみ。必要な旧意味は該当する別source rowで照合し、引用だけで要求を移さない。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HELIXOS-L2-007",
+        "HARNESS-L2-005",
+        "HELIXLABO-L2-001"
+      ],
+      "predicate_comparison": "旧行は旧evaluation scope/metrics/reproducibility Issueの参照行。LABO評価条件は比較対象だが、Issue reference自体はscope/metric/reproducibility predicateを採択しない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001361",
@@ -1248,10 +1569,17 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は- 長時間canaryで観測coverage、欠番、lag、再開時間、費用と負荷を測定する。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-007, HELIXOS-L2-019, HELIXLABO-L2-001, HELIXLABO-L2-006。旧行は長時間canaryのcoverage/gap/lag/recovery/cost/load measurement set。採択OS/LABOはsource付き観測と評価を扱うが、長時間canaryの指標、窓、SLO値は定めない。",
       "residual": "長時間canaryでの具体的coverage/lag/retention/SLO metric、baseline値は未採択。未測定値を決めない。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-019",
+        "HELIXLABO-L2-001",
+        "HELIXLABO-L2-006"
+      ],
+      "predicate_comparison": "旧行は長時間canaryのcoverage/gap/lag/recovery/cost/load measurement set。採択OS/LABOはsource付き観測と評価を扱うが、長時間canaryの指標、窓、SLO値は定めない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001362",
@@ -1273,10 +1601,16 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は- sink停止とaudit記録不能を分け、前者のみで全開発を停止しない。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-007, HELIXOS-L2-009, HELIXOS-L2-019。旧行はanalytics sink停止だけなら本線を継続しaudit記録不能は別扱いする故障分類。採択OSは証拠継続・累積義務を扱うが、このsink別degraded modeを定めない。",
       "residual": "長時間canaryでの具体的coverage/lag/retention/SLO metric、baseline値は未採択。未測定値を決めない。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-009",
+        "HELIXOS-L2-019"
+      ],
+      "predicate_comparison": "旧行はanalytics sink停止だけなら本線を継続しaudit記録不能は別扱いする故障分類。採択OSは証拠継続・累積義務を扱うが、このsink別degraded modeを定めない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001363",
@@ -1298,10 +1632,16 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は- 後日不具合を元closureの改ざんなしに追補し、根拠付きで既存改善経路へ返す。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-007, HELIXOS-L2-019, HELIXLABO-L2-010。旧行は過去closureを改変せず不具合を追補し改善経路へ返す訂正 lifecycle。OS evidence history/LABO feedbackは関連するが、遅着訂正を元closureへ追補する具体的手続きを固定しない。",
       "residual": "遅着sinkの状態、実験追加時の予算予約、特定dashboard fieldsのexact acceptanceは独立した旧詳細条件として残る。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-019",
+        "HELIXLABO-L2-010"
+      ],
+      "predicate_comparison": "旧行は過去closureを改変せず不具合を追補し改善経路へ返す訂正 lifecycle。OS evidence history/LABO feedbackは関連するが、遅着訂正を元closureへ追補する具体的手続きを固定しない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001364",
@@ -1374,10 +1714,16 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は- baseline、観測窓、SLO、retentionは実測と要件freezeで確定する。未測定値を捏造しない。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-007, HELIXOS-L2-019, HELIXLABO-L2-006。旧行はbaseline/window/SLO/retentionを実測後にfreezeし未測定値を捏造しない計測決定規則。採択OS/LABOのsource/evidence/experiment条件は、これらの閾値やfreeze時期を決めない。",
       "residual": "長時間canaryでの具体的coverage/lag/retention/SLO metric、baseline値は未採択。未測定値を決めない。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-019",
+        "HELIXLABO-L2-006"
+      ],
+      "predicate_comparison": "旧行はbaseline/window/SLO/retentionを実測後にfreezeし未測定値を捏造しない計測決定規則。採択OS/LABOのsource/evidence/experiment条件は、これらの閾値やfreeze時期を決めない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001380",
@@ -1399,10 +1745,15 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は原稿§2の『L1要求』は出典表記として保持する。現行層では企画をL1、以下の利用要求をL2、検証をL11へ分離する。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-001, HARNESS-L2-005。旧行は旧原稿の層名を出典として保持し、現行層対応を注記する分類説明。OSの判断出所、HARNESS検証義務は比較したが、このsource attribution noteは実行要求predicateではない。",
       "residual": "層対応の記述保持と要求意味の採択は別。source attribution以上のsuccessorは未確定。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-001",
+        "HARNESS-L2-005"
+      ],
+      "predicate_comparison": "旧行は旧原稿の層名を出典として保持し、現行層対応を注記する分類説明。OSの判断出所、HARNESS検証義務は比較したが、このsource attribution noteは実行要求predicateではない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001607",
@@ -1424,10 +1775,17 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は親・worker・verifier・CI・再試行・sandbox・観測処理の費用とtokenを取得可能な範囲で区分する。API実請求、subscription配賦、API相当推計、compute/CI/保存コストを混ぜず、source/currency/effective time/課金区分を記録する。欠測を0円へ変換しない。accepted changeが0のとき成功あたり費用や削減率を有限の成功値にしない。共有CI費用は配賦policyを固定し、二重加算しない。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-004, HELIXOS-L2-009, HELIXLABO-L2-006, HELIXINFRASTRUCTURE-L2-001。旧行はcost source/currency/effective time/charge category、欠測値、ゼロ成功、shared CI二重計上を含む費用accounting contract。OS/LABO/INFRASTRUCTUREのbudget・評価・資源は比較対象だが、費用配賦・currency・二重加算のschemaを固定しない。",
       "residual": "費用配賦・currency/effective-time、統計計画、selection bias補正、measurement trigger/dedupe、具体的停止値は採択本文に同一条件なし。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-004",
+        "HELIXOS-L2-009",
+        "HELIXLABO-L2-006",
+        "HELIXINFRASTRUCTURE-L2-001"
+      ],
+      "predicate_comparison": "旧行はcost source/currency/effective time/charge category、欠測値、ゼロ成功、shared CI二重計上を含む費用accounting contract。OS/LABO/INFRASTRUCTUREのbudget・評価・資源は比較対象だが、費用配賦・currency・二重加算のschemaを固定しない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001611",
@@ -1492,10 +1850,17 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は同じprovider/model/worker identityでも、別treatment・別replicateを上位Experimentで識別して反復できること。既存worker-blind選定のprovenance重複拒否やworker/judge独立性を削除して対応しない。下位のsealed output/observation/judge検証を再利用し、同一候補の二重取り込みと正当な反復を区別する。同一結果を複製して標本数を増やさない。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXLABO-L2-006, HELIXLABO-L2-015, HELIXOS-L2-018, HELIXOS-L2-019。旧行は同じprovider/model/worker identityでも別treatment/replicateを反復し、複製標本を拒否する統計identity条件。LABO comparison/OS assignmentは比較対象だが、treatment/replicate/attemptの組と標本独立性を固定しない。",
       "residual": "task/fixture/base/protocol/scorerの厳密tuple、treatment/replicate/attempt/cohort、統計手法と重複標本の判定は採択predicateに含めない。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXLABO-L2-006",
+        "HELIXLABO-L2-015",
+        "HELIXOS-L2-018",
+        "HELIXOS-L2-019"
+      ],
+      "predicate_comparison": "旧行は同じprovider/model/worker identityでも別treatment/replicateを反復し、複製標本を拒否する統計identity条件。LABO comparison/OS assignmentは比較対象だが、treatment/replicate/attemptの組と標本独立性を固定しない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001619",
@@ -1517,10 +1882,16 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行はprofile/context/adapter/model descriptor/scorer/fixture変更、evidence期限切れ、drift、明示Release obligation、manual request等をpolicyで分類し、必要なMeasurementRequestを生成する。subjectと変更digest、reason、measurement policy、time windowをdedupe keyへ束縛する。短時間の関連変更はcoalesceできる。measurement自身の完了を同じ実験の再発火原因にせず、cause/depth/budgetで再帰増殖を防ぐ。毎commit・毎Ticketの全組合せ再試験を強制しない。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-010, HELIXOS-L2-022, HELIXLABO-L2-010。旧行はMeasurementRequestのtrigger classification、dedupe key、coalescing、再帰抑止。OS/LABO feedback/requestは比較対象だが、個別triggerやdedupe/re-fire oracleは定めない。",
       "residual": "費用配賦・currency/effective-time、統計計画、selection bias補正、measurement trigger/dedupe、具体的停止値は採択本文に同一条件なし。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-010",
+        "HELIXOS-L2-022",
+        "HELIXLABO-L2-010"
+      ],
+      "predicate_comparison": "旧行はMeasurementRequestのtrigger classification、dedupe key、coalescing、再帰抑止。OS/LABO feedback/requestは比較対象だが、個別triggerやdedupe/re-fire oracleは定めない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001621",
@@ -1585,10 +1956,17 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は分析sink/dashboard停止時は、audit eventが耐久記録できる限り本線を継続し、degraded/pendingとlagを表示する。上限付きspoolと再開処理を持つ。audit/authority/lease/必要evidenceを記録・検証できない場合は影響する新規変更を停止する。すでに行われた外部操作は未確定状態として照合し、失敗と決め付けた盲目的retryをしない。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-007, HELIXOS-L2-009, HELIXOS-L2-019, HELIXSECURITY-L2-008。旧行はbounded spool/lag、audit durability、外部操作reconciliationとblind retry抑止を含む障害運転。OS evidence/continuityとSecurity authorityは比較対象だが、spoolと外部作用reconciliationの個別遷移は固定しない。",
       "residual": "spool上限・lag閾値、canary/cutover receipt schema、external action reconciliationと操作実行許可の個別詳細は残る。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-009",
+        "HELIXOS-L2-019",
+        "HELIXSECURITY-L2-008"
+      ],
+      "predicate_comparison": "旧行はbounded spool/lag、audit durability、外部操作reconciliationとblind retry抑止を含む障害運転。OS evidence/continuityとSecurity authorityは比較対象だが、spoolと外部作用reconciliationの個別遷移は固定しない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001661",
@@ -1610,10 +1988,16 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は同一task内の反復を独立task数に水増ししない。比較方法、割当方法、minimum evidence、停止条件は事前定義する。shadowの選択bias、liveのrouting bias、時間依存のAPI変更を明示する。結果が弱い場合は`inconclusive`とする。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXLABO-L2-006, HELIXLABO-L2-015, HELIXLABO-L2-018。旧行は同task反復のsample inflation防止、事前統計手法、selection/routing/time biasとinconclusive分類。LABO比較条件は比較対象だが、クラスタ・バイアス補正と標本計画を固定しない。",
       "residual": "費用配賦・currency/effective-time、統計計画、selection bias補正、measurement trigger/dedupe、具体的停止値は採択本文に同一条件なし。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXLABO-L2-006",
+        "HELIXLABO-L2-015",
+        "HELIXLABO-L2-018"
+      ],
+      "predicate_comparison": "旧行は同task反復のsample inflation防止、事前統計手法、selection/routing/time biasとinconclusive分類。LABO比較条件は比較対象だが、クラスタ・バイアス補正と標本計画を固定しない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-001953",
@@ -1635,10 +2019,15 @@
       },
       "route_relation": "true_unknown",
       "adopted_exact_revision_refs": [],
-      "relation_basis": "この旧行は元原稿の再構成は次で再検証できる。日本語の取込補足を除去し、ヘッダのMarkdown改行記法を原稿へ戻す。を述べる。採択済み固定L2/L11でこの具体的条件と同じpredicateを特定できず、話題・責務の近さだけでは部分対応にしない。",
+      "relation_basis": "照合した採択要件ID: HELIXOS-L2-007, HARNESS-L2-005。旧行は旧Markdown本文を再構成するsource preservation手順。OS evidence trace/HARNESS evidence contractは比較したが、byte reconstruction義務は製品要求として採択されていない。",
       "residual": "元ファイルbyte reconstructionの目的・検証方法はsource preservation evidenceで、製品要求採択/implementation statusではない。",
       "authority_effect": "none; no adoption, successor, coverage closure, acceptance, implementation, execution, or retirement inferred",
-      "adopted_predicate_evidence": []
+      "adopted_predicate_evidence": [],
+      "compared_adopted_requirement_ids": [
+        "HELIXOS-L2-007",
+        "HARNESS-L2-005"
+      ],
+      "predicate_comparison": "旧行は旧Markdown本文を再構成するsource preservation手順。OS evidence trace/HARNESS evidence contractは比較したが、byte reconstruction義務は製品要求として採択されていない。"
     },
     {
       "source_id": "LEGACY-CAND-LINE-002016",
@@ -1695,8 +2084,8 @@
   "counts": {
     "source_rows": 51,
     "route_relation_counts": {
-      "true_unknown": 41,
-      "adopted_relevant_partial": 10
+      "true_unknown": 37,
+      "adopted_relevant_partial": 14
     },
     "source_file_count_with_selected_rows": 7,
     "semantic_group_count": 12
@@ -1772,6 +2161,60 @@
       "sha256": "720abc2c59c61c06482bfd34e6d9b0c8e7d59d7ce564c591d839189776dfccab",
       "selected_pool_rows": 1,
       "legacy_asset_id": "LEGACY-ASSET-9D7EB95274484717CC7B"
+    }
+  ],
+  "classification_review_candidates": [
+    {
+      "source_id": "LEGACY-CAND-LINE-001231",
+      "reason": "classification-reassessment候補として要確認。今回の監査では分類を変更せず、unknown routeのまま保持。"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001335",
+      "reason": "classification-reassessment候補として要確認。今回の監査では分類を変更せず、unknown routeのまま保持。"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001336",
+      "reason": "classification-reassessment候補として要確認。今回の監査では分類を変更せず、unknown routeのまま保持。"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001337",
+      "reason": "classification-reassessment候補として要確認。今回の監査では分類を変更せず、unknown routeのまま保持。"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001338",
+      "reason": "classification-reassessment候補として要確認。今回の監査では分類を変更せず、unknown routeのまま保持。"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001339",
+      "reason": "classification-reassessment候補として要確認。今回の監査では分類を変更せず、unknown routeのまま保持。"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001340",
+      "reason": "classification-reassessment候補として要確認。今回の監査では分類を変更せず、unknown routeのまま保持。"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001341",
+      "reason": "classification-reassessment候補として要確認。今回の監査では分類を変更せず、unknown routeのまま保持。"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001342",
+      "reason": "classification-reassessment候補として要確認。今回の監査では分類を変更せず、unknown routeのまま保持。"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001343",
+      "reason": "classification-reassessment候補として要確認。今回の監査では分類を変更せず、unknown routeのまま保持。"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001344",
+      "reason": "classification-reassessment候補として要確認。今回の監査では分類を変更せず、unknown routeのまま保持。"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001380",
+      "reason": "classification-reassessment候補として要確認。今回の監査では分類を変更せず、unknown routeのまま保持。"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-001953",
+      "reason": "classification-reassessment候補として要確認。今回の監査では分類を変更せず、unknown routeのまま保持。"
     }
   ]
 }
