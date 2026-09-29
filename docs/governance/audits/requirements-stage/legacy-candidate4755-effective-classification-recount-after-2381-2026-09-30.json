@@ -92,6 +92,14 @@
       "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-27-route-audit-2026-09-30.json",
       "sha256": "341b97fd4109118c747c3a5b5c62f10f092ef4df330d45e4eaae9910f6994f56",
       "git_blob_sha": "eaad720f04e7d2b8b19ed7b1404bd5703d6e26df"
+    },
+    {
+      "role": "separate_out_of_pool_route_audit",
+      "ref": "#2379",
+      "commit": "6f1f05b40a2adbdbe6ab1402e192e23994ddda71",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-harness-memory-coordination-30-route-audit-after-2378-2026-09-30.json",
+      "sha256": "c8259d55f50c8f86f20619e850848b5f77cf72c378872ecc9c6c0da1ff8699ec",
+      "git_blob_sha": "caad5bba6b233c6e07ee19dfd916ff56f7f4df66"
     }
   ],
   "row_population": {
@@ -375,7 +383,28 @@
     "cumulative_unique_union_through_2380": 317,
     "post_2381_pool_intersection": 288,
     "post_2381_unreviewed_pool": 190,
-    "equation": "478 product/unknown - 288 audited members = 190 unreviewed; union stays 290 + 27 = 317."
+    "equation": "317 product-targeted audited IDs + 30 out-of-pool #2379 IDs = 347 all audited IDs; 478 product/unknown - 288 pool intersections with either union = 190 unreviewed.",
+    "scope": "product/unknown pool route audit union, excluding the separately audited #2379 HMC rows outside this pool",
+    "separate_2379_out_of_pool": {
+      "count": 30,
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-harness-memory-coordination-30-route-audit-after-2378-2026-09-30.json",
+      "sha256": "c8259d55f50c8f86f20619e850848b5f77cf72c378872ecc9c6c0da1ff8699ec",
+      "intersection_with_product_targeted_317": 0,
+      "intersection_with_post_2381_product_unknown_pool": 0,
+      "route_counts": {
+        "selected": 30,
+        "adopted_relevant_partial": 21,
+        "unadopted_candidate_relation_only": 6,
+        "true_unknown": 3,
+        "proposal_pool_out_of_population": 30,
+        "proposal_pool_selected_member_count": 0,
+        "prior_290_intersection": 0,
+        "prior_261_intersection": 0,
+        "prior_2378_intersection": 0
+      }
+    },
+    "all_route_audited_union_including_2379": 347,
+    "all_union_intersection_with_post_2381_pool": 288
   },
   "preserved_003965": {
     "source_item_id": "LEGACY-CAND-LINE-003965",
@@ -412,7 +441,9 @@
     "historical_2380_sha_unchanged": true,
     "legacy_runtime_cli_hook_test_ci_executed": false,
     "authority_effect": "none",
-    "audited_union_ids_unique_and_within_4755": true
+    "audited_union_ids_unique_and_within_4755": true,
+    "separate_2379_out_of_pool_ids_verified": true,
+    "all_route_union_347_and_same_pool_intersection_verified": true
   },
   "limitations": [
     "This is a proposal-effective classification recount only. It does not establish adoption, a successor requirement, source coverage, acceptance, implementation, execution, or Stage 5 closure.",

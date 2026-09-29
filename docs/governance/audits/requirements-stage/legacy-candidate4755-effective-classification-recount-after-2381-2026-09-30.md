@@ -36,9 +36,9 @@
 | #2369 | 488 |
 | #2381 | **478** |
 
-#2378 prior route unionは261 prior IDsと同commit選定29 IDsのdisjoint unionで290件。#2380選定27 IDsは#2378 unionと交差せず、累積source-ID unionは317件。全row stateへoverlayを適用した後の478 product/unknown IDsと監査済みunionの交差は288件で、未監査poolは`478 - 288 = 190`件。
+#2378 prior route unionは261 prior IDsと同commit選定29 IDsのdisjoint unionで290件。#2380選定27 IDsは#2378 unionと交差せず、**製品条件pool向けroute監査union**は317件。別にmerged #2379のHMC 30件もroute監査済みで、317件と交差しないため、全route監査unionは347件である。#2379の30件はすべて本product/unknown poolの対象外であり、両unionのpoolとの交差は同じ288件となる。全row stateへoverlayを適用した後の478 product/unknown IDsから、未監査poolは`478 - 288 = 190`件。#2379のpath・SHAと交差検証はJSONに記録した。
 
-003940、003941、003942、003961–003964、003984–003986の#2381対象10件は、#2380で既にroute監査済みである。分類proposalを適用すると478 poolとpool内監査済み交差がともに10減るが、監査済みunion317は変わらず、未監査数も190のまま。
+003940、003941、003942、003961–003964、003984–003986の#2381対象10件は、#2380で既にroute監査済みである。分類proposalを適用するとpoolとpool内監査済み交差がともに10減るが、製品条件pool向けunion317と全route監査union347は変わらず、未監査数も190のまま。
 
 ## 全量effective件数
 
@@ -78,4 +78,4 @@ product subtypeは`827 = known 349 + unknown 478`。ここで`known`はproduct a
 
 ## 静的確認と限界
 
-4,755 row IDの一意性・連番、各overlay ID join、overlay間intersection、classification/subtype/routeの総数、478 poolと317-ID audited unionとの交差、003965の保持を静的に確認した。旧archiveのscript、CLI、workflow、test、hook、runtime、CIは実行していない。再集計から要求採択、successor、source coverage、受入、実装、実行、Stage 5 closureを生成しない。
+4,755 row IDの一意性・連番、各overlay ID join、overlay間intersection、classification/subtype/routeの総数、478 poolと317-ID製品条件向けunion／347-ID全route監査unionとの交差、003965の保持を静的に確認した。旧archiveのscript、CLI、workflow、test、hook、runtime、CIは実行していない。再集計から要求採択、successor、source coverage、受入、実装、実行、Stage 5 closureを生成しない。
