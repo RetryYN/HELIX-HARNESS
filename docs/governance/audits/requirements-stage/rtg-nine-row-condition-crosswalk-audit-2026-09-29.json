@@ -1,0 +1,1309 @@
+{
+  "schema_version": "rtg-nine-row-condition-crosswalk.v1",
+  "audit_id": "rtg-nine-row-condition-crosswalk-2026-09-29",
+  "created_against_commit": "3eed8fdbf4cb195e413bfe4f65fca11da6739273",
+  "audit_mode": "stage_5_read_only_append_only_condition_crosswalk",
+  "authority_effect": "none",
+  "scope": {
+    "source_item_ids": [
+      "LEGACY-CAND-LINE-003503",
+      "LEGACY-CAND-LINE-003506",
+      "LEGACY-CAND-LINE-003507",
+      "LEGACY-CAND-LINE-003508",
+      "LEGACY-CAND-LINE-003509",
+      "LEGACY-CAND-LINE-003510",
+      "LEGACY-CAND-LINE-003511",
+      "LEGACY-CAND-LINE-003512",
+      "LEGACY-CAND-LINE-003513"
+    ],
+    "rtg_acceptance_ids": [
+      "RTG-AC-001",
+      "RTG-AC-004",
+      "RTG-AC-005",
+      "RTG-AC-006",
+      "RTG-AC-007",
+      "RTG-AC-008",
+      "RTG-AC-009",
+      "RTG-AC-010",
+      "RTG-AC-011"
+    ],
+    "source_item_count": 9,
+    "source_range": "003503, 003506–003513",
+    "excluded": "All other RTG rows (including AC-002/003/012 already handled by legacy-ten-condition-crosswalk-audit-2026-09-29), all other source families, edits to the original routing ledger, candidate adoption/rejection/retirement, L2/L11 edits, formal successor assignment, implementation, execution, acceptance execution, stage completion, and L3 transition."
+  },
+  "prior_count_status_after_this_audit": {
+    "prior_artifact": "docs/governance/audits/requirements-stage/legacy-candidate-effective-classification-counts-2026-09-29.json",
+    "prior_artifact_sha256": "e0a28bfdd650d47539bdb717ea1cc213ef0fab507b4c80edd5e2e323a9629e91",
+    "prior_effective_counts": {"structure": 926, "explanation": 2947, "condition": 882, "condition_route_unknown": 586, "total": 4755},
+    "new_corrections_not_in_prior_count": 7,
+    "status_after_this_audit_merges": "historical_stale_for_effective_classification_counts",
+    "current_cumulative_counts": "not established until the 4755-line population is repinned and recounted",
+    "prior_artifact_mutated": false
+  },
+  "pinned_inputs": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-acceptance.md",
+      "sha256": "66609d952094050336a3e29abf088c18178590fb5998dbbd06dc1fecb4b79251",
+      "use": "exact old RTG acceptance rows, positive conditions and negative oracles"
+    },
+    {
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+      "use": "source item IDs, exact lines, line hashes and carry-forward authority/successor state"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+      "sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
+      "use": "pre-existing semantic classification and unknown/explanation routing, retained without correction"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-ten-condition-crosswalk-audit-2026-09-29.md",
+      "sha256": "ed57e25c0fd8c26dc64f5985de085b1c7268ca690f499cf962f6f22158d46869",
+      "use": "prior bounded audit of other ten source IDs; scope exclusion and comparison vocabulary"
+    }
+  ],
+  "target_refs": {
+    "current_rebaseline": [
+      {
+        "path": "docs/governance/audits/source-rebaseline/new-generation-refactoring-trigger-source-crosswalk.md",
+        "locator": "旧RTG要求・受入候補と接続先・持込まない条件",
+        "line_start": 18,
+        "line_end": 34,
+        "file_sha256": "db64502c27e258312f1be82c51eb96fed621653be252c9a4412749f8abc72783",
+        "section_sha256": "e918320245d40d397564987c4ea7f069206951fcadc182f8158916ee4e894871",
+        "relation": "旧AC条件に対する再導出方針。候補接続は採択・coverageを意味しない。"
+      }
+    ],
+    "harness_change_contract": [
+      {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "locator": "HARNESS-L2-004/005 採択済み要求の一覧・変更影響と検証責務",
+        "line_start": 43,
+        "line_end": 44,
+        "file_sha256": "ece844e9c26797035d9ce7e5e5a7b3f7653fadaa8b333b0f56269bd1f2d23aee",
+        "section_sha256": "42079dda6309db1ce973e04d454fa325b6c84637895b515bfd232860f448a53c",
+        "relation": "変更意味保存、影響、必要な再検証の一般責務。trigger-specific oracleではない。"
+      },
+      {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "locator": "HARNESS-L2-004/005に対する採択済みL11一覧",
+        "line_start": 24,
+        "line_end": 25,
+        "file_sha256": "ab94b4cec9535c70b5fd1a8553b41bdce51411fd59f65e64c5ddedc4fbacf878",
+        "section_sha256": "c691ca671abd6d75fb097057fe2011d9d8db292b1fc6576b32a5668852000dda",
+        "relation": "影響・検証範囲のL11対応。RTG-specific oracleではない。"
+      }
+    ],
+    "os_structure_contract": [
+      {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "locator": "HELIXOS-L2-001/002/003/005/007 採択済み要求の一覧",
+        "line_start": 53,
+        "line_end": 60,
+        "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+        "section_sha256": "8220f1184b0221402f474002e70fc8ed53150bca64b149006d922037ba3fc12f",
+        "relation": "scope・影響・観測候補・evidence/provenanceの一般責務。"
+      },
+      {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "locator": "HELIXOS-L2-009 durable event・冪等projection・checkpoint",
+        "line_start": 297,
+        "line_end": 297,
+        "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+        "section_sha256": "23a8653051671a6b68bbf8502d04aa7cb76f4286a57cc4d54a50331cae567452",
+        "relation": "durable eventと冪等projectionの一般イベント処理責務。trigger evidence決定性やevent順序不変性のoracleではない。"
+      },
+      {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "locator": "HELIXOS-L2-001/002/003/005/007 採択済みL11一覧",
+        "line_start": 21,
+        "line_end": 27,
+        "file_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+        "section_sha256": "d959bb3c0597e66c475e1bc6df6e9fd711d023c46adece8f02b75d31cbaa3588",
+        "relation": "要求追跡・欠落・影響・観測候補・証拠欠落/staleの一般受入。"
+      },
+      {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "locator": "構造改善候補の状態分離と旧機構非継承（受入未実行）",
+        "line_start": 96,
+        "line_end": 100,
+        "file_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+        "section_sha256": "4218686cdd216bfda68a9a38a6fd854b009157277e869e07c35b5350441d3787",
+        "relation": "未評価/unknown/stale/partial/findingなし/no actionの区別と旧UIL/RF0/scanner/CI境界。全件未実行。"
+      }
+    ],
+    "current_refactoring_boundary": [
+      {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "locator": "旧Refactoring Triggerの再採否境界",
+        "line_start": 224,
+        "line_end": 229,
+        "file_sha256": "ece844e9c26797035d9ce7e5e5a7b3f7653fadaa8b333b0f56269bd1f2d23aee",
+        "section_sha256": "4d67932d9d4cfa0a35252e2255424f226df7d7723ccf7615cd70429d46ce9bdc",
+        "relation": "HARNESS-L2-004/005の意味保存・影響・検証、L1利用要求が未確定のためL3 triggerを採用しない。"
+      },
+      {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "locator": "旧Refactoring Triggerの再採否境界",
+        "line_start": 212,
+        "line_end": 215,
+        "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+        "section_sha256": "5dbddfa61465292e0e0dec907c4738949611a2bed61c03cf0b1c46b2fdd931ad",
+        "relation": "OSの構造改善責務と旧UIL/RF0/current 9等の非継承。"
+      }
+    ]
+  },
+  "decision_refs": [
+    {
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "file_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "scope": "採択されたHARNESS L2/L11 revision。候補数24。RTG固有trigger acceptanceの採択根拠ではない。"
+    },
+    {
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "file_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "scope": "採択されたHELIX-OS L2/L11 revision。候補数16。構造改善汎用要求とRTG固有oracleを区別する。"
+    },
+    {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "line_start": 147,
+      "line_sha256": "9d27ffc9d300c15fb961b509307d34b8e706cdf611f5d3cdd06938ccf72b307d",
+      "scope": "57 candidate decisionのidentity境界。旧条件部分保持をformal successorにせず、source全体closureを生成しない。"
+    }
+  ],
+  "method": "For each requested exact source line, compare its positive condition and negative oracle to the adopted exact current L2/L11 revision and the existing RTG rebaseline table. A related generic duty is recorded as partial only; family resemblance, ID absence, current draft existence, or a future candidate route is not coverage. The current L11 notes the structural-improvement conditions are unexecuted.",
+  "rows": [
+    {
+      "source_item_id": "LEGACY-CAND-LINE-003503",
+      "legacy_asset_id": "LEGACY-ASSET-AE48728497244121EEC3",
+      "rtg_acceptance_id": "RTG-AC-001",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-acceptance.md",
+        "line": 20,
+        "file_sha256": "66609d952094050336a3e29abf088c18178590fb5998dbbd06dc1fecb4b79251",
+        "line_sha256": "db55cfb04ae0b247da9d90e26649245f085ac4485c10a9faad1019c8e659e0ce",
+        "text": "| RTG-AC-001 | RTG-R-01 | 同一event exact set、baseline、policy versionから同一trigger evidence exact set／digestを返す | runtime hardcode、event順序、retryで結果を変えない |"
+      },
+      "effective_classification_correction": {
+        "from": "explanation",
+        "to": "requirement_atom",
+        "status": "corrected_in_this_audit",
+        "rationale": "この旧acceptance行は条件列とnegative-oracle列を持ち、独立に反証可能な受入条件を述べる。説明だけとして扱うと受入条件を落とす。",
+        "cumulative_count_delta": "not recalculated; no cumulative population delta is claimed"
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "semantic_routing_snapshot": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+        "file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
+        "classification": "explanation",
+        "routing_status": "non_requirement_source_structure_or_explanation",
+        "adoption_boundary": "not_requirement_atom",
+        "review_outcome": "non_requirement_source_structure_or_explanation",
+        "review_evidence": null
+      },
+      "legacy_positive_condition": "同一event exact set・baseline・policy versionから同一trigger evidence exact set/digestを返す。",
+      "legacy_negative_oracle": "runtime hardcode・event順序・retryで結果を変えない。",
+      "current_related_target_refs": [
+        {
+          "path": "docs/governance/audits/source-rebaseline/new-generation-refactoring-trigger-source-crosswalk.md",
+          "locator": "旧RTG要求・受入候補と接続先・持込まない条件",
+          "line_start": 18,
+          "line_end": 34,
+          "file_sha256": "db64502c27e258312f1be82c51eb96fed621653be252c9a4412749f8abc72783",
+          "section_sha256": "e918320245d40d397564987c4ea7f069206951fcadc182f8158916ee4e894871",
+          "relation": "旧AC条件に対する再導出方針。候補接続は採択・coverageを意味しない。"
+        },
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "locator": "HARNESS-L2-004/005 採択済み要求の一覧・変更影響と検証責務",
+          "line_start": 43,
+          "line_end": 44,
+          "file_sha256": "ece844e9c26797035d9ce7e5e5a7b3f7653fadaa8b333b0f56269bd1f2d23aee",
+          "section_sha256": "42079dda6309db1ce973e04d454fa325b6c84637895b515bfd232860f448a53c",
+          "relation": "変更意味保存、影響、必要な再検証の一般責務。trigger-specific oracleではない。"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "locator": "HARNESS-L2-004/005に対する採択済みL11一覧",
+          "line_start": 24,
+          "line_end": 25,
+          "file_sha256": "ab94b4cec9535c70b5fd1a8553b41bdce51411fd59f65e64c5ddedc4fbacf878",
+          "section_sha256": "c691ca671abd6d75fb097057fe2011d9d8db292b1fc6576b32a5668852000dda",
+          "relation": "影響・検証範囲のL11対応。RTG-specific oracleではない。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "locator": "HELIXOS-L2-001/002/003/005/007 採択済み要求の一覧",
+          "line_start": 53,
+          "line_end": 60,
+          "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "section_sha256": "8220f1184b0221402f474002e70fc8ed53150bca64b149006d922037ba3fc12f",
+          "relation": "scope・影響・観測候補・evidence/provenanceの一般責務。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "locator": "HELIXOS-L2-009 durable event・冪等projection・checkpoint",
+          "line_start": 297,
+          "line_end": 297,
+          "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "section_sha256": "23a8653051671a6b68bbf8502d04aa7cb76f4286a57cc4d54a50331cae567452",
+          "relation": "durable eventと冪等projectionの一般イベント処理責務。trigger evidence決定性やevent順序不変性のoracleではない。"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "locator": "HELIXOS-L2-001/002/003/005/007 採択済みL11一覧",
+          "line_start": 21,
+          "line_end": 27,
+          "file_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+          "section_sha256": "d959bb3c0597e66c475e1bc6df6e9fd711d023c46adece8f02b75d31cbaa3588",
+          "relation": "要求追跡・欠落・影響・観測候補・証拠欠落/staleの一般受入。"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "locator": "構造改善候補の状態分離と旧機構非継承（受入未実行）",
+          "line_start": 96,
+          "line_end": 100,
+          "file_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+          "section_sha256": "4218686cdd216bfda68a9a38a6fd854b009157277e869e07c35b5350441d3787",
+          "relation": "未評価/unknown/stale/partial/findingなし/no actionの区別と旧UIL/RF0/scanner/CI境界。全件未実行。"
+        },
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "locator": "旧Refactoring Triggerの再採否境界",
+          "line_start": 224,
+          "line_end": 229,
+          "file_sha256": "ece844e9c26797035d9ce7e5e5a7b3f7653fadaa8b333b0f56269bd1f2d23aee",
+          "section_sha256": "4d67932d9d4cfa0a35252e2255424f226df7d7723ccf7615cd70429d46ce9bdc",
+          "relation": "HARNESS-L2-004/005の意味保存・影響・検証、L1利用要求が未確定のためL3 triggerを採用しない。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "locator": "旧Refactoring Triggerの再採否境界",
+          "line_start": 212,
+          "line_end": 215,
+          "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "section_sha256": "5dbddfa61465292e0e0dec907c4738949611a2bed61c03cf0b1c46b2fdd931ad",
+          "relation": "OSの構造改善責務と旧UIL/RF0/current 9等の非継承。"
+        }
+      ],
+      "comparison_positive": "HELIXOS-L2-007の出典・revision・証拠参照、L2-009のdurable event/idempotent projection等は再現可能な記録の土台として関係する。",
+      "comparison_negative_or_residual": "同じtrigger input tupleからの現行の採択済みpairには、trigger evidence exact set/digestの決定性とevent順序/retry不変性を扱うRTG個別oracleを確認できない。現行の採択済みpairには、runtime hardcode・event順序・retry不変性を扱うRTG個別oracleを確認できない。",
+      "next_owner_and_po_boundary": "trigger identityとevidence derivationの現行ownerを要求整理で特定し、必要なら決定性・順序・再送のnegative oracleをL11候補に分ける。",
+      "disposition": "partial",
+      "formal_successor_claimed": false,
+      "authority_effect": "none"
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-003506",
+      "legacy_asset_id": "LEGACY-ASSET-AE48728497244121EEC3",
+      "rtg_acceptance_id": "RTG-AC-004",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-acceptance.md",
+        "line": 23,
+        "file_sha256": "66609d952094050336a3e29abf088c18178590fb5998dbbd06dc1fecb4b79251",
+        "line_sha256": "52f42c3a4924076688772540d1ead57094980044abadc0ebef903d6c7bbfebf5",
+        "text": "| RTG-AC-004 | RTG-R-02 | safety-net単独ではscan coverageだけを記録する | substantive finding／RF0 admissionを生成しない |"
+      },
+      "effective_classification_correction": null,
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "semantic_routing_snapshot": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+        "file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
+        "classification": "requirement_atom",
+        "routing_status": "unknown",
+        "adoption_boundary": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "review_evidence": "Meaning cluster reviewed against current L2/L11 and relevant candidate and regression audits. No atom-specific route supported by an exact source span in the consulted current material; family resemblance or ID absence is not used to infer coverage or nonmembership."
+      },
+      "legacy_positive_condition": "safety-net単独ではscan coverageだけを記録する。",
+      "legacy_negative_oracle": "substantive finding/RF0 admissionを生成しない。",
+      "current_related_target_refs": [
+        {
+          "path": "docs/governance/audits/source-rebaseline/new-generation-refactoring-trigger-source-crosswalk.md",
+          "locator": "旧RTG要求・受入候補と接続先・持込まない条件",
+          "line_start": 18,
+          "line_end": 34,
+          "file_sha256": "db64502c27e258312f1be82c51eb96fed621653be252c9a4412749f8abc72783",
+          "section_sha256": "e918320245d40d397564987c4ea7f069206951fcadc182f8158916ee4e894871",
+          "relation": "旧AC条件に対する再導出方針。候補接続は採択・coverageを意味しない。"
+        },
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "locator": "HARNESS-L2-004/005 採択済み要求の一覧・変更影響と検証責務",
+          "line_start": 43,
+          "line_end": 44,
+          "file_sha256": "ece844e9c26797035d9ce7e5e5a7b3f7653fadaa8b333b0f56269bd1f2d23aee",
+          "section_sha256": "42079dda6309db1ce973e04d454fa325b6c84637895b515bfd232860f448a53c",
+          "relation": "変更意味保存、影響、必要な再検証の一般責務。trigger-specific oracleではない。"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "locator": "HARNESS-L2-004/005に対する採択済みL11一覧",
+          "line_start": 24,
+          "line_end": 25,
+          "file_sha256": "ab94b4cec9535c70b5fd1a8553b41bdce51411fd59f65e64c5ddedc4fbacf878",
+          "section_sha256": "c691ca671abd6d75fb097057fe2011d9d8db292b1fc6576b32a5668852000dda",
+          "relation": "影響・検証範囲のL11対応。RTG-specific oracleではない。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "locator": "HELIXOS-L2-001/002/003/005/007 採択済み要求の一覧",
+          "line_start": 53,
+          "line_end": 60,
+          "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "section_sha256": "8220f1184b0221402f474002e70fc8ed53150bca64b149006d922037ba3fc12f",
+          "relation": "scope・影響・観測候補・evidence/provenanceの一般責務。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "locator": "HELIXOS-L2-009 durable event・冪等projection・checkpoint",
+          "line_start": 297,
+          "line_end": 297,
+          "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "section_sha256": "23a8653051671a6b68bbf8502d04aa7cb76f4286a57cc4d54a50331cae567452",
+          "relation": "durable eventと冪等projectionの一般イベント処理責務。trigger evidence決定性やevent順序不変性のoracleではない。"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "locator": "HELIXOS-L2-001/002/003/005/007 採択済みL11一覧",
+          "line_start": 21,
+          "line_end": 27,
+          "file_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+          "section_sha256": "d959bb3c0597e66c475e1bc6df6e9fd711d023c46adece8f02b75d31cbaa3588",
+          "relation": "要求追跡・欠落・影響・観測候補・証拠欠落/staleの一般受入。"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "locator": "構造改善候補の状態分離と旧機構非継承（受入未実行）",
+          "line_start": 96,
+          "line_end": 100,
+          "file_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+          "section_sha256": "4218686cdd216bfda68a9a38a6fd854b009157277e869e07c35b5350441d3787",
+          "relation": "未評価/unknown/stale/partial/findingなし/no actionの区別と旧UIL/RF0/scanner/CI境界。全件未実行。"
+        },
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "locator": "旧Refactoring Triggerの再採否境界",
+          "line_start": 224,
+          "line_end": 229,
+          "file_sha256": "ece844e9c26797035d9ce7e5e5a7b3f7653fadaa8b333b0f56269bd1f2d23aee",
+          "section_sha256": "4d67932d9d4cfa0a35252e2255424f226df7d7723ccf7615cd70429d46ce9bdc",
+          "relation": "HARNESS-L2-004/005の意味保存・影響・検証、L1利用要求が未確定のためL3 triggerを採用しない。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "locator": "旧Refactoring Triggerの再採否境界",
+          "line_start": 212,
+          "line_end": 215,
+          "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "section_sha256": "5dbddfa61465292e0e0dec907c4738949611a2bed61c03cf0b1c46b2fdd931ad",
+          "relation": "OSの構造改善責務と旧UIL/RF0/current 9等の非継承。"
+        }
+      ],
+      "comparison_positive": "HELIXOS-L2-005/007とL11の構造改善境界は観測・finding・候補・採否を分離し、単一metricや定期scanだけによる候補採択/実行を拒否する。",
+      "comparison_negative_or_residual": "safety-net単独時にcoverage-onlyとなる条件、現行の採択済みpairには、safety-net単独時のcoverage-onlyとsubstantive finding/RF0 admission拒否を扱う個別oracleを確認できない。",
+      "next_owner_and_po_boundary": "観測・findingの責務ownerはOS要求側、refactoring findingの意味はHARNESS要求側で整理する。legacy RF0を前提にせず、対象価値が選ばれた場合のみPO境界へ意味選択を上げる。",
+      "disposition": "partial",
+      "formal_successor_claimed": false,
+      "authority_effect": "none"
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-003507",
+      "legacy_asset_id": "LEGACY-ASSET-AE48728497244121EEC3",
+      "rtg_acceptance_id": "RTG-AC-005",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-acceptance.md",
+        "line": 24,
+        "file_sha256": "66609d952094050336a3e29abf088c18178590fb5998dbbd06dc1fecb4b79251",
+        "line_sha256": "ac560ebe72a9257f3cedc77d461f44654cddad2fe04df2318f30191f3efd032a",
+        "text": "| RTG-AC-005 | RTG-R-03 | candidate、finding、evidence、policy、baseline、scope、routeのexact一致時だけRF0へadmitする | unknown scopeを`code_clean`へfallbackしない |"
+      },
+      "effective_classification_correction": {
+        "from": "explanation",
+        "to": "requirement_atom",
+        "status": "corrected_in_this_audit",
+        "rationale": "この旧acceptance行は条件列とnegative-oracle列を持ち、独立に反証可能な受入条件を述べる。説明だけとして扱うと受入条件を落とす。",
+        "cumulative_count_delta": "not recalculated; no cumulative population delta is claimed"
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "semantic_routing_snapshot": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+        "file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
+        "classification": "explanation",
+        "routing_status": "non_requirement_source_structure_or_explanation",
+        "adoption_boundary": "not_requirement_atom",
+        "review_outcome": "non_requirement_source_structure_or_explanation",
+        "review_evidence": null
+      },
+      "legacy_positive_condition": "candidate・finding・evidence・policy・baseline・scope・routeのexact一致時だけRF0へadmitする。",
+      "legacy_negative_oracle": "unknown scopeをcode_cleanへfallbackしない。",
+      "current_related_target_refs": [
+        {
+          "path": "docs/governance/audits/source-rebaseline/new-generation-refactoring-trigger-source-crosswalk.md",
+          "locator": "旧RTG要求・受入候補と接続先・持込まない条件",
+          "line_start": 18,
+          "line_end": 34,
+          "file_sha256": "db64502c27e258312f1be82c51eb96fed621653be252c9a4412749f8abc72783",
+          "section_sha256": "e918320245d40d397564987c4ea7f069206951fcadc182f8158916ee4e894871",
+          "relation": "旧AC条件に対する再導出方針。候補接続は採択・coverageを意味しない。"
+        },
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "locator": "HARNESS-L2-004/005 採択済み要求の一覧・変更影響と検証責務",
+          "line_start": 43,
+          "line_end": 44,
+          "file_sha256": "ece844e9c26797035d9ce7e5e5a7b3f7653fadaa8b333b0f56269bd1f2d23aee",
+          "section_sha256": "42079dda6309db1ce973e04d454fa325b6c84637895b515bfd232860f448a53c",
+          "relation": "変更意味保存、影響、必要な再検証の一般責務。trigger-specific oracleではない。"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "locator": "HARNESS-L2-004/005に対する採択済みL11一覧",
+          "line_start": 24,
+          "line_end": 25,
+          "file_sha256": "ab94b4cec9535c70b5fd1a8553b41bdce51411fd59f65e64c5ddedc4fbacf878",
+          "section_sha256": "c691ca671abd6d75fb097057fe2011d9d8db292b1fc6576b32a5668852000dda",
+          "relation": "影響・検証範囲のL11対応。RTG-specific oracleではない。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "locator": "HELIXOS-L2-001/002/003/005/007 採択済み要求の一覧",
+          "line_start": 53,
+          "line_end": 60,
+          "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "section_sha256": "8220f1184b0221402f474002e70fc8ed53150bca64b149006d922037ba3fc12f",
+          "relation": "scope・影響・観測候補・evidence/provenanceの一般責務。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "locator": "HELIXOS-L2-009 durable event・冪等projection・checkpoint",
+          "line_start": 297,
+          "line_end": 297,
+          "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "section_sha256": "23a8653051671a6b68bbf8502d04aa7cb76f4286a57cc4d54a50331cae567452",
+          "relation": "durable eventと冪等projectionの一般イベント処理責務。trigger evidence決定性やevent順序不変性のoracleではない。"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "locator": "HELIXOS-L2-001/002/003/005/007 採択済みL11一覧",
+          "line_start": 21,
+          "line_end": 27,
+          "file_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+          "section_sha256": "d959bb3c0597e66c475e1bc6df6e9fd711d023c46adece8f02b75d31cbaa3588",
+          "relation": "要求追跡・欠落・影響・観測候補・証拠欠落/staleの一般受入。"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "locator": "構造改善候補の状態分離と旧機構非継承（受入未実行）",
+          "line_start": 96,
+          "line_end": 100,
+          "file_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+          "section_sha256": "4218686cdd216bfda68a9a38a6fd854b009157277e869e07c35b5350441d3787",
+          "relation": "未評価/unknown/stale/partial/findingなし/no actionの区別と旧UIL/RF0/scanner/CI境界。全件未実行。"
+        },
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "locator": "旧Refactoring Triggerの再採否境界",
+          "line_start": 224,
+          "line_end": 229,
+          "file_sha256": "ece844e9c26797035d9ce7e5e5a7b3f7653fadaa8b333b0f56269bd1f2d23aee",
+          "section_sha256": "4d67932d9d4cfa0a35252e2255424f226df7d7723ccf7615cd70429d46ce9bdc",
+          "relation": "HARNESS-L2-004/005の意味保存・影響・検証、L1利用要求が未確定のためL3 triggerを採用しない。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "locator": "旧Refactoring Triggerの再採否境界",
+          "line_start": 212,
+          "line_end": 215,
+          "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "section_sha256": "5dbddfa61465292e0e0dec907c4738949611a2bed61c03cf0b1c46b2fdd931ad",
+          "relation": "OSの構造改善責務と旧UIL/RF0/current 9等の非継承。"
+        }
+      ],
+      "comparison_positive": "HARNESS-L2-004/005は変更影響・検証範囲を保持し、HELIXOS-L2-002/007はscope・provenance・欠落/staleを扱う。",
+      "comparison_negative_or_residual": "現行の採択済みpairには、旧tuple全項目のexact match、unknown scopeのfallback拒否、RF0へのadmissionを扱うRTG個別oracleを確認できない。",
+      "next_owner_and_po_boundary": "要求意味とverification obligationはHARNESS、finding/scope/provenance stateはOSの既存責務で要求側が分解する。意味・scope選択を変えるときだけPOへ。",
+      "disposition": "partial",
+      "formal_successor_claimed": false,
+      "authority_effect": "none"
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-003508",
+      "legacy_asset_id": "LEGACY-ASSET-AE48728497244121EEC3",
+      "rtg_acceptance_id": "RTG-AC-006",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-acceptance.md",
+        "line": 25,
+        "file_sha256": "66609d952094050336a3e29abf088c18178590fb5998dbbd06dc1fecb4b79251",
+        "line_sha256": "7b4e8be4ee7a95a8f4c26bcc4d8ae0d515db3936f44cefb6b57ac868d842e2eb",
+        "text": "| RTG-AC-006 | RTG-R-03 | semantic changed／unknown、実装故障、provider driftを別route／decisionへ送る | 非refactorをREFACTORINGへ丸めない |"
+      },
+      "effective_classification_correction": {
+        "from": "explanation",
+        "to": "requirement_atom",
+        "status": "corrected_in_this_audit",
+        "rationale": "この旧acceptance行は条件列とnegative-oracle列を持ち、独立に反証可能な受入条件を述べる。説明だけとして扱うと受入条件を落とす。",
+        "cumulative_count_delta": "not recalculated; no cumulative population delta is claimed"
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "semantic_routing_snapshot": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+        "file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
+        "classification": "explanation",
+        "routing_status": "non_requirement_source_structure_or_explanation",
+        "adoption_boundary": "not_requirement_atom",
+        "review_outcome": "non_requirement_source_structure_or_explanation",
+        "review_evidence": null
+      },
+      "legacy_positive_condition": "semantic changed/unknown・実装故障・provider driftを別route/decisionへ送る。",
+      "legacy_negative_oracle": "非refactorをREFACTORINGへ丸めない。",
+      "current_related_target_refs": [
+        {
+          "path": "docs/governance/audits/source-rebaseline/new-generation-refactoring-trigger-source-crosswalk.md",
+          "locator": "旧RTG要求・受入候補と接続先・持込まない条件",
+          "line_start": 18,
+          "line_end": 34,
+          "file_sha256": "db64502c27e258312f1be82c51eb96fed621653be252c9a4412749f8abc72783",
+          "section_sha256": "e918320245d40d397564987c4ea7f069206951fcadc182f8158916ee4e894871",
+          "relation": "旧AC条件に対する再導出方針。候補接続は採択・coverageを意味しない。"
+        },
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "locator": "HARNESS-L2-004/005 採択済み要求の一覧・変更影響と検証責務",
+          "line_start": 43,
+          "line_end": 44,
+          "file_sha256": "ece844e9c26797035d9ce7e5e5a7b3f7653fadaa8b333b0f56269bd1f2d23aee",
+          "section_sha256": "42079dda6309db1ce973e04d454fa325b6c84637895b515bfd232860f448a53c",
+          "relation": "変更意味保存、影響、必要な再検証の一般責務。trigger-specific oracleではない。"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "locator": "HARNESS-L2-004/005に対する採択済みL11一覧",
+          "line_start": 24,
+          "line_end": 25,
+          "file_sha256": "ab94b4cec9535c70b5fd1a8553b41bdce51411fd59f65e64c5ddedc4fbacf878",
+          "section_sha256": "c691ca671abd6d75fb097057fe2011d9d8db292b1fc6576b32a5668852000dda",
+          "relation": "影響・検証範囲のL11対応。RTG-specific oracleではない。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "locator": "HELIXOS-L2-001/002/003/005/007 採択済み要求の一覧",
+          "line_start": 53,
+          "line_end": 60,
+          "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "section_sha256": "8220f1184b0221402f474002e70fc8ed53150bca64b149006d922037ba3fc12f",
+          "relation": "scope・影響・観測候補・evidence/provenanceの一般責務。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "locator": "HELIXOS-L2-009 durable event・冪等projection・checkpoint",
+          "line_start": 297,
+          "line_end": 297,
+          "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "section_sha256": "23a8653051671a6b68bbf8502d04aa7cb76f4286a57cc4d54a50331cae567452",
+          "relation": "durable eventと冪等projectionの一般イベント処理責務。trigger evidence決定性やevent順序不変性のoracleではない。"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "locator": "HELIXOS-L2-001/002/003/005/007 採択済みL11一覧",
+          "line_start": 21,
+          "line_end": 27,
+          "file_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+          "section_sha256": "d959bb3c0597e66c475e1bc6df6e9fd711d023c46adece8f02b75d31cbaa3588",
+          "relation": "要求追跡・欠落・影響・観測候補・証拠欠落/staleの一般受入。"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "locator": "構造改善候補の状態分離と旧機構非継承（受入未実行）",
+          "line_start": 96,
+          "line_end": 100,
+          "file_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+          "section_sha256": "4218686cdd216bfda68a9a38a6fd854b009157277e869e07c35b5350441d3787",
+          "relation": "未評価/unknown/stale/partial/findingなし/no actionの区別と旧UIL/RF0/scanner/CI境界。全件未実行。"
+        },
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "locator": "旧Refactoring Triggerの再採否境界",
+          "line_start": 224,
+          "line_end": 229,
+          "file_sha256": "ece844e9c26797035d9ce7e5e5a7b3f7653fadaa8b333b0f56269bd1f2d23aee",
+          "section_sha256": "4d67932d9d4cfa0a35252e2255424f226df7d7723ccf7615cd70429d46ce9bdc",
+          "relation": "HARNESS-L2-004/005の意味保存・影響・検証、L1利用要求が未確定のためL3 triggerを採用しない。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "locator": "旧Refactoring Triggerの再採否境界",
+          "line_start": 212,
+          "line_end": 215,
+          "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "section_sha256": "5dbddfa61465292e0e0dec907c4738949611a2bed61c03cf0b1c46b2fdd931ad",
+          "relation": "OSの構造改善責務と旧UIL/RF0/current 9等の非継承。"
+        }
+      ],
+      "comparison_positive": "HARNESS-L2-004/005は意味保存、影響、必要再検証を、OS-L2-003/005は変更影響伝播と候補還流を扱う。",
+      "comparison_negative_or_residual": "現行の採択済みpairには、旧三route・provider drift分類・REFACTORING route名を固定する個別oracleを確認できない。",
+      "next_owner_and_po_boundary": "HARNESS要求側が意味変更と故障時の検証責務を扱い、provider/environmentのsource ownerとOS側route境界を要求整理で特定する。旧routeを再導入する意味判断はPO境界。",
+      "disposition": "partial",
+      "formal_successor_claimed": false,
+      "authority_effect": "none"
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-003509",
+      "legacy_asset_id": "LEGACY-ASSET-AE48728497244121EEC3",
+      "rtg_acceptance_id": "RTG-AC-007",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-acceptance.md",
+        "line": 26,
+        "file_sha256": "66609d952094050336a3e29abf088c18178590fb5998dbbd06dc1fecb4b79251",
+        "line_sha256": "ee4b4f763243cbbc49526876477b2279c7d4eee20e7e1737aa1a7d06c79205d5",
+        "text": "| RTG-AC-007 | RTG-R-04 | primary scope exactly oneとrelated scopesを保持する | primary複数、owner不明、related欠落をgreenにしない |"
+      },
+      "effective_classification_correction": {
+        "from": "explanation",
+        "to": "requirement_atom",
+        "status": "corrected_in_this_audit",
+        "rationale": "この旧acceptance行は条件列とnegative-oracle列を持ち、独立に反証可能な受入条件を述べる。説明だけとして扱うと受入条件を落とす。",
+        "cumulative_count_delta": "not recalculated; no cumulative population delta is claimed"
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "semantic_routing_snapshot": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+        "file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
+        "classification": "explanation",
+        "routing_status": "non_requirement_source_structure_or_explanation",
+        "adoption_boundary": "not_requirement_atom",
+        "review_outcome": "non_requirement_source_structure_or_explanation",
+        "review_evidence": null
+      },
+      "legacy_positive_condition": "primary scope exactly oneとrelated scopesを保持する。",
+      "legacy_negative_oracle": "primary複数・owner不明・related欠落をgreenにしない。",
+      "current_related_target_refs": [
+        {
+          "path": "docs/governance/audits/source-rebaseline/new-generation-refactoring-trigger-source-crosswalk.md",
+          "locator": "旧RTG要求・受入候補と接続先・持込まない条件",
+          "line_start": 18,
+          "line_end": 34,
+          "file_sha256": "db64502c27e258312f1be82c51eb96fed621653be252c9a4412749f8abc72783",
+          "section_sha256": "e918320245d40d397564987c4ea7f069206951fcadc182f8158916ee4e894871",
+          "relation": "旧AC条件に対する再導出方針。候補接続は採択・coverageを意味しない。"
+        },
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "locator": "HARNESS-L2-004/005 採択済み要求の一覧・変更影響と検証責務",
+          "line_start": 43,
+          "line_end": 44,
+          "file_sha256": "ece844e9c26797035d9ce7e5e5a7b3f7653fadaa8b333b0f56269bd1f2d23aee",
+          "section_sha256": "42079dda6309db1ce973e04d454fa325b6c84637895b515bfd232860f448a53c",
+          "relation": "変更意味保存、影響、必要な再検証の一般責務。trigger-specific oracleではない。"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "locator": "HARNESS-L2-004/005に対する採択済みL11一覧",
+          "line_start": 24,
+          "line_end": 25,
+          "file_sha256": "ab94b4cec9535c70b5fd1a8553b41bdce51411fd59f65e64c5ddedc4fbacf878",
+          "section_sha256": "c691ca671abd6d75fb097057fe2011d9d8db292b1fc6576b32a5668852000dda",
+          "relation": "影響・検証範囲のL11対応。RTG-specific oracleではない。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "locator": "HELIXOS-L2-001/002/003/005/007 採択済み要求の一覧",
+          "line_start": 53,
+          "line_end": 60,
+          "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "section_sha256": "8220f1184b0221402f474002e70fc8ed53150bca64b149006d922037ba3fc12f",
+          "relation": "scope・影響・観測候補・evidence/provenanceの一般責務。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "locator": "HELIXOS-L2-009 durable event・冪等projection・checkpoint",
+          "line_start": 297,
+          "line_end": 297,
+          "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "section_sha256": "23a8653051671a6b68bbf8502d04aa7cb76f4286a57cc4d54a50331cae567452",
+          "relation": "durable eventと冪等projectionの一般イベント処理責務。trigger evidence決定性やevent順序不変性のoracleではない。"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "locator": "HELIXOS-L2-001/002/003/005/007 採択済みL11一覧",
+          "line_start": 21,
+          "line_end": 27,
+          "file_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+          "section_sha256": "d959bb3c0597e66c475e1bc6df6e9fd711d023c46adece8f02b75d31cbaa3588",
+          "relation": "要求追跡・欠落・影響・観測候補・証拠欠落/staleの一般受入。"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "locator": "構造改善候補の状態分離と旧機構非継承（受入未実行）",
+          "line_start": 96,
+          "line_end": 100,
+          "file_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+          "section_sha256": "4218686cdd216bfda68a9a38a6fd854b009157277e869e07c35b5350441d3787",
+          "relation": "未評価/unknown/stale/partial/findingなし/no actionの区別と旧UIL/RF0/scanner/CI境界。全件未実行。"
+        },
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "locator": "旧Refactoring Triggerの再採否境界",
+          "line_start": 224,
+          "line_end": 229,
+          "file_sha256": "ece844e9c26797035d9ce7e5e5a7b3f7653fadaa8b333b0f56269bd1f2d23aee",
+          "section_sha256": "4d67932d9d4cfa0a35252e2255424f226df7d7723ccf7615cd70429d46ce9bdc",
+          "relation": "HARNESS-L2-004/005の意味保存・影響・検証、L1利用要求が未確定のためL3 triggerを採用しない。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "locator": "旧Refactoring Triggerの再採否境界",
+          "line_start": 212,
+          "line_end": 215,
+          "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "section_sha256": "5dbddfa61465292e0e0dec907c4738949611a2bed61c03cf0b1c46b2fdd931ad",
+          "relation": "OSの構造改善責務と旧UIL/RF0/current 9等の非継承。"
+        }
+      ],
+      "comparison_positive": "HELIXOS-L2-001/002は対象・正本・revisionへのtraceとscope間の欠落/競合/未検証の非相殺を要求し、L2-005は出典付きscopeを扱う。",
+      "comparison_negative_or_residual": "採択済みpairには、primary scopeが一つである条件や複数primary/unknown owner/related scope欠落を判定する個別negative oracleを確認できない。",
+      "next_owner_and_po_boundary": "影響対象を所有するOS/product owner候補は要求側が既存L1と責務境界から特定する。新scopeやprimary所有意味を選択する場合はPO判断へ。",
+      "disposition": "partial",
+      "formal_successor_claimed": false,
+      "authority_effect": "none"
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-003510",
+      "legacy_asset_id": "LEGACY-ASSET-AE48728497244121EEC3",
+      "rtg_acceptance_id": "RTG-AC-008",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-acceptance.md",
+        "line": 27,
+        "file_sha256": "66609d952094050336a3e29abf088c18178590fb5998dbbd06dc1fecb4b79251",
+        "line_sha256": "789ef8d0c4df4fbe8ad526dbe9a0d019eb00636002f2bfa29e305d18c78bafdb",
+        "text": "| RTG-AC-008 | RTG-R-04 | requirement／definitionをauthority再freeze前はauthority_pendingにする | current9 scopeへ暗黙追加しない |"
+      },
+      "effective_classification_correction": {
+        "from": "explanation",
+        "to": "requirement_atom",
+        "status": "corrected_in_this_audit",
+        "rationale": "この旧acceptance行は条件列とnegative-oracle列を持ち、独立に反証可能な受入条件を述べる。説明だけとして扱うと受入条件を落とす。",
+        "cumulative_count_delta": "not recalculated; no cumulative population delta is claimed"
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "semantic_routing_snapshot": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+        "file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
+        "classification": "explanation",
+        "routing_status": "non_requirement_source_structure_or_explanation",
+        "adoption_boundary": "not_requirement_atom",
+        "review_outcome": "non_requirement_source_structure_or_explanation",
+        "review_evidence": null
+      },
+      "legacy_positive_condition": "requirement/definitionをauthority再freeze前はauthority_pendingにする。",
+      "legacy_negative_oracle": "current 9 scopeへ暗黙追加しない。",
+      "current_related_target_refs": [
+        {
+          "path": "docs/governance/audits/source-rebaseline/new-generation-refactoring-trigger-source-crosswalk.md",
+          "locator": "旧RTG要求・受入候補と接続先・持込まない条件",
+          "line_start": 18,
+          "line_end": 34,
+          "file_sha256": "db64502c27e258312f1be82c51eb96fed621653be252c9a4412749f8abc72783",
+          "section_sha256": "e918320245d40d397564987c4ea7f069206951fcadc182f8158916ee4e894871",
+          "relation": "旧AC条件に対する再導出方針。候補接続は採択・coverageを意味しない。"
+        },
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "locator": "HARNESS-L2-004/005 採択済み要求の一覧・変更影響と検証責務",
+          "line_start": 43,
+          "line_end": 44,
+          "file_sha256": "ece844e9c26797035d9ce7e5e5a7b3f7653fadaa8b333b0f56269bd1f2d23aee",
+          "section_sha256": "42079dda6309db1ce973e04d454fa325b6c84637895b515bfd232860f448a53c",
+          "relation": "変更意味保存、影響、必要な再検証の一般責務。trigger-specific oracleではない。"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "locator": "HARNESS-L2-004/005に対する採択済みL11一覧",
+          "line_start": 24,
+          "line_end": 25,
+          "file_sha256": "ab94b4cec9535c70b5fd1a8553b41bdce51411fd59f65e64c5ddedc4fbacf878",
+          "section_sha256": "c691ca671abd6d75fb097057fe2011d9d8db292b1fc6576b32a5668852000dda",
+          "relation": "影響・検証範囲のL11対応。RTG-specific oracleではない。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "locator": "HELIXOS-L2-001/002/003/005/007 採択済み要求の一覧",
+          "line_start": 53,
+          "line_end": 60,
+          "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "section_sha256": "8220f1184b0221402f474002e70fc8ed53150bca64b149006d922037ba3fc12f",
+          "relation": "scope・影響・観測候補・evidence/provenanceの一般責務。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "locator": "HELIXOS-L2-009 durable event・冪等projection・checkpoint",
+          "line_start": 297,
+          "line_end": 297,
+          "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "section_sha256": "23a8653051671a6b68bbf8502d04aa7cb76f4286a57cc4d54a50331cae567452",
+          "relation": "durable eventと冪等projectionの一般イベント処理責務。trigger evidence決定性やevent順序不変性のoracleではない。"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "locator": "HELIXOS-L2-001/002/003/005/007 採択済みL11一覧",
+          "line_start": 21,
+          "line_end": 27,
+          "file_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+          "section_sha256": "d959bb3c0597e66c475e1bc6df6e9fd711d023c46adece8f02b75d31cbaa3588",
+          "relation": "要求追跡・欠落・影響・観測候補・証拠欠落/staleの一般受入。"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "locator": "構造改善候補の状態分離と旧機構非継承（受入未実行）",
+          "line_start": 96,
+          "line_end": 100,
+          "file_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+          "section_sha256": "4218686cdd216bfda68a9a38a6fd854b009157277e869e07c35b5350441d3787",
+          "relation": "未評価/unknown/stale/partial/findingなし/no actionの区別と旧UIL/RF0/scanner/CI境界。全件未実行。"
+        },
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "locator": "旧Refactoring Triggerの再採否境界",
+          "line_start": 224,
+          "line_end": 229,
+          "file_sha256": "ece844e9c26797035d9ce7e5e5a7b3f7653fadaa8b333b0f56269bd1f2d23aee",
+          "section_sha256": "4d67932d9d4cfa0a35252e2255424f226df7d7723ccf7615cd70429d46ce9bdc",
+          "relation": "HARNESS-L2-004/005の意味保存・影響・検証、L1利用要求が未確定のためL3 triggerを採用しない。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "locator": "旧Refactoring Triggerの再採否境界",
+          "line_start": 212,
+          "line_end": 215,
+          "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "section_sha256": "5dbddfa61465292e0e0dec907c4738949611a2bed61c03cf0b1c46b2fdd931ad",
+          "relation": "OSの構造改善責務と旧UIL/RF0/current 9等の非継承。"
+        }
+      ],
+      "comparison_positive": "現行authority modelとHELIXOS-L2-001/003は対象revision・共通統制とproduct scopeを区別する。source crosswalkは旧pending状態とcurrent 9 scopeを固定しないと明記する。",
+      "comparison_negative_or_residual": "現行crosswalkは旧authority_pending enum・再freeze条件・current 9 scopeを固定せず、採択済みpairにもこれらを扱う個別oracleを確認できない。",
+      "next_owner_and_po_boundary": "既存authority state modelに照らして未知/未確定の状態を保持し、scope/authority意味を増減する候補だけPO境界へ。要求側は旧enumを現行契約と仮定しない。",
+      "disposition": "partial",
+      "formal_successor_claimed": false,
+      "authority_effect": "none"
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-003511",
+      "legacy_asset_id": "LEGACY-ASSET-AE48728497244121EEC3",
+      "rtg_acceptance_id": "RTG-AC-009",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-acceptance.md",
+        "line": 28,
+        "file_sha256": "66609d952094050336a3e29abf088c18178590fb5998dbbd06dc1fecb4b79251",
+        "line_sha256": "cd34917d6e1c795eabeeb2a42449875c2c3eb2012292c8d6617974656af311ac",
+        "text": "| RTG-AC-009 | RTG-R-05 | 全scopeのrevision、source exact set、policy digest、finding countを記録する | missing source、partial scan、stale policyを全評価済みにしない |"
+      },
+      "effective_classification_correction": null,
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "semantic_routing_snapshot": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+        "file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
+        "classification": "requirement_atom",
+        "routing_status": "unknown",
+        "adoption_boundary": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "review_evidence": "Meaning cluster reviewed against current L2/L11 and relevant candidate and regression audits. No atom-specific route supported by an exact source span in the consulted current material; family resemblance or ID absence is not used to infer coverage or nonmembership."
+      },
+      "legacy_positive_condition": "全scopeのrevision・source exact set・policy digest・finding countを記録する。",
+      "legacy_negative_oracle": "missing source・partial scan・stale policyを全評価済みにしない。",
+      "current_related_target_refs": [
+        {
+          "path": "docs/governance/audits/source-rebaseline/new-generation-refactoring-trigger-source-crosswalk.md",
+          "locator": "旧RTG要求・受入候補と接続先・持込まない条件",
+          "line_start": 18,
+          "line_end": 34,
+          "file_sha256": "db64502c27e258312f1be82c51eb96fed621653be252c9a4412749f8abc72783",
+          "section_sha256": "e918320245d40d397564987c4ea7f069206951fcadc182f8158916ee4e894871",
+          "relation": "旧AC条件に対する再導出方針。候補接続は採択・coverageを意味しない。"
+        },
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "locator": "HARNESS-L2-004/005 採択済み要求の一覧・変更影響と検証責務",
+          "line_start": 43,
+          "line_end": 44,
+          "file_sha256": "ece844e9c26797035d9ce7e5e5a7b3f7653fadaa8b333b0f56269bd1f2d23aee",
+          "section_sha256": "42079dda6309db1ce973e04d454fa325b6c84637895b515bfd232860f448a53c",
+          "relation": "変更意味保存、影響、必要な再検証の一般責務。trigger-specific oracleではない。"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "locator": "HARNESS-L2-004/005に対する採択済みL11一覧",
+          "line_start": 24,
+          "line_end": 25,
+          "file_sha256": "ab94b4cec9535c70b5fd1a8553b41bdce51411fd59f65e64c5ddedc4fbacf878",
+          "section_sha256": "c691ca671abd6d75fb097057fe2011d9d8db292b1fc6576b32a5668852000dda",
+          "relation": "影響・検証範囲のL11対応。RTG-specific oracleではない。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "locator": "HELIXOS-L2-001/002/003/005/007 採択済み要求の一覧",
+          "line_start": 53,
+          "line_end": 60,
+          "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "section_sha256": "8220f1184b0221402f474002e70fc8ed53150bca64b149006d922037ba3fc12f",
+          "relation": "scope・影響・観測候補・evidence/provenanceの一般責務。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "locator": "HELIXOS-L2-009 durable event・冪等projection・checkpoint",
+          "line_start": 297,
+          "line_end": 297,
+          "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "section_sha256": "23a8653051671a6b68bbf8502d04aa7cb76f4286a57cc4d54a50331cae567452",
+          "relation": "durable eventと冪等projectionの一般イベント処理責務。trigger evidence決定性やevent順序不変性のoracleではない。"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "locator": "HELIXOS-L2-001/002/003/005/007 採択済みL11一覧",
+          "line_start": 21,
+          "line_end": 27,
+          "file_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+          "section_sha256": "d959bb3c0597e66c475e1bc6df6e9fd711d023c46adece8f02b75d31cbaa3588",
+          "relation": "要求追跡・欠落・影響・観測候補・証拠欠落/staleの一般受入。"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "locator": "構造改善候補の状態分離と旧機構非継承（受入未実行）",
+          "line_start": 96,
+          "line_end": 100,
+          "file_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+          "section_sha256": "4218686cdd216bfda68a9a38a6fd854b009157277e869e07c35b5350441d3787",
+          "relation": "未評価/unknown/stale/partial/findingなし/no actionの区別と旧UIL/RF0/scanner/CI境界。全件未実行。"
+        },
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "locator": "旧Refactoring Triggerの再採否境界",
+          "line_start": 224,
+          "line_end": 229,
+          "file_sha256": "ece844e9c26797035d9ce7e5e5a7b3f7653fadaa8b333b0f56269bd1f2d23aee",
+          "section_sha256": "4d67932d9d4cfa0a35252e2255424f226df7d7723ccf7615cd70429d46ce9bdc",
+          "relation": "HARNESS-L2-004/005の意味保存・影響・検証、L1利用要求が未確定のためL3 triggerを採用しない。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "locator": "旧Refactoring Triggerの再採否境界",
+          "line_start": 212,
+          "line_end": 215,
+          "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "section_sha256": "5dbddfa61465292e0e0dec907c4738949611a2bed61c03cf0b1c46b2fdd931ad",
+          "relation": "OSの構造改善責務と旧UIL/RF0/current 9等の非継承。"
+        }
+      ],
+      "comparison_positive": "HELIXOS-L2-002/007とL11は評価の未完/欠落/stale/partialを保持し、source/provenanceとrevisionを追える一般基盤を持つ。",
+      "comparison_negative_or_residual": "現行の採択済みpairには、全scopeの列挙、source exact set/policy digest/finding countの一体契約、partial/stale scanのRTG個別negative oracleを確認できない。",
+      "next_owner_and_po_boundary": "OS要求側が評価scopeと証拠状態を既存契約へ割り付け、HARNESSが必要な判定oracleの意味を定める。policy/digest schemaを新設する意味選択はPOへ。",
+      "disposition": "partial",
+      "formal_successor_claimed": false,
+      "authority_effect": "none"
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-003512",
+      "legacy_asset_id": "LEGACY-ASSET-AE48728497244121EEC3",
+      "rtg_acceptance_id": "RTG-AC-010",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-acceptance.md",
+        "line": 29,
+        "file_sha256": "66609d952094050336a3e29abf088c18178590fb5998dbbd06dc1fecb4b79251",
+        "line_sha256": "cb4f8e26294f175014bb93d36e5813a16bfa2d9591cc4f54adbd106eb16dca33",
+        "text": "| RTG-AC-010 | RTG-R-05 | findingなし評価とterminal no_actionを別状態にする | scan実行をcandidate終端へ丸めない |"
+      },
+      "effective_classification_correction": {
+        "from": "explanation",
+        "to": "requirement_atom",
+        "status": "corrected_in_this_audit",
+        "rationale": "この旧acceptance行は条件列とnegative-oracle列を持ち、独立に反証可能な受入条件を述べる。説明だけとして扱うと受入条件を落とす。",
+        "cumulative_count_delta": "not recalculated; no cumulative population delta is claimed"
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "semantic_routing_snapshot": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+        "file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
+        "classification": "explanation",
+        "routing_status": "non_requirement_source_structure_or_explanation",
+        "adoption_boundary": "not_requirement_atom",
+        "review_outcome": "non_requirement_source_structure_or_explanation",
+        "review_evidence": null
+      },
+      "legacy_positive_condition": "findingなし評価とterminal no_actionを別状態にする。",
+      "legacy_negative_oracle": "scan実行をcandidate終端へ丸めない。",
+      "current_related_target_refs": [
+        {
+          "path": "docs/governance/audits/source-rebaseline/new-generation-refactoring-trigger-source-crosswalk.md",
+          "locator": "旧RTG要求・受入候補と接続先・持込まない条件",
+          "line_start": 18,
+          "line_end": 34,
+          "file_sha256": "db64502c27e258312f1be82c51eb96fed621653be252c9a4412749f8abc72783",
+          "section_sha256": "e918320245d40d397564987c4ea7f069206951fcadc182f8158916ee4e894871",
+          "relation": "旧AC条件に対する再導出方針。候補接続は採択・coverageを意味しない。"
+        },
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "locator": "HARNESS-L2-004/005 採択済み要求の一覧・変更影響と検証責務",
+          "line_start": 43,
+          "line_end": 44,
+          "file_sha256": "ece844e9c26797035d9ce7e5e5a7b3f7653fadaa8b333b0f56269bd1f2d23aee",
+          "section_sha256": "42079dda6309db1ce973e04d454fa325b6c84637895b515bfd232860f448a53c",
+          "relation": "変更意味保存、影響、必要な再検証の一般責務。trigger-specific oracleではない。"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "locator": "HARNESS-L2-004/005に対する採択済みL11一覧",
+          "line_start": 24,
+          "line_end": 25,
+          "file_sha256": "ab94b4cec9535c70b5fd1a8553b41bdce51411fd59f65e64c5ddedc4fbacf878",
+          "section_sha256": "c691ca671abd6d75fb097057fe2011d9d8db292b1fc6576b32a5668852000dda",
+          "relation": "影響・検証範囲のL11対応。RTG-specific oracleではない。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "locator": "HELIXOS-L2-001/002/003/005/007 採択済み要求の一覧",
+          "line_start": 53,
+          "line_end": 60,
+          "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "section_sha256": "8220f1184b0221402f474002e70fc8ed53150bca64b149006d922037ba3fc12f",
+          "relation": "scope・影響・観測候補・evidence/provenanceの一般責務。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "locator": "HELIXOS-L2-009 durable event・冪等projection・checkpoint",
+          "line_start": 297,
+          "line_end": 297,
+          "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "section_sha256": "23a8653051671a6b68bbf8502d04aa7cb76f4286a57cc4d54a50331cae567452",
+          "relation": "durable eventと冪等projectionの一般イベント処理責務。trigger evidence決定性やevent順序不変性のoracleではない。"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "locator": "HELIXOS-L2-001/002/003/005/007 採択済みL11一覧",
+          "line_start": 21,
+          "line_end": 27,
+          "file_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+          "section_sha256": "d959bb3c0597e66c475e1bc6df6e9fd711d023c46adece8f02b75d31cbaa3588",
+          "relation": "要求追跡・欠落・影響・観測候補・証拠欠落/staleの一般受入。"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "locator": "構造改善候補の状態分離と旧機構非継承（受入未実行）",
+          "line_start": 96,
+          "line_end": 100,
+          "file_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+          "section_sha256": "4218686cdd216bfda68a9a38a6fd854b009157277e869e07c35b5350441d3787",
+          "relation": "未評価/unknown/stale/partial/findingなし/no actionの区別と旧UIL/RF0/scanner/CI境界。全件未実行。"
+        },
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "locator": "旧Refactoring Triggerの再採否境界",
+          "line_start": 224,
+          "line_end": 229,
+          "file_sha256": "ece844e9c26797035d9ce7e5e5a7b3f7653fadaa8b333b0f56269bd1f2d23aee",
+          "section_sha256": "4d67932d9d4cfa0a35252e2255424f226df7d7723ccf7615cd70429d46ce9bdc",
+          "relation": "HARNESS-L2-004/005の意味保存・影響・検証、L1利用要求が未確定のためL3 triggerを採用しない。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "locator": "旧Refactoring Triggerの再採否境界",
+          "line_start": 212,
+          "line_end": 215,
+          "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "section_sha256": "5dbddfa61465292e0e0dec907c4738949611a2bed61c03cf0b1c46b2fdd931ad",
+          "relation": "OSの構造改善責務と旧UIL/RF0/current 9等の非継承。"
+        }
+      ],
+      "comparison_positive": "HELIXOS-L2-005/007およびL11は未評価・unknown/stale/partial・findingなし・no actionを相互に補完しない状態として保持する。",
+      "comparison_negative_or_residual": "現行L11に状態分離はあるが、採択済みpairには評価済みfindingなしからterminal no_actionへの遷移条件や、scan実行がcandidateを終端させない個別oracleを確認できない。",
+      "next_owner_and_po_boundary": "OS要求側が状態遷移・終端条件を、HARNESS要求側がfinding意味を整理する。terminal意味を変える場合は既存POの要求意味判断へ。",
+      "disposition": "partial",
+      "formal_successor_claimed": false,
+      "authority_effect": "none"
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-003513",
+      "legacy_asset_id": "LEGACY-ASSET-AE48728497244121EEC3",
+      "rtg_acceptance_id": "RTG-AC-011",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-acceptance.md",
+        "line": 30,
+        "file_sha256": "66609d952094050336a3e29abf088c18178590fb5998dbbd06dc1fecb4b79251",
+        "line_sha256": "940813c4082c9a041352390b4b0c239b194ccad6a49a828b3bc261e05952aafc",
+        "text": "| RTG-AC-011 | RTG-R-06 | UIL-04〜06未到達時はshadow admissionだけを生成する | RF0実行、Issue／PLAN／authority writeを行わない |"
+      },
+      "effective_classification_correction": {
+        "from": "explanation",
+        "to": "requirement_atom",
+        "status": "corrected_in_this_audit",
+        "rationale": "この旧acceptance行は条件列とnegative-oracle列を持ち、独立に反証可能な受入条件を述べる。説明だけとして扱うと受入条件を落とす。",
+        "cumulative_count_delta": "not recalculated; no cumulative population delta is claimed"
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "semantic_routing_snapshot": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+        "file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
+        "classification": "explanation",
+        "routing_status": "non_requirement_source_structure_or_explanation",
+        "adoption_boundary": "not_requirement_atom",
+        "review_outcome": "non_requirement_source_structure_or_explanation",
+        "review_evidence": null
+      },
+      "legacy_positive_condition": "旧UIL-04〜06未到達時はshadow admissionだけを生成する。",
+      "legacy_negative_oracle": "RF0実行・Issue/PLAN/authority writeを行わない。",
+      "current_related_target_refs": [
+        {
+          "path": "docs/governance/audits/source-rebaseline/new-generation-refactoring-trigger-source-crosswalk.md",
+          "locator": "旧RTG要求・受入候補と接続先・持込まない条件",
+          "line_start": 18,
+          "line_end": 34,
+          "file_sha256": "db64502c27e258312f1be82c51eb96fed621653be252c9a4412749f8abc72783",
+          "section_sha256": "e918320245d40d397564987c4ea7f069206951fcadc182f8158916ee4e894871",
+          "relation": "旧AC条件に対する再導出方針。候補接続は採択・coverageを意味しない。"
+        },
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "locator": "HARNESS-L2-004/005 採択済み要求の一覧・変更影響と検証責務",
+          "line_start": 43,
+          "line_end": 44,
+          "file_sha256": "ece844e9c26797035d9ce7e5e5a7b3f7653fadaa8b333b0f56269bd1f2d23aee",
+          "section_sha256": "42079dda6309db1ce973e04d454fa325b6c84637895b515bfd232860f448a53c",
+          "relation": "変更意味保存、影響、必要な再検証の一般責務。trigger-specific oracleではない。"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "locator": "HARNESS-L2-004/005に対する採択済みL11一覧",
+          "line_start": 24,
+          "line_end": 25,
+          "file_sha256": "ab94b4cec9535c70b5fd1a8553b41bdce51411fd59f65e64c5ddedc4fbacf878",
+          "section_sha256": "c691ca671abd6d75fb097057fe2011d9d8db292b1fc6576b32a5668852000dda",
+          "relation": "影響・検証範囲のL11対応。RTG-specific oracleではない。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "locator": "HELIXOS-L2-001/002/003/005/007 採択済み要求の一覧",
+          "line_start": 53,
+          "line_end": 60,
+          "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "section_sha256": "8220f1184b0221402f474002e70fc8ed53150bca64b149006d922037ba3fc12f",
+          "relation": "scope・影響・観測候補・evidence/provenanceの一般責務。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "locator": "HELIXOS-L2-009 durable event・冪等projection・checkpoint",
+          "line_start": 297,
+          "line_end": 297,
+          "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "section_sha256": "23a8653051671a6b68bbf8502d04aa7cb76f4286a57cc4d54a50331cae567452",
+          "relation": "durable eventと冪等projectionの一般イベント処理責務。trigger evidence決定性やevent順序不変性のoracleではない。"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "locator": "HELIXOS-L2-001/002/003/005/007 採択済みL11一覧",
+          "line_start": 21,
+          "line_end": 27,
+          "file_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+          "section_sha256": "d959bb3c0597e66c475e1bc6df6e9fd711d023c46adece8f02b75d31cbaa3588",
+          "relation": "要求追跡・欠落・影響・観測候補・証拠欠落/staleの一般受入。"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "locator": "構造改善候補の状態分離と旧機構非継承（受入未実行）",
+          "line_start": 96,
+          "line_end": 100,
+          "file_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+          "section_sha256": "4218686cdd216bfda68a9a38a6fd854b009157277e869e07c35b5350441d3787",
+          "relation": "未評価/unknown/stale/partial/findingなし/no actionの区別と旧UIL/RF0/scanner/CI境界。全件未実行。"
+        },
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "locator": "旧Refactoring Triggerの再採否境界",
+          "line_start": 224,
+          "line_end": 229,
+          "file_sha256": "ece844e9c26797035d9ce7e5e5a7b3f7653fadaa8b333b0f56269bd1f2d23aee",
+          "section_sha256": "4d67932d9d4cfa0a35252e2255424f226df7d7723ccf7615cd70429d46ce9bdc",
+          "relation": "HARNESS-L2-004/005の意味保存・影響・検証、L1利用要求が未確定のためL3 triggerを採用しない。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "locator": "旧Refactoring Triggerの再採否境界",
+          "line_start": 212,
+          "line_end": 215,
+          "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "section_sha256": "5dbddfa61465292e0e0dec907c4738949611a2bed61c03cf0b1c46b2fdd931ad",
+          "relation": "OSの構造改善責務と旧UIL/RF0/current 9等の非継承。"
+        }
+      ],
+      "comparison_positive": "HELIXOS-L2-005とL11は観測・候補・採否・有効化を分け、観測だけ・旧UIL/RF0/CIだけから候補採択や実行を生成しない。",
+      "comparison_negative_or_residual": "採択済みpairにはshadow admission状態・UIL-04〜06 gate・RF0実行禁止を一体化した現行段階/side-effect oracleを確認できない。Issue/PLAN/authorityへの遷移は現行OS/authority境界から別途導く。",
+      "next_owner_and_po_boundary": "OS要求側が候補状態と許可済み既存workflowへのhandoffを整理し、HARNESSが検証義務を定義する。旧UIL/RF0段階や新しいauthority手続きは作らず、要求意味変更だけPOへ。",
+      "disposition": "partial",
+      "formal_successor_claimed": false,
+      "authority_effect": "none"
+    }
+  ]
+}
