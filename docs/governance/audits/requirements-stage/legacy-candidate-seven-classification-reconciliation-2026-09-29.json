@@ -3,19 +3,19 @@
   "audit_id": "legacy-candidate-seven-classification-reconciliation-2026-09-29",
   "status": "audit_proposal",
   "authority_effect": "none",
-  "base_commit": "bf00aca56add8ca29d9a56af9a989fdeb0a7d969",
+  "base_commit": "962ce3a0cbee91a3611a3387539803cdade16079",
   "pinned_inputs": [
     {
       "role": "cumulative_recount_proposal_2353",
-      "commit": "8a75e5392a44e005bb05197d977bdbcf75b93cf0",
+      "commit": "97672630b7de70fd4433827730c390cbabd90a99",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
-      "sha256": "57fce8a0e05ed73c46346f2177c439e862a17a06ecea65446389f24dc34160c5"
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c"
     },
     {
       "role": "metadata_reclassification_proposal_2356",
-      "commit": "b213b41735067d1716c143c92e0fa6c71d8e92d9",
+      "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
-      "sha256": "53c8acc872f30cf19e88499bc68b0f11c830a677f5c346d646a148dd3ca7853b"
+      "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164"
     },
     {
       "role": "router_snapshot",
@@ -52,9 +52,9 @@
     },
     {
       "role": "relevant_existing_metadata_audit_2356",
-      "commit": "b213b41735067d1716c143c92e0fa6c71d8e92d9",
+      "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.md",
-      "sha256": "5b0283bc893d2666a575f7313e0508d7343a1eed8a7464641eb7d0a06346f6ea"
+      "sha256": "de9329d28c79c56f6e258f088859c5cc74aa0a7823579a38c6f27f89f58f330c"
     },
     {
       "role": "authority_state_model",
@@ -269,8 +269,8 @@
     },
     {
       "id": "R2360-03",
-      "status": "deferred_until_dependencies_merge",
-      "change": "The #2353/#2356 pins remain fixed to their reviewed PR snapshots. Refresh these pins after both dependencies merge; this proposal is not merge-ready against the future merged main until refreshed."
+      "status": "addressed",
+      "change": "After #2353 and #2356 merged, refreshed their pinned input paths and SHA-256 values from the merge commits and rebased this audit onto current main #2357."
     },
     {
       "id": "R2360-04",
@@ -279,9 +279,13 @@
     }
   ],
   "dependency_pin_refresh": {
-    "status": "deferred_until_2353_and_2356_merge",
-    "current_pins_are_reviewed_pr_snapshots": true,
-    "after_merge_action": "Refresh the #2353 and #2356 pinned_inputs to merged commit/path bytes, rebase or regenerate this audit on current main, and rerun the full-population route recount before merge admission.",
-    "merge_admission": "not_satisfied_until_refresh"
+    "status": "completed_after_2353_and_2356_merge",
+    "current_pins_are_reviewed_pr_snapshots": false,
+    "current_main_baseline": "962ce3a0cbee91a3611a3387539803cdade16079",
+    "refreshed_dependencies": {
+      "2353_merge_commit": "97672630b7de70fd4433827730c390cbabd90a99",
+      "2356_merge_commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa"
+    },
+    "merge_admission": "R2360-03 dependency pins and baseline are refreshed; this does not assert other admission checks or a new full-population route recount."
   }
 }

@@ -2,7 +2,7 @@
 
 status: audit_proposal
 authority_effect: none
-base: `origin/main` commit `bf00aca56add8ca29d9a56af9a989fdeb0a7d969`
+base: `origin/main` commit `962ce3a0cbee91a3611a3387539803cdade16079`（#2357 merge後）
 
 ## 範囲と読み方
 
@@ -24,11 +24,11 @@ Draft PR #2359 が再確認対象とした `LEGACY-CAND-LINE-000140/142/143/180/
 
 7行への分類差分は`condition -2`、`explanation +2`、`management_process_condition +0`、`product_requirement_atom -2`、`product population -2`。route差分は`unknown -5`、`adopted_relevant_partial +3`、`not_condition +2`。`000142/143/331`は`unknown`から`adopted_relevant_partial`へ移り、`000180`は製品atomかつ`unknown`に残る。`000476/477`は`not_condition`となる。各行のrouteは上表およびJSONに同じ語で記録した。
 
-この訂正が採用された場合、#2359の20行sampleはproduct atom 20行の母集団選択ではなくなる。選択規則に従う次batchを作る前に、#2353/#2356 proposal overlay後の有効集合から`000476/477`の2 IDを除外して再選択する必要がある。上記route差分はこの7行の算術であり、全母集団件数は依存監査のmerge後に再計算する。
+この訂正が採用された場合、#2359の20行sampleはproduct atom 20行の母集団選択ではなくなる。選択規則に従う次batchを作る前に、#2353/#2356 proposal overlay後の有効集合から`000476/477`の2 IDを除外して再選択する必要がある。上記route差分はこの7行の算術であり、全母集団件数は依存監査のmerge済みoverlayと本提案を反映する最新mainで再計算する必要がある。
 
-### 依存pinの更新待ち（R2360-03）
+### 依存pinの更新（R2360-03、完了）
 
-現在の`#2353` pinは`8a75e5392a44e005bb05197d977bdbcf75b93cf0`、`#2356` pinは`b213b41735067d1716c143c92e0fa6c71d8e92d9`のレビュー対象snapshotを固定している。両PRの修正・merge後に、最新main上のmerge済みcommitとbytesへpinを更新する。更新前のこのproposalは将来のmerged mainに対するmerge admissionを満たさない。
+両依存PRのmerge後、#2353 cumulative recount JSONをmerge commit `97672630b7de70fd4433827730c390cbabd90a99`上のbytes（SHA-256 `2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c`）へ、#2356 metadata reclassification JSON/Markdownをmerge commit `9ae894346ce13888947fb3d4f2e9aafc79fbdcfa`上のbytes（JSON SHA-256 `726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164`、Markdown SHA-256 `de9329d28c79c56f6e258f088859c5cc74aa0a7823579a38c6f27f89f58f330c`）へ更新した。本案の基準mainは#2357 merge commit `962ce3a0cbee91a3611a3387539803cdade16079`。この変更はR2360-03の基準revisionとdependency pinsを確定するもので、全母集団route recountや他のmerge admission条件の充足を主張しない。
 
 ## 根拠
 
