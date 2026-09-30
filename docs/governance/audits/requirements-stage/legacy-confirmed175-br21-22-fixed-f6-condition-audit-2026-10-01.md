@@ -71,7 +71,7 @@
 
 ## 旧consumer/detail条件の保持と残差
 
-以下はBR identityが結ぶ下位sourceを読み、line/file digestをJSONへpinした結果。旧L3詳細やFR行はsource lineageのconsumerであり、BR identityの現行採択条件へ自動昇格しない。
+以下は各BR identityが結ぶconsumer sourceを読み、path・line range・file SHA・line/range SHAをJSONへpinした結果。BR-21 §11は旧business-detailへ評価単位・metric・人の境界を展開する。BR-22はFR-L1-46〜49を再構築HOWとして参照し、L3 carry row 745へ計画配置する。これら下位詳細や別FR identityの条件をBR identity自身の新閾値・現行採択条件へ昇格しない。
 
 | BR identity | 旧consumer source | exact lines |
 |---|---|---|
@@ -85,7 +85,7 @@ File SHA、range SHA、全行SHA/textはJSONの各record `legacy_consumer_pins`�
 
 **現行側で保持する意味:** AI実行品質を継続評価し、委譲成果から改善候補へ戻す目的。固定L2/L11はOSの候補routing、LABOの評価と再観測、target ownerの採否・変更責務に分けた循環を記述する。
 
-**旧下位詳細の未移管条件:** PLANを既定単位、skill/modelを補助単位とする評価単位と頻度、5指標と各目標（成功率80%以上、所要時間中央値1 sprint以下推奨、再実行3回未満、fail-close発火率5%未満、token costは計測のみ）、model opt-in、30日unused候補・skill削除は人間のみ、PoC pivotを非成功として分母に含める契約。これらはbusiness-detailのBR-21詳細化として残差に記録し、現行L2/L11の閾値やacceptanceとして扱わない。
+**旧下位consumerの未移管条件:** BR-21 §11（旧business-requirements.md:368）はbusiness-detail.md:27–70および179–230へ評価HOWを接続する。そこではPLANを既定評価単位、skill/modelを補助単位とする分解、頻度を示す。5 metric/条件は、実行成功率80%以上、token cost計測（閾値なし）、実行時間中央値1 sprint以下推奨、retry回数3未満、fail-close発火率5%未満。model利用はopt-in。30日unusedのflaggingとskill削除は人間判断の境界を持ち、PoC pivotは成功から除外するだけでなく分母に含める。これらはbusiness-detailのBR-21 consumer残差として保持し、現行L2/L11の閾値やacceptanceにしない。
 
 BR-21本文自身は§11.3にD-07「AI委譲時間率 ≥70%」を業務的根拠として記す。これはbusiness-detailの5評価指標閾値とは別で、今回の比較から新しい採択目標を作らない。
 
@@ -93,21 +93,27 @@ BR-21本文自身は§11.3にD-07「AI委譲時間率 ≥70%」を業務的根�
 
 **現行側で保持する意味:** HELIX用の正本内部資産を持ち、source-derived資産をそのまま使わずHELIX向けに再構築し、guardだけでなく資産自体を統制する。固定f6ではOSのWorker/evidence、HARNESSのengineering pack、BRAINのknowledge identityへ責務が分かれる。
 
-**旧下位HOWの未移管条件:** FR-L1-46〜49は別requirement identitiesとして、rosterのcapability/model/guard再構築、skill packのHELIX版SKILL_MAPと区分・trigger、commandのCLI化、roster/guard等のdrift lintを示す。L3 carry row 745はW6/W7・W10・W11/W12/W16・IMP-033への計画配置を示す。sourceにある「70 binaries」「19 docs/commands」は旧FRの棚卸入力で、BR-22の目標件数ではない。各HOWの現行対応、資産catalog全体、drift oracle/lifecycleは未確認のまま残す。
+**旧下位HOWの未移管条件:** BR-22 source line 49はFR-L1-46〜49を「再構築のHOW」として参照する。functional-requirements.md:77–80はrosterのcapability/model/guard再構築、skill packのHELIX版SKILL_MAPと区分・trigger、commandのCLI化、roster/guard等のdrift lintを示す。L3 functional-requirements.md:745はW6/W7・W10・W11/W12/W16・IMP-033へのcarry計画を示す。これらFR identity別のHOWをBR-22の独立した閾値として扱わず、現行BR条件へ全件移管したとは扱わない。sourceにある「70 binaries」「19 docs/commands」は旧FRの棚卸入力で、BR-22の目標件数ではない。各HOWの現行対応、資産catalog全体、drift oracle/lifecycleは未確認のまま残す。
 
 ## 後発採択decision／neighbor screen
 
-候補探索の入口として、既存後発cohort一覧（57候補・53採択registration rows、11候補・10採択rows、live26・25採択rows、計94 decision rows／88 adopted registration-decision rows）を確認し、cohort path/file SHAをJSONに固定した。CN1-6監査のdirect-match結論はBR-21/22へ流用していない。以下の3候補は今回のBR条件に近い接点として個別に比較し、各decision/MPR/L2/L11をpinした。screen全候補の意味をBR条件ごとに再監査したとは主張しない。
+採択状態の見落としを避けるため、decision cohorts 57/11/live26の**全94 decision rows**をdecision line SHA付きでindex化し、registrationがある93行は対応MPR line SHAも併記し、そのうち**88 adopted registration-decision rows**と**6 held rows**を区別した。88はcohort別に53/10/25。保留を採択扱いせず、registrationのないHARNESS-L2-049 narrative holdもdecision lineだけをpinする。CN1-6監査のdirect-match結論はBR-21/22へ流用しない。全94のindexと各statusはJSONの`adopted_identity_status_index`に記録する。
 
-後発採択neighborの例もexact pinで照合した。採択状態はそれぞれのdecision rowに限られ、BR identityの後継とはしない。
+neighbor screenは旧identityごとの条件近接に限定し、8 unique adopted neighbors（BRとのassociationは9件、072は双方へ別association）を確認した。採択状態とexact decision/MPR/L2/L11 pinsはJSONの`selected_neighbor_pair_pins`にある。L2/L11 adopted-revision file/section pin、current HEADとの同一性、およびPO row/MPR candidate semantic digestは個別字段で保持し、semantic digestをraw section SHAと同一視しない。
 
-| neighbor | adopted decision | decision / MPR pin | 条件範囲 |
+| neighbor | BRとの関係 | adopted scope / pin | BR条件との bounded relation |
 |---|---|---|---|
-| `HELIXOS-L2-048` | 2026-09-29採択 | `po-decision-2026-09-29-57candidates.md:71` / `management-provisional-requirement-register.jsonl:576` | 返却・検証不成立feedbackの評価・還流接続。BR-21全体ではない |
-| `HELIXLABO-L2-063` | 2026-09-29採択 | `po-decision-2026-09-29-57candidates.md:78` / `management-provisional-requirement-register.jsonl:486` | 修復再発評価から予防候補への還流。BR-21全体ではない |
-| `HARNESS-L2-053` | 2026-09-29採択 | `po-decision-2026-09-29-11candidates.md:33` / `management-provisional-requirement-register.jsonl:608` | canonical command identity/再送判定。BR-22全体ではない。L11はadoption前snapshot metadataを保持 |
+| `HELIXOS-L2-048` | BR-21 | 57 row 71 / MPR 576 | 返却・検証不成立feedbackの評価・還流接続。BR-21全体や全metricsのsuccessorではない。 |
+| `HELIXLABO-L2-063` | BR-21 | 57 row 78 / MPR 486 | 修復再発評価から予防候補への還流。旧skill/model/PoC projectionを閉じない。 |
+| `HARNESS-L2-053` | BR-22 | 11 row 33 / MPR 608 | canonical command identity/再送判定。command資産全体のlifecycleではなく、L11はadoption前snapshot metadataを保持。 |
+| `HARNESS-L2-047` | BR-22 | conditional A; 57 row 52 / MPR 572 | specialist Workerを必要とした場合のcontract generationをHARNESSが所有。roster rebuild/catalog全体ではない。 |
+| `HELIXINTELLIGENCE-L2-072` | BR-22 | conditional B; 57 row 85 / MPR 535 | skill component identity/version/applicabilityが隣接。1.0はcandidate generation/shadowまで。skill efficacyからのpack improvement loopは1.0外。 |
+| `HELIXINTELLIGENCE-L2-072` | BR-21 | conditional B; 57 row 85 / MPR 535 | feedback/evaluationへの近さに限る。skill efficacy loop、active enforcement、model/skill基準の自動更新は含まない。 |
+| `HELIXINTELLIGENCE-L2-074` | BR-21 | adopted; 57 row 87 / MPR 587 | evaluated returned feedbackを次のplacement proposalへ同scope evidenceとして引用。proposalのみでqualification・順位・model updateを決定しない。MPR atom setは空。 |
+| `HELIXLABO-L2-065` | BR-21 | conditional D1; 57 row 80 / MPR 537 | “first Attempt result”は067と別指標。 qualification evidenceに限り、BR-21全体のoutcome projectionでない。 |
+| `HELIXLABO-L2-071` | BR-21 | adopted in live26; row 50 / MPR 637 | task-class GitHub audit Worker/model qualification接点。全task model ranking、継続projection、自動基準更新でない。 |
 
-各decision file/row、MPR file/row、L2/L11 sectionまたはidentity lineのSHA-256はJSONの`later_adopted_decision_screen.selected_neighbor_pair_pins`に記録した。
+以上はBR-21/22へ近い採択neighborのscreenであり、正式successor割当は0、closure falseを維持する。特にINTELLIGENCE-072/074・LABO-065/071はBR-21の評価単位・metric・PoC結果やBR-22の資産再構築のcompletionを代替しない。
 
 ## 結果・限界
 
@@ -117,7 +123,7 @@ BR-21ではOS改善候補のroutingとLABO内部改善循環に意味接点が�
 
 ## 静的検証
 
-- source file/line SHA、固定f6の6 L2/L11 target section、decision file/line、MPR file/line pin照合: pass
+- source file/line SHA、consumer file/range pins、固定f6の6 L2/L11 target section、94 decision/MPR index（88 adopted／6 held）、neighbor decision/MPR/adopted-revision L2/L11/current HEAD pins照合: pass
 - JSON parse: pass
 - `python3 scaffold/tools/scfctl.py validate`: `bindings=143 fail=0`
 - `git diff --check`: pass
