@@ -1,0 +1,531 @@
+{
+  "schema_version": "confirmed175-condition-audit.v1",
+  "audit_id": "confirmed175-fr-l1-11-15-fixed-l2l11-audit-2026-09-30",
+  "created_at": "2026-09-30",
+  "audit_mode": "read_only_source_to_fixed_l2_l11_condition_comparison",
+  "created_against_revision": "89343b2fbd73cd2c78f97e3ae1b3973292d9eb30",
+  "authority_effect": "none",
+  "scope": {
+    "population": "confirmed175",
+    "count": 5,
+    "source_qualified_prefix": "harness/L1-requirements/functional-requirements.md::",
+    "identities": [
+      "FR-L1-11",
+      "FR-L1-12",
+      "FR-L1-13",
+      "FR-L1-14",
+      "FR-L1-15"
+    ],
+    "legacy_asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B",
+    "fixed_target_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+  },
+  "source": {
+    "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+    "holding_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+    "sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+    "holding_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+    "source_revision": "legacy-generation-2026-09-14",
+    "source_status": "confirmed",
+    "asset_ledger_ref": "docs/governance/legacy-asset-disposition.jsonl#LEGACY-ASSET-6B6C5CB0E481BE01088B",
+    "carry_forward_state": "preserved_pending_rehome"
+  },
+  "selection_and_duplicate_scan": {
+    "queue": "docs/governance/audits/requirements-stage/confirmed175-condition-comparison-queue-2026-09-30.json",
+    "queue_result": "At base 89343b2fbd73cd2c78f97e3ae1b3973292d9eb30, all five source-qualified identities remain not_individually_compared with empty evidence_artifacts.",
+    "scan_scope": "docs/governance/audits/requirements-stage/**/*.json and *.md source-qualified references at base 89343b2fbd73cd2c78f97e3ae1b3973292d9eb30; queue, full audit and REG-06 population audit are the only existing artifact matches for these identities. The concurrent v13-layer-chain-12 audit covers REQSRC-SUP-00034..00045 and has no source-qualified identity overlap.",
+    "result": "At base 89343b2fbd73cd2c78f97e3ae1b3973292d9eb30, no prior identity-specific fixed-L2/L11 condition audit for these five source-qualified identities was found; no repeated identity in this batch.",
+    "prior_full_audit": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#audited_non_residual_records",
+    "prior_population_audit": "docs/governance/audits/requirements-stage/legacy-source-origin-reg06-population-audit-2026-09-28.json"
+  },
+  "fixed_target": {
+    "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "authority_reference": [
+      "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md"
+    ],
+    "documents": [
+      {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+      },
+      {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+      },
+      {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+      },
+      {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+      }
+    ],
+    "meaning": "Compare legacy conditions against the exact PO-fixed L2/L11 bytes. Target presence and this comparison do not establish source-atom coverage, adoption expansion, successor assignment, or closure."
+  },
+  "later_adopted_pair_review": {
+    "decision_records": [
+      {
+        "id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "adopted_identity_count": 42,
+        "conditional_adopted_identity_count": 11,
+        "held_identity_count": 4
+      },
+      {
+        "id": "HDEC-REQUIREMENTS-11-2026-09-29",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+        "source_revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+        "adopted_identity_count": 10,
+        "held_identity_count": 1
+      }
+    ],
+    "pair_content_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+    "reviewed_identity_count": {
+      "57_candidate_decision": 57,
+      "11_candidate_decision": 11
+    },
+    "screen_method": "Read both complete decision identity sets and inspect semantically adjacent adopted L2/L11 sections at the explicitly pinned pair revision. The per-row effect remains narrower than the audited legacy condition; pair adoption does not assign a legacy successor.",
+    "adjacent_pairs": [
+      {
+        "id": "HELIXOS-L2-037",
+        "decision": "adopted",
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "registration_id": "MPR-RC-HELIXOS-L2-037-001",
+        "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+        "l2_section_sha256": "29563f1fdde0d9ace0b0850a5fc57bc6f6b595f460a5caa293c7eefb60905d64",
+        "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+        "l11_section_sha256": "c64f7fbc39d28c028fd4e95c47dc7ff788f3a857f290a0217821e52b3216ddf7",
+        "bounded_effect": "FR-L1-11: weekly asynchronous scope-specific drift observation and owner/source-classified debt handoff are adjacent. It does not supply the old four-signal integrated nonblocking behavior, interrupt duplicate rejection, readiness warning threshold, or establish the exact old numeric boundary, which is internally inconsistent."
+      },
+      {
+        "id": "HELIXOS-L2-041",
+        "decision": "adopted",
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "registration_id": "MPR-RC-HELIXOS-L2-041-001",
+        "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+        "l2_section_sha256": "a43e3eda819e37ef81db0c60c5add5cebce5e3d17ca858c1446c27ac4db80c48",
+        "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+        "l11_section_sha256": "32f08cfa7b070bb902277f79e044e971bbd3948e90621c624d80b167f80d7ded",
+        "bounded_effect": "FR-L1-11: safe continuation after reload failure contributes to context handover/continuity. Missing, stale, or conflicting authoritative state keeps dependent work on hold. It does not define interrupt priority, resume command/duplicate-interrupt behavior, debt, drift, or readiness."
+      },
+      {
+        "id": "HARNESS-L2-037",
+        "decision": "adopted",
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "registration_id": "MPR-RC-HARNESS-L2-037-002",
+        "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "l2_section_sha256": "3dcead1bfe0ef30da76a4f781b3e3c0b4817672269e7055a18cb4b35781b95f2",
+        "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "l11_section_sha256": "6e2874b93cea9fccb06aaaecccf09603a1c1cc9d3d5a2a750db06d22d5d4dcee",
+        "bounded_effect": "FR-L1-12: selected phase/task/design obligation context and context-selector conditions are adjacent to context injection. It is a specialist-contract generation/selection scope and does not reproduce the layer-specific five-element bundle, skill ranking score/reason, old orchestration enum, or override approval AC."
+      },
+      {
+        "id": "HARNESS-L2-038",
+        "decision": "adopted",
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "registration_id": "MPR-RC-HARNESS-L2-038-001",
+        "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "l2_section_sha256": "dd5b5450801617bbd6cc1dfd2e522420399ec58fb7675a286221dd0d9415767c",
+        "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "l11_section_sha256": "dfa3b4c245af3987ee7738cc4a3aa758bb8f113b9d06079362d978ff63731297",
+        "bounded_effect": "FR-L1-14: adds a selected-source/reverse-evidence substance contract near Full Reverse input and R4 evidence. It does not establish five legacy reverse types, R0-R4/RGC phase sequence, named Rn artifacts, 1000-line example, or gap-only routing as the same contract."
+      },
+      {
+        "id": "HARNESS-L2-046",
+        "decision": "adopted",
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "registration_id": "MPR-RC-HARNESS-L2-046-001",
+        "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "l2_section_sha256": "47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e",
+        "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "l11_section_sha256": "a8e99f7df7166566c04b1113b045851d8417e17e8078c034f8f2a34ebfe4f37f",
+        "bounded_effect": "FR-L1-13/15: concretizes Full V workflow and selected Production Scrum slice-delta/backfill. It does not reinstate the three old same-level style set, exact six-gate receipt sequence or old CLI; nor does it make Discovery/PoC an embedded Scrum phase or cover S0-S4 decisions."
+      },
+      {
+        "id": "HELIXLABO-L2-062",
+        "decision": "adopted",
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "registration_id": "MPR-RC-HELIXLABO-L2-062-001",
+        "l2_path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "l2_file_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+        "l2_section_sha256": "9d727cd363b5fe0dd34ad38a5c87ef81cc93a2d4a61c4d3e860adfbb648d2486",
+        "l11_path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "l11_file_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+        "l11_section_sha256": "8046ea93936685eb49f8efcc00c3a9a6f7e6df92afe95035be1f910b57a71ade",
+        "bounded_effect": "FR-L1-15: source-span verification of external research claims is an adjacent Research evidence capability and is fixed at version_target 2.0. It is not PoC measurement, a verify script, S4 outcome, or authority to promote a hypothesis."
+      }
+    ],
+    "non_adjacent_pair_result": "No other pair in the fixed 57+11 decision identity sets was treated as a substitute for these five old conditions. Pair registration or adoption alone is not a formal successor assignment."
+  },
+  "conditions": [
+    {
+      "id": "FR-L1-11",
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-11",
+      "source_line": 42,
+      "source_line_sha256": "cbfb45891382f2d4e88c5e18ad09c90a4df1f18f880dca3b32b04df63737563a",
+      "source_text": "| **FR-L1-11** | 横断 4 機構 (interrupt / debt / drift-check / readiness) のモード進行非ブロック発動 | cross-cutting-mechanisms | 割り込みイベント / 負債台帳 / drift / 保留 | sprint interrupted / debt-register / 乖離レポート / 後工程 PLAN 先送り | P0 | PM-03 (詰まり要因) / HM-07 |",
+      "legacy_consumers": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+          "lines": "334-357",
+          "conditions": [
+            "AC-FR-11-01: during L4 design, urgent P0 interrupt pauses PLAN-040, opens troubleshoot PLAN-041, and preserves context handover",
+            "AC-FR-11-02: interrupting an already-interrupted plan fails closed and next action is resume",
+            "AC-FR-11-03: line 352 precondition says debt-register has 30 or more (30件以上); line 354 expected result says “debt 30 件超過”. Both lines are retained; the exact-30 boundary is inconsistent in the same AC."
+          ]
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/function-spec.md",
+          "lines": "239",
+          "conditions": [
+            "typed event (type/severity/subject/evidence path); append/projection only; cannot approve a gate"
+          ]
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+          "lines": "439,488,498",
+          "conditions": [
+            "PM-03/HM-07 interrupt, debt, drift, readiness visibility"
+          ]
+        }
+      ],
+      "fixed_l2l11_refs": [
+        "HARNESS-L2-003 L2/L11 (process start/freeze/backflow/resume/completion and do not infer state from prior state)",
+        "HELIXOS-L2-009 L2/L11 (in-flight work, constraints, unfinished obligations)",
+        "HELIXOS-L2-016/017/019/020 L2/L11 (portfolio state, ticket routing, evidence, continuity)",
+        "HARNESS-L2-003 and OS target file SHA pins in fixed_target.documents"
+      ],
+      "retained_meaning": "The current fixed contract separates workflow state, ticket routing, evidence/continuity and acceptance; recording an event alone cannot approve a gate. The old nonblocking cross-cutting intent and context continuity partially correspond.",
+      "changed_or_not_inherited": "Do not carry old CLI names, PLAN identifiers, .helix persistence/runtime, or the legacy event projection as current execution. No single fixed L2/L11 contract states all four old mechanisms as a parallel, nonblocking cross-cutting bundle.",
+      "numeric_exception_counterexample": "The source AC describes a readiness warning and allows the next PLAN without blocking, but its numeric boundary conflicts internally: line 352 says 30件以上 while line 354 says 30件超過. Do not resolve whether exactly 30 triggers the warning. Separate counterexample: repeat interrupt on an already-interrupted PLAN must fail closed and point to resume.",
+      "later_pair_effects": [
+        "HELIXOS-L2-037 narrows adjacent debt/drift support to weekly asynchronous scope-specific observations and owner/source-classified handoff; it does not supply integrated four-signal behavior or old >=30 threshold.",
+        "HELIXOS-L2-041 narrows adjacent continuity support to re-fetching authoritative state after reload failure; missing/stale/conflicting state holds dependent work, not all progression or interrupt handling."
+      ],
+      "residual": "No fixed or later pair demonstrates the old integrated four-signal nonblocking oracle or explicit duplicate-interrupt failure/next action. The AC itself is ambiguous at exactly 30 debt items (line 352 “30件以上” versus line 354 “30件超過”); retain that ambiguity rather than asserting a precise threshold. Current partial mapping and unassigned source atoms remain open.",
+      "audit_status": "open_partial_correspondence",
+      "successor_requirement_ids": [],
+      "authority_effect": "none",
+      "numeric_boundary_source_evidence": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+          "line": 352,
+          "text": "- **前提**: debt-register に 30 件以上累積 (閾値超過、readiness check 該当)",
+          "line_sha256": "52da3fce10e79c87a1ff78b3557843afcb2539310ec013f609be03b68b69f65f"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+          "line": 354,
+          "text": "- **期待結果**: readiness warn `Warning: debt 30 件超過。返済 PLAN 推奨` / 起票続行可 / 起票は block しない",
+          "line_sha256": "53543573643858a934be130df6b39e0e9bc6d34a7364a911f75cbdebe236fcd1"
+        }
+      ]
+    },
+    {
+      "id": "FR-L1-12",
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-12",
+      "source_line": 43,
+      "source_line_sha256": "69ac95708977d2572c5a4b535a68242d2aede30423cc0ccd79783064e12156dc",
+      "source_text": "| **FR-L1-12** | L 単位 文脈注入 (スキル / ワークフロー / 必須 agent / 推奨 command / orchestration の 5 要素) | layer-context-injection | L 種別、vmodel-semantics.yaml 注入セット定義 | AI の選択空間限定、迷い排除。※ extended: 工程別スキル推挙システム (FR-L1-37 と連動) を含める。skill_catalog の各 L エントリに「推挙スコア + 選定理由」フィールド。※ extended (A-54 audit 軸1 C-01/I-03): 5 要素のうち orchestration は `orchestration_mode` 5 値 enum {pm_lead / claude_judge / claude_judge_codex_impl / codex_impl_qa_verify / claude_design_impl} (L0 §2.6.4) を注入し、各値の「誰が判断し誰が実装するか」を確定。hybrid 不在時は L0 §2.1.2.1 縮退規則に従い silent fallback を禁止し不在を明示記録 (FR-L1-08 連動、判断ゲートは必ず execution mode を参照)。※ extended (既存 source capability W3/W4/W10 突合、2026-06-04): `helix task classify` / `helix task estimate` / `helix skill suggest` / `helix team run` を本機能の実行面として扱い、team run は frontier-reviewer / worker / fast-checker へ役割分離し、同一 runtime + model による作成・承認の兼任を禁止する | P0 | HM-05 (skill 注入タブ) / HM-02 |",
+      "legacy_source_note": "The source row includes stage-specific skill recommendation, per-layer score/reason, five orchestration_mode values and decision/implementation split; when hybrid is absent it prohibits silent fallback and requires the absence to be recorded; it also connects task classify/estimate, skill suggest and team run, separates frontier-reviewer/worker/fast-checker roles, and forbids same runtime+model from combining authoring and approval.",
+      "legacy_consumers": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+          "lines": "358-380",
+          "conditions": [
+            "PLAN layer selects docs/skills/<L>-injection.yaml; inject five elements",
+            "L3 PLAN suggests five skills with reasons",
+            "missing layer file fails closed with next action to create definition",
+            "explicit skill_override takes priority and requires TL approval audit"
+          ]
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/function-spec.md",
+          "lines": "240,803,852-866",
+          "conditions": [
+            "task/layer/kind/drive/catalog context; deterministic ranked candidates with reasons; missing catalog row finding; no prompt-body copy; two-stage recommendation/injection"
+          ]
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+          "lines": "134,137,140,192-193,440,496",
+          "conditions": [
+            "HM-05 injection state/recommendations and HM-02 coverage visibility"
+          ]
+        }
+      ],
+      "fixed_l2l11_refs": [
+        "HARNESS-L2-002/009: selectable development style and versioned design templates/design obligations, not generic five-element context injection",
+        "HELIXOS-L2-018: Worker assignment/execution responsibility, not skill/workflow/agent/command/orchestration payload",
+        "HARNESS and OS L11 acceptance lines identify the associated fixed acceptance contracts; exact bytes pinned in fixed_target.documents"
+      ],
+      "retained_meaning": "Layer, task, style, design obligations, and worker/execution context constrain available work and provide some contextual inputs.",
+      "changed_or_not_inherited": "Current fixed bytes do not define the old five-element injected bundle or copy the old skill catalog, injection YAML schema, CLI, runtime, or orchestration enum as current execution.",
+      "numeric_exception_counterexample": "Separate old conditions: the L3 sample returns five recommended skills with reason; missing injection YAML fails closed; skill_override wins only with TL approval audit; if hybrid is absent, silent fallback is prohibited and absence must be logged; team run separates frontier-reviewer/worker/fast-checker and forbids same runtime plus model from both creating and approving. The five-value orchestration_mode names are legacy, not a current enum.",
+      "later_pair_effects": [
+        "HARNESS-L2-037 provides a selected-phase/task/design-obligation context selector for generation of runtime-neutral specialist contracts. Its selected contract scope does not equal the generic layer-level five-element bundle or inject skills/workflows/required agents/recommended commands/orchestration for every L.",
+        "HELIXOS-L2-041 contributes authoritative context-source provenance only when safe continuation needs state reload; it does not define contextual injection or recommendation behavior."
+      ],
+      "residual": "The layer-specific five-element bundle, exact rank/score/reason contract, five old orchestration-mode meanings, hybrid-absence no-silent-fallback plus explicit absence record, missing-definition negative path, override authority condition, and same-runtime/model author/approver separation remain unproven by fixed and adjacent adopted pairs. Old schema, CLI, enum, and runtime are not inherited.",
+      "audit_status": "open_partial_correspondence",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "id": "FR-L1-13",
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-13",
+      "source_line": 44,
+      "source_line_sha256": "22819dfefec8b6f03ed2358a8f85a5503527d807bd7e0382f4a077e10a703365",
+      "source_text": "| **FR-L1-13** | L1〜L12ワークフロー（PLAN → pair-freeze → implement → trace-freeze → review → accept）を、`FULL_L1_L12_V`、`PRODUCTION_SCRUM`、`V_DESIGN_SCRUM_IMPLEMENTATION`の同列development styleで実行する | automation-gate-map / L1〜L12全工程 | 選択済みstyleと工程ゲート通過条件 | 工程進行、正規6 V-pairのゲート証跡。`helix review --uncommitted`をtrace-freeze後／accept前の差分レビュー導線として扱い、未コミット差分・design／test／code trace・依存／重複／機能整合をevidenceへ残す | P0 | PM-01 / PM-02 |",
+      "legacy_consumers": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+          "lines": "382-405",
+          "conditions": [
+            "status/next show phase and next step",
+            "G3 pass permits L4 with PLAN and phase update",
+            "unpassed G3 fails closed for L4",
+            "exception: L3 may run parallel L7 troubleshoot PLAN, audit L7 impact, and leave L3 mainline active"
+          ]
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/function-spec.md",
+          "lines": "241",
+          "conditions": [
+            "Forward order and required gate pass only when prior gate state is known; exception requires explicit evidence; no silent skipping of blocked gate"
+          ]
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+          "lines": "441,486-487",
+          "conditions": [
+            "PM-01/02/03 expose three old style selection, progress and pair gates"
+          ]
+        }
+      ],
+      "fixed_l2l11_refs": [
+        "HARNESS-L2-001/002/003: current L1-L12 and canonical V-pairs; styles can be selected/composed; process conditions and independent artifact states",
+        "L11 HARNESS-L2-001/002/003: pair, style and acceptance conditions",
+        "f6 file/section content distinguishes current four development modes from old same-level three style set"
+      ],
+      "retained_meaning": "Current fixed requirements preserve canonical six V-pairs, style-specific progress, gate/evidence ordering, and explicit separation of process/artifact states.",
+      "changed_or_not_inherited": "The PO-fixed model uses four current styles, permits composition under its own boundary, uses L1-L12 not legacy L0-L14 numbering, and does not carry old status/next/phase.yaml or helix CLI as current runtime.",
+      "numeric_exception_counterexample": "The old contract specifies six canonical pair receipts and G3 as the L3-to-L4 boundary. Its exception is only parallel L7 troubleshoot with impact audit while L3 stays active; this is not permission to skip a blocked gate silently.",
+      "later_pair_effects": [
+        "HARNESS-L2-046 adds Full V workflow and selected Production Scrum slice-delta/backfill conditions. Its adopted scope does not restore the three old style set, all-style uniformity, old CLI, or exact six-gate receipt sequence."
+      ],
+      "residual": "The old three-style meaning/applicability, exact phase/artifact and six-pair receipt binding, status/next output, L7 parallel exception oracle, and review evidence condition/order are not all specified by the fixed pair and HARNESS-L2-046. Preserve the requirement to collect the named review evidence at the stated phase boundary as a source condition; do not claim its legacy command or runtime has migrated.",
+      "audit_status": "open_partial_correspondence",
+      "successor_requirement_ids": [],
+      "authority_effect": "none",
+      "legacy_review_evidence_condition": "The source L1 line requires review after trace-freeze and before accept, recording uncommitted diff, design/test/code trace, dependencies, duplicates, and functional consistency as evidence. The old command name `helix review --uncommitted` is not inherited as a current CLI."
+    },
+    {
+      "id": "FR-L1-14",
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-14",
+      "source_line": 45,
+      "source_line_sha256": "c270483a6a37e3e7ba9207d7778b5e672fce3c8564bf1cacc8e13c9b346ecf22",
+      "source_text": "| **FR-L1-14** | Reverseワークフロー（5 type: code/design/upgrade/normalization/fullback、R0-R4＋RGC） | reverse-workflow | 既存code／設計文書／依存 | Rn成果物（evidence / contracts / as-is-design / gap-register / routing）。onboardingやIncident収束後のbackfillに利用できるが、development styleまたはcase-driven modelへ分類しない | P0 | PM-02 (Reverse 工程) / HM-07 |",
+      "legacy_source_note": "The same row states Reverse may support onboarding and incident-closure backfill, but is not a development style or case-driven model.",
+      "legacy_consumers": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+          "lines": "406-429",
+          "conditions": [
+            "five confirmed_reverse_type values",
+            "R0 evidence for a 1000-line source records functions/classes/dependencies and suggests R1",
+            "missing confirmed_reverse_type fails closed",
+            "R4 gap-only records gap and does not start Forward"
+          ]
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/function-spec.md",
+          "lines": "242",
+          "conditions": [
+            "R4 routing requires reverse type, evidence, forward_routing and promotion_strategy; only confirmed reverse evidence can merge Forward"
+          ]
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+          "lines": "442,487",
+          "conditions": [
+            "PM-02/HM-07 show Reverse R0-R4 state"
+          ]
+        }
+      ],
+      "fixed_l2l11_refs": [
+        "HELIXOS-L2-010 HXT-TYPE-09 and HXT-FLOW-05: ticket type/routing and forward routing boundary",
+        "HARNESS-L2-019 plus L11: Full Reverse entry/result and unknown/transformability retention",
+        "L2/L11 exact file bytes pinned in fixed_target.documents"
+      ],
+      "retained_meaning": "Reverse/backfill remains distinct from normal Forward and from discovery. Existing material, provenance/evidence, gap, and routing must be retained; unknown is not silently promoted.",
+      "changed_or_not_inherited": "The current fixed model routes through current tickets, owners and target layers. It does not import old CLI, .helix/reverse/Rn JSON paths, RGC, or the five old reverse-type enum as a current runtime contract.",
+      "numeric_exception_counterexample": "The 1000-line code example yields R0 evidence and R1 next; missing confirmed_reverse_type is a fail-closed error; R4 gap-only records a gap without Forward. These distinct old tests are not inferred from a generic Full Reverse entry.",
+      "later_pair_effects": [
+        "HARNESS-L2-038/paired L11 narrows adjacent adopted coverage to selected source/reverse evidence substance and R4 evidence. It does not prove old five-type coverage, sequential R0-R4/RGC, named Rn artifact schema, or gap-only routing equivalence."
+      ],
+      "residual": "Old type enumeration, stage sequence, output artifact shapes, missing-type error, and explicit no-Forward gap-only case are not established together by the fixed L2/L11 or HARNESS-L2-038. Keep specific conditions open.",
+      "audit_status": "open_partial_correspondence",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    {
+      "id": "FR-L1-15",
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-15",
+      "source_line": 46,
+      "source_line_sha256": "182da6726974076af3c7a616700b4e6c925091a020f0a033270603a36a1b0ca0",
+      "source_text": "| **FR-L1-15** | Discovery／PoCをScrum非内包の別軸case-driven modelとして、S0 hypothesis → S1 experiment plan → S2 poc → S3 verify → S4 decideで実行する | case-driven-workflow | 仮説定義、verify script、選択済みdevelopment style | poc PLAN、verify script、confirmed/rejected/pivot判定、S4後のstyle接続 | P0 | PM-02 (case-driven 工程) / HM-05 |",
+      "legacy_consumers": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+          "lines": "430-451",
+          "conditions": [
+            "Tauri bundle hypothesis example compares against Electron at 50% lower bundle size using a verification script/result",
+            "S4 without decision_outcome fails closed",
+            "pivot archives old hypothesis, suggests a new hypothesis, and does not merge Forward"
+          ]
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/function-spec.md",
+          "lines": "243",
+          "conditions": [
+            "hypothesis, PoC verification evidence and outcome required; rejected/pivot cannot be treated as confirmed"
+          ]
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+          "lines": "443,487",
+          "conditions": [
+            "PM-02/HM-05 show Discovery/PoC S0-S4 and PoC log; do not absorb into Scrum"
+          ]
+        }
+      ],
+      "fixed_l2l11_refs": [
+        "HARNESS-L2-002/003: Prototype and PoC are separately assessed; uncertain feasibility can enter L2.5 and result returns via Backflow/Decide before Forward",
+        "HELIXOS-L2-010 HXT-TYPE-05/HXT-FLOW-01/HXT-FLOW-04: Experiment/PoC/Prototype and Discovery ticket routing are distinct; an experiment or discovery result is not automatic adoption",
+        "HARNESS-L2-003 L11: L2.5 outcome/acceptance boundary",
+        "f6 fixed OS L11 line 284 HXT-TYPE-07: Decide outcome routing is adopt→Forward, reject→record and end, policy change→next plan; line SHA-256 7f8a108c96061cf4be96fd18723691d0589ea967a043ea69594fef0d2ab1ccb4. This is a bounded current decision-route neighbor, not the old S4 status enum or whole Discovery lifecycle."
+      ],
+      "retained_meaning": "PoC, Prototype and Discovery are separately classified; evidence returns to the originating requirement/ticket, and testing success alone does not make a requirement adopted or permit forward promotion.",
+      "changed_or_not_inherited": "Current fixed bytes separate L2.5 Prototype/PoC, OS ticket kinds, Discovery and Decide rather than carrying the old five-stage S0-S4 status enum or one case-driven runtime model. Old CLI and verify-script execution are not inherited. HXT-TYPE-07 provides a bounded Decide output route only.",
+      "numeric_exception_counterexample": "The 50% bundle-size comparison is an example hypothesis/measure, not a universal threshold. S4 outcome is mandatory; rejected/pivot remain distinct and pivot explicitly does not enter Forward. Do not convert numerical example into a current acceptance threshold.",
+      "later_pair_effects": [
+        "HARNESS-L2-046 covers Full V and selected Scrum slice workflow, not standalone S0-S4 Discovery/PoC or S4 outcome routing.",
+        "HELIXLABO-L2-062 is adopted with version_target 2.0 for external research claim-to-source-span checking. It does not supply PoC experiment measurement, verification-script semantics, S4 outcome, or authorize promotion.",
+        "HELIXOS-L2-037 is weekly debt/drift monitoring, not Discovery or PoC.",
+        "Fixed OS L11 HXT-TYPE-07 adds a bounded Decide outcome route: adopt→Forward, reject→record/end, policy change→next plan. It does not reproduce old S4 enum or the full S0-S4/verify-script lifecycle."
+      ],
+      "residual": "Exact old S0-S4 lifecycle, required verify script artifact, mandatory S4 outcome schema, three-way confirmed/rejected/pivot routing, and pivot no-Forward behavior are not established as the same contract by fixed or later adopted pairs. The 50% example remains historical evidence, not a threshold.",
+      "audit_status": "open_partial_correspondence",
+      "successor_requirement_ids": [],
+      "authority_effect": "none",
+      "fixed_decide_route_evidence": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "line": 284,
+        "identity": "HXT-TYPE-07 / HELIXOS-L2-010",
+        "line_sha256": "7f8a108c96061cf4be96fd18723691d0589ea967a043ea69594fef0d2ab1ccb4",
+        "bounded_effect": "Adopt→Forward; reject→record and end; policy change→next plan. This decision outcome route is adjacent to old S4 but is not a successor assignment or equivalent S0-S4 model."
+      }
+    }
+  ],
+  "method_and_limits": [
+    "Read the archived L1 source, old L3 detailed AC/role table, old screen requirements, and old L6 function contracts. Old tools, CLI, runtime, test, and CI were not executed.",
+    "Compared with exact PO-fixed L2/L11 content at f6dad2a33e24f000b87d7f09b8d40288257e74cc; hash pins above identify whole-file bytes. Target IDs and mapping notes were not treated as source-atom coverage.",
+    "Separately read the complete 57-identity and 11-identity PO decision lists and inspected the pinned semantically adjacent adopted pairs. Similar names or generic workflow overlap were not treated as equivalent coverage.",
+    "This condition comparison is not an adoption decision, source disposition, formal successor assignment, L3 approval, implementation permission, runtime/test/CI evidence, acceptance execution, source retirement, or Step 5 completion."
+  ],
+  "non_claims": [
+    "No adopted requirement was created by this audit; no formal successor IDs are assigned.",
+    "No closure or complete coverage of any of these source identities is claimed.",
+    "No old CLI, CI, runtime, tests, or execution path is current or invoked."
+  ],
+  "validation_expected": [
+    "JSON parses",
+    "five unique source-qualified identities and source lines match the old source",
+    "each source line SHA matches",
+    "all four fixed target file SHA pins match f6 revision",
+    "all later adopted pair decision identities and file/section digests match cited decision records",
+    "no old execution path invoked"
+  ],
+  "legacy_reference_sources": [
+    "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md:42-46",
+    "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md:334-451",
+    "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/function-spec.md:239-243",
+    "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md:439-443,486-498"
+  ],
+  "current_input_pins": {
+    "revision": "89343b2fbd73cd2c78f97e3ae1b3973292d9eb30",
+    "artifacts": [
+      {
+        "path": "docs/governance/audits/requirements-stage/confirmed175-condition-comparison-queue-2026-09-30.json",
+        "sha256": "2dbfb06c11ac42a940c0d6b5c188a76e685ea4c00e4d9af10b432198ad17b353"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json",
+        "sha256": "ca08a81d97e39e94aa02151c7cc4e48f621f9d30baccc1cf9b715331fed38f45"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/legacy-source-origin-reg06-population-audit-2026-09-28.json",
+        "sha256": "286352584c5ef17195b71c57be165eaf2b1d2da1a2877b53258b65e6ec58f4e6"
+      },
+      {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+        "sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+        "sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/function-spec.md",
+        "sha256": "f80b69a4d153d7775ecd789aa9e261c140baf2a443ac53a851de710cfce02b14"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+        "sha256": "e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b"
+      },
+      {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_or_role": "HDEC-REQUIREMENTS-57-2026-09-29"
+      },
+      {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+        "sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+        "decision_or_role": "HDEC-REQUIREMENTS-11-2026-09-29"
+      },
+      {
+        "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+        "decision_or_role": "HARNESS fixed L2/L11 authority decision"
+      },
+      {
+        "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+        "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+        "decision_or_role": "HELIXOS fixed L2/L11 authority decision"
+      }
+    ],
+    "asset_ledger_record": {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B",
+      "line_sha256": "ddf5bcb28787c2ce6a17bd0dc2a45691c277e8478612ea904139b3f413e6942f"
+    }
+  }
+}
