@@ -1,0 +1,152 @@
+{
+  "schema_version": "legacy-confirmed175-dac-nfr-three-condition-audit.v1",
+  "audit_id": "legacy-confirmed175-dac-nfr-three-condition-audit-2026-09-30",
+  "audit_mode": "read_only_static_condition_level_semantic_delta",
+  "authority_effect": "none",
+  "scope": {
+    "confirmed_identity_count": 3,
+    "confirmed_identities": ["DAC-NFR-001", "DAC-NFR-004", "DAC-NFR-005"],
+    "source_asset_id": "LEGACY-ASSET-D201753B1A0CC6EA3980",
+    "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md",
+    "source_file_sha256": "81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66",
+    "fixed_requirement_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "fixed_targets": [
+      {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "git_blob": "e09de04601039d8593768eb3f3342d3416d03b8b",
+        "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+      },
+      {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "git_blob": "f827c6bd955bbeb91deba5b7dced93e512e5da9e",
+        "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+      },
+      {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "git_blob": "44a2db57aac3e23963da283284d229b5269d7ed2",
+        "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+      },
+      {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "git_blob": "e75e5d5163149bc3c2ed48f973067ba991accc33",
+        "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+      }
+    ],
+    "not_in_scope": [
+      "採択・正式successor割当・retire・実装・受入成功",
+      "coverageの全体主張およびconfirmed175全件の再集計",
+      "Step 5完了の宣言",
+      "旧CLI/runtime/test/CIの実行",
+      "GitHubへのpush、PR作成、merge"
+    ]
+  },
+  "source_record_basis": {
+    "confirmed175_audit_json": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json",
+    "confirmed175_audit_markdown": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.md",
+    "asset_disposition_ref": "docs/governance/legacy-asset-disposition.jsonl#LEGACY-ASSET-D201753B1A0CC6EA3980",
+    "asset_revision": 3,
+    "asset_disposition": "source_snapshot_preservation",
+    "carry_forward_state": "preserved_pending_rehome",
+    "decision_status": "pending_human_confirmation",
+    "successor_requirement_ids": [],
+    "prior_audit_state": "OPEN",
+    "mapping_authority_effect": "none"
+  },
+  "overlap_check": {
+    "current_github_main_commit": "0f5050e2b25cd622640c99c5de170cca087f7d8a",
+    "local_main_at_work_start_commit": "5f18c8b9fd8364a81fe7c8614cc48f3d34152e6f",
+    "local_integration_commit": "d84a7388fc56fbdb4df97d2eb0f5f0ddea611053",
+    "pull_requests_checked": [2387, 2388, 2389, 2390, 2391, 2392],
+    "result": "no_prior_condition_level_audit_found",
+    "basis": "GitHub current main 0f5050e2 and local integration d84a7388 contain the existing full-audit rows for the three identities. Their REG-06 population/join audit also references these identities and ledgers, but neither record is a condition-level semantic delta audit. Local main at work start 5f18c8b9 was also checked. PR #2387-2392 changed files belong to separate FRS/World Governance/Concept metadata audit scopes; none adds a DAC-NFR-001/004/005 condition-level audit."
+  },
+  "conditions": [
+    {
+      "identity": "DAC-NFR-001",
+      "source_line": 63,
+      "source_line_sha256": "ba0c084df1220a9b7e112874c42c715cbad07a3e9a804cbebba240a24b096849",
+      "source_exact_text": "| `DAC-NFR-001` | inventory、graph、findingは同一HEADと同一registry入力に対して決定的である。 |",
+      "current_target_refs": [
+        "HARNESS-L2-010: docs/helix-harness/L2-requirements/product-requirements.md:340-351",
+        "HARNESS-L2-011: docs/helix-harness/L2-requirements/product-requirements.md:352-360",
+        "HARNESS-L2-010/011 L11: docs/helix-harness/L11-acceptance/product-acceptance.md:205-206",
+        "HELIXOS-L2-015: docs/helix-os/L2-requirements/governance-requirements.md:642-649",
+        "HELIXOS-L2-015 L11: docs/helix-os/L11-acceptance/governance-acceptance.md:324-329"
+      ],
+      "preserved_conditions": [
+        "HARNESS-L2-010 requires same input and version to reproduce the same pack artifact.",
+        "HARNESS-L2-011 pins capability/contract/dependency versions and correlates progress, result, and evidence.",
+        "HELIXOS-L2-015 records source identity/revision/digest, decision provenance, and correction history; its L11 tests source traceability and authority projection separation."
+      ],
+      "unconfirmed_residuals": [
+        "No fixed L2/L11 oracle specifically repeats DAC inventory, graph, and finding generation for identical HEAD plus registry input and compares outputs.",
+        "General pack artifact reproducibility and authority record traceability do not establish deterministic DAC scanner output."
+      ],
+      "condition_status": "partial_rederivation_residual_open",
+      "formal_successor_ids": [],
+      "acceptance_executed": false,
+      "authority_effect": "none"
+    },
+    {
+      "identity": "DAC-NFR-004",
+      "source_line": 66,
+      "source_line_sha256": "3b94723eb90df36ca0bf70eaa70f38c4ba3cd012a693786248f9c6d59ecc3f22",
+      "source_exact_text": "| `DAC-NFR-004` | GitHub、network、providerが無くてもrepo-local censusを再現できる。外部surfaceは別adapterで追加する。 |",
+      "current_target_refs": [
+        "HARNESS-L2-010: docs/helix-harness/L2-requirements/product-requirements.md:340-351",
+        "HARNESS-L2-011: docs/helix-harness/L2-requirements/product-requirements.md:352-360",
+        "HARNESS-L2-010/011 L11: docs/helix-harness/L11-acceptance/product-acceptance.md:205-206",
+        "HELIXOS-L2-015: docs/helix-os/L2-requirements/governance-requirements.md:642-649",
+        "HELIXOS-L2-015 L11: docs/helix-os/L11-acceptance/governance-acceptance.md:324-329"
+      ],
+      "preserved_conditions": [
+        "HARNESS-L2-011 avoids binding calls to a specific GUI, local path, provider, or CI product.",
+        "HARNESS-L2-010 requires declared dependencies, and HELIXOS-L2-015 separates authoritative records from Issue/PR projections."
+      ],
+      "unconfirmed_residuals": [
+        "No fixed L2/L11 condition requires repo-local census reproduction with GitHub, network, and providers absent.",
+        "No fixed L2/L11 condition establishes that external surfaces are added through a separate adapter boundary.",
+        "Environment-independent invocation does not itself establish offline repo-local input sufficiency."
+      ],
+      "condition_status": "partial_rederivation_residual_open",
+      "formal_successor_ids": [],
+      "acceptance_executed": false,
+      "authority_effect": "none"
+    },
+    {
+      "identity": "DAC-NFR-005",
+      "source_line": 67,
+      "source_line_sha256": "cff214479d90a7d22fc23290ed4e9b37530d80b971e25f87c3d23c9e838be049",
+      "source_exact_text": "| `DAC-NFR-005` | scannerは文書本文を書き換えず、削除せず、findingと修復候補だけを出力する。 |",
+      "current_target_refs": [
+        "HARNESS-L2-003: docs/helix-harness/L2-requirements/product-requirements.md:54",
+        "HARNESS-L2-004: docs/helix-harness/L2-requirements/product-requirements.md:55",
+        "HARNESS-L2-003/004 L11: docs/helix-harness/L11-acceptance/product-acceptance.md:23-24,41-65",
+        "HELIXOS-L2-015: docs/helix-os/L2-requirements/governance-requirements.md:642-649",
+        "HELIXOS-L2-015 L11: docs/helix-os/L11-acceptance/governance-acceptance.md:324-329"
+      ],
+      "preserved_conditions": [
+        "HARNESS-L2-003 routes meaning-changing differences to Backflow instead of silently rewriting upstream meaning.",
+        "HARNESS-L2-004 and its L11 conditions identify impact/revalidation gaps and prevent false no-loss claims when source atoms are missing, duplicated, digest-mismatched, or orphaned.",
+        "HELIXOS-L2-015 prevents management records and projections from generating requirement meaning or human decisions and retains original events."
+      ],
+      "unconfirmed_residuals": [
+        "No fixed L2/L11 clause expressly prohibits the scanner from editing or deleting document body content.",
+        "No fixed L2/L11 clause restricts scanner output to findings and repair candidates or tests that output boundary.",
+        "Authority non-generation and original-event preservation do not prove corpus non-mutation."
+      ],
+      "condition_status": "partial_rederivation_residual_open",
+      "formal_successor_ids": [],
+      "acceptance_executed": false,
+      "authority_effect": "none"
+    }
+  ],
+  "validation_expectations": {
+    "json_parse": "pass",
+    "source_file_digest_match": "pass",
+    "source_line_digest_matches": "pass",
+    "fixed_target_blob_and_sha_matches": "pass",
+    "cross_reference_paths_exist": "pass",
+    "validation_scope": "static_only"
+  }
+}
