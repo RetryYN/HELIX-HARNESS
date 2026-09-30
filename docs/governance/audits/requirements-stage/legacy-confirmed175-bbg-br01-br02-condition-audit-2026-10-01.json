@@ -42,6 +42,21 @@
         "02b5c153ad9e3dba2551a557a44a395f4e85305795edb2ef7409549536646a21"
       ],
       "source_text": "HELIXを使う開発者・workerが意味入力に集中し、同じPLAN/PR定型欄や派生物を繰り返し手修正せず既存検証へ渡す。対象は既存Authoring利用者とCI/Cursor先行経路。新しい業務設計・思考順序は固定しない。",
+      "legacy_trace_ref": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/bugbot-generation-requests.md",
+        "file_sha256": "043c17eaf4cc134b76169f8852cb2f3bfb14ede24bdc8efcf45f4c263d1aa063",
+        "lines": [
+          37,
+          38,
+          39
+        ],
+        "line_sha256": [
+          "61660edb6d5965c8979da71eec35780a91c456ea6f93eca20ff6e63fb743ad18",
+          "2f1cba4cc44f340757318369fecadcf127f004129d7503791be6b11151af01f8",
+          "bc8e3c0d6721b55325e6c9eea0de05d8f16b23cd1268ad6867ae0647e408c312"
+        ],
+        "trace": "BR01→R01/R02/R04→AC01/02/05/06"
+      },
       "structure_classification_ref": "docs/governance/legacy-migration/identity/legacy-confirmed-identity-structure-classification.jsonl:137",
       "structure_classification_line_sha256": "92602b0c7293458730b46e0347d643b4a7825f988b3d00e90121e8e0fef35774",
       "carry_forward_ref": "docs/governance/legacy-migration/identity/legacy-confirmed-requirement-identity-carry-forward.jsonl:137",
@@ -77,6 +92,130 @@
           "fixed_targets": ["HARNESS-L2-003", "HARNESS-L2-005", "HELIXINTELLIGENCE-L2-015", "HELIXINTELLIGENCE-L2-016", "HELIXINTELLIGENCE-L2-017"],
           "retained_or_rederived": "HARNESS-003/005 keep verification and stage completion distinct. INTELLIGENCE-015/016/017 address repeated failure detection, limited repair, and cross-owner evidence handoff.",
           "residual": "None of these pairs supplies the existing-consumer before/after oracle or measured efficiency result. AC06 leaves threshold, sample count, and consumer to the existing NFR and requires them before measurement; no numeric value is stated in BR01 itself."
+        },
+        {
+          "source_condition": "BBG-R02 deterministic generation: typed input is validated as untrusted; same source, input, and generator version yield the same semantic output; execution time is separated into observation; free text/external documents are not executable code.",
+          "legacy_consumer_refs": [
+            {
+              "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/bugbot-generation-requirements.md",
+              "lines": [
+                48,
+                49,
+                50,
+                51,
+                52
+              ],
+              "line_sha256": [
+                "e985c94e489aa17049c277b99e39f8078a34a8c337b2d3c74208f537dfa7c675",
+                "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "bd7410b9b4c87028b5e82692cbd9429e88f899d09587fc794b5b05774477b05a",
+                "ff103d2e607e3380f59bd89ff96ca11800953ca83915c725b837b5a4b5aee35c",
+                "fdef243f3b6f80ec9f97fa96d8c076a139f5cbf15de4cad56d0193c570ea4b7b"
+              ],
+              "condition": "R02 stable error codes for missing, contradictory, or unsupported input; deterministic semantic output for the same source/input/generator version; runtime values such as time are separate; free text/external documents are not executed."
+            },
+            {
+              "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/bugbot-generation-acceptance.md",
+              "lines": [
+                34
+              ],
+              "line_sha256": [
+                "98b31a2b50f59a15492141283dca32ce3bcdb5c9b32990597343cf5b566622e9"
+              ],
+              "condition": "AC02 maps to R02 and checks semantic-output equality, time separation, stable rejection codes, and non-execution of external strings."
+            }
+          ],
+          "fixed_targets": [
+            "HARNESS-L2-003",
+            "HARNESS-L2-005",
+            "HELIXINTELLIGENCE-L2-015",
+            "HELIXINTELLIGENCE-L2-016",
+            "HELIXINTELLIGENCE-L2-017"
+          ],
+          "fixed_pair_condition_comparison": [
+            {
+              "id": "HARNESS-L2-003",
+              "pin_ref": "fixed_target_pins:HARNESS-L2-003",
+              "condition": "Process start/freeze/return/restart/completion gates, paired artifacts, verification, and unresolved items; execution success alone does not complete a stage.",
+              "relation": "adjacent_process_boundary; no deterministic generator semantic-output contract."
+            },
+            {
+              "id": "HARNESS-L2-005",
+              "pin_ref": "fixed_target_pins:HARNESS-L2-005",
+              "condition": "Derives verification duties and evidence conditions from ticket/relation/change properties.",
+              "relation": "adjacent_verification_obligation; no same-source/input/generator-version output equality or stable generation error-code oracle."
+            },
+            {
+              "id": "HELIXINTELLIGENCE-L2-015/016/017",
+              "pin_ref": "fixed_target_pins:HELIXINTELLIGENCE-L2-015,HELIXINTELLIGENCE-L2-016,HELIXINTELLIGENCE-L2-017",
+              "condition": "Detects reproducible repeated failure patterns, bounds repair scope, and separates permission/Worker/HARNESS/OS results.",
+              "relation": "adjacent_detection_and_repair; these clauses do not establish general typed form generation, deterministic semantic output, or external-text non-execution."
+            }
+          ],
+          "retained_or_rederived": "The fixed pairs retain stage/verification boundaries, bounded failure repair, and distinct owner results. They cover controls around work and repair, not BBG-R02 generation behavior.",
+          "residual": "No selected fixed pair states an oracle for same-source/input/generator-version semantic equality, stable R02 input error codes, runtime-time separation, or external-text non-execution. Those remain legacy comparison conditions, not proven current behavior."
+        },
+        {
+          "source_condition": "BBG-R04 update/retirement: bind source, generator, output, and consumer versions/digests to the existing projection; regenerate only affected areas; preserve meaning inputs in mixed documents; review semantic-digest changes; retire hand entry only after successor consumer verification and rollback.",
+          "legacy_consumer_refs": [
+            {
+              "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/bugbot-generation-requirements.md",
+              "lines": [
+                60,
+                61,
+                62,
+                63,
+                64
+              ],
+              "line_sha256": [
+                "b198653fd808ec65499ba2de4d6da404654218a5130fb3b1c9425782620f0888",
+                "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "2f779839b969bec710fe7d8a9e901a59626f292d6553126cf933bedf20344208",
+                "32ad5c88c4e65b02340d5f9a3ac469304d4bd7ff8746278b8a5b40e1ea385fcc",
+                "0fd4424251334e19b8ae7b56034d447c4431f6d6a24f3f16e6876356bd3137fa"
+              ],
+              "condition": "R04 binds version/digest across source/generator/output/consumer, scopes regeneration to affected areas, protects meaning in mixed documents, and forbids unreviewed semantic digest refresh."
+            },
+            {
+              "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/bugbot-generation-acceptance.md",
+              "lines": [
+                37
+              ],
+              "line_sha256": [
+                "9cf63c967fe00563e394be5dd6397b9e538d9851467c2b589c4f9b634c1c1bcd"
+              ],
+              "condition": "AC05 checks affected-only regeneration, mixed-document meaning preservation, reviewed semantic digest, and consumer verification plus rollback before retirement."
+            }
+          ],
+          "fixed_targets": [
+            "HARNESS-L2-003",
+            "HARNESS-L2-005",
+            "HELIXINTELLIGENCE-L2-015",
+            "HELIXINTELLIGENCE-L2-016",
+            "HELIXINTELLIGENCE-L2-017"
+          ],
+          "fixed_pair_condition_comparison": [
+            {
+              "id": "HARNESS-L2-003",
+              "pin_ref": "fixed_target_pins:HARNESS-L2-003",
+              "condition": "Stage transitions require explicit agreement, paired artifacts, verification, and unresolved-item state; completed execution does not imply acceptance.",
+              "relation": "adjacent_transition_control; no affected-only projection regeneration, mixed-document preservation, or consumer migration/rollback."
+            },
+            {
+              "id": "HARNESS-L2-005",
+              "pin_ref": "fixed_target_pins:HARNESS-L2-005",
+              "condition": "Derives verification obligations/evidence by affected relation and records omitted checks for later recovery.",
+              "relation": "adjacent_change-impact_and_verification; does not bind the four R04 versions/digests or define retirement conditions."
+            },
+            {
+              "id": "HELIXINTELLIGENCE-L2-015/016/017",
+              "pin_ref": "fixed_target_pins:HELIXINTELLIGENCE-L2-015,fixed_target_pins:HELIXINTELLIGENCE-L2-016,fixed_target_pins:HELIXINTELLIGENCE-L2-017",
+              "condition": "Detects reproducible failure patterns, bounds repair write-set/side effects, and preserves distinct downstream owner results.",
+              "relation": "adjacent_repair_and_handoff; not a source-to-consumer migration contract and not semantic-digest review/rollback."
+            }
+          ],
+          "retained_or_rederived": "The fixed pairs retain scoped impact/verification duties, stage separation, bounded repair, and distinct handoff results.",
+          "residual": "No selected fixed pair requires affected-only regeneration, preserves mixed-document semantic input during regeneration, binds source/generator/output/consumer versions and digests, or requires consumer verification and rollback before retiring a hand entry. The old R04/AC05 conditions therefore remain uncovered by these fixed pairs."
         }
       ],
       "numeric_negative_exception_review": {
@@ -84,7 +223,71 @@
         "numeric_thresholds": "none in BR01; AC06 requires an existing NFR threshold/sample/consumer to be fixed before measurement and rejects unset/mismatched/small-sample claims.",
         "source_negative_or_exception_cases": ["do not fix new business design or thought order"],
         "consumer_negative_cases": ["generation without use", "output only", "labor transferred to another step", "unfixed or mismatched comparison", "effect claim based on insufficient sample", "residual obligations removed"],
-        "fixed_pair_negative_or_boundary_cases": ["unknown verification obligation is not skipped", "unverified/unagreed process does not advance", "repair candidate is not broad write permission", "cross-owner stage evidence does not substitute for another result"]
+        "fixed_pair_negative_or_boundary_cases": ["unknown verification obligation is not skipped", "unverified/unagreed process does not advance", "repair candidate is not broad write permission", "cross-owner stage evidence does not substitute for another result"],
+        "consumer_scope_cardinality": {
+          "source_refs": [
+            {
+              "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/bugbot-generation-requirements.md",
+              "line": 70,
+              "line_sha256": "908c2af4b83c3bd5bf0a3a3772e071f0225c2fe56b1e4262751e2edf7e74a4d7",
+              "meaning": "one end-to-end system/flow is exercised with a real consumer; target and non-target are fixed in advance."
+            },
+            {
+              "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/bugbot-generation-acceptance.md",
+              "line": 38,
+              "line_sha256": "8723eafcc3aca038cb3f5d971fdb813ae71a2d8d7d4c6144b5decaf9e8374d8e",
+              "meaning": "AC06 uses one consumer path from creation through re-verification while fixing versions, input, and HEAD."
+            }
+          ],
+          "interpretation": "「まず一系統」は本認識runのconsumer-scope cardinalityが1であることを示す。全Authoring/CI/Cursor consumerへの一般化や、全consumer populationの代表性は主張しない。",
+          "not_implied": [
+            "all named consumer types are exercised",
+            "one run proves all consumer variants",
+            "consumer population is sampled representatively"
+          ]
+        }
+      },
+      "consumer_recognition_and_plan_residual_pins": {
+        "l12_br01": {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/bugbot-generation-recognition.md",
+          "file_sha256": "21ec182d5b58107366b6d51d7cd52dd1d4ff77e99bf3ebe9a69a542d94d8f9a1",
+          "line": 29,
+          "line_sha256": "a359d14a02edefae3141e0e8e5590db4c2e66158ad2596a631f5254edecc8643",
+          "condition": "実consumerと変更前後比較を使い、input/source/generator/consumer各版、HEAD、作業scopeを固定する。出力のみ・未利用・比較条件不一致・別工程への手作業転嫁・未設定閾値/標本を認定しない。"
+        },
+        "ac06_preconditions": {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/bugbot-generation-acceptance.md",
+          "file_sha256": "9a76d66a85616d72fe6f96732eb529ffc31fa890c25f5adf9ab296f6469ff6b6",
+          "lines": [
+            40,
+            41
+          ],
+          "line_sha256": [
+            "2ee2b7ce18171f073cde2562fe02192ba299f01773ce6053a5b3013456bc50f6",
+            "a3d707f2ef03c48c641a527e42d2b2ba54619750a7527f38e919a311564e22a8"
+          ],
+          "condition": "Effect threshold, sample count, and consumer must be connected to an existing NFR before measurement; unset settings, mismatched comparison, or a small sample cannot support an improvement claim."
+        },
+        "plan_residual": {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-1639-bugbot-generation.md",
+          "file_sha256": "a779b2784ef428770019bced341f828b6063955e7a7731344bfa2ce0b34db430",
+          "lines": [
+            297,
+            298
+          ],
+          "line_sha256": [
+            "ebbcac72e72592049d653cf07a9a9cf45874867d8bb57f85041531c416e5b13b",
+            "2d81f06f96b5269da4e02f367c60d218a059fcf288ee3224f167cd0615c7ec19"
+          ],
+          "condition": "Existing NFR connection for threshold/sample/consumer and same-condition measurement remain outstanding; appendices 02/03/05 and full comparison of the 18 appendix-03 scenarios remain outstanding. Canonical source placement cannot be substituted for their completion."
+        },
+        "appendix_absence_source_pin": {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/bugbot-generation-requirements.md",
+          "file_sha256": "3a2fe5f1090d86180806ef1ce4a75793ccb21d8be518a3f7d17c3bf914ce5a36",
+          "line": 75,
+          "line_sha256": "9c3dac49318413b856699e225625cec9d5e6f2133de86b8df2f68ce88091707e",
+          "condition": "Appendices 02/03/05 were not provided and the 18 scenarios in appendix 03 had not been checked individually."
+        }
       }
     },
     {
@@ -164,6 +367,44 @@
     "57_candidates_decision": {"path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md", "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad", "decision_row_pins": [{"line": 46, "line_sha256": "fa7480f5d52ce8d81564e5017fa178b4bf8c64b63968bb1e671a51baa3cdcb3d", "id": "HARNESS-L2-041", "effect": "active-template obligation extraction/gap presentation"}, {"line": 47, "line_sha256": "e1fdf7ebc81a2c7d2775f7324f7bbcdac31e660921013e44672eecddef7d8698", "id": "HARNESS-L2-042", "effect": "behavior-preserving Design Refactor only"}, {"line": 51, "line_sha256": "8262b7450d8eb68154aa0123f8c829d7b882cd46450676a46de458030ee5ca25", "id": "HARNESS-L2-046", "effect": "style-specific stage contract; no L0-L14 renumbering or one-project completion"}], "near_rows": ["No BBG source identity or consumer result is registered by these rows."]},
     "11_candidates_decision": {"path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md", "file_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5", "decision_row_pins": [{"line": 27, "line_sha256": "78a28b08cd764877da9821077da3ce3dfa623b5fac671d6c7f56fbda6c31045c", "id": "HARNESS-L2-041 revision -003", "effect": "active-template obligation extraction/gap presentation"}, {"line": 30, "line_sha256": "a727d0c66828509f604635e01c30929c6320fcc026aa85f7b2d5b0c7aa67744c", "id": "HARNESS-L2-050", "effect": "layer ledger scope"}, {"line": 31, "line_sha256": "49ee147e98f82a02a9f49328e94996e7bdaab00219ff7de044fc521129c23712", "id": "HARNESS-L2-051", "effect": "stage-exit scope"}, {"line": 32, "line_sha256": "601798cb431671fc38995d4b4db495b97a43ea818878ca54c882e46acbc3b2af", "id": "HARNESS-L2-052", "effect": "command identity and atomicity-related contract"}, {"line": 33, "line_sha256": "9712e5331aee79ecb6bca483f2d9f56ee4b298a327b41a369f35bc59c411d56a", "id": "HARNESS-L2-053", "effect": "paired OS atomicity/competition condition"}, {"line": 34, "line_sha256": "6fcf725b5e10fe294094a0e38a0092a7818fe17b9e2a606ce476fcc5badc5e9a", "id": "HARNESS-L2-054", "effect": "specialist handoff scope"}], "near_rows": ["HARNESS-L2-049 at -002 was not adopted; its later -003 adoption is measurement-only. None supplies the BBG generation/consumer oracle."]},
     "live26_decision": {"path": "docs/governance/decisions/po-decision-2026-09-30-live26.md", "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145", "mpr_register_path": "docs/governance/management-provisional-requirement-register.jsonl", "mpr_register_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a", "decision_row_pins": [{"line": 45, "line_sha256": "6039db43c7e23bc51f865f3384af203936a83dfa91370df9b656df045c61500d", "id": "HARNESS-L2-060"}, {"line": 56, "line_sha256": "4bed6104029f8073f0fe13d62b8c2a93df559e70111cdb2d678b35d234f9ce93", "id": "HELIXOS-L2-103"}, {"line": 59, "line_sha256": "3c3835caae5e8df772d1aafe14cd8d90b9389b3464afbf0bc9fa0bc2246f55bd", "id": "HELIXOS-L2-106", "mpr_line": 630, "mpr_line_sha256": "14ee4a6f80a79e9133bffb48c7d6f4769a0671d814c50ad91dbf585060b274d6", "l2_section_sha256": "b1f3d62a007f954a788602fbff45fa70d3b8bb4b2fec547113a0db30d9598fcc", "l11_section_sha256": "bc577dcbe57f06daefe80618ee2787012794e2489d46b32c7b0fcb85d32bc835"}, {"line": 61, "line_sha256": "09cbd2d7fc6002eba895087e06942f94e55d2bb78807c3e87c31cc8e1aa9a532", "id": "HELIXOS-L2-108", "mpr_line": 633, "mpr_line_sha256": "b17c0a410e4946a49be41b3a948a815f889f8f85036fc34b1127bbb2a503ae2d", "l2_section_sha256": "c02375c00cf35908f37dd50c82d017a42c987282535852e34b28797671670a0d", "l11_section_sha256": "bdfa0e185074583db9e0150e41de12069ed10d1a91f006bab0793578ca81a36e"}, {"line": 63, "line_sha256": "b3f91056524676a55b33eb61ff50b95f53266e771addbbfc6601414fea3c642b", "id": "HELIXOS-L2-110", "mpr_line": 635, "mpr_line_sha256": "d2ed557a9d2d45319bcef70415e8d9796603fd6300a0905808f27a475d5df5c6", "l2_section_sha256": "fe250f3cb0be2fdd417904f59041c4c39535f2060394f569b2c9bea8d86e43be", "l11_section_sha256": "56926a9d2aad1e679c0fe7d2d0c7858fd96ba627351130c6dd795dae18452d34"}, {"line": 64, "line_sha256": "062bdedb7d8e9657eeb46da45543bd99793839c563efd94c9eaa7fff06df4358", "id": "HELIXOS-L2-111", "mpr_line": 636, "mpr_line_sha256": "8fd6f2757862c5307faa28933eebab735697a1609af81c3791f4f8a322ace39a", "l2_section_sha256": "265d5e7d1a8c06919b21691ddbf15354e51dbc204f310f07a448a7b33dc8173b", "l11_section_sha256": "8efe5d58a4ebe0c4a7078aa7b311f3f2e1a7892b125b603d6a3e45ff4fc5ef14"}, {"line": 76, "line_sha256": "9c65e9604fe22444417f2c5c2cdaa6ae702d60f66fd6e55adfa38189028fd6f1", "id": "HARNESS-L2-060 + HELIXOS-L2-103", "effect": "option A connects evidence only where current contracts establish applicability; not a universal legacy stage chain"}], "near_rows": ["These limited scopes are adjacent authority/evidence controls only. They are not BBG source IDs, do not assign successor IDs, and do not establish the BR01/02-specific generation or consumer oracle."]}
+  ,
+    "harness_l2_049_near_example": {
+      "meaning": "A nearby candidate example only. HARNESS-L2-049 is not either BBG identity and does not close the BBG generation or consumer oracle.",
+      "11_candidates_nonadopted_revision": {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+        "file_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+        "line": 46,
+        "line_sha256": "eeabbcdb089c7e5c45e9dd22bd56e1aeba2994d3fed250dcdafbfb2c0d381c25",
+        "registration_id": "MPR-RC-HARNESS-L2-049-002",
+        "candidate_digest": "sha256:a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116",
+        "l11_digest": "sha256:37c83d82ef76a0198bdfb22317052d67e0249946d1cc21b406d5f6e5109230b8",
+        "treatment": "not adopted by the 11-candidate decision."
+      },
+      "live26_later_revision": {
+        "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+        "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+        "table_row": {
+          "line": 39,
+          "line_sha256": "2c9037f2d9523da4fdc17b9679bd4cacff1f39e4290dfbb06b4c38180ba2b264",
+          "registration_id": "MPR-RC-HARNESS-L2-049-003",
+          "l2_section_sha256": "sha256:a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116",
+          "l11_section_sha256": "sha256:f3fb47da21371084e9f8c7c7f7ca6dd945c8e98ae7c7b70597c3fc44e4e08ee7"
+        },
+        "scope_qualifier": {
+          "line": 72,
+          "line_sha256": "84a21babd97341385185ff1bc40f8603713e99b4fb1f7dc8ee3c44f1bcc056dc",
+          "meaning": "-003 is adopted only for measurement with the corrected L11 oracle; prototype generation, Pattern selection, and screen ID issuance are excluded, and treatment does not inherit from -002."
+        }
+      },
+      "current_register_pin": {
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+        "line": 629,
+        "line_sha256": "74d82b03c7580be677647d89037d353f40285fa6264eedeb8298c8509e1a0a88",
+        "registration_id": "MPR-RC-HARNESS-L2-049-003"
+      },
+      "comparison": "The later -003 measurement-only decision is a distinct revision and does not reverse the 11-candidate decision for -002 or add prototype-generation capability."
+    }
   },
   "crosswalk_status": {
     "full_audit_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.md:147-148",
@@ -178,7 +419,10 @@
       "consumer L3/L10/L12/PLAN paths and individual cited line digests were read and pinned",
       "fixed target file/section digests were pinned to f6dad2a33e24f000b87d7f09b8d40288257e74cc",
       "failure/negative/numeric/exception clauses were retained in the per-identity comparison",
-      "later adopted proximity screen does not generate identity, successor, authority, or closure"
+      "later adopted proximity screen does not generate identity, successor, authority, or closure",
+      "BR01 L1 trace lines 37-39 and R02/R04-to-AC02/AC05 consumer conditions were pinned by line SHA and compared explicitly with the fixed BR01 L2/L11 pairs",
+      "AC06 one-system wording was treated as one consumer path for the bounded run; AC06/PLAN unconfigured threshold, sample, consumer, missing appendices, and 18-scenario residuals were pinned",
+      "L12 BR01 version/HEAD/scope conditions and the separate HARNESS-L2-049 -002/-003 decision scopes were pinned; no BBG successor or generation capability was inferred"
     ],
     "old_runtime_or_tests_executed": false,
     "new_ci_or_execution_claim": false

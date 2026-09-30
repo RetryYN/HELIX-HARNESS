@@ -22,11 +22,13 @@ section SHAは固定revisionのUTF-8行をLFで連結し、末尾改行なしで
 
 ## BR01 — 意味入力と既存consumerでの効果
 
-旧sourceは、利用者が意味入力に集中できること、同じPLAN/PR定型欄や派生物を反復手修正せず既存検証へ渡すこと、対象consumerを既存AuthoringとCI/Cursor先行経路に限ること、新しい業務設計・思考順序を固定しないことを要求する。L3 R01は意味入力・導出・実測引用の欄とownerを区別し、未定義の業務設計をtemplateに固定しない。L10 AC01/06およびL12 BR01認識は、実consumerでの利用、意味保持、再検証、対象版・入力・HEAD・scopeの固定、変更前後の効果測定を求める。出力だけ、未利用、手作業の工程移転、比較条件不一致、閾値・標本未設定の効果主張を認定しない。
+旧sourceは、利用者が意味入力に集中できること、同じPLAN/PR定型欄や派生物を反復手修正せず既存検証へ渡すこと、対象consumerを既存AuthoringとCI/Cursor先行経路に限ること、新しい業務設計・思考順序を固定しないことを要求する。L1のtrace（lines 37–39）はBR01をR01/R02/R04、AC01/02/05/06へ接続する。R01は意味入力・導出・実測引用の欄とownerを区別し、未定義の業務設計をtemplateに固定しない。R02は同じsource・入力・生成器版で意味出力を一致させ、時刻等を観測記録へ分離し、欠落・矛盾・未対応を安定コードで拒否し、自由文・外部文書を実行コードにしない（旧L3 lines 48–52、AC02 line 34）。R04はsource/generator/output/consumerの版とdigestを束縛し、影響箇所だけを再生成し、混在文書の意味入力を保全し、意味digestの無審査更新および後継consumer検証・rollback前の手書き入口退役を拒否する（旧L3 lines 60–64、AC05 line 37）。
+
+固定pairでは、HARNESS-L2-003/005が工程遷移・影響範囲・検証義務を扱い、INTELLIGENCE-L2-015/016/017が反復failure検出・限定修復・owner別結果を扱う。これらは隣接する工程・修復条件であり、同一source/input/generator-versionの意味出力oracle、安定生成error code、外部文字列の非実行、影響箇所だけの再生成、混在文書の保存、sourceからconsumerまでの版/digest結線、意味digest review、consumer移行とrollback前の退役を定めない。条件ごとの比較と固定pair pinはJSONのBR01 R02/R04行に記録した。
 
 指定HARNESS pairは工程の合意・検証・差戻しとverification obligationを保持する。INTELLIGENCE pairは反復failure patternからのBugbot候補、bounded repair、permission/Worker/HARNESS/OS結果の分離を扱う。これらは工程・failure検出・限定repairに近接するが、PLAN/PR定型欄や派生物の出力契約、Authoring/CI/Cursor consumer契約、反復手修正の低減を測るBR01固有oracleを定めない。INTELLIGENCEの限定repairを一般的なform generationへ拡張解釈しない。
 
-BR01 source自体に数値thresholdはない。AC06は手修正数、LLM呼出し/tokens、時間、CI再走、手戻り、誤修復、未解消数を同条件で比較するが、threshold・標本数・対象consumerは既存NFRへ実測前に接続する。L12は未設定・未採取・条件不一致を未認定として扱う。監査では数値を補っていない。
+BR01 source自体に数値thresholdはない。AC06の「まず一系統」は、作成から再検証までを実consumerの一系統で通すという、この認識runのconsumer-scope cardinalityが1であることを示す。全Authoring/CI/Cursor consumerへの一般化やconsumer母集団の代表性は含まない。AC06は手修正数、LLM呼出し/tokens、時間、CI再走、手戻り、誤修復、未解消数を同条件で比較するが、threshold・標本数・対象consumerは既存NFRへ実測前に接続する。L12 BR01 line 29はinput/source/generator/consumerの各版、HEAD、作業scopeを固定した変更前後比較とし、未設定・未採取・条件不一致を未認定として扱う。PLAN lines 297–298はこのNFR接続と同条件の実測に加え、未提供の別紙02/03/05および別紙03の18シナリオ全件照合を残義務としている。監査では閾値や標本数を補っていない。
 
 ## BR02 — scope・authority・evidence・独立review
 
@@ -38,7 +40,7 @@ BR02 sourceはscope幅やfailure-rate等の数値thresholdを定めない。保�
 
 ## 後発decision rowsと移管状態
 
-57候補・11候補・live26の採択decision rowsを近接scopeとしてscreenした。decision recordのfile/row SHA、live26のMPR行、該当pair section digestはJSONに記録した。HARNESS-L2-041等のtemplate/stage条件、HARNESS-L2-060＋HELIXOS-L2-103の工程適用性に応じたevidence結線、HELIXOS-L2-106/108/110/111の限定的なauthority/evidence条件はいずれも個別の候補scopeにとどまる。どのrowにも二つのsource-qualified BBG identityはなく、BBG source atom、BR固有の生成・consumer oracle、successor assignmentを閉じない。
+57候補・11候補・live26の採択decision rowsを近接scopeとしてscreenした。decision recordのfile/row SHA、live26のMPR行、該当pair section digestはJSONに記録した。HARNESS-L2-041等のtemplate/stage条件、HARNESS-L2-060＋HELIXOS-L2-103の工程適用性に応じたevidence結線、HELIXOS-L2-106/108/110/111の限定的なauthority/evidence条件はいずれも個別の候補scopeにとどまる。HARNESS-L2-049も近接例としてrevision別に固定した。11候補decision line 46の`-002`は不採択であり、後発live26 lines 39, 72の`-003`は訂正済L11での計測専用採択（試作品生成等を含まない）で、`-002`の判断を遡及変更しない。どのrowにも二つのsource-qualified BBG identityはなく、BBG source atom、BR固有の生成・consumer oracle、successor assignmentを閉じない。
 
 現行full-auditの行147/148とstructure classification、carry-forward、product-routing ledgerをsource rowと照合した。routing候補やL2/L11の存在をsuccessorへ数えず、両identityは引き続き `preserved_pending_rehome`、successor 0、meaning change 0、retire 0である。意味変更、retire、L3承認、実装・実行・検収状態を本監査から生成しない。
 
