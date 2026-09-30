@@ -231,7 +231,7 @@
         "content_revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
         "decision_counts": {
           "adopted": 10,
-          "held": 1,
+          "not_adopted_current_revision": 1,
           "total": 11
         }
       }

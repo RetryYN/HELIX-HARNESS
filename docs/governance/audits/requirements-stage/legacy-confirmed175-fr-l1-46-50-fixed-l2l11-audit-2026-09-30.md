@@ -55,7 +55,7 @@
 
 ## 後発decisionの扱い
 
-後発57候補decision（42 adopted、11 conditional、4 held）と11候補decision（10 adopted、1 held）を全identityで照合した。JSONに近接した採択pairのdecision record、対象MPR、L2/L11 file SHA、節digest、対象revisionを収録する。候補への近接効果を限定して説明するが、いずれもFR-L1-46..50のsuccessorやclosureを生成しない。decision recordのSHAと完全なpair表はJSONの`later_adopted_pairs_review`を参照。
+後発57候補decision（42 adopted、11 conditional、4 held）と11候補decision（10 adopted、1 not_adopted_current_revision）を全identityで照合した。JSONに近接した採択pairのdecision record、対象MPR、L2/L11 file SHA、節digest、対象revisionを収録する。候補への近接効果を限定して説明するが、いずれもFR-L1-46..50のsuccessorやclosureを生成しない。decision recordのSHAと完全なpair表はJSONの`later_adopted_pairs_review`を参照。
 
 ## 検証結果と限界
 
