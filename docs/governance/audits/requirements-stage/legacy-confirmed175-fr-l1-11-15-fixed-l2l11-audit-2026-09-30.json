@@ -86,7 +86,7 @@
       "57_candidate_decision": 57,
       "11_candidate_decision": 11
     },
-    "screen_method": "Read both complete decision identity sets and inspect semantically adjacent adopted L2/L11 sections at the explicitly pinned pair revision. The per-row effect remains narrower than the audited legacy condition; pair adoption does not assign a legacy successor.",
+    "screen_method": "Read both complete decision identity sets and inspect semantically adjacent adopted or conditionally adopted L2/L11 sections at the explicitly pinned pair revision. The per-row effect remains narrower than the audited legacy condition; pair adoption alone does not assign a legacy successor.",
     "adjacent_pairs": [
       {
         "id": "HELIXOS-L2-037",
@@ -115,17 +115,20 @@
         "bounded_effect": "FR-L1-11: safe continuation after reload failure contributes to context handover/continuity. Missing, stale, or conflicting authoritative state keeps dependent work on hold. It does not define interrupt priority, resume command/duplicate-interrupt behavior, debt, drift, or readiness."
       },
       {
-        "id": "HARNESS-L2-037",
-        "decision": "adopted",
+        "id": "HARNESS-L2-047",
+        "decision": "conditional_adoption_A_placement",
         "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
-        "registration_id": "MPR-RC-HARNESS-L2-037-002",
+        "decision_record_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "decision_row_sha256": "234adb61f9dfeab547dd06af598673d24f98505529ab1b913de686a76463fa59",
+        "registration_id": "MPR-RC-HARNESS-L2-047-001",
         "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
         "l2_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
-        "l2_section_sha256": "3dcead1bfe0ef30da76a4f781b3e3c0b4817672269e7055a18cb4b35781b95f2",
+        "l2_section_sha256": "733201471492a400db194369980f54499faa7f7860e1e1465c18589a43daa9b9",
         "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
         "l11_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
-        "l11_section_sha256": "6e2874b93cea9fccb06aaaecccf09603a1c1cc9d3d5a2a750db06d22d5d4dcee",
-        "bounded_effect": "FR-L1-12: selected phase/task/design obligation context and context-selector conditions are adjacent to context injection. It is a specialist-contract generation/selection scope and does not reproduce the layer-specific five-element bundle, skill ranking score/reason, old orchestration enum, or override approval AC."
+        "l11_section_sha256": "8d92bb157dff9cffd87f72a43c2ce19977667a2fd928b5a3780f1f55912bdcb2",
+        "bounded_effect": "FR-L1-12への条件付き近接: HARNESS-L2-047はA配置のみ（HARNESSがspecialist contract生成規範を所有）。選択されたphase/task/design obligation等をruntime-neutral specialist contractのcontext selectorへ結ぶ。ただしL別のskill/workflow/required-agent/recommended-command/orchestrationの5要素を注入せず、skill score/reason、旧orchestration enum、skill_override承認ACも補わない。条件付き採択を一般の全L注入へ拡張しない。"
       },
       {
         "id": "HARNESS-L2-038",
@@ -165,9 +168,41 @@
         "l11_file_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
         "l11_section_sha256": "8046ea93936685eb49f8efcc00c3a9a6f7e6df92afe95035be1f910b57a71ade",
         "bounded_effect": "FR-L1-15: source-span verification of external research claims is an adjacent Research evidence capability and is fixed at version_target 2.0. It is not PoC measurement, a verify script, S4 outcome, or authority to promote a hypothesis."
+      },
+      {
+        "id": "HELIXOS-L2-051",
+        "decision": "conditional_adoption",
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "decision_record_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "decision_row_sha256": "b9cef971102d6f8ec1f03c1eca2d77fb40b8490b0968a66f535daa78f992f218",
+        "registration_id": "MPR-RC-HELIXOS-L2-051-002",
+        "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+        "l2_section_sha256": "54fd39fbeb3786bc739560856afb14e3cf892b1bb717d98ceb1212df09fe7f2b",
+        "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+        "l11_section_sha256": "e01daa2fbf1ad7c2e9b6df54a9acdf022a3b821123d8904f8a171a4ede87b684",
+        "bounded_effect": "FR-L1-12の作成/review分離に限る条件付き近接: 本構成ではCursorを作成専用とし、Claude優先は適用可能な評価根拠がある要求/設計taskに限る。task単位のexecution/review_merge配置であり、旧sourceの同一runtime+model禁止を一般的・恒久的なprovider/model規則として再現するものではない。provider名差だけでも独立性は成立しない。"
+      },
+      {
+        "id": "HELIXOS-L2-036",
+        "decision": "adopted",
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "decision_record_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "decision_row_sha256": "722b92aad6fe789587bf8d3b41cb28f9a2283cc1d422227773cd73a507162f2b",
+        "registration_id": "MPR-RC-HELIXOS-L2-036-001",
+        "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+        "l2_section_sha256": "82c3fc7c25b023604463f4c44c284440b9666342a0cf8a3bd6b1996394cb33b9",
+        "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+        "l11_section_sha256": "daec5fceac7a0e19a0cf83541126772393735b01c5b1592edeb6f050061bebc3",
+        "bounded_effect": "FR-L1-14 upgradeへの限定近接: Retrofitへrouteされたupgradeのpreflight義務/結果を同一ticket・scope・revisionへ結び、pass前に移行計画を確定しない。調査・未確定plan draftは続行可。旧5 Reverse typeやR0-R4/RGCを定義・後継化せず、preflight内容もHARNESS oracleへ委ねる。"
       }
     ],
-    "non_adjacent_pair_result": "No other pair in the fixed 57+11 decision identity sets was treated as a substitute for these five old conditions. Pair registration or adoption alone is not a formal successor assignment."
+    "non_adjacent_pair_result": "No other pair in the fixed 57+11 decision identity sets was treated as a substitute for these five old conditions. HARNESS-L2-037 is specifically excluded from FR-L1-12: at the pinned pair revision it is a W two-stage design merge candidate, not a specialist contract/context selector. HARNESS-L2-047 is conditional A placement and HELIXOS-L2-051 is conditional task-level lane placement; their limited effects are recorded per condition. Pair registration or adoption alone is not a formal successor assignment."
   },
   "conditions": [
     {
@@ -271,14 +306,15 @@
         "HELIXOS-L2-018: Worker assignment/execution responsibility, not skill/workflow/agent/command/orchestration payload",
         "HARNESS and OS L11 acceptance lines identify the associated fixed acceptance contracts; exact bytes pinned in fixed_target.documents"
       ],
-      "retained_meaning": "Layer, task, style, design obligations, and worker/execution context constrain available work and provide some contextual inputs.",
+      "retained_meaning": "Layer/task/style/design obligations/worker context can constrain eligible work; where applicable, a specialist contract can select context from a bounded phase/task/design-obligation scope. The pair evidence does not establish a generic layer-by-layer five-element injection bundle.",
       "changed_or_not_inherited": "Current fixed bytes do not define the old five-element injected bundle or copy the old skill catalog, injection YAML schema, CLI, runtime, or orchestration enum as current execution.",
       "numeric_exception_counterexample": "Separate old conditions: the L3 sample returns five recommended skills with reason; missing injection YAML fails closed; skill_override wins only with TL approval audit; if hybrid is absent, silent fallback is prohibited and absence must be logged; team run separates frontier-reviewer/worker/fast-checker and forbids same runtime plus model from both creating and approving. The five-value orchestration_mode names are legacy, not a current enum.",
       "later_pair_effects": [
-        "HARNESS-L2-037 provides a selected-phase/task/design-obligation context selector for generation of runtime-neutral specialist contracts. Its selected contract scope does not equal the generic layer-level five-element bundle or inject skills/workflows/required agents/recommended commands/orchestration for every L.",
-        "HELIXOS-L2-041 contributes authoritative context-source provenance only when safe continuation needs state reload; it does not define contextual injection or recommendation behavior."
+        "HARNESS-L2-047（MPR-RC-HARNESS-L2-047-001、条件付き採択A配置）だけがspecialist-contract context selectorとして限定近接する。選択phase/task/design obligationを契約入力に追跡可能にするが、旧L別5要素注入やskill推挙/score/reason/override条件の移管ではない。決定行・L2/L11 section digestはlater_adopted_pair_review.adjacent_pairsに記録。",
+        "HARNESS-L2-037はW二段設計の合流候補であり、specialist contract/context selectorではないためFR-L1-12の近接pairから除外する。",
+        "HELIXOS-L2-041はreload後のsafe continuationに必要な正本provenanceに限る。HELIXOS-L2-051（MPR-RC-HELIXOS-L2-051-002、条件付き）はtask単位の作成/review lane配置に限り近接する。採択条件はCursor creation-only、Claude priorityは適用可能なevidence-backed requirements/design taskのみ。旧same-runtime+modelの一般禁止や5要素context injectionを証明しない。"
       ],
-      "residual": "The layer-specific five-element bundle, exact rank/score/reason contract, five old orchestration-mode meanings, hybrid-absence no-silent-fallback plus explicit absence record, missing-definition negative path, override authority condition, and same-runtime/model author/approver separation remain unproven by fixed and adjacent adopted pairs. Old schema, CLI, enum, and runtime are not inherited.",
+      "residual": "The layer-specific five-element bundle, exact rank/score/reason contract, five old orchestration-mode meanings, hybrid-absence no-silent-fallback plus explicit absence record, missing-definition negative path, override authority condition, and old same-runtime+model author/approver prohibition remain unproven by fixed and adjacent adopted pairs. HELIXOS-L2-051 only provides the stated conditional task-level lane configuration; it does not establish a universal provider/model rule. Old schema, CLI, enum, and runtime are not inherited.",
       "audit_status": "open_partial_correspondence",
       "successor_requirement_ids": [],
       "authority_effect": "none"
@@ -374,9 +410,10 @@
       "changed_or_not_inherited": "The current fixed model routes through current tickets, owners and target layers. It does not import old CLI, .helix/reverse/Rn JSON paths, RGC, or the five old reverse-type enum as a current runtime contract.",
       "numeric_exception_counterexample": "The 1000-line code example yields R0 evidence and R1 next; missing confirmed_reverse_type is a fail-closed error; R4 gap-only records a gap without Forward. These distinct old tests are not inferred from a generic Full Reverse entry.",
       "later_pair_effects": [
-        "HARNESS-L2-038/paired L11 narrows adjacent adopted coverage to selected source/reverse evidence substance and R4 evidence. It does not prove old five-type coverage, sequential R0-R4/RGC, named Rn artifact schema, or gap-only routing equivalence."
+        "HARNESS-L2-038/paired L11 narrows adjacent adopted coverage to selected source/reverse-evidence substance and R4 evidence. It does not prove old five-type coverage, sequential R0-R4/RGC, named Rn artifact schema, or gap-only routing equivalence.",
+        "採択HELIXOS-L2-036（MPR-RC-HELIXOS-L2-036-001）はRetrofitへrouteされたupgradeについて、preflight obligation/resultを同じticket・scope・revisionへ束縛し、pass前に移行計画を確定しないという限定近接を与える。事前調査や未確定plan draftは可能。これは旧Reverseの5 type、R0-R4/RGC sequence/artifactの後継ではない。decision rowとL2/L11 section digestはlater_adopted_pair_review.adjacent_pairsに記録。"
       ],
-      "residual": "Old type enumeration, stage sequence, output artifact shapes, missing-type error, and explicit no-Forward gap-only case are not established together by the fixed L2/L11 or HARNESS-L2-038. Keep specific conditions open.",
+      "residual": "Old Reverse type enumeration, stage sequence, output artifact shapes, missing-type error, and explicit no-Forward gap-only case are not established together by fixed L2/L11 or HARNESS-L2-038. HELIXOS-L2-036 supplies only the distinct Retrofit-upgrade preflight/plan-order neighbor and does not close any of those Reverse atoms. Keep specific conditions open; old CLI/path/runtime are not inherited.",
       "audit_status": "open_partial_correspondence",
       "successor_requirement_ids": [],
       "authority_effect": "none"

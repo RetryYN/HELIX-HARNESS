@@ -36,9 +36,13 @@
 
 旧L1 line 43はskill、workflow、必須agent、推奨command、orchestrationをL別に注入する。継続記述は工程別推挙、layerごとのscore/reason、5値 `orchestration_mode` と判断/実装の役割分離、hybrid不在時のsilent-fallback禁止、task classify/estimate・skill suggest・team runを含む。L3 ACではPLAN layerから `docs/skills/<L>-injection.yaml` を選び5要素を入れる。L3例ではskillを5件、選定理由付きで出す。ファイル不在はfail-closeして定義作成へ返す。`skill_override`は推薦より優先するがTL承認auditが必要。hybridがない場合のsilent fallbackは禁止し、不在を明示記録する。team runはfrontier-reviewer/worker/fast-checkerに役割分離し、同じruntimeとmodelによる作成・承認の兼任を禁止する。L6契約はtask/layer/kind/drive/catalogを入力にしたdeterministic rank/reason、catalog欠落finding、prompt bodyをコピーしない条件を定める。HM-05/HM-02が注入状態・coverageの表示先。
 
-固定HARNESS-L2-002/009の開発方式・設計義務、HELIXOS-L2-018のWorker割当は文脈入力に接するが、5要素の注入bundleと同一ではない。採択HARNESS-L2-037は選択phase/task/design obligation等を使ったspecialist contractのcontext selectorであり、全L向けの5要素注入、score/reasonまたはoverride承認条件を補わない。HELIXOS-L2-041の正本再取得provenanceも安全な継続に限られる。
+固定HARNESS-L2-002/009の開発方式・設計義務、HELIXOS-L2-018のWorker割当は文脈入力に接するが、5要素の注入bundleと同一ではない。HARNESS-L2-037は318ec4のL2/L11で「HELIX W二段設計を合流する」候補であり、specialist contract/context selectorではないためFR-L1-12の近接pairから除外した。誤認していた037の効果をここへ帰属させない。
 
-**残差:** 5要素一式、推薦数/score/reason、orchestration値ごとの意味、hybrid不在時のfallback禁止と不在記録、missing-definition negative path、override権限条件、same-runtime/modelのauthor/approver分離はこの固定scopeから確認できない。旧schema、CLI、runtimeを現行契約として継承しない。
+限定近接は条件付き採択HARNESS-L2-047（`MPR-RC-HARNESS-L2-047-001`、A配置＝HARNESSがcontract-generation規範を所有）である。decision row SHA-256 `234adb61f9dfeab547dd06af598673d24f98505529ab1b913de686a76463fa59`（判断記録 `318ec4a04abb3c1cc17111b3d939f913facd5fd3`）。同revisionのHARNESS L2 file SHA-256 `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09`、047 section SHA-256 `733201471492a400db194369980f54499faa7f7860e1e1465c18589a43daa9b9`、L11 file SHA-256 `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5`、047 acceptance section SHA-256 `8d92bb157dff9cffd87f72a43c2ce19977667a2fd928b5a3780f1f55912bdcb2`。対象phase/task/design obligation等をruntime-neutral specialist contractのcontext selectorへ結ぶ範囲だけが近接する。旧L別のskill/workflow/required-agent/recommended-command/orchestration 5要素bundle、score/reason、旧orchestration enum、override承認ACを注入・復元しない。
+
+作成/review分離の限定比較は、条件付き採択HELIXOS-L2-051（`MPR-RC-HELIXOS-L2-051-002`）。判断row SHA-256 `b9cef971102d6f8ec1f03c1eca2d77fb40b8490b0968a66f535daa78f992f218`。OS L2 file SHA-256 `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2`、051 section SHA-256 `54fd39fbeb3786bc739560856afb14e3cf892b1bb717d98ceb1212df09fe7f2b`、OS L11 file SHA-256 `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd`、051 acceptance section SHA-256 `e01daa2fbf1ad7c2e9b6df54a9acdf022a3b821123d8904f8a171a4ede87b684`（判断revisionは同じ318ec4）。条件は本構成でCursorを作成専用、Claude優先は適用可能なevidence-backed要求/設計taskに限定するtask単位のlane配置である。旧「same runtime + model」の一律禁止を一般・恒久的なprovider/model規則として再現せず、provider名の違いだけでも独立性は成立しない。HELIXOS-L2-041の正本再取得provenanceも安全な継続に限られる。
+
+**残差:** 5要素一式、推薦数/score/reason、orchestration値ごとの意味、hybrid不在時のfallback禁止と不在記録、missing-definition negative path、override権限条件、旧same-runtime+modelのauthor/approver禁止は固定pairと限定近接pairから確認できない。HELIXOS-L2-051は上記条件に限る作成/review lane配置を示すにとどまり、全task共通のprovider/model規則ではない。旧schema、CLI、runtimeを現行契約として継承しない。
 
 ### FR-L1-13 — 3つのdevelopment styleとForward工程
 
@@ -54,7 +58,9 @@
 
 固定HELIXOS-L2-010のticket type/routing、HARNESS-L2-019とL11のFull Reverse入口・evidence境界は部分対応する。採択HARNESS-L2-038はsource/reverse evidenceのsubstanceとR4 evidenceを具体化する近接pair。ただし旧5 type列挙、R0-R4/RGC順序、各Rn成果物schema、missing-type fail-close、gap-only無合流の同等条件までは示さない。
 
-**残差:** 旧type列挙とstage sequence、1000行example、named output、R4 no-Forward boundaryはそれぞれ独立した未確認atom。旧path/CLIは現行で使わない。
+採択HELIXOS-L2-036（`MPR-RC-HELIXOS-L2-036-001`）はupgradeに関する別の限定近接である。判断row SHA-256 `722b92aad6fe789587bf8d3b41cb28f9a2283cc1d422227773cd73a507162f2b`（`318ec4a04abb3c1cc17111b3d939f913facd5fd3`）。OS L2 file SHA-256 `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2`、036 section SHA-256 `82c3fc7c25b023604463f4c44c284440b9666342a0cf8a3bd6b1996394cb33b9`、OS L11 file SHA-256 `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd`、036 acceptance section SHA-256 `daec5fceac7a0e19a0cf83541126772393735b01c5b1592edeb6f050061bebc3`。Retrofitへrouteされたupgradeのpreflight義務/resultを同一ticket・scope・revisionに結び、pass前に移行計画を確定しない。事前調査と未確定plan draftは可能で、判定oracleはHARNESS側に残る。このpairは旧Reverseの5 type、R0-R4/RGC、Rn artifactの後継ではない。
+
+**残差:** 旧type列挙とstage sequence、1000行example、named output、missing-type例外、R4 no-Forward boundaryはそれぞれ独立した未確認atom。036はRetrofit upgrade preflight/plan-orderの近接だけで、いずれのReverse atomも閉じない。旧path/CLIは現行で使わない。
 
 ### FR-L1-15 — Scrum外のDiscovery/PoC S0-S4
 
