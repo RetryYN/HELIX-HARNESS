@@ -1664,11 +1664,52 @@
         "population_identity_count": 26
       }
     ],
-    "proximity_method": "All explicit identities from 57-candidate, 11-candidate, and live26 decision records are retained as compact indexes. Only adopted/conditional LABO pairs with metric, learning, or model/task evaluation signals are individually screened here. Proximity is not FR-L1-36 successor assignment or coverage.",
+    "proximity_method": "All 57/11/live26 decision-population identities are retained as compact indexes. Individual proximity notes cover adopted or conditional pairs whose decision scope touches skill/rule inputs, evaluation, learning, repair knowledge, telemetry, or task/model qualification. HELIXINTELLIGENCE-L2-072 is adjacent only for optional skill/rule source selection in a 1.0 judgment-pack candidate and shadow evaluation; its separate skill-efficacy/learning loop is outside 1.0 and held for later-version handling. No screened pair defines FR-L1-36 per-skill metrics or receives a successor assignment.",
     "non_near_categories": [
-      "The remaining explicit identities were screened by their decision-listed responsibility and semantic scope; general workflow, routing, security, infrastructure, connection, naming, and requirement/evidence-contract pairs do not specify per-skill adoption/success evaluation or skill lifecycle conditions."
+      "LABO-063/065/066/067/070/071 and INTELLIGENCE-072 are individually screened as adjacent pairs. Their bounded subjects are repair recurrence, Attempt/misrepair measures, scope-bound telemetry, task/model qualification, or optional skill/rule pack source selection; none defines FR-L1-36 adoption/success rating, unused window, cold-start, or human-only deletion.",
+      "The remaining explicit identities were screened by decision-listed responsibility and scope. General workflow, routing, security, infrastructure, connection, naming, and generic requirement/evidence-contract pairs do not specify per-skill adoption/success evaluation or skill lifecycle conditions."
     ],
     "near_pairs": [
+      {
+        "identity": "HELIXINTELLIGENCE-L2-072",
+        "decision_refs": [
+          "po-decision-2026-09-29-57candidates.md"
+        ],
+        "proximity": "adjacent",
+        "assessment": "Adjacent only because the judgment-pack candidate may select a skill/rule as a versioned input source and its 1.0 scope includes candidate generation and shadow evaluation. This is not a per-skill efficacy metric: HELIXINTELLIGENCE-L2-072 defines no skill_invocations/plan_registry aggregation, adoption_count, success_count, 0–1 skill_rating formula, unused window, cold-start projection, or deletion rule. The separate skill-efficacy/learning loop is outside 1.0 and remains held for later-version handling; it is not advanced by this decision.",
+        "decision_rows": [
+          {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "line": 85,
+            "sha256": "62813222c8f4d80ab5bd0a8e31c22a6b02ba526970dcac3e9a65baea882c325d",
+            "text": "| `HELIXINTELLIGENCE-L2-072` | 条件付き採択：B配置、1.0は候補生成とshadow評価まで。 | `MPR-RC-HELIXINTELLIGENCE-L2-072-004` | `docs/helix-intelligence/L2-requirements/intelligence-requirements.md` | `14c6947262f7e7cc92e7200cafd301ebd49c4146c97f665f0548c6b2b2e9e16d` | `sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4` | `HELIXINTELLIGENCE-L2-072` | `docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md` | `7467fad5256db9af823e7be860e21e52df58efb43ad4855c7127c2053106214d` | `sha256:381e9d205a6d9fdeb61ec453dfb0ea768c13af6200494544c42cdf67062d302a` | `docs/governance/audits/requirement-registration/intelligence-judgment-pack-coverage-receipt-2026-09-28-r4.json` |"
+          }
+        ],
+        "scope_limit": {
+          "decision_disposition": "条件付き採択：B配置、1.0は候補生成とshadow評価まで。",
+          "selected_component": "A skill/rule is an optional selected source for judgment-pack content; when selected, source identity/version, applicability, provenance and source-provided use class are bound.",
+          "explicit_exclusions": [
+            "The candidate/shadow scope does not measure per-skill adoption or efficacy.",
+            "The separate efficacy/learning loop is outside 1.0; the source remainder stays in MPR-SH-JUDGMENT-PACK-002 and the later-version boundary is preserved.",
+            "No gate enforcement, skill deletion, successor assignment, or FR-L1-36 closure is generated."
+          ]
+        },
+        "pair_content_pins": {
+          "candidate_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+          "candidate_file_sha256": "14c6947262f7e7cc92e7200cafd301ebd49c4146c97f665f0548c6b2b2e9e16d",
+          "candidate_section_digest": "02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4",
+          "acceptance_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+          "acceptance_file_sha256": "7467fad5256db9af823e7be860e21e52df58efb43ad4855c7127c2053106214d",
+          "acceptance_section_digest": "381e9d205a6d9fdeb61ec453dfb0ea768c13af6200494544c42cdf67062d302a",
+          "target_identity": "HELIXINTELLIGENCE-L2-072"
+        },
+        "registration_pin": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-072-004",
+          "line_sha256": "1d7b6c524c1b4b4c2f61238b7bbf98a0f6b3f9393020157919a46ff50e4f5a57",
+          "authority_effect": "none"
+        }
+      },
       {
         "identity": "HELIXLABO-L2-063",
         "decision_refs": [

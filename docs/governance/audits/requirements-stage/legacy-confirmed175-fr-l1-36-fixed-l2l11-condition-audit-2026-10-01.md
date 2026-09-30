@@ -37,9 +37,9 @@ L2-001の一般観測契約は、skillごとの計数やFR36 success oracleの�
 
 ## 後発採択pair proximity screen
 
-57候補、11候補、live26の各PO decision記録にある明示identity indexをJSONへ全件固定し、評価・学習に意味が近い採択pairだけを個別にscreenした。57候補からはLABO-063（repair知見）、065（First Attempt）、066（misrepair）、067（Attempt内repair rounds）、live26からはLABO-070（scope付きtelemetry/scorecard）、071（task-class model qualification）を近接または隣接として比較した。065/067はdecisionで条件付き採択であり、記載された限定条件を越えない。57/11/live26の判断対象にない近接pairを補わない。
+57候補、11候補、live26の各PO decision記録にある明示identity indexをJSONへ全件固定し、評価・学習に意味が近い採択pairだけを個別にscreenした。57候補からはLABO-063（repair知見）、065（First Attempt）、066（misrepair）、067（Attempt内repair rounds）、INTELLIGENCE-072を、live26からはLABO-070（scope付きtelemetry/scorecard）、071（task-class model qualification）を近接または隣接として比較した。065/067はdecisionで条件付き採択であり、記載された限定条件を越えない。INTELLIGENCE-072は、skill/ruleが判断packの任意の版付き入力sourceとなり得ることと、1.0のcandidate生成・shadow評価があるため隣接とした。条件付き採択の範囲はB配置かつ1.0 candidate生成・shadow評価までである。これはFR36のper-skill metricではなく、`skill_invocations`/`plan_registry`集約、adoption/success count、0–1 rating、unused window、cold-start、deletion ruleを定義しない。別のskill efficacy/learning loopは1.0外であり、`MPR-SH-JUDGMENT-PACK-002`へのholdingと後続版境界を維持する。候補生成やshadow評価からgate強制、skill削除、FR36後継割当を作らない。57/11/live26の判断対象にない近接pairを補わない。
 
-これらはrepairやWorker/model性能に関する観測材料であり、per-skill採用数・成功数の計算式、0–1 skill rating、30日unused window、cold-start 0-row、human-only deletion境界を定めない。decision row、registration IDとauthority effect、候補/L11 semantic digest、registration record SHAはJSONの`later_po_decisions.near_pairs`にpinした。decision/MPRの登録は対象candidateの登録証拠であり、旧FR-L1-36の後継割当ではない。
+これらはrepairやWorker/model性能、またはjudgment packへのskill/rule source選択に関する隣接材料であり、per-skill採用数・成功数の計算式、0–1 skill rating、30日unused window、cold-start 0-row、human-only deletion境界を定めない。INTELLIGENCE-072の限定的なskill/rule入力とshadow評価を、skill efficacy計測や1.0学習loopへ広げない。decision row、registration IDとauthority effect、候補/L11 semantic digest、registration record SHAはJSONの`later_po_decisions.near_pairs`にpinした。decision/MPRの登録は対象candidateの登録証拠であり、旧FR-L1-36の後継割当ではない。
 
 ## 結論と限界
 
