@@ -1,0 +1,422 @@
+{
+  "audit_name": "legacy-confirmed175-br01-condition-audit-2026-10-01",
+  "audit_mode": "bounded_read_only_old_to_fixed_l2_l11_condition_comparison",
+  "authority_effect": "none",
+  "adoption_claim": false,
+  "successor_assignment_claim": false,
+  "coverage_or_step5_completion_claim": false,
+  "basis_main_commit": "a1fbe91d9ceb41d3d2655cdb7fce0bfaf8592acc",
+  "scope": {
+    "source_qualified_identity": "harness/L1-requirements/business-requirements.md::BR-01",
+    "confirmed_identity": "BR-01",
+    "population": "confirmed175",
+    "legacy_asset_id": "LEGACY-ASSET-9F48ADEEB477DCA54039",
+    "legacy_source": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+    "legacy_holding_source": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md",
+    "source_line": 41,
+    "source_file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+    "source_line_sha256": "eea2c595f0f92bc8fbacd8c06e912db0438567da39979ecba646ca12302786fc",
+    "source_exact_text": "| **BR-01** | 設計⇔実装⇔テストの整合を機械強制し、AI 委譲しても回帰が壊れず **1 案件を L0-L14 通しで回せる** | concept P1 / 成功① ③ |",
+    "legacy_asset_disposition": "source_snapshot_preservation",
+    "legacy_product_target": "unresolved",
+    "source_authority_state": "confirmed",
+    "target_authority_state": "draft_candidate",
+    "carry_forward_state": "preserved_pending_rehome",
+    "successor_requirement_ids": [],
+    "source_consumers": [
+      "requirement-carry-forward-ledgers",
+      "requirement-atomization-review"
+    ],
+    "legacy_supporting_consumer_refs": [
+      {
+        "path": "docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl",
+        "line": "REQSRC-LINE-00092",
+        "relation": "課題→あるべき姿のtrace表がBR-01 / BR-03に4 artifact pair traceを関連付ける。source lineのatom化は未完了。"
+      },
+      {
+        "path": "docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl",
+        "line": "REQSRC-LINE-00116",
+        "relation": "L14運用test pair対応表はBR-01 / OT-01 / L0-L14通し実行を参照。別identity・旧source参照でありclosureではない。"
+      },
+      {
+        "path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+        "line": 261,
+        "relation": "旧FR-L1-01/13のbaton mappingがBR-01を参照。"
+      },
+      {
+        "path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/screen-requirements.md",
+        "lines": [
+          56,
+          67
+        ],
+        "relation": "旧PM-01/02のtrace欄がBR-01を参照。別identityのconsumer refsであり、正式successorを割り当てない。"
+      }
+    ],
+    "target_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "target_revision_authority": "2026-09-28 HELIX-HARNESS PO decision",
+    "target_file_sha256": {
+      "docs/helix-harness/L2-requirements/product-requirements.md": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "docs/helix-harness/L11-acceptance/product-acceptance.md": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+    },
+    "limits": [
+      "L2/L11 semantic comparison only; no formal successor or complete carry-forward claim.",
+      "No L3 requirements, implementation, runtime, tests, CI, execution, or acceptance evidence evaluated.",
+      "Legacy CLI, runtime, hook, adapter, test, and CI were not executed or used as oracle."
+    ]
+  },
+  "prior_record": {
+    "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json",
+    "sha256": "ca08a81d97e39e94aa02151c7cc4e48f621f9d30baccc1cf9b715331fed38f45",
+    "full_audit_classification": "existing crosswalk reports rederived/retained; atom-by-atom carry-forward remains unassigned",
+    "queue_path": "docs/governance/audits/requirements-stage/confirmed175-condition-comparison-queue-2026-09-30.json",
+    "queue_sha256": "2dbfb06c11ac42a940c0d6b5c188a76e685ea4c00e4d9af10b432198ad17b353",
+    "queue_note": "queue marks BR-01 not individually compared; this was independently checked against all existing individual audit JSONs and Markdown."
+  },
+  "condition_comparison": [
+    {
+      "source_atom": "設計⇔実装⇔テストの整合を機械強制",
+      "fixed_targets": [
+        "HARNESS-L2-001",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005"
+      ],
+      "retained_or_rederived": "L2-001 specifies canonical L1-L12 V-pairs and distinguishes L2/L11 from L3/L10; L2-004 derives affected design/test and re-verification scope; L2-005 derives validation obligations and evidence conditions from ticket relation, change kind, layer, and risk, independent of language/tool/implementation.",
+      "residual": "No BR-01-specific acceptance oracle proves end-to-end design/implementation/test consistency or a complete trace for every project. Pair-level obligations are broader contracts, not BR-01 successor or closure."
+    },
+    {
+      "source_atom": "AI 委譲しても回帰が壊れず",
+      "fixed_targets": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005"
+      ],
+      "retained_or_rederived": "Unagreed or unverified work cannot advance; right-side integration is checked against paired design; only meaning-preserving changes are refactored and semantic changes backflow; changed conditions require re-verification; needed checks/oracle/expected failure/evidence are derived before PR.",
+      "residual": "The source has no numeric regression threshold, fixture set, failure/output schema, or BR-01-specific regression oracle. Fixed pair conditions do not establish zero regression under AI delegation or implementation behavior."
+    },
+    {
+      "source_atom": "1案件をL0-L14通しで回せる",
+      "fixed_targets": [
+        "HARNESS-L2-001",
+        "HARNESS-L2-003"
+      ],
+      "retained_or_rederived": "L2-001 composes planning, requirements, L2.5, requirement, design, implementation, and verification on current canonical L1-L12 pairs; L0 is kept as an external charter anchor, not a layer in the canonical pairs. L2-003 separates start/freeze/backflow/reopen/complete and artifact states; L11 distinguishes completion and release conditions.",
+      "residual": "The literal cardinality “1 project” and a single-project end-to-end acceptance result are not stated as an identity-specific oracle. Legacy L0-L14 is intentionally not transferred as current numbering; current pair contract is L1-L12 with L0 external."
+    },
+    {
+      "source_atom": "concept P1 / 成功① ③",
+      "fixed_targets": [
+        "HARNESS-L2-001",
+        "HARNESS-L2-003",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005"
+      ],
+      "retained_or_rederived": "These are source trace labels; paired requirements cover canonical layer/pair composition, lifecycle gates, change impact, and verification obligations.",
+      "residual": "The trace labels do not add separate acceptance conditions and do not prove BR-01 closure."
+    }
+  ],
+  "source_exceptions_numbers_negative_cases": {
+    "explicit_numbers": [
+      "1案件",
+      "L0-L14",
+      "concept P1 / 成功① ③ (trace labels)"
+    ],
+    "other_numeric_thresholds": "none stated in BR-01 source line",
+    "source_exceptions": "none stated in BR-01 source line",
+    "source_negative_cases": "none stated in BR-01 source line; do not import examples from other source identities",
+    "fixed_pair_negative_or_boundary_cases": [
+      "L2.5 result is not requirement agreement; L2.5 non-applicability needs a recorded reason.",
+      "Unagreed/unverified does not proceed; prior artifact state is not inferred; release conditions are present from start.",
+      "Meaning-changing changes backflow; only meaning-preserving change may be refactored.",
+      "Checks are not all run by default; omitted checks are recorded and recovered by a receiving ticket; specific worker/job set/CI green do not replace obligations."
+    ],
+    "interpretation": "These fixed-target negative cases strengthen the general process contract, but they are not explicit source BR-01 exceptions or evidence of full BR-01 acceptance."
+  },
+  "fixed_target_pins": {
+    "line_digest_algorithm": "SHA-256 of UTF-8 line bytes excluding the line terminator",
+    "files": [
+      {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "lines": [
+          {
+            "line": 52,
+            "id": "HARNESS-L2-001",
+            "line_sha256": "19bc5f0236524bedabfd9c1ff2729b90699b4d2b0be0834f0ff11bbf8feb5e0e"
+          },
+          {
+            "line": 54,
+            "id": "HARNESS-L2-003",
+            "line_sha256": "693deb038a91ee9ba358aecab588d889a9fa40ff67c5d697f880ee76ff18b3d0"
+          },
+          {
+            "line": 55,
+            "id": "HARNESS-L2-004",
+            "line_sha256": "7b09279d1e75c221cdc85f551026a6110496c42770c4721ad42e74acdcdd6006"
+          },
+          {
+            "line": 56,
+            "id": "HARNESS-L2-005",
+            "line_sha256": "7840e6369db64bfe553628e2cb0c5cafcd8537266b2637e64e5c9789778f81e4"
+          },
+          {
+            "line": 99,
+            "id": "HARNESS-L2-001 pair semantics",
+            "line_sha256": "178f3e8474016b318a3bef7238cc79f993151558adbde462afb2d0559076d15d"
+          },
+          {
+            "line": 106,
+            "id": "HARNESS-L2-003 applicability and non-applicability record",
+            "line_sha256": "81b88d2fbebbd6b661f1aec758e7b53cc5c4e1fb49fb927a1a25822f3a0051a7"
+          },
+          {
+            "line": 108,
+            "id": "HARNESS-L2-003 distinct implementation/system/user/operations states",
+            "line_sha256": "e037b44d988dc52141b7b3a0672bcbac8c72c5015b5961a4788c801a0d5bfefc"
+          },
+          {
+            "line": 109,
+            "id": "HARNESS-L2-003 provisional is not proof or acceptance",
+            "line_sha256": "62125fc742fc559ce8bb05f61a1d5517bfe52d69024ab57876a685a1109be7a5"
+          },
+          {
+            "line": 110,
+            "id": "HARNESS-L2-003/004 scoped reverse",
+            "line_sha256": "47c0c8378c588a10cb2be40f5c8d2a7f1b526408226bad13bff357254ddd8f40"
+          },
+          {
+            "line": 111,
+            "id": "HARNESS-L2-003/004 backflow and refactor boundary",
+            "line_sha256": "826f12ebb5a24d65b7ba268498f724d6b753ada0cc3d8d75b346598e8efdb847"
+          },
+          {
+            "line": 112,
+            "id": "HARNESS-L2-003 status transition and independent L10/L11",
+            "line_sha256": "a480274f1f4d24caf515783374ded59f6f8ad6a99dca47b4d385fa51984ba93d"
+          },
+          {
+            "line": 113,
+            "id": "HARNESS-L2-003 Release Port preconditions",
+            "line_sha256": "0c158169772145d9328d990bc6d4c1fed68f611a111510add9afb09962530b2e"
+          },
+          {
+            "line": 118,
+            "id": "HARNESS-L2-005 verification obligation derivation",
+            "line_sha256": "a84e1a518adfcb06d2a79c542160c401b3ad2e046f5dbe160ebdbc136c2db815"
+          },
+          {
+            "line": 119,
+            "id": "HARNESS-L2-005 expected failure/evidence conditions",
+            "line_sha256": "bf3b23aa56993cf034e77229328dfeab07be101dc557846dcee285468d7fb82e"
+          },
+          {
+            "line": 120,
+            "id": "HARNESS-L2-005 language/tool independence",
+            "line_sha256": "da55ac17a732605dd6cb45a28e31ae534179bfd870e1d2536b3a4b6cc1c78be6"
+          },
+          {
+            "line": 121,
+            "id": "HARNESS-L2-005 omitted-check recording/recovery",
+            "line_sha256": "164544023a6646eda7f073c3dbd7b30b1fc33e1bb33b5d5649be7305ae15a923"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "lines": [
+          {
+            "line": 21,
+            "id": "HARNESS-L2-001 acceptance",
+            "line_sha256": "c4c9fa75277a9296c40e4dd1d443b58fe0edc36e1ef3d85bb1234408a0b928e1"
+          },
+          {
+            "line": 23,
+            "id": "HARNESS-L2-003 acceptance",
+            "line_sha256": "1ced8f2b5886a2c154bb809f169b8a01f27d9af38abb1697ac0cd96325dba9c5"
+          },
+          {
+            "line": 24,
+            "id": "HARNESS-L2-004 acceptance",
+            "line_sha256": "2d548b5f31549a87687144145601848ec08fdd46311b50c3a05145d234f6609a"
+          },
+          {
+            "line": 25,
+            "id": "HARNESS-L2-005 acceptance",
+            "line_sha256": "edeceea2b54fe31fe92460f610e19a49e32fde6a2d7a57c51d98c9b9afcbe371"
+          }
+        ]
+      }
+    ]
+  },
+  "later_adopted_pair_comparison": [
+    {
+      "decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "decision_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "pairs": [
+        {
+          "id": "HARNESS-L2-041",
+          "status": "adopted",
+          "scope": "active template obligation extraction and gap presentation",
+          "assessment": "extracts obligations from the active template and presents gaps; does not add BR-01 project-end-to-end acceptance or regression oracle."
+        },
+        {
+          "id": "HARNESS-L2-042",
+          "status": "adopted",
+          "scope": "behavior-preserving Design Refactor conditions",
+          "assessment": "adds bounded semantic/consumer/oracle/dependency evidence and backflow on meaning change; applies only to Design Refactor, not all AI delegation or all regressions."
+        },
+        {
+          "id": "HARNESS-L2-046",
+          "status": "adopted",
+          "scope": "Full V and Scrum stage contract",
+          "assessment": "adds explicit style-specific phases, while preserving L1-L3/human requirements approval and pair/quality constraints; does not adopt legacy L0-L14 as current numbering or assert one-project BR-01 acceptance."
+        },
+        {
+          "id": "HARNESS-L2-043",
+          "status": "conditionally adopted",
+          "scope": "HARNESS-CORE placement for template example; selection condition",
+          "assessment": "no additional BR-01 end-to-end, project-count, or regression acceptance condition."
+        },
+        {
+          "id": "HARNESS-L2-044",
+          "status": "conditionally adopted",
+          "scope": "Design Contract Portfolio naming/placement",
+          "assessment": "no additional BR-01-specific acceptance oracle."
+        }
+      ]
+    },
+    {
+      "decision": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+      "decision_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+      "pairs": [
+        {
+          "id": "HARNESS-L2-041",
+          "status": "adopted revision -003",
+          "assessment": "revision-specific active template obligation extraction and gap presentation; no BR-01 end-to-end or regression closure."
+        },
+        {
+          "id": "HARNESS-L2-049",
+          "status": "not adopted at then-current -002; later adopted by 2026-09-30 decision as -003",
+          "assessment": "measurement-only at -003; no requirement-generation or BR-01 project completion oracle."
+        },
+        {
+          "id": "HARNESS-L2-050/051/052/053/054",
+          "status": "adopted",
+          "assessment": "layer-ledger, stage-exit, command identity/atomicity, and specialist handoff scopes; no BR-01-specific end-to-end acceptance. Pair decisions remain identity-scoped."
+        }
+      ]
+    },
+    {
+      "decision": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+      "decision_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+      "pairs": [
+        {
+          "id": "HARNESS-L2-049",
+          "status": "adopted registration -003",
+          "assessment": "measurement of given displayable prototype only; does not establish prototype generation or BR-01 end-to-end completion."
+        },
+        {
+          "id": "HARNESS-L2-055/056",
+          "status": "adopted",
+          "assessment": "limited to selected FR-L1-48 gate atom and six canonical FR-L1-49 V-pair atoms; no whole-project or no-regression proof."
+        },
+        {
+          "id": "HARNESS-L2-057/058/059",
+          "status": "adopted as ordinary sets with OS counterparts",
+          "assessment": "review risk acceptance, risk-shaped planning, and Issue contract identity; no BR-01-specific pair closure."
+        }
+      ]
+    },
+    {
+      "decision": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+      "decision_record_id": "HDEC-REQUIREMENTS-LIVE26-2026-09-30",
+      "decision_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+      "decision_line": 76,
+      "selection": "A selected jointly for the two connected registrations",
+      "pair_source_revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+      "pairs": [
+        {
+          "id": "HARNESS-L2-060 + HELIXOS-L2-103",
+          "status": "adopted with option A selected as one decision unit",
+          "members": [
+            {
+              "id": "HARNESS-L2-060",
+              "registration_id": "MPR-RC-HARNESS-L2-060-001",
+              "candidate_semantic_digest": "d4f0419f2095828ac041a28ca906f45d4dd79b5bfa83000097111f5d13235c30",
+              "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+              "l2_file_sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
+              "l2_section_sha256": "d4f0419f2095828ac041a28ca906f45d4dd79b5bfa83000097111f5d13235c30",
+              "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+              "l11_file_sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e",
+              "l11_section_sha256": "d4714dd28d70de6e7bc4a1c8ca4fe18784d825507ebd019ee2c6c716306b35b5"
+            },
+            {
+              "id": "HELIXOS-L2-103",
+              "registration_id": "MPR-RC-HELIXOS-L2-103-001",
+              "candidate_semantic_digest": "6115a7190bad6a5ff449574a3150116dcdcd31e69f70e6a5b1625a59e171c7dc",
+              "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "l2_file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+              "l2_section_sha256": "6115a7190bad6a5ff449574a3150116dcdcd31e69f70e6a5b1625a59e171c7dc",
+              "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "l11_file_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+              "l11_section_sha256": "b9d2360893edeb64152899f8a8bf71afa3ab3d9ec387300c8358885dfca823a0"
+            }
+          ],
+          "assessment": "Option A connects input revision, stage evidence, event, and available causal references only for stages whose applicability is established by current contracts. Option B's universal legacy stage sequence and predecessor-evidence requirement for every project was not adopted. The old HIL-FR-01 end-to-end lifecycle remains held at MPR-SH-IR-003#HIL-FR-01. This bounded pair does not close BR-01's per-case one-project L0-L14 obligation, provide a universal stage-chain oracle, or assign a formal successor."
+        }
+      ]
+    }
+  ],
+  "overlap_check": {
+    "current_main_commit": "a1fbe91d9ceb41d3d2655cdb7fce0bfaf8592acc",
+    "queue_record_ref": "docs/governance/audits/requirements-stage/confirmed175-condition-comparison-queue-2026-09-30.json#records[0]",
+    "queue_claim": "not_individually_compared",
+    "individual_audit_json_files_checked": [
+      "confirmed175-five-residual-condition-audit-2026-09-30.json",
+      "confirmed175-frl1-03-05-17-18-22-condition-audit-2026-09-30.json",
+      "confirmed175-frl1-07-10-condition-audit-2026-09-30.json",
+      "confirmed175-kpi-d01-d09-condition-audit-2026-09-30.json",
+      "confirmed175-nfr-01-08-11-17-condition-audit-2026-09-30.json",
+      "legacy-confirmed175-br02-br05-condition-audit-2026-09-30.json",
+      "legacy-confirmed175-br07-ux01-ux03-condition-audit-2026-09-30.json",
+      "legacy-confirmed175-dac-nfr-three-condition-audit-2026-09-30.json",
+      "legacy-confirmed175-fr-l1-01-02-04-06-fixed-l2l11-audit-2026-09-30.json",
+      "legacy-confirmed175-fr-l1-11-15-fixed-l2l11-audit-2026-09-30.json",
+      "legacy-confirmed175-fr-l1-20-37-38-39-43-condition-audit-2026-09-30.json",
+      "legacy-confirmed175-fr-l1-24-25-26-27-fixed-l2l11-audit-2026-09-30.json",
+      "legacy-confirmed175-fr-l1-28-34-condition-audit-2026-09-30.json",
+      "legacy-confirmed175-fr-l1-46-50-fixed-l2l11-audit-2026-09-30.json",
+      "legacy-confirmed175-resident-lane-br-01-10-condition-audit-2026-09-30.json",
+      "legacy-confirmed175-resident-lane-sr-1-11-condition-audit-2026-09-30.json",
+      "legacy-confirmed175-screen-gd01-hm01-08-fixed-l2l11-audit-2026-10-01.json",
+      "legacy-confirmed175-screen-pm02-pm06-condition-audit-2026-09-30.json",
+      "legacy-confirmed175-three-lane-seven-condition-audit-2026-09-30.json",
+      "legacy-confirmed175-dac-br01-05-fixed-l2l11-audit-2026-10-01.json"
+    ],
+    "exact_source_qualified_identity_match_in_existing_individual_audits": false,
+    "full_audit_is_population_inventory_not_condition_comparison": true,
+    "rationale": "Recursive exact source-qualified identity scan of all listed individual audit JSONs, including #2421 DAC-BR-001..005, found no BR-01 record. The DAC audit identities use helix/L1-requirements/document-authority-census-requests.md and do not overlap harness/L1-requirements/business-requirements.md::BR-01. Queue and full audit contain BR-01 only as inventory/status rows; no existing artifact compares the BR-01 condition to fixed f6dad2a L2/L11.",
+    "source_qualified_identity_match_in_dac_audit": false,
+    "dac_audit_scope_check": {
+      "audit": "docs/governance/audits/requirements-stage/legacy-confirmed175-dac-br01-05-fixed-l2l11-audit-2026-10-01.json",
+      "identities_checked": [
+        "helix/L1-requirements/document-authority-census-requests.md::DAC-BR-001",
+        "helix/L1-requirements/document-authority-census-requests.md::DAC-BR-002",
+        "helix/L1-requirements/document-authority-census-requests.md::DAC-BR-003",
+        "helix/L1-requirements/document-authority-census-requests.md::DAC-BR-004",
+        "helix/L1-requirements/document-authority-census-requests.md::DAC-BR-005"
+      ],
+      "br01_identity": "harness/L1-requirements/business-requirements.md::BR-01",
+      "exact_source_qualified_identity_overlap": false,
+      "note": "DAC-BR-001..005 share the BR-0x naming family but use a different source path and identity namespace; no record compares harness business-requirements.md::BR-01."
+    }
+  },
+  "validation": {
+    "json_parse": "passed",
+    "source_and_target_pins": "passed",
+    "live26_decision_and_pair_pins": "passed: #2420 decision, MPR registrations, and HARNESS/HELIXOS L2/L11 file and section digests rechecked on a1fbe91",
+    "individual_audit_identity_scan": "passed_no_exact_duplicate_including_2421_DAC_BR_001_to_005",
+    "scfctl_validate": "passed_bindings=143_fail=0",
+    "git_diff_check": "passed"
+  }
+}
