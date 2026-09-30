@@ -1,7 +1,7 @@
 # 上流authority管理台帳
 
 status: active_register
-as_of: 2026-09-28
+as_of: 2026-09-30
 
 Conceptと5大目標の行は2026-09-24の人間判断に合わせて更新した。最新責務境界、5大目標、対象別L1、新世代要求候補の行は、同日の[2026-09-24 PO判断](decisions/concept-requirement-po-decisions-2026-09-24.md)に合わせて更新した。他の行の観測時点は個別の記録を優先する。
 
@@ -12,6 +12,12 @@ POは確認資料が固定した本体8機構のL1 revisionを確定し、L2と�
 対象commit・SHA・候補IDは各decision recordで固定する。registerの既存行の状態やauthority_effectは書き換えず、採用は外部decisionとの対応で読む。
 下表の対象別L1/L2/L11の旧4文書・37要求という母集団は過去の観測値であり、現在の本体8機構の確認集合を表さない。
 旧sourceの未完引継ぎ、Web／WEB-OSの別扱い、未判断の実装順序A/Bを保持する。旧要求の全件移管完了やL3承認をこの反映から導かない。
+
+## 未分類live候補26件の判断参照（2026-09-30）
+
+[PO判断記録](decisions/po-decision-2026-09-30-live26.md)を、[判断準備索引](audits/requirements-stage/po-decision-ready-index-unclassified-live-26-2026-09-29.md)が固定した26の登録revisionと対になるL2／L11の採否入口とする。POは22件を承認し、3件は明示した案を選んで承認し、HARNESS-L2-061の1件を保留した。22件にはHELIXOS-L2-111の抽象AND規則を含むが、運用上の証拠入力が揃ったことは意味しない。3件の内訳はHARNESS-L2-060とHELIXOS-L2-103のA案、およびHELIXOS-L2-055の適用工程限定案である。061は既存の独立レビュー結果を利用できる条件を候補の新revisionで整理し、改めて採否を受ける。
+
+この行は判断の索引であり、管理層の仮登録状態や既存register行の`authority_effect: none`を書き換えない。採否は判断記録とexact registration／L2・L11節revisionの組で読む。旧source holding、formal successor、L3承認、実装・実行許可、要求Stage完了はこの判断から生成しない。旧HELIXの自律境界は[旧CLAUDE.md:82–85](../../archive/legacy-generation-2026-09-14/root/CLAUDE.md)を参照し、人が要求の意味を持つ点を保持する。
 
 ## 台帳の役割
 
