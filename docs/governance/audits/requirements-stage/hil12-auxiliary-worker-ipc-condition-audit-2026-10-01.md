@@ -4,7 +4,7 @@
 
 監査対象は旧補助contract `HR-FR-HIL-12`、対応する`HAC-HIL-12a/b/c`、`HAT-HIL-12`、および`HST-HIL-007`が参照する旧設計・consumer条件である。旧要求atomは`HIL-FR-27`、`HIL-TR-02/07/08/09/10`、`HIL-NFR-14`。24親contract全体、全旧要求の被覆、実装状態、requirements stageの閉包は判定しない。
 
-現行照合基準は`origin/main` `d177ca92b5a1044a942d6a8c51db0962fe7e31fd`（2026-10-01）。archiveの旧source、旧testとconsumer文書を読むだけで、実行していない。新世代CIも実行していない。
+現行照合基準は`origin/main` `9a2796a74dbc7679782253121d4aeb4fccdc675c`（2026-10-01）。archiveの旧source、旧testとconsumer文書を読むだけで、実行していない。新世代CIも実行していない。
 
 | 旧source | path・位置 | SHA-256 / source ID |
 |---|---|---|
@@ -14,7 +14,7 @@
 | system test | `archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json:219-237` (`#/HAT-HIL-12`) | file `7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a`; test status `designed_not_implemented` |
 | assertion consumer | `archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md:66-77` (`HST-CASE-007-01..12`; supplementary rows at `:384,403,407-409,425`) | `LEGACY-ASSET-7B1C7AED3AA401868455`; file `98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8` |
 | L5 detailed design consumer | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/python-worker-runtime.md:27-45,55-71,109-151,223-245` | `LEGACY-ASSET-BC2275DCE9BFFCF813C8`; file `4c26544b5cf6e63ed226838ff5e04b3a669f6a9aa13456ffc5e5fb41fc755f8a` |
-| L6 design consumer | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/python-worker-runtime.md:26-67` | `LEGACY-ASSET-FA37B89CBB3EBE4E9E8C`; file `f80c88da9c498ef1fa2b4b1ecdbb605951b52a4f435524cb494a5c46382f7d14` |
+| L6 design consumer | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/python-worker-runtime.md:26-92` | `LEGACY-ASSET-FA37B89CBB3EBE4E9E8C`; file `f80c88da9c498ef1fa2b4b1ecdbb605951b52a4f435524cb494a5c46382f7d14` |
 | test consumer | `archive/legacy-generation-2026-09-14/root/tests/infinity-loop-strict-design-contract.test.ts:297-320` | `LEGACY-ASSET-E4984136A19ADCADF97D`; file `efb2d92201285f249022d3929e4893efc770fbc5fecedc1961419ed6bddaed94` |
 
 旧contractはNode supervisorがPython workerをversioned JSON Lines IPCで管理し、互換protocol・deadline/lease・authority mapのもとでterminal receiptを一つ記録し、schema検証済みresultだけをNode authorityでtransaction commitする要求である。HACは正常result一回commit、IPC異常時のterminal化とpartial result 0、cancel/timeout後のlate resultおよびdirect write拒否を分担する。
