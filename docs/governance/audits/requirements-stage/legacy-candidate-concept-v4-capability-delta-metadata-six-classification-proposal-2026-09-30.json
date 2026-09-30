@@ -1,7 +1,7 @@
 {
   "schema_version": "legacy-candidate-classification-correction-overlay.v1",
   "audit_id": "legacy-candidate-concept-v4-capability-delta-metadata-six-classification-proposal-2026-09-30",
-  "created_against_commit": "011a537ab57a70deb79ca2db22e37b15de7cceb3",
+  "created_against_commit": "db0449027a41cb288e70cfa92ba2b56743ee0ae1",
   "classification_basis_commit": "97672630b7de70fd4433827730c390cbabd90a99",
   "authority_effect": "none",
   "audit_mode": "append_only_bounded_source_classification_correction_proposal",
@@ -26,7 +26,7 @@
   },
   "classification_basis": [
     "#2353 exact row_records classify all six selected IDs as condition/product_requirement_atom/unknown.",
-    "#2356, #2360, #2363, #2366, #2367, #2368, #2369, #2381, and #2385 exact-ID overlays have no intersection with the selected IDs.",
+    "#2356, #2360, #2363, #2366, #2367, #2368, #2369, #2381, #2385, and merged #2391 exact-ID classification overlays have no intersection with the selected IDs.",
     "The exact source lines form the document’s 「調査基準」 list: repository, baseline commit and tree, two input digests, and method. They describe how evidence was assembled; they do not state product behavior, acceptance criteria, a required state transition, or authority boundary.",
     "Only lines 5–10 are corrected. Capability-to-plane mapping and conclusions/exclusions (lines 19–54) are not classified or altered by this proposal.",
     "Asset ledger marks the source Historical, target product unresolved, authority historical, disposition unresolved; source carry-forward keeps historical_candidate → draft_candidate and no successor IDs."
@@ -178,11 +178,11 @@
     }
   ],
   "pool_membership_check": {
-    "current_basis": "#2385 effective classification state after applying its seven-row overlay to the #2382 post-#2381 basis",
-    "pool_before_proposal": 471,
+    "current_basis": "Merged #2391 eight-row classification proposal applied after the #2385 seven-row overlay; #2391 reclassifies eight disjoint IDs from the prior 471-row product/unknown pool.",
+    "pool_before_proposal": 463,
     "selected_ids_in_pool": 6,
     "selected_ids_outside_pool": [],
-    "proof": "Each exact ID is condition/product_requirement_atom/unknown in #2353; all intervening exact-ID classification overlays through #2385 are disjoint from the six IDs. Thus each remains in #2385 product/unknown pool."
+    "proof": "Each selected ID was condition/product_requirement_atom/unknown in #2353. All intervening exact-ID classification overlays through merged #2391, including the eight selected #2391 IDs LEGACY-CAND-LINE-002164–LEGACY-CAND-LINE-002171, are disjoint from the six selected IDs here. Thus all six remain in the 463-row effective product/unknown pool after #2391."
   },
   "overlay_intersection_checks": [
     {
@@ -238,6 +238,30 @@
       "path": "docs/governance/audits/requirements-stage/legacy-candidate-dsi-frs-metadata-seven-classification-proposal-2026-09-30.json",
       "sha256": "d5a462229f7644744fd05302bac416bc1ae488f46d8e117d6d98068331e51cb5",
       "intersection_with_selected_ids": []
+    },
+    {
+      "ref": "#2391",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-frs-requirements-refines-eight-row-classification-proposal-after-2386-2026-09-30.json",
+      "sha256": "ef458d02d7a7af8042f46ed40292ddc2d4fe04ca4aa5cb66c218d073a6d82002",
+      "intersection_with_selected_ids": [],
+      "overlay_selected_ids": [
+        "LEGACY-CAND-LINE-002164",
+        "LEGACY-CAND-LINE-002165",
+        "LEGACY-CAND-LINE-002166",
+        "LEGACY-CAND-LINE-002167",
+        "LEGACY-CAND-LINE-002168",
+        "LEGACY-CAND-LINE-002169",
+        "LEGACY-CAND-LINE-002170",
+        "LEGACY-CAND-LINE-002171"
+      ],
+      "proposal_selected_ids": [
+        "LEGACY-CAND-LINE-002607",
+        "LEGACY-CAND-LINE-002608",
+        "LEGACY-CAND-LINE-002609",
+        "LEGACY-CAND-LINE-002610",
+        "LEGACY-CAND-LINE-002611",
+        "LEGACY-CAND-LINE-002612"
+      ]
     }
   ],
   "route_union_intersection_checks": [
@@ -285,36 +309,45 @@
     }
   ],
   "count_impact": {
-    "proposal_if_applied": {
-      "product_requirement_atom_unknown_pool": 465,
-      "condition_count": 852,
-      "explanation_count": 2977,
-      "product_requirement_atom_condition_count": 814,
+    "current_after_2391": {
+      "product_requirement_atom_unknown_pool": 463,
+      "condition_count": 850,
+      "explanation_count": 2979,
+      "structure_count": 926,
+      "product_requirement_atom_condition_count": 812,
+      "management_process_condition_count": 37,
+      "management_successor_unresolved_count": 37,
       "product_targeted_route_union_count": 343,
       "all_route_union_count_including_30_out_of_pool_HMC": 373,
       "product_pool_intersection_with_audited_union": 314,
-      "unreviewed_product_unknown_pool": 151
+      "unreviewed_product_unknown_pool": 149
+    },
+    "proposal_if_applied": {
+      "product_requirement_atom_unknown_pool": 457,
+      "condition_count": 844,
+      "explanation_count": 2985,
+      "structure_count": 926,
+      "product_requirement_atom_condition_count": 806,
+      "management_process_condition_count": 37,
+      "management_successor_unresolved_count": 37,
+      "product_targeted_route_union_count": 343,
+      "all_route_union_count_including_30_out_of_pool_HMC": 373,
+      "product_pool_intersection_with_audited_union": 314,
+      "unreviewed_product_unknown_pool": 143
     },
     "delta": {
       "product_requirement_atom_unknown_pool": -6,
       "condition_count": -6,
       "explanation_count": 6,
+      "structure_count": 0,
       "product_requirement_atom_condition_count": -6,
+      "management_process_condition_count": 0,
+      "management_successor_unresolved_count": 0,
       "route_union": 0,
       "pool_union_intersection": 0,
       "unreviewed_product_unknown_pool": -6
     },
-    "equation": "471 - 314 = 157; (471 - 6) - 314 = 151. #2387 adds two disjoint routed IDs to the prior union; this proposal remains conditional and requires cumulative recount if later applied.",
-    "current_after_2387": {
-      "product_requirement_atom_unknown_pool": 471,
-      "condition_count": 858,
-      "explanation_count": 2971,
-      "product_requirement_atom_condition_count": 820,
-      "product_targeted_route_union_count": 343,
-      "all_route_union_count_including_30_out_of_pool_HMC": 373,
-      "product_pool_intersection_with_audited_union": 314,
-      "unreviewed_product_unknown_pool": 157
-    }
+    "equation": "463 - 314 = 149; (463 - 6) - 314 = 143. Merged #2391 removes eight disjoint metadata IDs from the prior 471-row pool; this proposal remains conditional and requires cumulative recount if later applied."
   },
   "limits": [
     "Proposal does not alter source bytes, any previous audit, route results, current requirement text, authority, or adoption.",
@@ -371,6 +404,12 @@
       "path": "docs/governance/audits/requirements-stage/legacy-candidate-functional-release-slice-acceptance-two-row-route-audit-after-2386-2026-09-30.json",
       "commit": "011a537ab57a70deb79ca2db22e37b15de7cceb3",
       "sha256": "25bf3d2f9a9e72e5dc8e755e7aa70ed1fd4de6381e3b2f6122b2aa03cd9b9f4f"
+    },
+    {
+      "role": "classification_correction_2391",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-frs-requirements-refines-eight-row-classification-proposal-after-2386-2026-09-30.json",
+      "commit": "db0449027a41cb288e70cfa92ba2b56743ee0ae1",
+      "sha256": "ef458d02d7a7af8042f46ed40292ddc2d4fe04ca4aa5cb66c218d073a6d82002"
     }
   ],
   "adjacent_source_classification_check": {
