@@ -36,7 +36,7 @@
 
 | Pair | 判定 | 近接する範囲と限界 |
 |---|---|---|
-| HELIXLABO-L2-063 | 近接。57候補判断で採択、live26で限定選択を確認 | 成功修復知見、同種修復反復、予防候補とFeedback handoffは旧recipe/preventionに近い。live26は候補の6 atomすべてでなく3条件だけを選択。FR19全体の後継ではなく、skill recommendation・L単位injection・GitHub pullを含まない。|
+| HELIXLABO-L2-063 | 近接。57候補判断の78行目で無条件採択 | 成功修復知見、同種修復反復、予防候補とFeedback handoffは旧recipe/preventionに近い。FR19全体の後継ではなく、skill recommendation・L単位injection・GitHub pullを含まない。|
 | HELIXLABO-L2-065 | 隣接。57候補でD1条件付き採択 | Task/model qualification、first Attempt/retry/effective costは評価材料。recipe蓄積、予防rule、skill推薦更新、injectionではない。|
 | HELIXLABO-L2-066 | 隣接。57候補で採択 | 比較時の誤修復・未解消case計数。頻出失敗の分類やrule promotionはない。|
 | HELIXLABO-L2-067 | 隣接。57候補でD1条件付き採択 | 最初のeligible candidate結果とAttempt内修復round。065指標等と換算せず、recipe生成も行わない。|
@@ -45,7 +45,7 @@
 | HELIXLABO-L2-071 | 隣接。live26採択 | GitHub監査task class別model資格。資格をpermission/assignmentへ変換せず、skill retirementとは別。|
 | HELIXINTELLIGENCE-L2-074 | 隣接。57候補で採択 | 評価済みticket feedbackを次回placement proposalに引用する。skill recommendation accuracy向上やL単位injectionの証拠ではない。|
 
-後発pairの採択はそれぞれのsource/registration範囲に限る。LABO-063についてlive26が選択した3条件を旧FR19へ流用・拡張しない。MPRは`registered_proposal`、`authority_effect: none`の記録であり、候補内容や採択の表示からFR-L1-19のformal successorを作らない。
+後発pairの採択はそれぞれのsource/registration範囲に限る。live26 line 72の「選択した3条件」はHARNESS-L2-063を指し、LABO-063の採択範囲には適用しない。MPRは`registered_proposal`、`authority_effect: none`の記録であり、候補内容や採択の表示からFR-L1-19のformal successorを作らない。
 
 ## 非主張と検証
 

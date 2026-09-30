@@ -951,18 +951,16 @@
       {
         "identity": "HELIXLABO-L2-063",
         "decision_refs": [
-          "po-decision-2026-09-29-57candidates.md",
-          "po-decision-2026-09-30-live26.md"
+          "po-decision-2026-09-29-57candidates.md"
         ],
         "proximity": "direct_adjacent",
-        "assessment": "Recipe retention, same-problem recurrence assessment, preventive gate/detector candidate and feedback/backlog handoff are materially close to FR-L1-19 success recipes and frequent-trouble prevention. Live26 selects only three conditions from this candidate; candidate’s six-atom no-loss registration does not expand the selected decision. It does not include skill recommendation accuracy, L-unit injection, old GitHub event-pull design, or source FR-L1-19 as a successor.",
-        "decision_rows": [],
-        "decision_passages": [
+        "assessment": "Recipe retention, same-problem recurrence assessment, preventive gate/detector candidate and feedback/backlog handoff are materially close to FR-L1-19 success recipes and frequent-trouble prevention. The 57-candidate decision adopts HELIXLABO-L2-063 without conditions. It does not include skill recommendation accuracy, L-unit injection, old GitHub event-pull design, or source FR-L1-19 as a successor.",
+        "decision_rows": [
           {
-            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
-            "line": 72,
-            "sha256": "84a21babd97341385185ff1bc40f8603713e99b4fb1f7dc8ee3c44f1bcc056dc",
-            "text": "HARNESS-L2-049の採択は登録`-003`および訂正済L11 oracleの計測専用意味に限る。試作品生成、Pattern選択、screen ID発行は含まず、別revision `-002`の処置を継承しない。HARNESS-L2-055/056はそれぞれ選択済みFR-48 gate atom、選択済みFR-49の6 canonical V-pair atomに限る。HARNESS-L2-062は既存負債を免除・解消扱いしない。HARNESS-L2-063は選択した3条件だけを採り、導入版未指定を維持する。HELIXLABO-L2-071は資格を操作権限や割当へ自動変換しない境界を含む。HELIXOS-L2-104は新しい認可権限や追加承認を作らず、105は記録充足と実際の復旧完了・release許可を区別する。HELIXOS-L2-106/107は根拠不足を未解決として返し、108/109/110は明示入力範囲の検査に限る。これらの限定は選択対象を広げない。"
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "line": 78,
+            "sha256": "5196e60a105560e0797c9638b6b1d2f1dc83f457f94e9e1e38a1ddc3b0a9ec25",
+            "text": "| `HELIXLABO-L2-063` | 採択 | `MPR-RC-HELIXLABO-L2-063-001` | `docs/helix-labo/L2-requirements/labo-requirements.md` | `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9` | `sha256:274ea8f4562f7677b90f72bdbc8ba474540fdb74e3f6ff9e6632ad1274566c1a` | `HELIXLABO-L2-063` | `docs/helix-labo/L11-acceptance/labo-acceptance.md` | `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0` | `sha256:5e7c8afa50b3f430b01b641f145abee034e0b4ef87af3a4146c820c9c9aea174` | `docs/governance/audits/requirement-registration/labo-repair-recurrence-coverage-receipt-2026-09-28.json` |"
           }
         ]
       },
