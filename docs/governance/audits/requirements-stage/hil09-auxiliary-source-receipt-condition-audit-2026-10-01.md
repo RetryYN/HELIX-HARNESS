@@ -4,7 +4,7 @@
 
 本監査は旧補助system contract `HR-FR-HIL-09`と、それに直接結び付く`HAC-HIL-09a/b/c`、`HAT-HIL-09`、および親contractに列挙された10要求atomだけを扱う。24 contract等の母集団全体、全source census、要求stage全体のclosureは判定しない。
 
-現行本文の最新参照基準はorigin/main `74e19f81a7506cdf171f176eaf55edb310eaf268`（2026-10-01）である。HELIX-OS L2/L11の採択authorityは、PO decisionが固定した`f6dad2a33e24f000b87d7f09b8d40288257e74cc`のbytesと外部decision recordから読む。最新mainに残る`candidate`表記だけで採択状態を上書きしない。
+現行本文の最新参照基準はorigin/main `d1dc6136f06c2fd89d6ba3d57fdd8d9156e2b44a`（2026-10-01）である。HELIX-OS L2/L11の採択authorityは、PO decisionが固定した`f6dad2a33e24f000b87d7f09b8d40288257e74cc`のbytesと外部decision recordから読む。最新mainに残る`candidate`表記だけで採択状態を上書きしない。
 
 既存の[補助contract再照合](legacy-auxiliary-contract-refinement-recheck-2026-09-28.md)と[system acceptance negative oracle監査](legacy-system-acceptance-negative-oracle-audit-2026-09-28.md)は、HIL-09の移行inventory残差を既に特定している。本記録は24件の再要約を避け、HIL-09の各旧atomから正負oracle、旧test consumer、現行の未被覆条件へ直接つなぎ、残差の境界を明示する。
 
@@ -55,7 +55,7 @@ L5 IT designのfixtureにあるZIP `703/703`、seed tree `1,756 + 175 = 1,931`�
 
 HELIX-OSのPO decisionは固定commit `f6dad2a33e24f000b87d7f09b8d40288257e74cc` のL2 `c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf` とL11 `925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680` を確定し、L2-015/016を含む明示16候補を採択した（[OS PO decision](../../decisions/helix-os-requirements-po-decision-2026-09-28.md)、現mainでSHA-256 `5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da`）。同recordは旧source holdingと未解決atomを維持し、デグレ検証完了を意味しないと明記する。
 
-| current boundary | fixed-f6 bytes / refs | latest-main `74e19f81a7506cdf171f176eaf55edb310eaf268` bytes / refs | HIL-09 relation |
+| current boundary | fixed-f6 bytes / refs | latest-main `d1dc6136f06c2fd89d6ba3d57fdd8d9156e2b44a` bytes / refs | HIL-09 relation |
 |---|---|---|---|
 | HELIX-OS L2 | `docs/helix-os/L2-requirements/governance-requirements.md`, SHA `c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf` | same path, SHA `bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf`; L2-015/016 at `:642–660` | L2-015 holds source identity/revision/digest, origin and unknown/stale; L2-016 tracks requirement-to-work/test/evidence trace and keeps unknown/stale. These are adopted general OS requirements. |
 | HELIX-OS L11 | `docs/helix-os/L11-acceptance/governance-acceptance.md`, SHA `925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680` | same path, SHA `cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112`; L11-015/016 at `:324–357` | Negative cases prevent projection state from creating authority and prevent missing trace/unknown from becoming completion. They do not assert HIL-09's three-source capture or complete receipt-derived census ran. |
