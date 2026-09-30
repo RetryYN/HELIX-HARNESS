@@ -10,7 +10,7 @@
 | `archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json` | 530–561 | `4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19` | `LEGACY-ASSET-4886CEF2A7AB5B7AA5C8`、source snapshot preservation |
 | `archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json` | 317–332 | `7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a` | `LEGACY-ASSET-F7A988C2531DEAC3D23B`、source snapshot preservation |
 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json` | 918–944等 | `80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | `LEGACY-ASSET-A60CF91DD2AF6693E6F9`、source snapshot preservation |
-| `archive/legacy-generation-2026-09-14/root/requirements-ir/refinement_contracts.json` | `RAS-HIL-17` | `6230d6c0ae341ea45eba1e9bf1d40389363b9f1f12c158e5b5c15799122e1443` | `LEGACY-ASSET-4A7A45BC495D1B2677A2`、source snapshot preservation |
+| `archive/legacy-generation-2026-09-14/root/requirements-ir/refinement_contracts.json` | `RAS-HIL-17`のmappingなしを確認 | `6230d6c0ae341ea45eba1e9bf1d40389363b9f1f12c158e5b5c15799122e1443` | `LEGACY-ASSET-4A7A45BC495D1B2677A2`、source snapshot preservation |
 | 旧L3 `infinity-loop-functional-requirements.md` | 51, 80 | `8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6` | `LEGACY-ASSET-C7F0C3B79CBAA72960BF`、unresolved |
 | 旧L5詳細 `requirement-translation-obligation.md` | 1–20, §0–§4 | `c3f51929c1ccee67534023d46fa1df7c4980002f73be3b8a4708832abc1c0dea` | `LEGACY-ASSET-65AD8D5F8D976121F583`、unresolved |
 | 旧L6機能 `requirement-translation-obligation.md` | 1–20, §0–§1 | `b4e99bb1ccba1c3bf090e8e40ea286efee68abbaf6a93575f1d21ca5492cf901` | `LEGACY-ASSET-41F787DD7C89B20A3732`、unresolved |
@@ -24,7 +24,7 @@
 
 旧 `HR-FR-HIL-17` rev.1 はsource status `specified` で、behaviorは原文をauthority付きatomへ翻訳し、design obligationとstable revision/edge/change receiptを正本化してtemplate gapをshadow reviewへ送ること。transitionはcustodied source/authorityとversioned templateを前提に全typed edgeが揃い、未消込/ambiguityが0のatomだけactiveとする。failure/evidenceには原文消失、aggregate/TBD/偽N/A、self-promotion、stale伝播欠落と、revision・challenge・template・obligation・gap/review/change receiptを挙げる（旧 `system_contracts.json:391–414`）。
 
-契約に結ばれる旧IR atomは `HIL-BR-22/23/24`、`HIL-FR-41/42/43/44/45`、`HIL-NFR-26/27/28` の11件である。requirements IRはこれらをHAC三件・HAT一件・`RAS-HIL-17`へ結ぶ（`requirements.json:918–944`）。旧L3表 `infinity-loop-functional-requirements.md:51,80` は同じ11 IDと三つのacceptance polarityを再掲する。各IR identityはsource側のspecified/frozenとして保全される一方、現行対象への successor割当は別軸であり、identityや旧L3表への参照だけから成立しない。
+契約に結ばれる旧IR atomは `HIL-BR-22/23/24`、`HIL-FR-41/42/43/44/45`、`HIL-NFR-26/27/28` の11件である。requirements IRはこれらをHAC三件・HAT一件へ結び、各atomの`source.authority_id`に`RAS-HIL-17`を記す（例：`requirements.json:918–944`）。`RAS-HIL-17`は`refinement_contracts.json`内の契約キーではなく、同fileには対応mappingがない。旧L3表 `infinity-loop-functional-requirements.md:51,80` は同じ11 IDと三つのacceptance polarityを再掲する。各IR identityはsource側のspecified/frozenとして保全される一方、現行対象への successor割当は別軸であり、identityや旧L3表への参照だけから成立しない。
 
 | 旧oracle | polarity / 条件 | IR行と現行holding |
 |---|---|---|
