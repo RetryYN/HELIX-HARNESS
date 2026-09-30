@@ -24,6 +24,26 @@ HARNESS-L2-019は、旧要求の「既存projectへの途中導入」と目的�
 
 旧L4/L5/L6にもsetup/onboardingのconsumerが残る。L6 `setup-solo-team.md`は既存repoへのsetupと`.helix/state/setup.json`、GitHub設定のsolo/team差分を扱う。PLAN-L7-66は既存repo向けREADME/template、PLAN-L7-251はsetup import reportのidempotent rerunとconflict分類を扱い、`src/setup/index.ts`にもproject setup、baseline、import report関連の実装記述がある。これらは、旧世代の設計・PLAN・code consumerが途中導入機能を構成した証拠である。実行せず、本文の過去statusやテスト記録から現行動作・合格を主張しない。旧L3のBR-TTV-01「15分」や旧path/state schema、GitHub admin apply条件はFR44 source atomへ混ぜず、現行要求へ昇格しない。
 
+## 追加した旧consumer条件と境界
+
+archive全文検索で、L1 functional row以外にもFR44を具体化するconsumerを確認した。追加のpath・line・file SHAはJSONの`legacy_consumer_pins`に固定した。FR44のsource-qualified identity自体は増やさず、直接consumer・連動NFR・上位pillar・条件付きprocessを区別する。
+
+| 追加consumer条件 | 固定f6との照合 | 扱い |
+|---|---|---|
+| `FR44-C05` v2 import ledger §6 / OT-23: baseline PLAN setを作り、欠損sub-docへ`skip_sub_doc`を設定し、段階整備の進捗をdashboardで見せる | L2/L11-019のReverse変換・unknown保持は近いが、PLAN生成、skip設定、dashboardはない。003の一般工程gateもonboarding段階を規定しない | FR44直接consumerとして未カバー |
+| `FR44-C06` technical onboarding bootstrap / migration skill note: `.helix/`初期化、existing PLAN baseline、Phase 0 import、Reverse R0-R4前段、DBとfilesystemのasset count一致後にnew work開始 | 019はReverse入口を持つが、R0-R4 sequence、import状態・整合検査・開始条件を定めない | 部分接点。import/bootstrap closureは未カバー |
+| `FR44-C07` linked NFR-16 / OT-29 / AT-NFR-16: docs/code/state不整合でもblockせず段階移行し、初回importで停止しない。skip設定後のstage gate通過とblock回避logを確認 | 019のunknown保持は推定で補わない境界。矛盾時に進む条件、skip例外、段階gate logはない。003の通常未検証停止との調停もない | 別identity NFR-16の連動条件として比較し、FR44へ統合しない。未カバー |
+| `FR44-C08` OT-23/OT-29/AT-NFR-16のtest-design oracle: OT-23はHELIX未導入repoでbaseline PLAN・欠損sub-doc skip・dashboard、OT-29/ATはstage gate通過とblock回避logを検証 | L11-019のresult/unknown listにはbaseline/skip/dashboard/G1 stage-log oracleがない | OT-23はFR44固有consumer、OT-29/AT-NFR-16はlinked NFR16。archive test-design記載を実行済み・passと扱わない |
+| `FR44-C09` data-migration skillの変換、count/checksum、null/constraint、idempotency、rollback obligations | 019/L11-019にmigration transactionやintegrity oracleはない | onboarding importを該当data/schema migrationとして扱う場合の条件付きprocess consumer。L1/固定L2へ自動昇格しない |
+| `FR44-C10` HBR-P6: tag/release pinからone commandでrepo-local hooks・adapter・state/memory/evidence/feedback・GitHub rules/checksをbootstrap | HELIXOS-L2-006はservice単位の導入・更新・復旧に接するが、full project baseline package一式を定めない | FR44本文へ混ぜずpillar/product-delivery scopeとして残す |
+| `FR44-C11` NFR-16 stage testsなどのtest-design oracle | L11-019のresult/unknown listにはbaseline/skip/dashboard/G1 stage-log oracleがない | old test-design conditionとして記録。実行・合格を主張しない |
+
+## archive consumer全体の検索と除外
+
+`archive/.../root/{docs,src,tests}`をFR-L1-44、NFR-16 onboarding、OT-23、OT-29、onboarding bootstrap、`helix onboarding`、`skip_sub_doc`、baseline PLAN、初回importで検索した。FR44に直接結び付く追加詳細は上表とL3/L4/L6、PLAN、setup sourceに収まり、`src/`と`tests/`にはsource-qualified `FR-L1-44`参照はなかった。関連codeと過去test sourceもread-onlyで参照した。setup.test.ts / cli-surface.test.tsにはbrownfield import reportやskip_sub_doc routeのassertionがあるが、実行せず、baseline PLAN/dashboard/段階gateの被覆完了にも使わない。
+
+ID誤用や別measureは明示的に除外した。PLAN-L1-02のFR-L1-44 role-validation/role-change記述とPLAN-L1-04 U-技術-4eのagent-guard記述は、source line 75の途中導入意味と衝突する古いID記述である。L3 NFR-gradeのNFR-16とD-09 handover ≥95%、D-15 continuation scoreもonboarding importの受入値にはしない。D-03 ≤30分、BR-TTV-01 ≤15分、sample repo/migration tool/training/CIのwhole-product記述は別のbusiness/marketing条件で、FR44 source rowにない数値・成果を固定pairへ持ち込まない。functional L1 line 119の「source referenceなし」は起源説明であり追加atomではない。
+
 ## 後発decision proximity screen
 
 2026-09-29の57候補、同日の11候補、2026-09-30 live26判断について、採択済みregistration-decision rowsを全88件compact index化し、FR44のinventory/baseline/state import/onboarding gate条件への意味近接をscreenした。FR44の条件を具体化する近接pairはなかった。workflow、Worker、release、ticket、evidence、security等の隣接責務はあるが、旧資産を列挙・stateへimport・完了gate証明する要求ではない。全rowのidentity、registration ID、decision line/hashはJSONに保持する。

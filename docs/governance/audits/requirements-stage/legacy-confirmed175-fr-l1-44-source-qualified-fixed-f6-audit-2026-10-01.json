@@ -337,6 +337,301 @@
           "text": "  const plan = planSetup(phase, { teams: args.teams, dryRun: args.dryRun });"
         }
       ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/nfr.md",
+      "file_sha256": "4853a43c5ea12354dc2dab20dc3a52b15ff6be075e49fdaf1bff26280e992122",
+      "line_pins": [
+        {
+          "line": 32,
+          "line_sha256": "9b06132336e8e48706ab01bc044a722ad7e83e89cec12da7aadc870d12e12067",
+          "text": "| **NFR-16** | **onboarding 互換性** — 既存プロジェクトへの途中導入時、既存 docs / コード / state の不整合を block せず段階移行 | FR-L1-44 連動。既存資産を harness state に段階的に取り込み、初回 import でプロジェクトを止めない |"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-5429AA05B022E9F49B0A"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/technical-requirements.md",
+      "file_sha256": "3e105358418cb54af0bc2e414d0b06171715ab2a26ea3b44dd16f932bcbfef88",
+      "line_pins": [
+        {
+          "line": 158,
+          "line_sha256": "1259544e566bb46fb0b10fd872ed4b8b46013406f07be54519ff3747480b0ad5",
+          "text": "| **onboarding bootstrap** | 既存プロジェクトを harness state に取り込む初回 import (FR-L1-44)。Reverse R0-R4 を前段 context として利用 |"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-96CCD05C4CCA06F50D3D"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/migration/v2-import-ledger.md",
+      "file_sha256": "abf13d130476bf46450339bacd1517651a8a7ebf21d2c40be63c86b9e7aa1322",
+      "line_pins": [
+        {
+          "line": 136,
+          "line_sha256": "8754ab4bfe779833fd8ed2a282dfe8026b0f8ec6321d8c2973cb2b3544b1afde",
+          "text": "| FR-L1-44 | 途中導入 onboarding workflow (既存リポジトリへ HELIX を段階導入する際、baseline PLAN を自動生成し skip_sub_doc で欠損 sub-doc を機械強制回避しつつ段階整備する) | PO directed 2026-05-28 / retrofit-workflow | 既存 repo 構成・有無 sub-doc 一覧 | baseline PLAN セット・skip_sub_doc 設定・onboarding 進捗ダッシュボード | P1 |"
+        },
+        {
+          "line": 152,
+          "line_sha256": "b5d076470113c7124d27a47ae94d01219fe5688d32351c63bc89555ac03a3a0b",
+          "text": "| PO directed (2026-05-28) | FR-L1-37 / FR-L1-39 / FR-L1-40 / FR-L1-41 / FR-L1-42 / FR-L1-44 / NFR-16 / BR-21 | PO 判断 + Step 1 sub-doc 詳細化 session。HELIX-workflows に対応 doc なし、HELIX 固有追加 |"
+        },
+        {
+          "line": 185,
+          "line_sha256": "249a6cad4a41ad1d95cc0c5f7534047c72d4be20c0a05daa56f3fd9da5d056f9",
+          "text": "| **A-29** | **新規 FR-L1-44 (途中導入 onboarding workflow)** (P1。論点2 採用 = baseline 段階作成 + skip_sub_doc 機械強制) | functional-requirements.md §1 / 本 ledger §6 |"
+        },
+        {
+          "line": 187,
+          "line_sha256": "08771360e2ec963ad0214ed90abf0f4b4853b8738579b91bbc3c742fb4fc112b",
+          "text": "| **A-31** | **新規 NFR-16「onboarding 互換性」** (FR-L1-44 連動、P2。NFR 件数 14 件確定) | nfr.md §1 |"
+        },
+        {
+          "line": 188,
+          "line_sha256": "ec8ea1ede0b194c1eddc3124d250b55114d22ea97a78596ac064ce6350e5aa29",
+          "text": "| **A-32** | **drive 別 state 区画 (FR-L1-40) + AI provider 引継ぎ (FR-L1-42) technical 追記** (9 mode 統一合流原則段落 + onboarding bootstrap 行追加) | technical-requirements.md §4-§7 |"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-6279F4C46313824541B1"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L1-operational-test-design.md",
+      "file_sha256": "166facc23aa9f44329ddefbb8bfff40bad45dd7541e01c2c403825b12c20fc96",
+      "line_pins": [
+        {
+          "line": 74,
+          "line_sha256": "144bdfc37e2ec5e76f760569501581d652d788588e5eccfda0656961361dc690",
+          "text": "| **OT-23** | FR-L1-44 (途中導入 onboarding workflow) | 既存リポジトリ (helix 未導入) に対して `helix onboarding` を実行し、baseline PLAN セットが生成され、欠損 sub-doc が skip_sub_doc で段階整備モードに設定されることを確認 | baseline PLAN が生成 / skip_sub_doc 設定が有効 / onboarding 進捗がダッシュボードで可視 |"
+        },
+        {
+          "line": 80,
+          "line_sha256": "5c96b849762f2d198bc2c21c4e9f75908065b845da6845968c7203c63f89dc42",
+          "text": "| **OT-29** | NFR-16 (onboarding 互換性) 段階導入 block 回避 | NFR-16 要件として、途中導入時に skip_sub_doc 設定が正しく機能し、未整備 sub-doc による gate fail-close が段階整備完了まで block 回避されることを確認 | skip_sub_doc 設定後に gate が段階整備モードで進行 / 完全整備後に通常 gate に切替 / block 回避ログが audit に記録 |"
+        },
+        {
+          "line": 129,
+          "line_sha256": "7c114a2db0e3e30ffef6426debbe19e4663fabb83f1234a8aa2e8629bc3f7b9d",
+          "text": "- FR-L1-44 (途中導入 onboarding workflow、新規 P1) → **OT-23** (baseline 作成シナリオ)。"
+        },
+        {
+          "line": 170,
+          "line_sha256": "466b055b1b360dca5c3a3cf3a906517a9e284b7168d227a52ba9b1efa5cf65bb",
+          "text": "- NFR-16 (onboarding 互換性、新規) → **OT-29** (段階導入 block 回避シナリオ確認)。**孤児 NFR = 0** (NFR-01〜17 計 15 件、全被覆)。"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-A2B0AAB7AAD10CBBD45F"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L3-acceptance-test-design.md",
+      "file_sha256": "27a92c3be07aa06b9e8a598b7b2b7bcc357ccb6afa876e27e45cd85e7f3d00c1",
+      "line_pins": [
+        {
+          "line": 185,
+          "line_sha256": "df142c8325ad770e1e231e7f1a1e34f11f8e5196306343ba5b698b7d678b6019",
+          "text": "| **AT-NFR-16** | NFR-16 / AC-NFR-16 | onboarding skip_sub_doc 段階 → G1 段階通過 | vitest gate + onboarding test |"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-1B92155F959D7905DD1E"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/skills/data-migration.md",
+      "file_sha256": "740036c144d992c031ea7563b75356ade5cf7ac17b137b612c8110ea782f2398",
+      "line_pins": [
+        {
+          "line": 82,
+          "line_sha256": "1b8321827001570e9ab09659768210f6797a0aed06a0187762d7dc73f45d15af",
+          "text": "## FR-L1-44 onboarding note（onboarding 補足）"
+        },
+        {
+          "line": 84,
+          "line_sha256": "b0a5f3fa18a41d5922e74381ecdb1d7006e2d970fc8f770b603f8e192b065cd5",
+          "text": "既存 project を onboard する migration では、`helix setup` で `.helix/` を initialise し、"
+        },
+        {
+          "line": 85,
+          "line_sha256": "ffba9c6d6be4fa947c9e6c2866caf1ffe58a1c49b71916f1ecd835278f43c07e",
+          "text": "`helix status` で existing PLANs を baseline 化し、import を Phase 0 migration として扱う。"
+        },
+        {
+          "line": 86,
+          "line_sha256": "09603ea623c8ea88598240707421aac92c11ac77fe9c4d8d3245b390b67ca11a",
+          "text": "new work を始める前に、`harness.db` asset count が file-system count と一致することを検証する。"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-BF64B4AE03DD092532C2"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "file_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "line_pins": [
+        {
+          "line": 55,
+          "line_sha256": "17222607f0c9ea8f6f521f8e939e7a3c2a8bc4c2a5cf4706d4db85d6286c626b",
+          "text": "| **HBR-P6** | **GitHub 運用自動化 + 配布/フルセットアップ** — gated push（全 gate PASS で authorized、raw push fail-close deny）/ PR クロスレビュー自動 / CI 失敗時 auto-fix-repush / タグ版管理。加えて、配布 tag/release pin から **1 コマンドで repo-local hooks・Claude/Codex adapter・state/memory/evidence/feedback・GitHub rules/checks の baseline を bootstrap**できる | FR-L1-05/17（fail-close gate / CI-PR linkage）**のみ＝薄い**。配布/途中導入の接地は FR-L1-44 + technical L1 の GitHub-pull/tag-pin/setup 方針 | 起草時の未定義評価は履歴であり、現在は要件v1.3 HR-FR-HYB-008／010と§4.6.1へ接続する。L2の利用要求として`helix setup project`による導入・更新を扱い、公開・tag・promotion・cutoverの承認を一般開発の自走へ転用しない |"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-18F7940E7994634D39A1"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+      "file_sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+      "line_pins": [
+        {
+          "line": 34,
+          "line_sha256": "4dd34f69352d30ca1de072ee06b74079151be71ecc0e02a0843c382227ec0112",
+          "text": "| **NFR-16** | onboarding 互換性 (skip_sub_doc) | Lv2 | KPI D-09 ≥ 95% (handover 引継ぎ成功率、A-43 / A-44 ledger 整合) | `.helix/handover/` 引継ぎ成功 / 失敗ログ集計 | sprint 末 D-09 ≥ 95% |"
+        },
+        {
+          "line": 46,
+          "line_sha256": "968f5e56cc1673bbcd85c4a6ffe68b431bc08aeb6f6b54ab81ba445075b78748",
+          "text": "#### AC-NFR-16 (境界系)"
+        },
+        {
+          "line": 49,
+          "line_sha256": "d3a456f9fad0409c1874649c6248176e0ebd26bff6f474f3d796f038cd56cc95",
+          "text": "- **期待結果**: 未整備 sub-doc skip / 整備済 sub-doc のみ gate 評価 / G1 段階通過"
+        },
+        {
+          "line": 217,
+          "line_sha256": "8f9bfee6aabeb95fe88b540ccf2417eb57ec9a35f6f315e245ebb2eb92664ba0",
+          "text": "- **D-15 (SPACE Communication)** handover record 完全性 score を NFR-16 (onboarding 互換性) 拡張"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-DB669724249A14A665F0"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+      "line_pins": [
+        {
+          "line": 261,
+          "line_sha256": "e359a30308b07ea2a414f612d1ab401cedb53437612ce768832e07281a1eb7dc",
+          "text": "| **(PdM marketing-innovation A-46)** **BR-TTV-01** Aha moment = 初回 doctor で drift 検出、TTV ≤ 15 分目標 (FR-L1-44 onboarding 連携) | Phase A→B 橋渡し | Wes Bush PLG、whole product = sample repo + migration tool + 教育資料 + CI template |"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-9F48ADEEB477DCA54039"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-01-business-requirements.md",
+      "file_sha256": "1f8a42d15d2d93d5046dcfd4bf544b9614af2a1c7b27bc64ae3e1a86cf8e5bc6",
+      "line_pins": [
+        {
+          "line": 114,
+          "line_sha256": "b01c4225b740921b4df36abc5567b1d117e4d701f01e1cc18145a787a0f24edd",
+          "text": "| D-03 | onboarding 所要時間 ≤ 30 min | business §4 + NFR-16 | ✅ |"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-F8249D4DEB6335597E5F"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-02-functional-requirements.md",
+      "file_sha256": "79b707ca7e57f1edb5eb553ad990f4a7a923a000f2d8afc28ce85bbbf724fae7",
+      "line_pins": [
+        {
+          "line": 97,
+          "line_sha256": "06dabb4509daba6a1f6096158c4909ba68a0fca3c6b1d450d81bd10b536c13cd",
+          "text": "| FR-L1-44 | 運用者ロール管理: PO/PM/TL/SE/PE の責務境界を runtime が validate する (BR-21 対応) | functional §1 / BR-21 | ✅ (PO 承認済 2026-05-28) |"
+        },
+        {
+          "line": 109,
+          "line_sha256": "edb8626ef182a6d50fc553f5379842e3950888661c52043573dee5ae0ce45dbe",
+          "text": "| FR-L1-20 拡張 | 運用者ロール表示を dashboard SCR-01 の表示要件に追加 (FR-L1-44 / BR-21 連動) | ✅ |"
+        },
+        {
+          "line": 123,
+          "line_sha256": "6153d3cfdd5a228802853346df8b1ee1e386b6251027134de209ba15985bfb93",
+          "text": "| シナリオ-8 | 運用者ロール変更: PO が PM → TL 委譲 → agent guard が validate (FR-L1-44 / BR-21) | functional §2 | ✅ (PO 承認済 2026-05-28) |"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-4EDC25BCABF14A4BEEC2"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-04-technical-requirements.md",
+      "file_sha256": "837ceee956ce4c686907f4acd091613fb8a1da28d91226b62ab4be25e9284458",
+      "line_pins": [
+        {
+          "line": 107,
+          "line_sha256": "a62647a0eb18149c4378ccce35591cd502d2c1772125ed4326cf72a4e917937a",
+          "text": "| U-技術-4e | 運用者ロール技術担保: agent guard subagent 許可リスト + bypass 条件 (HELIX_ALLOW_RAW_AGENT=1) を technical §1 に技術要求として明示 | technical §1 / BR-21 | ✅ (PO 承認済 2026-05-28。FR-L1-44 連動) |"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-590EA4B9894E38D9D11E"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "line_pins": [
+        {
+          "line": 119,
+          "line_sha256": "13f37eb934321a2a9b99e22343c0d6a1605450d294896a825de4b2a227833f50",
+          "text": "| (対応 source reference doc なし) | FR-L1-44 (途中導入 onboarding workflow) は source reference側に対応 doc なし、HELIX 独自設計 (PO directed 2026-05-28) | FR-L1-44 |"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/tests/setup.test.ts",
+      "file_sha256": "648b43dc9c5b2f899fc6597e181623da3bc5571a2c58b1eacfd213fd32089c99",
+      "line_pins": [
+        {
+          "line": 1925,
+          "line_sha256": "7cb35cd969926b7b8c1b880bec09ae9b5da5f45925fa54e5e7ba09bf3f4c2b64",
+          "text": "  it(\"U-SETUP-016: brownfield HELIX project setup emits an import report instead of hiding skipped conflicts\", () => {"
+        },
+        {
+          "line": 1958,
+          "line_sha256": "348a7ef33733302bac1e08892211a73bf6ca463dcea75c0dfa69ffdf96b07b5c",
+          "text": "          marker: \"skip_sub_doc\","
+        },
+        {
+          "line": 1964,
+          "line_sha256": "348a7ef33733302bac1e08892211a73bf6ca463dcea75c0dfa69ffdf96b07b5c",
+          "text": "          marker: \"skip_sub_doc\","
+        },
+        {
+          "line": 1986,
+          "line_sha256": "8aec48e5da29fefef24267aaba9afd08b61604f88ec05bc7417dd7cdca66f5e3",
+          "text": "        expect.stringContaining(\"importReport.skippedExistingPaths\"),"
+        },
+        {
+          "line": 1987,
+          "line_sha256": "b3d93e825fdc561cd9ad1214bdabfa1d5ce5cd8de06e61b78e4fe671dba58f52",
+          "text": "        \"import report 解消後に `helix setup project --dry-run` を再実行する\","
+        }
+      ],
+      "archive_kind": "test_source_read_only_not_executed"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/tests/cli-surface.test.ts",
+      "file_sha256": "bd0f5c239cb77b9ff71fe5e50bc8e5794a9505c87322b090145c7ed902241aaa",
+      "line_pins": [
+        {
+          "line": 2729,
+          "line_sha256": "348a7ef33733302bac1e08892211a73bf6ca463dcea75c0dfa69ffdf96b07b5c",
+          "text": "          marker: \"skip_sub_doc\","
+        },
+        {
+          "line": 2736,
+          "line_sha256": "348a7ef33733302bac1e08892211a73bf6ca463dcea75c0dfa69ffdf96b07b5c",
+          "text": "          marker: \"skip_sub_doc\","
+        },
+        {
+          "line": 2862,
+          "line_sha256": "7c9eab3db7b68e6e5d6ec18c334cc9b3636ec3df33c26a57c1a8550a24302bb2",
+          "text": "    expect(text.stdout).toContain(\"skipSubDocs=\");"
+        },
+        {
+          "line": 2864,
+          "line_sha256": "076d5a065feffd725c1a7d74a5af4b5149fdff0c93f7e0f2e41d1db6b1ee4119",
+          "text": "      \"skip-sub-doc: docs/plans marker=skip_sub_doc route=consumer_doctor_profile reason=dogfood_sub_doc_not_required_for_consumer_setup gate=consumer_doctor\","
+        },
+        {
+          "line": 2867,
+          "line_sha256": "739269b9cef458b64ad11f2cf54eaacb04d11d256540e073f38c737628fc75a5",
+          "text": "      \"skip-sub-doc: .codex/hooks.json marker=skip_sub_doc route=review_import_report reason=consumer_owned_path_preserved_for_staged_migration gate=import_report_review\","
+        }
+      ],
+      "archive_kind": "test_source_read_only_not_executed"
     }
   ],
   "fixed_and_near_pairs": [
@@ -1246,7 +1541,10 @@
     "later_adopted_pair_rows": 88,
     "source_authority_effect": "none",
     "formal_successor_assignments": 0,
-    "closure_claimed": false
+    "closure_claimed": false,
+    "additional_consumer_condition_count": 7,
+    "source_consumer_pin_files": 23,
+    "archive_consumer_fulltext_reviewed": true
   },
   "fixed_target_document_files": {
     "docs/helix-harness/L2-requirements/product-requirements.md": {
@@ -1275,5 +1573,219 @@
       "file_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
       "target_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
     }
-  ]
+  ],
+  "additional_consumer_condition_comparison": [
+    {
+      "condition_id": "FR44-C05",
+      "classification": "direct_FR44_consumer_detail",
+      "legacy_sources": [
+        "archive/legacy-generation-2026-09-14/root/docs/migration/v2-import-ledger.md:136",
+        "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L1-operational-test-design.md:74",
+        "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L1-operational-test-design.md:129"
+      ],
+      "legacy_asset_ids": [
+        "LEGACY-ASSET-6279F4C46313824541B1",
+        "LEGACY-ASSET-A2B0AAB7AAD10CBBD45F"
+      ],
+      "condition_atoms": [
+        "既存repoの構成とsub-doc有無を入力としてbaseline PLAN setを生成する",
+        "欠損sub-docにskip_sub_docを設定して段階整備へ入る",
+        "onboarding進捗をdashboardで見られる"
+      ],
+      "fixed_comparison": [
+        "HARNESS-L2-019/L11-019",
+        "HARNESS-L2-003/L11-003"
+      ],
+      "finding": "HARNESS-L2-019は既存要件・コード・PoCをReverseしてtrace化しunknownを残すが、baseline PLAN set生成、skip_sub_doc機械設定、進捗dashboardを要求しない。HARNESS-L2-003/L11-003は一般工程のfreeze・差戻し・完了条件であり、このonboarding状態・例外条件を定義しない。未カバー。",
+      "status": "not_covered"
+    },
+    {
+      "condition_id": "FR44-C06",
+      "classification": "direct_FR44_consumer_detail",
+      "legacy_sources": [
+        "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/technical-requirements.md:158",
+        "archive/legacy-generation-2026-09-14/root/docs/skills/data-migration.md:82-86"
+      ],
+      "legacy_asset_ids": [
+        "LEGACY-ASSET-96CCD05C4CCA06F50D3D",
+        "LEGACY-ASSET-BF64B4AE03DD092532C2"
+      ],
+      "condition_atoms": [
+        "既存projectの初回state importをonboarding bootstrapとして行う",
+        "Reverse R0-R4をimport前段contextとして利用する",
+        "helix setupで.helixを初期化し、helix statusでexisting PLANsをbaseline化する",
+        "importをPhase 0としてharness.db asset countとfilesystem countを照合してからnew workへ進む"
+      ],
+      "fixed_comparison": [
+        "HARNESS-L2-019/L11-019"
+      ],
+      "finding": "L2-019は既存要件・コード・PoCをReverseへ入れるが、R0-R4 sequence、.helix初期化、PLAN baseline、Phase 0 import、DB/file count一致、new work開始条件を定めない。Reverse入口/unknown維持は部分接点、onboarding import closureは未カバー。",
+      "status": "open_partial_correspondence"
+    },
+    {
+      "condition_id": "FR44-C07",
+      "classification": "linked_NFR16_companion_not_identity_merge",
+      "legacy_sources": [
+        "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/nfr.md:32",
+        "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L1-operational-test-design.md:80",
+        "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L3-acceptance-test-design.md:185"
+      ],
+      "legacy_asset_ids": [
+        "LEGACY-ASSET-5429AA05B022E9F49B0A",
+        "LEGACY-ASSET-A2B0AAB7AAD10CBBD45F",
+        "LEGACY-ASSET-1B92155F959D7905DD1E"
+      ],
+      "condition_atoms": [
+        "existing docs/code/state inconsistencies must not block onboarding",
+        "migration is staged",
+        "first import must not stop the project",
+        "skip_sub_doc permits gate progress in staged mode and logs the bypass",
+        "fully prepared sub-docs move to normal gate mode"
+      ],
+      "fixed_comparison": [
+        "HARNESS-L2-019/L11-019",
+        "HARNESS-L2-003/L11-003"
+      ],
+      "finding": "これはFR44連動と明記された別のNFR identity NFR-16であり、FR44のsource identityへ統合しない。固定019のunknown保持は推定補完を避けるが、矛盾がある状態での進行、段階mode、skip例外、段階gate logを保証しない。一般的なL2-003は未検証・未合意進行を拒否するため、両条件をどう調停するかも固定本文にない。linked NFR16の条件として未カバー。",
+      "status": "not_covered"
+    },
+    {
+      "condition_id": "FR44-C08",
+      "classification": "direct_FR44_operational_test_oracle",
+      "legacy_sources": [
+        "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L1-operational-test-design.md:74",
+        "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L1-operational-test-design.md:80",
+        "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L3-acceptance-test-design.md:185"
+      ],
+      "legacy_asset_ids": [
+        "LEGACY-ASSET-A2B0AAB7AAD10CBBD45F",
+        "LEGACY-ASSET-1B92155F959D7905DD1E"
+      ],
+      "condition_atoms": [
+        "OT-23 checks onboarding on a repository without HELIX, baseline PLAN set, missing sub-doc skip mode, dashboard progress",
+        "OT-29/AT-NFR-16 check stage-mode G1 passage and a recorded block-avoidance log"
+      ],
+      "fixed_comparison": [
+        "HARNESS-L2-019/L11-019",
+        "HARNESS-L2-003/L11-003"
+      ],
+      "finding": "OT-23はFR44固有の利用シナリオ/結果oracleを詳細化する。OT-29/AT-NFR-16は別NFR16の段階gate oracle。固定L11-019は変換結果・unknown一覧を確認するが、いずれのbaseline/skip/dashboard/staged G1 log oracleも持たない。archive test-design記載を実行済み・passと扱わない。",
+      "status": "not_covered"
+    },
+    {
+      "condition_id": "FR44-C09",
+      "classification": "conditional_data_migration_process_consumer",
+      "legacy_sources": [
+        "archive/legacy-generation-2026-09-14/root/docs/skills/data-migration.md:27-80",
+        "archive/legacy-generation-2026-09-14/root/docs/skills/data-migration.md:82-86"
+      ],
+      "legacy_asset_ids": [
+        "LEGACY-ASSET-BF64B4AE03DD092532C2"
+      ],
+      "applies_if": "onboarding importが当該data/schema migration processとして起票・設計される場合",
+      "condition_atoms": [
+        "Phase 0 reads old/writes oldでbaselineをverify",
+        "各phase boundary前にcount/checksum/integration verification",
+        "before/after/field mapping/rollback design",
+        "count parity、spot-check、null/constraint zero、rollback restoration",
+        "idempotent rerun、row failureを識別しsilent skipせずsummaryまで継続",
+        "rollback triggerを記録してdeploy前にgateする"
+      ],
+      "fixed_comparison": [
+        "HARNESS-L2-019/L11-019"
+      ],
+      "finding": "L2-019/L11-019はimport migrationのtransaction/integrity/idempotency/rollbackを定めない。skillの一般migration条件は適用条件つきの下流consumer evidenceとして保持し、FR44のL1 atomや既承認L2条件へ自動昇格しない。",
+      "status": "not_in_fixed_pair"
+    },
+    {
+      "condition_id": "FR44-C10",
+      "classification": "linked_HBRP6_package_setup_scope",
+      "legacy_sources": [
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md:55",
+        "archive/legacy-generation-2026-09-14/root/docs/migration/v2-import-ledger.md:188"
+      ],
+      "legacy_asset_ids": [
+        "LEGACY-ASSET-18F7940E7994634D39A1",
+        "LEGACY-ASSET-6279F4C46313824541B1"
+      ],
+      "condition_atoms": [
+        "tag/release pinからone commandでrepo-local hooks, provider adapters, state/memory/evidence/feedback, GitHub rules/checksをbootstrapするというpillar-level package capability"
+      ],
+      "fixed_comparison": [
+        "HELIXOS-L2-006/L11-006"
+      ],
+      "finding": "OS-006はサービス単位のrelease state、fresh/既存repoへの導入・更新・復旧を扱うが、tag/release pinからのfull project bootstrap packageや列挙されたrepo-local baseline一式を定めない。この広いHBR-P6条件はFR44のsource line自体へ統合せず、別のpillar/product-delivery scopeとして残す。",
+      "status": "open_partial_correspondence"
+    },
+    {
+      "condition_id": "FR44-C11",
+      "classification": "existing_implementation_and_test_consumer",
+      "legacy_sources": [
+        "archive/legacy-generation-2026-09-14/root/tests/setup.test.ts:1925-1987",
+        "archive/legacy-generation-2026-09-14/root/tests/cli-surface.test.ts:2729-2867"
+      ],
+      "condition_atoms": [
+        "brownfield project setup surfaces import report instead of hiding skipped conflicts",
+        "skip_sub_doc review/stage routes and rerun guidance are observable"
+      ],
+      "fixed_comparison": [
+        "HARNESS-L2-019/L11-019"
+      ],
+      "finding": "Archive tests include project-setup import-report and skip_sub_doc route assertions, which corroborate legacy implementation consumers but do not establish baseline PLAN set/dashboard/skip-gate acceptance required by FR44/OT-23. No archived tests were run and these assertions do not close fixed-pair coverage.",
+      "status": "open_partial_correspondence"
+    }
+  ],
+  "archive_consumer_search": {
+    "search_scope": "archive/legacy-generation-2026-09-14/root/{docs,src,tests} の全文を対象に FR-L1-44, NFR-16 onboarding, OT-23, OT-29, onboarding bootstrap, helix onboarding, skip_sub_doc, baseline PLAN, 初回 import を検索。旧資産を読むのみ。",
+    "result": "FR-L1-44直接詳細はL1 functional row, technical bootstrap, v2 import ledger, OT-23, L3/L4/L6 consumer, migration skill note。NFR-16/OT-29/AT-NFR-16は明示リンクされた別NFR companion。src/testsにsource-qualified FR-L1-44の参照はない。setup sourceとsetup testsは既存実装・過去test-designであり実行証拠に使わない。",
+    "direct_and_linked_evidence_files": [
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/function.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/module-decomposition.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/fr-unit-coverage.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/setup-solo-team.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-66-existing-repo-onboarding-readme.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-251-setup-idempotent-import-report.md",
+      "archive/legacy-generation-2026-09-14/root/src/setup/index.ts",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/nfr.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/technical-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/migration/v2-import-ledger.md",
+      "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L1-operational-test-design.md",
+      "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L3-acceptance-test-design.md",
+      "archive/legacy-generation-2026-09-14/root/docs/skills/data-migration.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-01-business-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-02-functional-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-04-technical-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md"
+    ],
+    "scoped_exclusions": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-02-functional-requirements.md:97,109,123",
+        "reason": "FR-L1-44をoperator role validation、dashboard role display、role-change scenarioとして使うが、FR source line 75の途中導入意味と異なるID衝突/古いplan記述。FR44条件へ採らない。"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-04-technical-requirements.md:107",
+        "reason": "FR-L1-44連動と書かれたU-技術-4eはagent guard/operator role boundaryで、onboarding/import条件ではない。identity collisionとして除外。"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md:34,46-49,217; archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L1-operational-test-design.md:170",
+        "reason": "NFR-16の見出しはonboardingだがD-09 handover success ≥95%、handover logs、D-15 continuation completenessは別のmeasure/consumer。FR44のasset-import completion oracleに読み替えない。AC-NFR-16のstage skip oracle自体はNFR16 linked conditionとして別比較済み。"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-01-business-requirements.md:114; archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md:897; archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md:261",
+        "reason": "D-03 onboarding ≤30 min / BR-TTV-01 ≤15 min/sample repo migration tool/training/CI are separate business/marketing measures and are absent from exact FR-L1-44 row. Numeric SLA and whole-product conditions remain excluded, not inferred into fixed pair."
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md:119",
+        "reason": "FR44 is marked HELIX custom design with no mapped source-reference document. This is origin provenance, not an additional functional atom."
+      }
+    ]
+  },
+  "method_and_limits": {
+    "legacy_consumer_review_extension": "NFR-16 linked condition, technical/bootstrap, v2 migration ledger A-29/A-31/A-32 and §6, OT-23/OT-29/AT-NFR-16, migration-process note, and HBR-P6 package setup were explicitly added. Conditions are classified as direct FR44 consumer detail, separately linked NFR/pillar, conditional downstream process, or excluded ID/measure conflation. No separate source-qualified identity or successor was generated.",
+    "authority_effect": "none; preserve pending rehome and all unresolved source atoms."
+  }
 }
