@@ -2,7 +2,7 @@
   "schema_version": "legacy-confirmed175-three-lane-seven-condition-audit.v1",
   "audit_id": "legacy-confirmed175-three-lane-seven-condition-audit-2026-09-30",
   "audit_mode": "read_only_static_condition_comparison",
-  "audit_revision": "21b3005a35e2b501d339f846b4a44d6706bbc214",
+  "audit_revision": "48eed7f61a12db4b9ce1151059b651baa9840809",
   "authority_effect": "none",
   "population": "confirmed175",
   "scope": {
