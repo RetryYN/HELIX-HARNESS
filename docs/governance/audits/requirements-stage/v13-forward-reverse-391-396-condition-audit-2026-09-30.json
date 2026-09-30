@@ -19,12 +19,12 @@
     "source_inventory": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json",
     "scope_limit": "Six exact source identities only; adjacent §4/§4.1, whole v1.3 source and whole asset population are outside this audit."
   },
-  "created_against_revision": "03edd59de8d0488a797480ac23a6fc1a24f569b1",
+  "created_against_revision": "8424f5e5779a9752d57b794e1e94c34fa379a52f",
   "current_input_pins": {
     "queue": {
       "path": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json",
       "sha256": "sha256:a61ec098a6bd714fcbbb706d0d9afb4e7f2777b114bf23c8056fc130e30f60d9",
-      "basis_commit": "03edd59de8d0488a797480ac23a6fc1a24f569b1"
+      "basis_commit": "8424f5e5779a9752d57b794e1e94c34fa379a52f"
     },
     "baseline_condition_audit": {
       "path": "docs/governance/audits/requirements-stage/legacy-v13-semantic-condition-audit-2026-09-28.json",
@@ -245,26 +245,63 @@
       }
     ],
     "duplicate_scan_at_current_main": {
-      "scanned_revision": "03edd59de8d0488a797480ac23a6fc1a24f569b1",
-      "newly_available_audit": {
-        "pull_request": "#2415",
-        "path": "docs/governance/audits/requirements-stage/v13-development-style-11-condition-audit-2026-09-30.json",
-        "sha256": "sha256:ce2aa162b917c281f78e27ccb5a67f04da484d2648b932aae753cfb25036cf75",
-        "source_item_ids": [
-          "REQSRC-SUP-00055",
-          "REQSRC-SUP-00056",
-          "REQSRC-SUP-00057",
-          "REQSRC-SUP-00059",
-          "REQSRC-SUP-00060",
-          "REQSRC-SUP-00061",
-          "REQSRC-SUP-00062",
-          "REQSRC-SUP-00063",
-          "REQSRC-SUP-00065",
-          "REQSRC-SUP-00068",
-          "REQSRC-SUP-00069"
-        ],
-        "overlap_source_item_ids": []
-      }
+      "scanned_revision": "8424f5e5779a9752d57b794e1e94c34fa379a52f",
+      "newly_available_audits": [
+        {
+          "pull_request": "#2415",
+          "path": "docs/governance/audits/requirements-stage/v13-development-style-11-condition-audit-2026-09-30.json",
+          "sha256": "sha256:ce2aa162b917c281f78e27ccb5a67f04da484d2648b932aae753cfb25036cf75",
+          "source_item_ids": [
+            "REQSRC-SUP-00055",
+            "REQSRC-SUP-00056",
+            "REQSRC-SUP-00057",
+            "REQSRC-SUP-00059",
+            "REQSRC-SUP-00060",
+            "REQSRC-SUP-00061",
+            "REQSRC-SUP-00062",
+            "REQSRC-SUP-00063",
+            "REQSRC-SUP-00065",
+            "REQSRC-SUP-00068",
+            "REQSRC-SUP-00069"
+          ],
+          "overlap_source_item_ids": []
+        },
+        {
+          "pull_request": "#2416",
+          "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-46-50-fixed-l2l11-audit-2026-09-30.json",
+          "sha256": "sha256:a0a0d5e866348d48326a18c36ffd052edfb1f871a332a2377a775b9efff6f507",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+          "source_file_sha256": "sha256:a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+          "source_rows": [
+            {
+              "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-46",
+              "line": 77,
+              "line_sha256": "sha256:0dddfeef3a4d2fed3c017edb22ba27c983476f60244bd8ca508011b3129ce0eb"
+            },
+            {
+              "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-47",
+              "line": 78,
+              "line_sha256": "sha256:e530fc3b4900240812c5e1730a5fd99732f75e22ea137e5b59639e33040788b8"
+            },
+            {
+              "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-48",
+              "line": 79,
+              "line_sha256": "sha256:de1b0859214a34a91b511688dd3d492e493fe8c21e431fe9da103e6987501a3c"
+            },
+            {
+              "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-49",
+              "line": 80,
+              "line_sha256": "sha256:c45abf0c8caeff0a2cd59035e1fc2104a719fe97411635d8857f99c87c4e00a2"
+            },
+            {
+              "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-50",
+              "line": 81,
+              "line_sha256": "sha256:ac5a141c692f5d728de0bb5ddd7b3deb1831b2b8ca9fdaf14863eef63db394db"
+            }
+          ],
+          "source_qualified_overlap_with_selected_rows": []
+        }
+      ]
     }
   },
   "comparison_baselines": {
@@ -310,6 +347,15 @@
             "line": 114,
             "line_sha256": "sha256:193360a5a5427242f2dc9e0df454508dee329ae07c2fd14ee63493b5b18ae8eb"
           }
+        },
+        "sections": {
+          "HARNESS-L2-016": {
+            "lines": [
+              395,
+              400
+            ],
+            "sha256": "sha256:443fa930cbd03429de244f6b786531cbf5500cad8d7cdec9e61a625e24d28e7e"
+          }
         }
       },
       "HARNESS-L11": {
@@ -323,6 +369,15 @@
           "003": {
             "line": 23,
             "line_sha256": "sha256:1ced8f2b5886a2c154bb809f169b8a01f27d9af38abb1697ac0cd96325dba9c5"
+          }
+        },
+        "sections": {
+          "HARNESS-L2-016": {
+            "lines": [
+              290,
+              294
+            ],
+            "sha256": "sha256:427af0a30366785c867562bd202c437abe1eafffcf15f3466589aa86954fe6aa"
           }
         }
       },
@@ -409,6 +464,42 @@
         "source_successor_assignment": false,
         "decision_source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
         "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md"
+      },
+      {
+        "identity": "HARNESS-L2-042 / HARNESS-L11-042",
+        "disposition": "adopted exact pair revision (57-candidate decision)",
+        "registration": "MPR-RC-HARNESS-L2-042-001",
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_record_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "decision_row_line": 47,
+        "decision_row_sha256": "sha256:e1fdf7ebc81a2c7d2775f7324f7bbcdac31e660921013e44672eecddef7d8698",
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_file_sha256": "sha256:111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "l2_section_lines": [
+          972,
+          982
+        ],
+        "l2_section_sha256": "sha256:7da6b3394cbc96bdf028a4738000554e1cf7a946595c4abf43504b24968f34eb",
+        "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_file_sha256": "sha256:3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "l11_section_lines": [
+          711,
+          721
+        ],
+        "l11_section_sha256": "sha256:3ba00726800c61f1de165e48e6f62ea4359a368a50a9e9cd1517deb09df395f9",
+        "mpr_path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "mpr_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "mpr_file_sha256": "sha256:10d0d378ec995e7e597cfeeee029afcb8fe2e75216f53666c210ff05ed7ec03a",
+        "mpr_line": 544,
+        "mpr_line_sha256": "sha256:995b94e81327c009fd3e260519794daa1ff437010161e30b819a792103a832d1",
+        "candidate_semantic_digest": "sha256:7da6b3394cbc96bdf028a4738000554e1cf7a946595c4abf43504b24968f34eb",
+        "management_state": "registered_proposal",
+        "authority_effect": "none",
+        "origin_source_item_id": "REQSRC-SUP-00089",
+        "bounded_relevance_to_this_audit": "Exact adopted pair comparison only: 042 supplies Design Refactor semantic/consumer/oracle/dependency-graph eligibility and prohibits mixing feature additions with Design or Performance Refactor in the same episode; it delegates behavior/contract/requirement preservation and Backflow to fixed HARNESS-L2/L11-016. The 042 source atom set originates at REQSRC-SUP-00089 under old v1.3 §4.2, not REQSRC-SUP-00394.",
+        "source_line_successor_or_closure": "none; no successor or closure is inferred for REQSRC-SUP-00394."
       },
       {
         "identity": "HARNESS-L2-051 / HARNESS-L11-051",
@@ -581,13 +672,18 @@
         "HELIXOS-L2-010:143",
         "HELIXOS-L11-010:30",
         "HELIXOS-L11:HXT-TYPE-13:290",
-        "HARNESS-L2-003/004:111"
+        "HARNESS-L2-003/004:111",
+        "HARNESS-L2-016:395-400",
+        "HARNESS-L11-016:290-294"
       ],
-      "retained": "外部挙動を保つ設計構造の改善をDesign-refactorという独立ticket種別に置き、変更が外部契約/要求へ及べばRedesign等へ戻す。",
-      "meaning_delta": "現行では小さな境界refactorは既存Forward ticket内に置け、大きな独立構造・横断・architecture整理は別ticketにする。旧sourceの「機能追加と混載しない」に対する明示的な混載拒否oracleは固定OS HXTにあるが、Design-refactorとfeatureを同じticketにした具体fixtureはこのsource condition単位に固定されていない。",
-      "exception_or_numeric": "外部挙動不変が適用条件。外部契約変更ならRedesign、局所的な小変更ならForward内refactorが可能。",
-      "counterexample": "featureを追加しながらDesign-refactorとして意味変更を隠す、または小さい局所構造修正も必ず独立Design-refactor ticketに分離する。",
-      "residual": "一ticket内でfeatureと構造改善が混載していないこと、外部挙動/DB semantics/要求の差分がないことをsource/target revisionごとに確かめるoracle。"
+      "retained": "固定HARNESS-L2/L11-016はRefactor範囲で振る舞い・public contract・要求を保つoracleと、差分があれば左層へBackflowする契約を持つ。別判断で採択されたexact HARNESS-L2/L11-042は、Design Refactor判定にsemantic similarity・consumer・oracle・dependency graphを要求し、Design/Performance Refactorと機能追加を同一episodeへ混載しない条件を補う。042のsource atom起点は旧§4.2のREQSRC-SUP-00089であり、00394へのsuccessorではない。",
+      "meaning_delta": "旧00394の「外部挙動不変」と「機能追加を混載しない」には、固定016のbehavior/public-contract/requirement preservation oracle、および採択042のDesign Refactor eligibility・same-episode non-mixing条件がboundedに近接する。042は016の保存/Backflow契約を参照し、対象scope/revisionにおける判定根拠とepisode分離を特定する。各pairの採択はこの旧source identityの意味採択やsuccessor割当ではない。",
+      "exception_or_numeric": "Refactor成立時は指定scopeのobserved behavior・public contract・requirementsを保つ。要求/契約/境界の意味を変える必要があれば016のBackflow先へ戻す。042はDesign/Performance Refactorのepisodeへfeatureを混在させず、追加機能を別episodeに分ける。",
+      "counterexample": "外部挙動・public contract・要求の差分をRefactorとして通す、または機能追加をDesign/Performance Refactorと同じepisodeに含めるのは不成立。逆に固定pairだけから局所小変更まで常に独立ticket化する義務は生成しない。",
+      "residual": "016と042のbounded oracleは比較根拠を補うが、この旧source rowに対する具体scope/source-target revisionを固定したfixture・receiptは未提示。対象revisionごとに外部behavior/public contract/requirements preservationを016の対oracleで確かめ、042が適用されるDesign/Performance Refactor episodeではsemantic/consumer/oracle/graph根拠とfeature非混載を確認する必要がある。042のoriginは別source identity REQSRC-SUP-00089であり、00394へsuccessor・closureを割り当てない。",
+      "later_adopted_pairs": [
+        "HARNESS-L2-042 / HARNESS-L11-042"
+      ]
     },
     {
       "source_item_id": "REQSRC-SUP-00395",
@@ -650,7 +746,7 @@
       {
         "check": "non-overlap",
         "result": "passed",
-        "detail": "No selected IDs intersect #2411 §6 (17 exact IDs), #2413 §2 (12 exact IDs), v1.3 §4.6.1 package-consumer residual audit (11 IDs at lines 300, 318–333), or any v13 focused condition audit present at main 03edd59de8d0488a797480ac23a6fc1a24f569b1; this includes the separately pinned #2415 development-style audit (11 IDs, 0 overlap)."
+        "detail": "No selected IDs intersect #2411 §6 (17 exact IDs), #2413 §2 (12 exact IDs), v1.3 §4.6.1 package-consumer residual audit (11 IDs at lines 300, 318–333), or focused audits present at main 8424f5e5779a9752d57b794e1e94c34fa379a52f. This includes #2415 (11 v1.3 IDs, 0 intersection) and #2416 FR-L1-46..50 (5 exact source-qualified identities from a different archive path/file tuple; 0 source-qualified intersection)."
       },
       {
         "check": "fixed f6 pair pins",
@@ -681,6 +777,11 @@
         "check": "separate 11-candidate decision and HARNESS-L2/L11-051 pair",
         "result": "passed",
         "detail": "The 11-record SHA-256, declared 5aa100 source repository revision, decision row line/digest, exact L2/L11 pair file SHA, section bounds/digests and MPR registration are independently pinned. The relation is a generic stage-exit evidence comparison only; no REQSRC successor or closure."
+      },
+      {
+        "check": "REQSRC-SUP-00394 fixed 016 and adopted 042 comparison pins",
+        "result": "passed",
+        "detail": "Fixed f6 L2/L11-016 section bytes and adopted 318ec L2/L11-042 sections are pinned with 57-decision record/row 47 and MPR registration line 544. 042 source atoms originate at REQSRC-SUP-00089; no successor/closure is inferred for 00394. These historical pair/decision pins are unchanged by the current-main rebase."
       }
     ],
     "execution_boundary": "No legacy CLI, runtime, test, CI, or archived executable was run."

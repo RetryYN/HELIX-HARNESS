@@ -2,13 +2,13 @@
 
 status: `six-condition-comparison-only`
 authority_effect: `none`
-created_against_revision: `03edd59de8d0488a797480ac23a6fc1a24f569b1`
+created_against_revision: `8424f5e5779a9752d57b794e1e94c34fa379a52f`
 
 ## 範囲と選定
 
 旧archive v1.3の§5から、Forward/Reverseの方向・routing・refactor・横断loopを記す連続6行（物理行507–512）だけを比較した。source identityは `REQSRC-SUP-00391`〜`00396`。archive file SHA-256は `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`、assetは `LEGACY-ASSET-02319C2481B9E01698D5`。各IDのline text・line SHA-256・queue status/ref countは[JSON](v13-forward-reverse-391-396-condition-audit-2026-09-30.json)にsource-qualified tupleで記録した。
 
-6行はqueueで全て `condition_status=unresolved`、`primary_residual`、`unresolved_for_closure_work`、既存個別監査ref 0。#2411 §6の17件（`REQSRC-SUP-00398`, `00399`, `00400`, `00403`–`00405`, `00407`, `00409`–`00411`, `00414`, `00418`, `00421`, `00424`, `00430`–`00432`）、#2413 §2の12件（`REQSRC-SUP-00034`–`00045`）、旧v1.3 §4.6.1 package-consumer residual 11条件の個別監査（source physical lines 300, 318–333から、`REQSRC-SUP-00225`, `00242`–`00246`, `00248`–`00249`, `00251`, `00255`–`00256`）と重複しない。既存focused v1.3監査群とのidentity overlapも0件。#2415でmainへ入った開発style 11条件監査（JSON SHA-256 `ce2aa162b917c281f78e27ccb5a67f04da484d2648b932aae753cfb25036cf75`、対象ID `REQSRC-SUP-00055`, `00056`, `00057`, `00059`–`00063`, `00065`, `00068`, `00069`の11件）もmain `03edd59de8d0488a797480ac23a6fc1a24f569b1`上で照合し、この6 IDとの重複は0件。
+6行はqueueで全て `condition_status=unresolved`、`primary_residual`、`unresolved_for_closure_work`、既存個別監査ref 0。#2411 §6の17件（`REQSRC-SUP-00398`, `00399`, `00400`, `00403`–`00405`, `00407`, `00409`–`00411`, `00414`, `00418`, `00421`, `00424`, `00430`–`00432`）、#2413 §2の12件（`REQSRC-SUP-00034`–`00045`）、旧v1.3 §4.6.1 package-consumer residual 11条件の個別監査（source physical lines 300, 318–333から、`REQSRC-SUP-00225`, `00242`–`00246`, `00248`–`00249`, `00251`, `00255`–`00256`）と重複しない。既存focused v1.3監査群とのidentity overlapも0件。#2415でmainへ入った開発style 11条件監査（JSON SHA-256 `ce2aa162b917c281f78e27ccb5a67f04da484d2648b932aae753cfb25036cf75`、対象ID `REQSRC-SUP-00055`, `00056`, `00057`, `00059`–`00063`, `00065`, `00068`, `00069`の11件）もmain `03edd59de8d0488a797480ac23a6fc1a24f569b1`上で照合し、この6 IDとの重複は0件。main `8424f5e5779a9752d57b794e1e94c34fa379a52f`で加わった#2416のFR-L1-46..50監査もsource-qualified tuple（archive source path/file SHA/line/line SHA）で照合し、別source populationの5 identityすべてに交差はない。JSONにartifact SHAと各line pinを記録した。
 
 旧consumerとして、archive `process/modes/README.md` lines 29–47、`process/modes/reverse.md`、`process/modes/scrum.md`を読んだ。READMEはForwardを主線とする分類索引、Reverseは旧R0–R4とrouting/pair-freeze、Scrum文書はSR0–SR4とstyle/slice条件を記述する。各file SHAと参照役割はJSONに記録した。archive source/consumerは読取資料としてのみ使い、実行していない。
 
@@ -48,9 +48,11 @@ OSのReverse目的・routingは保持される。採択038は選択source scope�
 
 ### `REQSRC-SUP-00394` — 外部挙動不変の構造改善をDesign Refactorにし、機能追加と混載しない
 
-現行OSにはDesign-refactor ticketがあり、意味変更を伴う場合はRedesign等へrouteする。一方、小さな局所refactorは既存Forward ticket内に置け、独立・大規模・横断的な構造改善は別ticketとするため、分離粒度が変化している。
+固定 `HARNESS-L2/L11-016` は、Refactor対象scopeのobserved behavior・public contract・要求を対oracleで保ち、意味差分があれば左層へBackflowする契約を持つ。L2 section lines 395–400（SHA-256 `443fa930cbd03429de244f6b786531cbf5500cad8d7cdec9e61a625e24d28e7e`）、L11 lines 290–294（`427af0a30366785c867562bd202c437abe1eafffcf15f3466589aa86954fe6aa`）をf6のfile SHAと併せて固定した。
 
-反例はfeatureを加えながらDesign-refactorとして意味変更を隠すこと、または局所的な小修正まで常に独立ticket化すること。残差は同一ticketで機能追加と構造改善が混ざらないこと、外部挙動/public surface/DB semantics/要求に差分がないことを対象revisionごとに確かめるoracle。
+別の57候補判断で採択されたexact `HARNESS-L2/L11-042` は、Design Refactorの判定にsemantic similarity・consumer・oracle・dependency graphを求め、Design/Performance Refactorへ機能追加を同一episodeで混載しない条件を明示する。対象はpair source revision `318ec4a04abb3c1cc17111b3d939f913facd5fd3`。decision record SHA-256 `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`、採択row 47 SHA `e1fdf7ebc81a2c7d2775f7324f7bbcdac31e660921013e44672eecddef7d8698`、L2 section lines 972–982 SHA `7da6b3394cbc96bdf028a4738000554e1cf7a946595c4abf43504b24968f34eb`、L11 lines 711–721 SHA `3ba00726800c61f1de165e48e6f62ea4359a368a50a9e9cd1517deb09df395f9`。MPR `MPR-RC-HARNESS-L2-042-001` はそのrevisionのregister line 544（file SHA `10d0d378ec995e7e597cfeeee029afcb8fe2e75216f53666c210ff05ed7ec03a`、line SHA `995b94e81327c009fd3e260519794daa1ff437010161e30b819a792103a832d1`）。042のsource atom起点は旧§4.2の別identity `REQSRC-SUP-00089`。042と00394の意味近接は限定比較であり、旧source lineのsuccessorではない。
+
+反例は外部挙動/public contract/要求を変えながらRefactorとして通すこと、またはfeatureをDesign/Performance Refactorと同一episodeへ含めること。残差は、このsource rowに結び付く対象scope・source/target revisionの具体fixture/receipt。対象revisionごとに016の対oracleでbehavior/contract/requirement preservationを、042が適用されるepisodeでは判定根拠とfeature非混載を確かめる必要がある。二つの採択pairから00394のsuccessorやclosureは生成しない。局所的な小修正まで常に独立ticket化する義務も導かない。
 
 ### `REQSRC-SUP-00395` — Infinity Loopの3軸を通じて最終的にForward正本へ収束
 
@@ -70,4 +72,4 @@ OSはHARNESS工程部品の動的workflow合成と途中結果での差戻しを
 
 6行の比較statusは `covered: 0 / partial: 6 / missing: 0`。これはこの比較群内の意味評価であり、queueのstatusを書き換えるものではない。正式successor 0、採択主張なし、authority effectなし、L11実行/受入主張なし、stage completion/closure主張なし。
 
-current-input SHA-256とqueue basis commitはmain `03edd59de8d0488a797480ac23a6fc1a24f569b1`に更新し、旧archive source、固定f6 L2/L11、後発318ec/5aa100 decision/pair pinsは固定した。#2415の開発style 11条件artifactをSHA-256付きで重複走査へ追加し、選択6 IDとの重複0件を確認した。JSON構文、ID tuple/source line SHA、queue status/ref count、non-overlap、固定/後発/current input hashを静的確認する。旧CLI/runtime/test/CIは実行しない。
+current-input SHA-256とqueue basis commitはmain `8424f5e5779a9752d57b794e1e94c34fa379a52f`に更新し、旧archive source、固定f6 L2/L11、後発318ec/5aa100 decision/pair pinsは固定した。#2415の開発style 11条件と#2416のFR-L1-46..50 artifactをSHA-256・source-qualified identities付きで重複走査へ記録し、選択6行との交差0件を確認した。JSON構文、ID tuple/source line SHA、queue status/ref count、non-overlap、固定/後発/current input hashを静的確認する。旧CLI/runtime/test/CIは実行しない。
