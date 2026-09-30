@@ -2855,7 +2855,7 @@
           "line_sha256": "8262b7450d8eb68154aa0123f8c829d7b882cd46450676a46de458030ee5ca25",
           "text": "| `HARNESS-L2-046` | 採択 | `MPR-RC-HARNESS-L2-046-001` | `docs/helix-harness/L2-requirements/product-requirements.md` | `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09` | `sha256:47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e` | `HARNESS-L2-046` | `docs/helix-harness/L11-acceptance/product-acceptance.md` | `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5` | `sha256:a8e99f7df7166566c04b1113b045851d8417e17e8078c034f8f2a34ebfe4f37f` | `docs/governance/audits/requirement-registration/harness-fullv-scrum-coverage-receipt-2026-09-28.json` |"
         },
-        "l2_candidate_document_digest_from_decision": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09e",
+        "l2_candidate_document_digest_from_decision": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
         "l11_acceptance_document_digest_from_decision": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
         "audit_baseline_revision": "5bfcd7db31f4cceb9871d20608f1eba9007f7405",
         "is_part_of_fixed_f6_comparison": false
