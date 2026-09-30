@@ -1,0 +1,144 @@
+{
+  "schema_version": "confirmed175-condition-audit.v1",
+  "audit_id": "legacy-confirmed175-dac-cluster-a-fixed-l2l11-audit-2026-10-01",
+  "created_at": "2026-10-01",
+  "audit_mode": "read_only_source_to_fixed_l2_l11_condition_comparison",
+  "created_against_revision": "29bbd42f8c5d4399776b9b5cfc4fc18f789ea300",
+  "origin_main_revision": "29bbd42f8c5d4399776b9b5cfc4fc18f789ea300",
+  "fixed_l2_l11_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "authority_effect": "none",
+  "scope": {
+    "population": "confirmed175",
+    "count": 5,
+    "source_qualified_prefix": "helix/L1-requirements/document-authority-census-requests.md::",
+    "legacy_asset_id": "LEGACY-ASSET-D201753B1A0CC6EA3980",
+    "source_file_sha256": "81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66",
+    "fixed_target_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+  },
+  "source_authority_and_carry_forward": {
+    "source_status": "confirmed",
+    "carry_forward_state": "preserved_pending_rehome",
+    "successor_requirement_ids": [],
+    "requirement_change_authority": "explicit_human_decision_only",
+    "identity_holding_path": "docs/governance/legacy-migration/identity/legacy-confirmed-requirement-identity-carry-forward.jsonl",
+    "condition_holding_path": "docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl",
+    "asset_ledger_path": "docs/governance/legacy-asset-disposition.jsonl",
+    "asset_ledger_row": 421,
+    "asset_ledger_row_sha256": "eeace2db2a8183a6563428d4c486dedeb7a0ba0286703b195948c5cd4e749f56",
+    "asset_ledger_revision": 3,
+    "source_holding_registration_id": "MPR-SH-CONFIRMED-003"
+  },
+  "legacy_sources": [
+    {
+      "role": "L1 requirement source",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md",
+      "file_sha256": "81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66",
+      "pins": [
+        {"identity": "DAC-FR-001", "line": 48, "line_sha256": "68a363a3d973eb25c14a153fc8fbb4937ede547080bb5cd526c6a40314fa5e4e", "exact_text": "| `DAC-FR-001` | Git treeのexact HEADから対象artifactを列挙し、working treeや未追跡fileを正本inventoryへ混ぜない。 |"},
+        {"identity": "DAC-FR-002", "line": 49, "line_sha256": "af0d437b6007d90e2ccd2e41d2793a5c2187ad6a0ee67aa6906bd63f8eacdc88", "exact_text": "| `DAC-FR-002` | artifact classとlifecycle dispositionを別軸で管理し、classごとに必要bindingを変える。 |"},
+        {"identity": "DAC-FR-003", "line": 50, "line_sha256": "77e1d9bc1f98f2a1f1cf0094dd280fb83d001ffe8ee422f1c951da2d72898212", "exact_text": "| `DAC-FR-003` | authority bindingの参照先を再帰検査し、存在するが失効・互換・履歴化したtargetへのcurrent edgeを拒否する。 |"},
+        {"identity": "DAC-NFR-002", "line": 64, "line_sha256": "fa28c9426e876631ba56fae5df7c7e04313cd18e28f70c1693d928587f5f6c8f", "exact_text": "| `DAC-NFR-002` | compatibility、historical、referenceの存在を欠陥扱いせず、active decision利用だけを拒否する。 |"},
+        {"identity": "DAC-NFR-003", "line": 65, "line_sha256": "da2668a3370782ec0a991942be7621a7b669e9bb5205444321bead88bf16b816", "exact_text": "| `DAC-NFR-003` | 全Markdownへ同じmetadataやRequirement IDを一律要求しない。 |"}
+      ]
+    },
+    {
+      "role": "L3 requirement conditions",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/document-authority-census-requirements.md",
+      "file_sha256": "e05adb62d9ad07507f962cf060b3dbe66c161afc3f09391b29b3144ced57535c",
+      "pins": [
+        {"condition": "DAC-R-001", "line": 56, "line_sha256": "86156a600c084559296844ec0a8c87866cff454bfb3a60a9d78fa8237830f172", "exception_or_detail": "tracked exact HEAD; path/blob identity/digest"},
+        {"condition": "DAC-R-002", "line": 57, "line_sha256": "97466e458260e2f4dfa07f1793893332cb819db01a3512853d42bed985686331", "exception_or_detail": "path alone cannot infer class; class-specific schema/catalog/frontmatter/owner registry; conflict is ambiguous and rejected"},
+        {"condition": "DAC-R-003", "line": 58, "line_sha256": "01a076f5fb7870623cb96ba2e7645cc73e77f6bb978461797554c1587add83dc", "exception_or_detail": "do not trust self-claim; exact join to current authority index, candidate registry, archive boundary and generation provenance"},
+        {"condition": "DAC-R-004", "line": 59, "line_sha256": "819423fb1770cb1849c6929e78c932c650ca4f8ba4965b97012d28f8d6a8bda1", "exception_or_detail": "recursive disposition/epoch/owner/digest validation; reject cycle, dangling and dead authority"},
+        {"condition": "DAC-R-013", "line": 68, "line_sha256": "fd19ca24e844a826430cd786fead6d60f1f0729f0923f706355484aff264b66d", "exception_or_detail": "input_policy is distinct from lifecycle; selected temporary/migration/compatibility/historical input needs owner, expiry or retirement condition, and consumer scope; do not promote to current authority/output or infer missing facts"}
+      ],
+      "metadata_applicability": "L3 separates class-specific schema and input_policy; it does not impose identical metadata on every Markdown file."
+    },
+    {
+      "role": "L10 acceptance oracle",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/document-authority-census-acceptance.md",
+      "file_sha256": "d8cddea062fa44774a44f1c2cfff5f5d1f01cd186b4abdf8d631b9577f6fd4a6",
+      "approval_record_id": "L3-PO-1381-001",
+      "approved_candidate_head": "ab6126a89262c91ecc4b87a0b8f0b9724917c84b",
+      "pins": [
+        {"oracle": "DAC-AC-001", "line": 26, "line_sha256": "b12fff1120038496f5acfe10eb671c3fc5e5d02a693863fa0380cca557db605b", "negative": "untracked or dirty-working-tree-only file does not enter exact HEAD inventory"},
+        {"oracle": "DAC-AC-002", "line": 27, "line_sha256": "18891a7d49eff193b267b77f24323eca575dbe5b7c3dd67550119b4baf766608", "negative": "tracked blob content change changes artifact digest and inventory revision"},
+        {"oracle": "DAC-AC-003", "line": 28, "line_sha256": "23ae052d8e4639bee6889220f49b1c18ce98313f4bc920d46c5a2639e64ec8d8", "negative": "path and catalog class conflict fails closed as ambiguous"},
+        {"oracle": "DAC-AC-004", "line": 29, "line_sha256": "9073c8577b89de857bcbb9620e4350d743f0dfde3cb20fd4ceb143279c83cd59", "negative": "historical frontmatter self-claim cannot promote to current authority"},
+        {"oracle": "DAC-AC-005", "line": 30, "line_sha256": "52caacfc13a6b8721097a3819f7e8d5b829ccc7c85962e55adb6baa6692d2e44", "negative": "current document edge to an existing compatibility target is rejected as dead authority"},
+        {"oracle": "DAC-AC-006", "line": 31, "line_sha256": "d0cde415e939f2cbc4effe5ec38b9f5107b9e31d529b3163515dc3d30d164da1", "negative": "cycle and dangling target produce distinct findings"},
+        {"oracle": "DAC-AC-012", "line": 37, "line_sha256": "e7bc1ff5bad012f8bfb9987c533a3a2436607f751f9ba8ff5a4eb69a54a4e80f", "negative": "old historical document without consumers is not misclassified as high severity or deletion request"},
+        {"oracle": "DAC-AC-013", "line": 38, "line_sha256": "cd01391d828a061ab964a108cd9a8f632ce0d1d03c7c95fcb7235e7226d42560", "negative": "startup-reachable candidate read as current is rejected at P0"},
+        {"oracle": "DAC-AC-021", "line": 46, "line_sha256": "8976df8d1ea7352f5252594f4c7a5a1832b15595babaf41152e5657083311598", "negative": "temporary input missing owner, expiry or retirement condition cannot become current input"},
+        {"oracle": "DAC-AC-022", "line": 47, "line_sha256": "67398a84658d8517861f43f0bbda92039cf8b8542ec6b74c088f1cf9483ac5c4", "negative": "expired temporary/migration input from active consumer stays UNKNOWN or typed-expired finding; no current authority edge"},
+        {"oracle": "DAC-AC-023", "line": 48, "line_sha256": "643d4da00ea74baf9d2dc1f6af45ffa160c9f448aefabbb29ca3e79bbeb3727b", "negative": "temporary/compatibility/historical input projected as current authority/output is rejected, not offset by legacy success"}
+      ]
+    }
+  ],
+  "fixed_target": {
+    "authority_reference": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+    "os_pair": {
+      "requirement_id": "HELIXOS-L2-015",
+      "decision_status": "adopted_in_fixed_f6_candidate_set",
+      "l2": {"path": "docs/helix-os/L2-requirements/governance-requirements.md", "file_sha256_at_audit_head": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf", "lines": {"642": "1f89e6f1f9b7335b321c2a93b33c882149fe7798629ed97fd8d7cc8f556e80c7", "645": "115784d475bd923613401a7ca120936ee64bee0c9342a1f98fe84639123ba05e", "646": "f9a304e6419a639b2e7996e91148039715bde86f2dc33127b0857ac6cf5cacb2", "647": "1b2333f56633d63e389c9174601eee0991a3a71f7167f09918a3b415e1fe9a0e", "649": "d12aab733bd3c9d62c3dd0afabfe28c1f9a905cc13fc7f1b44705c94686493be"}},
+      "l11": {"path": "docs/helix-os/L11-acceptance/governance-acceptance.md", "file_sha256_at_audit_head": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112", "lines": {"324": "7a9013b9883ef3a38f8d1eb4b3dade78fb0db3bfc5a0ba7e8d9ecdddd5dfe1a7", "327": "c18756917865f98b590fc234ee6e1ef35d6e9622c5c3a49e0dfe9958b04add20", "328": "b04efd50eb796574bc7d9d4ff1af8b2b6e1d51cbe9fba005eb557a1bb9f60253", "329": "d7127f3fccb0134663a99db7afd1eeb128c96e262b7c379ad99348194d29279e"}}
+    },
+    "harness_pairs": [
+      {
+        "requirement_id": "HARNESS-L2-010",
+        "relation": "shared pack boundary contract; adjacent support only",
+        "l2": {"path": "docs/helix-harness/L2-requirements/product-requirements.md", "file_sha256_at_audit_head": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6", "line": 324, "line_sha256": "6b0c7242b9a923b14b6834e66dc23aa5563b7838a4cde5ce31a8133936ae3153"},
+        "l11": {"path": "docs/helix-harness/L11-acceptance/product-acceptance.md", "file_sha256_at_audit_head": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e", "line": 205, "line_sha256": "45e5b5df4e631edc08d2101c46ff517936d5277efe41a8726d64909666c9e00e"}
+      },
+      {
+        "requirement_id": "HARNESS-L2-011",
+        "relation": "shared call/input/scope/compatibility/receipt contract; adjacent support only",
+        "l2": {"path": "docs/helix-harness/L2-requirements/product-requirements.md", "file_sha256_at_audit_head": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6", "line": 325, "line_sha256": "1f53860de4e9ca502e659706c84e7a1a8943d520698bd8d3f5266dcb725fe5aa"},
+        "l11": {"path": "docs/helix-harness/L11-acceptance/product-acceptance.md", "file_sha256_at_audit_head": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e", "line": 206, "line_sha256": "beeac9a7d9da69080ce4a346cbc1f9472e271ab778f16c0a245950532dd6c24e"}
+      }
+    ],
+    "meaning": "OS-015 stores source identity/revision/digest/authority and unresolved conflicts. HARNESS-010/011 define pack identity and use/call conditions. None specifies this census's tracked exact-HEAD inventory, class-specific authority resolver/binding schema, recursive dead-authority edge scanner, or metadata-applicability rules."
+  },
+  "condition_comparison": [
+    {"identity": "DAC-FR-001", "result": "partial_general_contract_only", "covered_adjacent": "OS-015 tracks target/source identity, revision and digest; HARNESS-010/011 fix pack revision/inputs and call boundary.", "uncovered": "No adopted L2/L11 requires census enumeration from tracked exact HEAD or exclusion of working-tree/untracked files, nor the AC-002 digest/inventory revision oracle.", "negative_scope": "Do not infer an exact-HEAD scanner or complete inventory from provenance, pack inputs, or source-read boundaries."},
+    {"identity": "DAC-FR-002", "result": "partial_general_contract_only", "covered_adjacent": "OS-015 records source/authority/projection; HARNESS-010 distinguishes pack identity, version, dependencies, scope and owner.", "uncovered": "No adopted pair supplies the DAC class resolver, separate artifact-class/lifecycle/input-policy schema, class-specific binding requirements, exact authority/catalog/provenance joins, ambiguity rejection, or frontmatter-self-claim negative oracle.", "negative_scope": "Do not infer scanner class binding from generic pack identity or management metadata."},
+    {"identity": "DAC-FR-003", "result": "partial_general_recording_plus_local_near_candidate", "covered_adjacent": "OS-015 preserves authority provenance, revision/digest and unresolved conflicts; HARNESS-011 checks declared capability/contract/dependency versions for a selected call.", "uncovered": "Fixed adopted pairs do not recursively inspect every authority binding target or reject current edges to owner-classified revoked, compatibility or historical targets; cycle/dangling/dead-authority oracles are absent.", "near_candidate": "HELIXOS-L2-106/L11-106 addresses a selected, explicitly supplied binding/reference chain only. It excludes repository-wide census, added compatibility/expiry/history rules and unprovided targets; not closure or a formal successor."},
+    {"identity": "DAC-NFR-002", "result": "partial_nonfinding_context_only", "covered_adjacent": "OS-015 distinguishes authority source and unresolved/stale cases; OS-110 later has a bounded nonfinding boundary for explicit compatibility/historical/reference artifacts without an active decision edge.", "uncovered": "Fixed adopted L2/L11 does not establish that mere artifact existence is non-defective while active-decision use of those target classes is rejected. OS-110 does not add that rejection rule.", "negative_scope": "No severity/deletion finding from existence alone; active decision edge remains the missing condition to evaluate."},
+    {"identity": "DAC-NFR-003", "result": "not_specified_by_fixed_pairs", "covered_adjacent": "OS-015 records fields required by its own managed authority record; HARNESS-010/011 fields apply to the selected pack/call contract.", "uncovered": "No fixed pair defines applicability of metadata or Requirement IDs by Markdown document class/consumer relation or tests that every Markdown need not share identical fields.", "negative_scope": "Do not generalize OS-015 or HARNESS pack/call metadata into a universal Markdown rule."}
+  ],
+  "later_adopted_row_proximity_screen": {
+    "decision_index": [
+      {"cohort": "57 candidates", "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29", "decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md", "candidate_scope": 57, "exact_source_qualified_identity_matches": 0, "near_rows_for_selected_five": []},
+      {"cohort": "11 candidates", "decision_record_id": "HDEC-REQUIREMENTS-11-2026-09-29", "decision": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md", "adopted_count": 10, "deferred_count": 1, "exact_source_qualified_identity_matches": 0, "near_rows_for_selected_five": []},
+      {"cohort": "live26", "decision_record_id": "HDEC-REQUIREMENTS-LIVE26-2026-09-30", "decision": "docs/governance/decisions/po-decision-2026-09-30-live26.md", "approved_count": 26, "exact_source_qualified_identity_matches": 0, "near_rows_for_selected_five": ["HELIXOS-L2-106", "HELIXOS-L2-108", "HELIXOS-L2-109", "HELIXOS-L2-110"]}
+    ],
+    "near_rows": [
+      {"requirement_id": "HELIXOS-L2-106", "registration_id": "MPR-RC-HELIXOS-L2-106-001", "po_decision": "adopted limited candidate", "l2_section_sha256": "b1f3d62a007f954a788602fbff45fa70d3b8bb4b2fec547113a0db30d9598fcc", "l11_section_sha256": "bc577dcbe57f06daefe80618ee2787012794e2489d46b32c7b0fcb85d32bc835", "receipt": "docs/governance/audits/requirement-registration/dac-fr-003-authority-binding-coverage-receipt-2026-09-29.json", "relation": "covers one explicitly selected DAC-FR-003 atom as candidate input; not repository census, owner transfer, formal successor, or full FR-003 closure"},
+      {"requirement_id": "HELIXOS-L2-108", "registration_id": "MPR-RC-HELIXOS-L2-108-001", "po_decision": "adopted limited candidate", "l2_section_sha256": "c02375c00cf35908f37dd50c82d017a42c987282535852e34b28797671670a0d", "l11_section_sha256": "bdfa0e185074583db9e0150e41de12069ed10d1a91f006bab0793578ca81a36e", "relation": "adjacent DAC-FR-004 only; explicit artifact/consumer scope and owner-provided forward relation; unenumerated scope is not complete"},
+      {"requirement_id": "HELIXOS-L2-109", "registration_id": "MPR-RC-HELIXOS-L2-109-001", "po_decision": "adopted limited candidate", "l2_section_sha256": "29d7ec73b53e94e73e02f0303402ab40bf216dca36f9432280cc52b26fa96d80", "l11_section_sha256": "0af4980b177227774ee6fa90e1c2eb25d3f086da850e1184e848c70497ca25d3", "relation": "adjacent DAC-FR-005 only; one selected source-generator-artifact-consumer chain, not complete provenance inventory"},
+      {"requirement_id": "HELIXOS-L2-110", "registration_id": "MPR-RC-HELIXOS-L2-110-001", "po_decision": "adopted limited candidate", "l2_section_sha256": "fe250f3cb0be2fdd417904f59041c4c39535f2060394f569b2c9bea8d86e43be", "l11_section_sha256": "56926a9d2aad1e679c0fe7d2d0c7858fd96ba627351130c6dd795dae18452d34", "relation": "one selected semantic source/scope and supplied active-consumer edges; recognizes a bounded nonfinding case but explicitly adds no DAC-NFR-002 refusal rule"}
+    ],
+    "direct_identity_match_count": 0,
+    "authority_note": "PO adoption of these separate candidates neither converts them into DAC successors nor closes the selected source identities."
+  },
+  "duplicate_check": {
+    "method": "Searched confirmed175 population row, identity/semantic carry-forward registries, and existing requirements-stage audit Markdown/JSON for the exact five source-qualified identities. Existing population entries are inventory evidence, not condition-level comparison records.",
+    "exact_prior_condition_audit_for_same_five": false,
+    "related_context": ["legacy-confirmed175-full-audit-2026-09-28", "dac-fr-003-authority-binding-recursive-target-2026-09-29", "legacy-confirmed175-dac-br01-05-fixed-l2l11-audit-2026-10-01", "legacy-confirmed175-dac-nfr-three-condition-audit-2026-09-30"]
+  },
+  "non_claims": [
+    "This audit does not create or assign successor_requirement_ids; the five source identities remain preserved_pending_rehome.",
+    "It does not change source authority, ownership, target adoption, L3 approval, implementation, execution, scanner acceptance, requirement-stage completion or closure.",
+    "Later PO decisions, MPR registration, nearby adopted candidates and receipts are recorded as separate evidence and do not expand their scope into the five source identities.",
+    "Legacy runtime, CLI, hook, test and CI were not executed."
+  ],
+  "static_validation_expected": {
+    "source_identity_count": 5,
+    "source_file_sha256_matches": true,
+    "pinned_source_line_sha256_matches": true,
+    "pinned_target_line_sha256_matches": true,
+    "json_valid": true,
+    "scaffold_validate": "pass",
+    "git_diff_check": "pass"
+  }
+}
