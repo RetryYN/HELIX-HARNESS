@@ -1,6 +1,6 @@
 # confirmed175 FR-L1-21/23/51 固定f6条件照合監査（2026-10-01）
 
-旧source-qualified identityをそれぞれ分け、旧source・archive consumersと固定f6 L2/L11を条件単位で照合したread-only静的監査。監査基準mainは`a3340369530d06a636db6feb4a99a685a7c2c070`、固定pair revisionは`f6dad2a33e24f000b87d7f09b8d40288257e74cc`。[JSON](legacy-confirmed175-fr-l1-21-23-51-fixed-f6-audit-2026-10-01.json)に行・consumer・pair・decision/MPR rowのline/file SHAを記録した。
+旧source-qualified identityをそれぞれ分け、旧source・archive consumersと固定f6 L2/L11を条件単位で照合したread-only静的監査。監査基準mainは`a3340369530d06a636db6feb4a99a685a7c2c070`、固定pair revisionは`f6dad2a33e24f000b87d7f09b8d40288257e74cc`。[JSON](legacy-confirmed175-fr-l1-21-23-51-fixed-f6-audit-2026-10-01.json)にsource・consumer・pairのfile/line SHA、decisionとMPR registerのpath/row line SHAを記録した。
 
 3行はいずれもasset `LEGACY-ASSET-6B6C5CB0E481BE01088B`内にあるが、別々のFR identityである。archive source file SHA-256は`a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008`。行SHA-256はFR-L1-21=`b54119ad033bcb2f01c1977710d76249ab80a2789422ed02afa3c54d6ac3799b`（52行）、FR-L1-23=`920a9745ec190e871ab29af8463a9ab9cb991c43fbe723740d5b2f10dbe38b71`（54行）、FR-L1-51=`9f83dd9bd0baae0d6fca3e07f11fdc9756249875039a82aa77850a1c2a769e7a`（82行）。source authorityはconfirmed、carryは`preserved_pending_rehome`、各identityのsuccessorは未割当。
 
