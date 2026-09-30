@@ -124,10 +124,10 @@
 - 旧source: `archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md:88`; line SHA-256 `sha256:d9bc831c20f6dbd0b163b64fdce36553ec4fa09ba4d2ed70e2115ab06dfbda92`.
 - 原文: TDD、Reverse、受入条件、migration、rollback、security、release evidence、L12運用を省略しない。
 - 意味: Scrumを品質工程の省略に使わず、TDD、Reverse、受入条件、migration、rollback、security、release evidence、L12運用を省略しない。
-- 保持点: 固定L2-002/003/005は方式横断の品質条件、工程証拠、検証義務、Release境界を持つ。後発L2-034は適用範囲内のmeasurement contractだけ。
+- 保持点: 固定L2-002/003/005は方式横断の品質条件、工程証拠、検証義務、Release境界を持つ。後発L2-034は適用範囲内のmeasurement contractだけ。採択L2-046/L11-046のScrum枝はProduction Scrumを選んだscope、または許可された合成内でScrumを実際に適用する部分に限り、Scrum Reverseによるworkflow/L1–L5へのbackfillとSR4 pair-freeze前のrelease-ready禁止を定め、Reverseとrelease evidenceの非省略に近接する。
 - 数値・例外: 8義務領域を列挙。各案件で全項目の全作業が常時適用とは限定されない。
 - 反例: 短いsliceを理由にmigration/rollback/security/release evidence/L12を一括免除する。
-- 未解消残差: 列挙義務のslice適用条件、非適用判断、各個別oracleは一括して閉じていない。
+- 未解消残差: L2-046のScrum枝はTDD、受入条件、migration、rollback、security、L12運用の残りの義務領域を閉じない。列挙義務のslice適用条件、非適用判断、各個別oracleも一括して閉じていない。
 - 結果: `partial`; formal successorなし。
 
 ### REQSRC-SUP-00069 — 個人開発のScrum tailoring
