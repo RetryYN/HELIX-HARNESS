@@ -891,6 +891,61 @@
         "comparison_basis": "近接効果は既存個別監査のsource pin/意味screenを参照し、旧FR source identityのsuccessorやclosureとはしない。"
       },
       {
+        "identity": "HARNESS-L2-037",
+        "decision_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "decision_status": "adopted",
+        "registration_id": "MPR-RC-HARNESS-L2-037-002",
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "decision_row": {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "line": 42,
+          "file_sha256_at_base": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "registration_id": "MPR-RC-HARNESS-L2-037-002",
+          "authority_status": "adopted"
+        },
+        "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "l2_section_sha256": "3dcead1bfe0ef30da76a4f781b3e3c0b4817672269e7055a18cb4b35781b95f2",
+        "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "l11_section_sha256": "6e2874b93cea9fccb06aaaecccf09603a1c1cc9d3d5a2a750db06d22d5d4dcee",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-w-two-stage-coverage-receipt-2026-09-28-r2.json",
+        "related_legacy_identities": [
+          "FR-L1-28"
+        ],
+        "limited_effect": "2026-09-29 decision HDEC-REQUIREMENTS-57-2026-09-29 adopted this exact 318ec4a0 L2/L11 pair (registration MPR-RC-HARNESS-L2-037-002). Where current HARNESS-L2-009 derives a two-stage design-template scope, 037 requires Phase 1/2 separation and order, each phase L4 design deliverable with its matching L9 verification receipt, traceable merge with gaps/return paths, and connection to current L3↔L10 verification plus separate L2↔L11 and L1↔L12 traces. L9 results are later inputs; L10 pass does not create acceptance or observation. Applicability is by selected template/scope; legacy drive=agent alone does not trigger it, and HARNESS self-development is excluded.",
+        "limits": "Does not carry forward the old drive field, phase.yaml/schema, tool/runtime, or old layer numbers as current inputs. It is not a universal requirement for every agent-related task; L2-009 template/scope selection controls applicability. Adopted pair scope is not a FR-L1-28 successor assignment, implementation/execution evidence, or source closure.",
+        "comparison_basis": "The PO decision row governs the exact L2/L11 bytes pinned by file and section SHA-256. Candidate/draft status embedded in those pre-decision bytes does not override the later decision. Limited semantic proximity is not source-qualified successor assignment, source disposition, implementation/execution evidence, or closure."
+      },
+      {
+        "identity": "HARNESS-L2-039",
+        "decision_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "decision_status": "adopted",
+        "registration_id": "MPR-RC-HARNESS-L2-039-003",
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "decision_row": {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "line": 44,
+          "file_sha256_at_base": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "registration_id": "MPR-RC-HARNESS-L2-039-003",
+          "authority_status": "adopted"
+        },
+        "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "l2_section_sha256": "e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0",
+        "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "l11_section_sha256": "63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-experience-contract-coverage-receipt-2026-09-28-r3.json#HARNESS-L2-039",
+        "related_legacy_identities": [
+          "FR-L1-29",
+          "FR-L1-30"
+        ],
+        "limited_effect": "2026-09-29 decision HDEC-REQUIREMENTS-57-2026-09-29 adopted this exact 318ec4a0 L2/L11 pair (registration MPR-RC-HARNESS-L2-039-003). For selected UI/UX scopes, 039 connects Experience parents and screen/flow/prototype/Frontend relations at the same scope and revision; it traces applicable token/component/accessibility/responsive/motion, permission/API/data/event/logging/error relations to verification and acceptance oracles, tracks drift and return paths, uses risk-based factor selection, and separates design, implementation, and UX-verified evidence. It is semantically near FR-L1-29/30.",
+        "limits": "Does not adopt the old fixed IA→screen-list/flow→wireframe→mock→usability→componentization sequence, four named sub-doc schemas, historical 14-input/15-screen counts, G1/G2 freeze, old role split, or Low-Fi default/High-Fi selection oracle. It does not specify exact token collision lint/fail-close, WCAG 2.1 AA warning-count threshold and nonblocking G10 behavior, warning acceptance authority, or the legacy visual-regression comparator. These exact conditions and FR-L1-29/30 successor/closure remain open.",
+        "comparison_basis": "The PO decision row governs the exact L2/L11 bytes pinned by file and section SHA-256. Candidate/draft status embedded in those pre-decision bytes does not override the later decision. Limited semantic proximity is not source-qualified successor assignment, source disposition, implementation/execution evidence, or closure."
+      },
+      {
         "identity": "HELIXOS-L2-033",
         "decision_id": "HDEC-REQUIREMENTS-57-2026-09-29",
         "decision_status": "adopted",
@@ -907,6 +962,33 @@
         "limited_effect": "採択済み。選択engine/detectorのversion/config/scope、同一input snapshot、実行receipt、artifact/finding provenanceと再現比較を束ねる。FR-L1-33のdetector inventoryという分類カテゴリに限定して近接する。",
         "limits": "全資産catalog/coverage reportや各repository asset categoryの棚卸しを提供しない。旧detector inventory完了、実装やsource successor/closureを含意しない。",
         "comparison_basis": "近接効果は既存個別監査のsource pin/意味screenを参照し、旧FR source identityのsuccessorやclosureとはしない。"
+      },
+      {
+        "identity": "HELIXOS-L2-041",
+        "decision_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "decision_status": "adopted",
+        "registration_id": "MPR-RC-HELIXOS-L2-041-001",
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "decision_row": {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "line": 64,
+          "file_sha256_at_base": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "registration_id": "MPR-RC-HELIXOS-L2-041-001",
+          "authority_status": "adopted"
+        },
+        "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+        "l2_section_sha256": "a43e3eda819e37ef81db0c60c5add5cebce5e3d17ca858c1446c27ac4db80c48",
+        "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+        "l11_section_sha256": "32f08cfa7b070bb902277f79e044e971bbd3948e90621c624d80b167f80d7ded",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-safe-continuation-coverage-receipt-2026-09-28.json",
+        "related_legacy_identities": [
+          "FR-L1-31"
+        ],
+        "limited_effect": "2026-09-29 decision HDEC-REQUIREMENTS-57-2026-09-29 adopted this exact 318ec4a0 L2/L11 pair (registration MPR-RC-HELIXOS-L2-041-001), connected to existing OS-L2-009 continuity/recovery. If instruction reload is unavailable, it excludes old instructions, revoked claims, secrets, and private reasoning; requires re-fetching a needed external authority source through its existing canonical path; records source identity/revision and verification in existing provenance; and holds only dependent continuation when retrieval, freshness, canonicality, or authority is unknown/stale/conflicted. This is limited coverage of FR-L1-31 continuity safety/recovery.",
+        "limits": "Does not define the safe transition runtime, restart/session-cleaner or instruction reload mechanism, provider fallback/session behavior, old harness.db projection, subscription condition, or 0.70 restart threshold. It does not establish the old PoC completion oracle or assign FR-L1-31 a successor/closure.",
+        "comparison_basis": "The PO decision row governs the exact L2/L11 bytes pinned by file and section SHA-256. Candidate/draft status embedded in those pre-decision bytes does not override the later decision. Limited semantic proximity is not source-qualified successor assignment, source disposition, implementation/execution evidence, or closure."
       }
     ]
   },
@@ -1170,8 +1252,8 @@
             }
           }
         ],
-        "retained_meaning": "HARNESS-L2-001/002/009は現行V-pair、development style、層と成果物の扱いを定める。旧W 2段specialist workflowを直接置き換えない。",
-        "changed_or_not_carried": "旧L9/L10番号の詳細は現行V pairへ機械転記せず、HARNESS-L2-001で正規pair境界を保つ。旧agent昇華workflow固有の実現方式は固定pairから再導出されたとしない。",
+        "retained_meaning": "HARNESS-L2-001/002/009は現行V-pair、development style、層と成果物の扱いを定める。旧W 2段specialist workflowを直接置き換えない。 Fixed f6 does not include later-adopted 037; that pair is recorded separately at its decision-pinned revision.",
+        "changed_or_not_carried": "旧L9/L10番号の詳細は現行V pairへ機械転記せず、HARNESS-L2-001で正規pair境界を保つ。旧agent昇華workflow固有の実現方式は固定pairから再導出されたとしない。 The fixed-f6 omission and later 037 adoption are separate revisions; f6 bytes are not retroactively changed.",
         "not_proven": "target mapping/reference is not source-atom coverage, implementation, acceptance, or successor."
       },
       "numeric_conditions_exceptions_counterexamples": {
@@ -1180,17 +1262,34 @@
         "risk": "一般system設計とagent昇華、または開発style/PoCの段階を混同すること。"
       },
       "later_decision_relations": {
-        "near_pair_ids": [],
-        "near_pair_notes": [],
-        "no_successor_or_closure": "後発decisionの採択は限定近接であり、このsource identityのsuccessor/closureではない。"
+        "near_pair_ids": [
+          "HARNESS-L2-037"
+        ],
+        "near_pair_notes": [
+          "Adopted HARNESS-L2-037 (decision row 42; MPR-RC-HARNESS-L2-037-002) names old FR-L1-28 and covers phase separation/order, per-phase L4/L9 receipts, gap-aware merge, and current pair traces only where L2-009 derives a two-stage template scope. drive=agent alone does not trigger it; HARNESS self-development is excluded. It does not transfer old schema/runtime or create a source successor/closure."
+        ],
+        "no_successor_or_closure": "Adopted pair scope is reflected in this source-identity comparison, but no formal successor assignment, closure, or legacy implementation carry-forward is generated; source/carry state remains as recorded.",
+        "decision_record_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:row 42 (file sha256 c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad)",
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "pair_l2_l11_pins": {
+          "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "l2_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+          "l2_section_sha256": "3dcead1bfe0ef30da76a4f781b3e3c0b4817672269e7055a18cb4b35781b95f2",
+          "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "l11_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+          "l11_section_sha256": "6e2874b93cea9fccb06aaaecccf09603a1c1cc9d3d5a2a750db06d22d5d4dcee",
+          "authority_status": "adopted_by_pinned_po_decision_row"
+        },
+        "scope_reassessment": "Does not carry forward the old drive field, phase.yaml/schema, tool/runtime, or old layer numbers as current inputs. It is not a universal requirement for every agent-related task; L2-009 template/scope selection controls applicability. Adopted pair scope is not a FR-L1-28 successor assignment, implementation/execution evidence, or source closure."
       },
       "residual_and_status": {
-        "residual": "drive=agentを含む2段階設計の成果物契約、L10合流条件、L11–L12統合flowの受入oracleは未確定。",
+        "residual": "旧schema/runtimeおよび旧実装方式は現行契約へ移していない。旧L9/L10等をそのまま再現する一般schemaはなく、037の選択scopeを越えるすべての旧scopeへ一律に適用する契約もない。これらをformal successor/closureや実装済みと扱わない。",
         "status": "open",
         "source_disposition": "preserved_pending_rehome",
         "authority_effect": "none",
         "successor_requirement_ids": [],
-        "comparison_is_closure": false
+        "comparison_is_closure": false,
+        "applicability_boundary": "採択済みHARNESS-L2-037の適用境界：現行HARNESS-L2-009が選択templateから二段scopeを導出した操作に限る。旧drive=agentという値だけでは起動せず、HARNESS自身の開発には適用しない。これは採択pairが定めるscope制限であり、未閉鎖残差ではない。"
       }
     },
     {
@@ -1351,12 +1450,28 @@
         "risk": "14件入力と15画面handoffを同一snapshotの矛盾解消済みと扱うこと、Low-Fi/High-Fi選択を一律化すること、G1 trace再検証を省くこと、旧G2や終了コードを現行gateとして持ち込むこと。"
       },
       "later_decision_relations": {
-        "near_pair_ids": [],
-        "near_pair_notes": [],
-        "no_successor_or_closure": "後発decisionの採択は限定近接であり、このsource identityのsuccessor/closureではない。"
+        "near_pair_ids": [
+          "HARNESS-L2-039"
+        ],
+        "near_pair_notes": [
+          "Adopted HARNESS-L2-039 (decision row 44; MPR-RC-HARNESS-L2-039-003) is near only for selected UI/UX scope: Experience parent and prototype/screen/flow/Frontend semantic relations, revision/scope/authority trace and drift return, risk-based verification, and UX evidence state separation. It does not adopt the historical counts, four sub-doc schema, fixed workflow/G1/G2 freeze, or fidelity selection oracle."
+        ],
+        "no_successor_or_closure": "Adopted pair scope is reflected in this source-identity comparison, but no formal successor assignment, closure, or legacy implementation carry-forward is generated; source/carry state remains as recorded.",
+        "decision_record_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:row 44 (file sha256 c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad)",
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "pair_l2_l11_pins": {
+          "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "l2_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+          "l2_section_sha256": "e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0",
+          "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "l11_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+          "l11_section_sha256": "63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746",
+          "authority_status": "adopted_by_pinned_po_decision_row"
+        },
+        "scope_reassessment": "Does not adopt the old fixed IA→screen-list/flow→wireframe→mock→usability→componentization sequence, four named sub-doc schemas, historical 14-input/15-screen counts, G1/G2 freeze, old role split, or Low-Fi default/High-Fi selection oracle. It does not specify exact token collision lint/fail-close, WCAG 2.1 AA warning-count threshold and nonblocking G10 behavior, warning acceptance authority, or the legacy visual-regression comparator. These exact conditions and FR-L1-29/30 successor/closure remain open."
       },
       "residual_and_status": {
-        "residual": "14件入力から15画面handoffに至る旧revision差の根拠と適用時点、4 sub-docの必要条件、Low-Fi default／High-Fi case-specificの選択oracle、G1 fail-closeと外部wireframe不整合時の再traceを現行source identityへどう対応付けるか、mock freeze・usability acceptanceへの結合は未閉鎖。旧consumer値の照合は採択・successor・closureを生成しない。",
+        "residual": "Adopted 039 covers semantic parents/traces for selected UI/UX scopes, prototype/screen/flow/Frontend relations, revision/scope/authority, drift, risk-based verification, and UX evidence distinctions. Remaining legacy-specific conditions include the distinct-time 14-input/15-screen counts, four old sub-doc schemas, fixed six-step order, Low-Fi default/High-Fi case selection, G1 fail-close and external-wireframe G1-trace rule, and G2 mock freeze. The adopted pair does not settle these exact workflow/source atoms or assign a successor/closure.",
         "status": "open",
         "source_disposition": "preserved_pending_rehome",
         "authority_effect": "none",
@@ -1515,12 +1630,28 @@
         "risk": "warn件数だけで旧G10をblockする、逆にtoken衝突のfail-close oracleをwarn扱いに弱める、critical keyboard next_actionを捨てる、または旧閾値・承認役割を現行へ移植すること。"
       },
       "later_decision_relations": {
-        "near_pair_ids": [],
-        "near_pair_notes": [],
-        "no_successor_or_closure": "後発decisionの採択は限定近接であり、このsource identityのsuccessor/closureではない。"
+        "near_pair_ids": [
+          "HARNESS-L2-039"
+        ],
+        "near_pair_notes": [
+          "Adopted HARNESS-L2-039 (decision row 44; MPR-RC-HARNESS-L2-039-003) is near for selected UI/UX scope token/component/accessibility and responsive/motion relations to verification/acceptance oracles, drift, and UX evidence states. It does not define the old token collision lint, WCAG 2.1 AA warn>=10 nonblocking G10 rule/authority, or visual-regression comparator."
+        ],
+        "no_successor_or_closure": "Adopted pair scope is reflected in this source-identity comparison, but no formal successor assignment, closure, or legacy implementation carry-forward is generated; source/carry state remains as recorded.",
+        "decision_record_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:row 44 (file sha256 c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad)",
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "pair_l2_l11_pins": {
+          "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "l2_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+          "l2_section_sha256": "e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0",
+          "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "l11_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+          "l11_section_sha256": "63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746",
+          "authority_status": "adopted_by_pinned_po_decision_row"
+        },
+        "scope_reassessment": "Does not adopt the old fixed IA→screen-list/flow→wireframe→mock→usability→componentization sequence, four named sub-doc schemas, historical 14-input/15-screen counts, G1/G2 freeze, old role split, or Low-Fi default/High-Fi selection oracle. It does not specify exact token collision lint/fail-close, WCAG 2.1 AA warning-count threshold and nonblocking G10 behavior, warning acceptance authority, or the legacy visual-regression comparator. These exact conditions and FR-L1-29/30 successor/closure remain open."
       },
       "residual_and_status": {
-        "residual": "token schemaと衝突oracleの現行対応、a11y oracleとwarn報告／非block境界／critical keyboard next_action、warn受容authority、visual regression comparator、UX refinementとL11 handoffの現行契約は未閉鎖。旧10件閾値とG10の挙動は履歴照合であり現行条件として採択されていない。",
+        "residual": "Adopted 039 covers selected UI/UX scope semantic trace/drift among token/component/accessibility and verification/acceptance relations, risk factors, and UX evidence state. It does not define the old token schema/name-collision lint and color.primary fail-close oracle; WCAG 2.1 AA warn>=10 aggregation, nonblocking G10 boundary, critical keyboard next_action or warning-acceptance authority; visual-regression comparator; or old L10→L11 handoff. These exact legacy conditions and successor/closure remain open.",
         "status": "open",
         "source_disposition": "preserved_pending_rehome",
         "authority_effect": "none",
@@ -1606,7 +1737,7 @@
             }
           }
         ],
-        "retained_meaning": "HELIXOS-L2-019はqueueでfixed targetとされる候補採択行だが、旧harness.db projection、0.70 restart threshold、Claude/Codex session-cleaner契約そのものとは同一視しない。",
+        "retained_meaning": "HELIXOS-L2-019はqueueでfixed targetとされる候補採択行だが、旧harness.db projection、0.70 restart threshold、Claude/Codex session-cleaner契約そのものとは同一視しない。 Later-adopted HELIXOS-L2-041 adds source-safe continuation conditions for the reload-unavailable case on top of OS-L2-009 continuity/recovery.",
         "changed_or_not_carried": "旧harness.db、session cleaner、provider sessionを実行経路として移さない。0.70を現行restart thresholdにしない。",
         "not_proven": "target mapping/reference is not source-atom coverage, implementation, acceptance, or successor."
       },
@@ -1616,12 +1747,28 @@
         "risk": "old DB/provider sessionをauthority/source of truthと扱う、または0.70を新基準にすること。"
       },
       "later_decision_relations": {
-        "near_pair_ids": [],
-        "near_pair_notes": [],
-        "no_successor_or_closure": "後発decisionの採択は限定近接であり、このsource identityのsuccessor/closureではない。"
+        "near_pair_ids": [
+          "HELIXOS-L2-041"
+        ],
+        "near_pair_notes": [
+          "Adopted HELIXOS-L2-041 (decision row 64; MPR-RC-HELIXOS-L2-041-001) is near only for safe continuation when reload is unavailable: re-fetch needed external authority, pin identity/revision/provenance, exclude old/revoked instructions and secret/private reasoning, and hold dependent continuation on missing/stale/conflict/unknown. It does not define old 0.70/DB/provider/session-cleaner/subscription terms or transition runtime."
+        ],
+        "no_successor_or_closure": "Adopted pair scope is reflected in this source-identity comparison, but no formal successor assignment, closure, or legacy implementation carry-forward is generated; source/carry state remains as recorded.",
+        "decision_record_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:row 64 (file sha256 c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad)",
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "pair_l2_l11_pins": {
+          "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "l2_section_sha256": "a43e3eda819e37ef81db0c60c5add5cebce5e3d17ca858c1446c27ac4db80c48",
+          "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "l11_section_sha256": "32f08cfa7b070bb902277f79e044e971bbd3948e90621c624d80b167f80d7ded",
+          "authority_status": "adopted_by_pinned_po_decision_row"
+        },
+        "scope_reassessment": "Does not define the safe transition runtime, restart/session-cleaner or instruction reload mechanism, provider fallback/session behavior, old harness.db projection, subscription condition, or 0.70 restart threshold. It does not establish the old PoC completion oracle or assign FR-L1-31 a successor/closure."
       },
       "residual_and_status": {
-        "residual": "session continuityをHELIX event/authorityへ結ぶなら、そのscope・freshness・recovery・continuation acceptanceは別途必要。固定targetだけで旧PoC閉包を主張しない。",
+        "residual": "Adopted OS-L2-041 covers re-fetching an external authority source before dependent continuation when reload is unavailable, provenance pinning, non-inheritance of secrets/old instructions/revoked claims/private reasoning, and scoped hold on missing/stale/conflicted authority. Remaining old PoC-specific conditions are the 0.70 context threshold, harness.db continuation projection, verified-next-action handoff, Claude/Codex session-cleaner/provider session, and subscription condition. The current pair does not define that old runtime or completion oracle; no formal successor/closure is assigned.",
         "status": "open",
         "source_disposition": "preserved_pending_rehome",
         "authority_effect": "none",
@@ -2020,6 +2167,7 @@
     "archive source/holding/file/line SHAとold consumer line pins。",
     "f6 fixed 9 target pair file and exact L2/L11 line SHA。",
     "57+11 full identity/status screenとlater near pair source file/section digest pins。",
-    "Markdown/JSON identity set・local link equality、git diff --check。"
+    "Markdown/JSON identity set・local link equality、git diff --check。",
+    "後発037/039/041の318ec4a0 L2/L11 file・section SHA、decision table row・採択status、限定scopeの再判定を照合。"
   ]
 }
