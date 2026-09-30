@@ -1,0 +1,349 @@
+{
+  "audit_name": "legacy-confirmed175-br02-br05-condition-audit-2026-09-30",
+  "audit_mode": "bounded_read_only_old_to_new_condition_comparison",
+  "authority_effect": "none",
+  "adoption_claim": false,
+  "successor_assignment_claim": false,
+  "coverage_or_step5_completion_claim": false,
+  "scope": {
+    "identities": [
+      "BR-02",
+      "BR-03",
+      "BR-04",
+      "BR-05"
+    ],
+    "legacy_asset_id": "LEGACY-ASSET-9F48ADEEB477DCA54039",
+    "legacy_source": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+    "legacy_source_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+    "legacy_source_lines": "42-45",
+    "legacy_holding_source": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md",
+    "holding_sha256_matches_archive": true,
+    "legacy_asset_ledger_ref": "docs/governance/legacy-asset-disposition.jsonl#LEGACY-ASSET-9F48ADEEB477DCA54039",
+    "legacy_asset_disposition": "source_snapshot_preservation",
+    "legacy_product_target": "unresolved",
+    "source_authority_state": "confirmed",
+    "carry_forward_state": "preserved_pending_rehome",
+    "successor_requirement_ids": [],
+    "target_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "target_revision_authority_record": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+    "target_revision_scope": "fixed L2 and paired L11 bytes named by the 2026-09-28 decision records; no later candidate rows",
+    "target_file_sha256": {
+      "docs/helix-harness/L2-requirements/product-requirements.md": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "docs/helix-harness/L11-acceptance/product-acceptance.md": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "docs/helix-os/L2-requirements/governance-requirements.md": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "docs/helix-os/L11-acceptance/governance-acceptance.md": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "docs/helix-security/L2-requirements/security-requirements.md": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+      "docs/helix-security/L11-acceptance/security-acceptance.md": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01"
+    },
+    "limits": [
+      "This record compares source conditions with named rows in the fixed L2/L11 revision; it does not establish formal successor identity or complete carry-forward.",
+      "No L3 requirements, implementation, runtime, tests, CI, or execution behavior were evaluated.",
+      "Legacy CLI, runtime, hook, adapter, test, and CI were not executed or used as an oracle."
+    ]
+  },
+  "legacy_supporting_sources": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/nfr.md",
+      "lines": "49, 89, 110",
+      "use": "BR-02 NFR-05 source condition: CI execution, PR permission, and permission evidence saved against target HEAD and run generation; local requirement source remains authority for meaning."
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "lines": "154-177, 211-214, 248-250, 267, 270",
+      "use": "role-boundary effects and operational checks; B1/B2 refinements; PoC cutoff detail; BR-03 recovery/continuation notes."
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+      "lines": "1-70",
+      "use": "historical authority boundary, layer conventions, and inventory-first/context only; not used as current runtime instruction."
+    }
+  ],
+  "prior_record": {
+    "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json",
+    "existing_classification": "部分再導出／旧固有条件・反例・数値・出力の一部が未確認",
+    "existing_status": "OPEN",
+    "source_qualified_identities": [
+      "harness/L1-requirements/business-requirements.md::BR-02",
+      "harness/L1-requirements/business-requirements.md::BR-03",
+      "harness/L1-requirements/business-requirements.md::BR-04",
+      "harness/L1-requirements/business-requirements.md::BR-05"
+    ]
+  },
+  "conditions": [
+    {
+      "identity": "BR-02",
+      "source_line": 42,
+      "source_line_sha256": "8a9c0430a46ca3bb16cedef7712b0ab60eb0f0eca1a6072c670e4ac846a02e2c",
+      "source_text": "| **BR-02** | **AI agent roster の責務境界**（人間 = PO 1 名 = L0/L1/L2-mock/L3 承認のみ、実装/レビュー/検証等 = 別ランタイム/別モデルの AI agent）が日常 PR で gate・レビュー・役割境界を無理なく回せる。creation と judgement を別系統に分離し（worker≠verifier）役割境界を機械強制する（NFR-05 の GitHub権限証跡 + P2 orchestration に連結） | concept P2（AI agent 責務境界）/ 成功② / charter §3 自律境界 |",
+      "supporting_atoms": [
+        "B1: solo PO + AI agent roster provisioning; NFR-05/GitHub permission evidence link; PLAN-L1-06 (business-requirements.md:248)",
+        "B2: machine-enforced gate authority; old human L0-L3 approval boundary and AI verifier from L4, worker != verifier (business-requirements.md:249)",
+        "NFR-05: CI/PR permission evidence tied to target HEAD and execution generation, persisted to GitHub; requirement meaning remains in local requirement source (nfr.md:49)"
+      ],
+      "current_targets": [
+        {
+          "id": "HELIXOS-L2-018",
+          "layer": "L2",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": "672-680"
+        },
+        {
+          "id": "HELIXOS-L2-018",
+          "layer": "L11",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": "345-350"
+        },
+        {
+          "id": "HELIXOS-L2-020",
+          "layer": "L2",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": "692-700"
+        },
+        {
+          "id": "HELIXOS-L2-020",
+          "layer": "L11",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": "359-364"
+        },
+        {
+          "id": "HARNESS-L2-005",
+          "layer": "L2",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "lines": "56, 118-121"
+        },
+        {
+          "id": "HARNESS-L2-005",
+          "layer": "L11",
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "lines": "25"
+        }
+      ],
+      "retained_meaning": [
+        "作成Workerと独立review担当を分け、作成Workerが自成果を承認・独立review済みとして扱わない。",
+        "ticket、assignment/attempt、target revision/scope、権限・期限・予算、実行・検証証拠とhandoffを追跡する。",
+        "HARNESSが検証義務を定め、OSが検収を運転し、CI成功とmeaning review/acceptanceを分ける。"
+      ],
+      "residual_or_boundary": [
+        "旧『PO 1名』『L0/L1/L2-mock/L3』の権限配置は現行authority state modelおよびPO判断から自動継承しない。旧番号は現行層番号へ写像しない。",
+        "固定HEAD/実行generationへ結ぶGitHub権限証跡というNFR-05の具体出力は、対応する採択L2/L11に同じ出力契約として見当たらない。現行のexact revision/evidence/independent review条件があることから同一出力を推定しない。",
+        "旧『別runtime/別model』の必須条件は現行のindependent identity/context/authority境界へそのまま引き継がない。provider名のみで独立性を決めないという現行条件を保持する。",
+        "具体的な認可証跡record schema、日常PRでの正常/拒否結果、実行世代不一致・作成者自己承認の出力例や定量閾値は旧BR/NFRでも完全には定義されず、採択L11の記述を超えて補わない。"
+      ],
+      "status": "partially_rederived_with_open_source_specific_conditions"
+    },
+    {
+      "identity": "BR-03",
+      "source_line": 43,
+      "source_line_sha256": "86d0bd0c2786a7c30a3946c3cc41a7e5e3a414b295900188dec477d78eb01424",
+      "source_text": "| **BR-03** | AI 実装を安全に委譲でき、既存の設計・テストを破壊的に改変しない (回帰検知を保つ) | concept P4 / 成功③ |",
+      "current_targets": [
+        {
+          "id": "HARNESS-L2-003",
+          "layer": "L2",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "lines": "54"
+        },
+        {
+          "id": "HARNESS-L2-004",
+          "layer": "L2",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "lines": "55"
+        },
+        {
+          "id": "HARNESS-L2-005",
+          "layer": "L2",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "lines": "56, 118-121"
+        },
+        {
+          "id": "HARNESS-L2-003/004/005",
+          "layer": "L11",
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "lines": "23-25"
+        },
+        {
+          "id": "HELIXSECURITY-L2-007/008",
+          "layer": "L2",
+          "path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "lines": "130-148"
+        },
+        {
+          "id": "HELIXSECURITY-L2-007/008",
+          "layer": "L11",
+          "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+          "lines": "31-32"
+        },
+        {
+          "id": "HELIXOS-L2-018",
+          "layer": "L2/L11",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md; docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": "672-680; 345-350"
+        }
+      ],
+      "retained_meaning": [
+        "scope、operation authority/security constraints、requirement/design/test trace、required verification/oracle/evidence、independent review、失敗と未完義務の保持を通じて安全な委譲と回帰検知を支える。",
+        "採択L11は自己承認・scope/head/authority不一致、必要検証欠落、検査弱化による成功扱いを反例として扱う。"
+      ],
+      "residual_or_boundary": [
+        "特定の旧agent guard、別runtime/model構成、旧GitHub権限機構、旧test/CI/job集合の構造は現行要求の一部とせず、同じ役割の結果から旧実装を持ち込まない。",
+        "BR-03自体は閾値や回帰率の数値を指定していない。固定対象はoracle/expected failureと省略した検査の記録を要求するが、BR-03専用の数値許容値・旧形式の出力schemaは特定しない。",
+        "回帰が検出された正常/境界/拒否fixtureと、設計やtest変更を破壊的変更と判定する完全な分類表は、このBR行および参照L2/L11の範囲だけでは閉じない。"
+      ],
+      "status": "partially_rederived_with_open_source_specific_conditions"
+    },
+    {
+      "identity": "BR-04",
+      "source_line": 44,
+      "source_line_sha256": "546b26ece59daafe0effc37ebc317ff612a9c80dd916f0f37bfb12c519d9bf5e",
+      "source_text": "| **BR-04** | PoC / 検証成果を契約化してから本実装へ合流させ、PoC の独り歩き・知見の散逸を防ぐ | concept P3 |",
+      "supporting_atoms": [
+        "Discovery and PoC are separate tickets, not development-style phases; PoC result flows back to requirement formation and does not itself decide adoption (fixed HARNESS-L2-002/003).",
+        "Old B3 names a PoC cutoff implementation: mandatory after 2 sprints OR rejected-decision logic (business-requirements.md:250)."
+      ],
+      "current_targets": [
+        {
+          "id": "HARNESS-L2-002",
+          "layer": "L2/L11",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md; docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "lines": "53 and linked workflow conditions; 22"
+        },
+        {
+          "id": "HARNESS-L2-003",
+          "layer": "L2/L11",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md; docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "lines": "54 and linked workflow conditions; 23"
+        },
+        {
+          "id": "HELIXOS-L2-017/023",
+          "layer": "L2/L11",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md; docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": "662-670, 722-730; 338-344, 380-385"
+        }
+      ],
+      "retained_meaning": [
+        "PoC/Discovery outputs have a ticket, bounded input/scope, result/evidence and backflow/handoff; a successful experiment does not create requirement agreement, acceptance, or production readiness.",
+        "Open questions and stop conditions return to the responsible requirement/decision owner; old S4 decision meaning is not replaced by a successful verification run."
+      ],
+      "residual_or_boundary": [
+        "The old B3 two-sprint cutoff or explicit rejected-decision logic is not specified as an adopted L2/L11 stopping rule. Current budget, deadline, and stop conditions do not prove that fixed old cutoff. No number is silently copied.",
+        "A complete output contract for the PoC knowledge artifact, retention/consumer handoff, and positive/negative result examples for cutoff, rejection, and promotion is not established by these references. Do not derive promotion from test success or ticket closure.",
+        "The old Discovery workflow implementation, sprint semantics, and runtime do not transfer into current workflow identity."
+      ],
+      "status": "partially_rederived_with_open_source_specific_conditions"
+    },
+    {
+      "identity": "BR-05",
+      "source_line": 45,
+      "source_line_sha256": "cb9126762d5584eab9804df45d6dc951ce2c6432d91c054872527fa254dea9ab",
+      "source_text": "| **BR-05** | 開発を PLAN 単位 + **phase-aware ID** でフェーズ管理し、**規約違反を機械検知できる** (起票規約 / lint 仕様は L3 FR・L5 送り) | 本 session 確定 / requirements §1.10 A |",
+      "current_targets": [
+        {
+          "id": "HELIXOS-L2-017",
+          "layer": "L2/L11",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md; docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": "662-670; 338-344"
+        },
+        {
+          "id": "HELIXOS-L2-023",
+          "layer": "L2/L11",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md; docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": "722-730; 380-385"
+        },
+        {
+          "id": "HXT-TYPE-01..21 / HXT-FLOW-01..09 / HXT-SYS-01",
+          "layer": "target ticket-definition index referenced by 017/023",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": "752-778"
+        }
+      ],
+      "retained_meaning": [
+        "OS ticket graph/workflow instance carries target, kind, parent revision, scope, dependencies, acceptance obligation and return destination; handoff keeps revision/digest, causal ID, scope, unfinished duties, stop reason and evidence bound together.",
+        "L11 has positive reproducibility and negative cases for missing inputs, unresolved dependencies, unsupported flow, fixed flow for every case, and false completion from a unit success."
+      ],
+      "residual_or_boundary": [
+        "No adopted ticket-ID grammar maps phases into a phase-aware identifier; no regex, ID examples, collision cases, or ID validation output schema is specified in these fixed rows.",
+        "The old BR explicitly defers filing conventions and lint to L3 FR/L5. It supplies no numeric ID range or lint threshold here; do not invent one or treat HXT index rows as phase-aware IDs.",
+        "Current workflow instance/ticket graph is the preserved purpose. Legacy PLAN files, folder layout, phase labels, ID prefix syntax, old lint behavior, and old command output are not silently copied as current structure."
+      ],
+      "status": "partially_rederived_with_open_source_specific_conditions"
+    }
+  ],
+  "overlap_check": {
+    "checked_at": "2026-09-30",
+    "current_main_remote_ref": "0f5050e2b25cd622640c99c5de170cca087f7d8a",
+    "local_integration_branch": "codex/stage5-local-integration",
+    "local_integration_head": "f53e387a5dc751e1a6386e0dcd8361af5b702b48",
+    "result": "The integration branch contains the prior full-audit OPEN rows and this bounded BR-02..BR-05 identity scope has no separate completed condition audit. This record adds condition-level comparison without editing the full audit or changing its OPEN state.",
+    "public_prs": [
+      {
+        "number": 2387,
+        "head": "f83fbc83dd8ab0f031d0cdb4de2e92990ffe65ad",
+        "title": "docs: audit two legacy Functional Release Slice acceptance routes",
+        "changed_paths": [
+          "legacy-candidate-functional-release-slice-acceptance-two-row-route-audit-after-2386-2026-09-30.json",
+          "legacy-candidate-functional-release-slice-acceptance-two-row-route-audit-after-2386-2026-09-30.md"
+        ],
+        "same_identity_or_output_path_overlap": false
+      },
+      {
+        "number": 2388,
+        "head": "3e5e4b13a80a236d94708e77086037753e381b7e",
+        "title": "docs: audit ten remaining World Governance candidate routes",
+        "changed_paths": [
+          "legacy-candidate4755-world-governance-next-ten-row-route-audit-after-2386-2026-09-30.json",
+          "legacy-candidate4755-world-governance-next-ten-row-route-audit-after-2386-2026-09-30.md"
+        ],
+        "same_identity_or_output_path_overlap": false
+      },
+      {
+        "number": 2389,
+        "head": "156a22e4db2dca65e789f74fd39d5b867a48d395",
+        "title": "docs: audit ten World Governance acceptance and intake routes",
+        "changed_paths": [
+          "legacy-candidate4755-world-governance-acceptance-intake-ten-row-route-audit-after-2386-2026-09-30.json",
+          "legacy-candidate4755-world-governance-acceptance-intake-ten-row-route-audit-after-2386-2026-09-30.md"
+        ],
+        "same_identity_or_output_path_overlap": false
+      },
+      {
+        "number": 2390,
+        "head": "98240ed6a4272870bdf63b128530172847359f11",
+        "title": "docs: audit ten World Governance request and requirement routes",
+        "changed_paths": [
+          "legacy-candidate4755-world-governance-requests-requirements-ten-row-route-audit-after-2386-2026-09-30.json",
+          "legacy-candidate4755-world-governance-requests-requirements-ten-row-route-audit-after-2386-2026-09-30.md"
+        ],
+        "same_identity_or_output_path_overlap": false
+      },
+      {
+        "number": 2391,
+        "head": "5fa0db27bd471999218104f3d2f2d2a1455a1d39",
+        "title": "docs: classify eight FRS frontmatter refines rows",
+        "changed_paths": [
+          "legacy-candidate-frs-requirements-refines-eight-row-classification-proposal-after-2386-2026-09-30.json",
+          "legacy-candidate-frs-requirements-refines-eight-row-classification-proposal-after-2386-2026-09-30.md"
+        ],
+        "same_identity_or_output_path_overlap": false
+      },
+      {
+        "number": 2392,
+        "head": "1d2237fd3be7092ff906b05ad5aaa5ae5fbeea6c",
+        "title": "docs: classify six Concept capability delta metadata rows",
+        "changed_paths": [
+          "legacy-candidate-concept-v4-capability-delta-metadata-six-classification-proposal-2026-09-30.json",
+          "legacy-candidate-concept-v4-capability-delta-metadata-six-classification-proposal-2026-09-30.md"
+        ],
+        "same_identity_or_output_path_overlap": false
+      }
+    ]
+  },
+  "validation": {
+    "source_file_sha256_matches_archive_holding_and_asset_ledger": true,
+    "four_source_line_sha256_and_text_match_full_audit_individuals": true,
+    "four_prior_individual_states_remain_open_and_preserved_pending_rehome": true,
+    "six_fixed_l2_l11_file_sha256_match_decision_revision": true,
+    "all_named_target_ids_present_at_fixed_revision": true,
+    "json_parse": "pass",
+    "markdown_whitespace_check": "pass"
+  }
+}
