@@ -1,0 +1,1034 @@
+{
+  "schema_version": "v13-execution-policy-registry-seven-condition-audit.v1",
+  "audit_id": "v13-execution-policy-registry-seven-condition-audit-2026-09-30",
+  "created_against_revision": "d327f109f49e7971c453a338d5c40a54035415d6",
+  "comparison_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "authority_effect": "none",
+  "scope": {
+    "population": "v1.3 condition closure queue primary residuals",
+    "selected_condition_count": 7,
+    "selected_source_item_ids": [
+      "REQSRC-SUP-00134",
+      "REQSRC-SUP-00135",
+      "REQSRC-SUP-00137",
+      "REQSRC-SUP-00138",
+      "REQSRC-SUP-00139",
+      "REQSRC-SUP-00140",
+      "REQSRC-SUP-00141"
+    ],
+    "status_counts": {
+      "partial": 5,
+      "unresolved": 2
+    },
+    "excluded_focused_audit": "#2394: REQSRC-SUP-00127..00131 / physical lines 167–171",
+    "exclude_prior_work": "No selected row is among the queue’s 24 later-adopted-source-citation source_item_ids; each selected row has no local individual audit ref.",
+    "purpose": "Condition-level comparison of execution policy registry conditions in v1.3 §4.2.2 against fixed f6 SECURITY-007/008 L2/L11, with full later 57+11 decision identity/status screen and near-pair residual analysis."
+  },
+  "basis": {
+    "queue": {
+      "path": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json",
+      "sha256": "a61ec098a6bd714fcbbb706d0d9afb4e7f2777b114bf23c8056fc130e30f60d9",
+      "basis_commit": "2bf484b1a84af346feaf8cf7b72e59f3889e6333",
+      "primary_population_count": 255,
+      "source_item_ids": [
+        "REQSRC-SUP-00134",
+        "REQSRC-SUP-00135",
+        "REQSRC-SUP-00137",
+        "REQSRC-SUP-00138",
+        "REQSRC-SUP-00139",
+        "REQSRC-SUP-00140",
+        "REQSRC-SUP-00141"
+      ]
+    },
+    "baseline_condition_audit": {
+      "path": "docs/governance/audits/requirements-stage/legacy-v13-semantic-condition-audit-2026-09-28.json",
+      "sha256": "sha256:cd765545e584c50b423d652674ac54a3240aced24a321c0caa6bc2dd881ad863",
+      "basis_commit": "embedded in baseline audit scope/evidence; this queue preserves its row classifications and does not re-adjudicate them"
+    },
+    "archive_source": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "asset_ledger_path": "docs/governance/legacy-asset-disposition.jsonl",
+      "asset_ledger_line": 956,
+      "asset_ledger_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "asset_ledger_row": {
+        "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+        "revision": 3,
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_path": "docs/governance/helix-harness-requirements_v1.3.md",
+        "source_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_surface": "docs",
+        "source_provenance_ref": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+        "asset_class": "RequirementSourceSnapshot",
+        "reuse_exclusion_class": null,
+        "product_target": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "disposition": "source_snapshot_preservation",
+        "implementation_status": "non_executable_read_only_source",
+        "decision_record_ref": "docs/governance/legacy-asset-decisions.jsonl#REQ-SNAPSHOT-CORRECTION-02319C2481B9E01698D5",
+        "approval_revision": null,
+        "target_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+        "target_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "meaning_interface_invariance_reason": "要求を削減せず後続atom化するためのread-only同一byte source snapshot。新世代authority・実装・oracleへ自動昇格しない",
+        "consumer_refs": [
+          "requirement-carry-forward-ledgers",
+          "requirement-atomization-review"
+        ],
+        "rights_status": "repository_owned_source_preserved",
+        "executability_status": "non_executable_or_data_only_not_invoked",
+        "secret_status": "no_secret_added_by_copy",
+        "external_effect_status": "read_only_no_external_effect",
+        "decided_by": null,
+        "decided_at": null,
+        "copy_performed_by": "Codex repository foundation",
+        "copy_performed_at": "2026-09-15",
+        "read_after_record_ref": "docs/governance/legacy-asset-copy-read-after.jsonl#READ-REQ-SNAPSHOT-02319C2481B9E01698D5",
+        "migration_preconditions": [
+          "semantic_atom_inventory",
+          "product_owner_decision",
+          "parent_requirement_binding",
+          "consumer_check",
+          "rights_check",
+          "executability_check",
+          "secret_check",
+          "external_effect_check"
+        ],
+        "source_authority_state": "source_status_not_declared",
+        "target_authority_state": "draft_candidate",
+        "carry_forward_state": "preserved_pending_rehome",
+        "decision_status": "pending_human_confirmation",
+        "proposal_basis_refs": [
+          "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/concept/product-boundary.md:30",
+          "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md:32"
+        ]
+      }
+    },
+    "old_consumers": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "lines": "185-211",
+        "sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "role": "§4.2.3 current routing consumer: explicit boolean input, no signal inference, strict identity/policy receipt, exact dispositions/exit mapping, no raw program/argv receipt",
+        "execution": "read-only; not run"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/workflow-execution-policy-registry.v1.json",
+        "lines": "22-80",
+        "sha256": "eeb30c1bb51f74798563b31b0802b301fb687d2e750c517061588969a7ff344f",
+        "role": "archived generated execution policy registry v1: consumer_contract fields, dispositions, forbidden receipt fields, fixed argv command records and bindings",
+        "execution": "read-only; not run"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-57-workflow-execution-policy-registry.md",
+        "lines": "25-36",
+        "sha256": "b201a66f487e2128ddfe993cc441a36153ec5eaf1695b2d48b4c569d2363de6c",
+        "role": "PLAN-L3-57 pre/postconditions, invariants, failures and source path to the archived targeted-test definition",
+        "execution": "read-only; not run"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/function.md",
+        "lines": "192-201",
+        "sha256": "64874fd460f00d97cf195fd6c997164a09c333982a2fbc0f29af7e8877cafe35",
+        "role": "archived L4 current routing consumer `helix route eval`, four explicit risk booleans and fail-close/strict receipt behavior",
+        "execution": "read-only; not run"
+      }
+    ],
+    "fixed_target_pairs": [
+      {
+        "identity": "HELIXSECURITY-L2-007",
+        "target_status": "adopted_exact_pair_in_2026-09-28_security_decision",
+        "l2_path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "l2_file_sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+        "l2_heading_line": 130,
+        "l2_section_digest": "1ee4d42a1e4178d598ce11b75268845578ba83bcb8ea471e2642ff8630c49504",
+        "l11_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "l11_file_sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01",
+        "l11_row_line": 31,
+        "l11_row_sha256": "bb6dc9697c4bc21ad94cce4f2ad97c796706327d33686858eed1831378b4c155",
+        "decision_record": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+        "decision_record_sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+        "decision_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "limited_effect": "Worker-environment application and observation of write/network/credential/environment/timeout/resource/diff/rollback/result-collection constraints; fail when an applicable constraint is unknown or unenforced."
+      },
+      {
+        "identity": "HELIXSECURITY-L2-008",
+        "target_status": "adopted_exact_pair_in_2026-09-28_security_decision",
+        "l2_path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "l2_file_sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+        "l2_heading_line": 140,
+        "l2_section_digest": "6135842a799b9883cb29c5ce9e6ffcf601997d66cb3d314c8031ba9cbbae9f2c",
+        "l11_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "l11_file_sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01",
+        "l11_row_line": 32,
+        "l11_row_sha256": "05d6af862333dd496de98c2f469b6e50a9d2817442b7b1c83c93ac9348821a25",
+        "decision_record": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+        "decision_record_sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+        "decision_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "limited_effect": "Operation-specific authority requires actor/target/operation/revision/environment/scope/expiry exact agreement; missing, expired, drifted authority fails closed."
+      }
+    ],
+    "fixed_target_status_record": {
+      "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+      "sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+      "decision_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "decision": "8機構の固定L2/L11一式に合意、明示28候補全件採択。L2-007/008はそのexact revisionの採択pair。"
+    },
+    "later_decision_identity_screen": {
+      "scope": "Every identity/status in both 2026-09-29 decision records was checked for each selected condition; the list preserves treatment per decision record/revision, not source atom adoption.",
+      "decision_sets": [
+        {
+          "record_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+          "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
+          "source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "entry_count": 57,
+          "status_counts": {
+            "adopted": 42,
+            "conditionally_adopted": 11,
+            "held": 4
+          },
+          "entries": [
+            {
+              "identity": "HARNESS-L2-034",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HARNESS-L2-034-003"
+            },
+            {
+              "identity": "HARNESS-L2-035",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HARNESS-L2-035-002"
+            },
+            {
+              "identity": "HARNESS-L2-036",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HARNESS-L2-036-002"
+            },
+            {
+              "identity": "HARNESS-L2-037",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HARNESS-L2-037-002"
+            },
+            {
+              "identity": "HARNESS-L2-038",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HARNESS-L2-038-001"
+            },
+            {
+              "identity": "HARNESS-L2-039",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HARNESS-L2-039-003"
+            },
+            {
+              "identity": "HARNESS-L2-040",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HARNESS-L2-040-002"
+            },
+            {
+              "identity": "HARNESS-L2-041",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HARNESS-L2-041-002"
+            },
+            {
+              "identity": "HARNESS-L2-042",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HARNESS-L2-042-001"
+            },
+            {
+              "identity": "HARNESS-L2-043",
+              "status": "conditionally_adopted",
+              "decision_text": "条件付き採択：Bルート、所属はHARNESS-CORE。",
+              "latest_mpr": "MPR-RC-HARNESS-L2-043-002"
+            },
+            {
+              "identity": "HARNESS-L2-044",
+              "status": "conditionally_adopted",
+              "decision_text": "条件付き採択：Bルート、名称はDesign Contract Portfolio。採択済み025/026へ無断追記しない。",
+              "latest_mpr": "MPR-RC-HARNESS-L2-044-002"
+            },
+            {
+              "identity": "HARNESS-L2-045",
+              "status": "held",
+              "decision_text": "保留。解除条件：値の決定責務、単位、未設定・参照不能・超過時の扱いを確定。ticketごとの予算額決定は不要。",
+              "latest_mpr": "MPR-RC-HARNESS-L2-045-001"
+            },
+            {
+              "identity": "HARNESS-L2-046",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HARNESS-L2-046-001"
+            },
+            {
+              "identity": "HARNESS-L2-047",
+              "status": "conditionally_adopted",
+              "decision_text": "条件付き採択：A配置（HARNESSが契約生成規範を所有）。",
+              "latest_mpr": "MPR-RC-HARNESS-L2-047-001"
+            },
+            {
+              "identity": "HELIXOS-L2-030",
+              "status": "held",
+              "decision_text": "保留。本体実行OSとconsumer利用先を分け、配布段階と切替条件を確定する。Windows即時却下やLinux限定を意味しない。",
+              "latest_mpr": "MPR-RC-HELIXOS-L2-030-003"
+            },
+            {
+              "identity": "HELIXOS-L2-031",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXOS-L2-031-001"
+            },
+            {
+              "identity": "HELIXOS-L2-032",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXOS-L2-032-001"
+            },
+            {
+              "identity": "HELIXOS-L2-033",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXOS-L2-033-001"
+            },
+            {
+              "identity": "HELIXOS-L2-034",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXOS-L2-034-002"
+            },
+            {
+              "identity": "HELIXOS-L2-035",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXOS-L2-035-001"
+            },
+            {
+              "identity": "HELIXOS-L2-036",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXOS-L2-036-001"
+            },
+            {
+              "identity": "HELIXOS-L2-037",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXOS-L2-037-001"
+            },
+            {
+              "identity": "HELIXOS-L2-038",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXOS-L2-038-001"
+            },
+            {
+              "identity": "HELIXOS-L2-039",
+              "status": "held",
+              "decision_text": "保留。HARNESS-045と対に契約・版・予算条件を揃える。",
+              "latest_mpr": "MPR-RC-HELIXOS-L2-039-001"
+            },
+            {
+              "identity": "HELIXOS-L2-040",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXOS-L2-040-001"
+            },
+            {
+              "identity": "HELIXOS-L2-041",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXOS-L2-041-001"
+            },
+            {
+              "identity": "HELIXOS-L2-042",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXOS-L2-042-001"
+            },
+            {
+              "identity": "HELIXOS-L2-043",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXOS-L2-043-002"
+            },
+            {
+              "identity": "HELIXOS-L2-044",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXOS-L2-044-001"
+            },
+            {
+              "identity": "HELIXOS-L2-045",
+              "status": "held",
+              "decision_text": "保留。対象集合、version_target、HARNESSからOSへの所有移動の有無を明記する。",
+              "latest_mpr": "MPR-RC-HELIXOS-L2-045-001"
+            },
+            {
+              "identity": "HELIXOS-L2-046",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXOS-L2-046-001"
+            },
+            {
+              "identity": "HELIXOS-L2-047",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXOS-L2-047-004"
+            },
+            {
+              "identity": "HELIXOS-L2-048",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXOS-L2-048-001"
+            },
+            {
+              "identity": "HELIXOS-L2-049",
+              "status": "conditionally_adopted",
+              "decision_text": "条件付き採択：割当前に後段の検証義務・担当・capacityを確保する。割当先task自体のreview/merge完了は割当条件にしない（訂正L11 `HELIXOS-L2-049-003`）。",
+              "latest_mpr": "MPR-RC-HELIXOS-L2-049-003"
+            },
+            {
+              "identity": "HELIXOS-L2-050",
+              "status": "conditionally_adopted",
+              "decision_text": "条件付き採択：capacity増枠から新しいmerge権限を発生させない。既存review_merge担当は既存admission後にmergeできる。branch変更・Ready権限は与えない（訂正L11 `HELIXOS-L2-050-003`）。",
+              "latest_mpr": "MPR-RC-HELIXOS-L2-050-003"
+            },
+            {
+              "identity": "HELIXOS-L2-051",
+              "status": "conditionally_adopted",
+              "decision_text": "条件付き採択：本構成でCursorを作成専用、Claude優先は適用可能な評価根拠のある要求・設計taskのみ。",
+              "latest_mpr": "MPR-RC-HELIXOS-L2-051-002"
+            },
+            {
+              "identity": "HELIXOS-L2-052",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXOS-L2-052-001"
+            },
+            {
+              "identity": "HELIXLABO-L2-061",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXLABO-L2-061-001"
+            },
+            {
+              "identity": "HELIXLABO-L2-062",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXLABO-L2-062-001"
+            },
+            {
+              "identity": "HELIXLABO-L2-063",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXLABO-L2-063-001"
+            },
+            {
+              "identity": "HELIXLABO-L2-064",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXLABO-L2-064-002"
+            },
+            {
+              "identity": "HELIXLABO-L2-065",
+              "status": "conditionally_adopted",
+              "decision_text": "条件付き採択：D1、067とは別指標で「最初のAttemptの結果」。",
+              "latest_mpr": "MPR-RC-HELIXLABO-L2-065-001"
+            },
+            {
+              "identity": "HELIXLABO-L2-066",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXLABO-L2-066-001"
+            },
+            {
+              "identity": "HELIXLABO-L2-067",
+              "status": "conditionally_adopted",
+              "decision_text": "条件付き採択：D1、「最初の適格candidateの結果」と同一Attempt内修正回数。065と換算・統合しない。",
+              "latest_mpr": "MPR-RC-HELIXLABO-L2-067-001"
+            },
+            {
+              "identity": "HELIXLABO-L2-068",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXLABO-L2-068-001"
+            },
+            {
+              "identity": "HELIXLABO-L2-069",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXLABO-L2-069-001"
+            },
+            {
+              "identity": "HELIXINTELLIGENCE-L2-072",
+              "status": "conditionally_adopted",
+              "decision_text": "条件付き採択：B配置、1.0は候補生成とshadow評価まで。",
+              "latest_mpr": "MPR-RC-HELIXINTELLIGENCE-L2-072-004"
+            },
+            {
+              "identity": "HELIXINTELLIGENCE-L2-073",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXINTELLIGENCE-L2-073-002"
+            },
+            {
+              "identity": "HELIXINTELLIGENCE-L2-074",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXINTELLIGENCE-L2-074-002"
+            },
+            {
+              "identity": "HELIXSECURITY-L2-029",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXSECURITY-L2-029-002"
+            },
+            {
+              "identity": "HELIXSECURITY-L2-030",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXSECURITY-L2-030-001"
+            },
+            {
+              "identity": "HELIXSECURITY-L2-031",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXSECURITY-L2-031-001"
+            },
+            {
+              "identity": "HELIXSECURITY-L2-032",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXSECURITY-L2-032-001"
+            },
+            {
+              "identity": "HELIXSECURITY-L2-033",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXSECURITY-L2-033-002"
+            },
+            {
+              "identity": "HELIXSECURITY-L2-034",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXSECURITY-L2-034-001"
+            },
+            {
+              "identity": "HELIXCONNECT-L2-008",
+              "status": "conditionally_adopted",
+              "decision_text": "条件付き採択：A配置（供給はCONNECT、安全判定はSECURITY）、registration -002を対象。",
+              "latest_mpr": "MPR-RC-HELIXCONNECT-L2-008-002"
+            },
+            {
+              "identity": "HELIXCONNECT-L2-009",
+              "status": "conditionally_adopted",
+              "decision_text": "条件付き採択：A。direction/orderは属性、feedbackは型付き戻り辺。操作ごとのunknown停止条件を分ける（訂正L11 `HELIXCONNECT-L11-009-002`）。",
+              "latest_mpr": "MPR-RC-HELIXCONNECT-L2-009-002"
+            }
+          ]
+        },
+        {
+          "record_path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+          "sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+          "decision_record_id": "HDEC-REQUIREMENTS-11-2026-09-29",
+          "decision_basis_revision": "909c8015326f35f8d42ce12e3c388923de411d1f",
+          "source_repository_revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+          "entry_count": 11,
+          "status_counts": {
+            "adopted": 10,
+            "not_adopted_current_revision": 1
+          },
+          "entries": [
+            {
+              "identity": "HARNESS-L2-041",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HARNESS-L2-041-003"
+            },
+            {
+              "identity": "HARNESS-L2-048",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HARNESS-L2-048-001"
+            },
+            {
+              "identity": "HELIXBRAIN-L2-031",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HELIXBRAIN-L2-031-001"
+            },
+            {
+              "identity": "HARNESS-L2-050",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HARNESS-L2-050-001"
+            },
+            {
+              "identity": "HARNESS-L2-051",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HARNESS-L2-051-001"
+            },
+            {
+              "identity": "HARNESS-L2-052",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HARNESS-L2-052-001"
+            },
+            {
+              "identity": "HARNESS-L2-053",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HARNESS-L2-053-001"
+            },
+            {
+              "identity": "HARNESS-L2-054",
+              "status": "adopted",
+              "decision_text": "採択",
+              "latest_mpr": "MPR-RC-HARNESS-L2-054-001"
+            },
+            {
+              "identity": "HELIXOS-L2-038",
+              "status": "adopted",
+              "decision_text": "依存先と併せて採択",
+              "latest_mpr": "MPR-RC-HELIXOS-L2-038-002"
+            },
+            {
+              "identity": "HELIXOS-L2-053",
+              "status": "adopted",
+              "decision_text": "依存先と併せて採択",
+              "latest_mpr": "MPR-RC-HELIXOS-L2-053-001"
+            },
+            {
+              "identity": "HARNESS-L2-049",
+              "status": "not_adopted_current_revision",
+              "decision_text": "Current MPR-RC-HARNESS-L2-049-002 revision not adopted pending corrected L11 and PO recheck",
+              "latest_mpr": "MPR-RC-HARNESS-L2-049-002"
+            }
+          ]
+        }
+      ],
+      "screen_summary": "68 decision entries across 57+11 records; overlapping identity/revision entries remain attached to their own record. HARNESS-L2-049 in the 11-candidate decision is explicitly current-revision not adopted and is listed although excluded from the 10-row adopted table.",
+      "selected_source_citation_overlap_with_queue_join": []
+    },
+    "nearby_later_adopted_pairs": [
+      {
+        "identity": "HELIXSECURITY-L2-032/L11-032",
+        "decision_status": "採択",
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_record_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "mpr": "MPR-RC-HELIXSECURITY-L2-032-001",
+        "l2_path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "l2_file_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+        "l2_section_digest": "ccdd634fb92621105310b91465e01bd089238cc430491ff3c8ac51a3d80403c8",
+        "l11_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "l11_file_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
+        "l11_section_digest": "5dcf1c19728badff041220d610a85c3507a6c6f70fea57c0081ae9902705c6f1",
+        "limited_effect": "Permanent repository-level bypass deny outranks a lower one-shot marker or provider flag; unknown/stale applicability fails closed. Decision record cites a different v1.3 row (line 430), not the seven selected rows.",
+        "residual": "Does not define workflow identity/binding resolution, the four risk booleans, general high-impact action-binding rules, or command executable/argv grammar."
+      },
+      {
+        "identity": "HELIXSECURITY-L2-034/L11-034",
+        "decision_status": "採択",
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_record_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "mpr": "MPR-RC-HELIXSECURITY-L2-034-001",
+        "l2_path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "l2_file_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+        "l2_section_digest": "9543e2848037912dd04c10d46438be064961b808a26bad58b090d868308eb166",
+        "l11_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "l11_file_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
+        "l11_section_digest": "3ff1762c435c7343ba96541f5b149dbf5b6264152306b2ace486a9efa54dbc77",
+        "limited_effect": "For an already selected MCP profile, compare declared tool capability, read-only probe, requested operation, credential/egress/authority conditions; missing or stale profile conditions deny/hold that profile operation.",
+        "residual": "MCP profile-specific capability checks do not create a general workflow execution registry, map every identity to a command, or prescribe program/argv token grammar."
+      },
+      {
+        "identity": "HARNESS-L2-052/L11-052",
+        "decision_status": "採択（後続11候補判断）",
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+        "decision_record_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+        "decision_source_revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+        "mpr": "MPR-RC-HARNESS-L2-052-001",
+        "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_file_sha256": "45955ffba1293b603f3c513ec1e9e328dd7bcf24b038463eb20dd480d1dc2108",
+        "l2_section_digest": "d49f8cf116879f4283313f9c01ae7fb72bc9c528b5205cdbd45d06c46221d25c",
+        "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_file_sha256": "216a8dccfff723408fd4b54701933a8e257f29e5c775aaef2a4458d1f36d3cc7",
+        "l11_section_digest": "3027c6b91b91ccf7cbab0c34821587956f8e8e7e20e5637f0fffaa591b2a633b",
+        "limited_effect": "Command identity, scope/base/payload digest, idempotent replay, and conflict on same command ID with different semantic payload. The adoption status is read from the decision record; the requirement section header retains pre-decision candidate metadata.",
+        "residual": "Semantic identity/replay does not define allowed command registry contents, risk tuple bindings, action-binding approval policy, or actual invocation/argv grammar."
+      }
+    ]
+  },
+  "source_conditions": [
+    {
+      "source_tuple": {
+        "source_item_id": "REQSRC-SUP-00134",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 175,
+        "source_line_sha256": "sha256:48420267fd12aa05650518f8028ec06fe57c44956f89b6947b00d016d83d3084",
+        "source_text": "後続versionで追加する。未実装identityへのexecution要求はpolicyを推測せずunsupportedとしてfail-closeする。",
+        "condition_cluster_id": "V13-COND-L0175",
+        "source_section_group": 10,
+        "source_section_label": "§4.2.2 execution policy・152–183"
+      },
+      "baseline_queue_status": "partial",
+      "queue_comparison_reason": "関連する採択L2/L11またはowner境界は特定したが、このsource condition単位の全受入条件・反例を閉じた直接対応は確認できない。",
+      "queue_state": "unresolved_for_closure_work",
+      "existing_individual_audit_refs": [],
+      "later_adopted_source_citation_refs": [],
+      "atoms": [
+        "後続versionへの追加を維持する。未実装identityのexecution要求は、近似policy/commandを選ばず`unsupported`としてfail-closeする。"
+      ],
+      "fixed_retained": [
+        "対象operationのauthority不足・期限切れ・drift・unknownを拒否する一般境界（SECURITY-008）。"
+      ],
+      "fixed_changed": [
+        "旧sourceはexecution policy registry自体を後続versionへ送る。f6固定pairはregistry実装やroute-resolution surfaceの存在を保証しない。"
+      ],
+      "unresolved": [
+        "どの将来versionで追加するか、unsupportedを示す正確なcurrent disposition/consumer、未実装identity集合と移行条件。"
+      ],
+      "counterexamples": [
+        "未実装identityを意味が近い既存commandへfallback: unsupportedで停止する。",
+        "登録されていないidentityに成功・既定commandを返す: 不成立。"
+      ],
+      "later_pair_effects": {
+        "032": "該当せず。permanent bypass deny優先順位であり、unsupported route dispositionではない。",
+        "034": "選択済みMCP profile scopeのみ。一般workflow未実装identityの扱いは追加しない。",
+        "052": "同一command semantic payloadの重複/conflictだけ。未登録policy identityを解決しない。"
+      },
+      "formal_successor_assigned": false,
+      "requirement_adopted_by_this_audit": false,
+      "source_condition_closed": false
+    },
+    {
+      "source_tuple": {
+        "source_item_id": "REQSRC-SUP-00135",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 177,
+        "source_line_sha256": "sha256:2bae85f6d75b658c41f7f68ba048e829a67a624dad7ee0f78e9d29786b6faf01",
+        "source_text": "初期execution policy registryは、実在するread-only／planning commandだけを登録する。bindingは",
+        "condition_cluster_id": "V13-COND-L0177",
+        "source_section_group": 10,
+        "source_section_label": "§4.2.2 execution policy・152–183"
+      },
+      "baseline_queue_status": "partial",
+      "queue_comparison_reason": "関連する採択L2/L11またはowner境界は特定したが、このsource condition単位の全受入条件・反例を閉じた直接対応は確認できない。",
+      "queue_state": "unresolved_for_closure_work",
+      "existing_individual_audit_refs": [],
+      "later_adopted_source_citation_refs": [],
+      "atoms": [
+        "初期registryに登録するのは実在するread-only/planning command。line 178は初期binding surfacesとして`ADD_FEATURE + pair_cell`、`RECOVERY`、`INCIDENT`、`RETROFIT`を列挙する文脈。"
+      ],
+      "fixed_retained": [
+        "既存SECURITY operation authorityとWorker制約の範囲を適用し、無許可操作を許さない。"
+      ],
+      "fixed_changed": [
+        "固定SECURITY-007/008は権限・制約を記すが、初期command集合や4 route/binding surfaceのallowlistを定義しない。"
+      ],
+      "unresolved": [
+        "どの現行read-only/planning commandが実在し適用可能か、そのidentity/owner/source/version、4 surfaceごとのbinding coverageと非対象境界。"
+      ],
+      "counterexamples": [
+        "存在・owner・revisionが確認できないcommandを「planningらしい」名称だけで登録: 未解決として保留。",
+        "初期4 route以外を初期対象へ暗黙追加: 不成立。"
+      ],
+      "later_pair_effects": {
+        "032": "外部Worker bypass denyのみ。初期command登録の根拠にしない。",
+        "034": "MCPの選択済みprofile operationに限る。MCP registry/profile供給の全体を定義しない。",
+        "052": "command意味identityとreplay判定。commandを実行可能/allowedとする一覧ではない。"
+      },
+      "formal_successor_assigned": false,
+      "requirement_adopted_by_this_audit": false,
+      "source_condition_closed": false
+    },
+    {
+      "source_tuple": {
+        "source_item_id": "REQSRC-SUP-00137",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 179,
+        "source_line_sha256": "sha256:effddea9f5522b0f525ce7f647b0096f2b2f5e4b6ffa734a42c4e7906be1fa9b",
+        "source_text": "未登録identityを近似commandへ送らない。全bindingは4条件",
+        "condition_cluster_id": "V13-COND-L0179",
+        "source_section_group": 10,
+        "source_section_label": "§4.2.2 execution policy・152–183"
+      },
+      "baseline_queue_status": "unresolved",
+      "queue_comparison_reason": "This normative or continuation line was previously under-classified as description/not_applicable. It is retained as a condition; exact adopted L2/L11 successor and acceptance closure remain unverified.",
+      "queue_state": "unresolved_for_closure_work",
+      "existing_individual_audit_refs": [],
+      "later_adopted_source_citation_refs": [],
+      "atoms": [
+        "未登録identityを近似commandへ送らない。"
+      ],
+      "fixed_retained": [
+        "操作ごとのauthority tuple完全一致を要求し、欠落/期限切れ/driftを通さない。"
+      ],
+      "fixed_changed": [
+        "fixed L2-008は既知operation authorityの検証を定めるが、workflow identityからbinding/commandを解決する登録照合規則を特定しない。"
+      ],
+      "unresolved": [
+        "未登録identityのexact disposition、近似判定・曖昧判定との区別、bindingとcommand identityの逆trace。"
+      ],
+      "counterexamples": [
+        "未登録`target_axis/target_id`に名前の近いbindingを選択: `policy_unsupported`等の記録済みexact dispositionで停止し、commandを返さない。",
+        "二つのbindingが同じく近い場合に優先度を推定: `policy_ambiguous`/停止。"
+      ],
+      "later_pair_effects": {
+        "032": "policy selector/identity registryではない。",
+        "034": "選択profileにのみ適用。未登録workflow identityを解決しない。",
+        "052": "command IDのpayload conflictを判定するが、workflow identity→command IDのallow mappingではない。"
+      },
+      "formal_successor_assigned": false,
+      "requirement_adopted_by_this_audit": false,
+      "source_condition_closed": false
+    },
+    {
+      "source_tuple": {
+        "source_item_id": "REQSRC-SUP-00138",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 180,
+        "source_line_sha256": "sha256:4f2fb648c33a14b959e6a3492fb99eabcf234a45127351d220ce9c583c275aab",
+        "source_text": "`production_impact`／`destructive_data_operation`／`credential_access`／`backend_derived`を",
+        "condition_cluster_id": "V13-COND-L0179",
+        "source_section_group": 10,
+        "source_section_label": "§4.2.2 execution policy・152–183"
+      },
+      "baseline_queue_status": "unresolved",
+      "queue_comparison_reason": "This normative or continuation line was previously under-classified as description/not_applicable. It is retained as a condition; exact adopted L2/L11 successor and acceptance closure remain unverified.",
+      "queue_state": "unresolved_for_closure_work",
+      "existing_individual_audit_refs": [],
+      "later_adopted_source_citation_refs": [],
+      "atoms": [
+        "`production_impact`、`destructive_data_operation`、`credential_access`、`backend_derived`の4条件を明示boolean入力として受ける。signalから補完しない。"
+      ],
+      "fixed_retained": [
+        "SECURITY-008でauthorityにoperation/scope等を明示的に束縛する。"
+      ],
+      "fixed_changed": [
+        "固定L2-008のactor/target/operation/revision/environment/scope/expiry tupleに、この4分類fieldや`backend_derived`軸は明記されない。"
+      ],
+      "unresolved": [
+        "4 fieldの値供給owner/revision、欠落や型不一致時のexact disposition、どのcondition tupleが登録済みか。3高影響field（production/destructive/credential）と`backend_derived`を混同しない。"
+      ],
+      "counterexamples": [
+        "4 booleanの一つを欠落、null、文字列、またはsignal由来推測で補う: 成功解決しない。",
+        "四fieldを全て明示しつつ未登録tupleを入力: `policy_unsupported`。",
+        "`backend_derived=true`だけを根拠にhigh-impact/action-binding扱い: 原文の高影響3 fieldと混同し、不成立。"
+      ],
+      "numeric_note": "入力次元は4個のboolean（理論上16組合せ）。これは全組合せを許可・登録する要求ではない。登録されていない組合せはfail-close。threshold/countは追加しない。",
+      "later_pair_effects": {
+        "032": "bypass deny condition, not four-field classification.",
+        "034": "tool/profile capability and existing authority checks; does not define these workflow risk flags.",
+        "052": "semantic payload identity, no risk classification fields."
+      },
+      "formal_successor_assigned": false,
+      "requirement_adopted_by_this_audit": false,
+      "source_condition_closed": false
+    },
+    {
+      "source_tuple": {
+        "source_item_id": "REQSRC-SUP-00139",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 181,
+        "source_line_sha256": "sha256:1bf0e7aca10c929a90d2acea6c0933cf3180c1d6e893909e3b6f184d94d4e240",
+        "source_text": "明示booleanで受け、条件組合せが未登録ならfail-closeする。いずれかの高影響条件がtrueのbindingは",
+        "condition_cluster_id": "V13-COND-L0181",
+        "source_section_group": 10,
+        "source_section_label": "§4.2.2 execution policy・152–183"
+      },
+      "baseline_queue_status": "partial",
+      "queue_comparison_reason": "関連する採択L2/L11またはowner境界は特定したが、このsource condition単位の全受入条件・反例を閉じた直接対応は確認できない。",
+      "queue_state": "unresolved_for_closure_work",
+      "existing_individual_audit_refs": [],
+      "later_adopted_source_citation_refs": [],
+      "atoms": [
+        "4条件の組合せが未登録ならfail-closeする。高影響条件がtrueならそのbindingの`approval_policy: action_binding`を必須とする。旧本文後続行186も高影響項目をproduction impact/destructive data operation/credential accessと列挙し、`backend_derived`だけでは同じ条件と書いていない。"
+      ],
+      "fixed_retained": [
+        "固定L2-008は操作別authorityと失効/欠落/drift拒否を保持。"
+      ],
+      "fixed_changed": [
+        "固定L2-008ではregistry tuple missからpolicy_unsupportedを返すroutingや、binding policyがnoneなら拒否するregistry validatorは直接定義されない。"
+      ],
+      "unresolved": [
+        "exact tuple-match/duplicate/multiple-match precedence、3高影響軸ごとのpolicy downgrade反例、同一HEAD・policy digest approval receiptのconsumer連携。"
+      ],
+      "counterexamples": [
+        "未登録tupleを近似bindingへ送る: fail-close。",
+        "`production_impact=true`（ほかはfalse）で`approval_policy:none`: 不成立。別々に`destructive_data_operation=true`、`credential_access=true`でも同様。",
+        "4 fieldが明示されているがtuple未登録: fail-close。",
+        "`backend_derived=true`単独で他の3 fieldがfalse: 未登録tupleなら拒否するが、高影響判定そのものをbackend_derivedへ拡張しない。"
+      ],
+      "numeric_note": "4 boolean dimensions, 3 source-named high-impact dimensions, no numeric threshold. Keep all three one-hot high-impact counterexamples separate.",
+      "later_pair_effects": {
+        "032": "permanent bypass deny remains non-overridable; it does not create the generic action_binding rule.",
+        "034": "uses existing L2-008 as input for MCP operation; does not enumerate every registry combo.",
+        "052": "does not govern action policy or approvals."
+      },
+      "formal_successor_assigned": false,
+      "requirement_adopted_by_this_audit": false,
+      "source_condition_closed": false
+    },
+    {
+      "source_tuple": {
+        "source_item_id": "REQSRC-SUP-00140",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 182,
+        "source_line_sha256": "sha256:8f830930f9c63fc51efd10136538338a4910ced22968c71979591efb97585fe9",
+        "source_text": "`approval_policy: action_binding`を必須とする。command registryは`program`と固定`argv`のtoken列を持ち、",
+        "condition_cluster_id": "V13-COND-L0182",
+        "source_section_group": 10,
+        "source_section_label": "§4.2.2 execution policy・152–183"
+      },
+      "baseline_queue_status": "partial",
+      "queue_comparison_reason": "関連する採択L2/L11またはowner境界は特定したが、このsource condition単位の全受入条件・反例を閉じた直接対応は確認できない。",
+      "queue_state": "unresolved_for_closure_work",
+      "existing_individual_audit_refs": [],
+      "later_adopted_source_citation_refs": [],
+      "atoms": [
+        "高影響bindingに`action_binding`を必須化。registry command recordは`program`と固定`argv`のtoken listで表現する。"
+      ],
+      "fixed_retained": [
+        "SECURITY-008 requires exact actor/target/operation/revision/environment/scope/expiry authority."
+      ],
+      "fixed_changed": [
+        "Fixed SECURITY pair does not define command registry record fields, command IDs, `program`/`argv` shape, or action-binding policy in a workflow binding. §4.2.3 further constrains the approval receipt and consumer."
+      ],
+      "unresolved": [
+        "command identity→program/token-array binding source and revision, invocation boundary owner, and how same-HEAD/policy-digest approval binds to the resulting command operation."
+      ],
+      "counterexamples": [
+        "Represent invocation as one mutable shell string instead of a fixed program plus argv token sequence: does not meet the recorded representation.",
+        "High-impact binding with approval_policy other than action_binding: reject.",
+        "Public routing receipt includes raw program/argv: old §4.2.3 forbids raw invocation fields; keep execution-boundary use separate from receipt output."
+      ],
+      "later_pair_effects": {
+        "032": "does not define registry invocation.",
+        "034": "profile permission can constrain a selected MCP tool, not general program/argv command binding.",
+        "052": "canonical command identity/payload digest is nearest; it expressly does not own program persistence/commit or invocation policy."
+      },
+      "formal_successor_assigned": false,
+      "requirement_adopted_by_this_audit": false,
+      "source_condition_closed": false
+    },
+    {
+      "source_tuple": {
+        "source_item_id": "REQSRC-SUP-00141",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 183,
+        "source_line_sha256": "sha256:cf5c5440f6425e5c5258450e9c75f150eaa16d677f8924a98d7bb7de3e01fbda",
+        "source_text": "shell operator、command substitution、absolute executable pathを拒否する。",
+        "condition_cluster_id": "V13-COND-L0183",
+        "source_section_group": 10,
+        "source_section_label": "§4.2.2 execution policy・152–183"
+      },
+      "baseline_queue_status": "partial",
+      "queue_comparison_reason": "関連する採択L2/L11またはowner境界は特定したが、このsource condition単位の全受入条件・反例を閉じた直接対応は確認できない。",
+      "queue_state": "unresolved_for_closure_work",
+      "existing_individual_audit_refs": [],
+      "later_adopted_source_citation_refs": [],
+      "atoms": [
+        "Reject shell operator, command substitution, and absolute executable path."
+      ],
+      "fixed_retained": [
+        "SECURITY-007 requires enforced/observed Worker constraints and rejects host fallback when constraints are unknown or unenforced."
+      ],
+      "fixed_changed": [
+        "Fixed L2-007/008 do not enumerate parser grammar or these three invocation-form examples."
+      ],
+      "unresolved": [
+        "Exact lexer/parser rules, platform-specific absolute-path recognition, tokenization and wrapper behavior. Audit should not invent stricter grammar beyond the source."
+      ],
+      "counterexamples": [
+        "A command containing `;` or `&&` as a shell operator: reject.",
+        "A command containing `$()`/command substitution: reject.",
+        "An absolute executable path in the command record: reject.",
+        "A missing/ambiguous command parser result: unknown/fail-close rather than execute."
+      ],
+      "later_pair_effects": {
+        "032": "not relevant to command syntax.",
+        "034": "MCP profile capability is not shell parser enforcement.",
+        "052": "command semantic replay identity does not specify shell grammar."
+      },
+      "formal_successor_assigned": false,
+      "requirement_adopted_by_this_audit": false,
+      "source_condition_closed": false
+    }
+  ],
+  "numeric_and_counterexample_boundary": {
+    "risk_boolean_fields": [
+      "production_impact",
+      "destructive_data_operation",
+      "credential_access",
+      "backend_derived"
+    ],
+    "boolean_dimensions": 4,
+    "theoretical_combinations": 16,
+    "source_named_high_impact_fields": [
+      "production_impact",
+      "destructive_data_operation",
+      "credential_access"
+    ],
+    "combination_rule": "These are explicit boolean inputs, not a requirement to allow or register all 16 combinations. Any unregistered combination fails closed. Do not infer backend_derived alone is a high-impact action-binding trigger; the source separately names three high-impact fields.",
+    "initial_registry_surfaces": [
+      "ADD_FEATURE + pair_cell",
+      "RECOVERY",
+      "INCIDENT",
+      "RETROFIT"
+    ],
+    "numeric_thresholds_added": false,
+    "required_negative_families": [
+      "future/unimplemented identity unsupported",
+      "unregistered identity not approximated",
+      "missing/non-boolean risk input not inferred",
+      "unregistered combination fail-close",
+      "each of three high-impact flags separately requires action_binding",
+      "backend_derived-only not conflated with high-impact",
+      "command record is program plus fixed argv token list",
+      "shell operator rejected",
+      "command substitution rejected",
+      "absolute executable path rejected",
+      "raw program/argv omitted from public routing receipt"
+    ]
+  },
+  "authority_claims": {
+    "successor_assignment": false,
+    "candidate_adoption": false,
+    "source_meaning_change": false,
+    "source_condition_closure": false,
+    "l11_execution_or_acceptance": false,
+    "full_source_no_loss_claim": false
+  },
+  "non_claims": [
+    "This audit compares seven selected source conditions only; it does not close the full §4.2.2/§4.2.3 execution-policy source or the 303-row/255-row v1.3 population.",
+    "Later SEC-032/034 and HARNESS-052 adoption status is recorded as a decision-set screen only; semantic proximity is not successor, source adoption, or closure.",
+    "The old PLAN/schema/L4/test references are historical consumers and were not executed or copied.",
+    "No old CLI/runtime/hook/adapter/test/CI was executed."
+  ]
+}
