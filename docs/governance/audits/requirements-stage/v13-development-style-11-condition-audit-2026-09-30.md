@@ -93,8 +93,8 @@
 - 意味: PoCはS4 decision前にproduction Forwardへ昇格しない。
 - 保持点: 固定L2-002/003はPoC/Discovery結果をDecide/Backflowで扱い、検証成功だけで採用にしない。
 - 数値・例外: S4という一つのdecision boundary。
-- 反例: 新Hybridを旧V設計＋Scrum実装Hybridと同じとみなし、旧L5 freeze/L6以降slice/各release candidateの全pair再収束を新Hybrid全体へ適用する。またはL2-046のScrum枝だけで旧Hybridの全条件が充足したとする。
-- 未解消残差: 現行L2-002はHybridをV-model基盤の複数unit拡張とcore/複数製品の最後の結合へ変更し、旧「L1〜L5 freeze後にL6以降をslice実装し、release candidateごとに全V-pairへ再収束」というHybrid全体の順序を同じ形では保持していない。L2-046のScrum枝は実際にScrumを適用する合成部分だけの近接であり、新Hybrid全体へ拡張できず、旧L5 freeze/L6以降slice/candidateごとの全pair再収束と同一条件ではない。
+- 反例: S3 pass、Issue close、試作物の存在をS4判断にする。
+- 未解消残差: S4のconfirmed/rejected/pivot別に戻る条件、authority/source receipt identity、全遷移条件は確定していない。
 - 結果: `partial`; formal successorなし。
 
 ### REQSRC-SUP-00063 — 共通L1–L3とstyle合意
