@@ -2,14 +2,14 @@
 
 ## 目的と境界
 
-基準main `ea6f756f96a7370de78e412d737c7a7ed472114a`で、旧Document Authority Census利用者要求5件を旧L1 source/L12利用認識/L3契約/L10受入条件から固定f6 L2/L11へ照合した静的個票。旧sourceはL3-PO-1381-001で確認済みだが、本監査は採択状態・successor・実装/受入・closureを生成しない。旧CLI/runtime/CI/test不実行。
+基準main `cf636d6f5d4fd16d9eea3386f670dec0d39a3b8d`で、旧Document Authority Census利用者要求5件を旧L1 source/L12利用認識/L3契約/L10受入条件から固定f6 L2/L11へ照合した静的個票。旧sourceはL3-PO-1381-001で確認済みだが、本監査は採択状態・successor・実装/受入・closureを生成しない。旧CLI/runtime/CI/test不実行。
 
 ## 選定と重複確認
 
 - QueueではDAC-BR-001..005すべて `not_individually_compared`、evidenceは空（queue hashはa3d9f7e...時点から不変）。
-- 同一source上の連番5件を選択。初回は基準main 105b9221...と154 worktree上のaudit JSON/MDをsource-qualified identityと選択identityで走査。rebase後は最新main ea6f756f96a7370de78e412d737c7a7ed472114aのrequirements-stage全JSON/MDを再走査し、#2418追加screen監査JSON/MDもsource-qualified tupleで確認した。DAC-BR-001..005の完全なsource-qualified tuple一致はqueue/full-audit/REG06のpopulation記録だけで、個票条件比較の重複はない。#2418 screen監査の9 tupleとの完全一致およびidentity一致は0件。
+- 同一source上の連番5件を選択。初回は基準main 105b9221...と154 worktree上のaudit JSON/MDをsource-qualified identityと選択identityで走査。#2420を含む最新main `cf636d6f5d4fd16d9eea3386f670dec0d39a3b8d` のrequirements-stage全JSON/MDを再走査し、#2418追加screen監査をsource-qualified tuple、#2420追加文書をsource-qualified identity単位で確認した。DAC-BR-001..005の完全なsource-qualified tuple一致はqueue/full-audit/REG06のpopulation記録だけで、個票条件比較の重複はない。#2418 screen監査との完全一致およびidentity一致は0件。#2420のPO判断記録とhandoffは個票監査でなく、選択したDAC-BR identityを含まないため重複0件。
 - sibling crosswalk `confirmed175-dac-fr004-008-condition-crosswalk` はDAC-FR-004..008だけを選び、DAC-BR-004を候補atomに含めない。追加資料でのBR-002/003参照はDAC-FR-006 consumer文脈、BR-004参照はDAC-FR-008 handoff・follow-up・PO packetのsource atom外context-only記載である。
-- 旧queue/full-audit/REG06はpopulation inventoryであり個票監査ではない。最新main `ea6f756f96a7370de78e412d737c7a7ed472114a`で確認したsource-qualified個票重複は0件。
+- 旧queue/full-audit/REG06はpopulation inventoryであり個票監査ではない。#2420はlive候補26件に対するPO判断記録であり、DAC個票監査ではない。最新main `cf636d6f5d4fd16d9eea3386f670dec0d39a3b8d`で確認したsource-qualified個票重複は0件。
 
 ## 個票
 
@@ -275,7 +275,7 @@ Source-qualified identity: `helix/L1-requirements/document-authority-census-requ
 
 ## current-input pins
 
-基準revision: `ea6f756f96a7370de78e412d737c7a7ed472114a`。以下のcurrent-input SHAはこのrevisionで再照合した。旧source/consumer、f6 target、後発decisionの固定pinは本文およびJSONの旧revision/line/file SHAを維持する。
+基準revision: `cf636d6f5d4fd16d9eea3386f670dec0d39a3b8d`。以下のcurrent-input SHAはこのrevisionで再照合した。旧source/consumer、f6 target、後発decisionの固定pinは本文およびJSONの旧revision/line/file SHAを維持する。
 
 - `docs/governance/audits/requirements-stage/confirmed175-condition-comparison-queue-2026-09-30.json`: `2dbfb06c11ac42a940c0d6b5c188a76e685ea4c00e4d9af10b432198ad17b353`
 - `docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json`: `ca08a81d97e39e94aa02151c7cc4e48f621f9d30baccc1cf9b715331fed38f45`
@@ -295,6 +295,9 @@ Source-qualified identity: `helix/L1-requirements/document-authority-census-requ
 - `docs/governance/audits/requirements-stage/legacy-confirmed175-screen-gd01-hm01-08-fixed-l2l11-audit-2026-10-01.json`（#2418 source-qualified scan evidence）: `e119c425d2275dad8fdb16c544a19705febf7c9d18e004fa59f190d175b2ae8e`
 
 - `docs/governance/audits/requirements-stage/legacy-confirmed175-screen-gd01-hm01-08-fixed-l2l11-audit-2026-10-01.md`（#2418 source-qualified scan evidence）: `22e5cb57616b95c72855d25acaca5f4d7172e4cb4fb418538711cc582a2bb418`
+- `docs/governance/decisions/po-decision-2026-09-30-live26.md`（#2420 PO decision record; selected DAC identity matches 0）: `8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145`
+- `docs/governance/audits/requirements-stage/po-decision-received-handoff-live26-2026-09-30.md`（#2420 provenance handoff; not an individual audit）: `f80446c2fb86cb115cb8af2e46b93584f95c3a84862dda4461c25ba38df7ffa4`
+- `docs/governance/upstream-authority-register-2026-09-14.md`（#2420 authority-decision reference）: `2dea27a56575da97b8fd0206f9d71d0338b14f8701a4b860947a8097e78de28a`
 
 ## 方法と限界
 

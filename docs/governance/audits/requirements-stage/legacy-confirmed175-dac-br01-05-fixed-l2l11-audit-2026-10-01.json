@@ -3,7 +3,7 @@
   "audit_id": "confirmed175-dac-br01-05-fixed-l2l11-audit-2026-10-01",
   "created_at": "2026-10-01",
   "audit_mode": "read_only_source_to_fixed_l2_l11_condition_comparison",
-  "created_against_revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+  "created_against_revision": "cf636d6f5d4fd16d9eea3386f670dec0d39a3b8d",
   "authority_effect": "none",
   "scope": {
     "population": "confirmed175",
@@ -22,12 +22,12 @@
   "selection_and_duplicate_scan": {
     "queue": "docs/governance/audits/requirements-stage/confirmed175-condition-comparison-queue-2026-09-30.json",
     "queue_result": "基準main ea6f756f96a7370de78e412d737c7a7ed472114aでDAC-BR-001..005はすべてnot_individually_compared、evidence_artifacts空。queue hashはa3d9f7e...時点から不変。",
-    "scan_scope": "最新main ea6f756f96a7370de78e412d737c7a7ed472114a のrequirements-stage *.json/*.mdを走査し、Queue/full-audit/REG-06 population artifactを個票比較から除外。現行の全DAC source-qualified identityとscreen個票artifactを照合し、#2418追加screen監査もarchive source path/file SHA/physical line/line SHAおよびidentity単位で追加照合。",
-    "result": "最新main ea6f756f96a7370de78e412d737c7a7ed472114a のrequirements-stage全JSON/MDで、選択したDAC-BR-001..005のsource-qualified tupleを走査。population artifactsの一致は母集団記録として区別し、個票条件比較の重複は0件。#2418追加screen監査の9 source-qualified tupleとの完全一致およびidentity一致も0件。",
+    "scan_scope": "最新main cf636d6f5d4fd16d9eea3386f670dec0d39a3b8d のrequirements-stage *.json/*.mdを走査し、Queue/full-audit/REG-06 population artifactを個票比較から除外。現行の全DAC source-qualified identityとscreen個票artifactを照合し、#2418追加screen監査をsource tuple単位、#2420追加文書を判断記録・handoffとしてsource-qualified identity単位で確認。",
+    "result": "最新main cf636d6f5d4fd16d9eea3386f670dec0d39a3b8d のrequirements-stage全JSON/MDで、選択したDAC-BR-001..005のsource-qualified tupleを走査。population artifactsの一致は母集団記録として区別し、個票条件比較の重複は0件。#2418追加screen監査のsource-qualified tupleとの完全一致およびidentity一致は0件。#2420のPO判断記録とhandoffに選択した5 identityの一致はなく、#2420は個票監査ではなくlive候補判断記録のため、DAC個票重複に数えない。",
     "cohort": "同一source内の連続BR-001..005。five unique source-qualified IDs。",
     "initial_candidate_rejected": "前群のFR36..44及びscreen GD/HM候補群を使い回さず、source-qualified identityと監査選択IDで全worktreeを再走査。",
     "post_merge_source_qualified_scan": {
-      "base_revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+      "base_revision": "cf636d6f5d4fd16d9eea3386f670dec0d39a3b8d",
       "tuple_rule": "archive source path + source file SHA-256 + physical source line + source line SHA-256; source-qualified identity strings also compared exactly.",
       "audits": [
         {
@@ -87,6 +87,18 @@
           "overlap_rows": [],
           "exact_identity_overlap_count": 0,
           "overlap_source_qualified_identities": []
+        }
+      ],
+      "decision_records": [
+        {
+          "pull_request": "#2420",
+          "decision_path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+          "decision_sha256": "sha256:8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+          "handoff_path": "docs/governance/audits/requirements-stage/po-decision-received-handoff-live26-2026-09-30.md",
+          "handoff_sha256": "sha256:f80446c2fb86cb115cb8af2e46b93584f95c3a84862dda4461c25ba38df7ffa4",
+          "classification": "PO decision record and provenance handoff; not an individual condition audit",
+          "selected_source_qualified_identity_matches": 0,
+          "result": "The 26 live-candidate decisions use current L2 identities and contain none of the selected helix/L1-requirements/document-authority-census-requests.md::DAC-BR-001..005 identities. No DAC source-qualified tuple overlap."
         }
       ]
     }
@@ -1385,7 +1397,7 @@
     "No old workflow, CLI, CI, test, or runtime was executed."
   ],
   "current_input_pins": {
-    "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+    "revision": "cf636d6f5d4fd16d9eea3386f670dec0d39a3b8d",
     "artifacts": [
       {
         "path": "docs/governance/audits/requirements-stage/confirmed175-condition-comparison-queue-2026-09-30.json",
@@ -1454,6 +1466,18 @@
       {
         "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-screen-gd01-hm01-08-fixed-l2l11-audit-2026-10-01.md",
         "sha256": "22e5cb57616b95c72855d25acaca5f4d7172e4cb4fb418538711cc582a2bb418"
+      },
+      {
+        "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+        "sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/po-decision-received-handoff-live26-2026-09-30.md",
+        "sha256": "f80446c2fb86cb115cb8af2e46b93584f95c3a84862dda4461c25ba38df7ffa4"
+      },
+      {
+        "path": "docs/governance/upstream-authority-register-2026-09-14.md",
+        "sha256": "2dea27a56575da97b8fd0206f9d71d0338b14f8701a4b860947a8097e78de28a"
       }
     ]
   },
@@ -1463,6 +1487,7 @@
     "legacy source and consumer line SHAs match",
     "fixed f6 target files and exact line SHAs match",
     "decision record revisions/counts/hash and bounded HELIXOS-L2-037 pair pins are retained",
-    "no overlapping individual audit identity"
+    "no overlapping individual audit identity",
+    "#2420 decision record and handoff are classified separately from audits and have no selected DAC source-qualified identity overlap"
   ]
 }
