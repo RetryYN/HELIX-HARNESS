@@ -78,10 +78,12 @@ HST-CASE-012-02/03/04/05/09/10および024-02..08のfailure code/状態もtest-d
 
 | 旧条件 | 現行の確認位置・判定 |
 |---|---|
+| ①画面プロト／PoCの単体成立 | L2 `HARNESS-L2-012`（`product-requirements.md:363–370`）は旧atom `HIL-BR-13`とScreen Applicabilityを`HARNESS-L2-003`経由で束ねる。Prototypeと技術PoCの適用を別に判定し、結果をBackflowして2次形成とDecideを経るまで要件へ進めず、非適用の理由・判定者・HEAD・影響・再評価条件を残す。L11 `product-acceptance.md:207`は①単独での試作・PoC、Backflowと非適用記録を確認し、Decide前のproduction昇格を拒否する。旧HIL-15の全PLAN固定二値routeやreceipt-level再entryの後継指定ではない。 |
 | UI prototypeの必要性と要求合意 | L2 `HARNESS-L2-001` (`product-requirements.md:52`) はL2.5（Prototype・PoC）と要求合意を区別。L2 `HARNESS-L2-003` (`:54,106–108`) は画面や不確定性のある対象がL2.5で不確定性を減らし、Prototypeは画面有無で判定、結果を要求へ戻してDecide前にL3 freezeしない。 |
 | no-UIを一律「L2.5不要」としない | L2 `HARNESS-L2-003` `:106` はPrototypeとPoCを独立判定する。PoCは画面に関係なく技術成立性の不確実さで判定し、片方だけの非適用ではL2.5を飛ばさない。 |
 | 根拠なしskip・適用性unknown/deferred・非UI記録の不足 | L2 `HARNESS-L2-003` `:106` は両方非適用時のみL2.5を飛ばし、L2要求は省略せず、非適用、理由、判定者、HEAD、要求への影響、再評価条件を記録する。L11 `:41–42` は画面なしでも技術PoCが必要な場合の省略、片方だけの非適用によるL2.5全体skip、Prototype agreement欠落、PoC結果未還流、非適用記録の必須項目欠落を拒否する。 |
 | static-only、操作可能prototype欠落 | L11 `HARNESS-L2-003` `:41` がprototype合意欠落前のL3進行を拒否し、旧負例と意味上対応する。旧9-state fixture、old startup code・schemaの1:1 successorは確認していない。 |
+| UI契約と表示計測の後発近接条件 | 57件判断`po-decision-2026-09-29-57candidates.md:44`（SHA `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`）は`MPR-RC-HARNESS-L2-039-003`のL2/L11-039を採択した。現行L2 `product-requirements.md:891–909`／L11 `product-acceptance.md:638–654`は同じscope・revisionにおけるExperience/UI/Frontend関係を扱う。live26判断`po-decision-2026-09-30-live26.md:39,72`（SHA `8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145`）は`MPR-RC-HARNESS-L2-049-003`のL2/L11-049を計測専用の意味で承認した。現行L2 `:1070–1088`／L11 `:802–815`はrenderable prototypeの必須stateを実描画で照合し、静止画やDOMの存在だけでは合格にしない。049には試作品生成・Pattern選択・screen ID発行を含めない。両pairは旧static-only/state欠落負例に近接するが、HAC-15a/b/c・HAT-15や6 atomのformal successorではなく、旧9-state fixture全体やscope-change再entryの成立も証明しない。現行本文の起草時の「未採択候補」表示を、後発の対象revisionを固定したPO判断より優先しない。 |
 | walkthrough delta / no-delta・要求反映欠落 | L11 `HARNESS-L2-003` `:42` はPoC result未還流を拒否。L2 `:106–107` はPrototypeをL2要求と反復し、結果をBackflowして要求へ戻すとする。旧walkthroughの固定receipt/iteration schemaは現行契約として確認できない。 |
 | agreement / wrong revision / stale scope | L11 `:41–42` のPrototype agreement欠落拒否とL2 `:54,106–108` の必要合意・成果物状態・Backflow条件に意味対応がある。旧HAC-15cのscope-changeに対するreceipt-stale・再entry全詳細がHARNESS L2/L11 aloneで全て閉じたとは判定しない。L1影響のないscope変更をL1合意へ一律戻す旧動作も現行本文へ読み込まない。 |
 | freeze状態の混同 | L2 `HARNESS-L2-003` `:54,108,112–113` とL11 `:41–43` は合意、L10検証、L11受入、L12評価等を別状態にし、前段成立や文書登録から後続完了を推定しない。 |
@@ -90,7 +92,7 @@ HARNESS L2は工程の要求・凍結条件を所有する。どの操作主体�
 
 ## Authorityと未解決状態
 
-2026-09-28のHELIX-HARNESS PO判断記録（`HDEC-HARNESS-REQUIREMENTS-2026-09-28`）は、固定したL1 revisionと対になるL2/L11一式、明示候補24件を対象に合意した記録である（decision file SHA-256 `c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23`、特に:18–25,64–75）。これは旧IRの6 atom・補助contract/HAC/HATのsuccessor assignmentやsource closureを生成しない。ここで参照した現行ファイルのSHAは上記の現在bytesに対する値で、decisionの別固定revisionへ承認を拡張するものではない。
+2026-09-28のHELIX-HARNESS PO判断記録（`HDEC-HARNESS-REQUIREMENTS-2026-09-28`）は、固定したL1 revisionと対になるL2/L11一式、明示候補24件を対象に合意した記録である（decision file SHA-256 `c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23`、特に:18–25,64–75）。この固定一式には①の`HARNESS-L2/L11-012`が含まれる。後発の57件判断は`039-003`を、live26判断は計測専用`049-003`をそれぞれ対象revision付きで採択・承認している。これらの判断は旧IRの6 atom・補助contract/HAC/HATのsuccessor assignmentやsource closureを生成しない。ここで参照した現行ファイルのSHAは上記の現在bytesに対する値で、decisionの別固定revisionへ承認を拡張するものではない。
 
 上流authorityモデル（SHA-256 `812f423b4b9952666b0ef91e741fec62f54caa3c884124ec534abbbe70be4616`）の5軸を適用すると、旧IR atomは `source_authority_state=specified_frozen` を保つ。対象別L2/L11がPO判断対象となったことと、旧atomごとの `carry_forward_state` は別である。carry-forward status表（SHA-256 `034cbbe54defe5ed48518499183a4be9c623a243830254b40473ce42d2a710bb`）はIR補助system contract/HAC/HAT全134件についてsuccessor assignment 0、`preserved_pending_rehome` 134。HIL-15のHAC/HAT行も supplementary-source carry-forward上は unmapped / successorなし。contract候補の製品routingはHARNESS/OS接続候補に過ぎず、`authority_effect: none`・`successor_assignment_status: unassigned` である。
 
