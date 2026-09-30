@@ -13,6 +13,10 @@
 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md` | 65, 107–110, 191 | `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb` | `LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`source_snapshot_preservation`、source status `draft` |
 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md` | 49, 78 | `8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6` | `LEGACY-ASSET-C7F0C3B79CBAA72960BF`、`unresolved` |
 | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L6-screen-applicability-prototype-unit-test-design.md` | 1–83 | `d72c002d485628ba059346b6af6a7233cead8bdf060a2630289d1c8148e0e26f` | `LEGACY-ASSET-63DEDB3F6F768B251BC5`、`unresolved`、`legacy_test_design_or_oracle` |
+| `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L5-screen-applicability-prototype-integration-test-design.md` | 30–44, 50–69, 76–85 | `16a40c2952c2e69b42147f6f08994352d6188d5d8a68e72f1d4d618fc9784b07` | `LEGACY-ASSET-CD32DDCC170620F5FBE8`、`unresolved`、`legacy_test_design_or_oracle` |
+| `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md` | 47 | `a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a` | `LEGACY-ASSET-FA8C6E69463183D6A19B`、`unresolved`、`legacy_test_design_or_oracle` |
+| `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/screen-applicability-prototype.md` | 38–46, 51–63, 80–91 | `aa744b5d6eb4121c14cd8f2e8660dac200183a1359b4f3cf6bdc3b5a14d882c0` | `LEGACY-ASSET-51B78F6A5128E2CD1448`、`unresolved` |
+| `archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/screen-applicability-prototype.md` | 20–41, 57–64, 84–88 | `3f92059a9854d774c0278e51138396536bcbf55f6132478576d2064f836d2b64` | `LEGACY-ASSET-A65B5C20721DD2149886`、`unresolved` |
 
 source manifestとtarget snapshotの同digestは物理保全を示す。要求採用、oracleへの昇格、実行可能性、consumer閉包は示さない。補助条件の構造・source関係は `docs/governance/legacy-migration/requirement/legacy-requirement-supplementary-source-carry-forward.jsonl`（SHA-256 `1a0591e1da6f9579d970aedfccff90ac6a8e1aefbbe0f4047e3aeb950a8449bb`）の `REQSRC-SUP-00622`、`00564`–`00566`、`00646` に照合した。
 
@@ -57,6 +61,16 @@ HAC-HIL-15a（acceptance_cases 464–474）はpositive: 根拠あるno-UI構造s
 | U-SAP-012 | capability IDの欠落・余剰・重複、stale/deferred decision、set digest、route優先順位、prototype task exact set、bundle/receipt/head/CAS/stage projection/port回数/gate payloadの改変を拒否。plan準備からgate passを出さない。 |
 
 HST-CASE-012-02/03/04/05/09/10および024-02..08のfailure code/状態もtest-design:49–67に記録される。たとえば `HIL_SCREEN_DECISION_MISSING`、`HIL_SCREEN_RECEIPT_STALE`、`HIL_SCREEN_SKIP_EVIDENCE_MISSING`、`HIL_SCREEN_DEFERRED_NOT_CLOSED`、`HIL_SCREEN_IMPLICIT_SKIP`、`HIL_PROTOTYPE_NOT_EXECUTABLE`、`HIL_PROTOTYPE_STATE_MISSING`、`HIL_PROTOTYPE_WALKTHROUGH_MISSING`、`HIL_PROTOTYPE_DELTA_MISSING`。名前付き旧error codeは現行public contractとして扱わない。
+
+## 追加consumer: L3 HAT設計、L5 integration、L5/L6設計
+
+旧 `L3-infinity-loop-acceptance-test-design.md:47` は `HAT-HIL-15` を `HST-HIL-012` と `HST-HIL-024` に結び、no-UIまたはprototype routeの完了、applicability/artifact/state/walkthrough/delta/agreement、implicit skip/static-only/stale receiptを列挙する。この行はHATが両側の補助test identityを参照したことを示す。HSTの実行やHAT合格を証明しない。
+
+旧integration test-design（見出し上L8、pathはL5-screen…）は9 scenario / 18 canonical primary HST caseを定義する。30–44行は固定clock/ID、no-UI/UI/deferred混在scope、executable/static-only artifact、human reviewerをfixtureに置き、receipt件数/digest/CAS/stale lineageをassertするとする（本文自身が全case未実装と明記）。特に `IT-SAP-009`（44, 76–79）は、plan-route集約・永続化と後段stage/gateを分け、UI/no-UI completionとauthorityのexact set、skip authorityのidentity、agreement/backprop receiptのhead/digest/canonical content、stale/superseded/expiry、順序逆転、二重gate、stage/gate CASおよび各append faultを個別に変異させる。完全なcurrent routeとcompletion一式が揃う場合だけstage+gateを一度commitし、他は部分receiptを0にするoracleである。50–69行はHST-CASE-012-01..10と024-01..08を18件のprimary caseとして対応づけ、73–85行は18件分母、scope再entry、transaction fault、write count、digestおよびreceipt内operation/commit/event binding swapを列挙する。共有scenarioをcase数へ重複加算しない。
+
+旧L5 detail design:38–46は全PLANの二値route、capabilityごとのdecision集約、deferred/undecided/stale時のgate 0、共通digestを要求する。51–63はscope normalizer、applicability evaluator、no-UI receipt writer、prototype planner/registry、walkthrough ledger、freeze gateをNode write authorityへ束ねる。80–91は9状態fixture exact set、state遷移、agreement前条件、skip/agreementを含むatomic commitとscope-change時のstale lineage/taskを記載する。旧L6 function design frontmatter:20–23は同じ親HAT/HACを参照する。30–41、57–64、84–88はpure API、Failure union、human review/authority receipt、task/agreement/backprop/gate、reentry/no-UI receiptの型と責務を細分する。とくに`ScreenFreezeInput`への束ね方や`U-SAP-011/012`の機能分割は旧API・実装境界であり、現行要求が要求するpublic API、Node/DB構成、固定error enum、exact 9-state fixture、特定receipt/table/schemaではない。
+
+これら4 consumerは上表に記録したarchive assetが`unresolved`であり、旧integration/test-designは完全一致再利用対象外のclassである。原意のnegative oracleの網羅根拠として読むが、旧route、capability denominator、固定分母、field schema、transaction port、Node authority配置、9-state exact fixture、expiry/digest/CAS/error-code等の個別設計値を現行HARNESS L2/L11へそのまま追加しない。現行側で意味対応を確認できるのは、必要なPrototype/PoC、要求へ戻すこと、合意前freeze拒否、非適用理由等の受入結果までである。前掲の現行照合表にあるとおり、旧HAC-15cのscope-change失効から再entryに至るreceipt-level oracle全体の直接successorはL2/L11で確定したとは判定していない。
 
 ## 現行HARNESS L2/L11との意味照合
 
