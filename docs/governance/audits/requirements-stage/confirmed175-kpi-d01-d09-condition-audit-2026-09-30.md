@@ -1,6 +1,6 @@
 # confirmed175 KPI D-01〜D-09 個別条件監査
 
-- 基準revision: `2bf484b1a84af346feaf8cf7b72e59f3889e6333`
+- 基準revision: `d6d0bd1bd6e24fc2b21d54eeb28fb035360cbb5b`
 - 範囲: 旧 `business-requirements.md:196–204` の9 source identities。原文は [旧要求](../../../../archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md#L196)。
 - JSON明細: [confirmed175-kpi-d01-d09-condition-audit-2026-09-30.json](confirmed175-kpi-d01-d09-condition-audit-2026-09-30.json)
 - 旧source file SHA-256: `09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61`。行SHA、原文、identityごとのpair比較はJSONに記録した。

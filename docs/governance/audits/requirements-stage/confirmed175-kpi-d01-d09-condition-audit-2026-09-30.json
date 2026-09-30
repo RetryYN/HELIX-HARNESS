@@ -1,6 +1,6 @@
 {
   "audit_id": "confirmed175-kpi-d01-d09-condition-audit-2026-09-30",
-  "base_revision": "2bf484b1a84af346feaf8cf7b72e59f3889e6333",
+  "base_revision": "d6d0bd1bd6e24fc2b21d54eeb28fb035360cbb5b",
   "scope": "confirmed175のbusiness-requirements.md D-01..D-09 source identity 9件。queue上で個別fixed-pair比較が未成立の母集団をidentity別に条件照合する。",
   "method": "旧sourceを読むだけ。実装、旧CLI/runtime/test/CIは実行しない。source原文・file SHA・line SHAをarchiveで再計算し、fixed decision pair・later adopted pair・full-audit・comparison queue・既存grouped residualを照合。",
   "decisions": [
