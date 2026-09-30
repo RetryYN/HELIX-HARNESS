@@ -12,11 +12,16 @@
 | parent contract | `archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json:269-293` (`#/HR-FR-HIL-12`) | `LEGACY-ASSET-67761C517521603F844C`; file `2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab`; contract digest `fe7373f829aaac4acd8a7497c5d27454961c36270d22d2213498b979591619ad` |
 | acceptance cases | `archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json:365-397` (`#/HAC-HIL-12a/b/c`) | `LEGACY-ASSET-4886CEF2A7AB5B7AA5C8`; file `4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19` |
 | system test | `archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json:219-237` (`#/HAT-HIL-12`) | file `7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a`; test status `designed_not_implemented` |
-| assertion consumer | `archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md:66-77` (`HST-CASE-007-01..12`) | `LEGACY-ASSET-7B1C7AED3AA401868455`; file `98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8` |
+| assertion consumer | `archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md:66-77` (`HST-CASE-007-01..12`; supplementary rows at `:384,403,407-409,425`) | `LEGACY-ASSET-7B1C7AED3AA401868455`; file `98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8` |
+| L5 detailed design consumer | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/python-worker-runtime.md:27-45,55-71,109-151,223-245` | `LEGACY-ASSET-BC2275DCE9BFFCF813C8`; file `4c26544b5cf6e63ed226838ff5e04b3a669f6a9aa13456ffc5e5fb41fc755f8a` |
 | L6 design consumer | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/python-worker-runtime.md:26-67` | `LEGACY-ASSET-FA37B89CBB3EBE4E9E8C`; file `f80c88da9c498ef1fa2b4b1ecdbb605951b52a4f435524cb494a5c46382f7d14` |
 | test consumer | `archive/legacy-generation-2026-09-14/root/tests/infinity-loop-strict-design-contract.test.ts:297-320` | `LEGACY-ASSET-E4984136A19ADCADF97D`; file `efb2d92201285f249022d3929e4893efc770fbc5fecedc1961419ed6bddaed94` |
 
-旧contractはNode supervisorがPython workerをversioned JSON Lines IPCで管理し、互換protocol・deadline/lease・authority mapのもとでterminal receiptを一つ記録し、schema検証済みresultだけをNode authorityでtransaction commitする要求である。HACは正常result一回commit、IPC異常時のterminal化とpartial result 0、cancel/timeout後のlate resultおよびdirect write拒否を分担する。旧HST設計は不正JSON、oversize、sequence欠落、timeout、cancel、crash、backpressure、親process消失、失効後result等を個別fixtureにする。L6/L7の18 assertionsとAPI bindingは設計上の期待値であり、実行済み証拠ではない。旧testはそのsource/設計所有関係の検査を記すだけで、本監査では起動していない。
+旧contractはNode supervisorがPython workerをversioned JSON Lines IPCで管理し、互換protocol・deadline/lease・authority mapのもとでterminal receiptを一つ記録し、schema検証済みresultだけをNode authorityでtransaction commitする要求である。HACは正常result一回commit、IPC異常時のterminal化とpartial result 0、cancel/timeout後のlate resultおよびdirect write拒否を分担する。
+
+HSTの分母は区別する。assertion case台帳の主scenario欄にある`HST-CASE-007-01..12`（同ファイル66–77行目）が12件のruntime scenarioである。同台帳の後段にある`HST-CASE-007-13..18`（384、403、407–409、425行目）はrequirement assertion用の補助6件で、L5/L6のprimary mapping表（L5 223–245行、L6 67–92行）が設計上その18件を主IT/APIへ対応付けている。これら6件を追加のcanonical runtime scenarioとして数えない。全12+6件の各statusは設計上のfixture/期待値であり、実行済み結果ではない。旧testはsource/設計所有関係を静的に検査するコードを含むだけで、本監査では起動していない。
+
+L5設計はauthority・sandbox・partial result・atomic transactionの詳細を示すが、frontmatterと本文は`draft`で、Node/Python/JSONL・schema・write-root・transactionの具体化を記す旧設計である。そのsource statusは保持し、現行要件のsuccessorや承認済み技術設計としては扱わない。特にL5の「Python semantic authority／Node transaction writer」という設計固有の用語を、現行Worker責務やSECURITY authorityの決定へ転記しない。
 
 ## 現行authorityとL2/L11照合
 
@@ -29,6 +34,8 @@
 | `HELIXOS-L2-020` | `fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a` | `a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c` | HARNESSが定めた検証義務の選択・隔離実行・結果回収・再開をOSが運転し、success/fail/denied/skipped/interrupted/staleを区別する。旧worker contract全体、旧schema又はPython方式の受入を意味しない。 |
 
 authority boundaryは採択済み`HELIXSECURITY-L2-008`とその対が持つoperation単位のallow/deny/constrainである（`docs/helix-security/L2-requirements/security-requirements.md:140-148`、L11 `security-acceptance.md:32`）。OSのassignment、実行環境、result receiptは認可正本を代行しない。HARNESSはverification/oracleの意味を持ち、OSは実行を運転する。これらの分担から旧Node/Python通信方式を必須技術として導かない。
+
+2026-09-26の[Worker実行モデルPO判断](../../decisions/worker-execution-model-po-decisions-2026-09-26.md)（SHA-256 `1c93bf0aadccfdf6b536a32d3923a17fbd00a1fd830850f9369b5b6d6b12efb2`、特に§「Workerの置き場所」および「Workerの要求の置き場所」、lines 82–92）はこの分担と直接関係する。Workerは独立機構や共通部品として置かず、共通実行契約をHELIX-OSが持つ。authority・権限制約・隔離条件はSECURITY、実resourceはINFRASTRUCTURE、配置案はINTELLIGENCEに残す。これはHIL-12を読む際の現行owner境界を定める判断であり、旧Python runtime設計の選択や`HR-FR-HIL-12`のformal successor割当、HAT/HST受入実行を行う判断ではない。したがってOS-L2-018の実行責務を踏まえても、旧L5/L6の技術詳細は歴史的な設計資料に留める。
 
 後続判断は、採否範囲を明示して読む。2026-09-29の55候補受領資料は判断記録そのものではなく、その後の57候補decisionは同記録の列挙した57 identityに限定される。2026-09-30 live26 decisionも索引が固定した26 identityに限定される。いずれにも`HIL-12`またはOS-L2-018/019/020をHIL-12のformal successorへ結ぶ採択行はない。したがって、後続の候補採択・保留をHIL-12へ転用せず、2026-09-28の既決pairの採択状態と旧source holdingを分けて記録する。
 
@@ -51,5 +58,6 @@ authority boundaryは採択済み`HELIXSECURITY-L2-008`とその対が持つoper
 - 旧source JSONのarchive bytesとgovernance source snapshotのfile digestが一致することを上記SHA-256で照合した。
 - 現行OS-L2/L11-018/019/020のsection digestを2026-09-28判断対象revisionと現行mainで比較し、一致を確認した。
 - carry-forward JSONLの5件（parent contract、HAC 3件、HAT 1件）は、記録したsource item ID、未解決state、空successor集合と一致する。
+- HST runtime scenario 12件（`01..12`）と補助 assertion 6件（`13..18`）を区別し、両方ともdesign-only/not-implementedとして扱った。
 - 後続57候補およびlive26 decisionの明示対象範囲に、HIL-12 successorを追加するidentityがないことを照合した。
 - legacy runtime/test/CI、新世代CI、実装を実行していない。これはsource-status監査であり、動作検証ではない。
