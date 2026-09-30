@@ -1,0 +1,3299 @@
+{
+  "schema_version": "legacy-confirmed175-resident-lane-br-01-10-condition-audit.v1",
+  "audit_id": "legacy-confirmed175-resident-lane-br-01-10-condition-audit-2026-09-30",
+  "audit_mode": "read_only_static_condition_comparison",
+  "audit_revision": "5943f27b51aebfb0f62a377f51bfe7f99995fedf",
+  "authority_effect": "none",
+  "population": "confirmed175",
+  "scope": {
+    "identity_count": 10,
+    "source_qualified_identities": [
+      "helix/L1-requirements/resident-lane-orchestration-requests.md::BR-1",
+      "helix/L1-requirements/resident-lane-orchestration-requests.md::BR-2",
+      "helix/L1-requirements/resident-lane-orchestration-requests.md::BR-3",
+      "helix/L1-requirements/resident-lane-orchestration-requests.md::BR-4",
+      "helix/L1-requirements/resident-lane-orchestration-requests.md::BR-5",
+      "helix/L1-requirements/resident-lane-orchestration-requests.md::BR-6",
+      "helix/L1-requirements/resident-lane-orchestration-requests.md::BR-7",
+      "helix/L1-requirements/resident-lane-orchestration-requests.md::BR-8",
+      "helix/L1-requirements/resident-lane-orchestration-requests.md::BR-9",
+      "helix/L1-requirements/resident-lane-orchestration-requests.md::BR-10"
+    ],
+    "queue_basis": "confirmed175-condition-comparison-queue-2026-09-30",
+    "queue_status": "all ten not_individually_compared, evidence_artifacts empty",
+    "fixed_pair_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "later_decision_57_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+    "later_decision_11_source_revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+    "comparison_scope": "旧BR-1..10のconditionをsource/consumer・fixed f6 L2/L11・後発57+11 decisionsに照合する。successor、closure、実装・受入は主張しない。"
+  },
+  "legacy_source": {
+    "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+    "holding_snapshot_path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+    "file_sha256": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe",
+    "legacy_asset_id": "LEGACY-ASSET-2B0DE689AA572DE66181",
+    "source_authority_state": "confirmed",
+    "target_authority_state": "draft_candidate",
+    "carry_forward_state": "preserved_pending_rehome",
+    "decision_status": "pending_human_confirmation",
+    "asset_ledger_revision": 3,
+    "asset_ledger_line_sha256": "114598a2068ed621cec938659a40a62f1c7b6901096c637fdbc91d1e79f4f130",
+    "successor_requirement_ids": []
+  },
+  "inputs": [
+    {
+      "path": "docs/governance/audits/requirements-stage/confirmed175-condition-comparison-queue-2026-09-30.json",
+      "sha256_at_base": "2dbfb06c11ac42a940c0d6b5c188a76e685ea4c00e4d9af10b432198ad17b353"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json",
+      "sha256_at_base": "ca08a81d97e39e94aa02151c7cc4e48f621f9d30baccc1cf9b715331fed38f45"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-resident-lane-sr-1-11-condition-audit-2026-09-30.json",
+      "sha256_at_base": "39ded610617a795a4b62210df1bee0c82c3c134c8b6aa51ec65b548b070fd407"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/confirmed175-nfr-01-08-11-17-condition-audit-2026-09-30.json",
+      "sha256_at_base": "dbb3b7fac4a157a52dcca7d0d65d5af5beb915f0f29eb75e454079538112ce41"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256_at_base": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+      "sha256_at_base": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe"
+    },
+    {
+      "path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+      "sha256_at_base": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "sha256_at_base": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-recognition.md",
+      "sha256_at_base": "0cd1bb77f43b28b73f8306f86d477bca1110d3a6e84bbe67eb8f84be22556b16"
+    },
+    {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "sha256_at_base": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+    },
+    {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+      "sha256_at_base": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5"
+    }
+  ],
+  "legacy_consumers": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-recognition.md",
+      "sha256": "0cd1bb77f43b28b73f8306f86d477bca1110d3a6e84bbe67eb8f84be22556b16"
+    }
+  ],
+  "fixed_f6_pair": {
+    "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "decision_records": [
+      {
+        "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "sha256_at_base": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+      },
+      {
+        "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+        "sha256_at_base": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
+      },
+      {
+        "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+        "sha256_at_base": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0"
+      },
+      {
+        "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+        "sha256_at_base": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad"
+      }
+    ],
+    "authority_note": "HARNESS-003/005 are inside fixed PO L2/L11 bytes. Remaining target refs are PO-fixed adopted candidate targets. None of these statuses establishes source atom coverage, implementation, or acceptance.",
+    "target_pairs": [
+      {
+        "target_id": "HARNESS-L2-003",
+        "authority_status": "inside_po_fixed_l2_l11_bytes",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "line": 42,
+          "line_sha256": "8bee92d4418a3ce7edcabd2f3c3cea60ba1d6b0637156143f774590d279226de",
+          "text": "| HARNESS-L2-003 | HARNESS-L1-002／HARNESS-L1-003／HARNESS-L1-006 |"
+        },
+        "l11": {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+          "line": 23,
+          "line_sha256": "1ced8f2b5886a2c154bb809f169b8a01f27d9af38abb1697ac0cd96325dba9c5",
+          "text": "| HARNESS-L2-003 | 凍結・差戻し・再開・完了の条件を確認し、未合意・未検証で進行可能と判定しない。画面または技術的な成立性に不確定要素がある対象は、L2.5で確かめて合意するまで要件へ進めない。Vの谷より右側で、実物を対の設計と照合し、意味を保てる変更だけをRefactorし、意味が変わるものを対応する左の層へBackflowする。成果物の状態を前の状態から推定せず、Release Portの条件を開発の開始時から満たしていく |"
+        }
+      },
+      {
+        "target_id": "HARNESS-L2-005",
+        "authority_status": "inside_po_fixed_l2_l11_bytes",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "line": 44,
+          "line_sha256": "74fae9aa240f21074a24e5da08c19dba8ac26389d1c473f6f979ed3b789f0d1c",
+          "text": "| HARNESS-L2-005 | HARNESS-L1-004 |"
+        },
+        "l11": {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+          "line": 25,
+          "line_sha256": "edeceea2b54fe31fe92460f610e19a49e32fde6a2d7a57c51d98c9b9afcbe371",
+          "text": "| HARNESS-L2-005 | ticketとの関係（Forward 小・中・大、V字の対、触るコネクタ、変更の種類）と、変更の内容・layer・riskから必要な検証が導出され、固定の段数ではなくその検証に合うCIをPRの前に組み立てる規則が導かれ、HELIX-OSの検収がその規則でCIを組み立てられる。省いた検査は記録され、合流先のticketで回収される。異なる言語・CI実装でも同じ検証契約を評価でき、特定Worker、旧job集合、CI greenを検証義務の代替にしない |"
+        }
+      },
+      {
+        "target_id": "HARNESS-L2-022",
+        "authority_status": "po_fixed_candidate_adopted",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "line": 447,
+          "line_sha256": "a521fcf29a72b4c42f32bfacae614f40411cc982f20f8dec1906db8420580473",
+          "text": "### HARNESS-L2-022 検証と受入の契約（コアの単体）"
+        },
+        "l11": {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+          "line": 298,
+          "line_sha256": "b3ec231018db37cc24352f621ca5dfd521392301a9285649c99ed5f027b9aa14",
+          "text": "#### HARNESS-L2-022（コア検証と受入契約）— `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004` / version_target 1.0"
+        }
+      },
+      {
+        "target_id": "HELIXINTELLIGENCE-L2-016",
+        "authority_status": "po_fixed_candidate_adopted",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2": {
+          "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+          "file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+          "line": 138,
+          "line_sha256": "5914325f22e56011eb9f0c7cce34d8d05e4e24b4bae09d6f11892251b1470a92",
+          "text": "### HELIXINTELLIGENCE-L2-016 — 限定修復candidateと適用"
+        },
+        "l11": {
+          "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+          "file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+          "line": 40,
+          "line_sha256": "c77ee74950ccd508d13532d23c553d5b6f6676e36f0b14be31f4562ab6867ffd",
+          "text": "| HELIXINTELLIGENCE-L1-016 | 単体 | HELIXINTELLIGENCE-L2-016 | 単体 | HELIXINTELLIGENCE-L2-016 | HELIXINTELLIGENCE-L2-036, HELIXINTELLIGENCE-L2-037, HELIXINTELLIGENCE-L2-038, HELIXINTELLIGENCE-L2-039, HELIXINTELLIGENCE-L2-062 | 1.0 |"
+        }
+      },
+      {
+        "target_id": "HELIXINTELLIGENCE-L2-017",
+        "authority_status": "po_fixed_candidate_adopted",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2": {
+          "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+          "file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+          "line": 202,
+          "line_sha256": "bd95075bf8622ec6fc66a48f5a91ea8108b91d2619136c2e5a1c87fd9f0aace7",
+          "text": "### HELIXINTELLIGENCE-L2-017 — 限定修復の接続横断境界"
+        },
+        "l11": {
+          "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+          "file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+          "line": 41,
+          "line_sha256": "424074be3f00823f841bdc0e2fad75680201c8ba85a593d95c2c0e89307e4a3e",
+          "text": "| HELIXINTELLIGENCE-L1-017 | 接続 | HELIXINTELLIGENCE-L2-017 | 接続横断境界 | HELIXINTELLIGENCE-L2-017 | HELIXINTELLIGENCE-L2-036, HELIXINTELLIGENCE-L2-037, HELIXINTELLIGENCE-L2-038, HELIXINTELLIGENCE-L2-039, HELIXINTELLIGENCE-L2-062 | 1.0 |"
+        }
+      },
+      {
+        "target_id": "HELIXINTELLIGENCE-L2-062",
+        "authority_status": "po_fixed_candidate_adopted",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2": {
+          "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+          "file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+          "line": 366,
+          "line_sha256": "f5832c9ba982ab5aba05dc318d68a6abc5e2d17407f93edbd7e9120046d24706",
+          "text": "### HELIXINTELLIGENCE-L2-062 — 限定自動修復"
+        },
+        "l11": {
+          "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+          "file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+          "line": 116,
+          "line_sha256": "d58e316869d6436b840e263805f5fc57da1ee4b3c330ba92b20144e8f8861b5f",
+          "text": "| HELIXINTELLIGENCE-L2-062 | SECURITY/Worker/HARNESS/OSの修復責務を同一修復scopeへ接続し全段階の証拠を別々に保つ | 修復結果でpermission/isolation/verification/acceptanceを省略する |"
+        }
+      },
+      {
+        "target_id": "HELIXLABO-L2-055",
+        "authority_status": "po_fixed_candidate_adopted",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2": {
+          "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+          "file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+          "line": 150,
+          "line_sha256": "6330f8400512c454e76a4873d6df075c0e59b3f0987c8a30a1e362051cf2c51b",
+          "text": "### HELIXLABO-L2-055 — HELIX-Bench 作業水準生成（1.0）"
+        },
+        "l11": {
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+          "line": 191,
+          "line_sha256": "553ab0696c23122911abfc8eb5ba33129436c82f6b61ae2ec58308f09a32f5e8",
+          "text": "### HELIXLABO-L2-055 — Bench分母・欠測・採点根拠"
+        }
+      },
+      {
+        "target_id": "HELIXLABO-L2-059",
+        "authority_status": "po_fixed_candidate_adopted",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2": {
+          "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+          "file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+          "line": 416,
+          "line_sha256": "c4d12188762ebfe99dd175ec1d826be26231ea8c0a1f27017c710d8de3eaf295",
+          "text": "### HELIXLABO-L2-059 効果優先関係付き比較評価"
+        },
+        "l11": {
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+          "line": 170,
+          "line_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62",
+          "text": "| `HELIXLABO-L2-059`（単体候補、parent `HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context） | scope/revisionに適用可能なquality oracleと既決priority/tolerance（適用可能な判断のrunごとの再確認なし）、同一task snapshot/scorer/protocol/hardware条件、現行実験のOS割当Worker receipt（歴史runは当時の実行者・authority・receipt）を与える。decisionが未決/失効/適用境界外ならownerへ戻す。実験条件baseline/current/candidate/hybridとHELIXなし/旧版/新版cohortを別軸で記録し、比較目的と群を明示し、導入効果はあり／なし、改訂効果は旧版／新版、三者の関係を主張する場合だけ三者を要求する。未選択群の不足を選択した二者比較の不成立理由にしない。品質gateを先に個別判定し、retry・上位Worker救援・rework・CI・review・人修正込みの費用、所要時間、人介入を分ける。欠測通貨・非貨幣化人時間・比較不能cohortは明示する。 | 劣化品質を価格/速度で相殺／初回candidate単価だけで安価認定／上位救援・人修正・retryを除外／未承認換算率で人時間を0円化／受入成果なしを効率成功扱い／実験条件とcohortを混ぜる／scope・oracle・protocol・hardware・run version違いを混ぜる／歴史結果をcurrent性能へ転用／LABOがWorkerを割当・起動する。 |"
+        }
+      },
+      {
+        "target_id": "HELIXOS-L2-014",
+        "authority_status": "po_fixed_candidate_adopted",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "line": 619,
+          "line_sha256": "b0d81c3f944c9f945227a02ae3292b9a6935199493f08f0468bdd0d516a95a9d",
+          "text": "### HELIXOS-L2-014 HELIX自身の段階リリース"
+        },
+        "l11": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "line": 317,
+          "line_sha256": "0f067184b45f86f4ff08069b2e15bd615206ead7961510366b183b9c6d8e7d4a",
+          "text": "| HELIXOS-L2-014 | ある段階（例：v0.1）について、使うパックと依存の版、設定・data形式、対応環境、できること・できないこと、受入の証拠、更新・切戻しの条件を一組で確かめられ、同じ一組から同じ稼働構成を再現できる。その段階で、限った範囲の仕事が要求の確認から結果の記録まで一周し、人が担う工程の分担が明記されている。その段階を使って次の段階を構築・検証し、乗り換えた後に問題があれば前の段階へ戻せ、案件の状態と記録が引き継がれる。段階は開発中のHELIX自身に依存せず起動・更新・復旧でき、段階の成立と1.0の到達判定が別の記録になっている。その段階で成立していない能力は「できないこと」として明記され、HELIXINFRASTRUCTURE-L1-023（1.0より後）がなくても段階リリースが成立する | ソースのtagだけを段階リリースとする／段階を別系統の簡易実装で作る／機能を薄く並べただけで一周しない構成を段階とする／案件の実data・秘密情報・資格情報を段階リリースへ含める／前の段階へ戻せない、または戻すと案件の状態を失う／未リリースの作業treeや次の段階がないと起動・復旧できない／安全の条件が欠けたままリリースする／段階の成立で1.0の到達を判定する、または段階が出たことを理由に最終の要求や品質条件を減らす／段階の識別子を外部公開の版番号として扱う／後の版の能力（HELIXINFRASTRUCTURE-L1-023等）の完成を段階リリースの成立の前提にする、または段階リリースを理由にその能力を前倒しする／成立していない能力を「できること」として扱う／対象製品のリリースとHELIX自身の段階リリースを混同する |"
+        }
+      },
+      {
+        "target_id": "HELIXOS-L2-017",
+        "authority_status": "po_fixed_candidate_adopted",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "line": 662,
+          "line_sha256": "49ac406acfc54b3708c390eb370c435d01acfd6d16fe135e15d6460945e79247",
+          "text": "### HELIXOS-L2-017 推進・ticket/workflow（単体候補）"
+        },
+        "l11": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "line": 338,
+          "line_sha256": "7ad0c68d020b646d80d670dcb8c784c16ff39b5cd8615dfd095981ef1277ee30",
+          "text": "### HELIXOS-L2-017 推進・ticket/workflowの受入"
+        }
+      },
+      {
+        "target_id": "HELIXOS-L2-018",
+        "authority_status": "po_fixed_candidate_adopted",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "line": 672,
+          "line_sha256": "c22ab6ad7948d8381cbf1d48d08e19df3331c8a79240f69ac1f550151500e6b9",
+          "text": "### HELIXOS-L2-018 Worker割当・実行統制（単体候補）"
+        },
+        "l11": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "line": 345,
+          "line_sha256": "88f9bf170b147fd9a5d954bd4f0842472bc54d68e8813d68ab0fc16244980eba",
+          "text": "### HELIXOS-L2-018 Worker割当・実行統制の受入"
+        }
+      },
+      {
+        "target_id": "HELIXOS-L2-019",
+        "authority_status": "po_fixed_candidate_adopted",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "line": 682,
+          "line_sha256": "87db5d2abcbbaf27d5f9a74a85b9ceaac78965271d1af849a37a305ce30388ab",
+          "text": "### HELIXOS-L2-019 Evidence・continuity（単体候補）"
+        },
+        "l11": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "line": 352,
+          "line_sha256": "241fbb855d59c68e2624fb6a90314819e38992edf467f73a8fdb73ca5e0fc332",
+          "text": "### HELIXOS-L2-019 Evidence・continuityの受入"
+        }
+      },
+      {
+        "target_id": "HELIXOS-L2-020",
+        "authority_status": "po_fixed_candidate_adopted",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "line": 692,
+          "line_sha256": "47f92c05b7ca34ac3e1ad245158fa9facce0e1d6528f088050ee483972e38d83",
+          "text": "### HELIXOS-L2-020 検収・CI運転（単体候補）"
+        },
+        "l11": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "line": 359,
+          "line_sha256": "b2f89b08359b12928128de8f14d86b8b0f0e3cab15f54cec3ef519ae4e013664",
+          "text": "### HELIXOS-L2-020 検収・CI運転の受入"
+        }
+      },
+      {
+        "target_id": "HELIXOS-L2-023",
+        "authority_status": "po_fixed_candidate_adopted",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "line": 722,
+          "line_sha256": "a8b2870ede175ea97d579a02f0bde9ceafd5c6906007fb4bb6af9749e287909e",
+          "text": "### HELIXOS-L2-023 管理→推進→Worker→検収の受渡し（接続候補）"
+        },
+        "l11": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "line": 380,
+          "line_sha256": "1b5c9f2d33bb37b14520f6f0564ac3b18291b4c25a3c994756c0d186bb0a68c3",
+          "text": "### HELIXOS-L2-023 管理→推進→Worker→検収の受渡しの受入"
+        }
+      },
+      {
+        "target_id": "HELIXOS-L2-026",
+        "authority_status": "po_fixed_candidate_adopted",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "line": 807,
+          "line_sha256": "f796b1b6bf0414c80597d3a7376a6d1bd9eb7a5671a6b405d919cf0840febedd",
+          "text": "### HELIXOS-L2-026 段階リリース構成の要求導出（単体能力候補）"
+        },
+        "l11": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "line": 430,
+          "line_sha256": "3191b68ecd1c5d3c5581c246091fab0326ffbcf36e3db21b8bafe110c5e1a1ae",
+          "text": "### HELIXOS-L2-026 段階リリース構成の要求導出の受入"
+        }
+      },
+      {
+        "target_id": "HELIXOS-L2-027",
+        "authority_status": "po_fixed_candidate_adopted",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "line": 824,
+          "line_sha256": "69d3220ff63edb0e9bd4bfd4efa873ebf136badf5a4169cb3cd77262910762e8",
+          "text": "### HELIXOS-L2-027 — 未評価状態からの限定初回実行（構成体候補、1.0）"
+        },
+        "l11": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "line": 442,
+          "line_sha256": "7ca4b92265fbee761abc2d0ceeb0d1bd1610f4f06240f50a272cf3714eb76e7c",
+          "text": "### HELIXOS-L2-027 未評価状態からの限定初回実行の受入（構成体候補）"
+        }
+      }
+    ],
+    "whole_file_hashes_at_f6": {
+      "docs/helix-harness/L2-requirements/product-requirements.md": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "docs/helix-harness/L11-acceptance/product-acceptance.md": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "docs/helix-intelligence/L2-requirements/intelligence-requirements.md": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "docs/helix-labo/L2-requirements/labo-requirements.md": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "docs/helix-labo/L11-acceptance/labo-acceptance.md": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "docs/helix-os/L2-requirements/governance-requirements.md": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "docs/helix-os/L11-acceptance/governance-acceptance.md": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+    }
+  },
+  "later_57_plus_11_full_identity_status_screen": {
+    "policy": "full identity/status screen; status does not imply old BR identity coverage",
+    "decision_57": {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
+      "source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "counts": {
+        "total": 57,
+        "adopted": 42,
+        "conditional_adopted": 11,
+        "held": 4
+      },
+      "identity_status_screen": [
+        {
+          "identity": "HARNESS-L2-034",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-035",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-036",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-037",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-038",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-039",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-040",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-041",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-042",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-043",
+          "status": "conditional_adopted",
+          "decision_text": "条件付き採択：Bルート、所属はHARNESS-CORE。"
+        },
+        {
+          "identity": "HARNESS-L2-044",
+          "status": "conditional_adopted",
+          "decision_text": "条件付き採択：Bルート、名称はDesign Contract Portfolio。採択済み025/026へ無断追記しない。"
+        },
+        {
+          "identity": "HARNESS-L2-045",
+          "status": "held",
+          "decision_text": "保留。解除条件：値の決定責務、単位、未設定・参照不能・超過時の扱いを確定。ticketごとの予算額決定は不要。"
+        },
+        {
+          "identity": "HARNESS-L2-046",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-047",
+          "status": "conditional_adopted",
+          "decision_text": "条件付き採択：A配置（HARNESSが契約生成規範を所有）。"
+        },
+        {
+          "identity": "HELIXOS-L2-030",
+          "status": "held",
+          "decision_text": "保留。本体実行OSとconsumer利用先を分け、配布段階と切替条件を確定する。Windows即時却下やLinux限定を意味しない。"
+        },
+        {
+          "identity": "HELIXOS-L2-031",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-032",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-033",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-034",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-035",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-036",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-037",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-038",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-039",
+          "status": "held",
+          "decision_text": "保留。HARNESS-045と対に契約・版・予算条件を揃える。"
+        },
+        {
+          "identity": "HELIXOS-L2-040",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-041",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-042",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-043",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-044",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-045",
+          "status": "held",
+          "decision_text": "保留。対象集合、version_target、HARNESSからOSへの所有移動の有無を明記する。"
+        },
+        {
+          "identity": "HELIXOS-L2-046",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-047",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-048",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-049",
+          "status": "conditional_adopted",
+          "decision_text": "条件付き採択：割当前に後段の検証義務・担当・capacityを確保する。割当先task自体のreview/merge完了は割当条件にしない（訂正L11 `HELIXOS-L2-049-003`）。"
+        },
+        {
+          "identity": "HELIXOS-L2-050",
+          "status": "conditional_adopted",
+          "decision_text": "条件付き採択：capacity増枠から新しいmerge権限を発生させない。既存review_merge担当は既存admission後にmergeできる。branch変更・Ready権限は与えない（訂正L11 `HELIXOS-L2-050-003`）。"
+        },
+        {
+          "identity": "HELIXOS-L2-051",
+          "status": "conditional_adopted",
+          "decision_text": "条件付き採択：本構成でCursorを作成専用、Claude優先は適用可能な評価根拠のある要求・設計taskのみ。"
+        },
+        {
+          "identity": "HELIXOS-L2-052",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXLABO-L2-061",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXLABO-L2-062",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXLABO-L2-063",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXLABO-L2-064",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXLABO-L2-065",
+          "status": "conditional_adopted",
+          "decision_text": "条件付き採択：D1、067とは別指標で「最初のAttemptの結果」。"
+        },
+        {
+          "identity": "HELIXLABO-L2-066",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXLABO-L2-067",
+          "status": "conditional_adopted",
+          "decision_text": "条件付き採択：D1、「最初の適格candidateの結果」と同一Attempt内修正回数。065と換算・統合しない。"
+        },
+        {
+          "identity": "HELIXLABO-L2-068",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXLABO-L2-069",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-072",
+          "status": "conditional_adopted",
+          "decision_text": "条件付き採択：B配置、1.0は候補生成とshadow評価まで。"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-073",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-074",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-029",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-030",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-031",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-032",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-033",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-034",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXCONNECT-L2-008",
+          "status": "conditional_adopted",
+          "decision_text": "条件付き採択：A配置（供給はCONNECT、安全判定はSECURITY）、registration -002を対象。"
+        },
+        {
+          "identity": "HELIXCONNECT-L2-009",
+          "status": "conditional_adopted",
+          "decision_text": "条件付き採択：A。direction/orderは属性、feedbackは型付き戻り辺。操作ごとのunknown停止条件を分ける（訂正L11 `HELIXCONNECT-L11-009-002`）。"
+        }
+      ],
+      "selected_legacy_identity_exact_matches": 0
+    },
+    "decision_11": {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+      "sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+      "decision_basis_revision": "909c8015326f35f8d42ce12e3c388923de411d1f",
+      "source_repository_revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+      "counts": {
+        "total": 11,
+        "adopted": 8,
+        "adopted_with_dependency": 2,
+        "not_adopted_current_revision": 1,
+        "adopted_or_conditionally_adopted_total": 10
+      },
+      "identity_status_screen": [
+        {
+          "identity": "HARNESS-L2-041",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-048",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-031",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-050",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-051",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-052",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-053",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-054",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-038",
+          "status": "adopted_with_dependency",
+          "decision_text": "依存先と併せて採択"
+        },
+        {
+          "identity": "HELIXOS-L2-053",
+          "status": "adopted_with_dependency",
+          "decision_text": "依存先と併せて採択"
+        },
+        {
+          "identity": "HARNESS-L2-049",
+          "status": "not_adopted_current_revision",
+          "decision_text": "現生存registration -002は採択しない。訂正後exact L11 revisionのPO再確認待ち。"
+        }
+      ],
+      "selected_legacy_identity_exact_matches": 0
+    },
+    "near_pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+    "near_pairs": [
+      {
+        "identity": "HELIXOS-L2-033",
+        "decision_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "decision_status": "adopted",
+        "decision_record_row": {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "decision_artifact_commit": "7581e0fc5f2a790eb5bf6f163e70d4b900ff4a45",
+          "line": 56,
+          "line_text": "| `HELIXOS-L2-033` | 採択 | `MPR-RC-HELIXOS-L2-033-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:580778c8ef3c0e4c4676d13de203c821f990893e9aa078d8d1d2f0b8901d2dbc` | `HELIXOS-L2-033` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:1d30394888b3bded49f8e517d7e0888a25130e123df945adf69c7db5588571b1` | `docs/governance/audits/requirement-registration/os-quarantine-replay-coverage-receipt-2026-09-28.json` |",
+          "line_sha256": "54a81764fb7a3656fe51fc4028c57c714e034bcee10c7d4c3193ede2205ab5fd"
+        },
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+        "l2_section_sha256": "580778c8ef3c0e4c4676d13de203c821f990893e9aa078d8d1d2f0b8901d2dbc",
+        "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+        "l11_section_sha256": "1d30394888b3bded49f8e517d7e0888a25130e123df945adf69c7db5588571b1",
+        "limited_effect": "採択済み。versioned engine/detector registryと同一snapshot再現・provenanceを保持。",
+        "limits": "resident daemon/checkpoint復元、旧通知hook/queue、BR-10の全軸invalidity oracleを定めない。",
+        "related_legacy_identities": [
+          "BR-4",
+          "BR-5",
+          "BR-10"
+        ]
+      },
+      {
+        "identity": "HELIXOS-L2-035",
+        "decision_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "decision_status": "adopted",
+        "decision_record_row": {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "decision_artifact_commit": "7581e0fc5f2a790eb5bf6f163e70d4b900ff4a45",
+          "line": 58,
+          "line_text": "| `HELIXOS-L2-035` | 採択 | `MPR-RC-HELIXOS-L2-035-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:01ab4c9e572c5af909e4dbf46fb8f44866dd6cc7701dddc88b8dabbe14fb6c03` | `HELIXOS-L2-035` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:8507d8f43c2aafae4d8b08fc27e9c3c7c28e6d4a74d912b7667d3dc27786c742` | `docs/governance/audits/requirement-registration/os-pr-event-intake-coverage-receipt-2026-09-28.json` |",
+          "line_sha256": "86475e594d97ea452e6a1e41b7f7c8761a5d60ce4ab4f9062ce044ece6224222"
+        },
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+        "l2_section_sha256": "01ab4c9e572c5af909e4dbf46fb8f44866dd6cc7701dddc88b8dabbe14fb6c03",
+        "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+        "l11_section_sha256": "8507d8f43c2aafae4d8b08fc27e9c3c7c28e6d4a74d912b7667d3dc27786c742",
+        "limited_effect": "採択済み。選択scopeでPR lifecycle event intakeとbase/head provenanceを記録し、同じeventから重複しない監査job要求を生成。",
+        "limits": "旧Codex/Claude hook・harness.db・物理queue・delivery replayや監査job実行を決めない。",
+        "related_legacy_identities": [
+          "BR-4",
+          "BR-5",
+          "BR-10"
+        ]
+      },
+      {
+        "identity": "HELIXOS-L2-046",
+        "decision_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "decision_status": "adopted",
+        "decision_record_row": {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "decision_artifact_commit": "7581e0fc5f2a790eb5bf6f163e70d4b900ff4a45",
+          "line": 69,
+          "line_text": "| `HELIXOS-L2-046` | 採択 | `MPR-RC-HELIXOS-L2-046-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d` | `HELIXOS-L2-046` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0` | `docs/governance/audits/requirement-registration/helixos-rfa-scope-coverage-receipt-2026-09-28.json` |",
+          "line_sha256": "30b808ddda1ac9fb69931bfcce1d2f31f03be9aa0f78a34bb71ce02189ccb03a"
+        },
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+        "l2_section_sha256": "c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d",
+        "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+        "l11_section_sha256": "3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0",
+        "limited_effect": "採択済み。dispatch/実行/Ready/merge admission間で既存authority、HEAD/revision、scope、検証義務を照合し、変更時に再照合。",
+        "limits": "自動merge、PO直接関与なしの絶対化、BR-2 dispatch tuple全体、BR-3/9修復分類、BR-10の全失効軸を決めない。",
+        "related_legacy_identities": [
+          "BR-1",
+          "BR-10",
+          "BR-2",
+          "BR-3",
+          "BR-9"
+        ]
+      },
+      {
+        "identity": "HELIXOS-L2-047",
+        "decision_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "decision_status": "adopted",
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+        "l2_section_sha256": "e19191ce980467fddf5822619ccd480a41c84e6382ad1191ad5ea3ab04192377",
+        "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+        "l11_section_sha256": "d36677691f846bfc793b1dbc2322cb047aae86a3b102e97026e0275801ec7871",
+        "related_legacy_identities": [
+          "BR-2",
+          "BR-3",
+          "BR-9"
+        ],
+        "limited_effect": "採択済み。理由/source/revision付きticket返却、旧revision保持、新revision/lineage、暗黙のauthority/assignment結果継承禁止。",
+        "limits": "same worker/branchへのreview修正routing、blind review allowlist、lease/reassignment receiptは規定しない。"
+      },
+      {
+        "identity": "HELIXSECURITY-L2-033",
+        "decision_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "decision_status": "adopted",
+        "decision_record_row": {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "decision_artifact_commit": "7581e0fc5f2a790eb5bf6f163e70d4b900ff4a45",
+          "line": 92,
+          "line_text": "| `HELIXSECURITY-L2-033` | 採択 | `MPR-RC-HELIXSECURITY-L2-033-002` | `docs/helix-security/L2-requirements/security-requirements.md` | `d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5` | `sha256:b486a0c44e8f21a6f8738dedeac91dcb94da335b73409b6adeaecf8fa639bf1a` | `HELIXSECURITY-L2-033` | `docs/helix-security/L11-acceptance/security-acceptance.md` | `e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556` | `sha256:6d83abe63e3e852d58d9a9a60ae39c6b29284b6b8ab781bdb86456e479e60be0` | `docs/governance/audits/requirement-registration/security-v13-worker-context-coverage-receipt-2026-09-28-r2.json` |",
+          "line_sha256": "c0adc957901718d31960f3696cbf23ecc92df4a130aae379c96d8065145abf2c"
+        },
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "l2_path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "l2_file_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+        "l2_section_sha256": "b486a0c44e8f21a6f8738dedeac91dcb94da335b73409b6adeaecf8fa639bf1a",
+        "l11_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "l11_file_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
+        "l11_section_sha256": "6d83abe63e3e852d58d9a9a60ae39c6b29284b6b8ab781bdb86456e479e60be0",
+        "limited_effect": "採択済み。外部AI Worker operationの実行context束縛と出力の非権威性。追加受入L11追補を含む。",
+        "limits": "全review lane/internal native subagentや旧GHA role matrixへ一般適用しない。",
+        "additional_l11_adopted_scope": {
+          "heading": "## P0訂正追補（対象: HELIXSECURITY-L2-033 L11）",
+          "section_sha256": "e4bed8944412cc5ca6effc0c6ddd2a314ea309aa23f36c88d6467e3c7010d0a6",
+          "decision_record_row": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "decision_artifact_commit": "7581e0fc5f2a790eb5bf6f163e70d4b900ff4a45",
+            "line": 124,
+            "line_text": "| `HELIXSECURITY-L2-033` | 採択対象の追加受入 | `## P0訂正追補（対象: HELIXSECURITY-L2-033 L11）` | `sha256:e4bed8944412cc5ca6effc0c6ddd2a314ea309aa23f36c88d6467e3c7010d0a6` |",
+            "line_sha256": "cae96551f85dbbd2de985d9ae5763920f90dbffe0945294277ab67e5b0095e17"
+          }
+        },
+        "related_legacy_identities": [
+          "BR-3",
+          "BR-6",
+          "BR-8",
+          "BR-9"
+        ]
+      },
+      {
+        "identity": "HELIXOS-L2-051",
+        "decision_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "decision_status": "conditionally_adopted",
+        "decision_record_row": {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "decision_artifact_commit": "7581e0fc5f2a790eb5bf6f163e70d4b900ff4a45",
+          "line": 74,
+          "line_text": "| `HELIXOS-L2-051` | 条件付き採択：本構成でCursorを作成専用、Claude優先は適用可能な評価根拠のある要求・設計taskのみ。 | `MPR-RC-HELIXOS-L2-051-002` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:54fd39fbeb3786bc739560856afb14e3cf892b1bb717d98ceb1212df09fe7f2b` | `HELIXOS-L2-051` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:e01daa2fbf1ad7c2e9b6df54a9acdf022a3b821123d8904f8a171a4ede87b684` | `docs/governance/audits/requirement-registration/ops-o4-coverage-receipt-2026-09-29-r2.json#HELIXOS-L2-051` |",
+          "line_sha256": "b9cef971102d6f8ec1f03c1eca2d77fb40b8490b0968a66f535daa78f992f218"
+        },
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+        "l2_section_sha256": "54fd39fbeb3786bc739560856afb14e3cf892b1bb717d98ceb1212df09fe7f2b",
+        "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+        "l11_section_sha256": "e01daa2fbf1ad7c2e9b6df54a9acdf022a3b821123d8904f8a171a4ede87b684",
+        "limited_effect": "条件付き採択。本構成でCursorを作成専用、Claude優先は根拠のある要求/設計taskに限定。",
+        "limits": "旧2/3/4 runtime table、全task routing、bench/admission oracle、resident/native/CLI三identityを決めない。",
+        "related_legacy_identities": [
+          "BR-3",
+          "BR-6",
+          "BR-7",
+          "BR-8"
+        ]
+      },
+      {
+        "identity": "HELIXLABO-L2-065",
+        "decision_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "decision_status": "conditional_adopted",
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "l2_file_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+        "l2_section_sha256": "6f50887b94a8d3341c55700393896798cc1273324a868071447bf0e5a95cf019",
+        "l11_file_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+        "l11_section_sha256": "c70905fd036f0c6e6bfdce0368e462cd85acd467354bcad599d1112634d9b1b6",
+        "related_legacy_identities": [
+          "BR-7"
+        ],
+        "limited_effect": "条件付き採択。D1最初のAttempt結果を別指標で扱う。",
+        "limits": "worker/model/effort別適性benchやadmission判断ではない。"
+      },
+      {
+        "identity": "HELIXOS-L2-042",
+        "decision_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "decision_status": "adopted",
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+        "l2_section_sha256": "75e8b9f72eaa777f25e38335664cb2527da8c56c1445a3eca181de27cc258e71",
+        "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+        "l11_section_sha256": "0f23c0399f3b6c37094d4725563f80bb5e82d25e35b9ba7a1196c2106f76a4df",
+        "related_legacy_identities": [
+          "BR-3",
+          "BR-9",
+          "BR-10"
+        ],
+        "limited_effect": "OS-042採択: assignment適用schemaへのstrict validationと成果bytes digestが成立するまでworker成果を未検証とし、missing/unknown/stale/mismatchやdigest mismatchを受理済みにしない。既存条件に基づく緩和でも同一成果・assignment/scope/revisionに結ぶ再検証receiptを要求する。",
+        "limits": "旧PR番号/exact HEAD/changed paths/test evidence/worker receiptのpacket全体やreview-ready oracle、schema policy発行を定義しない。BR-9 repair-state contractでもBR-10 evidence reuse/invalidation contractでもない。"
+      },
+      {
+        "identity": "HARNESS-L2-034",
+        "decision_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "decision_status": "adopted",
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "l2_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "l2_section_sha256": "dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156",
+        "l11_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "l11_section_sha256": "391f640508944ba2f32b5751a2a9a17fbc9f89ef76f46953c1af68ba907a9fdf",
+        "related_legacy_identities": [
+          "BR-6",
+          "BR-7",
+          "BR-9",
+          "BR-10"
+        ],
+        "limited_effect": "HARNESS-034採択: 要求revisionに結び付く版付き計測契約（metric、対象scope/revision、負荷/環境/data、baseline/target/SLO、許容差、sampling/window、tool/probe、schema/oracle、owner/layer、再測定trigger）を保持し、未測定/stale/非代表環境/未達は完成扱いしない。VerifiedとAcceptedを分ける。",
+        "limits": "旧worker completion packet、blind review input allowlist、SR-7全merge admission、provider適性bench、BR-10の同一成功証拠再利用/失効規則を定義しない。"
+      }
+    ],
+    "near_pair_scope_note": "57+11全identity/statusをscreenし、BR近接の限定比較pairを9件記録。statusと近接はsuccessor/closureを意味しない。"
+  },
+  "identity_overlap_screen": {
+    "prior_2397_2408_audit_sets": [
+      {
+        "audit": "#2397",
+        "identities": [
+          "confirmed175 KPI D-01..D-09"
+        ]
+      },
+      {
+        "audit": "#2398",
+        "identities": [
+          "harness/L1-requirements/business-requirements.md::BR-06",
+          "harness/L1-requirements/business-requirements.md::UX-02",
+          "harness/L1-requirements/functional-requirements.md::FR-L1-35",
+          "harness/L1-requirements/business-requirements.md::BR-08",
+          "helix/L1-requirements/three-lane-cloud-governance-requests.md::3L-BR-007"
+        ]
+      },
+      {
+        "audit": "#2399",
+        "identities": [
+          "helix/L1-requirements/three-lane-cloud-governance-requests.md::3L-BR-001..007"
+        ]
+      },
+      {
+        "audit": "#2400",
+        "identities": [
+          "helix/L1-requirements/screen-requirements.md::PM-02..PM-06"
+        ]
+      },
+      {
+        "audit": "#2405",
+        "identities": [
+          "helix/L1-requirements/resident-lane-orchestration-requests.md::SR-1..SR-11"
+        ]
+      },
+      {
+        "audit": "#2408",
+        "identities": [
+          "harness/L1-requirements/nfr.md::NFR-01..08, NFR-11..17"
+        ]
+      }
+    ],
+    "2398_same_label_different_identity": {
+      "2398_BR06": "harness/L1-requirements/business-requirements.md::BR-06, line46, asset LEGACY-ASSET-9F48ADEEB477DCA54039 (dashboard)",
+      "2398_BR08": "harness/L1-requirements/business-requirements.md::BR-08, line48, asset LEGACY-ASSET-9F48ADEEB477DCA54039 (document reviewer)",
+      "proposed_BR6": "helix/L1-requirements/resident-lane-orchestration-requests.md::BR-6, line195, asset LEGACY-ASSET-2B0DE689AA572DE66181 (staged provider routing)",
+      "proposed_BR8": "helix/L1-requirements/resident-lane-orchestration-requests.md::BR-8, line98, asset LEGACY-ASSET-2B0DE689AA572DE66181 (resident/native/CLI identity separation)",
+      "conclusion": "#2398 labels are not source-qualified identity overlaps."
+    },
+    "2405_same_source_different_identity": "#2405 audits SR-1..11 in this source; no BR identity overlap."
+  },
+  "records": [
+    {
+      "source_qualified_identity": "helix/L1-requirements/resident-lane-orchestration-requests.md::BR-1",
+      "confirmed_identity": "BR-1",
+      "population": "confirmed175",
+      "legacy_asset_id": "LEGACY-ASSET-2B0DE689AA572DE66181",
+      "source_authority_state": "confirmed",
+      "carry_forward_state": "preserved_pending_rehome",
+      "successor_requirement_ids": [],
+      "old_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+        "holding_snapshot_path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+        "source_relative_path": "helix/L1-requirements/resident-lane-orchestration-requests.md",
+        "file_sha256": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe",
+        "identity_line": 68,
+        "identity_line_sha256": "e2823eb067a807490dbaaabf3e30f98725b4e1a4a68abd853c22775b6f1591c1",
+        "identity_line_text": "### BR-1: 開発フローの常時前進",
+        "section_lines": "68-75",
+        "section_sha256": "09c5284758f12933c1642a17f3e3e9e71315cdbfaf9495fba8d0115b92016859",
+        "exact_section_text": "### BR-1: 開発フローの常時前進\n\nCodex が TL として常時 frontier を進め、独立タスクを複数 worker へ並行配車し、\nPO の直接関与なしに PR → review → merge まで循環する状態を実現する。\n\n- 根拠: 上位文書 §3.1\n- L12 受入観点: 2worker＋1reviewer の連続 canary が停止なく完走する（完了定義）\n- トレース: RLO-FR-001〜003, 030 / RLO-AC-018",
+        "condition_summary": "常時frontierを進め、独立仕事を複数workerへ配車し、POの直接関与なしにPR・review・mergeを循環させる開発フロー。"
+      },
+      "legacy_consumers_and_history": {
+        "l3_consumer": "L3 §3.1; FR-001..003; AC-018/020 (lines 497–506, 884–888).",
+        "l3_file": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+        "l3_file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+        "l12_consumer": "resident-lane-orchestration-recognition.md:21",
+        "l12_file": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-recognition.md",
+        "l12_file_sha256": "0cd1bb77f43b28b73f8306f86d477bca1110d3a6e84bbe67eb8f84be22556b16",
+        "l1_to_l3_trace": "旧sourceの当該BR traceを照合。BR-9/10のFR-041..049 / AC-031..040はL1のtrace candidateで、archive L3 fileにidentityがない。",
+        "authority_history": "old source status confirmed; source-only history not transferred as new authority."
+      },
+      "queue_comparison": {
+        "status": "not_individually_compared",
+        "evidence_artifacts": [],
+        "comparison_is_closure": false,
+        "fixed_target_refs": [
+          {
+            "target_id": "HARNESS-L2-003",
+            "authority_status": "inside_po_fixed_l2_l11_bytes",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-harness/L11-acceptance/product-acceptance.md",
+              "docs/helix-harness/L2-requirements/product-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HARNESS-L2-003"
+          },
+          {
+            "target_id": "HARNESS-L2-005",
+            "authority_status": "inside_po_fixed_l2_l11_bytes",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-harness/L11-acceptance/product-acceptance.md",
+              "docs/helix-harness/L2-requirements/product-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HARNESS-L2-005"
+          },
+          {
+            "target_id": "HELIXOS-L2-017",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-017"
+          },
+          {
+            "target_id": "HELIXOS-L2-018",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-018"
+          },
+          {
+            "target_id": "HELIXOS-L2-019",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-019"
+          },
+          {
+            "target_id": "HELIXOS-L2-020",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-020"
+          },
+          {
+            "target_id": "HELIXOS-L2-023",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-023"
+          }
+        ],
+        "full_audit_classification": "existing crosswalk reports rederived/retained; atom-by-atom carry-forward remains unassigned"
+      },
+      "fixed_f6_comparison": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "target_ids": [
+          "HARNESS-L2-003",
+          "HARNESS-L2-005",
+          "HELIXOS-L2-017",
+          "HELIXOS-L2-018",
+          "HELIXOS-L2-019",
+          "HELIXOS-L2-020",
+          "HELIXOS-L2-023"
+        ],
+        "exact_target_pair_pins": [
+          {
+            "target_id": "HARNESS-L2-003",
+            "authority_status": "inside_po_fixed_l2_l11_bytes",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+              "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+              "line": 42,
+              "line_sha256": "8bee92d4418a3ce7edcabd2f3c3cea60ba1d6b0637156143f774590d279226de",
+              "text": "| HARNESS-L2-003 | HARNESS-L1-002／HARNESS-L1-003／HARNESS-L1-006 |"
+            },
+            "l11": {
+              "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+              "file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+              "line": 23,
+              "line_sha256": "1ced8f2b5886a2c154bb809f169b8a01f27d9af38abb1697ac0cd96325dba9c5",
+              "text": "| HARNESS-L2-003 | 凍結・差戻し・再開・完了の条件を確認し、未合意・未検証で進行可能と判定しない。画面または技術的な成立性に不確定要素がある対象は、L2.5で確かめて合意するまで要件へ進めない。Vの谷より右側で、実物を対の設計と照合し、意味を保てる変更だけをRefactorし、意味が変わるものを対応する左の層へBackflowする。成果物の状態を前の状態から推定せず、Release Portの条件を開発の開始時から満たしていく |"
+            }
+          },
+          {
+            "target_id": "HARNESS-L2-005",
+            "authority_status": "inside_po_fixed_l2_l11_bytes",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+              "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+              "line": 44,
+              "line_sha256": "74fae9aa240f21074a24e5da08c19dba8ac26389d1c473f6f979ed3b789f0d1c",
+              "text": "| HARNESS-L2-005 | HARNESS-L1-004 |"
+            },
+            "l11": {
+              "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+              "file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+              "line": 25,
+              "line_sha256": "edeceea2b54fe31fe92460f610e19a49e32fde6a2d7a57c51d98c9b9afcbe371",
+              "text": "| HARNESS-L2-005 | ticketとの関係（Forward 小・中・大、V字の対、触るコネクタ、変更の種類）と、変更の内容・layer・riskから必要な検証が導出され、固定の段数ではなくその検証に合うCIをPRの前に組み立てる規則が導かれ、HELIX-OSの検収がその規則でCIを組み立てられる。省いた検査は記録され、合流先のticketで回収される。異なる言語・CI実装でも同じ検証契約を評価でき、特定Worker、旧job集合、CI greenを検証義務の代替にしない |"
+            }
+          },
+          {
+            "target_id": "HELIXOS-L2-017",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 662,
+              "line_sha256": "49ac406acfc54b3708c390eb370c435d01acfd6d16fe135e15d6460945e79247",
+              "text": "### HELIXOS-L2-017 推進・ticket/workflow（単体候補）"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 338,
+              "line_sha256": "7ad0c68d020b646d80d670dcb8c784c16ff39b5cd8615dfd095981ef1277ee30",
+              "text": "### HELIXOS-L2-017 推進・ticket/workflowの受入"
+            }
+          },
+          {
+            "target_id": "HELIXOS-L2-018",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 672,
+              "line_sha256": "c22ab6ad7948d8381cbf1d48d08e19df3331c8a79240f69ac1f550151500e6b9",
+              "text": "### HELIXOS-L2-018 Worker割当・実行統制（単体候補）"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 345,
+              "line_sha256": "88f9bf170b147fd9a5d954bd4f0842472bc54d68e8813d68ab0fc16244980eba",
+              "text": "### HELIXOS-L2-018 Worker割当・実行統制の受入"
+            }
+          },
+          {
+            "target_id": "HELIXOS-L2-019",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 682,
+              "line_sha256": "87db5d2abcbbaf27d5f9a74a85b9ceaac78965271d1af849a37a305ce30388ab",
+              "text": "### HELIXOS-L2-019 Evidence・continuity（単体候補）"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 352,
+              "line_sha256": "241fbb855d59c68e2624fb6a90314819e38992edf467f73a8fdb73ca5e0fc332",
+              "text": "### HELIXOS-L2-019 Evidence・continuityの受入"
+            }
+          },
+          {
+            "target_id": "HELIXOS-L2-020",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 692,
+              "line_sha256": "47f92c05b7ca34ac3e1ad245158fa9facce0e1d6528f088050ee483972e38d83",
+              "text": "### HELIXOS-L2-020 検収・CI運転（単体候補）"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 359,
+              "line_sha256": "b2f89b08359b12928128de8f14d86b8b0f0e3cab15f54cec3ef519ae4e013664",
+              "text": "### HELIXOS-L2-020 検収・CI運転の受入"
+            }
+          },
+          {
+            "target_id": "HELIXOS-L2-023",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 722,
+              "line_sha256": "a8b2870ede175ea97d579a02f0bde9ceafd5c6906007fb4bb6af9749e287909e",
+              "text": "### HELIXOS-L2-023 管理→推進→Worker→検収の受渡し（接続候補）"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 380,
+              "line_sha256": "1b5c9f2d33bb37b14520f6f0564ac3b18291b4c25a3c994756c0d186bb0a68c3",
+              "text": "### HELIXOS-L2-023 管理→推進→Worker→検収の受渡しの受入"
+            }
+          }
+        ],
+        "retained_meaning": "frontier継続と工程／証拠状態は近接するが、無人進行やmerge権限を新設しない。",
+        "changed_or_not_carried": "現行fixed targetsは工程・worker/evidence/handoff関連のみを示す。旧「PO直接関与なし」の全自動cycleやmerge authorityは現行pairから導かない。"
+      },
+      "numeric_conditions_exceptions_counterexamples": {
+        "numeric_conditions": "L12: 2 worker＋1 reviewerの連続canary（停止なく完走）。",
+        "exceptions_and_negative_oracle": "「PO直接関与なし」を上流authorityやmerge admission省略へ広げない。canary成功は完了定義であり、現行実績ではない。",
+        "risk": "無人進行の絶対化、2+1値の恒久化、連続canaryをsuccessor/closureと解釈。"
+      },
+      "later_57_plus_11_decision_relations": {
+        "near_pair_ids": [
+          "HELIXOS-L2-046"
+        ],
+        "limited_effects": [
+          {
+            "pair_id": "HELIXOS-L2-046",
+            "decision_status": "adopted",
+            "limited_effect": "採択済み。dispatch/実行/Ready/merge admission間で既存authority、HEAD/revision、scope、検証義務を照合し、変更時に再照合。",
+            "limits": "自動merge、PO直接関与なしの絶対化、BR-2 dispatch tuple全体、BR-3/9修復分類、BR-10の全失効軸を決めない。"
+          }
+        ],
+        "not_a_successor_or_closure": "後発採択/条件付き採択は関連条件の近接であり、この旧identityのsuccessor割当・retirement・closureではない。"
+      },
+      "residual_and_status": {
+        "residual": "連続canaryの対象、期間、失敗oracle、品質非劣化証拠が未確立。",
+        "classification": "部分保持・未closure",
+        "status": "open",
+        "source_disposition": "preserved_pending_rehome",
+        "successor_requirement_ids": [],
+        "comparison_is_closure": false,
+        "authority_effect": "none"
+      }
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/resident-lane-orchestration-requests.md::BR-2",
+      "confirmed_identity": "BR-2",
+      "population": "confirmed175",
+      "legacy_asset_id": "LEGACY-ASSET-2B0DE689AA572DE66181",
+      "source_authority_state": "confirmed",
+      "carry_forward_state": "preserved_pending_rehome",
+      "successor_requirement_ids": [],
+      "old_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+        "holding_snapshot_path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+        "source_relative_path": "helix/L1-requirements/resident-lane-orchestration-requests.md",
+        "file_sha256": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe",
+        "identity_line": 77,
+        "identity_line_sha256": "27d5b5faa4b2f43ab9bc1be752506816a2018f54f2640a508c16e980eb838054",
+        "identity_line_text": "### BR-2: scope正本の択一と専用branch（PO決定 2026-08-20）",
+        "section_lines": "77-96",
+        "section_sha256": "7762b3cb284a7efc20c18ee87efc8dbaf136c4a5203e2250194a6d45a1c44ff6",
+        "exact_section_text": "### BR-2: scope正本の択一と専用branch（PO決定 2026-08-20）\n\nここでの「scope正本」はassignmentに渡す作業範囲の参照を意味し、要求の意味正本ではない。\n要求・要件の意味と承認revisionはリポジトリ内の要求文書／正本JSONで確認する。\nGitHub Issueの本文・ラベル・状態から要求を追加・削除・承認・完了へ変更しない。\n\nworkerへ仕事を渡すときは、必ず **scope正本を一つ**（GitHub IssueまたはPLANの択一）と\n**専用branchを一つ**渡す。PLANはbranchの代替ではなくscope authorityであり、branchは常に必須とする。\nbranch = 変更先正本、lease = 所有者正本は常に必須とする。\n自動配車網より先にこの契約を成立させる。\n\n- HELIX の Forward / Scrum workflow では Issue を起票しないため、\n  上位文書の RLO-INV-001「Issue 必須」は本要求で緩和・上書きする:\n  **assignmentはIssue参照またはPLAN参照（`plan_id`＋受入条件digest）の\n  いずれか一つを scope 正本として持たなければならない**。\n- Issue 経由のフロー（GitHub 起点の Capability 進行）ではIssueを作業範囲の参照とする。\n  同一 assignment に Issue と PLAN の二重正本を持たせない。\n- 根拠: 上位文書 §1 中核ルール ＋ PO 決定（Forward/Scrum は Issue を立てない）\n- L12 受入観点: scope 正本なし / branch なし / base SHA なしの dispatch が 0 件\n- トレース: RLO-INV-001〜005（INV-001 は本 BR で改版要）/ RLO-FR-007〜010 / RLO-AC-001〜006",
+        "condition_summary": "assignment scopeの正本をIssueまたはPLANの一つに限定し、専用branch・base SHA・leaseを伴わせる。Issue/PLANは要求意味や承認revisionの正本ではない。"
+      },
+      "legacy_consumers_and_history": {
+        "l3_consumer": "L3 INV-001..005; FR-007..010; AC-001..006 (317–353, 519–531, 860–865).",
+        "l3_file": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+        "l3_file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+        "l12_consumer": "resident-lane-orchestration-recognition.md:22",
+        "l12_file": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-recognition.md",
+        "l12_file_sha256": "0cd1bb77f43b28b73f8306f86d477bca1110d3a6e84bbe67eb8f84be22556b16",
+        "l1_to_l3_trace": "旧sourceの当該BR traceを照合。BR-9/10のFR-041..049 / AC-031..040はL1のtrace candidateで、archive L3 fileにidentityがない。",
+        "authority_history": "old source status confirmed; source-only history not transferred as new authority."
+      },
+      "queue_comparison": {
+        "status": "not_individually_compared",
+        "evidence_artifacts": [],
+        "comparison_is_closure": false,
+        "fixed_target_refs": [
+          {
+            "target_id": "HELIXOS-L2-017",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-017"
+          },
+          {
+            "target_id": "HELIXOS-L2-018",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-018"
+          }
+        ],
+        "full_audit_classification": "existing crosswalk reports rederived/retained; atom-by-atom carry-forward remains unassigned"
+      },
+      "fixed_f6_comparison": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "target_ids": [
+          "HELIXOS-L2-017",
+          "HELIXOS-L2-018"
+        ],
+        "exact_target_pair_pins": [
+          {
+            "target_id": "HELIXOS-L2-017",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 662,
+              "line_sha256": "49ac406acfc54b3708c390eb370c435d01acfd6d16fe135e15d6460945e79247",
+              "text": "### HELIXOS-L2-017 推進・ticket/workflow（単体候補）"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 338,
+              "line_sha256": "7ad0c68d020b646d80d670dcb8c784c16ff39b5cd8615dfd095981ef1277ee30",
+              "text": "### HELIXOS-L2-017 推進・ticket/workflowの受入"
+            }
+          },
+          {
+            "target_id": "HELIXOS-L2-018",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 672,
+              "line_sha256": "c22ab6ad7948d8381cbf1d48d08e19df3331c8a79240f69ac1f550151500e6b9",
+              "text": "### HELIXOS-L2-018 Worker割当・実行統制（単体候補）"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 345,
+              "line_sha256": "88f9bf170b147fd9a5d954bd4f0842472bc54d68e8813d68ab0fc16244980eba",
+              "text": "### HELIXOS-L2-018 Worker割当・実行統制の受入"
+            }
+          }
+        ],
+        "retained_meaning": "scope/revision/ticket関係、unknown/未解決を実行可能化しない点は近接。",
+        "changed_or_not_carried": "OS-017/018はticket/workflowとscopeに近接するが、旧scope/branch/base/leaseを一体化したdispatch admission tupleの移植ではない。"
+      },
+      "numeric_conditions_exceptions_counterexamples": {
+        "numeric_conditions": "scope正本1つ（Issue XOR PLAN）、専用branch 1つ、base SHA 1つ、lease 1つ。scope正本/branch/base SHAの欠落dispatchは0件。",
+        "exceptions_and_negative_oracle": "Issue本文/label/stateから要求意味・承認・完了を生成しない。Issue-onlyをForward/Scrumへ拡張しない。branch/lease方式の技術実装は引き継がない。",
+        "risk": "issue/PLAN参照と要求authorityの混同、旧lease方式の技術移植。"
+      },
+      "later_57_plus_11_decision_relations": {
+        "near_pair_ids": [
+          "HELIXOS-L2-046",
+          "HELIXOS-L2-047"
+        ],
+        "limited_effects": [
+          {
+            "pair_id": "HELIXOS-L2-046",
+            "decision_status": "adopted",
+            "limited_effect": "採択済み。dispatch/実行/Ready/merge admission間で既存authority、HEAD/revision、scope、検証義務を照合し、変更時に再照合。",
+            "limits": "自動merge、PO直接関与なしの絶対化、BR-2 dispatch tuple全体、BR-3/9修復分類、BR-10の全失効軸を決めない。"
+          },
+          {
+            "pair_id": "HELIXOS-L2-047",
+            "decision_status": "adopted",
+            "limited_effect": "採択済み。理由/source/revision付きticket返却、旧revision保持、新revision/lineage、暗黙のauthority/assignment結果継承禁止。",
+            "limits": "same worker/branchへのreview修正routing、blind review allowlist、lease/reassignment receiptは規定しない。"
+          }
+        ],
+        "not_a_successor_or_closure": "後発採択/条件付き採択は関連条件の近接であり、この旧identityのsuccessor割当・retirement・closureではない。"
+      },
+      "residual_and_status": {
+        "residual": "scope・branch・base・leaseを統合したdispatch admission tupleとinvalid=0のL11 oracleが未確立。",
+        "classification": "部分保持・未closure",
+        "status": "open",
+        "source_disposition": "preserved_pending_rehome",
+        "successor_requirement_ids": [],
+        "comparison_is_closure": false,
+        "authority_effect": "none"
+      }
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/resident-lane-orchestration-requests.md::BR-3",
+      "confirmed_identity": "BR-3",
+      "population": "confirmed175",
+      "legacy_asset_id": "LEGACY-ASSET-2B0DE689AA572DE66181",
+      "source_authority_state": "confirmed",
+      "carry_forward_state": "preserved_pending_rehome",
+      "successor_requirement_ids": [],
+      "old_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+        "holding_snapshot_path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+        "source_relative_path": "helix/L1-requirements/resident-lane-orchestration-requests.md",
+        "file_sha256": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe",
+        "identity_line": 109,
+        "identity_line_sha256": "c392506582b38c9083ea82c36e7d1c1295acf81473b10e5b086051ae9b21e894",
+        "identity_line_text": "### BR-3: 検収独立性の維持",
+        "section_lines": "109-119",
+        "section_sha256": "4fc5f8e06e6456654cdf41bcd9e8215a4d991f95dc8dd3c7bda4464dc501ef2d",
+        "exact_section_text": "### BR-3: 検収独立性の維持\n\nClaude は worker 会話を引き継がない blind exact-HEAD review 専用レーンであり続ける。\nworker の自己 review / 自己 merge を許さない。BR-9の`REPAIR_IN_REVIEW`に分類できない従来型の\n実装所見は元worker・同branchへ返す。要求／AC／公開契約の選択、責務跨ぎ再設計、正本矛盾、\n許可scope外は元worker固定ではなく、BR-9に従って原因ownerへ`RETURN_TO_OWNER`する。\n\n- 根拠: 上位文書 §7.4 / RLO-INV-006\n- L12 受入観点: worker自己承認0件。`REPAIR_IN_REVIEW`対象外の実装所見は元worker・同branchへ戻り、\n  意味判断を要する所見は原因ownerへ戻る。両経路を混同せず実運用で追跡できる。\n- トレース: RLO-FR-014〜018 / RLO-AC-011〜015",
+        "condition_summary": "Claudeをworker会話から独立したblind exact-HEAD review laneとし、自己review/mergeを禁じる。契約内の実装修正、元worker返却、原因owner返却をBR-9の区分に従わせる。"
+      },
+      "legacy_consumers_and_history": {
+        "l3_consumer": "L3 INV-006; FR-014..020; AC-011..015 (355–367, 545–575, 876–880).",
+        "l3_file": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+        "l3_file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+        "l12_consumer": "resident-lane-orchestration-recognition.md:23",
+        "l12_file": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-recognition.md",
+        "l12_file_sha256": "0cd1bb77f43b28b73f8306f86d477bca1110d3a6e84bbe67eb8f84be22556b16",
+        "l1_to_l3_trace": "旧sourceの当該BR traceを照合。BR-9/10のFR-041..049 / AC-031..040はL1のtrace candidateで、archive L3 fileにidentityがない。",
+        "authority_history": "old source status confirmed; source-only history not transferred as new authority."
+      },
+      "queue_comparison": {
+        "status": "not_individually_compared",
+        "evidence_artifacts": [],
+        "comparison_is_closure": false,
+        "fixed_target_refs": [
+          {
+            "target_id": "HARNESS-L2-005",
+            "authority_status": "inside_po_fixed_l2_l11_bytes",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-harness/L11-acceptance/product-acceptance.md",
+              "docs/helix-harness/L2-requirements/product-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HARNESS-L2-005"
+          },
+          {
+            "target_id": "HARNESS-L2-022",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-harness/L11-acceptance/product-acceptance.md",
+              "docs/helix-harness/L2-requirements/product-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HARNESS-L2-022"
+          },
+          {
+            "target_id": "HELIXOS-L2-018",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-018"
+          },
+          {
+            "target_id": "HELIXOS-L2-020",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-020"
+          },
+          {
+            "target_id": "HELIXOS-L2-023",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-023"
+          }
+        ],
+        "full_audit_classification": "existing crosswalk reports rederived/retained; atom-by-atom carry-forward remains unassigned"
+      },
+      "fixed_f6_comparison": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "target_ids": [
+          "HARNESS-L2-005",
+          "HARNESS-L2-022",
+          "HELIXOS-L2-018",
+          "HELIXOS-L2-020",
+          "HELIXOS-L2-023"
+        ],
+        "exact_target_pair_pins": [
+          {
+            "target_id": "HARNESS-L2-005",
+            "authority_status": "inside_po_fixed_l2_l11_bytes",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+              "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+              "line": 44,
+              "line_sha256": "74fae9aa240f21074a24e5da08c19dba8ac26389d1c473f6f979ed3b789f0d1c",
+              "text": "| HARNESS-L2-005 | HARNESS-L1-004 |"
+            },
+            "l11": {
+              "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+              "file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+              "line": 25,
+              "line_sha256": "edeceea2b54fe31fe92460f610e19a49e32fde6a2d7a57c51d98c9b9afcbe371",
+              "text": "| HARNESS-L2-005 | ticketとの関係（Forward 小・中・大、V字の対、触るコネクタ、変更の種類）と、変更の内容・layer・riskから必要な検証が導出され、固定の段数ではなくその検証に合うCIをPRの前に組み立てる規則が導かれ、HELIX-OSの検収がその規則でCIを組み立てられる。省いた検査は記録され、合流先のticketで回収される。異なる言語・CI実装でも同じ検証契約を評価でき、特定Worker、旧job集合、CI greenを検証義務の代替にしない |"
+            }
+          },
+          {
+            "target_id": "HARNESS-L2-022",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+              "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+              "line": 447,
+              "line_sha256": "a521fcf29a72b4c42f32bfacae614f40411cc982f20f8dec1906db8420580473",
+              "text": "### HARNESS-L2-022 検証と受入の契約（コアの単体）"
+            },
+            "l11": {
+              "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+              "file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+              "line": 298,
+              "line_sha256": "b3ec231018db37cc24352f621ca5dfd521392301a9285649c99ed5f027b9aa14",
+              "text": "#### HARNESS-L2-022（コア検証と受入契約）— `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004` / version_target 1.0"
+            }
+          },
+          {
+            "target_id": "HELIXOS-L2-018",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 672,
+              "line_sha256": "c22ab6ad7948d8381cbf1d48d08e19df3331c8a79240f69ac1f550151500e6b9",
+              "text": "### HELIXOS-L2-018 Worker割当・実行統制（単体候補）"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 345,
+              "line_sha256": "88f9bf170b147fd9a5d954bd4f0842472bc54d68e8813d68ab0fc16244980eba",
+              "text": "### HELIXOS-L2-018 Worker割当・実行統制の受入"
+            }
+          },
+          {
+            "target_id": "HELIXOS-L2-020",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 692,
+              "line_sha256": "47f92c05b7ca34ac3e1ad245158fa9facce0e1d6528f088050ee483972e38d83",
+              "text": "### HELIXOS-L2-020 検収・CI運転（単体候補）"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 359,
+              "line_sha256": "b2f89b08359b12928128de8f14d86b8b0f0e3cab15f54cec3ef519ae4e013664",
+              "text": "### HELIXOS-L2-020 検収・CI運転の受入"
+            }
+          },
+          {
+            "target_id": "HELIXOS-L2-023",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 722,
+              "line_sha256": "a8b2870ede175ea97d579a02f0bde9ceafd5c6906007fb4bb6af9749e287909e",
+              "text": "### HELIXOS-L2-023 管理→推進→Worker→検収の受渡し（接続候補）"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 380,
+              "line_sha256": "1b5c9f2d33bb37b14520f6f0564ac3b18291b4c25a3c994756c0d186bb0a68c3",
+              "text": "### HELIXOS-L2-023 管理→推進→Worker→検収の受渡しの受入"
+            }
+          }
+        ],
+        "retained_meaning": "独立性・非権威性・fresh HEAD reviewは近接。",
+        "changed_or_not_carried": "現行pairはassignment/review/evidenceや限定worker境界に近接する。Claude専用lane、旧repair routing全体、独立reviewの完全なacceptance oracleを採択したものではない。"
+      },
+      "numeric_conditions_exceptions_counterexamples": {
+        "numeric_conditions": "worker自己承認0件。",
+        "exceptions_and_negative_oracle": "Claudeというprovider指定は採択扱いにしない。review結果からauthority/mergeを作らない。契約修復・元worker返却・原因owner返却の区分を混同しない。",
+        "risk": "review結果だけでauthority/mergeを生成、security scopeをinternal native workerへ過剰適用。"
+      },
+      "later_57_plus_11_decision_relations": {
+        "near_pair_ids": [
+          "HELIXOS-L2-046",
+          "HELIXOS-L2-047",
+          "HELIXSECURITY-L2-033",
+          "HELIXOS-L2-051",
+          "HELIXOS-L2-042"
+        ],
+        "limited_effects": [
+          {
+            "pair_id": "HELIXOS-L2-046",
+            "decision_status": "adopted",
+            "limited_effect": "採択済み。dispatch/実行/Ready/merge admission間で既存authority、HEAD/revision、scope、検証義務を照合し、変更時に再照合。",
+            "limits": "自動merge、PO直接関与なしの絶対化、BR-2 dispatch tuple全体、BR-3/9修復分類、BR-10の全失効軸を決めない。"
+          },
+          {
+            "pair_id": "HELIXOS-L2-047",
+            "decision_status": "adopted",
+            "limited_effect": "採択済み。理由/source/revision付きticket返却、旧revision保持、新revision/lineage、暗黙のauthority/assignment結果継承禁止。",
+            "limits": "same worker/branchへのreview修正routing、blind review allowlist、lease/reassignment receiptは規定しない。"
+          },
+          {
+            "pair_id": "HELIXSECURITY-L2-033",
+            "decision_status": "adopted",
+            "limited_effect": "採択済み。外部AI Worker operationの実行context束縛と出力の非権威性。追加受入L11追補を含む。",
+            "limits": "全review lane/internal native subagentや旧GHA role matrixへ一般適用しない。"
+          },
+          {
+            "pair_id": "HELIXOS-L2-051",
+            "decision_status": "conditionally_adopted",
+            "limited_effect": "条件付き採択。本構成でCursorを作成専用、Claude優先は根拠のある要求/設計taskに限定。",
+            "limits": "旧2/3/4 runtime table、全task routing、bench/admission oracle、resident/native/CLI三identityを決めない。"
+          },
+          {
+            "pair_id": "HELIXOS-L2-042",
+            "decision_status": "adopted",
+            "limited_effect": "OS-042採択: assignment適用schemaへのstrict validationと成果bytes digestが成立するまでworker成果を未検証とし、missing/unknown/stale/mismatchやdigest mismatchを受理済みにしない。既存条件に基づく緩和でも同一成果・assignment/scope/revisionに結ぶ再検証receiptを要求する。",
+            "limits": "旧PR番号/exact HEAD/changed paths/test evidence/worker receiptのpacket全体やreview-ready oracle、schema policy発行を定義しない。BR-9 repair-state contractでもBR-10 evidence reuse/invalidation contractでもない。"
+          }
+        ],
+        "not_a_successor_or_closure": "後発採択/条件付き採択は関連条件の近接であり、この旧identityのsuccessor割当・retirement・closureではない。"
+      },
+      "residual_and_status": {
+        "residual": "review input allowlist、自己承認0件、same-worker/branch repair、meaning findingのowner returnを結ぶ統合pairが未確立。",
+        "classification": "部分保持・未closure",
+        "status": "open",
+        "source_disposition": "preserved_pending_rehome",
+        "successor_requirement_ids": [],
+        "comparison_is_closure": false,
+        "authority_effect": "none"
+      }
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/resident-lane-orchestration-requests.md::BR-4",
+      "confirmed_identity": "BR-4",
+      "population": "confirmed175",
+      "legacy_asset_id": "LEGACY-ASSET-2B0DE689AA572DE66181",
+      "source_authority_state": "confirmed",
+      "carry_forward_state": "preserved_pending_rehome",
+      "successor_requirement_ids": [],
+      "old_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+        "holding_snapshot_path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+        "source_relative_path": "helix/L1-requirements/resident-lane-orchestration-requests.md",
+        "file_sha256": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe",
+        "identity_line": 165,
+        "identity_line_sha256": "082358433582b5b3cffeb89ac97fedf1bc7df9ec207d335c73cf179bddeee816",
+        "identity_line_text": "### BR-4: provider の生死に依存しない継続性",
+        "section_lines": "165-172",
+        "section_sha256": "c1f02698fa8f7ffe1447b1c811d5344f62faf1fcd9e11ff5dc35cb8f9f0b5dae",
+        "exact_section_text": "### BR-4: provider の生死に依存しない継続性\n\n個別 session（Codex / Claude / Grok Build / Cursor）は終了・compact・再起動してよく、\n論理レーンと assignment は HELIX 側の event / checkpoint から復元される。\n\n- 根拠: 上位文書 §5.1 常駐の定義 / RLO-INV-007\n- L12 受入観点: daemon / provider 再起動後に同じ assignment を再開できる\n- トレース: RLO-FR-002, 027〜029 / RLO-NFR-001〜002 / RLO-AC-016〜018",
+        "condition_summary": "provider/sessionの終了・compact・再起動に論理laneとassignmentの継続を依存させず、HELIX event/checkpointから再開する。"
+      },
+      "legacy_consumers_and_history": {
+        "l3_consumer": "L3 FR-001..003, 027..029; AC-016..020 (497–506, 601–609, 884–888).",
+        "l3_file": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+        "l3_file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+        "l12_consumer": "resident-lane-orchestration-recognition.md:24",
+        "l12_file": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-recognition.md",
+        "l12_file_sha256": "0cd1bb77f43b28b73f8306f86d477bca1110d3a6e84bbe67eb8f84be22556b16",
+        "l1_to_l3_trace": "旧sourceの当該BR traceを照合。BR-9/10のFR-041..049 / AC-031..040はL1のtrace candidateで、archive L3 fileにidentityがない。",
+        "authority_history": "old source status confirmed; source-only history not transferred as new authority."
+      },
+      "queue_comparison": {
+        "status": "not_individually_compared",
+        "evidence_artifacts": [],
+        "comparison_is_closure": false,
+        "fixed_target_refs": [
+          {
+            "target_id": "HELIXOS-L2-017",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-017"
+          },
+          {
+            "target_id": "HELIXOS-L2-018",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-018"
+          },
+          {
+            "target_id": "HELIXOS-L2-019",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-019"
+          },
+          {
+            "target_id": "HELIXOS-L2-023",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-023"
+          }
+        ],
+        "full_audit_classification": "existing crosswalk reports rederived/retained; atom-by-atom carry-forward remains unassigned"
+      },
+      "fixed_f6_comparison": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "target_ids": [
+          "HELIXOS-L2-017",
+          "HELIXOS-L2-018",
+          "HELIXOS-L2-019",
+          "HELIXOS-L2-023"
+        ],
+        "exact_target_pair_pins": [
+          {
+            "target_id": "HELIXOS-L2-017",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 662,
+              "line_sha256": "49ac406acfc54b3708c390eb370c435d01acfd6d16fe135e15d6460945e79247",
+              "text": "### HELIXOS-L2-017 推進・ticket/workflow（単体候補）"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 338,
+              "line_sha256": "7ad0c68d020b646d80d670dcb8c784c16ff39b5cd8615dfd095981ef1277ee30",
+              "text": "### HELIXOS-L2-017 推進・ticket/workflowの受入"
+            }
+          },
+          {
+            "target_id": "HELIXOS-L2-018",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 672,
+              "line_sha256": "c22ab6ad7948d8381cbf1d48d08e19df3331c8a79240f69ac1f550151500e6b9",
+              "text": "### HELIXOS-L2-018 Worker割当・実行統制（単体候補）"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 345,
+              "line_sha256": "88f9bf170b147fd9a5d954bd4f0842472bc54d68e8813d68ab0fc16244980eba",
+              "text": "### HELIXOS-L2-018 Worker割当・実行統制の受入"
+            }
+          },
+          {
+            "target_id": "HELIXOS-L2-019",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 682,
+              "line_sha256": "87db5d2abcbbaf27d5f9a74a85b9ceaac78965271d1af849a37a305ce30388ab",
+              "text": "### HELIXOS-L2-019 Evidence・continuity（単体候補）"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 352,
+              "line_sha256": "241fbb855d59c68e2624fb6a90314819e38992edf467f73a8fdb73ca5e0fc332",
+              "text": "### HELIXOS-L2-019 Evidence・continuityの受入"
+            }
+          },
+          {
+            "target_id": "HELIXOS-L2-023",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 722,
+              "line_sha256": "a8b2870ede175ea97d579a02f0bde9ceafd5c6906007fb4bb6af9749e287909e",
+              "text": "### HELIXOS-L2-023 管理→推進→Worker→検収の受渡し（接続候補）"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 380,
+              "line_sha256": "1b5c9f2d33bb37b14520f6f0564ac3b18291b4c25a3c994756c0d186bb0a68c3",
+              "text": "### HELIXOS-L2-023 管理→推進→Worker→検収の受渡しの受入"
+            }
+          }
+        ],
+        "retained_meaning": "event/revision/checkpoint/staleの証跡とprovider非依存は近接。",
+        "changed_or_not_carried": "現行event/provenance pairは部分的近接。旧daemon/provider復旧やsame-assignment復元契約は再利用・実証されていない。"
+      },
+      "numeric_conditions_exceptions_counterexamples": {
+        "numeric_conditions": "固定数値条件なし。",
+        "exceptions_and_negative_oracle": "daemon/checkpoint実装やprovider sessionを現行authority/state正本として推測採用しない。",
+        "risk": "OS-033/035のevent/replay近接を旧resident daemon/recoveryの採択と誤読。"
+      },
+      "later_57_plus_11_decision_relations": {
+        "near_pair_ids": [
+          "HELIXOS-L2-033",
+          "HELIXOS-L2-035"
+        ],
+        "limited_effects": [
+          {
+            "pair_id": "HELIXOS-L2-033",
+            "decision_status": "adopted",
+            "limited_effect": "採択済み。versioned engine/detector registryと同一snapshot再現・provenanceを保持。",
+            "limits": "resident daemon/checkpoint復元、旧通知hook/queue、BR-10の全軸invalidity oracleを定めない。"
+          },
+          {
+            "pair_id": "HELIXOS-L2-035",
+            "decision_status": "adopted",
+            "limited_effect": "採択済み。選択scopeでPR lifecycle event intakeとbase/head provenanceを記録し、同じeventから重複しない監査job要求を生成。",
+            "limits": "旧Codex/Claude hook・harness.db・物理queue・delivery replayや監査job実行を決めない。"
+          }
+        ],
+        "not_a_successor_or_closure": "後発採択/条件付き採択は関連条件の近接であり、この旧identityのsuccessor割当・retirement・closureではない。"
+      },
+      "residual_and_status": {
+        "residual": "再起動後のsame-assignment復元、lane failure isolation、mismatch recoveryのL12 oracleが未確立。",
+        "classification": "部分保持・未closure",
+        "status": "open",
+        "source_disposition": "preserved_pending_rehome",
+        "successor_requirement_ids": [],
+        "comparison_is_closure": false,
+        "authority_effect": "none"
+      }
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/resident-lane-orchestration-requests.md::BR-5",
+      "confirmed_identity": "BR-5",
+      "population": "confirmed175",
+      "legacy_asset_id": "LEGACY-ASSET-2B0DE689AA572DE66181",
+      "source_authority_state": "confirmed",
+      "carry_forward_state": "preserved_pending_rehome",
+      "successor_requirement_ids": [],
+      "old_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+        "holding_snapshot_path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+        "source_relative_path": "helix/L1-requirements/resident-lane-orchestration-requests.md",
+        "file_sha256": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe",
+        "identity_line": 174,
+        "identity_line_sha256": "b91b7b402c17d3c567885c05c32cafdc8a72c007a87c1624ce256b14b878cbcd",
+        "identity_line_text": "### BR-5: 既存 Codex／Claude 通知経路への搬送路統合（新規要求）",
+        "section_lines": "174-193",
+        "section_sha256": "9945d68d33353546e97cde410e558233ef2783dc9fcce84b6603d290d47c9750",
+        "exact_section_text": "### BR-5: 既存 Codex／Claude 通知経路への搬送路統合（新規要求）\n\n配車・完了・review dispatch・差戻しの通知は、**普段使っている Codex と Claude の\n既存経路を搬送路として使う**。具体的には:\n\n- Codex 側: `helix codex --role <role> --task \"...\"` 委譲と Codex CLI session 起動を\n  dispatch 通知の実体とする（別の通知バスを新設しない）。\n- Claude 側: Claude Code の SessionStart surface（`harness.db` の `feedback_events` /\n  continuation projection）と hook lifecycle（Stop / SubagentStop）を review dispatch と\n  差戻し受領の実体とする。\n- 通知の正本は provider 側受信箱ではなく HELIX event（`review_dispatched`、\n  `review_changes_requested` 等）であり、通知欠落時は event からの再送で回復する。\n- **搬送方式は「durable タスクキュー＋hook」とする（PO 決定 2026-08-20）**:\n  control plane が event 正本から導出した queue を持ち、provider 側は既存 hook /\n  委譲 surface で queue を消費する。新規常駐 daemon は Release 0-1 では作らない。\n\n- 根拠: PO 方針（本 lane の仕組みは既存 Codex/Claude 経路の延長として構築する）\n- L12 受入観点: 新規メッセージング基盤ゼロで worker→PR→Claude→worker 循環が回る。\n  通知の取りこぼしが event replay で回復する。\n- トレース: RLO-FR-014, 016 / §14 event 契約 / RLO-NFR-001",
+        "condition_summary": "dispatch/review/返却通知で既存Codex/Claude経路をcarrierとして使い、HELIX eventを正本として欠落時に再送する。旧記述はdurable queueとhookも指定する。"
+      },
+      "legacy_consumers_and_history": {
+        "l3_consumer": "L3 FR-014/016/035/036; event contract; AC-011..015 (545–553, 632–644, 876–880).",
+        "l3_file": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+        "l3_file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+        "l12_consumer": "resident-lane-orchestration-recognition.md:25",
+        "l12_file": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-recognition.md",
+        "l12_file_sha256": "0cd1bb77f43b28b73f8306f86d477bca1110d3a6e84bbe67eb8f84be22556b16",
+        "l1_to_l3_trace": "旧sourceの当該BR traceを照合。BR-9/10のFR-041..049 / AC-031..040はL1のtrace candidateで、archive L3 fileにidentityがない。",
+        "authority_history": "old source status confirmed; source-only history not transferred as new authority."
+      },
+      "queue_comparison": {
+        "status": "not_individually_compared",
+        "evidence_artifacts": [],
+        "comparison_is_closure": false,
+        "fixed_target_refs": [
+          {
+            "target_id": "HELIXOS-L2-017",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-017"
+          },
+          {
+            "target_id": "HELIXOS-L2-019",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-019"
+          },
+          {
+            "target_id": "HELIXOS-L2-023",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-023"
+          }
+        ],
+        "full_audit_classification": "existing crosswalk reports rederived/retained; atom-by-atom carry-forward remains unassigned"
+      },
+      "fixed_f6_comparison": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "target_ids": [
+          "HELIXOS-L2-017",
+          "HELIXOS-L2-019",
+          "HELIXOS-L2-023"
+        ],
+        "exact_target_pair_pins": [
+          {
+            "target_id": "HELIXOS-L2-017",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 662,
+              "line_sha256": "49ac406acfc54b3708c390eb370c435d01acfd6d16fe135e15d6460945e79247",
+              "text": "### HELIXOS-L2-017 推進・ticket/workflow（単体候補）"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 338,
+              "line_sha256": "7ad0c68d020b646d80d670dcb8c784c16ff39b5cd8615dfd095981ef1277ee30",
+              "text": "### HELIXOS-L2-017 推進・ticket/workflowの受入"
+            }
+          },
+          {
+            "target_id": "HELIXOS-L2-019",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 682,
+              "line_sha256": "87db5d2abcbbaf27d5f9a74a85b9ceaac78965271d1af849a37a305ce30388ab",
+              "text": "### HELIXOS-L2-019 Evidence・continuity（単体候補）"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 352,
+              "line_sha256": "241fbb855d59c68e2624fb6a90314819e38992edf467f73a8fdb73ca5e0fc332",
+              "text": "### HELIXOS-L2-019 Evidence・continuityの受入"
+            }
+          },
+          {
+            "target_id": "HELIXOS-L2-023",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 722,
+              "line_sha256": "a8b2870ede175ea97d579a02f0bde9ceafd5c6906007fb4bb6af9749e287909e",
+              "text": "### HELIXOS-L2-023 管理→推進→Worker→検収の受渡し（接続候補）"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 380,
+              "line_sha256": "1b5c9f2d33bb37b14520f6f0564ac3b18291b4c25a3c994756c0d186bb0a68c3",
+              "text": "### HELIXOS-L2-023 管理→推進→Worker→検収の受渡しの受入"
+            }
+          }
+        ],
+        "retained_meaning": "HELIX eventを正本にする意図とPR event provenance/idempotencyは一部近接。",
+        "changed_or_not_carried": "現行PR event intakeは選択scopeのevent/provenanceと重複しない監査job要求に限定される。旧carrier/hook/queue/replay実装は移さない。"
+      },
+      "numeric_conditions_exceptions_counterexamples": {
+        "numeric_conditions": "新規messaging infrastructure 0。",
+        "exceptions_and_negative_oracle": "Codex CLI、Claude hook、harness.db、durable queueは現行実装契約として移さない。notification receipt自体はauthorityではない。",
+        "risk": "OS-035 event intakeを通知carrier/旧hooks採用と誤読、旧CLI/database起動。"
+      },
+      "later_57_plus_11_decision_relations": {
+        "near_pair_ids": [
+          "HELIXOS-L2-033",
+          "HELIXOS-L2-035"
+        ],
+        "limited_effects": [
+          {
+            "pair_id": "HELIXOS-L2-033",
+            "decision_status": "adopted",
+            "limited_effect": "採択済み。versioned engine/detector registryと同一snapshot再現・provenanceを保持。",
+            "limits": "resident daemon/checkpoint復元、旧通知hook/queue、BR-10の全軸invalidity oracleを定めない。"
+          },
+          {
+            "pair_id": "HELIXOS-L2-035",
+            "decision_status": "adopted",
+            "limited_effect": "採択済み。選択scopeでPR lifecycle event intakeとbase/head provenanceを記録し、同じeventから重複しない監査job要求を生成。",
+            "limits": "旧Codex/Claude hook・harness.db・物理queue・delivery replayや監査job実行を決めない。"
+          }
+        ],
+        "not_a_successor_or_closure": "後発採択/条件付き採択は関連条件の近接であり、この旧identityのsuccessor割当・retirement・closureではない。"
+      },
+      "residual_and_status": {
+        "residual": "physical queue、hook transport、delivery retry/replayとauthority eventを一体で受け入れるpairがない。",
+        "classification": "部分保持・未closure",
+        "status": "open",
+        "source_disposition": "preserved_pending_rehome",
+        "successor_requirement_ids": [],
+        "comparison_is_closure": false,
+        "authority_effect": "none"
+      }
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/resident-lane-orchestration-requests.md::BR-6",
+      "confirmed_identity": "BR-6",
+      "population": "confirmed175",
+      "legacy_asset_id": "LEGACY-ASSET-2B0DE689AA572DE66181",
+      "source_authority_state": "confirmed",
+      "carry_forward_state": "preserved_pending_rehome",
+      "successor_requirement_ids": [],
+      "old_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+        "holding_snapshot_path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+        "source_relative_path": "helix/L1-requirements/resident-lane-orchestration-requests.md",
+        "file_sha256": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe",
+        "identity_line": 195,
+        "identity_line_sha256": "875a007f48b61475f3e2fca26762d50f7b27033f18087d38b416fc690eaa7036",
+        "identity_line_text": "### BR-6: 段階導入と既存経路の無劣化（構成別固定配車、PO 決定 2026-08-20）",
+        "section_lines": "195-219",
+        "section_sha256": "d4bbac4629726dff42ae94e1b4237f83f43cb8709f0ec1f1cae6cc487f34e111",
+        "exact_section_text": "### BR-6: 段階導入と既存経路の無劣化（構成別固定配車、PO 決定 2026-08-20）\n\nGrok Build / Cursor が未導入・停止中でも、現行 Codex＋Claude 経路は同じ結果で動く。\nruntime 構成数に応じた固定配車を既定とし、release は固定配車 → advisory routing →\n限定自動配車の順で進め、各段階に PO 承認境界を置く。\n\n配車対象タスクは **進行・設計・実装・レビューの 4 区分** とする。\n実装はさらに **フロントエンド実装とバックエンド実装で適性を分離**して扱い、\n配車表・ベンチ計測とも FE/BE を別軸で持つ（PO 決定 2026-08-20）。\n\n| 構成 | 進行 | 設計 | 実装（FE / BE 別適性） | レビュー |\n|---|---|---|---|---|\n| 2 runtime（現状） | Codex TL | Codex | Codex worker | Claude |\n| 3 runtime（＋Grok Build） | Codex TL | Codex | **Grok Build**（worker、FE/BE 適性はベンチで確定） | Claude |\n| 4 runtime（＋Cursor） | Codex TL | Codex | Grok Build ＋ Cursor（FE/BE をベンチ結果で割当） | Claude |\n\n**設計タスクの worker 委譲（PO 決定 2026-08-20）**: HELIX は設計ウエイトが大きくなる\n特性があるため、設計タスクは Codex 専任に固定せず **worker レーンへ委譲してよい**。\nただし設計成果の統合判断と正本化（L 層への freeze）は Codex TL / 進行レーンが保持し、\nworker はベンチで設計適性 evidence を得たものに限る（実装と同様に適性を計測軸へ加える）。\n\n- 根拠: RLO-INV-008 / §19 段階リリース ＋ PO 決定（なければ今の状態、3 つなら Grok がワーカー）\n- L12 受入観点: provider 未導入環境で既存経路の全 gate が green（RLO-AC-019）。\n  runtime 追加時に配車表どおりの lane 割当になる。\n- トレース: RLO-FR-004〜006, 030〜032 / RLO-NFR-007 / 上位文書 §12（初期固定配車の改版要）",
+        "condition_summary": "runtime構成に応じた固定配車からadvisory、限定自動配車へ段階導入し、既存Codex/Claude経路の結果を保つ。4 task区分、FE/BE適性分離、設計worker委譲を定義。"
+      },
+      "legacy_consumers_and_history": {
+        "l3_consumer": "L3 FR-004..006/030..032; routing §12; AC-019 (508–515, 612–619, 670–714, 887).",
+        "l3_file": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+        "l3_file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+        "l12_consumer": "resident-lane-orchestration-recognition.md:26",
+        "l12_file": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-recognition.md",
+        "l12_file_sha256": "0cd1bb77f43b28b73f8306f86d477bca1110d3a6e84bbe67eb8f84be22556b16",
+        "l1_to_l3_trace": "旧sourceの当該BR traceを照合。BR-9/10のFR-041..049 / AC-031..040はL1のtrace candidateで、archive L3 fileにidentityがない。",
+        "authority_history": "old source status confirmed; source-only history not transferred as new authority."
+      },
+      "queue_comparison": {
+        "status": "not_individually_compared",
+        "evidence_artifacts": [],
+        "comparison_is_closure": false,
+        "fixed_target_refs": [
+          {
+            "target_id": "HELIXLABO-L2-055",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+              "docs/helix-labo/L2-requirements/labo-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXLABO-L2-055"
+          },
+          {
+            "target_id": "HELIXOS-L2-014",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-014"
+          },
+          {
+            "target_id": "HELIXOS-L2-018",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-018"
+          },
+          {
+            "target_id": "HELIXOS-L2-026",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-026"
+          },
+          {
+            "target_id": "HELIXOS-L2-027",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-027"
+          }
+        ],
+        "full_audit_classification": "existing crosswalk reports rederived/retained; atom-by-atom carry-forward remains unassigned"
+      },
+      "fixed_f6_comparison": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "target_ids": [
+          "HELIXLABO-L2-055",
+          "HELIXOS-L2-014",
+          "HELIXOS-L2-018",
+          "HELIXOS-L2-026",
+          "HELIXOS-L2-027"
+        ],
+        "exact_target_pair_pins": [
+          {
+            "target_id": "HELIXLABO-L2-055",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+              "file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+              "line": 150,
+              "line_sha256": "6330f8400512c454e76a4873d6df075c0e59b3f0987c8a30a1e362051cf2c51b",
+              "text": "### HELIXLABO-L2-055 — HELIX-Bench 作業水準生成（1.0）"
+            },
+            "l11": {
+              "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+              "file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+              "line": 191,
+              "line_sha256": "553ab0696c23122911abfc8eb5ba33129436c82f6b61ae2ec58308f09a32f5e8",
+              "text": "### HELIXLABO-L2-055 — Bench分母・欠測・採点根拠"
+            }
+          },
+          {
+            "target_id": "HELIXOS-L2-014",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 619,
+              "line_sha256": "b0d81c3f944c9f945227a02ae3292b9a6935199493f08f0468bdd0d516a95a9d",
+              "text": "### HELIXOS-L2-014 HELIX自身の段階リリース"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 317,
+              "line_sha256": "0f067184b45f86f4ff08069b2e15bd615206ead7961510366b183b9c6d8e7d4a",
+              "text": "| HELIXOS-L2-014 | ある段階（例：v0.1）について、使うパックと依存の版、設定・data形式、対応環境、できること・できないこと、受入の証拠、更新・切戻しの条件を一組で確かめられ、同じ一組から同じ稼働構成を再現できる。その段階で、限った範囲の仕事が要求の確認から結果の記録まで一周し、人が担う工程の分担が明記されている。その段階を使って次の段階を構築・検証し、乗り換えた後に問題があれば前の段階へ戻せ、案件の状態と記録が引き継がれる。段階は開発中のHELIX自身に依存せず起動・更新・復旧でき、段階の成立と1.0の到達判定が別の記録になっている。その段階で成立していない能力は「できないこと」として明記され、HELIXINFRASTRUCTURE-L1-023（1.0より後）がなくても段階リリースが成立する | ソースのtagだけを段階リリースとする／段階を別系統の簡易実装で作る／機能を薄く並べただけで一周しない構成を段階とする／案件の実data・秘密情報・資格情報を段階リリースへ含める／前の段階へ戻せない、または戻すと案件の状態を失う／未リリースの作業treeや次の段階がないと起動・復旧できない／安全の条件が欠けたままリリースする／段階の成立で1.0の到達を判定する、または段階が出たことを理由に最終の要求や品質条件を減らす／段階の識別子を外部公開の版番号として扱う／後の版の能力（HELIXINFRASTRUCTURE-L1-023等）の完成を段階リリースの成立の前提にする、または段階リリースを理由にその能力を前倒しする／成立していない能力を「できること」として扱う／対象製品のリリースとHELIX自身の段階リリースを混同する |"
+            }
+          },
+          {
+            "target_id": "HELIXOS-L2-018",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 672,
+              "line_sha256": "c22ab6ad7948d8381cbf1d48d08e19df3331c8a79240f69ac1f550151500e6b9",
+              "text": "### HELIXOS-L2-018 Worker割当・実行統制（単体候補）"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 345,
+              "line_sha256": "88f9bf170b147fd9a5d954bd4f0842472bc54d68e8813d68ab0fc16244980eba",
+              "text": "### HELIXOS-L2-018 Worker割当・実行統制の受入"
+            }
+          },
+          {
+            "target_id": "HELIXOS-L2-026",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 807,
+              "line_sha256": "f796b1b6bf0414c80597d3a7376a6d1bd9eb7a5671a6b405d919cf0840febedd",
+              "text": "### HELIXOS-L2-026 段階リリース構成の要求導出（単体能力候補）"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 430,
+              "line_sha256": "3191b68ecd1c5d3c5581c246091fab0326ffbcf36e3db21b8bafe110c5e1a1ae",
+              "text": "### HELIXOS-L2-026 段階リリース構成の要求導出の受入"
+            }
+          },
+          {
+            "target_id": "HELIXOS-L2-027",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 824,
+              "line_sha256": "69d3220ff63edb0e9bd4bfd4efa873ebf136badf5a4169cb3cd77262910762e8",
+              "text": "### HELIXOS-L2-027 — 未評価状態からの限定初回実行（構成体候補、1.0）"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 442,
+              "line_sha256": "7ca4b92265fbee761abc2d0ceeb0d1bd1610f4f06240f50a272cf3714eb76e7c",
+              "text": "### HELIXOS-L2-027 未評価状態からの限定初回実行の受入（構成体候補）"
+            }
+          }
+        ],
+        "retained_meaning": "OS-014/026/027段階構成、OS-018 assignment、LABO-055履歴水準は近接する。",
+        "changed_or_not_carried": "現行OS-051はCursor create-only、Claude優先は根拠あるrequirement/design taskに条件付き。旧runtime構成・4区分・stage gate全体の置換ではない。"
+      },
+      "numeric_conditions_exceptions_counterexamples": {
+        "numeric_conditions": "task区分4（進行・設計・実装・review）、runtime例2/3/4。実装適性はFE/BE別。これらは旧source上の分類・構成例。",
+        "exceptions_and_negative_oracle": "旧provider roster/runtime表とstageごとのPO承認を恒久policyへ転写しない。設計worker成果のintegration/freezeはauthorityから分ける。",
+        "risk": "固定worker count/provider tableを現在の権限にする、LABO水準値からassignment authorityを生成。"
+      },
+      "later_57_plus_11_decision_relations": {
+        "near_pair_ids": [
+          "HELIXSECURITY-L2-033",
+          "HELIXOS-L2-051",
+          "HARNESS-L2-034"
+        ],
+        "limited_effects": [
+          {
+            "pair_id": "HELIXSECURITY-L2-033",
+            "decision_status": "adopted",
+            "limited_effect": "採択済み。外部AI Worker operationの実行context束縛と出力の非権威性。追加受入L11追補を含む。",
+            "limits": "全review lane/internal native subagentや旧GHA role matrixへ一般適用しない。"
+          },
+          {
+            "pair_id": "HELIXOS-L2-051",
+            "decision_status": "conditionally_adopted",
+            "limited_effect": "条件付き採択。本構成でCursorを作成専用、Claude優先は根拠のある要求/設計taskに限定。",
+            "limits": "旧2/3/4 runtime table、全task routing、bench/admission oracle、resident/native/CLI三identityを決めない。"
+          },
+          {
+            "pair_id": "HARNESS-L2-034",
+            "decision_status": "adopted",
+            "limited_effect": "HARNESS-034採択: 要求revisionに結び付く版付き計測契約（metric、対象scope/revision、負荷/環境/data、baseline/target/SLO、許容差、sampling/window、tool/probe、schema/oracle、owner/layer、再測定trigger）を保持し、未測定/stale/非代表環境/未達は完成扱いしない。VerifiedとAcceptedを分ける。",
+            "limits": "旧worker completion packet、blind review input allowlist、SR-7全merge admission、provider適性bench、BR-10の同一成功証拠再利用/失効規則を定義しない。"
+          }
+        ],
+        "not_a_successor_or_closure": "後発採択/条件付き採択は関連条件の近接であり、この旧identityのsuccessor割当・retirement・closureではない。"
+      },
+      "residual_and_status": {
+        "residual": "stage approval/gate、FE/BE/design適性、未導入時の既存経路非劣化を検証するL12 oracleが未確立。",
+        "classification": "部分保持・未closure",
+        "status": "open",
+        "source_disposition": "preserved_pending_rehome",
+        "successor_requirement_ids": [],
+        "comparison_is_closure": false,
+        "authority_effect": "none"
+      }
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/resident-lane-orchestration-requests.md::BR-7",
+      "confirmed_identity": "BR-7",
+      "population": "confirmed175",
+      "legacy_asset_id": "LEGACY-ASSET-2B0DE689AA572DE66181",
+      "source_authority_state": "confirmed",
+      "carry_forward_state": "preserved_pending_rehome",
+      "successor_requirement_ids": [],
+      "old_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+        "holding_snapshot_path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+        "source_relative_path": "helix/L1-requirements/resident-lane-orchestration-requests.md",
+        "file_sha256": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe",
+        "identity_line": 221,
+        "identity_line_sha256": "34af4875bde4a695be81c64decb519e2680cc9cc7c307517e4e378a234e84264",
+        "identity_line_text": "### BR-7: HELIX ベンチによる worker 適性評価（新規、PO 決定 2026-08-20）",
+        "section_lines": "221-320",
+        "section_sha256": "a17f83dee5ff58435149b0e715995dd7059522f2a73f32dbf4bafbc8011c1090",
+        "exact_section_text": "### BR-7: HELIX ベンチによる worker 適性評価（新規、PO 決定 2026-08-20）\n\nGrok Build / Cursor を worker レーンへ admission する前に、**HELIX ベンチ**で\n適性 evidence を取得する。ベンチ結果が admission と配車表更新の判断根拠となる。\n\n**ベンチは新設ではなく既存要件への接続である**: blind benchmark による worker/model/effort\n比較と用途別 admit/retire は `HR-FR-HIL-22`（L3 正本）、Worker Acceptance Bench は\n`HIL-FR-61`、provider 横断の委譲面／sandbox／receipt／blind benchmark 共通契約は\nPLAN-L3-18（`docs/design/helix/L3-requirements/worker-common-contract.md`）として\n既に正本化済み。本要求はこれらに **FE/BE/設計の適性分離軸** と\n**モデル世代単位の適性記録** を追加する差分要求である。\n\n- Cursor は背後のモデルが変わる可能性があるため、**モデル変更を検知したら再ベンチ**を\n  要求する（provider 名ではなくモデル世代単位で適性を記録する）。\n- **実装適性はフロントエンドとバックエンドで分離して計測・記録**する（PO 決定\n  2026-08-20）。FE ベンチと BE ベンチを別タスク群とし、片方の適性をもう片方へ\n  流用しない。配車表の実装割当も FE/BE 別に決める。\n- ベンチ evidence は provider 別成功率・所要時間・差戻し率（RLO-NFR-005 の可観測性指標）と\n  同じ軸で記録し、将来の advisory routing（RLO-FR-031）の入力データを兼ねる。\n- 根拠: PO 決定（Grok と Cursor は HELIX ベンチで適性を見る）\n- L12 受入観点: ベンチ evidence なしの新規 provider admission が 0 件。\n  Cursor のモデル変更後、旧適性記録が新モデルへ引き継がれない。\n- トレース: RLO-FR-004〜006 / RLO-NFR-005 / RLO-FR-031〜032（routing 入力）\n\n---\n\n## 4. システム要求（SR）\n\nBR を実現するためにシステムが備えるべき能力。要件（FR）の直接の親。\n\n| SR | 内容 | 親BR | 対応要件 |\n|---|---|---|---|\n| SR-1 | assignment を scope 正本（Issue または PLAN）＋branch＋base SHA＋lease へ束縛する dispatch 契約 | BR-2 | RLO-FR-007〜010, §9（Issue 必須部の改版要） |\n| SR-2 | 一 branch 一 writer の排他（lease／fence、sub-agent は親内包） | BR-2 | RLO-INV-003, RLO-FR-008, 025〜026 |\n| SR-3 | runtime capability の typed 検出と optional provider 投影 | BR-6 | RLO-FR-004〜006 |\n| SR-4 | バックグラウンド control plane（daemon、heartbeat、event、checkpoint、復元） | BR-4 | RLO-FR-001〜003, 027〜029 |\n| SR-5 | worker completion packet（typed field＋digest、自然言語非正本） | BR-3 | RLO-FR-012〜013, §13 |\n| SR-6 | blind review dispatch と元 worker 差戻し循環 | BR-3, BR-5 | RLO-FR-014〜018 |\n| SR-7 | merge admission（exact HEAD＋CI generation＋receipt＋DB convergenceの統合判定） | BR-3 | RLO-FR-019〜020 |\n| SR-8 | WIP／review 在庫の backpressure（初期 worker 2・在庫 2） | BR-1 | RLO-FR-021〜024 |\n| SR-9 | 既存通知経路 adapter（Codex 委譲 wrapper／Claude hook surface）への配線 | BR-5 | RLO-FR-014, 016（搬送路の実装面） |\n| SR-10 | lane 単位 HEAD／checkpoint の多 branch 並行管理 | BR-1, BR-4 | §14.1, RLO-AC-024〜026 |\n| SR-11 | HELIX ベンチ実行・適性記録（モデル世代単位、FE/BE 実装適性を分離計測、設計適性を含む） | BR-7 | RLO-NFR-005, RLO-FR-031〜032 |\n\n---\n\n## 5. 制約要求（CN）\n\n| CN | 内容 | 由来 |\n|---|---|---|\n| CN-1 | canonical 層は L1-L12。企画=L1、要求＋画面プロト=L2、要件定義・凍結=L3とする。本書のL1分類だけでL2要求・合意とL11受入の接続済みを主張しない | l12-canonical directive |\n| CN-2 | Python semantic core / TS-Node transactional boundary の層別 authority を維持する（ADR-009/010） | ADR-009/010 |\n| CN-3 | 新定義は要件正本（requirements v1.3 系列）へ載せてから runtime を移行する | CLAUDE.md 本線 |\n| CN-4 | release / tag / cutover / 自動 routing 有効化は action-binding approval 境界を維持 | GitHub 自走運用ルール |\n| CN-5 | secret / credential / PII を assignment・event・evidence に書かない | 安全境界 |\n| CN-6 | main 直接 push 禁止・PR 経由・required check `harness-check` を変更しない | branch protection |\n\n---\n\n## 6. トレース総括（要求 → 要件）\n\n```text\nBR-1 常時前進           → SR-4, SR-8, SR-10 → RLO-FR-001..003, 021..024, 030\nBR-2 Issue/branch正本   → SR-1, SR-2        → RLO-INV-001..005（INV-001改版要）, RLO-FR-007..010\nBR-3 検収独立           → SR-5, SR-6, SR-7  → RLO-FR-012..020\nBR-4 provider非依存     → SR-4              → RLO-FR-002, 027..029, RLO-NFR-001..002\nBR-5 既存通知経路統合   → SR-6, SR-9        → RLO-FR-014, 016, §14 event\nBR-6 段階導入・構成別配車 → SR-3            → RLO-FR-004..006, 030..032, RLO-NFR-007\nBR-8 実行主体の分離       → SR-2, SR-3       → RLO-FR-037..040, RLO-AC-027..030\nBR-9 検収内修復           → SR-6, SR-7       → RLO-FR-041..045, RLO-AC-031..036（freeze前候補）\nBR-10 成功証拠継承        → SR-7              → RLO-FR-046..049, RLO-AC-037..040（freeze前候補）\nBR-7 ベンチ適性評価     → SR-11             → RLO-NFR-005, RLO-FR-031..032（要件側へ新規FR追加要）\n```\n\n要件定義書側の全 RLO-FR（001〜032）は上記いずれかの BR/SR に親を持つ。\n親が本書に存在しない要件が要件定義書へ追加された場合、本書の改版を必須とする。\n\n---\n\n## 7. PO 決定事項（2026-08-20 反映済み）\n\n1. scope 正本は Issue または branch（PLAN 紐づき）。Forward / Scrum は Issue を立てない。\n2. runtime 構成別固定配車: 2=現状（Codex＋Claude）、3=Grok Build が実装 worker。\n3. 配車タスク区分は進行・設計・実装・レビューの 4 区分。\n4. 設計タスクは worker へ委譲可（統合判断・正本化は進行レーン保持）。\n5. 実装適性は FE / BE を分離して評価する。\n6. Grok Build / Cursor は HELIX ベンチで適性を見る。Cursor はモデル変動前提で\n   モデル世代単位に適性を記録し、変更時は再ベンチ。\n\n## 8. 未決事項（PO 確認待ち）\n\n1. BR-5 の Claude 側搬送路として、Claude Code hook（SessionStart / Stop）以外に\n   常駐 review daemon（headless session）を新設するか、既存 hook surface で足りるか。\n2. Grok Build / Cursor の adapter 認証情報の管理境界（capability broker 経由で統一するか）。\n3. 本書と要件定義書は 2026-08-20 に `docs/design/helix/L1-requirements/` /\n   `L3-requirements/` へ配置済み。残タスクは正本化 PLAN の起票（frontmatter 付与、\n   design-catalog / glossary 登録、`RESIDENT-LANE-ORCHESTRATION-001` の L3 登録）。\n4. HELIX ベンチの具体タスクセット（FE / BE / 設計それぞれの代表タスクと合格基準）。\n5. 設計委譲時の worker への設計入力形式（L 層テンプレートをそのまま渡すか、\n   assignment packet へ設計 brief を埋め込むか）。",
+        "condition_summary": "新providerをworkerへ入れる前にHELIX benchmarkでworker/model/effortの適性を測り、用途別のadmission/routing判断に使う。FE/BE/設計を分離し、model generation変更後に再benchする。"
+      },
+      "legacy_consumers_and_history": {
+        "l3_consumer": "L3 FR-033/034; NFR-005; AC-029/030 (623–630, 823–836, 906–907).",
+        "l3_file": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+        "l3_file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+        "l12_consumer": "resident-lane-orchestration-recognition.md:27",
+        "l12_file": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-recognition.md",
+        "l12_file_sha256": "0cd1bb77f43b28b73f8306f86d477bca1110d3a6e84bbe67eb8f84be22556b16",
+        "l1_to_l3_trace": "旧sourceの当該BR traceを照合。BR-9/10のFR-041..049 / AC-031..040はL1のtrace candidateで、archive L3 fileにidentityがない。",
+        "authority_history": "old source status confirmed; source-only history not transferred as new authority."
+      },
+      "queue_comparison": {
+        "status": "not_individually_compared",
+        "evidence_artifacts": [],
+        "comparison_is_closure": false,
+        "fixed_target_refs": [
+          {
+            "target_id": "HELIXLABO-L2-055",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+              "docs/helix-labo/L2-requirements/labo-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXLABO-L2-055"
+          },
+          {
+            "target_id": "HELIXLABO-L2-059",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+              "docs/helix-labo/L2-requirements/labo-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXLABO-L2-059"
+          },
+          {
+            "target_id": "HELIXOS-L2-018",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-018"
+          },
+          {
+            "target_id": "HELIXOS-L2-027",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-027"
+          }
+        ],
+        "full_audit_classification": "existing crosswalk reports rederived/retained; atom-by-atom carry-forward remains unassigned"
+      },
+      "fixed_f6_comparison": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "target_ids": [
+          "HELIXLABO-L2-055",
+          "HELIXLABO-L2-059",
+          "HELIXOS-L2-018",
+          "HELIXOS-L2-027"
+        ],
+        "exact_target_pair_pins": [
+          {
+            "target_id": "HELIXLABO-L2-055",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+              "file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+              "line": 150,
+              "line_sha256": "6330f8400512c454e76a4873d6df075c0e59b3f0987c8a30a1e362051cf2c51b",
+              "text": "### HELIXLABO-L2-055 — HELIX-Bench 作業水準生成（1.0）"
+            },
+            "l11": {
+              "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+              "file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+              "line": 191,
+              "line_sha256": "553ab0696c23122911abfc8eb5ba33129436c82f6b61ae2ec58308f09a32f5e8",
+              "text": "### HELIXLABO-L2-055 — Bench分母・欠測・採点根拠"
+            }
+          },
+          {
+            "target_id": "HELIXLABO-L2-059",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+              "file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+              "line": 416,
+              "line_sha256": "c4d12188762ebfe99dd175ec1d826be26231ea8c0a1f27017c710d8de3eaf295",
+              "text": "### HELIXLABO-L2-059 効果優先関係付き比較評価"
+            },
+            "l11": {
+              "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+              "file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+              "line": 170,
+              "line_sha256": "3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62",
+              "text": "| `HELIXLABO-L2-059`（単体候補、parent `HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context） | scope/revisionに適用可能なquality oracleと既決priority/tolerance（適用可能な判断のrunごとの再確認なし）、同一task snapshot/scorer/protocol/hardware条件、現行実験のOS割当Worker receipt（歴史runは当時の実行者・authority・receipt）を与える。decisionが未決/失効/適用境界外ならownerへ戻す。実験条件baseline/current/candidate/hybridとHELIXなし/旧版/新版cohortを別軸で記録し、比較目的と群を明示し、導入効果はあり／なし、改訂効果は旧版／新版、三者の関係を主張する場合だけ三者を要求する。未選択群の不足を選択した二者比較の不成立理由にしない。品質gateを先に個別判定し、retry・上位Worker救援・rework・CI・review・人修正込みの費用、所要時間、人介入を分ける。欠測通貨・非貨幣化人時間・比較不能cohortは明示する。 | 劣化品質を価格/速度で相殺／初回candidate単価だけで安価認定／上位救援・人修正・retryを除外／未承認換算率で人時間を0円化／受入成果なしを効率成功扱い／実験条件とcohortを混ぜる／scope・oracle・protocol・hardware・run version違いを混ぜる／歴史結果をcurrent性能へ転用／LABOがWorkerを割当・起動する。 |"
+            }
+          },
+          {
+            "target_id": "HELIXOS-L2-018",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 672,
+              "line_sha256": "c22ab6ad7948d8381cbf1d48d08e19df3331c8a79240f69ac1f550151500e6b9",
+              "text": "### HELIXOS-L2-018 Worker割当・実行統制（単体候補）"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 345,
+              "line_sha256": "88f9bf170b147fd9a5d954bd4f0842472bc54d68e8813d68ab0fc16244980eba",
+              "text": "### HELIXOS-L2-018 Worker割当・実行統制の受入"
+            }
+          },
+          {
+            "target_id": "HELIXOS-L2-027",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 824,
+              "line_sha256": "69d3220ff63edb0e9bd4bfd4efa873ebf136badf5a4169cb3cd77262910762e8",
+              "text": "### HELIXOS-L2-027 — 未評価状態からの限定初回実行（構成体候補、1.0）"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 442,
+              "line_sha256": "7ca4b92265fbee761abc2d0ceeb0d1bd1610f4f06240f50a272cf3714eb76e7c",
+              "text": "### HELIXOS-L2-027 未評価状態からの限定初回実行の受入（構成体候補）"
+            }
+          }
+        ],
+        "retained_meaning": "LABO-055は作業種別/model class別水準と未評価状態、LABO-059は比較評価、LABO-065は最初のAttemptを別指標で扱う。",
+        "changed_or_not_carried": "現行LABO-055/059比較水準およびLABO-065 first-Attempt指標はbench/admissionの限定近接であり、provider適性・FE/BE/design基準や閾値を採択しない。"
+      },
+      "numeric_conditions_exceptions_counterexamples": {
+        "numeric_conditions": "ベンチなしの新規provider admission 0件。成功率・所要時間・差戻し率は計測軸だが、閾値の数値は旧記述にない。",
+        "exceptions_and_negative_oracle": "provider/model名や旧scoreを新policyにしない。metric単独でassignment/scope/merge authorityを作らない。",
+        "risk": "score単独でassignment/scope/merge authorityを得る、first-attempt指標を適性admissionと混同。"
+      },
+      "later_57_plus_11_decision_relations": {
+        "near_pair_ids": [
+          "HELIXOS-L2-051",
+          "HELIXLABO-L2-065",
+          "HARNESS-L2-034"
+        ],
+        "limited_effects": [
+          {
+            "pair_id": "HELIXOS-L2-051",
+            "decision_status": "conditionally_adopted",
+            "limited_effect": "条件付き採択。本構成でCursorを作成専用、Claude優先は根拠のある要求/設計taskに限定。",
+            "limits": "旧2/3/4 runtime table、全task routing、bench/admission oracle、resident/native/CLI三identityを決めない。"
+          },
+          {
+            "pair_id": "HELIXLABO-L2-065",
+            "decision_status": "conditional_adopted",
+            "limited_effect": "条件付き採択。D1最初のAttempt結果を別指標で扱う。",
+            "limits": "worker/model/effort別適性benchやadmission判断ではない。"
+          },
+          {
+            "pair_id": "HARNESS-L2-034",
+            "decision_status": "adopted",
+            "limited_effect": "HARNESS-034採択: 要求revisionに結び付く版付き計測契約（metric、対象scope/revision、負荷/環境/data、baseline/target/SLO、許容差、sampling/window、tool/probe、schema/oracle、owner/layer、再測定trigger）を保持し、未測定/stale/非代表環境/未達は完成扱いしない。VerifiedとAcceptedを分ける。",
+            "limits": "旧worker completion packet、blind review input allowlist、SR-7全merge admission、provider適性bench、BR-10の同一成功証拠再利用/失効規則を定義しない。"
+          }
+        ],
+        "not_a_successor_or_closure": "後発採択/条件付き採択は関連条件の近接であり、この旧identityのsuccessor割当・retirement・closureではない。"
+      },
+      "residual_and_status": {
+        "residual": "benchmark evidenceからadmission authority、class×model-generation freshness、用途別受入oracleへの関係が未割当。",
+        "classification": "部分保持・未closure",
+        "status": "open",
+        "source_disposition": "preserved_pending_rehome",
+        "successor_requirement_ids": [],
+        "comparison_is_closure": false,
+        "authority_effect": "none"
+      }
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/resident-lane-orchestration-requests.md::BR-8",
+      "confirmed_identity": "BR-8",
+      "population": "confirmed175",
+      "legacy_asset_id": "LEGACY-ASSET-2B0DE689AA572DE66181",
+      "source_authority_state": "confirmed",
+      "carry_forward_state": "preserved_pending_rehome",
+      "successor_requirement_ids": [],
+      "old_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+        "holding_snapshot_path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+        "source_relative_path": "helix/L1-requirements/resident-lane-orchestration-requests.md",
+        "file_sha256": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe",
+        "identity_line": 98,
+        "identity_line_sha256": "6e2449e2d4bce951fb66fc95e280e7bf1446696cad37c566bc14da3a7af7b8fa",
+        "identity_line_text": "### BR-8: resident lane／native subagent／CLI workerの分離",
+        "section_lines": "98-107",
+        "section_sha256": "0e2dfa3afe4f9444e7f799ed892a3f0ac3c1f89e672c4f7dcdaec541abeaefb6",
+        "exact_section_text": "### BR-8: resident lane／native subagent／CLI workerの分離\n\n常駐レーン、provider内部native subagent、HELIX CLIから起動するbounded workerを別identity、別capacity、\n別receiptとして扱う。subagentは親laneのscope／branch／budgetを継承し、独立branchが必要なら正式assignmentへ昇格する。\n\n- Codex主経路: Sol TL／管制 → Luna native worker。Terraはcurrent routingから除外する。\n- Cursor Cloud worker: 標準Grok、上位Kimi、下位Composerを初期policyとし、effortはHELIX-Benchで導出する。\n- 未評価effortはprovider既定として明示し、silent fallbackや推測した高effort固定を行わない。\n- L12受入観点: lane/subagent/CLI identityの混同0件、requested/effective modelとeffort sourceを全receiptから追跡できる。\n- トレース: RLO-FR-037〜040 / RLO-AC-027〜030",
+        "condition_summary": "resident lane、provider-native subagent、HELIX CLI bounded workerを別identity/capacity/receiptとし、subagentは親laneのscope/branch/budgetを継承。旧provider/model tierも列挙する。"
+      },
+      "legacy_consumers_and_history": {
+        "l3_consumer": "L3 FR-037..040; §12.1; AC-027..030 (648–666, 692–701, 904–907).",
+        "l3_file": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+        "l3_file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+        "l12_consumer": "resident-lane-orchestration-recognition.md:28",
+        "l12_file": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-recognition.md",
+        "l12_file_sha256": "0cd1bb77f43b28b73f8306f86d477bca1110d3a6e84bbe67eb8f84be22556b16",
+        "l1_to_l3_trace": "旧sourceの当該BR traceを照合。BR-9/10のFR-041..049 / AC-031..040はL1のtrace candidateで、archive L3 fileにidentityがない。",
+        "authority_history": "old source status confirmed; source-only history not transferred as new authority."
+      },
+      "queue_comparison": {
+        "status": "not_individually_compared",
+        "evidence_artifacts": [],
+        "comparison_is_closure": false,
+        "fixed_target_refs": [
+          {
+            "target_id": "HELIXOS-L2-018",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-018"
+          },
+          {
+            "target_id": "HELIXOS-L2-019",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-019"
+          },
+          {
+            "target_id": "HELIXOS-L2-023",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-023"
+          }
+        ],
+        "full_audit_classification": "existing crosswalk reports rederived/retained; atom-by-atom carry-forward remains unassigned"
+      },
+      "fixed_f6_comparison": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "target_ids": [
+          "HELIXOS-L2-018",
+          "HELIXOS-L2-019",
+          "HELIXOS-L2-023"
+        ],
+        "exact_target_pair_pins": [
+          {
+            "target_id": "HELIXOS-L2-018",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 672,
+              "line_sha256": "c22ab6ad7948d8381cbf1d48d08e19df3331c8a79240f69ac1f550151500e6b9",
+              "text": "### HELIXOS-L2-018 Worker割当・実行統制（単体候補）"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 345,
+              "line_sha256": "88f9bf170b147fd9a5d954bd4f0842472bc54d68e8813d68ab0fc16244980eba",
+              "text": "### HELIXOS-L2-018 Worker割当・実行統制の受入"
+            }
+          },
+          {
+            "target_id": "HELIXOS-L2-019",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 682,
+              "line_sha256": "87db5d2abcbbaf27d5f9a74a85b9ceaac78965271d1af849a37a305ce30388ab",
+              "text": "### HELIXOS-L2-019 Evidence・continuity（単体候補）"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 352,
+              "line_sha256": "241fbb855d59c68e2624fb6a90314819e38992edf467f73a8fdb73ca5e0fc332",
+              "text": "### HELIXOS-L2-019 Evidence・continuityの受入"
+            }
+          },
+          {
+            "target_id": "HELIXOS-L2-023",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 722,
+              "line_sha256": "a8b2870ede175ea97d579a02f0bde9ceafd5c6906007fb4bb6af9749e287909e",
+              "text": "### HELIXOS-L2-023 管理→推進→Worker→検収の受渡し（接続候補）"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 380,
+              "line_sha256": "1b5c9f2d33bb37b14520f6f0564ac3b18291b4c25a3c994756c0d186bb0a68c3",
+              "text": "### HELIXOS-L2-023 管理→推進→Worker→検収の受渡しの受入"
+            }
+          }
+        ],
+        "retained_meaning": "OS-018/019/023、SECURITY-033のexecution context/output non-authority、OS-051の限定task配置が近接。",
+        "changed_or_not_carried": "現行security/task-placement pairはscope-limitedで、旧three-identity/capacity/receipt taxonomyやmodel-effort provenanceを全面的に置換しない。"
+      },
+      "numeric_conditions_exceptions_counterexamples": {
+        "numeric_conditions": "identity混同0件。",
+        "exceptions_and_negative_oracle": "Sol/Luna/Terra/Grok/Kimi/Composer tierは旧時点の記述。external AI Worker向けsecurity境界をinternal native subagentへ一般化しない。",
+        "risk": "external worker境界のinternal subagentへの一般化、OS-051を旧taxonomyや恒久routingとみなす。"
+      },
+      "later_57_plus_11_decision_relations": {
+        "near_pair_ids": [
+          "HELIXSECURITY-L2-033",
+          "HELIXOS-L2-051"
+        ],
+        "limited_effects": [
+          {
+            "pair_id": "HELIXSECURITY-L2-033",
+            "decision_status": "adopted",
+            "limited_effect": "採択済み。外部AI Worker operationの実行context束縛と出力の非権威性。追加受入L11追補を含む。",
+            "limits": "全review lane/internal native subagentや旧GHA role matrixへ一般適用しない。"
+          },
+          {
+            "pair_id": "HELIXOS-L2-051",
+            "decision_status": "conditionally_adopted",
+            "limited_effect": "条件付き採択。本構成でCursorを作成専用、Claude優先は根拠のある要求/設計taskに限定。",
+            "limits": "旧2/3/4 runtime table、全task routing、bench/admission oracle、resident/native/CLI三identityを決めない。"
+          }
+        ],
+        "not_a_successor_or_closure": "後発採択/条件付き採択は関連条件の近接であり、この旧identityのsuccessor割当・retirement・closureではない。"
+      },
+      "residual_and_status": {
+        "residual": "三identity別capacity/receipt、親からの継承/昇格、model/effort provenanceの全L12 oracleが未確立。",
+        "classification": "部分保持・未closure",
+        "status": "open",
+        "source_disposition": "preserved_pending_rehome",
+        "successor_requirement_ids": [],
+        "comparison_is_closure": false,
+        "authority_effect": "none"
+      }
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/resident-lane-orchestration-requests.md::BR-9",
+      "confirmed_identity": "BR-9",
+      "population": "confirmed175",
+      "legacy_asset_id": "LEGACY-ASSET-2B0DE689AA572DE66181",
+      "source_authority_state": "confirmed",
+      "carry_forward_state": "preserved_pending_rehome",
+      "successor_requirement_ids": [],
+      "old_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+        "holding_snapshot_path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+        "source_relative_path": "helix/L1-requirements/resident-lane-orchestration-requests.md",
+        "file_sha256": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe",
+        "identity_line": 121,
+        "identity_line_sha256": "bd4ced966311cf86c7282c6c3071473a2e886db0e786acc6e9db720e630e493f",
+        "identity_line_text": "### BR-9: 検収内修復による収束速度の改善（追加要求、PO決定 2026-09-13）",
+        "section_lines": "121-143",
+        "section_sha256": "3e86f02e00e9bbc98913cc20314504186559cebbd60f63b601221bf54442673c",
+        "exact_section_text": "### BR-9: 検収内修復による収束速度の改善（追加要求、PO決定 2026-09-13）\n\n上流Workerと新規PR生成を止めず、承認済み契約内で安全に閉じられる検収所見は、元Workerへ\n機械的に返却せず検収セル内で修復する。受領、所見集約、局所修復、fresh独立再検証、\nmerge admission、main read-afterを同一検収episodeとして追跡し、品質・独立性・single writerを維持する。\n\n- 契約から期待結果を一意に導出でき、scope、公開契約、責務境界、権限、ACを変えない修復だけを\n  `REPAIR_IN_REVIEW`として許可する。\n- 要求／AC／公開契約の選択、責務跨ぎ再設計、正本矛盾、許可scope外、boundedな試行で\n  反証・回復不能な変更は、元Workerに限らず原因ownerへ`RETURN_TO_OWNER`する。\n- CI、quota、環境、receipt、stack親待ちは`WAIT_DEPENDENCY`とし、検収セルが期限、再開trigger、\n  owner、未解消義務を保持する。待機を実装不良や成功へ変換しない。\n- Opusの判定／検証、Sonnetの修復、既存Node controlの副作用を分離し、provider内分業を\n  cross-runtime証拠へ偽装しない。修復者の自己申告や修復前PASSで候補を合格させない。\n- 新scheduler、第二Assignment台帳、merge engine、承認制度を作らず、#860、#1741、#1771、\n  #1774の既存ownerとevent／lease／fence／receiptを再利用する。\n\n- L12受入観点: 実PRで契約内findingが元Worker返却0のままfresh独立検証、merge、main read-afterまで閉じる。\n  要求変更／正本矛盾は無断修復されず原因ownerへ返り、CI／quota待ちは二重修復や無限再試行なく再開する。\n  wrong model／HEAD／base／policy、偽receipt、自己承認、二重writer、gate弱化を拒否する。\n- 効果測定: PR投入量と品質を維持し、返却率、初回PASS後HEAD変更、管理起因再CI、検収からmergeまでの\n  p50／p95、費用、流出欠陥をbefore／afterで比較する。\n- トレース候補: RLO-FR-041〜045 / RLO-AC-031〜036 / Issue #1778",
+        "condition_summary": "承認済み契約内で一意に期待結果を導けるfindingのみREPAIR_IN_REVIEWでbounded修復・fresh独立再検証する。要求/AC/公開契約選択、責務跨ぎ再設計、正本矛盾、scope外等はRETURN_TO_OWNER、CI/quota/environment/receipt/stack parent待ちはWAIT_DEPENDENCYとして再開管理する。"
+      },
+      "legacy_consumers_and_history": {
+        "l3_consumer": "L1 traces FR-041..045/AC-031..036 are absent in archived L3; prior review/return rules at L3 355–367, 545–575.",
+        "l3_file": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+        "l3_file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+        "l12_consumer": "resident-lane-orchestration-recognition.md:29",
+        "l12_file": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-recognition.md",
+        "l12_file_sha256": "0cd1bb77f43b28b73f8306f86d477bca1110d3a6e84bbe67eb8f84be22556b16",
+        "l1_to_l3_trace": "旧sourceの当該BR traceを照合。BR-9/10のFR-041..049 / AC-031..040はL1のtrace candidateで、archive L3 fileにidentityがない。",
+        "authority_history": "old source status confirmed; source-only history not transferred as new authority."
+      },
+      "queue_comparison": {
+        "status": "not_individually_compared",
+        "evidence_artifacts": [],
+        "comparison_is_closure": false,
+        "fixed_target_refs": [
+          {
+            "target_id": "HARNESS-L2-005",
+            "authority_status": "inside_po_fixed_l2_l11_bytes",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-harness/L11-acceptance/product-acceptance.md",
+              "docs/helix-harness/L2-requirements/product-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HARNESS-L2-005"
+          },
+          {
+            "target_id": "HELIXINTELLIGENCE-L2-016",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+              "docs/helix-intelligence/L2-requirements/intelligence-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXINTELLIGENCE-L2-016"
+          },
+          {
+            "target_id": "HELIXINTELLIGENCE-L2-017",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+              "docs/helix-intelligence/L2-requirements/intelligence-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXINTELLIGENCE-L2-017"
+          },
+          {
+            "target_id": "HELIXINTELLIGENCE-L2-062",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+              "docs/helix-intelligence/L2-requirements/intelligence-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXINTELLIGENCE-L2-062"
+          },
+          {
+            "target_id": "HELIXOS-L2-020",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-020"
+          },
+          {
+            "target_id": "HELIXOS-L2-023",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-023"
+          }
+        ],
+        "full_audit_classification": "existing crosswalk reports rederived/retained; atom-by-atom carry-forward remains unassigned"
+      },
+      "fixed_f6_comparison": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "target_ids": [
+          "HARNESS-L2-005",
+          "HELIXINTELLIGENCE-L2-016",
+          "HELIXINTELLIGENCE-L2-017",
+          "HELIXINTELLIGENCE-L2-062",
+          "HELIXOS-L2-020",
+          "HELIXOS-L2-023"
+        ],
+        "exact_target_pair_pins": [
+          {
+            "target_id": "HARNESS-L2-005",
+            "authority_status": "inside_po_fixed_l2_l11_bytes",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+              "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+              "line": 44,
+              "line_sha256": "74fae9aa240f21074a24e5da08c19dba8ac26389d1c473f6f979ed3b789f0d1c",
+              "text": "| HARNESS-L2-005 | HARNESS-L1-004 |"
+            },
+            "l11": {
+              "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+              "file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+              "line": 25,
+              "line_sha256": "edeceea2b54fe31fe92460f610e19a49e32fde6a2d7a57c51d98c9b9afcbe371",
+              "text": "| HARNESS-L2-005 | ticketとの関係（Forward 小・中・大、V字の対、触るコネクタ、変更の種類）と、変更の内容・layer・riskから必要な検証が導出され、固定の段数ではなくその検証に合うCIをPRの前に組み立てる規則が導かれ、HELIX-OSの検収がその規則でCIを組み立てられる。省いた検査は記録され、合流先のticketで回収される。異なる言語・CI実装でも同じ検証契約を評価でき、特定Worker、旧job集合、CI greenを検証義務の代替にしない |"
+            }
+          },
+          {
+            "target_id": "HELIXINTELLIGENCE-L2-016",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+              "file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+              "line": 138,
+              "line_sha256": "5914325f22e56011eb9f0c7cce34d8d05e4e24b4bae09d6f11892251b1470a92",
+              "text": "### HELIXINTELLIGENCE-L2-016 — 限定修復candidateと適用"
+            },
+            "l11": {
+              "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+              "file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+              "line": 40,
+              "line_sha256": "c77ee74950ccd508d13532d23c553d5b6f6676e36f0b14be31f4562ab6867ffd",
+              "text": "| HELIXINTELLIGENCE-L1-016 | 単体 | HELIXINTELLIGENCE-L2-016 | 単体 | HELIXINTELLIGENCE-L2-016 | HELIXINTELLIGENCE-L2-036, HELIXINTELLIGENCE-L2-037, HELIXINTELLIGENCE-L2-038, HELIXINTELLIGENCE-L2-039, HELIXINTELLIGENCE-L2-062 | 1.0 |"
+            }
+          },
+          {
+            "target_id": "HELIXINTELLIGENCE-L2-017",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+              "file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+              "line": 202,
+              "line_sha256": "bd95075bf8622ec6fc66a48f5a91ea8108b91d2619136c2e5a1c87fd9f0aace7",
+              "text": "### HELIXINTELLIGENCE-L2-017 — 限定修復の接続横断境界"
+            },
+            "l11": {
+              "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+              "file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+              "line": 41,
+              "line_sha256": "424074be3f00823f841bdc0e2fad75680201c8ba85a593d95c2c0e89307e4a3e",
+              "text": "| HELIXINTELLIGENCE-L1-017 | 接続 | HELIXINTELLIGENCE-L2-017 | 接続横断境界 | HELIXINTELLIGENCE-L2-017 | HELIXINTELLIGENCE-L2-036, HELIXINTELLIGENCE-L2-037, HELIXINTELLIGENCE-L2-038, HELIXINTELLIGENCE-L2-039, HELIXINTELLIGENCE-L2-062 | 1.0 |"
+            }
+          },
+          {
+            "target_id": "HELIXINTELLIGENCE-L2-062",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+              "file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+              "line": 366,
+              "line_sha256": "f5832c9ba982ab5aba05dc318d68a6abc5e2d17407f93edbd7e9120046d24706",
+              "text": "### HELIXINTELLIGENCE-L2-062 — 限定自動修復"
+            },
+            "l11": {
+              "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+              "file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+              "line": 116,
+              "line_sha256": "d58e316869d6436b840e263805f5fc57da1ee4b3c330ba92b20144e8f8861b5f",
+              "text": "| HELIXINTELLIGENCE-L2-062 | SECURITY/Worker/HARNESS/OSの修復責務を同一修復scopeへ接続し全段階の証拠を別々に保つ | 修復結果でpermission/isolation/verification/acceptanceを省略する |"
+            }
+          },
+          {
+            "target_id": "HELIXOS-L2-020",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 692,
+              "line_sha256": "47f92c05b7ca34ac3e1ad245158fa9facce0e1d6528f088050ee483972e38d83",
+              "text": "### HELIXOS-L2-020 検収・CI運転（単体候補）"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 359,
+              "line_sha256": "b2f89b08359b12928128de8f14d86b8b0f0e3cab15f54cec3ef519ae4e013664",
+              "text": "### HELIXOS-L2-020 検収・CI運転の受入"
+            }
+          },
+          {
+            "target_id": "HELIXOS-L2-023",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 722,
+              "line_sha256": "a8b2870ede175ea97d579a02f0bde9ceafd5c6906007fb4bb6af9749e287909e",
+              "text": "### HELIXOS-L2-023 管理→推進→Worker→検収の受渡し（接続候補）"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 380,
+              "line_sha256": "1b5c9f2d33bb37b14520f6f0564ac3b18291b4c25a3c994756c0d186bb0a68c3",
+              "text": "### HELIXOS-L2-023 管理→推進→Worker→検収の受渡しの受入"
+            }
+          }
+        ],
+        "retained_meaning": "HARNESS-005/OS-020/023とINTELLIGENCE-016/017/062はverification、scoped repair、stage authorityに近接。OS-046/047はHEAD連続性/理由付きticket返却。",
+        "changed_or_not_carried": "OS-046/047、OS-042、HARNESS-034はHEAD/返却lineage、成果schema/digest、計測oracleの限定近接。REPAIR_IN_REVIEW/RETURN_TO_OWNER/WAIT_DEPENDENCYの統合contractや全repair acceptanceを採択しない。"
+      },
+      "numeric_conditions_exceptions_counterexamples": {
+        "numeric_conditions": "L12: 契約内findingの元Worker返却0。測定軸は返却率、初回PASS後HEAD変更、管理起因再CI、p50/p95、費用、流出欠陥。数値閾値なし。",
+        "exceptions_and_negative_oracle": "WAIT_DEPENDENCYを成功または実装不良へ変換しない。旧Opus/Sonnet/Node分業はcross-runtime証拠ではない。p50/p95単独で品質・closureを主張しない。",
+        "risk": "self-repairをself-review化、依存待ちを成功化、p50/p95だけで品質/closureを主張。"
+      },
+      "later_57_plus_11_decision_relations": {
+        "near_pair_ids": [
+          "HELIXOS-L2-046",
+          "HELIXOS-L2-047",
+          "HELIXSECURITY-L2-033",
+          "HELIXOS-L2-042",
+          "HARNESS-L2-034"
+        ],
+        "limited_effects": [
+          {
+            "pair_id": "HELIXOS-L2-046",
+            "decision_status": "adopted",
+            "limited_effect": "採択済み。dispatch/実行/Ready/merge admission間で既存authority、HEAD/revision、scope、検証義務を照合し、変更時に再照合。",
+            "limits": "自動merge、PO直接関与なしの絶対化、BR-2 dispatch tuple全体、BR-3/9修復分類、BR-10の全失効軸を決めない。"
+          },
+          {
+            "pair_id": "HELIXOS-L2-047",
+            "decision_status": "adopted",
+            "limited_effect": "採択済み。理由/source/revision付きticket返却、旧revision保持、新revision/lineage、暗黙のauthority/assignment結果継承禁止。",
+            "limits": "same worker/branchへのreview修正routing、blind review allowlist、lease/reassignment receiptは規定しない。"
+          },
+          {
+            "pair_id": "HELIXSECURITY-L2-033",
+            "decision_status": "adopted",
+            "limited_effect": "採択済み。外部AI Worker operationの実行context束縛と出力の非権威性。追加受入L11追補を含む。",
+            "limits": "全review lane/internal native subagentや旧GHA role matrixへ一般適用しない。"
+          },
+          {
+            "pair_id": "HELIXOS-L2-042",
+            "decision_status": "adopted",
+            "limited_effect": "OS-042採択: assignment適用schemaへのstrict validationと成果bytes digestが成立するまでworker成果を未検証とし、missing/unknown/stale/mismatchやdigest mismatchを受理済みにしない。既存条件に基づく緩和でも同一成果・assignment/scope/revisionに結ぶ再検証receiptを要求する。",
+            "limits": "旧PR番号/exact HEAD/changed paths/test evidence/worker receiptのpacket全体やreview-ready oracle、schema policy発行を定義しない。BR-9 repair-state contractでもBR-10 evidence reuse/invalidation contractでもない。"
+          },
+          {
+            "pair_id": "HARNESS-L2-034",
+            "decision_status": "adopted",
+            "limited_effect": "HARNESS-034採択: 要求revisionに結び付く版付き計測契約（metric、対象scope/revision、負荷/環境/data、baseline/target/SLO、許容差、sampling/window、tool/probe、schema/oracle、owner/layer、再測定trigger）を保持し、未測定/stale/非代表環境/未達は完成扱いしない。VerifiedとAcceptedを分ける。",
+            "limits": "旧worker completion packet、blind review input allowlist、SR-7全merge admission、provider適性bench、BR-10の同一成功証拠再利用/失効規則を定義しない。"
+          }
+        ],
+        "not_a_successor_or_closure": "後発採択/条件付き採択は関連条件の近接であり、この旧identityのsuccessor割当・retirement・closureではない。"
+      },
+      "residual_and_status": {
+        "residual": "BR-9のL1 FR-041..045/AC-031..036はarchive L3に未収録。state transition、bounded retry/recovery、metric baseline/oracleがfreezeされていない。",
+        "classification": "部分保持・未closure",
+        "status": "open",
+        "source_disposition": "preserved_pending_rehome",
+        "successor_requirement_ids": [],
+        "comparison_is_closure": false,
+        "authority_effect": "none"
+      }
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/resident-lane-orchestration-requests.md::BR-10",
+      "confirmed_identity": "BR-10",
+      "population": "confirmed175",
+      "legacy_asset_id": "LEGACY-ASSET-2B0DE689AA572DE66181",
+      "source_authority_state": "confirmed",
+      "carry_forward_state": "preserved_pending_rehome",
+      "successor_requirement_ids": [],
+      "old_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+        "holding_snapshot_path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+        "source_relative_path": "helix/L1-requirements/resident-lane-orchestration-requests.md",
+        "file_sha256": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe",
+        "identity_line": 145,
+        "identity_line_sha256": "fd0cd3db42f1801361d96c51f4f0535123549c17c78a55634c89dbec1104a955",
+        "identity_line_text": "### BR-10: 成功証拠の工程間継承（追加要求、PO決定 2026-09-13）",
+        "section_lines": "145-163",
+        "section_sha256": "df9e64fc9cd1cd4293695ab756de2ecbf83948daad40ac5a4f671ed435948a15",
+        "exact_section_text": "### BR-10: 成功証拠の工程間継承（追加要求、PO決定 2026-09-13）\n\n検証対象、検査定義、依存環境、適用規則が同一で、有効な成功証拠が存在する検証は、PRの\ndraft／Ready変更、review完了、mergeという工程遷移だけを理由に再実行しない。再利用できない場合は、\n失効したidentity軸と理由をtyped evidenceとして残し、無関係な検証まで巻き戻さない。\n\n- Ready状態またはreview receiptだけが変わった場合、状態、証拠、権限、freshnessだけを再照合し、\n  無関係なlint、型検査、単体テスト、全回帰を再実行しない。\n- code、test、依存、環境、ruleの一部が変わった場合、subject digestとinput closureから失効した検証だけを\n  再実行する。影響範囲を証明できない場合は全体検証へfail-closeする。\n- merge後のmainが検証済みcandidateと同一tree／同一検査条件を持つ場合、成功証拠を由来付きで継承し、\n  main反映のread-after、履歴、外部状態、統合後固有検査だけを実行する。\n- tree一致だけで全面skipせず、subject tree、base／merge identity、検査定義、toolchain／依存環境、rule、\n  receipt freshnessとissuerを別軸で照合する。新commitへ「今回実行した」と偽装せず、再利用元を記録する。\n- 再利用不能理由、再実行した検証集合、節約時間／費用、誤再利用拒否を計測し、同一成功検証の工程往復を検出する。\n\n- L12受入観点: 同一candidateのReady化で全回帰再実行0、同一treeのmain反映で継承元receiptとpost-merge固有検査を追跡できる。\n  code／rule／environmentの単独変化では対応検証だけが失効し、unknown impact、stale／偽receiptは再利用されない。\n- トレース候補: RLO-FR-046〜049 / RLO-AC-037〜040 / Issue #1778",
+        "condition_summary": "subject・検査定義・依存環境・適用規則が同じ有効な成功証拠は工程遷移だけで再実行しない。subject/input closure/freshness変化で失効した検証だけ再実行し、不明な影響はfull validationへfail-closeする。同一treeのmain反映でもread-after等の固有確認は残す。"
+      },
+      "legacy_consumers_and_history": {
+        "l3_consumer": "L1 traces FR-046..049/AC-037..040 are absent in archived L3; prior merge/evidence refs L3 562–575.",
+        "l3_file": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+        "l3_file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+        "l12_consumer": "resident-lane-orchestration-recognition.md:30",
+        "l12_file": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-recognition.md",
+        "l12_file_sha256": "0cd1bb77f43b28b73f8306f86d477bca1110d3a6e84bbe67eb8f84be22556b16",
+        "l1_to_l3_trace": "旧sourceの当該BR traceを照合。BR-9/10のFR-041..049 / AC-031..040はL1のtrace candidateで、archive L3 fileにidentityがない。",
+        "authority_history": "old source status confirmed; source-only history not transferred as new authority."
+      },
+      "queue_comparison": {
+        "status": "not_individually_compared",
+        "evidence_artifacts": [],
+        "comparison_is_closure": false,
+        "fixed_target_refs": [
+          {
+            "target_id": "HARNESS-L2-022",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-harness/L11-acceptance/product-acceptance.md",
+              "docs/helix-harness/L2-requirements/product-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HARNESS-L2-022"
+          },
+          {
+            "target_id": "HELIXOS-L2-019",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-019"
+          },
+          {
+            "target_id": "HELIXOS-L2-020",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-020"
+          },
+          {
+            "target_id": "HELIXOS-L2-023",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_paths": [
+              "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "docs/helix-os/L2-requirements/governance-requirements.md"
+            ],
+            "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXOS-L2-023"
+          }
+        ],
+        "full_audit_classification": "existing crosswalk reports rederived/retained; atom-by-atom carry-forward remains unassigned"
+      },
+      "fixed_f6_comparison": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "target_ids": [
+          "HARNESS-L2-022",
+          "HELIXOS-L2-019",
+          "HELIXOS-L2-020",
+          "HELIXOS-L2-023"
+        ],
+        "exact_target_pair_pins": [
+          {
+            "target_id": "HARNESS-L2-022",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+              "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+              "line": 447,
+              "line_sha256": "a521fcf29a72b4c42f32bfacae614f40411cc982f20f8dec1906db8420580473",
+              "text": "### HARNESS-L2-022 検証と受入の契約（コアの単体）"
+            },
+            "l11": {
+              "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+              "file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+              "line": 298,
+              "line_sha256": "b3ec231018db37cc24352f621ca5dfd521392301a9285649c99ed5f027b9aa14",
+              "text": "#### HARNESS-L2-022（コア検証と受入契約）— `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004` / version_target 1.0"
+            }
+          },
+          {
+            "target_id": "HELIXOS-L2-019",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 682,
+              "line_sha256": "87db5d2abcbbaf27d5f9a74a85b9ceaac78965271d1af849a37a305ce30388ab",
+              "text": "### HELIXOS-L2-019 Evidence・continuity（単体候補）"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 352,
+              "line_sha256": "241fbb855d59c68e2624fb6a90314819e38992edf467f73a8fdb73ca5e0fc332",
+              "text": "### HELIXOS-L2-019 Evidence・continuityの受入"
+            }
+          },
+          {
+            "target_id": "HELIXOS-L2-020",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 692,
+              "line_sha256": "47f92c05b7ca34ac3e1ad245158fa9facce0e1d6528f088050ee483972e38d83",
+              "text": "### HELIXOS-L2-020 検収・CI運転（単体候補）"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 359,
+              "line_sha256": "b2f89b08359b12928128de8f14d86b8b0f0e3cab15f54cec3ef519ae4e013664",
+              "text": "### HELIXOS-L2-020 検収・CI運転の受入"
+            }
+          },
+          {
+            "target_id": "HELIXOS-L2-023",
+            "authority_status": "po_fixed_candidate_adopted",
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+              "line": 722,
+              "line_sha256": "a8b2870ede175ea97d579a02f0bde9ceafd5c6906007fb4bb6af9749e287909e",
+              "text": "### HELIXOS-L2-023 管理→推進→Worker→検収の受渡し（接続候補）"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+              "line": 380,
+              "line_sha256": "1b5c9f2d33bb37b14520f6f0564ac3b18291b4c25a3c994756c0d186bb0a68c3",
+              "text": "### HELIXOS-L2-023 管理→推進→Worker→検収の受渡しの受入"
+            }
+          }
+        ],
+        "retained_meaning": "HARNESS-022、OS-019/020/023、INTELLIGENCE-017/062のstaged provenance/evidence近接。OS-033/035はsnapshot/event provenance。",
+        "changed_or_not_carried": "fixed f6 targetsのHARNESS-022/OS-019/020/023はstage provenance/evidenceに近接する。INTELLIGENCE-017/062は追加近接pairでありfixed f6 targetではない。OS-033/035/042/046とHARNESS-034もprovenance、event intake、成果digest、HEAD連続性、計測oracleの部分に限り、同一成功証拠の再利用、失効軸、影響同値性、旧skip契約を定義しない。"
+      },
+      "numeric_conditions_exceptions_counterexamples": {
+        "numeric_conditions": "同一candidate Ready化時の全回帰再実行0。数値の再利用率・費用閾値なし。",
+        "exceptions_and_negative_oracle": "tree一致だけで全skipしない。subject/base/merge identity、rule/toolchain/environment、receipt freshness/issuerを照合し、unknown impactはfail-close。post-merge read-afterは残す。",
+        "risk": "tree-only skip、stale receipt、execution偽装、unknown impact時の限定rerun、0件を一般化。"
+      },
+      "later_57_plus_11_decision_relations": {
+        "near_pair_ids": [
+          "HELIXOS-L2-033",
+          "HELIXOS-L2-035",
+          "HELIXOS-L2-046",
+          "HELIXOS-L2-042",
+          "HARNESS-L2-034"
+        ],
+        "limited_effects": [
+          {
+            "pair_id": "HELIXOS-L2-033",
+            "decision_status": "adopted",
+            "limited_effect": "採択済み。versioned engine/detector registryと同一snapshot再現・provenanceを保持。",
+            "limits": "resident daemon/checkpoint復元、旧通知hook/queue、BR-10の全軸invalidity oracleを定めない。"
+          },
+          {
+            "pair_id": "HELIXOS-L2-035",
+            "decision_status": "adopted",
+            "limited_effect": "採択済み。選択scopeでPR lifecycle event intakeとbase/head provenanceを記録し、同じeventから重複しない監査job要求を生成。",
+            "limits": "旧Codex/Claude hook・harness.db・物理queue・delivery replayや監査job実行を決めない。"
+          },
+          {
+            "pair_id": "HELIXOS-L2-046",
+            "decision_status": "adopted",
+            "limited_effect": "採択済み。dispatch/実行/Ready/merge admission間で既存authority、HEAD/revision、scope、検証義務を照合し、変更時に再照合。",
+            "limits": "自動merge、PO直接関与なしの絶対化、BR-2 dispatch tuple全体、BR-3/9修復分類、BR-10の全失効軸を決めない。"
+          },
+          {
+            "pair_id": "HELIXOS-L2-042",
+            "decision_status": "adopted",
+            "limited_effect": "OS-042採択: assignment適用schemaへのstrict validationと成果bytes digestが成立するまでworker成果を未検証とし、missing/unknown/stale/mismatchやdigest mismatchを受理済みにしない。既存条件に基づく緩和でも同一成果・assignment/scope/revisionに結ぶ再検証receiptを要求する。",
+            "limits": "旧PR番号/exact HEAD/changed paths/test evidence/worker receiptのpacket全体やreview-ready oracle、schema policy発行を定義しない。BR-9 repair-state contractでもBR-10 evidence reuse/invalidation contractでもない。"
+          },
+          {
+            "pair_id": "HARNESS-L2-034",
+            "decision_status": "adopted",
+            "limited_effect": "HARNESS-034採択: 要求revisionに結び付く版付き計測契約（metric、対象scope/revision、負荷/環境/data、baseline/target/SLO、許容差、sampling/window、tool/probe、schema/oracle、owner/layer、再測定trigger）を保持し、未測定/stale/非代表環境/未達は完成扱いしない。VerifiedとAcceptedを分ける。",
+            "limits": "旧worker completion packet、blind review input allowlist、SR-7全merge admission、provider適性bench、BR-10の同一成功証拠再利用/失効規則を定義しない。"
+          }
+        ],
+        "not_a_successor_or_closure": "後発採択/条件付き採択は関連条件の近接であり、この旧identityのsuccessor割当・retirement・closureではない。"
+      },
+      "residual_and_status": {
+        "residual": "BR-10のL1 FR-046..049/AC-037..040はarchive L3に未収録。identity軸、impact/equivalence、invalidation、reuse oracleを閉じるpairがない。",
+        "classification": "部分保持・未closure",
+        "status": "open",
+        "source_disposition": "preserved_pending_rehome",
+        "successor_requirement_ids": [],
+        "comparison_is_closure": false,
+        "authority_effect": "none"
+      }
+    }
+  ],
+  "non_claims": [
+    "旧runtime/CLI/hook/workflow/test/CI/harness.dbを実行していない。",
+    "source採択、意味変更、retire、formal successor、L3 approval、実装・実行・acceptance、merge admission、source retirement、Step5完了を主張しない。",
+    "後発decision status、Issue/PR、会話から要求意味・authorityを生成しない。"
+  ],
+  "static_validation_expected": [
+    "JSON identity 10件がqueue identityと一致しstatusは全てnot_individually_compared/evidence empty",
+    "source/holding/file/line/section SHAとasset ledger row",
+    "f6 target full-file SHAとexact L2/L11 line SHA",
+    "57+11全68 identity/statusとpair decision pins",
+    "Markdown JSON source identity set equality and links",
+    "JSON duplicate-key, git diff --check"
+  ]
+}
