@@ -5015,7 +5015,7 @@
   ],
   "static_validation": {
     "source_file_sha256": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe; matches archive bytes and asset ledger source_sha256",
-    "source_and_consumer_line_digests": "pass; 6 source rows and 73 archived consumer lines (AGENTS/CLAUDE, ADR-009/010, L12 directive, security capability broker, GitHub security admission)",
+    "source_and_consumer_line_digests": "pass; 6 source rows and 74 archived consumer lines (AGENTS/CLAUDE, ADR-009/010, L12 directive, security capability broker, GitHub security admission)",
     "fixed_f6_target_pins": "pass; 15 target identities pinned to exact f6 file blobs and matching target lines",
     "later_decision_screen": "pass; 94 decision rows and 88 adopted registration-decision rows; 57/11/live26 decision file SHA and all decision/MPR row digests checked; selected OS-049/-050 decision/MPR/L2/L11 pins checked",
     "json_parse": "pass",
