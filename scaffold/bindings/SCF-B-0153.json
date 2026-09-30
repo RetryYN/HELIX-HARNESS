@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-BRAIN（汎用template・seed）とHELIX-HARNESS-CORE（検証契約・検証義務への適用）。実行・運転はHELIX-OS（formal owner未確定）",
   "state": "registered",
-  "reason": "2026-10-01のPO依頼「要求から参考リポジトリを探してくるとか、設計テンプレや検証手法、テスト手法のケースをまとめて…材料調達や！」と、seed化の進め方の選択「Aで」により、既存seed（SCF-B-0152、設計側のみ）に欠けていた検証方法とテスト技法のtemplate seed候補9件と、その材料（旧HELIX・現行要求の棚卸し、外部参考資料）を置く。DST-HARNESS-005（seed template pack）が未採択のため、scaffoldに置き、採否・要求・設計・検証義務・authorityを生成しない。",
+  "reason": "2026-10-01のPO依頼「要求から参考リポジトリを探してくるとか、設計テンプレや検証手法、テスト手法のケースをまとめて…材料調達や！」と、seed化の進め方の選択「Aで」により、既存seed（SCF-B-0152、設計側のみ）に欠けていた検証方法とテスト技法のtemplate seed候補13件と、その材料（旧HELIX・現行要求の棚卸し、外部参考資料、ハイブリッド設計ドキュメントZIPの検証・テスト系の抽出）を置く。DST-HARNESS-005（seed template pack）が未採択のため、scaffoldに置き、採否・要求・設計・検証義務・authorityを生成しない。",
   "upstream": [
     {
       "path": "docs/helix-brain/candidates/design-template-system-requirements.md",
@@ -27,6 +27,11 @@
       "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md",
       "sha256": "d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a",
       "note": "旧canonical pair・右腕evidence profile・差戻し・追加テスト設計の分離。静的read-only参照のみ"
+    },
+    {
+      "path": "archive/reference-sources/ハイブリッド設計ドキュメントv1-fixed.zip",
+      "sha256": "9c547ba8bc9eaf3a12f27254fd3eb6d04b37fb8c899f13d56ceb0d2cff179fb3",
+      "note": "検証・テスト系テンプレートと見本の抽出元。読むだけの参照、ZIP内toolを実行しない"
     }
   ],
   "role": "検証方法（canonical V-pairごと）とテスト技法のtemplate seed候補、およびその調達材料（旧資産・現行要求の棚卸し、外部参考資料）",
@@ -38,7 +43,8 @@
     "Web展開後に扱うSecurity・インフラの内容（canary、本番chaos、本番SLO監視、脆弱性scanの必須化）を1.0の必須条件へ前倒ししない",
     "unknownをpass・N/A・0件へ変換しない形で証拠欄と非適用の記録を定める",
     "POの発言を原文のまま記録し、要求の採択やL1・L2の改訂を生成しない",
-    "参考資料のtoolを導入・実行せず、旧HELIXのtest・CI・runtimeを実行しない"
+    "参考資料のtoolを導入・実行せず、旧HELIXのtest・CI・runtimeを実行しない",
+    "ZIPから採るatomごとに出典entryとSHA-256を記録し、見本の値・架空製品のID・ZIP内toolを写さない"
   ],
   "connections": {
     "consumers": [
@@ -49,7 +55,8 @@
     "dependencies": [
       "docs/helix-brain/candidates/design-template-system-requirements.md",
       "docs/helix-harness/candidates/next-generation-ci-requirements.md",
-      "scaffold/design-template-seed-sdop-20260929/README.md（既存seedとの分担）"
+      "scaffold/design-template-seed-sdop-20260929/README.md（既存seedとの分担）",
+      "archive/reference-sources/ハイブリッド設計ドキュメントv1-fixed.zip（read-only参照）"
     ],
     "boundary": "scaffold/配下のseed候補・材料とbindingのみ。採否・要求・設計・検証義務・承認・完了を確定しない。参考資料のtoolを導入・実行しない。"
   },
@@ -62,6 +69,7 @@
     ],
     "forbidden": [
       "旧archiveは実行しない",
+      "execute tools or copy templates from archive/reference-sources ZIP packages",
       "install or run external tools listed in the reference materials",
       "use the selection proposal as merge admission, stage completion, or a new approval procedure",
       "decide adoption, rejection, approval, requirement meaning, verification obligation, or completion",
@@ -72,9 +80,14 @@
     "scaffold/verification-test-template-seed-20261001/README.md",
     "scaffold/verification-test-template-seed-20261001/materials/source-inventory.md",
     "scaffold/verification-test-template-seed-20261001/materials/reference-repositories.md",
+    "scaffold/verification-test-template-seed-20261001/materials/hybrid-zip-verification-extract.md",
     "scaffold/verification-test-template-seed-20261001/templates/DT-VT-001-common-evidence.md",
     "scaffold/verification-test-template-seed-20261001/templates/DT-VT-002-test-technique-cards.md",
     "scaffold/verification-test-template-seed-20261001/templates/DT-VT-003-technique-selection-proposal.md",
+    "scaffold/verification-test-template-seed-20261001/templates/DT-VT-004-verification-design.md",
+    "scaffold/verification-test-template-seed-20261001/templates/DT-VT-005-screen-verification.md",
+    "scaffold/verification-test-template-seed-20261001/templates/DT-VT-006-poc-verification.md",
+    "scaffold/verification-test-template-seed-20261001/templates/DT-VT-007-ai-output-verification.md",
     "scaffold/verification-test-template-seed-20261001/templates/DT-VT-101-l1-l12-operation-value.md",
     "scaffold/verification-test-template-seed-20261001/templates/DT-VT-102-l2-l11-user-acceptance.md",
     "scaffold/verification-test-template-seed-20261001/templates/DT-VT-103-l3-l10-system-verification.md",
@@ -102,7 +115,8 @@
       "seed候補をBRAINの採択済みseedやcurrent templateとして扱わない",
       "技法の選び方の表からmerge admissionや工程完了を生成しない",
       "参考資料の候補を採用・技術選定として扱わない",
-      "Web展開後のSecurity・インフラ項目を1.0の必須条件にしない"
+      "Web展開後のSecurity・インフラ項目を1.0の必須条件にしない",
+      "ZIPのGo/No-Goやmerge不可の規定をHELIXのrelease・merge条件として採らない"
     ]
   },
   "replacement": {
