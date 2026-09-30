@@ -23,6 +23,21 @@
 2026-09-30 live26のHARNESS-L2-060/HELIXOS-L2-103は適用対象に限るevent/evidence因果、HELIXOS-L2-104/106/111はauthority・binding reference・receipt AND条件、HELIXOS-L2-105/107/108/109/110は限定されたcorrelation/provenance/consumer/digest条件に近接する。これらはP9全artifact収束やglobal DB completion gateを作らず、HNFR-P8の全security/sandbox条件も置換しない。各採択row、MPR registrationおよびcurrent L2/L11 section digestをJSONに記録するが、近接はsource closure・successor assignment・authority拡張を意味しない。
 
 
+### SECURITY / CONNECT 外部実行の近接条件
+
+57候補判断のSECURITY-L2-029/-031/-033/-034と、条件付きCONNECT-L2-008もHNFR-P8（secret・trust boundary・外部実行）およびHBR-P8（外部tool/sourceとの連携）へ近接するため個別screenへ加えた。判断row、exact registrationのMPR row、現L2/L11のfile/section SHAはJSONにpinし、各候補のsource atom setもそれぞれのsource-qualified scopeとして分けて保持する。旧HBR/HNFR source lineから新たなsuccessor identityを作らない。#2430のCN-5監査にもSECURITY-029/-031/-033/-034の近接が記録されており、同じ限定scopeとして整合を確認した。
+
+| 採択対象 | 近接範囲 | 残差・非主張 |
+|---|---|---|
+| HELIXSECURITY-L2-029 | 第三者runtimeへ実際に委譲するoperationのdata classification、secret/PII検査、送信先/scope、opt-outとlocal isolation/egress evidence。 | 主Workerやthird-party不使用taskへ機密以上の遮断やopt-out条件を広げない。旧外部call全分類、汎用sandbox全体、運用結果を閉じない。 |
+| HELIXSECURITY-L2-031 | L2-029の範囲にある追加runtimeだけのproposal-only、canonical state非到達、隔離copy、credential store/raw secret非到達。 | 主Worker・通常taskへ拡張しない。選択runtimeの実装・隔離強制・全source conditionの移管を意味しない。 |
+| HELIXSECURITY-L2-033 | 外部AI Workerの対象revision/task context束縛と出力非権威性。57判断line 92のpairに加え、line 124はL11「P0訂正追補」節を追加受入対象へ束縛する。 | L11追補はraw credential/secret値またはsecret/機密内容をWorkerへ渡す必要があるtaskを起動前deny対象にする。値を露出させず既存L2-005/006/007/008のauthority/egress/隔離条件が成立するcredential-use operationまで一律denyしない。L2 file末尾にある「未採択訂正候補」は別のL2候補状態であり、追加採択されたL11節と混同しない。 |
+| HELIXSECURITY-L2-034 | 選択MCP profile/revision/tool capabilityごとに既存credential、egress、Worker、operation-authority条件のallow/deny/unknownを判定する。 | MCP catalog/descriptor供給や一般sandbox基盤は対象外。未知・stale時のfail-closeは当該profile operationに限り、全業務停止を追加しない。 |
+| HELIXCONNECT-L2-008 | 条件付き採択A・registration -002・`version_target: 1.0`におけるMCP profile catalog/config/typed descriptorの供給（CONNECT）とoperation safety判断（SECURITY）の分担。 | descriptorだけでprobe実行、安全保証、credential・egress許可、接続authorityを生成しない。security policyやprobe判断をCONNECTへ移さない。 |
+
+この5行の採択対象は後発の限定候補であり、各MPRは`registered_proposal`かつ`authority_effect: none`。採択された対象revision、version target、管理登録、実装・実行・security validation・releaseは別の状態である。SECURITY/CONNECT候補のsource atomsは旧v1.3 worker/MCP source setに属し、今回照合するpillar sourceとは別のsource referenceである。採択・近接をもってHBR-P8のgeneral research/search、skillify/self-ingest、汎用sandbox/trust-boundary、HNFR-P8の外部call taxonomyや不可逆操作のescalation条件を閉じない。
+
+
 ### 11候補群の全行確認と近接screen
 
 2026-09-29の「残り11候補」判断は、採択表10行（8件の採択、依存先と併せた2件の採択）と別段落のHARNESS-L2-049保留1件から成る。全11行をline hash付きで索引化し、10採択行すべてについて対象L2/L11 sectionを現HEADで再読・digest固定して5旧pillarとの関係をscreenした。表や候補本文に残る`未採択`表記は判断前の候補状態であり、採否はdecision rowとexact identity/registration/digestで読む。とくにHARNESS-L2-050/052/053/054とHELIXOS-L2-053は、下の限定範囲だけを近接条件として記録した。
