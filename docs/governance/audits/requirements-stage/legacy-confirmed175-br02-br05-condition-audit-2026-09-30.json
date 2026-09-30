@@ -292,7 +292,7 @@
   ],
   "overlap_check": {
     "checked_at": "2026-09-30",
-    "comparison_base": "c6418a5602a056d3503e578a0a8c92df15a6daeb",
+    "comparison_base": "942f2e985f3af161ea4027b1691659a436860bc2",
     "prior_record": {
       "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json",
       "sha256": "ca08a81d97e39e94aa02151c7cc4e48f621f9d30baccc1cf9b715331fed38f45",
@@ -379,7 +379,7 @@
     ]
   },
   "full_decision_set_screen": {
-    "method": "Enumerated all identities and PO treatments in each decision table, including the separately stated HARNESS-L2-049 non-adoption. Screened all IDs against the legacy condition themes; semantically adjacent pairs are expanded below with exact paired-section revision evidence. Frozen pre-decision section labels do not supersede the decision record.",
+    "method": "両decision tableの全identityとPO処置を列挙し、別記されたHARNESS-L2-049の現revision未採択も含めて旧条件との意味上の近接性をscreenした。近接pairのみ、L2/L11の正確なrevision根拠を以下に展開する。本文に残る判断前のsection表示よりdecision recordの採否を優先する。",
     "decision_sets": [
       {
         "record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
@@ -490,7 +490,7 @@
         "relation": "partial",
         "decision_treatment": "条件付き採択",
         "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
-        "comparison": "Worker event trace preserves assignment/source/revision and request-call-result causality but does not allocate legacy roster roles or mechanically enforce creator/verifier separation.",
+        "comparison": "Worker event traceはassignment/source/revisionとrequest-call-resultの因果関係を保つが、旧rosterの役割割当やcreator/verifier分離の機械強制は定めない。",
         "exact_pair_revision_evidence": {
           "decision": "採択",
           "registration": "MPR-RC-HELIXOS-L2-043-002",
@@ -512,7 +512,7 @@
         "relation": "partial",
         "decision_treatment": "採択",
         "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
-        "comparison": "Dispatch-to-merge checks preserve existing authority and scope but do not specify roster composition or distinct creator/reviewer runtime/model policy.",
+        "comparison": "dispatchからmergeの照合は既存authorityとscopeを維持するが、roster構成やcreator/reviewerのruntime/model分離方針を定めない。",
         "exact_pair_revision_evidence": {
           "decision": "採択",
           "registration": "MPR-RC-HELIXOS-L2-046-001",
@@ -534,7 +534,7 @@
         "relation": "partial",
         "decision_treatment": "採択",
         "decision_basis_revision": "909c8015326f35f8d42ce12e3c388923de411d1f",
-        "comparison": "Specialist Worker judgment/handoff is relevant to delegation and transfer, but does not establish the legacy single-PO/AI roster or worker≠verifier permission rule.",
+        "comparison": "専門Workerの判定・handoffは委譲と引継ぎに関係するが、旧single-PO/AI rosterやworker≠verifierのpermission規則は定めない。",
         "exact_pair_revision_evidence": {
           "decision": "採択",
           "registration": "MPR-RC-HARNESS-L2-054-001",
@@ -556,7 +556,7 @@
         "relation": "partial",
         "decision_treatment": "条件付き採択",
         "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
-        "comparison": "Task-specific lane placement and runtime suitability affect assignment; they do not define the full old roster/permission proof.",
+        "comparison": "task単位のlane配置・runtime適性は割当に関係するが、旧roster/permission証明全体を定めない。",
         "exact_pair_revision_evidence": {
           "decision": "条件付き採択：本構成でCursorを作成専用、Claude優先は適用可能な評価根拠のある要求・設計taskのみ。",
           "registration": "MPR-RC-HELIXOS-L2-051-002",
@@ -578,7 +578,7 @@
         "relation": "partial",
         "decision_treatment": "採択",
         "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
-        "comparison": "Design Refactor preserves behavior/contracts and separates feature additions; it covers one refactor episode, not the full safe implementation delegation and regression-detection contract.",
+        "comparison": "Design Refactorは挙動・契約を保ちfeature追加を分離するが、1つのrefactor episodeに限られ、安全な実装委譲と回帰検知全体を定めない。",
         "exact_pair_revision_evidence": {
           "decision": "採択",
           "registration": "MPR-RC-HARNESS-L2-042-001",
@@ -600,7 +600,7 @@
         "relation": "partial",
         "decision_treatment": "採択",
         "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
-        "comparison": "V-model/Scrum workflow backfill is process-level alignment, not refactor implementation safety or regression gates.",
+        "comparison": "V-model/Scrum workflow backfillは工程整合に関係するが、refactor実装の安全性や回帰gateは定めない。",
         "exact_pair_revision_evidence": {
           "decision": "採択",
           "registration": "MPR-RC-HARNESS-L2-046-001",
@@ -622,7 +622,7 @@
         "relation": "partial",
         "decision_treatment": "採択",
         "decision_basis_revision": "909c8015326f35f8d42ce12e3c388923de411d1f",
-        "comparison": "Safe role/name rename constrains identity changes, but is a narrow rename case and does not define all implementation/refactor regression protections.",
+        "comparison": "安全なrole/name renameはidentity変更を制約するが、限定的なrename条件であり、実装/refactor全般の回帰防止は定めない。",
         "exact_pair_revision_evidence": {
           "decision": "採択",
           "registration": "MPR-RC-HARNESS-L2-048-001",
@@ -644,7 +644,7 @@
         "relation": "partial",
         "decision_treatment": "採択",
         "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
-        "comparison": "Authority/HEAD/scope continuity applies through dispatch/merge but does not define regression semantics.",
+        "comparison": "dispatch/mergeまでのauthority/HEAD/scope連続性は扱うが、回帰判定の意味は定めない。",
         "exact_pair_revision_evidence": {
           "decision": "採択",
           "registration": "MPR-RC-HELIXOS-L2-046-001",
@@ -666,7 +666,7 @@
         "relation": "partial",
         "decision_treatment": "採択",
         "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
-        "comparison": "Metric contract and completion criteria can assess evidence quality but do not create the legacy PoC cutoff, result-to-requirement contractization, and explicit adoption boundary.",
+        "comparison": "計測契約と完了条件は証拠品質に関係するが、旧PoC cutoff、結果から要求契約への反映、明示的な採用境界を作らない。",
         "exact_pair_revision_evidence": {
           "decision": "採択",
           "registration": "MPR-RC-HARNESS-L2-034-003",
@@ -688,7 +688,7 @@
         "relation": "partial",
         "decision_treatment": "採択",
         "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
-        "comparison": "Candidate/ticket feedback is an existing work handoff, not PoC adoption or knowledge-preservation policy.",
+        "comparison": "candidate/ticketへのfeedbackは既存workへの引継ぎであり、PoC採用や知識保全方針ではない。",
         "exact_pair_revision_evidence": {
           "decision": "採択",
           "registration": "MPR-RC-HELIXOS-L2-037-001",
@@ -710,7 +710,7 @@
         "relation": "partial",
         "decision_treatment": "採択",
         "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
-        "comparison": "Defines Full V workflow and Scrum slice delta backfill, relevant to phase progression, but does not define PLAN-level phase-aware ID grammar or machine detection of naming violations.",
+        "comparison": "Full V workflowとScrum slice delta backfillを定め工程進行に関係するが、PLAN単位のphase-aware ID文法や命名違反の機械検知は定めない。",
         "exact_pair_revision_evidence": {
           "decision": "採択",
           "registration": "MPR-RC-HARNESS-L2-046-001",
@@ -732,7 +732,7 @@
         "relation": "partial",
         "decision_treatment": "採択",
         "decision_basis_revision": "909c8015326f35f8d42ce12e3c388923de411d1f",
-        "comparison": "Canonical command semantic identity/retry is relevant to stable command identification, not phase-aware PLAN IDs or lint rules.",
+        "comparison": "canonical commandの意味identity/retryはcommand識別に関係するが、phase-aware PLAN IDやlint規則は定めない。",
         "exact_pair_revision_evidence": {
           "decision": "採択",
           "registration": "MPR-RC-HARNESS-L2-052-001",
@@ -754,7 +754,7 @@
         "relation": "partial",
         "decision_treatment": "採択",
         "decision_basis_revision": "909c8015326f35f8d42ce12e3c388923de411d1f",
-        "comparison": "Path-independent semantic asset identity helps trace identity, not phase-aware task identifiers.",
+        "comparison": "path非依存のsemantic asset identityはtrace identityに関係するが、phase-aware task IDは定めない。",
         "exact_pair_revision_evidence": {
           "decision": "採択",
           "registration": "MPR-RC-HARNESS-L2-053-001",
@@ -771,6 +771,6 @@
         "decision_record_sha256_at_pr_base": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5"
       }
     ],
-    "screen_result": "Later adopted pairs are additional comparison evidence at their exact decision revisions. They do not retroactively change the fixed f6dad baseline, establish formal successor assignments, or grant authority. Existing partial/residual results remain unless an explicit identity-specific comparison above explains the overlap."
+    "screen_result": "後続採択pairはdecisionで固定されたrevisionでの追加照合根拠である。固定f6dad baselineを書き換えず、formal successor割当やauthorityも生成しない。identity別の照合結果に明示した重なりを除き、従来の部分対応・残差判定を維持する。"
   }
 }

@@ -4,7 +4,7 @@
 
 confirmed175から、旧HARNESS L1のFR-L1-07〜10（旧source物理行38〜41）の4 identityだけを抽出した静的条件監査。旧sourceは `archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md`、asset `LEGACY-ASSET-6B6C5CB0E481BE01088B`。source file SHA-256は `a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008`。各行の原文とline SHA-256は併設JSONに記録した。
 
-このPRの比較baseは `c6418a5602a056d3503e578a0a8c92df15a6daeb`。現行対象はPO固定revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc` のHARNESS/OS/SECURITY L2と対L11。PO判断記録でこのrevisionの各要求一式が合意され、OS L2-017〜023とSECURITY L2-007〜009を含む明示候補集合が採用されている。各ファイルの固定SHA-256はJSONに記録した。現行candidate contextは product-routing candidate ledger の該当4行を別に読んだ。
+このPRの比較baseは `942f2e985f3af161ea4027b1691659a436860bc2`。現行対象はPO固定revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc` のHARNESS/OS/SECURITY L2と対L11。PO判断記録でこのrevisionの各要求一式が合意され、OS L2-017〜023とSECURITY L2-007〜009を含む明示候補集合が採用されている。各ファイルの固定SHA-256はJSONに記録した。現行candidate contextは product-routing candidate ledger の該当4行を別に読んだ。
 
 旧asset disposition ledgerの `disposition: source_snapshot_preservation`、`product_target: unresolved`、`source_authority_state: confirmed`、`target_authority_state: draft_candidate`、`carry_forward_state: preserved_pending_rehome`を確認した。同ledgerに`successor_requirement_ids`欄はない。4 identityのsuccessor未割当はconfirmed175 full auditのidentity行にある空配列を参照する。従って以下の「関連」は条件の一部を扱う採択pairとの照合であり、formal successor、identity単位closure、実装採用を意味しない。
 

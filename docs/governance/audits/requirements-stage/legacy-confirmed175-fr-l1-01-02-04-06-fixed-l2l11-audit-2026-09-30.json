@@ -66,7 +66,7 @@
     ]
   },
   "duplicate_audit_scan": {
-    "pr_base": "c6418a5602a056d3503e578a0a8c92df15a6daeb",
+    "pr_base": "942f2e985f3af161ea4027b1691659a436860bc2",
     "pr_base_matching_audit_paths": [
       "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json",
       "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.md",
@@ -128,7 +128,7 @@
       ]
     },
     "pr_base_scan": {
-      "revision": "c6418a5602a056d3503e578a0a8c92df15a6daeb",
+      "revision": "942f2e985f3af161ea4027b1691659a436860bc2",
       "matching_audit_paths": [
         "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json",
         "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.md",

@@ -66,7 +66,7 @@
         "sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01"
       }
     },
-    "comparison_base": "c6418a5602a056d3503e578a0a8c92df15a6daeb"
+    "comparison_base": "942f2e985f3af161ea4027b1691659a436860bc2"
   },
   "legacy_asset_disposition": {
     "path": "docs/governance/legacy-asset-disposition.jsonl",
@@ -273,7 +273,7 @@
   "overlap_with_prior_condition_audit": {
     "path": "docs/governance/audits/requirements-stage/fr-l1-07-event-capture-scope-frame-2026-09-29.md",
     "sha256_at_comparison_base": "ae948bacd04c0b4567f3bb1f3e0d4b0cdb019090ecbdeca0c2d407e7fa3a4ea8",
-    "comparison_base": "c6418a5602a056d3503e578a0a8c92df15a6daeb",
+    "comparison_base": "942f2e985f3af161ea4027b1691659a436860bc2",
     "relationship": "The earlier frame is scoped to FR-L1-07 atom boundaries and a bounded producer-to-projection negative oracle. This audit reuses its fixed OS-019 comparison, extends condition rows to FR-L1-07..10, and records retained/residual conditions; it does not adopt the proposed oracle or change carry-forward/authority."
   },
   "successor_assignment_source": {
@@ -352,7 +352,7 @@
     ]
   },
   "full_decision_set_screen": {
-    "method": "Enumerated all identities and PO treatments in each decision table, including the separately stated HARNESS-L2-049 non-adoption. Screened all IDs against the legacy condition themes; semantically adjacent pairs are expanded below with exact paired-section revision evidence. Frozen pre-decision section labels do not supersede the decision record.",
+    "method": "両decision tableの全identityとPO処置を列挙し、別記されたHARNESS-L2-049の現revision未採択も含めて旧条件との意味上の近接性をscreenした。近接pairのみ、L2/L11の正確なrevision根拠を以下に展開する。本文に残る判断前のsection表示よりdecision recordの採否を優先する。",
     "decision_sets": [
       {
         "record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
@@ -463,7 +463,7 @@
         "relation": "partial",
         "decision_treatment": "採択",
         "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
-        "comparison": "Requirement-specific metric contract and completion oracle are relevant to measurement evidence, but do not define the legacy five-event automatic state-capture set or its fail-close vs session-log fail-open split.",
+        "comparison": "要求別計測契約と完了oracleは計測証拠に関係するが、旧5イベントの自動state登録やfail-closeとsession-logのfail-openの分離は定めない。",
         "exact_pair_revision_evidence": {
           "decision": "採択",
           "registration": "MPR-RC-HARNESS-L2-034-003",
@@ -485,7 +485,7 @@
         "relation": "partial",
         "decision_treatment": "採択",
         "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
-        "comparison": "PR lifecycle intake and idempotent audit-job request cover PR create/update/complete events only; they do not cover all legacy state events or mode routing.",
+        "comparison": "PR lifecycleの受信と冪等な監査job要求はPRの作成・更新・完了相当eventを対象とするが、旧state event全体やmode routingは対象にしない。",
         "exact_pair_revision_evidence": {
           "decision": "採択",
           "registration": "MPR-RC-HELIXOS-L2-035-001",
@@ -507,7 +507,7 @@
         "relation": "partial",
         "decision_treatment": "依存先と併せて採択",
         "decision_basis_revision": "909c8015326f35f8d42ce12e3c388923de411d1f",
-        "comparison": "Append-only ledger writer/snapshot/proposal provides evidence recording primitives; it does not define which legacy state events must be captured.",
+        "comparison": "追記型ledger writer/snapshot/proposalは証拠記録の手段に関係するが、旧state eventの捕捉範囲を定めない。",
         "exact_pair_revision_evidence": {
           "decision": "依存先と併せて採択",
           "registration": "MPR-RC-HELIXOS-L2-038-002",
@@ -529,7 +529,7 @@
         "relation": "partial",
         "decision_treatment": "依存先と併せて採択",
         "decision_basis_revision": "909c8015326f35f8d42ce12e3c388923de411d1f",
-        "comparison": "Atomic commit/failure quarantine is relevant to capture integrity and failure handling; it does not establish event scope or capture behavior.",
+        "comparison": "原子的確定と失敗隔離は捕捉の完全性・失敗処理に関係するが、event範囲や捕捉動作は定めない。",
         "exact_pair_revision_evidence": {
           "decision": "依存先と併せて採択",
           "registration": "MPR-RC-HELIXOS-L2-053-001",
@@ -551,7 +551,7 @@
         "relation": "partial",
         "decision_treatment": "採択",
         "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
-        "comparison": "Full V workflow plus Scrum slice delta backfill governs workflow sequencing/recovery of design artifacts, not automatic detection-signal-to-Recovery/Incident/Reverse/Refactor mode routing.",
+        "comparison": "Full V workflowとScrum slice deltaのbackfillは工程順序・設計資産の回収に関係するが、検出signalからRecovery/Incident/Reverse/Refactorへの自動routingは定めない。",
         "exact_pair_revision_evidence": {
           "decision": "採択",
           "registration": "MPR-RC-HARNESS-L2-046-001",
@@ -573,7 +573,7 @@
         "relation": "partial",
         "decision_treatment": "採択",
         "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
-        "comparison": "Weekly drift/debt observations can report differences and hand off existing Reverse/Backflow or ticket candidates; no automatic mode-selection table or trigger authority is added.",
+        "comparison": "週次drift/debt観測は差分を報告し、既存Reverse/Backflowやticket候補へ渡せるが、自動mode選択表や発動authorityを加えない。",
         "exact_pair_revision_evidence": {
           "decision": "採択",
           "registration": "MPR-RC-HELIXOS-L2-037-001",
@@ -595,7 +595,7 @@
         "relation": "partial",
         "decision_treatment": "条件付き採択",
         "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
-        "comparison": "Tracks typed Worker approval-request/tool-call/result events with provenance; events do not authorize calls or define the legacy mandatory-agent, budget, fail-close gate, and lock guard set.",
+        "comparison": "provenance付きでWorkerのapproval request/tool call/result eventを追跡する。event自体はcallを許可せず、旧mandatory-agent・budget・fail-close gate・lockのguard一式も定めない。",
         "exact_pair_revision_evidence": {
           "decision": "採択",
           "registration": "MPR-RC-HELIXOS-L2-043-002",
@@ -617,7 +617,7 @@
         "relation": "partial",
         "decision_treatment": "採択",
         "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
-        "comparison": "Rechecks existing authority/HEAD/scope continuity across dispatch through merge; explicitly relies on existing authority contracts and creates no new guard policy.",
+        "comparison": "dispatchからmergeまで既存authority/HEAD/scopeの連続性を再確認する。既存authority契約に依存し、新しいguard方針を作らない。",
         "exact_pair_revision_evidence": {
           "decision": "採択",
           "registration": "MPR-RC-HELIXOS-L2-046-001",
@@ -639,7 +639,7 @@
         "relation": "partial",
         "decision_treatment": "採択",
         "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
-        "comparison": "Defines retrofit-upgrade preflight and owned failure/return states for that operation; it does not supply general recovery-point, correction-history, or cutover rollback convergence.",
+        "comparison": "retrofit upgrade固有のpreflightと失敗・戻し先を定めるが、一般的な再開point・訂正履歴・cutover rollback収束は補わない。",
         "exact_pair_revision_evidence": {
           "decision": "採択",
           "registration": "MPR-RC-HELIXOS-L2-036-001",
@@ -661,7 +661,7 @@
         "relation": "partial",
         "decision_treatment": "採択",
         "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
-        "comparison": "Feeds observed drift/debt into existing Reverse/Backflow and ticket candidates, not incident recovery/cutover rollback.",
+        "comparison": "観測されたdrift/debtを既存Reverse/Backflowやticket候補へ渡すが、incident recoveryやcutover rollbackは対象にしない。",
         "exact_pair_revision_evidence": {
           "decision": "採択",
           "registration": "MPR-RC-HELIXOS-L2-037-001",
@@ -683,7 +683,7 @@
         "relation": "partial",
         "decision_treatment": "依存先と併せて採択",
         "decision_basis_revision": "909c8015326f35f8d42ce12e3c388923de411d1f",
-        "comparison": "Failure quarantine/atomic evidence append can support failure integrity, not recovery convergence semantics.",
+        "comparison": "失敗隔離・証拠の原子的追記は失敗時の完全性に関係するが、Recovery収束の意味条件は定めない。",
         "exact_pair_revision_evidence": {
           "decision": "依存先と併せて採択",
           "registration": "MPR-RC-HELIXOS-L2-053-001",
@@ -700,6 +700,6 @@
         "decision_record_sha256_at_pr_base": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5"
       }
     ],
-    "screen_result": "Later adopted pairs are additional comparison evidence at their exact decision revisions. They do not retroactively change the fixed f6dad baseline, establish formal successor assignments, or grant authority. Existing partial/residual results remain unless an explicit identity-specific comparison above explains the overlap."
+    "screen_result": "後続採択pairはdecisionで固定されたrevisionでの追加照合根拠である。固定f6dad baselineを書き換えず、formal successor割当やauthorityも生成しない。identity別の照合結果に明示した重なりを除き、従来の部分対応・残差判定を維持する。"
   }
 }

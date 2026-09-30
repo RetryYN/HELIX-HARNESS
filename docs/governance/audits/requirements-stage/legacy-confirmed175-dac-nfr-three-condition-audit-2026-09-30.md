@@ -62,7 +62,7 @@ HARNESS-L2-003は意味変更を右側で黙って書き換えずBackflowへ戻�
 
 ## 重複監査と検証範囲
 
-- PR base `c6418a5602a056d3503e578a0a8c92df15a6daeb`では、3 identityは既存の全数監査に現れる。同revisionのREG-06母集団・join監査にもidentity/ledger参照があるが、いずれも本条件を個別に照合したmeaning-delta recordではない。
+- PR base `942f2e985f3af161ea4027b1691659a436860bc2`では、3 identityは既存の全数監査に現れる。同revisionのREG-06母集団・join監査にもidentity/ledger参照があるが、いずれも本条件を個別に照合したmeaning-delta recordではない。
 - PR #2387–#2392の変更ファイル一覧を確認した。各PRはFRS受入、World Governance、FRS要求の分類、Concept metadataの別監査であり、DAC-NFR三条件の個別監査との重複はない。
 - 静的確認で旧archive sourceとholding snapshotのfile digest、3 source line digest、固定revisionの4 target blob/SHA、PR変更pathと監査範囲の対応を確認した。JSON構文とMarkdown内部参照も検査した。
 - 旧CLI・runtime・test・CIは実行していない。GitHubへのpush、PR、mergeは行わない。

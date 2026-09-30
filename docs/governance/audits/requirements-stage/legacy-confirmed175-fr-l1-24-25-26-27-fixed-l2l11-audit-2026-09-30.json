@@ -462,7 +462,7 @@
       "successor_requirement_ids": [],
       "audit_status": "open_partial_correspondence",
       "existing_full_audit_status": "部分再導出／旧固有条件・反例・数値・出力の一部が未確認",
-      "existing_full_audit_note": "PR base c6418a5602a056d3503e578a0a8c92df15a6daeb時点の既存照合: ID: FR-L1-26; 旧条件→現行IDと正確な参照: HELIXOS-L2-010 HXT-TYPE-16 `governance-requirements.md:593`、PO採用済み明示候補HELIXOS-L2-021 `:702–710`; HARNESS-L2-003/004。OS-021は選択済みHARNESS構成の対象project配布/更新/復旧であり、旧`retrofit-matrix`形式・state schema・全移行workflowとは別identityで、残差を閉じない。",
+      "existing_full_audit_note": "PR base 942f2e985f3af161ea4027b1691659a436860bc2時点の既存照合: ID: FR-L1-26; 旧条件→現行IDと正確な参照: HELIXOS-L2-010 HXT-TYPE-16 `governance-requirements.md:593`、PO採用済み明示候補HELIXOS-L2-021 `:702–710`; HARNESS-L2-003/004。OS-021は選択済みHARNESS構成の対象project配布/更新/復旧であり、旧`retrofit-matrix`形式・state schema・全移行workflowとは別identityで、残差を閉じない。",
       "mapping_authority_effect": "none",
       "decision_status": "pending_human_confirmation",
       "requirement_change_authority": "explicit_human_decision_only",
@@ -520,7 +520,7 @@
       "successor_requirement_ids": [],
       "audit_status": "open_partial_correspondence",
       "existing_full_audit_status": "部分再導出／旧固有条件・反例・数値・出力の一部が未確認",
-      "existing_full_audit_note": "PR base c6418a5602a056d3503e578a0a8c92df15a6daeb時点の既存照合: ID: FR-L1-27; 旧条件→現行IDと正確な参照: HELIXOS-L2-010のticket責務境界 `governance-requirements.md:110–115`およびHXT-TYPE-17 `:594`; HARNESS-L2-002/003 `product-requirements.md:53–54`; PO採用済み明示候補HELIXOS-L2-023 `governance-requirements.md:722–730`。OS-023はhandoffを扱うがResearchの旧memo/ADRのkind/generates/requires、順序、出力形式を定めず、FR-L1-27残差を閉じない。",
+      "existing_full_audit_note": "PR base 942f2e985f3af161ea4027b1691659a436860bc2時点の既存照合: ID: FR-L1-27; 旧条件→現行IDと正確な参照: HELIXOS-L2-010のticket責務境界 `governance-requirements.md:110–115`およびHXT-TYPE-17 `:594`; HARNESS-L2-002/003 `product-requirements.md:53–54`; PO採用済み明示候補HELIXOS-L2-023 `governance-requirements.md:722–730`。OS-023はhandoffを扱うがResearchの旧memo/ADRのkind/generates/requires、順序、出力形式を定めず、FR-L1-27残差を閉じない。",
       "mapping_authority_effect": "none",
       "decision_status": "pending_human_confirmation",
       "requirement_change_authority": "explicit_human_decision_only",
@@ -562,5 +562,5 @@
       "use": "旧正常/異常・boundary test consumer条件を読むだけで確認。旧test/CIは実行せず。"
     }
   ],
-  "current_candidate_context_revision": "c6418a5602a056d3503e578a0a8c92df15a6daeb"
+  "current_candidate_context_revision": "942f2e985f3af161ea4027b1691659a436860bc2"
 }

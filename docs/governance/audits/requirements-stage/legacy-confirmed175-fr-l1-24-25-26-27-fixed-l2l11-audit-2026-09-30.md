@@ -27,7 +27,7 @@ read-onlyの静的照合。`authority_effect: none`。対象は旧confirmed175�
 
 ## PR base時点のcandidate context
 
-比較用のPR base (`c6418a5602a056d3503e578a0a8c92df15a6daeb`) には次の関連記述がある。これらは条件の所在や残差を明確にする文脈であり、固定targetを更新したり旧source atomの状態を変えたりしない。
+比較用のPR base (`942f2e985f3af161ea4027b1691659a436860bc2`) には次の関連記述がある。これらは条件の所在や残差を明確にする文脈であり、固定targetを更新したり旧source atomの状態を変えたりしない。
 
 - HARNESS-L2-042 (`product-requirements.md:970-980`) はPR base当時candidate metadataを持っていたが、上記PO decisionでexact L2/L11 pairが採択された。FR-L1-25のDesign Refactor判定・episode分離と、FR-L1-24のRefactorへの機能追加混載禁止に関係する。全Add-featureの移管証拠とはしない。
 - HELIXOS-L2-036 (`governance-requirements.md:1033-1063`) は同じPO decisionで対L11と採択済み。Retrofit upgradeのpreflight ticket/plan順序を固定するが、技術oracleやoperation authorityを作らず、FR-L1-26のmatrix、全段階config移行、rollback/回帰条件を閉じない。

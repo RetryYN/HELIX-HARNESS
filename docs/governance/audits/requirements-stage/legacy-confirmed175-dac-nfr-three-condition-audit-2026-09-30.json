@@ -58,7 +58,7 @@
     "mapping_authority_effect": "none"
   },
   "overlap_check": {
-    "pr_base_commit": "c6418a5602a056d3503e578a0a8c92df15a6daeb",
+    "pr_base_commit": "942f2e985f3af161ea4027b1691659a436860bc2",
     "pull_requests_checked": [
       2387,
       2388,
@@ -68,7 +68,7 @@
       2392
     ],
     "result": "no_prior_condition_level_audit_found",
-    "basis": "At PR base c6418a5602a056d3503e578a0a8c92df15a6daeb, the existing full-audit rows cover the three identities. The REG-06 population/join audit also references these identities and ledgers, but neither record is a condition-level semantic delta audit. PR #2387-2392 changed files belong to separate FRS/World Governance/Concept metadata audit scopes; none adds a DAC-NFR-001/004/005 condition-level audit."
+    "basis": "At PR base 942f2e985f3af161ea4027b1691659a436860bc2, the existing full-audit rows cover the three identities. The REG-06 population/join audit also references these identities and ledgers, but neither record is a condition-level semantic delta audit. PR #2387-2392 changed files belong to separate FRS/World Governance/Concept metadata audit scopes; none adds a DAC-NFR-001/004/005 condition-level audit."
   },
   "later_adopted_pair_review": {
     "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",

@@ -1,7 +1,7 @@
 # confirmed175 BR-07・UX-01・UX-03 条件別照合
 
 - 監査時点: `2026-09-30`
-- 比較対象: PR base `c6418a5602a056d3503e578a0a8c92df15a6daeb` と、PO判断記録が指す固定L2/L11 revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。
+- 比較対象: PR base `942f2e985f3af161ea4027b1691659a436860bc2` と、PO判断記録が指す固定L2/L11 revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。
 - 範囲: 旧confirmed identity `BR-07`（47行）、`UX-01`（55行）、`UX-03`（57行）。旧資産 `LEGACY-ASSET-9F48ADEEB477DCA54039`。
 - 状態: 読取専用の意味照合記録。`authority_effect: none`。formal successor、要求採択、完全被覆、Step5完了を主張しない。
 
@@ -49,7 +49,7 @@
 
 ## 重複確認・検証範囲
 
-- PR base `c6418a5602a056d3503e578a0a8c92df15a6daeb`の既存全量個票を確認した。BR-02〜05監査は同じPRに含む別artifact `[legacy-confirmed175-br02-br05-condition-audit-2026-09-30.json](legacy-confirmed175-br02-br05-condition-audit-2026-09-30.json)`で、identity scopeは重ならない。これら3 identityについてbase上に別の完了済み個別条件監査はなかった。
+- PR base `942f2e985f3af161ea4027b1691659a436860bc2`の既存全量個票を確認した。BR-02〜05監査は同じPRに含む別artifact [legacy-confirmed175-br02-br05-condition-audit-2026-09-30.json](legacy-confirmed175-br02-br05-condition-audit-2026-09-30.json)で、identity scopeは重ならない。これら3 identityについてbase上に別の完了済み個別条件監査はなかった。
 - 公開PR #2387–2392のheadとchanged pathsを確認した。各PRはFRS/World Governance/FRS metadata/Concept metadataの別監査pathであり、6件のdiff本文を3 identityで検索して一致がないことも確認した。
 - 旧source、holding copy、asset ledger、全量監査個票、旧v2 ledger、旧UX-01 AC、旧FR-44、および固定L2/L11を静的に照合した。source line SHA・固定target file SHA・target ID・参照path・JSON構文を確認した。successor未割当はfull-audit identity行由来であり、asset disposition ledgerのfieldとは区別した。
 - 旧CLI/runtime/hook/adapter/test/CIを実行していない。静的照合は採択・実装・実行・受入の証拠ではない。

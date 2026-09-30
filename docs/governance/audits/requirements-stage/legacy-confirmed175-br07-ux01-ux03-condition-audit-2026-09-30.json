@@ -248,7 +248,7 @@
   ],
   "overlap_check": {
     "checked_at": "2026-09-30",
-    "comparison_base": "c6418a5602a056d3503e578a0a8c92df15a6daeb",
+    "comparison_base": "942f2e985f3af161ea4027b1691659a436860bc2",
     "prior_record": {
       "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json",
       "sha256": "ca08a81d97e39e94aa02151c7cc4e48f621f9d30baccc1cf9b715331fed38f45",
@@ -332,7 +332,7 @@
     ]
   },
   "full_decision_set_screen": {
-    "method": "Enumerated all identities and PO treatments in each decision table, including the separately stated HARNESS-L2-049 non-adoption. Screened all IDs against the legacy condition themes; semantically adjacent pairs are expanded below with exact paired-section revision evidence. Frozen pre-decision section labels do not supersede the decision record.",
+    "method": "両decision tableの全identityとPO処置を列挙し、別記されたHARNESS-L2-049の現revision未採択も含めて旧条件との意味上の近接性をscreenした。近接pairのみ、L2/L11の正確なrevision根拠を以下に展開する。本文に残る判断前のsection表示よりdecision recordの採否を優先する。",
     "decision_sets": [
       {
         "record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
@@ -443,7 +443,7 @@
         "relation": "partial",
         "decision_treatment": "採択",
         "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
-        "comparison": "Measurement contracts include metric/oracle/baseline and prevent missing/stale measures from completing; this is relevant to regression measurement but does not instantiate the legacy three axes or balance_ratio regression.",
+        "comparison": "計測契約はmetric/oracle/baselineを含み、欠落・stale計測による完了扱いを防ぐ。回帰計測には関係するが、旧3軸やbalance_ratio回帰を具体化しない。",
         "exact_pair_revision_evidence": {
           "decision": "採択",
           "registration": "MPR-RC-HARNESS-L2-034-003",
@@ -465,7 +465,7 @@
         "relation": "partial",
         "decision_treatment": "採択",
         "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
-        "comparison": "Verification completeness and local/CI contract consistency can support regression discipline, not the specific upstream/downstream ID-following, ratio, and trace-break oracle.",
+        "comparison": "検証観点の完全性とlocal/CI契約の一致は回帰管理を支えるが、旧upstream/downstream ID追随・ratio・trace切れoracleは定めない。",
         "exact_pair_revision_evidence": {
           "decision": "採択",
           "registration": "MPR-RC-HARNESS-L2-036-002",
@@ -487,7 +487,7 @@
         "relation": "partial",
         "decision_treatment": "採択",
         "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
-        "comparison": "Behavior-preserving Refactor episode has regression constraints, but is not a general three-axis regression oracle.",
+        "comparison": "挙動を保つRefactor episodeには回帰制約があるが、一般的な3軸回帰oracleではない。",
         "exact_pair_revision_evidence": {
           "decision": "採択",
           "registration": "MPR-RC-HARNESS-L2-042-001",
@@ -509,7 +509,7 @@
         "relation": "partial",
         "decision_treatment": "採択",
         "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
-        "comparison": "CI performance measurement and correctness-preserving optimization recovery can catch performance regressions, but does not cover trace-following and balance-ratio axes.",
+        "comparison": "CI性能計測と正しさを保つ最適化回収は性能回帰に関係するが、trace追随やbalance-ratio軸は扱わない。",
         "exact_pair_revision_evidence": {
           "decision": "採択",
           "registration": "MPR-RC-HELIXOS-L2-031-001",
@@ -531,7 +531,7 @@
         "relation": "partial",
         "decision_treatment": "採択",
         "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
-        "comparison": "Evaluation-task/oracle isolation and history support comparison evidence; no legacy three-axis merge-blocking oracle.",
+        "comparison": "評価task/oracleの分離と履歴は比較証拠に関係するが、旧3軸のmerge-blocking oracleではない。",
         "exact_pair_revision_evidence": {
           "decision": "採択",
           "registration": "MPR-RC-HELIXLABO-L2-061-001",
@@ -553,7 +553,7 @@
         "relation": "partial",
         "decision_treatment": "条件付き採択",
         "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
-        "comparison": "First-attempt outcome metric is a distinct productivity measure, not the old balance_ratio regression measure.",
+        "comparison": "first-attempt結果指標は別の生産性指標であり、旧balance_ratio回帰指標ではない。",
         "exact_pair_revision_evidence": {
           "decision": "条件付き採択：D1、067とは別指標で「最初のAttemptの結果」。",
           "registration": "MPR-RC-HELIXLABO-L2-065-001",
@@ -575,7 +575,7 @@
         "relation": "partial",
         "decision_treatment": "条件付き採択",
         "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
-        "comparison": "First eligible candidate result and same-attempt correction count are distinct metrics; not a substitute for the old regression axes.",
+        "comparison": "最初の適格candidate結果と同一attempt内の修正回数は別metricであり、旧回帰軸の代替ではない。",
         "exact_pair_revision_evidence": {
           "decision": "条件付き採択：D1、「最初の適格candidateの結果」と同一Attempt内修正回数。065と換算・統合しない。",
           "registration": "MPR-RC-HELIXLABO-L2-067-001",
@@ -597,7 +597,7 @@
         "relation": "partial",
         "decision_treatment": "採択",
         "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
-        "comparison": "Supports explicit measurement contracts and metrics, but the old process/safety/automation three-way value balance is a product-level value statement, not inferred from metric machinery.",
+        "comparison": "明示的な計測契約とmetricを支えるが、旧process/safety/automationの3要素均衡は製品価値の記述であり、計測機構から推定しない。",
         "exact_pair_revision_evidence": {
           "decision": "採択",
           "registration": "MPR-RC-HARNESS-L2-034-003",
@@ -619,7 +619,7 @@
         "relation": "partial",
         "decision_treatment": "採択",
         "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
-        "comparison": "Binds Experience/UI/Frontend contracts to one scope and revision; does not set a process/safety/automation balance oracle.",
+        "comparison": "Experience/UI/Frontend契約を同じscope・revisionへ結ぶが、process/safety/automationの均衡oracleは定めない。",
         "exact_pair_revision_evidence": {
           "decision": "採択",
           "registration": "MPR-RC-HARNESS-L2-039-003",
@@ -641,7 +641,7 @@
         "relation": "partial",
         "decision_treatment": "条件付き採択",
         "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
-        "comparison": "Task assignment capacity is operational utilization, not the product value balance.",
+        "comparison": "task割当capacityは運用上の利用率であり、製品価値の均衡指標ではない。",
         "exact_pair_revision_evidence": {
           "decision": "条件付き採択：割当前に後段の検証義務・担当・capacityを確保する。割当先task自体のreview/merge完了は割当条件にしない（訂正L11 `HELIXOS-L2-049-003`）。",
           "registration": "MPR-RC-HELIXOS-L2-049-003",
@@ -663,7 +663,7 @@
         "relation": "partial",
         "decision_treatment": "条件付き採択",
         "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
-        "comparison": "Reviewer capacity measurement/adjustment does not establish the three-way value balance.",
+        "comparison": "reviewer capacityの計測・調整は3要素の価値均衡を定めない。",
         "exact_pair_revision_evidence": {
           "decision": "条件付き採択：capacity増枠から新しいmerge権限を発生させない。既存review_merge担当は既存admission後にmergeできる。branch変更・Ready権限は与えない（訂正L11 `HELIXOS-L2-050-003`）。",
           "registration": "MPR-RC-HELIXOS-L2-050-003",
@@ -685,7 +685,7 @@
         "relation": "partial",
         "decision_treatment": "採択",
         "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
-        "comparison": "Makes UX/UI/Frontend scope and failure/drift relations explicit; it does not provide general CLI failure next_action and onboarding acceptance criteria.",
+        "comparison": "UX/UI/Frontendのscopeとfailure/drift関係を明示するが、一般CLI失敗時のnext_actionやonboarding受入基準は定めない。",
         "exact_pair_revision_evidence": {
           "decision": "採択",
           "registration": "MPR-RC-HARNESS-L2-039-003",
@@ -707,7 +707,7 @@
         "relation": "partial",
         "decision_treatment": "採択",
         "decision_basis_revision": "909c8015326f35f8d42ce12e3c388923de411d1f",
-        "comparison": "Canonical command identity/retry semantics are relevant to CLI command behavior, but do not define understandable failure output or onboarding smoothness.",
+        "comparison": "canonical command identity/retry semanticsはCLI command動作に関係するが、理解しやすい失敗出力やonboarding評価を定めない。",
         "exact_pair_revision_evidence": {
           "decision": "採択",
           "registration": "MPR-RC-HARNESS-L2-052-001",
@@ -729,7 +729,7 @@
         "relation": "partial",
         "decision_treatment": "採択",
         "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
-        "comparison": "Retrofit-specific failure states and return owners improve operation-specific feedback, not general CLI/lint/onboarding UX.",
+        "comparison": "retrofit固有の失敗状態と戻し先はそのoperationのfeedbackに関係するが、一般CLI/lint/onboarding UXではない。",
         "exact_pair_revision_evidence": {
           "decision": "採択",
           "registration": "MPR-RC-HELIXOS-L2-036-001",
@@ -751,7 +751,7 @@
         "relation": "partial",
         "decision_treatment": "依存先と併せて採択",
         "decision_basis_revision": "909c8015326f35f8d42ce12e3c388923de411d1f",
-        "comparison": "Atomic failure quarantine is operational failure containment, not readable next_action UX.",
+        "comparison": "原子的な失敗隔離は運用上の障害封じ込めであり、読みやすいnext_action UXではない。",
         "exact_pair_revision_evidence": {
           "decision": "依存先と併せて採択",
           "registration": "MPR-RC-HELIXOS-L2-053-001",
@@ -768,6 +768,6 @@
         "decision_record_sha256_at_pr_base": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5"
       }
     ],
-    "screen_result": "Later adopted pairs are additional comparison evidence at their exact decision revisions. They do not retroactively change the fixed f6dad baseline, establish formal successor assignments, or grant authority. Existing partial/residual results remain unless an explicit identity-specific comparison above explains the overlap."
+    "screen_result": "後続採択pairはdecisionで固定されたrevisionでの追加照合根拠である。固定f6dad baselineを書き換えず、formal successor割当やauthorityも生成しない。identity別の照合結果に明示した重なりを除き、従来の部分対応・残差判定を維持する。"
   }
 }

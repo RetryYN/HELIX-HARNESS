@@ -1,7 +1,7 @@
 # confirmed175 BR-02〜BR-05 条件別照合
 
 監査時点: `2026-09-30`
-比較base: PR base `c6418a5602a056d3503e578a0a8c92df15a6daeb`。
+比較base: PR base `942f2e985f3af161ea4027b1691659a436860bc2`。
 固定対象: 2026-09-28のHARNESS/OS/SECURITY判断記録が指す `f6dad2a33e24f000b87d7f09b8d40288257e74cc` のL2/L11本文。
 状態: 読取専用の意味照合記録。`authority_effect: none`。採択、formal successor、被覆、Step5完了を主張しない。
 
@@ -54,8 +54,8 @@ HARNESS L2/L11本文SHAは `aed75cb4…83100a` / `09b29631…39bcd4`、OS L2/L11
 
 ## 重複確認と静的検証
 
-- PR base `c6418a5602a056d3503e578a0a8c92df15a6daeb`に既存full-auditのOPEN個票があり、BR-02〜05の別condition auditはない。併設JSONは比較baseとfull-auditのSHA-256を記録する。
-- main remote ref `0f5050e…`を確認した。公開PR #2387–2392の個別diffをsource identity (`business-requirements.md::BR-02..05`、asset ID、旧source行42–45)で検索し、一致はなかった。各PRの変更出力pathも本記録と異なる。
+- PR base `942f2e985f3af161ea4027b1691659a436860bc2`に既存full-auditのOPEN個票があり、BR-02〜05の別condition auditはない。併設JSONは比較baseとfull-auditのSHA-256を記録する。
+- PR base `942f2e985f3af161ea4027b1691659a436860bc2`を確認した。公開PR #2387–2392と統合済み#2394の個別diffをsource identity (`business-requirements.md::BR-02..05`、asset ID、旧source行42–45)で検索し、一致はなかった。各PRの変更出力pathも本記録と異なる。
 - 旧source、holding copy、asset ledger、既存4個票、固定L2/L11、PO decision recordsを照合した。旧source line SHA、4個票のidentity/state、target file SHA、JSON構文、参照先path/IDを静的確認済み。successor未割当はfull-audit identity行から、資産処置・target authority・carry stateはasset disposition ledgerの対応fieldから確認した。
 - 旧CLI/runtime/test/CIは実行していない。本文の読取り・ID参照確認は要件採用、実装、実行、受入の証拠ではない。
 

@@ -31,7 +31,7 @@
 
 ## 重複照合
 
-`PR base` (`c6418a5602a056d3503e578a0a8c92df15a6daeb`) で該当4 identityを含むaudit pathを列挙したところ、既存のconfirmed175全量監査（4行OPEN）とREG-06 population/join auditのみだった。別の個別L2/L11条件照合は見つからなかった。PR #2387–2392の変更pathは別のFRS/World Governance/Concept-v4 source auditであり、指定identityの条件照合監査と重ならない。詳細はJSONの`duplicate_audit_scan`に記録した。
+`PR base` (`942f2e985f3af161ea4027b1691659a436860bc2`) で該当4 identityを含むaudit pathを列挙したところ、既存のconfirmed175全量監査（4行OPEN）とREG-06 population/join auditのみだった。別の個別L2/L11条件照合は見つからなかった。PR #2387–2392の変更pathは別のFRS/World Governance/Concept-v4 source auditであり、指定identityの条件照合監査と重ならない。詳細はJSONの`duplicate_audit_scan`に記録した。
 
 ## 結論と限界
 
