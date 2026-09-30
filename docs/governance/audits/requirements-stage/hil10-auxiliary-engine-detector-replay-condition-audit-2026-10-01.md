@@ -4,7 +4,7 @@
 
 対象は旧補助system contract `HR-FR-HIL-10`、対応する`HAC-HIL-10a/b/c`、`HAT-HIL-10`、および当該HATが参照する`HST-HIL-008/009`に限る。旧要求atomは`HIL-FR-25`、`HIL-FR-26`、`HIL-NFR-13`の3件である。24親contract全体、全旧source census、requirements stageの閉包は判定しない。
 
-現行参照はorigin/main `d1dc6136f06c2fd89d6ba3d57fdd8d9156e2b44a`（2026-10-01）。HELIX-OS L2/L11-033のauthority状態は、2026-09-29の[57候補PO判断](../../decisions/po-decision-2026-09-29-57candidates.md)のline 56から読む。同記録は`MPR-RC-HELIXOS-L2-033-001`に対応するL2/L11-033の対を採択し、canonicalized section SHA-256をそれぞれ`580778c8ef3c0e4c4676d13de203c821f990893e9aa078d8d1d2f0b8901d2dbc`、`1d30394888b3bded49f8e517d7e0888a25130e123df945adf69c7db5588571b1`に固定した。L2/L11本文の現在のcandidate表記とMPRの`registered_proposal`は仮登録時のmetadataであり、このexact pairの採択を打ち消さない。旧HAT-HIL-10のstatusは引き続き`designed_not_implemented`で、採択は実装・実行・acceptance passを意味しない。
+現行参照はorigin/main `225f1d2acd7f180f317cef96acb4922d36d6ab74`（2026-10-01）。HELIX-OS L2/L11-033のauthority状態は、2026-09-29の[57候補PO判断](../../decisions/po-decision-2026-09-29-57candidates.md)のline 56から読む。同記録は`MPR-RC-HELIXOS-L2-033-001`に対応するL2/L11-033の対を採択し、canonicalized section SHA-256をそれぞれ`580778c8ef3c0e4c4676d13de203c821f990893e9aa078d8d1d2f0b8901d2dbc`、`1d30394888b3bded49f8e517d7e0888a25130e123df945adf69c7db5588571b1`に固定した。L2/L11本文の現在のcandidate表記とMPRの`registered_proposal`は仮登録時のmetadataであり、このexact pairの採択を打ち消さない。旧HAT-HIL-10のstatusは引き続き`designed_not_implemented`で、採択は実装・実行・acceptance passを意味しない。
 
 採択されたL2-033のMPR atom setは7件で、そのsource範囲は旧HIL-FR-25/26の2行と補助HR/AC/HAT-HIL-10の5行。旧HIL-NFR-13は同atom setに含まれない。また、legacy carry-forwardは旧FR-25/26、HR/AC/HATを`successor_requirement_ids: []`・未解決のまま保持する。このPO採択からHIL-10各source identityとのformal successor bindingやsource holding解除を推定しない。
 
@@ -49,8 +49,8 @@ HELIX-OS L2/L11本文の最新main bytesはそれぞれSHA-256 `bde0dcc4640e7afc
 
 ### 差分の結論
 
-- **意味保持／再導出**：engineとdetectorの能力分離、版・owner・入力snapshotをrunへ束縛すること、artifactとfindingの区別、provenance付き結果、同じ入力条件での再実行比較はL2/L11-033候補に具体化され、旧HIL-10の中心条件と整合する。OSをengine機能ownerまたはfinding意味判定者にせず、実行・証拠の管理に留める境界も保持している。
-- **実装方式の変更**：旧sourceのZIP/Python実装と旧registry/runner形は現行の必須方式へ移していない。これは機能の意味を削った根拠ではなく、候補もruntime/language/CI製品名を実装依存にせずに旧capability範囲を扱う。
+- **意味保持／再導出**：engineとdetectorの能力分離、版・owner・入力snapshotをrunへ束縛すること、artifactとfindingの区別、provenance付き結果、同じ入力条件での再実行比較は採択済みL2/L11-033対に具体化され、旧HIL-10の中心条件と整合する。OSをengine機能ownerまたはfinding意味判定者にせず、実行・証拠の管理に留める境界も保持している。
+- **実装方式の変更**：旧sourceのZIP/Python実装と旧registry/runner形は現行の必須方式へ移していない。これは機能の意味を削った根拠ではなく、現行L2/L11-033もruntime/language/CI製品名を実装依存にせずに旧capability範囲を扱う。
 - **採択とrehomeの区別**：L2/L11-033 exact pairは2026-09-29 PO判断で採択されている。MPR `MPR-RC-HELIXOS-L2-033-001`の7 source atomsはHIL-FR-25/26およびHR-FR-HIL-10、HAC-HIL-10a/b/c、HAT-HIL-10の各補助source recordを含むが、HIL-NFR-13は含まない。HIL-FR-25/26のcarry-forwardも依然`successor_requirement_ids: []`であり、HIL-NFR-13は同じくpendingである。HR/AC/HATのsupplementary carry-forwardも`relation_status: unmapped`かつsuccessorなし。したがって033採択は重要な現行contract decisionだが、この個別監査対象の旧parent/atomすべてについてformal successor relationやholding解除が記録されたことを意味しない。
 - **未実証**：旧HATは`designed_not_implemented`、旧L5/L6 testsもdraft/unimplemented。current CIも未構築であり、本監査にrun receiptやartifactはない。test design上の期待状態から合否を推定しない。
 
@@ -66,4 +66,4 @@ HELIX-OS L2/L11本文の最新main bytesはそれぞれSHA-256 `bde0dcc4640e7afc
 
 ## 静的検証範囲
 
-確認対象は旧JSON pointerとID間参照、3 atomのL1/IR対応、HATからHAC/HSTへの参照、L5/L6 consumer ID、archive source SHA-256、現行L2/L11のrevision SHA-256、PO採択集合とsupplementary carry-forward行である。旧runtime、旧test、旧CLI、旧hook、旧CIは実行していない。設計・候補・source holdingの存在は実装、採択、実行、受入合格、親contract closureを示さない。
+確認対象は旧JSON pointerとID間参照、3 atomのL1/IR対応、HATからHAC/HSTへの参照、L5/L6 consumer ID、archive source SHA-256、現行L2/L11のrevision SHA-256、PO採択集合とsupplementary carry-forward行である。旧runtime、旧test、旧CLI、旧hook、旧CIは実行していない。設計・本文・source holdingの存在だけでは採択を示さない。033の採択はPO判断から読み、そこから実装、実行、受入合格、親contract closureを導かない。
