@@ -1,0 +1,273 @@
+{
+  "audit_id": "confirmed175-frl1-07-10-condition-audit-2026-09-30",
+  "audit_type": "bounded_old_to_new_condition_crosswalk",
+  "authority_effect": "none",
+  "formal_successor_assignments": 0,
+  "adoption_claim": false,
+  "scope": {
+    "identities": [
+      "FR-L1-07",
+      "FR-L1-08",
+      "FR-L1-09",
+      "FR-L1-10"
+    ],
+    "legacy_asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B",
+    "legacy_source": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+    "legacy_source_file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+    "legacy_lines": [
+      38,
+      39,
+      40,
+      41
+    ]
+  },
+  "baseline": {
+    "origin_main_head": "0f5050e2b",
+    "po_fixed_requirements_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "po_decision_records": [
+      {
+        "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+        "applies_to": "HARNESS L2/L11 exact fixed bytes; agreed requirement set"
+      },
+      {
+        "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+        "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+        "applies_to": "HELIX-OS L2-001..029 exact fixed bytes; adopted explicit candidates include L2-017..023"
+      },
+      {
+        "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+        "sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+        "applies_to": "SECURITY exact fixed L2/L11 bytes; explicit adopted candidate set"
+      }
+    ],
+    "fixed_l2_l11_files": {
+      "harness_l2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+      },
+      "harness_l11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+      },
+      "os_l2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+      },
+      "os_l11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+      },
+      "security_l2": {
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c"
+      },
+      "security_l11": {
+        "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01"
+      }
+    }
+  },
+  "legacy_asset_disposition": {
+    "path": "docs/governance/legacy-asset-disposition.jsonl",
+    "asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B",
+    "disposition": "source_snapshot_preservation",
+    "product_target": "unresolved",
+    "source_authority_state": "confirmed",
+    "target_authority_state": "draft_candidate",
+    "carry_forward_state": "preserved_pending_rehome"
+  },
+  "current_candidate_context_source": {
+    "path": "docs/governance/legacy-migration/identity/legacy-confirmed-identity-product-routing-candidates.jsonl",
+    "sha256": "d9fa0d6d7ac6d4e258efa112f0defc21c5dc0340e95c89b995938021390f9900",
+    "status": "routing proposal only; no successor assignment"
+  },
+  "prior_full_audit": {
+    "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json",
+    "sha256": "ca08a81d97e39e94aa02151c7cc4e48f621f9d30baccc1cf9b715331fed38f45",
+    "role": "identity/carry-state and initial crosswalk baseline"
+  },
+  "rows": [
+    {
+      "identity": "FR-L1-07",
+      "source_line": 38,
+      "source_line_sha256": "3fe7ef2132ed2b539f14dbdd60a3d375a7a16a04d2b086bb0faf604692c69d82",
+      "source_condition_exact": "| **FR-L1-07** | state 自動登録 (5 イベント hook: PLAN 起票 / コード変更 / Codex 実行 / ゲート通過 / 停止)。※ extended (PLAN-REVERSE-02 fullback、2026-06-02): **session-log hook (SessionStart/PostToolUse/Stop) が session イベントを fail-open で記録し PLAN 単位ダイジェストに圧縮** → continuation/audit/FR-L1-19 へ接続。state 自動登録 (fail-close) とは別系統の観測 hook (実装 src/runtime/session-log.ts、PLAN-L6-03/L7-01)。※ extended (PLAN-REVERSE-03 fullback、2026-06-02): session-log の facet として **forced-stop 検出** (SessionStart で dangling session を強制停止と推定 → 是正フィードバックのみ記録 → concept §2.6.1 `forced_stop`=`agent_runaway` 級 Recovery trigger、起票は人間 yes、実装 src/runtime/forced-stop.ts、PLAN-L6-04/L7-02) | db-auto-registration | hook イベント | state 自動更新、手動登録漏れ排除、session ダイジェスト、forced-stop フィードバック | P0 | HM-04 / HM-03 (hook 配線) |",
+      "carry_state": "preserved_pending_rehome",
+      "successor_requirement_ids": [],
+      "requirement_change_authority": "explicit_human_decision_only",
+      "crosswalk_status": "partial",
+      "related_adopted_pairs": [
+        "HELIXOS-L2-019"
+      ],
+      "retained_or_related_conditions": [
+        "HELIXOS-L2-019/L11-019採択済みpairはevent/source revision/correlation/actor、provenanceと訂正履歴、重複・stale・拒否・未実行の識別、失敗時の再構築と未完義務保持を定める。"
+      ],
+      "residual_conditions": [
+        "PLAN起票・コード変更・Codex実行・gate通過・停止の5 eventをhookで自動登録し手動登録漏れを排除する明示的なtrigger/output条件は当該pairにない。",
+        "fail-closeのstate自動登録と別系統にあるfail-openのSessionStart/PostToolUse/Stop記録、PLAN単位digestとcontinuation/audit/FR-L1-19接続は現行pairにない。",
+        "dangling sessionをforced-stopと推定するheuristic、是正feedbackのみ記録しrecovery起票は人間yesとする条件は現行pairにない。"
+      ],
+      "current_candidate_context": {
+        "route_kind": "single",
+        "candidate_targets": [
+          "HELIX-OS"
+        ],
+        "product_responsibilities": [
+          {
+            "product": "HELIX-OS",
+            "responsibility": "project実行eventに伴う状態更新の管理責務を担う候補。"
+          }
+        ],
+        "unresolved": [
+          "旧hook列挙とfail-open／fail-close等のbindingは実装・承認対象にしない。"
+        ],
+        "authority_effect": "none",
+        "successor_assignment_status": "unassigned",
+        "assessment": "Product-routing row proposes HELIX-OS ownership of state updates caused by project execution events; unresolved旧hook列挙とfail-open/fail-close binding; successor_assignment_status=unassigned."
+      }
+    },
+    {
+      "identity": "FR-L1-08",
+      "source_line": 39,
+      "source_line_sha256": "9a96c4b991ac24669fbaa4fc357c91f985c49328e3cc2352b57c4a19447ba248",
+      "source_condition_exact": "| **FR-L1-08** | 検出 → モード自動ルーティング (drift / 劣化 / 暴走 / 障害 → Recovery / Incident / Reverse / Refactor) | detection-routing | 検出シグナル | モード発動トリガー、対応 kind PLAN 起票。※ extended: drive 自動判定 (FR-L1-41) を入力に加える | P0 | PM-01 (Mode ステータス) / HM-03 (drive 判定 配線) |",
+      "carry_state": "preserved_pending_rehome",
+      "successor_requirement_ids": [],
+      "requirement_change_authority": "explicit_human_decision_only",
+      "crosswalk_status": "partial",
+      "related_adopted_pairs": [
+        "HELIXOS-L2-017",
+        "HELIXOS-L2-022",
+        "HARNESS-L2-003",
+        "HARNESS-L2-004"
+      ],
+      "retained_or_related_conditions": [
+        "HELIXOS-L2-017/L11-017のticket/workflowとL2-022/L11-022の観測→candidate→既存判断主体→ticket→変更・検証→再観測、およびHARNESS-L2-003/004対は工程状態・差戻し・変更影響に関係する。"
+      ],
+      "residual_conditions": [
+        "drift／劣化／暴走／障害からRecovery／Incident／Reverse／Refactorへ対応させる完全なtrigger-to-mode tableとpositive/negative oracleは固定pairにない。",
+        "FR-L1-41のdrive自動判定をrouting inputへ加える条件、対応kind PLAN起票、mode発動の自動authorityはこのpairにない。",
+        "mode発動triggerの自動化範囲やrouting失敗・unknown時の具体結果はこのpairから確定しない。"
+      ],
+      "current_candidate_context": {
+        "route_kind": "split",
+        "candidate_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS"
+        ],
+        "product_responsibilities": [
+          {
+            "product": "HELIX-HARNESS",
+            "responsibility": "drift・劣化等のsignalに対応するworkflow意味とmode条件を定義する候補。"
+          },
+          {
+            "product": "HELIX-OS",
+            "responsibility": "signalから管理上のmode・作業状態へのrouting運転を担う候補。"
+          }
+        ],
+        "unresolved": [
+          "具体detector・自動発動のauthorityは未判断。"
+        ],
+        "authority_effect": "none",
+        "successor_assignment_status": "unassigned",
+        "assessment": "Product-routing row splits HARNESS workflow meaning/mode conditions from HELIX-OS routing operation; concrete detector and automatic activation authority unresolved; successor_assignment_status=unassigned."
+      }
+    },
+    {
+      "identity": "FR-L1-09",
+      "source_line": 40,
+      "source_line_sha256": "559bc6ef9348513d5e4910d0febed7080716144f9369338046ffa57013a371af",
+      "source_condition_exact": "| **FR-L1-09** | AI エージェントガード (agent_mandatory 監査 / budget 上限 / gate fail-close / lock) | recovery-workflow | AI 操作ログ、役割定義 | 逸脱警告・停止、audit ログ | P0 | **HM-05 (直接 agent guard audit)** / HM-03 |",
+      "carry_state": "preserved_pending_rehome",
+      "successor_requirement_ids": [],
+      "requirement_change_authority": "explicit_human_decision_only",
+      "crosswalk_status": "partial",
+      "related_adopted_pairs": [
+        "HELIXOS-L2-018",
+        "HELIXSECURITY-L2-007",
+        "HELIXSECURITY-L2-008",
+        "HELIXSECURITY-L2-009"
+      ],
+      "retained_or_related_conditions": [
+        "HELIXOS-L2-018/L11-018はassignment・attempt・期限/budget/scopeのbinding、停止、隔離、未完義務handoffを扱う。HELIXSECURITY-L2-007/L11-007はWorker制約の適用・観測とhost fallback拒否、L2-008/L11-008はoperation-specific authority、L2-009/L11-009はrevoke/quarantine停止伝播を扱う。"
+      ],
+      "residual_conditions": [
+        "旧agent_mandatory role inventory/auditの意味と逸脱警告・停止の全条件を一つに結ぶ採択pairは確認できない。",
+        "budget上限の単位・計上・超過時の正確な判定oracle、旧lockのscope/lifecycleを定めるpairはない。既存OS budget/stop、SECURITY authority/constraintだけから旧意味の同値を推定しない。"
+      ],
+      "current_candidate_context": {
+        "route_kind": "single",
+        "candidate_targets": [
+          "HELIX-OS"
+        ],
+        "product_responsibilities": [
+          {
+            "product": "HELIX-OS",
+            "responsibility": "Worker実行の役割・budget・停止・監査統制を担う候補。"
+          }
+        ],
+        "unresolved": [
+          "この候補は旧guard方式の採用を意味しない。"
+        ],
+        "authority_effect": "none",
+        "successor_assignment_status": "unassigned",
+        "assessment": "Product-routing row proposes HELIX-OS responsibility for Worker role, budget, stop, and audit control; explicitly says it does not adopt old guard method; successor_assignment_status=unassigned."
+      }
+    },
+    {
+      "identity": "FR-L1-10",
+      "source_line": 41,
+      "source_line_sha256": "1013ad02aca90ee27b72a7768dacd56faab78f321d7867b9f39bdda65d747c90",
+      "source_condition_exact": "| **FR-L1-10** | Recovery 収束フロー (再開ポイント確定 / 認識訂正履歴 / cutover_orchestrator ロールバック) | recovery-workflow | 暴走状態ログ、PLAN | recovery-log (再開ポイント・認識訂正履歴)。※ extended (A-54 audit 軸1 C-04): recovery kind PLAN は `aim` 必須 + 7 必須セクション (事故記録 / 議論順序 / 認識訂正履歴 / 中間結論 / context 再構築 / 再開ポイント / 再発防止、L0 §6.2)。hotfix ブランチは postmortem doc 存在 + recovery PLAN 紐付けを Branch Protection で必須化 (L0 §6.3、FR-L1-17 連動)。※ extended (既存 source capability W17 突合、2026-06-04): lock / job queue / rollback / cutover rehearsal は Recovery 収束と本番・準本番の安全停止に属する release hardening 能力として扱い、既定開発経路では任意、Recovery / Incident / Deploy 系 PLAN では証跡化対象にする | P0 | **HM-06 (直接)** / PM-03 |",
+      "carry_state": "preserved_pending_rehome",
+      "successor_requirement_ids": [],
+      "requirement_change_authority": "explicit_human_decision_only",
+      "crosswalk_status": "partial",
+      "related_adopted_pairs": [
+        "HELIXOS-L2-019",
+        "HELIXOS-L2-023",
+        "HELIXSECURITY-L2-009",
+        "HARNESS-L2-003",
+        "HARNESS-L2-004"
+      ],
+      "retained_or_related_conditions": [
+        "HELIXOS-L2-019/L11-019のcheckpoint、訂正履歴、continuity、失敗時再構築と未完義務保持、HELIXOS-L2-023/L11-023のhandoff、HELIXSECURITY-L2-009/L11-009のrevoke/quarantine伝播、およびHARNESS-L2-003/004の再開・backflow/影響条件が関連する。"
+      ],
+      "residual_conditions": [
+        "Recovery PLANのaimと事故記録・議論順序・認識訂正履歴・中間結論・context再構築・再開point・再発防止の7節を必須化する条件と受入oracleは固定pairにない。",
+        "cutover_orchestrator rollback、hotfix postmortem文書とRecovery PLAN紐付けをBranch Protectionで必須化する技術bindingは対象pairにない。",
+        "lock/job queue/rollback/cutover rehearsalをdefaultでは任意、Recovery/Incident/Deploy PLANで証跡化するrelease-hardening適用条件は対象pairにない。"
+      ],
+      "current_candidate_context": {
+        "route_kind": "split",
+        "candidate_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS"
+        ],
+        "product_responsibilities": [
+          {
+            "product": "HELIX-HARNESS",
+            "responsibility": "Recovery工程・再開条件・訂正履歴の契約を定義する候補。"
+          },
+          {
+            "product": "HELIX-OS",
+            "responsibility": "継続・復旧と実行状態の管理を担う候補。"
+          }
+        ],
+        "unresolved": [
+          "旧orchestrator・rollback・branch protection等の技術bindingは採用・承認しない。"
+        ],
+        "authority_effect": "none",
+        "successor_assignment_status": "unassigned",
+        "assessment": "Product-routing row splits HARNESS Recovery engineering/restart/correction-history contract from HELIX-OS continuity/recovery execution; old orchestrator/rollback/branch-protection bindings excluded; successor_assignment_status=unassigned."
+      }
+    }
+  ],
+  "method_and_limits": [
+    "Read only static comparison of archived source rows, fixed PO L2/L11 bytes, full-audit/carry-forward records, and current product-routing candidate rows.",
+    "PO agreement applies to fixed L2/L11 requirement revisions. It does not generate a successor assignment or atom-level closure for these legacy identities.",
+    "Old source hooks/runtime are read-only; no old workflow, hook, CLI, runtime, test, or CI was executed.",
+    "Condition status is partial for each row: related adopted requirements preserve some adjacent duties, while the listed old-specific conditions lack a direct adopted pair/oracle. This is not implementation, runtime, or acceptance evidence."
+  ]
+}
