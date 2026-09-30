@@ -1,7 +1,7 @@
 {
   "schema_version": "v13-github-autonomous-17-condition-audit.v1",
   "audit_id": "v13-github-autonomous-17-condition-audit-2026-09-30",
-  "created_against_revision": "5943f27b51aebfb0f62a377f51bfe7f99995fedf",
+  "created_against_revision": "0eabc8c56f528236892f4f79f10f1553049b698b",
   "fixed_comparison_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
   "later_pair_decision_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
   "authority_effect": "none",
@@ -2103,6 +2103,116 @@
         "decision_treatment": "未採択（訂正L11のexact bytesをPOが再確認するまで未採択）",
         "decision_record_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
         "decision_source_revision": "5aa100319361b0cc86edd3c51815ec777d55410a"
+      },
+      {
+        "identity": "HELIXOS-L2-034",
+        "decision_record": "57-candidate decision",
+        "status": "adopted",
+        "decision_treatment": "採択",
+        "relation": "原指示・findingのdisposition根拠と異議履歴に限定。duplicate/false-positive/accepted-risk等の根拠、異議・再開の記録を補うが、旧GitHub episode全体や全finding routeの対応完了ではない。",
+        "decision_row_line": 57,
+        "decision_row_sha256": "370bbd2d59d583ba6f3d17bb958508feffcb33887a15adc1cc13ca3f1f5268c7",
+        "decision_row_text": "| `HELIXOS-L2-034` | 採択 | `MPR-RC-HELIXOS-L2-034-002` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:b4b8a68a15eabdc3dcf40d069fdf262389a43eec1f8ce8647e66ca22e7b9a600` | `HELIXOS-L2-034` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:6809e36b9704482425d1edfd0bc65aac0d5179dc461472695aecd021a78dfd01` | `docs/governance/audits/requirement-registration/os-directive-disposition-coverage-receipt-2026-09-28-r2.json` |",
+        "decision_record_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "target_pair": {
+          "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "l2_section_sha256": "b4b8a68a15eabdc3dcf40d069fdf262389a43eec1f8ce8647e66ca22e7b9a600",
+          "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "l11_section_sha256": "6809e36b9704482425d1edfd0bc65aac0d5179dc461472695aecd021a78dfd01",
+          "l2_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "l11_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+        }
+      },
+      {
+        "identity": "HELIXOS-L2-035",
+        "decision_record": "57-candidate decision",
+        "status": "adopted",
+        "decision_treatment": "採択",
+        "relation": "選択scope内のPR lifecycle event intakeと、同じeventからの監査job要求の冪等生成まで。監査実行・review・merge・Issue→tag/memory/DB episodeの完結は含まない。",
+        "decision_row_line": 58,
+        "decision_row_sha256": "86475e594d97ea452e6a1e41b7f7c8761a5d60ce4ab4f9062ce044ece6224222",
+        "decision_row_text": "| `HELIXOS-L2-035` | 採択 | `MPR-RC-HELIXOS-L2-035-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:01ab4c9e572c5af909e4dbf46fb8f44866dd6cc7701dddc88b8dabbe14fb6c03` | `HELIXOS-L2-035` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:8507d8f43c2aafae4d8b08fc27e9c3c7c28e6d4a74d912b7667d3dc27786c742` | `docs/governance/audits/requirement-registration/os-pr-event-intake-coverage-receipt-2026-09-28.json` |",
+        "decision_record_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "target_pair": {
+          "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "l2_section_sha256": "01ab4c9e572c5af909e4dbf46fb8f44866dd6cc7701dddc88b8dabbe14fb6c03",
+          "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "l11_section_sha256": "8507d8f43c2aafae4d8b08fc27e9c3c7c28e6d4a74d912b7667d3dc27786c742",
+          "l2_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "l11_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+        }
+      },
+      {
+        "identity": "HELIXOS-L2-046",
+        "decision_record": "57-candidate decision",
+        "status": "adopted",
+        "decision_treatment": "採択",
+        "relation": "dispatch／実行／Ready／merge admission間で対象・authority・HEAD/revision・scope・既存verification義務/結果を照合し、変化時はstale/未完へ戻す接続条件。新しいapproval/check/scope/skip/許可を作らない。",
+        "decision_row_line": 69,
+        "decision_row_sha256": "30b808ddda1ac9fb69931bfcce1d2f31f03be9aa0f78a34bb71ce02189ccb03a",
+        "decision_row_text": "| `HELIXOS-L2-046` | 採択 | `MPR-RC-HELIXOS-L2-046-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d` | `HELIXOS-L2-046` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0` | `docs/governance/audits/requirement-registration/helixos-rfa-scope-coverage-receipt-2026-09-28.json` |",
+        "decision_record_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "target_pair": {
+          "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "l2_section_sha256": "c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d",
+          "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "l11_section_sha256": "3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0",
+          "l2_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "l11_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+        }
+      },
+      {
+        "identity": "HELIXOS-L2-051",
+        "decision_record": "57-candidate decision",
+        "status": "conditionally_adopted",
+        "decision_treatment": "条件付き採択：本構成でCursorを作成専用、Claude優先は適用可能な評価根拠のある要求・設計taskのみ。",
+        "relation": "条件付き採択の配置適性範囲のみ（Cursor作成専用、Claude優先は適用根拠のある要求/設計task）。旧AI-A/B全機能、一般のlane authorityやsingle-writer leaseを包括採択しない。",
+        "decision_row_line": 74,
+        "decision_row_sha256": "b9cef971102d6f8ec1f03c1eca2d77fb40b8490b0968a66f535daa78f992f218",
+        "decision_row_text": "| `HELIXOS-L2-051` | 条件付き採択：本構成でCursorを作成専用、Claude優先は適用可能な評価根拠のある要求・設計taskのみ。 | `MPR-RC-HELIXOS-L2-051-002` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:54fd39fbeb3786bc739560856afb14e3cf892b1bb717d98ceb1212df09fe7f2b` | `HELIXOS-L2-051` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:e01daa2fbf1ad7c2e9b6df54a9acdf022a3b821123d8904f8a171a4ede87b684` | `docs/governance/audits/requirement-registration/ops-o4-coverage-receipt-2026-09-29-r2.json#HELIXOS-L2-051` |",
+        "decision_record_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "target_pair": {
+          "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "l2_section_sha256": "54fd39fbeb3786bc739560856afb14e3cf892b1bb717d98ceb1212df09fe7f2b",
+          "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "l11_section_sha256": "e01daa2fbf1ad7c2e9b6df54a9acdf022a3b821123d8904f8a171a4ede87b684",
+          "l2_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "l11_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+        }
+      },
+      {
+        "identity": "HELIXOS-L2-052",
+        "decision_record": "57-candidate decision",
+        "status": "adopted",
+        "decision_treatment": "採択",
+        "relation": "明示merge後のlocal owner-bound cleanupと後続PRのbase/review-binding再照合。remote ref deletionはmergeや候補だけでは許可されず、対象refとdelete作用を含む現行authorityが必要。",
+        "decision_row_line": 75,
+        "decision_row_sha256": "32d23b8648dece8231c8291f2b4f16f992114756091fa560cddec413a1aef06c",
+        "decision_row_text": "| `HELIXOS-L2-052` | 採択 | `MPR-RC-HELIXOS-L2-052-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:d9e839c319c54f826bb065ce065ca5a8af126a11abd8f15c9f3183964a4e5345` | `HELIXOS-L2-052` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:70b5bb6bd967cfc15e85221ed6c1b842fb6fc92318b735867661223bf64ac1e2` | `docs/governance/audits/requirement-registration/ops-o6-coverage-receipt-2026-09-29.json` |",
+        "decision_record_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "target_pair": {
+          "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "l2_section_sha256": "d9e839c319c54f826bb065ce065ca5a8af126a11abd8f15c9f3183964a4e5345",
+          "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "l11_section_sha256": "70b5bb6bd967cfc15e85221ed6c1b842fb6fc92318b735867661223bf64ac1e2",
+          "l2_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "l11_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+        }
       }
     ],
     "prior_individual_audit_exclusions": [
@@ -2220,7 +2330,23 @@
       "HELIXSECURITY-L2-013",
       "HELIXSECURITY-L2-023"
     ],
-    "later_decision_scope_note": "All 57 rows and all 11 rows are preserved in the identity/status screen, including the 2 overlapping exact identities; each decision only applies to its pinned revision/conditions and does not establish coverage of any §6 source row."
+    "later_decision_scope_note": "All 57 rows and all 11 rows are preserved in the identity/status screen, including the 2 overlapping exact identities; each decision only applies to its pinned revision/conditions and does not establish coverage of any §6 source row.",
+    "review_correction_R2411_01": {
+      "comment_id": 5911821503,
+      "review_id": "R2411-01",
+      "finding": "Major",
+      "decision_record_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "new_base_revision": "0eabc8c56f528236892f4f79f10f1553049b698b",
+      "additional_os_pairs": [
+        "HELIXOS-L2-034",
+        "HELIXOS-L2-035",
+        "HELIXOS-L2-046",
+        "HELIXOS-L2-051",
+        "HELIXOS-L2-052"
+      ],
+      "scope": "三source条件のcurrent HEAD review/explicit merge、finding disposition、PR event intake、task lane/assignment、merge後cleanup/rechainの限定照合。",
+      "authority_effect": "none"
+    }
   },
   "source_conditions": [
     {
@@ -2245,9 +2371,9 @@
         "relevant fixed L2/L11; candidate IDs remain unadopted"
       ],
       "source_clause": "旧sourceはissueからmemory/DB/tagまでを一つのepisodeに束ね、PR-only main、strict aggregate check、bypass禁止、人間approval不要、AI-A/AI-B二主体、同一HEAD review/DB receiptsを要求する。",
-      "retained": "現行は作成側と独立review対応側を分離し、Draft→exact HEAD review→blocker対応→Ready→明示merge→read-afterを保持。Issueはticketのprojectionであり、merge/closeからticket完了を生成しない。",
+      "retained": "現行GitHub modelの作成側／独立review側の分離、exact base/content HEAD review、stale=0後の明示merge/read-afterに加え、採択OS-046はdispatchからmerge admissionまでの対象・authority・HEAD/revision・scope・既存検証義務/結果の連続照合を保持する。OS-034はfindingの証拠付きdispositionと異議履歴、OS-035はPR event intakeと監査job要求の冪等性を、それぞれ限定scopeで保持する。",
       "changed_or_not_carried": "AI-A/AI-Bという固定主体、harness-check、CI/DB/タグ/Memoryまでの統合episode、通常closeをCloses #Nに限る規則は現行契約へそのまま持ち越さない。approval要件は対象の意味・作用に応じたauthorityから読む。",
-      "unresolved": "receipt種類・stale条件・finding disposition・issue outcomeの対応表を旧FR18–23/FR17と現行modelごとに完全照合する余地が残る。",
+      "unresolved": "OS-034は旧FR17/18–23の全finding classification・current_pr_fix/successor routing・5 outcome closure receiptを閉じない。OS-035はeventからaudit job requestを作るまでであり、Issue→PLAN→branch→PR→CI→merge→tag→memory/DB全episode、DB追従receipt、monitoring/consumer closureを与えない。OS-046はその接続条件であり、このsource identityのformal successorではない。",
       "counterexamples": [
         "PR reviewをpassにしても別の必要な人間decisionを満たさない。Issue merge/closeだけでticketを完了にしない。"
       ],
@@ -2261,34 +2387,99 @@
       ],
       "near_later_decisions": [
         {
-          "identity": "HELIXOS-L2-049",
+          "identity": "HELIXOS-L2-034",
           "decision_record": "57-candidate decision",
-          "status": "conditionally_adopted",
-          "relation": "状態区分と低干渉task割当の条件付き採択。設定上限と割当可能／割当中／実行中／遊休／検証待ち／統合待ち等を分ける。READY ticketの依存・順序・deadline・scope・single-writer/authority lease・changed-path競合と、後段検証義務／担当／実施capacityを割当前に保つ。task自身のreview/merge完了をassignment前提にしない。OS単独でlow-impactを定義せず、配置案と既存scope/競合情報を用いる。固定Worker数、旧pool/queue/provider/runtime/CI/PR/DBは持ち込まない。",
-          "decision_row_line": 72,
-          "decision_row_sha256": "f0856ae991e2b0917c4a5196b903cd7ba8a1b7026397235826c77abbbe1ab939",
-          "decision_row_text": "| `HELIXOS-L2-049` | 条件付き採択：割当前に後段の検証義務・担当・capacityを確保する。割当先task自体のreview/merge完了は割当条件にしない（訂正L11 `HELIXOS-L2-049-003`）。 | `MPR-RC-HELIXOS-L2-049-003` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:e9372f19e5064cb5470141fef25a3212aa65cede5d44ecfff8c9ed86da83668b` | `HELIXOS-L2-049` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:d5a3a0c361a6d0056a8c608f5230a52d206c000d7ac81ff969aeaba30ad4d810` | `docs/governance/audits/requirement-registration/helixos-worker-utilization-coverage-receipt-2026-09-29-r4.json#HELIXOS-L2-049` |",
-          "decision_treatment": "条件付き採択：割当前に後段の検証義務・担当・capacityを確保する。割当先task自体のreview/merge完了は割当条件にしない（訂正L11 `HELIXOS-L2-049-003`）。",
+          "status": "adopted",
+          "decision_treatment": "採択",
+          "relation": "原指示・findingのdisposition根拠と異議履歴に限定。duplicate/false-positive/accepted-risk等の根拠、異議・再開の記録を補うが、旧GitHub episode全体や全finding routeの対応完了ではない。",
+          "decision_row_line": 57,
+          "decision_row_sha256": "370bbd2d59d583ba6f3d17bb958508feffcb33887a15adc1cc13ca3f1f5268c7",
+          "decision_row_text": "| `HELIXOS-L2-034` | 採択 | `MPR-RC-HELIXOS-L2-034-002` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:b4b8a68a15eabdc3dcf40d069fdf262389a43eec1f8ce8647e66ca22e7b9a600` | `HELIXOS-L2-034` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:6809e36b9704482425d1edfd0bc65aac0d5179dc461472695aecd021a78dfd01` | `docs/governance/audits/requirement-registration/os-directive-disposition-coverage-receipt-2026-09-28-r2.json` |",
           "decision_record_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
-          "decision_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+          "decision_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "target_pair": {
+            "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+            "l2_section_sha256": "b4b8a68a15eabdc3dcf40d069fdf262389a43eec1f8ce8647e66ca22e7b9a600",
+            "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+            "l11_section_sha256": "6809e36b9704482425d1edfd0bc65aac0d5179dc461472695aecd021a78dfd01",
+            "l2_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+            "l11_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+          }
         },
         {
-          "identity": "HELIXOS-L2-050",
+          "identity": "HELIXOS-L2-035",
+          "decision_record": "57-candidate decision",
+          "status": "adopted",
+          "decision_treatment": "採択",
+          "relation": "選択scope内のPR lifecycle event intakeと、同じeventからの監査job要求の冪等生成まで。監査実行・review・merge・Issue→tag/memory/DB episodeの完結は含まない。",
+          "decision_row_line": 58,
+          "decision_row_sha256": "86475e594d97ea452e6a1e41b7f7c8761a5d60ce4ab4f9062ce044ece6224222",
+          "decision_row_text": "| `HELIXOS-L2-035` | 採択 | `MPR-RC-HELIXOS-L2-035-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:01ab4c9e572c5af909e4dbf46fb8f44866dd6cc7701dddc88b8dabbe14fb6c03` | `HELIXOS-L2-035` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:8507d8f43c2aafae4d8b08fc27e9c3c7c28e6d4a74d912b7667d3dc27786c742` | `docs/governance/audits/requirement-registration/os-pr-event-intake-coverage-receipt-2026-09-28.json` |",
+          "decision_record_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "decision_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "target_pair": {
+            "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+            "l2_section_sha256": "01ab4c9e572c5af909e4dbf46fb8f44866dd6cc7701dddc88b8dabbe14fb6c03",
+            "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+            "l11_section_sha256": "8507d8f43c2aafae4d8b08fc27e9c3c7c28e6d4a74d912b7667d3dc27786c742",
+            "l2_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+            "l11_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+          }
+        },
+        {
+          "identity": "HELIXOS-L2-046",
+          "decision_record": "57-candidate decision",
+          "status": "adopted",
+          "decision_treatment": "採択",
+          "relation": "dispatch／実行／Ready／merge admission間で対象・authority・HEAD/revision・scope・既存verification義務/結果を照合し、変化時はstale/未完へ戻す接続条件。新しいapproval/check/scope/skip/許可を作らない。",
+          "decision_row_line": 69,
+          "decision_row_sha256": "30b808ddda1ac9fb69931bfcce1d2f31f03be9aa0f78a34bb71ce02189ccb03a",
+          "decision_row_text": "| `HELIXOS-L2-046` | 採択 | `MPR-RC-HELIXOS-L2-046-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d` | `HELIXOS-L2-046` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0` | `docs/governance/audits/requirement-registration/helixos-rfa-scope-coverage-receipt-2026-09-28.json` |",
+          "decision_record_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "decision_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "target_pair": {
+            "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+            "l2_section_sha256": "c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d",
+            "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+            "l11_section_sha256": "3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0",
+            "l2_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+            "l11_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+          }
+        },
+        {
+          "identity": "HELIXOS-L2-051",
           "decision_record": "57-candidate decision",
           "status": "conditionally_adopted",
-          "relation": "review待ち件数／待ち時間／rework占有率／reviewer稼働率をtyped閾値と照合し、reviewer capacity不足が主因で他のdownstream詰まりがない場合だけ上限内の別対象review assignmentを増やす。原因別backpressure、重複主review拒否、HEAD変更時の新世代review、active lease保全を含む。増枠はmerge条件を緩めず、新merge／branch変更／Ready権限を生まない。既存review_merge担当は既存admission後にmerge可能。具体threshold／provider／reviewer数は新設しない。",
-          "decision_row_line": 73,
-          "decision_row_sha256": "d8c7710bdc66863227e96b419e9271a73a6dba695cf40fb447a44c102eabf78b",
-          "decision_row_text": "| `HELIXOS-L2-050` | 条件付き採択：capacity増枠から新しいmerge権限を発生させない。既存review_merge担当は既存admission後にmergeできる。branch変更・Ready権限は与えない（訂正L11 `HELIXOS-L2-050-003`）。 | `MPR-RC-HELIXOS-L2-050-003` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:fab5fdfae9cfd2211f8c2fd6dfad5ce7b065e007ef11ca62f55420baa5033b6d` | `HELIXOS-L2-050` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:cf4866f2d8beee83eda5389e3b98100cd37cbd609f7c797617b499c1381bfafb` | `docs/governance/audits/requirement-registration/helixos-reviewer-capacity-coverage-receipt-2026-09-29-r3.json#HELIXOS-L2-050` |",
-          "decision_treatment": "条件付き採択：capacity増枠から新しいmerge権限を発生させない。既存review_merge担当は既存admission後にmergeできる。branch変更・Ready権限は与えない（訂正L11 `HELIXOS-L2-050-003`）。",
+          "decision_treatment": "条件付き採択：本構成でCursorを作成専用、Claude優先は適用可能な評価根拠のある要求・設計taskのみ。",
+          "relation": "条件付き採択の配置適性範囲のみ（Cursor作成専用、Claude優先は適用根拠のある要求/設計task）。旧AI-A/B全機能、一般のlane authorityやsingle-writer leaseを包括採択しない。",
+          "decision_row_line": 74,
+          "decision_row_sha256": "b9cef971102d6f8ec1f03c1eca2d77fb40b8490b0968a66f535daa78f992f218",
+          "decision_row_text": "| `HELIXOS-L2-051` | 条件付き採択：本構成でCursorを作成専用、Claude優先は適用可能な評価根拠のある要求・設計taskのみ。 | `MPR-RC-HELIXOS-L2-051-002` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:54fd39fbeb3786bc739560856afb14e3cf892b1bb717d98ceb1212df09fe7f2b` | `HELIXOS-L2-051` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:e01daa2fbf1ad7c2e9b6df54a9acdf022a3b821123d8904f8a171a4ede87b684` | `docs/governance/audits/requirement-registration/ops-o4-coverage-receipt-2026-09-29-r2.json#HELIXOS-L2-051` |",
           "decision_record_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
-          "decision_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+          "decision_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "target_pair": {
+            "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+            "l2_section_sha256": "54fd39fbeb3786bc739560856afb14e3cf892b1bb717d98ceb1212df09fe7f2b",
+            "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+            "l11_section_sha256": "e01daa2fbf1ad7c2e9b6df54a9acdf022a3b821123d8904f8a171a4ede87b684",
+            "l2_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+            "l11_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+          }
         }
       ],
       "formal_successor_assigned": false,
       "requirement_adopted_by_audit": false,
       "source_condition_closed": false,
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "review_correction_R2411_01": "R2411-01で、対応する後発OS L2/L11採択pairの限定scopeを加味して再判定。旧source条件のsuccessor/adoption/closureは主張しない。"
     },
     {
       "source_identity": {
@@ -2312,9 +2503,9 @@
         "relevant fixed L2/L11; candidate IDs remain unadopted"
       ],
       "source_clause": "旧PO判断は未承認中の非正本Draft PRをreview proposalとして許す。Ready/mergeは必要承認、current HEAD review、CI、DB追従の後だけ。",
-      "retained": "Draft PRは差分共有・reviewに使える。要求意味を変更する上流decisionは対象revisionに結び、review/CI状態と分離する。",
+      "retained": "旧行の「必要承認後」「current HEAD review後」「Ready/merge境界」は、現行GitHub modelのexact base/content HEAD review、stale=0・必要decision/admission再照合と独立の明示merge/read-afterで保持される。採択OS-046もdispatch・実行・Ready・merge admission間でHEAD/revision・authority・scope・検証義務/結果が変わればstale/未完へ戻し、再照合することを定める。",
       "changed_or_not_carried": "旧条件の「承認前でもproposalを出せる」は残すが、旧CI/DB receiptは現行条件でない。Draftは要求採択や操作許可を生まない。",
-      "unresolved": "要求PRでどのdecisionが必要か、review/Ready条件とmerge admissionの切り分けを具体的対象revisionで維持する。",
+      "unresolved": "旧CI/DB追従receipt、AI-Bという固定主体、Draft→Readyに必要な旧workflow gateは現行の同一条件としては持ち越さない。CIは未構築であり、CI greenやDB receiptを実行済み条件として仮定しない。OS-046は現在の適用契約の検証義務を照合する接続条件で、旧CI/DB形式やsource row successorを定めない。",
       "counterexamples": [
         "Draft PRの作成やCI greenからPOの要求意味判断を生成しない。"
       ],
@@ -2325,34 +2516,33 @@
       ],
       "near_later_decisions": [
         {
-          "identity": "HELIXOS-L2-049",
+          "identity": "HELIXOS-L2-046",
           "decision_record": "57-candidate decision",
-          "status": "conditionally_adopted",
-          "relation": "状態区分と低干渉task割当の条件付き採択。設定上限と割当可能／割当中／実行中／遊休／検証待ち／統合待ち等を分ける。READY ticketの依存・順序・deadline・scope・single-writer/authority lease・changed-path競合と、後段検証義務／担当／実施capacityを割当前に保つ。task自身のreview/merge完了をassignment前提にしない。OS単独でlow-impactを定義せず、配置案と既存scope/競合情報を用いる。固定Worker数、旧pool/queue/provider/runtime/CI/PR/DBは持ち込まない。",
-          "decision_row_line": 72,
-          "decision_row_sha256": "f0856ae991e2b0917c4a5196b903cd7ba8a1b7026397235826c77abbbe1ab939",
-          "decision_row_text": "| `HELIXOS-L2-049` | 条件付き採択：割当前に後段の検証義務・担当・capacityを確保する。割当先task自体のreview/merge完了は割当条件にしない（訂正L11 `HELIXOS-L2-049-003`）。 | `MPR-RC-HELIXOS-L2-049-003` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:e9372f19e5064cb5470141fef25a3212aa65cede5d44ecfff8c9ed86da83668b` | `HELIXOS-L2-049` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:d5a3a0c361a6d0056a8c608f5230a52d206c000d7ac81ff969aeaba30ad4d810` | `docs/governance/audits/requirement-registration/helixos-worker-utilization-coverage-receipt-2026-09-29-r4.json#HELIXOS-L2-049` |",
-          "decision_treatment": "条件付き採択：割当前に後段の検証義務・担当・capacityを確保する。割当先task自体のreview/merge完了は割当条件にしない（訂正L11 `HELIXOS-L2-049-003`）。",
+          "status": "adopted",
+          "decision_treatment": "採択",
+          "relation": "dispatch／実行／Ready／merge admission間で対象・authority・HEAD/revision・scope・既存verification義務/結果を照合し、変化時はstale/未完へ戻す接続条件。新しいapproval/check/scope/skip/許可を作らない。",
+          "decision_row_line": 69,
+          "decision_row_sha256": "30b808ddda1ac9fb69931bfcce1d2f31f03be9aa0f78a34bb71ce02189ccb03a",
+          "decision_row_text": "| `HELIXOS-L2-046` | 採択 | `MPR-RC-HELIXOS-L2-046-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d` | `HELIXOS-L2-046` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0` | `docs/governance/audits/requirement-registration/helixos-rfa-scope-coverage-receipt-2026-09-28.json` |",
           "decision_record_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
-          "decision_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
-        },
-        {
-          "identity": "HELIXOS-L2-050",
-          "decision_record": "57-candidate decision",
-          "status": "conditionally_adopted",
-          "relation": "review待ち件数／待ち時間／rework占有率／reviewer稼働率をtyped閾値と照合し、reviewer capacity不足が主因で他のdownstream詰まりがない場合だけ上限内の別対象review assignmentを増やす。原因別backpressure、重複主review拒否、HEAD変更時の新世代review、active lease保全を含む。増枠はmerge条件を緩めず、新merge／branch変更／Ready権限を生まない。既存review_merge担当は既存admission後にmerge可能。具体threshold／provider／reviewer数は新設しない。",
-          "decision_row_line": 73,
-          "decision_row_sha256": "d8c7710bdc66863227e96b419e9271a73a6dba695cf40fb447a44c102eabf78b",
-          "decision_row_text": "| `HELIXOS-L2-050` | 条件付き採択：capacity増枠から新しいmerge権限を発生させない。既存review_merge担当は既存admission後にmergeできる。branch変更・Ready権限は与えない（訂正L11 `HELIXOS-L2-050-003`）。 | `MPR-RC-HELIXOS-L2-050-003` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:fab5fdfae9cfd2211f8c2fd6dfad5ce7b065e007ef11ca62f55420baa5033b6d` | `HELIXOS-L2-050` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:cf4866f2d8beee83eda5389e3b98100cd37cbd609f7c797617b499c1381bfafb` | `docs/governance/audits/requirement-registration/helixos-reviewer-capacity-coverage-receipt-2026-09-29-r3.json#HELIXOS-L2-050` |",
-          "decision_treatment": "条件付き採択：capacity増枠から新しいmerge権限を発生させない。既存review_merge担当は既存admission後にmergeできる。branch変更・Ready権限は与えない（訂正L11 `HELIXOS-L2-050-003`）。",
-          "decision_record_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
-          "decision_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+          "decision_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "target_pair": {
+            "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+            "l2_section_sha256": "c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d",
+            "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+            "l11_section_sha256": "3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0",
+            "l2_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+            "l11_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+          }
         }
       ],
       "formal_successor_assigned": false,
       "requirement_adopted_by_audit": false,
       "source_condition_closed": false,
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "review_correction_R2411_01": "R2411-01で、対応する後発OS L2/L11採択pairの限定scopeを加味して再判定。旧source条件のsuccessor/adoption/closureは主張しない。"
     },
     {
       "source_identity": {
@@ -2376,9 +2566,9 @@
         "relevant fixed L2/L11; candidate IDs remain unadopted"
       ],
       "source_clause": "旧native auto-merge禁止、AI-Bによる証拠再照合後の明示merge。",
-      "retained": "現行もnative auto-mergeを禁止し、独立review側がmerge admission後に `gh pr merge --merge` を明示し、post-merge read-afterする。",
+      "retained": "current HEADのreviewと証拠再照合、native auto-mergeを使わない明示mergeは、現行modelのexact base/content HEAD、stale=0、必要authority/admission照合、`gh pr merge --merge`とpost-merge read-afterにより保持される。採択OS-046は遷移中の対象・authority・HEAD/scope・既存verification義務と結果の変化をstale/未完として再照合する。",
       "changed_or_not_carried": "保持点は強い。旧AI-B/CI/DB要件は現行のexact HEAD、stale=0、base/head/main read-after、必要decision照合に置き換わる。",
-      "unresolved": "旧AI-Bという個体名、DB同期、旧workflow gateではなく、現在のreview_merge laneの権限・current baseとmerge親確認により実行される。",
+      "unresolved": "旧CI・DB追従receiptとAI-B固定主体は現行要件としては不採用/未移管。新世代CIは未構築のため、旧CI greenをmerge根拠にしない。OS-046単体は明示merge命令を実行する権限でも旧DB receiptの代替でもない。",
       "counterexamples": [
         "作成側が自分のPRをmergeする。native auto-mergeを予約する。"
       ],
@@ -2390,34 +2580,33 @@
       ],
       "near_later_decisions": [
         {
-          "identity": "HELIXOS-L2-049",
+          "identity": "HELIXOS-L2-046",
           "decision_record": "57-candidate decision",
-          "status": "conditionally_adopted",
-          "relation": "状態区分と低干渉task割当の条件付き採択。設定上限と割当可能／割当中／実行中／遊休／検証待ち／統合待ち等を分ける。READY ticketの依存・順序・deadline・scope・single-writer/authority lease・changed-path競合と、後段検証義務／担当／実施capacityを割当前に保つ。task自身のreview/merge完了をassignment前提にしない。OS単独でlow-impactを定義せず、配置案と既存scope/競合情報を用いる。固定Worker数、旧pool/queue/provider/runtime/CI/PR/DBは持ち込まない。",
-          "decision_row_line": 72,
-          "decision_row_sha256": "f0856ae991e2b0917c4a5196b903cd7ba8a1b7026397235826c77abbbe1ab939",
-          "decision_row_text": "| `HELIXOS-L2-049` | 条件付き採択：割当前に後段の検証義務・担当・capacityを確保する。割当先task自体のreview/merge完了は割当条件にしない（訂正L11 `HELIXOS-L2-049-003`）。 | `MPR-RC-HELIXOS-L2-049-003` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:e9372f19e5064cb5470141fef25a3212aa65cede5d44ecfff8c9ed86da83668b` | `HELIXOS-L2-049` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:d5a3a0c361a6d0056a8c608f5230a52d206c000d7ac81ff969aeaba30ad4d810` | `docs/governance/audits/requirement-registration/helixos-worker-utilization-coverage-receipt-2026-09-29-r4.json#HELIXOS-L2-049` |",
-          "decision_treatment": "条件付き採択：割当前に後段の検証義務・担当・capacityを確保する。割当先task自体のreview/merge完了は割当条件にしない（訂正L11 `HELIXOS-L2-049-003`）。",
+          "status": "adopted",
+          "decision_treatment": "採択",
+          "relation": "dispatch／実行／Ready／merge admission間で対象・authority・HEAD/revision・scope・既存verification義務/結果を照合し、変化時はstale/未完へ戻す接続条件。新しいapproval/check/scope/skip/許可を作らない。",
+          "decision_row_line": 69,
+          "decision_row_sha256": "30b808ddda1ac9fb69931bfcce1d2f31f03be9aa0f78a34bb71ce02189ccb03a",
+          "decision_row_text": "| `HELIXOS-L2-046` | 採択 | `MPR-RC-HELIXOS-L2-046-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d` | `HELIXOS-L2-046` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0` | `docs/governance/audits/requirement-registration/helixos-rfa-scope-coverage-receipt-2026-09-28.json` |",
           "decision_record_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
-          "decision_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
-        },
-        {
-          "identity": "HELIXOS-L2-050",
-          "decision_record": "57-candidate decision",
-          "status": "conditionally_adopted",
-          "relation": "review待ち件数／待ち時間／rework占有率／reviewer稼働率をtyped閾値と照合し、reviewer capacity不足が主因で他のdownstream詰まりがない場合だけ上限内の別対象review assignmentを増やす。原因別backpressure、重複主review拒否、HEAD変更時の新世代review、active lease保全を含む。増枠はmerge条件を緩めず、新merge／branch変更／Ready権限を生まない。既存review_merge担当は既存admission後にmerge可能。具体threshold／provider／reviewer数は新設しない。",
-          "decision_row_line": 73,
-          "decision_row_sha256": "d8c7710bdc66863227e96b419e9271a73a6dba695cf40fb447a44c102eabf78b",
-          "decision_row_text": "| `HELIXOS-L2-050` | 条件付き採択：capacity増枠から新しいmerge権限を発生させない。既存review_merge担当は既存admission後にmergeできる。branch変更・Ready権限は与えない（訂正L11 `HELIXOS-L2-050-003`）。 | `MPR-RC-HELIXOS-L2-050-003` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:fab5fdfae9cfd2211f8c2fd6dfad5ce7b065e007ef11ca62f55420baa5033b6d` | `HELIXOS-L2-050` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:cf4866f2d8beee83eda5389e3b98100cd37cbd609f7c797617b499c1381bfafb` | `docs/governance/audits/requirement-registration/helixos-reviewer-capacity-coverage-receipt-2026-09-29-r3.json#HELIXOS-L2-050` |",
-          "decision_treatment": "条件付き採択：capacity増枠から新しいmerge権限を発生させない。既存review_merge担当は既存admission後にmergeできる。branch変更・Ready権限は与えない（訂正L11 `HELIXOS-L2-050-003`）。",
-          "decision_record_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
-          "decision_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+          "decision_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "target_pair": {
+            "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+            "l2_section_sha256": "c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d",
+            "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+            "l11_section_sha256": "3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0",
+            "l2_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+            "l11_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+          }
         }
       ],
       "formal_successor_assigned": false,
       "requirement_adopted_by_audit": false,
       "source_condition_closed": false,
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "review_correction_R2411_01": "R2411-01で、対応する後発OS L2/L11採択pairの限定scopeを加味して再判定。旧source条件のsuccessor/adoption/closureは主張しない。"
     },
     {
       "source_identity": {
@@ -2874,9 +3063,9 @@
         "relevant fixed L2/L11; candidate IDs remain unadopted"
       ],
       "source_clause": "exactly-one PR writer leaseを同一HEADへ束縛し、memory takeover通知だけで所有権移譲しない。",
-      "retained": "現行作成側のみ差分編集/push/Ready化、review_mergeはread-only reviewと明示merge。二つのlane/runtimeは別。",
+      "retained": "現行は作成側が差分編集・push・Ready化し、review_merge側はread-only reviewとadmission後の明示mergeを担う。OS-051の条件付きtask配置は一部作成／review適性の条件を示すだけで、OS-046は各遷移のscope/authority/head確認、OS-052はmerge後のlocal owner-bound cleanupと後続PRの再照合を扱う。",
       "changed_or_not_carried": "lease primitive/memory handoff/old provider runtimeは現行運用根拠としない。作成/ review laneという責務は意味再導出される。",
-      "unresolved": "同一PRでの同時writer排他、所有権譲渡、失効/renewal、通知と権限の切離しのL2/L11 oracleは現行static docsだけでは未閉包。",
+      "unresolved": "これらの採択scopeは旧exactly-one writer lease primitive、lease発行・失効・更新・takeover、memory通知と権限の分離を実装/受入済みとしない。OS-052はremote refの削除を許可しない。削除には対象repository/refとdelete作用を明示する既存authorityが要る。",
       "counterexamples": [
         "mailbox notification/ACK/worker name/session wakeupでwrite authorityを移譲する。"
       ],
@@ -2887,34 +3076,77 @@
       ],
       "near_later_decisions": [
         {
-          "identity": "HELIXOS-L2-049",
+          "identity": "HELIXOS-L2-046",
           "decision_record": "57-candidate decision",
-          "status": "conditionally_adopted",
-          "relation": "状態区分と低干渉task割当の条件付き採択。設定上限と割当可能／割当中／実行中／遊休／検証待ち／統合待ち等を分ける。READY ticketの依存・順序・deadline・scope・single-writer/authority lease・changed-path競合と、後段検証義務／担当／実施capacityを割当前に保つ。task自身のreview/merge完了をassignment前提にしない。OS単独でlow-impactを定義せず、配置案と既存scope/競合情報を用いる。固定Worker数、旧pool/queue/provider/runtime/CI/PR/DBは持ち込まない。",
-          "decision_row_line": 72,
-          "decision_row_sha256": "f0856ae991e2b0917c4a5196b903cd7ba8a1b7026397235826c77abbbe1ab939",
-          "decision_row_text": "| `HELIXOS-L2-049` | 条件付き採択：割当前に後段の検証義務・担当・capacityを確保する。割当先task自体のreview/merge完了は割当条件にしない（訂正L11 `HELIXOS-L2-049-003`）。 | `MPR-RC-HELIXOS-L2-049-003` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:e9372f19e5064cb5470141fef25a3212aa65cede5d44ecfff8c9ed86da83668b` | `HELIXOS-L2-049` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:d5a3a0c361a6d0056a8c608f5230a52d206c000d7ac81ff969aeaba30ad4d810` | `docs/governance/audits/requirement-registration/helixos-worker-utilization-coverage-receipt-2026-09-29-r4.json#HELIXOS-L2-049` |",
-          "decision_treatment": "条件付き採択：割当前に後段の検証義務・担当・capacityを確保する。割当先task自体のreview/merge完了は割当条件にしない（訂正L11 `HELIXOS-L2-049-003`）。",
+          "status": "adopted",
+          "decision_treatment": "採択",
+          "relation": "dispatch／実行／Ready／merge admission間で対象・authority・HEAD/revision・scope・既存verification義務/結果を照合し、変化時はstale/未完へ戻す接続条件。新しいapproval/check/scope/skip/許可を作らない。",
+          "decision_row_line": 69,
+          "decision_row_sha256": "30b808ddda1ac9fb69931bfcce1d2f31f03be9aa0f78a34bb71ce02189ccb03a",
+          "decision_row_text": "| `HELIXOS-L2-046` | 採択 | `MPR-RC-HELIXOS-L2-046-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d` | `HELIXOS-L2-046` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0` | `docs/governance/audits/requirement-registration/helixos-rfa-scope-coverage-receipt-2026-09-28.json` |",
           "decision_record_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
-          "decision_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+          "decision_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "target_pair": {
+            "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+            "l2_section_sha256": "c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d",
+            "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+            "l11_section_sha256": "3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0",
+            "l2_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+            "l11_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+          }
         },
         {
-          "identity": "HELIXOS-L2-050",
+          "identity": "HELIXOS-L2-051",
           "decision_record": "57-candidate decision",
           "status": "conditionally_adopted",
-          "relation": "review待ち件数／待ち時間／rework占有率／reviewer稼働率をtyped閾値と照合し、reviewer capacity不足が主因で他のdownstream詰まりがない場合だけ上限内の別対象review assignmentを増やす。原因別backpressure、重複主review拒否、HEAD変更時の新世代review、active lease保全を含む。増枠はmerge条件を緩めず、新merge／branch変更／Ready権限を生まない。既存review_merge担当は既存admission後にmerge可能。具体threshold／provider／reviewer数は新設しない。",
-          "decision_row_line": 73,
-          "decision_row_sha256": "d8c7710bdc66863227e96b419e9271a73a6dba695cf40fb447a44c102eabf78b",
-          "decision_row_text": "| `HELIXOS-L2-050` | 条件付き採択：capacity増枠から新しいmerge権限を発生させない。既存review_merge担当は既存admission後にmergeできる。branch変更・Ready権限は与えない（訂正L11 `HELIXOS-L2-050-003`）。 | `MPR-RC-HELIXOS-L2-050-003` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:fab5fdfae9cfd2211f8c2fd6dfad5ce7b065e007ef11ca62f55420baa5033b6d` | `HELIXOS-L2-050` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:cf4866f2d8beee83eda5389e3b98100cd37cbd609f7c797617b499c1381bfafb` | `docs/governance/audits/requirement-registration/helixos-reviewer-capacity-coverage-receipt-2026-09-29-r3.json#HELIXOS-L2-050` |",
-          "decision_treatment": "条件付き採択：capacity増枠から新しいmerge権限を発生させない。既存review_merge担当は既存admission後にmergeできる。branch変更・Ready権限は与えない（訂正L11 `HELIXOS-L2-050-003`）。",
+          "decision_treatment": "条件付き採択：本構成でCursorを作成専用、Claude優先は適用可能な評価根拠のある要求・設計taskのみ。",
+          "relation": "条件付き採択の配置適性範囲のみ（Cursor作成専用、Claude優先は適用根拠のある要求/設計task）。旧AI-A/B全機能、一般のlane authorityやsingle-writer leaseを包括採択しない。",
+          "decision_row_line": 74,
+          "decision_row_sha256": "b9cef971102d6f8ec1f03c1eca2d77fb40b8490b0968a66f535daa78f992f218",
+          "decision_row_text": "| `HELIXOS-L2-051` | 条件付き採択：本構成でCursorを作成専用、Claude優先は適用可能な評価根拠のある要求・設計taskのみ。 | `MPR-RC-HELIXOS-L2-051-002` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:54fd39fbeb3786bc739560856afb14e3cf892b1bb717d98ceb1212df09fe7f2b` | `HELIXOS-L2-051` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:e01daa2fbf1ad7c2e9b6df54a9acdf022a3b821123d8904f8a171a4ede87b684` | `docs/governance/audits/requirement-registration/ops-o4-coverage-receipt-2026-09-29-r2.json#HELIXOS-L2-051` |",
           "decision_record_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
-          "decision_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+          "decision_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "target_pair": {
+            "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+            "l2_section_sha256": "54fd39fbeb3786bc739560856afb14e3cf892b1bb717d98ceb1212df09fe7f2b",
+            "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+            "l11_section_sha256": "e01daa2fbf1ad7c2e9b6df54a9acdf022a3b821123d8904f8a171a4ede87b684",
+            "l2_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+            "l11_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+          }
+        },
+        {
+          "identity": "HELIXOS-L2-052",
+          "decision_record": "57-candidate decision",
+          "status": "adopted",
+          "decision_treatment": "採択",
+          "relation": "明示merge後のlocal owner-bound cleanupと後続PRのbase/review-binding再照合。remote ref deletionはmergeや候補だけでは許可されず、対象refとdelete作用を含む現行authorityが必要。",
+          "decision_row_line": 75,
+          "decision_row_sha256": "32d23b8648dece8231c8291f2b4f16f992114756091fa560cddec413a1aef06c",
+          "decision_row_text": "| `HELIXOS-L2-052` | 採択 | `MPR-RC-HELIXOS-L2-052-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:d9e839c319c54f826bb065ce065ca5a8af126a11abd8f15c9f3183964a4e5345` | `HELIXOS-L2-052` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:70b5bb6bd967cfc15e85221ed6c1b842fb6fc92318b735867661223bf64ac1e2` | `docs/governance/audits/requirement-registration/ops-o6-coverage-receipt-2026-09-29.json` |",
+          "decision_record_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "decision_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "target_pair": {
+            "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+            "l2_section_sha256": "d9e839c319c54f826bb065ce065ca5a8af126a11abd8f15c9f3183964a4e5345",
+            "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+            "l11_section_sha256": "70b5bb6bd967cfc15e85221ed6c1b842fb6fc92318b735867661223bf64ac1e2",
+            "l2_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+            "l11_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+          }
         }
       ],
       "formal_successor_assigned": false,
       "requirement_adopted_by_audit": false,
       "source_condition_closed": false,
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "review_correction_R2411_01": "R2411-01で、対応する後発OS L2/L11採択pairの限定scopeを加味して再判定。旧source条件のsuccessor/adoption/closureは主張しない。"
     },
     {
       "source_identity": {

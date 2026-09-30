@@ -1,6 +1,6 @@
 # v1.3 §6 GitHub自律運用 17条件のStep5個別監査
 
-- 基準main: `5943f27b51aebfb0f62a377f51bfe7f99995fedf`
+- 基準main: `0eabc8c56f528236892f4f79f10f1553049b698b`
 - 固定比較revision: `f6dad2a33e24f000b87d7f09b8d40288257e74cc`
 - 後発decision source revision: `318ec4a04abb3c1cc17111b3d939f913facd5fd3`
 - 旧source: `archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md`（SHA-256 `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`）
@@ -42,6 +42,12 @@ JSON `basis.later_full_identity_status_screen` は57 decision rowsと別11 decis
 
 本件と近接する後発pairも、採択・条件付き採択されたrevisionと決定scopeに限って評価する。HARNESS-L2-035はticket scope導出、036は検証parity、042はrefactor episode分類・routing。いずれもGitHub Projectsのreadability、旧merge receipts、旧3段CI、atomic development全文を代替しない。OS-049はWorker状態区分と低干渉task割当の条件付き採択で、READY、依存・順序・deadline・scope・single-writer/authority lease・path競合、後段の検証義務/担当/capacity確保を割当前に維持する。task自身のreview/merge完了は割当条件ではなく、固定Worker数や旧pool/runtimeも含めない。OS-050はtypedなreview待ち件数・待ち時間・rework占有率・reviewer稼働率と原因を用いたreviewer capacity調整・backpressureの条件付き採択であり、capacity増枠からmerge/branch変更/Ready権限を生まない。既存review_merge担当は既存admission後にmerge可能。SECURITY-029..034は個別security sliceの範囲に限られ、旧GH-FR-029のscanner coverage/profile全体を閉じない。別11 recordは全件status screenに残し、source-row対応が確認できるものだけを近接判定へ使った。
 
+## R2411-01後発OS pairの限定効果
+
+57候補decision record（revision `318ec4a04abb3c1cc17111b3d939f913facd5fd3`）のHELIXOS-L2-034/035/046/051/052を全screenに加えて、各決定行hashとL2/L11 file hash・section digestを固定した。HELIXOS-L2-034は原指示/finding dispositionの証拠と異議履歴、HELIXOS-L2-035はPR lifecycle event intakeと監査job要求の冪等生成、HELIXOS-L2-046はdispatchからmerge admissionまでの対象・authority・HEAD/revision・scope・既存検証義務/結果の連続照合に限る。HELIXOS-L2-051はCursor作成専用／適用根拠のある要求・設計taskへのClaude優先という条件付きscopeに限る。HELIXOS-L2-052はmerge後local cleanupと後続PR再照合に限り、remote ref削除を許可しない。削除は対象repository/refとdelete作用を含む既存authorityを必要とする。
+
+00399/00400ではcurrent HEAD reviewと明示mergeを現行GitHub modelおよび採択HELIXOS-L2-046の境界で保持する一方、旧CI/DB receiptやAI-B固定主体を現行の同一条件とは扱わない。現行CIは未構築であり、旧CI実行/greenは根拠にしない。00398のfinding disposition残差はHELIXOS-L2-034の適用scope分だけ絞ったが、旧finding route全体、5 outcome closure、issue-to-memory/DB episodeは閉じない。00418ではHELIXOS-L2-051のtask配置、HELIXOS-L2-046の遷移照合、HELIXOS-L2-052のmerge後local cleanup/rechainを区別し、いずれも旧PR writer lease primitiveやtakeoverを採択・実装したとは扱わない。
+
 ## 条件別照合
 
 ### REQSRC-SUP-00398 — 旧source line 516
@@ -50,11 +56,12 @@ JSON `basis.later_full_identity_status_screen` は57 decision rowsと別11 decis
 - queue status: `unresolved` / `unresolved_for_closure_work`。既存個別比較ref: 0。
 - 近接f6 pair: `HARNESS-L2-005`, `HARNESS-L2-010`, `HARNESS-L2-011`, `HELIXOS-L2-021`, `HELIXSECURITY-L2-008`。個票hash pinsはJSONの該当pairを参照。
 - 後発near decision: HELIXOS-L2-049（conditionally_adopted）：状態区分と低干渉task割当の条件付き採択。設定上限と割当可能／割当中／実行中／遊休／検証待ち／統合待ち等を分ける。READY ticketの依存・順序・deadline・scope・single-writer/authority lease・changed-path競合と、後段検証義務／担当／実施capacityを割当前に保つ。task自身のreview/merge完了をassignment前提にしない。OS単独でlow-impactを定義せず、配置案と既存scope/競合情報を用いる。固定Worker数、旧pool/queue/provider/runtime/CI/PR/DBは持ち込まない。；HELIXOS-L2-050（conditionally_adopted）：review待ち件数／待ち時間／rework占有率／reviewer稼働率をtyped閾値と照合し、reviewer capacity不足が主因で他のdownstream詰まりがない場合だけ上限内の別対象review assignmentを増やす。原因別backpressure、重複主review拒否、HEAD変更時の新世代review、active lease保全を含む。増枠はmerge条件を緩めず、新merge／branch変更／Ready権限を生まない。既存review_merge担当は既存admission後にmerge可能。具体threshold／provider／reviewer数は新設しない。
-- 保持点: 現行は作成側と独立review対応側を分離し、Draft→exact HEAD review→blocker対応→Ready→明示merge→read-afterを保持。Issueはticketのprojectionであり、merge/closeからticket完了を生成しない。
+- 保持点: 現行GitHub modelの作成側／独立review側の分離、exact base/content HEAD review、stale=0後の明示merge/read-afterに加え、採択HELIXOS-L2-046はdispatchからmerge admissionまでの対象・authority・HEAD/revision・scope・既存検証義務/結果の連続照合を保持する。HELIXOS-L2-034はfindingの証拠付きdispositionと異議履歴、HELIXOS-L2-035はPR event intakeと監査job要求の冪等性を、それぞれ限定scopeで保持する。
 - 変更・引継がない点: AI-A/AI-Bという固定主体、harness-check、CI/DB/タグ/Memoryまでの統合episode、通常closeをCloses #Nに限る規則は現行契約へそのまま持ち越さない。approval要件は対象の意味・作用に応じたauthorityから読む。
-- 残差: receipt種類・stale条件・finding disposition・issue outcomeの対応表を旧FR18–23/FR17と現行modelごとに完全照合する余地が残る。
+- 残差: HELIXOS-L2-034は旧FR17/18–23の全finding classification・current_pr_fix/successor routing・5 outcome closure receiptを閉じない。HELIXOS-L2-035はeventからaudit job requestを作るまでであり、Issue→PLAN→branch→PR→CI→merge→tag→memory/DB全episode、DB追従receipt、monitoring/consumer closureを与えない。HELIXOS-L2-046はその接続条件であり、このsource identityのformal successorではない。
 - 反例: PR reviewをpassにしても別の必要な人間decisionを満たさない。Issue merge/closeだけでticketを完了にしない。
 - 数値・例外境界: 同一HEAD、別base/content HEAD、push後stale、5つのclosure outcomeとPO判断例外を別fixtureで確認する。
+- R2411-01後発OS pairの限定比較: HELIXOS-L2-034/035/046/051の近接比較：HELIXOS-L2-034はfindingの根拠付きdisposition・異議/再開履歴、HELIXOS-L2-035は選択scope内event intakeと冪等job要求、HELIXOS-L2-046は遷移間のauthority/HEAD/scope/verification継続性、HELIXOS-L2-051は条件付きtask配置に限定。旧5 outcome、current_pr_fix/successor全routing、tag/memory/DB連結は残差。
 - authority effect: `none`; adoption/successor/closure: false.
 
 ### REQSRC-SUP-00399 — 旧source line 518
@@ -63,11 +70,12 @@ JSON `basis.later_full_identity_status_screen` は57 decision rowsと別11 decis
 - queue status: `unresolved` / `unresolved_for_closure_work`。既存個別比較ref: 0。
 - 近接f6 pair: `HARNESS-L2-005`, `HELIXSECURITY-L2-008`。個票hash pinsはJSONの該当pairを参照。
 - 後発near decision: HELIXOS-L2-049（conditionally_adopted）：状態区分と低干渉task割当の条件付き採択。設定上限と割当可能／割当中／実行中／遊休／検証待ち／統合待ち等を分ける。READY ticketの依存・順序・deadline・scope・single-writer/authority lease・changed-path競合と、後段検証義務／担当／実施capacityを割当前に保つ。task自身のreview/merge完了をassignment前提にしない。OS単独でlow-impactを定義せず、配置案と既存scope/競合情報を用いる。固定Worker数、旧pool/queue/provider/runtime/CI/PR/DBは持ち込まない。；HELIXOS-L2-050（conditionally_adopted）：review待ち件数／待ち時間／rework占有率／reviewer稼働率をtyped閾値と照合し、reviewer capacity不足が主因で他のdownstream詰まりがない場合だけ上限内の別対象review assignmentを増やす。原因別backpressure、重複主review拒否、HEAD変更時の新世代review、active lease保全を含む。増枠はmerge条件を緩めず、新merge／branch変更／Ready権限を生まない。既存review_merge担当は既存admission後にmerge可能。具体threshold／provider／reviewer数は新設しない。
-- 保持点: Draft PRは差分共有・reviewに使える。要求意味を変更する上流decisionは対象revisionに結び、review/CI状態と分離する。
+- 保持点: 旧行の「必要承認後」「current HEAD review後」「Ready/merge境界」は、現行GitHub modelのexact base/content HEAD review、stale=0・必要decision/admission再照合と独立の明示merge/read-afterで保持される。採択HELIXOS-L2-046もdispatch・実行・Ready・merge admission間でHEAD/revision・authority・scope・検証義務/結果が変わればstale/未完へ戻し、再照合することを定める。
 - 変更・引継がない点: 旧条件の「承認前でもproposalを出せる」は残すが、旧CI/DB receiptは現行条件でない。Draftは要求採択や操作許可を生まない。
-- 残差: 要求PRでどのdecisionが必要か、review/Ready条件とmerge admissionの切り分けを具体的対象revisionで維持する。
+- 残差: 旧CI/DB追従receipt、AI-Bという固定主体、Draft→Readyに必要な旧workflow gateは現行の同一条件としては持ち越さない。CIは未構築であり、CI greenやDB receiptを実行済み条件として仮定しない。HELIXOS-L2-046は現在の適用契約の検証義務を照合する接続条件で、旧CI/DB形式やsource row successorを定めない。
 - 反例: Draft PRの作成やCI greenからPOの要求意味判断を生成しない。
 - 数値・例外境界: 未承認proposalと必要decision未解決の例で、Draft可・Ready不可を区別する。
+- R2411-01後発OS pairの限定比較: HELIXOS-L2-046採択scopeでは、dispatch・実行・Ready・merge admissionを通じ対象、authority、HEAD/revision、scope、既存検証義務/結果を再照合し、変化時はstale/未完に戻す。現行GitHub modelのexact HEAD review、stale=0、必要admission後の明示mergeを保持する。旧CI/DB追従receiptは持ち越さず、新世代CIも未構築。
 - authority effect: `none`; adoption/successor/closure: false.
 
 ### REQSRC-SUP-00400 — 旧source line 519
@@ -76,11 +84,12 @@ JSON `basis.later_full_identity_status_screen` は57 decision rowsと別11 decis
 - queue status: `unresolved` / `unresolved_for_closure_work`。既存個別比較ref: 0。
 - 近接f6 pair: `HARNESS-L2-005`, `HARNESS-L2-010`, `HELIXSECURITY-L2-008`。個票hash pinsはJSONの該当pairを参照。
 - 後発near decision: HELIXOS-L2-049（conditionally_adopted）：状態区分と低干渉task割当の条件付き採択。設定上限と割当可能／割当中／実行中／遊休／検証待ち／統合待ち等を分ける。READY ticketの依存・順序・deadline・scope・single-writer/authority lease・changed-path競合と、後段検証義務／担当／実施capacityを割当前に保つ。task自身のreview/merge完了をassignment前提にしない。OS単独でlow-impactを定義せず、配置案と既存scope/競合情報を用いる。固定Worker数、旧pool/queue/provider/runtime/CI/PR/DBは持ち込まない。；HELIXOS-L2-050（conditionally_adopted）：review待ち件数／待ち時間／rework占有率／reviewer稼働率をtyped閾値と照合し、reviewer capacity不足が主因で他のdownstream詰まりがない場合だけ上限内の別対象review assignmentを増やす。原因別backpressure、重複主review拒否、HEAD変更時の新世代review、active lease保全を含む。増枠はmerge条件を緩めず、新merge／branch変更／Ready権限を生まない。既存review_merge担当は既存admission後にmerge可能。具体threshold／provider／reviewer数は新設しない。
-- 保持点: 現行もnative auto-mergeを禁止し、独立review側がmerge admission後に `gh pr merge --merge` を明示し、post-merge read-afterする。
+- 保持点: current HEADのreviewと証拠再照合、native auto-mergeを使わない明示mergeは、現行modelのexact base/content HEAD、stale=0、必要authority/admission照合、`gh pr merge --merge`とpost-merge read-afterにより保持される。採択HELIXOS-L2-046は遷移中の対象・authority・HEAD/scope・既存verification義務と結果の変化をstale/未完として再照合する。
 - 変更・引継がない点: 保持点は強い。旧AI-B/CI/DB要件は現行のexact HEAD、stale=0、base/head/main read-after、必要decision照合に置き換わる。
-- 残差: 旧AI-Bという個体名、DB同期、旧workflow gateではなく、現在のreview_merge laneの権限・current baseとmerge親確認により実行される。
+- 残差: 旧CI・DB追従receiptとAI-B固定主体は現行要件としては不採用/未移管。新世代CIは未構築のため、旧CI greenをmerge根拠にしない。HELIXOS-L2-046単体は明示merge命令を実行する権限でも旧DB receiptの代替でもない。
 - 反例: 作成側が自分のPRをmergeする。native auto-mergeを予約する。
 - 数値・例外境界: review済みHEAD後のbase driftまたはmerge親不一致がある場合はmerge/close完了扱いにしない。
+- R2411-01後発OS pairの限定比較: HELIXOS-L2-046は遷移間のscope/authority/HEADと適用中の検証結果の再照合を採択scope内で保持する。明示merge/native auto-merge禁止は現行GitHub modelの別責務として保持。HELIXOS-L2-046だけからmerge権限や旧CI/DB証拠を導かない。
 - authority effect: `none`; adoption/successor/closure: false.
 
 ### REQSRC-SUP-00403 — 旧source line 522
@@ -193,11 +202,12 @@ JSON `basis.later_full_identity_status_screen` は57 decision rowsと別11 decis
 - queue status: `unresolved` / `unresolved_for_closure_work`。既存個別比較ref: 0。
 - 近接f6 pair: `HARNESS-L2-011`, `HELIXSECURITY-L2-008`。個票hash pinsはJSONの該当pairを参照。
 - 後発near decision: HELIXOS-L2-049（conditionally_adopted）：状態区分と低干渉task割当の条件付き採択。設定上限と割当可能／割当中／実行中／遊休／検証待ち／統合待ち等を分ける。READY ticketの依存・順序・deadline・scope・single-writer/authority lease・changed-path競合と、後段検証義務／担当／実施capacityを割当前に保つ。task自身のreview/merge完了をassignment前提にしない。OS単独でlow-impactを定義せず、配置案と既存scope/競合情報を用いる。固定Worker数、旧pool/queue/provider/runtime/CI/PR/DBは持ち込まない。；HELIXOS-L2-050（conditionally_adopted）：review待ち件数／待ち時間／rework占有率／reviewer稼働率をtyped閾値と照合し、reviewer capacity不足が主因で他のdownstream詰まりがない場合だけ上限内の別対象review assignmentを増やす。原因別backpressure、重複主review拒否、HEAD変更時の新世代review、active lease保全を含む。増枠はmerge条件を緩めず、新merge／branch変更／Ready権限を生まない。既存review_merge担当は既存admission後にmerge可能。具体threshold／provider／reviewer数は新設しない。
-- 保持点: 現行作成側のみ差分編集/push/Ready化、review_mergeはread-only reviewと明示merge。二つのlane/runtimeは別。
+- 保持点: 現行は作成側が差分編集・push・Ready化し、review_merge側はread-only reviewとadmission後の明示mergeを担う。HELIXOS-L2-051の条件付きtask配置は一部作成／review適性の条件を示すだけで、HELIXOS-L2-046は各遷移のscope/authority/head確認、HELIXOS-L2-052はmerge後のlocal owner-bound cleanupと後続PRの再照合を扱う。
 - 変更・引継がない点: lease primitive/memory handoff/old provider runtimeは現行運用根拠としない。作成/ review laneという責務は意味再導出される。
-- 残差: 同一PRでの同時writer排他、所有権譲渡、失効/renewal、通知と権限の切離しのL2/L11 oracleは現行static docsだけでは未閉包。
+- 残差: これらの採択scopeは旧exactly-one writer lease primitive、lease発行・失効・更新・takeover、memory通知と権限の分離を実装/受入済みとしない。HELIXOS-L2-052はremote refの削除を許可しない。削除には対象repository/refとdelete作用を明示する既存authorityが要る。
 - 反例: mailbox notification/ACK/worker name/session wakeupでwrite authorityを移譲する。
 - 数値・例外境界: 2 writers、takeover message without authorization、owner revocation後pushの反例。
+- R2411-01後発OS pairの限定比較: HELIXOS-L2-051は条件付きのtask適性配置に限り、HELIXOS-L2-052はmerge後のlocal owned-worktree/branch cleanupと後続PR recheckに限る。HELIXOS-L2-052はremote ref削除を許可せず、対象refとdelete作用を明示する既存authorityが必要。いずれも旧single-writer leaseの発行/失効/takeover primitiveを埋めない。
 - authority effect: `none`; adoption/successor/closure: false.
 
 ### REQSRC-SUP-00421 — 旧source line 543
