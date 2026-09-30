@@ -1,0 +1,363 @@
+{
+  "schema_version": "confirmed175-condition-audit.v1",
+  "audit_id": "confirmed175-fr-l1-01-02-04-06-fixed-l2l11-audit-2026-09-30",
+  "created_at": "2026-09-30",
+  "audit_mode": "read_only_source_to_fixed_l2_l11_condition_comparison",
+  "authority_effect": "none",
+  "scope": {
+    "population": "confirmed175",
+    "count": 4,
+    "source_qualified_prefix": "harness/L1-requirements/functional-requirements.md::",
+    "identities": [
+      "FR-L1-01",
+      "FR-L1-02",
+      "FR-L1-04",
+      "FR-L1-06"
+    ],
+    "legacy_asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B"
+  },
+  "source": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+    "sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+    "source_revision": "legacy-generation-2026-09-14",
+    "source_status": "confirmed",
+    "holding_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+    "holding_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+    "asset_ledger_ref": "docs/governance/legacy-asset-disposition.jsonl#LEGACY-ASSET-6B6C5CB0E481BE01088B",
+    "carry_forward_state": "preserved_pending_rehome",
+    "existing_full_audit_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#FR-L1-01,FR-L1-02,FR-L1-04,FR-L1-06",
+    "asset_ledger_state": {
+      "revision": 3,
+      "asset_class": "RequirementSourceSnapshot",
+      "disposition": "source_snapshot_preservation",
+      "source_authority_state": "confirmed",
+      "target_authority_state": "draft_candidate",
+      "decision_status": "pending_human_confirmation",
+      "approval_revision": null,
+      "decision_record_ref": "docs/governance/legacy-asset-decisions.jsonl#REQ-SNAPSHOT-CORRECTION-6B6C5CB0E481BE01088B",
+      "consumer_refs": [
+        "requirement-carry-forward-ledgers",
+        "requirement-atomization-review"
+      ],
+      "carry_forward_state": "preserved_pending_rehome"
+    }
+  },
+  "fixed_target": {
+    "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "authority_reference": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md; docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+    "meaning": "対象revisionに固定された採択済みL2/L11本文。今回の照合は条件被覆の記録であり、新たな採否や後継割当ではない。",
+    "documents": [
+      {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+      },
+      {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+      },
+      {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+      },
+      {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+      }
+    ]
+  },
+  "duplicate_audit_scan": {
+    "origin_main": "0f5050e2b25cd622640c99c5de170cca087f7d8a",
+    "origin_main_matching_audit_paths": [
+      "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json",
+      "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.md",
+      "docs/governance/audits/requirements-stage/legacy-source-origin-reg06-population-audit-2026-09-28.json"
+    ],
+    "origin_main_result": "既存confirmed175全量監査は指定4identityをOPENで記録。REG-06は母集団/関係join監査で個別L2/L11条件照合ではない。別個の条件照合監査重複なし。",
+    "pull_requests": {
+      "range": "2387-2392",
+      "result": "read-only `gh pr view` で6件の変更pathを確認。いずれもFRS / World Governance candidate / Concept v4 metadataの別source auditであり、指定4identityの条件照合監査pathはなし。",
+      "changed_paths": [
+        {
+          "number": 2387,
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate-functional-release-slice-acceptance-two-row-route-audit-after-2386-2026-09-30.json"
+        },
+        {
+          "number": 2387,
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate-functional-release-slice-acceptance-two-row-route-audit-after-2386-2026-09-30.md"
+        },
+        {
+          "number": 2388,
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-world-governance-next-ten-row-route-audit-after-2386-2026-09-30.json"
+        },
+        {
+          "number": 2388,
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-world-governance-next-ten-row-route-audit-after-2386-2026-09-30.md"
+        },
+        {
+          "number": 2389,
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-world-governance-acceptance-intake-ten-row-route-audit-after-2386-2026-09-30.json"
+        },
+        {
+          "number": 2389,
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-world-governance-acceptance-intake-ten-row-route-audit-after-2386-2026-09-30.md"
+        },
+        {
+          "number": 2390,
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-world-governance-requests-requirements-ten-row-route-audit-after-2386-2026-09-30.json"
+        },
+        {
+          "number": 2390,
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-world-governance-requests-requirements-ten-row-route-audit-after-2386-2026-09-30.md"
+        },
+        {
+          "number": 2391,
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate-frs-requirements-refines-eight-row-classification-proposal-after-2386-2026-09-30.json"
+        },
+        {
+          "number": 2391,
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate-frs-requirements-refines-eight-row-classification-proposal-after-2386-2026-09-30.md"
+        },
+        {
+          "number": 2392,
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate-concept-v4-capability-delta-metadata-six-classification-proposal-2026-09-30.json"
+        },
+        {
+          "number": 2392,
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate-concept-v4-capability-delta-metadata-six-classification-proposal-2026-09-30.md"
+        }
+      ]
+    },
+    "local_integration": {
+      "revision": "0c4ed3a86e51063bb19b386e3c608eec3126d40e",
+      "matching_audit_paths": [
+        "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json",
+        "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.md",
+        "docs/governance/audits/requirements-stage/legacy-source-origin-reg06-population-audit-2026-09-28.json"
+      ],
+      "result": "既存全量監査・REG-06以外に同4identityの個別条件照合監査なし。"
+    },
+    "check_method": "git grep -l over docs/governance/audits/requirements-stage; PR changed paths from `gh pr view`; old CLI/runtime/test/CI not invoked."
+  },
+  "method_and_limits": [
+    "旧原文とL3 detailed functional requirements、旧physical-data、旧test-designは参照のみ。記載された旧CLI/runtime/test/CI/oracleは実行していない。",
+    "保持される意味、旧実装・物理形を継承しない点、固定L2/L11で明示確認できない残差を条件単位で分離した。旧仕様の完全な再現・新世代実装能力は判定していない。",
+    "classificationは本監査の照合状態であり、旧要求の採否・successor・coverage完了・authority変更を生成しない。"
+  ],
+  "conditions": [
+    {
+      "id": "FR-L1-01",
+      "source_line": 32,
+      "source_line_sha256": "24221149f15209acd779863867afe923be48b8843f2c0a21e4d3ed2d0772272a",
+      "source_text": "| **FR-L1-01** | 現行V字モデル（L1〜L12）全工程のPLAN起票・進捗管理機能。L0は層外authority anchorとする | L0 charter / L1〜L12 current authority | 工程・機能名・記載項目 | PLANファイル（工程表＋実装計画内蔵） | P0 | PM-02 / PM-01 |",
+      "targets": [
+        {
+          "id": "HARNESS-L2-001/003",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "lines": "52,54,99,108,112-113",
+          "relevance": "V-modelの正規pair、工程の開始・凍結・差戻し等の条件、実装から状態までを含む規則を保持する。"
+        },
+        {
+          "id": "HELIXOS-L2-017/019/023",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": "662-670,682-690,722-730",
+          "relevance": "ticket候補に対象・親revision・scope・依存・受入義務・戻し先を持たせ、evidence/continuityとhandoffを追跡する。"
+        },
+        {
+          "id": "HARNESS-L2-001/003 L11",
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "lines": "21,23,31-57",
+          "relevance": "対の確認、工程条件、成果状態、release条件を確認する受入案。工程表と実装計画を内蔵する旧PLAN形式の全工程起票・進捗管理を直接は明示しない。"
+        },
+        {
+          "id": "HELIXOS-L2-017/019/023 L11",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": "338-344,352-357,380-385",
+          "relevance": "ticket/workflow、evidence/continuity、handoffの対象・依存・未完義務と失敗時の戻しを受け入れる。"
+        }
+      ],
+      "retained_meaning": "L0を層外authority anchorとして扱い、現行V字pairに沿って工程を管理する意味はHARNESS工程規則とOS ticket/handoff上の対象・scope・依存・受入義務・戻し先に部分的に現れる。",
+      "not_inherited": "旧L0-L14の番号/pathや、単一PLAN file内の工程表＋実装計画という物理形、旧plan_registry/schema/CLIは現行契約へ移していない。",
+      "residual": "すべての現行工程に対するPLAN相当の起票・進捗管理という利用者条件と、工程・機能名・記載項目からどの正本/recordを作るかのexact出力結合は、固定L2/L11から条件全体としては確認できない。",
+      "audit_status": "open_partial_correspondence",
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-01",
+      "source_status": "confirmed",
+      "carry_forward_state": "preserved_pending_rehome",
+      "successor_requirement_ids": [],
+      "existing_full_audit_current_target_ids": [
+        "HELIXOS-L2-017",
+        "HELIXOS-L2-019",
+        "HELIXOS-L2-023"
+      ],
+      "mapping_authority_effect": "none",
+      "decision_status": "pending_human_confirmation"
+    },
+    {
+      "id": "FR-L1-02",
+      "source_line": 33,
+      "source_line_sha256": "3d45ea6a60c1a53e2c61d63e080791fcdc9d65c418544e73c26b141864a75e95",
+      "source_text": "| **FR-L1-02** | TDD 強制フロー (テストファースト順序厳守・実装先行禁止) | L7-implementation | L6 機能設計 (関数仕様 / クラス設計 / エッジケース) | テストコード (red) → 本体実装 (green) | P0 | PM-02 (L7 工程) / HM-07 |",
+      "targets": [
+        {
+          "id": "HARNESS-L2-003",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "lines": "54,108-112",
+          "relevance": "凍結済み設計に従う実装、L6↔L7のRed→Green→Refactorと双方向trace、後段の統合/検証/受入状態の分離を保持する。"
+        },
+        {
+          "id": "HARNESS-L2-005",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "lines": "56,118-121",
+          "relevance": "oracle、expected failure、evidence等の検証義務・証拠条件を導く。"
+        },
+        {
+          "id": "HARNESS-L2-003/005 L11",
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "lines": "23,25,43-57",
+          "relevance": "設計と実装のpair、状態遷移、検証契約を確認する。全実装方式/全実装での実装先行禁止を独立に受け入れる条件は明示しない。"
+        }
+      ],
+      "retained_meaning": "L6↔L7でRed→Green→Refactorと設計pairのtraceを保ち、検証のoracle/evidence義務を求める。",
+      "not_inherited": "旧`helix sprint start/check`・gateや旧test/run/commit IDの機構は現行sourceへ転用しない。",
+      "residual": "テストファーストの順序をすべての実装方式・対象で強制し、Red test前の実装を禁止する普遍条件は固定L2/L11に明示されていない。実装方式ごとの適用範囲、許容例外、反例/受入oracleも未確定であり、詳細確認を要する。",
+      "audit_status": "open_partial_correspondence",
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-02",
+      "source_status": "confirmed",
+      "carry_forward_state": "preserved_pending_rehome",
+      "successor_requirement_ids": [],
+      "existing_full_audit_current_target_ids": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-005"
+      ],
+      "mapping_authority_effect": "none",
+      "decision_status": "pending_human_confirmation"
+    },
+    {
+      "id": "FR-L1-04",
+      "source_line": 35,
+      "source_line_sha256": "74ac54b25e588e9041aa9cf6eb471aab2f85c3fa067244a42b76f0156d1b74ea",
+      "source_text": "| **FR-L1-04** | PLAN kind による逸脱記録・ドキュメント生成計画 (kind + generates + requires) | deviation-plan-map | モード種別・成果物パス・依存 PLAN | kind 付き PLAN レコード、generates 宣言 | P0 | PM-02 / HM-01 |",
+      "targets": [
+        {
+          "id": "HELIXOS-L2-017/023",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": "662-670,722-730",
+          "relevance": "workflow/ticket候補と依存・対象revision・scope・受入義務・戻し先、およびhandoffを規則化する。"
+        },
+        {
+          "id": "HARNESS-L2-001/002/003",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "lines": "52-54,98-105",
+          "relevance": "開発方式と工程条件を定め、具体flow/ticketの発行と合流先はOS側ticket節へ置く。"
+        },
+        {
+          "id": "HELIXOS-L2-017/023 L11",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": "338-344,380-385",
+          "relevance": "同じ承認入力から対象/親revision/scope/依存/受入義務/戻し先を持つticket候補とhandoffを確認する。"
+        }
+      ],
+      "retained_meaning": "作業の種類/flowと依存を型付けし、対象と依存・受入義務・戻し先をticket/handoffに保持する方向は現行OS規則に部分的に再導出されている。",
+      "not_inherited": "旧PLAN `kind` enum、`generates`宣言と `requires/blocks` のfrontmatter/data shape、旧PLAN lint/生成コマンドや固定PLAN registry schemaは現行規則として継承していない。",
+      "residual": "旧conditionのmode kind→成果物path→依存PLAN、kind付きPLAN record、`generates`による文書生成計画の具体field間対応は固定L2/L11にない。typed ticket graphを旧3 fieldと同一視できず、doc生成の記録/動作もこのtargetだけでは閉じない。",
+      "audit_status": "open_partial_correspondence",
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-04",
+      "source_status": "confirmed",
+      "carry_forward_state": "preserved_pending_rehome",
+      "successor_requirement_ids": [],
+      "existing_full_audit_current_target_ids": [
+        "HELIXOS-L2-017",
+        "HELIXOS-L2-023"
+      ],
+      "mapping_authority_effect": "none",
+      "decision_status": "pending_human_confirmation"
+    },
+    {
+      "id": "FR-L1-06",
+      "source_line": 37,
+      "source_line_sha256": "288deb439d614b3ee6877cdb83b884199613d9dce764f4220283a307538abb34",
+      "source_text": "| **FR-L1-06** | V モデル本線 state 一元管理 (plan_registry / code_catalog / contract_registry / skill_catalog 等 6 種) | db-integration | PLAN / コード / テスト / カバレッジ | 成果物間の一致管理、drift 検証結果。※ extended: drive 別 state 区画 (FR-L1-40 と連動)、V モデル正本 DB の SSoT 強化 | P0 | **HM-04 (直接 DB 閲覧)** / HM-01 |",
+      "targets": [
+        {
+          "id": "HARNESS-L2-004/005",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "lines": "55-56,114-121",
+          "relevance": "要求/design/test traceと変更時の再検証範囲、oracle/evidence付きの検証義務を保持する。"
+        },
+        {
+          "id": "HELIXOS-L2-019",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": "682-690",
+          "relevance": "provenance、訂正履歴、event、source revision、stale/欠落/重複/拒否/未実行状態とevidence continuityを保持する。"
+        },
+        {
+          "id": "HELIXOS-L2-023",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": "722-730",
+          "relevance": "handoff間の対象revision/digest、因果ID、scope、未完義務、停止理由、evidenceの一致を確認する。"
+        },
+        {
+          "id": "HARNESS-L2-004/005 L11",
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "lines": "24-25,44-57",
+          "relevance": "影響traceと再検証範囲、検証義務/evidenceを条件で確認する。"
+        },
+        {
+          "id": "HELIXOS-L2-019/023 L11",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": "352-357,380-385",
+          "relevance": "provenance/continuityとhandoffで欠落・stale・失敗・未完義務を確認する。"
+        }
+      ],
+      "retained_meaning": "成果物・要求・検証の関係、変更影響/再検証、provenance・event・訂正とhandoff evidenceを追跡する意味は複数の現行L2/L11契約に分散して保持される。",
+      "not_inherited": "旧6 registry群のidentity/schema、単一`harness.db`によるmechanical SSoT、旧direct DB browsing、およびdrive別partitionはこの要求のsuccessor条件として継承していない。旧FR-L1-40のdrive条件をFR-L1-06の継承として足さない。",
+      "residual": "PLAN/コード/test/coverageの全対象を一箇所で一致管理し、drift検証結果を利用者へ返すexact state set/owner/relation/oracleはこの固定L2/L11から条件全体としては確認できない。保存/traceの一般契約だけで、一元storeや全成果物の一致判定が成立したとはいえない。",
+      "audit_status": "open_partial_correspondence",
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-06",
+      "source_status": "confirmed",
+      "carry_forward_state": "preserved_pending_rehome",
+      "successor_requirement_ids": [],
+      "existing_full_audit_current_target_ids": [
+        "HELIXOS-L2-019",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005"
+      ],
+      "mapping_authority_effect": "none",
+      "decision_status": "pending_human_confirmation"
+    }
+  ],
+  "non_claims": [
+    "requirement_adoption",
+    "successor_assignment",
+    "source_coverage_complete",
+    "step5_complete",
+    "implementation_or_execution_success",
+    "human_decision"
+  ],
+  "validation_expected": {
+    "source_rows": 4,
+    "unique_source_qualified_identities": 4,
+    "all_carry_forward_state": "preserved_pending_rehome",
+    "all_authority_effect": "none",
+    "all_audit_status": "open_partial_correspondence"
+  },
+  "legacy_reference_sources": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+      "sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+      "lines": "71-91,95-115,149-169,197-216",
+      "use": "旧FR-L1-01/02/04/06の具体的な正常/異常/boundary条件と消費側の詳細化を参照。実行せず。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/physical-data.md",
+      "sha256": "a3064a3b705adcf0a5f76c3210aa431d87b7971aed2fe88f948a323a40c7772f",
+      "lines": "20-42,46-64,124-145,208-212",
+      "use": "旧PLAN物理形、generates/dependencies、harness.db projection/SSoT、FR-L1-40 partitionを参照し、非継承境界を明示。実行せず。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L8-integration-test-design.md",
+      "sha256": "c8b287ee4e103255081f00439b7fb2f3dfd259e0fb35a2760b48ad583524fe15",
+      "lines": "99-99",
+      "use": "旧 test-first integration consumerが存在することを読むだけで確認。旧test/CIは実行せず。"
+    }
+  ]
+}
