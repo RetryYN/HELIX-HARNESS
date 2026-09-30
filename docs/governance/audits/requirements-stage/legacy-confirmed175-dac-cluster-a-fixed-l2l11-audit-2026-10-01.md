@@ -44,7 +44,7 @@ OS-015のL2/L11はsource・対象revision・digest・判断出所を追跡し、
 
 ## 後発57/11/live26判断の近接screen
 
-57候補判断（`HDEC-REQUIREMENTS-57-2026-09-29`）、11候補判断（`HDEC-REQUIREMENTS-11-2026-09-29`）、live26判断（`HDEC-REQUIREMENTS-LIVE26-2026-09-30`）とその明示registration identityを、5つのsource-qualified identityとの完全一致と意味近接で照合した。完全一致は全decisionで0件。57/11の採択対象から5条件へ接続する意味近接行は確認しなかった。live26では次の局所候補を個別に比較した。全件とも別のOS requirement identityであり、旧source identityのsuccessorまたはclosureではない。
+57候補判断（`HDEC-REQUIREMENTS-57-2026-09-29`）、11候補判断（`HDEC-REQUIREMENTS-11-2026-09-29`）、live26判断（`HDEC-REQUIREMENTS-LIVE26-2026-09-30`）とその明示registration identityを、5つのsource-qualified identityとの完全一致と意味近接で照合した。完全一致は全decisionで0件。57/11の採択対象から5条件へ接続する意味近接行は確認しなかった。live26判断の処置総数は承認25件（通常採択22件と案選択付き承認3件）、保留1件である。live26では次の局所候補を個別に比較した。全件とも別のOS requirement identityであり、旧source identityのsuccessorまたはclosureではない。
 
 | 後発採択identity / registration | 固定節digest（L2 / L11） | 近接範囲と限界 |
 |---|---|---|
