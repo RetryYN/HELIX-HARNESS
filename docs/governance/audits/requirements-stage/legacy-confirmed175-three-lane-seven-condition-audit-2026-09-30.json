@@ -1,0 +1,929 @@
+{
+  "schema_version": "legacy-confirmed175-three-lane-seven-condition-audit.v1",
+  "audit_id": "legacy-confirmed175-three-lane-seven-condition-audit-2026-09-30",
+  "audit_mode": "read_only_static_condition_comparison",
+  "audit_revision": "48eed7f61a12db4b9ce1151059b651baa9840809",
+  "authority_effect": "none",
+  "population": "confirmed175",
+  "scope": {
+    "selected_identities": [
+      "3L-BR-001",
+      "3L-BR-002",
+      "3L-BR-003",
+      "3L-BR-004",
+      "3L-BR-005",
+      "3L-BR-006",
+      "3L-BR-009"
+    ],
+    "excluded_identities": [
+      "3L-BR-007",
+      "3L-BR-008"
+    ],
+    "queue_basis": "not_individually_compared at 2026-09-30 queue basis",
+    "fixed_target_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+  },
+  "legacy_source": {
+    "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+    "holding_path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+    "file_sha256": "e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765",
+    "legacy_asset_id": "LEGACY-ASSET-A6926200F28B26300432",
+    "source_status": "confirmed",
+    "carry_status": "preserved_pending_rehome",
+    "successor_requirement_ids": [],
+    "requirement_change_authority": "explicit_human_decision_only",
+    "consumer_paths": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/three-lane-cloud-governance-requirements.md",
+        "sha256": "4b388cda67484f1808b0f4b8834d5d234a47de49f7db6dcb12d92d2dcfbee185"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/three-lane-cloud-governance-recognition.md",
+        "sha256": "bd9c206f94ee1bdef794796974aeeaa302e6b91bc37b19467ca5acf5addc4a47"
+      }
+    ]
+  },
+  "inputs": {
+    "artifacts": {
+      "full_audit": {
+        "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json",
+        "sha256": "ca08a81d97e39e94aa02151c7cc4e48f621f9d30baccc1cf9b715331fed38f45"
+      },
+      "comparison_queue": {
+        "path": "docs/governance/audits/requirements-stage/confirmed175-condition-comparison-queue-2026-09-30.json",
+        "sha256": "2dbfb06c11ac42a940c0d6b5c188a76e685ea4c00e4d9af10b432198ad17b353"
+      },
+      "fixed_pair_neighbor_audit": {
+        "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-01-02-04-06-fixed-l2l11-audit-2026-09-30.json",
+        "sha256": "cdacd4ca968b4f8d5dfe103d8be3dc65bd86fbddfe3cb207a94a88eabe31edac"
+      },
+      "fixed_pair_neighbor_audit_md": {
+        "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-01-02-04-06-fixed-l2l11-audit-2026-09-30.md",
+        "sha256": "fc6d993887107a765162fe8d5052be6ccf8e9eba57581da6499695fa1509ed58"
+      },
+      "l3_consumer": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/three-lane-cloud-governance-requirements.md",
+        "sha256": "4b388cda67484f1808b0f4b8834d5d234a47de49f7db6dcb12d92d2dcfbee185"
+      },
+      "l12_consumer": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/three-lane-cloud-governance-recognition.md",
+        "sha256": "bd9c206f94ee1bdef794796974aeeaa302e6b91bc37b19467ca5acf5addc4a47"
+      },
+      "po_57_decision": {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+      },
+      "po_11_decision": {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+        "sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5"
+      }
+    },
+    "fixed_l2_l11_documents": [
+      {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "mechanism": "HELIX-HARNESS"
+      },
+      {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "mechanism": "HELIX-HARNESS"
+      },
+      {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+        "mechanism": "HELIX-OS"
+      },
+      {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+        "mechanism": "HELIX-OS"
+      },
+      {
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+        "mechanism": "HELIX-SECURITY"
+      },
+      {
+        "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01",
+        "mechanism": "HELIX-SECURITY"
+      },
+      {
+        "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+        "sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+        "mechanism": "HELIX-INFRASTRUCTURE"
+      },
+      {
+        "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+        "sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+        "mechanism": "HELIX-INFRASTRUCTURE"
+      },
+      {
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+        "mechanism": "HELIX-LABO"
+      },
+      {
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+        "mechanism": "HELIX-LABO"
+      }
+    ],
+    "later_conditionally_adopted_near_pairs": {
+      "decision_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "decision_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "decision_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "basis": "PO decision table rows for HELIXOS-L2-049/050/051; conditionally adopted exact pair sections at source HEAD 318ec4a. L2 digests are decision/MPR candidate_semantic_digest; L11 digests are section SHA-256.",
+      "pair_file_sha256": {
+        "l2": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+        "l11": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd"
+      },
+      "pairs": [
+        {
+          "l2": "e9372f19e5064cb5470141fef25a3212aa65cede5d44ecfff8c9ed86da83668b",
+          "l11": "d5a3a0c361a6d0056a8c608f5230a52d206c000d7ac81ff969aeaba30ad4d810",
+          "mpr": "MPR-RC-HELIXOS-L2-049-003",
+          "condition": "割当前に後段の検証義務・担当・capacityを確保する。割当先task自体のreview/merge完了は割当条件にしない。",
+          "identity": "HELIXOS-L2-049",
+          "decision": "conditional_adopted",
+          "decision_basis_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "l2_section_digest": "e9372f19e5064cb5470141fef25a3212aa65cede5d44ecfff8c9ed86da83668b",
+          "l11_section_digest": "d5a3a0c361a6d0056a8c608f5230a52d206c000d7ac81ff969aeaba30ad4d810",
+          "l2_l11_pair_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+        },
+        {
+          "l2": "fab5fdfae9cfd2211f8c2fd6dfad5ce7b065e007ef11ca62f55420baa5033b6d",
+          "l11": "cf4866f2d8beee83eda5389e3b98100cd37cbd609f7c797617b499c1381bfafb",
+          "mpr": "MPR-RC-HELIXOS-L2-050-003",
+          "condition": "capacity増枠から新しいmerge権限を発生させない。既存review_merge担当は既存admission後にmergeできる。branch変更・Ready権限は与えない。",
+          "identity": "HELIXOS-L2-050",
+          "decision": "conditional_adopted",
+          "decision_basis_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "l2_section_digest": "fab5fdfae9cfd2211f8c2fd6dfad5ce7b065e007ef11ca62f55420baa5033b6d",
+          "l11_section_digest": "cf4866f2d8beee83eda5389e3b98100cd37cbd609f7c797617b499c1381bfafb",
+          "l2_l11_pair_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+        },
+        {
+          "l2": "54fd39fbeb3786bc739560856afb14e3cf892b1bb717d98ceb1212df09fe7f2b",
+          "l11": "e01daa2fbf1ad7c2e9b6df54a9acdf022a3b821123d8904f8a171a4ede87b684",
+          "mpr": "MPR-RC-HELIXOS-L2-051-002",
+          "condition": "本構成でCursorを作成専用、Claude優先は適用可能な評価根拠のある要求・設計taskのみ。",
+          "identity": "HELIXOS-L2-051",
+          "decision": "conditional_adopted",
+          "decision_basis_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "l2_section_digest": "54fd39fbeb3786bc739560856afb14e3cf892b1bb717d98ceb1212df09fe7f2b",
+          "l11_section_digest": "e01daa2fbf1ad7c2e9b6df54a9acdf022a3b821123d8904f8a171a4ede87b684",
+          "l2_l11_pair_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+        }
+      ]
+    }
+  },
+  "queue_screen": {
+    "queue_revision": "2bbd889545cff238452701e5901ce56b67208fc8",
+    "queue_summary": {
+      "unique_identities": 175,
+      "individually_compared": 30,
+      "not_individually_compared": 145,
+      "condition_closure": 0,
+      "formal_successor_assignments": 0
+    },
+    "selected_identities_status": "7/7 not_individually_compared; no existing qualifying exact fixed-revision individual comparison; selected by identity/path from queue",
+    "007_008_exclusion": "Both are known residual identities, excluded per task scope; their residual status was not expanded or used as a proxy for selected IDs."
+  },
+  "condition_method": {
+    "source_tuple": "Archive source path, source line number, entire source file SHA-256, and exact source-line SHA-256 are recorded per identity; exact old requirement body is taken from L1 line + its subsequent body line in the archived and holding copy.",
+    "consumer_read": "Read old L3 BR-to-R derivation rows and L12 recognition conditions as old failure/consumer context only. Do not execute old code/test/runtime/CI.",
+    "fixed_comparison": "Compare only with fixed f6dad2a33e24f000b87d7f09b8d40288257e74cc L2/L11 bytes. Candidate existence, crosswalk presence, related later decisions, and prior mappings do not prove source-atom coverage.",
+    "numerical_rule": "Carry only numerical acceptance conditions actually present in each old source/consumer; do not silently treat them as adopted current thresholds. Distinguish omitted current thresholds from current selected-scope measurements.",
+    "pair_scope_digest": "The near-pair basis is the ten L2/L11 whole-file digests under inputs.fixed_l2_l11_documents, all read from fixed revision f6dad2a. This digest scope is limited to OS, SECURITY, INFRASTRUCTURE, LABO plus adjacent HARNESS pairs named by the prior full audit; it is not a digest of adopted successors."
+  },
+  "decision_screen": {
+    "screen_policy": "Identity/status-only screen across all rows in the exact 57-candidate decision table and all 11 later candidate identities. Include each exact candidate identity and its disposition; do not treat status itself as source-atom coverage. HELIXOS-L2-049/050/051 are candidate identities distinct from legacy 3L-BR-001..009.",
+    "po_2026_09_29_57": {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
+      "source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "counts": {
+        "total": 57,
+        "adopted": 42,
+        "conditional_adopted": 11,
+        "held": 4
+      },
+      "identity_status_screen": [
+        {
+          "identity": "HARNESS-L2-034",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-035",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-036",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-037",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-038",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-039",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-040",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-041",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-042",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-043",
+          "status": "conditional_adopted",
+          "decision_text": "条件付き採択：Bルート、所属はHARNESS-CORE。"
+        },
+        {
+          "identity": "HARNESS-L2-044",
+          "status": "conditional_adopted",
+          "decision_text": "条件付き採択：Bルート、名称はDesign Contract Portfolio。採択済み025/026へ無断追記しない。"
+        },
+        {
+          "identity": "HARNESS-L2-045",
+          "status": "held",
+          "decision_text": "保留。解除条件：値の決定責務、単位、未設定・参照不能・超過時の扱いを確定。ticketごとの予算額決定は不要。"
+        },
+        {
+          "identity": "HARNESS-L2-046",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-047",
+          "status": "conditional_adopted",
+          "decision_text": "条件付き採択：A配置（HARNESSが契約生成規範を所有）。"
+        },
+        {
+          "identity": "HELIXOS-L2-030",
+          "status": "held",
+          "decision_text": "保留。本体実行OSとconsumer利用先を分け、配布段階と切替条件を確定する。Windows即時却下やLinux限定を意味しない。"
+        },
+        {
+          "identity": "HELIXOS-L2-031",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-032",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-033",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-034",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-035",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-036",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-037",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-038",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-039",
+          "status": "held",
+          "decision_text": "保留。HARNESS-045と対に契約・版・予算条件を揃える。"
+        },
+        {
+          "identity": "HELIXOS-L2-040",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-041",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-042",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-043",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-044",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-045",
+          "status": "held",
+          "decision_text": "保留。対象集合、version_target、HARNESSからOSへの所有移動の有無を明記する。"
+        },
+        {
+          "identity": "HELIXOS-L2-046",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-047",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-048",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-049",
+          "status": "conditional_adopted",
+          "decision_text": "条件付き採択：割当前に後段の検証義務・担当・capacityを確保する。割当先task自体のreview/merge完了は割当条件にしない（訂正L11 `HELIXOS-L2-049-003`）。"
+        },
+        {
+          "identity": "HELIXOS-L2-050",
+          "status": "conditional_adopted",
+          "decision_text": "条件付き採択：capacity増枠から新しいmerge権限を発生させない。既存review_merge担当は既存admission後にmergeできる。branch変更・Ready権限は与えない（訂正L11 `HELIXOS-L2-050-003`）。"
+        },
+        {
+          "identity": "HELIXOS-L2-051",
+          "status": "conditional_adopted",
+          "decision_text": "条件付き採択：本構成でCursorを作成専用、Claude優先は適用可能な評価根拠のある要求・設計taskのみ。"
+        },
+        {
+          "identity": "HELIXOS-L2-052",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXLABO-L2-061",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXLABO-L2-062",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXLABO-L2-063",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXLABO-L2-064",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXLABO-L2-065",
+          "status": "conditional_adopted",
+          "decision_text": "条件付き採択：D1、067とは別指標で「最初のAttemptの結果」。"
+        },
+        {
+          "identity": "HELIXLABO-L2-066",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXLABO-L2-067",
+          "status": "conditional_adopted",
+          "decision_text": "条件付き採択：D1、「最初の適格candidateの結果」と同一Attempt内修正回数。065と換算・統合しない。"
+        },
+        {
+          "identity": "HELIXLABO-L2-068",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXLABO-L2-069",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-072",
+          "status": "conditional_adopted",
+          "decision_text": "条件付き採択：B配置、1.0は候補生成とshadow評価まで。"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-073",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-074",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-029",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-030",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-031",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-032",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-033",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-034",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXCONNECT-L2-008",
+          "status": "conditional_adopted",
+          "decision_text": "条件付き採択：A配置（供給はCONNECT、安全判定はSECURITY）、registration -002を対象。"
+        },
+        {
+          "identity": "HELIXCONNECT-L2-009",
+          "status": "conditional_adopted",
+          "decision_text": "条件付き採択：A。direction/orderは属性、feedbackは型付き戻り辺。操作ごとのunknown停止条件を分ける（訂正L11 `HELIXCONNECT-L11-009-002`）。"
+        }
+      ],
+      "selected_legacy_identity_exact_matches": 0
+    },
+    "po_2026_09_29_11": {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+      "sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+      "decision_basis_revision": "909c8015326f35f8d42ce12e3c388923de411d1f",
+      "source_repository_revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+      "counts": {
+        "total": 11,
+        "adopted": 8,
+        "adopted_with_dependency": 2,
+        "not_adopted_current_revision": 1,
+        "adopted_or_conditionally_adopted_total": 10
+      },
+      "identity_status_screen": [
+        {
+          "identity": "HARNESS-L2-041",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-048",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-031",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-050",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-051",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-052",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-053",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HARNESS-L2-054",
+          "status": "adopted",
+          "decision_text": "採択"
+        },
+        {
+          "identity": "HELIXOS-L2-038",
+          "status": "adopted_with_dependency",
+          "decision_text": "依存先と併せて採択"
+        },
+        {
+          "identity": "HELIXOS-L2-053",
+          "status": "adopted_with_dependency",
+          "decision_text": "依存先と併せて採択"
+        },
+        {
+          "identity": "HARNESS-L2-049",
+          "status": "not_adopted_current_revision",
+          "decision_text": "現生存registration -002は採択しない。訂正後exact L11 revisionのPO再確認待ち。"
+        }
+      ],
+      "selected_legacy_identity_exact_matches": 0
+    },
+    "near_pair_digest_scope": {
+      "pairs": [
+        "HELIXOS-L2-049",
+        "HELIXOS-L2-050",
+        "HELIXOS-L2-051"
+      ],
+      "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "pair_digests": {
+        "HELIXOS-L2-049": {
+          "l2_section_digest": "e9372f19e5064cb5470141fef25a3212aa65cede5d44ecfff8c9ed86da83668b",
+          "l11_section_digest": "d5a3a0c361a6d0056a8c608f5230a52d206c000d7ac81ff969aeaba30ad4d810"
+        },
+        "HELIXOS-L2-050": {
+          "l2_section_digest": "fab5fdfae9cfd2211f8c2fd6dfad5ce7b065e007ef11ca62f55420baa5033b6d",
+          "l11_section_digest": "cf4866f2d8beee83eda5389e3b98100cd37cbd609f7c797617b499c1381bfafb"
+        },
+        "HELIXOS-L2-051": {
+          "l2_section_digest": "54fd39fbeb3786bc739560856afb14e3cf892b1bb717d98ceb1212df09fe7f2b",
+          "l11_section_digest": "e01daa2fbf1ad7c2e9b6df54a9acdf022a3b821123d8904f8a171a4ede87b684"
+        }
+      },
+      "does_not_claim": "The conditional candidate decisions and pair hashes do not assign successors to the seven old 3L identities or close their source conditions."
+    }
+  },
+  "records": [
+    {
+      "source_qualified_identity": "helix/L1-requirements/three-lane-cloud-governance-requests.md::3L-BR-001",
+      "identity": "3L-BR-001",
+      "source_tuple": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+        "holding_path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+        "line": 39,
+        "file_sha256": "e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765",
+        "line_sha256": "1354b76d206016da85d6c27abc48c657a8cd9be9eebeca07c7dcfdf1e580e26e",
+        "legacy_asset_id": "LEGACY-ASSET-A6926200F28B26300432",
+        "source_status": "confirmed",
+        "carry_status": "preserved_pending_rehome"
+      },
+      "old_condition": {
+        "summary": "第一級レーンはCodex Control／Integration、Cursor Cloud Execution、Claude Independent Reviewのexact 3件だけ。Grok/Kimi/Composerはresident laneにしない。",
+        "old_l3_consumer": "L3-R-01〜03。L12はexact set、Cursor停止時の明示DEGRADED、provider laneの暗黙追加禁止を記す。"
+      },
+      "fixed_l2_l11_comparison": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "target_ids": [
+          "HELIXOS-L2-018",
+          "HELIXOS-L2-023",
+          "HELIXOS-L2-051"
+        ],
+        "retained_semantics": "f6dad2aのOS-018/023はassignmentとhandoffを保持する。2026-09-29判断が固定したOS-051 L2/L11 pair（条件付き採択、L2 digest `54fd39fb…fe7f2b` / L11 digest `e01daa2f…87b684`）は、本構成でCursorをexecution作成Workerに限りreview_mergeへ割り当てず、Claude優先は適用可能なLABO適性evidenceがあり利用可能な要求/設計taskに限定する。provider名だけでは独立性としない。",
+        "provider_specific_or_old_runtime_details_not_adopted": "OS-051は固定provider数・恒久provider-to-lane表・旧Codex control／Cursor implementation／Claude review matrixを採択していない。旧BR-001のexact 3 provider set、Grok/Kimi/Composer等をresident laneにしない規則、provider停止時のDEGRADED経路も採択されていない。",
+        "condition_specific_residual_and_oracle_gap": "task単位のCursor作成専用・根拠付きClaude優先は保持されたが、3件exact集合と無暗黙追加を検査するpositive/negative oracleは残る。固定provider不在時は適性を推測せず、代替適格配置を選べなければ未割当とする。",
+        "status": "comparison_recorded_residual_open",
+        "successor_requirement_ids": [],
+        "authority_effect": "none",
+        "prior_fixed_targets": [
+          "HELIXOS-L2-018",
+          "HELIXOS-L2-023"
+        ],
+        "later_conditionally_adopted_pair_ids": [
+          "HELIXOS-L2-051"
+        ]
+      },
+      "queue_status": "not_individually_compared before this audit; selected by #2395 queue; this artifact records the new fixed-revision comparison only."
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/three-lane-cloud-governance-requests.md::3L-BR-002",
+      "identity": "3L-BR-002",
+      "source_tuple": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+        "holding_path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+        "line": 43,
+        "file_sha256": "e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765",
+        "line_sha256": "3a61fb5523fcdb992afe54df00b21378bc31d74e00c69eac506de550c80d2478",
+        "legacy_asset_id": "LEGACY-ASSET-A6926200F28B26300432",
+        "source_status": "confirmed",
+        "carry_status": "preserved_pending_rehome"
+      },
+      "old_condition": {
+        "summary": "Codexがfrontier、要求/設計、Issue/PLAN、branch、assignment、資源配分、統合、Recovery、merge admissionを所有し、量産実装でcontrol reserveを枯らさない。",
+        "old_l3_consumer": "L3-R-04/09/10。L12はCodex pressure上昇中もcontrol/Recovery/merge余力を保つ認識条件。"
+      },
+      "fixed_l2_l11_comparison": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "target_ids": [
+          "HELIXOS-L2-017",
+          "HELIXOS-L2-018",
+          "HELIXOS-L2-020",
+          "HELIXOS-L2-023",
+          "HELIXOS-L2-049",
+          "HELIXOS-L2-050",
+          "HELIXOS-L2-051"
+        ],
+        "retained_semantics": "OS-049はconfigured resource ceiling・割当可能/割当中/実行中/遊休/検証待ち/統合待ち等の状態をassignment evidenceから分け、登録数を実行中数やaccepted throughputと同一視しない。OS-050/051はreview capacity・role適格性とassignmentを扱う。OS-050条件はcapacity増枠からmerge権限を生成しない。",
+        "provider_specific_or_old_runtime_details_not_adopted": "これらのpairはCodex専有control ownershipやminimum control reserveを定義せず、Codex pressureや量産実装量の閾値も定めない。",
+        "condition_specific_residual_and_oracle_gap": "Codex control／Recovery／merge余力の具体的指標、pressureと枯渇/回復判定、reserveを守る停止・割当oracleは未解決。",
+        "status": "comparison_recorded_residual_open",
+        "successor_requirement_ids": [],
+        "authority_effect": "none",
+        "prior_fixed_targets": [
+          "HELIXOS-L2-017",
+          "HELIXOS-L2-018",
+          "HELIXOS-L2-020",
+          "HELIXOS-L2-023"
+        ],
+        "later_conditionally_adopted_pair_ids": [
+          "HELIXOS-L2-049",
+          "HELIXOS-L2-050",
+          "HELIXOS-L2-051"
+        ]
+      },
+      "queue_status": "not_individually_compared before this audit; selected by #2395 queue; this artifact records the new fixed-revision comparison only."
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/three-lane-cloud-governance-requests.md::3L-BR-003",
+      "identity": "3L-BR-003",
+      "source_tuple": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+        "holding_path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+        "line": 47,
+        "file_sha256": "e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765",
+        "line_sha256": "84b6bc5dd88c13f875ef333b471964034c809d43a5374d65f04352f58e9f9c1d",
+        "legacy_asset_id": "LEGACY-ASSET-A6926200F28B26300432",
+        "source_status": "confirmed",
+        "carry_status": "preserved_pending_rehome"
+      },
+      "old_condition": {
+        "summary": "Cursorを常用する第一級cloud実装capacityとし、HELIX発行scope正本・専用branch・budget・TTL・policy bundle内で実装/test/commit/draft PR/同branch差戻し対応を行い、長時間local worker負荷を移す。",
+        "old_l3_consumer": "L3-R-05/12/14/23/24/25。L12は事前発行branchの実task回収、二重writer拒否、起動前後owner/HEAD証拠、Phase A/Bでも排他を認識する。"
+      },
+      "fixed_l2_l11_comparison": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "target_ids": [
+          "HELIXOS-L2-018",
+          "HELIXSECURITY-L2-007",
+          "HELIXINFRASTRUCTURE-L2-001",
+          "HELIXOS-L2-049",
+          "HELIXOS-L2-051"
+        ],
+        "retained_semantics": "f6dad2aのOS-018、SECURITY-007、INFRASTRUCTURE-001はassignment・実行制約/観測・resource境界を保持する。OS-051条件付き採択pairはこの構成でCursorをexecution作成Workerに限定し、review_mergeには使わない。taskごとにevidenceに基づく適格なruntimeを選び、Cursor利用不能/未評価なら推測せず代替根拠を記録するか未割当へ戻す。",
+        "provider_specific_or_old_runtime_details_not_adopted": "OS-051の限定配置は「Cursorを第一級cloud capacityとして常用」「全長時間local worker負荷を常にCursor Cloudへ移す」条件の採択ではない。専用branch、HELIX発行policy bundle、Cursor固有hook、budget/TTLの固定値も定めない。",
+        "condition_specific_residual_and_oracle_gap": "本構成での作成専用は保持されたが、常用率、provider移行、専用branch、scope/budget/TTL、二重writer拒否、負荷移転を検査する旧条件固有oracleは未解決。",
+        "status": "comparison_recorded_residual_open",
+        "successor_requirement_ids": [],
+        "authority_effect": "none",
+        "prior_fixed_targets": [
+          "HELIXOS-L2-018",
+          "HELIXSECURITY-L2-007",
+          "HELIXINFRASTRUCTURE-L2-001"
+        ],
+        "later_conditionally_adopted_pair_ids": [
+          "HELIXOS-L2-049",
+          "HELIXOS-L2-051"
+        ]
+      },
+      "queue_status": "not_individually_compared before this audit; selected by #2395 queue; this artifact records the new fixed-revision comparison only."
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/three-lane-cloud-governance-requests.md::3L-BR-004",
+      "identity": "3L-BR-004",
+      "source_tuple": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+        "holding_path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+        "line": 51,
+        "file_sha256": "e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765",
+        "line_sha256": "8dbe2a6b01bff62c36bbeb000fb72fa9549c3c44a77276e8588c64cbe475cc33",
+        "legacy_asset_id": "LEGACY-ASSET-A6926200F28B26300432",
+        "source_status": "confirmed",
+        "carry_status": "preserved_pending_rehome"
+      },
+      "old_condition": {
+        "summary": "Claudeはworker会話を受け取らずIssue/PLAN、PR、exact HEAD、diff、AC、CI receiptだけを用いるblind independent reviewを担い、HEAD更新時は旧receiptを失効させる。",
+        "old_l3_consumer": "L3-R-06/11。L12はbounded blind exact-HEAD inventoryとHEAD更新後の旧receipt拒否を認識する。"
+      },
+      "fixed_l2_l11_comparison": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "target_ids": [
+          "HELIXOS-L2-018",
+          "HELIXOS-L2-020",
+          "HELIXOS-L2-023",
+          "HARNESS-L2-005",
+          "HARNESS-L2-022",
+          "HELIXOS-L2-050",
+          "HELIXOS-L2-051"
+        ],
+        "retained_semantics": "OS-051 pairは同一runtime/contextを同じ変更の作成と独立reviewへ割り当てず、provider名の差だけでは独立性を成立させず、read-onlyのexact content HEADでfindingを記録し、HEAD変更後は新世代としてreviewを取り直す。OS-050 pairは原因を独立review capacity不足と確認できる場合だけ上限内でreview assignmentを増やす。条件付き採択上、capacity増枠はmerge/Ready/branch権限を増やさず、既存admission後に既存review_merge担当がmergeできる。Claude優先は適用可能evidenceを持つ要求/設計taskに限る。",
+        "provider_specific_or_old_runtime_details_not_adopted": "OS-051は旧「Claudeを唯一の独立検収lane」と「worker会話なし・Issue/PLAN/PR/exact HEAD/diff/AC/CI receiptのみ」というClaude固有の固定allowlistを採択しない。OS-050も特定reviewer/providerや数値閾値を固定しない。",
+        "condition_specific_residual_and_oracle_gap": "独立性のrole/runtime/context/authority/route分離とHEAD再reviewは保持された。レビュー入力からworker会話を除く厳密なblind allowlist、receipt schema/失効表現のBR固有negative oracle、Claude唯一laneとreview quotaは未解決。",
+        "status": "comparison_recorded_residual_open",
+        "successor_requirement_ids": [],
+        "authority_effect": "none",
+        "prior_fixed_targets": [
+          "HELIXOS-L2-018",
+          "HELIXOS-L2-020",
+          "HELIXOS-L2-023",
+          "HARNESS-L2-005",
+          "HARNESS-L2-022"
+        ],
+        "later_conditionally_adopted_pair_ids": [
+          "HELIXOS-L2-050",
+          "HELIXOS-L2-051"
+        ]
+      },
+      "queue_status": "not_individually_compared before this audit; selected by #2395 queue; this artifact records the new fixed-revision comparison only."
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/three-lane-cloud-governance-requests.md::3L-BR-005",
+      "identity": "3L-BR-005",
+      "source_tuple": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+        "holding_path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+        "line": 55,
+        "file_sha256": "e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765",
+        "line_sha256": "709fc387374164d05085133d5482a9145cb51851199b8a4a1625885736c23acb",
+        "legacy_asset_id": "LEGACY-ASSET-A6926200F28B26300432",
+        "source_status": "confirmed",
+        "carry_status": "preserved_pending_rehome"
+      },
+      "old_condition": {
+        "summary": "Codex pressure、Cursor monthly cloud spend、Claude review quota/inventoryを単一scoreに集約せず、accepted throughput、quality、cycle survival、review backpressureを同時に見る。",
+        "old_l3_consumer": "L3-R-07〜11。L12はpool別cost/forecast/runway/accepted-merge当たり費用をread-afterし、別軸表示と単一score拒否を認識する。"
+      },
+      "fixed_l2_l11_comparison": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "target_ids": [
+          "HELIXINFRASTRUCTURE-L2-001",
+          "HELIXLABO-L2-055",
+          "HELIXLABO-L2-059",
+          "HELIXOS-L2-049",
+          "HELIXOS-L2-050"
+        ],
+        "retained_semantics": "INFRASTRUCTURE-001とLABO-055/059はresource状態、task/model class別評価、選択scope/oracle/cohortごとのcost・elapsed time・human intervention比較を保持する。OS-049はresource ceilingとactive WIP/各状態を分け、capacity数をaccepted throughputと同一視しない。OS-050はreview wait count/time、rework occupancy、reviewer utilization/availabilityの設定条件と詰まり原因を分け、review capacity不足の場合だけ上限内で増枠し、別downstream詰まりではdispatch backpressureする。",
+        "provider_specific_or_old_runtime_details_not_adopted": "OS-049/050は旧Codex pressure／Cursor monthly spend／Claude quotaの3 poolを定義せず、accepted throughput・quality・cycle survival・review backpressureを組にした最適化や単一score禁止を全指標として採択していない。固定provider別のquota/cost/forecast/runwayもない。",
+        "condition_specific_residual_and_oracle_gap": "review負荷と原因別backpressureは条件付きpairに含まれるため「review backpressure自体が未定」とはしない。3 provider resourceの別軸表示、各指標の定義/分母/期間/欠測処理、cost/qualityを含む複合比較oracleとsingle-score拒否の反例は未解決。",
+        "status": "comparison_recorded_residual_open",
+        "successor_requirement_ids": [],
+        "authority_effect": "none",
+        "prior_fixed_targets": [
+          "HELIXINFRASTRUCTURE-L2-001",
+          "HELIXLABO-L2-055",
+          "HELIXLABO-L2-059"
+        ],
+        "later_conditionally_adopted_pair_ids": [
+          "HELIXOS-L2-049",
+          "HELIXOS-L2-050"
+        ]
+      },
+      "queue_status": "not_individually_compared before this audit; selected by #2395 queue; this artifact records the new fixed-revision comparison only."
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/three-lane-cloud-governance-requests.md::3L-BR-006",
+      "identity": "3L-BR-006",
+      "source_tuple": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+        "holding_path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+        "line": 59,
+        "file_sha256": "e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765",
+        "line_sha256": "68e2f1e782f989bc8f96349dfe68b22351f2acfc5211642bfd6c11c3d5c01dc8",
+        "legacy_asset_id": "LEGACY-ASSET-A6926200F28B26300432",
+        "source_status": "confirmed",
+        "carry_status": "preserved_pending_rehome"
+      },
+      "old_condition": {
+        "summary": "dispatch前policy bundle、Cursor cloud hook/environment、run後GitHub admissionの三層でscope/branch/secret/language/test/costを強制し、prompt遵守だけを合格根拠にしない。",
+        "old_l3_consumer": "L3-R-12/13/14/15/23/24。L12は各層を個別検証し、どれか欠落なら拒否、他層成功やpromptで相殺しない。"
+      },
+      "fixed_l2_l11_comparison": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "target_ids": [
+          "HELIXSECURITY-L2-007",
+          "HELIXSECURITY-L2-008",
+          "HELIXOS-L2-018",
+          "HELIXOS-L2-020"
+        ],
+        "retained_semantics": "SECURITY-007の制約適用/実観測、SECURITY-008の既存operation authority、OS assignmentとrun/result verificationを各責務ownerへ分離する。",
+        "provider_specific_or_old_runtime_details_not_adopted": "固定3層、Cursor hook/environment、GitHub gateの責務所在、6 policy fieldのprovider別強制方式は採択済みpairとして確認できない。現行SECURITYはauthority境界を再利用し、追加承認を生成しない。",
+        "condition_specific_residual_and_oracle_gap": "各constraintのsource/owner/target mapping、層別適用時点と観測証拠、いずれか欠落時の組合せnegative oracleが欠ける。別層の成功で代替できないこともL11に接続されていない。",
+        "status": "comparison_recorded_residual_open",
+        "successor_requirement_ids": [],
+        "authority_effect": "none"
+      },
+      "queue_status": "not_individually_compared before this audit; selected by #2395 queue; this artifact records the new fixed-revision comparison only."
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/three-lane-cloud-governance-requests.md::3L-BR-009",
+      "identity": "3L-BR-009",
+      "source_tuple": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+        "holding_path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+        "line": 71,
+        "file_sha256": "e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765",
+        "line_sha256": "aa864de44a28369fadd5d64d9504744e91faec7b9ec293ef155101013f91e113",
+        "legacy_asset_id": "LEGACY-ASSET-A6926200F28B26300432",
+        "source_status": "confirmed",
+        "carry_status": "preserved_pending_rehome"
+      },
+      "old_condition": {
+        "summary": "Cursor WIP=2で7日canaryし、billing-cycle後にaccepted merge量、費用、Codex relief、Claude差戻し、escaped defect、local resource削減をread-afterする。Cursor不使用で残高だけ維持した状態を成功扱いしない。",
+        "old_l3_consumer": "L3-R-21/22。旧L3詳細は実task最低5件、canary違反0件、billing-cycle末まで枯渇と過少利用を監査、cost/accepted PR/first-pass gate/rework/time-to-accepted/Codex relief/local process/escaped defectを測る。L12は同系統の実task 5件以上、WIP=2、7日、違反0、cycle後read-afterを明示する。"
+      },
+      "fixed_l2_l11_comparison": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "target_ids": [
+          "HELIXLABO-L2-059",
+          "HELIXOS-L2-018",
+          "HELIXOS-L2-019",
+          "HELIXOS-L2-020",
+          "HELIXOS-L2-023",
+          "HELIXOS-L2-049",
+          "HELIXOS-L2-050"
+        ],
+        "retained_semantics": "LABO-059の選択scope/oracle/cohortによるcost/time/intervention比較、OS-018/019/020/023のassignment・result・evidence・verification/handoffに加え、OS-049のactive WIPとcapacity ceilingの区別、accepted throughputをcapacity countと同一視しない条件、OS-050のreview wait/backpressure観測を近接pairとして記録する。",
+        "provider_specific_or_old_runtime_details_not_adopted": "OS-049/050の条件付き採択はWIP=2、7日、5実task、違反0、billing-cycle read-after、Cursor使用を定めず、canaryの費用/Codex relief/Claude差戻し/escaped defect/local削減を一括測定するものではない。",
+        "condition_specific_residual_and_oracle_gap": "旧consumerの数値一式と、比較cohort・期間境界・分母・枯渇/過少利用・escaped defect判定・未使用を成功扱いしないnegative oracleは残る。",
+        "status": "comparison_recorded_residual_open",
+        "successor_requirement_ids": [],
+        "authority_effect": "none",
+        "prior_fixed_targets": [
+          "HELIXLABO-L2-059",
+          "HELIXOS-L2-018",
+          "HELIXOS-L2-019",
+          "HELIXOS-L2-020",
+          "HELIXOS-L2-023"
+        ],
+        "later_conditionally_adopted_pair_ids": [
+          "HELIXOS-L2-049",
+          "HELIXOS-L2-050"
+        ]
+      },
+      "queue_status": "not_individually_compared before this audit; selected by #2395 queue; this artifact records the new fixed-revision comparison only."
+    }
+  ],
+  "residual_summary": {
+    "source_conditions": 7,
+    "exact_source_line_tuples": 7,
+    "individually_compared_by_this_audit": 7,
+    "condition_closure": 0,
+    "formal_successor_assignments": 0,
+    "adoption_claim": false,
+    "runtime_or_test_evidence": false,
+    "step5_or_requirements_stage_completion": false,
+    "later_pair_comparisons_added": 3,
+    "decision_screen_identities": 68
+  }
+}
