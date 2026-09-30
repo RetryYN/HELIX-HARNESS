@@ -47,7 +47,7 @@ ID誤用や別measureは明示的に除外した。PLAN-L1-02のFR-L1-44 role-va
 
 ## 後発decision proximity screen
 
-2026-09-29の57候補、同日の11候補、2026-09-30 live26判断について、採択済みregistration-decision rowsを全88件compact index化し、FR44 operational workflow/import atomsとC05–C11のmigration/staged-gate/setup consumer群への意味近接をscreenした。FR44の条件を具体化する近接pairはなかった。GD-01のstatic help/document projection (C12) とHBR-P6/P9 distribution package overlay (C10) は別のscreen/pillar identity scopeとしてこのzero-near判定の対象外であり、採択pairがscreen UXまたはdistribution packageに一切接続しないとは主張しない。全rowのidentity、registration ID、decision line/hashはJSONに保持する。
+2026-09-29の57候補、同日の11候補、2026-09-30 live26判断について、採択済みregistration-decision rowsを全88件compact index化し、FR44 operational workflow/import atomsとC05–C09およびC11のmigration/staged-gate/test-design consumer群への意味近接をscreenした。FR44の条件を具体化する近接pairはなかった。HBR-P6/P9 distribution package overlay (C10) とGD-01 static help/document projection (C12) は別のpillar/screen identity scopeとして、このzero-near判定の対象外。したがって採択pairがdistribution packageまたはscreen UXに一切接続しないとは主張しない。全rowのidentity、registration ID、decision line/hashはJSONに保持する。
 
 このscreenは後発採択の範囲を変更せず、source atomの採択・後継・closureを生成しない。固定pairと近接pairのL2/L11 file/section SHAおよび存在するMPR row SHAはJSONで固定する。
 

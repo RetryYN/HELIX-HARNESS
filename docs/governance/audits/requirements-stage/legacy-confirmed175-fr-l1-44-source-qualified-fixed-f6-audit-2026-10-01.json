@@ -1584,7 +1584,7 @@
     "excluded_nonadopted_or_unregistered_rows": 5,
     "screen_result": "後発の57候補、11候補、live26判断の採択registration-decision rows全88件をindex化しFR-L1-44のasset inventory、baseline creation、state import report、onboarding completion evidenceの条件への意味近接をscreen。FR44の旧条件を具体的に満たす近接pairは0件。採択表示、候補記述の単語共有、責務隣接をsuccessor・coverage・closureに変換しない。",
     "limited_scope": "compact index uses decision rows from base main; fixed/near L2/L11 pair section and MPR pins use f6 exact bytes. Non-near rows are not treated as condition coverage.",
-    "scope_limit_after_consumer_review": "88件の後発採択registration-decision rowsのscreenは、source FR44のworkflow/import atomsとC05-C11のmigration/staged-gate/setup consumer群への意味近接を対象とする。今回追加確認したGD-01 static help/document projection (C12) とHBR-P6/P9 full-distribution package overlay (C10) は別のscreen/pillar identity scopeであり、このzero-near結論の対象外。したがって採択pairがscreen UXまたはdistribution packageに一切接続しない、という主張ではない。"
+    "scope_limit_after_consumer_review": "88件の後発採択registration-decision rowsのscreenは、source FR44のworkflow/import atomsとC05-C09およびC11のmigration/staged-gate/test-design consumer群への意味近接を対象とする。C10 HBR-P6/P9 full-distribution package overlayとC12 GD-01 static help/document projectionは別のpillar/screen identity scopeであり、このzero-near結論の対象外。したがって採択pairがdistribution packageまたはscreen UXに一切接続しない、という主張ではない。"
   },
   "non_claims": [
     "旧sourceをretireせず、意味変更・successor割当・closureを行わない。",
@@ -1602,7 +1602,7 @@
     "additional_consumer_condition_count": 8,
     "source_consumer_pin_files": 26,
     "archive_consumer_fulltext_reviewed": true,
-    "later_adopted_pair_screen_scope": "functional FR44/import and C05-C11; excludes distinct C12 GD-01 projection and C10 package overlay scope"
+    "later_adopted_pair_screen_scope": "functional FR44/import and C05-C09 plus C11; excludes distinct C10 package overlay and C12 GD-01 screen projection scopes"
   },
   "fixed_target_document_files": {
     "docs/helix-harness/L2-requirements/product-requirements.md": {
