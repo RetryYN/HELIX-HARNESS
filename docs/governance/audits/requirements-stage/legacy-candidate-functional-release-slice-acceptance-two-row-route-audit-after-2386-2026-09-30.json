@@ -178,6 +178,18 @@
           "l2": "docs/helix-harness/L2-requirements/product-requirements.md:54",
           "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
           "reason": "Adjacent stage/Release Port condition; not counted as direct relation for the old FRS-specific order."
+        },
+        {
+          "id": "HARNESS-L2-006 (FRS-BR-005 re-adoption candidate)",
+          "l2": "docs/helix-harness/L2-requirements/product-requirements.md:274-286",
+          "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:178-186",
+          "reason": "Clean-consumer reproducibility and eligible rollback are adjacent to the old CI/consumer/rollback step, but the same fixed bytes label this FRS-derived meaning as awaiting re-adoption and the L11 evaluation as wholly unexecuted; not counted as adopted direct overlap or the exact FRS demonstration order."
+        },
+        {
+          "id": "HARNESS-L2-023 (FRS-AC retention candidate)",
+          "l2": "docs/helix-harness/L2-requirements/product-requirements.md:492",
+          "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:176-179",
+          "reason": "Local reproducibility/rollback is listed as an FRS retention point in a unit addendum candidate, but this is not adopted FRS sequence coverage and the related acceptance is not executed."
         }
       ]
     },
@@ -225,6 +237,18 @@
           "l2": "docs/helix-harness/L2-requirements/product-requirements.md:352-360",
           "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:206",
           "reason": "Generic passed-scope/permission and expiry behavior is adjacent, but does not specify FRS negative mutation matrix or independent verification; not counted as direct overlap."
+        },
+        {
+          "id": "HARNESS-L2-006 (FRS-BR-005 re-adoption candidate)",
+          "l2": "docs/helix-harness/L2-requirements/product-requirements.md:274-286",
+          "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:178-186",
+          "reason": "Clean-consumer and eligible-rollback checks are nearby FRS-derived acceptance conditions, but the fixed bytes say re-adoption is pending and all such acceptance is unexecuted; they do not specify every negative mutation, stale case, or unauthorized write."
+        },
+        {
+          "id": "HARNESS-L2-023 (FRS-AC retention candidate)",
+          "l2": "docs/helix-harness/L2-requirements/product-requirements.md:492",
+          "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:176-179",
+          "reason": "Unknown/stale fail-close is listed as an FRS retention point in a unit addendum candidate, not as adopted FRS-specific negative-oracle coverage; the related acceptance is unexecuted."
         }
       ]
     }
