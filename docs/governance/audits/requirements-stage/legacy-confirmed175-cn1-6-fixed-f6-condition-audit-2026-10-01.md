@@ -132,7 +132,7 @@
 
 ## 後発decision proximity screen
 
-57候補（53 adopted registration-decision rows）、11候補（10 adopted rows）、live26（25 adopted rows）、計88 adopted rowsを、全94 decision行と各decision record SHA・行SHAを保ってscreenした。採択状態の行を使って直接matchを数えず、条件が近い候補のみ説明用contextとして扱う。held/non-adopted行を採択扱いせず、screenはsuccessor、owner移管、同値、全consumer closureを生まない。OS-L2-049/-050はreview capacityとhandoffの条件近接候補として選び、後発decision行、MPR、L2/L11節のline digestをJSONに詳細pinした。いずれも条件付き採択のproposal-only記録で、CN-4/6のsuccessorではない。screen全体と候補別decision/MPR/L2/L11 pinsはJSONを参照。
+57候補（53 adopted registration-decision rows）、11候補（10 adopted rows）、live26（25 adopted rows）、計88 adopted rowsを、全94 decision行と各decision record SHA・行SHAを保ってscreenした。採択状態の行を使って直接matchを数えず、条件が近い候補のみ説明用contextとして扱う。held/non-adopted行を採択扱いせず、screenはsuccessor、owner移管、同値、全consumer closureを生まない。OS-L2-049/-050はCN-6のreview/verification capacityと既存review_merge authority境界への近接候補で、CN-4のrelease/tag/cutover/automatic-routing action-binding承認には対応しない。追加でOS-L2-046/-052をCN-6のdispatch→merge連続性／merge後base drift・再review・自動rebase禁止への近接として、SECURITY-L2-029/-031/-033/-034をCN-5の第三者・追加runtime/MCPのdata・secret/credential境界への近接として記録した。候補ごとに採択decision row、MPR登録行、L2/L11全section digestとidentity rowをJSONへpinした。いずれも条件限定の後発候補であり、CNのsuccessor、全条件移管、runtime実装/実行/受入・closureを生成しない。screen全体とcandidateごとのdecision/MPR/L2/L11 pinsはJSONを参照。
 
 ## 結果と限界
 
