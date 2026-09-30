@@ -1,0 +1,810 @@
+{
+  "schema_version": "v13-focused-condition-audit.v1",
+  "audit_scope": {
+    "title": "旧v1.3 §9.2 signal routing nine-condition audit",
+    "archive_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+    "archive_source_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+    "physical_lines": [
+      625,
+      633
+    ],
+    "source_item_ids": [
+      "REQSRC-SUP-00484",
+      "REQSRC-SUP-00485",
+      "REQSRC-SUP-00486",
+      "REQSRC-SUP-00487",
+      "REQSRC-SUP-00488",
+      "REQSRC-SUP-00489",
+      "REQSRC-SUP-00490",
+      "REQSRC-SUP-00491",
+      "REQSRC-SUP-00492"
+    ],
+    "source_inventory": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json",
+    "scope_limit": "Only the exact nine table rows (physical lines 625–633) are compared. No whole-source closure, signal registry completeness, runtime routing, or stage completion claim."
+  },
+  "created_against_revision": "105b9221f4de481ba59945be6df5cdd21f4358a3",
+  "selection_and_exclusion": {
+    "selection_rule": "Select consecutive queue rows that are condition + unresolved + primary_residual + unresolved_for_closure_work + zero existing exact individual audit refs. Lines 625–633 are the coherent §9.2 typed signal-routing table subset.",
+    "selected_queue_rows": [
+      {
+        "source_item_id": "REQSRC-SUP-00484",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 625,
+        "source_line_sha256": "sha256:990098b215599ad7e20ba8a2ab69131971a7ed611598f4e2d5736c6a802e8f90",
+        "source_text": "| `agent_runaway` / `context_exhaustion` / `regression_dev` / `runaway` / `forced_stop` | Recovery | `runaway`は`agent_runaway`へ正規化する |",
+        "condition_cluster_id": "V13-COND-L0625",
+        "source_section_label": "§9.2 signal routing・615–633",
+        "baseline_condition_status": "unresolved",
+        "queue_priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "existing_individual_audit_refs": [],
+        "existing_individual_audit_ref_count": 0,
+        "later_adopted_source_citation_refs": []
+      },
+      {
+        "source_item_id": "REQSRC-SUP-00485",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 626,
+        "source_line_sha256": "sha256:b017ea55141dee97aaa5643406d6eb425848183f2d85226bfe2c977dd61e501e",
+        "source_text": "| `production_incident` / `hotfix_required` / `regression_prod` | Incident | production境界とapprovalを検証する |",
+        "condition_cluster_id": "V13-COND-L0626",
+        "source_section_label": "§9.2 signal routing・615–633",
+        "baseline_condition_status": "unresolved",
+        "queue_priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "existing_individual_audit_refs": [],
+        "existing_individual_audit_ref_count": 0,
+        "later_adopted_source_citation_refs": []
+      },
+      {
+        "source_item_id": "REQSRC-SUP-00486",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 627,
+        "source_line_sha256": "sha256:eb025a46616a12019fcfbb398ff08a647e463ca9a6dd31707a74768096177b82",
+        "source_text": "| `feature_addition` / `scope_extension` | Add-feature | current styleのForwardへ再合流する |",
+        "condition_cluster_id": "V13-COND-L0627",
+        "source_section_label": "§9.2 signal routing・615–633",
+        "baseline_condition_status": "unresolved",
+        "queue_priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "existing_individual_audit_refs": [],
+        "existing_individual_audit_ref_count": 0,
+        "later_adopted_source_citation_refs": []
+      },
+      {
+        "source_item_id": "REQSRC-SUP-00487",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 628,
+        "source_line_sha256": "sha256:7774bf130d9809eada8810aaa866bd18a146a5b55c2b67b3e23d6a143c00708d",
+        "source_text": "| `pair_agent_tdd` / `pair-agent-tdd` / `pair-agent TDD route` / `pair programming` | Add-feature | pair cellを実行形態として選べるがstyleにしない |",
+        "condition_cluster_id": "V13-COND-L0628",
+        "source_section_label": "§9.2 signal routing・615–633",
+        "baseline_condition_status": "unresolved",
+        "queue_priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "existing_individual_audit_refs": [],
+        "existing_individual_audit_ref_count": 0,
+        "later_adopted_source_citation_refs": []
+      },
+      {
+        "source_item_id": "REQSRC-SUP-00488",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 629,
+        "source_line_sha256": "sha256:91621ceb8843f54dfa067fd0f9bac71c4931d8fadb1b2120b357e59d552b8a51",
+        "source_text": "| `version_deferral` | version-up | future activationまでparkする |",
+        "condition_cluster_id": "V13-COND-L0629",
+        "source_section_label": "§9.2 signal routing・615–633",
+        "baseline_condition_status": "unresolved",
+        "queue_priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "existing_individual_audit_refs": [],
+        "existing_individual_audit_ref_count": 0,
+        "later_adopted_source_citation_refs": []
+      },
+      {
+        "source_item_id": "REQSRC-SUP-00489",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 630,
+        "source_line_sha256": "sha256:5452dc18f4bc0560b72805b11ebc88826760c5ab186e23b4f442893d6220a8c0",
+        "source_text": "| `user_feedback_iteration` / `requirement_continuous_refinement` | selected-style change intake | styleを自動変更せず、lifecycleと影響でRedesign／Add-feature／Scrum sliceへrouteする |",
+        "condition_cluster_id": "V13-COND-L0630",
+        "source_section_label": "§9.2 signal routing・615–633",
+        "baseline_condition_status": "unresolved",
+        "queue_priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "existing_individual_audit_refs": [],
+        "existing_individual_audit_ref_count": 0,
+        "later_adopted_source_citation_refs": []
+      },
+      {
+        "source_item_id": "REQSRC-SUP-00490",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 631,
+        "source_line_sha256": "sha256:e5b876e6ac11cd2b154a045abc510953efd3ea0f929696a5031d49a6f542f7a8",
+        "source_text": "| `requirement_undefined` / `feasibility_unknown` / `success_condition_unclear` / `design_uncertain` | Discovery／PoC | Scrum非内包のcase-driven modelとして起動する |",
+        "condition_cluster_id": "V13-COND-L0631",
+        "source_section_label": "§9.2 signal routing・615–633",
+        "baseline_condition_status": "unresolved",
+        "queue_priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "existing_individual_audit_refs": [],
+        "existing_individual_audit_ref_count": 0,
+        "later_adopted_source_citation_refs": []
+      },
+      {
+        "source_item_id": "REQSRC-SUP-00491",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 632,
+        "source_line_sha256": "sha256:4a5333021d15e86fc6dc3223c90ffcca909d88e94b356316c40060bdd33dd106",
+        "source_text": "| `tech_decision_required` / `option_comparison_needed` / `adr_required` | Research | 実現性実験が必要ならDiscovery／PoCへ切り替える |",
+        "condition_cluster_id": "V13-COND-L0632",
+        "source_section_label": "§9.2 signal routing・615–633",
+        "baseline_condition_status": "unresolved",
+        "queue_priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "existing_individual_audit_refs": [],
+        "existing_individual_audit_ref_count": 0,
+        "later_adopted_source_citation_refs": []
+      },
+      {
+        "source_item_id": "REQSRC-SUP-00492",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 633,
+        "source_line_sha256": "sha256:7f719d22292a2070b27a25d26f9aea692cea62e4b9d54f234643f28b55d2a763",
+        "source_text": "| `interrupt` | subtype分岐 | 暴走はRecovery、未確定はDiscovery／PoC、追加はAdd-feature、層内gapはForwardへrouteする |",
+        "condition_cluster_id": "V13-COND-L0633",
+        "source_section_label": "§9.2 signal routing・615–633",
+        "baseline_condition_status": "unresolved",
+        "queue_priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "existing_individual_audit_refs": [],
+        "existing_individual_audit_ref_count": 0,
+        "later_adopted_source_citation_refs": []
+      }
+    ],
+    "prior_requested_exclusions": [
+      {
+        "group": "#2411 §6 v1.3 17-condition audit",
+        "source_item_ids": [
+          "REQSRC-SUP-00398",
+          "REQSRC-SUP-00399",
+          "REQSRC-SUP-00400",
+          "REQSRC-SUP-00403",
+          "REQSRC-SUP-00404",
+          "REQSRC-SUP-00405",
+          "REQSRC-SUP-00407",
+          "REQSRC-SUP-00409",
+          "REQSRC-SUP-00410",
+          "REQSRC-SUP-00411",
+          "REQSRC-SUP-00414",
+          "REQSRC-SUP-00418",
+          "REQSRC-SUP-00421",
+          "REQSRC-SUP-00424",
+          "REQSRC-SUP-00430",
+          "REQSRC-SUP-00431",
+          "REQSRC-SUP-00432"
+        ]
+      },
+      {
+        "group": "#2413 §2 v1.3 12-condition audit",
+        "source_item_ids": [
+          "REQSRC-SUP-00034",
+          "REQSRC-SUP-00035",
+          "REQSRC-SUP-00036",
+          "REQSRC-SUP-00037",
+          "REQSRC-SUP-00038",
+          "REQSRC-SUP-00039",
+          "REQSRC-SUP-00040",
+          "REQSRC-SUP-00041",
+          "REQSRC-SUP-00042",
+          "REQSRC-SUP-00043",
+          "REQSRC-SUP-00044",
+          "REQSRC-SUP-00045"
+        ]
+      },
+      {
+        "group": "#2415 merged v1.3 development-style 11-condition audit",
+        "source_item_ids": [
+          "REQSRC-SUP-00055",
+          "REQSRC-SUP-00056",
+          "REQSRC-SUP-00057",
+          "REQSRC-SUP-00059",
+          "REQSRC-SUP-00060",
+          "REQSRC-SUP-00061",
+          "REQSRC-SUP-00062",
+          "REQSRC-SUP-00063",
+          "REQSRC-SUP-00065",
+          "REQSRC-SUP-00068",
+          "REQSRC-SUP-00069"
+        ]
+      },
+      {
+        "group": "#2417 merged/read-after v1.3 Forward/Reverse audit",
+        "source_item_ids": [
+          "REQSRC-SUP-00391",
+          "REQSRC-SUP-00392",
+          "REQSRC-SUP-00393",
+          "REQSRC-SUP-00394",
+          "REQSRC-SUP-00395",
+          "REQSRC-SUP-00396"
+        ]
+      },
+      {
+        "group": "v1.3 §4.6.1 package-consumer residual 11-condition audit",
+        "source_item_ids": [
+          "REQSRC-SUP-00225",
+          "REQSRC-SUP-00242",
+          "REQSRC-SUP-00243",
+          "REQSRC-SUP-00244",
+          "REQSRC-SUP-00245",
+          "REQSRC-SUP-00246",
+          "REQSRC-SUP-00248",
+          "REQSRC-SUP-00249",
+          "REQSRC-SUP-00251",
+          "REQSRC-SUP-00255",
+          "REQSRC-SUP-00256"
+        ],
+        "source_lines": [
+          300,
+          318,
+          319,
+          320,
+          321,
+          322,
+          324,
+          325,
+          327,
+          331,
+          333
+        ]
+      }
+    ],
+    "baseline_focused_audit_overlap": [],
+    "overlap_count": 0,
+    "local_forward_reverse_audit_exclusion": {
+      "path": "docs/governance/audits/requirements-stage/v13-forward-reverse-391-396-condition-audit-2026-09-30.json",
+      "source_item_ids": [
+        "REQSRC-SUP-00391",
+        "REQSRC-SUP-00392",
+        "REQSRC-SUP-00393",
+        "REQSRC-SUP-00394",
+        "REQSRC-SUP-00395",
+        "REQSRC-SUP-00396"
+      ],
+      "status": "#2417 merged/read-after group; excluded by exact source identity"
+    },
+    "queue_exact_identity_check": "At 105b9221f4de481ba59945be6df5cdd21f4358a3, all nine selected source-qualified tuples match their queue rows (condition/unresolved, primary_residual, unresolved_for_closure_work, zero individual refs); queue and full baseline audit were excluded from the duplicate scan and separately checked.",
+    "#2415_merged_pr": {
+      "number": 2415,
+      "head_ref": "codex/stage5-v13-development-style-11-audit",
+      "source_item_ids": [
+        "REQSRC-SUP-00055",
+        "REQSRC-SUP-00056",
+        "REQSRC-SUP-00057",
+        "REQSRC-SUP-00059",
+        "REQSRC-SUP-00060",
+        "REQSRC-SUP-00061",
+        "REQSRC-SUP-00062",
+        "REQSRC-SUP-00063",
+        "REQSRC-SUP-00065",
+        "REQSRC-SUP-00068",
+        "REQSRC-SUP-00069"
+      ],
+      "state_at_screen": "PR #2415 merged/read-after on 03edd59; its 11 source-qualified IDs remain disjoint from 484–492."
+    },
+    "duplicate_scan_population": {
+      "revision": "105b9221f4de481ba59945be6df5cdd21f4358a3",
+      "included": "All v1.3-focused individual condition-audit JSON artifacts at the pinned main revision.",
+      "excluded_files": [
+        "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json",
+        "docs/governance/audits/requirements-stage/legacy-v13-semantic-condition-audit-2026-09-28.json"
+      ],
+      "reason": "The work queue is the full source population and the baseline audit is the full 303-condition inventory; they necessarily contain selected IDs. They are checked separately for queue eligibility/status and source-qualified condition mapping, not counted as prior individual audits.",
+      "result": "Exact source-qualified overlap with other focused individual audits is 0."
+    }
+  },
+  "current_input_pins": {
+    "queue": {
+      "path": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json",
+      "sha256": "sha256:a61ec098a6bd714fcbbb706d0d9afb4e7f2777b114bf23c8056fc130e30f60d9",
+      "at_revision": "105b9221f4de481ba59945be6df5cdd21f4358a3"
+    },
+    "baseline_audit": {
+      "path": "docs/governance/audits/requirements-stage/legacy-v13-semantic-condition-audit-2026-09-28.json",
+      "sha256": "sha256:cd765545e584c50b423d652674ac54a3240aced24a321c0caa6bc2dd881ad863",
+      "at_revision": "105b9221f4de481ba59945be6df5cdd21f4358a3"
+    },
+    "asset_disposition": {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "sha256:cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "at_revision": "105b9221f4de481ba59945be6df5cdd21f4358a3"
+    },
+    "source_snapshot": {
+      "path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+      "sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "at_revision": "105b9221f4de481ba59945be6df5cdd21f4358a3"
+    },
+    "current_os_l2": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "sha256:bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+      "at_revision": "105b9221f4de481ba59945be6df5cdd21f4358a3"
+    },
+    "current_os_l11": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "sha256:cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+      "at_revision": "105b9221f4de481ba59945be6df5cdd21f4358a3"
+    },
+    "current_harness_l2": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "sha256:78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
+      "at_revision": "105b9221f4de481ba59945be6df5cdd21f4358a3"
+    },
+    "current_harness_l11": {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "sha256:a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e",
+      "at_revision": "105b9221f4de481ba59945be6df5cdd21f4358a3"
+    },
+    "decision_57_record": {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+    },
+    "decision_11_record": {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+      "sha256": "sha256:6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+      "source_repository_revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+      "decision_basis_revision": "909c8015326f35f8d42ce12e3c388923de411d1f"
+    },
+    "current_main_revision": "105b9221f4de481ba59945be6df5cdd21f4358a3",
+    "feedback_resolution_receipt": {
+      "path": "docs/governance/audits/requirement-registration/os-v13-hyb-006-feedback-resolution-coverage-receipt-2026-09-28.json",
+      "sha256": "sha256:cb22a82d4881a62b2066e881449e2a6b65cae23613b0ba6715da6c6b7af34af9",
+      "at_revision": "105b9221f4de481ba59945be6df5cdd21f4358a3"
+    },
+    "stage_exit_receipt": {
+      "path": "docs/governance/audits/requirement-registration/phcap08-stage-exit-coverage-receipt-2026-09-29.json",
+      "sha256": "sha256:2c0111eaf28b5d653f2a99efd6ede1f5f380c29f4bec17e554cb7a195cb3e3a4",
+      "at_revision": "105b9221f4de481ba59945be6df5cdd21f4358a3"
+    }
+  },
+  "old_source_and_consumers": {
+    "archive_asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+    "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+    "consumers": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/README.md",
+        "sha256": "sha256:59120aa9b044b4edf2387959ced5ad4020d230b747cc5406ac6d03281f1f9b83",
+        "scope": "§1–5, especially process-axis table and signal→identity separation; lines 29–47 are cited by current OS L2."
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/recovery.md",
+        "sha256": "sha256:5c3353d68e4715c7a733da16fc06ecd1644fada7302db00ef7c34930e13a29eb",
+        "scope": "trigger table, dev-vs-production boundary, flow/forward reentry"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/incident.md",
+        "sha256": "sha256:bad6448a63dbc6b7867b9845ca8caf96ee144802961504f3793667f49fc28f7c",
+        "scope": "production incident triggers, approval, temporary hotfix vs permanent Reverse route"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/add-feature.md",
+        "sha256": "sha256:f6b6bbe67d73ca4bcc5b8f0a6d4a3250398ff09ca0689f6a044bc72e38bdef1e",
+        "scope": "selected-style feature addition and Forward convergence; add-design/add-impl are PLAN kinds, not workflow identity"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/version-up.md",
+        "sha256": "sha256:8b4f333a0734a4a2f3f8cea9f1b17c87c3880a0dc271671af45f53be7b7c4a74",
+        "scope": "version deferral, parked item, future activation/Decide→Add-feature"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/discovery.md",
+        "sha256": "sha256:b8cf5865355439c8836b50832fd0e53d0312b13477cb376d65e97562edd4fd38",
+        "scope": "case-driven uncertainty / feasibility, S0–S4 and style separation"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/research.md",
+        "sha256": "sha256:b53fd079262e378d5219cac52e72ab8a709259a637f270da1bf3d585f6f0a3d2",
+        "scope": "desk research vs PoC, no decision ownership and route to Discovery on feasibility experiment"
+      }
+    ],
+    "read_boundary": "Read-only legacy sources; none executed."
+  },
+  "comparison_baselines": {
+    "po_fixed_revision": {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "HELIXOS-L2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "sha256": "sha256:c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+        "line_pins": {
+          "HELIXOS-L2-005": {
+            "line": 58,
+            "sha256": "sha256:db813b881bbffa7bae3f18e7dc0c2f9a5c16e833b498cf465c5a83bd78cfaeb9"
+          },
+          "HELIXOS-L2-010": {
+            "line": 63,
+            "sha256": "sha256:e00b99e43ad2e5f6a763d8ec05f994f8d2d94b51a9ae36468a02b2be2b228f6b"
+          },
+          "Forward-mainline": {
+            "line": 127,
+            "sha256": "sha256:846f320c66494399e0635979d24f56945943dc92cc5253ac05ff98c20595ffc0"
+          },
+          "Reverse": {
+            "line": 139,
+            "sha256": "sha256:d3aa050d628969c4926a19c5d56e062c8a24a69b7dbdc70d1af4f3ef5a837b02"
+          },
+          "Recovery": {
+            "line": 140,
+            "sha256": "sha256:4b876a36a97c9f6fd3d075d41dca53668529574c8ec54f68e33f511feb5b5489"
+          },
+          "Incident": {
+            "line": 141,
+            "sha256": "sha256:1273c34787e2a0221eaa1ab171f720be5fcbec1c1e05d11725513949a98f8cd2"
+          },
+          "Research": {
+            "line": 147,
+            "sha256": "sha256:ab6e5c6524a6f0ef7546b67224b6f559677af14ff8b28bf6ee2af3c068c65190"
+          },
+          "Add-feature": {
+            "line": 148,
+            "sha256": "sha256:68779a10b6447caa78ce0e3fa025b6eda643ac9adfcc12ad5f577377d51be636"
+          },
+          "Version-up": {
+            "line": 149,
+            "sha256": "sha256:aaebb88dd9dc92be4bad2dd123a9508a290153be178d5577ccd21d61c396016f"
+          },
+          "HELIXOS-L2-007-main": {
+            "line": 60,
+            "sha256": "sha256:d674f0be810bebd44d407d82f5e323119d9add7e61ea558419955fe0e6d16158"
+          },
+          "HELIXOS-L2-007-feedback-lifecycle": {
+            "line": 295,
+            "sha256": "sha256:61b3cfdd51ffba2453abf1b98d554a3f85a47c5b6876be6acef706ca1bd8a119"
+          }
+        }
+      },
+      "HELIXOS-L11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "sha256": "sha256:925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+        "line_pins": {
+          "HXT-TYPE-04": {
+            "line": 281,
+            "sha256": "sha256:adbd9f37c2bee96cc218b260c2737ae3d7d7b6df92b600bfd5fba45686009f6d"
+          },
+          "HXT-TYPE-05": {
+            "line": 282,
+            "sha256": "sha256:0de3759ac418b10d26abb7c72ab4f8d8af8d5a692d66f0503c3c349b943a421f"
+          },
+          "HXT-TYPE-06": {
+            "line": 283,
+            "sha256": "sha256:04eb6858a614223c631cdbc3074d74df9e88d67c0235f8dd9f7996d77cd16db3"
+          },
+          "HXT-TYPE-07": {
+            "line": 284,
+            "sha256": "sha256:7f8a108c96061cf4be96fd18723691d0589ea967a043ea69594fef0d2ab1ccb4"
+          },
+          "HXT-TYPE-08": {
+            "line": 285,
+            "sha256": "sha256:d42c92a580db2c7a9aa3ce6415448da048678f86ce087a8331c36d04bcf72c40"
+          },
+          "HXT-TYPE-09": {
+            "line": 286,
+            "sha256": "sha256:d39a81a9df511f187a2570f873208c45cac2337367c0d4e8595c62f7f3811e6f"
+          },
+          "HELIXOS-L2-005-L11": {
+            "line": 25,
+            "sha256": "sha256:9f2b8f6c7d0820cccb8862beb8eea01d053792875c36ffbbd9ffd30b75c07963"
+          },
+          "HXT-TYPE-10": {
+            "line": 287,
+            "sha256": "sha256:abc6ce529b5cbe17973ae97aaacb3e38240d4afe51659574e69bde7685079139"
+          },
+          "HXT-TYPE-11": {
+            "line": 288,
+            "sha256": "sha256:32068277357fc30e19012a20a82a0174e1e8fe6b5ef561f760cd4c74e8a2fe08"
+          },
+          "HXT-TYPE-17": {
+            "line": 294,
+            "sha256": "sha256:f30d35ee9b19cff5f0664268d01ee096ecfed9b8c3dc463ccfd9aaa2fb72f7d1"
+          },
+          "HXT-TYPE-18": {
+            "line": 295,
+            "sha256": "sha256:ffbbeaf2565c6f99f04db70bcd4c4d57801036544cb50813c7ec22795bed2913"
+          },
+          "HXT-TYPE-19": {
+            "line": 296,
+            "sha256": "sha256:8e7a14950e580d23c7f95384337a930fd8e3dbf1701607cc016b237fba971dde"
+          },
+          "HXT-FLOW-02": {
+            "line": 300,
+            "sha256": "sha256:dc4adea9df7c7095f3c6b3eb05010468e6c93b0ee575ac98cae420d1def2b06a"
+          },
+          "HXT-FLOW-03": {
+            "line": 301,
+            "sha256": "sha256:7ff104b88b598a34301ab5648b85ca657bd40c65bdce54ad5d955d99d91f2df1"
+          },
+          "HXT-FLOW-04": {
+            "line": 302,
+            "sha256": "sha256:86264739cae2355d30a7f486568b4980c50eecd8922946fe82bd5c3aa6f10f80"
+          }
+        }
+      },
+      "HARNESS-L2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "sha256": "sha256:aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "line_pins": {
+          "HARNESS-L2-002": {
+            "line": 53,
+            "sha256": "sha256:932d09ce11a68ddc501378d4e0e5cf65f71597de161efebf5fd699ae82b2813b"
+          },
+          "HARNESS-L2-003": {
+            "line": 54,
+            "sha256": "sha256:693deb038a91ee9ba358aecab588d889a9fa40ff67c5d697f880ee76ff18b3d0"
+          },
+          "ticket-axis-note": {
+            "line": 98,
+            "sha256": "sha256:02ab409c4e895af921d3a922b679db70c8a8f9fdf474df86d3729ad365894983"
+          },
+          "style-boundary": {
+            "line": 100,
+            "sha256": "sha256:7c94885350f99f133b23e4520954f46f061ad48ddbf6e36b5ad86e47f3c9311d"
+          },
+          "discovery-poc-trigger": {
+            "line": 103,
+            "sha256": "sha256:676d697fd3b43cca750d46d4c2dc31f7d990230586adbfabbb5828e5a02335af"
+          },
+          "research-trigger": {
+            "line": 104,
+            "sha256": "sha256:e038d56535daa6758b690f89b39d54e83f80c7deee7ccfbb84261db2492df734"
+          }
+        }
+      },
+      "HARNESS-L11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "sha256": "sha256:09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "line_pins": {
+          "HARNESS-L2-002": {
+            "line": 22,
+            "sha256": "sha256:750bbdbca003df8710a0112781b490bb490573913fc1fd9d24f2d158cabb42cb"
+          },
+          "HARNESS-L2-003": {
+            "line": 23,
+            "sha256": "sha256:1ced8f2b5886a2c154bb809f169b8a01f27d9af38abb1697ac0cd96325dba9c5"
+          }
+        }
+      }
+    },
+    "later_decisions": {
+      "57_record": "The exact record and its source_repository_revision are pinned separately. It does not contain an explicit REQSRC-SUP-00484..00492 line adoption/successor.",
+      "11_record": "The exact record and its source_repository_revision are pinned separately. It does not contain an explicit REQSRC-SUP-00484..00492 line adoption/successor.",
+      "result": "No later decision changes the fixed ticket mapping for these nine old signal rows. No later pair is asserted as a formal successor; do not infer signal-route adoption from ticket-family similarity."
+    },
+    "source_scope": "The f6 fixed L2/L11 pair is the comparison baseline. Current-input files, including current requirement files and bounded decision receipts, are independently pinned at 105b9221f4de481ba59945be6df5cdd21f4358a3 and not substituted for the fixed revision."
+  },
+  "conditions": [
+    {
+      "source_item_id": "REQSRC-SUP-00484",
+      "status": "partial",
+      "fixed_refs": [
+        "HELIXOS-L2-010:63,140",
+        "HELIXOS-L11:HXT-TYPE-10:287"
+      ],
+      "retained": "開発中のagent逸脱・暴走・context切れをRecoveryへ分岐し、中断工程へ戻す。source alias `runaway` を `agent_runaway` に正規化する一方向規則もsourceが明示する。",
+      "meaning_delta": "現行OS acceptanceはRecovery目的、突発起動、中断工程への合流と予算/未完義務保全を受け入れるが、§9.2のsignal literal群と正規化表をHARNESS/OSの受入例に展開していない。",
+      "numeric_and_exception_boundary": "5 literal signals: agent_runaway, context_exhaustion, regression_dev, runaway, forced_stop。`runaway`だけを`agent_runaway`へ正規化する。本番regression/incidentはRecoveryではない。",
+      "counterexample": "`runaway` aliasを新しいworkflow identityとして維持する、または`regression_prod`をRecoveryに流す。",
+      "residual": "source signal→Recovery tuple、alias warning/provenance、開発/production境界が同一target revision上でどう照合されるかのexact oracle。"
+    },
+    {
+      "source_item_id": "REQSRC-SUP-00485",
+      "status": "partial",
+      "fixed_refs": [
+        "HELIXOS-L2-010:63,141",
+        "HELIXOS-L11:HXT-TYPE-11:288",
+        "HELIXOS-L11:HXT-FLOW-02:300"
+      ],
+      "retained": "production incident/hotfix/regressionはIncidentへ分け、L12運用評価へ戻し、恒久対策をReverse経由へする。緊急hotfix成功を恒久修復完了にしない。",
+      "meaning_delta": "現行HXT acceptanceはIncident ticket目的、突発発行、L12/Reverse convergenceを確認するが、各旧signal名を含むtargeting例やapproval evidence検査をこの条件単位で固定していない。",
+      "numeric_and_exception_boundary": "3 literal signals: production_incident, hotfix_required, regression_prod。production境界と既存approval条件は要るが、signal自体はapprovalを生成しない。",
+      "counterexample": "production triggerをRecoveryへ分類する、または`hotfix_required`を本番変更の承認と見なす。",
+      "residual": "各aliasとenv=prod/approval snapshot/Incident routeの同一revision receipt、およびtemporary containmentと恒久Reverseの分離oracle。"
+    },
+    {
+      "source_item_id": "REQSRC-SUP-00486",
+      "status": "partial",
+      "fixed_refs": [
+        "HELIXOS-L2-010:63,148",
+        "HELIXOS-L11:HXT-TYPE-18:295",
+        "HARNESS-L2-002:53,100",
+        "HARNESS-L11:22"
+      ],
+      "retained": "既存style内の機能/範囲追加をAdd-featureへ送り、Forward該当層へ戻す。選択済み開発styleはsignalだけで変えない。",
+      "meaning_delta": "現在はAdd-feature workflowと`add-design`/`add-impl` PLAN kind、development styleを別axisに置く。単一のgeneric routeではなく、影響layerに収束する。",
+      "numeric_and_exception_boundary": "2 trigger literals: feature_addition, scope_extension。外部約束/要求/受入意味変更ならRedesign/Decideの境界を評価する。",
+      "counterexample": "feature/scope signalからstyleをProduction Scrumへ自動変更する、またはAdd-featureを独立style/kindとする。",
+      "residual": "trigger alias、変更impact判定、選択style内のForward target layerまでのexact route/evidence oracle。"
+    },
+    {
+      "source_item_id": "REQSRC-SUP-00487",
+      "status": "partial",
+      "fixed_refs": [
+        "HARNESS-L2-002:53,98,100",
+        "HARNESS-L11:22",
+        "HELIXOS-L2-010:63,148",
+        "HELIXOS-L11:HXT-TYPE-18:295"
+      ],
+      "retained": "pair-agent TDDはpair cellの実行形態として選択でき、development styleではない。Route targetはAdd-featureで選択styleのForwardへ合流する。",
+      "meaning_delta": "HARNESS fixed pairはstyleとticket種類を分離し、OS pairはAdd-featureの差分追加を定義する。旧sourceのpair-agent aliasはcurrent canonical identityとして直接再出力せず、現行pair workflow/worker構成と同一だと推定しない。",
+      "numeric_and_exception_boundary": "4 alias spellings: pair_agent_tdd, pair-agent-tdd, pair-agent TDD route, pair programming。これらは別style enumを増やさない。",
+      "counterexample": "pair programmingを新development styleにする、または実行形態だけでAdd-featureのscope/Forward impactを省く。",
+      "residual": "旧aliasのcompatibility mapping、pair implementation cellの対象とowner、既存style内Add-feature ticketへの明示接続をこのcondition-specific acceptanceで確かめること。"
+    },
+    {
+      "source_item_id": "REQSRC-SUP-00488",
+      "status": "partial",
+      "fixed_refs": [
+        "HELIXOS-L2-010:63,149",
+        "HELIXOS-L11:HXT-TYPE-19:296",
+        "HELIXOS-L11:HXT-FLOW-03:301"
+      ],
+      "retained": "将来版へ回した項目は消さず保全し、導入可能時にDecideを経てAdd-featureとしてForwardへ入れる。",
+      "meaning_delta": "旧 `future activation` はcurrent ticket descriptionで`later version`/version-upとして表現され、特定の現行release/version値は決めない。新しいkindを作るのではなく、保全中の既存PLANにversion_targetを持たせる別の現在契約がある。",
+      "numeric_and_exception_boundary": "1 trigger: version_deferral。future itemはactivation/Decide前にproduction Add-featureへ流さない。",
+      "counterexample": "parked itemを消す、またはDecideを経ずcurrent releaseへAdd-featureする。",
+      "residual": "future target/trigger、保全記録、再確認/activation decision、選択したForward layerを特定revisionに結ぶ証拠。"
+    },
+    {
+      "source_item_id": "REQSRC-SUP-00489",
+      "status": "partial",
+      "fixed_refs": [
+        "HELIXOS-L2-010:63,139,148",
+        "HELIXOS-L2-005:58",
+        "HELIXOS-L2-007:60,295",
+        "HELIXOS-L11:25,286,295,304",
+        "HARNESS-L2-002:53,100",
+        "HARNESS-L11:22"
+      ],
+      "retained": "`user_feedback_iteration`／`requirement_continuous_refinement`はstyle自動変更を起こさないchange intakeとして扱い、既存OS L2-005のsource/scope付き改善候補登録・還流を保持する。feedback lifecycleのintake/classify/ack/pending/resolution区別とsource/evidence保持は既採択HELIXOS-L2-007の責務。",
+      "meaning_delta": "f6固定pairではL3の明示的style合意と、OS L2-007のfeedback lifecycle/evidence責務が成立している。別recordで採択されたHELIXOS-L2-044はprose-only handoverをresolution evidenceとして認めない限定negativeだけを追加し、新しい十分条件・event/projectionモデル・SessionStart条件を定義しない。2 aliasからRedesign／Add-feature／Scrum sliceのいずれを選ぶかは固定pairにも後発decisionにもない。",
+      "numeric_and_exception_boundary": "2 legacy feedback aliases; 3 candidate change routes (Redesign / Add-feature / Scrum slice). Style is not auto-switched from a signal. Adjacent OS-L2-044 scope is only rejection of prose-only resolution as sufficient evidence; OS-L2-007 retains lifecycle and evidence ownership.",
+      "counterexample": "feedback aliasだけでstyleや3 routeを自動選択する、またはprose-only handoverでfindingをresolvedにする。",
+      "residual": "legacy alias-to-route compatibility, impact/requirements-authority oracle selecting among Redesign/Add-feature/Scrum slice, and receipt binding the chosen route to the accepted style and target requirements revision. Existing HELIXOS-L2-007 lifecycle/evidence responsibilities are retained context, not an unowned residual."
+    },
+    {
+      "source_item_id": "REQSRC-SUP-00490",
+      "status": "partial",
+      "fixed_refs": [
+        "HELIXOS-L2-010:63,134-136",
+        "HELIXOS-L11:HXT-TYPE-04-06:281-283",
+        "HARNESS-L2-002/003:98,103",
+        "HARNESS-L11:22-23"
+      ],
+      "retained": "要件/成功条件の欠落や成立性不明はScrum phaseに混ぜずcase-driven DiscoveryまたはPoCとして扱い、結果をBackflow/Decideまたは発行元へ返す。画面有無によりPrototypeとPoCは別々に判定する。",
+      "meaning_delta": "current pair distinguishes Discovery (unclear scope or in-development verification), PoC (technical feasibility unknown even without UI), and Prototype (UI interaction only). The legacy single table cell names Discovery/PoC as a routing pair and does not encode every current applicability branch.",
+      "numeric_and_exception_boundary": "4 trigger aliases: requirement_undefined, feasibility_unknown, success_condition_unclear, design_uncertain. Discovery vs PoC are separate current targets; no-screen excludes Prototype, not PoC. Scrum does not subsume either case-driven model.",
+      "counterexample": "screenless PoCを省く、screenless Prototypeを強制する、またはDiscovery/PoCをproduction Scrum phaseにする。",
+      "residual": "signal-specific selection of Discovery vs PoC, trigger lifecycle (planning vs interruption), source/return ticket, and decision gate to the exact requirements revision."
+    },
+    {
+      "source_item_id": "REQSRC-SUP-00491",
+      "status": "partial",
+      "fixed_refs": [
+        "HELIXOS-L2-010:63,134-138,147",
+        "HELIXOS-L11:HXT-TYPE-04/05/07/08/17:281-285,294",
+        "HARNESS-L2-002/003:98,104",
+        "HARNESS-L11:22-23"
+      ],
+      "retained": "technical choice/comparison/ADR intake uses Research to gather references, not decide; where feasibility experiment is needed it switches to Discovery/PoC. Decide owns selection, with accepted result routed to Forward.",
+      "meaning_delta": "Fixed HARNESS L2 names the same three research signals, preserves reference-only role, and distinguishes research from selection. OS fixed HXT tests Research purpose and Forward/requester connection but does not specify every trigger string or research-to-Discovery switch in its HXT row.",
+      "numeric_and_exception_boundary": "3 trigger aliases: tech_decision_required, option_comparison_needed, adr_required. 1 exception: if feasibility experiment is required, route to Discovery/PoC instead; Research itself does not select.",
+      "counterexample": "Research output is treated as selected technology, or an actual feasibility experiment remains in desk Research without switching.",
+      "residual": "decision criteria, requester identity, experiment-needed oracle, and route/result receipt across Research→Discovery/PoC→Decide/Forward."
+    },
+    {
+      "source_item_id": "REQSRC-SUP-00492",
+      "status": "partial",
+      "fixed_refs": [
+        "HELIXOS-L2-010:63,127-149",
+        "HELIXOS-L11:HXT-TYPE-04/05/10/18:281-282,287,295",
+        "HELIXOS-L11:HXT-FLOW-07:305",
+        "HARNESS-L2-003:54",
+        "HARNESS-L11:23"
+      ],
+      "retained": "`interrupt` is subtype-dispatched to Recovery, Discovery/PoC, Add-feature, or a layer-local Forward gap. Current ticket types have distinct purpose, initiation, and convergence instead of one interrupt type.",
+      "meaning_delta": "Current taxonomy is ticket/workflow type and axis-based; it does not expose legacy `interrupt` as canonical type or provide a total subtype resolver over all interrupt signals.",
+      "numeric_and_exception_boundary": "1 interrupt parent signal with 4 outcome routes: runaway→Recovery, uncertainty→Discovery/PoC, addition→Add-feature, layer gap→Forward. Unknown subtype has no asserted default route.",
+      "counterexample": "route every interrupt to Recovery, or treat unresolved subtype as a safe success/Full V fallback.",
+      "residual": "typed interrupt subtype/source, ambiguity handling and route receipt that binds the selected target ticket to existing style/layer/requirement revision."
+    }
+  ],
+  "method": {
+    "rule": "For each exact signal row compare literal trigger set, classification axis, route target, exception, resulting Forward/decision path and negative case against fixed f6 L2/L11. Similar route labels are bounded semantic relation, not exact alias compatibility or full condition coverage. Later 57 and 11 records have separate SHA/source-revision pins and do not generate source-line successors.",
+    "authority_effect": "none",
+    "execution": "No legacy CLI, runtime, test, CI or archived executable was run; static documents and identity checks only.",
+    "status_vocabulary": [
+      "covered",
+      "partial",
+      "missing"
+    ]
+  },
+  "status_counts": {
+    "covered": 0,
+    "partial": 9,
+    "missing": 0
+  },
+  "result": {
+    "semantic_coverage_status": "Nine exact §9.2 condition rows only: 0 covered, 9 partial, 0 missing. Fixed ticket-type and style-axis contracts provide bounded semantic correspondence; signal literal and dispatch acceptance remains residual.",
+    "formal_successor_assignments": 0,
+    "requirement_adoption": "not asserted for these source rows. Later decision records are pinned as distinct evidence only.",
+    "source_closure": false,
+    "authority_effect": "none",
+    "acceptance_execution": "not asserted",
+    "stage_completion": "not asserted"
+  },
+  "static_validation": {
+    "status": "passed",
+    "checks": [
+      "105b9221f4de481ba59945be6df5cdd21f4358a3 exact-tree queue rows match all 9 selected source-qualified IDs, exact source line/text/SHA, unresolved condition status, primary_residual priority, unresolved_for_closure_work state, and zero individual refs",
+      "Duplicate scan on v1.3-focused individual audit JSONs explicitly excludes the full queue and full 303-row baseline audit; those are checked separately; focused-audit source-qualified overlap = 0, including merged #2415 and #2417 (391–396)",
+      "all nine archive source lines and SHA-256 pins match exact source bytes",
+      "all f6 fixed OS/HARNESS L2/L11 file and line pins match exact f6dad2a tree bytes",
+      "all current-input file SHA-256 pins recomputed from exact 105b9221f4de481ba59945be6df5cdd21f4358a3 tree bytes; source/f6/decision history pins retained",
+      "57 decision and HYB-006 receipt distinguish OS-L2-044 prose-only negative from existing OS-L2-007 lifecycle/evidence ownership; only 2 prose-only spans are candidate input and 6 atoms stay preserved_pending",
+      "11 decision and PHCAP-08 receipt identify HARNESS-L2-051 static stage-exit contract; 25 source atoms held, direct carry 0, closure not claimed",
+      "decision record SHA/source-revision pins remain separate; JSON parses and git diff --check passes"
+    ],
+    "execution_boundary": "No legacy CLI/runtime/test/CI or archived executable run; static document and identity checks only."
+  },
+  "later_decisions": {
+    "decision_57": {
+      "record_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "record_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "record_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "adopted_requirement_identity": "HELIXOS-L2-044",
+      "adopted_mpr_registration_id": "MPR-RC-HELIXOS-L2-044-001",
+      "adopted_scope": "The exact HELIXOS-L2-044 revision rejects prose-only handover as sufficient resolution evidence and leaves the existing HELIXOS-L2-007 evidence contract responsible. It defines no new sufficient evidence type, event schema, projection, actor, approval, notification, or SessionStart condition.",
+      "receipt_path": "docs/governance/audits/requirement-registration/os-v13-hyb-006-feedback-resolution-coverage-receipt-2026-09-28.json",
+      "receipt_sha256": "sha256:cb22a82d4881a62b2066e881449e2a6b65cae23613b0ba6715da6c6b7af34af9",
+      "receipt_scope": "The receipt selects only the prose-only-resolution atom from each of two distinct source revisions (2 spans total). Candidate-input no-loss applies only to those 2 spans. The other six atoms—both lifecycle/event-projection/SessionStart spans, both unacknowledged-finding-loss clauses, and both source-HEAD-mismatch clauses—remain preserved_pending. The HR-FR/HR-AC lines and conditions remain partial; no closure is claimed.",
+      "bounded_relation": "No intake, classify, acknowledgement, pending, or general feedback lifecycle adoption is attributed to HELIXOS-L2-044; those lifecycle and source/evidence duties remain under existing HELIXOS-L2-007. For REQSRC-SUP-00489 this is adjacent evidence only for the negative case that prose-only resolution is insufficient. It does not map either legacy alias to Redesign/Add-feature/Scrum-slice or adopt a three-way route; no formal successor is assigned.",
+      "adopted_l2_section_digest": "sha256:45ec39bee8dc441f040b0b571f2c62be900d9619eaa1facda5f9017f97678289",
+      "adopted_l11_section_digest": "sha256:29b83afd96e5ad20c2bdb11c2aaf86578730dc4a8cddf9059d2b2329ae0a9b4a",
+      "candidate_l2_file_sha256": "sha256:4d52e1d0ee762d005d4dc164003ad1ea48b04cb0feef4c1021173502fb43acd3",
+      "candidate_l11_file_sha256": "sha256:9f13971bb1a44a49b396b9ed955975545de2694c98a63dd9cd619908e7381a94",
+      "candidate_input_atom_count": 2,
+      "source_collection_atom_count": 8,
+      "preserved_pending_atom_count": 6
+    },
+    "decision_11": {
+      "record_path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+      "record_sha256": "sha256:6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+      "record_source_revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+      "decision_basis_revision": "909c8015326f35f8d42ce12e3c388923de411d1f",
+      "adopted_requirement_identity": "HARNESS-L2-051",
+      "adopted_mpr_registration_id": "MPR-RC-HARNESS-L2-051-001",
+      "adopted_scope": "Static stage-exit contract: for a stage progress/completion claim, bind stage, scope, goal, canonical/paired layer, owner, required output, oracle, target revision/HEAD, referenced evidence, and unfinished conditions to the same target; identify the HARNESS L2/L11 and L3/L10 pair and do not infer an upper-stage exit from lower-stage evidence alone.",
+      "receipt_path": "docs/governance/audits/requirement-registration/phcap08-stage-exit-coverage-receipt-2026-09-29.json",
+      "receipt_sha256": "sha256:2c0111eaf28b5d653f2a99efd6ede1f5f380c29f4bec17e554cb7a195cb3e3a4",
+      "receipt_scope": "PHCAP-08 receipt retains all 25 exact source-line atoms in MPR-SH-PHCAP08-STAGE-EXIT-001; direct carry into HARNESS-L2-051 is 0, pending holding refs are 25, unaccounted 0. The receipt does not claim PHCAP-08 closure or direct formal successor assignment.",
+      "bounded_relation": "This adopted static stage-exit contract does not map any signal in REQSRC-SUP-00484..00492; retain it as separate decision history, with no relation asserted to signal routing."
+    },
+    "result": "The 57 and 11 decision records and their receipts are separately pinned. Neither creates a v1.3 successor or closure for these nine signal rows."
+  }
+}
