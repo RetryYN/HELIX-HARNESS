@@ -848,18 +848,22 @@
             "mechanism": "helix-brain"
           }
         ],
-        "retained_semantics": "HARNESS-004は要求変更から影響する設計・テストと再検証範囲を導出する条件、HARNESS-023 (fixed cross-mechanism target) は対検証・証拠の受渡しを扱う。trace impact/reverification semanticsに限定した関連がある。",
-        "not_equivalent_to_legacy_ui_acceptance": "固定pairはPM-04画面、4 artifactの一覧・上下流方向・孤立検出・D-05整合率数値・旧L1↔L14等のpair freeze表、フィルタ/遷移/30秒refreshの受入を定義していない。legacyの物理layer pairと現行canonical L1↔L12/L2↔L11等は別体系であり、旧layer番号は現行pairへ移さない。",
+        "retained_semantics": "HARNESS-L2-004 (f6 L2 row 55; L11 acceptance row 24) derives affected design/test and re-verification scope from requirement changes, so it is semantically related to trace impact/reverification. HARNESS-L2-023 appears only as an inherited full-audit target mapping; f6 L2 lines 463-492 and L11 lines 219-223 define use-condition-specific dependency declarations and dependency closure (always-required, operation-specific, selected-source, reference-only), not PM-04 trace, V-pair verification, or evidence handoff. No semantic correspondence to PM-04 is identified for L2-023; it is excluded from support for this screen condition.",
+        "not_equivalent_to_legacy_ui_acceptance": "HARNESS-L2-004 still does not define PM-04 screen display. HARNESS-L2-023 has no identified PM-04 semantic relation. Fixed targets do not define the PM-04 screen, 4-artifact list/directions/orphan detection/D-05 ratio, legacy L1↔L14 etc. pair-freeze table, filter/navigation/30-second refresh acceptance. Legacy physical layer pairs differ from current canonical pairs; do not transfer the old layer numbers.",
         "source_atom_status": "partially_related_conditions; no exact screen-level oracle equivalence established",
         "status": "comparison_recorded_residual_open",
         "successor_requirement_ids": [],
-        "authority_effect": "none"
+        "authority_effect": "none",
+        "target_semantic_mapping": {
+          "HARNESS-L2-004": "related only to requirement-change impact and re-verification scope; does not define PM-04 screen display acceptance.",
+          "HARNESS-L2-023": "inherited target mapping only; exact f6 source lines 463-492 and acceptance lines 219-223 concern per-use dependency declaration/closure. No semantic correspondence to PM-04."
+        }
       },
       "later_near_pair_assessment": {
         "HARNESS-L2-039": "conditionally relevant; full source+target pair at 318ec4a, adopted per 57-decision table. Its scope binds experience/requirement, UI/Frontend relation and oracle to same scope/revision; applicable UI sources and risk-based UI verification selection are specific operations. This gives a later nearby UI contract beyond f6 fixed targets, but does not establish this old screen line-level atoms, numeric preview/poll limits, legacy L0-L14 UI details, or PM screen acceptance. No source-to-successor relation claimed.",
         "HELIXOS-L2-050": "conditionally relevant only to independent-review queue capacity; it concerns typed operational thresholds and capacity/backpressure, not a screen preview/UI oracle. It has no PM screen coverage effect."
       },
-      "condition_specific_residual_and_oracle_gap": "固定pairはPM-04画面、4 artifactの一覧・上下流方向・孤立検出・D-05整合率数値・旧L1↔L14等のpair freeze表、フィルタ/遷移/30秒refreshの受入を定義していない。legacyの物理layer pairと現行canonical L1↔L12/L2↔L11等は別体系であり、旧layer番号は現行pairへ移さない。 未実施の画面fixture/測定・描画結果は観測していない。",
+      "condition_specific_residual_and_oracle_gap": "HARNESS-L2-004 is relevant to impact/re-verification only; inherited HARNESS-L2-023 target mapping has no semantic correspondence to PM-04 because it specifies use-condition dependency closure. Fixed pair does not define PM-04 screen display, 4-artifact list/directions/orphan detection/D-05 ratio, legacy six physical pair-freeze states, filter/navigation/30-second refresh acceptance. Legacy physical pairs and current canonical V-pairs are distinct; old layer numbers must not be transferred. No screen-level oracle equivalence or closure established.",
       "queue_status": "not_individually_compared before this audit; new static comparison only; condition closure remains false.",
       "source_references": {
         "full_audit_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json",
