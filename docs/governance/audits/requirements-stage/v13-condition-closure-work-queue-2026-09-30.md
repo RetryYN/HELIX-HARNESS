@@ -2,7 +2,7 @@
 
 status: bounded_source_identity_work_queue
 authority_effect: none
-basis commit: `2bbd889545cff238452701e5901ce56b67208fc8`
+basis commit: `2bf484b1a84af346feaf8cf7b72e59f3889e6333`
 
 ## 対象範囲
 

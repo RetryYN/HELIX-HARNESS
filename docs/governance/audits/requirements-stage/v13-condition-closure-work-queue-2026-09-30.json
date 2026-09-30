@@ -2,7 +2,7 @@
   "schema_version": "v13-condition-closure-work-queue.v1",
   "queue_id": "v13-condition-closure-work-queue-2026-09-30",
   "created_on": "2026-09-30",
-  "basis_commit": "2bbd889545cff238452701e5901ce56b67208fc8",
+  "basis_commit": "2bf484b1a84af346feaf8cf7b72e59f3889e6333",
   "authority_effect": "none",
   "claims": {
     "formal_successor_assignment": false,
