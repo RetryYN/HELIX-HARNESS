@@ -3,7 +3,7 @@
   "audit_id": "confirmed175-dac-br01-05-fixed-l2l11-audit-2026-10-01",
   "created_at": "2026-10-01",
   "audit_mode": "read_only_source_to_fixed_l2_l11_condition_comparison",
-  "created_against_revision": "afe2ee8106650ebe2361d50964135e3724a5d1cb",
+  "created_against_revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
   "authority_effect": "none",
   "scope": {
     "population": "confirmed175",
@@ -21,11 +21,75 @@
   },
   "selection_and_duplicate_scan": {
     "queue": "docs/governance/audits/requirements-stage/confirmed175-condition-comparison-queue-2026-09-30.json",
-    "queue_result": "基準main afe2ee8106650ebe2361d50964135e3724a5d1cbでDAC-BR-001..005はすべてnot_individually_compared、evidence_artifacts空。queue hashはa3d9f7e...時点から不変。",
-    "scan_scope": "初回走査は旧基準main 105b9221f4de481ba59945be6df5cdd21f4358a3の全requirements-stage auditと154 worktree上のactive/in-progress audit artifacts（661 JSON artifacts; source-qualified identity、selected_identity(s)、scope identityを検査）。同一source上の既存DAC-FR004..008 crosswalkおよびDAC-FR008 handoff receiptも確認。rebase後は最新基準main afe2ee8106650ebe2361d50964135e3724a5d1cbのrequirements-stage全JSON/MDを再走査し、#2419追加監査JSON/MDも確認した。 BR-IDだけの参照も抽出し、DAC-FR-006 decision frameのBR-002/003 context、DAC-FR-008 handoffのBR-004 context-only記載と、follow-up/PO packetの同context記載を確認した。",
-    "result": "選択source-qualified identitiesとの既存個票一致0。基準mainの全requirements-stage JSON/MDと、#2419追加監査JSON/MDを照合。完全なsource-qualified tupleの一致はqueue/full-audit/REG06 population artifactsのみで、個票条件比較ではない。ID単体の追加参照はDAC-FR-006 decision frameのBR-002/003 context、およびDAC-FR-008 handoff・follow-up・PO packetのBR-004 context-onlyに限られ、選択個票の重複ではない。#2419追加監査にtuple/ID一致なし。",
+    "queue_result": "基準main ea6f756f96a7370de78e412d737c7a7ed472114aでDAC-BR-001..005はすべてnot_individually_compared、evidence_artifacts空。queue hashはa3d9f7e...時点から不変。",
+    "scan_scope": "最新main ea6f756f96a7370de78e412d737c7a7ed472114a のrequirements-stage *.json/*.mdを走査し、Queue/full-audit/REG-06 population artifactを個票比較から除外。現行の全DAC source-qualified identityとscreen個票artifactを照合し、#2418追加screen監査もarchive source path/file SHA/physical line/line SHAおよびidentity単位で追加照合。",
+    "result": "最新main ea6f756f96a7370de78e412d737c7a7ed472114a のrequirements-stage全JSON/MDで、選択したDAC-BR-001..005のsource-qualified tupleを走査。population artifactsの一致は母集団記録として区別し、個票条件比較の重複は0件。#2418追加screen監査の9 source-qualified tupleとの完全一致およびidentity一致も0件。",
     "cohort": "同一source内の連続BR-001..005。five unique source-qualified IDs。",
-    "initial_candidate_rejected": "前群のFR36..44及びscreen GD/HM候補群を使い回さず、source-qualified identityと監査選択IDで全worktreeを再走査。"
+    "initial_candidate_rejected": "前群のFR36..44及びscreen GD/HM候補群を使い回さず、source-qualified identityと監査選択IDで全worktreeを再走査。",
+    "post_merge_source_qualified_scan": {
+      "base_revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+      "tuple_rule": "archive source path + source file SHA-256 + physical source line + source line SHA-256; source-qualified identity strings also compared exactly.",
+      "audits": [
+        {
+          "pull_request": "#2418",
+          "audit_json_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-screen-gd01-hm01-08-fixed-l2l11-audit-2026-10-01.json",
+          "audit_json_sha256": "sha256:e119c425d2275dad8fdb16c544a19705febf7c9d18e004fa59f190d175b2ae8e",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+          "source_file_sha256": "sha256:e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b",
+          "selected_source_rows": [
+            {
+              "source_qualified_identity": "harness/L1-requirements/screen-requirements.md::GD-01",
+              "source_line": 240,
+              "source_line_sha256": "sha256:231c62b933bd28f53fc1c71fe2b8c4a357449a3d74e725e7aaa5f3f9b5e717ba"
+            },
+            {
+              "source_qualified_identity": "harness/L1-requirements/screen-requirements.md::HM-01",
+              "source_line": 133,
+              "source_line_sha256": "sha256:7f4e66676e84db409f0c80f0bacf84f0857499d43d3b363986e334e530f38c8c"
+            },
+            {
+              "source_qualified_identity": "harness/L1-requirements/screen-requirements.md::HM-02",
+              "source_line": 134,
+              "source_line_sha256": "sha256:731f01dd27b315d1d2a8c5e055b6736091a928223d4ef0fd9aab140ca4f5f58c"
+            },
+            {
+              "source_qualified_identity": "harness/L1-requirements/screen-requirements.md::HM-03",
+              "source_line": 135,
+              "source_line_sha256": "sha256:b97690a9f4f6303ca3bef618c6cd75aac4c5cee7be03919508ffc3963ce21fd9"
+            },
+            {
+              "source_qualified_identity": "harness/L1-requirements/screen-requirements.md::HM-04",
+              "source_line": 136,
+              "source_line_sha256": "sha256:6afdbec89e1759f69ed63ecd87830feecbdf224e664bbfa1728eba702dfab963"
+            },
+            {
+              "source_qualified_identity": "harness/L1-requirements/screen-requirements.md::HM-05",
+              "source_line": 137,
+              "source_line_sha256": "sha256:6b6a7af7b1c9914852ff3a7cc226a7aceab55bcae12578713d6655bfd7872366"
+            },
+            {
+              "source_qualified_identity": "harness/L1-requirements/screen-requirements.md::HM-06",
+              "source_line": 138,
+              "source_line_sha256": "sha256:6c9d2ad8c9902e1493b8913a225e3d60924a2edc72333db5a470d5a96385c33c"
+            },
+            {
+              "source_qualified_identity": "harness/L1-requirements/screen-requirements.md::HM-07",
+              "source_line": 139,
+              "source_line_sha256": "sha256:caa6c2fb90bf684685d3a163cf4db938b3e6a7def34cb030e5b11e155fd3155c"
+            },
+            {
+              "source_qualified_identity": "harness/L1-requirements/screen-requirements.md::HM-08",
+              "source_line": 140,
+              "source_line_sha256": "sha256:38329cb6810fd26aeaba24c1bac4803aaf98d445fbce77b9281a0e25bbd979b7"
+            }
+          ],
+          "exact_source_qualified_overlap_count": 0,
+          "overlap_rows": [],
+          "exact_identity_overlap_count": 0,
+          "overlap_source_qualified_identities": []
+        }
+      ]
+    }
   },
   "source": {
     "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md",
@@ -1321,7 +1385,7 @@
     "No old workflow, CLI, CI, test, or runtime was executed."
   ],
   "current_input_pins": {
-    "revision": "afe2ee8106650ebe2361d50964135e3724a5d1cb",
+    "revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
     "artifacts": [
       {
         "path": "docs/governance/audits/requirements-stage/confirmed175-condition-comparison-queue-2026-09-30.json",
@@ -1382,6 +1446,14 @@
       {
         "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
         "sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-screen-gd01-hm01-08-fixed-l2l11-audit-2026-10-01.json",
+        "sha256": "e119c425d2275dad8fdb16c544a19705febf7c9d18e004fa59f190d175b2ae8e"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-screen-gd01-hm01-08-fixed-l2l11-audit-2026-10-01.md",
+        "sha256": "22e5cb57616b95c72855d25acaca5f4d7172e4cb4fb418538711cc582a2bb418"
       }
     ]
   },
