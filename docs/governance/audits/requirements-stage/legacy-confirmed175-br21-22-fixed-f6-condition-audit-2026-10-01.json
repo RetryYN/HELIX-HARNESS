@@ -66,7 +66,11 @@
     "queue_sha256": "2dbfb06c11ac42a940c0d6b5c188a76e685ea4c00e4d9af10b432198ad17b353",
     "prior_comparison_status": "both identities not_individually_compared",
     "fixed_revision_basis": "2026-09-28 PO decision records pin f6 L2/L11 bytes and candidate identity to registration ID.",
-    "later_screen_provenance_note": "既存CN1-6 auditからdecision cohort一覧を探索に利用。CN auditのdirect-match結論をBR identityへ流用しない。BR用選定near-pairは本監査で独立比較し、限定範囲を記録。"
+    "later_screen_provenance_note": "既存CN1-6 auditからdecision cohort一覧を探索に利用。CN auditのdirect-match結論をBR identityへ流用しない。BR用選定near-pairは本監査で独立比較し、限定範囲を記録。",
+    "legacy_consumer_read_scope": {
+      "note": "BR-21/22のlinked downstream consumer/detail source lines were read and SHA-pinned. They refine lineage context; their separate FR identities and technical thresholds are not silently merged into the BR identity.",
+      "source_scope": "BR-21 business-detail:27-70,179-230; BR-22 functional-requirements:77-80 and L3 carry row 745."
+    }
   },
   "fixed_decision_records": [
     {
@@ -139,9 +143,9 @@
         "normal_condition": "観測・実験結果を由来/対象revision/適用scope付きで評価し、候補、既存の採否主体、OS登録/routing、target ownerによる変更と検証、LABO再観測を状態別に結び、効果と退行が再観測できる状態を保持する。",
         "negative_condition": "candidate登録、成功件数、CI成功、実行結果だけから採択・要求変更・改善完了を生成しない。旧skill/model/PoC projection/databaseや「自律学習」auto-applyを現行authorityへ移さない。",
         "failure_condition": "評価owner・適用範囲・判断先・対象revision・変更後の検証/再観測が欠落またはstaleなら循環未完として候補/未完義務を保持し、評価・判断・target ownerへ返す。",
-        "numeric_comparison": "BR-21本文はP2起点、FR-L1-36/38/43の旧実装状態、D-07の旧70%を業務的根拠に記すが、BR identity自身の達成閾値としてAI品質改善値を定めない。旧FR由来のrating/rate/30日unused/cold-start等は別identityの詳細であり、BR-21へ自動移管しない。",
+        "numeric_comparison": "BR-21 §11.3 cites D-07 AI委譲時間率 ≥70% as business rationale. BR-21 does not itself assign the business-detail five evaluation metrics their individual thresholds. Those downstream conditions are pinned separately below and remain legacy detail; they are not imported as present fixed L2/L11 acceptance thresholds.",
         "comparison": "意味再導出の一部と部分接点。OS-L2-022/L11は観測→候補→既存判断主体→ticket→変更/検証→再観測のrouting/traceを1.0土台とし、評価ownerをLABOへ置き、知識取込・ローカルLLM学習の後続能力を除外する。LABO-L2-050/L11は内部改善循環をObservedから再観測まで明示し、登録/変更/CI成功だけを完了としない。一方、旧skill/model/PoC評価対象自体、各旧metric定義、数値・DB projectionと「繰返すほど賢くなる」の出力保証は同値再現されず、L3承認対象でもない。",
-        "residual": "BR-21 source identityはpreserved_pending_rehome。successor割当0、closureなし。循環の部分接点は旧identityの全condition transfer/acceptance/runtime実装を意味しない。"
+        "residual": "固定L2/L11はfeedback循環の責務・状態接点を保持する一方、旧business-detailのunit/frequency、5指標とthreshold、30日unused/human-only deletion、model opt-in、PoC pivot denominator、旧projection/outcomeは個別に明示移管・受入されていない。BR-21 identityはpreserved_pending_rehome、successorなし、closureなし。"
       },
       "fixed_f6_comparison": {
         "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
@@ -225,6 +229,524 @@
         ],
         "result": "意味再導出の一部と部分接点。OS-L2-022/L11は観測→候補→既存判断主体→ticket→変更/検証→再観測のrouting/traceを1.0土台とし、評価ownerをLABOへ置き、知識取込・ローカルLLM学習の後続能力を除外する。LABO-L2-050/L11は内部改善循環をObservedから再観測まで明示し、登録/変更/CI成功だけを完了としない。一方、旧skill/model/PoC評価対象自体、各旧metric定義、数値・DB projectionと「繰返すほど賢くなる」の出力保証は同値再現されず、L3承認対象でもない。",
         "preserved_residual": "BR-21 source identityはpreserved_pending_rehome。successor割当0、closureなし。循環の部分接点は旧identityの全condition transfer/acceptance/runtime実装を意味しない。"
+      },
+      "legacy_consumer_pins": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md",
+          "file_sha256": "99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d",
+          "range_label": "business-detail evaluation units, five metrics/targets, missing-data handling, model opt-in, cadence",
+          "range_start_line": 27,
+          "range_end_line": 70,
+          "range_sha256": "05db680d1b6d5f0f1a239a6649e825bc6e43dc2dabb3005fee740395f7dc813f",
+          "line_pins": [
+            {
+              "line": 27,
+              "line_sha256": "2a6d91ed6d94afcc5474afcbdf644da9ed3281f5163c620ba21ff918d1a896d6",
+              "text": "## §1 評価対象 (U-BR21-1 採用、PLAN 単位を既定 + 補助単位)"
+            },
+            {
+              "line": 28,
+              "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            {
+              "line": 29,
+              "line_sha256": "95f40432134679913cc96b14be69cf6dbfef73e1b26dc7f52aaebae5bf720f33",
+              "text": "L1 BR-21 で宣言した「AI 実行成果評価」の評価単位を以下で確定する:"
+            },
+            {
+              "line": 30,
+              "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            {
+              "line": 31,
+              "line_sha256": "ba4e6f5cc9512aabddae46f893dde5c73f5434499a90917ec32c8a69c725a44c",
+              "text": "| 評価単位 | 役割 | 計測時点 | 主担当指標 |"
+            },
+            {
+              "line": 32,
+              "line_sha256": "cf08842cdd57e0b1d1ef8152d586dc9f0dad15a3ee285087fc0c961de5dcf204",
+              "text": "|---------|------|---------|----------|"
+            },
+            {
+              "line": 33,
+              "line_sha256": "a1194347352f0e81f608efa98a18be1842e98c0df1bb9f23819068f206a7b7ae",
+              "text": "| **PLAN 単位** (既定) | harness 最小遂行単位、KPI D-07 と直結 | PLAN status=completed 時 | 成功率 / トークンコスト / 所要時間 / 再実行回数 |"
+            },
+            {
+              "line": 34,
+              "line_sha256": "0f0519a4986a62017d5d04c14e911ad54c201faf09e44f3fb56ecb2afc32e7ab",
+              "text": "| **skill 単位** (補助) | skill 推奨精度評価 | skill 注入 → 利用 → PLAN 完了 サイクル末 | skill 採用率 / 採用後成功率 |"
+            },
+            {
+              "line": 35,
+              "line_sha256": "1a238c697cce93f5e58609fe8e377719b4e4a1c97a977bc45a619818a16ad263",
+              "text": "| **model 単位** (補助、opt-in) | model 選択基準改善 | task 委譲完了時 | model 別成功率 / コスト効率 |"
+            },
+            {
+              "line": 36,
+              "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            {
+              "line": 37,
+              "line_sha256": "f09c5724de0d2bbb2e1796fc86d5b9325e0d1b0d9e9819229c8ae7f31b228e55",
+              "text": "> **TL 採用根拠**: PLAN 単位 = harness の業務単位、skill / model は補助メトリクス (drift 計測用)。3 単位を超える単位 (sprint 全体 / FR 単位) は集計コスト過大のためスキップする。"
+            },
+            {
+              "line": 38,
+              "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            {
+              "line": 39,
+              "line_sha256": "5b443731d8f32343ae1152a9385dcd4e974b921d953d7a924db352e6cbc6e1c1",
+              "text": "## §2 評価指標 (U-BR21-2 採用、5 指標、KPI D-07 統合)"
+            },
+            {
+              "line": 40,
+              "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            {
+              "line": 41,
+              "line_sha256": "30c719bb49b38793afc80092186b29aa67293d1450b0e1e8a1db69db229063ac",
+              "text": "| 指標 | 計算式 | 目標 | 計測場所 |"
+            },
+            {
+              "line": 42,
+              "line_sha256": "2ad5109d5cd553b31d2a5e2bc1f1aaa77a2598dd9183a3e38bbeeee417ce6ac2",
+              "text": "|------|-------|------|---------|"
+            },
+            {
+              "line": 43,
+              "line_sha256": "292240f16978a1bd6e6669495115dfba08e827e01403e61ca490ad9c0c935cc0",
+              "text": "| **成功率** | (PLAN status=completed) / (全 PLAN 起票数) × 100 | ≥ 80% | `.helix/plan_registry/` 集計 |"
+            },
+            {
+              "line": 44,
+              "line_sha256": "bd89f8a256041d742d8860fb72363fcc1160bcbb9c1bafb8cfc94cc8e6a2938b",
+              "text": "| **トークンコスト** | PLAN ごとの sum(invocation_log.input_tokens + output_tokens) | (LCM 目標は L4 で確定、P0 では計測のみ) | `.helix/audit/invocation_log/` |"
+            },
+            {
+              "line": 45,
+              "line_sha256": "6929b918a48afd9ae535b058e607d2cc4b744f4ead99b713ec4283a0c1bf6f51",
+              "text": "| **所要時間** | PLAN ごとの (PLAN updated - created) | (中央値 ≤ 1 sprint 推奨) | plan_registry timestamp 差分 |"
+            },
+            {
+              "line": 46,
+              "line_sha256": "eb8212259c6ec4aa441d2d4ce2e1bc9e09cef3380d72ece15fd9f416c01b72aa",
+              "text": "| **再実行回数** | PLAN ごとの sum(invocation count) | < 3 回 (1 回再試行を許容) | invocation_log 集計 |"
+            },
+            {
+              "line": 47,
+              "line_sha256": "ddb6b75912c3bb69efe9b172e7267dbcad9160c8c41a48d868bdbd09ed476a99",
+              "text": "| **fail-close 発火率** | (agent guard block 件数) / (Agent 呼び出し総数) × 100 | < 5% | agent-guard audit log |"
+            },
+            {
+              "line": 48,
+              "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            {
+              "line": 49,
+              "line_sha256": "9b5ca16e9d92b7950b1ee11c4eda02c51bef6d7f4e94157e354eb1c805e313f9",
+              "text": "> **KPI 整合**: 成功率 → D-04 (回帰検出率) / トークンコスト → D-06 (bypass 件数のコスト側面) / 所要時間 → D-09 (handover 引継ぎ成功率) / 再実行回数 → D-04 / fail-close 発火率 → D-06。"
+            },
+            {
+              "line": 50,
+              "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            {
+              "line": 51,
+              "line_sha256": "2b13c9d3fd6cc22794dbfd8399bed082bbe146a051255f260abfe9b02fdb7ac8",
+              "text": "#### AC-FR-BR21-01 (正常系: 5 指標全件記録)"
+            },
+            {
+              "line": 52,
+              "line_sha256": "7e809947ec040b7525ad738b0aaf1ad4d9e5c48cc08f48f7f2a8e289eda1009d",
+              "text": "- **前提**: PLAN-005 が status=completed (Forward 経路で 7 日掛け)"
+            },
+            {
+              "line": 53,
+              "line_sha256": "0d0b42be038b5fa79679352f3959b0c020d38b7dd1b0e894540b8dd8e2f200d0",
+              "text": "- **操作**: `helix plan close PLAN-005`"
+            },
+            {
+              "line": 54,
+              "line_sha256": "502a04e4f5438868f801494fe41aa157656c5d87db96b6211e6b765974de0540",
+              "text": "- **期待結果**: 5 指標全件が `.helix/evaluation/PLAN-005.json` に記録 / KPI D-04/06/09 集計に反映"
+            },
+            {
+              "line": 55,
+              "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            {
+              "line": 56,
+              "line_sha256": "ee004e8a881243736ccab5b71053cea86bddbcd9a0b14821f5292875062b29ad",
+              "text": "#### AC-FR-BR21-02 (異常系: 指標欠落)"
+            },
+            {
+              "line": 57,
+              "line_sha256": "2eea2e3f1a6d2e8ed2c923be292428a0a987dec4f30d6b6a12478e730b71aa06",
+              "text": "- **前提**: invocation_log 未整備 (Phase A 初期、FR-L1-20 未実装)"
+            },
+            {
+              "line": 58,
+              "line_sha256": "cebf6c189768c6be77bc0fd6f4653b93c6b78d9274b45a7774817711665796c9",
+              "text": "- **操作**: `helix plan close`"
+            },
+            {
+              "line": 59,
+              "line_sha256": "22b096d163fb74ccd4d6779be6c3d6ed3df878eba5a28dff6e16514b37e478ab",
+              "text": "- **期待結果**: 警告 `Warning: invocation_log 不在、token cost 計測不可 (Phase A scope)` / 他 4 指標は記録 / 終了コード 0"
+            },
+            {
+              "line": 60,
+              "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            {
+              "line": 61,
+              "line_sha256": "b919bf3436bdcb2ec8691805f3adaeb68be12e11b9a1f24d1236d1e5cdeb6c2d",
+              "text": "#### AC-FR-BR21-03 (境界系: model 単位 opt-in 未設定)"
+            },
+            {
+              "line": 62,
+              "line_sha256": "6b9e6962e9ba38e4a652481498a88a8339873fb01be926b38f712a818fff98b5",
+              "text": "- **前提**: `.helix/evaluation/model-opt-in.yaml` で `enabled: false`"
+            },
+            {
+              "line": 63,
+              "line_sha256": "5495d11f3a66c262a5e231f8c186403454fefa96115cd32638e680080b8d07b5",
+              "text": "- **操作**: PLAN close"
+            },
+            {
+              "line": 64,
+              "line_sha256": "df015ffa2521044078045db8e42d6e50def40d980318193999ae4dadc8aa3452",
+              "text": "- **期待結果**: model 単位指標をスキップ / PLAN 単位 + skill 単位のみ記録 / audit に opt-in 状態記録"
+            },
+            {
+              "line": 65,
+              "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            {
+              "line": 66,
+              "line_sha256": "7f14ed182cc789989de9ba91220de931390bae2639a77759682de4257c30f27c",
+              "text": "## §3 改善サイクル頻度 (U-BR21-3 採用、sprint 末 + 任意手動)"
+            },
+            {
+              "line": 67,
+              "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            {
+              "line": 68,
+              "line_sha256": "193844270fa30c4880f575116074c337d0ab6bc9692e784679033370ea8af8ad",
+              "text": "- **既定**: sprint 末 (Forward では G7 通過時 / Scrum では sprint review 末)"
+            },
+            {
+              "line": 69,
+              "line_sha256": "cdfa113aa70e44638065a24066b6274dc12deb38e403424f8006dd9885d44d74",
+              "text": "- **手動トリガー**: `helix evaluation run --since <date>` で任意期間集計"
+            },
+            {
+              "line": 70,
+              "line_sha256": "500eb2f2db3df2ac4cba00ad0d357972c3d9756fe40d8c521dc2b24387f8bbe1",
+              "text": "- **頻度上限**: 1 日 1 回 (telemetry コスト保護、NFR-13 dev-local+CI 整合)"
+            }
+          ]
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md",
+          "file_sha256": "99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d",
+          "range_label": "BR21-specific skill/model/PoC projection contracts, human-only skill deletion, opt-in, pivot denominator",
+          "range_start_line": 179,
+          "range_end_line": 230,
+          "range_sha256": "d9d8b780ada6209d0a8e3d4974bc4f8ac8a06f339c2447e270e91d28200b84b6",
+          "line_pins": [
+            {
+              "line": 179,
+              "line_sha256": "58dcd6fc1337bddad9268e48c8925498ff4625eafe9ee784e5b755b61bcaa3cf",
+              "text": "## §7 FR-L1-36/38/43 詳細化 (projection 実装契約)"
+            },
+            {
+              "line": 180,
+              "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            {
+              "line": 181,
+              "line_sha256": "b2b8cc30eccdd078b3d004a2d58581ec096ea3ef0f44b65f4dd67fc11d134ac2",
+              "text": "### FR-BR21-36: スキル評価システム"
+            },
+            {
+              "line": 182,
+              "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            {
+              "line": 183,
+              "line_sha256": "7488341065d03671bacb1f142ee204fb73c5c234fa36acd6867af8208290fdc8",
+              "text": "- **L1 上流**: FR-L1-36"
+            },
+            {
+              "line": 184,
+              "line_sha256": "e78b488d0845093ca0de248be23ad385cc764867d744069f2e0e92a96290513d",
+              "text": "- **入力**: `skill_invocations.accepted=1`、`plan_registry.status`、`asOf`"
+            },
+            {
+              "line": 185,
+              "line_sha256": "9a3e8f169098bfe5307c742b7f870b61d068274d35aa6181675aca825cebc016",
+              "text": "- **出力**: `skill_evaluations` projection (skill_rating / adoption_count / success_count / unused_flag)"
+            },
+            {
+              "line": 186,
+              "line_sha256": "811a238418c10adbe7d474884c7e8df18ac94c946f1277c2fb34b728b594ebca",
+              "text": "- **振る舞い**: skill 別に採用 PLAN と成功 PLAN を集計し、30 日未発火を unused としてフラグ化する。削除は人間専属"
+            },
+            {
+              "line": 187,
+              "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            {
+              "line": 188,
+              "line_sha256": "542061a09b20f0f5446caec12a76cbf5bdffbc0585dc419541237da0fed61502",
+              "text": "#### AC-FR-BR21-36-01 (正常系)"
+            },
+            {
+              "line": 189,
+              "line_sha256": "7dd2c0afd7db262787f88f5a91910f01e0b5eee005e17aa8c64d92d36e034037",
+              "text": "- **前提**: skill-X が直近 sprint で 5 PLAN に採用、5 件全て成功"
+            },
+            {
+              "line": 190,
+              "line_sha256": "532d552effdf3c093b13c740e37d3638f111fb07519139f1f06293f146952efa",
+              "text": "- **操作**: sprint 末バッチ実行"
+            },
+            {
+              "line": 191,
+              "line_sha256": "825f0a230e143ed8b6f53d4ba05578173f9906ed2b426347ab5145df59d8fc5b",
+              "text": "- **期待結果**: skill_rating = 1.0 / 廃止候補フラグ false / HM-08 に維持ステータス表示"
+            },
+            {
+              "line": 192,
+              "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            {
+              "line": 193,
+              "line_sha256": "29d59b8e51240dada5d1cd870b770a4db8c610a81f34e68bc55fe0f2d35b53d2",
+              "text": "#### AC-FR-BR21-36-02 (境界系)"
+            },
+            {
+              "line": 194,
+              "line_sha256": "14640abf33fe0b6bbdf174437986e5f579b2c557955057814c62a969b7fb0cde",
+              "text": "- **前提**: skill-X が直近 30 日採用 0 件 (使われていない)"
+            },
+            {
+              "line": 195,
+              "line_sha256": "232c54f5e704d8f0ecb91371d4155066bfbb78d2a7a8346c398a7484050b6079",
+              "text": "- **操作**: バッチ実行"
+            },
+            {
+              "line": 196,
+              "line_sha256": "19cfe641bc5617ed1db936b8b58c510b96105bdc500898a433b7b7736024c4f5",
+              "text": "- **期待結果**: 警告 `skill-X 30 日採用 0 件 (未使用 skill)` / 廃止候補フラグ true / 削除は人間専属 (AC-FR-BR21-06)"
+            },
+            {
+              "line": 197,
+              "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            {
+              "line": 198,
+              "line_sha256": "be7aeb0dd3fadb620199a68178e690a7a289ef33e288165b4538f2980229c3be",
+              "text": "### FR-BR21-38: model 評価システム (opt-in)"
+            },
+            {
+              "line": 199,
+              "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            {
+              "line": 200,
+              "line_sha256": "75d75576135b0ab2ec7bc0e741577a5aa8c2fd4697dceedc7733325a7bab22e4",
+              "text": "- **L1 上流**: FR-L1-38"
+            },
+            {
+              "line": 201,
+              "line_sha256": "ba67482a28272c79402962a94ffbebca53d5459a580eb556e7fb2d133a5d90c7",
+              "text": "- **入力**: `model_runs`、`plan_registry.status`、`.helix/config/model-opt-in.yaml`"
+            },
+            {
+              "line": 202,
+              "line_sha256": "490e9a9b66bf13360fcb922dbc18915b0336e12fdf175c7778c3e42a863e857b",
+              "text": "- **出力**: `model_evaluations` projection (success_rate / run_count / success_count / token・cost 効率)"
+            },
+            {
+              "line": 203,
+              "line_sha256": "604d3c4d4e5cd6367afd2ffb8337f377f3e50f00e26641320ab0b1b211c34deb",
+              "text": "- **振る舞い**: model 別成功率と token/cost 効率を集計し、FR-L1-37 (model 推挙) のフィードバック入力にする"
+            },
+            {
+              "line": 204,
+              "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            {
+              "line": 205,
+              "line_sha256": "a05b1b80d4bbbca2b372119f22a6bc702d73d722f17426a58c3c8690b84444cb",
+              "text": "#### AC-FR-BR21-38-01 (正常系)"
+            },
+            {
+              "line": 206,
+              "line_sha256": "565e8e301ea7ca7774411a1d76066913f648fd13e34ff22c364b2daaa2cc2adf",
+              "text": "- **前提**: model-opt-in.yaml で `enabled: true`、model-A / model-B 両方使用履歴あり"
+            },
+            {
+              "line": 207,
+              "line_sha256": "232c54f5e704d8f0ecb91371d4155066bfbb78d2a7a8346c398a7484050b6079",
+              "text": "- **操作**: バッチ実行"
+            },
+            {
+              "line": 208,
+              "line_sha256": "b158d4e0b695d2e525655057ea9bc564456766dec53f299cc32798ec9f1c7ae5",
+              "text": "- **期待結果**: model 別 success_rate / run_count / success_count / token・cost 効率を projection し、HM-08 表示入力として利用可能"
+            },
+            {
+              "line": 209,
+              "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            {
+              "line": 210,
+              "line_sha256": "0c0485e3200201b579061d98b11e5867b3074afcd3398bef22a50ecfc8532d96",
+              "text": "#### AC-FR-BR21-38-02 (境界系)"
+            },
+            {
+              "line": 211,
+              "line_sha256": "388cc9dc49d224590548e8714b8403e3bbe5ff92d885683ac4c606eb671c24e3",
+              "text": "- **前提**: opt-in `enabled: false`"
+            },
+            {
+              "line": 212,
+              "line_sha256": "232c54f5e704d8f0ecb91371d4155066bfbb78d2a7a8346c398a7484050b6079",
+              "text": "- **操作**: バッチ実行"
+            },
+            {
+              "line": 213,
+              "line_sha256": "7d4faf2623472720867981c7dfdaf2754aa3e07d2ea6f225b2565952cfbe3875",
+              "text": "- **期待結果**: model 評価をスキップ / PLAN/skill 評価のみ実行 / audit に opt-in 状態記録"
+            },
+            {
+              "line": 214,
+              "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            {
+              "line": 215,
+              "line_sha256": "8a45d3e1b4638279aaf2c04d6b63c94bb75d3f4558028c35f25b366aa0498122",
+              "text": "### FR-BR21-43: PoC サクセス計測"
+            },
+            {
+              "line": 216,
+              "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            {
+              "line": 217,
+              "line_sha256": "a24cb935344b6f27ed5ef4592d358c61c3f033c665329e3ee9e236700ba32917",
+              "text": "- **L1 上流**: FR-L1-43"
+            },
+            {
+              "line": 218,
+              "line_sha256": "4374dcafc4ae9c2c938143b7b3d65313045213bd57ee1ac6b1a5d02df97c888f",
+              "text": "- **入力**: Discovery (S0-S4) 完了 PLAN / decision_outcome"
+            },
+            {
+              "line": 219,
+              "line_sha256": "a4698d92192888ddbebf1b47d99ef0b1d8f8907ca3363ac92dfac8d7d5aafcc6",
+              "text": "- **出力**: `poc_evaluations` projection (poc_success_rate / confirmed_count / rejected_count / pivot_count / total_count)"
+            },
+            {
+              "line": 220,
+              "line_sha256": "2e6ceaf0073dd7913570ebd2e46823e100581eb115ff067dcafeb32e0719672f",
+              "text": "- **振る舞い**: 判断済み PoC の confirmed / rejected / pivot を集計し、pivot は分母に含めて非成功として扱う"
+            },
+            {
+              "line": 221,
+              "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            {
+              "line": 222,
+              "line_sha256": "1133762e337972754d1801fef9a03712cd3135aa789ec2326a721cb4b4a855c7",
+              "text": "#### AC-FR-BR21-43-01 (正常系)"
+            },
+            {
+              "line": 223,
+              "line_sha256": "194cd03db67364946de59334e23ac14614ea12451ad282b7f67220ba4ddcac30",
+              "text": "- **前提**: 直近 10 件 PoC のうち confirmed 6 件 / rejected 3 件 / pivot 1 件"
+            },
+            {
+              "line": 224,
+              "line_sha256": "232c54f5e704d8f0ecb91371d4155066bfbb78d2a7a8346c398a7484050b6079",
+              "text": "- **操作**: バッチ実行"
+            },
+            {
+              "line": 225,
+              "line_sha256": "c1d9d465939749bbd870d58673b9ee0216add93a3e659b72b6abe49a5a893425",
+              "text": "- **期待結果**: PoC 成功率 60% を HM-08 に表示 / pivot 1 件の原因分析提案"
+            },
+            {
+              "line": 226,
+              "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "text": ""
+            },
+            {
+              "line": 227,
+              "line_sha256": "19e0fea18786d120651701ed73ab701e01ffaf94125ea13da389d35bf8ad7e16",
+              "text": "#### AC-FR-BR21-43-02 (異常系)"
+            },
+            {
+              "line": 228,
+              "line_sha256": "1757f97f30aeb71b9e6bb12a018f4e2c65ea7aa41f09811467631c9a5ea00871",
+              "text": "- **前提**: PoC PLAN が 1 件も無し"
+            },
+            {
+              "line": 229,
+              "line_sha256": "232c54f5e704d8f0ecb91371d4155066bfbb78d2a7a8346c398a7484050b6079",
+              "text": "- **操作**: バッチ実行"
+            },
+            {
+              "line": 230,
+              "line_sha256": "84103be940f6233980bae9f43a5b74ee7ca97ee9f757726bc053d6bd727ebebc",
+              "text": "- **期待結果**: 情報 `info: PoC PLAN 0 件、計測対象なし` / HM-08 に「データ蓄積中」表示 / KPI ゼロ起算"
+            }
+          ]
+        }
+      ],
+      "condition_disposition": {
+        "retained_semantics": [
+          "AI実行品質を継続評価・改善する目的",
+          "委譲結果を蓄積・分析しskill/model/PoC改善へfeedbackする関係",
+          "現行側では評価ownerをLABO、候補登録・routingをOS、target変更 authorityを各target ownerへ分け、再観測までを循環として記録する"
+        ],
+        "residual_conditions": [
+          "business-detail:27–70の旧評価unit (PLAN既定、skill/model補助)、計測時点、sprint末/manual triggerと1日1回上限",
+          "business-detail:39–49の5指標、各閾値（成功率≥80%、所要時間中央値≤1 sprint推奨、再実行<3、fail-close<5%、token costは計測のみ）",
+          "business-detail:179–230のskill projectionおよび30日unused候補・削除は人間専属、model評価opt-in、PoC confirmed/rejected/pivotの分母にpivotを含める契約",
+          "旧projection/database/schema/CLI/HM-08 outputおよび旧ACの具体例は現行L2/L11で全件移管・受入確認されていない"
+        ],
+        "identity_boundary": "D-07 ≥70%はBR-21 §11.3の業務根拠に書かれた目標。5指標の閾値やPoC pivot denominatorはbusiness-detailのBR-21詳細化に現れる。FR-L1-36/38/43とbusiness-detailのprojectionは独立する下位要求/契約であり、これらの細目をBR-21 source row自体の新しい採択閾値にしない。",
+        "formal_successor_assignment": false,
+        "closure": false
       }
     },
     {
@@ -279,7 +801,7 @@
         "failure_condition": "資産の由来・identity・版・状態・責務owner・利用範囲が不明/不一致のまま、正本資産または実行可能資産として扱わない。固定対象に明記がない具体catalog lifecycleを追加条件として推定しない。",
         "numeric_comparison": "BR-22 identity自体に件数/率/期間の数値oracleなし。FR-L1-46〜49のlegacy residue 0等の条件は関連する別旧FR identityで、BR-22単独のoracleではない。",
         "comparison": "意味再導出の分割と部分接点。OS-L2-018/L11はWorker割当・attempt・handoff、L2-019/L11はevent/provenance/evidence continuityを扱うが、asset catalog自体のHELIX roster/skill/command再構築を明示しない。HARNESS-L2-031/L11はHELIX用engineering styles/requirementsをsource-derived knowledgeから分けて持つが、旧内部資産3分類すべてのlifecycleではない。BRAIN-L2-008/L11はknowledge identity/version/stateを扱う一方、roster/command資産管理と同値ではない。Worker共通execution contractをOS、engineering styles/requirementsをHARNESS、汎用design knowledgeをBRAINへ分けるが、完全なcatalog/lifecycle successorではない。",
-        "residual": "subagent roster/skill pack/commandのHELIX asset catalog・source-derived再構築・全資産lifecycle/guard整合の後継は確定していない。source identityはpreserved_pending_rehome、successor割当0、closureなし."
+        "residual": "固定L2/L11のOS Worker/evidence、HARNESS engineering packs、BRAIN knowledge identityは責務分割の接点を持つ。BR-22が参照する別FR identities 46–49のroster/skill/command/drift-lint HOWとL3/L4-L6 carryは下位consumerとして旧sourceに残るが、対応する完全なcurrent acceptance/canonical asset catalog/lifecycleは確認できない。BR-22はpreserved_pending_rehome、successorなし、closureなし。"
       },
       "fixed_f6_comparison": {
         "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
@@ -439,6 +961,69 @@
         ],
         "result": "意味再導出の分割と部分接点。OS-L2-018/L11はWorker割当・attempt・handoff、L2-019/L11はevent/provenance/evidence continuityを扱うが、asset catalog自体のHELIX roster/skill/command再構築を明示しない。HARNESS-L2-031/L11はHELIX用engineering styles/requirementsをsource-derived knowledgeから分けて持つが、旧内部資産3分類すべてのlifecycleではない。BRAIN-L2-008/L11はknowledge identity/version/stateを扱う一方、roster/command資産管理と同値ではない。Worker共通execution contractをOS、engineering styles/requirementsをHARNESS、汎用design knowledgeをBRAINへ分けるが、完全なcatalog/lifecycle successorではない。",
         "preserved_residual": "subagent roster/skill pack/commandのHELIX asset catalog・source-derived再構築・全資産lifecycle/guard整合の後継は確定していない。source identityはpreserved_pending_rehome、successor割当0、closureなし."
+      },
+      "legacy_consumer_pins": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+          "file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+          "range_label": "separate FR-L1-46..49 HOW: roster, skill pack, command, drift lint",
+          "range_start_line": 77,
+          "range_end_line": 80,
+          "range_sha256": "63c25bc567d66837c796aebda51c7dfd90d7ed609f15ddb32549f030087bcc60",
+          "line_pins": [
+            {
+              "line": 77,
+              "line_sha256": "0dddfeef3a4d2fed3c017edb22ba27c983476f60244bd8ca508011b3129ce0eb",
+              "text": "| **FR-L1-46** | subagent roster の HELIX 化 (capability class 化 / model family / guard 統合 / legacy source 前提除去) | A-77 棚卸 (internal-asset-inventory.md) / BR-22 | `.claude/agents/*.md`、guard allowlist | HELIX 正本 roster (rename + harden 済)、legacy source 前提残存 0 | P1 | HM-02 |"
+            },
+            {
+              "line": 78,
+              "line_sha256": "e530fc3b4900240812c5e1730a5fd99732f75e22ea137e5b59639e33040788b8",
+              "text": "| **FR-L1-47** | skill pack の HELIX curate (HELIX 版 SKILL_MAP / core-optional-drop 区分 / helix CLI trigger / legacy source 用語除去) | A-77 棚卸 / BR-22 | source skill reference、SKILL_MAP | `docs/skills/*.md` skill pack + HELIX 版 SKILL_MAP | P1 | HM-02 |"
+            },
+            {
+              "line": 79,
+              "line_sha256": "de1b0859214a34a91b511688dd3d492e493fe8c21e431fe9da103e6987501a3c",
+              "text": "| **FR-L1-48** | 内部資産 command の helix CLI subcommand 化 (dashboard / asset / builder 等) | A-77 棚卸 / rebuild map W11/W12/W16 / BR-22 | legacy CLI binaries 70 件 / docs/commands 19 件 | `helix` subcommand 体系 | P1 | HM-02 |"
+            },
+            {
+              "line": 80,
+              "line_sha256": "c45abf0c8caeff0a2cd59035e1fc2104a719fe97411635d8857f99c87c4e00a2",
+              "text": "| **FR-L1-49** | 内部資産 drift lint (legacy absolute path残存 / docs-skills 空 / roster↔guard 整合の機械検証) | A-77 棚卸 / IMP-033 rule engine / BR-22 | roster / skill pack / guard allowlist | drift 検出レポート (fail-close) | P1 | HM-07 |"
+            }
+          ]
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+          "file_sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+          "range_label": "L3/L4-L6 carry routing of separate FR-L1-46..49 identities",
+          "range_start_line": 745,
+          "range_end_line": 745,
+          "range_sha256": "1997d24f1b2ab2514e47e6156eafdfe80d23343c400987f2dd3251a155446a6d",
+          "line_pins": [
+            {
+              "line": 745,
+              "line_sha256": "1997d24f1b2ab2514e47e6156eafdfe80d23343c400987f2dd3251a155446a6d",
+              "text": "| FR-L1-46 / FR-L1-47 / FR-L1-48 / FR-L1-49 (内部資産 HELIX 化: subagent roster / skill pack curate / command CLI 化 / drift lint) | P1 | L4-L6 carry | BR-22 派生、Recovery PLAN-RECOVERY-01。roster=W6/W7・skill pack=W10・command=W11/W12/W16・drift lint=IMP-033 (L6-L7)。棚卸 = internal-asset-inventory.md |"
+            }
+          ]
+        }
+      ],
+      "condition_disposition": {
+        "retained_semantics": [
+          "BR-22の上位意味: HELIX用正本内部資産を持つ",
+          "source-derived資産をそのまま使わずHELIX用に再構築する",
+          "呼出guardのみならず資産自体を統制対象にする"
+        ],
+        "residual_conditions": [
+          "別FR identity FR-L1-46: capability class/model family/guard統合/legacy source前提除去を伴うroster化。FR-L1-47: HELIX版SKILL_MAP・core/optional/drop区分・CLI trigger・legacy用語除去を伴うskill curate。",
+          "別FR identity FR-L1-48: internal commandsのhelix CLI subcommand化（旧sourceのbinary 70件・docs/commands 19件はFR table上のinventory factsでありBR-22 target countではない）。",
+          "別FR identity FR-L1-49: legacy absolute path・空docs-skills・roster/guard整合のdrift lintとfail-close report。L3 carry lineはroster W6/W7、skill W10、command W11/W12/W16、lint IMP-033 L6-L7へ記録するが、BR identityのsuccessor/実装完了とはしない。",
+          "固定HARNESS/OS/BRAIN targetsは責務の一部を分けるが、旧FR-L1-46..49ごとの受入条件、資産catalog全体、drift lint oracle/lifecycleをBR-22の後継として確定していない"
+        ],
+        "identity_boundary": "FR-L1-46..49はBR-22が指すHOWを具体化した別のconfirmed legacy requirement identities。ここでは原文とcarry locationをconsumer contextとしてpinするが、数値・実装内容・受入をBR-22 identityの条件へ統合しない。",
+        "formal_successor_assignment": false,
+        "closure": false
       }
     }
   ],
@@ -614,6 +1199,8 @@
     "json_parse": "pass; Python JSON parser",
     "scfctl_validate": "pass; python3 scaffold/tools/scfctl.py validate => bindings=143 fail=0",
     "git_diff_check": "pass; git diff --check clean",
-    "legacy_execution": "not_run; no archive workflow/CLI/hook/test/CI/runtime invoked"
+    "legacy_execution": "not_run; no archive workflow/CLI/hook/test/CI/runtime invoked",
+    "legacy_consumer_pins": "pass; BR-21 business-detail lines 27-70 and 179-230, BR-22 FR lines 77-80 and L3 carry line 745; exact file/range/line SHA checked",
+    "condition_disposition_review": "pass; retained BR-level meaning separated from legacy lower-level metrics/HOW; no separate FR threshold merged into BR identity"
   }
 }

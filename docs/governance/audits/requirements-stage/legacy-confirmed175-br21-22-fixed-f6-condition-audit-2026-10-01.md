@@ -69,6 +69,32 @@
 | `HARNESS-L2-031` | `docs/helix-harness/L2-requirements/product-requirements.md:627–646` / `ca1e113a5980df023bdb27bb461e1fc57137d14da060d26180e4d70abdf90611` | `docs/helix-harness/L11-acceptance/product-acceptance.md:416–423` / `94aa12f4a5b03b14f2827db8f024cc3ac8aeae563730013127af83aff862f005` | `docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:60` / `6e3374fdd8912ca008528e5f6c7671382cb9162bc79d13f8c78dafc1507b809d` | `MPR-RC-HARNESS-L2-031-001` at 430 / `7a524b2f2fdcda5b58ea0d2126c6ca8b84505b430781a90b0079c9b1d7195d93` |
 | `HELIXBRAIN-L2-008` | `docs/helix-brain/L2-requirements/brain-requirements.md:161–171` / `90cc1f814eda48b0da887912b3a0862b94291e3264cd6c84225d14e19bc0900e` | `docs/helix-brain/L11-acceptance/brain-acceptance.md:36–86` / `14fb3aa8cf7a3e951964059af01669e2132af320167ed11770ee0095d1439d31` | `docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md:55` / `552f51a268f1a3deef1c9246dd00484417fdb7904fdbfa6d11163a087dbd8f82` | `MPR-RC-HELIXBRAIN-L2-008-001` at 154 / `d35d75465d2e14fdb2517c774ef70c5b5c8b60c70706f4ede85d59c04c6659e8` |
 
+## 旧consumer/detail条件の保持と残差
+
+以下はBR identityが結ぶ下位sourceを読み、line/file digestをJSONへpinした結果。旧L3詳細やFR行はsource lineageのconsumerであり、BR identityの現行採択条件へ自動昇格しない。
+
+| BR identity | 旧consumer source | exact lines |
+|---|---|---|
+| BR-21 | `archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md` | 27–70、179–230 |
+| BR-22 | `archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md` | 77–80 |
+| BR-22 | `archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md` | 745 |
+
+File SHA、range SHA、全行SHA/textはJSONの各record `legacy_consumer_pins`に記録した。
+
+### BR-21
+
+**現行側で保持する意味:** AI実行品質を継続評価し、委譲成果から改善候補へ戻す目的。固定L2/L11はOSの候補routing、LABOの評価と再観測、target ownerの採否・変更責務に分けた循環を記述する。
+
+**旧下位詳細の未移管条件:** PLANを既定単位、skill/modelを補助単位とする評価単位と頻度、5指標と各目標（成功率80%以上、所要時間中央値1 sprint以下推奨、再実行3回未満、fail-close発火率5%未満、token costは計測のみ）、model opt-in、30日unused候補・skill削除は人間のみ、PoC pivotを非成功として分母に含める契約。これらはbusiness-detailのBR-21詳細化として残差に記録し、現行L2/L11の閾値やacceptanceとして扱わない。
+
+BR-21本文自身は§11.3にD-07「AI委譲時間率 ≥70%」を業務的根拠として記す。これはbusiness-detailの5評価指標閾値とは別で、今回の比較から新しい採択目標を作らない。
+
+### BR-22
+
+**現行側で保持する意味:** HELIX用の正本内部資産を持ち、source-derived資産をそのまま使わずHELIX向けに再構築し、guardだけでなく資産自体を統制する。固定f6ではOSのWorker/evidence、HARNESSのengineering pack、BRAINのknowledge identityへ責務が分かれる。
+
+**旧下位HOWの未移管条件:** FR-L1-46〜49は別requirement identitiesとして、rosterのcapability/model/guard再構築、skill packのHELIX版SKILL_MAPと区分・trigger、commandのCLI化、roster/guard等のdrift lintを示す。L3 carry row 745はW6/W7・W10・W11/W12/W16・IMP-033への計画配置を示す。sourceにある「70 binaries」「19 docs/commands」は旧FRの棚卸入力で、BR-22の目標件数ではない。各HOWの現行対応、資産catalog全体、drift oracle/lifecycleは未確認のまま残す。
+
 ## 後発採択decision／neighbor screen
 
 候補探索の入口として、既存後発cohort一覧（57候補・53採択registration rows、11候補・10採択rows、live26・25採択rows、計94 decision rows／88 adopted registration-decision rows）を確認し、cohort path/file SHAをJSONに固定した。CN1-6監査のdirect-match結論はBR-21/22へ流用していない。以下の3候補は今回のBR条件に近い接点として個別に比較し、各decision/MPR/L2/L11をpinした。screen全候補の意味をBR条件ごとに再監査したとは主張しない。
