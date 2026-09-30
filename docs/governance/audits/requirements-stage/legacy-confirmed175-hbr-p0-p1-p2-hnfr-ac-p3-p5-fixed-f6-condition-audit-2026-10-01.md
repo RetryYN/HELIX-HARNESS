@@ -1,10 +1,10 @@
 # confirmed175 HBR-P0/P1/P2・HNFR-AC/P3/P5 固定f6条件照合監査（2026-10-01）
 
-基準HEAD `5bfcd7db31f4cceb9871d20608f1eba9007f7405`。旧source file SHA-256 `7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc`、asset `LEGACY-ASSET-18F7940E7994634D39A1`。対象はsource-qualified identity 6件、固定対象revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。比較はread-onlyで、`authority_effect: none`、formal successor 0、closure false。個票のsource行・line digest・固定対象L2/L11の参照本文とdigestは[JSON](legacy-confirmed175-hbr-p0-p1-p2-hnfr-ac-p3-p5-fixed-f6-condition-audit-2026-10-01.json)に記録した。旧CLI、workflow、hook、adapter、runtime、test、CIは実行していない。
+基準HEAD `5bfcd7db31f4cceb9871d20608f1eba9007f7405`。旧source file SHA-256 `7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc`、asset `LEGACY-ASSET-18F7940E7994634D39A1`。対象はsource-qualified identity 6件、固定対象revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。比較はread-onlyで、`authority_effect: none`、formal successor 0、closure false。個票のsource行・line digest・固定対象L2/L11の参照本文とdigest、監査基準HEAD/固定f6の別個のwhole-file pin、旧L3 consumer line pinは[JSON](legacy-confirmed175-hbr-p0-p1-p2-hnfr-ac-p3-p5-fixed-f6-condition-audit-2026-10-01.json)に記録した。旧CLI、workflow、hook、adapter、runtime、test、CIは実行していない。
 
 ## Source identityと固定対象
 
-旧sourceは`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md`で、asset ledger上`confirmed`／`preserved_pending_rehome`。母集団full auditおよび2026-09-30 queueのsource-qualified identityに、同一asset、原文行、file SHA-256、line SHA-256でjoinした。固定L2/L11対象は2026-09-28 PO判断のf6 revision。L2/L11行のauthority statusと全参照行本文はJSONに保存し、候補採択や現行requirements一式への合意をsource atom単位の移管・実装・受入と解釈していない。
+旧sourceは`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md`で、asset ledger上`confirmed`／`preserved_pending_rehome`。母集団full auditおよび2026-09-30 queueのsource-qualified identityに、同一asset、原文行、file SHA-256、line SHA-256でjoinした。固定L2/L11対象は2026-09-28 PO判断のf6 revision。JSONではf6の4文書whole-file SHA-256と、監査基準HEAD `5bfcd7d` の参照本文・line SHAを別pinにした。参照行digestは監査基準HEADのline本文を固定し、後発の本文lineをf6自体のlineと主張しない。旧L3 consumerの対応IDと具体条件も別sourceとして照合し、候補採択や現行requirements一式への合意をsource atom単位の移管・実装・受入と解釈していない。
 
 | Identity | 旧source行 | 固定target IDs | 条件照合 |
 |---|---:|---|---|
@@ -14,6 +14,26 @@
 | HNFR-AC | 67 | HELIXOS-L2-018, HARNESS-L2-010, HARNESS-L2-011 | partial condition trace |
 | HNFR-P3 | 64 | HARNESS-L2-005 | partial condition trace |
 | HNFR-P5 | 65 | HELIXOS-L2-019, HARNESS-L2-010, HARNESS-L2-011 | partial condition trace |
+
+
+## 旧L3 consumerの条件と残差
+
+旧consumer `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md` のfile SHA-256は `7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544`。identity展開表42–54、条件本文138–153・178–185、HNFR-ACの直接条件188–190を行単位のtext/SHAでJSONへ保存した。旧sourceは「ID対応」と「本文の全条件被覆」を区別する（line 56）。
+
+| Identity | 旧consumer条件 | 固定f6との残差 |
+|---|---|---|
+| HBR-P0 | HR-FR-P0-01/02: 各workflow出口のstyle return/gap隔離、Decide後のPoC/Discovery復帰、停止理由のdurable append→冪等DB projection | style/Discovery/PoC/workflowに意味接点はあるが、全出口と停止証拠順序を閉じない |
+| HBR-P1 | HR-FR-P1-01〜04: resume三条件・queue/time cap/fresh session、version-up lifecycle、sliceごとの返却先/budget/acceptance/next_action、L2/prototype合意 | continuityの接点はあるがcontinuous-run/version-up lifecycleを成立させない |
+| HBR-P2 | HR-FR-P2-01〜08: typed tool registry、effort budget、surface preflight、loop evidence、隔離外部worker、typed wire、bypass deny、output guard | Worker/verificationとの部分接点であり、旧8条件のruntime/tool surface contract一式を証明しない |
+| HNFR-AC | HR-NFR-AC-01〜03: 全agentへrule-drift一般化、hosted surface preflight、runtime-neutral plan/traceとaction-binding | Worker/pack/call境界は接点だが、全agent共有memory・scanner・hosted preflight全体を閉じない |
+| HNFR-P3 | HR-NFR-P3-01〜04: green evidence/review tier/external grounding、trace対応、layer regression fence、test-first | L2-005は検証義務の接点。外部根拠oracleやtest-first全条件は未閉鎖 |
+| HNFR-P5 | HR-NFR-P5-01〜03: 3層context budget、可逆圧縮artifact、append-before-project checkpoint/restart、検証profile/time budget | continuity/packの接点はあるがbudget・checkpoint順序・workload条件一式は未閉鎖 |
+
+## 後発の近接候補：HARNESS-L2-046
+
+2026-09-29のPO decision 57 line 51は`HARNESS-L2-046`を採択と記録する。これは固定f6 revision `f6dad2a…` の後発状態として別に扱う。関連L2/L11本文、MPR line 559、2026-09-28 coverage receiptとその6-source-span scopeはJSONへpinした。receiptはPO decisionより前の候補coverage記録で、`authority_effect:none`。L2-046自身の採択はHBR-P0/P1からのsuccessor割当てを作らない。
+
+境界付きの近接は、Full Vのsystem workflowをL1–L5で段階freeze・検証し、Production ScrumまたはScrumを含む許可scopeではslice delta後にsystem workflow/L1–L5へbackfillし、該当Scrum scopeではSR4前にrelease-readyとしない点である。Full VへScrum条件は適用しない。P0に対してはstyle-selected workflow条件の一部に近いが、各専門routeのstyle return/gap、runaway停止・durable event条件を置換しない。P1に対してはrelease/backfill boundaryに限った近接で、resume/queue/time-cap/version-up lifecycleを扱わない。正式successorなし。
 
 ## HBR-P0 — `helix/L1-requirements/pillar-requirements.md::HBR-P0`
 
@@ -137,4 +157,4 @@
 
 ## 結果と限界
 
-6件すべてで固定f6のL2/L11条件との意味接点を個票化した。6件ともpartial condition traceであり、旧source atomsの形式的successor割当ては0件。固定targetの要求合意・候補採択・L11記述は、source atomの全条件移管、runtime実装、実行証跡、利用者受入を証明しない。未対応条件を未対応のまま保持する。
+6件すべてで固定f6のL2/L11条件と旧L3 consumer条件との意味接点・残差を個票化した。後発HARNESS-L2-046は別revisionの近接条件として記録し、successorと扱っていない。6件ともpartial condition traceであり、旧source atomsの形式的successor割当ては0件。固定targetの要求合意・候補採択・L11記述は、source atomの全条件移管、runtime実装、実行証跡、利用者受入を証明しない。未対応条件を未対応のまま保持する。
