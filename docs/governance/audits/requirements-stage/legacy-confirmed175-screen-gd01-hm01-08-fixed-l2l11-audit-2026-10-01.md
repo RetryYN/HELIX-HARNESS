@@ -360,7 +360,21 @@ Source-qualified identity: `harness/L1-requirements/screen-requirements.md::HM-0
 
 ## 後発57+11判断
 
-両方の決定記録のcandidate identity表を全件確認した。57候補は42採択/11条件付き採択/4保留、11候補は8採択/2依存付き採択/1現revision不採択。選択した旧source-qualified identityとの完全一致は0件。候補採択状態は旧screen個票の採択やL2/L11 coverageとは別で、後発pairからscreen successor/closureを生成しない。
+両方の決定記録のcandidate identity表を全件確認した。57候補は42採択/11条件付き採択/4保留、11候補は8採択/2依存付き採択/1現revision不採択。選択した旧source-qualified identityとの完全一致は0件。加えて、採択済み/条件付き採択済みpairの正確なsource revisionを、各画面の意味的に近い比較対象として限定評価した。decision row、MPR登録、L2/L11ファイル・sectionのrevision/hash pinはJSONの`later_decision_screen.exact_pair_pins`に記録する。
+
+| 画面 | 意味的に近い後発pairと比較境界 |
+|---|---|
+| GD-01 | HARNESS-039は横断的なUI/Experience/Frontend契約だけが近い。ガイド分類、文書navigation/link、manual更新、Phase B検索、404、Learning Engine carryを定めるpairはない。 |
+| HM-01 | HARNESS-039は横断的なUI契約だけが近い。旧51行の実装状態、3階層集計、filter/export、polling、traffic-light状態を定めるpairはない。 |
+| HM-02 | HARNESS-034は計測/progress evidence、HARNESS-043/044はB routeに限定されたtemplate/design coverageが近い。043/044は条件付き採択の範囲を越えず、旧8×5軸、40-cell matrix、score色、filter、poll interval、ticket生成を定めない。 |
+| HM-03 | HARNESS-040とHELIXOS-038はlayer-ledger coverage/writer evidenceが近い。038-002はHARNESS-041-003との依存付き。graph layout、connection state、4象限routing表示、hook/provider error、pollingは定めない。 |
+| HM-04 | HARNESS-040とHELIXOS-038はartifact進捗の背後にあるledger抽出/write evidenceが近い。038-002はHARNESS-041-003との依存付き。raw `.helix` table、orphan/drift/integrity検査、色/filter/recheck UI/pollingは定めない。 |
+| HM-05 | HELIXOS-043はworker delegation request/tool-call/result evidenceが近い。invocation-log項目、旧guard allow/block/bypass履歴、budget警告、approval、skill injection表示、hook-log UIは定めない。 |
+| HM-06 | HELIXOS-040/041は型付きretry-exhaustion routingとreload失敗時のsafe continuationが近い。restart point、recovery log、rollback command copy、cutover状態、alert timing、UI controlは定めない。 |
+| HM-07 | HELIXOS-033はversion付きdiagnostic detector provenanceが近い。旧doctor rule、error/warn/info分類、D-03件数、結果色、再実行/copy/pollingは定めない。 |
+| HM-08 | HELIXLABO-064/068と条件付き065はworker比較、attempt数、D1 first-attempt resultが近い。065はD1 first Attempt resultの条件付き範囲。Learning Engine、recipe蓄積、旧skill/model score、task-success/cost-efficiency metric、source trace conflict、画面を採択しない。 |
+
+全9画面でHARNESS-039を横断UI契約のnear comparatorとして評価した。GD-01/HM-01には上記を越えるdomain-specific near pairがないため、理由を各画面のJSON評価にも記録した。候補pairの採択/条件付き採択は旧screen source atomの採択やL2/L11 coverageとは別で、source identityは一致せず、後発pairからscreen adoption、successor、closureを生成しない。各画面の状態は`open_partial_correspondence`のまま。
 
 ## 固定L2/L11バイト
 

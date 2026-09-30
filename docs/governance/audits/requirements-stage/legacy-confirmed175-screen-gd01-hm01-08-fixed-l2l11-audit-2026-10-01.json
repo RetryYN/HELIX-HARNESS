@@ -277,8 +277,803 @@
         "not_adopted_current_revision": 1
       }
     },
-    "method": "Both complete candidate decision identity sets were checked. No source-qualified identity match to the nine old screen rows. Candidate adoption/conditional adoption is kept as candidate disposition only; it does not establish adoption or closure of these old screen atoms. Fixed f6 L2/L11 pair text is assessed per record above. No later pair was treated as a screen successor.",
-    "exact_legacy_identity_matches": 0
+    "method": "Both complete candidate decision identity sets were checked: exact source-qualified identity matches remain zero. In addition, adopted and conditionally adopted exact pair revisions were evaluated as bounded semantic-near comparators per screen. Candidate pair disposition is separate from each old screen source atom; no screen adoption, successor, or closure is inferred.",
+    "exact_legacy_identity_matches": 0,
+    "semantic_near_comparison": "per-screen; pair-specific scope and conditional dependencies are retained",
+    "exact_pair_pins": [
+      {
+        "pair_id": "HARNESS-L2-039",
+        "requirement_identity": "HARNESS-L2-039",
+        "decision_disposition": "採択",
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_record_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_record_tree_revision": "53a820ac91998c090eb191f8db1110385e4a0db3",
+        "decision_source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "decision_row_line": 44,
+        "decision_row_sha256": "sha256:36ee00432206be7b72d281d7fa0222239130ec4025d8bed45810f1bc395625e5",
+        "registration_id": "MPR-RC-HARNESS-L2-039-003",
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "mpr": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "sha256:10d0d378ec995e7e597cfeeee029afcb8fe2e75216f53666c210ff05ed7ec03a",
+          "line": 545,
+          "line_sha256": "sha256:4e2a2832947c89c7dfabec5db15e8881c12d3916cd5475ac7daf1e58a0011518",
+          "candidate_semantic_digest": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0",
+          "management_state": "registered_proposal",
+          "authority_effect": "none"
+        },
+        "l2": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "file_sha256": "sha256:111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+          "section_lines": [
+            891,
+            929
+          ],
+          "section_sha256": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0"
+        },
+        "l11": {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "file_sha256": "sha256:3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+          "section_lines": [
+            638,
+            676
+          ],
+          "section_sha256": "sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746"
+        },
+        "bounded_relevance": "Cross-cutting UI/Experience/Frontend contract; near only for screen interaction/presentation scope, not the legacy screen-specific content or behavior.",
+        "applies_to_screens": [
+          "GD-01",
+          "HM-01",
+          "HM-02",
+          "HM-03",
+          "HM-04",
+          "HM-05",
+          "HM-06",
+          "HM-07",
+          "HM-08"
+        ],
+        "source_successor_or_closure": "none; exact pair decision does not adopt, assign successor to, or close any of the nine old screen identities."
+      },
+      {
+        "pair_id": "HARNESS-L2-034",
+        "requirement_identity": "HARNESS-L2-034",
+        "decision_disposition": "採択",
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_record_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_record_tree_revision": "53a820ac91998c090eb191f8db1110385e4a0db3",
+        "decision_source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "decision_row_line": 39,
+        "decision_row_sha256": "sha256:c006f41bb2b046673e74644d866dd309b3a0cfcb5d06b3ca6eb193d67b7d59e1",
+        "registration_id": "MPR-RC-HARNESS-L2-034-003",
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "mpr": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "sha256:10d0d378ec995e7e597cfeeee029afcb8fe2e75216f53666c210ff05ed7ec03a",
+          "line": 509,
+          "line_sha256": "sha256:c7ef1913b233272a63df8e728abac1e87dc32beb76e4f800c93222c248d7b787",
+          "candidate_semantic_digest": "sha256:dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156",
+          "management_state": "registered_proposal",
+          "authority_effect": "none"
+        },
+        "l2": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "file_sha256": "sha256:111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+          "section_lines": [
+            693,
+            717
+          ],
+          "section_sha256": "sha256:dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156"
+        },
+        "l11": {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "file_sha256": "sha256:3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+          "section_lines": [
+            465,
+            483
+          ],
+          "section_sha256": "sha256:391f640508944ba2f32b5751a2a9a17fbc9f89ef76f46953c1af68ba907a9fdf"
+        },
+        "bounded_relevance": "Measurement contract is near to coverage/progress metrics; it does not define the old 8×5 heatmap axes, color thresholds, filtering, polling, or screen behavior.",
+        "applies_to_screens": [
+          "HM-02"
+        ],
+        "source_successor_or_closure": "none; exact pair decision does not adopt, assign successor to, or close any of the nine old screen identities."
+      },
+      {
+        "pair_id": "HARNESS-L2-043",
+        "requirement_identity": "HARNESS-L2-043",
+        "decision_disposition": "条件付き採択：Bルート、所属はHARNESS-CORE。",
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_record_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_record_tree_revision": "53a820ac91998c090eb191f8db1110385e4a0db3",
+        "decision_source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "decision_row_line": 48,
+        "decision_row_sha256": "sha256:18f0bfda60bb841dead7b7d2db20bfe2ce439d5a19e5e9050fe24bef0487406a",
+        "registration_id": "MPR-RC-HARNESS-L2-043-002",
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "mpr": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "sha256:10d0d378ec995e7e597cfeeee029afcb8fe2e75216f53666c210ff05ed7ec03a",
+          "line": 548,
+          "line_sha256": "sha256:f26264bd7ddd4b5e613b1a1cef715c7dc98c6cdd773152daa79e6693e7b14388",
+          "candidate_semantic_digest": "sha256:da678d9181ebe76ae93084c27744d253c617ebe03b709d79f55b79d2abbc6666",
+          "management_state": "registered_proposal",
+          "authority_effect": "none"
+        },
+        "l2": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "file_sha256": "sha256:111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+          "section_lines": [
+            986,
+            1000
+          ],
+          "section_sha256": "sha256:da678d9181ebe76ae93084c27744d253c617ebe03b709d79f55b79d2abbc6666"
+        },
+        "l11": {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "file_sha256": "sha256:3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+          "section_lines": [
+            723,
+            733
+          ],
+          "section_sha256": "sha256:583bfaf669729d3148e072be3ca74f1ef125997e933f6a1a94f08c732cb6f4b4"
+        },
+        "bounded_relevance": "Conditional B-route / HARNESS-CORE template example contract is near to explicit coverage evidence; applies only in that adopted B route and does not define the heatmap.",
+        "applies_to_screens": [
+          "HM-02"
+        ],
+        "source_successor_or_closure": "none; exact pair decision does not adopt, assign successor to, or close any of the nine old screen identities."
+      },
+      {
+        "pair_id": "HARNESS-L2-044",
+        "requirement_identity": "HARNESS-L2-044",
+        "decision_disposition": "条件付き採択：Bルート、名称はDesign Contract Portfolio。採択済み025/026へ無断追記しない。",
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_record_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_record_tree_revision": "53a820ac91998c090eb191f8db1110385e4a0db3",
+        "decision_source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "decision_row_line": 49,
+        "decision_row_sha256": "sha256:cdee79d9f171d52bbfca96f5ba36439265fc1146006fcf8bf1c7615d958f2a2a",
+        "registration_id": "MPR-RC-HARNESS-L2-044-002",
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "mpr": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "sha256:10d0d378ec995e7e597cfeeee029afcb8fe2e75216f53666c210ff05ed7ec03a",
+          "line": 550,
+          "line_sha256": "sha256:fff7b7575f42b5ffea5dfcc4f7ff8a68a8b0d38b0b7704b51ff38a79d4b588d0",
+          "candidate_semantic_digest": "sha256:690f2bfa866c778be47459baa99139905260d3ca569739a4d4707c61096212f2",
+          "management_state": "registered_proposal",
+          "authority_effect": "none"
+        },
+        "l2": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "file_sha256": "sha256:111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+          "section_lines": [
+            1002,
+            1011
+          ],
+          "section_sha256": "sha256:690f2bfa866c778be47459baa99139905260d3ca569739a4d4707c61096212f2"
+        },
+        "l11": {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "file_sha256": "sha256:3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+          "section_lines": [
+            735,
+            745
+          ],
+          "section_sha256": "sha256:9c79b73100f4afa63abba7f79d47b8931a1c29983ac08a3e4ded95e56107bfc8"
+        },
+        "bounded_relevance": "Conditional B-route Design Contract Portfolio is near to explicit design/coverage trace; keep it separate from adopted 025/026 and do not treat it as the HM-02 UI or all-template coverage.",
+        "applies_to_screens": [
+          "HM-02"
+        ],
+        "source_successor_or_closure": "none; exact pair decision does not adopt, assign successor to, or close any of the nine old screen identities."
+      },
+      {
+        "pair_id": "HARNESS-L2-040",
+        "requirement_identity": "HARNESS-L2-040",
+        "decision_disposition": "採択",
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_record_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_record_tree_revision": "53a820ac91998c090eb191f8db1110385e4a0db3",
+        "decision_source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "decision_row_line": 45,
+        "decision_row_sha256": "sha256:39892649f4052cc7dfc5b0a8ec8c78d484f0e2b0fee19a1206d7a64dc12d86b8",
+        "registration_id": "MPR-RC-HARNESS-L2-040-002",
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "mpr": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "sha256:10d0d378ec995e7e597cfeeee029afcb8fe2e75216f53666c210ff05ed7ec03a",
+          "line": 541,
+          "line_sha256": "sha256:35cee62a8a11abc726db5d976cb379a4f403c0cb741a6fa24fc02dd856edca37",
+          "candidate_semantic_digest": "sha256:c349606d7798e3f4eb5e6cb31e0618a83dcfa05f9fc888b0ce618f6d160757df",
+          "management_state": "registered_proposal",
+          "authority_effect": "none"
+        },
+        "l2": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "file_sha256": "sha256:111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+          "section_lines": [
+            946,
+            955
+          ],
+          "section_sha256": "sha256:c349606d7798e3f4eb5e6cb31e0618a83dcfa05f9fc888b0ce618f6d160757df"
+        },
+        "l11": {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "file_sha256": "sha256:3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+          "section_lines": [
+            689,
+            697
+          ],
+          "section_sha256": "sha256:366518f8e32ac4dda1e5f4ec88ef0cfed6bc363d597955ffffb1a82d706fc212"
+        },
+        "bounded_relevance": "Layer-ledger extraction/coverage is near to wiring and artifact-progress evidence; it is not the old diagram/table UI, 30-second polling, or status/color contract.",
+        "applies_to_screens": [
+          "HM-03",
+          "HM-04"
+        ],
+        "source_successor_or_closure": "none; exact pair decision does not adopt, assign successor to, or close any of the nine old screen identities."
+      },
+      {
+        "pair_id": "HELIXOS-L2-038@318ec",
+        "requirement_identity": "HELIXOS-L2-038",
+        "decision_disposition": "採択",
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_record_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_record_tree_revision": "53a820ac91998c090eb191f8db1110385e4a0db3",
+        "decision_source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "decision_row_line": 61,
+        "decision_row_sha256": "sha256:9c4b9a4a075bc5ceeeaae222ef3aa401a1e2336d0932a7cfc923d9b12644a23b",
+        "registration_id": "MPR-RC-HELIXOS-L2-038-001",
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "mpr": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "sha256:10d0d378ec995e7e597cfeeee029afcb8fe2e75216f53666c210ff05ed7ec03a",
+          "line": 543,
+          "line_sha256": "sha256:e5f9d5b863fca60be8abfb556d04164f08641df048ec0e3ad0efa4e7b42db513",
+          "candidate_semantic_digest": "sha256:603b5db48045408a85d116071a4ad0f8a470064cd073a05beb9bc118f386fd6c",
+          "management_state": "registered_proposal",
+          "authority_effect": "none"
+        },
+        "l2": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "file_sha256": "sha256:89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "section_lines": [
+            1096,
+            1112
+          ],
+          "section_sha256": "sha256:603b5db48045408a85d116071a4ad0f8a470064cd073a05beb9bc118f386fd6c"
+        },
+        "l11": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "file_sha256": "sha256:7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "section_lines": [
+            671,
+            673
+          ],
+          "section_sha256": "sha256:eabb68eaafc76f0080fbe9cb9c6904005c88b72e7cee9563f2515b4488de2e5d"
+        },
+        "bounded_relevance": "Adopted -001 ledger-writer pair is near to producing/writing layer-ledger evidence underlying the wiring/progress displays; it does not specify either screen projection.",
+        "applies_to_screens": [
+          "HM-03",
+          "HM-04"
+        ],
+        "source_successor_or_closure": "none; exact pair decision does not adopt, assign successor to, or close any of the nine old screen identities."
+      },
+      {
+        "pair_id": "HELIXOS-L2-038@5aa100",
+        "requirement_identity": "HELIXOS-L2-038",
+        "decision_disposition": "依存先と併せて採択",
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+        "decision_record_sha256": "sha256:6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+        "decision_record_tree_revision": "53a820ac91998c090eb191f8db1110385e4a0db3",
+        "decision_source_repository_revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+        "decision_row_line": 35,
+        "decision_row_sha256": "sha256:196e1750220ef4bdaf57b57f0ee955375b942e8afe91ee6d45c30ef04488a733",
+        "registration_id": "MPR-RC-HELIXOS-L2-038-002",
+        "pair_source_revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+        "mpr": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "sha256:b266c351bab670c98b0fe5cb9597a4a846f24c78e174094495ad1e38334620db",
+          "line": 602,
+          "line_sha256": "sha256:41ff930e78fd24ca7fedfdf976a30c5afc9d787b52aae763900032b6334ceb77",
+          "candidate_semantic_digest": "sha256:c3b0424bd39ac7c91166c87738fbefc1b20a11b904012d9ada768a113ccbe013",
+          "management_state": "registered_proposal",
+          "authority_effect": "none"
+        },
+        "l2": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "file_sha256": "sha256:c90be67dc90240434568491074d0e12fb593759ad9121ee9ef9bd3f932a41610",
+          "section_lines": [
+            1096,
+            1113
+          ],
+          "section_sha256": "sha256:c3b0424bd39ac7c91166c87738fbefc1b20a11b904012d9ada768a113ccbe013"
+        },
+        "l11": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "file_sha256": "sha256:b965f3681d1f5231e4281d333538b65142dce8db0ae4807ed46caa7e928e30de",
+          "section_lines": [
+            671,
+            673
+          ],
+          "section_sha256": "sha256:eabb68eaafc76f0080fbe9cb9c6904005c88b72e7cee9563f2515b4488de2e5d",
+          "decision_included_addendum_sections": [
+            {
+              "section_label": "HELIXOS-L2-038 revision -002 additional negative oracle (included by the 11-candidate decision)",
+              "section_lines": [
+                690,
+                696
+              ],
+              "section_sha256": "sha256:86287e73d09522940b2a07bf8f304135ff3d495904df055088f07fff077766ed",
+              "decision_scope_note": "The 11-candidate decision explicitly includes this addendum digest in addition to the base L11 section; it is conditional on separate adoption and enablement of HARNESS-L2-041-003."
+            }
+          ]
+        },
+        "bounded_relevance": "Dependent -002 revision adds a negative oracle only with the separately adopted HARNESS-L2-041-003 dependency; this is a bounded ledger-writer check, not a screen contract.",
+        "applies_to_screens": [
+          "HM-03",
+          "HM-04"
+        ],
+        "source_successor_or_closure": "none; exact pair decision does not adopt, assign successor to, or close any of the nine old screen identities.",
+        "decision_dependencies": [
+          {
+            "requirement_identity": "HARNESS-L2-041",
+            "revision": "-003",
+            "decision_disposition": "採択",
+            "decision_record": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+            "decision_record_tree_revision": "53a820ac91998c090eb191f8db1110385e4a0db3",
+            "decision_record_sha256": "sha256:6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+            "decision_row_line": 27,
+            "decision_row_sha256": "sha256:78a28b08cd764877da9821077da3ce3dfa623b5fac671d6c7f56fbda6c31045c",
+            "source_revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+            "mpr": {
+              "path": "docs/governance/management-provisional-requirement-register.jsonl",
+              "file_sha256": "sha256:b266c351bab670c98b0fe5cb9597a4a846f24c78e174094495ad1e38334620db",
+              "line": 601,
+              "line_sha256": "sha256:716689ed510252b5a77953d52def4dcc9ee2d9ef23ec02ca2bd20fdc89b4f42f",
+              "candidate_semantic_digest": "sha256:d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260",
+              "management_state": "registered_proposal",
+              "authority_effect": "none"
+            },
+            "l2": {
+              "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+              "file_sha256": "sha256:45955ffba1293b603f3c513ec1e9e328dd7bcf24b038463eb20dd480d1dc2108",
+              "section_lines": [
+                957,
+                968
+              ],
+              "section_sha256": "sha256:d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260"
+            },
+            "l11": {
+              "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+              "file_sha256": "sha256:216a8dccfff723408fd4b54701933a8e257f29e5c775aaef2a4458d1f36d3cc7",
+              "section_lines": [
+                699,
+                714
+              ],
+              "section_sha256": "sha256:11759276200a6707762e76eeeefd901443e691bd1b0ff51b55cd3b6551fed58b"
+            },
+            "scope_note": "This is the separately adopted and enabled HARNESS contract required by the HELIXOS-L2-038 -002 decision; it does not make the OS proposal an unconditional or independent adoption."
+          }
+        ]
+      },
+      {
+        "pair_id": "HELIXOS-L2-043",
+        "requirement_identity": "HELIXOS-L2-043",
+        "decision_disposition": "採択",
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_record_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_record_tree_revision": "53a820ac91998c090eb191f8db1110385e4a0db3",
+        "decision_source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "decision_row_line": 66,
+        "decision_row_sha256": "sha256:addb08625038fa2124e6f3a158ad0d15047f82004b18e454ba2ca3a537c804ef",
+        "registration_id": "MPR-RC-HELIXOS-L2-043-002",
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "mpr": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "sha256:10d0d378ec995e7e597cfeeee029afcb8fe2e75216f53666c210ff05ed7ec03a",
+          "line": 563,
+          "line_sha256": "sha256:630b71e525547739316b2b6d37d27ec679b413474f22dcc8d05c25eeed965ed0",
+          "candidate_semantic_digest": "sha256:e286b34a9805a690f324ebe37ee0936691f636082b49350ee9dc5183787d9a68",
+          "management_state": "registered_proposal",
+          "authority_effect": "none"
+        },
+        "l2": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "file_sha256": "sha256:89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "section_lines": [
+            1152,
+            1159
+          ],
+          "section_sha256": "sha256:e286b34a9805a690f324ebe37ee0936691f636082b49350ee9dc5183787d9a68"
+        },
+        "l11": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "file_sha256": "sha256:7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "section_lines": [
+            762,
+            769
+          ],
+          "section_sha256": "sha256:136c2c209e30667dc74f1757b00fc482ce1216f05a851990c02437dc9078976b"
+        },
+        "bounded_relevance": "Worker delegation request/tool-call/result tracking is near to invocation/result evidence; it does not define old guard allow/block/bypass, token/cost budget, skills tab, or screen refresh semantics.",
+        "applies_to_screens": [
+          "HM-05"
+        ],
+        "source_successor_or_closure": "none; exact pair decision does not adopt, assign successor to, or close any of the nine old screen identities."
+      },
+      {
+        "pair_id": "HELIXOS-L2-040",
+        "requirement_identity": "HELIXOS-L2-040",
+        "decision_disposition": "採択",
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_record_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_record_tree_revision": "53a820ac91998c090eb191f8db1110385e4a0db3",
+        "decision_source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "decision_row_line": 63,
+        "decision_row_sha256": "sha256:863b15ab4b8102d7574efeffaa16ce6ef8a11958221bf36f62caeea848924fa4",
+        "registration_id": "MPR-RC-HELIXOS-L2-040-001",
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "mpr": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "sha256:10d0d378ec995e7e597cfeeee029afcb8fe2e75216f53666c210ff05ed7ec03a",
+          "line": 553,
+          "line_sha256": "sha256:a942f0638ad7f1d2d5bac30760c67f285f0144ff0ca4615f33a9a2f1af55798b",
+          "candidate_semantic_digest": "sha256:dfd272b75826d37333671f7152a0a58d2d013f0bd13a3f3957a76a39dcdfad80",
+          "management_state": "registered_proposal",
+          "authority_effect": "none"
+        },
+        "l2": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "file_sha256": "sha256:89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "section_lines": [
+            1124,
+            1132
+          ],
+          "section_sha256": "sha256:dfd272b75826d37333671f7152a0a58d2d013f0bd13a3f3957a76a39dcdfad80"
+        },
+        "l11": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "file_sha256": "sha256:7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "section_lines": [
+            724,
+            734
+          ],
+          "section_sha256": "sha256:a70e3b1af4b22d3370c6a845fc6b5ced1e1162e2cea66cb1d0664211130533e7"
+        },
+        "bounded_relevance": "Typed retry-limit return routing is near to recovery outcome handling; it does not specify the legacy Recovery display, rollback copy action, or restart-point UI.",
+        "applies_to_screens": [
+          "HM-06"
+        ],
+        "source_successor_or_closure": "none; exact pair decision does not adopt, assign successor to, or close any of the nine old screen identities."
+      },
+      {
+        "pair_id": "HELIXOS-L2-041",
+        "requirement_identity": "HELIXOS-L2-041",
+        "decision_disposition": "採択",
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_record_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_record_tree_revision": "53a820ac91998c090eb191f8db1110385e4a0db3",
+        "decision_source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "decision_row_line": 64,
+        "decision_row_sha256": "sha256:88fcaa59d93c43d56af83aba7899c745a9adbab0e3448be8afe7b6fb2fecc999",
+        "registration_id": "MPR-RC-HELIXOS-L2-041-001",
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "mpr": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "sha256:10d0d378ec995e7e597cfeeee029afcb8fe2e75216f53666c210ff05ed7ec03a",
+          "line": 556,
+          "line_sha256": "sha256:ae21c9108f017cc6ee9797e12fdd7d5d497d1f5e5c1cb180f19854b599e05209",
+          "candidate_semantic_digest": "sha256:a43e3eda819e37ef81db0c60c5add5cebce5e3d17ca858c1446c27ac4db80c48",
+          "management_state": "registered_proposal",
+          "authority_effect": "none"
+        },
+        "l2": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "file_sha256": "sha256:89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "section_lines": [
+            1134,
+            1141
+          ],
+          "section_sha256": "sha256:a43e3eda819e37ef81db0c60c5add5cebce5e3d17ca858c1446c27ac4db80c48"
+        },
+        "l11": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "file_sha256": "sha256:7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "section_lines": [
+            736,
+            746
+          ],
+          "section_sha256": "sha256:32f08cfa7b070bb902277f79e044e971bbd3948e90621c624d80b167f80d7ded"
+        },
+        "bounded_relevance": "Safe continuation on reload failure is near to preserving recovery workflow when state cannot reload; it does not define the old Recovery screen or its controls.",
+        "applies_to_screens": [
+          "HM-06"
+        ],
+        "source_successor_or_closure": "none; exact pair decision does not adopt, assign successor to, or close any of the nine old screen identities."
+      },
+      {
+        "pair_id": "HELIXOS-L2-033",
+        "requirement_identity": "HELIXOS-L2-033",
+        "decision_disposition": "採択",
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_record_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_record_tree_revision": "53a820ac91998c090eb191f8db1110385e4a0db3",
+        "decision_source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "decision_row_line": 56,
+        "decision_row_sha256": "sha256:54a81764fb7a3656fe51fc4028c57c714e034bcee10c7d4c3193ede2205ab5fd",
+        "registration_id": "MPR-RC-HELIXOS-L2-033-001",
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "mpr": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "sha256:10d0d378ec995e7e597cfeeee029afcb8fe2e75216f53666c210ff05ed7ec03a",
+          "line": 500,
+          "line_sha256": "sha256:f99fd0ec160de7cab34063d08055456083ab8fc62f5186c33c401da3baa9faad",
+          "candidate_semantic_digest": "sha256:580778c8ef3c0e4c4676d13de203c821f990893e9aa078d8d1d2f0b8901d2dbc",
+          "management_state": "registered_proposal",
+          "authority_effect": "none"
+        },
+        "l2": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "file_sha256": "sha256:89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "section_lines": [
+            929,
+            943
+          ],
+          "section_sha256": "sha256:580778c8ef3c0e4c4676d13de203c821f990893e9aa078d8d1d2f0b8901d2dbc"
+        },
+        "l11": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "file_sha256": "sha256:7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "section_lines": [
+            524,
+            537
+          ],
+          "section_sha256": "sha256:1d30394888b3bded49f8e517d7e0888a25130e123df945adf69c7db5588571b1"
+        },
+        "bounded_relevance": "Versioned detector registry is near to the provenance/version of diagnostic results; it does not define the legacy doctor rule set, D-03 counting, severity display, polling, or execution UI.",
+        "applies_to_screens": [
+          "HM-07"
+        ],
+        "source_successor_or_closure": "none; exact pair decision does not adopt, assign successor to, or close any of the nine old screen identities."
+      },
+      {
+        "pair_id": "HELIXLABO-L2-064",
+        "requirement_identity": "HELIXLABO-L2-064",
+        "decision_disposition": "採択",
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_record_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_record_tree_revision": "53a820ac91998c090eb191f8db1110385e4a0db3",
+        "decision_source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "decision_row_line": 79,
+        "decision_row_sha256": "sha256:2b967f2151eabd4f2cf80d4689fc9f33fcf84ad9a879bf1cbac8d4eb2a97051a",
+        "registration_id": "MPR-RC-HELIXLABO-L2-064-002",
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "mpr": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "sha256:10d0d378ec995e7e597cfeeee029afcb8fe2e75216f53666c210ff05ed7ec03a",
+          "line": 491,
+          "line_sha256": "sha256:4f09d1e055ee9de2f22f7ccf11a05c910aa5a03169eafab62c941cd9f20f4787",
+          "candidate_semantic_digest": "sha256:e28da5b2f47c3d1327cc091003d14a7ab572a3282040b2ed7ec6614dae7079b8",
+          "management_state": "registered_proposal",
+          "authority_effect": "none"
+        },
+        "l2": {
+          "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+          "file_sha256": "sha256:5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+          "section_lines": [
+            491,
+            501
+          ],
+          "section_sha256": "sha256:e28da5b2f47c3d1327cc091003d14a7ab572a3282040b2ed7ec6614dae7079b8"
+        },
+        "l11": {
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "file_sha256": "sha256:30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+          "section_lines": [
+            233,
+            239
+          ],
+          "section_sha256": "sha256:4f51be505b3c169f08aa61c2dd192b21b1b185db0f5243f556853bcb3e1a1fe3"
+        },
+        "bounded_relevance": "Worker comparison/evaluation contract is near to evaluating worker effects; it does not adopt the Learning Engine, recipe accumulation, legacy metrics, or screen.",
+        "applies_to_screens": [
+          "HM-08"
+        ],
+        "source_successor_or_closure": "none; exact pair decision does not adopt, assign successor to, or close any of the nine old screen identities."
+      },
+      {
+        "pair_id": "HELIXLABO-L2-068",
+        "requirement_identity": "HELIXLABO-L2-068",
+        "decision_disposition": "採択",
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_record_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_record_tree_revision": "53a820ac91998c090eb191f8db1110385e4a0db3",
+        "decision_source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "decision_row_line": 83,
+        "decision_row_sha256": "sha256:48c66f92ff0760af5b7fe216b4f903ebe0b71c96fef5effc8eb3ffca2abc117a",
+        "registration_id": "MPR-RC-HELIXLABO-L2-068-001",
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "mpr": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "sha256:10d0d378ec995e7e597cfeeee029afcb8fe2e75216f53666c210ff05ed7ec03a",
+          "line": 570,
+          "line_sha256": "sha256:6b78b7fd196c2d55d13cfd193341152f132d8c6894a978034a6887c8777c16ef",
+          "candidate_semantic_digest": "sha256:7e3df32b0131722c88ae148c4cbfa9a1be20f81826099c0ceb29a674e07030e2",
+          "management_state": "registered_proposal",
+          "authority_effect": "none"
+        },
+        "l2": {
+          "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+          "file_sha256": "sha256:5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+          "section_lines": [
+            541,
+            550
+          ],
+          "section_sha256": "sha256:7e3df32b0131722c88ae148c4cbfa9a1be20f81826099c0ceb29a674e07030e2"
+        },
+        "l11": {
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "file_sha256": "sha256:30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+          "section_lines": [
+            278,
+            286
+          ],
+          "section_sha256": "sha256:3dcf068de1351b2e8c1f2d772ec9273cb7908368a32b389ee40ce51929ad8d94"
+        },
+        "bounded_relevance": "Attempt-count contract is near to one input dimension for effectiveness analysis; it does not define task success/cost efficiency or recipe aggregation.",
+        "applies_to_screens": [
+          "HM-08"
+        ],
+        "source_successor_or_closure": "none; exact pair decision does not adopt, assign successor to, or close any of the nine old screen identities."
+      },
+      {
+        "pair_id": "HELIXLABO-L2-065",
+        "requirement_identity": "HELIXLABO-L2-065",
+        "decision_disposition": "条件付き採択：D1、067とは別指標で「最初のAttemptの結果」。",
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_record_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_record_tree_revision": "53a820ac91998c090eb191f8db1110385e4a0db3",
+        "decision_source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "decision_row_line": 80,
+        "decision_row_sha256": "sha256:418faea57e0785c870054c9af72ccf6eed92bc08d8abdbd7f9c1ec5eb8204194",
+        "registration_id": "MPR-RC-HELIXLABO-L2-065-001",
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "mpr": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "sha256:10d0d378ec995e7e597cfeeee029afcb8fe2e75216f53666c210ff05ed7ec03a",
+          "line": 537,
+          "line_sha256": "sha256:21b7829a5fa5239dc84d0685424d9c9f82dde2f2302fe6dbbefe21a27d7f039c",
+          "candidate_semantic_digest": "sha256:6f50887b94a8d3341c55700393896798cc1273324a868071447bf0e5a95cf019",
+          "management_state": "registered_proposal",
+          "authority_effect": "none"
+        },
+        "l2": {
+          "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+          "file_sha256": "sha256:5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+          "section_lines": [
+            503,
+            516
+          ],
+          "section_sha256": "sha256:6f50887b94a8d3341c55700393896798cc1273324a868071447bf0e5a95cf019"
+        },
+        "l11": {
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "file_sha256": "sha256:30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+          "section_lines": [
+            241,
+            259
+          ],
+          "section_sha256": "sha256:c70905fd036f0c6e6bfdce0368e462cd85acd467354bcad599d1112634d9b1b6"
+        },
+        "bounded_relevance": "Conditional D1 adoption for the first Attempt result, separate from 067; only that conditional metric is near, not a screen-wide quality score or learning system.",
+        "applies_to_screens": [
+          "HM-08"
+        ],
+        "source_successor_or_closure": "none; exact pair decision does not adopt, assign successor to, or close any of the nine old screen identities."
+      }
+    ],
+    "per_screen_near_pair_evaluations": {
+      "GD-01": {
+        "comparison_scope": "semantic-near comparison to exact later adopted/conditional pair revisions only; source identity remains separate",
+        "near_pair_ids": [
+          "HARNESS-L2-039"
+        ],
+        "bounded_evaluation": "039 provides only cross-cutting UI/Experience/Frontend contract proximity. No reviewed later pair specifies the old guide taxonomy, document navigation, link behavior, manual update, Phase B search, 404, or Learning Engine carry.",
+        "no_screen_source_adoption_successor_or_closure": true,
+        "status_effect": "The screen row remains open_partial_correspondence."
+      },
+      "HM-01": {
+        "comparison_scope": "semantic-near comparison to exact later adopted/conditional pair revisions only; source identity remains separate",
+        "near_pair_ids": [
+          "HARNESS-L2-039"
+        ],
+        "bounded_evaluation": "039 provides only cross-cutting UI/Experience/Frontend contract proximity. No reviewed later pair specifies the legacy 51-row implementation-status population, 3-level aggregation, filters, export, polling, or traffic-light state.",
+        "no_screen_source_adoption_successor_or_closure": true,
+        "status_effect": "The screen row remains open_partial_correspondence."
+      },
+      "HM-02": {
+        "comparison_scope": "semantic-near comparison to exact later adopted/conditional pair revisions only; source identity remains separate",
+        "near_pair_ids": [
+          "HARNESS-L2-039",
+          "HARNESS-L2-034",
+          "HARNESS-L2-043",
+          "HARNESS-L2-044"
+        ],
+        "bounded_evaluation": "034 is near to measurement/progress evidence; 043/044 are B-route-only conditional template/design-coverage comparisons. None specifies the old 8×5 axes, 40-cell matrix, score colors, filters, poll interval, or ticket generation.",
+        "no_screen_source_adoption_successor_or_closure": true,
+        "status_effect": "The screen row remains open_partial_correspondence."
+      },
+      "HM-03": {
+        "comparison_scope": "semantic-near comparison to exact later adopted/conditional pair revisions only; source identity remains separate",
+        "near_pair_ids": [
+          "HARNESS-L2-039",
+          "HARNESS-L2-040",
+          "HELIXOS-L2-038@318ec",
+          "HELIXOS-L2-038@5aa100"
+        ],
+        "bounded_evaluation": "040 and 038 are near to layer-ledger coverage/writer evidence underlying an architecture/wiring view. 038-002 applies only with HARNESS-L2-041-003; none specifies graph layout, connection states, four-quadrant routing display, hook/provider errors, or polling.",
+        "no_screen_source_adoption_successor_or_closure": true,
+        "status_effect": "The screen row remains open_partial_correspondence."
+      },
+      "HM-04": {
+        "comparison_scope": "semantic-near comparison to exact later adopted/conditional pair revisions only; source identity remains separate",
+        "near_pair_ids": [
+          "HARNESS-L2-039",
+          "HARNESS-L2-040",
+          "HELIXOS-L2-038@318ec",
+          "HELIXOS-L2-038@5aa100"
+        ],
+        "bounded_evaluation": "040 and 038 are near to ledger extraction/write evidence behind artifact progress. 038-002 applies only with HARNESS-L2-041-003; none specifies raw .helix tables, orphan/drift/integrity checks, colors, filters, recheck UI, or polling.",
+        "no_screen_source_adoption_successor_or_closure": true,
+        "status_effect": "The screen row remains open_partial_correspondence."
+      },
+      "HM-05": {
+        "comparison_scope": "semantic-near comparison to exact later adopted/conditional pair revisions only; source identity remains separate",
+        "near_pair_ids": [
+          "HARNESS-L2-039",
+          "HELIXOS-L2-043"
+        ],
+        "bounded_evaluation": "OS-043 is near to worker delegation request/tool-call/result evidence. It does not specify invocation-log fields, old guard allow/block/bypass history, budget warnings, approvals, skill injection display, or hook-log UI.",
+        "no_screen_source_adoption_successor_or_closure": true,
+        "status_effect": "The screen row remains open_partial_correspondence."
+      },
+      "HM-06": {
+        "comparison_scope": "semantic-near comparison to exact later adopted/conditional pair revisions only; source identity remains separate",
+        "near_pair_ids": [
+          "HARNESS-L2-039",
+          "HELIXOS-L2-040",
+          "HELIXOS-L2-041"
+        ],
+        "bounded_evaluation": "OS-040/041 are near to typed retry-exhaustion routing and safe continuation if reload fails. They do not specify restart points, recovery logs, rollback command copying, cutover state, alert timing, or UI controls.",
+        "no_screen_source_adoption_successor_or_closure": true,
+        "status_effect": "The screen row remains open_partial_correspondence."
+      },
+      "HM-07": {
+        "comparison_scope": "semantic-near comparison to exact later adopted/conditional pair revisions only; source identity remains separate",
+        "near_pair_ids": [
+          "HARNESS-L2-039",
+          "HELIXOS-L2-033"
+        ],
+        "bounded_evaluation": "OS-033 is near to versioned diagnostic detector provenance. It does not specify the old doctor rules, error/warn/info grouping, D-03 count, result colors, re-execution, copy, or polling.",
+        "no_screen_source_adoption_successor_or_closure": true,
+        "status_effect": "The screen row remains open_partial_correspondence."
+      },
+      "HM-08": {
+        "comparison_scope": "semantic-near comparison to exact later adopted/conditional pair revisions only; source identity remains separate",
+        "near_pair_ids": [
+          "HARNESS-L2-039",
+          "HELIXLABO-L2-064",
+          "HELIXLABO-L2-068",
+          "HELIXLABO-L2-065"
+        ],
+        "bounded_evaluation": "LABO-064/068 and conditional 065 are near to worker comparison, attempt counts, and D1 first-attempt result. They do not adopt Learning Engine, recipe accumulation, legacy skill/model score, task-success/cost-efficiency metric, source trace conflict, or screen.",
+        "no_screen_source_adoption_successor_or_closure": true,
+        "status_effect": "The screen row remains open_partial_correspondence."
+      }
+    }
   },
   "records": [
     {
@@ -460,7 +1255,16 @@
           "line_sha256": "3410f2690b471de5940c180ebc49d0343e52d54c730795d251c214820f9274e7",
           "text": "| FR-27 | FR-L1-27 (workflow core、A-50) | GD-01 (ADR) / PM-02 | Research (主) | all | ADR 採用判断 (PO/TL) / generates skip 判断 |"
         }
-      ]
+      ],
+      "later_decision_near_evaluation": {
+        "comparison_scope": "semantic-near comparison to exact later adopted/conditional pair revisions only; source identity remains separate",
+        "near_pair_ids": [
+          "HARNESS-L2-039"
+        ],
+        "bounded_evaluation": "039 provides only cross-cutting UI/Experience/Frontend contract proximity. No reviewed later pair specifies the old guide taxonomy, document navigation, link behavior, manual update, Phase B search, 404, or Learning Engine carry.",
+        "no_screen_source_adoption_successor_or_closure": true,
+        "status_effect": "The screen row remains open_partial_correspondence."
+      }
     },
     {
       "id": "HM-01",
@@ -635,7 +1439,16 @@
           "line_sha256": "c49412853db62d4f17348d7581c2212cb58a8e15618892b45aa381dbe02e449f",
           "text": "| FR-06 | FR-L1-06 | HM-04 / HM-01 | 全 mode | all (drive 別区画 = FR-L1-40 連動) | state 不整合検出時の手動修正 (運用者) |"
         }
-      ]
+      ],
+      "later_decision_near_evaluation": {
+        "comparison_scope": "semantic-near comparison to exact later adopted/conditional pair revisions only; source identity remains separate",
+        "near_pair_ids": [
+          "HARNESS-L2-039"
+        ],
+        "bounded_evaluation": "039 provides only cross-cutting UI/Experience/Frontend contract proximity. No reviewed later pair specifies the legacy 51-row implementation-status population, 3-level aggregation, filters, export, polling, or traffic-light state.",
+        "no_screen_source_adoption_successor_or_closure": true,
+        "status_effect": "The screen row remains open_partial_correspondence."
+      }
     },
     {
       "id": "HM-02",
@@ -804,7 +1617,19 @@
           "line_sha256": "1cebab885419e5beaa7bd0be8140ce6136a7d76e2425d9b648522d764aaa8cb0",
           "text": "| FR-12 | FR-L1-12 | HM-05 / HM-02 | 全 mode | all (drive 別 skill 選定) | skill 推奨 override (TL) |"
         }
-      ]
+      ],
+      "later_decision_near_evaluation": {
+        "comparison_scope": "semantic-near comparison to exact later adopted/conditional pair revisions only; source identity remains separate",
+        "near_pair_ids": [
+          "HARNESS-L2-039",
+          "HARNESS-L2-034",
+          "HARNESS-L2-043",
+          "HARNESS-L2-044"
+        ],
+        "bounded_evaluation": "034 is near to measurement/progress evidence; 043/044 are B-route-only conditional template/design-coverage comparisons. None specifies the old 8×5 axes, 40-cell matrix, score colors, filters, poll interval, or ticket generation.",
+        "no_screen_source_adoption_successor_or_closure": true,
+        "status_effect": "The screen row remains open_partial_correspondence."
+      }
     },
     {
       "id": "HM-03",
@@ -967,7 +1792,19 @@
           "line_sha256": "c7a5a81c68373ce7c1516bbc8f3ddc240b3f94ad8f5f0c4f4d2452ed0d0055e1",
           "text": "| FR-09 | HM-05 / HM-03 | AC-FR-09-01〜03 → HM-05 agent guard audit ログ表示 |"
         }
-      ]
+      ],
+      "later_decision_near_evaluation": {
+        "comparison_scope": "semantic-near comparison to exact later adopted/conditional pair revisions only; source identity remains separate",
+        "near_pair_ids": [
+          "HARNESS-L2-039",
+          "HARNESS-L2-040",
+          "HELIXOS-L2-038@318ec",
+          "HELIXOS-L2-038@5aa100"
+        ],
+        "bounded_evaluation": "040 and 038 are near to layer-ledger coverage/writer evidence underlying an architecture/wiring view. 038-002 applies only with HARNESS-L2-041-003; none specifies graph layout, connection states, four-quadrant routing display, hook/provider errors, or polling.",
+        "no_screen_source_adoption_successor_or_closure": true,
+        "status_effect": "The screen row remains open_partial_correspondence."
+      }
     },
     {
       "id": "HM-04",
@@ -1131,7 +1968,19 @@
           "line_sha256": "59799431ea84c70f029071a3976c1c96d04992cd11737950bc0928e06ddf14a5",
           "text": "| FR-07 | FR-L1-07 | HM-04 / HM-03 | 全 mode | all | hook 発火失敗時の手動再実行 (運用者) |"
         }
-      ]
+      ],
+      "later_decision_near_evaluation": {
+        "comparison_scope": "semantic-near comparison to exact later adopted/conditional pair revisions only; source identity remains separate",
+        "near_pair_ids": [
+          "HARNESS-L2-039",
+          "HARNESS-L2-040",
+          "HELIXOS-L2-038@318ec",
+          "HELIXOS-L2-038@5aa100"
+        ],
+        "bounded_evaluation": "040 and 038 are near to ledger extraction/write evidence behind artifact progress. 038-002 applies only with HARNESS-L2-041-003; none specifies raw .helix tables, orphan/drift/integrity checks, colors, filters, recheck UI, or polling.",
+        "no_screen_source_adoption_successor_or_closure": true,
+        "status_effect": "The screen row remains open_partial_correspondence."
+      }
     },
     {
       "id": "HM-05",
@@ -1313,7 +2162,17 @@
           "line_sha256": "c7a5a81c68373ce7c1516bbc8f3ddc240b3f94ad8f5f0c4f4d2452ed0d0055e1",
           "text": "| FR-09 | HM-05 / HM-03 | AC-FR-09-01〜03 → HM-05 agent guard audit ログ表示 |"
         }
-      ]
+      ],
+      "later_decision_near_evaluation": {
+        "comparison_scope": "semantic-near comparison to exact later adopted/conditional pair revisions only; source identity remains separate",
+        "near_pair_ids": [
+          "HARNESS-L2-039",
+          "HELIXOS-L2-043"
+        ],
+        "bounded_evaluation": "OS-043 is near to worker delegation request/tool-call/result evidence. It does not specify invocation-log fields, old guard allow/block/bypass history, budget warnings, approvals, skill injection display, or hook-log UI.",
+        "no_screen_source_adoption_successor_or_closure": true,
+        "status_effect": "The screen row remains open_partial_correspondence."
+      }
     },
     {
       "id": "HM-06",
@@ -1427,7 +2286,18 @@
           "line_sha256": "15dfbd22fedead58582f7915149419e16a211440c08533d44467b55c282368c3",
           "text": "| FR-10 | HM-06 / PM-03 | AC-FR-10-01 → HM-06 CLI ロールバックコマンドコピー UI / S5=b 整合 |"
         }
-      ]
+      ],
+      "later_decision_near_evaluation": {
+        "comparison_scope": "semantic-near comparison to exact later adopted/conditional pair revisions only; source identity remains separate",
+        "near_pair_ids": [
+          "HARNESS-L2-039",
+          "HELIXOS-L2-040",
+          "HELIXOS-L2-041"
+        ],
+        "bounded_evaluation": "OS-040/041 are near to typed retry-exhaustion routing and safe continuation if reload fails. They do not specify restart points, recovery logs, rollback command copying, cutover state, alert timing, or UI controls.",
+        "no_screen_source_adoption_successor_or_closure": true,
+        "status_effect": "The screen row remains open_partial_correspondence."
+      }
     },
     {
       "id": "HM-07",
@@ -1662,7 +2532,17 @@
           "line_sha256": "0c3bf5501e3dc33fef4920d7edd85ea476a00e221a5ec2db9d0c6dd01c6c741a",
           "text": "| FR-18 | HM-07 / PM-04 | AC-FR-18-01〜03 → HM-07 Doctor 結果ビュー、severity 別表示 |"
         }
-      ]
+      ],
+      "later_decision_near_evaluation": {
+        "comparison_scope": "semantic-near comparison to exact later adopted/conditional pair revisions only; source identity remains separate",
+        "near_pair_ids": [
+          "HARNESS-L2-039",
+          "HELIXOS-L2-033"
+        ],
+        "bounded_evaluation": "OS-033 is near to versioned diagnostic detector provenance. It does not specify the old doctor rules, error/warn/info grouping, D-03 count, result colors, re-execution, copy, or polling.",
+        "no_screen_source_adoption_successor_or_closure": true,
+        "status_effect": "The screen row remains open_partial_correspondence."
+      }
     },
     {
       "id": "HM-08",
@@ -1770,7 +2650,19 @@
           "line_sha256": "fa234f703b8f7726f6f1be75220905d094a4176d745cb0dd9f7222760190b364",
           "text": "| **D-14** (SPACE Satisfaction) | reviewer cognitive load Likert 1-5 (G2/G4/G7 後) | Phase A NFR | CC2 measurable proxy、HM-08 連動 |"
         }
-      ]
+      ],
+      "later_decision_near_evaluation": {
+        "comparison_scope": "semantic-near comparison to exact later adopted/conditional pair revisions only; source identity remains separate",
+        "near_pair_ids": [
+          "HARNESS-L2-039",
+          "HELIXLABO-L2-064",
+          "HELIXLABO-L2-068",
+          "HELIXLABO-L2-065"
+        ],
+        "bounded_evaluation": "LABO-064/068 and conditional 065 are near to worker comparison, attempt counts, and D1 first-attempt result. They do not adopt Learning Engine, recipe accumulation, legacy skill/model score, task-success/cost-efficiency metric, source trace conflict, or screen.",
+        "no_screen_source_adoption_successor_or_closure": true,
+        "status_effect": "The screen row remains open_partial_correspondence."
+      }
     }
   ],
   "method_and_limits": [
