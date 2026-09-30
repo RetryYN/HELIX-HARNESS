@@ -53,25 +53,222 @@
       }
     ]
   },
+  "full_audit_population_classification": "audited_non_residual",
+  "full_audit_population_note": "FR-L1-24〜27は全量監査のaudited_non_residual_recordsに属する。これはknown_residual_identitiesへの母集団分類を示し、各行のaudit_classificationや本個別監査のopen_partial_correspondence（残差あり）とは別の軸である。",
+  "later_adopted_pair_review": {
+    "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+    "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+    "decision_status": "recorded_and_present_in_pr_base",
+    "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
+    "pair_content_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+    "interpretation": "2026-09-29 record adopts the explicitly pinned L2/L11 sections despite candidate metadata in the pinned documents. This later pair comparison supplements, and does not replace, the 2026-09-28 fixed target comparison at f6dad2a33e24f000b87d7f09b8d40288257e74cc.",
+    "pairs": [
+      {
+        "id": "HARNESS-L2-042",
+        "decision": "adopted",
+        "registration_id": "MPR-RC-HARNESS-L2-042-001",
+        "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "l2_section_sha256": "7da6b3394cbc96bdf028a4738000554e1cf7a946595c4abf43504b24968f34eb",
+        "l11_identity": "HARNESS-L2-042",
+        "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "l11_section_sha256": "3ba00726800c61f1de165e48e6f62ea4359a368a50a9e9cd1517deb09df395f9"
+      },
+      {
+        "id": "HELIXOS-L2-036",
+        "decision": "adopted",
+        "registration_id": "MPR-RC-HELIXOS-L2-036-001",
+        "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+        "l2_section_sha256": "82c3fc7c25b023604463f4c44c284440b9666342a0cf8a3bd6b1996394cb33b9",
+        "l11_identity": "HELIXOS-L2-036",
+        "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+        "l11_section_sha256": "daec5fceac7a0e19a0cf83541126772393735b01c5b1592edeb6f050061bebc3"
+      }
+    ],
+    "separate_11_candidate_decision": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md#HDEC-REQUIREMENTS-11-2026-09-29",
+    "separate_11_decision_relation": "The 11-candidate decision fixes a separate identity set and does not list either pair above.",
+    "decision_comparison_scope": {
+      "decision_records": [
+        "HDEC-REQUIREMENTS-57-2026-09-29",
+        "HDEC-REQUIREMENTS-11-2026-09-29"
+      ],
+      "reviewed_identity_count": {
+        "57_candidate_decision": 57,
+        "11_candidate_decision": 11
+      },
+      "reviewed_identities": {
+        "57_candidate_decision": [
+          "HARNESS-L2-034",
+          "HARNESS-L2-035",
+          "HARNESS-L2-036",
+          "HARNESS-L2-037",
+          "HARNESS-L2-038",
+          "HARNESS-L2-039",
+          "HARNESS-L2-040",
+          "HARNESS-L2-041",
+          "HARNESS-L2-042",
+          "HARNESS-L2-043",
+          "HARNESS-L2-044",
+          "HARNESS-L2-045",
+          "HARNESS-L2-046",
+          "HARNESS-L2-047",
+          "HELIXOS-L2-030",
+          "HELIXOS-L2-031",
+          "HELIXOS-L2-032",
+          "HELIXOS-L2-033",
+          "HELIXOS-L2-034",
+          "HELIXOS-L2-035",
+          "HELIXOS-L2-036",
+          "HELIXOS-L2-037",
+          "HELIXOS-L2-038",
+          "HELIXOS-L2-039",
+          "HELIXOS-L2-040",
+          "HELIXOS-L2-041",
+          "HELIXOS-L2-042",
+          "HELIXOS-L2-043",
+          "HELIXOS-L2-044",
+          "HELIXOS-L2-045",
+          "HELIXOS-L2-046",
+          "HELIXOS-L2-047",
+          "HELIXOS-L2-048",
+          "HELIXOS-L2-049",
+          "HELIXOS-L2-050",
+          "HELIXOS-L2-051",
+          "HELIXOS-L2-052",
+          "HELIXLABO-L2-061",
+          "HELIXLABO-L2-062",
+          "HELIXLABO-L2-063",
+          "HELIXLABO-L2-064",
+          "HELIXLABO-L2-065",
+          "HELIXLABO-L2-066",
+          "HELIXLABO-L2-067",
+          "HELIXLABO-L2-068",
+          "HELIXLABO-L2-069",
+          "HELIXINTELLIGENCE-L2-072",
+          "HELIXINTELLIGENCE-L2-073",
+          "HELIXINTELLIGENCE-L2-074",
+          "HELIXSECURITY-L2-029",
+          "HELIXSECURITY-L2-030",
+          "HELIXSECURITY-L2-031",
+          "HELIXSECURITY-L2-032",
+          "HELIXSECURITY-L2-033",
+          "HELIXSECURITY-L2-034",
+          "HELIXCONNECT-L2-008",
+          "HELIXCONNECT-L2-009"
+        ],
+        "11_candidate_decision": [
+          "HARNESS-L2-041",
+          "HARNESS-L2-048",
+          "HELIXBRAIN-L2-031",
+          "HARNESS-L2-050",
+          "HARNESS-L2-051",
+          "HARNESS-L2-052",
+          "HARNESS-L2-053",
+          "HARNESS-L2-054",
+          "HELIXOS-L2-038",
+          "HELIXOS-L2-053",
+          "HARNESS-L2-049"
+        ]
+      },
+      "comparison_rule": "Each audit condition was screened against every identity in both decision records. The row-level notes record semantically adjacent adopted pairs and explain their bounded effect; identities with no semantic overlap do not alter that row. The 11-candidate set is distinct from the 57-candidate set."
+    },
+    "semantically_adjacent_adopted_pairs_reviewed": [
+      {
+        "identity": "HELIXOS-L2-031",
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "registration_id": "MPR-RC-HELIXOS-L2-031-001",
+        "l2_section_sha256": "a78fb330ca244dd067b1f13376d1c9245d0e96a43b716f0d53c3e4c2b7f36462",
+        "l11_section_sha256": "9e0caa1d717cf3f71a74ee1d829ed9625406fe9fd3f85a917ae6945e7918abcb",
+        "semantic_overlap": "CI performance and correctness-preserving recovery measurements; relevant to performance-refactor evidence but not a behavior-preservation oracle."
+      },
+      {
+        "identity": "HELIXOS-L2-033",
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "registration_id": "MPR-RC-HELIXOS-L2-033-001",
+        "l2_section_sha256": "580778c8ef3c0e4c4676d13de203c821f990893e9aa078d8d1d2f0b8901d2dbc",
+        "l11_section_sha256": "1d30394888b3bded49f8e517d7e0888a25130e123df945adf69c7db5588571b1",
+        "semantic_overlap": "Version/config/source-snapshot-bound engine/detector registry plus identical rerun reproducibility. Closest to DAC deterministic findings, but not DAC inventory/graph census."
+      },
+      {
+        "identity": "HELIXOS-L2-034",
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "registration_id": "MPR-RC-HELIXOS-L2-034-002",
+        "l2_section_sha256": "b4b8a68a15eabdc3dcf40d069fdf262389a43eec1f8ce8647e66ca22e7b9a600",
+        "l11_section_sha256": "6809e36b9704482425d1edfd0bc65aac0d5179dc461472695aecd021a78dfd01",
+        "semantic_overlap": "Finding-disposition evidence and appeal history; preserves finding provenance, not DAC scanner non-mutation/report-only behavior."
+      },
+      {
+        "identity": "HARNESS-L2-046",
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "registration_id": "MPR-RC-HARNESS-L2-046-001",
+        "l2_section_sha256": "47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e",
+        "l11_section_sha256": "a8e99f7df7166566c04b1113b045851d8417e17e8078c034f8f2a34ebfe4f37f",
+        "semantic_overlap": "Full V workflow and selected Production Scrum slice-delta/backfill conditions; relevant to planning/workflow but not a single physical PLAN schema."
+      },
+      {
+        "identity": "HELIXLABO-L2-061",
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "registration_id": "MPR-RC-HELIXLABO-L2-061-001",
+        "l2_section_sha256": "f78b726f14dddee5af773d915b7d97b6d8cdef5ca14cf51034b0d4cd599f6a7f",
+        "l11_section_sha256": "d7c170e0b047db4a74ef955f1295a5d8fc893cd0ca84aefc72d96b764ed1bb1b",
+        "semantic_overlap": "Task/oracle/context integrity for comparisons; not the Research workflow/memo/ADR contract."
+      },
+      {
+        "identity": "HELIXLABO-L2-062",
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "registration_id": "MPR-RC-HELIXLABO-L2-062-001",
+        "l2_section_sha256": "9d727cd363b5fe0dd34ad38a5c87ef81cc93a2d4a61c4d3e860adfbb648d2486",
+        "l11_section_sha256": "8046ea93936685eb49f8efcc00c3a9a6f7e6df92afe95035be1f910b57a71ade",
+        "semantic_overlap": "External research claim-to-source-span verification; partially specifies research evidence, not sequence or memo+ADR outputs/routing."
+      },
+      {
+        "identity": "HARNESS-L2-050",
+        "decision_record_id": "HDEC-REQUIREMENTS-11-2026-09-29",
+        "registration_id": "MPR-RC-HARNESS-L2-050-001",
+        "l2_section_sha256": "abeb498cf39f62ca8f34ded2c439502fb18215f1e376109147096ebaa69ce1b1",
+        "l11_section_sha256": "44191f5dc431e603cf91cc3639d4798fceb8a53f3c1b9076a8a1f038b6e2e763",
+        "semantic_overlap": "Ledger-refactor comparison/evidence/candidate output tied to HIL-FR-50 and adopted 042/016 boundaries; not the general FR-L1-25 workflow."
+      },
+      {
+        "identity": "HELIXOS-L2-038",
+        "decision_record_id": "HDEC-REQUIREMENTS-11-2026-09-29",
+        "registration_id": "MPR-RC-HELIXOS-L2-038-002",
+        "l2_section_sha256": "c3b0424bd39ac7c91166c87738fbefc1b20a11b904012d9ada768a113ccbe013",
+        "l11_section_sha256": "eabb68eaafc76f0080fbe9cb9c6904005c88b72e7cee9563f2515b4488de2e5d",
+        "semantic_overlap": "OS layer-ledger writer/snapshot/proposal append tied to HARNESS 040/041; not a universal PLAN/artifact store."
+      },
+      {
+        "identity": "HELIXOS-L2-053",
+        "decision_record_id": "HDEC-REQUIREMENTS-11-2026-09-29",
+        "registration_id": "MPR-RC-HELIXOS-L2-053-001",
+        "l2_section_sha256": "fe880fc8392d9efc282294fff5305973df3b43270ef76263defef4a7ce9240bc",
+        "l11_section_sha256": "64bc9d0b2cfbf4c5b70d9ba15f358f26aa6352072d6ac12740129f2ec8f48177",
+        "semantic_overlap": "Atomic write/rollback/CAS receipt for specific HARNESS-052-dependent operation; not global FR-L1-06 consistency."
+      }
+    ]
+  },
   "existing_audit": {
     "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json",
     "sha256": "ca08a81d97e39e94aa02151c7cc4e48f621f9d30baccc1cf9b715331fed38f45",
-    "result": "対象4 identityはいずれも未解決残差として分類されている。本監査は各source conditionと固定target本文・現行candidate文脈を個別に詳述し、状態を変更しない。"
+    "result": "対象4 identityはいずれも全量監査のaudited_non_residual_recordsに属する。各行のsemantic audit classificationは部分再導出で未確認条件を残す。本監査は固定target本文との条件照合を詳述し、母集団分類・要求状態を変更しない。"
   },
   "current_candidate_context": [
     {
       "id": "HARNESS-L2-042",
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
       "lines": "970-980",
-      "status": "未採択候補、version_target: 1.0",
-      "scope": "Design Refactor判定と機能追加episode分離。固定FR-L1-25 targetのauthorityを変えず、FR-L1-24の完了証拠にもならない。"
+      "status": "2026-09-29 PO decisionで採択済み（HDEC-REQUIREMENTS-57-2026-09-29、exact L2/L11 pairはlater_adopted_pair_review参照）",
+      "scope": "Design Refactor判定と機能追加episode分離。FR-L1-25の一部を具体化し、FR-L1-24ではRefactorへの機能追加混載禁止だけに関係する。旧PLAN/requires出力一式や一般workflowの完了証拠ではない。"
     },
     {
       "id": "HELIXOS-L2-036",
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
       "lines": "1033-1063",
-      "status": "新規・未採択の単体候補、version_target: 1.0",
-      "scope": "Retrofit upgrade preflightのticket/plan接続。oracle/operation authorityを作らず、全FR-L1-26 matrix/段階移行条件を満たした証拠ではない。"
+      "status": "2026-09-29 PO decisionで採択済み（HDEC-REQUIREMENTS-57-2026-09-29、exact L2/L11 pairはlater_adopted_pair_review参照）",
+      "scope": "Retrofit upgrade全件のpreflight duty/resultを同一ticket/scope/revisionへ結び、pass前のplan確定を拒む。技術oracle・操作authorityは作らず、FR-L1-26のmatrix/段階移行全体を満たした証拠ではない。"
     },
     {
       "id": "HXT-TYPE-18 and HXT-TYPE-17",
@@ -84,15 +281,16 @@
       "id": "HELIXOS-L2-023",
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
       "lines": "722-730",
-      "status": "現行L2の接続候補。fixed target context",
-      "scope": "管理→推進→Worker→検収handoff。source conditionに列挙された旧workflow outputsの完結仕様ではない。"
+      "status": "2026-09-28 PO decisionで採用された明示候補。",
+      "scope": "管理→推進→Worker→検収handoff。FR-L1-27のResearch workflow outputsの完結仕様ではなく、Research条件の残差を閉じない。"
     }
   ],
   "method_and_limits": [
+    "2026-09-29 PO decision HDEC-REQUIREMENTS-57で採択されたHARNESS-L2-042/対L11とHELIXOS-L2-036/対L11をsource revision 318ec4a04abb3c1cc17111b3d939f913facd5fd3の別pairとして再比較した。candidate metadataはdecision recordによる採択を覆さない。",
     "旧FR-L1 rows 55-58のsource line digestとsource file digestを再照合し、holding snapshot一致を確認。",
     "固定targetの各file SHA-256をf6dad2a33e24f000b87d7f09b8d40288257e74ccから再計算。",
     "旧business requirements、旧L4 function design、旧L3 acceptance test designはconsumer/旧specific conditionの読取に限定し、旧CLI・runtime・test・CIを実行していない。",
-    "source atomの意味保持、旧専用implementation artifactsの非継承、固定L2/L11で未確定の条件を分けた。current main候補は明示のcandidate statusの文脈としてのみ記載した。",
+    "source atomの意味保持、旧専用implementation artifactsの非継承、固定L2/L11で未確定の条件を分けた。PR base候補は明示のcandidate statusの文脈としてのみ記載した。",
     "静的文書照合。実装、運用、受入成立、全consumerの網羅を主張しない。"
   ],
   "conditions": [
@@ -127,10 +325,10 @@
           "relevance": "既存層へ差分を接続しない機能追加を完了にしない。"
         }
       ],
-      "retained_meaning": "追加要求の影響範囲、要求から設計・テストへのtrace、対応するpairの再検証、意味変更時のBackflow、およびForward該当層への再合流は固定HARNESS条件とOSのAdd-feature ticket定義に分散して保持される。",
+      "retained_meaning": "追加要求の影響範囲、要求から設計・テストへのtrace、対応するpairの再検証、意味変更時のBackflow、およびForward該当層への再合流は固定HARNESS条件とOSのAdd-feature ticket定義に分散して保持される。後発採択のHARNESS-L2-042/対L11は、Refactorと機能追加を別episodeにする条件を追加で確定する。",
       "not_inherited": "旧`add-design`/`add-impl` PLAN名、旧PLAN schema/frontmatter、`requires`の物理field、旧G7/parent/CLI機構はそのまま現行契約へ移していない。",
-      "residual": "追加要求の影響範囲差分追補をどの現行成果物へ記録し、設計/実装差分を一組として既存作業へ接続するか、そのexact record/output schemaと、旧`requires`相当relationの完全な結合は固定L2/L11だけからは確認できない。既存の一般trace・再検証規則だけで旧workflow全体を再配置済みとはいえない。",
-      "candidate_context": "current mainのHELIXOS-L2-010/HXT-TYPE-18はAdd-featureの目的・計画発行・Forward該当層を規定する。HELIX-L2-042はRefactorと機能追加をepisode分離する関連候補だが、未採択候補であり、この監査の固定対象条件へ加えない。",
+      "residual": "採択済みHARNESS-L2-042はRefactorに対する機能追加混載禁止を閉じるが、全Add-featureで影響範囲差分をどの成果物へ記録し、設計/実装差分一組を既存作業へ結ぶか、そのexact record/output schemaと旧`requires`相当relationは確定しない。",
+      "candidate_context": "PR baseのHELIXOS-L2-010/HXT-TYPE-18はAdd-featureの目的・計画発行・Forward該当層を規定する。HELIX-L2-042はRefactorと機能追加をepisode分離する関連候補だが、未採択候補であり、この監査の固定対象条件へ加えない。",
       "current_target_ids": [
         "HARNESS-L2-003",
         "HARNESS-L2-004",
@@ -151,7 +349,8 @@
       "existing_full_audit_note": "固定main上の既存照合: ID: FR-L1-24; 旧条件→現行IDと正確な参照: HARNESS-L2-003/004 `product-requirements.md:54–55,110–117`; L11 `product-acceptance.md:23–24`; 対応・残差（保持/変更/後続/未確認）: 追加要求に伴う影響範囲、trace、pair再検証、Backflowは保持。旧`add-design`/`add-impl` PLAN名・schemaは現行形式として固定されていない。",
       "mapping_authority_effect": "none",
       "decision_status": "pending_human_confirmation",
-      "requirement_change_authority": "explicit_human_decision_only"
+      "requirement_change_authority": "explicit_human_decision_only",
+      "other_adopted_pair_effect": "HARNESS-L2-037のRefactor候補への接続は週次drift/debt observationに基づく提案で、042のRefactor episode分離とは別であり、Add-feature成果物/requires関係は閉じない。HARNESS-L2-040/041は層ledgerの構造・coverageでありAdd-feature plan outputではない。"
     },
     {
       "id": "FR-L1-25",
@@ -184,10 +383,10 @@
           "relevance": "振る舞いを変える修正をRefactorで閉じない。"
         }
       ],
-      "retained_meaning": "既存の振る舞い・契約・要求を保つこと、変更で意味が変わる場合にRefactorから左の層へ戻すこと、性能比較時にbaseline/oracle等を先に固定することは固定L2/L11に保持される。",
+      "retained_meaning": "既存の振る舞い・契約・要求を保つこと、変更で意味が変わる場合にRefactorから左の層へ戻すこと、性能比較時にbaseline/oracle等を先に固定することは固定L2/L11に保持される。後発採択HARNESS-L2-042/対L11はDesign Refactor判定の根拠、機能追加episode分離、016 oracleでの保持確認を加える。",
       "not_inherited": "旧`axis-11`固有の検査名、kind/schema、旧Refactor PLAN/module出力、L7/G7の旧層表記と旧DB/test/CLI実装は新条件として継承しない。",
-      "residual": "固定L2/L11は意味保持の契約と性能比較条件を示すが、旧axis-11 regressionを現行の普遍的な機械oracleとする条件、その対象test集合/保護網の十分性、Green evidenceの具体結合は明記しない。既存testが緑だけで振る舞い不変の機械証明が成立するとはいえない。",
-      "candidate_context": "current mainのHARNESS-L2-042は旧v1.3由来のDesign Refactor判定・episode分離を未採択候補として記録し、HARNESS-L2-016の条件を再定義しない。candidate contentは固定revision外であり、FR-L1-25のauthorityを増やさない。",
+      "residual": "採択済みHARNESS-L2-042はsemantic similarity/consumer/oracle/dependency graphによるDesign Refactor判定を加える。HELIXOS-L2-031、HARNESS-L2-034、HELIXLABO-L2-061は性能・計測・比較evidenceを具体化する。これらは旧axis-11 regressionを全scopeへ適用する機械oracle、そのtest集合/保護網の十分性、Green evidenceの具体結合までは定めない。",
+      "candidate_context": "PR baseのHARNESS-L2-042は旧v1.3由来のDesign Refactor判定・episode分離を未採択候補として記録し、HARNESS-L2-016の条件を再定義しない。candidate contentは固定revision外であり、FR-L1-25のauthorityを増やさない。",
       "current_target_ids": [
         "HARNESS-L2-016",
         "HELIXOS-L2-010"
@@ -204,10 +403,11 @@
       "successor_requirement_ids": [],
       "audit_status": "open_partial_correspondence",
       "existing_full_audit_status": "部分再導出／旧固有条件・反例・数値・出力の一部が未確認",
-      "existing_full_audit_note": "固定main上の既存照合: ID: FR-L1-25; 旧条件→現行IDと正確な参照: HARNESS-L2-016 (`product-requirements.md` identity table `:330`, requirements `:111–113`); L11 `product-acceptance.md:211`; 対応・残差（保持/変更/後続/未確認）: 契約/振る舞いを保つRefactor、意味変更時のBackflow、性能比較時の既存oracle/baseline条件は対応。旧axis-11という特定検査名は採択とみなさない。",
+      "existing_full_audit_note": "固定main上の既存照合: ID: FR-L1-25; 旧条件→現行IDと正確な参照: HARNESS-L2-016 (`product-requirements.md` identity table `:330`, requirement `:395–401`); L11 `product-acceptance.md:211`; 対応・残差（保持/変更/後続/未確認）: 契約/振る舞いを保つRefactor、意味変更時のBackflow、性能比較時の既存oracle/baseline条件は対応。旧axis-11という特定検査名は採択とみなさない。",
       "mapping_authority_effect": "none",
       "decision_status": "pending_human_confirmation",
-      "requirement_change_authority": "explicit_human_decision_only"
+      "requirement_change_authority": "explicit_human_decision_only",
+      "other_adopted_pair_effect": "HELIXOS-L2-031/対L11 adds CI performance and correctness-preserving recovery measurements; HARNESS-L2-034 adds requirement-specific metrics/oracle; HELIXLABO-L2-061 adds comparison task/oracle/context integrity. These strengthen performance/comparison evidence but do not define the complete axis-11 behavior-preservation test population. HARNESS-L2-050 is ledger-refactor evidence for HIL-FR-50, not the universal FR-L1-25 workflow."
     },
     {
       "id": "FR-L1-26",
@@ -225,7 +425,7 @@
           "id": "HELIXOS-L2-021",
           "path": "docs/helix-os/L2-requirements/governance-requirements.md",
           "lines": "702-710",
-          "relevance": "HARNESS構成版を対象projectへ配布・更新・復旧する候補。FR-L1-26一般の移行workflowと同一要求ではない。"
+          "relevance": "2026-09-28 PO decisionで採用された明示候補。HARNESS構成版の対象project配布・更新・復旧に限定され、FR-L1-26一般の移行workflowとは別identity。"
         },
         {
           "id": "HARNESS-L2-003/004",
@@ -240,10 +440,10 @@
           "relevance": "対象層へ段階移行しないまま全体完了にする反例を拒む。"
         }
       ],
-      "retained_meaning": "影響評価後に段階移行し、結果を記録して該当Forward層へ合流する意味はHELIXOS-L2-010/HXT-TYPE-16とL11に保持される。HARNESSの変更影響/検証規則も関連する。",
+      "retained_meaning": "影響評価後に段階移行し、結果を記録して該当Forward層へ合流する意味はHELIXOS-L2-010/HXT-TYPE-16とL11に保持される。後発採択HELIXOS-L2-036/対L11はRetrofit upgradeのpreflight duty/resultをticket/scope/revisionへ束縛し、pass前の計画確定とstale resultでのapplyを拒む。HARNESSの変更影響/検証規則も関連する。",
       "not_inherited": "`retrofit-matrix`という旧ファイル名/schema、config更新の具体形式、L4-L7/L7の旧層写像、G4/旧preflight/CLI/runtime、旧テスト/DB整合checkは固定対象から新設しない。",
-      "residual": "固定対象は段階移行・該当層への合流と範囲/結果を示すが、影響評価matrixの必須field/全依存範囲、各段階のconfig状態遷移、rollback、回帰/性能/DB oracleと完了条件の結合を全移行へ明示していない。HELIXOS-L2-021は特定HARNESS構成配布の別identity。",
-      "candidate_context": "current mainのHELIXOS-L2-036はupgrade全般のpreflight結果をticket/planへ束縛する未採択単体候補 (version_target 1.0)。L2-036は技術oracle/適用権限を作らないと明記し、FR-L1-26のretrofit-matrix/全段階workflowを満たした証拠ではない。",
+      "residual": "採択済みHELIXOS-L2-036は全Retrofit upgradeのpreflight順序とresult freshnessを追加するが、旧影響評価matrixの必須field/全依存範囲、段階ごとのconfig状態遷移、rollback、回帰/性能/DB oracleと全移行完了条件の一体化は確定しない。HELIXOS-L2-021は特定HARNESS構成配布の別identity。",
+      "candidate_context": "PR base時点ではHELIXOS-L2-036にcandidate metadataがあったが、2026-09-29 PO decisionでそのexact L2/L11 pairは採択済み。upgrade preflightのticket/plan接続は追加されたが、技術oracle/適用権限を作らず、FR-L1-26のretrofit-matrix/全段階workflowは閉じない。",
       "current_target_ids": [
         "HELIXOS-L2-010",
         "HELIXOS-L2-021",
@@ -262,10 +462,11 @@
       "successor_requirement_ids": [],
       "audit_status": "open_partial_correspondence",
       "existing_full_audit_status": "部分再導出／旧固有条件・反例・数値・出力の一部が未確認",
-      "existing_full_audit_note": "固定main上の既存照合: ID: FR-L1-26; 旧条件→現行IDと正確な参照: HELIXOS-L2-010 HXT-TYPE-16 `governance-requirements.md:593`、HELIXOS-L2-021 HARNESS構成配布/更新/復旧 `:702–710`; HARNESS-L2-003/004; 対応・残差（保持/変更/後続/未確認）: OSはticket種別のRetrofit目的・issue-to-forwardを扱い、OS-021は選択済みHARNESS構成の対象project配布/更新/復旧を扱う。旧`retrofit-matrix`形式・state schema・全移行workflowは同一条件として未確認。",
+      "existing_full_audit_note": "PR base c6418a5602a056d3503e578a0a8c92df15a6daeb時点の既存照合: ID: FR-L1-26; 旧条件→現行IDと正確な参照: HELIXOS-L2-010 HXT-TYPE-16 `governance-requirements.md:593`、PO採用済み明示候補HELIXOS-L2-021 `:702–710`; HARNESS-L2-003/004。OS-021は選択済みHARNESS構成の対象project配布/更新/復旧であり、旧`retrofit-matrix`形式・state schema・全移行workflowとは別identityで、残差を閉じない。",
       "mapping_authority_effect": "none",
       "decision_status": "pending_human_confirmation",
-      "requirement_change_authority": "explicit_human_decision_only"
+      "requirement_change_authority": "explicit_human_decision_only",
+      "other_adopted_pair_effect": "HELIXOS-L2-021は選択済みHARNESS構成の配布/更新/復旧という限定された隣接領域で、一般retrofit-matrix、全依存の段階移行・config/rollback oracleではない。HELIXOS-L2-037のdrift/debt candidateも既存Refactor提案の入力であり移行workflowを定めない。"
     },
     {
       "id": "FR-L1-27",
@@ -280,10 +481,10 @@
           "relevance": "Researchは選定/比較用の参考source収集で、裁定せず依頼元へ合流するticketと規定する。"
         },
         {
-          "id": "HELIXOS-L2-002",
+          "id": "HELIXOS-L2-010",
           "path": "docs/helix-os/L2-requirements/governance-requirements.md",
           "lines": "110-115",
-          "relevance": "HARNESSの意味導出、INTELLIGENCEの計画/配置候補、OSのticket発行の責務境界を置く。"
+          "relevance": "HELIXOS-L2-010本文のHARNESSの意味導出、INTELLIGENCEの計画/配置候補、OSのticket発行という責務境界を示す。"
         },
         {
           "id": "HARNESS-L2-002/003",
@@ -300,10 +501,11 @@
       ],
       "retained_meaning": "調査課題に対する参考sourceと比較材料を集め、Research自体は判断を行わず依頼元へ返す境界が固定OS ticket条件に保持される。",
       "not_inherited": "旧`kind=research`と`generates`field、`research-memo`/ADR自動生成、旧ADR-NNN/path/schema、旧5段階順序、旧Review gateは現行へ転用しない。",
-      "residual": "固定L2/L11はResearchの非裁定境界を明示するが、技術調査→比較評価→ADR→memoの順、成果物2種のexact output、source/citation・選択肢/制約の比較記録、ADRが要る条件とL1/L4への接続を一体の受入条件として確定しない。要求採否/技術選択は別の既存判断主体へ残る。",
-      "candidate_context": "current mainではHXT-TYPE-17が裁定しないResearch ticketを定める。HELIXOS-L2-023 handoff candidateは対象/revision/scope/未完義務/evidenceを受け渡す接続候補であり、Research memo/ADRのformatや判断権限を補作しない。対象のResearch専用未採択候補はこの調査で確認できなかった。",
+      "residual": "固定OS ticket条件はResearch ticketの非裁定境界を保持し、採択済みHELIXLABO-L2-062は外部research claimとsource spanの照合、L2-061は比較task/oracleのintegrityを追加する。しかし技術調査→比較評価→ADRの順、research-memo+ADRのexact output、source/citation・選択肢/制約の比較記録、ADR条件とL1/L4への接続を一体に確定しない。",
+      "candidate_context": "PR baseではHXT-TYPE-17が裁定しないResearch ticketを定める。HELIXOS-L2-023 handoff candidateは対象/revision/scope/未完義務/evidenceを受け渡す接続候補であり、Research memo/ADRのformatや判断権限を補作しない。対象のResearch専用未採択候補はこの調査で確認できなかった。",
       "current_target_ids": [
         "HELIXOS-L2-010",
+        "HELIXOS-L2-023",
         "HARNESS-L2-002",
         "HARNESS-L2-003"
       ],
@@ -318,10 +520,11 @@
       "successor_requirement_ids": [],
       "audit_status": "open_partial_correspondence",
       "existing_full_audit_status": "部分再導出／旧固有条件・反例・数値・出力の一部が未確認",
-      "existing_full_audit_note": "固定main上の既存照合: ID: FR-L1-27; 旧条件→現行IDと正確な参照: HELIXOS-L2-010 HXT-TYPE-17 `governance-requirements.md:594`; HARNESS-L2-002/003 `product-requirements.md:53–54`; BRAIN-L2-002 `brain-requirements.md:42`, L11 `brain-acceptance.md:30`; 対応・残差（保持/変更/後続/未確認）: Research ticketの目的は参考ソースを依頼元へ返し選定裁定をしない。BRAINは再利用知識の構造化を担うが、旧Research memo/ADRのkind/generates/requires一式を要求として保持するとの確認はない。旧順序やschemaは未確認。",
+      "existing_full_audit_note": "PR base c6418a5602a056d3503e578a0a8c92df15a6daeb時点の既存照合: ID: FR-L1-27; 旧条件→現行IDと正確な参照: HELIXOS-L2-010のticket責務境界 `governance-requirements.md:110–115`およびHXT-TYPE-17 `:594`; HARNESS-L2-002/003 `product-requirements.md:53–54`; PO採用済み明示候補HELIXOS-L2-023 `governance-requirements.md:722–730`。OS-023はhandoffを扱うがResearchの旧memo/ADRのkind/generates/requires、順序、出力形式を定めず、FR-L1-27残差を閉じない。",
       "mapping_authority_effect": "none",
       "decision_status": "pending_human_confirmation",
-      "requirement_change_authority": "explicit_human_decision_only"
+      "requirement_change_authority": "explicit_human_decision_only",
+      "other_adopted_pair_effect": "HELIXLABO-L2-062/対L11 adds source-span verification for external research claims; HELIXLABO-L2-061 adds comparison task/oracle integrity. These strengthen research evidence but do not define research→comparison→ADR sequence, exact research-memo+ADR outputs, or ADR routing."
     }
   ],
   "non_claims": [
@@ -359,5 +562,5 @@
       "use": "旧正常/異常・boundary test consumer条件を読むだけで確認。旧test/CIは実行せず。"
     }
   ],
-  "current_candidate_context_revision": "0f5050e2b25cd622640c99c5de170cca087f7d8a"
+  "current_candidate_context_revision": "c6418a5602a056d3503e578a0a8c92df15a6daeb"
 }

@@ -10,7 +10,7 @@
 
 - 旧source: `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md` の63、66、67行。保全snapshotは `docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/document-authority-census-requests.md`。
 - 旧sourceとholding snapshotのfile digestは双方 `81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66`。
-- asset dispositionのrevision 3は `source_snapshot_preservation`、read-only・non-executable sourceとして記録し、`carry_forward_state=preserved_pending_rehome`、`decision_status=pending_human_confirmation`、正式target未割当を保持している。source snapshotの保存は要求配置・採択ではない。
+- asset dispositionのrevision 3（[`legacy-asset-disposition.jsonl`](../../legacy-asset-disposition.jsonl)）は `source_snapshot_preservation`、read-only・non-executable sourceとして記録する。対応するappend-only訂正判断は `legacy-asset-decisions.jsonl#REQ-SNAPSHOT-CORRECTION-D201753B1A0CC6EA3980`であり、`carry_forward_state=preserved_pending_rehome`、`decision_status=pending_human_confirmation`、正式target未割当を保持している。source snapshotの保存は要求配置・採択ではない。
 - 個票 `legacy-confirmed175-full-audit-2026-09-28.json` の3行も、旧condition textとline digestを一致させ、`successor_requirement_ids=[]`、`mapping_authority_effect=none`、`audit_classification=部分再導出／旧固有条件・反例・数値・出力の一部が未確認`としている。
 
 ## 固定した現行照合対象
@@ -25,6 +25,14 @@
 | OS L11 `docs/helix-os/L11-acceptance/governance-acceptance.md` | `e75e5d5163149bc3c2ed48f973067ba991accc33` | `925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680` | HELIXOS-L2-015、324–329行 |
 
 この4文書は2026-09-28の各機構PO decisionが対象revisionとして固定したもの。L11は未実行の受入条件であり、記載だけから実行成功を推定しない。
+
+## 後発採択pairとの比較
+
+[2026-09-29 PO判断記録](../../decisions/po-decision-2026-09-29-57candidates.md)（`HDEC-REQUIREMENTS-57-2026-09-29`）はHARNESS-L2-042とHELIXOS-L2-036を各対L11とともに採択した。固定pair revisionは`318ec4a04abb3c1cc17111b3d939f913facd5fd3`で、L2/L11 file SHA・section digestはJSONの`later_adopted_pair_review`に示す。11件decisionは別identity集合で、この2 pairを含まない。
+
+HARNESS-L2-042はDesign Refactor判定とRefactor/feature-add episode分離、HELIXOS-L2-036はRetrofit upgradeのticket/planに結ぶpreflightを扱う。いずれもDAC censusの決定性、offline repo-local実行、scanner非変更またはreport-only出力を要求しないため、3条件の残差と`partial_rederivation_residual_open`は変わらない。
+
+比較対象は57候補判断の全57 identityと、別decisionの11候補判断の全11 identity（採択10件と現revision不採択HARNESS-L2-049）。意味近接候補としてHELIXOS-L2-033（選択engine/detectorの同一snapshot rerun再現性）、HELIXOS-L2-034（finding disposition evidence）、HARNESS-L2-034（計測契約）、HARNESS-L2-040/041（layer ledger/catalog/coverage）、HELIXOS-L2-038（ledger writer/snapshot）、HELIXOS-L2-053（FR52 operation atomicity）もsection単位で照合した。HELIXOS-L2-033は選択された登録detectorを同じinput snapshot/version/configでrerunしたfinding再現性を要求し、NFR-001の再現性を一部具体化する。ただしDAC inventory/graph/finding censusおよび同一HEAD+registry joinはその対象外で、scanner専用残差を残す。全近接pairともnetwork/provider不在のrepo-local censusやscannerの非変更/report-only出力を規定しない。全件と条件ごとの比較結果はJSONに記録した。
 
 ## 条件別の照合
 
@@ -54,7 +62,7 @@ HARNESS-L2-003は意味変更を右側で黙って書き換えずBackflowへ戻�
 
 ## 重複監査と検証範囲
 
-- GitHub上の現行main `0f5050e2b25cd622640c99c5de170cca087f7d8a`とlocal integration `d84a7388fc56fbdb4df97d2eb0f5f0ddea611053`では、3 identityは既存の全数監査に現れる。両revisionのREG-06母集団・join監査にもidentity/ledger参照があるが、いずれも本条件を個別に照合したmeaning-delta recordではない。作業開始時のローカル`main` `5f18c8b9fd8364a81fe7c8614cc48f3d34152e6f`も確認した。
+- PR base `c6418a5602a056d3503e578a0a8c92df15a6daeb`では、3 identityは既存の全数監査に現れる。同revisionのREG-06母集団・join監査にもidentity/ledger参照があるが、いずれも本条件を個別に照合したmeaning-delta recordではない。
 - PR #2387–#2392の変更ファイル一覧を確認した。各PRはFRS受入、World Governance、FRS要求の分類、Concept metadataの別監査であり、DAC-NFR三条件の個別監査との重複はない。
 - 静的確認で旧archive sourceとholding snapshotのfile digest、3 source line digest、固定revisionの4 target blob/SHA、PR変更pathと監査範囲の対応を確認した。JSON構文とMarkdown内部参照も検査した。
 - 旧CLI・runtime・test・CIは実行していない。GitHubへのpush、PR、mergeは行わない。

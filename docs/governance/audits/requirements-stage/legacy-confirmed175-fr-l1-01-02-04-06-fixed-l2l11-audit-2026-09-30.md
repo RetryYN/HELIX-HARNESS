@@ -8,11 +8,17 @@
 
 | 旧identity / 原文 | 現行固定条件で保持する意味 | 旧固有条件・非継承 | 未解決残差 |
 |---|---|---|---|
-| `FR-L1-01` (`functional-requirements.md:32`) — 現行V字モデル（L1〜L12）全工程のPLAN起票・進捗管理機能。L0は層外authority anchorとする | L0を層外authority anchorとして扱い、現行V字pairに沿って工程を管理する意味はHARNESS工程規則とOS ticket/handoff上の対象・scope・依存・受入義務・戻し先に部分的に現れる。 | 旧L0-L14の番号/pathや、単一PLAN file内の工程表＋実装計画という物理形、旧plan_registry/schema/CLIは現行契約へ移していない。 | すべての現行工程に対するPLAN相当の起票・進捗管理という利用者条件と、工程・機能名・記載項目からどの正本/recordを作るかのexact出力結合は、固定L2/L11から条件全体としては確認できない。 |
+| `FR-L1-01` (`functional-requirements.md:32`) — 現行V字モデル（L1〜L12）全工程のPLAN起票・進捗管理機能。L0は層外authority anchorとする | L0を層外authority anchorとして扱い、現行V字pairに沿って工程を管理する意味はHARNESS工程規則、採択済みHARNESS-L2-046のFull V/選択Scrum workflow、OS ticket/handoff上の対象・scope・依存・受入義務・戻し先に部分的に現れる。 | 旧L0-L14の番号/pathや、単一PLAN file内の工程表＋実装計画という物理形、旧plan_registry/schema/CLIは現行契約へ移していない。 | HARNESS-L2-046はFull Vと選択Production Scrum scopeのworkflow/backfillを追加する。旧PLAN単一ファイルの物理形、全開発styleのmode→工程/artifact対応、全工程進捗を一体管理するexact出力結合は固定L2/L11から確認できない。 |
 | `FR-L1-02` (`functional-requirements.md:33`) — TDD 強制フロー (テストファースト順序厳守・実装先行禁止) | L6↔L7でRed→Green→Refactorと設計pairのtraceを保ち、検証のoracle/evidence義務を求める。 | 旧`helix sprint start/check`・gateや旧test/run/commit IDの機構は現行sourceへ転用しない。 | テストファーストの順序をすべての実装方式・対象で強制し、Red test前の実装を禁止する普遍条件は固定L2/L11に明示されていない。実装方式ごとの適用範囲、許容例外、反例/受入oracleも未確定であり、詳細確認を要する。 |
 | `FR-L1-04` (`functional-requirements.md:35`) — PLAN kind による逸脱記録・ドキュメント生成計画 (kind + generates + requires) | 作業の種類/flowと依存を型付けし、対象と依存・受入義務・戻し先をticket/handoffに保持する方向は現行OS規則に部分的に再導出されている。 | 旧PLAN `kind` enum、`generates`宣言と `requires/blocks` のfrontmatter/data shape、旧PLAN lint/生成コマンドや固定PLAN registry schemaは現行規則として継承していない。 | 旧conditionのmode kind→成果物path→依存PLAN、kind付きPLAN record、`generates`による文書生成計画の具体field間対応は固定L2/L11にない。typed ticket graphを旧3 fieldと同一視できず、doc生成の記録/動作もこのtargetだけでは閉じない。 |
 | `FR-L1-06` (`functional-requirements.md:37`) — V モデル本線 state 一元管理 (plan_registry / code_catalog / contract_registry / skill_catalog 等 6 種) | 成果物・要求・検証の関係、変更影響/再検証、provenance・event・訂正とhandoff evidenceを追跡する意味は複数の現行L2/L11契約に分散して保持される。 | 旧6 registry群のidentity/schema、単一`harness.db`によるmechanical SSoT、旧direct DB browsing、およびdrive別partitionはこの要求のsuccessor条件として継承していない。旧FR-L1-40のdrive条件をFR-L1-06の継承として足さない。 | PLAN/コード/test/coverageの全対象を一箇所で一致管理し、drift検証結果を利用者へ返すexact state set/owner/relation/oracleはこの固定L2/L11から条件全体としては確認できない。保存/traceの一般契約だけで、一元storeや全成果物の一致判定が成立したとはいえない。 |
 
+
+## 2026-09-29後発採択pairとの比較
+
+[57候補判断](../../decisions/po-decision-2026-09-29-57candidates.md)と別identity集合の[11候補判断](../../decisions/po-decision-2026-09-29-11candidates.md)に含まれる57＋11 identityを全件比較した。042/036以外ではHARNESS-L2-046がFull Vと選択されたProduction Scrum slice-delta/backfill workflowを、HARNESS-L2-040/041がcanonical layer ledger/catalog/coverageを、HELIXOS-L2-038がOS writer/snapshot/proposal appendを採択。HELIXOS-L2-033は選択engine/detector registryと同一snapshot rerun reproducibilityを、HELIXOS-L2-053はHARNESS-L2-052に依存するFR52操作のatomicityを定める。HARNESS-L2-034は要求別measurement/test evidence契約を定める。
+
+これらの意味近接pairはFR-L1-01のworkflow（046）、FR-L1-02の選択検証/evidence（033/034/036）、FR-L1-04/06のlayer ledger/registry記録（033/040/041/038/053）に限定的に関係するが、全工程PLAN、汎用`kind`/`generates`/`requires`、全成果物の統合store/drift oracle、全対象のRed-before-Greenを定めない。各条件の限定効果をJSONへ記録し、残差は維持する。
 
 ## 照合根拠
 
@@ -25,8 +31,8 @@
 
 ## 重複照合
 
-`origin/main` (`0f5050e2…`) とlocal integration (`0c4ed3a86e51063bb19b386e3c608eec3126d40e`) で該当4 identityを含むaudit pathを列挙したところ、既存のconfirmed175全量監査（4行OPEN）とREG-06 population/join auditのみだった。別の個別L2/L11条件照合は見つからなかった。PR #2387–2392の変更pathは別のFRS/World Governance/Concept-v4 source auditであり、指定identityの条件照合監査と重ならない。詳細はJSONの`duplicate_audit_scan`に記録した。
+`PR base` (`c6418a5602a056d3503e578a0a8c92df15a6daeb`) で該当4 identityを含むaudit pathを列挙したところ、既存のconfirmed175全量監査（4行OPEN）とREG-06 population/join auditのみだった。別の個別L2/L11条件照合は見つからなかった。PR #2387–2392の変更pathは別のFRS/World Governance/Concept-v4 source auditであり、指定identityの条件照合監査と重ならない。詳細はJSONの`duplicate_audit_scan`に記録した。
 
 ## 結論と限界
 
-4件はすべて部分的な意味対応と未解決残差を持つ。既存full auditのOPEN状態を詳細化した条件照合であり、PO判断や新たな候補作成ではない。原要求は`preserved_pending_rehome`のまま、successor IDは付与しない。採択・完全coverage・Step5完了・実装成功は主張しない。
+4件はすべて部分的な意味対応と未解決残差を持つ。2026-09-29に採択済みの関連pairを固定revisionと対L11で追加比較したが、formal successorはなく、既存full auditのOPEN状態も維持する。原要求は`preserved_pending_rehome`のまま、successor IDは付与しない。採択・完全coverage・Step5完了・実装成功は主張しない。

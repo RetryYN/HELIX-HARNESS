@@ -66,13 +66,13 @@
     ]
   },
   "duplicate_audit_scan": {
-    "origin_main": "0f5050e2b25cd622640c99c5de170cca087f7d8a",
-    "origin_main_matching_audit_paths": [
+    "pr_base": "c6418a5602a056d3503e578a0a8c92df15a6daeb",
+    "pr_base_matching_audit_paths": [
       "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json",
       "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.md",
       "docs/governance/audits/requirements-stage/legacy-source-origin-reg06-population-audit-2026-09-28.json"
     ],
-    "origin_main_result": "既存confirmed175全量監査は指定4identityをOPENで記録。REG-06は母集団/関係join監査で個別L2/L11条件照合ではない。別個の条件照合監査重複なし。",
+    "pr_base_result": "既存confirmed175全量監査は指定4identityをOPENで記録。REG-06は母集団/関係join監査で個別L2/L11条件照合ではない。別個の条件照合監査重複なし。",
     "pull_requests": {
       "range": "2387-2392",
       "result": "read-only `gh pr view` で6件の変更pathを確認。いずれもFRS / World Governance candidate / Concept v4 metadataの別source auditであり、指定4identityの条件照合監査pathはなし。",
@@ -127,8 +127,8 @@
         }
       ]
     },
-    "local_integration": {
-      "revision": "0c4ed3a86e51063bb19b386e3c608eec3126d40e",
+    "pr_base_scan": {
+      "revision": "c6418a5602a056d3503e578a0a8c92df15a6daeb",
       "matching_audit_paths": [
         "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json",
         "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.md",
@@ -143,6 +143,197 @@
     "保持される意味、旧実装・物理形を継承しない点、固定L2/L11で明示確認できない残差を条件単位で分離した。旧仕様の完全な再現・新世代実装能力は判定していない。",
     "classificationは本監査の照合状態であり、旧要求の採否・successor・coverage完了・authority変更を生成しない。"
   ],
+  "later_adopted_pair_review": {
+    "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+    "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+    "decision_status": "recorded_and_present_in_pr_base",
+    "pair_content_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+    "pairs": [
+      {
+        "id": "HARNESS-L2-042",
+        "decision": "adopted",
+        "registration_id": "MPR-RC-HARNESS-L2-042-001",
+        "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l2_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "l2_section_sha256": "7da6b3394cbc96bdf028a4738000554e1cf7a946595c4abf43504b24968f34eb",
+        "l11_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "l11_section_sha256": "3ba00726800c61f1de165e48e6f62ea4359a368a50a9e9cd1517deb09df395f9"
+      },
+      {
+        "id": "HELIXOS-L2-036",
+        "decision": "adopted",
+        "registration_id": "MPR-RC-HELIXOS-L2-036-001",
+        "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+        "l2_section_sha256": "82c3fc7c25b023604463f4c44c284440b9666342a0cf8a3bd6b1996394cb33b9",
+        "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+        "l11_section_sha256": "daec5fceac7a0e19a0cf83541126772393735b01c5b1592edeb6f050061bebc3"
+      }
+    ],
+    "separate_11_candidate_decision": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md#HDEC-REQUIREMENTS-11-2026-09-29",
+    "separate_11_decision_relation": "The 11-candidate decision fixes a separate identity set and does not list either pair above.",
+    "decision_comparison_scope": {
+      "decision_records": [
+        "HDEC-REQUIREMENTS-57-2026-09-29",
+        "HDEC-REQUIREMENTS-11-2026-09-29"
+      ],
+      "reviewed_identity_count": {
+        "57_candidate_decision": 57,
+        "11_candidate_decision": 11
+      },
+      "reviewed_identities": {
+        "57_candidate_decision": [
+          "HARNESS-L2-034",
+          "HARNESS-L2-035",
+          "HARNESS-L2-036",
+          "HARNESS-L2-037",
+          "HARNESS-L2-038",
+          "HARNESS-L2-039",
+          "HARNESS-L2-040",
+          "HARNESS-L2-041",
+          "HARNESS-L2-042",
+          "HARNESS-L2-043",
+          "HARNESS-L2-044",
+          "HARNESS-L2-045",
+          "HARNESS-L2-046",
+          "HARNESS-L2-047",
+          "HELIXOS-L2-030",
+          "HELIXOS-L2-031",
+          "HELIXOS-L2-032",
+          "HELIXOS-L2-033",
+          "HELIXOS-L2-034",
+          "HELIXOS-L2-035",
+          "HELIXOS-L2-036",
+          "HELIXOS-L2-037",
+          "HELIXOS-L2-038",
+          "HELIXOS-L2-039",
+          "HELIXOS-L2-040",
+          "HELIXOS-L2-041",
+          "HELIXOS-L2-042",
+          "HELIXOS-L2-043",
+          "HELIXOS-L2-044",
+          "HELIXOS-L2-045",
+          "HELIXOS-L2-046",
+          "HELIXOS-L2-047",
+          "HELIXOS-L2-048",
+          "HELIXOS-L2-049",
+          "HELIXOS-L2-050",
+          "HELIXOS-L2-051",
+          "HELIXOS-L2-052",
+          "HELIXLABO-L2-061",
+          "HELIXLABO-L2-062",
+          "HELIXLABO-L2-063",
+          "HELIXLABO-L2-064",
+          "HELIXLABO-L2-065",
+          "HELIXLABO-L2-066",
+          "HELIXLABO-L2-067",
+          "HELIXLABO-L2-068",
+          "HELIXLABO-L2-069",
+          "HELIXINTELLIGENCE-L2-072",
+          "HELIXINTELLIGENCE-L2-073",
+          "HELIXINTELLIGENCE-L2-074",
+          "HELIXSECURITY-L2-029",
+          "HELIXSECURITY-L2-030",
+          "HELIXSECURITY-L2-031",
+          "HELIXSECURITY-L2-032",
+          "HELIXSECURITY-L2-033",
+          "HELIXSECURITY-L2-034",
+          "HELIXCONNECT-L2-008",
+          "HELIXCONNECT-L2-009"
+        ],
+        "11_candidate_decision": [
+          "HARNESS-L2-041",
+          "HARNESS-L2-048",
+          "HELIXBRAIN-L2-031",
+          "HARNESS-L2-050",
+          "HARNESS-L2-051",
+          "HARNESS-L2-052",
+          "HARNESS-L2-053",
+          "HARNESS-L2-054",
+          "HELIXOS-L2-038",
+          "HELIXOS-L2-053",
+          "HARNESS-L2-049"
+        ]
+      },
+      "comparison_rule": "Each audit condition was screened against every identity in both decision records. The row-level notes record semantically adjacent adopted pairs and explain their bounded effect; identities with no semantic overlap do not alter that row. The 11-candidate set is distinct from the 57-candidate set."
+    },
+    "semantically_adjacent_adopted_pairs_reviewed": [
+      {
+        "identity": "HELIXOS-L2-031",
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "registration_id": "MPR-RC-HELIXOS-L2-031-001",
+        "l2_section_sha256": "a78fb330ca244dd067b1f13376d1c9245d0e96a43b716f0d53c3e4c2b7f36462",
+        "l11_section_sha256": "9e0caa1d717cf3f71a74ee1d829ed9625406fe9fd3f85a917ae6945e7918abcb",
+        "semantic_overlap": "CI performance and correctness-preserving recovery measurements; relevant to performance-refactor evidence but not a behavior-preservation oracle."
+      },
+      {
+        "identity": "HELIXOS-L2-033",
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "registration_id": "MPR-RC-HELIXOS-L2-033-001",
+        "l2_section_sha256": "580778c8ef3c0e4c4676d13de203c821f990893e9aa078d8d1d2f0b8901d2dbc",
+        "l11_section_sha256": "1d30394888b3bded49f8e517d7e0888a25130e123df945adf69c7db5588571b1",
+        "semantic_overlap": "Version/config/source-snapshot-bound engine/detector registry plus identical rerun reproducibility. Closest to DAC deterministic findings, but not DAC inventory/graph census."
+      },
+      {
+        "identity": "HELIXOS-L2-034",
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "registration_id": "MPR-RC-HELIXOS-L2-034-002",
+        "l2_section_sha256": "b4b8a68a15eabdc3dcf40d069fdf262389a43eec1f8ce8647e66ca22e7b9a600",
+        "l11_section_sha256": "6809e36b9704482425d1edfd0bc65aac0d5179dc461472695aecd021a78dfd01",
+        "semantic_overlap": "Finding-disposition evidence and appeal history; preserves finding provenance, not DAC scanner non-mutation/report-only behavior."
+      },
+      {
+        "identity": "HARNESS-L2-046",
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "registration_id": "MPR-RC-HARNESS-L2-046-001",
+        "l2_section_sha256": "47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e",
+        "l11_section_sha256": "a8e99f7df7166566c04b1113b045851d8417e17e8078c034f8f2a34ebfe4f37f",
+        "semantic_overlap": "Full V workflow and selected Production Scrum slice-delta/backfill conditions; relevant to planning/workflow but not a single physical PLAN schema."
+      },
+      {
+        "identity": "HELIXLABO-L2-061",
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "registration_id": "MPR-RC-HELIXLABO-L2-061-001",
+        "l2_section_sha256": "f78b726f14dddee5af773d915b7d97b6d8cdef5ca14cf51034b0d4cd599f6a7f",
+        "l11_section_sha256": "d7c170e0b047db4a74ef955f1295a5d8fc893cd0ca84aefc72d96b764ed1bb1b",
+        "semantic_overlap": "Task/oracle/context integrity for comparisons; not the Research workflow/memo/ADR contract."
+      },
+      {
+        "identity": "HELIXLABO-L2-062",
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "registration_id": "MPR-RC-HELIXLABO-L2-062-001",
+        "l2_section_sha256": "9d727cd363b5fe0dd34ad38a5c87ef81cc93a2d4a61c4d3e860adfbb648d2486",
+        "l11_section_sha256": "8046ea93936685eb49f8efcc00c3a9a6f7e6df92afe95035be1f910b57a71ade",
+        "semantic_overlap": "External research claim-to-source-span verification; partially specifies research evidence, not sequence or memo+ADR outputs/routing."
+      },
+      {
+        "identity": "HARNESS-L2-050",
+        "decision_record_id": "HDEC-REQUIREMENTS-11-2026-09-29",
+        "registration_id": "MPR-RC-HARNESS-L2-050-001",
+        "l2_section_sha256": "abeb498cf39f62ca8f34ded2c439502fb18215f1e376109147096ebaa69ce1b1",
+        "l11_section_sha256": "44191f5dc431e603cf91cc3639d4798fceb8a53f3c1b9076a8a1f038b6e2e763",
+        "semantic_overlap": "Ledger-refactor comparison/evidence/candidate output tied to HIL-FR-50 and adopted 042/016 boundaries; not the general FR-L1-25 workflow."
+      },
+      {
+        "identity": "HELIXOS-L2-038",
+        "decision_record_id": "HDEC-REQUIREMENTS-11-2026-09-29",
+        "registration_id": "MPR-RC-HELIXOS-L2-038-002",
+        "l2_section_sha256": "c3b0424bd39ac7c91166c87738fbefc1b20a11b904012d9ada768a113ccbe013",
+        "l11_section_sha256": "eabb68eaafc76f0080fbe9cb9c6904005c88b72e7cee9563f2515b4488de2e5d",
+        "semantic_overlap": "OS layer-ledger writer/snapshot/proposal append tied to HARNESS 040/041; not a universal PLAN/artifact store."
+      },
+      {
+        "identity": "HELIXOS-L2-053",
+        "decision_record_id": "HDEC-REQUIREMENTS-11-2026-09-29",
+        "registration_id": "MPR-RC-HELIXOS-L2-053-001",
+        "l2_section_sha256": "fe880fc8392d9efc282294fff5305973df3b43270ef76263defef4a7ce9240bc",
+        "l11_section_sha256": "64bc9d0b2cfbf4c5b70d9ba15f358f26aa6352072d6ac12740129f2ec8f48177",
+        "semantic_overlap": "Atomic write/rollback/CAS receipt for specific HARNESS-052-dependent operation; not global FR-L1-06 consistency."
+      }
+    ]
+  },
   "conditions": [
     {
       "id": "FR-L1-01",
@@ -177,7 +368,8 @@
       ],
       "retained_meaning": "L0を層外authority anchorとして扱い、現行V字pairに沿って工程を管理する意味はHARNESS工程規則とOS ticket/handoff上の対象・scope・依存・受入義務・戻し先に部分的に現れる。",
       "not_inherited": "旧L0-L14の番号/pathや、単一PLAN file内の工程表＋実装計画という物理形、旧plan_registry/schema/CLIは現行契約へ移していない。",
-      "residual": "すべての現行工程に対するPLAN相当の起票・進捗管理という利用者条件と、工程・機能名・記載項目からどの正本/recordを作るかのexact出力結合は、固定L2/L11から条件全体としては確認できない。",
+      "residual": "採択済みHARNESS-L2-046はFull Vおよび選択されたProduction Scrum scopeのworkflow/backfill条件を具体化し、HARNESS-L2-040/041とHELIXOS-L2-038はlayer ledger/catalog/writer snapshotを定める。旧PLAN単一ファイルの物理形、全開発styleのmode→工程/artifact出力対応、全工程の進捗を一体管理するexact contractは確定しない。",
+      "later_adopted_pair_effect": "HELIXOS-L2-036/対L11はRetrofit upgradeに限るticket/scope/revision-bound preflightと計画確定順序を追加する。任意の全工程のPLAN・進捗oracleへ一般化しない。",
       "audit_status": "open_partial_correspondence",
       "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-01",
       "source_status": "confirmed",
@@ -189,7 +381,8 @@
         "HELIXOS-L2-023"
       ],
       "mapping_authority_effect": "none",
-      "decision_status": "pending_human_confirmation"
+      "decision_status": "pending_human_confirmation",
+      "other_adopted_pair_effect": "HARNESS-L2-046/対L11 materially narrows the workflow gap with Full V system workflow and selected Production Scrum slice-delta/backfill conditions. It does not require one physical PLAN file or old plan_registry schema; other style/mode→artifact bindings remain outside its fixed scope. HARNESS-L2-040/041 and HELIXOS-L2-038 add layer ledger/catalog/writer snapshots, not whole workflow progress management."
     },
     {
       "id": "FR-L1-02",
@@ -218,7 +411,8 @@
       ],
       "retained_meaning": "L6↔L7でRed→Green→Refactorと設計pairのtraceを保ち、検証のoracle/evidence義務を求める。",
       "not_inherited": "旧`helix sprint start/check`・gateや旧test/run/commit IDの機構は現行sourceへ転用しない。",
-      "residual": "テストファーストの順序をすべての実装方式・対象で強制し、Red test前の実装を禁止する普遍条件は固定L2/L11に明示されていない。実装方式ごとの適用範囲、許容例外、反例/受入oracleも未確定であり、詳細確認を要する。",
+      "residual": "採択済みHARNESS-L2-036は選択ticket profile内の検証観点・local/CI parityを、HELIXOS-L2-033は選択engine/detectorの同一snapshot rerunを追加するが、全実装方式/対象へ普遍的なRed-before-Green順序を課す条件、適用範囲・例外・oracleは確定しない。",
+      "later_adopted_pair_effect": "HARNESS-L2-042はDesign Refactor時の意味・consumer・oracle・dependency graph照合と機能追加分離を採択した。FR-L1-02のRed→Green→Refactor順序を置換・一般化しない。HELIXOS-L2-036は無関係。",
       "audit_status": "open_partial_correspondence",
       "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-02",
       "source_status": "confirmed",
@@ -229,7 +423,8 @@
         "HARNESS-L2-005"
       ],
       "mapping_authority_effect": "none",
-      "decision_status": "pending_human_confirmation"
+      "decision_status": "pending_human_confirmation",
+      "other_adopted_pair_effect": "HARNESS-L2-036/対L11 requires verification-view completeness and local/CI contract parity for selected ticket profiles; HELIXOS-L2-033 adds selected engine/detector rerun reproducibility. These strengthen selected verification evidence but do not impose Red-before-Green for every method or test scope."
     },
     {
       "id": "FR-L1-04",
@@ -258,7 +453,8 @@
       ],
       "retained_meaning": "作業の種類/flowと依存を型付けし、対象と依存・受入義務・戻し先をticket/handoffに保持する方向は現行OS規則に部分的に再導出されている。",
       "not_inherited": "旧PLAN `kind` enum、`generates`宣言と `requires/blocks` のfrontmatter/data shape、旧PLAN lint/生成コマンドや固定PLAN registry schemaは現行規則として継承していない。",
-      "residual": "旧conditionのmode kind→成果物path→依存PLAN、kind付きPLAN record、`generates`による文書生成計画の具体field間対応は固定L2/L11にない。typed ticket graphを旧3 fieldと同一視できず、doc生成の記録/動作もこのtargetだけでは閉じない。",
+      "residual": "HARNESS-L2-046は選択styleのworkflow/backfill条件、HARNESS-L2-040/041とHELIXOS-L2-038は型付きlayer-ledger記録を追加する。旧conditionの全mode kind→成果物path→依存PLAN、kind付きPLAN record、`generates`による文書生成計画の具体field対応を定めず、typed ticket graph/ledgerを旧3 fieldと同一視できない。",
+      "later_adopted_pair_effect": "HELIXOS-L2-036/対L11はpreflight duty/resultのticket/scope/revision bindingというRetrofit upgrade固有条件。HARNESS-L2-042はDesign Refactor判定とepisode分離であり、いずれも旧mode kind/generates/requiresの共通field・doc generation mappingを導入しない。",
       "audit_status": "open_partial_correspondence",
       "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-04",
       "source_status": "confirmed",
@@ -269,7 +465,8 @@
         "HELIXOS-L2-023"
       ],
       "mapping_authority_effect": "none",
-      "decision_status": "pending_human_confirmation"
+      "decision_status": "pending_human_confirmation",
+      "other_adopted_pair_effect": "HARNESS-L2-046 provides selected style/workflow and slice-backfill behavior; HARNESS-L2-040/041 and HELIXOS-L2-038 provide typed ledger/catalog/writer records. They do not supply generic mode kind→artifact path→dependency PLAN fields or `generates` document generation mapping."
     },
     {
       "id": "FR-L1-06",
@@ -310,7 +507,8 @@
       ],
       "retained_meaning": "成果物・要求・検証の関係、変更影響/再検証、provenance・event・訂正とhandoff evidenceを追跡する意味は複数の現行L2/L11契約に分散して保持される。",
       "not_inherited": "旧6 registry群のidentity/schema、単一`harness.db`によるmechanical SSoT、旧direct DB browsing、およびdrive別partitionはこの要求のsuccessor条件として継承していない。旧FR-L1-40のdrive条件をFR-L1-06の継承として足さない。",
-      "residual": "PLAN/コード/test/coverageの全対象を一箇所で一致管理し、drift検証結果を利用者へ返すexact state set/owner/relation/oracleはこの固定L2/L11から条件全体としては確認できない。保存/traceの一般契約だけで、一元storeや全成果物の一致判定が成立したとはいえない。",
+      "residual": "HELIXOS-L2-033はversion/config/source-snapshotに束縛した選択engine/detector registryとrun/finding再現証拠を、HARNESS-L2-040/041とHELIXOS-L2-038はlayer ledger/catalog/writer snapshotを、HELIXOS-L2-053は特定FR52 operationのatomicityを追加する。PLAN/code/test/coverage全対象の統合store・owner/relation・universal drift oracleを確立しない。",
+      "later_adopted_pair_effect": "HELIXOS-L2-036のpreflight result bindingとHARNESS-L2-042の選択consumer/dependency graph比較はそれぞれ限定scopeにおける証拠接続である。全成果物のstate set/owner/relation/storeを統合するFR-L1-06条件は残る。",
       "audit_status": "open_partial_correspondence",
       "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-06",
       "source_status": "confirmed",
@@ -322,7 +520,8 @@
         "HARNESS-L2-005"
       ],
       "mapping_authority_effect": "none",
-      "decision_status": "pending_human_confirmation"
+      "decision_status": "pending_human_confirmation",
+      "other_adopted_pair_effect": "HELIXOS-L2-033 adds versioned engine/detector registries and source-snapshot-bound run/finding reproducibility; HARNESS-L2-040/041 and HELIXOS-L2-038 add layer-ledger catalog/writer projection; HELIXOS-L2-053 adds atomicity for a specific canonicalization operation. These are limited registries/operations, not unified state for every PLAN/code/test/coverage artifact or a universal drift oracle."
     }
   ],
   "non_claims": [

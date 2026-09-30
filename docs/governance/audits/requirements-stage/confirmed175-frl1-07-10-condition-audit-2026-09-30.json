@@ -22,7 +22,6 @@
     ]
   },
   "baseline": {
-    "origin_main_head": "0f5050e2b",
     "po_fixed_requirements_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
     "po_decision_records": [
       {
@@ -66,7 +65,8 @@
         "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
         "sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01"
       }
-    }
+    },
+    "comparison_base": "c6418a5602a056d3503e578a0a8c92df15a6daeb"
   },
   "legacy_asset_disposition": {
     "path": "docs/governance/legacy-asset-disposition.jsonl",
@@ -269,5 +269,437 @@
     "PO agreement applies to fixed L2/L11 requirement revisions. It does not generate a successor assignment or atom-level closure for these legacy identities.",
     "Old source hooks/runtime are read-only; no old workflow, hook, CLI, runtime, test, or CI was executed.",
     "Condition status is partial for each row: related adopted requirements preserve some adjacent duties, while the listed old-specific conditions lack a direct adopted pair/oracle. This is not implementation, runtime, or acceptance evidence."
-  ]
+  ],
+  "overlap_with_prior_condition_audit": {
+    "path": "docs/governance/audits/requirements-stage/fr-l1-07-event-capture-scope-frame-2026-09-29.md",
+    "sha256_at_comparison_base": "ae948bacd04c0b4567f3bb1f3e0d4b0cdb019090ecbdeca0c2d407e7fa3a4ea8",
+    "comparison_base": "c6418a5602a056d3503e578a0a8c92df15a6daeb",
+    "relationship": "The earlier frame is scoped to FR-L1-07 atom boundaries and a bounded producer-to-projection negative oracle. This audit reuses its fixed OS-019 comparison, extends condition rows to FR-L1-07..10, and records retained/residual conditions; it does not adopt the proposed oracle or change carry-forward/authority."
+  },
+  "successor_assignment_source": {
+    "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json",
+    "sha256": "ca08a81d97e39e94aa02151c7cc4e48f621f9d30baccc1cf9b715331fed38f45",
+    "field": "audited_non_residual_records[].successor_requirement_ids",
+    "note": "The asset disposition ledger has no successor_requirement_ids field; this audit mirrors the empty assignment state from the identity-level full-audit rows."
+  },
+  "later_adopted_pair_comparison": {
+    "decision_record": {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "sha256_at_pr_base": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "decision_basis_head": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
+      "scope_note": "This later adopted revision is compared separately from the fixed f6dad2a33e24f000b87d7f09b8d40288257e74cc baseline above; it does not rewrite that baseline.",
+      "authority_interpretation": "The L2/L11 sections retain frozen pre-decision candidate labels; the PO decision record is authoritative for the exact adopted MPR and section-digest pair."
+    },
+    "adopted_pairs": [
+      {
+        "requirement": "HARNESS-L2-042",
+        "acceptance": "HARNESS-L2-042",
+        "decision": "採択",
+        "registration": "MPR-RC-HARNESS-L2-042-001",
+        "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "l2_section_sha256": "7da6b3394cbc96bdf028a4738000554e1cf7a946595c4abf43504b24968f34eb",
+        "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "l11_section_sha256": "3ba00726800c61f1de165e48e6f62ea4359a368a50a9e9cd1517deb09df395f9",
+        "receipt": "docs/governance/audits/requirement-registration/harness-refactor-episode-coverage-receipt-2026-09-28.json#HARNESS-L2-042",
+        "semantic_scope": "Design Refactor uses semantic similarity, consumer, existing oracle, and dependency graph; preserves behavior/contract/requirement under adopted HARNESS-L2-016, separates feature additions into another episode, and backflows semantic changes."
+      },
+      {
+        "requirement": "HELIXOS-L2-036",
+        "acceptance": "HELIXOS-L2-036",
+        "decision": "採択",
+        "registration": "MPR-RC-HELIXOS-L2-036-001",
+        "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+        "l2_section_sha256": "82c3fc7c25b023604463f4c44c284440b9666342a0cf8a3bd6b1996394cb33b9",
+        "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+        "l11_section_sha256": "daec5fceac7a0e19a0cf83541126772393735b01c5b1592edeb6f050061bebc3",
+        "receipt": "docs/governance/audits/requirement-registration/os-retrofit-preflight-coverage-receipt-2026-09-28.json",
+        "semantic_scope": "Every Retrofit upgrade binds preflight obligation/result to source/target/dependency scope; migration plan remains unconfirmed before pass and apply rechecks result currency. L11 preserves draft/assessment work before the result and routes fail/unknown/stale/mismatch to owners; OS does not invent the oracle or grant SECURITY authority."
+      }
+    ],
+    "identity_comparisons": [
+      {
+        "identity": "FR-L1-07",
+        "pair_findings": {
+          "HARNESS-L2-042": "No capture-completeness, event-producer, session-log, or forced-stop contract; no material closure.",
+          "HELIXOS-L2-036": "Retrofit-upgrade preflight ordering is outside FR-L1-07 capture semantics."
+        }
+      },
+      {
+        "identity": "FR-L1-08",
+        "pair_findings": {
+          "HARNESS-L2-042": "Adds adopted meaning for the Design Refactor route and feature-addition split, but not drift/incident/etc detector or complete automatic signal-to-mode routing.",
+          "HELIXOS-L2-036": "Applies only after a Retrofit upgrade route is chosen; it does not define mode selection or activation authority."
+        }
+      },
+      {
+        "identity": "FR-L1-09",
+        "pair_findings": {
+          "HARNESS-L2-042": "No agent roster, budget/lock, or gate-guard authority contract.",
+          "HELIXOS-L2-036": "Uses existing SECURITY/Worker boundary for Retrofit apply; does not define general agent guard or budget semantics."
+        }
+      },
+      {
+        "identity": "FR-L1-10",
+        "pair_findings": {
+          "HARNESS-L2-042": "May keep a Design Refactor episode behavior-preserving, but does not supply Recovery-plan, rollback, hotfix, or cutover-rehearsal conditions.",
+          "HELIXOS-L2-036": "Adds preflight ordering for Retrofit upgrades, not the old Recovery/Incident/Deploy lock, queue, rollback, postmortem, or cutover conditions; those residuals remain."
+        }
+      }
+    ]
+  },
+  "full_decision_set_screen": {
+    "method": "Enumerated all identities and PO treatments in each decision table, including the separately stated HARNESS-L2-049 non-adoption. Screened all IDs against the legacy condition themes; semantically adjacent pairs are expanded below with exact paired-section revision evidence. Frozen pre-decision section labels do not supersede the decision record.",
+    "decision_sets": [
+      {
+        "record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "record_sha256_at_pr_base": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
+        "source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "screened_table_identity_count": 57,
+        "screened_identities": [
+          "HARNESS-L2-034",
+          "HARNESS-L2-035",
+          "HARNESS-L2-036",
+          "HARNESS-L2-037",
+          "HARNESS-L2-038",
+          "HARNESS-L2-039",
+          "HARNESS-L2-040",
+          "HARNESS-L2-041",
+          "HARNESS-L2-042",
+          "HARNESS-L2-043",
+          "HARNESS-L2-044",
+          "HARNESS-L2-045",
+          "HARNESS-L2-046",
+          "HARNESS-L2-047",
+          "HELIXOS-L2-030",
+          "HELIXOS-L2-031",
+          "HELIXOS-L2-032",
+          "HELIXOS-L2-033",
+          "HELIXOS-L2-034",
+          "HELIXOS-L2-035",
+          "HELIXOS-L2-036",
+          "HELIXOS-L2-037",
+          "HELIXOS-L2-038",
+          "HELIXOS-L2-039",
+          "HELIXOS-L2-040",
+          "HELIXOS-L2-041",
+          "HELIXOS-L2-042",
+          "HELIXOS-L2-043",
+          "HELIXOS-L2-044",
+          "HELIXOS-L2-045",
+          "HELIXOS-L2-046",
+          "HELIXOS-L2-047",
+          "HELIXOS-L2-048",
+          "HELIXOS-L2-049",
+          "HELIXOS-L2-050",
+          "HELIXOS-L2-051",
+          "HELIXOS-L2-052",
+          "HELIXLABO-L2-061",
+          "HELIXLABO-L2-062",
+          "HELIXLABO-L2-063",
+          "HELIXLABO-L2-064",
+          "HELIXLABO-L2-065",
+          "HELIXLABO-L2-066",
+          "HELIXLABO-L2-067",
+          "HELIXLABO-L2-068",
+          "HELIXLABO-L2-069",
+          "HELIXINTELLIGENCE-L2-072",
+          "HELIXINTELLIGENCE-L2-073",
+          "HELIXINTELLIGENCE-L2-074",
+          "HELIXSECURITY-L2-029",
+          "HELIXSECURITY-L2-030",
+          "HELIXSECURITY-L2-031",
+          "HELIXSECURITY-L2-032",
+          "HELIXSECURITY-L2-033",
+          "HELIXSECURITY-L2-034",
+          "HELIXCONNECT-L2-008",
+          "HELIXCONNECT-L2-009"
+        ],
+        "status_scope": "42 adopted, 11 conditional, 4 held, per the decision record; section labels frozen before decision do not supersede the record.",
+        "screened_treatment_counts": {
+          "adopted": 42,
+          "conditional_adopted": 11,
+          "held": 4
+        }
+      },
+      {
+        "record": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+        "record_sha256_at_pr_base": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+        "decision_basis_revision": "909c8015326f35f8d42ce12e3c388923de411d1f",
+        "recorded_main_revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+        "screened_table_identity_count": 10,
+        "screened_identities": [
+          "HARNESS-L2-041",
+          "HARNESS-L2-048",
+          "HELIXBRAIN-L2-031",
+          "HARNESS-L2-050",
+          "HARNESS-L2-051",
+          "HARNESS-L2-052",
+          "HARNESS-L2-053",
+          "HARNESS-L2-054",
+          "HELIXOS-L2-038",
+          "HELIXOS-L2-053"
+        ],
+        "additional_identity_screened": {
+          "identity": "HARNESS-L2-049",
+          "treatment": "未採択（現revision。11候補decision）"
+        },
+        "status_scope": "10 adopted; HARNESS-L2-049 is the eleventh candidate and is explicitly not adopted at its current revision.",
+        "screened_treatment_counts": {
+          "adopted": 10,
+          "conditional_adopted": 0,
+          "held": 0
+        }
+      }
+    ],
+    "section_level_comparisons": [
+      {
+        "legacy_identity": "FR-L1-07",
+        "pair_identity": "HARNESS-L2-034",
+        "relation": "partial",
+        "decision_treatment": "採択",
+        "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
+        "comparison": "Requirement-specific metric contract and completion oracle are relevant to measurement evidence, but do not define the legacy five-event automatic state-capture set or its fail-close vs session-log fail-open split.",
+        "exact_pair_revision_evidence": {
+          "decision": "採択",
+          "registration": "MPR-RC-HARNESS-L2-034-003",
+          "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "l2_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+          "l2_section_digest": "dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156",
+          "l11_identity": "HARNESS-L2-034",
+          "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "l11_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+          "l11_section_digest": "391f640508944ba2f32b5751a2a9a17fbc9f89ef76f46953c1af68ba907a9fdf",
+          "receipt": "docs/governance/audits/requirement-registration/harness-measurement-contract-coverage-receipt-2026-09-28-r3.json"
+        },
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_record_sha256_at_pr_base": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+      },
+      {
+        "legacy_identity": "FR-L1-07",
+        "pair_identity": "HELIXOS-L2-035",
+        "relation": "partial",
+        "decision_treatment": "採択",
+        "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
+        "comparison": "PR lifecycle intake and idempotent audit-job request cover PR create/update/complete events only; they do not cover all legacy state events or mode routing.",
+        "exact_pair_revision_evidence": {
+          "decision": "採択",
+          "registration": "MPR-RC-HELIXOS-L2-035-001",
+          "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "l2_section_digest": "01ab4c9e572c5af909e4dbf46fb8f44866dd6cc7701dddc88b8dabbe14fb6c03",
+          "l11_identity": "HELIXOS-L2-035",
+          "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "l11_section_digest": "8507d8f43c2aafae4d8b08fc27e9c3c7c28e6d4a74d912b7667d3dc27786c742",
+          "receipt": "docs/governance/audits/requirement-registration/os-pr-event-intake-coverage-receipt-2026-09-28.json"
+        },
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_record_sha256_at_pr_base": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+      },
+      {
+        "legacy_identity": "FR-L1-07",
+        "pair_identity": "HELIXOS-L2-038",
+        "relation": "partial",
+        "decision_treatment": "依存先と併せて採択",
+        "decision_basis_revision": "909c8015326f35f8d42ce12e3c388923de411d1f",
+        "comparison": "Append-only ledger writer/snapshot/proposal provides evidence recording primitives; it does not define which legacy state events must be captured.",
+        "exact_pair_revision_evidence": {
+          "decision": "依存先と併せて採択",
+          "registration": "MPR-RC-HELIXOS-L2-038-002",
+          "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "l2_file_sha256": "c90be67dc90240434568491074d0e12fb593759ad9121ee9ef9bd3f932a41610",
+          "l2_section_digest": "c3b0424bd39ac7c91166c87738fbefc1b20a11b904012d9ada768a113ccbe013",
+          "l11_identity": "HELIXOS-L2-038",
+          "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "l11_file_sha256": "b965f3681d1f5231e4281d333538b65142dce8db0ae4807ed46caa7e928e30de",
+          "l11_section_digest": "eabb68eaafc76f0080fbe9cb9c6904005c88b72e7cee9563f2515b4488de2e5d",
+          "receipt": "docs/governance/audits/requirement-registration/os-layer-ledger-writer-coverage-receipt-2026-09-29-r2.json#HELIXOS-L2-038"
+        },
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+        "decision_record_sha256_at_pr_base": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5"
+      },
+      {
+        "legacy_identity": "FR-L1-07",
+        "pair_identity": "HELIXOS-L2-053",
+        "relation": "partial",
+        "decision_treatment": "依存先と併せて採択",
+        "decision_basis_revision": "909c8015326f35f8d42ce12e3c388923de411d1f",
+        "comparison": "Atomic commit/failure quarantine is relevant to capture integrity and failure handling; it does not establish event scope or capture behavior.",
+        "exact_pair_revision_evidence": {
+          "decision": "依存先と併せて採択",
+          "registration": "MPR-RC-HELIXOS-L2-053-001",
+          "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "l2_file_sha256": "c90be67dc90240434568491074d0e12fb593759ad9121ee9ef9bd3f932a41610",
+          "l2_section_digest": "fe880fc8392d9efc282294fff5305973df3b43270ef76263defef4a7ce9240bc",
+          "l11_identity": "HELIXOS-L2-053",
+          "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "l11_file_sha256": "b965f3681d1f5231e4281d333538b65142dce8db0ae4807ed46caa7e928e30de",
+          "l11_section_digest": "64bc9d0b2cfbf4c5b70d9ba15f358f26aa6352072d6ac12740129f2ec8f48177",
+          "receipt": "docs/governance/audits/requirement-registration/helixos-fr52-atomicity-coverage-receipt-2026-09-29.json"
+        },
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+        "decision_record_sha256_at_pr_base": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5"
+      },
+      {
+        "legacy_identity": "FR-L1-08",
+        "pair_identity": "HARNESS-L2-046",
+        "relation": "partial",
+        "decision_treatment": "採択",
+        "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
+        "comparison": "Full V workflow plus Scrum slice delta backfill governs workflow sequencing/recovery of design artifacts, not automatic detection-signal-to-Recovery/Incident/Reverse/Refactor mode routing.",
+        "exact_pair_revision_evidence": {
+          "decision": "採択",
+          "registration": "MPR-RC-HARNESS-L2-046-001",
+          "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "l2_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+          "l2_section_digest": "47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e",
+          "l11_identity": "HARNESS-L2-046",
+          "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "l11_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+          "l11_section_digest": "a8e99f7df7166566c04b1113b045851d8417e17e8078c034f8f2a34ebfe4f37f",
+          "receipt": "docs/governance/audits/requirement-registration/harness-fullv-scrum-coverage-receipt-2026-09-28.json"
+        },
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_record_sha256_at_pr_base": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+      },
+      {
+        "legacy_identity": "FR-L1-08",
+        "pair_identity": "HELIXOS-L2-037",
+        "relation": "partial",
+        "decision_treatment": "採択",
+        "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
+        "comparison": "Weekly drift/debt observations can report differences and hand off existing Reverse/Backflow or ticket candidates; no automatic mode-selection table or trigger authority is added.",
+        "exact_pair_revision_evidence": {
+          "decision": "採択",
+          "registration": "MPR-RC-HELIXOS-L2-037-001",
+          "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "l2_section_digest": "29563f1fdde0d9ace0b0850a5fc57bc6f6b595f460a5caa293c7eefb60905d64",
+          "l11_identity": "HELIXOS-L2-037",
+          "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "l11_section_digest": "c64f7fbc39d28c028fd4e95c47dc7ff788f3a857f290a0217821e52b3216ddf7",
+          "receipt": "docs/governance/audits/requirement-registration/os-debt-drift-coverage-receipt-2026-09-28.json"
+        },
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_record_sha256_at_pr_base": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+      },
+      {
+        "legacy_identity": "FR-L1-09",
+        "pair_identity": "HELIXOS-L2-043",
+        "relation": "partial",
+        "decision_treatment": "条件付き採択",
+        "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
+        "comparison": "Tracks typed Worker approval-request/tool-call/result events with provenance; events do not authorize calls or define the legacy mandatory-agent, budget, fail-close gate, and lock guard set.",
+        "exact_pair_revision_evidence": {
+          "decision": "採択",
+          "registration": "MPR-RC-HELIXOS-L2-043-002",
+          "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "l2_section_digest": "e286b34a9805a690f324ebe37ee0936691f636082b49350ee9dc5183787d9a68",
+          "l11_identity": "HELIXOS-L2-043",
+          "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "l11_section_digest": "136c2c209e30667dc74f1757b00fc482ce1216f05a851990c02437dc9078976b",
+          "receipt": "docs/governance/audits/requirement-registration/os-v13-p2-06-worker-delegation-coverage-receipt-2026-09-28-r2.json"
+        },
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_record_sha256_at_pr_base": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+      },
+      {
+        "legacy_identity": "FR-L1-09",
+        "pair_identity": "HELIXOS-L2-046",
+        "relation": "partial",
+        "decision_treatment": "採択",
+        "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
+        "comparison": "Rechecks existing authority/HEAD/scope continuity across dispatch through merge; explicitly relies on existing authority contracts and creates no new guard policy.",
+        "exact_pair_revision_evidence": {
+          "decision": "採択",
+          "registration": "MPR-RC-HELIXOS-L2-046-001",
+          "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "l2_section_digest": "c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d",
+          "l11_identity": "HELIXOS-L2-046",
+          "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "l11_section_digest": "3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0",
+          "receipt": "docs/governance/audits/requirement-registration/helixos-rfa-scope-coverage-receipt-2026-09-28.json"
+        },
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_record_sha256_at_pr_base": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+      },
+      {
+        "legacy_identity": "FR-L1-10",
+        "pair_identity": "HELIXOS-L2-036",
+        "relation": "partial",
+        "decision_treatment": "採択",
+        "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
+        "comparison": "Defines retrofit-upgrade preflight and owned failure/return states for that operation; it does not supply general recovery-point, correction-history, or cutover rollback convergence.",
+        "exact_pair_revision_evidence": {
+          "decision": "採択",
+          "registration": "MPR-RC-HELIXOS-L2-036-001",
+          "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "l2_section_digest": "82c3fc7c25b023604463f4c44c284440b9666342a0cf8a3bd6b1996394cb33b9",
+          "l11_identity": "HELIXOS-L2-036",
+          "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "l11_section_digest": "daec5fceac7a0e19a0cf83541126772393735b01c5b1592edeb6f050061bebc3",
+          "receipt": "docs/governance/audits/requirement-registration/os-retrofit-preflight-coverage-receipt-2026-09-28.json"
+        },
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_record_sha256_at_pr_base": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+      },
+      {
+        "legacy_identity": "FR-L1-10",
+        "pair_identity": "HELIXOS-L2-037",
+        "relation": "partial",
+        "decision_treatment": "採択",
+        "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
+        "comparison": "Feeds observed drift/debt into existing Reverse/Backflow and ticket candidates, not incident recovery/cutover rollback.",
+        "exact_pair_revision_evidence": {
+          "decision": "採択",
+          "registration": "MPR-RC-HELIXOS-L2-037-001",
+          "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "l2_section_digest": "29563f1fdde0d9ace0b0850a5fc57bc6f6b595f460a5caa293c7eefb60905d64",
+          "l11_identity": "HELIXOS-L2-037",
+          "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "l11_section_digest": "c64f7fbc39d28c028fd4e95c47dc7ff788f3a857f290a0217821e52b3216ddf7",
+          "receipt": "docs/governance/audits/requirement-registration/os-debt-drift-coverage-receipt-2026-09-28.json"
+        },
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_record_sha256_at_pr_base": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+      },
+      {
+        "legacy_identity": "FR-L1-10",
+        "pair_identity": "HELIXOS-L2-053",
+        "relation": "partial",
+        "decision_treatment": "依存先と併せて採択",
+        "decision_basis_revision": "909c8015326f35f8d42ce12e3c388923de411d1f",
+        "comparison": "Failure quarantine/atomic evidence append can support failure integrity, not recovery convergence semantics.",
+        "exact_pair_revision_evidence": {
+          "decision": "依存先と併せて採択",
+          "registration": "MPR-RC-HELIXOS-L2-053-001",
+          "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "l2_file_sha256": "c90be67dc90240434568491074d0e12fb593759ad9121ee9ef9bd3f932a41610",
+          "l2_section_digest": "fe880fc8392d9efc282294fff5305973df3b43270ef76263defef4a7ce9240bc",
+          "l11_identity": "HELIXOS-L2-053",
+          "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "l11_file_sha256": "b965f3681d1f5231e4281d333538b65142dce8db0ae4807ed46caa7e928e30de",
+          "l11_section_digest": "64bc9d0b2cfbf4c5b70d9ba15f358f26aa6352072d6ac12740129f2ec8f48177",
+          "receipt": "docs/governance/audits/requirement-registration/helixos-fr52-atomicity-coverage-receipt-2026-09-29.json"
+        },
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+        "decision_record_sha256_at_pr_base": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5"
+      }
+    ],
+    "screen_result": "Later adopted pairs are additional comparison evidence at their exact decision revisions. They do not retroactively change the fixed f6dad baseline, establish formal successor assignments, or grant authority. Existing partial/residual results remain unless an explicit identity-specific comparison above explains the overlap."
+  }
 }

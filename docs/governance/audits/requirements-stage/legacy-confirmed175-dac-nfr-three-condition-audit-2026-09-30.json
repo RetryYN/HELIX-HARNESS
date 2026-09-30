@@ -5,7 +5,11 @@
   "authority_effect": "none",
   "scope": {
     "confirmed_identity_count": 3,
-    "confirmed_identities": ["DAC-NFR-001", "DAC-NFR-004", "DAC-NFR-005"],
+    "confirmed_identities": [
+      "DAC-NFR-001",
+      "DAC-NFR-004",
+      "DAC-NFR-005"
+    ],
     "source_asset_id": "LEGACY-ASSET-D201753B1A0CC6EA3980",
     "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md",
     "source_file_sha256": "81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66",
@@ -44,6 +48,7 @@
     "confirmed175_audit_json": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json",
     "confirmed175_audit_markdown": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.md",
     "asset_disposition_ref": "docs/governance/legacy-asset-disposition.jsonl#LEGACY-ASSET-D201753B1A0CC6EA3980",
+    "asset_decision_record_ref": "docs/governance/legacy-asset-decisions.jsonl#REQ-SNAPSHOT-CORRECTION-D201753B1A0CC6EA3980",
     "asset_revision": 3,
     "asset_disposition": "source_snapshot_preservation",
     "carry_forward_state": "preserved_pending_rehome",
@@ -53,12 +58,208 @@
     "mapping_authority_effect": "none"
   },
   "overlap_check": {
-    "current_github_main_commit": "0f5050e2b25cd622640c99c5de170cca087f7d8a",
-    "local_main_at_work_start_commit": "5f18c8b9fd8364a81fe7c8614cc48f3d34152e6f",
-    "local_integration_commit": "d84a7388fc56fbdb4df97d2eb0f5f0ddea611053",
-    "pull_requests_checked": [2387, 2388, 2389, 2390, 2391, 2392],
+    "pr_base_commit": "c6418a5602a056d3503e578a0a8c92df15a6daeb",
+    "pull_requests_checked": [
+      2387,
+      2388,
+      2389,
+      2390,
+      2391,
+      2392
+    ],
     "result": "no_prior_condition_level_audit_found",
-    "basis": "GitHub current main 0f5050e2 and local integration d84a7388 contain the existing full-audit rows for the three identities. Their REG-06 population/join audit also references these identities and ledgers, but neither record is a condition-level semantic delta audit. Local main at work start 5f18c8b9 was also checked. PR #2387-2392 changed files belong to separate FRS/World Governance/Concept metadata audit scopes; none adds a DAC-NFR-001/004/005 condition-level audit."
+    "basis": "At PR base c6418a5602a056d3503e578a0a8c92df15a6daeb, the existing full-audit rows cover the three identities. The REG-06 population/join audit also references these identities and ledgers, but neither record is a condition-level semantic delta audit. PR #2387-2392 changed files belong to separate FRS/World Governance/Concept metadata audit scopes; none adds a DAC-NFR-001/004/005 condition-level audit."
+  },
+  "later_adopted_pair_review": {
+    "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+    "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+    "decision_status": "recorded_and_present_in_pr_base",
+    "pair_content_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+    "pairs": [
+      {
+        "id": "HARNESS-L2-042",
+        "decision": "adopted",
+        "registration_id": "MPR-RC-HARNESS-L2-042-001",
+        "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l2_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "l2_section_sha256": "7da6b3394cbc96bdf028a4738000554e1cf7a946595c4abf43504b24968f34eb",
+        "l11_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "l11_section_sha256": "3ba00726800c61f1de165e48e6f62ea4359a368a50a9e9cd1517deb09df395f9"
+      },
+      {
+        "id": "HELIXOS-L2-036",
+        "decision": "adopted",
+        "registration_id": "MPR-RC-HELIXOS-L2-036-001",
+        "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+        "l2_section_sha256": "82c3fc7c25b023604463f4c44c284440b9666342a0cf8a3bd6b1996394cb33b9",
+        "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+        "l11_section_sha256": "daec5fceac7a0e19a0cf83541126772393735b01c5b1592edeb6f050061bebc3"
+      }
+    ],
+    "separate_11_candidate_decision": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md#HDEC-REQUIREMENTS-11-2026-09-29",
+    "separate_11_decision_relation": "The 11-candidate decision fixes a separate identity set and does not list either pair above.",
+    "decision_comparison_scope": {
+      "decision_records": [
+        "HDEC-REQUIREMENTS-57-2026-09-29",
+        "HDEC-REQUIREMENTS-11-2026-09-29"
+      ],
+      "reviewed_identity_count": {
+        "57_candidate_decision": 57,
+        "11_candidate_decision": 11
+      },
+      "reviewed_identities": {
+        "57_candidate_decision": [
+          "HARNESS-L2-034",
+          "HARNESS-L2-035",
+          "HARNESS-L2-036",
+          "HARNESS-L2-037",
+          "HARNESS-L2-038",
+          "HARNESS-L2-039",
+          "HARNESS-L2-040",
+          "HARNESS-L2-041",
+          "HARNESS-L2-042",
+          "HARNESS-L2-043",
+          "HARNESS-L2-044",
+          "HARNESS-L2-045",
+          "HARNESS-L2-046",
+          "HARNESS-L2-047",
+          "HELIXOS-L2-030",
+          "HELIXOS-L2-031",
+          "HELIXOS-L2-032",
+          "HELIXOS-L2-033",
+          "HELIXOS-L2-034",
+          "HELIXOS-L2-035",
+          "HELIXOS-L2-036",
+          "HELIXOS-L2-037",
+          "HELIXOS-L2-038",
+          "HELIXOS-L2-039",
+          "HELIXOS-L2-040",
+          "HELIXOS-L2-041",
+          "HELIXOS-L2-042",
+          "HELIXOS-L2-043",
+          "HELIXOS-L2-044",
+          "HELIXOS-L2-045",
+          "HELIXOS-L2-046",
+          "HELIXOS-L2-047",
+          "HELIXOS-L2-048",
+          "HELIXOS-L2-049",
+          "HELIXOS-L2-050",
+          "HELIXOS-L2-051",
+          "HELIXOS-L2-052",
+          "HELIXLABO-L2-061",
+          "HELIXLABO-L2-062",
+          "HELIXLABO-L2-063",
+          "HELIXLABO-L2-064",
+          "HELIXLABO-L2-065",
+          "HELIXLABO-L2-066",
+          "HELIXLABO-L2-067",
+          "HELIXLABO-L2-068",
+          "HELIXLABO-L2-069",
+          "HELIXINTELLIGENCE-L2-072",
+          "HELIXINTELLIGENCE-L2-073",
+          "HELIXINTELLIGENCE-L2-074",
+          "HELIXSECURITY-L2-029",
+          "HELIXSECURITY-L2-030",
+          "HELIXSECURITY-L2-031",
+          "HELIXSECURITY-L2-032",
+          "HELIXSECURITY-L2-033",
+          "HELIXSECURITY-L2-034",
+          "HELIXCONNECT-L2-008",
+          "HELIXCONNECT-L2-009"
+        ],
+        "11_candidate_decision": [
+          "HARNESS-L2-041",
+          "HARNESS-L2-048",
+          "HELIXBRAIN-L2-031",
+          "HARNESS-L2-050",
+          "HARNESS-L2-051",
+          "HARNESS-L2-052",
+          "HARNESS-L2-053",
+          "HARNESS-L2-054",
+          "HELIXOS-L2-038",
+          "HELIXOS-L2-053",
+          "HARNESS-L2-049"
+        ]
+      },
+      "comparison_rule": "Each audit condition was screened against every identity in both decision records. The row-level notes record semantically adjacent adopted pairs and explain their bounded effect; identities with no semantic overlap do not alter that row. The 11-candidate set is distinct from the 57-candidate set."
+    },
+    "semantically_adjacent_adopted_pairs_reviewed": [
+      {
+        "identity": "HELIXOS-L2-031",
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "registration_id": "MPR-RC-HELIXOS-L2-031-001",
+        "l2_section_sha256": "a78fb330ca244dd067b1f13376d1c9245d0e96a43b716f0d53c3e4c2b7f36462",
+        "l11_section_sha256": "9e0caa1d717cf3f71a74ee1d829ed9625406fe9fd3f85a917ae6945e7918abcb",
+        "semantic_overlap": "CI performance and correctness-preserving recovery measurements; relevant to performance-refactor evidence but not a behavior-preservation oracle."
+      },
+      {
+        "identity": "HELIXOS-L2-033",
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "registration_id": "MPR-RC-HELIXOS-L2-033-001",
+        "l2_section_sha256": "580778c8ef3c0e4c4676d13de203c821f990893e9aa078d8d1d2f0b8901d2dbc",
+        "l11_section_sha256": "1d30394888b3bded49f8e517d7e0888a25130e123df945adf69c7db5588571b1",
+        "semantic_overlap": "Version/config/source-snapshot-bound engine/detector registry plus identical rerun reproducibility. Closest to DAC deterministic findings, but not DAC inventory/graph census."
+      },
+      {
+        "identity": "HELIXOS-L2-034",
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "registration_id": "MPR-RC-HELIXOS-L2-034-002",
+        "l2_section_sha256": "b4b8a68a15eabdc3dcf40d069fdf262389a43eec1f8ce8647e66ca22e7b9a600",
+        "l11_section_sha256": "6809e36b9704482425d1edfd0bc65aac0d5179dc461472695aecd021a78dfd01",
+        "semantic_overlap": "Finding-disposition evidence and appeal history; preserves finding provenance, not DAC scanner non-mutation/report-only behavior."
+      },
+      {
+        "identity": "HARNESS-L2-046",
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "registration_id": "MPR-RC-HARNESS-L2-046-001",
+        "l2_section_sha256": "47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e",
+        "l11_section_sha256": "a8e99f7df7166566c04b1113b045851d8417e17e8078c034f8f2a34ebfe4f37f",
+        "semantic_overlap": "Full V workflow and selected Production Scrum slice-delta/backfill conditions; relevant to planning/workflow but not a single physical PLAN schema."
+      },
+      {
+        "identity": "HELIXLABO-L2-061",
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "registration_id": "MPR-RC-HELIXLABO-L2-061-001",
+        "l2_section_sha256": "f78b726f14dddee5af773d915b7d97b6d8cdef5ca14cf51034b0d4cd599f6a7f",
+        "l11_section_sha256": "d7c170e0b047db4a74ef955f1295a5d8fc893cd0ca84aefc72d96b764ed1bb1b",
+        "semantic_overlap": "Task/oracle/context integrity for comparisons; not the Research workflow/memo/ADR contract."
+      },
+      {
+        "identity": "HELIXLABO-L2-062",
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "registration_id": "MPR-RC-HELIXLABO-L2-062-001",
+        "l2_section_sha256": "9d727cd363b5fe0dd34ad38a5c87ef81cc93a2d4a61c4d3e860adfbb648d2486",
+        "l11_section_sha256": "8046ea93936685eb49f8efcc00c3a9a6f7e6df92afe95035be1f910b57a71ade",
+        "semantic_overlap": "External research claim-to-source-span verification; partially specifies research evidence, not sequence or memo+ADR outputs/routing."
+      },
+      {
+        "identity": "HARNESS-L2-050",
+        "decision_record_id": "HDEC-REQUIREMENTS-11-2026-09-29",
+        "registration_id": "MPR-RC-HARNESS-L2-050-001",
+        "l2_section_sha256": "abeb498cf39f62ca8f34ded2c439502fb18215f1e376109147096ebaa69ce1b1",
+        "l11_section_sha256": "44191f5dc431e603cf91cc3639d4798fceb8a53f3c1b9076a8a1f038b6e2e763",
+        "semantic_overlap": "Ledger-refactor comparison/evidence/candidate output tied to HIL-FR-50 and adopted 042/016 boundaries; not the general FR-L1-25 workflow."
+      },
+      {
+        "identity": "HELIXOS-L2-038",
+        "decision_record_id": "HDEC-REQUIREMENTS-11-2026-09-29",
+        "registration_id": "MPR-RC-HELIXOS-L2-038-002",
+        "l2_section_sha256": "c3b0424bd39ac7c91166c87738fbefc1b20a11b904012d9ada768a113ccbe013",
+        "l11_section_sha256": "eabb68eaafc76f0080fbe9cb9c6904005c88b72e7cee9563f2515b4488de2e5d",
+        "semantic_overlap": "OS layer-ledger writer/snapshot/proposal append tied to HARNESS 040/041; not a universal PLAN/artifact store."
+      },
+      {
+        "identity": "HELIXOS-L2-053",
+        "decision_record_id": "HDEC-REQUIREMENTS-11-2026-09-29",
+        "registration_id": "MPR-RC-HELIXOS-L2-053-001",
+        "l2_section_sha256": "fe880fc8392d9efc282294fff5305973df3b43270ef76263defef4a7ce9240bc",
+        "l11_section_sha256": "64bc9d0b2cfbf4c5b70d9ba15f358f26aa6352072d6ac12740129f2ec8f48177",
+        "semantic_overlap": "Atomic write/rollback/CAS receipt for specific HARNESS-052-dependent operation; not global FR-L1-06 consistency."
+      }
+    ]
   },
   "conditions": [
     {
@@ -79,16 +280,19 @@
         "HELIXOS-L2-015 records source identity/revision/digest, decision provenance, and correction history; its L11 tests source traceability and authority projection separation."
       ],
       "unconfirmed_residuals": [
-        "No fixed L2/L11 oracle specifically repeats DAC inventory, graph, and finding generation for identical HEAD plus registry input and compares outputs.",
-        "General pack artifact reproducibility and authority record traceability do not establish deterministic DAC scanner output."
+        "HELIXOS-L2-033 reproducibility applies to selected registered engine/detector reruns with identical input snapshot/version/config, but no fixed L2/L11 oracle specifically repeats DAC inventory, graph, and finding generation for identical HEAD plus registry input and compares those census outputs.",
+        "General pack reproducibility, detector-finding reproducibility, and authority record traceability do not establish deterministic DAC scanner census output or its inventory/graph join."
       ],
+      "later_adopted_pair_effect": "2026-09-29採択のHARNESS-L2-042（Design Refactor/episode分離）とHELIXOS-L2-036（Retrofit upgrade preflight）は、DAC censusのinventory/graph/finding生成に対する同一HEAD・registry決定性を定めない。残差は不変。",
       "condition_status": "partial_rederivation_residual_open",
       "formal_successor_ids": [],
       "acceptance_executed": false,
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "other_adopted_pair_effect": "HELIXOS-L2-033/対L11 is the closest adopted pair: for selected registered engines/detectors, it binds version/config and input snapshot and requires identical run/rerun output for reproducibility. This partially overlaps deterministic findings, but DAC inventory/graph/finding census and same-HEAD+registry join are outside its specified scope; retain the scanner-specific residual. Other adjacent measurement/ledger pairs do not extend that census contract."
     },
     {
       "identity": "DAC-NFR-004",
+      "later_adopted_pair_effect": "2026-09-29採択pair HARNESS-L2-042/HELIXOS-L2-036はそれぞれRefactorとRetrofit upgradeを扱い、network/providerなしのrepo-local DAC censusまたは外部adapter境界を定めない。残差は不変。",
       "source_line": 66,
       "source_line_sha256": "3b94723eb90df36ca0bf70eaa70f38c4ba3cd012a693786248f9c6d59ecc3f22",
       "source_exact_text": "| `DAC-NFR-004` | GitHub、network、providerが無くてもrepo-local censusを再現できる。外部surfaceは別adapterで追加する。 |",
@@ -111,10 +315,12 @@
       "condition_status": "partial_rederivation_residual_open",
       "formal_successor_ids": [],
       "acceptance_executed": false,
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "other_adopted_pair_effect": "HELIXOS-L2-033 binds selected registry entries and source snapshots, but does not require census with GitHub/network/providers absent or define an external adapter boundary. Other adjacent pairs cover metrics or ledger operations only."
     },
     {
       "identity": "DAC-NFR-005",
+      "later_adopted_pair_effect": "2026-09-29採択pair HARNESS-L2-042/HELIXOS-L2-036はDAC scannerによる文書本文の編集/削除禁止やfinding/report-only出力を定めない。残差は不変。",
       "source_line": 67,
       "source_line_sha256": "cff214479d90a7d22fc23290ed4e9b37530d80b971e25f87c3d23c9e838be049",
       "source_exact_text": "| `DAC-NFR-005` | scannerは文書本文を書き換えず、削除せず、findingと修復候補だけを出力する。 |",
@@ -138,7 +344,8 @@
       "condition_status": "partial_rederivation_residual_open",
       "formal_successor_ids": [],
       "acceptance_executed": false,
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "other_adopted_pair_effect": "HELIXOS-L2-034 preserves finding disposition evidence; HELIXOS-L2-033 reproduces registered detector findings; HELIXOS-L2-038 records permitted ledger writes. None expressly prohibits DAC scanner edits/deletions or confines it to report-only findings/repair candidates."
     }
   ],
   "validation_expectations": {
