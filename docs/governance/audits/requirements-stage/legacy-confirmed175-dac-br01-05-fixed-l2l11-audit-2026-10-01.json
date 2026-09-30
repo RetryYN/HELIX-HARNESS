@@ -764,6 +764,12 @@
           "line": 41,
           "line_sha256": "0769303001a13a9afd63a699757336f2dbd015b3f7e0c0eb0116f53cca481290",
           "text": "| `DAC-AC-016` | `DAC-R-010` | semantic epoch更新後も旧digest pinをconsumerへ残す | `SEMANTIC_EPOCH_DRIFT`でredになる |"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/document-authority-census-acceptance.md",
+          "line": 45,
+          "line_sha256": "494cac1f0e45355a991c745e30d2d8bc75696e262465cd209163cce718248c12",
+          "text": "| `DAC-AC-020` | 全体 | clean checkoutでinventory、graph、findingを二回生成する | exact setとdigestが一致する |"
         }
       ],
       "fixed_l2_l11_targets": [

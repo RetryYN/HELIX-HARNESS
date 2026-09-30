@@ -133,6 +133,7 @@ Source-qualified identity: `helix/L1-requirements/document-authority-census-requ
   - `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/document-authority-census-acceptance.md:34` SHA-256 `8f6317a19d9227f2b27c2dcd51053916b9f4b4bcd235d79fce5c0208567b0613` — | `DAC-AC-009` | `DAC-R-006` | sourceだけを更新しgenerated artifactを据え置く | `GENERATOR_PROPAGATION_DRIFT`でredになる |
   - `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/document-authority-census-acceptance.md:35` SHA-256 `791a0ff5070abbd5368ba74befa0d0c246fa33ee2eaadf90afc82fbcb7f105e2` — | `DAC-AC-010` | `DAC-R-006` | generated artifactだけを手修正しreceiptを据え置く | provenance不一致でredになる |
   - `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/document-authority-census-acceptance.md:41` SHA-256 `0769303001a13a9afd63a699757336f2dbd015b3f7e0c0eb0116f53cca481290` — | `DAC-AC-016` | `DAC-R-010` | semantic epoch更新後も旧digest pinをconsumerへ残す | `SEMANTIC_EPOCH_DRIFT`でredになる |
+  - `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/document-authority-census-acceptance.md:45` SHA-256 `494cac1f0e45355a991c745e30d2d8bc75696e262465cd209163cce718248c12` — | `DAC-AC-020` | 全体 | clean checkoutでinventory、graph、findingを二回生成する | exact setとdigestが一致する |
 - 固定f6 L2/L11 target line pins:
   - **HARNESS-L2-004** (`inside_po_fixed_l2_l11_bytes`)
     - `docs/helix-harness/L11-acceptance/product-acceptance.md:24` SHA-256 `2d548b5f31549a87687144145601848ec08fdd46311b50c3a05145d234f6609a` — | HARNESS-L2-004 | 要求変更から影響する設計・テストと再検証の範囲が導出され、変更した条件の検証漏れを識別できる |
