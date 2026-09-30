@@ -1360,7 +1360,7 @@
       "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
       "docs/governance/decisions/po-decision-2026-09-30-live26.md"
     ],
-    "screen_method": "全採択/承認済みregistration-decision identity rowを表単位に抽出。57候補は採択および条件付き採択53件（追加受入条件行2件はidentity採択でないため除外）、11候補は採択/依存先と併せて採択10件、live26は承認/案選択承認25件を母集団とする。各rowのID、処置、line digest、原文を保存し、近接候補だけをsemantic review subsetとして別記する。",
+    "screen_method": "全採択/承認済みregistration-decision identity rowを表単位に抽出。57候補は採択および条件付き採択53件（追加受入条件行2件はidentity採択でないため除外）、11候補は採択/依存先と併せて採択10件、live26は承認/案選択承認25件を母集団とする。合計88行を全件screenし、各rowのID、処置、line digest、原文を保存する。意味的な近接3件はsubsetとして別記し、HARNESS-L2-057のclosure-only隣接は別枠に記録する。",
     "adopted_or_approved_row_count": 88,
     "counts_by_decision_record": {
       "docs/governance/decisions/po-decision-2026-09-29-57candidates.md": 53,
@@ -2302,25 +2302,126 @@
         "comparison": "Near, not identity-only coverage or successor."
       },
       {
+        "identity": "HARNESS-L2-046",
+        "decision_record": "po-decision-2026-09-29-57candidates.md",
+        "relation_to_audited_identity": "FR-L1-23に最も直接近接する後発candidate。Production Scrum slice delta先行、Scrum Reverseによるsystem workflow/L1-L5 backfill、SR4 pair-freeze前のrelease-ready不可を具体化する。旧sourceとは別で、successorではない。",
+        "comparison": "Full Vとの同格性、全value-sliceのL4/L5→L6/L7 V-pair閉包、FR23全source atomの閉包は定めない。決定が明示固定した046節bytesだけを比較し、別候補やFR23の採択/closureを含意しない。",
+        "pins_ref": "decision_time_pair_details"
+      },
+      {
         "identity": "HARNESS-L2-051",
         "decision_record": "po-decision-2026-09-29-57candidates.md",
         "relation_to_audited_identity": "FR-L1-51 adjacent stage-exit/record completeness and progress evidence. Its actual input source atoms are PHCAP08, not FR-L1-51.",
         "comparison": "Near, no artifact color projection contract."
-      },
-      {
-        "identity": "HARNESS-L2-057",
-        "decision_record": "po-decision-2026-09-30-live26.md",
-        "relation_to_audited_identity": "FR-L1-23 adjacent closure gate/style-selection and per-scope closure evidence.",
-        "comparison": "Near only at closure evidence boundary; does not define PRODUCTION_SCRUM parity with Full V, value-slice sequence, or each slice L4/L5+L6/L7 V-pair."
       }
     ],
     "proximity_findings": [
       "HARNESS-L2-036 is detailed FR21-adjacent verification evidence; retain decision/MPR/L2/L11/source set and 1.0 authority limits below.",
+      "HARNESS-L2-046 is the closest FR23-adjacent adopted candidate because it covers Production Scrum slice delta, Scrum Reverse backfill, and SR4 pair-freeze before release-ready. Its fixed decision-time section bytes match current-main section bytes; its distinct source, non-successor status, and uncovered FR23 conditions are recorded in decision_time_pair_details.",
       "HARNESS-L2-051 provides adjacent stage-exit/evidence completeness, but is sourced from PHCAP08 atoms and is not artifact progress color projection.",
-      "HARNESS-L2-057 is adjacent closure/style evidence but leaves FR23-specific Scrum development-style and per-slice pair obligations unaddressed.",
+      "HARNESS-L2-057 is closure-only adjacency and is excluded from the semantic-near subset: it does not define development style or Scrum slice obligations.",
       "No later row establishes a source-qualified successor or closure for any audited identity."
     ],
-    "authority_effect": "none; later decisions are not backdated to f6 and do not assign successor/closure to these source identities."
+    "authority_effect": "none; later decisions are not backdated to f6 and do not assign successor/closure to these source identities.",
+    "semantic_proximity_subset_count": 3,
+    "adjacent_nonmatching_count": 1,
+    "adjacent_nonmatching_candidates": [
+      {
+        "identity": "HARNESS-L2-057",
+        "decision_record": "po-decision-2026-09-30-live26.md",
+        "decision_line": 42,
+        "decision_row_sha256": "ae8d179d379132fa771bc1fb349174a57efd9dfc5b896f51c3ca9f3261154360",
+        "registration_id": "MPR-RC-HARNESS-L2-057-001",
+        "classification": "closure-only adjacency; excluded from semantic-near subset",
+        "relation_to_audited_identity": "PR/CI/independent audit/merge/oracle/child issue等のclosure gate条件に隣接する。開発style選択やScrum slice条件を扱わない。",
+        "comparison": "FR23のProduction Scrum/Full V parity、slice delta、Scrum Reverse、各sliceのV-pairを定義せず、HARNESS-L2-046とは対象条件が異なる。"
+      }
+    ],
+    "decision_time_pair_details": {
+      "identity": "HARNESS-L2-046",
+      "decision_record": {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
+        "authority_effect": "effective_when_this_record_is_admitted_to_main_for_only_explicitly_fixed_revisions",
+        "line": 51,
+        "line_sha256": "8262b7450d8eb68154aa0123f8c829d7b882cd46450676a46de458030ee5ca25",
+        "disposition": "採択",
+        "registration_id": "MPR-RC-HARNESS-L2-046-001",
+        "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_file_sha256_at_source_head": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "l2_section_sha256": "47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e",
+        "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_file_sha256_at_source_head": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "l11_section_sha256": "a8e99f7df7166566c04b1113b045851d8417e17e8078c034f8f2a34ebfe4f37f"
+      },
+      "candidate_registration": {
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+        "line": 559,
+        "line_sha256": "c7eb0b0f84143fd4524a9eee3c82e2d652c27dfd5cd17eccd5352f16a8db190d",
+        "registration_id": "MPR-RC-HARNESS-L2-046-001",
+        "candidate_semantic_digest": "sha256:47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e",
+        "source_atom_set_digest": "sha256:2ea2811aaf80f131636c55cc68e43e64cbde8b3d0df4abb81c7900410c7d79b8",
+        "source_atom_count": 6,
+        "coverage_result": "no_loss",
+        "management_state": "registered_proposal",
+        "authority_effect": "none"
+      },
+      "coverage_receipt": {
+        "path": "docs/governance/audits/requirement-registration/harness-fullv-scrum-coverage-receipt-2026-09-28.json",
+        "file_sha256": "a8531d8914f88aca864ac0707b01a6e38b5a58c92f4b331da9cc9a4defaa1ec1",
+        "receipt_id": "MPR-RCPT-HARNESS-FULLV-SCRUM-2026-09-28",
+        "authority_effect": "none",
+        "candidate_l2_file_sha256_at_registration_source": "sha256:6c3023f9ca2be5d33f8e66ae2f2f0691bf69ff8070cfa386c953168e2d6eace9",
+        "candidate_semantic_digest": "sha256:47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e",
+        "l11_file_sha256_at_registration_source": "sha256:92e5fef1771fb24c1c1cb110cc105a1b9fd58d73d003615ea17be09922f3a616"
+      },
+      "registration_source_revision": "b6740b1fba371d1d30ca45df01686683904432d2",
+      "section_hash_rule": "identity section through next same-level or higher heading; omit trailing blank lines and normalize one final UTF-8 LF",
+      "revision_pins": [
+        {
+          "revision": "b6740b1fba371d1d30ca45df01686683904432d2",
+          "l2_file_sha256": "6c3023f9ca2be5d33f8e66ae2f2f0691bf69ff8070cfa386c953168e2d6eace9",
+          "l2_section_lines": "1025-1035",
+          "l2_section_sha256": "47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e",
+          "l11_file_sha256": "92e5fef1771fb24c1c1cb110cc105a1b9fd58d73d003615ea17be09922f3a616",
+          "l11_section_lines": "759-771",
+          "l11_section_sha256": "a8e99f7df7166566c04b1113b045851d8417e17e8078c034f8f2a34ebfe4f37f"
+        },
+        {
+          "revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
+          "l2_file_sha256": "fd00f5418f7df7373e586219ded3f91bbe522bb6e7a54bd8196e0fe0f64d6d59",
+          "l2_section_lines": "1025-1035",
+          "l2_section_sha256": "47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e",
+          "l11_file_sha256": "468bdf623371468d1829f763b11eb869ca25d36fdfdd14997f4cf326ef01ee68",
+          "l11_section_lines": "759-771",
+          "l11_section_sha256": "a8e99f7df7166566c04b1113b045851d8417e17e8078c034f8f2a34ebfe4f37f"
+        },
+        {
+          "revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "l2_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+          "l2_section_lines": "1025-1035",
+          "l2_section_sha256": "47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e",
+          "l11_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+          "l11_section_lines": "759-771",
+          "l11_section_sha256": "a8e99f7df7166566c04b1113b045851d8417e17e8078c034f8f2a34ebfe4f37f"
+        },
+        {
+          "revision": "a3340369530d06a636db6feb4a99a685a7c2c070",
+          "l2_file_sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
+          "l2_section_lines": "1025-1035",
+          "l2_section_sha256": "47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e",
+          "l11_file_sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e",
+          "l11_section_lines": "764-776",
+          "l11_section_sha256": "a8e99f7df7166566c04b1113b045851d8417e17e8078c034f8f2a34ebfe4f37f"
+        }
+      ],
+      "hash_reconciliation": "The 57 decision fixes whole L2/L11 file hashes at source_repository_revision 318ec4a04... and identity section digests. The MPR receipt captures proposal snapshot b6740b1fb... with different whole-file hashes. Under the stated section boundary rule, L2-046 digest 47cc... and L11 digest a8e99... are identical at proposal, decision basis c189, source HEAD 318, and current main a334. Whole-file changes do not extend adoption to other candidate sections or imply successor/closure.",
+      "boundary": "HARNESS-L2-046 is a separate new-generation source from archive FR-L1-23, not a formal successor. It preserves Production Scrum slice delta first, Scrum Reverse backfill of system workflow and L1-L5 assets, and no release-ready before SR4 pair-freeze. It does not establish parity with Full V, complete per-value-slice L4/L5-to-L6/L7 V-pair closure, all right-arm evidence, or all FR-L1-23 source atoms; it creates no source identity successor or closure. HARNESS-L2-057 is separately classified as closure-only, not development style or slice semantics."
+    }
   },
   "legacy_consumer_search": {
     "search_scope": "archive/legacy-generation-2026-09-14/root全体のテキスト資料（.md/.ts/.json/.yaml/.yml）を完全一致token FR-L1-21/23/51で検索。docs/src/tests以外のmatching .helix audit等も含め、runtimeは実行しない。",

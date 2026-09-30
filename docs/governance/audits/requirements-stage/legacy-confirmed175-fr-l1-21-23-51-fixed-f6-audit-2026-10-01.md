@@ -40,7 +40,17 @@ FR-L1-21には既存の`HARNESS-L2-036` parity receiptがある。receiptは4 so
 
 このreceiptはFR21のW-gate観点に具体的な後続条件を持つ重要な近接証拠だが、source集合にFR22/NFRが含まれ、FR21固有のsource-only dispositionではない。旧hook/CIの物理方式は再導入せず、`≥90%`を個別ticket pass閾値にしない。採択pairが存在することからFR-L1-21 source identity全体のsuccessorまたはclosureは生成されない。
 
-2026-09-29の57候補、同日の11候補、2026-09-30 live26の採択/承認行を決定表にある採択/承認88行（57候補53件、11候補10件、live26 25件）を全件screenし、行digestと原文rowをJSONに保持した。条件追加のみの表行2件と保留行はidentity採択でないため母集団から除いた。semantic近接subsetはHARNESS-L2-036（FR21のparity）、HARNESS-L2-051（FR51のstage/evidence隣接）、HARNESS-L2-057（FR23のclosure/style隣接）。HARNESS-L2-051は別PHCAP08 source atomsのstage-exit receiptであり、artifact色projectionを定めない。HARNESS-L2-057もclosure条件を扱う隣接候補で、FR23のScrum style同格性やsliceごとの正規pairを定義しない。後発採択はf6へ遡及適用しない。
+2026-09-29の57候補、同日の11候補、2026-09-30 live26の決定表にある採択/承認identity row、計88行（57候補53件、11候補10件、live26 25件）を全件screenし、行digestと原文rowをJSONに保持した。条件追加のみの表行2件と保留行はidentity採択でないため母集団から除いた。semantic近接subsetはHARNESS-L2-036（FR21 parity）、HARNESS-L2-046（FR23のProduction Scrum delta/backfill/SR4）、HARNESS-L2-051（FR51のstage/evidence隣接）の3件。HARNESS-L2-051は別PHCAP08 source atomsのstage-exit receiptであり、artifact色projectionを定めない。HARNESS-L2-057はPR/CI/audit/merge/oracle等のclosure条件に限る隣接候補で、開発styleやScrum slice条件を扱わないため、semantic近接subsetから分けた。後発採択はf6へ遡及適用しない。
+
+## FR23最直接近接候補 HARNESS-L2-046 の固定revision
+
+HARNESS-L2-046は旧FR-L1-23とは別sourceの新世代候補であり、formal successorではない。57件判断recordはsource repository HEAD `318ec4a04abb3c1cc17111b3d939f913facd5fd3`とdecision basis `c18969c73306f6ed4cc4b93249583cd7e5d9ff68`を記録する。判断表51行（SHA-256 `8262b7450d8eb68154aa0123f8c829d7b882cd46450676a46de458030ee5ca25`）はHARNESS-L2-046を採択し、L2全file SHA `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09`・節SHA `47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e`、L11全file SHA `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5`・節SHA `a8e99f7df7166566c04b1113b045851d8417e17e8078c034f8f2a34ebfe4f37f`を固定する。判断recordのauthority効果は明示固定revisionに限る。
+
+MPR register行559（line SHA `c7eb0b0f84143fd4524a9eee3c82e2d652c27dfd5cd17eccd5352f16a8db190d`、register file SHA `ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a`）は6 source atoms、`no_loss`、`registered_proposal`、`authority_effect:none`を記録する。coverage receipt `harness-fullv-scrum-coverage-receipt-2026-09-28.json`（file SHA `a8531d8914f88aca864ac0707b01a6e38b5a58c92f4b331da9cc9a4defaa1ec1`）はcandidate L2全file SHA `6c3023f9ca2be5d33f8e66ae2f2f0691bf69ff8070cfa386c953168e2d6eace9`、節SHA `47cc…`、candidate L11全file SHA `92e5fef1771fb24c1c1cb110cc105a1b9fd58d73d003615ea17be09922f3a616`、節SHA `a8e99…`を記録する。このproposal snapshotはcommit `b6740b1fba371d1d30ca45df01686683904432d2`にある。
+
+receipt記載の節境界（対象見出しから次の同階層または上位見出しまで。末尾空行を除きUTF-8 LF一つで終える）で再照合すると、L2-046節SHA `47cc23…`とL11節SHA `a8e99…`はproposal commit `b6740b1fb…`、decision basis `c18969c…`、decision source HEAD `318ec4a…`、audit基準main `a334036…`の全てで一致する。決定表のwhole-file SHAはsource HEAD時点、receiptのwhole-file SHAは先行proposal snapshot時点を固定するため全file値は異なるが、節bytesは同一であり矛盾ではない。audit基準mainのL2/L11全file SHAは`78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6` / `a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e`。近接比較には明示固定された046節bytesだけを使い、同文書内の別候補の採択を意味しない。
+
+046が保持する近接点はProduction Scrumでのslice delta先行、Scrum Reverseによるsystem workflowとL1〜L5設計資産へのbackfill、SR4 pair-freeze前のrelease-ready不可である。Full Vとの同格性、全value-sliceのL4/L5→L6/L7 V-pair閉包、全right-arm evidence、FR-L1-23の全source atomsは定めない。HARNESS-L2-057はPR/CI/independent audit/merge/oracle/child issue等のclosure条件のみを扱い、開発styleやslice semanticsを含まないため046とは別のclosure-only隣接とする。decision/MPR/receipt/current-mainの全file・節pinsは対応JSONの`decision_time_pair_details`に保持した。
 
 ## 非主張と静的確認
 
