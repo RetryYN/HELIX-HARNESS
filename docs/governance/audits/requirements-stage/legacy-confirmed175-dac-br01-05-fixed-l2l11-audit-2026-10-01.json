@@ -452,7 +452,7 @@
       ],
       "retained_meaning": "旧利用目的consumerは、canonical/candidate/reference/compatibility/historicalを同一HEAD・class/lifecycle/input policy・ownerのprojectionで識別する意味を保持し、path名や自己申告だけの分類、UNKNOWNの推測を反例とする。固定f6のHARNESS-L2-001は層とV-pairを混同せず、OS-L2-015はasset owner/identity/source/revision/digestを扱う。",
       "changed_or_not_inherited": "旧要求はdocument-class/lifecycle/input-policyを一体のDocumentArtifactV1へ結ぶが、固定L2/L11のHARNESS-L2-001/004とOS-L2-015は層/pairおよびasset identity/authority/evidenceの境界を定め、旧class/lifecycle/input-policy enum一式を採択していない。",
-      "numeric_exception_and_counterexample": "旧L3はclass集合を24種、lifecycle dispositionを10値、input_policyを6値として分離する。旧BR-001の利用者向け識別集合はcanonical/candidate/reference/compatibility/historicalの5区分。",
+      "numeric_exception_and_counterexample": "旧L3はclass集合を23種、lifecycle dispositionを10値、input_policyを6値として分離する。旧BR-001の利用者向け識別集合はcanonical/candidate/reference/compatibility/historicalの5区分。",
       "residual": "5区分をユーザーが同一HEADで識別する具体的positive oracle、全class/lifecycle/input-policy enum、どのdocがcurrent decision inputかのconsumer面はf6 targetにない。Historical文書が自己申告でcanonicalになる反例を拒否する旧ACも同一契約としては残る。",
       "later_decision_effect": "",
       "audit_status": "open_partial_correspondence",

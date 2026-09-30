@@ -62,7 +62,7 @@ Source-qualified identity: `helix/L1-requirements/document-authority-census-requ
     - `docs/helix-harness/L2-requirements/product-requirements.md:195` SHA-256 `ece1218b189bed89be2ceed63ef17ab338125b19eababffe1ad30b82b05e3e5c` — | HARNESS-L2-004 | RFA-BR-03、DGH-BR-02 | 変更の影響要求・設計・対検証を再確定し、影響しない有効作業を一律失効させない |
 - 保持: 旧利用目的consumerは、canonical/candidate/reference/compatibility/historicalを同一HEAD・class/lifecycle/input policy・ownerのprojectionで識別する意味を保持し、path名や自己申告だけの分類、UNKNOWNの推測を反例とする。固定f6のHARNESS-L2-001は層とV-pairを混同せず、OS-L2-015はasset owner/identity/source/revision/digestを扱う。
 - 意味差/非継承: 旧要求はdocument-class/lifecycle/input-policyを一体のDocumentArtifactV1へ結ぶが、固定L2/L11のHARNESS-L2-001/004とOS-L2-015は層/pairおよびasset identity/authority/evidenceの境界を定め、旧class/lifecycle/input-policy enum一式を採択していない。
-- 数値・例外・反例: 旧L3はclass集合を24種、lifecycle dispositionを10値、input_policyを6値として分離する。旧BR-001の利用者向け識別集合はcanonical/candidate/reference/compatibility/historicalの5区分。
+- 数値・例外・反例: 旧L3はclass集合を23種、lifecycle dispositionを10値、input_policyを6値として分離する。旧BR-001の利用者向け識別集合はcanonical/candidate/reference/compatibility/historicalの5区分。
 - 未対応残差: 5区分をユーザーが同一HEADで識別する具体的positive oracle、全class/lifecycle/input-policy enum、どのdocがcurrent decision inputかのconsumer面はf6 targetにない。Historical文書が自己申告でcanonicalになる反例を拒否する旧ACも同一契約としては残る。
 - 後発57+11判断: 当該source-qualified identityの直接判断なし。全identity/status一覧は下記のとおり照合。
 - 状態: `open_partial_correspondence`、successorなし、authority effect `none`。
