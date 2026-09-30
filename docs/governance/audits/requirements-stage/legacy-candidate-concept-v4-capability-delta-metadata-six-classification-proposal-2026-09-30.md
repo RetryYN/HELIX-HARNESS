@@ -2,9 +2,9 @@
 
 ## 概要
 
-- 基準HEAD: `0f5050e2b25cd622640c99c5de170cca087f7d8a`（#2386後）。対象は `LEGACY-CAND-LINE-002607`–`LEGACY-CAND-LINE-002612`、旧source物理行5–10。
+- 基準HEAD: `011a537ab57a70deb79ca2db22e37b15de7cceb3`（#2387後）。対象は `LEGACY-CAND-LINE-002607`–`LEGACY-CAND-LINE-002612`、旧source物理行5–10。
 - 6行を `explanation / subtypeなし / not_condition` とするbounded proposal。要求意味、authority、adoption、route coverageへの効果はない。
-- #2385後pool 471件のうち6件が対象。適用時poolは465件。#2386後のroute union 371件（うちproduct-targeted 341、out-of-pool HMC 30）、pool交差312件は不変。未監査poolは159→153。
+- #2385後pool 471件のうち6件が対象。適用時poolは465件。#2387後のroute union 373件（うちproduct-targeted 343、out-of-pool HMC 30）、pool交差314件は不変。未監査poolは157→151。
 
 ## 原文と分類根拠
 
@@ -35,16 +35,16 @@
 | condition | 858 | 852 | -6 |
 | explanation | 2,971 | 2,977 | +6 |
 | product_requirement_atom subtype | 820 | 814 | -6 |
-| product-targeted route union | 341 | 341 | 0 |
-| 全route union（HMC 30含む） | 371 | 371 | 0 |
-| poolとroute unionの交差 | 312 | 312 | 0 |
-| 未監査pool | 159 | 153 | -6 |
+| product-targeted route union | 343 | 343 | 0 |
+| 全route union（HMC 30含む） | 373 | 373 | 0 |
+| poolとroute unionの交差 | 314 | 314 | 0 |
+| 未監査pool | 157 | 151 | -6 |
 
 算式: `471 − 312 = 159`; `(471 − 6) − 312 = 153`。件数は提案を適用した場合の条件付き計算であり、累積recountを代替しない。
 
 ## 境界と検証
 
-- 6 IDのsource line text/SHAと#2353 effective rowを照合した。既存classification overlaysおよびroute-audit selection/union IDとの交差はすべて0。
+- 6 IDのsource line text/SHAと#2353 effective rowを照合した。既存classification overlaysおよび#2387までのroute-audit selection/union IDとの交差はすべて0。
 - authority effectは`none`。現行L2/L11要求、successor、採択、実装完了、Concept全体のcoverageを主張しない。
 - 旧source bytes、既存audit snapshotを変更しない。旧archive tools/tests/runtime/workflow/CIは実行していない。
 - 機械可読証跡: `{json_path.name}`。固定入力のhashと行別raw-byte hashはJSONに記録。

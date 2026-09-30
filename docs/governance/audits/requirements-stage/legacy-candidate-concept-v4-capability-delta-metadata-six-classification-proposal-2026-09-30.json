@@ -1,7 +1,7 @@
 {
   "schema_version": "legacy-candidate-classification-correction-overlay.v1",
   "audit_id": "legacy-candidate-concept-v4-capability-delta-metadata-six-classification-proposal-2026-09-30",
-  "created_against_commit": "0f5050e2b25cd622640c99c5de170cca087f7d8a",
+  "created_against_commit": "011a537ab57a70deb79ca2db22e37b15de7cceb3",
   "classification_basis_commit": "97672630b7de70fd4433827730c390cbabd90a99",
   "authority_effect": "none",
   "audit_mode": "append_only_bounded_source_classification_correction_proposal",
@@ -276,28 +276,24 @@
       "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-seven-row-route-audit-after-2384-2026-09-30.json",
       "sha256": "2e58703e7246a83f6d90649f33d2382b740d2de0d385c6ba66c8952fd796dbc5",
       "selected_or_union_id_intersection": []
+    },
+    {
+      "ref": "2387",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-functional-release-slice-acceptance-two-row-route-audit-after-2386-2026-09-30.json",
+      "sha256": "25bf3d2f9a9e72e5dc8e755e7aa70ed1fd4de6381e3b2f6122b2aa03cd9b9f4f",
+      "selected_or_union_id_intersection": []
     }
   ],
   "count_impact": {
-    "current_after_2385_and_2386": {
-      "product_requirement_atom_unknown_pool": 471,
-      "condition_count": 858,
-      "explanation_count": 2971,
-      "product_requirement_atom_condition_count": 820,
-      "product_targeted_route_union_count": 341,
-      "all_route_union_count_including_30_out_of_pool_HMC": 371,
-      "product_pool_intersection_with_audited_union": 312,
-      "unreviewed_product_unknown_pool": 159
-    },
     "proposal_if_applied": {
       "product_requirement_atom_unknown_pool": 465,
       "condition_count": 852,
       "explanation_count": 2977,
       "product_requirement_atom_condition_count": 814,
-      "product_targeted_route_union_count": 341,
-      "all_route_union_count_including_30_out_of_pool_HMC": 371,
-      "product_pool_intersection_with_audited_union": 312,
-      "unreviewed_product_unknown_pool": 153
+      "product_targeted_route_union_count": 343,
+      "all_route_union_count_including_30_out_of_pool_HMC": 373,
+      "product_pool_intersection_with_audited_union": 314,
+      "unreviewed_product_unknown_pool": 151
     },
     "delta": {
       "product_requirement_atom_unknown_pool": -6,
@@ -308,7 +304,17 @@
       "pool_union_intersection": 0,
       "unreviewed_product_unknown_pool": -6
     },
-    "equation": "471 - 312 = 159; (471 - 6) - 312 = 153. Proposal is conditional and requires cumulative recount if later applied."
+    "equation": "471 - 314 = 157; (471 - 6) - 314 = 151. #2387 adds two disjoint routed IDs to the prior union; this proposal remains conditional and requires cumulative recount if later applied.",
+    "current_after_2387": {
+      "product_requirement_atom_unknown_pool": 471,
+      "condition_count": 858,
+      "explanation_count": 2971,
+      "product_requirement_atom_condition_count": 820,
+      "product_targeted_route_union_count": 343,
+      "all_route_union_count_including_30_out_of_pool_HMC": 373,
+      "product_pool_intersection_with_audited_union": 314,
+      "unreviewed_product_unknown_pool": 157
+    }
   },
   "limits": [
     "Proposal does not alter source bytes, any previous audit, route results, current requirement text, authority, or adoption.",
@@ -359,6 +365,12 @@
       "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-capability-delta.md",
       "commit": "f6dad2",
       "sha256": "af5a4cd6ad6dcb85be811bba8213a185d64a17239bfc3b5d69e728bfb03ac0cc"
+    },
+    {
+      "role": "route_audit_2387",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-functional-release-slice-acceptance-two-row-route-audit-after-2386-2026-09-30.json",
+      "commit": "011a537ab57a70deb79ca2db22e37b15de7cceb3",
+      "sha256": "25bf3d2f9a9e72e5dc8e755e7aa70ed1fd4de6381e3b2f6122b2aa03cd9b9f4f"
     }
   ],
   "adjacent_source_classification_check": {
