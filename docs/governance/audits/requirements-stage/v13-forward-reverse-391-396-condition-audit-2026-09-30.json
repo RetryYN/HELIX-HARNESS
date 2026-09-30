@@ -1,0 +1,666 @@
+{
+  "schema_version": "v13-focused-condition-audit.v1",
+  "audit_scope": {
+    "title": "旧v1.3 §5 Forward/Reverse cross-axis six-condition audit",
+    "archive_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+    "archive_source_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+    "physical_lines": [
+      507,
+      512
+    ],
+    "source_item_ids": [
+      "REQSRC-SUP-00391",
+      "REQSRC-SUP-00392",
+      "REQSRC-SUP-00393",
+      "REQSRC-SUP-00394",
+      "REQSRC-SUP-00395",
+      "REQSRC-SUP-00396"
+    ],
+    "source_inventory": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json",
+    "scope_limit": "Six exact source identities only; adjacent §4/§4.1, whole v1.3 source and whole asset population are outside this audit."
+  },
+  "created_against_revision": "a3d9f7e205a3d766280c9de4936551f0fef16143",
+  "current_input_pins": {
+    "queue": {
+      "path": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json",
+      "sha256": "sha256:a61ec098a6bd714fcbbb706d0d9afb4e7f2777b114bf23c8056fc130e30f60d9",
+      "basis_commit": "a3d9f7e205a3d766280c9de4936551f0fef16143"
+    },
+    "baseline_condition_audit": {
+      "path": "docs/governance/audits/requirements-stage/legacy-v13-semantic-condition-audit-2026-09-28.json",
+      "sha256": "sha256:cd765545e584c50b423d652674ac54a3240aced24a321c0caa6bc2dd881ad863"
+    },
+    "legacy_asset_disposition": {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "sha256:cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    "current_harness_l2": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "sha256:78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6"
+    },
+    "current_harness_l11": {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "sha256:a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e"
+    },
+    "current_os_l2": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "sha256:bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf"
+    },
+    "current_os_l11": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "sha256:cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112"
+    },
+    "source_snapshot": {
+      "path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+      "role": "current source snapshot only; old archive tuple remains the identity audited",
+      "sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+    },
+    "decision_11_candidates": {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+      "sha256": "sha256:6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+      "decision_source_repository_revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+      "decision_basis_revision": "909c8015326f35f8d42ce12e3c388923de411d1f"
+    },
+    "mpr_harness_l2_051": {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "sha256": "sha256:ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+      "line": 605,
+      "line_sha256": "sha256:d16650e12b2bacb3b0f0bef072ce6f353a0aeba9b7794eda588854a859491f53",
+      "registration_id": "MPR-RC-HARNESS-L2-051-001",
+      "candidate_semantic_digest": "sha256:e023408a45afa40bb674aebf53fcc870d6c4d9f8da155ce282b9fe5b69818f9b",
+      "management_state": "registered_proposal",
+      "authority_effect": "none"
+    },
+    "phcap08_stage_exit_receipt": {
+      "path": "docs/governance/audits/requirement-registration/phcap08-stage-exit-coverage-receipt-2026-09-29.json",
+      "sha256": "sha256:2c0111eaf28b5d653f2a99efd6ede1f5f380c29f4bec17e554cb7a195cb3e3a4",
+      "role": "source atoms held/preserved; not carried into HARNESS-L2-051"
+    }
+  },
+  "selection_and_exclusion": {
+    "selection_rule": "Queue rows are primary_residual, unresolved_for_closure_work, condition_status unresolved, exact local individual audit ref count 0. The consecutive §5 lines form one compact forward/reverse process-axis cluster.",
+    "prior_requested_nonoverlap": [
+      {
+        "group": "#2411 §6 v1.3 17-condition audit",
+        "source_item_ids": [
+          "REQSRC-SUP-00398",
+          "REQSRC-SUP-00399",
+          "REQSRC-SUP-00400",
+          "REQSRC-SUP-00403",
+          "REQSRC-SUP-00404",
+          "REQSRC-SUP-00405",
+          "REQSRC-SUP-00407",
+          "REQSRC-SUP-00409",
+          "REQSRC-SUP-00410",
+          "REQSRC-SUP-00411",
+          "REQSRC-SUP-00414",
+          "REQSRC-SUP-00418",
+          "REQSRC-SUP-00421",
+          "REQSRC-SUP-00424",
+          "REQSRC-SUP-00430",
+          "REQSRC-SUP-00431",
+          "REQSRC-SUP-00432"
+        ]
+      },
+      {
+        "group": "#2413 §2 v1.3 12-condition audit",
+        "source_item_ids": [
+          "REQSRC-SUP-00034",
+          "REQSRC-SUP-00035",
+          "REQSRC-SUP-00036",
+          "REQSRC-SUP-00037",
+          "REQSRC-SUP-00038",
+          "REQSRC-SUP-00039",
+          "REQSRC-SUP-00040",
+          "REQSRC-SUP-00041",
+          "REQSRC-SUP-00042",
+          "REQSRC-SUP-00043",
+          "REQSRC-SUP-00044",
+          "REQSRC-SUP-00045"
+        ]
+      },
+      {
+        "group": "prior v1.3 §4.6.1 package-consumer residual 11-condition audit",
+        "source_item_ids": [
+          "REQSRC-SUP-00225",
+          "REQSRC-SUP-00242",
+          "REQSRC-SUP-00243",
+          "REQSRC-SUP-00244",
+          "REQSRC-SUP-00245",
+          "REQSRC-SUP-00246",
+          "REQSRC-SUP-00248",
+          "REQSRC-SUP-00249",
+          "REQSRC-SUP-00251",
+          "REQSRC-SUP-00255",
+          "REQSRC-SUP-00256"
+        ],
+        "source_lines": [
+          300,
+          318,
+          319,
+          320,
+          321,
+          322,
+          324,
+          325,
+          327,
+          331,
+          333
+        ],
+        "audit_path": "docs/governance/audits/requirements-stage/v13-package-consumer-residual-11-condition-audit-2026-09-30.json",
+        "source_section": "旧v1.3 §4.6.1 package-consumer residual",
+        "scope_description": "11 individually audited residual conditions selected from that section; source physical lines 300 and 318–333 (only listed source rows)."
+      },
+      {
+        "group": "#2414 review corrections",
+        "source_item_ids": [],
+        "note": "Review corrections affected condition comparisons in a separate confirmed175 audit artifact; no v1.3 source-line successor was assigned."
+      }
+    ],
+    "overlap_with_current_v13_focused_audit_artifacts": [],
+    "selected_queue_rows": [
+      {
+        "source_item_id": "REQSRC-SUP-00391",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 507,
+        "source_line_sha256": "sha256:b532e1324eb3d2fc4b01b9afd2859d9afed413106e3e044dfa9caea63c94e6c1",
+        "source_text": "- Forwardを正方向とする。",
+        "condition_cluster_id": "V13-COND-L0507",
+        "queue_status_before_audit": "unresolved",
+        "queue_state_before_audit": "unresolved_for_closure_work",
+        "existing_individual_audit_refs_before_audit": [],
+        "existing_individual_audit_ref_count_before_audit": 0
+      },
+      {
+        "source_item_id": "REQSRC-SUP-00392",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 508,
+        "source_line_sha256": "sha256:0caeb388b69a763f1dbd1e2d761f2b0e72ac1064b870273aa47798869a90ee5c",
+        "source_text": "- Reverseは実装事実を設計へ戻す先行taskで、Forward合流前にR0〜R4を閉じる。",
+        "condition_cluster_id": "V13-COND-L0508",
+        "queue_status_before_audit": "unresolved",
+        "queue_state_before_audit": "unresolved_for_closure_work",
+        "existing_individual_audit_refs_before_audit": [],
+        "existing_individual_audit_ref_count_before_audit": 0
+      },
+      {
+        "source_item_id": "REQSRC-SUP-00393",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 509,
+        "source_line_sha256": "sha256:489749f27a20a8db2b8c97ae596306d000a4e4230653b79c20443cc6e44021ac",
+        "source_text": "- 確定設計を変更する場合はRedesignを先行し、その後Forward実装へ戻る。",
+        "condition_cluster_id": "V13-COND-L0509",
+        "queue_status_before_audit": "unresolved",
+        "queue_state_before_audit": "unresolved_for_closure_work",
+        "existing_individual_audit_refs_before_audit": [],
+        "existing_individual_audit_ref_count_before_audit": 0
+      },
+      {
+        "source_item_id": "REQSRC-SUP-00394",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 510,
+        "source_line_sha256": "sha256:cae355f19f81c87d2380003590ad12929d1cb5a5fbea3ce3e7ba595dd9d2c96e",
+        "source_text": "- 外部挙動不変の構造改善はDesign Refactorとし、機能追加と混載しない。",
+        "condition_cluster_id": "V13-COND-L0510",
+        "queue_status_before_audit": "unresolved",
+        "queue_state_before_audit": "unresolved_for_closure_work",
+        "existing_individual_audit_refs_before_audit": [],
+        "existing_individual_audit_ref_count_before_audit": 0
+      },
+      {
+        "source_item_id": "REQSRC-SUP-00395",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 511,
+        "source_line_sha256": "sha256:dad21088fa4e450b08bbb8ee8817363407196d9dca526040308959be8bdf11c3",
+        "source_text": "- Infinity Loopは監査/改善 ⇔ gate ⇔ 自動走行の横軸であり、最終的にForward正本へ収束する。",
+        "condition_cluster_id": "V13-COND-L0511",
+        "queue_status_before_audit": "unresolved",
+        "queue_state_before_audit": "unresolved_for_closure_work",
+        "existing_individual_audit_refs_before_audit": [],
+        "existing_individual_audit_ref_count_before_audit": 0
+      },
+      {
+        "source_item_id": "REQSRC-SUP-00396",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 512,
+        "source_line_sha256": "sha256:3be486ed8a33f28b366ac98efd699862599d6a7264fc9d0da60c51714b741069",
+        "source_text": "- Scrum ReverseはScrumの実装・実測をVモデル資産へ戻す横断経路であり、SR4後にForwardへ再合流する。",
+        "condition_cluster_id": "V13-COND-L0512",
+        "queue_status_before_audit": "unresolved",
+        "queue_state_before_audit": "unresolved_for_closure_work",
+        "existing_individual_audit_refs_before_audit": [],
+        "existing_individual_audit_ref_count_before_audit": 0
+      }
+    ]
+  },
+  "comparison_baselines": {
+    "po_fixed_revision": {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "HARNESS-L2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "sha256": "sha256:aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "lines": {
+          "002": {
+            "line": 53,
+            "line_sha256": "sha256:932d09ce11a68ddc501378d4e0e5cf65f71597de161efebf5fd699ae82b2813b"
+          },
+          "003": {
+            "line": 54,
+            "line_sha256": "sha256:693deb038a91ee9ba358aecab588d889a9fa40ff67c5d697f880ee76ff18b3d0"
+          },
+          "002/003-ticket-note": {
+            "line": 98,
+            "line_sha256": "sha256:02ab409c4e895af921d3a922b679db70c8a8f9fdf474df86d3729ad365894983"
+          },
+          "002-style-definition": {
+            "line": 100,
+            "line_sha256": "sha256:7c94885350f99f133b23e4520954f46f061ad48ddbf6e36b5ad86e47f3c9311d"
+          },
+          "002/003-scrum-reverse": {
+            "line": 105,
+            "line_sha256": "sha256:19ef8fab3e2dc5415b55d244f60fc3f29fc832dd6636a0223666e1603e57c607"
+          },
+          "003-backflow-refactor-route": {
+            "line": 111,
+            "line_sha256": "sha256:826f12ebb5a24d65b7ba268498f724d6b753ada0cc3d8d75b346598e8efdb847"
+          },
+          "003-scoped-reverse": {
+            "line": 110,
+            "line_sha256": "sha256:47c0c8378c588a10cb2be40f5c8d2a7f1b526408226bad13bff357254ddd8f40"
+          },
+          "003-harness-state-boundaries": {
+            "line": 112,
+            "line_sha256": "sha256:a480274f1f4d24caf515783374ded59f6f8ad6a99dca47b4d385fa51984ba93d"
+          },
+          "004-scrum-backflow": {
+            "line": 114,
+            "line_sha256": "sha256:193360a5a5427242f2dc9e0df454508dee329ae07c2fd14ee63493b5b18ae8eb"
+          }
+        }
+      },
+      "HARNESS-L11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "sha256": "sha256:09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "lines": {
+          "002": {
+            "line": 22,
+            "line_sha256": "sha256:750bbdbca003df8710a0112781b490bb490573913fc1fd9d24f2d158cabb42cb"
+          },
+          "003": {
+            "line": 23,
+            "line_sha256": "sha256:1ced8f2b5886a2c154bb809f169b8a01f27d9af38abb1697ac0cd96325dba9c5"
+          }
+        }
+      },
+      "HELIXOS-L2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "sha256": "sha256:c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+        "lines": {
+          "010-workflow": {
+            "line": 63,
+            "line_sha256": "sha256:e00b99e43ad2e5f6a763d8ec05f994f8d2d94b51a9ae36468a02b2be2b228f6b"
+          },
+          "ticket-forward-reverse": {
+            "line": 127,
+            "line_sha256": "sha256:846f320c66494399e0635979d24f56945943dc92cc5253ac05ff98c20595ffc0"
+          },
+          "ticket-reverse": {
+            "line": 139,
+            "line_sha256": "sha256:d3aa050d628969c4926a19c5d56e062c8a24a69b7dbdc70d1af4f3ef5a837b02"
+          },
+          "ticket-refactor": {
+            "line": 142,
+            "line_sha256": "sha256:98cbddaa4272bae89367103aa1f30fab8c9b71d3a9f0ff72c04526f2c30d5192"
+          },
+          "ticket-design-refactor": {
+            "line": 143,
+            "line_sha256": "sha256:2accf079f2841f2c77ecca910b24d1217e77d7a304b97155e9243bf7399f0723"
+          },
+          "ticket-redesign": {
+            "line": 145,
+            "line_sha256": "sha256:978fb520bab47899ea56f43c8dd9a68b6d37aebae4623b745492bb6ad215ce7e"
+          }
+        }
+      },
+      "HELIXOS-L11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "sha256": "sha256:925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+        "lines": {
+          "010": {
+            "line": 30,
+            "line_sha256": "sha256:b1ff87cf0effbb9a2d7dac2895a0c8d62fe406519d110eac34b17d6917129238"
+          },
+          "HXT-TYPE-09-Reverse": {
+            "line": 286,
+            "line_sha256": "sha256:d39a81a9df511f187a2570f873208c45cac2337367c0d4e8595c62f7f3811e6f"
+          },
+          "HXT-TYPE-13-Design-refactor": {
+            "line": 290,
+            "line_sha256": "sha256:6d1a7dc040f71de963fb8d2f5480f4d9cbf2d2efbffec0b8164780a85f1c0f6e"
+          }
+        }
+      }
+    },
+    "later_adopted_pairs": [
+      {
+        "identity": "HARNESS-L2-038",
+        "disposition": "採択済みexact pair revision（比較対象に限定）",
+        "registration": "MPR-RC-HARNESS-L2-038-001",
+        "decision_file_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_file_sha256": "sha256:111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "l2_section_sha256": "sha256:dd5b5450801617bbd6cc1dfd2e522420399ec58fb7675a286221dd0d9415767c",
+        "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_file_sha256": "sha256:3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "l11_section_sha256": "sha256:dfa3b4c245af3987ee7738cc4a3aa758bb8f113b9d06079362d978ff63731297",
+        "bounded_relevance": "選択されたsource型/scopeでのsource根拠・観測契約・as-is設計/test・intent仮説と既存authorityによるPO検証状態・gap/routingの内容対応を比較する。旧R0–R4のphase label/schema/enumの継承ではなく、全4020 assetsへの一括適用でもない。source 392の限定的な意味近接で、旧R0–R4閉鎖や全clauseのcoverageを証明しない。",
+        "source_successor_assignment": false,
+        "decision_source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md"
+      },
+      {
+        "identity": "HARNESS-L2-046",
+        "disposition": "採択済みexact pair revision（比較対象に限定）",
+        "registration": "MPR-RC-HARNESS-L2-046-001",
+        "decision_file_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_file_sha256": "sha256:111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "l2_section_sha256": "sha256:47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e",
+        "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_file_sha256": "sha256:3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "l11_section_sha256": "sha256:a8e99f7df7166566c04b1113b045851d8417e17e8078c034f8f2a34ebfe4f37f",
+        "bounded_relevance": "二つの枝を区別する。Full V枝は非slice全体workflowのfreeze/pair検証で、Scrum SR4を要求しない。ここで近接するのはProduction Scrumまたは合成styleのうち実際にScrumを適用するscopeだけのslice delta→system workflow/L1–L5 backfill→必要なSR4 receipt/reentry枝。Hybrid全体へ外挿しない。v1.3 §5 Scrum Reverseと§4/§4.1の旧L3後slice、L4/L5/V-pair evidenceを同一条件とみなさない。",
+        "source_successor_assignment": false,
+        "decision_source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md"
+      },
+      {
+        "identity": "HARNESS-L2-051 / HARNESS-L11-051",
+        "disposition": "採択済み exact pair revision (11-candidate decision)",
+        "registration": "MPR-RC-HARNESS-L2-051-001",
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+        "decision_record_sha256": "sha256:6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+        "decision_source_repository_revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+        "decision_basis_revision": "909c8015326f35f8d42ce12e3c388923de411d1f",
+        "decision_row_line": 31,
+        "decision_row_sha256": "sha256:49ee147e98f82a02a9f49328e94996e7bdaab00219ff7de044fc521129c23712",
+        "pair_source_revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+        "l2": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "file_sha256": "sha256:45955ffba1293b603f3c513ec1e9e328dd7bcf24b038463eb20dd480d1dc2108",
+          "section_lines": [
+            1112,
+            1128
+          ],
+          "section_sha256": "sha256:e023408a45afa40bb674aebf53fcc870d6c4d9f8da155ce282b9fe5b69818f9b",
+          "digest_kind": "candidate_semantic_digest and exact section bytes; same digest"
+        },
+        "l11": {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "file_sha256": "sha256:216a8dccfff723408fd4b54701933a8e257f29e5c775aaef2a4458d1f36d3cc7",
+          "section_lines": [
+            828,
+            838
+          ],
+          "section_sha256": "sha256:3f14cb4463fa67a69d82827040d249c93cb905b5ac6934769b15e1b9cf701300",
+          "digest_kind": "exact UTF-8 LF-terminated section bytes"
+        },
+        "adopted_scope": "Stage progress or stage-exit claims only: bind stage/scope/goal, canonical and paired layer, owner, required output, applicable oracle, target revision/HEAD, evidence references and unresolved conditions. Lower-stage pass or evidence existence alone cannot establish a higher-stage exit; missing/mismatched revision/pair/oracle/evidence remains unknown or incomplete. No new approval role, deadline, reentry requirement or mandatory per-stage independent review.",
+        "bounded_relevance_to_this_audit": "Near source 392 only as a generic stage-exit evidence correspondence contract for a claim that a Reverse stage is complete; it does not define old R0–R4 or enumerate their mapping. Near source 396 only as a generic evidence/scope/revision check if an SR4 exit/reentry claim is made; it does not define Scrum checkpoints, SR0–SR4, Scrum-specific receipt, or Forward reentry semantics.",
+        "source_line_successor_or_closure": "none; the PHCAP-08 source atoms named by this pair remain in holding and carried_atom_refs is empty. This pair does not adopt or close any REQSRC-SUP-00391..00396 line.",
+        "source_atom_boundary": {
+          "source_asset": "LEGACY-ASSET-D27D4A1511BFD43623A9",
+          "selected_atom_count": 25,
+          "disposition": "preserved_pending_registration",
+          "carried_atom_refs": [],
+          "relation_to_current_v13_lines": "none asserted"
+        }
+      }
+    ],
+    "decision_318ec_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+    "decision_5aa100_revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+    "decision_reading_boundary": "Keep fixed f6dad2 and later decision/pair citations distinct. The 57+11 decision adopts the exact named pair revisions only; it neither adopts these source identities nor assigns their successors.",
+    "later_decisions": [
+      {
+        "decision_id": "57-candidate decision",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_record_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "applies_to": "explicit fixed revisions named by the 57-candidate record; HARNESS-L2-038 and HARNESS-L2-046 only as recorded there"
+      },
+      {
+        "decision_id": "11-candidate decision",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+        "decision_record_sha256": "sha256:6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+        "decision_source_repository_revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+        "decision_basis_revision": "909c8015326f35f8d42ce12e3c388923de411d1f",
+        "decision_row_line": 31,
+        "decision_row_sha256": "sha256:49ee147e98f82a02a9f49328e94996e7bdaab00219ff7de044fc521129c23712",
+        "applies_to": "explicit exact pair revision HARNESS-L2-051 / HARNESS-L11-051 only; the decision record itself is a separately pinned later record and has authority only as stated there"
+      }
+    ],
+    "decision_record_revision_note": "The 57 decision record is separately pinned by its current document SHA and declares source_repository_revision 318ec4a04abb3c1cc17111b3d939f913facd5fd3. The distinct 11 decision record is separately pinned by SHA 6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5 and declares source_repository_revision 5aa100319361b0cc86edd3c51815ec777d55410a. Each pair source revision and section digest is stored on its pair entry; do not conflate record file hash, record source revision, or pair file bytes."
+  },
+  "old_source_and_consumers": {
+    "archive_source": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "asset_disposition_path": "docs/governance/legacy-asset-disposition.jsonl"
+    },
+    "old_process_consumer": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/README.md",
+        "sha256": "sha256:59120aa9b044b4edf2387959ced5ad4020d230b747cc5406ac6d03281f1f9b83",
+        "lines": "29-47",
+        "role": "Forward and workflow-axis index; current OS ticket section cites this as source for its Forward/mainline and cross-axis mode taxonomy."
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/reverse.md",
+        "sha256": "sha256:459b0454d97a6d991be963703f20238e38f0eba6684b8035f067d54458032b83",
+        "lines": "overview, phase table, exit/routing and pair-freeze sections",
+        "role": "Old consumer of generic R0-R4 and five routing values; descriptive comparison only, not executed."
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/scrum.md",
+        "sha256": "sha256:094d9ed3e8e190c83ea3870fa27e3a1646b9e0aea42d481eea580946e6db7c42",
+        "lines": "§1-4",
+        "role": "Old Scrum Reverse / SR0-SR4 consumer; style/slice/S4 distinction against fixed/current conditions."
+      }
+    ],
+    "consumer_boundary": "These are archived source/consumer descriptions read as evidence only; none was executed."
+  },
+  "method": {
+    "comparison_rule": "For each exact source line, compare obligation/exception/oracle to exact fixed f6 L2 and paired L11, then separately to bounded later-adopted pair revisions and current-input pins. Similar topic or ticket type is not exact condition coverage. Preserve numeric boundaries and counterexamples.",
+    "authority_effect": "none",
+    "execution": "No old CLI, runtime, test, CI or archive program was executed. Static document/revision/identity checks only.",
+    "status_vocabulary": [
+      "covered",
+      "partial",
+      "missing"
+    ]
+  },
+  "status_counts": {
+    "covered": 0,
+    "partial": 6,
+    "missing": 0
+  },
+  "lines": [
+    {
+      "source_item_id": "REQSRC-SUP-00391",
+      "status": "partial",
+      "fixed_refs": [
+        "HELIXOS-L2-010:63,127-139",
+        "HELIXOS-L11-010:30,286",
+        "HARNESS-L2-002/003:53-54",
+        "HARNESS-L11:22-23"
+      ],
+      "retained": "Forwardを正方向の本流とし、その他ticketの後段Forward合流という分類はOSのForward本流/Reverse合流先に対応する。HARNESSのL2/L11は選択style・凍結/差戻し条件を保持する。",
+      "meaning_delta": "現在は開発style（Full V/Production Scrum/Hybrid等）とticket/workflow axisを分離し、Reverseは突発または明示checkpointのticketとしてForwardの該当層へ戻る。全Reverseが単一の一般routeという意味ではない。",
+      "exception_or_numeric": "Reverseは設計と実装のずれ、同種finding再発、性能退行、障害等の突発条件またはScrum checkpointで起動。Scrum SR0–SR4はScrum適用scopeの別subroute。",
+      "counterexample": "Reverse結果を恒久的な横道に置いてForward適用・合流を省略する運用は不成立。逆にすべてのticketに独立Reverse/Forward ticketを強制する根拠もない。",
+      "residual": "対象revision・scopeに対する起動/合流receiptと、該当Forward層の再開条件をこの旧source line単位でどう検査するか。現行HXTはticket型を受け入れるが旧1行の全適用を検証しない。"
+    },
+    {
+      "source_item_id": "REQSRC-SUP-00392",
+      "status": "partial",
+      "fixed_refs": [
+        "HELIXOS-L2-010:139",
+        "HELIXOS-L11-010:286",
+        "HARNESS-L2-003:54,110",
+        "HARNESS-L2-002/003:105",
+        "HARNESS-L11:23"
+      ],
+      "later_adopted_pairs": [
+        "HARNESS-L2-038",
+        "HARNESS-L2-051 / HARNESS-L11-051"
+      ],
+      "retained": "実装事実から設計へ戻し、gap/findingを対象Forward層へ送る目的と、Scrum Reverseを含むことを保持。採択HARNESS-L2-038は選択source scopeのprovenance、内容導出、as-is設計/test、PO検証状態、gap/routingを個別に辿る受入内容を比較上補う。 採択HARNESS-L2/L11-051は、Reverse stage完了を主張する場合のstage/scope/revision・paired layer・oracle・evidence・未完条件の対応確認という一般stage-exit oracleを近接補助するが、R0–R4を定義・列挙しない。",
+      "meaning_delta": "現行一般Reverseは実装事実から設計へ戻すworkflow ticketで、旧R0–R4の固定工程という主張を採らない。HARNESS固定pairはScrumにSR0 evidence capture, SR1 observed contract, SR2 V-layer mapping, SR3 proposal, SR4 pair freeze/reentryの専用工程を持つ。038も旧ラベル/schema/enumを要求しない。 051の条件はstage exit claimに対する一般のscope/revision/evidence整合であり、R0–R4の工程名・順序・段階内容を採択した意味ではない。",
+      "exception_or_numeric": "旧条件の数値はgeneric ReverseでR0〜R4の5段階閉鎖、Scrum専用は別名SR0〜SR4の5段階。HARNESS-L2-038はselected scopeで5段階内容（source map、observed contract、as-is design/test、intent/authority、gap/routing）をみるが、固定R0–R4段階を継承せず全4020 assetへ適用しない。",
+      "counterexample": "SR0〜SR4を旧R0〜R4の完全同義語とみなす、038を全Reverse全sourceへの適用義務とする、または選択sourceや対象revisionのない段階claimを通す。",
+      "residual": "個別source/scopeごとの段階適用性、R0〜R4 named sequenceと現行workflowの差、Forward reentry先・必要pair closure、証拠receiptをどの対象revisionで受入するかが未結合。旧phase名自体を新設せず内容対応を特定する必要がある。 採択051を適用できるのは当該stage-exit evidence対応までで、generic R0–R4段階の定義/Mappingはなお未解消。",
+      "later_pair_boundary": "HARNESS-L2/L11-051 is an adopted exact pair revision under the separate 11-candidate decision record. It is only a generic stage-exit evidence/scope/revision correspondence check. The adopted 051 pair was derived from PHCAP-08 source atoms in a different legacy asset; those 25 atoms remain held and carried_atom_refs is empty. No relation or successor is inferred for this v1.3 source line."
+    },
+    {
+      "source_item_id": "REQSRC-SUP-00393",
+      "status": "partial",
+      "fixed_refs": [
+        "HELIXOS-L2-010:145",
+        "HELIXOS-L11-010:30",
+        "HELIXOS-L11:HXT-TYPE-09/13:286,290",
+        "HARNESS-L2-003/004:111,114",
+        "HARNESS-L11:23"
+      ],
+      "retained": "外部約束/要求/受入条件の意味を変える場合はRedesignへ戻し、要求意味の変更はDecideを通し、以後Forwardで実装するというrouteを維持。",
+      "meaning_delta": "現行はRedesignを要求・外部契約が変わるときに選ぶ明示ticketとしている。外部意味を保つ局所修正はRefactor、独立した大きな構造変更はDesign-refactorへ分ける。旧文の「確定設計変更」の範囲は要求意味変更より広い可能性がある。",
+      "exception_or_numeric": "要求が変わる場合はDecide。設計差分だけで外部意味を保てる場合はDesign-refactor/Refactorが候補となる。",
+      "counterexample": "public promiseやacceptanceを変えるのにDesign-refactorで済ませ、Redesign/Decide/Forwardへの再入を省略する。",
+      "residual": "「確定設計変更」が設計内部の変更か外部contract/要求変更かの判定oracle、RedesignがForward実装に先行したことを束縛するtarget revision receiptがこの行単位で明示されない。"
+    },
+    {
+      "source_item_id": "REQSRC-SUP-00394",
+      "status": "partial",
+      "fixed_refs": [
+        "HELIXOS-L2-010:143",
+        "HELIXOS-L11-010:30",
+        "HELIXOS-L11:HXT-TYPE-13:290",
+        "HARNESS-L2-003/004:111"
+      ],
+      "retained": "外部挙動を保つ設計構造の改善をDesign-refactorという独立ticket種別に置き、変更が外部契約/要求へ及べばRedesign等へ戻す。",
+      "meaning_delta": "現行では小さな境界refactorは既存Forward ticket内に置け、大きな独立構造・横断・architecture整理は別ticketにする。旧sourceの「機能追加と混載しない」に対する明示的な混載拒否oracleは固定OS HXTにあるが、Design-refactorとfeatureを同じticketにした具体fixtureはこのsource condition単位に固定されていない。",
+      "exception_or_numeric": "外部挙動不変が適用条件。外部契約変更ならRedesign、局所的な小変更ならForward内refactorが可能。",
+      "counterexample": "featureを追加しながらDesign-refactorとして意味変更を隠す、または小さい局所構造修正も必ず独立Design-refactor ticketに分離する。",
+      "residual": "一ticket内でfeatureと構造改善が混載していないこと、外部挙動/DB semantics/要求の差分がないことをsource/target revisionごとに確かめるoracle。"
+    },
+    {
+      "source_item_id": "REQSRC-SUP-00395",
+      "status": "partial",
+      "fixed_refs": [
+        "HELIXOS-L2-010:63,127-149",
+        "HELIXOS-L11-010:30",
+        "HELIXOS-L11:HXT-TYPE-09/12/13:286,289-290",
+        "HARNESS-L2-003:54,110-112"
+      ],
+      "retained": "横断的なworkflow/ticket分類と、各結果をForwardの規定路線へ合流させる一般構図はcurrent OS dynamic workflow, ticket routing, process typesに部分対応する。HARNESS保持するfreeze/backflow/Refactor条件は個別のForward/gate条件。",
+      "meaning_delta": "旧Infinity Loopという「監査/改善 ⇔ gate ⇔ 自動走行」の循環・横軸を、現行L2/L11はその名前または一つの閉じた運転loopとして明示しない。OS L2-010は規定workflow部品の動的合成、HARNESS-L2-005等は検証規則・実行計画の境界であり、両者を一つの採択loop identityにしない。",
+      "exception_or_numeric": "構成要素の3軸（監査/改善、gate、自動走行）と双方向関係、Forward正本への最終収束が旧条件。",
+      "counterexample": "監査やgateのみの記録を自動走行/改善loop完了とみなす、またはOSのworkflow合成だけでHARNESS検証義務を生成/変更できるとする。",
+      "residual": "三軸間の具体trigger、責務/receipt、改善結果が採択されたForward revisionへ還流するoracle、loop終点を表すtarget revisionを特定できていない。独立した新しい承認/authorityは導入しない。"
+    },
+    {
+      "source_item_id": "REQSRC-SUP-00396",
+      "status": "partial",
+      "fixed_refs": [
+        "HARNESS-L2-002/003:105",
+        "HARNESS-L11:22-23",
+        "HELIXOS-L2-010:139",
+        "HELIXOS-L11-010:HXT-TYPE-09:286"
+      ],
+      "later_adopted_pairs": [
+        "HARNESS-L2-046",
+        "HARNESS-L2-051 / HARNESS-L11-051"
+      ],
+      "retained": "Scrumの実装/実測をV-model資産へ戻し、必要なSR4 pair-freezeとreceiptを経てForwardへ戻る条件はHARNESS-L2-002/003に明示。Scrum Reverseを方式合成でもScrumを実際に適用する範囲へ限る。OS HXTはScrum Reverseを含むReverse目的・checkpoint・該当Forward層への合流を確かめる。採択046のProduction Scrum枝は、選択scopeのslice deltaをworkflow/L1–L5 designへbackfillし、SR4 receipt/reentryを確認する近接比較となる。 採択HARNESS-L2/L11-051は、SR4を含むstage exitを主張する場合のscope/revision/paired layer/oracle/evidence/未完条件の一般照合に近接する。",
+      "meaning_delta": "旧§5の短い要約に対してcurrent HARNESSはtrigger、5つのSR段階、4 entity、SR4 publish条件、provisional非canonical、receiptなしのrelease-ready拒否、finding routeを明示する。これは旧§4/§4.1やL3後slice条件全体、旧V-design+Scrum implementation Hybrid全体の代替とはしない。後発046にはFull V枝とProduction Scrum枝があり、Scrum適用枝だけがこの行へ近接する。 051はstage exit evidenceの対応を受け入れるが、Scrum固有のSR0–SR4、checkpoint、receipt、Forward reentryを規定しない。",
+      "exception_or_numeric": "SR0→SR1→SR2→SR3→SR4の5段階、条件triggerとrelease合流前のreceipt。HARNESSではRelease Kanban単位内のScrum、Hybrid unitのうちScrumで進める部分へ適用。Full VにはScrum slice deltaやSR4 receiptを要求しない。",
+      "counterexample": "HARNESS-L2-046のFull V branchへSR4必須条件を課す、Production Scrum scopeのslice delta/backfill/SR4を欠いたままreview/release-readyに進める、Scrum条件をHybrid全体へ外挿する、または旧L3後sliceとL4/L5 freeze/pair evidenceを同一視する。",
+      "residual": "選択された方式合成の中で実際にScrumを適用するsliceのscope/source revision、各trigger、4 entity/evidence、SR4 receiptとForward reentryを一つの条件単位で結ぶreceiptが必要。旧§5だけではSR段階の内部条件は不足し、関連する§4/§4.1は別source identityのまま残す。 051だけではSR4のScrum固有意味やreceipt/reentry成立を示せず、それらはHARNESS-L2-002/003 fixed clauseと実際のScrum適用scopeに残る。",
+      "later_pair_boundary": "HARNESS-L2/L11-051 is an adopted exact pair revision under the separate 11-candidate decision record. It is only a generic stage-exit evidence/scope/revision correspondence check. The adopted 051 pair was derived from PHCAP-08 source atoms in a different legacy asset; those 25 atoms remain held and carried_atom_refs is empty. No relation or successor is inferred for this v1.3 source line."
+    }
+  ],
+  "result": {
+    "semantic_coverage_status": "Six-line comparison only; 0 covered, 6 partial, 0 missing. Fixed/current L2-L11 and later adopted 038/046 pair revisions are bounded comparison targets, not source-line successors.",
+    "formal_successor_assignments": 0,
+    "requirement_adoption": "not asserted for any source line. HARNESS-L2-038/046 adoption refers only to each exact pair revision.",
+    "acceptance_execution": "not asserted",
+    "stage_completion": "not asserted",
+    "closure": "not asserted",
+    "authority_effect": "none"
+  },
+  "static_validation": {
+    "status": "passed",
+    "checks": [
+      {
+        "check": "archive source identity tuple",
+        "result": "passed",
+        "detail": "6/6 source item IDs, physical line numbers, exact text and line SHA-256 match the pinned archive source file."
+      },
+      {
+        "check": "queue eligibility",
+        "result": "passed",
+        "detail": "6/6 selected rows are unresolved, primary_residual, unresolved_for_closure_work, and have zero exact individual-audit refs before this audit."
+      },
+      {
+        "check": "non-overlap",
+        "result": "passed",
+        "detail": "No selected IDs intersect #2411 §6 (17 exact IDs), #2413 §2 (12 exact IDs), v1.3 §4.6.1 package-consumer residual audit (11 IDs at lines 300, 318–333), or any v13 focused condition audit present in the a3d9 baseline."
+      },
+      {
+        "check": "fixed f6 pair pins",
+        "result": "passed",
+        "detail": "All four pinned f6 file SHA-256 values were recomputed from the exact fixed revision."
+      },
+      {
+        "check": "later adopted pair pins",
+        "result": "passed",
+        "detail": "038/046 registrations and 57-decision section digests are pinned separately from the 11-candidate decision. HARNESS-L2/L11-051 adopted row, exact pair file/section digests and candidate registration are checked at source revision 5aa100; pair relevance is limited to generic stage-exit evidence matching."
+      },
+      {
+        "check": "current input pins",
+        "result": "passed",
+        "detail": "Queue, baseline audit, asset disposition, source snapshot, current HARNESS/OS L2/L11 files, separate 11-candidate decision record, MPR-051 row and PHCAP-08 holding receipt match their recorded SHA-256 values."
+      },
+      {
+        "check": "claim boundary",
+        "result": "passed",
+        "detail": "No source successor, source closure, authority effect, acceptance execution, or stage completion is asserted."
+      },
+      {
+        "check": "diff hygiene and JSON syntax",
+        "result": "passed",
+        "detail": "git diff --check and python json.tool pass."
+      },
+      {
+        "check": "separate 11-candidate decision and HARNESS-L2/L11-051 pair",
+        "result": "passed",
+        "detail": "The 11-record SHA-256, declared 5aa100 source repository revision, decision row line/digest, exact L2/L11 pair file SHA, section bounds/digests and MPR registration are independently pinned. The relation is a generic stage-exit evidence comparison only; no REQSRC successor or closure."
+      }
+    ],
+    "execution_boundary": "No legacy CLI, runtime, test, CI, or archived executable was run."
+  }
+}
