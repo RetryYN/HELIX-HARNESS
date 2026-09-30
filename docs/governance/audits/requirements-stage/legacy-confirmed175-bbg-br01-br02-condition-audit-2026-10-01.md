@@ -32,6 +32,8 @@ section SHAは固定revisionのUTF-8行をLFで連結し、末尾改行なしで
 
 BR01 source自体に数値thresholdはない。AC06の「まず一系統」は、作成から再検証までを実consumerの一系統で通すという、この認識runのconsumer-scope cardinalityが1であることを示す。全Authoring/CI/Cursor consumerへの一般化やconsumer母集団の代表性は含まない。AC06は手修正数、LLM呼出し/tokens、時間、CI再走、手戻り、誤修復、未解消数を同条件で比較するが、threshold・標本数・対象consumerは既存NFRへ実測前に接続する。L12 BR01 line 29はinput/source/generator/consumerの各版、HEAD、作業scopeを固定した変更前後比較とし、未設定・未採取・条件不一致を未認定として扱う。PLAN lines 297–298はこのNFR接続と同条件の実測に加え、未提供の別紙02/03/05および別紙03の18シナリオ全件照合を残義務としている。監査では閾値や標本数を補っていない。
 
+同条件の誤修復数・未解消数について、別sourceの採択済み`HELIXLABO-L2-066`（[57候補PO判断](../decisions/po-decision-2026-09-29-57candidates.md) line 81）も近接する測定条件としてscreenした。066は旧Bugbot bounded-repair候補の独立source atom `LEGACY-CAND-LINE-000425`（asset `LEGACY-ASSET-D881AF6AFD277B1DE934`、source line 75）を起点にし、Aとの同一eligible-case分母・事前固定oracleでこの二指標を見える化する。費用・時間・手戻り等は採択済みLABO-L2-059の条件を再利用する。066はBR01 source identityではなく、BR01の既存consumer比較や生成oracleを与えない。閾値・標本数の設定や完了、BBG successor割当、source closureは本監査から導かない。decision row、MPR登録行、L2/L11 sectionの各pinはJSONに記録した。
+
 ## BR02 — scope・authority・evidence・独立review
 
 旧sourceは、手作業削減でscope、承認、証跡、独立レビューの真正性を下げないこと、生成成功を実行・検収成功に昇格させないことを要求する。L3 R03はapproval、confirmed、review verdict、model、CI、cost、signatureの自由入力による確定を拒否し、有効な実記録から導出する。観測pathは実diff、許可pathは事前scopeから取り、自動拡張しない。L10 AC03/04は捏造claim、scope外・diff外、scope拡張、receipt欠落、digest不一致、手書き成功claimを拒否し、信頼済み実行器が観測したexit 0/空stdoutをreceipt真正性と分離する。AC05は意味digestの無審査更新とconsumer移行・rollback前の旧入口退役を拒否する。AC06/L12は実consumer、実際の独立review、完了証拠を要求し、正常系だけの安全性claimや自己申告成功を認定しない。
@@ -42,7 +44,7 @@ BR02 sourceはscope幅やfailure-rate等の数値thresholdを定めない。保�
 
 ## 後発decision rowsと移管状態
 
-57候補・11候補・live26の採択decision rowsを近接scopeとしてscreenした。decision recordのfile/row SHA、live26のMPR行、該当pair section digestはJSONに記録した。HARNESS-L2-041等のtemplate/stage条件、HARNESS-L2-060＋HELIXOS-L2-103の工程適用性に応じたevidence結線、HELIXOS-L2-106/108/110/111の限定的なauthority/evidence条件はいずれも個別の候補scopeにとどまる。HARNESS-L2-049も近接例としてrevision別に固定した。11候補decision line 46の`-002`は不採択であり、後発live26 lines 39, 72の`-003`は訂正済L11での計測専用採択（試作品生成等を含まない）で、`-002`の判断を遡及変更しない。どのrowにも二つのsource-qualified BBG identityはなく、BBG source atom、BR固有の生成・consumer oracle、successor assignmentを閉じない。
+57候補・11候補・live26の採択decision rowsを近接scopeとしてscreenした。57候補decision line 81の`HELIXLABO-L2-066`もAC06の誤修復・未解消数に関する別sourceの測定近接例として加えた。decision recordのfile/row SHA、MPR登録行、L2/L11 section digest、およびlive26のMPR行はJSONに記録した。HARNESS-L2-041等のtemplate/stage条件、HARNESS-L2-060＋HELIXOS-L2-103の工程適用性に応じたevidence結線、HELIXOS-L2-106/108/110/111の限定的なauthority/evidence条件はいずれも個別の候補scopeにとどまる。HARNESS-L2-049も近接例としてrevision別に固定した。11候補decision line 46の`-002`は不採択であり、後発live26 lines 39, 72の`-003`は訂正済L11での計測専用採択（試作品生成等を含まない）で、`-002`の判断を遡及変更しない。どのrowにも二つのsource-qualified BBG identityはなく、BBG source atom、BR固有の生成・consumer oracle、successor assignmentを閉じない。
 
 現行full-auditの行147/148とstructure classification、carry-forward、product-routing ledgerをsource rowと照合した。routing候補やL2/L11の存在をsuccessorへ数えず、両identityは引き続き `preserved_pending_rehome`、successor 0、meaning change 0、retire 0である。意味変更、retire、L3承認、実装・実行・検収状態を本監査から生成しない。
 

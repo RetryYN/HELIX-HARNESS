@@ -417,6 +417,58 @@
         "registration_id": "MPR-RC-HARNESS-L2-049-003"
       },
       "comparison": "The later -003 measurement-only decision is a distinct revision and does not reverse the 11-candidate decision for -002 or add prototype-generation capability."
+    },
+    "labo_l2_066_ac06_measurement_proximity": {
+      "meaning": "Adjacent measurement comparison only. HELIXLABO-L2-066 is a separately sourced adopted requirement row for same-condition A comparison of misrepair and unresolved counts; it is not either source-qualified BBG identity.",
+      "po_decision": {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_row": {
+          "line": 81,
+          "line_sha256": "1c0b1f7d0869e91effb85cdecfa0eb361e6fda0ae06c920ea125a1110af63fc4",
+          "requirement_identity": "HELIXLABO-L2-066",
+          "registration_id": "MPR-RC-HELIXLABO-L2-066-001",
+          "treatment": "adopted"
+        }
+      },
+      "mpr_registration": {
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+        "line": 557,
+        "line_sha256": "b8337735687f04e76bdd7c17111d74ca13bc0992d874117fd040201f398d0402",
+        "registration_id": "MPR-RC-HELIXLABO-L2-066-001",
+        "candidate_semantic_digest": "sha256:d65780351792a4587966a7eb45c34359626200af5bdd8eb55e197b0a6f0db184",
+        "management_state": "registered_proposal",
+        "authority_effect": "none"
+      },
+      "l2_l11_pair": {
+        "l2_identity": "HELIXLABO-L2-066",
+        "l2_path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "l2_file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+        "l2_section_sha256": "sha256:d65780351792a4587966a7eb45c34359626200af5bdd8eb55e197b0a6f0db184",
+        "l11_identity": "HELIXLABO-L2-066",
+        "l11_path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "l11_file_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+        "l11_section_sha256": "sha256:0a1d72d7d0fb3b97b14ce6f53738785b76bce642a2f9b7c83c4328a45fc68cce"
+      },
+      "separate_legacy_candidate_source": {
+        "legacy_asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "asset_disposition_ref": "docs/governance/legacy-asset-disposition.jsonl:795",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "source_file_sha256": "sha256:81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "source_line": 75,
+        "source_line_sha256": "sha256:9facff56cbc42f9f7157dd85f1078605951af16a52fef5ec698bb62fd46681bc",
+        "source_atom_id": "LEGACY-CAND-LINE-000425",
+        "source_atom_inventory_ref": "docs/governance/audits/requirement-registration/labo-bugbot-misrepair-comparison-source-lines-2026-09-28.jsonl#LEGACY-CAND-LINE-000425",
+        "source_atom_set_digest": "sha256:125b5e3abc880685ab28ac2560aa7bc8226beaab29aa5c31cc0edc515ca784a5"
+      },
+      "measurement_condition": "Compare against A under the same eligible-case denominator and a pre-fixed oracle; expose misrepair and unresolved counts. HELIXLABO-L2-059 retains the separate quality-first comparison and cost/time/rework conditions.",
+      "relation_to_br01_ac06": "Adjacent to AC06 because AC06 names same-condition misrepair and unresolved counts. This separate LABO source does not establish the BBG existing-consumer before/after result or a BBG generation oracle.",
+      "not_inferred": [
+        "No BBG generation or consumer oracle is supplied.",
+        "No threshold, sample count, or threshold-completion state is supplied; AC06 remains subject to the existing NFR and its configured measurement conditions.",
+        "No BBG successor assignment, source closure, acceptance, or Step 5 completion is claimed."
+      ]
     }
   },
   "crosswalk_status": {
