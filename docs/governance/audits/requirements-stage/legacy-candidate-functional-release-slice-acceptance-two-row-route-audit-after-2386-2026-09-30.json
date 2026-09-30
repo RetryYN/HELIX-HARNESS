@@ -1,0 +1,274 @@
+{
+  "schema_version": "legacy-candidate-functional-release-slice-acceptance-two-row-route-audit/v1",
+  "audit_id": "legacy-candidate-functional-release-slice-acceptance-two-row-route-audit-after-2386-2026-09-30",
+  "authority_effect": "none",
+  "base_commit": "0f5050e2b25cd622640c99c5de170cca087f7d8a",
+  "selection": {
+    "selected_count": 2,
+    "selected_ids": [
+      "LEGACY-CAND-LINE-002076",
+      "LEGACY-CAND-LINE-002077"
+    ],
+    "source_groups": {
+      "functional_release_slice_acceptance": [
+        "LEGACY-CAND-LINE-002076",
+        "LEGACY-CAND-LINE-002077"
+      ]
+    },
+    "pool_evidence": {
+      "classification_proposal_after_2385": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate-dsi-frs-metadata-seven-classification-proposal-2026-09-30.json",
+        "selected_classification_rows": 7,
+        "selected_ids": [
+          "LEGACY-CAND-LINE-001062",
+          "LEGACY-CAND-LINE-001063",
+          "LEGACY-CAND-LINE-001064",
+          "LEGACY-CAND-LINE-001065",
+          "LEGACY-CAND-LINE-002073",
+          "LEGACY-CAND-LINE-002074",
+          "LEGACY-CAND-LINE-002075"
+        ],
+        "selected_ids_intersection": 0,
+        "post_overlay_product_unknown_pool": 471
+      },
+      "route_union_before_this_audit": {
+        "product_targeted_count": 341,
+        "out_of_pool_hmc_count": 30,
+        "all_route_union_count": 371,
+        "composition": "317 product-targeted IDs through #2380 + 9 selected MA IDs in #2382 + 8 selected MA IDs in #2383 + 7 selected DGH IDs in #2386; 30 out-of-pool HMC IDs are also in the all-route union.",
+        "previous_dgh_batch": {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-seven-row-route-audit-after-2384-2026-09-30.json",
+          "sha256": "2e58703e7246a83f6d90649f33d2382b740d2de0d385c6ba66c8952fd796dbc5",
+          "selected_ids": [
+            "LEGACY-CAND-LINE-001021",
+            "LEGACY-CAND-LINE-001050",
+            "LEGACY-CAND-LINE-001051",
+            "LEGACY-CAND-LINE-001052",
+            "LEGACY-CAND-LINE-001053",
+            "LEGACY-CAND-LINE-001054",
+            "LEGACY-CAND-LINE-001055"
+          ],
+          "selected_intersection": 0,
+          "base_commit": "f280900fc97c5dfed4bc6ae59e1332abb555045f"
+        }
+      },
+      "selected_membership": {
+        "baseline_full_row_records": "2/2 condition/product_requirement_atom/unknown",
+        "post_2385_product_unknown_pool_intersection": "2/2",
+        "classification_overlay_intersection": 0,
+        "product_route_union_before_audit_intersection": 0,
+        "all_route_union_before_audit_intersection": 0,
+        "post_2385_pool_size": 471,
+        "unreviewed_pool_before_this_audit": 159
+      },
+      "after_this_audit": {
+        "selected_count": 2,
+        "partial": 2,
+        "unknown": 0,
+        "product_targeted_route_union_count": 343,
+        "out_of_pool_hmc_count": 30,
+        "all_route_union_count": 373,
+        "post_2385_pool_intersection": 314,
+        "unreviewed_pool_count": 157
+      },
+      "baseline_and_prior_batch_evidence": {
+        "post_2385_recount_path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-seven-row-route-audit-after-2384-2026-09-30.json",
+        "post_2385_effective_pool": 471,
+        "audited_pool_intersection_before_2386": 305,
+        "unreviewed_pool_before_2386": 166,
+        "after_2386_selected_count": 7,
+        "after_2386_product_pool_intersection": 312,
+        "after_2386_unreviewed_pool": 159,
+        "frs_two_disjoint_from_2386_selected": true
+      }
+    }
+  },
+  "legacy_sources": [
+    {
+      "asset_id": "LEGACY-ASSET-67ADFAB856D954B3C5D2",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+      "source_file_sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+      "inventory_path": "docs/governance/legacy-asset-disposition.jsonl",
+      "inventory_class": "Historical; product_target unresolved; authority historical; disposition unresolved",
+      "source_inventory": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-inventory.md",
+        "sha256": "58bdcae95d51edeebff57169c1e67da11c6ed879830249c52a1e700bc09bb171",
+        "candidate_source_scope": "4,755 line records; historical_candidate; target draft_candidate; candidate inventory does not establish meaning, successor, or decision"
+      }
+    }
+  ],
+  "fixed_adopted_comparison": {
+    "po_decision_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "mechanisms": {
+      "HARNESS_L2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+      },
+      "HARNESS_L11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+      }
+    },
+    "authority_decision_record": {
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "adoption_basis": "Explicit adopted L2/L11 candidate identities; the comparison uses exact f6dad2 L2/L11 bytes, not candidate metadata."
+    },
+    "comparison_rule": "Compare adopted substantive predicates and paired L11 acceptance rows. Old candidate status/approval and generic relevance alone do not establish adoption.",
+    "comparison_locators": [
+      {
+        "id": "HARNESS-L2-005",
+        "l2": "docs/helix-harness/L2-requirements/product-requirements.md:56",
+        "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:25, 46-51"
+      },
+      {
+        "id": "HARNESS-L2-017",
+        "l2": "docs/helix-harness/L2-requirements/product-requirements.md:403-409",
+        "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:212"
+      },
+      {
+        "id": "HARNESS-L2-022",
+        "l2": "docs/helix-harness/L2-requirements/product-requirements.md:447-461",
+        "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:217"
+      }
+    ]
+  },
+  "rows": [
+    {
+      "source_id": "LEGACY-CAND-LINE-002076",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+        "line": 66,
+        "line_sha256": "sha256:b6af51b7f02ca3d32f9e4b5ff3bde7cbf0c9442e86def7c646595e91d890ebf0",
+        "physical_line_bytes_sha256": "5421144aae700ff9a87e97cb7fb068159c405bf7562a66f1a7f31c565262a3da",
+        "text": "実証順: authority candidate → #397 IR admission → schema／registry → composition → qualification → CI／consumer／rollback → replay／read-after。"
+      },
+      "proposal_pool_check": {
+        "effective_classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_before_audit": "unknown",
+        "in_post_2385_product_unknown_pool": true,
+        "classification_overlay_intersection": 0,
+        "prior_product_route_union_intersection": 0,
+        "prior_all_route_union_intersection": 0
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirement_ids": [
+        "HARNESS-L2-017",
+        "HARNESS-L2-022"
+      ],
+      "direct_overlap": "HARNESS-L2-017 requires Release Port eligibility, verified/accepted evidence, reproducibility, rollback, and keeps deployed distinct from observed. HARNESS-L2-022 defines staged evidence/state progression and prevents skipping Integrated/Verified/Accepted. These overlap release qualification and the requirement that release follow the relevant verification/acceptance state.",
+      "residual_or_difference": "The old exact demonstration ordering (authority candidate → #397 IR admission → schema/registry → composition → qualification → CI/consumer/rollback → replay/read-after), #397 IR admission, FRS-specific schema/registry/composition/qualification steps, and exact CI/consumer/replay/read-after sequencing are not specified by these adopted predicates. No #397 admission, FRS workflow, or end-to-end sequence is imported; old approval metadata does not establish current authority.",
+      "authority_effect": "none",
+      "compared_adopted_requirement_refs": [
+        {
+          "id": "HARNESS-L2-017",
+          "l2": "docs/helix-harness/L2-requirements/product-requirements.md:403-409",
+          "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:212"
+        },
+        {
+          "id": "HARNESS-L2-022",
+          "l2": "docs/helix-harness/L2-requirements/product-requirements.md:447-461",
+          "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:217"
+        }
+      ],
+      "related_comparison_only_refs": [
+        {
+          "id": "HARNESS-L2-003",
+          "l2": "docs/helix-harness/L2-requirements/product-requirements.md:54",
+          "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:23",
+          "reason": "Adjacent stage/Release Port condition; not counted as direct relation for the old FRS-specific order."
+        },
+        {
+          "id": "HARNESS-L2-006 (FRS-BR-005 re-adoption candidate)",
+          "l2": "docs/helix-harness/L2-requirements/product-requirements.md:274-286",
+          "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:178-186",
+          "reason": "Clean-consumer reproducibility and eligible rollback are adjacent to the old CI/consumer/rollback step, but the same fixed bytes label this FRS-derived meaning as awaiting re-adoption and the L11 evaluation as wholly unexecuted; not counted as adopted direct overlap or the exact FRS demonstration order."
+        },
+        {
+          "id": "HARNESS-L2-023 (FRS-AC retention candidate)",
+          "l2": "docs/helix-harness/L2-requirements/product-requirements.md:492",
+          "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:176-179",
+          "reason": "Local reproducibility/rollback is listed as an FRS retention point in a unit addendum candidate, but this is not adopted FRS sequence coverage and the related acceptance is not executed."
+        }
+      ]
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002077",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+        "line": 67,
+        "line_sha256": "sha256:870ad156ab290ba7772df16ce6e38529c03f38b3ef5dd45284ba8af09c1df25d",
+        "physical_line_bytes_sha256": "05790faf480c07a48cc433476c0b608be236acd7161f5b4266d2d116471d945d",
+        "text": "本候補のhappy pathがgreenでも、各negative mutation、unknown、stale、未承認writeの失敗を独立に確認する。"
+      },
+      "proposal_pool_check": {
+        "effective_classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_before_audit": "unknown",
+        "in_post_2385_product_unknown_pool": true,
+        "classification_overlay_intersection": 0,
+        "prior_product_route_union_intersection": 0,
+        "prior_all_route_union_intersection": 0
+      },
+      "route_assessment": "partial",
+      "compared_adopted_requirement_ids": [
+        "HARNESS-L2-005",
+        "HARNESS-L2-022"
+      ],
+      "direct_overlap": "HARNESS-L2-005 requires verification obligations, oracle, expected failure, evidence, validity and return destination, and its L11 acceptance rejects missing required oracle, converting unknown to N/A, or omitting expected failure/return route. HARNESS-L2-022 requires stage-specific evidence and acceptance counterexamples and rejects stage-skipping and lower-stage evidence being treated as higher-stage acceptance. These predicates directly overlap independent negative-path verification and retaining unknown/failure as non-success.",
+      "residual_or_difference": "The FRS-specific set of every negative mutation, independent execution/independence criteria, stale-specific oracle, and explicit unauthorized-write cases are not fully specified by these generic predicates. No FRS test matrix, implementation, execution evidence, or acceptance result is inferred.",
+      "authority_effect": "none",
+      "compared_adopted_requirement_refs": [
+        {
+          "id": "HARNESS-L2-005",
+          "l2": "docs/helix-harness/L2-requirements/product-requirements.md:56",
+          "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:25, 46-51"
+        },
+        {
+          "id": "HARNESS-L2-022",
+          "l2": "docs/helix-harness/L2-requirements/product-requirements.md:447-459",
+          "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:217"
+        }
+      ],
+      "related_comparison_only_refs": [
+        {
+          "id": "HARNESS-L2-011",
+          "l2": "docs/helix-harness/L2-requirements/product-requirements.md:352-360",
+          "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:206",
+          "reason": "Generic passed-scope/permission and expiry behavior is adjacent, but does not specify FRS negative mutation matrix or independent verification; not counted as direct overlap."
+        },
+        {
+          "id": "HARNESS-L2-006 (FRS-BR-005 re-adoption candidate)",
+          "l2": "docs/helix-harness/L2-requirements/product-requirements.md:274-286",
+          "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:178-186",
+          "reason": "Clean-consumer and eligible-rollback checks are nearby FRS-derived acceptance conditions, but the fixed bytes say re-adoption is pending and all such acceptance is unexecuted; they do not specify every negative mutation, stale case, or unauthorized write."
+        },
+        {
+          "id": "HARNESS-L2-023 (FRS-AC retention candidate)",
+          "l2": "docs/helix-harness/L2-requirements/product-requirements.md:492",
+          "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:176-179",
+          "reason": "Unknown/stale fail-close is listed as an FRS retention point in a unit addendum candidate, not as adopted FRS-specific negative-oracle coverage; the related acceptance is unexecuted."
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "selected": 2,
+    "partial": 2,
+    "unknown": 0,
+    "proposal_pool_out_of_population": 0,
+    "prior_334_product_route_union_intersection": 305,
+    "prior_all_364_intersection": 305,
+    "classification_overlay_intersection": 0,
+    "prior_341_product_route_union_intersection": 312,
+    "prior_all_371_intersection": 312,
+    "prior_dgh_seven_intersection": 0
+  },
+  "limitations": [
+    "Partial records only specifically matched adopted predicates; residual conditions remain outside the overlap.",
+    "The old source frontmatter says draft_candidate; §0 says the approved v0.2 delta was acceptance conditions only and expressly does not establish implementation acceptance, independent review, canonical promotion, #397 IR admission, publish, or cutover. Current authority is fixed by the current PO decision plus the exact f6dad2 L2/L11 bytes.",
+    "The 471/334/364 recount and resulting union are selection/recount facts, not adoption, formal successor, complete source coverage, acceptance execution, implementation, or Stage 5 closure.",
+    "No archive workflow, CLI, hook, adapter, test, CI, or runtime was executed. Static source bytes, membership, locators, and authority were checked only."
+  ]
+}
