@@ -28,6 +28,8 @@ section SHAは固定revisionのUTF-8行をLFで連結し、末尾改行なしで
 
 指定HARNESS pairは工程の合意・検証・差戻しとverification obligationを保持する。INTELLIGENCE pairは反復failure patternからのBugbot候補、bounded repair、permission/Worker/HARNESS/OS結果の分離を扱う。これらは工程・failure検出・限定repairに近接するが、PLAN/PR定型欄や派生物の出力契約、Authoring/CI/Cursor consumer契約、反復手修正の低減を測るBR01固有oracleを定めない。INTELLIGENCEの限定repairを一般的なform generationへ拡張解釈しない。
 
+旧L3 `bugbot-generation-requirements.md` lines 36–39は、コア①の責務としてGH-FR-007のCLI生成とledger照合、GH-FR-014のtemplate/schema/fixture先行、#1608のsource→generator→output→consumer伝播を再利用し、意味入力・正本導出欄・信頼済み実行receipt引用欄を分ける経路を明記する。R02 line 50はtyped入力を既存CLIへ渡し、AI JSONを未信頼入力として検査するconsumer/implementation境界を明記する。これらの旧条件行SHAはJSONのBR01 condition comparisonに固定した。指定されたHARNESS-L2-003/005は工程gateと検証義務、INTELLIGENCE-L2-015/016/017はfailure検出・限定修復・結果handoffを扱うが、いずれもGH-FR-007/014や#1608の既存consumer経路、ledger照合、既存CLIへのtyped入力境界を定めない。したがってこの接続は固定pairとの近接・不足比較として分けて記録し、旧CLIの実行・推奨、同等性、successor割当、authority変更を含めない。
+
 BR01 source自体に数値thresholdはない。AC06の「まず一系統」は、作成から再検証までを実consumerの一系統で通すという、この認識runのconsumer-scope cardinalityが1であることを示す。全Authoring/CI/Cursor consumerへの一般化やconsumer母集団の代表性は含まない。AC06は手修正数、LLM呼出し/tokens、時間、CI再走、手戻り、誤修復、未解消数を同条件で比較するが、threshold・標本数・対象consumerは既存NFRへ実測前に接続する。L12 BR01 line 29はinput/source/generator/consumerの各版、HEAD、作業scopeを固定した変更前後比較とし、未設定・未採取・条件不一致を未認定として扱う。PLAN lines 297–298はこのNFR接続と同条件の実測に加え、未提供の別紙02/03/05および別紙03の18シナリオ全件照合を残義務としている。監査では閾値や標本数を補っていない。
 
 ## BR02 — scope・authority・evidence・独立review

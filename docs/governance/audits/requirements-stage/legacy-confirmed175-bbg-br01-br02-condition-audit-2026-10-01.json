@@ -156,6 +156,19 @@
           "residual": "No selected fixed pair states an oracle for same-source/input/generator-version semantic equality, stable R02 input error codes, runtime-time separation, or external-text non-execution. Those remain legacy comparison conditions, not proven current behavior."
         },
         {
+          "source_condition": "Existing consumer/implementation seam: the BBG core reuses GH-FR-007 CLI generation plus ledger reconciliation, GH-FR-014 template/schema/fixture-first, and #1608 source→generator→output→consumer propagation; semantic input, canonical derived fields, and trusted execution-receipt citations remain separate. BBG-R02 passes typed input to the existing CLI and treats AI JSON as untrusted input. Skill/Rule/bounded-repair acceptance remains separate, with no separate Compiler, DB, or Policy source.",
+          "legacy_consumer_refs": [
+            {"path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/bugbot-generation-requirements.md", "lines": [36, 37, 38, 39], "line_sha256": ["1c34fbad434b277298252b7c0d400f993f916007fb68310fbfa580af56c42864", "b9de90ff0703e6e5bca3441a25e815e4469c7b0bef8a0c6cc7c28f5f50b415f3", "88f92deab7d54f86541ec07f47701bfa0d08e2de87feb9ee5588d0de32012dba", "f3189311e3ab875422bc9d4dd7bf4027cd56b4eb0664143cd6fa5bc7660baa03"], "condition": "R02 responsibility/reuse text names GH-FR-007 CLI generation and ledger reconciliation, GH-FR-014 template/schema/fixture-first, #1608 source→generator→output→consumer propagation, separate semantic/derived/receipt-citation fields, and no separate Compiler/DB/Policy source."},
+            {"path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/bugbot-generation-requirements.md", "line": 50, "line_sha256": "bd7410b9b4c87028b5e82692cbd9429e88f899d09587fc794b5b05774477b05a", "condition": "R02 passes typed input to the existing CLI, validates AI JSON as untrusted input, and returns stable errors for missing, contradictory, or unsupported input."}
+          ],
+          "fixed_targets": ["HARNESS-L2-003", "HARNESS-L2-005", "HELIXINTELLIGENCE-L2-015", "HELIXINTELLIGENCE-L2-016", "HELIXINTELLIGENCE-L2-017"],
+          "fixed_pair_condition_comparison": [
+            {"id": "HARNESS-L2-003/005", "pin_ref": "fixed_target_pins:HARNESS-L2-003,fixed_target_pins:HARNESS-L2-005", "condition": "The fixed pairs define process gates and change-derived verification/evidence duties.", "relation": "adjacent_process_and_verification_controls; they do not specify GH-FR-007 CLI generation/ledger reconciliation, GH-FR-014 template/schema/fixture-first, #1608 source-to-consumer propagation, or typed input passed to an existing CLI."},
+            {"id": "HELIXINTELLIGENCE-L2-015/016/017", "pin_ref": "fixed_target_pins:HELIXINTELLIGENCE-L2-015,fixed_target_pins:HELIXINTELLIGENCE-L2-016,fixed_target_pins:HELIXINTELLIGENCE-L2-017", "condition": "The fixed pairs define repeated-failure detection, bounded repair, and separate permission/Worker/HARNESS/OS results.", "relation": "adjacent_detection_repair_and_handoff_controls; they do not specify the named GH-FR-007/014 or #1608 consumer/implementation path, ledger reconciliation, or an existing-CLI typed-input boundary."}
+          ],
+          "comparison_limit": "This is a bounded condition comparison against specified fixed pairs. It neither executes nor recommends executing the legacy CLI and does not assign a successor, establish equivalence, adopt source conditions, or change authority."
+        },
+        {
           "source_condition": "BBG-R04 update/retirement: bind source, generator, output, and consumer versions/digests to the existing projection; regenerate only affected areas; preserve meaning inputs in mixed documents; review semantic-digest changes; retire hand entry only after successor consumer verification and rollback.",
           "legacy_consumer_refs": [
             {
@@ -346,7 +359,7 @@
     }
   ],
   "consumer_source_pins": [
-    {"path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/bugbot-generation-requirements.md", "file_sha256": "3a2fe5f1090d86180806ef1ce4a75793ccb21d8be518a3f7d17c3bf914ce5a36", "identity_links": {"BBG-BR01": "lines 43-52, 60-71; SHA pins in comparisons", "BBG-BR02": "lines 54-69; SHA pins in comparisons"}},
+    {"path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/bugbot-generation-requirements.md", "file_sha256": "3a2fe5f1090d86180806ef1ce4a75793ccb21d8be518a3f7d17c3bf914ce5a36", "identity_links": {"BBG-BR01": "lines 36-39, 43-52, 60-71; lines 36-39 and 50 SHA-pinned in the consumer-seam comparison", "BBG-BR02": "lines 54-69; SHA pins in comparisons"}},
     {"path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/bugbot-generation-acceptance.md", "file_sha256": "9a76d66a85616d72fe6f96732eb529ffc31fa890c25f5adf9ab296f6469ff6b6", "identity_links": {"BBG-BR01": "AC01/02/05/06, lines 33-41", "BBG-BR02": "AC03/04/05/06, lines 35-42"}},
     {"path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/bugbot-generation-recognition.md", "file_sha256": "21ec182d5b58107366b6d51d7cd52dd1d4ff77e99bf3ebe9a69a542d94d8f9a1", "identity_links": {"BBG-BR01": "line 29", "BBG-BR02": "lines 30, 38-42"}},
     {"path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-1639-bugbot-generation.md", "file_sha256": "a779b2784ef428770019bced341f828b6063955e7a7731344bfa2ce0b34db430", "identity_links": {"both": "lines 150-153 preserve approved BR→R→AC relation; lines 276-281 record raw source-set checks and residuals"}}
@@ -421,6 +434,7 @@
       "failure/negative/numeric/exception clauses were retained in the per-identity comparison",
       "later adopted proximity screen does not generate identity, successor, authority, or closure",
       "BR01 L1 trace lines 37-39 and R02/R04-to-AC02/AC05 consumer conditions were pinned by line SHA and compared explicitly with the fixed BR01 L2/L11 pairs",
+      "BBG-R02 implementation/consumer seam at legacy L3 lines 36-39 and existing-CLI typed-input boundary at line 50 were SHA-pinned and compared separately with the fixed HARNESS/INTELLIGENCE pairs; no legacy CLI execution or authority change is implied",
       "AC06 one-system wording was treated as one consumer path for the bounded run; AC06/PLAN unconfigured threshold, sample, consumer, missing appendices, and 18-scenario residuals were pinned",
       "L12 BR01 version/HEAD/scope conditions and the separate HARNESS-L2-049 -002/-003 decision scopes were pinned; no BBG successor or generation capability was inferred"
     ],
