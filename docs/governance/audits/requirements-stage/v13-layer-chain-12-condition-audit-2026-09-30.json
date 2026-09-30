@@ -1,0 +1,795 @@
+{
+  "schema_version": "v13-focused-condition-audit.v1",
+  "audit_scope": {
+    "title": "v1.3 §2 layer-chain/V-pair 12-condition audit",
+    "basis_main": "18f0eac48c6f8a770dc41ad3d8dc92c612c6fec5",
+    "physical_source_lines": [
+      46,
+      57
+    ],
+    "source_item_ids": [
+      "REQSRC-SUP-00034",
+      "REQSRC-SUP-00035",
+      "REQSRC-SUP-00036",
+      "REQSRC-SUP-00037",
+      "REQSRC-SUP-00038",
+      "REQSRC-SUP-00039",
+      "REQSRC-SUP-00040",
+      "REQSRC-SUP-00041",
+      "REQSRC-SUP-00042",
+      "REQSRC-SUP-00043",
+      "REQSRC-SUP-00044",
+      "REQSRC-SUP-00045"
+    ],
+    "count": 12,
+    "section": "§2 層連鎖/V-pair",
+    "scope_limit": "Exactly these 12 adjacent condition rows; no whole-source closure, source-population completeness, or requirement-stage closure claim."
+  },
+  "population_and_deduplication": {
+    "queue": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json",
+    "queue_sha256": "a61ec098a6bd714fcbbb706d0d9afb4e7f2777b114bf23c8056fc130e30f60d9",
+    "baseline_audit": "docs/governance/audits/requirements-stage/legacy-v13-semantic-condition-audit-2026-09-28.json",
+    "baseline_audit_sha256": "cd765545e584c50b423d652674ac54a3240aced24a321c0caa6bc2dd881ad863",
+    "selection_rule": "12 contiguous source rows in queue; each is condition + primary_residual + unresolved_for_closure_work; each has zero existing individual audit refs. Exact source IDs are disjoint from all prior individual-audit refs recorded in the queue. §6 REQSRC-SUP-00398..00432 (the 17-condition #2411 audit) and all other previously audited IDs were excluded.",
+    "selected_rows_all_have_zero_individual_audit_refs": true,
+    "selected_rows_in_prior_step5_individual_audit_refs": 0,
+    "overlap_with_prior_step5_audits": false
+  },
+  "legacy_source": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+    "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+    "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+    "asset_ledger_line": 956,
+    "asset_disposition": "source_snapshot_preservation; preserved_pending_rehome; pending human confirmation; non-executable read-only source",
+    "lines": [
+      46,
+      57
+    ]
+  },
+  "legacy_consumer_sources": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/l12-scrum-rebaseline-requirements.md",
+      "sha256": "sha256:7da3f49682819b5e6f3e68b5ebd55ae5e84f7561e1b7e6f4ada49c1a41a2f730",
+      "read_sections": "§1 canonical layer/pair contract, lines 19-25; canonical six-pair definition at line 19"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/l12-scrum-rebaseline-acceptance.md",
+      "sha256": "sha256:f584c65a126e3a1389131451192c5efe5f1bb59bb2c032714f003e87f8093df6",
+      "read_sections": "L12R-AC-002..003 and per-layer acceptance matrix, lines 22-35"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md",
+      "sha256": "sha256:efc06fe53652b8a7635f8f025b64d922d1612def338dab749b9c26c1a3676951",
+      "read_sections": "legacy L0-L14 to canonical L1-L12 mapping and compatibility-only boundary, lines 45-70; specifically old L7 implementation→current L6 implementation and old L8-L12 test-design/verification→current L7-L11 TDD/unit/integration/system/acceptance (lines 51-52)."
+    }
+  ],
+  "current_comparison_baseline": {
+    "fixed_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "authority_decision": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+    "decision_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+    "decision_source_repository_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "fixed_pair": {
+      "identity": "HARNESS-L2-001 / same-identity L11 acceptance",
+      "l2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "sha256": "sha256:aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "line": 52,
+        "line_sha256": "sha256:19bc5f0236524bedabfd9c1ff2729b90699b4d2b0be0834f0ff11bbf8feb5e0e"
+      },
+      "l11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "sha256": "sha256:09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "line_pins": [
+          {
+            "line": 21,
+            "line_sha256": "sha256:c4c9fa75277a9296c40e4dd1d443b58fe0edc36e1ef3d85bb1234408a0b928e1"
+          },
+          {
+            "line": 33,
+            "line_sha256": "sha256:137bce38efc005e3e79404c6e7f2a7265b84f352ed18cc1dfc5869960ed384bd"
+          }
+        ]
+      }
+    },
+    "current_concept": {
+      "path": "docs/concept/helix-concept.md",
+      "sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+      "line": 238
+    },
+    "comparison_rule": "HARNESS-L2-001/L11-001 is the primary exact f6 layer/pair map. Rows 00037/00038/00041/00042 additionally rely on exact fixed HARNESS-L2-004/L11-004 pins; rows 00039/00040 additionally rely on exact fixed HARNESS-L2-003/L11-003 pins. Decision line 66 preserves the existing 001-009 pair set. Later HARNESS-L2-039 adoption is cited only for rows 00035 and 00044 within its exact section scope. None of these pins assigns a successor to the legacy source rows or establishes full source-condition coverage.",
+    "decision_scope_ref": {
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "file_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "line": 66,
+      "line_sha256": "sha256:6a11418d4ae0f608f6ad11edf0d4eb3f59fe66b6a3c92ae5ffe5e3eb6d466777",
+      "scope": "既存HARNESS-L2-001〜009のL2/L11一式を保持し、24候補へ重複加算しない。003/004を比較根拠として使う場合も、この同じ判断対象revisionのL2/L11行に限定する。"
+    },
+    "related_fixed_pairs": [
+      {
+        "identity": "HARNESS-L2-003 / corresponding HARNESS-L2-003 L11 acceptance row",
+        "l2": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "file_sha256": "sha256:aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "line": 54,
+          "line_sha256": "sha256:693deb038a91ee9ba358aecab588d889a9fa40ff67c5d697f880ee76ff18b3d0"
+        },
+        "l11": {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "file_sha256": "sha256:09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+          "line": 23,
+          "line_sha256": "sha256:1ced8f2b5886a2c154bb809f169b8a01f27d9af38abb1697ac0cd96325dba9c5"
+        }
+      },
+      {
+        "identity": "HARNESS-L2-004 / corresponding HARNESS-L2-004 L11 acceptance row",
+        "l2": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "file_sha256": "sha256:aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "line": 55,
+          "line_sha256": "sha256:7b09279d1e75c221cdc85f551026a6110496c42770c4721ad42e74acdcdd6006"
+        },
+        "l11": {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "file_sha256": "sha256:09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+          "line": 24,
+          "line_sha256": "sha256:2d548b5f31549a87687144145601848ec08fdd46311b50c3a05145d234f6609a"
+        }
+      }
+    ]
+  },
+  "later_decision_scope": [
+    {
+      "decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "set_counts": {
+        "adopted": 42,
+        "conditionally_adopted": 11,
+        "held": 4,
+        "total": 57
+      },
+      "relevant_exact_identity_scope": [
+        "HARNESS-L2-039/L11-039: selected-scope Experience/UI/Frontend relation and UX evidence only, exact adopted pair revision; rows 00035 and 00044 have limited relevance as stated per row.",
+        "HARNESS-L2-040/L11-040: adopted layer-ledger catalog and canonical pair/row identity contract; structurally relevant to all 12 rows, without source-specific condition coverage.",
+        "HARNESS-L2-034/L11-034: adopted requirement-specific measurement contract; relevant only to rows 00043 and 00045 where an applicable NFR/requirement has a defined measurement obligation.",
+        "HARNESS-L2-046/L11-046: adopted Full V workflow freeze/pair contract; relevant only to rows 00036–00038 and only for scope selecting Full V."
+      ],
+      "effect_on_this_batch": "These decisions are exact-revision limited. L2-040 preserves ledger/pair structure only; L2-034 adds a measurement contract only for applicable requirement/NFR scope; L2-046 applies only to Full V scope. L2-039 remains limited to rows 00035 and 00044. None proves full legacy-condition coverage, assigns a successor, or closes a source row.",
+      "exact_identity_pins": [
+        {
+          "decision_row": 44,
+          "decision_row_sha256": "sha256:36ee00432206be7b72d281d7fa0222239130ec4025d8bed45810f1bc395625e5",
+          "registration_id": "MPR-RC-HARNESS-L2-039-003",
+          "l2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "sha256:111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+            "section_digest": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0"
+          },
+          "l11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "sha256:3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+            "section_digest": "sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746"
+          },
+          "scope_limit": "Only exact L2-039/-L11-039 revision and its stated scope; no separate L2.5 agreement, full legacy L11 clause coverage, or REQSRC-SUP successor/closure."
+        },
+        {
+          "identity": "HARNESS-L2-034/L11-034",
+          "decision_row": 39,
+          "decision_row_sha256": "sha256:c006f41bb2b046673e74644d866dd309b3a0cfcb5d06b3ca6eb193d67b7d59e1",
+          "registration_id": "MPR-RC-HARNESS-L2-034-003",
+          "l2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "sha256:111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+            "section_digest": "sha256:dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156"
+          },
+          "l11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "sha256:3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+            "section_digest": "sha256:391f640508944ba2f32b5751a2a9a17fbc9f89ef76f46953c1af68ba907a9fdf"
+          },
+          "scope_limit": "Only requirements/NFRs with an applicable adopted measurement contract and its exact target scope; no generic threshold, universal metric, execution evidence, or legacy-row coverage."
+        },
+        {
+          "identity": "HARNESS-L2-040/L11-040",
+          "decision_row": 45,
+          "decision_row_sha256": "sha256:39892649f4052cc7dfc5b0a8ec8c78d484f0e2b0fee19a1206d7a64dc12d86b8",
+          "registration_id": "MPR-RC-HARNESS-L2-040-002",
+          "l2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "sha256:111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+            "section_digest": "sha256:c349606d7798e3f4eb5e6cb31e0618a83dcfa05f9fc888b0ce618f6d160757df"
+          },
+          "l11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "sha256:3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+            "section_digest": "sha256:366518f8e32ac4dda1e5f4ec88ef0cfed6bc363d597955ffffb1a82d706fc212"
+          },
+          "scope_limit": "Layer ledger catalog, row identity/edge tracking, canonical 12 layers and six pairs, and separate L0 authority anchor; not the source-specific completion, acceptance, adoption, or execution of any legacy condition."
+        },
+        {
+          "identity": "HARNESS-L2-046/L11-046",
+          "decision_row": 51,
+          "decision_row_sha256": "sha256:8262b7450d8eb68154aa0123f8c829d7b882cd46450676a46de458030ee5ca25",
+          "registration_id": "MPR-RC-HARNESS-L2-046-001",
+          "l2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "sha256:111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+            "section_digest": "sha256:47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e"
+          },
+          "l11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "sha256:3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+            "section_digest": "sha256:a8e99f7df7166566c04b1113b045851d8417e17e8078c034f8f2a34ebfe4f37f"
+          },
+          "scope_limit": "Full V workflow freeze/pair conditions only; does not apply as a universal condition to other styles and does not itself prove old-row satisfaction or execution."
+        },
+        {
+          "identity": "HARNESS-L2-041/L11-041 revision -002",
+          "decision_row": 46,
+          "decision_row_sha256": "sha256:fa7480f5d52ce8d81564e5017fa178b4bf8c64b63968bb1e671a51baa3cdcb3d",
+          "registration_id": "MPR-RC-HARNESS-L2-041-002",
+          "l2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "sha256:111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+            "section_digest": "sha256:d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260"
+          },
+          "l11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "sha256:3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+            "section_digest": "sha256:259c383203d86b79c159395b64c0d03d88db665486d28f5fc2aea8f7556a73a8"
+          },
+          "scope_limit": "Active-template obligation extraction/gap presentation; not layer-ledger extraction, and not proof of these legacy rows."
+        }
+      ]
+    },
+    {
+      "decision": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+      "sha256": "sha256:6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+      "source_repository_revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+      "set_counts": {
+        "adopted": 10,
+        "not_adopted_current_revision": 1,
+        "total": 11
+      },
+      "relevant_exact_identity_scope": [
+        "HARNESS-L2-041 revision -003: active-template obligation extraction, atomic candidate rows, and gap presentation for selected template/scope; it consumes a ledger contract (040 or compatible) and is not itself layer-ledger extraction.",
+        "HARNESS-L2-048 revision -001: naming/rename identity and consumer/oracle edge preservation only; it does not define or rename the canonical layer/pair map.",
+        "HELIXOS-L2-038 revision -002: OS-side layer-ledger writer/persistence and isolation scope, adopted with the explicit HARNESS-L2-041 -003 dependency for the specified error-meaning input; separate owner and scope from this HARNESS v1.3 audit."
+      ],
+      "effect_on_this_batch": "HARNESS-L2-041 is an active-template obligation/gap contract, not a layer-ledger contract. HARNESS-L2-048 is limited to naming/rename identity. HELIXOS-L2-038 addresses a separate OS ledger-writer/persistence boundary and is conditional on its exact HARNESS-L2-041 -003 dependency; none changes the six canonical V-pairs or creates coverage/successor/closure for these 12 HARNESS legacy rows.",
+      "exact_identity_pins": [
+        {
+          "identity": "HARNESS-L2-041/L11-041 revision -003",
+          "decision_row": 27,
+          "decision_row_sha256": "sha256:78a28b08cd764877da9821077da3ce3dfa623b5fac671d6c7f56fbda6c31045c",
+          "registration_id": "MPR-RC-HARNESS-L2-041-003",
+          "l2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "sha256:45955ffba1293b603f3c513ec1e9e328dd7bcf24b038463eb20dd480d1dc2108",
+            "section_digest": "sha256:d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260"
+          },
+          "l11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "sha256:216a8dccfff723408fd4b54701933a8e257f29e5c775aaef2a4458d1f36d3cc7",
+            "section_digest": "sha256:11759276200a6707762e76eeeefd901443e691bd1b0ff51b55cd3b6551fed58b"
+          },
+          "scope_limit": "Active selected-template obligation extraction and gap display, using a ledger contract; no layer-ledger ownership."
+        },
+        {
+          "identity": "HARNESS-L2-048/L11-048",
+          "decision_row": 28,
+          "decision_row_sha256": "sha256:9cbd95969aadc8f6c302d3ca6ae4f4b3c2271c1cef907e23bcfa8a8423adf280",
+          "registration_id": "MPR-RC-HARNESS-L2-048-001",
+          "l2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "sha256:45955ffba1293b603f3c513ec1e9e328dd7bcf24b038463eb20dd480d1dc2108",
+            "section_digest": "sha256:9328dccd943ac8f690d149673a5f05626465990f3197306a45d7b8cca27c34d5"
+          },
+          "l11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "sha256:216a8dccfff723408fd4b54701933a8e257f29e5c775aaef2a4458d1f36d3cc7",
+            "section_digest": "sha256:4a4d893e909d1ccc32b52cc96b22f82eaef6bffead7037677df561cd2617466d"
+          },
+          "scope_limit": "Naming and rename identity/consumer/oracle linkage only; no layer/pair mapping change."
+        },
+        {
+          "identity": "HELIXOS-L2-038/L11-038 revision -002",
+          "decision_row": 35,
+          "decision_row_sha256": "sha256:196e1750220ef4bdaf57b57f0ee955375b942e8afe91ee6d45c30ef04488a733",
+          "registration_id": "MPR-RC-HELIXOS-L2-038-002",
+          "l2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "file_sha256": "sha256:c90be67dc90240434568491074d0e12fb593759ad9121ee9ef9bd3f932a41610",
+            "section_digest": "sha256:c3b0424bd39ac7c91166c87738fbefc1b20a11b904012d9ada768a113ccbe013"
+          },
+          "l11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "file_sha256": "sha256:b965f3681d1f5231e4281d333538b65142dce8db0ae4807ed46caa7e928e30de",
+            "section_digest": "sha256:eabb68eaafc76f0080fbe9cb9c6904005c88b72e7cee9563f2515b4488de2e5d"
+          },
+          "scope_limit": "OS-side ledger writer/persistence scope; -002 additionally pins the L11 negative-oracle section and is enabled only with HARNESS-L2-041 -003 adopted. It does not establish HARNESS source-row coverage.",
+          "l11_additional_condition": {
+            "section": "### HELIXOS-L2-038 revision -002候補の追加negative oracle（未採択）",
+            "section_digest": "sha256:86287e73d09522940b2a07bf8f304135ff3d495904df055088f07fff077766ed",
+            "decision_scope": "採択はHARNESS-L2-041 -003を個別採択する条件。異常の意味判定はHARNESS、保存可否・隔離はOS。"
+          }
+        }
+      ]
+    }
+  ],
+  "method": {
+    "row_identity": "source_item_id + archive source path + source file SHA-256 + physical line + line SHA-256",
+    "comparison_statuses": [
+      "partial"
+    ],
+    "coverage_rule": "A layer/pair identity match is not exact coverage. Preserve each old row as an independent condition and state the remaining clause, exception, numeric boundary and counterexample. No thematic route or later candidate yields adoption, formal successor, or closure.",
+    "old_material_use": "Read-only source and consumer documents; no old executable, runtime, workflow, CLI, hook, test, or CI was run."
+  },
+  "summary": {
+    "rows": 12,
+    "source_tuple_reverified": 12,
+    "line_text_or_digest_mismatches": 0,
+    "queue_status_primary_residual": 12,
+    "preexisting_individual_audit_refs": 0,
+    "comparison_partial": 12,
+    "comparison_covered": 0,
+    "formal_successor_assignments": 0,
+    "source_condition_closure_claimed": false,
+    "implementation_or_acceptance_claimed": false,
+    "authority_effect": "none"
+  },
+  "conditions": [
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00034",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 46,
+        "source_line_sha256": "sha256:21b54bb6ab01ff60bbd6c64ccba124e610297c4024247747cdbfbfed81cab9be",
+        "source_text": "| L1 | 企画 | L12 運用テスト | 価値、目的、対象、非対象、route判断が確定 |",
+        "condition_cluster_id": "V13-COND-L0046",
+        "source_section_group": 4,
+        "source_section_label": "§2 layer chain/V-pair・42–61"
+      },
+      "queue_baseline": {
+        "classification": "condition",
+        "condition_status": "partial",
+        "queue_state": "unresolved_for_closure_work",
+        "individual_audit_refs": []
+      },
+      "condition_analysis": {
+        "meaning": "L1企画を価値・目的・対象／非対象・route判断が確定する工程として定義し、L12運用テストと対にする。",
+        "retained": "固定HARNESS-L2-001はL1–L12全体と正規pairを扱い、L11は全体の成果・対の確認を要求する。current ConceptもL1を企画、L12を運用評価としてL1↔L12に接続する。 後発採択HARNESS-L2-040/L11-040はcanonical L1–L12・6 pairとledger row/edge identityの構造契約を保持するが、この旧条件固有の意味・oracle・成果を充足しない。",
+        "residual": "固定L2/L11 pairはL1の価値・対象境界とL12の時間軸・監視・改善効果の個別oracle、観測期間、再評価条件までは指定しない。概念上の対応だけではL12の利用者受入結果にならない。 L2-040のledger契約だけでは当該source行の固有条件・例外・受入oracleのcoverageは示されず、残差は未解消のまま。",
+        "numeric_exception": "pairはL1↔L12の1組。L12評価からL1の意味を自動変更しない。変更が必要なら既存の上流要求判断へ戻す。",
+        "counterexample": "L12に監視値があるだけで価値・対象境界が正しいとする、または運用実績なしでL1↔L12 pairをacceptedにする。"
+      },
+      "comparison_result": "partial",
+      "formal_successor_assignment": null,
+      "authority_effect": "none",
+      "implementation_or_acceptance_closure": "not_proven",
+      "related_later_decision_identities": [
+        "HARNESS-L2-040/L11-040"
+      ]
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00035",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 47,
+        "source_line_sha256": "sha256:8fab5d0171eb81dec231773d77bf4750b41f4c4688731e9cc4aa93ac29149a78",
+        "source_text": "| L2 | 要求＋画面プロト | L11 受入テスト | 要求とプロトを往復し、合意receiptまたは非UI N/A receiptが存在 |",
+        "condition_cluster_id": "V13-COND-L0047",
+        "source_section_group": 4,
+        "source_section_label": "§2 layer chain/V-pair・42–61"
+      },
+      "queue_baseline": {
+        "classification": "condition",
+        "condition_status": "partial",
+        "queue_state": "unresolved_for_closure_work",
+        "individual_audit_refs": []
+      },
+      "condition_analysis": {
+        "meaning": "L2利用者要求と画面prototypeをL11受入へ結び、要求・prototypeの往復と合意receiptまたは非UI N/A receiptを求める。",
+        "retained": "固定HARNESS-L2-001/L11-001はL2／L11とL3／L10を区別し、prototype/PoCを要求合意と同一視しない。後発採択HARNESS-L2-039/L11-039は選択UI scopeのExperience/UI/Frontend relationとUX evidenceを同一scope/revisionへ結ぶ範囲で関連する。 後発採択HARNESS-L2-040/L11-040はcanonical L1–L12・6 pairとledger row/edge identityの構造契約を保持するが、この旧条件固有の意味・oracle・成果を充足しない。",
+        "residual": "L2-039はprototype agreementやL2.5判断を所有せず、既存L2-024等の入力契約を参照する。旧行のprototype往復、合意receipt/非UI N/A receiptの各fieldと、このlegacy条件全体が採択pair上で成立することは未確定。L2-039の採択はこの行のcoverageやsuccessorを与えない。 L2-040のledger契約だけでは当該source行の固有条件・例外・受入oracleのcoverageは示されず、残差は未解消のまま。",
+        "numeric_exception": "L2↔L11は1組。L2.5はcanonicalな追加layerではなく、適用時だけ挿入する。画面・技術的不確実性がない場合に限り適用を飛ばせるが、理由付きN/Aは残る。",
+        "counterexample": "画面がないことだけで技術PoCまで非適用にする、またはprototype表示・PoC成功をL2要求合意やL3凍結と同一視する。"
+      },
+      "comparison_result": "partial",
+      "formal_successor_assignment": null,
+      "authority_effect": "none",
+      "implementation_or_acceptance_closure": "not_proven",
+      "related_later_decision_identities": [
+        "HARNESS-L2-039/L11-039",
+        "HARNESS-L2-040/L11-040"
+      ]
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00036",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 48,
+        "source_line_sha256": "sha256:bf7ffa613fca0fd03a35b55214041441e675002c7dfbda9b5d69a73823530492",
+        "source_text": "| L3 | 要件定義・凍結 | L10 総合テスト | FR/NFR/AC、出所、優先度、非目標、test oracleが凍結 |",
+        "condition_cluster_id": "V13-COND-L0048",
+        "source_section_group": 4,
+        "source_section_label": "§2 layer chain/V-pair・42–61"
+      },
+      "queue_baseline": {
+        "classification": "condition",
+        "condition_status": "partial",
+        "queue_state": "unresolved_for_closure_work",
+        "individual_audit_refs": []
+      },
+      "condition_analysis": {
+        "meaning": "L3でFR/NFR/ACの出所・優先度・非目標・test oracleを凍結し、L10のsystem testと対にする。",
+        "retained": "固定HARNESS-L2-001とL11-001はL3／L10をL2／L11から区別し、片側欠落を検出する。 後発採択HARNESS-L2-040/L11-040はcanonical L1–L12・6 pairとledger row/edge identityの構造契約を保持するが、この旧条件固有の意味・oracle・成果を充足しない。 HARNESS-L2-046/L11-046の採択はFull Vを選択したscopeに限り、workflow freezeと対応V-pair検証条件に関連する。",
+        "residual": "対象ごとのL3要件正本・承認revision、FR/NFR/ACの完全性、優先度・non-goalの扱い、各oracleのcurrent evidenceはこのL2/L11固定pairには展開されていない。system testの実行・結果も証明されない。 L2-040のledger契約だけでは当該source行の固有条件・例外・受入oracleのcoverageは示されず、残差は未解消のまま。 Full V以外へ適用を広げず、-046の採択自体はこのlegacy行のfreeze内容やpair結果を証明しない。",
+        "numeric_exception": "L3↔L10は1組。L3 freezeには採択済み対象revisionの人間decisionが要る場合があり、別revisionの承認を転用しない。",
+        "counterexample": "L2要求の合意だけでL3をfreezeする、L10の単一greenから全FR/NFR/AC closureを推定する、またはoracle欠落を非適用扱いにする。"
+      },
+      "comparison_result": "partial",
+      "formal_successor_assignment": null,
+      "authority_effect": "none",
+      "implementation_or_acceptance_closure": "not_proven",
+      "related_later_decision_identities": [
+        "HARNESS-L2-040/L11-040",
+        "HARNESS-L2-046/L11-046 (Full V scope only)"
+      ]
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00037",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 49,
+        "source_line_sha256": "sha256:b70cd99999c61e473632bad448deaf35944f15bc2689e308cd7478957f484f78",
+        "source_text": "| L4 | 基本設計 | L9 結合テスト | 外部設計、architecture、境界、依存、接続が確定 |",
+        "condition_cluster_id": "V13-COND-L0049",
+        "source_section_group": 4,
+        "source_section_label": "§2 layer chain/V-pair・42–61"
+      },
+      "queue_baseline": {
+        "classification": "condition",
+        "condition_status": "partial",
+        "queue_state": "unresolved_for_closure_work",
+        "individual_audit_refs": []
+      },
+      "condition_analysis": {
+        "meaning": "L4基本設計とL9結合テストを対にし、外部設計・architecture・境界・依存・接続を確定する。",
+        "retained": "固定HARNESS-L2-001は6組の正規pairを保持し、対L11-001は片側欠落を識別する。固定HARNESS-L2-004/L11-004は要求から設計・testへのtraceと変更時再検証を要求する。 後発採択HARNESS-L2-040/L11-040はcanonical L1–L12・6 pairとledger row/edge identityの構造契約を保持するが、この旧条件固有の意味・oracle・成果を充足しない。 HARNESS-L2-046/L11-046の採択はFull Vを選択したscopeに限り、workflow freezeと対応V-pair検証条件に関連する。",
+        "residual": "L4設計の対象revision、component/interface境界・依存方向・接続契約と、L9のtransaction/adapter等のintegration oracleを同一pairで照合する具体条件は、この固定L2/L11 pairのscope外。 L2-040のledger契約だけでは当該source行の固有条件・例外・受入oracleのcoverageは示されず、残差は未解消のまま。 Full V以外へ適用を広げず、-046の採択自体はこのlegacy行のfreeze内容やpair結果を証明しない。",
+        "numeric_exception": "L4↔L9は1組。対象にintegration edgeがない場合のN/A条件・理由・再評価条件は本source行にもf6 pairにも個別oracle化されていない。",
+        "counterexample": "L4設計が存在するだけでL9合格とする、または1つのintegration結果を別依存・adapter境界へ横展開する。"
+      },
+      "comparison_result": "partial",
+      "formal_successor_assignment": null,
+      "authority_effect": "none",
+      "implementation_or_acceptance_closure": "not_proven",
+      "related_fixed_requirement_identities": [
+        "HARNESS-L2-001",
+        "HARNESS-L2-004"
+      ],
+      "related_later_decision_identities": [
+        "HARNESS-L2-040/L11-040",
+        "HARNESS-L2-046/L11-046 (Full V scope only)"
+      ]
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00038",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 50,
+        "source_line_sha256": "sha256:3251f34abf7dd7e379266250290fd658eb6f4bfcbc9635147a69a8870d80961d",
+        "source_text": "| L5 | 詳細設計＋先行テスト設計 | L8 単体テスト | 内部設計、契約、edge case、test designが対で凍結 |",
+        "condition_cluster_id": "V13-COND-L0050",
+        "source_section_group": 4,
+        "source_section_label": "§2 layer chain/V-pair・42–61"
+      },
+      "queue_baseline": {
+        "classification": "condition",
+        "condition_status": "partial",
+        "queue_state": "unresolved_for_closure_work",
+        "individual_audit_refs": []
+      },
+      "condition_analysis": {
+        "meaning": "L5詳細設計と先行test designをL8 unit testと対にし、内部契約・edge case・test designをfreezeする。",
+        "retained": "固定HARNESS-L2-001はL5↔L8を正規pairに含み、固定HARNESS-L2-004/L11-004は要求から設計/testへのtraceと再検証範囲を要求する。 後発採択HARNESS-L2-040/L11-040はcanonical L1–L12・6 pairとledger row/edge identityの構造契約を保持するが、この旧条件固有の意味・oracle・成果を充足しない。 HARNESS-L2-046/L11-046の採択はFull Vを選択したscopeに限り、workflow freezeと対応V-pair検証条件に関連する。",
+        "residual": "test caseと先行test designの対応、edge-case集合、対象revisionとexpected failureの一致、unit fixtureの適用可能性は固定L2/L11 pairから具体化されない。 L2-040のledger契約だけでは当該source行の固有条件・例外・受入oracleのcoverageは示されず、残差は未解消のまま。 Full V以外へ適用を広げず、-046の採択自体はこのlegacy行のfreeze内容やpair結果を証明しない。",
+        "numeric_exception": "L5↔L8は1組。test-design artifactなしを黙ってN/Aにできる根拠はなく、非適用なら対象・理由を特定する必要がある。",
+        "counterexample": "L5契約にない動作をL8 testで要求する、edge caseを欠いたままunit passとする、またはtest designがない状態を暗黙に合格にする。"
+      },
+      "comparison_result": "partial",
+      "formal_successor_assignment": null,
+      "authority_effect": "none",
+      "implementation_or_acceptance_closure": "not_proven",
+      "related_fixed_requirement_identities": [
+        "HARNESS-L2-001",
+        "HARNESS-L2-004"
+      ],
+      "related_later_decision_identities": [
+        "HARNESS-L2-040/L11-040",
+        "HARNESS-L2-046/L11-046 (Full V scope only)"
+      ]
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00039",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 51,
+        "source_line_sha256": "sha256:edb0caff28e7f5c28e70beb9603bee15f7c1c139060110f7c79af4be18e3ca9e",
+        "source_text": "| L6 | 実装 | L7 TDD closure | L5契約内のproduct code。scope外機能を追加しない |",
+        "condition_cluster_id": "V13-COND-L0051",
+        "source_section_group": 4,
+        "source_section_label": "§2 layer chain/V-pair・42–61"
+      },
+      "queue_baseline": {
+        "classification": "condition",
+        "condition_status": "partial",
+        "queue_state": "unresolved_for_closure_work",
+        "individual_audit_refs": []
+      },
+      "condition_analysis": {
+        "meaning": "L6をL5契約内のproduct implementation、L7を対応するTDD closureとしてL6↔L7へ結ぶ。",
+        "retained": "固定HARNESS-L2-001はL6↔L7を正規pairに含む。固定HARNESS-L2-003/L11-003は工程状態を実行成功だけから推定しない。 後発採択HARNESS-L2-040/L11-040はcanonical L1–L12・6 pairとledger row/edge identityの構造契約を保持するが、この旧条件固有の意味・oracle・成果を充足しない。",
+        "residual": "L5契約のどの実装差分がL6成果か、scope外機能の識別、実装revisionとL7証拠の一致は、HARNESS-L2-001/対L11だけでは条件別に定義されていない。 L2-040のledger契約だけでは当該source行の固有条件・例外・受入oracleのcoverageは示されず、残差は未解消のまま。",
+        "numeric_exception": "L6↔L7は1組。implementation存在やCI success単独はpair closureにならない。",
+        "counterexample": "動く実装があることからtest closureを推定する、またはL5 scope外機能を追加しても同一pairのpassにする。"
+      },
+      "comparison_result": "partial",
+      "formal_successor_assignment": null,
+      "authority_effect": "none",
+      "implementation_or_acceptance_closure": "not_proven",
+      "related_fixed_requirement_identities": [
+        "HARNESS-L2-001",
+        "HARNESS-L2-003"
+      ],
+      "related_later_decision_identities": [
+        "HARNESS-L2-040/L11-040"
+      ]
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00040",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 52,
+        "source_line_sha256": "sha256:d314c366d3fec30d2bb7ba161fb2cd74b2df8aa0d773c4999cc421dd1e789b46",
+        "source_text": "| L7 | テスト実装・TDD closure | L6 実装 | Red→Green→Refactor、実装とtestの双方向traceを閉じる |",
+        "condition_cluster_id": "V13-COND-L0052",
+        "source_section_group": 4,
+        "source_section_label": "§2 layer chain/V-pair・42–61"
+      },
+      "queue_baseline": {
+        "classification": "condition",
+        "condition_status": "partial",
+        "queue_state": "unresolved_for_closure_work",
+        "individual_audit_refs": []
+      },
+      "condition_analysis": {
+        "meaning": "L7 test実装とTDD closureをL6 implementationと対にし、Red→Green→Refactorおよび実装/test間の双方向traceを閉じる。",
+        "retained": "固定HARNESS-L2-003/L11-003は工程結果を前段状態から推定しない。固定HARNESS-L2-001はL6↔L7のpair identityを提示する。 後発採択HARNESS-L2-040/L11-040はcanonical L1–L12・6 pairとledger row/edge identityの構造契約を保持するが、この旧条件固有の意味・oracle・成果を充足しない。",
+        "residual": "Red/Green/Refactor各状態の具体的oracleとsource requirementからtestへの逆traceの個票条件は固定L2/L11 pairで特定されていない。旧consumerのcutoverは旧L7 implementation→現L6とする一方、v1.3行52は旧L7をtest実装と記す。この旧記述間の差を解決せず、現行L7へ番号だけで写像しない。L2-040のledger/pair trackingもこの条件固有のoracleやtest結果を証明しない。",
+        "numeric_exception": "Red→Green→Refactorの順序は旧sourceに明示されるが、f6 pairは段階ごとの実行成功や件数を定めない。旧L7 labelを現行層へ機械写像しない。",
+        "counterexample": "Greenだけを見てRedの失敗証拠やRefactor後の再実行を省く、またはtest/code trace欠落をpassにする。"
+      },
+      "comparison_result": "partial",
+      "formal_successor_assignment": null,
+      "authority_effect": "none",
+      "implementation_or_acceptance_closure": "not_proven",
+      "related_fixed_requirement_identities": [
+        "HARNESS-L2-001",
+        "HARNESS-L2-003"
+      ],
+      "related_later_decision_identities": [
+        "HARNESS-L2-040/L11-040"
+      ]
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00041",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 53,
+        "source_line_sha256": "sha256:0d91bf748618c7ef19c4de9a741b9267714e68786c84d450ad81f93b27ec10dc",
+        "source_text": "| L8 | 単体テスト | L5 詳細設計 | 合成/局所データで内部設計を検証 |",
+        "condition_cluster_id": "V13-COND-L0053",
+        "source_section_group": 4,
+        "source_section_label": "§2 layer chain/V-pair・42–61"
+      },
+      "queue_baseline": {
+        "classification": "condition",
+        "condition_status": "partial",
+        "queue_state": "unresolved_for_closure_work",
+        "individual_audit_refs": []
+      },
+      "condition_analysis": {
+        "meaning": "L8をL5詳細設計と対になるunit testとし、合成または局所データで内部設計を検証する。",
+        "retained": "固定HARNESS-L2-001はL5↔L8を示し、固定HARNESS-L2-004/L11-004は変更条件の検証漏れを追跡する。 後発採択HARNESS-L2-040/L11-040はcanonical L1–L12・6 pairとledger row/edge identityの構造契約を保持するが、この旧条件固有の意味・oracle・成果を充足しない。",
+        "residual": "局所fixtureと実利用データの境界、L8の対象範囲・oracle・expected failureの粒度、L5 detail単位のtrace receiptはこのpairで閉じない。 L2-040のledger契約だけでは当該source行の固有条件・例外・受入oracleのcoverageは示されず、残差は未解消のまま。",
+        "numeric_exception": "L5↔L8は1組。合成/局所データはL8の条件であり、L11の実利用・実データ受入と混同しない。",
+        "counterexample": "L8の合成fixture passをL11実利用結果へ昇格する、または対応L5 designがないunit testを無関係な設計へ結ぶ。"
+      },
+      "comparison_result": "partial",
+      "formal_successor_assignment": null,
+      "authority_effect": "none",
+      "implementation_or_acceptance_closure": "not_proven",
+      "related_fixed_requirement_identities": [
+        "HARNESS-L2-001",
+        "HARNESS-L2-004"
+      ],
+      "related_later_decision_identities": [
+        "HARNESS-L2-040/L11-040"
+      ]
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00042",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 54,
+        "source_line_sha256": "sha256:1166ac356e48446e6baf14ad061479652dd5e3a4d80b95586885a3e80e4f6529",
+        "source_text": "| L9 | 結合テスト | L4 基本設計 | 接続、依存、transaction、adapter境界を検証 |",
+        "condition_cluster_id": "V13-COND-L0054",
+        "source_section_group": 4,
+        "source_section_label": "§2 layer chain/V-pair・42–61"
+      },
+      "queue_baseline": {
+        "classification": "condition",
+        "condition_status": "partial",
+        "queue_state": "unresolved_for_closure_work",
+        "individual_audit_refs": []
+      },
+      "condition_analysis": {
+        "meaning": "L9をL4基本設計のintegration testとし、接続・依存・transaction・adapter境界を検証する。",
+        "retained": "固定HARNESS-L2-001は正規L4↔L9 pairを明記し、固定HARNESS-L2-004/L11-004は要求変更に伴う再検証範囲を保持する。後発L2-040はpair/ledger identityの構造だけを補助し、個別oracleを追加しない。",
+        "residual": "選択されたL9結合条件の対象edge/構成体と、その選択根拠がこのf6 pairでは照合されておらず、transaction/adapter failureや依存方向違反の具体oracleも未特定である。L8 passだけでは選択L9条件を満たさない。",
+        "numeric_exception": "L4↔L9は1組。L8 unit passだけでは選択されたL9 integration条件を満たす証拠にならない。",
+        "counterexample": "L8 unit passだけから、選択されたL9 integration条件（接続・依存・transaction・adapter境界）の成立を推定する。"
+      },
+      "comparison_result": "partial",
+      "formal_successor_assignment": null,
+      "authority_effect": "none",
+      "implementation_or_acceptance_closure": "not_proven",
+      "related_fixed_requirement_identities": [
+        "HARNESS-L2-001",
+        "HARNESS-L2-004"
+      ],
+      "related_later_decision_identities": [
+        "HARNESS-L2-040/L11-040"
+      ]
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00043",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 55,
+        "source_line_sha256": "sha256:424eb1021dac8ea0418173907459a7f4ff410e3ad6c1bd67f936b6b324cce9c4",
+        "source_text": "| L10 | 総合テスト | L3 要件 | system全体でFR/NFR/ACを検証 |",
+        "condition_cluster_id": "V13-COND-L0055",
+        "source_section_group": 4,
+        "source_section_label": "§2 layer chain/V-pair・42–61"
+      },
+      "queue_baseline": {
+        "classification": "condition",
+        "condition_status": "partial",
+        "queue_state": "unresolved_for_closure_work",
+        "individual_audit_refs": []
+      },
+      "condition_analysis": {
+        "meaning": "L10でsystem全体のFR/NFR/ACを検証し、L3要件と対にする。",
+        "retained": "固定HARNESS-L2-001およびL11-001はL3／L10とL2／L11の混同・片側欠落を検出する。 後発採択HARNESS-L2-040/L11-040はcanonical L1–L12・6 pairとledger row/edge identityの構造契約を保持するが、この旧条件固有の意味・oracle・成果を充足しない。 HARNESS-L2-034/L11-034は、該当要求/NFRに適用可能な計測契約が定義されたscopeに限り、metric・target/SLO・条件・evidenceの明示を関連補強する。",
+        "residual": "system-level requirement/oracle coverage、該当するNFRで計測義務・thresholdが定義される場合のmeasurement condition/threshold/staleness、未解決findingの扱いはこの固定pairの個別条件には含まれない。HARNESS-L2-034は適用対象に定義済みの計測契約を要求別に扱うに限り、共通thresholdを置かない。system testの実行・結果も証明されない。",
+        "numeric_exception": "L3↔L10は1組。L10 passはL11利用者受入やL12運用評価を代替しない。FR/NFR/ACのいずれかが未traceなら全体完了を推定しない。",
+        "counterexample": "全unit/integration testがpassしただけで、該当NFRに定義されたsystem固有metricを未測定のままL10 acceptedにする。"
+      },
+      "comparison_result": "partial",
+      "formal_successor_assignment": null,
+      "authority_effect": "none",
+      "implementation_or_acceptance_closure": "not_proven",
+      "related_later_decision_identities": [
+        "HARNESS-L2-040/L11-040",
+        "HARNESS-L2-034/L11-034 (applicable measurement scope only)"
+      ]
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00044",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 56,
+        "source_line_sha256": "sha256:b910d91c68019e53918fc1f97f4035825b77f7a8c4e0f70a56d5c1fa77c62337",
+        "source_text": "| L11 | 受入テスト | L2 要求＋画面プロト | 実利用・実データで要求とUXを検証 |",
+        "condition_cluster_id": "V13-COND-L0056",
+        "source_section_group": 4,
+        "source_section_label": "§2 layer chain/V-pair・42–61"
+      },
+      "queue_baseline": {
+        "classification": "condition",
+        "condition_status": "partial",
+        "queue_state": "unresolved_for_closure_work",
+        "individual_audit_refs": []
+      },
+      "condition_analysis": {
+        "meaning": "L11をL2要求＋画面prototypeの利用者受入とし、実利用・実データで要求とUXを検証する。",
+        "retained": "固定HARNESS-L2-001/L11-001はL2とL11のpair、L2/L11とL3/L10の区別を示す。後発採択HARNESS-L2-039/L11-039は選択scopeに適用されるreal-data evidenceとhuman evaluationを、ux_verified主張に限り別状態で扱う。 後発採択HARNESS-L2-040/L11-040はcanonical L1–L12・6 pairとledger row/edge identityの構造契約を保持するが、この旧条件固有の意味・oracle・成果を充足しない。",
+        "residual": "039が扱うUX evidenceは、旧行のL11利用者受入全体と同義ではない。実利用条件、対象者/role、要求ごとの受入oracle・record・拒否基準の全条件と、039以外のL11受入条件は残る。039の採択からlegacy rowのcoverage、L2.5 agreement、formal successorは導けない。 L2-040のledger契約だけでは当該source行の固有条件・例外・受入oracleのcoverageは示されず、残差は未解消のまま。",
+        "numeric_exception": "L2↔L11は1組。prototype/PoCを適用しない場合でも理由付きN/Aが必要。L10 passからL11 passを導けない。",
+        "counterexample": "demo/prototypeのみを実利用者受入とする、またはL2.5 N/Aの根拠なくL11を飛ばす。"
+      },
+      "comparison_result": "partial",
+      "formal_successor_assignment": null,
+      "authority_effect": "none",
+      "implementation_or_acceptance_closure": "not_proven",
+      "related_later_decision_identities": [
+        "HARNESS-L2-039/L11-039",
+        "HARNESS-L2-040/L11-040"
+      ]
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00045",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 57,
+        "source_line_sha256": "sha256:d36f8ef458794f1dd2bbf6aa7b3b4740679695d73e6d63a1c8d84758686921f5",
+        "source_text": "| L12 | 運用テスト・改善還流 | L1 企画 | 運用時間軸、価値、監視、改善を検証し次cycleへ還流 |",
+        "condition_cluster_id": "V13-COND-L0057",
+        "source_section_group": 4,
+        "source_section_label": "§2 layer chain/V-pair・42–61"
+      },
+      "queue_baseline": {
+        "classification": "condition",
+        "condition_status": "partial",
+        "queue_state": "unresolved_for_closure_work",
+        "individual_audit_refs": []
+      },
+      "condition_analysis": {
+        "meaning": "L12を運用時間軸・価値・監視・改善還流の受入側としてL1企画と対にする。",
+        "retained": "固定HARNESS-L2-001はL1↔L12を正規pairに含み、current ConceptもL12を運用評価と定義する。 後発採択HARNESS-L2-040/L11-040はcanonical L1–L12・6 pairとledger row/edge identityの構造契約を保持するが、この旧条件固有の意味・oracle・成果を充足しない。 HARNESS-L2-034/L11-034は、該当要求/NFRに適用可能な計測契約が定義されたscopeに限り、metric・target/SLO・条件・evidenceの明示を関連補強する。",
+        "residual": "運用時間窓、監視対象とowner、期待価値測定、improvement feedbackからL1へ戻すtrigger/oracleはf6 L2/L11-001では定義されていない。L11は利用者受入でありL12運用testと同義ではない。HARNESS-L2-034の計測契約が適用される要求/NFR scopeでは契約revisionは採択済みだが、旧行固有の対象・実測結果・改善feedbackとの対応は未照合である。HARNESS-L2-040のledger契約だけでは当該source行の固有条件・例外・受入oracleのcoverageは示されない。普遍的なthresholdや全NFR一律の計測義務は導かない。",
+        "numeric_exception": "L1↔L12は1組。L11 acceptanceはrelease/operation evidenceに代替しない。時間経過なしに長期評価を成立扱いしない。",
+        "counterexample": "L11受入passだけで監視・運用実績・改善効果まで成立とする、または運用feedbackから企画意味を無承認で書き換える。"
+      },
+      "comparison_result": "partial",
+      "formal_successor_assignment": null,
+      "authority_effect": "none",
+      "implementation_or_acceptance_closure": "not_proven",
+      "related_later_decision_identities": [
+        "HARNESS-L2-040/L11-040",
+        "HARNESS-L2-034/L11-034 (applicable measurement scope only)"
+      ]
+    }
+  ],
+  "static_validation_expected": {
+    "selected_ids_unique": true,
+    "source_lines_contiguous": [
+      46,
+      57
+    ],
+    "source_line_count": 12,
+    "source_and_queue_text_digest_match_all": true,
+    "all_rows_zero_prior_individual_audit_refs": true,
+    "formal_successors_empty": true,
+    "whole_source_closure": false,
+    "old_runtime_or_tests_executed": false
+  }
+}
