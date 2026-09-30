@@ -1,0 +1,540 @@
+{
+  "audit_id": "confirmed175-kpi-d01-d09-condition-audit-2026-09-30",
+  "base_revision": "2bf484b1a84af346feaf8cf7b72e59f3889e6333",
+  "scope": "confirmed175のbusiness-requirements.md D-01..D-09 source identity 9件。queue上で個別fixed-pair比較が未成立の母集団をidentity別に条件照合する。",
+  "method": "旧sourceを読むだけ。実装、旧CLI/runtime/test/CIは実行しない。source原文・file SHA・line SHAをarchiveで再計算し、fixed decision pair・later adopted pair・full-audit・comparison queue・既存grouped residualを照合。",
+  "decisions": [
+    {
+      "id": "HDEC-HARNESS-REQUIREMENTS-2026-09-28",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "decision_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "l2_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "l11_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "adopted_explicit_candidate_ids": "HARNESS-L2-010..033; no D-01..D-09 per-identity adoption."
+    },
+    {
+      "id": "HDEC-REQUIREMENTS-57-2026-09-29",
+      "decision_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "decision_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "note": "HARNESS-L2-036採択。D-02に関連する後発採択pairとして個別に記録。",
+      "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+    }
+  ],
+  "input_artifacts": [
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json",
+      "sha256": "ca08a81d97e39e94aa02151c7cc4e48f621f9d30baccc1cf9b715331fed38f45"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/confirmed175-condition-comparison-queue-2026-09-30.json",
+      "sha256": "2dbfb06c11ac42a940c0d6b5c188a76e685ea4c00e4d9af10b432198ad17b353"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
+      "sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
+      "revision": "942f2e985f3af161ea4027b1691659a436860bc2",
+      "section": "§3 KPI D-01〜D-09; compared against HEAD559, grouped disposition"
+    }
+  ],
+  "results": {
+    "source_identities": 9,
+    "individually_compared_to_fixed_f6dad2a": 0,
+    "later_adopted_pair_specific_relevant_entries": 1,
+    "D02_partial_operational_goal_retained_by_HARNESS_L2_036": true,
+    "source_identity_successors_assigned_by_this_audit": 0,
+    "closures": 0,
+    "later_adopted_pair_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+  },
+  "records": [
+    {
+      "identity": "harness/L1-requirements/business-requirements.md::D-01",
+      "id": "D-01",
+      "original_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+        "line": 196,
+        "line_text": "| **D-01** | PLAN 起票数/sprint | sprint 期間中に起票された PLAN 件数 | ≥ 1 件/sprint | `.helix/plan_registry/` / `helix plan list` |",
+        "file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+        "line_text_sha256": "7a64579a7cf085b81d2d7306ea672943f0b222f144f61dac159502818d37ba31"
+      },
+      "old_kpi": {
+        "name": "PLAN 起票数/sprint",
+        "formula_or_measure": "sprint 期間中に起票された PLAN 件数",
+        "threshold": "≥ 1 件/sprint",
+        "source_declared_measurement_location": "`.helix/plan_registry/` / `helix plan list`"
+      },
+      "full_audit_classification": "known_residual",
+      "full_audit_record_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#known_residual_records (1/9; legacy KPI threshold)",
+      "fixed_2026_09_28_pair": {
+        "decision_id": "HDEC-HARNESS-REQUIREMENTS-2026-09-28",
+        "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2_file": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "l11_file": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "pair_scope_refs": [
+          {
+            "id": "HARNESS-L2-005",
+            "l2_lines": "56, 118-123",
+            "l11_lines": "25, 46-52",
+            "relation": "L2/L11-005の一般契約（選択ticket/riskに応じた検証義務・oracle・証拠・省略/回収）。D-*の指標・数値は列挙しない。"
+          },
+          {
+            "id": "HARNESS-L2-022",
+            "l2_lines": "298-304",
+            "l11_lines": null,
+            "relation": "L2-022のstage別oracle/evidence/Accepted境界。L11側にHARNESS-L2-022として明示された個別受入行は見つからず、D-*の指標・数値も列挙しない。"
+          }
+        ],
+        "adoption_relation": "9/28固定判断は明示候補HARNESS-L2-010..033を採用し旧source未完引継ぎを保持するが、D-01..09の個別KPIを明示採用していない。関連一般契約への意味的な個別比較/移管とみなさない。"
+      },
+      "later_adopted_pair": null,
+      "retained_meaning_and_limit": "sprintごとのPLAN起票数を数え≥1件/sprintを測る。期間がsprintである以外のPLAN適格性、取り消し/重複の扱いは原文未定義。 旧sourceのKPI名、算式/測定、閾値、およびsource-declared measurement locationは原文snapshotとして保持する。固定f6dad2a L2/L11の採択候補集合から個別KPI採択は確認できず、後発の9/29 adopted HARNESS-L2-036 pairにも当該identityのKPI値を保持する記録は確認できない。",
+      "exceptions": [
+        "隣接するHARNESS-L2-005/022等の一般verification/oracle/evidence契約は、このKPIの同値な指標・閾値・集計契約として数えない。",
+        "旧計測場所のpath/CLIは旧consumerの出典記録であり、現行runtimeの採択・実行指示ではない。"
+      ],
+      "residual": "保持/置換/retireの意味判断は未確定。指標個別の対象母集団、期間、分子/分母、イベント/source、欠損/例外処理、owner/consumer、oracle、threshold適用と評価結果は、該当するadopted pairでidentity別に特定されていない。full-auditのknown residual 17件中のKPI 9件に留まり、閉包・successorなし。",
+      "successor_requirement_ids": [],
+      "authority_effect_of_this_audit": "none"
+    },
+    {
+      "identity": "harness/L1-requirements/business-requirements.md::D-02",
+      "id": "D-02",
+      "original_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+        "line": 197,
+        "line_text": "| **D-02** | gate 通過率 | gate pass 件数 / gate 総実行件数 × 100 | ≥ 90 % | `.helix/gate_runs/` / `helix gate log` |",
+        "file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+        "line_text_sha256": "bb5adc7a3bbb3bebf67cd03691f770b65e546c4f1d4849e394c0ef3c23d6f79a"
+      },
+      "old_kpi": {
+        "name": "gate 通過率",
+        "formula_or_measure": "gate pass 件数 / gate 総実行件数 × 100",
+        "threshold": "≥ 90 %",
+        "source_declared_measurement_location": "`.helix/gate_runs/` / `helix gate log`"
+      },
+      "full_audit_classification": "known_residual",
+      "full_audit_record_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#known_residual_records (2/9; legacy KPI threshold)",
+      "fixed_2026_09_28_pair": {
+        "decision_id": "HDEC-HARNESS-REQUIREMENTS-2026-09-28",
+        "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2_file": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "l11_file": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "pair_scope_refs": [
+          {
+            "id": "HARNESS-L2-005",
+            "l2_lines": "56, 118-123",
+            "l11_lines": "25, 46-52",
+            "relation": "L2/L11-005の一般契約（選択ticket/riskに応じた検証義務・oracle・証拠・省略/回収）。D-*の指標・数値は列挙しない。"
+          },
+          {
+            "id": "HARNESS-L2-022",
+            "l2_lines": "298-304",
+            "l11_lines": null,
+            "relation": "L2-022のstage別oracle/evidence/Accepted境界。L11側にHARNESS-L2-022として明示された個別受入行は見つからず、D-*の指標・数値も列挙しない。"
+          }
+        ],
+        "adoption_relation": "9/28固定判断は明示候補HARNESS-L2-010..033を採用し旧source未完引継ぎを保持するが、D-01..09の個別KPIを明示採用していない。関連一般契約への意味的な個別比較/移管とみなさない。"
+      },
+      "later_adopted_pair": {
+        "decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_row": "HARNESS-L2-036",
+        "decision_status": "採択（2026-09-29 PO decision）",
+        "register_id": "MPR-RC-HARNESS-L2-036-002",
+        "l2": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+          "pair_section_digest": "sha256:7a18c20e22c0cf65e8edcd3b3ca7eca7996d72c0358c874591407d77dbba4bbb",
+          "identity": "HARNESS-L2-036"
+        },
+        "l11": {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+          "pair_section_digest": "sha256:80e87d6469c45baa056fbc7415871725c3358f7392a87308c809d6bfe87f0ba4",
+          "identity": "HARNESS-L2-036"
+        },
+        "specific_refs": {
+          "l2": "§ HARNESS-L2-036, esp. lines 730, 747, 750, 773",
+          "l11": "§ HARNESS-L2-036 acceptance, esp. lines 493-514"
+        },
+        "adopted_meaning": "ticket-selected gateの観点漏れ/重複およびdev-local/CI同一契約の検証を採択。NFR-13由来のgate通過率≥90%は運用目標として保持し、適用母集団・期間・分母はL3で照合。ticket単位のpass閾値ではない。",
+        "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "comparison_note": "この採択pairは固定f6dad2a decisionの対象revisionとは別。現行base上で同じL2/L11 full-file SHAを持つ318ec4a04abb3c1cc17111b3d939f913facd5fd3のbytesでpair内容を照合した。"
+      },
+      "retained_meaning_and_limit": "D-02の≥90%目標は、9/29 PO decisionで採択されたHARNESS-L2-036/L11-036 pair (pair revision 318ec4a04abb3c1cc17111b3d939f913facd5fd3) に明示的に保持された。formulaのpass件数/gate総実行件数×100と目標値は旧原文に保持される一方、母集団・期間・分母の適用定義はL3照合待ち。これは固定f6dad2a pairにおける個別比較ではなく、別revision・別decisionでの後発部分保持。",
+      "exceptions": [
+        "HARNESS-L2-036の一般採択・KPI目標保持は、D-02 source identityのsuccessor割当やsource-atom移管完了を意味しない。",
+        "L2/L11本文の未採択candidate metadataはdecision recordで上書きされるが、その採択からsource identityの閉包を生成しない。"
+      ],
+      "residual": "旧HEAD559 grouped residual dispositionに記録された「D-02候補、未採択」は9/29判断前の状態であり、後発decisionによってHARNESS-L2-036/L11-036 pair自体は採択済み。採択pairはgate通過率を運用目標として保持するが、L3の母集団・期間・分母定義、計測event/source、欠測/再計算、現行計測consumerは残る。source identity ledgerのsuccessor未割当・preserved_pending_rehomeは変更しない。",
+      "successor_requirement_ids": [],
+      "authority_effect_of_this_audit": "none"
+    },
+    {
+      "identity": "harness/L1-requirements/business-requirements.md::D-03",
+      "id": "D-03",
+      "original_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+        "line": 198,
+        "line_text": "| **D-03** | V-model 順序遵守違反 | 前工程未完了で後工程着手した検知件数 | 0 件 | `helix doctor` / `helix plan lint` |",
+        "file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+        "line_text_sha256": "01eba392cbe0511496b5a0fd51b05f01387669f39a48dda4914cb875c389dd76"
+      },
+      "old_kpi": {
+        "name": "V-model 順序遵守違反",
+        "formula_or_measure": "前工程未完了で後工程着手した検知件数",
+        "threshold": "0 件",
+        "source_declared_measurement_location": "`helix doctor` / `helix plan lint`"
+      },
+      "full_audit_classification": "known_residual",
+      "full_audit_record_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#known_residual_records (3/9; legacy KPI threshold)",
+      "fixed_2026_09_28_pair": {
+        "decision_id": "HDEC-HARNESS-REQUIREMENTS-2026-09-28",
+        "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2_file": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "l11_file": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "pair_scope_refs": [
+          {
+            "id": "HARNESS-L2-005",
+            "l2_lines": "56, 118-123",
+            "l11_lines": "25, 46-52",
+            "relation": "L2/L11-005の一般契約（選択ticket/riskに応じた検証義務・oracle・証拠・省略/回収）。D-*の指標・数値は列挙しない。"
+          },
+          {
+            "id": "HARNESS-L2-022",
+            "l2_lines": "298-304",
+            "l11_lines": null,
+            "relation": "L2-022のstage別oracle/evidence/Accepted境界。L11側にHARNESS-L2-022として明示された個別受入行は見つからず、D-*の指標・数値も列挙しない。"
+          }
+        ],
+        "adoption_relation": "9/28固定判断は明示候補HARNESS-L2-010..033を採用し旧source未完引継ぎを保持するが、D-01..09の個別KPIを明示採用していない。関連一般契約への意味的な個別比較/移管とみなさない。"
+      },
+      "later_adopted_pair": null,
+      "retained_meaning_and_limit": "前工程未完了のまま後工程へ着手した検知件数を0件目標とする。違反検知の定義・対象範囲・分母なし。 旧sourceのKPI名、算式/測定、閾値、およびsource-declared measurement locationは原文snapshotとして保持する。固定f6dad2a L2/L11の採択候補集合から個別KPI採択は確認できず、後発の9/29 adopted HARNESS-L2-036 pairにも当該identityのKPI値を保持する記録は確認できない。",
+      "exceptions": [
+        "隣接するHARNESS-L2-005/022等の一般verification/oracle/evidence契約は、このKPIの同値な指標・閾値・集計契約として数えない。",
+        "旧計測場所のpath/CLIは旧consumerの出典記録であり、現行runtimeの採択・実行指示ではない。"
+      ],
+      "residual": "保持/置換/retireの意味判断は未確定。指標個別の対象母集団、期間、分子/分母、イベント/source、欠損/例外処理、owner/consumer、oracle、threshold適用と評価結果は、該当するadopted pairでidentity別に特定されていない。full-auditのknown residual 17件中のKPI 9件に留まり、閉包・successorなし。",
+      "successor_requirement_ids": [],
+      "authority_effect_of_this_audit": "none"
+    },
+    {
+      "identity": "harness/L1-requirements/business-requirements.md::D-04",
+      "id": "D-04",
+      "original_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+        "line": 199,
+        "line_text": "| **D-04** | 回帰検出率 | テストで検出した回帰件数 / 回帰発生総件数 × 100 | ≥ 80 % | CI gate / `helix trace` |",
+        "file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+        "line_text_sha256": "b02f2f37342ef167a26a4cdfd213197641a026b642277e86964987278f6868bd"
+      },
+      "old_kpi": {
+        "name": "回帰検出率",
+        "formula_or_measure": "テストで検出した回帰件数 / 回帰発生総件数 × 100",
+        "threshold": "≥ 80 %",
+        "source_declared_measurement_location": "CI gate / `helix trace`"
+      },
+      "full_audit_classification": "known_residual",
+      "full_audit_record_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#known_residual_records (4/9; legacy KPI threshold)",
+      "fixed_2026_09_28_pair": {
+        "decision_id": "HDEC-HARNESS-REQUIREMENTS-2026-09-28",
+        "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2_file": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "l11_file": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "pair_scope_refs": [
+          {
+            "id": "HARNESS-L2-005",
+            "l2_lines": "56, 118-123",
+            "l11_lines": "25, 46-52",
+            "relation": "L2/L11-005の一般契約（選択ticket/riskに応じた検証義務・oracle・証拠・省略/回収）。D-*の指標・数値は列挙しない。"
+          },
+          {
+            "id": "HARNESS-L2-022",
+            "l2_lines": "298-304",
+            "l11_lines": null,
+            "relation": "L2-022のstage別oracle/evidence/Accepted境界。L11側にHARNESS-L2-022として明示された個別受入行は見つからず、D-*の指標・数値も列挙しない。"
+          }
+        ],
+        "adoption_relation": "9/28固定判断は明示候補HARNESS-L2-010..033を採用し旧source未完引継ぎを保持するが、D-01..09の個別KPIを明示採用していない。関連一般契約への意味的な個別比較/移管とみなさない。"
+      },
+      "later_adopted_pair": null,
+      "retained_meaning_and_limit": "テスト検出回帰件数/回帰発生総件数×100、≥80%。発生総件数の独立確定方法や測定期間は原文未定義。 旧sourceのKPI名、算式/測定、閾値、およびsource-declared measurement locationは原文snapshotとして保持する。固定f6dad2a L2/L11の採択候補集合から個別KPI採択は確認できず、後発の9/29 adopted HARNESS-L2-036 pairにも当該identityのKPI値を保持する記録は確認できない。",
+      "exceptions": [
+        "隣接するHARNESS-L2-005/022等の一般verification/oracle/evidence契約は、このKPIの同値な指標・閾値・集計契約として数えない。",
+        "旧計測場所のpath/CLIは旧consumerの出典記録であり、現行runtimeの採択・実行指示ではない。"
+      ],
+      "residual": "保持/置換/retireの意味判断は未確定。指標個別の対象母集団、期間、分子/分母、イベント/source、欠損/例外処理、owner/consumer、oracle、threshold適用と評価結果は、該当するadopted pairでidentity別に特定されていない。full-auditのknown residual 17件中のKPI 9件に留まり、閉包・successorなし。",
+      "successor_requirement_ids": [],
+      "authority_effect_of_this_audit": "none"
+    },
+    {
+      "identity": "harness/L1-requirements/business-requirements.md::D-05",
+      "id": "D-05",
+      "original_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+        "line": 200,
+        "line_text": "| **D-05** | 4 artifact trace 整合率 | trace 整合 PLAN 件数 / 全 PLAN 件数 × 100 | ≥ 95 % | `helix trace check` / `.helix/artifact/trace/` |",
+        "file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+        "line_text_sha256": "2dbedc2052c3e3fece7feeae67e88906681f77f05e09f1ed9904734179c93500"
+      },
+      "old_kpi": {
+        "name": "4 artifact trace 整合率",
+        "formula_or_measure": "trace 整合 PLAN 件数 / 全 PLAN 件数 × 100",
+        "threshold": "≥ 95 %",
+        "source_declared_measurement_location": "`helix trace check` / `.helix/artifact/trace/`"
+      },
+      "full_audit_classification": "known_residual",
+      "full_audit_record_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#known_residual_records (5/9; legacy KPI threshold)",
+      "fixed_2026_09_28_pair": {
+        "decision_id": "HDEC-HARNESS-REQUIREMENTS-2026-09-28",
+        "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2_file": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "l11_file": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "pair_scope_refs": [
+          {
+            "id": "HARNESS-L2-005",
+            "l2_lines": "56, 118-123",
+            "l11_lines": "25, 46-52",
+            "relation": "L2/L11-005の一般契約（選択ticket/riskに応じた検証義務・oracle・証拠・省略/回収）。D-*の指標・数値は列挙しない。"
+          },
+          {
+            "id": "HARNESS-L2-022",
+            "l2_lines": "298-304",
+            "l11_lines": null,
+            "relation": "L2-022のstage別oracle/evidence/Accepted境界。L11側にHARNESS-L2-022として明示された個別受入行は見つからず、D-*の指標・数値も列挙しない。"
+          }
+        ],
+        "adoption_relation": "9/28固定判断は明示候補HARNESS-L2-010..033を採用し旧source未完引継ぎを保持するが、D-01..09の個別KPIを明示採用していない。関連一般契約への意味的な個別比較/移管とみなさない。"
+      },
+      "later_adopted_pair": null,
+      "retained_meaning_and_limit": "trace整合PLAN件数/全PLAN件数×100、≥95%。「4 artifact」の構成定義とtrace適格性は原文未定義。 旧sourceのKPI名、算式/測定、閾値、およびsource-declared measurement locationは原文snapshotとして保持する。固定f6dad2a L2/L11の採択候補集合から個別KPI採択は確認できず、後発の9/29 adopted HARNESS-L2-036 pairにも当該identityのKPI値を保持する記録は確認できない。",
+      "exceptions": [
+        "隣接するHARNESS-L2-005/022等の一般verification/oracle/evidence契約は、このKPIの同値な指標・閾値・集計契約として数えない。",
+        "旧計測場所のpath/CLIは旧consumerの出典記録であり、現行runtimeの採択・実行指示ではない。"
+      ],
+      "residual": "保持/置換/retireの意味判断は未確定。指標個別の対象母集団、期間、分子/分母、イベント/source、欠損/例外処理、owner/consumer、oracle、threshold適用と評価結果は、該当するadopted pairでidentity別に特定されていない。full-auditのknown residual 17件中のKPI 9件に留まり、閉包・successorなし。",
+      "successor_requirement_ids": [],
+      "authority_effect_of_this_audit": "none"
+    },
+    {
+      "identity": "harness/L1-requirements/business-requirements.md::D-06",
+      "id": "D-06",
+      "original_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+        "line": 201,
+        "line_text": "| **D-06** | agent guard bypass 件数 | `HELIX_ALLOW_RAW_AGENT=1` 実行件数 (audit 記録) | 0 件 目標 (PO 承認時のみ許容) | `.helix/audit/` / agent-guard log |",
+        "file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+        "line_text_sha256": "af85a9b45b798a26c57653d44c86e10b12c636d2b52d39363d6cde22f2be6d16"
+      },
+      "old_kpi": {
+        "name": "agent guard bypass 件数",
+        "formula_or_measure": "`HELIX_ALLOW_RAW_AGENT=1` 実行件数 (audit 記録)",
+        "threshold": "0 件 目標 (PO 承認時のみ許容)",
+        "source_declared_measurement_location": "`.helix/audit/` / agent-guard log"
+      },
+      "full_audit_classification": "known_residual",
+      "full_audit_record_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#known_residual_records (6/9; legacy KPI threshold)",
+      "fixed_2026_09_28_pair": {
+        "decision_id": "HDEC-HARNESS-REQUIREMENTS-2026-09-28",
+        "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2_file": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "l11_file": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "pair_scope_refs": [
+          {
+            "id": "HARNESS-L2-005",
+            "l2_lines": "56, 118-123",
+            "l11_lines": "25, 46-52",
+            "relation": "L2/L11-005の一般契約（選択ticket/riskに応じた検証義務・oracle・証拠・省略/回収）。D-*の指標・数値は列挙しない。"
+          },
+          {
+            "id": "HARNESS-L2-022",
+            "l2_lines": "298-304",
+            "l11_lines": null,
+            "relation": "L2-022のstage別oracle/evidence/Accepted境界。L11側にHARNESS-L2-022として明示された個別受入行は見つからず、D-*の指標・数値も列挙しない。"
+          }
+        ],
+        "adoption_relation": "9/28固定判断は明示候補HARNESS-L2-010..033を採用し旧source未完引継ぎを保持するが、D-01..09の個別KPIを明示採用していない。関連一般契約への意味的な個別比較/移管とみなさない。"
+      },
+      "later_adopted_pair": null,
+      "retained_meaning_and_limit": "`HELIX_ALLOW_RAW_AGENT=1`実行件数（audit記録）を0件目標。PO承認時のみ許容との例外が併記される。例外の権限・集計扱いは未定義。 旧sourceのKPI名、算式/測定、閾値、およびsource-declared measurement locationは原文snapshotとして保持する。固定f6dad2a L2/L11の採択候補集合から個別KPI採択は確認できず、後発の9/29 adopted HARNESS-L2-036 pairにも当該identityのKPI値を保持する記録は確認できない。",
+      "exceptions": [
+        "隣接するHARNESS-L2-005/022等の一般verification/oracle/evidence契約は、このKPIの同値な指標・閾値・集計契約として数えない。",
+        "旧計測場所のpath/CLIは旧consumerの出典記録であり、現行runtimeの採択・実行指示ではない。"
+      ],
+      "residual": "保持/置換/retireの意味判断は未確定。指標個別の対象母集団、期間、分子/分母、イベント/source、欠損/例外処理、owner/consumer、oracle、threshold適用と評価結果は、該当するadopted pairでidentity別に特定されていない。full-auditのknown residual 17件中のKPI 9件に留まり、閉包・successorなし。",
+      "successor_requirement_ids": [],
+      "authority_effect_of_this_audit": "none"
+    },
+    {
+      "identity": "harness/L1-requirements/business-requirements.md::D-07",
+      "id": "D-07",
+      "original_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+        "line": 202,
+        "line_text": "| **D-07** | AI 委譲時間率 | AI 委譲タスク工数 / 総開発工数 × 100 | ≥ 70 % | PLAN `drive:` 集計 / `helix status` |",
+        "file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+        "line_text_sha256": "459333adac014e170188f49bfd6365e770381db86413410078654a4a9560300d"
+      },
+      "old_kpi": {
+        "name": "AI 委譲時間率",
+        "formula_or_measure": "AI 委譲タスク工数 / 総開発工数 × 100",
+        "threshold": "≥ 70 %",
+        "source_declared_measurement_location": "PLAN `drive:` 集計 / `helix status`"
+      },
+      "full_audit_classification": "known_residual",
+      "full_audit_record_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#known_residual_records (7/9; legacy KPI threshold)",
+      "fixed_2026_09_28_pair": {
+        "decision_id": "HDEC-HARNESS-REQUIREMENTS-2026-09-28",
+        "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2_file": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "l11_file": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "pair_scope_refs": [
+          {
+            "id": "HARNESS-L2-005",
+            "l2_lines": "56, 118-123",
+            "l11_lines": "25, 46-52",
+            "relation": "L2/L11-005の一般契約（選択ticket/riskに応じた検証義務・oracle・証拠・省略/回収）。D-*の指標・数値は列挙しない。"
+          },
+          {
+            "id": "HARNESS-L2-022",
+            "l2_lines": "298-304",
+            "l11_lines": null,
+            "relation": "L2-022のstage別oracle/evidence/Accepted境界。L11側にHARNESS-L2-022として明示された個別受入行は見つからず、D-*の指標・数値も列挙しない。"
+          }
+        ],
+        "adoption_relation": "9/28固定判断は明示候補HARNESS-L2-010..033を採用し旧source未完引継ぎを保持するが、D-01..09の個別KPIを明示採用していない。関連一般契約への意味的な個別比較/移管とみなさない。"
+      },
+      "later_adopted_pair": null,
+      "retained_meaning_and_limit": "AI委譲タスク工数/総開発工数×100、≥70%。工数計測・AI委譲範囲・総開発工数の扱いは未定義。 旧sourceのKPI名、算式/測定、閾値、およびsource-declared measurement locationは原文snapshotとして保持する。固定f6dad2a L2/L11の採択候補集合から個別KPI採択は確認できず、後発の9/29 adopted HARNESS-L2-036 pairにも当該identityのKPI値を保持する記録は確認できない。",
+      "exceptions": [
+        "隣接するHARNESS-L2-005/022等の一般verification/oracle/evidence契約は、このKPIの同値な指標・閾値・集計契約として数えない。",
+        "旧計測場所のpath/CLIは旧consumerの出典記録であり、現行runtimeの採択・実行指示ではない。"
+      ],
+      "residual": "保持/置換/retireの意味判断は未確定。指標個別の対象母集団、期間、分子/分母、イベント/source、欠損/例外処理、owner/consumer、oracle、threshold適用と評価結果は、該当するadopted pairでidentity別に特定されていない。full-auditのknown residual 17件中のKPI 9件に留まり、閉包・successorなし。",
+      "successor_requirement_ids": [],
+      "authority_effect_of_this_audit": "none"
+    },
+    {
+      "identity": "harness/L1-requirements/business-requirements.md::D-08",
+      "id": "D-08",
+      "original_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+        "line": 203,
+        "line_text": "| **D-08** | gate override 件数/sprint | PO による gate fail-close 例外行使件数 | ≤ 2 件/sprint | `.helix/audit/` / gate override log |",
+        "file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+        "line_text_sha256": "5995c913ddb84305c9045fd6bd2f32819b774704f40c20a7c5c0f87c5323fab6"
+      },
+      "old_kpi": {
+        "name": "gate override 件数/sprint",
+        "formula_or_measure": "PO による gate fail-close 例外行使件数",
+        "threshold": "≤ 2 件/sprint",
+        "source_declared_measurement_location": "`.helix/audit/` / gate override log"
+      },
+      "full_audit_classification": "known_residual",
+      "full_audit_record_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#known_residual_records (8/9; legacy KPI threshold)",
+      "fixed_2026_09_28_pair": {
+        "decision_id": "HDEC-HARNESS-REQUIREMENTS-2026-09-28",
+        "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2_file": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "l11_file": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "pair_scope_refs": [
+          {
+            "id": "HARNESS-L2-005",
+            "l2_lines": "56, 118-123",
+            "l11_lines": "25, 46-52",
+            "relation": "L2/L11-005の一般契約（選択ticket/riskに応じた検証義務・oracle・証拠・省略/回収）。D-*の指標・数値は列挙しない。"
+          },
+          {
+            "id": "HARNESS-L2-022",
+            "l2_lines": "298-304",
+            "l11_lines": null,
+            "relation": "L2-022のstage別oracle/evidence/Accepted境界。L11側にHARNESS-L2-022として明示された個別受入行は見つからず、D-*の指標・数値も列挙しない。"
+          }
+        ],
+        "adoption_relation": "9/28固定判断は明示候補HARNESS-L2-010..033を採用し旧source未完引継ぎを保持するが、D-01..09の個別KPIを明示採用していない。関連一般契約への意味的な個別比較/移管とみなさない。"
+      },
+      "later_adopted_pair": null,
+      "retained_meaning_and_limit": "POによるgate fail-close例外行使件数を≤2件/sprint。例外記録の粒度/取消/再利用扱いは未定義。 旧sourceのKPI名、算式/測定、閾値、およびsource-declared measurement locationは原文snapshotとして保持する。固定f6dad2a L2/L11の採択候補集合から個別KPI採択は確認できず、後発の9/29 adopted HARNESS-L2-036 pairにも当該identityのKPI値を保持する記録は確認できない。",
+      "exceptions": [
+        "隣接するHARNESS-L2-005/022等の一般verification/oracle/evidence契約は、このKPIの同値な指標・閾値・集計契約として数えない。",
+        "旧計測場所のpath/CLIは旧consumerの出典記録であり、現行runtimeの採択・実行指示ではない。"
+      ],
+      "residual": "保持/置換/retireの意味判断は未確定。指標個別の対象母集団、期間、分子/分母、イベント/source、欠損/例外処理、owner/consumer、oracle、threshold適用と評価結果は、該当するadopted pairでidentity別に特定されていない。full-auditのknown residual 17件中のKPI 9件に留まり、閉包・successorなし。",
+      "successor_requirement_ids": [],
+      "authority_effect_of_this_audit": "none"
+    },
+    {
+      "identity": "harness/L1-requirements/business-requirements.md::D-09",
+      "id": "D-09",
+      "original_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+        "line": 204,
+        "line_text": "| **D-09** | continuation 再開成功率 | next authority 実行成功件数 / continuation event 総件数 × 100 | ≥ 95 % | `harness.db` continuation projection / `helix status` |",
+        "file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+        "line_text_sha256": "9cd4358f9d4b13991945ccb88c72cec3f2203b0cf443671cb595269664847557"
+      },
+      "old_kpi": {
+        "name": "continuation 再開成功率",
+        "formula_or_measure": "next authority 実行成功件数 / continuation event 総件数 × 100",
+        "threshold": "≥ 95 %",
+        "source_declared_measurement_location": "`harness.db` continuation projection / `helix status`"
+      },
+      "full_audit_classification": "known_residual",
+      "full_audit_record_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#known_residual_records (9/9; legacy KPI threshold)",
+      "fixed_2026_09_28_pair": {
+        "decision_id": "HDEC-HARNESS-REQUIREMENTS-2026-09-28",
+        "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2_file": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "l11_file": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "pair_scope_refs": [
+          {
+            "id": "HARNESS-L2-005",
+            "l2_lines": "56, 118-123",
+            "l11_lines": "25, 46-52",
+            "relation": "L2/L11-005の一般契約（選択ticket/riskに応じた検証義務・oracle・証拠・省略/回収）。D-*の指標・数値は列挙しない。"
+          },
+          {
+            "id": "HARNESS-L2-022",
+            "l2_lines": "298-304",
+            "l11_lines": null,
+            "relation": "L2-022のstage別oracle/evidence/Accepted境界。L11側にHARNESS-L2-022として明示された個別受入行は見つからず、D-*の指標・数値も列挙しない。"
+          }
+        ],
+        "adoption_relation": "9/28固定判断は明示候補HARNESS-L2-010..033を採用し旧source未完引継ぎを保持するが、D-01..09の個別KPIを明示採用していない。関連一般契約への意味的な個別比較/移管とみなさない。"
+      },
+      "later_adopted_pair": null,
+      "retained_meaning_and_limit": "continuation event総件数に対するnext authority実行成功件数×100、≥95%。成功判定、母集団のevent種類、失敗/未観測の扱いは未定義. 旧sourceのKPI名、算式/測定、閾値、およびsource-declared measurement locationは原文snapshotとして保持する。固定f6dad2a L2/L11の採択候補集合から個別KPI採択は確認できず、後発の9/29 adopted HARNESS-L2-036 pairにも当該identityのKPI値を保持する記録は確認できない。",
+      "exceptions": [
+        "隣接するHARNESS-L2-005/022等の一般verification/oracle/evidence契約は、このKPIの同値な指標・閾値・集計契約として数えない。",
+        "旧計測場所のpath/CLIは旧consumerの出典記録であり、現行runtimeの採択・実行指示ではない。"
+      ],
+      "residual": "保持/置換/retireの意味判断は未確定。指標個別の対象母集団、期間、分子/分母、イベント/source、欠損/例外処理、owner/consumer、oracle、threshold適用と評価結果は、該当するadopted pairでidentity別に特定されていない。full-auditのknown residual 17件中のKPI 9件に留まり、閉包・successorなし。",
+      "successor_requirement_ids": [],
+      "authority_effect_of_this_audit": "none"
+    }
+  ],
+  "limits": [
+    "HARNESS-L2-036の採択およびD-02部分保持をsource-identity successor/移管完了へ読み替えない。",
+    "これは9 source identitiesの意味変更・retire・要求欠陥認定を行わないcondition audit。",
+    "numeric formulas/thresholdsは旧原文の転記であり、現行acceptance gateとして動作させる意味はない。"
+  ]
+}
