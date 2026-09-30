@@ -2,7 +2,7 @@
   "schema_version": "legacy-confirmed175-screen-pm02-pm06-condition-audit.v1",
   "audit_id": "legacy-confirmed175-screen-pm02-pm06-condition-audit-2026-09-30",
   "audit_mode": "read_only_static_condition_comparison",
-  "audit_revision": "d327f109f49e7971c453a338d5c40a54035415d6",
+  "audit_revision": "3567842662f5e0d7a21233b0e83f4fc3900aec0e",
   "authority_effect": "none",
   "population": "confirmed175",
   "scope": {

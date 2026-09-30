@@ -60,4 +60,4 @@
 
 ## 再現情報
 
-Queue base revision: `2bbd889545cff238452701e5901ce56b67208fc8`; full audit SHA-256: `ca08a81d97e39e94aa02151c7cc4e48f621f9d30baccc1cf9b715331fed38f45`; queue SHA-256: `2dbfb06c11ac42a940c0d6b5c188a76e685ea4c00e4d9af10b432198ad17b353`. Audit worktree base: `d327f109f49e7971c453a338d5c40a54035415d6`. Pair files were read with `git show <revision>:<path>` and hashed as raw bytes. Validation results are reported by the creating agent alongside this artifact.
+Queue base revision: `2bbd889545cff238452701e5901ce56b67208fc8`; full audit SHA-256: `ca08a81d97e39e94aa02151c7cc4e48f621f9d30baccc1cf9b715331fed38f45`; queue SHA-256: `2dbfb06c11ac42a940c0d6b5c188a76e685ea4c00e4d9af10b432198ad17b353`. Audit worktree base: `3567842662f5e0d7a21233b0e83f4fc3900aec0e`. Pair files were read with `git show <revision>:<path>` and hashed as raw bytes. Validation results are reported by the creating agent alongside this artifact.
