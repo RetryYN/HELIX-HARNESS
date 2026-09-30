@@ -38,7 +38,7 @@ HARNESS判断record `c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a
 - Fixed mapping: queueはHARNESS-L2-001/004/005を関連targetとして列挙する。001はcanonical pair、004はtrace/revalidationに近接する。005は必要検証・evidenceの導出を支える。
 - 保持と残差: 旧の4 artifact名・exact relation tuple、両方向の完全性、revision一致、欠落/重複/孤立時のreport schemaはfixed targetからは確認できない。PM-04がsourceの直接画面で、HM-07は補助表示参照にとどまる。
 - 反例:片方向linkのみ、4 pair中1組欠落、行linkだけで成果物内容/revision不一致を見落とす場合を正常な整合として扱わない。旧L4のA-136例では、宣言linkは存在してもL6単体テスト設計artifactそのものが不在で、旧検査はこれを見逃した。
-- 近接採択pair: HARNESS-034のmeasurement oracleはtrace-backed evidenceに使い得るが4 pair schemaではない。036の選択scope内test-perspective completeness/CI parityも、全V-pair trace graphを提供しない。
+- 近接採択pair: HARNESS-034のmeasurement oracleはtrace-backed evidenceに使い得るが4 pair schemaではない。036の選択scope内test-perspective completeness/CI parityも、全V-pair trace graphを提供しない。HELIXOS-L2-033（採択MPR-RC-HELIXOS-L2-033-001）は選択engine/detectorのversion/config/scope登録と同一snapshot再実行証拠・provenanceを扱うが、4 pair構造や不在検出を定義しない。
 
 ### FR-L1-05 — 決定論的static gate
 
@@ -46,7 +46,7 @@ HARNESS判断record `c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a
 - Fixed mapping: queueの`fixed_target_refs`は**空**。近接比較としてHARNESS-L2-005（verification obligations/CI plan）とHELIXOS-L2-020（CI assembly/execution/results）を照合した。両者をこのFRのtarget/successorとはしない。
 - 保持と残差: 005はticket/riskに応じた義務・省略記録・回収を扱い、OS-020は選択CIを運転する。old config schema、static resolution oracle、exact fail-close error class、branch protectionへのpermission interfaceはこれらだけでは閉じない。sourceの「数値品質」にthreshold valuesはない。
 - 反例: 同一gate入力でruntimeにより判定が変わる、unknown/missing gate settingをpassとする、CI greenだけをgate evidenceにする、AI判断をstatic predicateの代わりにする。
-- 近接採択pair: HARNESS-034は選択metricの計測・完成oracle、036は選択ticket scope内のgate parityで、general static gateのsource targetではない。OS-020のexecution statusはHARNESS gate意味やPR permissionを生成しない。
+- 近接採択pair: HARNESS-034は選択metricの計測・完成oracle、036は選択ticket scope内のgate parityで、general static gateのsource targetではない。HELIXOS-L2-033（採択MPR-RC-HELIXOS-L2-033-001）はselected engine/detector registryと同一snapshot再現証拠の記録であり、static gate predicate、runtime差禁止の意味、branch protection設定を定義しない。OS-020のexecution statusはHARNESS gate意味やPR permissionを生成しない。
 
 ### FR-L1-17 — CI/PR・branch protection
 
@@ -54,7 +54,7 @@ HARNESS判断record `c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a
 - Fixed mapping: queue targetはHARNESS-L2-005。005は変更に応じた検証選択、evidence、skip記録/回収を定め、OS-020は実行・結果状態を扱う。
 - 保持と残差: fixed targetはticket/riskによるCI構成を保持するが、旧単一check名、8 checkの旧branch-type適用表、PR admissionとbranch protection更新のexact current contractはそのまま継承しない。OS実行結果はpermission/merge/acceptanceではない。
 - 反例: local evidenceが異なるcommitのままCI結果へ流用、旧8 checkの欠落をskip記録なしにgreen化、CI successだけでbranch protection許可とする、OSがHARNESS oracleを足し引きする。
-- 近接採択pair: 034は計測契約、036はprofile選択済みのlocal/CI parityであり、いずれもbranch×mode PR permission全体ではない。OS-020は運転consumerに限定する。
+- 近接採択pair: 034は計測契約、036はprofile選択済みのlocal/CI parityであり、いずれもbranch×mode PR permission全体ではない。HELIXOS-L2-046（採択MPR-RC-HELIXOS-L2-046-001）は一つのselected work scopeでdispatch→run→Ready→merge admissionにおける既存authority、HEAD、scope、既存required verificationの連続性を照合し、変更時にstaleとして再確認する接続条件である。旧branch×mode matrix、branch protection required-check/settings、追加approval/check/skip機構は定義しない。OS-020は運転consumerに限定する。
 
 ### FR-L1-18 — cross-detectionとDoctor集約
 
@@ -69,7 +69,7 @@ HARNESS判断record `c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a
 - Source（行53）: `mock-promotion`, `design-token-drift`, `a11y-regression`, `visual-regression`, `state-transition-drift`の決定論的判定。inputsはL2 mock、design-token SSOT、screenshots、screen-transition definitions。outputはpass/fail+detailの`DetectorResult`とCI evidence。
 - Fixed mapping: queue targetはHARNESS-L2-004/005。これらはtrace/revalidationとticket/risk verification profileの一般条件で、FE 5軸そのものではない。f6にはHARNESS-L2-036がなく、later adopted comparisonとは分離する。
 - Later adopted limited effect: 57候補decisionがHARNESS-L2-036 exact revisionを採択（MPR `MPR-RC-HARNESS-L2-036-002`）。このpairは5軸、画面を持つticketの合意済みscreen scope、関連source inputs、軸ごとのdeterministic resultとCI evidenceを定める。適用記録・screen scope unknownなら未評価へ戻し、非画面に一律適用しない。近接pairであり、元FRへのformal successor/closureを付けない。
-- HARNESS-L2-034はmetric identity, target/baseline/environment, tolerance, sampling, probe, evidence/oracleと測定不足時のcompletion拒否を採択revisionに定めるが、5 FE detectorを実装するpairではない。
+- HARNESS-L2-034はmetric identity, target/baseline/environment, tolerance, sampling, probe, evidence/oracleと測定不足時のcompletion拒否を採択revisionに定めるが、5 FE detectorを実装するpairではない。HELIXOS-L2-033（採択MPR-RC-HELIXOS-L2-033-001）は選択detectorの版付きregistryと同一snapshotの再現証拠を記録するが、5 FE軸の判定意味・実装またはHARNESS-L2-036のscreen scope oracleを提供しない。
 - 残差/反例: 元FR全適用面と後発036選択scopeのsource traceは未割当。画面あり合意scopeで5軸の一つを省略、必要input欠落またはfailをpass、違うrevisionのsource混用、非画面に5軸を一律強制するケースを分けて照合する。sourceは5軸を数えるが数値score/aggregate thresholdを指定しない。
 
 ## 57+11後発decisionの全identity/status
@@ -77,6 +77,16 @@ HARNESS判断record `c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a
 57候補record（source revision `318ec4a04abb3c1cc17111b3d939f913facd5fd3`, file SHA-256 `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`）の全57 identityとstatusは42採択・11条件付き採択・4保留。別11候補record（source revision `5aa100319361b0cc86edd3c51815ec777d55410a`, file SHA-256 `6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5`）はtableの10採択と、HARNESS-L2-049現revisionの未採択・訂正L11の再確認待ち1件。全68 identity/status、MPR、decision行SHAをJSONに収録し、existing full decision-screen auditとidentity集合/decision file SHAを突合した。重複identityがあればdecision別entryのまま保つ。
 
 近接pair HARNESS-034/036の採択状態とdecision source revisionは57候補recordから読む。pairの意味的近接、PO採択、screen表示との一致はsource identityのsuccessor・adoption・closureを生成しない。
+
+
+## 追加した後発OS近接採択pair
+
+PR #2404のR2404-01に基づき、57候補decisionで採択されたOS-033をFR-L1-05/18/22、OS-046をFR-L1-17のsection-level近接比較へ追加した。L2/L11のraw file SHAとsection digestは指定のpair source revision `318ec4a04abb3c1cc17111b3d939f913facd5fd3`から再計算し、decision tableの採択行は現在の記録bytes/hash・行SHA・MPRと照合してJSONへ収録した。
+
+- **HELIXOS-L2-033 / MPR-RC-HELIXOS-L2-033-001**: 選択scopeのengine/detector identity、owner、version/config、source/input snapshot、同一登録条件でのrerun、finding/artifact provenanceと再現比較を記録する。OSは機能ownerのengine機能やdetector verdict意味を定義しない。ゆえにFR-L1-05の静的gate意味、FR-L1-18の一括cross-detector Doctor/routing、FR-L1-22の5軸FE判定の置換ではない。
+- **HELIXOS-L2-046 / MPR-RC-HELIXOS-L2-046-001**: 一つのselected work scopeでdispatch、execution、Ready、merge admissionにわたる既存authority、HEAD、scope、既存required verificationの連続性を照合し、遷移中の変化をstale/未完として再確認する。旧branch×mode適用表やbranch protection required-check/settingsを定義せず、新しいapproval/check/skip機構も作らない。
+
+両者の後発採択状態は比較資料のdecision table上のstatusとして記録したもの。旧FRへのsuccessor割当、旧条件の意味採択、source identityのclosureは行わず、各条件の残差判定を変更しない。
 
 ## 制限
 

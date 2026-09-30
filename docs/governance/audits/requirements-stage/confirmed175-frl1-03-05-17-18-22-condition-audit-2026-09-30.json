@@ -1149,7 +1149,71 @@
           }
         ]
       }
-    }
+    },
+    "later_adopted_os_pairs": [
+      {
+        "identity": "HELIXOS-L2-033",
+        "decision_status": "adopted",
+        "decision_treatment": "採択",
+        "mpr": "MPR-RC-HELIXOS-L2-033-001",
+        "comparison_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "l2": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "identity": "HELIXOS-L2-033",
+          "heading_line": 929,
+          "section_sha256": "580778c8ef3c0e4c4676d13de203c821f990893e9aa078d8d1d2f0b8901d2dbc",
+          "heading_text": "### HELIXOS-L2-033 Versioned engine/detector registryと同一snapshot再現証拠（単体候補）"
+        },
+        "l11": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "identity": "HELIXOS-L2-033",
+          "heading_line": 524,
+          "section_sha256": "1d30394888b3bded49f8e517d7e0888a25130e123df945adf69c7db5588571b1",
+          "heading_text": "### HELIXOS-L2-033 Versioned engine/detector registryと同一snapshot replay"
+        },
+        "decision_table": {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "record_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "row_line": 56,
+          "row_text": "| `HELIXOS-L2-033` | 採択 | `MPR-RC-HELIXOS-L2-033-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:580778c8ef3c0e4c4676d13de203c821f990893e9aa078d8d1d2f0b8901d2dbc` | `HELIXOS-L2-033` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:1d30394888b3bded49f8e517d7e0888a25130e123df945adf69c7db5588571b1` | `docs/governance/audits/requirement-registration/os-quarantine-replay-coverage-receipt-2026-09-28.json` |",
+          "row_sha256": "54a81764fb7a3656fe51fc4028c57c714e034bcee10c7d4c3193ede2205ab5fd"
+        }
+      },
+      {
+        "identity": "HELIXOS-L2-046",
+        "decision_status": "adopted",
+        "decision_treatment": "採択",
+        "mpr": "MPR-RC-HELIXOS-L2-046-001",
+        "comparison_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "l2": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "identity": "HELIXOS-L2-046",
+          "heading_line": 1176,
+          "section_sha256": "c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d",
+          "heading_text": "### HELIXOS-L2-046 dispatchからmergeまでのauthority・HEAD・scope連続性（connection候補、version_target: 1.0）"
+        },
+        "l11": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "identity": "HELIXOS-L2-046",
+          "heading_line": 786,
+          "section_sha256": "3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0",
+          "heading_text": "### HELIXOS-L2-046 dispatchからmergeまでのauthority・HEAD・scope連続性の受入候補"
+        },
+        "decision_table": {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "record_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "row_line": 69,
+          "row_text": "| `HELIXOS-L2-046` | 採択 | `MPR-RC-HELIXOS-L2-046-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d` | `HELIXOS-L2-046` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0` | `docs/governance/audits/requirement-registration/helixos-rfa-scope-coverage-receipt-2026-09-28.json` |",
+          "row_sha256": "30b808ddda1ac9fb69931bfcce1d2f31f03be9aa0f78a34bb71ce02189ccb03a"
+        }
+      }
+    ]
   },
   "source_conditions": [
     {
@@ -1273,7 +1337,8 @@
         "HARNESS-L2-034": "Measurement contract can define requirement-specific metric/oracle if selected; it is not the generic static gate/CI resolver.",
         "HARNESS-L2-036": "Adopted screen/test verification parity in chosen ticket profile; it depends on HARNESS-L2-005 and is not a general static-gate identity target.",
         "HARNESS-L2-005": "Nearby fixed pair only: defines verification obligations and ticket/risk CI assembly, not old `gate-checks.yaml` identity or branch protection.",
-        "HELIXOS-L2-020": "Nearby fixed executor only: runs selected CI and records status; it does not define HARNESS gate meaning or grant PR permission."
+        "HELIXOS-L2-020": "Nearby fixed executor only: runs selected CI and records status; it does not define HARNESS gate meaning or grant PR permission.",
+        "HELIXOS-L2-033": "Adopted MPR-RC-HELIXOS-L2-033-001 (decision row pinned; pair bytes at 318ec4): registers selected engine/detector identity, owner, version/config/scope and compares reruns on the same input snapshot with provenance. It records reproduction evidence; it does not define FR-L1-05 static-gate predicate/oracle, prohibit runtime-dependent gate verdicts, or configure branch protection."
       },
       "numeric_note": null,
       "formal_successor_assigned": false,
@@ -1334,7 +1399,8 @@
         "HARNESS-L2-034": "Metric completion criteria only for selected measurement contracts; not branch protection or PR event admission.",
         "HARNESS-L2-036": "Requires selected gate contract parity and CI evidence for screen scope; not a complete branch×mode PR permission system.",
         "HARNESS-L2-005": "Fixed mapped pair holds policy for verification selection/evidence and CI composition; it does not preserve named legacy check topology.",
-        "HELIXOS-L2-020": "Fixed neighboring executor handles CI assembly/run/results; it cannot make CI result grant branch protection or replace source-side obligation."
+        "HELIXOS-L2-020": "Fixed neighboring executor handles CI assembly/run/results; it cannot make CI result grant branch protection or replace source-side obligation.",
+        "HELIXOS-L2-046": "Adopted MPR-RC-HELIXOS-L2-046-001: connects existing authority, HEAD/revision, selected work scope and existing required verification across dispatch, execution, Ready and merge-admission transitions; changes become stale/incomplete and require recheck. It does not reproduce the old branch×mode matrix, set branch-protection required checks/settings, or define a new approval/check/skip mechanism."
       },
       "numeric_note": null,
       "formal_successor_assigned": false,
@@ -1393,7 +1459,8 @@
       "old_hm07_consumer_effect": "HM-07 details show V-model order, entity coverage, hook state, phase consistency and unresolved carry, severity groups, count summary, with refresh/navigation. This is a display-level consumer contract and not an exact definition of the four source detector families or routing output.",
       "later_pair_effects": {
         "HARNESS-L2-034": "Measurement/completion oracle may supply metric evidence but not the four cross-detector families or Doctor aggregation.",
-        "HARNESS-L2-036": "Adopted 2026-09-29 cross-detection conditions are scoped to a selected verification profile/ticket and require findings for dependency/contract/connection/regression there; this is a bounded near pair, not a global `helix doctor` command/report guarantee."
+        "HARNESS-L2-036": "Adopted 2026-09-29 cross-detection conditions are scoped to a selected verification profile/ticket and require findings for dependency/contract/connection/regression there; this is a bounded near pair, not a global `helix doctor` command/report guarantee.",
+        "HELIXOS-L2-033": "Adopted MPR-RC-HELIXOS-L2-033-001: records selected engine/detector identities, versions/configs, scope, same-snapshot rerun comparison and detector findings/provenance. It does not define the four source detector families as an inventory, cross-detector aggregation semantics, one-shot Doctor report, or finding-to-mode routing."
       },
       "numeric_note": null,
       "formal_successor_assigned": false,
@@ -1462,7 +1529,8 @@
       "old_hm07_consumer_effect": "Old HM-07 table links FR-L1-22 as L2/L4 carry. Its detail section does not list FR-L1-22 and no longer identifies five FE detector axes, so the screen label is only an old consumer/navigation relation.",
       "later_pair_effects": {
         "HARNESS-L2-034": "Metric contracts name quality measures/oracle/measurement conditions and completion criteria; it does not implement these five named FE detectors.",
-        "HARNESS-L2-036": "Exact adopted pair MPR-RC-HARNESS-L2-036-002 names the five FE axes, screen sources, deterministic DetectorResult and CI evidence, only for selected ticket/agreed screen scope. This is the closest later semantic pair; its scope and decision revision are pinned separately and do not assign source successor."
+        "HARNESS-L2-036": "Exact adopted pair MPR-RC-HARNESS-L2-036-002 names the five FE axes, screen sources, deterministic DetectorResult and CI evidence, only for selected ticket/agreed screen scope. This is the closest later semantic pair; its scope and decision revision are pinned separately and do not assign source successor.",
+        "HELIXOS-L2-033": "Adopted MPR-RC-HELIXOS-L2-033-001: registry and same-snapshot reproducibility evidence may identify/version selected detector executions and their findings, but does not define or implement the five FE detector verdicts/axes, screen inputs, or the HARNESS-L2-036 scoped acceptance oracle."
       },
       "numeric_note": "The source names exactly five detector axes; it supplies no numeric scoring threshold or aggregate pass percentage. HARNESS-L2-036 holds its own scoped oracle; do not import its threshold/oracle to out-of-scope work.",
       "formal_successor_assigned": false,
