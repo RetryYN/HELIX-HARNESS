@@ -27,6 +27,20 @@ S-BR-001は専門知識・判断観点・手順を必要範囲で取得し、旧
 
 後続のHELIXINTELLIGENCE-L2-072は条件付きの1.0 judgment-pack候補とshadow評価、-074は評価済みfeedbackの配置proposal入力、HELIXBRAIN-L2-031は再利用知識候補、HELIXLABO-L2-063は修復再発評価から予防候補へのfeedbackを扱う。各scopeはS-BR-001のskill asset migration全体、動的取得、効果測定、移管・退役の受入と異なる。条件付き採択のconditionや個別scopeは横展開しない。
 
+## 個別条件に近い後続候補の追加照合
+
+5件を対応するsource identityへの近接候補として追加した。決定行・MPR行・対象L2/L11節のfile/revision/line/SHAはJSONの`identity_specific_proximity_pins`に固定した。decision statusと各scopeは次の範囲で読む。
+
+| Identity | 後続candidate | 判断範囲と近接点 | 近接の限界 |
+|---|---|---|---|
+| PM-01 | HELIXOS-L2-049（57, 条件付き採択） | assignment前にverification duty/owner/capacityを確保する条件。画面の担当負荷・AI slotという旧条件にcapacityの概念で接する | Worker utilization/割当契約であり、dashboard表示や画面stateではない |
+| PM-01 | HELIXOS-L2-050（57, 条件付き採択） | review capacity増枠とmerge authorityの境界 | review capacity条件であり、PM-01表示、assignment、AI slot描画を定義しない |
+| PM-01 | HARNESS-L2-049（live26, 登録-003承認） | 既存renderable prototypeの表示計測oracle。screen ID・revision・許可・profile・測定条件を用いる | 計測専用で、dashboard生成、4階層、heat map、polling、gate-fail描画の受入ではない |
+| S-BR-001 | HARNESS-L2-047（57, 条件付き採択A配置） | task単位の専門Worker判断と最小context/budgetを持つruntime-neutral contract候補。必要範囲の供給に接する | Worker契約の候補配置Aに限り、Skill inventory、asset移行、skill retrieval、old/new効果比較や退役条件ではない |
+| S-BR-001 | HELIXLABO-L2-070（live26, 登録-001承認） | scope付き一般telemetry/Attempt scorecardとunknown保持。測定に接する | Skill固有のrecommended/injected/retrieved/outcome attributionやprovider/config別効果、移管・retireの受入ではない |
+
+条件付き採択は各判断行に書かれたcapacity・authority・配置条件に限る。live26のHARNESS-049はregistration `-003`のmeasurement-only scopeであり、過去registrationや未提示prototype生成scopeを継承しない。いずれの近接もsource-to-successor関係を作らず、5件ともMPRの`authority_effect: none`を保持する。
+
 ## 後続decision indexとauthority境界
 
 compact indexは2026-09-29の57候補（53採択登録行／4保留）、同11候補（10／1）、2026-09-30 live26（25／1）の計94行を保持する。内訳は採択登録判断88行・保留／非採択6行で、条件付きscopeを持つ採択行もある。これは後続candidate decisionの全量indexであり、旧identity successor 88件、旧要求6件のretire、旧source atomsの閉鎖を意味しない。条件付き候補は決定記録の対象・owner・版・条件の範囲内でのみ参照する。

@@ -2704,20 +2704,412 @@
           "authority_effect": "none",
           "candidate_semantic_digest": "sha256:65eb78860b59586c2d17c2a70a7134db8057a70f7025924bb00c9fa3a255e1ca"
         }
+      },
+      {
+        "cohort": "57",
+        "identity": "HELIXOS-L2-049",
+        "decision_status": "条件付き採択：割当前に後段の検証義務・担当・capacityを確保する。割当先task自体のreview/merge完了は割当条件にしない（訂正L11 `HELIXOS-L2-049-003`）。",
+        "adopted_registration_decision": true,
+        "decision_pin": {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "line": 72,
+          "line_sha256": "f0856ae991e2b0917c4a5196b903cd7ba8a1b7026397235826c77abbbe1ab939"
+        },
+        "registration_id": "MPR-RC-HELIXOS-L2-049-003",
+        "mpr_pin": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+          "line": 598,
+          "line_sha256": "aaa81f8c2b109575115720a089ed0840ef3badfa8cab2277731046b2613dd484",
+          "management_state": "registered_proposal",
+          "authority_effect": "none",
+          "candidate_semantic_digest": "sha256:e9372f19e5064cb5470141fef25a3212aa65cede5d44ecfff8c9ed86da83668b"
+        }
+      },
+      {
+        "cohort": "57",
+        "identity": "HELIXOS-L2-050",
+        "decision_status": "条件付き採択：capacity増枠から新しいmerge権限を発生させない。既存review_merge担当は既存admission後にmergeできる。branch変更・Ready権限は与えない（訂正L11 `HELIXOS-L2-050-003`）。",
+        "adopted_registration_decision": true,
+        "decision_pin": {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "line": 73,
+          "line_sha256": "d8c7710bdc66863227e96b419e9271a73a6dba695cf40fb447a44c102eabf78b"
+        },
+        "registration_id": "MPR-RC-HELIXOS-L2-050-003",
+        "mpr_pin": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+          "line": 599,
+          "line_sha256": "e2b8e73c7e195060c8af05b002d6dc96188db6613f61f05ec0569c1a47415b6f",
+          "management_state": "registered_proposal",
+          "authority_effect": "none",
+          "candidate_semantic_digest": "sha256:fab5fdfae9cfd2211f8c2fd6dfad5ce7b065e007ef11ca62f55420baa5033b6d"
+        }
+      },
+      {
+        "cohort": "live26",
+        "identity": "HARNESS-L2-049",
+        "decision_status": "承認（通常採択22件に含む）",
+        "adopted_registration_decision": true,
+        "decision_pin": {
+          "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+          "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+          "line": 39,
+          "line_sha256": "2c9037f2d9523da4fdc17b9679bd4cacff1f39e4290dfbb06b4c38180ba2b264"
+        },
+        "registration_id": "MPR-RC-HARNESS-L2-049-003",
+        "mpr_pin": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+          "line": 629,
+          "line_sha256": "74d82b03c7580be677647d89037d353f40285fa6264eedeb8298c8509e1a0a88",
+          "management_state": "registered_proposal",
+          "authority_effect": "none",
+          "candidate_semantic_digest": "sha256:a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116"
+        }
+      },
+      {
+        "cohort": "57",
+        "identity": "HARNESS-L2-047",
+        "decision_status": "条件付き採択：A配置（HARNESSが契約生成規範を所有）。",
+        "adopted_registration_decision": true,
+        "decision_pin": {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "line": 52,
+          "line_sha256": "234adb61f9dfeab547dd06af598673d24f98505529ab1b913de686a76463fa59"
+        },
+        "registration_id": "MPR-RC-HARNESS-L2-047-001",
+        "mpr_pin": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+          "line": 572,
+          "line_sha256": "2d2adfaac8a928a3368e5da5998863f2937fd3f8976e34771e4885a3dfc9d294",
+          "management_state": "registered_proposal",
+          "authority_effect": "none",
+          "candidate_semantic_digest": "sha256:733201471492a400db194369980f54499faa7f7860e1e1465c18589a43daa9b9"
+        }
+      },
+      {
+        "cohort": "live26",
+        "identity": "HELIXLABO-L2-070",
+        "decision_status": "承認（通常採択22件に含む）",
+        "adopted_registration_decision": true,
+        "decision_pin": {
+          "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+          "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+          "line": 49,
+          "line_sha256": "0cc2b7ac34f2a9dec7a072910ba43c90547a7cd8cdee9e337a8701412b8ca052"
+        },
+        "registration_id": "MPR-RC-HELIXLABO-L2-070-001",
+        "mpr_pin": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+          "line": 626,
+          "line_sha256": "da3d0cca4f09b6f607621ac4acad9d4e34f745b8781c7037526d5c85d5d235ed",
+          "management_state": "registered_proposal",
+          "authority_effect": "none",
+          "candidate_semantic_digest": "sha256:07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533"
+        }
       }
     ],
     "selected_neighbor_limits": {
       "PM-01": [
         "HARNESS-L2-039 is adopted UI/Experience/Frontend contract, but not the old PM-01 dashboard/detail acceptance.",
-        "HELIXOS-L2-108/109 are artifact-consumer and provenance chain projections, not screen behavior."
+        "HELIXOS-L2-108/109 are artifact-consumer and provenance chain projections, not screen behavior.",
+        "HELIXOS-L2-049 (57, conditional): worker utilization/capacity and required downstream verification assignment; proximity to allocation load only, not screen requirement.",
+        "HELIXOS-L2-050 (57, conditional): review capacity and merge-authority boundary; no PM-01 rendering or AI-slot display.",
+        "HARNESS-L2-049 (live26, approved registration -003): display-measurement oracle only. It measures an existing rendered prototype and does not specify dashboard construction or PM-01 display acceptance."
       ],
       "S-BR-001": [
         "HELIXINTELLIGENCE-L2-072 is a conditional 1.0 judgment-pack candidate/shadow evaluation scope; it is not skill migration, retrieval, or lifecycle closure.",
         "HELIXINTELLIGENCE-L2-074 is a feedback proposal input and does not establish old skill assets as accepted candidates.",
         "HELIXBRAIN-L2-031 is a reusable knowledge candidate boundary, not full S-BR-001 or S-R migration/retirement.",
-        "HELIXLABO-L2-063 is recurrence-evaluation feedback to preventive candidates, not skill migration."
+        "HELIXLABO-L2-063 is recurrence-evaluation feedback to preventive candidates, not skill migration.",
+        "HARNESS-L2-047 (57, conditional A placement): task-level specialist Worker/context/budget contract; not inventory, skill migration, or retirement.",
+        "HELIXLABO-L2-070 (live26, approved registration -001): scoped general telemetry/Attempt scorecard with unknown retention; not skill-specific efficacy attribution or migration closure."
       ]
-    }
+    },
+    "identity_specific_proximity_pins": [
+      {
+        "source_identity": "PM-01",
+        "candidate": "HELIXOS-L2-049",
+        "cohort": "57",
+        "decision_status": "条件付き採択：割当前に後段の検証義務・担当・capacityを確保する。割当先task自体のreview/merge完了は割当条件にしない（訂正L11 `HELIXOS-L2-049-003`）。",
+        "relation": "旧screenの「割当＝案件×担当負荷・AI slot使用率」におけるcapacity状態に接する。Worker稼働・割当前のcapacity観測の契約であり、dashboard/AI slot表示要件ではない。",
+        "bounded_candidate_scope": "条件付き採択。割当前に検証義務・担当・capacityを確保する。割当task自身のreview/merge完了は割当条件にしない。",
+        "non_successor_limit": "割当とcapacityに限り、PM-01の4階層selector、heat map、担当負荷/slot表示、polling、画面状態の後継または受入ではない。",
+        "decision_pin": {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "line": 72,
+          "line_sha256": "f0856ae991e2b0917c4a5196b903cd7ba8a1b7026397235826c77abbbe1ab939",
+          "source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68"
+        },
+        "mpr_pin": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+          "line": 598,
+          "line_sha256": "aaa81f8c2b109575115720a089ed0840ef3badfa8cab2277731046b2613dd484",
+          "registration_id": "MPR-RC-HELIXOS-L2-049-003",
+          "management_state": "registered_proposal",
+          "authority_effect": "none",
+          "candidate_semantic_digest": "sha256:e9372f19e5064cb5470141fef25a3212aa65cede5d44ecfff8c9ed86da83668b"
+        },
+        "pair_pins": {
+          "l2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+            "line_start": 1204,
+            "line_end": 1211,
+            "section_sha256": "e9372f19e5064cb5470141fef25a3212aa65cede5d44ecfff8c9ed86da83668b",
+            "target_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+          },
+          "l11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+            "line_start": 813,
+            "line_end": 821,
+            "section_sha256": "d5a3a0c361a6d0056a8c608f5230a52d206c000d7ac81ff969aeaba30ad4d810",
+            "target_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+          }
+        },
+        "decision_row_index_ref": {
+          "cohort": "57",
+          "identity": "HELIXOS-L2-049",
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 72,
+            "line_sha256": "f0856ae991e2b0917c4a5196b903cd7ba8a1b7026397235826c77abbbe1ab939"
+          }
+        }
+      },
+      {
+        "source_identity": "PM-01",
+        "candidate": "HELIXOS-L2-050",
+        "cohort": "57",
+        "decision_status": "条件付き採択：capacity増枠から新しいmerge権限を発生させない。既存review_merge担当は既存admission後にmergeできる。branch変更・Ready権限は与えない（訂正L11 `HELIXOS-L2-050-003`）。",
+        "relation": "旧screenの担当capacity表示に概念上接するが、対象は独立review capacity・authority境界である。",
+        "bounded_candidate_scope": "条件付き採択。review capacity増枠からmerge権限を発生させず、既存review_merge担当は既存admission後にmerge可能。branch変更・Ready権限を与えない。",
+        "non_successor_limit": "capacity/merge authorityの条件に限り、画面上のassignment、AI slot使用率、状態色またはPM-01描画挙動の後継ではない。",
+        "decision_pin": {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "line": 73,
+          "line_sha256": "d8c7710bdc66863227e96b419e9271a73a6dba695cf40fb447a44c102eabf78b",
+          "source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68"
+        },
+        "mpr_pin": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+          "line": 599,
+          "line_sha256": "e2b8e73c7e195060c8af05b002d6dc96188db6613f61f05ec0569c1a47415b6f",
+          "registration_id": "MPR-RC-HELIXOS-L2-050-003",
+          "management_state": "registered_proposal",
+          "authority_effect": "none",
+          "candidate_semantic_digest": "sha256:fab5fdfae9cfd2211f8c2fd6dfad5ce7b065e007ef11ca62f55420baa5033b6d"
+        },
+        "pair_pins": {
+          "l2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+            "line_start": 1212,
+            "line_end": 1219,
+            "section_sha256": "fab5fdfae9cfd2211f8c2fd6dfad5ce7b065e007ef11ca62f55420baa5033b6d",
+            "target_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+          },
+          "l11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+            "line_start": 822,
+            "line_end": 830,
+            "section_sha256": "cf4866f2d8beee83eda5389e3b98100cd37cbd609f7c797617b499c1381bfafb",
+            "target_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+          }
+        },
+        "decision_row_index_ref": {
+          "cohort": "57",
+          "identity": "HELIXOS-L2-050",
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 73,
+            "line_sha256": "d8c7710bdc66863227e96b419e9271a73a6dba695cf40fb447a44c102eabf78b"
+          }
+        }
+      },
+      {
+        "source_identity": "PM-01",
+        "candidate": "HARNESS-L2-049",
+        "cohort": "live26",
+        "decision_status": "承認（通常採択22件に含む）",
+        "relation": "旧PM-01の正常/警告/エラー/空/loadingなど画面state提示条件に測定の観点で近い。",
+        "bounded_candidate_scope": "承認された登録-003のscopeは、既に与えられたrenderable prototypeの表示計測oracle・検査精度・文言量評価。画面生成、Pattern選択、screen ID発行は含めない。L11はscreen ID/target revision/利用許可/profile/測定条件の揃った入力を独立測定対象として受け付ける。",
+        "non_successor_limit": "計測専用。PM-01 dashboard自身、4階層/heatmap、担当load/AI slot、30秒poll、gate fail時の表示即時性、描画stateのscreen acceptanceは規定しない。",
+        "decision_pin": {
+          "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+          "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+          "line": 39,
+          "line_sha256": "2c9037f2d9523da4fdc17b9679bd4cacff1f39e4290dfbb06b4c38180ba2b264",
+          "source_repository_revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+          "decision_basis_revision": "81d1f35f9c5793c5312be4ae52526c96b609c254"
+        },
+        "mpr_pin": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+          "line": 629,
+          "line_sha256": "74d82b03c7580be677647d89037d353f40285fa6264eedeb8298c8509e1a0a88",
+          "registration_id": "MPR-RC-HARNESS-L2-049-003",
+          "management_state": "registered_proposal",
+          "authority_effect": "none",
+          "candidate_semantic_digest": "sha256:a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116"
+        },
+        "pair_pins": {
+          "l2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
+            "line_start": 1070,
+            "line_end": 1094,
+            "section_sha256": "a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116",
+            "target_revision": "ea6f756f96a7370de78e412d737c7a7ed472114a"
+          },
+          "l11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e",
+            "line_start": 802,
+            "line_end": 816,
+            "section_sha256": "f3fb47da21371084e9f8c7c7f7ca6dd945c8e98ae7c7b70597c3fc44e4e08ee7",
+            "target_revision": "ea6f756f96a7370de78e412d737c7a7ed472114a"
+          }
+        },
+        "decision_row_index_ref": {
+          "cohort": "live26",
+          "identity": "HARNESS-L2-049",
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+            "line": 39,
+            "line_sha256": "2c9037f2d9523da4fdc17b9679bd4cacff1f39e4290dfbb06b4c38180ba2b264"
+          }
+        }
+      },
+      {
+        "source_identity": "S-BR-001",
+        "candidate": "HARNESS-L2-047",
+        "cohort": "57",
+        "decision_status": "条件付き採択：A配置（HARNESSが契約生成規範を所有）。",
+        "relation": "旧S-R04の必要範囲だけの知識・判断観点供給およびS-R05のcontext負担に隣接する。",
+        "bounded_candidate_scope": "条件付き採択の配置A（HARNESS所有）に限る。task必要性の判断とruntime-neutralな専門Worker契約候補に最小context、budget等を含める。",
+        "non_successor_limit": "task単位の専門Worker判断/契約であり、skill asset inventory/disposition、typed skill適用、既存skillの移行・動的取得、old/new efficacy比較、consumer移管/retireを定めない。条件付きA配置は他owner配置や全skill移行へ一般化しない。",
+        "decision_pin": {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "line": 52,
+          "line_sha256": "234adb61f9dfeab547dd06af598673d24f98505529ab1b913de686a76463fa59",
+          "source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68"
+        },
+        "mpr_pin": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+          "line": 572,
+          "line_sha256": "2d2adfaac8a928a3368e5da5998863f2937fd3f8976e34771e4885a3dfc9d294",
+          "registration_id": "MPR-RC-HARNESS-L2-047-001",
+          "management_state": "registered_proposal",
+          "authority_effect": "none",
+          "candidate_semantic_digest": "sha256:733201471492a400db194369980f54499faa7f7860e1e1465c18589a43daa9b9"
+        },
+        "pair_pins": {
+          "l2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+            "line_start": 1039,
+            "line_end": 1054,
+            "section_sha256": "733201471492a400db194369980f54499faa7f7860e1e1465c18589a43daa9b9",
+            "target_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+          },
+          "l11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+            "line_start": 773,
+            "line_end": 787,
+            "section_sha256": "8d92bb157dff9cffd87f72a43c2ce19977667a2fd928b5a3780f1f55912bdcb2",
+            "target_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+          }
+        },
+        "decision_row_index_ref": {
+          "cohort": "57",
+          "identity": "HARNESS-L2-047",
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 52,
+            "line_sha256": "234adb61f9dfeab547dd06af598673d24f98505529ab1b913de686a76463fa59"
+          }
+        }
+      },
+      {
+        "source_identity": "S-BR-001",
+        "candidate": "HELIXLABO-L2-070",
+        "cohort": "live26",
+        "decision_status": "承認（通常採択22件に含む）",
+        "relation": "S-R06の利用と効果を分ける測定条件に隣接し、運用比較のmeasurement contractを提供する。",
+        "bounded_candidate_scope": "承認された登録-001のscope付き補助telemetry・Attempt scorecard。source/scope/revision/window/event receiptを結び、未検証値をunknownに保つ。",
+        "non_successor_limit": "一般的な補助telemetry/Attempt scorecardであり、skill-specific recommended/injected/retrieved/outcome attribution、provider/config別skill効果、旧skill inventoryやskill移管の受入・退役の後継ではない。",
+        "decision_pin": {
+          "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+          "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+          "line": 49,
+          "line_sha256": "0cc2b7ac34f2a9dec7a072910ba43c90547a7cd8cdee9e337a8701412b8ca052",
+          "source_repository_revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+          "decision_basis_revision": "81d1f35f9c5793c5312be4ae52526c96b609c254"
+        },
+        "mpr_pin": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+          "line": 626,
+          "line_sha256": "da3d0cca4f09b6f607621ac4acad9d4e34f745b8781c7037526d5c85d5d235ed",
+          "registration_id": "MPR-RC-HELIXLABO-L2-070-001",
+          "management_state": "registered_proposal",
+          "authority_effect": "none",
+          "candidate_semantic_digest": "sha256:07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533"
+        },
+        "pair_pins": {
+          "l2": {
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+            "line_start": 561,
+            "line_end": 575,
+            "section_sha256": "07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533",
+            "target_revision": "ea6f756f96a7370de78e412d737c7a7ed472114a"
+          },
+          "l11": {
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "file_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+            "line_start": 297,
+            "line_end": 308,
+            "section_sha256": "c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1",
+            "target_revision": "ea6f756f96a7370de78e412d737c7a7ed472114a"
+          }
+        },
+        "decision_row_index_ref": {
+          "cohort": "live26",
+          "identity": "HELIXLABO-L2-070",
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+            "line": 49,
+            "line_sha256": "0cc2b7ac34f2a9dec7a072910ba43c90547a7cd8cdee9e337a8701412b8ca052"
+          }
+        }
+      }
+    ]
   },
   "residual_and_non_successor_boundaries": [
     "The two confirmed identities have distinct source-qualified IDs, source documents, asset IDs, and consumers; no atom or condition is transferred between them.",
@@ -2743,6 +3135,7 @@
     "scfctl_validate": "pass:bindings=143 fail=0",
     "git_diff_check": "pass",
     "legacy_execution": "not_run",
-    "authority_effect": "none"
+    "authority_effect": "none",
+    "identity_specific_proximity_pins": "pass:5 identity-scoped candidates; exact decision/MPR and 10 L2/L11 section pins verified at source revisions"
   }
 }
