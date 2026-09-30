@@ -1,0 +1,383 @@
+{
+  "schema_version": "legacy-candidate-classification-correction-overlay.v1",
+  "audit_id": "legacy-candidate-concept-v4-capability-delta-metadata-six-classification-proposal-2026-09-30",
+  "created_against_commit": "0f5050e2b25cd622640c99c5de170cca087f7d8a",
+  "classification_basis_commit": "97672630b7de70fd4433827730c390cbabd90a99",
+  "authority_effect": "none",
+  "audit_mode": "append_only_bounded_source_classification_correction_proposal",
+  "scope": {
+    "reason": "Concept v4 capability-delta lines 5–10 identify repository, baseline revision/tree, source digests, and analysis method. These are provenance/method metadata, not independent product predicates.",
+    "source_ids": [
+      "LEGACY-CAND-LINE-002607",
+      "LEGACY-CAND-LINE-002608",
+      "LEGACY-CAND-LINE-002609",
+      "LEGACY-CAND-LINE-002610",
+      "LEGACY-CAND-LINE-002611",
+      "LEGACY-CAND-LINE-002612"
+    ],
+    "all_ids_are_product_requirement_atoms_before_this_proposal": true,
+    "not_a_route_coverage_or_requirement_adoption_audit": true,
+    "route_union_unchanged": true,
+    "authority_effect": "none",
+    "excluded_adjacent_source_ids": [
+      "LEGACY-CAND-LINE-002613"
+    ],
+    "excluded_adjacent_source_reason": "Source physical line 11 continues the method list, but its separate source ID LEGACY-CAND-LINE-002613 is already classified explanation / no condition subtype / not_condition in the #2353 exact row baseline. No intervening classification overlay targets it; it remains outside the current product/unknown pool and needs no correction in this proposal."
+  },
+  "classification_basis": [
+    "#2353 exact row_records classify all six selected IDs as condition/product_requirement_atom/unknown.",
+    "#2356, #2360, #2363, #2366, #2367, #2368, #2369, #2381, and #2385 exact-ID overlays have no intersection with the selected IDs.",
+    "The exact source lines form the document’s 「調査基準」 list: repository, baseline commit and tree, two input digests, and method. They describe how evidence was assembled; they do not state product behavior, acceptance criteria, a required state transition, or authority boundary.",
+    "Only lines 5–10 are corrected. Capability-to-plane mapping and conclusions/exclusions (lines 19–54) are not classified or altered by this proposal.",
+    "Asset ledger marks the source Historical, target product unresolved, authority historical, disposition unresolved; source carry-forward keeps historical_candidate → draft_candidate and no successor IDs."
+  ],
+  "source": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-capability-delta.md",
+    "asset_id": "LEGACY-ASSET-93505A0E6A989C5C0F09",
+    "source_file_sha256": "sha256:af5a4cd6ad6dcb85be811bba8213a185d64a17239bfc3b5d69e728bfb03ac0cc",
+    "asset_class": "Historical",
+    "product_target": "unresolved",
+    "authority_status": "historical",
+    "disposition": "unresolved",
+    "source_authority_state": "historical_candidate",
+    "target_authority_state": "draft_candidate",
+    "successor_requirement_ids": []
+  },
+  "rows": [
+    {
+      "source_id": "LEGACY-CAND-LINE-002607",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-capability-delta.md",
+      "source_line": 5,
+      "source_line_sha256": "sha256:4b1c8716d8b0f2c25af610fcff982c90586ecb99de625104dcb73e62bede2b67",
+      "physical_line_bytes_sha256": "sha256:67818b633c41300fe40474409128bd9c43287eb4d8f5f4648669e87d385fb91f",
+      "exact_source_text": "- repository: RetryYN/HELIX-HARNESS",
+      "proposed_classification": {
+        "classification": "explanation",
+        "condition_subtype": null,
+        "route_status": "not_condition",
+        "route_status_basis": "source-scope/provenance/method description only; no product predicate, acceptance oracle, authority condition, successor, or route asserted"
+      },
+      "classification_action": "reclassify_condition_to_explanation",
+      "reason": "対象repositoryの同定。製品動作条件ではない。",
+      "effective_before_proposal": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "authority_boundary": "Historical source; current target remains draft_candidate; no successor requirement or adoption is assigned."
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002608",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-capability-delta.md",
+      "source_line": 6,
+      "source_line_sha256": "sha256:0e300274372cb2335d3544f88c177dccfbbb7f868f20b69e936345ac59b6cdf3",
+      "physical_line_bytes_sha256": "sha256:77436220f94d358ac134d3886eb5cab30ac46ecea53e5827db2cc5e896e36d79",
+      "exact_source_text": "- baseline main: a122bf933d89a9df8ec9048f26bf4e554dfc5d63",
+      "proposed_classification": {
+        "classification": "explanation",
+        "condition_subtype": null,
+        "route_status": "not_condition",
+        "route_status_basis": "source-scope/provenance/method description only; no product predicate, acceptance oracle, authority condition, successor, or route asserted"
+      },
+      "classification_action": "reclassify_condition_to_explanation",
+      "reason": "調査baselineのmain commit識別子。要求の適用条件ではない。",
+      "effective_before_proposal": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "authority_boundary": "Historical source; current target remains draft_candidate; no successor requirement or adoption is assigned."
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002609",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-capability-delta.md",
+      "source_line": 7,
+      "source_line_sha256": "sha256:a1cf15be061a8b25634044da23cf179ba5cb25d75aea49a98b08c10dda64866a",
+      "physical_line_bytes_sha256": "sha256:23aaf5400aa278bdfa493bc0ee5091df2ef233ee39164ed3c3552c23a7846a07",
+      "exact_source_text": "- baseline tree: bee9c3fac6b768201605393a39b21ef0d80cad4d",
+      "proposed_classification": {
+        "classification": "explanation",
+        "condition_subtype": null,
+        "route_status": "not_condition",
+        "route_status_basis": "source-scope/provenance/method description only; no product predicate, acceptance oracle, authority condition, successor, or route asserted"
+      },
+      "classification_action": "reclassify_condition_to_explanation",
+      "reason": "調査baseline treeの識別hash。behaviorやacceptance predicateではない。",
+      "effective_before_proposal": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "authority_boundary": "Historical source; current target remains draft_candidate; no successor requirement or adoption is assigned."
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002610",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-capability-delta.md",
+      "source_line": 8,
+      "source_line_sha256": "sha256:1d218596273fec6c3f34ac3f06b17d23e57ade2afeac6e0f691797dc0aa666f8",
+      "physical_line_bytes_sha256": "sha256:09304004e34d0964f9020204ce404dc789b1eb42e6147198dd5aa925bad5e5db",
+      "exact_source_text": "- concept source digest: sha256:b9174fd408354243711c1245fd4b20c17b25f2b0283725c38f7b822b10519418",
+      "proposed_classification": {
+        "classification": "explanation",
+        "condition_subtype": null,
+        "route_status": "not_condition",
+        "route_status_basis": "source-scope/provenance/method description only; no product predicate, acceptance oracle, authority condition, successor, or route asserted"
+      },
+      "classification_action": "reclassify_condition_to_explanation",
+      "reason": "Concept入力sourceのdigest。入力来歴metadataである。",
+      "effective_before_proposal": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "authority_boundary": "Historical source; current target remains draft_candidate; no successor requirement or adoption is assigned."
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002611",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-capability-delta.md",
+      "source_line": 9,
+      "source_line_sha256": "sha256:36e62b47d39dff5b3cf30f457667c819159a3574f7f477b3e9503f68c2b995e5",
+      "physical_line_bytes_sha256": "sha256:47e080bb9267fa73aad25094b62b17f8ca0203d6bcae8faef2bdedbdf593da92",
+      "exact_source_text": "- inventory source digest: sha256:10370d8ed8ce33fa45b5271b8d363347cb68b62235082c58cc941ddec697d507",
+      "proposed_classification": {
+        "classification": "explanation",
+        "condition_subtype": null,
+        "route_status": "not_condition",
+        "route_status_basis": "source-scope/provenance/method description only; no product predicate, acceptance oracle, authority condition, successor, or route asserted"
+      },
+      "classification_action": "reclassify_condition_to_explanation",
+      "reason": "inventory入力sourceのdigest。入力来歴metadataである。",
+      "effective_before_proposal": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "authority_boundary": "Historical source; current target remains draft_candidate; no successor requirement or adoption is assigned."
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002612",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-capability-delta.md",
+      "source_line": 10,
+      "source_line_sha256": "sha256:1aad5283e9ac261edd7db3b1961448e284a96a130ee3b9c0e6ea739bb64462c4",
+      "physical_line_bytes_sha256": "sha256:6a4ee497cefdb89bbebeb429325044652e137d70b1243fa016c135b52716b324",
+      "exact_source_text": "- method: src全path、current governance、design catalog、L3 requirement family、Release composition、",
+      "proposed_classification": {
+        "classification": "explanation",
+        "condition_subtype": null,
+        "route_status": "not_condition",
+        "route_status_basis": "source-scope/provenance/method description only; no product predicate, acceptance oracle, authority condition, successor, or route asserted"
+      },
+      "classification_action": "reclassify_condition_to_explanation",
+      "reason": "調査で照合したpath/catalog/family/release/Issue/PR inventoryの方法記述。調査手法を列挙し、製品の規範条件は述べない。",
+      "effective_before_proposal": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "authority_boundary": "Historical source; current target remains draft_candidate; no successor requirement or adoption is assigned."
+    }
+  ],
+  "pool_membership_check": {
+    "current_basis": "#2385 effective classification state after applying its seven-row overlay to the #2382 post-#2381 basis",
+    "pool_before_proposal": 471,
+    "selected_ids_in_pool": 6,
+    "selected_ids_outside_pool": [],
+    "proof": "Each exact ID is condition/product_requirement_atom/unknown in #2353; all intervening exact-ID classification overlays through #2385 are disjoint from the six IDs. Thus each remains in #2385 product/unknown pool."
+  },
+  "overlay_intersection_checks": [
+    {
+      "ref": "#2356",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164",
+      "intersection_with_selected_ids": []
+    },
+    {
+      "ref": "#2360",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+      "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb",
+      "intersection_with_selected_ids": []
+    },
+    {
+      "ref": "#2363",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+      "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384",
+      "intersection_with_selected_ids": []
+    },
+    {
+      "ref": "#2366",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+      "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6",
+      "intersection_with_selected_ids": []
+    },
+    {
+      "ref": "#2367",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
+      "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d",
+      "intersection_with_selected_ids": []
+    },
+    {
+      "ref": "#2368",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
+      "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95",
+      "intersection_with_selected_ids": []
+    },
+    {
+      "ref": "#2369",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30.json",
+      "sha256": "5ed02b037f78ca25991b396e232e8b1ee754b0c91b056ed6640c9fb1c47cf0c0",
+      "intersection_with_selected_ids": []
+    },
+    {
+      "ref": "#2381",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-metadata10-classification-proposal-2026-09-30.json",
+      "sha256": "512f9ceafe935648d459d6b268ff4d3952f0e8264298213ad278256236b5f40e",
+      "intersection_with_selected_ids": []
+    },
+    {
+      "ref": "#2385",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-dsi-frs-metadata-seven-classification-proposal-2026-09-30.json",
+      "sha256": "d5a462229f7644744fd05302bac416bc1ae488f46d8e117d6d98068331e51cb5",
+      "intersection_with_selected_ids": []
+    }
+  ],
+  "route_union_intersection_checks": [
+    {
+      "ref": "through_2378",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-concept-v4-main-acceptance-29-route-audit-2026-09-30.json",
+      "sha256": "91be699983dfe769869e08cc030cc1352abb42184a6ccd0d8bed09d7f84c0510",
+      "selected_or_union_id_intersection": []
+    },
+    {
+      "ref": "2380",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-27-route-audit-2026-09-30.json",
+      "sha256": "341b97fd4109118c747c3a5b5c62f10f092ef4df330d45e4eaae9910f6994f56",
+      "selected_or_union_id_intersection": []
+    },
+    {
+      "ref": "2379_out_of_pool",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-harness-memory-coordination-30-route-audit-after-2378-2026-09-30.json",
+      "sha256": "c8259d55f50c8f86f20619e850848b5f77cf72c378872ecc9c6c0da1ff8699ec",
+      "selected_or_union_id_intersection": []
+    },
+    {
+      "ref": "2383",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-mechanism-adequacy-nine-row-route-audit-after-2382-2026-09-30.json",
+      "sha256": "f59b4f7b6252ef0dbc084f0904659c06cfa2a2fce5da45f3511e40c1896b797d",
+      "selected_or_union_id_intersection": []
+    },
+    {
+      "ref": "2384",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-ma-requirements-acceptance-eight-row-route-audit-after-2383-2026-09-30.json",
+      "sha256": "86c301decb960d50ca7ba730e688371103aa41139c53b1c5ea5f1d100ff26832",
+      "selected_or_union_id_intersection": []
+    },
+    {
+      "ref": "2386",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-seven-row-route-audit-after-2384-2026-09-30.json",
+      "sha256": "2e58703e7246a83f6d90649f33d2382b740d2de0d385c6ba66c8952fd796dbc5",
+      "selected_or_union_id_intersection": []
+    }
+  ],
+  "count_impact": {
+    "current_after_2385_and_2386": {
+      "product_requirement_atom_unknown_pool": 471,
+      "condition_count": 858,
+      "explanation_count": 2971,
+      "product_requirement_atom_condition_count": 820,
+      "product_targeted_route_union_count": 341,
+      "all_route_union_count_including_30_out_of_pool_HMC": 371,
+      "product_pool_intersection_with_audited_union": 312,
+      "unreviewed_product_unknown_pool": 159
+    },
+    "proposal_if_applied": {
+      "product_requirement_atom_unknown_pool": 465,
+      "condition_count": 852,
+      "explanation_count": 2977,
+      "product_requirement_atom_condition_count": 814,
+      "product_targeted_route_union_count": 341,
+      "all_route_union_count_including_30_out_of_pool_HMC": 371,
+      "product_pool_intersection_with_audited_union": 312,
+      "unreviewed_product_unknown_pool": 153
+    },
+    "delta": {
+      "product_requirement_atom_unknown_pool": -6,
+      "condition_count": -6,
+      "explanation_count": 6,
+      "product_requirement_atom_condition_count": -6,
+      "route_union": 0,
+      "pool_union_intersection": 0,
+      "unreviewed_product_unknown_pool": -6
+    },
+    "equation": "471 - 312 = 159; (471 - 6) - 312 = 153. Proposal is conditional and requires cumulative recount if later applied."
+  },
+  "limits": [
+    "Proposal does not alter source bytes, any previous audit, route results, current requirement text, authority, or adoption.",
+    "No requirements are assigned as successors; route status is only not_condition as a classification of these metadata rows.",
+    "This does not classify the remaining Concept v4 source lines or establish Concept coverage/completion.",
+    "No old archive tooling, tests, runtime, workflow, or CI was run.",
+    "Adjacent method continuation LEGACY-CAND-LINE-002613 is already explanation/not_condition at the #2353 baseline and remains so; it is outside the product/unknown pool and is not reclassified here."
+  ],
+  "pinned_inputs": [
+    {
+      "role": "classification_baseline_2353",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c"
+    },
+    {
+      "role": "effective_recount_2382",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-effective-classification-recount-after-2381-2026-09-30.json",
+      "commit": "193974e",
+      "sha256": "92c713d6c74ecc138f43d2169b4387f511e31a0b26ba9ca538994c8df80a9932"
+    },
+    {
+      "role": "classification_correction_2385",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-dsi-frs-metadata-seven-classification-proposal-2026-09-30.json",
+      "commit": "f280900fc97c5dfed4bc6ae59e1332abb555045f",
+      "sha256": "d5a462229f7644744fd05302bac416bc1ae488f46d8e117d6d98068331e51cb5"
+    },
+    {
+      "role": "route_audit_2386",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-seven-row-route-audit-after-2384-2026-09-30.json",
+      "commit": "0f5050e2b25cd622640c99c5de170cca087f7d8a",
+      "sha256": "2e58703e7246a83f6d90649f33d2382b740d2de0d385c6ba66c8952fd796dbc5"
+    },
+    {
+      "role": "source_line_carry_forward",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "commit": "0f5050e2b25cd622640c99c5de170cca087f7d8a",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+    },
+    {
+      "role": "legacy_asset_disposition_ledger",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "commit": "0f5050e2b25cd622640c99c5de170cca087f7d8a",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "role": "legacy_source",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-capability-delta.md",
+      "commit": "f6dad2",
+      "sha256": "af5a4cd6ad6dcb85be811bba8213a185d64a17239bfc3b5d69e728bfb03ac0cc"
+    }
+  ],
+  "adjacent_source_classification_check": {
+    "source_id": "LEGACY-CAND-LINE-002613",
+    "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-capability-delta.md",
+    "source_line": 11,
+    "source_line_text": "  open Issue／PRの責務inventory",
+    "source_file_sha256": "sha256:af5a4cd6ad6dcb85be811bba8213a185d64a17239bfc3b5d69e728bfb03ac0cc",
+    "source_line_sha256": "sha256:553b7f88d25dff3195b3b09c7a858e797beab7a5a4bf7b5dc6051182d0b89486",
+    "physical_line_bytes_sha256": "sha256:5d4be15ecaa5bdf79bf37c425de3a8a70a8677a523975ccc6906be60cd92fc89",
+    "classification_at_2353_baseline": {
+      "classification": "explanation",
+      "condition_subtype": null,
+      "route_status": "not_condition"
+    },
+    "intervening_classification_overlay_intersection": [],
+    "route_audit_union_membership_through_2386": false,
+    "effective_classification": "explanation / no condition subtype / not_condition",
+    "pool_status": "outside product_requirement_atom/unknown pool",
+    "action": "No correction required; excluded from the six-row proposal."
+  }
+}
