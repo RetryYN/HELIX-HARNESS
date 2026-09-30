@@ -18,9 +18,28 @@
 
 ## f6後の採択近接行
 
-後発decisionは固定f6の構成に混ぜず、意味近接screenとして別に記録した。2026-09-29の採択decision row LABO-L2-062は、claimごとのsource span/版/支持・反証・一次確認に限る2.0条件であり、P8全体、一般web能力、sandboxを閉じない。同日のLABO-L2-063は同種再発から予防candidateへつなぐ選択されたrecurrence/evidence flowであり、P4全体や自動修復authorityを閉じない。両者のdecision row、MPR registration、現在のL2/L11選択section digestをJSONへ記録した。MPR記録上のmanagement stateは`registered_proposal`、authority effectは`none`であり、decision rowの「採択」を実装・実行の成立へ読み替えない。
+後発decisionは固定f6の構成に混ぜず、意味近接screenとして別に記録した。2026-09-29のdecision row 77はLABO-L2-062のexact target revisionを採択し、`version_target: 2.0`を維持する（1.0へ前倒ししない）。同row 78はLABO-L2-063のexact target revisionを採択し、`version_target: 1.0`を維持する。採択状態、version target、MPRの`registered_proposal` / `authority_effect: none`、実装・実行・受入・release状態は別の軸である。062はclaimごとのsource span/版/支持・反証/一次確認、063は選択されたrecurrence-to-preventive-candidate evidenceに限り、各々P8/P4全体や一般web/sandbox/自動repair authorityを閉じない。両者のdecision row、MPR registration、現在のL2/L11選択section digestをJSONへ記録した。
 
 2026-09-30 live26のHARNESS-L2-060/HELIXOS-L2-103は適用対象に限るevent/evidence因果、HELIXOS-L2-104/106/111はauthority・binding reference・receipt AND条件、HELIXOS-L2-105/107/108/109/110は限定されたcorrelation/provenance/consumer/digest条件に近接する。これらはP9全artifact収束やglobal DB completion gateを作らず、HNFR-P8の全security/sandbox条件も置換しない。各採択row、MPR registrationおよびcurrent L2/L11 section digestをJSONに記録するが、近接はsource closure・successor assignment・authority拡張を意味しない。
+
+
+### 11候補群の全行確認と近接screen
+
+2026-09-29の「残り11候補」判断は、採択表10行（8件の採択、依存先と併せた2件の採択）と別段落のHARNESS-L2-049保留1件から成る。全11行をline hash付きで索引化し、10採択行すべてについて対象L2/L11 sectionを現HEADで再読・digest固定して5旧pillarとの関係をscreenした。表や候補本文に残る`未採択`表記は判断前の候補状態であり、採否はdecision rowとexact identity/registration/digestで読む。とくにHARNESS-L2-050/052/053/054とHELIXOS-L2-053は、下の限定範囲だけを近接条件として記録した。
+
+| 採択候補 | 近接する旧条件 | 範囲と非closure |
+|---|---|---|
+| HARNESS-L2-041 / HELIXOS-L2-038 | P9のsource atom provenance、layer ledger、gap/consumer追跡 | 041はatom/obligation/gapとtyped layer edge、038は選択layerのwriter/snapshot/proposal append。global DB収束や全relation graphではなく、038はHARNESS意味契約への依存を含む。 |
+| HARNESS-L2-048 / HARNESS-L2-053 | P9の限定asset identity・lineage | 048はname/role/pathによるrename候補、053はasset identityとlineageを対象とする。全artifact ledger、security asset classification、secret/egress policyへ拡張しない。 |
+| HELIXBRAIN-L2-031 | P7のknowledge語彙 | 再利用可能知識候補であり、legacy input atom 0件。共有memory/recall/Glossary SSoTを要求しない。 |
+| HARNESS-L2-050 | P9のledger/evidence/consumer impact | 旧HIL-FR-50 line 140を対象とする限定refactor evidence。隣接FR51–55やglobal DB completion gateは対象外。 |
+| HARNESS-L2-051 | P9のstage exit/evidenceと未完了表示 | PHCAP-08の選択されたstage evidenceであり、全artifact completionやHNFR-P8のaction-binding gateではない。 |
+| HARNESS-L2-052 | P9のcanonical command identity | 同一command再送/idempotencyと異payload混同拒否。operation authorityやsecurity approvalを代替せず、atomic multi-artifact writeを含まない。 |
+| HARNESS-L2-054 | P7 continuity、HNFR-P8 worker boundaryへの隣接 | specialist handoff contractをOS assignmentへ渡す候補。memory architecture、sandbox、security enforcementの成立ではない。 |
+| HELIXOS-L2-053 | P9 artifact consistencyとHNFR-P8 rollback/trust boundaryへの隣接 | 複数artifact atomicity/failure isolation。decisionはHARNESS-L2-052と併せた採択を条件とし、独立authority、global DB closure、secret/egress/sandbox enforcementを作らない。 |
+
+11候補全群に加え、57候補判断の全57行、live26判断の全26行をdecision table line hash、処置、target digest参照、該当MPR row hashでcompact index化した（計94 row）。cohortごとのdecision file SHAと処置件数もJSONに記録する。これは全rowを5旧identityへ意味比較したという主張ではない。個別に意味近接screenしたのは既存57/live26の選択12行と、11候補の採択10行。保留HARNESS-L2-049は全群indexには含むが近接screenから除外した。
+
 
 ## 旧source起点と意味差分
 
