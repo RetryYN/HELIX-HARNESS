@@ -32,9 +32,9 @@
 
 ## 固定revision後の採択pair
 
-2026-09-29の57候補判断はHARNESS-L2-041/042/046を採択し、043/044を条件付き採択した。041のlayer-ledger extraction、042の意味を保つDesign Refactorのsemantic/consumer/oracle/dependency根拠、046のFull V／Scrum工程条件は関連する下流契約を限定的に補う。042はDesign Refactorの範囲、046は開発方式条件の範囲であり、いずれもBR-01固有の一案件end-to-end受入や回帰なしoracleではない。043/044の配置・portfolio条件もBR-01固有条件を追加しない。
+2026-09-29の57候補判断はHARNESS-L2-041/042/046を採択し、043/044を条件付き採択した。041のactive templateからの義務抽出とgap提示、042の意味を保つDesign Refactorのsemantic/consumer/oracle/dependency根拠、046のFull V／Scrum工程条件は関連する下流契約を限定的に補う。041は層ledgerを定義せず、その役割はHARNESS-L2-040とHELIXOS-L2-038にある。042はDesign Refactorの範囲、046は開発方式条件の範囲であり、いずれもBR-01固有の一案件end-to-end受入や回帰なしoracleではない。043/044の配置・portfolio条件もBR-01固有条件を追加しない。
 
-2026-09-29の11候補判断と2026-09-30 live26判断で採択されたHARNESS-L2-049〜059のうち、049は登録-003の表示可能prototype計測、055/056は選択されたFR-L1-48/49 atom、057〜059等はリスク、issue、identity等の限定条件である。これらはBR-01の全工程・一案件受入・AI委譲回帰oracleを追加しない。判断記録・対象revisionのpinと評価はJSONに記録した。後続pairをf6dad2aの本文へ混ぜず、固定比較の結論は維持する。
+2026-09-29の11候補判断はHARNESS-L2-049の当時の-002を採択せず、2026-09-30 live26判断が訂正後-003の表示可能prototype計測を採択した。live26で採択された055/056は選択されたFR-L1-48/49 atomに限る。057＋OS-054、058＋OS-034＋OS-101、059＋OS-102は通常採択のセットであり、リスク受容、Issue契約など各組の限定条件を持つ。これらはBR-01の全工程・一案件受入・AI委譲回帰oracleを追加しない。判断記録・対象revisionのpinと評価はJSONに記録した。後続pairをf6dad2aの本文へ混ぜず、固定比較の結論は維持する。
 
 2026-09-30 live26判断はHARNESS-L2-060＋HELIXOS-L2-103をA案で一体承認した。HARNESS-L2-060は現行契約上で適用が決まった工程に限り入力revisionと段階証拠を結び、HELIXOS-L2-103は同じscope/revisionのevent・current projection・利用可能な因果参照を記録する。B案の旧工程列と前段証拠を全案件へ一律必須化する扱いは採られていない。旧HIL-FR-01のend-to-end lifecycleは`MPR-SH-IR-003#HIL-FR-01`にholdingのまま残るため、このpairはBR-01ごとの「1案件をL0-L14通しで回せる」受入義務を閉じない。採択pairは現行の適用工程の証拠連鎖を限定して支えるが、全案件共通の旧stage chain、一案件end-to-end oracle、L0-L14全工程を通す結果は未確認であり、BR-01のsource atom・formal successor・条件閉包の残差は維持する。判断、MPR registration、L2/L11 section pinはJSONに記録した。
 

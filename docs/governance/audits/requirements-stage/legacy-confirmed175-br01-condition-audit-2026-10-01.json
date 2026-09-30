@@ -256,8 +256,8 @@
         {
           "id": "HARNESS-L2-041",
           "status": "adopted",
-          "scope": "layer-ledger extraction",
-          "assessment": "supports consistent layer/identity extraction; does not add BR-01 project-end-to-end acceptance or regression oracle."
+          "scope": "active template obligation extraction and gap presentation",
+          "assessment": "extracts obligations from the active template and presents gaps; does not add BR-01 project-end-to-end acceptance or regression oracle."
         },
         {
           "id": "HARNESS-L2-042",
@@ -292,7 +292,7 @@
         {
           "id": "HARNESS-L2-041",
           "status": "adopted revision -003",
-          "assessment": "revision-specific ledger extraction; no BR-01 end-to-end or regression closure."
+          "assessment": "revision-specific active template obligation extraction and gap presentation; no BR-01 end-to-end or regression closure."
         },
         {
           "id": "HARNESS-L2-049",
@@ -322,7 +322,7 @@
         },
         {
           "id": "HARNESS-L2-057/058/059",
-          "status": "adopted (some paired conditionally with OS)",
+          "status": "adopted as ordinary sets with OS counterparts",
           "assessment": "review risk acceptance, risk-shaped planning, and Issue contract identity; no BR-01-specific pair closure."
         }
       ]
