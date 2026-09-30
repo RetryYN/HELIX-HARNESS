@@ -23,13 +23,13 @@
 
 ## 隣接するmethod続き行の状態
 
-`LEGACY-CAND-LINE-002613`（物理行11、`open Issue／PRの責務inventory`）は、#2353 row baselineで`explanation / subtypeなし / not_condition`。file SHA-256 `af5a4cd6ad6dcb85be811bba8213a185d64a17239bfc3b5d69e728bfb03ac0cc`、line SHA-256 `553b7f88d25dff3195b3b09c7a858e797beab7a5a4bf7b5dc6051182d0b89486`、physical-line SHA-256 `5d4be15ecaa5bdf79bf37c425de3a8a70a8677a523975ccc6906be60cd92fc89`。#2356〜#2385分類overlayおよび#2386までのroute-audit unionとの交差はなく、現在pool外。したがってこのproposalで再分類せず、baselineの説明分類を保持する。
+`LEGACY-CAND-LINE-002613`（物理行11、`open Issue／PRの責務inventory`）は、#2353 row baselineで`explanation / subtypeなし / not_condition`。file SHA-256 `af5a4cd6ad6dcb85be811bba8213a185d64a17239bfc3b5d69e728bfb03ac0cc`、line SHA-256 `553b7f88d25dff3195b3b09c7a858e797beab7a5a4bf7b5dc6051182d0b89486`、physical-line SHA-256 `5d4be15ecaa5bdf79bf37c425de3a8a70a8677a523975ccc6906be60cd92fc89`。#2356〜#2385分類overlayおよび#2387までのroute-audit unionとの交差はなく、現在pool外。したがってこのproposalで再分類せず、baselineの説明分類を保持する。
 
 ## pool・監査unionとの照合
 
-#2353 exact row recordsでは6 IDすべてが `condition / product_requirement_atom / unknown`。#2356、#2360、#2363、#2366、#2367、#2368、#2369、#2381、#2385の分類overlayは選択IDとの交差が0件で、6 IDは#2385後の471 poolに残る。#2386までのroute unionも、#2378、#2380、#2379、#2383、#2384、#2386のsource selection/union IDとの交差は0件。
+#2353 exact row recordsでは6 IDすべてが `condition / product_requirement_atom / unknown`。#2356、#2360、#2363、#2366、#2367、#2368、#2369、#2381、#2385の分類overlayは選択IDとの交差が0件で、6 IDは#2385後の471 poolに残る。#2387までのroute unionも、#2378、#2380、#2379、#2383、#2384、#2386、#2387のsource selection/union IDとの交差は0件。
 
-| 指標 | #2385/#2386後 | 6行提案適用時 | 差 |
+| 指標 | #2387後 | 6行提案適用時 | 差 |
 |---|---:|---:|---:|
 | product/unknown pool | 471 | 465 | -6 |
 | condition | 858 | 852 | -6 |
@@ -40,11 +40,11 @@
 | poolとroute unionの交差 | 314 | 314 | 0 |
 | 未監査pool | 157 | 151 | -6 |
 
-算式: `471 − 312 = 159`; `(471 − 6) − 312 = 153`。件数は提案を適用した場合の条件付き計算であり、累積recountを代替しない。
+算式: `471 − 314 = 157`; `(471 − 6) − 314 = 151`。件数は提案を適用した場合の条件付き計算であり、累積recountを代替しない。
 
 ## 境界と検証
 
 - 6 IDのsource line text/SHAと#2353 effective rowを照合した。既存classification overlaysおよび#2387までのroute-audit selection/union IDとの交差はすべて0。
 - authority effectは`none`。現行L2/L11要求、successor、採択、実装完了、Concept全体のcoverageを主張しない。
 - 旧source bytes、既存audit snapshotを変更しない。旧archive tools/tests/runtime/workflow/CIは実行していない。
-- 機械可読証跡: `{json_path.name}`。固定入力のhashと行別raw-byte hashはJSONに記録。
+- 機械可読証跡: [同名JSON](legacy-candidate-concept-v4-capability-delta-metadata-six-classification-proposal-2026-09-30.json)。固定入力のhashと行別raw-byte hashはJSONに記録。
