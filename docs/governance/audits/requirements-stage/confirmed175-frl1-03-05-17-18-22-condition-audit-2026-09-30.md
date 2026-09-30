@@ -1,6 +1,6 @@
 # confirmed175 FR-L1-03/05/17/18/22 固定pair個別条件監査
 
-- 基準revision: `c844e0c80739411eb11e4b6e74eb958ec216614f`
+- 基準revision: `8ca13ced30acc2a99119f2e4775f9602670b176e`
 - 固定比較revision: `f6dad2a33e24f000b87d7f09b8d40288257e74cc`
 - 対象: `FR-L1-03`, `FR-L1-05`, `FR-L1-17`, `FR-L1-18`, `FR-L1-22`（5件）
 - source authority: `confirmed`; carry-forward: `preserved_pending_rehome`
