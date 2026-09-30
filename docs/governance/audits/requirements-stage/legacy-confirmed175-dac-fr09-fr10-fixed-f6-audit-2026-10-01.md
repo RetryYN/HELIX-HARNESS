@@ -29,11 +29,16 @@ Source-qualified identity: `helix/L1-requirements/document-authority-census-requ
   - `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/document-authority-census-acceptance.md:41` SHA-256 `sha256:0769303001a13a9afd63a699757336f2dbd015b3f7e0c0eb0116f53cca481290`: | `DAC-AC-016` | `DAC-R-010` | semantic epoch更新後も旧digest pinをconsumerへ残す | `SEMANTIC_EPOCH_DRIFT`でredになる |
 - 関連context（source atom外） `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md:64` SHA-256 `sha256:fa28c9426e876631ba56fae5df7c7e04313cd18e28f70c1693d928587f5f6c8f`: | `DAC-NFR-002` | compatibility、historical、referenceの存在を欠陥扱いせず、active decision利用だけを拒否する。 |
 - 保持する意味: 明示されたsemantic epoch変更後に、旧epochのactive claimとconsumerを検出する。digest差だけからepoch変更を推定せず、明示的に束縛されたsource/consumer間のepoch関係を比較する。epoch/source/consumer/scope evidenceが欠落またはstaleならunknownを保持する。
-- 固定f6比較と残差: Fixed f6 OS-015 covers owner/identity/source/revision/digest authority records; HARNESS-001/004 cover layer-pair integrity and change impact/reverification. They do not specify semantic-epoch authority, full active claim/consumer enumeration, stale epoch detection, or scanner residual handling. HELIXOS-L2-110 is a later live26-adopted one-source/consumer epoch-pin comparison only, not a full census or scanner closure.
+- 固定f6比較と残差: HELIXOS-L2-015の本文とL11条件を以下の節SHAおよび各行SHAで固定した。L2本文は入力、提供、保証、依存、失敗時の戻し先を含む。L11本文は入力・schema版、成功条件、反例、失敗時の戻し先を含む。対象/source identity・revision・digest・判断出所を正本へ辿る一般authority追跡の部分的接点であるが、semantic-epochモデル、旧epoch active claim/consumer全量列挙、scanner検出や残差closureは定めない。HARNESS-L2-001/004はpair整合と変更影響・再検証の別条件。後発live26採択HELIXOS-L2-110は、明示された単一source/consumer epoch-pin照合への条件近接であり、DAC-FR-010との同値、全consumer census、scanner closureを示さない。
 
 ## 固定f6 L2/L11比較
 
 DAC-FR-009には三receiptの明示ANDを担う固定f6 targetを特定できず、targetなしと記録する。DAC-FR-010についてはHELIXOS-L2-015、HARNESS-L2-001、HARNESS-L2-004のrevision-pinned L2/L11 bytesを比較した。正確な行pinとSHA-256はJSONの `fixed_f6_target.relevant_comparison_pins` にある。
+
+HELIXOS-L2-015の意味本文を含むsection pinは次の通り。digestは固定f6 blobのinclusive physical line bytesをLF付きで連結して算出した。
+
+- L2 `governance-requirements.md:642–650` section SHA-256 `sha256:f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef`。本文行644–650は親L1、入力、提供記録、保証、依存、失敗時の戻し先・未完義務、既存条件を固定する。
+- L11 `governance-acceptance.md:324–329` section SHA-256 `sha256:79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0`。本文行326–329は入力・版、成功条件、反例、失敗時・未完義務を固定する。JSONにはこの範囲の行別SHAと意味roleも格納した。
 
 ## 後発decision proximity screen
 

@@ -174,7 +174,7 @@
         "HARNESS-L2-004"
       ],
       "retained_meaning": "Detect old-epoch active claims and consumers after an explicit semantic epoch change. Do not infer epoch change from digest difference alone; compare the explicitly bound source/consumer epoch relation and preserve unknown when epoch/source/consumer/scope evidence is missing or stale.",
-      "fixed_f6_residual": "Fixed f6 OS-015 covers owner/identity/source/revision/digest authority records; HARNESS-001/004 cover layer-pair integrity and change impact/reverification. They do not specify semantic-epoch authority, full active claim/consumer enumeration, stale epoch detection, or scanner residual handling. HELIXOS-L2-110 is a later live26-adopted one-source/consumer epoch-pin comparison only, not a full census or scanner closure.",
+      "fixed_f6_residual": "HELIXOS-L2-015の固定f6本文は、対象/source identity・revision・digest・actor/time・正本・判断record・原event等の入力、authority sourceと対象revisionを正本へ辿る保証、projectionとauthorityの分離、source event不変、訂正履歴、競合・source欠落等を未解決にして返す失敗条件を含む。L11は異対象revision等の入力・schema revision、正本へ辿れる成功条件、projectionからのauthority生成・event上書き・stale/wrong-product/digest mismatchの反例、conflict/source欠落時に未解決stateを戻す条件を含む。これらは一般authority追跡の部分的接点だが、semantic-epochモデル、旧epoch active claim/consumer全量列挙、scannerによる検出や残差closureは定めない。HARNESS-L2-001/004はpair整合と変更影響・再検証の別条件である。後発live26採択HELIXOS-L2-110は明示された単一source/consumer epoch-pin照合への条件近接だけで、DAC-FR-010との同値、全consumer census、scanner closureではない。",
       "authority_effect": "none"
     }
   ],
@@ -315,7 +315,164 @@
       "HARNESS-L2-001",
       "HARNESS-L2-004"
     ],
-    "meaning": "Comparison only; no successor assignment or adoption."
+    "meaning": "Comparison only; no successor assignment or adoption.",
+    "HELIXOS-L2-015_detail": {
+      "l2_section": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "line_start": 642,
+        "line_end": 650,
+        "digest_rule": "UTF-8 bytes of the pinned inclusive physical lines, preserving LF line endings",
+        "sha256": "sha256:f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef"
+      },
+      "l2_line_pins": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 644,
+          "line_sha256": "sha256:d6700458243d1ebcb4dd2ddd6a2410430d7978bd513829e272913583ce86c356",
+          "text": "- **親L1**：HELIXOS-L1-001／008。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 645,
+          "line_sha256": "sha256:115784d475bd923613401a7ca120936ee64bee0c9342a1f98fe84639123ba05e",
+          "text": "- **入力**：対象とsourceのidentity・revision・digest、actor・時点、正本、判断record、意味未分類の原event、および訂正・競合・staleの事実。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 646,
+          "line_sha256": "sha256:f9a304e6419a639b2e7996e91148039715bde86f2dc33127b0857ac6cf5cacb2",
+          "text": "- **提供**：対象別Concept・L1・要求・採否・合意revision・責務と出所を登録し、正本とIssue/PR等のprojectionを分けて参照する管理記録。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 647,
+          "line_sha256": "sha256:1b2333f56633d63e389c9174601eee0991a3a71f7167f09918a3b415e1fe9a0e",
+          "text": "- **保証**：authorityの出所・対象revision・差分・訂正履歴を辿れ、原eventは後から分類しても不変。管理record、PR、Issue、CI、memoryから要求意味・人間decision・実装許可を生成しない。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 648,
+          "line_sha256": "sha256:a6854b832a7f99a7c28372746784516a3e8c0234bedb98d3cb36db47f9dcb310",
+          "text": "- **単独成立の依存**：対象別の正本とauthority記録形式、Concept 1.0の共通ログ・証拠形式。version_targetは1.0の土台。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 649,
+          "line_sha256": "sha256:d12aab733bd3c9d62c3dd0afabfe28c1f9a905cc13fc7f1b44705c94686493be",
+          "text": "- **失敗時の戻し先／未完義務**：対象不明、revision不一致、digest欠落、authority conflictは管理record上で未解決に保ち、出所となる正本・判断主体へ返す。未解決状態と訂正前eventを次の処理へ引き継ぐ。"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 650,
+          "line_sha256": "sha256:81a218e0f440b4eb7b3932478eed8bee03a5e77d427d9e553218211e764d5619",
+          "text": "- **束ねる既存条件**：HELIXOS-L2-001／003／007のうち正本・判断source・対象revision・責務、共通統制とproduct方式の分離に関する条件。既存L2のそれ以外の条件も元の箇所に存続する。"
+        }
+      ],
+      "l11_section": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "line_start": 324,
+        "line_end": 329,
+        "digest_rule": "UTF-8 bytes of the pinned inclusive physical lines, preserving LF line endings",
+        "sha256": "sha256:79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0"
+      },
+      "l11_line_pins": [
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line": 326,
+          "line_sha256": "sha256:0ed70625e0e526f459127ee62ec98ac84840f81447051cf1497814ca9ac7d84e",
+          "text": "- **入力・版**：異なる対象のConcept/L1/要求revision、判断record、原event、Issue/PR projectionを与える。対象と使った管理record schema revisionを固定する（1.0土台）。"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line": 327,
+          "line_sha256": "sha256:c18756917865f98b590fc234ee6e1ef35d6e9622c5c3a49e0dfe9958b04add20",
+          "text": "- **成功条件**：各source identity・revision・digest・判断出所・責務を正本へ辿れる。projection上のclose/merge/greenを変えても要求authorityは変わらない。原eventを保持したまま別revisionの訂正・分類を追跡できる。"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line": 328,
+          "line_sha256": "sha256:b04efd50eb796574bc7d9d4ff1af8b2b6e1d51cbe9fba005eb557a1bb9f60253",
+          "text": "- **反例**：PRやmemoryだけから採否・承認を表示する、訂正で原eventを上書きする、wrong product/stale/digest不一致を現行正本として扱う。"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line": 329,
+          "line_sha256": "sha256:d7127f3fccb0134663a99db7afd1eeb128c96e262b7c379ad99348194d29279e",
+          "text": "- **失敗時・未完義務**：authority conflictやsource欠落が出た際、未解決stateを保ち正本または判断主体へ戻せる。"
+        }
+      ],
+      "condition_roles": {
+        "input_and_version": {
+          "l2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 645,
+            "line_sha256": "sha256:115784d475bd923613401a7ca120936ee64bee0c9342a1f98fe84639123ba05e",
+            "text": "- **入力**：対象とsourceのidentity・revision・digest、actor・時点、正本、判断record、意味未分類の原event、および訂正・競合・staleの事実。"
+          },
+          "l11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 326,
+            "line_sha256": "sha256:0ed70625e0e526f459127ee62ec98ac84840f81447051cf1497814ca9ac7d84e",
+            "text": "- **入力・版**：異なる対象のConcept/L1/要求revision、判断record、原event、Issue/PR projectionを与える。対象と使った管理record schema revisionを固定する（1.0土台）。"
+          }
+        },
+        "provision_and_guarantee": {
+          "l2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 646,
+            "line_sha256": "sha256:f9a304e6419a639b2e7996e91148039715bde86f2dc33127b0857ac6cf5cacb2",
+            "text": "- **提供**：対象別Concept・L1・要求・採否・合意revision・責務と出所を登録し、正本とIssue/PR等のprojectionを分けて参照する管理記録。"
+          },
+          "l2_guarantee": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 647,
+            "line_sha256": "sha256:1b2333f56633d63e389c9174601eee0991a3a71f7167f09918a3b415e1fe9a0e",
+            "text": "- **保証**：authorityの出所・対象revision・差分・訂正履歴を辿れ、原eventは後から分類しても不変。管理record、PR、Issue、CI、memoryから要求意味・人間decision・実装許可を生成しない。"
+          }
+        },
+        "success_condition": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line": 327,
+          "line_sha256": "sha256:c18756917865f98b590fc234ee6e1ef35d6e9622c5c3a49e0dfe9958b04add20",
+          "text": "- **成功条件**：各source identity・revision・digest・判断出所・責務を正本へ辿れる。projection上のclose/merge/greenを変えても要求authorityは変わらない。原eventを保持したまま別revisionの訂正・分類を追跡できる。"
+        },
+        "counterexample": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line": 328,
+          "line_sha256": "sha256:b04efd50eb796574bc7d9d4ff1af8b2b6e1d51cbe9fba005eb557a1bb9f60253",
+          "text": "- **反例**：PRやmemoryだけから採否・承認を表示する、訂正で原eventを上書きする、wrong product/stale/digest不一致を現行正本として扱う。"
+        },
+        "failure_or_incomplete_obligation": {
+          "l2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 649,
+            "line_sha256": "sha256:d12aab733bd3c9d62c3dd0afabfe28c1f9a905cc13fc7f1b44705c94686493be",
+            "text": "- **失敗時の戻し先／未完義務**：対象不明、revision不一致、digest欠落、authority conflictは管理record上で未解決に保ち、出所となる正本・判断主体へ返す。未解決状態と訂正前eventを次の処理へ引き継ぐ。"
+          },
+          "l11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 329,
+            "line_sha256": "sha256:d7127f3fccb0134663a99db7afd1eeb128c96e262b7c379ad99348194d29279e",
+            "text": "- **失敗時・未完義務**：authority conflictやsource欠落が出た際、未解決stateを保ち正本または判断主体へ戻せる。"
+          }
+        },
+        "dependency_and_existing_condition": {
+          "l2_dependency": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 648,
+            "line_sha256": "sha256:a6854b832a7f99a7c28372746784516a3e8c0234bedb98d3cb36db47f9dcb310",
+            "text": "- **単独成立の依存**：対象別の正本とauthority記録形式、Concept 1.0の共通ログ・証拠形式。version_targetは1.0の土台。"
+          },
+          "l2_existing_conditions": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 650,
+            "line_sha256": "sha256:81a218e0f440b4eb7b3932478eed8bee03a5e77d427d9e553218211e764d5619",
+            "text": "- **束ねる既存条件**：HELIXOS-L2-001／003／007のうち正本・判断source・対象revision・責務、共通統制とproduct方式の分離に関する条件。既存L2のそれ以外の条件も元の箇所に存続する。"
+          }
+        }
+      },
+      "comparison_limit": "These pinned clauses cover general authority identity/revision/digest/provenance, unchanged authority under Issue/PR projections, immutable source events, correction tracking, stale/wrong-product/digest-mismatch counterexamples, and unresolved conflict/source-missing return. They do not establish a semantic-epoch model or full active claim/consumer enumeration and do not prove scanner detection or residual closure."
+    }
   },
   "later_decision_review": {
     "57_record": {
