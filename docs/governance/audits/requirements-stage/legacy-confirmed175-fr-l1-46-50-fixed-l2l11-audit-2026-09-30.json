@@ -1,0 +1,600 @@
+{
+  "schema_version": "confirmed175-condition-audit.v1",
+  "audit_id": "confirmed175-fr-l1-46-50-fixed-l2l11-audit-2026-09-30",
+  "created_at": "2026-09-30",
+  "created_against_revision": "03edd59de8d0488a797480ac23a6fc1a24f569b1",
+  "audit_mode": "read_only_source_to_fixed_l2_l11_condition_comparison",
+  "authority_effect": "none",
+  "scope": {
+    "population": "confirmed175",
+    "count": 5,
+    "source_qualified_prefix": "harness/L1-requirements/functional-requirements.md::",
+    "identities": [
+      "FR-L1-46",
+      "FR-L1-47",
+      "FR-L1-48",
+      "FR-L1-49",
+      "FR-L1-50"
+    ],
+    "legacy_asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B"
+  },
+  "source": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+    "sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+    "source_revision": "legacy-generation-2026-09-14",
+    "source_status": "confirmed",
+    "holding_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+    "holding_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+    "asset_ledger_ref": "docs/governance/legacy-asset-disposition.jsonl#LEGACY-ASSET-6B6C5CB0E481BE01088B",
+    "carry_forward_state": "preserved_pending_rehome"
+  },
+  "fixed_target": {
+    "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "authority_reference": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md; docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+    "meaning": "固定revisionのL2/L11条件との静的照合。採否・後継割当・実装を決めない。",
+    "documents": [
+      {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+      },
+      {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+      },
+      {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+      },
+      {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+      }
+    ],
+    "relevant_sections": [
+      {
+        "document": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "identities": [
+          "HARNESS-L2-003",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005"
+        ],
+        "locator": "requirements table lines 54-56; normative detail lines 98-121"
+      },
+      {
+        "document": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "identities": [
+          "HARNESS-L2-003",
+          "HARNESS-L2-004",
+          "HARNESS-L2-005"
+        ],
+        "locator": "acceptance conditions lines 23-25, 43-57"
+      },
+      {
+        "document": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "identities": [
+          "HARNESS-L2-010",
+          "HARNESS-L2-011"
+        ],
+        "locator": "sections at lines 340-359"
+      },
+      {
+        "document": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "identities": [
+          "HARNESS-L2-010",
+          "HARNESS-L2-011"
+        ],
+        "locator": "corresponding acceptance sections at lines 205-206"
+      },
+      {
+        "document": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "identities": [
+          "HELIXOS-L2-018",
+          "HELIXOS-L2-019"
+        ],
+        "locator": "sections at lines 672-690"
+      },
+      {
+        "document": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "identities": [
+          "HELIXOS-L2-018",
+          "HELIXOS-L2-019"
+        ],
+        "locator": "sections at lines 345-357"
+      }
+    ]
+  },
+  "duplicate_audit_scan": {
+    "base_revision": "03edd59de8d0488a797480ac23a6fc1a24f569b1",
+    "queue_and_full_audit": "03edd59de8d0488a797480ac23a6fc1a24f569b1でFR-L1-46..50はすべてOPEN/not_individually_compared。",
+    "exact_identity_search": "source-qualified identityを03edd59de8d0488a797480ac23a6fc1a24f569b1のrequirements-stage auditsで検索。個票条件照合artifactはqueue/full-audit/REG-06のみ。",
+    "result": "基準03edd59de8d0488a797480ac23a6fc1a24f569b1で既存個票の重複なし。#2415 merged v13-development-style-11 audit JSON/MDには選択source-qualified identitiesの言及なし。",
+    "method": "read-only source-qualified rg/git grep; old CLI/runtime/test/CI not invoked.",
+    "matching_paths_in_created_against_tree_revision": "03edd59de8d0488a797480ac23a6fc1a24f569b1",
+    "selection_rechecked_at_revision": "03edd59de8d0488a797480ac23a6fc1a24f569b1",
+    "matching_paths_in_created_against_tree": [
+      "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json",
+      "docs/governance/audits/requirements-stage/confirmed175-condition-comparison-queue-2026-09-30.json",
+      "docs/governance/audits/requirements-stage/legacy-source-origin-reg06-population-audit-2026-09-28.json"
+    ],
+    "selection_rows": [
+      {
+        "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-46",
+        "queue_status": "not_individually_compared",
+        "evidence_artifacts": []
+      },
+      {
+        "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-47",
+        "queue_status": "not_individually_compared",
+        "evidence_artifacts": []
+      },
+      {
+        "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-48",
+        "queue_status": "not_individually_compared",
+        "evidence_artifacts": []
+      },
+      {
+        "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-49",
+        "queue_status": "not_individually_compared",
+        "evidence_artifacts": []
+      },
+      {
+        "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-50",
+        "queue_status": "not_individually_compared",
+        "evidence_artifacts": []
+      }
+    ],
+    "additional_merged_audit_overlap_check": {
+      "pr": 2415,
+      "audit_path": "docs/governance/audits/requirements-stage/v13-development-style-11-condition-audit-2026-09-30.json",
+      "result": "選択した5 source-qualified identitiesとの一致0。#2415 auditの対象identityは別sourceで重複なし。"
+    }
+  },
+  "current_input_pins": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json",
+      "sha256": "ca08a81d97e39e94aa02151c7cc4e48f621f9d30baccc1cf9b715331fed38f45"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-source-origin-reg06-population-audit-2026-09-28.json",
+      "sha256": "286352584c5ef17195b71c57be165eaf2b1d2da1a2877b53258b65e6ec58f4e6"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+      "sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/function-spec.md",
+      "sha256": "f80b69a4d153d7775ecd789aa9e261c140baf2a443ac53a851de710cfce02b14"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+      "sha256": "e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/migration/internal-asset-inventory.md",
+      "sha256": "3f46ae1f9ac5a21c0250510cca4c334ce7cd7aa7a5db9abc075d004c64ba89ff"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/confirmed175-condition-comparison-queue-2026-09-30.json",
+      "sha256": "2dbfb06c11ac42a940c0d6b5c188a76e685ea4c00e4d9af10b432198ad17b353"
+    },
+    {
+      "path": "docs/governance/audits/requirement-registration/harness-specialist-contract-coverage-receipt-2026-09-29.json",
+      "sha256": "4cc3754a4bdf7b78af4352d937ce4875b7670a990787f51aea29c3caf56cba89"
+    }
+  ],
+  "legacy_reference_sources": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+      "sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+      "lines": "745-746,768,770-773",
+      "use": "旧consumerのL4-L8 carry、BR-22/Recovery、W6/W7/W10/W11/W12/W16、IMP-033、DDD/TDD条件とA-122/A-124/A-125/A-126拡張・残差を読む。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/function-spec.md",
+      "sha256": "f80b69a4d153d7775ecd789aa9e261c140baf2a443ac53a851de710cfce02b14",
+      "lines": "284-285,803-810",
+      "use": "FR47 deterministic skill recommendation/metadata finding/source-doc不改変、FR48 rebuildable command catalog、後段skill suggest拡張を参照。実行せず。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+      "sha256": "e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b",
+      "lines": "493-494",
+      "use": "HM-02がFR46-49を束ねる画面/情報設計の関係を確認。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/migration/internal-asset-inventory.md",
+      "sha256": "3f46ae1f9ac5a21c0250510cca4c334ce7cd7aa7a5db9abc075d004c64ba89ff",
+      "lines": "3-16,20-26,28-46,48-68,72-83",
+      "use": "old snapshotの19 prompts、107 vendor skills、docs/skills 0、docs/commands 19、CLI 70、旧`helix doctor`/asset-drift状態とreimplementation方針を参照。現行状態ではない。"
+    }
+  ],
+  "later_adopted_pairs_review": {
+    "decision_records": [
+      {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "content_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "decision_counts": {
+          "adopted": 42,
+          "conditional": 11,
+          "held": 4,
+          "total": 57
+        }
+      },
+      {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+        "id": "HDEC-REQUIREMENTS-11-2026-09-29",
+        "content_revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+        "decision_counts": {
+          "adopted": 10,
+          "not_adopted_current_revision": 1,
+          "total": 11
+        }
+      }
+    ],
+    "pairs": [
+      {
+        "identity": "HARNESS-L2-047",
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "decision": "conditional_adoption_A",
+        "registration_id": "MPR-RC-HARNESS-L2-047-001",
+        "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "l2_section_sha256": "733201471492a400db194369980f54499faa7f7860e1e1465c18589a43daa9b9",
+        "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "l11_section_sha256": "8d92bb157dff9cffd87f72a43c2ce19977667a2fd928b5a3780f1f55912bdcb2",
+        "content_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "effect": "57候補decisionのA配置条件付き採択。AではHARNESSが契約生成規範を所有し、選択されたtask/scope/revision/contextに対する専門Worker必要性・契約を扱う限定pair。Bなら本候補は未採択のまま再登録が必要。旧19 roster全件、skill catalog、CLI rehome、legacy residue lintのsuccessorではない。",
+        "decision_text_exact": "条件付き採択：A配置（HARNESSが契約生成規範を所有）。",
+        "decision_condition": {
+          "selected_route": "A配置",
+          "owner_condition": "HARNESSが専門Worker契約生成規範を所有する場合のみに適用",
+          "alternative": "B配置（INTELLIGENCE配置）を選ぶ場合、この候補は未採択のままにし、target placement/L1 parent/ownerを再登録する",
+          "decision_record_row": 52,
+          "decision_record_line_sha256": "234adb61f9dfeab547dd06af598673d24f98505529ab1b913de686a76463fa59",
+          "pre_decision_receipt_ref": "docs/governance/audits/requirement-registration/harness-specialist-contract-coverage-receipt-2026-09-29.json",
+          "pre_decision_receipt_sha256": "4cc3754a4bdf7b78af4352d937ce4875b7670a990787f51aea29c3caf56cba89",
+          "pre_decision_receipt_status": "pending_PO; candidate not adopted; records the pre-decision A proposal and B alternative; it does not widen or negate the later exact decision row."
+        },
+        "decision_record_row_sha256": "234adb61f9dfeab547dd06af598673d24f98505529ab1b913de686a76463fa59",
+        "decision_record_sha256_at_created_against": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "l2_locator": "fixed L2 section pinned by the decision-table digest at content_revision",
+        "l11_locator": "fixed L11 section pinned by the decision-table digest at content_revision"
+      },
+      {
+        "identity": "HARNESS-L2-042",
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "decision": "adopted",
+        "registration_id": "MPR-RC-HARNESS-L2-042-001",
+        "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "l2_section_sha256": "7da6b3394cbc96bdf028a4738000554e1cf7a946595c4abf43504b24968f34eb",
+        "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "l11_section_sha256": "3ba00726800c61f1de165e48e6f62ea4359a368a50a9e9cd1517deb09df395f9",
+        "content_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "effect": "Design Refactorの選択episodeでconsumer/oracle/dependency graphと振る舞い保持、feature追加分離を確認。DDD/TDD全条件の移管ではない。",
+        "decision_record_sha256_at_created_against": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "l2_locator": "fixed L2 section pinned by the decision-table digest at content_revision",
+        "l11_locator": "fixed L11 section pinned by the decision-table digest at content_revision"
+      },
+      {
+        "identity": "HARNESS-L2-051",
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+        "decision_record_id": "HDEC-REQUIREMENTS-11-2026-09-29",
+        "decision": "adopted",
+        "registration_id": "MPR-RC-HARNESS-L2-051-001",
+        "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_file_sha256": "45955ffba1293b603f3c513ec1e9e328dd7bcf24b038463eb20dd480d1dc2108",
+        "l2_section_sha256": "e023408a45afa40bb674aebf53fcc870d6c4d9f8da155ce282b9fe5b69818f9b",
+        "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_file_sha256": "216a8dccfff723408fd4b54701933a8e257f29e5c775aaef2a4458d1f36d3cc7",
+        "l11_section_sha256": "3f14cb4463fa67a69d82827040d249c93cb905b5ac6934769b15e1b9cf701300",
+        "content_revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+        "effect": "stage-exit evidence completenessに限定し、旧DDD/TDD automationや全gateのquantitative/qualitative bundleへ一般化しない。",
+        "decision_record_sha256_at_created_against": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+        "l2_locator": "fixed L2 section pinned by the decision-table digest at content_revision",
+        "l11_locator": "fixed L11 section pinned by the decision-table digest at content_revision"
+      },
+      {
+        "identity": "HARNESS-L2-052",
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+        "decision_record_id": "HDEC-REQUIREMENTS-11-2026-09-29",
+        "decision": "adopted",
+        "registration_id": "MPR-RC-HARNESS-L2-052-001",
+        "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_file_sha256": "45955ffba1293b603f3c513ec1e9e328dd7bcf24b038463eb20dd480d1dc2108",
+        "l2_section_sha256": "d49f8cf116879f4283313f9c01ae7fb72bc9c528b5205cdbd45d06c46221d25c",
+        "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_file_sha256": "216a8dccfff723408fd4b54701933a8e257f29e5c775aaef2a4458d1f36d3cc7",
+        "l11_section_sha256": "3027c6b91b91ccf7cbab0c34821587956f8e8e7e20e5637f0fffaa591b2a633b",
+        "content_revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+        "effect": "canonical command semantic identity/retry/replay classificationに限定。legacy CLI rehomeや全commands catalogではない。",
+        "decision_record_sha256_at_created_against": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+        "l2_locator": "fixed L2 section pinned by the decision-table digest at content_revision",
+        "l11_locator": "fixed L11 section pinned by the decision-table digest at content_revision"
+      },
+      {
+        "identity": "HELIXOS-L2-053",
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+        "decision_record_id": "HDEC-REQUIREMENTS-11-2026-09-29",
+        "decision": "adopted_conditional_on_HARNESS-L2-052",
+        "registration_id": "MPR-RC-HELIXOS-L2-053-001",
+        "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "l2_file_sha256": "c90be67dc90240434568491074d0e12fb593759ad9121ee9ef9bd3f932a41610",
+        "l2_section_sha256": "fe880fc8392d9efc282294fff5305973df3b43270ef76263defef4a7ce9240bc",
+        "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "l11_file_sha256": "b965f3681d1f5231e4281d333538b65142dce8db0ae4807ed46caa7e928e30de",
+        "l11_section_sha256": "64bc9d0b2cfbf4c5b70d9ba15f358f26aa6352072d6ac12740129f2ec8f48177",
+        "content_revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+        "effect": "HARNESS-L2-052に依存するcommand operationのatomicity/competition/failure isolation。command catalog全体を作らない。",
+        "decision_record_sha256_at_created_against": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+        "l2_locator": "fixed L2 section pinned by the decision-table digest at content_revision",
+        "l11_locator": "fixed L11 section pinned by the decision-table digest at content_revision"
+      }
+    ],
+    "decision_files": [
+      {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+      },
+      {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+        "sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+        "decision_revision": "5aa100319361b0cc86edd3c51815ec777d55410a"
+      }
+    ]
+  },
+  "rows": [
+    {
+      "id": "FR-L1-46",
+      "source_line": 77,
+      "source_requirements": [
+        "rosterをHELIX資産として再構成",
+        "capability class/model family/guardを統合",
+        "legacy source前提を除去",
+        "旧inventoryの19 prompts、roster構成、guard連携を文脈化"
+      ],
+      "existing_full_audit_targets": [
+        "HARNESS-L2-010",
+        "HARNESS-L2-011",
+        "HELIXOS-L2-018",
+        "HELIXOS-L2-019"
+      ],
+      "retained_meaning": "Workerを割り当て、実行・回収・権限と証拠を統制する責務はHARNESS製品の工程契約およびOSのWorker統制・evidence continuityに分散して接点がある。旧rosterで19件、PMO9/PdM3/review3/BE2/DB1/DevOps1、allowlistとprompt fileの対応という具体値は旧inventoryの記録。",
+      "bounded_adopted_pair_effect": "後発57候補decision record上、HARNESS-L2-047はA配置（HARNESSが契約生成規範を所有）の条件付き採択。A配置のときだけtask/scope/revision等に基づく専門Worker必要性・契約に限定して近接する。B配置なら候補は未採択のまま再登録を要する。旧subagent roster全体のrename/harden、19件の再構成、model family一覧、guard統合やlegacy参照ゼロの一括移管ではない。",
+      "not_inherited": "旧Claude agent prompt path、role table、guard allowlist implementation、旧CLI/runtimeの呼出しは現行実行経路として継承しない。",
+      "residual": "現行fixed L2/L11には旧19 roster全件のHELIX-owned catalog、role/capability/model family対応、guard integration、legacy-source residue zeroをまとめて検査する明示条件がない。対象選択されたWorker contractは全roster移管を意味しない。",
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-46",
+      "source_status": "confirmed",
+      "carry_forward_state": "preserved_pending_rehome",
+      "source_row": {
+        "line": 77,
+        "sha256": "0dddfeef3a4d2fed3c017edb22ba27c983476f60244bd8ca508011b3129ce0eb",
+        "text": "| **FR-L1-46** | subagent roster の HELIX 化 (capability class 化 / model family / guard 統合 / legacy source 前提除去) | A-77 棚卸 (internal-asset-inventory.md) / BR-22 | `.claude/agents/*.md`、guard allowlist | HELIX 正本 roster (rename + harden 済)、legacy source 前提残存 0 | P1 | HM-02 |"
+      },
+      "audit_status": "open_partial_correspondence",
+      "successor_requirement_ids": [],
+      "decision_status": "pending_human_confirmation",
+      "mapping_authority_effect": "none",
+      "authority_effect": "none",
+      "current_targets": [
+        "HARNESS-L2-010",
+        "HARNESS-L2-011",
+        "HELIXOS-L2-018",
+        "HELIXOS-L2-019"
+      ]
+    },
+    {
+      "id": "FR-L1-47",
+      "source_line": 78,
+      "source_requirements": [
+        "SKILL_MAP",
+        "core/optional/drop分類",
+        "helix CLI trigger",
+        "legacy source用語除去",
+        "旧inventoryは107 vendor skills、docs/skills initially 0、vendor snapshot read-only/bulk-loadしない"
+      ],
+      "existing_full_audit_targets": [
+        "HARNESS-L2-010",
+        "HARNESS-L2-011",
+        "HELIXBRAIN pack identities",
+        "HELIXLABO observation/source contracts"
+      ],
+      "retained_meaning": "再利用するknowledge/packの境界、選択されたsourceのprovenanceとscopeを保つ責務には接点がある。旧L6 U-FR-47はskill docsとtask/layer/drive contextからdeterministic recommendation、metadata欠落をfinding、source docs不改変とした。",
+      "bounded_adopted_pair_effect": "HARNESS-L2-047はA配置（HARNESSが契約生成規範を所有）の条件付き採択であり、A配置に限った専門Workerの必要性・task/context selectionへ近接する。B配置では候補未採択・再登録となる。skill catalog、recommendation、CLI trigger、SKILL_MAPの後継ではない。",
+      "not_inherited": "vendor 107 skillsの一括導入、旧docs/skills配置、旧`helix skill suggest` CLIやold runtime implementationは現行の正本・実行経路にしない。旧inventoryの0件は旧時点のsnapshot値。",
+      "residual": "現行fixed L2/L11からcore/optional/dropの分類規則、SKILL_MAP、skill metadata/recommendation、CLI trigger、legacy term residue検査は確定しない。107/0の旧数値をcurrent inventoryとして扱わない。",
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-47",
+      "source_status": "confirmed",
+      "carry_forward_state": "preserved_pending_rehome",
+      "source_row": {
+        "line": 78,
+        "sha256": "e530fc3b4900240812c5e1730a5fd99732f75e22ea137e5b59639e33040788b8",
+        "text": "| **FR-L1-47** | skill pack の HELIX curate (HELIX 版 SKILL_MAP / core-optional-drop 区分 / helix CLI trigger / legacy source 用語除去) | A-77 棚卸 / BR-22 | source skill reference、SKILL_MAP | `docs/skills/*.md` skill pack + HELIX 版 SKILL_MAP | P1 | HM-02 |"
+      },
+      "audit_status": "open_partial_correspondence",
+      "successor_requirement_ids": [],
+      "decision_status": "pending_human_confirmation",
+      "mapping_authority_effect": "none",
+      "authority_effect": "none",
+      "current_targets": [
+        "HARNESS-L2-010",
+        "HARNESS-L2-011",
+        "HELIXBRAIN pack identities",
+        "HELIXLABO observation/source contracts"
+      ]
+    },
+    {
+      "id": "FR-L1-48",
+      "source_line": 79,
+      "source_requirements": [
+        "dashboard/asset/builder等のcommand資産をhelix CLI subcommandsへ再編",
+        "旧CLI binaries 70、docs/commands 19",
+        "旧L6 buildCommandCatalogはcommand docs+CLI surfaceをmapし、search rowはrebuildableでauthoring sourceではない"
+      ],
+      "existing_full_audit_targets": [
+        "HELIXOS-L2-018"
+      ],
+      "retained_meaning": "作業の割当・実行制約・回収結果はOS統制に接点がある。旧sourceはcommand inventoryを資産整理対象にした。",
+      "bounded_adopted_pair_effect": "HARNESS-L2-052/対L11は採択済みcommand semantic identityとretry/replay分類、HELIXOS-L2-053/対L11は依存条件下でatomicity/competition/failure isolationを扱う限定pair。旧70 binaries/19 docsのsubcommand化を要求せず、旧CLIの全surface/behaviorを移管しない。",
+      "not_inherited": "旧CLI binary 70本、コマンドschema、`helix` runtime、旧dashboard/asset/builder commandsを実行・移植しない。現行コマンド名への一致は対応証拠にしない。",
+      "residual": "fixed f6対象は工程/検証/Worker統制であり、19 docs commandと70 binaryの対応表、canonical CLI catalog、authoring-vs-derived search index、旧command coverageは固定受入条件に見当たらない。",
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-48",
+      "source_status": "confirmed",
+      "carry_forward_state": "preserved_pending_rehome",
+      "source_row": {
+        "line": 79,
+        "sha256": "de1b0859214a34a91b511688dd3d492e493fe8c21e431fe9da103e6987501a3c",
+        "text": "| **FR-L1-48** | 内部資産 command の helix CLI subcommand 化 (dashboard / asset / builder 等) | A-77 棚卸 / rebuild map W11/W12/W16 / BR-22 | legacy CLI binaries 70 件 / docs/commands 19 件 | `helix` subcommand 体系 | P1 | HM-02 |"
+      },
+      "audit_status": "open_partial_correspondence",
+      "successor_requirement_ids": [],
+      "decision_status": "pending_human_confirmation",
+      "mapping_authority_effect": "none",
+      "authority_effect": "none",
+      "current_targets": [
+        "HELIXOS-L2-018"
+      ]
+    },
+    {
+      "id": "FR-L1-49",
+      "source_line": 80,
+      "source_requirements": [
+        "legacy absolute path residue",
+        "empty docs/skills",
+        "roster↔guard整合",
+        "fail-close drift report"
+      ],
+      "existing_full_audit_targets": [
+        "HARNESS-L2-005",
+        "HARNESS-L2-010",
+        "HARNESS-L2-011",
+        "HELIXOS-L2-018",
+        "SECURITY source/path constraints"
+      ],
+      "retained_meaning": "対象scopeの検証義務/証拠、pack境界、source/path authorityを照合する一般責務と部分接点がある。旧inventoryはactive assets path residue 0、legacy command residue 0、allowlist missing 0と報告したが、旧世代current-backfilled statusの値である。",
+      "bounded_adopted_pair_effect": "HARNESS-L2-047は選択Worker契約、HARNESS-L2-052/HELIXOS-L2-053は選択されたcommand identity/atomicity、HARNESS-L2-033等のsnapshot-bound detector registryは選択detectorの再現性に限って近接する。いずれも旧assets全体のdrift lintではない。",
+      "not_inherited": "旧`helix doctor`やasset-drift/rule-driftを実行せず、旧0 residue値を現行合格証拠・閾値へ転用しない。",
+      "residual": "固定L2/L11には旧absolute paths/docs/skills emptiness/roster-guard mismatchを一括検出しfail-closeする受入条件やlegacy残存ゼロ閾値がない。検証義務一般やselected registryの再現性だけから当該旧lintを補完しない。",
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-49",
+      "source_status": "confirmed",
+      "carry_forward_state": "preserved_pending_rehome",
+      "source_row": {
+        "line": 80,
+        "sha256": "c45abf0c8caeff0a2cd59035e1fc2104a719fe97411635d8857f99c87c4e00a2",
+        "text": "| **FR-L1-49** | 内部資産 drift lint (legacy absolute path残存 / docs-skills 空 / roster↔guard 整合の機械検証) | A-77 棚卸 / IMP-033 rule engine / BR-22 | roster / skill pack / guard allowlist | drift 検出レポート (fail-close) | P1 | HM-07 |"
+      },
+      "audit_status": "open_partial_correspondence",
+      "successor_requirement_ids": [],
+      "decision_status": "pending_human_confirmation",
+      "mapping_authority_effect": "none",
+      "authority_effect": "none",
+      "current_targets": [
+        "HARNESS-L2-005",
+        "HARNESS-L2-010",
+        "HARNESS-L2-011",
+        "HELIXOS-L2-018",
+        "SECURITY source/path constraints"
+      ]
+    },
+    {
+      "id": "FR-L1-50",
+      "source_line": 81,
+      "source_requirements": [
+        "DDD/TDD automation: domain boundary",
+        "invariant trace",
+        "Red-first evidence",
+        "oracle strength",
+        "integration GWT",
+        "旧L3: PLAN-L6-26..30/L7-27..31/Reverse-26..30、quantitative + qualitative gate bundle"
+      ],
+      "existing_full_audit_targets": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005"
+      ],
+      "retained_meaning": "HARNESS-L2-003/004/005と対L11には段階状態、trace/影響、risk/scope別の検証義務・oracle/evidenceという部分接点がある。旧L6のGreenDefinition consumerは別途正確に保存し、result greenかつcomputed_green_at <= reviewed_atのときのみconfirmed review evidenceを有効にする。旧L3は重要gateで定量/定性 evidenceを束ねた。",
+      "bounded_adopted_pair_effect": "HARNESS-L2-042/対L11はDesign Refactor episodeにおけるsemantic/consumer/oracle/dependency graph照合と機能追加分離を採択。HARNESS-L2-051/対L11はstage-exit evidence completenessを限定する。どちらもDDD/TDD全体、Red-first universal order、integration GWT、旧PLAN群の代替ではない。",
+      "not_inherited": "旧strictness automation PLAN群、old test runner/CLI/CI、old DB schemaやhard-coded gateは現行規則・実行証拠として継承しない。",
+      "residual": "旧L6 GreenDefinitionのartifact kind別profile/required command kind既知条件、missing/non-zero/DB projection refs、green timestamp <= review timestampの全機械判定を、f6の一般的検証義務から同値と推定しない。旧L3 A-122はこれらの履歴保存/判定に用いるtables、collector、migration、CI/hook/OS matrixへの拡張を掲げる。A-122のhistory schema/SQLite collector/migrationと全gate evidence matrixもf6固定L2/L11に一般移植されていない。",
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-50",
+      "source_status": "confirmed",
+      "carry_forward_state": "preserved_pending_rehome",
+      "source_row": {
+        "line": 81,
+        "sha256": "ac5a141c692f5d728de0bb5ddd7b3deb1831b2b8ca9fdaf14863eef63db394db",
+        "text": "| **FR-L1-50** | DDD/TDD 厳格化 automation (domain boundary / invariant trace / Red-first evidence / oracle strength / integration GWT) | PO directed 2026-06-09 / IMP-097..101 | DDD/TDD rule SSoT、PLAN evidence、source/test docs、L7/L8 test-design | doctor lint findings、workflow anchor、L7 oracle、L8 GWT compliance | P1 | HM-07 / PM-04 |"
+      },
+      "audit_status": "open_partial_correspondence",
+      "successor_requirement_ids": [],
+      "decision_status": "pending_human_confirmation",
+      "mapping_authority_effect": "none",
+      "authority_effect": "none",
+      "current_targets": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005"
+      ],
+      "legacy_green_definition_consumer": {
+        "file_sha256": "f80b69a4d153d7775ecd789aa9e261c140baf2a443ac53a851de710cfce02b14",
+        "condition_line": {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/function-spec.md",
+          "line": 127,
+          "line_sha256": "d2863ca6e2001dff0f186cd233622b5aa35c504f28206b6b5078e4949c355bae",
+          "text": "| `evaluateGreenDefinition` | `(input: GreenDefinitionInput, deps: HarnessDbDeps) => GreenDefinitionResult` | changed artifact kind 向けの profile と required command kind が既知である | computed green time、missing commands、non-zero exits、DB projection refs を返す。confirmed review evidence は result が green かつ `computed_green_at <= reviewed_at` の場合だけ有効 |"
+        },
+        "implementation_consumer_line": {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/function-spec.md",
+          "line": 313,
+          "line_sha256": "36df49a8f758853ec8f06beef8b752420ae60c247310cf51479c326b3f45d8b9",
+          "text": "| `evaluateGreenDefinition` | `GreenDefinitionInput { profile; required_commands[]; command_evidence[]; reviewed_at? } -> GreenDefinitionResult extends ContractResult { computed_green_at?; missing[]; non_green[] }` | implemented in `src/workflow/contracts.ts`。required command が欠落または non-zero、または computed green time が review time より後なら fail |"
+        },
+        "meaning": "artifact kind別profileとrequired command kindが既知であることを前提に、computed green time、missing commands、non-zero exits、DB projection refsを返す。confirmed review evidenceはresult greenかつcomputed_green_at <= reviewed_atの場合だけ有効。L6のimplemented consumer行はmissing/non-zeroまたはcomputed green timeがreview timeより後ならfailとする。"
+      },
+      "a122_extension": {
+        "source_line": {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+          "line": 770,
+          "line_sha256": "b041b014357502cdb9c5015e7cd66c201107054b7377f3ab9ee9c4de714698c9",
+          "text": "| FR-L1-02/06/07/17/18/20/45/50 A-122 extension | PLAN-L5-08 + A-122 addendum / Phase 3-4 seed IMP-107..116 | 単体テスト evidence history (`test_cases/test_runs/test_results/test_flake_events`)、GreenDefinition、Bun `bun:sqlite` collector/rebuild/migration、CI/hook/OS evidence matrix を requirements-level acceptance として束ねる。新 FR 採番ではなく既存 FR の DB/自動化/定量+定性 bundle 強化 |"
+        },
+        "historical_scope": "単体test evidence historyのtest_cases/test_runs/test_results/test_flake_events、GreenDefinition、Bun bun:sqlite collector/rebuild/migration、CI/hook/OS evidence matrixをrequirements-level acceptanceとして束ねる旧L3 extension。新FRではなく既存FR群へのautomation/evidence bundle。",
+        "retained_vs_residual": "旧L6 GreenDefinition基礎条件はprofile/required commandの既知性、missing/non-zero、computed_green_at <= reviewed_atを含む。これらをA-122のtest history tables、collector/rebuild/migration、全CI/hook/OS evidence matrix拡張と混同しない。A-122のhistory schema/SQLite collector/migrationと全gate matrixはf6へ移植済みとはしない。"
+      }
+    }
+  ],
+  "method_and_limits": [
+    "旧source、consumer、fixed L2/L11、後発decisionは読取専用。記載された旧CLI/runtime/test/CIは実行していない。",
+    "旧source保持、現行L2/L11の限定接点、非継承の旧物理形、明示できない残差を区別した。",
+    "採択済みpairは限定的な近接効果だけを記録し、対象FRのsuccessor/closureとはしていない。"
+  ],
+  "non_claims": [
+    "requirement_adoption",
+    "successor_assignment",
+    "source_coverage_complete",
+    "step5_complete",
+    "implementation_or_execution_success",
+    "human_decision"
+  ],
+  "validation_expected": {
+    "source_rows": 5,
+    "unique_source_qualified_identities": 5,
+    "all_carry_forward_state": "preserved_pending_rehome",
+    "all_authority_effect": "none",
+    "all_audit_status": "open_partial_correspondence"
+  }
+}
