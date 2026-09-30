@@ -22,7 +22,7 @@
     "queue_basis": "2026-09-30 confirmed175 queue; each SR-1..SR-11 is not_individually_compared",
     "fixed_pair_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
     "later_decision_source_head": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
-    "comparison_scope": "11 source identities only; fixed mapped L2/L11 and five conditionally adopted/adopted near pairs; no successor, old runtime adoption, provider-fixed routing, or closure."
+    "comparison_scope": "11 source identities only; f6 mapped L2/L11 and ten later semantically related adopted/conditionally adopted near pairs; no successor, old runtime adoption, provider-fixed routing, or closure."
   },
   "legacy_source": {
     "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
@@ -212,6 +212,118 @@
         "l2_register_digest_verified": true,
         "l11_section_digest_recomputed": true,
         "limited_effect": "OS-051（条件付き採択）は、この構成でCursorを作成Worker専用とし、Claude優先を適用可能な評価根拠がある要求／設計taskに限る。元候補はtaskごとにscope・authority・task class、適用可能なLABO適性、INTELLIGENCE配置案、runtime capabilityを照合し、作成と独立reviewのruntime/contextを分離する。これはtask配置条件であり、Bench測定自体、旧provider固定表、全taskへの自動割当・admissionを決めない。"
+      },
+      {
+        "identity": "HELIXOS-L2-035",
+        "status": "adopted",
+        "related_legacy_identities": [
+          "SR-4",
+          "SR-9"
+        ],
+        "registration_id": "MPR-RC-HELIXOS-L2-035-001",
+        "decision_table_row": "| `HELIXOS-L2-035` | 採択 | `MPR-RC-HELIXOS-L2-035-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:01ab4c9e572c5af909e4dbf46fb8f44866dd6cc7701dddc88b8dabbe14fb6c03` | `HELIXOS-L2-035` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:8507d8f43c2aafae4d8b08fc27e9c3c7c28e6d4a74d912b7667d3dc27786c742` | `docs/governance/audits/requirement-registration/os-pr-event-intake-coverage-receipt-2026-09-28.json` |",
+        "source_head": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "l2_source_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+        "l2_section_digest": "01ab4c9e572c5af909e4dbf46fb8f44866dd6cc7701dddc88b8dabbe14fb6c03",
+        "l2_registration_digest": "01ab4c9e572c5af909e4dbf46fb8f44866dd6cc7701dddc88b8dabbe14fb6c03",
+        "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "l11_source_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+        "l11_section_digest": "8507d8f43c2aafae4d8b08fc27e9c3c7c28e6d4a74d912b7667d3dc27786c742",
+        "raw_l2_hash_verified": true,
+        "raw_l11_hash_verified": true,
+        "l2_register_digest_verified": true,
+        "l11_section_digest_recomputed": true,
+        "limited_effect": "OS-035（採択）は選択されたproject/repository scopeのPR作成・更新・完了相当eventを取り込み、source event identity/provenanceとbase/head revisionを記録し、同じeventの再送から重複しない論理監査job要求を生成して既存L2-010境界へ渡す。これはevent intakeとjob request生成の限定責務で、監査job自体の実行・reviewは行わない。SR-4とはevent取得・継続の一部、SR-9とは同じeventの冪等処理で近接する。物理durable queue、Codex/Claude hook/delegation adapter、delivery retry/replayの具体実装は定義しない。"
+      },
+      {
+        "identity": "HELIXOS-L2-041",
+        "status": "adopted",
+        "related_legacy_identities": [
+          "SR-4"
+        ],
+        "registration_id": "MPR-RC-HELIXOS-L2-041-001",
+        "decision_table_row": "| `HELIXOS-L2-041` | 採択 | `MPR-RC-HELIXOS-L2-041-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:a43e3eda819e37ef81db0c60c5add5cebce5e3d17ca858c1446c27ac4db80c48` | `HELIXOS-L2-041` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:32f08cfa7b070bb902277f79e044e971bbd3948e90621c624d80b167f80d7ded` | `docs/governance/audits/requirement-registration/helixos-safe-continuation-coverage-receipt-2026-09-28.json` |",
+        "source_head": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "l2_source_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+        "l2_section_digest": "a43e3eda819e37ef81db0c60c5add5cebce5e3d17ca858c1446c27ac4db80c48",
+        "l2_registration_digest": "a43e3eda819e37ef81db0c60c5add5cebce5e3d17ca858c1446c27ac4db80c48",
+        "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "l11_source_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+        "l11_section_digest": "32f08cfa7b070bb902277f79e044e971bbd3948e90621c624d80b167f80d7ded",
+        "raw_l2_hash_verified": true,
+        "raw_l11_hash_verified": true,
+        "l2_register_digest_verified": true,
+        "l11_section_digest_recomputed": true,
+        "limited_effect": "OS-041（採択）は指示経路を再読込できないとき、旧指示・撤回claim・secret・private reasoningを継承せず、継続に必要な外部authority sourceを既存正本経路から再取得し、そのidentity/revision/確認結果をprovenanceへ結ぶ。再取得不能・stale・撤回・conflictなら依存する継続だけを未完に戻す。これは既存OS-009の継続/復旧条件の限定具体化で、daemon再起動、heartbeat、event queue leaseやSR-9の通知transport/replayを定義しない。"
+      },
+      {
+        "identity": "HELIXOS-L2-042",
+        "status": "adopted",
+        "related_legacy_identities": [
+          "SR-5"
+        ],
+        "registration_id": "MPR-RC-HELIXOS-L2-042-001",
+        "decision_table_row": "| `HELIXOS-L2-042` | 採択 | `MPR-RC-HELIXOS-L2-042-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:75e8b9f72eaa777f25e38335664cb2527da8c56c1445a3eca181de27cc258e71` | `HELIXOS-L2-042` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:0f23c0399f3b6c37094d4725563f80bb5e82d25e35b9ba7a1196c2106f76a4df` | `docs/governance/audits/requirement-registration/os-v13-worker-output-coverage-receipt-2026-09-28.json` |",
+        "source_head": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "l2_source_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+        "l2_section_digest": "75e8b9f72eaa777f25e38335664cb2527da8c56c1445a3eca181de27cc258e71",
+        "l2_registration_digest": "75e8b9f72eaa777f25e38335664cb2527da8c56c1445a3eca181de27cc258e71",
+        "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "l11_source_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+        "l11_section_digest": "0f23c0399f3b6c37094d4725563f80bb5e82d25e35b9ba7a1196c2106f76a4df",
+        "raw_l2_hash_verified": true,
+        "raw_l11_hash_verified": true,
+        "l2_register_digest_verified": true,
+        "l11_section_digest_recomputed": true,
+        "limited_effect": "OS-042（採択）はassignmentに結ばれた適用schemaへのstrict validationと成果bytesのdigest検証が成立するまでWorker成果を未検証とし、policy/revision欠落・unknown・stale・不一致・未実施やdigest不一致を受理済みとしない。既存条件に基づく緩和時も、対象/理由/期限と同一成果・assignment/scope/revision・HARNESS oracleに結ぶ再検証receiptが必要。これはSR-5のtyped成果＋digestという保持点を直接補強する。残差は旧field集合（PR番号、exact HEAD、changed paths、test evidence、worker receipt）と、自然言語だけではreview-readyにしない明示oracleであり、OS-042はschema/digest policy自体を発行しない。"
+      },
+      {
+        "identity": "HELIXOS-L2-046",
+        "status": "adopted",
+        "related_legacy_identities": [
+          "SR-7",
+          "SR-10"
+        ],
+        "registration_id": "MPR-RC-HELIXOS-L2-046-001",
+        "decision_table_row": "| `HELIXOS-L2-046` | 採択 | `MPR-RC-HELIXOS-L2-046-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d` | `HELIXOS-L2-046` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0` | `docs/governance/audits/requirement-registration/helixos-rfa-scope-coverage-receipt-2026-09-28.json` |",
+        "source_head": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "l2_source_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+        "l2_section_digest": "c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d",
+        "l2_registration_digest": "c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d",
+        "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "l11_source_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+        "l11_section_digest": "3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0",
+        "raw_l2_hash_verified": true,
+        "raw_l11_hash_verified": true,
+        "l2_register_digest_verified": true,
+        "l11_section_digest_recomputed": true,
+        "limited_effect": "OS-046（採択）は選択scopeのdispatch・実行・Ready・merge admission各遷移で対象、既存authority、HEAD/revision、scope、既存契約の検証義務/結果を照合し、変更をstale/未完へ戻して再照合する。read-after可能な形で最新baseとmerge対象content HEADを結ぶ。SR-7のauthority/HEAD/scope continuity、SR-10の候補HEADとbaseの区別に限定的に近接するが、旧merge admissionの全predicateや複数lane checkpointの相互独立を列挙するものではない。"
+      },
+      {
+        "identity": "HELIXOS-L2-047",
+        "status": "adopted",
+        "related_legacy_identities": [
+          "SR-6"
+        ],
+        "registration_id": "MPR-RC-HELIXOS-L2-047-004",
+        "decision_table_row": "| `HELIXOS-L2-047` | 採択 | `MPR-RC-HELIXOS-L2-047-004` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:e19191ce980467fddf5822619ccd480a41c84e6382ad1191ad5ea3ab04192377` | `HELIXOS-L2-047` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:d36677691f846bfc793b1dbc2322cb047aae86a3b102e97026e0275801ec7871` | `docs/governance/audits/requirement-registration/ops-o1-o2-coverage-receipt-2026-09-29-r4.json#HELIXOS-L2-047` |",
+        "source_head": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "l2_source_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+        "l2_section_digest": "e19191ce980467fddf5822619ccd480a41c84e6382ad1191ad5ea3ab04192377",
+        "l2_registration_digest": "e19191ce980467fddf5822619ccd480a41c84e6382ad1191ad5ea3ab04192377",
+        "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "l11_source_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+        "l11_section_digest": "d36677691f846bfc793b1dbc2322cb047aae86a3b102e97026e0275801ec7871",
+        "raw_l2_hash_verified": true,
+        "raw_l11_hash_verified": true,
+        "l2_register_digest_verified": true,
+        "l11_section_digest_recomputed": true,
+        "limited_effect": "OS-047（採択）はWorker/受け手がticket本文を編集せず、理由・条件・根拠source/revision付きで発行元OSへ返し、元ticket revisionを保持したまま対処済みの新ticket revisionを発行し、両者を既存typed relationで結ぶ。assignment/Attempt/result/authority等は新revisionの契約が明示的に認めない限り継承しない。SR-6の理由付き返却とlineageには近接するが、同じworker/Issue/branchへのreview修正routing、lease失効・再割当receipt、blind review allowlistやHEAD変更時のreview receipt無効化は定めない。"
       }
     ],
     "near_pair_hash_validation": {
@@ -236,7 +348,7 @@
     }
   ],
   "decision_screen": {
-    "screen_policy": "Identity/status-only screen across all 57 candidates in the 2026-09-29 decision and all 11 later candidate identities. Keep every identity/disposition but do not infer SR source-atom coverage from candidate status. HELIXOS-L2-049/050/051 are near pairs only where related_legacy_identities says so; unrelated 57-row statuses remain screen context.",
+    "screen_policy": "Identity/status-only screen across all 57 candidates in the 2026-09-29 decision and all 11 later candidate identities. Keep every identity/disposition but do not infer SR source-atom coverage from candidate status. Ten semantically limited near pairs (OS-049/050/051, HARNESS-034, LABO-065, OS-035/041/042/046/047) are detailed only where related_legacy_identities says so; unrelated candidate statuses remain screen context.",
     "po_2026_09_29_57": {
       "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
       "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
@@ -614,7 +726,12 @@
         "HELIXOS-L2-050",
         "HARNESS-L2-034",
         "HELIXLABO-L2-065",
-        "HELIXOS-L2-051"
+        "HELIXOS-L2-051",
+        "HELIXOS-L2-035",
+        "HELIXOS-L2-041",
+        "HELIXOS-L2-042",
+        "HELIXOS-L2-046",
+        "HELIXOS-L2-047"
       ],
       "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
       "pair_digests": {
@@ -652,6 +769,41 @@
           "l2_section_digest": "54fd39fbeb3786bc739560856afb14e3cf892b1bb717d98ceb1212df09fe7f2b",
           "l11_source_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
           "l11_section_digest": "e01daa2fbf1ad7c2e9b6df54a9acdf022a3b821123d8904f8a171a4ede87b684"
+        },
+        "HELIXOS-L2-035": {
+          "status": "adopted",
+          "l2_source_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "l2_section_digest": "01ab4c9e572c5af909e4dbf46fb8f44866dd6cc7701dddc88b8dabbe14fb6c03",
+          "l11_source_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "l11_section_digest": "8507d8f43c2aafae4d8b08fc27e9c3c7c28e6d4a74d912b7667d3dc27786c742"
+        },
+        "HELIXOS-L2-041": {
+          "status": "adopted",
+          "l2_source_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "l2_section_digest": "a43e3eda819e37ef81db0c60c5add5cebce5e3d17ca858c1446c27ac4db80c48",
+          "l11_source_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "l11_section_digest": "32f08cfa7b070bb902277f79e044e971bbd3948e90621c624d80b167f80d7ded"
+        },
+        "HELIXOS-L2-042": {
+          "status": "adopted",
+          "l2_source_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "l2_section_digest": "75e8b9f72eaa777f25e38335664cb2527da8c56c1445a3eca181de27cc258e71",
+          "l11_source_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "l11_section_digest": "0f23c0399f3b6c37094d4725563f80bb5e82d25e35b9ba7a1196c2106f76a4df"
+        },
+        "HELIXOS-L2-046": {
+          "status": "adopted",
+          "l2_source_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "l2_section_digest": "c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d",
+          "l11_source_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "l11_section_digest": "3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0"
+        },
+        "HELIXOS-L2-047": {
+          "status": "adopted",
+          "l2_source_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "l2_section_digest": "e19191ce980467fddf5822619ccd480a41c84e6382ad1191ad5ea3ab04192377",
+          "l11_source_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "l11_section_digest": "d36677691f846bfc793b1dbc2322cb047aae86a3b102e97026e0275801ec7871"
         }
       },
       "limited_legacy_relation": {
@@ -672,9 +824,26 @@
         "HELIXOS-L2-051": [
           "SR-3",
           "SR-11"
+        ],
+        "HELIXOS-L2-035": [
+          "SR-4",
+          "SR-9"
+        ],
+        "HELIXOS-L2-041": [
+          "SR-4"
+        ],
+        "HELIXOS-L2-042": [
+          "SR-5"
+        ],
+        "HELIXOS-L2-046": [
+          "SR-7",
+          "SR-10"
+        ],
+        "HELIXOS-L2-047": [
+          "SR-6"
         ]
       },
-      "does_not_claim": "Later pair statuses/digests describe those candidate revisions only; they do not assign SR successors, adopt the old orchestration runtime or provider matrix, close an SR source condition, or establish a merge/Bench/admission outcome."
+      "does_not_claim": "Later pair statuses/digests describe only the adopted or conditionally adopted candidate rows and target revisions. They do not assign SR successors, close an SR source condition, adopt the legacy runtime/provider matrix, or establish implementation, execution, merge admission or closure."
     }
   },
   "queue_screen": {
@@ -1072,8 +1241,19 @@
           "finding": "admin→ticket→assignment→verificationの受渡しをrevision/digest/causality/scope/evidenceへ結び、単体の成功だけでticketやhandoffを完了にしない。"
         }
       ],
-      "later_near_pair_effects": [],
-      "residual": "daemon lifecycle、heartbeat失効閾値、queue leaseの永続化、replay/recoveryの受入条件は対象pairに定義されない。旧daemon/runtimeは起動・採用しない。",
+      "later_near_pair_effects": [
+        {
+          "identity": "HELIXOS-L2-035",
+          "status": "adopted",
+          "effect": "OS-035（採択）は選択されたproject/repository scopeのPR作成・更新・完了相当eventを取り込み、source event identity/provenanceとbase/head revisionを記録し、同じeventの再送から重複しない論理監査job要求を生成して既存L2-010境界へ渡す。これはevent intakeとjob request生成の限定責務で、監査job自体の実行・reviewは行わない。SR-4とはevent取得・継続の一部、SR-9とは同じeventの冪等処理で近接する。物理durable queue、Codex/Claude hook/delegation adapter、delivery retry/replayの具体実装は定義しない。"
+        },
+        {
+          "identity": "HELIXOS-L2-041",
+          "status": "adopted",
+          "effect": "OS-041（採択）は指示経路を再読込できないとき、旧指示・撤回claim・secret・private reasoningを継承せず、継続に必要な外部authority sourceを既存正本経路から再取得し、そのidentity/revision/確認結果をprovenanceへ結ぶ。再取得不能・stale・撤回・conflictなら依存する継続だけを未完に戻す。これは既存OS-009の継続/復旧条件の限定具体化で、daemon再起動、heartbeat、event queue leaseやSR-9の通知transport/replayを定義しない。"
+        }
+      ],
+      "residual": "daemon lifecycle、heartbeat失効閾値、queue leaseの永続化、およびevent捕捉後の物理delivery/replay・checkpoint再開手順の具体的oracleは未規定。OS-035のPR event/job生成とOS-041のauthority source再取得は限定的なevent/継続条件であり、旧resident daemon/runtimeを採用・起動しない。",
       "classification": "部分再導出・近接条件のみ保持。旧source conditionをtarget pair集合で閉包したものではない。",
       "legacy_consumer_refs": [
         {
@@ -1195,9 +1375,14 @@
           "identity": "HARNESS-L2-034",
           "status": "adopted",
           "effect": "HARNESS-034（採択）は、要求ごとに版付きの計測契約を設け、metric、対象要求とrevision、負荷／環境／data、baseline、target/SLO、許容差、sampling/window、tool/probe、evidence schema、判定oracle、owner、実行layer、再測定triggerを保持する。必須metricの未測定・stale・非代表環境・未達は完成を成立させず、VerifiedとAcceptedを分ける。旧worker completion packet、blind review入力allowlist、SR-7の全merge-admission条件を定義しない。"
+        },
+        {
+          "identity": "HELIXOS-L2-042",
+          "status": "adopted",
+          "effect": "OS-042（採択）はassignmentに結ばれた適用schemaへのstrict validationと成果bytesのdigest検証が成立するまでWorker成果を未検証とし、policy/revision欠落・unknown・stale・不一致・未実施やdigest不一致を受理済みとしない。既存条件に基づく緩和時も、対象/理由/期限と同一成果・assignment/scope/revision・HARNESS oracleに結ぶ再検証receiptが必要。これはSR-5のtyped成果＋digestという保持点を直接補強する。残差は旧field集合（PR番号、exact HEAD、changed paths、test evidence、worker receipt）と、自然言語だけではreview-readyにしない明示oracleであり、OS-042はschema/digest policy自体を発行しない。"
         }
       ],
-      "residual": "完了packetのfield schemaとdigest検証、exact HEAD/changed path/test receiptの束縛、自然言語のみではreview-readyにしないnegative oracleは、現行の一つのpacket契約として定義されない。",
+      "residual": "OS-042はassignmentに結ばれたschema strict validationと成果bytes digestの検証、緩和時の再検証receiptを保持する。残るのは旧packet固有のPR番号・exact HEAD・changed paths・test evidence・worker receiptという一体のfield集合、および自然言語の完了文だけではreview-readyにしない明示negative oracle。旧receipt schema/runtimeは採用しない。",
       "classification": "部分再導出・近接条件のみ保持。旧source conditionをtarget pair集合で閉包したものではない。",
       "legacy_consumer_refs": [
         {
@@ -1334,9 +1519,14 @@
           "identity": "HARNESS-L2-034",
           "status": "adopted",
           "effect": "HARNESS-034（採択）は、要求ごとに版付きの計測契約を設け、metric、対象要求とrevision、負荷／環境／data、baseline、target/SLO、許容差、sampling/window、tool/probe、evidence schema、判定oracle、owner、実行layer、再測定triggerを保持する。必須metricの未測定・stale・非代表環境・未達は完成を成立させず、VerifiedとAcceptedを分ける。旧worker completion packet、blind review入力allowlist、SR-7の全merge-admission条件を定義しない。"
+        },
+        {
+          "identity": "HELIXOS-L2-047",
+          "status": "adopted",
+          "effect": "OS-047（採択）はWorker/受け手がticket本文を編集せず、理由・条件・根拠source/revision付きで発行元OSへ返し、元ticket revisionを保持したまま対処済みの新ticket revisionを発行し、両者を既存typed relationで結ぶ。assignment/Attempt/result/authority等は新revisionの契約が明示的に認めない限り継承しない。SR-6の理由付き返却とlineageには近接するが、同じworker/Issue/branchへのreview修正routing、lease失効・再割当receipt、blind review allowlistやHEAD変更時のreview receipt無効化は定めない。"
         }
       ],
-      "residual": "blind review入力allowlist、同一worker/Issue/branchへの修正返却、lease失効と再割当receipt、HEAD変更時のreview receipt無効化は部分対応にとどまる。旧review runtimeは採用しない。",
+      "residual": "OS-047は理由・根拠付きticket返却、元ticket revision保持、新revision発行とlineage、暗黙のassignment/result/authority継承禁止を補う。残るのはblind review入力allowlist、同一worker/Issue/branchへのreview修正返却、worker交代時のlease失効/reassignment receipt、HEAD変更時のreview receipt無効化であり、OS-047からreview routing successorを推定しない。",
       "classification": "部分再導出・近接条件のみ保持。旧source conditionをtarget pair集合で閉包したものではない。",
       "legacy_consumer_refs": [
         {
@@ -1434,9 +1624,14 @@
           "identity": "HARNESS-L2-034",
           "status": "adopted",
           "effect": "HARNESS-034（採択）は、要求ごとに版付きの計測契約を設け、metric、対象要求とrevision、負荷／環境／data、baseline、target/SLO、許容差、sampling/window、tool/probe、evidence schema、判定oracle、owner、実行layer、再測定triggerを保持する。必須metricの未測定・stale・非代表環境・未達は完成を成立させず、VerifiedとAcceptedを分ける。旧worker completion packet、blind review入力allowlist、SR-7の全merge-admission条件を定義しない。"
+        },
+        {
+          "identity": "HELIXOS-L2-046",
+          "status": "adopted",
+          "effect": "OS-046（採択）は選択scopeのdispatch・実行・Ready・merge admission各遷移で対象、既存authority、HEAD/revision、scope、既存契約の検証義務/結果を照合し、変更をstale/未完へ戻して再照合する。read-after可能な形で最新baseとmerge対象content HEADを結ぶ。SR-7のauthority/HEAD/scope continuity、SR-10の候補HEADとbaseの区別に限定的に近接するが、旧merge admissionの全predicateや複数lane checkpointの相互独立を列挙するものではない。"
         }
       ],
-      "residual": "exact HEAD、current CI generation、Claude approve receipt、DB convergence、Issue/branch/assignment、scope、terminal lease、blocker=0の統合oracleとworker merge禁止は、このfixed pair群から再構成されない。旧atomのsuccessorとして現行GitHub運用手順を輸入しない。",
+      "residual": "OS-046は各遷移でauthority・対象HEAD/revision・scope・既存verification obligationを照合し、変更時に再照合する。ただし旧admission連言のcurrent CI generation、Claude approve receipt、DB convergence、Issue/branch/assignment identity、terminal lease、blocker=0とworker merge禁止の個別predicate/oracleは確定しない。",
       "classification": "部分再導出・近接条件のみ保持。旧source conditionをtarget pair集合で閉包したものではない。",
       "legacy_consumer_refs": [
         {
@@ -1641,8 +1836,14 @@
           "finding": "admin→ticket→assignment→verificationの受渡しをrevision/digest/causality/scope/evidenceへ結び、単体の成功だけでticketやhandoffを完了にしない。"
         }
       ],
-      "later_near_pair_effects": [],
-      "residual": "adapter identity/version、event contract、idempotent delivery、retry/replay receipt、provider hook互換性、各surfaceのnegative testは未規定。",
+      "later_near_pair_effects": [
+        {
+          "identity": "HELIXOS-L2-035",
+          "status": "adopted",
+          "effect": "OS-035（採択）は選択されたproject/repository scopeのPR作成・更新・完了相当eventを取り込み、source event identity/provenanceとbase/head revisionを記録し、同じeventの再送から重複しない論理監査job要求を生成して既存L2-010境界へ渡す。これはevent intakeとjob request生成の限定責務で、監査job自体の実行・reviewは行わない。SR-4とはevent取得・継続の一部、SR-9とは同じeventの冪等処理で近接する。物理durable queue、Codex/Claude hook/delegation adapter、delivery retry/replayの具体実装は定義しない。"
+        }
+      ],
+      "residual": "OS-035は選択scopeのPR lifecycle event identity/provenanceの記録と、同一eventから監査job要求を冪等生成する範囲を補う。残るのはCodex/Claude既存surface adapterの具体的な対応、中央durable queue/hookによる消費、delivery欠落時のevent source replayとretry/replay receiptであり、OS-035から旧hook/provider実装を採用しない。",
       "classification": "部分再導出・近接条件のみ保持。旧source conditionをtarget pair集合で閉包したものではない。",
       "legacy_consumer_refs": [
         {
@@ -1738,8 +1939,14 @@
           "finding": "admin→ticket→assignment→verificationの受渡しをrevision/digest/causality/scope/evidenceへ結び、単体の成功だけでticketやhandoffを完了にしない。"
         }
       ],
-      "later_near_pair_effects": [],
-      "residual": "複数branchのHEAD並行保管、branch間非干渉、checkpoint stale scope、mainとcandidateのauthority分離を示す個別acceptance oracleは不足している。",
+      "later_near_pair_effects": [
+        {
+          "identity": "HELIXOS-L2-046",
+          "status": "adopted",
+          "effect": "OS-046（採択）は選択scopeのdispatch・実行・Ready・merge admission各遷移で対象、既存authority、HEAD/revision、scope、既存契約の検証義務/結果を照合し、変更をstale/未完へ戻して再照合する。read-after可能な形で最新baseとmerge対象content HEADを結ぶ。SR-7のauthority/HEAD/scope continuity、SR-10の候補HEADとbaseの区別に限定的に近接するが、旧merge admissionの全predicateや複数lane checkpointの相互独立を列挙するものではない。"
+        }
+      ],
+      "residual": "OS-046は選択scopeでdispatchからmerge admissionまで対象・authority・HEAD/revision・scope・verification obligationの連続性とstale再照合を扱う。複数lane/branchごとに独立したcheckpointを保ち、lane間のHEAD変更が相互に非干渉であること、merge後main HEADとworker candidate HEADを別々に保持する個別oracleは残る。",
       "classification": "部分再導出・近接条件のみ保持。旧source conditionをtarget pair集合で閉包したものではない。",
       "legacy_consumer_refs": [
         {
