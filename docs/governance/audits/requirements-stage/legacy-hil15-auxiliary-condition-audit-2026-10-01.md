@@ -2,7 +2,7 @@
 
 ## 対象と根拠revision
 
-本記録は `origin/main` の `ccd0f0e8d4d0e2ba875566609fd3302f3d1317d6` を基準とする静的照合である。旧source・consumerを読み、旧CLI、runtime、test、CIは実行していない。旧HATの `designed_not_implemented` とテスト設計本文の「全case未実装」を実行結果へ読み替えない。
+本記録は `origin/main` の `9bea047e959329e7910050017fb43cbd718492a4` を基準とする静的照合である。旧source・consumerを読み、旧CLI、runtime、test、CIは実行していない。旧HATの `designed_not_implemented` とテスト設計本文の「全case未実装」を実行結果へ読み替えない。
 
 | 旧source / consumer | 対象行 | SHA-256 | asset ID / 台帳上の状態 |
 |---|---:|---|---|
