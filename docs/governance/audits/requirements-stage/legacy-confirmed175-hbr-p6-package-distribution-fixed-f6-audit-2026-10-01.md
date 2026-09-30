@@ -55,6 +55,8 @@ HARNESS-L2/L11-006・007のbase rowsはHDECが固定した採用対象であり�
 | HELIXOS-L2-109 | source/generator/artifact/consumer revision・digestのprovenance | 選択chainの来歴でありwhole package manifest、runtime、generationを検証しない。 |
 | HELIXOS-L2-110 | consumer pin/current epoch/staleness | release channelを定めない。 |
 
+`HELIXOS-L2-030`は保留中だが、HBR-P6のpackage/distributionに最も直接対応する後発候補である。HARNESS packageの生成、consumer検証、段階配布を扱い、この監査の条件1–8に関係する。特に条件3（実行platformと同一Node artifact）、条件6（Linux/Windows consumer smoke）、条件7（channel promotion）と重なる。57候補判断表53行の処置は**保留**で、解除条件は本体実行OSとconsumer利用先の分離、配布段階、切替条件の確定である。Windows即時却下やLinux限定ではない。したがって、この候補は配布残差を読む直接近接文脈として記録するが、採択済みnear pair、successor、closure、外部公開許可には数えない。決定行・MPR登録のline SHAとrelation noteはJSONの`held_identity_rows`にある。
+
 ## 判定と限界
 
 固定f6にはHARNESS側の外部提供条件・artifact trace・included/excluded scope・reproducibility/clean consumer、およびOS側の導入更新復旧・成果保持・source/requirement/artifact traceという部分的な保持がある。一方、旧consumerが明記するpackage manifest全体、自己適用とruntimeの境界、one-command setup生成物、consumer doctor/import、marker内非破壊ライフサイクル、文書/ライセンスのpublish gate、Linux/Windows smokeとnegative oracle、immutable tag/channel、distribution sync/rollback/monitoring、action-bound external publish、canonical generated indexは固定pairで閉じていない。HR-FR-P6-05のrelease-tool ADRも別途残る。

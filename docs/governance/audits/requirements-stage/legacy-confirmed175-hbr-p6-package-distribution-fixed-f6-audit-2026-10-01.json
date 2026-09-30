@@ -892,7 +892,16 @@
   "limits_and_disposition": {
     "non_successor_near_pairs": "HARNESS-L2-046/051/052/053/057 and HELIXOS-L2-054/108/109/110 are adopted or approved elsewhere, but distinct identities and source atoms. Some share terms or partial artifact/consumer/source-digest properties. None establishes HBR-P6 successor identity, full package condition closure, or external publish/tag approval.",
     "closure_residual": "The fixed f6 HARNESS 006 pair has partial external offer/artifact/inclusion/reproducibility coverage. Fixed OS 006 pair has partial install/update/recovery preservation/provenance coverage. Package manifest exactness, self-application/content policy, runtime boundary, consumer doctor/import, full non-destructive setup lifecycle, package documentation/license acceptance, cross-platform smoke, immutable tag/channel, sync/rollback/monitoring, action-bound external publication, and canonical generated index remain unclosed by these pairs.",
-    "excluded_atoms": "GitHub gate/PR/CI automation conditions from HBR-P6 were excluded from this package distribution comparison and are not treated as successor evidence."
+    "excluded_atoms": "GitHub gate/PR/CI automation conditions from HBR-P6 were excluded from this package distribution comparison and are not treated as successor evidence.",
+    "held_direct_near_candidate": {
+      "identity": "HELIXOS-L2-030",
+      "decision_line": 53,
+      "decision_line_sha256": "23dae7896ab61ac16d7e7dc30f2e40154d5365fec02fac78c188e37bb0089cec",
+      "status": "held",
+      "relation": "Directly addresses HARNESS package generation, consumer verification, and staged distribution; overlaps the old conditions and particularly this audit conditions 3, 6, and 7.",
+      "release_conditions": "Separate the execution OS from the consumer destination; define distribution stages and cutover conditions. This does not reject Windows immediately or restrict support to Linux.",
+      "not_counted_as": "adopted near pair, successor identity, closure, or publication authorization."
+    }
   },
   "validation_expected": {
     "json_parse": "pass",
@@ -3766,7 +3775,23 @@
           "coverage_result": "no_loss",
           "version_target_field_present": false
         },
-        "row_kind": "candidate_identity_table_row"
+        "row_kind": "candidate_identity_table_row",
+        "hbr_p6_relation": {
+          "relation": "最も直接的な後発近接candidate。HARNESS packageの生成、consumer検証、段階配布を扱い、HBR-P6のpackage/distribution残差に直接関係する。",
+          "condition_intersections": [
+            "old_condition_matrix conditions 1-8 のpackage生成/consumer検証/段階配布 workflow。特に condition 3 の実行platform/artifact境界、condition 6 のLinux/Windows consumer smoke、condition 7 のchannel promotionと重なる。"
+          ],
+          "decision_status": "57候補decision line 53で保留。解除条件は本体実行OSとconsumer利用先の分離、配布段階、切替条件の確定。Windows即時却下またはLinux限定ではない。",
+          "screen_treatment": "held residual/direct-near context only; omitted from adopted-near-pair subset; not a successor, adopted closure, or external publish authorization.",
+          "decision_row_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "line": 53,
+            "line_sha256": "23dae7896ab61ac16d7e7dc30f2e40154d5365fec02fac78c188e37bb0089cec"
+          },
+          "mpr_registration_id": "MPR-RC-HELIXOS-L2-030-003",
+          "mpr_line": 564,
+          "mpr_line_sha256": "f3b114301d714918567055d669d24f715b92cc405d731f2d70a42e4fcd6e5e02"
+        }
       },
       {
         "decision_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
