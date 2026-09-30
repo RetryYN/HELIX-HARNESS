@@ -2,7 +2,7 @@
   "schema_version": "confirmed175-condition-audit.v1",
   "audit_id": "confirmed175-fr-l1-46-50-fixed-l2l11-audit-2026-09-30",
   "created_at": "2026-09-30",
-  "created_against_revision": "a3d9f7e205a3d766280c9de4936551f0fef16143",
+  "created_against_revision": "03edd59de8d0488a797480ac23a6fc1a24f569b1",
   "audit_mode": "read_only_source_to_fixed_l2_l11_condition_comparison",
   "authority_effect": "none",
   "scope": {
@@ -104,13 +104,13 @@
     ]
   },
   "duplicate_audit_scan": {
-    "base_revision": "a3d9f7e205a3d766280c9de4936551f0fef16143",
-    "queue_and_full_audit": "FR-L1-46..50は未個別監査としてOPEN/not_individually_compared。",
-    "exact_identity_search": "source-qualified identityを requirements-stage auditsで検索。該当する個票条件照合artifactなし。full audit/REG-06 population auditは母集団・join記録で個票比較ではない。",
-    "result": "選定5 identityの既存個票照合重複なし。",
+    "base_revision": "03edd59de8d0488a797480ac23a6fc1a24f569b1",
+    "queue_and_full_audit": "03edd59de8d0488a797480ac23a6fc1a24f569b1でFR-L1-46..50はすべてOPEN/not_individually_compared。",
+    "exact_identity_search": "source-qualified identityを03edd59de8d0488a797480ac23a6fc1a24f569b1のrequirements-stage auditsで検索。個票条件照合artifactはqueue/full-audit/REG-06のみ。",
+    "result": "基準03edd59de8d0488a797480ac23a6fc1a24f569b1で既存個票の重複なし。#2415 merged v13-development-style-11 audit JSON/MDには選択source-qualified identitiesの言及なし。",
     "method": "read-only source-qualified rg/git grep; old CLI/runtime/test/CI not invoked.",
-    "matching_paths_in_created_against_tree_revision": "a3d9f7e205a3d766280c9de4936551f0fef16143",
-    "selection_rechecked_at_revision": "a3d9f7e205a3d766280c9de4936551f0fef16143",
+    "matching_paths_in_created_against_tree_revision": "03edd59de8d0488a797480ac23a6fc1a24f569b1",
+    "selection_rechecked_at_revision": "03edd59de8d0488a797480ac23a6fc1a24f569b1",
     "matching_paths_in_created_against_tree": [
       "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json",
       "docs/governance/audits/requirements-stage/confirmed175-condition-comparison-queue-2026-09-30.json",
@@ -142,7 +142,12 @@
         "queue_status": "not_individually_compared",
         "evidence_artifacts": []
       }
-    ]
+    ],
+    "additional_merged_audit_overlap_check": {
+      "pr": 2415,
+      "audit_path": "docs/governance/audits/requirements-stage/v13-development-style-11-condition-audit-2026-09-30.json",
+      "result": "選択した5 source-qualified identitiesとの一致0。#2415 auditの対象identityは別sourceで重複なし。"
+    }
   },
   "current_input_pins": [
     {

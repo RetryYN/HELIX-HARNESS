@@ -1,6 +1,6 @@
 # confirmed175 FR-L1-46..50 固定L2/L11個票照合
 
-- 基準main: `a3d9f7e205a3d766280c9de4936551f0fef16143`（#2414 merge/read-after後）
+- 基準main: `03edd59de8d0488a797480ac23a6fc1a24f569b1`（#2415 merge/read-after後）
 - 対象: `harness/L1-requirements/functional-requirements.md::FR-L1-46..50`（5件）
 - 旧source: `archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md` / SHA-256 `a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008`
 - 旧資産: `LEGACY-ASSET-6B6C5CB0E481BE01088B`、`preserved_pending_rehome`
@@ -9,7 +9,7 @@
 
 ## 重複確認と方法
 
-基準main `a3d9f7e205a3d766280c9de4936551f0fef16143` のqueue/full-auditでは5件とも未個別比較のOPEN identityであり、source-qualified identityをrequirements-stage監査群から検索しても個票条件照合の重複はない。full auditとREG-06は母集団・関係join監査として存在するが、本件と同じ個別L2/L11条件比較ではない。旧source、consumer、f6本文、57+11 decisionの静的読取だけを実施した。旧CLI、CI、runtime、testは起動していない。
+基準main `03edd59de8d0488a797480ac23a6fc1a24f569b1` のqueue/full-auditでは5件とも未個別比較のOPEN identityであり、source-qualified identityをrequirements-stage監査群から検索しても個票条件照合の重複はない。full auditとREG-06は母集団・関係join監査として存在するが、本件と同じ個別L2/L11条件比較ではない。#2415 merged v13 audit JSON/MDにも選択source-qualified identityとの一致はない。旧source、consumer、f6本文、57+11 decisionの静的読取だけを実施した。旧CLI、CI、runtime、testは起動していない。
 
 旧L3ではFR46–49をL4–L6 carryとし、BR-22/Recovery PLAN-RECOVERY-01に結び、W6/W7（roster）、W10（skill）、W11/W12/W16（command）、IMP-033（drift lint）を列挙する。FR50はL6–L8 Add-feature carryで、DDD/TDD SSoT、workflow anchor、Red-first evidence、oracle strength、integration GWTを機械化し、重要gateに定量・定性evidenceを組み合わせる計画だった（旧L3 745–746, 768）。旧L6 GreenDefinition consumerのprofile/required command、missing/non-zero、computed-green/review時刻条件は個票でline SHA付き固定し、旧L3 A-122のhistory/schema/collector/migration/evidence matrix拡張は別の保持点・残差として扱う。この旧計画・残差を現行要件の採択や実装証拠には使わない。
 
