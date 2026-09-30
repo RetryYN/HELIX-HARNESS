@@ -1,0 +1,1032 @@
+{
+  "schema_version": "confirmed175-five-residual-condition-audit.v1",
+  "audit_id": "confirmed175-five-residual-condition-audit-2026-09-30",
+  "comparison_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "created_against_revision": "21b3005a35e2b501d339f846b4a44d6706bbc214",
+  "authority_effect": "none",
+  "scope": {
+    "population": "confirmed175",
+    "identities": 5,
+    "excluded_identity": "D-02; handled by #2397",
+    "purpose": "Condition-level comparison of five identities classified as HEAD559-only by the #2395 queue, against the exact fixed L2/L11 revision f6dad2a."
+  },
+  "basis": {
+    "comparison_queue": {
+      "path": "docs/governance/audits/requirements-stage/confirmed175-condition-comparison-queue-2026-09-30.json",
+      "sha256": "2dbfb06c11ac42a940c0d6b5c188a76e685ea4c00e4d9af10b432198ad17b353",
+      "queue_base_revision": "2bbd889545cff238452701e5901ce56b67208fc8",
+      "classification": "Five requested rows are identity-specific comparisons against nonfixed HEAD559 only; queue explicitly does not count them as comparisons against f6dad2a."
+    },
+    "full_audit": {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json",
+      "sha256": "ca08a81d97e39e94aa02151c7cc4e48f621f9d30baccc1cf9b715331fed38f45",
+      "revision": "2bbd889545cff238452701e5901ce56b67208fc8"
+    },
+    "residual_disposition": {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
+      "sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
+      "revision": "942f2e985f3af161ea4027b1691659a436860bc2",
+      "compared_revision": "559ae3ba4bfe660d666a57f227466d7dcdd440d9"
+    },
+    "fixed_target_documents": [
+      {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "sha256_at_f6dad2a": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+      },
+      {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "sha256_at_f6dad2a": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+      },
+      {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "sha256_at_f6dad2a": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+      },
+      {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "sha256_at_f6dad2a": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+      },
+      {
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "sha256_at_f6dad2a": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed"
+      },
+      {
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "sha256_at_f6dad2a": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200"
+      }
+    ],
+    "decision_records": [
+      "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "docs/governance/decisions/po-decision-2026-09-29-11candidates.md"
+    ]
+  },
+  "records": [
+    {
+      "source_qualified_identity": "harness/L1-requirements/business-requirements.md::BR-06",
+      "identity": "BR-06",
+      "source_tuple": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+        "source_relative_path": "harness/L1-requirements/business-requirements.md",
+        "line": 46,
+        "asset_id": "LEGACY-ASSET-9F48ADEEB477DCA54039",
+        "file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+        "line_sha256": "922b879b38c92d8b9a0e6ff3ccd2e0f6b0f2dd6470dd5b54c4180f5ba750b033",
+        "condition_text": "複数プロダクト / 案件の工程表・進捗をリアルタイムに横断可視化する専用 UI ダッシュボードを提供する (実装アーキテクチャ = サーバー / DB 形式は §5 → L2/L4)",
+        "source_line_text": [
+          {
+            "line": 46,
+            "text": "| **BR-06** | 複数プロダクト / 案件の工程表・進捗を **リアルタイムに横断可視化する専用 UI ダッシュボード**を提供する (実装アーキテクチャ = サーバー / DB 形式は §5 → L2/L4) | ダッシュボードヒアリング / 成功④ |"
+          }
+        ]
+      },
+      "legacy_consumers": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+          "lines": "178, 215, 245",
+          "role": "dashboard value, operational acceptance mapping OT-06, and downstream L3/L4 carry"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+          "lines": "45, 134, 146, 332-333, 409",
+          "role": "PM-01/HM-01/HM-02 surfaces, realtime refresh and cross-project filters"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L1-operational-test-design.md",
+          "lines": "57, 119",
+          "role": "OT-06 dashboard cross-visibility oracle and BR mapping"
+        }
+      ],
+      "fixed_revision_comparison": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "status": "compared_condition_level; source closure not established",
+        "targets": [
+          {
+            "identity": "HARNESS-L2-001..009 existing requirements plus the fixed adopted candidate set HARNESS-L2-010..033 and paired L11",
+            "paths": [
+              "docs/helix-harness/L2-requirements/product-requirements.md",
+              "docs/helix-harness/L11-acceptance/product-acceptance.md"
+            ],
+            "finding": "Fixed HARNESS contract includes product, process, evidence and V-pair conditions, but does not expressly retain a dedicated UI dashboard, realtime cross-project progress view, or BR-06 display architecture deferral as an acceptance condition."
+          },
+          {
+            "identity": "HELIXOS-L2-016 / L11-016",
+            "paths": [
+              "docs/helix-os/L2-requirements/governance-requirements.md:652-660",
+              "docs/helix-os/L11-acceptance/governance-acceptance.md:331-336"
+            ],
+            "finding": "Portfolio trace/state for multiple projects and visibility of missing, unagreed, unimplemented, unverified, unavailable, unknown and stale states are retained. This describes managed records and release-kanban state; it does not establish the source's dedicated user-facing dashboard or realtime UX."
+          }
+        ],
+        "retained_clauses": [
+          "cross-project/project-portfolio progress and trace as management information",
+          "distinguishing incomplete, unknown and stale states"
+        ],
+        "changed_clauses": [
+          "management-state projection is the fixed OS representation; the legacy source assigns a dedicated HARNESS UI and realtime experience",
+          "server/DB implementation detail remains outside the requirement and is not revived"
+        ],
+        "unresolved_clauses": [
+          "whether PO and roster need a dedicated dashboard view",
+          "whether realtime refresh is required",
+          "owner boundary between HARNESS user experience and OS portfolio projection",
+          "source-specific acceptance/consumer trace closure"
+        ],
+        "target_adoption_status": "HARNESS fixed candidate set did not adopt a dashboard-specific candidate. HELIXOS-L2-016 is in the fixed/adopted OS contract, but no source-specific replacement or retirement decision for BR-06 is recorded."
+      },
+      "later_2026_09_29_decision_status": "No exact BR-06 successor/adoption decision found in the 57/11 candidate records; general OS-L2-016 authority does not decide this identity. Source meaning remains unresolved.",
+      "queue_classification": "identity_specific_nonfixed_revision_only; not counted by #2395",
+      "successor_requirement_ids": [],
+      "source_disposition": "unresolved",
+      "carry_forward_state": "preserved_pending_rehome",
+      "closure": false,
+      "full_decision_screen_status": "Screened against every entry in both 57- and 11-candidate records; semantic proximity does not imply exact adoption of this legacy source identity.",
+      "later_adopted_pair_comparisons": [
+        {
+          "identity": "HARNESS-L2-034 / L11-034",
+          "decision_status": "57候補判断: 採択",
+          "mpr": "MPR-RC-HARNESS-L2-034-003",
+          "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "l2_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+          "l2_section_digest": "dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156",
+          "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "l11_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+          "l11_section_digest": "391f640508944ba2f32b5751a2a9a17fbc9f89ef76f46953c1af68ba907a9fdf",
+          "limited_effect": "選択要求のmetric identity、対象、workload/environment/data、baseline/target/SLO、sampling/window、oracle、owner、layer、triggerを揃える一般計測契約。",
+          "residual": "dashboard自体、BR-06の利用者、横断UI、realtime freshnessを指定しない。",
+          "target_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "target_revision_note": "Exact 2026-09-29 decision source HEAD; file SHA-256 and L2/L11 section digests are verified at this revision. Current main has later file bytes."
+        },
+        {
+          "identity": "HARNESS-L2-039 / L11-039",
+          "decision_status": "57候補判断: 採択",
+          "mpr": "MPR-RC-HARNESS-L2-039-003",
+          "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "l2_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+          "l2_section_digest": "e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0",
+          "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "l11_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+          "l11_section_digest": "63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746",
+          "limited_effect": "Experience親、UI/Frontend契約、screen/profile/binding、設計trace/drift、implementedとux_verifiedの区別を同scopeへ結ぶ。",
+          "residual": "特定のPO/agent-roster向け工程表dashboard、blocker/phase presentation、realtime更新義務を指定せず、UX-02 identity traceも閉じない。",
+          "target_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "target_revision_note": "Exact 2026-09-29 decision source HEAD; file SHA-256 and L2/L11 section digests are verified at this revision. Current main has later file bytes."
+        }
+      ]
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/business-requirements.md::UX-02",
+      "identity": "UX-02",
+      "source_tuple": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+        "source_relative_path": "harness/L1-requirements/business-requirements.md",
+        "line": 56,
+        "asset_id": "LEGACY-ASSET-9F48ADEEB477DCA54039",
+        "file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+        "line_sha256": "de4ade69721a60cd79706e3f08a67c25e7c200a8e1accc02b5b8f92e4ce644f6",
+        "condition_text": "工程表ダッシュボード (専用 UI) で PO と AI agent roster が進捗・詰まり・フェーズを把握できる (BR-06 の体験面)",
+        "source_line_text": [
+          {
+            "line": 56,
+            "text": "| **UX-02** | 工程表ダッシュボード (専用 UI) で PO と AI agent roster が進捗・詰まり・フェーズを把握できる (BR-06 の体験面) | ダッシュボードヒアリング |"
+          }
+        ]
+      },
+      "legacy_consumers": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+          "lines": "215, 220",
+          "role": "OT-06/OT-10 user experience acceptance mapping"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+          "lines": "45, 56, 146, 420, 486",
+          "role": "PM-01 and HM-01 user-facing dashboard surfaces"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L1-operational-test-design.md",
+          "lines": "57, 173",
+          "role": "OT-06 and UX-to-OT consumer mapping"
+        }
+      ],
+      "fixed_revision_comparison": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "status": "compared_condition_level; source closure not established",
+        "targets": [
+          {
+            "identity": "HARNESS fixed L2/L11",
+            "paths": [
+              "docs/helix-harness/L2-requirements/product-requirements.md",
+              "docs/helix-harness/L11-acceptance/product-acceptance.md"
+            ],
+            "finding": "No explicit PO/roster dashboard interaction, blocker/phase visibility surface, or dashboard-specific acceptance oracle appears in the fixed HARNESS L2/L11 set."
+          },
+          {
+            "identity": "HELIXOS-L2-016 / L11-016",
+            "paths": [
+              "docs/helix-os/L2-requirements/governance-requirements.md:652-660",
+              "docs/helix-os/L11-acceptance/governance-acceptance.md:331-336"
+            ],
+            "finding": "The pair checks portfolio state/trace completeness and unknown/stale visibility, not the source's named viewers, dedicated UI, or user experience."
+          }
+        ],
+        "retained_clauses": [
+          "progress/blocker/phase are meaningful management information",
+          "cross-project state can be read from portfolio records"
+        ],
+        "changed_clauses": [
+          "fixed OS text locates authority in portfolio trace/state records and release-kanban projection rather than a specified HARNESS dashboard UX"
+        ],
+        "unresolved_clauses": [
+          "whether PO and AI roster are distinct intended users",
+          "which progress/blocker/phase presentation is required",
+          "dedicated UI and freshness expectations",
+          "UX-02's BR-06 relationship and identity-level trace"
+        ],
+        "target_adoption_status": "No fixed HARNESS candidate or 2026-09-29 decision adopts UX-02's dashboard experience; general OS portfolio state is not UX replacement evidence."
+      },
+      "later_2026_09_29_decision_status": "No exact UX-02 successor/adoption decision found in the 57/11 candidate records. The 2026-09-28 residual packet keeps dashboard meaning distinct from FR-L1-35; no later decision closes it.",
+      "queue_classification": "identity_specific_nonfixed_revision_only; not counted by #2395",
+      "successor_requirement_ids": [],
+      "source_disposition": "unresolved",
+      "carry_forward_state": "preserved_pending_rehome",
+      "closure": false,
+      "full_decision_screen_status": "Screened against every entry in both 57- and 11-candidate records; semantic proximity does not imply exact adoption of this legacy source identity.",
+      "later_adopted_pair_comparisons": [
+        {
+          "identity": "HARNESS-L2-039 / L11-039",
+          "decision_status": "57候補判断: 採択",
+          "mpr": "MPR-RC-HARNESS-L2-039-003",
+          "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "l2_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+          "l2_section_digest": "e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0",
+          "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "l11_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+          "l11_section_digest": "63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746",
+          "limited_effect": "Experience親、UI/Frontend契約、screen/profile/binding、設計trace/drift、implementedとux_verifiedの区別を同scopeへ結ぶ。",
+          "residual": "特定のPO/agent-roster向け工程表dashboard、blocker/phase presentation、realtime更新義務を指定せず、UX-02 identity traceも閉じない。",
+          "target_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "target_revision_note": "Exact 2026-09-29 decision source HEAD; file SHA-256 and L2/L11 section digests are verified at this revision. Current main has later file bytes."
+        }
+      ]
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-35",
+      "identity": "FR-L1-35",
+      "source_tuple": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+        "source_relative_path": "harness/L1-requirements/functional-requirements.md",
+        "line": 66,
+        "asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B",
+        "file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+        "line_sha256": "7bff35b2a785e51c8eeebeded9e93ac720efd2f9ca8315552e14d8d6ea66be90",
+        "condition_text": "基盤整備状況の可視化 (実装済み / 設計済み・実装未 / 未設計の 3 区分で検証・テスト・検出基盤を一覧表示)",
+        "source_line_text": [
+          {
+            "line": 66,
+            "text": "| **FR-L1-35** | 基盤整備状況の可視化 (実装済み / 設計済み・実装未 / 未設計の 3 区分で検証・テスト・検出基盤を一覧表示) | infra-readiness | 各機構の実装状況 | 整備状況一覧 (区分付き) | P2 | HM-01 |"
+          }
+        ]
+      },
+      "legacy_consumers": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+          "lines": "266, 284",
+          "role": "BR-FR relation and dashboard/readiness carry note; preserve as separate readiness clause"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+          "lines": "146, 157, 471, 492-493",
+          "role": "HM-01/HM-02 readiness and coverage surfaces"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/function-spec.md",
+          "lines": "275",
+          "role": "renderFoundationReadiness function contract"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/fr-unit-coverage.md",
+          "lines": "71",
+          "role": "U-FR-L1-35 unit coverage mapping"
+        }
+      ],
+      "fixed_revision_comparison": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "status": "compared_condition_level; source closure not established",
+        "targets": [
+          {
+            "identity": "HELIXOS-L2-016 / L11-016",
+            "paths": [
+              "docs/helix-os/L2-requirements/governance-requirements.md:652-660",
+              "docs/helix-os/L11-acceptance/governance-acceptance.md:331-336"
+            ],
+            "finding": "Portfolio state tracks requirements, relations, implementation, verification, delivery and operation; unknown/stale and incomplete states stay distinct. It does not define FR-L1-35's three categorical states or inventory rows covering verification, test and detection infrastructure."
+          }
+        ],
+        "retained_clauses": [
+          "readiness is an inventory concern about verification/test/detection infrastructure",
+          "implementation and design-without-implementation are separate from not-designed"
+        ],
+        "changed_clauses": [
+          "OS portfolio trace has general requirement/work/delivery states, not this source's three-value infrastructure classification"
+        ],
+        "unresolved_clauses": [
+          "retain three readiness classes or use another explicitly decided classification",
+          "scope of mechanisms/products and version target",
+          "HARNESS source owner versus OS rehome",
+          "inventory row evidence and acceptance oracle"
+        ],
+        "target_adoption_status": "The fixed OS-L2-016 pair does not close the source condition. HELIXOS-L2-045 is a later candidate, outside f6dad2a; 2026-09-29 PO decision explicitly holds it pending target mechanism set, version_target and owner-transfer scope."
+      },
+      "later_2026_09_29_decision_status": {
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "candidate": "HELIXOS-L2-045 / L11-045",
+        "status": "保留",
+        "conditions": "対象集合、version_target、HARNESSからOSへ所有を移す範囲を明記する",
+        "reinforced_by": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md:50; hold and release conditions maintained, not feature deletion or rejection"
+      },
+      "queue_classification": "identity_specific_nonfixed_revision_only; not counted by #2395",
+      "successor_requirement_ids": [],
+      "candidate_refs_not_successors": [
+        "HELIXOS-L2-045",
+        "HELIXOS-L11-045"
+      ],
+      "source_disposition": "unresolved",
+      "carry_forward_state": "preserved_pending_rehome",
+      "closure": false,
+      "full_decision_screen_status": "Screened against every entry in both 57- and 11-candidate records; semantic proximity does not imply exact adoption of this legacy source identity.",
+      "later_adopted_pair_comparisons": [
+        {
+          "identity": "HELIXOS-L2-036 / L11-036",
+          "decision_status": "57候補判断: 採択",
+          "mpr": "MPR-RC-HELIXOS-L2-036-001",
+          "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "l2_section_digest": "82c3fc7c25b023604463f4c44c284440b9666342a0cf8a3bd6b1996394cb33b9",
+          "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "l11_section_digest": "daec5fceac7a0e19a0cf83541126772393735b01c5b1592edeb6f050061bebc3",
+          "limited_effect": "Retrofit upgrade preflight義務/resultをticketとsource-target revision、dependency/config scopeへ結び、pass前の計画確定を防ぐ。oracleはHARNESS/domain ownerが持つ。",
+          "residual": "全機構の検証/test/検出基盤readiness inventoryではなく、FR-L1-35の3分類や対象集合を定めない。",
+          "target_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "target_revision_note": "Exact 2026-09-29 decision source HEAD; file SHA-256 and L2/L11 section digests are verified at this revision. Current main has later file bytes."
+        },
+        {
+          "identity": "HELIXOS-L2-045 / L11-045",
+          "decision_status": "57候補判断・11候補判断とも保留維持",
+          "limited_effect": "FR-L1-35に近いreadiness一覧候補として保留を継続。",
+          "residual": "解除条件は対象機構集合、version_target、HARNESSからOSへの所有移動範囲。機能削除・却下ではなく、本監査も解除を生成しない。"
+        }
+      ]
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/business-requirements.md::BR-08",
+      "identity": "BR-08",
+      "source_tuple": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+        "source_relative_path": "harness/L1-requirements/business-requirements.md",
+        "line": 48,
+        "asset_id": "LEGACY-ASSET-9F48ADEEB477DCA54039",
+        "file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+        "line_sha256": "45c182bcd3eb0eb9261eb2de58c12dca8c1a4e1de60f4d4c0263fa4ccc631c2f",
+        "condition_text": "doc 品質専用の read-only reviewer (doc-reviewer、pmo-sonnet とは責務分離) を持ち、大規模 doc 改定・gate evidence 提出・pair freeze の前に必須召喚する",
+        "source_line_text": [
+          {
+            "line": 48,
+            "text": "| **BR-08** | **doc 品質の継続レビュー** — doc 品質専用の read-only reviewer (doc-reviewer、pmo-sonnet とは責務分離) を持ち、大規模 doc 改定・gate evidence 提出・pair freeze の前に必須召喚する | v2 BR-11 翻案 |"
+          }
+        ]
+      },
+      "legacy_consumers": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+          "lines": "76, 268, 275-284",
+          "role": "FR-L1-45 back-propagation, four-axis review and carry conditions; separate source identity, not merged into this BR-08 row"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L1-operational-test-design.md",
+          "lines": "59, 119",
+          "role": "OT-08 trigger and reviewer coverage oracle"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+          "lines": "192, 385, 411, 447",
+          "role": "HM-05/GD-01 reviewer audit and gate signoff references"
+        }
+      ],
+      "fixed_revision_comparison": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "status": "compared_condition_level; source closure not established",
+        "targets": [
+          {
+            "identity": "HARNESS-L2-005, L2-014 and paired L11",
+            "paths": [
+              "docs/helix-harness/L2-requirements/product-requirements.md",
+              "docs/helix-harness/L11-acceptance/product-acceptance.md"
+            ],
+            "finding": "Verification duties, oracle/failure/backflow and deriving design duties from approved requirements are present. They do not specify a document-only reviewer, BR-08 trigger set, read-only scope, pmo-sonnet responsibility separation, or four-axis quality oracle."
+          },
+          {
+            "identity": "HELIXOS-L2-018 / L11-018",
+            "paths": [
+              "docs/helix-os/L2-requirements/governance-requirements.md:672-680",
+              "docs/helix-os/L11-acceptance/governance-acceptance.md:345-350"
+            ],
+            "finding": "Creation Worker and independent review responsibility are separated and handed off. This is an operation/review-independence rule, not a doc-quality-only reviewer contract."
+          }
+        ],
+        "retained_clauses": [
+          "review must be independent of the authoring Worker",
+          "document quality, evidence and trace deserve review"
+        ],
+        "changed_clauses": [
+          "fixed contracts assign general review/verification and review independence without the source's dedicated reviewer role and pre-trigger rule"
+        ],
+        "unresolved_clauses": [
+          "dedicated read-only doc reviewer role",
+          "large document revision/gate evidence/pair freeze triggers",
+          "four quality axes and observable oracle",
+          "relationship and separate identity trace to FR-L1-45"
+        ],
+        "target_adoption_status": "No fixed HARNESS candidate in the 2026-09-28 adopted set names this dedicated capability. HARNESS-L2-061 is a later unadopted candidate and does not decide BR-08."
+      },
+      "later_2026_09_29_decision_status": "No exact BR-08 / HARNESS-L2-061 adoption row found in the 57/11 candidate decisions. General exact-head GitHub review requirements do not create a dedicated doc-reviewer. The 2026-09-28 residual A/B frame remains unselected.",
+      "queue_classification": "identity_specific_nonfixed_revision_only; not counted by #2395",
+      "successor_requirement_ids": [],
+      "candidate_refs_not_successors": [
+        "HARNESS-L2-061",
+        "HARNESS-L11-061"
+      ],
+      "source_disposition": "unresolved",
+      "carry_forward_state": "preserved_pending_rehome",
+      "closure": false,
+      "full_decision_screen_status": "Screened against every entry in both 57- and 11-candidate records; semantic proximity does not imply exact adoption of this legacy source identity.",
+      "later_adopted_pair_comparisons": [
+        {
+          "identity": "HELIXOS-L2-050 / L11-050",
+          "decision_status": "57候補判断: 条件付き採択（訂正L11-050-003）",
+          "mpr": "MPR-RC-HELIXOS-L2-050-003",
+          "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "l2_section_digest": "fab5fdfae9cfd2211f8c2fd6dfad5ce7b065e007ef11ca62f55420baa5033b6d",
+          "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "l11_section_digest": "cf4866f2d8beee83eda5389e3b98100cd37cbd609f7c797617b499c1381bfafb",
+          "limited_effect": "review queue capacityの観測/調整とassignmentのHEAD/authority拘束。capacity増枠から新しいmerge権限を生まず、既存review_merge担当も既存admission後に限る。",
+          "residual": "doc品質専用read-only reviewer、BR-08のtrigger set、pmo-sonnetとの分離、4軸品質oracleを定めない。",
+          "target_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "target_revision_note": "Exact 2026-09-29 decision source HEAD; file SHA-256 and L2/L11 section digests are verified at this revision. Current main has later file bytes."
+        }
+      ]
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/three-lane-cloud-governance-requests.md::3L-BR-007",
+      "identity": "3L-BR-007",
+      "source_tuple": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+        "source_relative_path": "helix/L1-requirements/three-lane-cloud-governance-requests.md",
+        "line": 63,
+        "condition_lines": "63-65",
+        "asset_id": "LEGACY-ASSET-A6926200F28B26300432",
+        "file_sha256": "e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765",
+        "line_sha256": "170537a10b1df263fd6af5265bc2ee88ae2a618f35203f768695ff828d37dba9",
+        "condition_text": "GitHub監査はHELIX capabilityとして所有する。決定的規則はNode gateが強制し、semantic findingだけを評価済みモデルへ委譲する。GitHub監査を第四provider laneや別Control Planeにしない。",
+        "source_line_text": [
+          {
+            "line": 63,
+            "text": "### 3L-BR-007 GitHub監査をHELIX capabilityとして所有する"
+          },
+          {
+            "line": 64,
+            "text": ""
+          },
+          {
+            "line": 65,
+            "text": "決定的規則はNode gateが強制し、semantic findingだけを評価済みモデルへ委譲する。GitHub監査を第四provider laneや別Control Planeにしない。"
+          }
+        ]
+      },
+      "legacy_consumers": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/three-lane-cloud-governance-recognition.md",
+          "lines": "34",
+          "role": "3L-BR-007 deterministic-gate versus semantic-model recognition case"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+          "lines": "67-69",
+          "role": "adjacent but distinct 3L-BR-008 task-class/model-revision qualification clauses; not part of this identity's source tuple"
+        }
+      ],
+      "fixed_revision_comparison": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "status": "compared_condition_level; source closure not established",
+        "targets": [
+          {
+            "identity": "HELIXLABO-L2-055 / L11-055 and L2-059 / L11-059",
+            "paths": [
+              "docs/helix-labo/L2-requirements/labo-requirements.md",
+              "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+            ],
+            "finding": "General task/model-class evaluation, evidence scope, unknown/unassessed retention and score-not-authority boundaries exist; general comparative evaluation uses a task/scope/oracle-based contract. No source-specific GitHub audit task class or GitHub major-miss qualification rule is established here."
+          },
+          {
+            "identity": "HELIXOS-L2-018 / L11-018",
+            "paths": [
+              "docs/helix-os/L2-requirements/governance-requirements.md:672-680",
+              "docs/helix-os/L11-acceptance/governance-acceptance.md:345-350"
+            ],
+            "finding": "OS assignment, independent review handoff and role separation are managed. They do not determine GitHub audit capability ownership or Bench qualification."
+          }
+        ],
+        "retained_clauses": [
+          "GitHub review/audit stays within HELIX capability and existing project responsibilities",
+          "deterministic controls and semantic review findings are different kinds of work",
+          "no fixed third-party provider lane is required by the source"
+        ],
+        "changed_clauses": [
+          "current architecture separates HARNESS review/verification, LABO evidence, INTELLIGENCE placement proposal, OS assignment and SECURITY permission; this is a different responsibility decomposition from the legacy Node-gate/model phrasing"
+        ],
+        "unresolved_clauses": [
+          "dedicated GitHub audit task-class registration",
+          "GitHub-specific major-miss rubric and qualification evidence",
+          "qualification expiry on model revision changes",
+          "whether general evaluation/authority contracts replace these source-specific conditions"
+        ],
+        "target_adoption_status": "General Bench and OS review/assignment capabilities are present in fixed requirements; the residual audit explicitly found no adopted GitHub audit task class, major-miss rubric or model-revision qualification invalidation. SECURITY credential permission expiry is not the same as Bench qualification expiry."
+      },
+      "later_2026_09_29_decision_status": {
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "related_candidate": "HELIXLABO-L2-065 / L11-065",
+        "status": "条件付き採択 D1; keep the 'first Attempt result' as a separate measure from L2-067",
+        "scope_limit": "This adopts a general Bench qualification scorecard condition sourced from HIL-FR-61/62, not the 3L-BR-007 GitHub audit ownership/task-class capability. No GitHub audit rubric or qualification invalidation condition is added.",
+        "evidence": "57-candidate decision lines 80 and 104; residual disposition 2026-09-28 §5 lines 69-73"
+      },
+      "queue_classification": "identity_specific_nonfixed_revision_only; not counted by #2395",
+      "successor_requirement_ids": [],
+      "candidate_refs_not_successors": [
+        "HELIXLABO-L2-065",
+        "HELIXOS-L2-018",
+        "HELIXINTELLIGENCE-L2-010/011"
+      ],
+      "source_disposition": "unresolved",
+      "carry_forward_state": "preserved_pending_rehome",
+      "closure": false,
+      "full_decision_screen_status": "Screened against every entry in both 57- and 11-candidate records; semantic proximity does not imply exact adoption of this legacy source identity.",
+      "later_adopted_pair_comparisons": [
+        {
+          "identity": "HELIXLABO-L2-065 / L11-065",
+          "decision_status": "57候補判断: 条件付き採択 D1",
+          "mpr": "MPR-RC-HELIXLABO-L2-065-001",
+          "l2_path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+          "l2_file_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+          "l2_section_digest": "6f50887b94a8d3341c55700393896798cc1273324a868071447bf0e5a95cf019",
+          "l11_path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "l11_file_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+          "l11_section_digest": "c70905fd036f0c6e6bfdce0368e462cd85acd467354bcad599d1112634d9b1b6",
+          "limited_effect": "選択candidate-runtime qualification scopeとtask scorecardのtask/oracle/context/fixture/rubric証拠を扱う。first Attempt resultはL2-067のfirst-eligible candidate result等と別指標。",
+          "residual": "GitHub監査のcapability ownership、GitHub専用task class/major-miss rubric、model revision時の資格失効を定めない。一般Bench/OS reviewはsource-specific条件を閉じない。",
+          "target_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "target_revision_note": "Exact 2026-09-29 decision source HEAD; file SHA-256 and L2/L11 section digests are verified at this revision. Current main has later file bytes."
+        }
+      ]
+    }
+  ],
+  "non_claims": [
+    "This audit does not assign successor requirements, adopt candidates, change source disposition, or close any of the five identities.",
+    "The comparison against fixed f6dad2a is condition-level evidence only; related target records and adopted general capabilities do not establish identity-level no-loss carry-forward.",
+    "D-02 is outside this audit because PR #2397 owns that identity.",
+    "No archived workflow, source adapter, test, CI, CLI, runtime or hook was executed."
+  ],
+  "later_decision_identity_screen": {
+    "purpose": "#2393/#2397 acceptance follow-up: screen every identity and treatment in both later decision records for each of the five residual source identities. Status screen only; semantic proximity does not imply adoption.",
+    "decision_sets": [
+      {
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "entry_count": 57,
+        "status_counts": {
+          "採択": 42,
+          "条件付き採択": 11,
+          "保留": 4
+        },
+        "entries": [
+          {
+            "identity": "HARNESS-L2-034",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HARNESS-L2-034-003"
+          },
+          {
+            "identity": "HARNESS-L2-035",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HARNESS-L2-035-002"
+          },
+          {
+            "identity": "HARNESS-L2-036",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HARNESS-L2-036-002"
+          },
+          {
+            "identity": "HARNESS-L2-037",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HARNESS-L2-037-002"
+          },
+          {
+            "identity": "HARNESS-L2-038",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HARNESS-L2-038-001"
+          },
+          {
+            "identity": "HARNESS-L2-039",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HARNESS-L2-039-003"
+          },
+          {
+            "identity": "HARNESS-L2-040",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HARNESS-L2-040-002"
+          },
+          {
+            "identity": "HARNESS-L2-041",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HARNESS-L2-041-002"
+          },
+          {
+            "identity": "HARNESS-L2-042",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HARNESS-L2-042-001"
+          },
+          {
+            "identity": "HARNESS-L2-043",
+            "status": "条件付き採択",
+            "decision_text": "条件付き採択：Bルート、所属はHARNESS-CORE。",
+            "latest_mpr": "MPR-RC-HARNESS-L2-043-002"
+          },
+          {
+            "identity": "HARNESS-L2-044",
+            "status": "条件付き採択",
+            "decision_text": "条件付き採択：Bルート、名称はDesign Contract Portfolio。採択済み025/026へ無断追記しない。",
+            "latest_mpr": "MPR-RC-HARNESS-L2-044-002"
+          },
+          {
+            "identity": "HARNESS-L2-045",
+            "status": "保留",
+            "decision_text": "保留。解除条件：値の決定責務、単位、未設定・参照不能・超過時の扱いを確定。ticketごとの予算額決定は不要。",
+            "latest_mpr": "MPR-RC-HARNESS-L2-045-001"
+          },
+          {
+            "identity": "HARNESS-L2-046",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HARNESS-L2-046-001"
+          },
+          {
+            "identity": "HARNESS-L2-047",
+            "status": "条件付き採択",
+            "decision_text": "条件付き採択：A配置（HARNESSが契約生成規範を所有）。",
+            "latest_mpr": "MPR-RC-HARNESS-L2-047-001"
+          },
+          {
+            "identity": "HELIXOS-L2-030",
+            "status": "保留",
+            "decision_text": "保留。本体実行OSとconsumer利用先を分け、配布段階と切替条件を確定する。Windows即時却下やLinux限定を意味しない。",
+            "latest_mpr": "MPR-RC-HELIXOS-L2-030-003"
+          },
+          {
+            "identity": "HELIXOS-L2-031",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXOS-L2-031-001"
+          },
+          {
+            "identity": "HELIXOS-L2-032",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXOS-L2-032-001"
+          },
+          {
+            "identity": "HELIXOS-L2-033",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXOS-L2-033-001"
+          },
+          {
+            "identity": "HELIXOS-L2-034",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXOS-L2-034-002"
+          },
+          {
+            "identity": "HELIXOS-L2-035",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXOS-L2-035-001"
+          },
+          {
+            "identity": "HELIXOS-L2-036",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXOS-L2-036-001"
+          },
+          {
+            "identity": "HELIXOS-L2-037",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXOS-L2-037-001"
+          },
+          {
+            "identity": "HELIXOS-L2-038",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXOS-L2-038-001"
+          },
+          {
+            "identity": "HELIXOS-L2-039",
+            "status": "保留",
+            "decision_text": "保留。HARNESS-045と対に契約・版・予算条件を揃える。",
+            "latest_mpr": "MPR-RC-HELIXOS-L2-039-001"
+          },
+          {
+            "identity": "HELIXOS-L2-040",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXOS-L2-040-001"
+          },
+          {
+            "identity": "HELIXOS-L2-041",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXOS-L2-041-001"
+          },
+          {
+            "identity": "HELIXOS-L2-042",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXOS-L2-042-001"
+          },
+          {
+            "identity": "HELIXOS-L2-043",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXOS-L2-043-002"
+          },
+          {
+            "identity": "HELIXOS-L2-044",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXOS-L2-044-001"
+          },
+          {
+            "identity": "HELIXOS-L2-045",
+            "status": "保留",
+            "decision_text": "保留。対象集合、version_target、HARNESSからOSへの所有移動の有無を明記する。",
+            "latest_mpr": "MPR-RC-HELIXOS-L2-045-001"
+          },
+          {
+            "identity": "HELIXOS-L2-046",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXOS-L2-046-001"
+          },
+          {
+            "identity": "HELIXOS-L2-047",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXOS-L2-047-004"
+          },
+          {
+            "identity": "HELIXOS-L2-048",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXOS-L2-048-001"
+          },
+          {
+            "identity": "HELIXOS-L2-049",
+            "status": "条件付き採択",
+            "decision_text": "条件付き採択：割当前に後段の検証義務・担当・capacityを確保する。割当先task自体のreview/merge完了は割当条件にしない（訂正L11 `HELIXOS-L2-049-003`）。",
+            "latest_mpr": "MPR-RC-HELIXOS-L2-049-003"
+          },
+          {
+            "identity": "HELIXOS-L2-050",
+            "status": "条件付き採択",
+            "decision_text": "条件付き採択：capacity増枠から新しいmerge権限を発生させない。既存review_merge担当は既存admission後にmergeできる。branch変更・Ready権限は与えない（訂正L11 `HELIXOS-L2-050-003`）。",
+            "latest_mpr": "MPR-RC-HELIXOS-L2-050-003"
+          },
+          {
+            "identity": "HELIXOS-L2-051",
+            "status": "条件付き採択",
+            "decision_text": "条件付き採択：本構成でCursorを作成専用、Claude優先は適用可能な評価根拠のある要求・設計taskのみ。",
+            "latest_mpr": "MPR-RC-HELIXOS-L2-051-002"
+          },
+          {
+            "identity": "HELIXOS-L2-052",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXOS-L2-052-001"
+          },
+          {
+            "identity": "HELIXLABO-L2-061",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXLABO-L2-061-001"
+          },
+          {
+            "identity": "HELIXLABO-L2-062",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXLABO-L2-062-001"
+          },
+          {
+            "identity": "HELIXLABO-L2-063",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXLABO-L2-063-001"
+          },
+          {
+            "identity": "HELIXLABO-L2-064",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXLABO-L2-064-002"
+          },
+          {
+            "identity": "HELIXLABO-L2-065",
+            "status": "条件付き採択",
+            "decision_text": "条件付き採択：D1、067とは別指標で「最初のAttemptの結果」。",
+            "latest_mpr": "MPR-RC-HELIXLABO-L2-065-001"
+          },
+          {
+            "identity": "HELIXLABO-L2-066",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXLABO-L2-066-001"
+          },
+          {
+            "identity": "HELIXLABO-L2-067",
+            "status": "条件付き採択",
+            "decision_text": "条件付き採択：D1、「最初の適格candidateの結果」と同一Attempt内修正回数。065と換算・統合しない。",
+            "latest_mpr": "MPR-RC-HELIXLABO-L2-067-001"
+          },
+          {
+            "identity": "HELIXLABO-L2-068",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXLABO-L2-068-001"
+          },
+          {
+            "identity": "HELIXLABO-L2-069",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXLABO-L2-069-001"
+          },
+          {
+            "identity": "HELIXINTELLIGENCE-L2-072",
+            "status": "条件付き採択",
+            "decision_text": "条件付き採択：B配置、1.0は候補生成とshadow評価まで。",
+            "latest_mpr": "MPR-RC-HELIXINTELLIGENCE-L2-072-004"
+          },
+          {
+            "identity": "HELIXINTELLIGENCE-L2-073",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXINTELLIGENCE-L2-073-002"
+          },
+          {
+            "identity": "HELIXINTELLIGENCE-L2-074",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXINTELLIGENCE-L2-074-002"
+          },
+          {
+            "identity": "HELIXSECURITY-L2-029",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXSECURITY-L2-029-002"
+          },
+          {
+            "identity": "HELIXSECURITY-L2-030",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXSECURITY-L2-030-001"
+          },
+          {
+            "identity": "HELIXSECURITY-L2-031",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXSECURITY-L2-031-001"
+          },
+          {
+            "identity": "HELIXSECURITY-L2-032",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXSECURITY-L2-032-001"
+          },
+          {
+            "identity": "HELIXSECURITY-L2-033",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXSECURITY-L2-033-002"
+          },
+          {
+            "identity": "HELIXSECURITY-L2-034",
+            "status": "採択",
+            "decision_text": "採択",
+            "latest_mpr": "MPR-RC-HELIXSECURITY-L2-034-001"
+          },
+          {
+            "identity": "HELIXCONNECT-L2-008",
+            "status": "条件付き採択",
+            "decision_text": "条件付き採択：A配置（供給はCONNECT、安全判定はSECURITY）、registration -002を対象。",
+            "latest_mpr": "MPR-RC-HELIXCONNECT-L2-008-002"
+          },
+          {
+            "identity": "HELIXCONNECT-L2-009",
+            "status": "条件付き採択",
+            "decision_text": "条件付き採択：A。direction/orderは属性、feedbackは型付き戻り辺。操作ごとのunknown停止条件を分ける（訂正L11 `HELIXCONNECT-L11-009-002`）。",
+            "latest_mpr": "MPR-RC-HELIXCONNECT-L2-009-002"
+          }
+        ]
+      },
+      {
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+        "sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+        "entry_count": 11,
+        "status_counts": {
+          "採択": 10,
+          "現revision不採択": 1
+        },
+        "entries": [
+          {
+            "identity": "HARNESS-L2-041",
+            "status": "採択",
+            "latest_mpr": "MPR-RC-HARNESS-L2-041-003"
+          },
+          {
+            "identity": "HARNESS-L2-048",
+            "status": "採択",
+            "latest_mpr": "MPR-RC-HARNESS-L2-048-001"
+          },
+          {
+            "identity": "HELIXBRAIN-L2-031",
+            "status": "採択",
+            "latest_mpr": "MPR-RC-HELIXBRAIN-L2-031-001"
+          },
+          {
+            "identity": "HARNESS-L2-050",
+            "status": "採択",
+            "latest_mpr": "MPR-RC-HARNESS-L2-050-001"
+          },
+          {
+            "identity": "HARNESS-L2-051",
+            "status": "採択",
+            "latest_mpr": "MPR-RC-HARNESS-L2-051-001"
+          },
+          {
+            "identity": "HARNESS-L2-052",
+            "status": "採択",
+            "latest_mpr": "MPR-RC-HARNESS-L2-052-001"
+          },
+          {
+            "identity": "HARNESS-L2-053",
+            "status": "採択",
+            "latest_mpr": "MPR-RC-HARNESS-L2-053-001"
+          },
+          {
+            "identity": "HARNESS-L2-054",
+            "status": "採択",
+            "latest_mpr": "MPR-RC-HARNESS-L2-054-001"
+          },
+          {
+            "identity": "HELIXOS-L2-038",
+            "status": "依存先と併せて採択",
+            "latest_mpr": "MPR-RC-HELIXOS-L2-038-002"
+          },
+          {
+            "identity": "HELIXOS-L2-053",
+            "status": "依存先と併せて採択",
+            "latest_mpr": "MPR-RC-HELIXOS-L2-053-001"
+          },
+          {
+            "identity": "HARNESS-L2-049",
+            "status": "現revision不採択（訂正L11の新revisionをPO再確認するまで）",
+            "latest_mpr": "MPR-RC-HARNESS-L2-049-002"
+          }
+        ]
+      }
+    ],
+    "overlap_and_counting": "The screen retains each decision record identity/revision treatment independently. HARNESS-L2-041, HARNESS-L2-050, and HELIXOS-L2-038 recur across records as later exact-revision treatments; they are not extra source identities. The 11-candidate record explicitly treats HARNESS-L2-049 current revision as not adopted, outside its 10 adopted table rows. Thus 68 is the sum of decision entries, not unique source atoms.",
+    "status_preservation": {
+      "HELIXOS-L2-045": "保留; release conditions remain target mechanism set, version_target, and scope of ownership transfer from HARNESS to OS. Not deletion/rejection.",
+      "HELIXLABO-L2-065": "条件付き採択 D1; first Attempt result remains a separate measure from HELIXLABO-L2-067. This does not add GitHub audit semantics."
+    }
+  }
+}
