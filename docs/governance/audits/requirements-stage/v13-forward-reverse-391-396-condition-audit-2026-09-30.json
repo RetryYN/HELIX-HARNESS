@@ -19,12 +19,12 @@
     "source_inventory": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json",
     "scope_limit": "Six exact source identities only; adjacent §4/§4.1, whole v1.3 source and whole asset population are outside this audit."
   },
-  "created_against_revision": "a3d9f7e205a3d766280c9de4936551f0fef16143",
+  "created_against_revision": "03edd59de8d0488a797480ac23a6fc1a24f569b1",
   "current_input_pins": {
     "queue": {
       "path": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json",
       "sha256": "sha256:a61ec098a6bd714fcbbb706d0d9afb4e7f2777b114bf23c8056fc130e30f60d9",
-      "basis_commit": "a3d9f7e205a3d766280c9de4936551f0fef16143"
+      "basis_commit": "03edd59de8d0488a797480ac23a6fc1a24f569b1"
     },
     "baseline_condition_audit": {
       "path": "docs/governance/audits/requirements-stage/legacy-v13-semantic-condition-audit-2026-09-28.json",
@@ -243,7 +243,29 @@
         "existing_individual_audit_refs_before_audit": [],
         "existing_individual_audit_ref_count_before_audit": 0
       }
-    ]
+    ],
+    "duplicate_scan_at_current_main": {
+      "scanned_revision": "03edd59de8d0488a797480ac23a6fc1a24f569b1",
+      "newly_available_audit": {
+        "pull_request": "#2415",
+        "path": "docs/governance/audits/requirements-stage/v13-development-style-11-condition-audit-2026-09-30.json",
+        "sha256": "sha256:ce2aa162b917c281f78e27ccb5a67f04da484d2648b932aae753cfb25036cf75",
+        "source_item_ids": [
+          "REQSRC-SUP-00055",
+          "REQSRC-SUP-00056",
+          "REQSRC-SUP-00057",
+          "REQSRC-SUP-00059",
+          "REQSRC-SUP-00060",
+          "REQSRC-SUP-00061",
+          "REQSRC-SUP-00062",
+          "REQSRC-SUP-00063",
+          "REQSRC-SUP-00065",
+          "REQSRC-SUP-00068",
+          "REQSRC-SUP-00069"
+        ],
+        "overlap_source_item_ids": []
+      }
+    }
   },
   "comparison_baselines": {
     "po_fixed_revision": {
@@ -628,7 +650,7 @@
       {
         "check": "non-overlap",
         "result": "passed",
-        "detail": "No selected IDs intersect #2411 §6 (17 exact IDs), #2413 §2 (12 exact IDs), v1.3 §4.6.1 package-consumer residual audit (11 IDs at lines 300, 318–333), or any v13 focused condition audit present in the a3d9 baseline."
+        "detail": "No selected IDs intersect #2411 §6 (17 exact IDs), #2413 §2 (12 exact IDs), v1.3 §4.6.1 package-consumer residual audit (11 IDs at lines 300, 318–333), or any v13 focused condition audit present at main 03edd59de8d0488a797480ac23a6fc1a24f569b1; this includes the separately pinned #2415 development-style audit (11 IDs, 0 overlap)."
       },
       {
         "check": "fixed f6 pair pins",

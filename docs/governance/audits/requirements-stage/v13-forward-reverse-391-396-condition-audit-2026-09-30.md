@@ -2,13 +2,13 @@
 
 status: `six-condition-comparison-only`
 authority_effect: `none`
-created_against_revision: `a3d9f7e205a3d766280c9de4936551f0fef16143`
+created_against_revision: `03edd59de8d0488a797480ac23a6fc1a24f569b1`
 
 ## 範囲と選定
 
 旧archive v1.3の§5から、Forward/Reverseの方向・routing・refactor・横断loopを記す連続6行（物理行507–512）だけを比較した。source identityは `REQSRC-SUP-00391`〜`00396`。archive file SHA-256は `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`、assetは `LEGACY-ASSET-02319C2481B9E01698D5`。各IDのline text・line SHA-256・queue status/ref countは[JSON](v13-forward-reverse-391-396-condition-audit-2026-09-30.json)にsource-qualified tupleで記録した。
 
-6行はqueueで全て `condition_status=unresolved`、`primary_residual`、`unresolved_for_closure_work`、既存個別監査ref 0。#2411 §6の17件（`REQSRC-SUP-00398`, `00399`, `00400`, `00403`–`00405`, `00407`, `00409`–`00411`, `00414`, `00418`, `00421`, `00424`, `00430`–`00432`）、#2413 §2の12件（`REQSRC-SUP-00034`–`00045`）、旧v1.3 §4.6.1 package-consumer residual 11条件の個別監査（source physical lines 300, 318–333から、`REQSRC-SUP-00225`, `00242`–`00246`, `00248`–`00249`, `00251`, `00255`–`00256`）と重複しない。既存focused v1.3監査群とのidentity overlapも0件。
+6行はqueueで全て `condition_status=unresolved`、`primary_residual`、`unresolved_for_closure_work`、既存個別監査ref 0。#2411 §6の17件（`REQSRC-SUP-00398`, `00399`, `00400`, `00403`–`00405`, `00407`, `00409`–`00411`, `00414`, `00418`, `00421`, `00424`, `00430`–`00432`）、#2413 §2の12件（`REQSRC-SUP-00034`–`00045`）、旧v1.3 §4.6.1 package-consumer residual 11条件の個別監査（source physical lines 300, 318–333から、`REQSRC-SUP-00225`, `00242`–`00246`, `00248`–`00249`, `00251`, `00255`–`00256`）と重複しない。既存focused v1.3監査群とのidentity overlapも0件。#2415でmainへ入った開発style 11条件監査（JSON SHA-256 `ce2aa162b917c281f78e27ccb5a67f04da484d2648b932aae753cfb25036cf75`、対象ID `REQSRC-SUP-00055`, `00056`, `00057`, `00059`–`00063`, `00065`, `00068`, `00069`の11件）もmain `03edd59de8d0488a797480ac23a6fc1a24f569b1`上で照合し、この6 IDとの重複は0件。
 
 旧consumerとして、archive `process/modes/README.md` lines 29–47、`process/modes/reverse.md`、`process/modes/scrum.md`を読んだ。READMEはForwardを主線とする分類索引、Reverseは旧R0–R4とrouting/pair-freeze、Scrum文書はSR0–SR4とstyle/slice条件を記述する。各file SHAと参照役割はJSONに記録した。archive source/consumerは読取資料としてのみ使い、実行していない。
 
@@ -70,4 +70,4 @@ OSはHARNESS工程部品の動的workflow合成と途中結果での差戻しを
 
 6行の比較statusは `covered: 0 / partial: 6 / missing: 0`。これはこの比較群内の意味評価であり、queueのstatusを書き換えるものではない。正式successor 0、採択主張なし、authority effectなし、L11実行/受入主張なし、stage completion/closure主張なし。
 
-現在入力のbaseline main、source snapshot、queue、基準監査、disposition ledger、HARNESS/OS L2/L11のSHA-256、固定f6 L2/L11 pins、後発318ec/5aa100 decision pinsはJSONに記録した。JSON構文、ID tuple/source line SHA、queue status/ref count、non-overlap、固定/後発/current input hashを静的確認する。旧CLI/runtime/test/CIは実行しない。
+current-input SHA-256とqueue basis commitはmain `03edd59de8d0488a797480ac23a6fc1a24f569b1`に更新し、旧archive source、固定f6 L2/L11、後発318ec/5aa100 decision/pair pinsは固定した。#2415の開発style 11条件artifactをSHA-256付きで重複走査へ追加し、選択6 IDとの重複0件を確認した。JSON構文、ID tuple/source line SHA、queue status/ref count、non-overlap、固定/後発/current input hashを静的確認する。旧CLI/runtime/test/CIは実行しない。
