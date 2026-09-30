@@ -1,0 +1,1042 @@
+{
+  "schema_version": "legacy-confirmed175-fr-l1-19-fixed-l2l11-condition-audit.v1",
+  "audit_id": "legacy-confirmed175-fr-l1-19-fixed-l2l11-condition-audit-2026-10-01",
+  "audit_mode": "read_only_static_condition_comparison",
+  "created_against_revision": "6404579af5c41d686db15b3e3c7a15d98931841c",
+  "origin_main_revision": "6404579af5c41d686db15b3e3c7a15d98931841c",
+  "fixed_l2_l11_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "authority_effect": "none",
+  "formal_successor_assignments": 0,
+  "closure_claim": false,
+  "population": "confirmed175",
+  "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-19",
+  "identity_source": {
+    "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+    "holding_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+    "legacy_asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B",
+    "legacy_asset_ledger": "docs/governance/legacy-asset-disposition.jsonl",
+    "legacy_asset_ledger_row_sha256": "ddf5bcb28787c2ce6a17bd0dc2a45691c277e8478612ea904139b3f413e6942f",
+    "source_file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+    "source_status": "confirmed",
+    "carry_forward_state": "preserved_pending_rehome",
+    "source_line": 50,
+    "source_line_sha256": "be3ce53101b581a48033a8711a78bfc7566bcce7bbdbbb14981e95eb4545ab0a",
+    "source_condition_exact": "| **FR-L1-19** | Learning Engine (成功実行 recipe 蓄積・頻出トラブル予防ルール化・スキル推薦改善・L 単位注入更新) | learning-engine | feedback_hook 5 軸 / skill 発火ログ / recovery-log / interrupt 履歴 / detector 結果 | recipe (pattern_key 付き)、予防ルール、推薦精度改善。※ extended: スキル破棄・改修自動化を含む。skill_rating 閾値以下を廃止候補としてフラグ、削除は人間確認必須 (F6=a、CLAUDE.md destructive 禁止事項)。ログ型失敗/成功蓄積 (event-sourced recipe log) を recipe store 実装方式として明記。※ extended (A-54 audit 軸1 C-02): 「失敗を仕組みに変換」原則 (L0 §1.4) に基づき GitHub PR / GHA / job summary から失敗 event を pull し、失敗種別の集計・同種反復検出・再発防止 PLAN 自動提案へ接続する (本人/AI roster 共有 audit。failure_log local とは分離 L0 §8.5、escalation L0-L3 §8.3 の入力経路) | P1 | HM-08 / GD-01 |",
+    "priority": "P1",
+    "owners": [
+      "HM-08",
+      "GD-01"
+    ],
+    "feedback_hook_axes_count": 5,
+    "feedback_hook_axis_names_specified_in_row": false,
+    "numeric_gaps": [
+      "skill_rating retirement cutoff: not stated",
+      "frequent trouble threshold/window/population: not stated",
+      "success qualification/oracle: not stated",
+      "feedback_hook five axis names: not stated in this row"
+    ],
+    "legacy_asset_disposition": {
+      "asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B",
+      "revision": 3,
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_path": "docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "source_surface": "docs",
+      "source_provenance_ref": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+      "asset_class": "RequirementSourceSnapshot",
+      "reuse_exclusion_class": null,
+      "product_target": "unresolved",
+      "upstream_ids": [],
+      "pair_ids": [],
+      "disposition": "source_snapshot_preservation",
+      "implementation_status": "non_executable_read_only_source",
+      "decision_record_ref": "docs/governance/legacy-asset-decisions.jsonl#REQ-SNAPSHOT-CORRECTION-6B6C5CB0E481BE01088B",
+      "approval_revision": null,
+      "target_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+      "target_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "meaning_interface_invariance_reason": "要求を削減せず後続atom化するためのread-only同一byte source snapshot。新世代authority・実装・oracleへ自動昇格しない",
+      "consumer_refs": [
+        "requirement-carry-forward-ledgers",
+        "requirement-atomization-review"
+      ],
+      "rights_status": "repository_owned_source_preserved",
+      "executability_status": "non_executable_or_data_only_not_invoked",
+      "secret_status": "no_secret_added_by_copy",
+      "external_effect_status": "read_only_no_external_effect",
+      "decided_by": null,
+      "decided_at": null,
+      "copy_performed_by": "Codex repository foundation",
+      "copy_performed_at": "2026-09-15",
+      "read_after_record_ref": "docs/governance/legacy-asset-copy-read-after.jsonl#READ-REQ-SNAPSHOT-6B6C5CB0E481BE01088B",
+      "migration_preconditions": [
+        "semantic_atom_inventory",
+        "product_owner_decision",
+        "parent_requirement_binding",
+        "consumer_check",
+        "rights_check",
+        "executability_check",
+        "secret_check",
+        "external_effect_check"
+      ],
+      "source_authority_state": "confirmed",
+      "target_authority_state": "draft_candidate",
+      "carry_forward_state": "preserved_pending_rehome",
+      "decision_status": "pending_human_confirmation",
+      "proposal_basis_refs": [
+        "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/concept/product-boundary.md:30",
+        "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md:32"
+      ]
+    }
+  },
+  "comparison_basis": {
+    "queue_ref": "docs/governance/audits/requirements-stage/confirmed175-condition-comparison-queue-2026-09-30.json",
+    "queue_file_sha256": "2dbfb06c11ac42a940c0d6b5c188a76e685ea4c00e4d9af10b432198ad17b353",
+    "queue_revision": "2026-09-30 snapshot",
+    "queue_row": {
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-19",
+      "confirmed_identity": "FR-L1-19",
+      "population": "confirmed175",
+      "old_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+        "source_relative_path": "harness/L1-requirements/functional-requirements.md",
+        "line": 50,
+        "file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+        "line_sha256": "be3ce53101b581a48033a8711a78bfc7566bcce7bbdbbb14981e95eb4545ab0a"
+      },
+      "full_audit": {
+        "classification": "部分再導出／旧固有条件・反例・数値・出力の一部が未確認",
+        "record_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#audited_non_residual_records"
+      },
+      "condition_comparison": {
+        "status": "not_individually_compared",
+        "evidence_artifacts": [],
+        "comparison_is_closure": false
+      },
+      "fixed_target_refs": [
+        {
+          "target_id": "HELIXINTELLIGENCE-L2-010",
+          "authority_status": "po_fixed_candidate_adopted",
+          "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "document_paths": [
+            "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "docs/helix-intelligence/L2-requirements/intelligence-requirements.md"
+          ],
+          "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXINTELLIGENCE-L2-010"
+        },
+        {
+          "target_id": "HELIXINTELLIGENCE-L2-011",
+          "authority_status": "po_fixed_candidate_adopted",
+          "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "document_paths": [
+            "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "docs/helix-intelligence/L2-requirements/intelligence-requirements.md"
+          ],
+          "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXINTELLIGENCE-L2-011"
+        },
+        {
+          "target_id": "HELIXLABO-L2-050",
+          "authority_status": "po_fixed_candidate_adopted",
+          "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "document_paths": [
+            "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "docs/helix-labo/L2-requirements/labo-requirements.md"
+          ],
+          "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HELIXLABO-L2-050"
+        }
+      ],
+      "target_mapping_caveat": "These refs identify fixed-revision targets in the full-audit mapping; they do not claim source-atom coverage or closure.",
+      "open_residual_note": "No genuine identity-specific fixed L2/L11 condition-comparison artifact was found in the inventoried set. Full-audit status remains 部分再導出／旧固有条件・反例・数値・出力の一部が未確認. 固定main上の既存照合: ID: FR-L1-19; 旧条件→現行IDと正確な参照: HELIXLABO-L2-050 `labo-requirements.md:40`; L11 `labo-acceptance.md:100`; HELIXINTELLIGENCE-L2-010/011; 対応・残差（保持/変更/後続/未確認）: 知識ownerはHMC-BR-003（`governance-requirements.md:362`）により1.0–2.xのLABO、3.0以降のINTELLIGENCEと既決。LABO-L2-050は変更・検証・運用・再観測の効果循環を持つ。成功repair recipe・頻度判定・予防gate/detector/backlog candidate出力の一体受入は現行本文で未確認であり、別のLABO-063候補起草が進行中。旧skill自動廃棄、rating閾値、event store、自動PR pullは実装方式/数値として継承しない。",
+      "successor_requirement_ids": [],
+      "authority_effect": "none"
+    },
+    "comparison_policy": "Only this source-qualified identity against exact PO-fixed f6 L2/L11 bytes counts as its individual fixed-pair comparison. Later proposal rows, mentions and broad group crosswalks are proximity context only."
+  },
+  "fixed_target_refs": [
+    {
+      "identity": "HELIXLABO-L2-050",
+      "decision_status": "po_fixed_candidate_adopted_at_f6",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "l2": {
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "start_line": 298,
+        "sha256": "cf8c0d89eed3ce45df65af0f5813f94a2e8bfc0508547c5157f11ac117f3f907",
+        "text": "### HELIXLABO-L2-050 — 内部改善循環（1.0）\n\n入力は許可観測・episode・実験と評価済みFeedback候補、出力はOS登録/routing後のtarget変更、target検証、運用結果、LABO再観測を結ぶ追跡可能な循環である。段階はObserved→Correlated→Hypothesized→Experimented→Evaluated→Feedback Candidate→OS registration/target routing→target change process→verification→deployment/operation→LABO re-observation。登録、candidate数、変更、CI成功だけで改善完了としない。採択前は候補のまま保持し、target authorityはtarget ownerに残す。変更後の再観測と効果・退行評価がない場合は循環未完了として戻し、過去記録を上書きしない。\n\n- 親：HELIXLABO-L1-008。依存：L2-001〜010と適用される個別接続（実験ではL2-022のOS assignment観測とL2-028のWorker結果観測を同ticket/experimentへ結ぶ）、OSによるFeedback登録/routing、各target ownerによる変更・検証。保証：循環の未完義務とsource/target revisionを保持し、実験評価はOS割当Workerの実行証拠に結び付く。変更後観測が欠ければLABOの再観測へ戻す。`version_target: 1.0`。\n\n"
+      },
+      "l11": {
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "line": 36,
+        "sha256": "b1c7423ca0fd92af88230d6c85e58041338493a319ef811c5ab037be9aa84c6b",
+        "text": "| HELIXLABO-L1-008 | HELIXLABO-L2-050 | 1.0 |"
+      },
+      "l2_file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "l11_file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "mpr_registration_id": "MPR-RC-HELIXLABO-L2-050-001",
+      "mpr_registration_row_sha256": "d680e2e0b20506f9675c536701fca3fa60653af76e74cc4013fd248553f01764",
+      "mpr_registration_authority_effect": "none",
+      "candidate_semantic_digest": "sha256:e41ea805b72f36d34e326b11488f07d2f0a3e030b795442f47370e6869aecbce"
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-010",
+      "decision_status": "po_fixed_candidate_adopted_at_f6",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "l2": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "start_line": 102,
+        "sha256": "bb5239d4bcd59c2d9c125704c26ba3dad3ce45d4d9acd55eb662f060e25924dd",
+        "text": "### HELIXINTELLIGENCE-L2-010 — Worker配置候補\n\n入力はtask type/domain/complexity/context/tool requirementとsuccess/failure/rework/latency/cost/reliabilityの実績。出力はtask×Worker capability×observed performanceに基づくplacement proposal。価格、model名、benchmark単独で決めず、割当・進行はOSが行う。未評価のWorker/modelを評価済みに扱わない。version_target 1.0。\n\n- 親：HELIXINTELLIGENCE-L1-010。単独成立依存：ticket/task identity、種類/domain/complexity/context/tool requirementとLABO HELIX-Benchのtask-class evidence、Worker実績・未評価状態。検証範囲：根拠付きticket別Worker placement proposal。保証：task属性と観測実績を使い、未評価を未評価と表示し、割当/進行はOSへ残す。失敗時戻し先：task属性不足はOSへ、Bench/evidence/適用scope不足はLABOへ返し、配置案を未確定にする。`version_target: 1.0`。実契約版・成果物版・依存版・互換範囲・交換/更新条件はHARNESS-L2-010/011共通pack contractを適用する。\n\n"
+      },
+      "l11": {
+        "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "line": 34,
+        "sha256": "9b3fb2a01761df861801937c76b575f80134529a4d64d461aa48bce49d549293",
+        "text": "| HELIXINTELLIGENCE-L1-010 | 単体（OS接続） | HELIXINTELLIGENCE-L2-010 | 単体 | HELIXINTELLIGENCE-L2-010 | HELIXINTELLIGENCE-L2-034, HELIXINTELLIGENCE-L2-035, HELIXINTELLIGENCE-L2-037, HELIXINTELLIGENCE-L2-061 | 1.0 |"
+      },
+      "l2_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "l11_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "mpr_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-010-004",
+      "mpr_registration_row_sha256": "89bdc3bcaaee36a2c5632e3d784c176776bf32521e10621ac837ed22a47235fc",
+      "mpr_registration_authority_effect": "none",
+      "candidate_semantic_digest": "sha256:29b05afbff84475d17b9b1f0698762dab2a1be92480313833d9c8fef87d410c1"
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-011",
+      "decision_status": "po_fixed_candidate_adopted_at_f6",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "l2": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "start_line": 108,
+        "sha256": "0a2a1ccf96f44e4d8ccbba8d4663e47844dca60c5135d087d25f6d47504d3deb",
+        "text": "### HELIXINTELLIGENCE-L2-011 — Model/Provider適性\n\n入力は同一corpus・同一responsibility scopeのmodel/provider結果。出力はdomain/capability別findings、false positives、misses、reproducibility、latency、costの比較。更新だけで上位とせず、同条件がそろわない比較は不確実として返す。version_target 1.0。\n\n- 親：HELIXINTELLIGENCE-L1-011。単独成立依存：同一corpus・同一responsibility scopeでのcurrent/candidate model-provider結果と各実行版。検証範囲：domain/capability別findings/false positives/misses/reproducibility/latency/cost比較。保証：比較条件とmodel/provider/versionを表示し、更新だけで優位判定しない。model差替えを自動実行しない。失敗時戻し先：corpus/scope/revisionが揃わない場合は比較不能としてINTELLIGENCE判断へ戻し、追加の同条件結果を求める。`version_target: 1.0`。実契約版・成果物版・依存版・互換範囲・交換/更新条件はHARNESS-L2-010/011共通pack contractを適用する。\n\n"
+      },
+      "l11": {
+        "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "line": 35,
+        "sha256": "c67d393017d810af9cd95e09e3b7d48df1a9a49c905a85dd0438583e7ad41237",
+        "text": "| HELIXINTELLIGENCE-L1-011 | 単体 | HELIXINTELLIGENCE-L2-011 | 単体 | HELIXINTELLIGENCE-L2-011 | HELIXINTELLIGENCE-L2-034, HELIXINTELLIGENCE-L2-041 | 1.0 |"
+      },
+      "l2_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "l11_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "mpr_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-011-004",
+      "mpr_registration_row_sha256": "14cb6642ada00f5b729560f721c1cb0867d9aff500ad927b6916dba9c770194c",
+      "mpr_registration_authority_effect": "none",
+      "candidate_semantic_digest": "sha256:03d87e0c313f91b6a5422f7e9e448fba1138df83017d89f6a2021b25afc7944c"
+    }
+  ],
+  "fixed_target_decisions": [
+    {
+      "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      "sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+    },
+    {
+      "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+    }
+  ],
+  "duplicate_check": {
+    "result": "no prior identity-specific fixed-f6 condition audit found",
+    "search_scope": "docs/governance/audits/requirements-stage/**/*.json and *.md; exact source-qualified identity references were checked. The queue and full-audit/REG-06 population files are identity inventories and mark or imply no individual exact-pair comparison; older FR-L1-19 mentions are supporting cross-references/consumer evidence, not a fixed-f6 condition audit."
+  },
+  "legacy_consumer_pins": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "lines": [
+        {
+          "line": 50,
+          "sha256": "be3ce53101b581a48033a8711a78bfc7566bcce7bbdbbb14981e95eb4545ab0a",
+          "text": "| **FR-L1-19** | Learning Engine (成功実行 recipe 蓄積・頻出トラブル予防ルール化・スキル推薦改善・L 単位注入更新) | learning-engine | feedback_hook 5 軸 / skill 発火ログ / recovery-log / interrupt 履歴 / detector 結果 | recipe (pattern_key 付き)、予防ルール、推薦精度改善。※ extended: スキル破棄・改修自動化を含む。skill_rating 閾値以下を廃止候補としてフラグ、削除は人間確認必須 (F6=a、CLAUDE.md destructive 禁止事項)。ログ型失敗/成功蓄積 (event-sourced recipe log) を recipe store 実装方式として明記。※ extended (A-54 audit 軸1 C-02): 「失敗を仕組みに変換」原則 (L0 §1.4) に基づき GitHub PR / GHA / job summary から失敗 event を pull し、失敗種別の集計・同種反復検出・再発防止 PLAN 自動提案へ接続する (本人/AI roster 共有 audit。failure_log local とは分離 L0 §8.5、escalation L0-L3 §8.3 の入力経路) | P1 | HM-08 / GD-01 |"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/technical-requirements.md",
+      "file_sha256": "3e105358418cb54af0bc2e414d0b06171715ab2a26ea3b44dd16f932bcbfef88",
+      "lines": [
+        {
+          "line": 93,
+          "sha256": "f0ca6e3104bfc9ddb2ddbc42490c7615be3ddfd5dcccc2a57c90f67fb4708005",
+          "text": "| `recipe_store/` (A-52 audit C-1、Phase B) | Learning Engine の成功パターン蓄積 (FR-L1-19、`pattern_key` 付き event-sourced log)。**Phase B 着手条件** = `docs/design/harness/L3-functional/business-detail.md §6` 参照 (Phase A G14 通過 + KPI D-07 ≥ 50% AND 条件) | L4 データ設計 sub-doc / Phase B 実装 |"
+        },
+        {
+          "line": 94,
+          "sha256": "7a8ccb60381d04aaa49dd5ced243b96f58af426638a34ba79a11a77b99b60e09",
+          "text": "| `accuracy_score/` (A-52 audit C-1、Phase B) | recipe 適用精度・skill 推薦精度 (FR-L1-19 / observability-metrics.md §トラブル計測)。**Phase B 着手条件** = `docs/design/harness/L3-functional/business-detail.md §6` 参照 | L4 データ設計 sub-doc / Phase B 実装 |"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/function-spec.md",
+      "file_sha256": "f80b69a4d153d7775ecd789aa9e261c140baf2a443ac53a851de710cfce02b14",
+      "lines": [
+        {
+          "line": 68,
+          "sha256": "ad16d3b7dd805d75e20e508c83de65528b2fd8556e223939cbd5c22e7698ae1f",
+          "text": "| `emitFeedbackEvents` | `(findings: FindingRow[], signals: QualitySignal[]) => FeedbackEvent[]` | findings/signals は正規化済み | 反復 gap、未解決 blocker、dependency stall、quality regression pattern を feedback event にまとめる。PLAN 変更は自動承認しない |"
+        },
+        {
+          "line": 244,
+          "sha256": "6e1d51efa140f661b3756aea59235350e17eec0e5467ebca48f243531b8824e2",
+          "text": "| FR-L1-19 | `emitFeedbackEvents` | emitFeedbackEvents(input: EmitFeedbackEventsInput, deps: EmitFeedbackEventsDeps) => EmitFeedbackEventsResult | findings と quality signals は正規化済みである。 | repeated gap、unresolved blocker、dependency stall、regression を feedback event にする。 | feedback event は PLAN を edit/approve しない。 | U-FR-L1-19 |"
+        },
+        {
+          "line": 276,
+          "sha256": "996cdb10748328fc64b76bd0d8461186bbc787171ab9d0b959e7cfafb40b34c6",
+          "text": "| FR-L1-36 | `projectSkillEvaluations` | projectSkillEvaluations(db: HarnessDb, opts?: { asOf?: string }) => void | skill_invocations と plan_registry row が存在し、asOf は ISO timestamp（既定 = nowIso()）である。 | accepted=1 invocation を持つ skill_id ごとに skill_evaluations row を書く。skill_rating = success_count / adoption_count、unused_flag = asOf から 30 日以内に invocation が無い場合 1。cold-start は 0 rows で throw しない。 | unused skill は自動削除しない。削除は human-only。success state (`confirmed`/`completed`) は source に文書化し、single-source-of-truth hardcoded とする。 | U-FR-L1-36 |"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/improvement-backlog.md",
+      "file_sha256": "e6d327ff488860dcaa8d7a150ac893e5cf0940eb710396cdf7ae746f5689a9e2",
+      "lines": [
+        {
+          "line": 4,
+          "sha256": "cfb0a1eed309c130f781fdb81b1cf2c4b3b5c01c018a963394e20ea434dedb4a",
+          "text": "> FR-L1-19 (Learning Engine) 本実装までの**手動の橋渡し**であり、ledger (`docs/migration/v2-import-ledger.md` の A-*) と相互参照する。"
+        },
+        {
+          "line": 54,
+          "sha256": "4382dd7eacfba9fdc64f37b2c665c3c2be30a029d548e947c17310d5f78437d5",
+          "text": "| **IMP-005** | 2026-05-29 | A-58 retro | ledger / backlog の改善項目を `.helix/audit/failure_log.jsonl` へ自動連携する経路が無い (手書きのみ) | FR / policy | observed | FR-L1-19 / FR-L1-20 |"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+      "file_sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb",
+      "lines": [
+        {
+          "line": 287,
+          "sha256": "a6c0e72b11574f49e4289d0f7a155469a84712ccce858c6a9921715a03454289",
+          "text": "- 認証 (authentication)、認可 (authorization)、決済 (payments)、PII、license、destructive data operations、"
+        }
+      ]
+    }
+  ],
+  "source_conditions": [
+    {
+      "atom": "primary purpose: successful-execution recipe accumulation",
+      "old_condition": "Learning Engine stores recipes of successful executions; recipe carries pattern_key.",
+      "fixed_comparison": "LABO-L2-050 provides an end-to-end improvement cycle from observed/evaluated feedback candidate through OS registration/routing, target change, verification, operation, and LABO re-observation. It does not define recipe identity, pattern_key, storage/retention, or success qualification."
+    },
+    {
+      "atom": "frequent trouble → preventive rule",
+      "old_condition": "Frequent trouble is converted into prevention rules.",
+      "fixed_comparison": "LABO-L2-050 requires effect/regression evaluation and keeps target-owner authority; no recurrence classifier, frequency oracle, prevention-rule output, detector/gate promotion, or recurrence warning."
+    },
+    {
+      "atom": "skill recommendation improvement",
+      "old_condition": "Improve accuracy of skill recommendations.",
+      "fixed_comparison": "INTELLIGENCE-L2-010 proposes task-specific Worker placement from task attributes and Bench evidence; L2-011 compares model/provider capability under same corpus/scope. Neither is skill recommendation or skill recommendation accuracy."
+    },
+    {
+      "atom": "L-level injection update",
+      "old_condition": "Update injected knowledge by L (layer) unit.",
+      "fixed_comparison": "No fixed pair defines layer-scoped injection, refresh/update, applicable-layer selection, or injection accuracy."
+    },
+    {
+      "atom": "inputs: feedback_hook five axes; skill firing log; recovery log; interrupt history; detector results",
+      "old_condition": "These five named input classes feed the Learning Engine.",
+      "fixed_comparison": "LABO-L2-050 accepts allowed observations/episodes/experiments/evaluated feedback candidates and must preserve source/target revision, but does not enumerate or contract all five input classes. INTELLIGENCE pairs consume task/Bench/model comparison evidence, not the five-source union."
+    },
+    {
+      "atom": "outputs: pattern_key recipe, prevention rule, recommendation-accuracy improvement",
+      "old_condition": "Three distinct outputs; recommendation accuracy is an outcome, not merely proposal issuance.",
+      "fixed_comparison": "LABO-050 output is traceable target change and later effect/regression observation; no recipe/rule output nor measured skill recommendation accuracy improvement."
+    },
+    {
+      "atom": "skill destruction/repair automation boundary",
+      "old_condition": "Extended scope includes skill discard/modification automation; a skill_rating below a threshold is flagged as a retirement candidate; deletion requires human confirmation (F6=a / legacy destructive-action rule). The source states no numeric rating threshold.",
+      "fixed_comparison": "No fixed pair gives skill lifecycle/retirement candidate rules or deletion confirmation boundary. Do not infer deletion authority from candidate/feedback flows."
+    },
+    {
+      "atom": "event-sourced success/failure recipe log",
+      "old_condition": "Extended technical condition specifies an event-sourced recipe log for success/failure accumulation, with pattern_key.",
+      "fixed_comparison": "No fixed pair requires event-sourced recipe storage, append-only history, or this storage implementation."
+    },
+    {
+      "atom": "GitHub PR/GHA/job-summary failure-event intake",
+      "old_condition": "Extended A-54 C-02 input pulls failure events from PR/GHA/job summaries, separate from local failure_log.",
+      "fixed_comparison": "No fixed pair defines those GitHub event sources, pull/refresh contract, or separation from a local failure log."
+    },
+    {
+      "atom": "failure classification and recurrence detection",
+      "old_condition": "Classify failure types and detect repeated same-type failures before prevention-plan proposal.",
+      "fixed_comparison": "LABO-050 does not define failure taxonomy or same-type recurrence detector; later LABO-063 is a bounded, separate candidate for repeated repair procedures, not FR19 closure."
+    },
+    {
+      "atom": "preventive PLAN auto-proposal and shared roster audit",
+      "old_condition": "Repeated failure detection connects to preventive PLAN proposal; audit is shared across human/AI roster.",
+      "fixed_comparison": "No fixed pair creates a preventive PLAN proposal or shared roster audit output. Existing OS ticket/routing is not a plan-generation contract."
+    },
+    {
+      "atom": "failure_log local remains separate",
+      "old_condition": "GitHub-derived failure events stay separate from local failure_log.",
+      "fixed_comparison": "No fixed pair establishes this two-source store distinction."
+    }
+  ],
+  "later_po_decisions": {
+    "decision_files": [
+      {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "rows_in_explicit_identity_table": 57,
+        "adopted_or_conditional_pair_rows": 53,
+        "compact_index": [
+          {
+            "identity": "HARNESS-L2-034",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HARNESS-L2-034-003",
+            "decision_row_sha256": "c006f41bb2b046673e74644d866dd309b3a0cfcb5d06b3ca6eb193d67b7d59e1"
+          },
+          {
+            "identity": "HARNESS-L2-035",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HARNESS-L2-035-002",
+            "decision_row_sha256": "db95fb03a091cd2d74a7bef953d37aacc6308de5363e157e760a07d1715c2e77"
+          },
+          {
+            "identity": "HARNESS-L2-036",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HARNESS-L2-036-002",
+            "decision_row_sha256": "6d63fbaafbc3770d25a4274943cd0771009ed6567da1ed7f75eca1cf78271ac1"
+          },
+          {
+            "identity": "HARNESS-L2-037",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HARNESS-L2-037-002",
+            "decision_row_sha256": "8f3f0b6338f4c39ad1c380cff32fb888b1e6deb98b57e8fc421bd9d74c35b460"
+          },
+          {
+            "identity": "HARNESS-L2-038",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HARNESS-L2-038-001",
+            "decision_row_sha256": "a5b640594b664d2a210ccbad1c145fa3890b30cab55b436ef675117d3a8b69db"
+          },
+          {
+            "identity": "HARNESS-L2-039",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HARNESS-L2-039-003",
+            "decision_row_sha256": "36ee00432206be7b72d281d7fa0222239130ec4025d8bed45810f1bc395625e5"
+          },
+          {
+            "identity": "HARNESS-L2-040",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HARNESS-L2-040-002",
+            "decision_row_sha256": "39892649f4052cc7dfc5b0a8ec8c78d484f0e2b0fee19a1206d7a64dc12d86b8"
+          },
+          {
+            "identity": "HARNESS-L2-041",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HARNESS-L2-041-002",
+            "decision_row_sha256": "fa7480f5d52ce8d81564e5017fa178b4bf8c64b63968bb1e671a51baa3cdcb3d"
+          },
+          {
+            "identity": "HARNESS-L2-042",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HARNESS-L2-042-001",
+            "decision_row_sha256": "e1fdf7ebc81a2c7d2775f7324f7bbcdac31e660921013e44672eecddef7d8698"
+          },
+          {
+            "identity": "HARNESS-L2-043",
+            "disposition": "条件付き採択：Bルート、所属はHARNESS-CORE。",
+            "registration_id": "MPR-RC-HARNESS-L2-043-002",
+            "decision_row_sha256": "18f0bfda60bb841dead7b7d2db20bfe2ce439d5a19e5e9050fe24bef0487406a"
+          },
+          {
+            "identity": "HARNESS-L2-044",
+            "disposition": "条件付き採択：Bルート、名称はDesign Contract Portfolio。採択済み025/026へ無断追記しない。",
+            "registration_id": "MPR-RC-HARNESS-L2-044-002",
+            "decision_row_sha256": "cdee79d9f171d52bbfca96f5ba36439265fc1146006fcf8bf1c7615d958f2a2a"
+          },
+          {
+            "identity": "HARNESS-L2-046",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HARNESS-L2-046-001",
+            "decision_row_sha256": "8262b7450d8eb68154aa0123f8c829d7b882cd46450676a46de458030ee5ca25"
+          },
+          {
+            "identity": "HARNESS-L2-047",
+            "disposition": "条件付き採択：A配置（HARNESSが契約生成規範を所有）。",
+            "registration_id": "MPR-RC-HARNESS-L2-047-001",
+            "decision_row_sha256": "234adb61f9dfeab547dd06af598673d24f98505529ab1b913de686a76463fa59"
+          },
+          {
+            "identity": "HELIXOS-L2-031",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXOS-L2-031-001",
+            "decision_row_sha256": "534f6f3a0179d8c4b8d6fe2f301c55bd9f8468c341c1fb0ab38410cda2b35b9d"
+          },
+          {
+            "identity": "HELIXOS-L2-032",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXOS-L2-032-001",
+            "decision_row_sha256": "878ad5a4eda88fbac3f6341ddbe58a613d386be06d668b12d6a90be4dc4b67c1"
+          },
+          {
+            "identity": "HELIXOS-L2-033",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXOS-L2-033-001",
+            "decision_row_sha256": "54a81764fb7a3656fe51fc4028c57c714e034bcee10c7d4c3193ede2205ab5fd"
+          },
+          {
+            "identity": "HELIXOS-L2-034",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXOS-L2-034-002",
+            "decision_row_sha256": "370bbd2d59d583ba6f3d17bb958508feffcb33887a15adc1cc13ca3f1f5268c7"
+          },
+          {
+            "identity": "HELIXOS-L2-035",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXOS-L2-035-001",
+            "decision_row_sha256": "86475e594d97ea452e6a1e41b7f7c8761a5d60ce4ab4f9062ce044ece6224222"
+          },
+          {
+            "identity": "HELIXOS-L2-036",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXOS-L2-036-001",
+            "decision_row_sha256": "722b92aad6fe789587bf8d3b41cb28f9a2283cc1d422227773cd73a507162f2b"
+          },
+          {
+            "identity": "HELIXOS-L2-037",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXOS-L2-037-001",
+            "decision_row_sha256": "c85ed2e89aa6fd1172a2684de1c7c19285d0a6666e179e34a88bae9bfb110080"
+          },
+          {
+            "identity": "HELIXOS-L2-038",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXOS-L2-038-001",
+            "decision_row_sha256": "9c4b9a4a075bc5ceeeaae222ef3aa401a1e2336d0932a7cfc923d9b12644a23b"
+          },
+          {
+            "identity": "HELIXOS-L2-040",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXOS-L2-040-001",
+            "decision_row_sha256": "863b15ab4b8102d7574efeffaa16ce6ef8a11958221bf36f62caeea848924fa4"
+          },
+          {
+            "identity": "HELIXOS-L2-041",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXOS-L2-041-001",
+            "decision_row_sha256": "88fcaa59d93c43d56af83aba7899c745a9adbab0e3448be8afe7b6fb2fecc999"
+          },
+          {
+            "identity": "HELIXOS-L2-042",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXOS-L2-042-001",
+            "decision_row_sha256": "80c4cb876936846e7a76da80da77b59fa80ac014a98d1e8f7924169bbf6185aa"
+          },
+          {
+            "identity": "HELIXOS-L2-043",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXOS-L2-043-002",
+            "decision_row_sha256": "addb08625038fa2124e6f3a158ad0d15047f82004b18e454ba2ca3a537c804ef"
+          },
+          {
+            "identity": "HELIXOS-L2-044",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXOS-L2-044-001",
+            "decision_row_sha256": "6f3334da6887e697a3df623ada6e7e84963870ea7d706759edfdda4bfbe96153"
+          },
+          {
+            "identity": "HELIXOS-L2-046",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXOS-L2-046-001",
+            "decision_row_sha256": "30b808ddda1ac9fb69931bfcce1d2f31f03be9aa0f78a34bb71ce02189ccb03a"
+          },
+          {
+            "identity": "HELIXOS-L2-047",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXOS-L2-047-004",
+            "decision_row_sha256": "530e2c7271f986be9027cb88170c7b41d5e6ab13e9c849af8f06da0f82131c55"
+          },
+          {
+            "identity": "HELIXOS-L2-048",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXOS-L2-048-001",
+            "decision_row_sha256": "13a002af8bab53747a824d73c3d5045face24f39dbccb4703ffd0cb301dc3890"
+          },
+          {
+            "identity": "HELIXOS-L2-049",
+            "disposition": "条件付き採択：割当前に後段の検証義務・担当・capacityを確保する。割当先task自体のreview/merge完了は割当条件にしない（訂正L11 `HELIXOS-L2-049-003`）。",
+            "registration_id": "MPR-RC-HELIXOS-L2-049-003",
+            "decision_row_sha256": "f0856ae991e2b0917c4a5196b903cd7ba8a1b7026397235826c77abbbe1ab939"
+          },
+          {
+            "identity": "HELIXOS-L2-050",
+            "disposition": "条件付き採択：capacity増枠から新しいmerge権限を発生させない。既存review_merge担当は既存admission後にmergeできる。branch変更・Ready権限は与えない（訂正L11 `HELIXOS-L2-050-003`）。",
+            "registration_id": "MPR-RC-HELIXOS-L2-050-003",
+            "decision_row_sha256": "d8c7710bdc66863227e96b419e9271a73a6dba695cf40fb447a44c102eabf78b"
+          },
+          {
+            "identity": "HELIXOS-L2-051",
+            "disposition": "条件付き採択：本構成でCursorを作成専用、Claude優先は適用可能な評価根拠のある要求・設計taskのみ。",
+            "registration_id": "MPR-RC-HELIXOS-L2-051-002",
+            "decision_row_sha256": "b9cef971102d6f8ec1f03c1eca2d77fb40b8490b0968a66f535daa78f992f218"
+          },
+          {
+            "identity": "HELIXOS-L2-052",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXOS-L2-052-001",
+            "decision_row_sha256": "32d23b8648dece8231c8291f2b4f16f992114756091fa560cddec413a1aef06c"
+          },
+          {
+            "identity": "HELIXLABO-L2-061",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXLABO-L2-061-001",
+            "decision_row_sha256": "acaa9114e8009108027c9b9ea43a1fe54a6c31adff1d5f9f31830c0be3bd6b42"
+          },
+          {
+            "identity": "HELIXLABO-L2-062",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXLABO-L2-062-001",
+            "decision_row_sha256": "36749f28c047b28caf0167d7e2a51498c4f8f2dbca4e45687bee59250b7dec1b"
+          },
+          {
+            "identity": "HELIXLABO-L2-063",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXLABO-L2-063-001",
+            "decision_row_sha256": "5196e60a105560e0797c9638b6b1d2f1dc83f457f94e9e1e38a1ddc3b0a9ec25"
+          },
+          {
+            "identity": "HELIXLABO-L2-064",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXLABO-L2-064-002",
+            "decision_row_sha256": "2b967f2151eabd4f2cf80d4689fc9f33fcf84ad9a879bf1cbac8d4eb2a97051a"
+          },
+          {
+            "identity": "HELIXLABO-L2-065",
+            "disposition": "条件付き採択：D1、067とは別指標で「最初のAttemptの結果」。",
+            "registration_id": "MPR-RC-HELIXLABO-L2-065-001",
+            "decision_row_sha256": "418faea57e0785c870054c9af72ccf6eed92bc08d8abdbd7f9c1ec5eb8204194"
+          },
+          {
+            "identity": "HELIXLABO-L2-066",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXLABO-L2-066-001",
+            "decision_row_sha256": "1c0b1f7d0869e91effb85cdecfa0eb361e6fda0ae06c920ea125a1110af63fc4"
+          },
+          {
+            "identity": "HELIXLABO-L2-067",
+            "disposition": "条件付き採択：D1、「最初の適格candidateの結果」と同一Attempt内修正回数。065と換算・統合しない。",
+            "registration_id": "MPR-RC-HELIXLABO-L2-067-001",
+            "decision_row_sha256": "7c29e568fb190cbfb119bb1c1e685b0fb99db9fea5942440e4fb1b70a2e6312c"
+          },
+          {
+            "identity": "HELIXLABO-L2-068",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXLABO-L2-068-001",
+            "decision_row_sha256": "48c66f92ff0760af5b7fe216b4f903ebe0b71c96fef5effc8eb3ffca2abc117a"
+          },
+          {
+            "identity": "HELIXLABO-L2-069",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXLABO-L2-069-001",
+            "decision_row_sha256": "2996d4b4a8ce9736503d164c18cfa750b8eef445dbc977979ac0537960c3c99d"
+          },
+          {
+            "identity": "HELIXINTELLIGENCE-L2-072",
+            "disposition": "条件付き採択：B配置、1.0は候補生成とshadow評価まで。",
+            "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-072-004",
+            "decision_row_sha256": "62813222c8f4d80ab5bd0a8e31c22a6b02ba526970dcac3e9a65baea882c325d"
+          },
+          {
+            "identity": "HELIXINTELLIGENCE-L2-073",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-073-002",
+            "decision_row_sha256": "fc306f82be009d9ed41bba3801c45be1dcc304f6527ec95e852e0f849dce5455"
+          },
+          {
+            "identity": "HELIXINTELLIGENCE-L2-074",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-074-002",
+            "decision_row_sha256": "0cdefdc0208005167b66d05ab66e2ad437aaef58a46f629d3ec9173e72fba381"
+          },
+          {
+            "identity": "HELIXSECURITY-L2-029",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXSECURITY-L2-029-002",
+            "decision_row_sha256": "01007c723712719e494a605d82f5ef7af56dc74e05f49b2c6e5c7ad718a639b1"
+          },
+          {
+            "identity": "HELIXSECURITY-L2-030",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXSECURITY-L2-030-001",
+            "decision_row_sha256": "3ee3598e28e1bd3873deef2185d3d4cb8d0dd2eac4b704fa8f4456dc85c8e519"
+          },
+          {
+            "identity": "HELIXSECURITY-L2-031",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXSECURITY-L2-031-001",
+            "decision_row_sha256": "dccdce5340add287a23ef7df8576c1dd49e7d65e219798dc87022c9935c59a43"
+          },
+          {
+            "identity": "HELIXSECURITY-L2-032",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXSECURITY-L2-032-001",
+            "decision_row_sha256": "d668008ef2de562a11d0d1a594db7fdb3eadbcb84fd65aa7568c825e80241092"
+          },
+          {
+            "identity": "HELIXSECURITY-L2-033",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXSECURITY-L2-033-002",
+            "decision_row_sha256": "c0adc957901718d31960f3696cbf23ecc92df4a130aae379c96d8065145abf2c"
+          },
+          {
+            "identity": "HELIXSECURITY-L2-034",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXSECURITY-L2-034-001",
+            "decision_row_sha256": "ec02930f3e3c7d0108f9e6a81c4e5376b4ed6259ba9396cc3aa2fc0732bca489"
+          },
+          {
+            "identity": "HELIXCONNECT-L2-008",
+            "disposition": "条件付き採択：A配置（供給はCONNECT、安全判定はSECURITY）、registration -002を対象。",
+            "registration_id": "MPR-RC-HELIXCONNECT-L2-008-002",
+            "decision_row_sha256": "0f5350230dd35d037de1a8b8f7366867f4677a5e8ee37d8856c3919a73b3f366"
+          },
+          {
+            "identity": "HELIXCONNECT-L2-009",
+            "disposition": "条件付き採択：A。direction/orderは属性、feedbackは型付き戻り辺。操作ごとのunknown停止条件を分ける（訂正L11 `HELIXCONNECT-L11-009-002`）。",
+            "registration_id": "MPR-RC-HELIXCONNECT-L2-009-002",
+            "decision_row_sha256": "d96c400c50e5a4520884a60f81efa742de87bb1adaa1520bf4d00f7886b0464b"
+          }
+        ]
+      },
+      {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+        "file_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+        "rows_in_explicit_identity_table": 10,
+        "adopted_or_conditional_pair_rows": 10,
+        "compact_index": [
+          {
+            "identity": "HARNESS-L2-041",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HARNESS-L2-041-003",
+            "decision_row_sha256": "78a28b08cd764877da9821077da3ce3dfa623b5fac671d6c7f56fbda6c31045c"
+          },
+          {
+            "identity": "HARNESS-L2-048",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HARNESS-L2-048-001",
+            "decision_row_sha256": "9cbd95969aadc8f6c302d3ca6ae4f4b3c2271c1cef907e23bcfa8a8423adf280"
+          },
+          {
+            "identity": "HELIXBRAIN-L2-031",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HELIXBRAIN-L2-031-001",
+            "decision_row_sha256": "ecd9b0d8c2919b11ff0eaa02cf8c38877c33d56d49f4291c44613ab6eff4fce3"
+          },
+          {
+            "identity": "HARNESS-L2-050",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HARNESS-L2-050-001",
+            "decision_row_sha256": "a727d0c66828509f604635e01c30929c6320fcc026aa85f7b2d5b0c7aa67744c"
+          },
+          {
+            "identity": "HARNESS-L2-051",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HARNESS-L2-051-001",
+            "decision_row_sha256": "49ee147e98f82a02a9f49328e94996e7bdaab00219ff7de044fc521129c23712"
+          },
+          {
+            "identity": "HARNESS-L2-052",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HARNESS-L2-052-001",
+            "decision_row_sha256": "601798cb431671fc38995d4b4db495b97a43ea818878ca54c882e46acbc3b2af"
+          },
+          {
+            "identity": "HARNESS-L2-053",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HARNESS-L2-053-001",
+            "decision_row_sha256": "9712e5331aee79ecb6bca483f2d9f56ee4b298a327b41a369f35bc59c411d56a"
+          },
+          {
+            "identity": "HARNESS-L2-054",
+            "disposition": "採択",
+            "registration_id": "MPR-RC-HARNESS-L2-054-001",
+            "decision_row_sha256": "6fcf725b5e10fe294094a0e38a0092a7818fe17b9e2a606ce476fcc5badc5e9a"
+          },
+          {
+            "identity": "HELIXOS-L2-038",
+            "disposition": "依存先と併せて採択",
+            "registration_id": "MPR-RC-HELIXOS-L2-038-002",
+            "decision_row_sha256": "196e1750220ef4bdaf57b57f0ee955375b942e8afe91ee6d45c30ef04488a733"
+          },
+          {
+            "identity": "HELIXOS-L2-053",
+            "disposition": "依存先と併せて採択",
+            "registration_id": "MPR-RC-HELIXOS-L2-053-001",
+            "decision_row_sha256": "84c9e2fe5adfd0a93e8c3fd6dddec78d6d784b6375ea161f85ea2b3235dc4e14"
+          }
+        ]
+      },
+      {
+        "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+        "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+        "rows_in_explicit_identity_table": 26,
+        "adopted_or_conditional_pair_rows": 25,
+        "compact_index": [
+          {
+            "identity": "HARNESS-L2-049",
+            "disposition": "承認（通常採択22件に含む）",
+            "registration_id": "MPR-RC-HARNESS-L2-049-003",
+            "decision_row_sha256": "2c9037f2d9523da4fdc17b9679bd4cacff1f39e4290dfbb06b4c38180ba2b264"
+          },
+          {
+            "identity": "HARNESS-L2-055",
+            "disposition": "承認（通常採択22件に含む）",
+            "registration_id": "MPR-RC-HARNESS-L2-055-001",
+            "decision_row_sha256": "756279719a4bbf61adeac3df86871b7e5589c2860ffb1a0a3af2b41e8d3017a0"
+          },
+          {
+            "identity": "HARNESS-L2-056",
+            "disposition": "承認（通常採択22件に含む）",
+            "registration_id": "MPR-RC-HARNESS-L2-056-001",
+            "decision_row_sha256": "33f58252e53a1934cafad1ec7d84a05db8be8214d9112056dfb6722e700430e1"
+          },
+          {
+            "identity": "HARNESS-L2-057",
+            "disposition": "承認（通常採択22件に含む）",
+            "registration_id": "MPR-RC-HARNESS-L2-057-001",
+            "decision_row_sha256": "ae8d179d379132fa771bc1fb349174a57efd9dfc5b896f51c3ca9f3261154360"
+          },
+          {
+            "identity": "HARNESS-L2-058",
+            "disposition": "承認（通常採択22件に含む）",
+            "registration_id": "MPR-RC-HARNESS-L2-058-002",
+            "decision_row_sha256": "8177aa9ef75d22552d4e1b74c6bfacdfdc65782e97f0a7b4088431c27cfac258"
+          },
+          {
+            "identity": "HARNESS-L2-059",
+            "disposition": "承認（通常採択22件に含む）",
+            "registration_id": "MPR-RC-HARNESS-L2-059-001",
+            "decision_row_sha256": "0bfd9f58757e294ed8dde1e772c5da3c07e91bb7d1956ee4a9a53c84f51e9159"
+          },
+          {
+            "identity": "HARNESS-L2-060",
+            "disposition": "案を選択して承認（3件）",
+            "registration_id": "MPR-RC-HARNESS-L2-060-001",
+            "decision_row_sha256": "6039db43c7e23bc51f865f3384af203936a83dfa91370df9b656df045c61500d"
+          },
+          {
+            "identity": "HARNESS-L2-062",
+            "disposition": "承認（通常採択22件に含む）",
+            "registration_id": "MPR-RC-HARNESS-L2-062-001",
+            "decision_row_sha256": "81f6ede50a77dae5f3b39f67e12161a43b4015ff1d0adc6d5871bdda0aeed4cc"
+          },
+          {
+            "identity": "HARNESS-L2-063",
+            "disposition": "承認（通常採択22件に含む）",
+            "registration_id": "MPR-RC-HARNESS-L2-063-001",
+            "decision_row_sha256": "b91f3f327157edbc2f48364fab9c4b8763db2ba16554aed61a8dfda765cadb2e"
+          },
+          {
+            "identity": "HELIXLABO-L2-070",
+            "disposition": "承認（通常採択22件に含む）",
+            "registration_id": "MPR-RC-HELIXLABO-L2-070-001",
+            "decision_row_sha256": "0cc2b7ac34f2a9dec7a072910ba43c90547a7cd8cdee9e337a8701412b8ca052"
+          },
+          {
+            "identity": "HELIXLABO-L2-071",
+            "disposition": "承認（通常採択22件に含む）",
+            "registration_id": "MPR-RC-HELIXLABO-L2-071-001",
+            "decision_row_sha256": "f6219d5c62a527ebe42ea45ab38fe083546ae97f686e4cb486fef2e905d0b87f"
+          },
+          {
+            "identity": "HELIXOS-L2-034",
+            "disposition": "承認（通常採択22件に含む）",
+            "registration_id": "MPR-RC-HELIXOS-L2-034-003",
+            "decision_row_sha256": "9e5008e562be198466fe57dcbdd9ccfffde23c5f2797e13f60af394cd93e6442"
+          },
+          {
+            "identity": "HELIXOS-L2-054",
+            "disposition": "承認（通常採択22件に含む）",
+            "registration_id": "MPR-RC-HELIXOS-L2-054-001",
+            "decision_row_sha256": "63be074a8b79ad02f7e5305a036f21606b52212ab08b484812fb5295ab502992"
+          },
+          {
+            "identity": "HELIXOS-L2-055",
+            "disposition": "案を選択して承認（3件）",
+            "registration_id": "MPR-RC-HELIXOS-L2-055-001",
+            "decision_row_sha256": "0dde862f0edf4ad3581016a562940d7ce715bcfb107278b808b273e2dbb8ae9f"
+          },
+          {
+            "identity": "HELIXOS-L2-101",
+            "disposition": "承認（通常採択22件に含む）",
+            "registration_id": "MPR-RC-HELIXOS-L2-101-002",
+            "decision_row_sha256": "30543b99a6dda6ee7b825cc6879d5f1494e53799f91a8288f2fe152d77e2b6f1"
+          },
+          {
+            "identity": "HELIXOS-L2-102",
+            "disposition": "承認（通常採択22件に含む）",
+            "registration_id": "MPR-RC-HELIXOS-L2-102-001",
+            "decision_row_sha256": "7787ddaf145fd6b0a6d929e2ca7e4e849de443a1db89c4c907814041d39b718d"
+          },
+          {
+            "identity": "HELIXOS-L2-103",
+            "disposition": "案を選択して承認（3件）",
+            "registration_id": "MPR-RC-HELIXOS-L2-103-001",
+            "decision_row_sha256": "4bed6104029f8073f0fe13d62b8c2a93df559e70111cdb2d678b35d234f9ce93"
+          },
+          {
+            "identity": "HELIXOS-L2-104",
+            "disposition": "承認（通常採択22件に含む）",
+            "registration_id": "MPR-RC-HELIXOS-L2-104-001",
+            "decision_row_sha256": "dc707bd15cc15d94cea46ce4d37ff27edcc4612a8e6aeb605b26c7cca3446481"
+          },
+          {
+            "identity": "HELIXOS-L2-105",
+            "disposition": "承認（通常採択22件に含む）",
+            "registration_id": "MPR-RC-HELIXOS-L2-105-001",
+            "decision_row_sha256": "cb2195ba6d60f69144dfcd5942bf92ba14ba03275011728dcb25f20d5617a460"
+          },
+          {
+            "identity": "HELIXOS-L2-106",
+            "disposition": "承認（通常採択22件に含む）",
+            "registration_id": "MPR-RC-HELIXOS-L2-106-001",
+            "decision_row_sha256": "3c3835caae5e8df772d1aafe14cd8d90b9389b3464afbf0bc9fa0bc2246f55bd"
+          },
+          {
+            "identity": "HELIXOS-L2-107",
+            "disposition": "承認（通常採択22件に含む）",
+            "registration_id": "MPR-RC-HELIXOS-L2-107-001",
+            "decision_row_sha256": "2eb2349e30777ab6d91769c3a8934f662b961cd13dcbfaf73c7f5cfaf8889555"
+          },
+          {
+            "identity": "HELIXOS-L2-108",
+            "disposition": "承認（通常採択22件に含む）",
+            "registration_id": "MPR-RC-HELIXOS-L2-108-001",
+            "decision_row_sha256": "09cbd2d7fc6002eba895087e06942f94e55d2bb78807c3e87c31cc8e1aa9a532"
+          },
+          {
+            "identity": "HELIXOS-L2-109",
+            "disposition": "承認（通常採択22件に含む）",
+            "registration_id": "MPR-RC-HELIXOS-L2-109-001",
+            "decision_row_sha256": "ce01ad8ff29f04e7ec8823a23003e77618ca5e1838d7a45ecef7f87ae4bb4534"
+          },
+          {
+            "identity": "HELIXOS-L2-110",
+            "disposition": "承認（通常採択22件に含む）",
+            "registration_id": "MPR-RC-HELIXOS-L2-110-001",
+            "decision_row_sha256": "b3f91056524676a55b33eb61ff50b95f53266e771addbbfc6601414fea3c642b"
+          },
+          {
+            "identity": "HELIXOS-L2-111",
+            "disposition": "承認（通常採択22件に含む）",
+            "registration_id": "MPR-RC-HELIXOS-L2-111-001",
+            "decision_row_sha256": "062bdedb7d8e9657eeb46da45543bd99793839c563efd94c9eaa7fff06df4358"
+          }
+        ]
+      }
+    ],
+    "proximity_method": "The explicit adoption/conditional-adoption rows across the three named decisions were indexed. Candidate text, scope, parent, status, and limits were compared to the source condition atoms. Non-near groups were assessed by scope class; exact pins are supplied for the close/adjacent identities below. Held or non-adopted rows are excluded from the adopted-pair index.",
+    "non_near_categories": [
+      {
+        "category": "workflow/connection contracts, artifact shape, naming, ticket handoff, system state, security and infrastructure controls",
+        "reason": "These do not define recipe accumulation, recurrence classification, preventive-rule/PLAN output, skill recommendation accuracy, or layer-scoped injection."
+      },
+      {
+        "category": "generic model/provider comparison and capability evidence without an evaluated-feedback-to-next-recommendation contract",
+        "reason": "Measurement or generic placement evidence does not establish the FR19-specific learning outputs or recommendation accuracy improvement."
+      },
+      {
+        "category": "adopted LABO measurement/qualification candidates other than the explicitly close list",
+        "reason": "They define scoped scorecard, quality, failure counts, external claim provenance, qualification, or ticket reissue evidence; they do not accumulate recipes or promote preventive rules."
+      }
+    ],
+    "near_pairs": [
+      {
+        "identity": "HELIXLABO-L2-063",
+        "decision_refs": [
+          "po-decision-2026-09-29-57candidates.md",
+          "po-decision-2026-09-30-live26.md"
+        ],
+        "proximity": "direct_adjacent",
+        "assessment": "Recipe retention, same-problem recurrence assessment, preventive gate/detector candidate and feedback/backlog handoff are materially close to FR-L1-19 success recipes and frequent-trouble prevention. Live26 selects only three conditions from this candidate; candidate’s six-atom no-loss registration does not expand the selected decision. It does not include skill recommendation accuracy, L-unit injection, old GitHub event-pull design, or source FR-L1-19 as a successor.",
+        "decision_rows": [],
+        "decision_passages": [
+          {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "line": 72,
+            "sha256": "84a21babd97341385185ff1bc40f8603713e99b4fb1f7dc8ee3c44f1bcc056dc",
+            "text": "HARNESS-L2-049の採択は登録`-003`および訂正済L11 oracleの計測専用意味に限る。試作品生成、Pattern選択、screen ID発行は含まず、別revision `-002`の処置を継承しない。HARNESS-L2-055/056はそれぞれ選択済みFR-48 gate atom、選択済みFR-49の6 canonical V-pair atomに限る。HARNESS-L2-062は既存負債を免除・解消扱いしない。HARNESS-L2-063は選択した3条件だけを採り、導入版未指定を維持する。HELIXLABO-L2-071は資格を操作権限や割当へ自動変換しない境界を含む。HELIXOS-L2-104は新しい認可権限や追加承認を作らず、105は記録充足と実際の復旧完了・release許可を区別する。HELIXOS-L2-106/107は根拠不足を未解決として返し、108/109/110は明示入力範囲の検査に限る。これらの限定は選択対象を広げない。"
+          }
+        ]
+      },
+      {
+        "identity": "HELIXLABO-L2-065",
+        "decision_refs": [
+          "po-decision-2026-09-29-57candidates.md"
+        ],
+        "proximity": "adjacent_measurement",
+        "assessment": "Task/model qualification and task-level first-pass/retry/effective cost are evidence for assessment quality, but do not generate successful execution recipes, preventive rules, skill recommendations, or L-level injections. D1 selection explicitly keeps first Attempt result separate from 067.",
+        "decision_rows": []
+      },
+      {
+        "identity": "HELIXLABO-L2-066",
+        "decision_refs": [
+          "po-decision-2026-09-29-57candidates.md"
+        ],
+        "proximity": "adjacent_measurement",
+        "assessment": "Misrepair and unresolved case counts guard comparison validity; they do not classify recurring troubles into preventive rules or recipe outputs.",
+        "decision_rows": []
+      },
+      {
+        "identity": "HELIXLABO-L2-067",
+        "decision_refs": [
+          "po-decision-2026-09-29-57candidates.md"
+        ],
+        "proximity": "adjacent_measurement",
+        "assessment": "First eligible candidate result and within-Attempt repair rounds are separate telemetry, explicitly not converted into 065 first-pass/retry or total attempt count. They do not create recipes or preventive rules.",
+        "decision_rows": []
+      },
+      {
+        "identity": "HELIXLABO-L2-069",
+        "decision_refs": [
+          "po-decision-2026-09-29-57candidates.md"
+        ],
+        "proximity": "adjacent_feedback",
+        "assessment": "Evaluates whether a returned/reissued ticket later satisfies an oracle and guards against claiming causal quality improvement from counts. It does not accumulate recipes or update skill recommendation.",
+        "decision_rows": []
+      },
+      {
+        "identity": "HELIXLABO-L2-070",
+        "decision_refs": [
+          "po-decision-2026-09-30-live26.md"
+        ],
+        "proximity": "adjacent_measurement",
+        "assessment": "Scope-bound operational telemetry and scorecard fields preserve unknown/missing data and evidence freshness; these are observation/measurement, not learning promotion or recommendation/injection.",
+        "decision_rows": []
+      },
+      {
+        "identity": "HELIXLABO-L2-071",
+        "decision_refs": [
+          "po-decision-2026-09-30-live26.md"
+        ],
+        "proximity": "adjacent_qualification",
+        "assessment": "GitHub task-class/model-revision qualification and revocation remain separate from permission/assignment. It is not skill recommendation or skill retirement.",
+        "decision_rows": []
+      },
+      {
+        "identity": "HELIXINTELLIGENCE-L2-074",
+        "decision_refs": [
+          "po-decision-2026-09-29-57candidates.md"
+        ],
+        "proximity": "adjacent_recommendation",
+        "assessment": "Evaluated ticket feedback can inform the next task-scoped placement proposal, but does not update skill recommendations or L-level injection, decide assignments, or establish causal improvement. It is the closest separate recommendation-input pathway.",
+        "decision_rows": []
+      }
+    ]
+  },
+  "non_claims": [
+    "This audit does not assign a formal successor ID to FR-L1-19.",
+    "This audit does not close, retire, adopt, implement or execute FR-L1-19.",
+    "MPR registration remains proposal-only with authority_effect none; PO decision rows do not broaden this source condition set.",
+    "No old threshold is invented: the old source names a skill_rating cutoff but supplies no number.",
+    "No recipe store/event source/runtime, GitHub pull, skill deletion, recommendation update, or layer injection is authorized or demonstrated.",
+    "No implementation or operational acceptance was run."
+  ]
+}
