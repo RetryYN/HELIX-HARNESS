@@ -3,7 +3,7 @@
   "audit_id": "confirmed175-screen-gd01-hm01-08-fixed-l2l11-audit-2026-10-01",
   "created_at": "2026-10-01",
   "audit_mode": "read_only_source_to_fixed_l2_l11_condition_comparison",
-  "created_against_revision": "105b9221f4de481ba59945be6df5cdd21f4358a3",
+  "created_against_revision": "afe2ee8106650ebe2361d50964135e3724a5d1cb",
   "authority_effect": "none",
   "scope": {
     "population": "confirmed175",
@@ -25,14 +25,14 @@
   },
   "selection_and_duplicate_scan": {
     "queue": "docs/governance/audits/requirements-stage/confirmed175-condition-comparison-queue-2026-09-30.json",
-    "queue_result": "base revision 105b9221f4de481ba59945be6df5cdd21f4358a3でGD-01/HM-01..08の9 identitiesはいずれもnot_individually_compared、evidence_artifactsは空。",
+    "queue_result": "base revision afe2ee8106650ebe2361d50964135e3724a5d1cbでGD-01/HM-01..08の9 identitiesはいずれもnot_individually_compared、evidence_artifactsは空。",
     "initial_candidate_correction": "先行FR-L1-36..44候補を再照合したところ、既存個票 legacy-confirmed175-fr-l1-20-37-38-39-43-condition-audit-2026-09-30 がFR37/38/39/43を含むことを確認したため棄却。FR36/40/41/42/44だけでは要求された連続小群にならないため本群へ切替。",
-    "scan_scope": "base revision 105b9221f4de481ba59945be6df5cdd21f4358a3内のrequirements-stage *.json/*.md。Queue/full-audit/REG-06 population auditを除きsource-qualified identity occurrenceとscreen個票artifactを照合。今回のrebaseでmainに入った#2415/#2416/#2417各監査もsource tuple単位で追加照合。",
-    "result": "9 identities remain unique in the screen-requirements source population; no prior individual screen audit overlap. At main 105b9221f4de481ba59945be6df5cdd21f4358a3, exact source-qualified tuple comparison against #2415, #2416 and #2417 found 0 overlaps.",
+    "scan_scope": "base revision afe2ee8106650ebe2361d50964135e3724a5d1cb内のrequirements-stage *.json/*.md。Queue/full-audit/REG-06 population auditを除きsource-qualified identity occurrenceとscreen個票artifactを照合。今回のrebaseでmainに入った#2415/#2416/#2417各監査もsource tuple単位で追加照合。",
+    "result": "9 identities remain unique in the screen-requirements source population; no prior individual screen audit overlap. At main afe2ee8106650ebe2361d50964135e3724a5d1cb, exact source-qualified tuple comparison against #2415, #2416 and #2417 found 0 overlaps.",
     "prior_full_audit": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#audited_non_residual_records",
     "prior_population_audit": "docs/governance/audits/requirements-stage/legacy-source-origin-reg06-population-audit-2026-09-28.json",
     "post_merge_source_qualified_scan": {
-      "base_revision": "105b9221f4de481ba59945be6df5cdd21f4358a3",
+      "base_revision": "afe2ee8106650ebe2361d50964135e3724a5d1cb",
       "tuple_rule": "archive source path + source file SHA-256 + physical source line + source line SHA-256; source-qualified identity strings also compared exactly.",
       "audits": [
         {
@@ -2677,7 +2677,7 @@
     "No old CLI/CI/runtime/test was executed or treated as evidence."
   ],
   "current_input_pins": {
-    "revision": "105b9221f4de481ba59945be6df5cdd21f4358a3",
+    "revision": "afe2ee8106650ebe2361d50964135e3724a5d1cb",
     "artifacts": [
       {
         "path": "docs/governance/audits/requirements-stage/confirmed175-condition-comparison-queue-2026-09-30.json",

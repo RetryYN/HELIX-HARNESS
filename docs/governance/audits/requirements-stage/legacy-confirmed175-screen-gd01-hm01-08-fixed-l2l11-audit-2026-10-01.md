@@ -2,13 +2,13 @@
 
 ## 目的と境界
 
-基準main `105b9221f4de481ba59945be6df5cdd21f4358a3`で、旧screen要求9 identityを旧source/consumer詳細から固定L2/L11 revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`へ条件単位で照合した読み取り専用記録。採択・successor・closure・実装済みの主張はしない。旧CLI/runtime/CI/testは実行していない。
+基準main `afe2ee8106650ebe2361d50964135e3724a5d1cb`で、旧screen要求9 identityを旧source/consumer詳細から固定L2/L11 revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`へ条件単位で照合した読み取り専用記録。採択・successor・closure・実装済みの主張はしない。旧CLI/runtime/CI/testは実行していない。
 
 ## 選定と重複検査
 
 - QueueではGD-01とHM-01..08の9件すべてが `not_individually_compared`、既存evidenceは空。source-qualified identityで重複を検査し、既存screen個票PM-02..06との重複は0件。
 - 初期候補FR-L1-36..44は、既存個票 `legacy-confirmed175-fr-l1-20-37-38-39-43-condition-audit-2026-09-30` がFR37/38/39/43を含むと判明したため取り下げた。FR36/40/41/42/44だけでは連続群にならない。
-- 本群はscreen source内でGD-01と連続するHM-01..08。今回のsource-qualified identityは9件、重複なし。main `105b9221f4de481ba59945be6df5cdd21f4358a3`に存在する#2415/#2416/#2417の3個票もarchive path/file SHA/physical line/line SHAとidentityで再照合し、source-qualified overlapは全件0。各artifact SHAと行pinはJSONの`selection_and_duplicate_scan.post_merge_source_qualified_scan`に記録した。
+- 本群はscreen source内でGD-01と連続するHM-01..08。今回のsource-qualified identityは9件、重複なし。main `afe2ee8106650ebe2361d50964135e3724a5d1cb`に存在する#2415/#2416/#2417の3個票もarchive path/file SHA/physical line/line SHAとidentityで再照合し、source-qualified overlapは全件0。各artifact SHAと行pinはJSONの`selection_and_duplicate_scan.post_merge_source_qualified_scan`に記録した。
 
 ## 個票
 
