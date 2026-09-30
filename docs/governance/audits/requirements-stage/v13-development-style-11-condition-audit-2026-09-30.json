@@ -1,0 +1,836 @@
+{
+  "schema_version": "v13-focused-condition-audit.v1",
+  "audit_scope": {
+    "title": "v1.3 §4 development-style/Discovery route 11-condition audit",
+    "created_against_revision": "a3d9f7e205a3d766280c9de4936551f0fef16143",
+    "basis_main": "a3d9f7e205a3d766280c9de4936551f0fef16143",
+    "physical_source_lines": [
+      73,
+      90
+    ],
+    "source_item_ids": [
+      "REQSRC-SUP-00055",
+      "REQSRC-SUP-00056",
+      "REQSRC-SUP-00057",
+      "REQSRC-SUP-00059",
+      "REQSRC-SUP-00060",
+      "REQSRC-SUP-00061",
+      "REQSRC-SUP-00062",
+      "REQSRC-SUP-00063",
+      "REQSRC-SUP-00065",
+      "REQSRC-SUP-00068",
+      "REQSRC-SUP-00069"
+    ],
+    "count": 11,
+    "section": "§4 開発style・Discovery/PoC・共通工程条件",
+    "scope_limit": "Exactly these 11 condition-classified primary residual rows; no whole-source closure, adoption, formal successor, or implementation/acceptance closure claim."
+  },
+  "population_and_deduplication": {
+    "queue": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json",
+    "queue_sha256": "sha256:a61ec098a6bd714fcbbb706d0d9afb4e7f2777b114bf23c8056fc130e30f60d9",
+    "baseline_audit": "docs/governance/audits/requirements-stage/legacy-v13-semantic-condition-audit-2026-09-28.json",
+    "baseline_audit_sha256": "sha256:cd765545e584c50b423d652674ac54a3240aced24a321c0caa6bc2dd881ad863",
+    "selection_rule": "11 §4 rows selected by exact source tuple from queue as condition + primary_residual + unresolved_for_closure_work; each has zero existing individual audit refs. All queue-recorded prior source-qualified IDs, #2411 §6 17 IDs and #2413 §2 12 IDs were excluded.",
+    "selected_rows_all_have_zero_individual_audit_refs": true,
+    "selected_rows_prior_step5_overlap": false,
+    "excluded_exact_source_item_ids": [
+      "REQSRC-SUP-00034",
+      "REQSRC-SUP-00035",
+      "REQSRC-SUP-00036",
+      "REQSRC-SUP-00037",
+      "REQSRC-SUP-00038",
+      "REQSRC-SUP-00039",
+      "REQSRC-SUP-00040",
+      "REQSRC-SUP-00041",
+      "REQSRC-SUP-00042",
+      "REQSRC-SUP-00043",
+      "REQSRC-SUP-00044",
+      "REQSRC-SUP-00045",
+      "REQSRC-SUP-00089",
+      "REQSRC-SUP-00127",
+      "REQSRC-SUP-00128",
+      "REQSRC-SUP-00129",
+      "REQSRC-SUP-00130",
+      "REQSRC-SUP-00131",
+      "REQSRC-SUP-00192",
+      "REQSRC-SUP-00193",
+      "REQSRC-SUP-00194",
+      "REQSRC-SUP-00198",
+      "REQSRC-SUP-00202",
+      "REQSRC-SUP-00204",
+      "REQSRC-SUP-00205",
+      "REQSRC-SUP-00206",
+      "REQSRC-SUP-00207",
+      "REQSRC-SUP-00213",
+      "REQSRC-SUP-00217",
+      "REQSRC-SUP-00293",
+      "REQSRC-SUP-00296",
+      "REQSRC-SUP-00297",
+      "REQSRC-SUP-00298",
+      "REQSRC-SUP-00299",
+      "REQSRC-SUP-00300",
+      "REQSRC-SUP-00301",
+      "REQSRC-SUP-00302",
+      "REQSRC-SUP-00304",
+      "REQSRC-SUP-00305",
+      "REQSRC-SUP-00306",
+      "REQSRC-SUP-00330",
+      "REQSRC-SUP-00331",
+      "REQSRC-SUP-00332",
+      "REQSRC-SUP-00333",
+      "REQSRC-SUP-00334",
+      "REQSRC-SUP-00398",
+      "REQSRC-SUP-00399",
+      "REQSRC-SUP-00400",
+      "REQSRC-SUP-00403",
+      "REQSRC-SUP-00404",
+      "REQSRC-SUP-00405",
+      "REQSRC-SUP-00407",
+      "REQSRC-SUP-00409",
+      "REQSRC-SUP-00410",
+      "REQSRC-SUP-00411",
+      "REQSRC-SUP-00414",
+      "REQSRC-SUP-00418",
+      "REQSRC-SUP-00421",
+      "REQSRC-SUP-00424",
+      "REQSRC-SUP-00430",
+      "REQSRC-SUP-00431",
+      "REQSRC-SUP-00432",
+      "REQSRC-SUP-00483",
+      "REQSRC-SUP-00504",
+      "REQSRC-SUP-00506",
+      "REQSRC-SUP-00507",
+      "REQSRC-SUP-00514"
+    ],
+    "excluded_2411_source_item_ids": [
+      "REQSRC-SUP-00398",
+      "REQSRC-SUP-00399",
+      "REQSRC-SUP-00400",
+      "REQSRC-SUP-00403",
+      "REQSRC-SUP-00404",
+      "REQSRC-SUP-00405",
+      "REQSRC-SUP-00407",
+      "REQSRC-SUP-00409",
+      "REQSRC-SUP-00410",
+      "REQSRC-SUP-00411",
+      "REQSRC-SUP-00414",
+      "REQSRC-SUP-00418",
+      "REQSRC-SUP-00421",
+      "REQSRC-SUP-00424",
+      "REQSRC-SUP-00430",
+      "REQSRC-SUP-00431",
+      "REQSRC-SUP-00432"
+    ],
+    "excluded_2413_source_item_ids": [
+      "REQSRC-SUP-00034",
+      "REQSRC-SUP-00035",
+      "REQSRC-SUP-00036",
+      "REQSRC-SUP-00037",
+      "REQSRC-SUP-00038",
+      "REQSRC-SUP-00039",
+      "REQSRC-SUP-00040",
+      "REQSRC-SUP-00041",
+      "REQSRC-SUP-00042",
+      "REQSRC-SUP-00043",
+      "REQSRC-SUP-00044",
+      "REQSRC-SUP-00045"
+    ]
+  },
+  "legacy_source": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+    "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+    "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+    "asset_ledger_ref": "docs/governance/legacy-asset-disposition.jsonl#LEGACY-ASSET-02319C2481B9E01698D5",
+    "asset_disposition": "source_snapshot_preservation; preserved_pending_rehome; pending human confirmation; non-executable read-only source",
+    "lines": [
+      73,
+      90
+    ]
+  },
+  "legacy_consumer_sources": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "lines": [
+        25,
+        26,
+        27,
+        28,
+        80
+      ],
+      "role": "HIL-BR-28 style/case-driven consumer"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "sha256": "sha256:a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "lines": [
+        44,
+        46
+      ],
+      "role": "FR-L1-13/15 consumer"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-requirement-definition-ledger.md",
+      "sha256": "sha256:ff5313eb0e7d4e8dd22c4227910bd954cec85299e037f629ff3424834e6e1881",
+      "lines": [
+        65
+      ],
+      "role": "HIL-BR-28 identity/route consumer"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "lines": [
+        73,
+        74,
+        75,
+        78,
+        79,
+        80,
+        81,
+        83,
+        85,
+        88,
+        90,
+        287,
+        288
+      ],
+      "role": "v1.3 source and HR-FR-HYB-003/HR-AC-HYB-003"
+    }
+  ],
+  "current_comparison_baseline": {
+    "fixed_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "fixed_pair_decision": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+    "fixed_pair_pins": {
+      "l2_file_sha256": "sha256:aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "l11_file_sha256": "sha256:09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "pairs": {
+        "HARNESS-L2-001": {
+          "l2": {
+            "line": 52,
+            "text": "| HARNESS-L2-001 | 企画・要求・L2.5（Prototype・PoC）・要件・設計・実装・検証をL1–L12と正規V-pairで構成できる。画面や不確定要素のない対象ではL2.5を飛ばせる | v1.3 §2、HBR-P3、2026-09-24 PO判断 | L2要求とL11受入、L3要件とL10総合検証を混同せず、各層の成果と対が分かる。L2.5の結果を要求の合意と区別する |",
+            "line_sha256": "sha256:19bc5f0236524bedabfd9c1ff2729b90699b4d2b0be0834f0ff11bbf8feb5e0e"
+          },
+          "l11": {
+            "line": 21,
+            "text": "| HARNESS-L2-001 | L1–L12の成果と対を確認し、L2／L11とL3／L10の混同、片側欠落を識別できる。L2.5（Prototype・PoC）の結果を要求の合意と取り違えず、L2.5を飛ばした対象でも非適用の判定と理由が残る |",
+            "line_sha256": "sha256:c4c9fa75277a9296c40e4dd1d443b58fe0edc36e1ef3d85bb1234408a0b928e1"
+          }
+        },
+        "HARNESS-L2-002": {
+          "l2": {
+            "line": 53,
+            "text": "| HARNESS-L2-002 | 対象プロダクトの特性に合わせて開発方式（Vモデル、スクラム、ハイブリッド、リリースカンバン）を選び、または合成して進められる。L3までは方式によらず一律共通に進める | HBR-P0／P1、v1.3 §4、2026-09-24 PO判断、[2026-09-25 PO判断](../../governance/decisions/po-optimal-draft-po-decisions-2026-09-25.md) | 4つの方式を下の定義どおりに区別し、駆動（ticketの種類）と混同しない。どの組み合わせでも、L1–L3と人の要件承認、V字の対、品質条件を落とさない。提供の単位ごとにリリースカンバン上の状態が分かる |",
+            "line_sha256": "sha256:932d09ce11a68ddc501378d4e0e5cf65f71597de161efebf5fd699ae82b2813b",
+            "detail_line_100": {
+              "line": 100,
+              "text": "| HARNESS-L2-002 | requirements v1.3 §4の「全production styleでL1–L3と人間の要件承認を必要とし、L3凍結時にstyleを合意する」を保ち、L3までは方式によらず一律共通に進める（2026-09-25 PO判断）。L4以降は方式の定義に従う。Vモデルは、ウォーターフォールの単独製品型で、slice化しない（旧Full V）。スクラムは、最小の製品で市場投入を急ぎ、利用の記録から改善していく市場投入先行方式で、L3後にslice化する（旧Production Scrum）。利用の記録から分かった改善はBackflowで要求へ戻す。ハイブリッドは、Vモデルを土台に、1つの開発工程から多くのユニット拡張単位へ広げ、1つのコア製品と複数の製品を最後に結合する方式である。旧「V設計＋Scrum実装Hybrid（L5後にslice化）」から意味を変えた。リリースカンバンは、リリース段階をv1、v2、v3と切りながら、最終的なプロダクトゴールへ進む方式である。方式の選択や合成で品質条件を省略しない |",
+              "line_sha256": "sha256:7c94885350f99f133b23e4520954f46f061ad48ddbf6e36b5ad86e47f3c9311d"
+            }
+          },
+          "l11": {
+            "line": 22,
+            "text": "| HARNESS-L2-002 | 異なる開発方式の工程を確認し、開発方式とticketの種類（駆動）を混同しない。Discovery・PoCを開発方式のphaseへ混入させない。リリースカンバンで立てたリリース単位の順序と優先に沿って、各リリース単位を選んだ開発方式で進められ、提供の単位ごとにリリースカンバン上の状態を確認できる |",
+            "line_sha256": "sha256:750bbdbca003df8710a0112781b490bb490573913fc1fd9d24f2d158cabb42cb"
+          }
+        },
+        "HARNESS-L2-003": {
+          "l2": {
+            "line": 54,
+            "text": "| HARNESS-L2-003 | 工程の開始・凍結・差戻し・再開・完了に必要な条件を確認できる。画面や不確定要素のある対象は、L2.5のPrototype・PoCで不確定要素を減らしてから要件へ進む。Vの左側（Forward）は原子CIの最低保証で暫定の成果を速く作り、Vの谷（L6↔L7）より右側は、結合の範囲を広げるたびに実物を対の設計と照合し、意味を保てる範囲で直してから証明を強める | HBR-P0／P3、HNFR-P3、2026-09-24 PO判断、[2026-09-26 PO判断](../../governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md) | 必要な合意、対成果物、検証、未解決事項が明示され、実行成功だけで工程完了にならない。成果物の状態を、前の状態の成立から推定しない。Releaseの条件を最初から持ち、終わりで初めて探さない |",
+            "line_sha256": "sha256:693deb038a91ee9ba358aecab588d889a9fa40ff67c5d697f880ee76ff18b3d0"
+          },
+          "l11": {
+            "line": 23,
+            "text": "| HARNESS-L2-003 | 凍結・差戻し・再開・完了の条件を確認し、未合意・未検証で進行可能と判定しない。画面または技術的な成立性に不確定要素がある対象は、L2.5で確かめて合意するまで要件へ進めない。Vの谷より右側で、実物を対の設計と照合し、意味を保てる変更だけをRefactorし、意味が変わるものを対応する左の層へBackflowする。成果物の状態を前の状態から推定せず、Release Portの条件を開発の開始時から満たしていく |",
+            "line_sha256": "sha256:1ced8f2b5886a2c154bb809f169b8a01f27d9af38abb1697ac0cd96325dba9c5"
+          }
+        }
+      }
+    },
+    "comparison_rule": "L2-001/L11-001 maps canonical layers and six pairs; L2-002/L11-002 compares styles and L2-003/L11-003 supports stage/freeze/backflow. Fixed L2-002 line 100 preserves common L1-L3 and human requirement approval and agreement on style at L3 freeze. Later adopted L2-046 has separate Full V workflow and Production Scrum slice/backfill/SR4 applicability branches; only its Scrum branch is relevant to Production Scrum scope or to the part of a permitted composition that actually applies Scrum. Neither branch assigns a source-row successor or closes a legacy condition.",
+    "decision_scope": "f6 exact adopted base bytes only; later candidates do not rewrite this fixed revision."
+  },
+  "current_input_snapshot": {
+    "main_commit": "a3d9f7e205a3d766280c9de4936551f0fef16143",
+    "queue_sha256": "sha256:a61ec098a6bd714fcbbb706d0d9afb4e7f2777b114bf23c8056fc130e30f60d9",
+    "merged_2413_audit_ref": "docs/governance/audits/requirements-stage/v13-layer-chain-12-condition-audit-2026-09-30.json",
+    "merged_2413_audit_sha256": "sha256:5632328d290657af5dbd4e0c6e2a72d2f8bbe156f7337a48622edc489e4333d2",
+    "current_main_pair_pins": {
+      "l2_file_sha256": "sha256:78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
+      "l11_file_sha256": "sha256:a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e",
+      "pairs": {
+        "HARNESS-L2-001": {
+          "l2": {
+            "line": 52,
+            "text": "| HARNESS-L2-001 | 企画・要求・L2.5（Prototype・PoC）・要件・設計・実装・検証をL1–L12と正規V-pairで構成できる。画面や不確定要素のない対象ではL2.5を飛ばせる | v1.3 §2、HBR-P3、2026-09-24 PO判断 | L2要求とL11受入、L3要件とL10総合検証を混同せず、各層の成果と対が分かる。L2.5の結果を要求の合意と区別する |",
+            "line_sha256": "sha256:19bc5f0236524bedabfd9c1ff2729b90699b4d2b0be0834f0ff11bbf8feb5e0e"
+          },
+          "l11": {
+            "line": 21,
+            "text": "| HARNESS-L2-001 | L1–L12の成果と対を確認し、L2／L11とL3／L10の混同、片側欠落を識別できる。L2.5（Prototype・PoC）の結果を要求の合意と取り違えず、L2.5を飛ばした対象でも非適用の判定と理由が残る |",
+            "line_sha256": "sha256:c4c9fa75277a9296c40e4dd1d443b58fe0edc36e1ef3d85bb1234408a0b928e1"
+          }
+        },
+        "HARNESS-L2-002": {
+          "l2": {
+            "line": 53,
+            "text": "| HARNESS-L2-002 | 対象プロダクトの特性に合わせて開発方式（Vモデル、スクラム、ハイブリッド、リリースカンバン）を選び、または合成して進められる。L3までは方式によらず一律共通に進める | HBR-P0／P1、v1.3 §4、2026-09-24 PO判断、[2026-09-25 PO判断](../../governance/decisions/po-optimal-draft-po-decisions-2026-09-25.md) | 4つの方式を下の定義どおりに区別し、駆動（ticketの種類）と混同しない。どの組み合わせでも、L1–L3と人の要件承認、V字の対、品質条件を落とさない。提供の単位ごとにリリースカンバン上の状態が分かる |",
+            "line_sha256": "sha256:932d09ce11a68ddc501378d4e0e5cf65f71597de161efebf5fd699ae82b2813b",
+            "detail_line_100": {
+              "line": 100,
+              "text": "| HARNESS-L2-002 | requirements v1.3 §4の「全production styleでL1–L3と人間の要件承認を必要とし、L3凍結時にstyleを合意する」を保ち、L3までは方式によらず一律共通に進める（2026-09-25 PO判断）。L4以降は方式の定義に従う。Vモデルは、ウォーターフォールの単独製品型で、slice化しない（旧Full V）。スクラムは、最小の製品で市場投入を急ぎ、利用の記録から改善していく市場投入先行方式で、L3後にslice化する（旧Production Scrum）。利用の記録から分かった改善はBackflowで要求へ戻す。ハイブリッドは、Vモデルを土台に、1つの開発工程から多くのユニット拡張単位へ広げ、1つのコア製品と複数の製品を最後に結合する方式である。旧「V設計＋Scrum実装Hybrid（L5後にslice化）」から意味を変えた。リリースカンバンは、リリース段階をv1、v2、v3と切りながら、最終的なプロダクトゴールへ進む方式である。方式の選択や合成で品質条件を省略しない |",
+              "line_sha256": "sha256:7c94885350f99f133b23e4520954f46f061ad48ddbf6e36b5ad86e47f3c9311d"
+            }
+          },
+          "l11": {
+            "line": 22,
+            "text": "| HARNESS-L2-002 | 異なる開発方式の工程を確認し、開発方式とticketの種類（駆動）を混同しない。Discovery・PoCを開発方式のphaseへ混入させない。リリースカンバンで立てたリリース単位の順序と優先に沿って、各リリース単位を選んだ開発方式で進められ、提供の単位ごとにリリースカンバン上の状態を確認できる |",
+            "line_sha256": "sha256:750bbdbca003df8710a0112781b490bb490573913fc1fd9d24f2d158cabb42cb"
+          }
+        },
+        "HARNESS-L2-003": {
+          "l2": {
+            "line": 54,
+            "text": "| HARNESS-L2-003 | 工程の開始・凍結・差戻し・再開・完了に必要な条件を確認できる。画面や不確定要素のある対象は、L2.5のPrototype・PoCで不確定要素を減らしてから要件へ進む。Vの左側（Forward）は原子CIの最低保証で暫定の成果を速く作り、Vの谷（L6↔L7）より右側は、結合の範囲を広げるたびに実物を対の設計と照合し、意味を保てる範囲で直してから証明を強める | HBR-P0／P3、HNFR-P3、2026-09-24 PO判断、[2026-09-26 PO判断](../../governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md) | 必要な合意、対成果物、検証、未解決事項が明示され、実行成功だけで工程完了にならない。成果物の状態を、前の状態の成立から推定しない。Releaseの条件を最初から持ち、終わりで初めて探さない |",
+            "line_sha256": "sha256:693deb038a91ee9ba358aecab588d889a9fa40ff67c5d697f880ee76ff18b3d0"
+          },
+          "l11": {
+            "line": 23,
+            "text": "| HARNESS-L2-003 | 凍結・差戻し・再開・完了の条件を確認し、未合意・未検証で進行可能と判定しない。画面または技術的な成立性に不確定要素がある対象は、L2.5で確かめて合意するまで要件へ進めない。Vの谷より右側で、実物を対の設計と照合し、意味を保てる変更だけをRefactorし、意味が変わるものを対応する左の層へBackflowする。成果物の状態を前の状態から推定せず、Release Portの条件を開発の開始時から満たしていく |",
+            "line_sha256": "sha256:1ced8f2b5886a2c154bb809f169b8a01f27d9af38abb1697ac0cd96325dba9c5"
+          }
+        }
+      }
+    },
+    "comparison_to_f6": "Current-main pins are read-after inputs; fixed f6 remains the primary authority comparison."
+  },
+  "later_decision_scope": {
+    "decision_57": {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "counts": {
+        "adopted": 42,
+        "conditionally_adopted": 11,
+        "held": 4,
+        "total": 57
+      },
+      "relevant_effects": [
+        {
+          "identity": "HARNESS-L2-040/L11-040",
+          "effect": "Canonical layer/pair ledger structure only; no source-row-specific closure."
+        },
+        {
+          "identity": "HARNESS-L2-046/L11-046",
+          "decision_row": 51,
+          "decision_row_sha256": "sha256:8262b7450d8eb68154aa0123f8c829d7b882cd46450676a46de458030ee5ca25",
+          "exact_pair_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "effect": "Adopted pair has two bounded branches: Full V workflow freeze/pair applies only when Full V is selected; Scrum slice-delta/backfill/SR4 conditions apply only when Production Scrum is selected or in the portion of a permitted composition that actually applies Scrum. Neither branch is generalized to the whole current Hybrid or treated as legacy source-row successor/closure."
+        }
+      ],
+      "other_effect": "No source-specific adoption or retirement of selected REQSRC-SUP identities; no blanket coverage.",
+      "exact_pair_pin_046": {
+        "identity": "HARNESS-L2-046/L11-046",
+        "status": "adopted",
+        "mpr": "MPR-RC-HARNESS-L2-046-001",
+        "record_line": 51,
+        "record_line_sha256": "sha256:8262b7450d8eb68154aa0123f8c829d7b882cd46450676a46de458030ee5ca25",
+        "l2": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "file_sha256": "sha256:111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+          "section_sha256": "sha256:47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e"
+        },
+        "l11": {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "file_sha256": "sha256:3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+          "section_sha256": "sha256:a8e99f7df7166566c04b1113b045851d8417e17e8078c034f8f2a34ebfe4f37f"
+        },
+        "target_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "scope_limit": "Full V branch applies only when Full V is selected. Scrum slice-delta/backfill/SR4 branch applies to selected Production Scrum scope or the actual Scrum-applied portion of a permitted composition; do not generalize to the whole current Hybrid or assign REQSRC source-row successor/closure."
+      },
+      "decision_file_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "source_repository_revision_preserved": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+    },
+    "decision_11": {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+      "sha256": "sha256:6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+      "source_repository_revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+      "screen_count": 11,
+      "counts": "10 adopted rows and 1 current HARNESS-L2-049 revision not adopted",
+      "effect": "No selected v1.3 source identity is named as an adopted successor; this decision does not close selected source conditions.",
+      "decision_file_sha256": "sha256:6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+      "source_repository_revision_preserved": "5aa100319361b0cc86edd3c51815ec777d55410a"
+    },
+    "scope_limit": "57+11 decisions are screened for exact identity/scope/effect only; no blanket adoption, successor assignment, or closure is inferred."
+  },
+  "method": {
+    "row_identity": "source_item_id + archive source path + source file SHA-256 + physical line + line SHA-256",
+    "comparison_statuses": [
+      "partial"
+    ],
+    "coverage_rule": "A style or pair-name match is not exact source-condition coverage. Record numbers, exceptions, counterexamples and residuals by old source identity. L2-046 is compared by its distinct Full V and Production Scrum applicability branches; do not generalize the Scrum branch to all permitted compositions or current Hybrid. Later decisions do not rewrite that identity.",
+    "old_material_use": "Read-only old source and consumer documents. No old workflow, CLI, hook, adapter, test, runtime, or CI was executed."
+  },
+  "summary": {
+    "rows": 11,
+    "source_tuple_reverified": 11,
+    "line_text_or_digest_mismatches": 0,
+    "queue_primary_residual_rows": 11,
+    "preexisting_individual_audit_refs": 0,
+    "comparison_partial": 11,
+    "comparison_covered": 0,
+    "formal_successor_assignments": 0,
+    "source_condition_closure_claimed": false,
+    "implementation_or_acceptance_claimed": false,
+    "authority_effect": "none"
+  },
+  "conditions": [
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00055",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 73,
+        "source_line_sha256": "sha256:7f500077383219412d8731e6d990e10bad8107ece5779cdf7ed46e2f74721f31",
+        "source_text": "| `FULL_L1_L12_V` | 本格system、高リスク、複数境界、規制、未知または分類衝突 | L1〜L12を完全実施 |",
+        "condition_cluster_id": "V13-COND-L0073",
+        "source_section_group": 6,
+        "source_section_label": "§4 style/Discovery/PoC・69–90"
+      },
+      "queue_baseline": {
+        "queue_ref": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json#REQSRC-SUP-00055",
+        "classification": "condition",
+        "condition_status": "unresolved",
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "existing_individual_audit_refs": []
+      },
+      "condition_analysis": {
+        "meaning": "FULL_L1_L12_Vを高リスク・複数境界・規制・未知または分類衝突向けstyleとし、L1〜L12を実施する。",
+        "retained": "固定L2-001/L11-001は現行L1–L12と6 pairを定義し、L2-002はV-modelを選択可能方式に含める。後発L2-046/L11-046はFull V workflow freeze/pair契約を採択した。",
+        "residual": "適用条件の閾値・例外oracleはfixed pairにない。L2-046はFull Vを選択したscopeだけで、案件判定や全層受入を閉じない。",
+        "numeric_exception": "L1〜L12の12層。高リスク等の数値閾値は旧sourceにもない。",
+        "counterexample": "L2-046適用だけで案件の規制/高リスク判定や全層実施を済みとする。"
+      },
+      "comparison_result": "partial",
+      "formal_successor_assignment": null,
+      "authority_effect": "none",
+      "implementation_or_acceptance_closure": "not_proven",
+      "related_later_decision_identities": [
+        "HARNESS-L2-040/L11-040 structural ledger only",
+        "HARNESS-L2-046/L11-046 Full V only"
+      ]
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00056",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 74,
+        "source_line_sha256": "sha256:6cc5bb17907b5caef32dd1529b6198f7bcffc86bcae8c5d7f0e1de9357dbf662",
+        "source_text": "| `PRODUCTION_SCRUM` | 小規模、継続成長、高feedback、段階release、境界既知 | L3 freeze後に要件単位でslice化し、各sliceの正規L4/L5設計、実装、V-pair evidenceを閉じる |",
+        "condition_cluster_id": "V13-COND-L0073",
+        "source_section_group": 6,
+        "source_section_label": "§4 style/Discovery/PoC・69–90"
+      },
+      "queue_baseline": {
+        "queue_ref": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json#REQSRC-SUP-00056",
+        "classification": "condition",
+        "condition_status": "unresolved",
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "existing_individual_audit_refs": []
+      },
+      "condition_analysis": {
+        "meaning": "PRODUCTION_SCRUMを小規模・継続成長・高feedback・段階release・境界既知に適用し、L3 freeze後に要件slice化し、各sliceのL4/L5設計とV-pair evidenceを閉じる。",
+        "retained": "固定L2-002/L11-002はScrumを選択可能方式に含め、L1–L3、人の要件承認、V-pair/品質条件を保つ。L2-003/L11-003は工程・差戻し条件を扱う。採択L2-046/L11-046にはFull Vとは別にProduction Scrum選択scope向けslice-delta、Scrum Reverse/backfill、SR4 pair-freeze前のrelease-ready禁止の枝がある。許可された合成でScrumを実際に適用する部分にも、そのScrum条件だけが関連する。",
+        "residual": "適格性oracle、L3 freeze後の要件単位slice最小性、各slice固有の正規L4/L5設計とV-pair evidenceを同一source-row条件として結ぶ方法は、固定pairおよびL2-046から確認できない。L2-046のScrum枝はselected Production Scrum scopeまたは許可されたcomposition内でScrumが適用される部分に限定し、合成全体へ外挿しない。これは旧slice単位のL4/L5/V-pair evidence条件の充足を意味しない。",
+        "numeric_exception": "L3後slice化。slice数・size・release cadenceは数値化なし。",
+        "counterexample": "L3承認前にslice実装を始める、または複数sliceの合算を個別slice evidenceとする。"
+      },
+      "comparison_result": "partial",
+      "formal_successor_assignment": null,
+      "authority_effect": "none",
+      "implementation_or_acceptance_closure": "not_proven",
+      "related_later_decision_identities": [
+        "HARNESS-L2-040/L11-040 structural layer/pair ledger only",
+        "HARNESS-L2-046/L11-046 limited Scrum slice/backfill/SR4 branch"
+      ]
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00057",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 75,
+        "source_line_sha256": "sha256:d96b88cd63bed3b1630563b73360f7d53f86531c80c2280b4e067befabc788a6",
+        "source_text": "| `V_DESIGN_SCRUM_IMPLEMENTATION` | 大規模・複雑だが段階releaseが適し、system境界を先に固定できる | L1〜L5を凍結後にL6以降をslice実装し、release candidateごとに全V-pairへ再収束する |",
+        "condition_cluster_id": "V13-COND-L0073",
+        "source_section_group": 6,
+        "source_section_label": "§4 style/Discovery/PoC・69–90"
+      },
+      "queue_baseline": {
+        "queue_ref": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json#REQSRC-SUP-00057",
+        "classification": "condition",
+        "condition_status": "unresolved",
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "existing_individual_audit_refs": []
+      },
+      "condition_analysis": {
+        "meaning": "V_DESIGN_SCRUM_IMPLEMENTATIONを大規模・複雑・段階release適合・先行してsystem境界を固定可能な対象に適用し、L1〜L5 freeze後にL6以降をslice化し、release candidateごとに全V-pairへ再収束する。",
+        "retained": "固定L2-002は方式合成を許容し、L2-001/L11-001は6 pairを定義する。L2-046/L11-046のScrum slice/backfill/SR4枝は、許可された合成内の対象scopeでScrumを実際に適用する場合だけ関連し、現行Hybridの定義や全体契約にはならない。",
+        "residual": "現行L2-002はHybridをV-model基盤の複数unit拡張とcore/複数製品の最後の結合へ変更し、旧「L1〜L5 freeze後にL6以降をslice実装し、各release candidateで全V-pairへ再収束」というHybrid全体の順序を同じ形では保持していない。L2-046のScrum slice-delta/backfill/SR4条件は、許可された合成内で対象部分にScrumを実際に適用するときだけ関連し、新Hybrid全体へ外挿しない。旧L5 freeze、L6以降slice、candidateごとの全pair再収束と同一の契約ではない。",
+        "numeric_exception": "旧sourceはL1〜L5とL6以降を区切る。slice数等の数値なし。",
+        "counterexample": "新Hybridを旧V設計＋Scrum実装Hybridと同じとみなし、旧L5 freeze/L6以降slice/各release candidateの全pair再収束を新Hybrid全体へ適用する。またはL2-046のScrum枝だけで旧Hybridの全条件が充足したとする。"
+      },
+      "comparison_result": "partial",
+      "formal_successor_assignment": null,
+      "authority_effect": "none",
+      "implementation_or_acceptance_closure": "not_proven",
+      "related_later_decision_identities": [
+        "HARNESS-L2-040/L11-040 structural layer/pair ledger only",
+        "HARNESS-L2-046/L11-046 limited Scrum slice/backfill/SR4 branch"
+      ]
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00059",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 78,
+        "source_line_sha256": "sha256:e0933d016055fa0d9622ade6b9a0a85a40612174203b412e0c226dce683bd32a",
+        "source_text": "`DISCOVERY_POC`はこれらと同列のstyleではなく、案件の不確実性、仮説、実現性を検証するため",
+        "condition_cluster_id": "V13-COND-L0078",
+        "source_section_group": 6,
+        "source_section_label": "§4 style/Discovery/PoC・69–90"
+      },
+      "queue_baseline": {
+        "queue_ref": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json#REQSRC-SUP-00059",
+        "classification": "condition",
+        "condition_status": "partial",
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "existing_individual_audit_refs": []
+      },
+      "condition_analysis": {
+        "meaning": "DISCOVERY_POCをproduction styleと別軸のcase-driven routeとして、不確実性・仮説・実現性検証に起動する。",
+        "retained": "固定L2-002/003と旧HR-FR-HYB-003はDiscovery/PoCをproduction styleと分離し、ticket/Decide接続を記す。",
+        "residual": "不確実性の検出oracle、起動owner、複数条件時の優先順はこのsource rowとfixed pairで閉じない。",
+        "numeric_exception": "case-by-case。起動件数や数値閾値なし。",
+        "counterexample": "Discovery/PoCを第4のproduction style、Scrum phase、production完了根拠にする。"
+      },
+      "comparison_result": "partial",
+      "formal_successor_assignment": null,
+      "authority_effect": "none",
+      "implementation_or_acceptance_closure": "not_proven",
+      "related_later_decision_identities": [
+        "HARNESS-L2-002/003 fixed pair; no direct 57+11 source identity adoption"
+      ]
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00060",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 79,
+        "source_line_sha256": "sha256:55e175c92c2fa3fc5c52aa4c6ae9c4e13040ab032256ef74d89e52a16eea1fff",
+        "source_text": "case-by-caseで発動するcase-driven route identityである。DiscoveryとPoCをScrumのphase、",
+        "condition_cluster_id": "V13-COND-L0079",
+        "source_section_group": 6,
+        "source_section_label": "§4 style/Discovery/PoC・69–90"
+      },
+      "queue_baseline": {
+        "queue_ref": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json#REQSRC-SUP-00060",
+        "classification": "condition",
+        "condition_status": "unresolved",
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "existing_individual_audit_refs": []
+      },
+      "condition_analysis": {
+        "meaning": "Discovery/PoCはcase-by-caseのroute identityであり、Scrumのphase・variant・内包要素ではない。",
+        "retained": "固定L2-002/003、HR-FR-HYB-003、HIL-BR-28はcase-driven routeをproduction style/Scrumから分ける。",
+        "residual": "状態保存先、ticket schema、Scrum sliceと併用する場合のstate/evidence joinはfixed pairに特定されない。",
+        "numeric_exception": "隣接S0–S4の5段階を参照。case数制限なし。",
+        "counterexample": "PoCをsprint phaseへ入れ、production slice完了数へ含める。"
+      },
+      "comparison_result": "partial",
+      "formal_successor_assignment": null,
+      "authority_effect": "none",
+      "implementation_or_acceptance_closure": "not_proven",
+      "related_later_decision_identities": [
+        "HARNESS-L2-002/003 fixed pair; no direct 57+11 source identity adoption"
+      ]
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00061",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 80,
+        "source_line_sha256": "sha256:9f0badf1a50bc0813771c2b61009f92b18ec8c852a9c63e8c051c5d2ad56f900",
+        "source_text": "variant、内包要素として扱わない。PoCは`poc` kindで非production検証を実行し、S4決定前に",
+        "condition_cluster_id": "V13-COND-L0079",
+        "source_section_group": 6,
+        "source_section_label": "§4 style/Discovery/PoC・69–90"
+      },
+      "queue_baseline": {
+        "queue_ref": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json#REQSRC-SUP-00061",
+        "classification": "condition",
+        "condition_status": "unresolved",
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "existing_individual_audit_refs": []
+      },
+      "condition_analysis": {
+        "meaning": "Discovery/PoCをScrum内包にせず、PoCはpoc kindの非production検証とし、S4 decision前にproduction Forwardへ昇格させない。",
+        "retained": "固定L2-002/003はticket/Backflow/Decide境界を持つ。HR-FR-HYB-003/HR-AC-HYB-003はS4 receiptなしのproduction claimを拒否対象とする。",
+        "residual": "S0/S1/S2/S3/S4のstate I/O/receiptとproduction昇格oracleは全量fixed pairへ固定されたとは確認できない。",
+        "numeric_exception": "S0→S4の5段階。S4決定前は昇格不可。",
+        "counterexample": "S3 verify passやIssue closeをS4 receiptとみなしてproduction Forwardへ進む。"
+      },
+      "comparison_result": "partial",
+      "formal_successor_assignment": null,
+      "authority_effect": "none",
+      "implementation_or_acceptance_closure": "not_proven",
+      "related_later_decision_identities": [
+        "HARNESS-L2-002/003 fixed pair; no direct 57+11 source identity adoption"
+      ]
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00062",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 81,
+        "source_line_sha256": "sha256:22a9dadc2bd6cc03c9909ffba95fa94210b6f17557dc501db563297a5cd47a7d",
+        "source_text": "production Forwardへ昇格しない。",
+        "condition_cluster_id": "V13-COND-L0081",
+        "source_section_group": 6,
+        "source_section_label": "§4 style/Discovery/PoC・69–90"
+      },
+      "queue_baseline": {
+        "queue_ref": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json#REQSRC-SUP-00062",
+        "classification": "condition",
+        "condition_status": "partial",
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "existing_individual_audit_refs": []
+      },
+      "condition_analysis": {
+        "meaning": "PoCはS4 decision前にproduction Forwardへ昇格しない。",
+        "retained": "固定L2-002/003はPoC/Discovery結果をDecide/Backflowで扱い、検証成功だけで採用にしない。",
+        "residual": "S4のconfirmed/rejected/pivot別に戻る条件、authority/source receipt identity、全遷移条件は確定していない。",
+        "numeric_exception": "S4という一つのdecision boundary。",
+        "counterexample": "S3 pass、Issue close、試作物の存在をS4判断にする。"
+      },
+      "comparison_result": "partial",
+      "formal_successor_assignment": null,
+      "authority_effect": "none",
+      "implementation_or_acceptance_closure": "not_proven",
+      "related_later_decision_identities": [
+        "HARNESS-L2-002/003 fixed pair; no direct 57+11 source identity adoption"
+      ]
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00063",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 83,
+        "source_line_sha256": "sha256:1d161c0f89d23f25e136a0aad1132db19aa3dc79ee1b7c3fb0bec7a155960bb1",
+        "source_text": "全production styleはL1〜L3とユーザー要件承認を共通必須とし、L3 freeze時にstyleを同時合意する。",
+        "condition_cluster_id": "V13-COND-L0083",
+        "source_section_group": 6,
+        "source_section_label": "§4 style/Discovery/PoC・69–90"
+      },
+      "queue_baseline": {
+        "queue_ref": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json#REQSRC-SUP-00063",
+        "classification": "condition",
+        "condition_status": "partial",
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "existing_individual_audit_refs": []
+      },
+      "condition_analysis": {
+        "meaning": "すべてのproduction styleでL1〜L3とuser requirement approvalを共通必須とし、L3 freeze時にstyleを合意する。",
+        "retained": "固定L2-002 detail line 100は、全production styleのL1–L3と人の要件承認を保ち、L3凍結時にstyleを合意すると明記する（line SHA-256 7c94885350f99f133b23e4520954f46f061ad48ddbf6e36b5ad86e47f3c9311d）。2026-09-25判断は複数方式の合成を許す一方、L1–L3/approval/pair/qualityを維持する。",
+        "residual": "style合意要件そのものはfixed L2-002 line 100に保持されている。source-rowに即したstyle合意のtarget revisionとreceipt、合成する方式の適用境界、およびstyle/境界変更時に再合意を要する条件・oracleはこの固定pairから特定できない。",
+        "numeric_exception": "L1〜L3の3層。旧exactly-oneから後発判断で合成可へ変更。",
+        "counterexample": "方式合成可能を、要件承認前の進行またはL3 style合意省略の根拠にする。"
+      },
+      "comparison_result": "partial",
+      "formal_successor_assignment": null,
+      "authority_effect": "none",
+      "implementation_or_acceptance_closure": "not_proven",
+      "related_later_decision_identities": [
+        "HARNESS-L2-002/003 fixed pair; no direct 57+11 source identity adoption"
+      ]
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00065",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 85,
+        "source_line_sha256": "sha256:23e48e8c2cabe8028ddcd9e126d352acdcf7016dba57733a2d0f29cf83dcf6c3",
+        "source_text": "slice化なしは`FULL_L1_L12_V`とする。unknown、複合、Scrum不適格は`FULL_L1_L12_V`へfail-closeする。",
+        "condition_cluster_id": "V13-COND-L0085",
+        "source_section_group": 6,
+        "source_section_label": "§4 style/Discovery/PoC・69–90"
+      },
+      "queue_baseline": {
+        "queue_ref": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json#REQSRC-SUP-00065",
+        "classification": "condition",
+        "condition_status": "partial",
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "existing_individual_audit_refs": []
+      },
+      "condition_analysis": {
+        "meaning": "sliceなしはFULL_L1_L12_V。unknown・複合・Scrum不適格はFull Vへfail-closeする。",
+        "retained": "固定L2-002は未選択/適用条件不成立のfail-closeを保持し、2026-09-25 PO判断で方式合成を許す。",
+        "residual": "unknown/複合をFull Vへ送る旧defaultと方式合成可の適用境界が未固定。固定L2-002から複合時の一律Full V routeは確認できない。",
+        "numeric_exception": "旧3 style、現行L2-002は4方式＋合成。risk/size閾値なし。",
+        "counterexample": "適格性不明を解決せず合成で進行する、または旧Full V defaultで現行の合成判断を上書きする。"
+      },
+      "comparison_result": "partial",
+      "formal_successor_assignment": null,
+      "authority_effect": "none",
+      "implementation_or_acceptance_closure": "not_proven",
+      "related_later_decision_identities": [
+        "HARNESS-L2-002/003 fixed pair; no direct 57+11 source identity adoption"
+      ]
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00068",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 88,
+        "source_line_sha256": "sha256:d9bc831c20f6dbd0b163b64fdce36553ec4fa09ba4d2ed70e2115ab06dfbda92",
+        "source_text": "TDD、Reverse、受入条件、migration、rollback、security、release evidence、L12運用を省略しない。",
+        "condition_cluster_id": "V13-COND-L0088",
+        "source_section_group": 6,
+        "source_section_label": "§4 style/Discovery/PoC・69–90"
+      },
+      "queue_baseline": {
+        "queue_ref": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json#REQSRC-SUP-00068",
+        "classification": "condition",
+        "condition_status": "partial",
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "existing_individual_audit_refs": []
+      },
+      "condition_analysis": {
+        "meaning": "Scrumを品質工程の省略に使わず、TDD、Reverse、受入条件、migration、rollback、security、release evidence、L12運用を省略しない。",
+        "retained": "固定L2-002/003/005は方式横断の品質条件、工程証拠、検証義務、Release境界を持つ。後発L2-034は適用範囲内のmeasurement contractだけ。",
+        "residual": "列挙義務のslice適用条件、非適用判断、各個別oracleは一括して閉じていない。",
+        "numeric_exception": "8義務領域を列挙。各案件で全項目の全作業が常時適用とは限定されない。",
+        "counterexample": "短いsliceを理由にmigration/rollback/security/release evidence/L12を一括免除する。"
+      },
+      "comparison_result": "partial",
+      "formal_successor_assignment": null,
+      "authority_effect": "none",
+      "implementation_or_acceptance_closure": "not_proven",
+      "related_later_decision_identities": [
+        "HARNESS-L2-002/003 fixed pair; no direct 57+11 source identity adoption"
+      ]
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00069",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 90,
+        "source_line_sha256": "sha256:cd727ede39b8bb8fa14d31554bfd4bac20c3e77d9b13c657b0774c8c25ecfd63",
+        "source_text": "HELIXは個人開発を前提とするため、Scrumのteam ceremony、velocity競争、複数人role分担は必須にしない。backlog、slice、DoR/DoD、review、retro、段階releaseだけを必要粒度で使う。",
+        "condition_cluster_id": "V13-COND-L0090",
+        "source_section_group": 6,
+        "source_section_label": "§4 style/Discovery/PoC・69–90"
+      },
+      "queue_baseline": {
+        "queue_ref": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json#REQSRC-SUP-00069",
+        "classification": "condition",
+        "condition_status": "partial",
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "existing_individual_audit_refs": []
+      },
+      "condition_analysis": {
+        "meaning": "個人開発前提でteam ceremony・velocity競争・複数人role分担を必須にせず、backlog/slice/DoR/DoD/review/retro/段階releaseを必要粒度で使う。",
+        "retained": "Concept/L1とfixed L2-002はsolo/AI委任と方式・品質条件を扱う。",
+        "residual": "必要粒度の選択者、practiceの必須/optional、N/A記録、案件規模と証拠義務の対応はsource-row単位でfixed pairにない。",
+        "numeric_exception": "3種のteam practiceは非必須。remaining practicesは必要粒度で、閾値ではない。",
+        "counterexample": "soloを理由にreview/DoD/release evidenceを一括免除、またはteam ceremonyを全件必須化。"
+      },
+      "comparison_result": "partial",
+      "formal_successor_assignment": null,
+      "authority_effect": "none",
+      "implementation_or_acceptance_closure": "not_proven",
+      "related_later_decision_identities": [
+        "HARNESS-L2-002/003 fixed pair; no direct 57+11 source identity adoption"
+      ]
+    }
+  ],
+  "static_validation_expected": {
+    "selected_ids_unique": true,
+    "source_item_ids": [
+      "REQSRC-SUP-00055",
+      "REQSRC-SUP-00056",
+      "REQSRC-SUP-00057",
+      "REQSRC-SUP-00059",
+      "REQSRC-SUP-00060",
+      "REQSRC-SUP-00061",
+      "REQSRC-SUP-00062",
+      "REQSRC-SUP-00063",
+      "REQSRC-SUP-00065",
+      "REQSRC-SUP-00068",
+      "REQSRC-SUP-00069"
+    ],
+    "source_line_count": 11,
+    "source_and_queue_text_digest_match_all": true,
+    "all_rows_zero_prior_individual_audit_refs": true,
+    "formal_successors_empty": true,
+    "whole_source_closure": false,
+    "old_runtime_or_tests_executed": false
+  },
+  "meaning_change_basis": {
+    "decision_record": "docs/governance/decisions/po-optimal-draft-po-decisions-2026-09-25.md",
+    "file_sha256": "sha256:fb16449af47b30f151445d0c6b3ee16117c47b23a86baedb2434a0e6602a6f95",
+    "source_row_identity": "REQSRC-SUP-00057",
+    "pins": [
+      {
+        "line": 51,
+        "text": "- 「Ⅴモデルはウォーターフォールの単独プロダクト型、スクラムは最小プロダクトで市場投入を急いで出してから利用履歴から改善していく市場投入先行方式、ハイブリットはⅤモデルをベースにするが1つの開発工程からたくさんのユニット拡張単位で１コアプロダクト＋複数プロダクトで最終的に結合させる場合に使用する、リリースカンバンはリリース段階を分けてv1、v2、v3と最終的なプロダクトゴールにリリースを切りながら進めていく方式これらは製品特性に合わせて合成可能である。」",
+        "line_sha256": "sha256:34365d3e00b2332a3ebfbab6c67fd66c47bed78b157de57194e94ac6051e82ea"
+      },
+      {
+        "line": 54,
+        "text": "- ハイブリッドの意味が、旧「V設計＋Scrum実装」から変わる。",
+        "line_sha256": "sha256:cee5e35e996b6e60d91afa193dddd9e48fe82b45682d3d9eaa4babc3d43561e3"
+      },
+      {
+        "line": 64,
+        "text": "- 旧ハイブリッドのL5後のslice化は旧の意味のものである。新しいハイブリッドでユニット拡張単位へ分ける位置は、まだ決まっていない。",
+        "line_sha256": "sha256:67980d7662d8fa4e8c7ed6ac602c2ebb3150fd646a2815d34ba80f3910c7c03b"
+      }
+    ],
+    "retained": "L1-L3 common path and six current V-pairs are compared with the fixed f6 requirements.",
+    "changed": "Hybrid is defined as V-model-based multi-unit/product expansion and composition, replacing the old V-design then Scrum-implementation route.",
+    "reason": "The PO record says old L5 slice timing belongs to the old Hybrid meaning and the new Hybrid unit-expansion point was not yet fixed."
+  }
+}
