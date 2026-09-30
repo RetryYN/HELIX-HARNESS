@@ -36,6 +36,8 @@
 
 2026-09-29の11候補判断と2026-09-30 live26判断で採択されたHARNESS-L2-049〜059のうち、049は登録-003の表示可能prototype計測、055/056は選択されたFR-L1-48/49 atom、057〜059等はリスク、issue、identity等の限定条件である。これらはBR-01の全工程・一案件受入・AI委譲回帰oracleを追加しない。判断記録・対象revisionのpinと評価はJSONに記録した。後続pairをf6dad2aの本文へ混ぜず、固定比較の結論は維持する。
 
+2026-09-30 live26判断はHARNESS-L2-060＋HELIXOS-L2-103をA案で一体承認した。HARNESS-L2-060は現行契約上で適用が決まった工程に限り入力revisionと段階証拠を結び、HELIXOS-L2-103は同じscope/revisionのevent・current projection・利用可能な因果参照を記録する。B案の旧工程列と前段証拠を全案件へ一律必須化する扱いは採られていない。旧HIL-FR-01のend-to-end lifecycleは`MPR-SH-IR-003#HIL-FR-01`にholdingのまま残るため、このpairはBR-01ごとの「1案件をL0-L14通しで回せる」受入義務を閉じない。採択pairは現行の適用工程の証拠連鎖を限定して支えるが、全案件共通の旧stage chain、一案件end-to-end oracle、L0-L14全工程を通す結果は未確認であり、BR-01のsource atom・formal successor・条件閉包の残差は維持する。判断、MPR registration、L2/L11 section pinはJSONに記録した。
+
 ## 残差と検証
 
 BR-01は引き続き`preserved_pending_rehome`でsuccessor未割当。個別比較で確認できたのは工程・pair・影響・検証義務に関する広い保持／再導出であり、単一案件のend-to-end受入、BR-01専用の回帰oracle、atom単位の引継ぎは未確認である。この記録は要求意味の変更、旧条件のretire、後続作業の許可を与えない。

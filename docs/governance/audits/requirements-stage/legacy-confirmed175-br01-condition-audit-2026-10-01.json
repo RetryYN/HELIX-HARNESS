@@ -326,6 +326,45 @@
           "assessment": "review risk acceptance, risk-shaped planning, and Issue contract identity; no BR-01-specific pair closure."
         }
       ]
+    },
+    {
+      "decision": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+      "decision_record_id": "HDEC-REQUIREMENTS-LIVE26-2026-09-30",
+      "decision_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+      "decision_line": 76,
+      "selection": "A selected jointly for the two connected registrations",
+      "pair_source_revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+      "pairs": [
+        {
+          "id": "HARNESS-L2-060 + HELIXOS-L2-103",
+          "status": "adopted with option A selected as one decision unit",
+          "members": [
+            {
+              "id": "HARNESS-L2-060",
+              "registration_id": "MPR-RC-HARNESS-L2-060-001",
+              "candidate_semantic_digest": "d4f0419f2095828ac041a28ca906f45d4dd79b5bfa83000097111f5d13235c30",
+              "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+              "l2_file_sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
+              "l2_section_sha256": "d4f0419f2095828ac041a28ca906f45d4dd79b5bfa83000097111f5d13235c30",
+              "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+              "l11_file_sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e",
+              "l11_section_sha256": "d4714dd28d70de6e7bc4a1c8ca4fe18784d825507ebd019ee2c6c716306b35b5"
+            },
+            {
+              "id": "HELIXOS-L2-103",
+              "registration_id": "MPR-RC-HELIXOS-L2-103-001",
+              "candidate_semantic_digest": "6115a7190bad6a5ff449574a3150116dcdcd31e69f70e6a5b1625a59e171c7dc",
+              "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "l2_file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+              "l2_section_sha256": "6115a7190bad6a5ff449574a3150116dcdcd31e69f70e6a5b1625a59e171c7dc",
+              "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "l11_file_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+              "l11_section_sha256": "b9d2360893edeb64152899f8a8bf71afa3ab3d9ec387300c8358885dfca823a0"
+            }
+          ],
+          "assessment": "Option A connects input revision, stage evidence, event, and available causal references only for stages whose applicability is established by current contracts. Option B's universal legacy stage sequence and predecessor-evidence requirement for every project was not adopted. The old HIL-FR-01 end-to-end lifecycle remains held at MPR-SH-IR-003#HIL-FR-01. This bounded pair does not close BR-01's per-case one-project L0-L14 obligation, provide a universal stage-chain oracle, or assign a formal successor."
+        }
+      ]
     }
   ],
   "overlap_check": {
@@ -360,6 +399,7 @@
   "validation": {
     "json_parse": "passed",
     "source_and_target_pins": "passed",
+    "live26_decision_and_pair_pins": "passed: decision, MPR registrations, and HARNESS/HELIXOS L2/L11 file and section digests",
     "individual_audit_identity_scan": "passed_no_exact_duplicate",
     "scfctl_validate": "passed_bindings=143_fail=0",
     "git_diff_check": "passed"
