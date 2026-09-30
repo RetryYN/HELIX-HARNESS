@@ -632,6 +632,62 @@
         }
       ],
       "archive_kind": "test_source_read_only_not_executed"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+      "file_sha256": "e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b",
+      "line_pins": [
+        {
+          "line": 240,
+          "line_sha256": "231c62b933bd28f53fc1c71fe2b8c4a357449a3d74e725e7aaa5f3f9b5e717ba",
+          "text": "| **GD-01** | ガイド/ドキュメント統合ビュー | 左サイドナビ切替による静的知識ベース提供 | UX-03 / FR-L1-29 / FR-L1-44 |"
+        },
+        {
+          "line": 246,
+          "line_sha256": "15aaa3084407b42acc845e2c7f38eca7967974e8c344a8bc875cb23cd7cce45d",
+          "text": "| **対応 BR/UX/FR-L1** | BR-08 / UX-03 / FR-L1-19 / FR-L1-27 / FR-L1-32 / FR-L1-44 |"
+        },
+        {
+          "line": 254,
+          "line_sha256": "7ba4347c09eacefd2de47a3198812f98ad05a9d1ae838e9497e20e41bbe9b23f",
+          "text": "| **Onboarding** | HELIX 使い方。初めての PLAN 起票 / 途中導入 FR-L1-44 連動 / 環境セットアップ手順 |"
+        },
+        {
+          "line": 477,
+          "line_sha256": "1896d491d781d5b329dd59902f5fe3c3ee6d66cab7fbfc801acd60f0717360b6",
+          "text": "| **FR-L1-44** (途中導入 onboarding) | GD-01 (Onboarding カテゴリ) | 使い方 doc 参照 |"
+        },
+        {
+          "line": 500,
+          "line_sha256": "e7be635f10ddb484480c67b437dee6b7d20290b95d5eaf9e92849ad776fa93cf",
+          "text": "| **GD-01** | BR-08 / UX-03 | FR-L1-19 / FR-L1-27 / FR-L1-32 / FR-L1-44 |"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-3B905BB196962E2BE624"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-03-screen-requirements.md",
+      "file_sha256": "437dabe28a1c0a3a8d3ec24ccd4b7b8941cc286dc3650c2e97be3dbd1d34a2c0",
+      "line_pins": [
+        {
+          "line": 87,
+          "line_sha256": "9113e43fa7a8648f69dba327cf174a1fc826eafb7f3cb7c81c3cacb9d67eb40b",
+          "text": "- 上流 baton (functional): `docs/design/harness/L1-requirements/functional-requirements.md` (FR-L1-20 観測層 / FR-L1-29 画面設計 WF / FR-L1-30 フロントデザイン UX WF / FR-L1-33 資産棚卸 / FR-L1-34 穴管理 / FR-L1-35 整備状況可視化 / FR-L1-44 onboarding)"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-A1FC654415FA0AC86D70"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-06-helix-solo-conversion.md",
+      "file_sha256": "f3c2e42c3e4cffbf32025bb696d5505ce48444f391b903e5a72b8a4b1fe48cc9",
+      "line_pins": [
+        {
+          "line": 99,
+          "line_sha256": "f2e43f166fa38eda32e910fda2c18f7ac586d8973dee35d04a3cc3d390bf9f94",
+          "text": "- 進捗: ✅ **core reframe 済**: business §1.1 WHY・§1.2 WHAT・BR-02（複数人→AI agent roster 責務境界、worker≠verifier）／nfr NFR-01（Windows 第一級→本人環境第一級 narrow）・NFR-07 成功条件②（複数人 team→solo+AI roster）を solo 化（doctor green）。**P0–P9 → net-new 要件 confirmed**: `docs/design/helix/L1-requirements/pillar-requirements.md`（HBR-P0/P1/P2/P3/P4/P6/P7/P8/P9 + HNFR-P3/P5/P8/AC、HELIX 名前空間で harness 件数非侵襲、P2/P7 は partial と trace）。**Codex runtime parity overlay 追加**: Codex hook/tool surface、codex-only fallback、hosted API hook 非強制 surface、共有 memory/provider handover を HBR-P2/P7/HNFR-AC の acceptance に明示。**Distribution/full setup overlay 追加**: 既存 harness L1 の GitHub-pull/tag-pin/FR-L1-44/setup 方針に接地しつつ、HELIX final end-state として tag/release pin から `helix setup`（rename 後 `helix setup` 相当）1 コマンドで hooks・Claude/Codex adapters・state/memory/handover・GitHub rules/checks baseline を bootstrap する要求を HBR-P6/P9 に明示。**functional/screen/technical の team 箇所 inventory→solo 差分修正済**（inventory-first: 5+3+5 hit を列挙 → 真の矛盾のみ修正: technical 開発者規模「2-5名+AIスロット3」→「1名(本人/PO)+AI roster, worker≠verifier」・ADR-005 team server→本人 server 読み替え／screen 案件横断 def「チーム全 project」→「本人の全 project」・BR-02 trace「複数人 gate」→「AI roster gate」・§6.1 ペルソナ solo 注記／functional multi-tenant carry を solo 対象外明示・「チーム共有 audit」→「本人/AI roster 共有」。§1.3 大域コンベンションで被覆済の単なる用語は非改変。doctor green、残存 team hit = solo 読み替え注記のみ）。**外部研究 delta 済**: pmo-tech-docs 委譲（2025–2026 ソース照合、recency 厳守）で P6（Rulesets gated-push + Merge Queue）/ P8（MicroVM sandbox + short-lived token + OWASP LLM06 escalation FR 化）/ HNFR-P3（external-truth grounding AC + source attribution）/ HNFR-P5（3 層 injection budget + anchored iterative handover + artifact-trail 専用記録）の delta を `pillar-requirements.md §2.5` に記録（verify-don't-blindly-adopt: 概念のみ採用候補、ツール/数値/出典は L3 一次検証、ADR-001 厳守）。"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-F8B2A3885ED6B5886C45"
     }
   ],
   "fixed_and_near_pairs": [
@@ -1527,7 +1583,8 @@
     "decision_table_rows_total": 93,
     "excluded_nonadopted_or_unregistered_rows": 5,
     "screen_result": "後発の57候補、11候補、live26判断の採択registration-decision rows全88件をindex化しFR-L1-44のasset inventory、baseline creation、state import report、onboarding completion evidenceの条件への意味近接をscreen。FR44の旧条件を具体的に満たす近接pairは0件。採択表示、候補記述の単語共有、責務隣接をsuccessor・coverage・closureに変換しない。",
-    "limited_scope": "compact index uses decision rows from base main; fixed/near L2/L11 pair section and MPR pins use f6 exact bytes. Non-near rows are not treated as condition coverage."
+    "limited_scope": "compact index uses decision rows from base main; fixed/near L2/L11 pair section and MPR pins use f6 exact bytes. Non-near rows are not treated as condition coverage.",
+    "scope_limit_after_consumer_review": "88件の後発採択registration-decision rowsのscreenは、source FR44のworkflow/import atomsとC05-C11のmigration/staged-gate/setup consumer群への意味近接を対象とする。今回追加確認したGD-01 static help/document projection (C12) とHBR-P6/P9 full-distribution package overlay (C10) は別のscreen/pillar identity scopeであり、このzero-near結論の対象外。したがって採択pairがscreen UXまたはdistribution packageに一切接続しない、という主張ではない。"
   },
   "non_claims": [
     "旧sourceをretireせず、意味変更・successor割当・closureを行わない。",
@@ -1542,9 +1599,10 @@
     "source_authority_effect": "none",
     "formal_successor_assignments": 0,
     "closure_claimed": false,
-    "additional_consumer_condition_count": 7,
-    "source_consumer_pin_files": 23,
-    "archive_consumer_fulltext_reviewed": true
+    "additional_consumer_condition_count": 8,
+    "source_consumer_pin_files": 26,
+    "archive_consumer_fulltext_reviewed": true,
+    "later_adopted_pair_screen_scope": "functional FR44/import and C05-C11; excludes distinct C12 GD-01 projection and C10 package overlay scope"
   },
   "fixed_target_document_files": {
     "docs/helix-harness/L2-requirements/product-requirements.md": {
@@ -1702,19 +1760,22 @@
       "classification": "linked_HBRP6_package_setup_scope",
       "legacy_sources": [
         "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md:55",
-        "archive/legacy-generation-2026-09-14/root/docs/migration/v2-import-ledger.md:188"
+        "archive/legacy-generation-2026-09-14/root/docs/migration/v2-import-ledger.md:188",
+        "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-06-helix-solo-conversion.md:99"
       ],
       "legacy_asset_ids": [
         "LEGACY-ASSET-18F7940E7994634D39A1",
-        "LEGACY-ASSET-6279F4C46313824541B1"
+        "LEGACY-ASSET-6279F4C46313824541B1",
+        "LEGACY-ASSET-F8B2A3885ED6B5886C45"
       ],
       "condition_atoms": [
-        "tag/release pinからone commandでrepo-local hooks, provider adapters, state/memory/evidence/feedback, GitHub rules/checksをbootstrapするというpillar-level package capability"
+        "tag/release pinからone commandでrepo-local hooks, provider adapters, state/memory/evidence/feedback, GitHub rules/checksをbootstrapするというpillar-level package capability",
+        "solo-conversion overlay reiterates Distribution/full setup as one-command tag/release-pinned bootstrap, linked to existing FR-L1-44/setup and assigned to HBR-P6/P9"
       ],
       "fixed_comparison": [
         "HELIXOS-L2-006/L11-006"
       ],
-      "finding": "OS-006はサービス単位のrelease state、fresh/既存repoへの導入・更新・復旧を扱うが、tag/release pinからのfull project bootstrap packageや列挙されたrepo-local baseline一式を定めない。この広いHBR-P6条件はFR44のsource line自体へ統合せず、別のpillar/product-delivery scopeとして残す。",
+      "finding": "OS-006はサービス単位のrelease state、fresh/既存repoへの導入・更新・復旧を扱うが、tag/release pinからのfull project bootstrap packageや列挙されたrepo-local baseline一式を定めない。この広いHBR-P6条件はFR44のsource line自体へ統合せず、別のpillar/product-delivery scopeとして残す。 PLAN-L1-06 line 99 repeats this as a distribution/full-setup overlay grounded in FR44/setup but assigns the broader end-state to HBR-P6/P9; it is supporting lineage for the distinct package scope, not an expansion of the FR44 identity.",
       "status": "open_partial_correspondence"
     },
     {
@@ -1733,11 +1794,37 @@
       ],
       "finding": "Archive tests include project-setup import-report and skip_sub_doc route assertions, which corroborate legacy implementation consumers but do not establish baseline PLAN set/dashboard/skip-gate acceptance required by FR44/OT-23. No archived tests were run and these assertions do not close fixed-pair coverage.",
       "status": "open_partial_correspondence"
+    },
+    {
+      "condition_id": "FR44-C12",
+      "classification": "linked_GD01_screen_and_document_projection",
+      "legacy_sources": [
+        "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md:240",
+        "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md:246",
+        "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md:254",
+        "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md:477",
+        "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md:500",
+        "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-03-screen-requirements.md:87"
+      ],
+      "legacy_asset_ids": [
+        "LEGACY-ASSET-3B905BB196962E2BE624",
+        "LEGACY-ASSET-A1FC654415FA0AC86D70"
+      ],
+      "condition_atoms": [
+        "GD-01 is a static knowledge-base/guide view",
+        "Onboarding guide category explains HELIX use, first PLAN creation, midway onboarding FR-L1-44, and environment setup",
+        "screen requirement maps FR-L1-44 to the GD-01 onboarding category and help-document reference"
+      ],
+      "fixed_comparison": [
+        "HARNESS-L2-019/L11-019"
+      ],
+      "finding": "これはFR44のimport/baseline workflowを画面で実行する契約ではなく、GD-01へ使い方・環境手順を投影する別のscreen/document consumerである。固定L2/L11-019は変換結果とunknown一覧を定めるが、GD-01、help content、表示・navigationを定めない。FR44機能atomへ統合せず、別のscreen-projection照合が必要。PLAN-L1-03 line 87はFR44をscreen-requirementsの上流batonとして列挙するだけで追加の受入条件を置かない。",
+      "status": "separate_screen_projection_uncompared"
     }
   ],
   "archive_consumer_search": {
     "search_scope": "archive/legacy-generation-2026-09-14/root/{docs,src,tests} の全文を対象に FR-L1-44, NFR-16 onboarding, OT-23, OT-29, onboarding bootstrap, helix onboarding, skip_sub_doc, baseline PLAN, 初回 import を検索。旧資産を読むのみ。",
-    "result": "FR-L1-44直接詳細はL1 functional row, technical bootstrap, v2 import ledger, OT-23, L3/L4/L6 consumer, migration skill note。NFR-16/OT-29/AT-NFR-16は明示リンクされた別NFR companion。src/testsにsource-qualified FR-L1-44の参照はない。setup sourceとsetup testsは既存実装・過去test-designであり実行証拠に使わない。",
+    "result": "FR-L1-44直接詳細はL1 functional row, technical bootstrap, v2 import ledger, OT-23, L3/L4/L6 consumer, migration skill note。NFR-16/OT-29/AT-NFR-16は明示リンクされた別NFR companion。src/testsにsource-qualified FR-L1-44の参照はない。setup sourceとsetup testsは既存実装・過去test-designであり実行証拠に使わない。 GD-01/Onboardingは別screen/document projection consumer、PLAN-L1-03 line 87はtrace batonのみ。PLAN-L1-06 line 99はHBR-P6/P9 package overlayで、FR44 operational identityへの統合対象外。",
     "direct_and_linked_evidence_files": [
       "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
       "archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/function.md",
@@ -1759,7 +1846,10 @@
       "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-01-business-requirements.md",
       "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-02-functional-requirements.md",
       "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-04-technical-requirements.md",
-      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md"
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-03-screen-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-06-helix-solo-conversion.md"
     ],
     "scoped_exclusions": [
       {
@@ -1785,7 +1875,7 @@
     ]
   },
   "method_and_limits": {
-    "legacy_consumer_review_extension": "NFR-16 linked condition, technical/bootstrap, v2 migration ledger A-29/A-31/A-32 and §6, OT-23/OT-29/AT-NFR-16, migration-process note, and HBR-P6 package setup were explicitly added. Conditions are classified as direct FR44 consumer detail, separately linked NFR/pillar, conditional downstream process, or excluded ID/measure conflation. No separate source-qualified identity or successor was generated.",
+    "legacy_consumer_review_extension": "NFR-16 linked condition, technical/bootstrap, v2 migration ledger A-29/A-31/A-32 and §6, OT-23/OT-29/AT-NFR-16, migration-process note, and HBR-P6 package setup were explicitly added. Conditions are classified as direct FR44 consumer detail, separately linked NFR/pillar, conditional downstream process, or excluded ID/measure conflation. No separate source-qualified identity or successor was generated. Screen-requirements GD-01/Onboarding rows and PLAN-L1-03 baton were pinned as separate static guide/document projection scope; PLAN-L1-06 line 99 was added to HBR-P6/P9 full-setup provenance. Later adopted pair proximity result excludes these distinct projection/package scopes and is explicitly bounded.",
     "authority_effect": "none; preserve pending rehome and all unresolved source atoms."
   }
 }

@@ -35,8 +35,9 @@ archive全文検索で、L1 functional row以外にもFR44を具体化するcons
 | `FR44-C07` linked NFR-16 / OT-29 / AT-NFR-16: docs/code/state不整合でもblockせず段階移行し、初回importで停止しない。skip設定後のstage gate通過とblock回避logを確認 | 019のunknown保持は推定で補わない境界。矛盾時に進む条件、skip例外、段階gate logはない。003の通常未検証停止との調停もない | 別identity NFR-16の連動条件として比較し、FR44へ統合しない。未カバー |
 | `FR44-C08` OT-23/OT-29/AT-NFR-16のtest-design oracle: OT-23はHELIX未導入repoでbaseline PLAN・欠損sub-doc skip・dashboard、OT-29/ATはstage gate通過とblock回避logを検証 | L11-019のresult/unknown listにはbaseline/skip/dashboard/G1 stage-log oracleがない | OT-23はFR44固有consumer、OT-29/AT-NFR-16はlinked NFR16。archive test-design記載を実行済み・passと扱わない |
 | `FR44-C09` data-migration skillの変換、count/checksum、null/constraint、idempotency、rollback obligations | 019/L11-019にmigration transactionやintegrity oracleはない | onboarding importを該当data/schema migrationとして扱う場合の条件付きprocess consumer。L1/固定L2へ自動昇格しない |
-| `FR44-C10` HBR-P6: tag/release pinからone commandでrepo-local hooks・adapter・state/memory/evidence/feedback・GitHub rules/checksをbootstrap | HELIXOS-L2-006はservice単位の導入・更新・復旧に接するが、full project baseline package一式を定めない | FR44本文へ混ぜずpillar/product-delivery scopeとして残す |
+| `FR44-C10` HBR-P6: tag/release pinからone commandでrepo-local hooks・adapter・state/memory/evidence/feedback・GitHub rules/checksをbootstrap。PLAN-L1-06 line 99もFR44/setup方針を起点にDistribution/full setup overlayをHBR-P6/P9へ割当 | HELIXOS-L2-006はservice単位の導入・更新・復旧に接するが、full project baseline package一式を定めない | PLAN-L1-06は別のpillar/product-delivery scopeの系譜根拠として追加。FR44本文へ混ぜない |
 | `FR44-C11` NFR-16 stage testsなどのtest-design oracle | L11-019のresult/unknown listにはbaseline/skip/dashboard/G1 stage-log oracleがない | old test-design conditionとして記録。実行・合格を主張しない |
+| `FR44-C12` screen-requirements GD-01: static guide/document view、Onboarding categoryのHELIX使い方・初回PLAN・途中導入FR44・環境手順、FR44から「使い方 doc」へのprojection。PLAN-L1-03 line 87はFR44をscreen requirementsの上流batonとして列挙 | HARNESS-L2/L11-019はReverse変換結果とunknownを扱うが、GD-01、help content、表示・navigationを定めない | FR44 operational import/baseline workflowと別のscreen/document projection consumerとして明示除外。機能条件へ統合せず、独立したscreen-projection照合が必要。PLAN-L1-03 line 87は追加acceptance atomではない |
 
 ## archive consumer全体の検索と除外
 
@@ -46,7 +47,7 @@ ID誤用や別measureは明示的に除外した。PLAN-L1-02のFR-L1-44 role-va
 
 ## 後発decision proximity screen
 
-2026-09-29の57候補、同日の11候補、2026-09-30 live26判断について、採択済みregistration-decision rowsを全88件compact index化し、FR44のinventory/baseline/state import/onboarding gate条件への意味近接をscreenした。FR44の条件を具体化する近接pairはなかった。workflow、Worker、release、ticket、evidence、security等の隣接責務はあるが、旧資産を列挙・stateへimport・完了gate証明する要求ではない。全rowのidentity、registration ID、decision line/hashはJSONに保持する。
+2026-09-29の57候補、同日の11候補、2026-09-30 live26判断について、採択済みregistration-decision rowsを全88件compact index化し、FR44 operational workflow/import atomsとC05–C11のmigration/staged-gate/setup consumer群への意味近接をscreenした。FR44の条件を具体化する近接pairはなかった。GD-01のstatic help/document projection (C12) とHBR-P6/P9 distribution package overlay (C10) は別のscreen/pillar identity scopeとしてこのzero-near判定の対象外であり、採択pairがscreen UXまたはdistribution packageに一切接続しないとは主張しない。全rowのidentity、registration ID、decision line/hashはJSONに保持する。
 
 このscreenは後発採択の範囲を変更せず、source atomの採択・後継・closureを生成しない。固定pairと近接pairのL2/L11 file/section SHAおよび存在するMPR row SHAはJSONで固定する。
 
