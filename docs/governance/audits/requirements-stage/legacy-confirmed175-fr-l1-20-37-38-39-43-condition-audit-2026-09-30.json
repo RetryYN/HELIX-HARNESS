@@ -109,6 +109,24 @@
     },
     "near_pair_scope": [
       {
+        "identity": "HELIXOS-L2-043",
+        "status": "adopted",
+        "decision_table_row": "| `HELIXOS-L2-043` | 採択 | `MPR-RC-HELIXOS-L2-043-002` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:e286b34a9805a690f324ebe37ee0936691f636082b49350ee9dc5183787d9a68` | `HELIXOS-L2-043` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:136c2c209e30667dc74f1757b00fc482ce1216f05a851990c02437dc9078976b` | `docs/governance/audits/requirement-registration/os-v13-p2-06-worker-delegation-coverage-receipt-2026-09-28-r2.json` |",
+        "registration_id": "MPR-RC-HELIXOS-L2-043-002",
+        "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "l2_source_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+        "l2_section_sha256": "e286b34a9805a690f324ebe37ee0936691f636082b49350ee9dc5183787d9a68",
+        "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "l11_source_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+        "l11_section_sha256": "136c2c209e30667dc74f1757b00fc482ce1216f05a851990c02437dc9078976b",
+        "l2_source_file_sha256_recomputed": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+        "l11_source_file_sha256_recomputed": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+        "l2_registration_digest": "e286b34a9805a690f324ebe37ee0936691f636082b49350ee9dc5183787d9a68",
+        "l11_section_sha256_recomputed": "136c2c209e30667dc74f1757b00fc482ce1216f05a851990c02437dc9078976b",
+        "source_head": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "limited_effect": "委譲単位のapproval request/tool call/resultを既存assignment・source/revision・actor・因果関係へ結び追跡する近接意味。hook event全量記録、FR20の4追加計測軸やaccuracy/budget metric集約ではない。57判断表では採択だが、pair本文はregistered proposal/authority noneを保ち、実行・承認authorityやsource-wide closureを生成しない。"
+      },
+      {
         "identity": "HARNESS-L2-034",
         "status": "adopted",
         "decision_table_row": "| `HARNESS-L2-034` | 採択 | `MPR-RC-HARNESS-L2-034-003` | `docs/helix-harness/L2-requirements/product-requirements.md` | `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09` | `sha256:dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156` | `HARNESS-L2-034` | `docs/helix-harness/L11-acceptance/product-acceptance.md` | `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5` | `sha256:391f640508944ba2f32b5751a2a9a17fbc9f89ef76f46953c1af68ba907a9fdf` | `docs/governance/audits/requirement-registration/harness-measurement-contract-coverage-receipt-2026-09-28-r3.json` |",
@@ -123,6 +141,24 @@
         "l2_source_file_sha256_recomputed": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
         "l11_source_file_sha256_recomputed": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
         "l11_section_sha256_recomputed": "391f640508944ba2f32b5751a2a9a17fbc9f89ef76f46953c1af68ba907a9fdf"
+      },
+      {
+        "identity": "HELIXOS-L2-051",
+        "status": "conditional_adopted",
+        "decision_table_row": "| `HELIXOS-L2-051` | 条件付き採択：本構成でCursorを作成専用、Claude優先は適用可能な評価根拠のある要求・設計taskのみ。 | `MPR-RC-HELIXOS-L2-051-002` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:54fd39fbeb3786bc739560856afb14e3cf892b1bb717d98ceb1212df09fe7f2b` | `HELIXOS-L2-051` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:e01daa2fbf1ad7c2e9b6df54a9acdf022a3b821123d8904f8a171a4ede87b684` | `docs/governance/audits/requirement-registration/ops-o4-coverage-receipt-2026-09-29-r2.json#HELIXOS-L2-051` |",
+        "registration_id": "MPR-RC-HELIXOS-L2-051-002",
+        "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "l2_source_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+        "l2_section_sha256": "54fd39fbeb3786bc739560856afb14e3cf892b1bb717d98ceb1212df09fe7f2b",
+        "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "l11_source_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+        "l11_section_sha256": "e01daa2fbf1ad7c2e9b6df54a9acdf022a3b821123d8904f8a171a4ede87b684",
+        "l2_source_file_sha256_recomputed": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+        "l11_source_file_sha256_recomputed": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+        "l2_registration_digest": "54fd39fbeb3786bc739560856afb14e3cf892b1bb717d98ceb1212df09fe7f2b",
+        "l11_section_sha256_recomputed": "e01daa2fbf1ad7c2e9b6df54a9acdf022a3b821123d8904f8a171a4ede87b684",
+        "source_head": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "limited_effect": "task class、LABO適用可能Worker水準、INTELLIGENCE配置案、provider/runtime capability evidenceを照合してtaskごとにexecution/review配置を選ぶ近接意味。model ID/reasoning effortを返す推挙関数、FR37のtask×drive×L×budget mappingや根拠ログではない。unknown/stale/evidence不足では推測しない。"
       },
       {
         "identity": "HELIXLABO-L2-065",
@@ -158,17 +194,18 @@
       }
     ],
     "near_pair_hash_validation": {
-      "method": "At source HEAD 318ec4a04abb3c1cc17111b3d939f913facd5fd3, recomputed whole-file SHA-256 for each L2/L11 source. L2 section digest was checked against the exact MPR candidate_semantic_digest in the management provisional requirement register at that HEAD. L11 section digest was recomputed from the identity ### heading to the next same/higher heading, stripping trailing blank lines and appending one UTF-8 LF as specified by the decision record.",
+      "method": "At source HEAD 318ec4a04abb3c1cc17111b3d939f913facd5fd3, recomputed whole-file SHA-256 for each near L2/L11 source. L2 section digest was checked against the exact MPR candidate_semantic_digest in the management provisional requirement register at that HEAD. L11 section digest was recomputed from each identity ### heading to the next same/higher heading, stripping trailing blank lines and appending one UTF-8 LF as specified by the decision record.",
       "source_head": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
       "register_path": "docs/governance/management-provisional-requirement-register.jsonl",
       "register_sha256": "10d0d378ec995e7e597cfeeee029afcb8fe2e75216f53666c210ff05ed7ec03a",
       "whole_pair_file_hashes_recomputed": true,
       "l2_registration_digests_verified": true,
-      "l11_section_digests_recomputed": true
+      "l11_section_digests_recomputed": true,
+      "pair_count": 5
     }
   },
   "decision_screen": {
-    "screen_policy": "Identity/status-only screen across all rows in the exact 57-candidate decision table and all 11 later candidate identities. Include each exact candidate identity and its disposition; do not treat status itself as source-atom coverage. HELIXOS-L2-049/050/051 are candidate identities distinct from legacy 3L-BR-001..009.",
+    "screen_policy": "Identity/status-only screen across all rows in the exact 57-candidate decision table and all 11 later candidate identities. Include each exact candidate identity and disposition; do not treat status itself as source-atom coverage. In this audit, HELIXOS-L2-051 is an FR-L1-37 near pair; HELIXOS-L2-049 and HELIXOS-L2-050 remain only as unrelated identity/status rows in the complete 57 screen and are excluded from this audit’s near-pair digest scope.",
     "po_2026_09_29_57": {
       "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
       "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
@@ -542,26 +579,55 @@
     },
     "near_pair_digest_scope": {
       "pairs": [
-        "HELIXOS-L2-049",
-        "HELIXOS-L2-050",
-        "HELIXOS-L2-051"
+        "HELIXOS-L2-043",
+        "HARNESS-L2-034",
+        "HELIXOS-L2-051",
+        "HELIXLABO-L2-065",
+        "HELIXLABO-L2-069"
       ],
       "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
       "pair_digests": {
-        "HELIXOS-L2-049": {
-          "l2_section_digest": "e9372f19e5064cb5470141fef25a3212aa65cede5d44ecfff8c9ed86da83668b",
-          "l11_section_digest": "d5a3a0c361a6d0056a8c608f5230a52d206c000d7ac81ff969aeaba30ad4d810"
+        "HELIXOS-L2-043": {
+          "status": "adopted",
+          "l2_source_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "l2_section_digest": "e286b34a9805a690f324ebe37ee0936691f636082b49350ee9dc5183787d9a68",
+          "l11_source_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "l11_section_digest": "136c2c209e30667dc74f1757b00fc482ce1216f05a851990c02437dc9078976b"
         },
-        "HELIXOS-L2-050": {
-          "l2_section_digest": "fab5fdfae9cfd2211f8c2fd6dfad5ce7b065e007ef11ca62f55420baa5033b6d",
-          "l11_section_digest": "cf4866f2d8beee83eda5389e3b98100cd37cbd609f7c797617b499c1381bfafb"
+        "HARNESS-L2-034": {
+          "status": "adopted",
+          "l2_source_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+          "l2_section_digest": "dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156",
+          "l11_source_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+          "l11_section_digest": "391f640508944ba2f32b5751a2a9a17fbc9f89ef76f46953c1af68ba907a9fdf"
         },
         "HELIXOS-L2-051": {
+          "status": "conditional_adopted",
+          "l2_source_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
           "l2_section_digest": "54fd39fbeb3786bc739560856afb14e3cf892b1bb717d98ceb1212df09fe7f2b",
+          "l11_source_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
           "l11_section_digest": "e01daa2fbf1ad7c2e9b6df54a9acdf022a3b821123d8904f8a171a4ede87b684"
+        },
+        "HELIXLABO-L2-065": {
+          "status": "conditional_adopted",
+          "l2_source_file_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+          "l2_section_digest": "6f50887b94a8d3341c55700393896798cc1273324a868071447bf0e5a95cf019",
+          "l11_source_file_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+          "l11_section_digest": "c70905fd036f0c6e6bfdce0368e462cd85acd467354bcad599d1112634d9b1b6"
+        },
+        "HELIXLABO-L2-069": {
+          "status": "adopted",
+          "l2_source_file_sha256": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+          "l2_section_digest": "605acfa9ec39bbdc0d964f3bf3c644122f1c081c202ddea48fe682ac31be5bc9",
+          "l11_source_file_sha256": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+          "l11_section_digest": "d1cc8c180bab90b84ef6300bf91c79d622cff416a596131fe0b1843fd6aa61db"
         }
       },
-      "does_not_claim": "The conditional candidate decisions and pair hashes do not assign successors to the seven old 3L identities or close their source conditions."
+      "does_not_claim": "These five later candidate decisions/pair revisions have only the limited nearby effects recorded per identity. They do not assign successors to FR-L1-20/37/38/39/43, close source conditions, or claim hook-wide measurement or model/effort recommendation adoption.",
+      "screen_only_excluded_from_near_pair_digest": [
+        "HELIXOS-L2-049",
+        "HELIXOS-L2-050"
+      ]
     }
   },
   "queue_screen": {
@@ -602,7 +668,7 @@
         "L1 scope only; detailed AC deferred to L3",
         "old screen marked not-implemented"
       ],
-      "fixed_and_later_pair_comparison": "固定f6のLABO-001は観測値のsource identity/revision/authorityと異常状態の区別を保持。OS-018はassignment/run stateとmodel context、OS-022はcandidate/feedback routingを扱う。後続HARNESS-034 adoptedは測定契約/measurement evidenceの近接面を加えるが、旧5 hooks・4軸・HM-05列/頻度を採択したわけではない。",
+      "fixed_and_later_pair_comparison": "固定f6のLABO-001は観測値のsource identity/revision/authorityと異常状態の区別を保持。OS-018はassignment/run stateとmodel context、OS-022はcandidate/feedback routingを扱う。後続HARNESS-034 adoptedは測定契約/measurement evidence、OS-043 adoptedは委譲単位のapproval request/tool call/resultとassignment provenance追跡の近接面。ただしOS-043はhook event全量記録やFR20の4追加軸/accuracy/budget集約ではなく、旧5 hooks・4軸・HM-05列/頻度を採択したわけではない。",
       "residual": "5 hook全量ログのevent schema/coverage oracle、各追加軸の定義・分母・欠測/unknown処理、30秒表示とHM-05状態色の受入、精度/予算算出式は未対応。",
       "judgment": "部分再導出／条件範囲内で保持された近接意味を記録。source atom coverageやformal successorは未確定。",
       "fixed_target_findings": [
@@ -634,6 +700,16 @@
           "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md",
           "lines": "151-177",
           "sha256": "99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d"
+        }
+      ],
+      "later_near_pair_effects": [
+        {
+          "identity": "HELIXOS-L2-043",
+          "effect": "委譲単位のapproval request/tool call/resultを既存assignment・source/revision・actor・因果関係へ結び追跡する近接意味。hook event全量記録、FR20の4追加計測軸やaccuracy/budget metric集約ではない。57判断表では採択だが、pair本文はregistered proposal/authority noneを保ち、実行・承認authorityやsource-wide closureを生成しない。"
+        },
+        {
+          "identity": "HARNESS-L2-034",
+          "effect": "測定契約・根拠の近接面。5 hook全量・4軸・metric schemaの採択ではない。"
         }
       ]
     },
@@ -668,7 +744,7 @@
         "drive/task/L/budget unknown must not be guessed into a recommendation",
         "legacy capability classes and CLI outputs are not adopted"
       ],
-      "fixed_and_later_pair_comparison": "INTELLIGENCE-010は候補配置の入力と根拠、LABO-055はevidenced task-kind/model-class historyの評価・未評価区別、OS-027はoracle不足時にun-evaluatedを維持する境界を保持。HELIXLABO-069 adopted adds observation/evaluation capability without fixed thresholds or automatic learning. These do not choose provider/model/effort for a task.",
+      "fixed_and_later_pair_comparison": "固定INTELLIGENCE-010は候補配置の入力と根拠、LABO-055はevidenced task-kind/model-class historyの評価・未評価区別、OS-027はoracle不足時にun-evaluatedを維持する境界を保持。LABO-069 adoptedは固定閾値・自動学習なしの観測/評価能力。後続OS-051 conditional adoptedはtask class、LABO適用可能Worker水準、INTELLIGENCE配置案、provider/runtime capability evidenceを照合しtaskごとにexecution/review配置を選ぶ近接意味。ただしmodel ID/reasoning effort推挙関数、FR37 task×drive×L×budget mappingや推挙根拠ログではない。unknown/stale/evidence不足では推測しない。",
       "residual": "task×drive×L×budgetの対応関数、候補集合、model ID/effort vocabulary、根拠ログ、unknown input oracle、歴史的class/CLI I/O are not fixed by mapped pairs.",
       "judgment": "部分再導出／条件範囲内で保持された近接意味を記録。source atom coverageやformal successorは未確定。",
       "fixed_target_findings": [
@@ -704,6 +780,16 @@
           "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/function-spec.md",
           "lines": "276-280",
           "sha256": "f80b69a4d153d7775ecd789aa9e261c140baf2a443ac53a851de710cfce02b14"
+        }
+      ],
+      "later_near_pair_effects": [
+        {
+          "identity": "HELIXOS-L2-051",
+          "effect": "task class、LABO適用可能Worker水準、INTELLIGENCE配置案、provider/runtime capability evidenceを照合してtaskごとにexecution/review配置を選ぶ近接意味。model ID/reasoning effortを返す推挙関数、FR37のtask×drive×L×budget mappingや根拠ログではない。unknown/stale/evidence不足では推測しない。"
+        },
+        {
+          "identity": "HELIXLABO-L2-069",
+          "effect": "観測/評価能力のみで固定閾値や自動学習を含まず、配置選択そのものではない。"
         }
       ]
     },
