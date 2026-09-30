@@ -29,6 +29,26 @@ basis commit: `2bbd889545cff238452701e5901ce56b67208fc8`
 一次作業255行は、source行を義務・例外・受入oracleのclauseへ分解し、各clauseをexactな採用済みL2と対L11、候補のみ、または未解決へ結ぶqueueです。残余clauseとsource/target revisionも保持します。テーマやfamilyの類似だけでcoverageにしません。この行分解・逆traceは[atomization review contract](../../requirement-atomization-review-contract.md)と基準監査のexact coverage ruleに沿います。二次48行は、既存status・参照とidentityを照合し、現行statusを維持します。このartifactは監査statusの再出力だけでclosure完了を宣言しません。
 
 
+## 後続PO採択revisionの旧source引用join
+
+2026-09-28の本体8機構の固定L2/L11判断と、2026-09-29の57候補判断を読み、採択対象の固定L2/L11 pairが旧archive v1.3の物理行または`LEGACY-ASSET-02319C2481B9E01698D5`を明示している引用を、303 condition rowの完全なsource tupleへjoinしました。24 source rowsに36件のpair/citation参照があります。JSONの`later_adopted_source_citation_join`と各rowの`later_adopted_source_citation_refs`にidentity別の根拠を記録しています。
+
+対象pairと引用位置は次のとおりです。
+
+| 固定L2/L11 identity | PO判断 | L2/L11引用位置 | キューにjoinしたarchive v1.3条件行 |
+|---|---|---|---:|
+| `HARNESS-L2-002/003` | 2026-09-28固定pair採択 | HARNESS L2 :105、L11 :40 | 4 |
+| `HELIXOS-L2-010` | 2026-09-28固定pair採択 | OS L2 :139、L11 :286 | 1 |
+| `HELIXBRAIN-L2-023` | 2026-09-28固定pair採択 | BRAIN L2 :548 | 13 |
+| `HARNESS-L2-034` | 2026-09-29採択、registration `MPR-RC-HARNESS-L2-034-003` | HARNESS L2 :709 | 3 |
+| `HARNESS-L2-039` | 2026-09-29採択、registration `MPR-RC-HARNESS-L2-039-003` | HARNESS L2 :923, :929 | 13 |
+| `HELIXSECURITY-L2-032` | 2026-09-29採択、registration `MPR-RC-HELIXSECURITY-L2-032-001` | SECURITY L2 :453 | 1 |
+| `HELIXOS-L2-036` | 2026-09-29採択、registration `MPR-RC-HELIXOS-L2-036-001` | OS L2 :1047、L11 :638 | 1 |
+
+36参照は同じsource rowを複数の固定pairが引用する場合を含みます。参照は旧物理path、archive file SHA、line、line SHA、source item IDのtupleへ結び、2026-09-28判断では固定commit/file SHAとidentity宣言行digest、2026-09-29判断では判断表のL2 semantic digest・L11 section digestを記録しました。SECURITYのline 430引用のidentityはL2-032です。従来の宛先候補ラベルL2-029/031も、57候補判断により採択済みであることを該当rowへ注記しました。
+
+このjoinは引用の存在と採択revisionを記録するものです。引用された行の義務・例外・oracleをsemantic coverageと判定しません。`baseline_condition_audit`のstatus、`current_destination_ids`、`queue_state`は2026-09-28基準監査の履歴値のまま保持し、status更新数・queue state変更数はともに0です。`authority_effect: none`、formal successorなし、source closureなしの境界も維持します。
+
 局所artifactとのexact identity参照は、303 source IDs中14件で完全なpath/file SHA/line/line SHA tupleが一致し、24件はsource IDへの参照だけでtupleを検証できず、265件は局所artifact内にexact source identity参照がありません。125個のartifact/object参照記録には上記3状態を保持しました。これは局所監査の参照範囲を示すだけで、残り265件の意味的非memberや未監査確定を意味しません。
 
 ## #2394でmergeされた5行監査のjoin

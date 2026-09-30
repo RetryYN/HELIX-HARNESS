@@ -2889,7 +2889,41 @@
         },
         "local_audit_join_status": "unmatched_exact_identity_in_local_individual_artifacts",
         "work_action": "Atomize the source condition into obligation/exception/oracle clauses with reverse links to this exact source row. For each clause, record an exact adopted L2 and paired L11 reference if present, otherwise candidate-only or unresolved; retain residual clauses and source/target revisions. Do not turn a thematic or family route into coverage."
-      }
+      },
+      "later_adopted_source_citation_refs": [
+        {
+          "requirement_identity": "HELIXBRAIN-L2-023",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "decision_status": "adopted_fixed_L2_and_paired_L11_2026-09-28",
+          "target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "registration_id": null,
+          "l2_revision": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "file_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+            "identity_section_locator": "HELIXBRAIN-L2-023",
+            "identity_lines_digest_sha256": "sha256:5913dee4dd303dcbf914a998026729dab1f2ed45f34ac514d399eeb55bfde458",
+            "digest_line_count": 2
+          },
+          "l11_revision": {
+            "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+            "file_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+            "identity_section_locator": "HELIXBRAIN-L2-023",
+            "identity_lines_digest_sha256": "sha256:c4624e7d223c1af7bab59c6203ad21dbcb00adf26a70ac8c84191befad6dcf55",
+            "digest_line_count": 1
+          },
+          "citation_ref": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "locator": "line 548"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 67,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ]
     },
     {
       "source_identity": {
@@ -3604,7 +3638,73 @@
         },
         "local_audit_join_status": "unmatched_exact_identity_in_local_individual_artifacts",
         "work_action": "Atomize the source condition into obligation/exception/oracle clauses with reverse links to this exact source row. For each clause, record an exact adopted L2 and paired L11 reference if present, otherwise candidate-only or unresolved; retain residual clauses and source/target revisions. Do not turn a thematic or family route into coverage."
-      }
+      },
+      "later_adopted_source_citation_refs": [
+        {
+          "requirement_identity": "HELIXOS-L2-010",
+          "decision_ref": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "decision_status": "adopted_fixed_L2_and_paired_L11_2026-09-28",
+          "target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "registration_id": null,
+          "l2_revision": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+            "identity_section_locator": "HELIXOS-L2-010",
+            "identity_lines_digest_sha256": "sha256:088c226aed12a44c72b8f98fb9ed06c08c1b533fa1f5c1c0d7e0ac386e55b22f",
+            "digest_line_count": 3
+          },
+          "l11_revision": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+            "identity_section_locator": "HELIXOS-L2-010",
+            "identity_lines_digest_sha256": "sha256:ed7ad8ba5e565ee49311882e22a16c9e62112676329028439c5a89f9266def99",
+            "digest_line_count": 2
+          },
+          "citation_ref": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "locator": "line 139"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 102,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        },
+        {
+          "requirement_identity": "HARNESS-L2-002/003",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "decision_status": "adopted_fixed_L2_and_paired_L11_2026-09-28",
+          "target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "registration_id": null,
+          "l2_revision": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+            "identity_section_locator": "HARNESS-L2-002/003",
+            "identity_lines_digest_sha256": "sha256:201a1cffab00405a4a828a95ceebb788d0af11f6b964edb78ffc1941c398c4da",
+            "digest_line_count": 5
+          },
+          "l11_revision": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+            "identity_section_locator": "HARNESS-L2-002/003",
+            "identity_lines_digest_sha256": "sha256:91b92eb46f9ab1682c2866bbdef12b28a4634dd9a10b362c6f5350cf7664e6b5",
+            "digest_line_count": 1
+          },
+          "citation_ref": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "locator": "line 105; paired L11 citation line 40"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 102,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ]
     },
     {
       "source_identity": {
@@ -3733,7 +3833,41 @@
         },
         "local_audit_join_status": "unmatched_exact_identity_in_local_individual_artifacts",
         "work_action": "Reconcile the existing bounded status and refs against this exact source row, preserve any separate implementation-only or version-target boundary, and keep the current status until an exact condition-level comparison changes the evidence."
-      }
+      },
+      "later_adopted_source_citation_refs": [
+        {
+          "requirement_identity": "HARNESS-L2-002/003",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "decision_status": "adopted_fixed_L2_and_paired_L11_2026-09-28",
+          "target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "registration_id": null,
+          "l2_revision": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+            "identity_section_locator": "HARNESS-L2-002/003",
+            "identity_lines_digest_sha256": "sha256:201a1cffab00405a4a828a95ceebb788d0af11f6b964edb78ffc1941c398c4da",
+            "digest_line_count": 5
+          },
+          "l11_revision": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+            "identity_section_locator": "HARNESS-L2-002/003",
+            "identity_lines_digest_sha256": "sha256:91b92eb46f9ab1682c2866bbdef12b28a4634dd9a10b362c6f5350cf7664e6b5",
+            "digest_line_count": 1
+          },
+          "citation_ref": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "locator": "line 105; paired L11 citation line 40"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 112,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ]
     },
     {
       "source_identity": {
@@ -3808,7 +3942,41 @@
         },
         "local_audit_join_status": "exact_id_reference_only_tuple_unverified",
         "work_action": "Atomize the source condition into obligation/exception/oracle clauses with reverse links to this exact source row. For each clause, record an exact adopted L2 and paired L11 reference if present, otherwise candidate-only or unresolved; retain residual clauses and source/target revisions. Do not turn a thematic or family route into coverage."
-      }
+      },
+      "later_adopted_source_citation_refs": [
+        {
+          "requirement_identity": "HARNESS-L2-002/003",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "decision_status": "adopted_fixed_L2_and_paired_L11_2026-09-28",
+          "target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "registration_id": null,
+          "l2_revision": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+            "identity_section_locator": "HARNESS-L2-002/003",
+            "identity_lines_digest_sha256": "sha256:201a1cffab00405a4a828a95ceebb788d0af11f6b964edb78ffc1941c398c4da",
+            "digest_line_count": 5
+          },
+          "l11_revision": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+            "identity_section_locator": "HARNESS-L2-002/003",
+            "identity_lines_digest_sha256": "sha256:91b92eb46f9ab1682c2866bbdef12b28a4634dd9a10b362c6f5350cf7664e6b5",
+            "digest_line_count": 1
+          },
+          "citation_ref": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "locator": "line 105; paired L11 citation line 40"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 119,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ]
     },
     {
       "source_identity": {
@@ -4050,7 +4218,41 @@
         },
         "local_audit_join_status": "unmatched_exact_identity_in_local_individual_artifacts",
         "work_action": "Atomize the source condition into obligation/exception/oracle clauses with reverse links to this exact source row. For each clause, record an exact adopted L2 and paired L11 reference if present, otherwise candidate-only or unresolved; retain residual clauses and source/target revisions. Do not turn a thematic or family route into coverage."
-      }
+      },
+      "later_adopted_source_citation_refs": [
+        {
+          "requirement_identity": "HARNESS-L2-002/003",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "decision_status": "adopted_fixed_L2_and_paired_L11_2026-09-28",
+          "target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "registration_id": null,
+          "l2_revision": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+            "identity_section_locator": "HARNESS-L2-002/003",
+            "identity_lines_digest_sha256": "sha256:201a1cffab00405a4a828a95ceebb788d0af11f6b964edb78ffc1941c398c4da",
+            "digest_line_count": 5
+          },
+          "l11_revision": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+            "identity_section_locator": "HARNESS-L2-002/003",
+            "identity_lines_digest_sha256": "sha256:91b92eb46f9ab1682c2866bbdef12b28a4634dd9a10b362c6f5350cf7664e6b5",
+            "digest_line_count": 1
+          },
+          "citation_ref": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "locator": "line 105; paired L11 citation line 40"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 139,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ]
     },
     {
       "source_identity": {
@@ -6730,7 +6932,45 @@
         },
         "local_audit_join_status": "exact_id_reference_only_tuple_unverified",
         "work_action": "Atomize the source condition into obligation/exception/oracle clauses with reverse links to this exact source row. For each clause, record an exact adopted L2 and paired L11 reference if present, otherwise candidate-only or unresolved; retain residual clauses and source/target revisions. Do not turn a thematic or family route into coverage."
-      }
+      },
+      "later_adopted_source_citation_refs": [
+        {
+          "requirement_identity": "HARNESS-L2-034",
+          "decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_status": "adopted_exact_L2_and_paired_L11_revision_2026-09-29",
+          "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "registration_id": "MPR-RC-HARNESS-L2-034-003",
+          "l2_revision": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+            "section_digest": "sha256:dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156"
+          },
+          "l11_revision": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+            "section_digest": "sha256:391f640508944ba2f32b5751a2a9a17fbc9f89ef76f46953c1af68ba907a9fdf"
+          },
+          "citation_ref": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "locator": "line 709"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 247,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ],
+      "later_adopted_destination_status": [
+        {
+          "destination_label": "HARNESS-L2-034/L11-034 candidate",
+          "current_status": "adopted",
+          "decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "registration_id": "MPR-RC-HARNESS-L2-034-003"
+        }
+      ]
     },
     {
       "source_identity": {
@@ -6801,7 +7041,45 @@
         },
         "local_audit_join_status": "exact_id_reference_only_tuple_unverified",
         "work_action": "Atomize the source condition into obligation/exception/oracle clauses with reverse links to this exact source row. For each clause, record an exact adopted L2 and paired L11 reference if present, otherwise candidate-only or unresolved; retain residual clauses and source/target revisions. Do not turn a thematic or family route into coverage."
-      }
+      },
+      "later_adopted_source_citation_refs": [
+        {
+          "requirement_identity": "HARNESS-L2-034",
+          "decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_status": "adopted_exact_L2_and_paired_L11_revision_2026-09-29",
+          "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "registration_id": "MPR-RC-HARNESS-L2-034-003",
+          "l2_revision": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+            "section_digest": "sha256:dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156"
+          },
+          "l11_revision": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+            "section_digest": "sha256:391f640508944ba2f32b5751a2a9a17fbc9f89ef76f46953c1af68ba907a9fdf"
+          },
+          "citation_ref": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "locator": "line 709"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 249,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ],
+      "later_adopted_destination_status": [
+        {
+          "destination_label": "HARNESS-L2-034/L11-034 candidate",
+          "current_status": "adopted",
+          "decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "registration_id": "MPR-RC-HARNESS-L2-034-003"
+        }
+      ]
     },
     {
       "source_identity": {
@@ -6872,7 +7150,45 @@
         },
         "local_audit_join_status": "exact_id_reference_only_tuple_unverified",
         "work_action": "Atomize the source condition into obligation/exception/oracle clauses with reverse links to this exact source row. For each clause, record an exact adopted L2 and paired L11 reference if present, otherwise candidate-only or unresolved; retain residual clauses and source/target revisions. Do not turn a thematic or family route into coverage."
-      }
+      },
+      "later_adopted_source_citation_refs": [
+        {
+          "requirement_identity": "HARNESS-L2-034",
+          "decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_status": "adopted_exact_L2_and_paired_L11_revision_2026-09-29",
+          "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "registration_id": "MPR-RC-HARNESS-L2-034-003",
+          "l2_revision": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+            "section_digest": "sha256:dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156"
+          },
+          "l11_revision": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+            "section_digest": "sha256:391f640508944ba2f32b5751a2a9a17fbc9f89ef76f46953c1af68ba907a9fdf"
+          },
+          "citation_ref": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "locator": "line 709"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 251,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ],
+      "later_adopted_destination_status": [
+        {
+          "destination_label": "HARNESS-L2-034/L11-034 candidate",
+          "current_status": "adopted",
+          "decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "registration_id": "MPR-RC-HARNESS-L2-034-003"
+        }
+      ]
     },
     {
       "source_identity": {
@@ -7290,7 +7606,69 @@
         },
         "local_audit_join_status": "exact_id_reference_only_tuple_unverified",
         "work_action": "Reconcile the existing bounded status and refs against this exact source row, preserve any separate implementation-only or version-target boundary, and keep the current status until an exact condition-level comparison changes the evidence."
-      }
+      },
+      "later_adopted_source_citation_refs": [
+        {
+          "requirement_identity": "HELIXBRAIN-L2-023",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "decision_status": "adopted_fixed_L2_and_paired_L11_2026-09-28",
+          "target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "registration_id": null,
+          "l2_revision": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "file_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+            "identity_section_locator": "HELIXBRAIN-L2-023",
+            "identity_lines_digest_sha256": "sha256:5913dee4dd303dcbf914a998026729dab1f2ed45f34ac514d399eeb55bfde458",
+            "digest_line_count": 2
+          },
+          "l11_revision": {
+            "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+            "file_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+            "identity_section_locator": "HELIXBRAIN-L2-023",
+            "identity_lines_digest_sha256": "sha256:c4624e7d223c1af7bab59c6203ad21dbcb00adf26a70ac8c84191befad6dcf55",
+            "digest_line_count": 1
+          },
+          "citation_ref": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "locator": "line 548"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 267,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        },
+        {
+          "requirement_identity": "HARNESS-L2-039",
+          "decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_status": "adopted_exact_L2_and_paired_L11_revision_2026-09-29",
+          "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "registration_id": "MPR-RC-HARNESS-L2-039-003",
+          "l2_revision": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+            "section_digest": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0"
+          },
+          "l11_revision": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+            "section_digest": "sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746"
+          },
+          "citation_ref": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "locator": "line 923"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 267,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ]
     },
     {
       "source_identity": {
@@ -7370,7 +7748,69 @@
         },
         "local_audit_join_status": "exact_id_reference_only_tuple_unverified",
         "work_action": "Reconcile the existing bounded status and refs against this exact source row, preserve any separate implementation-only or version-target boundary, and keep the current status until an exact condition-level comparison changes the evidence."
-      }
+      },
+      "later_adopted_source_citation_refs": [
+        {
+          "requirement_identity": "HELIXBRAIN-L2-023",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "decision_status": "adopted_fixed_L2_and_paired_L11_2026-09-28",
+          "target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "registration_id": null,
+          "l2_revision": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "file_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+            "identity_section_locator": "HELIXBRAIN-L2-023",
+            "identity_lines_digest_sha256": "sha256:5913dee4dd303dcbf914a998026729dab1f2ed45f34ac514d399eeb55bfde458",
+            "digest_line_count": 2
+          },
+          "l11_revision": {
+            "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+            "file_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+            "identity_section_locator": "HELIXBRAIN-L2-023",
+            "identity_lines_digest_sha256": "sha256:c4624e7d223c1af7bab59c6203ad21dbcb00adf26a70ac8c84191befad6dcf55",
+            "digest_line_count": 1
+          },
+          "citation_ref": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "locator": "line 548"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 271,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        },
+        {
+          "requirement_identity": "HARNESS-L2-039",
+          "decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_status": "adopted_exact_L2_and_paired_L11_revision_2026-09-29",
+          "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "registration_id": "MPR-RC-HARNESS-L2-039-003",
+          "l2_revision": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+            "section_digest": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0"
+          },
+          "l11_revision": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+            "section_digest": "sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746"
+          },
+          "citation_ref": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "locator": "line 923"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 271,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ]
     },
     {
       "source_identity": {
@@ -7445,7 +7885,69 @@
         },
         "local_audit_join_status": "exact_id_reference_only_tuple_unverified",
         "work_action": "Reconcile the existing bounded status and refs against this exact source row, preserve any separate implementation-only or version-target boundary, and keep the current status until an exact condition-level comparison changes the evidence."
-      }
+      },
+      "later_adopted_source_citation_refs": [
+        {
+          "requirement_identity": "HELIXBRAIN-L2-023",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "decision_status": "adopted_fixed_L2_and_paired_L11_2026-09-28",
+          "target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "registration_id": null,
+          "l2_revision": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "file_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+            "identity_section_locator": "HELIXBRAIN-L2-023",
+            "identity_lines_digest_sha256": "sha256:5913dee4dd303dcbf914a998026729dab1f2ed45f34ac514d399eeb55bfde458",
+            "digest_line_count": 2
+          },
+          "l11_revision": {
+            "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+            "file_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+            "identity_section_locator": "HELIXBRAIN-L2-023",
+            "identity_lines_digest_sha256": "sha256:c4624e7d223c1af7bab59c6203ad21dbcb00adf26a70ac8c84191befad6dcf55",
+            "digest_line_count": 1
+          },
+          "citation_ref": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "locator": "line 548"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 273,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        },
+        {
+          "requirement_identity": "HARNESS-L2-039",
+          "decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_status": "adopted_exact_L2_and_paired_L11_revision_2026-09-29",
+          "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "registration_id": "MPR-RC-HARNESS-L2-039-003",
+          "l2_revision": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+            "section_digest": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0"
+          },
+          "l11_revision": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+            "section_digest": "sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746"
+          },
+          "citation_ref": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "locator": "line 923"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 273,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ]
     },
     {
       "source_identity": {
@@ -7520,7 +8022,69 @@
         },
         "local_audit_join_status": "exact_id_reference_only_tuple_unverified",
         "work_action": "Reconcile the existing bounded status and refs against this exact source row, preserve any separate implementation-only or version-target boundary, and keep the current status until an exact condition-level comparison changes the evidence."
-      }
+      },
+      "later_adopted_source_citation_refs": [
+        {
+          "requirement_identity": "HELIXBRAIN-L2-023",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "decision_status": "adopted_fixed_L2_and_paired_L11_2026-09-28",
+          "target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "registration_id": null,
+          "l2_revision": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "file_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+            "identity_section_locator": "HELIXBRAIN-L2-023",
+            "identity_lines_digest_sha256": "sha256:5913dee4dd303dcbf914a998026729dab1f2ed45f34ac514d399eeb55bfde458",
+            "digest_line_count": 2
+          },
+          "l11_revision": {
+            "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+            "file_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+            "identity_section_locator": "HELIXBRAIN-L2-023",
+            "identity_lines_digest_sha256": "sha256:c4624e7d223c1af7bab59c6203ad21dbcb00adf26a70ac8c84191befad6dcf55",
+            "digest_line_count": 1
+          },
+          "citation_ref": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "locator": "line 548"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 275,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        },
+        {
+          "requirement_identity": "HARNESS-L2-039",
+          "decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_status": "adopted_exact_L2_and_paired_L11_revision_2026-09-29",
+          "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "registration_id": "MPR-RC-HARNESS-L2-039-003",
+          "l2_revision": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+            "section_digest": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0"
+          },
+          "l11_revision": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+            "section_digest": "sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746"
+          },
+          "citation_ref": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "locator": "line 923"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 275,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ]
     },
     {
       "source_identity": {
@@ -7594,7 +8158,37 @@
         },
         "local_audit_join_status": "exact_id_reference_only_tuple_unverified",
         "work_action": "Reconcile the existing bounded status and refs against this exact source row, preserve any separate implementation-only or version-target boundary, and keep the current status until an exact condition-level comparison changes the evidence."
-      }
+      },
+      "later_adopted_source_citation_refs": [
+        {
+          "requirement_identity": "HARNESS-L2-039",
+          "decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_status": "adopted_exact_L2_and_paired_L11_revision_2026-09-29",
+          "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "registration_id": "MPR-RC-HARNESS-L2-039-003",
+          "l2_revision": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+            "section_digest": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0"
+          },
+          "l11_revision": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+            "section_digest": "sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746"
+          },
+          "citation_ref": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "locator": "line 923"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 277,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ]
     },
     {
       "source_identity": {
@@ -11841,7 +12435,41 @@
         },
         "local_audit_join_status": "exact_id_reference_only_tuple_unverified",
         "work_action": "Reconcile the existing bounded status and refs against this exact source row, preserve any separate implementation-only or version-target boundary, and keep the current status until an exact condition-level comparison changes the evidence."
-      }
+      },
+      "later_adopted_source_citation_refs": [
+        {
+          "requirement_identity": "HELIXBRAIN-L2-023",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "decision_status": "adopted_fixed_L2_and_paired_L11_2026-09-28",
+          "target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "registration_id": null,
+          "l2_revision": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "file_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+            "identity_section_locator": "HELIXBRAIN-L2-023",
+            "identity_lines_digest_sha256": "sha256:5913dee4dd303dcbf914a998026729dab1f2ed45f34ac514d399eeb55bfde458",
+            "digest_line_count": 2
+          },
+          "l11_revision": {
+            "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+            "file_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+            "identity_section_locator": "HELIXBRAIN-L2-023",
+            "identity_lines_digest_sha256": "sha256:c4624e7d223c1af7bab59c6203ad21dbcb00adf26a70ac8c84191befad6dcf55",
+            "digest_line_count": 1
+          },
+          "citation_ref": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "locator": "line 548"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 381,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ]
     },
     {
       "source_identity": {
@@ -11924,7 +12552,69 @@
         },
         "local_audit_join_status": "exact_id_reference_only_tuple_unverified",
         "work_action": "Reconcile the existing bounded status and refs against this exact source row, preserve any separate implementation-only or version-target boundary, and keep the current status until an exact condition-level comparison changes the evidence."
-      }
+      },
+      "later_adopted_source_citation_refs": [
+        {
+          "requirement_identity": "HELIXBRAIN-L2-023",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "decision_status": "adopted_fixed_L2_and_paired_L11_2026-09-28",
+          "target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "registration_id": null,
+          "l2_revision": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "file_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+            "identity_section_locator": "HELIXBRAIN-L2-023",
+            "identity_lines_digest_sha256": "sha256:5913dee4dd303dcbf914a998026729dab1f2ed45f34ac514d399eeb55bfde458",
+            "digest_line_count": 2
+          },
+          "l11_revision": {
+            "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+            "file_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+            "identity_section_locator": "HELIXBRAIN-L2-023",
+            "identity_lines_digest_sha256": "sha256:c4624e7d223c1af7bab59c6203ad21dbcb00adf26a70ac8c84191befad6dcf55",
+            "digest_line_count": 1
+          },
+          "citation_ref": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "locator": "line 548"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 385,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        },
+        {
+          "requirement_identity": "HARNESS-L2-039",
+          "decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_status": "adopted_exact_L2_and_paired_L11_revision_2026-09-29",
+          "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "registration_id": "MPR-RC-HARNESS-L2-039-003",
+          "l2_revision": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+            "section_digest": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0"
+          },
+          "l11_revision": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+            "section_digest": "sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746"
+          },
+          "citation_ref": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "locator": "line 923"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 385,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ]
     },
     {
       "source_identity": {
@@ -12007,7 +12697,69 @@
         },
         "local_audit_join_status": "exact_id_reference_only_tuple_unverified",
         "work_action": "Reconcile the existing bounded status and refs against this exact source row, preserve any separate implementation-only or version-target boundary, and keep the current status until an exact condition-level comparison changes the evidence."
-      }
+      },
+      "later_adopted_source_citation_refs": [
+        {
+          "requirement_identity": "HELIXBRAIN-L2-023",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "decision_status": "adopted_fixed_L2_and_paired_L11_2026-09-28",
+          "target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "registration_id": null,
+          "l2_revision": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "file_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+            "identity_section_locator": "HELIXBRAIN-L2-023",
+            "identity_lines_digest_sha256": "sha256:5913dee4dd303dcbf914a998026729dab1f2ed45f34ac514d399eeb55bfde458",
+            "digest_line_count": 2
+          },
+          "l11_revision": {
+            "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+            "file_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+            "identity_section_locator": "HELIXBRAIN-L2-023",
+            "identity_lines_digest_sha256": "sha256:c4624e7d223c1af7bab59c6203ad21dbcb00adf26a70ac8c84191befad6dcf55",
+            "digest_line_count": 1
+          },
+          "citation_ref": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "locator": "line 548"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 386,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        },
+        {
+          "requirement_identity": "HARNESS-L2-039",
+          "decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_status": "adopted_exact_L2_and_paired_L11_revision_2026-09-29",
+          "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "registration_id": "MPR-RC-HARNESS-L2-039-003",
+          "l2_revision": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+            "section_digest": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0"
+          },
+          "l11_revision": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+            "section_digest": "sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746"
+          },
+          "citation_ref": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "locator": "line 923"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 386,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ]
     },
     {
       "source_identity": {
@@ -12090,7 +12842,69 @@
         },
         "local_audit_join_status": "exact_id_reference_only_tuple_unverified",
         "work_action": "Reconcile the existing bounded status and refs against this exact source row, preserve any separate implementation-only or version-target boundary, and keep the current status until an exact condition-level comparison changes the evidence."
-      }
+      },
+      "later_adopted_source_citation_refs": [
+        {
+          "requirement_identity": "HELIXBRAIN-L2-023",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "decision_status": "adopted_fixed_L2_and_paired_L11_2026-09-28",
+          "target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "registration_id": null,
+          "l2_revision": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "file_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+            "identity_section_locator": "HELIXBRAIN-L2-023",
+            "identity_lines_digest_sha256": "sha256:5913dee4dd303dcbf914a998026729dab1f2ed45f34ac514d399eeb55bfde458",
+            "digest_line_count": 2
+          },
+          "l11_revision": {
+            "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+            "file_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+            "identity_section_locator": "HELIXBRAIN-L2-023",
+            "identity_lines_digest_sha256": "sha256:c4624e7d223c1af7bab59c6203ad21dbcb00adf26a70ac8c84191befad6dcf55",
+            "digest_line_count": 1
+          },
+          "citation_ref": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "locator": "line 548"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 387,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        },
+        {
+          "requirement_identity": "HARNESS-L2-039",
+          "decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_status": "adopted_exact_L2_and_paired_L11_revision_2026-09-29",
+          "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "registration_id": "MPR-RC-HARNESS-L2-039-003",
+          "l2_revision": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+            "section_digest": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0"
+          },
+          "l11_revision": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+            "section_digest": "sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746"
+          },
+          "citation_ref": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "locator": "line 923"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 387,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ]
     },
     {
       "source_identity": {
@@ -12173,7 +12987,69 @@
         },
         "local_audit_join_status": "exact_id_reference_only_tuple_unverified",
         "work_action": "Reconcile the existing bounded status and refs against this exact source row, preserve any separate implementation-only or version-target boundary, and keep the current status until an exact condition-level comparison changes the evidence."
-      }
+      },
+      "later_adopted_source_citation_refs": [
+        {
+          "requirement_identity": "HELIXBRAIN-L2-023",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "decision_status": "adopted_fixed_L2_and_paired_L11_2026-09-28",
+          "target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "registration_id": null,
+          "l2_revision": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "file_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+            "identity_section_locator": "HELIXBRAIN-L2-023",
+            "identity_lines_digest_sha256": "sha256:5913dee4dd303dcbf914a998026729dab1f2ed45f34ac514d399eeb55bfde458",
+            "digest_line_count": 2
+          },
+          "l11_revision": {
+            "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+            "file_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+            "identity_section_locator": "HELIXBRAIN-L2-023",
+            "identity_lines_digest_sha256": "sha256:c4624e7d223c1af7bab59c6203ad21dbcb00adf26a70ac8c84191befad6dcf55",
+            "digest_line_count": 1
+          },
+          "citation_ref": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "locator": "line 548"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 388,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        },
+        {
+          "requirement_identity": "HARNESS-L2-039",
+          "decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_status": "adopted_exact_L2_and_paired_L11_revision_2026-09-29",
+          "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "registration_id": "MPR-RC-HARNESS-L2-039-003",
+          "l2_revision": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+            "section_digest": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0"
+          },
+          "l11_revision": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+            "section_digest": "sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746"
+          },
+          "citation_ref": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "locator": "line 923"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 388,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ]
     },
     {
       "source_identity": {
@@ -12256,7 +13132,69 @@
         },
         "local_audit_join_status": "exact_id_reference_only_tuple_unverified",
         "work_action": "Reconcile the existing bounded status and refs against this exact source row, preserve any separate implementation-only or version-target boundary, and keep the current status until an exact condition-level comparison changes the evidence."
-      }
+      },
+      "later_adopted_source_citation_refs": [
+        {
+          "requirement_identity": "HELIXBRAIN-L2-023",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "decision_status": "adopted_fixed_L2_and_paired_L11_2026-09-28",
+          "target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "registration_id": null,
+          "l2_revision": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "file_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+            "identity_section_locator": "HELIXBRAIN-L2-023",
+            "identity_lines_digest_sha256": "sha256:5913dee4dd303dcbf914a998026729dab1f2ed45f34ac514d399eeb55bfde458",
+            "digest_line_count": 2
+          },
+          "l11_revision": {
+            "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+            "file_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+            "identity_section_locator": "HELIXBRAIN-L2-023",
+            "identity_lines_digest_sha256": "sha256:c4624e7d223c1af7bab59c6203ad21dbcb00adf26a70ac8c84191befad6dcf55",
+            "digest_line_count": 1
+          },
+          "citation_ref": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "locator": "line 548"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 389,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        },
+        {
+          "requirement_identity": "HARNESS-L2-039",
+          "decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_status": "adopted_exact_L2_and_paired_L11_revision_2026-09-29",
+          "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "registration_id": "MPR-RC-HARNESS-L2-039-003",
+          "l2_revision": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+            "section_digest": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0"
+          },
+          "l11_revision": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+            "section_digest": "sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746"
+          },
+          "citation_ref": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "locator": "line 923"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 389,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ]
     },
     {
       "source_identity": {
@@ -12339,7 +13277,69 @@
         },
         "local_audit_join_status": "exact_id_reference_only_tuple_unverified",
         "work_action": "Reconcile the existing bounded status and refs against this exact source row, preserve any separate implementation-only or version-target boundary, and keep the current status until an exact condition-level comparison changes the evidence."
-      }
+      },
+      "later_adopted_source_citation_refs": [
+        {
+          "requirement_identity": "HELIXBRAIN-L2-023",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "decision_status": "adopted_fixed_L2_and_paired_L11_2026-09-28",
+          "target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "registration_id": null,
+          "l2_revision": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "file_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+            "identity_section_locator": "HELIXBRAIN-L2-023",
+            "identity_lines_digest_sha256": "sha256:5913dee4dd303dcbf914a998026729dab1f2ed45f34ac514d399eeb55bfde458",
+            "digest_line_count": 2
+          },
+          "l11_revision": {
+            "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+            "file_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+            "identity_section_locator": "HELIXBRAIN-L2-023",
+            "identity_lines_digest_sha256": "sha256:c4624e7d223c1af7bab59c6203ad21dbcb00adf26a70ac8c84191befad6dcf55",
+            "digest_line_count": 1
+          },
+          "citation_ref": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "locator": "line 548"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 390,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        },
+        {
+          "requirement_identity": "HARNESS-L2-039",
+          "decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_status": "adopted_exact_L2_and_paired_L11_revision_2026-09-29",
+          "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "registration_id": "MPR-RC-HARNESS-L2-039-003",
+          "l2_revision": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+            "section_digest": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0"
+          },
+          "l11_revision": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+            "section_digest": "sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746"
+          },
+          "citation_ref": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "locator": "line 923"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 390,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ]
     },
     {
       "source_identity": {
@@ -12414,7 +13414,69 @@
         },
         "local_audit_join_status": "exact_id_reference_only_tuple_unverified",
         "work_action": "Reconcile the existing bounded status and refs against this exact source row, preserve any separate implementation-only or version-target boundary, and keep the current status until an exact condition-level comparison changes the evidence."
-      }
+      },
+      "later_adopted_source_citation_refs": [
+        {
+          "requirement_identity": "HELIXBRAIN-L2-023",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "decision_status": "adopted_fixed_L2_and_paired_L11_2026-09-28",
+          "target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "registration_id": null,
+          "l2_revision": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "file_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+            "identity_section_locator": "HELIXBRAIN-L2-023",
+            "identity_lines_digest_sha256": "sha256:5913dee4dd303dcbf914a998026729dab1f2ed45f34ac514d399eeb55bfde458",
+            "digest_line_count": 2
+          },
+          "l11_revision": {
+            "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+            "file_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+            "identity_section_locator": "HELIXBRAIN-L2-023",
+            "identity_lines_digest_sha256": "sha256:c4624e7d223c1af7bab59c6203ad21dbcb00adf26a70ac8c84191befad6dcf55",
+            "digest_line_count": 1
+          },
+          "citation_ref": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "locator": "line 548"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 392,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        },
+        {
+          "requirement_identity": "HARNESS-L2-039",
+          "decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_status": "adopted_exact_L2_and_paired_L11_revision_2026-09-29",
+          "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "registration_id": "MPR-RC-HARNESS-L2-039-003",
+          "l2_revision": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+            "section_digest": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0"
+          },
+          "l11_revision": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+            "section_digest": "sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746"
+          },
+          "citation_ref": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "locator": "line 923"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 392,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ]
     },
     {
       "source_identity": {
@@ -13934,7 +14996,57 @@
         },
         "local_audit_join_status": "exact_source_identity_tuple_matched",
         "work_action": "Atomize the source condition into obligation/exception/oracle clauses with reverse links to this exact source row. For each clause, record an exact adopted L2 and paired L11 reference if present, otherwise candidate-only or unresolved; retain residual clauses and source/target revisions. Do not turn a thematic or family route into coverage."
-      }
+      },
+      "later_adopted_source_citation_refs": [
+        {
+          "requirement_identity": "HELIXSECURITY-L2-032",
+          "decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_status": "adopted_exact_L2_and_paired_L11_revision_2026-09-29",
+          "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-032-001",
+          "l2_revision": {
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "file_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+            "section_digest": "sha256:ccdd634fb92621105310b91465e01bd089238cc430491ff3c8ac51a3d80403c8"
+          },
+          "l11_revision": {
+            "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "file_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
+            "section_digest": "sha256:5dcf1c19728badff041220d610a85c3507a6c6f70fea57c0081ae9902705c6f1"
+          },
+          "citation_ref": {
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "locator": "line 453"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 430,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ],
+      "later_adopted_destination_status": [
+        {
+          "destination_label": "SECURITY-L2-029 candidate",
+          "current_status": "adopted",
+          "decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-029-002"
+        },
+        {
+          "destination_label": "SECURITY-L2-031 candidate",
+          "current_status": "adopted",
+          "decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-031-001"
+        },
+        {
+          "citation_requirement_identity": "HELIXSECURITY-L2-032",
+          "current_status": "adopted",
+          "decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-032-001"
+        }
+      ]
     },
     {
       "source_identity": {
@@ -18880,7 +19992,37 @@
         },
         "local_audit_join_status": "exact_id_reference_only_tuple_unverified",
         "work_action": "Atomize the source condition into obligation/exception/oracle clauses with reverse links to this exact source row. For each clause, record an exact adopted L2 and paired L11 reference if present, otherwise candidate-only or unresolved; retain residual clauses and source/target revisions. Do not turn a thematic or family route into coverage."
-      }
+      },
+      "later_adopted_source_citation_refs": [
+        {
+          "requirement_identity": "HELIXOS-L2-036",
+          "decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_status": "adopted_exact_L2_and_paired_L11_revision_2026-09-29",
+          "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "registration_id": "MPR-RC-HELIXOS-L2-036-001",
+          "l2_revision": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+            "section_digest": "sha256:82c3fc7c25b023604463f4c44c284440b9666342a0cf8a3bd6b1996394cb33b9"
+          },
+          "l11_revision": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+            "section_digest": "sha256:daec5fceac7a0e19a0cf83541126772393735b01c5b1592edeb6f050061bebc3"
+          },
+          "citation_ref": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "locator": "line 1047; paired L11 citation line 638"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 624,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ]
     },
     {
       "source_identity": {
@@ -20084,7 +21226,45 @@
         },
         "local_audit_join_status": "exact_id_reference_only_tuple_unverified",
         "work_action": "Atomize the source condition into obligation/exception/oracle clauses with reverse links to this exact source row. For each clause, record an exact adopted L2 and paired L11 reference if present, otherwise candidate-only or unresolved; retain residual clauses and source/target revisions. Do not turn a thematic or family route into coverage."
-      }
+      },
+      "later_adopted_source_citation_refs": [
+        {
+          "requirement_identity": "HARNESS-L2-039",
+          "decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_status": "adopted_exact_L2_and_paired_L11_revision_2026-09-29",
+          "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "registration_id": "MPR-RC-HARNESS-L2-039-003",
+          "l2_revision": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+            "section_digest": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0"
+          },
+          "l11_revision": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+            "section_digest": "sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746"
+          },
+          "citation_ref": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "locator": "line 929"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 650,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ],
+      "later_adopted_destination_status": [
+        {
+          "destination_label": "HARNESS-L2-039 candidate",
+          "current_status": "adopted",
+          "decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "registration_id": "MPR-RC-HARNESS-L2-039-003"
+        }
+      ]
     },
     {
       "source_identity": {
@@ -20783,5 +21963,56 @@
       "role": "management_view",
       "relationship": "reports v1.3 521 rows and their preserved_pending_atomization state; not condition-level closure"
     }
-  ]
+  ],
+  "later_adopted_source_citation_join": {
+    "review_finding": "R2396-01",
+    "observed_on": "2026-09-30",
+    "source_asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+    "source_population": "archive_v1_3_condition_rows_303",
+    "baseline_audit_status_and_queue_state": "historical_2026-09-28_baseline_transcription_preserved",
+    "citation_rows_joined": 24,
+    "citation_reference_records": 36,
+    "source_item_ids": [
+      "REQSRC-SUP-00051",
+      "REQSRC-SUP-00077",
+      "REQSRC-SUP-00084",
+      "REQSRC-SUP-00089",
+      "REQSRC-SUP-00105",
+      "REQSRC-SUP-00192",
+      "REQSRC-SUP-00193",
+      "REQSRC-SUP-00194",
+      "REQSRC-SUP-00202",
+      "REQSRC-SUP-00204",
+      "REQSRC-SUP-00205",
+      "REQSRC-SUP-00206",
+      "REQSRC-SUP-00207",
+      "REQSRC-SUP-00293",
+      "REQSRC-SUP-00296",
+      "REQSRC-SUP-00297",
+      "REQSRC-SUP-00298",
+      "REQSRC-SUP-00299",
+      "REQSRC-SUP-00300",
+      "REQSRC-SUP-00301",
+      "REQSRC-SUP-00302",
+      "REQSRC-SUP-00332",
+      "REQSRC-SUP-00483",
+      "REQSRC-SUP-00507"
+    ],
+    "adoption_basis": "2026-09-28 fixed L2/L11 decisions and 2026-09-29 HDEC-REQUIREMENTS-57-2026-09-29; exact identity/revision only",
+    "citation_sources": [
+      "docs/helix-brain/L2-requirements/brain-requirements.md:548",
+      "docs/helix-harness/L2-requirements/product-requirements.md:105,709,923,929",
+      "docs/helix-harness/L11-acceptance/product-acceptance.md:40",
+      "docs/helix-os/L2-requirements/governance-requirements.md:139,1047",
+      "docs/helix-os/L11-acceptance/governance-acceptance.md:286,638",
+      "docs/helix-security/L2-requirements/security-requirements.md:453"
+    ],
+    "excluded_candidate_route": "HELIXOS-L2-030 lines 296-345 is held in 2026-09-29 decision; its citation is not represented as adopted",
+    "method": "Exact (source file SHA-256, archive path, physical line, line SHA-256, source_item_id) tuples are joined only when a frozen adopted L2/L11 pair explicitly cites that archive physical line or asset. Later decisions annotate adoption status on exact identity/revision. The join records citation existence, not semantic condition coverage. For 2026-09-28 decisions, pair revisions use the decision-fixed commit and whole-file SHA-256 plus identity locator; row digest is sha256 of the UTF-8 LF-normalized exact declaration rows for that identity. For 2026-09-29, official L2 semantic and L11 section digests from the decision table are recorded.",
+    "authority_effect": "none",
+    "formal_successor_assignment": false,
+    "semantic_condition_coverage_claim": false,
+    "baseline_condition_statuses_changed": 0,
+    "baseline_queue_states_changed": 0
+  }
 }
