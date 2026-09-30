@@ -943,6 +943,32 @@
         "line_sha256": "3340e8ac71f362260b1c81afe5cd34150978661e687ac5270dd32f2239551601",
         "text": "| HAC-P3-02b | worker 自身が外部検証も行った | review を実行 | verifier が別 runtime/model でなければ judgement evidence に数えない |"
       }
+    ],
+    "selected_HAC_P3_rows": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+        "line": 233,
+        "line_sha256": "e7436c5bced37920f1972353fabd6a3304bd860b1083d0771252f2daee68b93d",
+        "text": "| HAC-P3-01a | design doc だけがある | pair-freeze を実行 | pair test-design 欠落として fail-close |"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+        "line": 234,
+        "line_sha256": "ecb4b0c1777bb9b7c71afe18ee306229a4d2882831555993b2a3949a79b88ab7",
+        "text": "| HAC-P3-01b | coverage 数値だけが pass | review/gate を実行 | substance / trace / acceptance evidence 欠落なら完了扱いにしない |"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+        "line": 235,
+        "line_sha256": "f03f4f60480fe29c4acc12f8a96039a2d0c8e6c8504f5f066b169b71b7907440",
+        "text": "| HAC-P3-02a | 外部事実を含む claim がある | substance gate を実行 | URL + 公開日/版 + checked span が無ければ unverified として reject |"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+        "line": 236,
+        "line_sha256": "3340e8ac71f362260b1c81afe5cd34150978661e687ac5270dd32f2239551601",
+        "text": "| HAC-P3-02b | worker 自身が外部検証も行った | review を実行 | verifier が別 runtime/model でなければ judgement evidence に数えない |"
+      }
     ]
   },
   "condition_atoms": [
@@ -991,7 +1017,7 @@
       "fixed_targets": [
         "HARNESS-L2-005"
       ],
-      "comparison": "The pinned f6/current HARNESS-L2-005 L11 details select required oracles, evidence and provider-invariant identity; the related HARNESS-L11-022 acceptance section requires revision/pair/oracle/result/evidence alignment for external artifacts. Neither states that an external-fact verifier must use a runtime/model distinct from the worker when that worker performed the external verification. Generic independent-review or provider-parity conditions do not supply this trigger-specific condition. It remains a residual of the HBR-P3 L3 consumer; no runtime implementation or execution result is inferred.",
+      "comparison": "Old HR-FR-P3-02/HAC-P3-02b/HAT-P3-02 preserve source attribution and a separate verifier for the trigger where the Worker also performed external verification. The old verifier must be separate, but its runtime/model difference test is explicitly changed by the 2026-09-26 PO decision: author Worker or its Subagent review remains excluded; independence is reviewer identity/context/authority/review route plus evidence inspection without inheriting the author conclusion, while provider/model is recorded but parity/non-parity is not dispositive. Fixed f6/current HARNESS-L2-005 and L11-005 specify oracle/evidence/expiry and selected verification contract alignment but do not state this trigger-specific verifier condition. Residual is limited to whether/how that external-verification trigger is concretely scoped and checked for HBR-P3; do not retain runtime/model identity as a residual or infer implementation/execution.",
       "related_acceptance_context_only": [
         "HARNESS-L2-022/L11-022"
       ]
@@ -2569,6 +2595,198 @@
           "section_text_omitted": true
         },
         "relation_and_limit": "Paired with HARNESS-L2-060; OS records applicable stage input/evidence/event causality. It does not decide HARNESS semantic acceptance or close old HBR-P3 conditions."
+      },
+      {
+        "cohort": "live26",
+        "identity": "HARNESS-L2-058",
+        "decision_row": {
+          "identity": "HARNESS-L2-058",
+          "decision": "承認（通常採択22件に含む）",
+          "registration_id": "MPR-RC-HARNESS-L2-058-002",
+          "line": 43,
+          "line_sha256": "8177aa9ef75d22552d4e1b74c6bfacdfdc65782e97f0a7b4088431c27cfac258",
+          "text": "| `HARNESS-L2-058` | 承認（通常採択22件に含む） | `MPR-RC-HARNESS-L2-058-002` | `sha256:c50e2183bb1186bb585fbb80b924d628be74aaaf363515f047c74ef906d71bc3` | `sha256:5dfc18281d1ab48e2d0cf81d4c9cfb6f3d7f035a38a5955cfcedc33d0f1875c9` |",
+          "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md"
+        },
+        "mpr": {
+          "pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "line": 618,
+            "line_sha256": "08b7240268f58fc32c1e6ab0ee8c9ac3dfe5ef3fbf672e423aed815fdf850306",
+            "text": "{\"registration_id\":\"MPR-RC-HARNESS-L2-058-002\",\"supersedes_registration_id\":\"MPR-RC-HARNESS-L2-058-001\",\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HARNESS-L2-058\",\"requirement_kind\":\"unit\",\"product_target\":\"HELIX-HARNESS\",\"candidate_source_path\":\"docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-058\",\"candidate_semantic_digest\":\"sha256:c50e2183bb1186bb585fbb80b924d628be74aaaf363515f047c74ef906d71bc3\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@26e547515d620bb53036c2f085cfc3f0293888d4 sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78\",\"parent_planning_revision\":\"docs/helix-harness/L1-planning/product-intent.md@26e547515d620bb53036c2f085cfc3f0293888d4 sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/hil-fr09-disposition-source-atoms-2026-09-29.jsonl#HARNESS-L2-058\",\"source_atom_set_digest\":\"sha256:9762e53e451312098b79c4c798a0adc18594734f93c670d68dacc4bf8c9f74b8\",\"source_atom_count\":8,\"source_collection_scope\":\"旧HIL-FR-09 line 99の意味atomをHARNESSの分類意味／OSの証拠receipt責務へ分割。IR全文、system contract全体、system assertions/旧HOTの全条件被覆は主張しない。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/hil-fr09-disposition-coverage-receipt-2026-09-29-r3.json\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[\"FR09-CURRENT-SUCCESSOR-AXIS-L0099\",\"FR09-INPUT-VIEWS-L0099\",\"FR09-TYPE-ACCEPTED-RISK-L0099\",\"FR09-TYPE-CURRENT-PR-FIX-L0099\",\"FR09-TYPE-DUPLICATE-L0099\",\"FR09-TYPE-FALSE-POSITIVE-L0099\",\"FR09-TYPE-SUCCESSOR-ISSUE-L0099\",\"FR09-TYPE-TELEMETRY-L0099\"],\"preserved_pending_registration_refs\":[\"MPR-SH-DIRECTIVE-DISPOSITION-002#DIRECTIVE-DISPOSITION-infinity-loop-platform-requirements.md-L0099 (原文holdingを存続)\",\"MPR-SH-IR-003#HIL-FR-09 (IRのDOWNSTREAM-HIL-FR-09 remains pending_pair_descent; formal successor IDs remain empty)\",\"MPR-RC-HELIXOS-L2-101-001 (対の責務partition; candidate only; no authority transfer)\"],\"human_decision_disposition_refs\":[],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex execution lane\",\"registered_at\":\"2026-09-29T10:07:44+09:00\",\"evidence_refs\":[\"docs/concept/helix-concept.md\",\"docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md\",\"docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md\",\"docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md\",\"docs/governance/audits/requirement-registration/hil-fr09-disposition-source-atoms-2026-09-29.jsonl\",\"docs/governance/audits/requirement-registration/hil-fr09-disposition-coverage-receipt-2026-09-29.json\",\"docs/governance/audits/requirement-registration/hil-fr09-disposition-meaning-gaps-2026-09-29.md\",\"docs/governance/management-provisional-requirement-registration.md\",\"archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:99\",\"archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-09\",\"archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json#HR-FR-HIL-03\",\"archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md#HST-CASE-005-05\",\"docs/helix-harness/L2-requirements/product-requirements.md\",\"docs/helix-harness/L11-acceptance/product-acceptance.md#HARNESS-L2-058\",\"docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-034\",\"docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-035\",\"docs/governance/audits/requirement-registration/hil-fr09-disposition-coverage-receipt-2026-09-29-r2.json\",\"docs/governance/audits/requirement-registration/os-directive-disposition-coverage-receipt-2026-09-28-r3.json\",\"archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/github-pr-audit-promotion.md:68-70\",\"archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md:277-280\",\"archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:201\"],\"correction_reason\":\"R2314-01: old L5 §3/L4 §4.2/HIL-NFR-21 evidence conditions restored; no source atom set or authority effect change. R2314-02: accepted_risk action-binding PO receipt is contingent on the same pending exact-revision PO decision for HELIXOS-L2-034 correction -003 (candidate digest sha256:6b019294047fce2e1c8b5d1b5e8d379fa9111f5912274f6dca918ffd81c0e1e8); these paired candidates remain unadopted and gain no independent or inherited adoption.\"}"
+          },
+          "record": {
+            "registration_id": "MPR-RC-HARNESS-L2-058-002",
+            "supersedes_registration_id": "MPR-RC-HARNESS-L2-058-001",
+            "registration_kind": "requirement_candidate",
+            "requirement_identity": "HARNESS-L2-058",
+            "requirement_kind": "unit",
+            "product_target": "HELIX-HARNESS",
+            "candidate_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-058",
+            "candidate_semantic_digest": "sha256:c50e2183bb1186bb585fbb80b924d628be74aaaf363515f047c74ef906d71bc3",
+            "parent_concept_revision": "docs/concept/helix-concept.md@26e547515d620bb53036c2f085cfc3f0293888d4 sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+            "parent_planning_revision": "docs/helix-harness/L1-planning/product-intent.md@26e547515d620bb53036c2f085cfc3f0293888d4 sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+            "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-fr09-disposition-source-atoms-2026-09-29.jsonl#HARNESS-L2-058",
+            "source_atom_set_digest": "sha256:9762e53e451312098b79c4c798a0adc18594734f93c670d68dacc4bf8c9f74b8",
+            "source_atom_count": 8,
+            "source_collection_scope": "旧HIL-FR-09 line 99の意味atomをHARNESSの分類意味／OSの証拠receipt責務へ分割。IR全文、system contract全体、system assertions/旧HOTの全条件被覆は主張しない。",
+            "coverage_receipt_ref": "docs/governance/audits/requirement-registration/hil-fr09-disposition-coverage-receipt-2026-09-29-r3.json",
+            "coverage_result": "no_loss",
+            "carried_atom_refs": [
+              "FR09-CURRENT-SUCCESSOR-AXIS-L0099",
+              "FR09-INPUT-VIEWS-L0099",
+              "FR09-TYPE-ACCEPTED-RISK-L0099",
+              "FR09-TYPE-CURRENT-PR-FIX-L0099",
+              "FR09-TYPE-DUPLICATE-L0099",
+              "FR09-TYPE-FALSE-POSITIVE-L0099",
+              "FR09-TYPE-SUCCESSOR-ISSUE-L0099",
+              "FR09-TYPE-TELEMETRY-L0099"
+            ],
+            "preserved_pending_registration_refs": [
+              "MPR-SH-DIRECTIVE-DISPOSITION-002#DIRECTIVE-DISPOSITION-infinity-loop-platform-requirements.md-L0099 (原文holdingを存続)",
+              "MPR-SH-IR-003#HIL-FR-09 (IRのDOWNSTREAM-HIL-FR-09 remains pending_pair_descent; formal successor IDs remain empty)",
+              "MPR-RC-HELIXOS-L2-101-001 (対の責務partition; candidate only; no authority transfer)"
+            ],
+            "human_decision_disposition_refs": [],
+            "unaccounted_atom_refs": [],
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "registered_by": "Codex execution lane",
+            "registered_at": "2026-09-29T10:07:44+09:00",
+            "evidence_refs": [
+              "docs/concept/helix-concept.md",
+              "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+              "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+              "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
+              "docs/governance/audits/requirement-registration/hil-fr09-disposition-source-atoms-2026-09-29.jsonl",
+              "docs/governance/audits/requirement-registration/hil-fr09-disposition-coverage-receipt-2026-09-29.json",
+              "docs/governance/audits/requirement-registration/hil-fr09-disposition-meaning-gaps-2026-09-29.md",
+              "docs/governance/management-provisional-requirement-registration.md",
+              "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:99",
+              "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-09",
+              "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json#HR-FR-HIL-03",
+              "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md#HST-CASE-005-05",
+              "docs/helix-harness/L2-requirements/product-requirements.md",
+              "docs/helix-harness/L11-acceptance/product-acceptance.md#HARNESS-L2-058",
+              "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-034",
+              "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-035",
+              "docs/governance/audits/requirement-registration/hil-fr09-disposition-coverage-receipt-2026-09-29-r2.json",
+              "docs/governance/audits/requirement-registration/os-directive-disposition-coverage-receipt-2026-09-28-r3.json",
+              "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/github-pr-audit-promotion.md:68-70",
+              "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md:277-280",
+              "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:201"
+            ],
+            "correction_reason": "R2314-01: old L5 §3/L4 §4.2/HIL-NFR-21 evidence conditions restored; no source atom set or authority effect change. R2314-02: accepted_risk action-binding PO receipt is contingent on the same pending exact-revision PO decision for HELIXOS-L2-034 correction -003 (candidate digest sha256:6b019294047fce2e1c8b5d1b5e8d379fa9111f5912274f6dca918ffd81c0e1e8); these paired candidates remain unadopted and gain no independent or inherited adoption."
+          }
+        },
+        "current_l2_section": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "heading_line": 1190,
+          "heading_line_sha256": "de7d95f37babe28ffc0103830ed51a331bf3277288832eb6cfbee1dcbab2a453",
+          "heading": "### HARNESS-L2-058 PR findingの六分類とcurrent/successor判定意味候補（HARNESS-CORE unit候補、未採択）",
+          "section_sha256": "0db83ffec8eba357afb1cd7c1b2def264661923bd9760a609839cb62097c8846",
+          "file_sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
+          "section_text_omitted": true
+        },
+        "current_l11_section": {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "heading_line": 906,
+          "heading_line_sha256": "f2cbd8454f1fcf52b4ee515171400a759d63e4892e9e3abdaebf3c5da2b72fd8",
+          "heading": "### HARNESS-L2-058 六分類とcurrent/successor判定の受入候補（未実行）",
+          "section_sha256": "fe82c5b31abfbd3556a6a517b35f19dc82673e8452c91c5d66111941f49b23e5",
+          "file_sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e",
+          "section_text_omitted": true
+        },
+        "relation_and_limit": "2026-09-30 live26 adopted this row in a single decision unit with HELIXOS-L2-034 and HELIXOS-L2-101. In the selected L2/L11 scope, false_positive requires disconfirmation by a separate verifier and independent review. Apply the 2026-09-26 worker decision: separate means reviewer identity/context/authority/route, independent evidence inspection without inheriting author conclusion; provider/model difference is not a criterion. This narrow false-positive disposition scope does not define universal HBR-P3 external-truth grounding or close HBR-P3."
+      },
+      {
+        "cohort": "57_candidates",
+        "identity": "HELIXINTELLIGENCE-L2-072",
+        "decision_row": {
+          "identity": "HELIXINTELLIGENCE-L2-072",
+          "decision": "条件付き採択：B配置、1.0は候補生成とshadow評価まで。",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-072-004",
+          "line": 85,
+          "line_sha256": "62813222c8f4d80ab5bd0a8e31c22a6b02ba526970dcac3e9a65baea882c325d",
+          "text": "| `HELIXINTELLIGENCE-L2-072` | 条件付き採択：B配置、1.0は候補生成とshadow評価まで。 | `MPR-RC-HELIXINTELLIGENCE-L2-072-004` | `docs/helix-intelligence/L2-requirements/intelligence-requirements.md` | `14c6947262f7e7cc92e7200cafd301ebd49c4146c97f665f0548c6b2b2e9e16d` | `sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4` | `HELIXINTELLIGENCE-L2-072` | `docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md` | `7467fad5256db9af823e7be860e21e52df58efb43ad4855c7127c2053106214d` | `sha256:381e9d205a6d9fdeb61ec453dfb0ea768c13af6200494544c42cdf67062d302a` | `docs/governance/audits/requirement-registration/intelligence-judgment-pack-coverage-receipt-2026-09-28-r4.json` |",
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md"
+        },
+        "mpr": {
+          "pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "line": 535,
+            "line_sha256": "1d7b6c524c1b4b4c2f61238b7bbf98a0f6b3f9393020157919a46ff50e4f5a57",
+            "text": "{\"registration_id\":\"MPR-RC-HELIXINTELLIGENCE-L2-072-004\",\"supersedes_registration_id\":\"MPR-RC-HELIXINTELLIGENCE-L2-072-003\",\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HELIXINTELLIGENCE-L2-072\",\"requirement_kind\":\"unit\",\"product_target\":\"HELIX-INTELLIGENCE\",\"candidate_source_path\":\"docs/helix-intelligence/L2-requirements/intelligence-requirements.md#helixintelligence-l2-072\",\"candidate_semantic_digest\":\"sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@5c79869daba9a5c4fe426ddf3ad8e1bc380e64ca sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（候補状態を保持）\",\"parent_planning_revision\":\"docs/helix-intelligence/L1-planning/intelligence-intent.md@5c79869daba9a5c4fe426ddf3ad8e1bc380e64ca sha256:8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8（候補状態を保持）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/intelligence-judgment-pack-coverage-receipt-2026-09-28-r4.json#HELIXINTELLIGENCE-L2-072\",\"source_atom_set_digest\":\"sha256:e86f73dc7cf95b10fc7ebe7dadaa791a3f43e9a57c958b2e61fbe9594c10429d\",\"source_atom_count\":3,\"source_collection_scope\":\"旧HIL-BR-29 1 atomとHIL-FR-57 1 atomを候補へ保持。HIL-FR-58 1 atomはsplit: 1.0のshadow/FP-FN/independent review/rollback/owner-active条件のみ候補へ保持し、改善signal由来loopは生存source holding MPR-SH-JUDGMENT-PACK-002へ保留。HMC-BR-003のLABO評価/保持1.0-2.xとINTELLIGENCE改善利用3.0以降を分離。旧HR-FR-HIL-21、HAC/HAT、pair descent、採択・実行は対象外。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/intelligence-judgment-pack-coverage-receipt-2026-09-28-r4.json\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[\"JUDGMENT-PACK-infinity-loop-platform-requirements.md-L0081\",\"JUDGMENT-PACK-infinity-loop-platform-requirements.md-L0147\",\"JUDGMENT-PACK-infinity-loop-platform-requirements.md-L0148\"],\"preserved_pending_registration_refs\":[\"MPR-SH-JUDGMENT-PACK-002\"],\"human_decision_disposition_refs\":[\"docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md:56-67\",\"docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md:68\"],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex execution lane\",\"registered_at\":\"2026-09-28T08:04:07+09:00\",\"evidence_refs\":[\"docs/helix-intelligence/L1-planning/intelligence-intent.md\",\"docs/helix-intelligence/L2-requirements/intelligence-requirements.md\",\"docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md\",\"docs/governance/audits/requirement-registration/judgment-pack-source-lines-2026-09-28-r3.jsonl\",\"docs/governance/audits/requirement-registration/intelligence-judgment-pack-coverage-receipt-2026-09-28-r3.json\",\"docs/governance/crosswalks/concept-mechanism-version-requirement-crosswalk.jsonl\",\"docs/governance/crosswalks/concept-requirement-po-decision-packet.md\",\"docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md\",\"docs/governance/audits/requirement-registration/intelligence-judgment-pack-coverage-receipt-2026-09-28-r4.json\",\"docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md\",\"docs/helix-labo/L2-requirements/labo-requirements.md\"],\"correction_reason\":\"R2232-01: FR58 atomをsplitし、1.0で保持する非学習のshadow/FP-FN/review/rollback/owner-active条件と、3.0以降の改善利用を分離。source remainderを生存中MPR-SH-JUDGMENT-PACK-002へ保留し、HMC-BR-003/L1-021の版境界を保持。\"}"
+          },
+          "record": {
+            "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-072-004",
+            "supersedes_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-072-003",
+            "registration_kind": "requirement_candidate",
+            "requirement_identity": "HELIXINTELLIGENCE-L2-072",
+            "requirement_kind": "unit",
+            "product_target": "HELIX-INTELLIGENCE",
+            "candidate_source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#helixintelligence-l2-072",
+            "candidate_semantic_digest": "sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4",
+            "parent_concept_revision": "docs/concept/helix-concept.md@5c79869daba9a5c4fe426ddf3ad8e1bc380e64ca sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（候補状態を保持）",
+            "parent_planning_revision": "docs/helix-intelligence/L1-planning/intelligence-intent.md@5c79869daba9a5c4fe426ddf3ad8e1bc380e64ca sha256:8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8（候補状態を保持）",
+            "source_atom_set_ref": "docs/governance/audits/requirement-registration/intelligence-judgment-pack-coverage-receipt-2026-09-28-r4.json#HELIXINTELLIGENCE-L2-072",
+            "source_atom_set_digest": "sha256:e86f73dc7cf95b10fc7ebe7dadaa791a3f43e9a57c958b2e61fbe9594c10429d",
+            "source_atom_count": 3,
+            "source_collection_scope": "旧HIL-BR-29 1 atomとHIL-FR-57 1 atomを候補へ保持。HIL-FR-58 1 atomはsplit: 1.0のshadow/FP-FN/independent review/rollback/owner-active条件のみ候補へ保持し、改善signal由来loopは生存source holding MPR-SH-JUDGMENT-PACK-002へ保留。HMC-BR-003のLABO評価/保持1.0-2.xとINTELLIGENCE改善利用3.0以降を分離。旧HR-FR-HIL-21、HAC/HAT、pair descent、採択・実行は対象外。",
+            "coverage_receipt_ref": "docs/governance/audits/requirement-registration/intelligence-judgment-pack-coverage-receipt-2026-09-28-r4.json",
+            "coverage_result": "no_loss",
+            "carried_atom_refs": [
+              "JUDGMENT-PACK-infinity-loop-platform-requirements.md-L0081",
+              "JUDGMENT-PACK-infinity-loop-platform-requirements.md-L0147",
+              "JUDGMENT-PACK-infinity-loop-platform-requirements.md-L0148"
+            ],
+            "preserved_pending_registration_refs": [
+              "MPR-SH-JUDGMENT-PACK-002"
+            ],
+            "human_decision_disposition_refs": [
+              "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md:56-67",
+              "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md:68"
+            ],
+            "unaccounted_atom_refs": [],
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "registered_by": "Codex execution lane",
+            "registered_at": "2026-09-28T08:04:07+09:00",
+            "evidence_refs": [
+              "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+              "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+              "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+              "docs/governance/audits/requirement-registration/judgment-pack-source-lines-2026-09-28-r3.jsonl",
+              "docs/governance/audits/requirement-registration/intelligence-judgment-pack-coverage-receipt-2026-09-28-r3.json",
+              "docs/governance/crosswalks/concept-mechanism-version-requirement-crosswalk.jsonl",
+              "docs/governance/crosswalks/concept-requirement-po-decision-packet.md",
+              "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
+              "docs/governance/audits/requirement-registration/intelligence-judgment-pack-coverage-receipt-2026-09-28-r4.json",
+              "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md",
+              "docs/helix-labo/L2-requirements/labo-requirements.md"
+            ],
+            "correction_reason": "R2232-01: FR58 atomをsplitし、1.0で保持する非学習のshadow/FP-FN/review/rollback/owner-active条件と、3.0以降の改善利用を分離。source remainderを生存中MPR-SH-JUDGMENT-PACK-002へ保留し、HMC-BR-003/L1-021の版境界を保持。"
+          }
+        },
+        "current_l2_section": {
+          "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+          "heading_line": 561,
+          "heading_line_sha256": "eb6cef6e546864b9b1e55427dca42d9e6ffd98311221bc9735468c949e526c62",
+          "heading": "### HELIXINTELLIGENCE-L2-072 Judgment pack候補とshadow評価（単体候補、version_target: 1.0）",
+          "section_sha256": "fc8b313e522af21ad5c78de34444a6089a09afa143f73f7e812fd18e36321ad3",
+          "file_sha256": "14c6947262f7e7cc92e7200cafd301ebd49c4146c97f665f0548c6b2b2e9e16d",
+          "section_text_omitted": true
+        },
+        "current_l11_section": {
+          "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+          "heading_line": 289,
+          "heading_line_sha256": "1ce6f286259bea14f5d746bb9a5282d051ad3941370c7a382533e5cbed25f6b0",
+          "heading": "### HELIXINTELLIGENCE-L2-072 Judgment pack候補とshadow評価 — 受入候補",
+          "section_sha256": "3d0bd11f298ef4382cd670aec060c5270b3fb979d5d2bd27138fca9a60b01b19",
+          "file_sha256": "7467fad5256db9af823e7be860e21e52df58efb43ad4855c7127c2053106214d",
+          "section_text_omitted": true
+        },
+        "relation_and_limit": "Conditionally adopted as B placement, limited in 1.0 to candidate generation and shadow evaluation. The adopted candidate and L11 call for independent review of judgment-pack/shadow evidence; apply identity/context/authority/route and independent evidence inspection from the 2026-09-26 PO decision, not provider/model parity. Its version and shadow-evaluation limits remain; this is not an HBR-P3 successor or universal external-truth oracle."
       }
     ],
     "screening_limit": "All 94 decision rows are line-pinned. Only the selected rows above were semantically screened for HBR-P3 proximity; identical IDs in separate cohorts remain distinct decisions/registrations. Decision adoption does not itself prove implementation, execution, L11 acceptance, or HBR-P3 successor assignment."
@@ -2606,7 +2824,10 @@
     "old_HAC_P3_acceptance_rows_pinned": true,
     "old_HAT_P3_rows_pinned": true,
     "fixed_current_L11_external_verifier_detail_pinned": true,
-    "HAC_P3_02b_distinct_runtime_model_verifier_gap_explicit": true
+    "HAC_P3_rows_pinned_directly": true,
+    "HAT_P3_rows_pinned_directly": true,
+    "worker_independence_po_decision_pinned": true,
+    "HAC_P3_02b_runtime_model_distinction_explicitly_changed_per_PO_decision": true
   },
   "non_claims": [
     "This comparison does not edit or retire the confirmed HBR-P3 source identity.",
@@ -2614,7 +2835,7 @@
     "No source atoms are assigned a formal successor.",
     "PO adoption rows and version_target remain separate axes; the L2/L11 candidate sections may retain predecision status wording, and MPR registered_proposal / authority_effect:none does not create requirement authority.",
     "No implementation, CI, test, command, runtime, production safety, user acceptance, or closure result is asserted.",
-    "Held-out external-truth applicability, oracle and tolerance remain conditional / unresolved where target-specific design requires them; no universal applicability is invented."
+    "The HBR-P3 trigger-specific separate-verifier condition remains bounded as a scope/application question under the 2026-09-26 identity/context/authority/route decision; provider/model difference is not retained as a requirement. No universal applicability is invented."
   ],
   "old_harness_acceptance_test_design": {
     "archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
@@ -2633,5 +2854,84 @@
         "text": "| HAT-P3-02 | HR-FR-P3-02 | HAC-P3-02a/b | 外部 claim は source attribution + 別 verifier を要求する | external-grounding tests |"
       }
     ]
+  },
+  "worker_independence_po_decision": {
+    "path": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
+    "file_sha256": "1c93bf0aadccfdf6b536a32d3923a17fbd00a1fd830850f9369b5b6d6b12efb2",
+    "selected_line_pins": [
+      {
+        "path": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
+        "line": 56,
+        "line_sha256": "81947b301400109bce64747ef9b9cdb1a8319eac33e49e41a4774ea67b436a0f",
+        "text": "移行の分類の途中で、原文の「独立検証が必要な場合は別Workerへ割り当てる」について、同じproviderの別Workerを独立した検証と認めるかが、原文から読み切れなかった。AIが、別Workerなら認める、別providerを要る、対象の重さで分ける、のどれかを聞いたところ、POは次のように答えた。"
+      },
+      {
+        "path": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
+        "line": 57,
+        "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      {
+        "path": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
+        "line": 58,
+        "line_sha256": "eff658a3e55b9a0fde37376ef863a000b7d8871256ffb6ceddc8a6bfe6ade2c5",
+        "text": "> 「別Workerか」「別providerか」で独立性を定義しない。"
+      },
+      {
+        "path": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
+        "line": 59,
+        "line_sha256": "547a17f26a365dce08ea514c066019125cdabd7e97a5ad4d67718866ef37944e",
+        "text": "> レーンとWorkerは別概念。独立レビューは、作成側とは別のreviewer identity・context・authority・review routeで行われ、作成側の結論を引き継がず独立して証拠を確認できることを条件にする。provider/modelは記録するが、同一providerだから非独立、別providerだから独立とはしない。"
+      },
+      {
+        "path": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
+        "line": 60,
+        "line_sha256": "2470d16ad79056ade3168275a90d97e7a78daa8ab07e76fd313afcf5939343dc",
+        "text": "> Review依頼は既存どおり通知経路で別reviewerへ渡す。作成Worker自身またはそのSubagentによるreviewは独立reviewに数えない。"
+      },
+      {
+        "path": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
+        "line": 61,
+        "line_sha256": "76f2a9646c2e6721ba4308dca41d43e2699f04c80974448e2664ab29d236ac04",
+        "text": "> なお、HELIX自身の開発環境とWeb提供環境は別要求として扱う。HELIX内部開発はGUI中心・CLI原則不使用という方針もこの独立性判定とは分離する。"
+      },
+      {
+        "path": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
+        "line": 62,
+        "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      {
+        "path": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
+        "line": 63,
+        "line_sha256": "7015591dd7d3049e3b18b9119b16786271950bc7c451a69f5b1df5620ca738a4",
+        "text": "AIの整理："
+      },
+      {
+        "path": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
+        "line": 64,
+        "line_sha256": "aea328acfa62a1be02b01296dbe75195ec571cb6ecd57928b4b72414f5fcbf1d",
+        "text": "- 独立reviewの条件は、reviewerのidentity・context・authority・review routeが作成側と別であり、作成側の結論を引き継がずに証拠を確かめられることである。providerが同じか別かでは決めない。"
+      },
+      {
+        "path": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
+        "line": 65,
+        "line_sha256": "9ddcd5880b7da53840861437a8d5c5c342896af8e1fc1dbe6bde4e8c93320ee3",
+        "text": "- 原文のRETIRE-WORKER-005（Worker＝実行の枠）のうち、「レーンを独立した実行の主体として扱わない」ことは保つ。「Workerが一つの作業レーンを表す」は、POの回答「レーンとWorkerは別概念」に合わせて採らない。"
+      },
+      {
+        "path": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
+        "line": 66,
+        "line_sha256": "637f99ecf2ab2d41a22b5fdc27c689acfae32217a7540dc4a59214eb12df0fa2",
+        "text": "- 旧HELIXのHBR-P2（Codexだけのときは`cross_agent_review: unavailable`と記録する。旧pillar要求:96）の、同じruntimeの中のsubagentのreviewを独立reviewの代わりにしない点は保つ。providerの一致で独立でないとする読み方は採らない。"
+      },
+      {
+        "path": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
+        "line": 67,
+        "line_sha256": "7ac6c309ed018a105cc826df47d031378c847f4c674cbb25593e98c3781dffe5",
+        "text": "- HELIX自身の開発環境とWeb提供の環境は別の要求として扱い、HELIXの内部の開発の方針（GUI中心、CLIを原則使わない）は、独立性の判定の条件にしない。"
+      }
+    ],
+    "meaning_change": "Old HAC-P3-02b runtime/model difference criterion is explicitly changed: distinct provider/model/runtime is not the independence test. Preserve rejection of author Worker or its Subagent self-review. A separate reviewer is independent when reviewer identity, context, authority, and review route differ from author, and review independently checks evidence without inheriting author conclusion; provider/model is recorded but same/different provider alone decides neither way."
   }
 }
