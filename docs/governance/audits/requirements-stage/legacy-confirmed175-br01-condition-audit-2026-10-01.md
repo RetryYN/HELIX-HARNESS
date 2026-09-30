@@ -1,6 +1,6 @@
 # confirmed175 BR-01 条件別照合
 
-監査時点: `2026-10-01`。比較baseはmain `cf636d6f5d4fd16d9eea3386f670dec0d39a3b8d`。
+監査時点: `2026-10-01`。比較baseはmain `a1fbe91d9ceb41d3d2655cdb7fce0bfaf8592acc`。
 対象は旧confirmed identity `harness/L1-requirements/business-requirements.md::BR-01`、旧source line 41。
 比較先はPOが2026-09-28に固定した `f6dad2a33e24f000b87d7f09b8d40288257e74cc` のHARNESS L2/L11 bytes。
 これは読取専用の意味照合であり、`authority_effect: none`。採択、formal successor割当、条件閉包、Step 5完了、実装・実行・受入を主張しない。
@@ -15,7 +15,7 @@
 
 資産 `LEGACY-ASSET-9F48ADEEB477DCA54039` はsource snapshot preservationで、旧source authorityはconfirmed、target authorityはdraft_candidate、carryは`preserved_pending_rehome`、successor未割当。資産台帳のconsumer refsは`requirement-carry-forward-ledgers`と`requirement-atomization-review`。旧functional baton tableのREQSRC-LINE-00092/000397等、運用test pair表のREQSRC-LINE-00116、PM-01/02等にBR-01参照があるが、これらは別の旧source identity・未atom化consumer参照であり、BR-01の移管完了やsuccessorを示さない。
 
-全量監査はBR-01を「既存crosswalkが再導出／保持を報告。ただしsource atomごとのcarry-forward未割当」と分類し、HARNESS-L2-001/003/004/005とL11 21・23–25を関連付ける。queueは個別比較なしと記録する。本監査でqueue、full audit、既存confirmed175個別監査全件を照合した。queueとfull auditのBR-01行は母集団・既存状態の記録であり、固定f6dad2aとの個別条件比較ではなかった。個別監査JSONをsource-qualified identityの完全一致で走査し、重複するBR-01比較記録がないことを確認した。
+全量監査はBR-01を「既存crosswalkが再導出／保持を報告。ただしsource atomごとのcarry-forward未割当」と分類し、HARNESS-L2-001/003/004/005とL11 21・23–25を関連付ける。queueは個別比較なしと記録する。本監査でqueue、full audit、既存confirmed175個別監査全件を照合した。queueとfull auditのBR-01行は母集団・既存状態の記録であり、固定f6dad2aとの個別条件比較ではなかった。#2421のDAC-BR-001..005個票もsource-qualified identityで走査した。これは`helix/L1-requirements/document-authority-census-requests.md`のDAC-BR名前空間であり、`harness/L1-requirements/business-requirements.md::BR-01`とはsource path・identityが異なるため重複しない。個別監査JSONをsource-qualified identityの完全一致で走査し、BR-01比較記録の重複がないことを確認した。
 
 ## 固定L2/L11との比較
 

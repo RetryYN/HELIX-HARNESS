@@ -5,7 +5,7 @@
   "adoption_claim": false,
   "successor_assignment_claim": false,
   "coverage_or_step5_completion_claim": false,
-  "basis_main_commit": "cf636d6f5d4fd16d9eea3386f670dec0d39a3b8d",
+  "basis_main_commit": "a1fbe91d9ceb41d3d2655cdb7fce0bfaf8592acc",
   "scope": {
     "source_qualified_identity": "harness/L1-requirements/business-requirements.md::BR-01",
     "confirmed_identity": "BR-01",
@@ -368,7 +368,7 @@
     }
   ],
   "overlap_check": {
-    "current_main_commit": "cf636d6f5d4fd16d9eea3386f670dec0d39a3b8d",
+    "current_main_commit": "a1fbe91d9ceb41d3d2655cdb7fce0bfaf8592acc",
     "queue_record_ref": "docs/governance/audits/requirements-stage/confirmed175-condition-comparison-queue-2026-09-30.json#records[0]",
     "queue_claim": "not_individually_compared",
     "individual_audit_json_files_checked": [
@@ -390,17 +390,32 @@
       "legacy-confirmed175-resident-lane-sr-1-11-condition-audit-2026-09-30.json",
       "legacy-confirmed175-screen-gd01-hm01-08-fixed-l2l11-audit-2026-10-01.json",
       "legacy-confirmed175-screen-pm02-pm06-condition-audit-2026-09-30.json",
-      "legacy-confirmed175-three-lane-seven-condition-audit-2026-09-30.json"
+      "legacy-confirmed175-three-lane-seven-condition-audit-2026-09-30.json",
+      "legacy-confirmed175-dac-br01-05-fixed-l2l11-audit-2026-10-01.json"
     ],
     "exact_source_qualified_identity_match_in_existing_individual_audits": false,
     "full_audit_is_population_inventory_not_condition_comparison": true,
-    "rationale": "A recursive exact-identity scan of every listed individual audit JSON found no BR-01 record. Queue and full audit contain BR-01 only as inventory/status rows; no existing artifact compares the BR-01 condition to fixed f6dad2a L2/L11."
+    "rationale": "Recursive exact source-qualified identity scan of all listed individual audit JSONs, including #2421 DAC-BR-001..005, found no BR-01 record. The DAC audit identities use helix/L1-requirements/document-authority-census-requests.md and do not overlap harness/L1-requirements/business-requirements.md::BR-01. Queue and full audit contain BR-01 only as inventory/status rows; no existing artifact compares the BR-01 condition to fixed f6dad2a L2/L11.",
+    "source_qualified_identity_match_in_dac_audit": false,
+    "dac_audit_scope_check": {
+      "audit": "docs/governance/audits/requirements-stage/legacy-confirmed175-dac-br01-05-fixed-l2l11-audit-2026-10-01.json",
+      "identities_checked": [
+        "helix/L1-requirements/document-authority-census-requests.md::DAC-BR-001",
+        "helix/L1-requirements/document-authority-census-requests.md::DAC-BR-002",
+        "helix/L1-requirements/document-authority-census-requests.md::DAC-BR-003",
+        "helix/L1-requirements/document-authority-census-requests.md::DAC-BR-004",
+        "helix/L1-requirements/document-authority-census-requests.md::DAC-BR-005"
+      ],
+      "br01_identity": "harness/L1-requirements/business-requirements.md::BR-01",
+      "exact_source_qualified_identity_overlap": false,
+      "note": "DAC-BR-001..005 share the BR-0x naming family but use a different source path and identity namespace; no record compares harness business-requirements.md::BR-01."
+    }
   },
   "validation": {
     "json_parse": "passed",
     "source_and_target_pins": "passed",
-    "live26_decision_and_pair_pins": "passed: decision, MPR registrations, and HARNESS/HELIXOS L2/L11 file and section digests",
-    "individual_audit_identity_scan": "passed_no_exact_duplicate",
+    "live26_decision_and_pair_pins": "passed: #2420 decision, MPR registrations, and HARNESS/HELIXOS L2/L11 file and section digests rechecked on a1fbe91",
+    "individual_audit_identity_scan": "passed_no_exact_duplicate_including_2421_DAC_BR_001_to_005",
     "scfctl_validate": "passed_bindings=143_fail=0",
     "git_diff_check": "passed"
   }
