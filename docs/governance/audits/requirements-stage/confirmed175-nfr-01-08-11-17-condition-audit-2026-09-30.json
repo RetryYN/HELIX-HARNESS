@@ -450,7 +450,7 @@
         "l2_document_path": "docs/helix-os/L2-requirements/governance-requirements.md",
         "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
         "pair_section_heading": "### HELIXOS-L2-033 Versioned engine/detector registryと同一snapshot再現証拠（単体候補）",
-        "nfr_screen_result": "近接するOS運転/authority/evidence/worker条件として確認。旧NFR identityのGHA workflow/role、source numbers、consumer semanticsを同値採択するものではない。",
+        "nfr_screen_result": "NFR-05に隣接: engine/detector receiptと同一snapshot再現provenance。旧GHA監査やGitHub証拠保存方式の採択、旧NFR-05 successor/closureではない。",
         "l11_document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
         "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
         "l11_direct_pair_rows": []
@@ -478,7 +478,7 @@
         "l2_document_path": "docs/helix-os/L2-requirements/governance-requirements.md",
         "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
         "pair_section_heading": "### HELIXOS-L2-035 PR lifecycle event intakeと監査job要求の冪等生成（単体候補）",
-        "nfr_screen_result": "近接するOS運転/authority/evidence/worker条件として確認。旧NFR identityのGHA workflow/role、source numbers、consumer semanticsを同値採択するものではない。",
+        "nfr_screen_result": "NFR-05に隣接: PR lifecycle event intakeでbase/head revisionとprovenanceを記録し監査job要求へ接続する。旧GHA/branch protection/PR許可方式や旧NFR-05全体のsuccessor/closureではない。",
         "l11_document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
         "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
         "l11_direct_pair_rows": []
@@ -604,7 +604,7 @@
         "l2_document_path": "docs/helix-os/L2-requirements/governance-requirements.md",
         "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
         "pair_section_heading": "### HELIXOS-L2-046 dispatchからmergeまでのauthority・HEAD・scope連続性（connection候補、version_target: 1.0）",
-        "nfr_screen_result": "近接するOS運転/authority/evidence/worker条件として確認。旧NFR identityのGHA workflow/role、source numbers、consumer semanticsを同値採択するものではない。",
+        "nfr_screen_result": "NFR-05に隣接: dispatchからmerge admissionまでのauthority/HEAD/revision/scope/verification義務の連続性。旧GHA証跡保存方式、branch protection、PR許可条件そのものではなく、旧NFR-05 successor/closureではない。",
         "l11_document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
         "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
         "l11_direct_pair_rows": []
@@ -842,7 +842,7 @@
         "l2_document_path": "docs/helix-security/L2-requirements/security-requirements.md",
         "l2_file_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
         "pair_section_heading": "## P0訂正追補（対象: HELIXSECURITY-L2-033）",
-        "nfr_screen_result": "近接:security / agentic / worker / MCP profile条件。NFR-17の旧5-stage統合grade・Top 10/Art.14 trace/KPI全件を表すとする明示記載はなく、全NFR集合の代替でない。",
+        "nfr_screen_result": "NFR-11に隣接: 外部AI Workerのcontext拘束と出力の非権威性。旧GHA役割表全体を置換せず、NFR-11 successor/closureではない。NFR-17への隣接評価は別に保持する。",
         "l11_document_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
         "l11_file_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
         "l11_direct_pair_rows": []
@@ -940,7 +940,7 @@
         "l2_document_path": "docs/helix-os/L2-requirements/governance-requirements.md",
         "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
         "pair_section_heading": "### HELIXOS-L2-051 作成／reviewレーンのtask単位選択と配置適性（単体候補、version_target: 1.0）",
-        "nfr_screen_result": "近接するOS運転/authority/evidence/worker条件として確認。旧NFR identityのGHA workflow/role、source numbers、consumer semanticsを同値採択するものではない。",
+        "nfr_screen_result": "NFR-11に隣接: 作成/reviewレーンのtask配置とruntime/context分離。条件付き採択はCursor作成専用、Claude優先は評価根拠のある要求・設計taskのみ。全GHA reviewer roleの等価置換やNFR-11 successor/closureではない。",
         "l11_document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
         "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
         "l11_direct_pair_rows": []
@@ -1633,7 +1633,6 @@
           "HDEC-REQUIREMENTS-11-2026-09-29"
         ],
         "relevant_pair_ids": [],
-        "queue_note_staleness": "queue noteはHARNESS-L2-036を未採択candidateとしているが、2026-09-29のdecision採択で更新済みである。固定f6 targetとの比較結果は別revisionのまま扱う。",
         "interpretation": "後発pairは隣接する関連証拠としてのみ扱う。旧identityのsuccessorを割り当てたり、carry-forward残差を閉じたりするものではない。"
       },
       "residual_and_status": {
@@ -1817,7 +1816,6 @@
           "HDEC-REQUIREMENTS-11-2026-09-29"
         ],
         "relevant_pair_ids": [],
-        "queue_note_staleness": "queue noteはHARNESS-L2-036を未採択candidateとしているが、2026-09-29のdecision採択で更新済みである。固定f6 targetとの比較結果は別revisionのまま扱う。",
         "interpretation": "後発pairは隣接する関連証拠としてのみ扱う。旧identityのsuccessorを割り当てたり、carry-forward残差を閉じたりするものではない。"
       },
       "residual_and_status": {
@@ -2295,7 +2293,6 @@
           "HDEC-REQUIREMENTS-11-2026-09-29"
         ],
         "relevant_pair_ids": [],
-        "queue_note_staleness": "queue noteはHARNESS-L2-036を未採択candidateとしているが、2026-09-29のdecision採択で更新済みである。固定f6 targetとの比較結果は別revisionのまま扱う。",
         "interpretation": "後発pairは隣接する関連証拠としてのみ扱う。旧identityのsuccessorを割り当てたり、carry-forward残差を閉じたりするものではない。"
       },
       "residual_and_status": {
@@ -2564,7 +2561,6 @@
           "HDEC-REQUIREMENTS-11-2026-09-29"
         ],
         "relevant_pair_ids": [],
-        "queue_note_staleness": "queue noteはHARNESS-L2-036を未採択candidateとしているが、2026-09-29のdecision採択で更新済みである。固定f6 targetとの比較結果は別revisionのまま扱う。",
         "interpretation": "後発pairは隣接する関連証拠としてのみ扱う。旧identityのsuccessorを割り当てたり、carry-forward残差を閉じたりするものではない。"
       },
       "residual_and_status": {
@@ -2745,9 +2741,81 @@
           "HDEC-REQUIREMENTS-57-2026-09-29",
           "HDEC-REQUIREMENTS-11-2026-09-29"
         ],
-        "relevant_pair_ids": [],
-        "queue_note_staleness": "queue noteはHARNESS-L2-036を未採択candidateとしているが、2026-09-29のdecision採択で更新済みである。固定f6 targetとの比較結果は別revisionのまま扱う。",
-        "interpretation": "後発pairは隣接する関連証拠としてのみ扱う。旧identityのsuccessorを割り当てたり、carry-forward残差を閉じたりするものではない。"
+        "relevant_pair_ids": [
+          "HELIXOS-L2-046",
+          "HELIXOS-L2-035",
+          "HELIXOS-L2-033"
+        ],
+        "interpretation": "後発の採択OS pairは、PR lifecycle、authority/HEAD/scope連続性、engine/detector runのprovenance面で隣接・部分的に関係する。旧GHA監査の完全再現、GitHub証拠保存方式、branch protection、PR許可や旧役割表の採択、NFR-05 successor割当、carry-forward残差のclosureは含まない。固定f6比較と後発decisionは異なる時間断面として扱い、残差はopenのままとする。",
+        "fixed_vs_later_time_boundary": "固定比較はPO決定のfixed_pair_revision f6dad2a33e24f000b87d7f09b8d40288257e74cc（2026-09-28 L2/L11 bytes）。後発pairは2026-09-29のHDEC-REQUIREMENTS-57で固定されたsource revision 318ec4a04abb3c1cc17111b3d939f913facd5fd3であり、fixed f6へ遡及させない。旧source rowはNFR-05、archive line 49。",
+        "relevant_pair_evidence": [
+          {
+            "identity": "HELIXOS-L2-046",
+            "decision_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+            "decision_status": "adopted",
+            "decision_record_row": {
+              "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+              "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+              "decision_artifact_commit": "7581e0fc5f2a790eb5bf6f163e70d4b900ff4a45",
+              "line": 69,
+              "line_text": "| `HELIXOS-L2-046` | 採択 | `MPR-RC-HELIXOS-L2-046-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d` | `HELIXOS-L2-046` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0` | `docs/governance/audits/requirement-registration/helixos-rfa-scope-coverage-receipt-2026-09-28.json` |",
+              "line_sha256": "30b808ddda1ac9fb69931bfcce1d2f31f03be9aa0f78a34bb71ce02189ccb03a"
+            },
+            "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+            "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+            "l2_section_sha256": "c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d",
+            "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+            "l11_section_sha256": "3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0",
+            "limited_effect": "dispatchからmerge admissionまでの一つの選択scopeで、authority、対象HEAD/revision、scope、既存検証義務と結果の連続性を照合する点が、旧NFR-05のHEAD/run provenance・監査可能性に近接する。",
+            "limits": "GitHubへの証拠保存方式、branch protection設定、旧GHA workflowやPR許可の具体手順を規定するものではない。NFR-05のformal target join、source successor、残差closureを作らない。"
+          },
+          {
+            "identity": "HELIXOS-L2-035",
+            "decision_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+            "decision_status": "adopted",
+            "decision_record_row": {
+              "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+              "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+              "decision_artifact_commit": "7581e0fc5f2a790eb5bf6f163e70d4b900ff4a45",
+              "line": 58,
+              "line_text": "| `HELIXOS-L2-035` | 採択 | `MPR-RC-HELIXOS-L2-035-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:01ab4c9e572c5af909e4dbf46fb8f44866dd6cc7701dddc88b8dabbe14fb6c03` | `HELIXOS-L2-035` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:8507d8f43c2aafae4d8b08fc27e9c3c7c28e6d4a74d912b7667d3dc27786c742` | `docs/governance/audits/requirement-registration/os-pr-event-intake-coverage-receipt-2026-09-28.json` |",
+              "line_sha256": "86475e594d97ea452e6a1e41b7f7c8761a5d60ce4ab4f9062ce044ece6224222"
+            },
+            "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+            "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+            "l2_section_sha256": "01ab4c9e572c5af909e4dbf46fb8f44866dd6cc7701dddc88b8dabbe14fb6c03",
+            "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+            "l11_section_sha256": "8507d8f43c2aafae4d8b08fc27e9c3c7c28e6d4a74d912b7667d3dc27786c742",
+            "limited_effect": "対象project内のPR lifecycle eventを取り込み、base/head revisionとprovenanceを保持し、重複しない監査job要求を作る点が旧NFR-05のPR/対象revision証跡に近接する。",
+            "limits": "GHA workflow、branch protection、PR許可・拒否ルールや、GitHubへ証跡を保存する旧方式を採択するものではない。旧sourceの具体的監査義務全体のsuccessor/closureではない。"
+          },
+          {
+            "identity": "HELIXOS-L2-033",
+            "decision_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+            "decision_status": "adopted",
+            "decision_record_row": {
+              "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+              "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+              "decision_artifact_commit": "7581e0fc5f2a790eb5bf6f163e70d4b900ff4a45",
+              "line": 56,
+              "line_text": "| `HELIXOS-L2-033` | 採択 | `MPR-RC-HELIXOS-L2-033-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:580778c8ef3c0e4c4676d13de203c821f990893e9aa078d8d1d2f0b8901d2dbc` | `HELIXOS-L2-033` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:1d30394888b3bded49f8e517d7e0888a25130e123df945adf69c7db5588571b1` | `docs/governance/audits/requirement-registration/os-quarantine-replay-coverage-receipt-2026-09-28.json` |",
+              "line_sha256": "54a81764fb7a3656fe51fc4028c57c714e034bcee10c7d4c3193ede2205ab5fd"
+            },
+            "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+            "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+            "l2_section_sha256": "580778c8ef3c0e4c4676d13de203c821f990893e9aa078d8d1d2f0b8901d2dbc",
+            "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+            "l11_section_sha256": "1d30394888b3bded49f8e517d7e0888a25130e123df945adf69c7db5588571b1",
+            "limited_effect": "engine/detectorのversion/config、同一input snapshot、execution receiptとartifact/finding provenance、再現比較を束ねる点が旧NFR-05のrun identityと監査証跡に近接する。",
+            "limits": "旧CIの実行方式、GHA/branch protection/PR許可、旧権限証跡の保存場所や手順は規定しない。旧NFR-05の全条件へのsource successor/closureではない。"
+          }
+        ]
       },
       "residual_and_status": {
         "status": "crosswalk_rederived_identity_comparison_open",
@@ -2980,7 +3048,6 @@
           "HDEC-REQUIREMENTS-11-2026-09-29"
         ],
         "relevant_pair_ids": [],
-        "queue_note_staleness": "queue noteはHARNESS-L2-036を未採択candidateとしているが、2026-09-29のdecision採択で更新済みである。固定f6 targetとの比較結果は別revisionのまま扱う。",
         "interpretation": "後発pairは隣接する関連証拠としてのみ扱う。旧identityのsuccessorを割り当てたり、carry-forward残差を閉じたりするものではない。"
       },
       "residual_and_status": {
@@ -3169,7 +3236,6 @@
           "HDEC-REQUIREMENTS-11-2026-09-29"
         ],
         "relevant_pair_ids": [],
-        "queue_note_staleness": "queue noteはHARNESS-L2-036を未採択candidateとしているが、2026-09-29のdecision採択で更新済みである。固定f6 targetとの比較結果は別revisionのまま扱う。",
         "interpretation": "後発pairは隣接する関連証拠としてのみ扱う。旧identityのsuccessorを割り当てたり、carry-forward残差を閉じたりするものではない。"
       },
       "residual_and_status": {
@@ -3294,9 +3360,70 @@
           "HDEC-REQUIREMENTS-57-2026-09-29",
           "HDEC-REQUIREMENTS-11-2026-09-29"
         ],
-        "relevant_pair_ids": [],
-        "queue_note_staleness": "queue noteはHARNESS-L2-036を未採択candidateとしているが、2026-09-29のdecision採択で更新済みである。固定f6 targetとの比較結果は別revisionのまま扱う。",
-        "interpretation": "後発pairは隣接する関連証拠としてのみ扱う。旧identityのsuccessorを割り当てたり、carry-forward残差を閉じたりするものではない。"
+        "relevant_pair_ids": [
+          "HELIXSECURITY-L2-033",
+          "HELIXOS-L2-051"
+        ],
+        "interpretation": "後発のSECURITY-033は外部AI Workerのcontext拘束と出力の非権威性、OS-051は条件付きで作成/reviewレーンのtask配置・runtime/context分離に関係する。これは旧GHA audit frameworkの役割表全体や、全agentについてのgate判定権限・出力責務の配置を採択したことを意味しない。fixed f6比較と後発decisionは異なる時間断面として扱い、NFR-11のsuccessorは未割当、残差はopenのままとする。",
+        "fixed_vs_later_time_boundary": "固定比較はPO決定のfixed_pair_revision f6dad2a33e24f000b87d7f09b8d40288257e74cc（2026-09-28 L2/L11 bytes）。後発pairは2026-09-29のHDEC-REQUIREMENTS-57で固定されたsource revision 318ec4a04abb3c1cc17111b3d939f913facd5fd3であり、fixed f6へ遡及させない。旧source rowはNFR-11、archive line 70。",
+        "relevant_pair_evidence": [
+          {
+            "identity": "HELIXSECURITY-L2-033",
+            "decision_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+            "decision_status": "adopted",
+            "decision_record_row": {
+              "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+              "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+              "decision_artifact_commit": "7581e0fc5f2a790eb5bf6f163e70d4b900ff4a45",
+              "line": 92,
+              "line_text": "| `HELIXSECURITY-L2-033` | 採択 | `MPR-RC-HELIXSECURITY-L2-033-002` | `docs/helix-security/L2-requirements/security-requirements.md` | `d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5` | `sha256:b486a0c44e8f21a6f8738dedeac91dcb94da335b73409b6adeaecf8fa639bf1a` | `HELIXSECURITY-L2-033` | `docs/helix-security/L11-acceptance/security-acceptance.md` | `e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556` | `sha256:6d83abe63e3e852d58d9a9a60ae39c6b29284b6b8ab781bdb86456e479e60be0` | `docs/governance/audits/requirement-registration/security-v13-worker-context-coverage-receipt-2026-09-28-r2.json` |",
+              "line_sha256": "c0adc957901718d31960f3696cbf23ecc92df4a130aae379c96d8065145abf2c"
+            },
+            "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+            "l2_path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "l2_file_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+            "l2_section_sha256": "b486a0c44e8f21a6f8738dedeac91dcb94da335b73409b6adeaecf8fa639bf1a",
+            "l11_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "l11_file_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
+            "l11_section_sha256": "6d83abe63e3e852d58d9a9a60ae39c6b29284b6b8ab781bdb86456e479e60be0",
+            "limited_effect": "外部AI Workerの実行contextを束縛し、Worker出力を権威ある指示として扱わない境界が、旧NFR-11のreviewer agentにgate判定権を持たせない意味へ隣接する。",
+            "limits": "旧GHA workflow/reviewer agentの役割・出力責務を定める全体表ではなく、全レビュー経路のruntime/context分離も定めない。旧NFR-11のsource successor/closureではない。",
+            "additional_l11_adopted_scope": {
+              "heading": "## P0訂正追補（対象: HELIXSECURITY-L2-033 L11）",
+              "section_sha256": "e4bed8944412cc5ca6effc0c6ddd2a314ea309aa23f36c88d6467e3c7010d0a6",
+              "decision_record_row": {
+                "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+                "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+                "decision_artifact_commit": "7581e0fc5f2a790eb5bf6f163e70d4b900ff4a45",
+                "line": 124,
+                "line_text": "| `HELIXSECURITY-L2-033` | 採択対象の追加受入 | `## P0訂正追補（対象: HELIXSECURITY-L2-033 L11）` | `sha256:e4bed8944412cc5ca6effc0c6ddd2a314ea309aa23f36c88d6467e3c7010d0a6` |",
+                "line_sha256": "cae96551f85dbbd2de985d9ae5763920f90dbffe0945294277ab67e5b0095e17"
+              }
+            }
+          },
+          {
+            "identity": "HELIXOS-L2-051",
+            "decision_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+            "decision_status": "conditionally_adopted",
+            "decision_record_row": {
+              "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+              "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+              "decision_artifact_commit": "7581e0fc5f2a790eb5bf6f163e70d4b900ff4a45",
+              "line": 74,
+              "line_text": "| `HELIXOS-L2-051` | 条件付き採択：本構成でCursorを作成専用、Claude優先は適用可能な評価根拠のある要求・設計taskのみ。 | `MPR-RC-HELIXOS-L2-051-002` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:54fd39fbeb3786bc739560856afb14e3cf892b1bb717d98ceb1212df09fe7f2b` | `HELIXOS-L2-051` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:e01daa2fbf1ad7c2e9b6df54a9acdf022a3b821123d8904f8a171a4ede87b684` | `docs/governance/audits/requirement-registration/ops-o4-coverage-receipt-2026-09-29-r2.json#HELIXOS-L2-051` |",
+              "line_sha256": "b9cef971102d6f8ec1f03c1eca2d77fb40b8490b0968a66f535daa78f992f218"
+            },
+            "pair_source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+            "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+            "l2_section_sha256": "54fd39fbeb3786bc739560856afb14e3cf892b1bb717d98ceb1212df09fe7f2b",
+            "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+            "l11_section_sha256": "e01daa2fbf1ad7c2e9b6df54a9acdf022a3b821123d8904f8a171a4ede87b684",
+            "limited_effect": "作成/reviewレーンのtask単位選択と配置適性、runtime/contextの分離が旧NFR-11の役割境界に近接する。採択条件は本構成でCursorを作成専用とし、Claude優先を適用可能な評価根拠のある要求・設計taskに限定する。",
+            "limits": "条件付き採択の範囲を越えて全provider・全task・全reviewerへ一般化しない。GHA audit frameworkの役割表やagentのgate authority境界を全面的に置換せず、旧NFR-11のsource successor/closureを作らない。"
+          }
+        ]
       },
       "residual_and_status": {
         "status": "crosswalk_rederived_identity_comparison_open",
@@ -3425,7 +3552,6 @@
         "relevant_pair_ids": [
           "HARNESS-L2-034"
         ],
-        "queue_note_staleness": "queue noteはHARNESS-L2-036を未採択candidateとしているが、2026-09-29のdecision採択で更新済みである。固定f6 targetとの比較結果は別revisionのまま扱う。",
         "interpretation": "後発pairは隣接する関連証拠としてのみ扱う。旧identityのsuccessorを割り当てたり、carry-forward残差を閉じたりするものではない。"
       },
       "residual_and_status": {
@@ -3936,7 +4062,6 @@
           "HELIXSECURITY-L2-033",
           "HELIXSECURITY-L2-034"
         ],
-        "queue_note_staleness": "queue noteはHARNESS-L2-036を未採択candidateとしているが、2026-09-29のdecision採択で更新済みである。固定f6 targetとの比較結果は別revisionのまま扱う。",
         "interpretation": "後発pairは隣接する関連証拠としてのみ扱う。旧identityのsuccessorを割り当てたり、carry-forward残差を閉じたりするものではない。"
       },
       "residual_and_status": {
@@ -4142,7 +4267,6 @@
           "HDEC-REQUIREMENTS-11-2026-09-29"
         ],
         "relevant_pair_ids": [],
-        "queue_note_staleness": "queue noteはHARNESS-L2-036を未採択candidateとしているが、2026-09-29のdecision採択で更新済みである。固定f6 targetとの比較結果は別revisionのまま扱う。",
         "interpretation": "後発pairは隣接する関連証拠としてのみ扱う。旧identityのsuccessorを割り当てたり、carry-forward残差を閉じたりするものではない。"
       },
       "residual_and_status": {
@@ -4247,7 +4371,6 @@
           "HDEC-REQUIREMENTS-11-2026-09-29"
         ],
         "relevant_pair_ids": [],
-        "queue_note_staleness": "queue noteはHARNESS-L2-036を未採択candidateとしているが、2026-09-29のdecision採択で更新済みである。固定f6 targetとの比較結果は別revisionのまま扱う。",
         "interpretation": "後発pairは隣接する関連証拠としてのみ扱う。旧identityのsuccessorを割り当てたり、carry-forward残差を閉じたりするものではない。"
       },
       "residual_and_status": {
@@ -4844,7 +4967,6 @@
           "HELIXSECURITY-L2-033",
           "HELIXSECURITY-L2-034"
         ],
-        "queue_note_staleness": "queue noteはHARNESS-L2-036を未採択candidateとしているが、2026-09-29のdecision採択で更新済みである。固定f6 targetとの比較結果は別revisionのまま扱う。",
         "interpretation": "後発pairは隣接する関連証拠としてのみ扱う。旧identityのsuccessorを割り当てたり、carry-forward残差を閉じたりするものではない。"
       },
       "residual_and_status": {

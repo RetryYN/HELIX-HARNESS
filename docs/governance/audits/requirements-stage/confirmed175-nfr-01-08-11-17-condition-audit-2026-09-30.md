@@ -117,7 +117,12 @@
 - 保持: CI run、PR許可、権限証跡を対象HEAD/run generationへ対応づけて監査可能にする利用価値を保持。
 - 変更点・非継承: 旧GHA workflow/branch protection/PR permissionsは旧機構案。現行実行・CI・GitHub authorityとして継承せず、実行していない。
 - 数値・例外・反例: 数値条件なし。例外: 具体的実現手段をL3/L5で決めると原文自身が留保。反例: GitHub上の記録だけから要求意味・承認を生成しない。
-- 後発57+11判断: 関連pair `特定identityへの直接対応なし`。これは後発の隣接証拠で、successor/closureを生まない。
+- 固定f6と後発判断の時間断面: fixed pairは`f6dad2a33e24f000b87d7f09b8d40288257e74cc`（2026-09-28）。Queueにformal target refsはなく、full-audit crosswalkのHARNESS-005／OS-020/019 noteだけを個別比較locatorにした。後発HDEC-REQUIREMENTS-57は別revision `318ec4a04abb3c1cc17111b3d939f913facd5fd3`（2026-09-29）で以下を採択。decision record SHA-256: `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`。
+- 後発pairの近接と限定効果:
+  - `HELIXOS-L2-046`（採択）: dispatchからmerge admissionまでauthority／HEAD／scope／検証義務の連続性。L2/L11 section digest: `c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d` / `3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0`。
+  - `HELIXOS-L2-035`（採択）: PR lifecycle event intake、base/head revisionとprovenance、冪等な監査job要求。L2/L11 section digest: `01ab4c9e572c5af909e4dbf46fb8f44866dd6cc7701dddc88b8dabbe14fb6c03` / `8507d8f43c2aafae4d8b08fc27e9c3c7c28e6d4a74d912b7667d3dc27786c742`。
+  - `HELIXOS-L2-033`（採択）: engine/detector execution receiptと同一snapshot再現provenance。L2/L11 section digest: `580778c8ef3c0e4c4676d13de203c821f990893e9aa078d8d1d2f0b8901d2dbc` / `1d30394888b3bded49f8e517d7e0888a25130e123df945adf69c7db5588571b1`。
+- これらは旧GHA証跡保存方式、branch protection、PR許可手順そのものではない。NFR-05のformal target join、successor、closureを作らない。決定行の正確なbyte/digest pinはJSON `later_decision_screen_relation.relevant_pair_evidence` に収録。
 - 残差: formal target join自体の根拠、HEAD/run generation・actor/operation authority・evidence retention/provenance・permission outcomeの受入oracle。旧GHA実装は非実行。
 - status: `crosswalk_rederived_identity_comparison_open`; successor未割当、authority effect none、closureなし.
 
@@ -177,7 +182,11 @@
 - 保持: machineが一次gate判定を持ち、reviewer agentがgate authorityを持たない役割分離を保持。
 - 変更点・非継承: GHA workflow/reviewer agentにおける旧実行context/outputの責務配置は実装形として非継承。
 - 数値・例外・反例: 数値なし。反例: agent reviewが一次gate結果を変更/上書きすること、PR/reviewが要求authorityを作ること。
-- 後発57+11判断: 関連pair `特定identityへの直接対応なし`。これは後発の隣接証拠で、successor/closureを生まない。
+- 固定f6と後発判断の時間断面: fixed pairは`f6dad2a33e24f000b87d7f09b8d40288257e74cc`（2026-09-28）。後発HDEC-REQUIREMENTS-57は別revision `318ec4a04abb3c1cc17111b3d939f913facd5fd3`（2026-09-29）。decision record SHA-256: `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`。
+- 後発pairの近接と限定効果:
+  - `HELIXSECURITY-L2-033`（採択）: 外部AI Workerの実行context拘束と出力の非権威性。L2/L11 section digest: `b486a0c44e8f21a6f8738dedeac91dcb94da335b73409b6adeaecf8fa639bf1a` / `6d83abe63e3e852d58d9a9a60ae39c6b29284b6b8ab781bdb86456e479e60be0`。L11の採択訂正追補digest: `e4bed8944412cc5ca6effc0c6ddd2a314ea309aa23f36c88d6467e3c7010d0a6`。
+  - `HELIXOS-L2-051`（条件付き採択）: 作成/reviewレーンのtask配置・runtime/context分離。条件は本構成でCursorを作成専用、Claude優先は適用可能な評価根拠のある要求・設計taskのみ。L2/L11 section digest: `54fd39fbeb3786bc739560856afb14e3cf892b1bb717d98ceb1212df09fe7f2b` / `e01daa2fbf1ad7c2e9b6df54a9acdf022a3b821123d8904f8a171a4ede87b684`。
+- SECURITY-033とOS-051は旧GHA audit frameworkの役割表全体や、全agentのgate判定権限・出力責務を置換しない。条件付きOS-051も全provider/taskへ拡張しない。いずれもNFR-11 successor/closureではない。正確なdecision行byte/digest pinはJSON `later_decision_screen_relation.relevant_pair_evidence` に収録。
 - 残差: 現行machine/AI/humanの責任、実行context/出力境界、gate result authorityの固定L2/L11 identity別の受入oracle。
 - status: `crosswalk_rederived_identity_comparison_open`; successor未割当、authority effect none、closureなし.
 
