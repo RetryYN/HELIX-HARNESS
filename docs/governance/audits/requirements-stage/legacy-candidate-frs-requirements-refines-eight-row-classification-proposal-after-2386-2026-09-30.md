@@ -2,7 +2,7 @@
 
 ## 概要
 
-- 基点: `0f5050e2b25cd622640c99c5de170cca087f7d8a`（#2386 merge後）。
+- 基点: `011a537ab57a70deb79ca2db22e37b15de7cceb3`（#2387 merge後）。
 - 対象: Functional Release Slice requirements sourceのYAML frontmatter `refines` list 8行（source lines 19–26）。
 - 提案分類: 8行を `explanation / condition subtypeなし / not_condition` とする。authority effectは`none`。
 - 旧source: `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md`、asset `LEGACY-ASSET-B75E46DBE77592351574`、file SHA-256 `eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17`。
@@ -26,10 +26,10 @@
 
 ## pool・union確認
 
-#2385後の現行poolは471行。#2386後のproduct-targeted route unionは341 ID、HMCのpool外30 IDを含むall-route unionは371 ID、pool交差312行、未監査pool159行。8 selected IDsはいずれの前classification overlayとも交差せず、#2386までのroute unionとも交差しない。
+#2385後のproduct/unknown poolは471行。route batchはMA 9行（PR #2383）、MA 8行（PR #2384）、DGH 7行（PR #2386）、FRS acceptance 2行（PR #2387）で、いずれも相互にID重複がない。#2380までの317 IDへこの26 IDを加えたproduct-targeted route unionは343 ID、HMCのpool外30 IDを含むall-route unionは373 ID、pool交差314行、未監査pool157行。8 selected IDsは既存classification overlay、4 route batch、route unionのいずれとも交差しない。
 
-この提案を適用した場合、product/unknown poolは463行、conditionは858から850、explanationは2,971から2,979、product requirement atomは820から812となる。route unionとpool交差は変わらず、未監査poolは151行となる。これは条件付き算術であり、proposal merge前の現行状態を置き換えない。
+この提案を適用した場合、product/unknown poolは463行、conditionは858から850、explanationは2,971から2,979、product requirement atomは820から812となる。route unionは343／373のまま、pool交差は314行のまま、未監査poolは149行となる。これは条件付き算術であり、proposal merge前の現行状態を置き換えない。
 
 ## 保持する境界
 
-このproposalは旧source本文・source ID・参照先の文字列を変更せず、参照先要求の採択・移管、要求coverage、successor、現行authority、実装・受入を生成しない。旧archive workflow、CLI、hook、adapter、test、CI、runtimeは実行していない。静的にsource bytes、line digest、inventory、classification overlay intersection、route union membershipと算術を照合した。
+このproposalは旧source本文・source ID・参照先の文字列を変更せず、参照先要求の採択・移管、要求coverage、successor、現行authority、実装・受入を生成しない。旧archive workflow、CLI、hook、adapter、test、CI、runtimeは実行していない。静的にsource bytes、line digest、inventory、classification overlay intersection、#2383/#2384/#2386/#2387 route batchとroute union membership、算術を照合した。

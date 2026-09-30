@@ -1,7 +1,7 @@
 {
   "schema_version": "legacy-candidate-frs-requirements-frontmatter-eight-row-classification-proposal/v1",
   "audit_id": "legacy-candidate-frs-requirements-refines-eight-row-classification-proposal-after-2386-2026-09-30",
-  "base_commit": "0f5050e2b25cd622640c99c5de170cca087f7d8a",
+  "base_commit": "011a537ab57a70deb79ca2db22e37b15de7cceb3",
   "authority_effect": "none",
   "audit_mode": "read_only_exact_source_classification_proposal",
   "scope": {
@@ -300,44 +300,60 @@
   ],
   "route_union_intersection_checks": {
     "through_2380_product_ids": 317,
-    "through_2382_selected_ids": 9,
-    "through_2383_selected_ids": 8,
+    "through_2383_selected_ids": 9,
     "through_2386_selected_ids": 7,
-    "product_targeted_union_count": 341,
+    "product_targeted_union_count": 343,
     "hmc_out_of_pool_union_count": 30,
-    "all_route_union_count": 371,
+    "all_route_union_count": 373,
     "selected_ids_intersecting_route_union": 0,
     "route_batch_checks": [
       {
-        "ref": "#2382",
+        "ref": "#2383",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate-mechanism-adequacy-nine-row-route-audit-after-2382-2026-09-30.json",
         "selected_count": 9,
         "intersection_ids": [],
-        "intersection_count": 0
+        "intersection_count": 0,
+        "sha256": "f59b4f7b6252ef0dbc084f0904659c06cfa2a2fce5da45f3511e40c1896b797d",
+        "base_commit": "193974e00b9dbd3d15b11c3945840bcb941c36a4"
       },
       {
-        "ref": "#2383",
+        "ref": "#2384",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate-ma-requirements-acceptance-eight-row-route-audit-after-2383-2026-09-30.json",
         "selected_count": 8,
         "intersection_ids": [],
-        "intersection_count": 0
+        "intersection_count": 0,
+        "sha256": "86c301decb960d50ca7ba730e688371103aa41139c53b1c5ea5f1d100ff26832",
+        "base_commit": "4cdbf2f8b87b437a2353186961f6a6dd15b13275"
       },
       {
         "ref": "#2386",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-seven-row-route-audit-after-2384-2026-09-30.json",
         "selected_count": 7,
         "intersection_ids": [],
-        "intersection_count": 0
+        "intersection_count": 0,
+        "sha256": "2e58703e7246a83f6d90649f33d2382b740d2de0d385c6ba66c8952fd796dbc5",
+        "base_commit": "f280900fc97c5dfed4bc6ae59e1332abb555045f"
+      },
+      {
+        "ref": "#2387",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate-functional-release-slice-acceptance-two-row-route-audit-after-2386-2026-09-30.json",
+        "selected_count": 2,
+        "intersection_ids": [],
+        "intersection_count": 0,
+        "sha256": "25bf3d2f9a9e72e5dc8e755e7aa70ed1fd4de6381e3b2f6122b2aa03cd9b9f4f",
+        "base_commit": "0f5050e2b25cd622640c99c5de170cca087f7d8a"
       }
-    ]
+    ],
+    "through_2384_selected_ids": 8,
+    "through_2387_selected_ids": 2
   },
   "current_effective_pool_and_union": {
     "effective_product_unknown_pool_after_2385": 471,
-    "product_targeted_route_union_after_2386": 341,
+    "product_targeted_route_union_after_2387": 343,
     "out_of_pool_hmc_union": 30,
-    "all_route_union_after_2386": 371,
-    "pool_intersection_after_2386": 312,
-    "unreviewed_pool_after_2386": 159
+    "all_route_union_after_2387": 373,
+    "pool_intersection_after_2387": 314,
+    "unreviewed_pool_after_2387": 157
   },
   "proposal_if_applied": {
     "effective_product_unknown_pool": 463,
@@ -347,11 +363,11 @@
     "product_requirement_atom_count": 812,
     "management_process_condition_count": 37,
     "management_successor_unresolved_count": 37,
-    "product_targeted_route_union_after_2386": 341,
     "out_of_pool_hmc_union": 30,
-    "all_route_union_after_2386": 371,
-    "pool_intersection_after_2386": 312,
-    "unreviewed_pool_after_2386": 151
+    "product_targeted_route_union_after_2387": 343,
+    "all_route_union_after_2387": 373,
+    "pool_intersection_after_2387": 314,
+    "unreviewed_pool_after_2387": 149
   },
   "count_impact": {
     "product_requirement_atom_unknown_pool": -8,
@@ -366,7 +382,9 @@
       "858 - 8 = 850",
       "2971 + 8 = 2979",
       "820 - 8 = 812",
-      "463 - 312 = 151"
+      "343 + 30 = 373",
+      "314 + 0 = 314",
+      "463 - 314 = 149"
     ]
   },
   "classification_precedent": {
@@ -423,9 +441,11 @@
       "sha256": "d5a462229f7644744fd05302bac416bc1ae488f46d8e117d6d98068331e51cb5"
     },
     {
-      "role": "route_audit_after_2386",
+      "role": "route_audit_batch_2386",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-seven-row-route-audit-after-2384-2026-09-30.json",
-      "sha256": "2e58703e7246a83f6d90649f33d2382b740d2de0d385c6ba66c8952fd796dbc5"
+      "sha256": "2e58703e7246a83f6d90649f33d2382b740d2de0d385c6ba66c8952fd796dbc5",
+      "ref": "#2386",
+      "base_commit": "f280900fc97c5dfed4bc6ae59e1332abb555045f"
     },
     {
       "role": "metadata_classification_precedent_2356",
@@ -436,6 +456,27 @@
       "role": "metadata_classification_precedent_2381",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-metadata10-classification-proposal-2026-09-30.json",
       "sha256": "512f9ceafe935648d459d6b268ff4d3952f0e8264298213ad278256236b5f40e"
+    },
+    {
+      "role": "route_audit_batch_2387",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-functional-release-slice-acceptance-two-row-route-audit-after-2386-2026-09-30.json",
+      "sha256": "25bf3d2f9a9e72e5dc8e755e7aa70ed1fd4de6381e3b2f6122b2aa03cd9b9f4f",
+      "ref": "#2387",
+      "base_commit": "011a537ab57a70deb79ca2db22e37b15de7cceb3"
+    },
+    {
+      "role": "route_audit_batch_2383",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-mechanism-adequacy-nine-row-route-audit-after-2382-2026-09-30.json",
+      "sha256": "f59b4f7b6252ef0dbc084f0904659c06cfa2a2fce5da45f3511e40c1896b797d",
+      "ref": "#2383",
+      "base_commit": "193974e00b9dbd3d15b11c3945840bcb941c36a4"
+    },
+    {
+      "role": "route_audit_batch_2384",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-ma-requirements-acceptance-eight-row-route-audit-after-2383-2026-09-30.json",
+      "sha256": "86c301decb960d50ca7ba730e688371103aa41139c53b1c5ea5f1d100ff26832",
+      "ref": "#2384",
+      "base_commit": "4cdbf2f8b87b437a2353186961f6a6dd15b13275"
     }
   ],
   "limits": [
