@@ -607,10 +607,13 @@
         "HELIXOS-L11:HXT-TYPE-10:287"
       ],
       "retained": "開発中のagent逸脱・暴走・context切れをRecoveryへ分岐し、中断工程へ戻す。source alias `runaway` を `agent_runaway` に正規化する一方向規則もsourceが明示する。",
-      "meaning_delta": "現行OS acceptanceはRecovery目的、突発起動、中断工程への合流と予算/未完義務保全を受け入れるが、§9.2のsignal literal群と正規化表をHARNESS/OSの受入例に展開していない。",
+      "meaning_delta": "Fixed OS Recovery type preserves the interrupted-stage return. Adopted HELIXOS-L2-040 adds a bounded retry-limit case: route to an existing Recovery or Backflow ticket with lineage, with Recovery for deviation/context loss. It is near evidence for the destination, not for the v1.3 signal set.",
       "numeric_and_exception_boundary": "5 literal signals: agent_runaway, context_exhaustion, regression_dev, runaway, forced_stop。`runaway`だけを`agent_runaway`へ正規化する。本番regression/incidentはRecoveryではない。",
       "counterexample": "`runaway` aliasを新しいworkflow identityとして維持する、または`regression_prod`をRecoveryに流す。",
-      "residual": "source signal→Recovery tuple、alias warning/provenance、開発/production境界が同一target revision上でどう照合されるかのexact oracle。"
+      "residual": "The five literal signals, `runaway`→`agent_runaway` normalization, development/production distinction (especially `regression_prod`), and exact signal-to-Recovery receipt remain unverified. HELIXOS-L2-040 only covers a retry-limit condition and does not establish these literal/operational boundaries.",
+      "later_decision_refs": [
+        "HELIXOS-L2-040 / MPR-RC-HELIXOS-L2-040-001 (adopted exact L2/L11 pair; see later_decisions.bounded_near_comparisons[0])"
+      ]
     },
     {
       "source_item_id": "REQSRC-SUP-00485",
@@ -682,10 +685,13 @@
         "HARNESS-L11:22"
       ],
       "retained": "`user_feedback_iteration`／`requirement_continuous_refinement`はstyle自動変更を起こさないchange intakeとして扱い、既存OS L2-005のsource/scope付き改善候補登録・還流を保持する。feedback lifecycleのintake/classify/ack/pending/resolution区別とsource/evidence保持は既採択HELIXOS-L2-007の責務。",
-      "meaning_delta": "f6固定pairではL3の明示的style合意と、OS L2-007のfeedback lifecycle/evidence責務が成立している。別recordで採択されたHELIXOS-L2-044はprose-only handoverをresolution evidenceとして認めない限定negativeだけを追加し、新しい十分条件・event/projectionモデル・SessionStart条件を定義しない。2 aliasからRedesign／Add-feature／Scrum sliceのいずれを選ぶかは固定pairにも後発decisionにもない。",
-      "numeric_and_exception_boundary": "2 legacy feedback aliases; 3 candidate change routes (Redesign / Add-feature / Scrum slice). Style is not auto-switched from a signal. Adjacent OS-L2-044 scope is only rejection of prose-only resolution as sufficient evidence; OS-L2-007 retains lifecycle and evidence ownership.",
+      "meaning_delta": "Adopted HELIXOS-L2-048 connects returned or verification-failed feedback using finding identity, target revision/HEAD/scope, reason, missing inputs/oracle, and origin; unresolved state remains under existing L2-007 lifecycle; LABO assesses evidence-backed candidates and OS owns issue/reissue. This is a bounded handoff/assessment connection, not a legacy-alias route selector.",
+      "numeric_and_exception_boundary": "2 legacy feedback aliases; 3 candidate change routes (Redesign / Add-feature / Scrum slice). Style is not auto-switched from a signal. L2-044 only rejects prose-only resolution evidence; L2-048 retains identity/revision/reason/origin and unresolved/evaluation/reissue connections but does not pick among the three routes.",
       "counterexample": "feedback aliasだけでstyleや3 routeを自動選択する、またはprose-only handoverでfindingをresolvedにする。",
-      "residual": "legacy alias-to-route compatibility, impact/requirements-authority oracle selecting among Redesign/Add-feature/Scrum slice, and receipt binding the chosen route to the accepted style and target requirements revision. Existing HELIXOS-L2-007 lifecycle/evidence responsibilities are retained context, not an unowned residual."
+      "residual": "Legacy alias-to-route compatibility, impact/requirements-authority oracle selecting among Redesign/Add-feature/Scrum slice, and receipt binding the chosen route to accepted style and target requirements revision. L2-048 does not close the three-route selector; existing L2-007 lifecycle/evidence duties are retained context, not an unowned residual.",
+      "later_decision_refs": [
+        "HELIXOS-L2-048 / MPR-RC-HELIXOS-L2-048-001 (adopted exact L2/L11 pair; see later_decisions.bounded_near_comparisons[1])"
+      ]
     },
     {
       "source_item_id": "REQSRC-SUP-00490",
@@ -728,10 +734,13 @@
         "HARNESS-L11:23"
       ],
       "retained": "`interrupt` is subtype-dispatched to Recovery, Discovery/PoC, Add-feature, or a layer-local Forward gap. Current ticket types have distinct purpose, initiation, and convergence instead of one interrupt type.",
-      "meaning_delta": "Current taxonomy is ticket/workflow type and axis-based; it does not expose legacy `interrupt` as canonical type or provide a total subtype resolver over all interrupt signals.",
+      "meaning_delta": "Adopted HELIXOS-L2-040 gives a bounded retry-limit case: existing Recovery/Backflow ticket type and destination are used, while a reason requiring another route is not guessed and returns to the existing OS-010 owner. This is adjacent unknown/reason handling, not a general interrupt resolver.",
       "numeric_and_exception_boundary": "1 interrupt parent signal with 4 outcome routes: runaway→Recovery, uncertainty→Discovery/PoC, addition→Add-feature, layer gap→Forward. Unknown subtype has no asserted default route.",
       "counterexample": "route every interrupt to Recovery, or treat unresolved subtype as a safe success/Full V fallback.",
-      "residual": "typed interrupt subtype/source, ambiguity handling and route receipt that binds the selected target ticket to existing style/layer/requirement revision."
+      "residual": "All four legacy subtype mappings, typed interrupt input, ambiguity policy, and route receipt remain residual. HELIXOS-L2-040 covers only retry-ceiling routing and does not choose Recovery/Discovery-PoC/Add-feature/Forward for every interrupt or set a default for unknown subtype.",
+      "later_decision_refs": [
+        "HELIXOS-L2-040 / MPR-RC-HELIXOS-L2-040-001 (adopted exact L2/L11 pair; see later_decisions.bounded_near_comparisons[0])"
+      ]
     }
   ],
   "method": {
@@ -768,7 +777,8 @@
       "all current-input file SHA-256 pins recomputed from exact 105b9221f4de481ba59945be6df5cdd21f4358a3 tree bytes; source/f6/decision history pins retained",
       "57 decision and HYB-006 receipt distinguish OS-L2-044 prose-only negative from existing OS-L2-007 lifecycle/evidence ownership; only 2 prose-only spans are candidate input and 6 atoms stay preserved_pending",
       "11 decision and PHCAP-08 receipt identify HARNESS-L2-051 static stage-exit contract; 25 source atoms held, direct carry 0, closure not claimed",
-      "decision record SHA/source-revision pins remain separate; JSON parses and git diff --check passes"
+      "decision record SHA/source-revision pins remain separate; JSON parses and git diff --check passes",
+      "57 decision rows and distinct MPR registration rows for L2-040/L2-048 pinned; adopted L2/L11 section digests and full-file SHAs verified at 318ec4; bounded near-relations preserved without source successor/closure"
     ],
     "execution_boundary": "No legacy CLI/runtime/test/CI or archived executable run; static document and identity checks only."
   },
@@ -805,6 +815,107 @@
       "receipt_scope": "PHCAP-08 receipt retains all 25 exact source-line atoms in MPR-SH-PHCAP08-STAGE-EXIT-001; direct carry into HARNESS-L2-051 is 0, pending holding refs are 25, unaccounted 0. The receipt does not claim PHCAP-08 closure or direct formal successor assignment.",
       "bounded_relation": "This adopted static stage-exit contract does not map any signal in REQSRC-SUP-00484..00492; retain it as separate decision history, with no relation asserted to signal routing."
     },
-    "result": "The 57 and 11 decision records and their receipts are separately pinned. Neither creates a v1.3 successor or closure for these nine signal rows."
+    "result": "The 57 and 11 decision records and their receipts are separately pinned. L2-040 and L2-048 are adopted exact-pair near evidence for the bounded relations listed above; none is assigned as a formal successor or closes any of the nine v1.3 source rows.",
+    "bounded_near_comparisons": [
+      {
+        "source_item_ids": [
+          "REQSRC-SUP-00484",
+          "REQSRC-SUP-00492"
+        ],
+        "decision_record": {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "line_numbers": [
+            63
+          ],
+          "line_sha256": "sha256:863b15ab4b8102d7574efeffaa16ce6ef8a11958221bf36f62caeea848924fa4",
+          "decision": "採択: HELIXOS-L2-040 paired L11 exact revisions"
+        },
+        "mpr_registration": {
+          "identity": "MPR-RC-HELIXOS-L2-040-001",
+          "requirement_identity": "HELIXOS-L2-040",
+          "source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "sha256:10d0d378ec995e7e597cfeeee029afcb8fe2e75216f53666c210ff05ed7ec03a",
+          "line": 553,
+          "line_sha256": "sha256:a942f0638ad7f1d2d5bac30760c67f285f0144ff0ca4615f33a9a2f1af55798b",
+          "candidate_semantic_digest": "sha256:dfd272b75826d37333671f7152a0a58d2d013f0bd13a3f3957a76a39dcdfad80"
+        },
+        "adopted_pair": {
+          "identity": "HELIXOS-L2-040",
+          "source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "l2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "file_sha256": "sha256:89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+            "section_sha256": "sha256:dfd272b75826d37333671f7152a0a58d2d013f0bd13a3f3957a76a39dcdfad80",
+            "physical_lines": [
+              1124,
+              1132
+            ]
+          },
+          "l11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "file_sha256": "sha256:7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+            "section_sha256": "sha256:a70e3b1af4b22d3370c6a845fc6b5ced1e1162e2cea66cb1d0664211130533e7",
+            "physical_lines": [
+              724,
+              734
+            ]
+          }
+        },
+        "bounded_near_relation": "The adopted exact pair concerns a retry-limit case: at the limit, connect to existing Recovery or Backflow ticket type/return target and preserve lineage; Recovery returns deviation/context loss to the interrupted stage. If the reason requires another route, do not infer a type; return to the existing OS-010 owner. This is near 00484 Recovery and 00492 interrupt subtype handling only for a retry-ceiling event.",
+        "not_adopted_from_this_relation": "It does not map the five 00484 signal literals, normalize runaway, establish the development/production split, provide a total interrupt-subtype resolver, select all four 00492 routes, or assert retry execution/recovery success."
+      },
+      {
+        "source_item_ids": [
+          "REQSRC-SUP-00489"
+        ],
+        "decision_record": {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "line_numbers": [
+            71
+          ],
+          "line_sha256": "sha256:13a002af8bab53747a824d73c3d5045face24f39dbccb4703ffd0cb301dc3890",
+          "decision": "採択: HELIXOS-L2-048 paired L11 exact revisions"
+        },
+        "mpr_registration": {
+          "identity": "MPR-RC-HELIXOS-L2-048-001",
+          "requirement_identity": "HELIXOS-L2-048",
+          "source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "sha256:10d0d378ec995e7e597cfeeee029afcb8fe2e75216f53666c210ff05ed7ec03a",
+          "line": 576,
+          "line_sha256": "sha256:0803434e70e90f5bcb8272a76daecef3509d2c1b2bc344fe3128f73577f6f494",
+          "candidate_semantic_digest": "sha256:0cbd66b870d6b45f739c6759ed2b325d65e69cfbf3e72b6b5638f1e530c77622"
+        },
+        "adopted_pair": {
+          "identity": "HELIXOS-L2-048",
+          "source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "l2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "file_sha256": "sha256:89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+            "section_sha256": "sha256:0cbd66b870d6b45f739c6759ed2b325d65e69cfbf3e72b6b5638f1e530c77622",
+            "physical_lines": [
+              1194,
+              1202
+            ]
+          },
+          "l11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "file_sha256": "sha256:7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+            "section_sha256": "sha256:543007c8f43b3372dee673dc94fdaceb3ca3d2a291dc9cbb674acac68369054d",
+            "physical_lines": [
+              804,
+              811
+            ]
+          }
+        },
+        "bounded_near_relation": "The adopted exact pair connects returned/verification-failed feedback by finding identity, ticket/assignment, target HEAD/revision/scope, reason, missing inputs/oracle, and origin. It keeps unresolved status under L2-007 lifecycle, sends evidence-backed candidates to LABO assessment, and leaves ticket issue/reissue and routing to OS.",
+        "not_adopted_from_this_relation": "It does not identify the legacy 00489 aliases with current canonical identities or choose among Redesign, Add-feature, and Scrum slice. The three-route selector and route receipt remain residual."
+      }
+    ]
   }
 }
