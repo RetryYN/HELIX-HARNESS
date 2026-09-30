@@ -3,7 +3,7 @@
   "audit_id": "confirmed175-screen-gd01-hm01-08-fixed-l2l11-audit-2026-10-01",
   "created_at": "2026-10-01",
   "audit_mode": "read_only_source_to_fixed_l2_l11_condition_comparison",
-  "created_against_revision": "a3d9f7e205a3d766280c9de4936551f0fef16143",
+  "created_against_revision": "105b9221f4de481ba59945be6df5cdd21f4358a3",
   "authority_effect": "none",
   "scope": {
     "population": "confirmed175",
@@ -25,12 +25,167 @@
   },
   "selection_and_duplicate_scan": {
     "queue": "docs/governance/audits/requirements-stage/confirmed175-condition-comparison-queue-2026-09-30.json",
-    "queue_result": "base revisionでGD-01/HM-01..08の9 identitiesはいずれもnot_individually_compared、evidence_artifactsは空。",
+    "queue_result": "base revision 105b9221f4de481ba59945be6df5cdd21f4358a3でGD-01/HM-01..08の9 identitiesはいずれもnot_individually_compared、evidence_artifactsは空。",
     "initial_candidate_correction": "先行FR-L1-36..44候補を再照合したところ、既存個票 legacy-confirmed175-fr-l1-20-37-38-39-43-condition-audit-2026-09-30 がFR37/38/39/43を含むことを確認したため棄却。FR36/40/41/42/44だけでは要求された連続小群にならないため本群へ切替。",
-    "scan_scope": "base revision内のrequirements-stage *.json/*.md。Queue/full-audit/REG-06 population auditを除き、すべてのsource-qualified identity occurrenceとscreen個票artifactを照合。既存screen個票legacy-confirmed175-screen-pm02-pm06-condition-audit-2026-09-30.jsonはPM-02..06のみを対象。GD-01/HM-01..08 identity match 0。",
-    "result": "9 identitiesは連続HM series + GD-01の同一screen source群であり、prior individual condition comparisonとの重複なし。個票内の重複なし。",
+    "scan_scope": "base revision 105b9221f4de481ba59945be6df5cdd21f4358a3内のrequirements-stage *.json/*.md。Queue/full-audit/REG-06 population auditを除きsource-qualified identity occurrenceとscreen個票artifactを照合。今回のrebaseでmainに入った#2415/#2416/#2417各監査もsource tuple単位で追加照合。",
+    "result": "9 identities remain unique in the screen-requirements source population; no prior individual screen audit overlap. At main 105b9221f4de481ba59945be6df5cdd21f4358a3, exact source-qualified tuple comparison against #2415, #2416 and #2417 found 0 overlaps.",
     "prior_full_audit": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#audited_non_residual_records",
-    "prior_population_audit": "docs/governance/audits/requirements-stage/legacy-source-origin-reg06-population-audit-2026-09-28.json"
+    "prior_population_audit": "docs/governance/audits/requirements-stage/legacy-source-origin-reg06-population-audit-2026-09-28.json",
+    "post_merge_source_qualified_scan": {
+      "base_revision": "105b9221f4de481ba59945be6df5cdd21f4358a3",
+      "tuple_rule": "archive source path + source file SHA-256 + physical source line + source line SHA-256; source-qualified identity strings also compared exactly.",
+      "audits": [
+        {
+          "pull_request": "#2415",
+          "audit_json_path": "docs/governance/audits/requirements-stage/v13-development-style-11-condition-audit-2026-09-30.json",
+          "audit_json_sha256": "sha256:ce2aa162b917c281f78e27ccb5a67f04da484d2648b932aae753cfb25036cf75",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "selected_source_rows": [
+            {
+              "source_qualified_identity": "REQSRC-SUP-00055",
+              "source_line": 73,
+              "source_line_sha256": "sha256:7f500077383219412d8731e6d990e10bad8107ece5779cdf7ed46e2f74721f31"
+            },
+            {
+              "source_qualified_identity": "REQSRC-SUP-00056",
+              "source_line": 74,
+              "source_line_sha256": "sha256:6cc5bb17907b5caef32dd1529b6198f7bcffc86bcae8c5d7f0e1de9357dbf662"
+            },
+            {
+              "source_qualified_identity": "REQSRC-SUP-00057",
+              "source_line": 75,
+              "source_line_sha256": "sha256:d96b88cd63bed3b1630563b73360f7d53f86531c80c2280b4e067befabc788a6"
+            },
+            {
+              "source_qualified_identity": "REQSRC-SUP-00059",
+              "source_line": 78,
+              "source_line_sha256": "sha256:e0933d016055fa0d9622ade6b9a0a85a40612174203b412e0c226dce683bd32a"
+            },
+            {
+              "source_qualified_identity": "REQSRC-SUP-00060",
+              "source_line": 79,
+              "source_line_sha256": "sha256:55e175c92c2fa3fc5c52aa4c6ae9c4e13040ab032256ef74d89e52a16eea1fff"
+            },
+            {
+              "source_qualified_identity": "REQSRC-SUP-00061",
+              "source_line": 80,
+              "source_line_sha256": "sha256:9f0badf1a50bc0813771c2b61009f92b18ec8c852a9c63e8c051c5d2ad56f900"
+            },
+            {
+              "source_qualified_identity": "REQSRC-SUP-00062",
+              "source_line": 81,
+              "source_line_sha256": "sha256:22a9dadc2bd6cc03c9909ffba95fa94210b6f17557dc501db563297a5cd47a7d"
+            },
+            {
+              "source_qualified_identity": "REQSRC-SUP-00063",
+              "source_line": 83,
+              "source_line_sha256": "sha256:1d161c0f89d23f25e136a0aad1132db19aa3dc79ee1b7c3fb0bec7a155960bb1"
+            },
+            {
+              "source_qualified_identity": "REQSRC-SUP-00065",
+              "source_line": 85,
+              "source_line_sha256": "sha256:23e48e8c2cabe8028ddcd9e126d352acdcf7016dba57733a2d0f29cf83dcf6c3"
+            },
+            {
+              "source_qualified_identity": "REQSRC-SUP-00068",
+              "source_line": 88,
+              "source_line_sha256": "sha256:d9bc831c20f6dbd0b163b64fdce36553ec4fa09ba4d2ed70e2115ab06dfbda92"
+            },
+            {
+              "source_qualified_identity": "REQSRC-SUP-00069",
+              "source_line": 90,
+              "source_line_sha256": "sha256:cd727ede39b8bb8fa14d31554bfd4bac20c3e77d9b13c657b0774c8c25ecfd63"
+            }
+          ],
+          "exact_source_qualified_overlap_count": 0,
+          "overlap_rows": [],
+          "exact_identity_overlap_count": 0,
+          "overlap_source_qualified_identities": []
+        },
+        {
+          "pull_request": "#2416",
+          "audit_json_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-46-50-fixed-l2l11-audit-2026-09-30.json",
+          "audit_json_sha256": "sha256:a0a0d5e866348d48326a18c36ffd052edfb1f871a332a2377a775b9efff6f507",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+          "source_file_sha256": "sha256:a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+          "selected_source_rows": [
+            {
+              "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-46",
+              "source_line": 77,
+              "source_line_sha256": "sha256:0dddfeef3a4d2fed3c017edb22ba27c983476f60244bd8ca508011b3129ce0eb"
+            },
+            {
+              "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-47",
+              "source_line": 78,
+              "source_line_sha256": "sha256:e530fc3b4900240812c5e1730a5fd99732f75e22ea137e5b59639e33040788b8"
+            },
+            {
+              "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-48",
+              "source_line": 79,
+              "source_line_sha256": "sha256:de1b0859214a34a91b511688dd3d492e493fe8c21e431fe9da103e6987501a3c"
+            },
+            {
+              "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-49",
+              "source_line": 80,
+              "source_line_sha256": "sha256:c45abf0c8caeff0a2cd59035e1fc2104a719fe97411635d8857f99c87c4e00a2"
+            },
+            {
+              "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-50",
+              "source_line": 81,
+              "source_line_sha256": "sha256:ac5a141c692f5d728de0bb5ddd7b3deb1831b2b8ca9fdaf14863eef63db394db"
+            }
+          ],
+          "exact_source_qualified_overlap_count": 0,
+          "overlap_rows": [],
+          "exact_identity_overlap_count": 0,
+          "overlap_source_qualified_identities": []
+        },
+        {
+          "pull_request": "#2417",
+          "audit_json_path": "docs/governance/audits/requirements-stage/v13-forward-reverse-391-396-condition-audit-2026-09-30.json",
+          "audit_json_sha256": "sha256:8a57a8154fd5cbbe23550e36111e9fa94a29bbd427ab38f338776e2897676cc2",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "selected_source_rows": [
+            {
+              "source_qualified_identity": "REQSRC-SUP-00391",
+              "source_line": 507,
+              "source_line_sha256": "sha256:b532e1324eb3d2fc4b01b9afd2859d9afed413106e3e044dfa9caea63c94e6c1"
+            },
+            {
+              "source_qualified_identity": "REQSRC-SUP-00392",
+              "source_line": 508,
+              "source_line_sha256": "sha256:0caeb388b69a763f1dbd1e2d761f2b0e72ac1064b870273aa47798869a90ee5c"
+            },
+            {
+              "source_qualified_identity": "REQSRC-SUP-00393",
+              "source_line": 509,
+              "source_line_sha256": "sha256:489749f27a20a8db2b8c97ae596306d000a4e4230653b79c20443cc6e44021ac"
+            },
+            {
+              "source_qualified_identity": "REQSRC-SUP-00394",
+              "source_line": 510,
+              "source_line_sha256": "sha256:cae355f19f81c87d2380003590ad12929d1cb5a5fbea3ce3e7ba595dd9d2c96e"
+            },
+            {
+              "source_qualified_identity": "REQSRC-SUP-00395",
+              "source_line": 511,
+              "source_line_sha256": "sha256:dad21088fa4e450b08bbb8ee8817363407196d9dca526040308959be8bdf11c3"
+            },
+            {
+              "source_qualified_identity": "REQSRC-SUP-00396",
+              "source_line": 512,
+              "source_line_sha256": "sha256:3be486ed8a33f28b366ac98efd699862599d6a7264fc9d0da60c51714b741069"
+            }
+          ],
+          "exact_source_qualified_overlap_count": 0,
+          "overlap_rows": [],
+          "exact_identity_overlap_count": 0,
+          "overlap_source_qualified_identities": []
+        }
+      ]
+    }
   },
   "source": {
     "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
@@ -1630,7 +1785,7 @@
     "No old CLI/CI/runtime/test was executed or treated as evidence."
   ],
   "current_input_pins": {
-    "revision": "a3d9f7e205a3d766280c9de4936551f0fef16143",
+    "revision": "105b9221f4de481ba59945be6df5cdd21f4358a3",
     "artifacts": [
       {
         "path": "docs/governance/audits/requirements-stage/confirmed175-condition-comparison-queue-2026-09-30.json",
@@ -1696,7 +1851,7 @@
     "source row line SHA matches",
     "fixed f6 L2/L11 file and exact-line pins match",
     "decision source and counts are pinned",
-    "no prior identity-specific condition audit overlaps"
+    "no prior identity-specific condition audit overlaps; #2415/#2416/#2417 exact source-qualified audit tuples are disjoint"
   ],
   "legacy_reference_sources": [
     {
