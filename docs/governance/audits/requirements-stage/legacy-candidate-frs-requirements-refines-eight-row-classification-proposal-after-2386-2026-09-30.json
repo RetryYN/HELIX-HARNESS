@@ -1,0 +1,448 @@
+{
+  "schema_version": "legacy-candidate-frs-requirements-frontmatter-eight-row-classification-proposal/v1",
+  "audit_id": "legacy-candidate-frs-requirements-refines-eight-row-classification-proposal-after-2386-2026-09-30",
+  "base_commit": "0f5050e2b25cd622640c99c5de170cca087f7d8a",
+  "authority_effect": "none",
+  "audit_mode": "read_only_exact_source_classification_proposal",
+  "scope": {
+    "selected_count": 8,
+    "selected_ids": [
+      "LEGACY-CAND-LINE-002164",
+      "LEGACY-CAND-LINE-002165",
+      "LEGACY-CAND-LINE-002166",
+      "LEGACY-CAND-LINE-002167",
+      "LEGACY-CAND-LINE-002168",
+      "LEGACY-CAND-LINE-002169",
+      "LEGACY-CAND-LINE-002170",
+      "LEGACY-CAND-LINE-002171"
+    ],
+    "source_group": "Functional Release Slice requirements YAML frontmatter `refines` list only",
+    "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+    "source_lines": [
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26
+    ]
+  },
+  "classification_basis": "A source line that only identifies a related legacy requirement is trace/provenance metadata; it does not itself state product behavior or an acceptance predicate. Preserve source reference meaning in exact source bytes and carry-forward inventory; classify each enumerated ID-only line as explanation. Do not infer that the referenced legacy requirement is adopted, covered, or a successor.",
+  "source_evidence": {
+    "asset_id": "LEGACY-ASSET-B75E46DBE77592351574",
+    "source_file_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+    "source_authority_state": "historical_candidate",
+    "target_authority_state": "draft_candidate",
+    "atomization_status": "preserved_pending_atomization",
+    "source_context": "The YAML field `refines:` at line 18 contains the eight selected ID-only rows. The normative FRS requirement bodies begin separately at line 60.",
+    "line_source_inventory_sha256": "58bdcae95d51edeebff57169c1e67da11c6ed879830249c52a1e700bc09bb171"
+  },
+  "rows": [
+    {
+      "source_id": "LEGACY-CAND-LINE-002164",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+      "source_line": 19,
+      "asset_id": "LEGACY-ASSET-B75E46DBE77592351574",
+      "source_file_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+      "source_line_sha256": "aaa5868643d47b12197300669813517a2ed60165a06b7d58297fd99e0615b173",
+      "physical_line_bytes_sha256": "521bb015b67c4779d3e51a331c796be7cbae2aabd30a4f5035330c4df3c64e33",
+      "physical_line_bytes_base64": "ICAtIFJMUy1SLTAxCg==",
+      "exact_source_text": "  - RLS-R-01",
+      "current_effective_classification": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": {
+        "classification": "explanation",
+        "condition_subtype": null,
+        "route_status": "not_condition"
+      },
+      "classification_action": "reclassify_product_condition_to_explanation",
+      "reason": "YAML frontmatterのrefines listにおける参照先ID `RLS-R-01` のみを列挙する行。製品挙動、適用条件、成功／失敗oracle、独立した処置を記述しない。source-to-sourceの参照関係は原文とinventoryに保持しつつ、ID文字列そのものをproduct requirement atomとして数えない。近傍の本文要求行（例：RLS-R-01本体）は本提案の対象外であり、削除・意味変更・successor assignmentを行わない。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002165",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+      "source_line": 20,
+      "asset_id": "LEGACY-ASSET-B75E46DBE77592351574",
+      "source_file_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+      "source_line_sha256": "417055a9b206ad31fc9261aeb98c4889e802cba31f0668ae8e065b95ba1f088b",
+      "physical_line_bytes_sha256": "aba997eebc8aeee8ce5e0c8a7abbd85bf73675569cda512a45cb65b0de19d515",
+      "physical_line_bytes_base64": "ICAtIFJMUy1SLTAzCg==",
+      "exact_source_text": "  - RLS-R-03",
+      "current_effective_classification": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": {
+        "classification": "explanation",
+        "condition_subtype": null,
+        "route_status": "not_condition"
+      },
+      "classification_action": "reclassify_product_condition_to_explanation",
+      "reason": "YAML frontmatterのrefines listにおける参照先ID `RLS-R-03` のみを列挙する行。製品挙動、適用条件、成功／失敗oracle、独立した処置を記述しない。source-to-sourceの参照関係は原文とinventoryに保持しつつ、ID文字列そのものをproduct requirement atomとして数えない。近傍の本文要求行（例：RLS-R-01本体）は本提案の対象外であり、削除・意味変更・successor assignmentを行わない。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002166",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+      "source_line": 21,
+      "asset_id": "LEGACY-ASSET-B75E46DBE77592351574",
+      "source_file_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+      "source_line_sha256": "24ea466105e75a2915829dfca69abd01775573737f43ea9797c384cd9d6e1afe",
+      "physical_line_bytes_sha256": "d71d32c1b048c42477dd0bb189beea729e51584288d033f5cc3ddba0445d8998",
+      "physical_line_bytes_base64": "ICAtIFJMUy1SLTA1Cg==",
+      "exact_source_text": "  - RLS-R-05",
+      "current_effective_classification": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": {
+        "classification": "explanation",
+        "condition_subtype": null,
+        "route_status": "not_condition"
+      },
+      "classification_action": "reclassify_product_condition_to_explanation",
+      "reason": "YAML frontmatterのrefines listにおける参照先ID `RLS-R-05` のみを列挙する行。製品挙動、適用条件、成功／失敗oracle、独立した処置を記述しない。source-to-sourceの参照関係は原文とinventoryに保持しつつ、ID文字列そのものをproduct requirement atomとして数えない。近傍の本文要求行（例：RLS-R-01本体）は本提案の対象外であり、削除・意味変更・successor assignmentを行わない。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002167",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+      "source_line": 22,
+      "asset_id": "LEGACY-ASSET-B75E46DBE77592351574",
+      "source_file_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+      "source_line_sha256": "939210e175d93d91de7aadf3b90c7c2c430292a6acab313c24bb83d434f75ba2",
+      "physical_line_bytes_sha256": "8e73fe8e86013d32b844150a0c1c6ae03e691da84e8c781464f8517a912f68da",
+      "physical_line_bytes_base64": "ICAtIFJMUy1SLTA3Cg==",
+      "exact_source_text": "  - RLS-R-07",
+      "current_effective_classification": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": {
+        "classification": "explanation",
+        "condition_subtype": null,
+        "route_status": "not_condition"
+      },
+      "classification_action": "reclassify_product_condition_to_explanation",
+      "reason": "YAML frontmatterのrefines listにおける参照先ID `RLS-R-07` のみを列挙する行。製品挙動、適用条件、成功／失敗oracle、独立した処置を記述しない。source-to-sourceの参照関係は原文とinventoryに保持しつつ、ID文字列そのものをproduct requirement atomとして数えない。近傍の本文要求行（例：RLS-R-01本体）は本提案の対象外であり、削除・意味変更・successor assignmentを行わない。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002168",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+      "source_line": 23,
+      "asset_id": "LEGACY-ASSET-B75E46DBE77592351574",
+      "source_file_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+      "source_line_sha256": "25bd73c7405849e005f07f9e128bc4e07d0d6ac7b6e5ef24cb4ad8be5c0dc046",
+      "physical_line_bytes_sha256": "79ab128e48b19b75bb928fea83fe85db6e512e82a49e3783ac08dcb349f87f09",
+      "physical_line_bytes_base64": "ICAtIFJMUy1SLTA5Cg==",
+      "exact_source_text": "  - RLS-R-09",
+      "current_effective_classification": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": {
+        "classification": "explanation",
+        "condition_subtype": null,
+        "route_status": "not_condition"
+      },
+      "classification_action": "reclassify_product_condition_to_explanation",
+      "reason": "YAML frontmatterのrefines listにおける参照先ID `RLS-R-09` のみを列挙する行。製品挙動、適用条件、成功／失敗oracle、独立した処置を記述しない。source-to-sourceの参照関係は原文とinventoryに保持しつつ、ID文字列そのものをproduct requirement atomとして数えない。近傍の本文要求行（例：RLS-R-01本体）は本提案の対象外であり、削除・意味変更・successor assignmentを行わない。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002169",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+      "source_line": 24,
+      "asset_id": "LEGACY-ASSET-B75E46DBE77592351574",
+      "source_file_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+      "source_line_sha256": "1351bb3d90eebcb6fa953a6fb1ee45d64f5c27f4c5689c46b6569aaba8b18c2d",
+      "physical_line_bytes_sha256": "37b2f07282500ec38421a5c3be0bfde8efee4b2fc1ce165145a1ae7c4b78a105",
+      "physical_line_bytes_base64": "ICAtIFJMUy1SLTEwCg==",
+      "exact_source_text": "  - RLS-R-10",
+      "current_effective_classification": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": {
+        "classification": "explanation",
+        "condition_subtype": null,
+        "route_status": "not_condition"
+      },
+      "classification_action": "reclassify_product_condition_to_explanation",
+      "reason": "YAML frontmatterのrefines listにおける参照先ID `RLS-R-10` のみを列挙する行。製品挙動、適用条件、成功／失敗oracle、独立した処置を記述しない。source-to-sourceの参照関係は原文とinventoryに保持しつつ、ID文字列そのものをproduct requirement atomとして数えない。近傍の本文要求行（例：RLS-R-01本体）は本提案の対象外であり、削除・意味変更・successor assignmentを行わない。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002170",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+      "source_line": 25,
+      "asset_id": "LEGACY-ASSET-B75E46DBE77592351574",
+      "source_file_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+      "source_line_sha256": "f32bcad4b9896dc9da917c4bc53c24f159a4e1ada9bc5c620187a4d4f8ee0765",
+      "physical_line_bytes_sha256": "d041fbbf5d170e853f6a9abc253609a2abd5139d55ac5030056a0ddc56b74c69",
+      "physical_line_bytes_base64": "ICAtIFJMUy1SLTExCg==",
+      "exact_source_text": "  - RLS-R-11",
+      "current_effective_classification": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": {
+        "classification": "explanation",
+        "condition_subtype": null,
+        "route_status": "not_condition"
+      },
+      "classification_action": "reclassify_product_condition_to_explanation",
+      "reason": "YAML frontmatterのrefines listにおける参照先ID `RLS-R-11` のみを列挙する行。製品挙動、適用条件、成功／失敗oracle、独立した処置を記述しない。source-to-sourceの参照関係は原文とinventoryに保持しつつ、ID文字列そのものをproduct requirement atomとして数えない。近傍の本文要求行（例：RLS-R-01本体）は本提案の対象外であり、削除・意味変更・successor assignmentを行わない。",
+      "authority_effect": "none"
+    },
+    {
+      "source_id": "LEGACY-CAND-LINE-002171",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+      "source_line": 26,
+      "asset_id": "LEGACY-ASSET-B75E46DBE77592351574",
+      "source_file_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+      "source_line_sha256": "50a243f249794ce3d4f8c7a800469edc186ac7fb4bfe1bd55f0b51e4b24e148d",
+      "physical_line_bytes_sha256": "3baad8a250b7438179215e7948ff90a24c063e5bbee45d1ebe1702fd7982b129",
+      "physical_line_bytes_base64": "ICAtIFJMUy1SLTEyCg==",
+      "exact_source_text": "  - RLS-R-12",
+      "current_effective_classification": {
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status": "unknown"
+      },
+      "proposed_classification": {
+        "classification": "explanation",
+        "condition_subtype": null,
+        "route_status": "not_condition"
+      },
+      "classification_action": "reclassify_product_condition_to_explanation",
+      "reason": "YAML frontmatterのrefines listにおける参照先ID `RLS-R-12` のみを列挙する行。製品挙動、適用条件、成功／失敗oracle、独立した処置を記述しない。source-to-sourceの参照関係は原文とinventoryに保持しつつ、ID文字列そのものをproduct requirement atomとして数えない。近傍の本文要求行（例：RLS-R-01本体）は本提案の対象外であり、削除・意味変更・successor assignmentを行わない。",
+      "authority_effect": "none"
+    }
+  ],
+  "overlay_intersection_checks": [
+    {
+      "ref": "#2356",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164",
+      "intersection_ids": [],
+      "intersection_count": 0
+    },
+    {
+      "ref": "#2360",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+      "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb",
+      "intersection_ids": [],
+      "intersection_count": 0
+    },
+    {
+      "ref": "#2363",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+      "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384",
+      "intersection_ids": [],
+      "intersection_count": 0
+    },
+    {
+      "ref": "#2366",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+      "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6",
+      "intersection_ids": [],
+      "intersection_count": 0
+    },
+    {
+      "ref": "#2367",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
+      "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d",
+      "intersection_ids": [],
+      "intersection_count": 0
+    },
+    {
+      "ref": "#2368",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
+      "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95",
+      "intersection_ids": [],
+      "intersection_count": 0
+    },
+    {
+      "ref": "#2369",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30.json",
+      "sha256": "5ed02b037f78ca25991b396e232e8b1ee754b0c91b056ed6640c9fb1c47cf0c0",
+      "intersection_ids": [],
+      "intersection_count": 0
+    },
+    {
+      "ref": "#2381",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-metadata10-classification-proposal-2026-09-30.json",
+      "sha256": "512f9ceafe935648d459d6b268ff4d3952f0e8264298213ad278256236b5f40e",
+      "intersection_ids": [],
+      "intersection_count": 0
+    },
+    {
+      "ref": "#2385",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-dsi-frs-metadata-seven-classification-proposal-2026-09-30.json",
+      "sha256": "d5a462229f7644744fd05302bac416bc1ae488f46d8e117d6d98068331e51cb5",
+      "intersection_ids": [],
+      "intersection_count": 0
+    }
+  ],
+  "route_union_intersection_checks": {
+    "through_2380_product_ids": 317,
+    "through_2382_selected_ids": 9,
+    "through_2383_selected_ids": 8,
+    "through_2386_selected_ids": 7,
+    "product_targeted_union_count": 341,
+    "hmc_out_of_pool_union_count": 30,
+    "all_route_union_count": 371,
+    "selected_ids_intersecting_route_union": 0,
+    "route_batch_checks": [
+      {
+        "ref": "#2382",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate-mechanism-adequacy-nine-row-route-audit-after-2382-2026-09-30.json",
+        "selected_count": 9,
+        "intersection_ids": [],
+        "intersection_count": 0
+      },
+      {
+        "ref": "#2383",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate-ma-requirements-acceptance-eight-row-route-audit-after-2383-2026-09-30.json",
+        "selected_count": 8,
+        "intersection_ids": [],
+        "intersection_count": 0
+      },
+      {
+        "ref": "#2386",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-seven-row-route-audit-after-2384-2026-09-30.json",
+        "selected_count": 7,
+        "intersection_ids": [],
+        "intersection_count": 0
+      }
+    ]
+  },
+  "current_effective_pool_and_union": {
+    "effective_product_unknown_pool_after_2385": 471,
+    "product_targeted_route_union_after_2386": 341,
+    "out_of_pool_hmc_union": 30,
+    "all_route_union_after_2386": 371,
+    "pool_intersection_after_2386": 312,
+    "unreviewed_pool_after_2386": 159
+  },
+  "proposal_if_applied": {
+    "effective_product_unknown_pool": 463,
+    "condition_count": 850,
+    "explanation_count": 2979,
+    "structure_count": 926,
+    "product_requirement_atom_count": 812,
+    "management_process_condition_count": 37,
+    "management_successor_unresolved_count": 37,
+    "product_targeted_route_union_after_2386": 341,
+    "out_of_pool_hmc_union": 30,
+    "all_route_union_after_2386": 371,
+    "pool_intersection_after_2386": 312,
+    "unreviewed_pool_after_2386": 151
+  },
+  "count_impact": {
+    "product_requirement_atom_unknown_pool": -8,
+    "condition": -8,
+    "explanation": 8,
+    "structure": 0,
+    "route_union": 0,
+    "pool_intersection_with_route_union": 0,
+    "unreviewed_pool": -8,
+    "equations": [
+      "471 - 8 = 463",
+      "858 - 8 = 850",
+      "2971 + 8 = 2979",
+      "820 - 8 = 812",
+      "463 - 312 = 151"
+    ]
+  },
+  "classification_precedent": {
+    "ref": "#2356/#2381",
+    "rule": "Document/source reference identity without an independent normative predicate is explanation metadata; substantive requirement predicates stay separate.",
+    "pinned_inputs": [
+      {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+        "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164",
+        "ref": "#2356"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-metadata10-classification-proposal-2026-09-30.json",
+        "sha256": "512f9ceafe935648d459d6b268ff4d3952f0e8264298213ad278256236b5f40e",
+        "ref": "#2381"
+      }
+    ]
+  },
+  "pinned_inputs": [
+    {
+      "role": "exact_old_source",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+      "sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17"
+    },
+    {
+      "role": "candidate_source_inventory",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-inventory.md",
+      "sha256": "58bdcae95d51edeebff57169c1e67da11c6ed879830249c52a1e700bc09bb171"
+    },
+    {
+      "role": "source_line_carry_forward",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+    },
+    {
+      "role": "legacy_asset_disposition_ledger",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "role": "baseline_row_records_2353",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+      "revision": "97672630b7de70fd4433827730c390cbabd90a99"
+    },
+    {
+      "role": "effective_classification_recount_after_2381",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-effective-classification-recount-after-2381-2026-09-30.json",
+      "sha256": "92c713d6c74ecc138f43d2169b4387f511e31a0b26ba9ca538994c8df80a9932"
+    },
+    {
+      "role": "classification_proposal_after_2385",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-dsi-frs-metadata-seven-classification-proposal-2026-09-30.json",
+      "sha256": "d5a462229f7644744fd05302bac416bc1ae488f46d8e117d6d98068331e51cb5"
+    },
+    {
+      "role": "route_audit_after_2386",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-seven-row-route-audit-after-2384-2026-09-30.json",
+      "sha256": "2e58703e7246a83f6d90649f33d2382b740d2de0d385c6ba66c8952fd796dbc5"
+    },
+    {
+      "role": "metadata_classification_precedent_2356",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164"
+    },
+    {
+      "role": "metadata_classification_precedent_2381",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-metadata10-classification-proposal-2026-09-30.json",
+      "sha256": "512f9ceafe935648d459d6b268ff4d3952f0e8264298213ad278256236b5f40e"
+    }
+  ],
+  "limits": [
+    "The proposal reclassifies only the eight ID-only `refines` list items. It preserves all old source bytes, IDs, reference strings, and inventory rows.",
+    "The proposal does not change any RLS-R body, assert that the references are valid or complete, adopt a referenced requirement, establish successor or source coverage, or alter current authority.",
+    "The proposal is not effective until separately reviewed/merged; counts under `proposal_if_applied` are conditional only.",
+    "The old candidate remains historical_candidate/draft_candidate with preserved pending atomization. Its metadata and historical approvals do not establish current adoption.",
+    "No archive workflow, CLI, hook, adapter, test, CI, or runtime was executed. Static bytes, row identity, overlay membership, pool, and route union were checked."
+  ]
+}
