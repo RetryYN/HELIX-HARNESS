@@ -7,7 +7,7 @@
 ## 選定と重複確認
 
 - QueueではDAC-BR-001..005すべて `not_individually_compared`、evidenceは空（queue hashはa3d9f7e...時点から不変）。
-- 同一source上の連番5件を選択。初回は基準main 105b9221...と154 worktree上のaudit JSON/MDをsource-qualified identityと選択identityで走査。#2420を含む最新main `cf636d6f5d4fd16d9eea3386f670dec0d39a3b8d` のrequirements-stage全JSON/MDを再走査し、#2418追加screen監査をsource-qualified tuple、#2420追加文書をsource-qualified identity単位で確認した。DAC-BR-001..005の完全なsource-qualified tuple一致はqueue/full-audit/REG06のpopulation記録だけで、個票条件比較の重複はない。#2418 screen監査との完全一致およびidentity一致は0件。#2420のPO判断記録とhandoffは個票監査でなく、選択したDAC-BR identityを含まないため重複0件。
+- 同一source上の連番5件を選択。初回は基準main 105b9221...と154 worktree上のaudit JSON/MDをsource-qualified identityと選択identityで走査。#2420を含む最新main `cf636d6f5d4fd16d9eea3386f670dec0d39a3b8d` のrequirements-stage全JSON/MDを再走査し、#2418追加screen監査をsource-qualified tuple、#2420追加文書をsource-qualified identity単位で確認した。DAC-BR-001..005の完全なsource-qualified tuple一致はqueue/full-audit/REG06のpopulation記録だけで、個票条件比較の重複はない。#2418 screen監査との完全一致およびidentity一致は0件。#2420のPO判断記録とhandoff自体は個票監査でなく、選択したDAC-BR identityとの直接一致も0件。ただし#2420採択候補の近接条件は本監査の後発判断比較へ追加した。
 - sibling crosswalk `confirmed175-dac-fr004-008-condition-crosswalk` はDAC-FR-004..008だけを選び、DAC-BR-004を候補atomに含めない。追加資料でのBR-002/003参照はDAC-FR-006 consumer文脈、BR-004参照はDAC-FR-008 handoff・follow-up・PO packetのsource atom外context-only記載である。
 - 旧queue/full-audit/REG06はpopulation inventoryであり個票監査ではない。#2420はlive候補26件に対するPO判断記録であり、DAC個票監査ではない。最新main `cf636d6f5d4fd16d9eea3386f670dec0d39a3b8d`で確認したsource-qualified個票重複は0件。
 
@@ -63,8 +63,8 @@ Source-qualified identity: `helix/L1-requirements/document-authority-census-requ
 - 保持: 旧利用目的consumerは、canonical/candidate/reference/compatibility/historicalを同一HEAD・class/lifecycle/input policy・ownerのprojectionで識別する意味を保持し、path名や自己申告だけの分類、UNKNOWNの推測を反例とする。固定f6のHARNESS-L2-001は層とV-pairを混同せず、OS-L2-015はasset owner/identity/source/revision/digestを扱う。
 - 意味差/非継承: 旧要求はdocument-class/lifecycle/input-policyを一体のDocumentArtifactV1へ結ぶが、固定L2/L11のHARNESS-L2-001/004とOS-L2-015は層/pairおよびasset identity/authority/evidenceの境界を定め、旧class/lifecycle/input-policy enum一式を採択していない。
 - 数値・例外・反例: 旧L3はclass集合を23種、lifecycle dispositionを10値、input_policyを6値として分離する。旧BR-001の利用者向け識別集合はcanonical/candidate/reference/compatibility/historicalの5区分。
-- 未対応残差: 5区分をユーザーが同一HEADで識別する具体的positive oracle、全class/lifecycle/input-policy enum、どのdocがcurrent decision inputかのconsumer面はf6 targetにない。Historical文書が自己申告でcanonicalになる反例を拒否する旧ACも同一契約としては残る。
-- 後発57+11判断: 当該source-qualified identityの直接判断なし。全identity/status一覧は下記のとおり照合。
+- 未対応残差: live26のHELIXOS-L2-106/110は、owner提示の明示bindingまたは一つのsource/consumer relationに対する再帰・epoch pin照合だけを追加する。5区分の同一HEAD利用者向け識別oracle、旧L3の23 class／10 lifecycle／6 input-policy値、current decision inputの全consumer projection、およびHistorical自己申告の旧AC拒否を一体で満たすものではない。全enum・完全な利用者向けprojectionは未対応。
+- 後発判断: 57+11表に直接identity一致なし。live26のHELIXOS-L2-106/110は上記の入力限定近接比較として追記した（詳細・pinは後発決定節）。
 - 状態: `open_partial_correspondence`、successorなし、authority effect `none`。
 
 ### DAC-BR-002
@@ -110,8 +110,8 @@ Source-qualified identity: `helix/L1-requirements/document-authority-census-requ
 - 保持: active consumerがstale authorityを読まないようにする意図と、HARNESS-L2-004/005にある要求変更の影響trace・必要検証義務を保持する。
 - 意味差/非継承: 旧consumer類型をreverse graphへ列挙し、startup reachabilityや生成伝播からmerge前のfail条件を求める。現行HARNESS-L2-004/005はtraceと検証規則、対象revision/evidenceを定めるが、旧consumer censusのrunnerやmerge-blocking scannerはこの比較対象の固定文面にない。
 - 数値・例外・反例: 旧sourceはstartup、agent instruction、generator、CLI、CI、setup templateの6 consumer例を列挙する。L3はさらにhook、README linkを加えて8種のedgeを例示。L10の二つの反例はstale authorityを読むstartup ruleとstale process docを生成するsetup template。
-- 未対応残差: 全active consumerのreverse enumeration、startup reachability/active edge detection、`STARTUP_AUTHORITY_LEAK`等のfinding emission、merge前に止める具体gate/receipt/negative oracleはfixed L2/L11からは同一化できない。
-- 後発57+11判断: 当該source-qualified identityの直接判断なし。全identity/status一覧は下記のとおり照合。
+- 未対応残差: live26のHELIXOS-L2-106/108/110はそれぞれ、owner提示bindingの再帰、明示scopeのforward/reverse graphとstartup/generation relation、明示された一つのsource/consumer epoch pinを照合する。HELIXOS-L2-111は三receiptのstatus/provenanceを保つ抽象AND条件である。いずれも全active consumerの列挙・探索、scope閉包、実startup/generator実行、finding emissionまたはmerge前gateを確立しない。具体gate/receipt/negative oracleと全consumer reverse enumerationは未対応。
+- 後発判断: 57+11表に直接identity一致なし。live26のHELIXOS-L2-106/108/110/111を、入力限定の近接比較として追加した（詳細・pinは後発決定節）。
 - 状態: `open_partial_correspondence`、successorなし、authority effect `none`。
 
 ### DAC-BR-003
@@ -153,8 +153,8 @@ Source-qualified identity: `helix/L1-requirements/document-authority-census-requ
 - 保持: 要求から設計/検証への影響範囲を導くHARNESS-L2-004と、複数layerの検証条件を導くHARNESS-L2-005は、変更を関連証拠と影響へ結ぶ点で隣接する。HARNESS-L2-010/011も設計/生成物と検証の関係を扱う。
 - 意味差/非継承: 旧censusはgenerated artifact、digest、index、consumer、V-pairを同一 provenance chainとし、source/generator/generated/receipt/consumer pinを双方向・同一HEADで追従させる。現行固定pairは要求影響と検証証拠を保持するが、旧censusのgenerator provenance receiptや全出力型をそのまま採択していない。
 - 数値・例外・反例: BR-003は追従対象を5種類（生成物/digest/索引/consumer/V-pair）に列挙する。L10反例はsourceだけ更新、generated側だけ手修正の2方向。再現性はclean checkoutで2回生成したexact set/digest一致を要求。
-- 未対応残差: generation source, generator id/version, receipt, output digest, consumer pinsをつなぐend-to-end chainと、片方向更新の拒否、epoch更新後のstale digest pin検出は未対応。L2-004のimpact traceをこのprovenance chainの実装証拠とは扱わない。
-- 後発57+11判断: 当該source-qualified identityの直接判断なし。全identity/status一覧は下記のとおり照合。
+- 未対応残差: live26のHELIXOS-L2-108/109は、明示入力されたforward/reverse relationおよび一つのsource→generator→artifact→consumer chainについて、identity/revision/digest/edgeを静的に照合する条件を追加する。未対応なのは、入力scope外を含む全artifact/consumer閉包、generatorの実行・正当性と生成結果、実consumerとの接続、変更前後の実receiptによるend-to-end実証である。HARNESS-L2-004のimpact traceはこの実証の代わりにならない。
+- 後発判断: 57+11表に直接identity一致なし。live26のHELIXOS-L2-108/109を、静的・scope限定の近接比較として追加した（詳細・pinは後発決定節）。
 - 状態: `open_partial_correspondence`、successorなし、authority effect `none`。
 
 ### DAC-BR-004
@@ -200,8 +200,8 @@ Source-qualified identity: `helix/L1-requirements/document-authority-census-requ
 - 保持: scannerがfindingを出しても文書意味のauthorityは人/既存手続きにあり、自動改変・削除・承認をしない点を保持する。現行HARNESS-L2-003/004とOS-L2-015は要求/evidence/change ownershipを分ける接点となる。
 - 意味差/非継承: 旧scannerはfindingをRecovery/Redesign/Refactoring/Requirement Re-entryへ戻す型付きrouteを求める。固定f6の選択targetはPoC、影響trace、asset identityなど別のscopeであり、旧4路線を現行lane/ownerへ一対一対応させていない。
 - 数値・例外・反例: 旧sourceは4 remediation routeを列挙する。L10では2 negative oracle: 自動削除/本文書換えpayload拒否と、意味変更findingをRefactoringへ送った場合のRedesign/Re-entryへの振替。
-- 未対応残差: finding type→現行owner/lane/admission receiptの対応、route選択理由と未解決時の保留、本文を書き換えないscannerの受入oracleは固定pairからは個別に示されない。既存の#206是正をscanner完成まで止める条件も旧sourceにはない。
-- 後発57+11判断: 当該source-qualified identityの直接判断なし。全identity/status一覧は下記のとおり照合。
+- 未対応残差: live26のHELIXOS-L2-107は、既存authorityが明示するcurrent taxonomy/mapping revisionとdestinationをrevision-pinned handoffへ保持し、欠落・曖昧・staleをunresolvedとして返す範囲に限る。taxonomy自体やtype→owner/lane表の作成・採択、pending typed-classification atom、route選択理由、admission receiptとの接続、本文を書き換えないscannerの受入oracleは未解決。既存の#206是正をscanner完成まで止める条件も旧sourceにはない。
+- 後発判断: 57+11表に直接identity一致なし。live26のHELIXOS-L2-107を、既存mapping入力に限る近接比較として追加した（詳細・pinは後発決定節）。
 - 状態: `open_partial_correspondence`、successorなし、authority effect `none`。
 
 ### DAC-BR-005
@@ -255,15 +255,29 @@ Source-qualified identity: `helix/L1-requirements/document-authority-census-requ
 - 保持: HARNESS-L2-004/005のunknown/未解決検証義務保持、OS-L2-015のauthority/evidence状態、OS-L2-022の改善候補観測、LABO-L2-050の評価feedbackは、負債状態/改善観測と再評価に近接する。
 - 意味差/非継承: 旧sourceは既存baseline debtを見せながらnew debtを即時fail-closeし、UNKNOWNを時系列で減らすratchetを要求する。f6の固定pairはこのexact baseline/new-debt gateの一式を持たず、LABO feedback/OS improvement candidateからそのratchetを推定しない。
 - 数値・例外・反例: L3 baselineにはexact HEAD、findingのexact set/reason/owner/expiryが必要、baseline greenで新規findingを相殺しない。L10は別finding追加、owner/expiry/exact item欠落、clean checkout 2回再現、temporary/migration inputの期限切れを例示。BR自体に減少期限・割合はないため数値rateを付けない。
-- 未対応残差: baseline enrollment/update authority、debt denominator/exact finding normalization、new-vs-existing classification、UNKNOWN減少判定と対象期間、追加負債を拒否するcurrent gate、missing owner/expiry時の停止が未解決。
-- 後発57+11判断の限定効果: 後発57採択HELIXOS-L2-037は、ticket/scope別のweekly debt/drift observationとowner/source-classified handoffを追加する近接のみ。57決定が参照するpairのsection digestはL2 29563f1fdde0d9ace0b0850a5fc57bc6f6b595f460a5caa293c7eefb60905d64、L11 c64f7fbc39d28c028fd4e95c47dc7ff788f3a857f290a0217821e52b3216ddf7。old BR-005のexact baseline / finding set / owner / expiry / new-debt fail-close / UNKNOWN zero convergenceは閉じず、successorを割り当てない。
+- 未対応残差: live26採択HARNESS-L2-062は、適用可能な既存authorityが与えるbaseline/current debtを明示scope・共通分類基準で比較し、比較に現れたnew debtをpassにしない条件を追加する。baseline authority/identity/revision・scope・鮮度・更新規則、共通分類基準とdenominatorの決定、全体のUNKNOWN時系列減少、missing owner/expiryの運転停止やrepository全体の現行gateは未解決であり、この候補はcensus・debt受容・baseline更新権限を定めない。
+- 後発57+11判断の限定効果: 後発57採択HELIXOS-L2-037はticket/scope別weekly debt/drift observationとowner/source-classified handoffのみ。後発live26採択HARNESS-L2-062は明示入力scopeでのbaseline/new debt比較とnew debt時のfail-close意味のみ。いずれも旧BR-005全体のexact baseline enrollment/update authority、finding denominator/normalization、UNKNOWN zero convergenceを閉じず、successorを割り当てない。057のsection pinはL2 `29563f1fdde0d9ace0b0850a5fc57bc6f6b595f460a5caa293c7eefb60905d64`、L11 `c64f7fbc39d28c028fd4e95c47dc7ff788f3a857f290a0217821e52b3216ddf7`。
 - 状態: `open_partial_correspondence`、successorなし、authority effect `none`。
 
-## 後発57+11決定
+## 後発57+11およびlive26決定
 
 57候補は42採択・11条件付き採択・4保留、11候補は8採択・2依存付き採択・1現revision不採択。両表を全件確認し、DAC-BR-001..005と完全一致する決定identityは0。
 
 `HELIXOS-L2-037` (adopted; `MPR-RC-HELIXOS-L2-037-001`) はBR-005へ近接する限定scopeとしてのみ記録。L2 section `29563f1fdde0d9ace0b0850a5fc57bc6f6b595f460a5caa293c7eefb60905d64`, L11 section `c64f7fbc39d28c028fd4e95c47dc7ff788f3a857f290a0217821e52b3216ddf7`。weekly scope別debt/drift観測とowner/source分類handoffに限り、旧baseline exact set・new-debt ratchet・UNKNOWN収束を閉じない。
+
+基準mainに入った`HDEC-REQUIREMENTS-LIVE26-2026-09-30`（`docs/governance/decisions/po-decision-2026-09-30-live26.md`、file SHA-256 `8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145`）の採択候補7件を、表のdecision row SHA、MPR registration行、candidate digest、およびL2/L11 section digestへ固定して比較した。MPR register `docs/governance/management-provisional-requirement-register.jsonl` のfile SHA-256は `ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a`。live26判断記録・handoffにDAC-BR identityの直接一致はない。ここに示すのは各candidateの条件近接であり、旧DAC要求の採択やsuccessor割当ではない。L2/L11 file SHAはHARNESSがそれぞれ `78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6` / `a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e`、HELIX-OSが `bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf` / `cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112`。
+
+| 採択候補 | 旧起点 / 近接BR | 判断行 / SHA-256 | MPR登録行 / SHA-256 | candidate digest＝L2 section SHA-256 | L11 section SHA-256 |
+|---|---|---|---|---|---|
+| `HARNESS-L2-062` | DAC-FR-007 / BR-005 | 47 / `81f6ede50a77dae5f3b39f67e12161a43b4015ff1d0adc6d5871bdda0aeed4cc` | `MPR-RC-HARNESS-L2-062-001`, 631 / `208b3c5c4a102a8791c93e17d6a7dba92849eea75d787a84439b9c9bd48bcb79` | `e795e90ec1de20b94d81bf31fb083e8c4001363f88f1528d9833a67a01865f44` | `d9563d543205df982a5cef0c003417ca65b7ef73ab3b5950335cf3c52882c19b` |
+| `HELIXOS-L2-106` | DAC-FR-003 / BR-001, BR-002 | 59 / `3c3835caae5e8df772d1aafe14cd8d90b9389b3464afbf0bc9fa0bc2246f55bd` | `MPR-RC-HELIXOS-L2-106-001`, 630 / `14ee4a6f80a79e9133bffb48c7d6f4769a0671d814c50ad91dbf585060b274d6` | `b1f3d62a007f954a788602fbff45fa70d3b8bb4b2fec547113a0db30d9598fcc` | `bc577dcbe57f06daefe80618ee2787012794e2489d46b32c7b0fcb85d32bc835` |
+| `HELIXOS-L2-107` | DAC-FR-008 / BR-004 | 60 / `2eb2349e30777ab6d91769c3a8934f662b961cd13dcbfaf73c7f5cfaf8889555` | `MPR-RC-HELIXOS-L2-107-001`, 632 / `1d8093d925450f225078cae745e0329b9108b5991648df90e61e5abdf725f8b4` | `a84e0711dc74d36aa31d283b254ebbc29b34e45b51e17805c24253b8cac17caf` | `0e626d8d212fbfe2b9d52f07df24be84ab916b2f2b5a218a27c38da0b994f8db` |
+| `HELIXOS-L2-108` | DAC-FR-004 / BR-002, BR-003 | 61 / `09cbd2d7fc6002eba895087e06942f94e55d2bb78807c3e87c31cc8e1aa9a532` | `MPR-RC-HELIXOS-L2-108-001`, 633 / `b17c0a410e4946a49be41b3a948a815f889f8f85036fc34b1127bbb2a503ae2d` | `c02375c00cf35908f37dd50c82d017a42c987282535852e34b28797671670a0d` | `bdfa0e185074583db9e0150e41de12069ed10d1a91f006bab0793578ca81a36e` |
+| `HELIXOS-L2-109` | DAC-FR-005 / BR-003 | 62 / `ce01ad8ff29f04e7ec8823a23003e77618ca5e1838d7a45ecef7f87ae4bb4534` | `MPR-RC-HELIXOS-L2-109-001`, 634 / `b6dd19ced51c164f1fa8af1037120431598c273d3a921c540ba9fdc9e82d6373` | `29d7ec73b53e94e73e02f0303402ab40bf216dca36f9432280cc52b26fa96d80` | `0af4980b177227774ee6fa90e1c2eb25d3f086da850e1184e848c70497ca25d3` |
+| `HELIXOS-L2-110` | DAC-FR-010 / BR-001, BR-002 | 63 / `b3f91056524676a55b33eb61ff50b95f53266e771addbbfc6601414fea3c642b` | `MPR-RC-HELIXOS-L2-110-001`, 635 / `d2ed557a9d2d45319bcef70415e8d9796603fd6300a0905808f27a475d5df5c6` | `fe250f3cb0be2fdd417904f59041c4c39535f2060394f569b2c9bea8d86e43be` | `56926a9d2aad1e679c0fe7d2d0c7858fd96ba627351130c6dd795dae18452d34` |
+| `HELIXOS-L2-111` | DAC-FR-009 / BR-002 | 64 / `062bdedb7d8e9657eeb46da45543bd99793839c563efd94c9eaa7fff06df4358` | `MPR-RC-HELIXOS-L2-111-001`, 636 / `8fd6f2757862c5307faa28933eebab735697a1609af81c3791f4f8a322ace39a` | `265d5e7d1a8c06919b21691ddbf15354e51dbc204f310f07a448a7b33dc8173b` | `8efe5d58a4ebe0c4a7078aa7b311f3f2e1a7892b125b603d6a3e45ff4fc5ef14` |
+
+106〜110は明示入力scope内の静的条件に限り、全repository/consumer探索や自動修復を導かない。111は三receiptのabstract ANDだけを採択し、証拠ID・発行責任者・対象版の対応や実運用判定を確定しない。これらの近接比較からDAC-BRの採択、successor、source closure、L3承認、実装・実行・受入完了を生成しない。
 
 ## 固定f6文書のファイルSHA-256
 
