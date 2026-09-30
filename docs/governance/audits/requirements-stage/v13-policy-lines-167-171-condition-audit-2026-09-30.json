@@ -3,8 +3,17 @@
   "audit_scope": {
     "archive_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
     "archive_source_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-    "physical_lines": [167, 171],
-    "source_item_ids": ["REQSRC-SUP-00127", "REQSRC-SUP-00128", "REQSRC-SUP-00129", "REQSRC-SUP-00130", "REQSRC-SUP-00131"],
+    "physical_lines": [
+      167,
+      171
+    ],
+    "source_item_ids": [
+      "REQSRC-SUP-00127",
+      "REQSRC-SUP-00128",
+      "REQSRC-SUP-00129",
+      "REQSRC-SUP-00130",
+      "REQSRC-SUP-00131"
+    ],
     "source_inventory": "docs/governance/audits/requirements-stage/legacy-v13-semantic-condition-audit-2026-09-28.json",
     "scope_limit": "Five physical source lines only; no whole-source closure claim."
   },
@@ -18,7 +27,7 @@
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
       "sha256": "sha256:09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
     },
-    "current_head": "0f5050e2b25cd622640c99c5de170cca087f7d8a",
+    "current_head": "c6418a5602a056d3503e578a0a8c92df15a6daeb",
     "current_harness_l2": {
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
       "sha256": "sha256:78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6"
@@ -27,18 +36,60 @@
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
       "sha256": "sha256:a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e"
     },
-    "authority_boundary": "The 2026-09-28 PO decision fixes the L2/L11 revision and explicit candidate population. Later unadopted candidates are not counted as adopted coverage."
+    "authority_boundary": "The 2026-09-28 decision fixes the original HARNESS L2/L11 baseline. The 2026-09-29 PO decision also adopts exact revisions for HARNESS-L2-034 and HARNESS-L2-039; these are compared below as later adopted pairs. Adoption of those requirement identities does not itself assign legacy-line successors or prove exact source-condition coverage.",
+    "later_adopted_comparison_pairs": [
+      {
+        "identity": "HARNESS-L2-039",
+        "po_disposition": "adopted_exact_pair_revision",
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_record_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "l2": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+          "section_digest": "e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0"
+        },
+        "l11": {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+          "section_digest": "63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746"
+        },
+        "relevance": "Relevant to line 167/168 Experience/UI/Frontend scope and trace. Its adopted contract still does not state the old design-bottomup compatibility alias, backend-derived trigger/direction mapping, or same-named workflow exclusion."
+      },
+      {
+        "identity": "HARNESS-L2-034",
+        "po_disposition": "adopted_exact_pair_revision",
+        "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_record_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+        "l2": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+          "section_digest": "dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156"
+        },
+        "l11": {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+          "section_digest": "391f640508944ba2f32b5751a2a9a17fbc9f89ef76f46953c1af68ba907a9fdf"
+        },
+        "relevance": "Relevant to lines 170/171 NFR measurement contract and connection to stage completion. It does not state the old NFR_MEASUREMENT capability identity or verification-alias compatibility mapping."
+      }
+    ]
   },
   "method": {
-    "coverage_statuses": ["covered", "partial", "missing"],
-    "rule": "Compare each source condition with fixed L2/L11 meaning. Generic thematic similarity is not full coverage; current unadopted candidates do not change adopted coverage status.",
+    "coverage_statuses": [
+      "covered",
+      "partial",
+      "missing"
+    ],
+    "rule": "Compare each source condition with exact PO-fixed L2/L11 revisions. Adopted later identities may provide relevant semantic comparison, but thematic similarity is not exact condition coverage or a formal successor; unadopted candidates do not change authority.",
     "authority_effect": "none",
     "execution": "Archive code, runtime, tests, and CI were not executed."
   },
   "status_counts": {
     "covered": 0,
-    "partial": 4,
-    "missing": 1
+    "partial": 5,
+    "missing": 0
   },
   "lines": [
     {
@@ -48,12 +99,28 @@
       "source_text": "- 旧`design-bottomup`は`SCREEN_DESIGN` specialist workflowへbackend-derived trigger／方向条件を与える",
       "condition_cluster_id": "V13-COND-L0167",
       "status": "partial",
-      "fixed_refs": ["HARNESS-L2-003:54,106-107", "HARNESS-L11:23,41-42"],
-      "current_refs": ["docs/helix-harness/L2-requirements/product-requirements.md:54,106-107", "docs/helix-harness/L11-acceptance/product-acceptance.md:23,41-42"],
-      "comparison": "Screen applicability and L2.5 Prototype/PoC conditions are retained, but the backend-derived trigger/direction input and its routing to a SCREEN_DESIGN specialist workflow are absent.",
+      "fixed_refs": [
+        "HARNESS-L2-003:54,106-107",
+        "HARNESS-L11:23,41-42"
+      ],
+      "current_refs": [
+        "docs/helix-harness/L2-requirements/product-requirements.md:54,106-107",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:23,41-42"
+      ],
+      "comparison": "The adopted HARNESS-L2-039 pair provides a scope/revision-bound Experience/UI/Frontend contract and trace, so it is semantically relevant to screen design. It does not define old design-bottomup as a compatibility input, carry the backend-derived trigger/direction to a SCREEN_DESIGN specialist workflow, or prohibit that same-named model; this remains partial.",
       "unresolved_residual": true,
       "successor_assignment": "unassigned",
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "later_adopted_pair_refs": [
+        {
+          "identity": "HARNESS-L2-039",
+          "decision_disposition": "adopted_exact_pair_revision",
+          "l2_section_digest": "e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0",
+          "l11_section_digest": "63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746",
+          "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_record_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+        }
+      ]
     },
     {
       "source_item_id": "REQSRC-SUP-00128",
@@ -62,12 +129,28 @@
       "source_text": "  compatibility inputである。同名workflow modelを新設しない。",
       "condition_cluster_id": "V13-COND-L0167",
       "status": "partial",
-      "fixed_refs": ["HARNESS-L2-002/003:98-105", "HARNESS-L11:35-40"],
-      "current_refs": ["docs/helix-harness/L2-requirements/product-requirements.md:98-105", "docs/helix-harness/L11-acceptance/product-acceptance.md:35-40"],
-      "comparison": "Current responsibility boundaries route work through development styles and ticket conditions, but do not define design-bottomup as a typed compatibility input or preserve its alias-specific prohibition on a same-named workflow model.",
+      "fixed_refs": [
+        "HARNESS-L2-002/003:98-105",
+        "HARNESS-L11:35-40"
+      ],
+      "current_refs": [
+        "docs/helix-harness/L2-requirements/product-requirements.md:98-105",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:35-40"
+      ],
+      "comparison": "The adopted HARNESS-L2-039 pair assigns scope-bound UI/Frontend contract relations to HARNESS-CORE and excludes OS workflow instance/runtime ownership. It still does not define design-bottomup as a typed compatibility input or preserve the alias-specific prohibition on a same-named workflow model; thematic responsibility overlap is not exact compatibility coverage.",
       "unresolved_residual": true,
       "successor_assignment": "unassigned",
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "later_adopted_pair_refs": [
+        {
+          "identity": "HARNESS-L2-039",
+          "decision_disposition": "adopted_exact_pair_revision",
+          "l2_section_digest": "e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0",
+          "l11_section_digest": "63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746",
+          "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_record_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+        }
+      ]
     },
     {
       "source_item_id": "REQSRC-SUP-00129",
@@ -76,12 +159,30 @@
       "source_text": "- 旧`operation_verification`／`verification`はL7〜L12 right-arm verification scopeとL12運用テストを",
       "condition_cluster_id": "V13-COND-L0167",
       "status": "partial",
-      "fixed_refs": ["HARNESS-L2-003:108,112", "HARNESS-L2-018:411-417", "HARNESS-L2-021:438-445", "HARNESS-L11:43,56,213,216"],
-      "current_refs": ["docs/helix-harness/L2-requirements/product-requirements.md:108,112,411-417,438-445", "docs/helix-harness/L11-acceptance/product-acceptance.md:43,56,213,216"],
-      "comparison": "Right-arm layer scope and L12 operation/observation meaning are represented, but the old verification values are not specified as compatibility inputs mapping into that scope.",
+      "fixed_refs": [
+        "HARNESS-L2-003:108,112",
+        "HARNESS-L2-018:411-417",
+        "HARNESS-L2-021:438-445",
+        "HARNESS-L11:43,56,213,216"
+      ],
+      "current_refs": [
+        "docs/helix-harness/L2-requirements/product-requirements.md:108,112,411-417,438-445",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:43,56,213,216"
+      ],
+      "comparison": "The adopted HARNESS-L2-034 pair adds a requirement/NFR-specific measurement contract and completion oracle. It does not map old operation_verification/verification values as compatibility inputs to current right-arm scope or preserve the no-same-named-workflow rule; overall condition remains partial.",
       "unresolved_residual": true,
       "successor_assignment": "unassigned",
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "later_adopted_pair_refs": [
+        {
+          "identity": "HARNESS-L2-034",
+          "decision_disposition": "adopted_exact_pair_revision",
+          "l2_section_digest": "dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156",
+          "l11_section_digest": "391f640508944ba2f32b5751a2a9a17fbc9f89ef76f46953c1af68ba907a9fdf",
+          "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_record_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+        }
+      ]
     },
     {
       "source_item_id": "REQSRC-SUP-00130",
@@ -90,12 +191,30 @@
       "source_text": "  指すcompatibility inputである。同名workflow modelを新設せず、必要なNFR計測は",
       "condition_cluster_id": "V13-COND-L0167",
       "status": "partial",
-      "fixed_refs": ["HARNESS-L2-003:108,112", "HARNESS-L2-018:411-417", "HARNESS-L2-021:438-445", "HARNESS-L11:43,56,213,216"],
-      "current_refs": ["docs/helix-harness/L2-requirements/product-requirements.md:108,112,411-417,438-445", "docs/helix-harness/L11-acceptance/product-acceptance.md:43,56,213,216"],
-      "comparison": "The L2/L11 state and operation boundaries align with part of the source meaning, but no alias-specific compatibility contract or same-named workflow-model exclusion is present.",
+      "fixed_refs": [
+        "HARNESS-L2-003:108,112",
+        "HARNESS-L2-018:411-417",
+        "HARNESS-L2-021:438-445",
+        "HARNESS-L11:43,56,213,216"
+      ],
+      "current_refs": [
+        "docs/helix-harness/L2-requirements/product-requirements.md:108,112,411-417,438-445",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:43,56,213,216"
+      ],
+      "comparison": "The adopted HARNESS-L2-034 measurement contract is a semantically relevant current capability for the NFR-measurement clause on line 171, but it does not define the old verification aliases as compatibility inputs or their no-same-named-workflow rule. The multi-line condition therefore remains partial.",
       "unresolved_residual": true,
       "successor_assignment": "unassigned",
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "later_adopted_pair_refs": [
+        {
+          "identity": "HARNESS-L2-034",
+          "decision_disposition": "adopted_exact_pair_revision",
+          "l2_section_digest": "dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156",
+          "l11_section_digest": "391f640508944ba2f32b5751a2a9a17fbc9f89ef76f46953c1af68ba907a9fdf",
+          "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_record_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+        }
+      ]
     },
     {
       "source_item_id": "REQSRC-SUP-00131",
@@ -103,19 +222,38 @@
       "source_line_sha256": "sha256:7196e911d3b82adaa3c88733c95f92ef5ce293b1b868bfe6599ee0854724d0d7",
       "source_text": "  `NFR_MEASUREMENT` capabilityへ接続する。",
       "condition_cluster_id": "V13-COND-L0167",
-      "status": "missing",
-      "fixed_refs": ["HARNESS-L2-005:56,118-121", "HARNESS-L2-009:116", "HARNESS-L2-021:438-445", "HARNESS-L2-022:447-455", "HARNESS-L11:59,61"],
-      "current_refs": ["docs/helix-harness/L2-requirements/product-requirements.md:56,116-121,438-455", "docs/helix-harness/L11-acceptance/product-acceptance.md:59,61"],
-      "comparison": "Fixed L2/L11 contain system-level NFR and measurement obligations but no NFR_MEASUREMENT capability connection. Current main adds HARNESS-L2-034 and paired L11 measurement candidates at L2:693-717/L11:465-483; the PO decision does not adopt that later candidate, so it remains a route for follow-up and does not cover this fixed-revision condition.",
+      "status": "partial",
+      "fixed_refs": [
+        "HARNESS-L2-005:56,118-121",
+        "HARNESS-L2-009:116",
+        "HARNESS-L2-021:438-445",
+        "HARNESS-L2-022:447-455",
+        "HARNESS-L11:59,61"
+      ],
+      "current_refs": [
+        "docs/helix-harness/L2-requirements/product-requirements.md:56,116-121,438-455",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md:59,61"
+      ],
+      "comparison": "The adopted HARNESS-L2-034 exact pair supplies requirement/NFR-specific metric contracts, measurement fields, execution-layer responsibility and a completion oracle. This is a substantive functional match for NFR measurement, beyond thematic similarity, but it does not preserve the old named NFR_MEASUREMENT capability identity or assign this source condition to 034. Count as partial condition correspondence, not exact adoption/successor.",
       "unresolved_residual": true,
       "successor_assignment": "unassigned",
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "later_adopted_pair_refs": [
+        {
+          "identity": "HARNESS-L2-034",
+          "decision_disposition": "adopted_exact_pair_revision",
+          "l2_section_digest": "dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156",
+          "l11_section_digest": "391f640508944ba2f32b5751a2a9a17fbc9f89ef76f46953c1af68ba907a9fdf",
+          "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_record_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+        }
+      ]
     }
   ],
   "result": {
-    "semantic_coverage_status": "five-line comparison only; 0 covered, 4 partial, 1 missing",
+    "semantic_coverage_status": "five-line comparison only; 0 covered, 5 partial, 0 missing; later adopted 034/039 exact pair revisions are comparison targets, not automatic legacy successors",
     "formal_successor_assignments": 0,
-    "requirement_adoption": "not asserted",
+    "requirement_adoption": "not asserted; HARNESS-L2-034 and HARNESS-L2-039 adoption is read from the 2026-09-29 decision for their exact pair revisions only",
     "acceptance_execution": "not asserted",
     "stage_completion": "not asserted"
   }

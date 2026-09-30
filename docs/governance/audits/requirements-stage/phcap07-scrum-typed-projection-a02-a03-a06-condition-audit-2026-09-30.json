@@ -1,9 +1,9 @@
 {
   "schema_version": "phcap07-scrum-typed-projection-condition-audit.v1",
   "audit_id": "phcap07-scrum-typed-projection-a02-a03-a06-condition-audit-2026-09-30",
-  "basis_main_commit": "0f5050e2b25cd622640c99c5de170cca087f7d8a",
+  "basis_main_commit": "c6418a5602a056d3503e578a0a8c92df15a6daeb",
   "authority_effect": "none",
-  "audit_mode": "read_only_static_legacy_condition_to_fixed_adopted_pair_comparison",
+  "audit_mode": "read_only_static_legacy_condition_to_adopted_pair_revision_comparison",
   "scope": {
     "phase": "PHCAP-07",
     "source_asset_id": "LEGACY-ASSET-FC23AB4BB99DA8F4076A",
@@ -64,13 +64,43 @@
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
       "git_blob": "f827c6bd955bbeb91deba5b7dced93e512e5da9e",
       "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+    },
+    "later_adopted_comparison_pair": {
+      "identity": "HARNESS-L2-046",
+      "po_disposition": "adopted_exact_pair_revision",
+      "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "decision_record_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "decision_source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "l2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "section_digest": "47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e"
+      },
+      "l11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "section_digest": "a8e99f7df7166566c04b1113b045851d8417e17e8078c034f8f2a34ebfe4f37f"
+      },
+      "relevance": "Adopted later than the original L2-002/003 baseline. Adds Scrum slice-delta, Scrum Reverse/backfill, SR4 pair-freeze and release-ready conditions; compare as related scope, not as a typed projection successor."
     }
   },
   "overlap_check": {
-    "origin_main": "0f5050e2b25cd622640c99c5de170cca087f7d8a",
+    "pull_request_base_ref": "main",
+    "actual_pull_request_base_commit": "c6418a5602a056d3503e578a0a8c92df15a6daeb",
+    "base_commit_has_individual_condition_audit": false,
+    "preexisting_individual_condition_audit_overlap_at_base": [],
     "local_integration_branch": "codex/stage5-local-integration",
-    "local_integration_commit": "275b5145a763e0a805d317657ab5e28d41968c61",
-    "preexisting_individual_condition_audit_overlap": [],
+    "local_integration_head": "4f1288e36278aab2e8c27ebe4b6111ca85f77831",
+    "local_integration_copy": {
+      "paths": [
+        "docs/governance/audits/requirements-stage/phcap07-scrum-typed-projection-a02-a03-a06-condition-audit-2026-09-30.md",
+        "docs/governance/audits/requirements-stage/phcap07-scrum-typed-projection-a02-a03-a06-condition-audit-2026-09-30.json",
+        "docs/governance/audits/requirements-stage/v13-policy-lines-167-171-condition-audit-2026-09-30.md",
+        "docs/governance/audits/requirements-stage/v13-policy-lines-167-171-condition-audit-2026-09-30.json"
+      ],
+      "tree_entries_match_pre_edit_pr_head": true,
+      "interpretation": "同一の監査候補がlocal integration staging branchにある。実PR base c641には存在せず、main上の先行監査ではない。"
+    },
     "preexisting_related_audit": {
       "path": "docs/governance/audits/requirements-stage/legacy-candidate-scrum-typed-projection-acceptance-three-condition-l2l11-route-audit-after-2392-2026-09-30.json",
       "integration_path": "/tmp/helix-stage5-local-integration/docs/governance/audits/requirements-stage/legacy-candidate-scrum-typed-projection-acceptance-three-condition-l2l11-route-audit-after-2392-2026-09-30.json",
@@ -81,7 +111,22 @@
         "L10-scrum-operation-typed-projection-acceptance",
         "SCRUM-OPS-A-02"
       ],
-      "individual_condition_audit_pr_found": false,
+      "base_commit": "c6418a5602a056d3503e578a0a8c92df15a6daeb",
+      "individual_condition_audit_pr_found_before_current_pr": false,
+      "open_pr_scan": [
+        {
+          "number": 2393,
+          "title": "docs: audit 22 confirmed175 legacy conditions",
+          "state": "OPEN",
+          "relevance": "unrelated confirmed175 condition sources"
+        },
+        {
+          "number": 2394,
+          "title": "docs: audit v1.3 policy and PHCAP-07 acceptance conditions",
+          "state": "OPEN",
+          "relevance": "this audit PR; excluded from preexisting duplicate count"
+        }
+      ],
       "related_historical_prs": [
         {
           "number": 1762,
@@ -99,7 +144,7 @@
           "title": "feat(scrum): project canonical operation declarations"
         }
       ],
-      "interpretation": "検索で得た過去PRはruntime/plan名のPRであり、今回の固定HARNESS L2/L11への個別条件監査PRではない。archive内artifactのimplementation_status unknownを上書きしない。"
+      "interpretation": "過去PRはruntime/plan名の共有であり、source asset A-02/A-03/A-06を採択済HARNESS L2/L11へ個別照合する監査ではない。"
     }
   },
   "conditions": [
@@ -126,9 +171,15 @@
           "l2": "docs/helix-harness/L2-requirements/product-requirements.md:53,100",
           "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:22,34-35",
           "reason": "開発方式としてのScrumと利用記録からの改善を扱うが、見積り値と実測velocityの分離・計測は定めない。"
+        },
+        {
+          "id": "HARNESS-L2-046",
+          "l2": "docs/helix-harness/L2-requirements/product-requirements.md#HARNESS-L2-046 (adopted exact pair revision)",
+          "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md#HARNESS-L2-046 (adopted exact pair revision)",
+          "reason": "Scrum slice delta and backfill are in scope, but the pair does not define estimated versus actual velocity fields, aggregation, or measurement oracle."
         }
       ],
-      "comparison": "固定pairはScrumの方式選択・L3後slice化・Backflowを規定する。これらは見積りと実測velocityの別型投影条件を直接扱わないため、Scrumという語の一致を条件coverageとしない。",
+      "comparison": "The adopted L2-002/003 and later adopted L2-046 define Scrum as a development style and its slice-delta/backfill conditions. None defines typed separation or measurement of estimate and actual velocity; shared Scrum terminology is thematic only.",
       "residual": "見積りと実測のtyped field/schema、対象期間・集計定義、実測値のsource/event、欠損・再計算時の扱い、利用consumer、およびそのoracleは固定HARNESS L2/L11から特定されない。",
       "consumer_oracle_status": "legacy_test_design cites tests/current-location.test.ts for operation declaration and pair metadata tests; no condition-specific current consumer/oracle identified; archive asset/test implementation status remains unknown.",
       "coverage_claim": false,
@@ -165,9 +216,15 @@
           "l2": "docs/helix-harness/L2-requirements/product-requirements.md:53,100-103",
           "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:22,34-38",
           "reason": "Scrumを開発方式として扱い、L1-L3共通進行・要件承認・方式条件を維持するが、DoR/DoDのtyped schemaそのものではない。"
+        },
+        {
+          "id": "HARNESS-L2-046",
+          "l2": "docs/helix-harness/L2-requirements/product-requirements.md#HARNESS-L2-046 (adopted exact pair revision)",
+          "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md#HARNESS-L2-046 (adopted exact pair revision)",
+          "reason": "Adds Scrum SR4 pair-freeze/release-ready gating; it does not define the old DoR/DoD typed gate schema."
         }
       ],
-      "comparison": "工程gateの必要性と未成立状態での進行拒否はHARNESS-L2-003/L11に保持されるため部分的な意味重複がある。旧条件のDoR/DoDをtyped Scrum gateへ束縛する具体化までは読み取れない。",
+      "comparison": "HARNESS-L2-003/L11 retains general stage gates and fail-closed progression. The later adopted L2-046 adds Scrum-specific slice/backfill/SR4 release-ready conditions, but neither pair defines typed DoR/DoD fields, gate inputs, or projection contract. This remains partial semantic overlap, not exact condition coverage.",
       "residual": "DoR/DoDのtyped field集合、gate owner、開始/完成の判定入力、例外・waiver、receiptと変更後再評価、各Scrum operation consumerへの投影先は固定pairに定義されない。",
       "consumer_oracle_status": "fixed L11 contains general process-gate scenarios, but no exact DoR/DoD projection consumer or condition-specific oracle; archive test citation is not execution evidence.",
       "coverage_claim": false,
@@ -196,6 +253,12 @@
           "l2": "docs/helix-harness/L2-requirements/product-requirements.md:105,110-111",
           "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:39-40,54-55",
           "basis": "Scrum checkpointからSR0-SR4、findingのsingle route、再発findingやScrum Reverse checkpointからReverse ticketを導く条件とnegative casesを持つ。"
+        },
+        {
+          "id": "HARNESS-L2-046",
+          "l2": "docs/helix-harness/L2-requirements/product-requirements.md#HARNESS-L2-046 (adopted exact pair revision)",
+          "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md#HARNESS-L2-046 (adopted exact pair revision)",
+          "basis": "Adopted Scrum slice-delta, Scrum Reverse/backfill and SR4 pair-freeze/release-ready conditions. This is directly relevant to the route, but does not define retrospective event projection or recurrence aggregation."
         }
       ],
       "related_comparison_only_refs": [
@@ -206,8 +269,8 @@
           "reason": "Scoped Reverseと、trace不明・旧資産・再発finding時のfull Reverseを回復経路として保持する。旧retrospective entityからのprojection receiptとは別契約。"
         }
       ],
-      "comparison": "Recovery/Reverseへfindingをつなぐ意味はScrum Reverse/checkpoint、再発finding時のReverse ticketとして部分的に重なる。旧retrospective eventの投影や旧L12 identityは現行L2/L11へそのまま移されていない。",
-      "residual": "retrospective event/result schema、再発finding identityと集約規則、Recovery/Reverse ticketへのtyped relation、層ごとのreceipt/consumer、retro結果から通常要求へBackflowする条件はこの固定pairで特定されない。",
+      "comparison": "L2-002/003/L11 and the later adopted L2-046 retain Scrum checkpoint/SR4, single-route findings, Scrum Reverse and slice backfill. That overlaps the Recovery/Reverse direction, but is not an exact retrospective-to-Recovery/Reverse projection contract.",
+      "residual": "Retrospective event/result schema, recurring-finding identity and aggregation, typed relation to Recovery/Reverse tickets, layer-specific receipt/consumer, and when a retrospective result enters ordinary Backflow remain unspecified by the adopted pairs.",
       "consumer_oracle_status": "fixed L11 has checkpoint/Reverse scenarios but no dedicated retrospective projection consumer/oracle; archived tests are unexecuted and implementation status is unknown.",
       "coverage_claim": false,
       "formal_successor_assigned": false,
@@ -218,6 +281,7 @@
     "partial/unknownはこの3条件を固定HARNESS L2/L11と比べた範囲内の評価であり、個別採択・formal successor・全source coverageではない。",
     "archiveのL3/L10/L12 layer番号と現行L1-L12 pairを同一視しない。旧test-designは現行L11へcopyせず、新しいL10 artifact/oracleも作らない。",
     "旧asset ledgerのimplementation_status unknownを維持し、archive test、runtime、CLI、CIを実行していない。",
-    "全体および全条件のauthority_effectはnone。PHCAP-07のnot_reimplemented_formally、新世代CI未構築、受入未実行を維持する。"
+    "全体および全条件のauthority_effectはnone。PHCAP-07のnot_reimplemented_formally、新世代CI未構築、受入未実行を維持する。",
+    "HARNESS-L2-046 is an adopted exact pair revision per the 2026-09-29 PO decision. Its section body contains pre-decision candidate metadata, which is not the authority source; only the exact identity/revision in the decision record is adopted. The decision does not adopt the old A-02/A-03/A-06 identities or assign formal successors."
   ]
 }
