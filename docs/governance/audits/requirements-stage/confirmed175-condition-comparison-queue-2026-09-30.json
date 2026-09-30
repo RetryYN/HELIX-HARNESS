@@ -6,16 +6,16 @@
   "basis": {
     "origin_main_revision": "2bbd889545cff238452701e5901ce56b67208fc8",
     "queue_worktree_base": "main",
-    "local_integration_revision": "5cb4e43f4d0a7f270651432348d7aead07e30877",
     "fixed_l2_l11_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
     "full_audit_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json",
     "identity_ledger_ref": "docs/governance/legacy-migration/identity/legacy-confirmed-requirement-identity-carry-forward.jsonl",
-    "condition_audit_revision": "1df39b731e43824f7388b0e88fe16403ba5eef3",
+    "condition_audit_revision": "1df39b731e43824f7388b0e88fe16403ba5eef3e",
     "condition_audit_branch": "codex/stage5-confirmed175-condition-audits",
     "full_audit_sha256": "ca08a81d97e39e94aa02151c7cc4e48f621f9d30baccc1cf9b715331fed38f45",
     "identity_ledger_sha256": "eadb6052cdc64c344e63bef4ed8c88f69b06fc6127f71f6d57b059f7cfbd18ed",
-    "source_queue_commit": "24b2bb7abddf9203783ec8836dcf10dc239a97aa",
-    "condition_audit_merge_revision": "2bbd889545cff238452701e5901ce56b67208fc8"
+    "condition_audit_merge_revision": "2bbd889545cff238452701e5901ce56b67208fc8",
+    "queue_base_revision": "2bbd889545cff238452701e5901ce56b67208fc8",
+    "queue_base_ref": "main"
   },
   "scope": {
     "population": "confirmed175",
@@ -23,15 +23,20 @@
   },
   "summary": {
     "unique_identities": 175,
-    "individually_compared": 44,
-    "not_individually_compared": 131,
+    "individually_compared": 30,
+    "not_individually_compared": 145,
     "comparison_is_closure": false,
     "successor_assignments": 0,
-    "adoption_claim": false
+    "adoption_claim": false,
+    "residual_identity_basis_counts": {
+      "identity_specific_fixed_revision_comparison": 3,
+      "identity_specific_nonfixed_revision_only": 6,
+      "grouped_residual_only": 8
+    }
   },
   "classification_policy": {
-    "counts_as_individual_comparison": "Evidence must identify a source-qualified identity and compare its original condition to the fixed L2/L11 at condition level. ID mentions, target existence, generic crosswalk membership, population/join audits, and candidate registrations do not count. A grouped residual artifact counts only where it has an identity-specific source-condition/target comparison.",
-    "not_compared_means": "No qualifying artifact was found in the inventoried evidence set; this does not assert absence of related targets or broad crosswalks."
+    "counts_as_individual_comparison": "Count only when an artifact identifies the source-qualified identity and compares its original condition to L2/L11 bytes at fixed_target_revision. Grouped residual assessments, identity-specific comparisons against other revisions (including HEAD559), ID mentions, target existence, generic crosswalk membership, population/join audits, and candidate registrations do not count.",
+    "not_compared_means": "No qualifying identity-specific comparison against the exact fixed L2/L11 bytes was found in the inventoried evidence set. Related grouped or other-revision evidence is retained and classified per record; this does not assert absence of related targets or broader evidence."
   },
   "non_claims": [
     "No requirement adoption, formal successor assignment, source disposition, implementation, runtime, test, CI, acceptance execution, or Step 5 completion is claimed.",
@@ -401,17 +406,31 @@
         "record_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#known_residual_records"
       },
       "condition_comparison": {
-        "status": "individually_compared",
+        "status": "not_individually_compared",
         "evidence_artifacts": [
           {
             "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
             "availability": "present_on_base_main",
-            "comparison_kind": "grouped_identity_specific_condition_comparison",
+            "comparison_kind": "identity_specific_comparison_at_HEAD559_not_fixed_L2_L11",
             "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
             "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2"
           }
         ],
-        "comparison_is_closure": false
+        "comparison_is_closure": false,
+        "classification_basis": {
+          "counts_as_individual_comparison": false,
+          "basis_kind": "identity_specific_comparison_against_nonfixed_revision",
+          "qualifying_evidence": null,
+          "other_residual_evidence": {
+            "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
+            "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
+            "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2",
+            "section": "§1 dashboard/readiness visibility",
+            "compared_l2_l11_revision": "559ae3ba4bfe660d666a57f227466d7dcdd440d9"
+          },
+          "rationale": "The residual-disposition section names this identity and discusses its condition, but its current L2/L11 comparison is explicitly against HEAD559, not the fixed f6dad2a bytes required by this queue. It remains uncounted; related evidence is preserved.",
+          "required_fixed_target_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+        }
       },
       "fixed_target_refs": [],
       "target_mapping_caveat": "These refs identify fixed-revision targets in the full-audit mapping; they do not claim source-atom coverage or closure.",
@@ -490,17 +509,31 @@
         "record_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#known_residual_records"
       },
       "condition_comparison": {
-        "status": "individually_compared",
+        "status": "not_individually_compared",
         "evidence_artifacts": [
           {
             "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
             "availability": "present_on_base_main",
-            "comparison_kind": "grouped_identity_specific_condition_comparison",
+            "comparison_kind": "identity_specific_comparison_at_HEAD559_not_fixed_L2_L11",
             "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
             "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2"
           }
         ],
-        "comparison_is_closure": false
+        "comparison_is_closure": false,
+        "classification_basis": {
+          "counts_as_individual_comparison": false,
+          "basis_kind": "identity_specific_comparison_against_nonfixed_revision",
+          "qualifying_evidence": null,
+          "other_residual_evidence": {
+            "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
+            "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
+            "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2",
+            "section": "§2 document-specific review",
+            "compared_l2_l11_revision": "559ae3ba4bfe660d666a57f227466d7dcdd440d9"
+          },
+          "rationale": "The residual-disposition section names this identity and discusses its condition, but its current L2/L11 comparison is explicitly against HEAD559, not the fixed f6dad2a bytes required by this queue. It remains uncounted; related evidence is preserved.",
+          "required_fixed_target_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+        }
       },
       "fixed_target_refs": [],
       "target_mapping_caveat": "These refs identify fixed-revision targets in the full-audit mapping; they do not claim source-atom coverage or closure.",
@@ -618,17 +651,31 @@
         "record_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#known_residual_records"
       },
       "condition_comparison": {
-        "status": "individually_compared",
+        "status": "not_individually_compared",
         "evidence_artifacts": [
           {
             "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
             "availability": "present_on_base_main",
-            "comparison_kind": "grouped_identity_specific_condition_comparison",
+            "comparison_kind": "grouped_residual_disposition_at_HEAD559_not_identity_specific",
             "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
             "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2"
           }
         ],
-        "comparison_is_closure": false
+        "comparison_is_closure": false,
+        "classification_basis": {
+          "counts_as_individual_comparison": false,
+          "basis_kind": "grouped_residual_only",
+          "qualifying_evidence": null,
+          "other_residual_evidence": {
+            "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
+            "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
+            "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2",
+            "section": "§3 KPI D-01–D-09",
+            "compared_l2_l11_revision": "559ae3ba4bfe660d666a57f227466d7dcdd440d9"
+          },
+          "rationale": "§3 groups this identity with the unresolved KPI disposition; it does not compare this identity condition with fixed f6dad2a L2/L11. D-04–D-08 do not appear by identity in that section. HEAD559 references and grouped disposition do not qualify.",
+          "required_fixed_target_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+        }
       },
       "fixed_target_refs": [],
       "target_mapping_caveat": "These refs identify fixed-revision targets in the full-audit mapping; they do not claim source-atom coverage or closure.",
@@ -652,17 +699,31 @@
         "record_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#known_residual_records"
       },
       "condition_comparison": {
-        "status": "individually_compared",
+        "status": "not_individually_compared",
         "evidence_artifacts": [
           {
             "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
             "availability": "present_on_base_main",
-            "comparison_kind": "grouped_identity_specific_condition_comparison",
+            "comparison_kind": "identity_specific_comparison_at_HEAD559_not_fixed_L2_L11",
             "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
             "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2"
           }
         ],
-        "comparison_is_closure": false
+        "comparison_is_closure": false,
+        "classification_basis": {
+          "counts_as_individual_comparison": false,
+          "basis_kind": "identity_specific_comparison_against_nonfixed_revision",
+          "qualifying_evidence": null,
+          "other_residual_evidence": {
+            "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
+            "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
+            "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2",
+            "section": "§3 KPI D-01–D-09 (D-02 explicitly discussed at HEAD559; candidate, not fixed decision)",
+            "compared_l2_l11_revision": "559ae3ba4bfe660d666a57f227466d7dcdd440d9"
+          },
+          "rationale": "The residual-disposition section names this identity and discusses its condition, but its current L2/L11 comparison is explicitly against HEAD559, not the fixed f6dad2a bytes required by this queue. It remains uncounted; related evidence is preserved.",
+          "required_fixed_target_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+        }
       },
       "fixed_target_refs": [],
       "target_mapping_caveat": "These refs identify fixed-revision targets in the full-audit mapping; they do not claim source-atom coverage or closure.",
@@ -686,17 +747,31 @@
         "record_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#known_residual_records"
       },
       "condition_comparison": {
-        "status": "individually_compared",
+        "status": "not_individually_compared",
         "evidence_artifacts": [
           {
             "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
             "availability": "present_on_base_main",
-            "comparison_kind": "grouped_identity_specific_condition_comparison",
+            "comparison_kind": "grouped_residual_disposition_at_HEAD559_not_identity_specific",
             "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
             "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2"
           }
         ],
-        "comparison_is_closure": false
+        "comparison_is_closure": false,
+        "classification_basis": {
+          "counts_as_individual_comparison": false,
+          "basis_kind": "grouped_residual_only",
+          "qualifying_evidence": null,
+          "other_residual_evidence": {
+            "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
+            "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
+            "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2",
+            "section": "§3 KPI D-01–D-09",
+            "compared_l2_l11_revision": "559ae3ba4bfe660d666a57f227466d7dcdd440d9"
+          },
+          "rationale": "§3 groups this identity with the unresolved KPI disposition; it does not compare this identity condition with fixed f6dad2a L2/L11. D-04–D-08 do not appear by identity in that section. HEAD559 references and grouped disposition do not qualify.",
+          "required_fixed_target_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+        }
       },
       "fixed_target_refs": [],
       "target_mapping_caveat": "These refs identify fixed-revision targets in the full-audit mapping; they do not claim source-atom coverage or closure.",
@@ -720,17 +795,31 @@
         "record_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#known_residual_records"
       },
       "condition_comparison": {
-        "status": "individually_compared",
+        "status": "not_individually_compared",
         "evidence_artifacts": [
           {
             "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
             "availability": "present_on_base_main",
-            "comparison_kind": "grouped_identity_specific_condition_comparison",
+            "comparison_kind": "grouped_residual_disposition_at_HEAD559_not_identity_specific",
             "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
             "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2"
           }
         ],
-        "comparison_is_closure": false
+        "comparison_is_closure": false,
+        "classification_basis": {
+          "counts_as_individual_comparison": false,
+          "basis_kind": "grouped_residual_only",
+          "qualifying_evidence": null,
+          "other_residual_evidence": {
+            "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
+            "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
+            "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2",
+            "section": "§3 KPI D-01–D-09",
+            "compared_l2_l11_revision": "559ae3ba4bfe660d666a57f227466d7dcdd440d9"
+          },
+          "rationale": "§3 groups this identity with the unresolved KPI disposition; it does not compare this identity condition with fixed f6dad2a L2/L11. D-04–D-08 do not appear by identity in that section. HEAD559 references and grouped disposition do not qualify.",
+          "required_fixed_target_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+        }
       },
       "fixed_target_refs": [],
       "target_mapping_caveat": "These refs identify fixed-revision targets in the full-audit mapping; they do not claim source-atom coverage or closure.",
@@ -754,17 +843,31 @@
         "record_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#known_residual_records"
       },
       "condition_comparison": {
-        "status": "individually_compared",
+        "status": "not_individually_compared",
         "evidence_artifacts": [
           {
             "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
             "availability": "present_on_base_main",
-            "comparison_kind": "grouped_identity_specific_condition_comparison",
+            "comparison_kind": "grouped_residual_disposition_at_HEAD559_not_identity_specific",
             "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
             "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2"
           }
         ],
-        "comparison_is_closure": false
+        "comparison_is_closure": false,
+        "classification_basis": {
+          "counts_as_individual_comparison": false,
+          "basis_kind": "grouped_residual_only",
+          "qualifying_evidence": null,
+          "other_residual_evidence": {
+            "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
+            "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
+            "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2",
+            "section": "§3 KPI D-01–D-09",
+            "compared_l2_l11_revision": "559ae3ba4bfe660d666a57f227466d7dcdd440d9"
+          },
+          "rationale": "§3 groups this identity with the unresolved KPI disposition; it does not compare this identity condition with fixed f6dad2a L2/L11. D-04–D-08 do not appear by identity in that section. HEAD559 references and grouped disposition do not qualify.",
+          "required_fixed_target_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+        }
       },
       "fixed_target_refs": [],
       "target_mapping_caveat": "These refs identify fixed-revision targets in the full-audit mapping; they do not claim source-atom coverage or closure.",
@@ -788,17 +891,31 @@
         "record_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#known_residual_records"
       },
       "condition_comparison": {
-        "status": "individually_compared",
+        "status": "not_individually_compared",
         "evidence_artifacts": [
           {
             "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
             "availability": "present_on_base_main",
-            "comparison_kind": "grouped_identity_specific_condition_comparison",
+            "comparison_kind": "grouped_residual_disposition_at_HEAD559_not_identity_specific",
             "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
             "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2"
           }
         ],
-        "comparison_is_closure": false
+        "comparison_is_closure": false,
+        "classification_basis": {
+          "counts_as_individual_comparison": false,
+          "basis_kind": "grouped_residual_only",
+          "qualifying_evidence": null,
+          "other_residual_evidence": {
+            "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
+            "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
+            "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2",
+            "section": "§3 KPI D-01–D-09",
+            "compared_l2_l11_revision": "559ae3ba4bfe660d666a57f227466d7dcdd440d9"
+          },
+          "rationale": "§3 groups this identity with the unresolved KPI disposition; it does not compare this identity condition with fixed f6dad2a L2/L11. D-04–D-08 do not appear by identity in that section. HEAD559 references and grouped disposition do not qualify.",
+          "required_fixed_target_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+        }
       },
       "fixed_target_refs": [],
       "target_mapping_caveat": "These refs identify fixed-revision targets in the full-audit mapping; they do not claim source-atom coverage or closure.",
@@ -822,17 +939,31 @@
         "record_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#known_residual_records"
       },
       "condition_comparison": {
-        "status": "individually_compared",
+        "status": "not_individually_compared",
         "evidence_artifacts": [
           {
             "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
             "availability": "present_on_base_main",
-            "comparison_kind": "grouped_identity_specific_condition_comparison",
+            "comparison_kind": "grouped_residual_disposition_at_HEAD559_not_identity_specific",
             "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
             "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2"
           }
         ],
-        "comparison_is_closure": false
+        "comparison_is_closure": false,
+        "classification_basis": {
+          "counts_as_individual_comparison": false,
+          "basis_kind": "grouped_residual_only",
+          "qualifying_evidence": null,
+          "other_residual_evidence": {
+            "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
+            "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
+            "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2",
+            "section": "§3 KPI D-01–D-09",
+            "compared_l2_l11_revision": "559ae3ba4bfe660d666a57f227466d7dcdd440d9"
+          },
+          "rationale": "§3 groups this identity with the unresolved KPI disposition; it does not compare this identity condition with fixed f6dad2a L2/L11. D-04–D-08 do not appear by identity in that section. HEAD559 references and grouped disposition do not qualify.",
+          "required_fixed_target_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+        }
       },
       "fixed_target_refs": [],
       "target_mapping_caveat": "These refs identify fixed-revision targets in the full-audit mapping; they do not claim source-atom coverage or closure.",
@@ -856,17 +987,31 @@
         "record_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#known_residual_records"
       },
       "condition_comparison": {
-        "status": "individually_compared",
+        "status": "not_individually_compared",
         "evidence_artifacts": [
           {
             "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
             "availability": "present_on_base_main",
-            "comparison_kind": "grouped_identity_specific_condition_comparison",
+            "comparison_kind": "grouped_residual_disposition_at_HEAD559_not_identity_specific",
             "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
             "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2"
           }
         ],
-        "comparison_is_closure": false
+        "comparison_is_closure": false,
+        "classification_basis": {
+          "counts_as_individual_comparison": false,
+          "basis_kind": "grouped_residual_only",
+          "qualifying_evidence": null,
+          "other_residual_evidence": {
+            "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
+            "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
+            "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2",
+            "section": "§3 KPI D-01–D-09",
+            "compared_l2_l11_revision": "559ae3ba4bfe660d666a57f227466d7dcdd440d9"
+          },
+          "rationale": "§3 groups this identity with the unresolved KPI disposition; it does not compare this identity condition with fixed f6dad2a L2/L11. D-04–D-08 do not appear by identity in that section. HEAD559 references and grouped disposition do not qualify.",
+          "required_fixed_target_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+        }
       },
       "fixed_target_refs": [],
       "target_mapping_caveat": "These refs identify fixed-revision targets in the full-audit mapping; they do not claim source-atom coverage or closure.",
@@ -890,17 +1035,31 @@
         "record_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#known_residual_records"
       },
       "condition_comparison": {
-        "status": "individually_compared",
+        "status": "not_individually_compared",
         "evidence_artifacts": [
           {
             "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
             "availability": "present_on_base_main",
-            "comparison_kind": "grouped_identity_specific_condition_comparison",
+            "comparison_kind": "grouped_residual_disposition_at_HEAD559_not_identity_specific",
             "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
             "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2"
           }
         ],
-        "comparison_is_closure": false
+        "comparison_is_closure": false,
+        "classification_basis": {
+          "counts_as_individual_comparison": false,
+          "basis_kind": "grouped_residual_only",
+          "qualifying_evidence": null,
+          "other_residual_evidence": {
+            "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
+            "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
+            "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2",
+            "section": "§3 KPI D-01–D-09",
+            "compared_l2_l11_revision": "559ae3ba4bfe660d666a57f227466d7dcdd440d9"
+          },
+          "rationale": "§3 groups this identity with the unresolved KPI disposition; it does not compare this identity condition with fixed f6dad2a L2/L11. D-04–D-08 do not appear by identity in that section. HEAD559 references and grouped disposition do not qualify.",
+          "required_fixed_target_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+        }
       },
       "fixed_target_refs": [],
       "target_mapping_caveat": "These refs identify fixed-revision targets in the full-audit mapping; they do not claim source-atom coverage or closure.",
@@ -999,17 +1158,31 @@
         "record_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#known_residual_records"
       },
       "condition_comparison": {
-        "status": "individually_compared",
+        "status": "not_individually_compared",
         "evidence_artifacts": [
           {
             "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
             "availability": "present_on_base_main",
-            "comparison_kind": "grouped_identity_specific_condition_comparison",
+            "comparison_kind": "identity_specific_comparison_at_HEAD559_not_fixed_L2_L11",
             "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
             "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2"
           }
         ],
-        "comparison_is_closure": false
+        "comparison_is_closure": false,
+        "classification_basis": {
+          "counts_as_individual_comparison": false,
+          "basis_kind": "identity_specific_comparison_against_nonfixed_revision",
+          "qualifying_evidence": null,
+          "other_residual_evidence": {
+            "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
+            "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
+            "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2",
+            "section": "§1 dashboard/readiness visibility",
+            "compared_l2_l11_revision": "559ae3ba4bfe660d666a57f227466d7dcdd440d9"
+          },
+          "rationale": "The residual-disposition section names this identity and discusses its condition, but its current L2/L11 comparison is explicitly against HEAD559, not the fixed f6dad2a bytes required by this queue. It remains uncounted; related evidence is preserved.",
+          "required_fixed_target_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+        }
       },
       "fixed_target_refs": [],
       "target_mapping_caveat": "These refs identify fixed-revision targets in the full-audit mapping; they do not claim source-atom coverage or closure.",
@@ -1988,12 +2161,33 @@
           {
             "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
             "availability": "present_on_base_main",
-            "comparison_kind": "grouped_identity_specific_condition_comparison",
+            "comparison_kind": "supporting_residual_context_at_HEAD559_not_counted",
             "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
             "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2"
           }
         ],
-        "comparison_is_closure": false
+        "comparison_is_closure": false,
+        "classification_basis": {
+          "counts_as_individual_comparison": true,
+          "basis_kind": "identity_specific_comparison_against_fixed_L2_L11",
+          "qualifying_evidence": {
+            "artifact_path": "docs/governance/audits/requirements-stage/confirmed175-three-condition-meaning-delta-2026-09-28.md",
+            "artifact_sha256": "03ba7d15916b1be42cd26822ff4c42606fb4e381a6990b54ada2c7073f907439",
+            "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2",
+            "section": "§1 incident hotfix/backfill",
+            "fixed_targets": "HARNESS-L2-003; HARNESS-L11-003",
+            "compared_l2_l11_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+          },
+          "other_residual_evidence": {
+            "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
+            "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
+            "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2",
+            "section": "corresponding residual case; HEAD559 comparison is context only",
+            "compared_l2_l11_revision": "559ae3ba4bfe660d666a57f227466d7dcdd440d9"
+          },
+          "rationale": "The three-condition audit explicitly compares this identity with the fixed f6dad2a L2/L11 bytes. The residual-disposition artifact is at 942f2e9 and compares against HEAD559, so it is retained only as context.",
+          "required_fixed_target_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+        }
       },
       "fixed_target_refs": [],
       "target_mapping_caveat": "These refs identify fixed-revision targets in the full-audit mapping; they do not claim source-atom coverage or closure.",
@@ -2895,17 +3089,31 @@
         "record_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#known_residual_records"
       },
       "condition_comparison": {
-        "status": "individually_compared",
+        "status": "not_individually_compared",
         "evidence_artifacts": [
           {
             "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
             "availability": "present_on_base_main",
-            "comparison_kind": "grouped_identity_specific_condition_comparison",
+            "comparison_kind": "identity_specific_comparison_at_HEAD559_not_fixed_L2_L11",
             "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
             "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2"
           }
         ],
-        "comparison_is_closure": false
+        "comparison_is_closure": false,
+        "classification_basis": {
+          "counts_as_individual_comparison": false,
+          "basis_kind": "identity_specific_comparison_against_nonfixed_revision",
+          "qualifying_evidence": null,
+          "other_residual_evidence": {
+            "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
+            "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
+            "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2",
+            "section": "§1 dashboard/readiness visibility",
+            "compared_l2_l11_revision": "559ae3ba4bfe660d666a57f227466d7dcdd440d9"
+          },
+          "rationale": "The residual-disposition section names this identity and discusses its condition, but its current L2/L11 comparison is explicitly against HEAD559, not the fixed f6dad2a bytes required by this queue. It remains uncounted; related evidence is preserved.",
+          "required_fixed_target_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+        }
       },
       "fixed_target_refs": [],
       "target_mapping_caveat": "These refs identify fixed-revision targets in the full-audit mapping; they do not claim source-atom coverage or closure.",
@@ -3434,12 +3642,33 @@
           {
             "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
             "availability": "present_on_base_main",
-            "comparison_kind": "grouped_identity_specific_condition_comparison",
+            "comparison_kind": "supporting_residual_context_at_HEAD559_not_counted",
             "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
             "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2"
           }
         ],
-        "comparison_is_closure": false
+        "comparison_is_closure": false,
+        "classification_basis": {
+          "counts_as_individual_comparison": true,
+          "basis_kind": "identity_specific_comparison_against_fixed_L2_L11",
+          "qualifying_evidence": {
+            "artifact_path": "docs/governance/audits/requirements-stage/confirmed175-three-condition-meaning-delta-2026-09-28.md",
+            "artifact_sha256": "03ba7d15916b1be42cd26822ff4c42606fb4e381a6990b54ada2c7073f907439",
+            "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2",
+            "section": "§3 doc-specific review",
+            "fixed_targets": "HARNESS-L2-005/014; HARNESS-L11-005/014; HELIXOS-L2/L11-018",
+            "compared_l2_l11_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+          },
+          "other_residual_evidence": {
+            "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
+            "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
+            "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2",
+            "section": "corresponding residual case; HEAD559 comparison is context only",
+            "compared_l2_l11_revision": "559ae3ba4bfe660d666a57f227466d7dcdd440d9"
+          },
+          "rationale": "The three-condition audit explicitly compares this identity with the fixed f6dad2a L2/L11 bytes. The residual-disposition artifact is at 942f2e9 and compares against HEAD559, so it is retained only as context.",
+          "required_fixed_target_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+        }
       },
       "fixed_target_refs": [],
       "target_mapping_caveat": "These refs identify fixed-revision targets in the full-audit mapping; they do not claim source-atom coverage or closure.",
@@ -9890,17 +10119,31 @@
         "record_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#known_residual_records"
       },
       "condition_comparison": {
-        "status": "individually_compared",
+        "status": "not_individually_compared",
         "evidence_artifacts": [
           {
             "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
             "availability": "present_on_base_main",
-            "comparison_kind": "grouped_identity_specific_condition_comparison",
+            "comparison_kind": "identity_specific_comparison_at_HEAD559_not_fixed_L2_L11",
             "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
             "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2"
           }
         ],
-        "comparison_is_closure": false
+        "comparison_is_closure": false,
+        "classification_basis": {
+          "counts_as_individual_comparison": false,
+          "basis_kind": "identity_specific_comparison_against_nonfixed_revision",
+          "qualifying_evidence": null,
+          "other_residual_evidence": {
+            "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
+            "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
+            "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2",
+            "section": "§5 GitHub audit capability/qualification",
+            "compared_l2_l11_revision": "559ae3ba4bfe660d666a57f227466d7dcdd440d9"
+          },
+          "rationale": "The residual-disposition section names this identity and discusses its condition, but its current L2/L11 comparison is explicitly against HEAD559, not the fixed f6dad2a bytes required by this queue. It remains uncounted; related evidence is preserved.",
+          "required_fixed_target_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+        }
       },
       "fixed_target_refs": [],
       "target_mapping_caveat": "These refs identify fixed-revision targets in the full-audit mapping; they do not claim source-atom coverage or closure.",
@@ -9936,12 +10179,33 @@
           {
             "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
             "availability": "present_on_base_main",
-            "comparison_kind": "grouped_identity_specific_condition_comparison",
+            "comparison_kind": "supporting_residual_context_at_HEAD559_not_counted",
             "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
             "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2"
           }
         ],
-        "comparison_is_closure": false
+        "comparison_is_closure": false,
+        "classification_basis": {
+          "counts_as_individual_comparison": true,
+          "basis_kind": "identity_specific_comparison_against_fixed_L2_L11",
+          "qualifying_evidence": {
+            "artifact_path": "docs/governance/audits/requirements-stage/confirmed175-three-condition-meaning-delta-2026-09-28.md",
+            "artifact_sha256": "03ba7d15916b1be42cd26822ff4c42606fb4e381a6990b54ada2c7073f907439",
+            "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2",
+            "section": "§2 GitHub audit qualification",
+            "fixed_targets": "HELIXLABO-L2/L11-055/059; HELIXOS-L2/L11-018; HELIXSECURITY-L2/L11-008",
+            "compared_l2_l11_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+          },
+          "other_residual_evidence": {
+            "artifact_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
+            "artifact_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
+            "artifact_revision": "942f2e985f3af161ea4027b1691659a436860bc2",
+            "section": "corresponding residual case; HEAD559 comparison is context only",
+            "compared_l2_l11_revision": "559ae3ba4bfe660d666a57f227466d7dcdd440d9"
+          },
+          "rationale": "The three-condition audit explicitly compares this identity with the fixed f6dad2a L2/L11 bytes. The residual-disposition artifact is at 942f2e9 and compares against HEAD559, so it is retained only as context.",
+          "required_fixed_target_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+        }
       },
       "fixed_target_refs": [],
       "target_mapping_caveat": "These refs identify fixed-revision targets in the full-audit mapping; they do not claim source-atom coverage or closure.",
@@ -10028,7 +10292,7 @@
     }
   ],
   "merged_evidence": {
-    "content_revision": "1df39b731e43824f7388b0e88fe16403ba5eef3",
+    "content_revision": "1df39b731e43824f7388b0e88fe16403ba5eef3e",
     "merge_revision": "2bbd889545cff238452701e5901ce56b67208fc8",
     "branch": "codex/stage5-confirmed175-condition-audits",
     "previous_main_base": "942f2e985f3af161ea4027b1691659a436860bc2",

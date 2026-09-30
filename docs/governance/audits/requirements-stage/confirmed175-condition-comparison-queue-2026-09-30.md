@@ -1,8 +1,8 @@
 # confirmed175 source condition comparison queue
 
 - 読み取り専用の棚卸しであり、`authority_effect: none`。要求採択、正式successor割当、source disposition、実装、受入、Step 5完了を主張しない。
-- 元キュー: integration commit `24b2bb7abddf9203783ec8836dcf10dc239a97aa`。queue基準main: `2bbd889545cff238452701e5901ce56b67208fc8`（PR #2393 merge/read-after）。
-- 6件の個別監査はPR #2393のcontent HEAD `1df39b731e43824f7388b0e88fe16403ba5eef3`で確認し、同じbytesがmerge後mainにあることを確認。
+- queueの比較基準はPR #2395のbaseであるmain `2bbd889545cff238452701e5901ce56b67208fc8`。
+- 6件の個別監査はPR #2393のcontent HEAD `1df39b731e43824f7388b0e88fe16403ba5eef3e`で確認し、同じbytesがmerge後mainにあることを確認。
 - 固定対象revision: `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。175件の母集団は[`legacy-confirmed175-full-audit-2026-09-28.json`](legacy-confirmed175-full-audit-2026-09-28.json)から`source_qualified_identity`完全一致で結合。
 
 ## 集計
@@ -10,8 +10,8 @@
 |項目|件数|
 |---|---:|
 |一意なconfirmed source identity|175|
-|固定L2/L11との個別条件比較あり|44|
-|個別条件比較なし|131|
+|固定L2/L11との個別条件比較あり|30|
+|固定L2/L11との個別条件比較なし|145|
 |条件閉包／正式successor割当|0 / 0|
 
 full auditの非residual 158件における分類:
@@ -22,11 +22,11 @@ full auditの非residual 158件における分類:
 |`部分再導出／旧固有条件・反例・数値・出力の一部が未確認`|58|
 |`部分再導出＋後続本文/候補のauthority未成立または固定PO範囲外`|8|
 
-full auditは17件を既知の5つのgrouped residual caseとして別途記録する。identity固有の条件と固定対象の比較を含む場合、そのidentityは個別比較44件に数えるが、source identityの閉包とはしない。
+full auditは17件を既知の5つのresidual caseとして別途記録する。17件を再照合すると、固定f6dad2a L2/L11 bytesとのidentity固有比較を持つのはFR-L1-16、FR-L1-45、3L-BR-008の3件だけである。6件（BR-06、UX-02、FR-L1-35、BR-08、D-02、3L-BR-007）は残差artifact内でidentity別に論じられるが、その比較先は別revisionのHEAD559である。D-01・D-03〜09の8件は§3のgrouped KPI dispositionで、identity固有の固定revision比較ではない。各recordの`classification_basis`に根拠artifact・SHA・revision・節と計数可否を記録した。したがって17件中3件を個別比較に数え、14件は数えない。いずれもsource identityの閉包ではない。
 
 ## 証拠ファイル
 
-各証拠のSHA-256は記載revisionのファイルbytesに対する値。6件の詳細監査はmain merge commitで確認済み。
+各証拠のSHA-256は記載revisionのファイルbytesに対する値。6件の詳細監査はmain merge commitで確認済み。#2393のcontent HEADは40桁の`1df39b731e43824f7388b0e88fe16403ba5eef3e`。
 
 |証拠path|identity数|所在revision|SHA-256|
 |---|---:|---|---|
@@ -44,4 +44,4 @@ full auditは17件を既知の5つのgrouped residual caseとして別途記録�
 
 ## 集計規則
 
-identity固有のsource conditionと固定L2/L11の条件をartifactが比較している場合だけ数える。IDの言及、対象IDの存在、全体population/join監査、候補登録だけでは数えない。grouped residual証拠はidentity固有の条件比較がある場合だけ数える。
+identity固有のsource conditionと、`f6dad2a33e24f000b87d7f09b8d40288257e74cc`上の固定L2/L11 bytesをartifactが比較している場合だけ数える。別revision HEAD559上の個別比較も、この固定revision基準では数えない。grouped residualは個票条件比較として数えない。各残差個票の`classification_basis`が計数根拠を示す。
