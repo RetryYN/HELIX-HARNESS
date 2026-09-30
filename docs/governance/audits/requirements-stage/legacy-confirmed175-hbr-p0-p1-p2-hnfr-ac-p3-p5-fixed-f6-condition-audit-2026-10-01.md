@@ -35,6 +35,14 @@
 
 境界付きの近接は、Full Vのsystem workflowをL1–L5で段階freeze・検証し、Production ScrumまたはScrumを含む許可scopeではslice delta後にsystem workflow/L1–L5へbackfillし、該当Scrum scopeではSR4前にrelease-readyとしない点である。Full VへScrum条件は適用しない。P0に対してはstyle-selected workflow条件の一部に近いが、各専門routeのstyle return/gap、runaway停止・durable event条件を置換しない。P1に対してはrelease/backfill boundaryに限った近接で、resume/queue/time-cap/version-up lifecycleを扱わない。正式successorなし。
 
+## 全候補決定行と近接候補の範囲
+
+後発判断記録の全行索引をJSONに保持した。対象は57候補（decision行39–95）、11候補（decision行26–36）、live26（decision表全26行）の計94行で、行本文・行SHA-256・登録ID・処置・決定記録全体SHA-256を含む。内訳は採択88件（53/10/25）、保留または非採択6件（4/1/1）。これは母集団の見落としを避けるための索引で、六つの旧identityへのsuccessor割当てではない。
+
+個別近接ピンは、HARNESS-L2-047（57行52、条件付き採択A）、HARNESS-L2-054（11行34、採択）、HELIXOS-L2-040（57行63、採択）、HELIXSECURITY-L2-033（57行92、採択と同decision 124行のL11 P0訂正）、HARNESS-L2-045（57行50、保留）を含む。decision行、MPR登録行、現行L2/L11節または該当L11対応行をJSONにpinした。
+
+近接の限定：047はspecialist Worker必要性と最小context/budget/stopの契約境界、054はspecialist handoff/return、OS-040はretry cap・Worker/session変更を跨ぐfailure count/budget保持とRecovery/Backflow、SECURITY-033は外部Workerのcontext/scope/HEAD/authority束縛を扱う。SECURITY-033のP0訂正は限定credential-useとraw credential/secret値の移送を区別する。045はbudget値の決定責務・単位・未設定/参照不能/超過時の扱いを未確定として保留し、ticketごとの数値決定を要求しない。これらは近接する条件traceであり、全旧consumer条件を閉じるsuccessorではない。数値閾値、権限、旧sourceからの後継関係を新設していない。
+
 ## HBR-P0 — `helix/L1-requirements/pillar-requirements.md::HBR-P0`
 
 旧source line 50 / SHA-256 `11650738b96e965057f81c6a28f2f6e5edcff00dcc57d700843873d3d9cf8ed8`。
@@ -157,4 +165,6 @@
 
 ## 結果と限界
 
-6件すべてで固定f6のL2/L11条件と旧L3 consumer条件との意味接点・残差を個票化した。後発HARNESS-L2-046は別revisionの近接条件として記録し、successorと扱っていない。6件ともpartial condition traceであり、旧source atomsの形式的successor割当ては0件。固定targetの要求合意・候補採択・L11記述は、source atomの全条件移管、runtime実装、実行証跡、利用者受入を証明しない。未対応条件を未対応のまま保持する。
+6件すべてで固定f6のL2/L11条件と旧L3 consumer条件との意味接点・残差を個票化した。後発HARNESS-L2-046および047/054/OS-040/SECURITY-033は別revisionの近接条件として記録し、successorと扱っていない。HARNESS-L2-045は保留状態を区別した。6件ともpartial condition traceであり、旧source atomsの形式的successor割当ては0件。固定targetの要求合意・候補採択・L11記述は、source atomの全条件移管、runtime実装、実行証跡、利用者受入を証明しない。未対応条件を未対応のまま保持する。
+
+静的検証：JSON構文、94決定行と全line SHA、選択近接候補のdecision/MPR/L2/L11 pins、監査基準文書のwhole-file SHA、旧consumer pinを照合する。scfctl validateとgit diff --checkを実施。旧sourceのCLI・workflow・hook・adapter・runtime・test・CIは実行しない。
