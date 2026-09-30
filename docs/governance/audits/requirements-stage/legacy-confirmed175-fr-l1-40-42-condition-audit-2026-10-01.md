@@ -4,11 +4,25 @@
 
 全3件の旧source stateは`confirmed` / `preserved_pending_rehome`、比較状態は`open_partial_correspondence`。判断効果・formal successor・closureはいずれもない。旧source本文とholding snapshotのfile SHA-256は`a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008`。資産明細台帳の対応assetは`LEGACY-ASSET-6B6C5CB0E481BE01088B`。
 
+## 後発PO判断の採択pair近接照合
+
+2026-09-29の57候補、同日の11候補、2026-09-30のlive26判断について、各判断記録の採択・条件付き採択・選択付き承認の全pairを、FR-L1-40/41/42の原文と旧consumer条件に照らして意味近接screenした。**採択pairは88件**（対象候補94件、decision tableでregistrationを示す行93件）。11件判断のHARNESS-L2-049現revisionは本文中で非採択と明示され、採択pairに含めない。decision row SHA、MPR registration行SHA、L2/L11 file・節SHAはJSONの`later_po_decision_proximity_assessment`に記録する。保留・不採択・対象外は採択pairに含めない。
+
+| 旧identity | 近接する採択pair | 近接範囲と限界 |
+|---|---|---|
+| FR-L1-40 | HELIXSECURITY-L2-031（57件）、HELIXOS-L2-104（live26） | 追加worker runtimeのproposal-only/隔離、および操作authority・実行隔離の一部境界。drive別state物理partition、skip_sub_doc機械強制、区画越境fail-closeは規定しない。 |
+| FR-L1-41 | HARNESS-L2-047（57件）、HARNESS-L2-054（11件）、HELIXOS-L2-051（57件） | specialist必要性・契約生成、契約からOS assignmentへのhandoff、task単位lane選択との接点。コード/依存/PLANからdriveを自動分類してmode routing／起動する要求は含まない。 |
+| FR-L1-42 | HELIXOS-L2-041、HELIXOS-L2-043、HELIXSECURITY-L2-033（57件） | 正本再取得を伴う継続、delegation event追跡、外部AI Worker context束縛との接点。固定Claude↔Codex provider、旧CURRENT.json package、fresh session launch、旧PLAN registry continuityの要求ではない。SECURITY-033ではdecisionが指定する別見出しの訂正L11追補も採択pairへ含め、SHAをJSONへ固定した。 |
+
+各identityには少なくとも1つの近接pairがあるため「近接identityなし」はない。上記以外の採択pairを近接としなかった理由は、FR-L1-40ではper-drive storage/skip/越境条件を要求しない、FR-L1-41ではdrive判定からrouting/起動へつなぐ自動条件を要求しない、FR-L1-42ではprovider package・fresh session・session SSoT分離の組を要求しないためである。全採択pairのidentity・registration・decision row SHAと近接判定はJSONの`screened_adopted_pair_groups`を参照。近接8 pairのL2/L11 exact pinsは同JSONの`near_pairs`に記録。
+
+このscreenは意味上近い箇所を再確認するもので、採択の範囲を拡張しない。近接を同値・完全被覆・代替・旧identityのclosureまたはsuccessor割当とは扱わない。L3承認・実装許可も生成しない。
+
 ## 重複と入力状態
 
 confirmed175 queueの3行はいずれも`not_individually_compared`、`evidence_artifacts: []`であり、full auditは「部分再導出／旧固有条件・反例・数値・出力の一部が未確認」としていた。requirements-stage配下のJSON/Markdownをsource-qualified identityで検索し、exact fixed-f6 condition auditがないことを確認した。full-audit/queue/population audit、FR-L1-06のcross-reference、FR-L1-41へのrouting参照、screen trace、NFR-15のcross-referenceは関連記録だが、当該identityの旧条件をfixed f6 L2/L11と個別比較していないため重複には数えていない。
 
-固定targetはfull auditがf6時点で`po_fixed_candidate_adopted`として記録したrevision/identityに限る。2026-09-29の57候補・11候補PO判断はdecision本文を読み、対象IDとsource-qualified identityを照合した。いずれの判断表にも本件の旧identityまたはfixed target IDはなく、3件のsource状態・後継割当・closureを変更しない。対象決定記録のfile SHA、source revision、screen結果はJSONに固定した。
+固定targetはfull auditがf6時点で`po_fixed_candidate_adopted`として記録したrevision/identityに限る。2026-09-29の57候補・11候補PO判断と2026-09-30 live26判断は、それぞれ判断本文とsource-qualified identityを照合した。3判断記録の対象表に旧identity自体はない。後発採択pairの意味近接は上記screenに個別記録し、近接からsource状態・後継割当・closureを変更しない。対象決定記録file SHA、source revision、screen結果はJSONに固定した。
 
 ## 個票
 
