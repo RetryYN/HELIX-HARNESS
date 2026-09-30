@@ -1,0 +1,223 @@
+{
+  "schema_version": "phcap07-scrum-typed-projection-condition-audit.v1",
+  "audit_id": "phcap07-scrum-typed-projection-a02-a03-a06-condition-audit-2026-09-30",
+  "basis_main_commit": "0f5050e2b25cd622640c99c5de170cca087f7d8a",
+  "authority_effect": "none",
+  "audit_mode": "read_only_static_legacy_condition_to_fixed_adopted_pair_comparison",
+  "scope": {
+    "phase": "PHCAP-07",
+    "source_asset_id": "LEGACY-ASSET-FC23AB4BB99DA8F4076A",
+    "acceptance_ids": [
+      "SCRUM-OPS-A-02",
+      "SCRUM-OPS-A-03",
+      "SCRUM-OPS-A-06"
+    ],
+    "condition_count": 3,
+    "excluded_scope": "他の旧受入条件、PHCAP-07全体の条件閉包、旧runtime/test/CLI/CIの実行、現行L10実装、受入実行、consumer closure、Stage 5完了判定。"
+  },
+  "phase_status_preserved": {
+    "inventory_ref": "docs/governance/phase-capability-inventory.json#PHCAP-07",
+    "current_status": "candidate_only",
+    "transition_assessment": "not_reimplemented_formally",
+    "authority_effect": "inventory_and_work_projection_only",
+    "new_build_allowed": false,
+    "note": "この監査はinventoryを変更せず、PHCAP-07の正式再実装・L10/oracle/CI成立を生成しない。"
+  },
+  "legacy_source": {
+    "source_revision": "legacy-generation-2026-09-14",
+    "archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L10-scrum-operation-typed-projection-acceptance.md",
+    "asset_id": "LEGACY-ASSET-FC23AB4BB99DA8F4076A",
+    "source_sha256": "b74c34732e161a7a2712360221c43f7865882029fd7bfa8dff74f1bf01ff1ea7",
+    "asset_ledger_ref": "docs/governance/legacy-asset-disposition.jsonl:2532",
+    "asset_disposition": "unresolved",
+    "implementation_status": "unknown",
+    "reuse_exclusion_class": "legacy_test_design_or_oracle",
+    "parent_requirement": {
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/scrum-operation-typed-projection.md",
+      "asset_id": "LEGACY-ASSET-99ED5CD5BF788AEEA1ED",
+      "source_sha256": "a856c4be233d11b8e9d56fbb64ec1a85143ef785316b62bbd3ffffc7ef823525",
+      "asset_ledger_ref": "docs/governance/legacy-asset-disposition.jsonl:479"
+    },
+    "legacy_test_citation": {
+      "archive_path": "archive/legacy-generation-2026-09-14/root/tests/current-location.test.ts",
+      "asset_id": "LEGACY-ASSET-5B8996C41B37799164E5",
+      "source_sha256": "80a12e9bcfc3ed4e93280af5d227e5818aa01318f0711a50af8e3151bc61a3f2",
+      "asset_ledger_ref": "docs/governance/legacy-asset-disposition.jsonl:3507",
+      "status": "declared_test_citation_only; implementation_status_unknown; not_executed"
+    }
+  },
+  "fixed_target_pair": {
+    "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "mechanism": "HELIX-HARNESS",
+    "authority_status": "adopted_fixed_l2_l11_revision",
+    "authority_decision_record": {
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "basis": "source_repository_revision=f6dad2a33e24f000b87d7f09b8d40288257e74cc; authority_effect=effective_when_this_record_is_admitted_to_main; the admitted record fixes the HARNESS L2/L11 bytes and states existing L2-001..009 routing conditions are included."
+    },
+    "l2": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "git_blob": "e09de04601039d8593768eb3f3342d3416d03b8b",
+      "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+    },
+    "l11": {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "git_blob": "f827c6bd955bbeb91deba5b7dced93e512e5da9e",
+      "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+    }
+  },
+  "overlap_check": {
+    "origin_main": "0f5050e2b25cd622640c99c5de170cca087f7d8a",
+    "local_integration_branch": "codex/stage5-local-integration",
+    "local_integration_commit": "275b5145a763e0a805d317657ab5e28d41968c61",
+    "preexisting_individual_condition_audit_overlap": [],
+    "preexisting_related_audit": {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-scrum-typed-projection-acceptance-three-condition-l2l11-route-audit-after-2392-2026-09-30.json",
+      "integration_path": "/tmp/helix-stage5-local-integration/docs/governance/audits/requirements-stage/legacy-candidate-scrum-typed-projection-acceptance-three-condition-l2l11-route-audit-after-2392-2026-09-30.json",
+      "scope_difference": "別source pathのcandidate acceptance内のLEGACY-CAND-LINE-004267/SCRUM-OPS-AC-02、LEGACY-CAND-LINE-004271/SCRUM-OPS-AC-06、LEGACY-CAND-LINE-003115/U-MSPF-002を対象とする。今回のL10 test-design asset、SCRUM-OPS-A-02/A-03/A-06とはsource row identityが異なる。関連するScrum Reverse/traceの比較材料としてのみ参照した。"
+    },
+    "pull_request_search": {
+      "queries": [
+        "L10-scrum-operation-typed-projection-acceptance",
+        "SCRUM-OPS-A-02"
+      ],
+      "individual_condition_audit_pr_found": false,
+      "related_historical_prs": [
+        {
+          "number": 1762,
+          "state": "CLOSED",
+          "title": "feat(scrum): project canonical operation declarations"
+        },
+        {
+          "number": 1752,
+          "state": "MERGED",
+          "title": "docs(governance): plan Scrum operation typed projection"
+        },
+        {
+          "number": 1766,
+          "state": "MERGED",
+          "title": "feat(scrum): project canonical operation declarations"
+        }
+      ],
+      "interpretation": "検索で得た過去PRはruntime/plan名のPRであり、今回の固定HARNESS L2/L11への個別条件監査PRではない。archive内artifactのimplementation_status unknownを上書きしない。"
+    }
+  },
+  "conditions": [
+    {
+      "acceptance_id": "SCRUM-OPS-A-02",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L10-scrum-operation-typed-projection-acceptance.md",
+        "line": 42,
+        "line_sha256": "e8d295fc0dde1c0c0bac22e654278a31d0a7f43772d1df9af70d332a39d69a1f",
+        "text": "| `SCRUM-OPS-A-02` | estimation／velocity | `SCRUM-OPS-R-02`の見積りと実測が分離される |"
+      },
+      "parent_requirement_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/scrum-operation-typed-projection.md",
+        "line": 32,
+        "line_sha256": "8ace2cbbbd0cbd093ee20aaaae661f197da001c70a073a53432dc962c2ae4818",
+        "requirement_id": "SCRUM-OPS-R-02",
+        "text": "| `SCRUM-OPS-R-02` | estimation／velocity | 見積りと実測velocityを分離して計測する |"
+      },
+      "condition_comparison_status": "unknown",
+      "current_requirement_refs": [],
+      "related_comparison_only_refs": [
+        {
+          "id": "HARNESS-L2-002",
+          "l2": "docs/helix-harness/L2-requirements/product-requirements.md:53,100",
+          "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:22,34-35",
+          "reason": "開発方式としてのScrumと利用記録からの改善を扱うが、見積り値と実測velocityの分離・計測は定めない。"
+        }
+      ],
+      "comparison": "固定pairはScrumの方式選択・L3後slice化・Backflowを規定する。これらは見積りと実測velocityの別型投影条件を直接扱わないため、Scrumという語の一致を条件coverageとしない。",
+      "residual": "見積りと実測のtyped field/schema、対象期間・集計定義、実測値のsource/event、欠損・再計算時の扱い、利用consumer、およびそのoracleは固定HARNESS L2/L11から特定されない。",
+      "consumer_oracle_status": "legacy_test_design cites tests/current-location.test.ts for operation declaration and pair metadata tests; no condition-specific current consumer/oracle identified; archive asset/test implementation status remains unknown.",
+      "coverage_claim": false,
+      "formal_successor_assigned": false,
+      "authority_effect": "none"
+    },
+    {
+      "acceptance_id": "SCRUM-OPS-A-03",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L10-scrum-operation-typed-projection-acceptance.md",
+        "line": 43,
+        "line_sha256": "730135bfa3225f906e22c8cb433f1f69d583f1f0b2279269535d7025ad1cb722",
+        "text": "| `SCRUM-OPS-A-03` | DoR／DoD | `SCRUM-OPS-R-03`の着手・完成gateがtypedである |"
+      },
+      "parent_requirement_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/scrum-operation-typed-projection.md",
+        "line": 33,
+        "line_sha256": "31477e6d3e369c2e03d1371d8722189872ea8e2df666d9b373c37816f411fd50",
+        "requirement_id": "SCRUM-OPS-R-03",
+        "text": "| `SCRUM-OPS-R-03` | DoR／DoD | 着手条件と完成条件をtyped gateへ束縛する |"
+      },
+      "condition_comparison_status": "partial",
+      "current_requirement_refs": [
+        {
+          "id": "HARNESS-L2-003",
+          "l2": "docs/helix-harness/L2-requirements/product-requirements.md:54",
+          "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:23,41-55",
+          "basis": "工程の開始・凍結・差戻し・再開・完了条件、未合意/未検証の進行拒否、各gateに対応する受入条件を保持する。"
+        }
+      ],
+      "related_comparison_only_refs": [
+        {
+          "id": "HARNESS-L2-002",
+          "l2": "docs/helix-harness/L2-requirements/product-requirements.md:53,100-103",
+          "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:22,34-38",
+          "reason": "Scrumを開発方式として扱い、L1-L3共通進行・要件承認・方式条件を維持するが、DoR/DoDのtyped schemaそのものではない。"
+        }
+      ],
+      "comparison": "工程gateの必要性と未成立状態での進行拒否はHARNESS-L2-003/L11に保持されるため部分的な意味重複がある。旧条件のDoR/DoDをtyped Scrum gateへ束縛する具体化までは読み取れない。",
+      "residual": "DoR/DoDのtyped field集合、gate owner、開始/完成の判定入力、例外・waiver、receiptと変更後再評価、各Scrum operation consumerへの投影先は固定pairに定義されない。",
+      "consumer_oracle_status": "fixed L11 contains general process-gate scenarios, but no exact DoR/DoD projection consumer or condition-specific oracle; archive test citation is not execution evidence.",
+      "coverage_claim": false,
+      "formal_successor_assigned": false,
+      "authority_effect": "none"
+    },
+    {
+      "acceptance_id": "SCRUM-OPS-A-06",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L10-scrum-operation-typed-projection-acceptance.md",
+        "line": 46,
+        "line_sha256": "446bae246ef09108b1ad68dd956b9f5312106c9cace484fd7b66e8e5a619b0a4",
+        "text": "| `SCRUM-OPS-A-06` | retrospective | `SCRUM-OPS-R-06`がRecovery／Reverseへ接続する |"
+      },
+      "parent_requirement_source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/scrum-operation-typed-projection.md",
+        "line": 36,
+        "line_sha256": "f1e76b4201c307a283684ccccd467af2e6d9e0e4d08c1f90d88e656b985a1eb6",
+        "requirement_id": "SCRUM-OPS-R-06",
+        "text": "| `SCRUM-OPS-R-06` | retrospective | 再発所見をRecovery／Reverseへ還流する |"
+      },
+      "condition_comparison_status": "partial",
+      "current_requirement_refs": [
+        {
+          "id": "HARNESS-L2-002/003",
+          "l2": "docs/helix-harness/L2-requirements/product-requirements.md:105,110-111",
+          "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:39-40,54-55",
+          "basis": "Scrum checkpointからSR0-SR4、findingのsingle route、再発findingやScrum Reverse checkpointからReverse ticketを導く条件とnegative casesを持つ。"
+        }
+      ],
+      "related_comparison_only_refs": [
+        {
+          "id": "HARNESS-L2-003/004",
+          "l2": "docs/helix-harness/L2-requirements/product-requirements.md:110-111",
+          "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:54-55",
+          "reason": "Scoped Reverseと、trace不明・旧資産・再発finding時のfull Reverseを回復経路として保持する。旧retrospective entityからのprojection receiptとは別契約。"
+        }
+      ],
+      "comparison": "Recovery/Reverseへfindingをつなぐ意味はScrum Reverse/checkpoint、再発finding時のReverse ticketとして部分的に重なる。旧retrospective eventの投影や旧L12 identityは現行L2/L11へそのまま移されていない。",
+      "residual": "retrospective event/result schema、再発finding identityと集約規則、Recovery/Reverse ticketへのtyped relation、層ごとのreceipt/consumer、retro結果から通常要求へBackflowする条件はこの固定pairで特定されない。",
+      "consumer_oracle_status": "fixed L11 has checkpoint/Reverse scenarios but no dedicated retrospective projection consumer/oracle; archived tests are unexecuted and implementation status is unknown.",
+      "coverage_claim": false,
+      "formal_successor_assigned": false,
+      "authority_effect": "none"
+    }
+  ],
+  "limitations": [
+    "partial/unknownはこの3条件を固定HARNESS L2/L11と比べた範囲内の評価であり、個別採択・formal successor・全source coverageではない。",
+    "archiveのL3/L10/L12 layer番号と現行L1-L12 pairを同一視しない。旧test-designは現行L11へcopyせず、新しいL10 artifact/oracleも作らない。",
+    "旧asset ledgerのimplementation_status unknownを維持し、archive test、runtime、CLI、CIを実行していない。",
+    "全体および全条件のauthority_effectはnone。PHCAP-07のnot_reimplemented_formally、新世代CI未構築、受入未実行を維持する。"
+  ]
+}
