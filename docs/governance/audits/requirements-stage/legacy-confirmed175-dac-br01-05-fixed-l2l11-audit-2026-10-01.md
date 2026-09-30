@@ -2,14 +2,14 @@
 
 ## 目的と境界
 
-基準main `105b9221f4de481ba59945be6df5cdd21f4358a3`で、旧Document Authority Census利用者要求5件を旧L1 source/L12利用認識/L3契約/L10受入条件から固定f6 L2/L11へ照合した静的個票。旧sourceはL3-PO-1381-001で確認済みだが、本監査は採択状態・successor・実装/受入・closureを生成しない。旧CLI/runtime/CI/test不実行。
+基準main `afe2ee8106650ebe2361d50964135e3724a5d1cb`で、旧Document Authority Census利用者要求5件を旧L1 source/L12利用認識/L3契約/L10受入条件から固定f6 L2/L11へ照合した静的個票。旧sourceはL3-PO-1381-001で確認済みだが、本監査は採択状態・successor・実装/受入・closureを生成しない。旧CLI/runtime/CI/test不実行。
 
 ## 選定と重複確認
 
 - QueueではDAC-BR-001..005すべて `not_individually_compared`、evidenceは空（queue hashはa3d9f7e...時点から不変）。
-- 同一source上の連番5件を選択。基準main 105b9221...と154 worktree上のaudit JSON/MDをsource-qualified identityと選択identityで再走査し、既存個票との一致は0件。#2415（v13-development-style-11-condition）、#2416（FR-L1-46..50）、#2417（v13-forward-reverse-391..396）のmerge後JSON/MDにもDAC-BR-001..005のsource-qualified identityおよび選択IDの一致なし。
-- 兄弟群の `confirmed175-dac-fr004-008-condition-crosswalk` はDAC-FR-004..008だけを選び、DAC-BR-004は候補atomに含めないと明記。DAC-FR-008 handoff receiptもBR-004をcontext-onlyとしてsource atom範囲から除外する。
-- 旧queue/full-audit/REG06はpopulation inventoryであり個票監査ではない。最新mainで確認したsource-qualified個票重複は0件。
+- 同一source上の連番5件を選択。初回は基準main 105b9221...と154 worktree上のaudit JSON/MDをsource-qualified identityと選択identityで走査。rebase後は基準main afe2ee810...のrequirements-stage全JSON/MDを再走査し、#2419追加監査JSON/MDも確認した。DAC-BR-001..005の完全なsource-qualified tuple一致はqueue/full-audit/REG06のpopulation記録だけで、個票条件比較の重複はない。#2419追加監査にも一致なし。
+- sibling crosswalk `confirmed175-dac-fr004-008-condition-crosswalk` はDAC-FR-004..008だけを選び、DAC-BR-004を候補atomに含めない。追加資料でのBR-002/003参照はDAC-FR-006 consumer文脈、BR-004参照はDAC-FR-008 handoff・follow-up・PO packetのsource atom外context-only記載である。
+- 旧queue/full-audit/REG06はpopulation inventoryであり個票監査ではない。最新main `afe2ee8106650ebe2361d50964135e3724a5d1cb`で確認したsource-qualified個票重複は0件。
 
 ## 個票
 
@@ -275,7 +275,7 @@ Source-qualified identity: `helix/L1-requirements/document-authority-census-requ
 
 ## current-input pins
 
-基準revision: `105b9221f4de481ba59945be6df5cdd21f4358a3`。以下のcurrent-input SHAはこのrevisionで照合し、全15 artifactは前回基準a3d9f7e...からbytes不変。旧source/consumer、f6 target、後発decisionの固定pinは本文およびJSONの旧revision/line/file SHAを維持する。
+基準revision: `afe2ee8106650ebe2361d50964135e3724a5d1cb`。以下のcurrent-input SHAはこのrevisionで照合し、全15 artifactは前回基準a3d9f7e...からbytes不変。旧source/consumer、f6 target、後発decisionの固定pinは本文およびJSONの旧revision/line/file SHAを維持する。
 
 - `docs/governance/audits/requirements-stage/confirmed175-condition-comparison-queue-2026-09-30.json`: `2dbfb06c11ac42a940c0d6b5c188a76e685ea4c00e4d9af10b432198ad17b353`
 - `docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json`: `ca08a81d97e39e94aa02151c7cc4e48f621f9d30baccc1cf9b715331fed38f45`

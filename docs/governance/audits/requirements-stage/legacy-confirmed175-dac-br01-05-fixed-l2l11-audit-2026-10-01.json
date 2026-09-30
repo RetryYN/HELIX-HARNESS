@@ -3,7 +3,7 @@
   "audit_id": "confirmed175-dac-br01-05-fixed-l2l11-audit-2026-10-01",
   "created_at": "2026-10-01",
   "audit_mode": "read_only_source_to_fixed_l2_l11_condition_comparison",
-  "created_against_revision": "105b9221f4de481ba59945be6df5cdd21f4358a3",
+  "created_against_revision": "afe2ee8106650ebe2361d50964135e3724a5d1cb",
   "authority_effect": "none",
   "scope": {
     "population": "confirmed175",
@@ -21,9 +21,9 @@
   },
   "selection_and_duplicate_scan": {
     "queue": "docs/governance/audits/requirements-stage/confirmed175-condition-comparison-queue-2026-09-30.json",
-    "queue_result": "基準main 105b9221f4de481ba59945be6df5cdd21f4358a3でDAC-BR-001..005はすべてnot_individually_compared、evidence_artifacts空。queue hashはa3d9f7e...時点から不変。",
-    "scan_scope": "基準main 105b9221f4de481ba59945be6df5cdd21f4358a3の全requirements-stage auditと、154 worktreeに存在したactive/in-progress audit artifacts（661 JSON artifacts; source-qualified identity、selected_identity(s)、scope identityを検査）。既存same-name DAC-FR004..008 crosswalk、DAC-FR008 handoff receiptも確認。さらに#2415（v13-development-style-11-condition）、#2416（FR-L1-46..50）、#2417（v13-forward-reverse-391..396）のmerge後追加JSON/MD各2ファイルをselected source-qualified identityで検索。",
-    "result": "選択source-qualified identitiesとの既存個票一致0。最新main上の#2415/#2416/#2417各監査JSON/MDにもDAC-BR-001..005のsource-qualified identityおよび選択IDの一致なし。DAC-FR004..008 crosswalkはFR rowsのみでDAC-BR-004を候補入力に含めないと明記。DAC-FR008 receiptもBR-004をcontext-onlyとしてsource atom scopeから除外。BR-IDを文脈上参照する別資料はあるが、完全なsource-qualified tupleの一致を確認した既存資料はqueue/full-audit/REG06のpopulation artifactsのみで、個票条件比較ではない。",
+    "queue_result": "基準main afe2ee8106650ebe2361d50964135e3724a5d1cbでDAC-BR-001..005はすべてnot_individually_compared、evidence_artifacts空。queue hashはa3d9f7e...時点から不変。",
+    "scan_scope": "初回走査は旧基準main 105b9221f4de481ba59945be6df5cdd21f4358a3の全requirements-stage auditと154 worktree上のactive/in-progress audit artifacts（661 JSON artifacts; source-qualified identity、selected_identity(s)、scope identityを検査）。同一source上の既存DAC-FR004..008 crosswalkおよびDAC-FR008 handoff receiptも確認。rebase後は最新基準main afe2ee8106650ebe2361d50964135e3724a5d1cbのrequirements-stage全JSON/MDを再走査し、#2419追加監査JSON/MDも確認した。 BR-IDだけの参照も抽出し、DAC-FR-006 decision frameのBR-002/003 context、DAC-FR-008 handoffのBR-004 context-only記載と、follow-up/PO packetの同context記載を確認した。",
+    "result": "選択source-qualified identitiesとの既存個票一致0。基準mainの全requirements-stage JSON/MDと、#2419追加監査JSON/MDを照合。完全なsource-qualified tupleの一致はqueue/full-audit/REG06 population artifactsのみで、個票条件比較ではない。ID単体の追加参照はDAC-FR-006 decision frameのBR-002/003 context、およびDAC-FR-008 handoff・follow-up・PO packetのBR-004 context-onlyに限られ、選択個票の重複ではない。#2419追加監査にtuple/ID一致なし。",
     "cohort": "同一source内の連続BR-001..005。five unique source-qualified IDs。",
     "initial_candidate_rejected": "前群のFR36..44及びscreen GD/HM候補群を使い回さず、source-qualified identityと監査選択IDで全worktreeを再走査。"
   },
@@ -1321,7 +1321,7 @@
     "No old workflow, CLI, CI, test, or runtime was executed."
   ],
   "current_input_pins": {
-    "revision": "105b9221f4de481ba59945be6df5cdd21f4358a3",
+    "revision": "afe2ee8106650ebe2361d50964135e3724a5d1cb",
     "artifacts": [
       {
         "path": "docs/governance/audits/requirements-stage/confirmed175-condition-comparison-queue-2026-09-30.json",
