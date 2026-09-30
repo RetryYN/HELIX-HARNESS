@@ -623,6 +623,184 @@
           }
         ]
       }
+    },
+    "additional_L11_condition_detail_pins": {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_L2_005_and_L2_022_lines": [
+        {
+          "path": "f6dad2a33e24f000b87d7f09b8d40288257e74cc:docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line": 46,
+          "line_sha256": "990515c74d019d9a1d3f2d2be338077102214181a7f5aa28cb04051ccb4a819b",
+          "text": "- HARNESS-L2-005：別revisionの証拠やCI成功のみを提示しても利用者受入成立と判定しない。実行基盤を変えても必要な証拠条件を維持する。"
+        },
+        {
+          "path": "f6dad2a33e24f000b87d7f09b8d40288257e74cc:docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line": 47,
+          "line_sha256": "f2f232e40aa147d32f06bc4b0069899d6ba3a28e4130a5420d8ef97bb98a018b",
+          "text": "- HARNESS-L2-005：required oracleを欠くprofile、unknownをN/Aへ変えたprofile、expected failureと差戻し先を持たないprofileを不成立とする。providerを交換してもrequirement・pair・oracle・evidence identityが維持されることを確認する。"
+        },
+        {
+          "path": "f6dad2a33e24f000b87d7f09b8d40288257e74cc:docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line": 48,
+          "line_sha256": "fbecd98321457e4eb213b6b6cd950209f4b47c1bf6c14ed5f0478218428e0eec",
+          "text": "- HARNESS-L2-005：変更の内容・layer・pair・変更種別・riskが異なる変更を与え、それぞれに必要な検証だけが導出され、CIがその検証から組み立てられることを確認する。固定の段数をすべて回す構成、導出された検証を省いた構成、導出の根拠を説明できない構成を不成立とする。"
+        },
+        {
+          "path": "f6dad2a33e24f000b87d7f09b8d40288257e74cc:docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line": 49,
+          "line_sha256": "6e5959fd8ba90726eb9d02af383cfcd6f81bcb1812b4ebebb54e42bb8eaee7be",
+          "text": "- HARNESS-L2-005：Forward 小・中・大のticketを与え、PRの前に回すCIが、原子CI、境界の証明（触ったコネクタの契約を含む）、システムの証明と、ticketとの関係から導かれることを確認する。危険度の高い変更（認証、DBのmigration、security、release）は、小さな変更でも上の証明を早めに求めることを確認する。"
+        },
+        {
+          "path": "f6dad2a33e24f000b87d7f09b8d40288257e74cc:docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line": 50,
+          "line_sha256": "559d5c4b2f5319dd3f045595d80c89bceacc365ba59915e35fd13c33f0228084",
+          "text": "- HARNESS-L2-005：Forward 小のscopeの中の変更でも、密結合によって別の接続・構成体の振る舞いに影響する変更を与え、影響する接続・構成体の検査がそのPRで広げられ、成立するまで合流が止まり、結合の解消はDesign-refactorとして別に発行されることを確認する。Design-refactorの発行と、省いた検査の後続ticketへの持ち越しだけで合流させる構成を不成立とする。"
+        },
+        {
+          "path": "f6dad2a33e24f000b87d7f09b8d40288257e74cc:docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line": 51,
+          "line_sha256": "a03f9671a1207ff328ee69c4fd7cbac988f8282c32740eca51c028a6a216a2db",
+          "text": "- HARNESS-L2-005：ticketの範囲の外を変更した変更を与え、mainへの合流が止まることを確認する。省いた検査の記録を欠く構成、合流先のticketで回収されない検査を残したままRelease Portを通す構成を不成立とする。"
+        },
+        {
+          "path": "f6dad2a33e24f000b87d7f09b8d40288257e74cc:docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line": 52,
+          "line_sha256": "906816f85188e86dd237752cb3f103bc716babc6122a8bd2e8c6bd20e04c0d98",
+          "text": "- HARNESS-L2-005：検査をすり抜けて合流の後に見つかった失敗を与え、失敗が閉じたticketへ証拠付きのrelationで接続され、元の完了の記録が書き換えられず、HELIX-LABOが原子CIやコネクタの契約が足りているかを評価して返すことを確認する。時間的な近さや同じpathだけで原因のticketを断定する構成を不成立とする（旧HXB-FR-007、`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:319`）。"
+        },
+        {
+          "path": "f6dad2a33e24f000b87d7f09b8d40288257e74cc:docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line": 298,
+          "line_sha256": "b3ec231018db37cc24352f621ca5dfd521392301a9285649c99ed5f027b9aa14",
+          "text": "#### HARNESS-L2-022（コア検証と受入契約）— `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004` / version_target 1.0"
+        },
+        {
+          "path": "f6dad2a33e24f000b87d7f09b8d40288257e74cc:docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line": 299,
+          "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": ""
+        },
+        {
+          "path": "f6dad2a33e24f000b87d7f09b8d40288257e74cc:docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line": 300,
+          "line_sha256": "e914ec70b4c76139409639028acc8efa6be9d168e2dd0afca0e6e864e7ab850c",
+          "text": "**正常**: 対象artifact revisionに対しL8/L9 oracleでIntegrated、L10 system oracleでVerified、L11の上記能力別内容oracleと、当該revision/scopeに対する利用者受入およびその記録をそろえてAcceptedへ各証拠を段階的に照合する。oracle成功だけから利用者受入記録を生成しない。設計・実装・refactorの各受入結果に対して、そのscope内で何を確認したかを引き継ぐ。外部artifactも同じrevision/paired design/requirements/oracle/result/evidence条件で段階ごとに評価する。"
+        },
+        {
+          "path": "f6dad2a33e24f000b87d7f09b8d40288257e74cc:docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line": 301,
+          "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": ""
+        },
+        {
+          "path": "f6dad2a33e24f000b87d7f09b8d40288257e74cc:docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line": 302,
+          "line_sha256": "2ed19ff683fae1d4345aa21af1b1b7781f375d108817b0bd29b1c716ade000d9",
+          "text": "**誤りを含む例**: 下位stage passだけでsystem固有義務の差分を確認せずVerified、L10 passだけでAccepted、またはtrace/evidenceの存在だけで品質をAcceptedとしたら不合格。L11内容oracleが成功しても利用者受入記録が欠ける/対象revisionが違う例はAcceptedにしない。L11内容oracleが失敗すれば、Provisional/Verified等、実際に満たした段階に留める。意味変更の必要なfailureはコードで合わせず、HARNESS-L2-003/004のBackflow先へ戻す。"
+        },
+        {
+          "path": "f6dad2a33e24f000b87d7f09b8d40288257e74cc:docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line": 303,
+          "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": ""
+        },
+        {
+          "path": "f6dad2a33e24f000b87d7f09b8d40288257e74cc:docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line": 304,
+          "line_sha256": "5ecfa1a0c1f4e72d793bffd09c52ecc6c9317cf05f004b9625244c0016138d7f",
+          "text": "**未見例**: 未公開の同scope artifactまたは外部持込み成果物で、同じstage contractとoracleを適用し、結果内容・証拠・revision対応が一致するか確認する。oracle不在/失効/適用scope不一致は上位stateを生成せず未評価として残す。CI green、artifact存在、下位単体合格は上位受入の代替でない。受入契約は判定の段階と証拠を持ち、HARNESS/INTELLIGENCEがOSのticket運転・検収を担うことはない。"
+        }
+      ],
+      "current_revision": "50a99ae13a46cf72fd333146ae8eb34c873284ab",
+      "current_L2_005_and_L2_022_lines": [
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line": 46,
+          "line_sha256": "990515c74d019d9a1d3f2d2be338077102214181a7f5aa28cb04051ccb4a819b",
+          "text": "- HARNESS-L2-005：別revisionの証拠やCI成功のみを提示しても利用者受入成立と判定しない。実行基盤を変えても必要な証拠条件を維持する。"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line": 47,
+          "line_sha256": "f2f232e40aa147d32f06bc4b0069899d6ba3a28e4130a5420d8ef97bb98a018b",
+          "text": "- HARNESS-L2-005：required oracleを欠くprofile、unknownをN/Aへ変えたprofile、expected failureと差戻し先を持たないprofileを不成立とする。providerを交換してもrequirement・pair・oracle・evidence identityが維持されることを確認する。"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line": 48,
+          "line_sha256": "fbecd98321457e4eb213b6b6cd950209f4b47c1bf6c14ed5f0478218428e0eec",
+          "text": "- HARNESS-L2-005：変更の内容・layer・pair・変更種別・riskが異なる変更を与え、それぞれに必要な検証だけが導出され、CIがその検証から組み立てられることを確認する。固定の段数をすべて回す構成、導出された検証を省いた構成、導出の根拠を説明できない構成を不成立とする。"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line": 49,
+          "line_sha256": "6e5959fd8ba90726eb9d02af383cfcd6f81bcb1812b4ebebb54e42bb8eaee7be",
+          "text": "- HARNESS-L2-005：Forward 小・中・大のticketを与え、PRの前に回すCIが、原子CI、境界の証明（触ったコネクタの契約を含む）、システムの証明と、ticketとの関係から導かれることを確認する。危険度の高い変更（認証、DBのmigration、security、release）は、小さな変更でも上の証明を早めに求めることを確認する。"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line": 50,
+          "line_sha256": "559d5c4b2f5319dd3f045595d80c89bceacc365ba59915e35fd13c33f0228084",
+          "text": "- HARNESS-L2-005：Forward 小のscopeの中の変更でも、密結合によって別の接続・構成体の振る舞いに影響する変更を与え、影響する接続・構成体の検査がそのPRで広げられ、成立するまで合流が止まり、結合の解消はDesign-refactorとして別に発行されることを確認する。Design-refactorの発行と、省いた検査の後続ticketへの持ち越しだけで合流させる構成を不成立とする。"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line": 51,
+          "line_sha256": "a03f9671a1207ff328ee69c4fd7cbac988f8282c32740eca51c028a6a216a2db",
+          "text": "- HARNESS-L2-005：ticketの範囲の外を変更した変更を与え、mainへの合流が止まることを確認する。省いた検査の記録を欠く構成、合流先のticketで回収されない検査を残したままRelease Portを通す構成を不成立とする。"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line": 52,
+          "line_sha256": "906816f85188e86dd237752cb3f103bc716babc6122a8bd2e8c6bd20e04c0d98",
+          "text": "- HARNESS-L2-005：検査をすり抜けて合流の後に見つかった失敗を与え、失敗が閉じたticketへ証拠付きのrelationで接続され、元の完了の記録が書き換えられず、HELIX-LABOが原子CIやコネクタの契約が足りているかを評価して返すことを確認する。時間的な近さや同じpathだけで原因のticketを断定する構成を不成立とする（旧HXB-FR-007、`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:319`）。"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line": 298,
+          "line_sha256": "b3ec231018db37cc24352f621ca5dfd521392301a9285649c99ed5f027b9aa14",
+          "text": "#### HARNESS-L2-022（コア検証と受入契約）— `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004` / version_target 1.0"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line": 299,
+          "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": ""
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line": 300,
+          "line_sha256": "e914ec70b4c76139409639028acc8efa6be9d168e2dd0afca0e6e864e7ab850c",
+          "text": "**正常**: 対象artifact revisionに対しL8/L9 oracleでIntegrated、L10 system oracleでVerified、L11の上記能力別内容oracleと、当該revision/scopeに対する利用者受入およびその記録をそろえてAcceptedへ各証拠を段階的に照合する。oracle成功だけから利用者受入記録を生成しない。設計・実装・refactorの各受入結果に対して、そのscope内で何を確認したかを引き継ぐ。外部artifactも同じrevision/paired design/requirements/oracle/result/evidence条件で段階ごとに評価する。"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line": 301,
+          "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": ""
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line": 302,
+          "line_sha256": "2ed19ff683fae1d4345aa21af1b1b7781f375d108817b0bd29b1c716ade000d9",
+          "text": "**誤りを含む例**: 下位stage passだけでsystem固有義務の差分を確認せずVerified、L10 passだけでAccepted、またはtrace/evidenceの存在だけで品質をAcceptedとしたら不合格。L11内容oracleが成功しても利用者受入記録が欠ける/対象revisionが違う例はAcceptedにしない。L11内容oracleが失敗すれば、Provisional/Verified等、実際に満たした段階に留める。意味変更の必要なfailureはコードで合わせず、HARNESS-L2-003/004のBackflow先へ戻す。"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line": 303,
+          "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": ""
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "line": 304,
+          "line_sha256": "5ecfa1a0c1f4e72d793bffd09c52ecc6c9317cf05f004b9625244c0016138d7f",
+          "text": "**未見例**: 未公開の同scope artifactまたは外部持込み成果物で、同じstage contractとoracleを適用し、結果内容・証拠・revision対応が一致するか確認する。oracle不在/失効/適用scope不一致は上位stateを生成せず未評価として残す。CI green、artifact存在、下位単体合格は上位受入の代替でない。受入契約は判定の段階と証拠を持ち、HARNESS/INTELLIGENCEがOSのticket運転・検収を担うことはない。"
+        }
+      ],
+      "comparison_note": "These exact f6/current L11 details require selected oracle/evidence, provider-independent identity, and revision-bound external artifact evaluation, but do not specify a distinct runtime/model verifier for an external claim verified by the worker."
     }
   },
   "current_l2_l11_pins": {
@@ -739,6 +917,32 @@
         "line_sha256": "328eac9e9a437f8a22c8a5c39296680d2db0cf71c5254fddba14fe064572d971",
         "text": "| HR-NFR-P3-04 | HNFR-P3 / HBR-P3 | AI による実装作業は test-first を既定にし、Red evidence、expected failure、acceptance oracle、Green evidence、refactor safety を記録する。test-first 不適用は理由と代替 oracle を持たなければならない | HAC-N3-04a / HAC-N3-04b |"
       }
+    ],
+    "selected_acceptance_condition_lines": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+        "line": 233,
+        "line_sha256": "e7436c5bced37920f1972353fabd6a3304bd860b1083d0771252f2daee68b93d",
+        "text": "| HAC-P3-01a | design doc だけがある | pair-freeze を実行 | pair test-design 欠落として fail-close |"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+        "line": 234,
+        "line_sha256": "ecb4b0c1777bb9b7c71afe18ee306229a4d2882831555993b2a3949a79b88ab7",
+        "text": "| HAC-P3-01b | coverage 数値だけが pass | review/gate を実行 | substance / trace / acceptance evidence 欠落なら完了扱いにしない |"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+        "line": 235,
+        "line_sha256": "f03f4f60480fe29c4acc12f8a96039a2d0c8e6c8504f5f066b169b71b7907440",
+        "text": "| HAC-P3-02a | 外部事実を含む claim がある | substance gate を実行 | URL + 公開日/版 + checked span が無ければ unverified として reject |"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+        "line": 236,
+        "line_sha256": "3340e8ac71f362260b1c81afe5cd34150978661e687ac5270dd32f2239551601",
+        "text": "| HAC-P3-02b | worker 自身が外部検証も行った | review を実行 | verifier が別 runtime/model でなければ judgement evidence に数えない |"
+      }
     ]
   },
   "condition_atoms": [
@@ -779,6 +983,18 @@
         "HARNESS-L2-005"
       ],
       "comparison": "HARNESS-L2-005 names applicable oracle, expected failure, evidence and expiry/return scope; f6 L11-005 addresses selected verification contracts, omitted tests and recovery. Neither sets a universal held-out source-selection/independence, measurement, tolerance, or external fact claim oracle. The old source gives no rule making external grounding mandatory for every task; retain applicability and oracle selection as conditional downstream design questions."
+    },
+    {
+      "atom": "external_claim_independent_verifier_consumer_condition",
+      "source_text": "HR-FR-P3-02 -> HAC-P3-02b: worker 自身が外部検証も行った場合、verifier が別 runtime/model でなければ judgement evidence に数えない",
+      "consumer_test_design_source_text": "HAT-P3-02: 外部 claim は source attribution + 別 verifier を要求する",
+      "fixed_targets": [
+        "HARNESS-L2-005"
+      ],
+      "comparison": "The pinned f6/current HARNESS-L2-005 L11 details select required oracles, evidence and provider-invariant identity; the related HARNESS-L11-022 acceptance section requires revision/pair/oracle/result/evidence alignment for external artifacts. Neither states that an external-fact verifier must use a runtime/model distinct from the worker when that worker performed the external verification. Generic independent-review or provider-parity conditions do not supply this trigger-specific condition. It remains a residual of the HBR-P3 L3 consumer; no runtime implementation or execution result is inferred.",
+      "related_acceptance_context_only": [
+        "HARNESS-L2-022/L11-022"
+      ]
     }
   ],
   "later_adopted_proximity_screen": {
@@ -2386,7 +2602,11 @@
     "later_near_mpr_and_l2_l11_pins_present": true,
     "formal_successor_assignments": 0,
     "closure_claims": 0,
-    "old_cli_workflow_hook_adapter_runtime_test_ci_executed": false
+    "old_cli_workflow_hook_adapter_runtime_test_ci_executed": false,
+    "old_HAC_P3_acceptance_rows_pinned": true,
+    "old_HAT_P3_rows_pinned": true,
+    "fixed_current_L11_external_verifier_detail_pinned": true,
+    "HAC_P3_02b_distinct_runtime_model_verifier_gap_explicit": true
   },
   "non_claims": [
     "This comparison does not edit or retire the confirmed HBR-P3 source identity.",
@@ -2395,5 +2615,23 @@
     "PO adoption rows and version_target remain separate axes; the L2/L11 candidate sections may retain predecision status wording, and MPR registered_proposal / authority_effect:none does not create requirement authority.",
     "No implementation, CI, test, command, runtime, production safety, user acceptance, or closure result is asserted.",
     "Held-out external-truth applicability, oracle and tolerance remain conditional / unresolved where target-specific design requires them; no universal applicability is invented."
-  ]
+  ],
+  "old_harness_acceptance_test_design": {
+    "archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+    "file_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+    "selected_HAT_rows": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+        "line": 109,
+        "line_sha256": "d532029f27b4b51df114ca8f89d709a7910920479c8fd1cebe97820e1a099411",
+        "text": "| HAT-P3-01 | HR-FR-P3-01 | HAC-P3-01a/b | pair 欠落と coverage-only 完了主張を拒否する | pair-freeze / review-evidence tests |"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+        "line": 110,
+        "line_sha256": "bf89874a8057ffac091f28244e94369bf5bcd1e441d1a71fadb0a017008b6400",
+        "text": "| HAT-P3-02 | HR-FR-P3-02 | HAC-P3-02a/b | 外部 claim は source attribution + 別 verifier を要求する | external-grounding tests |"
+      }
+    ]
+  }
 }

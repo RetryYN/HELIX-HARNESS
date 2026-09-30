@@ -6,7 +6,7 @@
 
 旧sourceは`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md` line 53、file SHA-256 `7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc`、line SHA-256 `b4bdd4e3b933bbea6e7d28cf0ef9f2f3b62caa6863f79362bf5c4d685a4f088b`。原文はpair closure、片肺禁止、機械/AI判定境界の強制、held-out外部真実照合を同じHBR-P3行に置き、既存FR-L1-02/03/05/21/22/25/45/50を接地先として示す。同じ行自身が専用formal FR・standalone片肺禁止・formal判定境界・held-out grounding FRの不足を明記している。
 
-旧L3 consumer `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md` の対象行もline SHA付きで固定した。主consumer HR-FR-P3-01はL3-L7全gateでpair closureとmachine/AI境界をformalizeしcoverage単独passを拒否する。HR-FR-P3-02はURL/公開日/版/引用spanを記録し外部根拠のない外部事実claimをrejectする。HR-FR-P1-04とP2-04はL2合意前freeze禁止、test/oracle-firstと独立reviewの隣接条件を置く。P9-03/05は層別baseline/gate/regressionと中間層到達の集計、HR-NFR-P3-02/04はtrace/evidence対応とtest-firstを追加する。これらはconsumer条件の証拠であり、旧test実績ではない。HNFR-P3そのものは別identityとして本監査へ混入しない。
+旧L3 consumer `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md` のHR行とHAC scenario行をline SHA付きで固定した。主consumer HR-FR-P3-01はL3-L7全gateでpair closureとmachine/AI境界をformalizeしcoverage単独passを拒否する。対応するHAC-P3-01a/bはpair test-design欠落とcoverage-only passを拒否する。HR-FR-P3-02はURL/公開日/版/引用spanを記録し外部根拠のない外部事実claimをrejectし、HAC-P3-02aはこれらが欠ければrejectする。さらにHAC-P3-02bは、Worker自身が外部検証を行った場合、別runtime/modelのverifierでなければjudgement evidenceに数えない。旧HAT `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md` のHAT-P3-01/02もpinし、P3-02をsource attribution + 別verifierとして記述する。02bのruntime/model分離はsource attribution・span/rejectだけに縮約できない独立consumer条件である。HR-FR-P1-04とP2-04はL2合意前freeze禁止、test/oracle-firstと独立reviewの隣接条件を置く。P9-03/05は層別baseline/gate/regressionと中間層到達の集計、HR-NFR-P3-02/04はtrace/evidence対応とtest-firstを追加する。これらはconsumer条件の証拠であり、旧test実績ではない。HNFR-P3そのものは別identityとして本監査へ混入しない。
 
 ## 固定f6 L2/L11照合
 
@@ -15,7 +15,7 @@
 | pair closure | HARNESS-L2-001/003/004/005、L11-001/003/004/005 | 正規pair構成、片側欠落識別、変更影響trace、risk/change別oracle・証拠、右側の実物と設計照合は接点。全対象を一括closeする単一runtime closureの意味・実行結果は示さない。 |
 | 片肺禁止 | HARNESS-L2-001/003/005、L11-001/003/005 | L11-001はL2/L11とL3/L10の混同・片側欠落を識別し、L2-003/005は未合意・未検証を進行可能としない。pairごとの実行・acceptance receiptまでは証明しない。 |
 | 機械判定とAI判定の境界 | HARNESS-L2-003/005、L11-003/005 | 適用oracle・検証義務・証拠条件、原子CIと意味を保つ変更の判定接点はある。L3-L7すべてのgateに対する機械deterministic判定とAI意味reviewの完全な分担/正式化は固定pairから導けない。 |
-| external-truth / held-out | HARNESS-L2-005、L11-005 | 対象別oracle・expected failure・証拠・有効期限・省略検査回収は具体化。外部参照の独立性、held-out選定、測定・許容差の共通基準は定義されない。外部事実claim等の適用条件がある対象で下流oracleを定める問題として残し、全ticketへ一律に拡張しない。 |
+| external-truth / held-out | HARNESS-L2-005、L11-005 | 対象別oracle・expected failure・証拠・有効期限・省略検査回収は具体化。外部参照の独立性、held-out選定、測定・許容差の共通基準は定義されない。HAC-P3-02bの「Workerが自ら外部検証した場合、別runtime/modelのverifierを要求」するtrigger-specific条件もf6/current L2-005/L11-005には明記されない。関連するL11-022もrevision/pair/oracle/result/evidenceを結ぶ条件であり、別runtime/model verifierの条件ではない。汎用review/CI parityをこれの代替とせず、外部claim検証で該当する場合の残差として保持する。全ticketへ一律に拡張しない。 |
 
 f6と監査基準HEADのHARNESS L2/L11 whole-file digestおよび選択行digestをJSONに別々に保存した。HARNESS-L2-001/003/004/005はf6のPO固定本文と監査時current本文を各々比較できる。現行文書にある後発候補・追補本文をf6固定revisionの一部とは扱っていない。
 
@@ -37,6 +37,6 @@ Decision row、対象現行L2/L11 section, MPR registration row, `registered_pro
 
 ## 結果
 
-HBR-P3の4 atomには固定f6で限定的なV-pair、trace、verification oracle/evidence条件の接点がある。旧consumerのpair closureとexternal claim evidenceは一部再導出されているが、機械/AI判定境界の全gate formalizationとheld-out external-truth基準は残る。後発の採択候補がcloseするのは各候補の明示scopeだけである。HBR-P3は`preserved_pending_rehome`を維持し、formal successor 0・closure false。要求意味の変更・retireは本記録で決めない。
+HBR-P3の4 atomには固定f6で限定的なV-pair、trace、verification oracle/evidence条件の接点がある。旧consumerのpair closureとexternal claim evidenceは一部再導出されているが、機械/AI判定境界の全gate formalization、held-out external-truth基準、およびHAC-P3-02bの「Workerが外部検証も担った場合の別runtime/model verifier」条件は残る。後発の採択候補がcloseするのは各候補の明示scopeだけである。HBR-P3は`preserved_pending_rehome`を維持し、formal successor 0・closure false。要求意味の変更・retireは本記録で決めない。
 
 静的確認はsource/consumer/fixed/current/decision/MPR line SHA、whole-file SHA、94 decision row count/adoption counts、JSON構文、`scfctl validate`、`git diff --check`に限る。実装、旧runtime/test/CI、要求stage完了を主張しない。
