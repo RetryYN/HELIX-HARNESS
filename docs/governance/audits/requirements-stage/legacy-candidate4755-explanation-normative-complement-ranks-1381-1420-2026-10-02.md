@@ -6,7 +6,7 @@
 ## 母集団・境界
 
 - #2353の4,755 source IDsへ#2356/#2360/#2363/#2366/#2367/#2368/#2369/#2381 overlayを順に適用しeffective explanation 2,965行を再構成。marker screen queueとreview slicesのunionは255行、complementは2,710行。
-- rank1380=`LEGACY-CAND-LINE-002291`、rank1381=`LEGACY-CAND-LINE-002294`、rank1420=`LEGACY-CAND-LINE-002362`。直前slice artifactはこのbaseにないため全母集団再構成で境界IDのみ確認し、先行意味監査済みとは主張しない。
+- rank1380=`LEGACY-CAND-LINE-002291`、rank1381=`LEGACY-CAND-LINE-002294`、rank1420=`LEGACY-CAND-LINE-002362`。直前ranks 1341–1380 paired auditは#2467でmainへ統合済み。merge commit `0ba1afd796b5e8142444c6002767ded1a7325d9f` のJSON／MD bytesをpaired JSONでpinし、境界IDを全母集団からも確認した。
 - 対象40行はFRS requirements 2行、HMC acceptance 29行、HMC requests 9行。各物理行のexact source/contextとsource-line/asset/routing raw recordsおよびhashはJSONに保持。
 
 ## 固定F6 / PO / authority関係
