@@ -58,7 +58,7 @@
         "status": "adopted boundary; current receipt mapping remains undecided"
       }
     ],
-    "management_registration_history": "Original MPR-RC-HELIXOS-L2-111-001 predates the 2026-09-30 adoption and remains a historical register row. This work appends correction revision -002 pointing at the exact adopted authority receipt and row64. Management state remains registered_proposal; authority_effect none.",
+    "management_registration_history": "The exact MPR-RC-HELIXOS-L2-111-001 register row remains unchanged in the preserved main prefix. The transient local -002 correction row was removed from the current register; adoption scope is read from PO decision row64 and the authority-aware condition receipt. Registration remains registered_proposal / authority_effect none; source holding remains live.",
     "receipt": "docs/governance/audits/requirement-registration/dac-fr-009-adopted-condition-coverage-receipt-2026-10-02.json",
     "conclusion": "No missing requirement-level oracle remains. Unknown receipt identities/owners/target mapping and actual issuance/green are expressly outside row64 adoption and outside this requirements-stage audit. Holding remains live; no formal successor, owner transfer, or source closure.",
     "source_holding": {
@@ -72,7 +72,18 @@
       "successor_requirement_ids": [],
       "requirement_change_authority": "explicit_human_decision_only"
     },
-    "coverage_receipt_sha256": "sha256:ece6d739d0eaa0ccad887728f3e857601519ee6ae26d38ced9c6ca201addd961"
+    "coverage_receipt_sha256": "sha256:18d00eb3ee89e0dd5c21396c66d77d2ebd57f689e9b56f88fc2c86a8b38848c9",
+    "current_authority_registration": {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "line": 636,
+      "line_sha256_lf_excluded": "sha256:8fd6f2757862c5307faa28933eebab735697a1609af81c3791f4f8a322ace39a",
+      "registration_id": "MPR-RC-HELIXOS-L2-111-001",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "registration_bytes_preserved_from_main_prefix": true,
+      "adoption_authority_ref": "docs/governance/decisions/po-decision-2026-09-30-live26.md#row-64",
+      "adoption_scope": "Exact HELIXOS-L2/L11-111 pair adopted only for abstract three-input AND; operational receipt IDs, issuers/owners, target mapping, usability, actual issuance/green remain undecided."
+    }
   },
   "three_lane_br_007": {
     "source_atom_id": "CONFIRMED-3L-BR-007",
@@ -179,59 +190,6 @@
   "appended_register_rows": [
     {
       "line": 642,
-      "registration_id": "MPR-RC-HELIXOS-L2-111-002",
-      "line_sha256_lf_excluded": "sha256:f170a7bb6f7e58e1a911c5d9299086d7a78884bb85755ae952ff0a62730774b1",
-      "registration": {
-        "registration_id": "MPR-RC-HELIXOS-L2-111-002",
-        "supersedes_registration_id": "MPR-RC-HELIXOS-L2-111-001",
-        "registration_kind": "requirement_candidate",
-        "requirement_identity": "HELIXOS-L2-111",
-        "requirement_kind": "connection",
-        "product_target": "HELIX-OS",
-        "candidate_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-111",
-        "candidate_semantic_digest": "sha256:265d5e7d1a8c06919b21691ddbf15354e51dbc204f310f07a448a7b33dc8173b",
-        "parent_concept_revision": "docs/concept/helix-concept.md@41b9d9a455df647115505e8f6e74bfd205481a8d sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（固定Concept親。候補採択は継承しない）",
-        "parent_planning_revision": "docs/helix-os/L1-planning/system-intent.md@41b9d9a455df647115505e8f6e74bfd205481a8d sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e（固定HELIXOS-L1親。候補採択は継承しない）",
-        "source_atom_set_ref": "docs/governance/audits/requirement-registration/dac-fr-009-three-receipt-source-lines-2026-09-29.jsonl#HELIXOS-L2-111",
-        "source_atom_set_digest": "sha256:6015b2a646b070ca092b962523e70c4988f0cf2198e1fee130d1788c5c133ef7",
-        "source_atom_count": 1,
-        "source_collection_scope": "MPR-SH-CONFIRMED-003の旧DAC-FR-009 line 56一atomのみ。DAC-R-011 line 66とDAC-AC-017 line 42は関連context/oracle evidenceであり、confirmed175 holdingまたはcandidate inputとして扱わない。#206は責務境界参照でreceiptではない。",
-        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/dac-fr-009-adopted-condition-coverage-receipt-2026-10-02.json",
-        "coverage_result": "no_loss_limited_to_single_confirmed_atom",
-        "carried_atom_refs": [
-          "CONFIRMED-DAC-FR-009-THREE-RECEIPT-AND"
-        ],
-        "preserved_pending_registration_refs": [
-          "MPR-SH-CONFIRMED-003#CONFIRMED-DAC-FR-009: source holding remains live; no owner transfer, formal successor, or adoption"
-        ],
-        "human_decision_disposition_refs": [],
-        "unaccounted_atom_refs": [],
-        "management_state": "registered_proposal",
-        "authority_effect": "none",
-        "registered_by": "Codex execution lane",
-        "registered_at": "2026-10-02T05:11:36+0900",
-        "evidence_refs": [
-          "docs/concept/helix-concept.md",
-          "docs/helix-os/L1-planning/system-intent.md",
-          "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
-          "docs/governance/audits/requirement-registration/dac-fr-009-three-receipt-source-lines-2026-09-29.jsonl",
-          "docs/governance/audits/requirement-registration/dac-fr-009-three-receipt-coverage-receipt-2026-09-29.json",
-          "docs/helix-os/L2-requirements/governance-requirements.md",
-          "docs/helix-os/L11-acceptance/governance-acceptance.md",
-          "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md:56",
-          "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/document-authority-census-requirements.md:66",
-          "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/document-authority-census-acceptance.md:42",
-          "docs/governance/management-provisional-requirement-registration.md",
-          "docs/governance/audits/requirement-registration/dac-fr-009-adopted-condition-coverage-receipt-2026-10-02.json",
-          "docs/governance/decisions/po-decision-2026-09-30-live26.md#row-64",
-          "docs/governance/audits/requirements-stage/confirmed175-unresolved2-current-condition-recheck-2026-10-02.json"
-        ],
-        "correction_reason": "2026-09-29 register snapshot recorded the candidate before the 2026-09-30 PO decision. Append a correction referencing row 64 and the exact adopted L2/L11 digests; management registration remains registered_proposal and authority_effect none. This does not assign an owner, formal successor, operational receipt mapping, or source closure."
-      },
-      "construction_line": 639
-    },
-    {
-      "line": 643,
       "registration_id": "MPR-RC-HELIXOS-L2-113-001",
       "line_sha256_lf_excluded": "sha256:0bd586a0d1400f26f8d852b43a40b3e611f5eaca49393f534c72d4bdee19296e",
       "registration": {
@@ -279,8 +237,7 @@
         "source_atom_set_digest_rule": "atom_id SP source_line_sha256 with sha256: prefix omitted, LF terminated; source_line_sha256 is the confirmed identity anchor line hash (LF excluded). The condition body has separately recorded LF included and excluded hashes and is not substituted for the source identity anchor hash.",
         "source_atom_file_sha256": "sha256:dbc1f642b996a6923def8c8033323780a2ce46fef870cc84d8ddc38935e36506",
         "source_line_coverage_result": "candidate_input_scoped; formal_successor_owner_scope_and_adoption_unconfirmed"
-      },
-      "construction_line": 640
+      }
     }
   ],
   "execution_boundary": {
@@ -520,8 +477,6 @@
       "l2_113_registration_present": false
     },
     "candidate_113_present_in_current_main_l2_l11": false,
-    "local_candidate_base_commit": "0aacb3fddd239cabd785286242297b26614cfec5",
-    "local_candidate_base_commit_is_ancestor_of_latest_main": false,
     "creation_snapshot_revision": "97826109918f1f9c7b24a3b91a6bb12aaba7b77d",
     "creation_relevant_files_unchanged_in_latest_main": true,
     "parent_l1_decision": {
@@ -713,10 +668,9 @@
     "recommendation_basis": "Aは要求配置案として推奨する。HELIXOS-L1-001/008の正確なrevisionは、HDEC-HELIXOS-REQUIREMENTS-PO-2026-09-28が固定SHA 2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0eで採択済みである。そのL1はproject群の統制、authority/source追跡、投影間整合を定める。HARNESS-L1-004は検証義務とoracleを定め、HARNESS L1はproject群の統制とCI運転をOSの責務に置く。これらはcross-mechanism候補の提案targetをOSとする根拠になる一方、Node gateとmodel qualificationのauthorityは既存のauthorityに保たれる。新しい実行ownerの指定やsource所有の移管は意味しない。",
     "decision_boundary": "POは候補targetと、一件の接続として保つか分割するかを判断する。OS親L1-001/008の正確なrevisionは既に採択済みであり、新しいL2/L11-113の採択は別のexact-revision判断として残る。target選択だけでruntime ownerを指定したり、gate/model qualification authorityを移したり、formal successorを作ったり、sourceを閉じたりしない。無関係な要求整理は継続できる。"
   },
-  "local_candidate_base_commit": "0aacb3fddd239cabd785286242297b26614cfec5",
   "post_merge_read_after": {
     "comparison_base_revision": "72d08ebc1b45c8cf85c0e89359c48f78eb779fee",
-    "read_scope": "After integrating latest origin/main into local root review worktree; keeps latest_main_read_after at d31a4c8500d131001dc349bfbdfde82fb0b46839 as its historical snapshot.",
+    "read_scope": "Current PR comparison candidate: retain the exact 641-line origin/main prefix at 72d08eb and append only MPR-RC-HELIXOS-L2-113-001. The d31a4c8 latest-main snapshot remains historical under /latest_main_read_after.",
     "os_files": [
       {
         "path": "docs/helix-os/L2-requirements/governance-requirements.md",
@@ -738,11 +692,10 @@
     "management_register": {
       "path": "docs/governance/management-provisional-requirement-register.jsonl",
       "origin_main_prefix_sha256": "sha256:d7902a431dd1b10200f2a32df7ea26fabbe28a26e7eb29a3ff185143ae623ace",
-      "local_combined_sha256": "sha256:c3e82788adadde66522edb51addc260df42770bb9cd127f02d2a05ed2cb366ef",
-      "line_count": 643,
+      "local_combined_sha256": "sha256:c39f155c9f3a70a15bb9620fbe295ac338bae4af6a83a575ad323c487877b840",
+      "line_count": 642,
       "preserved_origin_main_prefix": true,
       "appended_local_suffix_registration_ids": [
-        "MPR-RC-HELIXOS-L2-111-002",
         "MPR-RC-HELIXOS-L2-113-001"
       ]
     }

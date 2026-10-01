@@ -174,8 +174,6 @@
       "l2_113_registration_present": false
     },
     "candidate_113_present_in_current_main_l2_l11": false,
-    "local_candidate_base_commit": "0aacb3fddd239cabd785286242297b26614cfec5",
-    "local_candidate_base_commit_is_ancestor_of_latest_main": false,
     "creation_snapshot_revision": "97826109918f1f9c7b24a3b91a6bb12aaba7b77d",
     "creation_relevant_files_unchanged_in_latest_main": true,
     "parent_l1_decision": {
@@ -191,5 +189,29 @@
     }
   },
   "current_main_state_note": "The exact HELIXOS-L2/L11-113 candidate and MPR-113 row are draft artifacts on this local branch, absent from latest main d31a4c8. Latest main contains only PO-adopted L2/L11-111; the candidate section digest below binds the local draft only.",
-  "latest_main_revision_read_after": "d31a4c8500d131001dc349bfbdfde82fb0b46839"
+  "latest_main_revision_read_after": "d31a4c8500d131001dc349bfbdfde82fb0b46839",
+  "current_pr_comparison_register_read_after": {
+    "path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "comparison_base_revision": "72d08ebc1b45c8cf85c0e89359c48f78eb779fee",
+    "origin_main_prefix_line_count": 641,
+    "origin_main_prefix_sha256": "sha256:d7902a431dd1b10200f2a32df7ea26fabbe28a26e7eb29a3ff185143ae623ace",
+    "current_pr_comparison_line_count": 642,
+    "current_pr_comparison_sha256": "sha256:c39f155c9f3a70a15bb9620fbe295ac338bae4af6a83a575ad323c487877b840",
+    "retained_adopted_pair_registration": {
+      "line": 636,
+      "line_sha256_lf_excluded": "sha256:8fd6f2757862c5307faa28933eebab735697a1609af81c3791f4f8a322ace39a",
+      "registration_id": "MPR-RC-HELIXOS-L2-111-001",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "target_authority_ref": "docs/governance/decisions/po-decision-2026-09-30-live26.md#row-64",
+      "target_authority_scope": "HELIXOS-L2/L11-111 abstract three-input AND only."
+    },
+    "only_local_suffix": {
+      "line": 642,
+      "registration_id": "MPR-RC-HELIXOS-L2-113-001",
+      "line_sha256_lf_excluded": "sha256:0bd586a0d1400f26f8d852b43a40b3e611f5eaca49393f534c72d4bdee19296e",
+      "management_state": "registered_proposal",
+      "authority_effect": "none"
+    }
+  }
 }

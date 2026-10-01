@@ -1,9 +1,9 @@
 # confirmed175 未照合2件の現行条件再照合（2026-10-02）
 
-- 現在のPR比較先: `72d08ebc1b45c8cf85c0e89359c48f78eb779fee`。MPR registerはorigin/mainの641行prefixを保持し、local suffixの2行を642 `MPR-RC-HELIXOS-L2-111-002`、643 `MPR-RC-HELIXOS-L2-113-001`として追加した。local候補のauthority effect: `none`。静的文書・digest照合のみ。
-- 作成時base: `97826109918f1f9c7b24a3b91a6bb12aaba7b77d`。local candidate base commit: `0aacb3fddd239cabd785286242297b26614cfec5`。
-- 初回照合時のmain snapshot: `d31a4c8500d131001dc349bfbdfde82fb0b46839`。HDEC-HELIXOS-REQUIREMENTS-PO-2026-09-28のline 31は、POが`f6dad2a`で固定したL1 SHA `2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e`を確定・採択したと記録する（`f6dad2a`は`d31a4c8`の祖先）。frontmatterの`draft_candidate`はこのdecisionを上書きしない。これは作成時baseとは別の初回照合snapshotである。以下の5対象ファイルは初回照合時に作成時と同じfull-file SHAで、L1/L2/L11/decision/registerの対象内容は変わっていなかった。local commit `0aac…` はこのHEADの祖先ではない。現在のPR比較先とmerge後のpinはJSONの`/post_merge_read_after`に記録する。
-- 初回照合時snapshot（`d31a4c8`）ではPO採択済みpairはHELIXOS-L2/L11-111、decision row64、register line636 `MPR-RC-HELIXOS-L2-111-001` (LF-excluded line SHA `8fd6f2757862c5307faa28933eebab735697a1609af81c3791f4f8a322ace39a`)。HELIXOS-L2/L11-113と`MPR-RC-HELIXOS-L2-113-001`はそのsnapshotのmainに無く、このworktreeのdraft candidateである。現在の比較先ではmain prefixの後ろに訂正rowと候補rowを追加している。
+- 現在のPR比較先: `72d08ebc1b45c8cf85c0e89359c48f78eb779fee`。MPR registerはorigin/mainの641行prefixを保持し、唯一のlocal suffixを642 `MPR-RC-HELIXOS-L2-113-001`とした（register SHA-256 `c39f155c9f3a70a15bb9620fbe295ac338bae4af6a83a575ad323c487877b840`）。採択済みHELIXOS-L2/L11-111の管理登録行`MPR-RC-HELIXOS-L2-111-001`はprefix内line 636の元bytesを保ち、採択範囲はPR decision row64を参照する。旧local correction row `-002`はregisterから除去した。local候補113のauthority effect: `none`。静的文書・digest照合のみ。
+- 作成時base: `97826109918f1f9c7b24a3b91a6bb12aaba7b77d`。
+- 初回照合時のmain snapshot: `d31a4c8500d131001dc349bfbdfde82fb0b46839`。HDEC-HELIXOS-REQUIREMENTS-PO-2026-09-28のline 31は、POが`f6dad2a`で固定したL1 SHA `2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e`を確定・採択したと記録する（`f6dad2a`は`d31a4c8`の祖先）。frontmatterの`draft_candidate`はこのdecisionを上書きしない。これは作成時baseとは別の初回照合snapshotである。以下の5対象ファイルは初回照合時に作成時と同じfull-file SHAで、L1/L2/L11/decision/registerの対象内容は変わっていなかった。現在のPR比較先とmerge後のpinはJSONの`/post_merge_read_after`に記録する。
+- 初回照合時snapshot（`d31a4c8`）ではPO採択済みpairはHELIXOS-L2/L11-111、decision row64、register line636 `MPR-RC-HELIXOS-L2-111-001` (LF-excluded line SHA `8fd6f2757862c5307faa28933eebab735697a1609af81c3791f4f8a322ace39a`)。HELIXOS-L2/L11-113と`MPR-RC-HELIXOS-L2-113-001`はそのsnapshotのmainに無く、このworktreeのdraft candidateである。現在の比較先ではmain prefixの後ろに候補113 rowだけを追加している。
 - 初回照合時main file SHA: L1 `docs/helix-os/L1-planning/system-intent.md` `2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e`; L2 `docs/helix-os/L2-requirements/governance-requirements.md` `bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf`; L11 `docs/helix-os/L11-acceptance/governance-acceptance.md` `cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112`; decision `docs/governance/decisions/po-decision-2026-09-30-live26.md` `8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145`; register `docs/governance/management-provisional-requirement-register.jsonl` `ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a`.
 - 初回照合時snapshotのL2/L11 section digestは111 pair `265d5e7d…` / `8efe5d58…`。row64はこのpairを抽象ANDの範囲に限定して採択。各初回照合時のfile/section/row SHAはJSONの`/latest_main_read_after`に記録し、PR比較先`72d08eb`後の追加pinは`/post_merge_read_after`に記録。
 - 対象atom: `CONFIRMED-DAC-FR-009` と `CONFIRMED-3L-BR-007`。F6のno-exact-pair結果は歴史的比較として保持し、現行main authorityを決める根拠にしない。
@@ -13,7 +13,7 @@
 
 旧line 56の三receipt分離、三つ全て明示passのAND、#206を第四receiptにしない境界、既存receipt internals/ownerを再定義しない境界を、現行`HELIXOS-L2-111`と`HELIXOS-L11-111`の各条件・oracleで照合した。PO decision `po-decision-2026-09-30-live26.md` row 64は両sectionのexact digestを指定し、抽象AND意味だけを採択している。receipt ID、issuer/owner、revision/scope mapping、operational usability、actual issuance/greenは未決であり、この要求段階の不足ではない。
 
-旧MPR `MPR-RC-HELIXOS-L2-111-001`はdecision前の登録記録なので上書きせず、row 64を結ぶ`-002`訂正recordとauthority-aware crosswalk receiptをappendした。management stateは`registered_proposal`、authority effectは`none`。source holdingはliveのまま、formal successor、owner移管、source closureは主張しない。
+旧MPR `MPR-RC-HELIXOS-L2-111-001`はmain prefix内の元bytesを維持する。decision row64は新しいauthority-aware receiptと本監査で直接参照し、三つ全てgreenの抽象ANDに限る採択と運用identity等の未決事項を分離する。transient `-002`訂正rowは現registerから除去した。source holdingはliveのまま、formal successor、owner移管、source closureは主張しない。
 
 ## 3L-BR-007
 

@@ -12,10 +12,10 @@
     "exact_text": "| `DAC-FR-009` | #825の要求materialization監査、#1370のstartup projection、#206の旧surface是正と責務を重複させずAND条件で接続する。 |"
   },
   "candidate_registration_history": {
-    "original": "MPR-RC-HELIXOS-L2-111-001",
-    "corrected": "MPR-RC-HELIXOS-L2-111-002",
+    "retained_current_registration": "MPR-RC-HELIXOS-L2-111-001",
+    "removed_transient_registration_row": "MPR-RC-HELIXOS-L2-111-002",
     "management_state": "registered_proposal",
-    "note": "Management registration state is distinct from target authority; exact candidate revision was later adopted within a limited scope."
+    "note": "The adopted scope is authorized only by the PO decision reference below. The exact original -001 register row remains unchanged; the transient -002 correction is absent from the current register."
   },
   "current_target_pair": {
     "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
@@ -171,8 +171,6 @@
       "l2_113_registration_present": false
     },
     "candidate_113_present_in_current_main_l2_l11": false,
-    "local_candidate_base_commit": "0aacb3fddd239cabd785286242297b26614cfec5",
-    "local_candidate_base_commit_is_ancestor_of_latest_main": false,
     "creation_snapshot_revision": "97826109918f1f9c7b24a3b91a6bb12aaba7b77d",
     "creation_relevant_files_unchanged_in_latest_main": true,
     "parent_l1_decision": {
@@ -189,5 +187,38 @@
   },
   "latest_main_read_after_conclusion": "At d31a4c8, L2/L11-111 and PO row64 remain byte-identical to the creation snapshot. The exact abstract AND requirement is adopted; operational receipt identity, issuer/owner, target revision/scope, usability and actual green remain undecided.",
   "latest_main_revision_read_after": "d31a4c8500d131001dc349bfbdfde82fb0b46839",
-  "current_main_revision": "d31a4c8500d131001dc349bfbdfde82fb0b46839"
+  "current_main_revision": "d31a4c8500d131001dc349bfbdfde82fb0b46839",
+  "current_registration": {
+    "path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "line": 636,
+    "line_sha256_lf_excluded": "sha256:8fd6f2757862c5307faa28933eebab735697a1609af81c3791f4f8a322ace39a",
+    "registration_id": "MPR-RC-HELIXOS-L2-111-001",
+    "management_state": "registered_proposal",
+    "authority_effect": "none",
+    "bytes_unchanged": true
+  },
+  "current_pr_comparison_register_read_after": {
+    "path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "comparison_base_revision": "72d08ebc1b45c8cf85c0e89359c48f78eb779fee",
+    "origin_main_prefix_line_count": 641,
+    "origin_main_prefix_sha256": "sha256:d7902a431dd1b10200f2a32df7ea26fabbe28a26e7eb29a3ff185143ae623ace",
+    "current_pr_comparison_line_count": 642,
+    "current_pr_comparison_sha256": "sha256:c39f155c9f3a70a15bb9620fbe295ac338bae4af6a83a575ad323c487877b840",
+    "retained_adopted_pair_registration": {
+      "line": 636,
+      "line_sha256_lf_excluded": "sha256:8fd6f2757862c5307faa28933eebab735697a1609af81c3791f4f8a322ace39a",
+      "registration_id": "MPR-RC-HELIXOS-L2-111-001",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "target_authority_ref": "docs/governance/decisions/po-decision-2026-09-30-live26.md#row-64",
+      "target_authority_scope": "HELIXOS-L2/L11-111 abstract three-input AND only."
+    },
+    "only_local_suffix": {
+      "line": 642,
+      "registration_id": "MPR-RC-HELIXOS-L2-113-001",
+      "line_sha256_lf_excluded": "sha256:0bd586a0d1400f26f8d852b43a40b3e611f5eaca49393f534c72d4bdee19296e",
+      "management_state": "registered_proposal",
+      "authority_effect": "none"
+    }
+  }
 }
