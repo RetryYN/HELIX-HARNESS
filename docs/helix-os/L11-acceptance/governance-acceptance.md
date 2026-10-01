@@ -1025,7 +1025,7 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 ### HELIXOS-L11-117 選択event generation identityの受入候補（未実行）
 
 - **対応要求・authority**：未採択`HELIXOS-L2-117`の静的oracle候補。2026-09-28 decisionの採択済みL2/L11一式を変更せず、fixture、登録または文書上の結果から要求採択、CI runtime/test/旧CLIの実行を生成しない。
-- **正常対照**：一つの明示されたevent scopeについて、fixtureで適用可能と示すevent class、PR ID、HEAD、run ID、attempt facetを個別に特定したfixtureを与える。全facetが同一generationに対応する場合に限り、fixture上のgeneration identityが一致することを確認する。これは静的oracle形状であり、provider eventやrunの実発生を要求しない。
+- **正常対照**：一つの明示されたevent scopeについて、fixtureで適用可能と示すevent class、PR ID、HEAD、run ID、attempt facetを個別に特定したfixtureを与える。同じ選択scope・同じ適用facet集合と値を繰り返し与え、毎回同じgeneration identityを再現することを確認する。全facetが同一generationに対応する場合に限り、そのidentityを有効な一致として扱う。これは静的oracle形状であり、provider eventやrunの実発生を要求しない。
 - **個別negative oracle**：他のfacetは正常値のまま、次の各facetを一件ずつ欠落させるfixtureと、各facetを一件ずつ別値へ改変するfixtureを独立に与える：event class、PR ID、HEAD、run ID、attempt。各fixtureで該当facetの不一致を識別し、有効な同一generationとして受け入れない。あるfacetの一致や別facetの値で欠落・改変を補完しない。fixtureで当該event classには適用しないと明示したfacetはunknown/適用外として保持し、必須性を推測しない。
 - **意味選択を要する条件**：PR IDが全event classで必須という旧行の逐語保持案Aと、選択scopeでevent classに対する適用可能性を示し、PR IDを該当classに限り必須とする案BをPO判断材料として残す。推奨はB。いずれの選択でも、適用可能facetのmissing/mutated個別fixtureと正常対照を維持する。providerの物理field名、enum、tuple schema、全CI拡張はoracleへ固定しない。
 - **境界**：このoracleは選択generation identityのfacet検査に限る。queue上限・TTL・置換・cancellation・post-main/review consumer・receipt再構築・live GitHub rehearsal・runtime/database/provider adapterを検証しない。旧AC-003/005/007を本受入へ追加しない。旧runtime/test/CLI/CIは実行しない。

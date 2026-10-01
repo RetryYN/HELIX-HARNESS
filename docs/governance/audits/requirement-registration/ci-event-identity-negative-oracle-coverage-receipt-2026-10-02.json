@@ -4,17 +4,17 @@
   "authority_effect": "none",
   "candidate_identity": "HELIXOS-L2-117",
   "requirement_kind": "unit",
-  "candidate_semantic_digest": "sha256:7b31fcd6c4cad765700d9a5005c47718a6ac7f348a5ebdc8bdebd0cf294412ce",
+  "candidate_semantic_digest": "sha256:a0f7524b0f89e47d22933eb592bac2945a66cce96d289162aea966b0f7998d26",
   "candidate_digest_rule": "L2の「### HELIXOS-L2-117 」見出しから次の同階層「###」見出し、またはファイル末尾まで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
-  "candidate_l2_file_sha256": "sha256:3d23fa520a89728ecc8e05d7c375b148dd022a089608e88b4340e64e95eac416",
+  "candidate_l2_file_sha256": "sha256:9c1105d098f7be6771cdb675d28ef14631d026b6a606805e0235c10f62b5950e",
   "paired_acceptance_identity": "HELIXOS-L11-117",
-  "paired_acceptance_digest": "sha256:6d06681f8f3737cd0f68e23cfb069c3a263a42c8dd5255af9ebce34dd3766ed5",
+  "paired_acceptance_digest": "sha256:9ecfe84e612c3e66a9377ac64ca275e423c3f0f2a9a468e1c127e6dddb15c186",
   "l11_digest_rule": "L11の「### HELIXOS-L11-117 」見出しから次の同階層「###」見出し、またはファイル末尾まで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
-  "l11_file_sha256": "sha256:8c0cc9fa62713bc8095200605d8c31d3b869532628e681901869731abf61fa03",
+  "l11_file_sha256": "sha256:0a3f324cbc1e94361219152eacd3b77831242e213bcfd7ab564e3cc4f4492663",
   "source_lines_ref": "docs/governance/audits/requirement-registration/ci-event-identity-negative-oracle-source-lines-2026-10-02.jsonl",
   "source_atom_set_digest": "sha256:1b64d547280bfa6c840eb0748169fa4a41fb5e9f3a48c03d733805351e09eeab",
   "source_atom_set_digest_rule": "atom_id昇順。各行をatom_id、半角空白、sha256:を含むsource_line_sha256で構成し、LFで連結する。末尾LFを付けずUTF-8 SHA-256とする。",
-  "source_collection_scope": "MPR-SH-CANDIDATE-003が保持する旧candidate 4,755非空行atomからLEGACY-CAND-LINE-000468一行だけを選択。旧CIG-AC-001の各identity facet欠落/改変拒否と正常対照条件のみ。隣接CIG-AC行、CIG-R要件行、旧runtime/test/CI/provider実装は含めない。 Exact source-line ledger relation is recorded in source_pointer/source_ledger_ref; the audit JSON row is an assessment reference only.",
+  "source_collection_scope": "MPR-SH-CANDIDATE-003が保持する旧candidate 4,755非空行atomからLEGACY-CAND-LINE-000468一行だけを選択。旧CIG-AC-001の各identity facet欠落/改変拒否と決定的な正常対照条件のみ。隣接CIG-AC行、CIG-R要件行、旧runtime/test/CI/provider実装は含めない。選択source lineのidentity正本はsource-lines JSONLおよびlegacy source-line carry-forward ledgerであり、local auditのrowをsource pinとして使わない。",
   "source_collection_atom_count": 1,
   "candidate_input_atom_refs": [
     "LEGACY-CAND-LINE-000468"
@@ -83,10 +83,10 @@
       "HELIXOS-L11-008",
       "HELIXOS-L2-020 acceptance section"
     ],
-    "findings": "Accepted requirements bind CI to HARNESS obligations and exact HEAD/oracle/environment/run identity but do not require per-facet missing/altered negative oracles for event class, PR identity, HEAD, run ID, attempt. NCI-OS-003/004 plus candidate L11 address generic pipeline/run binding, different HEAD, missing oracle and status distinctions; they do not enumerate CIG-AC-001 facet-by-facet missing/altered cases and a legal control. These are unadopted candidate conditions, not adopted evidence."
+    "findings": "Accepted requirements bind CI to HARNESS obligations and exact HEAD/oracle/environment/run identity but do not require per-facet missing/altered negative oracles for event class, PR identity, HEAD, run ID, attempt, nor deterministic reproduction of the same generation identity from the same applicable facet set and values. NCI-OS-003/004 plus candidate L11 address generic pipeline/run binding, different HEAD, missing oracle and status distinctions; they do not enumerate CIG-AC-001 facet-by-facet missing/altered cases and repeated-input normal control. These are unadopted candidate conditions, not adopted evidence."
   },
   "po_decision_material": {
-    "source_semantics": "CIG-AC-001 individually removes or alters event class, PR ID, HEAD, run ID, attempt and rejects each invalid generation identity; a valid generation control is needed to prevent over-rejection.",
+    "source_semantics": "CIG-AC-001 individually removes or alters event class, PR ID, HEAD, run ID, attempt and rejects each invalid generation identity; a valid control must reproduce the same generation identity on every evaluation from the same selected scope and applicable facet set/values.",
     "options": {
       "A": "Treat all five literal fields as mandatory for every selected event scope, preserving the old row literally.",
       "B": "For the selected event scope, applicability of the listed facets is explicit; require PR ID only where the selected event class applies it, and individually reject missing/altered applicable facets."
