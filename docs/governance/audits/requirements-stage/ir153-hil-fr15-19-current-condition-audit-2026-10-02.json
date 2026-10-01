@@ -1,0 +1,752 @@
+{
+  "audit_id": "IR153-HIL-FR15-19-CURRENT-CONDITION-AUDIT-2026-10-02",
+  "base_commit": "64a9fdd2757197f84172d7eda8b9ccb7f92db86a",
+  "audit_mode": "read-only source/current-condition audit; legacy runtime, test, CLI, hook, and CI not executed",
+  "scope": "IR153 HIL-FR-15 through HIL-FR-19, their directly referenced HR/HAC/HAT and available legacy test/design consumers; this wave is not a closure claim for the IR153 source set",
+  "source_files": {
+    "raw_l1": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+    },
+    "requirements_ir": {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688"
+    },
+    "system_contracts": {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+      "sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab"
+    },
+    "acceptance_cases": {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19"
+    },
+    "system_tests": {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+      "sha256": "sha256:7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a"
+    },
+    "existing_condition_audits": [
+      {
+        "path": "docs/governance/audits/requirements-stage/hil09-auxiliary-source-receipt-condition-audit-2026-10-01.md",
+        "sha256": "sha256:92f5ae75694f1d2564f1a274f9443791197b81a4881cf05b74db12b5bcc9d05d"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/legacy-hil15-auxiliary-condition-audit-2026-10-01.md",
+        "sha256": "sha256:a6439688d163d758589c249c32b913ff8b07d0151c3a65d1c5841b94500e58ab"
+      }
+    ]
+  },
+  "current_file_sha256": {
+    "docs/helix-harness/L2-requirements/product-requirements.md": "sha256:5b31dd26c7170a6cb4e7b2e11083a89443ec73d294f17cad09b52657749aec8a",
+    "docs/helix-harness/L11-acceptance/product-acceptance.md": "sha256:ec09886ff8a7eeb3503a3b826baf1f38aa6d17d57c8d24129c471c0aca28926a",
+    "docs/helix-os/L2-requirements/governance-requirements.md": "sha256:20bc628a1b46ec9c31537d7b6f05d7535827daaf2e6ed6491544ecff04fb854f",
+    "docs/helix-os/L11-acceptance/governance-acceptance.md": "sha256:e287f7ac2e82bbd7bca2a2ac1af6f263a5fe348fc6e70f29d7bc7c3c3e1d0c34",
+    "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+    "docs/governance/decisions/po-decision-2026-09-29-57candidates.md": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+    "docs/governance/decisions/po-decision-2026-09-30-live26.md": "sha256:8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+    "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md": "sha256:5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+    "docs/governance/management-provisional-requirement-register.jsonl": "sha256:6f346514666acfe14fb3dfef81d48d3c671ab4a08ef58d36716da6c4cd889eb9"
+  },
+  "authority_reading": {
+    "harness_initial_pair": {
+      "decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_pair_file_sha256": {
+        "docs/helix-harness/L2-requirements/product-requirements.md": "sha256:aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md": "sha256:09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+      },
+      "current_exact_sections": {
+        "HARNESS-L2-012": "sha256:ebdb183eee98909a5777eaf4602423bd43698669013b2d1538de8f29626728b2",
+        "HARNESS-L2-013": "sha256:11dccf3f73803f4cd0950c51328c755b5492cdaa720ce86c0cd9aefcd2e11f49",
+        "HARNESS-L2-014": "sha256:eca6896fa86d4a929ac767cdeb81453c733f42db0d772b416bef5d97a5937dc9"
+      },
+      "decision_scope": "The PO record fixes the L1 revision and agrees to the corresponding L2/L11 set; its explicit candidate set is adopted with stated version_target and applicability. It explicitly says preserved old source holding is not completed by that decision.",
+      "identities": {
+        "HARNESS-L2-012": {
+          "mpr": "MPR-RC-HARNESS-L2-012-001",
+          "status": "adopted at fixed f6dad2a pair"
+        },
+        "HARNESS-L2-013": {
+          "mpr": "MPR-RC-HARNESS-L2-013-001",
+          "status": "adopted at fixed f6dad2a pair"
+        },
+        "HARNESS-L2-014": {
+          "mpr": "MPR-RC-HARNESS-L2-014-003",
+          "status": "adopted at fixed f6dad2a pair"
+        },
+        "HARNESS-L2-027": {
+          "mpr": "MPR-RC-HARNESS-L2-027-003",
+          "status": "adopted as explicit candidate with version_target 1.0; fixed-source decision governs over registered_proposal metadata"
+        }
+      }
+    },
+    "harness_039": {
+      "decision_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "decision_row": 44,
+      "identity": "HARNESS-L2-039",
+      "registration": "MPR-RC-HARNESS-L2-039-003",
+      "l2_section_sha256": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0",
+      "l11_section_sha256": "sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746",
+      "status": "adopted for the exact registered pair and selected source scope; not a formal successor assignment for HIL-FR-17/18/19"
+    },
+    "harness_049": {
+      "decision_path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+      "decision_row": 39,
+      "decision_limit": "Decision text at row 72 limits adoption to registration -003 and the measurement-only meaning; it excludes prototype generation, Pattern selection, and screen ID issuance.",
+      "identity": "HARNESS-L2-049",
+      "registration": "MPR-RC-HARNESS-L2-049-003",
+      "l2_section_sha256": "sha256:a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116",
+      "l11_section_sha256": "sha256:f3fb47da21371084e9f8c7c7f7ca6dd945c8e98ae7c7b70597c3fc44e4e08ee7",
+      "status": "adopted for the exact corrected measurement pair only; not prototype generation and not a formal successor assignment"
+    },
+    "os_015_016": {
+      "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_pair_file_sha256": {
+        "docs/helix-os/L2-requirements/governance-requirements.md": "sha256:c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md": "sha256:925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+      },
+      "current_exact_sections": {
+        "HELIXOS-L2-015": "sha256:f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef",
+        "HELIXOS-L11-015": "sha256:79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0",
+        "HELIXOS-L2-016": "sha256:10242ad9ca2021f29a096b0037c1349dbb332c1ea91f185065bec11ea86a6743",
+        "HELIXOS-L11-016": "sha256:2dc46eb36e8ca552c079ade0dad329c2ca0c244f4c2493a06eec4f60647897a3"
+      },
+      "decision_scope": "The PO record agrees to the fixed L2/L11 set through HELIXOS-L2-029, including 015/016. Current metadata labels do not override this exact decision.",
+      "status": "adopted at fixed f6dad2a pair; broad source custody and portfolio trace conditions only, with no exact HIL-FR-15/16 successor assignment"
+    }
+  },
+  "rows": [
+    {
+      "requirement_id": "HIL-FR-15",
+      "source_l1": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:105",
+      "source_l1_line_sha256_excluding_lf": "sha256:44273843b5fb7fb00564ab6fa7e219af901b415a6a2b8b80ccfeccb58be3cf7b",
+      "source_l1_text": "| **HIL-FR-15** | Hybrid docgen ingestionはZIPのagent metadata、spec ID、trace、impact、consistency、assignment、schedule、detector結果をHELIX契約へ変換する。 | source digest、adoption decision、DB relation |",
+      "source_ir": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-15",
+      "source_ir_statement_digest": "sha256:73dfa183c290d8b7f4e9698e5933b93c4643d9347a6ef8256cdb4c9d95a33ed0",
+      "source_ir_record_digest": "sha256:6238d0b69885eafeb4a6d6b4acf18ea13b546557f7f92b12b74598f8671150e9",
+      "legacy_consumer": "HR-FR-HIL-09 rev1; HAC-HIL-09a/b/c; HAT-HIL-09; L5/L6 source capture and atomization designs",
+      "carry": {
+        "path": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl:48",
+        "status": "preserved_pending_rehome",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "conditions": [
+        {
+          "condition": "Transform ZIP agent metadata and specification identity into HELIX contract identity",
+          "current_whereabouts": [
+            "HARNESS-L2-027 section at product-requirements.md:559-572 observes selected source types by source revision/digest and evidence span, but its selected input type and output are not the old ZIP docgen contract transformation; its MPR source atom set is empty and says old atoms are not transferred.",
+            "HELIXOS-L2-015 section at governance-requirements.md:642-651 registers target/source identity and authority records, but does not define ZIP ingestion or contract conversion."
+          ],
+          "assessment": "partial_relation; old ingestion and field meaning are not shown to be retained as a current guarantee"
+        },
+        {
+          "condition": "Carry trace, impact, consistency, assignment, schedule, and detector findings into the contract",
+          "current_whereabouts": [
+            "HARNESS-L2-027 selected-source observations connect extracted spans/unknowns to observed behavior candidates; this is not the old exact metadata set or ingestion output.",
+            "HELIXOS-L2-016 section at governance-requirements.md:652-661 tracks requirements, relations, dependencies, owner, actual delta, verification, delivery and operations, but does not assert conversion of each legacy ZIP datum."
+          ],
+          "assessment": "partial_relation; each named field is not separately matched; unverified whether a downstream current contract covers each"
+        },
+        {
+          "condition": "Preserve source digest, adoption decision, and DB relation",
+          "current_whereabouts": [
+            "HARNESS-L2-027 section: selected source revision/digest and observation span; unknown/unsupported remains unknown; no write to authoritative design.",
+            "HELIXOS-L2-015 section: source identity/revision/digest, actor/time, authority source, decision record, correction/conflict/stale state.",
+            "HELIXOS-L2-016 section: typed portfolio relations and stale/unknown status."
+          ],
+          "assessment": "partial_relation; generic provenance/authority/relation exists, but no exact paired PO decision + DB relation output bound to this ZIP source is evidenced"
+        },
+        {
+          "condition": "Positive/negative/boundary and old consumer contract",
+          "current_whereabouts": [
+            "HR-FR-HIL-09 transition requires source/ref/entry + extractor version + exact two authority receipts before atomic behavior denominator/disposition/trace and pending/orphan 0.",
+            "HAC-HIL-09a positive requires ZIP plus exact two sealed Git authorities and receipt-derived ref/content/edge denominator; 09b rejects parent-only/child missing/overlap, advertised-ref omission/extra, unverified object; 09c stales authority after remote identity, A/B advertisement, namespace, source/extractor change.",
+            "HAT-HIL-09 is designed_not_implemented; scenario processes three sources to snapshot/atom/coverage and requires manifests, atom spans, decision/edge/stale receipt."
+          ],
+          "assessment": "legacy design oracle and failure cases are preserved as source; no current exact receipt or formal descendant is identified"
+        }
+      ],
+      "current_targets": [
+        {
+          "identity": "HARNESS-L2-027",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md:559-572",
+          "section_sha256": "sha256:fb81f7e465ebd7db2f06a7115f14b6a651b2886ead17d493618475c61aa60032",
+          "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:365-374",
+          "l11_section_sha256": "sha256:a7fdef8e1ca4ed2572b68df69995f1477ae0d95d3faee880a25ba8e702f08abd",
+          "decision": "2026-09-28 HARNESS PO decision, fixed f6dad2a, adopted explicit candidate; scope is selected source observation, not old ZIP docgen conversion"
+        },
+        {
+          "identity": "HELIXOS-L2-015/016",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md:642-661",
+          "section_sha256": [
+            "sha256:f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef",
+            "sha256:10242ad9ca2021f29a096b0037c1349dbb332c1ea91f185065bec11ea86a6743"
+          ],
+          "l11": "docs/helix-os/L11-acceptance/governance-acceptance.md:324-337",
+          "l11_section_sha256": [
+            "sha256:79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0",
+            "sha256:2dc46eb36e8ca552c079ade0dad329c2ca0c244f4c2493a06eec4f60647897a3"
+          ],
+          "decision": "2026-09-28 OS PO decision, fixed f6dad2a, adopted as OS source authority/portfolio trace requirements"
+        }
+      ],
+      "source_ir_status": "specified",
+      "definition_status": "frozen",
+      "downstream_obligation": {
+        "obligation_id": "DOWNSTREAM-HIL-FR-15",
+        "owner_id": "HR-FR-HIL-09",
+        "status": "pending_pair_descent",
+        "route_issue_ids": []
+      },
+      "pending_resolution": [
+        "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+        "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+      ]
+    },
+    {
+      "requirement_id": "HIL-FR-16",
+      "source_l1": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:106",
+      "source_l1_line_sha256_excluding_lf": "sha256:8d0d781ee0ee10418a53848b1edb0b23282328978a6d50f0419bbcdd08c4c448",
+      "source_l1_text": "| **HIL-FR-16** | Asset Inventoryは現行HELIX、ZIP、前身repository exact 2件のA/B二重観測で一致した全advertised `refs/heads/*`、`refs/tags/*`、`refs/pull/*/{head,merge}`を機能単位で比較し、adopt/harden/redesign/rejectを記録する。symbolic `HEAD`とannotated tagの`^{}`はref分母に数えず、target/peel証拠として保持する。 | 完全性台帳、authority receipt、未判断0判定 |",
+      "source_ir": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-16",
+      "source_ir_statement_digest": "sha256:3f8059576753f54ac5cbc51a29d19afcc1189f6aee6403196ff3ac7540b0c574",
+      "source_ir_record_digest": "sha256:3971c202a570c068ed744264a7c81925f25799fda5ba0ab14e407d5fc71c369e",
+      "legacy_consumer": "HR-FR-HIL-09 rev1; HAC-HIL-09a/b/c; HAT-HIL-09; L5 IT-SCAP-011/012/013 and L6 U-SATOM atomization oracles",
+      "carry": {
+        "path": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl:49",
+        "status": "preserved_pending_rehome",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "conditions": [
+        {
+          "condition": "Compare current HELIX, ZIP, and exactly two named predecessor repositories from A/B-matching full advertised refs",
+          "current_whereabouts": [
+            "HARNESS-L2-027 is adopted for selected-source extraction; its accepted source selection is not the exact three-group inventory and A/B-matched full ref listing.",
+            "HELIXOS-L2-015 source authority record and HELIXOS-L2-016 portfolio trace are general authority/trace boundaries; they do not state the exact two repository identities or all-ref census."
+          ],
+          "assessment": "unverified_as_current_condition; do not infer old repository scope from historical source or generic source identity language"
+        },
+        {
+          "condition": "Use refs/heads, refs/tags, refs/pull/{head,merge}; A/B observation must match; include all advertised refs",
+          "current_whereabouts": [
+            "No current exact L2/L11 condition or adopted receipt in the inspected pairs specifies the three ref namespaces, dual observation, equality, or complete advertised denominator."
+          ],
+          "assessment": "unverified"
+        },
+        {
+          "condition": "Compare every ref at functional granularity and record adopt/harden/redesign/reject disposition",
+          "current_whereabouts": [
+            "HARNESS-L2-027 extracts selected source behavior at source spans and leaves unsupported/unselected source unknown; it is not a complete all-ref functional disposition ledger.",
+            "HELIXOS-L2-016 tracks requirement-to-work/evidence relations and unknown/stale; its text does not specify these four dispositions per ref."
+          ],
+          "assessment": "partial_relation; old denominator and per-ref disposition are unverified"
+        },
+        {
+          "condition": "Symbolic HEAD and annotated tag peel are evidence, excluded from ref denominator while target/peel evidence is retained",
+          "current_whereabouts": [
+            "No inspected current L2/L11 section or adopted exact decision includes this distinction or corresponding oracle."
+          ],
+          "assessment": "unverified"
+        },
+        {
+          "condition": "Completeness ledger, sealed authority receipt, zero undecided, and failures",
+          "current_whereabouts": [
+            "HR-FR-HIL-09 failure rules reject aggregate-only, unclassified/duplicate, remote identity mismatch, A/B drift, missing ref/object, stale, prose-only, and Python write bypass.",
+            "HAC-HIL-09a/b/c give positive, negative and stale-boundary oracle; HAT-HIL-09 requires manifest/atom spans/decision-edge-stale receipts but is designed_not_implemented.",
+            "No matching current revision-bound receipt or formal successor assignment was found in the inspected current pairs."
+          ],
+          "assessment": "legacy oracle fully read; current execution/evidence unverified"
+        }
+      ],
+      "current_targets": [
+        {
+          "identity": "HELIXOS-L2-015/016",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md:642-661",
+          "section_sha256": [
+            "sha256:f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef",
+            "sha256:10242ad9ca2021f29a096b0037c1349dbb332c1ea91f185065bec11ea86a6743"
+          ],
+          "l11": "docs/helix-os/L11-acceptance/governance-acceptance.md:324-337",
+          "l11_section_sha256": [
+            "sha256:79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0",
+            "sha256:2dc46eb36e8ca552c079ade0dad329c2ca0c244f4c2493a06eec4f60647897a3"
+          ],
+          "decision": "2026-09-28 OS PO decision fixed f6dad2a; broad requirements adopted, no FR-16 specific successor assignment"
+        },
+        {
+          "identity": "HARNESS-L2-027",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md:559-572",
+          "section_sha256": "sha256:fb81f7e465ebd7db2f06a7115f14b6a651b2886ead17d493618475c61aa60032",
+          "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:365-374",
+          "l11_section_sha256": "sha256:a7fdef8e1ca4ed2572b68df69995f1477ae0d95d3faee880a25ba8e702f08abd",
+          "decision": "2026-09-28 HARNESS PO decision fixed f6dad2a; adopted selected-source observation only, no full advertised-ref census"
+        }
+      ],
+      "source_ir_status": "specified",
+      "definition_status": "frozen",
+      "downstream_obligation": {
+        "obligation_id": "DOWNSTREAM-HIL-FR-16",
+        "owner_id": "HR-FR-HIL-09",
+        "status": "pending_pair_descent",
+        "route_issue_ids": []
+      },
+      "pending_resolution": [
+        "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+        "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+      ]
+    },
+    {
+      "requirement_id": "HIL-FR-17",
+      "source_l1": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:107",
+      "source_l1_line_sha256_excluding_lf": "sha256:4cd89c187551a9061b887b782ac74d55d24296029593278e7116442d4badf4cd",
+      "source_l1_text": "| **HIL-FR-17** | Screen Applicability GateはL0 charter、scope、公開surfaceから画面／対話の有無を判定する。画面ありはDesign HARNESS specialist capabilityと必要時のcase-driven prototypeを別々に発動し、画面なしskipには理由、判定者、入力digest、再entry triggerを要求する。 | `prototype_required` taskまたは`not_applicable` receipt |",
+      "source_ir": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-17",
+      "source_ir_statement_digest": "sha256:6c714b85354c436aadad677cb1a379eb4f0ba007f847eec60391618fb07573c7",
+      "source_ir_record_digest": "sha256:55748a3f54d64e2352ad5c609b32c259a4f88563a653448954695cf976ead76b",
+      "legacy_consumer": "HR-FR-HIL-15 rev1; HAC-HIL-15a/b/c; HAT-HIL-15; L6-SAP unit, L5-SAP integration and L3 acceptance design",
+      "carry": {
+        "path": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl:50",
+        "status": "preserved_pending_rehome",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "conditions": [
+        {
+          "condition": "Determine screen/dialog applicability from charter, scope, and public surface",
+          "current_whereabouts": [
+            "HARNESS-L2-003 process row at product-requirements.md:54 and detailed conditions :106-108 use screen presence and technical feasibility to decide Prototype and PoC separately.",
+            "HARNESS-L2-012 section at product-requirements.md:363-370 receives pre-agreement L2 requirement, screen presence, and technical uncertainty."
+          ],
+          "assessment": "partial_relation; current adapted applicability starts from agreed L2 requirements and separates PoC feasibility, rather than proving the old exact charter/surface input contract"
+        },
+        {
+          "condition": "When screen exists, separately activate Design HARNESS specialist capability and case-driven prototype when needed",
+          "current_whereabouts": [
+            "HARNESS-L2-012 provides an HTML prototype and separately judges Prototype and PoC.",
+            "HARNESS-L2-014 is the general design service, but its accepted input is approved L3 requirements and design template obligations; it does not name an automatic specialist activation triggered by screen applicability.",
+            "HARNESS-L2-049 adopted pair measures an already renderable prototype and explicitly excludes prototype generation, Pattern selection and screen ID issuance."
+          ],
+          "assessment": "partial_relation; prototype/PoC and design capabilities exist, but no exact old activation/task contract or case-driven decision oracle is confirmed"
+        },
+        {
+          "condition": "For no-screen skip, require reason, decider, input digest, and re-entry trigger",
+          "current_whereabouts": [
+            "HARNESS-L2-003 product-requirements.md:106-108 requires non-applicable status, reason, decision maker, HEAD, impact to requirements, and reevaluation condition when both Prototype and PoC are non-applicable.",
+            "HARNESS-L11 product-acceptance.md:41-42 rejects missing non-applicability record fields and rejects skipping all L2.5 when only one of Prototype or PoC is non-applicable."
+          ],
+          "assessment": "partial_relation; similar fail-closed recorded decision, but current wording is a two-track L2.5 rule and does not name old input digest/reentry trigger as a receipt contract"
+        },
+        {
+          "condition": "Produce prototype_required task or not_applicable receipt; reject implicit/deferred/stale route",
+          "current_whereabouts": [
+            "Current L2-012 and L11-012 describe standalone prototype/PoC and non-applicability record, not the old exact task/receipt type or scope-digest invalidation/re-entry trigger.",
+            "HAC-HIL-15a accepts a structurally justified no-UI skip; 15b rejects UI freeze before prototype/walkthrough/agreement; 15c requires scope change to stale prior applicability and L2 re-entry."
+          ],
+          "assessment": "partial_relation; old gate polarity is related, exact task/receipt identity and stale/reentry negative oracle remain unverified"
+        }
+      ],
+      "current_targets": [
+        {
+          "identity": "HARNESS-L2-003 / HARNESS-L2-012",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md:54,106-113,363-370",
+          "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:23,41-42,207",
+          "authority": "L2/L11 pair fixed and adopted by 2026-09-28 HARNESS PO decision at f6dad2a; exact PO scope does not assign the old IR atom as successor"
+        },
+        {
+          "identity": "HARNESS-L2-014",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md:379-386",
+          "section_sha256": "sha256:eca6896fa86d4a929ac767cdeb81453c733f42db0d772b416bef5d97a5937dc9",
+          "authority": "adopted at fixed f6dad2a, but general design service, not old screen-triggered specialist activation"
+        },
+        {
+          "identity": "HARNESS-L2-049",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md:1070-1094",
+          "section_sha256": "sha256:a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116",
+          "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:802-816",
+          "l11_section_sha256": "sha256:f3fb47da21371084e9f8c7c7f7ca6dd945c8e98ae7c7b70597c3fc44e4e08ee7",
+          "authority": "adopted exact -003 by 2026-09-30 PO decision; measurement-only, not generation or trigger"
+        }
+      ],
+      "source_ir_status": "specified",
+      "definition_status": "frozen",
+      "downstream_obligation": {
+        "obligation_id": "DOWNSTREAM-HIL-FR-17",
+        "owner_id": "HR-FR-HIL-15",
+        "status": "pending_pair_descent",
+        "route_issue_ids": []
+      },
+      "pending_resolution": [
+        "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+        "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+      ]
+    },
+    {
+      "requirement_id": "HIL-FR-18",
+      "source_l1": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:108",
+      "source_l1_line_sha256_excluding_lf": "sha256:19b365805022418001b4717576aa368dae4122d23b30fba4c4196c35333de074",
+      "source_l1_text": "| **HIL-FR-18** | 画面対象のPrototype Builderはscreen ID、主要操作、遷移、9状態fixture、仮データ境界を実行可能artifactへ材料化する。視覚忠実度とは独立に要求発見に必要な操作経路を再生可能にする。 | artifact manifest、digest、起動手順、screen/interaction/state trace |",
+      "source_ir": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-18",
+      "source_ir_statement_digest": "sha256:113f62503959378764966ff837c8d5f4beffde5932618b47aee921e507535ab3",
+      "source_ir_record_digest": "sha256:4bde6624ded9421c9c4e97a6ca4a1178195731267aa4ab16b6639d7b46d0e913",
+      "legacy_consumer": "HR-FR-HIL-15 rev1; HAC-HIL-15a/b/c; HAT-HIL-15; L6-SAP U-SAP-005/006/011/012; L5-SAP integration IT-SAP-005/009; L3 acceptance HST-HIL-012/024",
+      "carry": {
+        "path": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl:51",
+        "status": "preserved_pending_rehome",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "conditions": [
+        {
+          "condition": "Builder receives screen identity, key operations and transitions and materializes an executable artifact",
+          "current_whereabouts": [
+            "HARNESS-L2-012 product-requirements.md:363-370 provides HTML prototype and PoC outputs, with pre-approval requirement and applicability input.",
+            "HARNESS-L11-012 product-acceptance.md:207 confirms prototype/PoC separation and Backflow, but does not assert artifact manifest, startup instruction or trace."
+          ],
+          "assessment": "partial_relation; prototype deliverable is present, but operation-level executable artifact and manifest/digest/startup contract are not demonstrated"
+        },
+        {
+          "condition": "9-state fixture and temporary-data boundary",
+          "current_whereabouts": [
+            "HARNESS-L2-049 adopted measurement section covers actual rendering of selected screen states and per-measurement evidence; this is for an existing renderable prototype and does not generate a nine-state fixture or temporary-data boundary.",
+            "HARNESS-L2-039 adopted section includes selected screen/flow/interaction/action/state scope and source/revision relations, but its 24-atom source scope is separate and it is a composite relation contract, not the old builder output."
+          ],
+          "assessment": "partial_relation for selected screen/state evidence; exact 9-state fixture and temporary-data boundary are unverified and are not imported as a fixed current requirement"
+        },
+        {
+          "condition": "Replayable interaction paths for requirement discovery independent of visual fidelity",
+          "current_whereabouts": [
+            "HARNESS-L2-012 offers prototype and routes results back to requirement formation; HARNESS-L2-039 relates UI interaction/action/state to acceptance and design oracles within selected scope.",
+            "HARNESS-L2-049 requires actual rendering for measurements but explicitly does not create prototypes."
+          ],
+          "assessment": "partial_relation; exact replayable user-discovery path and visual-fidelity-independent acceptance are unverified"
+        },
+        {
+          "condition": "Manifest, digest, startup procedure, screen/interaction/state trace",
+          "current_whereabouts": [
+            "HARNESS-L2-010/011 general pack/version/call/evidence contracts and HARNESS-L2-039 selected source identity/revision/scope relations are neighboring general contracts; no inspected adopted exact pair maps all old artifact fields to an output artifact."
+          ],
+          "assessment": "partial_relation; these exact outputs are unverified"
+        },
+        {
+          "condition": "Reject static-only/non-executable/stale or incomplete artifact and state evidence",
+          "current_whereabouts": [
+            "HAC-HIL-15b rejects freeze before prototype/walkthrough/agreement; HAT-HIL-15 and old test design classify static-only, state missing and stale artifact as negative cases.",
+            "Current HARNESS-L11-003 rejects proceeding without required prototype agreement and current scope change is handled at requirement/backflow level; the inspected L11 does not assert those artifact-level mutations against an output manifest."
+          ],
+          "assessment": "partial_relation; pre-freeze boundary is kept, exact artifact construction/oracle not verified"
+        }
+      ],
+      "current_targets": [
+        {
+          "identity": "HARNESS-L2-012",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md:363-370",
+          "section_sha256": "sha256:ebdb183eee98909a5777eaf4602423bd43698669013b2d1538de8f29626728b2",
+          "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:207",
+          "authority": "adopted fixed f6dad2a; exact pair does not identify old atom successor"
+        },
+        {
+          "identity": "HARNESS-L2-039",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md:891-930",
+          "section_sha256": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0",
+          "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:638-677",
+          "l11_section_sha256": "sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746",
+          "authority": "adopted exact -003 by 2026-09-29 decision; 24 source atoms only, no formal FR18 successor"
+        },
+        {
+          "identity": "HARNESS-L2/L11-049",
+          "path": "product-requirements.md:1070-1094 / product-acceptance.md:802-816",
+          "section_sha256": [
+            "sha256:a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116",
+            "sha256:f3fb47da21371084e9f8c7c7f7ca6dd945c8e98ae7c7b70597c3fc44e4e08ee7"
+          ],
+          "authority": "adopted exact -003 by 2026-09-30 decision; visual measurement only"
+        }
+      ],
+      "source_ir_status": "specified",
+      "definition_status": "frozen",
+      "downstream_obligation": {
+        "obligation_id": "DOWNSTREAM-HIL-FR-18",
+        "owner_id": "HR-FR-HIL-15",
+        "status": "pending_pair_descent",
+        "route_issue_ids": []
+      },
+      "pending_resolution": [
+        "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+        "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+      ]
+    },
+    {
+      "requirement_id": "HIL-FR-19",
+      "source_l1": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:109",
+      "source_l1_line_sha256_excluding_lf": "sha256:edaa9d6668ebf049c6400ee4d43a253c47313862e5e3d638d1037c49fd7b91fc",
+      "source_l1_text": "| **HIL-FR-19** | 画面対象のWalkthrough Loopはprototype版、ユーザー観測、発見要求deltaまたは`no_delta`、L1反映先、再作成判断を記録し、boundedに反復する。 | walkthrough receipt、requirements delta、iteration checkpoint |",
+      "source_ir": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-19",
+      "source_ir_statement_digest": "sha256:817dc126b7355e14109936f8f9c83edcd21fdc3d0afd9fad8a41508828306b35",
+      "source_ir_record_digest": "sha256:df78c7188f3a460486b34259b78e011b47518da134d4e7344b6614c514915e6b",
+      "legacy_consumer": "HR-FR-HIL-15 rev1; HAC-HIL-15a/b/c; HAT-HIL-15; L6-SAP U-SAP-007/008/009/011/012; L5-SAP IT-SAP-007/009; L3 acceptance HST-HIL-012/024",
+      "carry": {
+        "path": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl:52",
+        "status": "preserved_pending_rehome",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "conditions": [
+        {
+          "condition": "Bind walkthrough to exact prototype revision and user observation",
+          "current_whereabouts": [
+            "HARNESS-L2-012 requires prototype result to return via Backflow to second requirement formation; it does not define user walkthrough observation or a walkthrough receipt.",
+            "HARNESS-L2-039 describes experience/UI relations and human evaluation for ux_verified claims, but that adopted 24-atom source scope does not assign a walkthrough process as successor for this old IR row."
+          ],
+          "assessment": "partial_relation for user-facing experience/review context; exact revision-bound walkthrough record is unverified"
+        },
+        {
+          "condition": "Record discovered requirement delta or explicit no_delta and the L1 destination",
+          "current_whereabouts": [
+            "HARNESS-L2-012 Backflow returns prototype/PoC result to the requirement process; HARNESS-L2-003/008 preserve requirement formation and human decision boundaries.",
+            "No inspected adopted L2/L11 section says a walkthrough must record a discovered delta or explicit no_delta and L1 target as one acceptance output."
+          ],
+          "assessment": "partial_relation; outcome and target-specific old receipt fields unverified"
+        },
+        {
+          "condition": "Record rebuild decision and bounded iteration checkpoint",
+          "current_whereabouts": [
+            "HARNESS-L2-003 provides stage/reopen/backflow controls in general, while L2-012 has no walkthrough loop, rebuild decision, iteration checkpoint, or bound for UI iteration.",
+            "HARNESS-L2-039 distinguishes design/implementation/UX evidence states but does not specify bounded prototype walkthrough iteration."
+          ],
+          "assessment": "partial_relation; no exact loop/checkpoint contract established"
+        },
+        {
+          "condition": "Positive, negative and scope-change boundary",
+          "current_whereabouts": [
+            "HAC-HIL-15a positive is a structurally justified no-UI skip; 15b rejects UI freeze before prototype/walkthrough/agreement; 15c requires scope change to stale the prior decision and re-enter L2.",
+            "Current HARNESS-L11-003 rejects L3 progress before required prototype agreement, PoC feedback, and non-applicability record, but does not name user walkthrough/delta/no_delta/rebuild evidence or old stale receipt fields."
+          ],
+          "assessment": "partial_relation; generic agreement-before-freeze is retained, exact walkthrough and stale-reentry oracle is unverified"
+        }
+      ],
+      "current_targets": [
+        {
+          "identity": "HARNESS-L2-012 / L2-003 / L2-008",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md:54,106-113,363-370; L2-008 section",
+          "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:23,41-42,207",
+          "authority": "adopted exact initial HARNESS pair at f6dad2a; meaning boundary is Backflow and agreement, without FR19 formal mapping"
+        },
+        {
+          "identity": "HARNESS-L2-039",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md:891-930",
+          "section_sha256": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0",
+          "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:638-677",
+          "l11_section_sha256": "sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746",
+          "authority": "adopted exact -003 by 2026-09-29; UX state boundary only, no old walkthrough successor"
+        }
+      ],
+      "source_ir_status": "specified",
+      "definition_status": "frozen",
+      "downstream_obligation": {
+        "obligation_id": "DOWNSTREAM-HIL-FR-19",
+        "owner_id": "HR-FR-HIL-15",
+        "status": "pending_pair_descent",
+        "route_issue_ids": []
+      },
+      "pending_resolution": [
+        "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+        "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+      ]
+    }
+  ],
+  "related_legacy_atoms_in_same_contract": [
+    {
+      "requirement_id": "HIL-BR-13",
+      "source_l1": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:65",
+      "source_l1_line_sha256_excluding_lf": "sha256:9a5021ffa24ad3187864fdce1aa09ba6c6eb658b318afa7f46954b422224ef04",
+      "source_ir": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-13",
+      "statement_semantic_digest": "sha256:6f646299f2f5dbee367cbd24fbe602871e140475f0e299224a2e1b97b8394e07",
+      "record_semantic_digest": "sha256:5c3f2e937d686139ad2af77a1ece49fb5e3bc262f0cfd02a7586af943e3b1ffa",
+      "relation": "FR17 applicability and FR18/19 prototype-walkthrough boundary context; same HR-FR-HIL-15/HAC/HAT"
+    },
+    {
+      "requirement_id": "HIL-FR-20",
+      "source_l1": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:110",
+      "source_l1_line_sha256_excluding_lf": "sha256:5396b657dea6a9ca5620e83d2757fba3c59b27fc8d1f78e79402f66015d31c3a",
+      "source_ir": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-20",
+      "statement_semantic_digest": "sha256:222133a9de644396f35972616f71b14d07b7f1c501c737366b9a56f8f5ff5643",
+      "record_semantic_digest": "sha256:c15b515fa4611febe1e2eca21082a6f2ac9513f7858af231c3a8e658308c423a",
+      "relation": "HR-FR-HIL-15 close/freeze gate consumer; no successor inferred from neighboring acceptance table rows"
+    },
+    {
+      "requirement_id": "HIL-NFR-11",
+      "source_l1": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:191",
+      "source_l1_line_sha256_excluding_lf": "sha256:4515ae178d2098e2ee3633b48e607628db6151207ff2f9f40cd259953208df8f",
+      "source_ir": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-11",
+      "statement_semantic_digest": "sha256:5b24a2a3490b9e51b6ee169dbf9a2a97751f1848771fdb389f0d0b35482782a3",
+      "record_semantic_digest": "sha256:66067e84448185c681a15832ce97e9b679d85cc2cd1d00b3fbf9217f748a174f",
+      "relation": "HR-FR-HIL-15 implicit-skip/static-only/prose-only negative boundary"
+    }
+  ],
+  "legacy_consumer_assets": [
+    {
+      "asset_id": "LEGACY-ASSET-63DEDB3F6F768B251BC5",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L6-screen-applicability-prototype-unit-test-design.md",
+      "sha256": "sha256:d72c002d485628ba059346b6af6a7233cead8bdf060a2630289d1c8148e0e26f",
+      "scope": "lines 1-83; U-SAP-001..012; unresolved legacy oracle, not executed"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-CD32DDCC170620F5FBE8",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L5-screen-applicability-prototype-integration-test-design.md",
+      "sha256": "sha256:16a40c2952c2e69b42147f6f08994352d6188d5d8a68e72f1d4d618fc9784b07",
+      "scope": "lines 30-44, 50-69, 76-85; IT-SAP-001..009; unresolved legacy oracle, not executed"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "sha256": "sha256:a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "scope": "line 47, HAT-HIL-15 to HST-HIL-012/024; design relation only"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-51B78F6A5128E2CD1448",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/screen-applicability-prototype.md",
+      "sha256": "sha256:aa744b5d6eb4121c14cd8f2e8660dac200183a1359b4f3cf6bdc3b5a14d882c0",
+      "scope": "lines 38-46, 51-63, 80-91; unresolved legacy design"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A65B5C20721DD2149886",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/screen-applicability-prototype.md",
+      "sha256": "sha256:3f92059a9854d774c0278e51138396536bcbf55f6132478576d2064f836d2b64",
+      "scope": "lines 20-41, 57-64, 84-88; unresolved legacy design"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L5-source-capability-capture-integration-test-design.md",
+      "sha256": "sha256:5e8a7707259eb4e44881be81c353b5371b86e08722ae345baca6537e27c43ef4",
+      "scope": "FR15/16 cited HIL-09 consumer IT-SCAP-011/012/013 at lines 46-48; test design only"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L6-source-capability-atomization-closure-unit-test-design.md",
+      "sha256": "sha256:e966b3513c960f626e1c355db0e221c4d36d2683e2e40703a635e01c7c2119fc",
+      "scope": "FR15/16 atomization consumer U-SATOM-001..034 at lines 29-62; test design only"
+    }
+  ],
+  "static_validation": {
+    "raw_l1_hash_method": "SHA-256 of UTF-8 physical source line bytes excluding terminal LF",
+    "section_hash_method": "from the identity ### heading through just before the next same-level or higher heading, strip trailing blank lines, terminate with one LF",
+    "unverified_boundary": "No formal successor assignment, current runtime execution, current HIL receipt, or full IR153 closure is claimed.",
+    "candidate_needed": false,
+    "candidate_reason": "This task is a source/current-condition audit only; the parent requested no candidate and this audit records actual semantic correspondence and residuals without claiming source closure."
+  },
+  "legacy_contracts": [
+    {
+      "system_contract_id": "HR-FR-HIL-09",
+      "revision": 1,
+      "status": "specified",
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+      "file_sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "semantic_digest": "sha256:cb6f8d3da819ea3f52dba452f125fef79f5dc64aa39c185149472dd7c22e9dea",
+      "requirement_ids": [
+        "HIL-BR-14",
+        "HIL-FR-15",
+        "HIL-FR-16",
+        "HIL-FR-21",
+        "HIL-FR-22",
+        "HIL-FR-37",
+        "HIL-TR-03",
+        "HIL-NFR-08",
+        "HIL-NFR-12",
+        "HIL-NFR-22"
+      ],
+      "behavior": "ZIP、前身repository exact 2件（`unison-ai-product/UT-TDD_AGENT-HARNESS`、`RetryYN/ai-dev-kit-vscode`）のcurrent advertised `heads/tags/pull` authority、現行全treeをsnapshot化しatomic behaviorへ分解して採否→requirement→design→test→gateをjoinする。Git authorityはadvertisement A/B一致、exact OID materialize、object/tree/tag peel検証済みsealed receiptからだけ受理し、ref/content/edge分母をreceiptから導出する",
+      "transition_contract": "source/ref/entryとextractor version、exact 2 authority receiptあり → atom分母、disposition、trace、pending/orphan 0",
+      "failure_and_evidence": "aggregate-only、未分類/重複、remote identity不一致、A/B drift、ref/object欠落、stale、prose-only、Python write / manifest、atom、decision、edge、stale receipt",
+      "acceptance_cases": [
+        {
+          "id": "HAC-HIL-09a",
+          "polarity": "positive",
+          "statement": "ZIP＋exact 2 sealed Git authorities＋current HEADからreceipt由来のref/content/edge分母とatomic trace生成",
+          "semantic_digest": "sha256:7c5e93000f658fbc943d1de3eef252cec8075d26539e73f13b4ca83a892b90b7"
+        },
+        {
+          "id": "HAC-HIL-09b",
+          "polarity": "negative",
+          "statement": "parent-only/child欠落/overlap、advertised ref omission/extra、unverified objectでfreeze拒否",
+          "semantic_digest": "sha256:4cea839cbfa97f62a330b7667a05e6109937603f87f2626fa9d4a3420f756b83"
+        },
+        {
+          "id": "HAC-HIL-09c",
+          "polarity": "boundary",
+          "statement": "remote identity、advertisement A/B、namespace policy、source/extractor変更で旧authority以降をstale",
+          "semantic_digest": "sha256:f5cf45258aab6fe90a0ff56a1c648bc7e8edcf64485f2ff6cc7bb3ef7c8c0614"
+        }
+      ],
+      "system_test": {
+        "system_test_id": "HAT-HIL-09",
+        "revision": 1,
+        "status": "designed_not_implemented",
+        "supporting_test_ids": [
+          "HST-HIL-011",
+          "HST-HIL-020"
+        ],
+        "scenario": "三sourceをsnapshot/atom/coverageへ処理",
+        "required_evidence": "manifests、atom spans、decision/edge/stale receipt",
+        "negative_boundary": "branch/child欠落、aggregate-only、pending",
+        "semantic_digest": "sha256:e4533907c7b9f3520544c1fc12dd46d553a90149b3f829feb73cb1db345b25da",
+        "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+        "file_sha256": "sha256:7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a"
+      }
+    },
+    {
+      "system_contract_id": "HR-FR-HIL-15",
+      "revision": 1,
+      "status": "specified",
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+      "file_sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "semantic_digest": "sha256:b05ffe97e0976938161d72262a1ee5ecd2d4d0f8bdbda5a9a92d0962a7d9491a",
+      "requirement_ids": [
+        "HIL-BR-13",
+        "HIL-FR-17",
+        "HIL-FR-18",
+        "HIL-FR-19",
+        "HIL-FR-20",
+        "HIL-NFR-11"
+      ],
+      "behavior": "全PLANをprototype_required/not_applicableへ分類し、前者はprototype→walkthrough→backprop/agreement、後者は構造skipでのみL3 freezeする",
+      "transition_contract": "scope digest/policyあり → current agreementまたはno-UI receipt",
+      "failure_and_evidence": "implicit/deferred、static-only、state/walkthrough欠落、stale skip / applicability、artifact、walkthrough、delta、agreement",
+      "acceptance_cases": [
+        {
+          "id": "HAC-HIL-15a",
+          "polarity": "positive",
+          "statement": "no-UI構造skipでfreeze",
+          "semantic_digest": "sha256:94b582445eb4e9134827598dc75d995ebea72cbdf4ca0e3dfdbc2991b7190482"
+        },
+        {
+          "id": "HAC-HIL-15b",
+          "polarity": "negative",
+          "statement": "UIはprototype/walkthrough/agreement前freeze拒否",
+          "semantic_digest": "sha256:5732171f866332019cc201147075c98d88fb7f408b426567167e825a7be2e423"
+        },
+        {
+          "id": "HAC-HIL-15c",
+          "polarity": "boundary",
+          "statement": "scope変更でstale化しL2再entry",
+          "semantic_digest": "sha256:34ba11c709deabf1b79731069f2548001f1854d433a43409a216e883218f94a0"
+        }
+      ],
+      "system_test": {
+        "system_test_id": "HAT-HIL-15",
+        "revision": 1,
+        "status": "designed_not_implemented",
+        "supporting_test_ids": [
+          "HST-HIL-012",
+          "HST-HIL-024"
+        ],
+        "scenario": "no-UIまたはprototype routeを完了",
+        "required_evidence": "applicability、artifact/state、walkthrough/delta/agreement",
+        "negative_boundary": "implicit skip、static-only、stale receipt",
+        "semantic_digest": "sha256:829392537e0bf743393fc5041ea20a0741b82cc8e8343e0ee274eb182a27fc38",
+        "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+        "file_sha256": "sha256:7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a"
+      }
+    }
+  ]
+}
