@@ -71,4 +71,4 @@
 
 ## 同PR内の先行slice照合
 
-1781–1820はorigin/main未収載だが本PRに含む。commit `73cd1685998e752f40cc2d78f5f4e40d64d76650` のJSONをSHAで固定し、rank1820から1821の連続性を照合した。採択・closureを生成しない。
+1781–1820はorigin/main未収載だが本PRに含む。commit `d5b5bddca88939c784bbc7d658dac1d0b79479ce` のJSONをSHAで固定し、rank1820から1821の連続性を照合した。採択・closureを生成しない。
