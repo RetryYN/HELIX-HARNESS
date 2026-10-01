@@ -9247,5 +9247,17 @@
     ],
     "selected_source_id_or_physical_line_direct_binding_count": 0,
     "interpretation": "Exact selected source IDs are absent. OS L2:510 is a family/path index; OS L2:783/822 is a broad cited asset/source span; LABO L2:406 explains partial meaning derivation from FRS-R-06/13/14. These are row-family/span relations, not exact atom bindings."
+  },
+  "prior_completed_complement_slice": {
+    "ranks": [
+      1261,
+      1300
+    ],
+    "merge_commit": "c5921cebfdfd9205e2879e5ab5fed57d501d6bf2",
+    "last_id": "LEGACY-CAND-LINE-002150",
+    "md_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1261-1300-2026-10-02.md",
+    "md_sha256": "048efd1e4241747ebc1af0476f15908a8b756dfefad7ef8b00af7a4092f06d9d",
+    "json_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1261-1300-2026-10-02.json",
+    "json_sha256": "a67fc61d24b7036651841e69abaa23fbde5f75b1d7126f8e3d018fd58d7ce799"
   }
 }

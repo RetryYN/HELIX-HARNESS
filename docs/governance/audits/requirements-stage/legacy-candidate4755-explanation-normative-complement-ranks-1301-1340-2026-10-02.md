@@ -5,7 +5,7 @@
 ## 母集団と境界
 
 - #2353の4,755 row_recordsへ#2356→#2360→#2363→#2366→#2367→#2368→#2369→#2381をexact source IDで適用。effective explanation 2,965行からmarker 255行を除いた2,710行を数値ID suffix順にし、ranks 1301–1340を選択。40 IDのSHA-256: `7af22e38615536f0fbc82ab49d80f07a31904789f075eb683812021cd7a487dd`。
-- rank 1300の境界IDは `LEGACY-CAND-LINE-002150`。本基点にranks 1261–1300 paired auditはなく、先行意味監査を主張しない。
+- rank 1300の境界IDは `LEGACY-CAND-LINE-002150`。直前ranks 1261–1300のpaired auditは#2466 merge commit `c5921cebfdfd9205e2879e5ab5fed57d501d6bf2`でmainへ統合済み。rank1300境界IDとMD/JSON SHAを照合した。
 - archive manifest `archive/legacy-generation-2026-09-14/MANIFEST.sha256` SHA-256 `10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6`; manifest entry confirms the pinned source-file SHA.
 - source file SHA-256: `eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17`; source-line carry-forward ledger 4755行 / SHA-256 `a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781`; asset ledger 4020行 / SHA-256 `cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c`; semantic routing ledger SHA-256 `935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3`.
 
