@@ -3483,7 +3483,7 @@
       "exact_source_line_text": "context packetを再構成する。正本一か所の変更が正規入口から対象consumerへ到達し、未登録command、",
       "semantic_family": "指示経路変更耐性の受入候補",
       "semantic_function": "IPC-AC09とIPC-R09の安定入口・動的参照",
-      "semantic_reading": "LEGACY-CAND-LINE-003020 — 文脈packet再構成の節を完結する。続いて正本一か所の変更を正規入口から対象consumerまでread-afterし、未登録commandを列挙し始める（この行末で条件は続く）。",
+      "semantic_reading": "LEGACY-CAND-LINE-003020 — context packetを再構成する。正本一か所の変更が正規入口から対象consumerへ到達し、未登録commandの列挙を始める未完文。この行には次行のread-after述語を含めない。",
       "legacy_context": {
         "section_heading": {
           "line": 49,
@@ -6916,7 +6916,7 @@
       "exact_source_line_text": "主Issue #1608、親 #1370へ接続する。詳細10要求は",
       "semantic_family": "指示経路変更耐性の企画候補",
       "semantic_function": "責務と追跡のissue関係",
-      "semantic_reading": "LEGACY-CAND-LINE-003043 — 主Issue #1608を親Issue #1370へ接続し、詳細10要求の参照を導入する。参照先ファイルは次の物理行。",
+      "semantic_reading": "LEGACY-CAND-LINE-003043 — 本書を主Issue #1608と親 #1370へ接続する。詳細10要求の参照を導入する未完文で、参照先は次行にある。",
       "legacy_context": {
         "section_heading": {
           "line": 18,

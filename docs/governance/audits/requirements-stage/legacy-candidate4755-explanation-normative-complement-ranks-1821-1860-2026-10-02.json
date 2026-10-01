@@ -1309,7 +1309,29 @@
         "historical_reviewed_head_file_pin": null,
         "approval_scope_relation": "plan candidate-only / no approval inferred"
       },
-      "all_mechanism_archive_path_line_citations": []
+      "all_mechanism_archive_path_line_citations": [],
+      "OS_candidate_derived_from_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+          "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+          "citation_line": 13,
+          "citation_text": "  - docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "citation_line_sha256": "ff1aea3ca1b6aabb1720520459928d5a8f65dc07290ae4cc10921438c63406d1",
+          "relation": "derived_fromの旧要求sourceファイル単位family参照。個別物理行の採択・successor・receipt atom被覆ではない。"
+        },
+        {
+          "role": "current_base",
+          "commit": "45cdb3e3a92cccb52b7dce88fe3bb14406e8dfb6",
+          "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+          "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+          "citation_line": 13,
+          "citation_text": "  - docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "citation_line_sha256": "ff1aea3ca1b6aabb1720520459928d5a8f65dc07290ae4cc10921438c63406d1",
+          "relation": "derived_fromの旧要求sourceファイル単位family参照。個別物理行の採択・successor・receipt atom被覆ではない。"
+        }
+      ]
     },
     {
       "rank": 1822,
@@ -1430,7 +1452,29 @@
         "historical_reviewed_head_file_pin": null,
         "approval_scope_relation": "plan candidate-only / no approval inferred"
       },
-      "all_mechanism_archive_path_line_citations": []
+      "all_mechanism_archive_path_line_citations": [],
+      "OS_candidate_derived_from_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+          "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+          "citation_line": 13,
+          "citation_text": "  - docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "citation_line_sha256": "ff1aea3ca1b6aabb1720520459928d5a8f65dc07290ae4cc10921438c63406d1",
+          "relation": "derived_fromの旧要求sourceファイル単位family参照。個別物理行の採択・successor・receipt atom被覆ではない。"
+        },
+        {
+          "role": "current_base",
+          "commit": "45cdb3e3a92cccb52b7dce88fe3bb14406e8dfb6",
+          "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+          "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+          "citation_line": 13,
+          "citation_text": "  - docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "citation_line_sha256": "ff1aea3ca1b6aabb1720520459928d5a8f65dc07290ae4cc10921438c63406d1",
+          "relation": "derived_fromの旧要求sourceファイル単位family参照。個別物理行の採択・successor・receipt atom被覆ではない。"
+        }
+      ]
     },
     {
       "rank": 1823,
@@ -1551,7 +1595,29 @@
         "historical_reviewed_head_file_pin": null,
         "approval_scope_relation": "plan candidate-only / no approval inferred"
       },
-      "all_mechanism_archive_path_line_citations": []
+      "all_mechanism_archive_path_line_citations": [],
+      "OS_candidate_derived_from_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+          "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+          "citation_line": 13,
+          "citation_text": "  - docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "citation_line_sha256": "ff1aea3ca1b6aabb1720520459928d5a8f65dc07290ae4cc10921438c63406d1",
+          "relation": "derived_fromの旧要求sourceファイル単位family参照。個別物理行の採択・successor・receipt atom被覆ではない。"
+        },
+        {
+          "role": "current_base",
+          "commit": "45cdb3e3a92cccb52b7dce88fe3bb14406e8dfb6",
+          "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+          "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+          "citation_line": 13,
+          "citation_text": "  - docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "citation_line_sha256": "ff1aea3ca1b6aabb1720520459928d5a8f65dc07290ae4cc10921438c63406d1",
+          "relation": "derived_fromの旧要求sourceファイル単位family参照。個別物理行の採択・successor・receipt atom被覆ではない。"
+        }
+      ]
     },
     {
       "rank": 1824,
@@ -1672,7 +1738,29 @@
         "historical_reviewed_head_file_pin": null,
         "approval_scope_relation": "plan candidate-only / no approval inferred"
       },
-      "all_mechanism_archive_path_line_citations": []
+      "all_mechanism_archive_path_line_citations": [],
+      "OS_candidate_derived_from_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+          "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+          "citation_line": 13,
+          "citation_text": "  - docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "citation_line_sha256": "ff1aea3ca1b6aabb1720520459928d5a8f65dc07290ae4cc10921438c63406d1",
+          "relation": "derived_fromの旧要求sourceファイル単位family参照。個別物理行の採択・successor・receipt atom被覆ではない。"
+        },
+        {
+          "role": "current_base",
+          "commit": "45cdb3e3a92cccb52b7dce88fe3bb14406e8dfb6",
+          "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+          "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+          "citation_line": 13,
+          "citation_text": "  - docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "citation_line_sha256": "ff1aea3ca1b6aabb1720520459928d5a8f65dc07290ae4cc10921438c63406d1",
+          "relation": "derived_fromの旧要求sourceファイル単位family参照。個別物理行の採択・successor・receipt atom被覆ではない。"
+        }
+      ]
     },
     {
       "rank": 1825,
@@ -1793,7 +1881,29 @@
         "historical_reviewed_head_file_pin": null,
         "approval_scope_relation": "plan candidate-only / no approval inferred"
       },
-      "all_mechanism_archive_path_line_citations": []
+      "all_mechanism_archive_path_line_citations": [],
+      "OS_candidate_derived_from_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+          "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+          "citation_line": 13,
+          "citation_text": "  - docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "citation_line_sha256": "ff1aea3ca1b6aabb1720520459928d5a8f65dc07290ae4cc10921438c63406d1",
+          "relation": "derived_fromの旧要求sourceファイル単位family参照。個別物理行の採択・successor・receipt atom被覆ではない。"
+        },
+        {
+          "role": "current_base",
+          "commit": "45cdb3e3a92cccb52b7dce88fe3bb14406e8dfb6",
+          "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+          "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+          "citation_line": 13,
+          "citation_text": "  - docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "citation_line_sha256": "ff1aea3ca1b6aabb1720520459928d5a8f65dc07290ae4cc10921438c63406d1",
+          "relation": "derived_fromの旧要求sourceファイル単位family参照。個別物理行の採択・successor・receipt atom被覆ではない。"
+        }
+      ]
     },
     {
       "rank": 1826,
@@ -1807,7 +1917,7 @@
         "text": "## IPC-R09 安定入口と動的正本参照"
       },
       "exact_source_line_text": "AGENTS／CLAUDE／agent／commandの固定指示は、正規入口、契約取得先、診断取得先への参照へ縮小する。",
-      "semantic_reading": "固定されたagent向け指示を、正規入口や契約・診断参照先への案内に縮小する。",
+      "semantic_reading": "AGENTS／CLAUDE／agent／commandの固定指示を、正規入口、契約取得先、診断取得先への参照へ縮小する。",
       "physical_context": {
         "previous_physical_line": "",
         "next_physical_line": "worker contextは有効なRequirement IR、Policy、Workflow、Skill、適用版から必要範囲だけを構成し、"
@@ -1914,7 +2024,29 @@
         "historical_reviewed_head_file_pin": null,
         "approval_scope_relation": "plan candidate-only / no approval inferred"
       },
-      "all_mechanism_archive_path_line_citations": []
+      "all_mechanism_archive_path_line_citations": [],
+      "OS_candidate_derived_from_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+          "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+          "citation_line": 13,
+          "citation_text": "  - docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "citation_line_sha256": "ff1aea3ca1b6aabb1720520459928d5a8f65dc07290ae4cc10921438c63406d1",
+          "relation": "derived_fromの旧要求sourceファイル単位family参照。個別物理行の採択・successor・receipt atom被覆ではない。"
+        },
+        {
+          "role": "current_base",
+          "commit": "45cdb3e3a92cccb52b7dce88fe3bb14406e8dfb6",
+          "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+          "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+          "citation_line": 13,
+          "citation_text": "  - docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "citation_line_sha256": "ff1aea3ca1b6aabb1720520459928d5a8f65dc07290ae4cc10921438c63406d1",
+          "relation": "derived_fromの旧要求sourceファイル単位family参照。個別物理行の採択・successor・receipt atom被覆ではない。"
+        }
+      ]
     },
     {
       "rank": 1827,
@@ -2035,7 +2167,29 @@
         "historical_reviewed_head_file_pin": null,
         "approval_scope_relation": "plan candidate-only / no approval inferred"
       },
-      "all_mechanism_archive_path_line_citations": []
+      "all_mechanism_archive_path_line_citations": [],
+      "OS_candidate_derived_from_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+          "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+          "citation_line": 13,
+          "citation_text": "  - docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "citation_line_sha256": "ff1aea3ca1b6aabb1720520459928d5a8f65dc07290ae4cc10921438c63406d1",
+          "relation": "derived_fromの旧要求sourceファイル単位family参照。個別物理行の採択・successor・receipt atom被覆ではない。"
+        },
+        {
+          "role": "current_base",
+          "commit": "45cdb3e3a92cccb52b7dce88fe3bb14406e8dfb6",
+          "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+          "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+          "citation_line": 13,
+          "citation_text": "  - docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "citation_line_sha256": "ff1aea3ca1b6aabb1720520459928d5a8f65dc07290ae4cc10921438c63406d1",
+          "relation": "derived_fromの旧要求sourceファイル単位family参照。個別物理行の採択・successor・receipt atom被覆ではない。"
+        }
+      ]
     },
     {
       "rank": 1828,
@@ -2156,7 +2310,29 @@
         "historical_reviewed_head_file_pin": null,
         "approval_scope_relation": "plan candidate-only / no approval inferred"
       },
-      "all_mechanism_archive_path_line_citations": []
+      "all_mechanism_archive_path_line_citations": [],
+      "OS_candidate_derived_from_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+          "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+          "citation_line": 13,
+          "citation_text": "  - docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "citation_line_sha256": "ff1aea3ca1b6aabb1720520459928d5a8f65dc07290ae4cc10921438c63406d1",
+          "relation": "derived_fromの旧要求sourceファイル単位family参照。個別物理行の採択・successor・receipt atom被覆ではない。"
+        },
+        {
+          "role": "current_base",
+          "commit": "45cdb3e3a92cccb52b7dce88fe3bb14406e8dfb6",
+          "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+          "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+          "citation_line": 13,
+          "citation_text": "  - docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "citation_line_sha256": "ff1aea3ca1b6aabb1720520459928d5a8f65dc07290ae4cc10921438c63406d1",
+          "relation": "derived_fromの旧要求sourceファイル単位family参照。個別物理行の採択・successor・receipt atom被覆ではない。"
+        }
+      ]
     },
     {
       "rank": 1829,
@@ -2277,7 +2453,29 @@
         "historical_reviewed_head_file_pin": null,
         "approval_scope_relation": "plan candidate-only / no approval inferred"
       },
-      "all_mechanism_archive_path_line_citations": []
+      "all_mechanism_archive_path_line_citations": [],
+      "OS_candidate_derived_from_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+          "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+          "citation_line": 13,
+          "citation_text": "  - docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "citation_line_sha256": "ff1aea3ca1b6aabb1720520459928d5a8f65dc07290ae4cc10921438c63406d1",
+          "relation": "derived_fromの旧要求sourceファイル単位family参照。個別物理行の採択・successor・receipt atom被覆ではない。"
+        },
+        {
+          "role": "current_base",
+          "commit": "45cdb3e3a92cccb52b7dce88fe3bb14406e8dfb6",
+          "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+          "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+          "citation_line": 13,
+          "citation_text": "  - docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "citation_line_sha256": "ff1aea3ca1b6aabb1720520459928d5a8f65dc07290ae4cc10921438c63406d1",
+          "relation": "derived_fromの旧要求sourceファイル単位family参照。個別物理行の採択・successor・receipt atom被覆ではない。"
+        }
+      ]
     },
     {
       "rank": 1830,
@@ -2398,7 +2596,29 @@
         "historical_reviewed_head_file_pin": null,
         "approval_scope_relation": "plan candidate-only / no approval inferred"
       },
-      "all_mechanism_archive_path_line_citations": []
+      "all_mechanism_archive_path_line_citations": [],
+      "OS_candidate_derived_from_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+          "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+          "citation_line": 13,
+          "citation_text": "  - docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "citation_line_sha256": "ff1aea3ca1b6aabb1720520459928d5a8f65dc07290ae4cc10921438c63406d1",
+          "relation": "derived_fromの旧要求sourceファイル単位family参照。個別物理行の採択・successor・receipt atom被覆ではない。"
+        },
+        {
+          "role": "current_base",
+          "commit": "45cdb3e3a92cccb52b7dce88fe3bb14406e8dfb6",
+          "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+          "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+          "citation_line": 13,
+          "citation_text": "  - docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "citation_line_sha256": "ff1aea3ca1b6aabb1720520459928d5a8f65dc07290ae4cc10921438c63406d1",
+          "relation": "derived_fromの旧要求sourceファイル単位family参照。個別物理行の採択・successor・receipt atom被覆ではない。"
+        }
+      ]
     },
     {
       "rank": 1831,
@@ -2519,7 +2739,29 @@
         "historical_reviewed_head_file_pin": null,
         "approval_scope_relation": "plan candidate-only / no approval inferred"
       },
-      "all_mechanism_archive_path_line_citations": []
+      "all_mechanism_archive_path_line_citations": [],
+      "OS_candidate_derived_from_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+          "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+          "citation_line": 13,
+          "citation_text": "  - docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "citation_line_sha256": "ff1aea3ca1b6aabb1720520459928d5a8f65dc07290ae4cc10921438c63406d1",
+          "relation": "derived_fromの旧要求sourceファイル単位family参照。個別物理行の採択・successor・receipt atom被覆ではない。"
+        },
+        {
+          "role": "current_base",
+          "commit": "45cdb3e3a92cccb52b7dce88fe3bb14406e8dfb6",
+          "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+          "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+          "citation_line": 13,
+          "citation_text": "  - docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "citation_line_sha256": "ff1aea3ca1b6aabb1720520459928d5a8f65dc07290ae4cc10921438c63406d1",
+          "relation": "derived_fromの旧要求sourceファイル単位family参照。個別物理行の採択・successor・receipt atom被覆ではない。"
+        }
+      ]
     },
     {
       "rank": 1832,
@@ -2640,7 +2882,29 @@
         "historical_reviewed_head_file_pin": null,
         "approval_scope_relation": "plan candidate-only / no approval inferred"
       },
-      "all_mechanism_archive_path_line_citations": []
+      "all_mechanism_archive_path_line_citations": [],
+      "OS_candidate_derived_from_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+          "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+          "citation_line": 13,
+          "citation_text": "  - docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "citation_line_sha256": "ff1aea3ca1b6aabb1720520459928d5a8f65dc07290ae4cc10921438c63406d1",
+          "relation": "derived_fromの旧要求sourceファイル単位family参照。個別物理行の採択・successor・receipt atom被覆ではない。"
+        },
+        {
+          "role": "current_base",
+          "commit": "45cdb3e3a92cccb52b7dce88fe3bb14406e8dfb6",
+          "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+          "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+          "citation_line": 13,
+          "citation_text": "  - docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "citation_line_sha256": "ff1aea3ca1b6aabb1720520459928d5a8f65dc07290ae4cc10921438c63406d1",
+          "relation": "derived_fromの旧要求sourceファイル単位family参照。個別物理行の採択・successor・receipt atom被覆ではない。"
+        }
+      ]
     },
     {
       "rank": 1833,
@@ -2761,7 +3025,29 @@
         "historical_reviewed_head_file_pin": null,
         "approval_scope_relation": "plan candidate-only / no approval inferred"
       },
-      "all_mechanism_archive_path_line_citations": []
+      "all_mechanism_archive_path_line_citations": [],
+      "OS_candidate_derived_from_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+          "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+          "citation_line": 13,
+          "citation_text": "  - docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "citation_line_sha256": "ff1aea3ca1b6aabb1720520459928d5a8f65dc07290ae4cc10921438c63406d1",
+          "relation": "derived_fromの旧要求sourceファイル単位family参照。個別物理行の採択・successor・receipt atom被覆ではない。"
+        },
+        {
+          "role": "current_base",
+          "commit": "45cdb3e3a92cccb52b7dce88fe3bb14406e8dfb6",
+          "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+          "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+          "citation_line": 13,
+          "citation_text": "  - docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "citation_line_sha256": "ff1aea3ca1b6aabb1720520459928d5a8f65dc07290ae4cc10921438c63406d1",
+          "relation": "derived_fromの旧要求sourceファイル単位family参照。個別物理行の採択・successor・receipt atom被覆ではない。"
+        }
+      ]
     },
     {
       "rank": 1834,
@@ -2882,7 +3168,29 @@
         "historical_reviewed_head_file_pin": null,
         "approval_scope_relation": "plan candidate-only / no approval inferred"
       },
-      "all_mechanism_archive_path_line_citations": []
+      "all_mechanism_archive_path_line_citations": [],
+      "OS_candidate_derived_from_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+          "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+          "citation_line": 13,
+          "citation_text": "  - docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "citation_line_sha256": "ff1aea3ca1b6aabb1720520459928d5a8f65dc07290ae4cc10921438c63406d1",
+          "relation": "derived_fromの旧要求sourceファイル単位family参照。個別物理行の採択・successor・receipt atom被覆ではない。"
+        },
+        {
+          "role": "current_base",
+          "commit": "45cdb3e3a92cccb52b7dce88fe3bb14406e8dfb6",
+          "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+          "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+          "citation_line": 13,
+          "citation_text": "  - docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "citation_line_sha256": "ff1aea3ca1b6aabb1720520459928d5a8f65dc07290ae4cc10921438c63406d1",
+          "relation": "derived_fromの旧要求sourceファイル単位family参照。個別物理行の採択・successor・receipt atom被覆ではない。"
+        }
+      ]
     },
     {
       "rank": 1835,
@@ -3003,7 +3311,29 @@
         "historical_reviewed_head_file_pin": null,
         "approval_scope_relation": "plan candidate-only / no approval inferred"
       },
-      "all_mechanism_archive_path_line_citations": []
+      "all_mechanism_archive_path_line_citations": [],
+      "OS_candidate_derived_from_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+          "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+          "citation_line": 13,
+          "citation_text": "  - docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "citation_line_sha256": "ff1aea3ca1b6aabb1720520459928d5a8f65dc07290ae4cc10921438c63406d1",
+          "relation": "derived_fromの旧要求sourceファイル単位family参照。個別物理行の採択・successor・receipt atom被覆ではない。"
+        },
+        {
+          "role": "current_base",
+          "commit": "45cdb3e3a92cccb52b7dce88fe3bb14406e8dfb6",
+          "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+          "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+          "citation_line": 13,
+          "citation_text": "  - docs/governance/candidates/instruction-path-change-resilience-requirements.md",
+          "citation_line_sha256": "ff1aea3ca1b6aabb1720520459928d5a8f65dc07290ae4cc10921438c63406d1",
+          "relation": "derived_fromの旧要求sourceファイル単位family参照。個別物理行の採択・successor・receipt atom被覆ではない。"
+        }
+      ]
     },
     {
       "rank": 1836,
