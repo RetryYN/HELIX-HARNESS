@@ -4,7 +4,7 @@
 
 ## 対象と境界
 
-固定v1.3 queue 303行から `primary_residual` かつ `unresolved_for_closure_work` の255行を取り、32個のpinned focused auditをraw ID tokenだけでなくsource tupleで照合した結果、qualified hitは124件、effective identity-filter poolは131件（255−124）となる。source-qualified join proofは `f11655477d7d7846acc04d783a69e53be227f309` のJSONを参照する。candidate4755/#2353等は別母集団として除外する。119件のraw-token no-hit列はすべての意味上未レビュー条件を表さない。
+固定v1.3 queue 303行から `primary_residual` かつ `unresolved_for_closure_work` の255行を取り、32個のpinned focused auditをraw ID tokenだけでなくsource tupleで照合した結果、qualified hitは124件、effective identity-filter poolは131件（255−124）となる。source-qualified join proofは `docs/governance/audits/requirements-stage/v13-effective-rank-selection-reconstruction-review-2026-10-01.json` @ `0a91e269671a3a7b30d3ee7d1ef084d959791975`（JSON SHA-256 `424c0348780596e14aec1f1234bdd0842f06e54017846edab33fda694429c186`）を参照する。candidate4755/#2353等は別母集団として除外する。119件のraw-token no-hit列はすべての意味上未レビュー条件を表さない。
 
 旧artifactの `rows21–40` と `rows41–60` ラベルは131-pool順位として無効である。ここでは旧40行のsource identity tupleをqueueと突合し、既存comparison欄を意味変更せず順位だけを再計算した。旧40件は新poolの連続区間ではなく、rank42–67の一部とrank91–110に分布する。
 
