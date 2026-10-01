@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "audit_id": "CAND4755-MARKER-RECEIPT-CORRECTION-2026-10-02",
+  "authority_effect": "none",
+  "created_against_commit": "59d661a7840c0ee556a8694fc2d1b1adb8cdda17",
+  "source_review_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/2451#issuecomment-5935167242",
+  "scope": "merge済み監査のmarker rank 4,21,190,191の既存receipt関係のみを訂正する。従前監査の原文意味・分類・全体集計を改変しない。",
+  "pinned_inputs": [
+    {
+      "commit": "59d661a7840c0ee556a8694fc2d1b1adb8cdda17",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-2026-10-01.json",
+      "sha256": "3ea33ed390c354e84b81f1dd7956afdfab7bd00deb49969383b717bacf4acd33"
+    },
+    {
+      "commit": "59d661a7840c0ee556a8694fc2d1b1adb8cdda17",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-181-200-2026-10-01.json",
+      "sha256": "de845d732261122a04af5aeb168dbc9b7a55507d6c977b74c37d1c19ec645e97"
+    },
+    {
+      "commit": "59d661a7840c0ee556a8694fc2d1b1adb8cdda17",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-21-40-2026-10-01.json",
+      "sha256": "8d5059267a6ebe70366e670ac548d760dfd3259748012125201bd6539e1b5b2f"
+    },
+    {
+      "commit": "59d661a7840c0ee556a8694fc2d1b1adb8cdda17",
+      "path": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+      "sha256": "377fe1b6d2c036748e15e17726a35b8f413e8c50f5546de8c1a66fed4317207b"
+    },
+    {
+      "commit": "59d661a7840c0ee556a8694fc2d1b1adb8cdda17",
+      "path": "docs/governance/audits/requirement-registration/helix-security-stage-review-coverage-receipt-2026-09-27.json",
+      "sha256": "93c2d8e95ddbd6c81288ab8a0ba0aec04873f040e47a7ce2b2ac47ed112b2fe3"
+    }
+  ],
+  "rows": [
+    {
+      "marker_rank": 4,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004330",
+      "prior_audit_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-2026-10-01.json",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-acceptance.md",
+      "physical_line": 25,
+      "source_line_sha256": "f974939016b3aabf1e9955c093791fc9e273a3d549c17319a964569ab6c29741",
+      "source_file_sha256": "c8d332f8d7655ba04ff664aef75f084d33e19b5d8fd0493c7f498fcd97235ffc",
+      "receipt_matches": [
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "requirement_identity": "HELIXSECURITY-L2-008",
+          "disposition": "preserved_pending",
+          "registration_ref": "MPR-SH-CANDIDATE-003"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "requirement_identity": "HELIXSECURITY-L2-009",
+          "disposition": "preserved_pending",
+          "registration_ref": "MPR-SH-CANDIDATE-003"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "requirement_identity": "HELIXSECURITY-L2-022",
+          "disposition": "preserved_pending",
+          "registration_ref": "MPR-SH-CANDIDATE-003"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/helix-security-stage-review-coverage-receipt-2026-09-27.json",
+          "requirement_identity": "HELIXSECURITY-L2-009",
+          "disposition": "preserved_pending",
+          "registration_ref": "MPR-SH-CANDIDATE-003"
+        }
+      ],
+      "adopted_pair_binding_found": false,
+      "successor_count": 0,
+      "closure_count": 0,
+      "correction": "当該行はreceiptにatomとして記載され、処置はpreserved_pending。従前監査のreceipt関係記載漏れを補う。"
+    },
+    {
+      "marker_rank": 21,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004329",
+      "prior_audit_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-21-40-2026-10-01.json",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-acceptance.md",
+      "physical_line": 24,
+      "source_line_sha256": "fba2965b07500eb0d69aa351f3a4240c4e7e00ce9ccd50d2bf001f7a5d2cd1af",
+      "source_file_sha256": "c8d332f8d7655ba04ff664aef75f084d33e19b5d8fd0493c7f498fcd97235ffc",
+      "receipt_matches": [
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "requirement_identity": "HELIXSECURITY-L2-008",
+          "disposition": "preserved_pending",
+          "registration_ref": "MPR-SH-CANDIDATE-003"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "requirement_identity": "HELIXSECURITY-L2-009",
+          "disposition": "preserved_pending",
+          "registration_ref": "MPR-SH-CANDIDATE-003"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "requirement_identity": "HELIXSECURITY-L2-022",
+          "disposition": "preserved_pending",
+          "registration_ref": "MPR-SH-CANDIDATE-003"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/helix-security-stage-review-coverage-receipt-2026-09-27.json",
+          "requirement_identity": "HELIXSECURITY-L2-009",
+          "disposition": "preserved_pending",
+          "registration_ref": "MPR-SH-CANDIDATE-003"
+        }
+      ],
+      "adopted_pair_binding_found": false,
+      "successor_count": 0,
+      "closure_count": 0,
+      "correction": "当該行はreceiptにatomとして記載され、処置はpreserved_pending。従前監査のreceipt関係記載漏れを補う。"
+    },
+    {
+      "marker_rank": 190,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004321",
+      "prior_audit_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-181-200-2026-10-01.json",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-acceptance.md",
+      "physical_line": 16,
+      "source_line_sha256": "2f541fb23eedef5ad9ce7ab1718e9dfee6064a5980d60d3210fd9bcb79521094",
+      "source_file_sha256": "c8d332f8d7655ba04ff664aef75f084d33e19b5d8fd0493c7f498fcd97235ffc",
+      "receipt_matches": [
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "requirement_identity": "HELIXSECURITY-L2-008",
+          "disposition": "preserved_pending",
+          "registration_ref": "MPR-SH-CANDIDATE-003"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "requirement_identity": "HELIXSECURITY-L2-009",
+          "disposition": "preserved_pending",
+          "registration_ref": "MPR-SH-CANDIDATE-003"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "requirement_identity": "HELIXSECURITY-L2-022",
+          "disposition": "preserved_pending",
+          "registration_ref": "MPR-SH-CANDIDATE-003"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/helix-security-stage-review-coverage-receipt-2026-09-27.json",
+          "requirement_identity": "HELIXSECURITY-L2-009",
+          "disposition": "preserved_pending",
+          "registration_ref": "MPR-SH-CANDIDATE-003"
+        }
+      ],
+      "adopted_pair_binding_found": false,
+      "successor_count": 0,
+      "closure_count": 0,
+      "correction": "当該行はreceiptにatomとして記載され、処置はpreserved_pending。従前監査のreceipt関係記載漏れを補う。"
+    },
+    {
+      "marker_rank": 191,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004392",
+      "prior_audit_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-181-200-2026-10-01.json",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requirements.md",
+      "physical_line": 24,
+      "source_line_sha256": "010fef51a0fa8a24e13e035d6433813576a54d5dcf2e54f36551d103bdb98433",
+      "source_file_sha256": "38a68e48ca26cb277b6f5d88439b33b58aecf48f5b650f7596aec04e438b6b16",
+      "receipt_matches": [
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "requirement_identity": "HELIXSECURITY-L2-008",
+          "disposition": "preserved_pending",
+          "registration_ref": "MPR-SH-CANDIDATE-003"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "requirement_identity": "HELIXSECURITY-L2-009",
+          "disposition": "preserved_pending",
+          "registration_ref": "MPR-SH-CANDIDATE-003"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "requirement_identity": "HELIXSECURITY-L2-022",
+          "disposition": "preserved_pending",
+          "registration_ref": "MPR-SH-CANDIDATE-003"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/helix-security-stage-review-coverage-receipt-2026-09-27.json",
+          "requirement_identity": "HELIXSECURITY-L2-009",
+          "disposition": "preserved_pending",
+          "registration_ref": "MPR-SH-CANDIDATE-003"
+        }
+      ],
+      "adopted_pair_binding_found": false,
+      "successor_count": 0,
+      "closure_count": 0,
+      "correction": "当該行はreceiptにatomとして記載され、処置はpreserved_pending。従前監査のreceipt関係記載漏れを補う。"
+    }
+  ],
+  "limitations": [
+    "receiptのpreserved_pendingは旧候補行の現行L2/L11採択・successor・closureを示さない。",
+    "HELIXSECURITY-L2-008/009/022の固定PO判断があることと、当該旧物理行の採択を混同しない。",
+    "他の1,351行についてはreview commentの調査範囲を超える再監査を主張しない。"
+  ]
+}
