@@ -36937,273 +36937,6 @@
     "receipt_direct_physical_path_line_hits": 0,
     "receipt_source_file_refs_distinguished_from_row_binding": true
   },
-  "PPS_current_OS_family_and_PO_relations": [
-    {
-      "role": "fixed_F6",
-      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
-      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "artifact_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
-      "lines": [
-        {
-          "line": 380,
-          "text": "PPSの要求候補をHELIX-OSの対象別要求案へ接続する。PPSはHELIXOS-L2-004／007に対応する。",
-          "line_sha256": "22b3d7e0a4def0d3ca1836dd17afb2cce414657c3953d9e10340ff7ddc48a07c"
-        },
-        {
-          "line": 381,
-          "text": "draftであり、以下への収載を採択・正本昇格と扱わない。出典は[PPS](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/producer-provenance-separation-requests.md)である。",
-          "line_sha256": "52850ceb5c742f0cfd4cd2cc03fd4a207f5e92ede0e80725906c04904417534f"
-        },
-        {
-          "line": 382,
-          "text": "同じ節にあった監査（AAFD）は[HELIX-INTELLIGENCEの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ、学習（RCLS）は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ、2026-09-25 PO判断により移した。",
-          "line_sha256": "efbc8c9ab802d02f9e5554635ee1ef93ccc28cdf0f980d7512c6902dc8f480d6"
-        },
-        {
-          "line": 384,
-          "text": "| 出典 | 保持する具体条件 |",
-          "line_sha256": "f62b5713c77dd276d3395241baa36ab6d6707d7f36e22941cbca92c2a840a106"
-        },
-        {
-          "line": 385,
-          "text": "|---|---|",
-          "line_sha256": "4199ba454d6d3ae83657120c2bb6bd674eefc0dd7d3cd4cc844171dc6725135b"
-        },
-        {
-          "line": 386,
-          "text": "| PPS-BR-01 | 内容のproducer、commit実行者、PR公開者を別々に確認できる |",
-          "line_sha256": "0877e24dbdb09d149244d639c585572d5a6e29a66914462284760290df602195"
-        },
-        {
-          "line": 387,
-          "text": "| PPS-BR-02 | Git actorの違いだけで独立review成立としない |",
-          "line_sha256": "839c4eccf27a998dc4f44c156d7b3c108b197a9846233a28d54cdeed59afef4e"
-        },
-        {
-          "line": 388,
-          "text": "| PPS-BR-03 | assignment scopeとcandidate HEADに結びつくprovenance graphから成果の経路を再現できる |",
-          "line_sha256": "4081213318b50065828cf244ebde3222b564ece34137a9b1598204d688d0a6b6"
-        },
-        {
-          "line": 389,
-          "text": "| PPS-BR-04 | 過去の不明producerを推定で承認済みにせず、段階的移行を示す。mixedとunknownを区別し、外部botからHELIX producerを推定しない |",
-          "line_sha256": "0de8aef90eff21f9de6c0227ea58e5a2b98a3d2efb05bc32effa779165862c04"
-        },
-        {
-          "line": 391,
-          "text": "PPSは成果生成者、commit実行者、PR公開者、独立reviewerを別identityとして記録する。",
-          "line_sha256": "c6a78df21068bb0c8d9055599d503ccfe612f47973779a5d32b527afd0a843cd"
-        },
-        {
-          "line": 392,
-          "text": "双方の寄与と独立reviewが実測されたmixedは正規の受理状態として保持し、unknownへ劣化させない。",
-          "line_sha256": "6e06eb88a7f680c92a2fdd2a6a9421b7362cd48d35877a6a3c7666bbdbd04f5b"
-        },
-        {
-          "line": 393,
-          "text": "Git actor・署名・provider routingの再設計は本移管の対象外である。",
-          "line_sha256": "9754c14c7335305c365aeddfb919436039820c624ddfd51bef7b59d4e3cd3a5a"
-        },
-        {
-          "line": 394,
-          "text": "独立性の工程基準はHARNESS-L2-005を参照し、OSはproducerの実証拠を保存・照合する。",
-          "line_sha256": "7683b125c7413e976441bb9ef93ffd98bc0c2d48e89b0c8c48258616214410c7"
-        },
-        {
-          "line": 505,
-          "text": "| PPS | [PPS要件](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/producer-provenance-separation-requirements.md)：PPS-R-01..07 | HELIXOS-L2-004／007 |",
-          "line_sha256": "cb50eee05de03eaa108feaa4e3a025fd15f5cf68013ffa88f17c0ec38470007e"
-        }
-      ],
-      "relation_type": "PPS candidate-family / companion-source / PO-scope comparison only; no selected old acceptance physical-row binding",
-      "interpretation": "OS L2 links PPS request/requirement-family material to L2-004/007; cited old artifacts are companion requests/requirements, not this selected acceptance file."
-    },
-    {
-      "role": "current_main",
-      "commit": "148307bbb0f1f7b82fc48ecff5a382621c1850cd",
-      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "artifact_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
-      "lines": [
-        {
-          "line": 380,
-          "text": "PPSの要求候補をHELIX-OSの対象別要求案へ接続する。PPSはHELIXOS-L2-004／007に対応する。",
-          "line_sha256": "22b3d7e0a4def0d3ca1836dd17afb2cce414657c3953d9e10340ff7ddc48a07c"
-        },
-        {
-          "line": 381,
-          "text": "draftであり、以下への収載を採択・正本昇格と扱わない。出典は[PPS](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/producer-provenance-separation-requests.md)である。",
-          "line_sha256": "52850ceb5c742f0cfd4cd2cc03fd4a207f5e92ede0e80725906c04904417534f"
-        },
-        {
-          "line": 382,
-          "text": "同じ節にあった監査（AAFD）は[HELIX-INTELLIGENCEの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ、学習（RCLS）は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ、2026-09-25 PO判断により移した。",
-          "line_sha256": "efbc8c9ab802d02f9e5554635ee1ef93ccc28cdf0f980d7512c6902dc8f480d6"
-        },
-        {
-          "line": 384,
-          "text": "| 出典 | 保持する具体条件 |",
-          "line_sha256": "f62b5713c77dd276d3395241baa36ab6d6707d7f36e22941cbca92c2a840a106"
-        },
-        {
-          "line": 385,
-          "text": "|---|---|",
-          "line_sha256": "4199ba454d6d3ae83657120c2bb6bd674eefc0dd7d3cd4cc844171dc6725135b"
-        },
-        {
-          "line": 386,
-          "text": "| PPS-BR-01 | 内容のproducer、commit実行者、PR公開者を別々に確認できる |",
-          "line_sha256": "0877e24dbdb09d149244d639c585572d5a6e29a66914462284760290df602195"
-        },
-        {
-          "line": 387,
-          "text": "| PPS-BR-02 | Git actorの違いだけで独立review成立としない |",
-          "line_sha256": "839c4eccf27a998dc4f44c156d7b3c108b197a9846233a28d54cdeed59afef4e"
-        },
-        {
-          "line": 388,
-          "text": "| PPS-BR-03 | assignment scopeとcandidate HEADに結びつくprovenance graphから成果の経路を再現できる |",
-          "line_sha256": "4081213318b50065828cf244ebde3222b564ece34137a9b1598204d688d0a6b6"
-        },
-        {
-          "line": 389,
-          "text": "| PPS-BR-04 | 過去の不明producerを推定で承認済みにせず、段階的移行を示す。mixedとunknownを区別し、外部botからHELIX producerを推定しない |",
-          "line_sha256": "0de8aef90eff21f9de6c0227ea58e5a2b98a3d2efb05bc32effa779165862c04"
-        },
-        {
-          "line": 391,
-          "text": "PPSは成果生成者、commit実行者、PR公開者、独立reviewerを別identityとして記録する。",
-          "line_sha256": "c6a78df21068bb0c8d9055599d503ccfe612f47973779a5d32b527afd0a843cd"
-        },
-        {
-          "line": 392,
-          "text": "双方の寄与と独立reviewが実測されたmixedは正規の受理状態として保持し、unknownへ劣化させない。",
-          "line_sha256": "6e06eb88a7f680c92a2fdd2a6a9421b7362cd48d35877a6a3c7666bbdbd04f5b"
-        },
-        {
-          "line": 393,
-          "text": "Git actor・署名・provider routingの再設計は本移管の対象外である。",
-          "line_sha256": "9754c14c7335305c365aeddfb919436039820c624ddfd51bef7b59d4e3cd3a5a"
-        },
-        {
-          "line": 394,
-          "text": "独立性の工程基準はHARNESS-L2-005を参照し、OSはproducerの実証拠を保存・照合する。",
-          "line_sha256": "7683b125c7413e976441bb9ef93ffd98bc0c2d48e89b0c8c48258616214410c7"
-        },
-        {
-          "line": 505,
-          "text": "| PPS | [PPS要件](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/producer-provenance-separation-requirements.md)：PPS-R-01..07 | HELIXOS-L2-004／007 |",
-          "line_sha256": "cb50eee05de03eaa108feaa4e3a025fd15f5cf68013ffa88f17c0ec38470007e"
-        }
-      ],
-      "relation_type": "PPS candidate-family / companion-source / PO-scope comparison only; no selected old acceptance physical-row binding",
-      "interpretation": "OS L2 links PPS request/requirement-family material to L2-004/007; cited old artifacts are companion requests/requirements, not this selected acceptance file."
-    },
-    {
-      "role": "fixed_F6",
-      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
-      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-      "artifact_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
-      "lines": [
-        {
-          "line": 181,
-          "text": "PPS4件は採用revision確定後、HELIXOS-L2-004／007で次を確認する。全件未実行。",
-          "line_sha256": "5de6f20ac812de43e59c71f3d8329cb908c6d791808de1fb460af8c3b4784923"
-        },
-        {
-          "line": 182,
-          "text": "監査（AAFD）の受入条件は[HELIX-INTELLIGENCEの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ、学習（RCLS）の受入条件は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ、2026-09-25 PO判断により移した。",
-          "line_sha256": "57f3dbe34bcab9829c4b93bd2bed24a1148aac309f1a45981cab3f191bd070ec"
-        },
-        {
-          "line": 184,
-          "text": "- producer、commit実行者、PR公開者を個別に表示し、HEADとassignmentから経路を再現できる。actor差だけの独立review、過去の不明producerの推定承認を拒否する。",
-          "line_sha256": "a9b2362918029ee68b7eb1bc26ecddea5348169c5f55d01ea6719a810cf38023"
-        },
-        {
-          "line": 185,
-          "text": "- mixedとunknown、外部botとHELIX producerを区別し、既存記録に無かった証拠を移行処理で生成しない。",
-          "line_sha256": "909354d912a45e7c734d242267d5789259d9430455561453b3ce0aa3f1664574"
-        }
-      ],
-      "relation_type": "PPS candidate-family / companion-source / PO-scope comparison only; no selected old acceptance physical-row binding",
-      "interpretation": "OS L11 records four PPS family conditions for a future adopted revision and says all are unexecuted; it does not cite the selected old acceptance path or row IDs."
-    },
-    {
-      "role": "current_main",
-      "commit": "148307bbb0f1f7b82fc48ecff5a382621c1850cd",
-      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-      "artifact_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
-      "lines": [
-        {
-          "line": 181,
-          "text": "PPS4件は採用revision確定後、HELIXOS-L2-004／007で次を確認する。全件未実行。",
-          "line_sha256": "5de6f20ac812de43e59c71f3d8329cb908c6d791808de1fb460af8c3b4784923"
-        },
-        {
-          "line": 182,
-          "text": "監査（AAFD）の受入条件は[HELIX-INTELLIGENCEの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ、学習（RCLS）の受入条件は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ、2026-09-25 PO判断により移した。",
-          "line_sha256": "57f3dbe34bcab9829c4b93bd2bed24a1148aac309f1a45981cab3f191bd070ec"
-        },
-        {
-          "line": 184,
-          "text": "- producer、commit実行者、PR公開者を個別に表示し、HEADとassignmentから経路を再現できる。actor差だけの独立review、過去の不明producerの推定承認を拒否する。",
-          "line_sha256": "a9b2362918029ee68b7eb1bc26ecddea5348169c5f55d01ea6719a810cf38023"
-        },
-        {
-          "line": 185,
-          "text": "- mixedとunknown、外部botとHELIX producerを区別し、既存記録に無かった証拠を移行処理で生成しない。",
-          "line_sha256": "909354d912a45e7c734d242267d5789259d9430455561453b3ce0aa3f1664574"
-        }
-      ],
-      "relation_type": "PPS candidate-family / companion-source / PO-scope comparison only; no selected old acceptance physical-row binding",
-      "interpretation": "OS L11 records four PPS family conditions for a future adopted revision and says all are unexecuted; it does not cite the selected old acceptance path or row IDs."
-    },
-    {
-      "role": "current_main",
-      "commit": "148307bbb0f1f7b82fc48ecff5a382621c1850cd",
-      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
-      "artifact_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
-      "lines": [
-        {
-          "line": 27,
-          "text": "POは固定main f6dad2a33e24f000b87d7f09b8d40288257e74cc上の以下のbytesを確認対象revisionとして確定し、L2本文 HELIXOS-L2-001〜HELIXOS-L2-029 と、それぞれに対になる固定L11受入本文一式に合意した。",
-          "line_sha256": "234806a9c2a22b5a6cc4bbc0ff5ae330ae21b67f678018c65f1c2f100ba21698"
-        },
-        {
-          "line": 42,
-          "text": "固定対象本文のSHAは変更していない。L1/L2/L11のdraft/candidate metadataは固定時点の本文として維持し、POのrevision確認・要求合意・候補採用は本decision recordを正本として読む。",
-          "line_sha256": "319fcab9a82461ab478c20a7c02ac6c8a82a11fc4ad2dd39a3e9d26163c79345"
-        },
-        {
-          "line": 44,
-          "text": "## 採用する明示候補集合",
-          "line_sha256": "336beb701d3a7dc41150e84c725623fd5e08ad3cfb682e841db41db55c8bbd10"
-        },
-        {
-          "line": 46,
-          "text": "POは以下の全16件を、確認資料に記載された各version_targetと適用条件を保持して採用した。",
-          "line_sha256": "4fb7810a880eadf6d6ec0f27d8b828faddde3a98a267528fec5e5902dd75b0e4"
-        },
-        {
-          "line": 48,
-          "text": "HELIXOS-L2-014, HELIXOS-L2-015, HELIXOS-L2-016, HELIXOS-L2-017, HELIXOS-L2-018, HELIXOS-L2-019, HELIXOS-L2-020, HELIXOS-L2-021, HELIXOS-L2-022, HELIXOS-L2-023, HELIXOS-L2-024, HELIXOS-L2-025, HELIXOS-L2-026, HELIXOS-L2-027, HELIXOS-L2-028, HELIXOS-L2-029",
-          "line_sha256": "3dfc3b0fc76ac744c97ae07cbeec090ad45722027b058f1867c395432018d053"
-        },
-        {
-          "line": 50,
-          "text": "L2-014のv0.x→v1.0段階候補、L2-017のcore 1.0・動的外部workflow 4.0、L2-026の1.0構築過程から、その他の各version_targetと適用条件を確認packetの候補表どおり維持する。017の4.0機能を1.0必須にせず、026は1.0構築過程のcandidateとして扱う。",
-          "line_sha256": "80cfa34e824ab321e360511a5f8bc37bd2d839b45cb8fb18937aa42ceaddb22e"
-        },
-        {
-          "line": 52,
-          "text": "後続版または条件付きの能力を1.0へ前倒ししない。固定L2/L11本文に定めた操作条件・例外・適用条件を要約で置き換えない。",
-          "line_sha256": "752a974217bcba88d4b4bb58b12db161e71cd7dc9bb1a25b298b39ec58e2fc1b"
-        }
-      ],
-      "relation_type": "PPS candidate-family / companion-source / PO-scope comparison only; no selected old acceptance physical-row binding",
-      "interpretation": "OS PO confirms fixed L2-001..029 text and adopts explicit candidate set L2-014..029; PPS maps to L2-004/007, so this is not adoption of selected old PPS acceptance rows."
-    }
-  ],
   "current_artifact_relation_search": {
     "search_scope": "fixed F6 all-mechanism L1/L2/L11 + product-boundary; latest main same; all eight 2026-09-28 PO records and declared accepted candidate IDs; every current file under docs/governance/candidates and docs/helix-*/candidates; all requirement-registration JSON receipts, walking nested source_file/source_files/source_path/source_file_sha256 fields",
     "per_artifact_results": [
@@ -44606,5 +44339,273 @@
     ],
     "selected_old_physical_path_line_or_ID_binding_count": 0,
     "relation_type": "RCLS requests source-file/family reference in receipt parent_source_conditions; it cites no selected physical line or source ID. The receipt atom rows concern BR family conditions, not ranks 2341–2380."
-  }
+  },
+  "OS_provenance_and_RCLS_relocation_context": [
+    {
+      "role": "fixed_F6",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "artifact_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "lines": [
+        {
+          "line": 380,
+          "text": "PPSの要求候補をHELIX-OSの対象別要求案へ接続する。PPSはHELIXOS-L2-004／007に対応する。",
+          "line_sha256": "22b3d7e0a4def0d3ca1836dd17afb2cce414657c3953d9e10340ff7ddc48a07c"
+        },
+        {
+          "line": 381,
+          "text": "draftであり、以下への収載を採択・正本昇格と扱わない。出典は[PPS](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/producer-provenance-separation-requests.md)である。",
+          "line_sha256": "52850ceb5c742f0cfd4cd2cc03fd4a207f5e92ede0e80725906c04904417534f"
+        },
+        {
+          "line": 382,
+          "text": "同じ節にあった監査（AAFD）は[HELIX-INTELLIGENCEの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ、学習（RCLS）は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ、2026-09-25 PO判断により移した。",
+          "line_sha256": "efbc8c9ab802d02f9e5554635ee1ef93ccc28cdf0f980d7512c6902dc8f480d6"
+        },
+        {
+          "line": 384,
+          "text": "| 出典 | 保持する具体条件 |",
+          "line_sha256": "f62b5713c77dd276d3395241baa36ab6d6707d7f36e22941cbca92c2a840a106"
+        },
+        {
+          "line": 385,
+          "text": "|---|---|",
+          "line_sha256": "4199ba454d6d3ae83657120c2bb6bd674eefc0dd7d3cd4cc844171dc6725135b"
+        },
+        {
+          "line": 386,
+          "text": "| PPS-BR-01 | 内容のproducer、commit実行者、PR公開者を別々に確認できる |",
+          "line_sha256": "0877e24dbdb09d149244d639c585572d5a6e29a66914462284760290df602195"
+        },
+        {
+          "line": 387,
+          "text": "| PPS-BR-02 | Git actorの違いだけで独立review成立としない |",
+          "line_sha256": "839c4eccf27a998dc4f44c156d7b3c108b197a9846233a28d54cdeed59afef4e"
+        },
+        {
+          "line": 388,
+          "text": "| PPS-BR-03 | assignment scopeとcandidate HEADに結びつくprovenance graphから成果の経路を再現できる |",
+          "line_sha256": "4081213318b50065828cf244ebde3222b564ece34137a9b1598204d688d0a6b6"
+        },
+        {
+          "line": 389,
+          "text": "| PPS-BR-04 | 過去の不明producerを推定で承認済みにせず、段階的移行を示す。mixedとunknownを区別し、外部botからHELIX producerを推定しない |",
+          "line_sha256": "0de8aef90eff21f9de6c0227ea58e5a2b98a3d2efb05bc32effa779165862c04"
+        },
+        {
+          "line": 391,
+          "text": "PPSは成果生成者、commit実行者、PR公開者、独立reviewerを別identityとして記録する。",
+          "line_sha256": "c6a78df21068bb0c8d9055599d503ccfe612f47973779a5d32b527afd0a843cd"
+        },
+        {
+          "line": 392,
+          "text": "双方の寄与と独立reviewが実測されたmixedは正規の受理状態として保持し、unknownへ劣化させない。",
+          "line_sha256": "6e06eb88a7f680c92a2fdd2a6a9421b7362cd48d35877a6a3c7666bbdbd04f5b"
+        },
+        {
+          "line": 393,
+          "text": "Git actor・署名・provider routingの再設計は本移管の対象外である。",
+          "line_sha256": "9754c14c7335305c365aeddfb919436039820c624ddfd51bef7b59d4e3cd3a5a"
+        },
+        {
+          "line": 394,
+          "text": "独立性の工程基準はHARNESS-L2-005を参照し、OSはproducerの実証拠を保存・照合する。",
+          "line_sha256": "7683b125c7413e976441bb9ef93ffd98bc0c2d48e89b0c8c48258616214410c7"
+        },
+        {
+          "line": 505,
+          "text": "| PPS | [PPS要件](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/producer-provenance-separation-requirements.md)：PPS-R-01..07 | HELIXOS-L2-004／007 |",
+          "line_sha256": "cb50eee05de03eaa108feaa4e3a025fd15f5cf68013ffa88f17c0ec38470007e"
+        }
+      ],
+      "relation_type": "PPS candidate-family / companion-source / PO-scope comparison only; no selected old acceptance physical-row binding",
+      "interpretation": "OS L2 links PPS request/requirement-family material to L2-004/007; cited old artifacts are companion requests/requirements, not this selected acceptance file."
+    },
+    {
+      "role": "current_main",
+      "commit": "148307bbb0f1f7b82fc48ecff5a382621c1850cd",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "artifact_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+      "lines": [
+        {
+          "line": 380,
+          "text": "PPSの要求候補をHELIX-OSの対象別要求案へ接続する。PPSはHELIXOS-L2-004／007に対応する。",
+          "line_sha256": "22b3d7e0a4def0d3ca1836dd17afb2cce414657c3953d9e10340ff7ddc48a07c"
+        },
+        {
+          "line": 381,
+          "text": "draftであり、以下への収載を採択・正本昇格と扱わない。出典は[PPS](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/producer-provenance-separation-requests.md)である。",
+          "line_sha256": "52850ceb5c742f0cfd4cd2cc03fd4a207f5e92ede0e80725906c04904417534f"
+        },
+        {
+          "line": 382,
+          "text": "同じ節にあった監査（AAFD）は[HELIX-INTELLIGENCEの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ、学習（RCLS）は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ、2026-09-25 PO判断により移した。",
+          "line_sha256": "efbc8c9ab802d02f9e5554635ee1ef93ccc28cdf0f980d7512c6902dc8f480d6"
+        },
+        {
+          "line": 384,
+          "text": "| 出典 | 保持する具体条件 |",
+          "line_sha256": "f62b5713c77dd276d3395241baa36ab6d6707d7f36e22941cbca92c2a840a106"
+        },
+        {
+          "line": 385,
+          "text": "|---|---|",
+          "line_sha256": "4199ba454d6d3ae83657120c2bb6bd674eefc0dd7d3cd4cc844171dc6725135b"
+        },
+        {
+          "line": 386,
+          "text": "| PPS-BR-01 | 内容のproducer、commit実行者、PR公開者を別々に確認できる |",
+          "line_sha256": "0877e24dbdb09d149244d639c585572d5a6e29a66914462284760290df602195"
+        },
+        {
+          "line": 387,
+          "text": "| PPS-BR-02 | Git actorの違いだけで独立review成立としない |",
+          "line_sha256": "839c4eccf27a998dc4f44c156d7b3c108b197a9846233a28d54cdeed59afef4e"
+        },
+        {
+          "line": 388,
+          "text": "| PPS-BR-03 | assignment scopeとcandidate HEADに結びつくprovenance graphから成果の経路を再現できる |",
+          "line_sha256": "4081213318b50065828cf244ebde3222b564ece34137a9b1598204d688d0a6b6"
+        },
+        {
+          "line": 389,
+          "text": "| PPS-BR-04 | 過去の不明producerを推定で承認済みにせず、段階的移行を示す。mixedとunknownを区別し、外部botからHELIX producerを推定しない |",
+          "line_sha256": "0de8aef90eff21f9de6c0227ea58e5a2b98a3d2efb05bc32effa779165862c04"
+        },
+        {
+          "line": 391,
+          "text": "PPSは成果生成者、commit実行者、PR公開者、独立reviewerを別identityとして記録する。",
+          "line_sha256": "c6a78df21068bb0c8d9055599d503ccfe612f47973779a5d32b527afd0a843cd"
+        },
+        {
+          "line": 392,
+          "text": "双方の寄与と独立reviewが実測されたmixedは正規の受理状態として保持し、unknownへ劣化させない。",
+          "line_sha256": "6e06eb88a7f680c92a2fdd2a6a9421b7362cd48d35877a6a3c7666bbdbd04f5b"
+        },
+        {
+          "line": 393,
+          "text": "Git actor・署名・provider routingの再設計は本移管の対象外である。",
+          "line_sha256": "9754c14c7335305c365aeddfb919436039820c624ddfd51bef7b59d4e3cd3a5a"
+        },
+        {
+          "line": 394,
+          "text": "独立性の工程基準はHARNESS-L2-005を参照し、OSはproducerの実証拠を保存・照合する。",
+          "line_sha256": "7683b125c7413e976441bb9ef93ffd98bc0c2d48e89b0c8c48258616214410c7"
+        },
+        {
+          "line": 505,
+          "text": "| PPS | [PPS要件](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/producer-provenance-separation-requirements.md)：PPS-R-01..07 | HELIXOS-L2-004／007 |",
+          "line_sha256": "cb50eee05de03eaa108feaa4e3a025fd15f5cf68013ffa88f17c0ec38470007e"
+        }
+      ],
+      "relation_type": "PPS candidate-family / companion-source / PO-scope comparison only; no selected old acceptance physical-row binding",
+      "interpretation": "OS L2 links PPS request/requirement-family material to L2-004/007; cited old artifacts are companion requests/requirements, not this selected acceptance file."
+    },
+    {
+      "role": "fixed_F6",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "artifact_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "lines": [
+        {
+          "line": 181,
+          "text": "PPS4件は採用revision確定後、HELIXOS-L2-004／007で次を確認する。全件未実行。",
+          "line_sha256": "5de6f20ac812de43e59c71f3d8329cb908c6d791808de1fb460af8c3b4784923"
+        },
+        {
+          "line": 182,
+          "text": "監査（AAFD）の受入条件は[HELIX-INTELLIGENCEの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ、学習（RCLS）の受入条件は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ、2026-09-25 PO判断により移した。",
+          "line_sha256": "57f3dbe34bcab9829c4b93bd2bed24a1148aac309f1a45981cab3f191bd070ec"
+        },
+        {
+          "line": 184,
+          "text": "- producer、commit実行者、PR公開者を個別に表示し、HEADとassignmentから経路を再現できる。actor差だけの独立review、過去の不明producerの推定承認を拒否する。",
+          "line_sha256": "a9b2362918029ee68b7eb1bc26ecddea5348169c5f55d01ea6719a810cf38023"
+        },
+        {
+          "line": 185,
+          "text": "- mixedとunknown、外部botとHELIX producerを区別し、既存記録に無かった証拠を移行処理で生成しない。",
+          "line_sha256": "909354d912a45e7c734d242267d5789259d9430455561453b3ce0aa3f1664574"
+        }
+      ],
+      "relation_type": "PPS candidate-family / companion-source / PO-scope comparison only; no selected old acceptance physical-row binding",
+      "interpretation": "OS L11 records four PPS family conditions for a future adopted revision and says all are unexecuted; it does not cite the selected old acceptance path or row IDs."
+    },
+    {
+      "role": "current_main",
+      "commit": "148307bbb0f1f7b82fc48ecff5a382621c1850cd",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "artifact_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+      "lines": [
+        {
+          "line": 181,
+          "text": "PPS4件は採用revision確定後、HELIXOS-L2-004／007で次を確認する。全件未実行。",
+          "line_sha256": "5de6f20ac812de43e59c71f3d8329cb908c6d791808de1fb460af8c3b4784923"
+        },
+        {
+          "line": 182,
+          "text": "監査（AAFD）の受入条件は[HELIX-INTELLIGENCEの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ、学習（RCLS）の受入条件は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ、2026-09-25 PO判断により移した。",
+          "line_sha256": "57f3dbe34bcab9829c4b93bd2bed24a1148aac309f1a45981cab3f191bd070ec"
+        },
+        {
+          "line": 184,
+          "text": "- producer、commit実行者、PR公開者を個別に表示し、HEADとassignmentから経路を再現できる。actor差だけの独立review、過去の不明producerの推定承認を拒否する。",
+          "line_sha256": "a9b2362918029ee68b7eb1bc26ecddea5348169c5f55d01ea6719a810cf38023"
+        },
+        {
+          "line": 185,
+          "text": "- mixedとunknown、外部botとHELIX producerを区別し、既存記録に無かった証拠を移行処理で生成しない。",
+          "line_sha256": "909354d912a45e7c734d242267d5789259d9430455561453b3ce0aa3f1664574"
+        }
+      ],
+      "relation_type": "PPS candidate-family / companion-source / PO-scope comparison only; no selected old acceptance physical-row binding",
+      "interpretation": "OS L11 records four PPS family conditions for a future adopted revision and says all are unexecuted; it does not cite the selected old acceptance path or row IDs."
+    },
+    {
+      "role": "current_main",
+      "commit": "148307bbb0f1f7b82fc48ecff5a382621c1850cd",
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "artifact_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "lines": [
+        {
+          "line": 27,
+          "text": "POは固定main f6dad2a33e24f000b87d7f09b8d40288257e74cc上の以下のbytesを確認対象revisionとして確定し、L2本文 HELIXOS-L2-001〜HELIXOS-L2-029 と、それぞれに対になる固定L11受入本文一式に合意した。",
+          "line_sha256": "234806a9c2a22b5a6cc4bbc0ff5ae330ae21b67f678018c65f1c2f100ba21698"
+        },
+        {
+          "line": 42,
+          "text": "固定対象本文のSHAは変更していない。L1/L2/L11のdraft/candidate metadataは固定時点の本文として維持し、POのrevision確認・要求合意・候補採用は本decision recordを正本として読む。",
+          "line_sha256": "319fcab9a82461ab478c20a7c02ac6c8a82a11fc4ad2dd39a3e9d26163c79345"
+        },
+        {
+          "line": 44,
+          "text": "## 採用する明示候補集合",
+          "line_sha256": "336beb701d3a7dc41150e84c725623fd5e08ad3cfb682e841db41db55c8bbd10"
+        },
+        {
+          "line": 46,
+          "text": "POは以下の全16件を、確認資料に記載された各version_targetと適用条件を保持して採用した。",
+          "line_sha256": "4fb7810a880eadf6d6ec0f27d8b828faddde3a98a267528fec5e5902dd75b0e4"
+        },
+        {
+          "line": 48,
+          "text": "HELIXOS-L2-014, HELIXOS-L2-015, HELIXOS-L2-016, HELIXOS-L2-017, HELIXOS-L2-018, HELIXOS-L2-019, HELIXOS-L2-020, HELIXOS-L2-021, HELIXOS-L2-022, HELIXOS-L2-023, HELIXOS-L2-024, HELIXOS-L2-025, HELIXOS-L2-026, HELIXOS-L2-027, HELIXOS-L2-028, HELIXOS-L2-029",
+          "line_sha256": "3dfc3b0fc76ac744c97ae07cbeec090ad45722027b058f1867c395432018d053"
+        },
+        {
+          "line": 50,
+          "text": "L2-014のv0.x→v1.0段階候補、L2-017のcore 1.0・動的外部workflow 4.0、L2-026の1.0構築過程から、その他の各version_targetと適用条件を確認packetの候補表どおり維持する。017の4.0機能を1.0必須にせず、026は1.0構築過程のcandidateとして扱う。",
+          "line_sha256": "80cfa34e824ab321e360511a5f8bc37bd2d839b45cb8fb18937aa42ceaddb22e"
+        },
+        {
+          "line": 52,
+          "text": "後続版または条件付きの能力を1.0へ前倒ししない。固定L2/L11本文に定めた操作条件・例外・適用条件を要約で置き換えない。",
+          "line_sha256": "752a974217bcba88d4b4bb58b12db161e71cd7dc9bb1a25b298b39ec58e2fc1b"
+        }
+      ],
+      "relation_type": "PPS candidate-family / companion-source / PO-scope comparison only; no selected old acceptance physical-row binding",
+      "interpretation": "OS PO confirms fixed L2-001..029 text and adopts explicit candidate set L2-014..029; PPS maps to L2-004/007, so this is not adoption of selected old PPS acceptance rows."
+    }
+  ],
+  "OS_provenance_and_RCLS_relocation_context_scope": "PPS節とRCLSのLABOへの移管記録の共在を示す文脈引用。選択RAMG/RCLS行のPPS所属・採択・直接bindingを生成しない。"
 }
