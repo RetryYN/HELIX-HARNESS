@@ -5,7 +5,7 @@
 ## 対象と再構成
 
 - 監査基点は`c47f460e5a79fef79d72242e070872862acbaecb`。#2353の4,755 `row_records`へ#2356、#2360、#2363、#2366、#2367、#2368、#2369、#2381をexact source IDで順に適用し、effective explanation 2,965行を再構成した。#2369の000841/000857はconditionへ移るため説明行から除外。
-- marker pool 255件を除き、`2,965 - 255 = 2,710`件をsource ID数値順にrank付けした。ranks 581–620は40行。ranks 541–580の直前監査artifactはcommit `e8dbca2f2533269340b7a904006c6935f6cefff2` にあり、同じbaseを親に持つ。その40 ID・digest・全archive file hashとrank 580/581境界を検証した。commitは`origin/main`のancestorではないため、統合済みとは扱わない。
+- marker pool 255件を除き、`2,965 - 255 = 2,710`件をsource ID数値順にrank付けした。ranks 581–620は40行。ranks 541–580の直前監査artifactは#2457のmerge commit `3a3f16ec85482f2938939b16ab718b0c04f9c3b1` でmainに統合済み。その40 ID・digest・archive/ledger pinsとrank580/581境界を照合した。前監査の独立reviewから本sliceの採択や完了は生成しない。
 - 583–620位はExecution Ticket acceptance候補のL10 metadata・表構造・draft oracle rowsである。旧文書自身は90件を未実行oracleとし、green evidenceではないと記す。個々の正確なsource text/context、ledger entry hashes、source/asset pinsとF6/decision relationはpaired JSONに記録した。
 
 ## 行別意味監査

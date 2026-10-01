@@ -77,14 +77,14 @@
       "this_first_rank": 581,
       "this_first_id": "LEGACY-CAND-LINE-001066",
       "adjacent_audit_id": "legacy-candidate4755-explanation-normative-complement-ranks-541-580-2026-10-01",
-      "adjacent_audit_commit": "e8dbca2f2533269340b7a904006c6935f6cefff2",
-      "adjacent_audit_parent": "c47f460e5a79fef79d72242e070872862acbaecb",
+      "adjacent_audit_commit": "3a3f16ec85482f2938939b16ab718b0c04f9c3b1",
+      "adjacent_audit_parent": "420164de98585fa495e7f4eaacd016981a2df26b",
       "adjacent_audit_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-541-580-2026-10-01.json",
-      "adjacent_audit_json_sha256": "3300862646c49296cc3902c550d7ef59c684255611fb3052f53266fbd67aeb0a",
+      "adjacent_audit_json_sha256": "5262ee432be9d55cd5011fa6ff182e07c61776f9ba47131eb45a0c6bb56e7b18",
       "adjacent_audit_md_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-541-580-2026-10-01.md",
-      "adjacent_audit_md_sha256": "6ec48418046d6ceb6d7fde86337193784bbc88bc66f1080d351e253963cc59f6",
+      "adjacent_audit_md_sha256": "5ada60a4af335bbedef40fcd69b02c07e5994fe7627a2e7c5eb223623b6cc882",
       "audit_commit_object_available": true,
-      "audit_commit_is_ancestor_of_origin_main": false,
+      "audit_commit_is_ancestor_of_origin_main": true,
       "verified_selected_count": 40,
       "verified_selected_ids_sha256": "3139b55294b2c2f3c5614febd954b4f1565b3cee5ff17dea89325075f4f25435",
       "verified_all_archive_file_and_line_pins": true,
@@ -92,7 +92,7 @@
       "boundary_ids_match_reconstructed_pool": true,
       "no_overlap": true,
       "claim_prior_semantic_verification": false,
-      "note": "The adjacent audit is not in origin/main, but its local commit object is available as a child of the same pinned base; its 40 IDs, ID digest, archive file/line hashes, source-line/asset-ledger row hashes and rank 580/581 boundary were independently checked. This verifies the artifact and its evidence pins, not a second semantic review of those rows."
+      "note": "rank541–580 paired auditは#2457のmerge commit 3a3f16ec85482f2938939b16ab718b0c04f9c3b1でmainへ統合済み。40 ID、digest、archive/ledger pins、rank580/581境界を照合した。前監査の採択・source closureを生成しない。"
     }
   },
   "pinned_reconstruction_inputs": [
@@ -704,10 +704,10 @@
   "limitations": [
     "Marker-negative is a lexical result; line meaning was read in archive section context.",
     "Rows 583–620 are historical draft L10 acceptance metadata, structural text, and oracle statements. Their presence is not execution evidence; the source document labels the 90 oracles unexecuted.",
-    "The adjacent rank 541–580 artifact was independently verified from a local commit object that is not an ancestor of origin/main; this is a pin to that audit artifact and its rank boundary, not a claim that the artifact is integrated into origin/main.",
     "Current OS HXT-AC-015 mapping is outside this selected slice and does not establish selected-row coverage.",
     "Historical Issue/plan/status/layer fields and source claims do not establish current target authority, execution, or closure.",
-    "Archive was read only; no old source, runtime, workflow, CLI, hook, test, or CI was executed."
+    "Archive was read only; no old source, runtime, workflow, CLI, hook, test, or CI was executed.",
+    "Adjacent rank 541–580 artifact is merged and byte-pinned; its independent review does not establish adoption or closure for these rows."
   ],
   "rows": [
     {
