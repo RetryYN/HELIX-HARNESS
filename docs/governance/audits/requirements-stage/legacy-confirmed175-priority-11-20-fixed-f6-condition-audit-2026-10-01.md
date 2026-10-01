@@ -1,7 +1,7 @@
 # confirmed175 優先11〜20番の固定F6条件照合監査（2026-10-01）
 
 - 基準revision: `50686b6762788574cb471967e8c24846d3dd56ae`。
-- 選択根拠: live recount `08156a3b71ad97065cef34357dc37f6953b9a7f8`（本文SHA-256: `f406d89f20c5f78a4984097b03735cd6737569a4e49688e2534d58d2971b8adb`）の`unconfirmed_identity_condition_comparison`先頭63件中、11〜20番。先行監査 `88151cb25e384ada459941fd510d0a2c760ba358` の1〜10番は除外した。
+- 選択根拠: live recount `353e0535a943c415e4fa6fc9b93e89fb92654f5b`（本文SHA-256: `f406d89f20c5f78a4984097b03735cd6737569a4e49688e2534d58d2971b8adb`）の`unconfirmed_identity_condition_comparison`先頭63件中、11〜20番。先行監査 `4c4d4d195a6cef4eb405d4bd3c34974d46775b3f` の1〜10番は除外した。
 - 比較先: 固定採択済みHELIX-HARNESS L2/L11 `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。L2 SHA-256 `aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a`、L11 SHA-256 `09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4`。
 - authority effectは`none`。全10件を`preserved_pending_rehome`とし、successor 0件、source atom closure 0件。採択・retire・意味変更・実装・受入・Step 5完了を主張しない。
 

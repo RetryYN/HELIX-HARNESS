@@ -1,7 +1,7 @@
 # confirmed175 BR-01・BR-06・BR-08・D-01〜D-07 固定F6条件照合
 
 - 比較base: `origin/main` `50686b6762788574cb471967e8c24846d3dd56ae`。
-- 優先集合: `confirmed175-live-recount-2026-10-01.json` at `08156a3b71ad97065cef34357dc37f6953b9a7f8` の先頭10件を記載順に選択。
+- 優先集合: `confirmed175-live-recount-2026-10-01.json` at `353e0535a943c415e4fa6fc9b93e89fb92654f5b` の先頭10件を記載順に選択。
 - 固定比較先: PO判断 `HDEC-HARNESS-REQUIREMENTS-2026-09-28` の `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。L2 SHA-256 `aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a`、L11 SHA-256 `09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4`。
 - 読取専用、`authority_effect: none`。10件すべて`preserved_pending_rehome`、successor 0、source atom closure 0。採択、retire、意味変更、実装・受入、Step 5完了を主張しない。
 

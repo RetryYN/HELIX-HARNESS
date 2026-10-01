@@ -2,7 +2,7 @@
   "audit_id": "confirmed175-br01-br08-d01-d07-fixed-f6-condition-audit-2026-10-01",
   "audit_mode": "bounded_read_only_source_qualified_identity_condition_comparison_to_fixed_adopted_f6_pair",
   "basis_main_revision": "50686b6762788574cb471967e8c24846d3dd56ae",
-  "source_recount_revision": "08156a3b71ad97065cef34357dc37f6953b9a7f8",
+  "source_recount_revision": "353e0535a943c415e4fa6fc9b93e89fb92654f5b",
   "authority_effect": "none",
   "formal_successor_assignment_claim": false,
   "condition_closure_claim": false,
@@ -38,7 +38,7 @@
   "source_census": {
     "report_path": "docs/governance/audits/requirements-stage/confirmed175-live-recount-2026-10-01.json",
     "report_sha256": "f406d89f20c5f78a4984097b03735cd6737569a4e49688e2534d58d2971b8adb",
-    "report_revision": "08156a3b71ad97065cef34357dc37f6953b9a7f8",
+    "report_revision": "353e0535a943c415e4fa6fc9b93e89fb92654f5b",
     "asset_ledger_path": "docs/governance/legacy-asset-disposition.jsonl",
     "asset_ledger_line": 330,
     "identity_ledger_path": "docs/governance/legacy-migration/identity/legacy-confirmed-requirement-identity-carry-forward.jsonl",
