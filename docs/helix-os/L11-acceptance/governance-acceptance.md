@@ -988,3 +988,12 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **receipt分離境界**：旧source上の`#825`、`#1370`、Census receiptの三つだけを入力集合に含める。`#206`はFR-009にある責務境界の参照として扱い、receipt入力や第四のgreen条件に追加しない。Issue番号やIssue状態だけをreceipt、authority、greenの根拠にしない。
 - **受入境界**：fixtureで照合するのは明示入力receiptの独立性、status保持、三者AND条件だけである。各監査の意味・方法・内部schema、current issueやreceiptへのmapping、owner移管、旧source全体closure、実Census／startup／materialization実行、severity、repair、merge可否を検証しない。旧runtime／CLI／test／CIは実行しない。
 - **旧sourceと未解決**：candidate input atomは`MPR-SH-CONFIRMED-003`が保持するDAC-FR-009 line 56一atomに限定する。DAC-R-011 line 66とDAC-AC-017 line 42は独立receiptと負例の関連context/oracle evidenceであり、confirmed175 holdingまたはcandidate inputではない。各source owner、formal successor、適用scope、採択、実行受入を未確定のまま維持する。
+
+### HELIXOS-L2-115 終端runへの遅着Worker結果を受理しない — L11受入候補
+
+**状態・範囲**：L2-115と対になる未採択・未実行候補。旧HIL-FR-27の「失効runのlate resultをcommitしない」atomだけを扱う。旧Supervisor、IPC、Node/Python、JSON Lines、固定schema／digest／receipt／fenceの実装や実行を要求しない。
+
+- **正常例**：同じassignment／attemptに対し、既存契約に従って実行中resultと終端理由の記録を与える。終端前に返り、現在のassignment・source/revisionと対応し、既存authorityおよび選択済みHARNESS oracleを満たすresultだけが既存契約で評価可能であることを確認する。L2-115自体はresultの正しさや受理を判定しない。
+- **終端後の遅着例**：同じrunがtimeout、cancel、lease／期限失効またはprocess終了で終端した後、成功を示す遅着resultを与える。既存の終端状態とcanonicalなaccepted stateが変わらず、resultがそのattemptの未受理／stale証拠として保持されることを確認する。遅着resultだけで成功、完了、現在のassignmentへの適用が成立する構成を不成立とする。
+- **重複・取り違え例**：終端後のduplicate result、別assignment／attempt／source／revisionのresult、または終端理由との関係が不明なresultを与える。結果の到着順、worker自己申告、digest一致だけで現在の成果へ採用した場合は不成立とする。識別できない場合はunknown／未完を保つ。
+- **差戻しと境界**：不一致resultは該当OS assignment／発生元へ戻し、元の停止理由と未完義務を残す。HARNESS oracle、SECURITY authority、event schema、transport、追加承認、無関係なassignment停止を新設しない。文書上のoracleは設計受入条件であり、runtime実装または実行結果を意味しない。

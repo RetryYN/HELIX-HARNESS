@@ -1387,3 +1387,13 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - **既存要求との境界**：既存のL2要求やCI・review・Censusの具体的な監査条件を再定義しない。三receiptの内部schema、green判定根拠、監査方法、receipt発行者、issue lifecycle、severity、merge admissionを定めず、GitHub Issue状態からreceipt statusを生成しない。
 - **旧source・限定範囲**：candidate input atomは旧DAC-FR-009 line 56一行だけとする。DAC-R-011 line 66とDAC-AC-017 line 42は三receiptの独立性と境界を確認する関連context/oracle evidenceであり、confirmed175 holdingやcandidate input atomとして数えない。`MPR-SH-CONFIRMED-003`を生存させ、旧source owner、formal successor、対象適用範囲、採択、実装・実行・受入およびsource全体のclosureを未確定に保つ。
 - **version_target**：未指定。旧sourceのversion 1.0を現行適用版や候補採択へ読み替えない。
+
+### HELIXOS-L2-115 終端runへの遅着Worker結果を受理しない（単体追補候補、未採択）
+
+- **状態・authority**：HELIX-OSの未採択候補。`registered_proposal`／`authority_effect: none`。本候補、対L11、source receipt、登録は要求採択、実装、実行、result採択または操作許可を生成しない。
+- **対象**：既存OS assignmentに結び付いた一つの実行attemptについて、既存契約によりtimeout、cancel、期限・lease失効、process終了その他の終端結果が確定した後に返るlateまたはduplicate resultを扱う。
+- **保持する条件**：終端後に到着したresultは、そのattemptの成功結果またはcanonicalなaccepted stateとしてcommitされず、既に確定した終端状態を変更しない。遅着result自体、そのsource／revision、assignment／attempt、到着関係と終端理由は既存のevent／evidence契約に従って追跡可能にし、古いresultを現在のassignmentへ流用しない。正当なresultが終端前に戻った場合の検証・受理は既存assignment、authority、HARNESS oracleの条件に従い、本候補が新しい成功条件を作らない。
+- **依存と接続**：`HELIXOS-L2-004／018`のassignment・attempt・期限・停止、`HELIXOS-L2-007／019`のsource/revision・evidence・stale・未完義務、`HELIXOS-L2-009`のdurable eventとcheckpoint、採択済み`HELIXOS-L2-043`のrequest／call／result相関を使う。既存の終端・停止判断を置換せず、どの機構がresultの品質やoperation authorityを判断するかも変更しない。
+- **不成立・戻し先**：終端後resultで成功・accepted・current assignment結果へ進む、終端履歴を上書きする、別attemptへ適用する、またはsource／revision／終端理由を追跡できない場合は不成立。該当assignmentを既存OSの未完／staleとして保ち、発生元またはassignment ownerへ戻す。無関係な作業を一律に停止しない。
+- **旧source・差分・限界**：`LEGACY-ASSET-A60CF91DD2AF6693E6F9`の旧`requirements.json#/HIL-FR-27`、source file SHA-256 `80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688`の「失効runのlate resultをcommitしない」意味だけを候補入力にする。raw旧L1 line 117と`HR-FR-HIL-12`、`HAC-HIL-12a/b/c`、`HAT-HIL-12`は要求の出自・隣接条件・旧oracle範囲を照合する文脈であり、旧Node/Python supervisor、protocol handshake/schema/digest、JSON Lines、transport、固定terminal receipt/fence、process管理・runtimeを現行方式として要求しない。旧FR-27全体、design template未解決事項、関連HAC/HAT全体のclosureまたはformal successorを主張しない。
+- **version_target**：旧sourceは版を指定しないため追加しない。

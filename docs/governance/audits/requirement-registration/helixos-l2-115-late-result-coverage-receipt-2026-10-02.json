@@ -1,0 +1,34 @@
+{
+  "receipt_id": "HELIXOS-L2-115-HIL-FR-27-LATE-RESULT-2026-10-02",
+  "candidate_identity": "HELIXOS-L2-115",
+  "source_holding_registration_id": "MPR-SH-IR-003",
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-fr27-late-result-source-atoms-2026-10-02.jsonl#IR153-HIL-FR-27-LATE-RESULT-NO-COMMIT",
+  "source_atom_set_digest": "sha256:b51f7051a5e21e6976639ea5e9d7ed6d426a84bd75c59f6015a976aa7efefd32",
+  "source_atom_count": 1,
+  "source_collection_scope": "旧IR153 HIL-FR-27の「失効runのlate resultをcommitしない」意味atom一つだけ。Supervisor lifecycleの他の状態追跡、protocol/lease/digest/receipt/fenceの旧実装方式、およびFR-27全体closureは本candidate input外。",
+  "coverage_result": "no_loss_limited_to_late_result_atom",
+  "carried_atom_refs": [
+    "IR153-HIL-FR-27-LATE-RESULT-NO-COMMIT"
+  ],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-IR-003#HIL-FR-27: other FR-27 meanings and formal successor assignment remain unresolved/preserved_pending_rehome"
+  ],
+  "human_decision_disposition_refs": [],
+  "unaccounted_atom_refs": [],
+  "candidate_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-115",
+  "candidate_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-115",
+  "neighbor_contracts": [
+    "HELIXOS-L2-004",
+    "HELIXOS-L2-018",
+    "HELIXOS-L2-007",
+    "HELIXOS-L2-019",
+    "HELIXOS-L2-009",
+    "HELIXOS-L2-043"
+  ],
+  "source_limits": [
+    "No old Node/Python supervisor or IPC schema/transport",
+    "No old HAT/HAC execution or whole-source closure",
+    "No adoption/runtime/operation authority"
+  ],
+  "authority_effect": "none"
+}
