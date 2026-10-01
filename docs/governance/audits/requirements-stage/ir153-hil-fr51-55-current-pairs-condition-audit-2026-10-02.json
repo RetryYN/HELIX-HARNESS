@@ -1,0 +1,476 @@
+{
+  "audit_id": "IR153-HIL-FR51-55-current-pairs-2026-10-02",
+  "baseline_commit": "f38bde044a7dfbf12aec0203b21a9384eef6ad8f",
+  "worktree": "/home/tenni/.helix-worktrees/ir153-hil-fr51-55-audit",
+  "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+  "source_file_pins": {
+    "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+    "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+    "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+    "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+    "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json": "7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+    "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md": "98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8"
+  },
+  "source_line_hashes_without_newline": {
+    "141": "321e7cf7be89621eaa0d63ece9863fb714bbd4a800f46057545cf8a1c51388b0",
+    "142": "c159d3113bc2719dd5f8492468407706c2d79978942aa8f0cf96bccc6936fda8",
+    "143": "03477c17a85c420a3f9fab3ba48d8cc905cbc8dc6bb7160b51d9fd52a5bc9c89",
+    "144": "502ef00823463c0fd4218c7b554e4b6959fc28aa9006d6d6eb79f555b86b4f67",
+    "145": "78a2e6c819e73153ce2bbd832c0f87777dba08750fa1b84fcafc916fa7cafa30"
+  },
+  "current_l2_l11_file_pins": {
+    "docs/helix-harness/L2-requirements/product-requirements.md": "e22ff41b5ed36a00c0c0a9807052759d01f930ce5574aa860d80f7b90b76bdf4",
+    "docs/helix-harness/L11-acceptance/product-acceptance.md": "2cf983e2ac8771badd056f8e49dd0a0f6704a2f088b4f816b99792f5a7a8ac82",
+    "docs/helix-os/L2-requirements/governance-requirements.md": "48c35d7ef629d99305aac79e548e638057e3ffe728976bff82e3ed1008e093fe",
+    "docs/helix-os/L11-acceptance/governance-acceptance.md": "3faf77574ffc6d33720e2d882cd3c7d30268b9103fb76054d1837f81467a413a"
+  },
+  "decision_file_pins": {
+    "docs/governance/decisions/po-decision-2026-09-29-11candidates.md": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+    "docs/governance/decisions/po-decision-2026-09-29-57candidates.md": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+    "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
+  },
+  "fr_rows": [
+    {
+      "id": "HIL-FR-51",
+      "source": {
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "physical_line": 141,
+        "line_sha256_without_newline": "321e7cf7be89621eaa0d63ece9863fb714bbd4a800f46057545cf8a1c51388b0",
+        "text": "| **HIL-FR-51** | Authoring Admission EngineはProposalの意味差分、authority、revision、trace、pair、impact、安全境界、rollback routeを検査し、`auto_admit`、`auto_admit_with_stale_propagation`、`repair_then_retry`、`human_decision_required`、`reject`、`conflict`のいずれかを決定する。 | admission decision、検査finding、authority/impact/rollback receipt |",
+        "ir_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-51",
+        "ir_statement_digest": "sha256:45ecd93356f0be9761690994c8106e87d19e742f703f98d2966b6464f9f05459",
+        "ir_record_digest": "sha256:18929a5b7c76b7417da6ae0ad195c183a6bc9287d57e3f2c77932bfe28791c4f",
+        "ir_revision": 1,
+        "ir_status": "specified",
+        "definition_status": "frozen",
+        "successor_requirement_ids": [],
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-FR-51",
+          "owner_id": "HR-FR-HIL-19",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        }
+      },
+      "conditions": [
+        {
+          "source_clause": "Proposal意味差分・authority・revisionの検査",
+          "destination": "採択済みHELIXOS-L2-001/007（OS決定f6dad2a…本文）とHARNESS-L2-008/016の意味形成・差分。OSの要求正本表は変更対象・前revision・policy/evidenceを同一因果で追える。",
+          "status": "現行要求で意味対応"
+        },
+        {
+          "source_clause": "trace・pair・impact・安全境界",
+          "destination": "HARNESS-L2-001/003/004/022のV-pair・trace・impact/oracle意味、OS-L2-002/007の関係・結果記録、既存SECURITY operation authority。",
+          "status": "責務分割で意味対応"
+        },
+        {
+          "source_clause": "rollback routeを検査",
+          "destination": "HELIXOS-L2-009継続/復旧・停止範囲と、当該canonical update operationではHELIXOS-L2-053-001のrollback/isolation receipt。OSの一括更新境界へ返す。",
+          "status": "現行要求で意味対応"
+        },
+        {
+          "source_clause": "auto_admit",
+          "destination": "OS-L2-001/002/007/009表「適用判断」の自動適用、policy/evidence/scope付き。",
+          "status": "現行要求で意味対応"
+        },
+        {
+          "source_clause": "auto_admit_with_stale_propagation",
+          "destination": "単独のenum名はない。自動適用結果とHELIXOS-L2-002の影響関係更新、HELIXOS-L2-007のstale evidence statusが分離軸として対応。旧一語を必要な複合結果へ再配置。",
+          "status": "意味を複数状態で保持；旧labelの直接同名項目なし"
+        },
+        {
+          "source_clause": "repair_then_retry / human_decision_required / reject / conflict",
+          "destination": "同じOS適用判断表の修復・必要な人間判断・拒否・競合。retry/recoveryはOS-L2-009。",
+          "status": "現行要求で意味対応"
+        },
+        {
+          "source_clause": "outputs: admission decision / findings / authority-impact-rollback receipt",
+          "destination": "OS-L2-001/002/007/009: 適用decision、変更対象・影響・revision、原証拠、未完/rollback/recovery route。HARNESS側の意味/oracle findingは004/022へ戻る。",
+          "status": "現行要求で意味対応"
+        }
+      ],
+      "counterexample": "同一Proposalを自動適用するが影響する下流relationを古いまま放置する場合、sourceのstale-propagation分岐が必要。現行対応は自動適用decisionと別のimpact/stale recordを同時に確かめること。",
+      "adoption": "HELIXOS-L2-001〜029 + paired L11 exact file bytes agreed in helix-os-requirements-po-decision-2026-09-28; HARNESS-L2/L11 fixed set agreed in helix-harness-requirements-po-decision-2026-09-28."
+    },
+    {
+      "id": "HIL-FR-52",
+      "source": {
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "physical_line": 142,
+        "line_sha256_without_newline": "c159d3113bc2719dd5f8492468407706c2d79978942aa8f0cf96bccc6936fda8",
+        "text": "| **HIL-FR-52** | Atomic Canonicalization TransactionはMarkdown、asset revision、event ledger、trace、impact、stale propagation、harness.db projection、receiptを単一operationで原子的に更新する。部分成功をCanonicalとして扱わず、command idempotencyとbase revision CASを強制する。 | canonicalization receipt、before/after revision、write count、rollback/conflict receipt |",
+        "ir_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-52",
+        "ir_statement_digest": "sha256:ef6f0368fe00cbc48d04ceec047b7d8fbfe6852cd0a570f098757631c9ccf24e",
+        "ir_record_digest": "sha256:a46bf4a755a0d2c2a3469037db664addf8866f757f5849dfe5e0a3a5d13c051d",
+        "ir_revision": 1,
+        "ir_status": "specified",
+        "definition_status": "frozen",
+        "successor_requirement_ids": [],
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-FR-52",
+          "owner_id": "HR-FR-HIL-19",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        }
+      },
+      "partition": [
+        {
+          "atom": "FR52-CMD-IDENTITY-L0142",
+          "span": "command idempotency",
+          "destination": "HARNESS-L2/L11-052-001 adopted; semantic command identity/identical resend and different payload/scope/base conflict.",
+          "l2_digest": "d49f8cf116879f4283313f9c01ae7fb72bc9c528b5205cdbd45d06c46221d25c",
+          "l11_digest": "3027c6b91b91ccf7cbab0c34821587956f8e8e7e20e5637f0fffaa591b2a633b",
+          "decision": "2026-09-29 11 candidates row32"
+        },
+        {
+          "atom": "FR52-ARTIFACT-ATOMIC-L0142",
+          "span": "Markdown, asset revision, event ledger, trace, impact, stale propagation, projection, receipt updated atomically",
+          "destination": "HELIXOS-L2/L11-053-001 adopted together with HARNESS-052; one logical owner-scoped artifact operation, no partial current, explicit projection/result receipt.",
+          "l2_digest": "fe880fc8392d9efc282294fff5305973df3b43270ef76263defef4a7ce9240bc",
+          "l11_digest": "64bc9d0b2cfbf4c5b70d9ba15f358f26aa6352072d6ac12740129f2ec8f48177",
+          "decision": "2026-09-29 11 candidates row36, conditional on HARNESS-052"
+        },
+        {
+          "atom": "FR52-NO-PARTIAL-L0142",
+          "span": "partial success is not canonical",
+          "destination": "HELIXOS-053-001: do not publish artifact group as complete current until all required writes settle; failure preserves old current / isolated incomplete state.",
+          "l2_digest": "fe880fc8392d9efc282294fff5305973df3b43270ef76263defef4a7ce9240bc",
+          "l11_digest": "64bc9d0b2cfbf4c5b70d9ba15f358f26aa6352072d6ac12740129f2ec8f48177",
+          "decision": "same pair decision"
+        },
+        {
+          "atom": "FR52-BASE-CAS-L0142",
+          "span": "base revision CAS",
+          "destination": "HELIXOS-053-001 commit base CAS; stale/conflict preserves prior current and identifies unfinished obligations.",
+          "l2_digest": "fe880fc8392d9efc282294fff5305973df3b43270ef76263defef4a7ce9240bc",
+          "l11_digest": "64bc9d0b2cfbf4c5b70d9ba15f358f26aa6352072d6ac12740129f2ec8f48177",
+          "decision": "same pair decision"
+        },
+        {
+          "atom": "FR52-RECEIPT-EVIDENCE-L0142",
+          "span": "before/after revision, write count, rollback/conflict receipt",
+          "destination": "HELIXOS-053-001 success/failure receipt records before/after revision, write outcomes/count, affected owner and rollback/isolation/retry obligation.",
+          "l2_digest": "fe880fc8392d9efc282294fff5305973df3b43270ef76263defef4a7ce9240bc",
+          "l11_digest": "64bc9d0b2cfbf4c5b70d9ba15f358f26aa6352072d6ac12740129f2ec8f48177",
+          "decision": "same pair decision"
+        }
+      ],
+      "status": "source line 142 is partitioned 1 HARNESS atom + 4 OS atoms; exact conditional adoption covers both paired identities. `harness.db` is not current technology; implementation/schema choice not carried. Whole HR/IR closure and formal successor are not claimed.",
+      "counterexample": "Two of the listed artifact writes succeed but one fails: OS-053 must leave the previous complete current visible and record partial writes/recovery; HARNESS-052 alone only classifies operation identity.",
+      "adoption": "MPR-RC-HARNESS-L2-052-001 + MPR-RC-HELIXOS-L2-053-001, exact 9/29 11candidates rows32/36; OS adoption explicitly conditional on HARNESS-052."
+    },
+    {
+      "id": "HIL-FR-53",
+      "source": {
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "physical_line": 143,
+        "line_sha256_without_newline": "03477c17a85c420a3f9fab3ba48d8cc905cbc8dc6bb7160b51d9fd52a5bc9c89",
+        "text": "| **HIL-FR-53** | Semantic Revision and Asset Identityはpath・名称から独立したimmutable asset IDを保持し、意味変更を新revisionとして保存する。rename、move、split、merge、supersedeは履歴、authority、oracle、typed edgeを失わず処理する。 | asset revision、identity/location history、split/merge disposition、semantic diff |",
+        "ir_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-53",
+        "ir_statement_digest": "sha256:7a0b93ba3bbb00c4a5e02f9ff62505e09c6b12c5943cbfd65defdd4c5e664d45",
+        "ir_record_digest": "sha256:88f8f52e5a3fe1598158a2d261dcc400d86b421b267bfd0a2fd6cd9052e4cb5e",
+        "ir_revision": 1,
+        "ir_status": "specified",
+        "definition_status": "frozen",
+        "successor_requirement_ids": [],
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-FR-53",
+          "owner_id": "HR-FR-HIL-19",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        }
+      },
+      "conditions": [
+        {
+          "source_clause": "path/name-independent immutable asset ID and identity/location history",
+          "destination": "HARNESS-L2/L11-053-001 exact adopted; same identity through rename/move, semantic revisions distinct.",
+          "status": "covered in selected L1 statement atom"
+        },
+        {
+          "source_clause": "semantic change creates a new revision and semantic diff",
+          "destination": "HARNESS-053 L2 identity/revision history and L11 meaning-revision checks.",
+          "status": "covered in selected L1 statement atom"
+        },
+        {
+          "source_clause": "rename/move/split/merge/supersede preserve lineage/history",
+          "destination": "HARNESS-053 L2 typed lineage relation and L11 per-identity relations, unknown when endpoints cannot be traced.",
+          "status": "covered in selected L1 statement atom"
+        },
+        {
+          "source_clause": "retain authority, acceptance oracle, typed edge through transforms",
+          "destination": "HARNESS-053 L2 lineage maps old/new IDs, revisions, history, authority, oracle and typed-edge; L11 treats missing authority/oracle/edge as incomplete/unknown.",
+          "status": "covered in selected L1 statement atom"
+        },
+        {
+          "source_clause": "outputs asset revision, identity/location history, split/merge disposition, semantic diff",
+          "destination": "HARNESS-053 L2/L11 exact pair and source receipt five atoms total (statement + four output atoms).",
+          "status": "covered in selected L1 line partition"
+        }
+      ],
+      "counterexample": "A rename keeps the asset ID but split creates two new IDs with no per-child authority/oracle/typed-edge mapping; the affected lineage stays incomplete/unknown, not preserved by ID similarity alone.",
+      "adoption": "MPR-RC-HARNESS-L2-053-001 adopted 2026-09-29 11 candidates row33 exact pair digest."
+    },
+    {
+      "id": "HIL-FR-54",
+      "source": {
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "physical_line": 144,
+        "line_sha256_without_newline": "502ef00823463c0fd4218c7b554e4b6959fc28aa9006d6d6eb79f555b86b4f67",
+        "text": "| **HIL-FR-54** | Contract Portfolio Plannerはrequirement atomとDesign Obligation Graphを、authority、lifecycle、interface/data/state/event/failure/security/observability/operation、V-pair oracleの同値classへ分ける。各classにnormative contractを原則1件割り当て、既存契約の再利用、delta追加、新規作成、根拠付きN/Aを判定し、未被覆0かつ意味重複0となる最小portfolioを提案する。 | obligation-to-contract matrix、portfolio manifest、reuse/delta/new/N/A receipt、uncovered/duplicate finding |",
+        "ir_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-54",
+        "ir_statement_digest": "sha256:1531ec84c2374a625e2d83e01b77513b0fc4cdcd963170fbc11148a9bdf5143a",
+        "ir_record_digest": "sha256:834c2d6b80274dab5a03b37a8c3969039ac8f92b3789979b8d3457f226b8550e",
+        "ir_revision": 1,
+        "ir_status": "specified",
+        "definition_status": "frozen",
+        "successor_requirement_ids": [],
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-FR-54",
+          "owner_id": "HR-FR-HIL-20",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        }
+      },
+      "conditions": [
+        {
+          "source_clause": "atom + Design Obligation Graph into authority/lifecycle/interface/data/state/event/failure/security/observability/operation/V-pair-oracle equivalence classes",
+          "destination": "HARNESS-L2/L11-044-002 exact adopted B route. Current class set and applicable-source scope includes each source listed; 009/041/025/026 provide inputs with scope/version.",
+          "status": "covered in selected L1 atom"
+        },
+        {
+          "source_clause": "one normative contract per class in principle; reuse/delta/new/grounded N/A",
+          "destination": "HARNESS-044-002 assigns normally one contract per class and distinguishes reuse, delta, new, supported N/A; multiple contracts require explicit boundary/reason.",
+          "status": "covered in selected L1 atom"
+        },
+        {
+          "source_clause": "minimal portfolio with uncovered=0 and semantic duplicates=0",
+          "destination": "HARNESS-044 L2 portfolio proposal; L11 closes only when applicable classes/contract/oracle mappings have uncovered=0 and semantic duplication=0; missing/stale stays unknown.",
+          "status": "covered in selected L1 atom"
+        },
+        {
+          "source_clause": "outputs matrix, manifest, reuse/delta/new/N/A receipt, uncovered/duplicate finding",
+          "destination": "HARNESS-044 L2/L11 portfolio coverage and findings.",
+          "status": "covered in selected L1 atom"
+        }
+      ],
+      "counterexample": "A hidden applicable security class is unassigned while each declared contract row is present: 044’s class denominator must expose uncovered coverage, not accept a complete-looking manifest.",
+      "adoption": "MPR-RC-HARNESS-L2-044-002; 2026-09-29 57 candidates row49: conditionally adopts B route/name Design Contract Portfolio, forbids unapproved append to adopted 025/026; exact pair digests."
+    },
+    {
+      "id": "HIL-FR-55",
+      "source": {
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "physical_line": 145,
+        "line_sha256_without_newline": "78a2e6c819e73153ce2bbd832c0f87777dba08750fa1b84fcafc916fa7cafa30",
+        "text": "| **HIL-FR-55** | Template Example Calibratorはactive templateの各validation ruleとapplicability branchに対し、最低限canonical positive 1件と境界negative 1件を要求する。状態遷移、failure、security、migration、multi-runtime差異はrisk分析で未被覆の場合だけ例を追加し、例の個数ではなくrule/branch/risk coverageで十分性を判定する。 | example adequacy matrix、positive/negative fixture、risk追加理由、redundancy finding |",
+        "ir_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-55",
+        "ir_statement_digest": "sha256:a79393484c93dc7d7f6c107b0781583e9648f79111cabc74cd8058c695fcb801",
+        "ir_record_digest": "sha256:7a9e90a2f23df3c38ff878f6f4d9bffbf70e8f7a717f6dee2178894da0d01d81",
+        "ir_revision": 1,
+        "ir_status": "specified",
+        "definition_status": "frozen",
+        "successor_requirement_ids": [],
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-FR-55",
+          "owner_id": "HR-FR-HIL-20",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        }
+      },
+      "conditions": [
+        {
+          "source_clause": "each active-template validation rule and applicability branch has at least one canonical positive and one boundary negative",
+          "destination": "HARNESS-L2/L11-043-002 exact adopted B route; full applicable rule/branch denominator and one example each of both polarities, oracle/source span bound.",
+          "status": "covered in selected L1 atom"
+        },
+        {
+          "source_clause": "add state-transition/failure/security/migration/multi-runtime examples only when risk analysis says uncovered",
+          "destination": "HARNESS-043 requires extra examples only for demonstrated uncovered scope risk; no fixed example count or unconditional runtime list.",
+          "status": "covered in selected L1 atom"
+        },
+        {
+          "source_clause": "adequacy based on rule/branch/risk coverage, not count",
+          "destination": "HARNESS-043 coverage matrix and L11 negatives reject count-only adequacy; new/hidden applicable branch expands denominator.",
+          "status": "covered in selected L1 atom"
+        },
+        {
+          "source_clause": "outputs matrix, positive/negative fixture, risk rationale, redundancy finding",
+          "destination": "HARNESS-043 exact L2/L11 outputs and redundancy checks.",
+          "status": "covered in selected L1 atom"
+        }
+      ],
+      "counterexample": "Ten positives all exercise one branch while another active branch has no boundary negative; count alone cannot pass 043.",
+      "adoption": "MPR-RC-HARNESS-L2-043-002; 2026-09-29 57 candidates row48: conditionally adopts B route and HARNESS-CORE placement (new placement decision); exact pair digests."
+    }
+  ],
+  "legacy_shared_links": {
+    "all_records": {
+      "revision": 1,
+      "status": "specified",
+      "definition_status": "frozen",
+      "FR51_primary_contract": "HR-FR-HIL-19",
+      "FR52_primary_contract": "HR-FR-HIL-19",
+      "FR53_primary_contract": "HR-FR-HIL-19",
+      "FR54_primary_contract": "HR-FR-HIL-20",
+      "FR55_primary_contract": "HR-FR-HIL-20",
+      "acceptance_ids_for_51_53": [
+        "HAC-HIL-19a",
+        "HAC-HIL-19b",
+        "HAC-HIL-19c"
+      ],
+      "test_for_51_53": "HAT-HIL-19",
+      "acceptance_ids_for_54_55": [
+        "HAC-HIL-20a",
+        "HAC-HIL-20b",
+        "HAC-HIL-20c"
+      ],
+      "test_for_54_55": "HAT-HIL-20",
+      "downstream": "pending_pair_descent",
+      "formal_successors_empty": true
+    },
+    "HR19_contract_digest": "sha256:081fd30a519f53deb260dba56b406ef75ac51bd6e04e9dbe95ea8c0adc72654c",
+    "HR20_contract_digest": "sha256:ed315f225a1eda3e5f527f58438fd637bc426764b9747d54a8067631b761880c",
+    "HAC_HIL_19_digests": [
+      "sha256:06dc52b35a96f6b0a7a08a5e1397520321a26f3454360f546af39c5beae67d2c",
+      "sha256:544a427c9d66e265f7d1a2afa2811df76d822dffba151f001099cda870a14c38",
+      "sha256:b406c2facb58c1d33c27c86615a25a1d385dbe7057bf42d43fe6ade1659f476b"
+    ],
+    "HAC_HIL_20_digests": [
+      "sha256:f26a7cd4891ece246ca667afb85b5453d0ff00cb134672be463b8a559ddb1ee7",
+      "sha256:488c0662537b953fa34370d1f6355a3853fc87daf2107954ee67fb74b00c49a6",
+      "sha256:87605d49ee0c108a5a4053b53bd2f6059659c928ae6857d055f9cb8c681ca18a"
+    ],
+    "HAT_HIL_19": {
+      "semantic_digest": "sha256:6fbefab680d7d2a48946bfc2bce20879450f2c102438cb0c95e992a6beb412ed",
+      "status": "designed_not_implemented"
+    },
+    "HAT_HIL_20": {
+      "semantic_digest": "sha256:7cc93e28456a0667cdedf909f00ec21102ba0a9dcbc302ed4e95fe0b0efe19a8",
+      "status": "designed_not_implemented"
+    },
+    "interpretation": "HR/HAC/HAT are separate shared source links; this direct HIL-FR row audit does not assert full system contract, IR-record, old acceptance execution, or formal successor closure."
+  },
+  "adopted_pairs": [
+    {
+      "id": "HARNESS-L2/L11-052-001",
+      "decision": "po-decision-2026-09-29-11candidates.md row32",
+      "l2": "d49f8cf116879f4283313f9c01ae7fb72bc9c528b5205cdbd45d06c46221d25c",
+      "l11": "3027c6b91b91ccf7cbab0c34821587956f8e8e7e20e5637f0fffaa591b2a633b",
+      "mpr_registration_id": "MPR-RC-HARNESS-L2-052-001",
+      "coverage_receipt_path": "docs/governance/audits/requirement-registration/harness-fr52-command-identity-coverage-receipt-2026-09-29.json",
+      "coverage_receipt_sha256": "c0fa6d277aa6d38bf822bf3a0aeeac0bed5c5259e09da81cdfd61d80c593f747",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-fr52-command-identity-source-lines-2026-09-29.jsonl",
+      "source_atom_count": 1,
+      "carried_atom_refs": [
+        "FR52-CMD-IDENTITY-L0142"
+      ],
+      "preserved_pending_registration_refs": [
+        "MPR-SH-SEMANTIC-LINE-003#remaining atoms (FR52 source row is split only at the five listed semantic spans)",
+        "MPR-SH-IR-003#HIL-FR-52 record; IR namespace remains held and is not double-counted as a second source atom",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-requirements-L0143 (HIL-FR-53 full line remains unassigned; not input to either candidate)"
+      ]
+    },
+    {
+      "id": "HELIXOS-L2/L11-053-001",
+      "decision": "po-decision-2026-09-29-11candidates.md row36; conditional on HARNESS-052",
+      "l2": "fe880fc8392d9efc282294fff5305973df3b43270ef76263defef4a7ce9240bc",
+      "l11": "64bc9d0b2cfbf4c5b70d9ba15f358f26aa6352072d6ac12740129f2ec8f48177",
+      "mpr_registration_id": "MPR-RC-HELIXOS-L2-053-001",
+      "coverage_receipt_path": "docs/governance/audits/requirement-registration/helixos-fr52-atomicity-coverage-receipt-2026-09-29.json",
+      "coverage_receipt_sha256": "d2e6c2cd4f32660fc996b6e94446727ee9778906df65d1b081790a4dbd88f97a",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/helixos-fr52-atomicity-source-lines-2026-09-29.jsonl",
+      "source_atom_count": 4,
+      "carried_atom_refs": [
+        "FR52-ARTIFACT-ATOMIC-L0142",
+        "FR52-NO-PARTIAL-L0142",
+        "FR52-BASE-CAS-L0142",
+        "FR52-RECEIPT-EVIDENCE-L0142"
+      ],
+      "preserved_pending_registration_refs": [
+        "MPR-SH-SEMANTIC-LINE-003#remaining atoms (FR52 source row is split only at the five listed semantic spans)",
+        "MPR-SH-IR-003#HIL-FR-52 record; IR namespace remains held and is not double-counted as a second source atom",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-requirements-L0143 (HIL-FR-53 full line remains unassigned; not input to either candidate)"
+      ]
+    },
+    {
+      "id": "HARNESS-L2/L11-053-001",
+      "decision": "po-decision-2026-09-29-11candidates.md row33",
+      "l2": "ebc78869f6d94668d9fed00d0a0415d068d85c0f61c0d98f01a9c4ec39710587",
+      "l11": "c22abfd29780a4016b0fcef74d6b2c29b3628b81c12d0fcb0b1fcabfb48bb61f",
+      "mpr_registration_id": "MPR-RC-HARNESS-L2-053-001",
+      "coverage_receipt_path": "docs/governance/audits/requirement-registration/harness-asset-identity-coverage-receipt-2026-09-29.json",
+      "coverage_receipt_sha256": "e9c5d5bb8b13e67ad9d1144ad2917e2f0e1e1328ba796f1defdbeeda57c3e7fa",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/harness-asset-identity-source-lines-2026-09-29.jsonl",
+      "source_atom_count": 5,
+      "carried_atom_refs": [
+        "IDENTITY-HIL-FR-53-STATEMENT-L0143",
+        "IDENTITY-HIL-FR-53-ASSET-REVISION-L0143",
+        "IDENTITY-HIL-FR-53-IDENTITY-LOCATION-HISTORY-L0143",
+        "IDENTITY-HIL-FR-53-SPLIT-MERGE-DISPOSITION-L0143",
+        "IDENTITY-HIL-FR-53-SEMANTIC-DIFF-L0143"
+      ],
+      "preserved_pending_registration_refs": [
+        "MPR-SH-SEMANTIC-LINE-003#remaining atoms",
+        "MPR-SH-IR-003#HIL-FR-53 record and remaining requirement identities",
+        "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-requirements-L0143"
+      ]
+    },
+    {
+      "id": "HARNESS-L2/L11-044-002",
+      "decision": "po-decision-2026-09-29-57candidates.md row49; conditional B route/name Design Contract Portfolio; no unapproved append to 025/026",
+      "l2": "690f2bfa866c778be47459baa99139905260d3ca569739a4d4707c61096212f2",
+      "l11": "9c79b73100f4afa63abba7f79d47b8931a1c29983ac08a3e4ded95e56107bfc8",
+      "mpr_registration_id": "MPR-RC-HARNESS-L2-044-002",
+      "coverage_receipt_path": "docs/governance/audits/requirement-registration/harness-contract-portfolio-coverage-receipt-2026-09-28.json",
+      "coverage_receipt_sha256": "74655ff3c94e32a964323707c11865e0157faa8ef602cb77cb7baca0b2c4baae",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/portfolio-fixture-source-lines-2026-09-28.jsonl#HIL-FR-54",
+      "source_atom_count": 1,
+      "carried_atom_refs": [
+        "PORTFOLIO-FIXTURE-HIL-FR-54-L0144"
+      ],
+      "preserved_pending_registration_refs": [
+        "MPR-SH-PORTFOLIO-FIXTURE-002",
+        "MPR-SH-IR-003"
+      ]
+    },
+    {
+      "id": "HARNESS-L2/L11-043-002",
+      "decision": "po-decision-2026-09-29-57candidates.md row48; conditional B route/Core placement, placement decision is new",
+      "l2": "da678d9181ebe76ae93084c27744d253c617ebe03b709d79f55b79d2abbc6666",
+      "l11": "583bfaf669729d3148e072be3ca74f1ef125997e933f6a1a94f08c732cb6f4b4",
+      "mpr_registration_id": "MPR-RC-HARNESS-L2-043-002",
+      "coverage_receipt_path": "docs/governance/audits/requirement-registration/harness-template-example-coverage-receipt-2026-09-28.json",
+      "coverage_receipt_sha256": "bc55e6d3e809013954838fcadf475e6f36ebfb16c183fbadb8b959b059dd2170",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/harness-template-example-source-lines-2026-09-28.jsonl#HIL-FR-55",
+      "source_atom_count": 1,
+      "carried_atom_refs": [
+        "TEMPLATE-EXAMPLE-HIL-FR-55-L0145"
+      ],
+      "preserved_pending_registration_refs": [
+        "MPR-SH-HARNESS-TEMPLATE-EXAMPLE-001",
+        "MPR-SH-IR-003",
+        "MPR-SH-SUPPLEMENTARY-003"
+      ]
+    }
+  ],
+  "holding_boundaries": {
+    "FR52": "The 052/OS053 receipts split all five non-overlapping L1 line atoms, but old IR row and HR19/HAC/HAT remain separate; no formal successor assigned.",
+    "FR53": "053 receipt covers L1 statement atom plus 4 output atoms; old IR identity record and remaining source holdings stay live.",
+    "FR54": "044 receipt is one selected L1 line atom; separate IR/HR20/HAC/HAT and FR55 holding remain.",
+    "FR55": "043 receipt is one selected L1 line atom; separate IR/HR20/HAC/HAT and other legacy holdings remain.",
+    "candidate_receipt_time": "Pre-decision receipts may still say authority_effect none or unadopted. Do not treat that historical metadata as current status when later exact decision adopts same revision."
+  },
+  "overall": "No missing condition established for FR52–55 in the exact selected L1-line scope; do not infer old formal successor/full-family closure. FR51 meaning is distributed across accepted HARNESS/OS responsibilities; automatic-with-stale outcome is represented as automatic admission plus distinct impact/stale state, not copied as a legacy enum string.",
+  "verification": {
+    "old_archive_read_only": true,
+    "old_runtime_tests_ci_run": false,
+    "new_runtime_tests_run": false,
+    "137_worker_run": false,
+    "common_8_gate_worker_run": false,
+    "tracked_l2_l11_or_decision_changed": false
+  }
+}
