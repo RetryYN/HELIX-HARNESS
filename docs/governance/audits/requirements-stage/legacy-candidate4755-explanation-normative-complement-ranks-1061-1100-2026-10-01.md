@@ -8,7 +8,7 @@
 - HXT/HXBのRQ／FR／AC／NFR IDは行ごとに抽出し、日本語意味記述に含むIDと照合。
 - routing台帳: 全40行は#2353 route_status=`not_condition`、#2369等の後続分類overlayとのID重複なし。
 - 固定F6: HARNESS/OS/LABOのL2/L11を行別に照合。source row ID/path:line引用と、HXT-RQ等の要求family IDの出現は別フィールドに記録し、広域source spanとも区別。
-- 境界: rank1021–1060のpaired audit／意味検証記録はこのbaseにない。rank1060のIDは独立再構成した境界識別子としてのみ記す。
+- 境界: rank1021–1060のpaired auditは#2463 merge commit `f7d424c605dd7673180d4dc93e8eb3174e1b6c9d` でmainへ統合済み。rank1060のID `LEGACY-CAND-LINE-001830` とMD/JSON SHAを照合した。
 
 | 順位 | Source ID / source path:line | 分類・意味 | marker陰性の扱い | 固定F6／PO判断との関係 |
 |---:|---|---|---|---|

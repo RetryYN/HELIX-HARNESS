@@ -702,7 +702,7 @@
     "各選択物理行からHXT/HXB AC IDを正規表現で抽出し、存在時だけ意味記述との一致を照合した。40行それぞれからAC IDを1件抽出し、同一source行のIDとの一致を照合した。F6内のtoken出現とsource path:lineへのbindingは別に記録した。",
     "固定F6 requirement/acceptanceとPO判断は比較文脈。family-level関係からsource行binding、採用、実行・受入、successor、stage closureを推定しない。",
     "archiveは読取のみ。旧source/runtime/workflow/CLI/hook/test/CIは実行していない。",
-    "rank 1021–1060のpaired audit/意味検証はこのbaseに含まれない。rank1060のIDは独立pool再構成から境界識別子として記した。"
+    "rank 1021–1060のpaired auditは#2463として統合済み。rank1060のIDとMD/JSON SHAを照合した。"
   ],
   "rows": [
     {
@@ -5545,5 +5545,17 @@
         "baseline_2353_physical_line_bytes_sha256": "cdaf68e7cd893851486a91ddf9357b124f3342a9112ed77892aed9a891cb26af"
       }
     }
-  ]
+  ],
+  "prior_completed_complement_slice": {
+    "ranks": [
+      1021,
+      1060
+    ],
+    "merge_commit": "f7d424c605dd7673180d4dc93e8eb3174e1b6c9d",
+    "last_id": "LEGACY-CAND-LINE-001830",
+    "md_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1021-1060-2026-10-02.md",
+    "md_sha256": "4e4fc3eb237f79d6563754b1c7c4fec58970834bcd7a1f87cca9a68d22285b98",
+    "json_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1021-1060-2026-10-02.json",
+    "json_sha256": "afbf20ae8f7b238dcea2a67304f52c2e34c43bc98f3c049eae02023a8da7a580"
+  }
 }
