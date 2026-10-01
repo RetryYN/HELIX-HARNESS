@@ -112,5 +112,5 @@
     }
   ],
   "source_correction_note": "2026-10-02 correction: direct consumer lines HST-CASE-014-06/07 are the source of numeric zero outcomes; HIL-FR-34 line124 is the parent fixture context only.",
-  "current_comparison_base_commit": "fcf944f839a6269fec63f8823d98f51f1d6ec84b"
+  "current_comparison_base_commit": "6265c512bae65789b177e38404c8266726799f46"
 }
