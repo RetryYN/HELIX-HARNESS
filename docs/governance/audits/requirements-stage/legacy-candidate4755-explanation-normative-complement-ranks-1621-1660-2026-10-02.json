@@ -4653,7 +4653,7 @@
       "exact_source_line_text": "authority_note: \"本文は候補承認対象の18要件を保持する。未承認表記は承認前の記録であり、現在は候補承認済み・canonical昇格待ち。L2合意・IR admission・runtime適用済みとは扱わない。\"",
       "semantic_family": "旧HELIX Concept v4 L3要求候補",
       "semantic_function": "Authority-note metadata",
-      "semantic_reading": "候補本文の承認後もcanonical promotion、L2合意、IR admission、runtime適用が別状態であると記す。",
+      "semantic_reading": "候補承認対象の18要件を本文に保持し、未承認表記は承認前の記録で、現在は候補承認済み・canonical昇格待ちと説明する。L2合意・IR admission・runtime適用済みとは扱わないという注記。",
       "legacy_context": {
         "section_heading": null,
         "nearby_physical_lines": [
@@ -5478,7 +5478,7 @@
       "exact_source_line_text": "| HCV4-FR-001 | systemはrequest、selection、approval、decision、dispositionを別identityとしてsource／actor／target／scope／revisionへ束縛する。 |",
       "semantic_family": "旧HELIX Concept v4 L3要求候補",
       "semantic_function": "HCV4-FR-001候補要求",
-      "semantic_reading": "request、selection、approval、decision、dispositionを出所と対象範囲付きで別identity化する候補条件。",
+      "semantic_reading": "HCV4-FR-001。request、selection、approval、decision、dispositionを別identityとし、source・actor・target・scope・revisionへ束縛する候補条件。",
       "legacy_context": {
         "section_heading": {
           "line": 15,
@@ -5774,7 +5774,7 @@
       "exact_source_line_text": "| HCV4-FR-002 | systemはIntentからRequirement IR、Design、Responsibility、Workflow、Verification、Release Sliceをauthority順にコンパイルする。 |",
       "semantic_family": "旧HELIX Concept v4 L3要求候補",
       "semantic_function": "HCV4-FR-002候補要求",
-      "semantic_reading": "Intentから検証やrelease構成までを順序づけて導出する候補条件。",
+      "semantic_reading": "HCV4-FR-002。IntentからRequirement IR、Design、Responsibility、Workflow、Verification、Release Sliceへauthority順にコンパイルする候補条件。",
       "legacy_context": {
         "section_heading": {
           "line": 15,
@@ -6070,7 +6070,7 @@
       "exact_source_line_text": "| HCV4-FR-005 | independent reviewerをauthoring contextから分離し、candidate HEADとCI generationへexact束縛する。 |",
       "semantic_family": "旧HELIX Concept v4 L3要求候補",
       "semantic_function": "HCV4-FR-005候補要求",
-      "semantic_reading": "authoringとは独立したreviewerを候補HEADとCI世代へ結びつける条件。",
+      "semantic_reading": "HCV4-FR-005。independent reviewerをauthoring contextから分離し、candidate HEADとCI generationへexact束縛する候補条件。",
       "legacy_context": {
         "section_heading": {
           "line": 15,
@@ -6366,7 +6366,7 @@
       "exact_source_line_text": "| HCV4-FR-006 | completionをsubject実体、oracle、counterexample、execution receipt、independent review、CI、DB／GitHub read-afterのANDで判定する。 |",
       "semantic_family": "旧HELIX Concept v4 L3要求候補",
       "semantic_function": "HCV4-FR-006候補要求",
-      "semantic_reading": "完了判定に実体、oracle、反例、receipt、独立review、CI、read-afterを全て要求する条件。",
+      "semantic_reading": "HCV4-FR-006。completionをsubject実体、oracle、counterexample、execution receipt、independent review、CI、DB／GitHub read-afterの全条件のANDで判定する候補条件。",
       "legacy_context": {
         "section_heading": {
           "line": 15,
@@ -6646,7 +6646,7 @@
       "exact_source_line_text": "| HCV4-FR-009 | provider／modelをlogical laneの実装adapterとして扱い、provider名をworkflow、responsibility、authorityのprimary identityにしない。 |",
       "semantic_family": "旧HELIX Concept v4 L3要求候補",
       "semantic_function": "HCV4-FR-009候補要求",
-      "semantic_reading": "provider/modelを論理laneの実装選択に留め、workflow・責務・authority identityと分ける条件。",
+      "semantic_reading": "HCV4-FR-009。provider／modelをlogical laneの実装adapterとし、provider名をworkflow・responsibility・authorityのprimary identityにしない候補条件。",
       "legacy_context": {
         "section_heading": {
           "line": 15,
@@ -6926,7 +6926,7 @@
       "exact_source_line_text": "| HCV4-FR-010 | Behavior Contract、Functional Release Slice、Release Module、Bundle、DevOS Artifactを別composition levelとしてexact setで接続する。 |",
       "semantic_family": "旧HELIX Concept v4 L3要求候補",
       "semantic_function": "HCV4-FR-010候補要求",
-      "semantic_reading": "複数のrelease構成段階を区別し、exact setで接続する条件。",
+      "semantic_reading": "HCV4-FR-010。Behavior Contract、Functional Release Slice、Release Module、Bundle、DevOS Artifactを別composition levelとしてexact setで接続する候補条件。",
       "legacy_context": {
         "section_heading": {
           "line": 15,
@@ -7222,7 +7222,7 @@
       "exact_source_line_text": "| HCV4-FR-011 | Release、Deployment、Operation、Incident、Diagnosis、Rollback、Redeploymentを別stateとして追跡する。 |",
       "semantic_family": "旧HELIX Concept v4 L3要求候補",
       "semantic_function": "HCV4-FR-011候補要求",
-      "semantic_reading": "releaseからdeployment・operation・incident・rollback等を別状態として追跡する条件。",
+      "semantic_reading": "HCV4-FR-011。Release、Deployment、Operation、Incident、Diagnosis、Rollback、Redeploymentを別stateとして追跡する候補条件。",
       "legacy_context": {
         "section_heading": {
           "line": 15,
@@ -7502,7 +7502,7 @@
       "exact_source_line_text": "| HCV4-FR-016 | Agentic Auditをrisk、trigger、scope、budget、cooldownでadmitし、高価なfull auditを無条件定期実行しない。 |",
       "semantic_family": "旧HELIX Concept v4 L3要求候補",
       "semantic_function": "HCV4-FR-016候補要求",
-      "semantic_reading": "risk・trigger・scope・budget・cooldownに基づきfull auditを実行する候補条件。",
+      "semantic_reading": "HCV4-FR-016。Agentic Auditをrisk・trigger・scope・budget・cooldownでadmitし、高価なfull auditを無条件に定期実行しない候補条件。",
       "legacy_context": {
         "section_heading": {
           "line": 15,
@@ -12260,7 +12260,7 @@
       "exact_source_line_text": "HELIXは、人間の意図と環境変化を型付き変更契約へコンパイルし、複数のAI runtimeを責務単位で実行させ、",
       "semantic_family": "旧HELIX Concept v4.0候補",
       "semantic_function": "Concept候補の定義前半",
-      "semantic_reading": "構想を人の意図・環境変化から型付き変更契約へ導き、AI runtimeを責務単位で動かす方向として記述する。文は次物理行へ続く。",
+      "semantic_reading": "人間の意図と環境変化を型付き変更契約へコンパイルし、複数のAI runtimeを責務単位で実行させるというHELIX定義の前半。文は次物理行へ続く。",
       "legacy_context": {
         "section_heading": {
           "line": 19,
@@ -12532,7 +12532,7 @@
       "exact_source_line_text": "反証可能な証拠で変更を閉じ、その結果から統治機構を段階的に改善するVerified Change Operating Systemである。",
       "semantic_family": "旧HELIX Concept v4.0候補",
       "semantic_function": "Concept候補の定義後半",
-      "semantic_reading": "定義の続きとして、証拠による変更完了と統治機構の段階的改善を位置づける。",
+      "semantic_reading": "前物理行から続き、反証可能な証拠で変更を閉じ、その結果から統治機構を段階的に改善するVerified Change Operating SystemとしてHELIXを定義する。",
       "legacy_context": {
         "section_heading": {
           "line": 19,
@@ -14184,7 +14184,7 @@
       "exact_source_line_text": "| HELIX Harness | V-model、gate、CI、review、security、replayを担うAssurance Kernel |",
       "semantic_family": "旧HELIX Concept v4.0候補",
       "semantic_function": "HELIX Harness identity行",
-      "semantic_reading": "Harnessをassurance kernelとして説明する候補責務行。",
+      "semantic_reading": "HELIX Harnessを、V-model、gate、CI、review、security、replayを担うAssurance Kernelとする候補責務表の行。",
       "legacy_context": {
         "section_heading": {
           "line": 30,
