@@ -1,0 +1,371 @@
+{
+  "audit_id": "IR153-HIL-FR46-50-current-pairs-2026-10-02",
+  "purpose": "原IR153 HIL-FR-46〜50の条件別現行L2/L11照合。要求保全を記録し、正式後継割当や実装済みを主張しない。",
+  "baseline": {
+    "commit": "6265c512bae65789b177e38404c8266726799f46",
+    "worktree": "/home/tenni/.helix-worktrees/ir153-fr46-50-current-audit",
+    "branch": "codex/ir153-fr46-50-current-audit"
+  },
+  "source_pins": {
+    "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+    "legacy_asset_disposition_row": 424,
+    "legacy_asset_disposition": "read-only preserved source snapshot",
+    "l1_source": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "lines": "136-140",
+      "line_sha256_without_newline": {
+        "136": "a62b63ab18b23ac9564d6c7ffca7580ac9471a6d6e7374f8e4a26c93f0441b6c",
+        "137": "785f0998ca9fd2192bcddc638d1ef1233551c251e307e631303642abe7713fad",
+        "138": "e12937bb604330b7c3d1ad13f23bb3e60969b888cd16a311405e7a993e360d41",
+        "139": "58417554e28eff13d562e183533c1f76fbca3c27a29de9385d09e70b615ccf37",
+        "140": "9d9c14e1dac400ad6cf1cacdd6a54d82d4a09374d128af2ba3036652655fde54"
+      }
+    },
+    "ir_requirements": {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688"
+    },
+    "system_contracts": {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+      "sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab"
+    },
+    "acceptance_cases": {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19"
+    },
+    "system_tests": {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+      "sha256": "7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a"
+    },
+    "assertion_cases": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+      "sha256": "98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+      "lines": "290-334, 359, 397-401, 437"
+    }
+  },
+  "legacy_relation": {
+    "all_records": {
+      "revision": 1,
+      "status": "specified",
+      "definition_status": "frozen",
+      "primary_system_contract": "HR-FR-HIL-18",
+      "acceptance_ids": [
+        "HAC-HIL-18a",
+        "HAC-HIL-18b",
+        "HAC-HIL-18c"
+      ],
+      "system_test": "HAT-HIL-18",
+      "downstream_owner": "HR-FR-HIL-18",
+      "downstream_status": "pending_pair_descent",
+      "successor_requirement_ids": [],
+      "route_issue_ids": [],
+      "actor_task_surface_design_ids_empty": true,
+      "pending_resolution": [
+        "no fabricated question/answer/prototype/actor/task/surface evidence",
+        "design template selection pending until Issue #290 activated after G1/G3 rebind"
+      ]
+    },
+    "shared_parent_contract": {
+      "id": "HR-FR-HIL-18",
+      "semantic_digest": "sha256:2de222b9677b4d2e61e1cb887c70afa7cae998392feadb717e5508ec23f87d50",
+      "meaning": "canonical L1-L12 registry/L0 anchor, template extraction, vertical edges, canonical V-pairs, L6↔L7 TDD, same revision/snapshot/oracle, granularity, deferred/stale/unexecuted/one-sided failures and refactor preservation",
+      "interpretation": "shared parent/context; not a substitute for any one FR atom"
+    },
+    "acceptance_test_evidence": {
+      "acceptance_ids": [
+        "HAC-HIL-18a",
+        "HAC-HIL-18b",
+        "HAC-HIL-18c"
+      ],
+      "system_test": "HAT-HIL-18",
+      "status": "designed_not_implemented",
+      "meaning": "design-defined old test cases are not executed results or new-generation pass evidence"
+    },
+    "historical_register": {
+      "MPR-SH-IR-003": "153 old IR records source_preserved_unassigned; authority_effect none",
+      "legacy-ir-document-source-relation.jsonl": "rows 79-83 bind these five IR records to L1 lines 136-140",
+      "MPR-SH-SEMANTIC-LINE-003": "2386 semantic-line holding record; not formal successor assignment"
+    }
+  },
+  "current_adoptions": [
+    {
+      "id": "HARNESS-L2/L11-040",
+      "mpr": "MPR-RC-HARNESS-L2-040-002",
+      "decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md row45",
+      "decision_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "l2_section_sha256": "c349606d7798e3f4eb5e6cb31e0618a83dcfa05f9fc888b0ce618f6d160757df",
+      "l11_section_sha256": "366518f8e32ac4dda1e5f4ec88ef0cfed6bc363d597955ffffb1a82d706fc212",
+      "scope": "catalog/registry and layer snapshot/coverage contract"
+    },
+    {
+      "id": "HARNESS-L2/L11-041",
+      "mpr": "MPR-RC-HARNESS-L2-041-003",
+      "decision": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md row27",
+      "decision_file_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+      "l2_section_sha256": "d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260",
+      "l11_section_sha256": "11759276200a6707762e76eeeefd901443e691bd1b0ff51b55cd3b6551fed58b",
+      "scope": "active template atom extraction, provenance, applicability/version, deterministic extraction and gap oracle"
+    },
+    {
+      "id": "HELIXOS-L2/L11-038",
+      "mpr": "MPR-RC-HELIXOS-L2-038-002",
+      "decision": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md rows35-40; 002 L11 addition explicitly included",
+      "l2_section_sha256": "c3b0424bd39ac7c91166c87738fbefc1b20a11b904012d9ada768a113ccbe013",
+      "l11_base_section_sha256": "eabb68eaafc76f0080fbe9cb9c6904005c88b72e7cee9563f2515b4488de2e5d",
+      "l11_002_negative_addendum_sha256": "86287e73d09522940b2a07bf8f304135ff3d495904df055088f07fff077766ed",
+      "scope": "operation/outcome boundary for proposal append and nondeterministic finding; does not replace HARNESS meaning"
+    },
+    {
+      "id": "HARNESS-L2/L11-055",
+      "mpr": "MPR-RC-HARNESS-L2-055-001",
+      "decision": "docs/governance/decisions/po-decision-2026-09-30-live26.md row40",
+      "decision_file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+      "l2_section_sha256": "9f1e63176242d81d93a89a0c3823d3fbe689b8ebd0ae0de2f5a786b88e8787b5",
+      "l11_section_sha256": "f1b9332d75fc5e07158165b0dbb0d037983ab1df0219dc5e519ceef3583aa96a",
+      "scope": "only selected FR48 source atoms; stale/semantic revision/snapshot mismatch excluded"
+    },
+    {
+      "id": "HARNESS-L2/L11-056",
+      "mpr": "MPR-RC-HARNESS-L2-056-001",
+      "decision": "docs/governance/decisions/po-decision-2026-09-30-live26.md row41",
+      "decision_file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+      "l2_section_sha256": "993283110e6faba06d7811df397179743b22a3f666e8a2e002da91c794eeade0",
+      "l11_section_sha256": "9a8406bc5c2051eb0bed0bc57571f1e139c856d3559072dee8de3a019111a047",
+      "scope": "only selected FR49 6 canonical V-pair atoms; different snapshot/stale excluded"
+    },
+    {
+      "id": "HARNESS-L2/L11-050",
+      "mpr": "MPR-RC-HARNESS-L2-050-001",
+      "decision": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md row30",
+      "decision_file_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+      "l2_section_sha256": "abeb498cf39f62ca8f34ded2c439502fb18215f1e376109147096ebaa69ce1b1",
+      "l11_section_sha256": "44191f5dc431e603cf91cc3639d4798fceb8a53f3c1b9076a8a1f038b6e2e763",
+      "scope": "full FR50 selected refactor/route condition"
+    }
+  ],
+  "fr_rows": [
+    {
+      "id": "HIL-FR-46",
+      "source": {
+        "l1_line": 136,
+        "statement_sha256": "a62b63ab18b23ac9564d6c7ffca7580ac9471a6d6e7374f8e4a26c93f0441b6c",
+        "ir_object_semantic_digest": "sha256:e17cdfbced6952ae8236b417fc80a963d73aa02d8650d80f02ae1f3afffbe634",
+        "statement_semantic_digest": "sha256:0255c7c9107d749eee633f9b94612ee7da059e544021824a3fa65b299afae7b3",
+        "text": "| **HIL-FR-46** | Layer Ledger Registryはcanonical L1–L12ごとにledger type、粒度、必須node/edge、authority、input/output、entry/exit gate、template versionを登録する。L0 charterは層外authority anchorとして別登録する。各layer ledgerのrowはstable subject ID、revision、source span、semantic digest、status、owner、downstream/upstream edgeを持つ。 | layer ledger catalog、row revision、layer snapshot、coverage receipt |"
+      },
+      "conditions": [
+        {
+          "condition": "canonical L1-L12 catalog: type, granularity, required nodes/edges, authority, I/O, entry/exit gate, template version",
+          "current_destination": "HARNESS-040 adopted exact L2/L11; catalog fields and layer snapshot/coverage receipt contract",
+          "status": "covered_as_requirement"
+        },
+        {
+          "condition": "L0 charter is a separate out-of-layer authority anchor",
+          "current_destination": "HARNESS-040 adopted exact L2/L11",
+          "status": "covered_as_requirement"
+        },
+        {
+          "condition": "each row has stable subject ID, revision, source span, semantic digest, status, owner, downstream/upstream edge",
+          "current_destination": "HARNESS-040 adopted exact L2/L11 catalog contract; HARNESS-041 extraction provenance is adjacent support, not row identity substitution",
+          "status": "covered_as_requirement"
+        },
+        {
+          "condition": "outputs: catalog, row revision, layer snapshot, coverage receipt",
+          "current_destination": "HARNESS-040 adopted exact L2/L11",
+          "status": "covered_as_requirement"
+        }
+      ],
+      "counterexample": "A ledger omits L0 from the layer list but records it as an authority anchor; a purported closure that counts it as L1-L12 would violate the adopted distinct-anchor contract.",
+      "adoption": "MPR-RC-HARNESS-L2-040-002; PO decision 2026-09-29 57 candidates row45"
+    },
+    {
+      "id": "HIL-FR-47",
+      "source": {
+        "l1_line": 137,
+        "statement_sha256": "785f0998ca9fd2192bcddc638d1ef1233551c251e307e631303642abe7713fad",
+        "ir_object_semantic_digest": "sha256:830e3870dcece39c096de9d792013f0b993379d5a36291f95f66946ee47f3966",
+        "statement_semantic_digest": "sha256:b1a61c1eb5f24a741168801fed3b323578151edabb2f62d1d47e239861dc1dca",
+        "text": "| **HIL-FR-47** | Template Obligation Extractorは各layerのactive templateから章、field、table row、applicability rule、done-when、pair contractを原子的obligationとして機械抽出し、該当ledgerへ候補行を追加する。未対応template要素、空/TBD、抽出不能、同一obligation重複をfinding化し、LLM自由補完で埋めない。 | template atom、ledger proposal、extractor/version digest、gap finding |"
+      },
+      "conditions": [
+        {
+          "condition": "extract chapter, field, table row, applicability rule, done-when, pair contract from each active layer template as atomic obligations",
+          "current_destination": "HARNESS-041-003 adopted exact L2/L11; atom extraction, provenance, applicability/template version and atomic output",
+          "status": "covered_as_requirement"
+        },
+        {
+          "condition": "add candidate rows to the corresponding ledger",
+          "current_destination": "HARNESS-041-003 L2/L11 plus OS-038-002 adopted operation outcome: candidate append is bounded and rejected atom finding leaves row increment 0",
+          "status": "covered_as_requirement"
+        },
+        {
+          "condition": "unsupported elements, empty/TBD, unextractable elements and duplicate obligation become findings; no free LLM completion",
+          "current_destination": "HARNESS-041-003 exact L2/L11 negative oracle for unsupported/empty/TBD/unextractable/duplicate and no free completion; OS-038-002 adopted operation boundary preserves current snapshot on finding/nondeterminism",
+          "status": "covered_as_requirement"
+        },
+        {
+          "condition": "outputs: template atom, ledger proposal, extractor/version digest, gap finding",
+          "current_destination": "HARNESS-041-003 exact L2/L11",
+          "status": "covered_as_requirement"
+        }
+      ],
+      "counterexample": "One required active-template field is TBD while all extracted rows look complete; proposal must not silently fill it and treat coverage as complete.",
+      "adoption": "MPR-RC-HARNESS-L2-041-003; PO decision 2026-09-29 11 candidates row27. HELIXOS-L2-038-002 is adopted conditionally with 041-003 (rows35-40; L11 addendum also adopted)."
+    },
+    {
+      "id": "HIL-FR-48",
+      "source": {
+        "l1_line": 138,
+        "statement_sha256": "e12937bb604330b7c3d1ad13f23bb3e60969b888cd16a311405e7a993e360d41",
+        "ir_object_semantic_digest": "sha256:af4b0590c4f8545fe3525ac2e320d77157b6204507e8021e162148bd911b392d",
+        "statement_semantic_digest": "sha256:49d1f634eefe71ad7a79be172439935c1ba75c7bb889e05746c5c98fe28e9329",
+        "text": "| **HIL-FR-48** | Vertical Ledger Pair Gateは隣接layer間の`derived_from/downstream_to`と`backpropagates_to/supersedes`を双方向検査し、上位義務の未降下、下位発見の未逆伝播、粒度不整合、stale revision、aggregate一括pairを拒否する。 | vertical edge receipt、unresolved descent/backprop finding |"
+      },
+      "conditions": [
+        {
+          "condition": "adjacent-layer derived_from/downstream_to and backpropagates_to/supersedes edges checked in both directions",
+          "current_destination": "HARNESS-055-001 adopted exact L2/L11 for selected FR48 condition atoms",
+          "status": "covered_selected_condition_only"
+        },
+        {
+          "condition": "unresolved upper obligation descent and lower finding backpropagation rejected",
+          "current_destination": "HARNESS-055-001 adopted exact L2/L11 selected atom mapping and bidirectional finding",
+          "status": "covered_selected_condition_only"
+        },
+        {
+          "condition": "granularity mismatch rejected; aggregate-only pair rejected",
+          "current_destination": "HARNESS-055-001 adopted exact L2/L11 selected condition; aggregate/adjacency granularity mismatch leaves unknown/incomplete",
+          "status": "covered_selected_condition_only"
+        },
+        {
+          "condition": "stale revision rejected",
+          "current_destination": "HIL-FR-48 source atom is explicitly outside 055 selected atom set; 040 catalog/snapshot records revision metadata but no adopted 055 stale-revision rejection oracle was found. HST-CASE-031-04 (line304) is old design-only stale oracle; HST-CASE-031-09 line399 says same semantic revision. Keep residual held.",
+          "status": "unclosed_source_condition"
+        },
+        {
+          "condition": "outputs: vertical edge receipt and unresolved descent/backprop finding",
+          "current_destination": "HARNESS-055-001 for selected edge/gap conditions; stale-revision disposition remains held with source atom",
+          "status": "partially_covered"
+        }
+      ],
+      "counterexample": "Both directions exist and granularity matches, but a child edge points at a superseded semantic revision. 055 explicitly excludes stale/semantic-revision/snapshot mismatch; do not count the pair green based on 055 alone.",
+      "adoption": "MPR-RC-HARNESS-L2-055-001; PO decision 2026-09-30 live26 row40. Exact L2 9f1e63176242d81d93a89a0c3823d3fbe689b8ebd0ae0de2f5a786b88e8787b5; L11 f1b9332d75fc5e07158165b0dbb0d037983ab1df0219dc5e519ceef3583aa96a."
+    },
+    {
+      "id": "HIL-FR-49",
+      "source": {
+        "l1_line": 139,
+        "statement_sha256": "58417554e28eff13d562e183533c1f76fbca3c27a29de9385d09e70b615ccf37",
+        "ir_object_semantic_digest": "sha256:4e55211b184f49ef6a3380c6b6de4bfd2e323952128e58122b45230b7d27ef7d",
+        "statement_semantic_digest": "sha256:3a7cb511eea1c36e2c2453e2416c1e80de7926d7a6bafbeea6a7da577e47516b",
+        "text": "| **HIL-FR-49** | Horizontal V-Pair Gateはcanonical正規pair `L1↔L12(企画/運用テスト)`、`L2↔L11(要求/受入テスト)`、`L3↔L10(要件/総合テスト)`、`L4↔L9(基本設計/結合テスト)`、`L5↔L8(詳細設計/単体テスト)`と、`L6実装↔L7 TDD closure`を原子的oracle単位で双方向joinする。L12運用feedbackはL1企画と層外L0 charterへ還流し、設計義務と検証証拠の片側欠落、異なるsnapshot、未実行oracleを拒否する。 | V-pair receipt、design/verification edge、snapshot/oracle finding |"
+      },
+      "conditions": [
+        {
+          "condition": "six canonical V-pairs joined bidirectionally at atomic oracle scope",
+          "current_destination": "HARNESS-056-001 adopted exact L2/L11; six pairs, no seventh pair; design/evidence sides and oracle identity checked",
+          "status": "covered_selected_condition_only"
+        },
+        {
+          "condition": "L12 operational feedback returns to L1 and out-of-layer L0 charter",
+          "current_destination": "HARNESS-056-001 adopted exact L2/L11",
+          "status": "covered_selected_condition_only"
+        },
+        {
+          "condition": "one-sided design obligation/evidence rejected",
+          "current_destination": "HARNESS-056-001 adopted exact L2/L11",
+          "status": "covered_selected_condition_only"
+        },
+        {
+          "condition": "different snapshots rejected",
+          "current_destination": "Explicitly excluded from selected 056 atom set as NFR-29 cross condition; no adopted current pair exact negative oracle identified in reviewed exact sections. Keep residual held; generic snapshot fields/catalog are not enough to claim gate rejection.",
+          "status": "unclosed_source_condition"
+        },
+        {
+          "condition": "unexecuted oracle rejected",
+          "current_destination": "HARNESS-056-001 adopted exact L2/L11 requires executed oracle result to green",
+          "status": "covered_selected_condition_only"
+        },
+        {
+          "condition": "outputs: V-pair receipt, design/verification edge, snapshot/oracle finding",
+          "current_destination": "HARNESS-056-001 for selected V-pair and oracle conditions; snapshot mismatch output/residual remains held",
+          "status": "partially_covered"
+        }
+      ],
+      "counterexample": "All six pair edges exist and oracle IDs match, but the design and verification evidence reference different snapshots. 056 says different-snapshot is outside its selected condition; do not report FR49 complete.",
+      "adoption": "MPR-RC-HARNESS-L2-056-001; PO decision 2026-09-30 live26 row41. Exact L2 993283110e6faba06d7811df397179743b22a3f666e8a2e002da91c794eeade0; L11 9a8406bc5c2051eb0bed0bc57571f1e139c856d3559072dee8de3a019111a047."
+    },
+    {
+      "id": "HIL-FR-50",
+      "source": {
+        "l1_line": 140,
+        "statement_sha256": "9d9c14e1dac400ad6cf1cacdd6a54d82d4a09374d128af2ba3036652655fde54",
+        "ir_object_semantic_digest": "sha256:f1f3eef4ce2957347ef9bf7da548f30901eec6e0dc52777ffa9fba99d8295cc1",
+        "statement_semantic_digest": "sha256:e0796eda6bbf620164e2082b7fcb3798f0f333ed3f992df83fb7484f56a00fd2",
+        "text": "| **HIL-FR-50** | Ledger Design Refactorはlayer ledgerの重複、責務混在、semantic/name collision、変更波及、孤立edgeを比較し、externalize/commonize/objectize/semantic-rename/split/merge候補を生成する。全上下・左右consumer、before/after oracle、pair保持、rollbackが揃うbehavior-preserving変更だけをDesignRefactorへ送り、要求/公開contract/永続state変更はRedesign/Retrofitへrerouteする。 | ledger diff、refactor candidate/plan、pair-preservation receipt、reroute receipt |"
+      },
+      "conditions": [
+        {
+          "condition": "compare duplicate ledgers, mixed responsibility, semantic/name collision, impact propagation, orphan edge",
+          "current_destination": "HARNESS-050-001 adopted exact L2/L11; explicit trigger set and comparison inputs",
+          "status": "covered_as_requirement"
+        },
+        {
+          "condition": "generate externalize/commonize/objectize/semantic-rename/split/merge candidates",
+          "current_destination": "HARNESS-050-001 adopted exact L2/L11",
+          "status": "covered_as_requirement"
+        },
+        {
+          "condition": "all upstream/downstream and left/right consumers; before/after oracle; preserve pairs; rollback",
+          "current_destination": "HARNESS-050-001 adopted exact L2/L11",
+          "status": "covered_as_requirement"
+        },
+        {
+          "condition": "only behavior-preserving change routes to DesignRefactor",
+          "current_destination": "HARNESS-050-001 adopted exact L2/L11; reroute receipt",
+          "status": "covered_as_requirement"
+        },
+        {
+          "condition": "requirements/public contract/persistent state changes reroute to Redesign/Retrofit",
+          "current_destination": "HARNESS-050-001 adopted exact L2/L11",
+          "status": "covered_as_requirement"
+        },
+        {
+          "condition": "outputs: ledger diff, refactor candidate/plan, pair-preservation and reroute receipts",
+          "current_destination": "HARNESS-050-001 adopted exact L2/L11",
+          "status": "covered_as_requirement"
+        }
+      ],
+      "counterexample": "A split preserves pair edges but changes a persistent-state contract; pair preservation alone is insufficient and it must reroute to Redesign/Retrofit.",
+      "adoption": "MPR-RC-HARNESS-L2-050-001; PO decision 2026-09-29 11 candidates row30. Exact L2 abeb498cf39f62ca8f34ded2c439502fb18215f1e376109147096ebaa69ce1b1; L11 section digest 44191f5dc431e603cf91cc3639d4798fceb8a53f3c1b9076a8a1f038b6e2e763."
+    }
+  ],
+  "residuals": [
+    {
+      "source": "HIL-FR-48 stale revision rejection",
+      "state": "held/unclosed; not inferable from 040 catalog metadata or the selected 055 atom set",
+      "next": "retain source condition for human meaning/scope disposition; no new candidate ID or requirement invented in this audit"
+    },
+    {
+      "source": "HIL-FR-49 different snapshot rejection",
+      "state": "held/unclosed; 056 explicitly excludes the condition as NFR-29 cross condition; generic snapshot/catalog fields do not establish a rejection oracle",
+      "next": "retain source condition for human meaning/scope disposition; no new candidate ID or requirement invented in this audit"
+    }
+  ],
+  "boundaries": [
+    "Candidate frontmatter/current MPR state is not adoption authority; exact decision plus exact paired section digest establishes adoption.",
+    "An adopted selected atom set is not whole-source closure; 055/056 selected slices do not close the remaining HIL-FR-48/49 conditions.",
+    "HIL-FR IR records are not the distinct legacy product FR-L1-46..50 identities.",
+    "HIL-BR-25, HIL-NFR-29, HR/HAC/HAT records are distinct source relations or shared consumers; do not double-count them as direct FR46-50 atoms.",
+    "No new formal successor requirement mapping is asserted: IR successor_requirement_ids remain empty and downstream obligation status remains pending_pair_descent.",
+    "This static audit does not claim implementation or test execution; legacy HAT status remains designed_not_implemented."
+  ],
+  "verification": {
+    "old_assets_read_only": true,
+    "legacy_runtime_cli_tests_ci_run": false,
+    "new_generation_runtime_tests_run": false,
+    "full_137_gate_run_by_worker": false,
+    "expected_root_followup": "root performs common 8 gates and exact base/head 137 comparison"
+  }
+}
