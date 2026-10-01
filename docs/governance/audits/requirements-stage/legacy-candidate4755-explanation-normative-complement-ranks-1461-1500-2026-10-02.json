@@ -75,9 +75,14 @@
       "prior_id": "LEGACY-CAND-LINE-002455",
       "this_first_rank": 1461,
       "this_first_id": "LEGACY-CAND-LINE-002457",
-      "paired_audit_available_at_base": false,
-      "claim_prior_semantic_verification": false,
-      "note": "rank 1421–1460の対応監査は選択基点に存在しない。境界IDのみ記録し、先行する意味検証を主張しない。"
+      "paired_audit_available_at_base": true,
+      "claim_prior_semantic_verification": true,
+      "note": "#2468で統合された直前ranks1421–1460 paired auditをmerge commit 2def190e77a4e742f107a92298bc60809d5862b3でpin。境界IDは全母集団再構成でも確認。",
+      "prior_audit_commit": "2def190e77a4e742f107a92298bc60809d5862b3",
+      "prior_audit_json_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1421-1460-2026-10-02.json",
+      "prior_audit_json_sha256": "394dad480fbee3081a2fc1813ae0776d408c60e683100035db94769fcdc3f33e",
+      "prior_audit_md_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1421-1460-2026-10-02.md",
+      "prior_audit_md_sha256": "951f7b109f808bad97dd238b4ea61d4d94be0544788d6f5f2fc52137f519dc66"
     }
   },
   "reconstruction_inputs": [

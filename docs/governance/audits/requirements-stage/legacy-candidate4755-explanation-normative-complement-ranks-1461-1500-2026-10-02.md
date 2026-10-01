@@ -5,7 +5,7 @@
 ## 母集団・範囲
 
 - #2353の全4,755行へ#2356→#2360→#2363→#2366→#2367→#2368→#2369→#2381をsource IDで順に適用。effective explanation 2,965件からmarker 255件を除き、2,710件を数値ID順に順位化した。選択ID列SHA-256: `75babf306ce200da0b1f572a1afb326f54a480f2236e74f249558da94ccced21`.
-- rank1460境界ID: `LEGACY-CAND-LINE-002455`。1421–1460 paired auditは基点に存在せず、境界IDだけを記録して先行意味監査を主張しない。
+- rank1460境界ID: `LEGACY-CAND-LINE-002455`。1421–1460 paired auditは#2468でmainへ統合済み。merge commit `2def190e77a4e742f107a92298bc60809d5862b3` のJSON／MD bytesをpaired JSONでpinし、境界IDを全母集団からも確認した。
 - 旧HMC要件行とCommercial License要求/受入候補行が続く。#2353と8 overlay、marker screen/review、archive manifest、全source/asset/routing ledgerのファイルSHA-256、各選択ledger entry/原文行SHA-256、各物理行前後文脈/hashはJSONにpinした。
 
 ## 固定F6・current main・PO・receipt
