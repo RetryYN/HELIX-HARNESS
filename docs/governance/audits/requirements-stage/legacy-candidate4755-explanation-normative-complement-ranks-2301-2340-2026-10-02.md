@@ -74,3 +74,7 @@
 - 40行のarchive bytes/source hash、#2353 baseline row hash、routing/line-ledger/asset entryとreceipt source_file/atom pinsはpaired JSONにある。
 
 詳細pin・source context/hash: paired JSON [`legacy-candidate4755-explanation-normative-complement-ranks-2301-2340-2026-10-02.json`](legacy-candidate4755-explanation-normative-complement-ranks-2301-2340-2026-10-02.json)
+
+## OS-046の現在の採否と歴史receipt
+
+9月28日のRFA receiptのdraft metadataは当時の状態であり、OS-046の指定L2/L11 revisionは9月29日の57候補PO判断で採択された。現行sectionのdigest一致をJSONにpinした。これは選択RAMG40行の個別binding・後継採択、全RFA closure、実行許可を生成しない。
