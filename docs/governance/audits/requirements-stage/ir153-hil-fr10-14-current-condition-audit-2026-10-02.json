@@ -267,7 +267,13 @@
       },
       "assessment": "not_held_as_current_adopted_pair",
       "meaning_comparison": "Distinct Issue-admission summary vs completion-knowledge event types, promote/supersede/no-promotion receipt, and no-progress/raw-log-copy are not specified by the adopted current pairs read. OS-019 is event/evidence continuity, not memory compaction. BRAIN-007/008/025 governs provenance/version/adoption but not event separation or compaction outputs. HARNESS-057 explicitly holds old HIL-FR-10 outside its unadopted closure candidate. The 2026-09-24 decision limits HIL-FR-10 memory to Codex-Claude collaboration; this is a scope boundary, not proof of an adopted replacement.",
-      "next_action": "Keep source atom held. No formal successor or closure; resolve applicable product/authority scope before any new candidate."
+      "next_action": "Continue a faithful, scope-qualified candidate draft and independent review for the source-bounded memory separation/compaction guarantees. Keep product/authority placement, adoption, and formal successor assignment explicitly unresolved for PO; do not make that decision a precondition for drafting or review.",
+      "next_action_correction": {
+        "corrected_on": "2026-10-02",
+        "previous_action": "Keep source atom held. No formal successor or closure; resolve applicable product/authority scope before any new candidate.",
+        "reason": "The previous wording could make PO resolution/owner assignment appear to block faithful candidate drafting or independent review. Drafting and review are reversible work; hold adoption and formal owner/successor decisions only.",
+        "decision_boundary": "Candidate drafting and independent review may continue with unknown target/owner/scope explicitly marked. PO adoption, product/authority placement where it changes upstream meaning, and formal source-atom assignment remain undecided."
+      }
     },
     {
       "requirement_id": "HIL-FR-11",
@@ -300,7 +306,13 @@
       },
       "assessment": "partial_overlap_no_formal_successor",
       "meaning_comparison": "PO row 52 conditionally adopts HARNESS-L2-047 placement A and its specialist-contract fields/generation guard within the selected scope. It is not a formal transfer of FR11. FR11 correction ledger proposes HARNESS semantic contract plus OS registry/version/holding split, pending PO. H047 does not preserve every old registry axis (notably layer×drive mapping, skills/blind/generates semantics) as a general registry. Unadopted H054 explicitly leaves axis/mapping and TeamDefinition unsettled.",
-      "next_action": "Hold source atom disposition pending PO target/scope and full registry field semantics; H047 adoption is subset-scoped."
+      "next_action": "Continue the proposed split candidate draft: HARNESS semantic specialist contract plus OS registry/version/holding responsibilities. Record unresolved registry fields and target/owner alternatives in the proposal; allow independent review. Keep PO placement/scope choice, adoption, and FR11 source-atom assignment unresolved.",
+      "next_action_correction": {
+        "corrected_on": "2026-10-02",
+        "previous_action": "Hold source atom disposition pending PO target/scope and full registry field semantics; H047 adoption is subset-scoped.",
+        "reason": "The previous wording could make PO resolution/owner assignment appear to block faithful candidate drafting or independent review. Drafting and review are reversible work; hold adoption and formal owner/successor decisions only.",
+        "decision_boundary": "Candidate drafting and independent review may continue with unknown target/owner/scope explicitly marked. PO adoption, product/authority placement where it changes upstream meaning, and formal source-atom assignment remain undecided."
+      }
     },
     {
       "requirement_id": "HIL-FR-12",
@@ -333,7 +345,13 @@
       },
       "assessment": "partial_overlap_legacy_adapter_guard_not_adopted",
       "meaning_comparison": "H047 covers runtime-neutral contract and digest/rationale/guard, model/effort class, path candidate constraints; OS-018 and SECURITY govern applied assignment/operation constraints. The adopted L2/L11 set does not explicitly generate Claude/Codex adapters or test fail-close for manual adapter drift, unknown registry agent, model/effort override, blind-context leak, and forbidden-path bypass as a single sync/guard contract. Do not infer old provider-specific adapter implementation as a new current L2 requirement.",
-      "next_action": "Keep source conditions pending a specific proof of current sync/guard guarantee and scope; provider-specific implementation need remains distinct."
+      "next_action": "Continue a guarantee-focused sync/guard candidate draft and independent review, preserving drift, unknown-agent, override, blind-context, and forbidden-path failure semantics. Keep provider-specific adapter mechanism separate from required guarantee. Keep target/owner, adoption, and formal source-atom assignment unresolved.",
+      "next_action_correction": {
+        "corrected_on": "2026-10-02",
+        "previous_action": "Keep source conditions pending a specific proof of current sync/guard guarantee and scope; provider-specific implementation need remains distinct.",
+        "reason": "The previous wording could make PO resolution/owner assignment appear to block faithful candidate drafting or independent review. Drafting and review are reversible work; hold adoption and formal owner/successor decisions only.",
+        "decision_boundary": "Candidate drafting and independent review may continue with unknown target/owner/scope explicitly marked. PO adoption, product/authority placement where it changes upstream meaning, and formal source-atom assignment remain undecided."
+      }
     },
     {
       "requirement_id": "HIL-FR-13",
@@ -366,7 +384,13 @@
       },
       "assessment": "worker_verifier_separation_held_algorithm_not_adopted",
       "meaning_comparison": "H047 L11 checks worker/verifier identity/context/authority separation; adopted OS-018 rejects self-approval and provider-only independence decisions. The exact task-kind→verification patterns→eligible agents two-stage deterministic selector and TeamDefinition output are not in adopted scope. H054 remains unadopted and leaves layer×drive/TeamDefinition mapping unresolved. Keep substantive separation distinct from legacy team shape.",
-      "next_action": "Keep algorithm and exact TeamDefinition unadopted; do not duplicate adopted worker/verifier independence requirement."
+      "next_action": "Continue source-condition review and a narrowly scoped candidate draft only for guarantees absent from adopted pairs. Preserve worker/verifier separation without duplicating it; record the old two-stage selector and TeamDefinition shape as unresolved source conditions rather than assumed current requirements. Independent review may proceed; adoption, owner/scope, and formal successor remain unresolved.",
+      "next_action_correction": {
+        "corrected_on": "2026-10-02",
+        "previous_action": "Keep algorithm and exact TeamDefinition unadopted; do not duplicate adopted worker/verifier independence requirement.",
+        "reason": "The previous wording could make PO resolution/owner assignment appear to block faithful candidate drafting or independent review. Drafting and review are reversible work; hold adoption and formal owner/successor decisions only.",
+        "decision_boundary": "Candidate drafting and independent review may continue with unknown target/owner/scope explicitly marked. PO adoption, product/authority placement where it changes upstream meaning, and formal source-atom assignment remain undecided."
+      }
     },
     {
       "requirement_id": "HIL-FR-14",
@@ -399,7 +423,13 @@
       },
       "assessment": "partial_knowledge_state_pipeline_not_held",
       "meaning_comparison": "Adopted BRAIN-007/008/009/020/025, LABO-007, OS-022 provide candidate/evaluation/registration/independent-verification/adoption boundaries, evidence/scope/revision and knowledge-state identity. They do not specify the old raw-event→pattern→recipe→shadow→skill/detector/gate transition ledger, full effect-measurement contract, or promotion rollback target/receipt. OS-019 continuity is not this ledger. Separate learning/shadow candidates are not adopted transfer of FR14.",
-      "next_action": "Keep source atom held. Do not create a candidate until owner/scope and required promotion guarantee are resolved."
+      "next_action": "Continue a faithful candidate draft for source-backed promotion-state, effect-measurement, and rollback guarantees; do not invent a schema or mechanism. Mark owner/scope and any PO meaning choice unresolved and make them reviewable as alternatives. Independent review may proceed; adoption and formal source-atom assignment remain unresolved.",
+      "next_action_correction": {
+        "corrected_on": "2026-10-02",
+        "previous_action": "Keep source atom held. Do not create a candidate until owner/scope and required promotion guarantee are resolved.",
+        "reason": "The previous wording could make PO resolution/owner assignment appear to block faithful candidate drafting or independent review. Drafting and review are reversible work; hold adoption and formal owner/successor decisions only.",
+        "decision_boundary": "Candidate drafting and independent review may continue with unknown target/owner/scope explicitly marked. PO adoption, product/authority placement where it changes upstream meaning, and formal source-atom assignment remain undecided."
+      }
     }
   ],
   "routing_state": {

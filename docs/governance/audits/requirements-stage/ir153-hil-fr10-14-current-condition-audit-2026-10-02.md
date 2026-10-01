@@ -29,3 +29,17 @@ FR08について、OS-017/018/019のticket/workflow、assignment、scope/authori
 ## 検証
 
 監査JSONに旧L1の5物理行と旧IRの5 identity/digest、現在本文のfull-file/section SHA、PO decision対象を記録しました。JSON parse、MarkdownとJSONの5行整合、section pin再計算を静的に確認してからlocal commitします。requirements本文・decision本文は変更していません。
+
+## Next action境界の訂正（2026-10-02）
+
+初版のFR10/FR14 next_action「scope/ownerが解決するまで候補を作らない」という表現は、忠実な候補起草と独立reviewまでPO判断待ちにするよう読めるため訂正する。FR11〜13にも同じ停止条件と受け取られる余地があるため、5件のJSON `next_action` を同期した。
+
+| atom | 継続する起草・review | decisionとして未確定に残す点 |
+|---|---|---|
+| FR10 | source scopeを明示したmemory separation/compaction保証候補の起草と独立reviewを続ける。 | product/authority placement、採択、formal successor assignment。 |
+| FR11 | HARNESS semantic contractとOS registry/version/holdingの分割案を、未知fieldとowner/target alternatives付きで起草しreviewする。 | POによる配置/scope選択、採択、source-atom assignment。 |
+| FR12 | drift/unknown-agent/override/blind-context/forbidden-path失敗条件を保つ保証候補とreviewを続ける。provider adapter方式は別にする。 | 保証owner/target、採択、formal source assignment。 |
+| FR13 | 採択pairにない条件だけを限定候補として検討し、worker/verifier分離を重複させない。旧selector/TeamDefinition形は仮定せずsource条件としてreview可能に保つ。 | scope/owner、採択、formal successor。 |
+| FR14 | source-backedな昇格状態・効果測定・rollback保証候補を、未確定点付きで起草しreviewする。新schemaや方式を推測しない。 | owner/scopeやPO meaning choice、採択、source-atom assignment。 |
+
+この訂正で候補採択、正式owner割当、旧atomのsuccessor、旧sourceのretirementを生成しない。起草とreviewを進めること自体を新しいapproval gateにしない。
