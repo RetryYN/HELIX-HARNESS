@@ -711,5 +711,38 @@
     "recommendation_basis": "Recommend A only as proposed requirement placement. The exact HELIXOS-L1-001/008 revision is adopted by HDEC-HELIXOS-REQUIREMENTS-PO-2026-09-28 (fixed SHA 2bb625…). Its L1 states project-group governance, authority/source trace, and cross-projection consistency. HARNESS-L1-004 defines verification obligations/oracles, while its L1 assigns project-group governance and CI operation to OS. This supports routing the cross-mechanism candidate to OS while retaining Node gate and model qualification authority with their existing authorities; it does not declare a new execution owner or transfer source ownership.",
     "decision_boundary": "PO should decide candidate target and one-connection versus split scope. OS parent L1-001/008 is already adopted at the exact revision above; adoption of new L2/L11-113 remains a separate exact-revision decision. A target choice alone does not assign runtime owner, move gate/model qualification authority, create a formal successor, or close the source. Unrelated requirements work is not blocked."
   },
-  "local_candidate_base_commit": "0aacb3fddd239cabd785286242297b26614cfec5"
+  "local_candidate_base_commit": "0aacb3fddd239cabd785286242297b26614cfec5",
+  "post_merge_read_after": {
+    "comparison_base_revision": "72d08ebc1b45c8cf85c0e89359c48f78eb779fee",
+    "read_scope": "After integrating latest origin/main into local root review worktree; keeps latest_main_read_after at d31a4c8500d131001dc349bfbdfde82fb0b46839 as its historical snapshot.",
+    "os_files": [
+      {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "file_sha256": "sha256:8941d4dfa3fa9f386a057f27e5e8aaf686b2a1554705bc9198d97d996c92e055",
+        "sections": {
+          "HELIXOS-L2-111": "sha256:265d5e7d1a8c06919b21691ddbf15354e51dbc204f310f07a448a7b33dc8173b",
+          "HELIXOS-L2-113": "sha256:ef74530043f7a7bebf2829fc2627bd6f78cd00c4a0d82c99b03da747b4209ed0"
+        }
+      },
+      {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "file_sha256": "sha256:d1b1f795c76bf590f0cd2429191b1ab3995550f7c207bfc1f4b1812de2a3446b",
+        "sections": {
+          "HELIXOS-L11-111": "sha256:8efe5d58a4ebe0c4a7078aa7b311f3f2e1a7892b125b603d6a3e45ff4fc5ef14",
+          "HELIXOS-L11-113": "sha256:b1c8c6b10a26dd7540e759b3d9c058715ba968f6be0a6f0a962162e11e5c6f2c"
+        }
+      }
+    ],
+    "management_register": {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "origin_main_prefix_sha256": "sha256:d7902a431dd1b10200f2a32df7ea26fabbe28a26e7eb29a3ff185143ae623ace",
+      "local_combined_sha256": "sha256:c3e82788adadde66522edb51addc260df42770bb9cd127f02d2a05ed2cb366ef",
+      "line_count": 643,
+      "preserved_origin_main_prefix": true,
+      "appended_local_suffix_registration_ids": [
+        "MPR-RC-HELIXOS-L2-111-002",
+        "MPR-RC-HELIXOS-L2-113-001"
+      ]
+    }
+  }
 }

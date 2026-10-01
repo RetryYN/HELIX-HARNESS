@@ -333,3 +333,18 @@ HELIXINTELLIGENCE-L2-069／HELIXINTELLIGENCE-L2-070／HELIXINTELLIGENCE-L2-071�
 - **不足例**：task属性不足ならOSへ、LABO評価/evidence/scope不足ならLABOへ返し、proposalを未確定とする。未評価を既定Workerや「成功」と補完しない。
 - **未見例**：同じ理由classでも対象scopeの異なるfeedbackを与え、適用できないevidenceがproposalへ混ざらず、適用可能範囲とunknownが区別されることを確認する。
 - **受入限界**：配置精度の因果改善、固定threshold、資格の恒久化、model更新・自動学習、実dispatchは検査・要求対象外。proposal受入からOSのticket/assignment決定を生成しない。
+
+### HELIXINTELLIGENCE-L2-075 Agentic Audit Probe proposal identity and qualification boundary — 受入候補
+
+- **状態・対象**：未採択候補の静的な意味oracle案。AAFD-R-01〜03だけを対象にし、R-04のdetector優先/direct-projection境界は採択済みL2-073に残す。旧runtime、UIL/TER、Issue、CI、mergeを実行しない。
+- **正常例**：Probe proposalの全fieldを一組のaudit episode、producer session、repository、exact HEAD、resolved worktree、authority revision/digest、責務ID、観測・証拠・反証・再現手順・expiry・finding/remediation advisoryへ結ぶ。PR review findingとsystem audit proposalのidentityを分け、content/digestとsource/target revisionが一致する。
+- **identity拒否例**：exact HEAD、worktree、authority digest、producer session、responsibility owner、evidenceを一項目ずつ欠落・改変・異版にする。各該当条件を個別にincomplete/rejectedとし、別field、別HEAD、current扱いしたhistorical evidenceで補完したら不合格。current/compatibility/historical authorityを混同したら不合格。
+- **qualification拒否例**：AI自己評価だけでverified、P0/P1、owner、route、remediation adoptionを確定したら不合格。duplicate/existing owner照合、独立再現、反証、expiry/supersessionが不足する例は未qualifiedのまま既存UIL ownerへ返す。finding/remediationを同一proposal identityや単一decisionへ統合したら不合格。
+- **未見・oracle**：別producer/session、別HEAD、stale evidence、期限切れproposal、superseded/duplicate proposalを個別に与え、unknown/incompleteと必要な既存ownerへのhandoffを保つ。Proposal生成・受入だけでUIL/TER/Future Synthesis runtime、Issue/Requirement/CI/merge操作を起動または変更しない。固定閾値や新routeをcandidateから作らない。
+
+### HELIXINTELLIGENCE-L2-076 Model revision revalidation and comparison evidence — 受入候補
+
+- **状態・対象**：未採択候補。現L2-011が定める同一corpus/responsibility scopeでのfindings、false positives/misses、reproducibility、latency、cost比較を再採択しない。TERイベント・qualificationは既存ownerに残す。
+- **正常例**：provider/model/runtime/versionの変更とTER event identityをrevision/source付きで記録し、同じaudit corpus・responsibility scope・policy・oracle revisionを用いるrevalidation proposalへ接続する。旧モデル名の文字列だけが一致/変化した例からqualificationを継承しない。
+- **比較例**：new/lost finding、false positive/negative、duplicate、remediation correctness、authority drift、reproduction success、cost、latencyを個別metricとして残す。欠測、scope違い、policy/oracle revision違いは比較不能/unknownとする。単一scoreで差を消したり、hidden oracleをWorkerに見せたりしたら不合格。
+- **境界例**：candidate結果だけでmodel/providerを採択・route変更・自動切替せず、3.0 learning/qualificationを1.0の依存へしない。本candidateがL1-011へ追加するtrigger/metricの採否は未決であり、受入candidateを対象revisionの人間decisionや実運用の承認と扱わない。

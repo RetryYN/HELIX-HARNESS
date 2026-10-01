@@ -614,3 +614,20 @@ L2-011は既存の同一corpus/responsibility scope比較を所有したまま�
 - **境界**：INTELLIGENCEは配置proposalを出す。指定、ticket発行/再発行、assignment、dispatch、Worker/modelの自動昇格/除外はOS/既存ownerに残し、候補evidenceから要求意味・authority・ticketを生成しない。新しい承認経路は設けない。
 - **戻し先**：task属性不足はOSへ、Bench/evidence/scope/revisionまたはLABO評価不足はLABOへ返し、該当proposalを未評価/未確定とする。
 - **旧sourceとの対応と限界**：旧ticket/feedback sourceの成功・失敗・reworkと再発行後評価を次回配置判断に使うというO2の入力要望を、既存L2-010の配置案責務へ限定接続する新規案。旧sourceは配置案への自動学習やworker資格の恒久更新を根拠づけないため追加しない。候補は実際の配置変更や改善効果を主張しない。
+
+### HELIXINTELLIGENCE-L2-075 Agentic Audit Probe proposal identity and qualification boundary（unit candidate、version_target: 1.0）
+
+- **状態と親**：未採択candidate。親は採択済み`HELIXINTELLIGENCE-L1-009`と、採択済み`HELIXINTELLIGENCE-L2-009`の監査finding trace。これは旧AAFD-R-01〜03から、Probeのproposal identity、authority-bound evidence、qualificationへのhandoffを限定して再導出する候補である。採択済み`HELIXINTELLIGENCE-L2-073`（AAFD-R-04のdetector優先/direct-projection境界）を置換・拡張せず、AAFDの他条件が採択済みだとも扱わない。
+- **proposal identity**：`AgenticAuditProbeProposalV1`候補は、proposal ID、audit episode、producer provider/runtime/model/version/session、repository、候補HEAD、worktree identity、authority revision/digest、責務／不変条件ID、観測挙動、evidence、reproduction recipe、counterevidence、confidence、expiry、finding advisory、remediation advisory、proposal digestを結ぶ。PR review findingとsystem audit proposalは別identityとschemaに保つ。field欠落を他fieldの値で補わない。
+- **identity受入**：exact HEAD、resolved worktree、authority digest、producer session、responsibility owner、evidenceの有無と一致を個別に確認する。欠落または不一致は当該proposalをfail-close/incompleteとし、未評価の別field・別sourceで補わない。current、compatibility、historical authorityを区別し、historical evidenceをcurrent claimに読み替えない。
+- **qualificationの戻し先**：AI自己評価のみからverified、P0/P1、owner、route、remediation adoptionを確定しない。duplicate Issue／existing ownerとの照合、独立再現、反証、expiry、supersessionは既存UIL-01〜04へ渡す。finding proposalとremediation proposalは別identity・別判定とする。本候補はUILのqualificationやrouteを再実装せず、Issue/Requirement/CI/merge動作の追加を要求しない。
+- **失敗・境界**：evidence、責務owner、authority/revisionがunknownまたは矛盾する場合はunknown/incompleteのまま既存ownerへ返す。expiry/supersession/duplicate判定不能時に新しいproposalをverifiedとせず、remediationを実行しない。`HELIXINTELLIGENCE-L2-073`の採択範囲外を同候補の自由文境界へ畳み込まない。
+- **sourceと限界**：旧asset `LEGACY-ASSET-EB3700B0088F311C2295`、archive `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md:23-41`、file SHA-256 `685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a`。採択済みL2-009の一般的なtrace要件を具体化する候補だが、詳細なschema/qualification条件の採否は本候補から生成しない。future-state delta adapter、UIL/TER qualification runtime、Future Synthesisは対象外。
+
+### HELIXINTELLIGENCE-L2-076 Model revision revalidation and comparison evidence（unit candidate、version_target: 1.0）
+
+- **状態と親**：未採択candidate。親は採択済み`HELIXINTELLIGENCE-L1-011`と、採択済み`HELIXINTELLIGENCE-L2-011`の同一corpus/responsibility scope比較である。現L2-011が既に要求するfindings、false positives/misses、reproducibility、latency、cost比較を重複採択しない。
+- **revalidation proposal**：provider/model/runtime/version変更をTER eventとして記録し、同じaudit corpus、responsibility scope、policy、oracle revisionを使うrevalidation proposalへ結ぶ。model名の文字列変更だけで既存qualificationを継承しない。TER event記録・発火・qualification自体は既存ownerに残す。
+- **比較evidence proposal**：new/lost finding、false positive/negative、duplicate、remediation correctness、authority drift、reproduction success、cost、latencyを独立metricとしてsource/revision付きで記録する候補。単一scoreへ潰さず、同条件が揃わない値は比較不能/unknownのまま保持する。hidden oracleをWorker contextへ渡さない。
+- **差分境界**：L1-011が明示する同条件比較と「更新だけで優位判定しない」は現L2-011に保持済み。TER変更を再評価triggerとすること、remediation correctness/authority drift/duplicate metrics、およびhidden-oracle confidentialityをL1-011に追加する採否は未決であり、本候補は意味変更を適用しない。3.0学習・適格化はL2-065の境界に従い、1.0の依存へ前倒ししない。 同条件不足時を比較不能/unknownとし、L11で欠測・scope違い・policy/oracle revision違いを同様に扱う提案は、採択済みL1-011の同条件比較と現行L2-011のunknown保持から導いた候補条件であり、旧AAFD-R-13/14の原文4行そのものに含まれる条件ではない。
+- **sourceと限界**：旧asset `LEGACY-ASSET-EB3700B0088F311C2295`、archive `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md:94-104`、file SHA-256 `685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a`。旧R-13/14のcandidate-only比較案であり、TER runtime、benchmark運用、model昇格、閾値や新承認手続きは作らない。
