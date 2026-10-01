@@ -1,20 +1,20 @@
 {
   "receipt_id": "HIL-FR18-19-PROTOTYPE-WALKTHROUGH-COVERAGE-2026-10-02",
-  "comparison_base": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+  "comparison_base": "9f743cb0854ad7f2ef6a215510f88379d8c3fa90",
   "authority_effect": "none",
   "candidate_status": "unadopted_requirement_candidate",
   "candidate_identity": "HARNESS-L2-079",
   "candidate_revision": "MPR-RC-HARNESS-L2-079-001",
   "candidate_section_digests": {
-    "l2": "sha256:a0b653116f85ee13e02798f7eb44ea66c6ff9d958430e6930929b5bc1ba97682",
-    "l11": "sha256:176e8f055282ccf3aceaf594e31711ca49266909e2be455b1b29992f619e3910"
+    "l2": "sha256:6f4d8ce511384901cd462936fd9633c2760bd09560f7b3db8399b03f314a1808",
+    "l11": "sha256:1980292239f8cc7123dd71b34bf8e3620fda0ff8d998f10767de1c7fcfeab5b9"
   },
   "candidate_digest_rule": "From exact ### HARNESS-L2-079 heading up to next same-level ### heading; trim trailing blank lines; UTF-8 with one LF.",
   "current_file_pins": {
     "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
-    "l2_file_sha256": "sha256:e3facdbaff7466b4b4f36c5e0aed6795d445a545757862a6327c10a47567e3e0",
+    "l2_file_sha256": "sha256:27e03b7a109af0c0ee49fd901acea80603c607343f1dbecc819e908a3ad1c2fe",
     "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-    "l11_file_sha256": "sha256:73ea3bbdb268a72a7ee096b758b2e87fee0b868f29a60a8063d8a8dea6d26be2"
+    "l11_file_sha256": "sha256:dbecad18c52664a83ce62f65258ca2497da5b3dece010490bfe3c4c420900916"
   },
   "source_atom_set": {
     "path": "docs/governance/audits/requirement-registration/hil-fr18-19-prototype-walkthrough-source-lines-2026-10-02.jsonl",
@@ -244,5 +244,68 @@
     "changed": "Old L1 legacy layer number is re-expressed in current HARNESS L2 plus paired L11; no numeric layer transfer, source owner transfer, successor assignment, or full condition closure.",
     "reason": "Current Concept service 1, current HARNESS L1-006, and adopted HARNESS L2-012 establish the current prototype/requirement responsibility. Exact missing conditions are supported by the old requirement line and old consumer oracle.",
     "not_adopted": "Legacy crosswalk rows 27-28 suggested OS generator / changing FR19 destination to L2. Those are historical proposals, not current authority; the candidate retains the source L1 target and current 012 Backflow relation."
+  },
+  "revision_history": [
+    {
+      "revision": "initial local candidate snapshot",
+      "commit": "d9309a052d4ecea3d9922a854a4ce3556c968516",
+      "comparison_base": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+      "section_digests": {
+        "l2": "sha256:a0b653116f85ee13e02798f7eb44ea66c6ff9d958430e6930929b5bc1ba97682",
+        "l11": "sha256:176e8f055282ccf3aceaf594e31711ca49266909e2be455b1b29992f619e3910"
+      },
+      "disposition": "superseded locally by the current dependency-class and illustrative-example revision; original commit retained in ancestry"
+    }
+  ],
+  "comparison_base_merge_commit": "f28607e31cfb685c2b2af75d444db962ce19b000",
+  "dependency_classes_from_HARNESS-L2-023": [
+    {
+      "class": "always_required",
+      "dependencies": "selected target L1 and requirement source/scope/revision; current applicability/authority; applicable adopted 012/003/024 contract revisions; paired L11 oracle; identity/owner/version-or-range/applicability basis",
+      "closure": "unknown/stale/missing required dependency holds the affected operation; stable same-input revision reproduces same closure/reason"
+    },
+    {
+      "class": "operation_only",
+      "dependencies": "prototype artifact generation and replay require screen/operation/transition/state/data obligations and executable artifact; walkthrough requires artifact revision, actor/observation, delta or no_delta, L1 target, rebuild and bounded checkpoint",
+      "closure": "condition explicitly false can exclude that operation dependency; unknown cannot become false"
+    },
+    {
+      "class": "selected_input_source",
+      "dependencies": "only explicitly selected screen requirements/material, data/source, artifact and walkthrough observations with identity/revision/scope",
+      "closure": "unselected source is unobserved; selected-source failure cannot silently fallback"
+    },
+    {
+      "class": "reference_only",
+      "dependencies": "old schema/runtime/API, legacy test and supporting design examples unless a current authority/condition/oracle makes them normative",
+      "closure": "do not turn reference-only sources into current execution dependencies or evidence"
+    }
+  ],
+  "concrete_acceptance_examples": {
+    "FR18": "Illustrative `account-settings` screen and display-name Save operation with screen/interaction/transition trace, all nine exact old state-kind names and temporary-data boundary. Labels do not set an ID format, state meaning, or schema.",
+    "FR19_delta": "Illustrative prototype revision p7; actor observes Save result unclear; requirement delta points to the source L1 reflection target, L2 delta routes through existing 012 Backflow, and rebuild decision points to a subsequent artifact revision.",
+    "FR19_no_delta": "A distinct actual observation finds no new requirement: preserve its observation, state explicit no_delta, no L1 edit/rebuild, and outstanding obligations. no_delta is not missing observation."
+  },
+  "MPR_prefix_invariant": {
+    "path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "origin_main": "9f743cb0854ad7f2ef6a215510f88379d8c3fa90",
+    "prefix_rows": 657,
+    "local_append_rows": 1,
+    "appended_registration_id": "MPR-RC-HARNESS-L2-079-001",
+    "prefix_sha256": "sha256:a9c20b2ff574e9ee54b98b87975d4c0836f9db62514e98012c6e63016789cfb6"
+  },
+  "latest_main_merge_head": "9f743cb0854ad7f2ef6a215510f88379d8c3fa90 (merged; added 10 unrelated current-condition audit files)",
+  "dependency_class_source": {
+    "identity": "HARNESS-L2-023",
+    "section_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+    "section_digest": "sha256:32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
+    "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:52",
+    "authority_state": "registered_proposal / authority_effect none in the fixed decision row; 079 borrows the four classification meanings without assuming 023 adoption or authority",
+    "classes": [
+      "always required",
+      "operation-only",
+      "selected-input-source dependent",
+      "reference-only"
+    ],
+    "mapping": "Each class is applied to 079 scope only; explicit false operation condition can exclude only that operation dependency; unknown/stale cannot be treated as false; unselected input source is unobserved; reference-only archive schema/runtime/test cannot become execution dependency."
   }
 }
