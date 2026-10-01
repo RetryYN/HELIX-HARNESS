@@ -21,10 +21,10 @@
 
 |旧artifact|旧ラベル|記録|corrected 131-pool順位|
 |---|---:|---:|---|
-|`docs/governance/audits/requirements-stage/v13-effective-next20-rows21-40-condition-audit-2026-10-01.json`|21–40（無効）|20|42–45, 50–51, 53–55, 57–67|
-|`docs/governance/audits/requirements-stage/v13-effective-next20-rows41-60-condition-audit-2026-10-01.json`|41–60（無効）|20|91–110|
+|`docs/governance/audits/requirements-stage/history-snapshots/v13-effective-legacy-rows21-40-a02a4f4-original-2026-10-01.json`|21–40（無効）|20|42–45, 50–51, 53–55, 57–67|
+|`docs/governance/audits/requirements-stage/history-snapshots/v13-effective-legacy-rows41-60-33af30b-original-2026-10-01.json`|41–60（無効）|20|91–110|
 
-旧artifact HEAD/JSON SHA-256/Markdown SHA-256はJSON `old_mislabeled_audit_artifacts` に保存した。各source rowの旧finding、direct evidence、fixed F6 refs、residual、successor/closure/authority欄はJSON `crosswalk_records` に原値で記録し、再判定していない。
+旧artifactのJSON/Markdown bytesを上記の履歴snapshot pathへそのまま保存した。各snapshotはsource ledgerのJSON/Markdown SHA-256と一致する。元の`a02a4f4…`／`33af30b…` commitはPR branchに公開されていないため、crosswalk JSONではunpublished source HEADとしてだけ保持し、再現可能なpinにはsnapshot pathとsnapshot commit `c005b9b738f0a73660b29ee39e97c1b061d453db`を使う。別の旧raw119 rows21–40 artifact（元HEAD `e7482ab4…`）も別snapshotとして保存し、41位carryoverの歴史比較をそこへpinした。各source rowの旧finding、direct evidence、fixed F6 refs、residual、successor/closure/authority欄はJSON `crosswalk_records` に原値で記録し、再判定していない。
 
 ## current source-qualified positions21–40 audit
 
@@ -63,11 +63,11 @@ current reviewed集合へ追加した比較監査記録は次の3 batchである
 
 |Pool ranks|Source IDs|Audit JSON @ exact bundle HEAD|JSON SHA-256|Markdown SHA-256|Finding|
 |---:|---|---|---|---|---|
-|46–49|`REQSRC-SUP-00192`, `REQSRC-SUP-00193`, `REQSRC-SUP-00194`, `REQSRC-SUP-00198`|`docs/governance/audits/requirements-stage/v13-effective-ranks46-49-condition-audit-2026-10-01.json` @ `7b3337910179969378f17692e7fdb044659976e5`|`bb84a298510e03d38d0499030d089592f0f43e3399ecc853c099fc9b7cc721a9`|`64e209e4df9d8f3dfac50863c631046e6312f3b9a37714448a334bed6a84f102`|partial 4|
+|46–49|`REQSRC-SUP-00192`, `REQSRC-SUP-00193`, `REQSRC-SUP-00194`, `REQSRC-SUP-00198`|`docs/governance/audits/requirements-stage/v13-effective-ranks46-49-condition-audit-2026-10-01.json` @ `9792c7034dd2d6365b03ea74cd389af7e6ac2d8b`|`bb84a298510e03d38d0499030d089592f0f43e3399ecc853c099fc9b7cc721a9`|`64e209e4df9d8f3dfac50863c631046e6312f3b9a37714448a334bed6a84f102`|partial 4|
 |52, 56|`REQSRC-SUP-00213`, `REQSRC-SUP-00217`|`docs/governance/audits/requirements-stage/v13-effective-ranks52-56-hyb-002-006-condition-audit-2026-10-01.json` @ `a3d44d939668775c00fd77b66b5d85416b3df65e`|`09bce72838df14a808c731341c0e557d0db3d8922dc9dae6aad7e02c07360d99`|`886757b9b542b3e592fa3a2789d72c541aaf56b9f0850349fa746a1083ff2f75`|partial 2|
 |68–90|`REQSRC-SUP-00278`, `00279`, `00284`–`00291`, `00310`, `00312`, `00314`, `00315`, `00319`–`00322`, `00330`, `00332`, `00334`, `00335`, `00337`|`docs/governance/audits/requirements-stage/v13-effective-ranks68-90-condition-audit-2026-10-01.json` @ `4a50e2d3f2272a36bae89ea38df6cdd6954dbd41`|`c8d6b78ee7db427ce1662d150337ba850d3acf20833dda628874da44d89e2b3c`|`a728beb2db32e7c0849a0301fc6fb113ab328579631ef94684f82c2dcc59b07d`|partial/unknown/gap per row|
 
-rank68–90監査を取り込んだ直後のbundle HEAD `4a50e2d3f2272a36bae89ea38df6cdd6954dbd41`時点では、unionは110 reviewed / 21 identity-filter unreviewedだった。さらにrank111–131監査を現在の131-poolへ加えた結果は後段に記録する。直前の87/44はその前のbundle HEAD時点の履歴であり、いずれのidentity complementも意味上の未レビューやclosure残量を表さない。
+rank68–90監査を取り込んだ直後のbundle HEAD `4a50e2d3f2272a36bae89ea38df6cdd6954dbd41`時点では、unionは110 reviewed / 21 identity-filter unreviewedだった。さらにrank111–131監査を現在の131-poolへ加えた結果は後段に記録する。直前の87/44はその前のbundle HEAD時点の履歴であり、いずれのidentity complementも意味上の未レビューやclosure残量を表さない。rank46–49の訂正監査bytesはreachableなbundle HEAD `9792c7034dd2d6365b03ea74cd389af7e6ac2d8b`に存在する。元の訂正commit `7b333791…`はunpublished provenanceとしてJSONにだけ残す。pool rowのrank46–49 pinも同じreachable auditへ揃え、旧row pinはsuperseded historyとして保持した。
 
 ## 40件のsource-ID crosswalk
 

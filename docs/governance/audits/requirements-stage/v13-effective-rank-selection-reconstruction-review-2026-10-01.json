@@ -1,13 +1,13 @@
 {
   "schema_version": "1.0.0",
   "audit_id": "V13-EFFECTIVE-RANK-SELECTION-RECONSTRUCTION-REVIEW-2026-10-01",
-  "reviewed_audit_head": "e7482ab4d189add0b437972540973ff86cd26f40",
+  "reviewed_audit_head": "c005b9b738f0a73660b29ee39e97c1b061d453db",
   "reviewed_audit_json": {
-    "path": "docs/governance/audits/requirements-stage/v13-effective-next20-rows21-40-condition-audit-2026-10-01.json",
+    "path": "docs/governance/audits/requirements-stage/history-snapshots/v13-effective-raw119-rows21-40-e7482ab-original-2026-10-01.json",
     "sha256": "168349601b43c79feae7e5dcfe9dab05d67f90170c877635687e395910dafba3"
   },
   "reviewed_audit_markdown": {
-    "path": "docs/governance/audits/requirements-stage/v13-effective-next20-rows21-40-condition-audit-2026-10-01.md",
+    "path": "docs/governance/audits/requirements-stage/history-snapshots/v13-effective-raw119-rows21-40-e7482ab-original-2026-10-01.md",
     "sha256": "8217cdc0c537a75c4a7cfb788b11c9dc24c7bf6917780bec4be11892907de110"
   },
   "reconstruction_base_commit": "50686b6762788574cb471967e8c24846d3dd56ae",
@@ -1028,5 +1028,7 @@
     "prior_and_reviewed_artifact_hashes_recomputed": true,
     "MD_JSON_selected_ids_synchronized": true,
     "diff_check_and_json_syntax_passed": true
-  }
+  },
+  "reviewed_audit_original_unpublished_head": "e7482ab4d189add0b437972540973ff86cd26f40",
+  "reviewed_audit_snapshot_status": "exact-byte history snapshot; original source commit is unpublished"
 }

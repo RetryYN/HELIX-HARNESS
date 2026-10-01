@@ -1761,11 +1761,13 @@
     "reconstructed_effective_position": 41,
     "selection_member": false,
     "prior_audit_pin": {
-      "commit": "e7482ab4d189add0b437972540973ff86cd26f40",
-      "json_path": "docs/governance/audits/requirements-stage/v13-effective-next20-rows21-40-condition-audit-2026-10-01.json",
+      "commit": "c005b9b738f0a73660b29ee39e97c1b061d453db",
+      "json_path": "docs/governance/audits/requirements-stage/history-snapshots/v13-effective-raw119-rows21-40-e7482ab-original-2026-10-01.json",
       "json_sha256": "sha256:168349601b43c79feae7e5dcfe9dab05d67f90170c877635687e395910dafba3",
-      "markdown_path": "docs/governance/audits/requirements-stage/v13-effective-next20-rows21-40-condition-audit-2026-10-01.md",
-      "markdown_sha256": "sha256:8217cdc0c537a75c4a7cfb788b11c9dc24c7bf6917780bec4be11892907de110"
+      "markdown_path": "docs/governance/audits/requirements-stage/history-snapshots/v13-effective-raw119-rows21-40-e7482ab-original-2026-10-01.md",
+      "markdown_sha256": "sha256:8217cdc0c537a75c4a7cfb788b11c9dc24c7bf6917780bec4be11892907de110",
+      "original_unpublished_commit": "e7482ab4d189add0b437972540973ff86cd26f40",
+      "snapshot_status": "exact-byte in-branch history snapshot; original source commit is unpublished"
     },
     "preserved_previous_semantic_record": {
       "source_identity": {

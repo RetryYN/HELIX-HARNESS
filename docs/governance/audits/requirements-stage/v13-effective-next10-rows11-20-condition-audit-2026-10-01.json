@@ -164,9 +164,11 @@
     "candidate_population_reproduced": true,
     "source_identity_key_interpretation": "The 32 focused artifacts carry exact source-qualified item IDs; queue rows also pin the source path, file SHA, physical line and line SHA. Their prior focused audit source-identity records provide the exact tuple. Join requires the exact item ID to be present; nearby text or semantic similarity is not used.",
     "previous_audit": {
-      "commit": "abe85bd88d8da28ba3c945bd1ed052ceb62b2259",
+      "commit": "71528979630922dd9683c345adb06d9b02790e70",
       "path": "docs/governance/audits/requirements-stage/v13-effective-next10-condition-audit-2026-10-01.json",
-      "sha256": "sha256:cad2863a7310ffa74d46bdb78cdc6f534210299750592ce87991a93b41b8b255"
+      "sha256": "sha256:cad2863a7310ffa74d46bdb78cdc6f534210299750592ce87991a93b41b8b255",
+      "original_unpublished_commit": "abe85bd88d8da28ba3c945bd1ed052ceb62b2259",
+      "commit_status": "in-branch commit with byte-identical previous-audit JSON"
     },
     "baseline_queue_file_commit": "71659afc419c6378643652671775468d86ba4a3b",
     "baseline_queue_lineage_basis_commit": "2bf484b1a84af346feaf8cf7b72e59f3889e6333",

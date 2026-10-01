@@ -68,9 +68,9 @@
   "old_mislabeled_audit_artifacts": [
     {
       "label": "legacy-rows21-40-label-invalid",
-      "path": "docs/governance/audits/requirements-stage/v13-effective-next20-rows21-40-condition-audit-2026-10-01.json",
-      "markdown_path": "docs/governance/audits/requirements-stage/v13-effective-next20-rows21-40-condition-audit-2026-10-01.md",
-      "head": "a02a4f44478d9c8b07507c002ad11bbe5d886730",
+      "path": "docs/governance/audits/requirements-stage/history-snapshots/v13-effective-legacy-rows21-40-a02a4f4-original-2026-10-01.json",
+      "markdown_path": "docs/governance/audits/requirements-stage/history-snapshots/v13-effective-legacy-rows21-40-a02a4f4-original-2026-10-01.md",
+      "head": "c005b9b738f0a73660b29ee39e97c1b061d453db",
       "json_sha256": "17578d8cf09819f30bbd9ed167b2b9f4ebe6e2e6222b640ea9ec4dec5e22eba0",
       "markdown_sha256": "b706779469343b37e3ddaa5faf6471215b5664f65e34c81efb635ca676f5d670",
       "audit_id": "v13-effective-next20-rows21-40-condition-audit-2026-10-01",
@@ -101,13 +101,15 @@
         "REQSRC-SUP-00275",
         "REQSRC-SUP-00276",
         "REQSRC-SUP-00277"
-      ]
+      ],
+      "original_unpublished_head": "a02a4f44478d9c8b07507c002ad11bbe5d886730",
+      "original_head_status": "unpublished_historical_commit; exact artifact bytes preserved at the snapshot paths below"
     },
     {
       "label": "legacy-rows41-60-label-invalid",
-      "path": "docs/governance/audits/requirements-stage/v13-effective-next20-rows41-60-condition-audit-2026-10-01.json",
-      "markdown_path": "docs/governance/audits/requirements-stage/v13-effective-next20-rows41-60-condition-audit-2026-10-01.md",
-      "head": "33af30b8be1db084647682bd3951aec973f445fb",
+      "path": "docs/governance/audits/requirements-stage/history-snapshots/v13-effective-legacy-rows41-60-33af30b-original-2026-10-01.json",
+      "markdown_path": "docs/governance/audits/requirements-stage/history-snapshots/v13-effective-legacy-rows41-60-33af30b-original-2026-10-01.md",
+      "head": "c005b9b738f0a73660b29ee39e97c1b061d453db",
       "json_sha256": "fd80884b27007323bf534d1dcc02ab12c31d7c307700c8f0c835e132ec9bb9f3",
       "markdown_sha256": "da28db8c4525e7ce9f6d4c445bacf11f7ac3a4facc62af8b3c008c4b788b9387",
       "audit_id": "v13-effective-next20-rows41-60-condition-audit-2026-10-01",
@@ -138,7 +140,9 @@
         "REQSRC-SUP-00457",
         "REQSRC-SUP-00458",
         "REQSRC-SUP-00459"
-      ]
+      ],
+      "original_unpublished_head": "33af30b8be1db084647682bd3951aec973f445fb",
+      "original_head_status": "unpublished_historical_commit; exact artifact bytes preserved at the snapshot paths below"
     }
   ],
   "prior_audit_membership_pins": [
@@ -153,11 +157,13 @@
       "json_sha256": "cae955c303f87ec98036298333f207e8c0fe02f8bb500fbf9cb99cf980dfae7e"
     },
     {
-      "head": "e7482ab4d189add0b437972540973ff86cd26f40",
-      "path": "docs/governance/audits/requirements-stage/v13-effective-next20-rows21-40-condition-audit-2026-10-01.json",
+      "head": "c005b9b738f0a73660b29ee39e97c1b061d453db",
+      "path": "docs/governance/audits/requirements-stage/history-snapshots/v13-effective-raw119-rows21-40-e7482ab-original-2026-10-01.json",
       "json_sha256": "168349601b43c79feae7e5dcfe9dab05d67f90170c877635687e395910dafba3",
-      "markdown_path": "docs/governance/audits/requirements-stage/v13-effective-next20-rows21-40-condition-audit-2026-10-01.md",
-      "markdown_sha256": "8217cdc0c537a75c4a7cfb788b11c9dc24c7bf6917780bec4be11892907de110"
+      "markdown_path": "docs/governance/audits/requirements-stage/history-snapshots/v13-effective-raw119-rows21-40-e7482ab-original-2026-10-01.md",
+      "markdown_sha256": "8217cdc0c537a75c4a7cfb788b11c9dc24c7bf6917780bec4be11892907de110",
+      "original_unpublished_head": "e7482ab4d189add0b437972540973ff86cd26f40",
+      "original_head_status": "unpublished_historical_commit; exact raw-119 audit bytes preserved at snapshot paths"
     },
     {
       "head": "f25f3e84ecc9f86ded552d8621dc3d15d94547dd",
@@ -1206,9 +1212,16 @@
         "source_qualified_rank_condition_audit_member": true,
         "rank_condition_audit_position": 46,
         "rank_condition_audit_id": "V13-EFFECTIVE-RANKS46-49-CONDITION-AUDIT-2026-10-01",
-        "rank_condition_audit_head": "a3d44d939668775c00fd77b66b5d85416b3df65e",
+        "rank_condition_audit_head": "9792c7034dd2d6365b03ea74cd389af7e6ac2d8b",
         "rank_condition_audit_json_path": "docs/governance/audits/requirements-stage/v13-effective-ranks46-49-condition-audit-2026-10-01.json",
-        "rank_condition_audit_json_sha256": "61842b09261140282d4a88db2fbe917f9d9b5069c17dbabee44855fb4c88dfd1"
+        "rank_condition_audit_json_sha256": "bb84a298510e03d38d0499030d089592f0f43e3399ecc853c099fc9b7cc721a9",
+        "superseded_rank_condition_audit_pin": {
+          "head": "a3d44d939668775c00fd77b66b5d85416b3df65e",
+          "json_path": "docs/governance/audits/requirements-stage/v13-effective-ranks46-49-condition-audit-2026-10-01.json",
+          "json_sha256": "61842b09261140282d4a88db2fbe917f9d9b5069c17dbabee44855fb4c88dfd1",
+          "status": "superseded prior audit pin; retained as history"
+        },
+        "rank_condition_audit_original_unpublished_head": "7b3337910179969378f17692e7fdb044659976e5"
       },
       {
         "position": 47,
@@ -1232,9 +1245,16 @@
         "source_qualified_rank_condition_audit_member": true,
         "rank_condition_audit_position": 47,
         "rank_condition_audit_id": "V13-EFFECTIVE-RANKS46-49-CONDITION-AUDIT-2026-10-01",
-        "rank_condition_audit_head": "a3d44d939668775c00fd77b66b5d85416b3df65e",
+        "rank_condition_audit_head": "9792c7034dd2d6365b03ea74cd389af7e6ac2d8b",
         "rank_condition_audit_json_path": "docs/governance/audits/requirements-stage/v13-effective-ranks46-49-condition-audit-2026-10-01.json",
-        "rank_condition_audit_json_sha256": "61842b09261140282d4a88db2fbe917f9d9b5069c17dbabee44855fb4c88dfd1"
+        "rank_condition_audit_json_sha256": "bb84a298510e03d38d0499030d089592f0f43e3399ecc853c099fc9b7cc721a9",
+        "superseded_rank_condition_audit_pin": {
+          "head": "a3d44d939668775c00fd77b66b5d85416b3df65e",
+          "json_path": "docs/governance/audits/requirements-stage/v13-effective-ranks46-49-condition-audit-2026-10-01.json",
+          "json_sha256": "61842b09261140282d4a88db2fbe917f9d9b5069c17dbabee44855fb4c88dfd1",
+          "status": "superseded prior audit pin; retained as history"
+        },
+        "rank_condition_audit_original_unpublished_head": "7b3337910179969378f17692e7fdb044659976e5"
       },
       {
         "position": 48,
@@ -1258,9 +1278,16 @@
         "source_qualified_rank_condition_audit_member": true,
         "rank_condition_audit_position": 48,
         "rank_condition_audit_id": "V13-EFFECTIVE-RANKS46-49-CONDITION-AUDIT-2026-10-01",
-        "rank_condition_audit_head": "a3d44d939668775c00fd77b66b5d85416b3df65e",
+        "rank_condition_audit_head": "9792c7034dd2d6365b03ea74cd389af7e6ac2d8b",
         "rank_condition_audit_json_path": "docs/governance/audits/requirements-stage/v13-effective-ranks46-49-condition-audit-2026-10-01.json",
-        "rank_condition_audit_json_sha256": "61842b09261140282d4a88db2fbe917f9d9b5069c17dbabee44855fb4c88dfd1"
+        "rank_condition_audit_json_sha256": "bb84a298510e03d38d0499030d089592f0f43e3399ecc853c099fc9b7cc721a9",
+        "superseded_rank_condition_audit_pin": {
+          "head": "a3d44d939668775c00fd77b66b5d85416b3df65e",
+          "json_path": "docs/governance/audits/requirements-stage/v13-effective-ranks46-49-condition-audit-2026-10-01.json",
+          "json_sha256": "61842b09261140282d4a88db2fbe917f9d9b5069c17dbabee44855fb4c88dfd1",
+          "status": "superseded prior audit pin; retained as history"
+        },
+        "rank_condition_audit_original_unpublished_head": "7b3337910179969378f17692e7fdb044659976e5"
       },
       {
         "position": 49,
@@ -1284,9 +1311,16 @@
         "source_qualified_rank_condition_audit_member": true,
         "rank_condition_audit_position": 49,
         "rank_condition_audit_id": "V13-EFFECTIVE-RANKS46-49-CONDITION-AUDIT-2026-10-01",
-        "rank_condition_audit_head": "a3d44d939668775c00fd77b66b5d85416b3df65e",
+        "rank_condition_audit_head": "9792c7034dd2d6365b03ea74cd389af7e6ac2d8b",
         "rank_condition_audit_json_path": "docs/governance/audits/requirements-stage/v13-effective-ranks46-49-condition-audit-2026-10-01.json",
-        "rank_condition_audit_json_sha256": "61842b09261140282d4a88db2fbe917f9d9b5069c17dbabee44855fb4c88dfd1"
+        "rank_condition_audit_json_sha256": "bb84a298510e03d38d0499030d089592f0f43e3399ecc853c099fc9b7cc721a9",
+        "superseded_rank_condition_audit_pin": {
+          "head": "a3d44d939668775c00fd77b66b5d85416b3df65e",
+          "json_path": "docs/governance/audits/requirements-stage/v13-effective-ranks46-49-condition-audit-2026-10-01.json",
+          "json_sha256": "61842b09261140282d4a88db2fbe917f9d9b5069c17dbabee44855fb4c88dfd1",
+          "status": "superseded prior audit pin; retained as history"
+        },
+        "rank_condition_audit_original_unpublished_head": "7b3337910179969378f17692e7fdb044659976e5"
       },
       {
         "position": 50,
@@ -6237,7 +6271,7 @@
   "source_qualified_rank_condition_audits": [
     {
       "audit_id": "V13-EFFECTIVE-RANKS46-49-CONDITION-AUDIT-2026-10-01",
-      "head": "7b3337910179969378f17692e7fdb044659976e5",
+      "head": "9792c7034dd2d6365b03ea74cd389af7e6ac2d8b",
       "json_path": "docs/governance/audits/requirements-stage/v13-effective-ranks46-49-condition-audit-2026-10-01.json",
       "json_sha256": "bb84a298510e03d38d0499030d089592f0f43e3399ecc853c099fc9b7cc721a9",
       "markdown_path": "docs/governance/audits/requirements-stage/v13-effective-ranks46-49-condition-audit-2026-10-01.md",
@@ -6266,8 +6300,9 @@
         "head": "a3d44d939668775c00fd77b66b5d85416b3df65e",
         "json_sha256": "61842b09261140282d4a88db2fbe917f9d9b5069c17dbabee44855fb4c88dfd1",
         "markdown_sha256": "140409dc1a577d9f198e2be818b9c7447804fa75813e4fad9c931472748b220b",
-        "note": "prior audit content pin; superseded by temporally corrected audit at 7b3337910179969378f17692e7fdb044659976e5"
-      }
+        "note": "Earlier audit content remains pinned as history; the temporally corrected audit bytes are reproducible at the in-branch HEAD recorded above. Original correction commit was unpublished."
+      },
+      "original_unpublished_head": "7b3337910179969378f17692e7fdb044659976e5"
     },
     {
       "audit_id": "V13-EFFECTIVE-RANKS52-56-HYB-002-006-CONDITION-AUDIT-2026-10-01",
@@ -6496,5 +6531,11 @@
     }
   },
   "updated_against_commit": "9792c7034dd2d6365b03ea74cd389af7e6ac2d8b",
-  "markdown_current_state_summary": "current state as of bundle HEAD 9792c7034dd2d6365b03ea74cd389af7e6ac2d8b: reviewed 131, identity-filter unreviewed 0 (all positions 1–131 have an identity audit record); the prior 110/21 snapshot as of 4a50e2d3f2272a36bae89ea38df6cdd6954dbd41 and prior 87/44 snapshot are retained as historical states"
+  "markdown_current_state_summary": "current state as of bundle HEAD 9792c7034dd2d6365b03ea74cd389af7e6ac2d8b: reviewed 131, identity-filter unreviewed 0 (all positions 1–131 have an identity audit record); the prior 110/21 snapshot as of 4a50e2d3f2272a36bae89ea38df6cdd6954dbd41 and prior 87/44 snapshot are retained as historical states",
+  "provenance_pin_repair": {
+    "snapshot_commit": "c005b9b738f0a73660b29ee39e97c1b061d453db",
+    "snapshot_paths_are_byte_identical_to_pinned_historical_artifacts": true,
+    "unpublished_original_commits_are_provenance_metadata_only": true,
+    "note": "Historical artifact content is addressable by in-branch commit:path and exact file SHA-256. Unpublished original commit IDs are retained only to describe where the bytes were first recorded; they are not used as artifact pins."
+  }
 }

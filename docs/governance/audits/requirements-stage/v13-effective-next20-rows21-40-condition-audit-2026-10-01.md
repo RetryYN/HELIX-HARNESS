@@ -47,7 +47,7 @@ queue `v13-condition-closure-work-queue-2026-09-30.json`（303行、SHA-256 `a61
 
 ### 旧artifactの位置40行を位置41へcarryover
 
-旧artifact（commit `e7482ab4d189add0b437972540973ff86cd26f40`）はraw-token 119候補poolを使い、`REQSRC-SUP-00171`を旧位置40に選んでいた。source-qualified再構成では当該IDは実効位置41となる。過去の意味比較記録はJSONの`out_of_slice_carryover`へ全文保持し、今回の選定20件・判定件数には含めない。このauditは当該条件の削除、closure、意味の再判定を主張しない。旧artifactは誤った順位の過去記録としてpinするだけで、今回の選定根拠にはしない。
+旧raw-token 119候補pool artifactの原bytesは[履歴snapshot JSON](history-snapshots/v13-effective-raw119-rows21-40-e7482ab-original-2026-10-01.json)と[Markdown](history-snapshots/v13-effective-raw119-rows21-40-e7482ab-original-2026-10-01.md)に保持し、snapshot commit `c005b9b738f0a73660b29ee39e97c1b061d453db`で再現できる。元HEAD `e7482ab4d189add0b437972540973ff86cd26f40`はbranch未公開の歴史的provenanceである。旧artifactは`REQSRC-SUP-00171`を旧位置40に選んでいたが、source-qualified再構成では実効位置41となる。過去の意味比較記録はJSONの`out_of_slice_carryover`へ全文保持し、今回の選定20件・判定件数には含めない。このauditは当該条件の削除、closure、意味の再判定を主張しない。旧artifactは誤った順位の過去記録としてpinするだけで、今回の選定根拠にはしない。
 
 ## source、asset、固定pairとauthority
 
