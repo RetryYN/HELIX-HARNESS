@@ -24,23 +24,23 @@
   "candidate_pair": {
     "l2": {
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-      "full_file_sha256": "289782e37efe7153ce0a00ffdfe9f09eb5eba36d678b5730105cffaf4c7964a1",
+      "full_file_sha256": "b5118424b1c1bee68a23ca5ee801144081fe2e6ae88d4746934caf27dd460710",
       "section_heading": "HARNESS-L2-068",
       "section_lines": [
         1290,
         1304
       ],
-      "section_sha256": "c1941f15f4aafdea2ed2809aff01ab70b44997a816fe59f9cd5ee3b218333e1a"
+      "section_sha256": "288281a277ede7ff7f5d5f98ef3a01eab8f43e6f8c9c7ff6843dfa573b47d0e4"
     },
     "l11": {
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-      "full_file_sha256": "bea1e35b74767e7f0f8dc0af9ce18ab0c11dda45c744e20571d39367a42a6b34",
+      "full_file_sha256": "a03e91220ab11dc5cc54c62915cb79165bd5fa9456dc0b8b7aa124ba9148d483",
       "section_heading": "HARNESS-L2-068",
       "section_lines": [
         1002,
-        1010
+        1011
       ],
-      "section_sha256": "33ae6a20f363a29df1fd5421b3f779cc00f6b8de42e15edf44b292c65a0a6ff3"
+      "section_sha256": "f90c216e31a431350115fbf154fc0b9687fe790752e48b509893510e184100df"
     },
     "source_condition_boundary": {
       "HARNESS-L2-053": "adopted generic identity/lineage/oracle/typed-edge relation after split/merge/supersede; not a design refactor entry gate",
