@@ -70,3 +70,9 @@
 - 旧archiveはread-only。旧runtime・test・CIは実行していない。
 
 詳細なcontext、source/asset/routing hash、current/F6各24本文、現行candidate群、全PO／receipt検索pin、旧判断履歴はpaired JSON `legacy-candidate4755-explanation-normative-complement-ranks-2381-2420-2026-10-02.json` に記録。
+
+## 数値範囲引用の訂正照合
+
+- rank 2386（RCLS requests 39行）はBRAIN L1 87行の37–39引用とBRAIN L2 545行の37–47引用に入る。
+- rank 2387（同47行）はBRAIN L1 87行の45–47引用とBRAIN L2 545行の37–47引用に入る。
+- 固定F6と監査基点mainそれぞれで2行・4引用、計8引用記録をcommit・本文SHA・引用原文に固定した。選択line IDの明記・採択decision・条件全体のclosureは意味しない。前sliceのrequests 3行は範囲外。
