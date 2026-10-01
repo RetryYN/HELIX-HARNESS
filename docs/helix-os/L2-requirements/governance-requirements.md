@@ -30,9 +30,10 @@ HELIX-OSの目的は、HARNESSを含むHELIXプロジェクト群を管理・統
 HELIXOS-L2-005の改善還流は、観測→候補→採否→要求・設計変更→検証→再観測まで追跡する。
 候補の生成件数やログの蓄積だけで改善達成とせず、採用した変更の効果と退行を確認する。
 
-親は[HELIX-OS L1企画](../L1-planning/system-intent.md)である。2026-09-28の[HELIX-OS PO判断](../../governance/decisions/helix-os-requirements-po-decision-2026-09-28.md)は、`f6dad2a33e24f000b87d7f09b8d40288257e74cc`上のL1本文SHA-256 `2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e`を対象revisionとして確定・採択した。現行L1本文も同じSHAであり、`draft_candidate` metadataは固定bytesの一部として保持してauthorityをdecisionから読む。本書はdecisionが固定したL2/L11本文と、その後に追記された未採択candidateを含むため、現在の文書全体または後続候補の採択は個別decisionから判定する。以下のrelation表は親L1 identityの参照であり、それ自体で要求採択を生成しない。
+親は[HELIX-OS L1企画候補](../L1-planning/system-intent.md)である。現在は親ConceptとL1が未承認のため、
+以下のrelationは接続案であり、承認済み導出ではない。
 
-| L2要求 | 親L1 |
+| L2要求 | 親L1候補 |
 |---|---|
 | HELIXOS-L2-001 | HELIXOS-L1-001／HELIXOS-L1-008 |
 | HELIXOS-L2-002 | HELIXOS-L1-002／HELIXOS-L1-007／HELIXOS-L1-008 |
@@ -47,7 +48,6 @@ HELIXOS-L2-005の改善還流は、観測→候補→採否→要求・設計変
 | HELIXOS-L2-011 | HELIXOS-L1-010 |
 | HELIXOS-L2-012 | HELIXOS-L1-011 |
 | HELIXOS-L2-013 | HELIXOS-L1-012 |
-| HELIXOS-L2-112 | HELIXOS-L1-001／HELIXOS-L1-008（2026-09-28固定対象revision） |
 
 | ID | HELIX-OSに対する利用要求 | 主な移管元 | 確認する結果 |
 |---|---|---|---|
@@ -798,7 +798,7 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 
 ### 人の判断が残る点
 
-- HELIX-OS L1の対象revisionは2026-09-28 PO判断が固定・採択したSHA-256 `2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e`であり、現在の本文bytesとも一致する。L1採択は新しいL2候補の採択を含まない。
+- 親Concept/L1の現行本文は未承認candidate revisionであり、そのexact revisionを採るかはこの候補から決めない。
 - L2-015〜025と既存L2-001〜014の対応・束ねは、原要求意味の削減・縮退・retireやtarget adoptionを承認しない。source atomの意味変更・retire等が必要なものは対応する人間decisionへ残す。
 - Conceptの版境界1.0/1.x/2.0/3.0/4.0/5.0を改訂しない。後続版能力を前版の成立条件にしない。個別配布は選択された適格サービスと必要安全依存を対象にし、7製品全体の完成判定と混ぜない。
 

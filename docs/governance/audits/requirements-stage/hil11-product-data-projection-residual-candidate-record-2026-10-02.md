@@ -55,6 +55,30 @@ L11候補は旧HAC-HIL-11a（full/incremental正常lineage）、11b（schema/cur
 - Source atom file SHA-256: `sha256:8bde161da7a54a62d121179265acb1f7789d3c0d09411ad4ee94461f509caa8e`
 - Receipt: `docs/governance/audits/requirement-registration/hil11-product-data-projection-coverage-receipt-2026-10-02.json`
 - Source-lines: `docs/governance/audits/requirement-registration/hil11-product-data-projection-source-lines-2026-10-02.jsonl`
-- Register addition: `MPR-RC-HELIXOS-L2-112-001` and append-only corrections through `MPR-RC-HELIXOS-L2-112-006` are retained in `management-provisional-requirement-register.jsonl`; latest revision corrects the exact adopted parent L1 pin and records the FR-23/NFR-17 condition additions and candidate digest, while the new L2/L11 remains unadopted with `authority_effect: none`.
+- Register addition: the final `MPR-RC-HELIXOS-L2-112-001` row in `management-provisional-requirement-register.jsonl` records the exact adopted parent L1 pin, FR-23/NFR-17 conditions, and candidate digest. The pre-integration `-002` through `-006` correction history is preserved in this audit and the receipt `review_corrections`; the new L2/L11 remains unadopted with `authority_effect: none`.
 
-registerのprefixはPR比較先72d08ebのbytesと一致し、候補001〜006の6行だけを追加している。これらは静的な候補証拠であり、判断記録や実行receiptではない。現行OS本文の追補に伴いPHCAP-14/16 inventoryの4 file SHAとbindingの現行pinを更新した。選択された原文の行・意味・分類・authorityは変えていない。
+registerのprefixはPR比較先72d08ebのbytesと一致し、候補112の最新状態は`MPR-RC-HELIXOS-L2-112-001`である。修正前の001〜006は統合前の追補履歴として下記review correction記録に残し、registerでは一行へ集約した。これらは静的な候補証拠であり、判断記録や実行receiptではない。現行OS本文の追補に伴いPHCAP-14/16 inventoryの4 file SHAとbindingの現行pinを更新した。選択された原文の行・意味・分類・authorityは変えていない。
+
+## PO判断に残す選択肢とreview correction
+
+### 未決の上流選択肢
+
+- **A**：選択済みsource/consumer契約を前提にする限定read-projection機能として、HELIXOS-L2/L11-112を後続版`2.0`候補として採択する。対象はOSの許可済みread projectionと失敗保持に限り、source owner、consumer owner、SECURITYの既存authorityを維持する。
+- **B**：具体的なsource、consumer、各owner、正式な適用versionの選択が済むまで、112の責務配分案を候補のまま保留する。
+- **推奨**：B。旧原文の将来Product Data供給要求を保全しながら、まだ選択されていないsource/consumer/ownerや初版範囲を暗黙に決めないため。
+- **影響する要求・境界**：新しいHELIXOS-L2/L11-112候補、既存HELIXOS-L2-015/016/007/009、CONNECTのtransport条件、HARNESSの静的artifact observationの境界。既存採択revisionの変更は選択肢に含めない。
+
+### review correctionと統合前履歴
+
+- **F1**：2026-09-28 PO判断が固定したOS L2本文のうち、親Concept/L1を未承認とするintro、`親L1候補`表見出し、旧「人の判断が残る点」bulletをbase `72d08eb`のbytesへ復元した。112をrelation表へ追加した行も除いた。HELIXOS-L2-112節内の採択済み親L1説明は維持し、新候補112が未採択である境界も保つ。
+- **F2**：上記A/B、B推奨、その理由、影響する要求と既存境界を、PR判断材料からこの監査へ転記した。これは要求の採否を記録するdecisionではない。
+- **F3**：統合前MPR-001〜006の履歴を保持したまま、registerの候補112を最終内容の001一行に集約した。最終行の`registered_at`は訂正-002に記録された実記録時刻`2026-10-02T05:12:46+09:00`とし、先行候補がないため`supersedes_registration_id`はnullとする。source atom setとL2/L11 section digestは変更していない。
+- **旧MPR-002**：初回行のplaceholder時刻を実記録時刻へ直し、この監査への参照を追加した。
+- **旧MPR-003**：candidate inputをMPR-SH-IR-003の旧IR四identityへ正規化し、旧L1行は同一atomのcross-referenceと明記した。
+- **旧MPR-004**：2026-09-28の親L1採択decisionと対象SHAを記録しつつ、112 pairの未採択状態を維持した。
+- **旧MPR-005**：HIL-FR-23のcontract/digest・enable/disable receipt・権限不適合時のno-state-change条件と、HIL-NFR-17の選択済みfreshness/retention policy referenceのoracleを追記した。新しい数値は定めていない。
+- **旧MPR-006**：source-lines ledgerのfile SHAを訂正し、`source_semantic_digest`（statement内）とIR record-root digestの区別を記録した。四atom、atom-set digest、candidate section digestは変えていない。
+
+### 最終revisionの静的pin
+
+候補本文のsection境界はL2/L11それぞれ`### HELIXOS-L2-112`から末尾まで（末尾空行を除きLF一つ）で計算する。最終review後もL2 section digest `sha256:6bfc4a3bef86e22a0ba044be7c8b1d5539b3f00e5445b76c9e690b7b02df0ba6`、L11 section digest `sha256:3796ec774e093ee96d93d729b781c0980bb9eabc9339099e1ccb0f78857c6d99`、source atom set digest `sha256:0ea93e048acc41d5c5bf22dede0085a1208cf29c786016a164c326131219f1d4`を再照合した。現行参照file SHAはOS L2本文の最終bytesに追随し、関連BindingとPHCAP-14/16 inventoryでも同じ値を照合する。歴史receipt、固定commit参照、既存監査の旧pinは書き換えない。
