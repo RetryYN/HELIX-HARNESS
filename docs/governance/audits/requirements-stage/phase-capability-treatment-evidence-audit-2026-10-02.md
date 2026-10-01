@@ -38,8 +38,8 @@ POが固定したHARNESS/OS/LABO/INTELLIGENCE/SECURITYのL2/L11対象revisionは
 
 - **PHCAP-08:** 旧WBSの機能と現行PLAN/roadmap/ticket機構を名前で同一視できない。25 atomの保持receiptは意味同等性を証明しない。旧条件ごとの役割・失敗・出力を比較し、同等/差分/未解決を示すcrosswalkが次の必要証拠。
 - **PHCAP-15:** OSのRelease PortはWeb-OSのproduction deployment successorではない。Web-OSを現行要求対象に戻すのかVision/1.xで保持するのかをsourceに沿って扱う。deployment authority、tenant/runtime境界、post-deploy evidenceを含む対象scopeが決まった場合も、候補起草と採択判断は分ける。
-- **PHCAP-17:** `phcap17-incident-production-write-authority-decision`のA/B/Cは未選択。SECURITY-L2-008やOS incident ticketから旧3役quorumの採択/retireを推定できない。candidate 105はepisode identity/recovery evidenceの2 source spansだけである。三役条件の判断と残りincident条件のsource行き先が必要。
-- **PHCAP-20:** 4 predicate (`running`, time window, `lastVerdict!=pass`, iteration bound) は新114 receiptでも未決。source lines 26–27だけを候補化し、40/41の隣接採択をsuccessorにしない。既存receiptのA/B/Cを解決する必要がある。旧数値やglobal schemaは追加しない。
+- **PHCAP-17:** `phcap17-incident-production-write-authority-decision`のA/B/Cは未選択。SECURITY-L2-008やOS incident ticketから旧3役quorumの採択/retireを推定できない。candidate 105はepisode identity/recovery evidenceの2 source spansだけである。残りincident条件の忠実なL2/L11候補起草と独立reviewは、未決scope/意味を明記して進められる。旧三役条件の採否・意味変更は既存A/B/Cへ留保する。
+- **PHCAP-20:** 4 predicate (`running`, time window, `lastVerdict!=pass`, iteration bound) は新114 receiptでも未決。4条件と適用未決を明示した忠実な候補起草・独立reviewは続行できる。selected operation / per-operation / pending の適用・採択は既存receiptのA/B/Cへ留保し、40/41の隣接採択をsuccessorにしない。旧数値やglobal schemaは追加しない。
 - **残る15 partial行:** bounded auditが列挙する残差を引き継ぐ。ただしruntime/CI/test未構築だけからL2要求不足を立てない。旧固定方式と名称が違うだけでも不足扱いしない。PHCAP-19は高位ループ意味の部分採択と詳細condition mappingを分ける。
 
 ## 結論と限界

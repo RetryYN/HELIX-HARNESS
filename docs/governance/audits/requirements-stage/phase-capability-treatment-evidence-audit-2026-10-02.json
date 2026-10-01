@@ -1947,12 +1947,12 @@
     {
       "phase": "PHCAP-17",
       "unproven": "Old RB08-182 production write three-role approval; incident severity/identity/owner/postmortem/full closure. SECURITY-008 does not replace old quorum. Candidate105 only two line-43 spans.",
-      "next": "Resolve already-recorded PO options A/B/C in the PHCAP-17 authority audit; only then align L2/L11 proposal to that decision. Continue preserving remainder."
+      "next": "Faithful L2/L11 candidate drafting and independent review of the remaining incident conditions may proceed while preserving unresolved scope and meaning. Keep adoption or any meaning change for the old three-role condition pending the already-recorded PO options A/B/C; do not make that decision a prerequisite for drafting or review."
     },
     {
       "phase": "PHCAP-20",
       "unproven": "Old HR-BR-07 exact conjunction running/window/lastVerdict!=pass/iteration<max; candidate114 only lines26-27. Retention/purge/takeover/projection remain partial.",
-      "next": "Resolve receipt A/B/C on whether the predicates apply to a selected operation, define per-operation, or remain pending. Do not import old numeric values or equate 040 retry bound with general iteration cap."
+      "next": "Faithful candidate drafting and independent review may continue with the four source predicates and their unresolved applicability explicit. Hold application/adoption of the selected-operation, per-operation, or pending interpretation to the existing receipt A/B/C decision. Do not import old numeric values or equate 040 retry bound with general iteration cap."
     },
     {
       "phase": "PHCAP-02..07,09..14,16,18,19",
