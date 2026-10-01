@@ -17,14 +17,16 @@
 
 旧assertionはnot-implementedであり、実績証拠ではない。
 
+**数値結果の直接source**：HIL-FR-34 line 124はfixture項目（process group/file lock/SQLite）とadapter適用の親条件であり、`0`という結果値を記載しない。cancel terminal時のprocess残存0は直接consumer `HST-CASE-014-06` line 126、SQLite lock競合・再試行上限到達後にfailedとなった際のpartial transaction 0は`HST-CASE-014-07` line 127が規定する。両consumerはasset `LEGACY-ASSET-7B1C7AED3AA401868455`、file SHA-256 `98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8` に属する。候補source ledgerでは親要求meaning atom 2件と直接consumer oracle atom 2件を異なる`source_kind`で区別し、同じ候補source set digestへ4件含める。
+
 今回の個別consumer行は上記同一Markdown bytesから次のline SHA-256で再照合した。
 
 | Consumer | 行 | SHA-256 |
 |---|---:|---|
-| HST-CASE-014-04 | 125 | 82db7fad53774364268f19c3f58c683cf9f8163ac42201a3106bfc17ac3ccf79 |
-| HST-CASE-014-05 | 126 | ea1be9ae072245d5b961d1119f7283fea00919d7db85eaa60e697ca61e39972b |
-| HST-CASE-014-06 | 127 | c4650ad99a84b5792df72d28de18257e927f25d8b46336e88220ac6173473cca |
-| HST-CASE-014-07 | 128 | 7893ed5fb89a19b7e4bda53567526e8b1a4b172259f3e125de249d847f1bc72a |
+| HST-CASE-014-04 | 124 | a5e876aad99005bb57fdd8b6ecdc912638f28ae75f7702d5c3e593ac39c8c1b5 |
+| HST-CASE-014-05 | 125 | 82db7fad53774364268f19c3f58c683cf9f8163ac42201a3106bfc17ac3ccf79 |
+| HST-CASE-014-06 | 126 | ea1be9ae072245d5b961d1119f7283fea00919d7db85eaa60e697ca61e39972b |
+| HST-CASE-014-07 | 127 | c4650ad99a84b5792df72d28de18257e927f25d8b46336e88220ac6173473cca |
 | HST-CASE-014-08 | 389 | b7f526a0ca976c30e89bbec229684327fb8e075c75ee50bd57fdc0df1127377f |
 | HST-CASE-014-10 | 420 | a198850feb002ba9a6b6c0b7c1989a51d1c06471d1a6fa15321218e1bd844bf8 |
 
@@ -34,7 +36,7 @@
 - HIL-TR-05 line 169はpath/process/signal/file lock/SQLite/executable discoveryをOS adapterへ隔離し、Linux CIを基準、macOS/Windows smokeを互換性証拠とする。
 - HR-FR-HIL-14はOS差分をadapterへ隔離し同じcontractで3 profileを検証する。failure/evidenceはadapter leak、process/lock anomaly等を含み、transitionにdomain fork 0を置く。
 - HAC-HIL-14bはnegative acceptance「adapter leak/path/process/lock異常拒否」。HAT-HIL-14はdesigned_not_implementedでadapter leak/process/lock/unlock/policy違反をnegative boundaryに挙げる。どちらも個別結果を定義しないのでassertion consumerも照合した。
-- HST-CASE-014-04 line 125はdomain platform branchをadapter leakとして拒否。014-05 line 126はroot外を指すsymlinkのpath contractを実行しroot外write 0件。014-06 line 127はrunning child groupへcancel signalを送り、cancelled時点でprocess残存0件。014-07 line 128はSQLite lock競合でretry上限までwriteしfailed時partial transaction 0件を要求する。014-08/10 lines 389/420は共通fixture/domain fork=0、014-09/11はtierとLinux completion/non-inferenceを扱う。
+- HST-CASE-014-04 line 124はdomain platform branchをadapter leakとして拒否。014-05 line 125はroot外を指すsymlinkのpath contractを実行しroot外write 0件。014-06 line 126はrunning child groupへcancel signalを送り、cancelled時点でprocess残存0件。014-07 line 127はSQLite lock競合でretry上限までwriteしfailed時partial transaction 0件を要求する。014-08/10 lines 389/420は共通fixture/domain fork=0、014-09/11はtierとLinux completion/non-inferenceを扱う。
 
 ## 採択済み現行条件との照合
 
@@ -71,7 +73,7 @@ HARNESS-064は別worktreeの未採択candidate commitで、main72dには存在�
 
 ## PO meaning-difference packet: failure outcome
 
-旧HST-CASE-014-06は取消結果をprocess残存0で判定し、014-07は失敗時partial transaction 0を判定する。現行OS/INFRAが保証する「失敗を成功としてcheckpointしない・状態と回復義務を記録する」ことは有効な保持だが、これだけでこの2つのstrict outcomeを満たしたとは扱わない。operation選択時にどの結果契約を採るかは、旧sourceの条件を消さず、対象operationへの適用範囲とともにPO判断材料へ残す。
+旧HST-CASE-014-06 line 126は取消結果をprocess残存0で判定し、014-07 line 127はSQLite lock retry上限到達後のfailed結果についてpartial transaction 0を判定する。現行OS/INFRAが保証する「失敗を成功としてcheckpointしない・状態と回復義務を記録する」ことは有効な保持だが、これだけでこの2つのstrict outcomeを満たしたとは扱わない。operation選択時にどの結果契約を採るかは、旧sourceの条件を消さず、対象operationへの適用範囲とともにPO判断材料へ残す。
 
 | 選択肢 | 選択operationの結果 | 意味上の影響 |
 |---|---|---|
@@ -97,3 +99,13 @@ HARNESS-064は別worktreeの未採択candidate commitで、main72dには存在�
 ## 静的検証範囲
 
 旧JSON/Markdown、asset pins、現行L2/L11、決定記録、carry-forward状態を静的に照合した。旧test/runtime/CIも新世代runtime/test/CIも起動していない。候補oracleは未実行の記述であり、文書検証から実績やHIL-14 stage closureを主張しない。section digest、MPR/coverage pin、source line hashとpaired MD/L11 parityの具体値をcoverage receiptへ記録する。
+
+
+## source attribution correction and final pins
+
+- HIL-FR-34 line 124 and HIL-TR-05 line 169 remain the two parent requirement atoms. HST-CASE-014-06 line 126 and HST-CASE-014-07 line 127 are separate direct-consumer oracle atoms; parent condition context and strict numeric result are not conflated.
+- 065 source set: 4 atoms (parent requirement slices 2; direct consumer oracle rows 2), digest `sha256:7a8727b3a1589e1b9badfee869112e498d81231f25c5db2fab8f0d786860b0c1`; source-lines JSONL SHA-256 `52b564ab4c35b2d4143e42c776e8b444092a3b16c291e1ac1e2184dc1106f05d`.
+- Direct consumer asset `LEGACY-ASSET-7B1C7AED3AA401868455`, full file SHA-256 `98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8`; exact physical lines and line SHA are listed above.
+- この未統合のローカル候補は、最終内容を `MPR-RC-HARNESS-L2-065-001` に記録する。訂正後継MPR行は追加しない。訂正前のatom数・digestと理由はcoverage receiptのcorrection_historyと本監査に記録する。L2 semantic digestは `sha256:a5f298b035e4dcda868b7fb35aa63cbcb8d76a1f0c8668aa6fb64a81e404f75d`、source atom setは上記4件。
+- Candidate L2 file SHA-256 `30f9771c3d494eb9f3bad3b7a909001b00b81ae5ae6302fe619c9cdf4fe217f8`; paired L11 section digest `sha256:fe1aba7f9dd08f64a0e6c5a0e5648beb5e9085ea00d4ae393f6925cdd6aed4bb`, full file SHA-256 `34d25c5db932c03c72a81bb58a9eb665d6acae1e6057b2c90767bb1d95a31f2b`.
+- Numeric source meaning remains: 014-06 requires `process残存0件` at cancelled status; 014-07 requires `partial transaction 0件` after SQLite lock contention and retry-limit write reaches failed. Any cross-operation or non-SQLite use remains the candidate's explicit generalized meaning and PO impact, not a source-text attribution.

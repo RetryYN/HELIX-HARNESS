@@ -5,7 +5,7 @@
   "authority_effect": "none",
   "candidate_state": "registered_proposal; PO未採択",
   "scope": "旧HIL-FR-34/HIL-TR-05のmeaning slicesから、選択operationのcancel terminal結果とselected all-or-none operationのlock/timeout failure結果をHARNESS-L2/L11-065候補へ限定対応。root外symlink write=0は採択済みSECURITY-007へ対応するため二重計上しない。HIL-FR-34のfixture内個別path/case/space/Unicode/permission/executable discovery、domain fork/profile parity/tier/3 OS scope、HAC-HIL-14b全体、HAT-HIL-14全体はsource holding。operation/product/repository/profile scope未選択。",
-  "source_atom_set_digest_rule": "source line order; atom_id + one ASCII space + sha256-prefixed source_line_sha256 joined by LF without trailing LF.",
+  "source_atom_set_digest_rule": "Explicit order: parent legacy requirement atoms sorted by source_line, followed by direct acceptance-consumer oracle atoms sorted by source_line; each token is atom_id + one ASCII space + sha256-prefixed source_line_sha256 joined by LF without trailing LF.",
   "candidate_digest_rule": "H3 ID heading through before next H3; trim trailing blank lines and hash UTF-8 ending in one LF. L2 and L11 section digests are separate.",
   "candidates": [
     {
@@ -24,31 +24,33 @@
         "sha256": "sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
         "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md"
       },
-      "candidate_semantic_digest": "sha256:b567671e7e5234b6e4185816a9af9907857445874e96c8b9ef1b90a9adb5ea04",
+      "candidate_semantic_digest": "sha256:a5f298b035e4dcda868b7fb35aa63cbcb8d76a1f0c8668aa6fb64a81e404f75d",
       "candidate_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-065",
-      "candidate_file_sha256": "sha256:c51b1381a08ba6a1801c1b1ecce178d85f60bc83563a554f4f6d35617bd825fb",
+      "candidate_file_sha256": "sha256:30f9771c3d494eb9f3bad3b7a909001b00b81ae5ae6302fe619c9cdf4fe217f8",
       "candidate_section_boundaries": {
         "start_line": 1250,
         "end_line": 1261,
         "start_heading_prefix": "### HARNESS-L2-065 "
       },
       "acceptance_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-      "acceptance_file_sha256": "sha256:86e8a93cd5b96923fa68cd7a720f5bfc1be8c832c8a0f6711967e7c933b13fbd",
-      "acceptance_section_sha256": "sha256:36fb6adef691aae99e4c2addae83dcc7f2a4ab701b3c91cb4b6be9c5ea489cb2",
+      "acceptance_file_sha256": "sha256:34d25c5db932c03c72a81bb58a9eb665d6acae1e6057b2c90767bb1d95a31f2b",
+      "acceptance_section_sha256": "sha256:fe1aba7f9dd08f64a0e6c5a0e5648beb5e9085ea00d4ae393f6925cdd6aed4bb",
       "acceptance_section_boundaries": {
         "start_line": 965,
         "end_line": 974,
         "start_heading_prefix": "### HARNESS-L2-065 "
       },
-      "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil14-adapter-failure-source-lines-2026-10-02.jsonl#HIL14-ADAPTER-FAIL-SLICE-FR-34,HIL14-ADAPTER-FAIL-SLICE-TR-05",
-      "source_atom_set_digest": "sha256:9abdacf04be269b24e4b341d383cc581f4c0d090bd34c09e9eb20f2aa9b60e98",
-      "source_atom_count": 2,
-      "source_collection_scope": "旧HIL-14のmeaning sliceを2つ選択：HIL-FR-34 line124のcancel child process残存0および選択したall-or-none state operationのlock/timeout failure時partial transaction 0という結果意味、HIL-TR-05 line169のprocess/signal/file-lock/storage差分をadapterへ隔離する関連条件。HIL-FR-34の同一fixture identity/profile parity sliceは064候補へ分離し、fixture内の他個別条件、HAC-HIL-14a/c、HAT全体、3 OS/support scope、旧IR全体は選択せずpreserved holdingへ残す。source meaning differenceはaudit/PO packetに明記。",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil14-adapter-failure-source-lines-2026-10-02.jsonl#HIL14-ADAPTER-FAIL-SLICE-FR-34,HIL14-ADAPTER-FAIL-SLICE-TR-05,HIL14-ADAPTER-FAIL-CONSUMER-HST-014-06,HIL14-ADAPTER-FAIL-CONSUMER-HST-014-07",
+      "source_atom_set_digest": "sha256:7a8727b3a1589e1b9badfee869112e498d81231f25c5db2fab8f0d786860b0c1",
+      "source_atom_count": 4,
+      "source_collection_scope": "選択sourceは計4 atom：親要求slice 2件（HIL-FR-34 line124は同一fixture/process-group/file-lock/SQLiteの文脈、HIL-TR-05 line169はOS adapter隔離）と、直接consumer oracle 2件（同一assertion assetのHST-CASE-014-06 line126がcancel terminal時process残存0件、HST-CASE-014-07 line127がSQLite lock failure後partial transaction 0件を直接規定）。数値0はHIL-FR-34本文にはなくconsumer原文から選択した。HIL-FR-34の同一fixture identity/profile parityは064候補、fixture内その他、HAC-HIL-14a/c、HAT全体、3 OS/support scope、IR全体はholding。",
       "coverage_receipt_ref": "docs/governance/audits/requirement-registration/hil14-adapter-failure-coverage-receipt-2026-10-02.json",
       "coverage_result": "no_loss",
       "carried_atom_refs": [
         "HIL14-ADAPTER-FAIL-SLICE-FR-34",
-        "HIL14-ADAPTER-FAIL-SLICE-TR-05"
+        "HIL14-ADAPTER-FAIL-SLICE-TR-05",
+        "HIL14-ADAPTER-FAIL-CONSUMER-HST-014-06",
+        "HIL14-ADAPTER-FAIL-CONSUMER-HST-014-07"
       ],
       "preserved_pending_registration_refs": [
         "MPR-SH-IR-003#HIL-FR-34/HIL-TR-05 unselected remainder; successor_requirement_ids remain empty",
@@ -72,7 +74,42 @@
         "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:124,169",
         "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md:125-128,389,420"
       ],
-      "source_atom_file_sha256": "sha256:7737da0086cf11ab85c8f7792408df0b6424815e05b4764e16b8074d309b4972"
+      "source_atom_file_sha256": "sha256:52b564ab4c35b2d4143e42c776e8b444092a3b16c291e1ac1e2184dc1106f05d",
+      "source_atom_class_counts": {
+        "legacy_requirement_atom_slice": 2,
+        "legacy_acceptance_consumer_oracle": 2
+      },
+      "source_collection_order": "親要求sliceをsource行順に2件、直接consumer oracle atomをconsumer行順に2件。consumerの数値結果を親要求行へ帰属させない。",
+      "consumer_source_atom_refs": [
+        "HIL14-ADAPTER-FAIL-CONSUMER-HST-014-06",
+        "HIL14-ADAPTER-FAIL-CONSUMER-HST-014-07"
+      ],
+      "consumer_source_file": {
+        "asset_id": "LEGACY-ASSET-7B1C7AED3AA401868455",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+        "line_refs": [
+          {
+            "atom_id": "HIL14-ADAPTER-FAIL-CONSUMER-HST-014-06",
+            "line": 126,
+            "line_sha256": "sha256:ea1be9ae072245d5b961d1119f7283fea00919d7db85eaa60e697ca61e39972b"
+          },
+          {
+            "atom_id": "HIL14-ADAPTER-FAIL-CONSUMER-HST-014-07",
+            "line": 127,
+            "line_sha256": "sha256:c4650ad99a84b5792df72d28de18257e927f25d8b46336e88220ac6173473cca"
+          }
+        ]
+      },
+      "source_correction_history": [
+        {
+          "previous_source_atom_count": 2,
+          "previous_source_atom_set_digest": "sha256:9abdacf04be269b24e4b341d383cc581f4c0d090bd34c09e9eb20f2aa9b60e98",
+          "previous_source_atom_file_sha256": "sha256:7737da0086cf11ab85c8f7792408df0b6424815e05b4764e16b8074d309b4972",
+          "correction": "FR-34/TR-05 parent rows do not directly state the numeric zero outcomes. Added two distinct consumer oracle atoms with exact source path, physical line, line hash, asset id and file hash; retained both parent requirement atoms."
+        }
+      ]
     }
-  ]
+  ],
+  "source_correction_note": "2026-10-02 correction: direct consumer lines HST-CASE-014-06/07 are the source of numeric zero outcomes; HIL-FR-34 line124 is the parent fixture context only."
 }
