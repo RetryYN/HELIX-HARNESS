@@ -111,3 +111,5 @@ HARNESS-064は別worktreeの未採択candidate commitで、main72dには存在�
 - Numeric source meaning remains: 014-06 requires `process残存0件` at cancelled status; 014-07 requires `partial transaction 0件` after SQLite lock contention and retry-limit write reaches failed. Any cross-operation or non-SQLite use remains the candidate's explicit generalized meaning and PO impact, not a source-text attribution.
 
 現行PR比較baseは `7b9d1938fc7699404f68c2b87829df56dc6f690d`。構築時72d08ebと064 local1e766aは履歴であり、現在の064は#2490 mergeで原文二条件の修正も取り込まれた未採択候補である。064本文と既存全要求、台帳646行prefixを保ち065のみ末尾追補した。
+
+最新比較base `fcf944f839a6269fec63f8823d98f51f1d6ec84b` の117候補/台帳647行prefixも保持し065のみを追加。先の7b9d193比較は検収履歴であり、原文4atom・065本文と対受入の意味は不変である。
