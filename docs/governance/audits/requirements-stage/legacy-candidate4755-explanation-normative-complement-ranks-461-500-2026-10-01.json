@@ -71,13 +71,19 @@
     "selected_ids_sha256": "18cd0a7f133b9e916e11755c051483b137cda8fc13846602ee2a5fa73dd47e4a",
     "prior_161_180_match_verified": true,
     "prior_261_300_match_verified": true,
-    "prior_421_460_match_verified": false,
     "prior_boundary_id": "LEGACY-CAND-LINE-000753",
-    "prior_boundary_pin_status": "not available in origin/main at audit base; adjacent committed pin to be added by integrating reviewer",
-    "rank_basis_note": "Ranks 461–500 continue numeric source-ID order after local adjacent rank 460 ID 000753; exact previous slice was not present in origin/main at this audit base.",
-    "prior_boundary_observation_source": "uncommitted sibling worktree artifact; excluded from immutable audit pins"
+    "prior_boundary_pin_status": "committed ancestor pin included",
+    "rank_basis_note": "Ranks 461–500 continue the numeric source-ID order after pinned adjacent rank 460 ID LEGACY-CAND-LINE-000753; rank461=LEGACY-CAND-LINE-000755 and the two 40-row slices overlap in 0 IDs.",
+    "prior_boundary_observation_source": "committed paired JSON for ranks 421–460 at 50d1e2e4cd61687d5cd5672f5296bd2a89d71986",
+    "prior_421_460_boundary_verified": true
   },
   "pinned_inputs": [
+    {
+      "role": "preceding_complement_ranks_421_460_for_rank_boundary",
+      "commit": "50d1e2e4cd61687d5cd5672f5296bd2a89d71986",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-421-460-2026-10-01.json",
+      "sha256": "3c08ea6d604a865cab98bf74a6e62a64ef927cd5dc9b69d4921335bd40474785"
+    },
     {
       "role": "preceding_complement_ranks_261_300_for_rank_boundary",
       "commit": "0d9cdb34e7d7c69d82120cdab119b01038144c83",
@@ -2419,7 +2425,7 @@
   },
   "limitations": [
     "This slice records the exact selected rank/ID set and line-level semantic readings; no requirement adoption, successor assignment, acceptance execution, or source closure is asserted.",
-    "The adjacent ranks 421–460 audit existed only as uncommitted files in another local worktree at the origin/main base. Rank 460 ID 000753 was used as the continuation boundary; integrating reviewer should add the adjacent committed artifact pin.",
+    "The preceding ranks 421–460 paired JSON is pinned as an ancestor and establishes the rank 460 ID 000753 boundary; this slice does not re-count that prior semantic audit.",
     "The 2,710 complement and numeric rank equation depend on the pinned 2,965 effective-explanation pool and the 255 previously reviewed positive marker rows; no claim of complete legacy source atomization follows."
   ],
   "static_validation": {

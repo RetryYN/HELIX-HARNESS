@@ -6,7 +6,7 @@
 
 - 基点は `176b6ec7f3a3087369300f29aa6fc70e998c80b1`。#2353 の4,755 `row_records` に、#2356、#2360、#2363、#2366、#2367、#2368、#2369、#2381をexact source IDで適用し、effective classification `structure=926 / explanation=2965 / condition=864` を再構成した。
 - 先行marker semantic review slices 13件のpositive IDsは255 unique rows。`2965 - 255 = 2710` marker-negative complementをnumeric source-ID suffix昇順でrank付けした。今回のID集合は `LEGACY-CAND-LINE-000755`〜`LEGACY-CAND-LINE-000814` の40行、選択ID SHA-256は `18cd0a7f133b9e916e11755c051483b137cda8fc13846602ee2a5fa73dd47e4a`。
-- rank 460の隣接ID `LEGACY-CAND-LINE-000753` は別worktreeの未commit auditに存在し、今回のorigin/mainには含まれていない。統合時に先行sliceのcommit/path/hash pinを追加する。境界IDだけからrankを補完せず、前段sliceとの連続性を明示している。
+- 直前ranks 421–460のpaired JSONをcommit `50d1e2e4cd61687d5cd5672f5296bd2a89d71986`でpinした。境界はrank460=`LEGACY-CAND-LINE-000753`、rank461=`LEGACY-CAND-LINE-000755`、両sliceの重複0件。先行40行の意味監査を本監査の成果に再計上しない。
 - source-line ledger、asset ledger、archive source file、physical line bytesを40件で照合した。file/line/physical bytesのSHAとledger entry SHA、baseline・overlay・positive-slice・F6/decision pinsはpaired JSONに記録する。
 
 ## 行別意味と現行authority境界
