@@ -1012,3 +1012,14 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **未見例**：依存関係が未選択sourceまたは未読artifactに及ぶ場合、そのconsumer/rollback適用性をunknownとして保持する。未読であることを影響なし・rollback可へ置き換えない。確認済み変換単位の個別結果は未見部分から分離する。
 - **限界**：この受入はrollbackを実行する、特定の復旧手順を採択する、毎ticketの人手承認を要求する、または旧test/runtimeを復活させるものではない。候補本文とoracleからL2採択・L3承認・実装/実行許可を生成しない。
 - **HARNESS-L2-053との境界**：053の採択pairはasset identity、revision、lineage relation、authority/oracle/typed-edge対応と欠落unknownを扱う。ここではそれらのhistoryを前提に、Design Refactorの独立変換計画、既存Refactor接続前に更新すべき設計pair、および対象scopeへ適用できる回復basisの有無を評価する。053のlineage確認だけでこれらの接続前条件が満たされたとはしない。
+
+### HARNESS-L2-072 選択pairのstale revision・異snapshot結果受入候補（未実行）
+
+**対応要求**：HARNESS-L2-072（HARNESS-CORE unit候補、未採択）。以下は静的な内容oracle案であり、実行結果、採択、L3承認、実装許可を示さない。
+
+- **FR48正常対照**：指定scope/revisionの隣接vertical pairに双方向edgeがあり、edge endpointが評価対象のcurrent semantic revisionへ結び付く入力は、stale findingを返さない。この対照は他のFR48条件全体やpair全体の成立を主張しない。
+- **FR48独立負例**：FR48の双方向edge・隣接性・粒度は正常対照と同じまま、片方のedge endpointだけをsuperseded/古いsemantic revisionへ替える。stale revisionを特定し、そのpairを成立/currentとして返さない。旧HST-CASE-031-04（line 304、target digest旧版）と031-07（line 307、semantic revision mismatch）はこの期待のdesign-only参照であり、HIL-NFR-29に属するoracle参照を新しいsource atomへ加算しない。
+- **FR49正常対照**：指定scope・対象revision・canonical pair・oracle対応を同一にしたまま、design artifactとverification evidenceが同じ実snapshotを指す入力ではsnapshot mismatchを返さない。この結果だけでpairの他条件や実行済みoracleを推定しない。
+- **FR49独立負例**：正常対照からverification evidence側のsnapshot参照だけを別snapshotへ替え、pair、scope、target revision、source authority revision、oracle identity、表示revision labelは同じに保つ。このときsnapshot mismatchを識別し、該当pairをgreen／成立として返さない。revision labelまたはauthority revisionが一致してもsnapshot一致へ読み替えない。旧HST-CASE-032-12（line 320）はこの条件のdesign-only参照である。
+- **欠落・不明境界**：比較対象scope/pair/revision、またはdesign/verification snapshot参照のどちらかが欠ける・矛盾する入力は一致と推定せずunknown／未完とし、greenにしない。旧HST-CASE-032-14（line 400）のsnapshot欠落fixtureは補助oracle参照として記録するが、FR49の選択source atomを増やさない。
+- **証拠の限界と戻し先**：参照した旧HST-CASE-031-04/07、032-12/14、および031-09（line 399）はいずれも`design-defined / not-implemented`で、実行結果ではない。source/scope/revisionやsnapshotの意味が不明なら該当要求ownerへ戻し、OSの保存・実行状態からHARNESS判定を推測しない。結果内容はこの2つの選択条件だけに限り、旧test/runtime/CI、実装、採択、source全体のclosureへ読み替えない。
