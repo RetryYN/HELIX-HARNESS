@@ -381,9 +381,10 @@
                 90,
                 99
               ],
-              "fixed_section_sha256": "2d800eaf8c98669fc8f890559d4405efcd1b3d8855de573b59b70e7961541475",
-              "current_section_sha256": "2d800eaf8c98669fc8f890559d4405efcd1b3d8855de573b59b70e7961541475",
-              "current_matches_fixed": true
+              "fixed_section_sha256": "dc222ffbcdf2511878e805ad26239b4c5d9dd3c9d1a67982b48aee12f2fb8132",
+              "current_section_sha256": "dc222ffbcdf2511878e805ad26239b4c5d9dd3c9d1a67982b48aee12f2fb8132",
+              "current_matches_fixed": true,
+              "section_digest_definition": "UTF-8 SHA-256 of physical line range after removing trailing blank LF bytes and retaining exactly one final LF; locator range is inclusive."
             },
             "l11": {
               "identity": "HELIXSECURITY-L2-003",
@@ -397,7 +398,8 @@
               ],
               "fixed_section_sha256": "e68fcbc6750f2ce1d0508fccde5f97dfb9175e7e622cb22fc3b0d80817589eb0",
               "current_section_sha256": "e68fcbc6750f2ce1d0508fccde5f97dfb9175e7e622cb22fc3b0d80817589eb0",
-              "current_matches_fixed": true
+              "current_matches_fixed": true,
+              "section_digest_definition": "UTF-8 SHA-256 of physical line range after removing trailing blank LF bytes and retaining exactly one final LF; locator range is inclusive."
             }
           },
           "HELIXSECURITY-L2-004": {
@@ -412,9 +414,10 @@
                 100,
                 109
               ],
-              "fixed_section_sha256": "1373d55273872771775be0d6f770431d2675d52f23af0606989503eedeb0bc44",
-              "current_section_sha256": "1373d55273872771775be0d6f770431d2675d52f23af0606989503eedeb0bc44",
-              "current_matches_fixed": true
+              "fixed_section_sha256": "58e9e513e934ff3c1ed8da378b05fcc7fdd3e2a27a503feb449bc7a305812d20",
+              "current_section_sha256": "58e9e513e934ff3c1ed8da378b05fcc7fdd3e2a27a503feb449bc7a305812d20",
+              "current_matches_fixed": true,
+              "section_digest_definition": "UTF-8 SHA-256 of physical line range after removing trailing blank LF bytes and retaining exactly one final LF; locator range is inclusive."
             },
             "l11": {
               "identity": "HELIXSECURITY-L2-004",
@@ -428,7 +431,8 @@
               ],
               "fixed_section_sha256": "bd5cd1a6e0d604302743a36686d93c13fc57e95e62c48bbb64a17edc742911c5",
               "current_section_sha256": "bd5cd1a6e0d604302743a36686d93c13fc57e95e62c48bbb64a17edc742911c5",
-              "current_matches_fixed": true
+              "current_matches_fixed": true,
+              "section_digest_definition": "UTF-8 SHA-256 of physical line range after removing trailing blank LF bytes and retaining exactly one final LF; locator range is inclusive."
             }
           },
           "HELIXSECURITY-L2-005": {
@@ -443,9 +447,10 @@
                 110,
                 119
               ],
-              "fixed_section_sha256": "5eccc4d1683c144c57800071294756713aff52f78db467382665002c8ed39cad",
-              "current_section_sha256": "5eccc4d1683c144c57800071294756713aff52f78db467382665002c8ed39cad",
-              "current_matches_fixed": true
+              "fixed_section_sha256": "8e8689912796e8fb3e22210619cb1283f6b27ab1804353dfa93fe43eec10a784",
+              "current_section_sha256": "8e8689912796e8fb3e22210619cb1283f6b27ab1804353dfa93fe43eec10a784",
+              "current_matches_fixed": true,
+              "section_digest_definition": "UTF-8 SHA-256 of physical line range after removing trailing blank LF bytes and retaining exactly one final LF; locator range is inclusive."
             },
             "l11": {
               "identity": "HELIXSECURITY-L2-005",
@@ -459,7 +464,8 @@
               ],
               "fixed_section_sha256": "19f3e8c523ec522f35982ed3837c21fb6c22623c587d17fd7ae6bad1f6a3f107",
               "current_section_sha256": "19f3e8c523ec522f35982ed3837c21fb6c22623c587d17fd7ae6bad1f6a3f107",
-              "current_matches_fixed": true
+              "current_matches_fixed": true,
+              "section_digest_definition": "UTF-8 SHA-256 of physical line range after removing trailing blank LF bytes and retaining exactly one final LF; locator range is inclusive."
             }
           },
           "HELIXSECURITY-L2-006": {
@@ -474,9 +480,10 @@
                 120,
                 129
               ],
-              "fixed_section_sha256": "09459643b100dbe79ef0cf47100a4b56834d975ef309322bc3f8d7f4055d888a",
-              "current_section_sha256": "09459643b100dbe79ef0cf47100a4b56834d975ef309322bc3f8d7f4055d888a",
-              "current_matches_fixed": true
+              "fixed_section_sha256": "8bcb8c56772c18c8afb3bbd016cade4511da47533cbc39cb0f775860fe4bbee3",
+              "current_section_sha256": "8bcb8c56772c18c8afb3bbd016cade4511da47533cbc39cb0f775860fe4bbee3",
+              "current_matches_fixed": true,
+              "section_digest_definition": "UTF-8 SHA-256 of physical line range after removing trailing blank LF bytes and retaining exactly one final LF; locator range is inclusive."
             },
             "l11": {
               "identity": "HELIXSECURITY-L2-006",
@@ -490,7 +497,8 @@
               ],
               "fixed_section_sha256": "a910c8b1352414d2e6e3ad39f093a936f19b8a3c353411eeefa7a877fba3f7e7",
               "current_section_sha256": "a910c8b1352414d2e6e3ad39f093a936f19b8a3c353411eeefa7a877fba3f7e7",
-              "current_matches_fixed": true
+              "current_matches_fixed": true,
+              "section_digest_definition": "UTF-8 SHA-256 of physical line range after removing trailing blank LF bytes and retaining exactly one final LF; locator range is inclusive."
             }
           },
           "HELIXSECURITY-L2-007": {
@@ -505,9 +513,10 @@
                 130,
                 139
               ],
-              "fixed_section_sha256": "052c634e25dff6bd1cba742d240f87d07c6d395852e994414522e4fcd243f210",
-              "current_section_sha256": "052c634e25dff6bd1cba742d240f87d07c6d395852e994414522e4fcd243f210",
-              "current_matches_fixed": true
+              "fixed_section_sha256": "1ee4d42a1e4178d598ce11b75268845578ba83bcb8ea471e2642ff8630c49504",
+              "current_section_sha256": "1ee4d42a1e4178d598ce11b75268845578ba83bcb8ea471e2642ff8630c49504",
+              "current_matches_fixed": true,
+              "section_digest_definition": "UTF-8 SHA-256 of physical line range after removing trailing blank LF bytes and retaining exactly one final LF; locator range is inclusive."
             },
             "l11": {
               "identity": "HELIXSECURITY-L2-007",
@@ -521,7 +530,8 @@
               ],
               "fixed_section_sha256": "bb6dc9697c4bc21ad94cce4f2ad97c796706327d33686858eed1831378b4c155",
               "current_section_sha256": "bb6dc9697c4bc21ad94cce4f2ad97c796706327d33686858eed1831378b4c155",
-              "current_matches_fixed": true
+              "current_matches_fixed": true,
+              "section_digest_definition": "UTF-8 SHA-256 of physical line range after removing trailing blank LF bytes and retaining exactly one final LF; locator range is inclusive."
             }
           },
           "HELIXSECURITY-L2-009": {
@@ -536,9 +546,10 @@
                 150,
                 159
               ],
-              "fixed_section_sha256": "1e0f47fdc6cdce52f324d178b6c927b4519ab9412f51f7bfb1def0a33df9abca",
-              "current_section_sha256": "1e0f47fdc6cdce52f324d178b6c927b4519ab9412f51f7bfb1def0a33df9abca",
-              "current_matches_fixed": true
+              "fixed_section_sha256": "8fb04c1b20003123cbcb8f1b23adaca402e0d94d784473ca63f18ecabf544a84",
+              "current_section_sha256": "8fb04c1b20003123cbcb8f1b23adaca402e0d94d784473ca63f18ecabf544a84",
+              "current_matches_fixed": true,
+              "section_digest_definition": "UTF-8 SHA-256 of physical line range after removing trailing blank LF bytes and retaining exactly one final LF; locator range is inclusive."
             },
             "l11": {
               "identity": "HELIXSECURITY-L2-009",
@@ -552,7 +563,8 @@
               ],
               "fixed_section_sha256": "749fcd644ce86f164a511fcef1381bbfd9aba301fccd6c6ce4d8f01e7fd7324e",
               "current_section_sha256": "749fcd644ce86f164a511fcef1381bbfd9aba301fccd6c6ce4d8f01e7fd7324e",
-              "current_matches_fixed": true
+              "current_matches_fixed": true,
+              "section_digest_definition": "UTF-8 SHA-256 of physical line range after removing trailing blank LF bytes and retaining exactly one final LF; locator range is inclusive."
             }
           }
         },
@@ -578,9 +590,10 @@
                 102,
                 107
               ],
-              "fixed_section_sha256": "bb5239d4bcd59c2d9c125704c26ba3dad3ce45d4d9acd55eb662f060e25924dd",
-              "current_section_sha256": "bb5239d4bcd59c2d9c125704c26ba3dad3ce45d4d9acd55eb662f060e25924dd",
-              "current_matches_fixed": true
+              "fixed_section_sha256": "29b05afbff84475d17b9b1f0698762dab2a1be92480313833d9c8fef87d410c1",
+              "current_section_sha256": "29b05afbff84475d17b9b1f0698762dab2a1be92480313833d9c8fef87d410c1",
+              "current_matches_fixed": true,
+              "section_digest_definition": "UTF-8 SHA-256 of physical line range after removing trailing blank LF bytes and retaining exactly one final LF; locator range is inclusive."
             },
             "l11": {
               "identity": "HELIXINTELLIGENCE-L2-010",
@@ -594,7 +607,8 @@
               ],
               "fixed_section_sha256": "fb8e588559cf58c54fd45b991e4b60f27929e0c8bd2f96bf8b57c7eed161c712",
               "current_section_sha256": "fb8e588559cf58c54fd45b991e4b60f27929e0c8bd2f96bf8b57c7eed161c712",
-              "current_matches_fixed": true
+              "current_matches_fixed": true,
+              "section_digest_definition": "UTF-8 SHA-256 of physical line range after removing trailing blank LF bytes and retaining exactly one final LF; locator range is inclusive."
             }
           },
           "HELIXINTELLIGENCE-L2-011": {
@@ -609,9 +623,10 @@
                 108,
                 113
               ],
-              "fixed_section_sha256": "0a2a1ccf96f44e4d8ccbba8d4663e47844dca60c5135d087d25f6d47504d3deb",
-              "current_section_sha256": "0a2a1ccf96f44e4d8ccbba8d4663e47844dca60c5135d087d25f6d47504d3deb",
-              "current_matches_fixed": true
+              "fixed_section_sha256": "03d87e0c313f91b6a5422f7e9e448fba1138df83017d89f6a2021b25afc7944c",
+              "current_section_sha256": "03d87e0c313f91b6a5422f7e9e448fba1138df83017d89f6a2021b25afc7944c",
+              "current_matches_fixed": true,
+              "section_digest_definition": "UTF-8 SHA-256 of physical line range after removing trailing blank LF bytes and retaining exactly one final LF; locator range is inclusive."
             },
             "l11": {
               "identity": "HELIXINTELLIGENCE-L2-011",
@@ -625,7 +640,8 @@
               ],
               "fixed_section_sha256": "8adac0c5ba0a9d7c441831d37cc8f054788201f351fc5f1c5f74421af9e346c3",
               "current_section_sha256": "8adac0c5ba0a9d7c441831d37cc8f054788201f351fc5f1c5f74421af9e346c3",
-              "current_matches_fixed": true
+              "current_matches_fixed": true,
+              "section_digest_definition": "UTF-8 SHA-256 of physical line range after removing trailing blank LF bytes and retaining exactly one final LF; locator range is inclusive."
             }
           }
         }

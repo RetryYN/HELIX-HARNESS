@@ -20,7 +20,7 @@
 
 ## SECURITY / INTELLIGENCEの採択revision照合
 
-SECURITYの2026-09-28 PO判断（decision file SHA-256はpaired JSON）には、対象L1 revisionを確定し、f6dad2aのL2/L11一式と明示候補28件をすべて採用するとある。L2/L11のwhole-file bytesはその後追補により現baseで変化しているが、FR64/65で使用した003/004/005/006/007/009の各要件節・受入行は同decisionが固定した本文と個別にbyte一致する。Decision成立とMPRの`registered_proposal`/`authority_effect:none`は別の管理情報である。INTELLIGENCEの同日decisionもf6dad2aのL2/L11と明示54候補を採択しており、FR63で参照した010/011は現baseで固定section bytesと一致する。exact section digests、decision hashes、MPR IDsはJSONに収録した。
+SECURITYの2026-09-28 PO判断（decision file SHA-256はpaired JSON）には、対象L1 revisionを確定し、f6dad2aのL2/L11一式と明示候補28件をすべて採用するとある。L2/L11のwhole-file bytesはその後追補により現baseで変化しているが、FR64/65で使用した003/004/005/006/007/009の各要件節・受入行は同decisionが固定した本文と個別にbyte一致する。Decision成立とMPRの`registered_proposal`/`authority_effect:none`は別の管理情報である。INTELLIGENCEの同日decisionもf6dad2aのL2/L11と明示54候補を採択しており、FR63で参照した010/011は現baseで固定section bytesと一致する。各固定/current section digestは、inclusive physical-line locatorから末尾の空行LFを除き、末尾LFを1つに正規化して算出した。locator範囲はJSONに別記し、decision hashesとMPR IDsも同JSONに収録した。
 
 ## 判断・限界
 
