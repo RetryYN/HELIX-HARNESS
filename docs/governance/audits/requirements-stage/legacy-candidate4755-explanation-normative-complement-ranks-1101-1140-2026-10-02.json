@@ -6086,12 +6086,12 @@
       1061,
       1100
     ],
-    "commit": "76fc1cdceb171f9ee5356803252734c10a1948a0",
+    "commit": "4385512b8fa057c0870fcb779f1e143b6bd25404",
     "last_id": "LEGACY-CAND-LINE-001870",
     "md_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1061-1100-2026-10-01.md",
-    "md_sha256": "e52dea3411514f6168c00fcabd39a84b01785b9d669f62f7ed8a3a9e6d449fa0",
+    "md_sha256": "3f0f17d5af860bec3d224dbf838001b531ebc29b1aa90cae191944d0dd016f00",
     "json_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1061-1100-2026-10-01.json",
-    "json_sha256": "0b14c93305836c8fc71a5ce269abb4cf507a23bd7a990d0269317f51b7ef2379",
+    "json_sha256": "2654618ea0500eb9458f7cc73f809f0254887fc33e5ed2eca25d0f96587a282f",
     "local_predecessor_pin": true
   }
 }

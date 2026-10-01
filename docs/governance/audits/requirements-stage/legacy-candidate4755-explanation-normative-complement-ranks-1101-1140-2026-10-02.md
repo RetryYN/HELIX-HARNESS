@@ -5,7 +5,7 @@
 ## 対象と再構成
 
 - #2353 `row_records`に#2356、#2360、#2363、#2366、#2367、#2368、#2369、#2381をsource IDで順次適用。effective explanation 2,965行からmarker pool 255行を除き、`2,965 - 255 = 2,710`行を数値ID順に並べた。rank 1101–1140は40行。ID列hash `283cf7242dbc0c0c587a3dac40620f80b9b7e2284f6f66ca5c58126cae3ca84d`。
-- rank 1100境界IDは`LEGACY-CAND-LINE-001870`。同PRの直前1061–1100 paired auditをlocal commit `76fc1cdceb171f9ee5356803252734c10a1948a0`でpinし、MD/JSON SHAと境界IDを照合した。
+- rank 1100境界IDは`LEGACY-CAND-LINE-001870`。同PRの直前1061–1100 paired auditをlocal commit `4385512b8fa057c0870fcb779f1e143b6bd25404`でpinし、MD/JSON SHAと境界IDを照合した。
 - rank 1101–1138はHXB-AC-003..040の1-IDずつの旧trace表行。rank 1139はNFR/AC/追加観点の列見出し。rank 1140はHXT-NFR-001とその束縛ID・追加観点だけ。隣接する番号なしseparatorや他NFR行を混ぜない。
 
 ## 固定F6との参照関係
