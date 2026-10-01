@@ -7373,7 +7373,7 @@
       "exact_source_line_text": "GitHub／CI／DB接続、compatibility input-onlyはKernelへ継承する。",
       "semantic_family": "v4.0システム不変条件",
       "semantic_function": "Kernelへ継承すると列挙する構成要素",
-      "semantic_reading": "LEGACY-CAND-LINE-002902 — L1-L12、正規V-pair、Forward、Reverse、Recovery、Refactor、fail-close、独立review、Node／Python境界、GitHub／CI／DB接続、compatibility input-onlyをKernelへ継承すると列挙する。",
+      "semantic_reading": "LEGACY-CAND-LINE-002902 — 前物理行から続く列挙の末尾としてGitHub／CI／DB接続とcompatibility input-onlyを挙げ、それらをKernelへ継承するという述語で閉じる。前行の独立した列挙はこの行の内容として再掲しない。",
       "legacy_context": {
         "section_heading": {
           "line": 181,
@@ -7815,7 +7815,7 @@
       "exact_source_line_text": "文書read順依存、memory中心continuation、declaration-only evidenceはcurrent identityとして再出力せず、必要な履歴だけを",
       "semantic_family": "v4.0システム不変条件",
       "semantic_function": "current identityに再出力しない追加のlegacy項目",
-      "semantic_reading": "LEGACY-CAND-LINE-002904 — 文書read順依存、memory中心continuation、declaration-only evidenceをcurrent identityとして再出力せず、必要な履歴だけをcompatibility／archiveへ隔離する文の中間部。",
+      "semantic_reading": "LEGACY-CAND-LINE-002904 — 文書read順依存、memory中心continuation、declaration-only evidenceをcurrent identityとして再出力せず、必要な履歴だけを、という限定まで述べる。この物理行は次行の隔離先と述語へ続く。",
       "legacy_context": {
         "section_heading": {
           "line": 181,
@@ -8257,7 +8257,7 @@
       "exact_source_line_text": "HELIXはprompt集、persona集、multi-agent chat room、全会話保存製品、Issueを意味正本にするproject manager、",
       "semantic_family": "v4.0 非目標",
       "semantic_function": "HELIXの非目標の列挙・前半",
-      "semantic_reading": "LEGACY-CAND-LINE-002907 — HELIXはprompt集、persona集、multi-agent chat room、全会話保存製品、Issueを意味正本にするproject managerではないと列挙する。文は次行へ続く。",
+      "semantic_reading": "LEGACY-CAND-LINE-002907 — HELIXについてprompt集、persona集、multi-agent chat room、全会話保存製品、Issueを意味正本にするproject managerを列挙する。行は読点で終わり、非目標としての否定述語は次行へ続く。",
       "legacy_context": {
         "section_heading": {
           "line": 190,
@@ -9999,7 +9999,7 @@
       "exact_source_line_text": "本書群はL1/L3/L10への昇格候補であり、canonical Requirement、runtime write authority、SLO値、",
       "semantic_family": "インフラ運用品質候補の権限境界",
       "semantic_function": "L1／L3／L10昇格候補と非権限項目",
-      "semantic_reading": "LEGACY-CAND-LINE-002928 — 本書群をL1／L3／L10昇格候補とし、canonical Requirement、runtime write authority、SLO値はその候補性に含まれないと列挙する。列挙は次行へ続く。",
+      "semantic_reading": "LEGACY-CAND-LINE-002928 — 本書群をL1／L3／L10への昇格候補と位置づけ、canonical Requirement、runtime write authority、SLO値の列挙を始める。行は読点で終わり、否定述語は次行へ続く。",
       "legacy_context": {
         "section_heading": {
           "line": 5,
