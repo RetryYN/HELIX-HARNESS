@@ -3,7 +3,7 @@
   "audit_id": "V13-EFFECTIVE-LEGACY40-RANK-REUSE-CROSSWALK-2026-10-01",
   "created_against_commit": "50686b6762788574cb471967e8c24846d3dd56ae",
   "authority_effect": "none",
-  "purpose": "誤った旧順位ラベルの下で作成された40件のsource-condition監査記録を、source identityで131件のsource-qualified poolへ再配置し、未監査51件を列挙する。意味判定は再評価せず、既存記録をsource単位で参照する。",
+  "purpose": "旧40行source-condition監査記録を131件poolへ再配置し、prior first20、source-qualified true21–40、旧raw119 auditからのrank41 carryover、旧40行をsource identityで照合する。旧意味判定は変更せず、固定pool内の未crosswalk ID集合を列挙する。",
   "boundary": {
     "queue_population": "pinned v1.3 303-row REQSRC-SUP queue",
     "candidate4755_excluded": true,
@@ -158,6 +158,39 @@
       "json_sha256": "168349601b43c79feae7e5dcfe9dab05d67f90170c877635687e395910dafba3",
       "markdown_path": "docs/governance/audits/requirements-stage/v13-effective-next20-rows21-40-condition-audit-2026-10-01.md",
       "markdown_sha256": "8217cdc0c537a75c4a7cfb788b11c9dc24c7bf6917780bec4be11892907de110"
+    },
+    {
+      "head": "f25f3e84ecc9f86ded552d8621dc3d15d94547dd",
+      "path": "docs/governance/audits/requirements-stage/v13-effective-next20-rows21-40-condition-audit-2026-10-01.json",
+      "json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791",
+      "markdown_path": "docs/governance/audits/requirements-stage/v13-effective-next20-rows21-40-condition-audit-2026-10-01.md",
+      "markdown_sha256": "933168ee8266378eef90aac02f1158649eccbef77b57cd7720bf7c37ba25a4d7",
+      "current_source_qualified_positions": [
+        21,
+        40
+      ],
+      "source_item_ids": [
+        "REQSRC-SUP-00077",
+        "REQSRC-SUP-00081",
+        "REQSRC-SUP-00089",
+        "REQSRC-SUP-00097",
+        "REQSRC-SUP-00105",
+        "REQSRC-SUP-00108",
+        "REQSRC-SUP-00112",
+        "REQSRC-SUP-00114",
+        "REQSRC-SUP-00146",
+        "REQSRC-SUP-00147",
+        "REQSRC-SUP-00150",
+        "REQSRC-SUP-00151",
+        "REQSRC-SUP-00153",
+        "REQSRC-SUP-00154",
+        "REQSRC-SUP-00155",
+        "REQSRC-SUP-00161",
+        "REQSRC-SUP-00163",
+        "REQSRC-SUP-00165",
+        "REQSRC-SUP-00167",
+        "REQSRC-SUP-00170"
+      ]
     }
   ],
   "pool_reconstruction": {
@@ -183,7 +216,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 2,
@@ -202,7 +236,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 3,
@@ -221,7 +256,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 4,
@@ -240,7 +276,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 5,
@@ -259,7 +296,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 6,
@@ -278,7 +316,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 7,
@@ -297,7 +336,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 8,
@@ -316,7 +356,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 9,
@@ -335,7 +376,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 10,
@@ -354,7 +396,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 11,
@@ -373,7 +416,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 12,
@@ -392,7 +436,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 13,
@@ -411,7 +456,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 14,
@@ -430,7 +476,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 15,
@@ -449,7 +496,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 16,
@@ -468,7 +516,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 17,
@@ -487,7 +536,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 18,
@@ -506,7 +556,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 19,
@@ -525,7 +576,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 20,
@@ -544,7 +596,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 21,
@@ -563,7 +616,10 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": true,
+        "current_slice_position": 21,
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
       },
       {
         "position": 22,
@@ -582,7 +638,10 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": true,
+        "current_slice_position": 22,
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
       },
       {
         "position": 23,
@@ -600,8 +659,11 @@
         },
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
-        "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "audited_by_identity_reuse": true,
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": true,
+        "current_slice_position": 23,
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
       },
       {
         "position": 24,
@@ -620,7 +682,10 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": true,
+        "current_slice_position": 24,
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
       },
       {
         "position": 25,
@@ -639,7 +704,10 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": true,
+        "current_slice_position": 25,
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
       },
       {
         "position": 26,
@@ -658,7 +726,10 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": true,
+        "current_slice_position": 26,
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
       },
       {
         "position": 27,
@@ -677,7 +748,10 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": true,
+        "current_slice_position": 27,
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
       },
       {
         "position": 28,
@@ -696,7 +770,10 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": true,
+        "current_slice_position": 28,
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
       },
       {
         "position": 29,
@@ -715,7 +792,10 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": true,
+        "current_slice_position": 29,
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
       },
       {
         "position": 30,
@@ -734,7 +814,10 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": true,
+        "current_slice_position": 30,
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
       },
       {
         "position": 31,
@@ -753,7 +836,10 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": true,
+        "current_slice_position": 31,
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
       },
       {
         "position": 32,
@@ -772,7 +858,10 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": true,
+        "current_slice_position": 32,
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
       },
       {
         "position": 33,
@@ -791,7 +880,10 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": true,
+        "current_slice_position": 33,
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
       },
       {
         "position": 34,
@@ -810,7 +902,10 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": true,
+        "current_slice_position": 34,
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
       },
       {
         "position": 35,
@@ -829,7 +924,10 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": true,
+        "current_slice_position": 35,
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
       },
       {
         "position": 36,
@@ -848,7 +946,10 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": true,
+        "current_slice_position": 36,
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
       },
       {
         "position": 37,
@@ -867,7 +968,10 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": true,
+        "current_slice_position": 37,
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
       },
       {
         "position": 38,
@@ -886,7 +990,10 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": true,
+        "current_slice_position": 38,
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
       },
       {
         "position": 39,
@@ -905,7 +1012,10 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": true,
+        "current_slice_position": 39,
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
       },
       {
         "position": 40,
@@ -924,7 +1034,10 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": true,
+        "current_slice_position": 40,
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
       },
       {
         "position": 41,
@@ -943,7 +1056,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 42,
@@ -962,7 +1076,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 43,
@@ -981,7 +1096,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 44,
@@ -1000,7 +1116,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 45,
@@ -1019,7 +1136,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 46,
@@ -1038,7 +1156,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 47,
@@ -1057,7 +1176,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 48,
@@ -1076,7 +1196,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 49,
@@ -1095,7 +1216,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 50,
@@ -1114,7 +1236,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 51,
@@ -1133,7 +1256,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 52,
@@ -1152,7 +1276,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 53,
@@ -1171,7 +1296,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 54,
@@ -1190,7 +1316,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 55,
@@ -1209,7 +1336,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 56,
@@ -1228,7 +1356,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 57,
@@ -1247,7 +1376,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 58,
@@ -1266,7 +1396,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 59,
@@ -1285,7 +1416,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 60,
@@ -1304,7 +1436,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 61,
@@ -1323,7 +1456,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 62,
@@ -1342,7 +1476,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 63,
@@ -1361,7 +1496,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 64,
@@ -1380,7 +1516,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 65,
@@ -1399,7 +1536,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 66,
@@ -1418,7 +1556,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 67,
@@ -1437,7 +1576,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 68,
@@ -1456,7 +1596,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 69,
@@ -1475,7 +1616,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 70,
@@ -1494,7 +1636,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 71,
@@ -1513,7 +1656,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 72,
@@ -1532,7 +1676,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 73,
@@ -1551,7 +1696,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 74,
@@ -1570,7 +1716,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 75,
@@ -1589,7 +1736,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 76,
@@ -1608,7 +1756,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 77,
@@ -1627,7 +1776,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 78,
@@ -1646,7 +1796,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 79,
@@ -1665,7 +1816,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 80,
@@ -1684,7 +1836,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 81,
@@ -1703,7 +1856,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 82,
@@ -1722,7 +1876,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 83,
@@ -1741,7 +1896,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 84,
@@ -1760,7 +1916,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 85,
@@ -1779,7 +1936,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 86,
@@ -1798,7 +1956,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 87,
@@ -1817,7 +1976,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 88,
@@ -1836,7 +1996,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 89,
@@ -1855,7 +2016,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 90,
@@ -1874,7 +2036,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 91,
@@ -1893,7 +2056,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 92,
@@ -1912,7 +2076,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 93,
@@ -1931,7 +2096,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 94,
@@ -1950,7 +2116,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 95,
@@ -1969,7 +2136,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 96,
@@ -1988,7 +2156,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 97,
@@ -2007,7 +2176,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 98,
@@ -2026,7 +2196,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 99,
@@ -2045,7 +2216,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 100,
@@ -2064,7 +2236,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 101,
@@ -2083,7 +2256,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 102,
@@ -2102,7 +2276,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 103,
@@ -2121,7 +2296,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 104,
@@ -2140,7 +2316,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 105,
@@ -2159,7 +2336,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 106,
@@ -2178,7 +2356,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 107,
@@ -2197,7 +2376,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 108,
@@ -2216,7 +2396,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 109,
@@ -2235,7 +2416,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 110,
@@ -2254,7 +2436,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
-        "crosswalk_record_present": true
+        "crosswalk_record_present": true,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 111,
@@ -2273,7 +2456,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 112,
@@ -2292,7 +2476,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 113,
@@ -2311,7 +2496,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 114,
@@ -2330,7 +2516,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 115,
@@ -2349,7 +2536,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 116,
@@ -2368,7 +2556,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 117,
@@ -2387,7 +2576,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 118,
@@ -2406,7 +2596,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 119,
@@ -2425,7 +2616,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 120,
@@ -2444,7 +2636,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 121,
@@ -2463,7 +2656,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 122,
@@ -2482,7 +2676,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 123,
@@ -2501,7 +2696,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 124,
@@ -2520,7 +2716,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 125,
@@ -2539,7 +2736,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 126,
@@ -2558,7 +2756,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 127,
@@ -2577,7 +2776,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 128,
@@ -2596,7 +2796,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 129,
@@ -2615,7 +2816,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 130,
@@ -2634,7 +2836,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       },
       {
         "position": 131,
@@ -2653,7 +2856,8 @@
         "priority": "primary_residual",
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
-        "crosswalk_record_present": false
+        "crosswalk_record_present": false,
+        "source_qualified_current_slice_audit_member": false
       }
     ]
   },
@@ -5114,8 +5318,8 @@
       "REQSRC-SUP-00458",
       "REQSRC-SUP-00459"
     ],
-    "unique_reviewed_source_ids": 80,
-    "membership_note": "この件数は監査記録のsource-ID再利用を示し、意味上の完了・閉鎖を表さない。",
+    "unique_reviewed_source_ids": 81,
+    "membership_note": "source-ID監査記録のunion: prior first20 + source-qualified positions21–40 + old40 source-ID crosswalk + raw119旧監査のrank41 carryover REQSRC-SUP-00171（重複は一度）。歴史的順位誤りを残したまま意味上の完了・閉鎖を表さない。",
     "raw119_rank_label_21_40_audit_ids_as_supplied": [
       "REQSRC-SUP-00077",
       "REQSRC-SUP-00081",
@@ -5138,18 +5342,123 @@
       "REQSRC-SUP-00170",
       "REQSRC-SUP-00171"
     ],
-    "rank_label_valid_under_131_pool": false
+    "rank_label_valid_under_131_pool": false,
+    "source_qualified_current_21_40_ids": [
+      "REQSRC-SUP-00077",
+      "REQSRC-SUP-00081",
+      "REQSRC-SUP-00089",
+      "REQSRC-SUP-00097",
+      "REQSRC-SUP-00105",
+      "REQSRC-SUP-00108",
+      "REQSRC-SUP-00112",
+      "REQSRC-SUP-00114",
+      "REQSRC-SUP-00146",
+      "REQSRC-SUP-00147",
+      "REQSRC-SUP-00150",
+      "REQSRC-SUP-00151",
+      "REQSRC-SUP-00153",
+      "REQSRC-SUP-00154",
+      "REQSRC-SUP-00155",
+      "REQSRC-SUP-00161",
+      "REQSRC-SUP-00163",
+      "REQSRC-SUP-00165",
+      "REQSRC-SUP-00167",
+      "REQSRC-SUP-00170"
+    ],
+    "rank41_historical_carryover_ids": [
+      "REQSRC-SUP-00171"
+    ],
+    "unique_reviewed_source_ids_set": [
+      "REQSRC-SUP-00004",
+      "REQSRC-SUP-00008",
+      "REQSRC-SUP-00009",
+      "REQSRC-SUP-00010",
+      "REQSRC-SUP-00015",
+      "REQSRC-SUP-00016",
+      "REQSRC-SUP-00017",
+      "REQSRC-SUP-00018",
+      "REQSRC-SUP-00019",
+      "REQSRC-SUP-00022",
+      "REQSRC-SUP-00023",
+      "REQSRC-SUP-00024",
+      "REQSRC-SUP-00025",
+      "REQSRC-SUP-00026",
+      "REQSRC-SUP-00027",
+      "REQSRC-SUP-00028",
+      "REQSRC-SUP-00029",
+      "REQSRC-SUP-00046",
+      "REQSRC-SUP-00047",
+      "REQSRC-SUP-00051",
+      "REQSRC-SUP-00077",
+      "REQSRC-SUP-00081",
+      "REQSRC-SUP-00089",
+      "REQSRC-SUP-00097",
+      "REQSRC-SUP-00105",
+      "REQSRC-SUP-00108",
+      "REQSRC-SUP-00112",
+      "REQSRC-SUP-00114",
+      "REQSRC-SUP-00146",
+      "REQSRC-SUP-00147",
+      "REQSRC-SUP-00150",
+      "REQSRC-SUP-00151",
+      "REQSRC-SUP-00153",
+      "REQSRC-SUP-00154",
+      "REQSRC-SUP-00155",
+      "REQSRC-SUP-00161",
+      "REQSRC-SUP-00163",
+      "REQSRC-SUP-00165",
+      "REQSRC-SUP-00167",
+      "REQSRC-SUP-00170",
+      "REQSRC-SUP-00171",
+      "REQSRC-SUP-00185",
+      "REQSRC-SUP-00186",
+      "REQSRC-SUP-00187",
+      "REQSRC-SUP-00188",
+      "REQSRC-SUP-00209",
+      "REQSRC-SUP-00212",
+      "REQSRC-SUP-00214",
+      "REQSRC-SUP-00215",
+      "REQSRC-SUP-00216",
+      "REQSRC-SUP-00218",
+      "REQSRC-SUP-00219",
+      "REQSRC-SUP-00220",
+      "REQSRC-SUP-00221",
+      "REQSRC-SUP-00269",
+      "REQSRC-SUP-00272",
+      "REQSRC-SUP-00273",
+      "REQSRC-SUP-00274",
+      "REQSRC-SUP-00275",
+      "REQSRC-SUP-00276",
+      "REQSRC-SUP-00277",
+      "REQSRC-SUP-00338",
+      "REQSRC-SUP-00339",
+      "REQSRC-SUP-00340",
+      "REQSRC-SUP-00435",
+      "REQSRC-SUP-00441",
+      "REQSRC-SUP-00442",
+      "REQSRC-SUP-00443",
+      "REQSRC-SUP-00444",
+      "REQSRC-SUP-00445",
+      "REQSRC-SUP-00446",
+      "REQSRC-SUP-00447",
+      "REQSRC-SUP-00451",
+      "REQSRC-SUP-00452",
+      "REQSRC-SUP-00453",
+      "REQSRC-SUP-00454",
+      "REQSRC-SUP-00455",
+      "REQSRC-SUP-00456",
+      "REQSRC-SUP-00457",
+      "REQSRC-SUP-00458",
+      "REQSRC-SUP-00459"
+    ],
+    "raw119_rank_label_valid_under_131_pool": false,
+    "historical_raw119_only_carryover_ids": [
+      "REQSRC-SUP-00171"
+    ]
   },
   "unreviewed_rows": {
-    "count": 51,
+    "count": 50,
     "rank_blocks": [
-      {
-        "start": 23,
-        "end": 23,
-        "source_item_ids": [
-          "REQSRC-SUP-00089"
-        ]
-      },
       {
         "start": 46,
         "end": 49,
@@ -5232,21 +5541,6 @@
       }
     ],
     "source_identities": [
-      {
-        "position": 23,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00089",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 119,
-          "source_line_sha256": "sha256:b8d0bd53395b0c57bf8aed4d6007d792e7aa0e7038480f0880754e0a2d22f0d6",
-          "source_text": "Design Refactorはsemantic similarity、consumer、oracle、dependency graphで判断し、名称類似だけで統合しない。Performance Refactorは変更前baseline、budget、workload、profile、統計条件、回帰oracleを先に凍結し、測定不能な「高速化」を禁止する。どちらも機能追加と同一episodeへ混載しない。",
-          "condition_cluster_id": "V13-COND-L0119",
-          "source_section_group": 8,
-          "source_section_label": "§4.2 Improvement episode・110–119"
-        }
-      },
       {
         "position": 46,
         "source_identity": {
@@ -6006,18 +6300,23 @@
     "qualified_hits_124": true,
     "pool_131_sorted_unique": true,
     "crosswalk_40_unique_in_pool": true,
-    "reviewed_identity_ids_80_unique": true,
-    "unreviewed_complement_51": true,
     "position_00089_is_23": true,
     "position_00170_is_40": true,
     "position_00171_is_41": true,
-    "raw119_rank_label_not_claimed_correct": true
+    "raw119_rank_label_not_claimed_correct": true,
+    "source_qualified_current_positions21_40_pin_verified": true,
+    "source_qualified_current_slice_ids_20_unique": true,
+    "current_slice_disjoint_from_prior_first20_and_legacy40": true,
+    "rank41_00171_preserved_as_historical_carryover": true,
+    "reviewed_identity_ids_81_unique": true,
+    "unreviewed_complement_50": true,
+    "position_00089_is_23_and_reviewed": true
   },
   "claim_boundary": [
-    "旧rows21–40/rows41–60表示は131-pool上の順位として無効。",
-    "既存の個別comparison finding、evidence、residual、successor/closure/authority欄を改変せずsource-IDで再利用した。",
+    "旧rows21–40/rows41–60表示は131-pool上の順位として無効。新しいsource-qualified 21–40 auditをcurrent identity evidenceとして参照し、旧artifact pinsは比較史として保持する。",
+    "既存の個別comparison finding、evidence、residual、successor/closure/authority欄は意味変更せずsource-IDで再利用する。",
     "source IDを監査記録へ再配置してもsource conditionの閉鎖、正式successor、adoption/binding、人間authorityを生成しない。",
-    "未監査51件はこの固定 identity-based focused pool内のcrosswalk未収録であり、全意味作業の残量を示さない。"
+    "未監査50件はこの固定 identity-based focused pool内でcurrent reviewed identity evidenceに含まれないsource IDであり、全意味作業の残量を示さない。"
   ],
   "static_validation": {
     "queue_and_join_recomputed": true,
@@ -6026,6 +6325,51 @@
     "old_artifact_json_and_markdown_sha_pinned": true,
     "prior_membership_unique_and_nonoverlap_checked": true,
     "crosswalk_and_complement_assertions_passed": true,
-    "archive_runtime_cli_test_ci_executed": false
+    "archive_runtime_cli_test_ci_executed": false,
+    "current_source_qualified_positions21_40_artifact_sha_pinned_at_clean_bundle": true,
+    "reviewed81_and_unreviewed50_complement_recomputed": true,
+    "00089_added_00171_rank41_carryover_preserved": true
+  },
+  "current_state_revision": "f25f3e84ecc9f86ded552d8621dc3d15d94547dd",
+  "source_qualified_current_slice_audit": {
+    "head": "f25f3e84ecc9f86ded552d8621dc3d15d94547dd",
+    "json_path": "docs/governance/audits/requirements-stage/v13-effective-next20-rows21-40-condition-audit-2026-10-01.json",
+    "json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791",
+    "markdown_path": "docs/governance/audits/requirements-stage/v13-effective-next20-rows21-40-condition-audit-2026-10-01.md",
+    "markdown_sha256": "933168ee8266378eef90aac02f1158649eccbef77b57cd7720bf7c37ba25a4d7",
+    "positions": [
+      21,
+      40
+    ],
+    "source_item_ids": [
+      "REQSRC-SUP-00077",
+      "REQSRC-SUP-00081",
+      "REQSRC-SUP-00089",
+      "REQSRC-SUP-00097",
+      "REQSRC-SUP-00105",
+      "REQSRC-SUP-00108",
+      "REQSRC-SUP-00112",
+      "REQSRC-SUP-00114",
+      "REQSRC-SUP-00146",
+      "REQSRC-SUP-00147",
+      "REQSRC-SUP-00150",
+      "REQSRC-SUP-00151",
+      "REQSRC-SUP-00153",
+      "REQSRC-SUP-00154",
+      "REQSRC-SUP-00155",
+      "REQSRC-SUP-00161",
+      "REQSRC-SUP-00163",
+      "REQSRC-SUP-00165",
+      "REQSRC-SUP-00167",
+      "REQSRC-SUP-00170"
+    ],
+    "status_counts": {
+      "partial": 8,
+      "unknown": 1,
+      "gap": 11
+    },
+    "authority_effect": "none",
+    "formal_successor_count": 0,
+    "source_condition_closed_count": 0
   }
 }
