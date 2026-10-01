@@ -8,6 +8,10 @@
 - marker pool 255件を除き、`2,965 - 255 = 2,710`件をsource ID数値順にrank付けした。ranks 581–620は40行。ranks 541–580の直前監査artifactは#2457のmerge commit `3a3f16ec85482f2938939b16ab718b0c04f9c3b1` でmainに統合済み。その40 ID・digest・archive/ledger pinsとrank580/581境界を照合した。前監査の独立reviewから本sliceの採択や完了は生成しない。
 - 583–620位はExecution Ticket acceptance候補のL10 metadata・表構造・draft oracle rowsである。旧文書自身は90件を未実行oracleとし、green evidenceではないと記す。個々の正確なsource text/context、ledger entry hashes、source/asset pinsとF6/decision relationはpaired JSONに記録した。
 
+### 固定F6とのfamily関係
+
+583–660位の旧`execution-ticket-acceptance.md`は、固定F6のHELIX-OS L2 `docs/helix-os/L2-requirements/governance-requirements.md:536–561`が名指しする旧`execution-ticket-requests.md`（HXT-RQ-01〜07をHELIXOS-L2-004/005/007/009へ接続）と同じExecution Ticket familyに属する。HELIX-OS L11 `docs/helix-os/L11-acceptance/governance-acceptance.md:256–267`が名指しするのは旧`execution-ticket-validation.md`で、HXT-RQ-01〜07の受入は全件未実行である。固定F6はこの旧acceptanceファイルを直接名指ししない。したがってfamily関係は残すが、選択した各HXT-AC/HXB-AC行の個別binding、successor、closureを生まない。
+
 ## 行別意味監査
 
 |Rank|Source ID / archive:line|候補行の意味・役割|marker-negativeの意味上の注意|固定F6・現行関係と残差|

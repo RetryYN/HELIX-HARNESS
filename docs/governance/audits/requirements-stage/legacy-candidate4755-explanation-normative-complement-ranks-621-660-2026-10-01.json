@@ -3,6 +3,7 @@
   "audit_id": "legacy-candidate4755-explanation-normative-complement-ranks-621-660-2026-10-01",
   "created_against_commit": "420164de98585fa495e7f4eaacd016981a2df26b",
   "authority_effect": "none",
+  "fixed_F6_execution_ticket_family_relation": "583–660位の旧`execution-ticket-acceptance.md`は、固定F6のHELIX-OS L2 `docs/helix-os/L2-requirements/governance-requirements.md:536–561`が名指しする旧`execution-ticket-requests.md`（HXT-RQ-01〜07をHELIXOS-L2-004/005/007/009へ接続）と同じExecution Ticket familyに属する。HELIX-OS L11 `docs/helix-os/L11-acceptance/governance-acceptance.md:256–267`が名指しするのは旧`execution-ticket-validation.md`で、HXT-RQ-01〜07の受入は全件未実行である。固定F6はこの旧acceptanceファイルを直接名指ししない。したがってfamily関係は残すが、選択した各HXT-AC/HXB-AC行の個別binding、successor、closureを生まない。",
   "prior_completed_complement_slice": {
     "ranks": "581-620",
     "commit": "e08923d87fd52b64aa9c3fc0064032007df0f216",
@@ -2066,7 +2067,7 @@
         }
       ],
       "source_excerpt": "| HXB-AC-026 | 実験backlogでも本線capacity/review在庫を奪い尽くさず、期限切れ再実行を無限catch-upしない | HXB-FR-013 |",
-      "semantic_category": "追加実験の累積予算",
+      "semantic_category": "実験backlogと本線資源の分離",
       "semantic_reading": "HXB-AC-026は、実験backlogが本線のcapacityやreview在庫を奪い尽くさず、期限切れrunの再実行を無限にcatch-upしないことを求める。",
       "marker_negative_normative_or_authority_condition": true,
       "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-004のassignment/resource統制は近接するが、実験backlogから本線capacity/review inventoryを守り、期限切れcatch-upを制限するこの評価基準は固定pairにない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
@@ -2123,7 +2124,7 @@
         }
       ],
       "source_excerpt": "| HXB-AC-027 | 空read modelから全measurementを再構築し、mode/version/as-ofを分けて一致する | HXB-FR-014 |",
-      "semantic_category": "実験backlogと本線資源の分離",
+      "semantic_category": "measurement read modelの再構築",
       "semantic_reading": "HXB-AC-027は、空のread modelから全measurementを再構築し、mode・version・as-ofを分けて結果を一致させることを求める。",
       "marker_negative_normative_or_authority_condition": true,
       "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-009の状態復旧・継続記録は関連するが、空measurement read modelを全件再構築しmode/version/as-ofを一致させる独立oracleは固定pairにない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
@@ -2180,7 +2181,7 @@
         }
       ],
       "source_excerpt": "| HXB-AC-028 | 再採点は新receiptとし、旧score/input set/発行者provenanceを上書きしない | HXB-FR-014 |",
-      "semantic_category": "measurement read modelの再構築",
+      "semantic_category": "再採点receiptの不変性",
       "semantic_reading": "HXB-AC-028は、再採点を新しいreceiptとして記録し、以前のscore・input set・発行者provenanceを上書きしないことを求める。",
       "marker_negative_normative_or_authority_condition": true,
       "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-007は要求から検証証拠までのtraceを求めるが、rescoreを新receiptとし旧score/input set/issuer provenanceを不変に保つ具体schemaは採択していない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
@@ -2237,7 +2238,7 @@
         }
       ],
       "source_excerpt": "| HXB-AC-029 | 鮮度/適用task/risk/profile不適合のscoreをregistryのcurrent qualificationに使わない | HXB-FR-015 |",
-      "semantic_category": "再採点receiptの不変性",
+      "semantic_category": "資格評価の鮮度と適用範囲",
       "semantic_reading": "HXB-AC-029は、鮮度や適用task・risk・profileに合わないscoreを、registryのcurrent qualificationに使わないことを求める。",
       "marker_negative_normative_or_authority_condition": true,
       "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-004にはモデル適格性の確認と未評価表示があり関連するが、古い・task/risk/profile不適合なscoreをcurrent qualificationにしない旧bench oracleのrow-level bindingやsuccessorはない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
@@ -2294,7 +2295,7 @@
         }
       ],
       "source_excerpt": "| HXB-AC-030 | Bench単独で配車・権限を変更せず、委譲済み既存policy内では人間の毎回指示なしに評価/提案を処理する | HXB-FR-015 |",
-      "semantic_category": "資格評価の鮮度と適用範囲",
+      "semantic_category": "Bench評価と割当authorityの分離",
       "semantic_reading": "HXB-AC-030は、Benchの結果だけで配車や権限を変えず、既存policyから委任された範囲の評価・提案は人間の都度指示なしに処理することを求める。",
       "marker_negative_normative_or_authority_condition": true,
       "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-004もBench水準だけでassignmentを決めずOSが適格性を確認する境界を含む。関連はその範囲に限られ、旧HXB-AC-030全体の採択や旧policyのsuccessorを示さない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
@@ -2351,7 +2352,7 @@
         }
       ],
       "source_excerpt": "| HXB-AC-031 | 分析sink停止中もdurable journal正常なら本線継続でき、復旧後に欠損なく追い付く | HXB-FR-016 |",
-      "semantic_category": "Bench評価と割当authorityの分離",
+      "semantic_category": "分析sink停止時の本線継続",
       "semantic_reading": "HXB-AC-031は、分析sinkが停止してもdurable journalが正常なら本線を継続し、復旧後に欠損なく追いつくことを求める。",
       "marker_negative_normative_or_authority_condition": true,
       "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-009の中断・状態継続は関連するが、分析sinkとdurable journalを分離してsink停止中の本線継続と復旧後の無欠損追いつきを保証する同一failure oracleはない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
@@ -2408,7 +2409,7 @@
         }
       ],
       "source_excerpt": "| HXB-AC-032 | audit/lease記録不能は影響scopeの新規操作を停止し、外部結果不明を盲目的retryしない | HXB-FR-016 |",
-      "semantic_category": "分析sink停止時の本線継続",
+      "semantic_category": "audit/lease記録不能時の停止",
       "semantic_reading": "HXB-AC-032は、audit/leaseを記録できない場合に影響scopeの新規操作を止め、外部結果が不明な操作を盲目的にretryしないことを求める。",
       "marker_negative_normative_or_authority_condition": true,
       "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-004/007の操作・証拠traceは関連するものの、audit/lease記録不能時のscope停止と外部結果不明時の盲目的retry禁止を一体で定める旧ACは採択していない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
@@ -2465,7 +2466,7 @@
         }
       ],
       "source_excerpt": "| HXB-AC-033 | secret/PIIを通常metricへ残さず、artifact中の指示でcollector/judge policyが変わらない | HXB-FR-017 |",
-      "semantic_category": "audit/lease記録不能時の停止",
+      "semantic_category": "機密情報とartifact指示の隔離",
       "semantic_reading": "HXB-AC-033は、secret/PIIを通常metricへ残さず、artifact内の指示でcollector/judge policyを変えないことを求める。",
       "marker_negative_normative_or_authority_condition": true,
       "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-007のevidence/log境界は関連するが、secret/PIIを通常metricから排除し、artifact内指示によるcollector/judge policy改変を拒否する条件は固定HARNESS/OS pairにない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
@@ -2522,7 +2523,7 @@
         }
       ],
       "source_excerpt": "| HXB-AC-034 | hidden oracleがworker filesystemからアクセス不能であり、formal/shadowに本番権限がない | HXB-FR-017 |",
-      "semantic_category": "機密情報とartifact指示の隔離",
+      "semantic_category": "hidden oracleと本番権限の隔離",
       "semantic_reading": "HXB-AC-034は、worker filesystemからhidden oracleへアクセスできず、formal/shadow workerに本番権限がないことを求める。",
       "marker_negative_normative_or_authority_condition": true,
       "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-004は一時credentialや実行環境の残留を扱うが、worker filesystemからhidden oracleへのread accessとformal/shadow本番権限を遮断するこのACは個別採択されていない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"

@@ -3,6 +3,7 @@
   "audit_id": "legacy-candidate4755-explanation-normative-complement-ranks-581-620-2026-10-01",
   "created_against_commit": "c47f460e5a79fef79d72242e070872862acbaecb",
   "authority_effect": "none",
+  "fixed_F6_execution_ticket_family_relation": "583–660位の旧`execution-ticket-acceptance.md`は、固定F6のHELIX-OS L2 `docs/helix-os/L2-requirements/governance-requirements.md:536–561`が名指しする旧`execution-ticket-requests.md`（HXT-RQ-01〜07をHELIXOS-L2-004/005/007/009へ接続）と同じExecution Ticket familyに属する。HELIX-OS L11 `docs/helix-os/L11-acceptance/governance-acceptance.md:256–267`が名指しするのは旧`execution-ticket-validation.md`で、HXT-RQ-01〜07の受入は全件未実行である。固定F6はこの旧acceptanceファイルを直接名指ししない。したがってfamily関係は残すが、選択した各HXT-AC/HXB-AC行の個別binding、successor、closureを生まない。",
   "purpose": "Semantic audit of numeric-ID ranks 581–620 in the effective-explanation marker-negative complement; no adoption, successor, implementation, acceptance or source closure is generated.",
   "pool_derivation": {
     "baseline_ref": "#2353 reconciliation.row_records exact source_item_id join",
