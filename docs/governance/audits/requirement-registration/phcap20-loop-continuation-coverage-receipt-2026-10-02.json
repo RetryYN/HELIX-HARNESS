@@ -44,8 +44,8 @@
         "start_heading_prefix": "### HELIXOS-L2-114"
       },
       "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-      "acceptance_file_sha256": "sha256:a8edb8503ac6826650da75fbe06fb4ba2409e93866b2663da5aee9b4df4af006",
-      "acceptance_section_sha256": "sha256:c347c9bbf0fcb581a054f0dd988b560cb24a09abf600112709ca85f6acc8dda0",
+      "acceptance_file_sha256": "sha256:39708460c9bb1e2c1d4560c1287fbfcfb2a7983a435532d30d386075750baed7",
+      "acceptance_section_sha256": "sha256:f6ca2c371a8ee80c619a5334176d39613bd74404bd4fed8f5240cc5057f01630",
       "acceptance_section_boundaries": {
         "start_line": 992,
         "end_line": 1001,
@@ -85,7 +85,7 @@
             "HELIXOS-L2-040",
             "HELIXOS-L2-041"
           ],
-          "status": "unadopted adjacent candidates; L2-040 is failure retry upper bound, L2-041 handles safe session transition/source reread. Neither is this loop’s four-condition successor"
+          "status": "Adopted adjacent L2/L11 pairs under po-decision-2026-09-29-57candidates.md rows 63-64: L2-040 defines the failure-retry upper bound; L2-041 covers safe session transition and source reread. Neither supplies this loop’s four-predicate eligibility contract or a successor for HR-BR-07."
         }
       ],
       "coverage_result": "no_loss_limited_to_two_source_lines_candidate_mapping_only",
@@ -126,7 +126,7 @@
         {
           "index": 4,
           "legacy_condition": "iteration<max",
-          "current_evidence": "L2-009 carries failure count/budget/constraints; L2-040 is an unadopted retry cap for failure retries, not loop iterations",
+          "current_evidence": "L2-009 carries failure count/budget/constraints; adopted L2-040 (PO decision row63) defines a failure-retry cap, not a bound on general loop iterations.",
           "classification": "unresolved; no closure",
           "preserved_or_changed": "Keep an independent iteration-bound check without importing old max values or treating retry count as its successor.",
           "oracle": "At the input owner-defined maximum, block the next same-loop iteration. Missing owner-bound maximum or count yields unknown; no number is fixed here."
@@ -177,12 +177,18 @@
   },
   "overlap_check": [
     {
-      "ref": "MPR-RC-HELIXOS-L2-040",
-      "difference": "failure retry cap; does not cap general same-loop iterations"
+      "ref": "HELIXOS-L2/L11-040 adopted pair",
+      "adoption_decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md#row-63",
+      "l2_section_digest": "sha256:dfd272b75826d37333671f7152a0a58d2d013f0bd13a3f3957a76a39dcdfad80",
+      "l11_section_digest": "sha256:a70e3b1af4b22d3370c6a845fc6b5ced1e1162e2cea66cb1d0664211130533e7",
+      "difference": "The adopted contract limits failure retries; it does not cap general same-loop iterations."
     },
     {
-      "ref": "MPR-RC-HELIXOS-L2-041-001",
-      "difference": "IPC-R07 safe session transition and authority reread; does not define four-predicate loop eligibility"
+      "ref": "HELIXOS-L2/L11-041 adopted pair",
+      "adoption_decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md#row-64",
+      "l2_section_digest": "sha256:a43e3eda819e37ef81db0c60c5add5cebce5e3d17ca858c1446c27ac4db80c48",
+      "l11_section_digest": "sha256:32f08cfa7b070bb902277f79e044e971bbd3948e90621c624d80b167f80d7ded",
+      "difference": "The adopted contract covers safe session transition/source reread; it does not define four-predicate loop eligibility."
     },
     {
       "ref": "HELIXOS-L2-009 adopted",
@@ -194,5 +200,25 @@
     "candidate_adoption_status": "not in prior adopted set; no adoption inherited",
     "required_decision": "PO choice among A/B/C for whether and how these four conditions apply to a current repeated worker/verifier loop."
   },
-  "validation_boundary": "Static source lines, current L2/L11, PO decision, inventory status, candidate section and MPR references only. No archive runtime, CLI, test, old CI, or new runtime executed."
+  "validation_boundary": "Static source lines, current L2/L11, PO decision, inventory status, candidate section and MPR references only. No archive runtime, CLI, test, old CI, or new runtime executed.",
+  "adjacent_adopted_pairs": [
+    {
+      "requirement_identity": "HELIXOS-L2-040",
+      "paired_acceptance_identity": "HELIXOS-L2-040",
+      "adoption_decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md#row-63",
+      "decision_file_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "l2_section_digest": "sha256:dfd272b75826d37333671f7152a0a58d2d013f0bd13a3f3957a76a39dcdfad80",
+      "l11_section_digest": "sha256:a70e3b1af4b22d3370c6a845fc6b5ced1e1162e2cea66cb1d0664211130533e7",
+      "scope": "Adopted failure-retry upper-bound contract. Distinct from general loop iteration limit."
+    },
+    {
+      "requirement_identity": "HELIXOS-L2-041",
+      "paired_acceptance_identity": "HELIXOS-L2-041",
+      "adoption_decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md#row-64",
+      "decision_file_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "l2_section_digest": "sha256:a43e3eda819e37ef81db0c60c5add5cebce5e3d17ca858c1446c27ac4db80c48",
+      "l11_section_digest": "sha256:32f08cfa7b070bb902277f79e044e971bbd3948e90621c624d80b167f80d7ded",
+      "scope": "Adopted safe session transition and source-reread contract. Distinct from four-predicate loop eligibility."
+    }
+  ]
 }
