@@ -82,7 +82,12 @@
       "this_first_id": "LEGACY-CAND-LINE-003339",
       "immediate_prior_1941_1980_audit_in_origin_main": false,
       "preceding_rank_reconstructed_from_full_pool": true,
-      "note": "直前sliceは同一PRへ統合し、最終commitの本文pinは作成側の統合時に追加する。"
+      "note": "直前sliceは同一PRへ統合し、最終commitの本文pinは作成側の統合時に追加する。",
+      "same_PR_prior_audit_pin": {
+        "commit": "45c9d92abef002bbcd80bd934e870dcf4e1e7974",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1941-1980-2026-10-02.json",
+        "sha256": "941dbcd3bd56dd2e38ba812e65962a25223dd308970ff804a39deb1eea7b182b"
+      }
     },
     "preceding_rank_boundary": {
       "rank": 1980,
