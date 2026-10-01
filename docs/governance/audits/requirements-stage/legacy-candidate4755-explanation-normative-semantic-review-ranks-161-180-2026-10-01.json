@@ -15,7 +15,11 @@
     "semantic_rows_reviewed": 20,
     "prior_ranks_1_160_commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
     "archive_runtime_cli_hook_test_ci_executed": false,
-    "not_full_source_closure": true
+    "not_full_source_closure": true,
+    "raw_regex_hit_count_before_markdown_header_exclusion": 258,
+    "excluded_markdown_table_header_count": 3,
+    "screen_pool_reconciled": true,
+    "prior_ranks_1_180_exact_reconstruction_verified": true
   },
   "ranking_reconstruction": {
     "prior_ranks_1_160_exact_prior_audit_join": true,
@@ -46,55 +50,32 @@
       "LEGACY-CAND-LINE-004051"
     ],
     "rank_rule": "prohibition > mandatory > conditional; within tier regex hit count descending; numeric LEGACY-CAND-LINE suffix ascending; exclude headings/table headers and separators as recorded in fixed screen",
-    "independent_full_marker_reconstruction_count": 258,
+    "independent_full_marker_reconstruction_count": 255,
     "recorded_screen_pool_count": 255,
-    "reconstruction_count_matches_recorded_screen_pool": false,
+    "reconstruction_count_matches_recorded_screen_pool": true,
     "reconstructed_ranks_161_180_match_current_slice": true,
-    "reconstructed_ranks_251_258": [
-      {
-        "rank": 251,
-        "id": "LEGACY-CAND-LINE-003956",
-        "tier": "mandatory",
-        "marker": "必須"
-      },
-      {
-        "rank": 252,
-        "id": "LEGACY-CAND-LINE-004497",
-        "tier": "mandatory",
-        "marker": "required"
-      },
+    "independent_raw_regex_hit_count_before_header_exclusion": 258,
+    "excluded_markdown_table_header_count": 3,
+    "excluded_markdown_table_header_ids": [
+      "LEGACY-CAND-LINE-001500",
+      "LEGACY-CAND-LINE-001514",
+      "LEGACY-CAND-LINE-001910"
+    ],
+    "reconstructed_ranks_253_255": [
       {
         "rank": 253,
-        "id": "LEGACY-CAND-LINE-004525",
-        "tier": "mandatory",
-        "marker": "必須"
-      },
-      {
-        "rank": 254,
-        "id": "LEGACY-CAND-LINE-004615",
-        "tier": "mandatory",
-        "marker": "必要条件"
-      },
-      {
-        "rank": 255,
-        "id": "LEGACY-CAND-LINE-004740",
-        "tier": "mandatory",
-        "marker": "必要条件"
-      },
-      {
-        "rank": 256,
         "id": "LEGACY-CAND-LINE-001672",
         "tier": "conditional",
         "marker": "場合のみ"
       },
       {
-        "rank": 257,
+        "rank": 254,
         "id": "LEGACY-CAND-LINE-001678",
         "tier": "conditional",
         "marker": "場合のみ"
       },
       {
-        "rank": 258,
+        "rank": 255,
         "id": "LEGACY-CAND-LINE-001685",
         "tier": "conditional",
         "marker": "場合のみ"
@@ -577,13 +558,11 @@
     "adopted_retired_closed_count": 0
   },
   "limitations": [
-    "screen順位は語彙patternに基づくcandidate source-line selectionであり要求採択ではない。",
     "RCLS family relationは旧RCLS-AC選定行のID-level bindingや個別oracle実施と異なる。",
     "RAMGの一般的なsource authority近接はRAMG source-family relationや採択を表さない。",
     "F6 pair absence and post-F6 decision scope claims are bounded to the exact pinned files/commits.",
     "archive runtime/CLI/hook/adapter/test/CI/workflowは実行していない。",
-    "independent full-marker recount yielded 258 vs screen-recorded 255; three conditional-only rows at reconstructed ranks 256–258 have no row-level screen exclusion explanation; target ranks 161–180 are unchanged, but pool boundary requires a separate bounded audit.",
-    "independent full-marker recount yielded 258 vs screen-recorded 255; three conditional-only rows at reconstructed ranks 256–258 have no row-level screen exclusion explanation; target ranks 161–180 are unchanged, but pool boundary requires a separate bounded audit."
+    "Raw regex matching yields 258 rows; the published screen exclusions remove three Markdown table header lines (001500, 001514, 001910), yielding the fixed eligible pool of 255. The excluded lines are pinned here; screen source remains unchanged."
   ],
   "queue": [
     {
@@ -2302,98 +2281,104 @@
       }
     }
   ],
-  "screen_pool_discrepancy": {
+  "screen_pool_reconciliation": {
     "recorded_screen_commit": "e070ce2fe7453768d174a0594975dc26b0b25f07",
     "recorded_screen_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-marker-screen-2026-10-01.json",
     "recorded_screen_sha256": "1f9b0b6e05bfb46d937dfbbb954e8f7aa956c440acd526cbad2487b82893efbb",
-    "recorded_population_value": 255,
-    "independent_reconstruction_method": "exact published prohibition/mandatory/conditional patterns with re.I; ordered #2353 baseline row_records plus eight pinned classification overlays; source-line ledger texts; headings and Markdown table separators excluded; published tier/hit-count/numeric-ID ordering",
-    "independently_reconstructed_pool_count": 258,
-    "difference": 3,
-    "difference_rows": [
+    "recorded_screen_pool_size": 255,
+    "raw_regex_hit_count_before_markdown_header_exclusion": 258,
+    "excluded_markdown_table_header_count": 3,
+    "excluded_header_source_pins": [
       {
-        "reconstructed_rank": 256,
-        "candidate_source_line_id": "LEGACY-CAND-LINE-001672",
-        "effective_classification": "explanation",
-        "classification_overlay": "no selected overlay row; inherited from #2353 baseline",
-        "priority_tier": 2,
-        "priority_tier_label": "conditional-marker",
-        "matched_marker_count": 1,
-        "matched_marker": {
-          "category": "conditional",
-          "text": "場合のみ"
-        },
+        "candidate_source_line_id": "LEGACY-CAND-LINE-001500",
         "source_path": "docs/governance/candidates/execution-ticket-requirements.md",
         "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
-        "physical_line": 427,
-        "exact_source_line_text": "| Attempt/CI/review/closure | episodeを更新・追補 | sampling/drift policyが適用される場合のみ |",
+        "physical_line": 127,
+        "exact_source_line_text": "| field群 | 必須の意味 |",
         "source_file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
-        "source_line_sha256": "sha256:e53caf477b9180945a51b9c6fd9c3756671facc37853f474f214b03d7b750cea",
+        "source_line_sha256": "a968422e237e87ae98389cdbd676e872ca5e4b0cbf0af20e309a1b65e41d8459",
+        "physical_line_bytes_sha256_including_terminator": "74becd86e4ad2df175f9b291a846d2fe0a586c98d2dbce634e62a45a0c40a0fb",
+        "following_separator_line": {
+          "physical_line": 128,
+          "text": "|---|---|",
+          "sha256": "4199ba454d6d3ae83657120c2bb6bd674eefc0dd7d3cd4cc844171dc6725135b"
+        },
         "source_line_ledger": {
+          "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
           "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
-          "commit": "97672630b7de70fd4433827730c390cbabd90a99",
-          "physical_line": 1672,
+          "line": 1500,
+          "entry_sha256": "dd8ef1c0eb8de9437ba640ed47d4e90f56641da2a8b0630b8bf9945cb84127b3",
           "source_authority_state": "historical_candidate",
           "target_authority_state": "draft_candidate",
           "atomization_status": "preserved_pending_atomization"
-        }
+        },
+        "raw_regex_hit_rank_before_header_exclusion": 222
       },
       {
-        "reconstructed_rank": 257,
-        "candidate_source_line_id": "LEGACY-CAND-LINE-001678",
-        "effective_classification": "explanation",
-        "classification_overlay": "no selected overlay row; inherited from #2353 baseline",
-        "priority_tier": 2,
-        "priority_tier_label": "conditional-marker",
-        "matched_marker_count": 1,
-        "matched_marker": {
-          "category": "conditional",
-          "text": "場合のみ"
-        },
+        "candidate_source_line_id": "LEGACY-CAND-LINE-001514",
         "source_path": "docs/governance/candidates/execution-ticket-requirements.md",
         "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
-        "physical_line": 433,
-        "exact_source_line_text": "| 手動測定要求 | actor/provenanceを保存 | budget/権限を満たす場合のみ |",
+        "physical_line": 147,
+        "exact_source_line_text": "| record | 必須field群 |",
         "source_file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
-        "source_line_sha256": "sha256:745b74b8463558199378771addd990cbf476ccc2b81611ca72451b674ee693cb",
+        "source_line_sha256": "9c1cb66a01e9a99b37b58f238dd2b2c4b7dfe5be79a270ae7db93c8d93d9cfe8",
+        "physical_line_bytes_sha256_including_terminator": "bc3ec98139e38d16fc9e85709fee1fe74fa19a43e08fcc1d3d44b6f6c411ec40",
+        "following_separator_line": {
+          "physical_line": 148,
+          "text": "|---|---|",
+          "sha256": "4199ba454d6d3ae83657120c2bb6bd674eefc0dd7d3cd4cc844171dc6725135b"
+        },
         "source_line_ledger": {
+          "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
           "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
-          "commit": "97672630b7de70fd4433827730c390cbabd90a99",
-          "physical_line": 1678,
+          "line": 1514,
+          "entry_sha256": "0a7071a130f56591c2cf8cb5d4cd6f57984560eabd3d8238e2008107898c26e6",
           "source_authority_state": "historical_candidate",
           "target_authority_state": "draft_candidate",
           "atomization_status": "preserved_pending_atomization"
-        }
+        },
+        "raw_regex_hit_rank_before_header_exclusion": 223
       },
       {
-        "reconstructed_rank": 258,
-        "candidate_source_line_id": "LEGACY-CAND-LINE-001685",
-        "effective_classification": "explanation",
-        "classification_overlay": "no selected overlay row; inherited from #2353 baseline",
-        "priority_tier": 2,
-        "priority_tier_label": "conditional-marker",
-        "matched_marker_count": 1,
-        "matched_marker": {
-          "category": "conditional",
-          "text": "場合のみ"
+        "candidate_source_line_id": "LEGACY-CAND-LINE-001910",
+        "source_path": "docs/governance/candidates/execution-ticket-trace.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
+        "physical_line": 198,
+        "exact_source_line_text": "| NFR | 既存ACへの束縛 | 必須追加観点 |",
+        "source_file_sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d",
+        "source_line_sha256": "9e48f8e258df38a50cf78df7730f500be480625ee193f3d72090ff64de1d633c",
+        "physical_line_bytes_sha256_including_terminator": "f9a05c55bf82e9c7497eb3c2a4360c2c53bbba30e0ae1669bfd8ce2ca83de8c0",
+        "following_separator_line": {
+          "physical_line": 199,
+          "text": "|---|---|---|",
+          "sha256": "23cca02b74f386463efa24796c7a9011b0d2c93f0c38b4d15d5d276205b59b43"
         },
-        "source_path": "docs/governance/candidates/execution-ticket-requirements.md",
-        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
-        "physical_line": 444,
-        "exact_source_line_text": "| dashboard/集計sink停止、durable journal正常 | 継続可 | 予算・必要記録条件を満たす場合のみ | pending/degraded。復旧後replay |",
-        "source_file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
-        "source_line_sha256": "sha256:7455ce0065aadf1ee2543950e15a2ddfb843ec1a2d4a507ac30626d12732ccdc",
         "source_line_ledger": {
+          "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
           "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
-          "commit": "97672630b7de70fd4433827730c390cbabd90a99",
-          "physical_line": 1685,
+          "line": 1910,
+          "entry_sha256": "8970c717e03324d46609556a19a6e17c116147467e8ede880be84eecd38f9bfa",
           "source_authority_state": "historical_candidate",
           "target_authority_state": "draft_candidate",
           "atomization_status": "preserved_pending_atomization"
-        }
+        },
+        "raw_regex_hit_rank_before_header_exclusion": 230
       }
     ],
-    "screen_side_exclusion_reason": "not represented in the screen artifact: it reports aggregate 255 and a top-20 queue but contains no exclusion manifest or row-level account for these three conditional-marker rows; the reason cannot be determined from pinned evidence",
-    "impact": "Reconstructed ranks 161–180 exactly match this audit slice, and all three extra rows sort at ranks 256–258, after the audited slice and after recorded pool cutoff 255. This does not change ranks 161–180. It does make the screen’s aggregate any-marker population stale/inconsistent and leaves inclusion of ranks 256–258 as a follow-up screening reconciliation decision. This audit does not silently revise the screen, expand its queue, or assign semantic disposition to the three rows."
+    "reconstructed_eligible_pool_size": 255,
+    "difference_after_published_exclusions": 0,
+    "reconstruction_count_matches_recorded_screen_pool": true,
+    "conditional_tail_rows_ranked_253_255": [
+      "LEGACY-CAND-LINE-001672",
+      "LEGACY-CAND-LINE-001678",
+      "LEGACY-CAND-LINE-001685"
+    ],
+    "screen_artifact_modified": false,
+    "semantic_review_of_conditional_tail_rows": false,
+    "raw_hit_rank_positions_excluded": {
+      "LEGACY-CAND-LINE-001500": 222,
+      "LEGACY-CAND-LINE-001514": 223,
+      "LEGACY-CAND-LINE-001910": 230
+    }
   }
 }

@@ -31,29 +31,17 @@
 |179|`LEGACY-CAND-LINE-004050`<br>`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-acceptance.md:37`|受入oracle / `acceptance_expected_or_negative_behavior` / standalone=true|RCLS family-level relation; selected-row bindingなし|Cross-project transfer scope, redaction policy, rights review, approval identity/revision, holdout and failure oracle remain.|
 |180|`LEGACY-CAND-LINE-004051`<br>`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-acceptance.md:38`|受入oracle / `acceptance_expected_or_negative_behavior` / standalone=true|RCLS family-level relation; selected-row bindingなし|Output type/consumer access controls and negative proof against direct write across all four authority surfaces remain unverified for this source row.|
 
-## marker母集団の再構成差分
+## screen母集団の照合
 
-公開された3種のpattern、#2353 row_recordsと8 overlay、source-line text、見出し/table separator除外、tier/hit数/numeric ID順を再実行するとmarker候補は258件となった。固定screen JSONの`screening_pool_with_any_marker=255`とは3件不一致である。差分候補はconditional-onlyで、再構成rank 256–258に位置する。対象rank 161–180のsource ID・順序は再構成と一致するため、この差分は本sliceの順位を動かさない。
+公開regexはheader除外前に258行へhitする。screen規則どおりMarkdown table headerを除外する。次の3行はそれぞれ直後にtable separatorがあり、screen対象母集団には含めない。source file SHA、physical line SHA、ledger entry SHAとlineはJSON `screen_pool_reconciliation.excluded_header_source_pins`に固定した。
 
-|再構成rank|Source ID / archive line|hit|screen側の扱い|
+|除外前raw rank|除外ID|source line|除外理由|
 |---:|---|---|---|
-|256|`LEGACY-CAND-LINE-001672` / `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:427`|conditional `場合のみ` 1件|screenは集計255とtop-20のみを記録し、この行の除外理由・exclusion manifestなし|
-|257|`LEGACY-CAND-LINE-001678` / `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:433`|conditional `場合のみ` 1件|同上|
-|258|`LEGACY-CAND-LINE-001685` / `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:444`|conditional `場合のみ` 1件|同上|
+|222|`LEGACY-CAND-LINE-001500`|`execution-ticket-requirements.md:127`|Markdown table header、次行はseparator|
+|223|`LEGACY-CAND-LINE-001514`|`execution-ticket-requirements.md:147`|Markdown table header、次行はseparator|
+|230|`LEGACY-CAND-LINE-001910`|`execution-ticket-trace.md:198`|Markdown table header、次行はseparator|
 
-screen側のrow-level除外根拠は固定artifactから確認できない。差分3行はこの161–180監査のcurrent queueへ加えず、screen母集団の不一致と追加3行を次のbounded screening reconciliationで採否判断する材料として記録した。screenの値・queueを黙って書き換えず、3行の意味監査・採択・closureも行っていない。source/ledger pinsは同名JSONの`screen_pool_discrepancy`にある。
-
-## marker母集団の再構成差分
-
-公開された3種のpattern、#2353 row_recordsと8 overlay、source-line text、見出し/table separator除外、tier/hit数/numeric ID順を再実行するとmarker候補は258件となった。固定screen JSONの`screening_pool_with_any_marker=255`とは3件不一致である。差分候補はconditional-onlyで、再構成rank 256–258に位置する。対象rank 161–180のsource ID・順序は再構成と一致するため、この差分は本sliceの順位を動かさない。
-
-|再構成rank|Source ID / archive line|hit|screen側の扱い|
-|---:|---|---|---|
-|256|`LEGACY-CAND-LINE-001672` / `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:427`|conditional `場合のみ` 1件|screenは集計255とtop-20のみを記録し、この行の除外理由・exclusion manifestなし|
-|257|`LEGACY-CAND-LINE-001678` / `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:433`|conditional `場合のみ` 1件|同上|
-|258|`LEGACY-CAND-LINE-001685` / `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:444`|conditional `場合のみ` 1件|同上|
-
-screen側のrow-level除外根拠は固定artifactから確認できない。差分3行はこの161–180監査のcurrent queueへ加えず、screen母集団の不一致と追加3行を次のbounded screening reconciliationで採否判断する材料として記録した。screenの値・queueを黙って書き換えず、3行の意味監査・採択・closureも行っていない。source/ledger pinsは同名JSONの`screen_pool_discrepancy`にある。
+除外後のeligible poolは255でfixed screenの記録と一致する。`LEGACY-CAND-LINE-001672`、`001678`、`001685`はそれぞれrank253–255に含まれ、今回のmeaning audit対象外である。screen JSONは変更していない。
 
 ## 結果とauthority境界
 
