@@ -2778,7 +2778,7 @@
     "source_atom_coverage_complete": false
   },
   "limitations": [
-    "source-file digest、旧source path、IPC atom IDの一致を物理行の直接bindingから分けた。POまたはreceiptのfile/atom参照から選択行採択を生成しない。",
+    "source-file digest、旧source path、source atom IDの一致を物理行の直接bindingから分けた。POまたはreceiptのfile/atom参照から選択行採択を生成しない。",
     "候補frontmatterの状態・版・層・owner_issue・plan_idはsource metadataに限り、現行target authorityや人間判断へ読替えない。",
     "旧候補内のID・metadata・plan参照は個別sourceの歴史的内容。現行L2/L11の採択済みidentityやauthorityとは扱わない。",
     "未完文は選択行にある節だけを記述し、隣接する非選択行の条件や述語を追加しない。",
@@ -2852,7 +2852,7 @@
             }
           ],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -2979,7 +2979,7 @@
           }
         ],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -3210,7 +3210,7 @@
             }
           ],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -3337,7 +3337,7 @@
           }
         ],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -3566,7 +3566,7 @@
             }
           ],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -3675,7 +3675,7 @@
           }
         ],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -3895,7 +3895,7 @@
             }
           ],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -4004,7 +4004,7 @@
           }
         ],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -4224,7 +4224,7 @@
             }
           ],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -4333,7 +4333,7 @@
           }
         ],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -4553,7 +4553,7 @@
             }
           ],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -4662,7 +4662,7 @@
           }
         ],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -4882,7 +4882,7 @@
             }
           ],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -4991,7 +4991,7 @@
           }
         ],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -5211,7 +5211,7 @@
             }
           ],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -5320,7 +5320,7 @@
           }
         ],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -5540,7 +5540,7 @@
             }
           ],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -5649,7 +5649,7 @@
           }
         ],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -5869,7 +5869,7 @@
             }
           ],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -5978,7 +5978,7 @@
           }
         ],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -6198,7 +6198,7 @@
             }
           ],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -6307,7 +6307,7 @@
           }
         ],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -6527,7 +6527,7 @@
             }
           ],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -6636,7 +6636,7 @@
           }
         ],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -6856,7 +6856,7 @@
             }
           ],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -6965,7 +6965,7 @@
           }
         ],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -7185,7 +7185,7 @@
             }
           ],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -7294,7 +7294,7 @@
           }
         ],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -7517,7 +7517,7 @@
             }
           ],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -7626,7 +7626,7 @@
           }
         ],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -7849,7 +7849,7 @@
             }
           ],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -7958,7 +7958,7 @@
           }
         ],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -8183,7 +8183,7 @@
             }
           ],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -8292,7 +8292,7 @@
           }
         ],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -8515,7 +8515,7 @@
             }
           ],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -8624,7 +8624,7 @@
           }
         ],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -8847,7 +8847,7 @@
             }
           ],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -8956,7 +8956,7 @@
           }
         ],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -9179,7 +9179,7 @@
             }
           ],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -9288,7 +9288,7 @@
           }
         ],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -9511,7 +9511,7 @@
             }
           ],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -9620,7 +9620,7 @@
           }
         ],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -9843,7 +9843,7 @@
             }
           ],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -9952,7 +9952,7 @@
           }
         ],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -10175,7 +10175,7 @@
             }
           ],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -10284,7 +10284,7 @@
           }
         ],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -10502,7 +10502,7 @@
             }
           ],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -10611,7 +10611,7 @@
           }
         ],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -10824,7 +10824,7 @@
             }
           ],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -10933,7 +10933,7 @@
           }
         ],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -11143,7 +11143,7 @@
           "direct_selected_line_or_line_ID_hits": [],
           "source_file_or_asset_hits": [],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -11216,7 +11216,7 @@
         "direct_selected_line_or_line_ID_hits": [],
         "source_file_or_asset_hits": [],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -11416,7 +11416,7 @@
           "direct_selected_line_or_line_ID_hits": [],
           "source_file_or_asset_hits": [],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -11489,7 +11489,7 @@
         "direct_selected_line_or_line_ID_hits": [],
         "source_file_or_asset_hits": [],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -11689,7 +11689,7 @@
           "direct_selected_line_or_line_ID_hits": [],
           "source_file_or_asset_hits": [],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -11762,7 +11762,7 @@
         "direct_selected_line_or_line_ID_hits": [],
         "source_file_or_asset_hits": [],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -11962,7 +11962,7 @@
           "direct_selected_line_or_line_ID_hits": [],
           "source_file_or_asset_hits": [],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -12035,7 +12035,7 @@
         "direct_selected_line_or_line_ID_hits": [],
         "source_file_or_asset_hits": [],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -12235,7 +12235,7 @@
           "direct_selected_line_or_line_ID_hits": [],
           "source_file_or_asset_hits": [],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -12308,7 +12308,7 @@
         "direct_selected_line_or_line_ID_hits": [],
         "source_file_or_asset_hits": [],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -12508,7 +12508,7 @@
           "direct_selected_line_or_line_ID_hits": [],
           "source_file_or_asset_hits": [],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -12581,7 +12581,7 @@
         "direct_selected_line_or_line_ID_hits": [],
         "source_file_or_asset_hits": [],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -12781,7 +12781,7 @@
           "direct_selected_line_or_line_ID_hits": [],
           "source_file_or_asset_hits": [],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -12854,7 +12854,7 @@
         "direct_selected_line_or_line_ID_hits": [],
         "source_file_or_asset_hits": [],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -13054,7 +13054,7 @@
           "direct_selected_line_or_line_ID_hits": [],
           "source_file_or_asset_hits": [],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -13127,7 +13127,7 @@
         "direct_selected_line_or_line_ID_hits": [],
         "source_file_or_asset_hits": [],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -13327,7 +13327,7 @@
           "direct_selected_line_or_line_ID_hits": [],
           "source_file_or_asset_hits": [],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -13400,7 +13400,7 @@
         "direct_selected_line_or_line_ID_hits": [],
         "source_file_or_asset_hits": [],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -13600,7 +13600,7 @@
           "direct_selected_line_or_line_ID_hits": [],
           "source_file_or_asset_hits": [],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -13673,7 +13673,7 @@
         "direct_selected_line_or_line_ID_hits": [],
         "source_file_or_asset_hits": [],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -13873,7 +13873,7 @@
           "direct_selected_line_or_line_ID_hits": [],
           "source_file_or_asset_hits": [],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -13946,7 +13946,7 @@
         "direct_selected_line_or_line_ID_hits": [],
         "source_file_or_asset_hits": [],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -14146,7 +14146,7 @@
           "direct_selected_line_or_line_ID_hits": [],
           "source_file_or_asset_hits": [],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -14219,7 +14219,7 @@
         "direct_selected_line_or_line_ID_hits": [],
         "source_file_or_asset_hits": [],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -14419,7 +14419,7 @@
           "direct_selected_line_or_line_ID_hits": [],
           "source_file_or_asset_hits": [],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -14492,7 +14492,7 @@
         "direct_selected_line_or_line_ID_hits": [],
         "source_file_or_asset_hits": [],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -14695,7 +14695,7 @@
           "direct_selected_line_or_line_ID_hits": [],
           "source_file_or_asset_hits": [],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -14768,7 +14768,7 @@
         "direct_selected_line_or_line_ID_hits": [],
         "source_file_or_asset_hits": [],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -14974,7 +14974,7 @@
           "direct_selected_line_or_line_ID_hits": [],
           "source_file_or_asset_hits": [],
           "source_atom_ID_hits": [],
-          "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+          "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
         },
         "PO": {
           "searched_PO_decision_files": 46,
@@ -15047,7 +15047,7 @@
         "direct_selected_line_or_line_ID_hits": [],
         "source_file_or_asset_hits": [],
         "source_atom_ID_hits": [],
-        "relation": "old line ID/path:line、同一source file/digest/asset、IPC family atom IDを別の関係種別として照合。"
+        "relation": "old line ID/path:line、同一source file/digest/asset、source family atom IDを別の関係種別として照合。"
       },
       "current_PO_receipt_relation": {
         "PO": {
@@ -15254,5 +15254,104 @@
       "available": true,
       "ancestor_of_base": true
     }
-  ]
+  ],
+  "RFA_OS046_family_adoption_receipt_comparison": {
+    "current_OS046_authority": {
+      "decision_pin": {
+        "commit": "148307bbb0f1f7b82fc48ecff5a382621c1850cd",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+      },
+      "decision_line": {
+        "line": 69,
+        "text": "| `HELIXOS-L2-046` | 採択 | `MPR-RC-HELIXOS-L2-046-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d` | `HELIXOS-L2-046` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0` | `docs/governance/audits/requirement-registration/helixos-rfa-scope-coverage-receipt-2026-09-28.json` |",
+        "sha256": "30b808ddda1ac9fb69931bfcce1d2f31f03be9aa0f78a34bb71ce02189ccb03a"
+      },
+      "fixed_and_current_section_proof": [
+        [
+          {
+            "commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+            "section_start_line": 1176,
+            "section_end_line": 1183,
+            "section_sha256": "c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d"
+          },
+          {
+            "commit": "148307bbb0f1f7b82fc48ecff5a382621c1850cd",
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+            "section_start_line": 1177,
+            "section_end_line": 1184,
+            "section_sha256": "c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d"
+          }
+        ],
+        [
+          {
+            "commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+            "section_start_line": 786,
+            "section_end_line": 793,
+            "section_sha256": "3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0"
+          },
+          {
+            "commit": "148307bbb0f1f7b82fc48ecff5a382621c1850cd",
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+            "section_start_line": 794,
+            "section_end_line": 801,
+            "section_sha256": "3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0"
+          }
+        ]
+      ],
+      "interpretation": "9月28日receiptのdraft metadataは歴史状態。9月29日判断はOS046の指定L2/L11 revisionを採択し、現行sectionはdigest一致。選択RFA25行／RAMG15行のbindingや後継採択へ転用せず、全RFA closureやruntime許可も生成しない。"
+    },
+    "receipt_scope_boundary": {
+      "receipt": {
+        "path": "docs/governance/audits/requirement-registration/helixos-rfa-scope-coverage-receipt-2026-09-28.json",
+        "sha256": "691bbe181787f65891d3728ba0c4069a2bb151701b400ef7192ff62ff8634128",
+        "receipt_id": "DRAFT-RCPT-HELIXOS-L2-046-RFA-AC-16-2026-09-28",
+        "receipt_state": "draft_unadopted_candidate_scope_recorded",
+        "authority_effect": "none",
+        "candidate_identity": "HELIXOS-L2-046",
+        "candidate_input_atom_refs": [
+          "LEGACY-CAND-LINE-003612"
+        ],
+        "source_collection_scope": "MPR-SH-CANDIDATE-003が保全するlegacy candidate line inventoryのうち、LEGACY-CAND-LINE-003612（旧RFA-AC-16 acceptance row）1行だけを入力する局所receipt。旧RFA候補全体、隣接row、旧engine/schema/runtime、旧source全体は対象外。",
+        "source_collection_atom_count": 1,
+        "source_line_coverage_result": "partial; only LEGACY-CAND-LINE-003612 is in scope; remaining RFA conditions and source closure are not assessed",
+        "condition_closure": "not_asserted",
+        "semantic_successor_status": "not_confirmed_pending_PO",
+        "source_holding_remains_live": true,
+        "source_lines_ref": "docs/governance/audits/requirement-registration/helixos-rfa-scope-source-lines-2026-09-28.jsonl",
+        "commit": "148307bbb0f1f7b82fc48ecff5a382621c1850cd"
+      },
+      "source_lines_file": {
+        "path": "docs/governance/audits/requirement-registration/helixos-rfa-scope-source-lines-2026-09-28.jsonl",
+        "sha256": "b18913133324fe3f46ca18e2e3b7656834e4fc79380c625a8a94aa8663f6c05c",
+        "records": [
+          {
+            "atom_id": "LEGACY-CAND-LINE-003612",
+            "parent_line_atom_id": "LEGACY-CAND-LINE-003612",
+            "source_holding_registration_id": "MPR-SH-CANDIDATE-003",
+            "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-acceptance.md",
+            "source_file_sha256": "sha256:c3f62478904e620eced270996360274e2840f9d94eca117d838d0e6dfeda7a86",
+            "source_line": 37,
+            "source_line_sha256": "sha256:bafb2bae38d5e4363a90e58405e44e1e4544e85adfaa2b318bef2425a873065c",
+            "source_text": "| RFA-AC-16 | RFA-GH-02 | dispatch/実行/ready/mergeが同authority/HEAD/scopeを照合。docs path免除・探索mergeの実装許可化・required skipを拒否 |",
+            "source_clause_kind": "acceptance_condition",
+            "atomization_rationale": "旧RFA-AC-16のacceptance row一行を一atomとして扱う。authority/HEAD/scopeの遷移間照合と、同じ行に明記された三つのbypass rejectionをひとつの判定条件として保持する。",
+            "disposition": "candidate_scope",
+            "candidate_input": true,
+            "relation": "HELIXOS-L2/L11-046へ未採択connection候補として限定対応。dispatch、実行、Ready化、merge admissionの継続照合とdocs path exemption、exploratory mergeの実装許可化、required skipの拒否だけを扱う。",
+            "audit_ref": "docs/governance/audits/requirements-stage/legacy-candidate-description-condition-overlay-2026-09-28.md#4-legacy-cand-line-003612",
+            "source_section": "RFA-AC-16 / RFA-GH-02"
+          }
+        ],
+        "commit": "148307bbb0f1f7b82fc48ecff5a382621c1850cd"
+      },
+      "relation": "OS046の指定L2/L11 revision採択と歴史receiptを区別する。receiptは選択外LEGACY-CAND-LINE-003612 / RFA-AC-16 / acceptance.md:37だけであり、選択RFA25行・RAMG15行のdirect binding・successor・closureを生成しない。"
+    }
+  }
 }

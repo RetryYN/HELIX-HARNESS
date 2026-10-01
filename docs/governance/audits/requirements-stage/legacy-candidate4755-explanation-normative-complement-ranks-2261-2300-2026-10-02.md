@@ -67,3 +67,7 @@
 - 旧archiveはread-only。旧runtime・test・CIは実行していない。
 
 詳細なcontext、source/asset/routing hash、current/F6各24本文、現行candidate群、全PO／receipt検索pin、旧判断履歴はpaired JSON `legacy-candidate4755-explanation-normative-complement-ranks-2261-2300-2026-10-02.json` に記録。
+
+## RFAに関するOS-046採択とreceiptの限定範囲
+
+OS-046の指定L2/L11 revisionは9月29日の57候補PO判断69行で採択済みであり、9月28日receiptのdraft metadataは当時の状態として保持する。receiptは選択外LEGACY-CAND-LINE-003612／RFA-AC-16／acceptance.md:37だけのpartial scopeであり、本sliceのRFA25行・RAMG15行の個別binding・正式後継・全RFA closureを生成しない。判断・section・receiptのpinは対になるJSONにある。
