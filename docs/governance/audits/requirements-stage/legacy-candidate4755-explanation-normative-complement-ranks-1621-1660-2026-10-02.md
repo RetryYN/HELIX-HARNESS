@@ -2,7 +2,7 @@
 
 - 基点: 2def190e77a4e742f107a92298bc60809d5862b3。#2353と#2356/#2360/#2363/#2366/#2367/#2368/#2369/#2381の分類記録、routing ledger、marker queue/review unionから母集団を独立再構成。
 - 母集団: source 4,755行 → explanation 2,965行 → marker union 255行を除いたcomplement 2,710行。今回はrank 1621–1660の40行。
-- rank1620=LEGACY-CAND-LINE-002725、rank1621=LEGACY-CAND-LINE-002726。rank1581–1620 auditはorigin/mainに未収載のため境界IDのみfull-poolから再構成。直近の統合済み意味監査は1421–1460。
+- rank1620=LEGACY-CAND-LINE-002725、rank1621=LEGACY-CAND-LINE-002726。rank1581–1620 auditは#2471でmainへ統合済み。commit `c62aaf8814b4d96cf3a7fdc3793f1daa7f5cf653` のJSON/MD bytesをpaired JSONでpinし、rank境界もfull-poolから再構成した。
 - sourceは旧Concept v4 L3 requirements候補とConcept v4.0候補。全40物理行を前後行とheadingで照合し、続き文の述語を隣行から補っていない。
 
 ## 旧候補承認・現行authorityの境界
