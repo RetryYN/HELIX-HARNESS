@@ -5,7 +5,7 @@
 ## 母集団と境界
 
 - 基点 `9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba` で#2353の4,755 row_recordsへ#2356、#2360、#2363、#2366、#2367、#2368、#2369、#2381の分類提案を順次適用し、explanation 2,965件を再構成。#2369のsource_evidence 000841/000857はconditionとして扱う。
-- marker screen queue 20行と意味review済み235行のunionは255行。除外後2,710行をsource ID数値順で順位化した。直前981–1020 sliceのローカルaudit commit `0ac85d4ade2d8f933e6b381a3a2004ee7b21b447`の末尾・rank1020境界は `LEGACY-CAND-LINE-001790`、対象は `001791`–`001830`。境界は全母集団再構成でも一致。
+- marker screen queue 20行と意味review済み235行のunionは255行。除外後2,710行をsource ID数値順で順位化した。同PRの直前981–1020 sliceのローカルaudit commit `8c2b9a87cf41e663b1bb2fb83d78d7dcd0734ab4`の末尾・rank1020境界は `LEGACY-CAND-LINE-001790`、対象は `001791`–`001830`。境界は全母集団再構成でも一致。
 - 選択行は全て旧 `execution-ticket-trace.md` の「全IDの配置」表にあるID移管先・候補状態のcross-reference。後続のrequirements/acceptance本文の条件を行別意味に混ぜない。ledger/hash/contextはJSONに行別保存。
 
 ## 固定F6との関係

@@ -9,15 +9,16 @@
       981,
       1020
     ],
-    "commit": "0ac85d4ade2d8f933e6b381a3a2004ee7b21b447",
-    "created_against_commit": "44afc7c17054395f359a4f65da06b739a150697d",
+    "commit": "8c2b9a87cf41e663b1bb2fb83d78d7dcd0734ab4",
+    "created_against_commit": "7255446ec987ab3735d6246417eed195fde91d39",
     "last_id": "LEGACY-CAND-LINE-001790",
     "json_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-981-1020-2026-10-01.json",
-    "json_sha256": "3fadb1bf426ee2710b2b6949e4c82ce93dd49cfca393757a01be238127a486b1",
+    "json_sha256": "7ef96334f75c5f66f8b456dd55219fbd17941e8a87d30b5a7e86e1bfe6789318",
     "md_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-981-1020-2026-10-01.md",
-    "md_sha256": "723b3dcf5c7a46d8568ca4e5348c8b18192e86e622c38ba6b49d20baa4ac415b",
+    "md_sha256": "78117b7c04ad1a83dbc34663939349a43254c09ee8064a4ce657f598aac8ef6a",
     "commit_ancestor_of_baseline": false,
-    "local_predecessor_pin": true
+    "local_predecessor_pin": true,
+    "note": "同PRの先行ローカルcommitをpin。base祖先ではないが、HEAD ancestryに含まれる。"
   },
   "pool_derivation": {
     "baseline_ref": "#2353",
