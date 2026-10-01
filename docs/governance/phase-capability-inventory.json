@@ -894,10 +894,7 @@
         "refs": [
           "docs/governance/audits/source-rebaseline/new-generation-release-composition-source-crosswalk.md",
           "docs/helix-os/L2-requirements/governance-requirements.md"
-        ],
-        "reference_sha256": {
-          "docs/helix-os/L2-requirements/governance-requirements.md": "sha256:4aeb34a4c87f206fefc3e997f51aff6aa81f967d3bc1a2063380a906fef6c0ec"
-        }
+        ]
       },
       "scaffold": [],
       "legacy": {
@@ -1008,10 +1005,7 @@
           "docs/helix-os/L2-requirements/governance-requirements.md",
           "helix-web/docs/helix-web-os/L2-requirements/service-governance-requirements.md",
           "docs/governance/audits/source-rebaseline/new-generation-operational-quality-source-crosswalk.md"
-        ],
-        "reference_sha256": {
-          "docs/helix-os/L2-requirements/governance-requirements.md": "sha256:4aeb34a4c87f206fefc3e997f51aff6aa81f967d3bc1a2063380a906fef6c0ec"
-        }
+        ]
       },
       "scaffold": [],
       "legacy": {
