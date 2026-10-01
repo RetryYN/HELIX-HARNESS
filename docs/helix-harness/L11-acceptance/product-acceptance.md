@@ -989,3 +989,26 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **適用外・unknown**：子processまたは複数step transactionを持たないoperationは、適用外理由を対象contractで特定できる場合だけN/Aとする。適用性、操作owner、run/process/state相関、before/after観測がmissing／unknown／stale／conflictならpassにせずunknownを返す。fixture未実行は要求stageの起草・合意を止める新gateにしない。
 - **戻し先と責務**：HARNESSは選択operationの意味、期待結果、oracle、証拠の妥当性を受け入れる。実行中processの制御、storage transactionの強制、rollback/resourceは既存Worker・SECURITY・operation/state ownerが担う。実runと再開の記録はHELIXOS-L2-020が担う。oracle不足はHARNESS-L2-005/022へ、実行制約やprocess cleanupはWorker/SECURITY ownerへ、state semantics/recoveryは対象operationのdesign ownerへ、receipt/runの不足はOS ownerへ戻す。いずれも下流で未完義務を保持する。
 - **境界**：本受入は旧`LEGACY-ASSET-7B1C7AED3AA401868455`の直接consumer `HST-CASE-014-06` line 126（cancelled時process残存0）と`HST-CASE-014-07` line 127（SQLite lock failure時partial transaction 0）に由来する二つの結果だけを候補化し、親`HIL-FR-34` line 124自体に数値0があるとは扱わない。HAC-HIL-14b全体やHAT-HIL-14の実行を表さない。HST-014-05のroot外symlink write=0は既存SECURITY-L2-007のwrite path/diff/rollback oracleへ対応し、再計上しない。HST-014-04、case/space/Unicode/permission/executable discoveryの各fixture、064の同一profile fixture/domain fork=0、support-tier/3 OS scopeは本候補のsuccessor範囲に含めない。旧fixture/old runtime/test/CIは起動しない。受入oracle自体は未実行である。
+
+### HARNESS-L2-067 source behavior atomizationの受入候補（未実行）
+
+**状態**：HARNESS-L2-067に対応する未採択・未実行の内容oracle案。旧test設計は期待内容の参照に限り、ここで旧test/runtime/CIを実行しない。
+
+- **正常例**：選択scope内のsource snapshot、source digest、read scope、extractor version、およびsource spanが分かるfixtureを与える。1つのfile内に複数の独立behaviorがある場合、各behaviorを別atomとし、guard/input、output/result、識別可能なside effectをそれぞれ根拠spanへ結ぶ。複数atomを持つaggregate parentはparent relationとchild countで示すがparentはcovered behaviorに数えない。file/entry/symbol classificationも分母に数えない。全childが個別atomとして識別され、unclassified/overlap/open-childがない範囲だけをatomic behaviorの観測済み範囲として返す。
+- **不成立例**：file単位の一つのsummaryだけで内部複数behaviorを代表させる、parent aggregateをcovered atomとして足す、file件数をbehavior分母へ加える、childの欠落・未分類・重複overlapを隠す、根拠spanのないI/Oやside effectを補う、またはunknownを0件へ丸める場合は当該scopeのcoverage completeを返さない。
+- **境界例**：未対応constructまたは静的sourceから識別できないruntime side effectを含むscopeは、その箇所をunsupported/unknownとして明示し、他のatomの個別状態を保つ。未選択file/entry/sourceの存在・不在を推測しない。source digestまたはextractor versionが変化した場合、影響するatomとchild closureをstaleとして再照合対象へ戻す。
+- **依存境界**：この受入は027の選択source observationと038の個別capability manifest/closureを前提関係として照合するが、027/038の採択・実行済み状態を仮定しない。041のtemplate-derived obligation atomやOSのdurable source projectionをsource behavior atomと同一視しない。これは文書上の期待oracleであり、旧または現行runtimeの実動作・全sourceの網羅・要求採択を証明しない。
+
+### HARNESS-L2-068 Design Refactor接続前条件の受入候補（未実行）
+
+**状態**：HARNESS-L2-068に対応する未採択・未実行の静的内容oracle案。実変換・rollback実行・CI実施を表さない。
+
+- **正常例 — 重複contract/policy/schema**：同じ選択scope内の二つのdesign nodeが重複候補として与えられる。両方の定義、責務、state invariant、全consumer、before/after oracleを比較して、重複の意味と独立変換単位を個別に記録する。単に関連nodeとして列挙するだけでは比較済みにしない。意味同等で統合可能な候補は独立した共通化等の変換計画へ結べるが、実際の統合や特定storage/layoutは実行しない。
+- **正常例 — semantic rename**：名称が異なる二つのsymbolのsemantic signature（入力、出力、副作用、failure、state transition、call graph、consumer contract）が同一であるfixtureでは、意味同等を根拠に同義名の統一候補を示す。変換単位、全consumer、pair/oracle、対象Scope Authority、rollback/recovery basisが揃い、必要pairとoracleが対象revisionへ実際に更新済みの場合だけRefactorへ接続可能とする。
+- **拒否例 — lexical-only rename**：名称の類似はあるがsemantic signatureの入力/出力、副作用、failure、state transition、call graphまたはconsumer contractのいずれかが異なるfixtureで、名称類似だけを理由に統一する判断は拒否する。
+- **拒否例 — 同名異義**：同じ名称でもsemantic signatureまたは責務が異なる二つのsymbolを一つへ統合する判断は拒否し、別概念として分離候補にする。
+- **拒否例 — 接続前条件と意味差分**：consumer欠落、必要pair未更新/stale/欠落、対oracleが更新後設計とrevisionまたは意味上不整合、更新予定の列挙だけ、pairをstaleと印すだけ、または適用可能なrollback根拠を示せない変換を既存Refactorへ接続可能とする場合は不成立またはunknownにする。observable behavior、public surface、DB semanticsまたは要求に意味差があるfixtureはHARNESS-L2-002/003/004の既存Redesign/Retrofit routeへ返し、Refactor内だけで修正を完結させない。
+- **authority反例**：pair更新・oracle・rollback根拠が揃っていても、authority根拠が欠ける、別revisionへsupersedeされstaleである、または変換が許可scope外である各fixtureは、それぞれ既存Refactorへ接続しない。既存authority ownerへ不足を返し、新しい人手承認を一律に追加しない。
+- **未見例**：依存関係が未選択sourceまたは未読artifactに及ぶ場合、そのconsumer/rollback適用性をunknownとして保持する。未読であることを影響なし・rollback可へ置き換えない。確認済み変換単位の個別結果は未見部分から分離する。
+- **限界**：この受入はrollbackを実行する、特定の復旧手順を採択する、毎ticketの人手承認を要求する、または旧test/runtimeを復活させるものではない。候補本文とoracleからL2採択・L3承認・実装/実行許可を生成しない。
+- **HARNESS-L2-053との境界**：053の採択pairはasset identity、revision、lineage relation、authority/oracle/typed-edge対応と欠落unknownを扱う。ここではそれらのhistoryを前提に、Design Refactorの独立変換計画、既存Refactor接続前に更新すべき設計pair、および対象scopeへ適用できる回復basisの有無を評価する。053のlineage確認だけでこれらの接続前条件が満たされたとはしない。
