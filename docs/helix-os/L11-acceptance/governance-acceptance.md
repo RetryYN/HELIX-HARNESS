@@ -999,3 +999,14 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **unseen oracle**：consumer mapping契約、freshness SLAまたはretention policy reference、source key安定性、schema互換、cursor codec、data-use許可のいずれかをmissing/unknown/conflict/staleにする。成功、削除、consumer集合、許可または鮮度遵守を推測で補完せず、状態とownerへの不足参照を残す。影響しない別source resultを候補が一律に失敗させる条件も導入しない。
 - **境界・判定**：既存OS-L2-015/016/007/009のsource/provenance/projection/復旧oracleを維持する。CONNECTの一般互換性やtransport、SECURITYのauthority、source/consumer ownerの業務semantic mapping判定をOSが代行しない。正常／negative／boundary/unseenを文書上のfixtureとして静的に照合することは候補受入契約であり、要求段階のgateに正式実装、runtime成立、外部データ取得または旧HAT実行を加えない。
 - **出典・意味再導出**：旧`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`のL1 lines 67/113/114/197、`LEGACY-ASSET-67761C517521603F844C`の`HR-FR-HIL-11`、`LEGACY-ASSET-4886CEF2A7AB5B7AA5C8`のHAC-HIL-11a/b/cおよびHAT-HIL-11を起点にする。旧L5/L6のfull/incremental、source key、atomic projection、tombstone、stale、redaction、quarantineのfailure境界を意味再導出し、旧Node/Python/DB/runtime/testの物理方式は現行oracleへ固定しない。source atom入力と部分coverageは`hil11-product-data-projection-source-lines-2026-10-02.jsonl`および`hil11-product-data-projection-coverage-receipt-2026-10-02.json`に束縛する。
+
+
+### HELIXOS-L11-113 GitHub監査の決定的規則・semantic finding境界の受入候補（未採択・未実行）
+
+- **位置づけ・入力**：HELIXOS-L2-113の未採択候補に対する静的oracle案。scopeと対象revision、決定的規則の正本revision、Node gate結果、semantic modelのidentity/revisionおよび対象に対応する評価根拠をfixtureとして固定する。fixture内の表示は実運用結果ではない。
+- **正常例—決定的規則の強制拒否**：明示した決定的規則とNode gateの判定が`deny`で、semantic modelが`pass`を返すfixtureを与える。`pass`だけを根拠に許可される処理要求をfixtureに含め、oracleの期待結果として`gateDecision: deny`と`requestResult: rejected`の両方を照合する。これによりNode gateがその要求を強制拒否し、実効判定を`deny`のまま返す条件を確認する。semantic findingは別記録として保持できるが、findingを記録しただけで処理要求の拒否を省ける判定は不合格とする。model resultがgate結果を上書きまたは相殺してはならない。
+- **正常例—semantic finding**：決定的規則の判定と別に、同じ対象scope/model revisionへ結び付く評価根拠を持ったmodelのsemantic findingを与える。findingはsemantic findingとして区別され、Node gateの判定やowner authorityを作成・変更しない。既存のHELIX lane/provider/Control Plane identityをfixtureへ保ち、新しいものを追加しない。
+- **誤りを含む例**：model `pass`で決定的`deny`を相殺する、決定的規則をmodelへ委譲する、評価根拠が異なるmodel revision/scopeを評価済みと扱う、GitHub監査を第四provider laneまたは別Control Planeとして登録する場合は不合格。いずれかの条件に適合しても他条件の失敗を相殺しない。
+- **欠落・unknown例**：決定的規則のrevision、Node判定、model評価根拠、scopeまたはmodel revisionのいずれかがmissing/stale/unknown/conflictの場合、fixtureは未解決として保持する。別revisionの評価、Issue/PR状態、候補本文から補完して委譲またはpassを導かない。
+- **判定oracle**：L2が要求する三境界（Node gateによる決定的規則、評価根拠が対応するmodelへのsemantic finding限定委譲、第四provider lane/別Control Planeの不生成）を独立に照合する。Node gateの実行、modelの実評価・推論、GitHub監査、CI、Issue/PR更新、merge、実際のgreen、実装完了、L3承認またはsource retirementはこのL11候補の合格条件にしない。
+- **旧oracleとの対応**：旧3L-AC-016はmodelによるdeterministic gate上書き拒否、3L-AC-017はsemantic findingをowner/route候補として扱いbranchを直接修正しないこと、3L-AC-018はseverity作用範囲の分離を示す。severity値・停止条件の具体値は旧3L-R-17から下位設計へ渡し、本L2/L11で新設しない。旧test/runtimeは実行しない。
