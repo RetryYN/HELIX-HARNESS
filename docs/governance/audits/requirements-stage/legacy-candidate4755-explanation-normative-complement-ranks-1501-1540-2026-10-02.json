@@ -1808,7 +1808,7 @@
       "exact_source_line_text": "| CL-R-01 | HELIX全体の共通商用方針を定義し、各提供単位を共通契約版へ対応付ける。未所属・二重契約所有を明示する |",
       "semantic_family": "旧HELIX商用ライセンス要求候補",
       "semantic_function": "CL-R-01の旧候補要件表行",
-      "semantic_reading": "CL-R-01は、HELIX全体の共通商用方針と各提供単位の契約版対応を候補要件として掲げる。",
+      "semantic_reading": "CL-R-01は、HELIX全体の共通商用方針を定義し、各提供単位を共通契約版へ対応付け、未所属・二重契約所有を明示する旧候補要件。",
       "legacy_context": {
         "section_heading": {
           "line": 34,
@@ -1997,7 +1997,7 @@
       "exact_source_line_text": "| CL-R-02 | 通常利用は有償契約を基本とし、無償評価は明示された対象・期間・用途に限る。評価許諾を自動生成しない |",
       "semantic_family": "旧HELIX商用ライセンス要求候補",
       "semantic_function": "CL-R-02の旧候補要件表行",
-      "semantic_reading": "CL-R-02は、通常利用と明示条件付きの評価利用を分け、評価許諾を自動で作らない候補要件。",
+      "semantic_reading": "CL-R-02は、通常利用を有償契約を基本とし、無償評価を明示された対象・期間・用途に限定する。評価許諾を自動生成しない旧候補要件。",
       "legacy_context": {
         "section_heading": {
           "line": 34,
@@ -2353,7 +2353,7 @@
       "exact_source_line_text": "| CL-R-04 | HELIXで作ったアプリは利用者側、HELIX自身・Package・Release Pack・Gene等の独自資産はRetryYN側と区別する。第一者・第三者・利用者所有・権利未確認を分離し、著作者と再許諾根拠を検証する。通知・元ライセンスを保持する。利用者アプリからGeneを抽出することを理由に元成果物の権利を移転させず、再利用・学習の許可を別途確認する |",
       "semantic_family": "旧HELIX商用ライセンス要求候補",
       "semantic_function": "CL-R-04の旧候補要件表行",
-      "semantic_reading": "CL-R-04は、利用者アプリ、HELIX独自資産、第三者・権利未確認資産と許諾根拠を区別する候補要件。",
+      "semantic_reading": "CL-R-04は、利用者アプリとRetryYN側のHELIX独自資産を区別し、第一者・第三者・利用者所有・権利未確認を分離する。著作者と再許諾根拠を検証し、通知と元ライセンスを保持する。利用者アプリからGeneを抽出しても元成果物の権利を移転させず、再利用・学習の許可を別途確認する旧候補要件。",
       "legacy_context": {
         "section_heading": {
           "line": 34,
@@ -2917,7 +2917,7 @@
       "exact_source_line_text": "| CL-R-08 | 権利不明は該当資産の商用発効・配布を止める。無関係な既存開発・検証を一律停止せず、法定の権利を上書きしたと扱わない |",
       "semantic_family": "旧HELIX商用ライセンス要求候補",
       "semantic_function": "CL-R-08の旧候補要件表行",
-      "semantic_reading": "CL-R-08は、権利不明の場合に該当資産の発効・配布を止めつつ、無関係な開発・検証へ停止を広げない候補要件。",
+      "semantic_reading": "CL-R-08は、権利不明なら該当資産の商用発効・配布を止めるが、無関係な既存開発・検証を一律停止せず、法定の権利を上書きしたと扱わない旧候補要件。",
       "legacy_context": {
         "section_heading": {
           "line": 34,
@@ -3106,7 +3106,7 @@
       "exact_source_line_text": "| CL-R-09 | clean consumerの導入・更新・rollbackでもartifactとその許諾版を一致させる。rollbackで別版の許諾へ偽装しない |",
       "semantic_family": "旧HELIX商用ライセンス要求候補",
       "semantic_function": "CL-R-09の旧候補要件表行",
-      "semantic_reading": "CL-R-09は、導入・更新・rollback時にもartifactと適用許諾版を一致させる候補要件。",
+      "semantic_reading": "CL-R-09は、clean consumerの導入・更新・rollbackでartifactとその許諾版を一致させ、rollbackで別版の許諾へ偽装しない旧候補要件。",
       "legacy_context": {
         "section_heading": {
           "line": 34,
