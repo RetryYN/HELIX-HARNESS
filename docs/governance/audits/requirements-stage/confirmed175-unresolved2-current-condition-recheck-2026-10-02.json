@@ -157,7 +157,7 @@
       "management_registration": "MPR-RC-HELIXOS-L2-113-001; registered_proposal; authority_effect none",
       "no_adoption_or_retirement": true,
       "latest_main_has_candidate_pair": false,
-      "latest_main_candidate_state": "L2-113/L11-113 and MPR-RC-HELIXOS-L2-113-001 are local-branch draft artifacts, absent from latest main d31a4c8."
+      "latest_main_candidate_state": "初回read-after時のmain d31a4c8ではL2-113/L11-113とMPR-RC-HELIXOS-L2-113-001はlocal branchの未採択draft候補でmainに存在しなかった。現在のPR比較先origin/main 72d08ebにも候補section/register rowはなく、このPRのlocal register suffixに候補rowを保持する。"
     },
     "source_lines_file": "docs/governance/audits/requirement-registration/three-lane-br-007-github-audit-source-lines-2026-10-02.jsonl",
     "source_lines_file_sha256": "sha256:dbc1f642b996a6923def8c8033323780a2ce46fef870cc84d8ddc38935e36506",
@@ -178,7 +178,7 @@
   },
   "appended_register_rows": [
     {
-      "line": 639,
+      "line": 642,
       "registration_id": "MPR-RC-HELIXOS-L2-111-002",
       "line_sha256_lf_excluded": "sha256:f170a7bb6f7e58e1a911c5d9299086d7a78884bb85755ae952ff0a62730774b1",
       "registration": {
@@ -227,10 +227,11 @@
           "docs/governance/audits/requirements-stage/confirmed175-unresolved2-current-condition-recheck-2026-10-02.json"
         ],
         "correction_reason": "2026-09-29 register snapshot recorded the candidate before the 2026-09-30 PO decision. Append a correction referencing row 64 and the exact adopted L2/L11 digests; management registration remains registered_proposal and authority_effect none. This does not assign an owner, formal successor, operational receipt mapping, or source closure."
-      }
+      },
+      "construction_line": 639
     },
     {
-      "line": 640,
+      "line": 643,
       "registration_id": "MPR-RC-HELIXOS-L2-113-001",
       "line_sha256_lf_excluded": "sha256:0bd586a0d1400f26f8d852b43a40b3e611f5eaca49393f534c72d4bdee19296e",
       "registration": {
@@ -278,7 +279,8 @@
         "source_atom_set_digest_rule": "atom_id SP source_line_sha256 with sha256: prefix omitted, LF terminated; source_line_sha256 is the confirmed identity anchor line hash (LF excluded). The condition body has separately recorded LF included and excluded hashes and is not substituted for the source identity anchor hash.",
         "source_atom_file_sha256": "sha256:dbc1f642b996a6923def8c8033323780a2ce46fef870cc84d8ddc38935e36506",
         "source_line_coverage_result": "candidate_input_scoped; formal_successor_owner_scope_and_adoption_unconfirmed"
-      }
+      },
+      "construction_line": 640
     }
   ],
   "execution_boundary": {
@@ -537,7 +539,7 @@
   "po_decision_material": {
     "decision_question": "3L-BR-007 is confirmed but has no assigned current target/owner or successor. Which requirement target should carry its three-condition contract, and should it remain one cross-mechanism connection or be partitioned?",
     "source_text": "決定的規則はNode gateが強制し、semantic findingだけを評価済みモデルへ委譲する。GitHub監査を第四provider laneや別Control Planeにしない。",
-    "current_l1_status": "system-intent.md frontmatter has historical authority_status: draft_candidate metadata. The admitted HDEC-HELIXOS-REQUIREMENTS-PO-2026-09-28 confirms/adopts exact system-intent SHA 2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e and agrees its fixed L2/L11 set, including L1-001/008. Decision record is authority; metadata does not downgrade this parent revision. HARNESS-L1-004 is only an alternative verification-contract target basis, not a current BR-007 owner assignment.",
+    "current_l1_status": "system-intent.mdのfrontmatterにあるauthority_status: draft_candidateは歴史的metadataである。HDEC-HELIXOS-REQUIREMENTS-PO-2026-09-28はsystem-intent.mdの正確なSHA 2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0eを確定・採択し、HELIXOS-L1-001/008を含む固定L2/L11集合に合意した。authorityの根拠はdecision recordであり、metadataはこの親revisionの採択を降格しない。HARNESS-L1-004は代替のverification-contract target根拠に限られ、BR-007の現owner割当ではない。",
     "current_l1_evidence": [
       {
         "path": "docs/helix-os/L1-planning/system-intent.md",
@@ -674,7 +676,7 @@
         "id": "A",
         "choice": "HELIX-OSをcross-mechanism integration requirementの提案targetとし、三条件の接続契約をOS L2/L11へ置く。個別Node gate/model qualificationのauthorityと現ownerは移さない。",
         "impact_requirements": [
-          "OS parent L1-001/008 is already adopted at the exact revision pinned in this audit. Any later adoption applies only to the latest-main-absent local HELIXOS-L2/L11-113 exact sections after their independent review and PO decision.",
+          "HELIXOS-L1-001/008の親revisionは、この監査で固定した正確なrevisionで既に採択済みである。後に採択する場合の対象は、独立reviewとPO判断を経る、初回照合時のmainに無かった未採択HELIXOS-L2/L11-113の各exact sectionに限る。",
           "HELIXOS-L2-015 (source identity/authority記録)、L2-018 (assignment/execution)、L2-020 (verification/CI運転)は境界を維持し、113は置換・拡張しない。",
           "HARNESS-L1-004/L2-022はverification obligation/oracleを定め、OS L2-020はexecutionを担う。INTELLIGENCE-L2-072/073とLABO-L2-071は別scopeのまま。"
         ],
@@ -691,12 +693,12 @@
       },
       {
         "id": "C",
-        "choice": "要件を責務単位に分割する。OSにaudit integration、HARNESSにverification oracle、INTELLIGENCE/LABOにmodel qualification/evaluationの候補を置く。",
+        "choice": "原文条件を失わないpartitionと候補間relationを起草し、そのtarget/分割/候補採否はPO判断へ残す。single-atom receiptはsplit coverageに使わない。",
         "impact_requirements": [
-          "PO-approved atom/clause partitionと候補間relationを先に作る。現行single-atom no_loss receiptだけではsplit coverageを証明しない。",
-          "Existing INTELLIGENCE-L2-072/073 and LABO-L2-071 stay as-is until exact clauses and authority revisions are assigned."
+          "候補配置案では、OSの監査統合、HARNESSのverification oracle、INTELLIGENCE/LABOの評価資格を別candidateに置く。候補partitionとrelationを起草した後も、target、分割、候補採否はPO判断に残す。single-atom receiptはsplit coverageに使わない。",
+          "INTELLIGENCE-L2-072/073とLABO-L2-071は、正確なsource clauseとauthority revisionが定まるまで現状のまま維持する。"
         ],
-        "effect": "Requires a separate PO disposition and new candidate pair(s); this audit does not execute the split."
+        "effect": "候補partitionとrelationを起草しても、本監査は分割・target・候補採否を確定しない。これらはPO判断に残す。"
       },
       {
         "id": "D",
@@ -708,8 +710,8 @@
       }
     ],
     "recommended_option": "A",
-    "recommendation_basis": "Recommend A only as proposed requirement placement. The exact HELIXOS-L1-001/008 revision is adopted by HDEC-HELIXOS-REQUIREMENTS-PO-2026-09-28 (fixed SHA 2bb625…). Its L1 states project-group governance, authority/source trace, and cross-projection consistency. HARNESS-L1-004 defines verification obligations/oracles, while its L1 assigns project-group governance and CI operation to OS. This supports routing the cross-mechanism candidate to OS while retaining Node gate and model qualification authority with their existing authorities; it does not declare a new execution owner or transfer source ownership.",
-    "decision_boundary": "PO should decide candidate target and one-connection versus split scope. OS parent L1-001/008 is already adopted at the exact revision above; adoption of new L2/L11-113 remains a separate exact-revision decision. A target choice alone does not assign runtime owner, move gate/model qualification authority, create a formal successor, or close the source. Unrelated requirements work is not blocked."
+    "recommendation_basis": "Aは要求配置案として推奨する。HELIXOS-L1-001/008の正確なrevisionは、HDEC-HELIXOS-REQUIREMENTS-PO-2026-09-28が固定SHA 2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0eで採択済みである。そのL1はproject群の統制、authority/source追跡、投影間整合を定める。HARNESS-L1-004は検証義務とoracleを定め、HARNESS L1はproject群の統制とCI運転をOSの責務に置く。これらはcross-mechanism候補の提案targetをOSとする根拠になる一方、Node gateとmodel qualificationのauthorityは既存のauthorityに保たれる。新しい実行ownerの指定やsource所有の移管は意味しない。",
+    "decision_boundary": "POは候補targetと、一件の接続として保つか分割するかを判断する。OS親L1-001/008の正確なrevisionは既に採択済みであり、新しいL2/L11-113の採択は別のexact-revision判断として残る。target選択だけでruntime ownerを指定したり、gate/model qualification authorityを移したり、formal successorを作ったり、sourceを閉じたりしない。無関係な要求整理は継続できる。"
   },
   "local_candidate_base_commit": "0aacb3fddd239cabd785286242297b26614cfec5",
   "post_merge_read_after": {
