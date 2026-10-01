@@ -200,10 +200,11 @@
         "status": "pending_pair_descent",
         "route_issue_ids": []
       },
-      "pending_resolution": [
+      "legacy_historical_pending_resolution": [
         "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
         "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
-      ]
+      ],
+      "legacy_pending_resolution_note": "Historical values copied from the old migrated IR record. They do not create a current Issue activation, old workflow, or current start condition."
     },
     {
       "requirement_id": "HIL-FR-16",
@@ -293,10 +294,11 @@
         "status": "pending_pair_descent",
         "route_issue_ids": []
       },
-      "pending_resolution": [
+      "legacy_historical_pending_resolution": [
         "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
         "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
-      ]
+      ],
+      "legacy_pending_resolution_note": "Historical values copied from the old migrated IR record. They do not create a current Issue activation, old workflow, or current start condition."
     },
     {
       "requirement_id": "HIL-FR-17",
@@ -334,18 +336,20 @@
         {
           "condition": "For no-screen skip, require reason, decider, input digest, and re-entry trigger",
           "current_whereabouts": [
-            "HARNESS-L2-003 product-requirements.md:106-108 requires non-applicable status, reason, decision maker, HEAD, impact to requirements, and reevaluation condition when both Prototype and PoC are non-applicable.",
-            "HARNESS-L11 product-acceptance.md:41-42 rejects missing non-applicability record fields and rejects skipping all L2.5 when only one of Prototype or PoC is non-applicable."
+            "採択HARNESS-L2-003 (product-requirements.md:106-108) はPrototypeとPoCの別々の適用判定を要求し、両方非適用の場合の対象要求/HEAD/影響/再評価条件を記録する。採択L11-003 (product-acceptance.md:41-42) は必要条件やこれら記録欄が欠ける場合にL3 freezeを拒否する。",
+            "採択HARNESS-L2-024 (product-requirements.md:499-525, section sha256:b8e45ca6df9bd498f9a385d33b3c3dfb96e367d31fb91c434a23bf848e98b2a8) は対象revision/scope、既回答・合意・deferの根拠を入力し、L1/source revisionやfindingで影響する決定だけをownerへ戻す。対L11-024 (product-acceptance.md:235-261, section sha256:638e6ddf383c40fab1d17c57ccec6fafbb56aa724216c547863da2f65d1e49cc) は影響を受けたdecisionの再開、古い回答・合意のstale再利用拒否、unknown影響範囲のfail-closeを例示する。",
+            "採択OS BackflowはPoC/Prototype結果等を要求エンジンへ戻し、新しい要求revisionからticket・設計義務・検証義務を導き直す (governance-requirements.md:120, 135-138, 160-168; governance-acceptance.md:49, HXT-TYPE-05/06/08 at :282-285)。旧HIL-15にあるstale applicabilityからL2へ戻る意味は、この既存契約合成との関係で照合する。"
           ],
-          "assessment": "partial_relation; similar fail-closed recorded decision, but current wording is a two-track L2.5 rule and does not name old input digest/reentry trigger as a receipt contract"
+          "assessment": "partial_relation; scope-change invalidation/re-entry meaning is held across adopted HARNESS-003/024 and OS Backflow. The old named task/receipt identity and its exact input-digest shape are not established as formal successor fields."
         },
         {
           "condition": "Produce prototype_required task or not_applicable receipt; reject implicit/deferred/stale route",
           "current_whereabouts": [
-            "Current L2-012 and L11-012 describe standalone prototype/PoC and non-applicability record, not the old exact task/receipt type or scope-digest invalidation/re-entry trigger.",
-            "HAC-HIL-15a accepts a structurally justified no-UI skip; 15b rejects UI freeze before prototype/walkthrough/agreement; 15c requires scope change to stale prior applicability and L2 re-entry."
+            "HARNESS-L2/L11-003 preserves no implicit skip, requires reason/decision-maker/HEAD/impact/re-evaluation condition and rejects freeze when applicable Prototype/PoC or agreement/record is incomplete.",
+            "HARNESS-L2/L11-024 keeps source/L1 revision-bound answers and agreements, stales affected prior decisions on new evidence/scope changes, and routes only affected decisions back to their owner. OS Backflow returns downstream findings to requirement formation before Forward re-entry.",
+            "HAC-HIL-15a/b/c remains supporting legacy oracle: no-UI skip positive, premature UI freeze negative, and scope-change stale/re-entry boundary. It is not executed."
           ],
-          "assessment": "partial_relation; old gate polarity is related, exact task/receipt identity and stale/reentry negative oracle remain unverified"
+          "assessment": "partial_relation; the stale/re-entry boundary meaning is held in the adopted 003/024+Backflow composition; exact old task/receipt identity is not claimed."
         }
       ],
       "current_targets": [
@@ -368,6 +372,15 @@
           "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:802-816",
           "l11_section_sha256": "sha256:f3fb47da21371084e9f8c7c7f7ca6dd945c8e98ae7c7b70597c3fc44e4e08ee7",
           "authority": "adopted exact -003 by 2026-09-30 PO decision; measurement-only, not generation or trigger"
+        },
+        {
+          "identity": "HARNESS-L2/L11-024 and HELIXOS Backflow",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md:499-525; docs/helix-harness/L11-acceptance/product-acceptance.md:235-261; docs/helix-os/L2-requirements/governance-requirements.md:120,135-138,160-168; docs/helix-os/L11-acceptance/governance-acceptance.md:49,282-285",
+          "section_sha256": {
+            "HARNESS_L2_024": "sha256:b8e45ca6df9bd498f9a385d33b3c3dfb96e367d31fb91c434a23bf848e98b2a8",
+            "HARNESS_L11_024": "sha256:638e6ddf383c40fab1d17c57ccec6fafbb56aa724216c547863da2f65d1e49cc"
+          },
+          "authority": "024 and OS Backflow meanings adopted in the fixed f6dad2a L2/L11 pair; no HIL-FR-17 formal successor binding inferred"
         }
       ],
       "source_ir_status": "specified",
@@ -378,10 +391,11 @@
         "status": "pending_pair_descent",
         "route_issue_ids": []
       },
-      "pending_resolution": [
+      "legacy_historical_pending_resolution": [
         "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
         "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
-      ]
+      ],
+      "legacy_pending_resolution_note": "Historical values copied from the old migrated IR record. They do not create a current Issue activation, old workflow, or current start condition."
     },
     {
       "requirement_id": "HIL-FR-18",
@@ -473,10 +487,11 @@
         "status": "pending_pair_descent",
         "route_issue_ids": []
       },
-      "pending_resolution": [
+      "legacy_historical_pending_resolution": [
         "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
         "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
-      ]
+      ],
+      "legacy_pending_resolution_note": "Historical values copied from the old migrated IR record. They do not create a current Issue activation, old workflow, or current start condition."
     },
     {
       "requirement_id": "HIL-FR-19",
@@ -521,10 +536,11 @@
         {
           "condition": "Positive, negative and scope-change boundary",
           "current_whereabouts": [
-            "HAC-HIL-15a positive is a structurally justified no-UI skip; 15b rejects UI freeze before prototype/walkthrough/agreement; 15c requires scope change to stale the prior decision and re-enter L2.",
-            "Current HARNESS-L11-003 rejects L3 progress before required prototype agreement, PoC feedback, and non-applicability record, but does not name user walkthrough/delta/no_delta/rebuild evidence or old stale receipt fields."
+            "旧HAC-HIL-15c requires stale prior applicability on scope change and return to L2. Current adopted HARNESS-L2-003 records target requirement/HEAD/impact/re-evaluation conditions, and L11-003 rejects stale/missing applicability evidence before freeze.",
+            "Adopted HARNESS-L2-024/L11-024 (L2 section sha256:b8e45ca6df9bd498f9a385d33b3c3dfb96e367d31fb91c434a23bf848e98b2a8; L11 sha256:638e6ddf383c40fab1d17c57ccec6fafbb56aa724216c547863da2f65d1e49cc) holds revision/scope-bound decision reopening and rejects reusing stale agreement/answer after new L1/source evidence; OS Backflow routes the changed requirement to L2 and rebuilds downstream tickets from the changed revision.",
+            "Those adopted clauses preserve scope-change stale/re-entry meaning. They do not define FR19-specific exact-prototype-revision walkthrough, user-observation, delta/no_delta, rebuild decision, or bounded checkpoint receipt as a successor contract."
           ],
-          "assessment": "partial_relation; generic agreement-before-freeze is retained, exact walkthrough and stale-reentry oracle is unverified"
+          "assessment": "partial_relation; source scope-change stale/re-entry is held by adopted 003/024 and OS Backflow. The residual is walkthrough-loop-specific receipt/oracle content, not a missing generic re-entry mechanism."
         }
       ],
       "current_targets": [
@@ -541,6 +557,15 @@
           "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:638-677",
           "l11_section_sha256": "sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746",
           "authority": "adopted exact -003 by 2026-09-29; UX state boundary only, no old walkthrough successor"
+        },
+        {
+          "identity": "HARNESS-L2/L11-024 and HELIXOS Backflow",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md:499-525; docs/helix-harness/L11-acceptance/product-acceptance.md:235-261; docs/helix-os/L2-requirements/governance-requirements.md:120,135-138,160-168; docs/helix-os/L11-acceptance/governance-acceptance.md:49,282-285",
+          "section_sha256": {
+            "HARNESS_L2_024": "sha256:b8e45ca6df9bd498f9a385d33b3c3dfb96e367d31fb91c434a23bf848e98b2a8",
+            "HARNESS_L11_024": "sha256:638e6ddf383c40fab1d17c57ccec6fafbb56aa724216c547863da2f65d1e49cc"
+          },
+          "authority": "024 and OS Backflow meanings adopted in the fixed f6dad2a L2/L11 pair; no HIL-FR-19 formal successor binding inferred"
         }
       ],
       "source_ir_status": "specified",
@@ -551,10 +576,11 @@
         "status": "pending_pair_descent",
         "route_issue_ids": []
       },
-      "pending_resolution": [
+      "legacy_historical_pending_resolution": [
         "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
         "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
-      ]
+      ],
+      "legacy_pending_resolution_note": "Historical values copied from the old migrated IR record. They do not create a current Issue activation, old workflow, or current start condition."
     }
   ],
   "related_legacy_atoms_in_same_contract": [
@@ -632,8 +658,10 @@
     "raw_l1_hash_method": "SHA-256 of UTF-8 physical source line bytes excluding terminal LF",
     "section_hash_method": "from the identity ### heading through just before the next same-level or higher heading, strip trailing blank lines, terminate with one LF",
     "unverified_boundary": "No formal successor assignment, current runtime execution, current HIL receipt, or full IR153 closure is claimed.",
-    "candidate_needed": false,
-    "candidate_reason": "This task is a source/current-condition audit only; the parent requested no candidate and this audit records actual semantic correspondence and residuals without claiming source closure."
+    "candidate_created": false,
+    "candidate_drafting_performed": false,
+    "candidate_need_conclusion": "not assessed or denied by this audit; root may continue source-faithful candidate drafting/review for any demonstrated residual without waiting for owner/scope decision, while adoption, formal owner assignment, and human meaning decisions remain pending.",
+    "historical_pending_resolution_fields": "Moved from rows[].pending_resolution to rows[].legacy_historical_pending_resolution unchanged; historical migration notes are not current workflow instructions."
   },
   "legacy_contracts": [
     {
