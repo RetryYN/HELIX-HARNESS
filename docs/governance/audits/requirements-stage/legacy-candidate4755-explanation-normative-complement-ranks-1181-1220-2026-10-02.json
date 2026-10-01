@@ -9961,12 +9961,12 @@
       1141,
       1180
     ],
-    "commit": "b515d89364c2686dcda039a8fdf27461fc7236f5",
+    "commit": "8fbfd50d7c6c82c5fc8f1941d5fc133b557b2ae8",
     "last_id": "LEGACY-CAND-LINE-001960",
     "md_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1141-1180-2026-10-02.md",
-    "md_sha256": "7ef928ef923ad9b39b3e7b2ab26d36792229cf4eb11440f10e29b8f51cf91243",
+    "md_sha256": "9c4f6a5a0c8d5cc74139a344d83bd6dec31f516599747d348342b7841ec54cad",
     "json_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1141-1180-2026-10-02.json",
-    "json_sha256": "1c640c63ed8f8e3d718d85ea0e484cea3c2043b26cad6c90d89327a25058911f",
+    "json_sha256": "4e618fec9c9f6f4823a55f7df19f6e8c5ac31de80a3eb33f5a287044cf2f39a9",
     "local_predecessor_pin": true
   }
 }
