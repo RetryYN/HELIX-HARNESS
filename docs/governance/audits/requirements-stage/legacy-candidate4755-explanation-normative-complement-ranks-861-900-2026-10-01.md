@@ -5,7 +5,7 @@
 ## 対象と再構成
 
 - 監査基点は`85638d7aed054c5b9c3bda5128a9f4208453a1c9`。#2353の4,755 `row_records`へ#2356、#2360、#2363、#2366、#2367、#2368、#2369、#2381をexact source IDで順に適用し、effective explanation 2,965行を再構成した。#2369の000841/000857はconditionへ移るため説明行から除外。
-- marker pool 255件を除き、`2,965 - 255 = 2,710`件をsource ID数値順にrank付けした。861–900位は40行。rank 860の境界IDは`LEGACY-CAND-LINE-001463`。821–860のpaired auditはこのorigin/main基準に存在しないため、先行意味検証を主張しない。
+- marker pool 255件を除き、`2,965 - 255 = 2,710`件をsource ID数値順にrank付けした。861–900位は40行。rank 860の境界IDは`LEGACY-CAND-LINE-001463`。直前821–860位のpaired auditは同じ作成PRのcommit `09cf17b3457cddfe242555e87c1cbcc421dabd26`で確定した。境界IDと両artifactのSHAを照合し、順位は全母集団から独立に再構成した。
 - 861–869は責務境界表、870はjournal/read-model補足、871–874は節区切り、875はL3意味fieldと後続schema境界、876–882はfield表、883–888は測定record表、889–891は測定状態・実験定義・Ticket分離、892–900は一つの仕事の接続例である。表の列、段落、コード行の境界を保ち、隣接条件を混ぜない。行別context、ledger/hash、pin reachability、固定F6/decisionとの比較限定はpaired JSONに記録した。
 
 ## 固定F6の直接source検索

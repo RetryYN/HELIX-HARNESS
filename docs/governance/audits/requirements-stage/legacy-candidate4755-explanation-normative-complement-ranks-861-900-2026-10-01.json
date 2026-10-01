@@ -3,6 +3,7 @@
   "audit_id": "legacy-candidate4755-explanation-normative-complement-ranks-861-900-2026-10-01",
   "created_against_commit": "85638d7aed054c5b9c3bda5128a9f4208453a1c9",
   "authority_effect": "none",
+  "prior_completed_complement_slice": {"ranks": "821-860", "commit": "09cf17b3457cddfe242555e87c1cbcc421dabd26", "last_id": "LEGACY-CAND-LINE-001463", "json_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-821-860-2026-10-01.json", "json_sha256": "13bb84f0e5c15cb561e7545505a0d90b2fe81bf19680f4e6f188de236bad7092", "md_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-821-860-2026-10-01.md", "md_sha256": "09359eb7668187e20c00a1839c3e11079d4a0a60949e58cbe21dc513d55bbc80"},
   "purpose": "Semantic audit of numeric-ID ranks 861–900 in the effective-explanation marker-negative complement; no adoption, successor, implementation, acceptance or source closure is generated.",
   "pool_derivation": {
     "baseline_ref": "#2353 reconciliation.row_records exact source_item_id join",
