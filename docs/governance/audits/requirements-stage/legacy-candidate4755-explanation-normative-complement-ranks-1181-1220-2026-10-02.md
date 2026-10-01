@@ -3,7 +3,7 @@
 - 基準commit: `fbf830ba5df25cc82da47cb1f9814cf188a51576`。監査は旧archiveの物理行から行い、authority effectは`none`。
 - 順位は#2353の4,755行に#2356/#2360/#2363/#2366/#2367/#2368/#2369/#2381のoverlayをID一致で順次適用し、effective explanation 2,965 − marker陽性255 = complement 2,710を数値suffix順に並べて再構成。選択ID SHA-256: `5734b8bba592933eeee8166414afd4cac5e1e5af76cdfcd6a7cf6689dbd4e32b`.
 - archive manifest SHA-256も照合し、trace/validation/vision各archive file hashがmanifestと一致。
-- rank 1180境界IDは`LEGACY-CAND-LINE-001960`。ranks 1141–1180 paired auditは基準commitから到達できないため、境界IDのみ記録し、隣接意味検証を主張しない。
+- rank 1180境界IDは`LEGACY-CAND-LINE-001960`。同PRの先行ranks 1141–1180 paired auditをlocal commit `b515d89364c2686dcda039a8fdf27461fc7236f5`とMD/JSON SHAで照合した。
 
 ## 固定F6・PO/receipt照合
 

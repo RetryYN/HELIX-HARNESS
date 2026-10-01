@@ -1001,7 +1001,7 @@
     "HXT-RQ-04/05/07はsource row IDとreading先頭IDを一致照合。これらは固定OS L2/L11のID対応であり、L11行は全件未実行。",
     "F6 direct source relation、source file-wide reference、different-file pair path、broad requirement family spans、PO decision scopeを別種として記録した。",
     "PO decisionの明示集合外にsource line採択・successor・coverage closureを作らない。source/asset atom closureは未完。",
-    "ranks 1141–1180監査は基準commitから到達できないため、preceding rank 1180 boundary IDだけを記録。",
+    "ranks 1141–1180監査は同PR内にあり、先行commit:pathのMD/JSON SHAとrank1180境界IDを照合した。",
     "archive read-only。旧runtime・test・CIを実行していない。"
   ],
   "rows": [
@@ -9955,5 +9955,18 @@
         "manifest_line": 817
       }
     ]
+  },
+  "prior_completed_complement_slice": {
+    "ranks": [
+      1141,
+      1180
+    ],
+    "commit": "b515d89364c2686dcda039a8fdf27461fc7236f5",
+    "last_id": "LEGACY-CAND-LINE-001960",
+    "md_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1141-1180-2026-10-02.md",
+    "md_sha256": "7ef928ef923ad9b39b3e7b2ab26d36792229cf4eb11440f10e29b8f51cf91243",
+    "json_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1141-1180-2026-10-02.json",
+    "json_sha256": "1c640c63ed8f8e3d718d85ea0e484cea3c2043b26cad6c90d89327a25058911f",
+    "local_predecessor_pin": true
   }
 }
