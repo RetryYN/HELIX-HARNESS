@@ -39,7 +39,11 @@ queue `v13-condition-closure-work-queue-2026-09-30.json`（303行、SHA-256 `a61
 
 ### `REQSRC-SUP-00089`（位置23）
 
-この旧source行はDesign Refactorの分類根拠としてsemantic similarity、影響consumer、oracle、dependency graphを用い、名称類似だけで統合しないことを要求する。同じ行はPerformance Refactorのbaseline、budget、workload、profile、統計条件、回帰oracleの事前固定と、機能追加を同一episodeに混載しないことも定める。固定F6 L2/L11には、変更の意味が保たれるrefactor、Backflow、SR3のexactly-one route、Performance Refactorの測定条件と前後比較があるためpartialとした。Design Refactorの4判断根拠を個別に要求するoracleと、機能追加混載禁止の直接oracleは固定F6で確認できず残す。現HEADにあるHARNESS-L2-051候補は未採択なので採択根拠として使っていない。
+この旧source行は、Design Refactorの分類根拠としてsemantic similarity、影響consumer、oracle、dependency graphを使い、名称類似だけで統合しないことを求める。同じ行はPerformance Refactorの計測条件を事前固定し、機能追加を同じepisodeへ混載しないことも定める。固定F6 L2/L11には、意味を保つrefactor、Backflow、SR3のexactly-one route、Performance Refactorの測定条件と前後比較があるためpartialとした。4つのDesign Refactor判断根拠と機能追加混載禁止の直接oracleは固定F6で確認できず残す。この判定と残余は固定F6 revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`に対する結果であり、後発decisionはF6比較へ遡及適用しない。
+
+`origin/main` snapshot commit `50686b6762788574cb471967e8c24846d3dd56ae`のHDEC-REQUIREMENTS-57-2026-09-29は`HARNESS-L2-042`（`MPR-RC-HARNESS-L2-042-001`）を採択している（[decision](../../decisions/po-decision-2026-09-29-57candidates.md)、decision file SHA-256 `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`、line 47）。採択されたL2/L11 source revisionは`318ec4a04abb3c1cc17111b3d939f913facd5fd3`。L2/L11 file SHAは`111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09`／`3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5`、section digestは`7da6b3394cbc96bdf028a4738000554e1cf7a946595c4abf43504b24968f34eb`／`3ba00726800c61f1de165e48e6f62ea4359a368a50a9e9cd1517deb09df395f9`。coverage receipt（`harness-refactor-episode-coverage-receipt-2026-09-28.json`、同snapshotでのSHA-256 `6d10e3976c204ad15d739b86ace90b08595c00463f7aecfbcf2778f8c98aa15e`）は、2つのL119 revision atomについてPerformance Refactorを既採択L2/L11-016に、Design Refactor条件とepisode分離を042に保全するsplitを記録する。receipt作成時の`unadopted`表記はPO決定前の記録である。後発決定はこのF6比較を置き換えず、旧`REQSRC-SUP-00089`の全条件closureまたはformal successor assignmentを示さない。
+
+別identityの`HARNESS-L2-051`（PHCAP-08 stage-exit evidence）は、HDEC-REQUIREMENTS-11-2026-09-29 line 31で採択されている（[decision](../../decisions/po-decision-2026-09-29-11candidates.md)、commit `50686b6762788574cb471967e8c24846d3dd56ae`、decision file SHA-256 `6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5`）。L2-051は00089のDesign Refactor条件とは別identityであり、この比較の根拠ではない。
 
 ### 旧artifactの位置40行を位置41へcarryover
 

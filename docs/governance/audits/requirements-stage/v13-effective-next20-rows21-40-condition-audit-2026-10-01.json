@@ -14,7 +14,9 @@
     "L11_acceptance_execution_claimed": false,
     "full_source_no_loss_closure_claimed": false,
     "authority_effect": "none",
-    "slice_membership_does_not_mean_unreviewed_total_or_remaining_closure_count": true
+    "slice_membership_does_not_mean_unreviewed_total_or_remaining_closure_count": true,
+    "post_f6_decisions_excluded_from_fixed_comparison": true,
+    "later_l2_042_adoption_not_treated_as_full_legacy_closure_or_formal_successor": true
   },
   "selection": {
     "baseline_queue_path": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json",
@@ -408,6 +410,22 @@
         "sha256": "sha256:650264f78387d317eb5dec7a58c14197ac2c97ef712f05cd30ce5e11869cd5ea",
         "decision_id": "HDEC-HARNESS-V-VALLEY-2026-09-26",
         "read_only_comparison_role": "HARNESS-L2-016と右側Refactor/Backflow条件の由来を照合する資料。F6本文と2026-09-28採択範囲を拡張しない。"
+      },
+      {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "decision_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "line": 47,
+        "role": "後発authority context。HARNESS-L2-042の固定revision adoption。f6 comparisonへ遡及適用しない。"
+      },
+      {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+        "sha256": "sha256:6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "decision_id": "HDEC-REQUIREMENTS-11-2026-09-29",
+        "line": 31,
+        "role": "別identityのHARNESS-L2-051 stage-exit candidateの採択。REQSRC-SUP-00089に関係するHARNESS-L2-042と混同しない。"
       }
     ]
   },
@@ -595,7 +613,7 @@
           "HARNESS-L2-016"
         ],
         "retained": "固定F6 L2はScrum ReverseのfindingをRedesign／Design Refactor／Performance Refactor／Retrofitのexactly oneへ送る。振る舞い・契約・要求を保てるRefactorと、意味差分があれば左側へ戻す境界、Performance Refactorの事前baseline・budget・workload・profile・統計条件・回帰oracle固定を定める。F6 L11はroute欠落、observable behavior等の意味変更、測定不能な高速化を不成立とし、L2-016のrefactor前後oracle比較を定める。",
-        "delta": "旧Design Refactorの分類根拠（semantic similarity、影響consumer、oracle、dependency graph）を名称類似から区別して判定する個別条件、および機能追加を同一episodeへ混ぜない条件は、固定F6 pairの該当条項だけでは個別に閉じない。後続現HEADにあるHARNESS-L2-051候補は未採択であり、この比較の採択authorityに使わない。",
+        "delta": "旧Design Refactorの分類根拠（semantic similarity、影響consumer、oracle、dependency graph）を名称類似から区別して判定する個別条件、および機能追加を同一episodeへ混ぜない条件は、固定F6 pairの該当条項だけでは個別に閉じない。このpartial/residualはF6時点に限定する。origin/main snapshot 50686b6762788574cb471967e8c24846d3dd56aeの後発HDEC-REQUIREMENTS-57-2026-09-29はHARNESS-L2-042を採択しているため、この残余を同snapshot時点の「未採択候補」または現行authorityの未解決状態と表現しない。後発採択はF6結果へ遡及反映しない。",
         "residual": [
           "Design Refactor判断にsemantic similarity、影響consumer、oracle、dependency graphの全てを使い、名称類似だけで統合しないことの固定F6でのsource-condition単位の受入oracle。",
           "Design／Performance Refactorへ機能追加を同一episodeで混載しない条件の固定F6での直接な受入oracle。",
@@ -651,7 +669,10 @@
             "relationship": "refactor前後のbehavior/contract/requirement比較およびPerformance Refactor計測oracle",
             "comparison_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
           }
-        ]
+        ],
+        "comparison_scope": "fixed adopted HARNESS L2/L11 revision f6dad2a33e24f000b87d7f09b8d40288257e74cc only",
+        "later_authority_context_ref": "#/later_authority_context/relevant_to_00089",
+        "residual_scope": "F6固定比較に対する残余。後発L2-042採択のscopeに対する再評価結果ではない。"
       },
       "formal_successor_assigned": false,
       "source_condition_closed": false,
@@ -1812,6 +1833,50 @@
     "markdown_json_selected_id_order_and_status_counts_checked": true,
     "json_syntax_and_git_diff_check_passed": true,
     "archive_runtime_cli_test_ci_executed": false,
-    "all_selected_source_context_lines_sha_pinned": true
+    "all_selected_source_context_lines_sha_pinned": true,
+    "post_f6_decision_pins_recomputed_at_origin_main_50686": true,
+    "post_f6_l2_042_adoption_kept_separate_from_f6_comparison": true,
+    "unrelated_l2_051_adoption_not_attributed_to_00089": true,
+    "adopted_L2_042_file_and_section_hashes_recomputed_at_source_revision": true,
+    "adoption_decision_and_receipt_pins_recomputed_at_origin_main_snapshot": true,
+    "later_decision_files_absent_from_F6_tree": true
+  },
+  "later_authority_context": {
+    "snapshot_commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+    "relevant_to_00089": {
+      "decision_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "decision_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "decision_commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "decision_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+      "decision_table_line": 47,
+      "requirement_identity": "HARNESS-L2-042",
+      "disposition": "adopted",
+      "registration_id": "MPR-RC-HARNESS-L2-042-001",
+      "adopted_L2_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+      "adopted_L2_section_sha256": "7da6b3394cbc96bdf028a4738000554e1cf7a946595c4abf43504b24968f34eb",
+      "adopted_L11_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+      "adopted_L11_section_sha256": "3ba00726800c61f1de165e48e6f62ea4359a368a50a9e9cd1517deb09df395f9",
+      "coverage_receipt_path": "docs/governance/audits/requirement-registration/harness-refactor-episode-coverage-receipt-2026-09-28.json",
+      "coverage_receipt_sha256": "sha256:6d10e3976c204ad15d739b86ace90b08595c00463f7aecfbcf2778f8c98aa15e",
+      "temporal_relation": "後発の2026-09-29 decision。今回の意味状態は固定F6 revision f6dad2a33e24f000b87d7f09b8d40288257e74ccだけで評価し、この後発採択をその結果へ混ぜない。",
+      "boundary": "L2-042のexact revision採択を記録するが、旧REQSRC-SUP-00089全条件のclosureまたはformal successor assignmentをこの記録から推定しない。",
+      "adopted_source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "adopted_L2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "adopted_L11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "receipt_authority_effect": "none",
+      "receipt_candidate_state_at_receipt_revision": "unadopted; the 2026-09-28 receipt predates the 2026-09-29 PO adoption decision",
+      "receipt_source_atom_relation": "receipt scope covers the exact two L119 source revision atoms; it splits Performance Refactor to existing L2/L11-016 and retains Design Refactor criteria/episode separation in L2-042. This scoped disposition is not a formal successor assignment for the entire old condition.",
+      "decision_temporally_supersedes_receipt_candidate_state_for_exact_adopted_revision": true
+    },
+    "separate_L2_051_decision": {
+      "decision_path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+      "decision_sha256": "sha256:6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+      "decision_commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "decision_id": "HDEC-REQUIREMENTS-11-2026-09-29",
+      "decision_table_line": 31,
+      "requirement_identity": "HARNESS-L2-051",
+      "disposition": "adopted",
+      "meaning": "PHCAP-08 stage-exit evidence candidate。REQSRC-SUP-00089のDesign Refactor判定候補HARNESS-L2-042とは別identityであり、この旧source条件のcoverage根拠ではない。"
+    }
   }
 }
