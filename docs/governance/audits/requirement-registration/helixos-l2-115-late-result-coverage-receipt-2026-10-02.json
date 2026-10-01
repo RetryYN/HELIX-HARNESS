@@ -30,5 +30,84 @@
     "No old HAT/HAC execution or whole-source closure",
     "No adoption/runtime/operation authority"
   ],
-  "authority_effect": "none"
+  "authority_effect": "none",
+  "base_commit": "72d08ebc1b45c8cf85c0e89359c48f78eb779fee",
+  "candidate_pair_pins": {
+    "l2": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "full_file_sha256": "sha256:f3b0bcab93fa7b28bb38dc4afc6136ca8ea7bc834d2719152ba81c97538a6257",
+      "heading": "HELIXOS-L2-115",
+      "line_start": 1391,
+      "line_end": 1399,
+      "section_sha256": "sha256:1d5068ae7c57c77fd740c0ef633d95ace4631cad80c00b7441bfa7de127b1fed",
+      "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator"
+    },
+    "l11": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "full_file_sha256": "sha256:4287217844e09e274c1411d733e60386a393c8594ca4291c9d68a2000b8b4ee6",
+      "heading": "HELIXOS-L2-115",
+      "line_start": 992,
+      "line_end": 999,
+      "section_sha256": "sha256:3e93fe97802898a4ef1b2f12824437036231ecb190201db87c1dd4be354033d8",
+      "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator"
+    }
+  },
+  "parent_l1_fixed_pin": {
+    "path": "docs/helix-os/L1-planning/system-intent.md",
+    "fixed_file_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+    "fixed_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "fixed_decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+    "fixed_decision_sha256": "sha256:5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+    "decision_scope": "fixed OS L1 source revision and L2/L11 baseline adoption; parent L1-003/008 target bytes are fixed; this does not adopt L2-115",
+    "current_parent_l1_file_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+    "parent_requirement_ids": [
+      "HELIXOS-L1-003",
+      "HELIXOS-L1-008"
+    ]
+  },
+  "source_vs_candidate_scope_delta": {
+    "source_atom_exact_meaning": "Do not commit a late result from an expired run.",
+    "candidate_scope": "For one existing assignment/attempt, a late or duplicate result after timeout, cancel, deadline/lease expiry, process exit, or another terminal result already defined by existing OS contracts does not alter the finalized terminal state or become an accepted/current result; mismatched attempt/source/revision results stay rejected or unknown/stale.",
+    "generalization": "Candidate extends the literal expired-run source condition to terminal causes already recognized by existing contracts and adds duplicate/mismatch handling. It creates no terminal kind, supervisor, transport, message protocol, or runtime behavior.",
+    "source_oracle_context": "HR-FR-HIL-12 and HAC-HIL-12a/b/c include late-after-cancel/timeout oracle context, but those are historical supporting materials and not a PO disposition of the candidate generalization."
+  },
+  "human_decision_options": [
+    {
+      "option": "A",
+      "choice": "採択候補の限定一般化",
+      "meaning": "対象revision付きでL2/L11-115を採択し、timeout/cancel/lease・deadline expiry/process exitに加え、既存OS contractが既に終端と定義している原因までに限定して適用する。同一attemptのduplicate/mismatched late-resultも扱う。この判断だけから新しいterminal原因を追加しない。",
+      "recommendation": "推奨。旧expiry拒否を保持し、HR/HAC/HATにあるcancel/timeout文脈と既存契約が明示する終端状態までの限定scopeで扱える。",
+      "impact": [
+        "HELIXOS-L2-004/018: assignment/attemptの既存停止・終端事実",
+        "HELIXOS-L2-019: source/revision、evidence、stale/unknown",
+        "HELIXOS-L2-043: request/call/result相関。candidateは043の採択authority境界を変えない",
+        "HELIXOS-L11-115: terminal後resultをcurrent/acceptedへ進めないoracle。"
+      ]
+    },
+    {
+      "option": "B",
+      "choice": "原条件の範囲に限定",
+      "meaning": "採択するなら旧expired-run late-result no-commitだけに限定する。cancel/timeoutは旧HACの補助oracleとして扱い、candidate一般条件に加える範囲を決めない。process-exit、既存契約上でも未確定の端点、duplicate/mismatch等はunknown/未採択に残す。",
+      "recommendation": "選ぶ場合はL2/L11-115をこの範囲へ訂正してから採択対象とする。",
+      "impact": [
+        "HELIXOS-L2-004/018で確認済みのexpiry stateと同一attempt",
+        "HELIXOS-L2-019のsource/revision/evidence境界",
+        "HELIXOS-L2-043のcall/result相関。process exit/duplicate refusalは対象外のまま",
+        "HELIXOS-L11-115を元条件のnegative oracleへ限定。"
+      ]
+    },
+    {
+      "option": "C",
+      "choice": "適用run選択を保留",
+      "meaning": "現行candidateを採択せず、適用するrun/attempt種別とterminal種類の対応をPOが選ぶまでauthority・採択を保留する。source atomと候補はholding/proposalのまま残す。",
+      "recommendation": "適用runの母集団を決められない場合に選ぶ。",
+      "impact": [
+        "HELIXOS-L2-004/018のどのassignment/attemptに意味を適用するか",
+        "HELIXOS-L2-019のsource/revision/evidence capture scope",
+        "HELIXOS-L2-043のcall/result kind applicability",
+        "HELIXOS-L11-115の適用対象を未確定のまま保つ。"
+      ]
+    }
+  ],
+  "adoption_boundary": "These are PO choice materials only. MPR, audit, receipt, and candidate metadata do not adopt HELIXOS-L2-115 or assign a formal successor to all of HIL-FR-27."
 }
