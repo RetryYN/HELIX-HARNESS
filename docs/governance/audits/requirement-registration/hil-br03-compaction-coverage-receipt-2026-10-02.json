@@ -5,19 +5,19 @@
   "candidate_pair": {
     "l2": {
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "full_file_sha256": "sha256:93e50308c639c20b0ccedc8c8f2c7e526a5672b047212fdbc97a19898d4c220e",
+      "full_file_sha256": "sha256:b8e5ee03cacdbe65ef13040e6fb93a513759852f8961573386a571502e0f2be3",
       "heading": "### HELIXOS-L2-119 Codex・Claude協働episodeの圧縮とcontinuity分離候補（未採択）",
       "start_line": 1468,
       "end_line": 1480,
-      "sha256": "sha256:a2eba89d884aeff922945a36cda4668cda76f4b5effd14726540ef8ff4b63724"
+      "sha256": "sha256:0ac7fc50da6f6c1370575ecfd0f9ef772761e703bb57360994d33ed60fa24a73"
     },
     "l11": {
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-      "full_file_sha256": "sha256:004b2e49e30cbbdde00201109ca5cb65be0b710c516080ef87b713abc97cb420",
+      "full_file_sha256": "sha256:4f72ecd7c86e7e41f99ff2361e717c7d4556cc642bccde799b412b8de73a7033",
       "heading": "### HELIXOS-L11-119 Codex・Claude協働episode圧縮・continuity分離の受入候補（未実行）",
       "start_line": 1055,
-      "end_line": 1064,
-      "sha256": "sha256:ec49fd86533f3b895effa114ca25b5409df45682cf7d69ed32e16f2cc93dfd47"
+      "end_line": 1065,
+      "sha256": "sha256:5cf6bfd7d7dcd39ea8f7458cb5edc53483d5147684f44c94e02d5a75ad514b44"
     },
     "candidate_semantic_digest_rule": "Each exact selected section from heading through before the next peer heading, trailing blank lines normalized to one LF; the JSON records both section and full-file hashes."
   },
@@ -141,9 +141,10 @@
       ],
       "preserved_meaning": "raw logs/PR/test-CI/audit finding source types, completion boundary, knowledge-only promotion, no progress mixing; current PO restricts harness memory to Codex/Claude collaboration and no over-retention.",
       "meaning_difference": "Old literal Claude Code/Codex actor and DB continuation are not implemented as old architecture: proposed target is current Codex/Claude collaboration episode and L2-019 continuation. Scope and formal successor remain unconfirmed; requirement candidate remains unadopted.",
-      "positive_oracle": "One concrete fixture episode is given a PR target revision, two raw-log spans, a terminal test/CI result, and an audit finding. All four source classes are accounted for as present or evidence-backed not applicable; compacted claims point to exact source/revision/spans; continuation retains the test result, unfinished finding, and resume position; any durable-knowledge item is emitted separately, and no knowledge item is a valid outcome.",
+      "positive_oracle": "Two separate controls: A provides one PR target revision, two raw-log spans, a terminal test/CI result, and an audit finding; all four classes are present and every summary claim maps to exact source/revision/span. Continuation retains result, unfinished finding, and resume position; only distinct durable knowledge may be handed off separately. B provides explicit existing operation/scope evidence that no PR was created; only the PR class is marked not applicable with that evidence, while the other three classes are accounted for. No missing/failed class is a positive control.",
       "negative_oracle": "Silently omit any class; treat unknown as false/not applicable; omit a selected source/span; change a source revision; leave a summary claim untraceable; transfer progress or the whole summary to durable knowledge; promote rules/preferences or unverified findings; resume from provider memory only; or fall back to a prior/provider summary after a selected-source read failure. Reject or retain incomplete/unknown with unfinished obligations.",
-      "not_seen": "No bounded retention duration, numerical compression ratio, fixed source count, storage/DB schema, fixed algorithm, or runtime performance target in selected source; none added."
+      "not_seen": "No bounded retention duration, numerical compression ratio, fixed source count, storage/DB schema, fixed algorithm, or runtime performance target in selected source; none added.",
+      "scope_limit": "Not-applicable is accepted only with explicit source/operation-scope evidence, as in control B. A class/source that is merely unselected or unconnected remains unobserved and is not classified as reference-only."
     }
   ],
   "dependencies": {
@@ -159,7 +160,7 @@
       "always_required": "L2-015 source/authority/evidence provenance; L2-019 episode continuity; data-use boundary.",
       "operation_specific": "Compaction/coverage when this completed episode selects the operation.",
       "selected_input_dependent": "The selected raw log, PR, test/CI, and audit sources/spans for this episode.",
-      "reference_only": "Legacy DB, extension/hook and memory schema, unselected sources, future promoter implementation. Unselected/unknown source class remains unobserved, not satisfied."
+      "reference_only": "Legacy DB, extension/hook and memory schema, unrelated background material, future promoter implementation. Unselected selected-input sources/classes are unobserved, not reference-only and not satisfied."
     }
   },
   "coverage_result": "no_loss_limited_to_one_HIL-BR-03_IR_requirement_atom",
@@ -237,5 +238,10 @@
       }
     ],
     "adoption_separation": "Existing L2-019 and the 9/24 memory authority decision are adopted evidence. New L2/L11-119 is an unadopted requirement proposal only. Historical HAT-HIL-07 is design-only, not current acceptance or an executed result."
+  },
+  "registration": {
+    "registration_id": "MPR-RC-HELIXOS-L2-119-002",
+    "supersedes_registration_id": "MPR-RC-HELIXOS-L2-119-001",
+    "correction_reason": "After the 3bd0a522 local candidate revision, clarify that unselected input sources/classes stay unobserved rather than being classified reference-only, and separate the all-four-source-class positive control from an evidence-backed non-applicable-class control. Source atom and authority boundaries are unchanged."
   }
 }
