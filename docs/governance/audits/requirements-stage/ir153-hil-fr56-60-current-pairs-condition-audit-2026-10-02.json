@@ -1,0 +1,493 @@
+{
+  "audit_id": "IR153-HIL-FR56-60-current-pairs-condition-audit-2026-10-02",
+  "audit_date": "2026-10-02",
+  "base_commit": "f38bde044a7dfbf12aec0203b21a9384eef6ad8f",
+  "scope": "IR153 HIL-FR-56..60 clause/output condition audit; read-only legacy source; static current-document comparison; no old runtime/test/CI execution; no 137/common gates (root-owned).",
+  "asset_disposition": {
+    "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+    "revision": 3,
+    "source_revision": "legacy-generation-2026-09-14",
+    "source_path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+    "source_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+    "product_target": "unresolved",
+    "disposition": "source_snapshot_preservation",
+    "implementation_status": "non_executable_read_only_source",
+    "target_path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+    "target_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+    "carry_forward_state": "preserved_pending_rehome",
+    "decision_status": "pending_human_confirmation",
+    "source_authority_state": "draft",
+    "target_authority_state": "draft_candidate",
+    "executability_status": "non_executable_or_data_only_not_invoked",
+    "external_effect_status": "read_only_no_external_effect",
+    "consumer_refs": [
+      "requirement-carry-forward-ledgers",
+      "requirement-atomization-review"
+    ]
+  },
+  "source_files": {
+    "raw_l1": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+    },
+    "ir": {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688"
+    },
+    "system_contracts": {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+      "sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab"
+    },
+    "acceptance_cases": {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19"
+    },
+    "system_tests": {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+      "sha256": "7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a"
+    }
+  },
+  "current_file_sha256": {
+    "docs/helix-harness/L2-requirements/product-requirements.md": "e22ff41b5ed36a00c0c0a9807052759d01f930ce5574aa860d80f7b90b76bdf4",
+    "docs/helix-harness/L11-acceptance/product-acceptance.md": "2cf983e2ac8771badd056f8e49dd0a0f6704a2f088b4f816b99792f5a7a8ac82",
+    "docs/helix-intelligence/L2-requirements/intelligence-requirements.md": "64b41a363f357c273f3cb68fb2be1221d42066b056655aab7922d569e65b3486",
+    "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md": "164a9fcd1d1b5dcd7a0647ab6c1ab231574079bea647a09f9f3fefc213e2dd9a",
+    "docs/helix-os/L2-requirements/governance-requirements.md": "48c35d7ef629d99305aac79e548e638057e3ffe728976bff82e3ed1008e093fe",
+    "docs/helix-os/L11-acceptance/governance-acceptance.md": "3faf77574ffc6d33720e2d882cd3c7d30268b9103fb76054d1837f81467a413a",
+    "docs/governance/decisions/po-decision-2026-09-29-57candidates.md": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+    "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md": "a60e2c9c5b9d0828acdf4348e5cabbf7f3c032ec5d33b628f3d9e2bf305176de",
+    "docs/governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md": "650264f78387d317eb5dec7a58c14197ac2c97ef712f05cd30ce5e11869cd5ea",
+    "docs/governance/audits/requirement-registration/harness-specialist-contract-coverage-receipt-2026-09-29.json": "4cc3754a4bdf7b78af4352d937ce4875b7670a990787f51aea29c3caf56cba89",
+    "docs/governance/audits/requirement-registration/intelligence-judgment-pack-coverage-receipt-2026-09-28-r4.json": "2fe50984cd0cc4a1a1a66ca1625ecda39ec2fdfaa4ca67891698eae9cba4aaae"
+  },
+  "decisions": [
+    {
+      "path": "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md",
+      "sha256": "a60e2c9c5b9d0828acdf4348e5cabbf7f3c032ec5d33b628f3d9e2bf305176de",
+      "locator": "lines 86-89",
+      "scope": "Discovery and PoC are separate; Discovery is used for mid-development verification; Deciding is a separate operation. This supports FR56 label/flow transformation, not same artifact schema."
+    },
+    {
+      "path": "docs/governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md",
+      "sha256": "650264f78387d317eb5dec7a58c14197ac2c97ef712f05cd30ce5e11869cd5ea",
+      "scope": "Right-arm paired verification semantics; current HARNESS L2/paired L11 are cited for scoped reverse and pair evidence."
+    },
+    {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "rows": {
+        "HARNESS-L2-047": 52,
+        "HELIXOS-L2-042": 65,
+        "HELIXOS-L2-043": 66,
+        "HELIXINTELLIGENCE-L2-072": 85
+      },
+      "selected_revision_digests": {
+        "HARNESS-L2-047": {
+          "l2": "733201471492a400db194369980f54499faa7f7860e1e1465c18589a43daa9b9",
+          "l11": "8d92bb157dff9cffd87f72a43c2ce19977667a2fd928b5a3780f1f55912bdcb2",
+          "decision": "conditional adoption A placement"
+        },
+        "HELIXINTELLIGENCE-L2-072": {
+          "l11": "381e9d205a6d9fdeb61ec453dfb0ea768c13af6200494544c42cdf67062d302a",
+          "decision": "conditional adoption B placement, version 1.0 candidate generation/shadow only",
+          "candidate_semantic_digest": "02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4",
+          "l11_section_digest": "381e9d205a6d9fdeb61ec453dfb0ea768c13af6200494544c42cdf67062d302a"
+        },
+        "HELIXOS-L2-042": {
+          "l2": "75e8b9f72eaa777f25e38335664cb2527da8c56c1445a3eca181de27cc258e71",
+          "l11": "0f23c0399f3b6c37094d4725563f80bb5e82d25e35b9ba7a1196c2106f76a4df",
+          "decision": "adopted"
+        },
+        "HELIXOS-L2-043": {
+          "l2": "e286b34a9805a690f324ebe37ee0936691f636082b49350ee9dc5183787d9a68",
+          "l11": "136c2c209e30667dc74f1757b00fc482ce1216f05a851990c02437dc9078976b",
+          "decision": "adopted"
+        }
+      }
+    }
+  ],
+  "candidate_receipts": [
+    {
+      "registration": "MPR-RC-HARNESS-L2-047-001",
+      "receipt": "docs/governance/audits/requirement-registration/harness-specialist-contract-coverage-receipt-2026-09-29.json",
+      "receipt_sha256": "4cc3754a4bdf7b78af4352d937ce4875b7670a990787f51aea29c3caf56cba89",
+      "scope": "4 source rows BR09/BR30/FR59/FR60; selected FR59/60 full source rows within the selected 4 line atoms; does not claim complete IR/asset closure."
+    },
+    {
+      "registration": "MPR-RC-HELIXINTELLIGENCE-L2-072-004",
+      "receipt": "docs/governance/audits/requirement-registration/intelligence-judgment-pack-coverage-receipt-2026-09-28-r4.json",
+      "receipt_sha256": "2fe50984cd0cc4a1a1a66ca1625ecda39ec2fdfaa4ca67891698eae9cba4aaae",
+      "scope": "BR29 plus FR57/FR58 selected slices; FR58 split across 1.0 shadow evaluation and later improvement-use holding.",
+      "selected_candidate_digest_rule": "4-part concatenation: L2 original + L2 supplement + L11 original + L11 supplement, each trailing blank lines stripped and one LF appended; candidate_semantic_digest is not an L2-only section hash.",
+      "current_digest_parts": [
+        {
+          "part": "L2-072-original",
+          "sha256": "a828bff2126dfe8b029c75ff922f4b52613e6aa48cd957a3f8056be635b97dd2"
+        },
+        {
+          "part": "L2-072-supplement",
+          "sha256": "08d3915feb65dfe071ce69f56fb97070822e08e5cd7f30a92b4d42e22953cf8b"
+        },
+        {
+          "part": "L11-072-original",
+          "sha256": "b0a3131940865e2cb30b016ec7232f6f9e40c6cb9fdd20f3974c7654e8a6a31f"
+        },
+        {
+          "part": "L11-072-supplement",
+          "sha256": "8d9514cc6964d617928abe6dacaece211004f754c337fbe8d78bda678ab187c8"
+        }
+      ],
+      "computed_aggregate_sha256": "02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4",
+      "current_l2_full_section_raw_sha256": "7329b3b66941fcbc737b5b22bef36a2067f58fe6c7481d93b29cc29a84d53d61"
+    },
+    {
+      "registration": "MPR-RC-HARNESS-L2-054-001",
+      "status": "not adopted by cited decision; candidate whereabouts only",
+      "scope": "handoff refinement to OS assignment; does not supersede adopted 047 or OS decisions. Its unadopted state alone is not evidence of a missing guarantee."
+    }
+  ],
+  "source_rows": [
+    {
+      "requirement_id": "HIL-FR-56",
+      "source_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_line": 146,
+      "source_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_line_sha256": "84e862f1bd204055e42b24758e8a1c78f766fad53e5bd80786767fba5d61fb29",
+      "source_line_text": "| **HIL-FR-56** | Workflow Contract Routerはportfolio itemを選択済みdevelopment styleの対象layer input/output、entry/exit gate、下位task、right-arm V-pairへbindする。case-driven modelではS0 hypothesisにgapと親要求、S1 experiment planに契約snapshot・style返却先・budget、S2 pocに生成物、S3 verifyにoracle evidence、S4 decideにconfirmed/rejected/pivotとback-propagationを必須化し、S4未決定の成果をproduction currentへ昇格しない。 | workflow binding manifest、phase snapshot、style return edge、S4 decision/back-propagation receipt |",
+      "ir_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-56",
+      "ir_revision": 1,
+      "ir_record_status": "specified",
+      "ir_definition_status": "frozen",
+      "ir_statement_semantic_digest": "sha256:50309a18a0fb01c0232964b13e339ff415ccc6a0d9c2472e279b393443b9e539",
+      "ir_record_canonical_json_sha256": "1a73b1cc217cd2af13982aed6c8c26b1b99e88abf3daefb5965dbd9d3e835fbe",
+      "primary_system_contract_id": "HR-FR-HIL-20",
+      "acceptance_ids": [
+        "HAC-HIL-20a",
+        "HAC-HIL-20b",
+        "HAC-HIL-20c"
+      ],
+      "system_test_id": "HAT-HIL-20",
+      "downstream_obligation": {
+        "obligation_id": "DOWNSTREAM-HIL-FR-56",
+        "owner_id": "HR-FR-HIL-20",
+        "status": "pending_pair_descent",
+        "route_issue_ids": []
+      },
+      "pending_resolution": [
+        "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+        "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+      ]
+    },
+    {
+      "requirement_id": "HIL-FR-57",
+      "source_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_line": 147,
+      "source_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_line_sha256": "47d3f4c7978e415bbea862c6337b45b52f2fc017d53403d4567218d2a2f37d64",
+      "source_line_text": "| **HIL-FR-57** | Judgment Pack Registryは工程別の判断目的、観点、反証質問、evidence要求、severity、escalation/停止条件、authority、適用domain/risk、model適性、versionを保持し、`judgment-core`、role judgment、task lens、専門skillを重複のないpackへ合成する。 | judgment pack、applicability/digest、source skill edge、conflict finding |",
+      "ir_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-57",
+      "ir_revision": 1,
+      "ir_record_status": "specified",
+      "ir_definition_status": "frozen",
+      "ir_statement_semantic_digest": "sha256:58171916df9edf46974d0241fc75879809fb314dd78d4ab24448b73442120065",
+      "ir_record_canonical_json_sha256": "6ccc5383ab1bb092c6ea60e9d37e2e087c7f051ac75f5351744f02b4353dcf74",
+      "primary_system_contract_id": "HR-FR-HIL-21",
+      "acceptance_ids": [
+        "HAC-HIL-21a",
+        "HAC-HIL-21b",
+        "HAC-HIL-21c"
+      ],
+      "system_test_id": "HAT-HIL-21",
+      "downstream_obligation": {
+        "obligation_id": "DOWNSTREAM-HIL-FR-57",
+        "owner_id": "HR-FR-HIL-21",
+        "status": "pending_pair_descent",
+        "route_issue_ids": []
+      },
+      "pending_resolution": [
+        "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+        "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+      ]
+    },
+    {
+      "requirement_id": "HIL-FR-58",
+      "source_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_line": 148,
+      "source_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_line_sha256": "f088e4c21b3b9cd12c93a33c998ce249bce73540edbb45f192a2c5753e6e6794",
+      "source_line_text": "| **HIL-FR-58** | Judgment Pack Improvement Loopはfinding、review reversal、retry、escaped defect、skill efficacyから不足観点を候補化し、with/without shadow比較、false-positive/negative、別runtime review、rollbackを経たversionだけをactive化する。判断結果そのものを自己教師として無監査昇格しない。 | candidate pack、shadow scorecard、independent review、promotion/rollback receipt |",
+      "ir_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-58",
+      "ir_revision": 1,
+      "ir_record_status": "specified",
+      "ir_definition_status": "frozen",
+      "ir_statement_semantic_digest": "sha256:1f3226818758cf15d8d60ffe6f435b6c8e524203664bb3414b2bfd61b10f41fe",
+      "ir_record_canonical_json_sha256": "d959e1cfb8059eebb42da92c9092e6edf89bdd26a57ab864c7e693daf80e8a83",
+      "primary_system_contract_id": "HR-FR-HIL-21",
+      "acceptance_ids": [
+        "HAC-HIL-21a",
+        "HAC-HIL-21b",
+        "HAC-HIL-21c"
+      ],
+      "system_test_id": "HAT-HIL-21",
+      "downstream_obligation": {
+        "obligation_id": "DOWNSTREAM-HIL-FR-58",
+        "owner_id": "HR-FR-HIL-21",
+        "status": "pending_pair_descent",
+        "route_issue_ids": []
+      },
+      "pending_resolution": [
+        "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+        "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+      ]
+    },
+    {
+      "requirement_id": "HIL-FR-59",
+      "source_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_line": 149,
+      "source_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_line_sha256": "5e651a6e42d73572ae5f37bd6659125e486fa100f54dcb17c19814951439927a",
+      "source_line_text": "| **HIL-FR-59** | Specialist Agent Contract Compilerはworkflow phase、task-kind、設計義務、domain object、risk、judgment packからobjective、成果物schema、tool guidance、task boundary、context selectors、allowed/denied tools/paths、model/effort class、budget、checkpoint、escalation、verification contractを持つruntime中立agent contractを生成する。 | generated agent contract、input/output digest、generation rationale、guard validation receipt |",
+      "ir_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-59",
+      "ir_revision": 1,
+      "ir_record_status": "specified",
+      "ir_definition_status": "frozen",
+      "ir_statement_semantic_digest": "sha256:62bab0d1ae5a31f495494d6a93047746ddb77d64e3830f194faeb9079f05289c",
+      "ir_record_canonical_json_sha256": "fb1c24372f63239e1607aa7ed067c41c3cd3871ef082b4ad1373b96f4638f7f7",
+      "primary_system_contract_id": "HR-FR-HIL-21",
+      "acceptance_ids": [
+        "HAC-HIL-21a",
+        "HAC-HIL-21b",
+        "HAC-HIL-21c"
+      ],
+      "system_test_id": "HAT-HIL-21",
+      "downstream_obligation": {
+        "obligation_id": "DOWNSTREAM-HIL-FR-59",
+        "owner_id": "HR-FR-HIL-21",
+        "status": "pending_pair_descent",
+        "route_issue_ids": []
+      },
+      "pending_resolution": [
+        "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+        "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+      ]
+    },
+    {
+      "requirement_id": "HIL-FR-60",
+      "source_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_line": 150,
+      "source_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_line_sha256": "d749219c320a223e8d2b078587aa054715cd4cacc0747c96c375796b72a76a7f",
+      "source_line_text": "| **HIL-FR-60** | Specialist Muster Gateは専門知識、独立context、並列性、blind verificationのいずれかに測定可能な利益がある場合だけ生成agentをmusterし、単一agentで十分なtaskは既存roleへ送る。生成agentをallowlist済みruntime型へ射影し、workerとverifierのprovider/model/authority分離、lease、fencing、retireを検査する。 | specialization decision、TeamDefinition、runtime projection、worker/verifier separation、lifecycle receipt |",
+      "ir_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-60",
+      "ir_revision": 1,
+      "ir_record_status": "specified",
+      "ir_definition_status": "frozen",
+      "ir_statement_semantic_digest": "sha256:8a788e970942b14fe2881c7db110db17b639b07b8a22475c46adf48663523c96",
+      "ir_record_canonical_json_sha256": "e40e2b1e0bb73e54360a3164f325f107e79df87d4741a4bb4e22b6b97106b25e",
+      "primary_system_contract_id": "HR-FR-HIL-21",
+      "acceptance_ids": [
+        "HAC-HIL-21a",
+        "HAC-HIL-21b",
+        "HAC-HIL-21c"
+      ],
+      "system_test_id": "HAT-HIL-21",
+      "downstream_obligation": {
+        "obligation_id": "DOWNSTREAM-HIL-FR-60",
+        "owner_id": "HR-FR-HIL-21",
+        "status": "pending_pair_descent",
+        "route_issue_ids": []
+      },
+      "pending_resolution": [
+        "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+        "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+      ]
+    }
+  ],
+  "condition_crosswalk": [
+    {
+      "source_id": "HIL-FR-56",
+      "clauses": [
+        {
+          "id": "FR56-input-route",
+          "source_meaning": "Portfolio itemを選択済みdevelopment styleの対象layer I/O、entry/exit gate、下位task、right-arm V-pairへbindする。",
+          "current_routes": [
+            "HARNESS-L2-001/002/003/004",
+            "HELIXOS-L2-010 ticket種別・親/戻り先"
+          ],
+          "finding": "保持（工程名ではなくticket/phaseとpairで再導出）。"
+        },
+        {
+          "id": "FR56-S0-S3",
+          "source_meaning": "case-driven S0 hypothesisのgap/親要求、S1 experiment planの契約snapshot/style return/budget、S2 PoC成果、S3 oracle evidence。",
+          "current_routes": [
+            "HARNESS-L2-002/003 Discovery/PoCの意味と結果戻し",
+            "HARNESS-L11-002/003 静的oracle",
+            "HELIXOS-L2-010 ticket routing"
+          ],
+          "finding": "保持（旧ラベルと1対1のphase名を要求しない。対象ticket・evidence・返却先が対応）。"
+        },
+        {
+          "id": "FR56-S4-boundary",
+          "source_meaning": "S4 confirmed/rejected/pivot・back-propagationを決め、S4未決結果をproduction currentへ上げない。要求意味の裁定は人判断。",
+          "current_routes": [
+            "HARNESS-L2-002/003 Decide、verification successのみでは採用しない、人判断条件",
+            "HELIXOS-L2-010 Decide ticket"
+          ],
+          "finding": "保持（成功結果と意味採択を分離）。"
+        },
+        {
+          "id": "FR56-outputs",
+          "source_meaning": "workflow binding manifest、phase snapshot、style return edge、S4 decision/back-propagation receipt。",
+          "current_routes": [
+            "HARNESS-L2-001〜004 trace/pair/ticket/evidence",
+            "HELIXOS-L2-010 ticket/return routing"
+          ],
+          "finding": "意味出力は対応。旧artifact名・独立schemaへの同一性は確定していないため、物理形式の全 closure は主張しない。"
+        }
+      ]
+    },
+    {
+      "source_id": "HIL-FR-57",
+      "clauses": [
+        {
+          "id": "FR57-pack-facets",
+          "source_meaning": "目的、観点、反証質問、evidence、severity、escalation/stop、authority、domain/risk、model適性、versionをpackに持つ。",
+          "current_routes": [
+            "採択 HELIXINTELLIGENCE-L2-072 (9/29 decision row 85; exact section digest)",
+            "同paired HELIXINTELLIGENCE-L11-072"
+          ],
+          "finding": "条件付き採択の1.0候補生成/shadow評価範囲で保持。unknown/未評価、適用条件、source/version、authorityと不確実性を記録。"
+        },
+        {
+          "id": "FR57-compose",
+          "source_meaning": "judgment-core、role judgment、task lens、専門skillを重複のないpackへ合成しsource edge/conflictを保持。",
+          "current_routes": [
+            "L2-072追加句「pack構成」「合成の記録」",
+            "L11-072 conflict/unknown oracle"
+          ],
+          "finding": "保持。重複排除は由来edgeを保持し、conflictを黙って解消しない。"
+        }
+      ]
+    },
+    {
+      "source_id": "HIL-FR-58",
+      "clauses": [
+        {
+          "id": "FR58-trigger-loop",
+          "source_meaning": "finding、review reversal、retry、escaped defect、skill efficacyから不足観点を候補化して改善へ使う。",
+          "current_routes": [
+            "採択L2-072 source relation / version boundary; HMC-BR-003 and Intelligence-L1-021; LABO-L2-050 and unadopted LABO-L2-063 selected-scope only"
+          ],
+          "finding": "1.0外の後続3.0+ Intelligence improvement useとして保留。全signal loopの採択/closureなし。"
+        },
+        {
+          "id": "FR58-shadow",
+          "source_meaning": "with/without shadow比較、FP/FN、独立review、rollback後のversionだけをactive化。",
+          "current_routes": [
+            "採択 HELIXINTELLIGENCE-L2-072/L11-072 exact pair",
+            "対象ownerの採択・OS記録を代行しない"
+          ],
+          "finding": "1.0範囲で条件付き採択。shadow+独立reviewとactive boundaryを保持。別runtimeそれ自体は独立性基準でない。"
+        },
+        {
+          "id": "FR58-negative",
+          "source_meaning": "判断結果そのものを自己教師として無監査昇格しない。",
+          "current_routes": [
+            "L2-072 authority boundary",
+            "L11-072 self-review / no-owner-approval negative oracle"
+          ],
+          "finding": "保持。候補・shadow・reviewでgateを自動有効化しない。"
+        },
+        {
+          "id": "FR58-outputs",
+          "source_meaning": "candidate pack、shadow scorecard、independent review、promotion/rollback receipt。",
+          "current_routes": [
+            "L2/L11-072 candidate/scorecard/review obligations",
+            "owner/OSの既存active/rollback receipt"
+          ],
+          "finding": "静的に要求定義あり。実際の評価・promotion/rollback成立は未実施で、072がowner receiptを発行する意味にはしない。"
+        }
+      ]
+    },
+    {
+      "source_id": "HIL-FR-59",
+      "clauses": [
+        {
+          "id": "FR59-input-fields",
+          "source_meaning": "workflow phase, task-kind, design obligation, domain object, risk, judgment packから生成。",
+          "current_routes": [
+            "条件付き採択 HARNESS-L2-047-001 A配置 (9/29 row 52 exact section digest)"
+          ],
+          "finding": "保持。適用process/oracle/revision/domain/risk/pack入力をsource-aware contractに結ぶ。"
+        },
+        {
+          "id": "FR59-contract-fields",
+          "source_meaning": "objective, artifact schema, tool guidance, task boundary, context selectors, allowed/denied tools/paths, model/effort, budget, checkpoint, escalation, verification contract; runtime-neutral.",
+          "current_routes": [
+            "採択 HARNESS-L2/L11-047 exact pair"
+          ],
+          "finding": "保持。provider/runtime固有設定や固定worker countは要件化しない。"
+        },
+        {
+          "id": "FR59-receipt",
+          "source_meaning": "generated contract、input/output digest、generation rationale、guard validation receipt。",
+          "current_routes": [
+            "HARNESS-L2/L11-047 deterministic normalized input/rule revision, digests, rationale, guard validation"
+          ],
+          "finding": "保持。実生成/実行証拠ではなく要求oracleである。"
+        }
+      ]
+    },
+    {
+      "source_id": "HIL-FR-60",
+      "clauses": [
+        {
+          "id": "FR60-muster",
+          "source_meaning": "専門知識、独立context、並列性、blind verificationのいずれかに測定可能な利益がある場合だけ生成agent候補。single-agent sufficientなら既存roleへ。",
+          "current_routes": [
+            "採択 HARNESS-L2/L11-047 exact pair"
+          ],
+          "finding": "保持。比較scope/evidence不明ならunknown_or_defer、固定数値thresholdを加えない。"
+        },
+        {
+          "id": "FR60-runtime-lifecycle",
+          "source_meaning": "生成agentをallowlist runtimeへ投影し、worker/verifierのprovider/model/authority分離とlease/fencing/retireを検査。",
+          "current_routes": [
+            "HARNESS-L2/L11-047 owner split + runtime-neutral contract",
+            "採択 HELIXOS-L2-004 assignment/execution, and adopted OS-042/043 evidence/event pair where applicable"
+          ],
+          "finding": "要求段階の責務・lifecycle条件を保持。OS/SECURITY ownerの実行成立は未実施。provider/model一致単独で独立性判定しない。"
+        },
+        {
+          "id": "FR60-outputs",
+          "source_meaning": "specialization decision、TeamDefinition、runtime projection、worker/verifier separation、lifecycle receipt。",
+          "current_routes": [
+            "HARNESS-L2/L11-047 muster outcome / contract / runtime projection & lifecycle evidence; OS-L2-004 assignment and evidence"
+          ],
+          "finding": "muster/contract/projection/separation/receipt meaning mapped; TeamDefinitionという旧名の独立schema/必須artifactとしての存続は current exact decision で明示されていない。source holdingに残し、同一artifact又はretireを主張しない。"
+        }
+      ]
+    }
+  ],
+  "residuals": [
+    {
+      "id": "FR60-TeamDefinition-output-shape",
+      "severity": "meaning boundary unresolved, not asserted functional gap",
+      "source": "HIL-FR-60 line 150 output atom; exact source line and IR statement digests included above.",
+      "current": "047 outputs runtime-neutral specialist Worker contract; OS-L2-004 holds assignment/execution and existing runtime projection/evidence. Accepted section does not state whether legacy TeamDefinition is a separate required aggregate or an old label represented by contract plus OS assignment.",
+      "handling": "Do not claim exact TeamDefinition schema/identity closure, nor treat missing same-name field as proof of absent behavior. Keep source atom/holding. If separate aggregate meaning is intended, return as a targeted PO meaning choice before proposing another candidate."
+    }
+  ],
+  "authority_and_limitations": {
+    "adoption_source": "Exact 2026-09-29 decision rows/digests control adoption; stale frontmatter wording in 047/072 candidate sections is not authority.",
+    "implementation": "HAT-HIL-20/HAT-HIL-21 remain designed_not_implemented in old IR. Static requirement/oracle coverage is not execution evidence.",
+    "formal_successor": "IR downstream obligations remain pending_pair_descent; no formal successor or whole-row legacy closure is claimed.",
+    "unadopted_candidate": "HARNESS-L2-054 and other unselected slices are held as candidate/source whereabouts, not adopted contracts.",
+    "prohibited_operations": "No archive runtime, old test, old CI, CLI, hook, adapter, or source execution; source only read. No 137 or common gate execution."
+  }
+}
