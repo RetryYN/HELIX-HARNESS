@@ -3822,7 +3822,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -4611,7 +4614,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -5400,7 +5406,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -6192,7 +6201,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -6984,7 +6996,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -7846,7 +7861,79 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [
+            {
+              "corpus": "fixed_F6",
+              "path": "docs/helix-brain/L1-planning/brain-intent.md",
+              "line": 87,
+              "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+              "sha256": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0",
+              "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
+              "source_line_range": [
+                37,
+                39
+              ],
+              "selected_source_physical_line": 39,
+              "candidate_source_line_id": "LEGACY-CAND-LINE-004082",
+              "rank": 2386,
+              "relation_kind": "path:line-range citation; no explicit candidate line ID; no adoption decision",
+              "citation_text": "| HELIXBRAIN-L1-007、009（昇格の経路） | 旧RCLS-BR-004（`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md:37-39`：project内の知識を独立検証、横断検証、shadowを経たものだけ仕組みへ昇格する）、旧RCLS-BR-006（同`:45-47`：学習は提案であり、既存のauthorityを直接変えない） | 段階を踏んだ独立の検証を経て昇格し、提案で既存のauthorityを変えない | 提案の登録と振り分けをOSが行う（OSはPM、LABOはPMO。2026-09-26のPO判断） |"
+            },
+            {
+              "corpus": "fixed_F6",
+              "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+              "line": 545,
+              "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+              "sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+              "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
+              "source_line_range": [
+                37,
+                47
+              ],
+              "selected_source_physical_line": 39,
+              "candidate_source_line_id": "LEGACY-CAND-LINE-004082",
+              "rank": 2386,
+              "relation_kind": "path:line-range citation; no explicit candidate line ID; no adoption decision",
+              "citation_text": "| 旧RCLS-BR-004/006 | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md:37-47`, asset ledger `LEGACY-ASSET-F2C2755C8809C2C0DEAD`, SHA-256 `c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c` | 独立検証を経ること、提案だけでauthorityを変更しない | 登録と振分けをOS、効果評価をLABO、汎用knowledge revisionをBRAINへ分離 |"
+            },
+            {
+              "corpus": "current_main_layers",
+              "path": "docs/helix-brain/L1-planning/brain-intent.md",
+              "line": 87,
+              "commit": "e7dd2eb65bfde91b55ebaa8b786fbe384a24ca69",
+              "sha256": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0",
+              "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
+              "source_line_range": [
+                37,
+                39
+              ],
+              "selected_source_physical_line": 39,
+              "candidate_source_line_id": "LEGACY-CAND-LINE-004082",
+              "rank": 2386,
+              "relation_kind": "path:line-range citation; no explicit candidate line ID; no adoption decision",
+              "citation_text": "| HELIXBRAIN-L1-007、009（昇格の経路） | 旧RCLS-BR-004（`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md:37-39`：project内の知識を独立検証、横断検証、shadowを経たものだけ仕組みへ昇格する）、旧RCLS-BR-006（同`:45-47`：学習は提案であり、既存のauthorityを直接変えない） | 段階を踏んだ独立の検証を経て昇格し、提案で既存のauthorityを変えない | 提案の登録と振り分けをOSが行う（OSはPM、LABOはPMO。2026-09-26のPO判断） |"
+            },
+            {
+              "corpus": "current_main_layers",
+              "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+              "line": 545,
+              "commit": "e7dd2eb65bfde91b55ebaa8b786fbe384a24ca69",
+              "sha256": "421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa",
+              "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
+              "source_line_range": [
+                37,
+                47
+              ],
+              "selected_source_physical_line": 39,
+              "candidate_source_line_id": "LEGACY-CAND-LINE-004082",
+              "rank": 2386,
+              "relation_kind": "path:line-range citation; no explicit candidate line ID; no adoption decision",
+              "citation_text": "| 旧RCLS-BR-004/006 | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md:37-47`, asset ledger `LEGACY-ASSET-F2C2755C8809C2C0DEAD`, SHA-256 `c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c` | 独立検証を経ること、提案だけでauthorityを変更しない | 登録と振分けをOS、効果評価をLABO、汎用knowledge revisionをBRAINへ分離 |"
+            }
+          ],
+          "selected_cited_row_count": 1,
+          "citation_record_count": 4,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用あり、line ID明記/採択なし。"
         }
       },
       "historical_decision_relation": {
@@ -8743,7 +8830,79 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [
+            {
+              "corpus": "fixed_F6",
+              "path": "docs/helix-brain/L1-planning/brain-intent.md",
+              "line": 87,
+              "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+              "sha256": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0",
+              "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
+              "source_line_range": [
+                45,
+                47
+              ],
+              "selected_source_physical_line": 47,
+              "candidate_source_line_id": "LEGACY-CAND-LINE-004086",
+              "rank": 2387,
+              "relation_kind": "path:line-range citation; no explicit candidate line ID; no adoption decision",
+              "citation_text": "| HELIXBRAIN-L1-007、009（昇格の経路） | 旧RCLS-BR-004（`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md:37-39`：project内の知識を独立検証、横断検証、shadowを経たものだけ仕組みへ昇格する）、旧RCLS-BR-006（同`:45-47`：学習は提案であり、既存のauthorityを直接変えない） | 段階を踏んだ独立の検証を経て昇格し、提案で既存のauthorityを変えない | 提案の登録と振り分けをOSが行う（OSはPM、LABOはPMO。2026-09-26のPO判断） |"
+            },
+            {
+              "corpus": "fixed_F6",
+              "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+              "line": 545,
+              "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+              "sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+              "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
+              "source_line_range": [
+                37,
+                47
+              ],
+              "selected_source_physical_line": 47,
+              "candidate_source_line_id": "LEGACY-CAND-LINE-004086",
+              "rank": 2387,
+              "relation_kind": "path:line-range citation; no explicit candidate line ID; no adoption decision",
+              "citation_text": "| 旧RCLS-BR-004/006 | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md:37-47`, asset ledger `LEGACY-ASSET-F2C2755C8809C2C0DEAD`, SHA-256 `c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c` | 独立検証を経ること、提案だけでauthorityを変更しない | 登録と振分けをOS、効果評価をLABO、汎用knowledge revisionをBRAINへ分離 |"
+            },
+            {
+              "corpus": "current_main_layers",
+              "path": "docs/helix-brain/L1-planning/brain-intent.md",
+              "line": 87,
+              "commit": "e7dd2eb65bfde91b55ebaa8b786fbe384a24ca69",
+              "sha256": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0",
+              "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
+              "source_line_range": [
+                45,
+                47
+              ],
+              "selected_source_physical_line": 47,
+              "candidate_source_line_id": "LEGACY-CAND-LINE-004086",
+              "rank": 2387,
+              "relation_kind": "path:line-range citation; no explicit candidate line ID; no adoption decision",
+              "citation_text": "| HELIXBRAIN-L1-007、009（昇格の経路） | 旧RCLS-BR-004（`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md:37-39`：project内の知識を独立検証、横断検証、shadowを経たものだけ仕組みへ昇格する）、旧RCLS-BR-006（同`:45-47`：学習は提案であり、既存のauthorityを直接変えない） | 段階を踏んだ独立の検証を経て昇格し、提案で既存のauthorityを変えない | 提案の登録と振り分けをOSが行う（OSはPM、LABOはPMO。2026-09-26のPO判断） |"
+            },
+            {
+              "corpus": "current_main_layers",
+              "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+              "line": 545,
+              "commit": "e7dd2eb65bfde91b55ebaa8b786fbe384a24ca69",
+              "sha256": "421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa",
+              "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
+              "source_line_range": [
+                37,
+                47
+              ],
+              "selected_source_physical_line": 47,
+              "candidate_source_line_id": "LEGACY-CAND-LINE-004086",
+              "rank": 2387,
+              "relation_kind": "path:line-range citation; no explicit candidate line ID; no adoption decision",
+              "citation_text": "| 旧RCLS-BR-004/006 | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md:37-47`, asset ledger `LEGACY-ASSET-F2C2755C8809C2C0DEAD`, SHA-256 `c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c` | 独立検証を経ること、提案だけでauthorityを変更しない | 登録と振分けをOS、効果評価をLABO、汎用knowledge revisionをBRAINへ分離 |"
+            }
+          ],
+          "selected_cited_row_count": 1,
+          "citation_record_count": 4,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用あり、line ID明記/採択なし。"
         }
       },
       "historical_decision_relation": {
@@ -9560,7 +9719,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -10272,7 +10434,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -10907,7 +11072,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -11542,7 +11710,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -12177,7 +12348,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -12812,7 +12986,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -13447,7 +13624,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -14082,7 +14262,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -14717,7 +14900,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -15352,7 +15538,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -15987,7 +16176,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -16622,7 +16814,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -17257,7 +17452,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -17892,7 +18090,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -18527,7 +18728,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -19165,7 +19369,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -19803,7 +20010,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -20441,7 +20651,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -21079,7 +21292,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -21717,7 +21933,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -22355,7 +22574,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -22993,7 +23215,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -23631,7 +23856,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -24269,7 +24497,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -24897,7 +25128,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -25512,7 +25746,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -25913,7 +26150,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -26314,7 +26554,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -26715,7 +26958,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -27116,7 +27362,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -27517,7 +27766,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -27918,7 +28170,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
@@ -28319,7 +28574,10 @@
         },
         "split_path_line_citation_check": {
           "selected_source_file_mentions_in_scanned_corpora": 13,
-          "selected_split_path_line_citation_hits": "manual-context-review-required"
+          "selected_split_path_line_citation_hits": [],
+          "selected_cited_row_count": 0,
+          "citation_record_count": 0,
+          "result": "選択物理行と引用整数区間を照合済み。範囲引用なし。"
         }
       },
       "historical_decision_relation": {
