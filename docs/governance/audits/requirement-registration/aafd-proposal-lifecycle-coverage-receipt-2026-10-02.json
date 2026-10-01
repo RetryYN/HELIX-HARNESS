@@ -22,7 +22,7 @@
       "existing_parent_l2": "HELIXINTELLIGENCE-L2-009",
       "candidate_semantic_digest": "sha256:3fd41ea6aac29e7f819398a4e7d6128ebfdf1053019c69811ac4eaf1f59f2f0d",
       "candidate_source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#helixintelligence-l2-075",
-      "candidate_file_sha256": "sha256:3c9e350724b4abdca9c9e9b61c8338d078d2bdda1d1b619c2705d8121559a5d7",
+      "candidate_file_sha256": "sha256:64b41a363f357c273f3cb68fb2be1221d42066b056655aab7922d569e65b3486",
       "candidate_section_boundaries": {
         "start_line": 618,
         "end_line": 625,
@@ -185,9 +185,9 @@
         "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md"
       },
       "existing_parent_l2": "HELIXINTELLIGENCE-L2-011",
-      "candidate_semantic_digest": "sha256:c4a239b6fe0882523c0c951b293371932699618bc0f7a1d72235b5016d02424f",
+      "candidate_semantic_digest": "sha256:c3fd04be5b3e0a5ec2e4f76590d46cbf3e010c3d1a49cf49504e370a74e10ee0",
       "candidate_source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#helixintelligence-l2-076",
-      "candidate_file_sha256": "sha256:3c9e350724b4abdca9c9e9b61c8338d078d2bdda1d1b619c2705d8121559a5d7",
+      "candidate_file_sha256": "sha256:64b41a363f357c273f3cb68fb2be1221d42066b056655aab7922d569e65b3486",
       "candidate_section_boundaries": {
         "start_line": 627,
         "end_line": 633,
@@ -275,7 +275,8 @@
       ],
       "human_decision_disposition_refs": [],
       "unaccounted_atom_refs": [],
-      "semantic_limit": "選択した旧source atomsの意味対応を未採択candidateへ保持した記録。対象L1のscope拡張、採択、実装、runtime検証を示さない。"
+      "semantic_limit": "選択した旧source atomsの意味対応を未採択candidateへ保持した記録。対象L1のscope拡張、採択、実装、runtime検証を示さない。",
+      "source_limit_note": "同条件不足時の比較不能/unknown条件は採択済みL1-011と現行L2-011のunknown保持から導いた提案であり、旧AAFD-R-13/14の原文4行そのものではない。"
     }
   ],
   "source_parent_context": {
@@ -327,7 +328,7 @@
   "validation_boundary": "static exact source path/file/line SHA, candidate L2/L11 section pins, MPR append-only registration and current PO/L1 scope comparison; no legacy runtime/test/CI/CLI execution and no L2/L11 adoption.",
   "pins": {
     "base_commit": "1cd77015081b87d5bcde7d5e45ee4e0a227e02c2",
-    "l2_file_sha256": "sha256:3c9e350724b4abdca9c9e9b61c8338d078d2bdda1d1b619c2705d8121559a5d7",
+    "l2_file_sha256": "sha256:64b41a363f357c273f3cb68fb2be1221d42066b056655aab7922d569e65b3486",
     "l11_file_sha256": "sha256:164a9fcd1d1b5dcd7a0647ab6c1ab231574079bea647a09f9f3fefc213e2dd9a",
     "existing_candidate_file_sha256": "sha256:3fb376ba503cc1e057aa2eb0c85b8fb5d4c4c06e2af2dc068fb2fd55f461cc16",
     "parent_l1_sha256": "sha256:8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8",
@@ -411,6 +412,29 @@
         "source atoms LEGACY-CAND-LINE-000178..000180"
       ],
       "status": "decision material recorded; not a blocker to this audit or candidate receipt; no option B/C adopted"
+    }
+  },
+  "pin_semantics": {
+    "base_commit": "pins.base_commitは作成基準commit 1cd77015081b87d5bcde7d5e45ee4e0a227e02c2を指し、追補後候補本文そのもののrevisionを表さない。",
+    "candidate_file_hashes": "pins.l2_file_sha256、pins.l11_file_sha256、pins.existing_candidate_file_sha256は作成基準上で候補追補を適用した後の各本文bytesを指す。",
+    "register_hash": "pins.pre_append_register_sha256はMPR追記前のregister bytesを指す。",
+    "latest_comparison": "current_comparison_read_afterは後続の比較commitを識別し、作成時pinを置換しない。",
+    "previous_candidate_file_hashes": {
+      "base_commit": "1cd77015081b87d5bcde7d5e45ee4e0a227e02c2",
+      "l2_file_sha256": "sha256:3c9e350724b4abdca9c9e9b61c8338d078d2bdda1d1b619c2705d8121559a5d7",
+      "l11_file_sha256": "sha256:164a9fcd1d1b5dcd7a0647ab6c1ab231574079bea647a09f9f3fefc213e2dd9a",
+      "existing_candidate_file_sha256": "sha256:3fb376ba503cc1e057aa2eb0c85b8fb5d4c4c06e2af2dc068fb2fd55f461cc16",
+      "parent_l1_sha256": "sha256:8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8",
+      "source_file_sha256": "sha256:685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "asset_disposition_ledger_sha256": "sha256:cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "asset_disposition_jsonl_line": 789,
+      "pre_append_register_sha256": "sha256:ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+      "prior_R04_r2_receipt_sha256": "sha256:31b7db992c333edcd1fe7cfc94c7567cc88df594d70b71610f040fc44129c3f8",
+      "prior_R04_source_lines_sha256": "sha256:b1ef1bbb5ab479490934d4eaceb62d2734f0b4a97e1f456a3520cfe33d25659d",
+      "later_PO_decision_file_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "later_PO_decision_line": 86,
+      "later_PO_decision_L2_digest": "sha256:4425189d3870de92165ebdbc790902317dc2799d89f760156ab17441662a2eb5",
+      "later_PO_decision_L11_digest": "sha256:d98488d23fc02992143edb4a1e689a0c12dcc91d0ec1c9adabe1b8e334dd9ef1"
     }
   }
 }
