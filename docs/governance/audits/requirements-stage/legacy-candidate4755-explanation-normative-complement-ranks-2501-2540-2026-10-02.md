@@ -9,9 +9,9 @@
 
 行hashはUTF-8の行本文bytes（末尾LFを除く）のSHA-256、physical-line hashは終端LFを含む物理行bytesのSHA-256。JSONの各source rowでledger hash・実source bytes・archive file hashを照合した。
 
-effective explanation 2,965行からmarker-positive 255 IDと非本文ID 004064/004065を除外し、rank keyをLEGACY-CAND-LINE数値suffix昇順として再構成した。
+effective explanation 2,965行からmarker-positive 255 IDのみを除外し、rank keyをLEGACY-CAND-LINE数値suffix昇順として再構成した。#2369 overlayはその`scope.source_rows`から000841/000857をcondition/product_requirement_atom/unknownへ分類して適用した。
 
-4755 → 2965 → 2710（marker 255件＋非本文ID 2件を除外）。rank 2500は `LEGACY-CAND-LINE-004300`、rank 2501は `LEGACY-CAND-LINE-004301`。rank 2461–2500の先行監査selected IDsと照合済み。
+4755 → 2965 → 2710（marker 255件のみ除外）。rank 2500は `LEGACY-CAND-LINE-004300`、rank 2501は `LEGACY-CAND-LINE-004301`。rank 2461–2500の先行監査selected IDsと照合済み。さらに2461 worker（cef462e）と2421 worker（84af041）の全2710 ID列を独立再構成と照合し、全pool SHA-256が`730348e71ad009a78a21ed6a57c54142ccc02423f73467a3b28dff35dbd7df97`で一致した。pool訂正後もrank 2500/2501境界・今回40 selected IDsに変化なし。
 
 ## 個別行
 

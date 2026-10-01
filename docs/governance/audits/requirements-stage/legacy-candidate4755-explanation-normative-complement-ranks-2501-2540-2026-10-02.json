@@ -19,11 +19,7 @@
     "effective_explanation_count": 2965,
     "marker_union_count": 255,
     "complement_count": 2710,
-    "excluded_noncontent_ids": [
-      "LEGACY-CAND-LINE-004064",
-      "LEGACY-CAND-LINE-004065"
-    ],
-    "equation": "4755 → 2965 → 2710（marker 255件と非本文ID 2件を除外）",
+    "equation": "4755 → 2965 → 2710（marker-positive 255件のみを除外）",
     "rank_key": "LEGACY-CAND-LINE数値suffix昇順",
     "selected_ranks": [
       2501,
@@ -75,7 +71,74 @@
     "selected_ids_sha256": "1f467ad8533d224693ac3ebecc0ba7862e39da11b73680393657d360af9ea8fe",
     "prior_rank_2500": "LEGACY-CAND-LINE-004300",
     "reconstruction_matches_prior_2461_2500_boundary": true,
-    "independent_reconstruction": "#2353 row recordsに#2356/#2360/#2363/#2366/#2367/#2368/#2369/#2381を順に重ね、255 marker-positive IDsを除外。先行監査で確認済みの非本文ID 004064/004065も除外。既存rank 2461–2500 selected IDsと全件一致。"
+    "independent_reconstruction": "#2353 row_recordsへ#2356/#2360/#2363/#2366/#2367/#2368/#2369/#2381を順に適用。#2369はscope.source_rowsの000841/000857をcondition/product_requirement_atom/unknownへ分類。effective explanation 2965からmarker-positive 255 IDを除外。",
+    "overlay_progression": [
+      {
+        "overlay": "#2353 baseline",
+        "explanation_count": 2918,
+        "delta": 0
+      },
+      {
+        "overlay": "#2356",
+        "explanation_count": 2926,
+        "delta": 8,
+        "assignments": 9
+      },
+      {
+        "overlay": "#2360",
+        "explanation_count": 2928,
+        "delta": 2,
+        "assignments": 7
+      },
+      {
+        "overlay": "#2363",
+        "explanation_count": 2938,
+        "delta": 10,
+        "assignments": 16
+      },
+      {
+        "overlay": "#2366",
+        "explanation_count": 2940,
+        "delta": 2,
+        "assignments": 14
+      },
+      {
+        "overlay": "#2367",
+        "explanation_count": 2943,
+        "delta": 3,
+        "assignments": 51
+      },
+      {
+        "overlay": "#2368",
+        "explanation_count": 2957,
+        "delta": 14,
+        "assignments": 49
+      },
+      {
+        "overlay": "#2369",
+        "explanation_count": 2955,
+        "delta": -2,
+        "assignments": 2,
+        "exact_source": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30.json#scope.source_rows",
+        "applied_ids": [
+          "LEGACY-CAND-LINE-000841",
+          "LEGACY-CAND-LINE-000857"
+        ],
+        "classification": "condition / product_requirement_atom / route unknown"
+      },
+      {
+        "overlay": "#2381",
+        "explanation_count": 2965,
+        "delta": 10,
+        "assignments": 10
+      }
+    ],
+    "rank_2500_id": "LEGACY-CAND-LINE-004300",
+    "rank_2501_id": "LEGACY-CAND-LINE-004301",
+    "full_complement_ids_sha256": "730348e71ad009a78a21ed6a57c54142ccc02423f73467a3b28dff35dbd7df97",
+    "full_complement_id_count": 2710,
+    "matches_independent_worker_full_2710_id_lists": true,
+    "selected_2501_2540_unchanged_after_correction": true
   },
   "preceding_slice_boundary": {
     "prior_rank": 2500,
@@ -18266,13 +18329,16 @@
     }
   ],
   "integration_predecessor": {
-    "path": "/home/tenni/.helix-worktrees/step5-candidate4755-complement-2461-2500/docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-2461-2500-2026-10-02.json",
-    "sha256": "b60c0df02fa4fda8fa7bea88724c08a0dadafb3893bccf158ca1b1cef9d38610",
+    "worktree": "step5-candidate4755-complement-2461-2500",
+    "branch_commit": "cef462eb71dbc0c92fd1f0f90a26a4ad55c52ae1",
+    "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-2461-2500-2026-10-02.json",
+    "sha256": "d0a3b3922cdab479d428e7b3fe6af499453604e0072e2d47f6ea6d66de0aca70",
     "audit_id": "candidate4755-complement-ranks-2461-2500",
     "selected_ranks": [
       2461,
       2500
-    ]
+    ],
+    "authority_effect": "none"
   },
   "historical_exact_receipt_atom_sets": [
     {
@@ -19820,6 +19886,33 @@
     "exact_historical_receipt_atom_refs_match_source_path_line_sha": true,
     "OS046_decision_line_hash_excludes_terminal_LF": true,
     "OS046_L2_L11_section_hashes_match_decision": true,
-    "legacy_runtime_cli_hook_adapter_test_ci_executed": false
-  }
+    "legacy_runtime_cli_hook_adapter_test_ci_executed": false,
+    "full_2710_pool_matches_2461_and_2421_worker_artifacts": true,
+    "overlay_2369_scope_source_rows_000841_000857_applied": true,
+    "no_unsubstantiated_noncontent_exclusions": true
+  },
+  "cross_worker_full_pool_checks": [
+    {
+      "worktree": "step5-candidate4755-complement-2461-2500",
+      "branch_commit": "cef462eb71dbc0c92fd1f0f90a26a4ad55c52ae1",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-2461-2500-2026-10-02.json",
+      "artifact_sha256": "d0a3b3922cdab479d428e7b3fe6af499453604e0072e2d47f6ea6d66de0aca70",
+      "full_complement_id_count": 2710,
+      "full_complement_ids_sha256": "730348e71ad009a78a21ed6a57c54142ccc02423f73467a3b28dff35dbd7df97",
+      "matches_other_worker_list": null,
+      "crosscheck_role": "read-only independent cross-worker comparison",
+      "matches_reconstructed_and_peer_lists": true
+    },
+    {
+      "worktree": "step5-candidate4755-complement-2421-2460",
+      "branch_commit": "84af041b83d7ae18ced0875b5019ae3f1b75b59f",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-2421-2460-2026-10-02.json",
+      "artifact_sha256": "251ed153afa06d64e52b9eff99d320b16885aab83348ac3bcf4939c96382e88d",
+      "full_complement_id_count": 2710,
+      "full_complement_ids_sha256": "730348e71ad009a78a21ed6a57c54142ccc02423f73467a3b28dff35dbd7df97",
+      "matches_other_worker_list": null,
+      "crosscheck_role": "read-only independent cross-worker comparison",
+      "matches_reconstructed_and_peer_lists": true
+    }
+  ]
 }
