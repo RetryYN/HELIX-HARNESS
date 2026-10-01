@@ -1,0 +1,3626 @@
+{
+  "schema_version": "helix-legacy-candidate4755-explanation-normative-complement-semantic-audit.v1",
+  "audit_id": "legacy-candidate4755-explanation-normative-complement-ranks-421-460-2026-10-01",
+  "created_against_commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+  "authority_effect": "none",
+  "purpose": "Semantic audit of numeric-ID ranks 421–460 in the effective-explanation marker-negative complement; no adoption, successor, implementation, acceptance or source closure is generated.",
+  "pool_derivation": {
+    "baseline_ref": "#2353 reconciliation.row_records exact source_item_id join",
+    "ordered_classification_overlays": [
+      "#2356",
+      "#2360",
+      "#2363",
+      "#2366",
+      "#2367",
+      "#2368",
+      "#2369",
+      "#2381"
+    ],
+    "bounded_additional_classification_proposal": "#2369 exact source IDs 000841 and 000857; both become condition, not explanation",
+    "effective_explanation_count": 2965,
+    "marker_pool_count": 255,
+    "complement_count": 2710,
+    "equation": "2965 - 255 = 2710",
+    "rank_key": "numeric LEGACY-CAND-LINE suffix ascending",
+    "selected_ranks": [
+      421,
+      460
+    ],
+    "selected_count": 40,
+    "selected_ids": [
+      "LEGACY-CAND-LINE-000688",
+      "LEGACY-CAND-LINE-000692",
+      "LEGACY-CAND-LINE-000693",
+      "LEGACY-CAND-LINE-000694",
+      "LEGACY-CAND-LINE-000696",
+      "LEGACY-CAND-LINE-000698",
+      "LEGACY-CAND-LINE-000700",
+      "LEGACY-CAND-LINE-000701",
+      "LEGACY-CAND-LINE-000708",
+      "LEGACY-CAND-LINE-000709",
+      "LEGACY-CAND-LINE-000711",
+      "LEGACY-CAND-LINE-000714",
+      "LEGACY-CAND-LINE-000715",
+      "LEGACY-CAND-LINE-000716",
+      "LEGACY-CAND-LINE-000717",
+      "LEGACY-CAND-LINE-000718",
+      "LEGACY-CAND-LINE-000719",
+      "LEGACY-CAND-LINE-000720",
+      "LEGACY-CAND-LINE-000724",
+      "LEGACY-CAND-LINE-000727",
+      "LEGACY-CAND-LINE-000728",
+      "LEGACY-CAND-LINE-000729",
+      "LEGACY-CAND-LINE-000730",
+      "LEGACY-CAND-LINE-000732",
+      "LEGACY-CAND-LINE-000733",
+      "LEGACY-CAND-LINE-000734",
+      "LEGACY-CAND-LINE-000736",
+      "LEGACY-CAND-LINE-000737",
+      "LEGACY-CAND-LINE-000738",
+      "LEGACY-CAND-LINE-000739",
+      "LEGACY-CAND-LINE-000740",
+      "LEGACY-CAND-LINE-000741",
+      "LEGACY-CAND-LINE-000742",
+      "LEGACY-CAND-LINE-000746",
+      "LEGACY-CAND-LINE-000747",
+      "LEGACY-CAND-LINE-000748",
+      "LEGACY-CAND-LINE-000750",
+      "LEGACY-CAND-LINE-000751",
+      "LEGACY-CAND-LINE-000752",
+      "LEGACY-CAND-LINE-000753"
+    ],
+    "selected_ids_sha256": "f00ea55b1fa434670003fee41b3bbb070a9295bb77ddee76c98b45e81b09c702",
+    "independently_reconstructed": true,
+    "prior_slice_boundary": {
+      "audit_id": "legacy-candidate4755-explanation-normative-complement-ranks-381-420-2026-10-01",
+      "local_commit": "bf0979d383d21559dcc84e946a9470106791bb85",
+      "json_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-381-420-2026-10-01.json",
+      "json_sha256": "f4589138c46aed356e2ca6cae3bfafcac4dd059ddc47556df5a83349198f4a55",
+      "origin_main_ancestor": false,
+      "boundary_last_rank": 420,
+      "boundary_last_id": "LEGACY-CAND-LINE-000685",
+      "this_first_rank": 421,
+      "this_first_id": "LEGACY-CAND-LINE-000688",
+      "claim_prior_semantic_verification": false
+    }
+  },
+  "pinned_reconstruction_inputs": [
+    {
+      "role": "full_row_records_baseline",
+      "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c"
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164"
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+      "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb"
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "commit": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+      "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384"
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+      "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6"
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
+      "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d"
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "commit": "f89f71e0371440e9e10636499192c2311872b024",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
+      "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95"
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "commit": "081b0b6612b802cfcb02b3cecda1559dd9a3ce13",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30.json",
+      "sha256": "5ed02b037f78ca25991b396e232e8b1ee754b0c91b056ed6640c9fb1c47cf0c0"
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "commit": "6e62f76986f19d14281cb2a96eca460c5430dcc6",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-metadata10-classification-proposal-2026-09-30.json",
+      "sha256": "512f9ceafe935648d459d6b268ff4d3952f0e8264298213ad278256236b5f40e"
+    }
+  ],
+  "marker_pool_review_slices": [
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-2026-10-01.json",
+      "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+      "sha256": "3ea33ed390c354e84b81f1dd7956afdfab7bd00deb49969383b717bacf4acd33",
+      "rows_in_slice": 20
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-101-120-2026-10-01.json",
+      "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+      "sha256": "29cc8bfecbebae44ba0b0473d4df8d561a92f72778ad13177f161e84d1267ecf",
+      "rows_in_slice": 20
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-121-140-2026-10-01.json",
+      "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+      "sha256": "f5b88ec5da4727aee48c30311a0c10b47ff6b39fe7cf5adddcea6fa8380933ee",
+      "rows_in_slice": 20
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-141-160-2026-10-01.json",
+      "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+      "sha256": "e40dbeaf5758a45a6eb39c96b5a8b5723780cfec15b21516103858f7659d8c4b",
+      "rows_in_slice": 20
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-161-180-2026-10-01.json",
+      "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+      "sha256": "9e81e0d3bd4366b01c982be3da542bb64e59750576134558ecdc9b75a22aa7a2",
+      "rows_in_slice": 20
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-181-200-2026-10-01.json",
+      "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+      "sha256": "de845d732261122a04af5aeb168dbc9b7a55507d6c977b74c37d1c19ec645e97",
+      "rows_in_slice": 20
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-201-220-2026-10-01.json",
+      "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+      "sha256": "d11d4a5fc5005fc1e555f1bc1cea68e375c7bad479349b5340bc9ce80923b19d",
+      "rows_in_slice": 20
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-21-40-2026-10-01.json",
+      "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+      "sha256": "8d5059267a6ebe70366e670ac548d760dfd3259748012125201bd6539e1b5b2f",
+      "rows_in_slice": 20
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-221-240-2026-10-01.json",
+      "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+      "sha256": "6241e2b37045431c84232e5289942e6df5ff7390e65235b3462e6541af807793",
+      "rows_in_slice": 20
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-241-255-2026-10-01.json",
+      "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+      "sha256": "14e4fe6339ee5801a5d6e459ce988628e5928b721b94bcdace49d539aa5c2135",
+      "rows_in_slice": 15
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-41-60-2026-10-01.json",
+      "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+      "sha256": "d94780d1daaf6882bfd101d0962c43730025c9348d62b89a3ac33b0d26c814fc",
+      "rows_in_slice": 20
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-61-80-2026-10-01.json",
+      "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+      "sha256": "a772c56e8001bb899bc28543fa9b5e8c2f866350f7c2306126f793fc58cd638b",
+      "rows_in_slice": 20
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-81-100-2026-10-01.json",
+      "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+      "sha256": "c762d66599bdd07d825aeb1dd5f43e8c8a0f8a2c0f70aaac08e368ad47ba1ff8",
+      "rows_in_slice": 20
+    }
+  ],
+  "marker_screen_pin": {
+    "role": "lexical marker screen definition/top20 queue",
+    "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+    "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-marker-screen-2026-10-01.json",
+    "sha256": "1f9b0b6e05bfb46d937dfbbb954e8f7aa956c440acd526cbad2487b82893efbb"
+  },
+  "source_ledgers": [
+    {
+      "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+      "rows": 4755
+    },
+    {
+      "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "rows": 4020
+    }
+  ],
+  "fixed_F6_pair_and_decision_pins": [
+    {
+      "role": "post-F6 main text, comparison context",
+      "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
+      "line_or_section": 58
+    },
+    {
+      "role": "post-F6 main text, comparison context",
+      "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e",
+      "line_or_section": 451
+    },
+    {
+      "role": "post-F6 main text, comparison context",
+      "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+      "line_or_section": 399
+    },
+    {
+      "role": "post-F6 main text, comparison context",
+      "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+      "line_or_section": 196
+    },
+    {
+      "role": "HARNESS F6 PO decision, 24 candidates",
+      "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "line_or_section": 25
+    },
+    {
+      "role": "OS F6 PO decision, 16 candidates",
+      "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "line_or_section": 46
+    },
+    {
+      "role": "current Concept comparison",
+      "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+      "path": "docs/concept/helix-concept.md",
+      "sha256": "06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+      "line_or_section": 49
+    },
+    {
+      "role": "fixed HARNESS L2 exact revision; PO record bytes",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "line_or_section": null
+    },
+    {
+      "role": "fixed HARNESS L11 exact revision; PO record bytes",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "line_or_section": null
+    },
+    {
+      "role": "fixed OS L2 exact revision; CLR detailed rows expressly unapproved",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "line_or_section": 399
+    },
+    {
+      "role": "fixed OS L11 exact revision; CLR acceptance candidates unexecuted",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "line_or_section": 192
+    }
+  ],
+  "authority_and_relation_summary": {
+    "selected_rows": 40,
+    "source_line_rows_preserved_pending_atomization": 40,
+    "historical_candidate_to_draft_candidate": 40,
+    "meaning_change": 0,
+    "successor_requirement_ids": 0,
+    "source_row_adopted_pair_binding_found": 0,
+    "source_closure": 0,
+    "asset_disposition_unresolved": 40,
+    "authority_effect": "none",
+    "current_near_relation": "The fixed F6 OS L2 bytes explicitly identify CLR-R01..08 and the L10 oracle as unapproved candidates; fixed L11 bytes state candidate acceptance is unexecuted. The 2026-09-28 OS PO decision is limited to its explicit 16 candidates (HELIXOS-L2-014..029). No selected historical row has an evidenced individual adoption/successor binding. Current candidate detail and neighboring responsibilities are comparison context only."
+  },
+  "limitations": [
+    "Marker-negative is a lexical result, not semantic proof; each row was read in its source section.",
+    "Current L2/L11 family resemblance, candidate links, or candidate text does not establish exact source-row coverage, successor, adoption, acceptance, or implementation.",
+    "Historical status/version/Issue/plan metadata and historical source-validation prose do not establish current authority or execution.",
+    "The neighboring ranks 381–420 audit was available from local commit bf0979d383d21559dcc84e946a9470106791bb85 but is not an ancestor of origin/main; only its boundary ID and artifact digest are pinned here, not its verification claims.",
+    "Archive content was read only; no archive runtime, workflow, CLI, hook, source, test, or CI was executed."
+  ],
+  "rows": [
+    {
+      "rank": 421,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000688",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "physical_line_number": 13,
+      "exact_source_line_text": "以下は未実行のoracle仕様であり、文書作成だけで合格を主張しない。",
+      "semantic_family": "会話寿命管理候補 / L10受入候補",
+      "semantic_function": "受入oracleの未実行・非合格宣言",
+      "semantic_reading": "文書上のoracle仕様であり、作成だけでは受入合格を主張しない。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 11,
+          "text": "# 会話寿命管理と外部状態からの継続再構成の受入候補"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 11,
+            "text": "# 会話寿命管理と外部状態からの継続再構成の受入候補"
+          },
+          {
+            "line": 12,
+            "text": ""
+          },
+          {
+            "line": 14,
+            "text": ""
+          },
+          {
+            "line": 15,
+            "text": "## CLR-AC01 ↔ CLR-R01 再開必要情報"
+          }
+        ],
+        "archive_file_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46"
+      },
+      "marker_negative_normative_concern": "候補L10の実測条件が未実行であるという明示制約。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 688,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "b2395a0c9d409b2ef46ae38b06f16de06d2f329f5f58ca72c97d8b3186730488",
+        "source_line_sha256": "sha256:89dab4a700d3c36cc6d335727e7151380ccc80259b3982be076a365d136837e9",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 802,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "6c0eaa8c09917549588b13a82711906690d15fdbcf1184900520c49600661c27",
+        "asset_id": "LEGACY-ASSET-9DB9A1AE4381B4837D96",
+        "source_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+        "sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "utf8_source_line_content_sha256": "89dab4a700d3c36cc6d335727e7151380ccc80259b3982be076a365d136837e9",
+        "physical_line_bytes_including_terminator_sha256": "9711d5cc93c49fabcaf4b1caecd36f948ecf7fdedb50982242d8164bd8660936",
+        "baseline_2353_physical_line_bytes_sha256": "9711d5cc93c49fabcaf4b1caecd36f948ecf7fdedb50982242d8164bd8660936"
+      }
+    },
+    {
+      "rank": 422,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000692",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "physical_line_number": 21,
+      "exact_source_line_text": "既存ownerへ保存した状態をread-afterし、checkpointが派生viewであること、出典付き意図と未確定仮説を区別し、",
+      "semantic_family": "会話寿命管理候補 / L10受入候補",
+      "semantic_function": "保存/read-after受入条件",
+      "semantic_reading": "既存ownerへの保存後再読込、checkpointが派生viewであること、意図の出典と仮説を区別する複合oracleの第1部分。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 19,
+          "text": "## CLR-AC02 ↔ CLR-R02 保存とread-after"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 19,
+            "text": "## CLR-AC02 ↔ CLR-R02 保存とread-after"
+          },
+          {
+            "line": 20,
+            "text": ""
+          },
+          {
+            "line": 22,
+            "text": "未承認意図を正本化しないこと、未commit・未追跡変更、実行中worker／CI／外部操作、保存失敗、"
+          },
+          {
+            "line": 23,
+            "text": "event cursor不整合を欠落または完了扱いしないことを確認する。"
+          }
+        ],
+        "archive_file_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46"
+      },
+      "marker_negative_normative_concern": "複数行にまたがる一つのCLR-AC02条件として読む。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 692,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "45b7b4658c079047df33c6912ae0d030cc0ad2255c4cb7c61eb468cf5b3a80c8",
+        "source_line_sha256": "sha256:ba32b742ab039a882c83e7f9695227b587e7691482e46c1ab749da71737502af",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 802,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "6c0eaa8c09917549588b13a82711906690d15fdbcf1184900520c49600661c27",
+        "asset_id": "LEGACY-ASSET-9DB9A1AE4381B4837D96",
+        "source_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+        "sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "utf8_source_line_content_sha256": "ba32b742ab039a882c83e7f9695227b587e7691482e46c1ab749da71737502af",
+        "physical_line_bytes_including_terminator_sha256": "5c86d57864adc2bbc4511387b8aa401dbc8a68e727913d61bc664cfe7e7c2431",
+        "baseline_2353_physical_line_bytes_sha256": "5c86d57864adc2bbc4511387b8aa401dbc8a68e727913d61bc664cfe7e7c2431"
+      }
+    },
+    {
+      "rank": 423,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000693",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "physical_line_number": 22,
+      "exact_source_line_text": "未承認意図を正本化しないこと、未commit・未追跡変更、実行中worker／CI／外部操作、保存失敗、",
+      "semantic_family": "会話寿命管理候補 / L10受入候補",
+      "semantic_function": "保存/read-after受入条件",
+      "semantic_reading": "未承認意図を正本化せず、未commit差分・実行中処理・保存失敗・cursor不整合を欠落や完了と誤認しないoracleの継続部分。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 19,
+          "text": "## CLR-AC02 ↔ CLR-R02 保存とread-after"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 20,
+            "text": ""
+          },
+          {
+            "line": 21,
+            "text": "既存ownerへ保存した状態をread-afterし、checkpointが派生viewであること、出典付き意図と未確定仮説を区別し、"
+          },
+          {
+            "line": 23,
+            "text": "event cursor不整合を欠落または完了扱いしないことを確認する。"
+          },
+          {
+            "line": 24,
+            "text": ""
+          }
+        ],
+        "archive_file_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46"
+      },
+      "marker_negative_normative_concern": "直前・直後行と結合して受入範囲を保つ。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 693,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "212b7f790499ece9e73bd7ca9f4608610501ec626240c063e158a31d52d57f51",
+        "source_line_sha256": "sha256:34e2b1e4cec6dca90b766b678b091f0f02b2a6b0507e2272bb6837e86291bdb8",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 802,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "6c0eaa8c09917549588b13a82711906690d15fdbcf1184900520c49600661c27",
+        "asset_id": "LEGACY-ASSET-9DB9A1AE4381B4837D96",
+        "source_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+        "sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "utf8_source_line_content_sha256": "34e2b1e4cec6dca90b766b678b091f0f02b2a6b0507e2272bb6837e86291bdb8",
+        "physical_line_bytes_including_terminator_sha256": "4f821c7949a5ae8582bdd3787236cdcd841c7ff85b1c0bc1f84ced62691f5f3e",
+        "baseline_2353_physical_line_bytes_sha256": "4f821c7949a5ae8582bdd3787236cdcd841c7ff85b1c0bc1f84ced62691f5f3e"
+      }
+    },
+    {
+      "rank": 424,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000694",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "physical_line_number": 23,
+      "exact_source_line_text": "event cursor不整合を欠落または完了扱いしないことを確認する。",
+      "semantic_family": "会話寿命管理候補 / L10受入候補",
+      "semantic_function": "保存/read-after受入条件",
+      "semantic_reading": "event cursor不整合等を欠落・完了扱いしないことを明示するCLR-AC02の終端。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 19,
+          "text": "## CLR-AC02 ↔ CLR-R02 保存とread-after"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 21,
+            "text": "既存ownerへ保存した状態をread-afterし、checkpointが派生viewであること、出典付き意図と未確定仮説を区別し、"
+          },
+          {
+            "line": 22,
+            "text": "未承認意図を正本化しないこと、未commit・未追跡変更、実行中worker／CI／外部操作、保存失敗、"
+          },
+          {
+            "line": 24,
+            "text": ""
+          },
+          {
+            "line": 25,
+            "text": "## CLR-AC03 ↔ CLR-R03 再構成可能範囲"
+          }
+        ],
+        "archive_file_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46"
+      },
+      "marker_negative_normative_concern": "候補oracleの文であり、現行での実行結果ではない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 694,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "0a7392e5c5277e42aad9b5141dec8286edec29b71343546ab48f404f8fc0fe29",
+        "source_line_sha256": "sha256:30ebb6c333cd0bd06c3e69081eb527824f8a1ec1396f771bb618d8063914ae1d",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 802,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "6c0eaa8c09917549588b13a82711906690d15fdbcf1184900520c49600661c27",
+        "asset_id": "LEGACY-ASSET-9DB9A1AE4381B4837D96",
+        "source_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+        "sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "utf8_source_line_content_sha256": "30ebb6c333cd0bd06c3e69081eb527824f8a1ec1396f771bb618d8063914ae1d",
+        "physical_line_bytes_including_terminator_sha256": "e544c652bb4062dd3d39cf6b02bc6df11d7617a16ee00439e3536faedf88920b",
+        "baseline_2353_physical_line_bytes_sha256": "e544c652bb4062dd3d39cf6b02bc6df11d7617a16ee00439e3536faedf88920b"
+      }
+    },
+    {
+      "rank": 425,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000696",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "physical_line_number": 27,
+      "exact_source_line_text": "外部状態と必要な残余情報だけで旧会話全文なしに同じ受入を満たす。未保存の設計関係がある反例ではscopeを外さない。",
+      "semantic_family": "会話寿命管理候補 / L10受入候補",
+      "semantic_function": "旧会話なしの再構成受入条件",
+      "semantic_reading": "必要な外部状態と残余情報で旧会話全文なしに同じ受入を満たし、反例があればscopeを外さない条件。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 25,
+          "text": "## CLR-AC03 ↔ CLR-R03 再構成可能範囲"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 25,
+            "text": "## CLR-AC03 ↔ CLR-R03 再構成可能範囲"
+          },
+          {
+            "line": 26,
+            "text": ""
+          },
+          {
+            "line": 28,
+            "text": ""
+          },
+          {
+            "line": 29,
+            "text": "## CLR-AC04 ↔ CLR-R04 実挙動による方式選択"
+          }
+        ],
+        "archive_file_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46"
+      },
+      "marker_negative_normative_concern": "candidate acceptance atom。現行での再構成可能性や受入完了ではない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 696,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "58cad2a7d97072e0aff002eea975e146f26a62a76f01d6b80c9e9727314bc259",
+        "source_line_sha256": "sha256:a23e8fca279e3010444db214aab34ea10a3c98dbadbb19c994231d2f5f500cdd",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 802,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "6c0eaa8c09917549588b13a82711906690d15fdbcf1184900520c49600661c27",
+        "asset_id": "LEGACY-ASSET-9DB9A1AE4381B4837D96",
+        "source_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+        "sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "utf8_source_line_content_sha256": "a23e8fca279e3010444db214aab34ea10a3c98dbadbb19c994231d2f5f500cdd",
+        "physical_line_bytes_including_terminator_sha256": "d852480f4af17c9402004d3a22cc20f9f2a2ffedd6ce924ab72f0261a1c33324",
+        "baseline_2353_physical_line_bytes_sha256": "d852480f4af17c9402004d3a22cc20f9f2a2ffedd6ce924ab72f0261a1c33324"
+      }
+    },
+    {
+      "rank": 426,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000698",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "physical_line_number": 31,
+      "exact_source_line_text": "compact、resume／fork、新sessionを実provider挙動で区別し、非対応、hook未発火、測定不能をgreenにしない。",
+      "semantic_family": "会話寿命管理候補 / L10受入候補",
+      "semantic_function": "provider方式選択受入条件",
+      "semantic_reading": "compact/resume/fork/new sessionを実挙動で分け、非対応・hook未発火・測定不能を成功扱いしない条件。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 29,
+          "text": "## CLR-AC04 ↔ CLR-R04 実挙動による方式選択"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 29,
+            "text": "## CLR-AC04 ↔ CLR-R04 実挙動による方式選択"
+          },
+          {
+            "line": 30,
+            "text": ""
+          },
+          {
+            "line": 32,
+            "text": ""
+          },
+          {
+            "line": 33,
+            "text": "## CLR-AC05 ↔ CLR-R05 継続identityと二重副作用防止"
+          }
+        ],
+        "archive_file_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46"
+      },
+      "marker_negative_normative_concern": "候補の実測oracleであり実測証拠ではない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 698,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "eaefc6d6c435f8f95e20cecf37f0489efa37a730f7e4f3361694f8b787214812",
+        "source_line_sha256": "sha256:94746e9a24eb6c285c9b7f8872a607ed8187bb3184a38c9dd3821ec679c6d0b4",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 802,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "6c0eaa8c09917549588b13a82711906690d15fdbcf1184900520c49600661c27",
+        "asset_id": "LEGACY-ASSET-9DB9A1AE4381B4837D96",
+        "source_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+        "sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "utf8_source_line_content_sha256": "94746e9a24eb6c285c9b7f8872a607ed8187bb3184a38c9dd3821ec679c6d0b4",
+        "physical_line_bytes_including_terminator_sha256": "8d8dfcaac5aed8b14fff952c1f029a0b082f3ee3c354db76f08baae2ab318920",
+        "baseline_2353_physical_line_bytes_sha256": "8d8dfcaac5aed8b14fff952c1f029a0b082f3ee3c354db76f08baae2ab318920"
+      }
+    },
+    {
+      "rank": 427,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000700",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "physical_line_number": 35,
+      "exact_source_line_text": "途中crash、重複通知、旧writer遅延を注入し、二重副作用が0であること、lease/fence、operation ID、budget、deadline、retry、",
+      "semantic_family": "会話寿命管理候補 / L10受入候補",
+      "semantic_function": "切替時の二重副作用・継続性oracle",
+      "semantic_reading": "crash、重複通知、旧writer遅延を注入し、二重副作用ゼロとlease/fence等の保持を確認するCLR-AC05の継続条件。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 33,
+          "text": "## CLR-AC05 ↔ CLR-R05 継続identityと二重副作用防止"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 33,
+            "text": "## CLR-AC05 ↔ CLR-R05 継続identityと二重副作用防止"
+          },
+          {
+            "line": 34,
+            "text": ""
+          },
+          {
+            "line": 36,
+            "text": "担当履歴、未完義務が切替を跨いで保持されること、新sessionが独立reviewへ誤昇格しないことを確認する。"
+          },
+          {
+            "line": 37,
+            "text": ""
+          }
+        ],
+        "archive_file_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46"
+      },
+      "marker_negative_normative_concern": "行701と合わせた候補受入条件。旧runtime実行は行わず、現行実装の挙動を主張しない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 700,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "922d5be4d6a799476dc08dc2a80e5de29629538fa323976f59c2ffdaf4d55ca4",
+        "source_line_sha256": "sha256:8c22734eac402dd1a94de0a3e17fe703f830992a5792f6219ef85309aadacc95",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 802,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "6c0eaa8c09917549588b13a82711906690d15fdbcf1184900520c49600661c27",
+        "asset_id": "LEGACY-ASSET-9DB9A1AE4381B4837D96",
+        "source_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+        "sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "utf8_source_line_content_sha256": "8c22734eac402dd1a94de0a3e17fe703f830992a5792f6219ef85309aadacc95",
+        "physical_line_bytes_including_terminator_sha256": "d65add685380f4ed934dbf2e8f55048553e9e6ec426a0a480239c1ebd0696c3e",
+        "baseline_2353_physical_line_bytes_sha256": "d65add685380f4ed934dbf2e8f55048553e9e6ec426a0a480239c1ebd0696c3e"
+      }
+    },
+    {
+      "rank": 428,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000701",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "physical_line_number": 36,
+      "exact_source_line_text": "担当履歴、未完義務が切替を跨いで保持されること、新sessionが独立reviewへ誤昇格しないことを確認する。",
+      "semantic_family": "会話寿命管理候補 / L10受入候補",
+      "semantic_function": "切替時の義務・review境界oracle",
+      "semantic_reading": "担当履歴と未完義務の保持、新sessionだけで独立reviewへ昇格しないことを求める。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 33,
+          "text": "## CLR-AC05 ↔ CLR-R05 継続identityと二重副作用防止"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 34,
+            "text": ""
+          },
+          {
+            "line": 35,
+            "text": "途中crash、重複通知、旧writer遅延を注入し、二重副作用が0であること、lease/fence、operation ID、budget、deadline、retry、"
+          },
+          {
+            "line": 37,
+            "text": ""
+          },
+          {
+            "line": 38,
+            "text": "## CLR-AC06 ↔ CLR-R06 restart packet境界"
+          }
+        ],
+        "archive_file_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46"
+      },
+      "marker_negative_normative_concern": "行700と合わせた候補受入条件。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 701,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "6133fa61c402b015792e94416c030776c32cdcacfdabdf83e5778d6f035f5e14",
+        "source_line_sha256": "sha256:21f2aab2695f01c05d81606a2f175ac2df57b9ed0fe2d7a66f199ee4aa9b2cb5",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 802,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "6c0eaa8c09917549588b13a82711906690d15fdbcf1184900520c49600661c27",
+        "asset_id": "LEGACY-ASSET-9DB9A1AE4381B4837D96",
+        "source_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+        "sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "utf8_source_line_content_sha256": "21f2aab2695f01c05d81606a2f175ac2df57b9ed0fe2d7a66f199ee4aa9b2cb5",
+        "physical_line_bytes_including_terminator_sha256": "67fc3082b71bc5592c36e2161be15b98cb6deaf67915d691b3e344053b92078c",
+        "baseline_2353_physical_line_bytes_sha256": "67fc3082b71bc5592c36e2161be15b98cb6deaf67915d691b3e344053b92078c"
+      }
+    },
+    {
+      "rank": 429,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000708",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "physical_line_number": 49,
+      "exact_source_line_text": "shadow、無副作用復元、単一task切替、未commit・未追跡差分・長期処理を順に実証し、既存保護を迂回しない。",
+      "semantic_family": "会話寿命管理候補 / L10受入候補",
+      "semantic_function": "段階導入oracle",
+      "semantic_reading": "shadowから無副作用復元、単一task切替、未commit/未追跡/長期処理へ順に実証し、既存保護を迂回しない条件。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 47,
+          "text": "## CLR-AC08 ↔ CLR-R08 段階導入"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 47,
+            "text": "## CLR-AC08 ↔ CLR-R08 段階導入"
+          },
+          {
+            "line": 48,
+            "text": ""
+          },
+          {
+            "line": 50,
+            "text": "生成・保存・受信・利用・検証・operational enablementを別状態で報告する。"
+          },
+          {
+            "line": 51,
+            "text": ""
+          }
+        ],
+        "archive_file_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46"
+      },
+      "marker_negative_normative_concern": "candidate acceptance order。段階実施・運用enablement済みとは扱わない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 708,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "96e4eb5610ec1d9656cfdd3f8f7d607a55cc05d59a453694c0db5976fabacd75",
+        "source_line_sha256": "sha256:2d9481fc6cc2c469a2bf6f2387c96e2c1f76ddfd66dfb5f308d3cfd2f4191f47",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 802,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "6c0eaa8c09917549588b13a82711906690d15fdbcf1184900520c49600661c27",
+        "asset_id": "LEGACY-ASSET-9DB9A1AE4381B4837D96",
+        "source_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+        "sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "utf8_source_line_content_sha256": "2d9481fc6cc2c469a2bf6f2387c96e2c1f76ddfd66dfb5f308d3cfd2f4191f47",
+        "physical_line_bytes_including_terminator_sha256": "5fc097369119c26cd6b1fdeccefcfb8b99405e7f4c4c77ab9989115e6133873c",
+        "baseline_2353_physical_line_bytes_sha256": "5fc097369119c26cd6b1fdeccefcfb8b99405e7f4c4c77ab9989115e6133873c"
+      }
+    },
+    {
+      "rank": 430,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000709",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "physical_line_number": 50,
+      "exact_source_line_text": "生成・保存・受信・利用・検証・operational enablementを別状態で報告する。",
+      "semantic_family": "会話寿命管理候補 / L10受入候補",
+      "semantic_function": "状態分離報告条件",
+      "semantic_reading": "生成・保存・受信・利用・検証・operational enablementを別状態で報告する要求候補。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 47,
+          "text": "## CLR-AC08 ↔ CLR-R08 段階導入"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 48,
+            "text": ""
+          },
+          {
+            "line": 49,
+            "text": "shadow、無副作用復元、単一task切替、未commit・未追跡差分・長期処理を順に実証し、既存保護を迂回しない。"
+          },
+          {
+            "line": 51,
+            "text": ""
+          },
+          {
+            "line": 52,
+            "text": "## 共通証拠"
+          }
+        ],
+        "archive_file_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46"
+      },
+      "marker_negative_normative_concern": "現行authority上の採用や状態遷移を生成せず、候補の責務境界として保持。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 709,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "f191b6189aa33b8f2eb37baa1969693a14f83cb0cf1c259dd01d2699953df808",
+        "source_line_sha256": "sha256:2c006e3a9466fe0c4c3b0af62e15f78749eac8462118e22fbc32bba09b159b80",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 802,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "6c0eaa8c09917549588b13a82711906690d15fdbcf1184900520c49600661c27",
+        "asset_id": "LEGACY-ASSET-9DB9A1AE4381B4837D96",
+        "source_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+        "sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "utf8_source_line_content_sha256": "2c006e3a9466fe0c4c3b0af62e15f78749eac8462118e22fbc32bba09b159b80",
+        "physical_line_bytes_including_terminator_sha256": "81ac80b7e222edc066cbd0a75167f14bcb59e61dc29eb6616bab6a992f7ce515",
+        "baseline_2353_physical_line_bytes_sha256": "81ac80b7e222edc066cbd0a75167f14bcb59e61dc29eb6616bab6a992f7ce515"
+      }
+    },
+    {
+      "rank": 431,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000711",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "physical_line_number": 54,
+      "exact_source_line_text": "source HEAD、契約digest、assignment／lease、checkpointとevent cursor、実行command/result、exact-HEAD独立review、",
+      "semantic_family": "会話寿命管理候補 / L10受入候補",
+      "semantic_function": "受入証拠束縛要件",
+      "semantic_reading": "source HEAD、契約digest、assignment/lease、checkpoint/cursor、実行結果、exact-HEAD reviewなどを束縛する共通証拠条件。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 52,
+          "text": "## 共通証拠"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 52,
+            "text": "## 共通証拠"
+          },
+          {
+            "line": 53,
+            "text": ""
+          },
+          {
+            "line": 55,
+            "text": "consumer read-after、rollback結果を束縛する。mandatory regressionとrelease/cutover approval境界を弱めない。"
+          }
+        ],
+        "archive_file_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46"
+      },
+      "marker_negative_normative_concern": "証拠要求候補であり、この監査や現行運用が各証拠を満たした意味ではない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 711,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "0a6a8c4073ff77d2c895d69d4a1257b7ec9b6f74316061fbb1562f38d722983f",
+        "source_line_sha256": "sha256:a4b5ef5a802d936d93267e8fca0b2e95dde7658e0600be9138b9d2e30bbc3829",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 802,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "6c0eaa8c09917549588b13a82711906690d15fdbcf1184900520c49600661c27",
+        "asset_id": "LEGACY-ASSET-9DB9A1AE4381B4837D96",
+        "source_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+        "sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "utf8_source_line_content_sha256": "a4b5ef5a802d936d93267e8fca0b2e95dde7658e0600be9138b9d2e30bbc3829",
+        "physical_line_bytes_including_terminator_sha256": "207be91ae5a6f5617d74c183362870caeed61fe9ba9464d49875bb742877fd70",
+        "baseline_2353_physical_line_bytes_sha256": "207be91ae5a6f5617d74c183362870caeed61fe9ba9464d49875bb742877fd70"
+      }
+    },
+    {
+      "rank": 432,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000714",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "physical_line_number": 2,
+      "exact_source_line_text": "title: \"会話寿命管理と外部状態からの継続再構成\"",
+      "semantic_family": "会話寿命管理候補 / L1企画候補",
+      "semantic_function": "企画候補文書タイトル",
+      "semantic_reading": "会話寿命と外部状態からの継続再構成を扱う企画候補のタイトル。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 1,
+            "text": "---"
+          },
+          {
+            "line": 3,
+            "text": "status: draft_candidate"
+          },
+          {
+            "line": 4,
+            "text": "authority_status: awaiting_human_approval"
+          }
+        ],
+        "archive_file_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a"
+      },
+      "marker_negative_normative_concern": "document identity metadata。タイトルのみから対象別要求や採択を導かない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 714,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "600d541fe37cc2efada91a29d390640d95a47d3650bd84798bcbdc511de02413",
+        "source_line_sha256": "sha256:75cbcbf2989351835c3bd9e3a74a9ee4926b0c1010006757a7d674093ae1cb13",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 803,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "ac6db586a06bc784965b497bb65e173bafd9539d9bbe5953470bbf1b1c98d34a",
+        "asset_id": "LEGACY-ASSET-602131C2EDDE1D7AD55A",
+        "source_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+        "sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+        "utf8_source_line_content_sha256": "75cbcbf2989351835c3bd9e3a74a9ee4926b0c1010006757a7d674093ae1cb13",
+        "physical_line_bytes_including_terminator_sha256": "175977216a770f7f891bea4fdca154124e63646a44af463c235a5795d57f551e",
+        "baseline_2353_physical_line_bytes_sha256": "175977216a770f7f891bea4fdca154124e63646a44af463c235a5795d57f551e"
+      }
+    },
+    {
+      "rank": 433,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000715",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "physical_line_number": 3,
+      "exact_source_line_text": "status: draft_candidate",
+      "semantic_family": "会話寿命管理候補 / L1企画候補",
+      "semantic_function": "企画候補status metadata",
+      "semantic_reading": "候補本文のstatusがdraft_candidateであることを記す。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 1,
+            "text": "---"
+          },
+          {
+            "line": 2,
+            "text": "title: \"会話寿命管理と外部状態からの継続再構成\""
+          },
+          {
+            "line": 4,
+            "text": "authority_status: awaiting_human_approval"
+          },
+          {
+            "line": 5,
+            "text": "version: \"1.0\""
+          }
+        ],
+        "archive_file_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a"
+      },
+      "marker_negative_normative_concern": "旧source metadataであり、現行target revisionのauthority stateそのものではない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 715,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "42163a358c60b3f70f04bd02980b79ebb1fe4a671af2717aee25fe0dc5aa9bb4",
+        "source_line_sha256": "sha256:e2f54e8ccf42197c498223478758d709e4b1617d22ec5c47f374ad01cd3f5d73",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 803,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "ac6db586a06bc784965b497bb65e173bafd9539d9bbe5953470bbf1b1c98d34a",
+        "asset_id": "LEGACY-ASSET-602131C2EDDE1D7AD55A",
+        "source_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+        "sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+        "utf8_source_line_content_sha256": "e2f54e8ccf42197c498223478758d709e4b1617d22ec5c47f374ad01cd3f5d73",
+        "physical_line_bytes_including_terminator_sha256": "b8e0419afbe1b1eea382ff37243bd4cc306439e777c20b65ae2f96126c8bf0dc",
+        "baseline_2353_physical_line_bytes_sha256": "b8e0419afbe1b1eea382ff37243bd4cc306439e777c20b65ae2f96126c8bf0dc"
+      }
+    },
+    {
+      "rank": 434,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000716",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "physical_line_number": 4,
+      "exact_source_line_text": "authority_status: awaiting_human_approval",
+      "semantic_family": "会話寿命管理候補 / L1企画候補",
+      "semantic_function": "企画候補authority metadata",
+      "semantic_reading": "旧candidateのawaiting_human_approval表示。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 2,
+            "text": "title: \"会話寿命管理と外部状態からの継続再構成\""
+          },
+          {
+            "line": 3,
+            "text": "status: draft_candidate"
+          },
+          {
+            "line": 5,
+            "text": "version: \"1.0\""
+          },
+          {
+            "line": 6,
+            "text": "candidate_layer: L1"
+          }
+        ],
+        "archive_file_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a"
+      },
+      "marker_negative_normative_concern": "現在対象revisionへの人間decision receiptではない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 716,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "556f39fc1b59bb4ba634b7ebb32ac7e20edd4dc5a6d17355014cd66f51564d7a",
+        "source_line_sha256": "sha256:a823dc7cbf7e0f6e3f7b1c14654f39a27f6635702f3a8fc4120daf69a2474681",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 803,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "ac6db586a06bc784965b497bb65e173bafd9539d9bbe5953470bbf1b1c98d34a",
+        "asset_id": "LEGACY-ASSET-602131C2EDDE1D7AD55A",
+        "source_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+        "sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+        "utf8_source_line_content_sha256": "a823dc7cbf7e0f6e3f7b1c14654f39a27f6635702f3a8fc4120daf69a2474681",
+        "physical_line_bytes_including_terminator_sha256": "d06e6eb12e8f70f1e6bfc17a7f6c7f372be2c16df602f651b362916a0edcd8c6",
+        "baseline_2353_physical_line_bytes_sha256": "d06e6eb12e8f70f1e6bfc17a7f6c7f372be2c16df602f651b362916a0edcd8c6"
+      }
+    },
+    {
+      "rank": 435,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000717",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "physical_line_number": 5,
+      "exact_source_line_text": "version: \"1.0\"",
+      "semantic_family": "会話寿命管理候補 / L1企画候補",
+      "semantic_function": "候補version metadata",
+      "semantic_reading": "候補文書記載の1.0。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 3,
+            "text": "status: draft_candidate"
+          },
+          {
+            "line": 4,
+            "text": "authority_status: awaiting_human_approval"
+          },
+          {
+            "line": 6,
+            "text": "candidate_layer: L1"
+          },
+          {
+            "line": 7,
+            "text": "owner_issue: 1610"
+          }
+        ],
+        "archive_file_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a"
+      },
+      "marker_negative_normative_concern": "現行release/version authorityを証明しない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 717,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "5a22fda4324bfa7eeb85208dde62a96da59ba8c74ecc75626b6920ba8212c55e",
+        "source_line_sha256": "sha256:8878f2140aa69d1a5d1e7162cae938d4568edf7cc2db8f4c81d48d2db480cf77",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 803,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "ac6db586a06bc784965b497bb65e173bafd9539d9bbe5953470bbf1b1c98d34a",
+        "asset_id": "LEGACY-ASSET-602131C2EDDE1D7AD55A",
+        "source_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+        "sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+        "utf8_source_line_content_sha256": "8878f2140aa69d1a5d1e7162cae938d4568edf7cc2db8f4c81d48d2db480cf77",
+        "physical_line_bytes_including_terminator_sha256": "5e301f15a58ae7402e18c3af165d0a57a0af37252c4f74a289732dce70f00e01",
+        "baseline_2353_physical_line_bytes_sha256": "5e301f15a58ae7402e18c3af165d0a57a0af37252c4f74a289732dce70f00e01"
+      }
+    },
+    {
+      "rank": 436,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000718",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "physical_line_number": 6,
+      "exact_source_line_text": "candidate_layer: L1",
+      "semantic_family": "会話寿命管理候補 / L1企画候補",
+      "semantic_function": "候補layer metadata",
+      "semantic_reading": "候補をL1企画として位置づける。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 4,
+            "text": "authority_status: awaiting_human_approval"
+          },
+          {
+            "line": 5,
+            "text": "version: \"1.0\""
+          },
+          {
+            "line": 7,
+            "text": "owner_issue: 1610"
+          },
+          {
+            "line": 8,
+            "text": "plan_id: PLAN-L3-1610-conversation-lifetime-reconstruction"
+          }
+        ],
+        "archive_file_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a"
+      },
+      "marker_negative_normative_concern": "層metadataは対象別L1の採択や後続pair形成を示さない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 718,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "3ab894f5507547a9660d4d8dd3051e0afa3b0476352bdc0dffeddc4f640e0bfa",
+        "source_line_sha256": "sha256:08b00be946099c517d68d58d6ff68ff2e6ee20033ce867c3aa757662f1ff69ce",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 803,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "ac6db586a06bc784965b497bb65e173bafd9539d9bbe5953470bbf1b1c98d34a",
+        "asset_id": "LEGACY-ASSET-602131C2EDDE1D7AD55A",
+        "source_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+        "sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+        "utf8_source_line_content_sha256": "08b00be946099c517d68d58d6ff68ff2e6ee20033ce867c3aa757662f1ff69ce",
+        "physical_line_bytes_including_terminator_sha256": "4ce4326d2485d98b7995049caa65220dc348542d6d58fbe21d5d9936a46a97d6",
+        "baseline_2353_physical_line_bytes_sha256": "4ce4326d2485d98b7995049caa65220dc348542d6d58fbe21d5d9936a46a97d6"
+      }
+    },
+    {
+      "rank": 437,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000719",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "physical_line_number": 7,
+      "exact_source_line_text": "owner_issue: 1610",
+      "semantic_family": "会話寿命管理候補 / L1企画候補",
+      "semantic_function": "歴史的Issue pointer",
+      "semantic_reading": "owner Issue #1610の投影metadata。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 5,
+            "text": "version: \"1.0\""
+          },
+          {
+            "line": 6,
+            "text": "candidate_layer: L1"
+          },
+          {
+            "line": 8,
+            "text": "plan_id: PLAN-L3-1610-conversation-lifetime-reconstruction"
+          },
+          {
+            "line": 9,
+            "text": "---"
+          }
+        ],
+        "archive_file_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a"
+      },
+      "marker_negative_normative_concern": "Issue番号は要求authority・採択の証拠ではない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 719,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "9718fdfc6547b071d9981733076002ffbc600b77c3c67cdc0bce6c94194acce4",
+        "source_line_sha256": "sha256:ca5d1c7ee5801ed60b6b6750c225371c8249f75726ae798826a83a5ad0fc8797",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 803,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "ac6db586a06bc784965b497bb65e173bafd9539d9bbe5953470bbf1b1c98d34a",
+        "asset_id": "LEGACY-ASSET-602131C2EDDE1D7AD55A",
+        "source_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+        "sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+        "utf8_source_line_content_sha256": "ca5d1c7ee5801ed60b6b6750c225371c8249f75726ae798826a83a5ad0fc8797",
+        "physical_line_bytes_including_terminator_sha256": "f45d24bc157c90bedbf0849359aa77247d0e8735477a4a11debaa9ee24864c1b",
+        "baseline_2353_physical_line_bytes_sha256": "f45d24bc157c90bedbf0849359aa77247d0e8735477a4a11debaa9ee24864c1b"
+      }
+    },
+    {
+      "rank": 438,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000720",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "physical_line_number": 8,
+      "exact_source_line_text": "plan_id: PLAN-L3-1610-conversation-lifetime-reconstruction",
+      "semantic_family": "会話寿命管理候補 / L1企画候補",
+      "semantic_function": "歴史的plan pointer",
+      "semantic_reading": "PLAN-L3-1610への参照metadata。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 6,
+            "text": "candidate_layer: L1"
+          },
+          {
+            "line": 7,
+            "text": "owner_issue: 1610"
+          },
+          {
+            "line": 9,
+            "text": "---"
+          },
+          {
+            "line": 10,
+            "text": ""
+          }
+        ],
+        "archive_file_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a"
+      },
+      "marker_negative_normative_concern": "計画IDは実行、承認、受入完了を示さない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 720,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "f2c9256f6d497cb6deb45b0d427668d77dcc5019af70d52dae7f5d627eafcd87",
+        "source_line_sha256": "sha256:bf855c3a43a6dacb79135dda8d61d1e240874680a08daed79333e3a882e0f6e9",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 803,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "ac6db586a06bc784965b497bb65e173bafd9539d9bbe5953470bbf1b1c98d34a",
+        "asset_id": "LEGACY-ASSET-602131C2EDDE1D7AD55A",
+        "source_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+        "sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+        "utf8_source_line_content_sha256": "bf855c3a43a6dacb79135dda8d61d1e240874680a08daed79333e3a882e0f6e9",
+        "physical_line_bytes_including_terminator_sha256": "0250257648ad09b4b2a159e7e7267dc5064fef1cfef76aea58c8e8e4b932d168",
+        "baseline_2353_physical_line_bytes_sha256": "0250257648ad09b4b2a159e7e7267dc5064fef1cfef76aea58c8e8e4b932d168"
+      }
+    },
+    {
+      "rank": 439,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000724",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "physical_line_number": 15,
+      "exact_source_line_text": "同一provider sessionや長大な会話履歴を常駐前提にせず、必要な意図・作業状態・証拠を既存の正本から",
+      "semantic_family": "会話寿命管理候補 / L1企画候補",
+      "semantic_function": "企画候補の利用価値",
+      "semantic_reading": "同一provider sessionや長大な履歴を常駐条件とせず、正本から必要状態を再構成して仕事を継続する意図。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 13,
+          "text": "## CLR-BR-001 利用者価値"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 13,
+            "text": "## CLR-BR-001 利用者価値"
+          },
+          {
+            "line": 14,
+            "text": ""
+          },
+          {
+            "line": 16,
+            "text": "再構成し、論理laneと仕事を安全かつ継続的に運転できるようにする。"
+          },
+          {
+            "line": 17,
+            "text": ""
+          }
+        ],
+        "archive_file_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a"
+      },
+      "marker_negative_normative_concern": "候補BRの意味であり、現行target L1への個別decision/bindingではない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 724,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "728d705c17dcf765e8c32e3d334fa55d7a6fff435081a726b9a90138d58dbfcc",
+        "source_line_sha256": "sha256:ea6c891d5d13971fb0cba6daf261e7486329347cbeb980ed9296cb2cf6f0a140",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 803,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "ac6db586a06bc784965b497bb65e173bafd9539d9bbe5953470bbf1b1c98d34a",
+        "asset_id": "LEGACY-ASSET-602131C2EDDE1D7AD55A",
+        "source_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+        "sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+        "utf8_source_line_content_sha256": "ea6c891d5d13971fb0cba6daf261e7486329347cbeb980ed9296cb2cf6f0a140",
+        "physical_line_bytes_including_terminator_sha256": "abbd152116105e8d7ad27a667c8257ed24ac0c9496174627c65b5d68e5c8a0bf",
+        "baseline_2353_physical_line_bytes_sha256": "abbd152116105e8d7ad27a667c8257ed24ac0c9496174627c65b5d68e5c8a0bf"
+      }
+    },
+    {
+      "rank": 440,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000727",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "physical_line_number": 20,
+      "exact_source_line_text": "主Issue #1610、親 #1370、前提 #1608へ接続する。詳細8要求は",
+      "semantic_family": "会話寿命管理候補 / L1企画候補",
+      "semantic_function": "企画候補の要求・受入接続",
+      "semantic_reading": "主・親・前提Issueへの歴史的接続と、8要件候補へのnavigationを示す。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 18,
+          "text": "## 責務と追跡"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 18,
+            "text": "## 責務と追跡"
+          },
+          {
+            "line": 19,
+            "text": ""
+          },
+          {
+            "line": 21,
+            "text": "[要件候補](conversation-lifetime-reconstruction-requirements.md)、対応する受入は"
+          },
+          {
+            "line": 22,
+            "text": "[受入候補](conversation-lifetime-reconstruction-acceptance.md)に保持する。"
+          }
+        ],
+        "archive_file_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a"
+      },
+      "marker_negative_normative_concern": "Issue linkや文書リンクは要求採択・意味coverageではない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 727,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "60b9bb50dc0a128aa3e21eed9279817f5908b2b001b443d5829177961b34e9c9",
+        "source_line_sha256": "sha256:4dc98bcd8fc1d6e47f5fb4047cf3522e59b5417cbeefdac0c34396f25643a225",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 803,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "ac6db586a06bc784965b497bb65e173bafd9539d9bbe5953470bbf1b1c98d34a",
+        "asset_id": "LEGACY-ASSET-602131C2EDDE1D7AD55A",
+        "source_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+        "sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+        "utf8_source_line_content_sha256": "4dc98bcd8fc1d6e47f5fb4047cf3522e59b5417cbeefdac0c34396f25643a225",
+        "physical_line_bytes_including_terminator_sha256": "299a436489f3ab7df559649ce9942d5d955246eac9bb98714ffe628f81e15634",
+        "baseline_2353_physical_line_bytes_sha256": "299a436489f3ab7df559649ce9942d5d955246eac9bb98714ffe628f81e15634"
+      }
+    },
+    {
+      "rank": 441,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000728",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "physical_line_number": 21,
+      "exact_source_line_text": "[要件候補](conversation-lifetime-reconstruction-requirements.md)、対応する受入は",
+      "semantic_family": "会話寿命管理候補 / L1企画候補",
+      "semantic_function": "企画候補のpair navigation",
+      "semantic_reading": "詳細要求と受入候補文書を指すリンク列の継続。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 18,
+          "text": "## 責務と追跡"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 19,
+            "text": ""
+          },
+          {
+            "line": 20,
+            "text": "主Issue #1610、親 #1370、前提 #1608へ接続する。詳細8要求は"
+          },
+          {
+            "line": 22,
+            "text": "[受入候補](conversation-lifetime-reconstruction-acceptance.md)に保持する。"
+          },
+          {
+            "line": 23,
+            "text": "本書は候補であり、canonical Requirement IR、runtime実装、session切替権限を意味しない。"
+          }
+        ],
+        "archive_file_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a"
+      },
+      "marker_negative_normative_concern": "cross-referenceであり、pairの承認・実行を意味しない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 728,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "ad8faf2a0dcda02cd83fb081bfa2ba3a7fde723093af55fa96ab387c8a066717",
+        "source_line_sha256": "sha256:a228d683937c9e681c47f4a0a980ce614a1b407c97236ba7d1d1adc846ba49c5",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 803,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "ac6db586a06bc784965b497bb65e173bafd9539d9bbe5953470bbf1b1c98d34a",
+        "asset_id": "LEGACY-ASSET-602131C2EDDE1D7AD55A",
+        "source_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+        "sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+        "utf8_source_line_content_sha256": "a228d683937c9e681c47f4a0a980ce614a1b407c97236ba7d1d1adc846ba49c5",
+        "physical_line_bytes_including_terminator_sha256": "1a0e75aeab08c17fcce190c560c29506fee59844861ffb52dedc4b8954f4c341",
+        "baseline_2353_physical_line_bytes_sha256": "1a0e75aeab08c17fcce190c560c29506fee59844861ffb52dedc4b8954f4c341"
+      }
+    },
+    {
+      "rank": 442,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000729",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "physical_line_number": 22,
+      "exact_source_line_text": "[受入候補](conversation-lifetime-reconstruction-acceptance.md)に保持する。",
+      "semantic_family": "会話寿命管理候補 / L1企画候補",
+      "semantic_function": "企画候補の非canonical境界",
+      "semantic_reading": "要件候補・受入候補への文書参照を記す。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 18,
+          "text": "## 責務と追跡"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 20,
+            "text": "主Issue #1610、親 #1370、前提 #1608へ接続する。詳細8要求は"
+          },
+          {
+            "line": 21,
+            "text": "[要件候補](conversation-lifetime-reconstruction-requirements.md)、対応する受入は"
+          },
+          {
+            "line": 23,
+            "text": "本書は候補であり、canonical Requirement IR、runtime実装、session切替権限を意味しない。"
+          },
+          {
+            "line": 24,
+            "text": ""
+          }
+        ],
+        "archive_file_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a"
+      },
+      "marker_negative_normative_concern": "cross-referenceであり、pairの承認・実行を意味しない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 729,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "d7368e91dee4045e44370cf6bc6fd6025e2fc2c5fe0b400188197154aad9e963",
+        "source_line_sha256": "sha256:f71c20f5a22925aa50808f38f7101e2b31bebb1cbea045742af9cb43e5009a65",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 803,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "ac6db586a06bc784965b497bb65e173bafd9539d9bbe5953470bbf1b1c98d34a",
+        "asset_id": "LEGACY-ASSET-602131C2EDDE1D7AD55A",
+        "source_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+        "sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+        "utf8_source_line_content_sha256": "f71c20f5a22925aa50808f38f7101e2b31bebb1cbea045742af9cb43e5009a65",
+        "physical_line_bytes_including_terminator_sha256": "062a941752e594f1e71dd2b72b28bd0b5fe883b7c2be8e2400c463e100ad551e",
+        "baseline_2353_physical_line_bytes_sha256": "062a941752e594f1e71dd2b72b28bd0b5fe883b7c2be8e2400c463e100ad551e"
+      }
+    },
+    {
+      "rank": 443,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000730",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "physical_line_number": 23,
+      "exact_source_line_text": "本書は候補であり、canonical Requirement IR、runtime実装、session切替権限を意味しない。",
+      "semantic_family": "会話寿命管理候補 / L1企画候補",
+      "semantic_function": "企画候補の非canonical境界",
+      "semantic_reading": "本書は候補であり、canonical Requirement IR、runtime実装、session切替権限を与えないと明記する。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 18,
+          "text": "## 責務と追跡"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 21,
+            "text": "[要件候補](conversation-lifetime-reconstruction-requirements.md)、対応する受入は"
+          },
+          {
+            "line": 22,
+            "text": "[受入候補](conversation-lifetime-reconstruction-acceptance.md)に保持する。"
+          },
+          {
+            "line": 24,
+            "text": ""
+          },
+          {
+            "line": 25,
+            "text": "## 取込み証跡"
+          }
+        ],
+        "archive_file_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a"
+      },
+      "marker_negative_normative_concern": "候補内のauthority留保。現行権限付与や採択ではない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 730,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "e00cc766187c583d805423c8b6ca753915b2ce0b8edc95060c97a3601eb451b8",
+        "source_line_sha256": "sha256:852691c7d1149a6172fc3d52225d2695f8aef2e23cb0a1c679da08961d1e4256",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 803,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "ac6db586a06bc784965b497bb65e173bafd9539d9bbe5953470bbf1b1c98d34a",
+        "asset_id": "LEGACY-ASSET-602131C2EDDE1D7AD55A",
+        "source_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+        "sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+        "utf8_source_line_content_sha256": "852691c7d1149a6172fc3d52225d2695f8aef2e23cb0a1c679da08961d1e4256",
+        "physical_line_bytes_including_terminator_sha256": "ab85d76caa1043310cb99d1499861fd5dd885e6656f797cf0e0fae915251e579",
+        "baseline_2353_physical_line_bytes_sha256": "ab85d76caa1043310cb99d1499861fd5dd885e6656f797cf0e0fae915251e579"
+      }
+    },
+    {
+      "rank": 444,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000732",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "physical_line_number": 27,
+      "exact_source_line_text": "原文 `01_REQUIREMENTS_DIRECTIVE.md` のSHA-256は",
+      "semantic_family": "会話寿命管理候補 / L1企画候補",
+      "semantic_function": "取込み原文digest metadata",
+      "semantic_reading": "元directiveのSHA-256が記録されていることを示す。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 25,
+          "text": "## 取込み証跡"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 25,
+            "text": "## 取込み証跡"
+          },
+          {
+            "line": 26,
+            "text": ""
+          },
+          {
+            "line": 28,
+            "text": "`970e40bd1566318349a0f8198f47cb5924f3b2aba59020cfa0a2e00b02654cb5`。"
+          },
+          {
+            "line": 29,
+            "text": "原文は候補mergeとdigest read-afterが成立するまでroot intakeとして保持する。"
+          }
+        ],
+        "archive_file_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a"
+      },
+      "marker_negative_normative_concern": "digest文字列はsource provenanceの主張であり、この行だけでは取得元・内容の完全性を実証しない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 732,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "e3dee8b149b15a082264790976c7cd3c425bff91231449e14b4cbdf775b02e37",
+        "source_line_sha256": "sha256:545cea525dd88f8a03016f46936d10726bbd28ffa5148d18436b646f04adf5d9",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 803,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "ac6db586a06bc784965b497bb65e173bafd9539d9bbe5953470bbf1b1c98d34a",
+        "asset_id": "LEGACY-ASSET-602131C2EDDE1D7AD55A",
+        "source_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+        "sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+        "utf8_source_line_content_sha256": "545cea525dd88f8a03016f46936d10726bbd28ffa5148d18436b646f04adf5d9",
+        "physical_line_bytes_including_terminator_sha256": "568c285c95f662e44cb3ef02c610b8ebfd8aa965caf6de137b367b29f096b563",
+        "baseline_2353_physical_line_bytes_sha256": "568c285c95f662e44cb3ef02c610b8ebfd8aa965caf6de137b367b29f096b563"
+      }
+    },
+    {
+      "rank": 445,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000733",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "physical_line_number": 28,
+      "exact_source_line_text": "`970e40bd1566318349a0f8198f47cb5924f3b2aba59020cfa0a2e00b02654cb5`。",
+      "semantic_family": "会話寿命管理候補 / L1企画候補",
+      "semantic_function": "取込み原文digest値",
+      "semantic_reading": "原文directiveの特定SHA-256値。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 25,
+          "text": "## 取込み証跡"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 26,
+            "text": ""
+          },
+          {
+            "line": 27,
+            "text": "原文 `01_REQUIREMENTS_DIRECTIVE.md` のSHA-256は"
+          },
+          {
+            "line": 29,
+            "text": "原文は候補mergeとdigest read-afterが成立するまでroot intakeとして保持する。"
+          }
+        ],
+        "archive_file_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a"
+      },
+      "marker_negative_normative_concern": "値の記載は採択・意思決定の証拠ではない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 733,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "2e82ec68f892c0c4b07b90e61335698d9b2ee42b59bb226a61ae8020cbda48dc",
+        "source_line_sha256": "sha256:da29fa622cd09246a2251bdeaa7a522cbc0a46c3a6606e96a4fea374a343378c",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 803,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "ac6db586a06bc784965b497bb65e173bafd9539d9bbe5953470bbf1b1c98d34a",
+        "asset_id": "LEGACY-ASSET-602131C2EDDE1D7AD55A",
+        "source_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+        "sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+        "utf8_source_line_content_sha256": "da29fa622cd09246a2251bdeaa7a522cbc0a46c3a6606e96a4fea374a343378c",
+        "physical_line_bytes_including_terminator_sha256": "c3e47152871ae217bfaf6550d5dbb7bbf7eec5191509c48f669685658625aa85",
+        "baseline_2353_physical_line_bytes_sha256": "c3e47152871ae217bfaf6550d5dbb7bbf7eec5191509c48f669685658625aa85"
+      }
+    },
+    {
+      "rank": 446,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000734",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+      "physical_line_number": 29,
+      "exact_source_line_text": "原文は候補mergeとdigest read-afterが成立するまでroot intakeとして保持する。",
+      "semantic_family": "会話寿命管理候補 / L1企画候補",
+      "semantic_function": "root intake保持条件",
+      "semantic_reading": "候補mergeとdigest read-after成立まで原文をroot intakeに保持するという当時の手順候補。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 25,
+          "text": "## 取込み証跡"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 27,
+            "text": "原文 `01_REQUIREMENTS_DIRECTIVE.md` のSHA-256は"
+          },
+          {
+            "line": 28,
+            "text": "`970e40bd1566318349a0f8198f47cb5924f3b2aba59020cfa0a2e00b02654cb5`。"
+          }
+        ],
+        "archive_file_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a"
+      },
+      "marker_negative_normative_concern": "歴史的工程条件。GitHub mergeやdigest確認から現在の要求採択を生成しない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 734,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "9e35f1ca5a136653dcf200cc485b4b8e0bffff959cb2b08f5513c543b04a37d9",
+        "source_line_sha256": "sha256:db02a3070958cec49ac3f2cb39be2e5967709b6db45ca1e11ee703f930c59da6",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 803,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "ac6db586a06bc784965b497bb65e173bafd9539d9bbe5953470bbf1b1c98d34a",
+        "asset_id": "LEGACY-ASSET-602131C2EDDE1D7AD55A",
+        "source_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md",
+        "sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2edcf4868d7540f850bdaac31d28e542a5b32b9766d7575269ffce70c090037a",
+        "utf8_source_line_content_sha256": "db02a3070958cec49ac3f2cb39be2e5967709b6db45ca1e11ee703f930c59da6",
+        "physical_line_bytes_including_terminator_sha256": "774c1c09c79a97213f595b9c5a33adcdfd3844589e24cd6e31f173562fde0f96",
+        "baseline_2353_physical_line_bytes_sha256": "774c1c09c79a97213f595b9c5a33adcdfd3844589e24cd6e31f173562fde0f96"
+      }
+    },
+    {
+      "rank": 447,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000736",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "physical_line_number": 2,
+      "exact_source_line_text": "title: \"会話寿命管理と外部状態からの継続再構成\"",
+      "semantic_family": "会話寿命管理候補 / L3要件候補",
+      "semantic_function": "要件候補文書タイトル",
+      "semantic_reading": "会話寿命・外部状態再構成のL3要件候補文書タイトル。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 1,
+            "text": "---"
+          },
+          {
+            "line": 3,
+            "text": "status: draft_candidate"
+          },
+          {
+            "line": 4,
+            "text": "authority_status: awaiting_human_approval"
+          }
+        ],
+        "archive_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed"
+      },
+      "marker_negative_normative_concern": "candidate identity metadata。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 736,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "9d6279896bcf59437e5a55509da1a588ce77338553bfd291be775af59e839c32",
+        "source_line_sha256": "sha256:75cbcbf2989351835c3bd9e3a74a9ee4926b0c1010006757a7d674093ae1cb13",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 804,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "63607be5f3552c0a9b6db72919cf9014f9ea4c31d5bacaed670fcfc4717e3d5c",
+        "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+        "source_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+        "sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+        "utf8_source_line_content_sha256": "75cbcbf2989351835c3bd9e3a74a9ee4926b0c1010006757a7d674093ae1cb13",
+        "physical_line_bytes_including_terminator_sha256": "175977216a770f7f891bea4fdca154124e63646a44af463c235a5795d57f551e",
+        "baseline_2353_physical_line_bytes_sha256": "175977216a770f7f891bea4fdca154124e63646a44af463c235a5795d57f551e"
+      }
+    },
+    {
+      "rank": 448,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000737",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "physical_line_number": 3,
+      "exact_source_line_text": "status: draft_candidate",
+      "semantic_family": "会話寿命管理候補 / L3要件候補",
+      "semantic_function": "要件候補status metadata",
+      "semantic_reading": "draft_candidate statusの表示。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 1,
+            "text": "---"
+          },
+          {
+            "line": 2,
+            "text": "title: \"会話寿命管理と外部状態からの継続再構成\""
+          },
+          {
+            "line": 4,
+            "text": "authority_status: awaiting_human_approval"
+          },
+          {
+            "line": 5,
+            "text": "version: \"1.0\""
+          }
+        ],
+        "archive_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed"
+      },
+      "marker_negative_normative_concern": "target approval stateへ自動転記しない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 737,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "091428061373471aa84d4a586425c35bcc37aa2c8d6254b8046c5236510a1369",
+        "source_line_sha256": "sha256:e2f54e8ccf42197c498223478758d709e4b1617d22ec5c47f374ad01cd3f5d73",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 804,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "63607be5f3552c0a9b6db72919cf9014f9ea4c31d5bacaed670fcfc4717e3d5c",
+        "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+        "source_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+        "sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+        "utf8_source_line_content_sha256": "e2f54e8ccf42197c498223478758d709e4b1617d22ec5c47f374ad01cd3f5d73",
+        "physical_line_bytes_including_terminator_sha256": "b8e0419afbe1b1eea382ff37243bd4cc306439e777c20b65ae2f96126c8bf0dc",
+        "baseline_2353_physical_line_bytes_sha256": "b8e0419afbe1b1eea382ff37243bd4cc306439e777c20b65ae2f96126c8bf0dc"
+      }
+    },
+    {
+      "rank": 449,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000738",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "physical_line_number": 4,
+      "exact_source_line_text": "authority_status: awaiting_human_approval",
+      "semantic_family": "会話寿命管理候補 / L3要件候補",
+      "semantic_function": "要件候補authority metadata",
+      "semantic_reading": "awaiting_human_approval表示。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 2,
+            "text": "title: \"会話寿命管理と外部状態からの継続再構成\""
+          },
+          {
+            "line": 3,
+            "text": "status: draft_candidate"
+          },
+          {
+            "line": 5,
+            "text": "version: \"1.0\""
+          },
+          {
+            "line": 6,
+            "text": "candidate_layer: L3"
+          }
+        ],
+        "archive_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed"
+      },
+      "marker_negative_normative_concern": "現行の対象revision decisionを表さない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 738,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "97eaa2d4338e95a12fa6ba7c617836bb4ccf9725632ec917c505a6054a89ed46",
+        "source_line_sha256": "sha256:a823dc7cbf7e0f6e3f7b1c14654f39a27f6635702f3a8fc4120daf69a2474681",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 804,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "63607be5f3552c0a9b6db72919cf9014f9ea4c31d5bacaed670fcfc4717e3d5c",
+        "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+        "source_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+        "sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+        "utf8_source_line_content_sha256": "a823dc7cbf7e0f6e3f7b1c14654f39a27f6635702f3a8fc4120daf69a2474681",
+        "physical_line_bytes_including_terminator_sha256": "d06e6eb12e8f70f1e6bfc17a7f6c7f372be2c16df602f651b362916a0edcd8c6",
+        "baseline_2353_physical_line_bytes_sha256": "d06e6eb12e8f70f1e6bfc17a7f6c7f372be2c16df602f651b362916a0edcd8c6"
+      }
+    },
+    {
+      "rank": 450,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000739",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "physical_line_number": 5,
+      "exact_source_line_text": "version: \"1.0\"",
+      "semantic_family": "会話寿命管理候補 / L3要件候補",
+      "semantic_function": "要件候補version metadata",
+      "semantic_reading": "候補本文のversion 1.0 metadata。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 3,
+            "text": "status: draft_candidate"
+          },
+          {
+            "line": 4,
+            "text": "authority_status: awaiting_human_approval"
+          },
+          {
+            "line": 6,
+            "text": "candidate_layer: L3"
+          },
+          {
+            "line": 7,
+            "text": "owner_issue: 1610"
+          }
+        ],
+        "archive_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed"
+      },
+      "marker_negative_normative_concern": "現行製品version authorityではない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 739,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "83227f8788ac49851ca254d8be9c046845170c5e14a2bd1a20b06a5b8c3a2b2d",
+        "source_line_sha256": "sha256:8878f2140aa69d1a5d1e7162cae938d4568edf7cc2db8f4c81d48d2db480cf77",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 804,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "63607be5f3552c0a9b6db72919cf9014f9ea4c31d5bacaed670fcfc4717e3d5c",
+        "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+        "source_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+        "sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+        "utf8_source_line_content_sha256": "8878f2140aa69d1a5d1e7162cae938d4568edf7cc2db8f4c81d48d2db480cf77",
+        "physical_line_bytes_including_terminator_sha256": "5e301f15a58ae7402e18c3af165d0a57a0af37252c4f74a289732dce70f00e01",
+        "baseline_2353_physical_line_bytes_sha256": "5e301f15a58ae7402e18c3af165d0a57a0af37252c4f74a289732dce70f00e01"
+      }
+    },
+    {
+      "rank": 451,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000740",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "physical_line_number": 6,
+      "exact_source_line_text": "candidate_layer: L3",
+      "semantic_family": "会話寿命管理候補 / L3要件候補",
+      "semantic_function": "要件候補layer metadata",
+      "semantic_reading": "要件候補をL3として指定するmetadata。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 4,
+            "text": "authority_status: awaiting_human_approval"
+          },
+          {
+            "line": 5,
+            "text": "version: \"1.0\""
+          },
+          {
+            "line": 7,
+            "text": "owner_issue: 1610"
+          },
+          {
+            "line": 8,
+            "text": "plan_id: PLAN-L3-1610-conversation-lifetime-reconstruction"
+          }
+        ],
+        "archive_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed"
+      },
+      "marker_negative_normative_concern": "L3承認や対象別pair成立ではない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 740,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "b486acf1a4d399d45f0d385c4d778ff2d301cad85ad500f98ccbf9ec57946c84",
+        "source_line_sha256": "sha256:897a63ae4f58020c8f6acd61ef66d66da13d5af53489bceb49cc0588ed24159a",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 804,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "63607be5f3552c0a9b6db72919cf9014f9ea4c31d5bacaed670fcfc4717e3d5c",
+        "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+        "source_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+        "sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+        "utf8_source_line_content_sha256": "897a63ae4f58020c8f6acd61ef66d66da13d5af53489bceb49cc0588ed24159a",
+        "physical_line_bytes_including_terminator_sha256": "2b034f6e4a02502e28adf384673777daa831ab01df8b7b81bdca35fb1fd2da24",
+        "baseline_2353_physical_line_bytes_sha256": "2b034f6e4a02502e28adf384673777daa831ab01df8b7b81bdca35fb1fd2da24"
+      }
+    },
+    {
+      "rank": 452,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000741",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "physical_line_number": 7,
+      "exact_source_line_text": "owner_issue: 1610",
+      "semantic_family": "会話寿命管理候補 / L3要件候補",
+      "semantic_function": "歴史的Issue pointer",
+      "semantic_reading": "owner Issue #1610の歴史的参照。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 5,
+            "text": "version: \"1.0\""
+          },
+          {
+            "line": 6,
+            "text": "candidate_layer: L3"
+          },
+          {
+            "line": 8,
+            "text": "plan_id: PLAN-L3-1610-conversation-lifetime-reconstruction"
+          },
+          {
+            "line": 9,
+            "text": "---"
+          }
+        ],
+        "archive_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed"
+      },
+      "marker_negative_normative_concern": "Issue identity/stateはauthority外。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 741,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "85850861c9c4493b3c542b5ee721fcd5ea9b1b63b9af826034510fa2297d8728",
+        "source_line_sha256": "sha256:ca5d1c7ee5801ed60b6b6750c225371c8249f75726ae798826a83a5ad0fc8797",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 804,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "63607be5f3552c0a9b6db72919cf9014f9ea4c31d5bacaed670fcfc4717e3d5c",
+        "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+        "source_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+        "sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+        "utf8_source_line_content_sha256": "ca5d1c7ee5801ed60b6b6750c225371c8249f75726ae798826a83a5ad0fc8797",
+        "physical_line_bytes_including_terminator_sha256": "f45d24bc157c90bedbf0849359aa77247d0e8735477a4a11debaa9ee24864c1b",
+        "baseline_2353_physical_line_bytes_sha256": "f45d24bc157c90bedbf0849359aa77247d0e8735477a4a11debaa9ee24864c1b"
+      }
+    },
+    {
+      "rank": 453,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000742",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "physical_line_number": 8,
+      "exact_source_line_text": "plan_id: PLAN-L3-1610-conversation-lifetime-reconstruction",
+      "semantic_family": "会話寿命管理候補 / L3要件候補",
+      "semantic_function": "歴史的plan pointer",
+      "semantic_reading": "PLAN-L3-1610の歴史的参照。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 6,
+            "text": "candidate_layer: L3"
+          },
+          {
+            "line": 7,
+            "text": "owner_issue: 1610"
+          },
+          {
+            "line": 9,
+            "text": "---"
+          },
+          {
+            "line": 10,
+            "text": ""
+          }
+        ],
+        "archive_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed"
+      },
+      "marker_negative_normative_concern": "plan IDは計画・実装・完了の証拠ではない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 742,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "79f85f85f6b97f0ab556298d901e0e31508ce6aa8f40310a46e1b7a35ceaa6d1",
+        "source_line_sha256": "sha256:bf855c3a43a6dacb79135dda8d61d1e240874680a08daed79333e3a882e0f6e9",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 804,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "63607be5f3552c0a9b6db72919cf9014f9ea4c31d5bacaed670fcfc4717e3d5c",
+        "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+        "source_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+        "sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+        "utf8_source_line_content_sha256": "bf855c3a43a6dacb79135dda8d61d1e240874680a08daed79333e3a882e0f6e9",
+        "physical_line_bytes_including_terminator_sha256": "0250257648ad09b4b2a159e7e7267dc5064fef1cfef76aea58c8e8e4b932d168",
+        "baseline_2353_physical_line_bytes_sha256": "0250257648ad09b4b2a159e7e7267dc5064fef1cfef76aea58c8e8e4b932d168"
+      }
+    },
+    {
+      "rank": 454,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000746",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "physical_line_number": 15,
+      "exact_source_line_text": "目的、受入、未解決意図、判断理由と棄却案、未完作業、失敗仮説を、現在必要な本文、再取得可能な参照、",
+      "semantic_family": "会話寿命管理候補 / L3要件候補",
+      "semantic_function": "必要情報の分類と切替停止条件",
+      "semantic_reading": "目的・受入・意図・判断理由等を保存/参照/未保存/撤回/不明へ分類し、重要情報が未保存または不明なら切替保留とするCLR-R01の前半。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 13,
+          "text": "## CLR-R01 再開必要情報の判定"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 13,
+            "text": "## CLR-R01 再開必要情報の判定"
+          },
+          {
+            "line": 14,
+            "text": ""
+          },
+          {
+            "line": 16,
+            "text": "会話にしかない未保存情報、撤回・旧版、不明へ分類する。文書やdigestの存在だけで意味保存済みとせず、"
+          },
+          {
+            "line": 17,
+            "text": "重要情報が未保存または不明なら自動切替を保留する。"
+          }
+        ],
+        "archive_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed"
+      },
+      "marker_negative_normative_concern": "後続行747–748と一つの要件atomを構成する。現行L2のcandidate detailとの近接もrow-specific authority bindingではない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 746,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "c7e0bf248960b198c6ba9a8ca3a7d9ebc23b5102d045d191ceebff9735df8cf9",
+        "source_line_sha256": "sha256:f10b1995fdf96d2411b1784baea6a3ca7f7a435a919079756dd39a848d49edcc",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 804,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "63607be5f3552c0a9b6db72919cf9014f9ea4c31d5bacaed670fcfc4717e3d5c",
+        "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+        "source_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+        "sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+        "utf8_source_line_content_sha256": "f10b1995fdf96d2411b1784baea6a3ca7f7a435a919079756dd39a848d49edcc",
+        "physical_line_bytes_including_terminator_sha256": "61dd4fd3d89e5867e83e0304fa21dca390713dad660f3bbffbd7f797e7973b2e",
+        "baseline_2353_physical_line_bytes_sha256": "61dd4fd3d89e5867e83e0304fa21dca390713dad660f3bbffbd7f797e7973b2e"
+      }
+    },
+    {
+      "rank": 455,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000747",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "physical_line_number": 16,
+      "exact_source_line_text": "会話にしかない未保存情報、撤回・旧版、不明へ分類する。文書やdigestの存在だけで意味保存済みとせず、",
+      "semantic_family": "会話寿命管理候補 / L3要件候補",
+      "semantic_function": "意味保存の誤推定防止",
+      "semantic_reading": "文書やdigestの存在だけで意味保存済みとせず、未保存会話情報と撤回/旧版等を区別するCLR-R01の継続部分。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 13,
+          "text": "## CLR-R01 再開必要情報の判定"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 14,
+            "text": ""
+          },
+          {
+            "line": 15,
+            "text": "目的、受入、未解決意図、判断理由と棄却案、未完作業、失敗仮説を、現在必要な本文、再取得可能な参照、"
+          },
+          {
+            "line": 17,
+            "text": "重要情報が未保存または不明なら自動切替を保留する。"
+          },
+          {
+            "line": 18,
+            "text": ""
+          }
+        ],
+        "archive_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed"
+      },
+      "marker_negative_normative_concern": "周辺行と併せて要件を評価し、digest存在をcoverageとしない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 747,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "8d976e7ad1b8e7f87ca6a8f80b1826c1c93e092a56db4032d36506b7fda7fddb",
+        "source_line_sha256": "sha256:a06fd3a0728a8b6a662ce085db5acd9e4316b12de4fdbff5e22f0f7eb514e041",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 804,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "63607be5f3552c0a9b6db72919cf9014f9ea4c31d5bacaed670fcfc4717e3d5c",
+        "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+        "source_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+        "sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+        "utf8_source_line_content_sha256": "a06fd3a0728a8b6a662ce085db5acd9e4316b12de4fdbff5e22f0f7eb514e041",
+        "physical_line_bytes_including_terminator_sha256": "29c8131a0937634c2151082883fbdba3c7c1fbe8a6c370819487e96c8e396cd6",
+        "baseline_2353_physical_line_bytes_sha256": "29c8131a0937634c2151082883fbdba3c7c1fbe8a6c370819487e96c8e396cd6"
+      }
+    },
+    {
+      "rank": 456,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000748",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "physical_line_number": 17,
+      "exact_source_line_text": "重要情報が未保存または不明なら自動切替を保留する。",
+      "semantic_family": "会話寿命管理候補 / L3要件候補",
+      "semantic_function": "不足情報時の自動切替保留",
+      "semantic_reading": "重要情報が未保存/不明なら自動切替を保留するCLR-R01の終端。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 13,
+          "text": "## CLR-R01 再開必要情報の判定"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 15,
+            "text": "目的、受入、未解決意図、判断理由と棄却案、未完作業、失敗仮説を、現在必要な本文、再取得可能な参照、"
+          },
+          {
+            "line": 16,
+            "text": "会話にしかない未保存情報、撤回・旧版、不明へ分類する。文書やdigestの存在だけで意味保存済みとせず、"
+          },
+          {
+            "line": 18,
+            "text": ""
+          },
+          {
+            "line": 19,
+            "text": "## CLR-R02 既存正本への保存"
+          }
+        ],
+        "archive_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed"
+      },
+      "marker_negative_normative_concern": "候補要件条件であり、現行運転条件として別途採択された根拠なし。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 748,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "2a2f1595a7866ba3a0ef9812576ea8eb5369ec866f2cf9a9b9cc2f5f28e3c392",
+        "source_line_sha256": "sha256:a9b85921280fe08436e59fa179adef71b4763d9d2659b6b4f6b9dd16a3fc0f33",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 804,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "63607be5f3552c0a9b6db72919cf9014f9ea4c31d5bacaed670fcfc4717e3d5c",
+        "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+        "source_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+        "sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+        "utf8_source_line_content_sha256": "a9b85921280fe08436e59fa179adef71b4763d9d2659b6b4f6b9dd16a3fc0f33",
+        "physical_line_bytes_including_terminator_sha256": "b06602c88f5b8483ac97eb371450dfcb6903e492c633e637cbfe99cc5527a0db",
+        "baseline_2353_physical_line_bytes_sha256": "b06602c88f5b8483ac97eb371450dfcb6903e492c633e637cbfe99cc5527a0db"
+      }
+    },
+    {
+      "rank": 457,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000750",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "physical_line_number": 21,
+      "exact_source_line_text": "要求、判断、code、test、実行証跡、現在地は既存の責務所有先へ保存する。会話にしかない人間の意図は",
+      "semantic_family": "会話寿命管理候補 / L3要件候補",
+      "semantic_function": "既存ownerへの状態保存",
+      "semantic_reading": "要求・判断・成果・証拠等を責務所有先へ保存し、人間意図や仮説等を区別保持するCLR-R02前半。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 19,
+          "text": "## CLR-R02 既存正本への保存"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 19,
+            "text": "## CLR-R02 既存正本への保存"
+          },
+          {
+            "line": 20,
+            "text": ""
+          },
+          {
+            "line": 22,
+            "text": "出典付き原文または必要部分として、仮説・棄却理由は未確定情報として保持する。checkpointは論理作業、PLAN、"
+          },
+          {
+            "line": 23,
+            "text": "repo／branch／worktree／HEAD、未commit・未追跡変更、契約版、未完義務、実行中worker／CI／外部操作、証拠、"
+          }
+        ],
+        "archive_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed"
+      },
+      "marker_negative_normative_concern": "行751–753と合わせる。候補要件の保存owner意味を保持し、現行登録/保存実装は主張しない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 750,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "1f2c5b21d20b168d671461f9c9e1028a20e1f210966da609b603a853e8e44582",
+        "source_line_sha256": "sha256:50b7c1b274ed530ea43c3691572b22017a66e76b1e7deaa0c8f3b0b902f964a5",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 804,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "63607be5f3552c0a9b6db72919cf9014f9ea4c31d5bacaed670fcfc4717e3d5c",
+        "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+        "source_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+        "sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+        "utf8_source_line_content_sha256": "50b7c1b274ed530ea43c3691572b22017a66e76b1e7deaa0c8f3b0b902f964a5",
+        "physical_line_bytes_including_terminator_sha256": "cd2457451db1af5daac79b271b5bfc36ba541e858be5af2f8427aed70cbaee76",
+        "baseline_2353_physical_line_bytes_sha256": "cd2457451db1af5daac79b271b5bfc36ba541e858be5af2f8427aed70cbaee76"
+      }
+    },
+    {
+      "rank": 458,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000751",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "physical_line_number": 22,
+      "exact_source_line_text": "出典付き原文または必要部分として、仮説・棄却理由は未確定情報として保持する。checkpointは論理作業、PLAN、",
+      "semantic_family": "会話寿命管理候補 / L3要件候補",
+      "semantic_function": "意図・仮説の出典保持",
+      "semantic_reading": "会話だけにある意図は出典付き原文/必要部分に、仮説・棄却理由は未確定情報に置く。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 19,
+          "text": "## CLR-R02 既存正本への保存"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 20,
+            "text": ""
+          },
+          {
+            "line": 21,
+            "text": "要求、判断、code、test、実行証跡、現在地は既存の責務所有先へ保存する。会話にしかない人間の意図は"
+          },
+          {
+            "line": 23,
+            "text": "repo／branch／worktree／HEAD、未commit・未追跡変更、契約版、未完義務、実行中worker／CI／外部操作、証拠、"
+          },
+          {
+            "line": 24,
+            "text": "累積予算と失敗回数を必要範囲で束縛する派生viewとし、第二正本にしない。未承認意図を正式要求へ昇格しない。"
+          }
+        ],
+        "archive_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed"
+      },
+      "marker_negative_normative_concern": "CLR-R02継続部分。下行と同一のcheckpoint境界内で読む。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 751,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "89a2bb00149a8a6935fa8dd6ae35af0db8502fc4af2cc421693c9ab1f3cc0ca4",
+        "source_line_sha256": "sha256:962b9f13aa4d084d7cca628265ae10955c67ffb79222dfeeba2d6dcd9fd79885",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 804,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "63607be5f3552c0a9b6db72919cf9014f9ea4c31d5bacaed670fcfc4717e3d5c",
+        "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+        "source_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+        "sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+        "utf8_source_line_content_sha256": "962b9f13aa4d084d7cca628265ae10955c67ffb79222dfeeba2d6dcd9fd79885",
+        "physical_line_bytes_including_terminator_sha256": "194b8b5ef61409db0230b0b369de6acf8022962386db7459f814bc61a3fdea2b",
+        "baseline_2353_physical_line_bytes_sha256": "194b8b5ef61409db0230b0b369de6acf8022962386db7459f814bc61a3fdea2b"
+      }
+    },
+    {
+      "rank": 459,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000752",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "physical_line_number": 23,
+      "exact_source_line_text": "repo／branch／worktree／HEAD、未commit・未追跡変更、契約版、未完義務、実行中worker／CI／外部操作、証拠、",
+      "semantic_family": "会話寿命管理候補 / L3要件候補",
+      "semantic_function": "checkpointの状態範囲",
+      "semantic_reading": "checkpointが束縛すべき作業identity、repo/worktree、変更・契約・義務、実行中処理・証拠等の列挙を始める。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 19,
+          "text": "## CLR-R02 既存正本への保存"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 21,
+            "text": "要求、判断、code、test、実行証跡、現在地は既存の責務所有先へ保存する。会話にしかない人間の意図は"
+          },
+          {
+            "line": 22,
+            "text": "出典付き原文または必要部分として、仮説・棄却理由は未確定情報として保持する。checkpointは論理作業、PLAN、"
+          },
+          {
+            "line": 24,
+            "text": "累積予算と失敗回数を必要範囲で束縛する派生viewとし、第二正本にしない。未承認意図を正式要求へ昇格しない。"
+          },
+          {
+            "line": 25,
+            "text": ""
+          }
+        ],
+        "archive_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed"
+      },
+      "marker_negative_normative_concern": "複数行の候補条件。checkpointを第二正本へ変える意味ではない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 752,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "49c17036f5364b71d5cf42945dfae073582f2d2122b19630a39d4d6a8ae5f959",
+        "source_line_sha256": "sha256:4269c9896a87949d28129e934a634709f7ec46c52f769bcdcb158c15bcfd17a8",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 804,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "63607be5f3552c0a9b6db72919cf9014f9ea4c31d5bacaed670fcfc4717e3d5c",
+        "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+        "source_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+        "sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+        "utf8_source_line_content_sha256": "4269c9896a87949d28129e934a634709f7ec46c52f769bcdcb158c15bcfd17a8",
+        "physical_line_bytes_including_terminator_sha256": "0795318fad7d2af1aab6023d8512a2909b840428542fdb5fffa0bc990fe9e104",
+        "baseline_2353_physical_line_bytes_sha256": "0795318fad7d2af1aab6023d8512a2909b840428542fdb5fffa0bc990fe9e104"
+      }
+    },
+    {
+      "rank": 460,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000753",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "physical_line_number": 24,
+      "exact_source_line_text": "累積予算と失敗回数を必要範囲で束縛する派生viewとし、第二正本にしない。未承認意図を正式要求へ昇格しない。",
+      "semantic_family": "会話寿命管理候補 / L3要件候補",
+      "semantic_function": "checkpointの累積制約・非昇格境界",
+      "semantic_reading": "budget/失敗回数を必要範囲で束縛する派生viewとし、第二正本にせず、未承認意図を正式要求へ昇格させない。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 19,
+          "text": "## CLR-R02 既存正本への保存"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 22,
+            "text": "出典付き原文または必要部分として、仮説・棄却理由は未確定情報として保持する。checkpointは論理作業、PLAN、"
+          },
+          {
+            "line": 23,
+            "text": "repo／branch／worktree／HEAD、未commit・未追跡変更、契約版、未完義務、実行中worker／CI／外部操作、証拠、"
+          },
+          {
+            "line": 25,
+            "text": ""
+          },
+          {
+            "line": 26,
+            "text": "## CLR-R03 再構成可能範囲の分離"
+          }
+        ],
+        "archive_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed"
+      },
+      "marker_negative_normative_concern": "CLR-R02の終端。source candidate conditionであり、行別採択や実装済みを示さない。",
+      "current_relation_and_residual": "固定F6のHELIX-OS L2にはCLR-R01..08とL10 oracleが未承認候補として記載され、固定L11でも受入候補は未実行。2026-09-28 OS PO decisionの対象は明示16件（HELIXOS-L2-014..029）で、この旧source rowの個別採択・successor bindingは確認できない。現行main本文のcandidate detailや隣接するHELIXOS-L2-009等の責務近接は比較文脈に留まり、採択・同一identity・実装・受入・closureを生成しない。",
+      "source_line_ledger": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 753,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "be5c6ac9ca2e99260a1109d17cd9dd3b084e3ffbe01f443481672a5b3a0ce9f9",
+        "source_line_sha256": "sha256:33eaf4df813e98ee7b61d3c4ef6e24e25746332aae2d60ac96e7e34e70a6d019",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 804,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "63607be5f3552c0a9b6db72919cf9014f9ea4c31d5bacaed670fcfc4717e3d5c",
+        "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+        "source_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+        "sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+        "utf8_source_line_content_sha256": "33eaf4df813e98ee7b61d3c4ef6e24e25746332aae2d60ac96e7e34e70a6d019",
+        "physical_line_bytes_including_terminator_sha256": "97e88f8565eed7f040eef7a726c4e79a55d21bb1cefc6f7dcc77ba2a1bcdbf91",
+        "baseline_2353_physical_line_bytes_sha256": "97e88f8565eed7f040eef7a726c4e79a55d21bb1cefc6f7dcc77ba2a1bcdbf91"
+      }
+    }
+  ],
+  "pin_reachability": {
+    "basis": "git cat-file -e <commit>^{commit}; git merge-base --is-ancestor <commit> origin/main; each listed path SHA-256 verified with git show <commit>:<path>",
+    "commits": [
+      {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "commit_object_available": true,
+        "ancestor_of_origin_main": true,
+        "pinned_files": [
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+            "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c"
+          }
+        ]
+      },
+      {
+        "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
+        "commit_object_available": true,
+        "ancestor_of_origin_main": true,
+        "pinned_files": [
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+            "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164"
+          }
+        ]
+      },
+      {
+        "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+        "commit_object_available": true,
+        "ancestor_of_origin_main": true,
+        "pinned_files": [
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+            "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb"
+          }
+        ]
+      },
+      {
+        "commit": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
+        "commit_object_available": true,
+        "ancestor_of_origin_main": true,
+        "pinned_files": [
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+            "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384"
+          }
+        ]
+      },
+      {
+        "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
+        "commit_object_available": true,
+        "ancestor_of_origin_main": true,
+        "pinned_files": [
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+            "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6"
+          }
+        ]
+      },
+      {
+        "commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
+        "commit_object_available": true,
+        "ancestor_of_origin_main": true,
+        "pinned_files": [
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
+            "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d"
+          }
+        ]
+      },
+      {
+        "commit": "f89f71e0371440e9e10636499192c2311872b024",
+        "commit_object_available": true,
+        "ancestor_of_origin_main": true,
+        "pinned_files": [
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
+            "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95"
+          }
+        ]
+      },
+      {
+        "commit": "081b0b6612b802cfcb02b3cecda1559dd9a3ce13",
+        "commit_object_available": true,
+        "ancestor_of_origin_main": true,
+        "pinned_files": [
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30.json",
+            "sha256": "5ed02b037f78ca25991b396e232e8b1ee754b0c91b056ed6640c9fb1c47cf0c0"
+          }
+        ]
+      },
+      {
+        "commit": "6e62f76986f19d14281cb2a96eca460c5430dcc6",
+        "commit_object_available": true,
+        "ancestor_of_origin_main": true,
+        "pinned_files": [
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-metadata10-classification-proposal-2026-09-30.json",
+            "sha256": "512f9ceafe935648d459d6b268ff4d3952f0e8264298213ad278256236b5f40e"
+          }
+        ]
+      },
+      {
+        "commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+        "commit_object_available": true,
+        "ancestor_of_origin_main": true,
+        "pinned_files": [
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-2026-10-01.json",
+            "sha256": "3ea33ed390c354e84b81f1dd7956afdfab7bd00deb49969383b717bacf4acd33"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-101-120-2026-10-01.json",
+            "sha256": "29cc8bfecbebae44ba0b0473d4df8d561a92f72778ad13177f161e84d1267ecf"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-121-140-2026-10-01.json",
+            "sha256": "f5b88ec5da4727aee48c30311a0c10b47ff6b39fe7cf5adddcea6fa8380933ee"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-141-160-2026-10-01.json",
+            "sha256": "e40dbeaf5758a45a6eb39c96b5a8b5723780cfec15b21516103858f7659d8c4b"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-161-180-2026-10-01.json",
+            "sha256": "9e81e0d3bd4366b01c982be3da542bb64e59750576134558ecdc9b75a22aa7a2"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-181-200-2026-10-01.json",
+            "sha256": "de845d732261122a04af5aeb168dbc9b7a55507d6c977b74c37d1c19ec645e97"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-201-220-2026-10-01.json",
+            "sha256": "d11d4a5fc5005fc1e555f1bc1cea68e375c7bad479349b5340bc9ce80923b19d"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-21-40-2026-10-01.json",
+            "sha256": "8d5059267a6ebe70366e670ac548d760dfd3259748012125201bd6539e1b5b2f"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-221-240-2026-10-01.json",
+            "sha256": "6241e2b37045431c84232e5289942e6df5ff7390e65235b3462e6541af807793"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-241-255-2026-10-01.json",
+            "sha256": "14e4fe6339ee5801a5d6e459ce988628e5928b721b94bcdace49d539aa5c2135"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-41-60-2026-10-01.json",
+            "sha256": "d94780d1daaf6882bfd101d0962c43730025c9348d62b89a3ac33b0d26c814fc"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-61-80-2026-10-01.json",
+            "sha256": "a772c56e8001bb899bc28543fa9b5e8c2f866350f7c2306126f793fc58cd638b"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-81-100-2026-10-01.json",
+            "sha256": "c762d66599bdd07d825aeb1dd5f43e8c8a0f8a2c0f70aaac08e368ad47ba1ff8"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-marker-screen-2026-10-01.json",
+            "sha256": "1f9b0b6e05bfb46d937dfbbb954e8f7aa956c440acd526cbad2487b82893efbb"
+          },
+          {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6"
+          },
+          {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e"
+          },
+          {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf"
+          },
+          {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112"
+          },
+          {
+            "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+            "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+          },
+          {
+            "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+            "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
+          },
+          {
+            "path": "docs/concept/helix-concept.md",
+            "sha256": "06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78"
+          }
+        ]
+      },
+      {
+        "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "commit_object_available": true,
+        "ancestor_of_origin_main": true,
+        "pinned_files": [
+          {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+          },
+          {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+          },
+          {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+          },
+          {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+          }
+        ]
+      },
+      {
+        "commit": "bf0979d383d21559dcc84e946a9470106791bb85",
+        "commit_object_available": true,
+        "ancestor_of_origin_main": false,
+        "pinned_files": [
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-381-420-2026-10-01.json",
+            "sha256": "f4589138c46aed356e2ca6cae3bfafcac4dd059ddc47556df5a83349198f4a55"
+          }
+        ]
+      }
+    ]
+  }
+}
