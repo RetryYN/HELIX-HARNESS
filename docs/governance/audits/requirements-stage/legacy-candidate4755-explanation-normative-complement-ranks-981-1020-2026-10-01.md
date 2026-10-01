@@ -5,7 +5,7 @@
 ## 対象と再構成
 
 - #2353 `row_records`へ#2356、#2360、#2363、#2366、#2367、#2368、#2369、#2381をsource IDで順に適用。effective explanation 2,965行からmarker pool 255行を除き、`2,965 - 255 = 2,710`件をcandidate ID数値順に並べたrank 981–1020の40件。ID列hash: `bf8fece38a9ff943c22f75d6cd97cebed933a23889bdc27e2da7e377e2b59f86`。
-- rank 980境界IDは`LEGACY-CAND-LINE-001748`。指定基準commitに隣接941–980監査は見当たらないため、prior verificationを主張しない。
+- rank 980境界IDは`LEGACY-CAND-LINE-001748`。直前ranks 941–980のpaired auditは#2462 merge commit `7255446ec987ab3735d6246417eed195fde91d39`でmainに統合済み。MD SHA-256 `47b317579fbb3120f860a3a17b93db0a4019044f5b67f3ac125819b9b82a7ac7`、JSON SHA-256 `5b2f73c2119c8a3e37ee003f67e35a976f3e32f177dae208e680ca807de71a9d`、境界IDを照合した。
 - 981は原稿第12章のL10移管先、982は全ID表の列見出し、983–1020は各IDごとの移管先と「候補・未実装」statusの1行ずつ。requirementsの本文意味をtrace表へ持ち込まず、各ID rowを独立に記録した。
 
 ## 固定F6の参照種別

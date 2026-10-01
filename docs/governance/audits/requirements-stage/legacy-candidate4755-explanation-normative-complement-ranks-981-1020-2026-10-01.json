@@ -832,7 +832,7 @@
   "limitations": [
     "marker-negativeは語彙screenの結果であり、今回選択行はID移管表の列・各物理行に限って読んだ。",
     "981は章移管先、982は表見出し、983–1020はID・移管先・候補状態の表行である。各statusは当時の候補・未実装表示として扱い、隣接IDの意味を混ぜない。",
-    "rank 980の境界IDのみ記録し、941–980の意味監査を主張しない。",
+    "rank 980の境界IDと#2462統合済みの941–980 paired auditのMD/JSON SHAを照合した。",
     "固定F6の同一ID、archive path:line、広域source span、family比較を区別する。PO判断と現行L2/L11は旧trace表全体の採択を意味しない。",
     "旧archiveはread-only。old runtime/test/CIは実行していない。"
   ],
@@ -5626,5 +5626,15 @@
       "fixed_F6_relation_classification": "選択行のIDおよび旧trace path:lineを直接引用する固定F6 L2/L11は見つからない。OS L2の別requirements source index/rangeまたは機構family比較のみ。",
       "fixed_F6_current_mapping_relations": []
     }
-  ]
+  ],
+  "prior_completed_complement_slice": {
+    "ranks": "941-980",
+    "merge_commit": "7255446ec987ab3735d6246417eed195fde91d39",
+    "last_rank": 980,
+    "last_candidate_source_line_id": "LEGACY-CAND-LINE-001748",
+    "paired_files_sha256": {
+      "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-941-980-2026-10-01.md": "47b317579fbb3120f860a3a17b93db0a4019044f5b67f3ac125819b9b82a7ac7",
+      "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-941-980-2026-10-01.json": "5b2f73c2119c8a3e37ee003f67e35a976f3e32f177dae208e680ca807de71a9d"
+    }
+  }
 }
