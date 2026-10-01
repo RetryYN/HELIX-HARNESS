@@ -4930,7 +4930,7 @@
       "exact_source_line_text": "本書はIssue #1496の未承認候補であり、current requirements、Requirement IR、runtime、DBへ投影しない。",
       "semantic_family": "旧HELIX Concept v4 L3要求候補",
       "semantic_function": "L3候補のauthority境界",
-      "semantic_reading": "この要求候補をcurrent requirements、Requirement IR、runtime、DBへ投影しないと述べる。",
+      "semantic_reading": "本文が本書をIssue #1496の未承認候補と表記し、current requirements、Requirement IR、runtime、DBへ投影しないと述べる。当時の本文表記を読み、候補承認後の状態は別に記録する。",
       "legacy_context": {
         "section_heading": {
           "line": 15,
@@ -8886,6 +8886,46 @@
           "line_sha256": "aee4d07e57eefbe5d5aeb30257d756f4f895c76e85d25576c5cc0c823ee873de",
           "text": "HCV4-FR 18件、HCV4-AC 22件とする。"
         }
+      ],
+      "supplemental_product_boundary_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        },
+        {
+          "role": "current_main",
+          "commit": "c62aaf8814b4d96cf3a7fdc3793f1daa7f5cf653",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        }
       ]
     },
     {
@@ -9162,6 +9202,46 @@
           "line": 111,
           "line_sha256": "aee4d07e57eefbe5d5aeb30257d756f4f895c76e85d25576c5cc0c823ee873de",
           "text": "HCV4-FR 18件、HCV4-AC 22件とする。"
+        }
+      ],
+      "supplemental_product_boundary_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        },
+        {
+          "role": "current_main",
+          "commit": "c62aaf8814b4d96cf3a7fdc3793f1daa7f5cf653",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
         }
       ]
     },
@@ -9482,6 +9562,46 @@
           "line_sha256": "aee4d07e57eefbe5d5aeb30257d756f4f895c76e85d25576c5cc0c823ee873de",
           "text": "HCV4-FR 18件、HCV4-AC 22件とする。"
         }
+      ],
+      "supplemental_product_boundary_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        },
+        {
+          "role": "current_main",
+          "commit": "c62aaf8814b4d96cf3a7fdc3793f1daa7f5cf653",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        }
       ]
     },
     {
@@ -9758,6 +9878,46 @@
           "line": 111,
           "line_sha256": "aee4d07e57eefbe5d5aeb30257d756f4f895c76e85d25576c5cc0c823ee873de",
           "text": "HCV4-FR 18件、HCV4-AC 22件とする。"
+        }
+      ],
+      "supplemental_product_boundary_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        },
+        {
+          "role": "current_main",
+          "commit": "c62aaf8814b4d96cf3a7fdc3793f1daa7f5cf653",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
         }
       ]
     },
@@ -10036,6 +10196,46 @@
           "line_sha256": "aee4d07e57eefbe5d5aeb30257d756f4f895c76e85d25576c5cc0c823ee873de",
           "text": "HCV4-FR 18件、HCV4-AC 22件とする。"
         }
+      ],
+      "supplemental_product_boundary_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        },
+        {
+          "role": "current_main",
+          "commit": "c62aaf8814b4d96cf3a7fdc3793f1daa7f5cf653",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        }
       ]
     },
     {
@@ -10312,6 +10512,46 @@
           "line": 111,
           "line_sha256": "aee4d07e57eefbe5d5aeb30257d756f4f895c76e85d25576c5cc0c823ee873de",
           "text": "HCV4-FR 18件、HCV4-AC 22件とする。"
+        }
+      ],
+      "supplemental_product_boundary_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        },
+        {
+          "role": "current_main",
+          "commit": "c62aaf8814b4d96cf3a7fdc3793f1daa7f5cf653",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
         }
       ]
     },
@@ -10590,6 +10830,46 @@
           "line_sha256": "aee4d07e57eefbe5d5aeb30257d756f4f895c76e85d25576c5cc0c823ee873de",
           "text": "HCV4-FR 18件、HCV4-AC 22件とする。"
         }
+      ],
+      "supplemental_product_boundary_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        },
+        {
+          "role": "current_main",
+          "commit": "c62aaf8814b4d96cf3a7fdc3793f1daa7f5cf653",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        }
       ]
     },
     {
@@ -10867,6 +11147,46 @@
           "line_sha256": "aee4d07e57eefbe5d5aeb30257d756f4f895c76e85d25576c5cc0c823ee873de",
           "text": "HCV4-FR 18件、HCV4-AC 22件とする。"
         }
+      ],
+      "supplemental_product_boundary_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        },
+        {
+          "role": "current_main",
+          "commit": "c62aaf8814b4d96cf3a7fdc3793f1daa7f5cf653",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        }
       ]
     },
     {
@@ -10879,7 +11199,7 @@
       "exact_source_line_text": "authority_note: \"本文の未承認・v3.1 current表記は承認前原稿の履歴。PLAN-L3-84の候補承認と2026-09-13 startup是正に従い、v4を新要求の必読入力とする。canonical promotion・IR admission・runtime適用は未完了であり、このmetadataで完了を主張しない。\"",
       "semantic_family": "旧HELIX Concept v4.0候補",
       "semantic_function": "Authority-note metadata",
-      "semantic_reading": "承認前の記載履歴と候補承認後の未完了promotion/admission/runtime状態を区別する注記。",
+      "semantic_reading": "本文の未承認・v3.1 current表記を承認前原稿の履歴とし、PLAN-L3-84の候補承認と2026-09-13 startup是正に従ってv4を新要求の必読入力とする。canonical promotion・IR admission・runtime適用は未完了であり、このmetadataから完了を主張しないという注記。",
       "legacy_context": {
         "section_heading": null,
         "nearby_physical_lines": [
@@ -11143,6 +11463,46 @@
           "line": 111,
           "line_sha256": "aee4d07e57eefbe5d5aeb30257d756f4f895c76e85d25576c5cc0c823ee873de",
           "text": "HCV4-FR 18件、HCV4-AC 22件とする。"
+        }
+      ],
+      "supplemental_product_boundary_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        },
+        {
+          "role": "current_main",
+          "commit": "c62aaf8814b4d96cf3a7fdc3793f1daa7f5cf653",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
         }
       ]
     },
@@ -11421,6 +11781,46 @@
           "line_sha256": "aee4d07e57eefbe5d5aeb30257d756f4f895c76e85d25576c5cc0c823ee873de",
           "text": "HCV4-FR 18件、HCV4-AC 22件とする。"
         }
+      ],
+      "supplemental_product_boundary_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        },
+        {
+          "role": "current_main",
+          "commit": "c62aaf8814b4d96cf3a7fdc3793f1daa7f5cf653",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        }
       ]
     },
     {
@@ -11697,6 +12097,46 @@
           "line": 111,
           "line_sha256": "aee4d07e57eefbe5d5aeb30257d756f4f895c76e85d25576c5cc0c823ee873de",
           "text": "HCV4-FR 18件、HCV4-AC 22件とする。"
+        }
+      ],
+      "supplemental_product_boundary_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        },
+        {
+          "role": "current_main",
+          "commit": "c62aaf8814b4d96cf3a7fdc3793f1daa7f5cf653",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
         }
       ]
     },
@@ -11975,6 +12415,46 @@
           "line_sha256": "aee4d07e57eefbe5d5aeb30257d756f4f895c76e85d25576c5cc0c823ee873de",
           "text": "HCV4-FR 18件、HCV4-AC 22件とする。"
         }
+      ],
+      "supplemental_product_boundary_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        },
+        {
+          "role": "current_main",
+          "commit": "c62aaf8814b4d96cf3a7fdc3793f1daa7f5cf653",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        }
       ]
     },
     {
@@ -12248,6 +12728,46 @@
           "line_sha256": "aee4d07e57eefbe5d5aeb30257d756f4f895c76e85d25576c5cc0c823ee873de",
           "text": "HCV4-FR 18件、HCV4-AC 22件とする。"
         }
+      ],
+      "supplemental_product_boundary_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        },
+        {
+          "role": "current_main",
+          "commit": "c62aaf8814b4d96cf3a7fdc3793f1daa7f5cf653",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        }
       ]
     },
     {
@@ -12520,6 +13040,46 @@
           "line_sha256": "aee4d07e57eefbe5d5aeb30257d756f4f895c76e85d25576c5cc0c823ee873de",
           "text": "HCV4-FR 18件、HCV4-AC 22件とする。"
         }
+      ],
+      "supplemental_product_boundary_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        },
+        {
+          "role": "current_main",
+          "commit": "c62aaf8814b4d96cf3a7fdc3793f1daa7f5cf653",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        }
       ]
     },
     {
@@ -12791,6 +13351,46 @@
           "line": 111,
           "line_sha256": "aee4d07e57eefbe5d5aeb30257d756f4f895c76e85d25576c5cc0c823ee873de",
           "text": "HCV4-FR 18件、HCV4-AC 22件とする。"
+        }
+      ],
+      "supplemental_product_boundary_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        },
+        {
+          "role": "current_main",
+          "commit": "c62aaf8814b4d96cf3a7fdc3793f1daa7f5cf653",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
         }
       ]
     },
@@ -13068,6 +13668,46 @@
           "line_sha256": "aee4d07e57eefbe5d5aeb30257d756f4f895c76e85d25576c5cc0c823ee873de",
           "text": "HCV4-FR 18件、HCV4-AC 22件とする。"
         }
+      ],
+      "supplemental_product_boundary_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        },
+        {
+          "role": "current_main",
+          "commit": "c62aaf8814b4d96cf3a7fdc3793f1daa7f5cf653",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        }
       ]
     },
     {
@@ -13339,6 +13979,46 @@
           "line": 111,
           "line_sha256": "aee4d07e57eefbe5d5aeb30257d756f4f895c76e85d25576c5cc0c823ee873de",
           "text": "HCV4-FR 18件、HCV4-AC 22件とする。"
+        }
+      ],
+      "supplemental_product_boundary_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        },
+        {
+          "role": "current_main",
+          "commit": "c62aaf8814b4d96cf3a7fdc3793f1daa7f5cf653",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
         }
       ]
     },
@@ -13616,6 +14296,46 @@
           "line_sha256": "aee4d07e57eefbe5d5aeb30257d756f4f895c76e85d25576c5cc0c823ee873de",
           "text": "HCV4-FR 18件、HCV4-AC 22件とする。"
         }
+      ],
+      "supplemental_product_boundary_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        },
+        {
+          "role": "current_main",
+          "commit": "c62aaf8814b4d96cf3a7fdc3793f1daa7f5cf653",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        }
       ]
     },
     {
@@ -13891,6 +14611,46 @@
           "line": 111,
           "line_sha256": "aee4d07e57eefbe5d5aeb30257d756f4f895c76e85d25576c5cc0c823ee873de",
           "text": "HCV4-FR 18件、HCV4-AC 22件とする。"
+        }
+      ],
+      "supplemental_product_boundary_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        },
+        {
+          "role": "current_main",
+          "commit": "c62aaf8814b4d96cf3a7fdc3793f1daa7f5cf653",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
         }
       ]
     },
@@ -14172,6 +14932,46 @@
           "line_sha256": "aee4d07e57eefbe5d5aeb30257d756f4f895c76e85d25576c5cc0c823ee873de",
           "text": "HCV4-FR 18件、HCV4-AC 22件とする。"
         }
+      ],
+      "supplemental_product_boundary_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        },
+        {
+          "role": "current_main",
+          "commit": "c62aaf8814b4d96cf3a7fdc3793f1daa7f5cf653",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        }
       ]
     },
     {
@@ -14452,7 +15252,87 @@
           "line_sha256": "aee4d07e57eefbe5d5aeb30257d756f4f895c76e85d25576c5cc0c823ee873de",
           "text": "HCV4-FR 18件、HCV4-AC 22件とする。"
         }
+      ],
+      "supplemental_product_boundary_family_reference": [
+        {
+          "role": "fixed_F6",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        },
+        {
+          "role": "current_main",
+          "commit": "c62aaf8814b4d96cf3a7fdc3793f1daa7f5cf653",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+          "citation_lines": [
+            {
+              "line": 75,
+              "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+              "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+            },
+            {
+              "line": 76,
+              "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+              "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+            }
+          ],
+          "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+        }
       ]
+    }
+  ],
+  "supplemental_F6_current_family_source_pins": [
+    {
+      "role": "fixed_F6",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+      "citation_lines": [
+        {
+          "line": 75,
+          "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+          "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+        },
+        {
+          "line": 76,
+          "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+          "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+        }
+      ],
+      "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
+    },
+    {
+      "role": "current_main",
+      "commit": "c62aaf8814b4d96cf3a7fdc3793f1daa7f5cf653",
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
+      "citation_lines": [
+        {
+          "line": 75,
+          "text": "[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは",
+          "line_sha256": "7eeef6b2bb50f3dae18fb7f68bc18a8089f8c0f185cd55b291fee5995ceb8949"
+        },
+        {
+          "line": 76,
+          "text": "本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。",
+          "line_sha256": "6a3bc317ef292536a30c8c6044c7a8ca01cb7f3422c3d48284c07a1c7e82e455"
+        }
+      ],
+      "relation": "旧Concept v4.0ファイル全体のfamily参照。承認対象bytesは保持するが、v4.0承認を現行へ流用せず境界差分を記録する。選択物理行の個別採択ではない。"
     }
   ]
 }
