@@ -44,7 +44,7 @@
 
 ## 結果とauthority境界
 
-分類は受入oracle 19行／直接要求条件1行。RCLSのfamily relationは順位181と182の2行にある。source-row crosswalk、source-range crosswalk、採択済pair binding、source condition closureはいずれも0件。全20行のsource-line stateは`historical_candidate / draft_candidate / preserved_pending_atomization`、asset stateは`Historical / unresolved`である。
+分類は受入oracle 17行／直接要求条件3行。RCLSのfamily relationは順位181と182の2行にある。source-row crosswalk、source-range crosswalk、採択済pair binding、source condition closureはいずれも0件。全20行のsource-line stateは`historical_candidate / draft_candidate / preserved_pending_atomization`、asset stateは`Historical / unresolved`である。
 
 RCLSの順位181はRCLS-AC-019の受入行である。順位182は要求行で、LABO candidateのRCLS-BR-003（最小packet）とfamily-level relationを持つ。どちらも選択された旧source rowの個別採択、oracle実施、網羅性確立を示さない。
 
