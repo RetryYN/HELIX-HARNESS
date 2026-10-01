@@ -685,8 +685,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
       "physical_line_number": 119,
       "exact_source_line_text": "| HXB-AC-036 | consumerで未実装/停止中observerをactive表示せず、schema/policy driftを検出する | HXB-FR-018 |",
-      "semantic_family": "Execution Ticket / HELIX-Bench L10 acceptance candidate",
-      "semantic_function": "HXB-AC-036 observer activation and drift oracle",
+      "semantic_family": "Execution Ticket／HELIX-Bench L10受入候補",
+      "semantic_function": "HXB-AC-036：observer稼働表示・schema/policy drift検出の受入条件",
       "semantic_reading": "HXB-AC-036: 未実装または停止中のobserverをconsumerがactive表示せず、schema/policy driftを検出する受入oracle。",
       "legacy_context": {
         "section_heading": {
@@ -774,8 +774,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
       "physical_line_number": 120,
       "exact_source_line_text": "| HXB-AC-037 | 長時間・consumer再起動・backlog試験でSLO/lag/replayを測り、process aliveだけで完了にしない | HXB-FR-019 |",
-      "semantic_family": "Execution Ticket / HELIX-Bench L10 acceptance candidate",
-      "semantic_function": "HXB-AC-037 long-running/restart/backlog oracle",
+      "semantic_family": "Execution Ticket／HELIX-Bench L10受入候補",
+      "semantic_function": "HXB-AC-037：長時間運転・再起動・backlogの受入条件",
       "semantic_reading": "HXB-AC-037: 長時間・consumer再起動・backlogを含む試験でSLO/lag/replayを測定し、process aliveだけで完了としない受入oracle。",
       "legacy_context": {
         "section_heading": {
@@ -863,8 +863,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
       "physical_line_number": 121,
       "exact_source_line_text": "| HXB-AC-038 | observer負荷/保存量を測り、PRごとの全履歴scanや追加LLM呼出しがないことを確認する | HXB-FR-019 |",
-      "semantic_family": "Execution Ticket / HELIX-Bench L10 acceptance candidate",
-      "semantic_function": "HXB-AC-038 observer cost/scan oracle",
+      "semantic_family": "Execution Ticket／HELIX-Bench L10受入候補",
+      "semantic_function": "HXB-AC-038：observer負荷・保存量の受入条件",
       "semantic_reading": "HXB-AC-038: observer負荷と保存量を測り、PRごとの全履歴scanや追加LLM呼出しがないことを確認するoracle。",
       "legacy_context": {
         "section_heading": {
@@ -952,8 +952,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
       "physical_line_number": 123,
       "exact_source_line_text": "| HXB-AC-040 | 改善/無効果/劣化/inconclusiveを報告でき、Bench scoreだけでRelease qualifiedとしない | HXB-FR-020 |",
-      "semantic_family": "Execution Ticket / HELIX-Bench L10 acceptance candidate",
-      "semantic_function": "HXB-AC-040 nonqualification outcome reporting",
+      "semantic_family": "Execution Ticket／HELIX-Bench L10受入候補",
+      "semantic_function": "HXB-AC-040：結果区分の報告とRelease qualification境界",
       "semantic_reading": "HXB-AC-040: 改善、無効果、劣化、inconclusiveを報告でき、Bench score単独でRelease qualifiedにしないoracle。",
       "legacy_context": {
         "section_heading": {
@@ -1041,8 +1041,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
       "physical_line_number": 127,
       "exact_source_line_text": "**通常開発:** Ticket admission → Assignment → 最初のAttempt失敗 → 同scopeでretry → CI/review → closure → measurement replay。失敗・修正費用が残り、追加LLM観測は0回で、context/Ticket/HEADのbindingが一致する。",
-      "semantic_family": "Execution Ticket / HELIX-Bench L10 acceptance candidate",
-      "semantic_function": "E2E scenario: ordinary development and measurement replay",
+      "semantic_family": "Execution Ticket／HELIX-Bench L10受入候補",
+      "semantic_function": "E2E scenario：通常開発からmeasurement replayまでのシナリオ",
       "semantic_reading": "AdmissionからAssignment、失敗・同scope retry、CI/review、closure、measurement replayまでの通常開発scenarioと、失敗/修正費用、追加LLM観測なし、context/Ticket/HEAD bindingという期待結果を並べる。",
       "legacy_context": {
         "section_heading": {
@@ -1130,8 +1130,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
       "physical_line_number": 129,
       "exact_source_line_text": "**再起動と遅延:** live consumer停止中に通常作業が進行 → outbox重複/順不同配送 → consumer再開 → cost/review遅着 → 同じevent集合から同じas-of projectionへ収束する。分析停止を口実にauditを飛ばさない。",
-      "semantic_family": "Execution Ticket / HELIX-Bench L10 acceptance candidate",
-      "semantic_function": "E2E scenario: restart and delayed events",
+      "semantic_family": "Execution Ticket／HELIX-Bench L10受入候補",
+      "semantic_function": "E2E scenario：consumer再起動と遅着eventのシナリオ",
       "semantic_reading": "live consumer停止中の通常作業、重複/順不同outbox、再開、遅着cost/review、同じevent集合からの同一as-of projectionへの収束を例示する。",
       "legacy_context": {
         "section_heading": {
@@ -1219,8 +1219,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
       "physical_line_number": 131,
       "exact_source_line_text": "**同一モデルA/B:** 一つのtaskと実験定義を凍結 → 同一model/effortでNo HarnessとHELIX Partial/Fullを反復 → 独立共通採点 → 反復と重複を区別した比較receipt。本番repoの変更や資格昇格は行わない。",
-      "semantic_family": "Execution Ticket / HELIX-Bench L10 acceptance candidate",
-      "semantic_function": "E2E scenario: same-model A/B experiment",
+      "semantic_family": "Execution Ticket／HELIX-Bench L10受入候補",
+      "semantic_function": "E2E scenario：同一model条件でのA/B比較シナリオ",
       "semantic_reading": "固定task/experiment定義でNo HarnessとHELIX Partial/Fullを同じmodel/effortにより反復し、独立共通採点、replicate/duplicate区別、通常repo権限なしを例示する。",
       "legacy_context": {
         "section_heading": {
@@ -1308,8 +1308,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
       "physical_line_number": 133,
       "exact_source_line_text": "**drift還流:** runtime/profile変更またはevidence期限切れ → 重複しないMeasurementRequest → 予算上限付き実験 → qualification candidate → 既存#861/#188 policy評価。再測定が再測定を無限生成しない。",
-      "semantic_family": "Execution Ticket / HELIX-Bench L10 acceptance candidate",
-      "semantic_function": "E2E scenario: drift feedback and bounded remeasurement",
+      "semantic_family": "Execution Ticket／HELIX-Bench L10受入候補",
+      "semantic_function": "E2E scenario：drift還流と上限付き再測定のシナリオ",
       "semantic_reading": "runtime/profile変更またはevidence期限切れから、重複しないMeasurementRequest、予算上限付き実験、qualification candidate、既存policy評価へ進み、再測定の無限増殖を抑えるscenarioを記す。",
       "legacy_context": {
         "section_heading": {
@@ -1397,8 +1397,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
       "physical_line_number": 135,
       "exact_source_line_text": "**後日不具合:** 本線Ticketは既にclose → 後日findingと帰属証拠 → OutcomeAmendment → 該当windowのquality再集計 → 必要なら通常Recovery候補。元closureと過去scoreは保存する。",
-      "semantic_family": "Execution Ticket / HELIX-Bench L10 acceptance candidate",
-      "semantic_function": "E2E scenario: later defect amendment",
+      "semantic_family": "Execution Ticket／HELIX-Bench L10受入候補",
+      "semantic_function": "E2E scenario：後日findingを追補するシナリオ",
       "semantic_reading": "Ticket closure後にfindingと帰属根拠をOutcomeAmendmentへつなぎ、該当windowを再集計し、必要ならRecovery候補としながら元closure/過去scoreを保存するscenario。",
       "legacy_context": {
         "section_heading": {
@@ -1486,8 +1486,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
       "physical_line_number": 137,
       "exact_source_line_text": "<!-- eta-source:12:end -->",
-      "semantic_family": "Execution Ticket / HELIX-Bench L10 acceptance candidate",
-      "semantic_function": "Source-range closing delimiter",
+      "semantic_family": "Execution Ticket／HELIX-Bench L10受入候補",
+      "semantic_function": "eta-source範囲の終了delimiter",
       "semantic_reading": "eta-source sectionを閉じるHTML comment。",
       "legacy_context": {
         "section_heading": {
@@ -1567,8 +1567,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
       "physical_line_number": 2,
       "exact_source_line_text": "title: \"Execution Ticket要求の取込・衝突台帳\"",
-      "semantic_family": "Execution Ticket intake / conflict ledger candidate",
-      "semantic_function": "Execution Ticket intake candidate title",
+      "semantic_family": "Execution Ticket取込・衝突台帳候補",
+      "semantic_function": "Execution Ticket取込候補文書のtitle",
       "semantic_reading": "Execution Ticket要求の取込・衝突台帳という文書title metadata。",
       "legacy_context": {
         "section_heading": null,
@@ -1649,8 +1649,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
       "physical_line_number": 3,
       "exact_source_line_text": "status: draft_candidate",
-      "semantic_family": "Execution Ticket intake / conflict ledger candidate",
-      "semantic_function": "Draft candidate status metadata",
+      "semantic_family": "Execution Ticket取込・衝突台帳候補",
+      "semantic_function": "draft_candidate状態metadata",
       "semantic_reading": "取込候補文書のstatusをdraft_candidateと記す。",
       "legacy_context": {
         "section_heading": null,
@@ -1735,8 +1735,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
       "physical_line_number": 4,
       "exact_source_line_text": "authority_status: proposed_pending_l3_confirmation",
-      "semantic_family": "Execution Ticket intake / conflict ledger candidate",
-      "semantic_function": "Pending L3 confirmation metadata",
+      "semantic_family": "Execution Ticket取込・衝突台帳候補",
+      "semantic_function": "L3確認待ちauthority metadata",
       "semantic_reading": "authority_statusをproposed_pending_l3_confirmationと記す。",
       "legacy_context": {
         "section_heading": null,
@@ -1821,8 +1821,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
       "physical_line_number": 5,
       "exact_source_line_text": "related_issue: 1534",
-      "semantic_family": "Execution Ticket intake / conflict ledger candidate",
-      "semantic_function": "Related Issue projection metadata",
+      "semantic_family": "Execution Ticket取込・衝突台帳候補",
+      "semantic_function": "関連Issueの投影metadata",
       "semantic_reading": "Issue 1534をrelated_issueとして記す。",
       "legacy_context": {
         "section_heading": null,
@@ -1907,8 +1907,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
       "physical_line_number": 10,
       "exact_source_line_text": "照合baseline: `b5178c34fe34c956a70713ad942b1f5b8f64e0ab`。原稿の調査時点と区別する。",
-      "semantic_family": "Execution Ticket intake / conflict ledger candidate",
-      "semantic_function": "Historical intake baseline provenance",
+      "semantic_family": "Execution Ticket取込・衝突台帳候補",
+      "semantic_function": "取込baselineの履歴provenance",
       "semantic_reading": "照合baseline commitをb517…e0abとして記録し、原稿調査時点と区別する。",
       "legacy_context": {
         "section_heading": {
@@ -1996,8 +1996,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
       "physical_line_number": 11,
       "exact_source_line_text": "本sliceは候補整理のみ。runtime、IR current projection、承認済み要件の上書きは非対象。",
-      "semantic_family": "Execution Ticket intake / conflict ledger candidate",
-      "semantic_function": "Candidate-only scope and excluded effects",
+      "semantic_family": "Execution Ticket取込・衝突台帳候補",
+      "semantic_function": "候補整理の適用範囲と除外作用",
       "semantic_reading": "sliceを候補整理に限り、runtime、IR current projection、承認済み要件の上書きを対象外とする。",
       "legacy_context": {
         "section_heading": {
@@ -2085,8 +2085,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
       "physical_line_number": 15,
       "exact_source_line_text": "| 区分 | 照合先 | 取込方針・終端条件 |",
-      "semantic_family": "Execution Ticket intake / conflict ledger candidate",
-      "semantic_function": "Intake reconciliation table header",
+      "semantic_family": "Execution Ticket取込・衝突台帳候補",
+      "semantic_function": "取込照合表の見出し",
       "semantic_reading": "区分、照合先、取込方針・終端条件の表見出し。",
       "legacy_context": {
         "section_heading": {
@@ -2174,8 +2174,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
       "physical_line_number": 17,
       "exact_source_line_text": "| CONFLICT | resident-lane L3 §8 RLO-INV-001／§9、#819/#860 | Issue/PLAN択一からTicketへversioned scope別移行。旧in-flightは出典付き終端。未切替経路へ未知fieldを追加しない |",
-      "semantic_family": "Execution Ticket intake / conflict ledger candidate",
-      "semantic_function": "CONFLICT: scoped Issue/PLAN migration and legacy in-flight termination",
+      "semantic_family": "Execution Ticket取込・衝突台帳候補",
+      "semantic_function": "CONFLICT：scope別Ticket移行と旧in-flight終端の提案",
       "semantic_reading": "resident-lane側とのCONFLICTとして、Issue/PLAN択一からversioned scope別Ticket移行、旧in-flightの出典付き終端、未切替経路への未知field非追加を列挙する。",
       "legacy_context": {
         "section_heading": {
@@ -2263,8 +2263,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
       "physical_line_number": 18,
       "exact_source_line_text": "| REUSE | helix-bench-evaluation L3/L10、#251/#1295 | 5カテゴリ・12指標・4 profileは維持。PLANと文書状態はresolverで照合し、approvedと推測しない |",
-      "semantic_family": "Execution Ticket intake / conflict ledger candidate",
-      "semantic_function": "REUSE: Bench metric/profile and status resolution",
+      "semantic_family": "Execution Ticket取込・衝突台帳候補",
+      "semantic_function": "REUSE：Bench指標/profileと状態照合の提案",
       "semantic_reading": "既存helix-bench-evaluationの5カテゴリ/12指標/4 profileを維持し、PLANと文書状態をresolverで照合しapprovedと推測しない案。",
       "legacy_context": {
         "section_heading": {
@@ -2352,8 +2352,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
       "physical_line_number": 19,
       "exact_source_line_text": "| REUSE | src/runtime/helix-bench-task-dataset.ts、#1294 | task snapshot15 fieldsを保持。Ticket一致だけで比較可能としない |",
-      "semantic_family": "Execution Ticket intake / conflict ledger candidate",
-      "semantic_function": "REUSE: task snapshot fields and comparability condition",
+      "semantic_family": "Execution Ticket取込・衝突台帳候補",
+      "semantic_function": "REUSE：task snapshot fieldsと比較可能性の条件",
       "semantic_reading": "既存task snapshotの15 fieldsを保持し、Ticket一致だけで比較可能と扱わない案。",
       "legacy_context": {
         "section_heading": {
@@ -2441,8 +2441,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
       "physical_line_number": 21,
       "exact_source_line_text": "| GAP | #215/#499、#1295 | live intake・durable observation・checkpoint・coverageを既存event writerへ追加。別queueは作らない |",
-      "semantic_family": "Execution Ticket intake / conflict ledger candidate",
-      "semantic_function": "GAP: durable live observation through existing event writer",
+      "semantic_family": "Execution Ticket取込・衝突台帳候補",
+      "semantic_function": "GAP：既存event writerを使うdurable live observationの接続",
       "semantic_reading": "live intake、durable observation、checkpoint、coverageを既存event writerへ追加し、別queueを作らないgap記述。",
       "legacy_context": {
         "section_heading": {
@@ -2530,8 +2530,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
       "physical_line_number": 22,
       "exact_source_line_text": "| REUSE | #861/#188/#214 | qualified evidenceをadvisoryとして渡す。Benchはdispatch／権限を変更しない |",
-      "semantic_family": "Execution Ticket intake / conflict ledger candidate",
-      "semantic_function": "REUSE: qualified evidence as advisory input",
+      "semantic_family": "Execution Ticket取込・衝突台帳候補",
+      "semantic_function": "REUSE：qualified evidenceのadvisory入力",
       "semantic_reading": "qualified evidenceをadvisoryで渡し、Bench自身はdispatch/authorityを変更しないreuse案。",
       "legacy_context": {
         "section_heading": {
@@ -2619,8 +2619,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
       "physical_line_number": 23,
       "exact_source_line_text": "| RETIRE | #865/#1098 | 旧direct engineの存在を要求しない。contextはadmitted execution pathへ。consumer-zeroまで履歴reader保存 |",
-      "semantic_family": "Execution Ticket intake / conflict ledger candidate",
-      "semantic_function": "RETIRE: direct-engine requirement and historical reader",
+      "semantic_family": "Execution Ticket取込・衝突台帳候補",
+      "semantic_function": "RETIRE：旧direct engine依存と履歴reader保持の提案",
       "semantic_reading": "旧direct engineの存在を要求せず、contextはadmitted execution pathへ置き、consumer-zeroまでhistory readerを保存するretire案。",
       "legacy_context": {
         "section_heading": {
@@ -2708,8 +2708,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
       "physical_line_number": 24,
       "exact_source_line_text": "| REUSE | #1500/#659 | version targetとRelease placementは既存Portfolioへ。未確定versionを作らない |",
-      "semantic_family": "Execution Ticket intake / conflict ledger candidate",
-      "semantic_function": "REUSE: version target and Release placement through Portfolio",
+      "semantic_family": "Execution Ticket取込・衝突台帳候補",
+      "semantic_function": "REUSE：Portfolioを通じたversion target/Release配置",
       "semantic_reading": "version targetとRelease placementを既存Portfolioへ接続し、未確定versionを作らないreuse案。",
       "legacy_context": {
         "section_heading": {
@@ -2797,8 +2797,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
       "physical_line_number": 25,
       "exact_source_line_text": "| CONFLICT | 原稿§2のL1要求表記 | L1企画、L2要求、L11受入、L12運用へ分離。L3↔L10は維持 |",
-      "semantic_family": "Execution Ticket intake / conflict ledger candidate",
-      "semantic_function": "CONFLICT: separate current V-model layers",
+      "semantic_family": "Execution Ticket取込・衝突台帳候補",
+      "semantic_function": "CONFLICT：現行V-model層の分離",
       "semantic_reading": "原稿のL1要求表記とconflictとしてL1企画、L2要求、L11受入、L12運用に分けL3↔L10を維持する案。",
       "legacy_context": {
         "section_heading": {
@@ -2886,8 +2886,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
       "physical_line_number": 26,
       "exact_source_line_text": "| GAP | 原稿NFR001..014 | 既存90 ACへNFRを明示束縛。SLO値／retention期間は未確定として残す |",
-      "semantic_family": "Execution Ticket intake / conflict ledger candidate",
-      "semantic_function": "GAP: NFR-to-acceptance trace and unresolved SLO terms",
+      "semantic_family": "Execution Ticket取込・衝突台帳候補",
+      "semantic_function": "GAP：NFRとacceptanceのtrace、未確定SLO",
       "semantic_reading": "原稿NFR001..014を既存90 ACへ明示束縛する一方、SLO値/retention期間は未確定として残すgap記述。",
       "legacy_context": {
         "section_heading": {
@@ -2975,8 +2975,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
       "physical_line_number": 27,
       "exact_source_line_text": "| CONFLICT | revision単位一writer | logical workの改版を跨ぐ旧権限失効を追加。二重writerの抜け道を閉じる |",
-      "semantic_family": "Execution Ticket intake / conflict ledger candidate",
-      "semantic_function": "CONFLICT: cross-revision logical-work fencing",
+      "semantic_family": "Execution Ticket取込・衝突台帳候補",
+      "semantic_function": "CONFLICT：logical work改版を跨ぐ旧権限fencing",
       "semantic_reading": "revision単位一writer案とのconflictとして、logical work改版を跨ぐ旧権限失効を加え二重writerの抜け道を閉じる案。",
       "legacy_context": {
         "section_heading": {
@@ -3064,8 +3064,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
       "physical_line_number": 29,
       "exact_source_line_text": "旧HELIX repositoryはread-only tree inventoryを確認した。旧runtimeを採用する根拠にはしない。本差分は現行Assignment／Bench資産の接続でありbulk import対象なし。",
-      "semantic_family": "Execution Ticket intake / conflict ledger candidate",
-      "semantic_function": "Read-only legacy inventory and no bulk import",
+      "semantic_family": "Execution Ticket取込・衝突台帳候補",
+      "semantic_function": "read-only旧資産inventoryとbulk import境界",
       "semantic_reading": "旧repositoryでread-only tree inventoryを確認し、旧runtime採用の根拠とはせず、差分を現行Assignment/Bench資産の接続、bulk import対象なしと記す。",
       "legacy_context": {
         "section_heading": {
@@ -3153,8 +3153,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
       "physical_line_number": 33,
       "exact_source_line_text": "以下の原稿ヘッダと§0/1/13〜18は追跡のため保存する。過去HEADでのIssue状態・完了言及は歴史調査記録であり、current readinessの根拠ではない。",
-      "semantic_family": "Execution Ticket intake / conflict ledger candidate",
-      "semantic_function": "Historical source-section and readiness boundary",
+      "semantic_family": "Execution Ticket取込・衝突台帳候補",
+      "semantic_function": "historical source sectionとreadiness境界",
       "semantic_reading": "原稿headerと§0/1/13〜18をtraceのため保存し、過去HEADでのIssue状態/完了言及をhistorical studyとしcurrent readiness根拠から除外する。",
       "legacy_context": {
         "section_heading": {
@@ -3242,8 +3242,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
       "physical_line_number": 34,
       "exact_source_line_text": "実装順候補はhard dependencyや新しいroadmap正本へ自動昇格しない。",
-      "semantic_family": "Execution Ticket intake / conflict ledger candidate",
-      "semantic_function": "Implementation-order nonpromotion",
+      "semantic_family": "Execution Ticket取込・衝突台帳候補",
+      "semantic_function": "実装順候補の非昇格",
       "semantic_reading": "候補実装順をhard dependencyや新しいroadmap正本へ自動昇格しない。",
       "legacy_context": {
         "section_heading": {
@@ -3331,8 +3331,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
       "physical_line_number": 36,
       "exact_source_line_text": "<!-- eta-source:header:start -->",
-      "semantic_family": "Execution Ticket intake / conflict ledger candidate",
-      "semantic_function": "Source-header opening delimiter",
+      "semantic_family": "Execution Ticket取込・衝突台帳候補",
+      "semantic_function": "source header開始delimiter",
       "semantic_reading": "eta-source header sectionを開くHTML comment。",
       "legacy_context": {
         "section_heading": {
@@ -3420,8 +3420,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
       "physical_line_number": 39,
       "exact_source_line_text": "**文書ID:** HELIX-ETA-REQ-v0.2\\",
-      "semantic_family": "Execution Ticket intake / conflict ledger candidate",
-      "semantic_function": "Historical document ID metadata",
+      "semantic_family": "Execution Ticket取込・衝突台帳候補",
+      "semantic_function": "履歴文書ID metadata",
       "semantic_reading": "HELIX-ETA-REQ-v0.2を文書IDとして記録する。",
       "legacy_context": {
         "section_heading": {
@@ -3509,8 +3509,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
       "physical_line_number": 40,
       "exact_source_line_text": "**対象:** `RetryYN/HELIX-HARNESS` 本体\\",
-      "semantic_family": "Execution Ticket intake / conflict ledger candidate",
-      "semantic_function": "Target repository metadata",
+      "semantic_family": "Execution Ticket取込・衝突台帳候補",
+      "semantic_function": "対象repository metadata",
       "semantic_reading": "対象repositoryをRetryYN/HELIX-HARNESS本体と記す。",
       "legacy_context": {
         "section_heading": {
@@ -3598,8 +3598,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
       "physical_line_number": 41,
       "exact_source_line_text": "**作成日:** 2026-09-05 JST\\",
-      "semantic_family": "Execution Ticket intake / conflict ledger candidate",
-      "semantic_function": "Historical creation-date metadata",
+      "semantic_family": "Execution Ticket取込・衝突台帳候補",
+      "semantic_function": "作成日の履歴metadata",
       "semantic_reading": "作成日2026-09-05 JSTを記す。",
       "legacy_context": {
         "section_heading": {
@@ -3687,8 +3687,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
       "physical_line_number": 42,
       "exact_source_line_text": "**改訂元:** `HELIX_EXECUTION_TICKET_AUTHORITY_REQUIREMENTS_v0.1.md`\\",
-      "semantic_family": "Execution Ticket intake / conflict ledger candidate",
-      "semantic_function": "Revision-source metadata",
+      "semantic_family": "Execution Ticket取込・衝突台帳候補",
+      "semantic_function": "改訂元source metadata",
       "semantic_reading": "改訂元としてHELIX_EXECUTION_TICKET_AUTHORITY_REQUIREMENTS_v0.1.mdを指す。",
       "legacy_context": {
         "section_heading": {
@@ -3776,8 +3776,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
       "physical_line_number": 43,
       "exact_source_line_text": "**今回の照合HEAD:** `16f930c4da06b35be44ae88871dd0f1e572b0c67`\\",
-      "semantic_family": "Execution Ticket intake / conflict ledger candidate",
-      "semantic_function": "Historical checked-HEAD metadata",
+      "semantic_family": "Execution Ticket取込・衝突台帳候補",
+      "semantic_function": "履歴照合HEAD metadata",
       "semantic_reading": "原稿調査時のHEAD 16f930…c67を記録する。",
       "legacy_context": {
         "section_heading": {
@@ -3865,8 +3865,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
       "physical_line_number": 44,
       "exact_source_line_text": "**状態:** 要求候補。意味承認・正本化・実装・運用開始は別判定。\\",
-      "semantic_family": "Execution Ticket intake / conflict ledger candidate",
-      "semantic_function": "Candidate-status and decision-boundary metadata",
+      "semantic_family": "Execution Ticket取込・衝突台帳候補",
+      "semantic_function": "候補状態とdecision境界metadata",
       "semantic_reading": "要求候補状態で、意味承認・正本化・実装・運用開始を別判定とする。",
       "legacy_context": {
         "section_heading": {
@@ -3954,8 +3954,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
       "physical_line_number": 45,
       "exact_source_line_text": "**目的:** Ticketを実行契約と測定の共通接続点にし、通常開発の常駐観測、制御実験、限定shadow評価を既存HELIX-Benchへ統合する。",
-      "semantic_family": "Execution Ticket intake / conflict ledger candidate",
-      "semantic_function": "Ticket and measurement integration purpose",
+      "semantic_family": "Execution Ticket取込・衝突台帳候補",
+      "semantic_function": "Ticketとmeasurement統合の目的",
       "semantic_reading": "Ticketをexecution contractとmeasurementの共通接続点として、通常開発の常駐観測、制御実験、限定shadow評価を既存HELIX-Benchへ統合する目的を記す。",
       "legacy_context": {
         "section_heading": {
@@ -4043,8 +4043,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
       "physical_line_number": 47,
       "exact_source_line_text": "> 通常開発は常時観測する。比較のための追加実行は、認可・予算・再現条件を満たす場合だけ行う。測定結果は既存の配車・能力評価・改善要求へ渡し、Bench自体には実行権限を持たせない。",
-      "semantic_family": "Execution Ticket intake / conflict ledger candidate",
-      "semantic_function": "Observation, bounded comparison and advisory-only authority boundary",
+      "semantic_family": "Execution Ticket取込・衝突台帳候補",
+      "semantic_function": "観測、条件付き比較、advisory-only権限境界",
       "semantic_reading": "通常開発を継続観測し、比較用追加実行は認可・予算・再現条件がある場合に限り、測定結果を既存の配車/能力評価/改善要求へ渡し、Bench自身には実行権限を持たせない候補方針。",
       "legacy_context": {
         "section_heading": {
@@ -4132,8 +4132,8 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
       "physical_line_number": 49,
       "exact_source_line_text": "<!-- eta-source:header:end -->",
-      "semantic_family": "Execution Ticket intake / conflict ledger candidate",
-      "semantic_function": "Source-header closing delimiter",
+      "semantic_family": "Execution Ticket取込・衝突台帳候補",
+      "semantic_function": "source header終了delimiter",
       "semantic_reading": "eta-source header sectionを閉じるHTML comment。",
       "legacy_context": {
         "section_heading": {
