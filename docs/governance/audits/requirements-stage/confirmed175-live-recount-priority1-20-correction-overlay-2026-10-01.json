@@ -1,0 +1,221 @@
+{
+  "schema_version": "confirmed175-live-recount-priority1-20-correction-overlay.v1",
+  "audit_id": "confirmed175-live-recount-priority1-20-correction-overlay-2026-10-01",
+  "audit_mode": "read_only_static_strict_evidence_overlay",
+  "base_main_revision": "50686b6762788574cb471967e8c24846d3dd56ae",
+  "prior_correction_overlay": {
+    "commit": "620e524c25b84e6a73ac017dffcfa7006b1f8466",
+    "path": "docs/governance/audits/requirements-stage/confirmed175-live-recount-correction-overlay-2026-10-01.json",
+    "sha256": "4e1580797bc360247f4efe5e1b5b5c598371f491a5a3a31423496e045ed7309b",
+    "strict_rule": "The same identity-specific record must contain the exact archive source line SHA and local residual/open evidence; the audit artifact must pin F6 and the exact L2/L11 target file SHA values for the compared pair.",
+    "prior_counts": {
+      "confirmed_population": 175,
+      "unique_strict_comparisons": 155,
+      "unconfirmed_under_same_threshold": 20,
+      "formal_successor_assignments": 0,
+      "source_atom_closure": 0,
+      "preserved_pending_rehome": 175
+    }
+  },
+  "priority_bundle": {
+    "commit": "f6c864beec458ef1233e63099d52c6b6d68051ce",
+    "scope": "priority positions 1-20 from the strict unconfirmed set",
+    "fixed_pair": {
+      "mechanism": "HELIX-HARNESS",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "l2_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "l11_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+    },
+    "audit_artifacts": [
+      {
+        "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-br01-br08-d01-d07-fixed-f6-condition-audit-2026-10-01.json",
+        "sha256": "fc5206c314c617b869dc9ae373f478d07f0314d870add47a7bd18a636a66bf7f",
+        "identity_array": "/identities"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-priority-11-20-fixed-f6-condition-audit-2026-10-01.json",
+        "sha256": "3bc230a410529f398aaedd9cafa870b84402e3ee01c3aaeb0d3d14b6e33d0c4c",
+        "identity_array": "/identity_records"
+      }
+    ]
+  },
+  "strict_rule_application": {
+    "examined_identity_records": 20,
+    "same_record_source_line_pin_and_residual_verified": 20,
+    "fixed_f6_l2_l11_pair_sha_verified": 20,
+    "archive_file_and_line_sha_recomputed": 20,
+    "pair_sha_recomputed_from_f6_commit_bytes": true,
+    "additional_identity_count_excludes_prior_155_overlap": true
+  },
+  "summary": {
+    "confirmed_population": 175,
+    "prior_unique_strict_comparisons": 155,
+    "prior_unconfirmed": 20,
+    "priority_records_qualifying_under_same_threshold": 20,
+    "overlap_with_prior_155_excluded": 16,
+    "additional_unique_qualifying_identities": 4,
+    "corrected_unique_strict_comparisons": 159,
+    "unconfirmed_under_same_threshold": 16,
+    "formal_successor_assignments": 0,
+    "source_atom_closure": 0,
+    "preserved_pending_rehome": 175
+  },
+  "additional_qualifications": [
+    {
+      "source_qualified_identity": "harness/L1-requirements/business-requirements.md::BR-01",
+      "confirmed_identity": "BR-01",
+      "evidence_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-br01-br08-d01-d07-fixed-f6-condition-audit-2026-10-01.json",
+      "evidence_record_pointer": "/identities/0",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+        "line": 41,
+        "file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+        "line_sha256": "eea2c595f0f92bc8fbacd8c06e912db0438567da39979ecba646ca12302786fc"
+      },
+      "fixed_f6_pair": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "identity_local_target_ids": ["HARNESS-L2-001", "HARNESS-L2-003", "HARNESS-L2-004", "HARNESS-L2-005", "HARNESS-L2-007", "HARNESS-L2-021"]
+      },
+      "residuals": [
+        "全projectで設計/実装/test traceが完全かを判定するBR-01専用oracleがない。",
+        "AI委譲後の回帰fixture、failure/output schema、閾値はない。",
+        "単一案件end-to-end受入結果はない。旧L0–L14は現行番号へ移さない。"
+      ],
+      "comparison_result": "partial_identity_condition_match",
+      "authority_effect": "none",
+      "successor_requirement_ids": [],
+      "source_atom_closure": "none"
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-05",
+      "confirmed_identity": "FR-L1-05",
+      "evidence_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-priority-11-20-fixed-f6-condition-audit-2026-10-01.json",
+      "evidence_record_pointer": "/identity_records/3",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+        "line": 36,
+        "file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+        "line_sha256": "4819bec0dd1da8aaa4f07260f6b3dcd43a58408b6f8e43d6693b89c1324ee6a1"
+      },
+      "fixed_f6_pair": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "identity_local_target_ids": ["HARNESS-L2-005", "HARNESS-L2-022"]
+      },
+      "residuals": [
+        "static predicate/config schema、unknown/missing config拒否、fail-close outcome schema、`.helix/phase.yaml`の扱いは固定HARNESS pairにない。",
+        "HARNESS-L2-005/022の一般義務だけでsource conditionまたは旧gate threshold/consumerのclosureはしない。"
+      ],
+      "comparison_result": "adjacent_partial_match_static_gate_unmatched",
+      "authority_effect": "none",
+      "successor_requirement_ids": [],
+      "source_atom_closure": "none"
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-21",
+      "confirmed_identity": "FR-L1-21",
+      "evidence_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-priority-11-20-fixed-f6-condition-audit-2026-10-01.json",
+      "evidence_record_pointer": "/identity_records/5",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+        "line": 52,
+        "file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+        "line_sha256": "b54119ad033bcb2f01c1977710d76249ab80a2789422ed02afa3c54d6ac3799b"
+      },
+      "fixed_f6_pair": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "identity_local_target_ids": ["HARNESS-L2-004", "HARNESS-L2-005"]
+      },
+      "residuals": [
+        "設計項目ごとのW観点対応、test level間の重複oracle、fail-close、finding schema、pass/failは固定pairに定義されていない。",
+        "旧sourceの物理hook/CIは持ち込まない。一般的なtrace/evidenceだけではこのidentityを閉じない。"
+      ],
+      "comparison_result": "partial_trace_verification_match_w_gate_unmatched",
+      "authority_effect": "none",
+      "successor_requirement_ids": [],
+      "source_atom_closure": "none"
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-23",
+      "confirmed_identity": "FR-L1-23",
+      "evidence_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-priority-11-20-fixed-f6-condition-audit-2026-10-01.json",
+      "evidence_record_pointer": "/identity_records/6",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+        "line": 54,
+        "file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+        "line_sha256": "920a9745ec190e871ab29af8463a9ab9cb991c43fbe723740d5b2f10dbe38b71"
+      },
+      "fixed_f6_pair": {
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "identity_local_target_ids": ["HARNESS-L2-002", "HARNESS-L2-003"]
+      },
+      "residuals": [
+        "Full Vとの同格性、全value sliceのL4/L5→L6/L7 right-arm証拠、system受入を束ねた条件がない。",
+        "fullbackを既存assetの導入だけに限る条件は固定pairにない。"
+      ],
+      "comparison_result": "partial_scrum_process_match_full_condition_unmatched",
+      "authority_effect": "none",
+      "successor_requirement_ids": [],
+      "source_atom_closure": "none"
+    }
+  ],
+  "duplicate_qualifications_excluded": [
+    {"source_qualified_identity":"harness/L1-requirements/business-requirements.md::BR-06","evidence_artifact":"legacy-confirmed175-br01-br08-d01-d07-fixed-f6-condition-audit-2026-10-01.json","record_pointer":"/identities/1"},
+    {"source_qualified_identity":"harness/L1-requirements/business-requirements.md::BR-08","evidence_artifact":"legacy-confirmed175-br01-br08-d01-d07-fixed-f6-condition-audit-2026-10-01.json","record_pointer":"/identities/2"},
+    {"source_qualified_identity":"harness/L1-requirements/business-requirements.md::D-01","evidence_artifact":"legacy-confirmed175-br01-br08-d01-d07-fixed-f6-condition-audit-2026-10-01.json","record_pointer":"/identities/3"},
+    {"source_qualified_identity":"harness/L1-requirements/business-requirements.md::D-02","evidence_artifact":"legacy-confirmed175-br01-br08-d01-d07-fixed-f6-condition-audit-2026-10-01.json","record_pointer":"/identities/4"},
+    {"source_qualified_identity":"harness/L1-requirements/business-requirements.md::D-03","evidence_artifact":"legacy-confirmed175-br01-br08-d01-d07-fixed-f6-condition-audit-2026-10-01.json","record_pointer":"/identities/5"},
+    {"source_qualified_identity":"harness/L1-requirements/business-requirements.md::D-04","evidence_artifact":"legacy-confirmed175-br01-br08-d01-d07-fixed-f6-condition-audit-2026-10-01.json","record_pointer":"/identities/6"},
+    {"source_qualified_identity":"harness/L1-requirements/business-requirements.md::D-05","evidence_artifact":"legacy-confirmed175-br01-br08-d01-d07-fixed-f6-condition-audit-2026-10-01.json","record_pointer":"/identities/7"},
+    {"source_qualified_identity":"harness/L1-requirements/business-requirements.md::D-06","evidence_artifact":"legacy-confirmed175-br01-br08-d01-d07-fixed-f6-condition-audit-2026-10-01.json","record_pointer":"/identities/8"},
+    {"source_qualified_identity":"harness/L1-requirements/business-requirements.md::D-07","evidence_artifact":"legacy-confirmed175-br01-br08-d01-d07-fixed-f6-condition-audit-2026-10-01.json","record_pointer":"/identities/9"},
+    {"source_qualified_identity":"harness/L1-requirements/business-requirements.md::D-08","evidence_artifact":"legacy-confirmed175-priority-11-20-fixed-f6-condition-audit-2026-10-01.json","record_pointer":"/identity_records/0"},
+    {"source_qualified_identity":"harness/L1-requirements/business-requirements.md::D-09","evidence_artifact":"legacy-confirmed175-priority-11-20-fixed-f6-condition-audit-2026-10-01.json","record_pointer":"/identity_records/1"},
+    {"source_qualified_identity":"harness/L1-requirements/business-requirements.md::UX-02","evidence_artifact":"legacy-confirmed175-priority-11-20-fixed-f6-condition-audit-2026-10-01.json","record_pointer":"/identity_records/2"},
+    {"source_qualified_identity":"harness/L1-requirements/functional-requirements.md::FR-L1-20","evidence_artifact":"legacy-confirmed175-priority-11-20-fixed-f6-condition-audit-2026-10-01.json","record_pointer":"/identity_records/4"},
+    {"source_qualified_identity":"harness/L1-requirements/functional-requirements.md::FR-L1-35","evidence_artifact":"legacy-confirmed175-priority-11-20-fixed-f6-condition-audit-2026-10-01.json","record_pointer":"/identity_records/7"},
+    {"source_qualified_identity":"harness/L1-requirements/functional-requirements.md::FR-L1-37","evidence_artifact":"legacy-confirmed175-priority-11-20-fixed-f6-condition-audit-2026-10-01.json","record_pointer":"/identity_records/8"},
+    {"source_qualified_identity":"harness/L1-requirements/functional-requirements.md::FR-L1-38","evidence_artifact":"legacy-confirmed175-priority-11-20-fixed-f6-condition-audit-2026-10-01.json","record_pointer":"/identity_records/9"}
+  ],
+  "remaining_unconfirmed_identities": [
+    "harness/L1-requirements/functional-requirements.md::FR-L1-40",
+    "harness/L1-requirements/functional-requirements.md::FR-L1-41",
+    "harness/L1-requirements/functional-requirements.md::FR-L1-42",
+    "harness/L1-requirements/functional-requirements.md::FR-L1-44",
+    "harness/L1-requirements/functional-requirements.md::FR-L1-51",
+    "harness/L1-requirements/screen-requirements.md::PM-01",
+    "helix/L1-requirements/document-authority-census-requests.md::DAC-FR-001",
+    "helix/L1-requirements/document-authority-census-requests.md::DAC-FR-002",
+    "helix/L1-requirements/document-authority-census-requests.md::DAC-FR-003",
+    "helix/L1-requirements/document-authority-census-requests.md::DAC-FR-009",
+    "helix/L1-requirements/document-authority-census-requests.md::DAC-FR-010",
+    "helix/L1-requirements/document-authority-census-requests.md::DAC-NFR-002",
+    "helix/L1-requirements/document-authority-census-requests.md::DAC-NFR-003",
+    "helix/L1-requirements/pillar-requirements.md::HBR-P6",
+    "helix/L1-requirements/skill-mechanism-migration-requests.md::S-BR-001",
+    "helix/L1-requirements/three-lane-cloud-governance-requests.md::3L-BR-007"
+  ],
+  "non_claims": [
+    "The historical 112/63 recount and the 155/20 correction overlay remain unchanged historical artifacts.",
+    "This overlay records condition-comparison evidence only; it creates no requirement adoption, approval, or formal successor assignment.",
+    "No source atom is closed; all 175 identities remain preserved_pending_rehome."
+  ]
+}
