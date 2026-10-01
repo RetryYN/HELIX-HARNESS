@@ -425,5 +425,11 @@
     "prior_revision": "R1 receipt, R1 source snapshot, and MPR-075-001 bytes remain immutable historical evidence. R2 source atoms add selected AC-002 acceptance line 16 to the existing eight R01..03 requirement atoms.",
     "register_hash": "pre_append_register_sha256 identifies the exact register bytes before appending MPR-075-002.",
     "authority": "R2 remains an unadopted candidate; source coverage is limited to its nine listed atoms."
+  },
+  "latest_main_integration_read_after": {
+    "commit": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+    "pre_append_register_sha256": "sha256:153284711096e0218639b232ab2359cd0d82e2584e3b4252fc2803fc58177fcf",
+    "pre_append_register_rows": 656,
+    "result": "Main prefix is byte-preserved; only MPR-075-002 is appended. Construction-base pins remain historical; no adoption inferred."
   }
 }
