@@ -3,6 +3,7 @@
   "audit_id": "legacy-candidate4755-explanation-normative-complement-ranks-821-860-2026-10-01",
   "created_against_commit": "85638d7aed054c5b9c3bda5128a9f4208453a1c9",
   "authority_effect": "none",
+  "prior_completed_complement_slice": {"ranks": "781-820", "merge_commit": "44afc7c17054395f359a4f65da06b739a150697d", "last_id": "LEGACY-CAND-LINE-001408", "json_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-781-820-2026-10-01.json", "json_sha256": "5f000ee72ae0c3aaae8dea8bde7ebef3fcde0be8931b1edaaf5128cbc2942237", "md_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-781-820-2026-10-01.md", "md_sha256": "5cd79027fa24ef7b1e7f5f25207d0ebccf934ff97fa75b418acba07194f22081"},
   "purpose": "説明分類marker陰性補集合の数値順位821–860に属する旧source行40件の意味監査。採用・後続要求・実装・受入・source closureを生成しない。",
   "pool_derivation": {
     "baseline_ref": "#2353 reconciliation.row_recordsのsource_item_id完全一致join",

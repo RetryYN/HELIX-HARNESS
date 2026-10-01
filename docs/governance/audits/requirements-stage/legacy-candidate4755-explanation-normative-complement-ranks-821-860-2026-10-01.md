@@ -8,7 +8,7 @@
 - HXT/HXBのAC IDは選択行ごとに抽出し、該当があれば意味記述内のIDと照合。該当IDはありません。
 - routing台帳: 全40行は#2353 route_status=`not_condition`、#2369等の後続分類overlayとのID重複なし。
 - 固定F6との関係: HARNESS/OS/LABOのL2/L11を選択行ごとに旧source path:line・IDで照合。選択行IDの直接引用なし。OS-L2の旧source 18–185は広域spanとして含むがatom対応ではない。HXB-FR-007→:319、Requirement Re-entry→:242、Experiment→:157–163/:343、Bench→:349–351等は選択source行ではない。HXT-RQ familyとのrelationはrouting状態と別にfamily-level比較として記録。
-- 境界: rank781–820のpaired audit／意味検証記録はこのbaseにない。rank820のIDは独立再構成した境界識別子としてのみ記す。
+- 境界: 直前ranks 781–820のpaired auditは#2460のmerge commit `44afc7c17054395f359a4f65da06b739a150697d`でmainに統合済み。rank820のIDと両artifactのSHAを照合した。順位は全母集団から独立に再構成した。
 
 | 順位 | Source ID / archive行 | 分類・意味 | marker陰性の扱い | 固定F6／PO判断との関係 |
 |---:|---|---|---|---|
