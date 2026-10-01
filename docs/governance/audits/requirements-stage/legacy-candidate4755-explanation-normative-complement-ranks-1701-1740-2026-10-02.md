@@ -72,3 +72,7 @@
 INFRA L2:419の旧Concept v4.0引用範囲116–128に含まれるrank1701–1705（物理行123–127）の5行へ、固定F6と現行mainのcommit・file/行SHA・引用範囲を記録した。旧Plane構成を歴史的入力として読む引用であり、採択・source closureとは扱わない。
 
 product-boundary:75–76のfamily参照を旧Concept v4.0の32行（rank1701–1732）に記録した。旧承認を現行へ流用せず境界差分を照合する根拠として保持し、個別行の意味採択を生成しない。
+
+## 最新mainの先行slice照合
+
+#2472 merge `ebcbd4bcdfa8928b30e9c7962705d1fd2b07c321` の1661–1700 JSONをSHAで固定し、末尾rank1700／LEGACY-CAND-LINE-002850と本slice先頭rank1701／002851の連続性を確認した。初期選択基点で未収載だった事実と区別する。
