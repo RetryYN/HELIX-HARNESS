@@ -1,0 +1,3449 @@
+{
+  "schema_version": "helix-legacy-candidate4755-explanation-normative-complement-semantic-audit.v1",
+  "audit_id": "legacy-candidate4755-explanation-normative-complement-ranks-381-420-2026-10-01",
+  "created_against_commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+  "authority_effect": "none",
+  "purpose": "Semantic audit of numeric-ID ranks 381–420 in the effective-explanation marker-negative complement; no adoption, successor, implementation, acceptance or source closure is generated.",
+  "pool_derivation": {
+    "baseline_ref": "#2353 reconciliation.row_records exact source_item_id join",
+    "ordered_classification_overlays": [
+      "#2356",
+      "#2360",
+      "#2363",
+      "#2366",
+      "#2367",
+      "#2368",
+      "#2369",
+      "#2381"
+    ],
+    "bounded_additional_classification_proposal": "#2369 exact source IDs 000841 and 000857; both become condition, not explanation",
+    "effective_explanation_count": 2965,
+    "marker_pool_count": 255,
+    "complement_count": 2710,
+    "equation": "2965 - 255 = 2710",
+    "rank_key": "numeric LEGACY-CAND-LINE suffix ascending",
+    "selected_ranks": [
+      381,
+      420
+    ],
+    "selected_count": 40,
+    "selected_ids": [
+      "LEGACY-CAND-LINE-000630",
+      "LEGACY-CAND-LINE-000631",
+      "LEGACY-CAND-LINE-000632",
+      "LEGACY-CAND-LINE-000634",
+      "LEGACY-CAND-LINE-000635",
+      "LEGACY-CAND-LINE-000637",
+      "LEGACY-CAND-LINE-000639",
+      "LEGACY-CAND-LINE-000640",
+      "LEGACY-CAND-LINE-000642",
+      "LEGACY-CAND-LINE-000643",
+      "LEGACY-CAND-LINE-000644",
+      "LEGACY-CAND-LINE-000645",
+      "LEGACY-CAND-LINE-000646",
+      "LEGACY-CAND-LINE-000647",
+      "LEGACY-CAND-LINE-000648",
+      "LEGACY-CAND-LINE-000649",
+      "LEGACY-CAND-LINE-000650",
+      "LEGACY-CAND-LINE-000651",
+      "LEGACY-CAND-LINE-000654",
+      "LEGACY-CAND-LINE-000655",
+      "LEGACY-CAND-LINE-000657",
+      "LEGACY-CAND-LINE-000658",
+      "LEGACY-CAND-LINE-000659",
+      "LEGACY-CAND-LINE-000666",
+      "LEGACY-CAND-LINE-000669",
+      "LEGACY-CAND-LINE-000670",
+      "LEGACY-CAND-LINE-000671",
+      "LEGACY-CAND-LINE-000672",
+      "LEGACY-CAND-LINE-000673",
+      "LEGACY-CAND-LINE-000674",
+      "LEGACY-CAND-LINE-000675",
+      "LEGACY-CAND-LINE-000676",
+      "LEGACY-CAND-LINE-000677",
+      "LEGACY-CAND-LINE-000679",
+      "LEGACY-CAND-LINE-000680",
+      "LEGACY-CAND-LINE-000681",
+      "LEGACY-CAND-LINE-000682",
+      "LEGACY-CAND-LINE-000683",
+      "LEGACY-CAND-LINE-000684",
+      "LEGACY-CAND-LINE-000685"
+    ],
+    "selected_ids_sha256": "ae919f7c9887dc50a2242deb7456a6b895eac692febd4247a4d95860b234e9fd",
+    "independently_reconstructed": true,
+    "prior_slice_boundary_crosscheck": {
+      "ranks": [
+        341,
+        380
+      ],
+      "prior_last_id": "LEGACY-CAND-LINE-000629",
+      "selected_first_id": "LEGACY-CAND-LINE-000630",
+      "selected_rank_overlap_count": 0,
+      "prior_slice_file_sha256": "ebf61737776acb49334e885394065a611cd24b8f48305caab1e5bbf2d838b140"
+    }
+  },
+  "pinned_reconstruction_inputs": [
+    {
+      "role": "preceding_complement_ranks_341_380_for_rank_boundary",
+      "commit": "0ae972c8e7884a16d369e59c1861acbfeeac12a3",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-341-380-2026-10-01.json",
+      "sha256": "ebf61737776acb49334e885394065a611cd24b8f48305caab1e5bbf2d838b140"
+    },
+    {
+      "role": "#2353 baseline row_records",
+      "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c"
+    },
+    {
+      "role": "#2356 exact-ID classification overlay",
+      "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164"
+    },
+    {
+      "role": "#2360 exact-ID classification overlay",
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+      "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb"
+    },
+    {
+      "role": "#2363 exact-ID classification overlay",
+      "commit": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+      "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384"
+    },
+    {
+      "role": "#2366 exact-ID classification overlay",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+      "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6"
+    },
+    {
+      "role": "#2367 exact-ID classification overlay",
+      "commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
+      "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d"
+    },
+    {
+      "role": "#2368 exact-ID classification overlay",
+      "commit": "f89f71e0371440e9e10636499192c2311872b024",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
+      "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95"
+    },
+    {
+      "role": "#2369 exact-ID classification overlay",
+      "commit": "081b0b6612b802cfcb02b3cecda1559dd9a3ce13",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30.json",
+      "sha256": "5ed02b037f78ca25991b396e232e8b1ee754b0c91b056ed6640c9fb1c47cf0c0"
+    },
+    {
+      "role": "#2381 exact-ID classification overlay",
+      "commit": "6e62f76986f19d14281cb2a96eca460c5430dcc6",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-metadata10-classification-proposal-2026-09-30.json",
+      "sha256": "512f9ceafe935648d459d6b268ff4d3952f0e8264298213ad278256236b5f40e"
+    },
+    {
+      "role": "#2378 route-only audit; not an explanation-class overlay",
+      "commit": "cc451e22b6b520aad4d61b2410220a7503c47e12",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-concept-v4-main-acceptance-29-route-audit-2026-09-30.json",
+      "sha256": "91be699983dfe769869e08cc030cc1352abb42184a6ccd0d8bed09d7f84c0510"
+    },
+    {
+      "role": "#2380 route-only audit; not an explanation-class overlay",
+      "commit": "d4f1c4739fb920abdc5f951646e43a5c3e501af5",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-27-route-audit-2026-09-30.json",
+      "sha256": "341b97fd4109118c747c3a5b5c62f10f092ef4df330d45e4eaae9910f6994f56"
+    },
+    {
+      "role": "#2379 route-only audit; not an explanation-class overlay",
+      "commit": "6f1f05b40a2adbdbe6ab1402e192e23994ddda71",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-harness-memory-coordination-30-route-audit-after-2378-2026-09-30.json",
+      "sha256": "c8259d55f50c8f86f20619e850848b5f77cf72c378872ecc9c6c0da1ff8699ec"
+    }
+  ],
+  "marker_pool_review_slices": [
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-2026-10-01.json",
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "sha256": "3ea33ed390c354e84b81f1dd7956afdfab7bd00deb49969383b717bacf4acd33",
+      "rows_in_slice": 20,
+      "pin_basis": "artifact present at the exact reconstruction HEAD; created_against_commit in the source audit is its analysis base, not the commit that added the artifact"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-101-120-2026-10-01.json",
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "sha256": "29cc8bfecbebae44ba0b0473d4df8d561a92f72778ad13177f161e84d1267ecf",
+      "rows_in_slice": 20,
+      "pin_basis": "artifact present at the exact reconstruction HEAD; created_against_commit in the source audit is its analysis base, not the commit that added the artifact"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-121-140-2026-10-01.json",
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "sha256": "f5b88ec5da4727aee48c30311a0c10b47ff6b39fe7cf5adddcea6fa8380933ee",
+      "rows_in_slice": 20,
+      "pin_basis": "artifact present at the exact reconstruction HEAD; created_against_commit in the source audit is its analysis base, not the commit that added the artifact"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-141-160-2026-10-01.json",
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "sha256": "e40dbeaf5758a45a6eb39c96b5a8b5723780cfec15b21516103858f7659d8c4b",
+      "rows_in_slice": 20,
+      "pin_basis": "artifact present at the exact reconstruction HEAD; created_against_commit in the source audit is its analysis base, not the commit that added the artifact"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-161-180-2026-10-01.json",
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "sha256": "9e81e0d3bd4366b01c982be3da542bb64e59750576134558ecdc9b75a22aa7a2",
+      "rows_in_slice": 20,
+      "pin_basis": "artifact present at the exact reconstruction HEAD; created_against_commit in the source audit is its analysis base, not the commit that added the artifact"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-181-200-2026-10-01.json",
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "sha256": "de845d732261122a04af5aeb168dbc9b7a55507d6c977b74c37d1c19ec645e97",
+      "rows_in_slice": 20,
+      "pin_basis": "artifact present at the exact reconstruction HEAD; created_against_commit in the source audit is its analysis base, not the commit that added the artifact"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-201-220-2026-10-01.json",
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "sha256": "d11d4a5fc5005fc1e555f1bc1cea68e375c7bad479349b5340bc9ce80923b19d",
+      "rows_in_slice": 20,
+      "pin_basis": "artifact present at the exact reconstruction HEAD; created_against_commit in the source audit is its analysis base, not the commit that added the artifact"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-21-40-2026-10-01.json",
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "sha256": "8d5059267a6ebe70366e670ac548d760dfd3259748012125201bd6539e1b5b2f",
+      "rows_in_slice": 20,
+      "pin_basis": "artifact present at the exact reconstruction HEAD; created_against_commit in the source audit is its analysis base, not the commit that added the artifact"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-221-240-2026-10-01.json",
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "sha256": "6241e2b37045431c84232e5289942e6df5ff7390e65235b3462e6541af807793",
+      "rows_in_slice": 20,
+      "pin_basis": "artifact present at the exact reconstruction HEAD; created_against_commit in the source audit is its analysis base, not the commit that added the artifact"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-241-255-2026-10-01.json",
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "sha256": "14e4fe6339ee5801a5d6e459ce988628e5928b721b94bcdace49d539aa5c2135",
+      "rows_in_slice": 15,
+      "pin_basis": "artifact present at the exact reconstruction HEAD; created_against_commit in the source audit is its analysis base, not the commit that added the artifact"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-41-60-2026-10-01.json",
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "sha256": "d94780d1daaf6882bfd101d0962c43730025c9348d62b89a3ac33b0d26c814fc",
+      "rows_in_slice": 20,
+      "pin_basis": "artifact present at the exact reconstruction HEAD; created_against_commit in the source audit is its analysis base, not the commit that added the artifact"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-61-80-2026-10-01.json",
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "sha256": "a772c56e8001bb899bc28543fa9b5e8c2f866350f7c2306126f793fc58cd638b",
+      "rows_in_slice": 20,
+      "pin_basis": "artifact present at the exact reconstruction HEAD; created_against_commit in the source audit is its analysis base, not the commit that added the artifact"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-81-100-2026-10-01.json",
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "sha256": "c762d66599bdd07d825aeb1dd5f43e8c8a0f8a2c0f70aaac08e368ad47ba1ff8",
+      "rows_in_slice": 20,
+      "pin_basis": "artifact present at the exact reconstruction HEAD; created_against_commit in the source audit is its analysis base, not the commit that added the artifact"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-marker-screen-2026-10-01.json",
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "sha256": "1f9b0b6e05bfb46d937dfbbb954e8f7aa956c440acd526cbad2487b82893efbb",
+      "rows_in_slice": 20,
+      "pin_basis": "artifact present at the exact reconstruction HEAD; created_against_commit in the source audit is its analysis base, not the commit that added the artifact"
+    }
+  ],
+  "marker_screen_pin": {
+    "role": "lexical marker screen definition/top20 queue",
+    "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+    "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-marker-screen-2026-10-01.json",
+    "sha256": "1f9b0b6e05bfb46d937dfbbb954e8f7aa956c440acd526cbad2487b82893efbb"
+  },
+  "source_ledgers": [
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+      "rows": 4755
+    },
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "rows": 4020
+    }
+  ],
+  "fixed_F6_pair_and_decision_pins": [
+    {
+      "role": "post-F6 main text, comparison context (not the fixed F6 bytes)",
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
+      "line_or_section": 58
+    },
+    {
+      "role": "post-F6 main text, comparison context (not the fixed F6 bytes)",
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e",
+      "line_or_section": 451
+    },
+    {
+      "role": "post-F6 main text, comparison context (not the fixed F6 bytes)",
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+      "line_or_section": 399
+    },
+    {
+      "role": "post-F6 main text, comparison context (not the fixed F6 bytes)",
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+      "line_or_section": 196
+    },
+    {
+      "role": "HARNESS F6 PO decision, 24 candidates",
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "line_or_section": 25
+    },
+    {
+      "role": "OS F6 PO decision, 16 candidates",
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "line_or_section": 46
+    },
+    {
+      "role": "current Concept comparison",
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/concept/helix-concept.md",
+      "sha256": "06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+      "line_or_section": 49
+    },
+    {
+      "role": "fixed HARNESS L2 exact revision; PO record SHA aed75c…3100a",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+    },
+    {
+      "role": "fixed HARNESS L11 exact revision; PO record SHA 09b296…bcd4",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+    },
+    {
+      "role": "fixed OS L2 exact revision; CLR detailed rows expressly unapproved",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "line_or_section": 399
+    },
+    {
+      "role": "fixed OS L11 exact revision; CLR acceptance candidates unexecuted",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "line_or_section": 192
+    },
+    {
+      "role": "HARNESS PO decision record: explicit set of 24",
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "line_or_section": 25
+    },
+    {
+      "role": "OS PO decision record: explicit set of 16 (014–029)",
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "line_or_section": 46
+    }
+  ],
+  "authority_and_relation_summary": {
+    "selected_rows": 40,
+    "source_line_rows_preserved_pending_atomization": 40,
+    "historical_candidate_to_draft_candidate": 40,
+    "meaning_change": 0,
+    "successor_requirement_ids": 0,
+    "source_row_adopted_pair_binding_found": 0,
+    "source_closure": 0,
+    "asset_disposition_unresolved": 40,
+    "authority_effect": "none",
+    "current_near_relation": "The exact F6 OS L2 bytes explicitly identify CLR-R01..08 and its L10 oracle as unapproved candidates; the fixed L11 describes CLR acceptance rows as unexecuted and conditional on an adopted revision. The 2026-09-28 OS PO decision adopts the explicitly listed 16 candidates (HELIXOS-L2-014..029), not every row in the fixed document. Therefore this old acceptance-source row has no demonstrated row-specific adoption/successor binding. Later main text is comparison context only."
+  },
+  "rows": [
+    {
+      "rank": 381,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000630",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 47,
+      "exact_source_line_text": "| PKG-D11 | 運用・保守 | helix-operations / helix-maintenance |",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "候補taxonomy mapping",
+      "semantic_reading": "PKG-D11〜13を既存候補Module名へ対応づける候補表の行。語彙対応であり、current mechanism identity・owner・正式Sliceを定めない。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 30,
+          "text": "## 提供候補と既存の所有責務"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 45,
+            "text": "| PKG-D09 | 開発対象製品のRelease | 未確定。HELIX自身の配布工場と同一視しない |"
+          },
+          {
+            "line": 46,
+            "text": "| PKG-D10 | 配備・環境適用 | helix-deployment |"
+          },
+          {
+            "line": 48,
+            "text": "| PKG-D12 | 診断・回復 | helix-diagnosis / helix-reverse-recovery |"
+          },
+          {
+            "line": 49,
+            "text": "| PKG-D13 | 意味保存の構造改善 | helix-refactoring |"
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補文書内の規範的または分類上の含意はありうる。markerがないことは現行要求性・採択を示さない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。このPKG-D行の利用目的と旧Module対応を選択view候補として保全し、番号・名前・個数・旧Module対応を正式identityや固定提供分母にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 630,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "db462ef91b60e02ebe8d94ccc6428702207a391164ce9e3dcabb3bc6349e9f67",
+        "source_line_sha256": "sha256:b21139487c7f39734b79448cf50f16376ce9d92970b3b718baf57d0223c50b4c",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "b21139487c7f39734b79448cf50f16376ce9d92970b3b718baf57d0223c50b4c",
+        "physical_line_bytes_including_terminator_sha256": "3ea27d2f7500e136629a3f9cccc2b6baf6c8bcb0ea44b4f8925a0781fc9aa2a2",
+        "baseline_2353_physical_line_bytes_sha256": "3ea27d2f7500e136629a3f9cccc2b6baf6c8bcb0ea44b4f8925a0781fc9aa2a2"
+      }
+    },
+    {
+      "rank": 382,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000631",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 48,
+      "exact_source_line_text": "| PKG-D12 | 診断・回復 | helix-diagnosis / helix-reverse-recovery |",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "候補taxonomy mapping",
+      "semantic_reading": "PKG-D11〜13を既存候補Module名へ対応づける候補表の行。語彙対応であり、current mechanism identity・owner・正式Sliceを定めない。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 30,
+          "text": "## 提供候補と既存の所有責務"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 46,
+            "text": "| PKG-D10 | 配備・環境適用 | helix-deployment |"
+          },
+          {
+            "line": 47,
+            "text": "| PKG-D11 | 運用・保守 | helix-operations / helix-maintenance |"
+          },
+          {
+            "line": 49,
+            "text": "| PKG-D13 | 意味保存の構造改善 | helix-refactoring |"
+          },
+          {
+            "line": 50,
+            "text": ""
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補文書内の規範的または分類上の含意はありうる。markerがないことは現行要求性・採択を示さない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。このPKG-D行の利用目的と旧Module対応を選択view候補として保全し、番号・名前・個数・旧Module対応を正式identityや固定提供分母にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 631,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "2b9f7b630397be2f890eb98b38112994056e5027c729ad379a5ec186d25d7ff3",
+        "source_line_sha256": "sha256:d6a0a102b1e9961013e69bbf6e0ed6436c0db7f84aeecb67c80258dc77839078",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "d6a0a102b1e9961013e69bbf6e0ed6436c0db7f84aeecb67c80258dc77839078",
+        "physical_line_bytes_including_terminator_sha256": "9fe3587bdb24a7aea4b4aeddc767eaefcec4f096fc85439faf53bfd741c2901d",
+        "baseline_2353_physical_line_bytes_sha256": "9fe3587bdb24a7aea4b4aeddc767eaefcec4f096fc85439faf53bfd741c2901d"
+      }
+    },
+    {
+      "rank": 383,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000632",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 49,
+      "exact_source_line_text": "| PKG-D13 | 意味保存の構造改善 | helix-refactoring |",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "候補taxonomy mapping",
+      "semantic_reading": "PKG-D11〜13を既存候補Module名へ対応づける候補表の行。語彙対応であり、current mechanism identity・owner・正式Sliceを定めない。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 30,
+          "text": "## 提供候補と既存の所有責務"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 47,
+            "text": "| PKG-D11 | 運用・保守 | helix-operations / helix-maintenance |"
+          },
+          {
+            "line": 48,
+            "text": "| PKG-D12 | 診断・回復 | helix-diagnosis / helix-reverse-recovery |"
+          },
+          {
+            "line": 50,
+            "text": ""
+          },
+          {
+            "line": 51,
+            "text": "すべて正式Slice、path allowlist、依存lock、公開版、独立consumer検収は未確定として扱う。"
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補文書内の規範的または分類上の含意はありうる。markerがないことは現行要求性・採択を示さない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。このPKG-D行の利用目的と旧Module対応を選択view候補として保全し、番号・名前・個数・旧Module対応を正式identityや固定提供分母にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 632,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "b099a049bdc66a2a75ef9a9c06a7850f3fd228e8333532f667526759311427a5",
+        "source_line_sha256": "sha256:d8b23716b159475ce3f20f10225f0cd19d99ea0612c9e8929771b1b599137f9d",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "d8b23716b159475ce3f20f10225f0cd19d99ea0612c9e8929771b1b599137f9d",
+        "physical_line_bytes_including_terminator_sha256": "9f4dfb24cdad105a692287ec68093ec462348f3b6d144479529f0df367aa9931",
+        "baseline_2353_physical_line_bytes_sha256": "9f4dfb24cdad105a692287ec68093ec462348f3b6d144479529f0df367aa9931"
+      }
+    },
+    {
+      "rank": 384,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000634",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 52,
+      "exact_source_line_text": "複数Packageが同じModuleのSliceを利用しても、primary ownershipを二重化しない。",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "candidate ownership constraint",
+      "semantic_reading": "複数Packageが同じModule Sliceを利用する場合のprimary ownership重複を避ける候補内制約。候補文書内の規範含意はあるが、現行owner bindingではない。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 30,
+          "text": "## 提供候補と既存の所有責務"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 50,
+            "text": ""
+          },
+          {
+            "line": 51,
+            "text": "すべて正式Slice、path allowlist、依存lock、公開版、独立consumer検収は未確定として扱う。"
+          },
+          {
+            "line": 53,
+            "text": "Lite/Fullは必要な開発能力を選んだ構成であり、全repo・内部学習・自己公開工場の無条件配布ではない。"
+          },
+          {
+            "line": 54,
+            "text": ""
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補文書内の規範的または分類上の含意はありうる。markerがないことは現行要求性・採択を示さない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。複数選択viewで共有する機能単位のowner重複を避ける候補条件を保全し、旧Module/Packageのowner identityを採択しない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 634,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "4d56ab2a6a018e13437db1fb938aefa36678f3e083859fb51be75e3e5129a7c8",
+        "source_line_sha256": "sha256:f82e0b03e5c6dbb61c8ce52d5fe4e927128230b1e2d95cc2c50ef01356cb57ac",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "f82e0b03e5c6dbb61c8ce52d5fe4e927128230b1e2d95cc2c50ef01356cb57ac",
+        "physical_line_bytes_including_terminator_sha256": "0a45f2de08cf37c439c43d8fb38657bf6abea1636b48fccc65710b88a6208dc7",
+        "baseline_2353_physical_line_bytes_sha256": "0a45f2de08cf37c439c43d8fb38657bf6abea1636b48fccc65710b88a6208dc7"
+      }
+    },
+    {
+      "rank": 385,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000635",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 53,
+      "exact_source_line_text": "Lite/Fullは必要な開発能力を選んだ構成であり、全repo・内部学習・自己公開工場の無条件配布ではない。",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "candidate distribution-scope boundary",
+      "semantic_reading": "Lite/Fullを開発能力の選択とし、全repo・学習・自己公開工場の無条件配布と区別する候補scope文。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 30,
+          "text": "## 提供候補と既存の所有責務"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 51,
+            "text": "すべて正式Slice、path allowlist、依存lock、公開版、独立consumer検収は未確定として扱う。"
+          },
+          {
+            "line": 52,
+            "text": "複数Packageが同じModuleのSliceを利用しても、primary ownershipを二重化しない。"
+          },
+          {
+            "line": 54,
+            "text": ""
+          },
+          {
+            "line": 55,
+            "text": "## 現行要求との対応と差分"
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補文書内の規範的または分類上の含意はありうる。markerがないことは現行要求性・採択を示さない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。Lite/Fullは選択構成の旧候補として保全し、固定提供分母や全repo・内部学習・自己公開工場の無条件同梱にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 635,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "ff28d2e76fdbbf215833e9f6974f6909e846b68ee721d5404335457df1bba25e",
+        "source_line_sha256": "sha256:ed3bf3b26727c56335a821d91b4d99dab4925b9ccf356cd8869b09f610e0f0b4",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "ed3bf3b26727c56335a821d91b4d99dab4925b9ccf356cd8869b09f610e0f0b4",
+        "physical_line_bytes_including_terminator_sha256": "0bb2dbeee8ba8b59ddddbc235bf2aac8e060b39916003cbb6f9497ba366db53b",
+        "baseline_2353_physical_line_bytes_sha256": "0bb2dbeee8ba8b59ddddbc235bf2aac8e060b39916003cbb6f9497ba366db53b"
+      }
+    },
+    {
+      "rank": 386,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000637",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 57,
+      "exact_source_line_text": "照合基準はmain `0f733a9a034759521ad38ac6b92c8c5a39f7b9a1`。",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "historical comparison provenance",
+      "semantic_reading": "過去のmain commitを照合基準として記録するprovenance metadata。現在の固定revisionやその内容を証明しない。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 55,
+          "text": "## 現行要求との対応と差分"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 55,
+            "text": "## 現行要求との対応と差分"
+          },
+          {
+            "line": 56,
+            "text": ""
+          },
+          {
+            "line": 58,
+            "text": "RLSはconfirmed、FRS v0.2は承認記録を持つが正本昇格前の候補である。この状態差を保存する。"
+          },
+          {
+            "line": 59,
+            "text": "RLSの「8+1 Bundle」は初期8候補にLifecycle Operations Bundle 1候補を追加した構成を指し、公開済みBundle数ではない。"
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補文書内の規範的または分類上の含意はありうる。markerがないことは現行要求性・採択を示さない。",
+      "current_relation_and_residual": "HELIX-HARNESS/OSの固定F6 L2/L11と2026-09-28 PO判断の明示採択集合へ、この選択source rowの個別bindingは確認できない。現行Concept・責務境界と語彙や責務が近くても、同一identity、successor、採択または受入を意味しない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 637,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "3e76e361c0319efc0769c34a47dabc62f54cb6a0dfc312a84efb991b36f09f91",
+        "source_line_sha256": "sha256:6d9a65f5c09badd1f1636b8d651e269d9df3290d757bc9beb6b08759b88af673",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "6d9a65f5c09badd1f1636b8d651e269d9df3290d757bc9beb6b08759b88af673",
+        "physical_line_bytes_including_terminator_sha256": "96482afb43fa24117bef144f59a72fe9dd002d2c4e82be5d0df2b2b0b46e935a",
+        "baseline_2353_physical_line_bytes_sha256": "96482afb43fa24117bef144f59a72fe9dd002d2c4e82be5d0df2b2b0b46e935a"
+      }
+    },
+    {
+      "rank": 387,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000639",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 59,
+      "exact_source_line_text": "RLSの「8+1 Bundle」は初期8候補にLifecycle Operations Bundle 1候補を追加した構成を指し、公開済みBundle数ではない。",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "historical status/count metadata",
+      "semantic_reading": "RLS／FRS候補の旧statusと8+1 Bundleという候補構成の説明。公開済み実体数や現行承認ではない。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 55,
+          "text": "## 現行要求との対応と差分"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 57,
+            "text": "照合基準はmain `0f733a9a034759521ad38ac6b92c8c5a39f7b9a1`。"
+          },
+          {
+            "line": 58,
+            "text": "RLSはconfirmed、FRS v0.2は承認記録を持つが正本昇格前の候補である。この状態差を保存する。"
+          },
+          {
+            "line": 60,
+            "text": ""
+          },
+          {
+            "line": 61,
+            "text": "| 提案 | 既存契約 | 取込区分 |"
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補文書内の規範的または分類上の含意はありうる。markerがないことは現行要求性・採択を示さない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。旧8+1 Bundle数と順序は候補の歴史的分母として保全し、現在の提供構成・OS管理分母・公開済み数にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 639,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "bdbdfd8a1a11d8c952ad5eef0b43db1a73d25088c61f2a6145e38dbb4248ece3",
+        "source_line_sha256": "sha256:c65ef18213b2a4e51e295572d1362146d79847366f872dfee24234beaf14a922",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "c65ef18213b2a4e51e295572d1362146d79847366f872dfee24234beaf14a922",
+        "physical_line_bytes_including_terminator_sha256": "349e2d3df1364026d4e9a465b50620b2671a5fe4fac0e254f8d9447a97efb3d7",
+        "baseline_2353_physical_line_bytes_sha256": "349e2d3df1364026d4e9a465b50620b2671a5fe4fac0e254f8d9447a97efb3d7"
+      }
+    },
+    {
+      "rank": 388,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000640",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 61,
+      "exact_source_line_text": "| 提案 | 既存契約 | 取込区分 |",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "crosswalk table header",
+      "semantic_reading": "候補・既存契約・取込区分を並べる表の列名で、独立したrequirement atomを持たない。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 55,
+          "text": "## 現行要求との対応と差分"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 59,
+            "text": "RLSの「8+1 Bundle」は初期8候補にLifecycle Operations Bundle 1候補を追加した構成を指し、公開済みBundle数ではない。"
+          },
+          {
+            "line": 60,
+            "text": ""
+          },
+          {
+            "line": 62,
+            "text": "| --- | --- | --- |"
+          },
+          {
+            "line": 63,
+            "text": "| Module所有と構成を分ける | RLS-R-01/03/05、FRS-R-04/06 | 説明整理。現行所有は変更しない |"
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補文書内の規範的または分類上の含意はありうる。markerがないことは現行要求性・採択を示さない。",
+      "current_relation_and_residual": "HELIX-HARNESS/OSの固定F6 L2/L11と2026-09-28 PO判断の明示採択集合へ、この選択source rowの個別bindingは確認できない。現行Concept・責務境界と語彙や責務が近くても、同一identity、successor、採択または受入を意味しない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 640,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "9247fa11978e5133a72afa54790c05d3af6ed6f437e686116fcc0d73b9b4ceca",
+        "source_line_sha256": "sha256:c2ec51baf67a4607c193e2af01be1d5ff543eecc0ffbc47e7299964f8b77c3f8",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "c2ec51baf67a4607c193e2af01be1d5ff543eecc0ffbc47e7299964f8b77c3f8",
+        "physical_line_bytes_including_terminator_sha256": "c4a4b6233f50eb3aabcd929d23ed21a553e096afa1f64d43797e494967077b3a",
+        "baseline_2353_physical_line_bytes_sha256": "c4a4b6233f50eb3aabcd929d23ed21a553e096afa1f64d43797e494967077b3a"
+      }
+    },
+    {
+      "rank": 389,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000642",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 63,
+      "exact_source_line_text": "| Module所有と構成を分ける | RLS-R-01/03/05、FRS-R-04/06 | 説明整理。現行所有は変更しない |",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "candidate crosswalk row",
+      "semantic_reading": "Module所有とPackage構成の区別を既存RLS/FRSへ対応づけ、変更しないとする候補上の説明行。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 55,
+          "text": "## 現行要求との対応と差分"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 61,
+            "text": "| 提案 | 既存契約 | 取込区分 |"
+          },
+          {
+            "line": 62,
+            "text": "| --- | --- | --- |"
+          },
+          {
+            "line": 64,
+            "text": "| 独立versionと内容束縛 | RLS-R-01/05/07/10、FRS-R-05/11/15 | 説明整理。既存versionを推測採番しない |"
+          },
+          {
+            "line": 65,
+            "text": "| Packageを利用者向け選択viewにする | RLSのModule/Bundle、FRSのSliceへ対応 | 要求差分候補。Package公開契約の追加要否を既存ownerで確認 |"
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補文書内の規範的または分類上の含意はありうる。markerがないことは現行要求性・採択を示さない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。旧対応表は候補の比較根拠として保全し、Issue表示・Package/Module語彙から現行ownerや正式提供identityを生成しない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 642,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "20188e3e72e949a1ade4ee2807fd71e18356e0874facf2ab56e44faec29c6109",
+        "source_line_sha256": "sha256:2f2afb30b4a8d90b88663d9498a373f936c06271e928fde6e306174671e5ff5b",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "2f2afb30b4a8d90b88663d9498a373f936c06271e928fde6e306174671e5ff5b",
+        "physical_line_bytes_including_terminator_sha256": "6e3a4861aed19efe280881b362b62d5ddc469ed76c7f68bcbb5b6a712692e69e",
+        "baseline_2353_physical_line_bytes_sha256": "6e3a4861aed19efe280881b362b62d5ddc469ed76c7f68bcbb5b6a712692e69e"
+      }
+    },
+    {
+      "rank": 390,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000643",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 64,
+      "exact_source_line_text": "| 独立versionと内容束縛 | RLS-R-01/05/07/10、FRS-R-05/11/15 | 説明整理。既存versionを推測採番しない |",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "candidate crosswalk row",
+      "semantic_reading": "独立versionと内容束縛を旧RLS/FRSへ対応づける候補説明。既存version採番を留保する。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 55,
+          "text": "## 現行要求との対応と差分"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 62,
+            "text": "| --- | --- | --- |"
+          },
+          {
+            "line": 63,
+            "text": "| Module所有と構成を分ける | RLS-R-01/03/05、FRS-R-04/06 | 説明整理。現行所有は変更しない |"
+          },
+          {
+            "line": 65,
+            "text": "| Packageを利用者向け選択viewにする | RLSのModule/Bundle、FRSのSliceへ対応 | 要求差分候補。Package公開契約の追加要否を既存ownerで確認 |"
+          },
+          {
+            "line": 66,
+            "text": "| 学習・統治・自己公開工場を外部提供から分離 | RLS-R-03/04/06、FRS-R-19/23/24 | 要求差分候補。growth-off時の通常開発受入をL10へ対応させる必要あり |"
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補文書内の規範的または分類上の含意はありうる。markerがないことは現行要求性・採択を示さない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。文書版・Visionの節目・公開SemVerを別軸に保ち、旧Package/Bundle版台帳を正式公開版として自動生成しない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 643,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "27106cc8383b66165d72c3d98f09f0599a9279831932e6812498d3c64dacd31e",
+        "source_line_sha256": "sha256:8a69f5c35cff38d5810bbe650880433e2bc645bd84c2faf34ef59dce1166cd59",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "8a69f5c35cff38d5810bbe650880433e2bc645bd84c2faf34ef59dce1166cd59",
+        "physical_line_bytes_including_terminator_sha256": "5f35909749ad2d299d45cce16712631535815571d39982dfeca23a69255d7569",
+        "baseline_2353_physical_line_bytes_sha256": "5f35909749ad2d299d45cce16712631535815571d39982dfeca23a69255d7569"
+      }
+    },
+    {
+      "rank": 391,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000644",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 65,
+      "exact_source_line_text": "| Packageを利用者向け選択viewにする | RLSのModule/Bundle、FRSのSliceへ対応 | 要求差分候補。Package公開契約の追加要否を既存ownerで確認 |",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "candidate crosswalk row",
+      "semantic_reading": "Packageを利用者向け選択viewとする候補差分を提示し、Package公開契約の要否を保留する。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 55,
+          "text": "## 現行要求との対応と差分"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 63,
+            "text": "| Module所有と構成を分ける | RLS-R-01/03/05、FRS-R-04/06 | 説明整理。現行所有は変更しない |"
+          },
+          {
+            "line": 64,
+            "text": "| 独立versionと内容束縛 | RLS-R-01/05/07/10、FRS-R-05/11/15 | 説明整理。既存versionを推測採番しない |"
+          },
+          {
+            "line": 66,
+            "text": "| 学習・統治・自己公開工場を外部提供から分離 | RLS-R-03/04/06、FRS-R-19/23/24 | 要求差分候補。growth-off時の通常開発受入をL10へ対応させる必要あり |"
+          },
+          {
+            "line": 67,
+            "text": "| 汎用製品ReleaseとHELIX自己公開の分離 | RLS-R-07/09/13 | 要求差分候補。汎用adapter実装済みとは扱わない |"
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補文書内の規範的または分類上の含意はありうる。markerがないことは現行要求性・採択を示さない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。旧対応表は候補の比較根拠として保全し、Issue表示・Package/Module語彙から現行ownerや正式提供identityを生成しない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 644,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "5b5b3b4605f82442005dbeab4129d1946b177aaa4fc68d353f811e94e9eb683e",
+        "source_line_sha256": "sha256:620f8fa0d61cc1c2367455e40369b63bd08622a70803a2bb2b9a6978d5a9c106",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "620f8fa0d61cc1c2367455e40369b63bd08622a70803a2bb2b9a6978d5a9c106",
+        "physical_line_bytes_including_terminator_sha256": "42c519b06700749a9c64a9c01668bb63b1b0485a19a4374a3e51bf0af9fc0ae9",
+        "baseline_2353_physical_line_bytes_sha256": "42c519b06700749a9c64a9c01668bb63b1b0485a19a4374a3e51bf0af9fc0ae9"
+      }
+    },
+    {
+      "rank": 392,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000645",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 66,
+      "exact_source_line_text": "| 学習・統治・自己公開工場を外部提供から分離 | RLS-R-03/04/06、FRS-R-19/23/24 | 要求差分候補。growth-off時の通常開発受入をL10へ対応させる必要あり |",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "candidate crosswalk row",
+      "semantic_reading": "外部提供と学習・統治・自己公開工場を分ける候補差分。growth-off受入との対応を未解決として示す。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 55,
+          "text": "## 現行要求との対応と差分"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 64,
+            "text": "| 独立versionと内容束縛 | RLS-R-01/05/07/10、FRS-R-05/11/15 | 説明整理。既存versionを推測採番しない |"
+          },
+          {
+            "line": 65,
+            "text": "| Packageを利用者向け選択viewにする | RLSのModule/Bundle、FRSのSliceへ対応 | 要求差分候補。Package公開契約の追加要否を既存ownerで確認 |"
+          },
+          {
+            "line": 67,
+            "text": "| 汎用製品ReleaseとHELIX自己公開の分離 | RLS-R-07/09/13 | 要求差分候補。汎用adapter実装済みとは扱わない |"
+          },
+          {
+            "line": 68,
+            "text": "| 個数・順序の再導出 | FRS-R-19/20 | 承認候補との整合。RLS初期11+4 Module/8+1 Bundleを無言で上書きしない |"
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補文書内の規範的または分類上の含意はありうる。markerがないことは現行要求性・採択を示さない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。growth-offで通常開発が成立する候補条件と自己改善/統治の分離を保持し、内部学習・公開工場を必須依存にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 645,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "840ba2f927d0094d0bc36a1e9a2027ff9ce5b1f8b8b3f81d277a86c503388828",
+        "source_line_sha256": "sha256:21c12211e53c1923328a8843168deae1a3fbad2373501990b6c4eb35f0708d4a",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "21c12211e53c1923328a8843168deae1a3fbad2373501990b6c4eb35f0708d4a",
+        "physical_line_bytes_including_terminator_sha256": "b8a05665293f520fac26c0a59b830b1d8b33a40d63102c33622e9bfe8e473f31",
+        "baseline_2353_physical_line_bytes_sha256": "b8a05665293f520fac26c0a59b830b1d8b33a40d63102c33622e9bfe8e473f31"
+      }
+    },
+    {
+      "rank": 393,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000646",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 67,
+      "exact_source_line_text": "| 汎用製品ReleaseとHELIX自己公開の分離 | RLS-R-07/09/13 | 要求差分候補。汎用adapter実装済みとは扱わない |",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "candidate crosswalk row",
+      "semantic_reading": "汎用製品ReleaseとHELIX自己公開を分ける候補差分。汎用adapter実装を主張しない。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 55,
+          "text": "## 現行要求との対応と差分"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 65,
+            "text": "| Packageを利用者向け選択viewにする | RLSのModule/Bundle、FRSのSliceへ対応 | 要求差分候補。Package公開契約の追加要否を既存ownerで確認 |"
+          },
+          {
+            "line": 66,
+            "text": "| 学習・統治・自己公開工場を外部提供から分離 | RLS-R-03/04/06、FRS-R-19/23/24 | 要求差分候補。growth-off時の通常開発受入をL10へ対応させる必要あり |"
+          },
+          {
+            "line": 68,
+            "text": "| 個数・順序の再導出 | FRS-R-19/20 | 承認候補との整合。RLS初期11+4 Module/8+1 Bundleを無言で上書きしない |"
+          },
+          {
+            "line": 69,
+            "text": "| CIとCursorの先行投入 | FRS-R-21/22/23 | 既存進行を維持。長期Visionを一律の待機依存にしない |"
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補文書内の規範的または分類上の含意はありうる。markerがないことは現行要求性・採択を示さない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。対象製品ReleaseとHELIX自己Releaseの権限・receipt分離候補を保持し、旧adapter実装済みや固定公開版を主張しない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 646,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "e2b86d8cbd91455c24f0fd91fe6ca04a8238c20b8cbb62ef469a4c6799ee476d",
+        "source_line_sha256": "sha256:ae394f6334d601dc62554f6fd45212a6daae8895916a8403a7e5ac09cc8f6384",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "ae394f6334d601dc62554f6fd45212a6daae8895916a8403a7e5ac09cc8f6384",
+        "physical_line_bytes_including_terminator_sha256": "1bbae81c953fd6f328188effea18646d9485e6605484fbf0ff55283e73f73e01",
+        "baseline_2353_physical_line_bytes_sha256": "1bbae81c953fd6f328188effea18646d9485e6605484fbf0ff55283e73f73e01"
+      }
+    },
+    {
+      "rank": 394,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000647",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 68,
+      "exact_source_line_text": "| 個数・順序の再導出 | FRS-R-19/20 | 承認候補との整合。RLS初期11+4 Module/8+1 Bundleを無言で上書きしない |",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "candidate crosswalk row",
+      "semantic_reading": "候補数と順序を再導出する必要、旧RLS/FRS候補数を暗黙に上書きしない留保を記録する。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 55,
+          "text": "## 現行要求との対応と差分"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 66,
+            "text": "| 学習・統治・自己公開工場を外部提供から分離 | RLS-R-03/04/06、FRS-R-19/23/24 | 要求差分候補。growth-off時の通常開発受入をL10へ対応させる必要あり |"
+          },
+          {
+            "line": 67,
+            "text": "| 汎用製品ReleaseとHELIX自己公開の分離 | RLS-R-07/09/13 | 要求差分候補。汎用adapter実装済みとは扱わない |"
+          },
+          {
+            "line": 69,
+            "text": "| CIとCursorの先行投入 | FRS-R-21/22/23 | 既存進行を維持。長期Visionを一律の待機依存にしない |"
+          },
+          {
+            "line": 70,
+            "text": "| Conceptの比喩・Vision能力目標 | 要求変更や実行許可とは別 | doc-only / future-only |"
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補文書内の規範的または分類上の含意はありうる。markerがないことは現行要求性・採択を示さない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。旧8+1 Bundle数と順序は候補の歴史的分母として保全し、現在の提供構成・OS管理分母・公開済み数にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 647,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "40890dcf3e8671b3c7ed45d784f6fe7047a93bd3ea56c045c82204dd1287fcd1",
+        "source_line_sha256": "sha256:7a70ddb2c2e8c75089ecda8f67d15e07a96fa36755015aed4d251ef171ed931e",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "7a70ddb2c2e8c75089ecda8f67d15e07a96fa36755015aed4d251ef171ed931e",
+        "physical_line_bytes_including_terminator_sha256": "b6291fe8b15701fad637c82b14cb733d6d517c07358e7f3c1549ddaf83b9b5d0",
+        "baseline_2353_physical_line_bytes_sha256": "b6291fe8b15701fad637c82b14cb733d6d517c07358e7f3c1549ddaf83b9b5d0"
+      }
+    },
+    {
+      "rank": 395,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000648",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 69,
+      "exact_source_line_text": "| CIとCursorの先行投入 | FRS-R-21/22/23 | 既存進行を維持。長期Visionを一律の待機依存にしない |",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "candidate crosswalk row",
+      "semantic_reading": "CI/Cursorの先行投入を維持し、長期Visionを一律待機依存にしない候補整理。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 55,
+          "text": "## 現行要求との対応と差分"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 67,
+            "text": "| 汎用製品ReleaseとHELIX自己公開の分離 | RLS-R-07/09/13 | 要求差分候補。汎用adapter実装済みとは扱わない |"
+          },
+          {
+            "line": 68,
+            "text": "| 個数・順序の再導出 | FRS-R-19/20 | 承認候補との整合。RLS初期11+4 Module/8+1 Bundleを無言で上書きしない |"
+          },
+          {
+            "line": 70,
+            "text": "| Conceptの比喩・Vision能力目標 | 要求変更や実行許可とは別 | doc-only / future-only |"
+          },
+          {
+            "line": 71,
+            "text": ""
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補文書内の規範的または分類上の含意はありうる。markerがないことは現行要求性・採択を示さない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。旧CI/Cursor先行投入は固定F6で採用しない一方、将来Vision全体を現在の一律待機依存にもせず、要求差分へ戻す。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 648,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "f60924aa1de36d9946c9447886e0959d257e93521200e543b5a67e5dde6676d9",
+        "source_line_sha256": "sha256:c63c7cccecbb63991a3cb3bb6d244f2b72eec643e01f522d9f7359148523e255",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "c63c7cccecbb63991a3cb3bb6d244f2b72eec643e01f522d9f7359148523e255",
+        "physical_line_bytes_including_terminator_sha256": "8c2dab88d328237d7c0afa20a014584c53cea3b9575babbb8e66e017c47effef",
+        "baseline_2353_physical_line_bytes_sha256": "8c2dab88d328237d7c0afa20a014584c53cea3b9575babbb8e66e017c47effef"
+      }
+    },
+    {
+      "rank": 396,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000649",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 70,
+      "exact_source_line_text": "| Conceptの比喩・Vision能力目標 | 要求変更や実行許可とは別 | doc-only / future-only |",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "candidate crosswalk row",
+      "semantic_reading": "Concept比喩・Vision目標を要求変更や実行許可と区別する候補分類行。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 55,
+          "text": "## 現行要求との対応と差分"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 68,
+            "text": "| 個数・順序の再導出 | FRS-R-19/20 | 承認候補との整合。RLS初期11+4 Module/8+1 Bundleを無言で上書きしない |"
+          },
+          {
+            "line": 69,
+            "text": "| CIとCursorの先行投入 | FRS-R-21/22/23 | 既存進行を維持。長期Visionを一律の待機依存にしない |"
+          },
+          {
+            "line": 71,
+            "text": ""
+          },
+          {
+            "line": 72,
+            "text": "要求差分は#1073/#1494へ返し、L1/L3/L10の対形成と必要な正本化を通す。#1500には対応結果を管理projectionとして接続する。"
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補文書内の規範的または分類上の含意はありうる。markerがないことは現行要求性・採択を示さない。",
+      "current_relation_and_residual": "HELIX-HARNESS/OSの固定F6 L2/L11と2026-09-28 PO判断の明示採択集合へ、この選択source rowの個別bindingは確認できない。現行Concept・責務境界と語彙や責務が近くても、同一identity、successor、採択または受入を意味しない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 649,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "7e4c250fd772676985990969f1792aad3f2266a76f616d0d1d86d149be696475",
+        "source_line_sha256": "sha256:8a40ec875039fa01e03863495090b147d47157961abd3c4d10ad0dadcc78f2cd",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "8a40ec875039fa01e03863495090b147d47157961abd3c4d10ad0dadcc78f2cd",
+        "physical_line_bytes_including_terminator_sha256": "e8abbc64f97cd714133698c57db6bc3589b7b6c67eb96b033b5351ecbe243c3d",
+        "baseline_2353_physical_line_bytes_sha256": "e8abbc64f97cd714133698c57db6bc3589b7b6c67eb96b033b5351ecbe243c3d"
+      }
+    },
+    {
+      "rank": 397,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000650",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 72,
+      "exact_source_line_text": "要求差分は#1073/#1494へ返し、L1/L3/L10の対形成と必要な正本化を通す。#1500には対応結果を管理projectionとして接続する。",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "candidate governance boundary",
+      "semantic_reading": "Issueを管理projectionへ接続し、要求意味を直接投入しない候補のrouting boundary。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 55,
+          "text": "## 現行要求との対応と差分"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 70,
+            "text": "| Conceptの比喩・Vision能力目標 | 要求変更や実行許可とは別 | doc-only / future-only |"
+          },
+          {
+            "line": 71,
+            "text": ""
+          },
+          {
+            "line": 73,
+            "text": "本書からRequirement IR、公開manifest、runtimeへ直接新しい意味を投入しない。"
+          },
+          {
+            "line": 74,
+            "text": ""
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "明確な候補内の非昇格／責務境界含意。ただし現在のauthorityを単独で設定しない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。要求差分を上流の対象revisionへ返す候補境界を保ち、この旧整理版から公開manifest・runtime・正式要求identityへ直接昇格しない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 650,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "48800f95bb536b985bb9f9a11fed83c9c939660fb8f1eb0bd411436122835954",
+        "source_line_sha256": "sha256:ce0c22ec94ce0a9c5fc228b3a0c88b6e8e48b8c87cbf1ff0202a053d4dc7144f",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "ce0c22ec94ce0a9c5fc228b3a0c88b6e8e48b8c87cbf1ff0202a053d4dc7144f",
+        "physical_line_bytes_including_terminator_sha256": "674b42cb128235bed1f789e4fe3830e72184ea522e22983e69d3c62d471833bc",
+        "baseline_2353_physical_line_bytes_sha256": "674b42cb128235bed1f789e4fe3830e72184ea522e22983e69d3c62d471833bc"
+      }
+    },
+    {
+      "rank": 398,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000651",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 73,
+      "exact_source_line_text": "本書からRequirement IR、公開manifest、runtimeへ直接新しい意味を投入しない。",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "candidate governance boundary",
+      "semantic_reading": "本crosswalkからIR・公開manifest・runtimeへ新しい意味を直接入れないという候補上の制約。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 55,
+          "text": "## 現行要求との対応と差分"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 71,
+            "text": ""
+          },
+          {
+            "line": 72,
+            "text": "要求差分は#1073/#1494へ返し、L1/L3/L10の対形成と必要な正本化を通す。#1500には対応結果を管理projectionとして接続する。"
+          },
+          {
+            "line": 74,
+            "text": ""
+          },
+          {
+            "line": 75,
+            "text": "## 版管理の読み方"
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "明確な候補内の非昇格／責務境界含意。ただし現在のauthorityを単独で設定しない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。要求差分を上流の対象revisionへ返す候補境界を保ち、この旧整理版から公開manifest・runtime・正式要求identityへ直接昇格しない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 651,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "e8dbb80c42f6ac4976c2790094252caf82be19625f670dd16a160b217768bfed",
+        "source_line_sha256": "sha256:3cf842abf919927e8930e91465cb54e7014e8ab94ee9d1031bcf0a93777536f3",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "3cf842abf919927e8930e91465cb54e7014e8ab94ee9d1031bcf0a93777536f3",
+        "physical_line_bytes_including_terminator_sha256": "a4b212f0a7c06a7d674a30971060fa9518700482fbb730434cbca4ad5acd7b56",
+        "baseline_2353_physical_line_bytes_sha256": "a4b212f0a7c06a7d674a30971060fa9518700482fbb730434cbca4ad5acd7b56"
+      }
+    },
+    {
+      "rank": 399,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000654",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 78,
+      "exact_source_line_text": "同一公開実体を指すPackage/Bundleは同じReleaseを参照し、二重台帳を作らない。",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "candidate versioning rule",
+      "semantic_reading": "同一の公開実体を指すPackage/BundleにRelease台帳を二重化しないという候補内規則。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 75,
+          "text": "## 版管理の読み方"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 76,
+            "text": ""
+          },
+          {
+            "line": 77,
+            "text": "文書revision、能力目標、Module/SliceのSemVer、Bundle構成版、公開Release、artifact digest、Deployment revisionを別軸で記録する。"
+          },
+          {
+            "line": 79,
+            "text": "公開版を変更するかは公開契約への影響で判定する。説明文だけの更新で全Moduleを一斉に改版しない。"
+          },
+          {
+            "line": 80,
+            "text": ""
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補内のversioning/gating/authority/evidence境界を含む行では候補文書に規範的含意がある。source navigation行はprovenanceのみ。lexical marker absence does not establish current authority.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。文書版・Visionの節目・公開SemVerを別軸に保ち、旧Package/Bundle版台帳を正式公開版として自動生成しない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 654,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "605d1373a9142c69ce61a97fc0cf8423fc541a9ddebfc3482741ed0551252e55",
+        "source_line_sha256": "sha256:e7063e2788e078fe830036dde0be4fe96f7da34ec203b5dab1c0a22751516f49",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "e7063e2788e078fe830036dde0be4fe96f7da34ec203b5dab1c0a22751516f49",
+        "physical_line_bytes_including_terminator_sha256": "fd072e9afaf137902736af607100f73ee62afdc1a16603a36e37fffe7956b498",
+        "baseline_2353_physical_line_bytes_sha256": "fd072e9afaf137902736af607100f73ee62afdc1a16603a36e37fffe7956b498"
+      }
+    },
+    {
+      "rank": 400,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000655",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 79,
+      "exact_source_line_text": "公開版を変更するかは公開契約への影響で判定する。説明文だけの更新で全Moduleを一斉に改版しない。",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "candidate release-version rule",
+      "semantic_reading": "公開契約への影響を公開版変更の判断軸とし、説明だけの更新でModuleを一斉に改版しないという候補ルール。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 75,
+          "text": "## 版管理の読み方"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 77,
+            "text": "文書revision、能力目標、Module/SliceのSemVer、Bundle構成版、公開Release、artifact digest、Deployment revisionを別軸で記録する。"
+          },
+          {
+            "line": 78,
+            "text": "同一公開実体を指すPackage/Bundleは同じReleaseを参照し、二重台帳を作らない。"
+          },
+          {
+            "line": 80,
+            "text": ""
+          },
+          {
+            "line": 81,
+            "text": "### 既存要求へ戻す差分と受入候補"
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補内のversioning/gating/authority/evidence境界を含む行では候補文書に規範的含意がある。source navigation行はprovenanceのみ。lexical marker absence does not establish current authority.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。文書版・Visionの節目・公開SemVerを別軸に保ち、旧Package/Bundle版台帳を正式公開版として自動生成しない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 655,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "8c410da4cb033973b668bde0aa6c949bd7206494e28924c81d7166aff35313fb",
+        "source_line_sha256": "sha256:9fd679d6b8fec6cecd666f8ea747298b6714de2acb54de2430e423e7066f3d56",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "9fd679d6b8fec6cecd666f8ea747298b6714de2acb54de2430e423e7066f3d56",
+        "physical_line_bytes_including_terminator_sha256": "6dbf38af2fb85ff502dcfe882bee97ab33cf4431f572fe880648e0f430e3add8",
+        "baseline_2353_physical_line_bytes_sha256": "6dbf38af2fb85ff502dcfe882bee97ab33cf4431f572fe880648e0f430e3add8"
+      }
+    },
+    {
+      "rank": 401,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000657",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 83,
+      "exact_source_line_text": "以下は今回の取込から抽出した対であり、新しい正本IDの採番や承認を意味しない。",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "candidate non-adoption metadata",
+      "semantic_reading": "この対は新しいcanonical requirement IDの採番や承認を意味しないと明記する候補metadata。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 81,
+          "text": "### 既存要求へ戻す差分と受入候補"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 81,
+            "text": "### 既存要求へ戻す差分と受入候補"
+          },
+          {
+            "line": 82,
+            "text": ""
+          },
+          {
+            "line": 84,
+            "text": "既存RLS/FRSの改版ではこの対を移管し、本書と独立した要求台帳を維持しない。"
+          },
+          {
+            "line": 85,
+            "text": ""
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補内のversioning/gating/authority/evidence境界を含む行では候補文書に規範的含意がある。source navigation行はprovenanceのみ。lexical marker absence does not establish current authority.",
+      "current_relation_and_residual": "この非採用留保を実際の採択・coverage・decision receiptへ読み替えない。固定F6判断は別に列挙する候補集合に限定される。 行固有のsuccessor/adopted pair binding/受入は確認できない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 657,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "9a73dd51b1a23e17a33d90b6c803df15343d6701d1c759a72bf310599b0c7fe4",
+        "source_line_sha256": "sha256:4e5f263f0dcfcce768dc9fd10d224a3525dc80b74f5077f5ec83f92121fc99c8",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "4e5f263f0dcfcce768dc9fd10d224a3525dc80b74f5077f5ec83f92121fc99c8",
+        "physical_line_bytes_including_terminator_sha256": "d9284073e954e8e717cfb74a1c9d79353ad37c0d00f0b0a66fce04866e468055",
+        "baseline_2353_physical_line_bytes_sha256": "d9284073e954e8e717cfb74a1c9d79353ad37c0d00f0b0a66fce04866e468055"
+      }
+    },
+    {
+      "rank": 402,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000658",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 84,
+      "exact_source_line_text": "既存RLS/FRSの改版ではこの対を移管し、本書と独立した要求台帳を維持しない。",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "candidate source-of-truth / ledger boundary",
+      "semantic_reading": "既存RLS/FRS改版時に対を移管し、独立要求台帳を重ねないという候補上の管理ルール。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 81,
+          "text": "### 既存要求へ戻す差分と受入候補"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 82,
+            "text": ""
+          },
+          {
+            "line": 83,
+            "text": "以下は今回の取込から抽出した対であり、新しい正本IDの採番や承認を意味しない。"
+          },
+          {
+            "line": 85,
+            "text": ""
+          },
+          {
+            "line": 86,
+            "text": "| 差分 | 要求候補 | 受入候補 | 既存責務 |"
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補内のversioning/gating/authority/evidence境界を含む行では候補文書に規範的含意がある。source navigation行はprovenanceのみ。lexical marker absence does not establish current authority.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。要求差分を上流の対象revisionへ返す候補境界を保ち、この旧整理版から公開manifest・runtime・正式要求identityへ直接昇格しない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 658,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "4d4003c93b33954e93db980349a4ba4fbccbfd9d1940b3876a889cc9dc1180d1",
+        "source_line_sha256": "sha256:21213bccb9244e4f1e718a9636795c9dac0bc89f43c8dca067f18ff616899afd",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "21213bccb9244e4f1e718a9636795c9dac0bc89f43c8dca067f18ff616899afd",
+        "physical_line_bytes_including_terminator_sha256": "b14af845b79f0eb2c53db1f2df46060b32c9801f816e8527a36b49b7f93a71fd",
+        "baseline_2353_physical_line_bytes_sha256": "b14af845b79f0eb2c53db1f2df46060b32c9801f816e8527a36b49b7f93a71fd"
+      }
+    },
+    {
+      "rank": 403,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000659",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 86,
+      "exact_source_line_text": "| 差分 | 要求候補 | 受入候補 | 既存責務 |",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "candidate crosswalk table header",
+      "semantic_reading": "差分・要求候補・受入候補・既存責務の表見出しであり、それ自体にrequirement atomはない。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 81,
+          "text": "### 既存要求へ戻す差分と受入候補"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 84,
+            "text": "既存RLS/FRSの改版ではこの対を移管し、本書と独立した要求台帳を維持しない。"
+          },
+          {
+            "line": 85,
+            "text": ""
+          },
+          {
+            "line": 87,
+            "text": "| --- | --- | --- | --- |"
+          },
+          {
+            "line": 88,
+            "text": "| 利用者向け構成 | Packageは既存Sliceへの選択viewとし、各artifactのprimary Moduleを一意に辿れること | 13候補の全項目を解決または未確定として列挙し、未所属を黙って省略せず、二重ownerを拒否する | #1494 / #1500 |"
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補内のversioning/gating/authority/evidence境界を含む行では候補文書に規範的含意がある。source navigation行はprovenanceのみ。lexical marker absence does not establish current authority.",
+      "current_relation_and_residual": "headerは項目見出しであり、次行以降の差分や受入の採択・実行を示さない。 行固有のsuccessor/adopted pair binding/受入は確認できない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 659,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "995aeb74e87ff6e24dd4e55de8620d9f085c255e75a891d36741f4aadea7629f",
+        "source_line_sha256": "sha256:577efb6335b798229619fa20f0632f4365d264d7e950013b3ef03ee53d3a10e3",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "577efb6335b798229619fa20f0632f4365d264d7e950013b3ef03ee53d3a10e3",
+        "physical_line_bytes_including_terminator_sha256": "18565f3b196fd765ec35d3fafeb4401eb1abf54bfb61c9d3726151b7860636e6",
+        "baseline_2353_physical_line_bytes_sha256": "18565f3b196fd765ec35d3fafeb4401eb1abf54bfb61c9d3726151b7860636e6"
+      }
+    },
+    {
+      "rank": 404,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000666",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 94,
+      "exact_source_line_text": "構成の採用は全13候補の実装完了を待つ一括gateではない。独立Sliceごとに必要な依存・安全・検収を閉じて進める。",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "candidate slice-level gating rule",
+      "semantic_reading": "13候補の全実装完了を一括gateにせず、独立Sliceごとに依存・安全・検収を閉じて進めるとする候補内工程含意。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 81,
+          "text": "### 既存要求へ戻す差分と受入候補"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 92,
+            "text": "| 長期目標の隔離 | Visionは対象要求を明示した能力目標とし、未採択の将来能力を現在の必須依存へ追加しないこと | Web自体をHARNESS Version 1の完成分母へ含めず、HARNESS Version 1未完成時のWeb展開も拒否する。目標達成を文書存在だけで認定しない | Concept / World Governance |"
+          },
+          {
+            "line": 93,
+            "text": ""
+          },
+          {
+            "line": 95,
+            "text": "未確定は候補整理を止める理由ではなく、そのSliceの公開可否と追跡上の残務として扱う。"
+          },
+          {
+            "line": 96,
+            "text": ""
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補内のversioning/gating/authority/evidence境界を含む行では候補文書に規範的含意がある。source navigation行はprovenanceのみ。lexical marker absence does not establish current authority.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。全13候補の一括完成をgateにせず、選択した機能単位の安全依存・検証閉包を候補条件として保持し、旧PKG個数を固定分母にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 666,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "142e4f24839bc043f500887bb9489a760a43b70b161b5366a4d4ca6e8ac99130",
+        "source_line_sha256": "sha256:18ffc8c9859c9289ef88c776cb60eed603d89721ccd14b4b17cef9cc9c3f5d07",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "18ffc8c9859c9289ef88c776cb60eed603d89721ccd14b4b17cef9cc9c3f5d07",
+        "physical_line_bytes_including_terminator_sha256": "e292887947984a7c883364e38d63967ffa92f783b061ed19579bf70feebe100b",
+        "baseline_2353_physical_line_bytes_sha256": "e292887947984a7c883364e38d63967ffa92f783b061ed19579bf70feebe100b"
+      }
+    },
+    {
+      "rank": 405,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000669",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 99,
+      "exact_source_line_text": "- [原文と取込メモ](../../archive/intake/2026-09-06-concept-vision/00_MASTER_INTAKE.md)",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "source/provenance reference",
+      "semantic_reading": "原文と取込メモへの参照リンクで、旧source位置を指すnavigation。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 97,
+          "text": "## 原文と留保"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 97,
+            "text": "## 原文と留保"
+          },
+          {
+            "line": 98,
+            "text": ""
+          },
+          {
+            "line": 100,
+            "text": "- [Concept原文](../../archive/intake/2026-09-06-concept-vision/concept/HELIX_CONCEPT_v0.1.md)"
+          },
+          {
+            "line": 101,
+            "text": "- [Vision原文](../../archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md)"
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補内のversioning/gating/authority/evidence境界を含む行では候補文書に規範的含意がある。source navigation行はprovenanceのみ。lexical marker absence does not establish current authority.",
+      "current_relation_and_residual": "参照リンクは承認evidenceや現行要求bindingではない。 行固有のsuccessor/adopted pair binding/受入は確認できない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 669,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "72efd04a0c59dc31677c11231a38e89914461b284d7cc66c097bc065d87fa107",
+        "source_line_sha256": "sha256:a7623f871e00853935c7f641532c803035b9d62388cc1ed67b8e3b3e602c5682",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "a7623f871e00853935c7f641532c803035b9d62388cc1ed67b8e3b3e602c5682",
+        "physical_line_bytes_including_terminator_sha256": "f1c5ce188cb423f632a241379567347102e773562b62a4ed798610eadaad5bab",
+        "baseline_2353_physical_line_bytes_sha256": "f1c5ce188cb423f632a241379567347102e773562b62a4ed798610eadaad5bab"
+      }
+    },
+    {
+      "rank": 406,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000670",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 100,
+      "exact_source_line_text": "- [Concept原文](../../archive/intake/2026-09-06-concept-vision/concept/HELIX_CONCEPT_v0.1.md)",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "source/provenance reference",
+      "semantic_reading": "Concept原文への参照リンクで、旧source位置を示すだけのprovenance。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 97,
+          "text": "## 原文と留保"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 98,
+            "text": ""
+          },
+          {
+            "line": 99,
+            "text": "- [原文と取込メモ](../../archive/intake/2026-09-06-concept-vision/00_MASTER_INTAKE.md)"
+          },
+          {
+            "line": 101,
+            "text": "- [Vision原文](../../archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md)"
+          },
+          {
+            "line": 102,
+            "text": "- [Package原文](../../archive/intake/2026-09-06-concept-vision/current/HELIX_DEVELOPMENT_PACKAGE_CATALOG_v0.6.md)"
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補内のversioning/gating/authority/evidence境界を含む行では候補文書に規範的含意がある。source navigation行はprovenanceのみ。lexical marker absence does not establish current authority.",
+      "current_relation_and_residual": "旧Conceptへのnavigationから現在Conceptや対象別L1の承認を生成しない。 行固有のsuccessor/adopted pair binding/受入は確認できない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 670,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "5b0a26e7ba5ade2ed54a5b8dc5c2c2bfa80622e517e25dc22875ba8fb8eac831",
+        "source_line_sha256": "sha256:6a9d4a11c52c2a0b78b8641aa77bf15bd02e6ee8db99817007268c0e8ec4f8eb",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "6a9d4a11c52c2a0b78b8641aa77bf15bd02e6ee8db99817007268c0e8ec4f8eb",
+        "physical_line_bytes_including_terminator_sha256": "9a2c72118777ebdcad17370a6d46d49137e76754d3ca2f00c5a7881978b97f8b",
+        "baseline_2353_physical_line_bytes_sha256": "9a2c72118777ebdcad17370a6d46d49137e76754d3ca2f00c5a7881978b97f8b"
+      }
+    },
+    {
+      "rank": 407,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000671",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 101,
+      "exact_source_line_text": "- [Vision原文](../../archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md)",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "source/provenance reference",
+      "semantic_reading": "Vision原文への参照リンクであり、原文位置のnavigation。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 97,
+          "text": "## 原文と留保"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 99,
+            "text": "- [原文と取込メモ](../../archive/intake/2026-09-06-concept-vision/00_MASTER_INTAKE.md)"
+          },
+          {
+            "line": 100,
+            "text": "- [Concept原文](../../archive/intake/2026-09-06-concept-vision/concept/HELIX_CONCEPT_v0.1.md)"
+          },
+          {
+            "line": 102,
+            "text": "- [Package原文](../../archive/intake/2026-09-06-concept-vision/current/HELIX_DEVELOPMENT_PACKAGE_CATALOG_v0.6.md)"
+          },
+          {
+            "line": 103,
+            "text": "- [Release/Version原文](../../archive/intake/2026-09-06-concept-vision/current/HELIX_RELEASE_AND_VERSION_CATALOG_v0.6.md)"
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補内のversioning/gating/authority/evidence境界を含む行では候補文書に規範的含意がある。source navigation行はprovenanceのみ。lexical marker absence does not establish current authority.",
+      "current_relation_and_residual": "旧Visionの参照を現行能力目標や採択済み要求の根拠に拡張しない。 行固有のsuccessor/adopted pair binding/受入は確認できない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 671,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "09e68147ca21cac664cf0aa6f6b264a4b295e90d233caf82675f2ee209a8e353",
+        "source_line_sha256": "sha256:366122350b2dc641294fc4ab762f48cce0fac129a82753166cf8cf025e9015ef",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "366122350b2dc641294fc4ab762f48cce0fac129a82753166cf8cf025e9015ef",
+        "physical_line_bytes_including_terminator_sha256": "91791ac76cc61ad53ee0d0c3207e6a08a788e253697880ac72c084000566963d",
+        "baseline_2353_physical_line_bytes_sha256": "91791ac76cc61ad53ee0d0c3207e6a08a788e253697880ac72c084000566963d"
+      }
+    },
+    {
+      "rank": 408,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000672",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 102,
+      "exact_source_line_text": "- [Package原文](../../archive/intake/2026-09-06-concept-vision/current/HELIX_DEVELOPMENT_PACKAGE_CATALOG_v0.6.md)",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "source/provenance reference",
+      "semantic_reading": "Package原文catalogへの参照リンクであり、候補対応の出典navigation。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 97,
+          "text": "## 原文と留保"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 100,
+            "text": "- [Concept原文](../../archive/intake/2026-09-06-concept-vision/concept/HELIX_CONCEPT_v0.1.md)"
+          },
+          {
+            "line": 101,
+            "text": "- [Vision原文](../../archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md)"
+          },
+          {
+            "line": 103,
+            "text": "- [Release/Version原文](../../archive/intake/2026-09-06-concept-vision/current/HELIX_RELEASE_AND_VERSION_CATALOG_v0.6.md)"
+          },
+          {
+            "line": 104,
+            "text": "- [取込状況・不整合一覧](concept-vision-package-intake.md)"
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補内のversioning/gating/authority/evidence境界を含む行では候補文書に規範的含意がある。source navigation行はprovenanceのみ。lexical marker absence does not establish current authority.",
+      "current_relation_and_residual": "sourceリンク自体はPackage/Module mappingやcurrent identityを確定しない。 行固有のsuccessor/adopted pair binding/受入は確認できない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 672,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "d742280821e25cb97fc8e019399fa6a6fea10a52149574a2263f4481762bcb95",
+        "source_line_sha256": "sha256:2a596fea065aaeaed5ef61676c9a85ddec8c305336b98f5f024506607503c862",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "2a596fea065aaeaed5ef61676c9a85ddec8c305336b98f5f024506607503c862",
+        "physical_line_bytes_including_terminator_sha256": "4258a538097c0d7a229a9cae972996aab0c0ec2dfb887194bbc9b3336e2aed69",
+        "baseline_2353_physical_line_bytes_sha256": "4258a538097c0d7a229a9cae972996aab0c0ec2dfb887194bbc9b3336e2aed69"
+      }
+    },
+    {
+      "rank": 409,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000673",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 103,
+      "exact_source_line_text": "- [Release/Version原文](../../archive/intake/2026-09-06-concept-vision/current/HELIX_RELEASE_AND_VERSION_CATALOG_v0.6.md)",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "source/provenance reference",
+      "semantic_reading": "Release/Version原文catalogへの参照リンクであり、旧sourceのnavigation。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 97,
+          "text": "## 原文と留保"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 101,
+            "text": "- [Vision原文](../../archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md)"
+          },
+          {
+            "line": 102,
+            "text": "- [Package原文](../../archive/intake/2026-09-06-concept-vision/current/HELIX_DEVELOPMENT_PACKAGE_CATALOG_v0.6.md)"
+          },
+          {
+            "line": 104,
+            "text": "- [取込状況・不整合一覧](concept-vision-package-intake.md)"
+          },
+          {
+            "line": 105,
+            "text": ""
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補内のversioning/gating/authority/evidence境界を含む行では候補文書に規範的含意がある。source navigation行はprovenanceのみ。lexical marker absence does not establish current authority.",
+      "current_relation_and_residual": "参照リンクから現行Release authorityやversion台帳を生成しない。 行固有のsuccessor/adopted pair binding/受入は確認できない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 673,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "ab0b638d536dcd12e1f6238692ad458363effc7f3893d0810962aac6e84f969d",
+        "source_line_sha256": "sha256:0218e634ba0f800ca740b67d3e2f8e22bc067ef36f758c0c71ef85afbea94a95",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "0218e634ba0f800ca740b67d3e2f8e22bc067ef36f758c0c71ef85afbea94a95",
+        "physical_line_bytes_including_terminator_sha256": "c59e3894ff98a758df24c156d6e0317b991a0ed6854611aba45771a4d5b6f2c9",
+        "baseline_2353_physical_line_bytes_sha256": "c59e3894ff98a758df24c156d6e0317b991a0ed6854611aba45771a4d5b6f2c9"
+      }
+    },
+    {
+      "rank": 410,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000674",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 104,
+      "exact_source_line_text": "- [取込状況・不整合一覧](concept-vision-package-intake.md)",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "source/provenance reference",
+      "semantic_reading": "取込状況・不整合一覧への参照リンクであり、関連candidate文書をたどるnavigation。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 97,
+          "text": "## 原文と留保"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 102,
+            "text": "- [Package原文](../../archive/intake/2026-09-06-concept-vision/current/HELIX_DEVELOPMENT_PACKAGE_CATALOG_v0.6.md)"
+          },
+          {
+            "line": 103,
+            "text": "- [Release/Version原文](../../archive/intake/2026-09-06-concept-vision/current/HELIX_RELEASE_AND_VERSION_CATALOG_v0.6.md)"
+          },
+          {
+            "line": 105,
+            "text": ""
+          },
+          {
+            "line": 106,
+            "text": "原文の `basis/` リンクは本節の実配置リンクで補完する。原文bytesと受領時checksumは変更せず保全し、日本語の説明は本整理版だけに置く。"
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補内のversioning/gating/authority/evidence境界を含む行では候補文書に規範的含意がある。source navigation行はprovenanceのみ。lexical marker absence does not establish current authority.",
+      "current_relation_and_residual": "関連candidateへのリンクは、その内容を採択済み要求や解決済み差分にしない。 行固有のsuccessor/adopted pair binding/受入は確認できない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 674,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "31b8b79e817f1f5d23b71d9429060e33dd7dcbf5790cb120e7cf51bc1fc5043b",
+        "source_line_sha256": "sha256:24e1edc6bf92bc211ea8ec833b23a71f39453ee89b268bcf297f3eb38c56f9e2",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "24e1edc6bf92bc211ea8ec833b23a71f39453ee89b268bcf297f3eb38c56f9e2",
+        "physical_line_bytes_including_terminator_sha256": "01d94246e4eebeb31fb5b4b56f283477a2a091ee19d18428f205e85edac3be4e",
+        "baseline_2353_physical_line_bytes_sha256": "01d94246e4eebeb31fb5b4b56f283477a2a091ee19d18428f205e85edac3be4e"
+      }
+    },
+    {
+      "rank": 411,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000675",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 106,
+      "exact_source_line_text": "原文の `basis/` リンクは本節の実配置リンクで補完する。原文bytesと受領時checksumは変更せず保全し、日本語の説明は本整理版だけに置く。",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "source snapshot preservation note",
+      "semantic_reading": "原文basisリンクを実配置で補い、原文bytes/checksumを維持し、日本語説明を整理版に置くというsource-preservation説明。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 97,
+          "text": "## 原文と留保"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 104,
+            "text": "- [取込状況・不整合一覧](concept-vision-package-intake.md)"
+          },
+          {
+            "line": 105,
+            "text": ""
+          },
+          {
+            "line": 107,
+            "text": "原文が言及する別ZIP、roadmap JSON、DECISIONS_v0.6、旧v0.5調査書、evidence付属JSON等は今回の同梱物にはない。"
+          },
+          {
+            "line": 108,
+            "text": "それらの検証完了を主張しない。引用された過去発言や出典の確認記録を、今回の承認や今回の実測として再使用しない。"
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補内のversioning/gating/authority/evidence境界を含む行では候補文書に規範的含意がある。source navigation行はprovenanceのみ。lexical marker absence does not establish current authority.",
+      "current_relation_and_residual": "historical source preservationの説明であり、参照内容の正しさ・権利・authority・意味採択を確定しない。 行固有のsuccessor/adopted pair binding/受入は確認できない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 675,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "4debe8e82ed17ecb451e7201cd790ef58144213e0cc4ccdbb4ee09bc1b942210",
+        "source_line_sha256": "sha256:85d2df592383293bfeebf276c23d56f4aa17fec0698dae96006109999c75f24c",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "85d2df592383293bfeebf276c23d56f4aa17fec0698dae96006109999c75f24c",
+        "physical_line_bytes_including_terminator_sha256": "5e324cb5bb48c5f4ea152acf00bf306af9ee94ba8094fe7b6268d5d4f5898861",
+        "baseline_2353_physical_line_bytes_sha256": "5e324cb5bb48c5f4ea152acf00bf306af9ee94ba8094fe7b6268d5d4f5898861"
+      }
+    },
+    {
+      "rank": 412,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000676",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 107,
+      "exact_source_line_text": "原文が言及する別ZIP、roadmap JSON、DECISIONS_v0.6、旧v0.5調査書、evidence付属JSON等は今回の同梱物にはない。",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "source availability limitation",
+      "semantic_reading": "関連ZIP、roadmap、decision・調査・evidence JSON等が同梱されていないと開示するsource limitation。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 97,
+          "text": "## 原文と留保"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 105,
+            "text": ""
+          },
+          {
+            "line": 106,
+            "text": "原文の `basis/` リンクは本節の実配置リンクで補完する。原文bytesと受領時checksumは変更せず保全し、日本語の説明は本整理版だけに置く。"
+          },
+          {
+            "line": 108,
+            "text": "それらの検証完了を主張しない。引用された過去発言や出典の確認記録を、今回の承認や今回の実測として再使用しない。"
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補内のversioning/gating/authority/evidence境界を含む行では候補文書に規範的含意がある。source navigation行はprovenanceのみ。lexical marker absence does not establish current authority.",
+      "current_relation_and_residual": "不在資料の検証済み状態を生成しない。source evidence閉包は未完のまま。 行固有のsuccessor/adopted pair binding/受入は確認できない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 676,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "f9a5421e6734ffe6e294a1a1ac802d00e2d3951dea288202f8e14c01d7b7ea57",
+        "source_line_sha256": "sha256:233c9f2a0d2736e9d5d164c72fa5c10e12bc13aa4e57205483b27cb7fb528454",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "233c9f2a0d2736e9d5d164c72fa5c10e12bc13aa4e57205483b27cb7fb528454",
+        "physical_line_bytes_including_terminator_sha256": "87e14e8d7152d16a26e4ae2304bc08984a0aac5c233be1695417799d8464cf65",
+        "baseline_2353_physical_line_bytes_sha256": "87e14e8d7152d16a26e4ae2304bc08984a0aac5c233be1695417799d8464cf65"
+      }
+    },
+    {
+      "rank": 413,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000677",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "physical_line_number": 108,
+      "exact_source_line_text": "それらの検証完了を主張しない。引用された過去発言や出典の確認記録を、今回の承認や今回の実測として再使用しない。",
+      "semantic_family": "Concept / Release candidate crosswalk",
+      "semantic_function": "evidence / authority non-reuse limitation",
+      "semantic_reading": "不在資料の検証完了を主張せず、引用された過去発言・確認記録を今回の承認・実測に再利用しないという明示的留保。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 97,
+          "text": "## 原文と留保"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 106,
+            "text": "原文の `basis/` リンクは本節の実配置リンクで補完する。原文bytesと受領時checksumは変更せず保全し、日本語の説明は本整理版だけに置く。"
+          },
+          {
+            "line": 107,
+            "text": "原文が言及する別ZIP、roadmap JSON、DECISIONS_v0.6、旧v0.5調査書、evidence付属JSON等は今回の同梱物にはない。"
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "候補内のversioning/gating/authority/evidence境界を含む行では候補文書に規範的含意がある。source navigation行はprovenanceのみ。lexical marker absence does not establish current authority.",
+      "current_relation_and_residual": "候補の根拠限界を示すが、他のsource atomの被覆や今回の採否を証明しない。 行固有のsuccessor/adopted pair binding/受入は確認できない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 677,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "ebdeb96301cd1309bdbf537c048c004799d2661efbf53974e603921d85febb2b",
+        "source_line_sha256": "sha256:f88af3311e42db44b5f7b2da81d7fecbb3e1fe6646ebc58cee34c62e428dadd2",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 801,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "7145a4405b450dd97d88b0d2d8e7dbc6698bdbde35a4fbe3646e6af199db6a16",
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+        "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "utf8_source_line_content_sha256": "f88af3311e42db44b5f7b2da81d7fecbb3e1fe6646ebc58cee34c62e428dadd2",
+        "physical_line_bytes_including_terminator_sha256": "11df76c47d9bfe7c0b2df2ea481d4b3ebdb8d46c528a7a4005c559552e6e6a64",
+        "baseline_2353_physical_line_bytes_sha256": "11df76c47d9bfe7c0b2df2ea481d4b3ebdb8d46c528a7a4005c559552e6e6a64"
+      }
+    },
+    {
+      "rank": 414,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000679",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "physical_line_number": 2,
+      "exact_source_line_text": "title: \"会話寿命管理と外部状態からの継続再構成\"",
+      "semantic_family": "Conversation lifetime reconstruction L10 acceptance candidate",
+      "semantic_function": "candidate document title metadata",
+      "semantic_reading": "旧会話寿命管理・外部状態からの継続再構成受入候補のタイトル。文書主題を示す。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 1,
+            "text": "---"
+          },
+          {
+            "line": 3,
+            "text": "status: draft_candidate"
+          },
+          {
+            "line": 4,
+            "text": "authority_status: awaiting_human_approval"
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "この範囲は説明行／文書metadataとしてscreen markerを含まない。タイトル・status・layer・Issue/plan pointer自体は義務、承認、合格ではない。",
+      "current_relation_and_residual": "現行HELIX-OS L2はCLR-R01..08を未承認候補として明示し、OS L2/L11固定pairとの区別を保つ。#2026-09-28 OS PO決定の16採択項目にこの受入候補の個別採択は示されず、HELIXOS-L2-009等の近接責務からsuccessor/adoption/受入を推定しない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 679,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "ff8321d3fafdb4d385b043c183d811b71abb618fa6f46ca2f93e532e7e4a5909",
+        "source_line_sha256": "sha256:75cbcbf2989351835c3bd9e3a74a9ee4926b0c1010006757a7d674093ae1cb13",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 802,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "6c0eaa8c09917549588b13a82711906690d15fdbcf1184900520c49600661c27",
+        "asset_id": "LEGACY-ASSET-9DB9A1AE4381B4837D96",
+        "source_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+        "sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "utf8_source_line_content_sha256": "75cbcbf2989351835c3bd9e3a74a9ee4926b0c1010006757a7d674093ae1cb13",
+        "physical_line_bytes_including_terminator_sha256": "175977216a770f7f891bea4fdca154124e63646a44af463c235a5795d57f551e",
+        "baseline_2353_physical_line_bytes_sha256": "175977216a770f7f891bea4fdca154124e63646a44af463c235a5795d57f551e"
+      }
+    },
+    {
+      "rank": 415,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000680",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "physical_line_number": 3,
+      "exact_source_line_text": "status: draft_candidate",
+      "semantic_family": "Conversation lifetime reconstruction L10 acceptance candidate",
+      "semantic_function": "candidate status metadata",
+      "semantic_reading": "source document statusをdraft_candidateと記すfrontmatter metadata。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 1,
+            "text": "---"
+          },
+          {
+            "line": 2,
+            "text": "title: \"会話寿命管理と外部状態からの継続再構成\""
+          },
+          {
+            "line": 4,
+            "text": "authority_status: awaiting_human_approval"
+          },
+          {
+            "line": 5,
+            "text": "version: \"1.0\""
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "この範囲は説明行／文書metadataとしてscreen markerを含まない。タイトル・status・layer・Issue/plan pointer自体は義務、承認、合格ではない。",
+      "current_relation_and_residual": "現行HELIX-OS L2はCLR-R01..08を未承認候補として明示し、OS L2/L11固定pairとの区別を保つ。#2026-09-28 OS PO決定の16採択項目にこの受入候補の個別採択は示されず、HELIXOS-L2-009等の近接責務からsuccessor/adoption/受入を推定しない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 680,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "7b0b4e293e6f46a10b2c84b9b009baa9fd8dbb91f3050894f9ec27b26a843605",
+        "source_line_sha256": "sha256:e2f54e8ccf42197c498223478758d709e4b1617d22ec5c47f374ad01cd3f5d73",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 802,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "6c0eaa8c09917549588b13a82711906690d15fdbcf1184900520c49600661c27",
+        "asset_id": "LEGACY-ASSET-9DB9A1AE4381B4837D96",
+        "source_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+        "sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "utf8_source_line_content_sha256": "e2f54e8ccf42197c498223478758d709e4b1617d22ec5c47f374ad01cd3f5d73",
+        "physical_line_bytes_including_terminator_sha256": "b8e0419afbe1b1eea382ff37243bd4cc306439e777c20b65ae2f96126c8bf0dc",
+        "baseline_2353_physical_line_bytes_sha256": "b8e0419afbe1b1eea382ff37243bd4cc306439e777c20b65ae2f96126c8bf0dc"
+      }
+    },
+    {
+      "rank": 416,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000681",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "physical_line_number": 4,
+      "exact_source_line_text": "authority_status: awaiting_human_approval",
+      "semantic_family": "Conversation lifetime reconstruction L10 acceptance candidate",
+      "semantic_function": "candidate authority metadata",
+      "semantic_reading": "awaiting_human_approvalという旧候補metadata。現行対象revision decisionのreceiptではない。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 2,
+            "text": "title: \"会話寿命管理と外部状態からの継続再構成\""
+          },
+          {
+            "line": 3,
+            "text": "status: draft_candidate"
+          },
+          {
+            "line": 5,
+            "text": "version: \"1.0\""
+          },
+          {
+            "line": 6,
+            "text": "candidate_layer: L10"
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "この範囲は説明行／文書metadataとしてscreen markerを含まない。タイトル・status・layer・Issue/plan pointer自体は義務、承認、合格ではない。",
+      "current_relation_and_residual": "現行HELIX-OS L2はCLR-R01..08を未承認候補として明示し、OS L2/L11固定pairとの区別を保つ。#2026-09-28 OS PO決定の16採択項目にこの受入候補の個別採択は示されず、HELIXOS-L2-009等の近接責務からsuccessor/adoption/受入を推定しない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 681,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "185ec1143c646d98cf81bf01c48668ecbcba52e087ca0ad04b288ff2f689453d",
+        "source_line_sha256": "sha256:a823dc7cbf7e0f6e3f7b1c14654f39a27f6635702f3a8fc4120daf69a2474681",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 802,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "6c0eaa8c09917549588b13a82711906690d15fdbcf1184900520c49600661c27",
+        "asset_id": "LEGACY-ASSET-9DB9A1AE4381B4837D96",
+        "source_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+        "sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "utf8_source_line_content_sha256": "a823dc7cbf7e0f6e3f7b1c14654f39a27f6635702f3a8fc4120daf69a2474681",
+        "physical_line_bytes_including_terminator_sha256": "d06e6eb12e8f70f1e6bfc17a7f6c7f372be2c16df602f651b362916a0edcd8c6",
+        "baseline_2353_physical_line_bytes_sha256": "d06e6eb12e8f70f1e6bfc17a7f6c7f372be2c16df602f651b362916a0edcd8c6"
+      }
+    },
+    {
+      "rank": 417,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000682",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "physical_line_number": 5,
+      "exact_source_line_text": "version: \"1.0\"",
+      "semantic_family": "Conversation lifetime reconstruction L10 acceptance candidate",
+      "semantic_function": "candidate version metadata",
+      "semantic_reading": "候補文書に記したversion 1.0 metadata。product release/version authorityではない。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 3,
+            "text": "status: draft_candidate"
+          },
+          {
+            "line": 4,
+            "text": "authority_status: awaiting_human_approval"
+          },
+          {
+            "line": 6,
+            "text": "candidate_layer: L10"
+          },
+          {
+            "line": 7,
+            "text": "owner_issue: 1610"
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "この範囲は説明行／文書metadataとしてscreen markerを含まない。タイトル・status・layer・Issue/plan pointer自体は義務、承認、合格ではない。",
+      "current_relation_and_residual": "現行HELIX-OS L2はCLR-R01..08を未承認候補として明示し、OS L2/L11固定pairとの区別を保つ。#2026-09-28 OS PO決定の16採択項目にこの受入候補の個別採択は示されず、HELIXOS-L2-009等の近接責務からsuccessor/adoption/受入を推定しない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 682,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "d2f545beb308589b86d4c6fc4decd102d4ec71a0226af445f69d99b26bd6751d",
+        "source_line_sha256": "sha256:8878f2140aa69d1a5d1e7162cae938d4568edf7cc2db8f4c81d48d2db480cf77",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 802,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "6c0eaa8c09917549588b13a82711906690d15fdbcf1184900520c49600661c27",
+        "asset_id": "LEGACY-ASSET-9DB9A1AE4381B4837D96",
+        "source_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+        "sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "utf8_source_line_content_sha256": "8878f2140aa69d1a5d1e7162cae938d4568edf7cc2db8f4c81d48d2db480cf77",
+        "physical_line_bytes_including_terminator_sha256": "5e301f15a58ae7402e18c3af165d0a57a0af37252c4f74a289732dce70f00e01",
+        "baseline_2353_physical_line_bytes_sha256": "5e301f15a58ae7402e18c3af165d0a57a0af37252c4f74a289732dce70f00e01"
+      }
+    },
+    {
+      "rank": 418,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000683",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "physical_line_number": 6,
+      "exact_source_line_text": "candidate_layer: L10",
+      "semantic_family": "Conversation lifetime reconstruction L10 acceptance candidate",
+      "semantic_function": "candidate layer metadata",
+      "semantic_reading": "候補のintended layerをL10とするmetadata。layer指定は採択やpair completenessではない。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 4,
+            "text": "authority_status: awaiting_human_approval"
+          },
+          {
+            "line": 5,
+            "text": "version: \"1.0\""
+          },
+          {
+            "line": 7,
+            "text": "owner_issue: 1610"
+          },
+          {
+            "line": 8,
+            "text": "plan_id: PLAN-L3-1610-conversation-lifetime-reconstruction"
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "この範囲は説明行／文書metadataとしてscreen markerを含まない。タイトル・status・layer・Issue/plan pointer自体は義務、承認、合格ではない。",
+      "current_relation_and_residual": "現行HELIX-OS L2はCLR-R01..08を未承認候補として明示し、OS L2/L11固定pairとの区別を保つ。#2026-09-28 OS PO決定の16採択項目にこの受入候補の個別採択は示されず、HELIXOS-L2-009等の近接責務からsuccessor/adoption/受入を推定しない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 683,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "0587602c51b5bd30cf9f2c256b43dbe23032595ddc9f809ed88934cdc8a52593",
+        "source_line_sha256": "sha256:0c9102091103fa2cbf95d16036e763cd22389317a3a46f62bc87a2cdfd707355",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 802,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "6c0eaa8c09917549588b13a82711906690d15fdbcf1184900520c49600661c27",
+        "asset_id": "LEGACY-ASSET-9DB9A1AE4381B4837D96",
+        "source_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+        "sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "utf8_source_line_content_sha256": "0c9102091103fa2cbf95d16036e763cd22389317a3a46f62bc87a2cdfd707355",
+        "physical_line_bytes_including_terminator_sha256": "1df4b0cb5bb3d1aef2aa4d8e61fa38cbb4577345910cbc36f4f9800365fb143e",
+        "baseline_2353_physical_line_bytes_sha256": "1df4b0cb5bb3d1aef2aa4d8e61fa38cbb4577345910cbc36f4f9800365fb143e"
+      }
+    },
+    {
+      "rank": 419,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000684",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "physical_line_number": 7,
+      "exact_source_line_text": "owner_issue: 1610",
+      "semantic_family": "Conversation lifetime reconstruction L10 acceptance candidate",
+      "semantic_function": "candidate owner/projection metadata",
+      "semantic_reading": "owner issue number 1610へのhistorical projection pointer。Issue identity/statusは意味決定のauthorityではない。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 5,
+            "text": "version: \"1.0\""
+          },
+          {
+            "line": 6,
+            "text": "candidate_layer: L10"
+          },
+          {
+            "line": 8,
+            "text": "plan_id: PLAN-L3-1610-conversation-lifetime-reconstruction"
+          },
+          {
+            "line": 9,
+            "text": "---"
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "この範囲は説明行／文書metadataとしてscreen markerを含まない。タイトル・status・layer・Issue/plan pointer自体は義務、承認、合格ではない。",
+      "current_relation_and_residual": "現行HELIX-OS L2はCLR-R01..08を未承認候補として明示し、OS L2/L11固定pairとの区別を保つ。#2026-09-28 OS PO決定の16採択項目にこの受入候補の個別採択は示されず、HELIXOS-L2-009等の近接責務からsuccessor/adoption/受入を推定しない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 684,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "b702fd498f6b1ab24524151110bbb4bf9f71aad8988674a3464f2231f4560c9c",
+        "source_line_sha256": "sha256:ca5d1c7ee5801ed60b6b6750c225371c8249f75726ae798826a83a5ad0fc8797",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 802,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "6c0eaa8c09917549588b13a82711906690d15fdbcf1184900520c49600661c27",
+        "asset_id": "LEGACY-ASSET-9DB9A1AE4381B4837D96",
+        "source_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+        "sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "utf8_source_line_content_sha256": "ca5d1c7ee5801ed60b6b6750c225371c8249f75726ae798826a83a5ad0fc8797",
+        "physical_line_bytes_including_terminator_sha256": "f45d24bc157c90bedbf0849359aa77247d0e8735477a4a11debaa9ee24864c1b",
+        "baseline_2353_physical_line_bytes_sha256": "f45d24bc157c90bedbf0849359aa77247d0e8735477a4a11debaa9ee24864c1b"
+      }
+    },
+    {
+      "rank": 420,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000685",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "physical_line_number": 8,
+      "exact_source_line_text": "plan_id: PLAN-L3-1610-conversation-lifetime-reconstruction",
+      "semantic_family": "Conversation lifetime reconstruction L10 acceptance candidate",
+      "semantic_function": "candidate plan/provenance metadata",
+      "semantic_reading": "historical plan identifier。計画参照であって要求採否・受入完了を示さない。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 6,
+            "text": "candidate_layer: L10"
+          },
+          {
+            "line": 7,
+            "text": "owner_issue: 1610"
+          },
+          {
+            "line": 9,
+            "text": "---"
+          },
+          {
+            "line": 10,
+            "text": ""
+          }
+        ]
+      },
+      "marker_negative_normative_concern": "この範囲は説明行／文書metadataとしてscreen markerを含まない。タイトル・status・layer・Issue/plan pointer自体は義務、承認、合格ではない。",
+      "current_relation_and_residual": "現行HELIX-OS L2はCLR-R01..08を未承認候補として明示し、OS L2/L11固定pairとの区別を保つ。#2026-09-28 OS PO決定の16採択項目にこの受入候補の個別採択は示されず、HELIXOS-L2-009等の近接責務からsuccessor/adoption/受入を推定しない。",
+      "source_line_ledger": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 685,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "d326233b26baeb0be485ca4316a8801bc810de5f292c2c3e2f27faa387b1eafd",
+        "source_line_sha256": "sha256:bf855c3a43a6dacb79135dda8d61d1e240874680a08daed79333e3a882e0f6e9",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 802,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "6c0eaa8c09917549588b13a82711906690d15fdbcf1184900520c49600661c27",
+        "asset_id": "LEGACY-ASSET-9DB9A1AE4381B4837D96",
+        "source_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+        "sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "utf8_source_line_content_sha256": "bf855c3a43a6dacb79135dda8d61d1e240874680a08daed79333e3a882e0f6e9",
+        "physical_line_bytes_including_terminator_sha256": "0250257648ad09b4b2a159e7e7267dc5064fef1cfef76aea58c8e8e4b932d168",
+        "baseline_2353_physical_line_bytes_sha256": "0250257648ad09b4b2a159e7e7267dc5064fef1cfef76aea58c8e8e4b932d168"
+      }
+    }
+  ],
+  "limitations": [
+    "Screen-negative is a lexical result, not a semantic judgment; the row audit describes candidate meaning and residual separately.",
+    "Current L2/L11 family resemblance or reference to a related archived requirement does not establish exact source-row coverage, successor, adoption, or acceptance.",
+    "Historical candidate status/version/Issue/plan metadata and historical source-validation prose do not establish current status, successful execution, or closure.",
+    "Archive was read only. No archive runtime, source, workflow, CLI, hook, test, or CI was executed.",
+    "The exact F6 pair bytes are pinned by the 2026-09-28 PO decision record and commit f6dad2a33e24f000b87d7f09b8d40288257e74cc; later main revisions are labeled comparison context and do not replace those target bytes."
+  ],
+  "fixed_F6_source_family_relation": {
+    "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "source_family": "fixed F6 explicitly names concept-vision-release-crosswalk.md; related concept-vision-package-intake.md rows are family context, not individually named or adopted",
+    "HARNESS_L2": "docs/helix-harness/L2-requirements/product-requirements.md:288-296",
+    "HARNESS_L11": "docs/helix-harness/L11-acceptance/product-acceptance.md:188",
+    "OS_L2": "docs/helix-os/L2-requirements/governance-requirements.md:478-483",
+    "OS_L11": "docs/helix-os/L11-acceptance/governance-acceptance.md:236",
+    "boundary": "These fixed pair texts retain candidate conditions and reject old names/counts as fixed denominators. No selected legacy row is individually adopted, given a successor, closed, or accepted by this family relation."
+  }
+}
