@@ -1,0 +1,291 @@
+{
+  "schema_version": "1.0.0",
+  "audit_id": "V13-EFFECTIVE-RANKS52-56-HYB-002-006-CONDITION-AUDIT-2026-10-01",
+  "created_against_commit": "855ea3d15e47e1e02f170cf7f065ca7d006d38e0",
+  "authority_effect": "none",
+  "purpose": "source-qualified corrected131 poolのeffective rank 52と56にある旧v1.3 §4.6の2条件を原文と固定F6 L2/L11へ照合する。先行joinがraw ID mentionを除外根拠として数えなかった理由と、既存の限定coverage/audit記録が残す境界を分けて記録する。",
+  "population_and_rank": {
+    "selection_basis": {
+      "queue": {
+        "path": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json",
+        "sha256": "a61ec098a6bd714fcbbb706d0d9afb4e7f2777b114bf23c8056fc130e30f60d9",
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "rows_total": 303,
+        "eligible_rows": 255,
+        "eligibility": "priority=primary_residual AND queue_state=unresolved_for_closure_work",
+        "sort_key": [
+          "source_identity.source_line ascending",
+          "source_identity.source_item_id ascending"
+        ]
+      },
+      "source_qualified_join_review": {
+        "head": "0a91e269671a3a7b30d3ee7d1ef084d959791975",
+        "json_path": "docs/governance/audits/requirements-stage/v13-effective-rank-selection-reconstruction-review-2026-10-01.json",
+        "json_sha256": "424c0348780596e14aec1f1234bdd0842f06e54017846edab33fda694429c186",
+        "markdown_path": "docs/governance/audits/requirements-stage/v13-effective-rank-selection-reconstruction-review-2026-10-01.md",
+        "markdown_sha256": "e7775b06e2f5ae869cf064a9aae2ce970e98887cfdf611015f3522c45e45519f",
+        "focused_audit_count": 32,
+        "raw_id_token_hits": 136,
+        "source_qualified_exact_identity_hits": 124,
+        "eligible_no_hit_pool": 131,
+        "match_shapes": {
+          "nested_source_identity_tuple": 116,
+          "scope_plus_line_exact_tuple": 5,
+          "parent_source_pin_plus_authority_correction_row": 2,
+          "same_bytes_held_snapshot_atom": 1
+        }
+      },
+      "rank_crosswalk": {
+        "path": "docs/governance/audits/requirements-stage/v13-effective-legacy40-rank-reuse-crosswalk-2026-10-01.json",
+        "sha256": "f34ccf8f215a92e8aab3999d7134aef4fa78ac61aacf8a2435f4cc322af3b29c",
+        "markdown_path": "docs/governance/audits/requirements-stage/v13-effective-legacy40-rank-reuse-crosswalk-2026-10-01.md",
+        "markdown_sha256": "5dae6306e0f39e56b0e8234f1cd3c1f8622297d2d636c1c5644f12fb85901b86",
+        "created_against_commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "pool_size": 131,
+        "ordered_pool_unique": true,
+        "ranks": {
+          "52": "REQSRC-SUP-00213",
+          "56": "REQSRC-SUP-00217"
+        }
+      }
+    },
+    "source_qualified_pool_logic": "131 pool is the 255 eligible queue rows minus 124 exact identity joins in the specified 32 focused-audit set, then sorted by source physical line and source item ID. An ID token by itself is not an identity join.",
+    "prior_raw_mention_only_evidence": {
+      "audit_path": "docs/governance/audits/requirements-stage/v13-development-style-11-condition-audit-2026-09-30.json",
+      "sha256": "ce2aa162b917c281f78e27ccb5a67f04da484d2648b932aae753cfb25036cf75",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "source_join_review_pointer": "/join_reconstruction/excluded_unqualified_mentions",
+      "occurrence": "Both IDs occur in the audit exclusion array, at indexes 27 (00213) and 28 (00217), not in per-source identity rows. The reviewed join recorded no exact queue tuple there: source path, source-file SHA-256, physical source line, and source-line SHA-256 were absent. 00213 also has cited/prose occurrences in the pinned later audit records; those do not carry the complete queue tuple. 00217 had only the exclusion-list occurrence in that 32-input join evidence.",
+      "additional_00213_occurrences": [
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-cn1-6-fixed-f6-condition-audit-2026-10-01.json",
+          "sha256": "22eca23658171260d1ad489aa94d99b22ceaadb36245e40e2a854d5b6e1b7213",
+          "pointers": [
+            "/later_decision_proximity_screen/selected_near_pairs/7/mpr_registration/registration/source_collection_scope",
+            "/later_decision_proximity_screen/selected_near_pairs/7/mpr_registration/registration/evidence_refs/7",
+            "/later_decision_proximity_screen/selected_near_pairs/7/mpr_registration/registration/evidence_refs/8"
+          ]
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p4-p7-p8-p9-hnfr-p8-fixed-f6-condition-audit-2026-10-01.json",
+          "sha256": "c3503c22aa150af4ed336f47e6c6a45a0989c2c4b0b8c06cb537c68e60589fa0",
+          "pointers": [
+            "/later_adopted_proximity_screen/rows/15/mpr/source_collection_scope",
+            "/later_adopted_proximity_screen/rows/15/current_pair_sections/l2/section_text",
+            "/later_adopted_proximity_screen/rows/15/source_atom_boundary/source_collection_scope",
+            "/later_adopted_proximity_screen/cohort_indexes/cohorts/0/rows/54/mpr/source_collection_scope"
+          ]
+        }
+      ]
+    },
+    "existing_queue_audit_refs_boundary": "The queue separately lists source-qualified, bounded registration/coverage artifacts (24 refs for 00213; 20 for 00217). These are not source-identity matches in the reviewed 32-audit join, and their own scope/status remains pending or partial. Their presence is retained below; it does not make the rows adopted or closed and does not change the rank calculation.",
+    "selected_rows": [
+      {
+        "position": 52,
+        "source_item_id": "REQSRC-SUP-00213",
+        "source_line": 286,
+        "cluster": "V13-HYB-002",
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "crosswalk_membership": "unreviewed row; crosswalk_record_present=false"
+      },
+      {
+        "position": 56,
+        "source_item_id": "REQSRC-SUP-00217",
+        "source_line": 290,
+        "cluster": "V13-HYB-006",
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "crosswalk_membership": "unreviewed row; crosswalk_record_present=false"
+      }
+    ]
+  },
+  "legacy_source_and_asset_pins": {
+    "source_revision": "archive/legacy-generation-2026-09-14",
+    "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+    "archive_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+    "snapshot_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+    "snapshot_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+    "asset_ledger": {
+      "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "line": 956,
+      "line_sha256": "a6d52de16ee4aa8ecb37ed092fb4c2beda22ec89d1d036b3028414a753375dde",
+      "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "disposition": "source_snapshot_preservation",
+      "implementation_status": "non_executable_read_only_source",
+      "product_target": "unresolved"
+    },
+    "rows": [
+      {
+        "source_item_id": "REQSRC-SUP-00213",
+        "line": 286,
+        "line_sha256": "ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+        "requirement_id": "HR-FR-HYB-002 / HR-AC-HYB-002",
+        "source_text": "MCP profile catalogはprofile列挙、設定、safety、read-only probeを型付きで提供し、credential、egress、tool capabilityをprofile単位でfail-closeする。未登録profile、secret要求、write可能probeを拒否する。"
+      },
+      {
+        "source_item_id": "REQSRC-SUP-00217",
+        "line": 290,
+        "line_sha256": "2125ab8a351eea42abeb00975c7ff99a80fed5fe914b5c84a50bf6ca4945b931",
+        "requirement_id": "HR-FR-HYB-006 / HR-AC-HYB-006",
+        "source_text": "feedback lifecycleはintake、classify、ack、pending、reverse-candidate、resolution、SessionStart surfaceをevent/projectionで管理する。未ack findingの消失、prose handoverだけの解決、source HEAD不一致を拒否する。"
+      }
+    ],
+    "section_context": "§4.6 HYB-001..010・279–295; both rows are within the old Hybrid control-surface table."
+  },
+  "fixed_f6_pair_pins": {
+    "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "l2": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "relevant_lines": [
+        {
+          "line": 55,
+          "line_sha256": "7b09279d1e75c221cdc85f551026a6110496c42770c4721ad42e74acdcdd6006",
+          "id": "HARNESS-L2-004",
+          "relevance": "要求から設計・検証へのtraceと変更時再検証範囲"
+        },
+        {
+          "line": 56,
+          "line_sha256": "7840e6369db64bfe553628e2cb0c5cafcd8537266b2637e64e5c9789778f81e4",
+          "id": "HARNESS-L2-005",
+          "relevance": "変更/riskから検証義務・証拠条件を導出。特定CIやworkerに依存しない"
+        },
+        {
+          "line": 59,
+          "line_sha256": "8408b5461d54355389a0ec3006fbbca412f94cb6721c15adb95e2384c07b9024",
+          "id": "HARNESS-L2-008",
+          "relevance": "意味を持つ要求形成、scope逸脱/影響の提示、合意と操作権限の自動昇格禁止"
+        }
+      ]
+    },
+    "l11": {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "relevant_lines": [
+        {
+          "line": 46,
+          "line_sha256": "990515c74d019d9a1d3f2d2be338077102214181a7f5aa28cb04051ccb4a819b",
+          "id": "HARNESS-L2-005",
+          "relevance": "別revision/CI成功のみで受入成立としない"
+        },
+        {
+          "line": 47,
+          "line_sha256": "f2f232e40aa147d32f06bc4b0069899d6ba3a28e4130a5420d8ef97bb98a018b",
+          "id": "HARNESS-L2-005",
+          "relevance": "oracle、unknown、expected failure、差戻し先とpair/evidence identityの条件"
+        },
+        {
+          "line": 52,
+          "line_sha256": "906816f85188e86dd237752cb3f103bc716babc6122a8bd2e8c6bd20e04c0d98",
+          "id": "HARNESS-L2-005",
+          "relevance": "後発findingのevidence relationと元完了記録の保持"
+        },
+        {
+          "line": 64,
+          "line_sha256": "d48db296794039ada4a38537f7a29f85587628394e9683541704d658bcfed34f",
+          "id": "HARNESS-L2-008",
+          "relevance": "finding保持、Backflow、要求候補、影響する設計/検証の導出"
+        }
+      ]
+    },
+    "decision_and_state_boundary": "この照合は上記の固定F6本文の該当行を比較基準にする。F6のL2/L11は当該旧HYB source lineを個別にadopted successorとして指定していない。F6に書かれた一般的な意味保持・検証条件やL11の候補/工程文言だけを個別source adoptionと読み替えない。"
+  },
+  "prior_bounded_coverage_artifacts": [
+    {
+      "source_item_id": "REQSRC-SUP-00213",
+      "queue_existing_ref_count": 24,
+      "records": [
+        {
+          "path": "docs/governance/audits/requirement-registration/connect-v13-hyb-002-profile-supply-coverage-receipt-2026-09-29.json",
+          "sha256": "e601a5e26b9afa467e081983e2adcd7df43a19420e3641645a371edf4d0b1477",
+          "result": "12 lineage atoms across SECURITY-034 and CONNECT-008 candidates; source coverage partial; semantic closure 0/12; both candidates unadopted, recommendation split still pending PO"
+        },
+        {
+          "path": "docs/governance/audits/requirement-registration/connect-v13-hyb-002-profile-supply-source-lines-2026-09-29.jsonl",
+          "sha256": "2f3749cf9eac713093038c0514dae396efc74e54b131ae014674c08263a43d9e"
+        },
+        {
+          "path": "docs/governance/audits/requirement-registration/security-v13-hyb-002-profile-coverage-receipt-2026-09-28.json",
+          "sha256": "8afe5fdc134f10e58111887daaebc66453ecf30063e3025aa46f59e8d53503c7",
+          "result": "candidate covers only the selected profile-scoped security atoms; profile catalog/supply remainder stays pending; row-level closure partial"
+        }
+      ]
+    },
+    {
+      "source_item_id": "REQSRC-SUP-00217",
+      "queue_existing_ref_count": 20,
+      "records": [
+        {
+          "path": "docs/governance/audits/requirement-registration/os-v13-hyb-006-feedback-resolution-coverage-receipt-2026-09-28.json",
+          "sha256": "cb22a82d4881a62b2066e881449e2a6b65cae23613b0ba6715da6c6b7af34af9",
+          "result": "HELIXOS-L2-044 candidate unadopted; candidate scope rejects prose-only resolution; lifecycle, unacknowledged finding and source-HEAD mismatch atoms remain pending in that receipt; full source line partial"
+        },
+        {
+          "path": "docs/governance/audits/requirement-registration/os-v13-hyb-006-feedback-resolution-source-lines-2026-09-28.jsonl",
+          "sha256": "e64a73b89bf54fbe0cf4f9f2e75bf1c5c96c48c592f47126b89238385b706334"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/os-v13-hyb-006-feedback-functional-unit-crosswalk-2026-09-29.json",
+          "sha256": "9f7faf9cfebc68eb187b7705e7b115314dfd1452c4f470473d6b367ec28ae191",
+          "result": "two of eight clause-span/revision atoms are satisfied by adopted OS-007/009; two have only partial relation; two map to an unadopted candidate; two remain pending without exact general successor. Source-line closure count 0; both source lines remain partial."
+        }
+      ]
+    }
+  ],
+  "condition_comparison": [
+    {
+      "position": 52,
+      "source_item_id": "REQSRC-SUP-00213",
+      "baseline_status": "unresolved",
+      "audit_assessment": "partial_relation_only; source-row closure unresolved",
+      "retained": "Fixed F6 L2-008 preserves requirement formation, semantic comparison, scope boundary, and prohibits automatic promotion of output to approved requirement/operation authority. L2-005 and L11-005 provide general verification/oracle/evidence conditions. Separate source-specific receipt evidence partitions profile-supply/security atoms across CONNECT-008 and SECURITY-034 candidates.",
+      "residual": "No adopted exact pair in fixed F6 establishes the full typed MCP profile catalog: profile enumeration/configuration, typed safety and read-only probe descriptors, credential/egress/tool-capability fail-close per profile, and all three negative cases (unregistered profile, secret request, write-capable probe). The coverage receipt reports 0/12 semantic closure and candidates pending; relation and routing are not adoption.",
+      "classification": "partial",
+      "formal_successor_assignment": null,
+      "adoption_or_binding": false,
+      "implementation_or_acceptance_closure": "not_proven"
+    },
+    {
+      "position": 56,
+      "source_item_id": "REQSRC-SUP-00217",
+      "baseline_status": "unresolved",
+      "audit_assessment": "partial_relation_only; source-row closure unresolved",
+      "retained": "Fixed F6 L2-004/008 and L11-005/008 support trace/change impact, preserving findings, Backflow, evidence relation, and keeping completion distinct from evidence. Later source-specific crosswalk finds two clause-span/revision atoms satisfied by adopted OS-007/009.",
+      "residual": "No single adopted successor/pair closes the full HR-FR-HYB-006 lifecycle. Intake/classify/ack/pending/reverse-candidate/resolution/SessionStart event-projection behavior is not fully mapped; unacknowledged-finding, prose-only resolution, and source-HEAD mismatch clauses remain split across separate status atoms. The OS-044 candidate for prose-only resolution is unadopted; the two OS-007/009 atom matches do not establish source-line closure.",
+      "classification": "partial",
+      "formal_successor_assignment": null,
+      "adoption_or_binding": false,
+      "implementation_or_acceptance_closure": "not_proven"
+    }
+  ],
+  "residual_and_claim_boundary": {
+    "unresolved_source_conditions": [
+      "REQSRC-SUP-00213",
+      "REQSRC-SUP-00217"
+    ],
+    "formal_successor_assignment": "none established by this audit",
+    "whole_source_closure": false,
+    "implementation_or_acceptance_execution": "not established",
+    "authority_effect": "none",
+    "prohibited_inferences": [
+      "rank order or raw ID mention implies adoption/closure",
+      "bounded coverage receipt or candidate route closes the whole source condition",
+      "two adopted atom-level relations for 00217 close the full source line",
+      "fixed F6 generic pair conditions establish an unrecorded exact source successor",
+      "archive runtime/test/CLI/CI behavior is current evidence"
+    ],
+    "old_runtime_cli_test_ci_executed": false
+  },
+  "static_validation": {
+    "source_identity_lines_checked_against_archive_and_snapshot": true,
+    "archive_asset_ledger_pins_checked_against_crosswalk": true,
+    "positions_52_and_56_checked_against_corrected131_crosswalk": true,
+    "fixed_f6_file_and_line_digests_recomputed": true,
+    "prior_mention_and_bounded_receipt_scopes_checked": true,
+    "residual_and_authority_claims_preserved": true,
+    "json_roundtrip": true,
+    "old_runtime_cli_test_ci_executed": false
+  }
+}
