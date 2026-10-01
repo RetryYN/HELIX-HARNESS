@@ -47,7 +47,7 @@ scope: HR-FR-HIL-16、HAC-HIL-16a/b/c、HAT-HIL-16、参照する旧要求atom�
 
 ## 現行HARNESSの直接・近接対応
 
-照合時の現行ファイルSHA-256はL2 `78c32b598f449cf80d90e0e35ab6d39b94bd150abbfd543bc75bdb8be949ae6`、L11 `a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e`。
+照合時の現行ファイルSHA-256はL2 `78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6`、L11 `a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e`。
 
 | 現行identity／authority | 対応するHIL-16条件 | 境界・未解決 |
 |---|---|---|
