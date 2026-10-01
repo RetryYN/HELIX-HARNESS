@@ -26,3 +26,7 @@
 ## 境界と静的検証
 
 監査はsource identity別の要求stage照合であり、実装・旧runtime/旧test/CIの実行、L3承認、候補採択、formal successor割当、旧要求retire、全IR閉包を主張しない。source未選択条件やreceiptをcandidate full coverageに拡張しない。JSONには全7 source bytes/line hash、IR digest/pointer、carry row、比較したL2/L11 section digest、decision pin、条件別findingを含める。
+
+## root統合時の追随
+
+最新main `44f41d070322ab8308777c0ba22368914a9a9373` のHARNESS既存全文（064を含む）と台帳648行prefixを保持し、067/068の最終001各一行と候補sectionを末尾に追補した。候補4sectionと原文2atomの意味・digestは変えず、現在の全file SHAと節の物理行をreceipt/JSONへ追随した。歴史比較fcfと起草base58cbの固定pinsを現在の全file SHAに読み替えない。
