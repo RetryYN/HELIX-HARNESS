@@ -2508,7 +2508,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::HELIX_World_Governance_v0_1",
-      "semantic_reading": "メモを背景・接続根拠に限定し、read-only照合範囲と未完Issueから未実装を推論しない制約を述べる。",
+      "semantic_reading": "これは要求指示書の背景・接続根拠で、別の意味正本ではない。Issueは確認時点の可変状態、コードは固定commitを読む。調査は関係する要求・Issue・代表実装のread-only照合に限り、全件実装監査、test実行、稼働・公開確認の完了を主張しない。未完Issueだけから全機能未実装と判定しない。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4647,
@@ -2748,7 +2748,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::1",
-      "semantic_reading": "#990のsnapshot・pure comparatorとDB projectionに関する旧要求と、HWGで既存責務へ接続する方針。",
+      "semantic_reading": "#990の旧要求はGit/GitHub/event/DBを同じsnapshotへ束縛し、pure comparatorで計画・観測のずれを検出し、DBを再構築可能projectionとする。HWGはsnapshot/差分/通知の既存責務を複製せず接続し、意味authorityは同表の後続canonical JSONを優先照合する。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4653,
@@ -2868,7 +2868,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::1",
-      "semantic_reading": "#1033/#1036の安定identity・revision・digest・authority接続、将来planner区分、graph再利用の方針。",
+      "semantic_reading": "#1033/#1036はstable identity・revision・digest・authorityで接続し、全体plannerを将来対象に分ける。World Graphを別基盤にせず、既存ownerで必要最小のgraph契約を切り出し、依存修正時も安全義務を維持して全体planner完成待ちを作らない。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4654,
@@ -2988,7 +2988,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::1",
-      "semantic_reading": "#1074のsource/release/distribution inventory責務と提供済み判定境界。",
+      "semantic_reading": "#1074のsource、branch/tag/release、IR、distribution/consumer分類責務を再利用し、branchやtagが存在するだけでは利用者への提供済みと判定しない。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4655,
@@ -3108,7 +3108,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::1",
-      "semantic_reading": "#1494の依存閉包、検証・昇格・rollbackと候補承認/IR/runtime/公開の区別、Module/Slice/Bundle/Waveの定義。",
+      "semantic_reading": "#1494は旧Module数・名称・所属を固定せず、dependency closureと独立検証/昇格/rollbackで構成を再評価する。候補承認・IR・runtime・公開を分け、Module=所有、Slice=昇格、Bundle=利用目的、Wave=順序を保ち、別Release体系を作らない。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4656,
@@ -3228,7 +3228,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::1",
-      "semantic_reading": "#1556の要求受付、自動承認との区別、調査/選択/評価/実行認可の分離、現行policy再利用。",
+      "semantic_reading": "#1556は要求候補受付であって自動承認policy発効ではない。調査・人間選択・技術評価・実行認可を分離し、無関係scopeを継続する。HWGに承認規則を重複追加せず現行policyを使い、新policy成立前に自動承認を既成事実化しない。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4657,
@@ -3348,7 +3348,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::1",
-      "semantic_reading": "#1110/#1372/#1038の接続先と、全runtime再監査を行っていない範囲を明記。",
+      "semantic_reading": "#1110/#1372を#1500のbranch/document inventory接続先、#1038を#1033のreplacement lifecycle接続先として扱う。このメモはそれらのruntime全体を再監査したとは主張しない。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4658,
@@ -3468,7 +3468,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::B_graph_loader",
-      "semantic_reading": "当時のgraph loaderの取得失敗時挙動とtest/source対応付けを観測として記録。",
+      "semantic_reading": "固定commit上の旧graph loader観測: directory取得失敗時にreturnするhelperがあり、不在・parse失敗を空集合とするコメントがある。test/source照合はimport解析に加えbasename一致の補助処理を使う。これは観測記録であり現行の採択要件ではない。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4664,
@@ -3588,7 +3588,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::R03",
-      "semantic_reading": "R01/R03/R08との関連とconsumer契約を確認して取得品質の根拠を渡す設計上の注意。",
+      "semantic_reading": "R01/R03/R08はこの差を保つための旧要求。既存の表示consumerを一括変更せず、consumer契約を確かめ、実行許可側へ必要な取得品質と根拠情報を渡す。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4669,
@@ -3708,7 +3708,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::C_intake_receipt",
-      "semantic_reading": "この物理行に記載された旧確認・設計上の注意を記録する。",
+      "semantic_reading": "World Admission全体が完成した証拠ではなく、入力保全engineを複製する理由にもならない。適用できる既存部品と不足機能・責務・提供先の対応を分けて設計する。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4672,
@@ -3828,7 +3828,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::3",
-      "semantic_reading": "この物理行に記載された旧確認・設計上の注意を記録する。",
+      "semantic_reading": "HWGは要求受付権を奪わず全入力を候補保全し、次の行為に必要な条件を照合する。人間の意味判断、既存正本更新、配車、検証、公開承認を横取りしない。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4674,
@@ -3948,7 +3948,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::3",
-      "semantic_reading": "既存intake receiptにsource/inventory digest、裁定、atom disposition、receipt digestがあるという記録。",
+      "semantic_reading": "表の列見出しは論理責務、HWGが所有する差分、HWGが行わないことを分ける。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4675,
@@ -4068,7 +4068,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::3",
-      "semantic_reading": "表の一行として、確認対象・旧記述・反映案を対応付けて記録。",
+      "semantic_reading": "World Model/Registryは機能・責務・実装・検証・提供の対応付けと状態/取得品質の表示を担う。Requirement/Designの意味・承認と元データ保全は担わない。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4677,
@@ -4188,7 +4188,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::3",
-      "semantic_reading": "表の一行として、確認対象・旧記述・反映案を対応付けて記録。",
+      "semantic_reading": "World Graph接続は既存graphにentity/edge契約をつなぎ、候補と確定根拠を区別する。graph kernel再実装、全体planner、自由な因果推論は行わない。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4678,
@@ -4308,7 +4308,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::3",
-      "semantic_reading": "今回の要求として定める内容の節見出し。",
+      "semantic_reading": "World Policy評価は工程・行為別の全体整合条件を既存policyへ追加する。人間の価値選択を担わず、security/CI/review/release policyを解除しない。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4679,
@@ -4428,7 +4428,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::3",
-      "semantic_reading": "要求受付を奪わず条件照合を担い、人間判断・正本更新・配車・検証・公開承認を横取りしない境界。",
+      "semantic_reading": "World Delta/Admission接続は新規・変更要求を既存機能等へ対応付け、必要差分と許可範囲を出す。正本へ直接書かず、モデルで配車せず、未承認実行をしない。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4680,
@@ -4548,7 +4548,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::3",
-      "semantic_reading": "論理責務/HWG差分/HWG非責務の対応表見出し。",
+      "semantic_reading": "Portfolio表示は未実装・未接続・停止理由・提供資格・次に必要な証拠を説明する。進捗自己申告、完成率推測、公開状態捏造はしない。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4681,
@@ -4668,7 +4668,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::R01",
-      "semantic_reading": "Registryの対応付けと状態表示、Requirement/Design意味・承認や元data保全を担わない責務。",
+      "semantic_reading": "HWG-R01〜R09はこの指示書内の候補ID。正本化時に既存ID/behavior contract/ownerとの衝突を検査し、正規IDとの対応表を残す。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4682,
@@ -4788,7 +4788,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::4",
-      "semantic_reading": "この物理行に記載された旧確認・設計上の注意を記録する。",
+      "semantic_reading": "先行投入境界は#1494に合わせる。CI改善の内部適用と#1293所有のCursor限定委譲を、全体管理機構/Release全体の完成待ちへ戻さない。同時にP0、安全依存、独立検収、予算、TTL、隔離条件を維持する。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4685,
@@ -4908,7 +4908,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::4",
-      "semantic_reading": "#1494の先行投入に沿い、CI改善と限定委譲を全体完了待ちにせずP0等を保つ。",
+      "semantic_reading": "初期成果は世界全体の完全整理ではなく、未整理部分を正直に表示し、検証済み範囲で新しい未束縛変更を実行へ通さないこと。全件是正と最小core運用開始を別の到達条件にする。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4686,
@@ -5028,7 +5028,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::4",
-      "semantic_reading": "提出物を要求文書とメモに限り、Issue編集・code・CI・要件承認・公開操作を行っていないと記録。",
+      "semantic_reading": "提出物は要求指示書とメモだけ。この時点でIssue作成/編集/priority変更、コード変更、CI実行、要件承認、tag/publishを行っていないという作業範囲記録。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4687,
@@ -5868,7 +5868,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::",
-      "semantic_reading": "この物理行に記載された旧確認・設計上の注意を記録する。",
+      "semantic_reading": "#1500のCapability/Release Portfolio Managementを拡張する対象scopeは本repositoryと許可済consumer/distribution境界。外部世界一般を対象にしない。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4697,
@@ -5988,7 +5988,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::",
-      "semantic_reading": "この物理行に記載された旧確認・設計上の注意を記録する。",
+      "semantic_reading": "旧本文中の宣言ではcanonical Requirement JSONが当時の意味正本、Markdownは未承認候補で二重正本にしない。承認・独立検収・正規更新・main read-after・旧#397 IR admission後にruntime投影するという旧工程記述であり、現行権限の根拠ではない。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4701,
@@ -6708,7 +6708,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::PO-1500-002",
-      "semantic_reading": "この物理行に記載された旧確認・設計上の注意を記録する。",
+      "semantic_reading": "主ownerは#1500。意味正本/既存責務/優先順の境界と導入契約を含め入力9候補IDを保持し、正式ID採番時は衝突確認と対応表を要する。旧L3候補gate L3-PO-1500-002はcanonical昇格/IR収載/runtimeとは別工程。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4711,
@@ -6828,7 +6828,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::1",
-      "semantic_reading": "この物理行に記載された旧確認・設計上の注意を記録する。",
+      "semantic_reading": "HWGはHELIX全体の要求・機能・責務・実装・検証・提供単位を統括し、新要求追加後も所属・影響・権限・完了条件を保持する。役割は既存機構の接続と変更整合の統制。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4713,
@@ -6948,7 +6948,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::1",
-      "semantic_reading": "この物理行に記載された旧確認・設計上の注意を記録する。",
+      "semantic_reading": "広域Feature追加や将来の推論知能化より先に最小coreを実用化する。安全・正本破損・データ損失のP0を優先し、CI高速化とCursor限定cloud delegationは既存安全条件を維持して並行する。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4714,
@@ -7068,7 +7068,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::2_owner",
-      "semantic_reading": "この物理行に記載された旧確認・設計上の注意を記録する。",
+      "semantic_reading": "要求意味はcanonical Requirement JSON、設計/協調状態/実行履歴は各既存authorityが担う。World Modelはそこから再構築可能なprojectionで別正本ではない。codeは実装証拠で要求/承認を代替しない。World scopeはrepoと許可済distribution/consumer境界。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4717,
@@ -7188,7 +7188,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::2_owner",
-      "semantic_reading": "この物理行に記載された旧確認・設計上の注意を記録する。",
+      "semantic_reading": "#1500を主な改版先とし、#990計画/実績、#1036意味graph、#1038置換lifecycle、#1073/#1074/#1494提供構成、#1110/#1372 branch/document inventoryを再利用する。要求形成/再確定は#1556/#1169/#397、配車は既存Ticket/Assignment ownerへ戻す。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4718,
@@ -7308,7 +7308,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::2_owner",
-      "semantic_reading": "この物理行に記載された旧確認・設計上の注意を記録する。",
+      "semantic_reading": "Registry/Graph/Policy/Admissionは論理責務で、独立engine/DB/journal/graph基盤/scheduler/承認engineを作らない。#1036等の巨大な親待ちで循環する場合、既存owner内で必要最小契約を分割し、依存改版と安全証拠を先に確定する。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4719,
@@ -7428,7 +7428,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::HWG-R02",
-      "semantic_reading": "この物理行に記載された旧確認・設計上の注意を記録する。",
+      "semantic_reading": "各機能の要求候補/承認/IR収載、設計、実装、入口接続、検証、運用観測、配布/公開を別軸にし、現行/候補/互換/保留/退役も別軸にする。文書、binding test、Issue close、PR mergeを実働/公開証拠へ昇格しない。件数から完成率を作らない。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4724,
@@ -7548,7 +7548,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::HWG-R04_World_Delta",
-      "semantic_reading": "この物理行に記載された旧確認・設計上の注意を記録する。",
+      "semantic_reading": "受付/再入/改善候補/直接作成Issue・PLAN・PRを同じ規則で照合し、原文とAI解釈を分離する。拡張/新設/再利用/分割/統合/置換/保留候補、影響責務、検証義務、提供方針を導出。unknown/意味衝突は調査または既存decision経路へ戻し、名称類似やAI scoreだけで同一視/採否を確定しない。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4728,
@@ -7668,7 +7668,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::HWG-R05_Admission",
-      "semantic_reading": "この物理行に記載された旧確認・設計上の注意を記録する。",
+      "semantic_reading": "受付や相談自体は拒まず、未許可の行為だけを止める。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4730,
@@ -7788,7 +7788,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::HWG-R05_Admission",
-      "semantic_reading": "この物理行に記載された旧確認・設計上の注意を記録する。",
+      "semantic_reading": "共通policy evaluatorとreceiptを既存入口へ接続しCLI/GitHub/worker経路の迂回を防ぐ。発行時・dispatch時・merge/昇格時に適用scopeとrevisionを再照合する。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4734,
@@ -7908,7 +7908,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::HWG-R09",
-      "semantic_reading": "この物理行に記載された旧確認・設計上の注意を記録する。",
+      "semantic_reading": "根拠付きで存在/未実装/衝突/次工程/提供可否/human waitを表示する。全件inventoryと通常影響差分検査を分離し、毎PRに全repo scanやLLMを加えない。未束縛率、誤停止、見逃し、判断待ち、p95追加時間、再実行/token costを計測し、enforce前に許容値を要件化する。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4742,
