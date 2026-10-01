@@ -478,6 +478,68 @@
         ],
         "text": "| `LEGACY-ASSET-322CD23B625A08E2BFB3`; `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md` lines 14–24, 33–44; SHA `c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447` | exact target/operation/environment/network-data scope/expiry、revoke/scope driftで停止、unknown継続禁止、sensitive evidence流出抑制 | scopeを限定security engagementから全HELIX操作のauthority境界へ広げる根拠はPO L1であり、旧候補の採択/plan gate/特権作業範囲は移さない | 無認可scan/exploit等の安全境界は旧candidate内の文脈を保ち、現行のsecurity engagement採択を本PRで決めない |"
       }
+    ],
+    "exact_source_path_integer_range_refs": [
+      {
+        "commit": "47006ff86dc0bbee8d3ae9a51cfcff4267cc8e60",
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+        "physical_line": 387,
+        "line_text": "| `LEGACY-ASSET-322CD23B625A08E2BFB3`; `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md` lines 14–24, 33–44; SHA `c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447` | exact target/operation/environment/network-data scope/expiry、revoke/scope driftで停止、unknown継続禁止、sensitive evidence流出抑制 | scopeを限定security engagementから全HELIX操作のauthority境界へ広げる根拠はPO L1であり、旧候補の採択/plan gate/特権作業範囲は移さない | 無認可scan/exploit等の安全境界は旧candidate内の文脈を保ち、現行のsecurity engagement採択を本PRで決めない |",
+        "citation": "security-engagement-authority-requests.md lines 14–24, 33–44",
+        "source_item_id": "LEGACY-CAND-LINE-004351",
+        "source_path": "docs/governance/candidates/security-engagement-authority-requests.md",
+        "source_physical_line": 14,
+        "relation": "path plus integer line-range citation; no source-line ID token; not adoption or whole-line closure"
+      },
+      {
+        "commit": "47006ff86dc0bbee8d3ae9a51cfcff4267cc8e60",
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+        "physical_line": 387,
+        "line_text": "| `LEGACY-ASSET-322CD23B625A08E2BFB3`; `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md` lines 14–24, 33–44; SHA `c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447` | exact target/operation/environment/network-data scope/expiry、revoke/scope driftで停止、unknown継続禁止、sensitive evidence流出抑制 | scopeを限定security engagementから全HELIX操作のauthority境界へ広げる根拠はPO L1であり、旧候補の採択/plan gate/特権作業範囲は移さない | 無認可scan/exploit等の安全境界は旧candidate内の文脈を保ち、現行のsecurity engagement採択を本PRで決めない |",
+        "citation": "security-engagement-authority-requests.md lines 14–24, 33–44",
+        "source_item_id": "LEGACY-CAND-LINE-004353",
+        "source_path": "docs/governance/candidates/security-engagement-authority-requests.md",
+        "source_physical_line": 16,
+        "relation": "path plus integer line-range citation; no source-line ID token; not adoption or whole-line closure"
+      },
+      {
+        "commit": "47006ff86dc0bbee8d3ae9a51cfcff4267cc8e60",
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+        "physical_line": 387,
+        "line_text": "| `LEGACY-ASSET-322CD23B625A08E2BFB3`; `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md` lines 14–24, 33–44; SHA `c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447` | exact target/operation/environment/network-data scope/expiry、revoke/scope driftで停止、unknown継続禁止、sensitive evidence流出抑制 | scopeを限定security engagementから全HELIX操作のauthority境界へ広げる根拠はPO L1であり、旧候補の採択/plan gate/特権作業範囲は移さない | 無認可scan/exploit等の安全境界は旧candidate内の文脈を保ち、現行のsecurity engagement採択を本PRで決めない |",
+        "citation": "security-engagement-authority-requests.md lines 14–24, 33–44",
+        "source_item_id": "LEGACY-CAND-LINE-004371",
+        "source_path": "docs/governance/candidates/security-engagement-authority-requests.md",
+        "source_physical_line": 42,
+        "relation": "path plus integer line-range citation; no source-line ID token; not adoption or whole-line closure"
+      },
+      {
+        "commit": "47006ff86dc0bbee8d3ae9a51cfcff4267cc8e60",
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+        "physical_line": 387,
+        "line_text": "| `LEGACY-ASSET-322CD23B625A08E2BFB3`; `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md` lines 14–24, 33–44; SHA `c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447` | exact target/operation/environment/network-data scope/expiry、revoke/scope driftで停止、unknown継続禁止、sensitive evidence流出抑制 | scopeを限定security engagementから全HELIX操作のauthority境界へ広げる根拠はPO L1であり、旧候補の採択/plan gate/特権作業範囲は移さない | 無認可scan/exploit等の安全境界は旧candidate内の文脈を保ち、現行のsecurity engagement採択を本PRで決めない |",
+        "citation": "security-engagement-authority-requests.md lines 14–24, 33–44",
+        "source_item_id": "LEGACY-CAND-LINE-004372",
+        "source_path": "docs/governance/candidates/security-engagement-authority-requests.md",
+        "source_physical_line": 43,
+        "relation": "path plus integer line-range citation; no source-line ID token; not adoption or whole-line closure"
+      },
+      {
+        "commit": "47006ff86dc0bbee8d3ae9a51cfcff4267cc8e60",
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+        "physical_line": 387,
+        "line_text": "| `LEGACY-ASSET-322CD23B625A08E2BFB3`; `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md` lines 14–24, 33–44; SHA `c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447` | exact target/operation/environment/network-data scope/expiry、revoke/scope driftで停止、unknown継続禁止、sensitive evidence流出抑制 | scopeを限定security engagementから全HELIX操作のauthority境界へ広げる根拠はPO L1であり、旧候補の採択/plan gate/特権作業範囲は移さない | 無認可scan/exploit等の安全境界は旧candidate内の文脈を保ち、現行のsecurity engagement採択を本PRで決めない |",
+        "citation": "security-engagement-authority-requests.md lines 14–24, 33–44",
+        "source_item_id": "LEGACY-CAND-LINE-004373",
+        "source_path": "docs/governance/candidates/security-engagement-authority-requests.md",
+        "source_physical_line": 44,
+        "relation": "path plus integer line-range citation; no source-line ID token; not adoption or whole-line closure"
+      }
     ]
   },
   "current_candidate_documents": {
@@ -13469,7 +13531,10 @@
     "selected_line_direct_binding_to_current_requirement_count": 0,
     "authority_effect": "none",
     "boundary_note": "source-file/family references, candidate history, PO/receipt metadata, and exact selected-row bindings are separate. Sept29 OS046 adoption applies to specified L2/L11 revisions only; it does not itself adopt these selected lines or establish full RFA closure. Two Sept27 receipts cite all selected SEA source rows as atom IDs but mark them preserved_pending under MPR-SH-CANDIDATE-003; this exact historical source-row citation is not current requirement adoption.",
-    "selected_line_historical_preserved_pending_receipt_atom_count": 39
+    "selected_line_historical_preserved_pending_receipt_atom_count": 39,
+    "selected_line_path_integer_range_citation_count": 5,
+    "fixed_F6_path_integer_range_citation_count": 5,
+    "citation_receipt_count_boundary": "5 rows cited by fixed F6 and current main, separate from Sept27 historical preserved_pending receipt atoms. No selected line adoption/binding is generated."
   },
   "limitations": [
     "この監査はmarker-negative complementのrank 2501–2540のみ。隣接rank条件を選択行へ加えていない。",
@@ -13713,7 +13778,7 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "candidate_metadata",
-      "semantic_reading": "候補文書のtitle metadata。文書名の識別でありauthority状態ではない。"
+      "semantic_reading": "旧候補のfield・値を保持する：title: \"認可済みSecurity engagement受入候補\" 現行採択の根拠にはしない。"
     },
     {
       "rank": 2503,
@@ -13833,7 +13898,7 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "candidate_metadata",
-      "semantic_reading": "候補文書のlayer metadata。正式layer approvalとして扱わない。"
+      "semantic_reading": "旧候補のfield・値を保持する：layer: L10 現行採択の根拠にはしない。"
     },
     {
       "rank": 2504,
@@ -13953,7 +14018,7 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "candidate_metadata",
-      "semantic_reading": "候補文書のstatus metadataをそのまま記録。current statusとは扱わない。"
+      "semantic_reading": "旧候補のfield・値を保持する：status: draft_candidate 現行採択の根拠にはしない。"
     },
     {
       "rank": 2505,
@@ -14073,7 +14138,7 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "candidate_metadata",
-      "semantic_reading": "候補文書自身が記すauthority metadata。現行採否はdecisionと対象revisionから別途読む。"
+      "semantic_reading": "旧候補のfield・値を保持する：authority_status: proposed_pending_l3_confirmation 現行採択の根拠にはしない。"
     },
     {
       "rank": 2506,
@@ -14313,7 +14378,7 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "candidate_metadata",
-      "semantic_reading": "候補文書間のpair/parent path metadata。物理row単体のadoptionやexact current bindingとは異なる。"
+      "semantic_reading": "旧候補のfield・値を保持する：pair_artifact: docs/governance/candidates/security-engagement-authority-requirements.md 現行採択の根拠にはしない。"
     },
     {
       "rank": 2508,
@@ -15513,7 +15578,7 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "candidate_metadata",
-      "semantic_reading": "候補文書のtitle metadata。文書名の識別でありauthority状態ではない。"
+      "semantic_reading": "旧候補のfield・値を保持する：title: \"認可済みSecurity engagement要求候補\" 現行採択の根拠にはしない。"
     },
     {
       "rank": 2518,
@@ -15633,7 +15698,7 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "candidate_metadata",
-      "semantic_reading": "候補文書のlayer metadata。正式layer approvalとして扱わない。"
+      "semantic_reading": "旧候補のfield・値を保持する：layer: L1 現行採択の根拠にはしない。"
     },
     {
       "rank": 2519,
@@ -15753,7 +15818,7 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "candidate_metadata",
-      "semantic_reading": "候補文書のstatus metadataをそのまま記録。current statusとは扱わない。"
+      "semantic_reading": "旧候補のfield・値を保持する：status: draft_candidate 現行採択の根拠にはしない。"
     },
     {
       "rank": 2520,
@@ -15873,7 +15938,7 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "candidate_metadata",
-      "semantic_reading": "候補文書自身が記すauthority metadata。現行採否はdecisionと対象revisionから別途読む。"
+      "semantic_reading": "旧候補のfield・値を保持する：authority_status: proposed_pending_l3_confirmation 現行採択の根拠にはしない。"
     },
     {
       "rank": 2521,
@@ -16113,7 +16178,7 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "candidate_metadata",
-      "semantic_reading": "候補文書間のpair/parent path metadata。物理row単体のadoptionやexact current bindingとは異なる。"
+      "semantic_reading": "旧候補のfield・値を保持する：pair_artifact: docs/governance/candidates/security-engagement-authority-acceptance.md 現行採択の根拠にはしない。"
     },
     {
       "rank": 2523,
@@ -16233,7 +16298,35 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "candidate_prose_or_table_structure",
-      "semantic_reading": "資産所有者から明示的に認可されたサイバーセキュリティ業務をHELIXが扱う文の冒頭で、既存の安全capability brokerを列挙する未完文。次行の条件を独立に取り込まない。"
+      "semantic_reading": "資産所有者から明示的に認可されたサイバーセキュリティ業務をHELIXが扱う文の冒頭で、既存の安全capability brokerを列挙する未完文。次行の条件を独立に取り込まない。",
+      "fixed_F6_source_path_integer_range_refs": [
+        {
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+          "physical_line": 387,
+          "line_text": "| `LEGACY-ASSET-322CD23B625A08E2BFB3`; `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md` lines 14–24, 33–44; SHA `c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447` | exact target/operation/environment/network-data scope/expiry、revoke/scope driftで停止、unknown継続禁止、sensitive evidence流出抑制 | scopeを限定security engagementから全HELIX操作のauthority境界へ広げる根拠はPO L1であり、旧候補の採択/plan gate/特権作業範囲は移さない | 無認可scan/exploit等の安全境界は旧candidate内の文脈を保ち、現行のsecurity engagement採択を本PRで決めない |",
+          "citation": "security-engagement-authority-requests.md lines 14–24, 33–44",
+          "source_item_id": "LEGACY-CAND-LINE-004351",
+          "source_path": "docs/governance/candidates/security-engagement-authority-requests.md",
+          "source_physical_line": 14,
+          "relation": "path plus integer line-range citation; no source-line ID token; not adoption or whole-line closure"
+        }
+      ],
+      "current_main_source_path_integer_range_refs": [
+        {
+          "commit": "47006ff86dc0bbee8d3ae9a51cfcff4267cc8e60",
+          "path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+          "physical_line": 387,
+          "line_text": "| `LEGACY-ASSET-322CD23B625A08E2BFB3`; `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md` lines 14–24, 33–44; SHA `c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447` | exact target/operation/environment/network-data scope/expiry、revoke/scope driftで停止、unknown継続禁止、sensitive evidence流出抑制 | scopeを限定security engagementから全HELIX操作のauthority境界へ広げる根拠はPO L1であり、旧候補の採択/plan gate/特権作業範囲は移さない | 無認可scan/exploit等の安全境界は旧candidate内の文脈を保ち、現行のsecurity engagement採択を本PRで決めない |",
+          "citation": "security-engagement-authority-requests.md lines 14–24, 33–44",
+          "source_item_id": "LEGACY-CAND-LINE-004351",
+          "source_path": "docs/governance/candidates/security-engagement-authority-requests.md",
+          "source_physical_line": 14,
+          "relation": "path plus integer line-range citation; no source-line ID token; not adoption or whole-line closure"
+        }
+      ]
     },
     {
       "rank": 2524,
@@ -16353,7 +16446,35 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "candidate_prose_or_table_structure",
-      "semantic_reading": "新規Cyber Harness、別requirements、DB、approval経路を追加しないというcandidate内の制約。"
+      "semantic_reading": "新規Cyber Harness、別requirements、DB、approval経路を追加しないというcandidate内の制約。",
+      "fixed_F6_source_path_integer_range_refs": [
+        {
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+          "physical_line": 387,
+          "line_text": "| `LEGACY-ASSET-322CD23B625A08E2BFB3`; `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md` lines 14–24, 33–44; SHA `c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447` | exact target/operation/environment/network-data scope/expiry、revoke/scope driftで停止、unknown継続禁止、sensitive evidence流出抑制 | scopeを限定security engagementから全HELIX操作のauthority境界へ広げる根拠はPO L1であり、旧候補の採択/plan gate/特権作業範囲は移さない | 無認可scan/exploit等の安全境界は旧candidate内の文脈を保ち、現行のsecurity engagement採択を本PRで決めない |",
+          "citation": "security-engagement-authority-requests.md lines 14–24, 33–44",
+          "source_item_id": "LEGACY-CAND-LINE-004353",
+          "source_path": "docs/governance/candidates/security-engagement-authority-requests.md",
+          "source_physical_line": 16,
+          "relation": "path plus integer line-range citation; no source-line ID token; not adoption or whole-line closure"
+        }
+      ],
+      "current_main_source_path_integer_range_refs": [
+        {
+          "commit": "47006ff86dc0bbee8d3ae9a51cfcff4267cc8e60",
+          "path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+          "physical_line": 387,
+          "line_text": "| `LEGACY-ASSET-322CD23B625A08E2BFB3`; `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md` lines 14–24, 33–44; SHA `c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447` | exact target/operation/environment/network-data scope/expiry、revoke/scope driftで停止、unknown継続禁止、sensitive evidence流出抑制 | scopeを限定security engagementから全HELIX操作のauthority境界へ広げる根拠はPO L1であり、旧候補の採択/plan gate/特権作業範囲は移さない | 無認可scan/exploit等の安全境界は旧candidate内の文脈を保ち、現行のsecurity engagement採択を本PRで決めない |",
+          "citation": "security-engagement-authority-requests.md lines 14–24, 33–44",
+          "source_item_id": "LEGACY-CAND-LINE-004353",
+          "source_path": "docs/governance/candidates/security-engagement-authority-requests.md",
+          "source_physical_line": 16,
+          "relation": "path plus integer line-range citation; no source-line ID token; not adoption or whole-line closure"
+        }
+      ]
     },
     {
       "rank": 2525,
@@ -16473,7 +16594,35 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "candidate_prose_or_table_structure",
-      "semantic_reading": "plan固有human gateは成立済みという旧記録に続き、独立技術review/L3↔L10 freeze/canonical main read-afterを列挙する未完文。現行採択ではなく、完了条件と投影禁止の述語は後続行に続く。"
+      "semantic_reading": "plan固有human gateは成立済みという旧記録に続き、独立技術review/L3↔L10 freeze/canonical main read-afterを列挙する未完文。現行採択ではなく、完了条件と投影禁止の述語は後続行に続く。",
+      "fixed_F6_source_path_integer_range_refs": [
+        {
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+          "physical_line": 387,
+          "line_text": "| `LEGACY-ASSET-322CD23B625A08E2BFB3`; `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md` lines 14–24, 33–44; SHA `c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447` | exact target/operation/environment/network-data scope/expiry、revoke/scope driftで停止、unknown継続禁止、sensitive evidence流出抑制 | scopeを限定security engagementから全HELIX操作のauthority境界へ広げる根拠はPO L1であり、旧候補の採択/plan gate/特権作業範囲は移さない | 無認可scan/exploit等の安全境界は旧candidate内の文脈を保ち、現行のsecurity engagement採択を本PRで決めない |",
+          "citation": "security-engagement-authority-requests.md lines 14–24, 33–44",
+          "source_item_id": "LEGACY-CAND-LINE-004371",
+          "source_path": "docs/governance/candidates/security-engagement-authority-requests.md",
+          "source_physical_line": 42,
+          "relation": "path plus integer line-range citation; no source-line ID token; not adoption or whole-line closure"
+        }
+      ],
+      "current_main_source_path_integer_range_refs": [
+        {
+          "commit": "47006ff86dc0bbee8d3ae9a51cfcff4267cc8e60",
+          "path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+          "physical_line": 387,
+          "line_text": "| `LEGACY-ASSET-322CD23B625A08E2BFB3`; `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md` lines 14–24, 33–44; SHA `c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447` | exact target/operation/environment/network-data scope/expiry、revoke/scope driftで停止、unknown継続禁止、sensitive evidence流出抑制 | scopeを限定security engagementから全HELIX操作のauthority境界へ広げる根拠はPO L1であり、旧候補の採択/plan gate/特権作業範囲は移さない | 無認可scan/exploit等の安全境界は旧candidate内の文脈を保ち、現行のsecurity engagement採択を本PRで決めない |",
+          "citation": "security-engagement-authority-requests.md lines 14–24, 33–44",
+          "source_item_id": "LEGACY-CAND-LINE-004371",
+          "source_path": "docs/governance/candidates/security-engagement-authority-requests.md",
+          "source_physical_line": 42,
+          "relation": "path plus integer line-range citation; no source-line ID token; not adoption or whole-line closure"
+        }
+      ]
     },
     {
       "rank": 2526,
@@ -16593,7 +16742,35 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "candidate_prose_or_table_structure",
-      "semantic_reading": "#397 Requirement IR admissionが完了するまでという条件と、runtime/schema/DB/CLI/provider設定/credential/generated documentへのcurrent authorityとしての投影対象を列挙する。投影しないという述語は次行に続く。"
+      "semantic_reading": "#397 Requirement IR admissionが完了するまでという条件と、runtime/schema/DB/CLI/provider設定/credential/generated documentへのcurrent authorityとしての投影対象を列挙する。投影しないという述語は次行に続く。",
+      "fixed_F6_source_path_integer_range_refs": [
+        {
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+          "physical_line": 387,
+          "line_text": "| `LEGACY-ASSET-322CD23B625A08E2BFB3`; `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md` lines 14–24, 33–44; SHA `c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447` | exact target/operation/environment/network-data scope/expiry、revoke/scope driftで停止、unknown継続禁止、sensitive evidence流出抑制 | scopeを限定security engagementから全HELIX操作のauthority境界へ広げる根拠はPO L1であり、旧候補の採択/plan gate/特権作業範囲は移さない | 無認可scan/exploit等の安全境界は旧candidate内の文脈を保ち、現行のsecurity engagement採択を本PRで決めない |",
+          "citation": "security-engagement-authority-requests.md lines 14–24, 33–44",
+          "source_item_id": "LEGACY-CAND-LINE-004372",
+          "source_path": "docs/governance/candidates/security-engagement-authority-requests.md",
+          "source_physical_line": 43,
+          "relation": "path plus integer line-range citation; no source-line ID token; not adoption or whole-line closure"
+        }
+      ],
+      "current_main_source_path_integer_range_refs": [
+        {
+          "commit": "47006ff86dc0bbee8d3ae9a51cfcff4267cc8e60",
+          "path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+          "physical_line": 387,
+          "line_text": "| `LEGACY-ASSET-322CD23B625A08E2BFB3`; `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md` lines 14–24, 33–44; SHA `c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447` | exact target/operation/environment/network-data scope/expiry、revoke/scope driftで停止、unknown継続禁止、sensitive evidence流出抑制 | scopeを限定security engagementから全HELIX操作のauthority境界へ広げる根拠はPO L1であり、旧候補の採択/plan gate/特権作業範囲は移さない | 無認可scan/exploit等の安全境界は旧candidate内の文脈を保ち、現行のsecurity engagement採択を本PRで決めない |",
+          "citation": "security-engagement-authority-requests.md lines 14–24, 33–44",
+          "source_item_id": "LEGACY-CAND-LINE-004372",
+          "source_path": "docs/governance/candidates/security-engagement-authority-requests.md",
+          "source_physical_line": 43,
+          "relation": "path plus integer line-range citation; no source-line ID token; not adoption or whole-line closure"
+        }
+      ]
     },
     {
       "rank": 2527,
@@ -16713,7 +16890,35 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "candidate_prose_or_table_structure",
-      "semantic_reading": "前行の列挙を閉じる「投影しない」。前行と合わせたsource意味は候補要件の未投影境界。"
+      "semantic_reading": "前行の列挙を閉じる「投影しない」。前行と合わせたsource意味は候補要件の未投影境界。",
+      "fixed_F6_source_path_integer_range_refs": [
+        {
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+          "physical_line": 387,
+          "line_text": "| `LEGACY-ASSET-322CD23B625A08E2BFB3`; `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md` lines 14–24, 33–44; SHA `c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447` | exact target/operation/environment/network-data scope/expiry、revoke/scope driftで停止、unknown継続禁止、sensitive evidence流出抑制 | scopeを限定security engagementから全HELIX操作のauthority境界へ広げる根拠はPO L1であり、旧候補の採択/plan gate/特権作業範囲は移さない | 無認可scan/exploit等の安全境界は旧candidate内の文脈を保ち、現行のsecurity engagement採択を本PRで決めない |",
+          "citation": "security-engagement-authority-requests.md lines 14–24, 33–44",
+          "source_item_id": "LEGACY-CAND-LINE-004373",
+          "source_path": "docs/governance/candidates/security-engagement-authority-requests.md",
+          "source_physical_line": 44,
+          "relation": "path plus integer line-range citation; no source-line ID token; not adoption or whole-line closure"
+        }
+      ],
+      "current_main_source_path_integer_range_refs": [
+        {
+          "commit": "47006ff86dc0bbee8d3ae9a51cfcff4267cc8e60",
+          "path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+          "physical_line": 387,
+          "line_text": "| `LEGACY-ASSET-322CD23B625A08E2BFB3`; `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md` lines 14–24, 33–44; SHA `c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447` | exact target/operation/environment/network-data scope/expiry、revoke/scope driftで停止、unknown継続禁止、sensitive evidence流出抑制 | scopeを限定security engagementから全HELIX操作のauthority境界へ広げる根拠はPO L1であり、旧候補の採択/plan gate/特権作業範囲は移さない | 無認可scan/exploit等の安全境界は旧candidate内の文脈を保ち、現行のsecurity engagement採択を本PRで決めない |",
+          "citation": "security-engagement-authority-requests.md lines 14–24, 33–44",
+          "source_item_id": "LEGACY-CAND-LINE-004373",
+          "source_path": "docs/governance/candidates/security-engagement-authority-requests.md",
+          "source_physical_line": 44,
+          "relation": "path plus integer line-range citation; no source-line ID token; not adoption or whole-line closure"
+        }
+      ]
     },
     {
       "rank": 2528,
@@ -16833,7 +17038,7 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "candidate_metadata",
-      "semantic_reading": "候補文書のtitle metadata。文書名の識別でありauthority状態ではない。"
+      "semantic_reading": "旧候補のfield・値を保持する：title: \"認可済みSecurity engagement要件候補\" 現行採択の根拠にはしない。"
     },
     {
       "rank": 2529,
@@ -16953,7 +17158,7 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "candidate_metadata",
-      "semantic_reading": "候補文書のlayer metadata。正式layer approvalとして扱わない。"
+      "semantic_reading": "旧候補のfield・値を保持する：layer: L3 現行採択の根拠にはしない。"
     },
     {
       "rank": 2530,
@@ -17073,7 +17278,7 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "candidate_metadata",
-      "semantic_reading": "候補文書のstatus metadataをそのまま記録。current statusとは扱わない。"
+      "semantic_reading": "旧候補のfield・値を保持する：status: draft_candidate 現行採択の根拠にはしない。"
     },
     {
       "rank": 2531,
@@ -17193,7 +17398,7 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "candidate_metadata",
-      "semantic_reading": "候補文書自身が記すauthority metadata。現行採否はdecisionと対象revisionから別途読む。"
+      "semantic_reading": "旧候補のfield・値を保持する：authority_status: proposed_pending_l3_confirmation 現行採択の根拠にはしない。"
     },
     {
       "rank": 2532,
@@ -17433,7 +17638,7 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "candidate_metadata",
-      "semantic_reading": "候補文書間のpair/parent path metadata。物理row単体のadoptionやexact current bindingとは異なる。"
+      "semantic_reading": "旧候補のfield・値を保持する：parent_requirements: docs/governance/candidates/security-engagement-authority-requests.md 現行採択の根拠にはしない。"
     },
     {
       "rank": 2534,
@@ -17553,7 +17758,7 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "candidate_metadata",
-      "semantic_reading": "候補文書間のpair/parent path metadata。物理row単体のadoptionやexact current bindingとは異なる。"
+      "semantic_reading": "旧候補のfield・値を保持する：pair_artifact: docs/governance/candidates/security-engagement-authority-acceptance.md 現行採択の根拠にはしない。"
     },
     {
       "rank": 2535,
@@ -19911,6 +20116,68 @@
       "crosscheck_role": "read-only independent cross-worker comparison",
       "matches_reconstructed_and_peer_lists": true,
       "commit": "fb0597f12783edce2edc829ef8e681ab61f9824a"
+    }
+  ],
+  "fixed_F6_source_path_integer_range_refs": [
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+      "physical_line": 387,
+      "line_text": "| `LEGACY-ASSET-322CD23B625A08E2BFB3`; `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md` lines 14–24, 33–44; SHA `c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447` | exact target/operation/environment/network-data scope/expiry、revoke/scope driftで停止、unknown継続禁止、sensitive evidence流出抑制 | scopeを限定security engagementから全HELIX操作のauthority境界へ広げる根拠はPO L1であり、旧候補の採択/plan gate/特権作業範囲は移さない | 無認可scan/exploit等の安全境界は旧candidate内の文脈を保ち、現行のsecurity engagement採択を本PRで決めない |",
+      "citation": "security-engagement-authority-requests.md lines 14–24, 33–44",
+      "source_item_id": "LEGACY-CAND-LINE-004351",
+      "source_path": "docs/governance/candidates/security-engagement-authority-requests.md",
+      "source_physical_line": 14,
+      "relation": "path plus integer line-range citation; no source-line ID token; not adoption or whole-line closure"
+    },
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+      "physical_line": 387,
+      "line_text": "| `LEGACY-ASSET-322CD23B625A08E2BFB3`; `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md` lines 14–24, 33–44; SHA `c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447` | exact target/operation/environment/network-data scope/expiry、revoke/scope driftで停止、unknown継続禁止、sensitive evidence流出抑制 | scopeを限定security engagementから全HELIX操作のauthority境界へ広げる根拠はPO L1であり、旧候補の採択/plan gate/特権作業範囲は移さない | 無認可scan/exploit等の安全境界は旧candidate内の文脈を保ち、現行のsecurity engagement採択を本PRで決めない |",
+      "citation": "security-engagement-authority-requests.md lines 14–24, 33–44",
+      "source_item_id": "LEGACY-CAND-LINE-004353",
+      "source_path": "docs/governance/candidates/security-engagement-authority-requests.md",
+      "source_physical_line": 16,
+      "relation": "path plus integer line-range citation; no source-line ID token; not adoption or whole-line closure"
+    },
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+      "physical_line": 387,
+      "line_text": "| `LEGACY-ASSET-322CD23B625A08E2BFB3`; `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md` lines 14–24, 33–44; SHA `c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447` | exact target/operation/environment/network-data scope/expiry、revoke/scope driftで停止、unknown継続禁止、sensitive evidence流出抑制 | scopeを限定security engagementから全HELIX操作のauthority境界へ広げる根拠はPO L1であり、旧候補の採択/plan gate/特権作業範囲は移さない | 無認可scan/exploit等の安全境界は旧candidate内の文脈を保ち、現行のsecurity engagement採択を本PRで決めない |",
+      "citation": "security-engagement-authority-requests.md lines 14–24, 33–44",
+      "source_item_id": "LEGACY-CAND-LINE-004371",
+      "source_path": "docs/governance/candidates/security-engagement-authority-requests.md",
+      "source_physical_line": 42,
+      "relation": "path plus integer line-range citation; no source-line ID token; not adoption or whole-line closure"
+    },
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+      "physical_line": 387,
+      "line_text": "| `LEGACY-ASSET-322CD23B625A08E2BFB3`; `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md` lines 14–24, 33–44; SHA `c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447` | exact target/operation/environment/network-data scope/expiry、revoke/scope driftで停止、unknown継続禁止、sensitive evidence流出抑制 | scopeを限定security engagementから全HELIX操作のauthority境界へ広げる根拠はPO L1であり、旧候補の採択/plan gate/特権作業範囲は移さない | 無認可scan/exploit等の安全境界は旧candidate内の文脈を保ち、現行のsecurity engagement採択を本PRで決めない |",
+      "citation": "security-engagement-authority-requests.md lines 14–24, 33–44",
+      "source_item_id": "LEGACY-CAND-LINE-004372",
+      "source_path": "docs/governance/candidates/security-engagement-authority-requests.md",
+      "source_physical_line": 43,
+      "relation": "path plus integer line-range citation; no source-line ID token; not adoption or whole-line closure"
+    },
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+      "physical_line": 387,
+      "line_text": "| `LEGACY-ASSET-322CD23B625A08E2BFB3`; `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md` lines 14–24, 33–44; SHA `c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447` | exact target/operation/environment/network-data scope/expiry、revoke/scope driftで停止、unknown継続禁止、sensitive evidence流出抑制 | scopeを限定security engagementから全HELIX操作のauthority境界へ広げる根拠はPO L1であり、旧候補の採択/plan gate/特権作業範囲は移さない | 無認可scan/exploit等の安全境界は旧candidate内の文脈を保ち、現行のsecurity engagement採択を本PRで決めない |",
+      "citation": "security-engagement-authority-requests.md lines 14–24, 33–44",
+      "source_item_id": "LEGACY-CAND-LINE-004373",
+      "source_path": "docs/governance/candidates/security-engagement-authority-requests.md",
+      "source_physical_line": 44,
+      "relation": "path plus integer line-range citation; no source-line ID token; not adoption or whole-line closure"
     }
   ]
 }
