@@ -9,7 +9,6 @@
   "selection": {
     "baseline_queue_path": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json",
     "baseline_queue_sha256": "a61ec098a6bd714fcbbb706d0d9afb4e7f2777b114bf23c8056fc130e30f60d9",
-    "baseline_queue_basis_commit": "2bf484b1a84af346feaf8cf7b72e59f3889e6333",
     "focused_audit_join_method": "前回first10 JSONが固定した32 focused auditの各file SHAを検証し、そのsource-qualified identity参照をsource_item_idと完全tupleでqueueの303 rowに再結合。baseline priority=primary_residual、queue_state=unresolved_for_closure_work、exact identity hitなしをsource physical line昇順で選択。候補119件の11–20番を採った。",
     "focused_audit_files": [
       {
@@ -168,7 +167,11 @@
       "commit": "abe85bd88d8da28ba3c945bd1ed052ceb62b2259",
       "path": "docs/governance/audits/requirements-stage/v13-effective-next10-condition-audit-2026-10-01.json",
       "sha256": "sha256:cad2863a7310ffa74d46bdb78cdc6f534210299750592ce87991a93b41b8b255"
-    }
+    },
+    "baseline_queue_file_commit": "71659afc419c6378643652671775468d86ba4a3b",
+    "baseline_queue_lineage_basis_commit": "2bf484b1a84af346feaf8cf7b72e59f3889e6333",
+    "baseline_queue_audit_base_commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+    "baseline_source_audit_commit": "2bf484b1a84af346feaf8cf7b72e59f3889e6333"
   },
   "source_pins": {
     "archive_requirement_source": {
@@ -1498,7 +1501,9 @@
     "focused_identity_hits_among_primary_residual_rows_136": true,
     "remaining_primary_residual_no_identity_hit_119": true,
     "legacy_consumer_file_sha256_checked": true,
-    "legacy_crosswalk_sha256_checked": true
+    "legacy_crosswalk_sha256_checked": true,
+    "queue_file_commit_and_path_verified": true,
+    "queue_lineage_basis_distinct_from_file_commit": true
   },
   "legacy_consumers_read_only": [
     {

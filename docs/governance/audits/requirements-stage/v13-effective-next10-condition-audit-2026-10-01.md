@@ -6,7 +6,7 @@
 
 ## 選定とidentity再結合
 
-303行queue（基準 `2bf484b1a84af346feaf8cf7b72e59f3889e6333`）では基準時のprimary residualが255行。後続queueをそのまま採用せず、監査revision `50686b6762788574cb471967e8c24846d3dd56ae` 時点のfocused audit 32件と、各source行のIDおよび(path, file SHA, 物理行, line SHA)を再結合した。154行に後続auditのidentity参照があり、identity参照なし条件に該当するprimary residual候補は119行。以下はそのsource行順先頭10件を今回比較した結果である。119はidentity参照フィルターの候補数であり、意味比較なしの総数や残closure件数ではない。identity参照の存在だけでも意味被覆とはしない。
+303行queue artifact（SHA-256 `a61ec098a6bd714fcbbb706d0d9afb4e7f2777b114bf23c8056fc130e30f60d9`）はfile commit `71659afc419c6378643652671775468d86ba4a3b`に存在し、監査基点`50686b6762788574cb471967e8c24846d3dd56ae`にも同一bytesで存在する。queue内`basis_commit`とbaseline source auditのlineageは`2bf484b1a84af346feaf8cf7b72e59f3889e6333`であり、queueファイル自体の存在commitと区別する。255行が基準時のprimary residual。後続queueをそのまま採用せず、監査revision `50686b6762788574cb471967e8c24846d3dd56ae` 時点のfocused audit 32件と、各source行のIDおよび(path, file SHA, 物理行, line SHA)を再結合した。154行に後続auditのidentity参照があり、identity参照なし条件に該当するprimary residual候補は119行。以下はそのsource行順先頭10件を今回比較した結果である。119はidentity参照フィルターの候補数であり、意味比較なしの総数や残closure件数ではない。identity参照の存在だけでも意味被覆とはしない。
 
 選定ID: `REQSRC-SUP-00004`, `REQSRC-SUP-00008`, `REQSRC-SUP-00009`, `REQSRC-SUP-00010`, `REQSRC-SUP-00015`, `REQSRC-SUP-00016`, `REQSRC-SUP-00017`, `REQSRC-SUP-00018`, `REQSRC-SUP-00019`, `REQSRC-SUP-00022`.
 

@@ -19,7 +19,6 @@
   "selection": {
     "baseline_queue_path": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json",
     "baseline_queue_sha256": "a61ec098a6bd714fcbbb706d0d9afb4e7f2777b114bf23c8056fc130e30f60d9",
-    "baseline_queue_basis_commit": "2bf484b1a84af346feaf8cf7b72e59f3889e6333",
     "baseline_source_audit_path": "docs/governance/audits/requirements-stage/legacy-v13-semantic-condition-audit-2026-09-28.json",
     "baseline_source_audit_sha256": "cd765545e584c50b423d652674ac54a3240aced24a321c0caa6bc2dd881ad863",
     "queue_scope_counts": {
@@ -174,7 +173,11 @@
       "source_id_hit_is_not_semantic_coverage": true,
       "no_focused_audit_identity_hit_candidate_count": 119,
       "count_interpretation": "119はsource identity一致がないfocused audit identity参照フィルターの候補数だけを示す。focused audit内のidentity参照は条件比較を証明せず、identity hitがないことも他所で意味比較がない証明ではない。未比較母集団の総数やclosure件数ではない。"
-    }
+    },
+    "baseline_queue_file_commit": "71659afc419c6378643652671775468d86ba4a3b",
+    "baseline_queue_lineage_basis_commit": "2bf484b1a84af346feaf8cf7b72e59f3889e6333",
+    "baseline_queue_audit_base_commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+    "baseline_source_audit_commit": "2bf484b1a84af346feaf8cf7b72e59f3889e6333"
   },
   "source_pins": {
     "archive_requirement_source": {
@@ -920,6 +923,8 @@
     "focused_audit_file_hashes_pinned": true,
     "fixed_l2_l11_bytes_hash_checked_at_f6": true,
     "decision_pins_hash_checked": true,
-    "archive_runtime_cli_test_ci_executed": false
+    "archive_runtime_cli_test_ci_executed": false,
+    "queue_file_commit_and_path_verified": true,
+    "queue_lineage_basis_distinct_from_file_commit": true
   }
 }

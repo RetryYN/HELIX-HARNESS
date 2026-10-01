@@ -7,7 +7,7 @@
 
 ## 選定の再現
 
-前回の1–10番監査（exact audit HEAD `abe85bd88d8da28ba3c945bd1ed052ceb62b2259`、repo-relative artifact `docs/governance/audits/requirements-stage/v13-effective-next10-condition-audit-2026-10-01.json`）が固定したfocused audit 32ファイルのSHA-256をすべて再検証し、基準queue `v13-condition-closure-work-queue-2026-09-30.json`（303行、基準commit `2bf484b1a84af346feaf8cf7b72e59f3889e6333`）へsource identityを再結合した。基準時点で`primary_residual`かつ`unresolved_for_closure_work`で、focused auditに同じsource identityのhitがない119行をsource物理行順に並べ、11–20番を選んだ。
+前回の1–10番監査（exact audit HEAD `abe85bd88d8da28ba3c945bd1ed052ceb62b2259`、repo-relative artifact `docs/governance/audits/requirements-stage/v13-effective-next10-condition-audit-2026-10-01.json`）が固定したfocused audit 32ファイルのSHA-256をすべて再検証し、基準queue `v13-condition-closure-work-queue-2026-09-30.json`（303行、SHA-256 `a61ec098a6bd714fcbbb706d0d9afb4e7f2777b114bf23c8056fc130e30f60d9`）へsource identityを再結合した。queue file bytesのcommitは`71659afc419c6378643652671775468d86ba4a3b`、監査基点は`50686b6762788574cb471967e8c24846d3dd56ae`。queue内の`basis_commit`/baseline source audit lineage `2bf484b1a84af346feaf8cf7b72e59f3889e6333`とは区別した。基準時点で`primary_residual`かつ`unresolved_for_closure_work`で、focused auditに同じsource identityのhitがない119行をsource物理行順に並べ、11–20番を選んだ。
 
 選定IDは`REQSRC-SUP-00023`, `00024`, `00025`, `00026`, `00027`, `00028`, `00029`, `00046`, `00047`, `00051`。119はidentity参照filterの候補数であり、意味比較未実施の総数や残closure件数ではない。identity hitは意味被覆を証明せず、identity hitなしも他所で意味比較がない証明ではない。各source lineと前後の条項・継続文・例外を含む完全context、物理行SHA-256はJSONへ記録した。
 
