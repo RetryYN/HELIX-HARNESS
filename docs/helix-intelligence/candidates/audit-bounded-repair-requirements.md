@@ -82,6 +82,20 @@ AAFDは採用revision確定後に次を確認する。
 - 監査提案からHEAD・根拠・出所・再現・反証へ辿り、内部改善と外部変化を区別できる。変更時に影響する将来投影だけが再評価される。
 - 同じcorpusでモデル変更前後の所見・誤検出・見逃し・費用・遅延を比較でき、モデル更新だけでは適格にならない。
 
+## AAFD-R detailed condition relation (candidate only)
+
+旧source `LEGACY-ASSET-EB3700B0088F311C2295`（`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md`、file SHA-256 `685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a`）の詳細条件は、次の範囲で現行文書との関係を記録する。このcrosswalkは旧L3承認、現行L2採択、実装許可を継承しない。
+
+| 旧source条件 | 現行保持・不足 | 現行の限定先／authority境界 |
+|---|---|---|
+| AAFD-R-01〜03（source lines 23-41） | HEAD/authority/producer/evidence/reproduction/falsificationの一般traceは採択済みL2-009に保持済み。proposal schema fieldの全列、resolved worktree/authority digestの各fail-close、duplicate/owner/expiry/supersession/UIL qualification、finding/remediation別identityは既存L2/L11に具体化されていない。 | `HELIXINTELLIGENCE-L2-075`／L11-075候補。親は採択済みL1-009。UIL qualification/runtimeの再実装はしない。採択はPO decision待ち。 |
+| AAFD-R-04（source lines 43-46） | deterministic detector非置換と4 destinationへの自由文direct projection拒否の2 source atomをL2/L11-073で限定保持。#2253 r2 source receiptのline45/46 coverageを確認。 | L2/L11-073の固定pairは2026-09-29 decisionで採択済み。選択した2 atomだけの範囲で、AAFD全条件の採択ではない。 |
+| AAFD-R-05〜12（source lines 50-92） | BR-02/03にはinternal/external source distinctionと影響projection限定再評価の要約があるが、qualified UIL/TER receipt、FutureStateDelta schema、deterministic dedupe、unknown/authority non-write、F0 exact join、exact-set invalidation、stale directive停止、journal replayはL2/L11で個別対応していない。 | Future Synthesis adapter/UIL/TER ownershipは現L1-009とL2-009の対象外・既存ownerに残る。Future-state runtime/新routeをこのcandidateから採択せずsource holdingへ残す。L1意味の追加が必要なら人の判断を要する。 |
+| AAFD-R-13〜14（source lines 96-104） | 同条件corpus/scopeのfinding/FP/miss/reproducibility/latency/cost比較は採択済みL1-011/L2-011に保持済み。TER version-change trigger、duplicate/remediation correctness/authority driftのmetric分離、hidden oracleのworker context隔離はL2/L11に具体化されていない。 | `HELIXINTELLIGENCE-L2-076`／L11-076候補。親はL1-011。追加metric/triggerはL1意味を拡張し得るためcandidate-onlyで、PO decisionまで採択しない。 |
+| AAFD-R-15（source lines 106-109） | 更新名だけで適格化しないことはL1-011/L2-011、3.0 learning/lineage/comparisonと自動交換をしないことはL1-021〜026、L2-065に保持済み。AAFD固有のindependent VERIFY/counterexample/expiry/human gateの対応は未証明。 | L1-011の1.0比較へpromotion/learning authorityを追加しない。3.0 candidateとの具体接続と必要decisionは別に保持する。 |
+
+各行の物理source line ID、source line SHA、選択atom集合とreceiptは`docs/governance/audits/requirement-registration/aafd-proposal-lifecycle-coverage-receipt-2026-10-02.json`およびsource lines JSONLを参照する。選択外sourceを欠落扱い・retire扱いにせず、`MPR-SH-CANDIDATE-001`のsource holdingに保持する。比較方法と不足の区分は[2026-10-02 AAFD lifecycle review](../../governance/audits/requirements-stage/aafd-lifecycle-remainder-current-treatment-2026-10-02.md)を参照する。
+
 ## HARNESSとの関係
 
 HARNESSの要求案「限定修復に適用する検証条件」は、修復後に維持すべき検証義務（要求revision、oracle、expected failure、独立検証、consumer受入、差戻し条件）を定める。
