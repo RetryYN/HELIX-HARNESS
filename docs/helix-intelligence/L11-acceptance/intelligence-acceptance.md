@@ -338,7 +338,7 @@ HELIXINTELLIGENCE-L2-069／HELIXINTELLIGENCE-L2-070／HELIXINTELLIGENCE-L2-071�
 
 - **状態・対象**：未採択候補の静的な意味oracle案。AAFD-R-01〜03だけを対象にし、R-04のdetector優先/direct-projection境界は採択済みL2-073に残す。旧runtime、UIL/TER、Issue、CI、mergeを実行しない。
 - **正常例**：Probe proposalの全fieldを一組のaudit episode、producer session、repository、exact HEAD、resolved worktree、authority revision/digest、責務ID、観測・証拠・反証・再現手順・expiry・finding/remediation advisoryへ結ぶ。PR review findingとsystem audit proposalのidentityを分け、content/digestとsource/target revisionが一致する。
-- **identity拒否例**：exact HEAD、worktree、authority digest、producer session、responsibility owner、evidenceを一項目ずつ欠落・改変・異版にする。各該当条件を個別にincomplete/rejectedとし、別field、別HEAD、current扱いしたhistorical evidenceで補完したら不合格。current/compatibility/historical authorityを混同したら不合格。
+- **identity拒否例**：exact HEAD、worktree、authority digest、producer session、responsibility owner、evidenceを一項目ずつ欠落・改変・異版にする。各該当条件を個別にincomplete/rejectedとし、その結果に失敗した項目と検出した欠落または不一致に対応する個別reasonを残す。汎用の拒否理由へ集約して項目固有の理由が分からなくなったら不合格。別field、別HEAD、current扱いしたhistorical evidenceで補完したら不合格。current/compatibility/historical authorityを混同したら不合格。reasonの語彙・enum・schemaは固定しない。
 - **qualification拒否例**：AI自己評価だけでverified、P0/P1、owner、route、remediation adoptionを確定したら不合格。duplicate/existing owner照合、独立再現、反証、expiry/supersessionが不足する例は未qualifiedのまま既存UIL ownerへ返す。finding/remediationを同一proposal identityや単一decisionへ統合したら不合格。
 - **未見・oracle**：別producer/session、別HEAD、stale evidence、期限切れproposal、superseded/duplicate proposalを個別に与え、unknown/incompleteと必要な既存ownerへのhandoffを保つ。Proposal生成・受入だけでUIL/TER/Future Synthesis runtime、Issue/Requirement/CI/merge操作を起動または変更しない。固定閾値や新routeをcandidateから作らない。
 
