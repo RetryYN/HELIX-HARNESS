@@ -6,7 +6,7 @@
 - raw L1 SHA-256: `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`。旧IR SHA-256: `80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688`。
 - 現行HARNESS L2/L11 SHA-256: `e22ff41b5ed36a00c0c0a9807052759d01f930ce5574aa860d80f7b90b76bdf4` / `2cf983e2ac8771badd056f8e49dd0a0f6704a2f088b4f816b99792f5a7a8ac82`。現行INTELLIGENCE L2/L11: `64b41a363f357c273f3cb68fb2be1221d42066b056655aab7922d569e65b3486` / `164a9fcd1d1b5dcd7a0647ab6c1ab231574079bea647a09f9f3fefc213e2dd9a`。
 - 旧IR補助file SHA-256: `system_contracts.json` `2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab`; `acceptance_cases.json` `4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19`; `system_tests.json` `7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a`。
-- 全source line text、line SHA、IR statement/record digest、decision/candidate pinは同名JSONに保存した。旧runtime/test/CI/CLI/hook/adapterは実行していない。137・共通gateはroot担当のため実行していない。
+- source-file SHAはraw file bytes、source-line SHAは物理行UTF-8 bytes＋終端LF、source_line_textは終端LFなしの本文で計算した。全source line text、line SHA、IR statement/record digest、decision/candidate pinは同名JSONに保存した。旧runtime/test/CI/CLI/hook/adapterは実行していない。137・共通gateはroot担当のため実行していない。
 
 ## Authorityと採択revision
 
@@ -19,12 +19,15 @@
 
 ## 条件ごとの対応
 
+FR56の条件判定では、HARNESS-L2-002/003 `product-requirements.md:103`と対L11 `product-acceptance.md:37`の個別文言、OS-L2-010 `governance-requirements.md:63`、ticket kind rows `governance-requirements.md:134-138`、OS-L11 HXT-SYS-01 `governance-acceptance.md:308`とOS-L2-017 oracle `governance-acceptance.md:341`を区別して読んだ。一般的なtrace/ticket lifecycleをS1固有保証の証拠にはしていない。
+
+
 | 旧source | 原文条件・出力 | 現行要求／受入への行き先 | 判定と境界 |
 |---|---|---|---|
 | HIL-FR-56, raw L1:146 | 選択済みdevelopment styleのlayer I/O、entry/exit gate、下位task、right-arm V-pairへportfolio itemをbind | HARNESS-L2-001〜004のpair/process/verification条件、HARNESS-L11対応oracle、OS-L2-010のticket種別・親・返却先 | 条件は現行layer pairとticketへ再導出されている。旧manifestの物理schemaまで同一とは主張しない。 |
-| HIL-FR-56 | S0 hypothesisにgap/親要求、S1 planにcontract snapshot/style返却先/budget、S2 PoC成果物、S3 oracle evidence | HARNESS-L2-002/003はPoCとDiscoveryの適用条件、phase内容、結果の発行元ticket返却を保持。OS-L2-010がticket routingを担う | 旧S0〜S3の名前を現行stageとして要求しない。仮説・計画・限定実験・証拠・返却の意味は保持。 |
-| HIL-FR-56 | S4 decideのconfirmed/rejected/pivotとback-propagation。未決S4結果をproduction currentへ昇格しない | HARNESS-L2-002/003のDecide境界、人間が行う要求意味裁定、検証成功だけでは採用しない条件。OS-L2-010のDecide ticket | 成功証拠と採択判断を分離。旧phase snapshot/return edge/decision receiptの個別物理形式は未確定のまま保持。 |
-| HIL-FR-56 output | workflow binding manifest、phase snapshot、style return edge、S4 decision/back-propagation receipt | HARNESS pair/process traceとOS ticket/evidence relation | 意味上の記録先は対応するが、旧artifact名ごとの独立schemaを同一視しない。 |
+| HIL-FR-56 | S0 hypothesisのgap/親要求、S1 experiment planのcontract snapshot/style return/budget、S2成果物、S3 oracle evidence | `product-requirements.md:103`はS0〜S3の仮説・計画・限定実験・検証と発行元ticketへの返却を明記。`governance-requirements.md:63`と`governance-acceptance.md:341`はticket全体の予算/期限を確認する | 具体条件別: Discoveryの4 phaseの意味・発行元ticket返却・ticket単位budget/期限は保持。S1に結び付いたcontract snapshotとstyle return edgeの義務は、これらの一般phase/ticket記載では証明できずsource holdingに残す。ticket budgetをS1 snapshot内のfieldと読み替えない。旧artifact名の相違だけは欠落理由にしない。 |
+| HIL-FR-56 | S4 confirmed/rejected/pivot、back-propagation、未決定結果をproduction currentへ上げない | `product-requirements.md:103`は採用・不採用・方針変更、成功だけでは採用しない、人の要求意味裁定を明記。`product-acceptance.md:37`は意味変更結果だけをBackflow・2次形成・Decideへ送り、人判断なし裁定を拒否。OS ticket table `governance-requirements.md:137-138`は採用/不採用/方針変更の合流先とBackflow先を明記 | 条件意味は具体的に保持。S4専用receiptのphysical schema/nameまでは同一とせず、schema closureを主張しない。 |
+| HIL-FR-56 output | workflow binding manifest、phase snapshot、style return edge、S4 decision/back-propagation receipt | process/ticket/evidence traceとS4の結果/Backflowは現行本文にある。S1固有snapshot/style return edgeは上記のとおり未証明。 | 出力の機能条件と旧物理artifact形式を分ける。S1の2条件はsource holding、S4 receipt形式の同一性は主張しない。 |
 | HIL-FR-57, raw L1:147 | 工程別目的、観点、反証質問、evidence、severity、escalation/stop、authority、domain/risk、model適性、version | 採択INTELLIGENCE-L2/L11-072（decision row 85、上記exact digest）。L2本文のpack descriptor、適用範囲、source/version、unknown/未評価保持、L11の適用外・版違い・conflict oracle | 1.0候補生成/shadow評価の条件付き採択内で保持。実packの成立・実評価を意味しない。 |
 | HIL-FR-57 | judgment-core、role judgment、task lens、specialist skillを非重複packへ合成。source edgeとconflictを保持 | 採択072のpack構成/合成記録節とpaired L11 | 重複整理時も由来edgeを消さず、競合をINTELLIGENCEが黙って優先・削除しない。旧物理registry形式は要求しない。 |
 | HIL-FR-57 output | pack、applicability/digest、source skill edge、conflict finding | 採択072のcandidate descriptor/source trace、applicability、shadow evidence、conflict/unknown | 候補段階の出力として保持。active packやgate authorityを自動生成しない。 |
@@ -35,14 +38,14 @@
 | HIL-FR-59 | contract fields: objective、成果物schema、tool guidance、task boundary、context selector、許可/拒否tools/paths、model/effort、budget、checkpoint、escalation、verification contract。runtime-neutral | 採択HARNESS-L2/L11-047 exact pair | field列挙とruntime-neutral条件を保持。provider/runtime固有設定・固定Worker数を要求しない。 |
 | HIL-FR-59 output | generated contract、input/output digest、generation rationale、guard validation receipt | 採択047のcontract・digest・rationale・guard validation要求とL11 oracle | 要求・受入条件であり、実生成や実行済みguard receiptではない。 |
 | HIL-FR-60, raw L1:150 | 専門知識、独立context、並列性、blind verificationのいずれかに測定可能な利益があるときだけmuster。single-agent sufficientなら既存role | 採択047の`muster` / `existing_role_sufficient` / `unknown_or_defer`と比較条件 | 保持。未知scopeや比較材料不足をmusterへ推定しない。共通数値閾値を追加しない。 |
-| HIL-FR-60 | allowlisted runtime projection、worker/verifierのprovider/model/authority分離、lease/fencing/retire | 採択047のHARNESS contract/authority境界とOSへのprojection、OS-L2-004 assignment/execution、適用範囲で採択OS-042/043のworker evidence/event tracking | 要求stageでは責務と条件の保持まで。実runtime適格性・lease/fencing/retire成立の実績は主張しない。provider/model同一性だけでreview独立性を判定しない。 |
-| HIL-FR-60 output | specialization decision、TeamDefinition、runtime projection、worker/verifier separation、lifecycle receipt | 採択047はmuster outcome、runtime-neutral contract、projection/separation/lifecycle evidenceを要求し、OS-004はassignment/evidenceを所有 | `TeamDefinition`は旧sourceの明示output名。現行exact adopted textはそれを独立aggregate/schemaとして残すのか、契約＋OS assignmentへの対応で表すのかを特定していない。名前不一致だけを機能欠落と断定せず、同一artifactともretire済みとも扱わない。source holdingを維持。 |
+| HIL-FR-60 | allowlisted runtime projection、worker/verifier分離、lease/fencing/retire | 採択047 L2 `product-requirements.md:1046-1047`はallowlist projection/lease/fencing/失効/retireとworker/verifierのidentity/context/authority分離を要求し、L11 `product-acceptance.md:786-788`はprofile欠落・lifecycle evidence不足/不一致をunknown/拒否/保留にする。OS-004 L2 `governance-requirements.md:57,293`とL11 `governance-acceptance.md:24`はassignment・実行・回収・budget・失効停止・隔離・credential cleanupを担うが、OS-004単独にはlease/fencing/retireの列挙はない。 | 詳細lifecycle条件の根拠は採択047の本文/L11。OS-004だけでlease/fencing/retireを証明しない。実行成立は未実施。provider/model独立性の正確な根拠は2026-09-26 decision lines 56-60。 |
+| HIL-FR-60 output | specialization decision、TeamDefinition、runtime projection、worker/verifier separation、lifecycle receipt | 採択047 L2/L11はmuster/contract/projection/separation/lifecycle evidenceを要求し、OS-004は割当・実行・回収・失効/隔離を担う | TeamDefinitionは旧出力名。名前/物理schemaが現行本文にないことだけでは業務保証の欠落を示さない。物理schema一致や旧output名全件のclosureを主張しない。新候補・人間待ちは作らない。 |
 
 ## 候補境界と残件
 
 `HARNESS-L2-054` (`MPR-RC-HARNESS-L2-054-001`) はOS assignmentへのhandoff refinementとして存在するが、9/29 decisionの採択対象ではない。047の採択を上書きせず、054が未採択という事実だけでFR59/60の保証不足とは判定しない。HARNESS-L2-047のcoverage receiptはBR-09/BR-30/FR-59/FR-60の選択4行を限定scopeとして結び、旧asset全体やIR補助contractのclosureを宣言しない。INTELLIGENCE-072 receiptもBR-29とFR-57/58の限定sliceであり、FR58の全source loopを1.0へ移管しない。
 
-FR60の`TeamDefinition`を現行のruntime-neutral contract＋OS assignmentと同じartifact意味とみなす根拠は見つからなかった。反対に、独立schemaを要求すべきという採択判断も確認できない。従ってこれは特定された意味境界としてholdingへ残す。人が別aggregateの意味を求める場合はそのsource atomに限定したPO判断を先に行い、その後で候補の必要性を評価する。今回新候補・新IDは起こさない。
+FR60のTeamDefinitionという旧出力名について、採択047がspecialist Worker contract/muster/projection、worker/verifier分離とlifecycle evidenceを要求し、OS-004がassignment・実行・回収・失効時制御を要求する。確認した本文に別のTeamDefinition schema名はないが、その名前や物理schemaを持たないことだけでは業務保証不足を示さない。物理schema一致や全旧出力名の同一性を主張しない。新候補・人間待ちは起こさない。
 
 旧IR recordsはFR56が`HR-FR-HIL-20` / `HAC-HIL-20a/b/c` / `HAT-HIL-20`、FR57〜60が`HR-FR-HIL-21` / `HAC-HIL-21a/b/c` / `HAT-HIL-21`へ接続する。旧HATは`designed_not_implemented`、各IR downstream obligationは`pending_pair_descent`。これらの親contract・acceptance・test relationshipを候補採択や現行pairに置換せず、formal successor、実装完了、全IR atom closureを主張しない。
 

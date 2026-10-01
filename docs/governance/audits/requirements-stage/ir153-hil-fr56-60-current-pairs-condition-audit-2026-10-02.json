@@ -104,6 +104,12 @@
           "decision": "adopted"
         }
       }
+    },
+    {
+      "path": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
+      "sha256": "1c93bf0aadccfdf6b536a32d3923a17fbd00a1fd830850f9369b5b6d6b12efb2",
+      "locator": "Independent review and lane, lines 56-60",
+      "scope": "Independence is separate reviewer identity/context/authority/route; provider/model is recorded but same/different provider is not an independence criterion."
     }
   ],
   "candidate_receipts": [
@@ -319,26 +325,77 @@
             "HARNESS-L2-001/002/003/004",
             "HELIXOS-L2-010 ticket種別・親/戻り先"
           ],
-          "finding": "保持（工程名ではなくticket/phaseとpairで再導出）。"
+          "finding": "保持（工程名ではなくticket/phaseとpairで再導出）。",
+          "evidence": [
+            {
+              "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+              "locator": "HARNESS-L2-001..004 table, lines 52-55",
+              "text": "要求はlayer/pair/process/verification and ticket; this table does not itself specify the FR56 S1 snapshot or return edge."
+            },
+            {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "locator": "HELIXOS-L2-010 row, line 63",
+              "quote": "管理は…目的・要求・制約・許可・優先度・依存・資源・予算・期限・停止・HARNESS版と接続状況を推進へ渡す。…推進は…workflow instance生成規則を所有してticketと成果を生成する。"
+            }
+          ]
         },
         {
           "id": "FR56-S0-S3",
-          "source_meaning": "case-driven S0 hypothesisのgap/親要求、S1 experiment planの契約snapshot/style return/budget、S2 PoC成果、S3 oracle evidence。",
+          "source_meaning": "S0 hypothesisのgap/親要求、S1 experiment planの契約snapshot・style返却先・budget、S2 PoC生成物、S3 oracle evidence。",
           "current_routes": [
-            "HARNESS-L2-002/003 Discovery/PoCの意味と結果戻し",
-            "HARNESS-L11-002/003 静的oracle",
-            "HELIXOS-L2-010 ticket routing"
+            "HARNESS-L2-002/003 row in product-requirements.md:103; HARNESS-L11-002/003 in product-acceptance.md:37",
+            "HELIXOS-L2-010 row in governance-requirements.md:63; ticket-kind table lines 134-138; HELIXOS-L11 HXT-SYS-01 line 308; L2-017 oracle line 341"
           ],
-          "finding": "保持（旧ラベルと1対1のphase名を要求しない。対象ticket・evidence・返却先が対応）。"
+          "finding": "分割判定: Discoveryの仮説/計画/限定実験/検証、起票ticketへの返却、ticket全体のbudget/期限は現行本文にある。一方、S1固有のcontract snapshotとstyle return edgeは一般phase/ticket traceからは証明できず、source holdingに残す。ticket budgetは存在するが、S1 experiment-plan snapshot内のbudget fieldだとは断定しない。旧S1物理schema名がないこと自体を新要求とはしない。",
+          "evidence": [
+            {
+              "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+              "locator": "HARNESS-L2-002/003 condition row, line 103",
+              "quote": "Discoveryを発行し、旧`S0 hypothesis → S1 experiment plan → S2 → S3 verify`の仮説・計画・限定した実験・検証を中に持ち、結果を発行元のticketへ戻す。"
+            },
+            {
+              "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+              "locator": "HARNESS-L2-002/003 oracle, line 37",
+              "quote": "Discoveryの結果は発行元のticketへ戻り、要求の意味を変える結果だけがBackflow・2次形成・Decideを経る。"
+            },
+            {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "locator": "HELIXOS-L2-010, line 63",
+              "quote": "目的・要求・制約・許可・優先度・依存・資源・予算・期限・停止・HARNESS版と接続状況を推進へ渡す。"
+            },
+            {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "locator": "HELIXOS-L2-017 acceptance, line 341",
+              "quote": "同じ入力から対象・親revision・scope・依存・受入義務・戻し先を持つ同じticket候補…INTELLIGENCE案をHARNESS語彙、権限、budget、期限、依存に照らして適格性確認する。"
+            }
+          ]
         },
         {
           "id": "FR56-S4-boundary",
           "source_meaning": "S4 confirmed/rejected/pivot・back-propagationを決め、S4未決結果をproduction currentへ上げない。要求意味の裁定は人判断。",
           "current_routes": [
-            "HARNESS-L2-002/003 Decide、verification successのみでは採用しない、人判断条件",
-            "HELIXOS-L2-010 Decide ticket"
+            "HARNESS-L2-002/003 condition row product-requirements.md:103",
+            "HARNESS-L2-002/003 L11 oracle product-acceptance.md:37",
+            "HELIXOS ticket kinds governance-requirements.md:134-138"
           ],
-          "finding": "保持（成功結果と意味採択を分離）。"
+          "finding": "意思決定結果confirmed/rejected/pivot、成功だけで採用しないこと、人の要求意味裁定、意味変更時のBackflow/2次形成は現行本文に具体的にある。S4専用receipt schema/labelは同一視せず物理形式のclosureは主張しない。",
+          "evidence": [
+            {
+              "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+              "locator": "HARNESS-L2-002/003 condition row, line 103",
+              "quote": "旧`S4 decide`はDecideで行い、結果を採用・不採用・方針変更のいずれかにする（旧`decision_outcome`のconfirmed／rejected／pivot）。検証の成功だけで採用にしない。要求の意味に関わる裁定は、旧S4と同じく人の判断とする。"
+            },
+            {
+              "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+              "locator": "HARNESS-L2-002/003 oracle, line 37",
+              "quote": "要求の意味を変える結果だけがBackflow・2次形成・Decideを経る…要求の意味に関わる裁定を人の判断なしに成立させる入力を拒否する。"
+            },
+            {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "locator": "ticket-kind table lines 134-138",
+              "quote": "Decide: 採用→Forward、不採用→記録して終了、方針変更→次の計画。Backflow: 下流の結果を要求へ戻す。"
+            }
+          ]
         },
         {
           "id": "FR56-outputs",
@@ -347,7 +404,7 @@
             "HARNESS-L2-001〜004 trace/pair/ticket/evidence",
             "HELIXOS-L2-010 ticket/return routing"
           ],
-          "finding": "意味出力は対応。旧artifact名・独立schemaへの同一性は確定していないため、物理形式の全 closure は主張しない。"
+          "finding": "workflow/phase evidenceと発行元ticketへの返却をtraceする現行責務はある。旧S1 contract snapshot/style return edgeはsource holding。S4 decision outcomeとBackflowは要件にあるが、旧receiptの物理schema/名前の一致は要求しない。"
         }
       ]
     },
@@ -458,10 +515,37 @@
           "id": "FR60-runtime-lifecycle",
           "source_meaning": "生成agentをallowlist runtimeへ投影し、worker/verifierのprovider/model/authority分離とlease/fencing/retireを検査。",
           "current_routes": [
-            "HARNESS-L2/L11-047 owner split + runtime-neutral contract",
-            "採択 HELIXOS-L2-004 assignment/execution, and adopted OS-042/043 evidence/event pair where applicable"
+            "採択 HARNESS-L2/L11-047 row 52, exact digests in decisions list; L2 product-requirements.md:1046-1047; L11 product-acceptance.md:786-790",
+            "HELIXOS-L2-004 governance-requirements.md:57,293; HELIXOS-L11-004 governance-acceptance.md:24; OS-042/043 only for adopted worker result/event duties"
           ],
-          "finding": "要求段階の責務・lifecycle条件を保持。OS/SECURITY ownerの実行成立は未実施。provider/model一致単独で独立性判定しない。"
+          "finding": "採択047がlease/fencing/失効/retireの条件とlifecycle evidenceを明示し、L11が不足/不一致を保留する。OS-004は割当・実行・回収・予算・レビュー能力と失効/隔離を持つが、lease/fencing/retireという詳細語をOS-004単独で規定してはいない。従ってその条件は採択047本文/L11に依拠し、OS-004だけで証明したとはしない。9/26 decision lines 56-60がprovider/modelに依存しない独立性を明示する。実runtime成功は未実施。",
+          "evidence": [
+            {
+              "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+              "locator": "HARNESS-L2-047 adopted section, lines 1046-1047",
+              "quote": "OSはWorker assignment、実行状態、budget/期限、既存allowlist runtimeへのprojection、lease/fencing/失効/retireの適用および結果/evidenceを持つ。Workerとverifierのidentity・context・authorityを分離する。provider/modelは記録する。"
+            },
+            {
+              "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+              "locator": "HARNESS-L2-047 oracle, lines 786-788",
+              "quote": "OSが適格な既存runtime profile/assignmentを示せない場合、projectionはunknown/拒否となり完了しない。…identity・context・authorityを分離…適用されるlease/fencing/失効/retire条件とOS lifecycle evidenceが不足または不一致なら…保留。"
+            },
+            {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "locator": "HELIXOS-L2-004, line 57",
+              "quote": "Workerへ作業を割り当てて実行・回収し、優先度・予算・依存・レビュー能力の制約内で進行を統制できる。"
+            },
+            {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "locator": "HELIXOS-L2-004 oracle, line 24",
+              "quote": "失効で実行が止まり途中の成果物が隔離され、作業の終了後に一時の資格情報や環境が次のassignmentへ残らないことを確かめる。"
+            },
+            {
+              "path": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
+              "locator": "Independent review and lane decision, lines 56-60",
+              "quote": "作成側とは別のreviewer identity・context・authority・review route…provider/modelは記録するが、同一providerだから非独立、別providerだから独立とはしない。"
+            }
+          ]
         },
         {
           "id": "FR60-outputs",
@@ -469,18 +553,32 @@
           "current_routes": [
             "HARNESS-L2/L11-047 muster outcome / contract / runtime projection & lifecycle evidence; OS-L2-004 assignment and evidence"
           ],
-          "finding": "muster/contract/projection/separation/receipt meaning mapped; TeamDefinitionという旧名の独立schema/必須artifactとしての存続は current exact decision で明示されていない。source holdingに残し、同一artifact又はretireを主張しない。"
+          "finding": "No demonstrated functional gap: accepted 047 supplies muster/contract/projection/separation/lifecycle evidence and OS-004 assignment/execution duties. TeamDefinition is an old output label; absence of that physical name alone is not missing business behavior. No separate-schema closure is claimed; no candidate or human wait is introduced."
         }
       ]
     }
   ],
   "residuals": [
     {
-      "id": "FR60-TeamDefinition-output-shape",
-      "severity": "meaning boundary unresolved, not asserted functional gap",
-      "source": "HIL-FR-60 line 150 output atom; exact source line and IR statement digests included above.",
-      "current": "047 outputs runtime-neutral specialist Worker contract; OS-L2-004 holds assignment/execution and existing runtime projection/evidence. Accepted section does not state whether legacy TeamDefinition is a separate required aggregate or an old label represented by contract plus OS assignment.",
-      "handling": "Do not claim exact TeamDefinition schema/identity closure, nor treat missing same-name field as proof of absent behavior. Keep source atom/holding. If separate aggregate meaning is intended, return as a targeted PO meaning choice before proposing another candidate."
+      "id": "FR56-S1-contract-snapshot",
+      "severity": "specific source condition not evidenced in current cited clauses",
+      "source": "HIL-FR-56 line 146; line SHA in source_rows; preserved via MPR-SH-IR-003 (no successor/closure claim).",
+      "current": "HARNESS L2 line 103 names S1 experiment plan but not a contract snapshot. OS-L2-010 line 63 and HXT-SYS-01 line 308 connect requirement revision/HARNESS version/ticket, not a dedicated S1 contract snapshot.",
+      "handling": "Keep S1 contract-snapshot obligation in source holding. Do not infer it from general phase, trace, or artifact-name mapping; no candidate ID proposed."
+    },
+    {
+      "id": "FR56-S1-style-return-edge",
+      "severity": "specific source condition not evidenced in current cited clauses",
+      "source": "HIL-FR-56 line 146; line SHA in source_rows; preserved via MPR-SH-IR-003 (no successor/closure claim).",
+      "current": "HARNESS L2 line 103 and OS ticket table lines 134-138 return Discovery to its originating ticket. They do not expressly bind that return to the selected development style/style state.",
+      "handling": "Keep explicit selected-style return-edge obligation in source holding. The generic ticket destination is partial route correspondence only; no candidate ID proposed."
+    },
+    {
+      "id": "FR56-S1-budget-binding",
+      "severity": "partially evidenced; avoid overclaim",
+      "source": "HIL-FR-56 line 146 requires S1 plan to carry budget.",
+      "current": "OS-L2-010 line 63 and OS-L11-017 line 341 carry/validate ticket-level budget and deadline. They do not establish that the budget is bound inside the S1 plan snapshot.",
+      "handling": "Mark ticket-level budget meaning retained; keep S1-snapshot binding specific condition unproven."
     }
   ],
   "authority_and_limitations": {
@@ -488,6 +586,13 @@
     "implementation": "HAT-HIL-20/HAT-HIL-21 remain designed_not_implemented in old IR. Static requirement/oracle coverage is not execution evidence.",
     "formal_successor": "IR downstream obligations remain pending_pair_descent; no formal successor or whole-row legacy closure is claimed.",
     "unadopted_candidate": "HARNESS-L2-054 and other unselected slices are held as candidate/source whereabouts, not adopted contracts.",
-    "prohibited_operations": "No archive runtime, old test, old CI, CLI, hook, adapter, or source execution; source only read. No 137 or common gate execution."
+    "prohibited_operations": "No archive runtime, old test, old CI, CLI, hook, adapter, or source execution; source only read. No 137 or common gate execution.",
+    "FR60_TeamDefinition": "The adopted HARNESS-047 and OS-004 texts cover the business outcomes for muster, contract, assignment/projection and lifecycle. The legacy output label TeamDefinition has no separate same-name current schema; name/schema absence alone is not a functional gap. Do not create a candidate or human wait on that basis.",
+    "FR56_S1_correction": "S1 contract snapshot and selected-style return edge are held as specific source conditions. Ticket-level budget and Discovery origin-ticket return are present but are not proof of those S1 bindings."
+  },
+  "source_hash_rules": {
+    "source_file_sha256": "SHA-256 of raw file bytes",
+    "source_line_sha256": "SHA-256 of the physical source line UTF-8 bytes including its terminating LF",
+    "source_line_text": "The source line text without the terminating LF"
   }
 }
