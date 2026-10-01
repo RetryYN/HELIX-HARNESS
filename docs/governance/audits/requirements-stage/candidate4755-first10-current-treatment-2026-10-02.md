@@ -4,7 +4,7 @@
 
 照合基準は専用worktreeのbase `6265c512bae65789b177e38404c8266726799f46`。初回選択10行 `000018, 000021, 000028, 000034, 000037, 000331, 000468, 000470, 000472, 000474`だけを原文起点で読み直した。後続10行や864行全体の再調査は対象外。
 
-各sourceは旧archiveの原文、物理行、行SHA/file SHA、前後の文脈、source ledger記録SHA、asset、既存historical route/effective classificationをpaired JSONへ保存した。分類・route labelは現行条件の充足証拠とせず、旧source行の採否・意味変更も作っていない。選択外の隣接行は一文の復元に必要な文脈としてだけ記録し、source atomへ加えていない。
+各sourceは旧archiveの原文、物理行、行SHA/file SHA、前後の文脈、source ledger記録SHA、asset、既存historical route/effective classificationをpaired JSONへ保存した。対象10件はJSONの明示ID一覧をmembershipとし、tracked `legacy-candidate-source-line-carry-forward.jsonl`から各 `candidate_source_line_id` を完全一致で解決して一覧の昇順に再現できる。ignoredなローカルclassifierのpath/hashは提出証拠に使わず、一覧から選択理由や順位を推測しない。分類・route labelは現行条件の充足証拠とせず、旧source行の採否・意味変更も作っていない。選択外の隣接行は一文の復元に必要な文脈としてだけ記録し、source atomへ加えていない。
 
 現行側は採択済みの対象revisionとPO decision、L2/L11の現行bytesを確認し、候補は未採択の行き先として別記した。採択済み一般条件に部分的な意味対応がある場合も、原文固有のfailure oracleやmanagement義務を満たすとは推定しない。以下の「未解決」は要求の不存在を断定するものではなく、引用した本文・decisionでは条件固有の完全な行き先を証明できなかったという意味。
 
@@ -92,6 +92,14 @@
 - `000472`: L11-118 lines 1050–1051はcancelled runをpost-main completion、terminal green、deferred recovery success、review receiptへ個別に与え拒否する。sourceのpost-main/review/deferred-successを全て包含する既存候補destinationで、重複候補を作らない。
 - `000474`: L2/L11-118 lines 1461–1462 / 1047–1052はcurrent canonical HEADのterminal evidence、main/scheduleの独立結果、cancel/supersede/handoffのreasonとtarget再構築を保持し、欠落/不一致をunknown/incompleteとする。要求結果は候補本文に行き先がある。旧bounded GitHub rehearsalは実行要求へ移さない。
 - `000470`: 118はolder-schedule-only replacementとunbounded parallelism禁止を保持し、具体queue/TTL値を固定しない。sourceにも数値はないので数値未指定自体は欠落でない。一方、silent dropを拒否する個別oracleと、queue/TTL超過時に未完required verificationをpending/replaced/terminal-non-successとして明示する結果は本文にない。これは既存118 candidateへの限定追補が必要な残差。数値policyやprovider concurrency方式は推測しない。
+
+## mainへ統合済みの118-001との追加照合
+
+上の#2496 Draft HEAD `0a9c58e0907ea2821374c84dfabe2482edde4419` 比較は、その当時の9 atom snapshotとして保持する。これとは別に、main `2a6b1fdd49ffa74eb2075fd98f67daca316408f2` に統合された `MPR-RC-HELIXOS-L2-118-001` を現行比較した。register line 650は `registered_proposal` / `authority_effect: none`、候補semantic digest `sha256:7872e13850587caf3a16cfadb8e4b793a4d893faf06d0085d443590998f2b1d4`。L2-118 lines 1455–1465、L11-118 lines 1043–1052のpaired section digestはそれぞれ `sha256:7872e13850587caf3a16cfadb8e4b793a4d893faf06d0085d443590998f2b1d4` と `sha256:feea1a8262ed8ab5feef63b552ebf4d3e1931518cafbd85e2b8e1bb56763c95d`。
+
+main receipt `ci-event-concurrency-coverage-receipt-2026-10-02.json` は11 atom、set digest `sha256:c30189321ceb43db600de12633d554526d3ca519367ee0d807f1205bfb21e868` を記録する。source atom IDsは `000491, 000492, 000496, 000497, 000499, 000500, 000501, 000502, 000527, 000528, 000529`。この集合に `000470/000472/000474` は含まれない。receiptも `condition_closure: not_asserted` と明記する。
+
+したがって既存の条件比較結論は変わらない。000472と000474はmerged 118-001のL11/L2 condition destinationに内容があるが、receiptのsource mapping・採択・実行・formal successor・closureではない。000470についてはolder-schedule-only replacementとunbounded parallelism禁止の行き先がある一方、silent-drop rejectionおよびqueue/TTL超過時の可視pending/terminal non-success結果はmerged 118-001本文にない。これはsource上の数値を新設せず、既存候補に残る条件差として扱う。歴史Draftの9 atom比較とmerged mainの11 atom比較を混同しない。
 
 ## 採択・候補・保留の区別
 
