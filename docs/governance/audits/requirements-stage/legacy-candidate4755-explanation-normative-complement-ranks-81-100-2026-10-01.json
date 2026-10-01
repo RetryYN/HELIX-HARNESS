@@ -161,7 +161,7 @@
     },
     {
       "role": "corrected_normative_marker_screen",
-      "commit": "f330d71d2b86d5d2e762478ce85d9d396b81bb54",
+      "commit": "2fdc1dfef3ec81e96eb91a03a234592e328980e0",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-marker-screen-2026-10-01.json",
       "sha256": "1f9b0b6e05bfb46d937dfbbb954e8f7aa956c440acd526cbad2487b82893efbb",
       "git_blob_sha": "2671d48a68d18dcfec7c7e4781e97429821ddfe7"
