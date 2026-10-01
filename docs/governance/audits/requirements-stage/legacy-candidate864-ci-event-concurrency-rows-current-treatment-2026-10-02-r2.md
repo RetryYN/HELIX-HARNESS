@@ -6,11 +6,11 @@
 
 ## 対象とauthority
 
-- 現行比較base：`2a6b1fdd49ffa74eb2075fd98f67daca316408f2`。このbaseに含まれるHELIXOS-L2/L11-118本文も未採択候補であり、本文・receipt・MPR stateから採択を推定しない。
+- 現行比較base：`a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20`。修正対象candidate contentは`6115d5bed71c9fada0bb21d25839d0bb893bddec`を起点にし、L2/L11-118は未採択候補として扱う。本文・receipt・MPR stateから採択を推定しない。
 - 旧行選択：既存 `candidate4755-condition864-current-treatment-2026-10-02.json` のsource ID順で選んだ元10物理行（000478、000491、000492、000496、000497、000499、000500、000501、000502、000528）に、独立reviewで要求条件と判明した旧requirements物理行30/32（source ID 000527/000529）、旧acceptance行16/18/20（000470/000472/000474）を追加。計15物理行のうち000478は工程条件、残る14行がrequirement atoms。同JSONの機械分類や`no_condition_specific_current_target_evidence_found`だけを欠落証拠にしていない。
 - 旧archiveは読み取りだけとし、旧runtime、CI、test、CLI、live rehearsalは実行していない。
 - HELIX-OS 2026-09-28 PO decision（ファイルSHA-256 `5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da`）は固定commit `f6dad2a33e24f000b87d7f09b8d40288257e74cc` のL1/L2/L11 exact revisionを特定し、L2 `c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf`／L11 `925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680` bytesとHELIXOS-L2-001..029を採択している。2026-09-28本文のauthorityはこのdecisionから読む。今回のHELIXOS-L2/L11-118はその採択範囲の変更ではない。
-- 現行の採択L2-007／008／009／018／019／020と対L11を確認した。L2-007/019とL11-007/019はprovenance、欠落・重複・stale・未実行、event projection・checkpoint、再構築を扱う。L2-009/L11-009は中断・交代時の累積制約と未完義務、二重作業防止を扱う。L2-018/L11-018はassignment/attemptのbinding・期限/lease失効後のhandoffを扱う。L2-008/L11-008はHARNESS義務由来profile、CI起動・失敗・修復・再実行、旧CI結果での代替禁止を扱う。L2/L11-020はexact HEAD/oracle/environment/run identity、実行state、義務不足・中断の未完引継ぎ、oracle削減不可を扱う。これら採択済み本文はqueue/TTL超過時のno-silent-drop結果も明示しない。118以前に不足した保証は別検証義務間のcancel非干渉、current-main post-main検収保護、stale generationのみのbounded置換、cancel/supersede/handoff対象の再構築、cancelled runの成功・terminal green・別義務結果流用である。
+- 現行の採択L2-007／008／009／018／019／020と対L11を確認した。L2-007/019とL11-007/019はprovenance、欠落・重複・stale・未実行、event projection・checkpoint、再構築を扱う。L2-009/L11-009は中断・交代時の累積制約と未完義務、二重作業防止を扱う。L2-018/L11-018はassignment/attemptのbinding・期限/lease失効後のhandoffを扱う。L2-008/L11-008はHARNESS義務由来profile、CI起動・失敗・修復・再実行、旧CI結果での代替禁止を扱う。L2/L11-020はexact HEAD/oracle/environment/run identity、実行state、義務不足・中断の未完引継ぎ、oracle削減不可を扱う。これら採択済み本文はqueue/TTL超過時のno-silent-drop結果も明示しない。118以前に不足した保証は別検証義務間のcancel非干渉、current-main post-main検収保護、stale generationのみのbounded置換、cancel/supersede/handoff対象の再構築、cancelled runの成功・terminal green・別義務結果流用である。000474との照合で、current main push/scheduleのread-after結果を対応run IDへ結び付けることと、run ID欠落・不一致をunknown／未完へ留めることも既存本文の不足として確認し、このrevisionへ追補する。
 - HELIX-OS NCI候補（現行ファイルSHA-256 `4eae5f8dd485ed8c77d2ea7b6b0407028093c02566e5b92fce9d05a89307a49d`）のOS-003/004/005は、run binding、失敗分類、queue/parallelism/budget最適化とrequired oracle維持を候補条件として持つ。対L11候補は別HEAD、oracle省略、cancel等の状態区別に関係するが、current-main保護・義務間非干渉・stale-only置換・cancelledの全consumer拒否・理由/対象の再構築を具体oracleとして列挙しない。crosswalk（SHA-256 `fb4e8bdc6ffb29acf17d79aeb961a97dea239ef59291e79522dae8fe13c551cf`）はCIG-BR-02/R-02、R-03、CIG-BR-03/R-04をNCIへ`split_reapproval_required`、CIG-AC-001..007を候補oracleとして対応付けるが、現行採択とは扱わない。
 - `b447ecccd`のroot-local HELIXOS-L2-115候補も照合した。115は一つの既存assignment/attemptが終端した後の遅着・重複Worker resultをそのattemptのaccepted/current resultにしない条件であり、複数run/義務のcancel、置換、cross-obligation reuseを対象にしない。機能は重複しない。
 
@@ -22,7 +22,7 @@
 |---|---|---|
 | `000470` / `ci-event-concurrency-generation-acceptance.md:16` | scheduleを連続起動してqueue上限とTTLを超えさせる。older scheduleだけを置換し、無制限並走とsilent dropを拒否する。 | 採択OS-009/020の累積制約・未完義務保持はこのqueue/TTL超過時の結果を直接定めない。118候補のbounded controlに、silent dropを拒否して残るrequired verificationをconsumerから見えるunfinished/non-success状態にする条件だけを追補した。数値・TTL値・state enumは固定しない。|
 | `000472` / `ci-event-concurrency-generation-acceptance.md:18` | cancelled runをpost-main、review、deferred successへ投入し、全consumerが採用を拒否する。 | 118 L11候補にconsumer別拒否oracleが既にある。選択atomとsource/receiptの結び付けだけを追加し、candidate意味を重複作成しない。採択・runtime実行・consumer実証は主張しない。 |
-| `000474` / `ci-event-concurrency-generation-acceptance.md:20` | run-ID read-afterでcurrent main pushとscheduleの独立terminalを確認し、cancel/handoff receiptを再構築する。原文はbounded GitHub rehearsalまたは自然scheduleも記す。 | 118 L2/L11候補に別terminal確認とcancel/handoff理由・対象再構築の行き先があるためsource選択だけを加える。実runtime/rehearsalは候補stage gateへ移さず、旧runtime/CIも実行しない。 |
+| `000474` / `ci-event-concurrency-generation-acceptance.md:20` | run ID付きread-afterでcurrent main pushとscheduleそれぞれの独立terminalを確認し、cancel/handoff receiptを再構築する。原文はbounded GitHub rehearsalまたは自然scheduleも記す。 | 118 L2/L11候補の従前本文は独立terminalと理由・対象再構築を記すが、read-after結果と対応run IDのbindingがない。今回、双方の正常対照でmain-push/schedule run IDとterminal evidenceを対応付け、run ID欠落・不一致時はunknown／未完とする候補oracleを追補した。実runtime/rehearsalは候補stage gateへ移さず、旧runtime/CIも実行しない。 |
 | `000478` / `ci-event-concurrency-generation-acceptance.md:26` | runtime実装・DB migration・live rehearsalはcanonical promotion後の別PLANで検証する。 | 工程順・下位実装の条件であり、新しい要求述語ではない。現行L2-008は上流確定後にL3/L10から実装を再導出し、L2-020は新世代CI未構築と旧CI非実行を保持する。別PLAN/下位設計へ残し、118のatomから除外する。 |
 | `000491` / `ci-event-concurrency-generation-requests.md:17` | schedule/manual safety-netがcurrent main HEADのpost-main検収をcancelしてはならない。 | 採択L2/11-008, 020のexact HEAD/run identityやoracle削除禁止では、別runによるcurrent検収のcancel/non-substitutionまでは決まらない。118にcurrent main保護と別義務結果での代替拒否を追加する。 |
 | `000492` / 同requests:18 | 全run並走でqueue、費用、古い証拠を無制限にしない。 | NCI-OS-005候補はqueue/parallelism/budget optimizationとoracle維持を挙げるが、無制限累積の禁止は明記しない。118は数値を作らずbounded controlを要求する。 |
@@ -52,6 +52,10 @@
 - 旧paired audit JSON: [`legacy-candidate864-ci-event-concurrency-rows-current-treatment-2026-10-02.json`](legacy-candidate864-ci-event-concurrency-rows-current-treatment-2026-10-02.json), `sha256:8eae153b2f6f30b6ab3fe03edf566aafd3438f3d6200df020174276f7e9214a7`.
 - 旧paired audit Markdownは[`同revisionの監査記録`](legacy-candidate864-ci-event-concurrency-rows-current-treatment-2026-10-02.md)として保持する。今回の作業は上記4履歴bytesを遡及更新しない。
 
+## F1 review修正：000474 run-ID read-after
+
+旧原文`ci-event-concurrency-generation-acceptance.md:20`（`LEGACY-CAND-LINE-000474`）は、run ID付きread-afterでcurrent main pushとscheduleの独立terminalを確認する。修正前の118本文は各結果のterminal確認を求めていたが、それを生じたrun IDへ結び付ける条件は記していなかった。L2-118へ対応run ID bindingとmissing/mismatch時のunknown／未完境界を追加し、L11-118の正常対照へrun-ID bound read-after、終端反例へ欠落・別run binding時の拒否を追加した。これは旧sourceの結果保証を具体化し、run ID format、receipt schema、数値、状態enum、実行許可を追加しない。
+
 ## 意味差・PO判断材料
 
 旧sourceのCIG-R-02/AC-003はevent間の相互cancel禁止、同一PR stale HEAD限定置換、older-schedule-only置換、queue/TTL超過時のsilent drop拒否を指定する。source-faithful Aはこのstrict結果条件を保証し、provider API・receipt schema・閾値・状態enumは固定しない。Bはevent classをfixture例として義務/generation境界へ一般化するため、同一義務での別class結果流用を許し得る。これはold strict conditionを弱める意味差であり、PO decisionがない限り採択条件として扱わない。AC-003のno-silent-drop/未完義務可視性には別の意味選択肢を設けていない。
@@ -63,4 +67,7 @@
 
 ## 境界と判定
 
-14 requirement source atomsを未採択のL2/L11-118候補へ入力し、source holdingは残す。coverage receiptの`no_loss`は選択14 atomの候補入力への対応だけを表し、正式successor、対象scope/ownerのPO割当、PO採択、条件closure、runtime実装または実行済み受入を主張しない。000472/474は既存候補の条件行き先へsource mappingし、意味を増やさない。000478は選択した15物理行のうちの工程条件として現行L3/L10後の別PLANへ残し、118 requirement atom数に加えない。
+14 requirement source atomsを未採択のL2/L11-118候補へ入力し、source holdingは残す。coverage receiptの`no_loss`は選択14 atomの候補入力への対応だけを表し、正式successor、対象scope/ownerのPO割当、PO採択、条件closure、runtime実装または実行済み受入を主張しない。000472は既存候補のconsumer別拒否へsource mappingする。000474の独立terminalとcancel/handoff再構築は既存行き先を保ち、run-ID bindingおよび欠落・不一致時unknown／未完oracleを今回候補本文へ追加した。000478は選択した15物理行のうちの工程条件として現行L3/L10後の別PLANへ残し、118 requirement atom数に加えない。
+
+
+修正後の候補section pin（comparison base `a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20`、content revision `6115d5bed71c9fada0bb21d25839d0bb893bddec`）：L2-118 `sha256:af7a0c7cf74dbf61578c04618bd4b566b741083a8cea079b74882243613619a3`、L11-118 `sha256:8590e78e81005c6eb074211eaaf40793eb6f0be1ef5639d9e6eb1da79bf82d4d`。候補状態は未採択のまま。

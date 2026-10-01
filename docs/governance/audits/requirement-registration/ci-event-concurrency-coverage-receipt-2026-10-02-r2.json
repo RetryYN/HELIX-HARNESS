@@ -4,15 +4,15 @@
   "authority_effect": "none",
   "candidate_identity": "HELIXOS-L2-118",
   "requirement_kind": "unit",
-  "candidate_semantic_digest": "sha256:a2117b7bf6770ed9190605176009a86adfa65c9c16fedde6ace9e544c23dec5c",
+  "candidate_semantic_digest": "sha256:af7a0c7cf74dbf61578c04618bd4b566b741083a8cea079b74882243613619a3",
   "candidate_digest_rule": "L2 section from ### HELIXOS-L2-118 to next same-level ### or EOF; trim trailing blank lines and terminate with one UTF-8 LF.",
-  "candidate_l2_file_sha256": "sha256:f342c493f359c8127265d79c981158af19cf8e195d55b4fe69759d60454bd6e1",
+  "candidate_l2_file_sha256": "sha256:299b26667fd40a1c5af8c54426ffda5d5b6fe2f34d56c6a6eb3d8e34287b65e9",
   "candidate_l2_line_start": 1455,
   "candidate_l2_line_end": 1465,
   "paired_acceptance_identity": "HELIXOS-L11-118",
-  "paired_acceptance_digest": "sha256:f006948a5c91606bd696c96d57af8b3acf3310f4eb31f1b0a849408bb7c84b29",
+  "paired_acceptance_digest": "sha256:8590e78e81005c6eb074211eaaf40793eb6f0be1ef5639d9e6eb1da79bf82d4d",
   "l11_digest_rule": "L11 section from ### HELIXOS-L11-118 to next same-level ### or EOF; trim trailing blank lines and terminate with one UTF-8 LF.",
-  "l11_file_sha256": "sha256:67f422f51f8c7b1a3fcd62e7e29756076972672b1f74a719e48e1d45d4e07495",
+  "l11_file_sha256": "sha256:e287f7ac2e82bbd7bca2a2ac1af6f263a5fe348fc6e70f29d7bc7c3c3e1d0c34",
   "l11_line_start": 1043,
   "l11_line_end": 1052,
   "source_lines_ref": "docs/governance/audits/requirement-registration/ci-event-concurrency-source-lines-2026-10-02-r2.jsonl",
@@ -39,7 +39,7 @@
   ],
   "candidate_input_atom_count": 14,
   "candidate_input_atom_set_digest": "sha256:17329e40351f30f0fb8c5e4dba7e214a840fb3118a3d07d654b2ae6f55c6dfba",
-  "candidate_input_accounting_status": "The fourteen selected physical-line atoms are mapped to this unadopted candidate pair without loss inside this selected scope. The queue/TTL overrun no-silent-drop and visible-unfinished outcome is explicit; existing cancelled-consumer and read-after/reconstruction outcomes are mapped without duplicate meaning. Source holding remains live; no formal successor, owner/applicability assignment, PO adoption, runtime implementation, execution, source closure or condition closure is claimed.",
+  "candidate_input_accounting_status": "The fourteen selected physical-line atoms are mapped to this unadopted candidate pair without loss inside this selected scope. The queue/TTL overrun no-silent-drop and visible-unfinished outcome is explicit; 000474 now explicitly binds each main-push/schedule read-after result to its corresponding run ID and keeps missing/mismatched bindings unknown/incomplete. Existing cancelled-consumer and cancel/handoff reconstruction outcomes remain mapped without duplicate meaning. Source holding remains live; no formal successor, owner/applicability assignment, PO adoption, runtime implementation, execution, source closure or condition closure is claimed.",
   "source_line_coverage_result": "candidate_input_scoped_to_fourteen_selected_requirement_atoms; formal_successor_owner_scope_adoption_and_execution_unconfirmed",
   "candidate_input_coverage_result": "no_loss",
   "condition_closure": "not_asserted",
@@ -645,9 +645,9 @@
     "fixed_adoption_scope": "HELIXOS-L2/L11-001..029; includes accepted L2/L11-007/008/009/018/019/020, does not include new L2/L11-118.",
     "current_paths": {
       "l2": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "l2_sha256": "sha256:f342c493f359c8127265d79c981158af19cf8e195d55b4fe69759d60454bd6e1",
+      "l2_sha256": "sha256:299b26667fd40a1c5af8c54426ffda5d5b6fe2f34d56c6a6eb3d8e34287b65e9",
       "l11": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-      "l11_sha256": "sha256:67f422f51f8c7b1a3fcd62e7e29756076972672b1f74a719e48e1d45d4e07495"
+      "l11_sha256": "sha256:e287f7ac2e82bbd7bca2a2ac1af6f263a5fe348fc6e70f29d7bc7c3c3e1d0c34"
     },
     "adopted_conditions_checked": [
       "L2/L11-007 provenance, duplicate/stale/missing/unfinished state distinction",
@@ -673,7 +673,7 @@
       "CIG-BR-03/CIG-R-04 -> NCI-OS-003/004 (split_reapproval_required)",
       "CIG-AC-001..007 -> NCI-HARNESS-002/003 and NCI-OS-003/004 (oracle_atom_candidate)"
     ],
-    "exact_gap": "NCI-OS-003/004/005 and paired L11 candidate have no concrete non-interference, current-main protected obligation, stale-only bounded replacement, cancel-result non-success/cross-obligation non-reuse, or cancellation/handoff reason-target reconstruction oracle. NCI-OS-005 mentions queue/parallelism/budget optimization while preserving required oracles, but does not explicitly exclude unbounded run/queue/cost/stale-evidence accumulation. Existing candidate 118 now expressly rejects silent schedule/verification drop on queue-capacity or TTL overrun and keeps remaining required work visible as unfinished/non-success; it fixes no threshold or state enum. AC-005 cancelled-consumer and AC-007 terminal/reconstruction conditions already have candidate destinations and are source-mapped without duplicate semantics.",
+    "exact_gap": "NCI-OS-003/004/005 and paired L11 candidate have no concrete non-interference, current-main protected obligation, stale-only bounded replacement, cancel-result non-success/cross-obligation non-reuse, or cancellation/handoff reason-target reconstruction oracle. NCI-OS-005 mentions queue/parallelism/budget optimization while preserving required oracles, but does not explicitly exclude unbounded run/queue/cost/stale-evidence accumulation. Existing candidate 118 now expressly rejects silent schedule/verification drop on queue-capacity or TTL overrun and keeps remaining required work visible as unfinished/non-success; it fixes no threshold or state enum. AC-005 cancelled-consumer and AC-007 cancel/handoff reconstruction conditions have candidate destinations. The prior 000474 destination lacked read-after-to-run-ID binding; this revision adds that condition and missing/mismatched-ID unknown/incomplete oracle to the unadopted candidate.",
     "overlap_check": "Root-local commit b447ecccd HELIXOS-L2-115 was read as an independent unmerged candidate. It covers late/duplicate result rejection for one terminated assignment/attempt only, not concurrent required-obligation generations, cancellation, replacement or cross-class result reuse."
   },
   "po_decision_material": {
@@ -693,7 +693,7 @@
     ]
   },
   "review_pins": {
-    "base_commit": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+    "base_commit": "a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20",
     "po_decision": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
     "po_decision_sha256": "sha256:5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
     "crosswalk": "docs/governance/audits/source-rebaseline/new-generation-ci-ai-source-crosswalk.md",
@@ -701,9 +701,10 @@
     "source_ledger": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
     "asset_ledger": "docs/governance/legacy-asset-disposition.jsonl",
     "historical_routing": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
-    "latest_main_comparison": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+    "latest_main_comparison": "a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20",
     "latest_main_concept_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
-    "latest_main_os_l1_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e"
+    "latest_main_os_l1_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+    "candidate_content_revision": "6115d5bed71c9fada0bb21d25839d0bb893bddec"
   },
   "registered_at": "2026-10-02T07:30:54+09:00",
   "active_mpr_registration_id": "MPR-RC-HELIXOS-L2-118-002",
@@ -752,9 +753,17 @@
       "current_receipt_ref": "docs/governance/audits/requirement-registration/ci-event-concurrency-coverage-receipt-2026-10-02-r2.json",
       "current_audit_ref": "docs/governance/audits/requirements-stage/legacy-candidate864-ci-event-concurrency-rows-current-treatment-2026-10-02-r2.json",
       "current_markdown_ref": "docs/governance/audits/requirements-stage/legacy-candidate864-ci-event-concurrency-rows-current-treatment-2026-10-02-r2.md"
+    },
+    {
+      "event": "F1 review correction for selected source atom 000474: prior candidate text required independent terminal evidence but did not bind each read-after result to its originating run ID. L2/L11 candidate text now requires corresponding main-push/schedule run-ID binding and keeps absent/mismatched bindings unknown/incomplete. The fourteen source atoms and their source hashes/digest are unchanged; no adoption or closure is claimed.",
+      "registration_id": "MPR-RC-HELIXOS-L2-118-002",
+      "source_atom_count": 14,
+      "source_atom_set_digest": "sha256:17329e40351f30f0fb8c5e4dba7e214a840fb3118a3d07d654b2ae6f55c6dfba",
+      "comparison_base_commit": "a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20",
+      "candidate_content_revision": "6115d5bed71c9fada0bb21d25839d0bb893bddec"
     }
   ],
-  "current_comparison_base_commit": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+  "current_comparison_base_commit": "a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20",
   "integration_note": "Revision 2 based on main 2a6b1fdd49ffa74eb2075fd98f67daca316408f2. Fourteen selected source atoms are mapped. MPR 118-001 remains as immutable prior registration; one 118-002 row supersedes it. Prior 11-atom source/receipt/audit bytes remain unchanged.",
   "previous_integration_base_commit": "139db3ab5a215b3d7ddb628cea73fd398f391059",
   "revision_predecessor": {
@@ -771,7 +780,7 @@
     "old_revision_files_unchanged": true
   },
   "paired_audit_ref": "docs/governance/audits/requirements-stage/legacy-candidate864-ci-event-concurrency-rows-current-treatment-2026-10-02-r2.json",
-  "paired_audit_sha256": "sha256:e23477f8aee9488197a1efaf433fbd51bcb7481d6e6a405b689a867a6c2cc8f2",
+  "paired_audit_sha256": "sha256:636b3a90d7874485758d9c14b633c46958aa8e0a0c7386e0423fec74630a4af3",
   "paired_markdown_ref": "docs/governance/audits/requirements-stage/legacy-candidate864-ci-event-concurrency-rows-current-treatment-2026-10-02-r2.md",
-  "paired_markdown_sha256": "sha256:cf7a98bb72f830cd48679cba3b117c47d4f49d114327b52788adb800a6d14cf4"
+  "paired_markdown_sha256": "sha256:988d0a2efff6efe257ef4fde987754c54ca2473374a657a54e8e0ede53552d82"
 }

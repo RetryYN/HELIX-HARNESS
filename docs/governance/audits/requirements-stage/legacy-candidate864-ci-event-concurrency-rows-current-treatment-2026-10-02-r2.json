@@ -2,7 +2,7 @@
   "audit_id": "LEGACY-CANDIDATE864-CIG-CURRENT-TREATMENT-2026-10-02-R2",
   "audit_state": "source_condition_comparison_for_unadopted_candidate",
   "authority_effect": "none",
-  "comparison_base_commit": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+  "comparison_base_commit": "a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20",
   "source_audit_ref": "scaffold/review-handoff/local/candidate4755-condition864-current-treatment-2026-10-02/candidate4755-condition864-current-treatment-2026-10-02.json",
   "source_audit_ref_role": "selection index only; not source authority or gap proof",
   "paired_markdown_ref": "docs/governance/audits/requirements-stage/legacy-candidate864-ci-event-concurrency-rows-current-treatment-2026-10-02-r2.md",
@@ -20,7 +20,7 @@
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
       "line_start": 1455,
       "line_end": 1465,
-      "section_sha256": "sha256:a2117b7bf6770ed9190605176009a86adfa65c9c16fedde6ace9e544c23dec5c"
+      "section_sha256": "sha256:af7a0c7cf74dbf61578c04618bd4b566b741083a8cea079b74882243613619a3"
     },
     {
       "identity": "HELIXOS-L11-118",
@@ -28,7 +28,7 @@
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
       "line_start": 1043,
       "line_end": 1052,
-      "section_sha256": "sha256:f006948a5c91606bd696c96d57af8b3acf3310f4eb31f1b0a849408bb7c84b29"
+      "section_sha256": "sha256:8590e78e81005c6eb074211eaaf40793eb6f0be1ef5639d9e6eb1da79bf82d4d"
     }
   ],
   "review_scope": {
@@ -155,7 +155,7 @@
       "source_line_sha256": "sha256:e7b182f7fac60e7b7cc039bf14435a71b8f47cc40a4ac45392fac4e0dd7c30bb",
       "source_line_bytes_sha256": "sha256:3cf674bea99ecc0a18df1c3d73509ad5ad9519eacff86349be251ada4ff0fe67",
       "source_text": "| `CIG-AC-007` | `CIG-R-01..04` | bounded GitHub rehearsalまたは自然scheduleを実行する | run ID付きread-afterでcurrent main pushとscheduleが独立terminalになり、cancel／handoff receiptを再構築できる |",
-      "selected_condition_reading": "CIG-AC-007の選択物理行は、run ID付きread-afterでcurrent main pushとscheduleが独立したterminalとなること、cancel/handoff receiptを再構築できることを指定する。既存L2/L11-118のcurrent-main/schedule別terminal確認と理由・対象再構築が条件の行き先。旧sourceのbounded GitHub rehearsalまたは自然schedule実行は実runtime/実行gateとして移さず、旧CI/runtimeも実行しない。",
+      "selected_condition_reading": "CIG-AC-007の選択物理行は、run ID付きread-afterでcurrent main pushとscheduleの各結果をその対応run IDへ結び付け、それぞれ独立したterminalとして確認すること、cancel/handoff receiptを再構築できることを指定する。旧sourceのbounded GitHub rehearsalまたは自然schedule実行は実runtime/実行gateとして移さず、旧CI/runtimeも実行しない。",
       "source_ledger_ref": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl#line-474:LEGACY-CAND-LINE-000474",
       "source_ledger_record_sha256": "sha256:8c44189db6d37f13a0ea5a86add4d3bcc2b7d94144ce6f8948f7a59636506fc4",
       "legacy_asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
@@ -176,13 +176,13 @@
           "label": "candidate L2/L11-118 separate terminal and reconstruction oracle",
           "status": "unadopted_candidate_condition_destination",
           "path": "docs/helix-os/L2-requirements/governance-requirements.md and docs/helix-os/L11-acceptance/governance-acceptance.md",
-          "l2_digest": "sha256:52d95403c0e92761eb31a2516507cbf62a030194047e8a03659a2d78324cda2f",
-          "l11_digest": "sha256:c7ae67a09e632336a6e6a5fd858457722a9063d32d890f46459a5d877c5a9934",
-          "specific_condition": "current main and schedule terminal evidence are checked separately; cancel/handoff reason and target are reconstructible; no live rehearsal promoted to a gate"
+          "l2_digest": "sha256:af7a0c7cf74dbf61578c04618bd4b566b741083a8cea079b74882243613619a3",
+          "l11_digest": "sha256:8590e78e81005c6eb074211eaaf40793eb6f0be1ef5639d9e6eb1da79bf82d4d",
+          "specific_condition": "current main pushとscheduleを各対応run IDに結び付けて独立にterminal確認する。run ID欠落・不一致時はterminalとして結び付けずunknown／未完。cancel/handoff reason and target reconstruction remains in the candidate; no live rehearsal gate."
         }
       ],
-      "assessment": "Existing unadopted L2/L11-118 already requires separate current-main/schedule terminal evidence and reconstructible cancel/handoff reason and target. This row adds source provenance and destination mapping only. Runtime rehearsal remains out of this candidate-stage oracle.",
-      "candidate_relation": "unadopted HELIXOS-L2/L11-118 condition destination only; no adopted fulfillment, execution, formal successor, or closure",
+      "assessment": "修正前の未採択L2/L11-118はcurrent-main/schedule別terminal evidenceとcancel/handoff reason・targetの再構築を扱っていたが、各read-after結果を生じたrun IDへ結び付ける条件が不足していた。今回の未採択候補revisionは対応run ID bindingと欠落・不一致時のunknown／未完oracleを追加した。runtime rehearsalは候補段階のoracle外。",
+      "candidate_relation": "unadopted HELIXOS-L2/L11-118 condition destination; corrected r2 candidate only; no adopted fulfillment, execution, formal successor, or closure",
       "current_revision_registration": "MPR-RC-HELIXOS-L2-118-002"
     },
     {
@@ -1043,7 +1043,7 @@
       "recorded_at": "2026-10-02T07:30:54+09:00"
     }
   ],
-  "audit_revision_recorded_at": "2026-10-02T07:30:54+09:00",
+  "audit_revision_recorded_at": "2026-10-02T09:00:00+09:00",
   "revision_predecessor": {
     "audit_ref": "docs/governance/audits/requirements-stage/legacy-candidate864-ci-event-concurrency-rows-current-treatment-2026-10-02.json",
     "audit_sha256": "sha256:8eae153b2f6f30b6ab3fe03edf566aafd3438f3d6200df020174276f7e9214a7",
@@ -1058,5 +1058,12 @@
     "previous_markdown_sha256": "sha256:a1ed4283bea0cf9688d59dbca679e608fb35166dd1fd54ff65563bfe4537e6e3",
     "previous_registration_id": "MPR-RC-HELIXOS-L2-118-001",
     "old_revision_files_unchanged": true
+  },
+  "review_correction": {
+    "finding": "000474 requires run-ID-bound read-after for current main push and schedule. Earlier candidate destination checked separate terminal evidence without binding each result to its run ID.",
+    "response": "L2-118 now binds each read-after outcome to its corresponding run ID and treats missing/mismatched binding as unknown/incomplete. L11-118 adds normal and negative oracles. Source14 atom bytes/count/digest are unchanged.",
+    "comparison_base_commit": "a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20",
+    "candidate_content_revision": "6115d5bed71c9fada0bb21d25839d0bb893bddec",
+    "authority_effect": "none"
   }
 }
