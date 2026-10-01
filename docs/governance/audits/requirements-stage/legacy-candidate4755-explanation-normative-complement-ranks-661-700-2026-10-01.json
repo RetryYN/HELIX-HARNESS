@@ -1134,7 +1134,7 @@
       "exact_source_line_text": "**再起動と遅延:** live consumer停止中に通常作業が進行 → outbox重複/順不同配送 → consumer再開 → cost/review遅着 → 同じevent集合から同じas-of projectionへ収束する。分析停止を口実にauditを飛ばさない。",
       "semantic_family": "Execution Ticket／HELIX-Bench L10受入候補",
       "semantic_function": "E2E scenario：consumer再起動と遅着eventのシナリオ",
-      "semantic_reading": "live consumer停止中の通常作業、重複/順不同outbox、再開、遅着cost/review、同じevent集合からの同一as-of projectionへの収束を例示する。",
+      "semantic_reading": "live consumer停止中の通常作業、重複/順不同outbox、再開、遅着cost/review、同じevent集合からの同一as-of projectionへの収束を例示する。分析停止を口実にauditを飛ばさない。",
       "legacy_context": {
         "section_heading": {
           "line": 125,
@@ -1223,7 +1223,7 @@
       "exact_source_line_text": "**同一モデルA/B:** 一つのtaskと実験定義を凍結 → 同一model/effortでNo HarnessとHELIX Partial/Fullを反復 → 独立共通採点 → 反復と重複を区別した比較receipt。本番repoの変更や資格昇格は行わない。",
       "semantic_family": "Execution Ticket／HELIX-Bench L10受入候補",
       "semantic_function": "E2E scenario：同一model条件でのA/B比較シナリオ",
-      "semantic_reading": "固定task/experiment定義でNo HarnessとHELIX Partial/Fullを同じmodel/effortにより反復し、独立共通採点、replicate/duplicate区別、通常repo権限なしを例示する。",
+      "semantic_reading": "固定task/experiment定義でNo HarnessとHELIX Partial/Fullを同じmodel/effortにより反復し、独立共通採点を行い、反復と重複を区別した比較receiptを残す。本番repoの変更や資格昇格は行わない。",
       "legacy_context": {
         "section_heading": {
           "line": 125,

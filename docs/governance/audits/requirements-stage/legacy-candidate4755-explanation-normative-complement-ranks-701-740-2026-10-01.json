@@ -1890,7 +1890,7 @@
       "exact_source_line_text": "| `PLAN-L3-49`／Bench L3 [S02][S03] | 5カテゴリ・12指標・4 profile・再現性・非汚染契約が存在。PLANはconfirmedだがL3ファイルのfrontmatterはdraft | この文書からcurrent authority昇格を推定せず、実装前に正規resolverで確定する |",
       "semantic_family": "実行Ticket受付・HELIX-Bench接続候補",
       "semantic_function": "Bench計画とdraft文書の区別",
-      "semantic_reading": "LEGACY-CAND-LINE-001253は、PLAN-L3-49とBench L3の指標等、およびPLAN confirmedとL3 frontmatter draftの差を記録し、本文からcurrent authority昇格を推定しないよう限定する。",
+      "semantic_reading": "LEGACY-CAND-LINE-001253は、PLAN-L3-49とBench L3の5カテゴリ・12指標・4 profile・再現性・非汚染契約、およびPLAN confirmedとL3 frontmatter draftの差を記録する。この文書からcurrent authority昇格を推定せず、実装前に正規resolverで確定する。",
       "legacy_context": {
         "section_heading": {
           "line": 77,
@@ -2202,7 +2202,7 @@
       "exact_source_line_text": "| `#861` [S09] | measured Runtime Capability Registryはopen。Bench evidenceはadvisory入力であり配車決定そのものではない | 結果を直接routerへ書き戻さず、既存評価・配車authorityへ渡す |",
       "semantic_family": "実行Ticket受付・HELIX-Bench接続候補",
       "semantic_function": "capability registryの状態",
-      "semantic_reading": "LEGACY-CAND-LINE-001259は、Issue #861をopenとして記録し、Bench evidenceをadvisory入力とし、配車判断そのものとは区別する。",
+      "semantic_reading": "LEGACY-CAND-LINE-001259は、Issue #861をopenとして記録し、Bench evidenceをadvisory入力とし、配車決定そのものとは区別する。結果を直接routerへ書き戻さず、既存評価・配車authorityへ渡す。",
       "legacy_context": {
         "section_heading": {
           "line": 77,
