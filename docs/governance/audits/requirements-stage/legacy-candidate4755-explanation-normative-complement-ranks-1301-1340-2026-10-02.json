@@ -3780,7 +3780,7 @@
       "exact_source_line_text": "機能昇格単位であり、Module、Bundle、capability family、workflow identity、route、drive、execution mode、provider、",
       "semantic_family": "Module・Bundle・Slice間の機能境界",
       "semantic_function": "Sliceの機能昇格単位と非置換対象の列挙",
-      "semantic_reading": "LEGACY-CAND-LINE-002179 — 前行から続きSliceを機能昇格単位とし、Module、Bundle、capability family、workflow identity、route、drive、execution mode、providerを置換しない対象として列挙する。列挙は次行へ続く。",
+      "semantic_reading": "この行は、前行から続くSliceの説明として「機能昇格単位」を置き、Module、Bundle、capability family、workflow identity、route、drive、execution mode、providerの列挙を始める。列挙は次の物理行へ続き、この行には非置換の述語はまだない。",
       "legacy_context": {
         "section_heading": {
           "line": 31,
