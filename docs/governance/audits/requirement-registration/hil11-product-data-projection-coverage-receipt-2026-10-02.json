@@ -126,8 +126,8 @@
   "candidate_base_register_sha256": "sha256:ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
   "parent_concept_revision": "docs/concept/helix-concept.md@1cd77015081b87d5bcde7d5e45ee4e0a227e02c2 sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78 (fixed bytes; candidate adoption not inherited)",
   "parent_planning_revision": "docs/helix-os/L1-planning/system-intent.md@f6dad2a33e24f000b87d7f09b8d40288257e74cc sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e (HDEC-HELIXOS-REQUIREMENTS-PO-2026-09-28 fixed/adopted L1 target; this does not adopt HELIXOS-L2-112/L11)",
-  "registration_id": "MPR-RC-HELIXOS-L2-112-005",
-  "supersedes_registration_id": "MPR-RC-HELIXOS-L2-112-004",
+  "registration_id": "MPR-RC-HELIXOS-L2-112-006",
+  "supersedes_registration_id": "MPR-RC-HELIXOS-L2-112-005",
   "carried_atom_refs": [
     "HIL11-IR-BR15",
     "HIL11-IR-FR23",
@@ -141,8 +141,10 @@
   "review_corrections": [
     "HDEC-HELIXOS-REQUIREMENTS-PO-2026-09-28 exact adopted L1 SHA/current-byte match documented separately from unadopted L2-112/L11.",
     "HIL-FR-23 enable/disable receipts now bind source/registry and connector contract revision/digest to existing authority; mismatch and unauthorized transitions have negative oracle.",
-    "HIL-FR-23 enable/disable receipt binds exact source/registry and connector contract digest/revision to existing authority; mismatch/unauthorized no-state-change negatives added. HIL-NFR-17 selected freshness/retention policy references have normal and unseen oracles without new numeric values."
+    "HIL-FR-23 enable/disable receipt binds exact source/registry and connector contract digest/revision to existing authority; mismatch/unauthorized no-state-change negatives added. HIL-NFR-17 selected freshness/retention policy references have normal and unseen oracles without new numeric values.",
+    "MPR-RC-HELIXOS-L2-112-006: source_atom_file_sha256 updated to the clarified source-lines bytes. The selected source_semantic_digest is each identity statement.semantic_digest; the record-root digest remains a separate field. Atom identity, values, set digest and candidate section digests are unchanged."
   ],
   "source_semantic_digest_definition": "各atomのsource_semantic_digestは、source_identityで特定したrequirements.json objectのstatement.semantic_digest。source_pointerは同じidentityのstatement objectを指し、source_semantic_digest_pointerはそのsemantic_digest field、source_text_pointerはstatement.text fieldを指す。",
-  "source_record_semantic_digest_definition": "source_record_semantic_digestはidentity root objectのsemantic_digestであり、statement.semantic_digestとは異なる別digest。"
+  "source_record_semantic_digest_definition": "source_record_semantic_digestはidentity root objectのsemantic_digestであり、statement.semantic_digestとは異なる別digest。",
+  "latest_registration_ref": "docs/governance/management-provisional-requirement-register.jsonl#MPR-RC-HELIXOS-L2-112-006"
 }
