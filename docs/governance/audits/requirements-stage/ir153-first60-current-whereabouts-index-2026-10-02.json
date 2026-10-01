@@ -165,23 +165,43 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirement-registration/hil-fr01-path-coverage-receipt-2026-09-29.json",
-          "snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "locator": "receipt_id; source L1+IR pinned; bounded partition only"
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "receipt_id; source L1+IR pinned; bounded partition only",
+          "historical_locator_snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_sha256": "b78919987783bbcea724baaa44f4d77c8204bc881884be2e4cdbcab9d7678f4f",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirement-registration/hil-fr01-source-partition-2026-09-29.jsonl",
-          "snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "locator": "FR01 source partition"
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR01 source partition",
+          "historical_locator_snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_sha256": "9a4467ce6e1b4302651c3947dbfb94c0ade82701fbce1c27b2479c477541a58e",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirement-registration/hil-fr01-os-source-atoms-2026-09-29.jsonl",
-          "snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "locator": "OS source atoms"
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "OS source atoms",
+          "historical_locator_snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_sha256": "2c8361749a4afe3c728de7ccafadbc600a9fb66b0d02936259ea993607b46a75",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirement-registration/hil-fr01-harness-source-atoms-2026-09-29.jsonl",
-          "snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "locator": "HARNESS source atoms"
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "HARNESS source atoms",
+          "historical_locator_snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_sha256": "3c4462ef36e9f3b1ed2a8250f3009495c1c3e6b211b08c7a1d3cd63a4724459a",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index"
@@ -241,23 +261,25 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr02-04-05-06-08-current-condition-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR02 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR02 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 360eec2d11dd",
           "artifact_content_commit": "2711d4d39ed59647a55cb3e38d297a9901e2f8b9",
           "artifact_sha256": "83684beb6d5330b9bb528f9a86c0007e9de4a9c511da707431d3f7f4e677beaa",
           "audit_baseline_commit": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "main_read_after_commit": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "artifact_in_main_base": false
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": false,
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d"
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr02-04-05-06-08-current-condition-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR02 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR02 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 360eec2d11dd",
           "artifact_content_commit": "2711d4d39ed59647a55cb3e38d297a9901e2f8b9",
           "artifact_sha256": "0042e141dcc1fe4dc1fef96acd2ab9064c6623a72169decf51b628c900f2453e",
           "audit_baseline_commit": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "main_read_after_commit": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "artifact_in_main_base": false
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": false,
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d"
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index"
@@ -317,13 +339,23 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirement-registration/hil-fr03-issue-contract-coverage-receipt-2026-09-29.json",
-          "snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "locator": "#/source_scope; 2 atoms; bounded no_loss"
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "#/source_scope; 2 atoms; bounded no_loss",
+          "historical_locator_snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_sha256": "c2bef4ca1ccd9aa27d9496234e092c35554796ed1919c671d8547100d08be43c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirement-registration/hil-fr03-issue-contract-source-lines-2026-09-29.jsonl",
-          "snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "locator": "FR03 selected source atoms"
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR03 selected source atoms",
+          "historical_locator_snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_sha256": "c772c0e8e869a4a0ac2f2adc357f34461ecbc915a56d9e838d8860bc02008b4a",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index"
@@ -384,23 +416,25 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr02-04-05-06-08-current-condition-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR04 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR04 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 360eec2d11dd",
           "artifact_content_commit": "2711d4d39ed59647a55cb3e38d297a9901e2f8b9",
           "artifact_sha256": "83684beb6d5330b9bb528f9a86c0007e9de4a9c511da707431d3f7f4e677beaa",
           "audit_baseline_commit": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "main_read_after_commit": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "artifact_in_main_base": false
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": false,
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d"
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr02-04-05-06-08-current-condition-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR04 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR04 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 360eec2d11dd",
           "artifact_content_commit": "2711d4d39ed59647a55cb3e38d297a9901e2f8b9",
           "artifact_sha256": "0042e141dcc1fe4dc1fef96acd2ab9064c6623a72169decf51b628c900f2453e",
           "audit_baseline_commit": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "main_read_after_commit": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "artifact_in_main_base": false
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": false,
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d"
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index"
@@ -460,23 +494,25 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr02-04-05-06-08-current-condition-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR05 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR05 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 360eec2d11dd",
           "artifact_content_commit": "2711d4d39ed59647a55cb3e38d297a9901e2f8b9",
           "artifact_sha256": "83684beb6d5330b9bb528f9a86c0007e9de4a9c511da707431d3f7f4e677beaa",
           "audit_baseline_commit": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "main_read_after_commit": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "artifact_in_main_base": false
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": false,
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d"
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr02-04-05-06-08-current-condition-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR05 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR05 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 360eec2d11dd",
           "artifact_content_commit": "2711d4d39ed59647a55cb3e38d297a9901e2f8b9",
           "artifact_sha256": "0042e141dcc1fe4dc1fef96acd2ab9064c6623a72169decf51b628c900f2453e",
           "audit_baseline_commit": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "main_read_after_commit": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "artifact_in_main_base": false
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": false,
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d"
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index"
@@ -537,23 +573,25 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr02-04-05-06-08-current-condition-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR06 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR06 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 360eec2d11dd",
           "artifact_content_commit": "2711d4d39ed59647a55cb3e38d297a9901e2f8b9",
           "artifact_sha256": "83684beb6d5330b9bb528f9a86c0007e9de4a9c511da707431d3f7f4e677beaa",
           "audit_baseline_commit": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "main_read_after_commit": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "artifact_in_main_base": false
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": false,
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d"
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr02-04-05-06-08-current-condition-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR06 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR06 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 360eec2d11dd",
           "artifact_content_commit": "2711d4d39ed59647a55cb3e38d297a9901e2f8b9",
           "artifact_sha256": "0042e141dcc1fe4dc1fef96acd2ab9064c6623a72169decf51b628c900f2453e",
           "audit_baseline_commit": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "main_read_after_commit": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "artifact_in_main_base": false
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": false,
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d"
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index"
@@ -613,13 +651,23 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirement-registration/hil-fr07-closure-coverage-receipt-2026-09-29.json",
-          "snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "locator": "9 atoms; no_loss; formal_successor_assignment=false"
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "9 atoms; no_loss; formal_successor_assignment=false",
+          "historical_locator_snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_sha256": "357b701b91aa48704bff4f55c09cf747be758ecd9cceb62d69963722e55207d9",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirement-registration/hil-fr07-closure-source-lines-2026-09-29.jsonl",
-          "snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "locator": "FR07 selected source atoms"
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR07 selected source atoms",
+          "historical_locator_snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_sha256": "8f49295605e48ae7d05ab7340e583624c76702626eb1181d658f5124922d4652",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index"
@@ -678,23 +726,25 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr02-04-05-06-08-current-condition-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR08 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR08 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 360eec2d11dd",
           "artifact_content_commit": "2711d4d39ed59647a55cb3e38d297a9901e2f8b9",
           "artifact_sha256": "83684beb6d5330b9bb528f9a86c0007e9de4a9c511da707431d3f7f4e677beaa",
           "audit_baseline_commit": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "main_read_after_commit": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "artifact_in_main_base": false
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": false,
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d"
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr02-04-05-06-08-current-condition-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR08 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR08 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 360eec2d11dd",
           "artifact_content_commit": "2711d4d39ed59647a55cb3e38d297a9901e2f8b9",
           "artifact_sha256": "0042e141dcc1fe4dc1fef96acd2ab9064c6623a72169decf51b628c900f2453e",
           "audit_baseline_commit": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "main_read_after_commit": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "artifact_in_main_base": false
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": false,
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d"
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index"
@@ -811,18 +861,33 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirement-registration/hil-fr09-disposition-coverage-receipt-2026-09-29-r3.json",
-          "snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "locator": "16 atoms; no_loss; source holding MPR-SH-DIRECTIVE-DISPOSITION-002"
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "16 atoms; no_loss; source holding MPR-SH-DIRECTIVE-DISPOSITION-002",
+          "historical_locator_snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_sha256": "888e9070b52003893d8fd3215ee1e4e6fbd870d09a2508ef9a7de4fd61d91aa2",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirement-registration/hil-fr09-disposition-source-atoms-2026-09-29.jsonl",
-          "snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "locator": "FR09 selected atoms"
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR09 selected atoms",
+          "historical_locator_snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_sha256": "1c55edfd841c923942028d5a037d5f9bcbb62b07143d1ab671d6e1530a453e9e",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirement-registration/hil-fr09-disposition-meaning-gaps-2026-09-29.md",
-          "snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "locator": "meaning gaps"
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "meaning gaps",
+          "historical_locator_snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_sha256": "a8a726c6c868d6b2df7cc894e2fa000dff3cd1f38f3dadb97ac19e797b046d0e",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index"
@@ -1758,15 +1823,23 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr25-31-current-pairs-condition-audit-2026-10-02.json",
-          "snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "locator": "#/rows/0; condition audit; status and scope there",
-          "artifact_sha256": "2c8b25c1dcfc1bbe7e1a3224acb37ab0e86fcbc904c7a4800852463fce4bb1c2"
+          "artifact_sha256": "2c8b25c1dcfc1bbe7e1a3224acb37ab0e86fcbc904c7a4800852463fce4bb1c2",
+          "historical_locator_snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr25-31-current-pairs-condition-audit-2026-10-02.md",
-          "snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "locator": "condition table row HIL-FR-25",
-          "artifact_sha256": "8259f49aa6e7ebba08894f1d2fccd111ce1cf0d36df35d52ae9a2d9c89cf3a8d"
+          "artifact_sha256": "8259f49aa6e7ebba08894f1d2fccd111ce1cf0d36df35d52ae9a2d9c89cf3a8d",
+          "historical_locator_snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index"
@@ -1814,15 +1887,23 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr25-31-current-pairs-condition-audit-2026-10-02.json",
-          "snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "locator": "#/rows/1; condition audit; status and scope there",
-          "artifact_sha256": "2c8b25c1dcfc1bbe7e1a3224acb37ab0e86fcbc904c7a4800852463fce4bb1c2"
+          "artifact_sha256": "2c8b25c1dcfc1bbe7e1a3224acb37ab0e86fcbc904c7a4800852463fce4bb1c2",
+          "historical_locator_snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr25-31-current-pairs-condition-audit-2026-10-02.md",
-          "snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "locator": "condition table row HIL-FR-26",
-          "artifact_sha256": "8259f49aa6e7ebba08894f1d2fccd111ce1cf0d36df35d52ae9a2d9c89cf3a8d"
+          "artifact_sha256": "8259f49aa6e7ebba08894f1d2fccd111ce1cf0d36df35d52ae9a2d9c89cf3a8d",
+          "historical_locator_snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index"
@@ -1870,15 +1951,23 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr25-31-current-pairs-condition-audit-2026-10-02.json",
-          "snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "locator": "#/rows/2; condition audit; status and scope there",
-          "artifact_sha256": "2c8b25c1dcfc1bbe7e1a3224acb37ab0e86fcbc904c7a4800852463fce4bb1c2"
+          "artifact_sha256": "2c8b25c1dcfc1bbe7e1a3224acb37ab0e86fcbc904c7a4800852463fce4bb1c2",
+          "historical_locator_snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr25-31-current-pairs-condition-audit-2026-10-02.md",
-          "snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "locator": "condition table row HIL-FR-27",
-          "artifact_sha256": "8259f49aa6e7ebba08894f1d2fccd111ce1cf0d36df35d52ae9a2d9c89cf3a8d"
+          "artifact_sha256": "8259f49aa6e7ebba08894f1d2fccd111ce1cf0d36df35d52ae9a2d9c89cf3a8d",
+          "historical_locator_snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index"
@@ -1926,15 +2015,23 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr25-31-current-pairs-condition-audit-2026-10-02.json",
-          "snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "locator": "#/rows/3; condition audit; status and scope there",
-          "artifact_sha256": "2c8b25c1dcfc1bbe7e1a3224acb37ab0e86fcbc904c7a4800852463fce4bb1c2"
+          "artifact_sha256": "2c8b25c1dcfc1bbe7e1a3224acb37ab0e86fcbc904c7a4800852463fce4bb1c2",
+          "historical_locator_snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr25-31-current-pairs-condition-audit-2026-10-02.md",
-          "snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "locator": "condition table row HIL-FR-28",
-          "artifact_sha256": "8259f49aa6e7ebba08894f1d2fccd111ce1cf0d36df35d52ae9a2d9c89cf3a8d"
+          "artifact_sha256": "8259f49aa6e7ebba08894f1d2fccd111ce1cf0d36df35d52ae9a2d9c89cf3a8d",
+          "historical_locator_snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index"
@@ -1982,15 +2079,23 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr25-31-current-pairs-condition-audit-2026-10-02.json",
-          "snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "locator": "#/rows/4; condition audit; status and scope there",
-          "artifact_sha256": "2c8b25c1dcfc1bbe7e1a3224acb37ab0e86fcbc904c7a4800852463fce4bb1c2"
+          "artifact_sha256": "2c8b25c1dcfc1bbe7e1a3224acb37ab0e86fcbc904c7a4800852463fce4bb1c2",
+          "historical_locator_snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr25-31-current-pairs-condition-audit-2026-10-02.md",
-          "snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "locator": "condition table row HIL-FR-29",
-          "artifact_sha256": "8259f49aa6e7ebba08894f1d2fccd111ce1cf0d36df35d52ae9a2d9c89cf3a8d"
+          "artifact_sha256": "8259f49aa6e7ebba08894f1d2fccd111ce1cf0d36df35d52ae9a2d9c89cf3a8d",
+          "historical_locator_snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index"
@@ -2038,15 +2143,23 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr25-31-current-pairs-condition-audit-2026-10-02.json",
-          "snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "locator": "#/rows/5; condition audit; status and scope there",
-          "artifact_sha256": "2c8b25c1dcfc1bbe7e1a3224acb37ab0e86fcbc904c7a4800852463fce4bb1c2"
+          "artifact_sha256": "2c8b25c1dcfc1bbe7e1a3224acb37ab0e86fcbc904c7a4800852463fce4bb1c2",
+          "historical_locator_snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr25-31-current-pairs-condition-audit-2026-10-02.md",
-          "snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "locator": "condition table row HIL-FR-30",
-          "artifact_sha256": "8259f49aa6e7ebba08894f1d2fccd111ce1cf0d36df35d52ae9a2d9c89cf3a8d"
+          "artifact_sha256": "8259f49aa6e7ebba08894f1d2fccd111ce1cf0d36df35d52ae9a2d9c89cf3a8d",
+          "historical_locator_snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index"
@@ -2094,15 +2207,23 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr25-31-current-pairs-condition-audit-2026-10-02.json",
-          "snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "locator": "#/rows/6; condition audit; status and scope there",
-          "artifact_sha256": "2c8b25c1dcfc1bbe7e1a3224acb37ab0e86fcbc904c7a4800852463fce4bb1c2"
+          "artifact_sha256": "2c8b25c1dcfc1bbe7e1a3224acb37ab0e86fcbc904c7a4800852463fce4bb1c2",
+          "historical_locator_snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr25-31-current-pairs-condition-audit-2026-10-02.md",
-          "snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "locator": "condition table row HIL-FR-31",
-          "artifact_sha256": "8259f49aa6e7ebba08894f1d2fccd111ce1cf0d36df35d52ae9a2d9c89cf3a8d"
+          "artifact_sha256": "8259f49aa6e7ebba08894f1d2fccd111ce1cf0d36df35d52ae9a2d9c89cf3a8d",
+          "historical_locator_snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index"
@@ -2236,23 +2357,43 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/hil14-support-tier-parity-audit-2026-10-02.md",
-          "snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "locator": "HIL-FR-34 rows and limitations"
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "HIL-FR-34 rows and limitations",
+          "historical_locator_snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_sha256": "310598836fe6f188b72644bbe58da3f9c441493736e939fcbad2aeaf84febc63",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/helix-harness/L2-requirements/product-requirements.md#HARNESS-L2-064",
-          "snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "locator": "lines 1250–1260; selected profile/tier evidence slice"
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "lines 1250–1260; selected profile/tier evidence slice",
+          "historical_locator_snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_sha256": "96a044491b0d8a8f45833a048753f89fc76966824a825982303ecc50e821ec2e",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/helix-harness/L2-requirements/product-requirements.md#HARNESS-L2-065",
-          "snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "locator": "lines 1261–1277; selected cancellation/lock result slice"
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "lines 1261–1277; selected cancellation/lock result slice",
+          "historical_locator_snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_sha256": "96a044491b0d8a8f45833a048753f89fc76966824a825982303ecc50e821ec2e",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/hil14-adapter-failure-boundary-audit-2026-10-02.md",
-          "snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "locator": "HIL-FR-34 consumer-oracle boundaries"
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "HIL-FR-34 consumer-oracle boundaries",
+          "historical_locator_snapshot": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_sha256": "5ef71d95e0f4722ff412cb293965a56fe9c43ab67d9ecb0707262c6a5a3d56a7",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index"
@@ -2300,17 +2441,25 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr35-41-current-condition-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR-35 row in #2497 HEAD 970d9c7; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR-35 row in #2497 HEAD 970d9c7; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "970d9c7c6825fb84369f61f516aa682318c44fd7",
-          "artifact_sha256": "3a3014b82437ca11c8d26e65783f1818fa1091f6e8b13dc1266f9e63db9f5b69"
+          "artifact_sha256": "3a3014b82437ca11c8d26e65783f1818fa1091f6e8b13dc1266f9e63db9f5b69",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr35-41-current-condition-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "condition table HIL-FR-35; #2497 HEAD 970d9c7; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "condition table HIL-FR-35; #2497 HEAD 970d9c7; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "970d9c7c6825fb84369f61f516aa682318c44fd7",
-          "artifact_sha256": "fe97efe38846ecc98b81a7efe2111ed841e41d93f705447f1fa3b253ccff61b3"
+          "artifact_sha256": "fe97efe38846ecc98b81a7efe2111ed841e41d93f705447f1fa3b253ccff61b3",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index",
@@ -2372,17 +2521,25 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr35-41-current-condition-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR-36 row in #2497 HEAD 970d9c7; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR-36 row in #2497 HEAD 970d9c7; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "970d9c7c6825fb84369f61f516aa682318c44fd7",
-          "artifact_sha256": "3a3014b82437ca11c8d26e65783f1818fa1091f6e8b13dc1266f9e63db9f5b69"
+          "artifact_sha256": "3a3014b82437ca11c8d26e65783f1818fa1091f6e8b13dc1266f9e63db9f5b69",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr35-41-current-condition-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "condition table HIL-FR-36; #2497 HEAD 970d9c7; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "condition table HIL-FR-36; #2497 HEAD 970d9c7; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "970d9c7c6825fb84369f61f516aa682318c44fd7",
-          "artifact_sha256": "fe97efe38846ecc98b81a7efe2111ed841e41d93f705447f1fa3b253ccff61b3"
+          "artifact_sha256": "fe97efe38846ecc98b81a7efe2111ed841e41d93f705447f1fa3b253ccff61b3",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index",
@@ -2464,17 +2621,25 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr35-41-current-condition-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR-37 row in #2497 HEAD 970d9c7; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR-37 row in #2497 HEAD 970d9c7; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "970d9c7c6825fb84369f61f516aa682318c44fd7",
-          "artifact_sha256": "3a3014b82437ca11c8d26e65783f1818fa1091f6e8b13dc1266f9e63db9f5b69"
+          "artifact_sha256": "3a3014b82437ca11c8d26e65783f1818fa1091f6e8b13dc1266f9e63db9f5b69",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr35-41-current-condition-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "condition table HIL-FR-37; #2497 HEAD 970d9c7; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "condition table HIL-FR-37; #2497 HEAD 970d9c7; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "970d9c7c6825fb84369f61f516aa682318c44fd7",
-          "artifact_sha256": "fe97efe38846ecc98b81a7efe2111ed841e41d93f705447f1fa3b253ccff61b3"
+          "artifact_sha256": "fe97efe38846ecc98b81a7efe2111ed841e41d93f705447f1fa3b253ccff61b3",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index",
@@ -2541,17 +2706,25 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr35-41-current-condition-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR-38 row in #2497 HEAD 970d9c7; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR-38 row in #2497 HEAD 970d9c7; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "970d9c7c6825fb84369f61f516aa682318c44fd7",
-          "artifact_sha256": "3a3014b82437ca11c8d26e65783f1818fa1091f6e8b13dc1266f9e63db9f5b69"
+          "artifact_sha256": "3a3014b82437ca11c8d26e65783f1818fa1091f6e8b13dc1266f9e63db9f5b69",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr35-41-current-condition-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "condition table HIL-FR-38; #2497 HEAD 970d9c7; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "condition table HIL-FR-38; #2497 HEAD 970d9c7; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "970d9c7c6825fb84369f61f516aa682318c44fd7",
-          "artifact_sha256": "fe97efe38846ecc98b81a7efe2111ed841e41d93f705447f1fa3b253ccff61b3"
+          "artifact_sha256": "fe97efe38846ecc98b81a7efe2111ed841e41d93f705447f1fa3b253ccff61b3",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index",
@@ -2632,17 +2805,25 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr35-41-current-condition-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR-39 row in #2497 HEAD 970d9c7; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR-39 row in #2497 HEAD 970d9c7; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "970d9c7c6825fb84369f61f516aa682318c44fd7",
-          "artifact_sha256": "3a3014b82437ca11c8d26e65783f1818fa1091f6e8b13dc1266f9e63db9f5b69"
+          "artifact_sha256": "3a3014b82437ca11c8d26e65783f1818fa1091f6e8b13dc1266f9e63db9f5b69",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr35-41-current-condition-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "condition table HIL-FR-39; #2497 HEAD 970d9c7; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "condition table HIL-FR-39; #2497 HEAD 970d9c7; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "970d9c7c6825fb84369f61f516aa682318c44fd7",
-          "artifact_sha256": "fe97efe38846ecc98b81a7efe2111ed841e41d93f705447f1fa3b253ccff61b3"
+          "artifact_sha256": "fe97efe38846ecc98b81a7efe2111ed841e41d93f705447f1fa3b253ccff61b3",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index",
@@ -2730,17 +2911,25 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr35-41-current-condition-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR-40 row in #2497 HEAD 970d9c7; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR-40 row in #2497 HEAD 970d9c7; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "970d9c7c6825fb84369f61f516aa682318c44fd7",
-          "artifact_sha256": "3a3014b82437ca11c8d26e65783f1818fa1091f6e8b13dc1266f9e63db9f5b69"
+          "artifact_sha256": "3a3014b82437ca11c8d26e65783f1818fa1091f6e8b13dc1266f9e63db9f5b69",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr35-41-current-condition-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "condition table HIL-FR-40; #2497 HEAD 970d9c7; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "condition table HIL-FR-40; #2497 HEAD 970d9c7; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "970d9c7c6825fb84369f61f516aa682318c44fd7",
-          "artifact_sha256": "fe97efe38846ecc98b81a7efe2111ed841e41d93f705447f1fa3b253ccff61b3"
+          "artifact_sha256": "fe97efe38846ecc98b81a7efe2111ed841e41d93f705447f1fa3b253ccff61b3",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index",
@@ -2824,17 +3013,25 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr35-41-current-condition-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR-41 row in #2497 HEAD 970d9c7; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR-41 row in #2497 HEAD 970d9c7; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "970d9c7c6825fb84369f61f516aa682318c44fd7",
-          "artifact_sha256": "3a3014b82437ca11c8d26e65783f1818fa1091f6e8b13dc1266f9e63db9f5b69"
+          "artifact_sha256": "3a3014b82437ca11c8d26e65783f1818fa1091f6e8b13dc1266f9e63db9f5b69",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr35-41-current-condition-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "condition table HIL-FR-41; #2497 HEAD 970d9c7; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "condition table HIL-FR-41; #2497 HEAD 970d9c7; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "970d9c7c6825fb84369f61f516aa682318c44fd7",
-          "artifact_sha256": "fe97efe38846ecc98b81a7efe2111ed841e41d93f705447f1fa3b253ccff61b3"
+          "artifact_sha256": "fe97efe38846ecc98b81a7efe2111ed841e41d93f705447f1fa3b253ccff61b3",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index",
@@ -2910,31 +3107,45 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr42-fr45-field-by-field-current-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR42 condition row; #2498 HEAD 3b3472d; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR42 condition row; #2498 reviewed e4a81561 / merged432ca78c; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "6265c512bae65789b177e38404c8266726799f46",
-          "artifact_sha256": "e3d9b1fc9044928e1b582cb938b63b6acad6ac228a73f21616d400fb6178bfe9"
+          "artifact_sha256": "e3d9b1fc9044928e1b582cb938b63b6acad6ac228a73f21616d400fb6178bfe9",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr42-fr45-field-by-field-current-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR42 condition row; #2498 HEAD 3b3472d; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR42 condition row; #2498 reviewed e4a81561 / merged432ca78c; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "6265c512bae65789b177e38404c8266726799f46",
-          "artifact_sha256": "0e55747d08a8531727ea75df462b54f78ba1d6c32f3a33a3a867758d07bc7f6f"
+          "artifact_sha256": "0e55747d08a8531727ea75df462b54f78ba1d6c32f3a33a3a867758d07bc7f6f",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirement-registration/hil-fr42-candidate-coverage-receipt-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "locator": "HARNESS-L2/L11-077 unadopted candidate receipt; L2 4b1ea678ac31ee96d8881d4efcb5c49ab6676c5d9a142389ece5a09f4b592ffb; L11 14ab521e41a2e28420a8597dd1b532e7a8b4dd9b9c5cc0c13d9631157eff87fc; #2500 main read-after; selected source atom is FR42/FR45 respectively; candidate remains unadopted",
-          "artifact_content_commit": "b6aed5a4ec63fcd37e0b9994107dd1976aef8ce2",
-          "artifact_sha256": "d836e74833b0ae7b708063fd50e48bbdc0fb9526abd9cabd7beaac5f1a457d83"
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_sha256": "d836e74833b0ae7b708063fd50e48bbdc0fb9526abd9cabd7beaac5f1a457d83",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirement-registration/hil-fr42-fr45-candidate-source-lines-2026-10-02.jsonl",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "locator": "HARNESS-L2/L11-077 source row provenance; #2500 main read-after",
-          "artifact_content_commit": "b6aed5a4ec63fcd37e0b9994107dd1976aef8ce2",
-          "artifact_sha256": "2c1691a7046ae3e7d195ed6cfc65397a8000e7f1eb83efa5b02cfefb35817bdf"
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_sha256": "2c1691a7046ae3e7d195ed6cfc65397a8000e7f1eb83efa5b02cfefb35817bdf",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index",
@@ -3194,31 +3405,45 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr42-fr45-field-by-field-current-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR43 condition row; #2498 HEAD 3b3472d; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR43 condition row; #2498 reviewed e4a81561 / merged432ca78c; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "6265c512bae65789b177e38404c8266726799f46",
-          "artifact_sha256": "e3d9b1fc9044928e1b582cb938b63b6acad6ac228a73f21616d400fb6178bfe9"
+          "artifact_sha256": "e3d9b1fc9044928e1b582cb938b63b6acad6ac228a73f21616d400fb6178bfe9",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr42-fr45-field-by-field-current-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR43 condition row; #2498 HEAD 3b3472d; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR43 condition row; #2498 reviewed e4a81561 / merged432ca78c; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "6265c512bae65789b177e38404c8266726799f46",
-          "artifact_sha256": "0e55747d08a8531727ea75df462b54f78ba1d6c32f3a33a3a867758d07bc7f6f"
+          "artifact_sha256": "0e55747d08a8531727ea75df462b54f78ba1d6c32f3a33a3a867758d07bc7f6f",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirement-registration/hil-fr42-candidate-coverage-receipt-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "locator": "HARNESS-L2/L11-077 unadopted candidate receipt; L2 4b1ea678ac31ee96d8881d4efcb5c49ab6676c5d9a142389ece5a09f4b592ffb; L11 14ab521e41a2e28420a8597dd1b532e7a8b4dd9b9c5cc0c13d9631157eff87fc; #2500 main read-after; candidate context only, not FR43/FR44 source-atom mapping",
-          "artifact_content_commit": "b6aed5a4ec63fcd37e0b9994107dd1976aef8ce2",
-          "artifact_sha256": "d836e74833b0ae7b708063fd50e48bbdc0fb9526abd9cabd7beaac5f1a457d83"
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_sha256": "d836e74833b0ae7b708063fd50e48bbdc0fb9526abd9cabd7beaac5f1a457d83",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirement-registration/hil-fr42-fr45-candidate-source-lines-2026-10-02.jsonl",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "locator": "HARNESS-L2/L11-077 source row provenance; #2500 main read-after",
-          "artifact_content_commit": "b6aed5a4ec63fcd37e0b9994107dd1976aef8ce2",
-          "artifact_sha256": "2c1691a7046ae3e7d195ed6cfc65397a8000e7f1eb83efa5b02cfefb35817bdf"
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_sha256": "2c1691a7046ae3e7d195ed6cfc65397a8000e7f1eb83efa5b02cfefb35817bdf",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index",
@@ -3293,31 +3518,45 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr42-fr45-field-by-field-current-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR44 condition row; #2498 HEAD 3b3472d; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR44 condition row; #2498 reviewed e4a81561 / merged432ca78c; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "6265c512bae65789b177e38404c8266726799f46",
-          "artifact_sha256": "e3d9b1fc9044928e1b582cb938b63b6acad6ac228a73f21616d400fb6178bfe9"
+          "artifact_sha256": "e3d9b1fc9044928e1b582cb938b63b6acad6ac228a73f21616d400fb6178bfe9",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr42-fr45-field-by-field-current-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR44 condition row; #2498 HEAD 3b3472d; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR44 condition row; #2498 reviewed e4a81561 / merged432ca78c; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "6265c512bae65789b177e38404c8266726799f46",
-          "artifact_sha256": "0e55747d08a8531727ea75df462b54f78ba1d6c32f3a33a3a867758d07bc7f6f"
+          "artifact_sha256": "0e55747d08a8531727ea75df462b54f78ba1d6c32f3a33a3a867758d07bc7f6f",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirement-registration/hil-fr45-candidate-coverage-receipt-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "locator": "HARNESS-L2/L11-078 unadopted candidate receipt; L2 6b4ddaf3bcf34abae538820d1829afaf2e9e866bdd524475b2fe0e23fff8d9f0; L11 8b96200b445ba052465c7a3fa6b624b293d7c08f93b7e80fa3aa800ae57c7f4d; #2500 main read-after; candidate context only, not FR43/FR44 source-atom mapping",
-          "artifact_content_commit": "b6aed5a4ec63fcd37e0b9994107dd1976aef8ce2",
-          "artifact_sha256": "608877d31361ad3c06d2373515849b64fb9393a6237cb221a77b8818c4a38f14"
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_sha256": "608877d31361ad3c06d2373515849b64fb9393a6237cb221a77b8818c4a38f14",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirement-registration/hil-fr42-fr45-candidate-source-lines-2026-10-02.jsonl",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "locator": "HARNESS-L2/L11-078 source row provenance; #2500 main read-after",
-          "artifact_content_commit": "b6aed5a4ec63fcd37e0b9994107dd1976aef8ce2",
-          "artifact_sha256": "2c1691a7046ae3e7d195ed6cfc65397a8000e7f1eb83efa5b02cfefb35817bdf"
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_sha256": "2c1691a7046ae3e7d195ed6cfc65397a8000e7f1eb83efa5b02cfefb35817bdf",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index",
@@ -3373,31 +3612,45 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr42-fr45-field-by-field-current-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR45 condition row; #2498 HEAD 3b3472d; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR45 condition row; #2498 reviewed e4a81561 / merged432ca78c; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "6265c512bae65789b177e38404c8266726799f46",
-          "artifact_sha256": "e3d9b1fc9044928e1b582cb938b63b6acad6ac228a73f21616d400fb6178bfe9"
+          "artifact_sha256": "e3d9b1fc9044928e1b582cb938b63b6acad6ac228a73f21616d400fb6178bfe9",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr42-fr45-field-by-field-current-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR45 condition row; #2498 HEAD 3b3472d; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR45 condition row; #2498 reviewed e4a81561 / merged432ca78c; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "6265c512bae65789b177e38404c8266726799f46",
-          "artifact_sha256": "0e55747d08a8531727ea75df462b54f78ba1d6c32f3a33a3a867758d07bc7f6f"
+          "artifact_sha256": "0e55747d08a8531727ea75df462b54f78ba1d6c32f3a33a3a867758d07bc7f6f",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirement-registration/hil-fr45-candidate-coverage-receipt-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "locator": "HARNESS-L2/L11-078 unadopted candidate receipt; L2 6b4ddaf3bcf34abae538820d1829afaf2e9e866bdd524475b2fe0e23fff8d9f0; L11 8b96200b445ba052465c7a3fa6b624b293d7c08f93b7e80fa3aa800ae57c7f4d; #2500 main read-after; selected source atom is FR42/FR45 respectively; candidate remains unadopted",
-          "artifact_content_commit": "b6aed5a4ec63fcd37e0b9994107dd1976aef8ce2",
-          "artifact_sha256": "608877d31361ad3c06d2373515849b64fb9393a6237cb221a77b8818c4a38f14"
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_sha256": "608877d31361ad3c06d2373515849b64fb9393a6237cb221a77b8818c4a38f14",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirement-registration/hil-fr42-fr45-candidate-source-lines-2026-10-02.jsonl",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "locator": "HARNESS-L2/L11-078 source row provenance; #2500 main read-after",
-          "artifact_content_commit": "b6aed5a4ec63fcd37e0b9994107dd1976aef8ce2",
-          "artifact_sha256": "2c1691a7046ae3e7d195ed6cfc65397a8000e7f1eb83efa5b02cfefb35817bdf"
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_sha256": "2c1691a7046ae3e7d195ed6cfc65397a8000e7f1eb83efa5b02cfefb35817bdf",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index",
@@ -3591,17 +3844,25 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr46-50-current-pairs-condition-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR46 row; #2498 HEAD 3b3472d; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR46 row; #2498 reviewed e4a81561 / merged432ca78c; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "3b3472d80ac26fea770fb55ab1222960921c5a09",
-          "artifact_sha256": "24437c8b928f2ad899e630d5bb53f13a4506b047f799f08f9d3cdc27a6dd5398"
+          "artifact_sha256": "24437c8b928f2ad899e630d5bb53f13a4506b047f799f08f9d3cdc27a6dd5398",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr46-50-current-pairs-condition-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR46 condition row; #2498 HEAD 3b3472d; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR46 condition row; #2498 reviewed e4a81561 / merged432ca78c; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "3b3472d80ac26fea770fb55ab1222960921c5a09",
-          "artifact_sha256": "5fd2ec7a93b8e0b406bf932bd5f849766f0e4e0ce210c0e116d4fab495dffe7d"
+          "artifact_sha256": "5fd2ec7a93b8e0b406bf932bd5f849766f0e4e0ce210c0e116d4fab495dffe7d",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index",
@@ -3700,17 +3961,25 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr46-50-current-pairs-condition-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR47 row; #2498 HEAD 3b3472d; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR47 row; #2498 reviewed e4a81561 / merged432ca78c; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "3b3472d80ac26fea770fb55ab1222960921c5a09",
-          "artifact_sha256": "24437c8b928f2ad899e630d5bb53f13a4506b047f799f08f9d3cdc27a6dd5398"
+          "artifact_sha256": "24437c8b928f2ad899e630d5bb53f13a4506b047f799f08f9d3cdc27a6dd5398",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr46-50-current-pairs-condition-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR47 condition row; #2498 HEAD 3b3472d; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR47 condition row; #2498 reviewed e4a81561 / merged432ca78c; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "3b3472d80ac26fea770fb55ab1222960921c5a09",
-          "artifact_sha256": "5fd2ec7a93b8e0b406bf932bd5f849766f0e4e0ce210c0e116d4fab495dffe7d"
+          "artifact_sha256": "5fd2ec7a93b8e0b406bf932bd5f849766f0e4e0ce210c0e116d4fab495dffe7d",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index",
@@ -3809,49 +4078,69 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr46-50-current-pairs-condition-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR48 row; #2498 HEAD 3b3472d; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR48 row; #2498 reviewed e4a81561 / merged432ca78c; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "3b3472d80ac26fea770fb55ab1222960921c5a09",
-          "artifact_sha256": "24437c8b928f2ad899e630d5bb53f13a4506b047f799f08f9d3cdc27a6dd5398"
+          "artifact_sha256": "24437c8b928f2ad899e630d5bb53f13a4506b047f799f08f9d3cdc27a6dd5398",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr46-50-current-pairs-condition-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR48 condition row; #2498 HEAD 3b3472d; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR48 condition row; #2498 reviewed e4a81561 / merged432ca78c; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "3b3472d80ac26fea770fb55ab1222960921c5a09",
-          "artifact_sha256": "5fd2ec7a93b8e0b406bf932bd5f849766f0e4e0ce210c0e116d4fab495dffe7d"
+          "artifact_sha256": "5fd2ec7a93b8e0b406bf932bd5f849766f0e4e0ce210c0e116d4fab495dffe7d",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr48-49-residual-current-pairs-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR48 residual crosswalk; audit baseline f38bde0; current candidate read-after at main 68e1e3ad54d7",
-          "artifact_content_commit": "98959de3be7e8fba19c6963a0d998ccb059588bc",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR48 residual crosswalk; audit baseline f38bde0; current candidate read-after at main 360eec2d11dd",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "artifact_sha256": "968f2f57d2c8d001b4b009ad284fdbd1217e310bd458e0cd331b6e110d820fbc",
-          "audit_baseline_commit": "f38bde044a7dfbf12aec0203b21a9384eef6ad8f"
+          "audit_baseline_commit": "f38bde044a7dfbf12aec0203b21a9384eef6ad8f",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr48-49-residual-current-pairs-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR48 residual crosswalk; audit baseline f38bde0; current candidate read-after at main 68e1e3ad54d7",
-          "artifact_content_commit": "98959de3be7e8fba19c6963a0d998ccb059588bc",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR48 residual crosswalk; audit baseline f38bde0; current candidate read-after at main 360eec2d11dd",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "artifact_sha256": "dbcf8e6a9229c06e4194c832ea8323f14916e523650d14d4c296266f5100f1b1",
-          "audit_baseline_commit": "f38bde044a7dfbf12aec0203b21a9384eef6ad8f"
+          "audit_baseline_commit": "f38bde044a7dfbf12aec0203b21a9384eef6ad8f",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirement-registration/hil-fr48-49-stale-snapshot-coverage-receipt-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "locator": "HARNESS-L2/L11-072 (MPR-RC-HARNESS-L2-072-001) unadopted candidate; source slices limited; main #2501 read-after",
-          "artifact_content_commit": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "artifact_sha256": "1b3af39e4e23894ce0fa205be1ad1e1aebfe65b8d5c3a6adc37bb7ef967d7ba8",
-          "audit_baseline_commit": "a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20"
+          "audit_baseline_commit": "a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirement-registration/hil-fr48-49-stale-snapshot-source-lines-2026-10-02.jsonl",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "locator": "FR48/49 selected source slices; #2501 read-after; no whole-row rehome",
-          "artifact_content_commit": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "artifact_sha256": "20f31f6c8c7bfc43b029e89b43a30a34131c394b0484480e41b55f17b92ebdd9",
-          "audit_baseline_commit": "a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20"
+          "audit_baseline_commit": "a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index",
@@ -3955,49 +4244,69 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr46-50-current-pairs-condition-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR49 row; #2498 HEAD 3b3472d; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR49 row; #2498 reviewed e4a81561 / merged432ca78c; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "3b3472d80ac26fea770fb55ab1222960921c5a09",
-          "artifact_sha256": "24437c8b928f2ad899e630d5bb53f13a4506b047f799f08f9d3cdc27a6dd5398"
+          "artifact_sha256": "24437c8b928f2ad899e630d5bb53f13a4506b047f799f08f9d3cdc27a6dd5398",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr46-50-current-pairs-condition-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR49 condition row; #2498 HEAD 3b3472d; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR49 condition row; #2498 reviewed e4a81561 / merged432ca78c; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "3b3472d80ac26fea770fb55ab1222960921c5a09",
-          "artifact_sha256": "5fd2ec7a93b8e0b406bf932bd5f849766f0e4e0ce210c0e116d4fab495dffe7d"
+          "artifact_sha256": "5fd2ec7a93b8e0b406bf932bd5f849766f0e4e0ce210c0e116d4fab495dffe7d",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr48-49-residual-current-pairs-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR49 residual crosswalk; audit baseline f38bde0; current candidate read-after at main 68e1e3ad54d7",
-          "artifact_content_commit": "98959de3be7e8fba19c6963a0d998ccb059588bc",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR49 residual crosswalk; audit baseline f38bde0; current candidate read-after at main 360eec2d11dd",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "artifact_sha256": "968f2f57d2c8d001b4b009ad284fdbd1217e310bd458e0cd331b6e110d820fbc",
-          "audit_baseline_commit": "f38bde044a7dfbf12aec0203b21a9384eef6ad8f"
+          "audit_baseline_commit": "f38bde044a7dfbf12aec0203b21a9384eef6ad8f",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr48-49-residual-current-pairs-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR49 residual crosswalk; audit baseline f38bde0; current candidate read-after at main 68e1e3ad54d7",
-          "artifact_content_commit": "98959de3be7e8fba19c6963a0d998ccb059588bc",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR49 residual crosswalk; audit baseline f38bde0; current candidate read-after at main 360eec2d11dd",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "artifact_sha256": "dbcf8e6a9229c06e4194c832ea8323f14916e523650d14d4c296266f5100f1b1",
-          "audit_baseline_commit": "f38bde044a7dfbf12aec0203b21a9384eef6ad8f"
+          "audit_baseline_commit": "f38bde044a7dfbf12aec0203b21a9384eef6ad8f",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirement-registration/hil-fr48-49-stale-snapshot-coverage-receipt-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "locator": "HARNESS-L2/L11-072 (MPR-RC-HARNESS-L2-072-001) unadopted candidate; source slices limited; main #2501 read-after",
-          "artifact_content_commit": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "artifact_sha256": "1b3af39e4e23894ce0fa205be1ad1e1aebfe65b8d5c3a6adc37bb7ef967d7ba8",
-          "audit_baseline_commit": "a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20"
+          "audit_baseline_commit": "a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirement-registration/hil-fr48-49-stale-snapshot-source-lines-2026-10-02.jsonl",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "locator": "FR48/49 selected source slices; #2501 read-after; no whole-row rehome",
-          "artifact_content_commit": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
           "artifact_sha256": "20f31f6c8c7bfc43b029e89b43a30a34131c394b0484480e41b55f17b92ebdd9",
-          "audit_baseline_commit": "a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20"
+          "audit_baseline_commit": "a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index",
@@ -4126,17 +4435,25 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr46-50-current-pairs-condition-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR50 row; #2498 HEAD 3b3472d; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR50 row; #2498 reviewed e4a81561 / merged432ca78c; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "3b3472d80ac26fea770fb55ab1222960921c5a09",
-          "artifact_sha256": "24437c8b928f2ad899e630d5bb53f13a4506b047f799f08f9d3cdc27a6dd5398"
+          "artifact_sha256": "24437c8b928f2ad899e630d5bb53f13a4506b047f799f08f9d3cdc27a6dd5398",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr46-50-current-pairs-condition-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR50 condition row; #2498 HEAD 3b3472d; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR50 condition row; #2498 reviewed e4a81561 / merged432ca78c; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "3b3472d80ac26fea770fb55ab1222960921c5a09",
-          "artifact_sha256": "5fd2ec7a93b8e0b406bf932bd5f849766f0e4e0ce210c0e116d4fab495dffe7d"
+          "artifact_sha256": "5fd2ec7a93b8e0b406bf932bd5f849766f0e4e0ce210c0e116d4fab495dffe7d",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index",
@@ -4245,17 +4562,25 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr51-55-current-pairs-condition-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR51 row; #2498 HEAD 3b3472d; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR51 row; #2498 reviewed e4a81561 / merged432ca78c; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "3b3472d80ac26fea770fb55ab1222960921c5a09",
-          "artifact_sha256": "d1545eb47f19337704feb1121f22082137078778d2c9a2f2290cd89fb506d08a"
+          "artifact_sha256": "d1545eb47f19337704feb1121f22082137078778d2c9a2f2290cd89fb506d08a",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr51-55-current-pairs-condition-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR51 condition row; #2498 HEAD 3b3472d; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR51 condition row; #2498 reviewed e4a81561 / merged432ca78c; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "3b3472d80ac26fea770fb55ab1222960921c5a09",
-          "artifact_sha256": "95ad2f2c6f1ee19863306d6e12c11c50408050b0a40bcd136a5ae345b35cbb9b"
+          "artifact_sha256": "95ad2f2c6f1ee19863306d6e12c11c50408050b0a40bcd136a5ae345b35cbb9b",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index",
@@ -4393,17 +4718,25 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr51-55-current-pairs-condition-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR52 row; #2498 HEAD 3b3472d; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR52 row; #2498 reviewed e4a81561 / merged432ca78c; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "3b3472d80ac26fea770fb55ab1222960921c5a09",
-          "artifact_sha256": "d1545eb47f19337704feb1121f22082137078778d2c9a2f2290cd89fb506d08a"
+          "artifact_sha256": "d1545eb47f19337704feb1121f22082137078778d2c9a2f2290cd89fb506d08a",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr51-55-current-pairs-condition-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR52 condition row; #2498 HEAD 3b3472d; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR52 condition row; #2498 reviewed e4a81561 / merged432ca78c; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "3b3472d80ac26fea770fb55ab1222960921c5a09",
-          "artifact_sha256": "95ad2f2c6f1ee19863306d6e12c11c50408050b0a40bcd136a5ae345b35cbb9b"
+          "artifact_sha256": "95ad2f2c6f1ee19863306d6e12c11c50408050b0a40bcd136a5ae345b35cbb9b",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index",
@@ -4547,17 +4880,25 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr51-55-current-pairs-condition-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR53 row; #2498 HEAD 3b3472d; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR53 row; #2498 reviewed e4a81561 / merged432ca78c; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "3b3472d80ac26fea770fb55ab1222960921c5a09",
-          "artifact_sha256": "d1545eb47f19337704feb1121f22082137078778d2c9a2f2290cd89fb506d08a"
+          "artifact_sha256": "d1545eb47f19337704feb1121f22082137078778d2c9a2f2290cd89fb506d08a",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr51-55-current-pairs-condition-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR53 condition row; #2498 HEAD 3b3472d; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR53 condition row; #2498 reviewed e4a81561 / merged432ca78c; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "3b3472d80ac26fea770fb55ab1222960921c5a09",
-          "artifact_sha256": "95ad2f2c6f1ee19863306d6e12c11c50408050b0a40bcd136a5ae345b35cbb9b"
+          "artifact_sha256": "95ad2f2c6f1ee19863306d6e12c11c50408050b0a40bcd136a5ae345b35cbb9b",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index",
@@ -4684,17 +5025,25 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr51-55-current-pairs-condition-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR54 row; #2498 HEAD 3b3472d; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR54 row; #2498 reviewed e4a81561 / merged432ca78c; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "3b3472d80ac26fea770fb55ab1222960921c5a09",
-          "artifact_sha256": "d1545eb47f19337704feb1121f22082137078778d2c9a2f2290cd89fb506d08a"
+          "artifact_sha256": "d1545eb47f19337704feb1121f22082137078778d2c9a2f2290cd89fb506d08a",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr51-55-current-pairs-condition-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR54 condition row; #2498 HEAD 3b3472d; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR54 condition row; #2498 reviewed e4a81561 / merged432ca78c; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "3b3472d80ac26fea770fb55ab1222960921c5a09",
-          "artifact_sha256": "95ad2f2c6f1ee19863306d6e12c11c50408050b0a40bcd136a5ae345b35cbb9b"
+          "artifact_sha256": "95ad2f2c6f1ee19863306d6e12c11c50408050b0a40bcd136a5ae345b35cbb9b",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index",
@@ -4816,17 +5165,25 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr51-55-current-pairs-condition-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR55 row; #2498 HEAD 3b3472d; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR55 row; #2498 reviewed e4a81561 / merged432ca78c; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "3b3472d80ac26fea770fb55ab1222960921c5a09",
-          "artifact_sha256": "d1545eb47f19337704feb1121f22082137078778d2c9a2f2290cd89fb506d08a"
+          "artifact_sha256": "d1545eb47f19337704feb1121f22082137078778d2c9a2f2290cd89fb506d08a",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr51-55-current-pairs-condition-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR55 condition row; #2498 HEAD 3b3472d; artifact read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR55 condition row; #2498 reviewed e4a81561 / merged432ca78c; artifact read-after at main 360eec2d11dd",
           "audit_baseline_commit": "3b3472d80ac26fea770fb55ab1222960921c5a09",
-          "artifact_sha256": "95ad2f2c6f1ee19863306d6e12c11c50408050b0a40bcd136a5ae345b35cbb9b"
+          "artifact_sha256": "95ad2f2c6f1ee19863306d6e12c11c50408050b0a40bcd136a5ae345b35cbb9b",
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_content_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": true
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index",
@@ -4926,23 +5283,25 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr56-60-current-pairs-condition-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR56 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR56 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 360eec2d11dd",
           "artifact_content_commit": "2711d4d39ed59647a55cb3e38d297a9901e2f8b9",
           "artifact_sha256": "4354a393aa827826992df0194605a21450324516877d31fa70bd98f452302955",
           "audit_baseline_commit": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "main_read_after_commit": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "artifact_in_main_base": false
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": false,
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d"
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr56-60-current-pairs-condition-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR56 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR56 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 360eec2d11dd",
           "artifact_content_commit": "2711d4d39ed59647a55cb3e38d297a9901e2f8b9",
           "artifact_sha256": "b5acc3266502038e874b39871a972cd50f767b40b73d90bf79ef6fbbfe5d1a85",
           "audit_baseline_commit": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "main_read_after_commit": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "artifact_in_main_base": false
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": false,
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d"
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index"
@@ -5007,23 +5366,25 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr56-60-current-pairs-condition-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR57 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR57 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 360eec2d11dd",
           "artifact_content_commit": "2711d4d39ed59647a55cb3e38d297a9901e2f8b9",
           "artifact_sha256": "4354a393aa827826992df0194605a21450324516877d31fa70bd98f452302955",
           "audit_baseline_commit": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "main_read_after_commit": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "artifact_in_main_base": false
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": false,
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d"
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr56-60-current-pairs-condition-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR57 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR57 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 360eec2d11dd",
           "artifact_content_commit": "2711d4d39ed59647a55cb3e38d297a9901e2f8b9",
           "artifact_sha256": "b5acc3266502038e874b39871a972cd50f767b40b73d90bf79ef6fbbfe5d1a85",
           "audit_baseline_commit": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "main_read_after_commit": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "artifact_in_main_base": false
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": false,
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d"
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index",
@@ -5096,23 +5457,25 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr56-60-current-pairs-condition-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR58 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR58 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 360eec2d11dd",
           "artifact_content_commit": "2711d4d39ed59647a55cb3e38d297a9901e2f8b9",
           "artifact_sha256": "4354a393aa827826992df0194605a21450324516877d31fa70bd98f452302955",
           "audit_baseline_commit": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "main_read_after_commit": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "artifact_in_main_base": false
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": false,
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d"
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr56-60-current-pairs-condition-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR58 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR58 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 360eec2d11dd",
           "artifact_content_commit": "2711d4d39ed59647a55cb3e38d297a9901e2f8b9",
           "artifact_sha256": "b5acc3266502038e874b39871a972cd50f767b40b73d90bf79ef6fbbfe5d1a85",
           "audit_baseline_commit": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "main_read_after_commit": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "artifact_in_main_base": false
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": false,
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d"
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index",
@@ -5168,23 +5531,25 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr56-60-current-pairs-condition-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR59 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR59 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 360eec2d11dd",
           "artifact_content_commit": "2711d4d39ed59647a55cb3e38d297a9901e2f8b9",
           "artifact_sha256": "4354a393aa827826992df0194605a21450324516877d31fa70bd98f452302955",
           "audit_baseline_commit": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "main_read_after_commit": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "artifact_in_main_base": false
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": false,
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d"
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr56-60-current-pairs-condition-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR59 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR59 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 360eec2d11dd",
           "artifact_content_commit": "2711d4d39ed59647a55cb3e38d297a9901e2f8b9",
           "artifact_sha256": "b5acc3266502038e874b39871a972cd50f767b40b73d90bf79ef6fbbfe5d1a85",
           "audit_baseline_commit": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "main_read_after_commit": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "artifact_in_main_base": false
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": false,
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d"
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index"
@@ -5232,23 +5597,25 @@
       "current_evidence": [
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr56-60-current-pairs-condition-audit-2026-10-02.json",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR60 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR60 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 360eec2d11dd",
           "artifact_content_commit": "2711d4d39ed59647a55cb3e38d297a9901e2f8b9",
           "artifact_sha256": "4354a393aa827826992df0194605a21450324516877d31fa70bd98f452302955",
           "audit_baseline_commit": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "main_read_after_commit": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "artifact_in_main_base": false
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": false,
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d"
         },
         {
           "ref": "docs/governance/audits/requirements-stage/ir153-hil-fr56-60-current-pairs-condition-audit-2026-10-02.md",
-          "snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "locator": "FR60 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 68e1e3ad54d7",
+          "snapshot": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "locator": "FR60 source-condition audit artifact; content is PR #2502 HEAD, not a blob in base; linked whereabouts read-after at main 360eec2d11dd",
           "artifact_content_commit": "2711d4d39ed59647a55cb3e38d297a9901e2f8b9",
           "artifact_sha256": "b5acc3266502038e874b39871a972cd50f767b40b73d90bf79ef6fbbfe5d1a85",
           "audit_baseline_commit": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
-          "main_read_after_commit": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-          "artifact_in_main_base": false
+          "main_read_after_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+          "artifact_in_main_base": false,
+          "historical_locator_snapshot": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d"
         }
       ],
       "classification": "evidence locator only; adoption/successor/closure must be read from exact target-revision PO decision and section pins, not inferred from this index",
@@ -5269,10 +5636,9 @@
     }
   ],
   "current_read_after": {
-    "main_commit": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
-    "meaning": "PR #2502 baseのmain treeをread-afterした所在。index artifactのcontent commitとは別。",
-    "index_content_commit": "2711d4d39ed59647a55cb3e38d297a9901e2f8b9",
-    "index_content_note": "この修正対象JSON/MDおよび追加FR02等/FR56-60 auditのcontent HEAD。main baselineではない。",
+    "main_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+    "meaning": "Latest main tree after #2503; every current evidence artifact is independently read at its named commit. Original construction main is retained separately.",
+    "index_content_note": "2711 pins the unchanged added audits, not the subsequently corrected index JSON/MD itself.",
     "merged_history": [
       {
         "pr": "#2497",
@@ -5338,6 +5704,9 @@
         "l2_full_file_sha256": "96a044491b0d8a8f45833a048753f89fc76966824a825982303ecc50e821ec2e",
         "l11_full_file_sha256": "a286d3f9e813571485ebb7b1a9dcdd7afae996180a3d2f6c6463d2ea98f96be3"
       }
-    ]
+    ],
+    "construction_main_commit": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+    "audit_artifact_content_commit": "2711d4d39ed59647a55cb3e38d297a9901e2f8b9",
+    "latest_base_change": "075 reason-output candidate revision from #2503 is unadopted and does not alter these FR locator/source identities."
   }
 }
