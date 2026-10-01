@@ -5,10 +5,10 @@
   "candidate_identity": "HELIXOS-L2-112",
   "candidate_kind": "connection",
   "l2_source_path": "docs/helix-os/L2-requirements/governance-requirements.md",
-  "l2_section_digest": "sha256:55ebd7145a4ae21b81f165ec277732b1236576421a1d0a854a92467f167c6e34",
+  "l2_section_digest": "sha256:6bfc4a3bef86e22a0ba044be7c8b1d5539b3f00e5445b76c9e690b7b02df0ba6",
   "l2_section_digest_rule": "UTF-8 bytes from ### HELIXOS-L2-112 heading to EOF, trailing blank lines removed, exactly one LF at end.",
   "l11_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-  "l11_section_digest": "sha256:c36baff0e3ec208ed8b02f9accbae28b5a1b4e7600c4deff79de3d7c79acb4eb",
+  "l11_section_digest": "sha256:3796ec774e093ee96d93d729b781c0980bb9eabc9339099e1ccb0f78857c6d99",
   "l11_section_digest_rule": "UTF-8 bytes from ### HELIXOS-L2-112 heading to EOF, trailing blank lines removed, exactly one LF at end.",
   "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil11-product-data-projection-source-lines-2026-10-02.jsonl",
   "source_atom_set_digest": "sha256:0ea93e048acc41d5c5bf22dede0085a1208cf29c786016a164c326131219f1d4",
@@ -85,11 +85,12 @@
     "SECURITY authority and existing source/consumer-owner semantics remain upstream inputs"
   ],
   "candidate_specific_residuals": [
-    "versioned source key/connector/schema/mapping read-registration linkage",
+    "versioned source key/connector/schema/mapping read-registration linkage and digest-bound enable/disable receipt tied to existing operation authority",
     "full/incremental snapshot, cursor/watermark monotonicity and idempotency",
     "canonical entity and explicit consumer mapping lineage",
     "tombstone, stale/freshness and schema-drift boundaries",
-    "redaction/minimization and negative oracle preventing current/watermark advancement"
+    "redaction/minimization and negative oracle preventing current/watermark advancement",
+    "selected freshness SLA and retention policy references, with no new numeric values inferred"
   ],
   "version_target": "2.0 candidate only; crosswalk placement proposal, not PO decision",
   "evidence_refs": [
@@ -108,13 +109,22 @@
   "candidate_base_commit": "1cd77015081b87d5bcde7d5e45ee4e0a227e02c2",
   "candidate_base_register_sha256": "sha256:ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
   "parent_concept_revision": "docs/concept/helix-concept.md@1cd77015081b87d5bcde7d5e45ee4e0a227e02c2 sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78 (fixed bytes; candidate adoption not inherited)",
-  "parent_planning_revision": "docs/helix-os/L1-planning/system-intent.md@1cd77015081b87d5bcde7d5e45ee4e0a227e02c2 sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e (draft candidate parent; no approval inherited)",
-  "registration_id": "MPR-RC-HELIXOS-L2-112-003",
-  "supersedes_registration_id": "MPR-RC-HELIXOS-L2-112-002",
+  "parent_planning_revision": "docs/helix-os/L1-planning/system-intent.md@f6dad2a33e24f000b87d7f09b8d40288257e74cc sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e (HDEC-HELIXOS-REQUIREMENTS-PO-2026-09-28 fixed/adopted L1 target; this does not adopt HELIXOS-L2-112/L11)",
+  "registration_id": "MPR-RC-HELIXOS-L2-112-005",
+  "supersedes_registration_id": "MPR-RC-HELIXOS-L2-112-004",
   "carried_atom_refs": [
     "HIL11-IR-BR15",
     "HIL11-IR-FR23",
     "HIL11-IR-FR24",
     "HIL11-IR-NFR17"
+  ],
+  "parent_planning_current_main_check": "d31a4c8500d131001dc349bfbdfde82fb0b46839; docs/helix-os/L1-planning/system-intent.md SHA-256 2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e, byte-equal to decision-fixed target",
+  "parent_planning_decision_record": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md#対象revision",
+  "candidate_parent_adoption_status": "L1 parent target is adopted only for exact SHA-256 2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e under HDEC-HELIXOS-REQUIREMENTS-PO-2026-09-28; the new L2-112/L11 pair is not adopted.",
+  "candidate_parent_fixed_l1_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+  "review_corrections": [
+    "HDEC-HELIXOS-REQUIREMENTS-PO-2026-09-28 exact adopted L1 SHA/current-byte match documented separately from unadopted L2-112/L11.",
+    "HIL-FR-23 enable/disable receipts now bind source/registry and connector contract revision/digest to existing authority; mismatch and unauthorized transitions have negative oracle.",
+    "HIL-FR-23 enable/disable receipt binds exact source/registry and connector contract digest/revision to existing authority; mismatch/unauthorized no-state-change negatives added. HIL-NFR-17 selected freshness/retention policy references have normal and unseen oracles without new numeric values."
   ]
 }

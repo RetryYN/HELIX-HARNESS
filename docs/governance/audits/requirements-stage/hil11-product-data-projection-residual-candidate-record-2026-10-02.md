@@ -4,7 +4,7 @@
 
 対象は旧HIL-11のsource registry・read projectionに関係する旧原文、`HR-FR-HIL-11`、`HAC-HIL-11a/b/c`、`HAT-HIL-11`と、現行main `1cd77015081b87d5bcde7d5e45ee4e0a227e02c2`上の関連L2/L11・decision・仮登録である。専用worktreeをこのcommitから開始し、候補を最新main `d31a4c8500d131001dc349bfbdfde82fb0b46839`へrebaseした。1cdからd31の間で本候補が参照するOS L2/L11、decision、MPR register、IR carry-forwardに差分はない。最終local commitはd31を直接のparentとする。archive内の旧test、runtime、CLI、hook、CIは実行していない。旧HATは`designed_not_implemented`であり、旧test設計、現行candidate、receiptは実行・合格証拠ではない。
 
-候補本文はHELIX-OSの`HELIXOS-L2-112` / paired `L11`として起草し、`MPR-RC-HELIXOS-L2-112-001`へ仮登録し、記録時刻訂正`-002`およびsource atom入力をIRの4 requirement identityへ正規化したappend-only訂正`-003`を追記した。過去revisionは履歴として残し、latest -003を参照する。これは一つの責務配分提案で、HIL-11のformal successor、source owner移管、consumer集合、product scope、正式な導入版を決めない。`version_target: 2.0 candidate`は既存crosswalkの配置案の記録でありPO判断ではない。現行OS L1も候補のままで、採択済み親revisionとみなさない。
+候補本文はHELIX-OSの`HELIXOS-L2-112` / paired `L11`として起草し、`MPR-RC-HELIXOS-L2-112-001`へ仮登録し、append-only訂正`-002`（記録時刻）、`-003`（source atom input）、`-004`（親L1 decision pin）、`-005`（HIL-FR-23/NFR-17 oracle条件とcandidate digest）を追記した。過去revisionは履歴として残し、latest `-005`を参照する。これは一つの責務配分提案で、HIL-11のformal successor、source owner移管、consumer集合、product scope、正式な導入版を決めない。HELIX-OS L1は2026-09-28 decisionが`f6dad2a33e24f000b87d7f09b8d40288257e74cc`上のSHA-256 `2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e`を対象revisionとして固定・採択し、現行main `d31a4c8500d131001dc349bfbdfde82fb0b46839`のL1 file SHAも同値である。L1の`draft_candidate` metadataは固定bytesの一部として残るが、その採択状態はdecision recordから読む。この既採択親revisionは、新規`HELIXOS-L2-112`／L11 candidateを採択しない。`version_target: 2.0 candidate`は既存crosswalkの配置案の記録でありPO判断ではない。
 
 ## 旧sourceとsource atom
 
@@ -13,7 +13,7 @@
 | 旧identity・行 | source line SHA-256 | 条件として保持する意味 |
 |---|---|---|
 | HIL-BR-15, 67 | `880385839788ea49f14544ee9dd0f1ed5037bc84b1707a9ba55f4fa6a267c2f5` | 将来のproduct-data sourceを版付きconnectorで読み、由来・鮮度・schema・authorityを保持した正規projectionを設計判断、coverage、impact、Issue routing、docgen/detectorへ供給する。列挙機能はconsumer候補の由来であり、今回すべてのconsumerを採択した意味ではない。 |
-| HIL-FR-23, 113 | `85a92638e7c8e010055e880609ea9c634e205df5c61f0e80bdea3fbc9be68c92` | source種別、connector/schema version、credential reference、classification、read/write方針、同期方式、owner、有効状態を追跡し、credential値を保存しない。 |
+| HIL-FR-23, 113 | `85a92638e7c8e010055e880609ea9c634e205df5c61f0e80bdea3fbc9be68c92` | source種別、connector/schema version、credential reference、classification、read/write方針、同期方式、owner、有効状態を追跡し、connector contract/digestへ結ぶenable/disable receiptを残し、credential値を保存しない。 |
 | HIL-FR-24, 114 | `a61697f41088818ddbb852fe274453666708c8467ce3d60a538203140bbc91d4` | full/incremental snapshotを冪等に読み、source record→canonical entity→requirement/design/Issue mapping、provenance/freshness/tombstone/schema driftをread projectionへ反映し、snapshot/watermark/mapping edge/stale-drift findingを証拠とする。 |
 | HIL-NFR-17, 197 | `186a5b69b53e453fec1351f40e72221a3fea749e727ba0668d842a512a9566f6` | classification、最小取得、redaction、retention、freshness SLAを扱い、PII/secret/raw payloadを通常projectionまたはagent contextへ複製しない。sourceは数値SLAやretention値を指定しない。 |
 
@@ -36,7 +36,7 @@ current-mainのauthorityは対象decisionから確認し、候補metadataや仮�
 | 採択済みHELIX-CONNECT L2/L11-001〜007 | connection identity、契約互換、stale再照合、適用中access条件に従うtransport/retry/trace | `connect-requirements.md:254-262`がproduct-data source schema/cursor/snapshot/DB projectionをgeneric connection contractへ再利用しないと明記。transport採択はprojection semantic mappingの採択ではない。 |
 | SECURITY・source/consumer owner | 既存のauthority、classification/data-use、業務上のcanonical意味は各ownerの既存契約を使う | HIL-11の具体source、許可scope、canonical entity mappingと参加consumer集合は、対応する上流ownerが選んでいない。OS候補はそれを作らず参照する。 |
 
-対応して候補化する残差は、(1) versioned source record keyとconnector/schema/mapping registrationを一体で参照、(2) full/incremental snapshot・cursor/watermark単調性・冪等性、(3) source record→canonical entity→明示consumerのlineage/mapping、(4) stale/freshness、schema drift、explicit tombstoneとfull消失/incremental不在の区別、(5) classification/minimization/redactionと不許可時にcurrent/watermarkを進めないnegative oracleである。freshness SLA、retention、consumer集合、所有者、正式版の空欄へ数値や具体主体を作らない。
+対応して候補化する残差は、(1) versioned source record keyとconnector/schema/mapping registrationを一体で参照し、enable/disable receiptを対象registry revision・connector contract revision/content digest・既存authorityに束縛、(2) full/incremental snapshot・cursor/watermark単調性・冪等性、(3) source record→canonical entity→明示consumerのlineage/mapping、(4) stale/freshness、schema drift、explicit tombstoneとfull消失/incremental不在の区別、(5) classification/minimization/redactionと不許可時にcurrent/watermarkを進めないnegative oracleである。enable/disable receiptのcontract digest・revision束縛と既存authority下の状態切替を含める。missing/unknown/stale freshness SLAまたはretention policy参照をunseen oracleで拒否し、値が未指定でも数値や具体主体を作らない。consumer集合、所有者、正式版も確定しない。
 
 ## 候補の意味と限界
 
@@ -49,12 +49,12 @@ L11候補は旧HAC-HIL-11a（full/incremental正常lineage）、11b（schema/cur
 選択したsource atomは`MPR-SH-IR-003`が保持する4つのIR requirement identityだけである。対応する旧L1行はsource trace cross-referenceであり追加atomではない。補助contract、HAC/HAT、L5/L6設計はoracle/contextであって追加要件atomではない。候補のno-lossはこの4つに限定する。旧requirements IR全体、24 contract全体、system test/test consumer closure、旧candidate collection全量、formal successor、meaning change/retireは主張しない。原IR/candidate/supplementary holdingと旧carry-forwardの`preserved_pending_rehome`状態を維持する。
 
 - Candidate base: `1cd77015081b87d5bcde7d5e45ee4e0a227e02c2`
-- L2 section digest: `sha256:55ebd7145a4ae21b81f165ec277732b1236576421a1d0a854a92467f167c6e34`
+- L2 section digest: `6bfc4a3bef86e22a0ba044be7c8b1d5539b3f00e5445b76c9e690b7b02df0ba6`
 - L11 section digest: `sha256:c36baff0e3ec208ed8b02f9accbae28b5a1b4e7600c4deff79de3d7c79acb4eb`
 - Source atom set digest: `sha256:0ea93e048acc41d5c5bf22dede0085a1208cf29c786016a164c326131219f1d4` (4 IR identity atoms)
 - Source atom file SHA-256: `sha256:67b67b1a431faa5e781e723f7fb676c78ac3fbd4139675f7e3828531640f85a2`
 - Receipt: `docs/governance/audits/requirement-registration/hil11-product-data-projection-coverage-receipt-2026-10-02.json`
 - Source-lines: `docs/governance/audits/requirement-registration/hil11-product-data-projection-source-lines-2026-10-02.jsonl`
-- Register addition: `MPR-RC-HELIXOS-L2-112-001` and append-only corrections `MPR-RC-HELIXOS-L2-112-002` / `-003` are retained in `management-provisional-requirement-register.jsonl`; latest revision corrects timestamp and source atom basis, and has `authority_effect: none`.
+- Register addition: `MPR-RC-HELIXOS-L2-112-001` and append-only corrections through `MPR-RC-HELIXOS-L2-112-004` are retained in `management-provisional-requirement-register.jsonl`; latest revision corrects the exact adopted parent L1 pin and records the FR-23/NFR-17 condition additions and candidate digest, while the new L2/L11 remains unadopted with `authority_effect: none`.
 
 The register prefix is checked against this candidate base with `verify_management_register_append.py`; it must continue to be checked against the exact PR base if the branch base changes. These records are static candidate evidence, not a decision record or execution receipt.
