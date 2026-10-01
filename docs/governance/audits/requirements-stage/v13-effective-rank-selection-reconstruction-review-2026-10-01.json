@@ -1,0 +1,1034 @@
+{
+  "schema_version": "1.0.0",
+  "audit_id": "V13-EFFECTIVE-RANK-SELECTION-RECONSTRUCTION-REVIEW-2026-10-01",
+  "reviewed_audit_head": "c005b9b738f0a73660b29ee39e97c1b061d453db",
+  "reviewed_audit_json": {
+    "path": "docs/governance/audits/requirements-stage/history-snapshots/v13-effective-raw119-rows21-40-e7482ab-original-2026-10-01.json",
+    "sha256": "168349601b43c79feae7e5dcfe9dab05d67f90170c877635687e395910dafba3"
+  },
+  "reviewed_audit_markdown": {
+    "path": "docs/governance/audits/requirements-stage/history-snapshots/v13-effective-raw119-rows21-40-e7482ab-original-2026-10-01.md",
+    "sha256": "8217cdc0c537a75c4a7cfb788b11c9dc24c7bf6917780bec4be11892907de110"
+  },
+  "reconstruction_base_commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+  "authority_effect": "none",
+  "purpose": "32件のfocused auditとのsource identity joinを再計算し、旧v1.3候補のeffective unreviewed numeric rank 21–40を確定する。既存のrank artifactに対する独立review findingをappend-onlyで記録する。",
+  "queue": {
+    "path": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json",
+    "sha256": "a61ec098a6bd714fcbbb706d0d9afb4e7f2777b114bf23c8056fc130e30f60d9",
+    "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+    "rows_total": 303,
+    "eligible_primary_residual_unresolved": 255,
+    "eligibility_rule": "priority=primary_residual AND queue_state=unresolved_for_closure_work"
+  },
+  "source_pin": {
+    "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+    "archive_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+    "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+    "asset_ledger_path": "docs/governance/legacy-asset-disposition.jsonl",
+    "asset_ledger_line": 956,
+    "asset_ledger_line_sha256": "a6d52de16ee4aa8ecb37ed092fb4c2beda22ec89d1d036b3028414a753375dde",
+    "asset_ledger_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+    "snapshot_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+    "snapshot_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+  },
+  "focused_audit_inputs": [
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-bbg-br01-br02-condition-audit-2026-10-01.json",
+      "sha256": "0a0f41022929d4e546b0e2f2a8cf3afe7d77e84a3fc0512a216a8e963949025f",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-br01-condition-audit-2026-10-01.json",
+      "sha256": "8b50b9e3d9c1b5df663aacfdf35978f5cbf93209a58d1faaf296ab03abf3cc7b",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-br02-br05-condition-audit-2026-09-30.json",
+      "sha256": "8e1a9a5c2a56b222a2f03b20591b40c1126421899e3fb6b979f1d6fde0e2f79b",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-br07-ux01-ux03-condition-audit-2026-09-30.json",
+      "sha256": "a2d0c855e35ccad17c037d7e14cedd796479d2252d713c43aa56a80f9068495c",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-br21-22-fixed-f6-condition-audit-2026-10-01.json",
+      "sha256": "021cb514ea26d94b0bc24ce4643707732bf52ed99e162c8bc9e4cd5cd9ccf58d",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-cn1-6-fixed-f6-condition-audit-2026-10-01.json",
+      "sha256": "22eca23658171260d1ad489aa94d99b22ceaadb36245e40e2a854d5b6e1b7213",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-dac-nfr-three-condition-audit-2026-09-30.json",
+      "sha256": "372b7c8a6d992d621dc4f90378caf1828aa4d02bb2940bf23e6c8459556f69ca",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-19-fixed-l2l11-condition-audit-2026-10-01.json",
+      "sha256": "8f05e6837934976d9dcc27349400244932230e9f331bf03db64b45cbcbec339d",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-20-37-38-39-43-condition-audit-2026-09-30.json",
+      "sha256": "4ee325ddb47b56298156aaf68b882650f0b81b0fb9574022c01b966b2ccb00d4",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-28-34-condition-audit-2026-09-30.json",
+      "sha256": "135a193deafabebfad0e31a040213d533071eef1217fd0ce76a26b7f6a7a468e",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-36-fixed-l2l11-condition-audit-2026-10-01.json",
+      "sha256": "126036fa85c5f7c06b4ddafff7c5e97119d2663164d2f966a19fe1198058b7f1",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-40-42-condition-audit-2026-10-01.json",
+      "sha256": "3e5a6708426ad720e84ca28551177a18d5728b5e2e2e32deb200c7ad5d69f012",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p0-p1-p2-hnfr-ac-p3-p5-fixed-f6-condition-audit-2026-10-01.json",
+      "sha256": "2293af1784a0817540ca3b547f0e5555382a3809903744e29b66b8b29ba5fefa",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p3-fixed-f6-condition-audit-2026-10-01.json",
+      "sha256": "8a8e5cf5bc49256f91a21b5750900cc3cb31a579ca802ef41a29bc251f27569f",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p4-p7-p8-p9-hnfr-p8-fixed-f6-condition-audit-2026-10-01.json",
+      "sha256": "c3503c22aa150af4ed336f47e6c6a45a0989c2c4b0b8c06cb537c68e60589fa0",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-pm01-sbr001-fixed-f6-condition-audit-2026-10-01.json",
+      "sha256": "70e2e6f94fe23fdeb91a518dd108a02b7f6c14999115634f2eb53d4d572de2ae",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-resident-lane-br-01-10-condition-audit-2026-09-30.json",
+      "sha256": "cf1529da8d5fd5ec819094b203b58bdd283693d1551ab972992ed5dab1effd30",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-resident-lane-sr-1-11-condition-audit-2026-09-30.json",
+      "sha256": "39ded610617a795a4b62210df1bee0c82c3c134c8b6aa51ec65b548b070fd407",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-screen-pm02-pm06-condition-audit-2026-09-30.json",
+      "sha256": "76ac6f74ee0f8380f5adf0c4326124c5f5aa5804879b82c286405e7326fb83e2",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-three-lane-seven-condition-audit-2026-09-30.json",
+      "sha256": "22ce41ef506e65bbfa841448c71fdebbef506bc120e069d5e4d585453e568483",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-v13-harness-l2-039-authority-status-overlay-2026-09-30.json",
+      "sha256": "9a3daf5009f9d34ba555b5cd5a5e113c1d3b49855c00627ff31471311a467c98",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/v13-development-style-11-condition-audit-2026-09-30.json",
+      "sha256": "ce2aa162b917c281f78e27ccb5a67f04da484d2648b932aae753cfb25036cf75",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/v13-execution-policy-registry-seven-condition-audit-2026-09-30.json",
+      "sha256": "b1fc593b9b373ad8ed83cfde210e1f193e62ba4a2b95349f46847828650a25a8",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/v13-forward-reverse-391-396-condition-audit-2026-09-30.json",
+      "sha256": "8a57a8154fd5cbbe23550e36111e9fa94a29bbd427ab38f338776e2897676cc2",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/v13-github-autonomous-17-condition-audit-2026-09-30.json",
+      "sha256": "5e5675572666cd3b587116bca2bd65f3d885f37586481b8529967f58456cd9c9",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/v13-layer-chain-12-condition-audit-2026-09-30.json",
+      "sha256": "5632328d290657af5dbd4e0c6e2a72d2f8bbe156f7337a48622edc489e4333d2",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/v13-package-consumer-17-condition-audit-2026-09-30.json",
+      "sha256": "87c20af7de2fddd9893fd5badd6e7910b049bbfc1ec6849a4fabda39f0c01b6a",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/v13-package-consumer-residual-11-condition-audit-2026-09-30.json",
+      "sha256": "8012ab21555d78c1236b941c0c7d99728dccf429d2dcedb84c54f557e587b9e1",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/v13-policy-lines-167-171-condition-audit-2026-09-30.json",
+      "sha256": "3be27e97d0d250fbc386b33d1d3062606f5a76e4d4aa28382ba813f07d7e33d7",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/v13-policy-resolver-seven-condition-audit-2026-09-30.json",
+      "sha256": "a358b6fe6461ca57a1fda10ac81404f8f25bbcd0a4f3cf93e43d39fa3d3502d4",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/v13-security-broker-physical-identity-19-condition-audit-2026-09-30.json",
+      "sha256": "79ce122cafa093b79363ffcb537356c38a726bca856814e64a05e6e1d48139da",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/v13-signal-routing-484-492-condition-audit-2026-10-01.json",
+      "sha256": "9fc7fcb8295430418634b2e0a1160d38c5305c7aecfb611225dc1024fcbccd13",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    }
+  ],
+  "join_reconstruction": {
+    "raw_exact_id_token_hits_in_eligible_pool": 136,
+    "raw_token_hits_are_not_identity_proof": true,
+    "source_qualified_exact_identity_hits": 124,
+    "match_shapes": [
+      {
+        "shape": "nested source identity tuple exact match",
+        "count": 116,
+        "source_item_ids": [
+          "REQSRC-SUP-00034",
+          "REQSRC-SUP-00035",
+          "REQSRC-SUP-00036",
+          "REQSRC-SUP-00037",
+          "REQSRC-SUP-00038",
+          "REQSRC-SUP-00039",
+          "REQSRC-SUP-00040",
+          "REQSRC-SUP-00041",
+          "REQSRC-SUP-00042",
+          "REQSRC-SUP-00043",
+          "REQSRC-SUP-00044",
+          "REQSRC-SUP-00045",
+          "REQSRC-SUP-00055",
+          "REQSRC-SUP-00056",
+          "REQSRC-SUP-00057",
+          "REQSRC-SUP-00059",
+          "REQSRC-SUP-00060",
+          "REQSRC-SUP-00061",
+          "REQSRC-SUP-00062",
+          "REQSRC-SUP-00063",
+          "REQSRC-SUP-00065",
+          "REQSRC-SUP-00068",
+          "REQSRC-SUP-00069",
+          "REQSRC-SUP-00118",
+          "REQSRC-SUP-00120",
+          "REQSRC-SUP-00121",
+          "REQSRC-SUP-00122",
+          "REQSRC-SUP-00123",
+          "REQSRC-SUP-00124",
+          "REQSRC-SUP-00132",
+          "REQSRC-SUP-00134",
+          "REQSRC-SUP-00135",
+          "REQSRC-SUP-00137",
+          "REQSRC-SUP-00138",
+          "REQSRC-SUP-00139",
+          "REQSRC-SUP-00140",
+          "REQSRC-SUP-00141",
+          "REQSRC-SUP-00225",
+          "REQSRC-SUP-00227",
+          "REQSRC-SUP-00228",
+          "REQSRC-SUP-00229",
+          "REQSRC-SUP-00230",
+          "REQSRC-SUP-00231",
+          "REQSRC-SUP-00232",
+          "REQSRC-SUP-00233",
+          "REQSRC-SUP-00239",
+          "REQSRC-SUP-00242",
+          "REQSRC-SUP-00243",
+          "REQSRC-SUP-00244",
+          "REQSRC-SUP-00245",
+          "REQSRC-SUP-00246",
+          "REQSRC-SUP-00248",
+          "REQSRC-SUP-00249",
+          "REQSRC-SUP-00251",
+          "REQSRC-SUP-00255",
+          "REQSRC-SUP-00256",
+          "REQSRC-SUP-00259",
+          "REQSRC-SUP-00260",
+          "REQSRC-SUP-00261",
+          "REQSRC-SUP-00262",
+          "REQSRC-SUP-00263",
+          "REQSRC-SUP-00264",
+          "REQSRC-SUP-00265",
+          "REQSRC-SUP-00266",
+          "REQSRC-SUP-00267",
+          "REQSRC-SUP-00343",
+          "REQSRC-SUP-00344",
+          "REQSRC-SUP-00345",
+          "REQSRC-SUP-00359",
+          "REQSRC-SUP-00360",
+          "REQSRC-SUP-00361",
+          "REQSRC-SUP-00362",
+          "REQSRC-SUP-00363",
+          "REQSRC-SUP-00364",
+          "REQSRC-SUP-00365",
+          "REQSRC-SUP-00367",
+          "REQSRC-SUP-00369",
+          "REQSRC-SUP-00370",
+          "REQSRC-SUP-00371",
+          "REQSRC-SUP-00374",
+          "REQSRC-SUP-00378",
+          "REQSRC-SUP-00387",
+          "REQSRC-SUP-00388",
+          "REQSRC-SUP-00389",
+          "REQSRC-SUP-00391",
+          "REQSRC-SUP-00392",
+          "REQSRC-SUP-00393",
+          "REQSRC-SUP-00394",
+          "REQSRC-SUP-00395",
+          "REQSRC-SUP-00396",
+          "REQSRC-SUP-00398",
+          "REQSRC-SUP-00399",
+          "REQSRC-SUP-00400",
+          "REQSRC-SUP-00403",
+          "REQSRC-SUP-00404",
+          "REQSRC-SUP-00405",
+          "REQSRC-SUP-00407",
+          "REQSRC-SUP-00409",
+          "REQSRC-SUP-00410",
+          "REQSRC-SUP-00411",
+          "REQSRC-SUP-00414",
+          "REQSRC-SUP-00418",
+          "REQSRC-SUP-00421",
+          "REQSRC-SUP-00424",
+          "REQSRC-SUP-00430",
+          "REQSRC-SUP-00431",
+          "REQSRC-SUP-00432",
+          "REQSRC-SUP-00484",
+          "REQSRC-SUP-00485",
+          "REQSRC-SUP-00486",
+          "REQSRC-SUP-00487",
+          "REQSRC-SUP-00488",
+          "REQSRC-SUP-00489",
+          "REQSRC-SUP-00490",
+          "REQSRC-SUP-00491",
+          "REQSRC-SUP-00492"
+        ],
+        "proof": "source item ID with matching source path, source file SHA-256, physical line, and source line SHA-256 in a structured row; all fields equal the queue identity."
+      },
+      {
+        "shape": "scope-plus-line exact tuple",
+        "count": 5,
+        "source_item_ids": [
+          "REQSRC-SUP-00127",
+          "REQSRC-SUP-00128",
+          "REQSRC-SUP-00129",
+          "REQSRC-SUP-00130",
+          "REQSRC-SUP-00131"
+        ],
+        "audit_path": "docs/governance/audits/requirements-stage/v13-policy-lines-167-171-condition-audit-2026-09-30.json",
+        "audit_sha256": "3be27e97d0d250fbc386b33d1d3062606f5a76e4d4aa28382ba813f07d7e33d7",
+        "proof": "audit_scope pins archive source path and file SHA; each per-line record pins physical line and line SHA; all five queue tuples match."
+      },
+      {
+        "shape": "parent source pin plus authority-correction row",
+        "count": 2,
+        "source_item_ids": [
+          "REQSRC-SUP-00506",
+          "REQSRC-SUP-00514"
+        ],
+        "audit_path": "docs/governance/audits/requirements-stage/legacy-v13-harness-l2-039-authority-status-overlay-2026-09-30.json",
+        "audit_sha256": "9a3daf5009f9d34ba555b5cd5a5e113c1d3b49855c00627ff31471311a467c98",
+        "proof": "legacy_source_pin pins archive path/file SHA; each authority_only_label_corrections row pins source item ID, physical line, line SHA; both queue tuples match."
+      },
+      {
+        "shape": "same-bytes held snapshot atom",
+        "count": 1,
+        "source_item_ids": [
+          "REQSRC-SUP-00507"
+        ],
+        "audit_path": "docs/governance/audits/requirements-stage/legacy-v13-harness-l2-039-authority-status-overlay-2026-09-30.json",
+        "audit_sha256": "9a3daf5009f9d34ba555b5cd5a5e113c1d3b49855c00627ff31471311a467c98",
+        "proof": "receipt_input_atoms row uses target snapshot path rather than archive path, but exact full-file SHA, physical line, and line SHA equal the archived queue source; asset pin says source_snapshot_preservation."
+      }
+    ],
+    "excluded_unqualified_mentions": [
+      {
+        "source_item_id": "REQSRC-SUP-00089",
+        "source_line": 119,
+        "occurrence": "origin_source_item_id in the v13-forward-reverse audit; surrounding text describes bounded relevance.",
+        "missing_tuple_fields": [
+          "source path",
+          "source file SHA-256",
+          "physical line",
+          "source line SHA-256"
+        ],
+        "decision": "Do not count as source-qualified identity hit; ID-only/prose relation does not remove queue row."
+      },
+      {
+        "source_item_ids": [
+          "REQSRC-SUP-00192",
+          "REQSRC-SUP-00193",
+          "REQSRC-SUP-00194",
+          "REQSRC-SUP-00198",
+          "REQSRC-SUP-00213",
+          "REQSRC-SUP-00217",
+          "REQSRC-SUP-00330",
+          "REQSRC-SUP-00332",
+          "REQSRC-SUP-00334",
+          "REQSRC-SUP-00483",
+          "REQSRC-SUP-00504"
+        ],
+        "occurrence": "raw token hits without a source identity key/tuple; in v13-development-style-11 the tokens occur in excluded_2411_source_item_ids, a prior-audit exclusion list, not individual source-line rows. Other appearances are prose/citation strings without the exact queue tuple.",
+        "missing_tuple_fields": [
+          "source path",
+          "source file SHA-256",
+          "physical line",
+          "source line SHA-256"
+        ],
+        "decision": "Do not count as source-qualified identity hits."
+      }
+    ],
+    "arithmetic": {
+      "eligible_rows": 255,
+      "source_qualified_hits": 124,
+      "effective_unreviewed_rows": 131,
+      "equation": "255 - 124 = 131",
+      "sort_key": [
+        "source physical line ascending",
+        "source_item_id ascending"
+      ]
+    },
+    "unqualified_mention_evidence": [
+      {
+        "source_item_id": "REQSRC-SUP-00192",
+        "source_line": 247,
+        "occurrences": [
+          {
+            "path": "docs/governance/audits/requirements-stage/v13-development-style-11-condition-audit-2026-09-30.json",
+            "sha256": "ce2aa162b917c281f78e27ccb5a67f04da484d2648b932aae753cfb25036cf75",
+            "json_pointer": "/population_and_deduplication/excluded_exact_source_item_ids/18",
+            "occurrence_kind": "text_or_ID_array_member"
+          }
+        ]
+      },
+      {
+        "source_item_id": "REQSRC-SUP-00193",
+        "source_line": 249,
+        "occurrences": [
+          {
+            "path": "docs/governance/audits/requirements-stage/v13-development-style-11-condition-audit-2026-09-30.json",
+            "sha256": "ce2aa162b917c281f78e27ccb5a67f04da484d2648b932aae753cfb25036cf75",
+            "json_pointer": "/population_and_deduplication/excluded_exact_source_item_ids/19",
+            "occurrence_kind": "text_or_ID_array_member"
+          }
+        ]
+      },
+      {
+        "source_item_id": "REQSRC-SUP-00194",
+        "source_line": 251,
+        "occurrences": [
+          {
+            "path": "docs/governance/audits/requirements-stage/v13-development-style-11-condition-audit-2026-09-30.json",
+            "sha256": "ce2aa162b917c281f78e27ccb5a67f04da484d2648b932aae753cfb25036cf75",
+            "json_pointer": "/population_and_deduplication/excluded_exact_source_item_ids/20",
+            "occurrence_kind": "text_or_ID_array_member"
+          }
+        ]
+      },
+      {
+        "source_item_id": "REQSRC-SUP-00198",
+        "source_line": 259,
+        "occurrences": [
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p0-p1-p2-hnfr-ac-p3-p5-fixed-f6-condition-audit-2026-10-01.json",
+            "sha256": "2293af1784a0817540ca3b547f0e5555382a3809903744e29b66b8b29ba5fefa",
+            "json_pointer": "/later_adopted_nearby_candidate_screen/0/management_registration/text",
+            "occurrence_kind": "text_or_ID_array_member"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/v13-development-style-11-condition-audit-2026-09-30.json",
+            "sha256": "ce2aa162b917c281f78e27ccb5a67f04da484d2648b932aae753cfb25036cf75",
+            "json_pointer": "/population_and_deduplication/excluded_exact_source_item_ids/21",
+            "occurrence_kind": "text_or_ID_array_member"
+          }
+        ]
+      },
+      {
+        "source_item_id": "REQSRC-SUP-00213",
+        "source_line": 286,
+        "occurrences": [
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-cn1-6-fixed-f6-condition-audit-2026-10-01.json",
+            "sha256": "22eca23658171260d1ad489aa94d99b22ceaadb36245e40e2a854d5b6e1b7213",
+            "json_pointer": "/later_decision_proximity_screen/selected_near_pairs/7/mpr_registration/registration/source_collection_scope",
+            "occurrence_kind": "text_or_ID_array_member"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-cn1-6-fixed-f6-condition-audit-2026-10-01.json",
+            "sha256": "22eca23658171260d1ad489aa94d99b22ceaadb36245e40e2a854d5b6e1b7213",
+            "json_pointer": "/later_decision_proximity_screen/selected_near_pairs/7/mpr_registration/registration/evidence_refs/7",
+            "occurrence_kind": "text_or_ID_array_member"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-cn1-6-fixed-f6-condition-audit-2026-10-01.json",
+            "sha256": "22eca23658171260d1ad489aa94d99b22ceaadb36245e40e2a854d5b6e1b7213",
+            "json_pointer": "/later_decision_proximity_screen/selected_near_pairs/7/mpr_registration/registration/evidence_refs/8",
+            "occurrence_kind": "text_or_ID_array_member"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p4-p7-p8-p9-hnfr-p8-fixed-f6-condition-audit-2026-10-01.json",
+            "sha256": "c3503c22aa150af4ed336f47e6c6a45a0989c2c4b0b8c06cb537c68e60589fa0",
+            "json_pointer": "/later_adopted_proximity_screen/rows/15/mpr/source_collection_scope",
+            "occurrence_kind": "text_or_ID_array_member"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p4-p7-p8-p9-hnfr-p8-fixed-f6-condition-audit-2026-10-01.json",
+            "sha256": "c3503c22aa150af4ed336f47e6c6a45a0989c2c4b0b8c06cb537c68e60589fa0",
+            "json_pointer": "/later_adopted_proximity_screen/rows/15/current_pair_sections/l2/section_text",
+            "occurrence_kind": "text_or_ID_array_member"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p4-p7-p8-p9-hnfr-p8-fixed-f6-condition-audit-2026-10-01.json",
+            "sha256": "c3503c22aa150af4ed336f47e6c6a45a0989c2c4b0b8c06cb537c68e60589fa0",
+            "json_pointer": "/later_adopted_proximity_screen/rows/15/source_atom_boundary/source_collection_scope",
+            "occurrence_kind": "text_or_ID_array_member"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p4-p7-p8-p9-hnfr-p8-fixed-f6-condition-audit-2026-10-01.json",
+            "sha256": "c3503c22aa150af4ed336f47e6c6a45a0989c2c4b0b8c06cb537c68e60589fa0",
+            "json_pointer": "/later_adopted_proximity_screen/cohort_indexes/cohorts/0/rows/54/mpr/source_collection_scope",
+            "occurrence_kind": "text_or_ID_array_member"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/v13-development-style-11-condition-audit-2026-09-30.json",
+            "sha256": "ce2aa162b917c281f78e27ccb5a67f04da484d2648b932aae753cfb25036cf75",
+            "json_pointer": "/population_and_deduplication/excluded_exact_source_item_ids/27",
+            "occurrence_kind": "text_or_ID_array_member"
+          }
+        ]
+      },
+      {
+        "source_item_id": "REQSRC-SUP-00217",
+        "source_line": 290,
+        "occurrences": [
+          {
+            "path": "docs/governance/audits/requirements-stage/v13-development-style-11-condition-audit-2026-09-30.json",
+            "sha256": "ce2aa162b917c281f78e27ccb5a67f04da484d2648b932aae753cfb25036cf75",
+            "json_pointer": "/population_and_deduplication/excluded_exact_source_item_ids/28",
+            "occurrence_kind": "text_or_ID_array_member"
+          }
+        ]
+      },
+      {
+        "source_item_id": "REQSRC-SUP-00330",
+        "source_line": 428,
+        "occurrences": [
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-cn1-6-fixed-f6-condition-audit-2026-10-01.json",
+            "sha256": "22eca23658171260d1ad489aa94d99b22ceaadb36245e40e2a854d5b6e1b7213",
+            "json_pointer": "/later_decision_proximity_screen/selected_near_pairs/6/mpr_registration/registration/source_collection_scope",
+            "occurrence_kind": "text_or_ID_array_member"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-cn1-6-fixed-f6-condition-audit-2026-10-01.json",
+            "sha256": "22eca23658171260d1ad489aa94d99b22ceaadb36245e40e2a854d5b6e1b7213",
+            "json_pointer": "/later_decision_proximity_screen/selected_near_pairs/6/mpr_registration/registration/evidence_refs/5",
+            "occurrence_kind": "text_or_ID_array_member"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-cn1-6-fixed-f6-condition-audit-2026-10-01.json",
+            "sha256": "22eca23658171260d1ad489aa94d99b22ceaadb36245e40e2a854d5b6e1b7213",
+            "json_pointer": "/later_decision_proximity_screen/selected_near_pairs/6/mpr_registration/registration/evidence_refs/6",
+            "occurrence_kind": "text_or_ID_array_member"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p0-p1-p2-hnfr-ac-p3-p5-fixed-f6-condition-audit-2026-10-01.json",
+            "sha256": "2293af1784a0817540ca3b547f0e5555382a3809903744e29b66b8b29ba5fefa",
+            "json_pointer": "/later_adopted_nearby_candidate_screen/4/management_registration_pin/text",
+            "occurrence_kind": "text_or_ID_array_member"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p4-p7-p8-p9-hnfr-p8-fixed-f6-condition-audit-2026-10-01.json",
+            "sha256": "c3503c22aa150af4ed336f47e6c6a45a0989c2c4b0b8c06cb537c68e60589fa0",
+            "json_pointer": "/later_adopted_proximity_screen/rows/14/mpr/source_collection_scope",
+            "occurrence_kind": "text_or_ID_array_member"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p4-p7-p8-p9-hnfr-p8-fixed-f6-condition-audit-2026-10-01.json",
+            "sha256": "c3503c22aa150af4ed336f47e6c6a45a0989c2c4b0b8c06cb537c68e60589fa0",
+            "json_pointer": "/later_adopted_proximity_screen/rows/14/current_pair_sections/l2/section_text",
+            "occurrence_kind": "text_or_ID_array_member"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p4-p7-p8-p9-hnfr-p8-fixed-f6-condition-audit-2026-10-01.json",
+            "sha256": "c3503c22aa150af4ed336f47e6c6a45a0989c2c4b0b8c06cb537c68e60589fa0",
+            "json_pointer": "/later_adopted_proximity_screen/rows/14/source_atom_boundary/source_collection_scope",
+            "occurrence_kind": "text_or_ID_array_member"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p4-p7-p8-p9-hnfr-p8-fixed-f6-condition-audit-2026-10-01.json",
+            "sha256": "c3503c22aa150af4ed336f47e6c6a45a0989c2c4b0b8c06cb537c68e60589fa0",
+            "json_pointer": "/later_adopted_proximity_screen/cohort_indexes/cohorts/0/rows/53/mpr/source_collection_scope",
+            "occurrence_kind": "text_or_ID_array_member"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/v13-development-style-11-condition-audit-2026-09-30.json",
+            "sha256": "ce2aa162b917c281f78e27ccb5a67f04da484d2648b932aae753cfb25036cf75",
+            "json_pointer": "/population_and_deduplication/excluded_exact_source_item_ids/40",
+            "occurrence_kind": "text_or_ID_array_member"
+          }
+        ]
+      },
+      {
+        "source_item_id": "REQSRC-SUP-00332",
+        "source_line": 430,
+        "occurrences": [
+          {
+            "path": "docs/governance/audits/requirements-stage/v13-development-style-11-condition-audit-2026-09-30.json",
+            "sha256": "ce2aa162b917c281f78e27ccb5a67f04da484d2648b932aae753cfb25036cf75",
+            "json_pointer": "/population_and_deduplication/excluded_exact_source_item_ids/42",
+            "occurrence_kind": "text_or_ID_array_member"
+          }
+        ]
+      },
+      {
+        "source_item_id": "REQSRC-SUP-00334",
+        "source_line": 432,
+        "occurrences": [
+          {
+            "path": "docs/governance/audits/requirements-stage/v13-development-style-11-condition-audit-2026-09-30.json",
+            "sha256": "ce2aa162b917c281f78e27ccb5a67f04da484d2648b932aae753cfb25036cf75",
+            "json_pointer": "/population_and_deduplication/excluded_exact_source_item_ids/44",
+            "occurrence_kind": "text_or_ID_array_member"
+          }
+        ]
+      },
+      {
+        "source_item_id": "REQSRC-SUP-00483",
+        "source_line": 624,
+        "occurrences": [
+          {
+            "path": "docs/governance/audits/requirements-stage/v13-development-style-11-condition-audit-2026-09-30.json",
+            "sha256": "ce2aa162b917c281f78e27ccb5a67f04da484d2648b932aae753cfb25036cf75",
+            "json_pointer": "/population_and_deduplication/excluded_exact_source_item_ids/62",
+            "occurrence_kind": "text_or_ID_array_member"
+          }
+        ]
+      },
+      {
+        "source_item_id": "REQSRC-SUP-00504",
+        "source_line": 647,
+        "occurrences": [
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p0-p1-p2-hnfr-ac-p3-p5-fixed-f6-condition-audit-2026-10-01.json",
+            "sha256": "2293af1784a0817540ca3b547f0e5555382a3809903744e29b66b8b29ba5fefa",
+            "json_pointer": "/later_adopted_nearby_candidate_screen/0/management_registration/text",
+            "occurrence_kind": "text_or_ID_array_member"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/v13-development-style-11-condition-audit-2026-09-30.json",
+            "sha256": "ce2aa162b917c281f78e27ccb5a67f04da484d2648b932aae753cfb25036cf75",
+            "json_pointer": "/population_and_deduplication/excluded_exact_source_item_ids/63",
+            "occurrence_kind": "text_or_ID_array_member"
+          }
+        ]
+      },
+      {
+        "source_item_id": "REQSRC-SUP-00089",
+        "source_line": 119,
+        "occurrences": [
+          {
+            "path": "docs/governance/audits/requirements-stage/v13-forward-reverse-391-396-condition-audit-2026-09-30.json",
+            "sha256": "8a57a8154fd5cbbe23550e36111e9fa94a29bbd427ab38f338776e2897676cc2",
+            "json_pointer": "/comparison_baselines/later_adopted_pairs/2/origin_source_item_id",
+            "occurrence_kind": "text_or_ID_array_member"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/v13-forward-reverse-391-396-condition-audit-2026-09-30.json",
+            "sha256": "8a57a8154fd5cbbe23550e36111e9fa94a29bbd427ab38f338776e2897676cc2",
+            "json_pointer": "/comparison_baselines/later_adopted_pairs/2/bounded_relevance_to_this_audit",
+            "occurrence_kind": "text_or_ID_array_member"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/v13-forward-reverse-391-396-condition-audit-2026-09-30.json",
+            "sha256": "8a57a8154fd5cbbe23550e36111e9fa94a29bbd427ab38f338776e2897676cc2",
+            "json_pointer": "/lines/3/retained",
+            "occurrence_kind": "text_or_ID_array_member"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/v13-forward-reverse-391-396-condition-audit-2026-09-30.json",
+            "sha256": "8a57a8154fd5cbbe23550e36111e9fa94a29bbd427ab38f338776e2897676cc2",
+            "json_pointer": "/lines/3/residual",
+            "occurrence_kind": "text_or_ID_array_member"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/v13-forward-reverse-391-396-condition-audit-2026-09-30.json",
+            "sha256": "8a57a8154fd5cbbe23550e36111e9fa94a29bbd427ab38f338776e2897676cc2",
+            "json_pointer": "/static_validation/checks/9/detail",
+            "occurrence_kind": "text_or_ID_array_member"
+          }
+        ]
+      }
+    ]
+  },
+  "prior_first20": {
+    "commit": "7ebcbbb0864e331943b993f3b145fddb77f505a2",
+    "artifacts": [
+      {
+        "path": "docs/governance/audits/requirements-stage/v13-effective-next10-condition-audit-2026-10-01.json",
+        "sha256": "0c38aab45b39a9890d64c33f2048ccaabc4e11224586cc089a537b73208aa1c9"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/v13-effective-next10-rows11-20-condition-audit-2026-10-01.json",
+        "sha256": "cae955c303f87ec98036298333f207e8c0fe02f8bb500fbf9cb99cf980dfae7e"
+      }
+    ],
+    "source_item_ids": [
+      "REQSRC-SUP-00004",
+      "REQSRC-SUP-00008",
+      "REQSRC-SUP-00009",
+      "REQSRC-SUP-00010",
+      "REQSRC-SUP-00015",
+      "REQSRC-SUP-00016",
+      "REQSRC-SUP-00017",
+      "REQSRC-SUP-00018",
+      "REQSRC-SUP-00019",
+      "REQSRC-SUP-00022",
+      "REQSRC-SUP-00023",
+      "REQSRC-SUP-00024",
+      "REQSRC-SUP-00025",
+      "REQSRC-SUP-00026",
+      "REQSRC-SUP-00027",
+      "REQSRC-SUP-00028",
+      "REQSRC-SUP-00029",
+      "REQSRC-SUP-00046",
+      "REQSRC-SUP-00047",
+      "REQSRC-SUP-00051"
+    ],
+    "overlap_with_corrected_positions21_40": [],
+    "first20_membership_unchanged": true,
+    "queue_lineage_correction_commit": "7ebcbbb0864e331943b993f3b145fddb77f505a2",
+    "note": "Pin the corrected first20 artifacts after the queue file/lineage correction at this commit; both 10-row artifacts retain the same twenty source IDs."
+  },
+  "corrected_positions_21_40": [
+    {
+      "position": 21,
+      "source_item_id": "REQSRC-SUP-00077",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "source_line": 102,
+      "source_line_sha256": "6410ee034dc29f92ad47d40149e59102a06c891dfa043129afaff1fffe4da6f0",
+      "source_text": "`SCRUM_REVERSE`は `SR0 evidence capture → SR1 observed contract → SR2 V-layer mapping → SR3 design/refactor proposal → SR4 pair freeze and Forward reentry` の5段階とする。SR4 receiptなしにsliceをrelease-readyにしない。Reverseが作るのは実装の説明書ではなく、次の変更を拘束できる要求・要件・基本設計・詳細設計・test/verification/measurement contractである。"
+    },
+    {
+      "position": 22,
+      "source_item_id": "REQSRC-SUP-00081",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "source_line": 107,
+      "source_line_sha256": "58faca77338462e4f086790d18f7e61135a0d0af6ce766aa8de67b7dfb28d91a",
+      "source_text": "正本FR＝`docs/design/helix/L3-requirements/scrum-reverse-entity-model.md`（SRV-FR-101〜112）、"
+    },
+    {
+      "position": 23,
+      "source_item_id": "REQSRC-SUP-00089",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "source_line": 119,
+      "source_line_sha256": "b8d0bd53395b0c57bf8aed4d6007d792e7aa0e7038480f0880754e0a2d22f0d6",
+      "source_text": "Design Refactorはsemantic similarity、consumer、oracle、dependency graphで判断し、名称類似だけで統合しない。Performance Refactorは変更前baseline、budget、workload、profile、統計条件、回帰oracleを先に凍結し、測定不能な「高速化」を禁止する。どちらも機能追加と同一episodeへ混載しない。"
+    },
+    {
+      "position": 24,
+      "source_item_id": "REQSRC-SUP-00097",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "source_line": 129,
+      "source_line_sha256": "6d876a5a9a98a8da8008cc56d5b73f5d1bfe5f06c31891ef89c1d489c57215a2",
+      "source_text": "compatibility inventoryの成功でcurrent projectionの欠落、drift、invalidを相殺してはならない。"
+    },
+    {
+      "position": 25,
+      "source_item_id": "REQSRC-SUP-00105",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "source_line": 139,
+      "source_line_sha256": "b17ada62e03f90dd026f735b083cb531ee3bb40822feeb77bfede00aacd7c5c9",
+      "source_text": "  `V_DESIGN_SCRUM_IMPLEMENTATION`とし、`SCRUM_REVERSE_SR0_SR4` state machineを持つ"
+    },
+    {
+      "position": 26,
+      "source_item_id": "REQSRC-SUP-00108",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "source_line": 142,
+      "source_line_sha256": "69c2a5f0416d91446dce51ed37ce162c11d657408eac046396b4d9bf2543b9ff",
+      "source_text": "- execution mode: `STANDALONE`、`CLAUDE_ONLY`、`CODEX_ONLY`、`HYBRID`"
+    },
+    {
+      "position": 27,
+      "source_item_id": "REQSRC-SUP-00112",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "source_line": 147,
+      "source_line_sha256": "fdddba824470aef47981ee905fb0326d17a18b045c99fcbdf06a03c59264af18",
+      "source_text": "推測でroute identityを付与しない。曖昧入力はfail-closeする。旧`mode`／`model`／旧catalog routeは"
+    },
+    {
+      "position": 28,
+      "source_item_id": "REQSRC-SUP-00114",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "source_line": 149,
+      "source_line_sha256": "737fadb31bc0e8995af774cf3ca6924fe2c13ac9ceb9f7f722c4382daac7e35c",
+      "source_text": "DB authority、生成文書、PR契約へ再出力しない。全surfaceを無条件に`catalog_route_id`へ統一せず、"
+    },
+    {
+      "position": 29,
+      "source_item_id": "REQSRC-SUP-00146",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "source_line": 190,
+      "source_line_sha256": "fd2893d0fd5b039cc78d1b5d5b8fabeb06fb82b260fa2fd943b89bea7ae7370f",
+      "source_text": "boolean setとする。signalから条件、development style、execution formを推測しない。"
+    },
+    {
+      "position": 30,
+      "source_item_id": "REQSRC-SUP-00147",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "source_line": 192,
+      "source_line_sha256": "14f2862d4146912c9ea3597db2f98d5f8ae8a54ca86feccd74a0ac2b0c13795b",
+      "source_text": "出力receiptはclassification registry version、policy registry version、requirements／classification"
+    },
+    {
+      "position": 31,
+      "source_item_id": "REQSRC-SUP-00150",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "source_line": 195,
+      "source_line_sha256": "9d0ce131d42fc8b7383e72f65bdfd90c2b7b56c32e2bbe687fd431d46cc10b7c",
+      "source_text": "返す。登録済みcommandの`program`／`argv`は実行境界内部でcommand IDを再検証するために使い、routing"
+    },
+    {
+      "position": 32,
+      "source_item_id": "REQSRC-SUP-00151",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "source_line": 196,
+      "source_line_sha256": "99bbc3f869d92ee67bc47e10970d5d90646c66a140966ceca08000fc5b98f989",
+      "source_text": "receiptへraw invocationとして出力しない。旧`mode`／`model`／`catalog_route_id`／`route_class`／旧route"
+    },
+    {
+      "position": 33,
+      "source_item_id": "REQSRC-SUP-00153",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "source_line": 199,
+      "source_line_sha256": "5cc06ff4b53d64ac032b97c0b0568affad76afb578868ce35c5298f6fb9b0250",
+      "source_text": "dispositionは`resolved`、`classification_unknown`、`classification_decision_required`、"
+    },
+    {
+      "position": 34,
+      "source_item_id": "REQSRC-SUP-00154",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "source_line": 200,
+      "source_line_sha256": "8be7a2dba730b811be9fc425c4bd359f8e1e88682e82faca17a2102ee0b46740",
+      "source_text": "`classification_ambiguous`、`policy_unsupported`、`policy_ambiguous`、`approval_required`のexact setとする。"
+    },
+    {
+      "position": 35,
+      "source_item_id": "REQSRC-SUP-00155",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "source_line": 201,
+      "source_line_sha256": "555145f953db107db0529f9745ce75dc86c0efd30118f9c5a352c5af3c87ef27",
+      "source_text": "dispositionとprocess exitは次のexact mappingとし、consumerが名称類似でexit classを推測してはならない。"
+    },
+    {
+      "position": 36,
+      "source_item_id": "REQSRC-SUP-00161",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "source_line": 208,
+      "source_line_sha256": "4015fa6eac84043ccc317efece12752bdc33985f21696829f78f1547dcae39ad",
+      "source_text": "| `approval_required` | `blocked` | 1 |"
+    },
+    {
+      "position": 37,
+      "source_item_id": "REQSRC-SUP-00163",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "source_line": 210,
+      "source_line_sha256": "df20ce5b71b549ad0ae03b751f993dbdf86b08a905e236b08dcbc491a3cd4be3",
+      "source_text": "| `classification_decision_required` | `unresolved` | 2 |"
+    },
+    {
+      "position": 38,
+      "source_item_id": "REQSRC-SUP-00165",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "source_line": 213,
+      "source_line_sha256": "9b30e1bcdba5ae2a758f6b3863b7c53c82757f6f08afbc5e317e53d85d15655a",
+      "source_text": "`approval_policy: action_binding`は承認receiptが同一HEAD・同一policy digestへ束縛されるまで"
+    },
+    {
+      "position": 39,
+      "source_item_id": "REQSRC-SUP-00167",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "source_line": 215,
+      "source_line_sha256": "a484c618300e2686cba4b69d74044911b2682140ebf9e1b9806f84e4bcd83e34",
+      "source_text": "current consumer自体は受理しない。"
+    },
+    {
+      "position": 40,
+      "source_item_id": "REQSRC-SUP-00170",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "source_line": 220,
+      "source_line_sha256": "89059e3905c61b3d13e0d7dcc9b81f5757a8fc1be2179119ed8f2ef9f7b4f252",
+      "source_text": "exact contractから一方向変換する。実装内の独自表、名称類似、旧15-route inventoryから変換先を推測しない。"
+    }
+  ],
+  "previous_reviewed_selection": {
+    "artifact_positions": [
+      {
+        "position": 21,
+        "source_item_id": "REQSRC-SUP-00077",
+        "source_line": 102
+      },
+      {
+        "position": 22,
+        "source_item_id": "REQSRC-SUP-00081",
+        "source_line": 107
+      },
+      {
+        "position": 23,
+        "source_item_id": "REQSRC-SUP-00097",
+        "source_line": 129
+      },
+      {
+        "position": 24,
+        "source_item_id": "REQSRC-SUP-00105",
+        "source_line": 139
+      },
+      {
+        "position": 25,
+        "source_item_id": "REQSRC-SUP-00108",
+        "source_line": 142
+      },
+      {
+        "position": 26,
+        "source_item_id": "REQSRC-SUP-00112",
+        "source_line": 147
+      },
+      {
+        "position": 27,
+        "source_item_id": "REQSRC-SUP-00114",
+        "source_line": 149
+      },
+      {
+        "position": 28,
+        "source_item_id": "REQSRC-SUP-00146",
+        "source_line": 190
+      },
+      {
+        "position": 29,
+        "source_item_id": "REQSRC-SUP-00147",
+        "source_line": 192
+      },
+      {
+        "position": 30,
+        "source_item_id": "REQSRC-SUP-00150",
+        "source_line": 195
+      },
+      {
+        "position": 31,
+        "source_item_id": "REQSRC-SUP-00151",
+        "source_line": 196
+      },
+      {
+        "position": 32,
+        "source_item_id": "REQSRC-SUP-00153",
+        "source_line": 199
+      },
+      {
+        "position": 33,
+        "source_item_id": "REQSRC-SUP-00154",
+        "source_line": 200
+      },
+      {
+        "position": 34,
+        "source_item_id": "REQSRC-SUP-00155",
+        "source_line": 201
+      },
+      {
+        "position": 35,
+        "source_item_id": "REQSRC-SUP-00161",
+        "source_line": 208
+      },
+      {
+        "position": 36,
+        "source_item_id": "REQSRC-SUP-00163",
+        "source_line": 210
+      },
+      {
+        "position": 37,
+        "source_item_id": "REQSRC-SUP-00165",
+        "source_line": 213
+      },
+      {
+        "position": 38,
+        "source_item_id": "REQSRC-SUP-00167",
+        "source_line": 215
+      },
+      {
+        "position": 39,
+        "source_item_id": "REQSRC-SUP-00170",
+        "source_line": 220
+      },
+      {
+        "position": 40,
+        "source_item_id": "REQSRC-SUP-00171",
+        "source_line": 221
+      }
+    ],
+    "conclusion": "Old artifact selected 20 items from its claimed 119-row pool; under reconstructed source-qualified 131-row pool this slice is wrong: REQSRC-SUP-00089 must be included at position 23 and REQSRC-SUP-00171 moves to position 41."
+  },
+  "claim_boundary": {
+    "rank_reconstruction_only": true,
+    "semantic_condition_comparison_performed_by_this_record": false,
+    "formal_successor_assignments": 0,
+    "source_conditions_closed": 0,
+    "adoption_claimed": false,
+    "implementation_or_acceptance_authority_claimed": false,
+    "authority_effect": "none",
+    "unreviewed_population_total_or_closure_claimed": false
+  },
+  "static_validation": {
+    "queue_rows_and_eligibility_recomputed": true,
+    "raw_token_and_structured_identity_joins_recomputed": true,
+    "source_qualified_join_count_reconciled": true,
+    "corrected_sort_slice_recomputed": true,
+    "prior_first20_hashes_and_nonoverlap_checked": true,
+    "reviewed_artifact_hashes_pinned_at_exact_head": true,
+    "archive_runtime_cli_test_ci_executed": false,
+    "all_32_focused_audit_hashes_recomputed": true,
+    "queue_archive_snapshot_and_asset_ledger_pins_recomputed": true,
+    "corrected_row_source_tuples_rejoined": true,
+    "prior_and_reviewed_artifact_hashes_recomputed": true,
+    "MD_JSON_selected_ids_synchronized": true,
+    "diff_check_and_json_syntax_passed": true
+  },
+  "reviewed_audit_original_unpublished_head": "e7482ab4d189add0b437972540973ff86cd26f40",
+  "reviewed_audit_snapshot_status": "exact-byte history snapshot; original source commit is unpublished"
+}

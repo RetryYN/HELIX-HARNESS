@@ -1,0 +1,3158 @@
+{
+  "schema_version": "v13-effective-post-f6-adopted-relations-correction.v1",
+  "audit_id": "v13-effective-post-f6-adopted-relations-correction-2026-10-01",
+  "created_against_commit": "b53a6488df0a40dd4507c03a50f3961d4a6c3cef",
+  "authority_effect": "none",
+  "purpose": "Complete 131-row effective-view reconciliation of later exact adopted-source citations and registered exact source-line SHA receipt matches. Supersedes stale current-scope absence claims only; preserves fixed-F6 history except the exact omitted line-105 route relation at rank 117. Creates no successor, closure, source-holding retirement, authority, implementation permission or acceptance execution claim.",
+  "method": {
+    "queue_path": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json",
+    "queue_sha256": "a61ec098a6bd714fcbbb706d0d9afb4e7f2777b114bf23c8056fc130e30f60d9",
+    "pool_crosswalk_path": "docs/governance/audits/requirements-stage/v13-effective-legacy40-rank-reuse-crosswalk-2026-10-01.json",
+    "pool_crosswalk_sha256": "3d98c086255be76fd8ea43c01de9bf216ddad19c49dbeae60a78634036b87cbb",
+    "identity_join": "Exact item ID, archive path, archive file SHA, physical source line and line SHA. Queue refs are checked against source line and archive file SHA. Receipt line match is exact archive text plus recomputed LF line SHA and physical line; receipt-recorded path and file SHA are separately retained without rewriting.",
+    "receipt_scan": "All JSON files directly under docs/governance/audits/requirement-registration.",
+    "later_authority_sources": "2026-09-28 product PO decisions; 2026-09-29 57-candidate and 11-candidate PO decision records; 2026-09-30 live26 PO decision.",
+    "complete_131_row_scan": true
+  },
+  "scan_result": {
+    "rows_scanned": 131,
+    "unique_ranks": 131,
+    "rank_range": [
+      1,
+      131
+    ],
+    "unique_source_item_ids": 131,
+    "rows_with_exact_queue_adopted_citations": 9,
+    "citation_hit_ranks": [
+      20,
+      21,
+      23,
+      25,
+      46,
+      47,
+      48,
+      87,
+      115
+    ],
+    "citation_reference_records": 10,
+    "rows_with_exact_line_sha_receipt_matches": 19,
+    "receipt_hit_ranks": [
+      23,
+      46,
+      47,
+      48,
+      49,
+      52,
+      56,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      86,
+      87,
+      88,
+      115,
+      121
+    ],
+    "receipt_atom_match_records": 38,
+    "union_exact_hit_ranks": [
+      20,
+      21,
+      23,
+      25,
+      46,
+      47,
+      48,
+      49,
+      52,
+      56,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      86,
+      87,
+      88,
+      115,
+      121
+    ],
+    "manual_correction_ranks_without_exact_v13_row_receipt_or_queue_ref": [
+      90,
+      91,
+      117,
+      124
+    ],
+    "affected_view_ranks": [
+      20,
+      21,
+      23,
+      25,
+      46,
+      47,
+      48,
+      49,
+      52,
+      56,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      86,
+      87,
+      88,
+      90,
+      91,
+      115,
+      117,
+      121,
+      124
+    ]
+  },
+  "decision_pins": [
+    {
+      "label": "harness_2026_09_28",
+      "commit": "b53a6488df0a40dd4507c03a50f3961d4a6c3cef",
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+    },
+    {
+      "label": "os_2026_09_28",
+      "commit": "b53a6488df0a40dd4507c03a50f3961d4a6c3cef",
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
+    },
+    {
+      "label": "brain_2026_09_28",
+      "commit": "b53a6488df0a40dd4507c03a50f3961d4a6c3cef",
+      "path": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+      "sha256": "fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a"
+    },
+    {
+      "label": "security_2026_09_28",
+      "commit": "b53a6488df0a40dd4507c03a50f3961d4a6c3cef",
+      "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+      "sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff"
+    },
+    {
+      "label": "connect_2026_09_28",
+      "commit": "b53a6488df0a40dd4507c03a50f3961d4a6c3cef",
+      "path": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md",
+      "sha256": "82db2060dbaa77b5b9e6f38fa11219ec811b108b1870e6a86ca112810f9bae69"
+    },
+    {
+      "label": "po_57",
+      "commit": "b53a6488df0a40dd4507c03a50f3961d4a6c3cef",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+    },
+    {
+      "label": "po_11",
+      "commit": "b53a6488df0a40dd4507c03a50f3961d4a6c3cef",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+      "sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5"
+    },
+    {
+      "label": "po_live26",
+      "commit": "b53a6488df0a40dd4507c03a50f3961d4a6c3cef",
+      "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+      "sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145"
+    },
+    {
+      "label": "live26_index",
+      "commit": "b53a6488df0a40dd4507c03a50f3961d4a6c3cef",
+      "path": "docs/governance/audits/requirements-stage/po-decision-ready-index-unclassified-live-26-2026-09-29.md",
+      "sha256": "1630f6bb213bf5812e82e63e5920d8cacb9db343e62afc0abfd63050f7518035"
+    },
+    {
+      "label": "live26_received_handoff",
+      "commit": "b53a6488df0a40dd4507c03a50f3961d4a6c3cef",
+      "path": "docs/governance/audits/requirements-stage/po-decision-received-handoff-live26-2026-09-30.md",
+      "sha256": "f80446c2fb86cb115cb8af2e46b93584f95c3a84862dda4461c25ba38df7ffa4"
+    }
+  ],
+  "D57_exact_pair_pins": [
+    {
+      "identity": "HARNESS-L2-034",
+      "disposition": "採択",
+      "registration_id": "MPR-RC-HARNESS-L2-034-003",
+      "l2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "section_sha256": "sha256:dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156"
+      },
+      "l11_identity": "HARNESS-L2-034",
+      "l11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "section_sha256": "sha256:391f640508944ba2f32b5751a2a9a17fbc9f89ef76f46953c1af68ba907a9fdf"
+      },
+      "receipt_path": "docs/governance/audits/requirement-registration/harness-measurement-contract-coverage-receipt-2026-09-28-r3.json",
+      "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+    },
+    {
+      "identity": "HARNESS-L2-042",
+      "disposition": "採択",
+      "registration_id": "MPR-RC-HARNESS-L2-042-001",
+      "l2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "section_sha256": "sha256:7da6b3394cbc96bdf028a4738000554e1cf7a946595c4abf43504b24968f34eb"
+      },
+      "l11_identity": "HARNESS-L2-042",
+      "l11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "section_sha256": "sha256:3ba00726800c61f1de165e48e6f62ea4359a368a50a9e9cd1517deb09df395f9"
+      },
+      "receipt_path": "docs/governance/audits/requirement-registration/harness-refactor-episode-coverage-receipt-2026-09-28.json#HARNESS-L2-042",
+      "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+    },
+    {
+      "identity": "HARNESS-L2-046",
+      "disposition": "採択",
+      "registration_id": "MPR-RC-HARNESS-L2-046-001",
+      "l2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "section_sha256": "sha256:47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e"
+      },
+      "l11_identity": "HARNESS-L2-046",
+      "l11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "section_sha256": "sha256:a8e99f7df7166566c04b1113b045851d8417e17e8078c034f8f2a34ebfe4f37f"
+      },
+      "receipt_path": "docs/governance/audits/requirement-registration/harness-fullv-scrum-coverage-receipt-2026-09-28.json",
+      "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+    },
+    {
+      "identity": "HELIXOS-L2-030",
+      "disposition": "保留。本体実行OSとconsumer利用先を分け、配布段階と切替条件を確定する。Windows即時却下やLinux限定を意味しない。",
+      "registration_id": "MPR-RC-HELIXOS-L2-030-003",
+      "l2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+        "section_sha256": "sha256:4e51938b15f6d1217f50d1406df702d4346e3c02fd373f2a8cb6b4c5749f2af5"
+      },
+      "l11_identity": "HELIXOS-L2-030",
+      "l11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+        "section_sha256": "sha256:5f133caac2277910d08ac35f55faaa115b49d34b6db80a7b91509b3ec085aadf"
+      },
+      "receipt_path": "docs/governance/audits/requirement-registration/os-package-acceptance-coverage-receipt-2026-09-28-r3.json",
+      "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+    },
+    {
+      "identity": "HELIXOS-L2-036",
+      "disposition": "採択",
+      "registration_id": "MPR-RC-HELIXOS-L2-036-001",
+      "l2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+        "section_sha256": "sha256:82c3fc7c25b023604463f4c44c284440b9666342a0cf8a3bd6b1996394cb33b9"
+      },
+      "l11_identity": "HELIXOS-L2-036",
+      "l11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+        "section_sha256": "sha256:daec5fceac7a0e19a0cf83541126772393735b01c5b1592edeb6f050061bebc3"
+      },
+      "receipt_path": "docs/governance/audits/requirement-registration/os-retrofit-preflight-coverage-receipt-2026-09-28.json",
+      "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+    },
+    {
+      "identity": "HELIXOS-L2-044",
+      "disposition": "採択",
+      "registration_id": "MPR-RC-HELIXOS-L2-044-001",
+      "l2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+        "section_sha256": "sha256:45ec39bee8dc441f040b0b571f2c62be900d9619eaa1facda5f9017f97678289"
+      },
+      "l11_identity": "HELIXOS-L2-044",
+      "l11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+        "section_sha256": "sha256:29b83afd96e5ad20c2bdb11c2aaf86578730dc4a8cddf9059d2b2329ae0a9b4a"
+      },
+      "receipt_path": "docs/governance/audits/requirement-registration/os-v13-hyb-006-feedback-resolution-coverage-receipt-2026-09-28.json",
+      "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-032",
+      "disposition": "採択",
+      "registration_id": "MPR-RC-HELIXSECURITY-L2-032-001",
+      "l2": {
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "file_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+        "section_sha256": "sha256:ccdd634fb92621105310b91465e01bd089238cc430491ff3c8ac51a3d80403c8"
+      },
+      "l11_identity": "HELIXSECURITY-L2-032",
+      "l11": {
+        "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "file_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
+        "section_sha256": "sha256:5dcf1c19728badff041220d610a85c3507a6c6f70fea57c0081ae9902705c6f1"
+      },
+      "receipt_path": "docs/governance/audits/requirement-registration/security-v13-worker-bypass-coverage-receipt-2026-09-28.json",
+      "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+    },
+    {
+      "identity": "HELIXSECURITY-L2-033",
+      "disposition": "採択",
+      "registration_id": "MPR-RC-HELIXSECURITY-L2-033-002",
+      "l2": {
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "file_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+        "section_sha256": "sha256:b486a0c44e8f21a6f8738dedeac91dcb94da335b73409b6adeaecf8fa639bf1a"
+      },
+      "l11_identity": "HELIXSECURITY-L2-033",
+      "l11": {
+        "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "file_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
+        "section_sha256": "sha256:6d83abe63e3e852d58d9a9a60ae39c6b29284b6b8ab781bdb86456e479e60be0"
+      },
+      "receipt_path": "docs/governance/audits/requirement-registration/security-v13-worker-context-coverage-receipt-2026-09-28-r2.json",
+      "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-008",
+      "disposition": "条件付き採択：A配置（供給はCONNECT、安全判定はSECURITY）、registration -002を対象。",
+      "registration_id": "MPR-RC-HELIXCONNECT-L2-008-002",
+      "l2": {
+        "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+        "file_sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1",
+        "section_sha256": "sha256:4b5028444f8dfecc3ddad03d94c7de666e716e63974a2851123285af77472813"
+      },
+      "l11_identity": "HELIXCONNECT-L11-008",
+      "l11": {
+        "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+        "file_sha256": "aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9",
+        "section_sha256": "sha256:09dcbb00bee7d4a1680a16176d9f0bbe0c0d385a7d27a4fec61950f5c636b50e"
+      },
+      "receipt_path": "docs/governance/audits/requirement-registration/connect-v13-hyb-002-profile-supply-coverage-receipt-2026-09-29.json",
+      "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+    }
+  ],
+  "live26_exact_pair_pins": [
+    {
+      "identity": "HARNESS-L2-057",
+      "status": "adopted_as_paired_live26_decision",
+      "registration_id": "MPR-RC-HARNESS-L2-057-001",
+      "l2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "section_sha256": "2c487f5408d31f0f982ab210be3df4d1d824bd75169b96bd1321cb0edd2a23ac"
+      },
+      "l11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "section_sha256": "8cc4692c5b2eb356809f30b47a3addb9206c0c4e0f4c11d9f505426cf7fe83e1"
+      },
+      "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+    },
+    {
+      "identity": "HELIXOS-L2-054",
+      "status": "adopted_as_paired_live26_decision",
+      "registration_id": "MPR-RC-HELIXOS-L2-054-001",
+      "l2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+        "section_sha256": "a9c1561ab310399fa27d5aca8bd9ebca8264176516357470157526df8c297eef"
+      },
+      "l11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+        "section_sha256": "1021d37a8c3a94113c94aa1b92d3e8a79ae758f274aa40b570b5d151f7233aac"
+      },
+      "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+    }
+  ],
+  "artifact_pins": [
+    {
+      "kind": "coverage_receipt",
+      "path": "docs/governance/audits/requirement-registration/connect-v13-hyb-002-profile-supply-coverage-receipt-2026-09-29.json",
+      "sha256": "e601a5e26b9afa467e081983e2adcd7df43a19420e3641645a371edf4d0b1477"
+    },
+    {
+      "kind": "coverage_receipt",
+      "path": "docs/governance/audits/requirement-registration/harness-fullv-scrum-coverage-receipt-2026-09-28.json",
+      "sha256": "a8531d8914f88aca864ac0707b01a6e38b5a58c92f4b331da9cc9a4defaa1ec1"
+    },
+    {
+      "kind": "coverage_receipt",
+      "path": "docs/governance/audits/requirement-registration/harness-measurement-contract-coverage-receipt-2026-09-28-r2.json",
+      "sha256": "64dd06c1c44e1d50b7e82c70b09ec00fab177b948a47227e2095e3bc800f9e47"
+    },
+    {
+      "kind": "coverage_receipt",
+      "path": "docs/governance/audits/requirement-registration/harness-measurement-contract-coverage-receipt-2026-09-28-r3.json",
+      "sha256": "6204eea1366b12c57e4e9fb9411bea8569ab2ab4aa9562e38d9b7746fdb48b19"
+    },
+    {
+      "kind": "coverage_receipt",
+      "path": "docs/governance/audits/requirement-registration/harness-measurement-contract-coverage-receipt-2026-09-28.json",
+      "sha256": "7240399a744ff5fe27cf9dd1d2ecaf13ad431681b09f45e62d302182170c2110"
+    },
+    {
+      "kind": "coverage_receipt",
+      "path": "docs/governance/audits/requirement-registration/harness-refactor-episode-coverage-receipt-2026-09-28.json",
+      "sha256": "6d10e3976c204ad15d739b86ace90b08595c00463f7aecfbcf2778f8c98aa15e"
+    },
+    {
+      "kind": "coverage_receipt",
+      "path": "docs/governance/audits/requirement-registration/os-package-acceptance-coverage-receipt-2026-09-28-r3.json",
+      "sha256": "b1ce91e70986c02ea7ecf7403c8736ef49cf05f7ce00a361a49e331b019f1b0f"
+    },
+    {
+      "kind": "coverage_receipt",
+      "path": "docs/governance/audits/requirement-registration/os-retrofit-preflight-coverage-receipt-2026-09-28.json",
+      "sha256": "bc9a399c80a10cb56bb6be77a2cf9cd86034eb3823f68f40292f6c3d19e8e323"
+    },
+    {
+      "kind": "coverage_receipt",
+      "path": "docs/governance/audits/requirement-registration/os-v13-hyb-006-feedback-resolution-coverage-receipt-2026-09-28.json",
+      "sha256": "cb22a82d4881a62b2066e881449e2a6b65cae23613b0ba6715da6c6b7af34af9"
+    },
+    {
+      "kind": "coverage_receipt",
+      "path": "docs/governance/audits/requirement-registration/security-v13-hyb-002-profile-coverage-receipt-2026-09-28.json",
+      "sha256": "8afe5fdc134f10e58111887daaebc66453ecf30063e3025aa46f59e8d53503c7"
+    },
+    {
+      "kind": "coverage_receipt",
+      "path": "docs/governance/audits/requirement-registration/security-v13-worker-bypass-coverage-receipt-2026-09-28.json",
+      "sha256": "1a6d9e57e086205567318d1581b60aca8b13440aeffadaa86083bf647897a232"
+    },
+    {
+      "kind": "coverage_receipt",
+      "path": "docs/governance/audits/requirement-registration/security-v13-worker-context-coverage-receipt-2026-09-28-r2.json",
+      "sha256": "723df890641b8746e5882e17e86749aa413af46de4f6aabbad182ed77319f369"
+    },
+    {
+      "kind": "coverage_receipt",
+      "path": "docs/governance/audits/requirement-registration/security-v13-worker-context-coverage-receipt-2026-09-28.json",
+      "sha256": "b01ecaebc8b2b591d30323a7992436433dc1c93d1aafaa7b03d31cc51ee2b38c"
+    },
+    {
+      "kind": "queue",
+      "path": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json",
+      "sha256": "a61ec098a6bd714fcbbb706d0d9afb4e7f2777b114bf23c8056fc130e30f60d9"
+    },
+    {
+      "kind": "131_pool_crosswalk",
+      "path": "docs/governance/audits/requirements-stage/v13-effective-legacy40-rank-reuse-crosswalk-2026-10-01.json",
+      "sha256": "3d98c086255be76fd8ea43c01de9bf216ddad19c49dbeae60a78634036b87cbb"
+    },
+    {
+      "kind": "fixed_f6_exact_text",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "line": 105,
+      "line_sha256": "8433f26d2bd2ed385fee35e3d994f52295690e8fa0911022935fe9530bc61f84",
+      "line_text": "| HARNESS-L2-002／003 | requirements v1.3 §4.1（L94、L96-106）／§4.2（L112-119、L138-139）に従い、スクラムの各sliceでcheckpoint triggerに該当した場合は`SR0 evidence capture → SR1 observed contract → SR2 V-layer mapping → SR3 design/refactor proposal → SR4 pair freeze and Forward reentry`を実行する。v1.3 L104-106にある4 entity、SR4 publish条件、provisional非canonicalをHARNESS条件とし、SR4 receiptなしにrelease-readyへ進めず、findingをRedesign／Design Refactor／Performance Refactor／Retrofitのexactly oneへ送る。Design Refactorでobservable behavior／public surface／DB semantics／要求に差分があれば、`HIL-BR-21`／`HIL-FR-39`／`HIL-FR-50`に従いRedesign／Retrofitへrerouteする。v1.3 L107-108が参照するentity要件と宣言oracle、およびentity要件が指すconfirmed親文書は[300行全量台帳](../../governance/legacy-migration/delegated-document/scrum-reverse-source-line-inventory.md)で保持する。親文書と対になるconfirmed受入文書は[file-blob holding](../../governance/legacy-migration/delegated-document/delegated-requirement-document-source-inventory.md)で保持し、後続要求PRでatom化するまでcurrent authorityへ昇格させない。Scrum Reverseはスクラムの工程条件であり、POの開発方式の定義（[2026-09-25の判断記録](../../governance/decisions/po-optimal-draft-po-decisions-2026-09-25.md)）に従い、方式を合成した場合もスクラムで進める部分に適用する（例：リリースカンバンのリリース単位の中をスクラムで作る場合、ハイブリッドのユニットをスクラムで作る場合）。旧v1.3が旧ハイブリッド（V設計＋Scrum実装）のsliceに適用していたのは、旧ハイブリッドがスクラムの実装を含んでいたためであり、この考え方を保つ |",
+      "line_sha256_convention": "SHA-256 of physical line bytes including the terminating LF; line_text omits the LF."
+    }
+  ],
+  "fixed_F6_boundary": {
+    "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "historical_findings_preserved": true,
+    "note": "Later adoptions do not rewrite what was evidenced at F6. Rank117 correction records an exact current/fixed-F6 text relation omitted from its F6 relations list; it is clause-limited."
+  },
+  "authority_boundary": {
+    "formal_successor_assignments": 0,
+    "source_condition_closures": 0,
+    "source_holding_retirements": 0,
+    "authority_effect": "none",
+    "implementation_or_execution_permission": false,
+    "acceptance_execution_claimed": false
+  },
+  "rows": [
+    {
+      "rank": 1,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00004",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 4,
+        "source_line_sha256": "sha256:5127b3721675f320b609441c9c27067703fff6a6dd9aca21da9f8444f1e75cd3"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 2,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00008",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 10,
+        "source_line_sha256": "sha256:ee492519c73e6e137f6ade7a23a05e9a6e2a33f2b3d02ee8793ac4161952dc1f"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 3,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00009",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 11,
+        "source_line_sha256": "sha256:a15a0a4924347846b91686f1fd49cce67b5d75ed90ed8baa45c40e70219f240f"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 4,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00010",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 12,
+        "source_line_sha256": "sha256:5c078f54881b806f01d63ee6a3388639b3cf3cde94f5d4230218f8572c42d521"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 5,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00015",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 19,
+        "source_line_sha256": "sha256:47f330e42c55fd31f6870a5d3d834d29294aa931552917b799f4aa05772cf176"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 6,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00016",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 21,
+        "source_line_sha256": "sha256:f909d9a60872c17c00715c52e5b65b9d25836b1d56780aa3052e5e1f6931b343"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 7,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00017",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 23,
+        "source_line_sha256": "sha256:5c2822dfc64517b6196a848e15ad7e9fe640ea9dbffdb65cb1c074cba566b254"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 8,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00018",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 24,
+        "source_line_sha256": "sha256:e1fb760eca3881325203d63207eaa13fb130fa377298ca225659cc922de5855e"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 9,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00019",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 25,
+        "source_line_sha256": "sha256:c111b97b46229b721999ae7a3d271676522c1ad6fe92f4a9996c373f5d785135"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 10,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00022",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 31,
+        "source_line_sha256": "sha256:4e72106677d385ddc43b8dd6b84d2dfd1e60d894debed6b39f8778e4bcd1ff2a"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 11,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00023",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 32,
+        "source_line_sha256": "sha256:c81bcd84698272fdee0fc4f3549205d0b8203bb582e171d38093f0ceb878e309"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 12,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00024",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 33,
+        "source_line_sha256": "sha256:263f6b51f999dbf25fa89be5f9b6d3cb7fb27a9662e604741bbb60d64e79f48a"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 13,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00025",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 34,
+        "source_line_sha256": "sha256:37a32b9baceda85ae8fab7b9f57a39d9b67b3782ee6675d0943ec0683d233f11"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 14,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00026",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 35,
+        "source_line_sha256": "sha256:e6ee532c38093c018bc0a6989384e50063bd22c321becc6f79311e270e981baf"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 15,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00027",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 36,
+        "source_line_sha256": "sha256:66fa076021e8e61cac7621f44f15cff66287e2e0d7ea82eab3b73800196449ed"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 16,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00028",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 38,
+        "source_line_sha256": "sha256:6737b625d5cec5feb92ef51f7489c358538560bb5ce3b827a08ee7de3c370927"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 17,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00029",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 39,
+        "source_line_sha256": "sha256:2163b298cc867760ba49d8688595650b651f219cfb85fdc17ce231d2fb809e26"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 18,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00046",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 59,
+        "source_line_sha256": "sha256:fdf2357943926995c168a0597de55c5475b6e17ce30d5e52ce22163295ca68ed"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 19,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00047",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 61,
+        "source_line_sha256": "sha256:4d0cb35c25971d2df77ca3805f3672136536c666ad6c22528455189b39e36952"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 20,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00051",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 67,
+        "source_line_sha256": "sha256:0ed8f36ccb45a31af1e897f21ea69e6d096ff9149b86bf5f248465b6fb1e7563"
+      },
+      "queue_adopted_citation_refs": [
+        {
+          "requirement_identity": "HELIXBRAIN-L2-023",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "decision_status": "adopted_fixed_L2_and_paired_L11_2026-09-28",
+          "target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "registration_id": null,
+          "l2_revision": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "file_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+            "identity_section_locator": "HELIXBRAIN-L2-023",
+            "identity_lines_digest_sha256": "sha256:5913dee4dd303dcbf914a998026729dab1f2ed45f34ac514d399eeb55bfde458",
+            "digest_line_count": 2
+          },
+          "l11_revision": {
+            "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+            "file_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+            "identity_section_locator": "HELIXBRAIN-L2-023",
+            "identity_lines_digest_sha256": "sha256:c4624e7d223c1af7bab59c6203ad21dbcb00adf26a70ac8c84191befad6dcf55",
+            "digest_line_count": 1
+          },
+          "citation_ref": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "locator": "line 548"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 67,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": "Adopted BRAIN-L2-023 fixed pair cites this exact v1.3 line; queue effect is citation_only. Current adopted relation exists. Residual: Visual Design HARNESS ownership/generation-evaluation, BRAIN→LABO learning return, and distinction from L8–L10 are not established by this citation."
+    },
+    {
+      "rank": 21,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00077",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 102,
+        "source_line_sha256": "sha256:6410ee034dc29f92ad47d40149e59102a06c891dfa043129afaff1fffe4da6f0"
+      },
+      "queue_adopted_citation_refs": [
+        {
+          "requirement_identity": "HELIXOS-L2-010",
+          "decision_ref": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "decision_status": "adopted_fixed_L2_and_paired_L11_2026-09-28",
+          "target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "registration_id": null,
+          "l2_revision": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+            "identity_section_locator": "HELIXOS-L2-010",
+            "identity_lines_digest_sha256": "sha256:088c226aed12a44c72b8f98fb9ed06c08c1b533fa1f5c1c0d7e0ac386e55b22f",
+            "digest_line_count": 3
+          },
+          "l11_revision": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+            "identity_section_locator": "HELIXOS-L2-010",
+            "identity_lines_digest_sha256": "sha256:ed7ad8ba5e565ee49311882e22a16c9e62112676329028439c5a89f9266def99",
+            "digest_line_count": 2
+          },
+          "citation_ref": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "locator": "line 139"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 102,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        },
+        {
+          "requirement_identity": "HARNESS-L2-002/003",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "decision_status": "adopted_fixed_L2_and_paired_L11_2026-09-28",
+          "target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "registration_id": null,
+          "l2_revision": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+            "identity_section_locator": "HARNESS-L2-002/003",
+            "identity_lines_digest_sha256": "sha256:201a1cffab00405a4a828a95ceebb788d0af11f6b964edb78ffc1941c398c4da",
+            "digest_line_count": 5
+          },
+          "l11_revision": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+            "identity_section_locator": "HARNESS-L2-002/003",
+            "identity_lines_digest_sha256": "sha256:91b92eb46f9ab1682c2866bbdef12b28a4634dd9a10b362c6f5350cf7664e6b5",
+            "digest_line_count": 1
+          },
+          "citation_ref": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "locator": "line 105; paired L11 citation line 40"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 102,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": "Adopted OS-L2-010 and HARNESS-L2-002/003 fixed pairs cite this exact v1.3 line; both queue effects are citation_only. Residual: full terminal output set (requirements/design/test/verification/measurement contracts) is not fully verified; no source-condition closure follows."
+    },
+    {
+      "rank": 22,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00081",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 107,
+        "source_line_sha256": "sha256:58faca77338462e4f086790d18f7e61135a0d0af6ce766aa8de67b7dfb28d91a"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 23,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00089",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 119,
+        "source_line_sha256": "sha256:b8d0bd53395b0c57bf8aed4d6007d792e7aa0e7038480f0880754e0a2d22f0d6"
+      },
+      "queue_adopted_citation_refs": [
+        {
+          "requirement_identity": "HARNESS-L2-002/003",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "decision_status": "adopted_fixed_L2_and_paired_L11_2026-09-28",
+          "target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "registration_id": null,
+          "l2_revision": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+            "identity_section_locator": "HARNESS-L2-002/003",
+            "identity_lines_digest_sha256": "sha256:201a1cffab00405a4a828a95ceebb788d0af11f6b964edb78ffc1941c398c4da",
+            "digest_line_count": 5
+          },
+          "l11_revision": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+            "identity_section_locator": "HARNESS-L2-002/003",
+            "identity_lines_digest_sha256": "sha256:91b92eb46f9ab1682c2866bbdef12b28a4634dd9a10b362c6f5350cf7664e6b5",
+            "digest_line_count": 1
+          },
+          "citation_ref": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "locator": "line 105; paired L11 citation line 40"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 119,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ],
+      "exact_source_line_sha_receipt_matches": [
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/harness-refactor-episode-coverage-receipt-2026-09-28.json",
+          "receipt_sha256": "6d10e3976c204ad15d739b86ace90b08595c00463f7aecfbcf2778f8c98aa15e",
+          "receipt_id": "MPR-RCPT-HARNESS-REFACTOR-EPISODE-2026-09-28",
+          "authority_effect": "none",
+          "receipt_scope": "旧v1.3 §4.2 L119の隔離前・監査基準revisionの同文2行atomに限る。Performance Refactorの既採択条件はHARNESS-L2/L11-016を参照し、Design Refactor判定と機能追加の同一episode混載禁止の未採択候補を042に保全する。2 revisionを同値として1 atomに畳み込まない。旧v1.3全521行、旧実装・運転、正式後継割当、採択・受入実行の全量被覆は主張しない。",
+          "candidate_identity": "HARNESS-L2-042",
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "REQSRC-SUP-00089",
+          "disposition": "split",
+          "relation": "同一旧行のPerformance Refactor部分は既採択HARNESS-L2/L11-016に照合済み。Design Refactor判定とDesign/Performance両方の同一episode機能追加禁止は未採択042と対L11候補へ保全。二revisionのatom identityと生存holdingを保持し、正式なsuccessor割当や採択は行わない。",
+          "receipt_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "receipt_source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "receipt_line_sha256": "sha256:b8d0bd53395b0c57bf8aed4d6007d792e7aa0e7038480f0880754e0a2d22f0d6",
+          "match_basis": "exact_source_identity"
+        }
+      ],
+      "effective_current_view_correction": "Exact L119 receipt splits Performance Refactor (HARNESS-016) from Design Refactor and same-episode mixing atoms. D57 later adopts HARNESS-042, so the receipt’s pre-adoption candidate wording is historical. Preserve F6 finding as-of F6. No formal successor, holding retirement, or execution/acceptance closure is inferred."
+    },
+    {
+      "rank": 24,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00097",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 129,
+        "source_line_sha256": "sha256:6d876a5a9a98a8da8008cc56d5b73f5d1bfe5f06c31891ef89c1d489c57215a2"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 25,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00105",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 139,
+        "source_line_sha256": "sha256:b17ada62e03f90dd026f735b083cb531ee3bb40822feeb77bfede00aacd7c5c9"
+      },
+      "queue_adopted_citation_refs": [
+        {
+          "requirement_identity": "HARNESS-L2-002/003",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "decision_status": "adopted_fixed_L2_and_paired_L11_2026-09-28",
+          "target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "registration_id": null,
+          "l2_revision": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+            "identity_section_locator": "HARNESS-L2-002/003",
+            "identity_lines_digest_sha256": "sha256:201a1cffab00405a4a828a95ceebb788d0af11f6b964edb78ffc1941c398c4da",
+            "digest_line_count": 5
+          },
+          "l11_revision": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+            "identity_section_locator": "HARNESS-L2-002/003",
+            "identity_lines_digest_sha256": "sha256:91b92eb46f9ab1682c2866bbdef12b28a4634dd9a10b362c6f5350cf7664e6b5",
+            "digest_line_count": 1
+          },
+          "citation_ref": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "locator": "line 105; paired L11 citation line 40"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 139,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": "Adopted HARNESS-L2-002/003 pair cites this exact row; queue effect is citation_only. Preserve its fixed-F6 residual; citation is not full condition coverage."
+    },
+    {
+      "rank": 26,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00108",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 142,
+        "source_line_sha256": "sha256:69c2a5f0416d91446dce51ed37ce162c11d657408eac046396b4d9bf2543b9ff"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 27,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00112",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 147,
+        "source_line_sha256": "sha256:fdddba824470aef47981ee905fb0326d17a18b045c99fcbdf06a03c59264af18"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 28,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00114",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 149,
+        "source_line_sha256": "sha256:737fadb31bc0e8995af774cf3ca6924fe2c13ac9ceb9f7f722c4382daac7e35c"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 29,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00146",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 190,
+        "source_line_sha256": "sha256:fd2893d0fd5b039cc78d1b5d5b8fabeb06fb82b260fa2fd943b89bea7ae7370f"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 30,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00147",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 192,
+        "source_line_sha256": "sha256:14f2862d4146912c9ea3597db2f98d5f8ae8a54ca86feccd74a0ac2b0c13795b"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 31,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00150",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 195,
+        "source_line_sha256": "sha256:9d0ce131d42fc8b7383e72f65bdfd90c2b7b56c32e2bbe687fd431d46cc10b7c"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 32,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00151",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 196,
+        "source_line_sha256": "sha256:99bbc3f869d92ee67bc47e10970d5d90646c66a140966ceca08000fc5b98f989"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 33,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00153",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 199,
+        "source_line_sha256": "sha256:5cc06ff4b53d64ac032b97c0b0568affad76afb578868ce35c5298f6fb9b0250"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 34,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00154",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 200,
+        "source_line_sha256": "sha256:8be7a2dba730b811be9fc425c4bd359f8e1e88682e82faca17a2102ee0b46740"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 35,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00155",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 201,
+        "source_line_sha256": "sha256:555145f953db107db0529f9745ce75dc86c0efd30118f9c5a352c5af3c87ef27"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 36,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00161",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 208,
+        "source_line_sha256": "sha256:4015fa6eac84043ccc317efece12752bdc33985f21696829f78f1547dcae39ad"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 37,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00163",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 210,
+        "source_line_sha256": "sha256:df20ce5b71b549ad0ae03b751f993dbdf86b08a905e236b08dcbc491a3cd4be3"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 38,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00165",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 213,
+        "source_line_sha256": "sha256:9b30e1bcdba5ae2a758f6b3863b7c53c82757f6f08afbc5e317e53d85d15655a"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 39,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00167",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 215,
+        "source_line_sha256": "sha256:a484c618300e2686cba4b69d74044911b2682140ebf9e1b9806f84e4bcd83e34"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 40,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00170",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 220,
+        "source_line_sha256": "sha256:89059e3905c61b3d13e0d7dcc9b81f5757a8fc1be2179119ed8f2ef9f7b4f252"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 41,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00171",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 221,
+        "source_line_sha256": "sha256:b6aa4c8c4fd305b0f0b04cc90f930792e20c2abcb9a22219dce42132ecbd89f5"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 42,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00185",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 237,
+        "source_line_sha256": "sha256:a11d27cc4ccfa1f25cd39e9dffe66ff3ee4da60663de2d88c5a82fec95dd95b3"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 43,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00186",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 238,
+        "source_line_sha256": "sha256:0b21bf9616695b995256b4740e99becce8ea881dd115ea448918cbaa3cd6672e"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 44,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00187",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 240,
+        "source_line_sha256": "sha256:550b84afb25ebb3cee91483f2c08ea5af53ebc1f3c4943e2a6148930519d055f"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 45,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00188",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 241,
+        "source_line_sha256": "sha256:132959d530bd90939283e1a5a3804411769b6f9a2a82c3cdd3520bda05bc87dd"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 46,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00192",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 247,
+        "source_line_sha256": "sha256:833f700a7f273b9533d0dc3714f1df116c0b88a12fec4a66641d26bd5b9dd703"
+      },
+      "queue_adopted_citation_refs": [
+        {
+          "requirement_identity": "HARNESS-L2-034",
+          "decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_status": "adopted_exact_L2_and_paired_L11_revision_2026-09-29",
+          "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "registration_id": "MPR-RC-HARNESS-L2-034-003",
+          "l2_revision": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+            "section_digest": "sha256:dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156"
+          },
+          "l11_revision": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+            "section_digest": "sha256:391f640508944ba2f32b5751a2a9a17fbc9f89ef76f46953c1af68ba907a9fdf"
+          },
+          "citation_ref": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "locator": "line 709"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 247,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ],
+      "exact_source_line_sha_receipt_matches": [
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/harness-measurement-contract-coverage-receipt-2026-09-28-r2.json",
+          "receipt_sha256": "64dd06c1c44e1d50b7e82c70b09ec00fab177b948a47227e2095e3bc800f9e47",
+          "receipt_id": "MPR-RCPT-HARNESS-MEASUREMENT-CONTRACT-2026-09-28-R2",
+          "authority_effect": "none",
+          "receipt_scope": "PREISO-REV-000026の監査基準232/234/236行と隔離前247/249/251行の6行。両revisionを入力し、同値として片方を消さない。対象条件の候補対応に限り、旧全体被覆・採択は主張しない。",
+          "candidate_identity": "HARNESS-L2-034",
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "REQSRC-SUP-00192",
+          "disposition": "carried",
+          "relation": "品質13領域と要求別計測契約をL2の提供・品質保証へ、L11正常／欠落の反例へ。",
+          "receipt_source_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "receipt_source_file_sha256": null,
+          "receipt_line_sha256": "sha256:833f700a7f273b9533d0dc3714f1df116c0b88a12fec4a66641d26bd5b9dd703",
+          "match_basis": "line_sha256_and_text_only"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/harness-measurement-contract-coverage-receipt-2026-09-28-r3.json",
+          "receipt_sha256": "6204eea1366b12c57e4e9fb9411bea8569ab2ab4aa9562e38d9b7746fdb48b19",
+          "receipt_id": "MPR-RCPT-HARNESS-MEASUREMENT-CONTRACT-2026-09-28-R3",
+          "authority_effect": "none",
+          "receipt_scope": "r2の計測6行を保持し、HR-NFR-REG-001〜007を基準/preiso各7行として追加した20行。revision重複を独立要求数と数えず、全v1.3被覆を主張しない。",
+          "candidate_identity": "HARNESS-L2-034",
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "REQSRC-SUP-00192",
+          "disposition": "carried",
+          "relation": "品質13領域と要求別計測契約をL2の提供・品質保証へ、L11正常／欠落の反例へ。",
+          "receipt_source_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "receipt_source_file_sha256": null,
+          "receipt_line_sha256": "sha256:833f700a7f273b9533d0dc3714f1df116c0b88a12fec4a66641d26bd5b9dd703",
+          "match_basis": "line_sha256_and_text_only"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/harness-measurement-contract-coverage-receipt-2026-09-28.json",
+          "receipt_sha256": "7240399a744ff5fe27cf9dd1d2ecaf13ad431681b09f45e62d302182170c2110",
+          "receipt_id": "MPR-RCPT-HARNESS-MEASUREMENT-CONTRACT-2026-09-28",
+          "authority_effect": "none",
+          "receipt_scope": "REG-03で選定した旧v1.3 §4.3の3非空本文行（REQSRC-SUP-00192〜00194）。各行内の列挙条件もL2/L11で全件明示する。旧521行・IR153・confirmed175全体の被覆ではない。原登録と履歴は変更しない。",
+          "candidate_identity": "HARNESS-L2-034",
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "REQSRC-SUP-00192",
+          "disposition": "carried",
+          "relation": "品質13領域と要求別計測契約をL2の提供・品質保証へ、L11正常／欠落の反例へ。",
+          "receipt_source_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "receipt_source_file_sha256": null,
+          "receipt_line_sha256": "sha256:833f700a7f273b9533d0dc3714f1df116c0b88a12fec4a66641d26bd5b9dd703",
+          "match_basis": "line_sha256_and_text_only"
+        }
+      ],
+      "effective_current_view_correction": "Exact source atom is carried in HARNESS-034 Measurement Contract receipt; D57 adopts exact L2/L11. Current relation exists beyond F6-era HARNESS-022 comparison. No formal successor or executed acceptance."
+    },
+    {
+      "rank": 47,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00193",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 249,
+        "source_line_sha256": "sha256:c7c8fdcdba444b6fb68eaae83a193f1a6cd7cd9700dbb50d5cdeeb57c8edc284"
+      },
+      "queue_adopted_citation_refs": [
+        {
+          "requirement_identity": "HARNESS-L2-034",
+          "decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_status": "adopted_exact_L2_and_paired_L11_revision_2026-09-29",
+          "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "registration_id": "MPR-RC-HARNESS-L2-034-003",
+          "l2_revision": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+            "section_digest": "sha256:dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156"
+          },
+          "l11_revision": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+            "section_digest": "sha256:391f640508944ba2f32b5751a2a9a17fbc9f89ef76f46953c1af68ba907a9fdf"
+          },
+          "citation_ref": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "locator": "line 709"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 249,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ],
+      "exact_source_line_sha_receipt_matches": [
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/harness-measurement-contract-coverage-receipt-2026-09-28-r2.json",
+          "receipt_sha256": "64dd06c1c44e1d50b7e82c70b09ec00fab177b948a47227e2095e3bc800f9e47",
+          "receipt_id": "MPR-RCPT-HARNESS-MEASUREMENT-CONTRACT-2026-09-28-R2",
+          "authority_effect": "none",
+          "receipt_scope": "PREISO-REV-000026の監査基準232/234/236行と隔離前247/249/251行の6行。両revisionを入力し、同値として片方を消さない。対象条件の候補対応に限り、旧全体被覆・採択は主張しない。",
+          "candidate_identity": "HARNESS-L2-034",
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "REQSRC-SUP-00193",
+          "disposition": "carried",
+          "relation": "14項目と4完成拒否条件をL2提供・判定保証へ、L11正常・欠落・完成判定反例・未見例へ。",
+          "receipt_source_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "receipt_source_file_sha256": null,
+          "receipt_line_sha256": "sha256:c7c8fdcdba444b6fb68eaae83a193f1a6cd7cd9700dbb50d5cdeeb57c8edc284",
+          "match_basis": "line_sha256_and_text_only"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/harness-measurement-contract-coverage-receipt-2026-09-28-r3.json",
+          "receipt_sha256": "6204eea1366b12c57e4e9fb9411bea8569ab2ab4aa9562e38d9b7746fdb48b19",
+          "receipt_id": "MPR-RCPT-HARNESS-MEASUREMENT-CONTRACT-2026-09-28-R3",
+          "authority_effect": "none",
+          "receipt_scope": "r2の計測6行を保持し、HR-NFR-REG-001〜007を基準/preiso各7行として追加した20行。revision重複を独立要求数と数えず、全v1.3被覆を主張しない。",
+          "candidate_identity": "HARNESS-L2-034",
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "REQSRC-SUP-00193",
+          "disposition": "carried",
+          "relation": "14項目と4完成拒否条件をL2提供・判定保証へ、L11正常・欠落・完成判定反例・未見例へ。",
+          "receipt_source_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "receipt_source_file_sha256": null,
+          "receipt_line_sha256": "sha256:c7c8fdcdba444b6fb68eaae83a193f1a6cd7cd9700dbb50d5cdeeb57c8edc284",
+          "match_basis": "line_sha256_and_text_only"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/harness-measurement-contract-coverage-receipt-2026-09-28.json",
+          "receipt_sha256": "7240399a744ff5fe27cf9dd1d2ecaf13ad431681b09f45e62d302182170c2110",
+          "receipt_id": "MPR-RCPT-HARNESS-MEASUREMENT-CONTRACT-2026-09-28",
+          "authority_effect": "none",
+          "receipt_scope": "REG-03で選定した旧v1.3 §4.3の3非空本文行（REQSRC-SUP-00192〜00194）。各行内の列挙条件もL2/L11で全件明示する。旧521行・IR153・confirmed175全体の被覆ではない。原登録と履歴は変更しない。",
+          "candidate_identity": "HARNESS-L2-034",
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "REQSRC-SUP-00193",
+          "disposition": "carried",
+          "relation": "14項目と4完成拒否条件をL2提供・判定保証へ、L11正常・欠落・完成判定反例・未見例へ。",
+          "receipt_source_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "receipt_source_file_sha256": null,
+          "receipt_line_sha256": "sha256:c7c8fdcdba444b6fb68eaae83a193f1a6cd7cd9700dbb50d5cdeeb57c8edc284",
+          "match_basis": "line_sha256_and_text_only"
+        }
+      ],
+      "effective_current_view_correction": "Exact source atom is carried in HARNESS-034 receipt; D57 adopts exact pair. Bounded relation; no source-row closure or executed acceptance."
+    },
+    {
+      "rank": 48,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00194",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 251,
+        "source_line_sha256": "sha256:30e0e461b391caa2cd948ab0d9cbaa2a8221054f5d1daa8ec608d5ddda131cd9"
+      },
+      "queue_adopted_citation_refs": [
+        {
+          "requirement_identity": "HARNESS-L2-034",
+          "decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_status": "adopted_exact_L2_and_paired_L11_revision_2026-09-29",
+          "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "registration_id": "MPR-RC-HARNESS-L2-034-003",
+          "l2_revision": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+            "section_digest": "sha256:dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156"
+          },
+          "l11_revision": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+            "section_digest": "sha256:391f640508944ba2f32b5751a2a9a17fbc9f89ef76f46953c1af68ba907a9fdf"
+          },
+          "citation_ref": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "locator": "line 709"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 251,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ],
+      "exact_source_line_sha_receipt_matches": [
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/harness-measurement-contract-coverage-receipt-2026-09-28-r2.json",
+          "receipt_sha256": "64dd06c1c44e1d50b7e82c70b09ec00fab177b948a47227e2095e3bc800f9e47",
+          "receipt_id": "MPR-RCPT-HARNESS-MEASUREMENT-CONTRACT-2026-09-28-R2",
+          "authority_effect": "none",
+          "receipt_scope": "PREISO-REV-000026の監査基準232/234/236行と隔離前247/249/251行の6行。両revisionを入力し、同値として片方を消さない。対象条件の候補対応に限り、旧全体被覆・採択は主張しない。",
+          "candidate_identity": "HARNESS-L2-034",
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "REQSRC-SUP-00194",
+          "disposition": "carried",
+          "relation": "設計から運用評価までの計測義務、秘密保護、overhead、再現性をL2工程保証へ、L11工程・安全反例へ。旧層番号は現行pairへ意味対応し実行しない。",
+          "receipt_source_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "receipt_source_file_sha256": null,
+          "receipt_line_sha256": "sha256:30e0e461b391caa2cd948ab0d9cbaa2a8221054f5d1daa8ec608d5ddda131cd9",
+          "match_basis": "line_sha256_and_text_only"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/harness-measurement-contract-coverage-receipt-2026-09-28-r3.json",
+          "receipt_sha256": "6204eea1366b12c57e4e9fb9411bea8569ab2ab4aa9562e38d9b7746fdb48b19",
+          "receipt_id": "MPR-RCPT-HARNESS-MEASUREMENT-CONTRACT-2026-09-28-R3",
+          "authority_effect": "none",
+          "receipt_scope": "r2の計測6行を保持し、HR-NFR-REG-001〜007を基準/preiso各7行として追加した20行。revision重複を独立要求数と数えず、全v1.3被覆を主張しない。",
+          "candidate_identity": "HARNESS-L2-034",
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "REQSRC-SUP-00194",
+          "disposition": "carried",
+          "relation": "設計から運用評価までの計測義務、秘密保護、overhead、再現性をL2工程保証へ、L11工程・安全反例へ。旧層番号は現行pairへ意味対応し実行しない。",
+          "receipt_source_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "receipt_source_file_sha256": null,
+          "receipt_line_sha256": "sha256:30e0e461b391caa2cd948ab0d9cbaa2a8221054f5d1daa8ec608d5ddda131cd9",
+          "match_basis": "line_sha256_and_text_only"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/harness-measurement-contract-coverage-receipt-2026-09-28.json",
+          "receipt_sha256": "7240399a744ff5fe27cf9dd1d2ecaf13ad431681b09f45e62d302182170c2110",
+          "receipt_id": "MPR-RCPT-HARNESS-MEASUREMENT-CONTRACT-2026-09-28",
+          "authority_effect": "none",
+          "receipt_scope": "REG-03で選定した旧v1.3 §4.3の3非空本文行（REQSRC-SUP-00192〜00194）。各行内の列挙条件もL2/L11で全件明示する。旧521行・IR153・confirmed175全体の被覆ではない。原登録と履歴は変更しない。",
+          "candidate_identity": "HARNESS-L2-034",
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "REQSRC-SUP-00194",
+          "disposition": "carried",
+          "relation": "設計から運用評価までの計測義務、秘密保護、overhead、再現性をL2工程保証へ、L11工程・安全反例へ。旧層番号は現行pairへ意味対応し実行しない。",
+          "receipt_source_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "receipt_source_file_sha256": null,
+          "receipt_line_sha256": "sha256:30e0e461b391caa2cd948ab0d9cbaa2a8221054f5d1daa8ec608d5ddda131cd9",
+          "match_basis": "line_sha256_and_text_only"
+        }
+      ],
+      "effective_current_view_correction": "Exact source atom is carried in HARNESS-034 receipt; D57 adopts exact pair. Bounded relation; no formal successor or end-to-end execution/acceptance closure."
+    },
+    {
+      "rank": 49,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00198",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 259,
+        "source_line_sha256": "sha256:e4c0f143df26e2777e66ada84e1903a154519b42e9732eaa6f06f9d09c849db6"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/harness-fullv-scrum-coverage-receipt-2026-09-28.json",
+          "receipt_sha256": "a8531d8914f88aca864ac0707b01a6e38b5a58c92f4b331da9cc9a4defaa1ec1",
+          "receipt_id": "MPR-RCPT-HARNESS-FULLV-SCRUM-2026-09-28",
+          "authority_effect": "none",
+          "receipt_scope": "旧v1.3 L259の二文（Full Vのsystem workflow段階freeze/検証、Production Scrumのslice delta/Reverse backfill/SR4 release条件）とL647の一文要約、および6fabd125監査基準revisionの同文3 spanだけを対象とする。L647はL259の二条件を併記する部分重複要約であり、第3の独立要求条件として数えない。6fabd125の同文spanは別revisionとして保つ。計6 sentence span、4 physical source lines。候補はFull V条件とScrum適用部分の条件を分けてHARNESS-L2-002/003へ接続し、2026-09-25 PO判断の方式定義・合成許可を維持する。Full VにはScrum slice delta/checkpoint/SR4を適用しない。未登録source holdを変更せず、旧v1.3全体のcoverageや正式successor/採択・実受入を主張しない。",
+          "candidate_identity": "HARNESS-L2-046",
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "V13-ARCHIVE-L0259-S1",
+          "disposition": "carried",
+          "relation": "Full Vではじまる第1文。system全体workflowをL1〜L5で段階的に凍結し、列挙された全条件を検証する。",
+          "receipt_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "receipt_source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "receipt_line_sha256": "sha256:e4c0f143df26e2777e66ada84e1903a154519b42e9732eaa6f06f9d09c849db6",
+          "match_basis": "exact_source_identity"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/harness-fullv-scrum-coverage-receipt-2026-09-28.json",
+          "receipt_sha256": "a8531d8914f88aca864ac0707b01a6e38b5a58c92f4b331da9cc9a4defaa1ec1",
+          "receipt_id": "MPR-RCPT-HARNESS-FULLV-SCRUM-2026-09-28",
+          "authority_effect": "none",
+          "receipt_scope": "旧v1.3 L259の二文（Full Vのsystem workflow段階freeze/検証、Production Scrumのslice delta/Reverse backfill/SR4 release条件）とL647の一文要約、および6fabd125監査基準revisionの同文3 spanだけを対象とする。L647はL259の二条件を併記する部分重複要約であり、第3の独立要求条件として数えない。6fabd125の同文spanは別revisionとして保つ。計6 sentence span、4 physical source lines。候補はFull V条件とScrum適用部分の条件を分けてHARNESS-L2-002/003へ接続し、2026-09-25 PO判断の方式定義・合成許可を維持する。Full VにはScrum slice delta/checkpoint/SR4を適用しない。未登録source holdを変更せず、旧v1.3全体のcoverageや正式successor/採択・実受入を主張しない。",
+          "candidate_identity": "HARNESS-L2-046",
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "V13-ARCHIVE-L0259-S2",
+          "disposition": "carried",
+          "relation": "Production Scrumについて述べる第2文。slice delta先行、Scrum Reverseによるbackfillの時点・対象、SR4前release-ready不可。",
+          "receipt_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "receipt_source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "receipt_line_sha256": "sha256:e4c0f143df26e2777e66ada84e1903a154519b42e9732eaa6f06f9d09c849db6",
+          "match_basis": "exact_source_identity"
+        }
+      ],
+      "effective_current_view_correction": "Full V/Scrum receipt carries two exact L259 source-line atoms into HARNESS-046; D57 adopts that exact pair. Supersedes current-state “no source-bound pair” claim. Receipt is bounded and does not assign formal successor, retire source holding, or claim execution/acceptance."
+    },
+    {
+      "rank": 50,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00209",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 281,
+        "source_line_sha256": "sha256:5b27becebbf54cb446de0af0ef566111e864e0318c0a15cb682770246dca6829"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 51,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00212",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 285,
+        "source_line_sha256": "sha256:9ef20215a9e455d9ef3a9930532cf21667235b6de4c2274441b2f5ee726ca2e1"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 52,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00213",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 286,
+        "source_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/connect-v13-hyb-002-profile-supply-coverage-receipt-2026-09-29.json",
+          "receipt_sha256": "e601a5e26b9afa467e081983e2adcd7df43a19420e3641645a371edf4d0b1477",
+          "receipt_id": "MPR-RCPT-HELIXCONNECT-V13-HYB-002-PROFILE-SUPPLY-2026-09-29",
+          "authority_effect": "none",
+          "receipt_scope": "HYB-002 S01/S02/S04（profile列挙/設定、typed safety/read-only descriptor、未登録profile拒否）をarchiveと6fabd125 baselineの各revision別atomとして入力する。",
+          "candidate_identity": "HELIXCONNECT-L2-008",
+          "candidate_coverage_result": null,
+          "unaccounted_atom_refs": [],
+          "atom_id": "V13-ARCHIVE-L0286-HR-FR-HYB-002-S01",
+          "disposition": "candidate_routed; adoption_pending",
+          "relation": "このCONNECT-L2-008候補へprofile列挙/設定、typed safety/read-only descriptorまたは未登録profile拒否の範囲を対応づける。元のsource holdingを解消せず、SECURITY policy判定も代替しない。",
+          "receipt_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "receipt_source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "receipt_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+          "match_basis": "exact_source_identity"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/connect-v13-hyb-002-profile-supply-coverage-receipt-2026-09-29.json",
+          "receipt_sha256": "e601a5e26b9afa467e081983e2adcd7df43a19420e3641645a371edf4d0b1477",
+          "receipt_id": "MPR-RCPT-HELIXCONNECT-V13-HYB-002-PROFILE-SUPPLY-2026-09-29",
+          "authority_effect": "none",
+          "receipt_scope": "HYB-002 S01/S02/S04（profile列挙/設定、typed safety/read-only descriptor、未登録profile拒否）をarchiveと6fabd125 baselineの各revision別atomとして入力する。",
+          "candidate_identity": "HELIXCONNECT-L2-008",
+          "candidate_coverage_result": null,
+          "unaccounted_atom_refs": [],
+          "atom_id": "V13-ARCHIVE-L0286-HR-FR-HYB-002-S02",
+          "disposition": "candidate_routed; adoption_pending",
+          "relation": "このCONNECT-L2-008候補へprofile列挙/設定、typed safety/read-only descriptorまたは未登録profile拒否の範囲を対応づける。元のsource holdingを解消せず、SECURITY policy判定も代替しない。",
+          "receipt_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "receipt_source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "receipt_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+          "match_basis": "exact_source_identity"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/connect-v13-hyb-002-profile-supply-coverage-receipt-2026-09-29.json",
+          "receipt_sha256": "e601a5e26b9afa467e081983e2adcd7df43a19420e3641645a371edf4d0b1477",
+          "receipt_id": "MPR-RCPT-HELIXCONNECT-V13-HYB-002-PROFILE-SUPPLY-2026-09-29",
+          "authority_effect": "none",
+          "receipt_scope": "HYB-002 S01/S02/S04（profile列挙/設定、typed safety/read-only descriptor、未登録profile拒否）をarchiveと6fabd125 baselineの各revision別atomとして入力する。",
+          "candidate_identity": "HELIXCONNECT-L2-008",
+          "candidate_coverage_result": null,
+          "unaccounted_atom_refs": [],
+          "atom_id": "V13-ARCHIVE-L0286-HR-FR-HYB-002-S04",
+          "disposition": "candidate_routed; adoption_pending",
+          "relation": "このCONNECT-L2-008候補へprofile列挙/設定、typed safety/read-only descriptorまたは未登録profile拒否の範囲を対応づける。元のsource holdingを解消せず、SECURITY policy判定も代替しない。",
+          "receipt_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "receipt_source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "receipt_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+          "match_basis": "exact_source_identity"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/security-v13-hyb-002-profile-coverage-receipt-2026-09-28.json",
+          "receipt_sha256": "8afe5fdc134f10e58111887daaebc66453ecf30063e3025aa46f59e8d53503c7",
+          "receipt_id": "MPR-RCPT-SECURITY-V13-HYB-002-PROFILE-2026-09-28",
+          "authority_effect": "none",
+          "receipt_scope": "旧v1.3 HR-FR-HYB-002のarchive line 286と6fabd125 baseline line 271を別revisionとして各6 clause spanに分割。SECURITY-L2-034 candidate inputはprofile-scoped credential/egress/tool-capability fail-close、secret要求拒否、write可能probe拒否の3 atom×2 revisionの計6 atomだけ。profile列挙/設定、typed safety/read-only-probe供給、未登録profile拒否の残り6 atomはsource holdingでpreserve pendingとし、旧2行全体のsemantic closureはpartial。CONNECT既存L2-001/002はconnection/contract/adapter/transport identityと互換性の部分的関係に限り、MCP profile catalogや業務意味をsecurityへ移管しない。",
+          "candidate_identity": "HELIXSECURITY-L2-034",
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "V13-ARCHIVE-L0286-HR-FR-HYB-002-S01",
+          "disposition": "preserved_pending",
+          "relation": "CONNECT L2-001/002は接続identity・endpoint/contract/adapter revisionと互換性を扱う。MCP profile catalogの列挙・構成schema全体との等価性は確立していない。SECURITY L2-004は構成integrityの一部を担うが、profile供給契約は未closure。",
+          "receipt_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "receipt_source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "receipt_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+          "match_basis": "exact_source_identity"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/security-v13-hyb-002-profile-coverage-receipt-2026-09-28.json",
+          "receipt_sha256": "8afe5fdc134f10e58111887daaebc66453ecf30063e3025aa46f59e8d53503c7",
+          "receipt_id": "MPR-RCPT-SECURITY-V13-HYB-002-PROFILE-2026-09-28",
+          "authority_effect": "none",
+          "receipt_scope": "旧v1.3 HR-FR-HYB-002のarchive line 286と6fabd125 baseline line 271を別revisionとして各6 clause spanに分割。SECURITY-L2-034 candidate inputはprofile-scoped credential/egress/tool-capability fail-close、secret要求拒否、write可能probe拒否の3 atom×2 revisionの計6 atomだけ。profile列挙/設定、typed safety/read-only-probe供給、未登録profile拒否の残り6 atomはsource holdingでpreserve pendingとし、旧2行全体のsemantic closureはpartial。CONNECT既存L2-001/002はconnection/contract/adapter/transport identityと互換性の部分的関係に限り、MCP profile catalogや業務意味をsecurityへ移管しない。",
+          "candidate_identity": "HELIXSECURITY-L2-034",
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "V13-ARCHIVE-L0286-HR-FR-HYB-002-S02",
+          "disposition": "preserved_pending",
+          "relation": "read-only probeのtyped供給条件は、SECURITY L2-018の1.x観測能力ともCONNECTの現行採択契約とも同一視しない。probe供給/分類のowner・version contractは未closure。",
+          "receipt_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "receipt_source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "receipt_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+          "match_basis": "exact_source_identity"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/security-v13-hyb-002-profile-coverage-receipt-2026-09-28.json",
+          "receipt_sha256": "8afe5fdc134f10e58111887daaebc66453ecf30063e3025aa46f59e8d53503c7",
+          "receipt_id": "MPR-RCPT-SECURITY-V13-HYB-002-PROFILE-2026-09-28",
+          "authority_effect": "none",
+          "receipt_scope": "旧v1.3 HR-FR-HYB-002のarchive line 286と6fabd125 baseline line 271を別revisionとして各6 clause spanに分割。SECURITY-L2-034 candidate inputはprofile-scoped credential/egress/tool-capability fail-close、secret要求拒否、write可能probe拒否の3 atom×2 revisionの計6 atomだけ。profile列挙/設定、typed safety/read-only-probe供給、未登録profile拒否の残り6 atomはsource holdingでpreserve pendingとし、旧2行全体のsemantic closureはpartial。CONNECT既存L2-001/002はconnection/contract/adapter/transport identityと互換性の部分的関係に限り、MCP profile catalogや業務意味をsecurityへ移管しない。",
+          "candidate_identity": "HELIXSECURITY-L2-034",
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "V13-ARCHIVE-L0286-HR-FR-HYB-002-S03",
+          "disposition": "candidate_input",
+          "relation": "SECURITY policy側の選択atom。既存L2-005/006/007/008は一般条件を持つが、選択済みMCP profile単位の結合条件を明示しない。SECURITYが既存policy内でallow/deny/unknownし、CONNECTはprofile/adapter identityを運ぶだけとする。",
+          "receipt_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "receipt_source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "receipt_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+          "match_basis": "exact_source_identity"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/security-v13-hyb-002-profile-coverage-receipt-2026-09-28.json",
+          "receipt_sha256": "8afe5fdc134f10e58111887daaebc66453ecf30063e3025aa46f59e8d53503c7",
+          "receipt_id": "MPR-RCPT-SECURITY-V13-HYB-002-PROFILE-2026-09-28",
+          "authority_effect": "none",
+          "receipt_scope": "旧v1.3 HR-FR-HYB-002のarchive line 286と6fabd125 baseline line 271を別revisionとして各6 clause spanに分割。SECURITY-L2-034 candidate inputはprofile-scoped credential/egress/tool-capability fail-close、secret要求拒否、write可能probe拒否の3 atom×2 revisionの計6 atomだけ。profile列挙/設定、typed safety/read-only-probe供給、未登録profile拒否の残り6 atomはsource holdingでpreserve pendingとし、旧2行全体のsemantic closureはpartial。CONNECT既存L2-001/002はconnection/contract/adapter/transport identityと互換性の部分的関係に限り、MCP profile catalogや業務意味をsecurityへ移管しない。",
+          "candidate_identity": "HELIXSECURITY-L2-034",
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "V13-ARCHIVE-L0286-HR-FR-HYB-002-S04",
+          "disposition": "preserved_pending",
+          "relation": "profile registry/catalog identityは未確定。L2-004のunknown configuration拒否との関連はあるが、MCP profile登録集合の意味・所有者との完全等価は未確立。",
+          "receipt_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "receipt_source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "receipt_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+          "match_basis": "exact_source_identity"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/security-v13-hyb-002-profile-coverage-receipt-2026-09-28.json",
+          "receipt_sha256": "8afe5fdc134f10e58111887daaebc66453ecf30063e3025aa46f59e8d53503c7",
+          "receipt_id": "MPR-RCPT-SECURITY-V13-HYB-002-PROFILE-2026-09-28",
+          "authority_effect": "none",
+          "receipt_scope": "旧v1.3 HR-FR-HYB-002のarchive line 286と6fabd125 baseline line 271を別revisionとして各6 clause spanに分割。SECURITY-L2-034 candidate inputはprofile-scoped credential/egress/tool-capability fail-close、secret要求拒否、write可能probe拒否の3 atom×2 revisionの計6 atomだけ。profile列挙/設定、typed safety/read-only-probe供給、未登録profile拒否の残り6 atomはsource holdingでpreserve pendingとし、旧2行全体のsemantic closureはpartial。CONNECT既存L2-001/002はconnection/contract/adapter/transport identityと互換性の部分的関係に限り、MCP profile catalogや業務意味をsecurityへ移管しない。",
+          "candidate_identity": "HELIXSECURITY-L2-034",
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "V13-ARCHIVE-L0286-HR-FR-HYB-002-S05",
+          "disposition": "candidate_input",
+          "relation": "SECURITY L2-005の既存secret boundaryを選択profile/taskへ適用する局所oracle。新credential policyを作らない。",
+          "receipt_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "receipt_source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "receipt_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+          "match_basis": "exact_source_identity"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/security-v13-hyb-002-profile-coverage-receipt-2026-09-28.json",
+          "receipt_sha256": "8afe5fdc134f10e58111887daaebc66453ecf30063e3025aa46f59e8d53503c7",
+          "receipt_id": "MPR-RCPT-SECURITY-V13-HYB-002-PROFILE-2026-09-28",
+          "authority_effect": "none",
+          "receipt_scope": "旧v1.3 HR-FR-HYB-002のarchive line 286と6fabd125 baseline line 271を別revisionとして各6 clause spanに分割。SECURITY-L2-034 candidate inputはprofile-scoped credential/egress/tool-capability fail-close、secret要求拒否、write可能probe拒否の3 atom×2 revisionの計6 atomだけ。profile列挙/設定、typed safety/read-only-probe供給、未登録profile拒否の残り6 atomはsource holdingでpreserve pendingとし、旧2行全体のsemantic closureはpartial。CONNECT既存L2-001/002はconnection/contract/adapter/transport identityと互換性の部分的関係に限り、MCP profile catalogや業務意味をsecurityへ移管しない。",
+          "candidate_identity": "HELIXSECURITY-L2-034",
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "V13-ARCHIVE-L0286-HR-FR-HYB-002-S06",
+          "disposition": "candidate_input",
+          "relation": "profileがread-only probeとして宣言された場合のwrite-capable invocation拒否を選択する。probeの供給/型契約は別atomとして保留。",
+          "receipt_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "receipt_source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "receipt_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+          "match_basis": "exact_source_identity"
+        }
+      ],
+      "effective_current_view_correction": "CONNECT/SECURITY receipts split exact source-line spans. D57 conditionally adopts CONNECT-008 -002, selecting CONNECT supply and SECURITY safety decision. Supersedes pre-adoption status; source hold and unselected profile/security boundaries remain. No closure or SECURITY policy transfer."
+    },
+    {
+      "rank": 53,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00214",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 287,
+        "source_line_sha256": "sha256:31cea67a891fb344b35d9599e87be65c8763d4cfa1b10ff849f59ed9f032ebd1"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 54,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00215",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 288,
+        "source_line_sha256": "sha256:add9f5399769f4ee1257ecfb55cc2ae0427221763752477684dfaf654fd392af"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 55,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00216",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 289,
+        "source_line_sha256": "sha256:787a77ff8b6b8d378fb2b652c2688523ba64094595e76cdf7634200fcfa21f96"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 56,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00217",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 290,
+        "source_line_sha256": "sha256:2125ab8a351eea42abeb00975c7ff99a80fed5fe914b5c84a50bf6ca4945b931"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/os-v13-hyb-006-feedback-resolution-coverage-receipt-2026-09-28.json",
+          "receipt_sha256": "cb22a82d4881a62b2066e881449e2a6b65cae23613b0ba6715da6c6b7af34af9",
+          "receipt_id": "DRAFT-RCPT-OS-V13-HYB-006-FEEDBACK-RESOLUTION-2026-09-28",
+          "authority_effect": "none",
+          "receipt_scope": null,
+          "candidate_identity": null,
+          "candidate_coverage_result": null,
+          "unaccounted_atom_refs": [],
+          "atom_id": "V13-ARCHIVE-L0290-HR-FR-HYB-006-FR-LIFECYCLE",
+          "disposition": "preserved_pending",
+          "relation": "HR-FR lifecycle phases, event/projection, and SessionStart surface remain outside this candidate.",
+          "receipt_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "receipt_source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "receipt_line_sha256": "sha256:2125ab8a351eea42abeb00975c7ff99a80fed5fe914b5c84a50bf6ca4945b931",
+          "match_basis": "exact_source_identity"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/os-v13-hyb-006-feedback-resolution-coverage-receipt-2026-09-28.json",
+          "receipt_sha256": "cb22a82d4881a62b2066e881449e2a6b65cae23613b0ba6715da6c6b7af34af9",
+          "receipt_id": "DRAFT-RCPT-OS-V13-HYB-006-FEEDBACK-RESOLUTION-2026-09-28",
+          "authority_effect": "none",
+          "receipt_scope": null,
+          "candidate_identity": null,
+          "candidate_coverage_result": null,
+          "unaccounted_atom_refs": [],
+          "atom_id": "V13-ARCHIVE-L0290-HR-FR-HYB-006-AC-UNACK",
+          "disposition": "preserved_pending",
+          "relation": "The unacknowledged-finding disappearance rejection remains outside this candidate.",
+          "receipt_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "receipt_source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "receipt_line_sha256": "sha256:2125ab8a351eea42abeb00975c7ff99a80fed5fe914b5c84a50bf6ca4945b931",
+          "match_basis": "exact_source_identity"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/os-v13-hyb-006-feedback-resolution-coverage-receipt-2026-09-28.json",
+          "receipt_sha256": "cb22a82d4881a62b2066e881449e2a6b65cae23613b0ba6715da6c6b7af34af9",
+          "receipt_id": "DRAFT-RCPT-OS-V13-HYB-006-FEEDBACK-RESOLUTION-2026-09-28",
+          "authority_effect": "none",
+          "receipt_scope": null,
+          "candidate_identity": null,
+          "candidate_coverage_result": null,
+          "unaccounted_atom_refs": [],
+          "atom_id": "V13-ARCHIVE-L0290-HR-FR-HYB-006-AC-PROSE-ONLY",
+          "disposition": "candidate_scope",
+          "relation": "旧HR-AC-HYB-006のprose handover単独ではfinding resolutionとみなさない条件へ、OS L2/L11の未採択候補として限定対応する。resolution証拠の新しい型・十分条件は定義せず、既採択OS-007の証拠責務へ接続する。",
+          "receipt_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "receipt_source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "receipt_line_sha256": "sha256:2125ab8a351eea42abeb00975c7ff99a80fed5fe914b5c84a50bf6ca4945b931",
+          "match_basis": "exact_source_identity"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/os-v13-hyb-006-feedback-resolution-coverage-receipt-2026-09-28.json",
+          "receipt_sha256": "cb22a82d4881a62b2066e881449e2a6b65cae23613b0ba6715da6c6b7af34af9",
+          "receipt_id": "DRAFT-RCPT-OS-V13-HYB-006-FEEDBACK-RESOLUTION-2026-09-28",
+          "authority_effect": "none",
+          "receipt_scope": null,
+          "candidate_identity": null,
+          "candidate_coverage_result": null,
+          "unaccounted_atom_refs": [],
+          "atom_id": "V13-ARCHIVE-L0290-HR-FR-HYB-006-AC-HEAD-MISMATCH",
+          "disposition": "preserved_pending",
+          "relation": "The source HEAD mismatch rejection remains outside this candidate.",
+          "receipt_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "receipt_source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "receipt_line_sha256": "sha256:2125ab8a351eea42abeb00975c7ff99a80fed5fe914b5c84a50bf6ca4945b931",
+          "match_basis": "exact_source_identity"
+        }
+      ],
+      "effective_current_view_correction": "OS feedback receipt splits exact source line; only prose-handover-alone atom maps to OS-044, later adopted in D57. Lifecycle/event/SessionStart, unacknowledged finding, and source-HEAD mismatch atoms remain outside selected scope; no closure/holding retirement."
+    },
+    {
+      "rank": 57,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00218",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 291,
+        "source_line_sha256": "sha256:ae131dde0ed1dff7b44a5e69b2b9ee5525d5bbaa51d47c9044043ce3c093ff92"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 58,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00219",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 292,
+        "source_line_sha256": "sha256:af240eb5a385b570c2528658d4baa423f124118ac5f2729424c2d41056306ff8"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 59,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00220",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 293,
+        "source_line_sha256": "sha256:7b97bee36d6ffc41cf5c6b78883fabb62e953bafbf45912587d2592e91c317d7"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 60,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00221",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 294,
+        "source_line_sha256": "sha256:c0202c8f76c80a6b139a800567ed6bac19e5389325e0edb4bba58a03562d53f8"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 61,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00269",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 349,
+        "source_line_sha256": "sha256:5d799c0239f074436794cf68259cbb8d91177eca8bc6da6e7fb53fd49866d009"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 62,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00272",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 353,
+        "source_line_sha256": "sha256:27e8a9ed85cddc729d708f7104f6d76b5508c8c891addf5e2a3b979dbd292228"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 63,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00273",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 354,
+        "source_line_sha256": "sha256:b85233e3dee597958a2bf261c3aaa5e2df8ecb147af1fa438018bb6ba8393650"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 64,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00274",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 355,
+        "source_line_sha256": "sha256:df7ce68386f5618c30994263c2888c93f529e2d79fd30c8723475cd058f80a96"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 65,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00275",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 356,
+        "source_line_sha256": "sha256:db7c33086ca9950a683a8907d2292918973fb1f55d8cf0795cad0dc2dbc9d516"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 66,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00276",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 357,
+        "source_line_sha256": "sha256:71a790610f18a6dc8f32e409b6c2e61585c6d4de615dd15fb294b706faf01f11"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 67,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00277",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 358,
+        "source_line_sha256": "sha256:839d36c2389f376edd4f157b659e4b284ed5a219ca016f099cb218830bb62b05"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 68,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00278",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 359,
+        "source_line_sha256": "sha256:b09f30bd7f22cb2a19266445c026b2b12407ab48ca087e29aa7d04ea84671f9f"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 69,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00279",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 361,
+        "source_line_sha256": "sha256:4b5c15c01b67d0c0206893d4979dc897b184102807352feb8426a7dd0d1505bd"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 70,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00284",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 369,
+        "source_line_sha256": "sha256:1b344ce99d5ee503006ec148ce08df56a553b7077caca1a556aff2d2d996c9ec"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/harness-measurement-contract-coverage-receipt-2026-09-28-r3.json",
+          "receipt_sha256": "6204eea1366b12c57e4e9fb9411bea8569ab2ab4aa9562e38d9b7746fdb48b19",
+          "receipt_id": "MPR-RCPT-HARNESS-MEASUREMENT-CONTRACT-2026-09-28-R3",
+          "authority_effect": "none",
+          "receipt_scope": "r2の計測6行を保持し、HR-NFR-REG-001〜007を基準/preiso各7行として追加した20行。revision重複を独立要求数と数えず、全v1.3被覆を主張しない。",
+          "candidate_identity": "HARNESS-L2-034",
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "REQSRC-SUP-00284",
+          "disposition": "carried",
+          "relation": "NFR識別/品質特性/source authority/surfaceとerror budget/hard limitを034本文の既存14項目へ追加し、欠落/混同をL11で拒否。",
+          "receipt_source_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "receipt_source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "receipt_line_sha256": "sha256:1b344ce99d5ee503006ec148ce08df56a553b7077caca1a556aff2d2d996c9ec",
+          "match_basis": "line_sha256_and_text_only"
+        }
+      ],
+      "effective_current_view_correction": "Receipt physical line number, text, and SHA-256 match; the receipt records alternate source path `docs/governance/requirements-source/helix-requirements_v1.3.md` (its whole-file SHA matches the archived source). This is `line_sha256_and_text_only`, not exact source-qualified identity. D57 adopts the pair. Limited receipt scope; no formal successor or execution/acceptance closure."
+    },
+    {
+      "rank": 71,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00285",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 370,
+        "source_line_sha256": "sha256:b1b4d407654ac57942784c72d017f840cb5ad0829ec1f3ad40c2a00da6cb53eb"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/harness-measurement-contract-coverage-receipt-2026-09-28-r3.json",
+          "receipt_sha256": "6204eea1366b12c57e4e9fb9411bea8569ab2ab4aa9562e38d9b7746fdb48b19",
+          "receipt_id": "MPR-RCPT-HARNESS-MEASUREMENT-CONTRACT-2026-09-28-R3",
+          "authority_effect": "none",
+          "receipt_scope": "r2の計測6行を保持し、HR-NFR-REG-001〜007を基準/preiso各7行として追加した20行。revision重複を独立要求数と数えず、全v1.3被覆を主張しない。",
+          "candidate_identity": "HARNESS-L2-034",
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "REQSRC-SUP-00285",
+          "disposition": "carried",
+          "relation": "能力/観測挙動/技術選択/閾値運用/環境値を区分。旧層番号は現行pairへ対応し旧技術を要求意味に混在させない。",
+          "receipt_source_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "receipt_source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "receipt_line_sha256": "sha256:b1b4d407654ac57942784c72d017f840cb5ad0829ec1f3ad40c2a00da6cb53eb",
+          "match_basis": "line_sha256_and_text_only"
+        }
+      ],
+      "effective_current_view_correction": "Receipt physical line number, text, and SHA-256 match; the receipt records alternate source path `docs/governance/requirements-source/helix-requirements_v1.3.md` (its whole-file SHA matches the archived source). This is `line_sha256_and_text_only`, not exact source-qualified identity. D57 adopts the pair. Limited receipt scope; no formal successor or execution/acceptance closure."
+    },
+    {
+      "rank": 72,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00286",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 371,
+        "source_line_sha256": "sha256:0a58e6830acd3de799d55d918bed4d26b0977790e1460f2a53a72bfd778f02f5"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/harness-measurement-contract-coverage-receipt-2026-09-28-r3.json",
+          "receipt_sha256": "6204eea1366b12c57e4e9fb9411bea8569ab2ab4aa9562e38d9b7746fdb48b19",
+          "receipt_id": "MPR-RCPT-HARNESS-MEASUREMENT-CONTRACT-2026-09-28-R3",
+          "authority_effect": "none",
+          "receipt_scope": "r2の計測6行を保持し、HR-NFR-REG-001〜007を基準/preiso各7行として追加した20行。revision重複を独立要求数と数えず、全v1.3被覆を主張しない。",
+          "candidate_identity": "HARNESS-L2-034",
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "REQSRC-SUP-00286",
+          "disposition": "carried",
+          "relation": "AI固有7品質条件を適用scope別に保持。非AIへの無理由な一律適用をL11で拒否。",
+          "receipt_source_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "receipt_source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "receipt_line_sha256": "sha256:0a58e6830acd3de799d55d918bed4d26b0977790e1460f2a53a72bfd778f02f5",
+          "match_basis": "line_sha256_and_text_only"
+        }
+      ],
+      "effective_current_view_correction": "Receipt physical line number, text, and SHA-256 match; the receipt records alternate source path `docs/governance/requirements-source/helix-requirements_v1.3.md` (its whole-file SHA matches the archived source). This is `line_sha256_and_text_only`, not exact source-qualified identity. D57 adopts the pair. Limited receipt scope; no formal successor or execution/acceptance closure."
+    },
+    {
+      "rank": 73,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00287",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 372,
+        "source_line_sha256": "sha256:1ddeb5d759fbc9437a13eb446e59f59e2f30546e55a3c3863202fb5224829618"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/harness-measurement-contract-coverage-receipt-2026-09-28-r3.json",
+          "receipt_sha256": "6204eea1366b12c57e4e9fb9411bea8569ab2ab4aa9562e38d9b7746fdb48b19",
+          "receipt_id": "MPR-RCPT-HARNESS-MEASUREMENT-CONTRACT-2026-09-28-R3",
+          "authority_effect": "none",
+          "receipt_scope": "r2の計測6行を保持し、HR-NFR-REG-001〜007を基準/preiso各7行として追加した20行。revision重複を独立要求数と数えず、全v1.3被覆を主張しない。",
+          "candidate_identity": "HARNESS-L2-034",
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "REQSRC-SUP-00287",
+          "disposition": "carried",
+          "relation": "DB/投影/並行性の計測条件と未再現原因断定拒否を保持。旧DB実装を指定しない。",
+          "receipt_source_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "receipt_source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "receipt_line_sha256": "sha256:1ddeb5d759fbc9437a13eb446e59f59e2f30546e55a3c3863202fb5224829618",
+          "match_basis": "line_sha256_and_text_only"
+        }
+      ],
+      "effective_current_view_correction": "Receipt physical line number, text, and SHA-256 match; the receipt records alternate source path `docs/governance/requirements-source/helix-requirements_v1.3.md` (its whole-file SHA matches the archived source). This is `line_sha256_and_text_only`, not exact source-qualified identity. D57 adopts the pair. Limited receipt scope; no formal successor or execution/acceptance closure."
+    },
+    {
+      "rank": 74,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00288",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 373,
+        "source_line_sha256": "sha256:948af905c1efeb72bc13074923e6d3faabd032433c0bcdf6120be6c41b7a3d36"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/harness-measurement-contract-coverage-receipt-2026-09-28-r3.json",
+          "receipt_sha256": "6204eea1366b12c57e4e9fb9411bea8569ab2ab4aa9562e38d9b7746fdb48b19",
+          "receipt_id": "MPR-RCPT-HARNESS-MEASUREMENT-CONTRACT-2026-09-28-R3",
+          "authority_effect": "none",
+          "receipt_scope": "r2の計測6行を保持し、HR-NFR-REG-001〜007を基準/preiso各7行として追加した20行。revision重複を独立要求数と数えず、全v1.3被覆を主張しない。",
+          "candidate_identity": "HARNESS-L2-034",
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "REQSRC-SUP-00288",
+          "disposition": "carried",
+          "relation": "権限/状態境界に対するfault/race/soak/crashの適用条件を保持。005のticket別選択と未完義務回収を変更しない。",
+          "receipt_source_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "receipt_source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "receipt_line_sha256": "sha256:948af905c1efeb72bc13074923e6d3faabd032433c0bcdf6120be6c41b7a3d36",
+          "match_basis": "line_sha256_and_text_only"
+        }
+      ],
+      "effective_current_view_correction": "Receipt physical line number, text, and SHA-256 match; the receipt records alternate source path `docs/governance/requirements-source/helix-requirements_v1.3.md` (its whole-file SHA matches the archived source). This is `line_sha256_and_text_only`, not exact source-qualified identity. D57 adopts the pair. Limited receipt scope; no formal successor or execution/acceptance closure."
+    },
+    {
+      "rank": 75,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00289",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 374,
+        "source_line_sha256": "sha256:9b8c75fb083044bc8ce146f452177232e643f9fe3a7a96a2704cb3ca46a6eded"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/harness-measurement-contract-coverage-receipt-2026-09-28-r3.json",
+          "receipt_sha256": "6204eea1366b12c57e4e9fb9411bea8569ab2ab4aa9562e38d9b7746fdb48b19",
+          "receipt_id": "MPR-RCPT-HARNESS-MEASUREMENT-CONTRACT-2026-09-28-R3",
+          "authority_effect": "none",
+          "receipt_scope": "r2の計測6行を保持し、HR-NFR-REG-001〜007を基準/preiso各7行として追加した20行。revision重複を独立要求数と数えず、全v1.3被覆を主張しない。",
+          "candidate_identity": "HARNESS-L2-034",
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "REQSRC-SUP-00289",
+          "disposition": "carried",
+          "relation": "riskによる6手法選択、手法追加だけの完成拒否を保持。",
+          "receipt_source_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "receipt_source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "receipt_line_sha256": "sha256:9b8c75fb083044bc8ce146f452177232e643f9fe3a7a96a2704cb3ca46a6eded",
+          "match_basis": "line_sha256_and_text_only"
+        }
+      ],
+      "effective_current_view_correction": "Receipt physical line number, text, and SHA-256 match; the receipt records alternate source path `docs/governance/requirements-source/helix-requirements_v1.3.md` (its whole-file SHA matches the archived source). This is `line_sha256_and_text_only`, not exact source-qualified identity. D57 adopts the pair. Limited receipt scope; no formal successor or execution/acceptance closure."
+    },
+    {
+      "rank": 76,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00290",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 375,
+        "source_line_sha256": "sha256:858788f04f4732a39d32638b887af558ba934299acf59a3ce76e6e27ef205ae8"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/harness-measurement-contract-coverage-receipt-2026-09-28-r3.json",
+          "receipt_sha256": "6204eea1366b12c57e4e9fb9411bea8569ab2ab4aa9562e38d9b7746fdb48b19",
+          "receipt_id": "MPR-RCPT-HARNESS-MEASUREMENT-CONTRACT-2026-09-28-R3",
+          "authority_effect": "none",
+          "receipt_scope": "r2の計測6行を保持し、HR-NFR-REG-001〜007を基準/preiso各7行として追加した20行。revision重複を独立要求数と数えず、全v1.3被覆を主張しない。",
+          "candidate_identity": "HARNESS-L2-034",
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "REQSRC-SUP-00290",
+          "disposition": "carried",
+          "relation": "時系列と要求/release/regression/改善episodeの因果対応を保持。旧P4 schemaは指定しない。",
+          "receipt_source_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "receipt_source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "receipt_line_sha256": "sha256:858788f04f4732a39d32638b887af558ba934299acf59a3ce76e6e27ef205ae8",
+          "match_basis": "line_sha256_and_text_only"
+        }
+      ],
+      "effective_current_view_correction": "Receipt physical line number, text, and SHA-256 match; the receipt records alternate source path `docs/governance/requirements-source/helix-requirements_v1.3.md` (its whole-file SHA matches the archived source). This is `line_sha256_and_text_only`, not exact source-qualified identity. D57 adopts the pair. Limited receipt scope; no formal successor or execution/acceptance closure."
+    },
+    {
+      "rank": 77,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00291",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 377,
+        "source_line_sha256": "sha256:3d85a0787b2d22f7c722b351fc49c834edecd30bc61f018e8850696a21d5ca8e"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 78,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00310",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 403,
+        "source_line_sha256": "sha256:28cddaf9def5e5337044b9fed381fa3062a76cf2ce8e4e9ea5bd2757a7b791af"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 79,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00312",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 405,
+        "source_line_sha256": "sha256:95df323929f6cb0df5f1cd8e95beb8c86981f1341cf426402fd626e2d1eb1a6c"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 80,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00314",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 408,
+        "source_line_sha256": "sha256:bf3905d72934dd7b47630e6751e8a7cbb043b85c46424d9c4fac73275b6c2526"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 81,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00315",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 409,
+        "source_line_sha256": "sha256:913716a6f514e240ea0151e17b5e61e46c2aed9c42de0b988d5d46b36049abea"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 82,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00319",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 414,
+        "source_line_sha256": "sha256:f8b6770fed171d0adbc6626eab5b9980fbfd42f4be6542f36567aab1288b1c2f"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 83,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00320",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 415,
+        "source_line_sha256": "sha256:7557a60c6e24ee4b816ad71c6f1ca473573796b026e7697a0e74885189b5ee8f"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 84,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00321",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 416,
+        "source_line_sha256": "sha256:99397e996c032114e13288d9418c60b3fc3b6d3d12a4ef850c5d7ae2084e5a53"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 85,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00322",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 417,
+        "source_line_sha256": "sha256:88270cb986eee439bd9b21edfcde130ea75b86e8d9e31a14e8e816f00d5b0ddc"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 86,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00330",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 428,
+        "source_line_sha256": "sha256:174f87daa1755264b9066d715a5c8541c9b5a13167f3fa66c18d420fe3ccc1d3"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/security-v13-worker-context-coverage-receipt-2026-09-28-r2.json",
+          "receipt_sha256": "723df890641b8746e5882e17e86749aa413af46de4f6aabbad182ed77319f369",
+          "receipt_id": "MPR-RCPT-SECURITY-V13-WORKER-CONTEXT-2026-09-28-R2",
+          "authority_effect": "none",
+          "receipt_scope": "同じ旧v1.3 §4.10 HR-FR-P2-05 archive原source line 428（REQSRC-SUP-00330）と6fabd125 baseline line 409の別revision atomを入力する訂正revision。起動前context binding、raw secret／credential値またはsecret／機密task内容を外部Workerへ渡す場合のdeny、および出力の非権威性を候補として記録する。既存L2-005の操作・対象・scope・期限付きcredential-use capabilityに従い、値・機密内容をWorkerへ渡さない認証付きoperationは、既存L2-008 authority、L2-007制約および該当L2-006条件の範囲で一律denyしない。HR-FR-P2-05の「secret task deny」はこの適用幅を定義していないため、source意味の曖昧さを保持し、blanket denyを意図する場合はPOの意味変更判断へ残す。source atom集合と2件のatom mappingは旧receiptのまま保持し、両source holding、旧packet schema/runtime、v1.3全体、condition closure、採択・実装・起動許可は主張しない。",
+          "candidate_identity": null,
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "V13-ARCHIVE-L0428-HR-FR-P2-05",
+          "disposition": "candidate_rehome_draft",
+          "relation": "HR-FR-P2-05の外部AI Worker起動前条件をSECURITY-L2-033候補へ意味保持候補として対応づける。旧packet/schemaや旧runtimeは移植せず、適用authorityとcontextの現行契約へ再導出する。",
+          "receipt_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "receipt_source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "receipt_line_sha256": "sha256:174f87daa1755264b9066d715a5c8541c9b5a13167f3fa66c18d420fe3ccc1d3",
+          "match_basis": "exact_source_identity"
+        },
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/security-v13-worker-context-coverage-receipt-2026-09-28.json",
+          "receipt_sha256": "b01ecaebc8b2b591d30323a7992436433dc1c93d1aafaa7b03d31cc51ee2b38c",
+          "receipt_id": "MPR-RCPT-SECURITY-V13-WORKER-CONTEXT-2026-09-28",
+          "authority_effect": "none",
+          "receipt_scope": "旧v1.3 §4.10 HR-FR-P2-05のarchive原source line 428（REQSRC-SUP-00330）と6fabd125 baseline line 409の完全同文・別revision atomだけを入力とする。外部AI Workerのversioned descriptor、current HEAD/authority/rule/task boundary binding、隔離worktree、secret task deny、non-authoritative outputの限定再導出候補を記録する。旧worker-context-packet.v1 schema、旧runtime/provider実装を移植しない。L2-031の主Worker契約外追加runtime限定境界、L2-029のdata/opt-out条件を主Workerへ拡張せず、通常作業の一律停止や毎回の人間承認を追加しない。v1.3全体、source holding全体、condition closure、候補採択・実装・runtime起動許可は主張しない。",
+          "candidate_identity": null,
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "V13-ARCHIVE-L0428-HR-FR-P2-05",
+          "disposition": "candidate_rehome_draft",
+          "relation": "HR-FR-P2-05の外部AI Worker起動前条件をSECURITY-L2-033候補へ意味保持候補として対応づける。旧packet/schemaや旧runtimeは移植せず、適用authorityとcontextの現行契約へ再導出する。",
+          "receipt_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "receipt_source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "receipt_line_sha256": "sha256:174f87daa1755264b9066d715a5c8541c9b5a13167f3fa66c18d420fe3ccc1d3",
+          "match_basis": "exact_source_identity"
+        }
+      ],
+      "effective_current_view_correction": "Exact archived atom is carried in SECURITY-033 Worker Context receipt; D57 adopts exact SECURITY-033 pair. Receipt is 1 of 2 source atoms; packet/schema/all worker conditions and execution remain outside."
+    },
+    {
+      "rank": 87,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00332",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 430,
+        "source_line_sha256": "sha256:a93331748e84ab0fd111c3bc6e9bfa147e681b3ddb30774293c7a577c61c3dd7"
+      },
+      "queue_adopted_citation_refs": [
+        {
+          "requirement_identity": "HELIXSECURITY-L2-032",
+          "decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_status": "adopted_exact_L2_and_paired_L11_revision_2026-09-29",
+          "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-032-001",
+          "l2_revision": {
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "file_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+            "section_digest": "sha256:ccdd634fb92621105310b91465e01bd089238cc430491ff3c8ac51a3d80403c8"
+          },
+          "l11_revision": {
+            "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "file_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
+            "section_digest": "sha256:5dcf1c19728badff041220d610a85c3507a6c6f70fea57c0081ae9902705c6f1"
+          },
+          "citation_ref": {
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "locator": "line 453"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 430,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ],
+      "exact_source_line_sha_receipt_matches": [
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/security-v13-worker-bypass-coverage-receipt-2026-09-28.json",
+          "receipt_sha256": "1a6d9e57e086205567318d1581b60aca8b13440aeffadaa86083bf647897a232",
+          "receipt_id": "MPR-RCPT-SECURITY-V13-WORKER-BYPASS-2026-09-28",
+          "authority_effect": "none",
+          "receipt_scope": "旧v1.3 §4.10 HR-FR-P2-07の原source condition 1行のみをHELIXSECURITY-L2/L11-032候補へ局所対応させる。主Worker／追加runtimeを含む旧§4.10のprovider/runtime-neutral scope、deny優先、unknown/stale、適用denyなし時の既存authorityへの復帰を対応づける。全v1.3／全追加Worker条件への被覆や採択を主張しない。",
+          "candidate_identity": "HELIXSECURITY-L2-032",
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "V13-ARCHIVE-L0430-HR-FR-P2-07",
+          "disposition": "carried",
+          "relation": "HR-FR-P2-07のpermanent repository-level bypass denyとone-shot marker/provider flag間の優先順位を保持する。適用denyなしのときは本候補から許可・拒否を作らず既存operation authorityへ戻す。§4.10全体の被覆・candidate adoptionは主張しない。",
+          "receipt_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "receipt_source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "receipt_line_sha256": "sha256:a93331748e84ab0fd111c3bc6e9bfa147e681b3ddb30774293c7a577c61c3dd7",
+          "match_basis": "exact_source_identity"
+        }
+      ],
+      "effective_current_view_correction": "Queue citation and SECURITY-032 receipt identify exact source line; D57 adopts the pair. Receipt is the single HR-FR-P2-07 atom; it does not close adjacent providers/runtime, retire holding, or prove deny execution."
+    },
+    {
+      "rank": 88,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00334",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 432,
+        "source_line_sha256": "sha256:2d2a7f87985d226782a2064851ea971123b4e3af9bffbf1021ca8cf76cf898c4"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/os-package-acceptance-coverage-receipt-2026-09-28-r3.json",
+          "receipt_sha256": "b1ce91e70986c02ea7ecf7403c8736ef49cf05f7ce00a361a49e331b019f1b0f",
+          "receipt_id": "MPR-RCPT-OS-PACKAGE-ACCEPTANCE-2026-09-28-R3",
+          "authority_effect": "none",
+          "receipt_scope": "既存r2の96 atomと28保留を保持し、旧v1.3 HR-FR-P6-06のarchive/baseline各S1を2 atom追加した候補入力98 atom。両revisionのS2は別source holdingに保全し、旧行全体の意味被覆・PLAN-M-02等価性・採択を主張しない。",
+          "candidate_identity": "HELIXOS-L2-030",
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "V13-ARCHIVE-L0432-HR-FR-P6-06-S1",
+          "disposition": "carried",
+          "relation": "既存HELIXOS-L2/L11-030のpackage index・rights・provenance・digest条件へ局所対応。S2のPLAN-M-02意味は別途保留。",
+          "receipt_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "receipt_source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "receipt_line_sha256": "sha256:2d2a7f87985d226782a2064851ea971123b4e3af9bffbf1021ca8cf76cf898c4",
+          "match_basis": "exact_source_identity"
+        }
+      ],
+      "effective_current_view_correction": "OS-030 package receipt carries exact content atom, but D57 holds OS-030. Candidate/source relation only, not adoption. Keep package and separate publish/cutover authority atom pending; no adopted relation is inferred."
+    },
+    {
+      "rank": 89,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00335",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 434,
+        "source_line_sha256": "sha256:412e80125242670794775ecffeadbec93233caf4bf9df33705af48a6b44b1d84"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 90,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00337",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 437,
+        "source_line_sha256": "sha256:e03e660240bf5c37a39081e9e4581526ba76fbd5ad8fc697b45f5abf5ab192e5"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": "No exact queue citation or exact line-SHA receipt hit for line 437. It starts the split blind-benchmark sentence continued by rank 91/line438; adjacency is context, not adopted binding."
+    },
+    {
+      "rank": 91,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00338",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 438,
+        "source_line_sha256": "sha256:2c59992ccd95b908b909d67091d23f65d92be9f4596f3af1c59313a38697fbac"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": "No exact queue citation or exact line-SHA receipt hit for line 438. Rank90/line437 is split-sentence context; rank87/line430 SECURITY-032 is a distinct row and does not transfer. Keep fixed-F6 no-direct-pair finding and benchmark/admit-retire residual."
+    },
+    {
+      "rank": 92,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00339",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 439,
+        "source_line_sha256": "sha256:987ca1fd7f0c0d150590918e2a7e3cfcd0dce5ffe13e1b3d2d79e0fbe4c22532"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 93,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00340",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 440,
+        "source_line_sha256": "sha256:52d9b8207182cc47c8a75c5ed626378e2db53b7004293e94f2b009b68032b644"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 94,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00435",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 561,
+        "source_line_sha256": "sha256:636df91db6d1af09037b32e5227d1762093eb908a9da218fc861d22f40bd7b9f"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 95,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00441",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 571,
+        "source_line_sha256": "sha256:bc794e93d20dbfaa3a91f7c8cbf3bb2481f6bfa07fecfd01f92938c777c4bdf9"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 96,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00442",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 572,
+        "source_line_sha256": "sha256:7c0e048ea6c0754857d963e8e41ceece9a62200f92f48978556f3cad35bd42ce"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 97,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00443",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 573,
+        "source_line_sha256": "sha256:25e5526c424b6ffb12fb4e9e68414be52d3c356f11ce73cc3e810f1f561d2282"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 98,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00444",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 575,
+        "source_line_sha256": "sha256:ca4337b43f5f950aeb01f9d6ae57f6a26ed705b5f934bc8b71b4a47d2b4d4124"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 99,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00445",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 576,
+        "source_line_sha256": "sha256:d68d8260701278eb93c11155bd94ae30149f68ccb36ed6ad2e7364dde166d7a1"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 100,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00446",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 577,
+        "source_line_sha256": "sha256:77e6029851b149a2ba9682a68fcc1a6d396e0f2b35bb4d68335cfb2bc075c24a"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 101,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00447",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 578,
+        "source_line_sha256": "sha256:2296c65ea058cff7459b1467721b1b0e1f54e5ca21ce79e876a2609f16a8cf86"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 102,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00451",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 584,
+        "source_line_sha256": "sha256:fa4b0cfa000aa3e3256aee6b3d24dd27d4c02da51afd4f69c6297edc93921ac9"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 103,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00452",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 585,
+        "source_line_sha256": "sha256:582103f25c13c939c3cb25b6ac2bf7e30077140cdfb895b644dd72486f1a103c"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 104,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00453",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 586,
+        "source_line_sha256": "sha256:1c0bb185c1fddc858c9fe8138eb0dbd1e1d8b87d9bbbe1edabea964bceaa2533"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 105,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00454",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 587,
+        "source_line_sha256": "sha256:75894fd400e9f45b8705f30786d247cecd443e2ec1f3fb00cf557d903d15eddb"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 106,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00455",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 588,
+        "source_line_sha256": "sha256:995ef5c46d28f6760f7df9eb67bb2e81032502cc7257a1e73c346a4044227c70"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 107,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00456",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 589,
+        "source_line_sha256": "sha256:f0f859239773f15382601685d08ca89253492569df12b60118ccd8693081b2ce"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 108,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00457",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 590,
+        "source_line_sha256": "sha256:79c7db9ee8377ca735a40d80c5fd08339f6bbc08c4d3788ec902ca636012c757"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 109,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00458",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 591,
+        "source_line_sha256": "sha256:c2ca3bfb56dfb0364d2bfa1f11258ded91dce93147a2f8bf799473c593a35afd"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 110,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00459",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 593,
+        "source_line_sha256": "sha256:51453b5149e0b2271962178447bf1c878ec96f3fd6422d27a8d94d45b3fcebec"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 111,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00477",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 617,
+        "source_line_sha256": "sha256:3bb5fb3976828d7adc9b514a5c06aa74656ebc85cf233448c18220814514c561"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 112,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00478",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 618,
+        "source_line_sha256": "sha256:a0afb22ddfbdb072fad63a61307c8dd76566f9304c426853ec3c5d7d0f2c7123"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 113,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00479",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 620,
+        "source_line_sha256": "sha256:8cb25c3a0fb124b25a9b0701893fdeef87b3b07222481aa991701d5180759e68"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 114,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00482",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 623,
+        "source_line_sha256": "sha256:074039b2e5fb673369eab6a81f110d837c6b03ecddff1fbba9692d6cc7f9e015"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 115,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00483",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 624,
+        "source_line_sha256": "sha256:abe6948306eff0bd417364df922710b962f944be6c61f33edc9f50a24e03e140"
+      },
+      "queue_adopted_citation_refs": [
+        {
+          "requirement_identity": "HELIXOS-L2-036",
+          "decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_status": "adopted_exact_L2_and_paired_L11_revision_2026-09-29",
+          "target_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "registration_id": "MPR-RC-HELIXOS-L2-036-001",
+          "l2_revision": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+            "section_digest": "sha256:82c3fc7c25b023604463f4c44c284440b9666342a0cf8a3bd6b1996394cb33b9"
+          },
+          "l11_revision": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+            "section_digest": "sha256:daec5fceac7a0e19a0cf83541126772393735b01c5b1592edeb6f050061bebc3"
+          },
+          "citation_ref": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "locator": "line 1047; paired L11 citation line 638"
+          },
+          "source_locator": {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+            "line": 624,
+            "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+            "file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+          },
+          "semantic_coverage_effect": "citation_only; no condition-level coverage is inferred"
+        }
+      ],
+      "exact_source_line_sha_receipt_matches": [
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/os-retrofit-preflight-coverage-receipt-2026-09-28.json",
+          "receipt_sha256": "bc9a399c80a10cb56bb6be77a2cf9cd86034eb3823f68f40292f6c3d19e8e323",
+          "receipt_id": "MPR-RCPT-OS-RETROFIT-PREFLIGHT-2026-09-28",
+          "authority_effect": "none",
+          "receipt_scope": "旧v1.3のupgrade preflight、旧processの影響評価/計画停止をOS036へ再導出。旧TL承認とread-only verify policyは原文・判断/参照へ保全し採択や完全移管を主張しない。",
+          "candidate_identity": "HELIXOS-L2-036",
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "REQSRC-SUP-00483",
+          "disposition": "carried",
+          "relation": "Retrofit全upgradeのpreflight義務を036へ対応。",
+          "receipt_source_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "receipt_source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "receipt_line_sha256": "sha256:abe6948306eff0bd417364df922710b962f944be6c61f33edc9f50a24e03e140",
+          "match_basis": "line_sha256_and_text_only"
+        }
+      ],
+      "effective_current_view_correction": "Receipt physical line number, text, and SHA-256 match; the receipt records alternate source path `docs/governance/requirements-source/helix-requirements_v1.3.md` (its whole-file SHA matches the archived source). This is `line_sha256_and_text_only`, not exact source-qualified identity. D57 adopts OS-036. Supersedes “no source-specific pair routes this signal to Retrofit/preflight.” No runtime, holding retirement, or closure."
+    },
+    {
+      "rank": 116,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00496",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 639,
+        "source_line_sha256": "sha256:a1246b2d13e88149de79871a952cb1c9749e5ff9b5f74891a2a3679daddb277e"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 117,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00500",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 643,
+        "source_line_sha256": "sha256:fd6047e6a45f3805d97d13c1f09b72ad71c93c7e95843d407b0b0aac64767b6f"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": "The adopted fixed HARNESS-L2-002/003 at line105 contains a bounded clause semantically corresponding to the exactly-one route condition in source line643; wording is not identical. Only that route clause is corrected. The F6 physical-line SHA-256 pin includes the terminating LF; the pinned line_text omits it. The prior rank audit omitted this route from fixed_f6_relations, so “not established” is superseded only for the exactly-one route clause. No broader Scrum/source closure or successor."
+    },
+    {
+      "rank": 118,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00501",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 644,
+        "source_line_sha256": "sha256:9af66b9203d37bb7c3eb01cbd14e87f57b1fe0ae9dee54208459dfa2bf6d091f"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 119,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00502",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 645,
+        "source_line_sha256": "sha256:a3ea485f2cf9c040c26fc0dda054c7bd72f980af85c472edd5c1e479f9533758"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 120,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00503",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 646,
+        "source_line_sha256": "sha256:be12f0babe2579af9376a3b2840da046b584cf47a02a20bdf62d42999caed559"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 121,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00504",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 647,
+        "source_line_sha256": "sha256:6c616a3fb85f5affae79a701b3ac2accf0975373d3540e8738bdd2b3c0a9d41e"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [
+        {
+          "receipt_path": "docs/governance/audits/requirement-registration/harness-fullv-scrum-coverage-receipt-2026-09-28.json",
+          "receipt_sha256": "a8531d8914f88aca864ac0707b01a6e38b5a58c92f4b331da9cc9a4defaa1ec1",
+          "receipt_id": "MPR-RCPT-HARNESS-FULLV-SCRUM-2026-09-28",
+          "authority_effect": "none",
+          "receipt_scope": "旧v1.3 L259の二文（Full Vのsystem workflow段階freeze/検証、Production Scrumのslice delta/Reverse backfill/SR4 release条件）とL647の一文要約、および6fabd125監査基準revisionの同文3 spanだけを対象とする。L647はL259の二条件を併記する部分重複要約であり、第3の独立要求条件として数えない。6fabd125の同文spanは別revisionとして保つ。計6 sentence span、4 physical source lines。候補はFull V条件とScrum適用部分の条件を分けてHARNESS-L2-002/003へ接続し、2026-09-25 PO判断の方式定義・合成許可を維持する。Full VにはScrum slice delta/checkpoint/SR4を適用しない。未登録source holdを変更せず、旧v1.3全体のcoverageや正式successor/採択・実受入を主張しない。",
+          "candidate_identity": "HARNESS-L2-046",
+          "candidate_coverage_result": "no_loss",
+          "unaccounted_atom_refs": [],
+          "atom_id": "V13-ARCHIVE-L0647",
+          "disposition": "carried",
+          "relation": "L647の単独要約文。system workflow全体とScrumのslice delta/SR0〜SR4 backfillを併記する。L259の二文の条件を要約して重なるが、L259の検証項目・時点・release条件の詳細を繰り返さない。",
+          "receipt_source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+          "receipt_source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "receipt_line_sha256": "sha256:6c616a3fb85f5affae79a701b3ac2accf0975373d3540e8738bdd2b3c0a9d41e",
+          "match_basis": "exact_source_identity"
+        }
+      ],
+      "effective_current_view_correction": "Exact L647 summary atom is carried in Full V/Scrum receipt and HARNESS-046 is adopted by D57. Receipt says L647 overlaps L259 and is not a third independent condition. No extra requirement count, successor, or execution/acceptance closure."
+    },
+    {
+      "rank": 122,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00505",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 648,
+        "source_line_sha256": "sha256:bf985f4e39d2a4bf090cfc0dd2e938d57b50ad39ead8be11d5058718047e3512"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 123,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00508",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 651,
+        "source_line_sha256": "sha256:2e191701a131af14c49f9e853363e86d6994f0bfd688cd60a1a6d2c7672a1b89"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 124,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00510",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 653,
+        "source_line_sha256": "sha256:517f59435920f9897525185e2619f546f15e021710c91b0eecfb25fe46932781"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": "Live26 PO decision adopts HARNESS-057 gate meaning/close eligibility with OS-054 evidence/close handoff. This is a bounded semantic relation to line653, but its receipt source is HIL-FR-07, not this v1.3 row SHA. Do not label as exact row citation/receipt binding or formal successor. Source holding, detailed mapping, and execution/acceptance remain unresolved."
+    },
+    {
+      "rank": 125,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00511",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 654,
+        "source_line_sha256": "sha256:73aa2c133c430ed99c1b7f13db892976e4d3f6f505a673c9d8445c591d046c3b"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 126,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00512",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 655,
+        "source_line_sha256": "sha256:76b546315a2e5c74800175772c430ef03484591f665cd66ed978315d51b360bb"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 127,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00513",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 656,
+        "source_line_sha256": "sha256:fa9a984e1b0e8a8aaba1d6e1e806d227360d372e5d5640d2acaf3c980660ce12"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 128,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00516",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 659,
+        "source_line_sha256": "sha256:019d6b87b79600d353f08f3f7816c6bd4959cec23ed381e8e14215949b1209da"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 129,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00517",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 660,
+        "source_line_sha256": "sha256:3d3cd4531b139917febbde47d86fc736b9a2c82d60b7d4c3738f3e48338315b2"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 130,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00520",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 663,
+        "source_line_sha256": "sha256:30b32ad0ce70cc83549b1fbfdaea5fccbe94f829763b21bc23cda0433af44f49"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    },
+    {
+      "rank": 131,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00521",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 664,
+        "source_line_sha256": "sha256:28d72ac447b6a96d973662566c8af0ac9aed7ba996e937f9b0d308182d7df798"
+      },
+      "queue_adopted_citation_refs": [],
+      "exact_source_line_sha_receipt_matches": [],
+      "effective_current_view_correction": null
+    }
+  ]
+}
