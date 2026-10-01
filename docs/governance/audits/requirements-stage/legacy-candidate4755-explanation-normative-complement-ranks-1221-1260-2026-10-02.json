@@ -6536,5 +6536,17 @@
         "ledger_source_line_sha256": "sha256:6ffc92c3aab296b629dc2705feb8a060136541ee34db055be4f61e83f71d6455"
       }
     }
-  ]
+  ],
+  "prior_completed_complement_slice": {
+    "ranks": [
+      1181,
+      1220
+    ],
+    "merge_commit": "ccf3599d8575e0dafedd26319af035e305aa3f27",
+    "last_id": "LEGACY-CAND-LINE-002014",
+    "md_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1181-1220-2026-10-02.md",
+    "md_sha256": "1539f7e62b656032e69b45e30f56a233b4372aac95ea9e0dfb618f96d77994e7",
+    "json_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1181-1220-2026-10-02.json",
+    "json_sha256": "426557357f95ea8342a2c6e674a11c85c6046b7c51165f0a815b4e01a8923e63"
+  }
 }

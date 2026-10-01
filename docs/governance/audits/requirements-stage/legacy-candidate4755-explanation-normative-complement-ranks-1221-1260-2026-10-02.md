@@ -6,7 +6,7 @@
 ## 母集団と境界
 
 - #2353の4,755 row_recordsへ#2356/#2360/#2363/#2366/#2367/#2368/#2369/#2381を順序適用し、effective explanation 2,965件を再構成。#2369 source_evidenceの000841/000857はcondition。marker screen queue 20件と既review slices 235件のunion 255件を除いた2,710件をID数値昇順で順位化。
-- rank1220=`LEGACY-CAND-LINE-002014`、rank1221=`LEGACY-CAND-LINE-002015`、rank1260=`LEGACY-CAND-LINE-002088`。前sliceのpaired auditは基点に未収載なので、境界だけを再構成し、前slice意味監査済みとは主張しない。
+- rank1220=`LEGACY-CAND-LINE-002014`、rank1221=`LEGACY-CAND-LINE-002015`、rank1260=`LEGACY-CAND-LINE-002088`。前slice 1181–1220のpaired auditは#2465 merge commit `ccf3599d8575e0dafedd26319af035e305aa3f27`でmainへ統合済み。rank1220境界IDとMD/JSON SHAを照合した。
 - 全40行の物理行bytes・前後2行・source/asset/routing ledger row・各whole-file/row/source SHA-256をJSONに記録。採択判定や行外条件は隣接行から補わない。
 
 ## 固定F6・PO decision・receiptとの関係
