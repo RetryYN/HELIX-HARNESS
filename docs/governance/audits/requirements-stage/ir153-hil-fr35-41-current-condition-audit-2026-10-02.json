@@ -553,21 +553,21 @@
     "HARNESS-L2-067": {
       "l2": {
         "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-        "full_file_sha256": "a3fe542c5c8188829c02abd56f325b2a0e3ec46f0597665a196c19c92aa01eda",
+        "full_file_sha256": "289782e37efe7153ce0a00ffdfe9f09eb5eba36d678b5730105cffaf4c7964a1",
         "section_heading": "HARNESS-L2-067",
         "section_lines": [
-          1261,
-          1275
+          1274,
+          1289
         ],
         "section_sha256": "aadf80267f3e4379fb26bdca58f2e86d4e062e935b44e1fec5ba78153aaa19a8"
       },
       "l11": {
         "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-        "full_file_sha256": "608edddd3c2a0350bbc43244c40ad96e054a62ffbc261d87299d0cff78de424f",
+        "full_file_sha256": "bea1e35b74767e7f0f8dc0af9ce18ab0c11dda45c744e20571d39367a42a6b34",
         "section_heading": "HARNESS-L2-067",
         "section_lines": [
-          982,
-          989
+          993,
+          1001
         ],
         "section_sha256": "1a8f72b416159151ca7ea724311b84d6ec5bc550590507dc8b6333fcc557cebc"
       }
@@ -575,21 +575,21 @@
     "HARNESS-L2-068": {
       "l2": {
         "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-        "full_file_sha256": "a3fe542c5c8188829c02abd56f325b2a0e3ec46f0597665a196c19c92aa01eda",
+        "full_file_sha256": "289782e37efe7153ce0a00ffdfe9f09eb5eba36d678b5730105cffaf4c7964a1",
         "section_heading": "HARNESS-L2-068",
         "section_lines": [
-          1277,
-          1291
+          1290,
+          1304
         ],
         "section_sha256": "c1941f15f4aafdea2ed2809aff01ab70b44997a816fe59f9cd5ee3b218333e1a"
       },
       "l11": {
         "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-        "full_file_sha256": "608edddd3c2a0350bbc43244c40ad96e054a62ffbc261d87299d0cff78de424f",
+        "full_file_sha256": "bea1e35b74767e7f0f8dc0af9ce18ab0c11dda45c744e20571d39367a42a6b34",
         "section_heading": "HARNESS-L2-068",
         "section_lines": [
-          991,
-          999
+          1002,
+          1010
         ],
         "section_sha256": "33ae6a20f363a29df1fd5421b3f779cc00f6b8de42e15edf44b292c65a0a6ff3"
       }
@@ -607,7 +607,7 @@
     "HARNESS-L2-067": "Legacy HIL-FR-37 line127 and fixed parent L1 specify no product version; candidate header has no version_target and receipt records target unspecified.",
     "HARNESS-L2-068": "Legacy HIL-FR-39 line129 and fixed parent L1 specify no product version; candidate header has no version_target and receipt records target unspecified."
   },
-  "root_integration_base": "44f41d070322ab8308777c0ba22368914a9a9373",
+  "root_integration_base": "f38bde044a7dfbf12aec0203b21a9384eef6ad8f",
   "historical_local_candidate_pins": {
     "HARNESS-L2-067": {
       "l2": {

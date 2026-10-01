@@ -30,3 +30,7 @@
 ## root統合時の追随
 
 最新main `44f41d070322ab8308777c0ba22368914a9a9373` のHARNESS既存全文（064を含む）と台帳648行prefixを保持し、067/068の最終001各一行と候補sectionを末尾に追補した。候補4sectionと原文2atomの意味・digestは変えず、現在の全file SHAと節の物理行をreceipt/JSONへ追随した。歴史比較fcfと起草base58cbの固定pinsを現在の全file SHAに読み替えない。
+
+### 最新main追随（root検収）
+
+main `f38bde044a7dfbf12aec0203b21a9384eef6ad8f` の064/065本文とMPR 649行prefixを保持し、067/068の各最終登録1行を追加した（651行）。4候補section digestは不変で、current fullfile SHAと行境界をreceipt/JSONへ更新した。067の親一覧は本文の001/003/004/008と合わせ、receiptのみの009を除いた。採択・旧source全体の完了は生成しない。
