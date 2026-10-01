@@ -11,9 +11,68 @@
     "reviewed_rank_start": 21,
     "reviewed_rank_end": 40,
     "semantic_rows_reviewed": 20,
-    "archive_runtime_cli_hook_test_ci_executed": false
+    "archive_runtime_cli_hook_test_ci_executed": false,
+    "f6_relation_search_scope": [
+      {
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "lines": [
+          394
+        ]
+      },
+      {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "lines": [
+          497,
+          498,
+          500,
+          501,
+          502,
+          503,
+          504,
+          505,
+          506,
+          507
+        ]
+      },
+      {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "lines": [
+          433,
+          434,
+          435,
+          436,
+          437
+        ]
+      },
+      {
+        "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "lines": [
+          123,
+          124
+        ]
+      },
+      {
+        "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
+        "lines": [
+          1,
+          10,
+          11,
+          12,
+          13,
+          14,
+          17
+        ]
+      }
+    ],
+    "searched_current_documents": [
+      "docs/helix-security/L2-requirements/security-requirements.md",
+      "docs/helix-os/L2-requirements/governance-requirements.md",
+      "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "docs/helix-os/candidates/next-generation-ci-requirements.md"
+    ]
   },
-  "method": "The 255-row marker pool was reconstructed from the screen-pinned #2353 row records, exact ordered overlays (#2356/#2360/#2363/#2366/#2367/#2368/#2369/#2381), source-line ledger, and stated regex/tie-break rules. The reproduced top 20 matches the screen queue; Markdown heading/table-header rows are excluded. Each selected archive source line and nearby clause/table context was read. Current L2/L11 checks are limited to explicit source/requirement/acceptance crosswalks in PO-fixed F6 bytes.",
+  "method": "The 255-row marker pool was reconstructed from the screen-pinned #2353 row records, exact ordered overlays (#2356/#2360/#2363/#2366/#2367/#2368/#2369/#2381), source-line ledger, and stated regex/tie-break rules. The reproduced top 20 matches the screen queue; Markdown heading/table-header rows are excluded. Each selected archive source line and nearby clause/table context was read. Current L2/L11 checks are limited to explicit source/requirement/acceptance crosswalks in PO-fixed F6 bytes. A second, bounded F6 relation pass separately checked SECURITY/OS/INTELLIGENCE L2 and INTELLIGENCE L11 source-family/candidate references. Family relation, exact selected-row crosswalk, adopted pair binding, and full atom coverage are recorded as separate facts; OS candidate-package pointer was checked for rank 40.",
   "ranking_reconstruction": {
     "effective_explanation_rows": 2965,
     "marker_pool_rows": 255,
@@ -53,9 +112,9 @@
   },
   "interpretation_boundary": {
     "legacy_assets": "All reviewed asset rows remain product_target=unresolved, upstream_ids=[], pair_ids=[], disposition=unresolved in the pinned asset ledger.",
-    "current_authority": "PO-fixed L2/L11 files are pinned to fixed revision F6; the comparison checks only explicit crosswalk strings, and absence of such a string does not establish semantic absence or closure.",
+    "current_authority": "PO-fixed L2/L11 files are pinned to fixed revision F6; the comparison checks only explicit crosswalk strings, and absence of such a string does not establish semantic absence or closure. A source-family/candidate pointer establishes only that the family or source range is referenced/retained. It does not establish a selected old-row-to-current-row pair binding, adoption, acceptance coverage, or full source-atom coverage.",
     "classification": "Every selected row retains mechanical effective_classification=explanation; semantic/exclusive classifications below do not alter the effective source-ledger classification. normative_context is a separate axis.",
-    "nonclaims": "No requirement adoption, retirement, closure, source-wide coverage, implementation, test result, acceptance execution, or authority effect is claimed."
+    "nonclaims": "No requirement adoption, retirement, closure, source-wide coverage, implementation, test result, acceptance execution, or authority effect is claimed. No selected row has a proven adopted L2/L11 pair binding or full source-atom coverage. Source-family retention does not adopt or automatically migrate the old condition."
   },
   "pinned_inputs": [
     {
@@ -176,13 +235,26 @@
     "lexical_only_false_positive_rows": 2,
     "standalone_requirement_conditions": 2,
     "explicit_legacy_to_current_crosswalk_rows": [],
-    "adopted_retired_closed_count": 0
+    "adopted_retired_closed_count": 0,
+    "source_family_relation_counts": {
+      "SEA_acceptance_atom_range": 1,
+      "AAFD_family": 2,
+      "AVS_requirements_family_only": 9,
+      "BBR_candidate_only_family": 5,
+      "no_family_relation": 3
+    },
+    "source_family_relation_rows": 17,
+    "os_candidate_pointer_only_rows": 1,
+    "row_specific_crosswalk_rows": 0,
+    "adopted_pair_binding_rows": 0,
+    "full_source_atom_coverage_established_rows": 0
   },
   "limitations": [
     "Line classification is contextual and does not change mechanical effective classification.",
-    "All current pair references are withheld where no explicit crosswalk was found; this does not prove the behavior is absent from all current requirements.",
+    "F6 source-family and candidate-retention links exist for ranks 21–37. They do not establish an exact selected-row pair binding, adoption, or full atom coverage. Rank 40 has only an OS draft candidate-package pointer; ranks 38–39 are code-only false positives.",
     "No implementation or acceptance execution is established by this audit.",
-    "Archive source and code blocks were read only; no legacy workflow, CLI, hook, adapter, source, test, CI, or runtime was executed."
+    "Archive source and code blocks were read only; no legacy workflow, CLI, hook, adapter, source, test, CI, or runtime was executed.",
+    "Current relation search is bounded to the pinned SECURITY, OS, and INTELLIGENCE L2/L11 files and the OS next-generation-CI candidate pointer identified above; it is not a repository-wide proof of absence."
   ],
   "queue": [
     {
@@ -302,17 +374,48 @@
           "result": "固定F6の該当L2/L11本文で旧source/requirement/acceptance IDの明示crosswalkは確認できない。機能的な類似からpair bindingを推定しない。"
         },
         "residual": "旧candidate資産のproduct_target/upstream_ids/pair_idsは未解決であり、当該行の採択・対応付け・受入実行は確定しない。",
-        "next": "SEA-FR-004..005の親条件、対象owner、broker/attestation境界を復元し、現行crosswalkの有無を別途照合する。",
+        "next": "SEA acceptance atom 004329をcandidate receiptまたは生存中登録先へ追跡し、broker/attestation scope、SECURITY owner、未割当atomを個別に照合する。",
         "human_facing_summary": "sandbox外network拒否とproduction deny-defaultを同時に見るnegative/positive受入行。",
-        "human_facing_comparison": "固定F6 pairへの明示crosswalk未確認。テーマ上の近接性だけでは対応付けない。",
-        "human_facing_next_step": "SEA-FR-004..005の親条件、対象owner、broker/attestation境界を復元し、現行crosswalkの有無を別途照合する。"
+        "human_facing_comparison": "SECURITY L2 line 394 lists the old SEA acceptance atom range 004308–004340 in MPR-SH-CANDIDATE-003. This is source-range retention. The selected atom 004329 has no proven individual pair binding, adoption, or full SEA atom coverage.",
+        "human_facing_next_step": "SEA acceptance atom 004329をcandidate receiptまたは生存中登録先へ追跡し、broker/attestation scope、SECURITY owner、未割当atomを個別に照合する。",
+        "source_family_relation_found": true,
+        "source_family_relation_kind": "security_sea_acceptance_atom_range",
+        "source_family_relation_evidence": [
+          {
+            "pin_id": "SECURITY-L2",
+            "lines": [
+              394
+            ]
+          }
+        ],
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
       },
       "decision_status": {
         "adopted": false,
         "retired": false,
         "closed": false,
         "authority_effect": "none"
-      }
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "SECURITY-L2",
+          "path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+          "lines": [
+            {
+              "line": 394,
+              "sha256": "64a4d58128a57ff05e0e36df30c7b1aec68ad328df111e054174a0fb11b950e5",
+              "text": "旧candidate source atomsは`MPR-SH-CANDIDATE-003`の入力集合にある。対象の旧SEA requests/requirements/acceptance line atomsはそれぞれ `LEGACY-CAND-LINE-004341..004373`（33行、source lines 1–44）、`004374..004419`（46行、source lines 1–57）、`004308..004340`（33行、source lines 1–38）である。file SHAは前表のrequests `c6d76c…f447`、requirements `38a68e…b16`、acceptance `c8d332…ffc`。この行数は登録済み候補sourceの集合であり、意味を全件移管したという主張ではない。L2候補のreceiptで各atomを保持、別の生存中登録へ保留、または人間decisionのいずれかへ割り当てる。"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
     },
     {
       "rank": 22,
@@ -425,17 +528,110 @@
           "result": "固定F6の該当L2/L11本文で旧source/requirement/acceptance IDの明示crosswalkは確認できない。機能的な類似からpair bindingを推定しない。"
         },
         "residual": "旧candidate資産のproduct_target/upstream_ids/pair_idsは未解決であり、当該行の採択・対応付け・受入実行は確定しない。",
-        "next": "AAFD-R-02のsource/consumerと対象機構を特定し、identity条件と現行authority境界を項目ごとに比較する。",
+        "next": "AAFD-R-02の旧atomをOS L2-005/007のsource-family接続とINTELLIGENCEのcandidate-only境界に対照し、各atomの保持先・未割当残差を確認する。採択や全被覆を推測しない。",
         "human_facing_summary": "exact HEAD、resolved worktree、authority digest、producer/owner、evidenceの欠落・不一致をfail-closeし、historical evidenceをcurrent claimへ読み替えない要件本文。",
-        "human_facing_comparison": "固定F6 pairへの明示crosswalk未確認。テーマ上の近接性だけでは対応付けない。",
-        "human_facing_next_step": "AAFD-R-02のsource/consumerと対象機構を特定し、identity条件と現行authority境界を項目ごとに比較する。"
+        "human_facing_comparison": "OS L2 lines 497–503 connect the AAFD requirements family (R-01..15) to HELIXOS-L2-005/007. INTELLIGENCE L2 lines 433/435 retain the AAFD source family as candidate material; INTELLIGENCE L11 line 123 says AAFD-R-01..15 remain original candidates. R-02 has no individual current pair binding, adoption, or full-family atom coverage established.",
+        "human_facing_next_step": "AAFD-R-02の旧atomをOS L2-005/007のsource-family接続とINTELLIGENCEのcandidate-only境界に対照し、各atomの保持先・未割当残差を確認する。採択や全被覆を推測しない。",
+        "source_family_relation_found": true,
+        "source_family_relation_kind": "aafd_family_os_and_intelligence_candidate",
+        "source_family_relation_evidence": [
+          {
+            "pin_id": "OS-L2",
+            "lines": [
+              497,
+              498,
+              503
+            ]
+          },
+          {
+            "pin_id": "INTELLIGENCE-L2",
+            "lines": [
+              433,
+              434,
+              435
+            ]
+          },
+          {
+            "pin_id": "INTELLIGENCE-L11",
+            "lines": [
+              123
+            ]
+          }
+        ],
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
       },
       "decision_status": {
         "adopted": false,
         "retired": false,
         "closed": false,
         "authority_effect": "none"
-      }
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "OS-L2",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "lines": [
+            {
+              "line": 497,
+              "sha256": "2f125638b6e1ea1fcd19dfa983f5f4b691fc3ae3d7834d1cfba15d1f0f8b5d7b",
+              "text": "対象別L2の具体化先として既存L3候補を参照する。以下は接続先の識別であり、全FRの意味被覆、対象別L3凍結、"
+            },
+            {
+              "line": 498,
+              "sha256": "6f80f8363df2ecb2ab15a2e72091c9f93c2caad322420b7ecabe0a8c06140433",
+              "text": "候補の正本昇格を完了した証拠ではない。候補のL10をOS利用者のL11受入へ転用しない。"
+            },
+            {
+              "line": 503,
+              "sha256": "1a3e1ade3b2f2d2d1dc8a8eed1475e8c2e0f2b6f847588844de098768b37e50a",
+              "text": "| AAFD | [AAFD要件](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md)：AAFD-FR-001..004、AAFD-R-01..15 | HELIXOS-L2-005／007 |"
+            }
+          ]
+        },
+        {
+          "pin_id": "INTELLIGENCE-L2",
+          "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+          "lines": [
+            {
+              "line": 433,
+              "sha256": "41fcaeccc7ff9ef8473e863267679b9537b867e04299c2fa067e085fddd9fcd8",
+              "text": "| HELIX-INTELLIGENCE候補 `audit-bounded-repair-requirements.md`（AAFD-BR-01..04、BBR） | AAFD proposalのHEAD/authority/producer/evidence/reproduction/falsification、内部UIL/外部TER区別、影響を受けるprojectionのみ再評価、同一corpusでmodel再比較。BBRのtarget revision/actor/write-set/side effect/budget/deadline/retry/impact/recovery、候補・許可・適用・検収分離、stale/競合/二重実行/循環/不明副作用停止、禁止修復、repair後のHARNESS検証 | candidateは未採択のまま参照。全AAFD-R/BBR-Rのcandidate-only条件を本L2へ自動昇格せず、HELIXINTELLIGENCE-L1-009/016/017に親付けした条件のみを下のIDへ整理 |"
+            },
+            {
+              "line": 434,
+              "sha256": "0148bda59eae224755b092f95b71897e2415f31caa8bc7c1052cd62307d22a02",
+              "text": "| LEGACY-ASSET-8247A056F30FF91E4B8D `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requests.md:20-37` SHA `d78bbcc0ca184bfb87dc2bbc932291f97a58bf9f0fd703481489f15944be9b76` | AAFD-BR-01 exact HEAD/authority/producer/evidence/reproduction/falsifiability、02 internal/external owner、03 affected projection invalidation、04 same corpus/responsibility model comparison | 既存 UIL/TER/Future Synthesis ownerを維持し、agentic audit freedomから新route/DB/authorityを作らない |"
+            },
+            {
+              "line": 435,
+              "sha256": "ed8de66155f53dbfec6ed42dc56a51a3a01234d9b96f7ad1d4353b535f6c0720",
+              "text": "| LEGACY-ASSET-EB3700B0088F311C2295 `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md:23-110` SHA `685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a` | AAFD-R-01..15: proposal identity/authority/duplicate/expiry, deterministic detector priority, qualified UIL/TER source receipts, deterministic delta/dedupe, unknown preservation, exact snapshot join, bounded projection invalidation, stale execution prevention, replay, model revision revalidation/receipt/nonpromotion | AAFDはold draft candidate L3である。HELIXINTELLIGENCE-L1-009の範囲を超えるfuture-state compiler/Future Synthesis/UIL runtimeは別ownerのcandidateとして維持し、ここで移管・再実装しない |"
+            }
+          ]
+        },
+        {
+          "pin_id": "INTELLIGENCE-L11",
+          "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+          "lines": [
+            {
+              "line": 123,
+              "sha256": "c8a384c8d128ed540baa5b24070b2fec118fd84c94a873de4de0e3d332f5964a",
+              "text": "- AAFD-BR-01..04、AAFD-R-01..15は元候補のまま保持し、自由文からauthorityを生成しない。UIL/TER/Future Synthesisのownerを分け、stale/unknown projectionをassignment/release/retireへ使わない。"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
     },
     {
       "rank": 23,
@@ -548,17 +744,110 @@
           "result": "固定F6の該当L2/L11本文で旧source/requirement/acceptance IDの明示crosswalkは確認できない。機能的な類似からpair bindingを推定しない。"
         },
         "residual": "旧candidate資産のproduct_target/upstream_ids/pair_idsは未解決であり、当該行の採択・対応付け・受入実行は確定しない。",
-        "next": "AAFD-R-07の親条件・episode/dedupe consumerを調べ、現行対応の有無を確認する。",
+        "next": "AAFD-R-07のdedupe/episode条件をOS L2-005/007へのfamily接続とINTELLIGENCEのcandidate-only範囲に対照し、保持先と未割当残差を確認する。",
         "human_facing_summary": "同一source receipt等からの決定性と重複排除を要求し、stale/wrong authority/missing receipt/duplicate changeを拒否する。",
-        "human_facing_comparison": "固定F6 pairへの明示crosswalk未確認。テーマ上の近接性だけでは対応付けない。",
-        "human_facing_next_step": "AAFD-R-07の親条件・episode/dedupe consumerを調べ、現行対応の有無を確認する。"
+        "human_facing_comparison": "OS L2 lines 497–503 connect the AAFD requirements family (R-01..15) to HELIXOS-L2-005/007. INTELLIGENCE L2 lines 433/435 retain the AAFD source family as candidate material; INTELLIGENCE L11 line 123 says AAFD-R-01..15 remain original candidates. R-07 has no individual current pair binding, adoption, or full-family atom coverage established.",
+        "human_facing_next_step": "AAFD-R-07のdedupe/episode条件をOS L2-005/007へのfamily接続とINTELLIGENCEのcandidate-only範囲に対照し、保持先と未割当残差を確認する。",
+        "source_family_relation_found": true,
+        "source_family_relation_kind": "aafd_family_os_and_intelligence_candidate",
+        "source_family_relation_evidence": [
+          {
+            "pin_id": "OS-L2",
+            "lines": [
+              497,
+              498,
+              503
+            ]
+          },
+          {
+            "pin_id": "INTELLIGENCE-L2",
+            "lines": [
+              433,
+              434,
+              435
+            ]
+          },
+          {
+            "pin_id": "INTELLIGENCE-L11",
+            "lines": [
+              123
+            ]
+          }
+        ],
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
       },
       "decision_status": {
         "adopted": false,
         "retired": false,
         "closed": false,
         "authority_effect": "none"
-      }
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "OS-L2",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "lines": [
+            {
+              "line": 497,
+              "sha256": "2f125638b6e1ea1fcd19dfa983f5f4b691fc3ae3d7834d1cfba15d1f0f8b5d7b",
+              "text": "対象別L2の具体化先として既存L3候補を参照する。以下は接続先の識別であり、全FRの意味被覆、対象別L3凍結、"
+            },
+            {
+              "line": 498,
+              "sha256": "6f80f8363df2ecb2ab15a2e72091c9f93c2caad322420b7ecabe0a8c06140433",
+              "text": "候補の正本昇格を完了した証拠ではない。候補のL10をOS利用者のL11受入へ転用しない。"
+            },
+            {
+              "line": 503,
+              "sha256": "1a3e1ade3b2f2d2d1dc8a8eed1475e8c2e0f2b6f847588844de098768b37e50a",
+              "text": "| AAFD | [AAFD要件](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md)：AAFD-FR-001..004、AAFD-R-01..15 | HELIXOS-L2-005／007 |"
+            }
+          ]
+        },
+        {
+          "pin_id": "INTELLIGENCE-L2",
+          "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+          "lines": [
+            {
+              "line": 433,
+              "sha256": "41fcaeccc7ff9ef8473e863267679b9537b867e04299c2fa067e085fddd9fcd8",
+              "text": "| HELIX-INTELLIGENCE候補 `audit-bounded-repair-requirements.md`（AAFD-BR-01..04、BBR） | AAFD proposalのHEAD/authority/producer/evidence/reproduction/falsification、内部UIL/外部TER区別、影響を受けるprojectionのみ再評価、同一corpusでmodel再比較。BBRのtarget revision/actor/write-set/side effect/budget/deadline/retry/impact/recovery、候補・許可・適用・検収分離、stale/競合/二重実行/循環/不明副作用停止、禁止修復、repair後のHARNESS検証 | candidateは未採択のまま参照。全AAFD-R/BBR-Rのcandidate-only条件を本L2へ自動昇格せず、HELIXINTELLIGENCE-L1-009/016/017に親付けした条件のみを下のIDへ整理 |"
+            },
+            {
+              "line": 434,
+              "sha256": "0148bda59eae224755b092f95b71897e2415f31caa8bc7c1052cd62307d22a02",
+              "text": "| LEGACY-ASSET-8247A056F30FF91E4B8D `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requests.md:20-37` SHA `d78bbcc0ca184bfb87dc2bbc932291f97a58bf9f0fd703481489f15944be9b76` | AAFD-BR-01 exact HEAD/authority/producer/evidence/reproduction/falsifiability、02 internal/external owner、03 affected projection invalidation、04 same corpus/responsibility model comparison | 既存 UIL/TER/Future Synthesis ownerを維持し、agentic audit freedomから新route/DB/authorityを作らない |"
+            },
+            {
+              "line": 435,
+              "sha256": "ed8de66155f53dbfec6ed42dc56a51a3a01234d9b96f7ad1d4353b535f6c0720",
+              "text": "| LEGACY-ASSET-EB3700B0088F311C2295 `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md:23-110` SHA `685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a` | AAFD-R-01..15: proposal identity/authority/duplicate/expiry, deterministic detector priority, qualified UIL/TER source receipts, deterministic delta/dedupe, unknown preservation, exact snapshot join, bounded projection invalidation, stale execution prevention, replay, model revision revalidation/receipt/nonpromotion | AAFDはold draft candidate L3である。HELIXINTELLIGENCE-L1-009の範囲を超えるfuture-state compiler/Future Synthesis/UIL runtimeは別ownerのcandidateとして維持し、ここで移管・再実装しない |"
+            }
+          ]
+        },
+        {
+          "pin_id": "INTELLIGENCE-L11",
+          "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+          "lines": [
+            {
+              "line": 123,
+              "sha256": "c8a384c8d128ed540baa5b24070b2fec118fd84c94a873de4de0e3d332f5964a",
+              "text": "- AAFD-BR-01..04、AAFD-R-01..15は元候補のまま保持し、自由文からauthorityを生成しない。UIL/TER/Future Synthesisのownerを分け、stale/unknown projectionをassignment/release/retireへ使わない。"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
     },
     {
       "rank": 24,
@@ -672,17 +961,60 @@
           "result": "固定F6の該当L2/L11本文で旧source/requirement/acceptance IDの明示crosswalkは確認できない。機能的な類似からpair bindingを推定しない。"
         },
         "residual": "旧candidate資産のproduct_target/upstream_ids/pair_idsは未解決であり、当該行の採択・対応付け・受入実行は確定しない。",
-        "next": "AVS-R-01と分類入力・出力schemaを復元し、誤分類の反例群とownerを確認する。",
+        "next": "AVS-R-01とAC-001を別sourceとして維持し、旧要求atomとacceptance caseの各々について保持先とL2-001/003/007との未解決対応を確認する。",
         "human_facing_summary": "会話入力のexactly-one分類を成功条件にし、0件/複数分類を拒否する受入行。",
-        "human_facing_comparison": "固定F6 pairへの明示crosswalk未確認。テーマ上の近接性だけでは対応付けない。",
-        "human_facing_next_step": "AVS-R-01と分類入力・出力schemaを復元し、誤分類の反例群とownerを確認する。"
+        "human_facing_comparison": "OS L2 line 507 connects the separate AVS requirements-file family (AVS-FR-001..005) to HELIXOS-L2-001/003/007. This selected row is the acceptance source under AVS-R-01; its individual AC-to-L2/L11 mapping is not listed. The family link does not prove an AC row binding, adoption, or full atom coverage.",
+        "human_facing_next_step": "AVS-R-01とAC-001を別sourceとして維持し、旧要求atomとacceptance caseの各々について保持先とL2-001/003/007との未解決対応を確認する。",
+        "source_family_relation_found": true,
+        "source_family_relation_kind": "avs_requirements_family_only",
+        "source_family_relation_evidence": [
+          {
+            "pin_id": "OS-L2",
+            "lines": [
+              497,
+              498,
+              507
+            ]
+          }
+        ],
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
       },
       "decision_status": {
         "adopted": false,
         "retired": false,
         "closed": false,
         "authority_effect": "none"
-      }
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "OS-L2",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "lines": [
+            {
+              "line": 497,
+              "sha256": "2f125638b6e1ea1fcd19dfa983f5f4b691fc3ae3d7834d1cfba15d1f0f8b5d7b",
+              "text": "対象別L2の具体化先として既存L3候補を参照する。以下は接続先の識別であり、全FRの意味被覆、対象別L3凍結、"
+            },
+            {
+              "line": 498,
+              "sha256": "6f80f8363df2ecb2ab15a2e72091c9f93c2caad322420b7ecabe0a8c06140433",
+              "text": "候補の正本昇格を完了した証拠ではない。候補のL10をOS利用者のL11受入へ転用しない。"
+            },
+            {
+              "line": 507,
+              "sha256": "c56ea464d2e4bc3870c1cd0776df76cb4f774a04454673cad2db74e41bbc3c8c",
+              "text": "| AVS | [AVS要件](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requirements.md)：AVS-FR-001..005 | HELIXOS-L2-001／003／007 |"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
     },
     {
       "rank": 25,
@@ -796,17 +1128,60 @@
           "result": "固定F6の該当L2/L11本文で旧source/requirement/acceptance IDの明示crosswalkは確認できない。機能的な類似からpair bindingを推定しない。"
         },
         "residual": "旧candidate資産のproduct_target/upstream_ids/pair_idsは未解決であり、当該行の採択・対応付け・受入実行は確定しない。",
-        "next": "AVS-R-03Aのparent sourceとsurface/consumerを特定し、authority/evidence境界の候補を比較する。",
+        "next": "AVS-R-03Aのdirective/evidence条件とAC-003Aの別field受入を分け、source atom単位で保持先・未解決mappingを確認する。",
         "human_facing_summary": "directive準拠と技術rationaleを別field/証拠で保持し、PO発言だけによる設計・review・完了claimを拒否する受入行。",
-        "human_facing_comparison": "固定F6 pairへの明示crosswalk未確認。テーマ上の近接性だけでは対応付けない。",
-        "human_facing_next_step": "AVS-R-03Aのparent sourceとsurface/consumerを特定し、authority/evidence境界の候補を比較する。"
+        "human_facing_comparison": "OS L2 line 507 connects the separate AVS requirements-file family (AVS-FR-001..005) to HELIXOS-L2-001/003/007. This selected row is the acceptance source under AVS-R-03A; its individual AC-to-L2/L11 mapping is not listed. The family link does not prove an AC row binding, adoption, or full atom coverage.",
+        "human_facing_next_step": "AVS-R-03Aのdirective/evidence条件とAC-003Aの別field受入を分け、source atom単位で保持先・未解決mappingを確認する。",
+        "source_family_relation_found": true,
+        "source_family_relation_kind": "avs_requirements_family_only",
+        "source_family_relation_evidence": [
+          {
+            "pin_id": "OS-L2",
+            "lines": [
+              497,
+              498,
+              507
+            ]
+          }
+        ],
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
       },
       "decision_status": {
         "adopted": false,
         "retired": false,
         "closed": false,
         "authority_effect": "none"
-      }
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "OS-L2",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "lines": [
+            {
+              "line": 497,
+              "sha256": "2f125638b6e1ea1fcd19dfa983f5f4b691fc3ae3d7834d1cfba15d1f0f8b5d7b",
+              "text": "対象別L2の具体化先として既存L3候補を参照する。以下は接続先の識別であり、全FRの意味被覆、対象別L3凍結、"
+            },
+            {
+              "line": 498,
+              "sha256": "6f80f8363df2ecb2ab15a2e72091c9f93c2caad322420b7ecabe0a8c06140433",
+              "text": "候補の正本昇格を完了した証拠ではない。候補のL10をOS利用者のL11受入へ転用しない。"
+            },
+            {
+              "line": 507,
+              "sha256": "c56ea464d2e4bc3870c1cd0776df76cb4f774a04454673cad2db74e41bbc3c8c",
+              "text": "| AVS | [AVS要件](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requirements.md)：AVS-FR-001..005 | HELIXOS-L2-001／003／007 |"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
     },
     {
       "rank": 26,
@@ -920,17 +1295,60 @@
           "result": "固定F6の該当L2/L11本文で旧source/requirement/acceptance IDの明示crosswalkは確認できない。機能的な類似からpair bindingを推定しない。"
         },
         "residual": "旧candidate資産のproduct_target/upstream_ids/pair_idsは未解決であり、当該行の採択・対応付け・受入実行は確定しない。",
-        "next": "AVS-R-03Bの意味・owner・escalation consumerを回復し、現行scopeと比較する。",
+        "next": "AVS-R-03Bの矛盾/escalation条件とAC-003Bの期待返却・拒否例を別々に照合し、ownerと保持先を追跡する。",
         "human_facing_summary": "authority矛盾を提示し、適合案またはexact escalationを返す。盲目的実行や全件人間判断への丸投げを拒否する受入行。",
-        "human_facing_comparison": "固定F6 pairへの明示crosswalk未確認。テーマ上の近接性だけでは対応付けない。",
-        "human_facing_next_step": "AVS-R-03Bの意味・owner・escalation consumerを回復し、現行scopeと比較する。"
+        "human_facing_comparison": "OS L2 line 507 connects the separate AVS requirements-file family (AVS-FR-001..005) to HELIXOS-L2-001/003/007. This selected row is the acceptance source under AVS-R-03B; its individual AC-to-L2/L11 mapping is not listed. The family link does not prove an AC row binding, adoption, or full atom coverage.",
+        "human_facing_next_step": "AVS-R-03Bの矛盾/escalation条件とAC-003Bの期待返却・拒否例を別々に照合し、ownerと保持先を追跡する。",
+        "source_family_relation_found": true,
+        "source_family_relation_kind": "avs_requirements_family_only",
+        "source_family_relation_evidence": [
+          {
+            "pin_id": "OS-L2",
+            "lines": [
+              497,
+              498,
+              507
+            ]
+          }
+        ],
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
       },
       "decision_status": {
         "adopted": false,
         "retired": false,
         "closed": false,
         "authority_effect": "none"
-      }
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "OS-L2",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "lines": [
+            {
+              "line": 497,
+              "sha256": "2f125638b6e1ea1fcd19dfa983f5f4b691fc3ae3d7834d1cfba15d1f0f8b5d7b",
+              "text": "対象別L2の具体化先として既存L3候補を参照する。以下は接続先の識別であり、全FRの意味被覆、対象別L3凍結、"
+            },
+            {
+              "line": 498,
+              "sha256": "6f80f8363df2ecb2ab15a2e72091c9f93c2caad322420b7ecabe0a8c06140433",
+              "text": "候補の正本昇格を完了した証拠ではない。候補のL10をOS利用者のL11受入へ転用しない。"
+            },
+            {
+              "line": 507,
+              "sha256": "c56ea464d2e4bc3870c1cd0776df76cb4f774a04454673cad2db74e41bbc3c8c",
+              "text": "| AVS | [AVS要件](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requirements.md)：AVS-FR-001..005 | HELIXOS-L2-001／003／007 |"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
     },
     {
       "rank": 27,
@@ -1044,17 +1462,60 @@
           "result": "固定F6の該当L2/L11本文で旧source/requirement/acceptance IDの明示crosswalkは確認できない。機能的な類似からpair bindingを推定しない。"
         },
         "residual": "旧candidate資産のproduct_target/upstream_ids/pair_idsは未解決であり、当該行の採択・対応付け・受入実行は確定しない。",
-        "next": "AVS-R-08のsurface一覧・identity schemaとfailure evidenceを復元する。",
+        "next": "AVS-R-08のsurface/identity意味とAC-008のtyped identity例を分け、必要なsource atomと受入例の個別mapping/coverageを調べる。",
         "human_facing_summary": "surfaceがtyped identityを返すことを確認し、generic decision identityへの再集約を拒否する受入行。",
-        "human_facing_comparison": "固定F6 pairへの明示crosswalk未確認。テーマ上の近接性だけでは対応付けない。",
-        "human_facing_next_step": "AVS-R-08のsurface一覧・identity schemaとfailure evidenceを復元する。"
+        "human_facing_comparison": "OS L2 line 507 connects the separate AVS requirements-file family (AVS-FR-001..005) to HELIXOS-L2-001/003/007. This selected row is the acceptance source under AVS-R-08; its individual AC-to-L2/L11 mapping is not listed. The family link does not prove an AC row binding, adoption, or full atom coverage.",
+        "human_facing_next_step": "AVS-R-08のsurface/identity意味とAC-008のtyped identity例を分け、必要なsource atomと受入例の個別mapping/coverageを調べる。",
+        "source_family_relation_found": true,
+        "source_family_relation_kind": "avs_requirements_family_only",
+        "source_family_relation_evidence": [
+          {
+            "pin_id": "OS-L2",
+            "lines": [
+              497,
+              498,
+              507
+            ]
+          }
+        ],
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
       },
       "decision_status": {
         "adopted": false,
         "retired": false,
         "closed": false,
         "authority_effect": "none"
-      }
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "OS-L2",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "lines": [
+            {
+              "line": 497,
+              "sha256": "2f125638b6e1ea1fcd19dfa983f5f4b691fc3ae3d7834d1cfba15d1f0f8b5d7b",
+              "text": "対象別L2の具体化先として既存L3候補を参照する。以下は接続先の識別であり、全FRの意味被覆、対象別L3凍結、"
+            },
+            {
+              "line": 498,
+              "sha256": "6f80f8363df2ecb2ab15a2e72091c9f93c2caad322420b7ecabe0a8c06140433",
+              "text": "候補の正本昇格を完了した証拠ではない。候補のL10をOS利用者のL11受入へ転用しない。"
+            },
+            {
+              "line": 507,
+              "sha256": "c56ea464d2e4bc3870c1cd0776df76cb4f774a04454673cad2db74e41bbc3c8c",
+              "text": "| AVS | [AVS要件](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requirements.md)：AVS-FR-001..005 | HELIXOS-L2-001／003／007 |"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
     },
     {
       "rank": 28,
@@ -1168,17 +1629,60 @@
           "result": "固定F6の該当L2/L11本文で旧source/requirement/acceptance IDの明示crosswalkは確認できない。機能的な類似からpair bindingを推定しない。"
         },
         "residual": "旧candidate資産のproduct_target/upstream_ids/pair_idsは未解決であり、当該行の採択・対応付け・受入実行は確定しない。",
-        "next": "AVS-R-10のmemory consumer/TTL/ownershipを特定し、現行OS/HARNESS/BRAINの境界を個別確認する。",
+        "next": "AVS-R-10のTTL・ownership要件とAC-010のmemory例を分け、現在のOS/HARNESS/BRAIN境界との未解決点を記録する。",
         "human_facing_summary": "memoryをTTL coordination/pointerに限定し、project requirement/design/profile本文の格納を拒否する受入行。",
-        "human_facing_comparison": "固定F6 pairへの明示crosswalk未確認。テーマ上の近接性だけでは対応付けない。",
-        "human_facing_next_step": "AVS-R-10のmemory consumer/TTL/ownershipを特定し、現行OS/HARNESS/BRAINの境界を個別確認する。"
+        "human_facing_comparison": "OS L2 line 507 connects the separate AVS requirements-file family (AVS-FR-001..005) to HELIXOS-L2-001/003/007. This selected row is the acceptance source under AVS-R-10; its individual AC-to-L2/L11 mapping is not listed. The family link does not prove an AC row binding, adoption, or full atom coverage.",
+        "human_facing_next_step": "AVS-R-10のTTL・ownership要件とAC-010のmemory例を分け、現在のOS/HARNESS/BRAIN境界との未解決点を記録する。",
+        "source_family_relation_found": true,
+        "source_family_relation_kind": "avs_requirements_family_only",
+        "source_family_relation_evidence": [
+          {
+            "pin_id": "OS-L2",
+            "lines": [
+              497,
+              498,
+              507
+            ]
+          }
+        ],
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
       },
       "decision_status": {
         "adopted": false,
         "retired": false,
         "closed": false,
         "authority_effect": "none"
-      }
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "OS-L2",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "lines": [
+            {
+              "line": 497,
+              "sha256": "2f125638b6e1ea1fcd19dfa983f5f4b691fc3ae3d7834d1cfba15d1f0f8b5d7b",
+              "text": "対象別L2の具体化先として既存L3候補を参照する。以下は接続先の識別であり、全FRの意味被覆、対象別L3凍結、"
+            },
+            {
+              "line": 498,
+              "sha256": "6f80f8363df2ecb2ab15a2e72091c9f93c2caad322420b7ecabe0a8c06140433",
+              "text": "候補の正本昇格を完了した証拠ではない。候補のL10をOS利用者のL11受入へ転用しない。"
+            },
+            {
+              "line": 507,
+              "sha256": "c56ea464d2e4bc3870c1cd0776df76cb4f774a04454673cad2db74e41bbc3c8c",
+              "text": "| AVS | [AVS要件](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requirements.md)：AVS-FR-001..005 | HELIXOS-L2-001／003／007 |"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
     },
     {
       "rank": 29,
@@ -1292,17 +1796,60 @@
           "result": "固定F6の該当L2/L11本文で旧source/requirement/acceptance IDの明示crosswalkは確認できない。機能的な類似からpair bindingを推定しない。"
         },
         "residual": "旧candidate資産のproduct_target/upstream_ids/pair_idsは未解決であり、当該行の採択・対応付け・受入実行は確定しない。",
-        "next": "AVS-R-11のinvalid/superseded判定、invalidation consumer、旧surfaceをsourceから復元する。",
+        "next": "AVS-R-11のinvalidation要件とAC-011のsuperseded memory例を分け、旧atomの保持先と現在の失効証拠を照合する。",
         "human_facing_summary": "invalid/superseded memoryをcurrent guidanceから外し、replacement後の再浮上を拒否する受入行。",
-        "human_facing_comparison": "固定F6 pairへの明示crosswalk未確認。テーマ上の近接性だけでは対応付けない。",
-        "human_facing_next_step": "AVS-R-11のinvalid/superseded判定、invalidation consumer、旧surfaceをsourceから復元する。"
+        "human_facing_comparison": "OS L2 line 507 connects the separate AVS requirements-file family (AVS-FR-001..005) to HELIXOS-L2-001/003/007. This selected row is the acceptance source under AVS-R-11; its individual AC-to-L2/L11 mapping is not listed. The family link does not prove an AC row binding, adoption, or full atom coverage.",
+        "human_facing_next_step": "AVS-R-11のinvalidation要件とAC-011のsuperseded memory例を分け、旧atomの保持先と現在の失効証拠を照合する。",
+        "source_family_relation_found": true,
+        "source_family_relation_kind": "avs_requirements_family_only",
+        "source_family_relation_evidence": [
+          {
+            "pin_id": "OS-L2",
+            "lines": [
+              497,
+              498,
+              507
+            ]
+          }
+        ],
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
       },
       "decision_status": {
         "adopted": false,
         "retired": false,
         "closed": false,
         "authority_effect": "none"
-      }
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "OS-L2",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "lines": [
+            {
+              "line": 497,
+              "sha256": "2f125638b6e1ea1fcd19dfa983f5f4b691fc3ae3d7834d1cfba15d1f0f8b5d7b",
+              "text": "対象別L2の具体化先として既存L3候補を参照する。以下は接続先の識別であり、全FRの意味被覆、対象別L3凍結、"
+            },
+            {
+              "line": 498,
+              "sha256": "6f80f8363df2ecb2ab15a2e72091c9f93c2caad322420b7ecabe0a8c06140433",
+              "text": "候補の正本昇格を完了した証拠ではない。候補のL10をOS利用者のL11受入へ転用しない。"
+            },
+            {
+              "line": 507,
+              "sha256": "c56ea464d2e4bc3870c1cd0776df76cb4f774a04454673cad2db74e41bbc3c8c",
+              "text": "| AVS | [AVS要件](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requirements.md)：AVS-FR-001..005 | HELIXOS-L2-001／003／007 |"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
     },
     {
       "rank": 30,
@@ -1416,17 +1963,60 @@
           "result": "固定F6の該当L2/L11本文で旧source/requirement/acceptance IDの明示crosswalkは確認できない。機能的な類似からpair bindingを推定しない。"
         },
         "residual": "旧candidate資産のproduct_target/upstream_ids/pair_idsは未解決であり、当該行の採択・対応付け・受入実行は確定しない。",
-        "next": "AVS-R-12のadapter/output contractと利用先を復元し、旧実行方式の再利用を前提にしない意味比較を準備する。",
+        "next": "AVS-R-12のadapter要件とAC-012のmarker/digest oracleを分け、旧adapter意味・利用先・未移管条件を個別照合する。",
         "human_facing_summary": "Claude/Codex rulesとadapterのmarker/digest整合、および片側だけの変更の拒否を検査する受入行。",
-        "human_facing_comparison": "固定F6 pairへの明示crosswalk未確認。テーマ上の近接性だけでは対応付けない。",
-        "human_facing_next_step": "AVS-R-12のadapter/output contractと利用先を復元し、旧実行方式の再利用を前提にしない意味比較を準備する。"
+        "human_facing_comparison": "OS L2 line 507 connects the separate AVS requirements-file family (AVS-FR-001..005) to HELIXOS-L2-001/003/007. This selected row is the acceptance source under AVS-R-12; its individual AC-to-L2/L11 mapping is not listed. The family link does not prove an AC row binding, adoption, or full atom coverage.",
+        "human_facing_next_step": "AVS-R-12のadapter要件とAC-012のmarker/digest oracleを分け、旧adapter意味・利用先・未移管条件を個別照合する。",
+        "source_family_relation_found": true,
+        "source_family_relation_kind": "avs_requirements_family_only",
+        "source_family_relation_evidence": [
+          {
+            "pin_id": "OS-L2",
+            "lines": [
+              497,
+              498,
+              507
+            ]
+          }
+        ],
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
       },
       "decision_status": {
         "adopted": false,
         "retired": false,
         "closed": false,
         "authority_effect": "none"
-      }
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "OS-L2",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "lines": [
+            {
+              "line": 497,
+              "sha256": "2f125638b6e1ea1fcd19dfa983f5f4b691fc3ae3d7834d1cfba15d1f0f8b5d7b",
+              "text": "対象別L2の具体化先として既存L3候補を参照する。以下は接続先の識別であり、全FRの意味被覆、対象別L3凍結、"
+            },
+            {
+              "line": 498,
+              "sha256": "6f80f8363df2ecb2ab15a2e72091c9f93c2caad322420b7ecabe0a8c06140433",
+              "text": "候補の正本昇格を完了した証拠ではない。候補のL10をOS利用者のL11受入へ転用しない。"
+            },
+            {
+              "line": 507,
+              "sha256": "c56ea464d2e4bc3870c1cd0776df76cb4f774a04454673cad2db74e41bbc3c8c",
+              "text": "| AVS | [AVS要件](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requirements.md)：AVS-FR-001..005 | HELIXOS-L2-001／003／007 |"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
     },
     {
       "rank": 31,
@@ -1540,17 +2130,60 @@
           "result": "固定F6の該当L2/L11本文で旧source/requirement/acceptance IDの明示crosswalkは確認できない。機能的な類似からpair bindingを推定しない。"
         },
         "residual": "旧candidate資産のproduct_target/upstream_ids/pair_idsは未解決であり、当該行の採択・対応付け・受入実行は確定しない。",
-        "next": "AVS-R-14のsignal/token authorityとfailure consumerを調べ、時点・source境界を個別比較する。",
+        "next": "AVS-R-14のsignal/token authority要件とAC-014のhistorical failure oracleを分け、時点・source・拒否証拠の保持先を確認する。",
         "human_facing_summary": "historical tokenがcurrentへ逆流せず、historical greenでcanonical failureを相殺しない受入行。",
-        "human_facing_comparison": "固定F6 pairへの明示crosswalk未確認。テーマ上の近接性だけでは対応付けない。",
-        "human_facing_next_step": "AVS-R-14のsignal/token authorityとfailure consumerを調べ、時点・source境界を個別比較する。"
+        "human_facing_comparison": "OS L2 line 507 connects the separate AVS requirements-file family (AVS-FR-001..005) to HELIXOS-L2-001/003/007. This selected row is the acceptance source under AVS-R-14; its individual AC-to-L2/L11 mapping is not listed. The family link does not prove an AC row binding, adoption, or full atom coverage.",
+        "human_facing_next_step": "AVS-R-14のsignal/token authority要件とAC-014のhistorical failure oracleを分け、時点・source・拒否証拠の保持先を確認する。",
+        "source_family_relation_found": true,
+        "source_family_relation_kind": "avs_requirements_family_only",
+        "source_family_relation_evidence": [
+          {
+            "pin_id": "OS-L2",
+            "lines": [
+              497,
+              498,
+              507
+            ]
+          }
+        ],
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
       },
       "decision_status": {
         "adopted": false,
         "retired": false,
         "closed": false,
         "authority_effect": "none"
-      }
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "OS-L2",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "lines": [
+            {
+              "line": 497,
+              "sha256": "2f125638b6e1ea1fcd19dfa983f5f4b691fc3ae3d7834d1cfba15d1f0f8b5d7b",
+              "text": "対象別L2の具体化先として既存L3候補を参照する。以下は接続先の識別であり、全FRの意味被覆、対象別L3凍結、"
+            },
+            {
+              "line": 498,
+              "sha256": "6f80f8363df2ecb2ab15a2e72091c9f93c2caad322420b7ecabe0a8c06140433",
+              "text": "候補の正本昇格を完了した証拠ではない。候補のL10をOS利用者のL11受入へ転用しない。"
+            },
+            {
+              "line": 507,
+              "sha256": "c56ea464d2e4bc3870c1cd0776df76cb4f774a04454673cad2db74e41bbc3c8c",
+              "text": "| AVS | [AVS要件](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requirements.md)：AVS-FR-001..005 | HELIXOS-L2-001／003／007 |"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
     },
     {
       "rank": 32,
@@ -1645,17 +2278,60 @@
           "result": "この物理行には個別の旧requirement/acceptance IDがない（またはコード断片である）ため、固定F6 pairとの明示crosswalkを立てない。近似pairは割り当てない。"
         },
         "residual": "旧candidate資産のproduct_target/upstream_ids/pair_idsは未解決であり、当該行の採択・対応付け・受入実行は確定しない。",
-        "next": "20 oracleの全行、独立failure classの定義、親AVS要求・現行の受入ownerを照合する。",
+        "next": "AVS acceptance methodの全20 oracle・独立failure class義務について親条件とconsumerを復元し、family connectionの外に残るmethod atomsを棚卸しする。",
         "human_facing_summary": "20 oracleを独立failure classとして保持し、単一happy pathの成功で相殺しない受入設計上の一般規範。",
-        "human_facing_comparison": "固定F6 pairへの明示crosswalk未確認。テーマ上の近接性だけでは対応付けない。",
-        "human_facing_next_step": "20 oracleの全行、独立failure classの定義、親AVS要求・現行の受入ownerを照合する。"
+        "human_facing_comparison": "OS L2 line 507 connects the separate AVS requirements-file family (AVS-FR-001..005) to HELIXOS-L2-001/003/007. This selected row is the acceptance source under AVS acceptance method; its individual AC-to-L2/L11 mapping is not listed. The family link does not prove an AC row binding, adoption, or full atom coverage.",
+        "human_facing_next_step": "AVS acceptance methodの全20 oracle・独立failure class義務について親条件とconsumerを復元し、family connectionの外に残るmethod atomsを棚卸しする。",
+        "source_family_relation_found": true,
+        "source_family_relation_kind": "avs_requirements_family_only",
+        "source_family_relation_evidence": [
+          {
+            "pin_id": "OS-L2",
+            "lines": [
+              497,
+              498,
+              507
+            ]
+          }
+        ],
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
       },
       "decision_status": {
         "adopted": false,
         "retired": false,
         "closed": false,
         "authority_effect": "none"
-      }
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "OS-L2",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "lines": [
+            {
+              "line": 497,
+              "sha256": "2f125638b6e1ea1fcd19dfa983f5f4b691fc3ae3d7834d1cfba15d1f0f8b5d7b",
+              "text": "対象別L2の具体化先として既存L3候補を参照する。以下は接続先の識別であり、全FRの意味被覆、対象別L3凍結、"
+            },
+            {
+              "line": 498,
+              "sha256": "6f80f8363df2ecb2ab15a2e72091c9f93c2caad322420b7ecabe0a8c06140433",
+              "text": "候補の正本昇格を完了した証拠ではない。候補のL10をOS利用者のL11受入へ転用しない。"
+            },
+            {
+              "line": 507,
+              "sha256": "c56ea464d2e4bc3870c1cd0776df76cb4f774a04454673cad2db74e41bbc3c8c",
+              "text": "| AVS | [AVS要件](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requirements.md)：AVS-FR-001..005 | HELIXOS-L2-001／003／007 |"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
     },
     {
       "rank": 33,
@@ -1769,17 +2445,73 @@
           "result": "固定F6の該当L2/L11本文で旧source/requirement/acceptance IDの明示crosswalkは確認できない。機能的な類似からpair bindingを推定しない。"
         },
         "residual": "旧candidate資産のproduct_target/upstream_ids/pair_idsは未解決であり、当該行の採択・対応付け・受入実行は確定しない。",
-        "next": "BBR-R01の原稿由来条件、対象/consumer、合法RED判定条件を復元する。",
+        "next": "BBR-AC01のsource atom、許可済みREDの判定根拠とconsumerを復元し、INTELLIGENCEのcandidate-only範囲・L11のAC群記載とのcase単位の未解決差分を列挙する。",
         "human_facing_summary": "既存対象の限定検査が版/HEAD/観測/期待/根拠/強制度を返し、助言や合法REDを誤拒否しないことを確認する受入行。",
-        "human_facing_comparison": "固定F6 pairへの明示crosswalk未確認。テーマ上の近接性だけでは対応付けない。",
-        "human_facing_next_step": "BBR-R01の原稿由来条件、対象/consumer、合法RED判定条件を復元する。"
+        "human_facing_comparison": "INTELLIGENCE L2 lines 433/437 retain the BBR candidate family and requirements range (R-01..05); INTELLIGENCE L11 line 124 states BBR-R01..05 and AC01..07 remain unadopted candidates. This AC01 row has no individual L2/L11 pair binding or acceptance coverage established.",
+        "human_facing_next_step": "BBR-AC01のsource atom、許可済みREDの判定根拠とconsumerを復元し、INTELLIGENCEのcandidate-only範囲・L11のAC群記載とのcase単位の未解決差分を列挙する。",
+        "source_family_relation_found": true,
+        "source_family_relation_kind": "bbr_candidate_only_family",
+        "source_family_relation_evidence": [
+          {
+            "pin_id": "INTELLIGENCE-L2",
+            "lines": [
+              433,
+              437
+            ]
+          },
+          {
+            "pin_id": "INTELLIGENCE-L11",
+            "lines": [
+              124
+            ]
+          }
+        ],
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
       },
       "decision_status": {
         "adopted": false,
         "retired": false,
         "closed": false,
         "authority_effect": "none"
-      }
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "INTELLIGENCE-L2",
+          "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+          "lines": [
+            {
+              "line": 433,
+              "sha256": "41fcaeccc7ff9ef8473e863267679b9537b867e04299c2fa067e085fddd9fcd8",
+              "text": "| HELIX-INTELLIGENCE候補 `audit-bounded-repair-requirements.md`（AAFD-BR-01..04、BBR） | AAFD proposalのHEAD/authority/producer/evidence/reproduction/falsification、内部UIL/外部TER区別、影響を受けるprojectionのみ再評価、同一corpusでmodel再比較。BBRのtarget revision/actor/write-set/side effect/budget/deadline/retry/impact/recovery、候補・許可・適用・検収分離、stale/競合/二重実行/循環/不明副作用停止、禁止修復、repair後のHARNESS検証 | candidateは未採択のまま参照。全AAFD-R/BBR-Rのcandidate-only条件を本L2へ自動昇格せず、HELIXINTELLIGENCE-L1-009/016/017に親付けした条件のみを下のIDへ整理 |"
+            },
+            {
+              "line": 437,
+              "sha256": "a7ae5d8a82eacc707d70f911cad50ea0162377fbd3f2a71d63f8f48624ecca18",
+              "text": "| LEGACY-ASSET-D881AF6AFD277B1DE934 `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md:17-64` SHA `81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb` | BBR-R01..05: scope/revision/write-set/budget/stop/recovery, candidate vs permission/apply/inspection, duplicate/cycle/stale/ownership protection, prohibited repairs and HARNESS after-repair obligations | 候補L3の詳細を新設の普遍的承認手続きへ広げず、既存Security/Worker/HARNESS/OS境界へ接続 |"
+            }
+          ]
+        },
+        {
+          "pin_id": "INTELLIGENCE-L11",
+          "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+          "lines": [
+            {
+              "line": 124,
+              "sha256": "15f6288e1130f7d64f742ad9ebf0ee10da7f566c2489cfa876a7833d1f1d4a99",
+              "text": "- BBR-R01..05とBBR-AC01..07は未採択候補のまま維持する。通常GH-FR-011内の許可済修復を一律止めず、新しいscope/write authorityを追加するなら既存owner契約とL1 authorityへ戻す。未信頼repair、write-set逸脱、stale、lease/fence競合、累積budget超過、循環、二重実行、禁止修復を反例として扱う。"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
     },
     {
       "rank": 34,
@@ -1892,17 +2624,73 @@
           "result": "固定F6の該当L2/L11本文で旧source/requirement/acceptance IDの明示crosswalkは確認できない。機能的な類似からpair bindingを推定しない。"
         },
         "residual": "旧candidate資産のproduct_target/upstream_ids/pair_idsは未解決であり、当該行の採択・対応付け・受入実行は確定しない。",
-        "next": "BBR-R03全体と直前適用条件、transaction/CAS consumerを確認し、各repairの許可範囲との結合を照合する。",
+        "next": "BBR-R03全体と直前の適用条件を照合し、transaction/CAS・write-set・対象repair別のatom保持先と未解決境界を記録する。",
         "human_facing_summary": "BBR-R03の隔離差分適用条件の一部。write-set逸脱を拒否し他者変更を保全する。親R03の範囲から独立IDを作らない。",
-        "human_facing_comparison": "固定F6 pairへの明示crosswalk未確認。テーマ上の近接性だけでは対応付けない。",
-        "human_facing_next_step": "BBR-R03全体と直前適用条件、transaction/CAS consumerを確認し、各repairの許可範囲との結合を照合する。"
+        "human_facing_comparison": "INTELLIGENCE L2 lines 433/437 retain the BBR candidate family and requirements range (R-01..05); INTELLIGENCE L11 line 124 keeps that family candidate-only. This R03 clause remains within the old candidate source; no individual current pair binding, adoption, or full atom coverage is established.",
+        "human_facing_next_step": "BBR-R03全体と直前の適用条件を照合し、transaction/CAS・write-set・対象repair別のatom保持先と未解決境界を記録する。",
+        "source_family_relation_found": true,
+        "source_family_relation_kind": "bbr_candidate_only_family",
+        "source_family_relation_evidence": [
+          {
+            "pin_id": "INTELLIGENCE-L2",
+            "lines": [
+              433,
+              437
+            ]
+          },
+          {
+            "pin_id": "INTELLIGENCE-L11",
+            "lines": [
+              124
+            ]
+          }
+        ],
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
       },
       "decision_status": {
         "adopted": false,
         "retired": false,
         "closed": false,
         "authority_effect": "none"
-      }
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "INTELLIGENCE-L2",
+          "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+          "lines": [
+            {
+              "line": 433,
+              "sha256": "41fcaeccc7ff9ef8473e863267679b9537b867e04299c2fa067e085fddd9fcd8",
+              "text": "| HELIX-INTELLIGENCE候補 `audit-bounded-repair-requirements.md`（AAFD-BR-01..04、BBR） | AAFD proposalのHEAD/authority/producer/evidence/reproduction/falsification、内部UIL/外部TER区別、影響を受けるprojectionのみ再評価、同一corpusでmodel再比較。BBRのtarget revision/actor/write-set/side effect/budget/deadline/retry/impact/recovery、候補・許可・適用・検収分離、stale/競合/二重実行/循環/不明副作用停止、禁止修復、repair後のHARNESS検証 | candidateは未採択のまま参照。全AAFD-R/BBR-Rのcandidate-only条件を本L2へ自動昇格せず、HELIXINTELLIGENCE-L1-009/016/017に親付けした条件のみを下のIDへ整理 |"
+            },
+            {
+              "line": 437,
+              "sha256": "a7ae5d8a82eacc707d70f911cad50ea0162377fbd3f2a71d63f8f48624ecca18",
+              "text": "| LEGACY-ASSET-D881AF6AFD277B1DE934 `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md:17-64` SHA `81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb` | BBR-R01..05: scope/revision/write-set/budget/stop/recovery, candidate vs permission/apply/inspection, duplicate/cycle/stale/ownership protection, prohibited repairs and HARNESS after-repair obligations | 候補L3の詳細を新設の普遍的承認手続きへ広げず、既存Security/Worker/HARNESS/OS境界へ接続 |"
+            }
+          ]
+        },
+        {
+          "pin_id": "INTELLIGENCE-L11",
+          "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+          "lines": [
+            {
+              "line": 124,
+              "sha256": "15f6288e1130f7d64f742ad9ebf0ee10da7f566c2489cfa876a7833d1f1d4a99",
+              "text": "- BBR-R01..05とBBR-AC01..07は未採択候補のまま維持する。通常GH-FR-011内の許可済修復を一律止めず、新しいscope/write authorityを追加するなら既存owner契約とL1 authorityへ戻す。未信頼repair、write-set逸脱、stale、lease/fence競合、累積budget超過、循環、二重実行、禁止修復を反例として扱う。"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
     },
     {
       "rank": 35,
@@ -2015,17 +2803,73 @@
           "result": "固定F6の該当L2/L11本文で旧source/requirement/acceptance IDの明示crosswalkは確認できない。機能的な類似からpair bindingを推定しない。"
         },
         "residual": "旧candidate資産のproduct_target/upstream_ids/pair_idsは未解決であり、当該行の採択・対応付け・受入実行は確定しない。",
-        "next": "BBR-R05全列挙、根拠原文、拒否証拠と現行Security/OS authority ownerを照合する。",
+        "next": "BBR-R05の禁止修復を全列挙とnegative evidenceへ分解し、Security/OS ownerへの戻し先と既存の拒否証拠を照合する。",
         "human_facing_summary": "BBR-R05が列挙する禁止repair。権限・証跡補作、Guard解除、必須test削除、閾値/scope変更、他者変更破棄、無許可外部操作を禁止する。",
-        "human_facing_comparison": "固定F6 pairへの明示crosswalk未確認。テーマ上の近接性だけでは対応付けない。",
-        "human_facing_next_step": "BBR-R05全列挙、根拠原文、拒否証拠と現行Security/OS authority ownerを照合する。"
+        "human_facing_comparison": "INTELLIGENCE L2 lines 433/437 retain the BBR candidate family and requirements range (R-01..05); INTELLIGENCE L11 line 124 keeps that family candidate-only. This R05 prohibition clause has no individual current pair binding, adoption, or full atom coverage established.",
+        "human_facing_next_step": "BBR-R05の禁止修復を全列挙とnegative evidenceへ分解し、Security/OS ownerへの戻し先と既存の拒否証拠を照合する。",
+        "source_family_relation_found": true,
+        "source_family_relation_kind": "bbr_candidate_only_family",
+        "source_family_relation_evidence": [
+          {
+            "pin_id": "INTELLIGENCE-L2",
+            "lines": [
+              433,
+              437
+            ]
+          },
+          {
+            "pin_id": "INTELLIGENCE-L11",
+            "lines": [
+              124
+            ]
+          }
+        ],
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
       },
       "decision_status": {
         "adopted": false,
         "retired": false,
         "closed": false,
         "authority_effect": "none"
-      }
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "INTELLIGENCE-L2",
+          "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+          "lines": [
+            {
+              "line": 433,
+              "sha256": "41fcaeccc7ff9ef8473e863267679b9537b867e04299c2fa067e085fddd9fcd8",
+              "text": "| HELIX-INTELLIGENCE候補 `audit-bounded-repair-requirements.md`（AAFD-BR-01..04、BBR） | AAFD proposalのHEAD/authority/producer/evidence/reproduction/falsification、内部UIL/外部TER区別、影響を受けるprojectionのみ再評価、同一corpusでmodel再比較。BBRのtarget revision/actor/write-set/side effect/budget/deadline/retry/impact/recovery、候補・許可・適用・検収分離、stale/競合/二重実行/循環/不明副作用停止、禁止修復、repair後のHARNESS検証 | candidateは未採択のまま参照。全AAFD-R/BBR-Rのcandidate-only条件を本L2へ自動昇格せず、HELIXINTELLIGENCE-L1-009/016/017に親付けした条件のみを下のIDへ整理 |"
+            },
+            {
+              "line": 437,
+              "sha256": "a7ae5d8a82eacc707d70f911cad50ea0162377fbd3f2a71d63f8f48624ecca18",
+              "text": "| LEGACY-ASSET-D881AF6AFD277B1DE934 `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md:17-64` SHA `81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb` | BBR-R01..05: scope/revision/write-set/budget/stop/recovery, candidate vs permission/apply/inspection, duplicate/cycle/stale/ownership protection, prohibited repairs and HARNESS after-repair obligations | 候補L3の詳細を新設の普遍的承認手続きへ広げず、既存Security/Worker/HARNESS/OS境界へ接続 |"
+            }
+          ]
+        },
+        {
+          "pin_id": "INTELLIGENCE-L11",
+          "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+          "lines": [
+            {
+              "line": 124,
+              "sha256": "15f6288e1130f7d64f742ad9ebf0ee10da7f566c2489cfa876a7833d1f1d4a99",
+              "text": "- BBR-R01..05とBBR-AC01..07は未採択候補のまま維持する。通常GH-FR-011内の許可済修復を一律止めず、新しいscope/write authorityを追加するなら既存owner契約とL1 authorityへ戻す。未信頼repair、write-set逸脱、stale、lease/fence競合、累積budget超過、循環、二重実行、禁止修復を反例として扱う。"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
     },
     {
       "rank": 36,
@@ -2136,17 +2980,73 @@
           "result": "この物理行には個別の旧requirement/acceptance IDがない（またはコード断片である）ため、固定F6 pairとの明示crosswalkを立てない。近似pairは割り当てない。"
         },
         "residual": "旧candidate資産のproduct_target/upstream_ids/pair_idsは未解決であり、当該行の採択・対応付け・受入実行は確定しない。",
-        "next": "段階投入の親条件、独立検証/consumer scopeと受入ownerを特定し、個別検査義務を分解する。",
+        "next": "段階投入から受入引継ぎまでの手順・独立検証・実consumer条件を要素化し、BBR candidate-only保持先と未解決ownerを確認する。",
         "human_facing_summary": "段階投入を受け入れる前に、独立oracle/mutation/合法入力誤拒否/実consumer/二重実行/途中失敗を検証する引継ぎ上の規範。",
-        "human_facing_comparison": "固定F6 pairへの明示crosswalk未確認。テーマ上の近接性だけでは対応付けない。",
-        "human_facing_next_step": "段階投入の親条件、独立検証/consumer scopeと受入ownerを特定し、個別検査義務を分解する。"
+        "human_facing_comparison": "INTELLIGENCE L2 lines 433/437 retain BBR as candidate material; INTELLIGENCE L11 line 124 keeps BBR-R01..05/AC01..07 unadopted. This staged-introduction/handoff method clause has no individual current pair binding or full atom coverage established.",
+        "human_facing_next_step": "段階投入から受入引継ぎまでの手順・独立検証・実consumer条件を要素化し、BBR candidate-only保持先と未解決ownerを確認する。",
+        "source_family_relation_found": true,
+        "source_family_relation_kind": "bbr_candidate_only_family",
+        "source_family_relation_evidence": [
+          {
+            "pin_id": "INTELLIGENCE-L2",
+            "lines": [
+              433,
+              437
+            ]
+          },
+          {
+            "pin_id": "INTELLIGENCE-L11",
+            "lines": [
+              124
+            ]
+          }
+        ],
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
       },
       "decision_status": {
         "adopted": false,
         "retired": false,
         "closed": false,
         "authority_effect": "none"
-      }
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "INTELLIGENCE-L2",
+          "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+          "lines": [
+            {
+              "line": 433,
+              "sha256": "41fcaeccc7ff9ef8473e863267679b9537b867e04299c2fa067e085fddd9fcd8",
+              "text": "| HELIX-INTELLIGENCE候補 `audit-bounded-repair-requirements.md`（AAFD-BR-01..04、BBR） | AAFD proposalのHEAD/authority/producer/evidence/reproduction/falsification、内部UIL/外部TER区別、影響を受けるprojectionのみ再評価、同一corpusでmodel再比較。BBRのtarget revision/actor/write-set/side effect/budget/deadline/retry/impact/recovery、候補・許可・適用・検収分離、stale/競合/二重実行/循環/不明副作用停止、禁止修復、repair後のHARNESS検証 | candidateは未採択のまま参照。全AAFD-R/BBR-Rのcandidate-only条件を本L2へ自動昇格せず、HELIXINTELLIGENCE-L1-009/016/017に親付けした条件のみを下のIDへ整理 |"
+            },
+            {
+              "line": 437,
+              "sha256": "a7ae5d8a82eacc707d70f911cad50ea0162377fbd3f2a71d63f8f48624ecca18",
+              "text": "| LEGACY-ASSET-D881AF6AFD277B1DE934 `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md:17-64` SHA `81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb` | BBR-R01..05: scope/revision/write-set/budget/stop/recovery, candidate vs permission/apply/inspection, duplicate/cycle/stale/ownership protection, prohibited repairs and HARNESS after-repair obligations | 候補L3の詳細を新設の普遍的承認手続きへ広げず、既存Security/Worker/HARNESS/OS境界へ接続 |"
+            }
+          ]
+        },
+        {
+          "pin_id": "INTELLIGENCE-L11",
+          "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+          "lines": [
+            {
+              "line": 124,
+              "sha256": "15f6288e1130f7d64f742ad9ebf0ee10da7f566c2489cfa876a7833d1f1d4a99",
+              "text": "- BBR-R01..05とBBR-AC01..07は未採択候補のまま維持する。通常GH-FR-011内の許可済修復を一律止めず、新しいscope/write authorityを追加するなら既存owner契約とL1 authorityへ戻す。未信頼repair、write-set逸脱、stale、lease/fence競合、累積budget超過、循環、二重実行、禁止修復を反例として扱う。"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
     },
     {
       "rank": 37,
@@ -2257,17 +3157,73 @@
           "result": "この物理行には個別の旧requirement/acceptance IDがない（またはコード断片である）ため、固定F6 pairとの明示crosswalkを立てない。近似pairは割り当てない。"
         },
         "residual": "旧candidate資産のproduct_target/upstream_ids/pair_idsは未解決であり、当該行の採択・対応付け・受入実行は確定しない。",
-        "next": "直前の受入義務と段階投入scopeへ結び、反例ごとの期待拒否・証拠を復元する。",
+        "next": "信頼済み修復器差替え、CAS競合、lease取消等の各反例を取り出し、対応する個別oracle evidenceがどこに保持されるかを確認する。",
         "human_facing_summary": "信頼済み修復器差替え、CAS競合、lease取消、累積budget超過、循環、禁止緑化を反例とする受入fixture群。",
-        "human_facing_comparison": "固定F6 pairへの明示crosswalk未確認。テーマ上の近接性だけでは対応付けない。",
-        "human_facing_next_step": "直前の受入義務と段階投入scopeへ結び、反例ごとの期待拒否・証拠を復元する。"
+        "human_facing_comparison": "INTELLIGENCE L2 lines 433/437 retain BBR as candidate material; INTELLIGENCE L11 line 124 keeps BBR-R01..05/AC01..07 unadopted. This staged acceptance counterexample has no individual current pair binding or per-oracle acceptance coverage established.",
+        "human_facing_next_step": "信頼済み修復器差替え、CAS競合、lease取消等の各反例を取り出し、対応する個別oracle evidenceがどこに保持されるかを確認する。",
+        "source_family_relation_found": true,
+        "source_family_relation_kind": "bbr_candidate_only_family",
+        "source_family_relation_evidence": [
+          {
+            "pin_id": "INTELLIGENCE-L2",
+            "lines": [
+              433,
+              437
+            ]
+          },
+          {
+            "pin_id": "INTELLIGENCE-L11",
+            "lines": [
+              124
+            ]
+          }
+        ],
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
       },
       "decision_status": {
         "adopted": false,
         "retired": false,
         "closed": false,
         "authority_effect": "none"
-      }
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "INTELLIGENCE-L2",
+          "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+          "lines": [
+            {
+              "line": 433,
+              "sha256": "41fcaeccc7ff9ef8473e863267679b9537b867e04299c2fa067e085fddd9fcd8",
+              "text": "| HELIX-INTELLIGENCE候補 `audit-bounded-repair-requirements.md`（AAFD-BR-01..04、BBR） | AAFD proposalのHEAD/authority/producer/evidence/reproduction/falsification、内部UIL/外部TER区別、影響を受けるprojectionのみ再評価、同一corpusでmodel再比較。BBRのtarget revision/actor/write-set/side effect/budget/deadline/retry/impact/recovery、候補・許可・適用・検収分離、stale/競合/二重実行/循環/不明副作用停止、禁止修復、repair後のHARNESS検証 | candidateは未採択のまま参照。全AAFD-R/BBR-Rのcandidate-only条件を本L2へ自動昇格せず、HELIXINTELLIGENCE-L1-009/016/017に親付けした条件のみを下のIDへ整理 |"
+            },
+            {
+              "line": 437,
+              "sha256": "a7ae5d8a82eacc707d70f911cad50ea0162377fbd3f2a71d63f8f48624ecca18",
+              "text": "| LEGACY-ASSET-D881AF6AFD277B1DE934 `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md:17-64` SHA `81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb` | BBR-R01..05: scope/revision/write-set/budget/stop/recovery, candidate vs permission/apply/inspection, duplicate/cycle/stale/ownership protection, prohibited repairs and HARNESS after-repair obligations | 候補L3の詳細を新設の普遍的承認手続きへ広げず、既存Security/Worker/HARNESS/OS境界へ接続 |"
+            }
+          ]
+        },
+        {
+          "pin_id": "INTELLIGENCE-L11",
+          "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+          "lines": [
+            {
+              "line": 124,
+              "sha256": "15f6288e1130f7d64f742ad9ebf0ee10da7f566c2489cfa876a7833d1f1d4a99",
+              "text": "- BBR-R01..05とBBR-AC01..07は未採択候補のまま維持する。通常GH-FR-011内の許可済修復を一律止めず、新しいscope/write authorityを追加するなら既存owner契約とL1 authorityへ戻す。未信頼repair、write-set逸脱、stale、lease/fence競合、累積budget超過、循環、二重実行、禁止修復を反例として扱う。"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
     },
     {
       "rank": 38,
@@ -2378,17 +3334,27 @@
           "result": "この物理行には個別の旧requirement/acceptance IDがない（またはコード断片である）ため、固定F6 pairとの明示crosswalkを立てない。近似pairは割り当てない。"
         },
         "residual": "旧candidate資産のproduct_target/upstream_ids/pair_idsは未解決であり、当該行の採択・対応付け・受入実行は確定しない。",
-        "next": "要求残差にしない。archive原文完全性の必要な証拠は別途保全する。コードは実行しない。",
+        "next": "要求差分にはしない。必要なarchive原文完全性確認は別のsource-restoration evidenceに限定し、コードは実行しない。",
         "human_facing_summary": "JavaScriptの正規表現がbase64 code fence blockを列挙するコード。`blocks`がscreen markerに当たるだけで、要求・禁止ではない。",
-        "human_facing_comparison": "固定F6 pairへの明示crosswalk未確認。テーマ上の近接性だけでは対応付けない。",
-        "human_facing_next_step": "要求残差にしない。archive原文完全性の必要な証拠は別途保全する。コードは実行しない。"
+        "human_facing_comparison": "Within the stated SECURITY/OS/INTELLIGENCE L2/L11 search scope, no current source-family or candidate relation was found for this code-only false positive. It is not a requirement atom.",
+        "human_facing_next_step": "要求差分にはしない。必要なarchive原文完全性確認は別のsource-restoration evidenceに限定し、コードは実行しない。",
+        "source_family_relation_found": false,
+        "source_family_relation_kind": "no_current_source_family_relation_found",
+        "source_family_relation_evidence": [],
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
       },
       "decision_status": {
         "adopted": false,
         "retired": false,
         "closed": false,
         "authority_effect": "none"
-      }
+      },
+      "source_family_relation_found": false,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [],
+      "candidate_package_pointer_only": false
     },
     {
       "rank": 39,
@@ -2499,17 +3465,27 @@
           "result": "この物理行には個別の旧requirement/acceptance IDがない（またはコード断片である）ため、固定F6 pairとの明示crosswalkを立てない。近似pairは割り当てない。"
         },
         "residual": "旧candidate資産のproduct_target/upstream_ids/pair_idsは未解決であり、当該行の採択・対応付け・受入実行は確定しない。",
-        "next": "要求残差にしない。必要時はsource restoration evidence側で扱う。コードは実行しない。",
+        "next": "要求差分にはしない。必要なarchive原文完全性確認は別のsource-restoration evidenceに限定し、コードは実行しない。",
         "human_facing_summary": "JavaScriptでdecoded bytesを読む式の`blocks[0]`。隣接行を含むbase64原文復元処理であり、要求条件ではない。",
-        "human_facing_comparison": "固定F6 pairへの明示crosswalk未確認。テーマ上の近接性だけでは対応付けない。",
-        "human_facing_next_step": "要求残差にしない。必要時はsource restoration evidence側で扱う。コードは実行しない。"
+        "human_facing_comparison": "Within the stated SECURITY/OS/INTELLIGENCE L2/L11 search scope, no current source-family or candidate relation was found for this code-only false positive. It is not a requirement atom.",
+        "human_facing_next_step": "要求差分にはしない。必要なarchive原文完全性確認は別のsource-restoration evidenceに限定し、コードは実行しない。",
+        "source_family_relation_found": false,
+        "source_family_relation_kind": "no_current_source_family_relation_found",
+        "source_family_relation_evidence": [],
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
       },
       "decision_status": {
         "adopted": false,
         "retired": false,
         "closed": false,
         "authority_effect": "none"
-      }
+      },
+      "source_family_relation_found": false,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [],
+      "candidate_package_pointer_only": false
     },
     {
       "rank": 40,
@@ -2623,17 +3599,245 @@
           "result": "固定F6の該当L2/L11本文で旧source/requirement/acceptance IDの明示crosswalkは確認できない。機能的な類似からpair bindingを推定しない。"
         },
         "residual": "旧candidate資産のproduct_target/upstream_ids/pair_idsは未解決であり、当該行の採択・対応付け・受入実行は確定しない。",
-        "next": "CIG-R-03とCIG-AC-004のsource/full consumer scopeを回復し、現行requirementsのcrosswalk有無とfixture範囲を確認する。",
+        "next": "OSのdraft candidate packageに列挙されたCIG acceptance sourceとCIG-R-03/AC-004をcase単位で照合し、owner・受入利用先・未割当atomを記録する。candidate pointerのみから採択・実行へ進めない。",
         "human_facing_summary": "stale main/handoff欠落/wrong SHA・attempt/raceを個別注入し、各mutationでsupersedeをfail-closeし、条件成立時だけold mainを置換する受入行。",
-        "human_facing_comparison": "固定F6 pairへの明示crosswalk未確認。テーマ上の近接性だけでは対応付けない。",
-        "human_facing_next_step": "CIG-R-03とCIG-AC-004のsource/full consumer scopeを回復し、現行requirementsのcrosswalk有無とfixture範囲を確認する。"
+        "human_facing_comparison": "The F6 OS next-generation-CI candidate package lists the old CIG acceptance source among derived_from inputs (candidate pointer only; package remains draft_candidate). No OS/INTELLIGENCE L2/L11 source-family mapping or adopted pair relation was found for CIG-AC-004.",
+        "human_facing_next_step": "OSのdraft candidate packageに列挙されたCIG acceptance sourceとCIG-R-03/AC-004をcase単位で照合し、owner・受入利用先・未割当atomを記録する。candidate pointerのみから採択・実行へ進めない。",
+        "source_family_relation_found": false,
+        "source_family_relation_kind": "os_candidate_package_pointer_only",
+        "source_family_relation_evidence": [
+          {
+            "pin_id": "OS-CI-CANDIDATE",
+            "lines": [
+              10,
+              11,
+              12,
+              13,
+              14,
+              17
+            ]
+          }
+        ],
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
       },
       "decision_status": {
         "adopted": false,
         "retired": false,
         "closed": false,
         "authority_effect": "none"
-      }
+      },
+      "source_family_relation_found": false,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "OS-CI-CANDIDATE",
+          "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "4eae5f8dd485ed8c77d2ea7b6b0407028093c02566e5b92fce9d05a89307a49d",
+          "lines": [
+            {
+              "line": 10,
+              "sha256": "72e648b2cf83144d5e2ea79143de3f2e933fcd394233215a4ee0cbfe811b8337",
+              "text": "derived_from:"
+            },
+            {
+              "line": 11,
+              "sha256": "8c58c7f15039bc6778f70baf026950f0e8e2fc8ab48ee097dabf371117ea3031",
+              "text": "  - docs/concept/helix-concept.md"
+            },
+            {
+              "line": 12,
+              "sha256": "a65c1e2c39d4481f19ff94488034a0d693423bc3c00d9a5e417647e47356af75",
+              "text": "  - docs/governance/candidates/ci-event-concurrency-generation-requests.md"
+            },
+            {
+              "line": 13,
+              "sha256": "0e15f293e2d9e3fc4e4782722bd8c36fde7604ec70d48075048fb54fa529948e",
+              "text": "  - docs/governance/candidates/ci-event-concurrency-generation-requirements.md"
+            },
+            {
+              "line": 14,
+              "sha256": "a313a61e9181bce65e8d1a332b40d209f7e125642df3b7db11fabb08f0b25103",
+              "text": "  - docs/governance/candidates/ci-event-concurrency-generation-acceptance.md"
+            },
+            {
+              "line": 17,
+              "sha256": "18a6f14684eea0d901c2d8e3bdad3a793d2ab5804c29f03d302cf2dac54a34b2",
+              "text": "# 新世代CIの上流要求候補"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": true
+    }
+  ],
+  "current_relation_source_pins": [
+    {
+      "pin_id": "SECURITY-L2",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "file_sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+      "lines": [
+        {
+          "line": 394,
+          "sha256": "64a4d58128a57ff05e0e36df30c7b1aec68ad328df111e054174a0fb11b950e5",
+          "text": "旧candidate source atomsは`MPR-SH-CANDIDATE-003`の入力集合にある。対象の旧SEA requests/requirements/acceptance line atomsはそれぞれ `LEGACY-CAND-LINE-004341..004373`（33行、source lines 1–44）、`004374..004419`（46行、source lines 1–57）、`004308..004340`（33行、source lines 1–38）である。file SHAは前表のrequests `c6d76c…f447`、requirements `38a68e…b16`、acceptance `c8d332…ffc`。この行数は登録済み候補sourceの集合であり、意味を全件移管したという主張ではない。L2候補のreceiptで各atomを保持、別の生存中登録へ保留、または人間decisionのいずれかへ割り当てる。"
+        }
+      ]
+    },
+    {
+      "pin_id": "OS-L2",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "lines": [
+        {
+          "line": 497,
+          "sha256": "2f125638b6e1ea1fcd19dfa983f5f4b691fc3ae3d7834d1cfba15d1f0f8b5d7b",
+          "text": "対象別L2の具体化先として既存L3候補を参照する。以下は接続先の識別であり、全FRの意味被覆、対象別L3凍結、"
+        },
+        {
+          "line": 498,
+          "sha256": "6f80f8363df2ecb2ab15a2e72091c9f93c2caad322420b7ecabe0a8c06140433",
+          "text": "候補の正本昇格を完了した証拠ではない。候補のL10をOS利用者のL11受入へ転用しない。"
+        },
+        {
+          "line": 500,
+          "sha256": "5befdfef14c2ff82837a4cfcd62564deac2c0ab82839c7079784fea72746c678",
+          "text": "| L2条件群 | 既存L3候補とID範囲 | 接続するOS要求 |"
+        },
+        {
+          "line": 501,
+          "sha256": "23cca02b74f386463efa24796c7a9011b0d2c93f0c38b4d15d5d276205b59b43",
+          "text": "|---|---|---|"
+        },
+        {
+          "line": 502,
+          "sha256": "5a0d3c3d30ec982bcc0442247a1d1688c590082a03d03009a9da625eba0ce44e",
+          "text": "| HMC | [HMC要件](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/harness-memory-coordination-boundary-requirements.md)：HMC-FR-001..006 | HELIXOS-L2-001／004／005／007／009 |"
+        },
+        {
+          "line": 503,
+          "sha256": "1a3e1ade3b2f2d2d1dc8a8eed1475e8c2e0f2b6f847588844de098768b37e50a",
+          "text": "| AAFD | [AAFD要件](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md)：AAFD-FR-001..004、AAFD-R-01..15 | HELIXOS-L2-005／007 |"
+        },
+        {
+          "line": 504,
+          "sha256": "000cb9e09f08bdd5f3605c315ae6017ab27c760e94b5d2c803fec97ed00f0365",
+          "text": "| RCLS | [RCLS要件](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requirements.md)：RCLS-FR-001..006 | HELIXOS-L2-004／005 |"
+        },
+        {
+          "line": 505,
+          "sha256": "cb50eee05de03eaa108feaa4e3a025fd15f5cf68013ffa88f17c0ec38470007e",
+          "text": "| PPS | [PPS要件](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/producer-provenance-separation-requirements.md)：PPS-R-01..07 | HELIXOS-L2-004／007 |"
+        },
+        {
+          "line": 506,
+          "sha256": "5a4227c00749d6609e3576070f96b82c9acb07d65c9789504a456af9eb925da2",
+          "text": "| CLR | [CLR要件](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md)：CLR-R01..08 | HELIXOS-L2-004／007／009 |"
+        },
+        {
+          "line": 507,
+          "sha256": "c56ea464d2e4bc3870c1cd0776df76cb4f774a04454673cad2db74e41bbc3c8c",
+          "text": "| AVS | [AVS要件](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requirements.md)：AVS-FR-001..005 | HELIXOS-L2-001／003／007 |"
+        }
+      ]
+    },
+    {
+      "pin_id": "INTELLIGENCE-L2",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "lines": [
+        {
+          "line": 433,
+          "sha256": "41fcaeccc7ff9ef8473e863267679b9537b867e04299c2fa067e085fddd9fcd8",
+          "text": "| HELIX-INTELLIGENCE候補 `audit-bounded-repair-requirements.md`（AAFD-BR-01..04、BBR） | AAFD proposalのHEAD/authority/producer/evidence/reproduction/falsification、内部UIL/外部TER区別、影響を受けるprojectionのみ再評価、同一corpusでmodel再比較。BBRのtarget revision/actor/write-set/side effect/budget/deadline/retry/impact/recovery、候補・許可・適用・検収分離、stale/競合/二重実行/循環/不明副作用停止、禁止修復、repair後のHARNESS検証 | candidateは未採択のまま参照。全AAFD-R/BBR-Rのcandidate-only条件を本L2へ自動昇格せず、HELIXINTELLIGENCE-L1-009/016/017に親付けした条件のみを下のIDへ整理 |"
+        },
+        {
+          "line": 434,
+          "sha256": "0148bda59eae224755b092f95b71897e2415f31caa8bc7c1052cd62307d22a02",
+          "text": "| LEGACY-ASSET-8247A056F30FF91E4B8D `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requests.md:20-37` SHA `d78bbcc0ca184bfb87dc2bbc932291f97a58bf9f0fd703481489f15944be9b76` | AAFD-BR-01 exact HEAD/authority/producer/evidence/reproduction/falsifiability、02 internal/external owner、03 affected projection invalidation、04 same corpus/responsibility model comparison | 既存 UIL/TER/Future Synthesis ownerを維持し、agentic audit freedomから新route/DB/authorityを作らない |"
+        },
+        {
+          "line": 435,
+          "sha256": "ed8de66155f53dbfec6ed42dc56a51a3a01234d9b96f7ad1d4353b535f6c0720",
+          "text": "| LEGACY-ASSET-EB3700B0088F311C2295 `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md:23-110` SHA `685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a` | AAFD-R-01..15: proposal identity/authority/duplicate/expiry, deterministic detector priority, qualified UIL/TER source receipts, deterministic delta/dedupe, unknown preservation, exact snapshot join, bounded projection invalidation, stale execution prevention, replay, model revision revalidation/receipt/nonpromotion | AAFDはold draft candidate L3である。HELIXINTELLIGENCE-L1-009の範囲を超えるfuture-state compiler/Future Synthesis/UIL runtimeは別ownerのcandidateとして維持し、ここで移管・再実装しない |"
+        },
+        {
+          "line": 436,
+          "sha256": "989fbab866f2dcfe9ad43b4aae5f490fb8bce9bdb499399bf522ee4ee74d038a",
+          "text": "| LEGACY-ASSET-35F5F438E0F8755B1CCE `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requests.md:18-34` SHA `20f549aa879d84e92196976ab2106bacedb393767d7a9946483c4d308576024e` | GH-FR-011の既存許可範囲と追加権限差分を分ける。既存mechanism内の自動修復を一律停止せず、新scope/write権限を登録のみで拡張しない | 新しいrepair authorityや広範な自動writeを推測で追加しない |"
+        },
+        {
+          "line": 437,
+          "sha256": "a7ae5d8a82eacc707d70f911cad50ea0162377fbd3f2a71d63f8f48624ecca18",
+          "text": "| LEGACY-ASSET-D881AF6AFD277B1DE934 `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md:17-64` SHA `81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb` | BBR-R01..05: scope/revision/write-set/budget/stop/recovery, candidate vs permission/apply/inspection, duplicate/cycle/stale/ownership protection, prohibited repairs and HARNESS after-repair obligations | 候補L3の詳細を新設の普遍的承認手続きへ広げず、既存Security/Worker/HARNESS/OS境界へ接続 |"
+        }
+      ]
+    },
+    {
+      "pin_id": "INTELLIGENCE-L11",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "lines": [
+        {
+          "line": 123,
+          "sha256": "c8a384c8d128ed540baa5b24070b2fec118fd84c94a873de4de0e3d332f5964a",
+          "text": "- AAFD-BR-01..04、AAFD-R-01..15は元候補のまま保持し、自由文からauthorityを生成しない。UIL/TER/Future Synthesisのownerを分け、stale/unknown projectionをassignment/release/retireへ使わない。"
+        },
+        {
+          "line": 124,
+          "sha256": "15f6288e1130f7d64f742ad9ebf0ee10da7f566c2489cfa876a7833d1f1d4a99",
+          "text": "- BBR-R01..05とBBR-AC01..07は未採択候補のまま維持する。通常GH-FR-011内の許可済修復を一律止めず、新しいscope/write authorityを追加するなら既存owner契約とL1 authorityへ戻す。未信頼repair、write-set逸脱、stale、lease/fence競合、累積budget超過、循環、二重実行、禁止修復を反例として扱う。"
+        }
+      ]
+    },
+    {
+      "pin_id": "OS-CI-CANDIDATE",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
+      "file_sha256": "4eae5f8dd485ed8c77d2ea7b6b0407028093c02566e5b92fce9d05a89307a49d",
+      "lines": [
+        {
+          "line": 1,
+          "sha256": "cb3f91d54eee30e53e35b2b99905f70f169ed549fd78909d3dac2defc9ed8d3b",
+          "text": "---"
+        },
+        {
+          "line": 10,
+          "sha256": "72e648b2cf83144d5e2ea79143de3f2e933fcd394233215a4ee0cbfe811b8337",
+          "text": "derived_from:"
+        },
+        {
+          "line": 11,
+          "sha256": "8c58c7f15039bc6778f70baf026950f0e8e2fc8ab48ee097dabf371117ea3031",
+          "text": "  - docs/concept/helix-concept.md"
+        },
+        {
+          "line": 12,
+          "sha256": "a65c1e2c39d4481f19ff94488034a0d693423bc3c00d9a5e417647e47356af75",
+          "text": "  - docs/governance/candidates/ci-event-concurrency-generation-requests.md"
+        },
+        {
+          "line": 13,
+          "sha256": "0e15f293e2d9e3fc4e4782722bd8c36fde7604ec70d48075048fb54fa529948e",
+          "text": "  - docs/governance/candidates/ci-event-concurrency-generation-requirements.md"
+        },
+        {
+          "line": 14,
+          "sha256": "a313a61e9181bce65e8d1a332b40d209f7e125642df3b7db11fabb08f0b25103",
+          "text": "  - docs/governance/candidates/ci-event-concurrency-generation-acceptance.md"
+        },
+        {
+          "line": 17,
+          "sha256": "18a6f14684eea0d901c2d8e3bdad3a793d2ab5804c29f03d302cf2dac54a34b2",
+          "text": "# 新世代CIの上流要求候補"
+        }
+      ]
     }
   ]
 }
