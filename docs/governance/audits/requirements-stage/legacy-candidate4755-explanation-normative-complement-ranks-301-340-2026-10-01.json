@@ -1,0 +1,2436 @@
+{
+  "schema_version": "helix-legacy-candidate4755-explanation-normative-complement-semantic-review.v1",
+  "audit_id": "legacy-candidate4755-explanation-normative-complement-ranks-301-340-2026-10-01",
+  "created_against_commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+  "authority_effect": "none",
+  "purpose": "Semantic audit of numeric-ID ranks 301–340 in the 2,710-row effective-explanation marker-negative complement.",
+  "pool_derivation": {
+    "baseline_ref": "#2353 reconciliation.row_records exact source_item_id join",
+    "ordered_classification_overlays": [
+      "#2356",
+      "#2360",
+      "#2363",
+      "#2366",
+      "#2367",
+      "#2368",
+      "#2369",
+      "#2381"
+    ],
+    "effective_explanation_count": 2965,
+    "marker_pool_count": 255,
+    "complement_count": 2710,
+    "equation": "2965 - 255 = 2710",
+    "rank_key": "numeric LEGACY-CAND-LINE suffix ascending",
+    "selected_ranks": [
+      301,
+      340
+    ],
+    "selected_count": 40,
+    "selected_ids": [
+      "LEGACY-CAND-LINE-000504",
+      "LEGACY-CAND-LINE-000506",
+      "LEGACY-CAND-LINE-000507",
+      "LEGACY-CAND-LINE-000508",
+      "LEGACY-CAND-LINE-000509",
+      "LEGACY-CAND-LINE-000510",
+      "LEGACY-CAND-LINE-000511",
+      "LEGACY-CAND-LINE-000512",
+      "LEGACY-CAND-LINE-000513",
+      "LEGACY-CAND-LINE-000514",
+      "LEGACY-CAND-LINE-000515",
+      "LEGACY-CAND-LINE-000516",
+      "LEGACY-CAND-LINE-000517",
+      "LEGACY-CAND-LINE-000521",
+      "LEGACY-CAND-LINE-000522",
+      "LEGACY-CAND-LINE-000523",
+      "LEGACY-CAND-LINE-000526",
+      "LEGACY-CAND-LINE-000527",
+      "LEGACY-CAND-LINE-000529",
+      "LEGACY-CAND-LINE-000531",
+      "LEGACY-CAND-LINE-000534",
+      "LEGACY-CAND-LINE-000536",
+      "LEGACY-CAND-LINE-000537",
+      "LEGACY-CAND-LINE-000538",
+      "LEGACY-CAND-LINE-000539",
+      "LEGACY-CAND-LINE-000540",
+      "LEGACY-CAND-LINE-000544",
+      "LEGACY-CAND-LINE-000547",
+      "LEGACY-CAND-LINE-000548",
+      "LEGACY-CAND-LINE-000550",
+      "LEGACY-CAND-LINE-000552",
+      "LEGACY-CAND-LINE-000553",
+      "LEGACY-CAND-LINE-000554",
+      "LEGACY-CAND-LINE-000555",
+      "LEGACY-CAND-LINE-000556",
+      "LEGACY-CAND-LINE-000557",
+      "LEGACY-CAND-LINE-000558",
+      "LEGACY-CAND-LINE-000560",
+      "LEGACY-CAND-LINE-000562",
+      "LEGACY-CAND-LINE-000563"
+    ],
+    "selected_ids_sha256": "f624d441dc7d1d604152c366bb8d323184893d7dec9bc6e19f4d9618fe70046f",
+    "prior_161_180_match_verified": true,
+    "prior_261_300_match_verified": true
+  },
+  "pinned_inputs": [
+    {
+      "role": "preceding_complement_ranks_261_300_for_rank_boundary",
+      "commit": "0d9cdb34e7d7c69d82120cdab119b01038144c83",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-261-300-2026-10-01.json",
+      "sha256": "f02187118df01ab88c814e3d7e52b064d17fab0283714fb3c986aa6387f5c47c"
+    },
+    {
+      "role": "#2353 baseline",
+      "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c"
+    },
+    {
+      "role": "#2356 overlay",
+      "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164"
+    },
+    {
+      "role": "#2360 overlay",
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+      "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb"
+    },
+    {
+      "role": "#2363 overlay",
+      "commit": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+      "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384"
+    },
+    {
+      "role": "#2366 overlay",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+      "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6"
+    },
+    {
+      "role": "#2367 overlay",
+      "commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
+      "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d"
+    },
+    {
+      "role": "#2368 overlay",
+      "commit": "f89f71e0371440e9e10636499192c2311872b024",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
+      "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95"
+    },
+    {
+      "role": "#2369 overlay",
+      "commit": "081b0b6612b802cfcb02b3cecda1559dd9a3ce13",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30.json",
+      "sha256": "5ed02b037f78ca25991b396e232e8b1ee754b0c91b056ed6640c9fb1c47cf0c0"
+    },
+    {
+      "role": "#2381 overlay",
+      "commit": "6e62f76986f19d14281cb2a96eca460c5430dcc6",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-metadata10-classification-proposal-2026-09-30.json",
+      "sha256": "512f9ceafe935648d459d6b268ff4d3952f0e8264298213ad278256236b5f40e"
+    }
+  ],
+  "prior_marker_semantic_review_slices": [
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-2026-10-01.json",
+      "sha256": "3ea33ed390c354e84b81f1dd7956afdfab7bd00deb49969383b717bacf4acd33"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-101-120-2026-10-01.json",
+      "sha256": "29cc8bfecbebae44ba0b0473d4df8d561a92f72778ad13177f161e84d1267ecf"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-121-140-2026-10-01.json",
+      "sha256": "f5b88ec5da4727aee48c30311a0c10b47ff6b39fe7cf5adddcea6fa8380933ee"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-141-160-2026-10-01.json",
+      "sha256": "e40dbeaf5758a45a6eb39c96b5a8b5723780cfec15b21516103858f7659d8c4b"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-161-180-2026-10-01.json",
+      "sha256": "9e81e0d3bd4366b01c982be3da542bb64e59750576134558ecdc9b75a22aa7a2"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-181-200-2026-10-01.json",
+      "sha256": "de845d732261122a04af5aeb168dbc9b7a55507d6c977b74c37d1c19ec645e97"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-201-220-2026-10-01.json",
+      "sha256": "d11d4a5fc5005fc1e555f1bc1cea68e375c7bad479349b5340bc9ce80923b19d"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-21-40-2026-10-01.json",
+      "sha256": "8d5059267a6ebe70366e670ac548d760dfd3259748012125201bd6539e1b5b2f"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-221-240-2026-10-01.json",
+      "sha256": "6241e2b37045431c84232e5289942e6df5ff7390e65235b3462e6541af807793"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-241-255-2026-10-01.json",
+      "sha256": "14e4fe6339ee5801a5d6e459ce988628e5928b721b94bcdace49d539aa5c2135"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-41-60-2026-10-01.json",
+      "sha256": "d94780d1daaf6882bfd101d0962c43730025c9348d62b89a3ac33b0d26c814fc"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-61-80-2026-10-01.json",
+      "sha256": "a772c56e8001bb899bc28543fa9b5e8c2f866350f7c2306126f793fc58cd638b"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-81-100-2026-10-01.json",
+      "sha256": "c762d66599bdd07d825aeb1dd5f43e8c8a0f8a2c0f70aaac08e368ad47ba1ff8"
+    }
+  ],
+  "source_ledgers": [
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+      "row_count": 4755
+    },
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    }
+  ],
+  "fixed_F6_pairs": [
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+    },
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+    },
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+    },
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+    }
+  ],
+  "comparison_pairs_at_audit_head": [
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6"
+    },
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e"
+    },
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf"
+    },
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112"
+    }
+  ],
+  "decision_records": [
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.md",
+      "sha256": "d2bd02399212b3912825203a9c9037060332a2b1d48a942197bc9cd53536b2cb"
+    },
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+    },
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
+    },
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md",
+      "sha256": "a60e2c9c5b9d0828acdf4348e5cabbf7f3c032ec5d33b628f3d9e2bf305176de"
+    }
+  ],
+  "current_relation_files": [
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
+      "sha256": "4eae5f8dd485ed8c77d2ea7b6b0407028093c02566e5b92fce9d05a89307a49d"
+    },
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/concept/helix-concept.md",
+      "sha256": "06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78"
+    }
+  ],
+  "rows": [
+    {
+      "rank": 301,
+      "source_id": "LEGACY-CAND-LINE-000504",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_line": 34,
+      "semantic_category": "candidate authority boundary",
+      "semantic_reading": "この候補sourceがIssueを要求候補へ整理したもので、承認、canonical promotion、runtime有効化、GitHub cancel権限を与えないという境界を明示する。",
+      "current_relation_and_limit": "The fixed F6 HARNESS/OS L2-L11 files provide only general CI, evidence, and authority context. The OS next-generation-CI document remains draft_candidate / awaiting_human_approval. No row-specific current crosswalk or adopted pair binding was found; the 2026-09-28 PO decisions adopt only their explicit candidate sets. No successor or acceptance evidence is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "source_line_sha256": "43a7f957a695853d2f7a7f6ec3c37e0217b171b06da50439f730a4407e7f046a",
+      "physical_line_bytes_sha256": "3842c384ad195e2285bb0fc19f053faf47c4052aedb9c9f0fe973fc7fe965251",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 504,
+        "entry_sha256": "562e0109a784c1e9771b8f1c95cc0e076c82d1ab5c6a0c29c5a1284855d112c1"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-8B78505C1E059419875F",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 798,
+          "entry_sha256": "24dc2ec83a88feb556048d9c4c615dba6f6c005c435ae64410b2c520947743eb",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 33,
+          "text": "本書はIssue #1336を要求候補へ整理したものであり、承認、canonical promotion、runtime有効化、GitHub上の"
+        },
+        {
+          "line": 34,
+          "text": "cancel権限を与えない。"
+        }
+      ],
+      "source_excerpt": "cancel権限を与えない。"
+    },
+    {
+      "rank": 302,
+      "source_id": "LEGACY-CAND-LINE-000506",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 2,
+      "semantic_category": "metadata / provenance / pointer",
+      "semantic_reading": "candidate document title metadata.",
+      "current_relation_and_limit": "The fixed F6 HARNESS/OS L2-L11 files provide only general CI, evidence, and authority context. The OS next-generation-CI document remains draft_candidate / awaiting_human_approval. No row-specific current crosswalk or adopted pair binding was found; the 2026-09-28 PO decisions adopt only their explicit candidate sets. No successor or acceptance evidence is assigned.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "fe4c76e669756cbc9c67ba4c0ddfc643ec1ea789b3da4016d88f875d5afd2502",
+      "physical_line_bytes_sha256": "d45c9cfb4766afbb55658c235ffb5b054a699a024eaf72e40ca917ef81fb6bff",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 506,
+        "entry_sha256": "829fdef3b5d687973d0b4d91a344c172be94b334010dd1132b1eeb30047438f6"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 799,
+          "entry_sha256": "da33124ed2b3f8d51ad5bd6a4891812cb394fe1275a7b8c8914a9e686a09f95d",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 1,
+          "text": "---"
+        },
+        {
+          "line": 2,
+          "text": "title: \"CI event-class concurrency generation 要件差分候補\""
+        },
+        {
+          "line": 3,
+          "text": "status: draft_candidate"
+        }
+      ],
+      "source_excerpt": "title: \"CI event-class concurrency generation 要件差分候補\""
+    },
+    {
+      "rank": 303,
+      "source_id": "LEGACY-CAND-LINE-000507",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 3,
+      "semantic_category": "metadata / provenance / pointer",
+      "semantic_reading": "draft_candidate status metadata.",
+      "current_relation_and_limit": "The fixed F6 HARNESS/OS L2-L11 files provide only general CI, evidence, and authority context. The OS next-generation-CI document remains draft_candidate / awaiting_human_approval. No row-specific current crosswalk or adopted pair binding was found; the 2026-09-28 PO decisions adopt only their explicit candidate sets. No successor or acceptance evidence is assigned.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "e2f54e8ccf42197c498223478758d709e4b1617d22ec5c47f374ad01cd3f5d73",
+      "physical_line_bytes_sha256": "b8e0419afbe1b1eea382ff37243bd4cc306439e777c20b65ae2f96126c8bf0dc",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 507,
+        "entry_sha256": "a9daff53cd96c48f79f8dfab0ab74fca8873706cb9da9a79e42f1f31330808aa"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 799,
+          "entry_sha256": "da33124ed2b3f8d51ad5bd6a4891812cb394fe1275a7b8c8914a9e686a09f95d",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 2,
+          "text": "title: \"CI event-class concurrency generation 要件差分候補\""
+        },
+        {
+          "line": 3,
+          "text": "status: draft_candidate"
+        },
+        {
+          "line": 4,
+          "text": "canonical_layer: L3"
+        }
+      ],
+      "source_excerpt": "status: draft_candidate"
+    },
+    {
+      "rank": 304,
+      "source_id": "LEGACY-CAND-LINE-000508",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 4,
+      "semantic_category": "metadata / provenance / pointer",
+      "semantic_reading": "legacy canonical_layer metadata; not current layer assignment.",
+      "current_relation_and_limit": "The fixed F6 HARNESS/OS L2-L11 files provide only general CI, evidence, and authority context. The OS next-generation-CI document remains draft_candidate / awaiting_human_approval. No row-specific current crosswalk or adopted pair binding was found; the 2026-09-28 PO decisions adopt only their explicit candidate sets. No successor or acceptance evidence is assigned.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "ba64914c792051c6ab060e5f66d23d45aeffe6fdbddea969aeb207f21c692ed2",
+      "physical_line_bytes_sha256": "0998ef3adf7830c19d285c14663ed6ff8692e4ac1bb52175847aefdbcb0f47dd",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 508,
+        "entry_sha256": "2f0d141983caa1fa88605a1d4e4c6a20a2c4d748e9f2f32bf2c54e240cfbb7b1"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 799,
+          "entry_sha256": "da33124ed2b3f8d51ad5bd6a4891812cb394fe1275a7b8c8914a9e686a09f95d",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 3,
+          "text": "status: draft_candidate"
+        },
+        {
+          "line": 4,
+          "text": "canonical_layer: L3"
+        },
+        {
+          "line": 5,
+          "text": "canonical_pair: L10"
+        }
+      ],
+      "source_excerpt": "canonical_layer: L3"
+    },
+    {
+      "rank": 305,
+      "source_id": "LEGACY-CAND-LINE-000509",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 5,
+      "semantic_category": "metadata / provenance / pointer",
+      "semantic_reading": "legacy paired L10 metadata; not a current L2/L11 decision.",
+      "current_relation_and_limit": "The fixed F6 HARNESS/OS L2-L11 files provide only general CI, evidence, and authority context. The OS next-generation-CI document remains draft_candidate / awaiting_human_approval. No row-specific current crosswalk or adopted pair binding was found; the 2026-09-28 PO decisions adopt only their explicit candidate sets. No successor or acceptance evidence is assigned.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "072c3dcb2567a8cc71ae10d2d799c112ff60624fb1cdb0f82095fe5c2d685106",
+      "physical_line_bytes_sha256": "05e17f64c49d8ef5e24758dd4bc2e5a34cdcd8da3091873c2cccd5869719d48d",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 509,
+        "entry_sha256": "e70cc5a55ca333c04edcf810db54578be25c87a8a16695f852ddbb1ad2ba5668"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 799,
+          "entry_sha256": "da33124ed2b3f8d51ad5bd6a4891812cb394fe1275a7b8c8914a9e686a09f95d",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 4,
+          "text": "canonical_layer: L3"
+        },
+        {
+          "line": 5,
+          "text": "canonical_pair: L10"
+        },
+        {
+          "line": 6,
+          "text": "plan: PLAN-L3-93-ci-event-concurrency-generation"
+        }
+      ],
+      "source_excerpt": "canonical_pair: L10"
+    },
+    {
+      "rank": 306,
+      "source_id": "LEGACY-CAND-LINE-000510",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 6,
+      "semantic_category": "metadata / provenance / pointer",
+      "semantic_reading": "legacy plan pointer metadata.",
+      "current_relation_and_limit": "The fixed F6 HARNESS/OS L2-L11 files provide only general CI, evidence, and authority context. The OS next-generation-CI document remains draft_candidate / awaiting_human_approval. No row-specific current crosswalk or adopted pair binding was found; the 2026-09-28 PO decisions adopt only their explicit candidate sets. No successor or acceptance evidence is assigned.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "5d5b84da0c825dca9a18dc5c0c0ec5f94cd11aa9542f1e3bc08b2273ffdd2b6b",
+      "physical_line_bytes_sha256": "154efdfe4322198780e29131dead0279f027ca4539cdbc671a11b0f65cad1797",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 510,
+        "entry_sha256": "1199b438b2c1b1f6d8417e402bacede2592cae3c1eab41ccc1af25b5bfe463f9"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 799,
+          "entry_sha256": "da33124ed2b3f8d51ad5bd6a4891812cb394fe1275a7b8c8914a9e686a09f95d",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 5,
+          "text": "canonical_pair: L10"
+        },
+        {
+          "line": 6,
+          "text": "plan: PLAN-L3-93-ci-event-concurrency-generation"
+        },
+        {
+          "line": 7,
+          "text": "source_requests: docs/governance/candidates/ci-event-concurrency-generation-requests.md"
+        }
+      ],
+      "source_excerpt": "plan: PLAN-L3-93-ci-event-concurrency-generation"
+    },
+    {
+      "rank": 307,
+      "source_id": "LEGACY-CAND-LINE-000511",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 7,
+      "semantic_category": "metadata / provenance / pointer",
+      "semantic_reading": "source request document pointer metadata.",
+      "current_relation_and_limit": "The fixed F6 HARNESS/OS L2-L11 files provide only general CI, evidence, and authority context. The OS next-generation-CI document remains draft_candidate / awaiting_human_approval. No row-specific current crosswalk or adopted pair binding was found; the 2026-09-28 PO decisions adopt only their explicit candidate sets. No successor or acceptance evidence is assigned.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "b306791b571d9f9e5e3c2634b595a17de06b95121880f19527fe29d636b808eb",
+      "physical_line_bytes_sha256": "3a4bdafc43e583b015bada16b067166e617caf1130c037cfd41201aba4296f74",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 511,
+        "entry_sha256": "c3ac8aa8885d9586d277a5c125605e64da64741b12a2ecbe806c57a335ba12c1"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 799,
+          "entry_sha256": "da33124ed2b3f8d51ad5bd6a4891812cb394fe1275a7b8c8914a9e686a09f95d",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 6,
+          "text": "plan: PLAN-L3-93-ci-event-concurrency-generation"
+        },
+        {
+          "line": 7,
+          "text": "source_requests: docs/governance/candidates/ci-event-concurrency-generation-requests.md"
+        },
+        {
+          "line": 8,
+          "text": "pair_artifact: docs/governance/candidates/ci-event-concurrency-generation-acceptance.md"
+        }
+      ],
+      "source_excerpt": "source_requests: docs/governance/candidates/ci-event-concurrency-generation-requests.md"
+    },
+    {
+      "rank": 308,
+      "source_id": "LEGACY-CAND-LINE-000512",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 8,
+      "semantic_category": "metadata / provenance / pointer",
+      "semantic_reading": "candidate paired artifact pointer metadata.",
+      "current_relation_and_limit": "The fixed F6 HARNESS/OS L2-L11 files provide only general CI, evidence, and authority context. The OS next-generation-CI document remains draft_candidate / awaiting_human_approval. No row-specific current crosswalk or adopted pair binding was found; the 2026-09-28 PO decisions adopt only their explicit candidate sets. No successor or acceptance evidence is assigned.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "64f772a1c766279e52179254680e2acea60272ca7d202ae1859f0f84b4ee3f0f",
+      "physical_line_bytes_sha256": "37d5148273420bd7e9c1d542ee1f307ffc7d6ab76a05e17a6d8d861208137f8d",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 512,
+        "entry_sha256": "2120a40152977ec25007a9d1856226bfe33e5b698d40e6153ab44ffb03641d03"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 799,
+          "entry_sha256": "da33124ed2b3f8d51ad5bd6a4891812cb394fe1275a7b8c8914a9e686a09f95d",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 7,
+          "text": "source_requests: docs/governance/candidates/ci-event-concurrency-generation-requests.md"
+        },
+        {
+          "line": 8,
+          "text": "pair_artifact: docs/governance/candidates/ci-event-concurrency-generation-acceptance.md"
+        },
+        {
+          "line": 9,
+          "text": "refines:"
+        }
+      ],
+      "source_excerpt": "pair_artifact: docs/governance/candidates/ci-event-concurrency-generation-acceptance.md"
+    },
+    {
+      "rank": 309,
+      "source_id": "LEGACY-CAND-LINE-000513",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 9,
+      "semantic_category": "metadata / provenance / pointer",
+      "semantic_reading": "refines section label / candidate identity grouping metadata.",
+      "current_relation_and_limit": "The fixed F6 HARNESS/OS L2-L11 files provide only general CI, evidence, and authority context. The OS next-generation-CI document remains draft_candidate / awaiting_human_approval. No row-specific current crosswalk or adopted pair binding was found; the 2026-09-28 PO decisions adopt only their explicit candidate sets. No successor or acceptance evidence is assigned.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "867a63f83011fd964558137caf5f08c84cdc3ce556ef8d1405fd55abd9cbb7aa",
+      "physical_line_bytes_sha256": "7a8ead58a81394259cffda0f052784f6453af1de96265f798ca2a6c00528f250",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 513,
+        "entry_sha256": "c3881ad6cae82f53c78d2ab3baa80f3d488daf25f0c372850c47639b3d586b3b"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 799,
+          "entry_sha256": "da33124ed2b3f8d51ad5bd6a4891812cb394fe1275a7b8c8914a9e686a09f95d",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 8,
+          "text": "pair_artifact: docs/governance/candidates/ci-event-concurrency-generation-acceptance.md"
+        },
+        {
+          "line": 9,
+          "text": "refines:"
+        },
+        {
+          "line": 10,
+          "text": "  - CIS-R-01"
+        }
+      ],
+      "source_excerpt": "refines:"
+    },
+    {
+      "rank": 310,
+      "source_id": "LEGACY-CAND-LINE-000514",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 10,
+      "semantic_category": "metadata / provenance / pointer",
+      "semantic_reading": "refines requirement-ID pointer metadata (CIS-R-01).",
+      "current_relation_and_limit": "The fixed F6 HARNESS/OS L2-L11 files provide only general CI, evidence, and authority context. The OS next-generation-CI document remains draft_candidate / awaiting_human_approval. No row-specific current crosswalk or adopted pair binding was found; the 2026-09-28 PO decisions adopt only their explicit candidate sets. No successor or acceptance evidence is assigned.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "a9c98c2db6601b0c963c5835fa5a2295cb5adc01b94a6712e07f9d39c4da11ff",
+      "physical_line_bytes_sha256": "3853f56a065d410e1b1d84991fb5181b6bee614792b8e78c4aa9a6c46a4525f3",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 514,
+        "entry_sha256": "82953bcf71c3839b0f05ceece07a80f25013e8c4c60e7fe5c4637b08217dbf8a"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 799,
+          "entry_sha256": "da33124ed2b3f8d51ad5bd6a4891812cb394fe1275a7b8c8914a9e686a09f95d",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 9,
+          "text": "refines:"
+        },
+        {
+          "line": 10,
+          "text": "  - CIS-R-01"
+        },
+        {
+          "line": 11,
+          "text": "  - CIS-R-02"
+        }
+      ],
+      "source_excerpt": "  - CIS-R-01"
+    },
+    {
+      "rank": 311,
+      "source_id": "LEGACY-CAND-LINE-000515",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 11,
+      "semantic_category": "metadata / provenance / pointer",
+      "semantic_reading": "refines requirement-ID pointer metadata (CIS-R-02).",
+      "current_relation_and_limit": "The fixed F6 HARNESS/OS L2-L11 files provide only general CI, evidence, and authority context. The OS next-generation-CI document remains draft_candidate / awaiting_human_approval. No row-specific current crosswalk or adopted pair binding was found; the 2026-09-28 PO decisions adopt only their explicit candidate sets. No successor or acceptance evidence is assigned.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "790816e4fdbf63a259b6f342011143d0c75eb6621bccdb61259bae2f5d62c5ab",
+      "physical_line_bytes_sha256": "04a26bc048bb494da4557f50409b9d1c20e62fdc71873c3bcb6dcfb355f99edf",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 515,
+        "entry_sha256": "551682fd874f0ef5676d000fa12eec12f6d5061670f82daa4da53ea5c834fdeb"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 799,
+          "entry_sha256": "da33124ed2b3f8d51ad5bd6a4891812cb394fe1275a7b8c8914a9e686a09f95d",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 10,
+          "text": "  - CIS-R-01"
+        },
+        {
+          "line": 11,
+          "text": "  - CIS-R-02"
+        },
+        {
+          "line": 12,
+          "text": "  - CIS-R-12"
+        }
+      ],
+      "source_excerpt": "  - CIS-R-02"
+    },
+    {
+      "rank": 312,
+      "source_id": "LEGACY-CAND-LINE-000516",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 12,
+      "semantic_category": "metadata / provenance / pointer",
+      "semantic_reading": "refines requirement-ID pointer metadata (CIS-R-12).",
+      "current_relation_and_limit": "The fixed F6 HARNESS/OS L2-L11 files provide only general CI, evidence, and authority context. The OS next-generation-CI document remains draft_candidate / awaiting_human_approval. No row-specific current crosswalk or adopted pair binding was found; the 2026-09-28 PO decisions adopt only their explicit candidate sets. No successor or acceptance evidence is assigned.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "594afac37e6f88bca6b72a3d94bfe657a7433b0d9a7d43f483c203403ce078fb",
+      "physical_line_bytes_sha256": "2843ec2068703af880dd2e69d7626adfa9bda89edce27420bb8415d284c34268",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 516,
+        "entry_sha256": "fd17fbfa0abf30713c51cbe88febf510cb7e3a593b9292ff3a4f5b36217ee4ff"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 799,
+          "entry_sha256": "da33124ed2b3f8d51ad5bd6a4891812cb394fe1275a7b8c8914a9e686a09f95d",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 11,
+          "text": "  - CIS-R-02"
+        },
+        {
+          "line": 12,
+          "text": "  - CIS-R-12"
+        },
+        {
+          "line": 13,
+          "text": "  - CIS-R-13"
+        }
+      ],
+      "source_excerpt": "  - CIS-R-12"
+    },
+    {
+      "rank": 313,
+      "source_id": "LEGACY-CAND-LINE-000517",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 13,
+      "semantic_category": "metadata / provenance / pointer",
+      "semantic_reading": "refines requirement-ID pointer metadata (CIS-R-13).",
+      "current_relation_and_limit": "The fixed F6 HARNESS/OS L2-L11 files provide only general CI, evidence, and authority context. The OS next-generation-CI document remains draft_candidate / awaiting_human_approval. No row-specific current crosswalk or adopted pair binding was found; the 2026-09-28 PO decisions adopt only their explicit candidate sets. No successor or acceptance evidence is assigned.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "d1129cc6f437fc3699294414ffe9167c2d6a50ff3b66e2c0675e132622d5a25f",
+      "physical_line_bytes_sha256": "5a2aa98ddc913cab0523e8aeee6fa1275111dcf1cf1564c6800d3f9d55697de5",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 517,
+        "entry_sha256": "b9085412ec2d86d363b06dba7ccf153bd37721ca98d3be9db8c443597c5dc2e6"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 799,
+          "entry_sha256": "da33124ed2b3f8d51ad5bd6a4891812cb394fe1275a7b8c8914a9e686a09f95d",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 12,
+          "text": "  - CIS-R-12"
+        },
+        {
+          "line": 13,
+          "text": "  - CIS-R-13"
+        },
+        {
+          "line": 14,
+          "text": "---"
+        }
+      ],
+      "source_excerpt": "  - CIS-R-13"
+    },
+    {
+      "rank": 314,
+      "source_id": "LEGACY-CAND-LINE-000521",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 20,
+      "semantic_category": "metadata / provenance / pointer",
+      "semantic_reading": "upstream/downstream candidate-ID relation pointer; it does not itself state a behavior or adoption.",
+      "current_relation_and_limit": "The fixed F6 HARNESS/OS L2-L11 files provide only general CI, evidence, and authority context. The OS next-generation-CI document remains draft_candidate / awaiting_human_approval. No row-specific current crosswalk or adopted pair binding was found; the 2026-09-28 PO decisions adopt only their explicit candidate sets. No successor or acceptance evidence is assigned.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "f61c6e9ab52065916088b1dac80c772293d5f9f5c67bdcc0e2849e69a1da431a",
+      "physical_line_bytes_sha256": "5eb7ef1f043a8c1fe14ec0f41d1a1ae8497f230fcbb4535b5eea1f3586fe9ab6",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 521,
+        "entry_sha256": "513973c5fa1762c4f7e996f346372b00b2ff547b02e25fd9c92f0b4cf3196891"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 799,
+          "entry_sha256": "da33124ed2b3f8d51ad5bd6a4891812cb394fe1275a7b8c8914a9e686a09f95d",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 19,
+          "text": ""
+        },
+        {
+          "line": 20,
+          "text": "上流: `CIG-BR-01`。下流: `CIG-AC-001`, `CIG-AC-007`。"
+        },
+        {
+          "line": 21,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "上流: `CIG-BR-01`。下流: `CIG-AC-001`, `CIG-AC-007`。"
+    },
+    {
+      "rank": 315,
+      "source_id": "LEGACY-CAND-LINE-000522",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 22,
+      "semantic_category": "candidate requirement: generation identity",
+      "semantic_reading": "CI eventを複数のevent classへ分類し、列挙したrevision/run identityからgeneration identityを決定的に作る候補条件。",
+      "current_relation_and_limit": "The fixed F6 HARNESS/OS L2-L11 files provide only general CI, evidence, and authority context. The OS next-generation-CI document remains draft_candidate / awaiting_human_approval. No row-specific current crosswalk or adopted pair binding was found; the 2026-09-28 PO decisions adopt only their explicit candidate sets. No successor or acceptance evidence is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "0a94218028b2ea4e072fb4ac2aaebbc53f22fe43f561ae6167386aed531c38bb",
+      "physical_line_bytes_sha256": "3f1bec99c3a90fc77dd9c3fc4dd43617f9fc86735b1fc8e886afe6ee1bf9c97b",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 522,
+        "entry_sha256": "3c7671a70b74fa21fdc2d9dfcd45f246709d44bcee056b88a2c1e56f8aae6c3a"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 799,
+          "entry_sha256": "da33124ed2b3f8d51ad5bd6a4891812cb394fe1275a7b8c8914a9e686a09f95d",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 21,
+          "text": ""
+        },
+        {
+          "line": 22,
+          "text": "CI eventを最低限`pull_request`、`main_push`、`schedule`、`workflow_dispatch`へ分類し、repository、workflow、"
+        },
+        {
+          "line": 23,
+          "text": "event class、PR identity、ref、candidate/base/before HEAD、run ID、attemptからgeneration identityを決定的に"
+        }
+      ],
+      "source_excerpt": "CI eventを最低限`pull_request`、`main_push`、`schedule`、`workflow_dispatch`へ分類し、repository、workflow、"
+    },
+    {
+      "rank": 316,
+      "source_id": "LEGACY-CAND-LINE-000523",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 23,
+      "semantic_category": "candidate requirement: unknown input handling",
+      "semantic_reading": "不足payload、unknown event、HEAD/attempt不一致を暗黙補完せずfail-closeまたは明示DEGRADEDにする候補条件。",
+      "current_relation_and_limit": "The fixed F6 HARNESS/OS L2-L11 files provide only general CI, evidence, and authority context. The OS next-generation-CI document remains draft_candidate / awaiting_human_approval. No row-specific current crosswalk or adopted pair binding was found; the 2026-09-28 PO decisions adopt only their explicit candidate sets. No successor or acceptance evidence is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "a474637f8018d42003b8880efe57c2e59391c4f0c82cbfb848e718cead1d8af8",
+      "physical_line_bytes_sha256": "ff2e55de05c1d914691058037fbe620adb6e7dfc3e70e98ca13ade648fc1a0f8",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 523,
+        "entry_sha256": "93dededb7ac21580534756a707f601234bba0b3d73a5afc1a78c0dea6a191298"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 799,
+          "entry_sha256": "da33124ed2b3f8d51ad5bd6a4891812cb394fe1275a7b8c8914a9e686a09f95d",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 22,
+          "text": "CI eventを最低限`pull_request`、`main_push`、`schedule`、`workflow_dispatch`へ分類し、repository、workflow、"
+        },
+        {
+          "line": 23,
+          "text": "event class、PR identity、ref、candidate/base/before HEAD、run ID、attemptからgeneration identityを決定的に"
+        },
+        {
+          "line": 24,
+          "text": "生成する。payload不足、unknown event、wrong HEAD／attemptは暗黙補完せずfail-closeまたは明示DEGRADEDとする。"
+        }
+      ],
+      "source_excerpt": "event class、PR identity、ref、candidate/base/before HEAD、run ID、attemptからgeneration identityを決定的に"
+    },
+    {
+      "rank": 317,
+      "source_id": "LEGACY-CAND-LINE-000526",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 28,
+      "semantic_category": "metadata / provenance / pointer",
+      "semantic_reading": "upstream/downstream candidate-ID relation pointer.",
+      "current_relation_and_limit": "The fixed F6 HARNESS/OS L2-L11 files provide only general CI, evidence, and authority context. The OS next-generation-CI document remains draft_candidate / awaiting_human_approval. No row-specific current crosswalk or adopted pair binding was found; the 2026-09-28 PO decisions adopt only their explicit candidate sets. No successor or acceptance evidence is assigned.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "39318a8797de296fea0ab5271a9fb896b51c20fa4a9711d5a02a08bdf8a0e22c",
+      "physical_line_bytes_sha256": "2f0ff68eccf1b1cbf6ec44f71ad2b19bea2b01d9ae5b036b1c2e254e1f2b7630",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 526,
+        "entry_sha256": "1c32d2876291e03fd2f7fd14fbcfeeecc321dd5506d939bb885c03f3b722ee24"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 799,
+          "entry_sha256": "da33124ed2b3f8d51ad5bd6a4891812cb394fe1275a7b8c8914a9e686a09f95d",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 27,
+          "text": ""
+        },
+        {
+          "line": 28,
+          "text": "上流: `CIG-BR-01`, `CIG-BR-02`。下流: `CIG-AC-002`, `CIG-AC-003`, `CIG-AC-007`。"
+        },
+        {
+          "line": 29,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "上流: `CIG-BR-01`, `CIG-BR-02`。下流: `CIG-AC-002`, `CIG-AC-003`, `CIG-AC-007`。"
+    },
+    {
+      "rank": 318,
+      "source_id": "LEGACY-CAND-LINE-000527",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 30,
+      "semantic_category": "candidate requirement: non-interference and bounded replacement",
+      "semantic_reading": "異なるevent classやPR間の相互cancelを防ぎ、newer same-PR HEADとscheduleの置換対象を限定する候補条件。",
+      "current_relation_and_limit": "The fixed F6 HARNESS/OS L2-L11 files provide only general CI, evidence, and authority context. The OS next-generation-CI document remains draft_candidate / awaiting_human_approval. No row-specific current crosswalk or adopted pair binding was found; the 2026-09-28 PO decisions adopt only their explicit candidate sets. No successor or acceptance evidence is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "3869e4a2fb0b8c47faa444c56f3c400d2e24e824d90bc8acdbec090074303c77",
+      "physical_line_bytes_sha256": "a2e3dedba31688bcdbd4a0cf90ce5b133093df3e83bfdf017dfeccaa1a56edc4",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 527,
+        "entry_sha256": "7734a48e5e90f8162ec9232d30a765f8dc7ef1976557c9c5332f93b5ead83657"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 799,
+          "entry_sha256": "da33124ed2b3f8d51ad5bd6a4891812cb394fe1275a7b8c8914a9e686a09f95d",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 29,
+          "text": ""
+        },
+        {
+          "line": 30,
+          "text": "`main_push`、`schedule`、`workflow_dispatch`、別PRは相互にcancelしない。同一PRのnewer HEADはそのPRのstale"
+        },
+        {
+          "line": 31,
+          "text": "HEADだけを置換でき、newer scheduleはolder scheduleだけを置換できる。`cancel-in-progress:false`だけによる"
+        }
+      ],
+      "source_excerpt": "`main_push`、`schedule`、`workflow_dispatch`、別PRは相互にcancelしない。同一PRのnewer HEADはそのPRのstale"
+    },
+    {
+      "rank": 319,
+      "source_id": "LEGACY-CAND-LINE-000529",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 32,
+      "semantic_category": "candidate requirement: bounded concurrency",
+      "semantic_reading": "`cancel-in-progress:false`だけで無制限並走させる方法を、前行の限定置換・非干渉条件の代替実装として採らない候補条件。",
+      "current_relation_and_limit": "The fixed F6 HARNESS/OS L2-L11 files provide only general CI, evidence, and authority context. The OS next-generation-CI document remains draft_candidate / awaiting_human_approval. No row-specific current crosswalk or adopted pair binding was found; the 2026-09-28 PO decisions adopt only their explicit candidate sets. No successor or acceptance evidence is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "309c491a6d25b513f5543e36f3a0a7af2c83231486e8b4916a83c27fcf50f0cb",
+      "physical_line_bytes_sha256": "b85014139198ed2598ad41ab5de9c7691cb73c751403142aad4442095915ecb3",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 529,
+        "entry_sha256": "8d48ce511bf7e4a0ba20d9c1a3a76787df7e4058962fe95bc2649f80dd6ad2c4"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 799,
+          "entry_sha256": "da33124ed2b3f8d51ad5bd6a4891812cb394fe1275a7b8c8914a9e686a09f95d",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 31,
+          "text": "HEADだけを置換でき、newer scheduleはolder scheduleだけを置換できる。`cancel-in-progress:false`だけによる"
+        },
+        {
+          "line": 32,
+          "text": "無制限並走を代替実装にしない。"
+        },
+        {
+          "line": 33,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "無制限並走を代替実装にしない。"
+    },
+    {
+      "rank": 320,
+      "source_id": "LEGACY-CAND-LINE-000531",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 36,
+      "semantic_category": "metadata / provenance / pointer",
+      "semantic_reading": "upstream/downstream candidate-ID relation pointer.",
+      "current_relation_and_limit": "The fixed F6 HARNESS/OS L2-L11 files provide only general CI, evidence, and authority context. The OS next-generation-CI document remains draft_candidate / awaiting_human_approval. No row-specific current crosswalk or adopted pair binding was found; the 2026-09-28 PO decisions adopt only their explicit candidate sets. No successor or acceptance evidence is assigned.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "7ddafee95551f1674ca44e2ce92919fcded4dde2e1e83ffe000e4184c6ce0f2e",
+      "physical_line_bytes_sha256": "cc9851057b22e7125d5895d2d2450aa84515d34a7da5699fbbeca5d817d618d0",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 531,
+        "entry_sha256": "a9e2b42ce7df3d3b2275642046683932229e88d27c87e1bc834acffe14381d36"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 799,
+          "entry_sha256": "da33124ed2b3f8d51ad5bd6a4891812cb394fe1275a7b8c8914a9e686a09f95d",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 35,
+          "text": ""
+        },
+        {
+          "line": 36,
+          "text": "上流: `CIG-BR-02`, `CIG-BR-03`。下流: `CIG-AC-004`, `CIG-AC-007`。"
+        },
+        {
+          "line": 37,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "上流: `CIG-BR-02`, `CIG-BR-03`。下流: `CIG-AC-004`, `CIG-AC-007`。"
+    },
+    {
+      "rank": 321,
+      "source_id": "LEGACY-CAND-LINE-000534",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 40,
+      "semantic_category": "candidate requirement: native concurrency boundary",
+      "semantic_reading": "GitHub native concurrencyをevent class間の粗い隔離に限り、状態依存cancelを単独決定させない候補条件。",
+      "current_relation_and_limit": "The fixed F6 HARNESS/OS L2-L11 files provide only general CI, evidence, and authority context. The OS next-generation-CI document remains draft_candidate / awaiting_human_approval. No row-specific current crosswalk or adopted pair binding was found; the 2026-09-28 PO decisions adopt only their explicit candidate sets. No successor or acceptance evidence is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "caca9a47f92589b85d827ab5220efbf7ffb013c6c6f4d1824cacbd66d7e94a63",
+      "physical_line_bytes_sha256": "93cb9af7b6fb4562e52b9a874d8771730a3a90d5bf88d6d5e38a2312ebddd1fc",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 534,
+        "entry_sha256": "d034c069b6d0131c974a65b68688886bef9da324d48e1e38fe96472571a19d14"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 799,
+          "entry_sha256": "da33124ed2b3f8d51ad5bd6a4891812cb394fe1275a7b8c8914a9e686a09f95d",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 39,
+          "text": "generation確保、required obligationのhandoff receipt、terminal read-afterを検証できる場合だけとする。"
+        },
+        {
+          "line": 40,
+          "text": "GitHub native concurrencyはevent class間の粗い隔離に限定し、状態依存cancelを単独で決定しない。"
+        },
+        {
+          "line": 41,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "GitHub native concurrencyはevent class間の粗い隔離に限定し、状態依存cancelを単独で決定しない。"
+    },
+    {
+      "rank": 322,
+      "source_id": "LEGACY-CAND-LINE-000536",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 44,
+      "semantic_category": "metadata / provenance / pointer",
+      "semantic_reading": "upstream/downstream candidate-ID relation pointer.",
+      "current_relation_and_limit": "The fixed F6 HARNESS/OS L2-L11 files provide only general CI, evidence, and authority context. The OS next-generation-CI document remains draft_candidate / awaiting_human_approval. No row-specific current crosswalk or adopted pair binding was found; the 2026-09-28 PO decisions adopt only their explicit candidate sets. No successor or acceptance evidence is assigned.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "bfc458b7bec4231362dc0f8aaff2979a71ddeed2b78e63e98710585a50099e01",
+      "physical_line_bytes_sha256": "c2fc6c17f42356c6c660143bb06716e7d9fff0922e485cefbef3a3139dd97aaa",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 536,
+        "entry_sha256": "9d799593d3c381fd74e4af4991b3d7ca15d983d40a7e2c6b11dc8ecb9bd7c1f4"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 799,
+          "entry_sha256": "da33124ed2b3f8d51ad5bd6a4891812cb394fe1275a7b8c8914a9e686a09f95d",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 43,
+          "text": ""
+        },
+        {
+          "line": 44,
+          "text": "上流: `CIG-BR-03`。下流: `CIG-AC-005`, `CIG-AC-006`, `CIG-AC-007`。"
+        },
+        {
+          "line": 45,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "上流: `CIG-BR-03`。下流: `CIG-AC-005`, `CIG-AC-006`, `CIG-AC-007`。"
+    },
+    {
+      "rank": 323,
+      "source_id": "LEGACY-CAND-LINE-000537",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 46,
+      "semantic_category": "candidate requirement: receipt identity",
+      "semantic_reading": "receiptへgeneration/event/repository/workflow/ref/HEAD/run/attempt/supersede/cancel/handoff/read-after identityを束縛する候補条件。",
+      "current_relation_and_limit": "The fixed F6 HARNESS/OS L2-L11 files provide only general CI, evidence, and authority context. The OS next-generation-CI document remains draft_candidate / awaiting_human_approval. No row-specific current crosswalk or adopted pair binding was found; the 2026-09-28 PO decisions adopt only their explicit candidate sets. No successor or acceptance evidence is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "cf12eab101258355a4a857b799c78bfcc929397f331f97d7edc99f18775d427e",
+      "physical_line_bytes_sha256": "af1e949d512fcfa531495597115a07b5480b370596e7f30ba53116f950486f04",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 537,
+        "entry_sha256": "3624f9fd2887cb527fdfddf224f5d6aa22db1e1d9624b28a087ea5dff864c82f"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 799,
+          "entry_sha256": "da33124ed2b3f8d51ad5bd6a4891812cb394fe1275a7b8c8914a9e686a09f95d",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 45,
+          "text": ""
+        },
+        {
+          "line": 46,
+          "text": "receiptへgeneration ID、event class、repository、workflow、ref、HEAD群、run／attempt、supersedes、cancel"
+        },
+        {
+          "line": 47,
+          "text": "actor/class/reason、handoff、terminal read-afterを束縛する。cancelled runをpost-main completion、terminal green、"
+        }
+      ],
+      "source_excerpt": "receiptへgeneration ID、event class、repository、workflow、ref、HEAD群、run／attempt、supersedes、cancel"
+    },
+    {
+      "rank": 324,
+      "source_id": "LEGACY-CAND-LINE-000538",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 47,
+      "semantic_category": "candidate requirement: result rejection",
+      "semantic_reading": "cancelled runを完了・green・recovery・review receiptへ使わない候補条件。",
+      "current_relation_and_limit": "The fixed F6 HARNESS/OS L2-L11 files provide only general CI, evidence, and authority context. The OS next-generation-CI document remains draft_candidate / awaiting_human_approval. No row-specific current crosswalk or adopted pair binding was found; the 2026-09-28 PO decisions adopt only their explicit candidate sets. No successor or acceptance evidence is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "5d3ad0d96b42606f41d42bbd47113ab3aa6e39f750b8b3c6925d05e54830b5b0",
+      "physical_line_bytes_sha256": "0a609dd9c6284624b3cc357f79cf7104cd067b3843f3166066077bf8f64897d4",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 538,
+        "entry_sha256": "5e7c33f8098eb2d20908e957e40ebffa45554dedbe74ca6beb8ea28c5916c888"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 799,
+          "entry_sha256": "da33124ed2b3f8d51ad5bd6a4891812cb394fe1275a7b8c8914a9e686a09f95d",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 46,
+          "text": "receiptへgeneration ID、event class、repository、workflow、ref、HEAD群、run／attempt、supersedes、cancel"
+        },
+        {
+          "line": 47,
+          "text": "actor/class/reason、handoff、terminal read-afterを束縛する。cancelled runをpost-main completion、terminal green、"
+        },
+        {
+          "line": 48,
+          "text": "deferred recovery success、review receiptへ採用しない。aggregate、doctor、telemetry、DB replayは同じgeneration"
+        }
+      ],
+      "source_excerpt": "actor/class/reason、handoff、terminal read-afterを束縛する。cancelled runをpost-main completion、terminal green、"
+    },
+    {
+      "rank": 325,
+      "source_id": "LEGACY-CAND-LINE-000539",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 48,
+      "semantic_category": "candidate requirement: evidence convergence",
+      "semantic_reading": "aggregate等を同一generation digestへ収束させ、同じHEADでも証明義務の同等性が示されない別event class結果を流用しない候補条件。",
+      "current_relation_and_limit": "The fixed F6 HARNESS/OS L2-L11 files provide only general CI, evidence, and authority context. The OS next-generation-CI document remains draft_candidate / awaiting_human_approval. No row-specific current crosswalk or adopted pair binding was found; the 2026-09-28 PO decisions adopt only their explicit candidate sets. No successor or acceptance evidence is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "1f1ed27adf3ef926c85e2592aaa842741b1b8818a12e5a1250909e080b85c63d",
+      "physical_line_bytes_sha256": "bd31ea60e3ecadb3fb2000e165011e535270176d4b8c7d4f1fc38cf73532b45f",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 539,
+        "entry_sha256": "3a32ea84058e37da3036e8afed3269bacf347d7b75ed561cc512a0d12a795d00"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 799,
+          "entry_sha256": "da33124ed2b3f8d51ad5bd6a4891812cb394fe1275a7b8c8914a9e686a09f95d",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 47,
+          "text": "actor/class/reason、handoff、terminal read-afterを束縛する。cancelled runをpost-main completion、terminal green、"
+        },
+        {
+          "line": 48,
+          "text": "deferred recovery success、review receiptへ採用しない。aggregate、doctor、telemetry、DB replayは同じgeneration"
+        },
+        {
+          "line": 49,
+          "text": "digestへ収束し、same HEADでも証明義務の同値性が証明されない別event classの結果を流用しない。"
+        }
+      ],
+      "source_excerpt": "deferred recovery success、review receiptへ採用しない。aggregate、doctor、telemetry、DB replayは同じgeneration"
+    },
+    {
+      "rank": 326,
+      "source_id": "LEGACY-CAND-LINE-000540",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 49,
+      "semantic_category": "candidate requirement: evidence convergence continuation",
+      "semantic_reading": "同じgeneration digestとevent class証明義務の同等性条件を構成する候補文の終端。",
+      "current_relation_and_limit": "The fixed F6 HARNESS/OS L2-L11 files provide only general CI, evidence, and authority context. The OS next-generation-CI document remains draft_candidate / awaiting_human_approval. No row-specific current crosswalk or adopted pair binding was found; the 2026-09-28 PO decisions adopt only their explicit candidate sets. No successor or acceptance evidence is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "d08962d0ed1ec0a0685964b67b43d2953572454c94c0802714275bf6f9d3f4e1",
+      "physical_line_bytes_sha256": "decc78e8a24eaf1ab9655c5e540631bf83c04b4650cd5e803824b4f35cd30151",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 540,
+        "entry_sha256": "0b4059be0ada313982d131bc115671dae32d9397072a40a0846e041f6f1d25b2"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 799,
+          "entry_sha256": "da33124ed2b3f8d51ad5bd6a4891812cb394fe1275a7b8c8914a9e686a09f95d",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 48,
+          "text": "deferred recovery success、review receiptへ採用しない。aggregate、doctor、telemetry、DB replayは同じgeneration"
+        },
+        {
+          "line": 49,
+          "text": "digestへ収束し、same HEADでも証明義務の同値性が証明されない別event classの結果を流用しない。"
+        },
+        {
+          "line": 50,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "digestへ収束し、same HEADでも証明義務の同値性が証明されない別event classの結果を流用しない。"
+    },
+    {
+      "rank": 327,
+      "source_id": "LEGACY-CAND-LINE-000544",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 55,
+      "semantic_category": "candidate non-redefinition boundary",
+      "semantic_reading": "既存run/attempt/conclusion string identityを本candidateで再定義しない候補境界。",
+      "current_relation_and_limit": "The fixed F6 HARNESS/OS L2-L11 files provide only general CI, evidence, and authority context. The OS next-generation-CI document remains draft_candidate / awaiting_human_approval. No row-specific current crosswalk or adopted pair binding was found; the 2026-09-28 PO decisions adopt only their explicit candidate sets. No successor or acceptance evidence is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "6c3640ff7181c170b04c90d4a720ce1f1a626b42cab3c13796361b11b9dc8464",
+      "physical_line_bytes_sha256": "e5d54fffe1017af2ca0d709b3875694f756bb594b1c85b39f1eb1c16ff71a156",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 544,
+        "entry_sha256": "415a224b1a9f3fa37e61f8f2b26c25f4219d9d87430581a402de3acd0a5d4b43"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 799,
+          "entry_sha256": "da33124ed2b3f8d51ad5bd6a4891812cb394fe1275a7b8c8914a9e686a09f95d",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 54,
+          "text": "- #735の`ci_evidence_generation`を上位互換の内部fieldとして保持し、既存の"
+        },
+        {
+          "line": 55,
+          "text": "  `run:<id>:attempt:<n>:<conclusion>`文字列identityを本候補で再定義しない。"
+        },
+        {
+          "line": 56,
+          "text": "- CIS-R-01〜03のtelemetry identity、CIS-R-12のbounded cancellation、CIS-R-13のdeferred recoveryを拡張する。"
+        }
+      ],
+      "source_excerpt": "  `run:<id>:attempt:<n>:<conclusion>`文字列identityを本候補で再定義しない。"
+    },
+    {
+      "rank": 328,
+      "source_id": "LEGACY-CAND-LINE-000547",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 59,
+      "semantic_category": "candidate authority/status boundary",
+      "semantic_reading": "人間承認・独立技術review・canonical promotion前にcurrent authorityとせず、workflow/runtime/DBの先行変更をしないというcandidate自身の発効境界。",
+      "current_relation_and_limit": "The fixed F6 HARNESS/OS L2-L11 files provide only general CI, evidence, and authority context. The OS next-generation-CI document remains draft_candidate / awaiting_human_approval. No row-specific current crosswalk or adopted pair binding was found; the 2026-09-28 PO decisions adopt only their explicit candidate sets. No successor or acceptance evidence is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "0357ac61efd287ab45d6e9909dbd6dedc274b2a8c50ea5bd4a102942c4f1c6b0",
+      "physical_line_bytes_sha256": "1940a68ee4d82cf8ff624fe834655be06c6b959ae808ca57a5e3923d3dd285de",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 547,
+        "entry_sha256": "220e8c583332be387f7b863c9479657df294fde40282699247aa7695f826c94f"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 799,
+          "entry_sha256": "da33124ed2b3f8d51ad5bd6a4891812cb394fe1275a7b8c8914a9e686a09f95d",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 58,
+          "text": ""
+        },
+        {
+          "line": 59,
+          "text": "本候補は人間承認、独立技術review、canonical promotionまでcurrent authorityではなく、workflow/runtime/DBを"
+        },
+        {
+          "line": 60,
+          "text": "先行変更しない。"
+        }
+      ],
+      "source_excerpt": "本候補は人間承認、独立技術review、canonical promotionまでcurrent authorityではなく、workflow/runtime/DBを"
+    },
+    {
+      "rank": 329,
+      "source_id": "LEGACY-CAND-LINE-000548",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 60,
+      "semantic_category": "candidate authority/status boundary continuation",
+      "semantic_reading": "候補のcurrent authority否定と実装先行禁止を完成させる文末。",
+      "current_relation_and_limit": "The fixed F6 HARNESS/OS L2-L11 files provide only general CI, evidence, and authority context. The OS next-generation-CI document remains draft_candidate / awaiting_human_approval. No row-specific current crosswalk or adopted pair binding was found; the 2026-09-28 PO decisions adopt only their explicit candidate sets. No successor or acceptance evidence is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "376d7b290205af950c78d0f63c7ef2d8e33ee3c1e544493ddae6c79ab3c0a4bb",
+      "physical_line_bytes_sha256": "c03020f030ad1d066e4423bf8b191a18d51bf9a5b3d714185194f864b7aa38de",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 548,
+        "entry_sha256": "6425110a3be17f7d220dcaf502aa487282a94c0b47d105fff62d5773700af8fc"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 799,
+          "entry_sha256": "da33124ed2b3f8d51ad5bd6a4891812cb394fe1275a7b8c8914a9e686a09f95d",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 59,
+          "text": "本候補は人間承認、独立技術review、canonical promotionまでcurrent authorityではなく、workflow/runtime/DBを"
+        },
+        {
+          "line": 60,
+          "text": "先行変更しない。"
+        }
+      ],
+      "source_excerpt": "先行変更しない。"
+    },
+    {
+      "rank": 330,
+      "source_id": "LEGACY-CAND-LINE-000550",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/concept-vision-package-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 3,
+      "semantic_category": "metadata / provenance / pointer",
+      "semantic_reading": "draft intake organization status and independent acceptance metadata; it explicitly does not claim requirement approval or completion.",
+      "current_relation_and_limit": "The current Concept and its PO decision history do not bind this archived intake row to a selected current Concept/Vision requirement. The 2026-09-24 Concept decision and current Concept are contextual comparison pins only; this row remains historical candidate evidence with no successor, adoption, or current authority.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "ca7e06831c2bb70ba75b6aced2137bd5e87e3000cb97ce1919e2865e8241756e",
+      "physical_line_bytes_sha256": "f3406a8e5ef3e94653c2d495475b91151da9820d479138a049dd0afb646b5819",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 550,
+        "entry_sha256": "56fad85e16742249e86da9058a349cab1d4ddb85fe19d7ef2398137c5232b277"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-169C2F95E42B9DA554E6",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 800,
+          "entry_sha256": "fcb9ad087db38fd8f94e167a4f4dd4b46ca0a163a30b180bf843b9a5723853db",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 2,
+          "text": ""
+        },
+        {
+          "line": 3,
+          "text": "状態: draft整理候補、独立検収待ち。要求承認、main取込、実装完了、公開版の確定を表さない。"
+        },
+        {
+          "line": 4,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "状態: draft整理候補、独立検収待ち。要求承認、main取込、実装完了、公開版の確定を表さない。"
+    },
+    {
+      "rank": 331,
+      "source_id": "LEGACY-CAND-LINE-000552",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/concept-vision-package-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 7,
+      "semantic_category": "metadata / provenance / pointer",
+      "semantic_reading": "input package name/date provenance metadata.",
+      "current_relation_and_limit": "The current Concept and its PO decision history do not bind this archived intake row to a selected current Concept/Vision requirement. The 2026-09-24 Concept decision and current Concept are contextual comparison pins only; this row remains historical candidate evidence with no successor, adoption, or current authority.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "4df0a72f624230fa7b8a1f38a5309f3568b5ca3d80f1962943ba013bb34468d4",
+      "physical_line_bytes_sha256": "65cead7e2c0a69d5ca4117714b255d2296379ad3cbddf41cf0fc7e6734dbe652",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 552,
+        "entry_sha256": "9b56f8bc191df121fda091ed99c6e8769642cac96a8b2e42a47ca4add60180f3"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-169C2F95E42B9DA554E6",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 800,
+          "entry_sha256": "fcb9ad087db38fd8f94e167a4f4dd4b46ca0a163a30b180bf843b9a5723853db",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 6,
+          "text": ""
+        },
+        {
+          "line": 7,
+          "text": "- 入力: `HELIX_Concept＆Vision.zip`、2026-09-06受領。"
+        },
+        {
+          "line": 8,
+          "text": "- ZIP SHA-256: `c6faf07352063a1715f07aedb4b2c551716f2f401611ff4db1ff2624f01a90b0`"
+        }
+      ],
+      "source_excerpt": "- 入力: `HELIX_Concept＆Vision.zip`、2026-09-06受領。"
+    },
+    {
+      "rank": 332,
+      "source_id": "LEGACY-CAND-LINE-000553",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/concept-vision-package-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 8,
+      "semantic_category": "metadata / provenance / pointer",
+      "semantic_reading": "received ZIP digest provenance metadata.",
+      "current_relation_and_limit": "The current Concept and its PO decision history do not bind this archived intake row to a selected current Concept/Vision requirement. The 2026-09-24 Concept decision and current Concept are contextual comparison pins only; this row remains historical candidate evidence with no successor, adoption, or current authority.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "a78940a0a8eb32f0ba25a4ba2566955baac3f417ece801ae6ce12f7ef024579b",
+      "physical_line_bytes_sha256": "0d90c1ec28140b1a5b92b9a19599a710651b6353673203dee5a7e7a4cbbd6dd6",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 553,
+        "entry_sha256": "2236d591f9d815f1d50eed754ecbca46628d1db8e6651f7fd38c56250b2c1133"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-169C2F95E42B9DA554E6",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 800,
+          "entry_sha256": "fcb9ad087db38fd8f94e167a4f4dd4b46ca0a163a30b180bf843b9a5723853db",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 7,
+          "text": "- 入力: `HELIX_Concept＆Vision.zip`、2026-09-06受領。"
+        },
+        {
+          "line": 8,
+          "text": "- ZIP SHA-256: `c6faf07352063a1715f07aedb4b2c551716f2f401611ff4db1ff2624f01a90b0`"
+        },
+        {
+          "line": 9,
+          "text": "- 照合基準main: `0f733a9a034759521ad38ac6b92c8c5a39f7b9a1`"
+        }
+      ],
+      "source_excerpt": "- ZIP SHA-256: `c6faf07352063a1715f07aedb4b2c551716f2f401611ff4db1ff2624f01a90b0`"
+    },
+    {
+      "rank": 333,
+      "source_id": "LEGACY-CAND-LINE-000554",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/concept-vision-package-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 9,
+      "semantic_category": "metadata / provenance / pointer",
+      "semantic_reading": "comparison-main commit provenance metadata.",
+      "current_relation_and_limit": "The current Concept and its PO decision history do not bind this archived intake row to a selected current Concept/Vision requirement. The 2026-09-24 Concept decision and current Concept are contextual comparison pins only; this row remains historical candidate evidence with no successor, adoption, or current authority.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "d3070c2d5b01f162f376b39f79c723ff6ca694710de7bc0975d5c549b2a976f8",
+      "physical_line_bytes_sha256": "68c50a10d63cedd2c65c0df02db60d8768fb5b3409731f31ddae03c2f890b1a2",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 554,
+        "entry_sha256": "ef89b175b2547312d0aaeded8aface45c8b0e681281d49ed437b572e85ce3a01"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-169C2F95E42B9DA554E6",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 800,
+          "entry_sha256": "fcb9ad087db38fd8f94e167a4f4dd4b46ca0a163a30b180bf843b9a5723853db",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 8,
+          "text": "- ZIP SHA-256: `c6faf07352063a1715f07aedb4b2c551716f2f401611ff4db1ff2624f01a90b0`"
+        },
+        {
+          "line": 9,
+          "text": "- 照合基準main: `0f733a9a034759521ad38ac6b92c8c5a39f7b9a1`"
+        },
+        {
+          "line": 10,
+          "text": "- ZIP memberとして受領した10 Markdown文書は、同じZIP memberのSHA256SUMSと一致。これは受領ZIP内部の整合であり、第三者署名による真正性証明ではない。パスに絶対パス・親ディレクトリ参照なし。"
+        }
+      ],
+      "source_excerpt": "- 照合基準main: `0f733a9a034759521ad38ac6b92c8c5a39f7b9a1`"
+    },
+    {
+      "rank": 334,
+      "source_id": "LEGACY-CAND-LINE-000555",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/concept-vision-package-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 10,
+      "semantic_category": "metadata / provenance / pointer",
+      "semantic_reading": "receipt-package integrity and authenticity limitation provenance statement.",
+      "current_relation_and_limit": "The current Concept and its PO decision history do not bind this archived intake row to a selected current Concept/Vision requirement. The 2026-09-24 Concept decision and current Concept are contextual comparison pins only; this row remains historical candidate evidence with no successor, adoption, or current authority.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "4187ef6986a125621e41585ea16def521cc5b2b80f6fb40ad4f4232c6f57b800",
+      "physical_line_bytes_sha256": "209a66a1146fd7f6023906acc6ee43c30bacf43c376b1133e675573aa00a2b71",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 555,
+        "entry_sha256": "ebdc312f5b2ce25215062850d3c789ff1b9565bb7ab19284759b7d4a5bea55db"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-169C2F95E42B9DA554E6",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 800,
+          "entry_sha256": "fcb9ad087db38fd8f94e167a4f4dd4b46ca0a163a30b180bf843b9a5723853db",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 9,
+          "text": "- 照合基準main: `0f733a9a034759521ad38ac6b92c8c5a39f7b9a1`"
+        },
+        {
+          "line": 10,
+          "text": "- ZIP memberとして受領した10 Markdown文書は、同じZIP memberのSHA256SUMSと一致。これは受領ZIP内部の整合であり、第三者署名による真正性証明ではない。パスに絶対パス・親ディレクトリ参照なし。"
+        },
+        {
+          "line": 11,
+          "text": "- 全10文書を通読済み。階層調査evidenceの主張と現在mainとの独立照合は未完了。"
+        }
+      ],
+      "source_excerpt": "- ZIP memberとして受領した10 Markdown文書は、同じZIP memberのSHA256SUMSと一致。これは受領ZIP内部の整合であり、第三者署名による真正性証明ではない。パスに絶対パス・親ディレクトリ参照なし。"
+    },
+    {
+      "rank": 335,
+      "source_id": "LEGACY-CAND-LINE-000556",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/concept-vision-package-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 11,
+      "semantic_category": "metadata / provenance / pointer",
+      "semantic_reading": "intake reading/reconciliation status metadata.",
+      "current_relation_and_limit": "The current Concept and its PO decision history do not bind this archived intake row to a selected current Concept/Vision requirement. The 2026-09-24 Concept decision and current Concept are contextual comparison pins only; this row remains historical candidate evidence with no successor, adoption, or current authority.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "5ce3ecb52cfb507712ccbcd56c1b0342d5525175547699d4e26f670b259cda8f",
+      "physical_line_bytes_sha256": "0ec483c64325b41ef53c4845264aadaee0343538611505e19e3753e38cdc7d4c",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 556,
+        "entry_sha256": "9d51d81be81d9cfbeeee37d70159bed4a36f91850cdd4e547c2d38f7fdadbb4e"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-169C2F95E42B9DA554E6",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 800,
+          "entry_sha256": "fcb9ad087db38fd8f94e167a4f4dd4b46ca0a163a30b180bf843b9a5723853db",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 10,
+          "text": "- ZIP memberとして受領した10 Markdown文書は、同じZIP memberのSHA256SUMSと一致。これは受領ZIP内部の整合であり、第三者署名による真正性証明ではない。パスに絶対パス・親ディレクトリ参照なし。"
+        },
+        {
+          "line": 11,
+          "text": "- 全10文書を通読済み。階層調査evidenceの主張と現在mainとの独立照合は未完了。"
+        },
+        {
+          "line": 12,
+          "text": "- 保存先: `docs/archive/intake/2026-09-06-concept-vision/`。10文書と受領時のSHA256SUMSをbyte一致で保存し、`sha256sum -c SHA256SUMS.txt` は10/10一致、exit 0。原文は編集せず、出典の未同梱状態も変更しない。"
+        }
+      ],
+      "source_excerpt": "- 全10文書を通読済み。階層調査evidenceの主張と現在mainとの独立照合は未完了。"
+    },
+    {
+      "rank": 336,
+      "source_id": "LEGACY-CAND-LINE-000557",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/concept-vision-package-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 12,
+      "semantic_category": "metadata / provenance / pointer",
+      "semantic_reading": "archive destination and preservation claim; this is historical intake provenance, not current adoption evidence.",
+      "current_relation_and_limit": "The current Concept and its PO decision history do not bind this archived intake row to a selected current Concept/Vision requirement. The 2026-09-24 Concept decision and current Concept are contextual comparison pins only; this row remains historical candidate evidence with no successor, adoption, or current authority.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "3139810b649553d3839453ca8fa45a06f8af7f386aebec04d32adbc5be22c9f4",
+      "physical_line_bytes_sha256": "34e4daadf9760668a1b17114e1924af19fcca19fd69ffc6eeb68770fca9cc0a3",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 557,
+        "entry_sha256": "72f3ece71298d9dbd6d3b280a0abcb68e2dd760baf014bf3ba92667b4de04867"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-169C2F95E42B9DA554E6",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 800,
+          "entry_sha256": "fcb9ad087db38fd8f94e167a4f4dd4b46ca0a163a30b180bf843b9a5723853db",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 11,
+          "text": "- 全10文書を通読済み。階層調査evidenceの主張と現在mainとの独立照合は未完了。"
+        },
+        {
+          "line": 12,
+          "text": "- 保存先: `docs/archive/intake/2026-09-06-concept-vision/`。10文書と受領時のSHA256SUMSをbyte一致で保存し、`sha256sum -c SHA256SUMS.txt` は10/10一致、exit 0。原文は編集せず、出典の未同梱状態も変更しない。"
+        },
+        {
+          "line": 13,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "- 保存先: `docs/archive/intake/2026-09-06-concept-vision/`。10文書と受領時のSHA256SUMSをbyte一致で保存し、`sha256sum -c SHA256SUMS.txt` は10/10一致、exit 0。原文は編集せず、出典の未同梱状態も変更しない。"
+    },
+    {
+      "rank": 337,
+      "source_id": "LEGACY-CAND-LINE-000558",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/concept-vision-package-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 14,
+      "semantic_category": "candidate evidence/provenance boundary",
+      "semantic_reading": "source内の過去発言や調査確認を現在の承認・今回の検証証拠へ転用しないという候補上のprovenance制約。",
+      "current_relation_and_limit": "The current Concept and its PO decision history do not bind this archived intake row to a selected current Concept/Vision requirement. The 2026-09-24 Concept decision and current Concept are contextual comparison pins only; this row remains historical candidate evidence with no successor, adoption, or current authority.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "175b457f66edc7e61792cfbceb301a68fb5519a355d1799b9103b155010e969d",
+      "physical_line_bytes_sha256": "2ddba76e5332e08606bc0dfc164cddafecfc5135b4dbb353b6cef33b95a9a1fc",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 558,
+        "entry_sha256": "5b4527c314a95a9fc729c6194b952a499466b9e588b80441d1fe2bea2be6691b"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-169C2F95E42B9DA554E6",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 800,
+          "entry_sha256": "fcb9ad087db38fd8f94e167a4f4dd4b46ca0a163a30b180bf843b9a5723853db",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 13,
+          "text": ""
+        },
+        {
+          "line": 14,
+          "text": "原文に含まれる過去発言の引用や調査者の確認記録を、今回の承認や今回実施した検証へ転用しない。"
+        },
+        {
+          "line": 15,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "原文に含まれる過去発言の引用や調査者の確認記録を、今回の承認や今回実施した検証へ転用しない。"
+    },
+    {
+      "rank": 338,
+      "source_id": "LEGACY-CAND-LINE-000560",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/concept-vision-package-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 18,
+      "semantic_category": "metadata / provenance / pointer",
+      "semantic_reading": "table column header; no independent requirement atom.",
+      "current_relation_and_limit": "The current Concept and its PO decision history do not bind this archived intake row to a selected current Concept/Vision requirement. The 2026-09-24 Concept decision and current Concept are contextual comparison pins only; this row remains historical candidate evidence with no successor, adoption, or current authority.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "0b00b9d286e8abd11314bfa1e9276101352e57c143f9c1261bffff69d023f361",
+      "physical_line_bytes_sha256": "21488541a1bdeacea95533975769b4f4f21934f92c9db86eb09b12f4249bb2e2",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 560,
+        "entry_sha256": "a0d9cf7c13e780e92de326f0097b0b1e6826a169776797c9c17af00140b54b8d"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-169C2F95E42B9DA554E6",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 800,
+          "entry_sha256": "fcb9ad087db38fd8f94e167a4f4dd4b46ca0a163a30b180bf843b9a5723853db",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 17,
+          "text": ""
+        },
+        {
+          "line": 18,
+          "text": "| 提案の対象 | 束縛先 | 自動的に確定しないもの |"
+        },
+        {
+          "line": 19,
+          "text": "| --- | --- | --- |"
+        }
+      ],
+      "source_excerpt": "| 提案の対象 | 束縛先 | 自動的に確定しないもの |"
+    },
+    {
+      "rank": 339,
+      "source_id": "LEGACY-CAND-LINE-000562",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/concept-vision-package-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 20,
+      "semantic_category": "candidate versioning scope and authority boundary",
+      "semantic_reading": "提案対象Concept/Visionのbinding targetsを記し、既存Concept v4承認の取消・同一視が自動確定しないという候補上の境界。",
+      "current_relation_and_limit": "The current Concept and its PO decision history do not bind this archived intake row to a selected current Concept/Vision requirement. The 2026-09-24 Concept decision and current Concept are contextual comparison pins only; this row remains historical candidate evidence with no successor, adoption, or current authority.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "6693daae825f58b15909ba01a34a248f529ac08ae21cc551b198c042f2e90da2",
+      "physical_line_bytes_sha256": "27b696ce0c23d46b964c15220bd06e9c054eae66a56c24ba9c5b7fa01b794c3a",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 562,
+        "entry_sha256": "99b6648f6a6c412b08a95a57715697f512623e22f3eb39503a01e5e9928d7513"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-169C2F95E42B9DA554E6",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 800,
+          "entry_sha256": "fcb9ad087db38fd8f94e167a4f4dd4b46ca0a163a30b180bf843b9a5723853db",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 19,
+          "text": "| --- | --- | --- |"
+        },
+        {
+          "line": 20,
+          "text": "| Concept v0.1 / Vision v0.1 | 文書revision、原文digest、採用差分 | 既存Concept v4承認の取消・同一視 |"
+        },
+        {
+          "line": 21,
+          "text": "| Vision 1.0〜5.0 | Version 1はHARNESS製品群の完成境界でWeb展開の前提。2.0以降は長期能力目標と対象要求の参照 | 公開SemVer、現在の実装分母、G評価 |"
+        }
+      ],
+      "source_excerpt": "| Concept v0.1 / Vision v0.1 | 文書revision、原文digest、採用差分 | 既存Concept v4承認の取消・同一視 |"
+    },
+    {
+      "rank": 340,
+      "source_id": "LEGACY-CAND-LINE-000563",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/concept-vision-package-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "source_line": 21,
+      "semantic_category": "candidate versioning scope and authority boundary",
+      "semantic_reading": "Vision 1.0〜5.0の対象案と公開SemVer・現在の実装分母・G評価を自動確定しないという候補上の範囲記述。",
+      "current_relation_and_limit": "The current Concept and its PO decision history do not bind this archived intake row to a selected current Concept/Vision requirement. The 2026-09-24 Concept decision and current Concept are contextual comparison pins only; this row remains historical candidate evidence with no successor, adoption, or current authority.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "source_line_sha256": "64de9d3d8acfc42a525022193341ee2da777f85a7fdfc74b38f8f21c6fb3d9ad",
+      "physical_line_bytes_sha256": "0dd55f27d6a62cc75315d0b9c665972b8dd20682f10d0422f38d83a66dbbeef8",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 563,
+        "entry_sha256": "d3d9be70dc877f79ec288019e81b44ea54273b29c8c9cb5f1ca2ce686fb154cc"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-169C2F95E42B9DA554E6",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 800,
+          "entry_sha256": "fcb9ad087db38fd8f94e167a4f4dd4b46ca0a163a30b180bf843b9a5723853db",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 20,
+          "text": "| Concept v0.1 / Vision v0.1 | 文書revision、原文digest、採用差分 | 既存Concept v4承認の取消・同一視 |"
+        },
+        {
+          "line": 21,
+          "text": "| Vision 1.0〜5.0 | Version 1はHARNESS製品群の完成境界でWeb展開の前提。2.0以降は長期能力目標と対象要求の参照 | 公開SemVer、現在の実装分母、G評価 |"
+        },
+        {
+          "line": 22,
+          "text": "| PKG-D01〜13 | 利用者向け提供view、既存Module所有Sliceの選択 | 新しいコードowner、独立公開版 |"
+        }
+      ],
+      "source_excerpt": "| Vision 1.0〜5.0 | Version 1はHARNESS製品群の完成境界でWeb展開の前提。2.0以降は長期能力目標と対象要求の参照 | 公開SemVer、現在の実装分母、G評価 |"
+    }
+  ],
+  "summary": {
+    "selected_rows": 40,
+    "metadata_or_provenance_or_pointer_rows": 24,
+    "marker_negative_candidate_normative_or_authority_boundary_rows": 16,
+    "row_specific_current_crosswalk_found": 0,
+    "adopted_pair_binding_found": 0,
+    "successor_requirement_ids": 0,
+    "source_closure": 0,
+    "authority_effect": "none",
+    "preserved_source_state": "historical_candidate / draft_candidate / preserved_pending_atomization",
+    "meaning_change_applied": false,
+    "semantic_groups": {
+      "CI event-class concurrency candidate": 29,
+      "Concept/Vision intake candidate": 11
+    }
+  },
+  "limitations": [
+    "The result is limited to the pinned #2353 baseline, ordered classification proposals, the 255-row positive marker-screen union, and exact numeric source-ID sorting.",
+    "Marker-negative rows can still contain normative candidate conditions; this audit does not promote them. Family/topic resemblance to current F6 requirements is not row-specific adoption or coverage.",
+    "Archive source code, workflows, CLI, hooks, adapters, runtime, test, and CI were not executed."
+  ],
+  "static_validation": {
+    "effective_classification_counts_reconstructed": {
+      "structure": 926,
+      "explanation": 2965,
+      "condition": 864,
+      "total": 4755
+    },
+    "positive_marker_rows_union_count": 255,
+    "marker_negative_complement_count": 2710,
+    "selected_rank_ids_exact": true,
+    "source_file_sha_checked": 40,
+    "source_line_sha_checked": 40,
+    "physical_line_sha_checked": 40,
+    "source_line_ledger_entry_sha_checked": 40,
+    "asset_ledger_entry_sha_checked": 40,
+    "source_states_unresolved": true,
+    "fixed_F6_pair_content_pins_and_2026_09_28_decisions_read": true,
+    "old_runtime_test_ci_executed": false
+  }
+}
