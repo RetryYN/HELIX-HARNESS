@@ -72457,7 +72457,7 @@
         }
       ],
       "relation_type": "RFA family / source-file / PO-scope comparison; no selected-row binding",
-      "interpretation": "Draft receipt has one unselected atom LEGACY-CAND-LINE-003612 / acceptance line 37 / RFA-AC-16; partial coverage, PO pending, condition_closure not_asserted, no confirmed successor, live source holding."
+      "interpretation": "2026-09-28 draft receiptは非選択atom LEGACY-CAND-LINE-003612 / acceptance line 37 / RFA-AC-16のみを記録し、partial coverage、condition closureなし、source successor未確認、source holding継続を示す。2026-09-29 decisionはpin済みOS L2/L11-046 pairを別途採択したが、receiptのscopeは拡張しない."
     },
     {
       "role": "current_main",
