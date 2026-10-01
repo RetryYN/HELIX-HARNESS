@@ -41,7 +41,7 @@
       "bundle_revision": "eda13daeab2abc3a53bc25f82693083d5cbcab5a"
     }
   ],
-  "strict_threshold": "An identity-specific record pins exact archive source file and line SHA, same-identity residual/open condition, and a comparable fixed F6 L2/L11 pair through exact file SHA values. No pair SHA means no strict qualification.",
+  "strict_threshold": "An identity-specific record pins exact archive source file and line SHA, a same-identity residual/open condition, and an applicable fixed-F6 L2/L11 pair through exact file SHA values. Target IDs must be present in both fixed pair files; an empty target set or later/current neighbor does not qualify.",
   "fixed_f6_pair_file_pins": [
     {
       "mechanism": "HELIX-HARNESS",
@@ -161,7 +161,7 @@
         "file_sha256": "a3e1c9622c35185b11a3c3ab14148421e5da5a264d210695f07965022a904895"
       },
       "comparison_result": "partial_identity_condition_match",
-      "direct_current_evidence_or_partial_gap": "HELIXOS-L2-015 / HELIXOS-L2-106 and HARNESS-L2-011 are adjacent; no fixed pair requires recursive validation of all authority binding targets, rejection of revoked/compatibility/historical current edges, or cycle/dangling/dead-authority oracles. The selected-binding L2-106 candidate is narrow and not a successor.",
+      "direct_current_evidence_or_partial_gap": "固定F6のOS-015/HARNESS-011はprovenanceと選択callの版確認に隣接するが、全authority binding参照先の再帰検査やrevoked/compatibility/historical edgeおよびcycle/dangling/dead-authority拒否を定めない。HELIXOS-L2-106は後発の限定候補として別記し、固定F6 targetには数えない。",
       "strict_threshold_qualifies": true,
       "authority_effect": "none",
       "successor_requirement_ids": [],
@@ -170,7 +170,6 @@
         "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
         "target_ids": [
           "HELIXOS-L2-015",
-          "HELIXOS-L2-106",
           "HARNESS-L2-011"
         ],
         "pair_file_pins": [
@@ -200,7 +199,15 @@
           }
         ],
         "pair_ids_present_in_revision": true,
-        "comparison_is_closure": false
+        "comparison_is_closure": false,
+        "later_or_non_fixed_neighbors": [
+          {
+            "requirement_id": "HELIXOS-L2-106",
+            "status": "later adopted limited candidate; not in fixed F6 target set",
+            "evidence": "selected binding/reference chain only; not a formal successor or full condition coverage"
+          }
+        ],
+        "pair_flag_definition": "true only when every target_id appears in both its mechanism L2 and L11 files at fixed F6 revision; empty target_ids yields false"
       }
     },
     {
@@ -246,8 +253,16 @@
         "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
         "target_ids": [],
         "pair_file_pins": [],
-        "pair_ids_present_in_revision": true,
-        "comparison_is_closure": false
+        "pair_ids_present_in_revision": false,
+        "comparison_is_closure": false,
+        "later_or_non_fixed_neighbors": [
+          {
+            "requirement_id": "HELIXOS-L2-111",
+            "status": "later adopted abstract AND condition; not in fixed F6 target set",
+            "evidence": "does not identify the three receipt identities, owner/scope, or actual gate evidence"
+          }
+        ],
+        "pair_flag_definition": "true only when every target_id appears in both its mechanism L2 and L11 files at fixed F6 revision; empty target_ids yields false"
       }
     },
     {
@@ -323,7 +338,9 @@
           }
         ],
         "pair_ids_present_in_revision": true,
-        "comparison_is_closure": false
+        "comparison_is_closure": false,
+        "later_or_non_fixed_neighbors": [],
+        "pair_flag_definition": "true only when every target_id appears in both its mechanism L2 and L11 files at fixed F6 revision; empty target_ids yields false"
       }
     },
     {
@@ -360,7 +377,7 @@
         "file_sha256": "a3e1c9622c35185b11a3c3ab14148421e5da5a264d210695f07965022a904895"
       },
       "comparison_result": "partial_nonfinding_context_only",
-      "direct_current_evidence_or_partial_gap": "HELIXOS-L2-015/110 provide authority provenance and a bounded nonfinding context, but do not state that mere compatibility/historical/reference existence is non-defective while active-decision use is rejected. No severity/deletion finding from existence alone.",
+      "direct_current_evidence_or_partial_gap": "固定F6のOS-015はauthority sourceとunresolved/stale状態に隣接するが、compatibility/historical/referenceの存在を非欠陥としつつactive-decision利用を拒む条件はない。HELIXOS-L2-110は後発の限定候補として別記し、固定F6 targetには数えない。存在だけからseverityや削除所見を出さない。",
       "strict_threshold_qualifies": true,
       "authority_effect": "none",
       "successor_requirement_ids": [],
@@ -368,8 +385,7 @@
       "fixed_f6_comparison": {
         "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
         "target_ids": [
-          "HELIXOS-L2-015",
-          "HELIXOS-L2-110"
+          "HELIXOS-L2-015"
         ],
         "pair_file_pins": [
           {
@@ -386,7 +402,15 @@
           }
         ],
         "pair_ids_present_in_revision": true,
-        "comparison_is_closure": false
+        "comparison_is_closure": false,
+        "later_or_non_fixed_neighbors": [
+          {
+            "requirement_id": "HELIXOS-L2-110",
+            "status": "later adopted limited candidate; not in fixed F6 target set",
+            "evidence": "bounded nonfinding context only; does not add the active-decision refusal rule"
+          }
+        ],
+        "pair_flag_definition": "true only when every target_id appears in both its mechanism L2 and L11 files at fixed F6 revision; empty target_ids yields false"
       }
     },
     {
@@ -462,7 +486,9 @@
           }
         ],
         "pair_ids_present_in_revision": true,
-        "comparison_is_closure": false
+        "comparison_is_closure": false,
+        "later_or_non_fixed_neighbors": [],
+        "pair_flag_definition": "true only when every target_id appears in both its mechanism L2 and L11 files at fixed F6 revision; empty target_ids yields false"
       }
     },
     {
@@ -524,7 +550,9 @@
           }
         ],
         "pair_ids_present_in_revision": true,
-        "comparison_is_closure": false
+        "comparison_is_closure": false,
+        "later_or_non_fixed_neighbors": [],
+        "pair_flag_definition": "true only when every target_id appears in both its mechanism L2 and L11 files at fixed F6 revision; empty target_ids yields false"
       }
     },
     {
@@ -601,7 +629,9 @@
           }
         ],
         "pair_ids_present_in_revision": true,
-        "comparison_is_closure": false
+        "comparison_is_closure": false,
+        "later_or_non_fixed_neighbors": [],
+        "pair_flag_definition": "true only when every target_id appears in both its mechanism L2 and L11 files at fixed F6 revision; empty target_ids yields false"
       }
     },
     {
@@ -645,14 +675,34 @@
       "source_atom_closure": "none",
       "fixed_f6_comparison": {
         "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
-        "target_ids": [
-          "HELIXINTELLIGENCE-L2-072",
-          "HELIXINTELLIGENCE-L2-073",
-          "HELIXINTELLIGENCE-L2-074"
+        "target_ids": [],
+        "pair_file_pins": [
+          {
+            "mechanism": "HELIX-INTELLIGENCE",
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260"
+          },
+          {
+            "mechanism": "HELIX-INTELLIGENCE",
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a"
+          }
         ],
-        "pair_file_pins": [],
         "pair_ids_present_in_revision": false,
-        "comparison_is_closure": false
+        "comparison_is_closure": false,
+        "later_or_non_fixed_neighbors": [
+          {
+            "requirement_ids": [
+              "HELIXINTELLIGENCE-L2-072",
+              "HELIXINTELLIGENCE-L2-073",
+              "HELIXINTELLIGENCE-L2-074"
+            ],
+            "status": "historical audit references only; absent from both fixed F6 Intelligence files"
+          }
+        ],
+        "pair_flag_definition": "true only when every target_id appears in both its mechanism L2 and L11 files at fixed F6 revision; empty target_ids yields false"
       }
     }
   ],
