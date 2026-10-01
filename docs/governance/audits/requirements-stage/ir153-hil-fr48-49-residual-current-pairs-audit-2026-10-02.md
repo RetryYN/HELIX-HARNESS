@@ -10,24 +10,24 @@
 |---|---|---|
 | FR-48 stale revision | HARNESS-055-001（decision 9/30 live26 row40、L2 `9f1e6317…8787b5` / L11 `f1b9332d…3aa96a`） | 055の選択atomは隣接双方向trace、descent/backprop、granularity/aggregate。stale / semantic revision / snapshot cross-conditionは明示的に範囲外。040-002（L2 `c349606d…0757df` / L11 `366518f8…6fc212`）はcatalog/snapshot契約であり、そのものではstale pair拒否oracleにならない。 |
 | FR-49 different snapshot | HARNESS-056-001（decision row41、L2 `99328311…eeade0` / L11 `9a8406bc…11a047`） | 056の選択atomは6 canonical V-pair、L12 feedback、片側欠落、oracle identity/実行条件。異snapshot/stale cross-conditionは明示的に範囲外。 |
-| 両方のfreeze closure | HARNESS-063-001（decision row48、L2 `f0a1014c…d75b46` / L11 `fb545fc0…da2233`） | **別の採択済みguard**が、選択freeze scopeの固定source snapshot/authority revision、全required typed edge・L11 oracleの同scope/target revision closure、change/stale範囲、依存revision変更後の旧receiptを扱う。required closureが欠ける・staleなら対象revisionをeligibleにしない。row72は選択3条件だけの採択と限定し、全面的な旧IR closureを含めない。 |
+| 両方のfreeze closure | HARNESS-063-001（decision row48、L2 `f0a1014c…d75b46` / L11 `fb545fc0…da2233`） | **別の採択済みguard**が、選択atomのsource span/source authority revision、選択freeze scope内のrequired typed edge・L11 oracleの同scope/target revision closure、必須入力revision変更後の旧receipt無効化を扱う。設計artifactと検証artifactのsnapshot identity一致は明記していない。row72は選択3条件だけの採択と限定し、全面的な旧IR closureを含めない。 |
 
 040/055/056/063の採否は、候補frontmatterの「未採択」表示やMPRの古いreceipt metadataからでなく、対象revisionのPO decisionとexact paired digestから判定した。063の2026-09-29 source receiptは作成時点では`authority_effect: none`だが、後続2026-09-30 live26 row48が `MPR-RC-HARNESS-L2-063-001` のexact pairを採択している。古いreceiptの状態を現行採否と混同しない。
 
 ## 条件別判断
 
-- **FR-48 stale revision**：現在の明示的な保証は、055の直接pair gate出力ではなく、063を使う選択freeze closureのeligibility境界である。stale/mismatched required edge/oracle revision、またはdependency revision変更後のreceiptでは対象closureをeligibleにしない。よって、選択scopeのfreeze closureがstale pairを通す現行要求欠落は確認できなかった。ただしFR-48 source atomはholdingのままで、formal successorや055の直接stale findingを主張しない。
-- **FR-49 different snapshot**：同様に、056単体は異snapshot判定を持たない。一方、063の固定source snapshot/digest bindingと同一scope/target-revisionの全edge/oracle closureを使う対象freezeではsnapshot/digest不一致をeligibleにできない。別snapshotのdesign/verificationを同じpairとして通すfreeze closure欠落は確認できなかった。ただし063は056内の全snapshot組合せを直接比較するoracleではないため、pair単体の結果表示や旧sourceのformal rehomeを閉じたとは扱わない。
+- **FR-48 stale revision**：063は選択freeze closureで必須入力revisionが変わった後の旧receiptを現revisionの有効証拠にしない。ただしこの条件は、すべてのFR-48 vertical pairに対する独立したstale-revision拒否oracleを示さない。双方向edgeと粒度が揃っていてもedge先がsuperseded semantic revisionなら拒否するというFR-48条件は未解消のsource holdingとして残し、055の直接stale findingや063によるformal successorを主張しない。
+- **FR-49 different snapshot**：056単体は異snapshot判定を持たない。063は選択atomのsource span/source authority revisionと、同一scope/target revisionのrequired edge/oracle閉包、必須入力revision変更後の旧receipt無効化を定めるが、設計artifactと検証artifactという別々のsnapshot identityが等しいことは明記しない。両artifactが現行source authorityに結び、scope/revisionも一致していてもsnapshot identityが異なる反例を、現行本文が明示的に拒否するとは確認できなかった。したがってこのFR-49条件は未解消のsource holdingとして残し、063による閉鎖・formal successorを主張しない。
 - 旧HST-CASE-031-04/07/08（assertion lines 304/307/308）と032-12（line 320）はstale/revision/snapshotの設計oracle例である。031-09/032-14（lines 399/400）も同一revision/snapshotのsummary条件だが `design-defined / not-implemented` で、実行結果ではない。
 
 ## Authorityと残るholding
 
-055/056のsource coverage receiptは8 selected atomだけを割当て、FR-48 stale、FR-49異snapshot、NFR-29 cross-conditionをsource atom set外に保持する。`MPR-SH-IR-003` の旧IR rows 81/82は`preserved_pending_rehome`、`successor_requirement_ids: []`のまま。063採択はそのregisterを遡及変更しない。したがって、現在の選択freeze closureに対する保証はあるが、旧IR atomのformal successor割当や要求全体のno-lossはここでは主張しない。
+055/056のsource coverage receiptは8 selected atomだけを割当て、FR-48 stale、FR-49異snapshot、NFR-29 cross-conditionをsource atom set外に保持する。`MPR-SH-IR-003` の旧IR rows 81/82は`preserved_pending_rehome`、`successor_requirement_ids: []`のまま。063採択はそのregisterを遡及変更しない。したがって、063の選択freeze closureに限る条件付き保証はあるが、FR-48 stale pairとFR-49異snapshotのsource atomは未解消のままであり、formal successor割当や要求全体のno-lossは主張しない。
 
 HARNESS-022のrevision/pair/oracle contractはstage受入の一般契約で、pair間snapshot同一性の明示oracleとしては数えなかった。HELIXOS-033はengine/detectorの同一snapshot replayで対象機能が異なるためFR-48/49の保証に含めない。NFR-29も別の旧requirement identityで、直接FR48/49条件として二重計上しない。
 
 ## 結論と検証
 
-現行freeze-eligibilityに対する別採択保証が063にあるため、この監査では新候補IDを作らず、既存L2/L11や採択本文も変更しない。055/056のpair gate単体にstale/snapshot findingを返す意味拡張が別途必要と判断される場合は、採択済み範囲の変更として扱い、候補IDを先に予約して対象の人間判断へ戻す。
+本監査ではL2/L11候補本文を起草しない。これはFR-48/49条件が現行保証で閉じたとの判断ではない。両条件はsource holdingのまま残す。別作業で旧原文条件に忠実な未採択L2/L11候補、source対応、receipt/register案を起草して独立reviewへ提出できる。候補の採択や要求意味の変更は既存authority経路に残す。063は選択3条件の採択済みfreeze guardであり、別snapshotのdesign/verificationを同一pairとして拒否する保証やFR-48/49のformal rehomeではない。
 
 JSON内で旧source physical line hash、current full file SHA、decision pair digests、receipt pins、individual condition destinationsを記録した。source line hashesは現行archiveから照合しJSONをparse確認した。旧archive/runtime/test/CI、新generation test、137、共通8 gateは実行していない。要求・decision・candidateのtracked本文は変更していない。
