@@ -1025,9 +1025,9 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 
 ### HARNESS-L2-078 typed requirement definitionと変更receiptの受入候補（未採択・未実行）
 
-- **Positive — definition fieldsとrevision**：一つの対象scopeに対するstable requirement IDとimmutable revisionを与え、source atom、canonical statement、BR/FR/TR/NFR、modality、priority、scope/non-goal、authority/rationale、acceptance oracle、owner、risk、capability/service、template applicability、design obligationの13 field群を個別に識別できる値または明示された適用外理由へ結ぶ。各relationはtyped edgeで対象revisionと結び、欠落やaggregate代用がない場合だけ当該definitionの候補をcompleteとして扱う。物理的に単一file/schemaへ格納することは検査しない。
+- **Positive — definition fieldsとrevision**：一つの対象scopeに対するstable requirement IDとimmutable revisionを与え、source atom、canonical statement、BR/FR/TR/NFR、modality、priority、scope/non-goal、authority/rationale、acceptance oracle、owner、risk、capability/service、template applicability、design obligationの13 field群すべてを個別に識別できる値とtyped edgeで同対象revisionへ結ぶ。項目単位の適用外/N/Aや省略を認めず、13項目すべてとrelationが欠落なく保存された場合だけ当該definitionの候補をcompleteとして扱う。物理的に単一file/schemaへ格納することは検査しない。
 - **Positive — 変更操作receipt**：split/merge/rename/supersede/reject/N/Aの一例について、対象operation、前後scope/revision、before/after semantic digest、全入力source atomのdisposition、影響downstreamとstale/result、既存authority契約に基づくreview authorityが相互に同じ変更を指す。すべてが整合するときだけ当該operationを適用済みとして表せる。
-- **Negative — field単独欠落**：13 field群の各項目を一つずつmissing、unknown、誤revisionまたは不明型にする。欠けた項目を他fieldから推測せず、definitionをcompleteとしない。適用外を示す場合にscopeと理由がなければ未完とする。
+- **Negative — field単独欠落**：13 field群の各項目を一つずつmissing、unknown、誤revisionまたは不明型にする。欠けた項目を他fieldから推測せず、definitionをcompleteとしない。field単位のN/A/適用外を使って13項目の必須条件を省略する場合は拒否し、definitionをcompleteとしない。
 - **Negative — change receiptの各証拠欠落**：6操作それぞれに対し、before digest、after digest、いずれかのsource atom disposition、downstream stale/result、review authorityを個別に欠落・不一致にする。該当operationを適用済みにせず、orphan/stale findingと影響する義務・下流範囲を未完またはunknownとして残す。別操作、別revision、一般のasset lineage evidenceで欠落分を補わない。
 - **Negative — revision/authority/stale不一致**：同じrequirement IDの本文意味を変えながらimmutable revision/digestを据え置く、別scopeのauthorityを参照する、影響downstreamをstaleにしない、または旧receiptを新revisionに流用する。新revisionの扱いを旧authorityで成立させず、現行authority-stateとchange契約に沿って未完として返す。
 - **受入限界**：旧HIL-FR-45一行の選択条件に限る静的oracle案である。全IR/HR条件のclosure、物理DB/schemaの採用、特定record layout、runtime、旧test/CI、PO採択、L3承認、実行受入を主張しない。候補oracleは未実行である。

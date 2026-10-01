@@ -4,17 +4,17 @@
   "authority_effect": "none",
   "candidate_identity": "HARNESS-L2-078",
   "requirement_kind": "unit",
-  "candidate_semantic_digest": "sha256:d3e8e1d8ea481707047c0bd6b4b822c49dc9f11be714d991ad7bcf3105c0bba7",
+  "candidate_semantic_digest": "sha256:6b4ddaf3bcf34abae538820d1829afaf2e9e866bdd524475b2fe0e23fff8d9f0",
   "candidate_digest_rule": "L2の「### HARNESS-L2-078 」見出しから次の同階層「###」見出しまたはファイル末尾まで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
-  "candidate_l2_file_sha256": "sha256:1404696f021cace28adbfc6d1edf090cba788eed5baa1f5fa474f333eb45f732",
+  "candidate_l2_file_sha256": "sha256:fa32980adbc24066676d9075ea1433c96020bcd0e7ff4aebbcc58d67818f082d",
   "paired_acceptance_identity": "HARNESS-L2-078",
-  "paired_acceptance_digest": "sha256:3d79f0881620e36ea1325d8deb5f6f9f129732d6cbcd6a4cd786cb10fabab195",
+  "paired_acceptance_digest": "sha256:8b96200b445ba052465c7a3fa6b624b293d7c08f93b7e80fa3aa800ae57c7f4d",
   "l11_digest_rule": "L11の「### HARNESS-L2-078 」見出しから次の同階層「###」見出しまたはファイル末尾まで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
-  "l11_file_sha256": "sha256:bcea73950c5ec4c0ed0992de983048367c908222801df5b12d7a77247d48b867",
+  "l11_file_sha256": "sha256:1905f2f524cd007dd16702ee6e1e47407eb073f2e90d6ed063e66feb333c3cfd",
   "source_lines_ref": "docs/governance/audits/requirement-registration/hil-fr42-fr45-candidate-source-lines-2026-10-02.jsonl",
   "source_atom_set_digest": "sha256:80d2b3d9706b181442af18ed01522729f5578c93597c305edb35f3439d595669",
   "source_atom_set_digest_rule": "atom_id昇順。各atomを atom_id + 半角空白 + source_line_sha256のsha256:接頭辞を除いた64桁hex + LF として連結しUTF-8 SHA-256を計算する。",
-  "source_collection_scope": "旧HIL-FR-45 line 135の単一source atom。13意味field群のtyped definition relationとsplit/merge/rename/supersede/reject/N/Aの全証拠が揃うまで適用しない条件のみ。",
+  "source_collection_scope": "旧HIL-FR-45 line 135の単一source atom。13意味field群すべてのtyped definition relationを必須とし、split/merge/rename/supersede/reject/N/Aの列挙操作は各々の全証拠が揃うまで適用しない条件を含む。N/Aは要求操作であり、13 fieldの項目別適用外ではない。",
   "source_collection_atom_count": 1,
   "candidate_input_atom_refs": [
     "IR153-HIL-FR-45-TYPED-LEDGER-RECEIPT"
@@ -117,7 +117,7 @@
     }
   },
   "po_decision_material": {
-    "source_semantics": "HIL-FR-45 requires thirteen named semantic fields and typed edges; six listed change/disposition operations apply only with before/after digest, disposition of every source atom, downstream stale, and review-authority receipt.",
+    "source_semantics": "HIL-FR-45 requires all thirteen named semantic fields to be preserved through typed edges; field-level N/A/omission is not an exception. N/A is one of six listed change/disposition operations, each applicable only with before/after digest, disposition of every source atom, downstream stale, and review-authority receipt.",
     "options": {
       "A": "Adopt this candidate pair for the exact selected source-line condition and preserve unknown scope/applicability as written; no version target is set.",
       "B": "Keep the source atom pending in MPR-SH-IR-003 until PO selects target scope or meaning; do not claim this candidate maps or closes it.",
@@ -169,5 +169,15 @@
     "parent_l1_sha256": "sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
     "l1_decision_file_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
   },
-  "root_integration_note": "Historical fixed before-append pins retain original f38 comparison. Latest main a93 is preserved as full prefix; only candidates077/078 appended. Shared current full-file pins refreshed; semantic sections unchanged."
+  "root_integration_note": "Historical fixed before-append pins retain original f38 comparison. Latest main a93 remains the full prefix; current candidate 078 section and shared full-file pins are refreshed for the 13-field typed-edge correction. Candidate adoption and source closure remain unclaimed.",
+  "review_correction": {
+    "finding": "Old HIL-FR-45 line 135 requires all thirteen typed semantic fields. N/A is a listed requirement-change operation with receipt conditions, not a per-field applicability exception.",
+    "response": "HARNESS-L2-078 and L11-078 now require all thirteen fields with typed edges and reject item-level N/A/omission. The listed N/A change operation and its full evidence receipt condition remain required.",
+    "comparison_base_commit": "f8be390d15c8709da82af38d0d7679dffe1f5312",
+    "authority_effect": "none"
+  },
+  "candidate_l2_line_start": 1316,
+  "candidate_l2_line_end": 1323,
+  "l11_line_start": 1026,
+  "l11_line_end": 1033
 }
