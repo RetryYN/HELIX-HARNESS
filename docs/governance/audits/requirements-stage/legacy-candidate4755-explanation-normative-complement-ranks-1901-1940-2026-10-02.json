@@ -13898,5 +13898,19 @@
       "all_mechanism_archive_path_line_citations": [],
       "all_mechanism_document_direct_search": []
     }
-  ]
+  ],
+  "same_PR_predecessor_boundary": {
+    "prior_rank": 1900,
+    "prior_id": "LEGACY-CAND-LINE-003202",
+    "this_first_rank": 1901,
+    "this_first_id": "LEGACY-CAND-LINE-003205",
+    "available_in_origin_main": false,
+    "available_in_this_PR": true,
+    "pin": {
+      "commit": "3367b23d09707c40c2317e069849b04c5a2ceab9",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1861-1900-2026-10-02.json",
+      "sha256": "95fce7cce690b1f02a76ffa08eaf657eabf5c84235a71ccb0d8e3531d4fddb32"
+    },
+    "relation": "full-pool再構成と先行slice末尾による連続性を照合。採択・closureを生成しない。"
+  }
 }
