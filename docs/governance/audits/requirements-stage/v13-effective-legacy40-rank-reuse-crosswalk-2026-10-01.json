@@ -217,7 +217,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 2,
@@ -237,7 +238,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 3,
@@ -257,7 +259,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 4,
@@ -277,7 +280,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 5,
@@ -297,7 +301,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 6,
@@ -317,7 +322,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 7,
@@ -337,7 +343,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 8,
@@ -357,7 +364,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 9,
@@ -377,7 +385,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 10,
@@ -397,7 +406,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 11,
@@ -417,7 +427,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 12,
@@ -437,7 +448,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 13,
@@ -457,7 +469,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 14,
@@ -477,7 +490,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 15,
@@ -497,7 +511,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 16,
@@ -517,7 +532,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 17,
@@ -537,7 +553,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 18,
@@ -557,7 +574,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 19,
@@ -577,7 +595,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 20,
@@ -597,7 +616,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 21,
@@ -619,7 +639,8 @@
         "crosswalk_record_present": false,
         "source_qualified_current_slice_audit_member": true,
         "current_slice_position": 21,
-        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791",
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 22,
@@ -641,7 +662,8 @@
         "crosswalk_record_present": false,
         "source_qualified_current_slice_audit_member": true,
         "current_slice_position": 22,
-        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791",
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 23,
@@ -663,7 +685,8 @@
         "crosswalk_record_present": false,
         "source_qualified_current_slice_audit_member": true,
         "current_slice_position": 23,
-        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791",
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 24,
@@ -685,7 +708,8 @@
         "crosswalk_record_present": false,
         "source_qualified_current_slice_audit_member": true,
         "current_slice_position": 24,
-        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791",
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 25,
@@ -707,7 +731,8 @@
         "crosswalk_record_present": false,
         "source_qualified_current_slice_audit_member": true,
         "current_slice_position": 25,
-        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791",
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 26,
@@ -729,7 +754,8 @@
         "crosswalk_record_present": false,
         "source_qualified_current_slice_audit_member": true,
         "current_slice_position": 26,
-        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791",
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 27,
@@ -751,7 +777,8 @@
         "crosswalk_record_present": false,
         "source_qualified_current_slice_audit_member": true,
         "current_slice_position": 27,
-        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791",
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 28,
@@ -773,7 +800,8 @@
         "crosswalk_record_present": false,
         "source_qualified_current_slice_audit_member": true,
         "current_slice_position": 28,
-        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791",
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 29,
@@ -795,7 +823,8 @@
         "crosswalk_record_present": false,
         "source_qualified_current_slice_audit_member": true,
         "current_slice_position": 29,
-        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791",
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 30,
@@ -817,7 +846,8 @@
         "crosswalk_record_present": false,
         "source_qualified_current_slice_audit_member": true,
         "current_slice_position": 30,
-        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791",
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 31,
@@ -839,7 +869,8 @@
         "crosswalk_record_present": false,
         "source_qualified_current_slice_audit_member": true,
         "current_slice_position": 31,
-        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791",
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 32,
@@ -861,7 +892,8 @@
         "crosswalk_record_present": false,
         "source_qualified_current_slice_audit_member": true,
         "current_slice_position": 32,
-        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791",
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 33,
@@ -883,7 +915,8 @@
         "crosswalk_record_present": false,
         "source_qualified_current_slice_audit_member": true,
         "current_slice_position": 33,
-        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791",
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 34,
@@ -905,7 +938,8 @@
         "crosswalk_record_present": false,
         "source_qualified_current_slice_audit_member": true,
         "current_slice_position": 34,
-        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791",
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 35,
@@ -927,7 +961,8 @@
         "crosswalk_record_present": false,
         "source_qualified_current_slice_audit_member": true,
         "current_slice_position": 35,
-        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791",
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 36,
@@ -949,7 +984,8 @@
         "crosswalk_record_present": false,
         "source_qualified_current_slice_audit_member": true,
         "current_slice_position": 36,
-        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791",
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 37,
@@ -971,7 +1007,8 @@
         "crosswalk_record_present": false,
         "source_qualified_current_slice_audit_member": true,
         "current_slice_position": 37,
-        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791",
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 38,
@@ -993,7 +1030,8 @@
         "crosswalk_record_present": false,
         "source_qualified_current_slice_audit_member": true,
         "current_slice_position": 38,
-        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791",
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 39,
@@ -1015,7 +1053,8 @@
         "crosswalk_record_present": false,
         "source_qualified_current_slice_audit_member": true,
         "current_slice_position": 39,
-        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791",
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 40,
@@ -1037,7 +1076,8 @@
         "crosswalk_record_present": false,
         "source_qualified_current_slice_audit_member": true,
         "current_slice_position": 40,
-        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791"
+        "current_slice_audit_json_sha256": "6e33ac456eb7f1f58246969d48b1dd1ebf7caae53bae42e8ad5f4da09fc6b791",
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 41,
@@ -1057,7 +1097,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 42,
@@ -1077,7 +1118,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 43,
@@ -1097,7 +1139,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 44,
@@ -1117,7 +1160,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 45,
@@ -1137,7 +1181,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 46,
@@ -1157,7 +1202,13 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true,
+        "rank_condition_audit_position": 46,
+        "rank_condition_audit_id": "V13-EFFECTIVE-RANKS46-49-CONDITION-AUDIT-2026-10-01",
+        "rank_condition_audit_head": "a3d44d939668775c00fd77b66b5d85416b3df65e",
+        "rank_condition_audit_json_path": "docs/governance/audits/requirements-stage/v13-effective-ranks46-49-condition-audit-2026-10-01.json",
+        "rank_condition_audit_json_sha256": "61842b09261140282d4a88db2fbe917f9d9b5069c17dbabee44855fb4c88dfd1"
       },
       {
         "position": 47,
@@ -1177,7 +1228,13 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true,
+        "rank_condition_audit_position": 47,
+        "rank_condition_audit_id": "V13-EFFECTIVE-RANKS46-49-CONDITION-AUDIT-2026-10-01",
+        "rank_condition_audit_head": "a3d44d939668775c00fd77b66b5d85416b3df65e",
+        "rank_condition_audit_json_path": "docs/governance/audits/requirements-stage/v13-effective-ranks46-49-condition-audit-2026-10-01.json",
+        "rank_condition_audit_json_sha256": "61842b09261140282d4a88db2fbe917f9d9b5069c17dbabee44855fb4c88dfd1"
       },
       {
         "position": 48,
@@ -1197,7 +1254,13 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true,
+        "rank_condition_audit_position": 48,
+        "rank_condition_audit_id": "V13-EFFECTIVE-RANKS46-49-CONDITION-AUDIT-2026-10-01",
+        "rank_condition_audit_head": "a3d44d939668775c00fd77b66b5d85416b3df65e",
+        "rank_condition_audit_json_path": "docs/governance/audits/requirements-stage/v13-effective-ranks46-49-condition-audit-2026-10-01.json",
+        "rank_condition_audit_json_sha256": "61842b09261140282d4a88db2fbe917f9d9b5069c17dbabee44855fb4c88dfd1"
       },
       {
         "position": 49,
@@ -1217,7 +1280,13 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true,
+        "rank_condition_audit_position": 49,
+        "rank_condition_audit_id": "V13-EFFECTIVE-RANKS46-49-CONDITION-AUDIT-2026-10-01",
+        "rank_condition_audit_head": "a3d44d939668775c00fd77b66b5d85416b3df65e",
+        "rank_condition_audit_json_path": "docs/governance/audits/requirements-stage/v13-effective-ranks46-49-condition-audit-2026-10-01.json",
+        "rank_condition_audit_json_sha256": "61842b09261140282d4a88db2fbe917f9d9b5069c17dbabee44855fb4c88dfd1"
       },
       {
         "position": 50,
@@ -1237,7 +1306,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 51,
@@ -1257,7 +1327,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 52,
@@ -1277,7 +1348,13 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true,
+        "rank_condition_audit_position": 52,
+        "rank_condition_audit_id": "V13-EFFECTIVE-RANKS52-56-HYB-002-006-CONDITION-AUDIT-2026-10-01",
+        "rank_condition_audit_head": "a3d44d939668775c00fd77b66b5d85416b3df65e",
+        "rank_condition_audit_json_path": "docs/governance/audits/requirements-stage/v13-effective-ranks52-56-hyb-002-006-condition-audit-2026-10-01.json",
+        "rank_condition_audit_json_sha256": "09bce72838df14a808c731341c0e557d0db3d8922dc9dae6aad7e02c07360d99"
       },
       {
         "position": 53,
@@ -1297,7 +1374,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 54,
@@ -1317,7 +1395,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 55,
@@ -1337,7 +1416,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 56,
@@ -1357,7 +1437,13 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true,
+        "rank_condition_audit_position": 56,
+        "rank_condition_audit_id": "V13-EFFECTIVE-RANKS52-56-HYB-002-006-CONDITION-AUDIT-2026-10-01",
+        "rank_condition_audit_head": "a3d44d939668775c00fd77b66b5d85416b3df65e",
+        "rank_condition_audit_json_path": "docs/governance/audits/requirements-stage/v13-effective-ranks52-56-hyb-002-006-condition-audit-2026-10-01.json",
+        "rank_condition_audit_json_sha256": "09bce72838df14a808c731341c0e557d0db3d8922dc9dae6aad7e02c07360d99"
       },
       {
         "position": 57,
@@ -1377,7 +1463,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 58,
@@ -1397,7 +1484,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 59,
@@ -1417,7 +1505,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 60,
@@ -1437,7 +1526,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 61,
@@ -1457,7 +1547,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 62,
@@ -1477,7 +1568,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 63,
@@ -1497,7 +1589,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 64,
@@ -1517,7 +1610,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 65,
@@ -1537,7 +1631,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 66,
@@ -1557,7 +1652,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 67,
@@ -1577,7 +1673,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 68,
@@ -1597,7 +1694,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 69,
@@ -1617,7 +1715,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 70,
@@ -1637,7 +1736,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 71,
@@ -1657,7 +1757,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 72,
@@ -1677,7 +1778,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 73,
@@ -1697,7 +1799,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 74,
@@ -1717,7 +1820,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 75,
@@ -1737,7 +1841,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 76,
@@ -1757,7 +1862,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 77,
@@ -1777,7 +1883,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 78,
@@ -1797,7 +1904,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 79,
@@ -1817,7 +1925,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 80,
@@ -1837,7 +1946,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 81,
@@ -1857,7 +1967,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 82,
@@ -1877,7 +1988,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 83,
@@ -1897,7 +2009,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 84,
@@ -1917,7 +2030,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 85,
@@ -1937,7 +2051,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 86,
@@ -1957,7 +2072,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 87,
@@ -1977,7 +2093,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 88,
@@ -1997,7 +2114,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 89,
@@ -2017,7 +2135,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 90,
@@ -2037,7 +2156,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 91,
@@ -2057,7 +2177,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 92,
@@ -2077,7 +2198,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 93,
@@ -2097,7 +2219,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 94,
@@ -2117,7 +2240,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 95,
@@ -2137,7 +2261,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 96,
@@ -2157,7 +2282,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 97,
@@ -2177,7 +2303,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 98,
@@ -2197,7 +2324,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 99,
@@ -2217,7 +2345,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 100,
@@ -2237,7 +2366,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 101,
@@ -2257,7 +2387,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 102,
@@ -2277,7 +2408,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 103,
@@ -2297,7 +2429,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 104,
@@ -2317,7 +2450,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 105,
@@ -2337,7 +2471,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 106,
@@ -2357,7 +2492,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 107,
@@ -2377,7 +2513,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 108,
@@ -2397,7 +2534,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 109,
@@ -2417,7 +2555,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 110,
@@ -2437,7 +2576,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": true,
         "crosswalk_record_present": true,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": false
       },
       {
         "position": 111,
@@ -2457,7 +2597,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 112,
@@ -2477,7 +2618,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 113,
@@ -2497,7 +2639,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 114,
@@ -2517,7 +2660,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 115,
@@ -2537,7 +2681,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 116,
@@ -2557,7 +2702,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 117,
@@ -2577,7 +2723,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 118,
@@ -2597,7 +2744,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 119,
@@ -2617,7 +2765,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 120,
@@ -2637,7 +2786,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 121,
@@ -2657,7 +2807,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 122,
@@ -2677,7 +2828,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 123,
@@ -2697,7 +2849,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 124,
@@ -2717,7 +2870,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 125,
@@ -2737,7 +2891,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 126,
@@ -2757,7 +2912,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 127,
@@ -2777,7 +2933,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 128,
@@ -2797,7 +2954,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 129,
@@ -2817,7 +2975,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 130,
@@ -2837,7 +2996,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       },
       {
         "position": 131,
@@ -2857,7 +3017,8 @@
         "queue_state": "unresolved_for_closure_work",
         "audited_by_identity_reuse": false,
         "crosswalk_record_present": false,
-        "source_qualified_current_slice_audit_member": false
+        "source_qualified_current_slice_audit_member": false,
+        "source_qualified_rank_condition_audit_member": true
       }
     ]
   },
@@ -5318,8 +5479,8 @@
       "REQSRC-SUP-00458",
       "REQSRC-SUP-00459"
     ],
-    "unique_reviewed_source_ids": 81,
-    "membership_note": "source-ID監査記録のunion: prior first20 + source-qualified positions21–40 + old40 source-ID crosswalk + raw119旧監査のrank41 carryover REQSRC-SUP-00171（重複は一度）。歴史的順位誤りを残したまま意味上の完了・閉鎖を表さない。",
+    "unique_reviewed_source_ids": 131,
+    "membership_note": "current source-ID audit-record membership union: prior first20 + source-qualified positions21–40 + historical rank41 carryover REQSRC-SUP-00171 + old40 source-ID crosswalk + rank46–49, rank52/56, rank68–90, and rank111–131 condition-comparison audits. Membership records that a source-ID audit record exists; it does not represent adoption, condition closure, or semantic completion.",
     "raw119_rank_label_21_40_audit_ids_as_supplied": [
       "REQSRC-SUP-00077",
       "REQSRC-SUP-00081",
@@ -5414,6 +5575,143 @@
       "REQSRC-SUP-00186",
       "REQSRC-SUP-00187",
       "REQSRC-SUP-00188",
+      "REQSRC-SUP-00192",
+      "REQSRC-SUP-00193",
+      "REQSRC-SUP-00194",
+      "REQSRC-SUP-00198",
+      "REQSRC-SUP-00209",
+      "REQSRC-SUP-00212",
+      "REQSRC-SUP-00213",
+      "REQSRC-SUP-00214",
+      "REQSRC-SUP-00215",
+      "REQSRC-SUP-00216",
+      "REQSRC-SUP-00217",
+      "REQSRC-SUP-00218",
+      "REQSRC-SUP-00219",
+      "REQSRC-SUP-00220",
+      "REQSRC-SUP-00221",
+      "REQSRC-SUP-00269",
+      "REQSRC-SUP-00272",
+      "REQSRC-SUP-00273",
+      "REQSRC-SUP-00274",
+      "REQSRC-SUP-00275",
+      "REQSRC-SUP-00276",
+      "REQSRC-SUP-00277",
+      "REQSRC-SUP-00278",
+      "REQSRC-SUP-00279",
+      "REQSRC-SUP-00284",
+      "REQSRC-SUP-00285",
+      "REQSRC-SUP-00286",
+      "REQSRC-SUP-00287",
+      "REQSRC-SUP-00288",
+      "REQSRC-SUP-00289",
+      "REQSRC-SUP-00290",
+      "REQSRC-SUP-00291",
+      "REQSRC-SUP-00310",
+      "REQSRC-SUP-00312",
+      "REQSRC-SUP-00314",
+      "REQSRC-SUP-00315",
+      "REQSRC-SUP-00319",
+      "REQSRC-SUP-00320",
+      "REQSRC-SUP-00321",
+      "REQSRC-SUP-00322",
+      "REQSRC-SUP-00330",
+      "REQSRC-SUP-00332",
+      "REQSRC-SUP-00334",
+      "REQSRC-SUP-00335",
+      "REQSRC-SUP-00337",
+      "REQSRC-SUP-00338",
+      "REQSRC-SUP-00339",
+      "REQSRC-SUP-00340",
+      "REQSRC-SUP-00435",
+      "REQSRC-SUP-00441",
+      "REQSRC-SUP-00442",
+      "REQSRC-SUP-00443",
+      "REQSRC-SUP-00444",
+      "REQSRC-SUP-00445",
+      "REQSRC-SUP-00446",
+      "REQSRC-SUP-00447",
+      "REQSRC-SUP-00451",
+      "REQSRC-SUP-00452",
+      "REQSRC-SUP-00453",
+      "REQSRC-SUP-00454",
+      "REQSRC-SUP-00455",
+      "REQSRC-SUP-00456",
+      "REQSRC-SUP-00457",
+      "REQSRC-SUP-00458",
+      "REQSRC-SUP-00459",
+      "REQSRC-SUP-00477",
+      "REQSRC-SUP-00478",
+      "REQSRC-SUP-00479",
+      "REQSRC-SUP-00482",
+      "REQSRC-SUP-00483",
+      "REQSRC-SUP-00496",
+      "REQSRC-SUP-00500",
+      "REQSRC-SUP-00501",
+      "REQSRC-SUP-00502",
+      "REQSRC-SUP-00503",
+      "REQSRC-SUP-00504",
+      "REQSRC-SUP-00505",
+      "REQSRC-SUP-00508",
+      "REQSRC-SUP-00510",
+      "REQSRC-SUP-00511",
+      "REQSRC-SUP-00512",
+      "REQSRC-SUP-00513",
+      "REQSRC-SUP-00516",
+      "REQSRC-SUP-00517",
+      "REQSRC-SUP-00520",
+      "REQSRC-SUP-00521"
+    ],
+    "raw119_rank_label_valid_under_131_pool": false,
+    "historical_raw119_only_carryover_ids": [
+      "REQSRC-SUP-00171"
+    ],
+    "prior_revision_reviewed_identity_ids_81": [
+      "REQSRC-SUP-00004",
+      "REQSRC-SUP-00008",
+      "REQSRC-SUP-00009",
+      "REQSRC-SUP-00010",
+      "REQSRC-SUP-00015",
+      "REQSRC-SUP-00016",
+      "REQSRC-SUP-00017",
+      "REQSRC-SUP-00018",
+      "REQSRC-SUP-00019",
+      "REQSRC-SUP-00022",
+      "REQSRC-SUP-00023",
+      "REQSRC-SUP-00024",
+      "REQSRC-SUP-00025",
+      "REQSRC-SUP-00026",
+      "REQSRC-SUP-00027",
+      "REQSRC-SUP-00028",
+      "REQSRC-SUP-00029",
+      "REQSRC-SUP-00046",
+      "REQSRC-SUP-00047",
+      "REQSRC-SUP-00051",
+      "REQSRC-SUP-00077",
+      "REQSRC-SUP-00081",
+      "REQSRC-SUP-00089",
+      "REQSRC-SUP-00097",
+      "REQSRC-SUP-00105",
+      "REQSRC-SUP-00108",
+      "REQSRC-SUP-00112",
+      "REQSRC-SUP-00114",
+      "REQSRC-SUP-00146",
+      "REQSRC-SUP-00147",
+      "REQSRC-SUP-00150",
+      "REQSRC-SUP-00151",
+      "REQSRC-SUP-00153",
+      "REQSRC-SUP-00154",
+      "REQSRC-SUP-00155",
+      "REQSRC-SUP-00161",
+      "REQSRC-SUP-00163",
+      "REQSRC-SUP-00165",
+      "REQSRC-SUP-00167",
+      "REQSRC-SUP-00170",
+      "REQSRC-SUP-00171",
+      "REQSRC-SUP-00185",
+      "REQSRC-SUP-00186",
+      "REQSRC-SUP-00187",
+      "REQSRC-SUP-00188",
       "REQSRC-SUP-00209",
       "REQSRC-SUP-00212",
       "REQSRC-SUP-00214",
@@ -5451,847 +5749,387 @@
       "REQSRC-SUP-00458",
       "REQSRC-SUP-00459"
     ],
-    "raw119_rank_label_valid_under_131_pool": false,
-    "historical_raw119_only_carryover_ids": [
-      "REQSRC-SUP-00171"
-    ]
+    "prior_revision_unreviewed_identity_ids_50": [
+      "REQSRC-SUP-00192",
+      "REQSRC-SUP-00193",
+      "REQSRC-SUP-00194",
+      "REQSRC-SUP-00198",
+      "REQSRC-SUP-00213",
+      "REQSRC-SUP-00217",
+      "REQSRC-SUP-00278",
+      "REQSRC-SUP-00279",
+      "REQSRC-SUP-00284",
+      "REQSRC-SUP-00285",
+      "REQSRC-SUP-00286",
+      "REQSRC-SUP-00287",
+      "REQSRC-SUP-00288",
+      "REQSRC-SUP-00289",
+      "REQSRC-SUP-00290",
+      "REQSRC-SUP-00291",
+      "REQSRC-SUP-00310",
+      "REQSRC-SUP-00312",
+      "REQSRC-SUP-00314",
+      "REQSRC-SUP-00315",
+      "REQSRC-SUP-00319",
+      "REQSRC-SUP-00320",
+      "REQSRC-SUP-00321",
+      "REQSRC-SUP-00322",
+      "REQSRC-SUP-00330",
+      "REQSRC-SUP-00332",
+      "REQSRC-SUP-00334",
+      "REQSRC-SUP-00335",
+      "REQSRC-SUP-00337",
+      "REQSRC-SUP-00477",
+      "REQSRC-SUP-00478",
+      "REQSRC-SUP-00479",
+      "REQSRC-SUP-00482",
+      "REQSRC-SUP-00483",
+      "REQSRC-SUP-00496",
+      "REQSRC-SUP-00500",
+      "REQSRC-SUP-00501",
+      "REQSRC-SUP-00502",
+      "REQSRC-SUP-00503",
+      "REQSRC-SUP-00504",
+      "REQSRC-SUP-00505",
+      "REQSRC-SUP-00508",
+      "REQSRC-SUP-00510",
+      "REQSRC-SUP-00511",
+      "REQSRC-SUP-00512",
+      "REQSRC-SUP-00513",
+      "REQSRC-SUP-00516",
+      "REQSRC-SUP-00517",
+      "REQSRC-SUP-00520",
+      "REQSRC-SUP-00521"
+    ],
+    "additional_rank_condition_audited_source_ids": [
+      "REQSRC-SUP-00192",
+      "REQSRC-SUP-00193",
+      "REQSRC-SUP-00194",
+      "REQSRC-SUP-00198",
+      "REQSRC-SUP-00213",
+      "REQSRC-SUP-00217",
+      "REQSRC-SUP-00278",
+      "REQSRC-SUP-00279",
+      "REQSRC-SUP-00284",
+      "REQSRC-SUP-00285",
+      "REQSRC-SUP-00286",
+      "REQSRC-SUP-00287",
+      "REQSRC-SUP-00288",
+      "REQSRC-SUP-00289",
+      "REQSRC-SUP-00290",
+      "REQSRC-SUP-00291",
+      "REQSRC-SUP-00310",
+      "REQSRC-SUP-00312",
+      "REQSRC-SUP-00314",
+      "REQSRC-SUP-00315",
+      "REQSRC-SUP-00319",
+      "REQSRC-SUP-00320",
+      "REQSRC-SUP-00321",
+      "REQSRC-SUP-00322",
+      "REQSRC-SUP-00330",
+      "REQSRC-SUP-00332",
+      "REQSRC-SUP-00334",
+      "REQSRC-SUP-00335",
+      "REQSRC-SUP-00337",
+      "REQSRC-SUP-00477",
+      "REQSRC-SUP-00478",
+      "REQSRC-SUP-00479",
+      "REQSRC-SUP-00482",
+      "REQSRC-SUP-00483",
+      "REQSRC-SUP-00496",
+      "REQSRC-SUP-00500",
+      "REQSRC-SUP-00501",
+      "REQSRC-SUP-00502",
+      "REQSRC-SUP-00503",
+      "REQSRC-SUP-00504",
+      "REQSRC-SUP-00505",
+      "REQSRC-SUP-00508",
+      "REQSRC-SUP-00510",
+      "REQSRC-SUP-00511",
+      "REQSRC-SUP-00512",
+      "REQSRC-SUP-00513",
+      "REQSRC-SUP-00516",
+      "REQSRC-SUP-00517",
+      "REQSRC-SUP-00520",
+      "REQSRC-SUP-00521"
+    ],
+    "prior_revision_reviewed_identity_ids_87": [
+      "REQSRC-SUP-00004",
+      "REQSRC-SUP-00008",
+      "REQSRC-SUP-00009",
+      "REQSRC-SUP-00010",
+      "REQSRC-SUP-00015",
+      "REQSRC-SUP-00016",
+      "REQSRC-SUP-00017",
+      "REQSRC-SUP-00018",
+      "REQSRC-SUP-00019",
+      "REQSRC-SUP-00022",
+      "REQSRC-SUP-00023",
+      "REQSRC-SUP-00024",
+      "REQSRC-SUP-00025",
+      "REQSRC-SUP-00026",
+      "REQSRC-SUP-00027",
+      "REQSRC-SUP-00028",
+      "REQSRC-SUP-00029",
+      "REQSRC-SUP-00046",
+      "REQSRC-SUP-00047",
+      "REQSRC-SUP-00051",
+      "REQSRC-SUP-00077",
+      "REQSRC-SUP-00081",
+      "REQSRC-SUP-00089",
+      "REQSRC-SUP-00097",
+      "REQSRC-SUP-00105",
+      "REQSRC-SUP-00108",
+      "REQSRC-SUP-00112",
+      "REQSRC-SUP-00114",
+      "REQSRC-SUP-00146",
+      "REQSRC-SUP-00147",
+      "REQSRC-SUP-00150",
+      "REQSRC-SUP-00151",
+      "REQSRC-SUP-00153",
+      "REQSRC-SUP-00154",
+      "REQSRC-SUP-00155",
+      "REQSRC-SUP-00161",
+      "REQSRC-SUP-00163",
+      "REQSRC-SUP-00165",
+      "REQSRC-SUP-00167",
+      "REQSRC-SUP-00170",
+      "REQSRC-SUP-00171",
+      "REQSRC-SUP-00185",
+      "REQSRC-SUP-00186",
+      "REQSRC-SUP-00187",
+      "REQSRC-SUP-00188",
+      "REQSRC-SUP-00192",
+      "REQSRC-SUP-00193",
+      "REQSRC-SUP-00194",
+      "REQSRC-SUP-00198",
+      "REQSRC-SUP-00209",
+      "REQSRC-SUP-00212",
+      "REQSRC-SUP-00213",
+      "REQSRC-SUP-00214",
+      "REQSRC-SUP-00215",
+      "REQSRC-SUP-00216",
+      "REQSRC-SUP-00217",
+      "REQSRC-SUP-00218",
+      "REQSRC-SUP-00219",
+      "REQSRC-SUP-00220",
+      "REQSRC-SUP-00221",
+      "REQSRC-SUP-00269",
+      "REQSRC-SUP-00272",
+      "REQSRC-SUP-00273",
+      "REQSRC-SUP-00274",
+      "REQSRC-SUP-00275",
+      "REQSRC-SUP-00276",
+      "REQSRC-SUP-00277",
+      "REQSRC-SUP-00338",
+      "REQSRC-SUP-00339",
+      "REQSRC-SUP-00340",
+      "REQSRC-SUP-00435",
+      "REQSRC-SUP-00441",
+      "REQSRC-SUP-00442",
+      "REQSRC-SUP-00443",
+      "REQSRC-SUP-00444",
+      "REQSRC-SUP-00445",
+      "REQSRC-SUP-00446",
+      "REQSRC-SUP-00447",
+      "REQSRC-SUP-00451",
+      "REQSRC-SUP-00452",
+      "REQSRC-SUP-00453",
+      "REQSRC-SUP-00454",
+      "REQSRC-SUP-00455",
+      "REQSRC-SUP-00456",
+      "REQSRC-SUP-00457",
+      "REQSRC-SUP-00458",
+      "REQSRC-SUP-00459"
+    ],
+    "prior_revision_unreviewed_identity_ids_44": [
+      "REQSRC-SUP-00278",
+      "REQSRC-SUP-00279",
+      "REQSRC-SUP-00284",
+      "REQSRC-SUP-00285",
+      "REQSRC-SUP-00286",
+      "REQSRC-SUP-00287",
+      "REQSRC-SUP-00288",
+      "REQSRC-SUP-00289",
+      "REQSRC-SUP-00290",
+      "REQSRC-SUP-00291",
+      "REQSRC-SUP-00310",
+      "REQSRC-SUP-00312",
+      "REQSRC-SUP-00314",
+      "REQSRC-SUP-00315",
+      "REQSRC-SUP-00319",
+      "REQSRC-SUP-00320",
+      "REQSRC-SUP-00321",
+      "REQSRC-SUP-00322",
+      "REQSRC-SUP-00330",
+      "REQSRC-SUP-00332",
+      "REQSRC-SUP-00334",
+      "REQSRC-SUP-00335",
+      "REQSRC-SUP-00337",
+      "REQSRC-SUP-00477",
+      "REQSRC-SUP-00478",
+      "REQSRC-SUP-00479",
+      "REQSRC-SUP-00482",
+      "REQSRC-SUP-00483",
+      "REQSRC-SUP-00496",
+      "REQSRC-SUP-00500",
+      "REQSRC-SUP-00501",
+      "REQSRC-SUP-00502",
+      "REQSRC-SUP-00503",
+      "REQSRC-SUP-00504",
+      "REQSRC-SUP-00505",
+      "REQSRC-SUP-00508",
+      "REQSRC-SUP-00510",
+      "REQSRC-SUP-00511",
+      "REQSRC-SUP-00512",
+      "REQSRC-SUP-00513",
+      "REQSRC-SUP-00516",
+      "REQSRC-SUP-00517",
+      "REQSRC-SUP-00520",
+      "REQSRC-SUP-00521"
+    ],
+    "prior_revision_state_as_of_bundle_head": "a3d44d939668775c00fd77b66b5d85416b3df65e",
+    "prior_revision_reviewed_identity_ids_110": [
+      "REQSRC-SUP-00004",
+      "REQSRC-SUP-00008",
+      "REQSRC-SUP-00009",
+      "REQSRC-SUP-00010",
+      "REQSRC-SUP-00015",
+      "REQSRC-SUP-00016",
+      "REQSRC-SUP-00017",
+      "REQSRC-SUP-00018",
+      "REQSRC-SUP-00019",
+      "REQSRC-SUP-00022",
+      "REQSRC-SUP-00023",
+      "REQSRC-SUP-00024",
+      "REQSRC-SUP-00025",
+      "REQSRC-SUP-00026",
+      "REQSRC-SUP-00027",
+      "REQSRC-SUP-00028",
+      "REQSRC-SUP-00029",
+      "REQSRC-SUP-00046",
+      "REQSRC-SUP-00047",
+      "REQSRC-SUP-00051",
+      "REQSRC-SUP-00077",
+      "REQSRC-SUP-00081",
+      "REQSRC-SUP-00089",
+      "REQSRC-SUP-00097",
+      "REQSRC-SUP-00105",
+      "REQSRC-SUP-00108",
+      "REQSRC-SUP-00112",
+      "REQSRC-SUP-00114",
+      "REQSRC-SUP-00146",
+      "REQSRC-SUP-00147",
+      "REQSRC-SUP-00150",
+      "REQSRC-SUP-00151",
+      "REQSRC-SUP-00153",
+      "REQSRC-SUP-00154",
+      "REQSRC-SUP-00155",
+      "REQSRC-SUP-00161",
+      "REQSRC-SUP-00163",
+      "REQSRC-SUP-00165",
+      "REQSRC-SUP-00167",
+      "REQSRC-SUP-00170",
+      "REQSRC-SUP-00171",
+      "REQSRC-SUP-00185",
+      "REQSRC-SUP-00186",
+      "REQSRC-SUP-00187",
+      "REQSRC-SUP-00188",
+      "REQSRC-SUP-00192",
+      "REQSRC-SUP-00193",
+      "REQSRC-SUP-00194",
+      "REQSRC-SUP-00198",
+      "REQSRC-SUP-00209",
+      "REQSRC-SUP-00212",
+      "REQSRC-SUP-00213",
+      "REQSRC-SUP-00214",
+      "REQSRC-SUP-00215",
+      "REQSRC-SUP-00216",
+      "REQSRC-SUP-00217",
+      "REQSRC-SUP-00218",
+      "REQSRC-SUP-00219",
+      "REQSRC-SUP-00220",
+      "REQSRC-SUP-00221",
+      "REQSRC-SUP-00269",
+      "REQSRC-SUP-00272",
+      "REQSRC-SUP-00273",
+      "REQSRC-SUP-00274",
+      "REQSRC-SUP-00275",
+      "REQSRC-SUP-00276",
+      "REQSRC-SUP-00277",
+      "REQSRC-SUP-00278",
+      "REQSRC-SUP-00279",
+      "REQSRC-SUP-00284",
+      "REQSRC-SUP-00285",
+      "REQSRC-SUP-00286",
+      "REQSRC-SUP-00287",
+      "REQSRC-SUP-00288",
+      "REQSRC-SUP-00289",
+      "REQSRC-SUP-00290",
+      "REQSRC-SUP-00291",
+      "REQSRC-SUP-00310",
+      "REQSRC-SUP-00312",
+      "REQSRC-SUP-00314",
+      "REQSRC-SUP-00315",
+      "REQSRC-SUP-00319",
+      "REQSRC-SUP-00320",
+      "REQSRC-SUP-00321",
+      "REQSRC-SUP-00322",
+      "REQSRC-SUP-00330",
+      "REQSRC-SUP-00332",
+      "REQSRC-SUP-00334",
+      "REQSRC-SUP-00335",
+      "REQSRC-SUP-00337",
+      "REQSRC-SUP-00338",
+      "REQSRC-SUP-00339",
+      "REQSRC-SUP-00340",
+      "REQSRC-SUP-00435",
+      "REQSRC-SUP-00441",
+      "REQSRC-SUP-00442",
+      "REQSRC-SUP-00443",
+      "REQSRC-SUP-00444",
+      "REQSRC-SUP-00445",
+      "REQSRC-SUP-00446",
+      "REQSRC-SUP-00447",
+      "REQSRC-SUP-00451",
+      "REQSRC-SUP-00452",
+      "REQSRC-SUP-00453",
+      "REQSRC-SUP-00454",
+      "REQSRC-SUP-00455",
+      "REQSRC-SUP-00456",
+      "REQSRC-SUP-00457",
+      "REQSRC-SUP-00458",
+      "REQSRC-SUP-00459"
+    ],
+    "prior_revision_unreviewed_identity_ids_21": [
+      "REQSRC-SUP-00477",
+      "REQSRC-SUP-00478",
+      "REQSRC-SUP-00479",
+      "REQSRC-SUP-00482",
+      "REQSRC-SUP-00483",
+      "REQSRC-SUP-00496",
+      "REQSRC-SUP-00500",
+      "REQSRC-SUP-00501",
+      "REQSRC-SUP-00502",
+      "REQSRC-SUP-00503",
+      "REQSRC-SUP-00504",
+      "REQSRC-SUP-00505",
+      "REQSRC-SUP-00508",
+      "REQSRC-SUP-00510",
+      "REQSRC-SUP-00511",
+      "REQSRC-SUP-00512",
+      "REQSRC-SUP-00513",
+      "REQSRC-SUP-00516",
+      "REQSRC-SUP-00517",
+      "REQSRC-SUP-00520",
+      "REQSRC-SUP-00521"
+    ],
+    "prior_revision_110_21_state_as_of_bundle_head": "4a50e2d3f2272a36bae89ea38df6cdd6954dbd41"
   },
   "unreviewed_rows": {
-    "count": 50,
-    "rank_blocks": [
-      {
-        "start": 46,
-        "end": 49,
-        "source_item_ids": [
-          "REQSRC-SUP-00192",
-          "REQSRC-SUP-00193",
-          "REQSRC-SUP-00194",
-          "REQSRC-SUP-00198"
-        ]
-      },
-      {
-        "start": 52,
-        "end": 52,
-        "source_item_ids": [
-          "REQSRC-SUP-00213"
-        ]
-      },
-      {
-        "start": 56,
-        "end": 56,
-        "source_item_ids": [
-          "REQSRC-SUP-00217"
-        ]
-      },
-      {
-        "start": 68,
-        "end": 90,
-        "source_item_ids": [
-          "REQSRC-SUP-00278",
-          "REQSRC-SUP-00279",
-          "REQSRC-SUP-00284",
-          "REQSRC-SUP-00285",
-          "REQSRC-SUP-00286",
-          "REQSRC-SUP-00287",
-          "REQSRC-SUP-00288",
-          "REQSRC-SUP-00289",
-          "REQSRC-SUP-00290",
-          "REQSRC-SUP-00291",
-          "REQSRC-SUP-00310",
-          "REQSRC-SUP-00312",
-          "REQSRC-SUP-00314",
-          "REQSRC-SUP-00315",
-          "REQSRC-SUP-00319",
-          "REQSRC-SUP-00320",
-          "REQSRC-SUP-00321",
-          "REQSRC-SUP-00322",
-          "REQSRC-SUP-00330",
-          "REQSRC-SUP-00332",
-          "REQSRC-SUP-00334",
-          "REQSRC-SUP-00335",
-          "REQSRC-SUP-00337"
-        ]
-      },
-      {
-        "start": 111,
-        "end": 131,
-        "source_item_ids": [
-          "REQSRC-SUP-00477",
-          "REQSRC-SUP-00478",
-          "REQSRC-SUP-00479",
-          "REQSRC-SUP-00482",
-          "REQSRC-SUP-00483",
-          "REQSRC-SUP-00496",
-          "REQSRC-SUP-00500",
-          "REQSRC-SUP-00501",
-          "REQSRC-SUP-00502",
-          "REQSRC-SUP-00503",
-          "REQSRC-SUP-00504",
-          "REQSRC-SUP-00505",
-          "REQSRC-SUP-00508",
-          "REQSRC-SUP-00510",
-          "REQSRC-SUP-00511",
-          "REQSRC-SUP-00512",
-          "REQSRC-SUP-00513",
-          "REQSRC-SUP-00516",
-          "REQSRC-SUP-00517",
-          "REQSRC-SUP-00520",
-          "REQSRC-SUP-00521"
-        ]
-      }
-    ],
-    "source_identities": [
-      {
-        "position": 46,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00192",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 247,
-          "source_line_sha256": "sha256:833f700a7f273b9533d0dc3714f1df116c0b88a12fec4a66641d26bd5b9dd703",
-          "source_text": "設計エンジンはtest caseだけでなく、system完成度を実証する`verification_measurement_contract`を各requirement/NFRから生成する。最低限、性能、信頼性、可用性、回復性、security、privacy、accessibility、互換性、運用性、保守性、cost/resource、data quality、observabilityを対象にする。",
-          "condition_cluster_id": "V13-COND-L0247",
-          "source_section_group": 13,
-          "source_section_label": "§4.3 quality/measurement・245–251"
-        }
-      },
-      {
-        "position": 47,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00193",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 249,
-          "source_line_sha256": "sha256:c7c8fdcdba444b6fb68eaae83a193f1a6cd7cd9700dbb50d5cdeeb57c8edc284",
-          "source_text": "各contractはmetric ID、対象requirement/NFR、測定対象、workload/environment/data、baseline、target/SLO、許容差、sampling/window、tool/probe、evidence schema、判定oracle、owner、実行layer、再測定triggerを持つ。code/doc/testがgreenでも必須metricが未測定、stale、非代表環境、閾値未達ならsystem completionを拒否する。",
-          "condition_cluster_id": "V13-COND-L0249",
-          "source_section_group": 13,
-          "source_section_label": "§4.3 quality/measurement・245–251"
-        }
-      },
-      {
-        "position": 48,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00194",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 251,
-          "source_line_sha256": "sha256:30e0e461b391caa2cd948ab0d9cbaa2a8221054f5d1daa8ec608d5ddda131cd9",
-          "source_text": "計測はL5で設計し、L7でprobe/fixtureを実装、L8〜L10で局所からsystemへ拡張、L11で利用実態、L12で時間軸/SLO/改善効果を検証する。計測のために本番secret/PIIを露出せず、測定自体のoverheadと再現性も記録する。",
-          "condition_cluster_id": "V13-COND-L0251",
-          "source_section_group": 13,
-          "source_section_label": "§4.3 quality/measurement・245–251"
-        }
-      },
-      {
-        "position": 49,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00198",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 259,
-          "source_line_sha256": "sha256:e4c0f143df26e2777e66ada84e1903a154519b42e9732eaa6f06f9d09c849db6",
-          "source_text": "Full Vではsystem全体のworkflow modelをL1〜L5で段階的に凍結し、右腕で全transition、loop、terminal、exception、permission、timeout、notification、audit、data、switching、routing、resource allocationを検証する。Production Scrumではslice deltaだけを先行利用できるが、sprint reviewまたはrelease合流前にScrum Reverseでsystem workflowとL1〜L5設計資産へbackfillし、SR4 pair-freezeなしにrelease-readyとしない。",
-          "condition_cluster_id": "V13-COND-L0259",
-          "source_section_group": 14,
-          "source_section_label": "§4.4 Universal Workflow engine・253–263"
-        }
-      },
-      {
-        "position": 52,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00213",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 286,
-          "source_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
-          "source_text": "| `HR-FR-HYB-002` | MCP profile catalogはprofile列挙、設定、safety、read-only probeを型付きで提供し、credential、egress、tool capabilityをprofile単位でfail-closeする | `HR-AC-HYB-002`: 未登録profile、secret要求、write可能probeを拒否する |",
-          "condition_cluster_id": "V13-HYB-002",
-          "source_section_group": 16,
-          "source_section_label": "§4.6 HYB-001..010・279–295"
-        }
-      },
-      {
-        "position": 56,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00217",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 290,
-          "source_line_sha256": "sha256:2125ab8a351eea42abeb00975c7ff99a80fed5fe914b5c84a50bf6ca4945b931",
-          "source_text": "| `HR-FR-HYB-006` | feedback lifecycleはintake、classify、ack、pending、reverse-candidate、resolution、SessionStart surfaceをevent/projectionで管理する | `HR-AC-HYB-006`: 未ack findingの消失、prose handoverだけの解決、source HEAD不一致を拒否する |",
-          "condition_cluster_id": "V13-HYB-006",
-          "source_section_group": 16,
-          "source_section_label": "§4.6 HYB-001..010・279–295"
-        }
-      },
-      {
-        "position": 68,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00278",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 359,
-          "source_line_sha256": "sha256:b09f30bd7f22cb2a19266445c026b2b12407ab48ca087e29aa7d04ea84671f9f",
-          "source_text": "| `HIL-NFR-32` | 意味変更はauthority、impact、pair、oracle、rollback、downstream stale propagationが揃うまでCanonical化しない |",
-          "condition_cluster_id": "V13-AUTHORING-HIL-NFR-32",
-          "source_section_group": 18,
-          "source_section_label": "§4.7 Authoring Admission・347–361"
-        }
-      },
-      {
-        "position": 69,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00279",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 361,
-          "source_line_sha256": "sha256:4b5c15c01b67d0c0206893d4979dc897b184102807352feb8426a7dd0d1505bd",
-          "source_text": "同一`command_id`＋同一digestは既存receiptを返し、異digestはconflictとする。Terminal Reviewは対象revisionとHEADへ固定し、review後の変更でstale化する。Authoring失敗時もproposalとfindingを保持し、AIが黙って要求を落とすことを禁止する。",
-          "condition_cluster_id": "V13-COND-L0361",
-          "source_section_group": 18,
-          "source_section_label": "§4.7 Authoring Admission・347–361"
-        }
-      },
-      {
-        "position": 70,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00284",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 369,
-          "source_line_sha256": "sha256:1b344ce99d5ee503006ec148ce08df56a553b7077caca1a556aff2d2d996c9ec",
-          "source_text": "| `HR-NFR-REG-001` | 各NFRはstable ID、quality characteristic、source authority、対象surface、metric、workload、environment、data、baseline、target、error budget、hard limit、window、probe、oracle、owner、evidence path、再測定triggerを持つ |",
-          "condition_cluster_id": "V13-NFR-HR-NFR-REG-001",
-          "source_section_group": 19,
-          "source_section_label": "§4.8 NFR registry・363–377"
-        }
-      },
-      {
-        "position": 71,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00285",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 370,
-          "source_line_sha256": "sha256:b1b4d407654ac57942784c72d017f840cb5ad0829ec1f3ad40c2a00da6cb53eb",
-          "source_text": "| `HR-NFR-REG-002` | L1は能力、L3は観測可能な挙動、ADRは技術選択、policyは閾値運用、runtime profileは環境値を担い、実装方式をNFR本文へ混在させない |",
-          "condition_cluster_id": "V13-NFR-HR-NFR-REG-002",
-          "source_section_group": 19,
-          "source_section_label": "§4.8 NFR registry・363–377"
-        }
-      },
-      {
-        "position": 72,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00286",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 371,
-          "source_line_sha256": "sha256:0a58e6830acd3de799d55d918bed4d26b0977790e1460f2a53a72bfd778f02f5",
-          "source_text": "| `HR-NFR-REG-003` | 標準品質特性とAI固有特性（判断再現性、worker/verifier独立性、grounding、loop停止性、cost、provider縮退、memory汚染耐性）を分類する |",
-          "condition_cluster_id": "V13-NFR-HR-NFR-REG-003",
-          "source_section_group": 19,
-          "source_section_label": "§4.8 NFR registry・363–377"
-        }
-      },
-      {
-        "position": 73,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00287",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 372,
-          "source_line_sha256": "sha256:1ddeb5d759fbc9437a13eb446e59f59e2f30546e55a3c3863202fb5224829618",
-          "source_text": "| `HR-NFR-REG-004` | DB size、query/projection p95/p99、lock待機、busy timeout縮退、rebuild、archive/vacuum、並行runtime、長時間soakを測定する。未再現の単一障害原因を確定事実にしない |",
-          "condition_cluster_id": "V13-NFR-HR-NFR-REG-004",
-          "source_section_group": 19,
-          "source_section_label": "§4.8 NFR registry・363–377"
-        }
-      },
-      {
-        "position": 74,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00288",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 373,
-          "source_line_sha256": "sha256:948af905c1efeb72bc13074923e6d3faabd032433c0bcdf6120be6c41b7a3d36",
-          "source_text": "| `HR-NFR-REG-005` | gate、approval、cutover、projection、GitHub、memory、feedbackへfault injection、race、soak、crash recoveryを適用する |",
-          "condition_cluster_id": "V13-NFR-HR-NFR-REG-005",
-          "source_section_group": 19,
-          "source_section_label": "§4.8 NFR registry・363–377"
-        }
-      },
-      {
-        "position": 75,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00289",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 374,
-          "source_line_sha256": "sha256:9b8c75fb083044bc8ce146f452177232e643f9fe3a7a96a2704cb3ca46a6eded",
-          "source_text": "| `HR-NFR-REG-006` | property-based、model-based state machine、differential、mutation、fuzz、snapshot compatibilityをriskに応じて選択し、手法追加自体を完成証拠にしない |",
-          "condition_cluster_id": "V13-NFR-HR-NFR-REG-006",
-          "source_section_group": 19,
-          "source_section_label": "§4.8 NFR registry・363–377"
-        }
-      },
-      {
-        "position": 76,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00290",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 375,
-          "source_line_sha256": "sha256:858788f04f4732a39d32638b887af558ba934299acf59a3ce76e6e27ef205ae8",
-          "source_text": "| `HR-NFR-REG-007` | 実測値を時系列保存し、P4 metric event、requirement、release、regression、改善episodeへjoinする |",
-          "condition_cluster_id": "V13-NFR-HR-NFR-REG-007",
-          "source_section_group": 19,
-          "source_section_label": "§4.8 NFR registry・363–377"
-        }
-      },
-      {
-        "position": 77,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00291",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 377,
-          "source_line_sha256": "sha256:3d85a0787b2d22f7c722b351fc49c834edecd30bc61f018e8850696a21d5ca8e",
-          "source_text": "baseline未取得のNFRは`unknown`として扱い、推測値でgreenにしない。前身source authority未確定の115 draftは一括freezeせず、authority receiptとPO gate成立後に段階昇格する。",
-          "condition_cluster_id": "V13-COND-L0377",
-          "source_section_group": 19,
-          "source_section_label": "§4.8 NFR registry・363–377"
-        }
-      },
-      {
-        "position": 78,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00310",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 403,
-          "source_line_sha256": "sha256:28cddaf9def5e5337044b9fed381fa3062a76cf2ce8e4e9ea5bd2757a7b791af",
-          "source_text": "三境界へ分離する。L2は質問、回答、multi-surface prototype、reaction、暗黙要件candidate、human agreementを",
-          "condition_cluster_id": "V13-COND-L0403",
-          "source_section_group": 21,
-          "source_section_label": "§4.9.1 Discovery/JSON authority・400–420"
-        }
-      },
-      {
-        "position": 79,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00312",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 405,
-          "source_line_sha256": "sha256:95df323929f6cb0df5f1cd8e95beb8c86981f1341cf426402fd626e2d1eb1a6c",
-          "source_text": "backflow／human decisionを閉じた後、G1/G3人間承認だけがfreezeを許可する。",
-          "condition_cluster_id": "V13-COND-L0405",
-          "source_section_group": 21,
-          "source_section_label": "§4.9.1 Discovery/JSON authority・400–420"
-        }
-      },
-      {
-        "position": 80,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00314",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 408,
-          "source_line_sha256": "sha256:bf3905d72934dd7b47630e6751e8a7cbb043b85c46424d9c4fac73275b6c2526",
-          "source_text": "重複するRequirement Engine、別台帳、別layer、別authoring DBを作らない。3 development styleは全てL1〜L3を",
-          "condition_cluster_id": "V13-COND-L0408",
-          "source_section_group": 21,
-          "source_section_label": "§4.9.1 Discovery/JSON authority・400–420"
-        }
-      },
-      {
-        "position": 81,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00315",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 409,
-          "source_line_sha256": "sha256:913716a6f514e240ea0151e17b5e61e46c2aed9c42de0b988d5d46b36049abea",
-          "source_text": "通り、Discovery／PoCはS4前にcanonical化しないcase-driven model、Design HARNESSはprototype／surface生成を",
-          "condition_cluster_id": "V13-COND-L0409",
-          "source_section_group": 21,
-          "source_section_label": "§4.9.1 Discovery/JSON authority・400–420"
-        }
-      },
-      {
-        "position": 82,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00319",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 414,
-          "source_line_sha256": "sha256:f8b6770fed171d0adbc6626eab5b9980fbfd42f4be6542f36567aab1288b1c2f",
-          "source_text": "generated Markdownはread-only viewとする。移行前の「Markdownをcurrent authorityとして維持する」という条件は",
-          "condition_cluster_id": "V13-COND-L0414",
-          "source_section_group": 21,
-          "source_section_label": "§4.9.1 Discovery/JSON authority・400–420"
-        }
-      },
-      {
-        "position": 83,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00320",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 415,
-          "source_line_sha256": "sha256:7557a60c6e24ee4b816ad71c6f1ca473573796b026e7697a0e74885189b5ee8f",
-          "source_text": "現在の読み取り方針ではない。書込みはJSON transactionへ限定し、dual authorityを作らない。",
-          "condition_cluster_id": "V13-COND-L0415",
-          "source_section_group": 21,
-          "source_section_label": "§4.9.1 Discovery/JSON authority・400–420"
-        }
-      },
-      {
-        "position": 84,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00321",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 416,
-          "source_line_sha256": "sha256:99397e996c032114e13288d9418c60b3fc3b6d3d12a4ef850c5d7ae2084e5a53",
-          "source_text": "153 requirement、24 system contract、72 HAC、24 HATはInfinity Loop由来の基準集合であり、manifestはこれに",
-          "condition_cluster_id": "V13-COND-L0416",
-          "source_section_group": 21,
-          "source_section_label": "§4.9.1 Discovery/JSON authority・400–420"
-        }
-      },
-      {
-        "position": 85,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00322",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 417,
-          "source_line_sha256": "sha256:88270cb986eee439bd9b21edfcde130ea75b86e8d9e31a14e8e816f00d5b0ddc",
-          "source_text": "refinement契約を別shardとして加える。これらの件数だけで全HELIXのL2要求・追補・候補を網羅したと判定しない。",
-          "condition_cluster_id": "V13-COND-L0417",
-          "source_section_group": 21,
-          "source_section_label": "§4.9.1 Discovery/JSON authority・400–420"
-        }
-      },
-      {
-        "position": 86,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00330",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 428,
-          "source_line_sha256": "sha256:174f87daa1755264b9066d715a5c8541c9b5a13167f3fa66c18d420fe3ccc1d3",
-          "source_text": "| `HR-FR-P2-05` | 外部AI workerはversioned descriptor、`worker-context-packet.v1`によるcurrent HEAD／authority／rule／task boundary束縛、隔離worktree、secret task deny、non-authoritative outputを満たす場合だけ起動する |",
-          "condition_cluster_id": "V13-WORKER-HR-FR-P2-05",
-          "source_section_group": 22,
-          "source_section_label": "§4.10 外部AI worker・422–441"
-        }
-      },
-      {
-        "position": 87,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00332",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 430,
-          "source_line_sha256": "sha256:a93331748e84ab0fd111c3bc6e9bfa147e681b3ddb30774293c7a577c61c3dd7",
-          "source_text": "| `HR-FR-P2-07` | repository-level permanent bypass denyはone-shot markerやprovider flagより上位で、下位機構から解除できない |",
-          "condition_cluster_id": "V13-WORKER-HR-FR-P2-07",
-          "source_section_group": 22,
-          "source_section_label": "§4.10 外部AI worker・422–441"
-        }
-      },
-      {
-        "position": 88,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00334",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 432,
-          "source_line_sha256": "sha256:2d2a7f87985d226782a2064851ea971123b4e3af9bffbf1021ca8cf76cf898c4",
-          "source_text": "| `HR-FR-P6-06` | 配布packageはcanonical／generated index、first／third-party区分、provenance、license、免責、digestを持ち、publish／cutoverはPLAN-M-02承認境界を維持する |",
-          "condition_cluster_id": "V13-WORKER-HR-FR-P6-06",
-          "source_section_group": 22,
-          "source_section_label": "§4.10 外部AI worker・422–441"
-        }
-      },
-      {
-        "position": 89,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00335",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 434,
-          "source_line_sha256": "sha256:412e80125242670794775ecffeadbec93233caf4bf9df33705af48a6b44b1d84",
-          "source_text": "grok-buildのworktree allocation／recovery／conflict処理は`PLAN-DISCOVERY-12-grok-build-worktree-precedent`でbehavior atomを採取し、直接importしない。",
-          "condition_cluster_id": "V13-COND-L0434",
-          "source_section_group": 22,
-          "source_section_label": "§4.10 外部AI worker・422–441"
-        }
-      },
-      {
-        "position": 90,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00337",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 437,
-          "source_line_sha256": "sha256:e03e660240bf5c37a39081e9e4581526ba76fbd5ad8fc697b45f5abf5ab192e5",
-          "source_text": "HR-FR-HIL-22の本書昇格）。Claude・Codex・Kimi・将来のGrokは同一契約のinstanceであり、blind benchmark",
-          "condition_cluster_id": "V13-COND-L0437",
-          "source_section_group": 22,
-          "source_section_label": "§4.10 外部AI worker・422–441"
-        }
-      },
-      {
-        "position": 111,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00477",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 617,
-          "source_line_sha256": "sha256:3bb5fb3976828d7adc9b514a5c06aa74656ebc85cf233448c18220814514c561",
-          "source_text": "signalはcase-driven routeまたは選択済みdevelopment style内のchange intakeを起動する。",
-          "condition_cluster_id": "V13-COND-L0617",
-          "source_section_group": 30,
-          "source_section_label": "§9.2 signal routing・615–633"
-        }
-      },
-      {
-        "position": 112,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00478",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 618,
-          "source_line_sha256": "sha256:a0afb22ddfbdb072fad63a61307c8dd76566f9304c426853ec3c5d7d0f2c7123",
-          "source_text": "signalだけでdevelopment styleをProduction Scrumへ変更してはならない。",
-          "condition_cluster_id": "V13-COND-L0618",
-          "source_section_group": 30,
-          "source_section_label": "§9.2 signal routing・615–633"
-        }
-      },
-      {
-        "position": 113,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00479",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 620,
-          "source_line_sha256": "sha256:8cb25c3a0fb124b25a9b0701893fdeef87b3b07222481aa991701d5180759e68",
-          "source_text": "| signal | mode / routing target | 補足 |",
-          "condition_cluster_id": "V13-COND-L0620",
-          "source_section_group": 30,
-          "source_section_label": "§9.2 signal routing・615–633"
-        }
-      },
-      {
-        "position": 114,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00482",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 623,
-          "source_line_sha256": "sha256:074039b2e5fb673369eab6a81f110d837c6b03ecddff1fbba9692d6cc7f9e015",
-          "source_text": "| `debt_degradation` / `code_smell` / `structural` | Refactor | 外部挙動を保つ |",
-          "condition_cluster_id": "V13-COND-L0623",
-          "source_section_group": 30,
-          "source_section_label": "§9.2 signal routing・615–633"
-        }
-      },
-      {
-        "position": 115,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00483",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 624,
-          "source_line_sha256": "sha256:abe6948306eff0bd417364df922710b962f944be6c61f33edc9f50a24e03e140",
-          "source_text": "| `dependency_outdated` / `upgrade` / `config_drift` | Retrofit | upgradeはpreflight必須 |",
-          "condition_cluster_id": "V13-COND-L0624",
-          "source_section_group": 30,
-          "source_section_label": "§9.2 signal routing・615–633"
-        }
-      },
-      {
-        "position": 116,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00496",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 639,
-          "source_line_sha256": "sha256:a1246b2d13e88149de79871a952cb1c9749e5ff9b5f74891a2a3679daddb277e",
-          "source_text": "- V-model、Production Scrum、V設計＋Scrum実装Hybridのdevelopment styleがexactly oneで選択され、Discovery／PoCのcase-driven model activationは別fieldで判定される。",
-          "condition_cluster_id": "V13-AC-639",
-          "source_section_group": 31,
-          "source_section_label": "§10 aggregated acceptance・635–664"
-        }
-      },
-      {
-        "position": 117,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00500",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 643,
-          "source_line_sha256": "sha256:fd6047e6a45f3805d97d13c1f09b72ad71c93c7e95843d407b0b0aac64767b6f",
-          "source_text": "- Scrum Reverse findingがRedesign/Design Refactor/Performance Refactor/Retrofitのexactly oneへrouteされる。",
-          "condition_cluster_id": "V13-AC-643",
-          "source_section_group": 31,
-          "source_section_label": "§10 aggregated acceptance・635–664"
-        }
-      },
-      {
-        "position": 118,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00501",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 644,
-          "source_line_sha256": "sha256:9af66b9203d37bb7c3eb01cbd14e87f57b1fe0ae9dee54208459dfa2bf6d091f",
-          "source_text": "- 必須NFRごとにverification/measurement contractとcurrent evidenceがあり、未測定・stale・閾値未達でcompletionを拒否する。",
-          "condition_cluster_id": "V13-AC-644",
-          "source_section_group": 31,
-          "source_section_label": "§10 aggregated acceptance・635–664"
-        }
-      },
-      {
-        "position": 119,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00502",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 645,
-          "source_line_sha256": "sha256:a3ea485f2cf9c040c26fc0dda054c7bd72f980af85c472edd5c1e479f9533758",
-          "source_text": "- 全workflow transitionがFR、AC、test scenario、source transition、L1〜L12 pairへ追跡でき、未解決分岐をfreezeへ算入しない。",
-          "condition_cluster_id": "V13-AC-645",
-          "source_section_group": 31,
-          "source_section_label": "§10 aggregated acceptance・635–664"
-        }
-      },
-      {
-        "position": 120,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00503",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 646,
-          "source_line_sha256": "sha256:be12f0babe2579af9376a3b2840da046b584cf47a02a20bdf62d42999caed559",
-          "source_text": "- AI判断はproposalとcommit authorityが分離され、候補、根拠、confidence、fallback、dead-letter、再評価trigger、測定oracleが欠ければ実行を許可しない。",
-          "condition_cluster_id": "V13-AC-646",
-          "source_section_group": 31,
-          "source_section_label": "§10 aggregated acceptance・635–664"
-        }
-      },
-      {
-        "position": 121,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00504",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 647,
-          "source_line_sha256": "sha256:6c616a3fb85f5affae79a701b3ac2accf0975373d3540e8738bdd2b3c0a9d41e",
-          "source_text": "- Full Vはsystem workflow全体、Production Scrumはslice deltaとSR0〜SR4 backfillの両方を保持する。",
-          "condition_cluster_id": "V13-AC-647",
-          "source_section_group": 31,
-          "source_section_label": "§10 aggregated acceptance・635–664"
-        }
-      },
-      {
-        "position": 122,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00505",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 648,
-          "source_line_sha256": "sha256:bf985f4e39d2a4bf090cfc0dd2e938d57b50ad39ead8be11d5058718047e3512",
-          "source_text": "- workflow/switching/routing/allocationのschema composition gapとZIP example不整合を解消するまでengine activationを許可しない。",
-          "condition_cluster_id": "V13-AC-648",
-          "source_section_group": 31,
-          "source_section_label": "§10 aggregated acceptance・635–664"
-        }
-      },
-      {
-        "position": 123,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00508",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 651,
-          "source_line_sha256": "sha256:2e191701a131af14c49f9e853363e86d6994f0bfd688cd60a1a6d2c7672a1b89",
-          "source_text": "- Scrum UI sliceはSR0〜SR4でsystem visionと設計資産へbackfillされ、AI自己承認、別layer／別文書体系、無断の機能拡張を拒否する。",
-          "condition_cluster_id": "V13-AC-651",
-          "source_section_group": 31,
-          "source_section_label": "§10 aggregated acceptance・635–664"
-        }
-      },
-      {
-        "position": 124,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00510",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 653,
-          "source_line_sha256": "sha256:517f59435920f9897525185e2619f546f15e021710c91b0eecfb25fe46932781",
-          "source_text": "- closure自走はtyped evidence条件を全て満たす可逆`close_ready`だけを対象とし、未完了成果や不可逆対象を閉じない。",
-          "condition_cluster_id": "V13-COND-L0653",
-          "source_section_group": 31,
-          "source_section_label": "§10 aggregated acceptance・635–664"
-        }
-      },
-      {
-        "position": 125,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00511",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 654,
-          "source_line_sha256": "sha256:73aa2c133c430ed99c1b7f13db892976e4d3f6f505a673c9d8445c591d046c3b",
-          "source_text": "- distribution packageは自己適用を除いたmanifest exact set、README／LICENSE／attribution、Linux／Windows consumer smoke、canary→preview→stable同一artifact promotion、rollback／monitoringを満たし、remote actionはapproval境界で停止する。",
-          "condition_cluster_id": "V13-AC-654",
-          "source_section_group": 31,
-          "source_section_label": "§10 aggregated acceptance・635–664"
-        }
-      },
-      {
-        "position": 126,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00512",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 655,
-          "source_line_sha256": "sha256:76b546315a2e5c74800175772c430ef03484591f665cd66ed978315d51b360bb",
-          "source_text": "- Authoring AdmissionはProposalを保持したままatomic Canonicalizationを行い、部分write、authority不明、oracle消失を拒否する。",
-          "condition_cluster_id": "V13-AC-655",
-          "source_section_group": 31,
-          "source_section_label": "§10 aggregated acceptance・635–664"
-        }
-      },
-      {
-        "position": 127,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00513",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 656,
-          "source_line_sha256": "sha256:fa9a984e1b0e8a8aaba1d6e1e806d227360d372e5d5640d2acaf3c980660ce12",
-          "source_text": "- 全NFRがregistryとcurrent measurementへ結合し、baseline不明、stale、hard limit超過をgreenにしない。",
-          "condition_cluster_id": "V13-AC-656",
-          "source_section_group": 31,
-          "source_section_label": "§10 aggregated acceptance・635–664"
-        }
-      },
-      {
-        "position": 128,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00516",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 659,
-          "source_line_sha256": "sha256:019d6b87b79600d353f08f3f7816c6bd4959cec23ed381e8e14215949b1209da",
-          "source_text": "  prototypeの要求正本化、generated Markdown直接編集、JSON／Markdown dual authorityを拒否する。",
-          "condition_cluster_id": "V13-AC-659",
-          "source_section_group": 31,
-          "source_section_label": "§10 aggregated acceptance・635–664"
-        }
-      },
-      {
-        "position": 129,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00517",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 660,
-          "source_line_sha256": "sha256:3d3cd4531b139917febbde47d86fc736b9a2c82d60b7d4c3738f3e48338315b2",
-          "source_text": "- 3 development styleが同じRequirement Discovery Loop／L3 compile／freezeを通り、Discovery／PoCと",
-          "condition_cluster_id": "V13-AC-660",
-          "source_section_group": 31,
-          "source_section_label": "§10 aggregated acceptance・635–664"
-        }
-      },
-      {
-        "position": 130,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00520",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 663,
-          "source_line_sha256": "sha256:30b32ad0ce70cc83549b1fbfdaea5fccbe94f829763b21bc23cda0433af44f49",
-          "source_text": "- GitHub episodeとDB closureが同一HEADへ収束する。",
-          "condition_cluster_id": "V13-AC-663",
-          "source_section_group": 31,
-          "source_section_label": "§10 aggregated acceptance・635–664"
-        }
-      },
-      {
-        "position": 131,
-        "source_identity": {
-          "source_item_id": "REQSRC-SUP-00521",
-          "source_revision": "archive/legacy-generation-2026-09-14",
-          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
-          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
-          "source_line": 664,
-          "source_line_sha256": "sha256:28d72ac447b6a96d973662566c8af0ac9aed7ba996e937f9b0d308182d7df798",
-          "source_text": "- authority文書が本書を参照し、L0〜L14をcurrent canonicalと表示しない。",
-          "condition_cluster_id": "V13-AC-664",
-          "source_section_group": 31,
-          "source_section_label": "§10 aggregated acceptance・635–664"
-        }
-      }
-    ]
+    "count": 0,
+    "rank_blocks": [],
+    "source_identities": []
   },
   "assertions": {
     "queue_rows_303": true,
@@ -6308,15 +6146,29 @@
     "source_qualified_current_slice_ids_20_unique": true,
     "current_slice_disjoint_from_prior_first20_and_legacy40": true,
     "rank41_00171_preserved_as_historical_carryover": true,
-    "reviewed_identity_ids_81_unique": true,
-    "unreviewed_complement_50": true,
-    "position_00089_is_23_and_reviewed": true
+    "position_00089_is_23_and_reviewed": true,
+    "prior_revision_reviewed_identity_ids_81_unique": true,
+    "prior_revision_unreviewed_complement_50": true,
+    "rank_condition_audit_positions_and_ids_verified": true,
+    "rank_condition_audit_ids_disjoint_from_prior_reviewed81": true,
+    "rank68_90_exact_audit_pin_and_positions_verified": true,
+    "rank68_90_ids_disjoint_from_prior_current_reviewed87": true,
+    "current_reviewed_and_unreviewed_disjoint_union_pool131": true,
+    "superseded_prior_revision_reviewed87_unique": true,
+    "superseded_prior_revision_unreviewed44_complement": true,
+    "rank68_90_in_current_reviewed_membership": true,
+    "prior_revision_reviewed_identity_ids_110_unique": true,
+    "prior_revision_unreviewed21_complement": true,
+    "rank111_131_exact_audit_pin_and_positions_verified": true,
+    "rank111_131_ids_disjoint_from_prior_reviewed110": true,
+    "reviewed_identity_ids_131_unique": true,
+    "unreviewed_complement_0": true
   },
   "claim_boundary": [
     "旧rows21–40/rows41–60表示は131-pool上の順位として無効。新しいsource-qualified 21–40 auditをcurrent identity evidenceとして参照し、旧artifact pinsは比較史として保持する。",
     "既存の個別comparison finding、evidence、residual、successor/closure/authority欄は意味変更せずsource-IDで再利用する。",
     "source IDを監査記録へ再配置してもsource conditionの閉鎖、正式successor、adoption/binding、人間authorityを生成しない。",
-    "未監査50件はこの固定 identity-based focused pool内でcurrent reviewed identity evidenceに含まれないsource IDであり、全意味作業の残量を示さない。"
+    "current identity-filter unreviewed 21件はこの固定identity-based focused pool内でcurrent reviewed identity evidenceに含まれないsource IDであり、全意味作業の残量を示さない。 prior revisionの44件（その前の81/50 snapshotとは別）は履歴membershipとして保持する。"
   ],
   "static_validation": {
     "queue_and_join_recomputed": true,
@@ -6327,10 +6179,20 @@
     "crosswalk_and_complement_assertions_passed": true,
     "archive_runtime_cli_test_ci_executed": false,
     "current_source_qualified_positions21_40_artifact_sha_pinned_at_clean_bundle": true,
-    "reviewed81_and_unreviewed50_complement_recomputed": true,
-    "00089_added_00171_rank41_carryover_preserved": true
+    "00089_added_00171_rank41_carryover_preserved": true,
+    "prior_revision_reviewed81_and_unreviewed50_complement_recomputed": true,
+    "current_rank46_49_and_52_56_audit_json_markdown_pins_verified": true,
+    "new_audit_ids_joined_to_exact_pool_positions": true,
+    "source_condition_closure_or_authority_not_inferred": true,
+    "current_rank46_49_corrected_json_markdown_pins_verified": true,
+    "rank68_90_audit_json_markdown_pins_verified": true,
+    "prior_revision_87_44_snapshot_preserved": true,
+    "prior_revision_reviewed110_and_unreviewed21_snapshot_recomputed": true,
+    "rank111_131_audit_json_markdown_pins_verified": true,
+    "reviewed131_and_unreviewed0_complement_recomputed": true,
+    "current_composite_as_of_bundle_head_pinned": true
   },
-  "current_state_revision": "f25f3e84ecc9f86ded552d8621dc3d15d94547dd",
+  "current_state_revision": "9792c7034dd2d6365b03ea74cd389af7e6ac2d8b",
   "source_qualified_current_slice_audit": {
     "head": "f25f3e84ecc9f86ded552d8621dc3d15d94547dd",
     "json_path": "docs/governance/audits/requirements-stage/v13-effective-next20-rows21-40-condition-audit-2026-10-01.json",
@@ -6371,5 +6233,268 @@
     "authority_effect": "none",
     "formal_successor_count": 0,
     "source_condition_closed_count": 0
-  }
+  },
+  "source_qualified_rank_condition_audits": [
+    {
+      "audit_id": "V13-EFFECTIVE-RANKS46-49-CONDITION-AUDIT-2026-10-01",
+      "head": "7b3337910179969378f17692e7fdb044659976e5",
+      "json_path": "docs/governance/audits/requirements-stage/v13-effective-ranks46-49-condition-audit-2026-10-01.json",
+      "json_sha256": "bb84a298510e03d38d0499030d089592f0f43e3399ecc853c099fc9b7cc721a9",
+      "markdown_path": "docs/governance/audits/requirements-stage/v13-effective-ranks46-49-condition-audit-2026-10-01.md",
+      "markdown_sha256": "64e209e4df9d8f3dfac50863c631046e6312f3b9a37714448a334bed6a84f102",
+      "positions": [
+        46,
+        47,
+        48,
+        49
+      ],
+      "rank_label": "46–49",
+      "source_item_ids": [
+        "REQSRC-SUP-00192",
+        "REQSRC-SUP-00193",
+        "REQSRC-SUP-00194",
+        "REQSRC-SUP-00198"
+      ],
+      "finding_counts": {
+        "partial": 4
+      },
+      "formal_successor_count": 0,
+      "source_condition_closed_count": 0,
+      "authority_effect": "none",
+      "membership_meaning": "row-level comparison audit exists; this does not establish adoption, source-line closure, or semantic completion",
+      "superseded_pin_history": {
+        "head": "a3d44d939668775c00fd77b66b5d85416b3df65e",
+        "json_sha256": "61842b09261140282d4a88db2fbe917f9d9b5069c17dbabee44855fb4c88dfd1",
+        "markdown_sha256": "140409dc1a577d9f198e2be818b9c7447804fa75813e4fad9c931472748b220b",
+        "note": "prior audit content pin; superseded by temporally corrected audit at 7b3337910179969378f17692e7fdb044659976e5"
+      }
+    },
+    {
+      "audit_id": "V13-EFFECTIVE-RANKS52-56-HYB-002-006-CONDITION-AUDIT-2026-10-01",
+      "head": "a3d44d939668775c00fd77b66b5d85416b3df65e",
+      "json_path": "docs/governance/audits/requirements-stage/v13-effective-ranks52-56-hyb-002-006-condition-audit-2026-10-01.json",
+      "json_sha256": "09bce72838df14a808c731341c0e557d0db3d8922dc9dae6aad7e02c07360d99",
+      "markdown_path": "docs/governance/audits/requirements-stage/v13-effective-ranks52-56-hyb-002-006-condition-audit-2026-10-01.md",
+      "markdown_sha256": "886757b9b542b3e592fa3a2789d72c541aaf56b9f0850349fa746a1083ff2f75",
+      "positions": [
+        52,
+        56
+      ],
+      "rank_label": "52, 56",
+      "source_item_ids": [
+        "REQSRC-SUP-00213",
+        "REQSRC-SUP-00217"
+      ],
+      "finding_counts": {
+        "partial": 2
+      },
+      "formal_successor_count": 0,
+      "source_condition_closed_count": 0,
+      "authority_effect": "none",
+      "membership_meaning": "row-level comparison audit exists; this does not establish adoption, source-line closure, or semantic completion"
+    },
+    {
+      "audit_id": "V13-EFFECTIVE-RANKS68-90-STEP5-CONDITION-AUDIT-2026-10-01",
+      "head": "4a50e2d3f2272a36bae89ea38df6cdd6954dbd41",
+      "json_path": "docs/governance/audits/requirements-stage/v13-effective-ranks68-90-condition-audit-2026-10-01.json",
+      "json_sha256": "c8d6b78ee7db427ce1662d150337ba850d3acf20833dda628874da44d89e2b3c",
+      "markdown_path": "docs/governance/audits/requirements-stage/v13-effective-ranks68-90-condition-audit-2026-10-01.md",
+      "markdown_sha256": "a728beb2db32e7c0849a0301fc6fb113ab328579631ef94684f82c2dcc59b07d",
+      "positions": [
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90
+      ],
+      "rank_label": "68–90",
+      "source_item_ids": [
+        "REQSRC-SUP-00278",
+        "REQSRC-SUP-00279",
+        "REQSRC-SUP-00284",
+        "REQSRC-SUP-00285",
+        "REQSRC-SUP-00286",
+        "REQSRC-SUP-00287",
+        "REQSRC-SUP-00288",
+        "REQSRC-SUP-00289",
+        "REQSRC-SUP-00290",
+        "REQSRC-SUP-00291",
+        "REQSRC-SUP-00310",
+        "REQSRC-SUP-00312",
+        "REQSRC-SUP-00314",
+        "REQSRC-SUP-00315",
+        "REQSRC-SUP-00319",
+        "REQSRC-SUP-00320",
+        "REQSRC-SUP-00321",
+        "REQSRC-SUP-00322",
+        "REQSRC-SUP-00330",
+        "REQSRC-SUP-00332",
+        "REQSRC-SUP-00334",
+        "REQSRC-SUP-00335",
+        "REQSRC-SUP-00337"
+      ],
+      "finding_counts": {
+        "partial": 20,
+        "unknown": 0,
+        "gap": 3
+      },
+      "formal_successor_count": 0,
+      "source_condition_closed_count": 0,
+      "authority_effect": "none",
+      "membership_meaning": "row-level comparison audit exists; this does not establish adoption, source-line closure, or semantic completion"
+    },
+    {
+      "audit_id": "V13-EFFECTIVE-RANKS111-131-CONDITION-AUDIT-2026-10-01",
+      "head": "9792c7034dd2d6365b03ea74cd389af7e6ac2d8b",
+      "json_path": "docs/governance/audits/requirements-stage/v13-effective-ranks111-131-condition-audit-2026-10-01.json",
+      "json_sha256": "9ece6f43f2ee9402cbc0fcf676abf0b099bd383692df3a1fa45b3cac0c4c9d44",
+      "markdown_path": "docs/governance/audits/requirements-stage/v13-effective-ranks111-131-condition-audit-2026-10-01.md",
+      "markdown_sha256": "2d5b4b1d1e64825b59edbe64c645d05d85b806a89412287ab7d51fb27a6a0d55",
+      "positions": [
+        111,
+        131
+      ],
+      "rank_label": "111–131",
+      "source_item_ids": [
+        "REQSRC-SUP-00477",
+        "REQSRC-SUP-00478",
+        "REQSRC-SUP-00479",
+        "REQSRC-SUP-00482",
+        "REQSRC-SUP-00483",
+        "REQSRC-SUP-00496",
+        "REQSRC-SUP-00500",
+        "REQSRC-SUP-00501",
+        "REQSRC-SUP-00502",
+        "REQSRC-SUP-00503",
+        "REQSRC-SUP-00504",
+        "REQSRC-SUP-00505",
+        "REQSRC-SUP-00508",
+        "REQSRC-SUP-00510",
+        "REQSRC-SUP-00511",
+        "REQSRC-SUP-00512",
+        "REQSRC-SUP-00513",
+        "REQSRC-SUP-00516",
+        "REQSRC-SUP-00517",
+        "REQSRC-SUP-00520",
+        "REQSRC-SUP-00521"
+      ],
+      "finding_counts": {
+        "partial": 17,
+        "gap": 4,
+        "unknown": 0
+      },
+      "formal_successor_count": 0,
+      "source_condition_closed_count": 0,
+      "authority_effect": "none",
+      "membership_meaning": "row-level comparison audit exists; this does not establish adoption, source-line closure, or semantic completion"
+    }
+  ],
+  "current_rank_audit_boundary": {
+    "as_of_bundle_head": "9792c7034dd2d6365b03ea74cd389af7e6ac2d8b",
+    "included_rank_blocks": [
+      [
+        46,
+        49
+      ],
+      [
+        52,
+        52
+      ],
+      [
+        56,
+        56
+      ],
+      [
+        68,
+        90
+      ],
+      [
+        111,
+        131
+      ]
+    ],
+    "included_source_item_ids": [
+      "REQSRC-SUP-00192",
+      "REQSRC-SUP-00193",
+      "REQSRC-SUP-00194",
+      "REQSRC-SUP-00198",
+      "REQSRC-SUP-00213",
+      "REQSRC-SUP-00217",
+      "REQSRC-SUP-00278",
+      "REQSRC-SUP-00279",
+      "REQSRC-SUP-00284",
+      "REQSRC-SUP-00285",
+      "REQSRC-SUP-00286",
+      "REQSRC-SUP-00287",
+      "REQSRC-SUP-00288",
+      "REQSRC-SUP-00289",
+      "REQSRC-SUP-00290",
+      "REQSRC-SUP-00291",
+      "REQSRC-SUP-00310",
+      "REQSRC-SUP-00312",
+      "REQSRC-SUP-00314",
+      "REQSRC-SUP-00315",
+      "REQSRC-SUP-00319",
+      "REQSRC-SUP-00320",
+      "REQSRC-SUP-00321",
+      "REQSRC-SUP-00322",
+      "REQSRC-SUP-00330",
+      "REQSRC-SUP-00332",
+      "REQSRC-SUP-00334",
+      "REQSRC-SUP-00335",
+      "REQSRC-SUP-00337",
+      "REQSRC-SUP-00477",
+      "REQSRC-SUP-00478",
+      "REQSRC-SUP-00479",
+      "REQSRC-SUP-00482",
+      "REQSRC-SUP-00483",
+      "REQSRC-SUP-00496",
+      "REQSRC-SUP-00500",
+      "REQSRC-SUP-00501",
+      "REQSRC-SUP-00502",
+      "REQSRC-SUP-00503",
+      "REQSRC-SUP-00504",
+      "REQSRC-SUP-00505",
+      "REQSRC-SUP-00508",
+      "REQSRC-SUP-00510",
+      "REQSRC-SUP-00511",
+      "REQSRC-SUP-00512",
+      "REQSRC-SUP-00513",
+      "REQSRC-SUP-00516",
+      "REQSRC-SUP-00517",
+      "REQSRC-SUP-00520",
+      "REQSRC-SUP-00521"
+    ],
+    "rank68_90_batch": {
+      "status": "included in current reviewed membership",
+      "audit_head": "4a50e2d3f2272a36bae89ea38df6cdd6954dbd41",
+      "count": 23
+    },
+    "meaning": "bounded source-ID audit-record bookkeeping only; not semantic review completion or source-condition closure",
+    "rank111_131_batch": {
+      "status": "included in current reviewed membership",
+      "audit_head": "9792c7034dd2d6365b03ea74cd389af7e6ac2d8b",
+      "count": 21
+    }
+  },
+  "updated_against_commit": "9792c7034dd2d6365b03ea74cd389af7e6ac2d8b",
+  "markdown_current_state_summary": "current state as of bundle HEAD 9792c7034dd2d6365b03ea74cd389af7e6ac2d8b: reviewed 131, identity-filter unreviewed 0 (all positions 1–131 have an identity audit record); the prior 110/21 snapshot as of 4a50e2d3f2272a36bae89ea38df6cdd6954dbd41 and prior 87/44 snapshot are retained as historical states"
 }
