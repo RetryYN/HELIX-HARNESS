@@ -679,15 +679,15 @@
     ]
   },
   "prior_first20": {
-    "commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6",
+    "commit": "75fb5f357e45e1cdf911b745b9fba5d6ae077255",
     "artifacts": [
       {
         "path": "docs/governance/audits/requirements-stage/v13-effective-next10-condition-audit-2026-10-01.json",
-        "sha256": "cad2863a7310ffa74d46bdb78cdc6f534210299750592ce87991a93b41b8b255"
+        "sha256": "0c38aab45b39a9890d64c33f2048ccaabc4e11224586cc089a537b73208aa1c9"
       },
       {
         "path": "docs/governance/audits/requirements-stage/v13-effective-next10-rows11-20-condition-audit-2026-10-01.json",
-        "sha256": "806d12c95e809b17ad64d57a2be58ea046c955bdfdbd989b11da71083ec1cbfa"
+        "sha256": "cae955c303f87ec98036298333f207e8c0fe02f8bb500fbf9cb99cf980dfae7e"
       }
     ],
     "source_item_ids": [
@@ -713,7 +713,9 @@
       "REQSRC-SUP-00051"
     ],
     "overlap_with_corrected_positions21_40": [],
-    "first20_membership_unchanged": true
+    "first20_membership_unchanged": true,
+    "queue_lineage_correction_commit": "75fb5f357e45e1cdf911b745b9fba5d6ae077255",
+    "note": "Pin the corrected first20 artifacts after the queue file/lineage correction at this commit; both 10-row artifacts retain the same twenty source IDs."
   },
   "corrected_positions_21_40": [
     {
