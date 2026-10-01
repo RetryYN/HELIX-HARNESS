@@ -19,7 +19,7 @@ FR70は旧L1本文と旧IRの該当範囲を検索したが定義がない。本
 | HELIXSECURITY-L2-003〜009の選択pair | `HDEC-SECURITY-REQUIREMENTS-2026-09-28`：f6dad2a固定のL2/L11一式＋28明示候補全件を採択。現baseの003/004/005/006/007/008/009の対象section/受入rowはbyte一致。MPRの`registered_proposal / authority_effect:none`とPO採択を混同しない。 | FR64/65の一般隔離・secret/egress/timeout/diff/stop条件に使う。個別の旧CLI/sandbox条件まで拡張しない。 |
 | HELIXLABO-L2-065 + L11 | `MPR-RC-HELIXLABO-L2-065-001`、2026-09-29 row 80、条件付き採択D1 | 初回/再試行・資格scope・task scorecard。059とは別の追加観測。 | qualification/task telemetry。sandbox template、bypass interval、quota、security FS findingを持つaudit contractではない。
 
-SECURITYの2026-09-28 PO判断 `HDEC-SECURITY-REQUIREMENTS-2026-09-28` は、f6dad2a固定L2/L11一式と明示28候補全件を採択した。現baseの対象SECURITY-L2-003〜009節と対応L11行はその固定本文と一致する。MPRの`registered_proposal / authority_effect:none`はregister管理状態であり、PO採択結果を覆さない。section hashesとdecision SHAはpaired JSONに記録した。
+SECURITYの2026-09-28 PO判断 `HDEC-SECURITY-REQUIREMENTS-2026-09-28` は、f6dad2a固定L2/L11一式と明示28候補全件を採択した。現baseの対象SECURITY-L2-003〜009節と対応L11行はその固定本文と一致する。MPRの`registered_proposal / authority_effect:none`はregister管理状態であり、PO採択結果を覆さない。current section hashesはpaired JSONで、物理行locator末尾の空行LFを除去して末尾LFを1つに正規化したcanonical digestとして記録した。採択decisionが固定したexact digest値は変更していない。decision SHAもpaired JSONに記録した。
 
 ## 条件ごとの照合
 

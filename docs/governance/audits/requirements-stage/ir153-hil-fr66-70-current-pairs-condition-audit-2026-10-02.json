@@ -500,79 +500,79 @@
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
       "start_line": 447,
       "end_line_inclusive": 462,
-      "sha256_utf8_exact_section_including_lf": "cdc55f82fe6c495c65285c170165c08de51477681adf097b62a5c8389deeb409"
+      "canonical_section_sha256_utf8": "88cb5ac2fb5922ebff745b0827b8e8a9ef1273b66f946faf4a265124ebf9fdc1"
     },
     "HARNESS022_L11": {
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
       "start_line": 298,
       "end_line_inclusive": 305,
-      "sha256_utf8_exact_section_including_lf": "e35f8ee929f5bfe2e57f1540856dcd6288d5f3d96f4438c9d86ef521d2967209"
+      "canonical_section_sha256_utf8": "94d8ebcd40c3b39d3cc1eeda78f2d6f38bc5fdf55d7ecd9a878c0434cfeb247b"
     },
     "OS042_L2": {
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
       "start_line": 1144,
       "end_line_inclusive": 1152,
-      "sha256_utf8_exact_section_including_lf": "af2f9f98196667ecd7583349e64a309c7e0a1bff58f4bac065105d9c55c9acfb"
+      "canonical_section_sha256_utf8": "75e8b9f72eaa777f25e38335664cb2527da8c56c1445a3eca181de27cc258e71"
     },
     "OS042_L11": {
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
       "start_line": 756,
       "end_line_inclusive": 769,
-      "sha256_utf8_exact_section_including_lf": "1bb759afc770196f8d3ac09bc8c708398293f56a05351a84645d52210f8c591e"
+      "canonical_section_sha256_utf8": "0f23c0399f3b6c37094d4725563f80bb5e82d25e35b9ba7a1196c2106f76a4df"
     },
     "OS043_L2": {
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
       "start_line": 1153,
       "end_line_inclusive": 1161,
-      "sha256_utf8_exact_section_including_lf": "909df8f324b181387bb9a5abf875e8b4cc9d935bd092145b0d088f6db4b8f585"
+      "canonical_section_sha256_utf8": "e286b34a9805a690f324ebe37ee0936691f636082b49350ee9dc5183787d9a68"
     },
     "OS043_L11": {
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
       "start_line": 770,
       "end_line_inclusive": 778,
-      "sha256_utf8_exact_section_including_lf": "9b36703719d1de859d2601cebda576763ba006fadaf2159aaf333b48aa26d6a7"
+      "canonical_section_sha256_utf8": "136c2c209e30667dc74f1757b00fc482ce1216f05a851990c02437dc9078976b"
     },
     "SEC031_L2": {
       "path": "docs/helix-security/L2-requirements/security-requirements.md",
       "start_line": 427,
       "end_line_inclusive": 446,
-      "sha256_utf8_exact_section_including_lf": "3ff72f9130d888213e2f3e5226a22bfedb965b9e80beebea810b8fec04cd964a"
+      "canonical_section_sha256_utf8": "db2fd29654cc210b3c06568f4e421560b069d36f8d69f04fbe413d83ad532765"
     },
     "SEC031_L11": {
       "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
       "start_line": 104,
       "end_line_inclusive": 115,
-      "sha256_utf8_exact_section_including_lf": "3b2700d511ea0feb8bbeb3dcedd7dd3eb9d1a26a2aeb9c79f57f835c045c0cd7"
+      "canonical_section_sha256_utf8": "858ca59ad817afe5d81dbb3f6e8c6176f61e5cff49570c4efcb39dfa469f852a"
     },
     "LABO059_L2": {
       "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
       "start_line": 416,
       "end_line_inclusive": 440,
-      "sha256_utf8_exact_section_including_lf": "5ead2e790e1d138c633770851687b0e5f91e9dc15d0c4c525c322ba81fd30e08"
+      "canonical_section_sha256_utf8": "10edd365a96da6d00927fe40ce16f250978f99c3d248c3ad2f7ff5364e59856c"
     },
     "LABO065_L2": {
       "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
       "start_line": 503,
       "end_line_inclusive": 517,
-      "sha256_utf8_exact_section_including_lf": "60692c91117266c2fb4e4a5743bcc81bdc632d4e262e454a914b0d893ff812de"
+      "canonical_section_sha256_utf8": "6f50887b94a8d3341c55700393896798cc1273324a868071447bf0e5a95cf019"
     },
     "LABO065_L11": {
       "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
       "start_line": 241,
       "end_line_inclusive": 260,
-      "sha256_utf8_exact_section_including_lf": "11e08f87148faf9b862d962efeace5371fac4fb74a16917788e317962ede0b1c"
+      "canonical_section_sha256_utf8": "c70905fd036f0c6e6bfdce0368e462cd85acd467354bcad599d1112634d9b1b6"
     },
     "LABO069_L2": {
       "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
       "start_line": 552,
       "end_line_inclusive": 560,
-      "sha256_utf8_exact_section_including_lf": "0cd188238560cc07f0f24c675d290f11d57392e7528cfc1c0e530034a91c25cf"
+      "canonical_section_sha256_utf8": "605acfa9ec39bbdc0d964f3bf3c644122f1c081c202ddea48fe682ac31be5bc9"
     },
     "LABO069_L11": {
       "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
       "start_line": 288,
       "end_line_inclusive": 296,
-      "sha256_utf8_exact_section_including_lf": "61bbfb73f3384256344ecd16268d92b1dae1f37fd4734a32d978bf93523a1370"
+      "canonical_section_sha256_utf8": "d1cc8c180bab90b84ef6300bf91c79d622cff416a596131fe0b1843fd6aa61db"
     }
   },
   "current_security_005_009_status": "採択済み。2026-09-28 HDEC-SECURITY-REQUIREMENTS-2026-09-28はf6dad2a固定L2/L11一式と明示28候補全件を採用。現baseで対象03-09の選択L2 section/L11 acceptance rowsは固定source bytesと一致。MPR registered_proposal / authority_effect noneはregister management metadataで、PO adoption statusとは別。",
@@ -876,15 +876,15 @@
           "path": "docs/helix-security/L2-requirements/security-requirements.md",
           "start_line": 90,
           "end_line_inclusive": 99,
-          "sha256_utf8_exact": "2d800eaf8c98669fc8f890559d4405efcd1b3d8855de573b59b70e7961541475",
-          "quote": "### HELIXSECURITY-L2-003 project・tenant・環境・assignment隔離\n\n- **受け取るもの**：project、tenant、environment、assignment/worktree identityと、それらへ束縛する権限、state、data、Worker、credential、artifact、memory、execution target。\n- **提供するもの**：明示接続のみによる越境許可、project-scoped isolation情報、fallback禁止の判定。\n- **保証すること**：project AのAgent、Hook、memory、credential、設定、Workerが明示接続なしにproject Bへ作用しない。primary treeや別projectへの暗黙fallbackを行わない。\n- **単独依存**：OSからassignment/project identity、INFRASTRUCTUREから実環境identity、CONNECTから宣言済み接続identityを受ける。各機構は自分のstateを正本として保持する。\n- **検証範囲／版**：read/write/execute/network/state/credential/artifactの境界をproject・tenant・environment・worktreeごとに照合。1.0。\n- **失敗時の戻し先**：identityが欠落、衝突、不明なら操作停止。identity構造の不足はL1-003へ、物理環境の不足は接続要求でINFRASTRUCTUREへ戻す。\n- **束ねる既存条件**：L1-003、Conceptの隔離の単位、旧SEAのtarget/environment scoping。"
+          "quote": "### HELIXSECURITY-L2-003 project・tenant・環境・assignment隔離\n\n- **受け取るもの**：project、tenant、environment、assignment/worktree identityと、それらへ束縛する権限、state、data、Worker、credential、artifact、memory、execution target。\n- **提供するもの**：明示接続のみによる越境許可、project-scoped isolation情報、fallback禁止の判定。\n- **保証すること**：project AのAgent、Hook、memory、credential、設定、Workerが明示接続なしにproject Bへ作用しない。primary treeや別projectへの暗黙fallbackを行わない。\n- **単独依存**：OSからassignment/project identity、INFRASTRUCTUREから実環境identity、CONNECTから宣言済み接続identityを受ける。各機構は自分のstateを正本として保持する。\n- **検証範囲／版**：read/write/execute/network/state/credential/artifactの境界をproject・tenant・environment・worktreeごとに照合。1.0。\n- **失敗時の戻し先**：identityが欠落、衝突、不明なら操作停止。identity構造の不足はL1-003へ、物理環境の不足は接続要求でINFRASTRUCTUREへ戻す。\n- **束ねる既存条件**：L1-003、Conceptの隔離の単位、旧SEAのtarget/environment scoping。",
+          "canonical_section_sha256_utf8": "dc222ffbcdf2511878e805ad26239b4c5d9dd3c9d1a67982b48aee12f2fb8132"
         },
         "l11": {
           "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
           "start_line": 27,
           "end_line_inclusive": 27,
-          "sha256_utf8_exact": "e68fcbc6750f2ce1d0508fccde5f97dfb9175e7e622cb22fc3b0d80817589eb0",
-          "quote": "| HELIXSECURITY-L2-003 | 1.0 | A/Bのproject、tenant、environment、worktreeのstate、Agent、Hook、credential、memory、artifactの参照を提示し、明示接続のある作用だけが対象内に限定される。primary tree/他projectへのfallbackが発生、またはscope不明を許可にしたら不合格。tenantを含むfixtureは合成scope identityの境界確認であり、顧客tenant runtimeの構築を1.0の前提にしない。tenant dimensionが対象にない環境で存在を捏造せず、当該操作に適用されるtenant identityがある場合は照合を省略しない。 |"
+          "quote": "| HELIXSECURITY-L2-003 | 1.0 | A/Bのproject、tenant、environment、worktreeのstate、Agent、Hook、credential、memory、artifactの参照を提示し、明示接続のある作用だけが対象内に限定される。primary tree/他projectへのfallbackが発生、またはscope不明を許可にしたら不合格。tenantを含むfixtureは合成scope identityの境界確認であり、顧客tenant runtimeの構築を1.0の前提にしない。tenant dimensionが対象にない環境で存在を捏造せず、当該操作に適用されるtenant identityがある場合は照合を省略しない。 |",
+          "canonical_section_sha256_utf8": "e68fcbc6750f2ce1d0508fccde5f97dfb9175e7e622cb22fc3b0d80817589eb0"
         },
         "section_matches_fixed_commit_f6dad2a": true
       },
@@ -894,15 +894,15 @@
           "path": "docs/helix-security/L2-requirements/security-requirements.md",
           "start_line": 100,
           "end_line_inclusive": 109,
-          "sha256_utf8_exact": "1373d55273872771775be0d6f770431d2675d52f23af0606989503eedeb0bc44",
-          "quote": "### HELIXSECURITY-L2-004 Agent・Hook・設定のintegrity\n\n- **受け取るもの**：AGENTS.md、CLAUDE.md、Agent定義、Hook、Skill、MCP設定、runtime設定、Sandbox方針、system instruction、model設定とproject identity、root、HEAD/revision、digest、owner、scope。\n- **提供するもの**：採用可能な構成revisionと、未知・stale・他project由来の構成を特定する比較結果。\n- **保証すること**：別project、古い版、未知のHook/設定を黙って採用しない。内容変更とauthority変更を識別する。\n- **単独依存**：L2-003のidentityと、構成sourceのrevision/digest。Ownerが不明ならその不明を維持する。\n- **検証範囲／版**：対象リストの全構成についてidentity/revision/digest/scope束縛を確認。1.0。\n- **失敗時の戻し先**：対象のowner/scopeが不明ならL1-004へ戻し、実行を停止する。承認のない構成を推測採用しない。\n- **束ねる既存条件**：L1-004、PO §5、Conceptの構成版固定と切戻し。"
+          "quote": "### HELIXSECURITY-L2-004 Agent・Hook・設定のintegrity\n\n- **受け取るもの**：AGENTS.md、CLAUDE.md、Agent定義、Hook、Skill、MCP設定、runtime設定、Sandbox方針、system instruction、model設定とproject identity、root、HEAD/revision、digest、owner、scope。\n- **提供するもの**：採用可能な構成revisionと、未知・stale・他project由来の構成を特定する比較結果。\n- **保証すること**：別project、古い版、未知のHook/設定を黙って採用しない。内容変更とauthority変更を識別する。\n- **単独依存**：L2-003のidentityと、構成sourceのrevision/digest。Ownerが不明ならその不明を維持する。\n- **検証範囲／版**：対象リストの全構成についてidentity/revision/digest/scope束縛を確認。1.0。\n- **失敗時の戻し先**：対象のowner/scopeが不明ならL1-004へ戻し、実行を停止する。承認のない構成を推測採用しない。\n- **束ねる既存条件**：L1-004、PO §5、Conceptの構成版固定と切戻し。",
+          "canonical_section_sha256_utf8": "58e9e513e934ff3c1ed8da378b05fcc7fdd3e2a27a503feb449bc7a305812d20"
         },
         "l11": {
           "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
           "start_line": 28,
           "end_line_inclusive": 28,
-          "sha256_utf8_exact": "bd5cd1a6e0d604302743a36686d93c13fc57e95e62c48bbb64a17edc742911c5",
-          "quote": "| HELIXSECURITY-L2-004 | 1.0 | 正しいproject/root/HEAD/revision/digest/owner/scopeの構成だけを識別し、stale revision、未知Hook、他projectのMCP設定を受け入れない。構成の一部欠落を既定値で黙って補ったら不合格。 |"
+          "quote": "| HELIXSECURITY-L2-004 | 1.0 | 正しいproject/root/HEAD/revision/digest/owner/scopeの構成だけを識別し、stale revision、未知Hook、他projectのMCP設定を受け入れない。構成の一部欠落を既定値で黙って補ったら不合格。 |",
+          "canonical_section_sha256_utf8": "bd5cd1a6e0d604302743a36686d93c13fc57e95e62c48bbb64a17edc742911c5"
         },
         "section_matches_fixed_commit_f6dad2a": true
       },
@@ -912,15 +912,15 @@
           "path": "docs/helix-security/L2-requirements/security-requirements.md",
           "start_line": 110,
           "end_line_inclusive": 119,
-          "sha256_utf8_exact": "5eccc4d1683c144c57800071294756713aff52f78db467382665002c8ed39cad",
-          "quote": "### HELIXSECURITY-L2-005 Credential / Secret境界\n\n- **受け取るもの**：credential requestのactor、operation、target、environment、scope、expiry、目的とcredential classification。\n- **提供するもの**：生値を露出しない、範囲・操作・期限付きのcredential-use capability、検査・失効状態。\n- **保証すること**：raw secretをAI contextへ渡さない。credential storeをWorkerに直接見せない。repository混入と外部送信を検査し、revokeを伝播する。単一のsecret判定正本を使う。secret値は通常artifact/receiptに出さない。\n- **単独依存**：L2-008 authority、L2-006 egress、Worker境界L2-007、INFRASTRUCTUREの安全な実資源境界。\n- **検証範囲／版**：context、file/artifact、log、Tool result、外部sinkへの値露出と期限/operation mismatch。1.0。\n- **失敗時の戻し先**：欠落scope、期限切れ、未知のcredential class、検査不能はdeny/stop。方針の不足はL1-005へ、保存・注入境界はL2-024へ戻す。\n- **束ねる既存条件**：L1-005、PO §6、旧secret predicate一元化とCapability Leaseのscope/expiry。旧実装自体は復帰させない。"
+          "quote": "### HELIXSECURITY-L2-005 Credential / Secret境界\n\n- **受け取るもの**：credential requestのactor、operation、target、environment、scope、expiry、目的とcredential classification。\n- **提供するもの**：生値を露出しない、範囲・操作・期限付きのcredential-use capability、検査・失効状態。\n- **保証すること**：raw secretをAI contextへ渡さない。credential storeをWorkerに直接見せない。repository混入と外部送信を検査し、revokeを伝播する。単一のsecret判定正本を使う。secret値は通常artifact/receiptに出さない。\n- **単独依存**：L2-008 authority、L2-006 egress、Worker境界L2-007、INFRASTRUCTUREの安全な実資源境界。\n- **検証範囲／版**：context、file/artifact、log、Tool result、外部sinkへの値露出と期限/operation mismatch。1.0。\n- **失敗時の戻し先**：欠落scope、期限切れ、未知のcredential class、検査不能はdeny/stop。方針の不足はL1-005へ、保存・注入境界はL2-024へ戻す。\n- **束ねる既存条件**：L1-005、PO §6、旧secret predicate一元化とCapability Leaseのscope/expiry。旧実装自体は復帰させない。",
+          "canonical_section_sha256_utf8": "8e8689912796e8fb3e22210619cb1283f6b27ab1804353dfa93fe43eec10a784"
         },
         "l11": {
           "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
           "start_line": 29,
           "end_line_inclusive": 29,
-          "sha256_utf8_exact": "19f3e8c523ec522f35982ed3837c21fb6c22623c587d17fd7ae6bad1f6a3f107",
-          "quote": "| HELIXSECURITY-L2-005 | 1.0 | raw credentialはcontext/log/artifactに現れず、範囲・operation・target・expiry付き利用だけが許可され、期限切れ/revoked credentialの後続利用が止まる。repository混入、直接Worker露出、egress漏れ、値入りreceiptがあれば不合格。 |"
+          "quote": "| HELIXSECURITY-L2-005 | 1.0 | raw credentialはcontext/log/artifactに現れず、範囲・operation・target・expiry付き利用だけが許可され、期限切れ/revoked credentialの後続利用が止まる。repository混入、直接Worker露出、egress漏れ、値入りreceiptがあれば不合格。 |",
+          "canonical_section_sha256_utf8": "19f3e8c523ec522f35982ed3837c21fb6c22623c587d17fd7ae6bad1f6a3f107"
         },
         "section_matches_fixed_commit_f6dad2a": true
       },
@@ -930,15 +930,15 @@
           "path": "docs/helix-security/L2-requirements/security-requirements.md",
           "start_line": 120,
           "end_line_inclusive": 129,
-          "sha256_utf8_exact": "09459643b100dbe79ef0cf47100a4b56834d975ef309322bc3f8d7f4055d888a",
-          "quote": "### HELIXSECURITY-L2-006 Network / Egress境界\n\n- **受け取るもの**：送信元、destination、protocol、endpoint/path、data classification、送信量、purpose、authority、expiry。\n- **提供するもの**：default denyを基準とした許可一覧、許可判断、計測値、data minimization結果。\n- **保証すること**：必要な宛先のみ明示許可し、vendorのprivacy設定だけをHELIX側の保証にしない。許可範囲・目的・期限が一致しない送信を拒否する。\n- **単独依存**：L2-005のsecret検査、L2-016の1.0分類基盤（data-use classificationとasset exposure classの記録だけ）、CONNECTの論理接続、INFRASTRUCTUREの実network経路。L2-019のCore Asset Egress GuardとL2-016の1.x sink enforcementは依存に含めない。\n- **検証範囲／版**：外部通信の宛先・protocol・path・data classification・量・目的・authorityの対応。分類入力は1.0の分類基盤で扱い、asset-specific egress blockingはL2-019 (1.x)へ分ける。定量上限はL1にないため追加しない。1.0。\n- **失敗時の戻し先**：宛先/分類/目的/authorityがunknownならdenyし、方針の意味差はL1-006へ戻す。物理経路の不明はL2-024へ。\n- **束ねる既存条件**：L1-006、PO §7、旧brokerのdata/sink分類とunknown拒否。"
+          "quote": "### HELIXSECURITY-L2-006 Network / Egress境界\n\n- **受け取るもの**：送信元、destination、protocol、endpoint/path、data classification、送信量、purpose、authority、expiry。\n- **提供するもの**：default denyを基準とした許可一覧、許可判断、計測値、data minimization結果。\n- **保証すること**：必要な宛先のみ明示許可し、vendorのprivacy設定だけをHELIX側の保証にしない。許可範囲・目的・期限が一致しない送信を拒否する。\n- **単独依存**：L2-005のsecret検査、L2-016の1.0分類基盤（data-use classificationとasset exposure classの記録だけ）、CONNECTの論理接続、INFRASTRUCTUREの実network経路。L2-019のCore Asset Egress GuardとL2-016の1.x sink enforcementは依存に含めない。\n- **検証範囲／版**：外部通信の宛先・protocol・path・data classification・量・目的・authorityの対応。分類入力は1.0の分類基盤で扱い、asset-specific egress blockingはL2-019 (1.x)へ分ける。定量上限はL1にないため追加しない。1.0。\n- **失敗時の戻し先**：宛先/分類/目的/authorityがunknownならdenyし、方針の意味差はL1-006へ戻す。物理経路の不明はL2-024へ。\n- **束ねる既存条件**：L1-006、PO §7、旧brokerのdata/sink分類とunknown拒否。",
+          "canonical_section_sha256_utf8": "8bcb8c56772c18c8afb3bbd016cade4511da47533cbc39cb0f775860fe4bbee3"
         },
         "l11": {
           "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
           "start_line": 30,
           "end_line_inclusive": 30,
-          "sha256_utf8_exact": "a910c8b1352414d2e6e3ad39f093a936f19b8a3c353411eeefa7a877fba3f7e7",
-          "quote": "| HELIXSECURITY-L2-006 | 1.0 | 送信先/protocol/endpoint/data class/bytes/purpose/authority/expiryを照合し、明示許可された範囲内の送信だけを通す。分類はL2-016の1.0分類記録基盤から読み、L2-019や1.x sink enforcementが存在しない状態でも1.0の送信判定は成立する。vendor側privacy設定だけがある送信、未許可destination、未知classificationが通れば不合格。L2-019のasset-specific egressは別の1.x受入とする。 |"
+          "quote": "| HELIXSECURITY-L2-006 | 1.0 | 送信先/protocol/endpoint/data class/bytes/purpose/authority/expiryを照合し、明示許可された範囲内の送信だけを通す。分類はL2-016の1.0分類記録基盤から読み、L2-019や1.x sink enforcementが存在しない状態でも1.0の送信判定は成立する。vendor側privacy設定だけがある送信、未許可destination、未知classificationが通れば不合格。L2-019のasset-specific egressは別の1.x受入とする。 |",
+          "canonical_section_sha256_utf8": "a910c8b1352414d2e6e3ad39f093a936f19b8a3c353411eeefa7a877fba3f7e7"
         },
         "section_matches_fixed_commit_f6dad2a": true
       },
@@ -948,15 +948,15 @@
           "path": "docs/helix-security/L2-requirements/security-requirements.md",
           "start_line": 130,
           "end_line_inclusive": 139,
-          "sha256_utf8_exact": "052c634e25dff6bd1cba742d240f87d07c6d395852e994414522e4fcd243f210",
-          "quote": "### HELIXSECURITY-L2-007 Worker実行環境への制約適用（接続）\n\n- **受け取るもの**：SECURITYが決めたscope/authority制約とOSのassignment identity、Worker実行環境のcapabilities。\n- **提供するもの**：実行前に適用された制約、結果/証拠の回収状態、停止・rollback・再開可否。\n- **保証すること**：許可された隔離環境だけでWorker/CLI/Agent/Toolを動かす。write path限定、network制限、credential遮断、environment variable最小化、timeout、resource limit、file差分検査、rollback、結果回収を検証対象とする。Workerは制約を自分で広げない。具体のenforcerはWorkerの実行環境でありSECURITYではない。\n- **単独依存**：Concept/Worker実行契約、OS assignment、INFRASTRUCTURE実資源、L2-003/005/006/008。旧Runner/Sandbox actorを復活させない。\n- **検証範囲／版**：制約ごとの要求→Worker実行環境への受渡し→適用証拠の対応。適用不能はhostへfallbackしない。1.0。\n- **失敗時の戻し先**：未適用/未観測/unsupportedは実行停止・unknown。SECURITY方針不足はL1-007、物理enforcement欠落はINFRASTRUCTURE接続の候補へ戻す。\n- **束ねる既存条件**：L1-007、PO §8、Worker統一判断。実装が利用可能であるとは主張しない。"
+          "quote": "### HELIXSECURITY-L2-007 Worker実行環境への制約適用（接続）\n\n- **受け取るもの**：SECURITYが決めたscope/authority制約とOSのassignment identity、Worker実行環境のcapabilities。\n- **提供するもの**：実行前に適用された制約、結果/証拠の回収状態、停止・rollback・再開可否。\n- **保証すること**：許可された隔離環境だけでWorker/CLI/Agent/Toolを動かす。write path限定、network制限、credential遮断、environment variable最小化、timeout、resource limit、file差分検査、rollback、結果回収を検証対象とする。Workerは制約を自分で広げない。具体のenforcerはWorkerの実行環境でありSECURITYではない。\n- **単独依存**：Concept/Worker実行契約、OS assignment、INFRASTRUCTURE実資源、L2-003/005/006/008。旧Runner/Sandbox actorを復活させない。\n- **検証範囲／版**：制約ごとの要求→Worker実行環境への受渡し→適用証拠の対応。適用不能はhostへfallbackしない。1.0。\n- **失敗時の戻し先**：未適用/未観測/unsupportedは実行停止・unknown。SECURITY方針不足はL1-007、物理enforcement欠落はINFRASTRUCTURE接続の候補へ戻す。\n- **束ねる既存条件**：L1-007、PO §8、Worker統一判断。実装が利用可能であるとは主張しない。",
+          "canonical_section_sha256_utf8": "1ee4d42a1e4178d598ce11b75268845578ba83bcb8ea471e2642ff8630c49504"
         },
         "l11": {
           "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
           "start_line": 31,
           "end_line_inclusive": 31,
-          "sha256_utf8_exact": "bb6dc9697c4bc21ad94cce4f2ad97c796706327d33686858eed1831378b4c155",
-          "quote": "| HELIXSECURITY-L2-007 | 1.0 | 各制約（write path、network、credential、environment、timeout、resource、diff検査、rollback、result collection）がWorker実行環境へ渡り、適用・観測状態を確認できる。いずれか未適用/unknownなのにhost fallbackで実行、制約をWorkerが自己拡張したら不合格。read-onlyでもwrite禁止の適用と操作対象scopeの実行後の変更なし観測を要する。rollbackだけは変更なしを確認できた場合に限り適用対象外とでき、変更有無がunknownなら成功扱いしない。後掲の9制御fixtureで条件を個別に確認する。 |"
+          "quote": "| HELIXSECURITY-L2-007 | 1.0 | 各制約（write path、network、credential、environment、timeout、resource、diff検査、rollback、result collection）がWorker実行環境へ渡り、適用・観測状態を確認できる。いずれか未適用/unknownなのにhost fallbackで実行、制約をWorkerが自己拡張したら不合格。read-onlyでもwrite禁止の適用と操作対象scopeの実行後の変更なし観測を要する。rollbackだけは変更なしを確認できた場合に限り適用対象外とでき、変更有無がunknownなら成功扱いしない。後掲の9制御fixtureで条件を個別に確認する。 |",
+          "canonical_section_sha256_utf8": "bb6dc9697c4bc21ad94cce4f2ad97c796706327d33686858eed1831378b4c155"
         },
         "section_matches_fixed_commit_f6dad2a": true
       },
@@ -966,15 +966,15 @@
           "path": "docs/helix-security/L2-requirements/security-requirements.md",
           "start_line": 140,
           "end_line_inclusive": 149,
-          "sha256_utf8_exact": "e00f26365cfbe64a4ee8369a9f6001ca4f1fb6f7f933b8055dd6ea47f0019d59",
-          "quote": "### HELIXSECURITY-L2-008 操作ごとのauthority\n\n- **受け取るもの**：actor、target、operation、revision、environment、scope、expiryと操作要求。\n- **提供するもの**：operation-specific allow/deny/constrainの判断と判断理由。\n- **保証すること**：read/write/execute/network/install/delete/merge/release/deploy/credential-use/security-change等を別authorityとして扱う。「Agentを使える」から包括write/deployを生成しない。高影響操作は全tupleが一致する個別authorityを求める。\n- **単独依存**：L2-003 identity、L2-004構成integrity、L2-005 credential、L2-006 egress、OSの進行。\n- **検証範囲／版**：操作名、主体、対象、revision、環境、scope、expiryの一致と未知・欠落時の拒否。1.0。\n- **失敗時の戻し先**：未認可、drift、expiry、unknownではdenyし、意味の変更はL1-008へ戻す。停止伝播はL2-009/022で検証。\n- **束ねる既存条件**：L1-008、PO §9、旧SEAのaction-specific authorityとtarget/environment/scope/expiry拘束。"
+          "quote": "### HELIXSECURITY-L2-008 操作ごとのauthority\n\n- **受け取るもの**：actor、target、operation、revision、environment、scope、expiryと操作要求。\n- **提供するもの**：operation-specific allow/deny/constrainの判断と判断理由。\n- **保証すること**：read/write/execute/network/install/delete/merge/release/deploy/credential-use/security-change等を別authorityとして扱う。「Agentを使える」から包括write/deployを生成しない。高影響操作は全tupleが一致する個別authorityを求める。\n- **単独依存**：L2-003 identity、L2-004構成integrity、L2-005 credential、L2-006 egress、OSの進行。\n- **検証範囲／版**：操作名、主体、対象、revision、環境、scope、expiryの一致と未知・欠落時の拒否。1.0。\n- **失敗時の戻し先**：未認可、drift、expiry、unknownではdenyし、意味の変更はL1-008へ戻す。停止伝播はL2-009/022で検証。\n- **束ねる既存条件**：L1-008、PO §9、旧SEAのaction-specific authorityとtarget/environment/scope/expiry拘束。",
+          "canonical_section_sha256_utf8": "6135842a799b9883cb29c5ce9e6ffcf601997d66cb3d314c8031ba9cbbae9f2c"
         },
         "l11": {
           "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
           "start_line": 32,
           "end_line_inclusive": 32,
-          "sha256_utf8_exact": "05d6af862333dd496de98c2f469b6e50a9d2817442b7b1c83c93ac9348821a25",
-          "quote": "| HELIXSECURITY-L2-008 | 1.0 | 異なるread/write/execute/network/install/delete/merge/release/deploy/credential-use/security-change操作で別authorityを要求し、actor/target/operation/revision/environment/scope/expiryが完全一致したときだけ影響の大きいoperationを許可する。Agent利用権から包括write/deployが生じる、または欠落・期限切れ・driftを通すと不合格。 |"
+          "quote": "| HELIXSECURITY-L2-008 | 1.0 | 異なるread/write/execute/network/install/delete/merge/release/deploy/credential-use/security-change操作で別authorityを要求し、actor/target/operation/revision/environment/scope/expiryが完全一致したときだけ影響の大きいoperationを許可する。Agent利用権から包括write/deployが生じる、または欠落・期限切れ・driftを通すと不合格。 |",
+          "canonical_section_sha256_utf8": "05d6af862333dd496de98c2f469b6e50a9d2817442b7b1c83c93ac9348821a25"
         },
         "section_matches_fixed_commit_f6dad2a": true
       },
@@ -984,15 +984,15 @@
           "path": "docs/helix-security/L2-requirements/security-requirements.md",
           "start_line": 150,
           "end_line_inclusive": 159,
-          "sha256_utf8_exact": "1e0f47fdc6cdce52f324d178b6c927b4519ab9412f51f7bfb1def0a33df9abca",
-          "quote": "### HELIXSECURITY-L2-009 revoke / quarantine伝播（構成体）\n\n- **受け取るもの**：失効、scope drift、不明な外部副作用、credential漏洩、異常通信、runtime逸脱のfindingと、該当するoperation/project/worker/credential/connection/artifact identity。\n- **提供するもの**：該当先へ相関可能なrevoke/quarantine指示と、受領・適用・失敗・未観測状態。\n- **保証すること**：OSは新規割当てを停止し、Worker実行環境は実行停止と途中成果物の隔離を行い、CONNECTは通信を停止し、credential使用とartifact accessを停止する。不明な状態をsuccessとして継続しない。SECURITYはpolicyと発火条件を持ち、各機構は自分のstateと実行を持つ。\n- **単独依存**：L2-003/005/006/007/008、OS assignment、Worker実行環境、CONNECT、artifact access、INFRASTRUCTURE観測。\n- **検証範囲／版**：各triggerごとに全該当recipientへの伝播、receipt、未達の明示、復旧可能な前状態への隔離。数値latencyはPO原文にないため作らない。1.0。\n- **失敗時の戻し先**：recipient未応答・未観測・unknownの間は対象operation/新規割当てを止める。authority/policy意味差はL1-009へ、OS/Worker/CONNECT/INFRAのenforcement差はその接続先L1へ戻す。\n- **束ねる既存条件**：L1-009、PO §10、旧SEAのrevoke/scope-drift停止条件。"
+          "quote": "### HELIXSECURITY-L2-009 revoke / quarantine伝播（構成体）\n\n- **受け取るもの**：失効、scope drift、不明な外部副作用、credential漏洩、異常通信、runtime逸脱のfindingと、該当するoperation/project/worker/credential/connection/artifact identity。\n- **提供するもの**：該当先へ相関可能なrevoke/quarantine指示と、受領・適用・失敗・未観測状態。\n- **保証すること**：OSは新規割当てを停止し、Worker実行環境は実行停止と途中成果物の隔離を行い、CONNECTは通信を停止し、credential使用とartifact accessを停止する。不明な状態をsuccessとして継続しない。SECURITYはpolicyと発火条件を持ち、各機構は自分のstateと実行を持つ。\n- **単独依存**：L2-003/005/006/007/008、OS assignment、Worker実行環境、CONNECT、artifact access、INFRASTRUCTURE観測。\n- **検証範囲／版**：各triggerごとに全該当recipientへの伝播、receipt、未達の明示、復旧可能な前状態への隔離。数値latencyはPO原文にないため作らない。1.0。\n- **失敗時の戻し先**：recipient未応答・未観測・unknownの間は対象operation/新規割当てを止める。authority/policy意味差はL1-009へ、OS/Worker/CONNECT/INFRAのenforcement差はその接続先L1へ戻す。\n- **束ねる既存条件**：L1-009、PO §10、旧SEAのrevoke/scope-drift停止条件。",
+          "canonical_section_sha256_utf8": "8fb04c1b20003123cbcb8f1b23adaca402e0d94d784473ca63f18ecabf544a84"
         },
         "l11": {
           "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
           "start_line": 33,
           "end_line_inclusive": 33,
-          "sha256_utf8_exact": "749fcd644ce86f164a511fcef1381bbfd9aba301fccd6c6ce4d8f01e7fd7324e",
-          "quote": "| HELIXSECURITY-L2-009 | 1.0 | revoke、scope drift、credential漏洩、異常通信、runtime逸脱、unknownを投入すると、OSの新規割当停止、Workerの実行停止と途中成果物隔離、CONNECT通信停止、credential使用停止、artifact access停止の該当先へ伝わる。どれかの該当停止が確認できず成功扱いで継続したら不合格。unknownは列挙triggerの安全上の影響や不明な外部副作用に関するものとし、無関係な一般文書の意味unknownを全操作停止へ広げない。operation/project/worker/credential/connection/artifactの該当identityに束縛して伝播し、recipient別の受領・適用・未達・未観測を区別する。 |"
+          "quote": "| HELIXSECURITY-L2-009 | 1.0 | revoke、scope drift、credential漏洩、異常通信、runtime逸脱、unknownを投入すると、OSの新規割当停止、Workerの実行停止と途中成果物隔離、CONNECT通信停止、credential使用停止、artifact access停止の該当先へ伝わる。どれかの該当停止が確認できず成功扱いで継続したら不合格。unknownは列挙triggerの安全上の影響や不明な外部副作用に関するものとし、無関係な一般文書の意味unknownを全操作停止へ広げない。operation/project/worker/credential/connection/artifactの該当identityに束縛して伝播し、recipient別の受領・適用・未達・未観測を区別する。 |",
+          "canonical_section_sha256_utf8": "749fcd644ce86f164a511fcef1381bbfd9aba301fccd6c6ce4d8f01e7fd7324e"
         },
         "section_matches_fixed_commit_f6dad2a": true
       }
@@ -1027,5 +1027,6 @@
         "text": "| `HELIXSECURITY-L2-009` | `composite` | 1.0 | `MPR-RC-HELIXSECURITY-L2-009-001 → MPR-RC-HELIXSECURITY-L2-009-002` | `SECURITY-stage` | `registered_proposal` / authority_effect `none` / coverage `no_loss` |"
       }
     ]
-  }
+  },
+  "current_digest_definition": "current_section_pins and current_security_exact_adoption.selected_pairs use UTF-8 SHA-256 of the inclusive physical locator range after stripping trailing blank LF bytes and retaining exactly one final LF. Physical line ranges remain the exact locators. Exact decision-pinned digests under adopted_pairs/decision_rows are unchanged."
 }
