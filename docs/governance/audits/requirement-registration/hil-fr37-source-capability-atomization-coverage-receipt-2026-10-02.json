@@ -24,21 +24,21 @@
   "candidate_pair": {
     "l2": {
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-      "full_file_sha256": "0167336c52532ee03cb532a4beea65a60c6ea800867943ad81d7a1a6b33231d7",
+      "full_file_sha256": "a3fe542c5c8188829c02abd56f325b2a0e3ec46f0597665a196c19c92aa01eda",
       "section_heading": "HARNESS-L2-067",
       "section_lines": [
-        1250,
-        1265
+        1261,
+        1275
       ],
       "section_sha256": "aadf80267f3e4379fb26bdca58f2e86d4e062e935b44e1fec5ba78153aaa19a8"
     },
     "l11": {
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-      "full_file_sha256": "76dc6f1e76e550db0576118cd5549fcef47d14bb523dc8a0a69795aee9e2e26d",
+      "full_file_sha256": "608edddd3c2a0350bbc43244c40ad96e054a62ffbc261d87299d0cff78de424f",
       "section_heading": "HARNESS-L2-067",
       "section_lines": [
-        965,
-        973
+        982,
+        989
       ],
       "section_sha256": "1a8f72b416159151ca7ea724311b84d6ec5bc550590507dc8b6333fcc557cebc"
     }
@@ -144,5 +144,6 @@
   "version_target": {
     "value": null,
     "basis": "Legacy source statement and fixed parent L1 do not specify a target product version; no PO decision selects 1.0. Candidate is unadopted and not automatically included in a product version."
-  }
+  },
+  "current_comparison_base_commit": "44f41d070322ab8308777c0ba22368914a9a9373"
 }

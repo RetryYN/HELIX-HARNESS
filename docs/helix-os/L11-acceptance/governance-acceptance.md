@@ -1010,3 +1010,32 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **欠落・unknown例**：決定的規則のrevision、Node判定、model評価根拠、scopeまたはmodel revisionのいずれかがmissing/stale/unknown/conflictの場合、fixtureは未解決として保持する。別revisionの評価、Issue/PR状態、候補本文から補完して委譲またはpassを導かない。
 - **判定oracle**：L2が要求する三境界（Node gateによる決定的規則、評価根拠が対応するmodelへのsemantic finding限定委譲、第四provider lane/別Control Planeの不生成）を独立に照合する。Node gateの実行、modelの実評価・推論、GitHub監査、CI、Issue/PR更新、merge、実際のgreen、実装完了、L3承認またはsource retirementはこのL11候補の合格条件にしない。
 - **旧oracleとの対応**：旧3L-AC-016はmodelによるdeterministic gate上書き拒否、3L-AC-017はsemantic findingをowner/route候補として扱いbranchを直接修正しないこと、3L-AC-018はseverity作用範囲の分離を示す。severity値・停止条件の具体値は旧3L-R-17から下位設計へ渡し、本L2/L11で新設しない。旧test/runtimeは実行しない。
+
+### HELIXOS-L11-114 worker/verifier loop継続適格性の受入候補（未実行）
+
+- **対応要求・状態**：未採択`HELIXOS-L2-114`の静的oracle案。HELIXOS-L2-009の意味変更・追補採択、継続実行、ticket／Worker起動、runtime green、受入実施、旧条件全体のclosureを示さない。
+- **前提fixture**：一つの既存operationが明示する同一worker/verifier loopのepisode、対象・revision・scope、既存authority、継続状態の判断source、時間条件の現行source、loop終端verdictのsource、およびiteration上限と累積値のowner/sourceを別々に与える。Issue／PR open、session存在、CI green、旧`running`文字列だけからこれらを作らない。
+- **正常候補**：旧`HR-BR-07`の4述語に対する現行意味がそれぞれ特定済みで、(1) episodeが現行ownerの根拠で継続可能、(2)既存operationの時間・許可条件を満たす、(3)当該loopの終端verdictでは`pass`未達、(4)同一ownerの明示上限に対して現iterationが上限未満、の全てが真のfixtureを与える。候補の出力は「次反復の適格性」だけとし、継続権限の新設・自動dispatch・実行成功・別pipeline完了を生成しない。
+- **個別反例**：他の3条件を真に固定し、(1)継続状態が明示的に偽、(2)既存operationの時間／許可条件外、(3)当該loopの終端`pass`成立、(4)明示上限到達、を一つずつ別fixtureにする。各ケースで同一loopの次反復を適格としない。上限値は既存sourceから入力し、本候補用の数値を作らない。一般のCI pass、単一検証oracleのpass、session交代または別工程の成功だけを(3)とみなさない。
+- **条件別unknown**：4条件それぞれについて、対応sourceまたはrevisionを一つ欠落／unknown／stale／conflictにしたfixtureを個別に与える。欠けた条件を真と補完せず、該当episodeの次反復適格性を`unknown`のまま保持し、既存のauthority／workflow ownerへの確認先を示す。無関係なoperation・ticket全体の停止はこの候補から生成しない。
+- **意味差と判断待ち**：旧`status==running`は現行ticket／assignment／workflow／session状態との同値を示さない。旧「時間窓内」は開始・終了境界を含む具体条件と現行deadline／permissionの同値を示さない。旧`lastVerdict!=pass`は現在の全HARNESS oracle／CI passと同値ではなく、`iteration<max`の旧値・ownerも現行には定義しない。各意味が選択されないfixtureは正常caseにせずunknownである。PO選択肢はL2-114記載のA/B/Cとし、status/window/verdict/upper-boundを旧sourceから自動採択しない。
+- **受入境界**：本項は未採択の`HELIXOS-L2/L11-114`候補に対する静的fixture案であり、その受入は未実行である。2026-09-29の[57 candidates PO判断](../../governance/decisions/po-decision-2026-09-29-57candidates.md) rows 63–64が採択した隣接`HELIXOS-L2/L11-040`（失敗retry上限）と`HELIXOS-L2/L11-041`（安全なsession transitionとsource再取得）は別scopeのまま維持する。これらの採択は旧HR-BR-07の4述語の現行同値や114の採択を意味せず、本項のfixtureも040/041の受入実行・runtime成功を主張しない。旧`canResume`関数、固定値、schema、runtime、provider、storage、retry policyは実装・起動しない。採択済み`HELIXOS-L2-009`の制約も変更しない。
+- **旧source・保持範囲**：旧`LEGACY-ASSET-899A61905AFBC415F595`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/orchestration-memory.md:26–27`（file SHA-256 `9c88351f237d00c809f2cf7796fa30942f0ee2c3ad071842e719861551ccca5c`）の4条件だけを候補fixtureに使う。旧停止rule、失敗分類、memory二層、secret拒否、self-evaluation、DB/job queueその他のPHCAP-20条件は対象外で、同assetを生存中のsource holdingとして残す。
+
+### HELIXOS-L11-117 選択event generation identityの受入候補（未実行）
+
+- **対応要求・authority**：未採択`HELIXOS-L2-117`の静的oracle候補。2026-09-28 decisionの採択済みL2/L11一式を変更せず、fixture、登録または文書上の結果から要求採択、CI runtime/test/旧CLIの実行を生成しない。
+- **正常対照**：一つの明示されたevent scopeについて、fixtureで適用可能と示すevent class、PR ID、HEAD、run ID、attempt facetを個別に特定したfixtureを与える。同じ選択scope・同じ適用facet集合と値を繰り返し与え、毎回同じgeneration identityを再現することを確認する。全facetが同一generationに対応する場合に限り、そのidentityを有効な一致として扱う。これは静的oracle形状であり、provider eventやrunの実発生を要求しない。
+- **個別negative oracle**：他のfacetは正常値のまま、次の各facetを一件ずつ欠落させるfixtureと、各facetを一件ずつ別値へ改変するfixtureを独立に与える：event class、PR ID、HEAD、run ID、attempt。各fixtureで該当facetの不一致を識別し、有効な同一generationとして受け入れない。あるfacetの一致や別facetの値で欠落・改変を補完しない。fixtureで当該event classには適用しないと明示したfacetはunknown/適用外として保持し、必須性を推測しない。
+- **意味選択を要する条件**：PR IDが全event classで必須という旧行の逐語保持案Aと、選択scopeでevent classに対する適用可能性を示し、PR IDを該当classに限り必須とする案BをPO判断材料として残す。推奨はB。いずれの選択でも、適用可能facetのmissing/mutated個別fixtureと正常対照を維持する。providerの物理field名、enum、tuple schema、全CI拡張はoracleへ固定しない。
+- **境界**：このoracleは選択generation identityのfacet検査に限る。queue上限・TTL・置換・cancellation・post-main/review consumer・receipt再構築・live GitHub rehearsal・runtime/database/provider adapterを検証しない。旧AC-003/005/007を本受入へ追加しない。旧runtime/test/CLI/CIは実行しない。
+- **旧source・限定範囲**：`LEGACY-ASSET-0B75B173425C200EA8CD`の旧`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md:14`（file SHA-256 `7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc`、line SHA-256 `77c358b5bc3253bac4d39a55685fae93570d3e4288ca161de1a195b676eea412`）のCIG-AC-001一行だけをoracle sourceとする。隣接source条件は関連範囲へ混ぜず、生存中`MPR-SH-CANDIDATE-003`を保持する。formal successor、source owner、event applicability、採択、実行受入、条件closureは未確定である。
+
+### HELIXOS-L2-115 終端runへの遅着Worker結果を受理しない — L11受入候補
+
+**状態・範囲**：L2-115と対になる未採択・未実行候補。旧HIL-FR-27の「失効runのlate resultをcommitしない」atomだけを扱う。旧Supervisor、IPC、Node/Python、JSON Lines、固定schema／digest／receipt／fenceの実装や実行を要求しない。
+
+- **正常例**：同じassignment／attemptに対し、既存契約に従って実行中resultと終端理由の記録を与える。終端前に返り、現在のassignment・source/revisionと対応し、既存authorityおよび選択済みHARNESS oracleを満たすresultだけが既存契約で評価可能であることを確認する。L2-115自体はresultの正しさや受理を判定しない。
+- **終端後の遅着例**：原文由来の必須条件は失効run後のlate result拒否であり、timeout、cancel、process終了およびその他の既存契約上の終端後も同様に扱う部分は本候補が提案する限定一般化として照合する。該当する同じrunが既存契約で終端した後、成功を示す遅着resultを与える。既存の終端状態とcanonicalなaccepted stateが変わらず、resultがそのattemptの未受理／stale証拠として保持されることを確認する。遅着resultだけで成功、完了、現在のassignmentへの適用が成立する構成を不成立とする。
+- **重複・取り違え例**：終端後のduplicate result、別assignment／attempt／source／revisionのresult、または終端理由との関係が不明なresultを与える。結果の到着順、worker自己申告、digest一致だけで現在の成果へ採用した場合は不成立とする。識別できない場合はunknown／未完を保つ。
+- **差戻しと境界**：不一致resultは該当OS assignment／発生元へ戻し、元の停止理由と未完義務を残す。HARNESS oracle、SECURITY authority、event schema、transport、追加承認、無関係なassignment停止を新設しない。文書上のoracleは設計受入条件であり、runtime実装または実行結果を意味しない。
