@@ -1066,6 +1066,19 @@
         "utf8_source_line_content_sha256": "db0e20493d40b7ccc983e16643ae1c28f0624ef54663c4b869129d02b33bf9f8",
         "physical_line_bytes_including_terminator_sha256": "af7dc7082e6fb2401a900512b74cff2026300832434edbd9dee0e5ed939a9528",
         "baseline_2353_physical_line_bytes_sha256": "af7dc7082e6fb2401a900512b74cff2026300832434edbd9dee0e5ed939a9528"
+      },
+      "current_main_same_id_relation": {
+        "commit": "f7d424c605dd7673180d4dc93e8eb3174e1b6c9d",
+        "id": "HXT-AC-015",
+        "requirement_id": "HELIXOS-L2-040",
+        "same_id_refs": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:1133",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:742"
+        ],
+        "different_legacy_source": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md:43",
+        "adoption_decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:63",
+        "selected_trace_row_binding": false,
+        "note": "現行main `f7d424c605dd7673180d4dc93e8eb3174e1b6c9d` のOS L2 `governance-requirements.md:1133` とOS L11 `governance-acceptance.md:742` は旧HXT-AC-015（別ファイル `execution-ticket-acceptance.md:43`）を名指す。HELIXOS-L2-040は57件PO判断 `po-decision-2026-09-29-57candidates.md:63` で採択済み。固定F6にはない同一IDの後続記載であり、この旧trace ID配置行へのpath:line binding・successor・closureではない。"
       }
     },
     {
