@@ -53,7 +53,7 @@
 | obligation / typed edge / acceptance oracle の欠落、aggregate、TBD、orphan、理由なしN/A | 063とL11 959行は個別edge/oracle closure、片方向・型/端点違い、未実行oracle、根拠のないN/A、aggregate/TBD/orphanを不成立条件にする。L2-040のtyped-edge catalog、L2-035のsource basis / acceptance contributionは補助契約であり、単独で063のscope全体を閉じない。 |
 | revision変更後のchange receiptとstale伝播 | 063とL11 960行はbefore/after revisionと影響edge/oracleを結び、古いreceiptを現revisionに使わないことを定める。旧の固定transaction/CAS/store設計は採択対象外。 |
 | template gapの独立review前active禁止 | L2-063とL11 961行はgap、review対象revision、独立reviewer、finding/dispositionが揃う前のactive化を拒否する。L2-009はtemplate選択/適用と不足inputのBackflow、L2-041はactive template atom抽出/gap提示を所有し、063がそれらを置換しない。 |
-| Template / atom抽出 / requirement formationの責務 | L2-009、L2-041、L2-008は関連する既存条件である。L2-026等のdesign compositionやL2-022のoracle契約も独立に残る。近接・参照・一般的なtemplate条件から11旧IR atomの全件移管を推定しない。 |
+| Template / atom抽出 / requirement formationの責務 | L2-009、L2-041、L2-008は関連する既存条件である。L2-026等のdesign compositionやL2-022のoracle契約も独立に残る。以下の採択済みsupporting contractsもscopeを限定して参照する。近接・参照・一般的なtemplate条件から11旧IR atomの全件移管を推定しない。 |
 | Unknown / 未選択scope | L11 962行は未選択・未観測sourceをpass/failure/N/Aに推測変換せずunknownで残す。L2-063のclosure結果だけからOSの登録/state保存や実運転を推定しない（L2:1242,1246、L11:954,963）。 |
 
 ## 後続判断とauthority状態
@@ -66,12 +66,26 @@
 - 2026-09-30 live26 decision（SHA-256 `8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145`、:48,72）は `MPR-RC-HARNESS-L2-063-001` と上記L2/L11 section digestに対してHARNESS-L2-063を承認した。ただし明示的に選択したのは3条件のみで、導入版は未指定。本文の「candidate」見出しより、このexact revision decisionをauthority sourceとして扱う。承認された現行contract意味は存在するが、旧contract/IR/HAC/HATのsuccessor IDが割り当てられたことや、実装・実行・受入が完了したことを意味しない。
 - 同live26 decisionはHARNESS-L2-057とHELIXOS-L2-054を組で採択したが、057は限定scopeのclosure gate条件であり、memory atomをholdingに残す。これはHIL-17のatom/edge/oracle closureにも、HIL-17のlegacy successor assignmentにも代用できない。
 
+### 採択済み近接supporting contractsと境界
+
+次の4件は、判断記録が特定する対象revisionで採択済みの現行契約である。043/044は条件付き採択であり、見出しの候補metadataではなく判断記録と固定registrationをauthority根拠とする。HIL-17に近い意味を持つ支援条件として照合するが、いずれも旧HIL-17 contract/IR atomの直接successor割当ではない。特にHARNESS-L2-044と043の旧sourceはHIL-17の11 atomに含まれず、HARNESS-L2-055は別のHIL-FR-48 gate atomに限られる。
+
+| 現行契約・採択根拠 | 対象section pinと支援する意味 | 旧sourceとの近接性・境界 |
+|---|---|---|
+| `HARNESS-L2-044`。2026-09-29の57候補判断 `:49` は固定registration `MPR-RC-HARNESS-L2-044-002` を条件付き採択（B route、名称 Design Contract Portfolio）する。 | HARNESS L2 `docs/helix-harness/L2-requirements/product-requirements.md:1002–1011` digest `690f2bfa866c778be47459baa99139905260d3ca569739a4d4707c61096212f2`、L11 `docs/helix-harness/L11-acceptance/product-acceptance.md:740–750` digest `9c79b73100f4afa63abba7f79d47b8931a1c29983ac08a3e4ded95e56107bfc8`。requirement atom／Design Obligation Graphを入力し、適用義務classを契約または根拠付き非適用へ対応させ、未被覆と意味重複を照合する。 | 旧HIL-FR-54（同L1 source `infinity-loop-platform-requirements.md:144`、asset `LEGACY-ASSET-719D5EC9C06FC4AAD0FF`）に対応し、HIL-BR-22／HIL-FR-42の設計義務・消込の意味に近い。ただしFR-54はHIL-17のatomではなく、044はtemplateから義務を導出する009や、具体設計を作る025/026を置換せず、旧HIL-17の全atom closureも示さない。 |
+| `HARNESS-L2-043`。2026-09-29の57候補判断 `:48` は固定registration `MPR-RC-HARNESS-L2-043-002` を条件付き採択（B route、HARNESS-CORE配置）する。配置選択は同判断 `:149` が明示する。 | HARNESS L2 `docs/helix-harness/L2-requirements/product-requirements.md:986–1000` digest `da678d9181ebe76ae93084c27744d253c617ebe03b709d79f55b79d2abbc6666`、L11 `docs/helix-harness/L11-acceptance/product-acceptance.md:728–738` digest `583bfaf669729d3148e072be3ca74f1ef125997e933f6a1a94f08c732cb6f4b4`。active templateの各validation rule／applicability branchについてpositive例と境界negative例、該当riskのcoverageを照合する。抽出・gap提示の041、義務portfolioの044とは責務を分ける。 | 旧HIL-FR-55（同L1 source `infinity-loop-platform-requirements.md:145`、asset `LEGACY-ASSET-719D5EC9C06FC4AAD0FF`）の例coverage条件に対応するが、FR-55はHIL-17 atomではなく、template gapの独立review/freeze、11 atomの移管や旧test oracleの実行を意味しない。 |
+| `HARNESS-L2-055`。2026-09-30 live26判断 `:40` は固定registration `MPR-RC-HARNESS-L2-055-001` を承認し、`:72` は選択したHIL-FR-48 gate atomに限ると明示する。 | HARNESS L2 `docs/helix-harness/L2-requirements/product-requirements.md:1164–1170` digest `9f1e63176242d81d93a89a0c3823d3fbe689b8ebd0ae0de2f5a786b88e8787b5`、L11 `docs/helix-harness/L11-acceptance/product-acceptance.md:878–885` digest `f1b9332d75fc5e07158165b0dbb0d037983ab1df0219dc5e519ceef3583aa96a`。隣接層間のdescent/backflow、粒度・隣接性とaggregateによる一括被覆を照合する。 | 旧HIL-FR-48（旧L1 source `infinity-loop-platform-requirements.md:138`）に由来し、HIL-FR-42／HIL-NFR-26の双方向edge・aggregate拒否に意味上近い。ただしFR-48はHIL-17 atomではなく、`:72` の選択scopeを超えたFR-48全体、HIL-17 closure、またはNFR-26のclosureを主張しない。 |
+| `HELIXBRAIN-L2-022`。2026-09-28 BRAIN判断 `:81` は固定registration `MPR-RC-HELIXBRAIN-L2-022-002` をconnection / 1.0として採択する。 | `docs/helix-brain/L2-requirements/brain-requirements.md:434–442`。Patternのrequired input、前提・constraint・依存をHARNESS-L2-009へ接続し、BRAIN側が製品固有の設計選択や工程を決めない。BRAIN L1 `docs/helix-brain/L1-planning/brain-intent.md:25,29,40,49,70`（file SHA-256 `2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0`）はPattern inputと採用判断の境界、そのHARNESS接続元を示す。 | L1由来の接続であり、旧HIL-BR-22のDesign Template接続・設計義務の意味に近い。ただし旧HIL-BR-22に対する正式successorではなく、BRAIN inputをHARNESSへ渡す接続範囲に限る。設計義務の導出・portfolio閉包・oracle closureはHARNESS側の各契約と対象scopeに従う。 |
+
+したがって、近接supporting contractsの最終列挙は、HARNESS-L2-009/035/040/041に加え、HARNESS-L2-044/043/055とHELIXBRAIN-L2-022である。HARNESS-L2-008/022/026も独立に残る関連契約だが、この列挙はそれらをHIL-17 successorとして扱わない。いずれの採択・参照からも、11旧IR atomのformal successor assignmentや全件closureは導かない。
+
 現在の補助source record `hr17-residual-coverage-receipt-2026-09-29.json` は三つのsource sliceを局所的にpartitionし、HAC三件とHATをoracle referenceとして記す。`coverage_result: no_loss` はその3 slice内のpartitionに限り、holding 655 item、11 IR identity、HR-FR-HIL-17全体、HAC/HAT全体のno-loss/formal successorを主張しない。現行source carry-forwardの `REQSRC-SUP-00570..572`、`00624`、`00648` もsuccessor IDsが空である。
 
-したがって分類は、**選択した3 contract slice: adopted current HARNESS-L2-063意味 / 旧source identityへのformal successorなし**、**L2-009/035/040/041: 採択済みの近接supporting contracts、直接successorではない**、**11旧IR atomsとHAC/HATの残余: `preserved_pending_rehome` / `unmapped`、未解決**。TBD/N/A/orphan/change omission/template-gapのfailure意味は063等に部分的に再導出されているが、全source closure、旧consumer closure、旧oracleの実行・現行受入合格は未証明である。
+したがって分類は、**選択した3 contract slice: adopted current HARNESS-L2-063意味 / 旧source identityへのformal successorなし**、**HARNESS-L2-009/035/040/041/044/043/055とHELIXBRAIN-L2-022: 採択済みの近接supporting contracts、直接successorではない**、**11旧IR atomsとHAC/HATの残余: `preserved_pending_rehome` / `unmapped`、未解決**。TBD/N/A/orphan/change omission/template-gapのfailure意味は063等に部分的に再導出されているが、全source closure、旧consumer closure、旧oracleの実行・現行受入合格は未証明である。
 
 ## 静的検証
 
 - 基準commit: `50686b6762788574cb471967e8c24846d3dd56ae`。
 - archive asset path/digest、IR identity→HAC/HAT link、current L2/L11 section digestとdecision registrationを静的に照合した。
+- 近接contractは57候補判断 `:48–49` の043/044 section digest、live26判断 `:40` の055 L2/L11 digest、BRAIN判断 `:81` の022 registrationとL1 source digestを照合した。旧source line 144/145/138と各旧要求IDの一致も確認した。
 - 旧test、runtime、CIは実行していない。旧L5/L6 API/schema/failure code、旧HST case設計、候補・PO decisionの存在を実装または実行完了へ読み替えていない。
