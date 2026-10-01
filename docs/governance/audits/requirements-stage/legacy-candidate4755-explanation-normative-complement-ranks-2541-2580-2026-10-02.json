@@ -3288,7 +3288,7 @@
         "review_evidence": null,
         "candidate_identity": null
       },
-      "semantic_reading": "SEA-FR-007はfinding lifecycleの6状態遷移を順に区別し、FALSE_POSITIVE、INVALID、RETRACTED、SUPERSEDEDをそれぞれ別terminalとして扱う。",
+      "semantic_reading": "旧候補の当該物理行として保持する：| `SEA-FR-007` | findingは`SUSPECTED`→`REPRODUCED`→`VALIDATED`→`PATCHED`→`INDEPENDENTLY_VERIFIED`→`REMEDIATED`を区別し、`FALSE_POSITIVE`、`INVALID`、`RETRACTED`、`SUPERSEDED`を別terminalにする。 |",
       "authority_effect": "none; preserved_pending_atomization; no successor ID; no line closure"
     },
     {
@@ -3576,7 +3576,7 @@
         "review_evidence": null,
         "candidate_identity": null
       },
-      "semantic_reading": "SEA-FR-011は列挙されたsecurity文書・operation policy・disclosure/provider boundaryをL1/L3/Security IRから生成し、手編集を意味正本にしない。",
+      "semantic_reading": "旧候補の当該物理行として保持する：| `SEA-FR-011` | `SECURITY.md`、`THREAT_MODEL.md`、operation policy、disclosure／provider boundaryはL1／L3／Security IRから生成し、手編集を意味正本にしない。 |",
       "authority_effect": "none; preserved_pending_atomization; no successor ID; no line closure"
     },
     {
@@ -3768,7 +3768,7 @@
         "review_evidence": null,
         "candidate_identity": null
       },
-      "semantic_reading": "Authority freezeから範囲限定canaryまでの実装順序の未完行。末尾の矢印は次行へ続くため、隣接する非選択条件を加えて一行の意味を完成扱いしない。",
+      "semantic_reading": "旧候補の当該物理行として保持する：Authority freeze → IR admission → authorization schema/admission → privileged isolation → profile/broker接続 →",
       "authority_effect": "none; preserved_pending_atomization; no successor ID; no line closure"
     },
     {
@@ -3864,7 +3864,7 @@
         "review_evidence": null,
         "candidate_identity": null
       },
-      "semantic_reading": "前行の実装順序を制限付きevidence/finding lifecycle、revoke/kill switch、projection/distribution除外、scope-limited canaryへ進める未完の列挙行。",
+      "semantic_reading": "旧候補の当該物理行として保持する：制限付きevidenceとfinding lifecycle → revoke/kill switch → 生成projectionと配布除外 → 範囲限定canary。",
       "authority_effect": "none; preserved_pending_atomization; no successor ID; no line closure"
     },
     {
@@ -4052,7 +4052,7 @@
         "review_evidence": null,
         "candidate_identity": null
       },
-      "semantic_reading": "Three-lane acceptance候補文書のtitle metadata。候補文書の識別で、採択・権限状態を表さない。",
+      "semantic_reading": "旧候補の当該物理行として保持する：title: \"三社レーン動的capacity profile受入候補\"",
       "authority_effect": "none; preserved_pending_atomization; no successor ID; no line closure"
     },
     {
@@ -4696,7 +4696,7 @@
         "review_evidence": null,
         "candidate_identity": null
       },
-      "semantic_reading": "parent_designの文書path metadata。親文書への参照であり行単位のbinding/adoptionではない。",
+      "semantic_reading": "旧候補の当該物理行として保持する：parent_design: docs/governance/candidates/three-lane-capacity-profile-requirements.md",
       "authority_effect": "none; preserved_pending_atomization; no successor ID; no line closure"
     },
     {
@@ -4788,7 +4788,7 @@
         "review_evidence": null,
         "candidate_identity": null
       },
-      "semantic_reading": "pair_artifactの文書path metadata。paired候補参照であり行単位のbinding/adoptionではない。",
+      "semantic_reading": "旧候補の当該物理行として保持する：pair_artifact: docs/governance/candidates/three-lane-capacity-profile-requirements.md",
       "authority_effect": "none; preserved_pending_atomization; no successor ID; no line closure"
     },
     {
@@ -4972,7 +4972,7 @@
         "review_evidence": null,
         "candidate_identity": null
       },
-      "semantic_reading": "Three-lane recognition候補のtitle metadata。候補文書識別であり採択ではない。",
+      "semantic_reading": "旧候補の当該物理行として保持する：title: \"三社レーン動的capacity profile認識候補\"",
       "authority_effect": "none; preserved_pending_atomization; no successor ID; no line closure"
     },
     {
@@ -5616,7 +5616,7 @@
         "review_evidence": null,
         "candidate_identity": null
       },
-      "semantic_reading": "parent_design文書path metadata。",
+      "semantic_reading": "旧候補の当該物理行として保持する：parent_design: docs/governance/candidates/three-lane-capacity-profile-requests.md",
       "authority_effect": "none; preserved_pending_atomization; no successor ID; no line closure"
     },
     {
@@ -5708,7 +5708,7 @@
         "review_evidence": null,
         "candidate_identity": null
       },
-      "semantic_reading": "pair_artifact文書path metadata。",
+      "semantic_reading": "旧候補の当該物理行として保持する：pair_artifact: docs/governance/candidates/three-lane-capacity-profile-requests.md",
       "authority_effect": "none; preserved_pending_atomization; no successor ID; no line closure"
     },
     {
@@ -5892,7 +5892,7 @@
         "review_evidence": null,
         "candidate_identity": null
       },
-      "semantic_reading": "Three-lane requests候補のtitle metadata。",
+      "semantic_reading": "旧候補の当該物理行として保持する：title: \"三社レーン動的capacity profile要求\"",
       "authority_effect": "none; preserved_pending_atomization; no successor ID; no line closure"
     },
     {
@@ -6536,7 +6536,7 @@
         "review_evidence": null,
         "candidate_identity": null
       },
-      "semantic_reading": "parent_authority文書path metadata。",
+      "semantic_reading": "旧候補の当該物理行として保持する：parent_authority: docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
       "authority_effect": "none; preserved_pending_atomization; no successor ID; no line closure"
     },
     {
@@ -6628,7 +6628,7 @@
         "review_evidence": null,
         "candidate_identity": null
       },
-      "semantic_reading": "pair_artifact文書path metadata。",
+      "semantic_reading": "旧候補の当該物理行として保持する：pair_artifact: docs/governance/candidates/three-lane-capacity-profile-recognition.md",
       "authority_effect": "none; preserved_pending_atomization; no successor ID; no line closure"
     },
     {
@@ -6720,7 +6720,7 @@
         "review_evidence": null,
         "candidate_identity": null
       },
-      "semantic_reading": "3L-BR-010はCodex worker、Cursor worker、Claude reviewer、CI、Merge Trainを別capacityとして管理し、下流実処理能力に応じparallelismを拡張する。登録可能pool上限は常時active WIPではない。速さは未検収PR数でなくaccepted throughput/time-to-acceptedで評価する。",
+      "semantic_reading": "旧候補の当該物理行として保持する：Codex worker、Cursor worker、Claude reviewer、CI、Merge Trainを別々のcapacityとして管理し、下流の実処理能力に応じて安全に並列度を拡張する。登録可能なpool上限を常時active WIPと解釈せず、速さを未検収PR数ではなくaccepted throughputとtime-to-acceptedで評価する。",
       "authority_effect": "none; preserved_pending_atomization; no successor ID; no line closure"
     },
     {
@@ -6812,7 +6812,7 @@
         "review_evidence": null,
         "candidate_identity": null
       },
-      "semantic_reading": "3L-BR-011はCursorを1→2→3へ段階拡張し、定常目標をCodex3/Cursor3/Claude reviewer2とする。Codex/Cursor burst最大5は実測capacity admission成立時だけ、Claude reviewer追加burstは独立review待ちが実ボトルネックの時だけ許容する。",
+      "semantic_reading": "旧候補の当該物理行として保持する：初期運用ではCursorを1件から開始して2件、3件へ段階拡張する。成立後の定常目標はCodex worker 3件、Cursor worker 3件、Claude reviewer 2件とする。Codex／Cursorは実測capacity admission成立時だけ最大5件までburstでき、Claude reviewerの追加burstは独立review待ちが実ボトルネックである場合だけ認める。",
       "authority_effect": "none; preserved_pending_atomization; no successor ID; no line closure"
     }
   ],
