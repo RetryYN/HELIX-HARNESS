@@ -7989,7 +7989,7 @@
         "text": "### v0.2への置換検査（2026-09-05）"
       },
       "exact_source_line_text": "原稿v0.2全文と要求候補末尾の一致、7要件・20受入条件、R/AC双方向参照、Web要件MA-R-08/AC-20の撤去をNode assertで確認した。",
-      "semantic_reading": "記録された確認では、v0.2原稿末尾の一致、7要件・20受入条件、R/AC双方向参照、MA-R-08とAC-20の撤去をNode assertで検査したと報告する。",
+      "semantic_reading": "原稿v0.2全文が要求候補末尾と一致すること、7要件・20受入条件、R/AC双方向参照、Web要件MA-R-08/AC-20の撤去をNode assertで確認したという過去の検証記録。今回の実行結果ではない。",
       "physical_context": {
         "previous_physical_line": "",
         "next_physical_line": "対象PLAN lintと`git diff --check`はexit 0。既知advisoryは47件。独立検収・正本昇格・runtime完成を意味しない。"
@@ -12690,7 +12690,7 @@
         "text": null
       },
       "exact_source_line_text": "> 受付原稿を保存した要求候補。現行要件を変更せず、承認・正本昇格・IR収載前のruntime authorityにしない。",
-      "semantic_reading": "このintake由来のrequest候補は、承認・canonical昇格・IRを経る前には現行要求やruntime権威を変更しないと明記する。",
+      "semantic_reading": "受付原稿を保存した要求候補であり、現行要件を変更しない。承認・正本昇格・IR収載前のruntime authorityにしないという条件はruntime authorityに掛かる。",
       "physical_context": {
         "previous_physical_line": "",
         "next_physical_line": "> 要件への分解は[要件候補](mechanism-adequacy-requirements.md)、受入は[受入候補](mechanism-adequacy-acceptance.md)、移管追跡は[取り込み台帳](mechanism-adequacy-intake.md)を参照する。"
@@ -12812,7 +12812,7 @@
         "text": null
       },
       "exact_source_line_text": "> 要件への分解は[要件候補](mechanism-adequacy-requirements.md)、受入は[受入候補](mechanism-adequacy-acceptance.md)、移管追跡は[取り込み台帳](mechanism-adequacy-intake.md)を参照する。",
-      "semantic_reading": "参照先はmechanism-adequacy-requirements.md、mechanism-adequacy-acceptance.md、mechanism-adequacy-intake.mdの3候補文書。",
+      "semantic_reading": "要件への分解はmechanism-adequacy-requirements.mdの要件候補、受入はmechanism-adequacy-acceptance.mdの受入候補、移管追跡はmechanism-adequacy-intake.mdの取り込み台帳を参照する。三つの参照先の役割を区別する。",
       "physical_context": {
         "previous_physical_line": "> 受付原稿を保存した要求候補。現行要件を変更せず、承認・正本昇格・IR収載前のruntime authorityにしない。",
         "next_physical_line": ""
