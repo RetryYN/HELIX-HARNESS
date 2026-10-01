@@ -5,7 +5,7 @@
 ## 対象と再構成
 
 - #2353の4,755 `row_records`へ#2356、#2360、#2363、#2366、#2367、#2368、#2369、#2381のexact-ID overlayを順に適用し、effective explanation 2,965行を再構成した。marker screen queueと既存semantic-review slicesのID unionは255件。これを除いた `2,965 - 255 = 2,710`行を数値ID順に順位付けした。
-- ranks 1341–1380は40行。rank 1340境界は`LEGACY-CAND-LINE-002220`、今回の最初の行は`LEGACY-CAND-LINE-002221`。直前ranks 1301–1340 auditはorigin/mainに未収載のため、先行意味確認を主張せず境界のみをfull-poolから再構成した。
+- ranks 1341–1380は40行。rank 1340境界は`LEGACY-CAND-LINE-002220`、今回の最初の行は`LEGACY-CAND-LINE-002221`。直前ranks 1301–1340 auditは同一PRに収載し、commit `dead1fe95dd63150f63bec9a579f7c7d99f37a6c` のJSON／MD bytesをpaired JSONで固定した。境界はfull-poolからも再構成した。
 - 対象は旧Functional Release Slice L3候補のFRS-R-07〜22本文fragmentと、§1の既存RLS差分表・直前説明行。各物理行の親rule/tableと隣接条件を分けて記録した。
 
 ## 固定F6・現行mainのsource range／ID対応確認
