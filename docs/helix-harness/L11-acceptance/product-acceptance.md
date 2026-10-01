@@ -975,8 +975,8 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 
 **状態**：HARNESS-L2-068に対応する未採択・未実行の静的内容oracle案。実変換・rollback実行・CI実施を表さない。
 
-- **正常例**：一つの選択scopeで二つの独立した変換が提案されたfixtureを与える。各変換について変更前後のsemantic signature、対象invariant、影響consumer、pair/oracle差分、更新またはstale化対象、scopeへ適用できるrollback/recovery basisを別々に辿れる。意味保存と全consumer契約が確認できた変換だけ既存Refactorへ接続可能とし、候補の計画と実行状態は分ける。
-- **拒否例**：名称類似だけの判断、consumer欠落、設計pair/oracle更新対象が特定できない、またはrollback根拠を示せない変換を既存Refactorへ接続可能とする場合は不成立またはunknownにする。observable behavior/public surface/DB semantics/要求に意味差があるfixtureは、HARNESS-L2-002/003/004の既存Redesign/Retrofit routeへ返し、右側だけで修正を完結させない。
+- **正常例**：一つの選択scopeで二つの独立した変換が提案されたfixtureを与える。各変換について変更前後のsemantic signature、対象invariant、全影響consumer、影響を受ける各設計pairの対象revision向け更新内容と対oracleのscope/revision/期待意味の整合を確認できる。必要pairが現行revisionへ実際に更新済みで、対oracleがその設計を照合している変換だけを既存Refactorへ接続可能とする。scopeへ適用できるrollback/recovery basisも個別に確認する。候補計画や更新予定だけでは接続可能にしない。
+- **拒否例**：名称類似だけの判断、consumer欠落、必要pairが未更新/stale/欠落、対oracleが更新後設計とrevisionまたは意味上不整合、pairの更新予定を示すだけ、pairをstaleと印すだけ、またはrollback根拠を示せない変換を既存Refactorへ接続可能とする場合は不成立またはunknownにする。observable behavior/public surface/DB semantics/要求に意味差があるfixtureは、HARNESS-L2-002/003/004の既存Redesign/Retrofit routeへ返し、右側だけで修正を完結させない。
 - **未見例**：依存関係が未選択sourceまたは未読artifactに及ぶ場合、そのconsumer/rollback適用性をunknownとして保持する。未読であることを影響なし・rollback可へ置き換えない。確認済み変換単位の個別結果は未見部分から分離する。
 - **限界**：この受入はrollbackを実行する、特定の復旧手順を採択する、毎ticketの人手承認を要求する、または旧test/runtimeを復活させるものではない。候補本文とoracleからL2採択・L3承認・実装/実行許可を生成しない。
 - **HARNESS-L2-053との境界**：053の採択pairはasset identity、revision、lineage relation、authority/oracle/typed-edge対応と欠落unknownを扱う。ここではそれらのhistoryを前提に、Design Refactorの独立変換計画、既存Refactor接続前に更新すべき設計pair、および対象scopeへ適用できる回復basisの有無を評価する。053のlineage確認だけでこれらの接続前条件が満たされたとはしない。

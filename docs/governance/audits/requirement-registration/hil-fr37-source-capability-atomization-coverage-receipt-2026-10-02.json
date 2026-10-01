@@ -11,7 +11,7 @@
     "source_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
     "source_line": 127,
     "source_line_sha256_without_lf": "0128e17db0a2bb5c024a1b2b812c23301e11228b2b11020387f9e98dee3954a5",
-    "legacy_ir_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-067",
+    "legacy_ir_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-37",
     "legacy_ir_file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
     "statement_semantic_digest": "34d1fde675a0d97523f479286326cfb162b2b897e5d76921a7dcae514bcb8482",
     "record_semantic_digest": "4c6f344ebe6bbdb30fb18e2a6cae04057c5cfeff1801ced68a7f667a1b981ea7",
@@ -24,17 +24,17 @@
   "candidate_pair": {
     "l2": {
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-      "full_file_sha256": "9822d73f726fd429b0a9cc2bcb4b81f5ae4482546edb8eee1ae9f0b07558ade6",
+      "full_file_sha256": "0167336c52532ee03cb532a4beea65a60c6ea800867943ad81d7a1a6b33231d7",
       "section_heading": "HARNESS-L2-067",
       "section_lines": [
         1250,
-        1263
+        1265
       ],
-      "section_sha256": "f333f952b994a31e6e4f1191fe8749dc7137a19c9f6edb7f3f0a638818b19735"
+      "section_sha256": "aadf80267f3e4379fb26bdca58f2e86d4e062e935b44e1fec5ba78153aaa19a8"
     },
     "l11": {
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-      "full_file_sha256": "32a410679ec5068d0f6f5a95996035cd4b1b9a53a50c0b91ceb6d44d07535933",
+      "full_file_sha256": "76dc6f1e76e550db0576118cd5549fcef47d14bb523dc8a0a69795aee9e2e26d",
       "section_heading": "HARNESS-L2-067",
       "section_lines": [
         965,
@@ -140,5 +140,9 @@
   "read_after_comparison": {
     "commit": "fcf944f839a6269fec63f8823d98f51f1d6ec84b",
     "note": "Current adopted pair/decision read-after; candidate remains an unadopted proposal."
+  },
+  "version_target": {
+    "value": null,
+    "basis": "Legacy source statement and fixed parent L1 do not specify a target product version; no PO decision selects 1.0. Candidate is unadopted and not automatically included in a product version."
   }
 }

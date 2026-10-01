@@ -512,7 +512,8 @@
         "HARNESS-L2-048",
         "HARNESS-L2-053"
       ],
-      "candidate": "HARNESS-L2-068 unadopted; semantic scope/owner choice remains"
+      "candidate": "HARNESS-L2-068 unadopted; semantic scope/owner choice remains",
+      "candidate_pair_update_requirement": "Before existing Refactor connection, every impacted design pair must actually be updated for the target revision and aligned with its paired oracle in scope, revision and expected meaning; a planned update or stale marker does not pass."
     },
     {
       "id": "HIL-FR-40",
@@ -552,17 +553,17 @@
     "HARNESS-L2-067": {
       "l2": {
         "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-        "full_file_sha256": "9822d73f726fd429b0a9cc2bcb4b81f5ae4482546edb8eee1ae9f0b07558ade6",
+        "full_file_sha256": "0167336c52532ee03cb532a4beea65a60c6ea800867943ad81d7a1a6b33231d7",
         "section_heading": "HARNESS-L2-067",
         "section_lines": [
           1250,
-          1263
+          1265
         ],
-        "section_sha256": "f333f952b994a31e6e4f1191fe8749dc7137a19c9f6edb7f3f0a638818b19735"
+        "section_sha256": "aadf80267f3e4379fb26bdca58f2e86d4e062e935b44e1fec5ba78153aaa19a8"
       },
       "l11": {
         "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-        "full_file_sha256": "32a410679ec5068d0f6f5a95996035cd4b1b9a53a50c0b91ceb6d44d07535933",
+        "full_file_sha256": "76dc6f1e76e550db0576118cd5549fcef47d14bb523dc8a0a69795aee9e2e26d",
         "section_heading": "HARNESS-L2-067",
         "section_lines": [
           965,
@@ -574,23 +575,23 @@
     "HARNESS-L2-068": {
       "l2": {
         "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-        "full_file_sha256": "9822d73f726fd429b0a9cc2bcb4b81f5ae4482546edb8eee1ae9f0b07558ade6",
+        "full_file_sha256": "0167336c52532ee03cb532a4beea65a60c6ea800867943ad81d7a1a6b33231d7",
         "section_heading": "HARNESS-L2-068",
         "section_lines": [
-          1264,
-          1276
+          1266,
+          1280
         ],
-        "section_sha256": "2b0e3cd5601779ddb7f7b57c7ab974634fb732bd8557a8828f5b9520cfab8db1"
+        "section_sha256": "c1941f15f4aafdea2ed2809aff01ab70b44997a816fe59f9cd5ee3b218333e1a"
       },
       "l11": {
         "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-        "full_file_sha256": "32a410679ec5068d0f6f5a95996035cd4b1b9a53a50c0b91ceb6d44d07535933",
+        "full_file_sha256": "76dc6f1e76e550db0576118cd5549fcef47d14bb523dc8a0a69795aee9e2e26d",
         "section_heading": "HARNESS-L2-068",
         "section_lines": [
           974,
           982
         ],
-        "section_sha256": "9586ca40baa4c6fb59e5d72971f6fa4d9ee267af3efc8ab0ff2ab9ac7a889e88"
+        "section_sha256": "33ae6a20f363a29df1fd5421b3f779cc00f6b8de42e15edf44b292c65a0a6ff3"
       }
     }
   },
@@ -601,5 +602,9 @@
     "L3 approval",
     "implementation/runtime/test/CI execution",
     "whole IR153 or archive closure"
-  ]
+  ],
+  "candidate_version_scope": {
+    "HARNESS-L2-067": "Legacy HIL-FR-37 line127 and fixed parent L1 specify no product version; candidate header has no version_target and receipt records target unspecified.",
+    "HARNESS-L2-068": "Legacy HIL-FR-39 line129 and fixed parent L1 specify no product version; candidate header has no version_target and receipt records target unspecified."
+  }
 }

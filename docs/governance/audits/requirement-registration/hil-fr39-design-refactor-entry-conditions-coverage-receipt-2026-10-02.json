@@ -11,7 +11,7 @@
     "source_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
     "source_line": 129,
     "source_line_sha256_without_lf": "5281306e2b246783f356362255050a7588e3b0656a5a83b9efb557b21e1b3093",
-    "legacy_ir_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-068",
+    "legacy_ir_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-39",
     "legacy_ir_file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
     "statement_semantic_digest": "91cbf666593f3585f2d859baf3578b9075d7a92e9b3d936d2c9c4cd47b4f60fc",
     "record_semantic_digest": "d7334990a0450d40ed74b0dcbb16e7d57ad50a81faae98816135d548c5c7e409",
@@ -24,23 +24,23 @@
   "candidate_pair": {
     "l2": {
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-      "full_file_sha256": "9822d73f726fd429b0a9cc2bcb4b81f5ae4482546edb8eee1ae9f0b07558ade6",
+      "full_file_sha256": "0167336c52532ee03cb532a4beea65a60c6ea800867943ad81d7a1a6b33231d7",
       "section_heading": "HARNESS-L2-068",
       "section_lines": [
-        1264,
-        1276
+        1266,
+        1280
       ],
-      "section_sha256": "2b0e3cd5601779ddb7f7b57c7ab974634fb732bd8557a8828f5b9520cfab8db1"
+      "section_sha256": "c1941f15f4aafdea2ed2809aff01ab70b44997a816fe59f9cd5ee3b218333e1a"
     },
     "l11": {
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-      "full_file_sha256": "32a410679ec5068d0f6f5a95996035cd4b1b9a53a50c0b91ceb6d44d07535933",
+      "full_file_sha256": "76dc6f1e76e550db0576118cd5549fcef47d14bb523dc8a0a69795aee9e2e26d",
       "section_heading": "HARNESS-L2-068",
       "section_lines": [
         974,
         982
       ],
-      "section_sha256": "9586ca40baa4c6fb59e5d72971f6fa4d9ee267af3efc8ab0ff2ab9ac7a889e88"
+      "section_sha256": "33ae6a20f363a29df1fd5421b3f779cc00f6b8de42e15edf44b292c65a0a6ff3"
     },
     "source_condition_boundary": {
       "HARNESS-L2-053": "adopted generic identity/lineage/oracle/typed-edge relation after split/merge/supersede; not a design refactor entry gate",
@@ -150,5 +150,10 @@
   "read_after_comparison": {
     "commit": "fcf944f839a6269fec63f8823d98f51f1d6ec84b",
     "note": "Current adopted pair/decision read-after; candidate remains an unadopted proposal."
-  }
+  },
+  "version_target": {
+    "value": null,
+    "basis": "Legacy source statement and fixed parent L1 do not specify a target product version; no PO decision selects 1.0. Candidate is unadopted and not automatically included in a product version."
+  },
+  "pair_connection_condition": "For every impacted design pair, target-revision design update and corresponding oracle scope/revision/expected-meaning alignment must actually be present before existing Refactor connection. A planned update or marking the pair stale alone cannot pass."
 }
