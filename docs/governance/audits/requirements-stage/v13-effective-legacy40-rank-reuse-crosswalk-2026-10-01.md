@@ -71,7 +71,7 @@
 
 ## identity-filter pool内の未監査51件
 
-以下はこの固定pool上でfirst20、true21–40、および旧40行の監査記録にsource-IDが現れないrankである。意味上の未レビュー総数やclosure残量ではない。
+以下はこの固定pool上でfirst20、旧raw119基準21–40監査（順位ラベル無効）の記録ID、および旧40行の監査記録にsource-IDが現れないrankである。意味上の未レビュー総数やclosure残量ではない。
 
 |順位|Source ID|
 |---:|---|
@@ -131,6 +131,6 @@
 
 ## 検証と非主張
 
-303/255/124/131の算術、tuple一致、旧40件のID一意性、既存first20とtrue21–40を含むreviewed 80件、未監査complement 51件、順位境界（00089=23、00170=40、00171=41）を再計算してassertした。JSON syntaxとdiff checkを確認し、archive runtime/CLI/test/CIは実行していない。
+303/255/124/131の算術、tuple一致、旧40件のID一意性、first20、旧raw119基準21–40監査の記録ID、および旧40行を含むreviewed 80件、未監査complement 51件、順位境界（00089=23、00170=40、00171=41）を再計算してassertした。JSON syntaxとdiff checkを確認し、archive runtime/CLI/test/CIは実行していない。
 
 この記録は正式successor、source-condition closure、採択binding、承認、retire、authorityを作らない。既存監査の部分的所見や残差を完了扱いに変換しない。

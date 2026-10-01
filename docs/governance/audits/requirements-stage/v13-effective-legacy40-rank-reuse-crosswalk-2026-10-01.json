@@ -5072,28 +5072,6 @@
       "REQSRC-SUP-00047",
       "REQSRC-SUP-00051"
     ],
-    "true_21_40_audit_ids_as_supplied": [
-      "REQSRC-SUP-00077",
-      "REQSRC-SUP-00081",
-      "REQSRC-SUP-00097",
-      "REQSRC-SUP-00105",
-      "REQSRC-SUP-00108",
-      "REQSRC-SUP-00112",
-      "REQSRC-SUP-00114",
-      "REQSRC-SUP-00146",
-      "REQSRC-SUP-00147",
-      "REQSRC-SUP-00150",
-      "REQSRC-SUP-00151",
-      "REQSRC-SUP-00153",
-      "REQSRC-SUP-00154",
-      "REQSRC-SUP-00155",
-      "REQSRC-SUP-00161",
-      "REQSRC-SUP-00163",
-      "REQSRC-SUP-00165",
-      "REQSRC-SUP-00167",
-      "REQSRC-SUP-00170",
-      "REQSRC-SUP-00171"
-    ],
     "legacy40_ids": [
       "REQSRC-SUP-00185",
       "REQSRC-SUP-00186",
@@ -5137,7 +5115,30 @@
       "REQSRC-SUP-00459"
     ],
     "unique_reviewed_source_ids": 80,
-    "membership_note": "この件数は監査記録のsource-ID再利用を示し、意味上の完了・閉鎖を表さない。"
+    "membership_note": "この件数は監査記録のsource-ID再利用を示し、意味上の完了・閉鎖を表さない。",
+    "raw119_rank_label_21_40_audit_ids_as_supplied": [
+      "REQSRC-SUP-00077",
+      "REQSRC-SUP-00081",
+      "REQSRC-SUP-00097",
+      "REQSRC-SUP-00105",
+      "REQSRC-SUP-00108",
+      "REQSRC-SUP-00112",
+      "REQSRC-SUP-00114",
+      "REQSRC-SUP-00146",
+      "REQSRC-SUP-00147",
+      "REQSRC-SUP-00150",
+      "REQSRC-SUP-00151",
+      "REQSRC-SUP-00153",
+      "REQSRC-SUP-00154",
+      "REQSRC-SUP-00155",
+      "REQSRC-SUP-00161",
+      "REQSRC-SUP-00163",
+      "REQSRC-SUP-00165",
+      "REQSRC-SUP-00167",
+      "REQSRC-SUP-00170",
+      "REQSRC-SUP-00171"
+    ],
+    "rank_label_valid_under_131_pool": false
   },
   "unreviewed_rows": {
     "count": 51,
@@ -6010,7 +6011,7 @@
     "position_00089_is_23": true,
     "position_00170_is_40": true,
     "position_00171_is_41": true,
-    "true21_40_matches_proof": true
+    "raw119_rank_label_not_claimed_correct": true
   },
   "claim_boundary": [
     "旧rows21–40/rows41–60表示は131-pool上の順位として無効。",
