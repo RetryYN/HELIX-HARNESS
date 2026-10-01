@@ -17,7 +17,7 @@
 - source-line ledger、routing、assetに記録された現行IDs/adopted IDs/successors/decisionを各行の生entryから保持した。rowsのうちcurrent IDsを持つのは0、adopted IDsを持つのは0、successorを持つのは0。個別既存relationを変えず、authority effectは`none`。
 
 - 固定F6とcurrent mainのOS/HARNESS L2にあるRFA source family参照、OS/HARNESS L11のRFA受入行、および全機構・候補Markdownをhash固定し、選択ID、archive path、path:lineを検索した。旧requests/requirementsへのfile-family参照は、選択したintake／recognition各物理行のbindingとは別に記録した。
-- current RFA scope receiptは`HELIXOS-L2-046`の`draft_unadopted_candidate_scope_recorded`で、旧acceptance.md:37の`LEGACY-CAND-LINE-003612`一行だけを入力する。選択40行のintake／recognition path・line・atom tupleには一致しない。receiptはpartialでsource closureやsuccessorを主張せず、広いsource holdingはliveと記録する。詳細pinはpaired JSONにある。
+- Sept28 RFA scope receiptは`HELIXOS-L2-046`の`draft_unadopted_candidate_scope_recorded` metadataを持ち、旧acceptance.md:37の`LEGACY-CAND-LINE-003612`一行だけを入力する。選択40行のintake／recognition path・line・atom tupleには一致しない。receiptはpartialでsource closureやsuccessorを主張せず、広いsource holdingはliveと記録する。Sept29の現行採択は後段の訂正overlayにpinする。詳細pinはpaired JSONにある。
 - 歴史的PLAN承認は現行状態と分けた。L3-PO-1556-001はPLAN/requests/requirements/acceptance/recognitionのrevision v0.1のSHA集合を対象とし、intake ledgerは列挙されない。現行runtimeや追加のselected-row adoptionを許可しない。
 
 ## 行別意味監査
@@ -76,3 +76,14 @@
 ## 統合時の先行slice確認
 
 先行PR #2478のmerge `148307bbb0f1f7b82fc48ecff5a382621c1850cd` に含まれる2141–2180行のJSON本文をpinする。rank2180は`LEGACY-CAND-LINE-003723`。
+
+## 2026-10-02 現行採択の訂正
+
+上記のSept28 receiptは、`draft_unadopted_candidate_scope_recorded`状態と、非選択の`LEGACY-CAND-LINE-003612` / `RFA-AC-16` / acceptance line 37という1 atomのscopeを持つ歴史的証拠として保持する。現在の採択状態は[Sept29 PO decision記録](../../decisions/po-decision-2026-09-29-57candidates.md#L69)69行から読む。同記録は、以下にpinした正確なrevisionの`HELIXOS-L2-046`と対になるL11 sectionを採択する。この採択はreceiptを拡張せず、本監査の選択したrecognition/requests行へのbindingやrow-level successorを作らず、旧RFA source全体のclosure、実装、実行、受入を証明しない。
+
+| artifact | source commit | 全文SHA-256 | section SHA-256 | 現行section照合 |
+|---|---|---|---|---|
+| `docs/helix-os/L2-requirements/governance-requirements.md` · `HELIXOS-L2-046` | `318ec4a04abb3c1cc17111b3d939f913facd5fd3` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d` | 一致 |
+| `docs/helix-os/L11-acceptance/governance-acceptance.md` · `HELIXOS-L2-046` | `318ec4a04abb3c1cc17111b3d939f913facd5fd3` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0` | 一致 |
+
+section digestはdecision記録の定義に従い、identityの`###`見出しから次の同階層以上の見出し直前までを切り出し、末尾空行を除き、UTF-8/LFで符号化して末尾をLF一つにする。decision記録全文SHA-256は`c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`、69行SHA-256は`23be4662d87c825df19a1fa91ee2c0f0e851c83799d20923738936a30646302c`。

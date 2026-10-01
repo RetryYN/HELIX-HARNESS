@@ -5765,7 +5765,7 @@
     "exact_source_line_text_only_hit_rows": [
       "LEGACY-CAND-LINE-003794"
     ],
-    "family_relation_boundary": "Current OS and HARNESS L2 cite the archived RFA requests family and describe RFA as approved candidate pending canonical promotion; RFA IDs connect to current L2 family requirements. OS/HARNESS L11 describe RFA-derived conditions as unexecuted until adopted revision. A separate OS-L2-046 draft receipt maps only old RFA-AC-16 LEGACY-CAND-LINE-003612 from acceptance.md:37 and explicitly limits scope; none is one of the selected intake/recognition rows. Family/source-file relation, exact line/atom binding, PO adoption, and successor status remain distinct.",
+    "family_relation_boundary": "Current OS and HARNESS L2 cite the archived RFA requests family and describe RFA as approved candidate pending canonical promotion; RFA IDs connect to current L2 family requirements. OS/HARNESS L11 describe RFA-derived conditions as unexecuted until adopted revision. The Sept28 OS-L2-046 draft receipt maps only old RFA-AC-16 LEGACY-CAND-LINE-003612 from acceptance.md:37 and explicitly limits scope; none is one of the selected intake/recognition rows. Family/source-file relation, exact line/atom binding, PO adoption, and successor status remain distinct. 2026-09-29 PO decision記録69行は、pinしたOS L2/L11-046 pairを別途採択する。Sept28 draft receiptは歴史的記録として保持し、その1 atom scopeは拡張されず、選択したintake/recognition行にもbindingしない。",
     "receipt_jsonl_and_recursive_source_path_scan": {
       "file_count": 335,
       "RFA_candidate_exact_selected_path_records": 0,
@@ -11086,7 +11086,7 @@
         }
       ]
     },
-    "relation_boundary": "Current draft_unadopted_candidate_scope_recorded receipt maps only LEGACY-CAND-LINE-003612, old acceptance.md:37, to OS-L2/L11-046 scope. Its source file and atom are not selected intake.md or recognition.md rows; receipt states partial, no successor/closure, and holding remains live."
+    "relation_boundary": "2026-09-28のdraft_unadopted_candidate_scope_recorded receiptは、LEGACY-CAND-LINE-003612 / old acceptance.md:37の1行だけをOS-L2/L11-046 scopeに対応づける歴史的記録。2026-09-29 PO decisionは別途pin済みL2/L11-046 pairを採択した。receiptのsource fileとatomは選択したintake.mdまたはrecognition.md行ではなく、receiptが記録するpartial/no-successor/no-closureとsource holding継続のscopeは変わらない。"
   },
   "candidate_mechanism_document_search": {
     "scope": "all fixed F6/current-main docs/helix-* and helix-web/docs/helix-* Markdown plus governance/candidates Markdown; exact selected IDs and archived source path/path:physical-line scanned",
@@ -14810,5 +14810,42 @@
       "sha256": "bd5aa7a34792c8c4308193745e161ee7913abc0015d63fe75f881f59de850fd6"
     },
     "note": "統合時#2478 merge済み本文をpin。作成時baseと区別し、全量closure非生成。"
+  },
+  "current_authority_correction_2026_10_02": {
+    "correction_date": "2026-10-02",
+    "authority_effect_of_this_audit": "none",
+    "decision_record": {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "line": 69,
+      "full_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "line_sha256": "23be4662d87c825df19a1fa91ee2c0f0e851c83799d20923738936a30646302c",
+      "exact_line": "| `HELIXOS-L2-046` | 採択 | `MPR-RC-HELIXOS-L2-046-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d` | `HELIXOS-L2-046` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0` | `docs/governance/audits/requirement-registration/helixos-rfa-scope-coverage-receipt-2026-09-28.json` |"
+    },
+    "current_adoption": {
+      "identity": "HELIXOS-L2-046 / HELIXOS-L2-046 paired L11 section",
+      "status": "2026-09-29 PO decisionで、以下にpinしたrevisionの採択済み",
+      "source_sections": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "identity": "HELIXOS-L2-046",
+          "source_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "full_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+          "section_sha256": "c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d",
+          "section_rule": "identityの###見出しから、次の同階層以上の見出しの直前まで。末尾空行を除き、UTF-8/LFで符号化し、末尾はLF一つ。",
+          "current_worktree_section_matches": "一致"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "identity": "HELIXOS-L2-046",
+          "source_commit": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "full_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+          "section_sha256": "3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0",
+          "section_rule": "identityの###見出しから、次の同階層以上の見出しの直前まで。末尾空行を除き、UTF-8/LFで符号化し、末尾はLF一つ。",
+          "current_worktree_section_matches": "一致"
+        }
+      ]
+    },
+    "scope_boundary": "2026-09-28 receiptは、非選択のLEGACY-CAND-LINE-003612 / RFA-AC-16 / acceptance.md:37という別の1 atomに限定した歴史的記録として保持する。draft/unadopted/partial等のmetadataはその時点のreceipt状態を示す。2026-09-29 decisionは別途、下記のexact revisionにpinされたOS L2/L11-046 pairを採択した。この採択はreceiptを拡張せず、本監査の選択行へのbinding、選択行のsuccessor/adoption、旧RFA source全体のclosure、実装、実行、受入を証明しない。",
+    "reconciliation_rule": "2026-09-28 receipt snapshotまたは従前のcurrent-state interpretationと現在の採択状態が異なる場合、receiptは歴史的metadataとして保持し、現在の採択は2026-09-29 decision record 69行とそこに固定された正確なrevisionから読む。"
   }
 }

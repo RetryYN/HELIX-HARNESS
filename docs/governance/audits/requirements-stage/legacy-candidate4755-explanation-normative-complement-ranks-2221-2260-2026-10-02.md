@@ -9,10 +9,10 @@
 
 ## Historical approval and current relation boundaries
 
-- 旧L3-PO-1556-001はPLAN-L3-90が記録するexact v0.1 RFA候補revisionの人間承認。PLANはcurrent policy/IR/runtimeを変更せず、独立検収後のcanonical version-upを記す。Acceptance oracleは未実行、intakeはruntime完成を主張しない。現行adoption・実行許可・closureは生じない。
+- 旧L3-PO-1556-001はPLAN-L3-90が記録するexact v0.1 RFA候補revisionの人間承認。PLANはcurrent policy/IR/runtimeを変更せず、独立検収後のcanonical version-upを記す。Acceptance oracleは未実行、intakeはruntime完成を主張しない。これは旧RFA候補revisionの歴史的承認であり、後述するHELIXOS-L2/L11-046の現行採択とは別である。
 - Current HARNESS L2 `product-requirements.md:185–196`とOS L2 `governance-requirements.md:427–457,508`は旧requests documentをsource/familyとして引用し、RFA-BR-01..03やL2対応を記載する。これはselected requests physical rowの個別bindingではない。Current HARNESS/OS L11はRFA由来条件を採用revision確定後に検証する未実行条件として記載する。
-- Current OS L2/L11-046とreceipt `helixos-rfa-scope-coverage-receipt-2026-09-28.json`は一つの非選択行 `LEGACY-CAND-LINE-003612 / RFA-AC-16 / acceptance line 37`のみ。receiptはdraft/unadopted, partial, PO pending, `condition_closure:not_asserted`, successor unconfirmed, source holding live。これはselected recognition/requests rowsをbindしない。
-- HARNESS POは固定L2/L11一式に合意し、明示候補24件L2-010..033を採用。HARNESS-L2-003/004/005は一式に残る既存routing条件で、明示24候補へ重複加算されない。OS POはHELIXOS-L2-001..029本文に合意し、明示採用候補L2-014..029を列挙。L2-046とselected old source physical rowsはその明示候補集合に含まれない。8機構の250件採用を旧RFA個別rowへ移さない。
+- Sept28 receipt `helixos-rfa-scope-coverage-receipt-2026-09-28.json`は一つの非選択行 `LEGACY-CAND-LINE-003612 / RFA-AC-16 / acceptance line 37`のみを記録し、当時のdraft/unadopted, partial, PO pending, `condition_closure:not_asserted`, successor unconfirmed, source holding liveというmetadataを保持する。Sept29 decision record line 69は別途、pinされた現行HELIXOS-L2/L11-046を採択した。採択はreceiptのsource scopeを広げず、selected recognition/requests rowsをbindしない。
+- HARNESS POは固定L2/L11一式に合意し、明示候補24件L2-010..033を採用。HARNESS-L2-003/004/005は一式に残る既存routing条件で、明示24候補へ重複加算されない。Sept28のOS PO記録はHELIXOS-L2-001..029本文に合意し、明示候補L2-014..029を列挙した。これとは別にSept29 PO decision record line 69がHELIXOS-L2/L11-046を指定revisionで採択する。いずれもselected old source physical rowsを直接採択・bindingせず、8機構250件の採用を旧RFA個別rowへ移さない。
 
 ## Artifact search
 
@@ -76,3 +76,14 @@
 ## 統合時の先行slice確認
 
 同一PRの2181–2220行をcommit `1a2090854d694953c00e1c247d58247ad7b3d337` のJSON本文pinで参照する。rank2220は`LEGACY-CAND-LINE-003795`。
+
+## 2026-10-02 現行採択の訂正
+
+上記のSept28 receiptは、`draft_unadopted_candidate_scope_recorded`状態と、非選択の`LEGACY-CAND-LINE-003612` / `RFA-AC-16` / acceptance line 37という1 atomのscopeを持つ歴史的証拠として保持する。現在の採択状態は[Sept29 PO decision記録](../../decisions/po-decision-2026-09-29-57candidates.md#L69)69行から読む。同記録は、以下にpinした正確なrevisionの`HELIXOS-L2-046`と対になるL11 sectionを採択する。この採択はreceiptを拡張せず、本監査の選択したrecognition/requests行へのbindingやrow-level successorを作らず、旧RFA source全体のclosure、実装、実行、受入を証明しない。
+
+| artifact | source commit | 全文SHA-256 | section SHA-256 | 現行section照合 |
+|---|---|---|---|---|
+| `docs/helix-os/L2-requirements/governance-requirements.md` · `HELIXOS-L2-046` | `318ec4a04abb3c1cc17111b3d939f913facd5fd3` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d` | 一致 |
+| `docs/helix-os/L11-acceptance/governance-acceptance.md` · `HELIXOS-L2-046` | `318ec4a04abb3c1cc17111b3d939f913facd5fd3` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0` | 一致 |
+
+section digestはdecision記録の定義に従い、identityの`###`見出しから次の同階層以上の見出し直前までを切り出し、末尾空行を除き、UTF-8/LFで符号化して末尾をLF一つにする。decision記録全文SHA-256は`c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`、69行SHA-256は`23be4662d87c825df19a1fa91ee2c0f0e851c83799d20923738936a30646302c`。
