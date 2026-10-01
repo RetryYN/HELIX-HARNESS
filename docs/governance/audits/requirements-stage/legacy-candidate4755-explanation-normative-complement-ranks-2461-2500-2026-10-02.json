@@ -8194,7 +8194,7 @@
       "source_path": "docs/governance/candidates/scrum-operation-typed-projection-acceptance.md",
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/scrum-operation-typed-projection-acceptance.md",
       "physical_line": 32,
-      "meaning_reading": "前行の順序維持を続ける未完文。独立条件は足さない。",
+      "meaning_reading": "前行の工程列挙に続き、exact-HEAD独立review、CI、S4 decisionを列挙し、全体の順序を維持すると定める。旧工程の記録であり現行CI・実行許可へ転換しない。",
       "source_line_text": "exact-HEAD独立review、CI、S4 decisionの順序を維持する。",
       "source_line_utf8_sha256": "sha256:2f958c7eecee08d9ccda821a83937cc801b468dbf9170eb5b412dc212cda6954",
       "source_file_sha256": "cbec62e0e998088f8850d3a86c015603175fe3452b1910697492c9078412ef34",
