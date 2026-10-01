@@ -113,3 +113,5 @@ paired JSONは10 source linesと隣接physical context、tracked ledger record S
 ## 起草基準後のread-after（#2503、2026-10-02）
 
 上記10行の比較・pinはmain64a9時点の履歴である。最新main `360eec2d11dd2b838206b6096c7226aaefb8252c` では、#2503の`MPR-RC-HELIXINTELLIGENCE-L2-075-002`が000051の原文を追加し、6項目それぞれの失敗項目と欠落／不一致に対応する個別reasonをL2とL11へ保持している。選択9atomのr2 receiptをpaired JSONのcurrent_follow_upへ固定した。したがって000051の『個別reason出力が候補にない』という残差は起草時の記録であり、現時点の候補本文には保持されている。候補は未採択で、formal successor・runtime受入・全source closureは成立しない。残る9行の未証明条件を075追補から充足扱いしない。
+
+集計の注意：JSONの`summary.specific_residuals=1`は構築時点で075の即時追補対象に選んだ件数であり、未証明条件の総数ではない。他の9行のsource固有条件も各行に記録したとおり未証明で、075-002の追補によって閉じない。

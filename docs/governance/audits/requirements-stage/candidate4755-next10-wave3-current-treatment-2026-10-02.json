@@ -707,7 +707,9 @@
     "po_decision_or_authority_generated": 0,
     "old_runtime_ci_test_cli_executed": 0,
     "specific_residual": "000051: candidate 075 states per-field incomplete/rejected outcomes but omits an individual reason for each mutation rejection, required by AAFD-AC-002. This needs a limited amendment to candidate 075 if root accepts this source-level finding; no new identity proposed.",
-    "adopted_exact_condition_destinations_found": 0
+    "adopted_exact_condition_destinations_found": 0,
+    "assessment_revision": "64a9fdd2757197f84172d7eda8b9ccb7f92db86a",
+    "counting_limit": "specific_residuals=1 identifies the selected immediate amendment to 075 at the construction base; it is not the total of unverified conditions. The other nine rows also leave source-specific conditions unverified, as their assessments state."
   },
   "current_follow_up": {
     "main_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
@@ -722,6 +724,7 @@
     "l11_section_sha256": "sha256:b81bd9e52df97cc92f0f228fb9effab476012836e7e113b985641ea2c99ac08e",
     "receipt_ref": "docs/governance/audits/requirement-registration/aafd-proposal-lifecycle-coverage-receipt-2026-10-02-r2.json",
     "receipt_sha256": "4252548ec3b3769a54ac02d40e928c84e128eb26c7d2019309637cb061ba40c8",
-    "other_nine_rows": "Their source-specific unverified conditions remain pending; no closure is inferred from the 075 revision."
+    "other_nine_rows": "Their source-specific unverified conditions remain pending; no closure is inferred from the 075 revision.",
+    "source_specific_unverified_rows_remaining": 9
   }
 }
