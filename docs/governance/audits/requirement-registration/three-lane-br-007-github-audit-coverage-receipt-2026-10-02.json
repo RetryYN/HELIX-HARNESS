@@ -1,0 +1,77 @@
+{
+  "receipt_id": "DRAFT-RCPT-HELIXOS-L2-113-3L-BR-007-2026-10-02",
+  "receipt_state": "draft_unadopted_candidate_scope_recorded",
+  "authority_effect": "none",
+  "candidate_identity": "HELIXOS-L2-113",
+  "candidate_kind": "connection",
+  "proposed_product_target": "HELIX-OS",
+  "proposed_target_is_not_current_owner": true,
+  "candidate_l2_section_digest": "sha256:987f68d269e23ec0cdf46e089516d904142476e67978dfbb446784159d77ad29",
+  "candidate_l2_file_sha256": "sha256:30b124f6cc440f77deaa33c950198f7bfe48b2b958cdc3471ba5c6d98f8fb3c2",
+  "candidate_l11_section_digest": "sha256:877a05dd256dd3ed08d7b17cd1acfd86ad18529deed5664a17fb751d262c738f",
+  "candidate_l11_file_sha256": "sha256:b3a4a6c6353abb1d3d67bd633be363976a8289fa102905905fca26f35f0b27aa",
+  "candidate_source_lines_ref": "docs/governance/audits/requirement-registration/three-lane-br-007-github-audit-source-lines-2026-10-02.jsonl",
+  "candidate_source_lines_file_sha256": "sha256:dbc1f642b996a6923def8c8033323780a2ce46fef870cc84d8ddc38935e36506",
+  "source_holding_registration_id": "MPR-SH-CONFIRMED-003",
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/three-lane-br-007-github-audit-source-lines-2026-10-02.jsonl",
+  "source_atom_set_digest": "sha256:34bae040e052fb93d112f42f7cf2a66b8730700d3a70a2b1a6c4329a139a11d2",
+  "source_atom_count": 1,
+  "source_collection_scope": "One confirmed175 identity atom anchored at old source identity line63; line65 body included. No adjacent 3L-BR-008 atom, old L3 requirement identities, L12 recognition rows, provider list, runtime or test behavior is added to the source atom input.",
+  "candidate_input_atom_refs": [
+    "CONFIRMED-3L-BR-007"
+  ],
+  "candidate_input_atom_count": 1,
+  "candidate_input_scope_result": "no_loss_limited_to_single_confirmed_atom_candidate",
+  "unaccounted_atom_refs": [],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-CONFIRMED-003#CONFIRMED-3L-BR-007: holding remains live; no current owner assignment, formal successor, adoption, execution, or source closure is asserted."
+  ],
+  "condition_mapping": [
+    {
+      "source_clause": "Deterministic rules are enforced by Node gate",
+      "candidate_ref": "HELIXOS-L2-113 guarantee; HELIXOS-L11-113 oracle keeps Node deny when semantic model says pass.",
+      "coverage": "candidate condition"
+    },
+    {
+      "source_clause": "Only semantic finding is delegated to an evaluated model",
+      "candidate_ref": "HELIXOS-L2-113 requires matching evaluation evidence identity/revision/scope; HELIXOS-L11-113 checks matching and missing/stale/unknown evidence.",
+      "coverage": "candidate condition"
+    },
+    {
+      "source_clause": "GitHub audit is not a fourth provider lane or separate Control Plane",
+      "candidate_ref": "HELIXOS-L2-113/L11-113 preserves existing HELIX boundaries and prohibits introducing another lane/control-plane identity.",
+      "coverage": "candidate condition"
+    }
+  ],
+  "related_existing_requirements_not_counted_as_successors": {
+    "HELIXINTELLIGENCE-L2-073": "adopted free-text detector/direct-projection boundary; partial adjacency only",
+    "HELIXINTELLIGENCE-L2-072": "conditionally adopted candidate-generation/shadow scope; not BR-007 owner or complete coverage",
+    "HELIXLABO-L2-071": "adopted task-class/model-revision qualification from BR-008; dependency reference only",
+    "HELIXOS-L2-018": "Worker assignment/execution boundary; adjacent only",
+    "HARNESS-L2-022": "verification/acceptance contract; adjacent only"
+  },
+  "current_po_decision_ref": null,
+  "human_decision_disposition_refs": [],
+  "formal_successor_status": "not_asserted",
+  "source_atom_closure": "not_asserted",
+  "source_owner_transfer": "not_asserted",
+  "candidate_version_target": "unset",
+  "static_acceptance_scope": [
+    "Normal: deterministic Node gate deny remains when semantic model says pass.",
+    "Normal: evaluated semantic finding with matching scope/model revision remains a finding without authority/lane/control-plane creation.",
+    "Negative: reject model override, unevaluated/mismatched revision or scope, fourth lane, separate Control Plane.",
+    "Unknown: missing/stale/unknown/conflict rule, source, evaluation, scope, or revision remains unresolved.",
+    "Out of scope: executing Node gate/model, actual GitHub/CI/PR activity, actual green, implementation, L3 approval, source retirement."
+  ],
+  "base_parent_revision": "97826109918f1f9c7b24a3b91a6bb12aaba7b77d",
+  "parent_concept_revision": "docs/concept/helix-concept.md@41b9d9a455df647115505e8f6e74bfd205481a8d sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（固定Concept親。候補採択は継承しない）",
+  "parent_planning_revision": "docs/helix-os/L1-planning/system-intent.md@41b9d9a455df647115505e8f6e74bfd205481a8d sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e（固定HELIXOS-L1-001/008親。候補採択は継承しない）",
+  "source_status_preserved": "confirmed; preserved_pending_rehome",
+  "no_adoption_or_execution_claim": true,
+  "condition_body_hash_methods": {
+    "line": 65,
+    "lf_excluded_sha256": "sha256:ec3533b31742259ea0193d35ead202401de43365e9b6946851c9445446b812ed",
+    "lf_included_sha256": "sha256:d14d8aaa32559355be9a237e2c25538716b86f7696fb0144cb6709ff00a41699",
+    "prior_audit_interpretation": "The 2026-10-01 audit pin d14d… is the exact physical line digest including the trailing LF; it is valid under that method, not a source mismatch."
+  }
+}

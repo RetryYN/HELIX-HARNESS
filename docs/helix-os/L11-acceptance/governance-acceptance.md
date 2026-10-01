@@ -988,3 +988,14 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **receipt分離境界**：旧source上の`#825`、`#1370`、Census receiptの三つだけを入力集合に含める。`#206`はFR-009にある責務境界の参照として扱い、receipt入力や第四のgreen条件に追加しない。Issue番号やIssue状態だけをreceipt、authority、greenの根拠にしない。
 - **受入境界**：fixtureで照合するのは明示入力receiptの独立性、status保持、三者AND条件だけである。各監査の意味・方法・内部schema、current issueやreceiptへのmapping、owner移管、旧source全体closure、実Census／startup／materialization実行、severity、repair、merge可否を検証しない。旧runtime／CLI／test／CIは実行しない。
 - **旧sourceと未解決**：candidate input atomは`MPR-SH-CONFIRMED-003`が保持するDAC-FR-009 line 56一atomに限定する。DAC-R-011 line 66とDAC-AC-017 line 42は独立receiptと負例の関連context/oracle evidenceであり、confirmed175 holdingまたはcandidate inputではない。各source owner、formal successor、適用scope、採択、実行受入を未確定のまま維持する。
+
+
+### HELIXOS-L11-113 GitHub監査の決定的規則・semantic finding境界の受入候補（未採択・未実行）
+
+- **位置づけ・入力**：HELIXOS-L2-113の未採択候補に対する静的oracle案。scopeと対象revision、決定的規則の正本revision、Node gate結果、semantic modelのidentity/revisionおよび対象に対応する評価根拠をfixtureとして固定する。fixture内の表示は実運用結果ではない。
+- **正常例—決定的規則**：明示した決定的規則とNode gateの判定が`deny`で、semantic modelが`pass`を返すfixtureを与える。決定的判定が維持され、model resultがgate結果を上書きしない。modelのsemantic findingはそのfindingとして分けて記録できる。
+- **正常例—semantic finding**：決定的規則の判定と別に、同じ対象scope/model revisionへ結び付く評価根拠を持ったmodelのsemantic findingを与える。findingはsemantic findingとして区別され、Node gateの判定やowner authorityを作成・変更しない。既存のHELIX lane/provider/Control Plane identityをfixtureへ保ち、新しいものを追加しない。
+- **誤りを含む例**：model `pass`で決定的`deny`を相殺する、決定的規則をmodelへ委譲する、評価根拠が異なるmodel revision/scopeを評価済みと扱う、GitHub監査を第四provider laneまたは別Control Planeとして登録する場合は不合格。いずれかの条件に適合しても他条件の失敗を相殺しない。
+- **欠落・unknown例**：決定的規則のrevision、Node判定、model評価根拠、scopeまたはmodel revisionのいずれかがmissing/stale/unknown/conflictの場合、fixtureは未解決として保持する。別revisionの評価、Issue/PR状態、候補本文から補完して委譲またはpassを導かない。
+- **判定oracle**：L2が要求する三境界（Node gateによる決定的規則、評価根拠が対応するmodelへのsemantic finding限定委譲、第四provider lane/別Control Planeの不生成）を独立に照合する。Node gateの実行、modelの実評価・推論、GitHub監査、CI、Issue/PR更新、merge、実際のgreen、実装完了、L3承認またはsource retirementはこのL11候補の合格条件にしない。
+- **旧oracleとの対応**：旧3L-AC-016はmodelによるdeterministic gate上書き拒否、3L-AC-017はsemantic findingをowner/route候補として扱いbranchを直接修正しないこと、3L-AC-018はseverity作用範囲の分離を示す。severity値・停止条件の具体値は旧3L-R-17から下位設計へ渡し、本L2/L11で新設しない。旧test/runtimeは実行しない。

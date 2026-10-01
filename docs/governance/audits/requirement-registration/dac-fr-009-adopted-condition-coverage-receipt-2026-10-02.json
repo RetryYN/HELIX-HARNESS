@@ -1,0 +1,75 @@
+{
+  "receipt_id": "DAC-FR-009-HELIXOS-L2-111-ADOPTED-CONDITION-CROSSWALK-2026-10-02",
+  "receipt_kind": "read_only_authority_aware_condition_crosswalk",
+  "current_main_revision": "97826109918f1f9c7b24a3b91a6bb12aaba7b77d",
+  "authority_effect": "none",
+  "source_holding_registration_id": "MPR-SH-CONFIRMED-003",
+  "source_identity": "helix/L1-requirements/document-authority-census-requests.md::DAC-FR-009",
+  "source": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md",
+    "line": 56,
+    "file_sha256": "81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66",
+    "line_sha256_lf_excluded": "881e9a2aa919c8bb082c075f7ab2648bc78c7a185e6689af6042ca8dbe16a004",
+    "exact_text": "| `DAC-FR-009` | #825の要求materialization監査、#1370のstartup projection、#206の旧surface是正と責務を重複させずAND条件で接続する。 |"
+  },
+  "candidate_registration_history": {
+    "original": "MPR-RC-HELIXOS-L2-111-001",
+    "corrected": "MPR-RC-HELIXOS-L2-111-002",
+    "management_state": "registered_proposal",
+    "note": "Management registration state is distinct from target authority; exact candidate revision was later adopted within a limited scope."
+  },
+  "current_target_pair": {
+    "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+    "l2_file_sha256_at_current_main": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+    "l2_section_anchor": "HELIXOS-L2-111",
+    "l2_section_digest": "sha256:265d5e7d1a8c06919b21691ddbf15354e51dbc204f310f07a448a7b33dc8173b",
+    "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+    "l11_file_sha256_at_current_main": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+    "l11_section_anchor": "HELIXOS-L11-111",
+    "l11_section_digest": "sha256:8efe5d58a4ebe0c4a7078aa7b311f3f2e1a7892b125b603d6a3e45ff4fc5ef14"
+  },
+  "decision": {
+    "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+    "file_sha256_at_current_main": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+    "row": 64,
+    "exact_scope": "Three distinct evidence inputs must all explicitly pass for aggregate green. Adoption is limited to abstract AND meaning; no adoption of current receipt IDs, issuers/owners, target-version mapping, operational usability, actual issuance, or actual green state."
+  },
+  "condition_crosswalk": [
+    {
+      "source_clause": "Three independent inputs: #825 materialization audit, #1370 startup projection, Census receipt",
+      "l2_ref": "HELIXOS-L2-111 input-set bullet names the three separate inputs; identity, target revision, scope, provenance, explicit status kept separately. Current mapping remains unknown.",
+      "l11_ref": "HELIXOS-L11-111 positive fixture requires three distinct receipt identities/provenance; source-separation boundary limits inputs to these three.",
+      "status": "requirement_level_meaning_retained; current operational receipt mapping unknown"
+    },
+    {
+      "source_clause": "Aggregate green only when all three are green",
+      "l2_ref": "HELIXOS-L2-111 requires all three explicitly green; missing/stale/unknown/non-green cannot yield aggregate green.",
+      "l11_ref": "HELIXOS-L11-111 positive all-three-green, one-at-a-time negative, and missing/stale/unknown fixtures.",
+      "status": "adopted_requirement_and_oracle"
+    },
+    {
+      "source_clause": "#206 is a nonduplicating responsibility reference, not a fourth receipt",
+      "l2_ref": "HELIXOS-L2-111 separation boundary excludes #206 as a fourth receipt and leaves its current mapping unknown.",
+      "l11_ref": "HELIXOS-L11-111 receipt-separation fixture excludes #206 from aggregate inputs.",
+      "status": "adopted_requirement_and_oracle"
+    },
+    {
+      "source_clause": "Do not redefine existing receipt internals/owners",
+      "l2_ref": "HELIXOS-L2-111 leaves receipt meaning/generator/scope/authority/evidence to existing owners and does not define schema or Issue lifecycle.",
+      "l11_ref": "HELIXOS-L11-111 excludes audit internals, Issue mapping, owner transfer, and source-wide closure.",
+      "status": "adopted_boundary"
+    }
+  ],
+  "requirement_stage_conclusion": "No unmet L2/L11 condition oracle was identified for this source atom. Exact section digests match PO decision row64. L11 acceptance is an adopted contract but has not been executed; execution is outside this requirement-stage recheck.",
+  "unresolved_but_not_added_as_requirement_gap": [
+    "Current receipt identities for #825/#1370/Census",
+    "Issuers/owners/status authority and target revision/scope mappings",
+    "Actual receipt issuance or actual green result"
+  ],
+  "source_atom_closure": false,
+  "formal_successor_assignment": false,
+  "source_owner_transfer": false,
+  "source_holding_remains_live": true,
+  "fixed_f6_historical_status": "The historical fixed F6 comparison remains no_exact_fixed_pair. It does not override later current-main adoption bound by PO decision row64.",
+  "hash_policy": "Full file SHA uses exact bytes. Source line SHA excludes LF. Section digest uses UTF-8 bytes from heading to before next same/higher heading, trims trailing empty lines, and ends with one LF."
+}

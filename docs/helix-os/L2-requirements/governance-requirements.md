@@ -1387,3 +1387,16 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - **既存要求との境界**：既存のL2要求やCI・review・Censusの具体的な監査条件を再定義しない。三receiptの内部schema、green判定根拠、監査方法、receipt発行者、issue lifecycle、severity、merge admissionを定めず、GitHub Issue状態からreceipt statusを生成しない。
 - **旧source・限定範囲**：candidate input atomは旧DAC-FR-009 line 56一行だけとする。DAC-R-011 line 66とDAC-AC-017 line 42は三receiptの独立性と境界を確認する関連context/oracle evidenceであり、confirmed175 holdingやcandidate input atomとして数えない。`MPR-SH-CONFIRMED-003`を生存させ、旧source owner、formal successor、対象適用範囲、採択、実装・実行・受入およびsource全体のclosureを未確定に保つ。
 - **version_target**：未指定。旧sourceのversion 1.0を現行適用版や候補採択へ読み替えない。
+
+
+### HELIXOS-L2-113 GitHub監査の決定的規則・semantic finding境界候補（connection候補、未採択）
+
+- **authority／状態**：HELIX-OSを提案targetとする未採択candidate。仮登録は`registered_proposal`／`authority_effect: none`。本候補、register、receipt、静的acceptance案は要求採択、source ownerの移管、実装・実行許可、GitHub操作または受入を生成しない。現行ownerは未決のまま保持する。
+- **親L1・提案責務**：採択済み`HELIXOS-L1-001`／`HELIXOS-L1-008`に接続する、既存HELIX機構をまたぐ決定的監査とsemantic findingの責務境界候補。OSは三つの境界を接続する要求候補の提案targetであり、GitHub監査の全能力、各gate、model評価、laneまたはproviderの現在ownerを主張しない。
+- **対象と入力**：明示されたGitHub audit scope、対象revision、適用可能な決定的規則の正本revisionとそのNode gateによる判定、semantic findingを生成するmodel revisionと当該評価根拠のidentity・revision・scopeを対応させる。対象・規則・評価の対応が未提示ならunknownとして保持し、別taskやrevisionの記録から補完しない。
+- **要求保証**：決定的規則の判定はNode gateが行い、semantic modelの結果で変更・置換しない。semantic findingだけを、対象scope/model revisionに対応する評価根拠が明示されたmodelへ委譲する。評価根拠が一致しない、未評価、staleまたはunknownの場合は委譲を成立済みにせず、未解決を返す。この監査capabilityは既存HELIXの責務境界で扱い、第四provider laneまたは独立Control Planeを新設しない。
+- **権限・責務境界**：本候補はNode gateの規則集合や実行契約、semantic modelの評価方法・threshold、finding分類・severity・route、lane/provider数、issue/PR/CI/merge操作、現在ownerを新設しない。既存の各正本とownerが持つ意味・権限を接続し、別ownerへ移さない。候補はGitHubやIssue状態から要求authorityを生成しない。
+- **既存要求との関係**：`HELIXOS-L2-015`のauthority/source記録、`HELIXOS-L2-018`のWorker割当・実行統制、`HELIXOS-L2-020`の検収/CI運転を置換・拡張しない。`HELIXINTELLIGENCE-L2-073`は自由文のみからのdetector置換・direct projection境界、`HELIXLABO-L2-071`は3L-BR-008に由来するtask class別qualificationの限定scopeとして参照し、本sourceの後継やowner決定に読み替えない。HELIXINTELLIGENCE-L2-072のshadow評価候補も本候補の採択・運用根拠ではない。
+- **旧sourceとの対応**：`LEGACY-ASSET-A6926200F28B26300432`、旧`three-lane-cloud-governance-requests.md:63,65`の3L-BR-007一atomを起点とする。決定的規則をNode gateに保持すること、semantic findingだけを評価済みmodelへ委譲すること、GitHub監査を第四provider laneまたは別Control PlaneにしないことをL2保証として保持する。旧L3の3L-R-15/16/17は、Node決定的規則の対象、semantic findingの非修正提示、severityと作用範囲の具体化を担う下位refinementとして対応を記録し、候補本文へ別の数値・rule listを取り込まない。旧3L-AC-016/017/018はL11 oracleの由来として参照し、runtime実行証拠にはしない。
+- **保持点・変更点・理由**：保持するのは三条件の責務分離と第四lane/別Control Planeの排除である。変更するのは、旧3社provider配置・cloud実装・GitHub動作の固定を現行lane、Worker、requirement/oracle/evaluation recordへ無断転記せず、明示scope/revisionに結ぶ要求境界として再導出する点である。理由は現行Conceptと機構境界が旧provider配置を現行owner/実装として採択しておらず、sourceにないlaneやruntimeを再導入できないためである。提案target、source owner、対象版、primary ownerの選定は未決で、POの対象revision判断へ提示する。
+- **version_target**：未指定。旧sourceの版や旧層番号を現行適用版・採択状態へ読み替えない。
