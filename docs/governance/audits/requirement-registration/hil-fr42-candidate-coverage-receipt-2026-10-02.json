@@ -6,11 +6,11 @@
   "requirement_kind": "unit",
   "candidate_semantic_digest": "sha256:4b1ea678ac31ee96d8881d4efcb5c49ab6676c5d9a142389ece5a09f4b592ffb",
   "candidate_digest_rule": "L2の「### HARNESS-L2-077 」見出しから次の同階層「###」見出しまたはファイル末尾まで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
-  "candidate_l2_file_sha256": "sha256:1404696f021cace28adbfc6d1edf090cba788eed5baa1f5fa474f333eb45f732",
+  "candidate_l2_file_sha256": "sha256:fa32980adbc24066676d9075ea1433c96020bcd0e7ff4aebbcc58d67818f082d",
   "paired_acceptance_identity": "HARNESS-L2-077",
   "paired_acceptance_digest": "sha256:14ab521e41a2e28420a8597dd1b532e7a8b4dd9b9c5cc0c13d9631157eff87fc",
   "l11_digest_rule": "L11の「### HARNESS-L2-077 」見出しから次の同階層「###」見出しまたはファイル末尾まで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
-  "l11_file_sha256": "sha256:bcea73950c5ec4c0ed0992de983048367c908222801df5b12d7a77247d48b867",
+  "l11_file_sha256": "sha256:1905f2f524cd007dd16702ee6e1e47407eb073f2e90d6ed063e66feb333c3cfd",
   "source_lines_ref": "docs/governance/audits/requirement-registration/hil-fr42-fr45-candidate-source-lines-2026-10-02.jsonl",
   "source_atom_set_digest": "sha256:11028e390173bb960acf0604e63aa73063affe9bac538178df280bf19b0fe0c1",
   "source_atom_set_digest_rule": "atom_id昇順。各atomを atom_id + 半角空白 + source_line_sha256のsha256:接頭辞を除いた64桁hex + LF として連結しUTF-8 SHA-256を計算する。",
@@ -162,12 +162,12 @@
   "registered_at": "2026-10-02T07:14:53+09:00",
   "source_atom_file_sha256": "sha256:2c1691a7046ae3e7d195ed6cfc65397a8000e7f1eb83efa5b02cfefb35817bdf",
   "current_bytes_read_after": {
-    "comparison_commit": "a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20",
-    "l2_full_file_sha256": "sha256:1404696f021cace28adbfc6d1edf090cba788eed5baa1f5fa474f333eb45f732",
-    "l11_full_file_sha256": "sha256:bcea73950c5ec4c0ed0992de983048367c908222801df5b12d7a77247d48b867",
+    "comparison_commit": "64a9fdd2757197f84172d7eda8b9ccb7f92db86a",
+    "l2_full_file_sha256": "sha256:fa32980adbc24066676d9075ea1433c96020bcd0e7ff4aebbcc58d67818f082d",
+    "l11_full_file_sha256": "sha256:1905f2f524cd007dd16702ee6e1e47407eb073f2e90d6ed063e66feb333c3cfd",
     "concept_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
     "parent_l1_sha256": "sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
     "l1_decision_file_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
   },
-  "root_integration_note": "Historical fixed before-append pins retain original f38 comparison. Latest main a93 is preserved as full prefix; only candidates077/078 appended. Shared current full-file pins refreshed; semantic sections unchanged."
+  "root_integration_note": "Historical fixed-before pins remain unchanged. Latest main64a9 is preserved as a full prefix; only077/078 candidates and their registration rows are added. Shared current full-file pins refreshed after078 correction;077 section unchanged. No adoption or source closure is claimed."
 }

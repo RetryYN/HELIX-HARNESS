@@ -119,7 +119,7 @@
   "po_decision_material": {
     "source_semantics": "HIL-FR-45 requires all thirteen named semantic fields to be preserved through typed edges; field-level N/A/omission is not an exception. N/A is one of six listed change/disposition operations, each applicable only with before/after digest, disposition of every source atom, downstream stale, and review-authority receipt.",
     "options": {
-      "A": "Adopt this candidate pair for the exact selected source-line condition and preserve unknown scope/applicability as written; no version target is set.",
+      "A": "Adopt this candidate pair for the exact selected source-line condition with all thirteen fields mandatory; no version target is set.",
       "B": "Keep the source atom pending in MPR-SH-IR-003 until PO selects target scope or meaning; do not claim this candidate maps or closes it.",
       "C": "If PO intends a narrower semantic scope, return an explicit source-atom partition and changed-meaning proposal for this line before disposition; this candidate cannot silently claim partial coverage."
     },
@@ -162,14 +162,14 @@
   "registered_at": "2026-10-02T07:14:53+09:00",
   "source_atom_file_sha256": "sha256:2c1691a7046ae3e7d195ed6cfc65397a8000e7f1eb83efa5b02cfefb35817bdf",
   "current_bytes_read_after": {
-    "comparison_commit": "a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20",
-    "l2_full_file_sha256": "sha256:1404696f021cace28adbfc6d1edf090cba788eed5baa1f5fa474f333eb45f732",
-    "l11_full_file_sha256": "sha256:bcea73950c5ec4c0ed0992de983048367c908222801df5b12d7a77247d48b867",
+    "comparison_commit": "64a9fdd2757197f84172d7eda8b9ccb7f92db86a",
+    "l2_full_file_sha256": "sha256:fa32980adbc24066676d9075ea1433c96020bcd0e7ff4aebbcc58d67818f082d",
+    "l11_full_file_sha256": "sha256:1905f2f524cd007dd16702ee6e1e47407eb073f2e90d6ed063e66feb333c3cfd",
     "concept_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
     "parent_l1_sha256": "sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
     "l1_decision_file_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
   },
-  "root_integration_note": "Historical fixed before-append pins retain original f38 comparison. Latest main a93 remains the full prefix; current candidate 078 section and shared full-file pins are refreshed for the 13-field typed-edge correction. Candidate adoption and source closure remain unclaimed.",
+  "root_integration_note": "Historical fixed-before pins remain unchanged. Latest main64a9 is preserved as a full prefix; only077/078 candidates and their registration rows are added. Shared current full-file pins refreshed after078 correction;077 section unchanged. No adoption or source closure is claimed.",
   "review_correction": {
     "finding": "Old HIL-FR-45 line 135 requires all thirteen typed semantic fields. N/A is a listed requirement-change operation with receipt conditions, not a per-field applicability exception.",
     "response": "HARNESS-L2-078 and L11-078 now require all thirteen fields with typed edges and reject item-level N/A/omission. The listed N/A change operation and its full evidence receipt condition remain required.",
