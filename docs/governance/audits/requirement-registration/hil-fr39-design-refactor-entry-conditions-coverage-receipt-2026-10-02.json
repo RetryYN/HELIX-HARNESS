@@ -24,21 +24,21 @@
   "candidate_pair": {
     "l2": {
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-      "full_file_sha256": "a3fe542c5c8188829c02abd56f325b2a0e3ec46f0597665a196c19c92aa01eda",
+      "full_file_sha256": "289782e37efe7153ce0a00ffdfe9f09eb5eba36d678b5730105cffaf4c7964a1",
       "section_heading": "HARNESS-L2-068",
       "section_lines": [
-        1277,
-        1291
+        1290,
+        1304
       ],
       "section_sha256": "c1941f15f4aafdea2ed2809aff01ab70b44997a816fe59f9cd5ee3b218333e1a"
     },
     "l11": {
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-      "full_file_sha256": "608edddd3c2a0350bbc43244c40ad96e054a62ffbc261d87299d0cff78de424f",
+      "full_file_sha256": "bea1e35b74767e7f0f8dc0af9ce18ab0c11dda45c744e20571d39367a42a6b34",
       "section_heading": "HARNESS-L2-068",
       "section_lines": [
-        991,
-        999
+        1002,
+        1010
       ],
       "section_sha256": "33ae6a20f363a29df1fd5421b3f779cc00f6b8de42e15edf44b292c65a0a6ff3"
     },
@@ -156,5 +156,5 @@
     "basis": "Legacy source statement and fixed parent L1 do not specify a target product version; no PO decision selects 1.0. Candidate is unadopted and not automatically included in a product version."
   },
   "pair_connection_condition": "For every impacted design pair, target-revision design update and corresponding oracle scope/revision/expected-meaning alignment must actually be present before existing Refactor connection. A planned update or marking the pair stale alone cannot pass.",
-  "current_comparison_base_commit": "44f41d070322ab8308777c0ba22368914a9a9373"
+  "current_comparison_base_commit": "f38bde044a7dfbf12aec0203b21a9384eef6ad8f"
 }
