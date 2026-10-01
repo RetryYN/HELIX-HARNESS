@@ -45003,7 +45003,7 @@
       "exact_source_line_text": "文脈で用い、既存schemaのdecision名はそのまま参照する。相談・叱責・曖昧なGOを指示や承認に昇格しない。",
       "semantic_family": "旧HELIX Requirement Formation and Scoped Admission candidates (acceptance / intake)",
       "semantic_function": "Decision vocabulary and non-promotion list",
-      "semantic_reading": "ここでは「文脈で用い」の内容として、既存schemaのdecision名をそのまま参照し、相談・叱責・曖昧なGOを指示や承認に昇格しないと記す。",
+      "semantic_reading": "前行の文に「文脈で用い」と続く。既存schemaのdecision名はそのまま参照し、相談・叱責・曖昧なGOを指示や承認に昇格しない。",
       "legacy_context": {
         "section_heading": null,
         "nearby_physical_lines": [
@@ -72477,5 +72477,15 @@
   ],
   "initial_worktree_creation_base": "e7dd2eb65bfde91b55ebaa8b786fbe384a24ca69",
   "audit_pin_base": "e7dd2eb65bfde91b55ebaa8b786fbe384a24ca69",
-  "rebased_from_creation_base_before_audit": false
+  "rebased_from_creation_base_before_audit": false,
+  "integration_predecessor": {
+    "rank": 2220,
+    "candidate_source_line_id": "LEGACY-CAND-LINE-003795",
+    "prior_audit_pin": {
+      "commit": "1a2090854d694953c00e1c247d58247ad7b3d337",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-2181-2220-2026-10-02.json",
+      "sha256": "03fd699c87d224ca8640c49564a20f8915d550dc1e4bc0f6e7cb454cc004186a"
+    },
+    "note": "同一PRの直前slice本文をpin。作成時baseと区別し、全量closure非生成。"
+  }
 }
