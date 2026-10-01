@@ -76,12 +76,14 @@
       "preceding_id": "LEGACY-CAND-LINE-000926",
       "this_first_rank": 541,
       "this_first_id": "LEGACY-CAND-LINE-000928",
-      "adjacent_audit_id": null,
-      "adjacent_audit_path": null,
+      "adjacent_audit_id": "legacy-candidate4755-explanation-normative-complement-ranks-501-540-2026-10-01",
+      "adjacent_audit_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-501-540-2026-10-01.json",
       "audit_available_at_origin_main": false,
-      "audit_commit_object_verified": false,
+      "audit_commit_object_verified": true,
       "claim_prior_semantic_verification": false,
-      "note": "No rank 501–540 audit artifact was present in origin/main or the inspected local 501–540 worktree; only the independently reconstructed boundary ID is recorded."
+      "note": "同一PRにrank501–540のpaired auditを統合し、rank540=000926→rank541=000928と選択ID重複0を静的照合した。独立review結果はこの記録から生成しない。",
+      "adjacent_audit_sha256": "31fa9212c40a9921d826c417c330fcd704dc8c17accb90c2cf23e7f027a96b8b",
+      "adjacent_audit_commit": "31ddb18a16b6abd1c1775c95540ef6beea1bfab9"
     }
   },
   "pinned_reconstruction_inputs": [
@@ -511,8 +513,8 @@
     "Marker-negative is a lexical result; line meaning was read in archive section context.",
     "Family-level or adjacent current requirements may be adopted in the fixed F6 set, but the selected source line IDs have no demonstrated individual crosswalk/successor/coverage binding.",
     "Historical Issue/plan/status/layer fields and source claims do not establish current target authority, execution, or closure.",
-    "Adjacent ranks 501–540 audit was unavailable at origin/main and in the inspected local 501–540 worktree; only rank 540 boundary ID is pinned.",
-    "Archive was read only; no old source, runtime, workflow, CLI, hook, test, or CI was executed."
+    "Archive was read only; no old source, runtime, workflow, CLI, hook, test, or CI was executed.",
+    "Adjacent rank 501–540 artifact is included in this PR and boundary-checked; independent review and adoption remain separate."
   ],
   "rows": [
     {
