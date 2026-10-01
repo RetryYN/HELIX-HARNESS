@@ -66,3 +66,7 @@
 - 旧archiveはread-only。旧runtime・test・CIは実行していない。
 
 詳細なcontext、source/asset/routing hash、全24 F6本文とPO/receipt検索pinはpaired JSON `legacy-candidate4755-explanation-normative-complement-ranks-1781-1820-2026-10-02.json` に記録。
+
+## 最新baseの先行slice
+
+#2473 merge `45cdb3e3a92cccb52b7dce88fe3bb14406e8dfb6` の1741–1780 JSONをSHAで固定し、末尾rank1780と本slice先頭1781の連続性を確認。初期基点の未収載と区別した。
