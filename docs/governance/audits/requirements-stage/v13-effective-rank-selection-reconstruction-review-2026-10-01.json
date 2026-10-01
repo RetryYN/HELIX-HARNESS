@@ -679,7 +679,7 @@
     ]
   },
   "prior_first20": {
-    "commit": "75fb5f357e45e1cdf911b745b9fba5d6ae077255",
+    "commit": "7ebcbbb0864e331943b993f3b145fddb77f505a2",
     "artifacts": [
       {
         "path": "docs/governance/audits/requirements-stage/v13-effective-next10-condition-audit-2026-10-01.json",
@@ -714,7 +714,7 @@
     ],
     "overlap_with_corrected_positions21_40": [],
     "first20_membership_unchanged": true,
-    "queue_lineage_correction_commit": "75fb5f357e45e1cdf911b745b9fba5d6ae077255",
+    "queue_lineage_correction_commit": "7ebcbbb0864e331943b993f3b145fddb77f505a2",
     "note": "Pin the corrected first20 artifacts after the queue file/lineage correction at this commit; both 10-row artifacts retain the same twenty source IDs."
   },
   "corrected_positions_21_40": [

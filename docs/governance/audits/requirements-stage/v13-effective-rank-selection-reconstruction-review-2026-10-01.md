@@ -4,7 +4,7 @@
 
 queueの303行から `priority=primary_residual` かつ `queue_state=unresolved_for_closure_work` の255行を取り、32件のfocused auditをsource identityで再照合した。raw ID tokenだけの一致を既監査扱いせず、完全なsource identity tupleが確認できた124行だけを除く。残るeffective unreviewed poolは131行である。固定first20の次の正しいposition 21–40はJSONの20 source rowsで、ID順は `REQSRC-SUP-00077`, `REQSRC-SUP-00081`, `REQSRC-SUP-00089`, `REQSRC-SUP-00097`, `REQSRC-SUP-00105`, `REQSRC-SUP-00108`, `REQSRC-SUP-00112`, `REQSRC-SUP-00114`, `REQSRC-SUP-00146`, `REQSRC-SUP-00147`, `REQSRC-SUP-00150`, `REQSRC-SUP-00151`, `REQSRC-SUP-00153`, `REQSRC-SUP-00154`, `REQSRC-SUP-00155`, `REQSRC-SUP-00161`, `REQSRC-SUP-00163`, `REQSRC-SUP-00165`, `REQSRC-SUP-00167`, `REQSRC-SUP-00170`。
 
-先行first20 bundle（commit `75fb5f357e45e1cdf911b745b9fba5d6ae077255`）との重複は0件。既存の「rows21–40」audit artifactは異なるsliceを記録している。`REQSRC-SUP-00089`（archive line119）を含め、`REQSRC-SUP-00171`（line221）は正しいpoolではposition41になる。意味比較の内容をこのレビュー記録が置換するものではない。
+先行first20 bundle（commit `7ebcbbb0864e331943b993f3b145fddb77f505a2`）との重複は0件。既存の「rows21–40」audit artifactは異なるsliceを記録している。`REQSRC-SUP-00089`（archive line119）を含め、`REQSRC-SUP-00171`（line221）は正しいpoolではposition41になる。意味比較の内容をこのレビュー記録が置換するものではない。
 
 ## Joinの根拠
 
@@ -29,6 +29,6 @@ raw bytes中のID token regexは136件を拾うが、そのままではidentity 
 
 ## 固定first20とclaim boundary
 
-先行bundle `75fb5f357e45e1cdf911b745b9fba5d6ae077255` の2 JSON artifactはcommit上のSHA-256をJSONにpinし、20 IDを再読した。重複はなく、first20のmembershipは維持される。
+先行bundle `7ebcbbb0864e331943b993f3b145fddb77f505a2` の2 JSON artifactはcommit上のSHA-256をJSONにpinし、20 IDを再読した。重複はなく、first20のmembershipは維持される。
 
 この記録は順位とsource identity joinだけを再構成する。source conditionの意味比較、formal successor、採択、closure、実装・受入authority、authority変更を主張しない。旧runtime、CLI、test、CIは実行していない。
