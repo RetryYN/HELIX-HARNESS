@@ -1030,3 +1030,12 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **意味選択を要する条件**：PR IDが全event classで必須という旧行の逐語保持案Aと、選択scopeでevent classに対する適用可能性を示し、PR IDを該当classに限り必須とする案BをPO判断材料として残す。推奨はB。いずれの選択でも、適用可能facetのmissing/mutated個別fixtureと正常対照を維持する。providerの物理field名、enum、tuple schema、全CI拡張はoracleへ固定しない。
 - **境界**：このoracleは選択generation identityのfacet検査に限る。queue上限・TTL・置換・cancellation・post-main/review consumer・receipt再構築・live GitHub rehearsal・runtime/database/provider adapterを検証しない。旧AC-003/005/007を本受入へ追加しない。旧runtime/test/CLI/CIは実行しない。
 - **旧source・限定範囲**：`LEGACY-ASSET-0B75B173425C200EA8CD`の旧`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md:14`（file SHA-256 `7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc`、line SHA-256 `77c358b5bc3253bac4d39a55685fae93570d3e4288ca161de1a195b676eea412`）のCIG-AC-001一行だけをoracle sourceとする。隣接source条件は関連範囲へ混ぜず、生存中`MPR-SH-CANDIDATE-003`を保持する。formal successor、source owner、event applicability、採択、実行受入、条件closureは未確定である。
+
+### HELIXOS-L2-115 終端runへの遅着Worker結果を受理しない — L11受入候補
+
+**状態・範囲**：L2-115と対になる未採択・未実行候補。旧HIL-FR-27の「失効runのlate resultをcommitしない」atomだけを扱う。旧Supervisor、IPC、Node/Python、JSON Lines、固定schema／digest／receipt／fenceの実装や実行を要求しない。
+
+- **正常例**：同じassignment／attemptに対し、既存契約に従って実行中resultと終端理由の記録を与える。終端前に返り、現在のassignment・source/revisionと対応し、既存authorityおよび選択済みHARNESS oracleを満たすresultだけが既存契約で評価可能であることを確認する。L2-115自体はresultの正しさや受理を判定しない。
+- **終端後の遅着例**：原文由来の必須条件は失効run後のlate result拒否であり、timeout、cancel、process終了およびその他の既存契約上の終端後も同様に扱う部分は本候補が提案する限定一般化として照合する。該当する同じrunが既存契約で終端した後、成功を示す遅着resultを与える。既存の終端状態とcanonicalなaccepted stateが変わらず、resultがそのattemptの未受理／stale証拠として保持されることを確認する。遅着resultだけで成功、完了、現在のassignmentへの適用が成立する構成を不成立とする。
+- **重複・取り違え例**：終端後のduplicate result、別assignment／attempt／source／revisionのresult、または終端理由との関係が不明なresultを与える。結果の到着順、worker自己申告、digest一致だけで現在の成果へ採用した場合は不成立とする。識別できない場合はunknown／未完を保つ。
+- **差戻しと境界**：不一致resultは該当OS assignment／発生元へ戻し、元の停止理由と未完義務を残す。HARNESS oracle、SECURITY authority、event schema、transport、追加承認、無関係なassignment停止を新設しない。文書上のoracleは設計受入条件であり、runtime実装または実行結果を意味しない。
