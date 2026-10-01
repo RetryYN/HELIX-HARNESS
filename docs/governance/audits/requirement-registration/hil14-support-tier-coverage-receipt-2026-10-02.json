@@ -24,26 +24,26 @@
         "sha256": "sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
         "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md"
       },
-      "candidate_semantic_digest": "sha256:89229ad55e389efab42a9e9bda7454149b4800b3520b456f289ed15ee1d62c29",
+      "candidate_semantic_digest": "sha256:c53c35381eed5753c459f23a8fed7fc9a411f66907609e96600085dea82dc44d",
       "candidate_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-064",
-      "candidate_file_sha256": "sha256:6bab0d72be55c0bf46d1d3b73fdd303c982abb5ad988a6d28fabea4137791e19",
+      "candidate_file_sha256": "sha256:94e476d2792da0200b2a334e591b02e08401b845a84794b6990e039775968bcf",
       "candidate_section_boundaries": {
         "start_line": 1250,
         "end_line": 1259,
         "start_heading_prefix": "### HARNESS-L2-064 "
       },
       "acceptance_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-      "acceptance_file_sha256": "sha256:a5296268e41a12f6d334cd0e01f629082e5dbb01c4c236a7090b763f90a653f0",
-      "acceptance_section_sha256": "sha256:7e66852d10d4438cccc30b0b99a3afd37625386925c9c1d59b9fe943d84091c4",
+      "acceptance_file_sha256": "sha256:0f682b3fdbb7bf43baa33af68a215bf369d56a562d12a496b8c88cac9563dffd",
+      "acceptance_section_sha256": "sha256:3518119ce51aca9831ec46453d4300597337a8df3f523fea7976a74c4b5c9fb7",
       "acceptance_section_boundaries": {
         "start_line": 965,
-        "end_line": 977,
+        "end_line": 980,
         "start_heading_prefix": "### HARNESS-L2-064 "
       },
       "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil14-support-tier-source-lines-2026-10-02.jsonl#HIL14-SUPPORT-SLICE-TR-04,HIL14-SUPPORT-SLICE-FR-34-COMMON-FIXTURE,HIL14-SUPPORT-SLICE-NFR-09,HIL14-SUPPORT-SLICE-NFR-19",
       "source_atom_set_digest": "sha256:0d74e77fe738b5a1653c952d7a6fc1da6688c13a54af98ac65611fcdf49b4711",
       "source_atom_count": 4,
-      "source_collection_scope": "旧HIL-14の4つの選択source meaning slicesだけ：tier labelと非core shell境界、同一fixtureのprofile parity関係、Linux core/no domain fork、Linux completionとcross-tier non-inference。HAC-HIL-14aの3 OS positive oracleは参照条件として保持し、3 OSすべてが定義scopeの場合にのみ全3 profile greenが成立条件。3 OS未満への限定は同HACの履行でなく未決意味差であり、候補はscope選択もformal successorも主張しない。fixture内個別oracle、HAC-HIL-14b/c・HAT全体・supply-chain・旧IR全体は選択外でholdingに残す。",
+      "source_collection_scope": "旧HIL-14の4つの選択source meaning slicesだけ：HIL-TR-04のLinux primary/macOS first-class portable/Windows compatibility tierとWSL/Git Bash/PowerShellをcore前提にしない条件、HIL-FR-34の同一fixtureを3 adapterへ適用してprofile別OS contract result/adapter violationへ対応づける関係（fixture個別oracleは除外）、HIL-NFR-09のLinux primaryで全core gate実行・macOS/Windows差異をadapter contract testで検出・domain logic fork禁止、HIL-NFR-19のLinux core completion・macOS/Windows未実施明示・Windows wrapperをLinux evidenceにしない条件。HAC-HIL-14aは3 OSすべてが定義scopeの場合に3 profile greenが必要という原文条件を保持するが、製品/repository/profile scope選択やformal successorは主張しない。HAC-HIL-14b/c、HAT全体、個別fixture、supply-chain、旧IR全体はsource holding。",
       "carried_atom_refs": [
         "HIL14-SUPPORT-SLICE-TR-04",
         "HIL14-SUPPORT-SLICE-FR-34-COMMON-FIXTURE",
