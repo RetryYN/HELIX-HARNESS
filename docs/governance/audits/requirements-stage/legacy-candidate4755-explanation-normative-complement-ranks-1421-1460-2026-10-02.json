@@ -90,12 +90,12 @@
     "prior_id": "LEGACY-CAND-LINE-002362",
     "paired_audit_available_at_base": false,
     "claim_prior_semantic_verification": true,
-    "note": "直前ranks 1381–1420 paired auditを同一PRに収載し、#2467 prior pin更新後commit 306d642c0b2e8520a4042aebab202815bf256056をSHA-256でpin。境界IDは全母集団再構成でも確認。",
-    "prior_audit_commit": "306d642c0b2e8520a4042aebab202815bf256056",
+    "note": "直前ranks1381–1420 paired auditを同一PRに収載し、F1の4行修正後commit 380e9b09627fe6282be85fde275017c6b1a81399をSHA-256でpin。境界IDは全母集団再構成でも確認。",
+    "prior_audit_commit": "380e9b09627fe6282be85fde275017c6b1a81399",
     "prior_audit_json_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1381-1420-2026-10-02.json",
-    "prior_audit_json_sha256": "77cc53e2b6568ed7c7cf7a23006992b58d5dab641f83f2a09ff8d77919434551",
+    "prior_audit_json_sha256": "0db1d64ad664ae8f93d6be28a547ec49a7ad3b82239da0eee5c1588bc7628881",
     "prior_audit_md_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1381-1420-2026-10-02.md",
-    "prior_audit_md_sha256": "e419dad7b75a7715c00b33d6e381943a59532c2d493c280360ee34f7dbf1e99f"
+    "prior_audit_md_sha256": "cc4ea16c425f00928e533f38659ee7d3c81f38727c848f1e2bcfcdc0c50fe7c8"
   },
   "pinned_reconstruction_inputs": [
     {
@@ -1021,7 +1021,7 @@
       "physical_line_number": 28,
       "exact_source_line_text": "受信runtimeは通知本文を作業正本として使わず、Issue、PLAN、PR、assignment、lease、HEADなどのtyped pointerから",
       "semantic_family": "HMC-request-authority-reread",
-      "semantic_reading": "受信runtimeは通知本文を作業正本にせず、Issue/PLAN/PR/assignment/lease/HEAD等typed pointerから正本を再取得する条件の開始。",
+      "semantic_reading": "この行は受信runtimeに通知本文を作業正本として使わないことを求め、Issue・PLAN・PR・assignment・lease・HEADなどのtyped pointerを再取得元として列挙し始める。再取得の述語とstale時の扱いは次の物理行へ続く。",
       "legacy_context": {
         "section_heading": "### HMC-BR-002 正本への再取得",
         "nearby_physical_lines": [
@@ -1185,7 +1185,7 @@
       "physical_line_number": 33,
       "exact_source_line_text": "利用者は、memoryがproject固有の要求・設計・受入条件・運用規則・ユーザー嗜好・provider native memoryを正本として",
       "semantic_family": "HMC-request-authority-separation",
-      "semantic_reading": "memoryがproject要求・設計・受入・運用規則・嗜好・provider memoryを正本として保持/投影しないことを確認可能にする旧要求の開始。",
+      "semantic_reading": "この行は利用者が確認する対象として、memoryとproject固有の要求・設計・受入条件・運用規則・ユーザー嗜好・provider native memoryを列挙する。「正本として」の後の述語は次の物理行へ続く。",
       "legacy_context": {
         "section_heading": "### HMC-BR-003 責務境界の保全",
         "nearby_physical_lines": [
@@ -1515,7 +1515,7 @@
       "physical_line_number": 38,
       "exact_source_line_text": "利用者は、相談、質問、仮説、叱責、作業依頼、AIの解釈を、PO authority、ADR decision、human approval、completion",
       "semantic_family": "HMC-request-no-authority-promotion",
-      "semantic_reading": "相談、質問、仮説、叱責、作業依頼、AI解釈をPO authority/ADR/human approval/completion claimへ自動昇格させない条件の開始。",
+      "semantic_reading": "この行は相談・質問・仮説・叱責・作業依頼・AIの解釈を一方に、PO authority・ADR decision・human approval・completionを他方に置く文の前半である。completionの続きと述語は次の物理行にあり、この行だけで処置を確定しない。",
       "legacy_context": {
         "section_heading": "### HMC-BR-004 誤った権威化の防止",
         "nearby_physical_lines": [
@@ -2007,7 +2007,7 @@
       "physical_line_number": 48,
       "exact_source_line_text": "利用者は、providerごとのnative memory／session history／user設定がHELIXの共有coordination memoryやauthorityへ",
       "semantic_family": "HMC-request-provider-boundary",
-      "semantic_reading": "provider native memory、session history、user設定が共有coordination memory/authorityへ暗黙混入しないことを確認可能にする条件の開始。",
+      "semantic_reading": "この行はproviderごとのnative memory・session history・user設定と、HELIX共有coordination memoryやauthorityとの関係を述べ始める。末尾は「authorityへ」で切れ、混入の扱いは次の物理行へ続く。",
       "legacy_context": {
         "section_heading": "### HMC-BR-006 provider独立性",
         "nearby_physical_lines": [
@@ -6729,7 +6729,7 @@
       "physical_line_number": 73,
       "exact_source_line_text": "  発言の帰属を再解釈せず、current memory view／startup guidance／approval／merge admissionから隔離する。",
       "semantic_family": "HMC-R15-authority-isolation",
-      "semantic_reading": "発言帰属を再解釈せず、authority/personalization/runtime interpretation等をcurrent memory view/startup/approval/merge admissionから隔離する。",
+      "semantic_reading": "この行は発言の帰属を再解釈せず、current memory view・startup guidance・approval・merge admissionから隔離すると述べる。隔離対象の列挙は前の物理行にあり、この行だけでは対象を確定しない。",
       "legacy_context": {
         "section_heading": "## HMC-FR-005 legacy隔離とprovider境界",
         "nearby_physical_lines": [
