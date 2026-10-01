@@ -2444,7 +2444,7 @@
         "text": "## 現在地"
       },
       "exact_source_line_text": "HELIXは段階的にv4.0へ移行します。V-model、CI、doctor、独立review、GitHub／DB連携など既に動く機能は",
-      "semantic_reading": "HELIXがv4.0へ段階的に移る構想を説明する。現時点で移行完了を示す行ではない。",
+      "semantic_reading": "HELIXが段階的にv4.0へ移行すると説明し、V-model、CI、doctor、独立review、GitHub／DB連携など既に動く機能を列挙する。この物理行は「機能は」で終わり、扱いの述語が次行へ続く。",
       "physical_context": {
         "previous_physical_line": "",
         "next_physical_line": "Assurance Kernelとして継承します。常駐レーン、provider自動配車、機能単位release、運用後の自動改善などは、"
@@ -2527,7 +2527,7 @@
         "text": "## 現在地"
       },
       "exact_source_line_text": "Assurance Kernelとして継承します。常駐レーン、provider自動配車、機能単位release、運用後の自動改善などは、",
-      "semantic_reading": "既存とするV-model、CI、doctor、独立review、GitHub／DB連携をAssurance Kernelとして継承する案を述べ、文は次の物理行へ続く。",
+      "semantic_reading": "前物理行から続く文をAssurance Kernelとして継承するという述語で閉じ、常駐レーン、provider自動配車、機能単位release、運用後の自動改善などを別に列挙する。この物理行は読点で終わり、その扱いが次行へ続く。",
       "physical_context": {
         "previous_physical_line": "HELIXは段階的にv4.0へ移行します。V-model、CI、doctor、独立review、GitHub／DB連携など既に動く機能は",
         "next_physical_line": "各要件と検証が揃ったものから段階的に有効化します。"
@@ -3627,7 +3627,7 @@
         "text": null
       },
       "exact_source_line_text": "authority_note: \"本文の未承認表記は承認前の原稿を保持したもの。PLANの候補承認記録を参照し、current Concept・Requirement IR・runtimeへの昇格と区別する。L1分類はL2要求の合意済みを意味しない。\"",
-      "semantic_reading": "前frontmatterのdraft表記は承認前原稿を保ったものと説明し、旧Planの候補承認記録を参照すること、現行Concept／IR／runtimeへの昇格と区別すること、L1分類だけではL2合意にならないことを明記する。",
+      "semantic_reading": "本文の未承認表記は承認前の原稿を保持したものと説明し、PLANの候補承認記録を参照すること、current Concept・Requirement IR・runtimeへの昇格との区別、L1分類はL2要求の合意済みを意味しないことを明記する。",
       "physical_context": {
         "previous_physical_line": "approved_body_sha256: 73e110258b8051906e1ac529d7c1ca857fc78a4c87b42291645348fa6f4f776a",
         "next_physical_line": "---"
@@ -3959,7 +3959,7 @@
         "text": "## 期待する利用体験"
       },
       "exact_source_line_text": "同一HEADの証拠で閉じる。失敗や環境変化は既存Requirementへ再入し、人間に日常的な進捗操作を要求しない。",
-      "semantic_reading": "前行から続き、失敗や環境変化を既存Requirementへ戻し、日々の進捗操作を人間に要求しないと述べる。",
+      "semantic_reading": "前物理行から続く文を同一HEADの証拠で閉じると述べ、失敗や環境変化は既存Requirementへ再入し、人間に日常的な進捗操作を要求しないとする。",
       "physical_context": {
         "previous_physical_line": "人間は意図、要求、体験、承認境界を示す。HELIXは変更契約を作り、bounded workerへ配り、独立検証し、",
         "next_physical_line": null
@@ -4387,14 +4387,14 @@
     "this_first_id": "LEGACY-CAND-LINE-002666",
     "paired_audit_pins": [
       {
-        "commit": "082c7446fdaae81b41e1a57aea65627e40ad052e",
+        "commit": "634bfe0c0a0936ee1dc0ffa3505cf7e84488d61c",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1541-1580-2026-10-02.json",
-        "sha256": "a240e1b26cd6d505c6bdd12bb077a36a76deabbe88a7b2d422aa519bb00566b7"
+        "sha256": "f65dbaec0de555a529f32b96e819bc427c089bc0be9790be040287f604296f80"
       },
       {
-        "commit": "082c7446fdaae81b41e1a57aea65627e40ad052e",
+        "commit": "634bfe0c0a0936ee1dc0ffa3505cf7e84488d61c",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1541-1580-2026-10-02.md",
-        "sha256": "5f4de03c70392dff3c580e5c089fe25e10c8b8acd566586decbb7363e6618373"
+        "sha256": "9140ecc056dfff9d6d8e3a2f0edece4b30d78a73f63a08b7c1741f615920cef8"
       }
     ],
     "note": "直前1541–1580 paired auditを同一PRに収載し、対象commitのJSON/MD bytesをpinした。rank境界もfull-poolから再構成した。"
