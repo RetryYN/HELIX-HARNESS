@@ -1387,3 +1387,19 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - **既存要求との境界**：既存のL2要求やCI・review・Censusの具体的な監査条件を再定義しない。三receiptの内部schema、green判定根拠、監査方法、receipt発行者、issue lifecycle、severity、merge admissionを定めず、GitHub Issue状態からreceipt statusを生成しない。
 - **旧source・限定範囲**：candidate input atomは旧DAC-FR-009 line 56一行だけとする。DAC-R-011 line 66とDAC-AC-017 line 42は三receiptの独立性と境界を確認する関連context/oracle evidenceであり、confirmed175 holdingやcandidate input atomとして数えない。`MPR-SH-CONFIRMED-003`を生存させ、旧source owner、formal successor、対象適用範囲、採択、実装・実行・受入およびsource全体のclosureを未確定に保つ。
 - **version_target**：未指定。旧sourceのversion 1.0を現行適用版や候補採択へ読み替えない。
+
+### HELIXOS-L2-114 worker/verifier loopの継続適格性候補（未採択）
+
+- **状態・authority**：HELIX-OSの未採択候補。仮登録は`registered_proposal`／`authority_effect: none`。本文、L11 oracle、receiptまたは静的検証は、HELIXOS-L2-009の採択範囲変更、要求採択、ticket発行、実行許可、runtime green、受入実行を生成しない。
+- **親L1・責務候補**：採択済みHELIXOS-L1-003（許可範囲内のWorker委譲・実行統制）とHELIXOS-L1-008（状態・証拠projectionの整合）に接続する単体候補。継続の既存authority・budget・deadline・未完義務はHELIXOS-L2-004／009／019のownerに残る。本候補は継続を実行せず、loop再入の適格性候補だけを扱う。
+- **対象範囲**：既存operationが一つのworker/verifier反復loopを明示した場合の、同一episode内の次反復への適格性候補。一般のsession復旧、担当交代、ticket再発行、retry上限、CI再実行、別工程へのhandoffを一括して同じloopとみなさない。
+- **旧条件の全項対応**：旧`LEGACY-ASSET-899A61905AFBC415F595`の`HR-BR-07`は、`status==running`、時間窓内、`lastVerdict!=pass`、`iteration<max`の4条件すべてを同時に満たす場合だけ継続する。候補は4条件をANDのまま保持し、次の現行対応を未解決として明示する。
+  1. 旧`status==running`：現行のticket、assignment、workflow、sessionのいずれかの表示状態と同一視しない。対象episodeを継続可能とする状態と判断sourceを特定する必要がある。
+  2. 旧「時間窓内」：現行HELIXOS-L2-009の期限・許可範囲と、旧窓の意味が同一とは仮定しない。開始・終了境界、時刻の基準、適用ownerを現在のoperation契約から確認する。旧sourceにあった窓の具体schemaや値を移さない。
+  3. 旧`lastVerdict!=pass`：HARNESSの個別oracleのpassやCI greenを同一loopの終端passへ読み替えない。既存operationが当該loopの終端判定として明示したverdictだけを入力候補とする。
+  4. 旧`iteration<max`：旧`max`や数値を固定・移植しない。既存operationが反復上限を定義するか、そのownerを特定する。HELIXOS-L2-040の失敗retry上限を反復loop上限の後継として扱わない。
+- **候補条件**：上記4条件を現行の対象・revision・scope・authorityへ独立に対応付け、各conditionが明示的に真のときに限り、その同じloopの次反復を「適格」と表示できる。いずれかが偽なら次反復を適格とせず、いずれかの対応、入力、source revision、verdict境界または上限がmissing／unknown／stale／conflictなら`unknown`のままにし、理由と既存ownerへの確認先を残す。候補は新しいstatus、verdict、時間窓、上限のschemaや閾値を定義しない。
+- **既存要求との境界**：HELIXOS-L2-009のevent永続化・冪等projection・checkpoint・budget・期限・未完義務保持と二重副作用防止、HELIXOS-L2-004のassignment authority、HELIXOS-L2-019のevent continuityを再定義しない。既存の継続が許可されること、次のWorkerをdispatchすること、または工程を完了することを本候補から生成しない。HARNESSの検証義務・oracleはHARNESS ownerが定義し、passを本候補の終端verdictへ自動変換しない。
+- **人間判断点と推奨**：旧`running`と現行のoperation状態、旧時間窓と現行deadline/許可、旧loop終端`pass`と各HARNESS oracle結果の意味は同一性未確認であり、直接対応を採択済みと扱わない。PO選択肢は (A) worker/verifier loopに限り旧4条件の意味を保持し、各条件の現行authority ownerを明示する、(B) 反復loopごとに適用状態・時間条件・終端判定・上限を既存ownerが個別に決め、旧4条件は比較根拠としてholdingに残す、(C) 現行OSに共通のworker/verifier loopがないとしてこの条件を要求化せず保留する。推奨は(B)：4つの安全述語は比較・検収に残しつつ、状態語・時間意味・verdict終端性・上限の適用をoperation ownerへ結び、値や旧loopを全工程へ拡張しない。AまたはBで採択する場合、L1-003／008の継続責務とL2-004／009／019および対L11の適用範囲を具体化する。Cの場合、それらの採択済み要求は変えず、当該旧条件を未対応のまま保持する。
+- **旧source・限定範囲**：旧`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/orchestration-memory.md`の22–27行（file SHA-256 `9c88351f237d00c809f2cf7796fa30942f0ee2c3ad071842e719861551ccca5c`）のHR-BR-07継続条件を起点とする。今回のsource atomは26–27行の2行だけ。停止rule、失敗分類、メモリ二層、secret拒否、self-evaluation、DB/job queue、旧runtime/testはこの候補に含めず、当該assetの他条件やformal successor/closureも主張しない。PHCAP-20の初期inventory状態や未実装runtimeを要求欠落の根拠にしない。
+- **version_target**：未指定。旧sourceに記されたversionや実装予定を現行適用版・候補採択へ読み替えない。

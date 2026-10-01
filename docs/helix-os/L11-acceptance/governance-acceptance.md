@@ -988,3 +988,14 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **receipt分離境界**：旧source上の`#825`、`#1370`、Census receiptの三つだけを入力集合に含める。`#206`はFR-009にある責務境界の参照として扱い、receipt入力や第四のgreen条件に追加しない。Issue番号やIssue状態だけをreceipt、authority、greenの根拠にしない。
 - **受入境界**：fixtureで照合するのは明示入力receiptの独立性、status保持、三者AND条件だけである。各監査の意味・方法・内部schema、current issueやreceiptへのmapping、owner移管、旧source全体closure、実Census／startup／materialization実行、severity、repair、merge可否を検証しない。旧runtime／CLI／test／CIは実行しない。
 - **旧sourceと未解決**：candidate input atomは`MPR-SH-CONFIRMED-003`が保持するDAC-FR-009 line 56一atomに限定する。DAC-R-011 line 66とDAC-AC-017 line 42は独立receiptと負例の関連context/oracle evidenceであり、confirmed175 holdingまたはcandidate inputではない。各source owner、formal successor、適用scope、採択、実行受入を未確定のまま維持する。
+
+### HELIXOS-L11-114 worker/verifier loop継続適格性の受入候補（未実行）
+
+- **対応要求・状態**：未採択`HELIXOS-L2-114`の静的oracle案。HELIXOS-L2-009の意味変更・追補採択、継続実行、ticket／Worker起動、runtime green、受入実施、旧条件全体のclosureを示さない。
+- **前提fixture**：一つの既存operationが明示する同一worker/verifier loopのepisode、対象・revision・scope、既存authority、継続状態の判断source、時間条件の現行source、loop終端verdictのsource、およびiteration上限と累積値のowner/sourceを別々に与える。Issue／PR open、session存在、CI green、旧`running`文字列だけからこれらを作らない。
+- **正常候補**：旧`HR-BR-07`の4述語に対する現行意味がそれぞれ特定済みで、(1) episodeが現行ownerの根拠で継続可能、(2)既存operationの時間・許可条件を満たす、(3)当該loopの終端verdictでは`pass`未達、(4)同一ownerの明示上限に対して現iterationが上限未満、の全てが真のfixtureを与える。候補の出力は「次反復の適格性」だけとし、継続権限の新設・自動dispatch・実行成功・別pipeline完了を生成しない。
+- **個別反例**：他の3条件を真に固定し、(1)継続状態が明示的に偽、(2)既存operationの時間／許可条件外、(3)当該loopの終端`pass`成立、(4)明示上限到達、を一つずつ別fixtureにする。各ケースで同一loopの次反復を適格としない。上限値は既存sourceから入力し、本候補用の数値を作らない。一般のCI pass、単一検証oracleのpass、session交代または別工程の成功だけを(3)とみなさない。
+- **条件別unknown**：4条件それぞれについて、対応sourceまたはrevisionを一つ欠落／unknown／stale／conflictにしたfixtureを個別に与える。欠けた条件を真と補完せず、該当episodeの次反復適格性を`unknown`のまま保持し、既存のauthority／workflow ownerへの確認先を示す。無関係なoperation・ticket全体の停止はこの候補から生成しない。
+- **意味差と判断待ち**：旧`status==running`は現行ticket／assignment／workflow／session状態との同値を示さない。旧「時間窓内」は開始・終了境界を含む具体条件と現行deadline／permissionの同値を示さない。旧`lastVerdict!=pass`は現在の全HARNESS oracle／CI passと同値ではなく、`iteration<max`の旧値・ownerも現行には定義しない。各意味が選択されないfixtureは正常caseにせずunknownである。PO選択肢はL2-114記載のA/B/Cとし、status/window/verdict/upper-boundを旧sourceから自動採択しない。
+- **受入境界**：これは要求候補を静的fixtureで評価する案であり、旧`canResume`関数、固定値、schema、runtime、provider、storage、retry policyを実装・起動しない。L2-040の失敗retry上限、HELIXOS-L2-041の安全なsession transition、HELIXOS-L2-009の採択済み制約と混同せず、各候補の受入は独立に未実行のまま扱う。
+- **旧source・保持範囲**：旧`LEGACY-ASSET-899A61905AFBC415F595`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/orchestration-memory.md:26–27`（file SHA-256 `9c88351f237d00c809f2cf7796fa30942f0ee2c3ad071842e719861551ccca5c`）の4条件だけを候補fixtureに使う。旧停止rule、失敗分類、memory二層、secret拒否、self-evaluation、DB/job queueその他のPHCAP-20条件は対象外で、同assetを生存中のsource holdingとして残す。
