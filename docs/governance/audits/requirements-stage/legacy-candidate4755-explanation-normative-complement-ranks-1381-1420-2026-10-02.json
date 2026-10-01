@@ -589,7 +589,7 @@
       "physical_line_number": 211,
       "exact_source_line_text": "各Sliceの操作・対象・影響から必要な認可、隔離、排他、証跡、復旧条件を閉包として明示する。共通基盤全体の完成を一律条件に",
       "semantic_family": "FRS-R-23-safety-closure",
-      "semantic_reading": "各Sliceの操作・対象・影響から認可、隔離、排他、証跡、復旧条件を閉包し、共通基盤完成を一律待たず必要条件の欠落・不明・期限切れをfail-closeする条件。",
+      "semantic_reading": "この行は各Sliceの操作・対象・影響から必要な認可、隔離、排他、証跡、復旧条件を閉包として明示する。末尾で共通基盤全体の完成を一律条件にするかを述べ始め、述語は次の物理行へ続く。",
       "legacy_context": {
         "section_heading": "### FRS-R-23 Sliceごとの安全依存閉包",
         "nearby_physical_lines": [
@@ -748,7 +748,7 @@
       "physical_line_number": 216,
       "exact_source_line_text": "Lite／Fullはqualified Sliceのexact allowlistから生成するBundleとし、別機能・別builderを作らない。個別Sliceのgreenに加え、",
       "semantic_family": "FRS-R-24-lite-full-composition",
-      "semantic_reading": "Lite／Fullをqualified Sliceのexact allowlistから作るBundleとし、統合・consumer・更新・rollback・L12運用検証を個別Slice成功と別に確認する旧条件。",
+      "semantic_reading": "この行はLite／Fullをqualified Sliceのexact allowlistから生成するBundleと定め、別機能・別builderを作らない。末尾で個別Sliceのgreenに加える条件を述べ始め、内容は次の物理行へ続く。",
       "legacy_context": {
         "section_heading": "### FRS-R-24 Lite／Fullの組合せ検収",
         "nearby_physical_lines": [
@@ -2773,7 +2773,7 @@
       "physical_line_number": 19,
       "exact_source_line_text": "相殺しない。",
       "semantic_family": "HMC-acceptance-negative-boundary",
-      "semantic_reading": "正常系件数が個別反例failureを相殺しないという旧受入候補の否定境界。",
+      "semantic_reading": "この行は前の物理行から続く文を「相殺しない」で終える。何を何で相殺しないかはこの行だけに書かれていない。",
       "legacy_context": {
         "section_heading": "# harness memory coordination-only境界 受入候補",
         "nearby_physical_lines": [
@@ -4970,7 +4970,7 @@
       "physical_line_number": 49,
       "exact_source_line_text": "main read-afterが揃うまで、#1448および本PLANをcompletedと扱わない。既存汚染entryは履歴を保持したうえでcurrent viewから隔離し、",
       "semantic_family": "HMC-completion-gate",
-      "semantic_reading": "独立review後のmain read-afterまで揃わなければ#1448/PLANをcompletedに扱わないという旧gateの続き。",
+      "semantic_reading": "この行はmain read-afterが揃うまで#1448と本PLANをcompletedに扱わないと定める。続いて既存汚染entryの履歴を保持しつつcurrent viewから隔離する条件を述べる。",
       "legacy_context": {
         "section_heading": "## 完了境界",
         "nearby_physical_lines": [
