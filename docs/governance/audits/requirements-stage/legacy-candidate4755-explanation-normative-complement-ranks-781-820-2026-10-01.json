@@ -3,6 +3,8 @@
   "audit_id": "legacy-candidate4755-explanation-normative-complement-ranks-781-820-2026-10-01",
   "created_against_commit": "85638d7aed054c5b9c3bda5128a9f4208453a1c9",
   "authority_effect": "none",
+  "prior_completed_complement_slice": {"ranks": "741-780", "commit": "6d2e38b06f2b0acb9ebcfe6eab8b904051b718fa", "last_id": "LEGACY-CAND-LINE-001349", "json_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-741-780-2026-10-01.json", "json_sha256": "7f9cab8d7cb99a39ab8ca5173f0bcad7ecc1533b22e4baeb873082c2cf6f5c6d", "md_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-741-780-2026-10-01.md", "md_sha256": "d93a515060163ae380db25a9a08f505de5a444bc7d7f07202c29089fad3efe98"},
+  "fixed_F6_execution_ticket_family_relation": "781–790位の旧`execution-ticket-recognition.md`と810–820位の旧`execution-ticket-requirements.md`はExecution Ticket familyの別候補である。791–809位の旧`execution-ticket-requests.md`は固定F6のOS L2 `governance-requirements.md:536–561`が直接名指しし、HXT-RQ-01〜07をHELIXOS-L2-004/005/007/009へ接続する。固定F6のOS L11 `governance-acceptance.md:256–267`が直接名指しする旧sourceは、このsliceにない`execution-ticket-validation.md`で、HXT-RQ-01〜07の受入は全件未実行。文書単位の名指しは各選択行の個別binding、successor、closureを自動生成しない。",
   "purpose": "Semantic audit of numeric-ID ranks 781–820 in the effective-explanation marker-negative complement; no adoption, successor, implementation, acceptance or source closure is generated.",
   "pool_derivation": {
     "baseline_ref": "#2353 reconciliation.row_records exact source_item_id join",
