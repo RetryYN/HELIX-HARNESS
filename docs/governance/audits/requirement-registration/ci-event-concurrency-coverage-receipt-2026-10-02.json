@@ -1,0 +1,313 @@
+{
+  "receipt_id": "DRAFT-RCPT-HELIXOS-L2-118-CIG-CONCURRENCY-2026-10-02",
+  "receipt_state": "draft_unadopted_candidate_scope_recorded",
+  "authority_effect": "none",
+  "candidate_identity": "HELIXOS-L2-118",
+  "requirement_kind": "unit",
+  "candidate_semantic_digest": "sha256:4729f2a77dba3c359c3f2a0b5572215f95ebcba663a6d87448653890be15ad3d",
+  "candidate_digest_rule": "L2の「### HELIXOS-L2-118 」見出しから次の同階層「###」見出し、またはファイル末尾まで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "candidate_l2_file_sha256": "sha256:1d2058f6524976b01de05754bd35bc80fb662052965615c69783162d625b1056",
+  "candidate_l2_line_start": 1434,
+  "candidate_l2_line_end": 1444,
+  "paired_acceptance_identity": "HELIXOS-L11-118",
+  "paired_acceptance_digest": "sha256:7a3d5a324599334ca1ad977f874ead013cf13bbb277f83b973f1e5284a8f80cd",
+  "l11_digest_rule": "L11の「### HELIXOS-L11-118 」見出しから次の同階層「###」見出し、またはファイル末尾まで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "l11_file_sha256": "sha256:8d254de03d8e170a8ecda95f1140371cc2e40b408ae1a8e51ab29f9078f4daf4",
+  "l11_line_start": 1025,
+  "l11_line_end": 1034,
+  "source_lines_ref": "docs/governance/audits/requirement-registration/ci-event-concurrency-source-lines-2026-10-02.jsonl",
+  "source_atom_set_digest": "sha256:6811dfa6e752c8468483477670df7d3ab6561cdf2d89b2f0a571f639eae1a55b",
+  "source_atom_set_digest_rule": "atom_id昇順。各atomを `atom_id SP source_line_sha256`（sha256:接頭辞を含む）で表し、LFで区切って連結する。末尾LFなし。",
+  "source_atom_file_sha256": "sha256:99108177f83ce81fdba3da7986f8dfcf70686970b17927d480770025874b8332",
+  "source_collection_scope": "MPR-SH-CANDIDATE-003が保持する旧CI event concurrency generation candidateから選択した9物理行のrequirement atoms：LEGACY-CAND-LINE-000491/492/496/497/499/500/501/502/528。CIG-BR-02/03 mapping rowsと利用者条件だけ。000478はcanonical promotion後にruntime/DB/live rehearsalを別PLANへ置く工程条件でありinput atom外。隣接した未選択行、他CIG requirement/acceptance atom、旧実装・test・runtime・CIは候補scopeに含めない。",
+  "source_collection_atom_count": 9,
+  "candidate_input_atom_refs": [
+    "LEGACY-CAND-LINE-000491",
+    "LEGACY-CAND-LINE-000492",
+    "LEGACY-CAND-LINE-000496",
+    "LEGACY-CAND-LINE-000497",
+    "LEGACY-CAND-LINE-000499",
+    "LEGACY-CAND-LINE-000500",
+    "LEGACY-CAND-LINE-000501",
+    "LEGACY-CAND-LINE-000502",
+    "LEGACY-CAND-LINE-000528"
+  ],
+  "candidate_input_atom_count": 9,
+  "candidate_input_atom_set_digest": "sha256:6811dfa6e752c8468483477670df7d3ab6561cdf2d89b2f0a571f639eae1a55b",
+  "candidate_input_accounting_status": "The nine selected physical-line atoms are mapped to this unadopted candidate pair without loss inside this selected scope. Source holding remains live; no formal successor, owner/applicability assignment, PO adoption, runtime implementation, execution, source closure or condition closure is claimed.",
+  "source_line_coverage_result": "candidate_input_scoped_to_nine_selected_requirement_atoms; formal_successor_owner_scope_adoption_and_execution_unconfirmed",
+  "candidate_input_coverage_result": "no_loss",
+  "condition_closure": "not_asserted",
+  "unaccounted_atom_refs": [],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-CANDIDATE-003 remains live; LEGACY-CAND-LINE-000478 and all other old CIG atoms remain outside this candidate input; formal successor, owner, applicable event scope, adoption, execution, and source condition closure remain unconfirmed."
+  ],
+  "atoms": [
+    {
+      "atom_id": "LEGACY-CAND-LINE-000491",
+      "legacy_asset_id": "LEGACY-ASSET-8B78505C1E059419875F",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_line": 17,
+      "source_file_sha256": "sha256:7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "source_line_sha256": "sha256:d6306c202a8228b8bfa541ca02afcf978f39fe1380586ffe7abcd810b918ece3",
+      "selected_condition_reading": "現行main HEADのpost-main検収をschedule/manual safety-netがcancelしない。",
+      "source_ledger_ref": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl#line-491:LEGACY-CAND-LINE-000491",
+      "historical_routing": {
+        "classification": "requirement_atom",
+        "semantic_cluster_id": "ci_event_concurrency_generation::",
+        "routing_status": "unknown",
+        "adopted_current_requirement_ids": [],
+        "review_outcome": "unknown_after_semantic_check",
+        "candidate_identity": null
+      },
+      "candidate_relation": "unadopted HELIXOS-L2/L11-118 input only; no adopted closure"
+    },
+    {
+      "atom_id": "LEGACY-CAND-LINE-000492",
+      "legacy_asset_id": "LEGACY-ASSET-8B78505C1E059419875F",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_line": 18,
+      "source_file_sha256": "sha256:7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "source_line_sha256": "sha256:59574435a104ef3b087ee55aae7d0b6b5dd67fa50bc9710085d420b37cfc2526",
+      "selected_condition_reading": "全runを並走させ、queue・費用・古い証拠を無制限にしない。",
+      "source_ledger_ref": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl#line-492:LEGACY-CAND-LINE-000492",
+      "historical_routing": {
+        "classification": "requirement_atom",
+        "semantic_cluster_id": "ci_event_concurrency_generation::",
+        "routing_status": "unknown",
+        "adopted_current_requirement_ids": [],
+        "review_outcome": "unknown_after_semantic_check",
+        "candidate_identity": null
+      },
+      "candidate_relation": "unadopted HELIXOS-L2/L11-118 input only; no adopted closure"
+    },
+    {
+      "atom_id": "LEGACY-CAND-LINE-000496",
+      "legacy_asset_id": "LEGACY-ASSET-8B78505C1E059419875F",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_line": 23,
+      "source_file_sha256": "sha256:7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "source_line_sha256": "sha256:54da727c33e1c968dde952d86d8c87554125586c0933489b3f6fdbafd3979f8a",
+      "selected_condition_reading": "current main検収を保持し、stale generationだけを有界に置換する（CIG-BR-02 mapping row）。",
+      "source_ledger_ref": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl#line-496:LEGACY-CAND-LINE-000496",
+      "historical_routing": {
+        "classification": "requirement_atom",
+        "semantic_cluster_id": "ci_event_concurrency_generation::CIG-BR-02",
+        "routing_status": "unknown",
+        "adopted_current_requirement_ids": [],
+        "review_outcome": "unknown_after_semantic_check",
+        "candidate_identity": null
+      },
+      "candidate_relation": "unadopted HELIXOS-L2/L11-118 input only; no adopted closure"
+    },
+    {
+      "atom_id": "LEGACY-CAND-LINE-000497",
+      "legacy_asset_id": "LEGACY-ASSET-8B78505C1E059419875F",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_line": 24,
+      "source_file_sha256": "sha256:7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "source_line_sha256": "sha256:42f14d5e3d614691ce97ac6ad86307e00cde4e2638c74d13b512a9b1576cb621",
+      "selected_condition_reading": "cancel・handoff・terminal結果を証拠から再構築する（CIG-BR-03 mapping row）。",
+      "source_ledger_ref": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl#line-497:LEGACY-CAND-LINE-000497",
+      "historical_routing": {
+        "classification": "requirement_atom",
+        "semantic_cluster_id": "ci_event_concurrency_generation::CIG-BR-03",
+        "routing_status": "unknown",
+        "adopted_current_requirement_ids": [],
+        "review_outcome": "unknown_after_semantic_check",
+        "candidate_identity": null
+      },
+      "candidate_relation": "unadopted HELIXOS-L2/L11-118 input only; no adopted closure"
+    },
+    {
+      "atom_id": "LEGACY-CAND-LINE-000499",
+      "legacy_asset_id": "LEGACY-ASSET-8B78505C1E059419875F",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_line": 28,
+      "source_file_sha256": "sha256:7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "source_line_sha256": "sha256:ec626939ed95bf2fe355d787c4e39f80f6ab28d73d1b0645631297a6df02c9e0",
+      "selected_condition_reading": "current canonical HEADのterminal evidenceを安定して取得する。",
+      "source_ledger_ref": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl#line-499:LEGACY-CAND-LINE-000499",
+      "historical_routing": {
+        "classification": "requirement_atom",
+        "semantic_cluster_id": "ci_event_concurrency_generation::",
+        "routing_status": "unknown",
+        "adopted_current_requirement_ids": [],
+        "review_outcome": "unknown_after_semantic_check",
+        "candidate_identity": null
+      },
+      "candidate_relation": "unadopted HELIXOS-L2/L11-118 input only; no adopted closure"
+    },
+    {
+      "atom_id": "LEGACY-CAND-LINE-000500",
+      "legacy_asset_id": "LEGACY-ASSET-8B78505C1E059419875F",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_line": 29,
+      "source_file_sha256": "sha256:7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "source_line_sha256": "sha256:71b9164791062edec41697b3ed306f6f6bcb46b56fa608261765691a4e42e4a4",
+      "selected_condition_reading": "stale PR HEAD・重複scheduleを、別event classに影響させず有界に置換する。",
+      "source_ledger_ref": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl#line-500:LEGACY-CAND-LINE-000500",
+      "historical_routing": {
+        "classification": "requirement_atom",
+        "semantic_cluster_id": "ci_event_concurrency_generation::",
+        "routing_status": "unknown",
+        "adopted_current_requirement_ids": [],
+        "review_outcome": "unknown_after_semantic_check",
+        "candidate_identity": null
+      },
+      "candidate_relation": "unadopted HELIXOS-L2/L11-118 input only; no adopted closure"
+    },
+    {
+      "atom_id": "LEGACY-CAND-LINE-000501",
+      "legacy_asset_id": "LEGACY-ASSET-8B78505C1E059419875F",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_line": 30,
+      "source_file_sha256": "sha256:7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "source_line_sha256": "sha256:8bca62507e48cc19085a00746131d39a653aaa28866431c81b5bbf527b3566da",
+      "selected_condition_reading": "cancel・supersede・handoffの理由と対象を後から再構築する。",
+      "source_ledger_ref": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl#line-501:LEGACY-CAND-LINE-000501",
+      "historical_routing": {
+        "classification": "requirement_atom",
+        "semantic_cluster_id": "ci_event_concurrency_generation::",
+        "routing_status": "unknown",
+        "adopted_current_requirement_ids": [],
+        "review_outcome": "unknown_after_semantic_check",
+        "candidate_identity": null
+      },
+      "candidate_relation": "unadopted HELIXOS-L2/L11-118 input only; no adopted closure"
+    },
+    {
+      "atom_id": "LEGACY-CAND-LINE-000502",
+      "legacy_asset_id": "LEGACY-ASSET-8B78505C1E059419875F",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_line": 31,
+      "source_file_sha256": "sha256:7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "source_line_sha256": "sha256:92d0a3258e8a2db7342d86a0706f7850c8a141c0a64af3c116f7ffcc8f86514e",
+      "selected_condition_reading": "required verification削減、cancelled run成功扱い、別event class結果流用を高速化として認めない。",
+      "source_ledger_ref": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl#line-502:LEGACY-CAND-LINE-000502",
+      "historical_routing": {
+        "classification": "requirement_atom",
+        "semantic_cluster_id": "ci_event_concurrency_generation::",
+        "routing_status": "unknown",
+        "adopted_current_requirement_ids": [],
+        "review_outcome": "unknown_after_semantic_check",
+        "candidate_identity": null
+      },
+      "candidate_relation": "unadopted HELIXOS-L2/L11-118 input only; no adopted closure"
+    },
+    {
+      "atom_id": "LEGACY-CAND-LINE-000528",
+      "legacy_asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 31,
+      "source_file_sha256": "sha256:11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "sha256:77f4af292cd562b2686f881a43a3044af2e3f3fa0230b687acaac5407e3f418c",
+      "selected_condition_reading": "選択物理行の前半: HEADだけを置換し、新しいscheduleは古いscheduleだけを置換できる。末尾のcancel-in-progress:false句は未完の次節につながるため、このatomから独立条件へ展開しない。",
+      "source_ledger_ref": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl#line-528:LEGACY-CAND-LINE-000528",
+      "historical_routing": {
+        "classification": "requirement_atom",
+        "semantic_cluster_id": "ci_event_concurrency_generation::CIG-R-02",
+        "routing_status": "unknown",
+        "adopted_current_requirement_ids": [],
+        "review_outcome": "unknown_after_semantic_check",
+        "candidate_identity": null
+      },
+      "candidate_relation": "unadopted HELIXOS-L2/L11-118 input only; no adopted closure"
+    }
+  ],
+  "excluded_process_context": {
+    "atom_id": "LEGACY-CAND-LINE-000478",
+    "legacy_asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
+    "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+    "line": 26,
+    "source_file_sha256": "sha256:7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+    "source_line_sha256": "sha256:f64f96877f9bfe869f2a5e7da26b8ee8aacec271229efd9cd06bbfc97b67bae7",
+    "disposition": "separate post-promotion PLAN/process condition; excluded from the nine candidate requirement atoms"
+  },
+  "parent_l1": {
+    "identities": [
+      "HELIXOS-L1-004"
+    ],
+    "path": "docs/helix-os/L1-planning/system-intent.md",
+    "source_commit": "7b9d1938fc7699404f68c2b87829df56dc6f690d",
+    "source_file_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+    "adoption_basis": "HELIX-OS 2026-09-28 PO decision fixed/adopted L1 target; parent adoption does not adopt L2-118/L11-118."
+  },
+  "parent_concept": {
+    "path": "docs/concept/helix-concept.md",
+    "source_commit": "7b9d1938fc7699404f68c2b87829df56dc6f690d",
+    "source_file_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+    "authority": "current Concept bytes pinned as read; this does not claim a PO decision for L2-118."
+  },
+  "accepted_pair_comparison": {
+    "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+    "decision_sha256": "sha256:5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+    "fixed_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "fixed_l2_file_sha256": "sha256:c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+    "fixed_l11_file_sha256": "sha256:925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+    "fixed_adoption_scope": "HELIXOS-L2/L11-001..029; includes accepted L2/L11-007/008/009/018/019/020, does not include new L2/L11-118.",
+    "current_paths": {
+      "l2": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "l2_sha256": "sha256:1d2058f6524976b01de05754bd35bc80fb662052965615c69783162d625b1056",
+      "l11": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "l11_sha256": "sha256:8d254de03d8e170a8ecda95f1140371cc2e40b408ae1a8e51ab29f9078f4daf4"
+    },
+    "adopted_conditions_checked": [
+      "L2/L11-007 provenance, duplicate/stale/missing/unfinished state distinction",
+      "L2/L11-008 HARNESS-derived profile, execution lifecycle, no weakened oracle",
+      "L2/L11-009 durable event/projection/checkpoint, cumulative constraints and unfinished obligation continuity",
+      "L2/L11-018 assignment/attempt exact binding, lease/deadline and handoff",
+      "L2/L11-019 event/evidence reconstruction, checkpoint failure, scope/unmet obligation continuity",
+      "L2/L11-020 exact HEAD/oracle/environment/run identity, execution-state distinction, missing obligation return, no oracle deletion"
+    ],
+    "finding": "These adopted requirements have adjacent record and CI lifecycle guarantees but no direct predicate/test that independent required CI obligations do not cancel one another; a schedule/manual run cannot replace current-main post-main verification; bounded replacement targets only stale generations; cancellation/supersede/handoff reason and target can be reconstructed; a cancelled run is rejected by post-main/terminal/recovery/review consumers; or same-HEAD results from non-equivalent obligations are not reused. Generic event/run binding or no-oracle-deletion is not treated as the missing outcomes."
+  },
+  "candidate_comparison": {
+    "nci_os_candidate_path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
+    "nci_os_candidate_sha256": "sha256:4eae5f8dd485ed8c77d2ea7b6b0407028093c02566e5b92fce9d05a89307a49d",
+    "nci_harness_candidate_path": "docs/helix-harness/candidates/next-generation-ci-requirements.md",
+    "nci_harness_candidate_sha256": "sha256:565a2107e1e31cdfd2c6d53cdb1385be151a99c35f1d3a228b09d1ee4533f9cb",
+    "status": "awaiting_human_approval; candidate conditions only, no adoption inferred",
+    "crosswalk_path": "docs/governance/audits/source-rebaseline/new-generation-ci-ai-source-crosswalk.md",
+    "crosswalk_sha256": "sha256:fb4e8bdc6ffb29acf17d79aeb961a97dea239ef59291e79522dae8fe13c551cf",
+    "crosswalk_rows": [
+      "CIG-BR-02/CIG-R-02 -> NCI-OS-003/005 (split_reapproval_required)",
+      "CIG-R-03 -> NCI-OS-003/004 (split_reapproval_required)",
+      "CIG-BR-03/CIG-R-04 -> NCI-OS-003/004 (split_reapproval_required)",
+      "CIG-AC-001..007 -> NCI-HARNESS-002/003 and NCI-OS-003/004 (oracle_atom_candidate)"
+    ],
+    "exact_gap": "NCI-OS-003/004/005 and paired L11 candidate have no concrete non-interference, current-main protected obligation, stale-only bounded replacement, cancel-result non-success/cross-obligation non-reuse, or cancellation/handoff reason-target reconstruction oracle. NCI-OS-005 mentions queue/parallelism/budget optimization while preserving required oracles, but does not explicitly exclude unbounded run/queue/cost/stale-evidence accumulation.",
+    "overlap_check": "Root-local commit b447ecccd HELIXOS-L2-115 was read as an independent unmerged candidate. It covers late/duplicate result rejection for one terminated assignment/attempt only, not concurrent required-obligation generations, cancellation, replacement or cross-class result reuse."
+  },
+  "po_decision_material": {
+    "source_semantics": "Selected old lines distinguish main post-main verification, schedules/manual safety-net and PR verification by event class, require bounded stale-generation replacement without losing current main proof, require cancellation/handoff/terminal evidence reconstruction, and forbid oracle reduction, cancelled-as-success, cross-class reuse. Named event class taxonomy is part of the historical candidate but crosswalk requires split reapproval.",
+    "options": {
+      "A": "Adopt main/schedule/manual/PR as fixed L2 event classes and preserve their old labels in the permanent contract. This is literal but freezes provider-era classification and scope.",
+      "B": "Keep these names as L11 fixture examples; L2 requires non-interference by obligation/generation scope, protects current-main verification, bounds stale-only replacement, and reconstructs terminal outcomes. Derive concrete classifications in L3/L10 from approved scope."
+    },
+    "recommendation": "B, consistent with the source crosswalk’s split_reapproval_required boundary. Preserve all selected outcome predicates while not fixing old provider/event enum or unsupported numeric bounds.",
+    "impacted_requirements": [
+      "HELIXOS-L1-004",
+      "HELIXOS-L2/L11-008",
+      "HELIXOS-L2/L11-020",
+      "HELIXOS-L2/L11-007/009/018/019",
+      "NCI-OS-003/004/005 candidate",
+      "NCI-HARNESS-002/003 candidate"
+    ]
+  },
+  "review_pins": {
+    "base_commit": "7b9d1938fc7699404f68c2b87829df56dc6f690d",
+    "po_decision": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+    "po_decision_sha256": "sha256:5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+    "crosswalk": "docs/governance/audits/source-rebaseline/new-generation-ci-ai-source-crosswalk.md",
+    "crosswalk_sha256": "sha256:fb4e8bdc6ffb29acf17d79aeb961a97dea239ef59291e79522dae8fe13c551cf",
+    "source_ledger": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+    "asset_ledger": "docs/governance/legacy-asset-disposition.jsonl",
+    "historical_routing": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+    "latest_main_comparison": "7b9d1938fc7699404f68c2b87829df56dc6f690d",
+    "latest_main_concept_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+    "latest_main_os_l1_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e"
+  },
+  "registered_at": "2026-10-02T06:40:40+09:00",
+  "active_mpr_registration_id": "MPR-RC-HELIXOS-L2-118-002"
+}
