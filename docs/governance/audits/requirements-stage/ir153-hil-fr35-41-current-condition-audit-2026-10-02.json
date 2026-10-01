@@ -610,7 +610,7 @@
     "HARNESS-L2-067": "Legacy HIL-FR-37 line127 and fixed parent L1 specify no product version; candidate header has no version_target and receipt records target unspecified.",
     "HARNESS-L2-068": "Legacy HIL-FR-39 line129 and fixed parent L1 specify no product version; candidate header has no version_target and receipt records target unspecified."
   },
-  "root_integration_base": "f38bde044a7dfbf12aec0203b21a9384eef6ad8f",
+  "root_integration_base": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
   "historical_local_candidate_pins": {
     "HARNESS-L2-067": {
       "l2": {

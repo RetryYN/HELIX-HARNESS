@@ -144,5 +144,6 @@
     "value": null,
     "basis": "Legacy source statement and fixed parent L1 do not specify a target product version; no PO decision selects 1.0. Candidate is unadopted and not automatically included in a product version."
   },
-  "current_comparison_base_commit": "f38bde044a7dfbf12aec0203b21a9384eef6ad8f"
+  "current_comparison_base_commit": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+  "previous_integration_base_commit": "f38bde044a7dfbf12aec0203b21a9384eef6ad8f"
 }

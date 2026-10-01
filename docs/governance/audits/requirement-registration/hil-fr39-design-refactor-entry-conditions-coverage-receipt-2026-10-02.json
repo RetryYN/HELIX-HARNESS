@@ -156,7 +156,7 @@
     "basis": "Legacy source statement and fixed parent L1 do not specify a target product version; no PO decision selects 1.0. Candidate is unadopted and not automatically included in a product version."
   },
   "pair_connection_condition": "Before existing Refactor connection, every impacted design pair must actually be updated for target revision and aligned with its paired oracle in scope, revision and expected meaning; a planned update or stale marker alone does not pass. The applicable Scope Authority and rollback/recovery basis must also be bound to the same target/scope. Observable behavior, public surface, DB semantics or requirement differences route to existing Redesign/Retrofit.",
-  "current_comparison_base_commit": "f38bde044a7dfbf12aec0203b21a9384eef6ad8f",
+  "current_comparison_base_commit": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
   "correction_history": [
     {
       "finding": "#2497 REVIEW01 MinorF1",
@@ -175,5 +175,6 @@
       },
       "memento": "One final local MPR registration 001 is retained; no intermediate registration revision is introduced."
     }
-  ]
+  ],
+  "previous_integration_base_commit": "f38bde044a7dfbf12aec0203b21a9384eef6ad8f"
 }
