@@ -76,7 +76,7 @@
     "prior_id": "LEGACY-CAND-LINE-002787",
     "this_first_rank": 1661,
     "this_first_id": "LEGACY-CAND-LINE-002788",
-    "paired_audit_available_at_base": true,
+    "paired_audit_available_at_base": false,
     "prior_semantic_verification_claimed": true,
     "note": "直前1621–1660 paired auditを同一PRに収載し、commitのJSON/MD bytesをpinした。rank境界もfull-poolから再構成した。",
     "paired_audit_pins": [
@@ -90,7 +90,8 @@
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1621-1660-2026-10-02.md",
         "sha256": "55ec0b969d3bc4849dd43d50e513779e2f220fe6430056f7d39691b3ba0201d4"
       }
-    ]
+    ],
+    "paired_audit_available_in_PR": true
   },
   "reconstruction_inputs": [
     {
