@@ -52,6 +52,7 @@ live recountはBR-01を優先集合に残すが、同じorigin/mainに先行BR-0
 - 残差: doc専任reviewerとPMOからの独立性なし。 三発動場面の必須review、結果、品質oracleなし。
 - 失敗／negative oracle: L11:23–25はdoc reviewer不在を拒否する条件ではない。固定pairにdoc-reviewer、文書品質reviewer、trigger前専用gateなし。
 - 結果: `adjacent_partial_match_dedicated_review_unmatched`。successorなし、closureなし。
+- 後発decision: HARNESS-L2-061 / BR-08はPO decision 2026-09-30 row 46で保留。BR-08/FR-L1-45の候補範囲であり、BR-08の採択・被覆・successorまたはsource closureを意味しない。
 
 ### D-01
 

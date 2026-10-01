@@ -27,11 +27,11 @@
 
 現行mainの `HELIXOS-L2-111` は仮登録 `MPR-RC-HELIXOS-L2-111-001`（register 636行、行SHA-256 `8fd6f2757862c5307faa28933eebab735697a1609af81c3791f4f8a322ace39a`、`authority_effect: none`）。L2 section digestは `sha256:265d5e7d1a8c06919b21691ddbf15354e51dbc204f310f07a448a7b33dc8173b`、L11 section digestは `sha256:8efe5d58a4ebe0c4a7078aa7b311f3f2e1a7892b125b603d6a3e45ff4fc5ef14`。PO decision `docs/governance/decisions/po-decision-2026-09-30-live26.md`（main revision上のファイルSHA-256 `8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145`）64行は、この二つのdigestに束縛した候補を通常採択22件の一つとして承認し、「三入力がすべて明示的に合格する場合のみ全体を合格」とする抽象AND意味に限定している。具体のreceipt ID、発行者/owner、対象版とのmapping、実運用で判定できる状態、receipt発行、実際のgreen状態は決定していない。
 
-### L2/L11の状態表記の不一致
+### L2/L11に残る事前候補ラベル
 
-L2-111は要求本文の見出し1380行と状態1382行で「未採択」と記す。L11-111は982行で「未実行」とする一方、984行で「未採択HELIXOS-L2-111」と記す。前者のL2状態表記とL11の対応要求表記は、9/30決定が抽象AND意味を採択した事実と矛盾する。L11受入が未実行であること、具体receipt mappingがunknownであることは引き続き正しい。
+L2-111は要求本文の見出し1380行と状態1382行で「未採択」と記す。L11-111は982行で「未実行」とする一方、984行で「未採択HELIXOS-L2-111」と記す。これらは固定section bytesに残る採択前の候補metadataであり、PO decision row 64の限定的な採択状態を覆さない。L11受入が未実行であること、具体receipt mappingがunknownであることは引き続き正しい。
 
-この監査ではL2/L11本文を編集せず、PO decisionに記録されたsection digestを変えていない。訂正案は、別途レビューする改訂でL2を「抽象AND意味採択済み、運用mapping未解決」、L11を「受入未実行、抽象AND意味採択済み」と明記すること。文言変更はdecisionがpinするsection bytesを変えるため、旧decisionの歴史的digestを保ち、訂正文面の新digestに対する明示的なdispositionを記録する。これを単なる表記修正として黙って差し替えない。
+この監査ではL2/L11本文もdecisionの歴史的digestも変更しない。別のdispositionや新しい決定は本監査から要求・生成しない。
 
 **残差:** 三つの現行receipt identity、発行者/owner、status authority、target revision/scope、実receipt結果は未確認。抽象AND採択はこれらの割当や稼働・実装・受入を生じさせない。`MPR-SH-CONFIRMED-003`のsource atomは保持され、formal successor、source closure、owner transferはない。この抽象条件の採択を監査記録すること自体に追加decisionは不要だが、具体mapping、owner割当、scope拡張、gate利用、source retirementには各々適切なdecision/evidenceが要る。
 

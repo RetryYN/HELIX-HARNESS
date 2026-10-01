@@ -22,7 +22,10 @@
       "revision": "ea9e5cd0e8712036068c358fa2fe90faef063439",
       "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-last8-fixed-f6-condition-audit-2026-10-01.json",
       "file_sha256": "9e289b576e8309a24f38f6fa96f10c9d24a70491a9c7a3e180b174c0f8bc4409",
-      "records": ["DAC-FR-009", "3L-BR-007"]
+      "records": [
+        "DAC-FR-009",
+        "3L-BR-007"
+      ]
     },
     "prior_three_lane_audit": {
       "revision": "50686b6762788574cb471967e8c24846d3dd56ae",
@@ -107,7 +110,7 @@
       "registration_path": "docs/governance/management-provisional-requirement-register.jsonl",
       "registration_line": 636,
       "registration_row_sha256": "8fd6f2757862c5307faa28933eebab735697a1609af81c3791f4f8a322ace39a",
-      "management_state": "registered_proposal",
+      "management_state": "registered_proposal (MPR registration lifecycle metadata; current authority state comes from PO decision row 64)",
       "authority_effect": "none",
       "l2_file": "docs/helix-os/L2-requirements/governance-requirements.md",
       "l2_file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
@@ -115,7 +118,8 @@
       "l11_file": "docs/helix-os/L11-acceptance/governance-acceptance.md",
       "l11_file_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
       "l11_section_digest": "sha256:8efe5d58a4ebe0c4a7078aa7b311f3f2e1a7892b125b603d6a3e45ff4fc5ef14",
-      "scope": "abstract three-receipt AND rule only; does not map current receipt identities, owners, status authority, revisions/scopes, nor establish an operational green result"
+      "scope": "abstract three-receipt AND rule only; does not map current receipt identities, owners, status authority, revisions/scopes, nor establish an operational green result",
+      "po_adoption_status": "Adopted only for the abstract three-input AND meaning by 2026-09-30 PO decision row 64; no receipt IDs, issuers/owners, revision/scope mapping, or actual green result."
     },
     "decision": {
       "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
@@ -125,34 +129,47 @@
       "decision": "approved within the 22 ordinary adoptions, limited to abstract AND: aggregate green only if all three distinct evidence inputs explicitly pass",
       "l2_digest": "sha256:265d5e7d1a8c06919b21691ddbf15354e51dbc204f310f07a448a7b33dc8173b",
       "l11_digest": "sha256:8efe5d58a4ebe0c4a7078aa7b311f3f2e1a7892b125b603d6a3e45ff4fc5ef14",
-      "explicit_non_decisions": ["receipt IDs", "issuers/owners", "target-version mapping", "operational usability", "actual receipt issuance or green state"]
+      "explicit_non_decisions": [
+        "receipt IDs",
+        "issuers/owners",
+        "target-version mapping",
+        "operational usability",
+        "actual receipt issuance or green state"
+      ]
     },
     "discrepancy": {
+      "classification": "predecision_candidate_metadata_in_pinned_L2_L11_snapshot",
       "locations": [
         {
           "path": "docs/helix-os/L2-requirements/governance-requirements.md",
           "line": 1380,
-          "text": "HELIXOS-L2-111 ...（未採択）"
+          "text": "HELIXOS-L2-111 ...（未採択）",
+          "interpretation": "candidate-era wording retained in the exact section bytes adopted for the abstract AND meaning"
         },
         {
           "path": "docs/helix-os/L2-requirements/governance-requirements.md",
           "line": 1382,
-          "text": "HELIX-OSの未採択候補"
+          "text": "HELIX-OSの未採択候補",
+          "interpretation": "candidate-era metadata; does not override the later scope-limited PO decision"
         },
         {
           "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
           "line": 982,
-          "text": "HELIXOS-L11-111 ...（未実行）"
+          "text": "HELIXOS-L11-111 ...（未実行）",
+          "interpretation": "still accurate: the acceptance has not been executed"
         },
         {
           "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
           "line": 984,
-          "text": "未採択HELIXOS-L2-111"
+          "text": "未採択HELIXOS-L2-111",
+          "interpretation": "candidate-era metadata retained in the accepted section snapshot; does not override the later scope-limited PO decision"
         }
       ],
-      "conflicts_with": "2026-09-30 decision row 64 adopts the abstract AND meaning; the L11 execution status itself remains unexecuted",
-      "meaning_preserved": "acceptance remains unexecuted; operational receipt mapping remains unknown",
-      "correction_suggestion_only": "Do not edit these requirements in this audit. In a separately reviewed revision, describe L2-111 as abstract AND meaning adopted with operational mapping unresolved, and L11-111 as acceptance not executed. Since these words alter the exact sections pinned by the PO decision, preserve the decision's historical digest and obtain an explicit disposition against the corrected section digests rather than silently changing the pinned bytes."
+      "current_state_source": "2026-09-30 PO decision row 64 adopts the pinned abstract AND meaning; L11 execution remains unperformed and operational receipt mapping remains unknown.",
+      "meaning_preserved": "Abstract AND adopted; acceptance unexecuted; operational receipt mapping unknown.",
+      "source_bytes_policy": "Do not rewrite L2/L11 or alter the historical section digests in this audit. The predecision labels are snapshot metadata; authority state is read from the PO decision.",
+      "additional_disposition_required": false,
+      "no_new_disposition_claimed": true
     },
     "residual": [
       "No exact fixed-F6 target pair for the three-receipt condition.",
@@ -170,11 +187,21 @@
       "target_ids": [],
       "intelligence_l2_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
       "intelligence_l11_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
-      "historically_named_ids_absent_from_both_fixed_files": ["HELIXINTELLIGENCE-L2-072", "HELIXINTELLIGENCE-L2-073", "HELIXINTELLIGENCE-L2-074"]
+      "historically_named_ids_absent_from_both_fixed_files": [
+        "HELIXINTELLIGENCE-L2-072",
+        "HELIXINTELLIGENCE-L2-073",
+        "HELIXINTELLIGENCE-L2-074"
+      ]
     },
     "latest_main_neighbor_pins": [
       {
-        "ids": ["HELIXINTELLIGENCE-L2-008", "HELIXINTELLIGENCE-L2-009", "HELIXINTELLIGENCE-L2-072", "HELIXINTELLIGENCE-L2-073", "HELIXINTELLIGENCE-L2-074"],
+        "ids": [
+          "HELIXINTELLIGENCE-L2-008",
+          "HELIXINTELLIGENCE-L2-009",
+          "HELIXINTELLIGENCE-L2-072",
+          "HELIXINTELLIGENCE-L2-073",
+          "HELIXINTELLIGENCE-L2-074"
+        ],
         "l2_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
         "l2_file_sha256": "14c6947262f7e7cc92e7200cafd301ebd49c4146c97f665f0548c6b2b2e9e16d",
         "l11_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
@@ -222,8 +249,26 @@
     "candidate_routing_hypothesis": {
       "proposal_only": true,
       "possible_cross_mechanism_landing": "A bounded candidate could separate deterministic rule enforcement/coordination (OS/HARNESS adjacent contracts), semantic finding and review handling (INTELLIGENCE review/audit neighbors), and task-class qualification/effect measurement (LABO only within its adopted 3L-BR-008-derived scope). No single current pair is an exact destination for all of BR-007.",
-      "candidate_neighbors": ["HELIXOS-L2-018", "HARNESS-L2-022", "HELIXINTELLIGENCE-L2-008", "HELIXINTELLIGENCE-L2-009", "HELIXINTELLIGENCE-L2-072", "HELIXINTELLIGENCE-L2-073", "HELIXINTELLIGENCE-L2-074", "HELIXLABO-L2-071"],
-      "not_asserted": ["formal successor", "current owner", "selected primary mechanism", "adopted scope", "implementation", "operation", "acceptance", "source closure"]
+      "candidate_neighbors": [
+        "HELIXOS-L2-018",
+        "HARNESS-L2-022",
+        "HELIXINTELLIGENCE-L2-008",
+        "HELIXINTELLIGENCE-L2-009",
+        "HELIXINTELLIGENCE-L2-072",
+        "HELIXINTELLIGENCE-L2-073",
+        "HELIXINTELLIGENCE-L2-074",
+        "HELIXLABO-L2-071"
+      ],
+      "not_asserted": [
+        "formal successor",
+        "current owner",
+        "selected primary mechanism",
+        "adopted scope",
+        "implementation",
+        "operation",
+        "acceptance",
+        "source closure"
+      ]
     },
     "residual": [
       "No exact fixed-F6 pair for BR-007; historical target IDs 072/073/074 are absent from both fixed F6 Intelligence pair files.",

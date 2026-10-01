@@ -1,7 +1,7 @@
 # confirmed175 live件数の訂正overlay（2026-10-01）
 
 - 基準main: `50686b6762788574cb471967e8c24846d3dd56ae`。
-- 元の時点監査: commit `08156a3b71ad97065cef34357dc37f6953b9a7f8`、JSON SHA-256 `f406d89f20c5f78a4984097b03735cd6737569a4e49688e2534d58d2971b8adb`。
+- 元の時点監査: 公開in-branch commit `353e0535a943c415e4fa6fc9b93e89fb92654f5b` の `confirmed175-live-recount-2026-10-01.json`、SHA-256 `f406d89f20c5f78a4984097b03735cd6737569a4e49688e2534d58d2971b8adb`。
 - 本記録は元の監査を履歴として保持し、そのartifact索引から漏れていた既存のidentity別監査を同じ厳格閾値で再照合する。採否やsource closureを変更しない。
 
 ## 訂正後の厳格件数
@@ -18,6 +18,10 @@
 | 再配置待ちで保持 | 175 |
 
 追加43件は元の未確認63件からのみ選び、source-qualified identityで重複除外した。旧行SHAと残余が別recordの場合は結合しない。3L-BR-007は比較先INTELLIGENCEの固定F6 L2/L11 file SHAが監査bytesにないため未確認のままにする。
+
+## 112件の構成と厳格閾値の再分類
+
+元のqueueにある30件の内訳は、比較artifact SHAが固定された27件と、明示的なfocused identity recordを持つ3件である。後者は `confirmed175-three-condition-meaning-delta-2026-09-28.md` の対象3 identityについて、各々のarchive source file/line SHA、固定F6 L2/L11 pairのpath/file SHA、identity固有残差が明記されている。したがって同じsource pin＋残差＋固定pairという閾値を満たすfocused側へ分類し、queue分類からは除く。strict集計は `27 queue + 93 focused − 8 overlap = 112 unique` のまま。3件は二重計上せず、175母集団や後続の155→159→167→173も変えない。詳細pinと各identityは本overlay JSONの `queue_kind_reclassification` に記録した。
 
 ## identity別判定
 

@@ -1,13 +1,13 @@
 # Confirmed175 strict167残り8件 固定F6条件監査
 
-- 監査基準: `50686b6762788574cb471967e8c24846d3dd56ae`、strict167 bundle `eda13daeab2abc3a53bc25f82693083d5cbcab5a`
+- 監査基準: `50686b6762788574cb471967e8c24846d3dd56ae`、strict167 bundle `eda13daeab2abc3a53bc25f82693083d5cbcab5a` (historical source snapshot; its exact historical bytes are pinned by the unresolved-routing audit at revision `ea9e5cd0e8712036068c358fa2fe90faef063439`)
 - 固定L2/L11 revision: `f6dad2a33e24f000b87d7f09b8d40288257e74cc`
 - 選定: strict159補正overlayの残り16件のうちpositions 9–16。archive source、asset ledger、比較監査を突合し、source lineとF6ファイルSHAを再計算した。
 
 ## 集計
 
 - 8件中6件が適格で、unique strict comparisonは167から173。DAC-FR-003とDAC-NFR-002は、固定F6に実在するOS-015および必要に応じHARNESS-011のpairを比較対象とする。
-- HELIXOS-L2-106（DAC-FR-003）とHELIXOS-L2-110（DAC-NFR-002）は後発の限定候補として記録し、固定F6 target IDsには含めない。
+- HELIXOS-L2-106はDAC-FR-003の後発限定採択（PO row 59）として記録し、固定F6 target IDsには含めない。HELIXOS-L2-110はDAC-FR-010の後発限定採択（PO row 63）であり、DAC-NFR-002には関連候補としてのみ記録する。いずれも完全source atomのsuccessorではない。
 - DAC-FR-009は空の固定target set、3L-BR-007はIntelligence target IDsが固定F6のL2/L11双方にないため未確認。空集合はpair確認済みを意味しない。
 - 175 source atomsは `preserved_pending_rehome` のまま。formal successor 0、source closure 0、authority effectなし。
 
@@ -32,8 +32,8 @@ Target IDs are counted as present only when each appears in both its fixed F6 L2
 |---|---:|---|---|
 | `DAC-FR-003` | 適格 | OS-015, HARNESS-011 | 固定pairはprovenanceと選択callの版確認に隣接するが、authority binding参照先の全件再帰検査、revoked/compatibility/historical edge、cycle/dangling/dead-authority拒否を定めない。OS-106は後発候補として分離。 |
 | `DAC-FR-009` | 未確認 | なし | 旧条件は#825、#1370、Censusの3 receiptを区別し、全てgreenの場合だけaggregate greenとする。固定F6の比較監査に同じreceipt構成のtarget pairがない。OS-111は後発の抽象AND近接であり、receipt/owner/scope/gateを定めない。 |
-| `DAC-FR-010` | 適格 | OS-015, HARNESS-001, HARNESS-004 | provenance・変更影響に部分的に近接するが、semantic epoch、旧epoch active claim/consumer全量、scannerを定めない。 |
-| `DAC-NFR-002` | 適格 | OS-015 | authority sourceとunresolved/stale状態に部分的に近接するが、compatibility/historical/referenceの存在を非欠陥としつつactive-decision利用を拒む条件はない。OS-110は後発候補として分離。 |
+| `DAC-FR-010` | 適格 | OS-015, HARNESS-001, HARNESS-004 | provenance・変更影響に部分的に近接するが、semantic epoch、旧epoch active claim/consumer全量、scannerを定めない。OS-110はPO row 63でこのsource identityに限る限定採択。完全source atomのsuccessor・closureではない。 |
+| `DAC-NFR-002` | 適格 | OS-015 | authority sourceとunresolved/stale状態に部分的に近接するが、compatibility/historical/referenceの存在を非欠陥としつつactive-decision利用を拒む条件はない。OS-110はDAC-FR-010由来の関連候補であり、DAC-NFR-002のreceipt・source・owner・scope・result証拠ではない。 |
 | `DAC-NFR-003` | 適格 | OS-015, HARNESS-010, HARNESS-011 | それぞれの管理record/pack/call metadataは存在するが、Markdownのclass/consumerに応じた適用範囲や一律要求しない条件はない。 |
 | `HBR-P6` | 適格 | HARNESS-006 | 外部サービス提供物への利用・traceabilityに部分的に近接する。旧条件のgated push、PR cross-review/auto-fix、tag/release配布、1-command bootstrap一式は揃わない。 |
 | `S-BR-001` | 適格 | LABO-033/051, BRAIN-026/027 | 外部source provenance/knowledge candidate経路に部分的に近接するが、skill inventory、必要時だけの取得、context負荷、consumer移行、rollback/retirementは未定義。 |

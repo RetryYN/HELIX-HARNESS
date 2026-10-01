@@ -3,7 +3,7 @@
   "audit_id": "confirmed175-live-recount-correction-overlay-2026-10-01",
   "audit_mode": "read_only_static_strict_evidence_overlay",
   "base_main_revision": "50686b6762788574cb471967e8c24846d3dd56ae",
-  "source_recount_commit": "08156a3b71ad97065cef34357dc37f6953b9a7f8",
+  "source_recount_commit": "353e0535a943c415e4fa6fc9b93e89fb92654f5b",
   "source_recount": {
     "path": "docs/governance/audits/requirements-stage/confirmed175-live-recount-2026-10-01.json",
     "sha256": "f406d89f20c5f78a4984097b03735cd6737569a4e49688e2534d58d2971b8adb",
@@ -17,7 +17,9 @@
       "formal_successor_assignments": 0,
       "source_atom_closure": 0,
       "preserved_pending_rehome": 175
-    }
+    },
+    "pin_revision": "353e0535a943c415e4fa6fc9b93e89fb92654f5b",
+    "pin_kind": "public_in_branch_commit_path_content_sha256"
   },
   "strict_rule_source": {
     "path": "docs/governance/audits/requirements-stage/confirmed175-live-recount-2026-10-01.json#evidence_threshold",
@@ -832,5 +834,146 @@
       "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-resident-lane-sr-1-11-condition-audit-2026-09-30.json",
       "sha256": "39ded610617a795a4b62210df1bee0c82c3c134c8b6aa51ec65b548b070fd407"
     }
-  ]
+  ],
+  "queue_kind_reclassification": {
+    "rule_applied": "The queue branch admits only row_level_condition_comparison_to_fixed_L2_L11 or identity_row_condition_crosswalk_to_fixed_L2_L11. The three identity_specific_meaning_delta_against_fixed_L2_L11 rows are reclassified through the focused-record branch because each identity section has source line SHA, local residual, fixed F6 revision and that identity target pair file SHA pins in one artifact.",
+    "source_recount_historical_partition": {
+      "queue_rows_as_recorded": 30,
+      "focused_records_as_recorded": 90,
+      "overlap_as_recorded": 8,
+      "union": 112
+    },
+    "strict_partition_after_reclassification": {
+      "queue_qualifying": 27,
+      "focused_qualifying": 93,
+      "overlap": 8,
+      "union": 112,
+      "reclassified_identity_count": 3
+    },
+    "reclassified_identities": [
+      {
+        "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-16",
+        "source_line_sha256": "c68d0f29aaf2ad024f3a0ea37892eb84b7ffb54568e0726299f4b648115ddc7a",
+        "artifact_path": "docs/governance/audits/requirements-stage/confirmed175-three-condition-meaning-delta-2026-09-28.md",
+        "artifact_sha256": "03ba7d15916b1be42cd26822ff4c42606fb4e381a6990b54ada2c7073f907439",
+        "record_pointer": "§1 Incident即releaseとbackfill",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "target_ids": [
+          "HARNESS-L2-003",
+          "HARNESS-L11-003"
+        ],
+        "fixed_pair_file_pins": [
+          {
+            "level": "L2",
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+          },
+          {
+            "level": "L11",
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+          }
+        ],
+        "identity_local_residual": "即releaseを現行Release Portと、緊急時にもV-pair/trace/検証/利用者受入を省略しないL11条件へどう接続するか、収束後backfillの範囲・時点。",
+        "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+        "source_line": 47,
+        "source_file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008"
+      },
+      {
+        "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-45",
+        "source_line_sha256": "c88465a7d0f5f2f881791256b0d45ba182573df4e1919f13d80b20ba1e0505d7",
+        "artifact_path": "docs/governance/audits/requirements-stage/confirmed175-three-condition-meaning-delta-2026-09-28.md",
+        "artifact_sha256": "03ba7d15916b1be42cd26822ff4c42606fb4e381a6990b54ada2c7073f907439",
+        "record_pointer": "§3 4軸doc専用read-only review",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "target_ids": [
+          "HARNESS-L2-005",
+          "HARNESS-L2-014",
+          "HARNESS-L11-005",
+          "HARNESS-L11-014",
+          "HELIXOS-L2-018",
+          "HELIXOS-L11-018"
+        ],
+        "fixed_pair_file_pins": [
+          {
+            "level": "L2",
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+          },
+          {
+            "level": "L11",
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+          },
+          {
+            "level": "L2",
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+          },
+          {
+            "level": "L11",
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+          }
+        ],
+        "identity_local_residual": "doc専任reviewerとPMOからの独立性、三発動場面の必須review、結果、品質oracleが固定pairにない。",
+        "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+        "source_line": 76,
+        "source_file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008"
+      },
+      {
+        "source_qualified_identity": "helix/L1-requirements/three-lane-cloud-governance-requests.md::3L-BR-008",
+        "source_line_sha256": "d4d4e772fe334d81af99c5aa5856f07e0c2fd6d2107a01812264907941c9cfc0",
+        "artifact_path": "docs/governance/audits/requirements-stage/confirmed175-three-condition-meaning-delta-2026-09-28.md",
+        "artifact_sha256": "03ba7d15916b1be42cd26822ff4c42606fb4e381a6990b54ada2c7073f907439",
+        "record_pointer": "§2 GitHub監査資格の失効",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "target_ids": [
+          "HELIXLABO-L2-055",
+          "HELIXLABO-L2-059",
+          "HELIXOS-L2-018",
+          "HELIXSECURITY-L2-008"
+        ],
+        "fixed_pair_file_pins": [
+          {
+            "level": "L2",
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed"
+          },
+          {
+            "level": "L11",
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200"
+          },
+          {
+            "level": "L2",
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+          },
+          {
+            "level": "L11",
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+          },
+          {
+            "level": "L2",
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c"
+          },
+          {
+            "level": "L11",
+            "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01"
+          }
+        ],
+        "identity_local_residual": "GitHub audit task class、major-missの資格上の帰結、model revision変更時の再評価/失効が固定pairに明記されない。",
+        "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+        "source_line": 67,
+        "source_file_sha256": "e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765",
+        "source_semantic_line": 69,
+        "source_semantic_line_sha256": "cdb797e688296917ee4c54a9bf77ff12ac650ae56dc8dcf414f4e100c0e71969"
+      }
+    ],
+    "count_effect": "No new identity is added by this reclassification; it fixes the evidence channel for the same three identities. Strict union remains 112, so subsequent overlays remain 155→159→167→173."
+  }
 }

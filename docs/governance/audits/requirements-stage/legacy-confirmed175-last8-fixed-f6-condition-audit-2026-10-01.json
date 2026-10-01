@@ -204,7 +204,8 @@
           {
             "requirement_id": "HELIXOS-L2-106",
             "status": "later adopted limited candidate; not in fixed F6 target set",
-            "evidence": "selected binding/reference chain only; not a formal successor or full condition coverage"
+            "evidence": "selected binding/reference chain only; not a formal successor or full condition coverage",
+            "decision_scope": "PO decision 2026-09-30 row 59 adopts this bounded candidate; it remains outside fixed F6 targets and is not a formal successor assignment for the complete DAC-FR-003 source atom."
           }
         ],
         "pair_flag_definition": "true only when every target_id appears in both its mechanism L2 and L11 files at fixed F6 revision; empty target_ids yields false"
@@ -339,7 +340,14 @@
         ],
         "pair_ids_present_in_revision": true,
         "comparison_is_closure": false,
-        "later_or_non_fixed_neighbors": [],
+        "later_or_non_fixed_neighbors": [
+          {
+            "requirement_id": "HELIXOS-L2-110",
+            "source_identity": "helix/L1-requirements/document-authority-census-requests.md::DAC-FR-010",
+            "status": "adopted within the bounded section by PO decision 2026-09-30 row 63; not a fixed F6 target or a successor assignment for the complete source atom",
+            "evidence": "MPR-RC-HELIXOS-L2-110-001 source_atom_set_ref names CONFIRMED-DAC-FR-010; its adoption does not establish scanner, full semantic-epoch coverage, or source closure."
+          }
+        ],
         "pair_flag_definition": "true only when every target_id appears in both its mechanism L2 and L11 files at fixed F6 revision; empty target_ids yields false"
       }
     },
@@ -377,7 +385,7 @@
         "file_sha256": "a3e1c9622c35185b11a3c3ab14148421e5da5a264d210695f07965022a904895"
       },
       "comparison_result": "partial_nonfinding_context_only",
-      "direct_current_evidence_or_partial_gap": "固定F6のOS-015はauthority sourceとunresolved/stale状態に隣接するが、compatibility/historical/referenceの存在を非欠陥としつつactive-decision利用を拒む条件はない。HELIXOS-L2-110は後発の限定候補として別記し、固定F6 targetには数えない。存在だけからseverityや削除所見を出さない。",
+      "direct_current_evidence_or_partial_gap": "固定F6のOS-015はauthority sourceとunresolved/stale状態に隣接するが、compatibility/historical/referenceの存在を非欠陥としつつactive-decision利用を拒む条件はない。HELIXOS-L2-110はDAC-FR-010由来であり、DAC-NFR-002への関連のみ。receiptやsource evidenceとして扱わない。",
       "strict_threshold_qualifies": true,
       "authority_effect": "none",
       "successor_requirement_ids": [],
@@ -406,12 +414,18 @@
         "later_or_non_fixed_neighbors": [
           {
             "requirement_id": "HELIXOS-L2-110",
-            "status": "later adopted limited candidate; not in fixed F6 target set",
-            "evidence": "bounded nonfinding context only; does not add the active-decision refusal rule"
+            "status": "Related-only neighbor for DAC-NFR-002. The candidate is sourced from DAC-FR-010, was adopted only within its own bounded section under PO decision row 63, and is not DAC-NFR-002 receipt/evidence, successor, or fixed F6 target.",
+            "evidence": "bounded nonfinding context only; does not add the active-decision refusal rule",
+            "source_identity": "helix/L1-requirements/document-authority-census-requests.md::DAC-FR-010"
           }
         ],
         "pair_flag_definition": "true only when every target_id appears in both its mechanism L2 and L11 files at fixed F6 revision; empty target_ids yields false"
-      }
+      },
+      "receipt_limits": [
+        "HELIXOS-L2-110 has source atom CONFIRMED-DAC-FR-010, not DAC-NFR-002.",
+        "Do not treat its adoption or any related receipt mention as identifying a DAC-NFR-002 receipt, issuer, owner, target scope, or result.",
+        "The fixed DAC-NFR-002 comparison remains HELIXOS-L2/L11-015 only; the candidate is contextual and outside fixed F6."
+      ]
     },
     {
       "identity": "DAC-NFR-003",

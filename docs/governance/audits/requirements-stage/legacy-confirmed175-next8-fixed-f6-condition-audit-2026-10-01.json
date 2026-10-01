@@ -14,7 +14,8 @@
     "prior_strict_comparison_count": 159,
     "prior_unconfirmed_count": 16,
     "prior_overlay_commit": "e43e286c0f9f7b2099867c9a2b5dce07ff94b7a3",
-    "prior_overlay_json_sha256": "a318ea9574d79399a539ee101e3b736e472148b7ef4d97c3e261d1292b781f0a"
+    "prior_overlay_json_sha256": "a318ea9574d79399a539ee101e3b736e472148b7ef4d97c3e261d1292b781f0a",
+    "prior_overlay_pin_kind": "public_in_branch_commit_path_content_sha256"
   },
   "scope": {
     "source_order": "strict159 correction overlay remaining_unconfirmed_identities array order",

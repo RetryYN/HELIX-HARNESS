@@ -208,7 +208,18 @@
       "carry_forward_state": "preserved_pending_rehome",
       "successor_requirement_ids": [],
       "source_atom_closure": "none",
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "later_candidate_decision": {
+        "identity": "HARNESS-L2-061",
+        "decision_path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+        "decision_row": 46,
+        "status": "held; not adopted",
+        "source_scope": [
+          "BR-08 line 48",
+          "FR-L1-45 line 76"
+        ],
+        "effect": "Not a successor, adopted coverage, or authority transfer. The fixed F6 comparison remains limited to L2/L11-003/005; the held candidate does not fill BR-08 residuals."
+      }
     },
     {
       "source_qualified_identity": "harness/L1-requirements/business-requirements.md::D-01",

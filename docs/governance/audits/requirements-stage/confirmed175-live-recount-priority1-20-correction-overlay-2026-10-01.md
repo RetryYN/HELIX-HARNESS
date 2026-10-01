@@ -2,8 +2,8 @@
 
 起点: `50686b6762788574cb471967e8c24846d3dd56ae`（origin/main）
 
-前回の厳格訂正: commit `620e524c25b84e6a73ac017dffcfa7006b1f8466`、JSON SHA-256 `4e1580797bc360247f4efe5e1b5b5c598371f491a5a3a31423496e045ed7309b`
-priority 1–20 bundle: commit `f6c864beec458ef1233e63099d52c6b6d68051ce`
+前回の厳格訂正: 公開in-branch commit `353e0535a943c415e4fa6fc9b93e89fb92654f5b` のJSON、SHA-256 `4e1580797bc360247f4efe5e1b5b5c598371f491a5a3a31423496e045ed7309b`
+priority 1–20 bundle: 公開in-branch commit `4c4d4d195a6cef4eb405d4bd3c34974d46775b3f`。BR-01…D-07 artifact SHA `fc5206c314c617b869dc9ae373f478d07f0314d870add47a7bd18a636a66bf7f`、priority 11–20 artifact SHA `3bc230a410529f398aaedd9cafa870b84402e3ee01c3aaeb0d3d14b6e33d0c4c`。
 
 ## 同じ厳格条件での再計数
 
