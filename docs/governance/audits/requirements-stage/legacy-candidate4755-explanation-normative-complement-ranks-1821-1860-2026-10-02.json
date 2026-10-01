@@ -2170,7 +2170,7 @@
         "text": "## IPC-R09 安定入口と動的正本参照"
       },
       "exact_source_line_text": "`worker-context-packet`、adapter、role judgment、task lensは既存ownerを参照し、別の意味正本を持たない。",
-      "semantic_reading": "挙げられたpacketやadapter等は既存ownerを参照し、別の意味正本を持たせない。",
+      "semantic_reading": "worker-context-packet、adapter、role judgment、task lensは既存ownerを参照し、別の意味正本を持たない。",
       "physical_context": {
         "previous_physical_line": "固定文書集合、未登録command、provider固有の古い意味をcurrent authorityとして注入しない。",
         "next_physical_line": ""
@@ -2291,7 +2291,7 @@
         "text": "## IPC-R10 効果測定と採否境界"
       },
       "exact_source_line_text": "変更前後を同一task・consumer・evidence条件で比較し、手修正箇所数、有効化までの時間、総token、再実行、",
-      "semantic_reading": "同一task・consumer・evidence条件で変更前後を比較し、定量比較項目を列挙し、文は次物理行へ続く。",
+      "semantic_reading": "変更前後を同一task・consumer・evidence条件で比較し、手修正箇所数、有効化までの時間、総token、再実行を列挙する。行末は読点であり、比較項目は次行に続く。",
       "physical_context": {
         "previous_physical_line": "",
         "next_physical_line": "誤拒否、旧版再出現を測定する。閾値は既存NFRへ接続し、未定義ならcanonical昇格前に採否基準を定義する。"
@@ -2533,7 +2533,7 @@
         "text": "## 導入順"
       },
       "exact_source_line_text": "#1376の契約生成、#1375のconsumer適用を軸に、#1373/#1374/#1377を対象単位で接続し、",
-      "semantic_reading": "記載された四つのissueを対象単位で接続し、文は次行へ続く。",
+      "semantic_reading": "#1376の契約生成、#1375のconsumer適用を軸に、#1373/#1374/#1377を対象単位で接続する。五つのIssueの役割を記し、文は次行へ続く。",
       "physical_context": {
         "previous_physical_line": "",
         "next_physical_line": "#1378 consumer E2Eへ収束させる。最初は一つの指示経路で正本変更、必要出力更新、読込観測、動作確認、"
@@ -2654,7 +2654,7 @@
         "text": "## 導入順"
       },
       "exact_source_line_text": "#1378 consumer E2Eへ収束させる。最初は一つの指示経路で正本変更、必要出力更新、読込観測、動作確認、",
-      "semantic_reading": "consumer E2Eへ集約し、一指示経路で正本変更から更新・読込・動作確認・旧出力非再生成までを実証する順を挙げ、文が続く。",
+      "semantic_reading": "#1378 consumer E2Eへ収束させる。最初は一つの指示経路で正本変更、必要出力更新、読込観測、動作確認を列挙する。旧出力非再生成は次行であり、この物理行の内容には含めない。",
       "physical_context": {
         "previous_physical_line": "#1376の契約生成、#1375のconsumer適用を軸に、#1373/#1374/#1377を対象単位で接続し、",
         "next_physical_line": "旧出力非再生成を実証し、全Censusや全Skill移行を先行条件にしない。候補承認とcanonical昇格、"
@@ -2775,7 +2775,7 @@
         "text": "## 導入順"
       },
       "exact_source_line_text": "旧出力非再生成を実証し、全Censusや全Skill移行を先行条件にしない。候補承認とcanonical昇格、",
-      "semantic_reading": "全Censusや全Skill移行を開始条件にしないと記し、候補承認とcanonical昇格の状態区別を述べ始める。",
+      "semantic_reading": "旧出力非再生成を実証し、全Censusや全Skill移行を先行条件にしない。候補承認とcanonical昇格を列挙し、状態区別の文は次行に続く。",
       "physical_context": {
         "previous_physical_line": "#1378 consumer E2Eへ収束させる。最初は一つの指示経路で正本変更、必要出力更新、読込観測、動作確認、",
         "next_physical_line": "#397 IR admission、runtime実装を別状態で追う。"
@@ -4017,7 +4017,7 @@
         "text": "# 管理Scrumとproduct Forward入口分離の受入設計"
       },
       "exact_source_line_text": "| U-MSPF-001 | adapter正本 | AGENTS／CLAUDEが管理Scrum、Scrum Reverse、product Forward、Project read-sideを同時に宣言する | `tests/management-scrum-product-forward.test.ts` |",
-      "semantic_reading": "adapter正本ケースに対する不整合例と対応test pathを一つの受入表行に並べる。",
+      "semantic_reading": "U-MSPF-001はadapter正本を対象に、AGENTS／CLAUDEが管理Scrum、Scrum Reverse、product Forward、Project read-sideを同時に宣言する反例を記す。test citationはtests/management-scrum-product-forward.test.tsであり、実行結果ではない。",
       "physical_context": {
         "previous_physical_line": "| --- | --- | --- | --- |",
         "next_physical_line": "| U-MSPF-002 | governance read order | governance READMEから入口分離正本へ到達できる | `tests/management-scrum-product-forward.test.ts` |"
@@ -4142,7 +4142,7 @@
         "text": "# 管理Scrumとproduct Forward入口分離の受入設計"
       },
       "exact_source_line_text": "| U-MSPF-003 | 管理見落としIssue | 観測、影響、再発、gate、Scrum段階、Reverse先の欠落をテンプレで防ぐ | `tests/management-scrum-product-forward.test.ts` |",
-      "semantic_reading": "管理見落としIssueケースの記録対象と対応test pathを表記する。",
+      "semantic_reading": "U-MSPF-003は管理見落としIssueを対象に、観測、影響、再発、gate、Scrum段階、Reverse先の欠落をテンプレで防ぐ期待とtests/management-scrum-product-forward.test.tsの引用を記す。",
       "physical_context": {
         "previous_physical_line": "| U-MSPF-002 | governance read order | governance READMEから入口分離正本へ到達できる | `tests/management-scrum-product-forward.test.ts` |",
         "next_physical_line": "| U-MSPF-004 | authority境界 | Project／DBを意味正本や完了正本へ昇格させない | `tests/management-scrum-product-forward.test.ts` |"
@@ -6010,7 +6010,7 @@
         "text": "# 機構充足性評価：受入候補"
       },
       "exact_source_line_text": "| MA-AC-02 | MA-R-01 | 宣言・未実装・未接続・未検収・実稼働を区別。未実装を能力不存在へ変換しない |",
-      "semantic_reading": "MA-AC-02とMA-R-01を結び、複数の実装・接続・検収・稼働状態を区別する期待を表記する。test実行結果を示す行ではない。",
+      "semantic_reading": "MA-AC-02はMA-R-01に対応し、宣言・未実装・未接続・未検収・実稼働を区別し、未実装を能力不存在へ変換しない期待を記す。test実行結果ではない。",
       "physical_context": {
         "previous_physical_line": "| MA-AC-01 | MA-R-01 | stable IDで要求から運用まで辿れる。生ログ・AI感想単独、欠落edgeを拒否 |",
         "next_physical_line": "| MA-AC-03 | MA-R-02 | 実装・接続不備の正例。誤設定を新機構必要とするmutationを拒否 |"
