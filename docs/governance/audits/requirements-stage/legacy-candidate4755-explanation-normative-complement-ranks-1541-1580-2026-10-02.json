@@ -3433,7 +3433,7 @@
       "exact_source_line_text": "この文書はConcept候補の根拠であり、機能の完成証明ではない。OPERATIONALはbaseline mainで実行面が存在すること、",
       "semantic_family": "v4.0能力根拠の状態語彙定義",
       "semantic_function": "OPERATIONALの定義",
-      "semantic_reading": "LEGACY-CAND-LINE-002614 — この候補文書内のOPERATIONALはbaseline main上に実行面が存在することを表すという定義。現在の機能状態を独自に確認した結果ではない。",
+      "semantic_reading": "LEGACY-CAND-LINE-002614 — この文書はConcept候補の根拠であって機能の完成証明ではないと明示し、OPERATIONALはbaseline mainで実行面が存在すること、と定義を始める。この物理行は読点で終わり、定義が次行へ続く。",
       "legacy_context": {
         "section_heading": {
           "line": 3,
@@ -8483,7 +8483,7 @@
       "exact_source_line_text": "HELIXは、それを実行可能な作業へ分け、AIへ配り、テストと独立レビューを通し、根拠が揃った変更だけを",
       "semantic_family": "v4.0 README説明候補のHELIXの役割",
       "semantic_function": "人の意図を実行可能な作業へつなぐ説明の前半",
-      "semantic_reading": "LEGACY-CAND-LINE-002656 — HELIXが意図を実行可能な作業へ分解してAIへ配り、テストと独立レビューを通すという説明。この物理行は次行の完了扱いの述語へ続く。",
+      "semantic_reading": "LEGACY-CAND-LINE-002656 — HELIXが意図を実行可能な作業へ分けてAIへ配り、テストと独立レビューを通し、根拠が揃った変更だけを、という限定まで述べる。この物理行は次行の述語へ続く。",
       "legacy_context": {
         "section_heading": {
           "line": 5,
@@ -8685,7 +8685,7 @@
       "exact_source_line_text": "完成として扱います。",
       "semantic_family": "v4.0 README説明候補のHELIXの役割",
       "semantic_function": "根拠が揃った変更だけを完了扱いする",
-      "semantic_reading": "LEGACY-CAND-LINE-002657 — 前物理行の説明を閉じ、根拠が揃った変更だけを完成として扱うとする。これは旧README候補の説明で、現行の受入判定ではない。",
+      "semantic_reading": "LEGACY-CAND-LINE-002657 — 前物理行から続く文を「完成として扱う」という述語で閉じる。この行自身は対象の限定を再列挙しない。",
       "legacy_context": {
         "section_heading": {
           "line": 5,
