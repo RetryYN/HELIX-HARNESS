@@ -71,324 +71,660 @@
       "sha256": "cdccc509f0bd5e7ef752e76ac3ecb5a48e7b9bcd0981b9ccf23d442a29968ecd",
       "affected_interpretations": [
         {
+          "json_pointer": "/limitations/2",
+          "historical_interpretation": "The current OS L2/L11-046 candidate and draft receipt map only nonselected LEGACY-CAND-LINE-003612 / RFA-AC-16 source line 37. The receipt scope is one atom, partial, PO-pending, and explicitly does not assert closure or a confirmed successor."
+        },
+        {
           "json_pointer": "/rows/0/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/0/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/0/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/0/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/1/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/1/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/1/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/1/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/2/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/2/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/2/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/2/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/3/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/3/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/3/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/3/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/4/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/4/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/4/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/4/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/5/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/5/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/5/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/5/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/6/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/6/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/6/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/6/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/7/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/7/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/7/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/7/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/8/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/8/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/8/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/8/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/9/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/9/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/9/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/9/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/10/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/10/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/10/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/10/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/11/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/11/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/11/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/11/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/12/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/12/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/12/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/12/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/13/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/13/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/13/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/13/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/14/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/14/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/14/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/14/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/15/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/15/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/15/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/15/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/16/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/16/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/16/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/16/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/17/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/17/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/17/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/17/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/18/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/18/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/18/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/18/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/19/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/19/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/19/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/19/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/20/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/20/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/20/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/20/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/21/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/21/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/21/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/21/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/22/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/22/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/22/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/22/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/23/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/23/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/23/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/23/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/24/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/24/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/24/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/24/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/25/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/25/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/25/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/25/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/26/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/26/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/26/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/26/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/27/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/27/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/27/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/27/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/28/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/28/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/28/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/28/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/29/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/29/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/29/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/29/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/30/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/30/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/30/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/30/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/31/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/31/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/31/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/31/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/32/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/32/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/32/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/32/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/33/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/33/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/33/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/33/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/34/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/34/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/34/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/34/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/35/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/35/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/35/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/35/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/36/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/36/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/36/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/36/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/37/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/37/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/37/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/37/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/38/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
+        },
+        {
+          "json_pointer": "/rows/38/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/rows/38/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
         },
         {
+          "json_pointer": "/rows/38/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
           "json_pointer": "/rows/39/current_relation_and_residual",
           "historical_interpretation": "Source-line carry-forwardとsemantic-routingはこの旧RFA行をhistorical_candidateからdraft_candidateへ保持し、preserved_pending_atomization、current/adopted IDsなし、successorなし、meaning changeなし、decision recordなしと記録する。旧L3-PO-1556-001はexact v0.1 candidate revision承認だが、PLAN本文はcurrent policy/IR/runtime変更なし・独立検収後canonical version-upとする。現行OS L2/L11-046は選択外RFA-AC-16 line 37だけを限定sourceにしたdraft候補で、隣接・未選択行をこの行へbindingしない。receiptのsource-file/family referenceと直接source row bindingを分ける。 Current OS L2/L11-046 and its receipt point only to unselected LEGACY-CAND-LINE-003612, RFA-AC-16, acceptance physical line 37. The receipt says draft_unadopted_candidate_scope_recorded, one input atom, partial coverage, condition_closure not_asserted, semantic successor pending PO, and source holding live. This family/companion relation does not bind any selected row. Any matching full-file SHA in the receipt is source-file provenance only; it does not bind this physical row."
         },
         {
+          "json_pointer": "/rows/39/fixed_F6_family_comparison_relations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
+        },
+        {
           "json_pointer": "/rows/39/fixed_F6_family_comparison_relations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
+        },
+        {
+          "json_pointer": "/rows/39/PO_relation",
+          "historical_interpretation": "Historical exact v0.1 RFA candidate approval is not current adoption. Current OS L2/L11-046 is a separate draft connection candidate scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16, and its receipt is pending PO; no selected row is adopted."
+        },
+        {
+          "json_pointer": "/candidate_directory_scope/known_family_pointer_review/0/finding",
+          "historical_interpretation": "OS L2-046 is draft and scoped to unselected LEGACY-CAND-LINE-003612 / RFA-AC-16 / acceptance line 37; no selected source row is bound."
+        },
+        {
+          "json_pointer": "/candidate_directory_scope/known_family_pointer_review/1/finding",
+          "historical_interpretation": "OS L11-046 is a draft acceptance candidate for the same unselected RFA-AC-16 row; not adoption, execution, or full closure."
+        },
+        {
+          "json_pointer": "/RFA_current_candidate_receipt_relations/0/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
         },
         {
           "json_pointer": "/RFA_current_candidate_receipt_relations/3/interpretation",
@@ -400,13 +736,30 @@
       "commit": "148307bbb0f1f7b82fc48ecff5a382621c1850cd",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-2101-2140-2026-10-02.md",
       "sha256": "c4a53372a80eafcc8f521d48ef923b83874645a000b788c74a4e3837f716e0aa",
-      "affected_interpretations": []
+      "affected_interpretations": [
+        {
+          "line": 13,
+          "historical_interpretation": "- Current OS L2-046 `governance-requirements.md:1180–1183` とL11-046 `governance-acceptance.md:797–800`は旧RFA-AC-16の一つのrowだけをsourceにしたdraft connection candidate。OS POは明示採用L2-014..029を列記し、L2-046を採択していない。family参照はselected rowsへの直接bindingではない。receipt内の全source file SHA一致もarchive file単位のprovenanceであり、各selected physical rowとのbindingではない。"
+        },
+        {
+          "line": 14,
+          "historical_interpretation": "- Receipt `helixos-rfa-scope-coverage-receipt-2026-09-28.json:2–45,91–94` とsource-lines JSONL line 1は、非選択ID LEGACY-CAND-LINE-003612 / acceptance line 37 / RFA-AC-16を一atomとしてHELIXOS-L2/L11-046 draft candidateへ対応づける。状態はdraft_unadopted_candidate_scope_recorded、PO pending、coverage partial、condition_closure not_asserted、semantic successor not_confirmed_pending_PO、source holding live。今回のselected rowsにはbindingしない。"
+        },
+        {
+          "line": 69,
+          "historical_interpretation": "- RFAの旧候補revision承認、current OS L2/L11-046のunselected AC-16候補、single-atom draft receipt、8機構のcurrent PO候補集合は別authority/evidence関係。selected source rowsへadoption、successor、IR admission、canonical promotion、実行、検収またはclosureを生成しない。"
+        }
+      ]
     },
     {
       "commit": "148307bbb0f1f7b82fc48ecff5a382621c1850cd",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-2141-2180-2026-10-02.json",
       "sha256": "bd5aa7a34792c8c4308193745e161ee7913abc0015d63fe75f881f59de850fd6",
       "affected_interpretations": [
+        {
+          "json_pointer": "/RFA_shared_family_companion_evidence/citations/7/interpretation",
+          "historical_interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
+        },
         {
           "json_pointer": "/RFA_shared_family_companion_evidence/citations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
@@ -434,5 +787,7 @@
     "line": 37,
     "line_sha256": "bafb2bae38d5e4363a90e58405e44e1e4544e85adfaa2b318bef2425a873065c",
     "text": "| RFA-AC-16 | RFA-GH-02 | dispatch/実行/ready/mergeが同authority/HEAD/scopeを照合。docs path免除・探索mergeの実装許可化・required skipを拒否 |"
-  }
+  },
+  "affected_interpretation_count": 170,
+  "inclusion_rule": "OS046をdraft／未採択／PO pendingとして説明した現行監査の解釈とreceiptの採否解釈を列挙する。JSONは解釈・finding・PO_relation・limitations等を含み、text/source_text/exact_source_line_textの引用原文は除く。Markdownは該当解釈を含む行全体を列挙する。歴史引用のdraft値自体は変更せず、後日の採択を加味しない現行解釈を訂正する。"
 }
