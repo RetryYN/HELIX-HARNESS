@@ -1,0 +1,119 @@
+{
+  "audit_id": "IR153-HIL-FR42-FR45-CURRENT-FIELD-AUDIT-2026-10-02",
+  "baseline_commit": "6265c512bae65789b177e38404c8266726799f46",
+  "authority_effect": "none",
+  "authority_pins": {
+    "po_57_decision_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+    "po_11_decision_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+    "po_live26_decision_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+    "harness_base_decision_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+    "current_mpr_register_sha256": "b44f9a4aecb8c2fab5f7517ebe55234399805c3435d1446a6836283da8ab3a93",
+    "063_coverage_receipt_sha256": "a4e0e656275cf5d942741af6fdca6dfcfb1b0ffcd6c395ad6abb6d44a45d8b1f"
+  },
+  "scope": ["HIL-FR-42", "HIL-FR-45"],
+  "legacy_source": {
+    "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+    "raw_file": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+    "raw_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+    "source_lines": {
+      "HIL-FR-42": {"line": 132, "sha256_lf_excluded": "346e683c5f9c58018a57c29e652b84b79612466a24a3df6124d271ac0ddeddb8"},
+      "HIL-FR-45": {"line": 135, "sha256_lf_excluded": "618f08eec7918d50938b2b09914da9be34524d5f9662b5bdfd1dfa43aed4b871"}
+    },
+    "legacy_requirements_ir": {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "pointers": ["#/HIL-FR-42", "#/HIL-FR-45"],
+      "referenced_hr_hac_hat": ["HR-FR-HIL-17", "HAC-HIL-17a", "HAC-HIL-17b", "HAC-HIL-17c", "HAT-HIL-17"],
+      "system_contracts_file_sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "acceptance_cases_file_sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "system_tests_file_sha256": "7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+      "legacy_acceptance_meanings": {"HAC-HIL-17a": "atom/challengeを決定routeし完全revisionだけactive", "HAC-HIL-17b": "TBD/N/A/orphan/change欠落でfreeze拒否", "HAC-HIL-17c": "template gapは独立review前active 0"},
+      "HAT-HIL-17_status": "designed_not_implemented",
+      "HAT-HIL-17_required_evidence": "source/authority/oracle、template/obligation/change/review",
+      "HAT-HIL-17_negative_boundary": "aggregate/TBD/N/A、self-promotion、stale"
+    },
+    "carry_forward": {
+      "path": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl",
+      "HIL-FR-42_line": 75,
+      "HIL-FR-45_line": 78,
+      "status": "preserved_pending_rehome",
+      "successor_ids": [],
+      "decision_record": null
+    }
+  },
+  "current_files": {
+    "HARNESS_L2": {"path": "docs/helix-harness/L2-requirements/product-requirements.md", "sha256": "94e476d2792da0200b2a334e591b02e08401b845a84794b6990e039775968bcf"},
+    "HARNESS_L11": {"path": "docs/helix-harness/L11-acceptance/product-acceptance.md", "sha256": "0f682b3fdbb7bf43baa33af68a215bf369d56a562d12a496b8c88cac9563dffd"},
+    "OS_L2": {"path": "docs/helix-os/L2-requirements/governance-requirements.md", "sha256": "48c35d7ef629d99305aac79e548e638057e3ffe728976bff82e3ed1008e093fe"},
+    "OS_L11": {"path": "docs/helix-os/L11-acceptance/governance-acceptance.md", "sha256": "3faf77574ffc6d33720e2d882cd3c7d30268b9103fb76054d1837f81467a413a"}
+  },
+  "adopted_pairs": [
+    {"id": "HARNESS-L2-035", "status": "adopted_exact_registration", "registration": "MPR-RC-HARNESS-L2-035-002", "decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:40,122", "decision_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad", "current_sections": {"L2": {"lines": "719-728", "raw_sha256": "7eabe1b8feefc4f7d954cf182a20d6db5c9f7ebd3e253767cc41c9def6d61896"}, "L11": {"lines": "485-491", "raw_sha256": "65328061d5933e205a1ce1bf8689f19b1ab820623a2c637f13bb475477100670"}}, "candidate_semantic_digest": "4e37d81ee53b22319a316aa7090b30ccb94688d23ed6547551e914b2903a29c2", "scope": "upstream authority/rationale, candidate scope/non-goal, acceptance contribution, necessity/alternatives/budget; not a requirement row schema"},
+    {"id": "HARNESS-L2-040", "status": "adopted_exact_registration", "registration": "MPR-RC-HARNESS-L2-040-002", "decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:45", "decision_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad", "current_sections": {"L2": {"lines": "946-955", "sha256": "c349606d7798e3f4eb5e6cb31e0618a83dcfa05f9fc888b0ce618f6d160757df"}, "L11": {"lines": "689-697", "sha256": "366518f8e32ac4dda1e5f4ec88ef0cfed6bc363d597955ffffb1a82d706fc212"}}, "scope": "versioned catalog, generic required node/edge contract, row ID/revision/source span/digest/status/owner/upstream-downstream relation, same-revision coverage"},
+    {"id": "HARNESS-L2-041", "status": "adopted_exact_registration", "registration": "MPR-RC-HARNESS-L2-041-003", "decision": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md:27", "decision_file_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5", "current_sections": {"L2": {"lines": "957-968", "sha256": "d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260"}, "L11": {"lines": "699-714", "sha256": "11759276200a6707762e76eeeefd901443e691bd1b0ff51b55cd3b6551fed58b"}}, "scope": "selected active template identity/revision/applicability, atomic template obligation or reasoned gap, source span; does not itself write canonical ledger"},
+    {"id": "HARNESS-L2-053", "status": "adopted_exact_registration_limited_legacy_scope", "registration": "MPR-RC-HARNESS-L2-053-001", "decision": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md:33", "decision_file_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5", "current_sections": {"L2": {"lines": "1139-1152", "sha256": "ebc78869f6d94668d9fed00d0a0415d068d85c0f61c0d98f01a9c4ec39710587"}, "L11": {"lines": "851-864", "sha256": "c22abfd29780a4016b0fcef74d6b2c29b3628b81c12d0fcb0b1fcabfb48bb61f"}}, "scope": "HIL-FR-53 selected atoms: path-independent identity/revision, semantic diff, rename/move history, split/merge/supersede lineage with authority/oracle/typed edge; does not close all FR45 fields or FR45 source dispositions"},
+    {"id": "HARNESS-L2-063", "status": "adopted_limited_source_scope_version_unspecified", "registration": "MPR-RC-HARNESS-L2-063-001", "decision": "docs/governance/decisions/po-decision-2026-09-30-live26.md:48,72", "decision_file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145", "current_sections": {"L2": {"lines": "1238-1248", "sha256": "f0a1014c9514d70e8cbee63faca3ae6679c43240c89e095c4b484b161ed75b46"}, "L11": {"lines": "952-963", "sha256": "fb545fc06feb1b032899cc24e8b579bb2032747a4e65f40ae354103b0bda2233"}}, "source_scope": ["HR-FR-HIL-17-BEHAVIOR", "HR-FR-HIL-17-TRANSITION", "HR-FR-HIL-17-FAILURE-EVIDENCE"], "source_atom_count": 3, "version_target": "unspecified", "limit": "does not claim all 11 legacy IDs, whole HR source closure, or formal HIL-FR-42/45 successor"},
+    {"id": "HELIXOS-L2-038", "status": "adopted_with_dependency", "decision": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md:35,38,40", "decision_file_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5", "current_sections": {"L2": {"lines": "1096-1113", "sha256": "c3b0424bd39ac7c91166c87738fbefc1b20a11b904012d9ada768a113ccbe013"}, "L11": {"lines": "671-673", "sha256": "eabb68eaafc76f0080fbe9cb9c6904005c88b72e7cee9563f2515b4488de2e5d"}}, "conditional_negative_oracle": {"L11_line": 690, "sha256": "86287e73d09522940b2a07bf8f304135ff3d495904df055088f07fff077766ed"}, "scope": "OS catalog writer/snapshot/proposal append/quarantine; not requirement definition meaning"}
+  ],
+  "fr45_fields": [
+    {"field": "source atom", "status": "partial", "current_refs": ["HARNESS-L2-041:960-965", "HARNESS-L2-063:1241-1247", "HARNESS-L2-040:951-954"], "limitation": "selected template/063 source subset; no all-FR45 atom-to-canonical-requirement binding or formal rehome"},
+    {"field": "canonical statement", "status": "unresolved", "current_refs": ["HARNESS-L2-040:951", "HARNESS-L2-063:1242-1247"], "counterexample": "replace requirement statement while retaining existing source span and other declared edges; no adopted field-level oracle explicitly rejects the changed canonical text/revision pair"},
+    {"field": "BR/FR/TR/NFR type", "status": "unresolved", "current_refs": ["HARNESS-L2-040:951", "HELIXOS-L2-038:1096-1113"], "limitation": "layer ledger/catalog type is not requirement classification"},
+    {"field": "modality", "status": "partial", "current_refs": ["HARNESS-L2-063:1242-1247"], "limitation": "explicit for adopted 3 HR slices only"},
+    {"field": "priority", "status": "unresolved", "current_refs": ["HARNESS-L2-024 L11:240-254"], "limitation": "question-presentation priority is not per-requirement ledger priority"},
+    {"field": "scope/non-goal", "status": "partial", "current_refs": ["HARNESS-L2-035:722-727", "HARNESS-L2-063:1241-1247"], "limitation": "candidate derivation/scope is supported; all requirement row scope/non-goal persistence and revision receipt is not"},
+    {"field": "authority/rationale", "status": "partial", "current_refs": ["HARNESS-L2-035:722-727", "HARNESS-L2-063:1241-1247", "HELIXOS-L2-038:1096-1113"], "limitation": "source authority and derivation supported in bounded scopes; per-row rationale/review authority across every change not established"},
+    {"field": "acceptance oracle", "status": "partial", "current_refs": ["HARNESS-L2-022:447-466", "HARNESS-L2-063:1242-1247"], "limitation": "general oracle contract and selected-scope closure exist; per-requirement oracle identity/revision field is not fully specified"},
+    {"field": "owner", "status": "partial", "current_refs": ["HARNESS-L2-040:951", "HARNESS-L2-040 L11:689-697"], "limitation": "generic layer-ledger row owner exists; requirement-specific owner missing/absence oracle not established"},
+    {"field": "risk", "status": "partial", "current_refs": ["HARNESS-L2-005:56", "HARNESS-L2-009:60", "HARNESS-L2-014:382"], "limitation": "risk drives verification/template choice; requirement row risk field persistence/change oracle not established"},
+    {"field": "capability/service", "status": "partial", "current_refs": ["HARNESS-L2-009:60", "HARNESS-L2-014:382", "HARNESS-L2-040:951", "HARNESS-L2-063:1242-1247"], "limitation": "design/service selection and generic relations exist; mandatory requirement-to-capability/service endpoints and orphan oracle not fixed"},
+    {"field": "template applicability", "status": "held_for_selected_template_scope", "current_refs": ["HARNESS-L2-041:958-968", "HARNESS-L2-041 L11:699-714", "HARNESS-L2-063:1242-1247"], "limitation": "exact selected template applicability held; not a universal requirement-row applicability schema"},
+    {"field": "design obligation", "status": "partial", "current_refs": ["HARNESS-L2-014:382-386", "HARNESS-L2-041:958-968", "HARNESS-L2-063:1242-1247"], "limitation": "template-driven duties/gaps and selected freeze closure exist; no all-FR45-row design-obligation endpoint/disposition closure"}
+  ],
+  "fr42_graph_facets": [
+    {"facet": "API", "status": "partial", "current_refs": ["HARNESS-L2-014:379-386", "HARNESS-L2-025/026:530-555"], "candidate_only_refs": ["HARNESS-L2-025/026"], "limitation": "design duties exist, but API node/edge not required by adopted general ledger schema"},
+    {"facet": "data", "status": "partial", "current_refs": ["HARNESS-L2-014:379-386", "HARNESS-L2-022:447-466"], "candidate_only_refs": ["HARNESS-L2-025/026:530-555"], "limitation": "general design/oracle duties; no adopted mandatory source-to-data edge"},
+    {"facet": "state", "status": "partial", "current_refs": ["HARNESS-L2-003/004:54-55", "HARNESS-L2-014:379-386"], "candidate_only_refs": ["HARNESS-L2-025/026:530-555"], "limitation": "state/revision and backflow conditions exist; no general source-to-state obligation edge"},
+    {"facet": "event", "status": "unverified", "current_refs": ["HARNESS-L2-040:951-954"], "limitation": "generic typed row relation only; no adopted event facet requirement"},
+    {"facet": "failure", "status": "partial", "current_refs": ["HARNESS-L2-003/005:54,56", "HARNESS-L2-022:447-466", "HARNESS-L2-022 L11:300-330"], "limitation": "failure/negative oracle general contract; no required source-to-failure graph edge"},
+    {"facet": "security", "status": "unverified", "current_refs": ["HARNESS-L2-003/005:54,56"], "limitation": "adjacent security authority exists; adopted FR42 graph contract does not require a per-atom security node/edge"},
+    {"facet": "observability", "status": "partial", "current_refs": ["HARNESS-L2-018:416-421"], "limitation": "operations quality scope exists; no per-source observability obligation edge"},
+    {"facet": "lifecycle", "status": "partial", "current_refs": ["HARNESS-L2-003:54", "HARNESS-L2-014:379-386", "HARNESS-L2-022:447-466"], "limitation": "artifact/process lifecycle contracts exist; graph node/edge closure by source atom not established"},
+    {"facet": "operation", "status": "partial", "current_refs": ["HARNESS-L2-022:447-466", "HELIXOS-L2-038:1096-1113"], "limitation": "contract/operation responsibility split exists; source-to-operation obligation edge not established"},
+    {"facet": "test oracle", "status": "partial", "current_refs": ["HARNESS-L2-022:447-466", "HARNESS-L2-063:1242-1247"], "limitation": "general oracle contract and selected 063 closure; not all FR42 source/facet scope"},
+    {"facet": "gate", "status": "partial", "current_refs": ["HARNESS-L2-003/005:54,56", "HARNESS-L2-022:447-466", "HARNESS-L2-063:1242-1247"], "limitation": "existing phase gates and selected freeze closure; not an adopted universal no-open-obligation gate for full FR42 source scope"}
+  ],
+  "outputs": [
+    {"legacy_output": "obligation graph", "current_refs": ["HARNESS-L2-040:951-954", "HARNESS-L2-063:1242-1247"], "status": "partial", "limitation": "generic typed catalog/selected freeze closure; not FR42 enumerated taxonomy across all source atoms"},
+    {"legacy_output": "discharge receipt", "current_refs": ["HARNESS-L2-063:1242-1247", "HARNESS-L2-063 L11:952-963"], "status": "partial", "limitation": "freeze receipt meaning exists for selected scope; name difference is not itself a gap; full FR42 scope not demonstrated"},
+    {"legacy_output": "coverage receipt", "current_refs": ["HARNESS-L2-040:951-955", "HARNESS-L2-040 L11:689-697", "HARNESS-L2-063 source receipt"], "status": "partial", "limitation": "layer/pair and selected-source coverage, not all FR42 graph conditions"},
+    {"legacy_output": "unresolved finding", "current_refs": ["HARNESS-L2-041:962-965", "HARNESS-L2-063:1242-1247"], "status": "partial", "limitation": "template gap/selected challenge visible; whole-source FR42 orphan/unresolved gate is not established"},
+    {"legacy_output": "requirement definition/revision", "current_refs": ["HARNESS-L2-040:951-954", "HELIXOS-L2-038:1096-1113"], "status": "partial", "limitation": "stable row identity/revision exists; no full 13-field requirement schema"},
+    {"legacy_output": "typed edge", "current_refs": ["HARNESS-L2-040:951-954", "HARNESS-L2-063:1242-1247"], "status": "partial", "limitation": "generic type/edge closure not enumerated to FR42 node facets/FR45 fields"},
+    {"legacy_output": "change/applicability receipt", "current_refs": ["HARNESS-L2-041:958-968", "HARNESS-L2-063:1242-1247", "HARNESS-L2-053:1139-1152"], "status": "partial", "adopted_support_refs": ["HARNESS-L2-053:1139-1152; HARNESS-L11-053:851-864"], "limitation": "HARNESS-L2-053 adopts HIL-FR-53 selected-atom lineage/semantic-diff conditions; it does not establish FR45-wide reject/N/A, all-atom disposition, downstream stale, and combined receipt-application oracle"},
+    {"legacy_output": "orphan/stale finding", "current_refs": ["HARNESS-L2-040:954", "HARNESS-L2-063:1243-1247", "HELIXOS-L2-038 L11:671-690"], "status": "partial", "limitation": "generic coverage/stale/quarantine and selected fail-close; no operation-specific change receipt admission oracle"}
+  ],
+  "residuals": [
+    {
+      "source": "HIL-FR-42:132",
+      "name": "explicit graph taxonomy and full-scope freeze closure",
+      "counterexample": "A design obligation in an API/failure facet is absent from the declared catalog, while every declared edge and oracle is closed; generic catalog closure can report complete without a fixed FR42 facet inventory unless every applicable source/requirement atom is first bound to the required facet set.",
+      "candidate_condition_outline": "For the target scope, enumerate each source/requirement atom's required capability/service, domain-object and API/data/state/event/failure/security/observability/lifecycle/operation/test-oracle/gate correspondences; individualize every missing/orphan/placeholder/unsupported-N/A/aggregate-discharge finding and block pair-freeze eligible while any applicable obligation remains open. Preserve unknown when applicability or source is unselected.",
+      "candidate_body_created": false
+    },
+    {
+      "source": "HIL-FR-45:135",
+      "name": "13-field requirement definition schema and operation-bound change receipt",
+      "counterexample": "A row with source span, owner and semantic digest but without priority or requirement kind can pass a generic declared-edge closure; or a split is applied while its receipt omits one before/after semantic digest or a source atom disposition, with no operation-specific receipt oracle to block application.",
+      "candidate_condition_outline": "Represent each of the 13 legacy fields as typed per-revision data/edges and validate them individually; for FR45-targeted split/merge/rename/supersede/reject/N/A changes, require one operation-bound receipt containing before/after semantic digests, disposition for every source atom, downstream stale range and review authority. Preserve the adopted HIL-FR-53 identity-lineage conditions without broadening them or duplicating them. Do not create a new approval process; use the existing authority decision boundary.",
+      "candidate_body_created": false
+    }
+  ],
+  "verification": {
+    "section_hash_rule": "from ### identity heading until next same/higher heading; trim trailing blank lines; UTF-8 with one terminal LF",
+    "source_line_hash_rule": "physical source line with LF excluded",
+    "checks": ["baseline HEAD fixed", "current file SHA recalculated", "adopted section digests matched PO decision pins where the digest schema is raw section SHA", "legacy source line hashes recalculated", "IR and carry-forward pointers checked", "old runtime/test/CI/CLI not executed"],
+    "requirements_stage_complete": false,
+    "formal_successor_assigned": false
+  }
+}
