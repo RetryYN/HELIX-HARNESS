@@ -1270,3 +1270,35 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 - **候補が扱わないこと**：旧HAC-HIL-14b全体のformal successor、HAT-HIL-14合成受入、HAC-HIL-14a/c、旧IR全6 atomのclosure、旧API/runtime/schema/CI/test、support/product/repository scope、全操作の子process必須化、旧SQLite採用、旧retry上限、旧process-group方式、具体のOS matrixを採択しない。候補記述・登録・文書検証から実装、実行、release、stage完了を推定しない。
 - **人間判断へ示す意味差**：旧source holdingは維持する。候補は旧HST-CASE-014-06/07の選択結果をHARNESS oracleへ限定して具体化するため、適用profileと対象operationを未選択に保った部分sliceであり、旧HAC-HIL-14bの全platform fixture拒否・HAT全体の履行を意味しない。製品能力／repository受入／条件別分割／scope決定まで保全する選択肢A/B/C/Dは既存HIL-14 scope frameのまま未選択とし、Dを推奨候補としてのみ示す。
 - **旧source**：`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:124,169`、各line SHAは登録source atom set参照。旧assertion `LEGACY-ASSET-7B1C7AED3AA401868455` lines 124-127,389,420の該当行は未実装設計oracleであり、実行・移植しない。
+
+### HARNESS-L2-067 選択source scopeのatomic behavior分解候補（unit）
+
+**状態・所属**：新規の未採択HARNESS-CORE候補。source behaviorの意味上のatomizationを定める。所属・候補採択は未確定で、OSのintake・provenance・記録責務を移さない。旧target routingはOS、後続PO packetはHARNESSを示すため、対象owner選択は[FR37照合監査](../../governance/audits/requirements-stage/ir153-hil-fr35-41-current-condition-audit-2026-10-02.md)の選択肢へ残す。
+
+**版**：旧HIL-FR-37 line127にversion target指定はなく、固定L1親も候補の製品版を決めない。対象版は未指定で、1.0自動収載を示さない。
+
+**親と既存契約の分担**：候補の親は固定revisionの`HARNESS-L1-001/003/004/008`。`HARNESS-L2-019`はReverse scope入口と未観測の保持、`HARNESS-L2-027`は選択source typeの静的観測、`HARNESS-L2-038`は観測manifest中の各capabilityの内容閉包、`HARNESS-L2-040/041`はlayer catalogとtemplate由来obligationの意味をそれぞれ持つ。067はそれらを置き換えず、sourceに現れる一behaviorを一atomに分ける基準と分母を追加する。HARNESS-L2-041のtemplate obligation atomsはsource code behavior atomsとは異なる。OSの`HELIXOS-L2-015/016/019`が担う原source custody/provenance/state記録とも別責務とする。
+
+**対象scope・入力**：Full Reverseまたは旧sourceの意味照合で利用者が明示選択したsource snapshot、read scope、file/entry/symbolに限る。対象revision/digest、読取scopeとauthority、027のsource-bound observationとその抽出限界、extractor/capability版を入力する。067は独自parser、source reader、runtime挙動の実行を要求せず、027が対応しないsourceは未観測/unsupportedのまま保持する。
+
+**提供・保証**：sourceに根拠があるbehaviorを一つずつ独立atomとして表し、各atomにsource span、source revision/digest、extractor version、必要な場合のparent aggregate relation、識別できた入力・出力・副作用を結ぶ。識別不能な入力/出力/副作用は推測せずunknownとして示す。aggregate parentとfile/entry/symbol分類は所在・関係情報であり、coverage分母に数えない。分母は選択scopeに含まれるatomic behavior childであり、parent-child countと個々のchild状態を示す。unclassified/overlap finding、欠落・未閉鎖child、sourceまたはextractor revision変更によるstale childが残る間は、当該scopeをatomic behavior coverage completeと表示しない。038への各childの処置・relationは個別に追跡可能にする。
+
+**差分と境界**：旧HIL-FR-37のbehavior単位、source span、extractor version、親集約、I/O/副作用、親/fileを分母外とする条件を保持する。source observationをrequirement meaning・承認設計・test oracle・runtime実測へ昇格させない。固定旧source schema、archive全量走査、旧failure code、物理registry/DB、旧runtime/testの実行は要求しない。sourceからのatom抽出・coverage観測は要求意味の採否や下流pair完了を決めない。
+
+**不足時の戻し先**：source identity/span/authority不足、unsupported領域、extractor version不明はsource/027 ownerへ戻し、該当範囲をunknownとして保持する。atom identity/parent-child/overlapまたは分母不足は未完findingとしてHARNESS-COREのatomization ownerへ返す。要求/設計/verification endpointへの処置・authority不足は038と既存ownerへ返す。候補本文、receipt、registerは採択・L3承認・実装・実行・受入を生成しない。
+
+### HARNESS-L2-068 Design Refactorの独立変換計画と実施前rollback根拠候補（unit）
+
+**状態・所属**：新規の未採択HARNESS-CORE候補。既存のRefactor判定と実行前提に対し、選択されたDesign Refactor変換を単位ごとに計画し、対・consumer・rollback根拠を揃える条件を追加する。実際の変換方式、rollback手順、tool、schema、CIは定めない。
+
+**版**：旧HIL-FR-39 line129にversion target指定はなく、固定L1親も候補の製品版を決めない。対象版は未指定で、1.0自動収載を示さない。
+
+**既存要求との境界**：`HARNESS-L2-002/003/004`は変更scope、影響、Backflow先とSR3 route、`HARNESS-L2-014`は承認済み設計と設計工程、`HARNESS-L2-016`は振る舞い・契約・要求を保つRefactor、`HARNESS-L2-022`は段階別oracle・検証義務・evidence、`HARNESS-L2-035`は選択scopeに対する根拠・acceptance寄与・最小性・代替案・budgetの照合、`HARNESS-L2-042`はsemantic similarity・consumer・oracle・dependency graphに基づくDesign Refactor判定と機能追加の別episodeを扱う。採択HARNESS-L2-053はasset identityとrename/move/split/merge/supersede後のidentity/location・authority・oracle・typed-edge lineageを対応付け、欠落をunknownにするが、Design Refactorの独立変換計画や接続前のpair更新/回復basisを規定しない。`HARNESS-L2-048`は選択scopeのobject/symbol/oracle安定identityと限定rename安全条件を扱う。068はこれらを置換せず、Design Refactorとして選んだ変更を既存Refactorへ渡す直前の独立変換単位・pair・回復可能性の保証を補う。通常のRefactor、実施許可、追加review承認条件は作らない。
+
+**対象・入力**：一つの対象revisionと明示scopeでDesign Refactorを選んだ場合に限り適用する。現行design graph内の重複contract/policy/schema、責務とstate invariant、全影響consumer、変更前後を比較する既存oracle、候補変換の意味上の差分を入力し、重複候補とその責務・意味・consumer関係を比較する。対象requirement/design pairのrevision、対象scope/non-goals、そのrevisionに適用する既存Scope Authorityの根拠を同じ対象へ結ぶ。`externalize`／`commonize`／`objectize`／`semantic-rename`を独立に評価可能な変換単位として計画し、併用時は単位と依存関係を分けて示す。これらの名称を固定enumや実装操作として要求しない。
+
+**保証**：各変換単位について、変更前後のgraph/semantic signature、対象invariant、全影響consumerとその契約を照合する。重複contract/policy/schemaは単に「関連」としてまとめず、同一scopeで実際に重複する候補として比較し、責務・state invariant・consumer・before/after oracleと照合した結果を個別に示す。semantic renameは名称の文字列類似だけで判断しない。入力、出力、副作用、failure、state transition、call graph、consumer contractを含むsemantic signatureを比較し、意味が同じで名称だけが異なるものは同義名として統一候補にし、名称が同じでも意味が異なるものは別の概念として分離候補にする。その変換で影響を受ける全設計pairと対oracleを特定し、対象revisionに対する設計pairの更新内容と対応oracleのscope/revision/期待意味、全consumer互換性が実際に整合して揃うことを、既存Refactorへ接続する前提とする。同じ対象revisionとscopeに有効な既存Scope Authorityが当該変換を許可することも接続前条件とし、authority根拠がmissing/staleまたは対象scope外なら接続しない。新しい承認手続きは作らず、既存HARNESS-L2-002/003/035のauthority照合へ戻す。必要pairが未更新、stale、欠落、またはoracleが更新設計と不整合なら接続可能としない。更新・stale化予定の列挙や、影響pairをstaleと印すことだけでは通過にならない。observable behavior、public surface、DB semantics、要求の差分を検出した場合は既存Redesign/Retrofit routeへ戻し、Refactorだけで変更を完結させない。各変換の設計Refactor PLAN、変換種別、before/after graph digest、semantic/name-collision evidence、behavior-preservation receiptを対象scope/revisionへ結び、rerouteする場合はreroute receiptへ対象差分と戻し先を結ぶ。振る舞い・contract・要求が保存される範囲では、実施前に対象scopeへ適用可能なrollback/recovery basisとその参照先を特定する。これはrollbackの具体方式や成功実行、新しい承認を要求せず、根拠がmissing/unknown/staleまたは対象差分を戻せない場合に接続可能としない。複数変換の一つが未評価でも他の独立変換の結果は個別に保持する。
+
+**失敗時の戻し先・限界**：重複候補の比較、semantic signature、consumer、paired oracleまたはauthorityが欠ける場合は影響scopeをunknownとしてHARNESS-L2-003/004/016/042の既存ownerへ戻す。observable behavior、public surface、DB semanticsまたは要求に差分がある場合は既存Redesign/Retrofit routeへrerouteし、単なる設計pair更新をもってRefactor内に閉じない。上流意味が変わる場合は該当existing Backflow先へ返す。rollback basis不足は実施前の未完条件として保持し、具体策を発明せずdesign/operation ownerへ戻す。068はrollbackのtest成功、実行可能なprocedure、常時人手approval、全ticketのrollback gate、全種類のRefactor検査、runtime/CI実装を要求しない。
+
+**旧sourceとの差分**：旧HIL-FR-39 line129の独立変換計画、重複contract/policy/schemaの比較、全consumerとbefore/after oracle、semantic signatureに基づくrename（同義名の統一候補と同名異義の分離候補）、behavior preservation・全consumer互換・Scope Authority・設計pair更新・rollbackが揃う場合だけの既存Refactor接続、observable behavior/public surface/DB semantics/要求差分のRedesign/Retrofit rerouteを保持する。旧transform名/API/schema/error codeを現行固定語彙や物理実装へせず、Refactor以外へscopeを広げない。登録とL11 oracleは候補であり要求採択・実装・実行・受入を示さない。

@@ -1,0 +1,1593 @@
+{
+  "schema_version": "1.0.0",
+  "audit_id": "candidate4755-first10-current-treatment-2026-10-02",
+  "base_commit": "6265c512bae65789b177e38404c8266726799f46",
+  "authority_effect": "none",
+  "audit_mode": "read_only_condition_by_condition_treatment_review",
+  "selection_source": {
+    "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+    "role": "tracked source-line carry-forward ledger; exact candidate_source_line_id lookup makes the recorded tranche reproducible. Historical classifier/status fields are not fulfillment or gap evidence.",
+    "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+    "reproduction_rule": "Use scope.source_item_ids as the explicit tranche membership, resolve each exact ID in this tracked JSONL, and retain the listed ascending numeric ID order. This reproduces the recorded ten-row scope; it does not infer a selection rank from an ignored local classifier artifact."
+  },
+  "scope": {
+    "selection_order": "ascending numeric source_item_id order, as explicitly recorded in scope.source_item_ids",
+    "source_item_ids": [
+      "LEGACY-CAND-LINE-000018",
+      "LEGACY-CAND-LINE-000021",
+      "LEGACY-CAND-LINE-000028",
+      "LEGACY-CAND-LINE-000034",
+      "LEGACY-CAND-LINE-000037",
+      "LEGACY-CAND-LINE-000331",
+      "LEGACY-CAND-LINE-000468",
+      "LEGACY-CAND-LINE-000470",
+      "LEGACY-CAND-LINE-000472",
+      "LEGACY-CAND-LINE-000474"
+    ],
+    "not_in_scope": "the following ten rows 000478 onward, full 864-row re-audit, any new requirement identity or source holding disposition",
+    "selection_rule": "The ten-row tranche is exactly scope.source_item_ids. Resolve each exact candidate_source_line_id in the tracked selection_source.path; each ID occurs once. This records/reproduces membership and order without relying on an ignored local classifier artifact or claiming to rederive why those rows were chosen."
+  },
+  "method": "Read selected archive source lines and adjacent sentence context directly. Compare each exact condition with current adopted L2/L11 and their target-revision decisions; inspect candidates separately as possible landing destinations, never as adopted fulfillment. Existing legacy route/effective classification is historical bookkeeping only.",
+  "pins": {
+    "docs/concept/helix-concept.md": {
+      "sha256": "06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78"
+    },
+    "docs/concept/README.md": {
+      "sha256": "d71d5ddf667f5f8cf86c1f8f5088f2e15e312e369f37348cd0088deea6b8af8f"
+    },
+    "docs/concept/product-boundary.md": {
+      "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f"
+    },
+    "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md": {
+      "sha256": "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2"
+    },
+    "docs/governance/decisions/concept-v4.2-goal-owners-approval-2026-09-24.md": {
+      "sha256": "6914552339c856a2732adc3f94ba429d93be92aab7d72fcf708fe1446f8ec7fd"
+    },
+    "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md": {
+      "sha256": "a60e2c9c5b9d0828acdf4348e5cabbf7f3c032ec5d33b628f3d9e2bf305176de"
+    },
+    "docs/helix-harness/L2-requirements/product-requirements.md": {
+      "sha256": "94e476d2792da0200b2a334e591b02e08401b845a84794b6990e039775968bcf"
+    },
+    "docs/helix-harness/L11-acceptance/product-acceptance.md": {
+      "sha256": "0f682b3fdbb7bf43baa33af68a215bf369d56a562d12a496b8c88cac9563dffd"
+    },
+    "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md": {
+      "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+    },
+    "docs/governance/decisions/po-decision-2026-09-29-57candidates.md": {
+      "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+    },
+    "docs/helix-intelligence/L2-requirements/intelligence-requirements.md": {
+      "sha256": "64b41a363f357c273f3cb68fb2be1221d42066b056655aab7922d569e65b3486"
+    },
+    "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md": {
+      "sha256": "164a9fcd1d1b5dcd7a0647ab6c1ab231574079bea647a09f9f3fefc213e2dd9a"
+    },
+    "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md": {
+      "sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad"
+    },
+    "docs/helix-os/L2-requirements/governance-requirements.md": {
+      "sha256": "48c35d7ef629d99305aac79e548e638057e3ffe728976bff82e3ed1008e093fe"
+    },
+    "docs/helix-os/L11-acceptance/governance-acceptance.md": {
+      "sha256": "3faf77574ffc6d33720e2d882cd3c7d30268b9103fb76054d1837f81467a413a"
+    },
+    "docs/helix-os/candidates/next-generation-ci-requirements.md": {
+      "sha256": "4eae5f8dd485ed8c77d2ea7b6b0407028093c02566e5b92fce9d05a89307a49d"
+    },
+    "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md": {
+      "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
+    },
+    "docs/governance/upstream-authority-register-2026-09-14.md": {
+      "sha256": "2dea27a56575da97b8fd0206f9d71d0338b14f8701a4b860947a8097e78de28a"
+    },
+    "docs/governance/management-provisional-requirement-register.jsonl": {
+      "sha256": "b44f9a4aecb8c2fab5f7517ebe55234399805c3435d1446a6836283da8ab3a93"
+    },
+    "docs/governance/authority-state-model.md": {
+      "sha256": "812f423b4b9952666b0ef91e741fec62f54caa3c884124ec534abbbe70be4616"
+    },
+    "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md": {
+      "sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e"
+    },
+    "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md": {
+      "sha256": "3cb6ee8a4d342b7f667c0960d08eb0a18fa44372ecb03bd85e0576e59baa4cca"
+    },
+    "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-acceptance.md": {
+      "sha256": "cd2fdd3dcfaa98935db0fef6b876d6cdb7133b11b8c8877363c3d0138c4b8cbc"
+    },
+    "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md": {
+      "sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc"
+    },
+    "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json": {
+      "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb"
+    },
+    "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json": {
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c"
+    },
+    "docs/governance/audits/requirements-stage/legacy-candidate4755-effective-classification-recount-after-2381-2026-09-30.json": {
+      "sha256": "92c713d6c74ecc138f43d2169b4387f511e31a0b26ba9ca538994c8df80a9932"
+    },
+    "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl": {
+      "sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3"
+    },
+    "docs/governance/audits/requirements-stage/legacy-candidate4755-unknown-reselected-next20-route-audit-2026-09-29.json": {
+      "sha256": "106caeda69f2fb519d9a216958f1d42c5a477f1d025b77a938b89fc630119cae"
+    },
+    "docs/governance/legacy-asset-disposition.jsonl": {
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl": {
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+    },
+    "docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json": {
+      "sha256": "c6c3b2863eaf026ac61c4e272acc197c6021c24e74b4899a23631c74b67b8860"
+    }
+  },
+  "rows": [
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000018",
+      "source_path": "docs/governance/candidates/README.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+      "physical_line": 28,
+      "source_text": "Issue #1728の未承認候補である。既存ownerへの接続を先に行い、この候補だけでSLO値、production操作、",
+      "source_line_sha256": "sha256:8d4eb68e08285455bdb07fcfb93e14930dbeeff751a0336f483318dc8ab6e2e5",
+      "source_file_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+      "physical_line_bytes_sha256": "5e70e4932d1644cd0c7438a1ab95708b0a9d699d46cc373360c7bdba3f70077b",
+      "source_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "jsonl_line": 18,
+        "record_sha256": "062df091c4190e862dce994717dc006ab8704eb8a7efbc6343232867dc13b33a",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "record_status_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_disposition": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "jsonl_line": 786,
+        "asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+        "disposition": "unresolved",
+        "authority_status": "historical",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "source_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e"
+      },
+      "historical_routing": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+        "jsonl_line": 18,
+        "classification": "explanation",
+        "routing_status": "non_requirement_source_structure_or_explanation",
+        "review_outcome": "non_requirement_source_structure_or_explanation",
+        "current_ids": [],
+        "adopted_current_requirement_ids": [],
+        "candidate_identity": null,
+        "citation_is_authority": false
+      },
+      "effective_recount_state": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-effective-classification-recount-after-2381-2026-09-30.json",
+        "pointer": null,
+        "classification": "condition",
+        "condition_subtype": "management_process_condition",
+        "route_status_label": "management_successor_unresolved",
+        "overlay_applied_by": null,
+        "route_label_is_not_closure_proof": true
+      },
+      "current_l2_l11_candidate_po_text_refs": [],
+      "current_family_path_only_refs": [],
+      "current_receipt_exact_identity_refs": [],
+      "current_receipt_same_hash_nonidentity_refs": [],
+      "current_receipt_source_id_only_refs": [],
+      "existing_candidate_audit_record_refs": [
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "json_pointer": "/reconciliation/row_records/17",
+          "context": {
+            "source_line_sha256": "sha256:8d4eb68e08285455bdb07fcfb93e14930dbeeff751a0336f483318dc8ab6e2e5",
+            "physical_line_bytes_sha256": "5e70e4932d1644cd0c7438a1ab95708b0a9d699d46cc373360c7bdba3f70077b",
+            "effective_classification": "condition",
+            "condition_subtype": "management_process_condition",
+            "route_status": "management_successor_unresolved"
+          }
+        }
+      ],
+      "current_treatment_assessment": {
+        "target_status": "no_condition_specific_current_target_evidence_found",
+        "exact_source_identity_receipt_ref_count": 0,
+        "selected_span_atom_receipt_ref_count": 0,
+        "receipt_target_identity_values": [],
+        "receipt_selection_coverage_states": [],
+        "exact_PO_decision_rows_by_target_identity": {},
+        "target_pair_state": "no exact current target identity mapped",
+        "formal_successor_proven": false,
+        "condition_closure_proven": false,
+        "meaning_change_or_retire_decision_proven": false,
+        "adoption_inference_from_candidate_OR_route_prohibited": true
+      },
+      "source_context_physical_lines": {
+        "previous": {
+          "line": 27,
+          "text": ""
+        },
+        "selected": {
+          "line": 28,
+          "text": "Issue #1728の未承認候補である。既存ownerへの接続を先に行い、この候補だけでSLO値、production操作、"
+        },
+        "next": {
+          "line": 29,
+          "text": "包括的な自動修復権限、実装・運用完了を成立させない。"
+        }
+      },
+      "meaning_current_treatment_review": {
+        "meaning": "#1728は未承認候補。既存ownerへの接続を先に行い、この候補単独でSLO値、production操作、包括的自動修復権限、実装・運用完了を成立させない。",
+        "context": "前行はインフラ運用の入力・owner接続/L1/L3候補リンク。選択行の改行後の次物理行は「包括的な自動修復権限、実装・運用完了を成立させない。」であり同じ文の継続。",
+        "assessment": "現行project rulesは未承認/unknownで下流実装へ進まないこと、GitHubからauthorityを生成しないことを定め、HARNESS L2の限定修復節も旧Bugbot対応を新source crosswalkへ戻す。ただし#1728固有owner再解決、SLO、production操作の正式移管記録は今回の検索範囲で確認できず。一般境界は部分保持、owner/specific successor/closureは未証明のholding。",
+        "current": [
+          "AGENTS.md: 現在の境界 / 未承認・missing・unknown・conflict・staleでは下流実装へ進まない（base docs bytesはroot AGENTSではなくrepo AGENTS/CLAUDE）",
+          "docs/helix-harness/L2-requirements/product-requirements.md:216-220（限定修復をHARNESS-L2-005へ接続し、権限化せずINTELLIGENCE候補へ戻す）",
+          "docs/concept/product-boundary.md:31,97（旧要求を保持し、意味・authority変更は対象revision decisionへ）"
+        ],
+        "status": "partial_general_boundary; source_specific_owner_and_closure_unproven",
+        "decision": "上流意味変更は新規決定が必要。今は#1728 owner、SLO、production条件を推測移管せずholding。"
+      },
+      "authority_evidence": []
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000021",
+      "source_path": "docs/governance/candidates/README.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+      "physical_line": 33,
+      "source_text": "- `helix-concept-v4.1.md`: 最新のHARNESS／HELIX-OS／個別製品境界を反映した次revision候補。v4.0の承認対象bytesを変更せず、U1上流再整備の承認対象を分ける",
+      "source_line_sha256": "sha256:bf86a45298099c430e302e59df5135cd9027e87cd95ceb691ac42332999ad10c",
+      "source_file_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+      "physical_line_bytes_sha256": "32abd5b4f19e1186c811a1ea0b736cffa746911ab041dd1eac26348ae658d038",
+      "source_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "jsonl_line": 21,
+        "record_sha256": "49f4e84189db4033438f2bb384964c74a3e1b7648c0af5e2f72d1e89976e01be",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "record_status_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_disposition": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "jsonl_line": 786,
+        "asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+        "disposition": "unresolved",
+        "authority_status": "historical",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "source_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e"
+      },
+      "historical_routing": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+        "jsonl_line": 21,
+        "classification": "requirement_atom",
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "current_ids": [],
+        "adopted_current_requirement_ids": [],
+        "candidate_identity": null,
+        "citation_is_authority": false
+      },
+      "effective_recount_state": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-effective-classification-recount-after-2381-2026-09-30.json",
+        "pointer": null,
+        "classification": "condition",
+        "condition_subtype": "management_process_condition",
+        "route_status_label": "management_successor_unresolved",
+        "overlay_applied_by": null,
+        "route_label_is_not_closure_proof": true
+      },
+      "current_l2_l11_candidate_po_text_refs": [],
+      "current_family_path_only_refs": [],
+      "current_receipt_exact_identity_refs": [],
+      "current_receipt_same_hash_nonidentity_refs": [],
+      "current_receipt_source_id_only_refs": [],
+      "existing_candidate_audit_record_refs": [
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "json_pointer": "/reconciliation/row_records/20",
+          "context": {
+            "source_line_sha256": "sha256:bf86a45298099c430e302e59df5135cd9027e87cd95ceb691ac42332999ad10c",
+            "physical_line_bytes_sha256": "32abd5b4f19e1186c811a1ea0b736cffa746911ab041dd1eac26348ae658d038",
+            "effective_classification": "condition",
+            "condition_subtype": "management_process_condition",
+            "route_status": "management_successor_unresolved"
+          }
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "json_pointer": "/reconciliation/bounded_overlay_rows/0",
+          "context": {}
+        }
+      ],
+      "current_treatment_assessment": {
+        "target_status": "no_condition_specific_current_target_evidence_found",
+        "exact_source_identity_receipt_ref_count": 0,
+        "selected_span_atom_receipt_ref_count": 0,
+        "receipt_target_identity_values": [],
+        "receipt_selection_coverage_states": [],
+        "exact_PO_decision_rows_by_target_identity": {},
+        "target_pair_state": "no exact current target identity mapped",
+        "formal_successor_proven": false,
+        "condition_closure_proven": false,
+        "meaning_change_or_retire_decision_proven": false,
+        "adoption_inference_from_candidate_OR_route_prohibited": true
+      },
+      "source_context_physical_lines": {
+        "previous": {
+          "line": 32,
+          "text": ""
+        },
+        "selected": {
+          "line": 33,
+          "text": "- `helix-concept-v4.1.md`: 最新のHARNESS／HELIX-OS／個別製品境界を反映した次revision候補。v4.0の承認対象bytesを変更せず、U1上流再整備の承認対象を分ける"
+        },
+        "next": {
+          "line": 34,
+          "text": ""
+        }
+      },
+      "meaning_current_treatment_review": {
+        "meaning": "旧READMEがConcept v4.1を次revision候補として挙げ、v4.0の承認bytesを変えず、U1上流再整備を別の承認対象にする。",
+        "context": "前項見出しはConcept v4.0群。後続項目はv4.0候補文書一覧。対象行はv4.1候補名・境界・承認対象分離を示す。",
+        "assessment": "現行Conceptは単一のdocs/concept/helix-concept.mdで管理され、v4.1および後続改訂のdecision recordsが固定した対象revisionを別々に記録する。これはcandidate名をcurrentと二重authorityにしない原則と版ごとの人間decision境界を保持する。ただし旧v4.1行を特定の現行revisionへformal successorとして割当てた記録は証明していない。",
+        "current": [
+          "docs/concept/helix-concept.md（current source at base; file hash in pins）",
+          "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md（v4.1対象decision）",
+          "docs/governance/decisions/concept-v4.2-goal-owners-approval-2026-09-24.md",
+          "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md:146（追記後revisionは対象revisionで確認）"
+        ],
+        "status": "current_concept_and_revision_decisions_partial; legacy_line_successor_unassigned",
+        "decision": "v4.1の採否はその固定decisionから、現行Conceptはcurrent本文/後続decisionから読む。過去候補を現行の後継と同一視せずholding。"
+      },
+      "authority_evidence": []
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000028",
+      "source_path": "docs/governance/candidates/README.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+      "physical_line": 42,
+      "source_text": "正本化するときは、候補をこのdirectoryに残したままcurrentと二重authorityにしない。昇格先、",
+      "source_line_sha256": "sha256:0e85c51447058834213a09603f07cde3a9fbe839db276a4fd0c3315f36d186f0",
+      "source_file_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+      "physical_line_bytes_sha256": "4f8b6047ac3294609d4a9075bba8d35be7a473a1faa7126522f98060a0fe4f2b",
+      "source_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "jsonl_line": 28,
+        "record_sha256": "c4eacf59a3a786e3ea8145262b6cc690f9879209c3b5d9542442a780d8577dd3",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "record_status_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_disposition": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "jsonl_line": 786,
+        "asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+        "disposition": "unresolved",
+        "authority_status": "historical",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "source_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e"
+      },
+      "historical_routing": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+        "jsonl_line": 28,
+        "classification": "explanation",
+        "routing_status": "non_requirement_source_structure_or_explanation",
+        "review_outcome": "non_requirement_source_structure_or_explanation",
+        "current_ids": [],
+        "adopted_current_requirement_ids": [],
+        "candidate_identity": null,
+        "citation_is_authority": false
+      },
+      "effective_recount_state": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-effective-classification-recount-after-2381-2026-09-30.json",
+        "pointer": null,
+        "classification": "condition",
+        "condition_subtype": "management_process_condition",
+        "route_status_label": "management_successor_unresolved",
+        "overlay_applied_by": null,
+        "route_label_is_not_closure_proof": true
+      },
+      "current_l2_l11_candidate_po_text_refs": [],
+      "current_family_path_only_refs": [],
+      "current_receipt_exact_identity_refs": [],
+      "current_receipt_same_hash_nonidentity_refs": [],
+      "current_receipt_source_id_only_refs": [],
+      "existing_candidate_audit_record_refs": [
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "json_pointer": "/reconciliation/row_records/27",
+          "context": {
+            "source_line_sha256": "sha256:0e85c51447058834213a09603f07cde3a9fbe839db276a4fd0c3315f36d186f0",
+            "physical_line_bytes_sha256": "4f8b6047ac3294609d4a9075bba8d35be7a473a1faa7126522f98060a0fe4f2b",
+            "effective_classification": "condition",
+            "condition_subtype": "management_process_condition",
+            "route_status": "management_successor_unresolved"
+          }
+        }
+      ],
+      "current_treatment_assessment": {
+        "target_status": "no_condition_specific_current_target_evidence_found",
+        "exact_source_identity_receipt_ref_count": 0,
+        "selected_span_atom_receipt_ref_count": 0,
+        "receipt_target_identity_values": [],
+        "receipt_selection_coverage_states": [],
+        "exact_PO_decision_rows_by_target_identity": {},
+        "target_pair_state": "no exact current target identity mapped",
+        "formal_successor_proven": false,
+        "condition_closure_proven": false,
+        "meaning_change_or_retire_decision_proven": false,
+        "adoption_inference_from_candidate_OR_route_prohibited": true
+      },
+      "source_context_physical_lines": {
+        "previous": {
+          "line": 41,
+          "text": ""
+        },
+        "selected": {
+          "line": 42,
+          "text": "正本化するときは、候補をこのdirectoryに残したままcurrentと二重authorityにしない。昇格先、"
+        },
+        "next": {
+          "line": 43,
+          "text": "compatibility／archive移動、参照更新を同一migrationで閉じる。"
+        }
+      },
+      "meaning_current_treatment_review": {
+        "meaning": "正本化時に候補を候補directoryに残してcurrentと二重authority化しない。昇格先、compatibility/archive移動、参照更新を同一migrationで閉じる。",
+        "context": "前行はv4.0候補一式の一覧。選択行は「正本化するときは候補…昇格先、」で文が次の物理行へ続き、後続はcompatibility/archive/refsの同一migration条件。",
+        "assessment": "現行authority modelはcandidate/registered proposalとadopted decisionを区別し、単一のcurrent本文を更新する。ただし当該歴史candidate群を対象に、昇格先・archive移動・全参照更新の同一migrationを完了したsource-specific receiptは確認できない。一般authority分離は保持、移行closureは未証明。",
+        "current": [
+          "docs/governance/authority-state-model.md（candidate/adoption states）",
+          "docs/governance/management-provisional-requirement-register.jsonl（候補はauthority_effect noneのprovisional record。決定記録は別）",
+          "docs/concept/README.md and current concept paths (one current doc)"
+        ],
+        "status": "partial_general_authority_separation; migration_closure_unproven",
+        "decision": "Do not infer archive cleanup or successor mapping from current single-source conventions; preserve unresolved migration holding."
+      },
+      "authority_evidence": []
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000034",
+      "source_path": "docs/governance/candidates/README.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+      "physical_line": 51,
+      "source_text": "候補文書だけで72件を承認・v1必須化・一括Issue化・実装済み扱いにしない。選択したINVごとに",
+      "source_line_sha256": "sha256:1f186f89f029ac05595c2133ed4d1cda921046b5905e61f981a41891534f9121",
+      "source_file_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+      "physical_line_bytes_sha256": "7ab68d9f2d2f9a870a911ae6f2f8ec9b364bdac240df74cb3104060789015755",
+      "source_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "jsonl_line": 34,
+        "record_sha256": "60afc11d6b433040e953e110a6e432a3d0a75bed5a6768e0ef02a3bd85d0a8b6",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "record_status_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_disposition": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "jsonl_line": 786,
+        "asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+        "disposition": "unresolved",
+        "authority_status": "historical",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "source_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e"
+      },
+      "historical_routing": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+        "jsonl_line": 34,
+        "classification": "explanation",
+        "routing_status": "non_requirement_source_structure_or_explanation",
+        "review_outcome": "non_requirement_source_structure_or_explanation",
+        "current_ids": [],
+        "adopted_current_requirement_ids": [],
+        "candidate_identity": null,
+        "citation_is_authority": false
+      },
+      "effective_recount_state": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-effective-classification-recount-after-2381-2026-09-30.json",
+        "pointer": null,
+        "classification": "condition",
+        "condition_subtype": "management_process_condition",
+        "route_status_label": "management_successor_unresolved",
+        "overlay_applied_by": null,
+        "route_label_is_not_closure_proof": true
+      },
+      "current_l2_l11_candidate_po_text_refs": [],
+      "current_family_path_only_refs": [],
+      "current_receipt_exact_identity_refs": [],
+      "current_receipt_same_hash_nonidentity_refs": [],
+      "current_receipt_source_id_only_refs": [],
+      "existing_candidate_audit_record_refs": [
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "json_pointer": "/reconciliation/row_records/33",
+          "context": {
+            "source_line_sha256": "sha256:1f186f89f029ac05595c2133ed4d1cda921046b5905e61f981a41891534f9121",
+            "physical_line_bytes_sha256": "7ab68d9f2d2f9a870a911ae6f2f8ec9b364bdac240df74cb3104060789015755",
+            "effective_classification": "condition",
+            "condition_subtype": "management_process_condition",
+            "route_status": "management_successor_unresolved"
+          }
+        }
+      ],
+      "current_treatment_assessment": {
+        "target_status": "no_condition_specific_current_target_evidence_found",
+        "exact_source_identity_receipt_ref_count": 0,
+        "selected_span_atom_receipt_ref_count": 0,
+        "receipt_target_identity_values": [],
+        "receipt_selection_coverage_states": [],
+        "exact_PO_decision_rows_by_target_identity": {},
+        "target_pair_state": "no exact current target identity mapped",
+        "formal_successor_proven": false,
+        "condition_closure_proven": false,
+        "meaning_change_or_retire_decision_proven": false,
+        "adoption_inference_from_candidate_OR_route_prohibited": true
+      },
+      "source_context_physical_lines": {
+        "previous": {
+          "line": 50,
+          "text": "この文書のINV IDとP0〜P4は、Requirement ID、障害severity、L1〜L12、Release Waveではない。"
+        },
+        "selected": {
+          "line": 51,
+          "text": "候補文書だけで72件を承認・v1必須化・一括Issue化・実装済み扱いにしない。選択したINVごとに"
+        },
+        "next": {
+          "line": 52,
+          "text": "current Requirement／Capability／Issue／Release ownerを再解決し、意味・受入・権限の差分だけを"
+        }
+      },
+      "meaning_current_treatment_review": {
+        "meaning": "72 INVを候補文書だけで承認・v1必須化・一括Issue化・実装済み扱いにしない。選択INVごとにRequirement/Capability/Issue/Release ownerを再解決し、意味・受入・権限差分だけ通常要求改訂へ送る。",
+        "context": "READMEの開発投資段階候補項目。直後行がselected INVごとのowner resolutionを要求し、その次の行にmeaning/acceptance/authority delta routingが続く。行末は途切れた条件文。",
+        "assessment": "現行規則とauthority modelは候補/issue/実装状態を採否へ変換せず、意味差分を上流へ戻す一般境界を保持。旧72個別INVの各選択owner解決と差分routingのcurrent decision/receiptは、この照合では証明されない。72一括充足でもない。",
+        "current": [
+          "docs/governance/upstream-authority-register-2026-09-14.md:89（INV-001..072 exact 72件、分類済みだが対象別採否待ちとの記述）",
+          "docs/helix-harness/L2-requirements/product-requirements.md:268-270（旧INVを新世代対応表へ戻す）",
+          "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md:146 (revision-specific decision rule)"
+        ],
+        "status": "general_nonpromotion_preserved; per_INV_owner_and_delta_routing_unproven",
+        "decision": "Keep no-bulk-adoption boundary. Retain per-INV source holding until specific owner/delta disposition is evidenced."
+      },
+      "authority_evidence": []
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000037",
+      "source_path": "docs/governance/candidates/README.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+      "physical_line": 54,
+      "source_text": "「INV-001〜072 個別実施カード」をその参照先として扱う。",
+      "source_line_sha256": "sha256:237c6ccbe88f272922ff4b7e0918625cb896ffb5d745f672053763b9dfe2b261",
+      "source_file_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+      "physical_line_bytes_sha256": "9e32b35c8b6239b92cd93c00ac62e73649ffb9423718974ec43301839696017a",
+      "source_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "jsonl_line": 37,
+        "record_sha256": "e876c5d6e35189af826787e2b13f96a9faed58617e67c6f051f1fe69c3faf0c4",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "record_status_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_disposition": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "jsonl_line": 786,
+        "asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+        "disposition": "unresolved",
+        "authority_status": "historical",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "source_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e"
+      },
+      "historical_routing": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+        "jsonl_line": 37,
+        "classification": "requirement_atom",
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "current_ids": [],
+        "adopted_current_requirement_ids": [],
+        "candidate_identity": null,
+        "citation_is_authority": false
+      },
+      "effective_recount_state": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-effective-classification-recount-after-2381-2026-09-30.json",
+        "pointer": null,
+        "classification": "condition",
+        "condition_subtype": "management_process_condition",
+        "route_status_label": "management_successor_unresolved",
+        "overlay_applied_by": null,
+        "route_label_is_not_closure_proof": true
+      },
+      "current_l2_l11_candidate_po_text_refs": [],
+      "current_family_path_only_refs": [],
+      "current_receipt_exact_identity_refs": [],
+      "current_receipt_same_hash_nonidentity_refs": [],
+      "current_receipt_source_id_only_refs": [],
+      "existing_candidate_audit_record_refs": [
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "json_pointer": "/reconciliation/row_records/36",
+          "context": {
+            "source_line_sha256": "sha256:237c6ccbe88f272922ff4b7e0918625cb896ffb5d745f672053763b9dfe2b261",
+            "physical_line_bytes_sha256": "9e32b35c8b6239b92cd93c00ac62e73649ffb9423718974ec43301839696017a",
+            "effective_classification": "condition",
+            "condition_subtype": "management_process_condition",
+            "route_status": "management_successor_unresolved"
+          }
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "json_pointer": "/reconciliation/bounded_overlay_rows/8",
+          "context": {}
+        }
+      ],
+      "current_treatment_assessment": {
+        "target_status": "no_condition_specific_current_target_evidence_found",
+        "exact_source_identity_receipt_ref_count": 0,
+        "selected_span_atom_receipt_ref_count": 0,
+        "receipt_target_identity_values": [],
+        "receipt_selection_coverage_states": [],
+        "exact_PO_decision_rows_by_target_identity": {},
+        "target_pair_state": "no exact current target identity mapped",
+        "formal_successor_proven": false,
+        "condition_closure_proven": false,
+        "meaning_change_or_retire_decision_proven": false,
+        "adoption_inference_from_candidate_OR_route_prohibited": true
+      },
+      "source_context_physical_lines": {
+        "previous": {
+          "line": 53,
+          "text": "正規の要求改訂へ送る。分冊原稿が参照していた`06_ITEM_DIRECTIVES.md`は実在せず、統合版内の"
+        },
+        "selected": {
+          "line": 54,
+          "text": "「INV-001〜072 個別実施カード」をその参照先として扱う。"
+        },
+        "next": {
+          "line": 55,
+          "text": null
+        }
+      },
+      "meaning_current_treatment_review": {
+        "meaning": "分冊が参照した非実在 `06_ITEM_DIRECTIVES.md` は実在せず、統合版の「INV-001〜072 個別実施カード」を意図した参照先として扱う。",
+        "context": "前行は各INVを採否/既存coverage/requirement deltaへ分類しowner再利用する指示。選択行はREADMEのID reference repair statement.",
+        "assessment": "原archive intake `development-investment-stage-directives-intake_v1.0.md` 内に「INV-001〜072 個別実施カード」を保持することは直接確認。現在のstage governanceへ移したauthoritative successor pointerや72カード分の移管は確認できず。参照先は歴史文書内部で解決するが、current successor/closureはunproven。",
+        "current": [
+          "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md:10-17 (historical integrated cards and classification; archive is read-only)",
+          "docs/governance/upstream-authority-register-2026-09-14.md:89 (new-generation candidate mapping still pending)"
+        ],
+        "status": "historical_internal_reference_resolved; current_successor_unproven",
+        "decision": "Record intended historical pointer; do not promote the old intake into current authority or run old tests."
+      },
+      "authority_evidence": []
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000331",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-acceptance.md",
+      "physical_line": 16,
+      "source_text": "各反例は独立oracle・mutationで拒否を検証し、合法入力が通る対照例を持つ。実証は未実施。",
+      "source_line_sha256": "sha256:beadd151c9fe589483e609ae50fd573fbbef1137c7bca0a68f019b99896dab5c",
+      "source_file_sha256": "cd2fdd3dcfaa98935db0fef6b876d6cdb7133b11b8c8877363c3d0138c4b8cbc",
+      "physical_line_bytes_sha256": "d494e1584b017b4d4bd6d4eeed1db075bc9726e47bc40586dd30cda3ad8183cb",
+      "source_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "jsonl_line": 331,
+        "record_sha256": "42eff18cc22d34c14f82c5ebe3c729ef615bf0572c9ea61498c725693d99554c",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "record_status_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_disposition": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "jsonl_line": 793,
+        "asset_id": "LEGACY-ASSET-901CD182B52024593E41",
+        "disposition": "unresolved",
+        "authority_status": "historical",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "source_sha256": "cd2fdd3dcfaa98935db0fef6b876d6cdb7133b11b8c8877363c3d0138c4b8cbc"
+      },
+      "historical_routing": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+        "jsonl_line": 331,
+        "classification": "requirement_atom",
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "current_ids": [],
+        "adopted_current_requirement_ids": [],
+        "candidate_identity": null,
+        "citation_is_authority": false
+      },
+      "effective_recount_state": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-effective-classification-recount-after-2381-2026-09-30.json",
+        "pointer": null,
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status_label": "adopted_relevant_partial",
+        "overlay_applied_by": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+        "route_label_is_not_closure_proof": true
+      },
+      "current_l2_l11_candidate_po_text_refs": [],
+      "current_family_path_only_refs": [],
+      "current_receipt_exact_identity_refs": [],
+      "current_receipt_same_hash_nonidentity_refs": [],
+      "current_receipt_source_id_only_refs": [],
+      "existing_candidate_audit_record_refs": [
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "json_pointer": "/reconciliation/row_records/330",
+          "context": {
+            "source_line_sha256": "sha256:beadd151c9fe589483e609ae50fd573fbbef1137c7bca0a68f019b99896dab5c",
+            "physical_line_bytes_sha256": "d494e1584b017b4d4bd6d4eeed1db075bc9726e47bc40586dd30cda3ad8183cb",
+            "effective_classification": "condition",
+            "condition_subtype": "product_requirement_atom",
+            "route_status": "unknown"
+          }
+        }
+      ],
+      "current_treatment_assessment": {
+        "target_status": "no_condition_specific_current_target_evidence_found",
+        "exact_source_identity_receipt_ref_count": 0,
+        "selected_span_atom_receipt_ref_count": 0,
+        "receipt_target_identity_values": [],
+        "receipt_selection_coverage_states": [],
+        "exact_PO_decision_rows_by_target_identity": {},
+        "target_pair_state": "no exact current target identity mapped",
+        "formal_successor_proven": false,
+        "condition_closure_proven": false,
+        "meaning_change_or_retire_decision_proven": false,
+        "adoption_inference_from_candidate_OR_route_prohibited": true
+      },
+      "source_context_physical_lines": {
+        "previous": {
+          "line": 15,
+          "text": "原稿本文由来の受入候補。別紙02/03/05は未提供で、18シナリオ全件対応を主張しない。"
+        },
+        "selected": {
+          "line": 16,
+          "text": "各反例は独立oracle・mutationで拒否を検証し、合法入力が通る対照例を持つ。実証は未実施。"
+        },
+        "next": {
+          "line": 17,
+          "text": ""
+        }
+      },
+      "meaning_current_treatment_review": {
+        "meaning": "各反例はそれぞれ独立oracleとmutationで拒否を検証し、合法入力が通るcontrolを持つ。実証は未実施。",
+        "context": "BBR-AC table header and explanatory sentence; BBR-AC01..07 following rows enumerate prohibited/valid transitions. Selected line is normative method+negative/positive oracle pairing, not evidence that execution occurred.",
+        "assessment": "採択HARNESS-L2-030/-031 and paired L11 establish independently specified oracle per fixture, explicit illegal/negative and legal controls, failure remains unverified until executor result. Adopted HARNESS-L2-036/-L11 (57-candidate decision row 41) permits risk-selected property/model/differential/mutation/fuzz/snapshot methods, not a mandatory mutation for each negative counterexample. Thus oracle and control outcomes are held; universal one-mutation-per-counterexample method is changed/omitted, with no source-specific PO decision identified as retiring that strictness. Partial; no closure. Related INTELLIGENCE bounded repair candidate preserves scope, permission and after-repair obligations but is not this generic HARNESS acceptance.",
+        "current": [
+          "docs/helix-harness/L2-requirements/product-requirements.md:603-689; adopted exact HARNESS-L2-030/-031 rows 59-60 in 2026-09-28 HDEC",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:404-435; paired G18 acceptance states no mutation threshold, but per-fixture oracle and controls",
+          "docs/helix-harness/L2-requirements/product-requirements.md:714; adopted HARNESS-L2-036 row 41 in 2026-09-29 57-candidate decision",
+          "docs/helix-harness/L2-requirements/product-requirements.md:216-220; repair scope/permissions and obligations routing to INTELLIGENCE",
+          "docs/helix-intelligence/L2-requirements/intelligence-requirements.md:140 and 436-437; bounds repair, no broad write/authority inference"
+        ],
+        "status": "adopted_partial; strict_per_negative_mutation_not_required; no_retire_decision_found",
+        "decision": "Do not reopen adopted 030/031. If preserving the historical stronger method is desired, ask PO whether every negative needs a mutation oracle or existing risk-selected methods suffice; no requirement is created here."
+      },
+      "authority_evidence": [
+        {
+          "kind": "adopted_exact_pair",
+          "decision": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "decision_file_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+          "decision_rows": [
+            "/明示候補の採用範囲 row HARNESS-L2-030",
+            "/明示候補の採用範囲 row HARNESS-L2-031"
+          ],
+          "target_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "target_l2_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "target_l11_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+          "target_section_digest_source": "decision table and exact fixed revision; see rows 59-60",
+          "section_digests": {
+            "L2-030": "sha256:579043ac6abf9bff8712355ff96da3cd6287b286947074a11efc583c1f38e0a1",
+            "L11-030": "sha256:ca73eadb46ad21bafc0959502cdcbe407f3209dae25d0087d8662b5a43ea33c0",
+            "L2-031": "sha256:ca1e113a5980df023bdb27bb461e1fc57137d14da060d26180e4d70abdf90611",
+            "L11-031": "sha256:94aa12f4a5b03b14f2827db8f024cc3ac8aeae563730013127af83aff862f005"
+          },
+          "semantic_digest_receipt": "docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json; HARNESS-L2-030 sha256:579043ac6abf9bff8712355ff96da3cd6287b286947074a11efc583c1f38e0a1; HARNESS-L2-031 sha256:ca1e113a5980df023bdb27bb461e1fc57137d14da060d26180e4d70abdf90611"
+        },
+        {
+          "kind": "adopted_exact_pair",
+          "decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "decision_rows": [
+            "/adopted candidates row HARNESS-L2-036"
+          ],
+          "target_revision": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+          "l2_section_digest": "sha256:7a18c20e22c0cf65e8edcd3b3ca7eca7996d72c0358c874591407d77dbba4bbb",
+          "l11_file_revision": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+          "l11_section_digest": "sha256:80e87d6469c45baa056fbc7415871725c3358f7392a87308c809d6bfe87f0ba4"
+        }
+      ]
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000468",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "physical_line": 14,
+      "source_text": "| `CIG-AC-001` | `CIG-R-01` | event class、PR ID、HEAD、run ID、attemptを一件ずつ欠落・改変する | generation identityが決定的に一致し、不正入力を個別拒否する |",
+      "source_line_sha256": "sha256:77c358b5bc3253bac4d39a55685fae93570d3e4288ca161de1a195b676eea412",
+      "source_file_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+      "physical_line_bytes_sha256": "2e5ee3f63f1c03cc2806ef4fcd4de7ee55a607c8a1482966a1810c5183b9a550",
+      "source_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "jsonl_line": 468,
+        "record_sha256": "029537aa1a167b54469b0fd87258141c684d30136c304a741a6d1706aebf8d50",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "record_status_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_disposition": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "jsonl_line": 797,
+        "asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
+        "disposition": "unresolved",
+        "authority_status": "historical",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "source_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc"
+      },
+      "historical_routing": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+        "jsonl_line": 468,
+        "classification": "requirement_atom",
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "current_ids": [],
+        "adopted_current_requirement_ids": [],
+        "candidate_identity": null,
+        "citation_is_authority": false
+      },
+      "effective_recount_state": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-effective-classification-recount-after-2381-2026-09-30.json",
+        "pointer": null,
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status_label": "unknown",
+        "overlay_applied_by": null,
+        "route_label_is_not_closure_proof": true
+      },
+      "current_l2_l11_candidate_po_text_refs": [],
+      "current_family_path_only_refs": [
+        {
+          "type": "current_candidate",
+          "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
+          "sha256": "4eae5f8dd485ed8c77d2ea7b6b0407028093c02566e5b92fce9d05a89307a49d",
+          "line": 14,
+          "match_kind": "source_family_path_only",
+          "excerpt": "  - docs/governance/candidates/ci-event-concurrency-generation-acceptance.md"
+        }
+      ],
+      "current_receipt_exact_identity_refs": [],
+      "current_receipt_same_hash_nonidentity_refs": [],
+      "current_receipt_source_id_only_refs": [],
+      "existing_candidate_audit_record_refs": [
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "json_pointer": "/reconciliation/row_records/467",
+          "context": {
+            "source_line_sha256": "sha256:77c358b5bc3253bac4d39a55685fae93570d3e4288ca161de1a195b676eea412",
+            "physical_line_bytes_sha256": "2e5ee3f63f1c03cc2806ef4fcd4de7ee55a607c8a1482966a1810c5183b9a550",
+            "effective_classification": "condition",
+            "condition_subtype": "product_requirement_atom",
+            "route_status": "unknown"
+          }
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-unknown-reselected-next20-route-audit-2026-09-29.json",
+          "sha256": "106caeda69f2fb519d9a216958f1d42c5a477f1d025b77a938b89fc630119cae",
+          "json_pointer": "/rows/9",
+          "context": {
+            "source_line": 14,
+            "source_file_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+            "source_line_sha256": "sha256:77c358b5bc3253bac4d39a55685fae93570d3e4288ca161de1a195b676eea412",
+            "physical_line_bytes_sha256": "2e5ee3f63f1c03cc2806ef4fcd4de7ee55a607c8a1482966a1810c5183b9a550"
+          }
+        }
+      ],
+      "current_treatment_assessment": {
+        "target_status": "no_condition_specific_current_target_evidence_found",
+        "exact_source_identity_receipt_ref_count": 0,
+        "selected_span_atom_receipt_ref_count": 0,
+        "receipt_target_identity_values": [],
+        "receipt_selection_coverage_states": [],
+        "exact_PO_decision_rows_by_target_identity": {},
+        "target_pair_state": "no exact current target identity mapped",
+        "formal_successor_proven": false,
+        "condition_closure_proven": false,
+        "meaning_change_or_retire_decision_proven": false,
+        "adoption_inference_from_candidate_OR_route_prohibited": true
+      },
+      "source_context_physical_lines": {
+        "previous": {
+          "line": 13,
+          "text": "|---|---|---|---|"
+        },
+        "selected": {
+          "line": 14,
+          "text": "| `CIG-AC-001` | `CIG-R-01` | event class、PR ID、HEAD、run ID、attemptを一件ずつ欠落・改変する | generation identityが決定的に一致し、不正入力を個別拒否する |"
+        },
+        "next": {
+          "line": 15,
+          "text": "| `CIG-AC-002` | `CIG-R-02` | same-HEAD main push中にschedule／manualを開始し、PR A/Bを同時更新する | main、schedule、manual、別PRが相互cancelせず、同一PR stale HEADだけがboundedに置換される |"
+        }
+      },
+      "meaning_current_treatment_review": {
+        "meaning": "CIG-AC-001 separately omit/tamper each event class, PR ID, HEAD, run ID, attempt; deterministic generation identity match for valid inputs and reject each malformed facet.",
+        "context": "CIG-AC-001 row is paired with CIG-R-01; no adjacent row semantics included.",
+        "assessment": "Adopted OS-008/020 preserve profile obligation, exact HEAD/oracle/environment/run identity, separated execution outcomes and no old CI substitution, but not event-class/PR/run/attempt facets each independently omitted/altered with deterministic generation identity and legal control. Unadopted OS-117 L2/L11 candidates exactly cover selected-scope facet negatives and deterministic positive control; OS-117 is only a candidate, not adopted evidence. NCI-OS-003/004/005 are also candidates and do not supersede the exact 117 scope. HELIXOS-L2-117 also leaves open whether PR ID is required for every event class or only applicable PR classes, with explicit PO choices A/B and recommendation B; that scope decision remains unresolved.",
+        "current": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:692-700 (adopted OS-020)",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:359-379 (OS-020 accepted exact HEAD/oracle/environment/run identity, old CI exclusion)",
+          "docs/helix-os/L2-requirements/governance-requirements.md:1434-1450 (OS-117 unadopted exact facet proposal)",
+          "docs/helix-os/L2-requirements/governance-requirements.md:30-50 and docs/helix-os/candidates/next-generation-ci-requirements.md:45-52 (NCI candidates, unadopted)"
+        ],
+        "status": "adopted_general_identity_partial; exact facet tests in unadopted 117; PR-ID applicability remains an explicit PO choice",
+        "decision": "Keep condition open pending PO disposition of OS-117 exact revision; candidate is a valid landing point, not current adopted closure. Candidate 117 preserves each listed facet negative but does not settle PR-ID applicability; keep both that choice and adoption separate."
+      },
+      "authority_evidence": [
+        {
+          "kind": "adopted_exact_pair",
+          "decision": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "decision_file_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+          "adopted_set": "L2-001..029 and paired fixed L11, plus all 16 explicit candidates including HELIXOS-L2-020",
+          "target_revision": "635f6c9296592473d0f6fb667d436a1f5f80afb7",
+          "target_l2_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "target_l11_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "current_base_section_digests": {
+            "HELIXOS-L2-020": "sha256:fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
+            "HELIXOS-L11-020": "sha256:a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88"
+          },
+          "HELIXOS-L2-008_refs": [
+            "docs/helix-os/L2-requirements/governance-requirements.md:61,296",
+            "docs/helix-os/L11-acceptance/governance-acceptance.md:28,51-54"
+          ]
+        },
+        {
+          "kind": "unadopted_candidate_pair",
+          "identity": "HELIXOS-L2/L11-117",
+          "l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:1434-1444",
+          "l2_section_digest": "sha256:a0f7524b0f89e47d22933eb592bac2945a66cce96d289162aea966b0f7998d26",
+          "l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:1025-1033",
+          "l11_section_digest": "sha256:9ecfe84e612c3e66a9377ac64ca275e423c3f0f2a9a468e1c127e6dddb15c186",
+          "status": "candidate_only; PR-ID applicability is an explicit unresolved PO choice; not in 2026-09-28 adopted set"
+        }
+      ]
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000470",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "physical_line": 16,
+      "source_text": "| `CIG-AC-003` | `CIG-R-02` | scheduleを連続起動し、queue上限とTTLを超える | older scheduleだけを置換し、無制限並走・silent dropを拒否する |",
+      "source_line_sha256": "sha256:fb2423c3a926b76c2a65cd69371c3956fa9c08cc2043435ed4048d3adfa46948",
+      "source_file_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+      "physical_line_bytes_sha256": "312eee698e48fd7a608b69d96c7905b39116a8806c864b75cde733177f4789e0",
+      "source_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "jsonl_line": 470,
+        "record_sha256": "d2b04cd1052b080862472cc43c3892ec56dcfb23fa430d91acfb9b58fe939e6c",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "record_status_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_disposition": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "jsonl_line": 797,
+        "asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
+        "disposition": "unresolved",
+        "authority_status": "historical",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "source_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc"
+      },
+      "historical_routing": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+        "jsonl_line": 470,
+        "classification": "requirement_atom",
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "current_ids": [],
+        "adopted_current_requirement_ids": [],
+        "candidate_identity": null,
+        "citation_is_authority": false
+      },
+      "effective_recount_state": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-effective-classification-recount-after-2381-2026-09-30.json",
+        "pointer": null,
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status_label": "unknown",
+        "overlay_applied_by": null,
+        "route_label_is_not_closure_proof": true
+      },
+      "current_l2_l11_candidate_po_text_refs": [],
+      "current_family_path_only_refs": [
+        {
+          "type": "current_candidate",
+          "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
+          "sha256": "4eae5f8dd485ed8c77d2ea7b6b0407028093c02566e5b92fce9d05a89307a49d",
+          "line": 14,
+          "match_kind": "source_family_path_only",
+          "excerpt": "  - docs/governance/candidates/ci-event-concurrency-generation-acceptance.md"
+        }
+      ],
+      "current_receipt_exact_identity_refs": [],
+      "current_receipt_same_hash_nonidentity_refs": [],
+      "current_receipt_source_id_only_refs": [],
+      "existing_candidate_audit_record_refs": [
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "json_pointer": "/reconciliation/row_records/469",
+          "context": {
+            "source_line_sha256": "sha256:fb2423c3a926b76c2a65cd69371c3956fa9c08cc2043435ed4048d3adfa46948",
+            "physical_line_bytes_sha256": "312eee698e48fd7a608b69d96c7905b39116a8806c864b75cde733177f4789e0",
+            "effective_classification": "condition",
+            "condition_subtype": "product_requirement_atom",
+            "route_status": "unknown"
+          }
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-unknown-reselected-next20-route-audit-2026-09-29.json",
+          "sha256": "106caeda69f2fb519d9a216958f1d42c5a477f1d025b77a938b89fc630119cae",
+          "json_pointer": "/rows/10",
+          "context": {
+            "source_line": 16,
+            "source_file_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+            "source_line_sha256": "sha256:fb2423c3a926b76c2a65cd69371c3956fa9c08cc2043435ed4048d3adfa46948",
+            "physical_line_bytes_sha256": "312eee698e48fd7a608b69d96c7905b39116a8806c864b75cde733177f4789e0"
+          }
+        }
+      ],
+      "current_treatment_assessment": {
+        "target_status": "no_condition_specific_current_target_evidence_found",
+        "exact_source_identity_receipt_ref_count": 0,
+        "selected_span_atom_receipt_ref_count": 0,
+        "receipt_target_identity_values": [],
+        "receipt_selection_coverage_states": [],
+        "exact_PO_decision_rows_by_target_identity": {},
+        "target_pair_state": "no exact current target identity mapped",
+        "formal_successor_proven": false,
+        "condition_closure_proven": false,
+        "meaning_change_or_retire_decision_proven": false,
+        "adoption_inference_from_candidate_OR_route_prohibited": true
+      },
+      "source_context_physical_lines": {
+        "previous": {
+          "line": 15,
+          "text": "| `CIG-AC-002` | `CIG-R-02` | same-HEAD main push中にschedule／manualを開始し、PR A/Bを同時更新する | main、schedule、manual、別PRが相互cancelせず、同一PR stale HEADだけがboundedに置換される |"
+        },
+        "selected": {
+          "line": 16,
+          "text": "| `CIG-AC-003` | `CIG-R-02` | scheduleを連続起動し、queue上限とTTLを超える | older scheduleだけを置換し、無制限並走・silent dropを拒否する |"
+        },
+        "next": {
+          "line": 17,
+          "text": "| `CIG-AC-004` | `CIG-R-03` | older mainがまだcurrent、new generation未確保、handoff欠落、wrong SHA／attempt、raceを個別注入する | 全mutationでsupersedeをfail-closeし、条件成立時だけold mainを置換する |"
+        }
+      },
+      "meaning_current_treatment_review": {
+        "meaning": "Repeated schedules exceeding queue upper bound and TTL: only an older schedule may be replaced; reject unbounded parallel execution and silent drop.",
+        "context": "CIG-AC-003 row pairs with CIG-R-02; AC-002 separate main/schedule/manual/PR concurrency guarantees are not included in selected source atom.",
+        "assessment": "Adopted OS-020 requires exact run identity, interrupted/stale states and no old CI green; adopted OS-008 covers HARNESS obligations. They do not specify queue bound/TTL/older-schedule-only replacement or explicit rejection of unbounded parallelism/silent drop. Unadopted NCI-OS-005 optimizes queue/parallelism/retry/budget while retaining required oracle, but that is not this exact schedule replacement oracle. No applicable current adopted pair or retirement decision found. Additional comparison: #2496 Draft HELIXOS-L2/L11-118 preserves older-schedule-only replacement, rejects unbounded parallelism and refuses to lose required verification, while leaving exact queue/TTL values unknown. It does not explicitly reject silent dropping or state the queue/TTL over-bound outcome. Since old source supplies no numeric values, this is not a numeric threshold omission; the true residual is an explicit no-silent-drop / pending-or-terminal disposition oracle on overflow/expiry.",
+        "current": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:692-700 and L11:359-379 (OS-020)",
+          "docs/helix-os/L2-requirements/governance-requirements.md:30-50 and docs/helix-os/candidates/next-generation-ci-requirements.md:47-49 (NCI-005 unadopted, generic optimization)",
+          "Unadopted #2496 Draft HELIXOS-L2/L11-118 exact pair digest: L2 sha256:3f9a18340eebe4dbbdbd7c172c5f54f4289071271c927b7ca5edd28225ae7d4a; L11 sha256:720f1dcca06883dac492836cbdb36804c34a8df25546a4840a162c80fa15babe; exact review HEAD 0a9c58e0907ea2821374c84dfabe2482edde4419; candidate scope includes 9 request atoms and does not map acceptance source line 000470."
+        ],
+        "status": "adopted general execution partial; 118 candidate covers older-schedule-only and unbounded concurrency; silent-drop/over-bound outcome remains a candidate-text gap",
+        "decision": "Treat 118 as an existing unadopted destination, not closure. Recommend append to 118 L2/L11 a source-faithful bound-crossing outcome: a schedule whose required verification remains unsatisfied must stay explicitly pending, be explicitly superseded by an older-schedule-only bounded replacement, or return a terminal non-success disposition; silent disappearance or success-by-omission is rejected. Keep numeric queue/TTL values unknown for downstream derivation. Do not make a new L2 identity."
+      },
+      "authority_evidence": [
+        {
+          "kind": "unadopted_candidate_condition_destination",
+          "identity": "HELIXOS-L2/L11-118",
+          "review_head": "0a9c58e0907ea2821374c84dfabe2482edde4419",
+          "l2_section_digest": "sha256:3f9a18340eebe4dbbdbd7c172c5f54f4289071271c927b7ca5edd28225ae7d4a",
+          "l11_section_digest": "sha256:720f1dcca06883dac492836cbdb36804c34a8df25546a4840a162c80fa15babe",
+          "covered": "older schedule only replaces older schedule; no unbounded parallelism; required verification not lost",
+          "uncovered": "explicit silent-drop rejection and bounded/TTL-exceeded terminal/pending outcome",
+          "status": "existing candidate destination; not source atom mapping/adopted/closed"
+        }
+      ]
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000472",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "physical_line": 18,
+      "source_text": "| `CIG-AC-005` | `CIG-R-04` | cancelled runをpost-main、review、deferred successへ注入する | 全consumerが採用を拒否する |",
+      "source_line_sha256": "sha256:9ac1a187a2ea4dcbe41985270a5b6a174271f6b800d463e244ffae336107c35f",
+      "source_file_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+      "physical_line_bytes_sha256": "f1b603679ec74c3ce0433cb8c6d440c52e426c06abae97fdf6ef589b08f003d6",
+      "source_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "jsonl_line": 472,
+        "record_sha256": "c6ed60e4a31a85d729d45165736b45babd5f27491c05e67ef1152047feeffdf5",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "record_status_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_disposition": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "jsonl_line": 797,
+        "asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
+        "disposition": "unresolved",
+        "authority_status": "historical",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "source_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc"
+      },
+      "historical_routing": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+        "jsonl_line": 472,
+        "classification": "requirement_atom",
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "current_ids": [],
+        "adopted_current_requirement_ids": [],
+        "candidate_identity": null,
+        "citation_is_authority": false
+      },
+      "effective_recount_state": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-effective-classification-recount-after-2381-2026-09-30.json",
+        "pointer": null,
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status_label": "unknown",
+        "overlay_applied_by": null,
+        "route_label_is_not_closure_proof": true
+      },
+      "current_l2_l11_candidate_po_text_refs": [],
+      "current_family_path_only_refs": [
+        {
+          "type": "current_candidate",
+          "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
+          "sha256": "4eae5f8dd485ed8c77d2ea7b6b0407028093c02566e5b92fce9d05a89307a49d",
+          "line": 14,
+          "match_kind": "source_family_path_only",
+          "excerpt": "  - docs/governance/candidates/ci-event-concurrency-generation-acceptance.md"
+        }
+      ],
+      "current_receipt_exact_identity_refs": [],
+      "current_receipt_same_hash_nonidentity_refs": [],
+      "current_receipt_source_id_only_refs": [],
+      "existing_candidate_audit_record_refs": [
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "json_pointer": "/reconciliation/row_records/471",
+          "context": {
+            "source_line_sha256": "sha256:9ac1a187a2ea4dcbe41985270a5b6a174271f6b800d463e244ffae336107c35f",
+            "physical_line_bytes_sha256": "f1b603679ec74c3ce0433cb8c6d440c52e426c06abae97fdf6ef589b08f003d6",
+            "effective_classification": "condition",
+            "condition_subtype": "product_requirement_atom",
+            "route_status": "unknown"
+          }
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-unknown-reselected-next20-route-audit-2026-09-29.json",
+          "sha256": "106caeda69f2fb519d9a216958f1d42c5a477f1d025b77a938b89fc630119cae",
+          "json_pointer": "/rows/11",
+          "context": {
+            "source_line": 18,
+            "source_file_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+            "source_line_sha256": "sha256:9ac1a187a2ea4dcbe41985270a5b6a174271f6b800d463e244ffae336107c35f",
+            "physical_line_bytes_sha256": "f1b603679ec74c3ce0433cb8c6d440c52e426c06abae97fdf6ef589b08f003d6"
+          }
+        }
+      ],
+      "current_treatment_assessment": {
+        "target_status": "no_condition_specific_current_target_evidence_found",
+        "exact_source_identity_receipt_ref_count": 0,
+        "selected_span_atom_receipt_ref_count": 0,
+        "receipt_target_identity_values": [],
+        "receipt_selection_coverage_states": [],
+        "exact_PO_decision_rows_by_target_identity": {},
+        "target_pair_state": "no exact current target identity mapped",
+        "formal_successor_proven": false,
+        "condition_closure_proven": false,
+        "meaning_change_or_retire_decision_proven": false,
+        "adoption_inference_from_candidate_OR_route_prohibited": true
+      },
+      "source_context_physical_lines": {
+        "previous": {
+          "line": 17,
+          "text": "| `CIG-AC-004` | `CIG-R-03` | older mainがまだcurrent、new generation未確保、handoff欠落、wrong SHA／attempt、raceを個別注入する | 全mutationでsupersedeをfail-closeし、条件成立時だけold mainを置換する |"
+        },
+        "selected": {
+          "line": 18,
+          "text": "| `CIG-AC-005` | `CIG-R-04` | cancelled runをpost-main、review、deferred successへ注入する | 全consumerが採用を拒否する |"
+        },
+        "next": {
+          "line": 19,
+          "text": "| `CIG-AC-006` | `CIG-R-04` | same HEADのpush／schedule結果を相互流用し、generation digestをDB／doctor／aggregateの一面だけ改変する。既存receiptの`run:<id>:attempt:<n>:<conclusion>`を再検証する | obligation同値証明なしの流用を拒否し、全projectionがexact digestへ収束する。既存receipt identityは変更後も検証可能である |"
+        }
+      },
+      "meaning_current_treatment_review": {
+        "meaning": "Inject a cancelled run into post-main, review, and deferred-success consumers; every consumer rejects it as accepted success.",
+        "context": "CIG-AC-005 row pairs CIG-R-04; “all consumers” is scoped to the three named consumer classes in this row, not an invented universal product-wide list.",
+        "assessment": "Adopted OS-020 distinguishes interrupted/stale from success and prevents old CI result substitution. That generic state distinction does not explicitly require all three named consumers to reject cancelled runs. NCI-OS-004 candidate distinguishes cancel and remediation, but it is not adopted and does not enumerate those three consumer checks. Exact condition unresolved; no closure/retire decision. Additional comparison: the unadopted #2496 Draft L11-118 separately injects cancelled runs into post-main completion, terminal green, deferred recovery success, and review receipt and rejects each; this directly provides a candidate-text destination for the three named AC-005 consumers. It is not adopted/executed and MPR-118 source atoms do not include acceptance source line 000472.",
+        "current": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:692-700 and L11:359-379 (adopted OS-020)",
+          "docs/helix-os/candidates/next-generation-ci-requirements.md:45-48 (NCI-004 candidate, unadopted)",
+          "Unadopted #2496 Draft HELIXOS-L11-118: paired section digest sha256:720f1dcca06883dac492836cbdb36804c34a8df25546a4840a162c80fa15babe at review HEAD 0a9c58e0907ea2821374c84dfabe2482edde4419; L11 lines 1050-1052 individually rejects cancelled run into post-main completion, terminal green, deferred recovery success, and review receipt. Acceptance source line 000472 is outside the 9-atom MPR-118 source set."
+        ],
+        "status": "adopted state distinction partial; named consumer condition present in unadopted 118 L11 destination; not adopted/executed/formal successor",
+        "decision": "Count 118 as existing candidate condition destination for all three source-named outcomes; do not create duplicate wording or mark source condition closed. Adoption/execution and formal source mapping remain separate."
+      },
+      "authority_evidence": [
+        {
+          "kind": "unadopted_candidate_condition_destination",
+          "identity": "HELIXOS-L2/L11-118",
+          "review_head": "0a9c58e0907ea2821374c84dfabe2482edde4419",
+          "l2_section_digest": "sha256:3f9a18340eebe4dbbdbd7c172c5f54f4289071271c927b7ca5edd28225ae7d4a",
+          "l11_section_digest": "sha256:720f1dcca06883dac492836cbdb36804c34a8df25546a4840a162c80fa15babe",
+          "covered": "cancelled-run refusal individually for post-main completion, terminal green, deferred recovery success, review receipt",
+          "status": "existing candidate destination; no 000472 source-atom mapping/adoption/execution/formal successor"
+        }
+      ]
+    },
+    {
+      "source_item_id": "LEGACY-CAND-LINE-000474",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "physical_line": 20,
+      "source_text": "| `CIG-AC-007` | `CIG-R-01..04` | bounded GitHub rehearsalまたは自然scheduleを実行する | run ID付きread-afterでcurrent main pushとscheduleが独立terminalになり、cancel／handoff receiptを再構築できる |",
+      "source_line_sha256": "sha256:e7b182f7fac60e7b7cc039bf14435a71b8f47cc40a4ac45392fac4e0dd7c30bb",
+      "source_file_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+      "physical_line_bytes_sha256": "3cf674bea99ecc0a18df1c3d73509ad5ad9519eacff86349be251ada4ff0fe67",
+      "source_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "jsonl_line": 474,
+        "record_sha256": "c214014ba01556c7c23e661d126e830471b6dcf8b910f9212dac6d7ab03ce6ee",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "record_status_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_disposition": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "jsonl_line": 797,
+        "asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
+        "disposition": "unresolved",
+        "authority_status": "historical",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "source_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc"
+      },
+      "historical_routing": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
+        "jsonl_line": 474,
+        "classification": "requirement_atom",
+        "routing_status": "unknown",
+        "review_outcome": "unknown_after_semantic_check",
+        "current_ids": [],
+        "adopted_current_requirement_ids": [],
+        "candidate_identity": null,
+        "citation_is_authority": false
+      },
+      "effective_recount_state": {
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-effective-classification-recount-after-2381-2026-09-30.json",
+        "pointer": null,
+        "classification": "condition",
+        "condition_subtype": "product_requirement_atom",
+        "route_status_label": "unknown",
+        "overlay_applied_by": null,
+        "route_label_is_not_closure_proof": true
+      },
+      "current_l2_l11_candidate_po_text_refs": [],
+      "current_family_path_only_refs": [
+        {
+          "type": "current_candidate",
+          "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
+          "sha256": "4eae5f8dd485ed8c77d2ea7b6b0407028093c02566e5b92fce9d05a89307a49d",
+          "line": 14,
+          "match_kind": "source_family_path_only",
+          "excerpt": "  - docs/governance/candidates/ci-event-concurrency-generation-acceptance.md"
+        }
+      ],
+      "current_receipt_exact_identity_refs": [],
+      "current_receipt_same_hash_nonidentity_refs": [],
+      "current_receipt_source_id_only_refs": [],
+      "existing_candidate_audit_record_refs": [
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+          "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+          "json_pointer": "/reconciliation/row_records/473",
+          "context": {
+            "source_line_sha256": "sha256:e7b182f7fac60e7b7cc039bf14435a71b8f47cc40a4ac45392fac4e0dd7c30bb",
+            "physical_line_bytes_sha256": "3cf674bea99ecc0a18df1c3d73509ad5ad9519eacff86349be251ada4ff0fe67",
+            "effective_classification": "condition",
+            "condition_subtype": "product_requirement_atom",
+            "route_status": "unknown"
+          }
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-unknown-reselected-next20-route-audit-2026-09-29.json",
+          "sha256": "106caeda69f2fb519d9a216958f1d42c5a477f1d025b77a938b89fc630119cae",
+          "json_pointer": "/rows/12",
+          "context": {
+            "source_line": 20,
+            "source_file_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+            "source_line_sha256": "sha256:e7b182f7fac60e7b7cc039bf14435a71b8f47cc40a4ac45392fac4e0dd7c30bb",
+            "physical_line_bytes_sha256": "3cf674bea99ecc0a18df1c3d73509ad5ad9519eacff86349be251ada4ff0fe67"
+          }
+        }
+      ],
+      "current_treatment_assessment": {
+        "target_status": "no_condition_specific_current_target_evidence_found",
+        "exact_source_identity_receipt_ref_count": 0,
+        "selected_span_atom_receipt_ref_count": 0,
+        "receipt_target_identity_values": [],
+        "receipt_selection_coverage_states": [],
+        "exact_PO_decision_rows_by_target_identity": {},
+        "target_pair_state": "no exact current target identity mapped",
+        "formal_successor_proven": false,
+        "condition_closure_proven": false,
+        "meaning_change_or_retire_decision_proven": false,
+        "adoption_inference_from_candidate_OR_route_prohibited": true
+      },
+      "source_context_physical_lines": {
+        "previous": {
+          "line": 19,
+          "text": "| `CIG-AC-006` | `CIG-R-04` | same HEADのpush／schedule結果を相互流用し、generation digestをDB／doctor／aggregateの一面だけ改変する。既存receiptの`run:<id>:attempt:<n>:<conclusion>`を再検証する | obligation同値証明なしの流用を拒否し、全projectionがexact digestへ収束する。既存receipt identityは変更後も検証可能である |"
+        },
+        "selected": {
+          "line": 20,
+          "text": "| `CIG-AC-007` | `CIG-R-01..04` | bounded GitHub rehearsalまたは自然scheduleを実行する | run ID付きread-afterでcurrent main pushとscheduleが独立terminalになり、cancel／handoff receiptを再構築できる |"
+        },
+        "next": {
+          "line": 21,
+          "text": ""
+        }
+      },
+      "meaning_current_treatment_review": {
+        "meaning": "Bounded GitHub rehearsal or natural schedule; run-ID read-after establishes current-main push and schedule independently terminal, and cancel/handoff receipt is reconstructable.",
+        "context": "CIG-AC-007 row’s “run” is a historical acceptance route after canonical promotion (acceptance file line 26); selected outcome also independently specifies terminal outcomes and receipt reconstruction. Do not transfer old GitHub execution permission.",
+        "assessment": "Adopted OS-008/020 require run-bound results, evidence and interruption continuation, but no bounded live rehearsal/current-main vs schedule independent terminal/read-after or cancel/handoff receipt reconstruction condition was found. NCI candidates preserve old/new CI separation and future shadow route but remain unadopted. Current governance expressly prohibits running archive CI and says new CI is unbuilt; therefore execution procedure is not now runnable or a requirement formation gate. The outcome/receipt guarantee remains unresolved separately from the old route. Additional comparison: unadopted #2496 Draft L2/L11-118 requires current-canonical-HEAD terminal evidence and independent terminal evidence for selected obligations; it rebuilds cancel/supersede/handoff reason and target, leaves missing/mismatched relation unknown/incomplete, and separates current-main post-main check from schedule/manual safety net. This is a condition destination for AC-007 outcomes, but 000474 is not one of MPR-118’s nine selected source atoms.",
+        "current": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:692-700; docs/helix-os/L11-acceptance/governance-acceptance.md:359-379 (adopted OS-020)",
+          "docs/helix-os/candidates/next-generation-ci-requirements.md:70-92 (unadopted migration candidate and not an execution authorization)",
+          "AGENTS.md and CLAUDE.md: archive old runtime/tests/CI cannot execute; new-generation CI is unbuilt",
+          "Unadopted #2496 Draft HELIXOS-L2/L11-118 exact section digests L2 sha256:3f9a18340eebe4dbbdbd7c172c5f54f4289071271c927b7ca5edd28225ae7d4a and L11 sha256:720f1dcca06883dac492836cbdb36804c34a8df25546a4840a162c80fa15babe at review HEAD 0a9c58e0907ea2821374c84dfabe2482edde4419; L2 lines 1459-1462, L11 lines 1047-1052. 000474 is outside MPR-118 nine-atom input scope."
+        ],
+        "status": "adopted run evidence partial; independent terminal/reason/target rebuild present in unadopted 118 candidate destination; no adoption/execution/closure",
+        "decision": "Count 118 as a candidate-text destination for the independent current-main/schedule terminal and reconstruction outcome. Do not treat the historic bounded GitHub rehearsal route as required execution or authorized; candidate is unadopted and source line 000474 is outside its nine-atom source set."
+      },
+      "authority_evidence": [
+        {
+          "kind": "unadopted_candidate_condition_destination",
+          "identity": "HELIXOS-L2/L11-118",
+          "review_head": "0a9c58e0907ea2821374c84dfabe2482edde4419",
+          "l2_section_digest": "sha256:3f9a18340eebe4dbbdbd7c172c5f54f4289071271c927b7ca5edd28225ae7d4a",
+          "l11_section_digest": "sha256:720f1dcca06883dac492836cbdb36804c34a8df25546a4840a162c80fa15babe",
+          "covered": "separate selected-obligation terminal evidence, current canonical HEAD, main/schedule independent outcomes, cancel/supersede/handoff reason+target reconstruction, unknown/incomplete on missing or mismatched evidence",
+          "status": "existing candidate destination; no 000474 source-atom mapping/adoption/execution/formal successor"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "source_rows": 10,
+    "general_or_exact_partial_or_unresolved": 10,
+    "formal_successors_proven": 0,
+    "source_specific_closure_proven": 0,
+    "new_L2_or_L11_created": false,
+    "PO_decision_or_authority_generated": false,
+    "old_runtime_CI_test_or_CLI_executed": false,
+    "unadopted_candidate_condition_destinations_added_by_review": "HELIXOS-L2/L11-118 for 000472 and 000474; partial for 000470 with a silent-drop/overflow-outcome residual"
+  },
+  "supplemental_candidate_revisions": {
+    "l2": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "0a9c58e0907ea2821374c84dfabe2482edde4419",
+      "sha256": "62a05c7d743050f6cf97458e501140ad0275d6847630cd3a59d1bf39144b51e3"
+    },
+    "l11": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "revision": "0a9c58e0907ea2821374c84dfabe2482edde4419",
+      "sha256": "b6738a6d2c37c02ff0d6795fc71007835d560a91a595705a0850bafa7fbbbb1a"
+    },
+    "mpr": {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "revision": "0a9c58e0907ea2821374c84dfabe2482edde4419",
+      "sha256": "28c8f6c6effde29125185f3183a6298ee05b7f1866704fe5bb5572373922c702"
+    },
+    "receipt": {
+      "path": "docs/governance/audits/requirement-registration/ci-event-concurrency-coverage-receipt-2026-10-02.json",
+      "revision": "0a9c58e0907ea2821374c84dfabe2482edde4419",
+      "sha256": "a706ccd04257c01c38db4ff4107da6cc660fced1601d8773c8bb126093a77108"
+    },
+    "candidate_identity": "HELIXOS-L2/L11-118; MPR-RC-HELIXOS-L2-118-001; #2496 Draft content read at exact review HEAD 0a9c58e0907ea2821374c84dfabe2482edde4419",
+    "candidate_section_digests": {
+      "L2-118": "sha256:3f9a18340eebe4dbbdbd7c172c5f54f4289071271c927b7ca5edd28225ae7d4a",
+      "L11-118": "sha256:720f1dcca06883dac492836cbdb36804c34a8df25546a4840a162c80fa15babe"
+    },
+    "receipt_rule": "section from ### HELIXOS-L2-118 / ### HELIXOS-L11-118 to next same-level heading or EOF, trailing blank lines removed, one UTF-8 LF",
+    "scope_boundary": "MPR source collection receipt selects nine request-source atoms only; selected acceptance atoms 000470/472/474 are not included in its source atom set. Compare 118 as an unadopted requirement-condition destination, not as source atom mapping, adopted fulfillment, formal successor, execution, or closure."
+  },
+  "merged_main_candidate_revision": {
+    "verification_revision": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+    "status": "merged into main as a registered proposal; merge does not adopt the requirement",
+    "requirement_identity": "HELIXOS-L2/L11-118",
+    "registration_id": "MPR-RC-HELIXOS-L2-118-001",
+    "register_path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "register_line": 650,
+    "register_file_sha256": "325d16ac975829a4e2d4cd93ac0661a08957e9a7181afaad9e1e9d3d6ecf6a99",
+    "management_state": "registered_proposal",
+    "authority_effect": "none",
+    "candidate_semantic_digest": "sha256:7872e13850587caf3a16cfadb8e4b793a4d893faf06d0085d443590998f2b1d4",
+    "l2": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "file_sha256": "7e42c0da98306d7979c0c22ef7ba0e2f4c7344678ac972f5f9e99eccddaf7b1e",
+      "line_start": 1455,
+      "line_end": 1465,
+      "section_digest": "sha256:7872e13850587caf3a16cfadb8e4b793a4d893faf06d0085d443590998f2b1d4"
+    },
+    "l11": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "file_sha256": "9dd801826760a8be8a211901fe60cf738a2b3beabae350c1308b4814c5ffbfe1",
+      "line_start": 1043,
+      "line_end": 1052,
+      "section_digest": "sha256:feea1a8262ed8ab5feef63b552ebf4d3e1931518cafbd85e2b8e1bb56763c95d"
+    },
+    "receipt": {
+      "path": "docs/governance/audits/requirement-registration/ci-event-concurrency-coverage-receipt-2026-10-02.json",
+      "file_sha256": "24142c763ba84fb22eddbd731182a4c5acf31d6cc19564db18cdefcf1d12dda0",
+      "receipt_id": "DRAFT-RCPT-HELIXOS-L2-118-CIG-CONCURRENCY-2026-10-02",
+      "authority_effect": "none",
+      "source_atom_count": 11,
+      "source_atom_set_digest": "sha256:c30189321ceb43db600de12633d554526d3ca519367ee0d807f1205bfb21e868",
+      "source_atom_file": "docs/governance/audits/requirement-registration/ci-event-concurrency-source-lines-2026-10-02.jsonl",
+      "source_atom_file_sha256": "sha256:fc9016a83df48f784420a3c916887f2645ffeb039f1fbeb158b66a53e72dd4e7",
+      "selected_source_atom_ids": [
+        "LEGACY-CAND-LINE-000491",
+        "LEGACY-CAND-LINE-000492",
+        "LEGACY-CAND-LINE-000496",
+        "LEGACY-CAND-LINE-000497",
+        "LEGACY-CAND-LINE-000499",
+        "LEGACY-CAND-LINE-000500",
+        "LEGACY-CAND-LINE-000501",
+        "LEGACY-CAND-LINE-000502",
+        "LEGACY-CAND-LINE-000527",
+        "LEGACY-CAND-LINE-000528",
+        "LEGACY-CAND-LINE-000529"
+      ],
+      "condition_closure": "not_asserted"
+    },
+    "selected_source_atom_relation": {
+      "LEGACY-CAND-LINE-000470": "outside the 11-atom source set; current merged 118-001 has no explicit silent-drop rejection oracle or queue/TTL-overflow pending/terminal-non-success outcome",
+      "LEGACY-CAND-LINE-000472": "outside the 11-atom source set; L11-118 provides a candidate-text destination for named cancelled-run consumer refusals, but no source-atom mapping/adoption/closure",
+      "LEGACY-CAND-LINE-000474": "outside the 11-atom source set; L2/L11-118 provide a candidate-text destination for independent terminal outcomes and cancel/handoff reason/target reconstruction, but no source-atom mapping/adoption/closure"
+    },
+    "comparison_conclusion": "The historical Draft 0a9c58e comparison remains a separate historical snapshot with its original 9-atom scope and section digests. The merged main 118-001 revision is the exact 11-atom candidate described here. For 000470/472/474, its 11-atom receipt does not add those source atoms; 000472/474 have condition destinations in candidate text, while 000470 still lacks the stated silent-drop/overflow outcome. No adoption, formal successor, execution, or source closure is inferred."
+  }
+}
