@@ -1,0 +1,3590 @@
+{
+  "schema_version": "helix-legacy-candidate4755-explanation-normative-complement-semantic-audit.v1",
+  "audit_id": "legacy-candidate4755-explanation-normative-complement-ranks-541-580-2026-10-01",
+  "created_against_commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+  "authority_effect": "none",
+  "purpose": "Semantic audit of numeric-ID ranks 541–580 in the effective-explanation marker-negative complement; no adoption, successor, implementation, acceptance or source closure is generated.",
+  "pool_derivation": {
+    "baseline_ref": "#2353 reconciliation.row_records exact source_item_id join",
+    "ordered_classification_overlays": [
+      "#2356",
+      "#2360",
+      "#2363",
+      "#2366",
+      "#2367",
+      "#2368",
+      "#2369",
+      "#2381"
+    ],
+    "bounded_additional_classification_proposal": "#2369 exact source IDs 000841 and 000857; both become condition, not explanation",
+    "effective_explanation_count": 2965,
+    "marker_pool_count": 255,
+    "complement_count": 2710,
+    "equation": "2965 - 255 = 2710",
+    "rank_key": "numeric LEGACY-CAND-LINE suffix ascending",
+    "selected_ranks": [
+      541,
+      580
+    ],
+    "selected_count": 40,
+    "selected_ids": [
+      "LEGACY-CAND-LINE-000928",
+      "LEGACY-CAND-LINE-000931",
+      "LEGACY-CAND-LINE-000937",
+      "LEGACY-CAND-LINE-000940",
+      "LEGACY-CAND-LINE-000941",
+      "LEGACY-CAND-LINE-000956",
+      "LEGACY-CAND-LINE-000959",
+      "LEGACY-CAND-LINE-000961",
+      "LEGACY-CAND-LINE-000962",
+      "LEGACY-CAND-LINE-000963",
+      "LEGACY-CAND-LINE-000964",
+      "LEGACY-CAND-LINE-000965",
+      "LEGACY-CAND-LINE-000966",
+      "LEGACY-CAND-LINE-000967",
+      "LEGACY-CAND-LINE-000968",
+      "LEGACY-CAND-LINE-000969",
+      "LEGACY-CAND-LINE-000970",
+      "LEGACY-CAND-LINE-000971",
+      "LEGACY-CAND-LINE-000972",
+      "LEGACY-CAND-LINE-000974",
+      "LEGACY-CAND-LINE-000975",
+      "LEGACY-CAND-LINE-001011",
+      "LEGACY-CAND-LINE-001012",
+      "LEGACY-CAND-LINE-001013",
+      "LEGACY-CAND-LINE-001014",
+      "LEGACY-CAND-LINE-001020",
+      "LEGACY-CAND-LINE-001022",
+      "LEGACY-CAND-LINE-001024",
+      "LEGACY-CAND-LINE-001025",
+      "LEGACY-CAND-LINE-001026",
+      "LEGACY-CAND-LINE-001027",
+      "LEGACY-CAND-LINE-001028",
+      "LEGACY-CAND-LINE-001029",
+      "LEGACY-CAND-LINE-001030",
+      "LEGACY-CAND-LINE-001033",
+      "LEGACY-CAND-LINE-001035",
+      "LEGACY-CAND-LINE-001036",
+      "LEGACY-CAND-LINE-001057",
+      "LEGACY-CAND-LINE-001058",
+      "LEGACY-CAND-LINE-001059"
+    ],
+    "selected_ids_sha256": "3139b55294b2c2f3c5614febd954b4f1565b3cee5ff17dea89325075f4f25435",
+    "independently_reconstructed": true,
+    "preceding_slice_boundary": {
+      "preceding_rank": 540,
+      "preceding_id": "LEGACY-CAND-LINE-000926",
+      "this_first_rank": 541,
+      "this_first_id": "LEGACY-CAND-LINE-000928",
+      "adjacent_audit_id": null,
+      "adjacent_audit_path": null,
+      "audit_available_at_origin_main": false,
+      "audit_commit_object_verified": false,
+      "claim_prior_semantic_verification": false,
+      "note": "No rank 501–540 audit artifact was present in origin/main or the inspected local 501–540 worktree; only the independently reconstructed boundary ID is recorded."
+    }
+  },
+  "pinned_reconstruction_inputs": [
+    {
+      "role": "full_row_records_baseline",
+      "ref": "#2353",
+      "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c"
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "ref": "#2356",
+      "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164"
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "ref": "#2360",
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+      "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb"
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "ref": "#2363",
+      "commit": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+      "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384"
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "ref": "#2366",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+      "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6"
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "ref": "#2367",
+      "commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
+      "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d"
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "ref": "#2368",
+      "commit": "f89f71e0371440e9e10636499192c2311872b024",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
+      "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95"
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "ref": "#2369",
+      "commit": "081b0b6612b802cfcb02b3cecda1559dd9a3ce13",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30.json",
+      "sha256": "5ed02b037f78ca25991b396e232e8b1ee754b0c91b056ed6640c9fb1c47cf0c0"
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "ref": "#2381",
+      "commit": "6e62f76986f19d14281cb2a96eca460c5430dcc6",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-metadata10-classification-proposal-2026-09-30.json",
+      "sha256": "512f9ceafe935648d459d6b268ff4d3952f0e8264298213ad278256236b5f40e"
+    }
+  ],
+  "marker_pool_review_slices": [
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-2026-10-01.json",
+      "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+      "sha256": "3ea33ed390c354e84b81f1dd7956afdfab7bd00deb49969383b717bacf4acd33",
+      "rows_in_slice": 20
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-101-120-2026-10-01.json",
+      "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+      "sha256": "29cc8bfecbebae44ba0b0473d4df8d561a92f72778ad13177f161e84d1267ecf",
+      "rows_in_slice": 20
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-121-140-2026-10-01.json",
+      "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+      "sha256": "f5b88ec5da4727aee48c30311a0c10b47ff6b39fe7cf5adddcea6fa8380933ee",
+      "rows_in_slice": 20
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-141-160-2026-10-01.json",
+      "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+      "sha256": "e40dbeaf5758a45a6eb39c96b5a8b5723780cfec15b21516103858f7659d8c4b",
+      "rows_in_slice": 20
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-161-180-2026-10-01.json",
+      "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+      "sha256": "9e81e0d3bd4366b01c982be3da542bb64e59750576134558ecdc9b75a22aa7a2",
+      "rows_in_slice": 20
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-181-200-2026-10-01.json",
+      "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+      "sha256": "de845d732261122a04af5aeb168dbc9b7a55507d6c977b74c37d1c19ec645e97",
+      "rows_in_slice": 20
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-201-220-2026-10-01.json",
+      "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+      "sha256": "d11d4a5fc5005fc1e555f1bc1cea68e375c7bad479349b5340bc9ce80923b19d",
+      "rows_in_slice": 20
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-21-40-2026-10-01.json",
+      "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+      "sha256": "8d5059267a6ebe70366e670ac548d760dfd3259748012125201bd6539e1b5b2f",
+      "rows_in_slice": 20
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-221-240-2026-10-01.json",
+      "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+      "sha256": "6241e2b37045431c84232e5289942e6df5ff7390e65235b3462e6541af807793",
+      "rows_in_slice": 20
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-241-255-2026-10-01.json",
+      "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+      "sha256": "14e4fe6339ee5801a5d6e459ce988628e5928b721b94bcdace49d539aa5c2135",
+      "rows_in_slice": 15
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-41-60-2026-10-01.json",
+      "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+      "sha256": "d94780d1daaf6882bfd101d0962c43730025c9348d62b89a3ac33b0d26c814fc",
+      "rows_in_slice": 20
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-61-80-2026-10-01.json",
+      "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+      "sha256": "a772c56e8001bb899bc28543fa9b5e8c2f866350f7c2306126f793fc58cd638b",
+      "rows_in_slice": 20
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-81-100-2026-10-01.json",
+      "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+      "sha256": "c762d66599bdd07d825aeb1dd5f43e8c8a0f8a2c0f70aaac08e368ad47ba1ff8",
+      "rows_in_slice": 20
+    }
+  ],
+  "marker_screen_pin": {
+    "role": "lexical marker screen definition/top20 queue",
+    "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+    "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-marker-screen-2026-10-01.json",
+    "sha256": "1f9b0b6e05bfb46d937dfbbb954e8f7aa956c440acd526cbad2487b82893efbb"
+  },
+  "source_ledgers": [
+    {
+      "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+      "rows": 4755
+    },
+    {
+      "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "rows": 4020
+    }
+  ],
+  "fixed_F6_pair_and_decision_pins": [
+    {
+      "role": "current post-F6 HARNESS requirements, comparison context",
+      "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
+      "line_or_section": 187
+    },
+    {
+      "role": "current post-F6 HARNESS acceptance, comparison context",
+      "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e",
+      "line_or_section": 117
+    },
+    {
+      "role": "fixed HARNESS PO decision, explicit 24-candidate set",
+      "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "line_or_section": 54
+    },
+    {
+      "role": "investment family crosswalk",
+      "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+      "path": "docs/governance/audits/source-rebaseline/new-generation-investment-candidate-crosswalk.md",
+      "sha256": "bba552149739854201c2b769d961451e5fd1a73f9d79d18e2095c2ebc9729a3c",
+      "line_or_section": 7
+    },
+    {
+      "role": "fixed HARNESS L2 exact revision; includes DGH family distinction and adopted explicit L2 candidates",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "line_or_section": 187
+    },
+    {
+      "role": "fixed HARNESS L11 exact revision; DGH conditions unexecuted",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "line_or_section": 117
+    }
+  ],
+  "pin_reachability": {
+    "basis": "git cat-file -e <commit>^{commit}; git merge-base --is-ancestor <commit> origin/main; each listed path SHA-256 verified with git show <commit>:<path>",
+    "commits": [
+      {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "commit_object_available": true,
+        "ancestor_of_origin_main": true,
+        "pinned_files": [
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+            "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c"
+          }
+        ]
+      },
+      {
+        "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
+        "commit_object_available": true,
+        "ancestor_of_origin_main": true,
+        "pinned_files": [
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+            "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164"
+          }
+        ]
+      },
+      {
+        "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+        "commit_object_available": true,
+        "ancestor_of_origin_main": true,
+        "pinned_files": [
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+            "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb"
+          }
+        ]
+      },
+      {
+        "commit": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
+        "commit_object_available": true,
+        "ancestor_of_origin_main": true,
+        "pinned_files": [
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+            "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384"
+          }
+        ]
+      },
+      {
+        "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
+        "commit_object_available": true,
+        "ancestor_of_origin_main": true,
+        "pinned_files": [
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+            "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6"
+          }
+        ]
+      },
+      {
+        "commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
+        "commit_object_available": true,
+        "ancestor_of_origin_main": true,
+        "pinned_files": [
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
+            "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d"
+          }
+        ]
+      },
+      {
+        "commit": "f89f71e0371440e9e10636499192c2311872b024",
+        "commit_object_available": true,
+        "ancestor_of_origin_main": true,
+        "pinned_files": [
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
+            "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95"
+          }
+        ]
+      },
+      {
+        "commit": "081b0b6612b802cfcb02b3cecda1559dd9a3ce13",
+        "commit_object_available": true,
+        "ancestor_of_origin_main": true,
+        "pinned_files": [
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30.json",
+            "sha256": "5ed02b037f78ca25991b396e232e8b1ee754b0c91b056ed6640c9fb1c47cf0c0"
+          }
+        ]
+      },
+      {
+        "commit": "6e62f76986f19d14281cb2a96eca460c5430dcc6",
+        "commit_object_available": true,
+        "ancestor_of_origin_main": true,
+        "pinned_files": [
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-metadata10-classification-proposal-2026-09-30.json",
+            "sha256": "512f9ceafe935648d459d6b268ff4d3952f0e8264298213ad278256236b5f40e"
+          }
+        ]
+      },
+      {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "commit_object_available": true,
+        "ancestor_of_origin_main": true,
+        "pinned_files": [
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-2026-10-01.json",
+            "sha256": "3ea33ed390c354e84b81f1dd7956afdfab7bd00deb49969383b717bacf4acd33"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-101-120-2026-10-01.json",
+            "sha256": "29cc8bfecbebae44ba0b0473d4df8d561a92f72778ad13177f161e84d1267ecf"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-121-140-2026-10-01.json",
+            "sha256": "f5b88ec5da4727aee48c30311a0c10b47ff6b39fe7cf5adddcea6fa8380933ee"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-141-160-2026-10-01.json",
+            "sha256": "e40dbeaf5758a45a6eb39c96b5a8b5723780cfec15b21516103858f7659d8c4b"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-161-180-2026-10-01.json",
+            "sha256": "9e81e0d3bd4366b01c982be3da542bb64e59750576134558ecdc9b75a22aa7a2"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-181-200-2026-10-01.json",
+            "sha256": "de845d732261122a04af5aeb168dbc9b7a55507d6c977b74c37d1c19ec645e97"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-201-220-2026-10-01.json",
+            "sha256": "d11d4a5fc5005fc1e555f1bc1cea68e375c7bad479349b5340bc9ce80923b19d"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-21-40-2026-10-01.json",
+            "sha256": "8d5059267a6ebe70366e670ac548d760dfd3259748012125201bd6539e1b5b2f"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-221-240-2026-10-01.json",
+            "sha256": "6241e2b37045431c84232e5289942e6df5ff7390e65235b3462e6541af807793"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-241-255-2026-10-01.json",
+            "sha256": "14e4fe6339ee5801a5d6e459ce988628e5928b721b94bcdace49d539aa5c2135"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-41-60-2026-10-01.json",
+            "sha256": "d94780d1daaf6882bfd101d0962c43730025c9348d62b89a3ac33b0d26c814fc"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-61-80-2026-10-01.json",
+            "sha256": "a772c56e8001bb899bc28543fa9b5e8c2f866350f7c2306126f793fc58cd638b"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-81-100-2026-10-01.json",
+            "sha256": "c762d66599bdd07d825aeb1dd5f43e8c8a0f8a2c0f70aaac08e368ad47ba1ff8"
+          },
+          {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6"
+          },
+          {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e"
+          },
+          {
+            "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+            "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+          },
+          {
+            "path": "docs/governance/audits/source-rebaseline/new-generation-investment-candidate-crosswalk.md",
+            "sha256": "bba552149739854201c2b769d961451e5fd1a73f9d79d18e2095c2ebc9729a3c"
+          },
+          {
+            "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+            "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+          },
+          {
+            "path": "docs/governance/legacy-asset-disposition.jsonl",
+            "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+          }
+        ]
+      },
+      {
+        "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "commit_object_available": true,
+        "ancestor_of_origin_main": true,
+        "pinned_files": [
+          {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+          },
+          {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+          }
+        ]
+      }
+    ]
+  },
+  "authority_and_relation_summary": {
+    "selected_rows": 40,
+    "source_line_rows_preserved_pending_atomization": 40,
+    "historical_candidate_to_draft_candidate": 40,
+    "meaning_change": 0,
+    "successor_requirement_ids": 0,
+    "source_row_adopted_pair_binding_found": 0,
+    "source_closure": 0,
+    "asset_disposition_unresolved": 40,
+    "authority_effect": "none",
+    "family_level_relations": "DGH has explicit family-level relation to HARNESS-L2-003/004/005 and adjacent adopted design composition candidates HARNESS-L2-025/026; investment candidate family is crosswalked with limited workflow semantics retained in HARNESS-L2-003/004/005/006. These relationships are not selected-source-row coverage/successor bindings. DGH detailed candidate requirements remain draft/noncanonical; L11 acceptance is unexecuted. INV metadata and #1727 do not create authority."
+  },
+  "limitations": [
+    "Marker-negative is a lexical result; line meaning was read in archive section context.",
+    "Family-level or adjacent current requirements may be adopted in the fixed F6 set, but the selected source line IDs have no demonstrated individual crosswalk/successor/coverage binding.",
+    "Historical Issue/plan/status/layer fields and source claims do not establish current target authority, execution, or closure.",
+    "Adjacent ranks 501–540 audit was unavailable at origin/main and in the inspected local 501–540 worktree; only rank 540 boundary ID is pinned.",
+    "Archive was read only; no old source, runtime, workflow, CLI, hook, test, or CI was executed."
+  ],
+  "rows": [
+    {
+      "rank": 541,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000928",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "physical_line_number": 157,
+      "exact_source_line_text": "同一Findingの再発と、新しいFindingを区別する。",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Finding identity/reoccurrence",
+      "semantic_reading": "同じFindingの再発と新しいFindingを区別する分類条件。DC-R-03系の候補意味を担う。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 152,
+          "text": "### DC-R-03 Finding Lineage"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 155,
+            "text": "を追跡できること。"
+          },
+          {
+            "line": 156,
+            "text": ""
+          },
+          {
+            "line": 158,
+            "text": ""
+          },
+          {
+            "line": 159,
+            "text": "### DC-R-04 Convergence判定"
+          }
+        ],
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "marker_negative_normative_concern": "候補のtrace identity条件はmarker語がなくても規範性を持つ。独立したcurrent row bindingは示されていない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 928,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "d65e1868cfad5eb17aab03bf290e990315e3a18abdb1a74960bd63dd07a2b93e",
+        "source_line_sha256": "sha256:894ae977c9e3e318c47be8185be91701947aa488c9add37bbc80c0bf49addf00",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 806,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "e316b851348b0c4432097e7205267b2da5de2e5a0d35f4d7efdb56008a1dd41e",
+        "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+        "source_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+        "sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "utf8_source_line_content_sha256": "894ae977c9e3e318c47be8185be91701947aa488c9add37bbc80c0bf49addf00",
+        "physical_line_bytes_including_terminator_sha256": "efbe5921fbbf86bd76a5f26c22e3aa8f70fb46e7ab2c7129eaf98625b3389b55",
+        "baseline_2353_physical_line_bytes_sha256": "efbe5921fbbf86bd76a5f26c22e3aa8f70fb46e7ab2c7129eaf98625b3389b55"
+      }
+    },
+    {
+      "rank": 542,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000931",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "physical_line_number": 162,
+      "exact_source_line_text": "少なくとも、",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Convergence gate lead-in",
+      "semantic_reading": "Design agreement候補に必要な条件の箇条書きを開始する導入句。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 159,
+          "text": "### DC-R-04 Convergence判定"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 160,
+            "text": "単一のHuman Approveだけを収束証拠にしてはならない。"
+          },
+          {
+            "line": 161,
+            "text": ""
+          },
+          {
+            "line": 163,
+            "text": "- blocking findingが残っていない"
+          },
+          {
+            "line": 164,
+            "text": "- accepted axisのregressionがない"
+          }
+        ],
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "marker_negative_normative_concern": "単独で完結せず、続く各predicateと結び付けて扱う。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 931,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "362e41a2b1510870973b8ec06a43d7b73377a6d632bfd8a8da4e8a1b3502e26b",
+        "source_line_sha256": "sha256:cef7eb06c767a614ac57e385dfa5f27baee3a5c4c39463f42df76288b5ed2247",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 806,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "e316b851348b0c4432097e7205267b2da5de2e5a0d35f4d7efdb56008a1dd41e",
+        "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+        "source_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+        "sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "utf8_source_line_content_sha256": "cef7eb06c767a614ac57e385dfa5f27baee3a5c4c39463f42df76288b5ed2247",
+        "physical_line_bytes_including_terminator_sha256": "90cd326732849d049013cb34792379f0e8ec336a96d9ef69cbfeb3d5b01ef53c",
+        "baseline_2353_physical_line_bytes_sha256": "90cd326732849d049013cb34792379f0e8ec336a96d9ef69cbfeb3d5b01ef53c"
+      }
+    },
+    {
+      "rank": 543,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000937",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "physical_line_number": 169,
+      "exact_source_line_text": "を満たしてDesign agreement候補とする。",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Convergence result",
+      "semantic_reading": "直前の収束条件群を満たした場合にDesign agreement候補とする終端。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 159,
+          "text": "### DC-R-04 Convergence判定"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 167,
+            "text": "- current revision/provenanceが一致"
+          },
+          {
+            "line": 168,
+            "text": ""
+          },
+          {
+            "line": 170,
+            "text": ""
+          },
+          {
+            "line": 171,
+            "text": "---"
+          }
+        ],
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "marker_negative_normative_concern": "候補状態の判定句であり、現行design agreementや受入の成立ではない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 937,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "b85e5c82c4097364c4275388803d066d722ac8dfd575ff55afc59ffbd38a5253",
+        "source_line_sha256": "sha256:5645cbd98d125e48941711e84ec9c3041d1ee724d4a64499a4cd1718b74686e5",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 806,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "e316b851348b0c4432097e7205267b2da5de2e5a0d35f4d7efdb56008a1dd41e",
+        "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+        "source_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+        "sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "utf8_source_line_content_sha256": "5645cbd98d125e48941711e84ec9c3041d1ee724d4a64499a4cd1718b74686e5",
+        "physical_line_bytes_including_terminator_sha256": "27852d5beec5d96cce212690b0eedd6ddd9ea0a854ba97e8d7819f3c7edee3a1",
+        "baseline_2353_physical_line_bytes_sha256": "27852d5beec5d96cce212690b0eedd6ddd9ea0a854ba97e8d7819f3c7edee3a1"
+      }
+    },
+    {
+      "rank": 544,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000940",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "physical_line_number": 175,
+      "exact_source_line_text": "機械判定可能なものは極力HELIXへ委任する。",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Automation boundary",
+      "semantic_reading": "機械判定可能な項目を可能な範囲でHELIXへ委任する方針候補。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 173,
+          "text": "## 5. Objective UX と Human Meaning の境界"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 173,
+            "text": "## 5. Objective UX と Human Meaning の境界"
+          },
+          {
+            "line": 174,
+            "text": ""
+          },
+          {
+            "line": 176,
+            "text": ""
+          },
+          {
+            "line": 177,
+            "text": "例:"
+          }
+        ],
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "marker_negative_normative_concern": "自動化・運用済みと読まず、人間意味の専決境界も維持する。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 940,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "f826f7e58577b2a65ca93d3213d226f5d58dcd94562cdf7617fefd09c2ab6833",
+        "source_line_sha256": "sha256:838936f8f92566a916b39f29d7399cb30a7a81e734421008b3654b2c1fdaf524",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 806,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "e316b851348b0c4432097e7205267b2da5de2e5a0d35f4d7efdb56008a1dd41e",
+        "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+        "source_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+        "sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "utf8_source_line_content_sha256": "838936f8f92566a916b39f29d7399cb30a7a81e734421008b3654b2c1fdaf524",
+        "physical_line_bytes_including_terminator_sha256": "35e6d9a8c5a5913336f01eab44637ef9bbf1ace08fc2ecf4563e0e56385fd8dd",
+        "baseline_2353_physical_line_bytes_sha256": "35e6d9a8c5a5913336f01eab44637ef9bbf1ace08fc2ecf4563e0e56385fd8dd"
+      }
+    },
+    {
+      "rank": 545,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000941",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "physical_line_number": 177,
+      "exact_source_line_text": "例:",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Example-list marker",
+      "semantic_reading": "機械判定例の列挙開始を示す構造句。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 173,
+          "text": "## 5. Objective UX と Human Meaning の境界"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 175,
+            "text": "機械判定可能なものは極力HELIXへ委任する。"
+          },
+          {
+            "line": 176,
+            "text": ""
+          },
+          {
+            "line": 178,
+            "text": "- accessibility"
+          },
+          {
+            "line": 179,
+            "text": "- interaction/state correctness"
+          }
+        ],
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "marker_negative_normative_concern": "単独のrequirement atomではなく次行の例示の文脈。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 941,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "f43e2c9389f7aef5ded01329201e6708f80d31e2ec30c3fb794a0b0285ff9946",
+        "source_line_sha256": "sha256:fd89ad58cc426eb02934d153bdedfdfcd732a24076784c78b35434033b5e0ae7",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 806,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "e316b851348b0c4432097e7205267b2da5de2e5a0d35f4d7efdb56008a1dd41e",
+        "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+        "source_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+        "sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "utf8_source_line_content_sha256": "fd89ad58cc426eb02934d153bdedfdfcd732a24076784c78b35434033b5e0ae7",
+        "physical_line_bytes_including_terminator_sha256": "5f4f85108cf46558564ede10d3cb9a0810c8f74f53a90425ed3d4f35b5fb0174",
+        "baseline_2353_physical_line_bytes_sha256": "5f4f85108cf46558564ede10d3cb9a0810c8f74f53a90425ed3d4f35b5fb0174"
+      }
+    },
+    {
+      "rank": 546,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000956",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "physical_line_number": 195,
+      "exact_source_line_text": "ただし既に人間が承認済みのDesign constraint/profile内での具体化は、毎回再承認を要求しない。",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Approved constraint/profile scope",
+      "semantic_reading": "人間が既に承認したDesign constraint/profile内の具体化には、毎回の再承認を求めない条件。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 173,
+          "text": "## 5. Objective UX と Human Meaning の境界"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 193,
+            "text": "- 人間が明示的に保持したいVisual/UX preference"
+          },
+          {
+            "line": 194,
+            "text": ""
+          },
+          {
+            "line": 196,
+            "text": ""
+          },
+          {
+            "line": 197,
+            "text": "---"
+          }
+        ],
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "marker_negative_normative_concern": "権限は承認済みscope/profileに限る。新たな人間意味の採用や広範な自動承認を与えない候補条件。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 956,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "d28867896274ea243123b8152514357065e28d3a5bc1fc6992800f160913418a",
+        "source_line_sha256": "sha256:462abbde004f13e006be8e28a960881152e288eff6e927c7c2e04f68da8a1d07",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 806,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "e316b851348b0c4432097e7205267b2da5de2e5a0d35f4d7efdb56008a1dd41e",
+        "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+        "source_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+        "sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "utf8_source_line_content_sha256": "462abbde004f13e006be8e28a960881152e288eff6e927c7c2e04f68da8a1d07",
+        "physical_line_bytes_including_terminator_sha256": "cf96293e299987b931ea2fcf0fd2d402e8416e3d23be375cf6778500eb781fd6",
+        "baseline_2353_physical_line_bytes_sha256": "cf96293e299987b931ea2fcf0fd2d402e8416e3d23be375cf6778500eb781fd6"
+      }
+    },
+    {
+      "rank": 547,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000959",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "physical_line_number": 201,
+      "exact_source_line_text": "Design Harnessは上位の要求形成と分離しない。",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Requirement-formation linkage",
+      "semantic_reading": "Design Harnessを上流の要求形成から分離しない責務関係。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 199,
+          "text": "## 6. Requirement Formationとの接続"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 199,
+            "text": "## 6. Requirement Formationとの接続"
+          },
+          {
+            "line": 200,
+            "text": ""
+          },
+          {
+            "line": 202,
+            "text": ""
+          },
+          {
+            "line": 203,
+            "text": "```text"
+          }
+        ],
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "marker_negative_normative_concern": "複数工程をつなぐ候補文。新しいcontrol planeや現在の承認状態は導かない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 959,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "a91582c095332c55e67ce68bc7ba4ee6a85e26dc1e8270d6f9f157249a72961c",
+        "source_line_sha256": "sha256:e6536ee6ca13a8efaf466e230659fb9c3ebd064d72e22919be706c8dd96c4cd0",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 806,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "e316b851348b0c4432097e7205267b2da5de2e5a0d35f4d7efdb56008a1dd41e",
+        "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+        "source_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+        "sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "utf8_source_line_content_sha256": "e6536ee6ca13a8efaf466e230659fb9c3ebd064d72e22919be706c8dd96c4cd0",
+        "physical_line_bytes_including_terminator_sha256": "f9b5e22b1bab958937779aeda77582218ccb9a85b09ddcb4c73f1a1c597769c0",
+        "baseline_2353_physical_line_bytes_sha256": "f9b5e22b1bab958937779aeda77582218ccb9a85b09ddcb4c73f1a1c597769c0"
+      }
+    },
+    {
+      "rank": 548,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000961",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "physical_line_number": 204,
+      "exact_source_line_text": "企画",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Lifecycle sequence: planning",
+      "semantic_reading": "企画から要求形成へ降りる工程図の開始要素。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 199,
+          "text": "## 6. Requirement Formationとの接続"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 202,
+            "text": ""
+          },
+          {
+            "line": 203,
+            "text": "```text"
+          },
+          {
+            "line": 205,
+            "text": "→ Premise Alignment / Research"
+          },
+          {
+            "line": 206,
+            "text": "→ Requirement Discovery"
+          }
+        ],
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "marker_negative_normative_concern": "図のsequence token。現行V-model工程の実施・完了を意味しない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 961,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "10064590be1bbcdee49867d7980bb1b72c3cf36c145c43df601cafd005beeaa0",
+        "source_line_sha256": "sha256:d76a2eb7932ad4383042b3ef758094ed6fa7c937c9378a4cb64e9e21d543b599",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 806,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "e316b851348b0c4432097e7205267b2da5de2e5a0d35f4d7efdb56008a1dd41e",
+        "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+        "source_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+        "sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "utf8_source_line_content_sha256": "d76a2eb7932ad4383042b3ef758094ed6fa7c937c9378a4cb64e9e21d543b599",
+        "physical_line_bytes_including_terminator_sha256": "73eae84acf8346c4ad7e582c96c2753b8247803150cdf62b3504db1aeeb721f3",
+        "baseline_2353_physical_line_bytes_sha256": "73eae84acf8346c4ad7e582c96c2753b8247803150cdf62b3504db1aeeb721f3"
+      }
+    },
+    {
+      "rank": 549,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000962",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "physical_line_number": 205,
+      "exact_source_line_text": "→ Premise Alignment / Research",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Lifecycle sequence: premise/research",
+      "semantic_reading": "Premise Alignment / Researchへ進む工程要素。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 199,
+          "text": "## 6. Requirement Formationとの接続"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 203,
+            "text": "```text"
+          },
+          {
+            "line": 204,
+            "text": "企画"
+          },
+          {
+            "line": 206,
+            "text": "→ Requirement Discovery"
+          },
+          {
+            "line": 207,
+            "text": "→ Requirement Research"
+          }
+        ],
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "marker_negative_normative_concern": "工程図の次要素。独立要件の採択ではない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 962,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "ff9e31c658a862d139e946a26f3ab2e79339434334df1f6ef29cabe158ed92b1",
+        "source_line_sha256": "sha256:49c0ee3bdc465cf2998128fffc61001760c4e636dc272b4edbb66c4a254f1943",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 806,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "e316b851348b0c4432097e7205267b2da5de2e5a0d35f4d7efdb56008a1dd41e",
+        "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+        "source_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+        "sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "utf8_source_line_content_sha256": "49c0ee3bdc465cf2998128fffc61001760c4e636dc272b4edbb66c4a254f1943",
+        "physical_line_bytes_including_terminator_sha256": "46d5155eadbc98faa1c7c3e842b99b927f04ddabb46aba7bbd6f51db5290617e",
+        "baseline_2353_physical_line_bytes_sha256": "46d5155eadbc98faa1c7c3e842b99b927f04ddabb46aba7bbd6f51db5290617e"
+      }
+    },
+    {
+      "rank": 550,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000963",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "physical_line_number": 206,
+      "exact_source_line_text": "→ Requirement Discovery",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Lifecycle sequence: discovery",
+      "semantic_reading": "Requirement Discoveryを示す工程要素。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 199,
+          "text": "## 6. Requirement Formationとの接続"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 204,
+            "text": "企画"
+          },
+          {
+            "line": 205,
+            "text": "→ Premise Alignment / Research"
+          },
+          {
+            "line": 207,
+            "text": "→ Requirement Research"
+          },
+          {
+            "line": 208,
+            "text": "↔ PoC / Screen Prototype"
+          }
+        ],
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "marker_negative_normative_concern": "要求の発見作業の候補配置を示すにとどまる。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 963,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "8c97200941770bf82d38e0e2db3cbd5664d39fd7a34ad1ea039242e3bac74697",
+        "source_line_sha256": "sha256:647d4989524a8de3019ca9b24ce2aef1701b00a55f8253afa395bb749d9bf15d",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 806,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "e316b851348b0c4432097e7205267b2da5de2e5a0d35f4d7efdb56008a1dd41e",
+        "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+        "source_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+        "sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "utf8_source_line_content_sha256": "647d4989524a8de3019ca9b24ce2aef1701b00a55f8253afa395bb749d9bf15d",
+        "physical_line_bytes_including_terminator_sha256": "f3bdfcfb00c7d0ee010c0f6d1b23ba7cd329583d4e912ad296dabd2393dbf49d",
+        "baseline_2353_physical_line_bytes_sha256": "f3bdfcfb00c7d0ee010c0f6d1b23ba7cd329583d4e912ad296dabd2393dbf49d"
+      }
+    },
+    {
+      "rank": 551,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000964",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "physical_line_number": 207,
+      "exact_source_line_text": "→ Requirement Research",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Lifecycle sequence: research",
+      "semantic_reading": "Requirement Researchを示す工程要素。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 199,
+          "text": "## 6. Requirement Formationとの接続"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 205,
+            "text": "→ Premise Alignment / Research"
+          },
+          {
+            "line": 206,
+            "text": "→ Requirement Discovery"
+          },
+          {
+            "line": 208,
+            "text": "↔ PoC / Screen Prototype"
+          },
+          {
+            "line": 209,
+            "text": "→ Requirement Selection / Validation"
+          }
+        ],
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "marker_negative_normative_concern": "工程図上の位置であり、research義務完了の証拠ではない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 964,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "8ba5385358d73e057e693f0ad0149f83a63be8d5921640bf2b23c4541b5c081b",
+        "source_line_sha256": "sha256:73a418daac2856f042488d4b3daaad3e5e969740c7674ce9338b4a3f3f204b6a",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 806,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "e316b851348b0c4432097e7205267b2da5de2e5a0d35f4d7efdb56008a1dd41e",
+        "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+        "source_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+        "sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "utf8_source_line_content_sha256": "73a418daac2856f042488d4b3daaad3e5e969740c7674ce9338b4a3f3f204b6a",
+        "physical_line_bytes_including_terminator_sha256": "e94cb874ad92a335173963ae561d77422b851a07c4eb8d26de2c9acddd599c38",
+        "baseline_2353_physical_line_bytes_sha256": "e94cb874ad92a335173963ae561d77422b851a07c4eb8d26de2c9acddd599c38"
+      }
+    },
+    {
+      "rank": 552,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000965",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "physical_line_number": 208,
+      "exact_source_line_text": "↔ PoC / Screen Prototype",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Lifecycle sequence: PoC/prototype loop",
+      "semantic_reading": "要求researchとPoC / Screen Prototypeの往復関係を示す。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 199,
+          "text": "## 6. Requirement Formationとの接続"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 206,
+            "text": "→ Requirement Discovery"
+          },
+          {
+            "line": 207,
+            "text": "→ Requirement Research"
+          },
+          {
+            "line": 209,
+            "text": "→ Requirement Selection / Validation"
+          },
+          {
+            "line": 210,
+            "text": "→ L3"
+          }
+        ],
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "marker_negative_normative_concern": "方向付きworkflow候補で、実際のPoCやprototype合意ではない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 965,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "7b5477f93455147612c3b8f7e223aee662acbd5d0de55f5e7247ba22d690ab05",
+        "source_line_sha256": "sha256:1f1873f41cf3e45e614118270448f55c00ae76e597ce8cf45de0c3df25fca71d",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 806,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "e316b851348b0c4432097e7205267b2da5de2e5a0d35f4d7efdb56008a1dd41e",
+        "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+        "source_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+        "sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "utf8_source_line_content_sha256": "1f1873f41cf3e45e614118270448f55c00ae76e597ce8cf45de0c3df25fca71d",
+        "physical_line_bytes_including_terminator_sha256": "c738287a5dcfe7b81c3d8f275de2c64df069e44b870fb4f26e6a078081af9463",
+        "baseline_2353_physical_line_bytes_sha256": "c738287a5dcfe7b81c3d8f275de2c64df069e44b870fb4f26e6a078081af9463"
+      }
+    },
+    {
+      "rank": 553,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000966",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "physical_line_number": 209,
+      "exact_source_line_text": "→ Requirement Selection / Validation",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Lifecycle sequence: selection/validation",
+      "semantic_reading": "Requirement Selection / Validationを次工程として示す。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 199,
+          "text": "## 6. Requirement Formationとの接続"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 207,
+            "text": "→ Requirement Research"
+          },
+          {
+            "line": 208,
+            "text": "↔ PoC / Screen Prototype"
+          },
+          {
+            "line": 210,
+            "text": "→ L3"
+          },
+          {
+            "line": 211,
+            "text": "→ Design Grounding"
+          }
+        ],
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "marker_negative_normative_concern": "選択・検証の工程図上の要素で、要求採択ではない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 966,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "6836cb47c139e3069eb80789bac2b4770aaaad6f54af589db685db57c293eb4c",
+        "source_line_sha256": "sha256:863c4a6524ba66a32df5afca778a03e98fa9ccf4465d041e9b868dec35134367",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 806,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "e316b851348b0c4432097e7205267b2da5de2e5a0d35f4d7efdb56008a1dd41e",
+        "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+        "source_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+        "sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "utf8_source_line_content_sha256": "863c4a6524ba66a32df5afca778a03e98fa9ccf4465d041e9b868dec35134367",
+        "physical_line_bytes_including_terminator_sha256": "75018cb010d009338780942ab5a42d0360fd7ef4f7adc17c036fca14bd4f9a29",
+        "baseline_2353_physical_line_bytes_sha256": "75018cb010d009338780942ab5a42d0360fd7ef4f7adc17c036fca14bd4f9a29"
+      }
+    },
+    {
+      "rank": 554,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000967",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "physical_line_number": 210,
+      "exact_source_line_text": "→ L3",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Lifecycle sequence: L3",
+      "semantic_reading": "要件層L3へ進む工程要素。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 199,
+          "text": "## 6. Requirement Formationとの接続"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 208,
+            "text": "↔ PoC / Screen Prototype"
+          },
+          {
+            "line": 209,
+            "text": "→ Requirement Selection / Validation"
+          },
+          {
+            "line": 211,
+            "text": "→ Design Grounding"
+          },
+          {
+            "line": 212,
+            "text": "→ Prototype / Walkthrough"
+          }
+        ],
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "marker_negative_normative_concern": "旧候補のlayer記載。対象revision付き現在authorityの確認を代替しない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 967,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "ff8f17e1d316967dbf734508f0f2baea7635f108cd96b3b3cc80ea02640d72ab",
+        "source_line_sha256": "sha256:077c4d8dd934255e047a393ebb220f139c951989ebfabaddc705d9062e0a1e5a",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 806,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "e316b851348b0c4432097e7205267b2da5de2e5a0d35f4d7efdb56008a1dd41e",
+        "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+        "source_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+        "sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "utf8_source_line_content_sha256": "077c4d8dd934255e047a393ebb220f139c951989ebfabaddc705d9062e0a1e5a",
+        "physical_line_bytes_including_terminator_sha256": "423ab65cdcf5302cb7817f3516c7678fcea9382c2f46a6b7dfb26f088424ec1a",
+        "baseline_2353_physical_line_bytes_sha256": "423ab65cdcf5302cb7817f3516c7678fcea9382c2f46a6b7dfb26f088424ec1a"
+      }
+    },
+    {
+      "rank": 555,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000968",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "physical_line_number": 211,
+      "exact_source_line_text": "→ Design Grounding",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Lifecycle sequence: design grounding",
+      "semantic_reading": "Design Groundingへ移る工程要素。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 199,
+          "text": "## 6. Requirement Formationとの接続"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 209,
+            "text": "→ Requirement Selection / Validation"
+          },
+          {
+            "line": 210,
+            "text": "→ L3"
+          },
+          {
+            "line": 212,
+            "text": "→ Prototype / Walkthrough"
+          },
+          {
+            "line": 213,
+            "text": "→ Human Reaction"
+          }
+        ],
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "marker_negative_normative_concern": "工程図の候補位置であり、個別条件の現行bindingを示さない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 968,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "1a7bd44846751c42d1a6fe76c4b57c08177f8267970754b04cc37101bd026146",
+        "source_line_sha256": "sha256:77a8389e7ef8b6dba2982d75ae4bb6bc96a4cf4bb1a224f7a8acace225088e5e",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 806,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "e316b851348b0c4432097e7205267b2da5de2e5a0d35f4d7efdb56008a1dd41e",
+        "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+        "source_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+        "sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "utf8_source_line_content_sha256": "77a8389e7ef8b6dba2982d75ae4bb6bc96a4cf4bb1a224f7a8acace225088e5e",
+        "physical_line_bytes_including_terminator_sha256": "7565ccd6939ad431f4acf68736c61c8674d0057879bd5ee238c49c85ffe68fca",
+        "baseline_2353_physical_line_bytes_sha256": "7565ccd6939ad431f4acf68736c61c8674d0057879bd5ee238c49c85ffe68fca"
+      }
+    },
+    {
+      "rank": 556,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000969",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "physical_line_number": 212,
+      "exact_source_line_text": "→ Prototype / Walkthrough",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Lifecycle sequence: prototype/walkthrough",
+      "semantic_reading": "Prototype / Walkthroughを示す次工程。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 199,
+          "text": "## 6. Requirement Formationとの接続"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 210,
+            "text": "→ L3"
+          },
+          {
+            "line": 211,
+            "text": "→ Design Grounding"
+          },
+          {
+            "line": 213,
+            "text": "→ Human Reaction"
+          },
+          {
+            "line": 214,
+            "text": "→ Design Convergence"
+          }
+        ],
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "marker_negative_normative_concern": "工程図上の参照で、試作またはhuman walkthroughの実施を示さない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 969,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "8f799ca4db243184c4c8d6765c3fd14e6a669f4661c2ff06234ca3b69a86ce93",
+        "source_line_sha256": "sha256:5920a19f59ea76d6bba6c83567104c1c1e0f76ef9dd88e70bff283db2609b32d",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 806,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "e316b851348b0c4432097e7205267b2da5de2e5a0d35f4d7efdb56008a1dd41e",
+        "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+        "source_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+        "sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "utf8_source_line_content_sha256": "5920a19f59ea76d6bba6c83567104c1c1e0f76ef9dd88e70bff283db2609b32d",
+        "physical_line_bytes_including_terminator_sha256": "d7416e8942b777006b1f5d8be15b584ab4e9304877e2c0275a13b24f70c0ae60",
+        "baseline_2353_physical_line_bytes_sha256": "d7416e8942b777006b1f5d8be15b584ab4e9304877e2c0275a13b24f70c0ae60"
+      }
+    },
+    {
+      "rank": 557,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000970",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "physical_line_number": 213,
+      "exact_source_line_text": "→ Human Reaction",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Lifecycle sequence: human reaction",
+      "semantic_reading": "Human Reaction工程を示す。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 199,
+          "text": "## 6. Requirement Formationとの接続"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 211,
+            "text": "→ Design Grounding"
+          },
+          {
+            "line": 212,
+            "text": "→ Prototype / Walkthrough"
+          },
+          {
+            "line": 214,
+            "text": "→ Design Convergence"
+          },
+          {
+            "line": 215,
+            "text": "→ Design Registry / Implementation"
+          }
+        ],
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "marker_negative_normative_concern": "人間反応のauthorityや記録の実在を生成しない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 970,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "4deaf270eec798097b3a9e5aa723b4fea7fcf89e906016ddf89f839bcc04daa1",
+        "source_line_sha256": "sha256:a8baf76b0944cf7bebc63e64ed76f24b0bcabbec112c3bd518fa2112bbadb19f",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 806,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "e316b851348b0c4432097e7205267b2da5de2e5a0d35f4d7efdb56008a1dd41e",
+        "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+        "source_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+        "sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "utf8_source_line_content_sha256": "a8baf76b0944cf7bebc63e64ed76f24b0bcabbec112c3bd518fa2112bbadb19f",
+        "physical_line_bytes_including_terminator_sha256": "f90924fb7ea0d9b9995d35e9a4cbc20d8a0ccf8104453e9050ad936f6370da20",
+        "baseline_2353_physical_line_bytes_sha256": "f90924fb7ea0d9b9995d35e9a4cbc20d8a0ccf8104453e9050ad936f6370da20"
+      }
+    },
+    {
+      "rank": 558,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000971",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "physical_line_number": 214,
+      "exact_source_line_text": "→ Design Convergence",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Lifecycle sequence: design convergence",
+      "semantic_reading": "Design Convergenceを示す。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 199,
+          "text": "## 6. Requirement Formationとの接続"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 212,
+            "text": "→ Prototype / Walkthrough"
+          },
+          {
+            "line": 213,
+            "text": "→ Human Reaction"
+          },
+          {
+            "line": 215,
+            "text": "→ Design Registry / Implementation"
+          },
+          {
+            "line": 216,
+            "text": "```"
+          }
+        ],
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "marker_negative_normative_concern": "候補工程の名称であり、収束判定済みではない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 971,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "bd40766a9fe598731664b18b4b101349fab3d5bb568d3b2ade42c8ce9b8247c0",
+        "source_line_sha256": "sha256:ddd5e6dbb1fe0bec8379f3f76c5894ff9e518d53cf3b86a662ee331a9e3599c5",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 806,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "e316b851348b0c4432097e7205267b2da5de2e5a0d35f4d7efdb56008a1dd41e",
+        "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+        "source_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+        "sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "utf8_source_line_content_sha256": "ddd5e6dbb1fe0bec8379f3f76c5894ff9e518d53cf3b86a662ee331a9e3599c5",
+        "physical_line_bytes_including_terminator_sha256": "19336dfc15faae9a3dd6bee4ae41d0f5cb883d1fdba92a6f89efae37bdd66aaf",
+        "baseline_2353_physical_line_bytes_sha256": "19336dfc15faae9a3dd6bee4ae41d0f5cb883d1fdba92a6f89efae37bdd66aaf"
+      }
+    },
+    {
+      "rank": 559,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000972",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "physical_line_number": 215,
+      "exact_source_line_text": "→ Design Registry / Implementation",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Lifecycle sequence: registry/implementation",
+      "semantic_reading": "Design Registry / Implementationへ続く終端側工程要素。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 199,
+          "text": "## 6. Requirement Formationとの接続"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 213,
+            "text": "→ Human Reaction"
+          },
+          {
+            "line": 214,
+            "text": "→ Design Convergence"
+          },
+          {
+            "line": 216,
+            "text": "```"
+          },
+          {
+            "line": 217,
+            "text": ""
+          }
+        ],
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "marker_negative_normative_concern": "実装許可やregistryへの登録を意味しない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 972,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "94a02745c028d846a9c887dd82903c6435ec1afb905ef8e3578d562d6084c9ef",
+        "source_line_sha256": "sha256:f02b8488225a12953550510901ecb65338c7c3557e6db368f551833b1c4f740f",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 806,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "e316b851348b0c4432097e7205267b2da5de2e5a0d35f4d7efdb56008a1dd41e",
+        "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+        "source_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+        "sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "utf8_source_line_content_sha256": "f02b8488225a12953550510901ecb65338c7c3557e6db368f551833b1c4f740f",
+        "physical_line_bytes_including_terminator_sha256": "fd598c1d9528c99c2d111490c84f1688c4579785d01eccbfde5932a192a8b247",
+        "baseline_2353_physical_line_bytes_sha256": "fd598c1d9528c99c2d111490c84f1688c4579785d01eccbfde5932a192a8b247"
+      }
+    },
+    {
+      "rank": 560,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000974",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "physical_line_number": 218,
+      "exact_source_line_text": "要件確定前でも、**調査・比較・PoC・Prototypeの限定作業は許可**する。",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Pre-L3 bounded exploration",
+      "semantic_reading": "要件確定前のresearch、comparison、PoC、prototypeに限定作業の余地を認める候補条件。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 199,
+          "text": "## 6. Requirement Formationとの接続"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 216,
+            "text": "```"
+          },
+          {
+            "line": 217,
+            "text": ""
+          },
+          {
+            "line": 219,
+            "text": "ただし候補状態の意味を本実装authorityへ昇格させてはならない。"
+          },
+          {
+            "line": 220,
+            "text": ""
+          }
+        ],
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "marker_negative_normative_concern": "限定探索の候補scopeであり、正式実装や要求authorityへの昇格を許可しない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 974,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "cacd6857e79d455cfcc1d6b76a07c502767e467f8326c93f5fff0d436e6deec4",
+        "source_line_sha256": "sha256:1e636e5665c72548634d20f01847be6ee80001f4f4b69544f3fb66388786c13a",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 806,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "e316b851348b0c4432097e7205267b2da5de2e5a0d35f4d7efdb56008a1dd41e",
+        "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+        "source_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+        "sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "utf8_source_line_content_sha256": "1e636e5665c72548634d20f01847be6ee80001f4f4b69544f3fb66388786c13a",
+        "physical_line_bytes_including_terminator_sha256": "3ca960ec9c4abc86ee8c4f7b16502e5799c8e939284acf3f8b1c5fdaa49dab76",
+        "baseline_2353_physical_line_bytes_sha256": "3ca960ec9c4abc86ee8c4f7b16502e5799c8e939284acf3f8b1c5fdaa49dab76"
+      }
+    },
+    {
+      "rank": 561,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000975",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "physical_line_number": 219,
+      "exact_source_line_text": "ただし候補状態の意味を本実装authorityへ昇格させてはならない。",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Candidate authority boundary",
+      "semantic_reading": "候補状態の意味を本実装authorityへ昇格させないという明示的境界。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 199,
+          "text": "## 6. Requirement Formationとの接続"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 217,
+            "text": ""
+          },
+          {
+            "line": 218,
+            "text": "要件確定前でも、**調査・比較・PoC・Prototypeの限定作業は許可**する。"
+          },
+          {
+            "line": 220,
+            "text": ""
+          },
+          {
+            "line": 221,
+            "text": "---"
+          }
+        ],
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "marker_negative_normative_concern": "意味のあるnegative condition。候補本文の自己宣言だけで現行authorityを変えるわけではない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 975,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "bb4ffba1c6c303520c9d455e5c3545efff4525100c0aae4d828e5ab307b93f4d",
+        "source_line_sha256": "sha256:7a5e0bfc0f53750f8cb668064ffd368457e769b79af474eb49954b60978b2f88",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 806,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "e316b851348b0c4432097e7205267b2da5de2e5a0d35f4d7efdb56008a1dd41e",
+        "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+        "source_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+        "sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "utf8_source_line_content_sha256": "7a5e0bfc0f53750f8cb668064ffd368457e769b79af474eb49954b60978b2f88",
+        "physical_line_bytes_including_terminator_sha256": "7a62fd00ca665cf3d5d464d2c9d37505f6c6aa65f3345b0cefcec3872f1122f3",
+        "baseline_2353_physical_line_bytes_sha256": "7a62fd00ca665cf3d5d464d2c9d37505f6c6aa65f3345b0cefcec3872f1122f3"
+      }
+    },
+    {
+      "rank": 562,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-001011",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requests.md",
+      "physical_line_number": 2,
+      "exact_source_line_text": "status: draft_candidate",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "L1 request candidate status",
+      "semantic_reading": "企画候補文書のstatusをdraft_candidateと記すfront matter。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 1,
+            "text": "---"
+          },
+          {
+            "line": 3,
+            "text": "canonical_layer: L1"
+          },
+          {
+            "line": 4,
+            "text": "canonical_pair: L12"
+          }
+        ],
+        "archive_file_sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3"
+      },
+      "marker_negative_normative_concern": "旧source metadataで、現行target L1 authority stateそのものではない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1011,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "44fbe63a4591a023e1f01d2bc54e3847ce89c757357e2522d067f83fac3ce901",
+        "source_line_sha256": "sha256:e2f54e8ccf42197c498223478758d709e4b1617d22ec5c47f374ad01cd3f5d73",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 807,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "9350fd8cb2cd751a35949dc644df077e00716bd86b749e29c166288be1af6cb3",
+        "asset_id": "LEGACY-ASSET-154018C4C6B5E3AB9C63",
+        "source_sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requests.md",
+        "sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3",
+        "utf8_source_line_content_sha256": "e2f54e8ccf42197c498223478758d709e4b1617d22ec5c47f374ad01cd3f5d73",
+        "physical_line_bytes_including_terminator_sha256": "b8e0419afbe1b1eea382ff37243bd4cc306439e777c20b65ae2f96126c8bf0dc",
+        "baseline_2353_physical_line_bytes_sha256": "b8e0419afbe1b1eea382ff37243bd4cc306439e777c20b65ae2f96126c8bf0dc"
+      }
+    },
+    {
+      "rank": 563,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-001012",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requests.md",
+      "physical_line_number": 3,
+      "exact_source_line_text": "canonical_layer: L1",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Legacy layer metadata",
+      "semantic_reading": "候補のcanonical_layerをL1と記載。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 1,
+            "text": "---"
+          },
+          {
+            "line": 2,
+            "text": "status: draft_candidate"
+          },
+          {
+            "line": 4,
+            "text": "canonical_pair: L12"
+          },
+          {
+            "line": 5,
+            "text": "plan: PLAN-L3-91-design-grounding-human-convergence"
+          }
+        ],
+        "archive_file_sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3"
+      },
+      "marker_negative_normative_concern": "旧layer labelの保存であり、新世代のL1承認証拠ではない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1012,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "f9b616e150e766be95dc819526491e1b5e09522819fa7cae7bad98500dbc459b",
+        "source_line_sha256": "sha256:bf78c5504cd357a1d289d0b7994ac567d91624ad7b454717b1a9a1ae7714dbc0",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 807,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "9350fd8cb2cd751a35949dc644df077e00716bd86b749e29c166288be1af6cb3",
+        "asset_id": "LEGACY-ASSET-154018C4C6B5E3AB9C63",
+        "source_sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requests.md",
+        "sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3",
+        "utf8_source_line_content_sha256": "bf78c5504cd357a1d289d0b7994ac567d91624ad7b454717b1a9a1ae7714dbc0",
+        "physical_line_bytes_including_terminator_sha256": "75c2c0b34c0e7f07705a14815545588b5d2c30eb4c425cb4cdd402715a9c549b",
+        "baseline_2353_physical_line_bytes_sha256": "75c2c0b34c0e7f07705a14815545588b5d2c30eb4c425cb4cdd402715a9c549b"
+      }
+    },
+    {
+      "rank": 564,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-001013",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requests.md",
+      "physical_line_number": 4,
+      "exact_source_line_text": "canonical_pair: L12",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Legacy pair metadata",
+      "semantic_reading": "候補のcanonical_pairをL12と記載。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 2,
+            "text": "status: draft_candidate"
+          },
+          {
+            "line": 3,
+            "text": "canonical_layer: L1"
+          },
+          {
+            "line": 5,
+            "text": "plan: PLAN-L3-91-design-grounding-human-convergence"
+          },
+          {
+            "line": 6,
+            "text": "---"
+          }
+        ],
+        "archive_file_sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3"
+      },
+      "marker_negative_normative_concern": "旧層対応を保存するmetadataで、現行のpair形成・採択を意味しない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1013,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "b68bd105f5a2df6784f68c8e2bfa8150291f51d4e0b263dbca34ff3b6edde2c1",
+        "source_line_sha256": "sha256:a8856af36dd17b9bd5ecbc728fab2e035a62c25cc99ccf4c95c5987c91b74d43",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 807,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "9350fd8cb2cd751a35949dc644df077e00716bd86b749e29c166288be1af6cb3",
+        "asset_id": "LEGACY-ASSET-154018C4C6B5E3AB9C63",
+        "source_sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requests.md",
+        "sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3",
+        "utf8_source_line_content_sha256": "a8856af36dd17b9bd5ecbc728fab2e035a62c25cc99ccf4c95c5987c91b74d43",
+        "physical_line_bytes_including_terminator_sha256": "7258d9a5bdcb368768eea7c8ea5d3b871828a1249d58f85cf2f1d34eb1bce95a",
+        "baseline_2353_physical_line_bytes_sha256": "7258d9a5bdcb368768eea7c8ea5d3b871828a1249d58f85cf2f1d34eb1bce95a"
+      }
+    },
+    {
+      "rank": 565,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-001014",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requests.md",
+      "physical_line_number": 5,
+      "exact_source_line_text": "plan: PLAN-L3-91-design-grounding-human-convergence",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Plan/provenance metadata",
+      "semantic_reading": "PLAN-L3-91を候補文書へ束縛する。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 3,
+            "text": "canonical_layer: L1"
+          },
+          {
+            "line": 4,
+            "text": "canonical_pair: L12"
+          },
+          {
+            "line": 6,
+            "text": "---"
+          },
+          {
+            "line": 7,
+            "text": ""
+          }
+        ],
+        "archive_file_sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3"
+      },
+      "marker_negative_normative_concern": "歴史的plan pointerであり、作業完了やdecision authorityではない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1014,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "4ce260e2344e68251af146e2dd102419d7886b98981c16944bb17767a8901ed6",
+        "source_line_sha256": "sha256:c4c23457d94acd92e887a89fbbedbff182ea48ba41ab871d85ac0b62d217ed61",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 807,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "9350fd8cb2cd751a35949dc644df077e00716bd86b749e29c166288be1af6cb3",
+        "asset_id": "LEGACY-ASSET-154018C4C6B5E3AB9C63",
+        "source_sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requests.md",
+        "sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3",
+        "utf8_source_line_content_sha256": "c4c23457d94acd92e887a89fbbedbff182ea48ba41ab871d85ac0b62d217ed61",
+        "physical_line_bytes_including_terminator_sha256": "edf763ed14f7eb18d46ba88f6bf011dfdb61e3d60156d94ff617ed76c72ddb8b",
+        "baseline_2353_physical_line_bytes_sha256": "edf763ed14f7eb18d46ba88f6bf011dfdb61e3d60156d94ff617ed76c72ddb8b"
+      }
+    },
+    {
+      "rank": 566,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-001020",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requests.md",
+      "physical_line_number": 14,
+      "exact_source_line_text": "既存Design Harness、Research、Screen Applicability、Registryを再利用する。#1556の共通要求形成に対するDesign projectionとし、別control planeを作らない。",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Design projection/reuse boundary",
+      "semantic_reading": "既存Design Harness, Research, Screen Applicability, Registryを再利用するDesign projectionとして位置付け、別control planeを作らない候補差分。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 8,
+          "text": "# Design根拠・人間反応・収束の要求候補"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 12,
+            "text": "- DGH-BR-03: 反復で受容した軸を保持し、findingの解消・再発・未解決から収束を検証する。DC-R-01..04へ分解する。"
+          },
+          {
+            "line": 13,
+            "text": ""
+          },
+          {
+            "line": 15,
+            "text": "人間の相談・反応を指示/承認へ勝手に昇格しない。半永続的な設計判断はADR、採否・認可はscope付き証拠、作業連絡は期限付きmemoryへ分離する。"
+          },
+          {
+            "line": 16,
+            "text": "Fullの成立とLiteへの昇格は別。Web製品化、別研究engine、全体planner解放、包括的公開権限は非対象。"
+          }
+        ],
+        "archive_file_sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3"
+      },
+      "marker_negative_normative_concern": "責務の再利用/変更案を示すcandidate atom。現行で同じ意味が全件採択されたとの主張にしない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1020,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "e5df659568819a0e4c7153bcd88bf4b1d9d25ae659a38f2fd9f5f1405799a382",
+        "source_line_sha256": "sha256:071409be06ee05bbd5ce88ff2d572b552996a6b8cea5a4b9a77ad939b762e299",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 807,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "9350fd8cb2cd751a35949dc644df077e00716bd86b749e29c166288be1af6cb3",
+        "asset_id": "LEGACY-ASSET-154018C4C6B5E3AB9C63",
+        "source_sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requests.md",
+        "sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3",
+        "utf8_source_line_content_sha256": "071409be06ee05bbd5ce88ff2d572b552996a6b8cea5a4b9a77ad939b762e299",
+        "physical_line_bytes_including_terminator_sha256": "fe516239efc4d2534c41f1ca92e06c5f96f808dc32e57bb5959d1c5a852a64cb",
+        "baseline_2353_physical_line_bytes_sha256": "fe516239efc4d2534c41f1ca92e06c5f96f808dc32e57bb5959d1c5a852a64cb"
+      }
+    },
+    {
+      "rank": 567,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-001022",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requests.md",
+      "physical_line_number": 16,
+      "exact_source_line_text": "Fullの成立とLiteへの昇格は別。Web製品化、別研究engine、全体planner解放、包括的公開権限は非対象。",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Full/Lite and non-goal scope",
+      "semantic_reading": "Fullの成立とLiteへの昇格を分離し、Web product化・別research engine・全体planner解放・包括公開権限を非対象とする。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 8,
+          "text": "# Design根拠・人間反応・収束の要求候補"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 14,
+            "text": "既存Design Harness、Research、Screen Applicability、Registryを再利用する。#1556の共通要求形成に対するDesign projectionとし、別control planeを作らない。"
+          },
+          {
+            "line": 15,
+            "text": "人間の相談・反応を指示/承認へ勝手に昇格しない。半永続的な設計判断はADR、採否・認可はscope付き証拠、作業連絡は期限付きmemoryへ分離する。"
+          }
+        ],
+        "archive_file_sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3"
+      },
+      "marker_negative_normative_concern": "候補scope/non-goal。現在のversion採否や製品提供状態ではない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1022,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "3be11ea61c6766d004298f9436071ea8b6a8fd2c5e022e2dda5a76820f720720",
+        "source_line_sha256": "sha256:f34af26920526fa01885bb8600f4afee95c6743454638477d438ea670057bd55",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 807,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "9350fd8cb2cd751a35949dc644df077e00716bd86b749e29c166288be1af6cb3",
+        "asset_id": "LEGACY-ASSET-154018C4C6B5E3AB9C63",
+        "source_sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requests.md",
+        "sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3",
+        "utf8_source_line_content_sha256": "f34af26920526fa01885bb8600f4afee95c6743454638477d438ea670057bd55",
+        "physical_line_bytes_including_terminator_sha256": "8139db7883147ee091d8581c6a168fab002303f4c0c6375e62506bbf273b94fe",
+        "baseline_2353_physical_line_bytes_sha256": "8139db7883147ee091d8581c6a168fab002303f4c0c6375e62506bbf273b94fe"
+      }
+    },
+    {
+      "rank": 568,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-001024",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+      "physical_line_number": 2,
+      "exact_source_line_text": "status: draft_candidate",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "L3 requirements candidate status",
+      "semantic_reading": "要件候補のstatusをdraft_candidateと記録する。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 1,
+            "text": "---"
+          },
+          {
+            "line": 3,
+            "text": "authority_status: proposed_pending_l3_confirmation"
+          },
+          {
+            "line": 4,
+            "text": "canonical_layer: L3"
+          }
+        ],
+        "archive_file_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687"
+      },
+      "marker_negative_normative_concern": "historical target-state metadataであり、現行revisionの状態として転記しない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1024,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "db8a30321242a60e07f7a27ded6066534ae606eed2fc15d516bd9b8a7fe935cc",
+        "source_line_sha256": "sha256:e2f54e8ccf42197c498223478758d709e4b1617d22ec5c47f374ad01cd3f5d73",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 808,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "476ae5b712e8c7016a3b489169437514ef56b009aa119854d22e071ac15a71e4",
+        "asset_id": "LEGACY-ASSET-2D530EE7717B7A1E9218",
+        "source_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+        "sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687",
+        "utf8_source_line_content_sha256": "e2f54e8ccf42197c498223478758d709e4b1617d22ec5c47f374ad01cd3f5d73",
+        "physical_line_bytes_including_terminator_sha256": "b8e0419afbe1b1eea382ff37243bd4cc306439e777c20b65ae2f96126c8bf0dc",
+        "baseline_2353_physical_line_bytes_sha256": "b8e0419afbe1b1eea382ff37243bd4cc306439e777c20b65ae2f96126c8bf0dc"
+      }
+    },
+    {
+      "rank": 569,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-001025",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+      "physical_line_number": 3,
+      "exact_source_line_text": "authority_status: proposed_pending_l3_confirmation",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Pending L3 confirmation metadata",
+      "semantic_reading": "proposed_pending_l3_confirmationを記録。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 1,
+            "text": "---"
+          },
+          {
+            "line": 2,
+            "text": "status: draft_candidate"
+          },
+          {
+            "line": 4,
+            "text": "canonical_layer: L3"
+          },
+          {
+            "line": 5,
+            "text": "canonical_pair: L10"
+          }
+        ],
+        "archive_file_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687"
+      },
+      "marker_negative_normative_concern": "候補上のauthority表示であり、issue commentや後続PRを現行decisionへ置き換えない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1025,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "26d95052ef047da58862544c34ca3fe62924a9553e0a4a30e4f5804707a948db",
+        "source_line_sha256": "sha256:a9939284625f9bd0be9d3d370488773bc2d4ed98578f0e1bb3b3da422033496b",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 808,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "476ae5b712e8c7016a3b489169437514ef56b009aa119854d22e071ac15a71e4",
+        "asset_id": "LEGACY-ASSET-2D530EE7717B7A1E9218",
+        "source_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+        "sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687",
+        "utf8_source_line_content_sha256": "a9939284625f9bd0be9d3d370488773bc2d4ed98578f0e1bb3b3da422033496b",
+        "physical_line_bytes_including_terminator_sha256": "929aa2072359cc93c98946477aafe30a0a7188a194fcd3e65c891c66ce3e293a",
+        "baseline_2353_physical_line_bytes_sha256": "929aa2072359cc93c98946477aafe30a0a7188a194fcd3e65c891c66ce3e293a"
+      }
+    },
+    {
+      "rank": 570,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-001026",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+      "physical_line_number": 4,
+      "exact_source_line_text": "canonical_layer: L3",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Legacy L3 layer metadata",
+      "semantic_reading": "要件候補をcanonical L3と位置付ける。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 2,
+            "text": "status: draft_candidate"
+          },
+          {
+            "line": 3,
+            "text": "authority_status: proposed_pending_l3_confirmation"
+          },
+          {
+            "line": 5,
+            "text": "canonical_pair: L10"
+          },
+          {
+            "line": 6,
+            "text": "plan: PLAN-L3-91-design-grounding-human-convergence"
+          }
+        ],
+        "archive_file_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687"
+      },
+      "marker_negative_normative_concern": "新世代の承認済みL3 revisionを示さない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1026,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "ac24f5dd9af3d458afc5d498cbde0786f15644f5398ffde2fc8228fbdfd962fb",
+        "source_line_sha256": "sha256:ba64914c792051c6ab060e5f66d23d45aeffe6fdbddea969aeb207f21c692ed2",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 808,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "476ae5b712e8c7016a3b489169437514ef56b009aa119854d22e071ac15a71e4",
+        "asset_id": "LEGACY-ASSET-2D530EE7717B7A1E9218",
+        "source_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+        "sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687",
+        "utf8_source_line_content_sha256": "ba64914c792051c6ab060e5f66d23d45aeffe6fdbddea969aeb207f21c692ed2",
+        "physical_line_bytes_including_terminator_sha256": "0998ef3adf7830c19d285c14663ed6ff8692e4ac1bb52175847aefdbcb0f47dd",
+        "baseline_2353_physical_line_bytes_sha256": "0998ef3adf7830c19d285c14663ed6ff8692e4ac1bb52175847aefdbcb0f47dd"
+      }
+    },
+    {
+      "rank": 571,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-001027",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+      "physical_line_number": 5,
+      "exact_source_line_text": "canonical_pair: L10",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Legacy L10 pair metadata",
+      "semantic_reading": "対のcanonical L10を指定する。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 3,
+            "text": "authority_status: proposed_pending_l3_confirmation"
+          },
+          {
+            "line": 4,
+            "text": "canonical_layer: L3"
+          },
+          {
+            "line": 6,
+            "text": "plan: PLAN-L3-91-design-grounding-human-convergence"
+          },
+          {
+            "line": 7,
+            "text": "parent_design: docs/governance/candidates/design-grounding-human-convergence-requests.md"
+          }
+        ],
+        "archive_file_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687"
+      },
+      "marker_negative_normative_concern": "旧層番号と候補関係を保存するにとどまり、pair authorityではない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1027,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "07a565d6a7bd9e507e7a7dd7c937b40486b4dc64f3213ff1d3f4ee6c154085aa",
+        "source_line_sha256": "sha256:072c3dcb2567a8cc71ae10d2d799c112ff60624fb1cdb0f82095fe5c2d685106",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 808,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "476ae5b712e8c7016a3b489169437514ef56b009aa119854d22e071ac15a71e4",
+        "asset_id": "LEGACY-ASSET-2D530EE7717B7A1E9218",
+        "source_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+        "sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687",
+        "utf8_source_line_content_sha256": "072c3dcb2567a8cc71ae10d2d799c112ff60624fb1cdb0f82095fe5c2d685106",
+        "physical_line_bytes_including_terminator_sha256": "05e17f64c49d8ef5e24758dd4bc2e5a34cdcd8da3091873c2cccd5869719d48d",
+        "baseline_2353_physical_line_bytes_sha256": "05e17f64c49d8ef5e24758dd4bc2e5a34cdcd8da3091873c2cccd5869719d48d"
+      }
+    },
+    {
+      "rank": 572,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-001028",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+      "physical_line_number": 6,
+      "exact_source_line_text": "plan: PLAN-L3-91-design-grounding-human-convergence",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Plan metadata",
+      "semantic_reading": "PLAN-L3-91を指定する。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 4,
+            "text": "canonical_layer: L3"
+          },
+          {
+            "line": 5,
+            "text": "canonical_pair: L10"
+          },
+          {
+            "line": 7,
+            "text": "parent_design: docs/governance/candidates/design-grounding-human-convergence-requests.md"
+          },
+          {
+            "line": 8,
+            "text": "pair_artifact: docs/governance/candidates/design-grounding-human-convergence-acceptance.md"
+          }
+        ],
+        "archive_file_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687"
+      },
+      "marker_negative_normative_concern": "plan identifierは承認、実装、受入を示さない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1028,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "7e1a9bace0183a5e721b769b46afd29d5b5411c7445560d393636d6a80696c22",
+        "source_line_sha256": "sha256:c4c23457d94acd92e887a89fbbedbff182ea48ba41ab871d85ac0b62d217ed61",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 808,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "476ae5b712e8c7016a3b489169437514ef56b009aa119854d22e071ac15a71e4",
+        "asset_id": "LEGACY-ASSET-2D530EE7717B7A1E9218",
+        "source_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+        "sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687",
+        "utf8_source_line_content_sha256": "c4c23457d94acd92e887a89fbbedbff182ea48ba41ab871d85ac0b62d217ed61",
+        "physical_line_bytes_including_terminator_sha256": "edf763ed14f7eb18d46ba88f6bf011dfdb61e3d60156d94ff617ed76c72ddb8b",
+        "baseline_2353_physical_line_bytes_sha256": "edf763ed14f7eb18d46ba88f6bf011dfdb61e3d60156d94ff617ed76c72ddb8b"
+      }
+    },
+    {
+      "rank": 573,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-001029",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+      "physical_line_number": 7,
+      "exact_source_line_text": "parent_design: docs/governance/candidates/design-grounding-human-convergence-requests.md",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Parent candidate pointer",
+      "semantic_reading": "親のrequests候補文書を指す。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 5,
+            "text": "canonical_pair: L10"
+          },
+          {
+            "line": 6,
+            "text": "plan: PLAN-L3-91-design-grounding-human-convergence"
+          },
+          {
+            "line": 8,
+            "text": "pair_artifact: docs/governance/candidates/design-grounding-human-convergence-acceptance.md"
+          },
+          {
+            "line": 9,
+            "text": "---"
+          }
+        ],
+        "archive_file_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687"
+      },
+      "marker_negative_normative_concern": "文書navigationであって意味移管や親承認を示さない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1029,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "7916cb7728a7009f062a5d6dc34f49c011879db890bf02f9215ed957fb795df8",
+        "source_line_sha256": "sha256:a3d54d2933983432f72a3eb8ad5d8f30c41a26051ac3fbfc14bfca880d733139",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 808,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "476ae5b712e8c7016a3b489169437514ef56b009aa119854d22e071ac15a71e4",
+        "asset_id": "LEGACY-ASSET-2D530EE7717B7A1E9218",
+        "source_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+        "sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687",
+        "utf8_source_line_content_sha256": "a3d54d2933983432f72a3eb8ad5d8f30c41a26051ac3fbfc14bfca880d733139",
+        "physical_line_bytes_including_terminator_sha256": "44059b66de5151adb59445b79ac4700030f9c768c8fa2bbeeb7ce4f9ff826743",
+        "baseline_2353_physical_line_bytes_sha256": "44059b66de5151adb59445b79ac4700030f9c768c8fa2bbeeb7ce4f9ff826743"
+      }
+    },
+    {
+      "rank": 574,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-001030",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+      "physical_line_number": 8,
+      "exact_source_line_text": "pair_artifact: docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Acceptance candidate pointer",
+      "semantic_reading": "pair artifactとして受入候補を指す。",
+      "legacy_context": {
+        "section_heading": null,
+        "nearby_physical_lines": [
+          {
+            "line": 6,
+            "text": "plan: PLAN-L3-91-design-grounding-human-convergence"
+          },
+          {
+            "line": 7,
+            "text": "parent_design: docs/governance/candidates/design-grounding-human-convergence-requests.md"
+          },
+          {
+            "line": 9,
+            "text": "---"
+          },
+          {
+            "line": 10,
+            "text": ""
+          }
+        ],
+        "archive_file_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687"
+      },
+      "marker_negative_normative_concern": "受入文書リンクはL10合意や実行済み結果ではない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1030,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "ea1fb089a55efd78dd16cb58a91b13495295af045f28b19240ce278657bdeb0a",
+        "source_line_sha256": "sha256:876b1314138b88421bf2f9eebbfa35e90f2595b26d3982811742ecfb5bd9a51b",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 808,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "476ae5b712e8c7016a3b489169437514ef56b009aa119854d22e071ac15a71e4",
+        "asset_id": "LEGACY-ASSET-2D530EE7717B7A1E9218",
+        "source_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+        "sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687",
+        "utf8_source_line_content_sha256": "876b1314138b88421bf2f9eebbfa35e90f2595b26d3982811742ecfb5bd9a51b",
+        "physical_line_bytes_including_terminator_sha256": "c735950b41c14aa346a8b4334dba88528484f51abb5a52fbd0d1f8c5d913e3c1",
+        "baseline_2353_physical_line_bytes_sha256": "c735950b41c14aa346a8b4334dba88528484f51abb5a52fbd0d1f8c5d913e3c1"
+      }
+    },
+    {
+      "rank": 575,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-001033",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+      "physical_line_number": 12,
+      "exact_source_line_text": "既存Design Harnessを再実装せず、Design Grounding / Human Reaction Semantics / Design Convergenceを要求候補として追加する。#1556/#1557の要求形成をDesignへ投影する。[L3-PO-1558-001](https://github.com/RetryYN/HELIX-HARNESS/issues/1558#issuecomment-5556057236)でL3候補承認済みだがcanonical未昇格であり、自動承認policyの発効・runtime完成ではない。候補status語彙の正本化は#1580で追跡する。",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "L3 candidate scope and historical approval claim",
+      "semantic_reading": "既存Design Harnessを再実装せず、三領域を要求候補として追加すると記し、GitHub issue commentによるL3 candidate approvalの歴史的主張とcanonical未昇格・runtime未完成を併記する。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 11,
+          "text": "## 目的と境界"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 10,
+            "text": ""
+          },
+          {
+            "line": 11,
+            "text": "## 目的と境界"
+          },
+          {
+            "line": 13,
+            "text": ""
+          },
+          {
+            "line": 14,
+            "text": "## 実装調査（main 4667d601）"
+          }
+        ],
+        "archive_file_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687"
+      },
+      "marker_negative_normative_concern": "歴史的issue commentの主張はsource本文に保存するが、現行PO decisionにしない。F6で採択された別のHARNESS L2候補との近さからDGH L3採択を推定しない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1033,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "edc20a64459f5562651228f07d4366531f3647e4cbf8eaf715e83c42b5226d02",
+        "source_line_sha256": "sha256:5575c9d55c2ae39ba66407a6050c61cbef2c34dd5c9cd1ccd44e5e1ee8b6dd78",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 808,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "476ae5b712e8c7016a3b489169437514ef56b009aa119854d22e071ac15a71e4",
+        "asset_id": "LEGACY-ASSET-2D530EE7717B7A1E9218",
+        "source_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+        "sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687",
+        "utf8_source_line_content_sha256": "5575c9d55c2ae39ba66407a6050c61cbef2c34dd5c9cd1ccd44e5e1ee8b6dd78",
+        "physical_line_bytes_including_terminator_sha256": "91581dc5712d9075500d37b17b1b31277194e4e78c0a45194fe125bd468e04d2",
+        "baseline_2353_physical_line_bytes_sha256": "91581dc5712d9075500d37b17b1b31277194e4e78c0a45194fe125bd468e04d2"
+      }
+    },
+    {
+      "rank": 576,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-001035",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+      "physical_line_number": 15,
+      "exact_source_line_text": "src/design/screen-applicability.ts に recordWalkthroughIteration / evaluatePrototypeAgreement / validateRequirementsBackprop が存在。現行agreementは反復完結・human approved・revisionを検査するが、今回の設計軸ごとの受容状態や8分類をその検査と同一視しない。",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Historical implementation census note",
+      "semantic_reading": "旧main commitとsrc/design/screen-applicability.tsの関数名、当時のagreement checksを記述し、設計軸や分類と同一視しないよう区別する。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 14,
+          "text": "## 実装調査（main 4667d601）"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 13,
+            "text": ""
+          },
+          {
+            "line": 14,
+            "text": "## 実装調査（main 4667d601）"
+          },
+          {
+            "line": 16,
+            "text": "src/design/design-registry.ts と src/design/ui-domain-pattern-profile.ts にrevision/authority/trace/profileの既存機構がある。既存store/transaction/gateを再利用し、別Engine/Registry/Research subsystemを作らない。これは静的調査でありE2E完成の証明ではない。"
+          },
+          {
+            "line": 17,
+            "text": ""
+          }
+        ],
+        "archive_file_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687"
+      },
+      "marker_negative_normative_concern": "静的な当時の調査メモで、source/runtimeを実行せず現在の実装・E2E完成を主張しない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1035,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "999c84144ae9781f3051eb4c595f0891f8b5b0653c68300a5e5ca945016e9fc5",
+        "source_line_sha256": "sha256:d6dcb8ef46c1f5f21c24a27c32011ca03e0cc5b511c97f9ac2cf2db98c4586ab",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 808,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "476ae5b712e8c7016a3b489169437514ef56b009aa119854d22e071ac15a71e4",
+        "asset_id": "LEGACY-ASSET-2D530EE7717B7A1E9218",
+        "source_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+        "sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687",
+        "utf8_source_line_content_sha256": "d6dcb8ef46c1f5f21c24a27c32011ca03e0cc5b511c97f9ac2cf2db98c4586ab",
+        "physical_line_bytes_including_terminator_sha256": "f059f852720c77f9eb32e7b49f90051126492b80b77edc46b7e0e7a3d5630a85",
+        "baseline_2353_physical_line_bytes_sha256": "f059f852720c77f9eb32e7b49f90051126492b80b77edc46b7e0e7a3d5630a85"
+      }
+    },
+    {
+      "rank": 577,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-001036",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+      "physical_line_number": 16,
+      "exact_source_line_text": "src/design/design-registry.ts と src/design/ui-domain-pattern-profile.ts にrevision/authority/trace/profileの既存機構がある。既存store/transaction/gateを再利用し、別Engine/Registry/Research subsystemを作らない。これは静的調査でありE2E完成の証明ではない。",
+      "semantic_family": "Design Grounding / Human Reaction / Design Convergence候補",
+      "semantic_function": "Historical registry/profile census note",
+      "semantic_reading": "design-registry.ts等にrevision/authority/trace/profile機構があるという歴史的調査メモと、別機構を作らない候補方針。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 14,
+          "text": "## 実装調査（main 4667d601）"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 14,
+            "text": "## 実装調査（main 4667d601）"
+          },
+          {
+            "line": 15,
+            "text": "src/design/screen-applicability.ts に recordWalkthroughIteration / evaluatePrototypeAgreement / validateRequirementsBackprop が存在。現行agreementは反復完結・human approved・revisionを検査するが、今回の設計軸ごとの受容状態や8分類をその検査と同一視しない。"
+          },
+          {
+            "line": 17,
+            "text": ""
+          },
+          {
+            "line": 18,
+            "text": "## 最適化する要求"
+          }
+        ],
+        "archive_file_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687"
+      },
+      "marker_negative_normative_concern": "実在の旧ファイル名はarchive provenanceであり、現在稼働・完成・正本reuseの証明ではない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はDGH-BR-01..03をHARNESS-L2-003/004/005へ工程条件として対応づけ、DGHをdraftの候補状態として明記する。固定F6でHARNESS-L2-025/026の設計合成pairも採択されている。これらはDGH family-level / adjacent requirement関係であり、選択したarchive source line IDや個別意味atomのsuccessor・被覆を結ぶ証拠ではない。固定F6 L11ではAVS/RFA/DGH由来条件は採用revision後に検証、全件未実行。DGHのL3 candidate approvalという歴史的source記述を現在のL3 canonical authorityへ広げない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1036,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "97d3e3d428e9ae29ac7a13ff2a0c9a4ff48376370785bd0f127b970d5891e8a5",
+        "source_line_sha256": "sha256:2c792dd260dc91f36922bc5d1e52d5d22c1657fcbb9e74cd2eff2eb42cc4a3d9",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 808,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "476ae5b712e8c7016a3b489169437514ef56b009aa119854d22e071ac15a71e4",
+        "asset_id": "LEGACY-ASSET-2D530EE7717B7A1E9218",
+        "source_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requirements.md",
+        "sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "41e5cabf6b0e9401169699f2ca748a8c6851ce942f158fadf9b686be0ce11687",
+        "utf8_source_line_content_sha256": "2c792dd260dc91f36922bc5d1e52d5d22c1657fcbb9e74cd2eff2eb42cc4a3d9",
+        "physical_line_bytes_including_terminator_sha256": "1311494b57f355edbaac81010eedfdc81b72b3d5521a98c5f689902cc2204498",
+        "baseline_2353_physical_line_bytes_sha256": "1311494b57f355edbaac81010eedfdc81b72b3d5521a98c5f689902cc2204498"
+      }
+    },
+    {
+      "rank": 578,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-001057",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+      "physical_line_number": 3,
+      "exact_source_line_text": "状態: candidate / unapproved。owner: #1727。",
+      "semantic_family": "旧開発投資候補INV-001..072",
+      "semantic_function": "Investment-candidate status/owner metadata",
+      "semantic_reading": "INV台帳のstatusをcandidate/unapproved、ownerをIssue #1727と記載する。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 1,
+          "text": "# 開発投資段階指示書の候補台帳"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 1,
+            "text": "# 開発投資段階指示書の候補台帳"
+          },
+          {
+            "line": 2,
+            "text": ""
+          },
+          {
+            "line": 4,
+            "text": ""
+          },
+          {
+            "line": 5,
+            "text": "原文bytesは[履歴入力](../../archive/intake/development-investment-stage-directives-source_v1.0.md)へ保全した。"
+          }
+        ],
+        "archive_file_sha256": "3cb6ee8a4d342b7f667c0960d08eb0a18fa44372ecb03bd85e0576e59baa4cca"
+      },
+      "marker_negative_normative_concern": "source候補のmetadata。Issueやowner記載から採択・意思決定を生成しない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はINV-001..072 familyを新世代crosswalkで分類済みと参照し、HARNESS-L2-003/004/005/006で工程意味のみ再採否する一方、旧P0..P4や旧CI/tooling方式は採用しないと記録する。これは投資source familyの現在の整理関係であるが、選択したstatus/provenance/intake lineのindividual successor・coverage bindingではない。72は要求分母・完成率・Issue数・実装backlogではなく、candidate statusとIssue #1727もauthorityにならない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1057,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "89fd0ae9153750785441d97220d972497c0dccc154d0cf97707ff9b2c48d5145",
+        "source_line_sha256": "sha256:0fb5063ed9447a8e0ec5daef7ad68c67df238d169e04a90349a80ee943d0ee77",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 809,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "5be8438ebe7ec3626b63bb823a38b0d3e7fe1884808a2cef0d48ca03dbe1e045",
+        "asset_id": "LEGACY-ASSET-429B017144C61B9C906D",
+        "source_sha256": "3cb6ee8a4d342b7f667c0960d08eb0a18fa44372ecb03bd85e0576e59baa4cca",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+        "sha256": "3cb6ee8a4d342b7f667c0960d08eb0a18fa44372ecb03bd85e0576e59baa4cca"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "3cb6ee8a4d342b7f667c0960d08eb0a18fa44372ecb03bd85e0576e59baa4cca",
+        "utf8_source_line_content_sha256": "0fb5063ed9447a8e0ec5daef7ad68c67df238d169e04a90349a80ee943d0ee77",
+        "physical_line_bytes_including_terminator_sha256": "e01c84c23b6a090c7498dc9b3d00d0e51fee87cae55e38a9c61b104e8b9c07bc",
+        "baseline_2353_physical_line_bytes_sha256": "e01c84c23b6a090c7498dc9b3d00d0e51fee87cae55e38a9c61b104e8b9c07bc"
+      }
+    },
+    {
+      "rank": 579,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-001058",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+      "physical_line_number": 5,
+      "exact_source_line_text": "原文bytesは[履歴入力](../../archive/intake/development-investment-stage-directives-source_v1.0.md)へ保全した。",
+      "semantic_family": "旧開発投資候補INV-001..072",
+      "semantic_function": "Source-preservation pointer",
+      "semantic_reading": "原文bytesの履歴入力先を示す参照。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 1,
+          "text": "# 開発投資段階指示書の候補台帳"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 3,
+            "text": "状態: candidate / unapproved。owner: #1727。"
+          },
+          {
+            "line": 4,
+            "text": ""
+          },
+          {
+            "line": 6,
+            "text": "本書は72投資候補を既存Requirement／Capability／Issueへ照合するための入口であり、候補だけで"
+          },
+          {
+            "line": 7,
+            "text": "承認、v1必須化、一括Issue化、runtime権限追加、実装完了を成立させない。"
+          }
+        ],
+        "archive_file_sha256": "3cb6ee8a4d342b7f667c0960d08eb0a18fa44372ecb03bd85e0576e59baa4cca"
+      },
+      "marker_negative_normative_concern": "provenance/navigationで、原文の内容検証・候補採用をこの行だけで証明しない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はINV-001..072 familyを新世代crosswalkで分類済みと参照し、HARNESS-L2-003/004/005/006で工程意味のみ再採否する一方、旧P0..P4や旧CI/tooling方式は採用しないと記録する。これは投資source familyの現在の整理関係であるが、選択したstatus/provenance/intake lineのindividual successor・coverage bindingではない。72は要求分母・完成率・Issue数・実装backlogではなく、candidate statusとIssue #1727もauthorityにならない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1058,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "33187f680ccac70e8f796550ba5b2c1786482250a70d5ba84361b45eb9284197",
+        "source_line_sha256": "sha256:38ecd064f43bb17a8d803c95f6cf08ff9b07196999caaf8d5a538a433e1a6ba8",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 809,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "5be8438ebe7ec3626b63bb823a38b0d3e7fe1884808a2cef0d48ca03dbe1e045",
+        "asset_id": "LEGACY-ASSET-429B017144C61B9C906D",
+        "source_sha256": "3cb6ee8a4d342b7f667c0960d08eb0a18fa44372ecb03bd85e0576e59baa4cca",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+        "sha256": "3cb6ee8a4d342b7f667c0960d08eb0a18fa44372ecb03bd85e0576e59baa4cca"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "3cb6ee8a4d342b7f667c0960d08eb0a18fa44372ecb03bd85e0576e59baa4cca",
+        "utf8_source_line_content_sha256": "38ecd064f43bb17a8d803c95f6cf08ff9b07196999caaf8d5a538a433e1a6ba8",
+        "physical_line_bytes_including_terminator_sha256": "d15f2e2529c9789b9e98cee27bc5150b74008043d66f5a1f4095d86a121f6be7",
+        "baseline_2353_physical_line_bytes_sha256": "d15f2e2529c9789b9e98cee27bc5150b74008043d66f5a1f4095d86a121f6be7"
+      }
+    },
+    {
+      "rank": 580,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-001059",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+      "physical_line_number": 6,
+      "exact_source_line_text": "本書は72投資候補を既存Requirement／Capability／Issueへ照合するための入口であり、候補だけで",
+      "semantic_family": "旧開発投資候補INV-001..072",
+      "semantic_function": "Investment inventory purpose and authority boundary",
+      "semantic_reading": "72の投資候補を既存Requirement/Capability/Issueへ照合する入口とし、候補のみで承認等を成立させない文の前半。",
+      "legacy_context": {
+        "section_heading": {
+          "line": 1,
+          "text": "# 開発投資段階指示書の候補台帳"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 4,
+            "text": ""
+          },
+          {
+            "line": 5,
+            "text": "原文bytesは[履歴入力](../../archive/intake/development-investment-stage-directives-source_v1.0.md)へ保全した。"
+          },
+          {
+            "line": 7,
+            "text": "承認、v1必須化、一括Issue化、runtime権限追加、実装完了を成立させない。"
+          },
+          {
+            "line": 8,
+            "text": ""
+          }
+        ],
+        "archive_file_sha256": "3cb6ee8a4d342b7f667c0960d08eb0a18fa44372ecb03bd85e0576e59baa4cca"
+      },
+      "marker_negative_normative_concern": "隣接文を含む一文の候補scope/authority limitation。72を要求分母・完成率・採否件数として扱わない。",
+      "current_relation_and_residual": "固定F6 HARNESS L2はINV-001..072 familyを新世代crosswalkで分類済みと参照し、HARNESS-L2-003/004/005/006で工程意味のみ再採否する一方、旧P0..P4や旧CI/tooling方式は採用しないと記録する。これは投資source familyの現在の整理関係であるが、選択したstatus/provenance/intake lineのindividual successor・coverage bindingではない。72は要求分母・完成率・Issue数・実装backlogではなく、candidate statusとIssue #1727もauthorityにならない。",
+      "source_line_ledger": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1059,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "bbb0a87a6727cb4732b532459fc0446816d54221ac8da424bf3c1974ab9e7ae7",
+        "source_line_sha256": "sha256:aa3cb7d601036ea95166abb035f97b4178af01da2efcd810e04568cd64d5b9b8",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 809,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "5be8438ebe7ec3626b63bb823a38b0d3e7fe1884808a2cef0d48ca03dbe1e045",
+        "asset_id": "LEGACY-ASSET-429B017144C61B9C906D",
+        "source_sha256": "3cb6ee8a4d342b7f667c0960d08eb0a18fa44372ecb03bd85e0576e59baa4cca",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+        "sha256": "3cb6ee8a4d342b7f667c0960d08eb0a18fa44372ecb03bd85e0576e59baa4cca"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "3cb6ee8a4d342b7f667c0960d08eb0a18fa44372ecb03bd85e0576e59baa4cca",
+        "utf8_source_line_content_sha256": "aa3cb7d601036ea95166abb035f97b4178af01da2efcd810e04568cd64d5b9b8",
+        "physical_line_bytes_including_terminator_sha256": "94e67179b1c2a4ae3fde9cad96096c17bd2e7089a55c6b67fe82bdb11bc3d3e5",
+        "baseline_2353_physical_line_bytes_sha256": "94e67179b1c2a4ae3fde9cad96096c17bd2e7089a55c6b67fe82bdb11bc3d3e5"
+      }
+    }
+  ]
+}
