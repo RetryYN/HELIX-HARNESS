@@ -6,7 +6,7 @@
 ## 母集団・境界
 
 - #2353の4,755行へ#2356/#2360/#2363/#2366/#2367/#2368/#2369/#2381を順次適用し、effective explanation 2,965行を再構成。marker queue/review unionは255行、complementは2,710行。
-- rank1420=`LEGACY-CAND-LINE-002362`、rank1421=`LEGACY-CAND-LINE-002365`、rank1460=`LEGACY-CAND-LINE-002455`。直前paired auditはこのbaseにないためrank1420境界IDのみ確認し、直前意味監査済みとは主張しない。
+- rank1420=`LEGACY-CAND-LINE-002362`、rank1421=`LEGACY-CAND-LINE-002365`、rank1460=`LEGACY-CAND-LINE-002455`。直前ranks 1381–1420 paired auditを同一PRに収載し、commit `e3376562fa950b942a8b6387bd2b3560402a8dbe` のJSON／MD bytesをpaired JSONでpinした。rank1420境界IDは全母集団からも確認した。
 - 対象sourceはHMC requests 14行、HMC requirements 26行。全40行のexact physical text/contextおよびsource/asset/routing ledger raw record/hashをJSONに保持。
 
 ## 固定F6 / current main / PO / receipt relation

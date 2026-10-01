@@ -89,8 +89,13 @@
     "prior_rank": 1420,
     "prior_id": "LEGACY-CAND-LINE-002362",
     "paired_audit_available_at_base": false,
-    "claim_prior_semantic_verification": false,
-    "note": "直前paired auditはこのbaseに存在しないため全母集団再構成でrank1420 IDだけ境界確認。"
+    "claim_prior_semantic_verification": true,
+    "note": "直前ranks 1381–1420 paired auditを同一PRに収載。commit e3376562fa950b942a8b6387bd2b3560402a8dbeをSHA-256でpinし、境界IDを全母集団再構成でも確認。",
+    "prior_audit_commit": "e3376562fa950b942a8b6387bd2b3560402a8dbe",
+    "prior_audit_json_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1381-1420-2026-10-02.json",
+    "prior_audit_json_sha256": "d05f00d718ca241d112fed58a87b74b18c154279db437048fd554196e9684075",
+    "prior_audit_md_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1381-1420-2026-10-02.md",
+    "prior_audit_md_sha256": "873fa9c439995ae5bf5b39e582638d74b67178b59936ec345780468343291a03"
   },
   "pinned_reconstruction_inputs": [
     {
