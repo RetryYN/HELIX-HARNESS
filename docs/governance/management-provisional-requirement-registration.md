@@ -152,3 +152,7 @@ G7ではPO原文と現行Conceptの共通部品の行を親に、HELIX-CONNECT�
 ## CIG-AC-001 event identity negative oracle限定候補（2026-10-02）
 
 `MPR-RC-HELIXOS-L2-117-001`は、旧candidateのCIG-AC-001 line 14一atomだけをHELIXOS-L2/L11-117の未採択候補pairへ対応する。source-lines／coverage receiptは`docs/governance/audits/requirement-registration/ci-event-identity-negative-oracle-source-lines-2026-10-02.jsonl`と`ci-event-identity-negative-oracle-coverage-receipt-2026-10-02.json`。`no_loss`は一source atomの限定候補mappingを示す。採択済みOS-008/020に対する個別facet欠落・改変oracleの採択、旧source owner/適用scopeの確定、formal successor、runtime受入、source holding全体のclosureを示さない。既存NCI-OS-003/004候補の汎用binding条件やunadopted statusから採択を推定せず、PO選択肢A/Bと推奨はreceiptへ束縛する。`MPR-SH-CANDIDATE-003`を生存させる。
+
+## IR153 HIL-FR-42 / HIL-FR-45限定候補（2026-10-02）
+
+`HARNESS-L2-077`／`HARNESS-L2-078`はそれぞれ旧HIL-FR-42 line 132とHIL-FR-45 line 135の一atomだけを未採択候補pairへ対応する。source-linesと各coverage receiptをMPR行が固定する。`no_loss`は当該一atomの候補入力対応だけを示す。`MPR-SH-IR-003`は生存し、旧要求の正式successor、owner移管、対象scope/version、全HR/HIL condition closure、PO採択、L3承認、実装・実行を主張しない。旧runtime/schema/test/CIは移植または実行しない。
