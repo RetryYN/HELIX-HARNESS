@@ -74,6 +74,12 @@
   },
   "pinned_inputs": [
     {
+      "role": "preceding_complement_ranks_261_300_for_rank_boundary",
+      "commit": "0d9cdb34e7d7c69d82120cdab119b01038144c83",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-261-300-2026-10-01.json",
+      "sha256": "f02187118df01ab88c814e3d7e52b064d17fab0283714fb3c986aa6387f5c47c"
+    },
+    {
       "role": "#2353 baseline",
       "commit": "97672630b7de70fd4433827730c390cbabd90a99",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
@@ -1233,7 +1239,7 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
       "source_line": 32,
       "semantic_category": "candidate requirement: bounded concurrency",
-      "semantic_reading": "無制限並走を`cancel-in-progress:false`のみで代替しない候補条件。",
+      "semantic_reading": "`cancel-in-progress:false`だけで無制限並走させる方法を、前行の限定置換・非干渉条件の代替実装として採らない候補条件。",
       "current_relation_and_limit": "The fixed F6 HARNESS/OS L2-L11 files provide only general CI, evidence, and authority context. The OS next-generation-CI document remains draft_candidate / awaiting_human_approval. No row-specific current crosswalk or adopted pair binding was found; the 2026-09-28 PO decisions adopt only their explicit candidate sets. No successor or acceptance evidence is assigned.",
       "marker_negative_normative_or_authority_condition": true,
       "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
