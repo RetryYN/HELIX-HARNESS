@@ -1,6 +1,6 @@
 # Candidate 4755 規範語マーカー順位41〜60の意味監査
 
-対象はmechanical screen commit `f330d71d2b86d5d2e762478ce85d9d396b81bb54` が固定した255行poolの順位41〜60。監査基点は `50686b6762788574cb471967e8c24846d3dd56ae`。順位を #2353 row_records と #2356/#2360/#2363/#2366/#2367/#2368/#2369/#2381 の順序付きoverlayから再構成し、screen上位20件と先行監査21〜40件への一致を確認した。
+対象はmechanical screen commit `2fdc1dfef3ec81e96eb91a03a234592e328980e0:docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-marker-screen-2026-10-01.json` が固定した255行poolの順位41〜60。監査基点は `50686b6762788574cb471967e8c24846d3dd56ae`。順位を #2353 row_records と #2356/#2360/#2363/#2366/#2367/#2368/#2369/#2381 の順序付きoverlayから再構成し、screen上位20件と先行監査21〜40件への一致を確認した。
 
 ## 行別監査
 

@@ -139,11 +139,14 @@
     "exclusive_group_total": 15,
     "standalone_requirement_conditions": 7,
     "lexical_only_false_positive_rows": 2,
-    "row_specific_crosswalk_rows": 0,
-    "adopted_pair_binding_rows": 0,
+    "row_specific_crosswalk_rows": 1,
+    "adopted_pair_binding_rows": 1,
     "full_source_atom_coverage_established_rows": 0,
-    "adopted_retired_closed_count": 0,
-    "source_family_relation_rows": 15
+    "adopted_retired_closed_count": 1,
+    "source_family_relation_rows": 15,
+    "successor_requirement_count": 0,
+    "retired_rows": 0,
+    "closed_rows": 0
   },
   "pinned_inputs": [
     {
@@ -404,6 +407,19 @@
           "line": 73,
           "text": "- POが求めた旧HELIXからのデグレ検証を最終横断整理の必須作業にする。旧機能・要求・受入・運用保証と採用本文を照合し、失われた機能、弱まった受入、反例・失敗時義務の欠落を調べる。本記録はその検証完了を主張しない。",
           "sha256": "1a9698c7d52869fdfed11ff1c0ec78b60d8ce77d94fe4ab2fc5bf586da55d436"
+        }
+      ]
+    },
+    {
+      "pair": "HELIX-OS D57",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "commit": "709a31f51c7c0569513d02723a45199ca8de7f30",
+      "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "lines": [
+        {
+          "line": 72,
+          "text": "| `HELIXOS-L2-049` | 条件付き採択：割当前に後段の検証義務・担当・capacityを確保する。割当先task自体のreview/merge完了は割当条件にしない（訂正L11 `HELIXOS-L2-049-003`）。 | `MPR-RC-HELIXOS-L2-049-003` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:e9372f19e5064cb5470141fef25a3212aa65cede5d44ecfff8c9ed86da83668b` | `HELIXOS-L2-049` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:d5a3a0c361a6d0056a8c608f5230a52d206c000d7ac81ff969aeaba30ad4d810` | `docs/governance/audits/requirement-registration/helixos-worker-utilization-coverage-receipt-2026-09-29-r4.json#HELIXOS-L2-049` |",
+          "sha256": "f0856ae991e2b0917c4a5196b903cd7ba8a1b7026397235826c77abbbe1ab939"
         }
       ]
     }
@@ -1632,23 +1648,25 @@
           "role": "候補要求条件"
         },
         "current_reference_evidence": {
-          "explicit_crosswalk_found": false,
-          "selected_source_row_crosswalk_found": false,
+          "explicit_crosswalk_found": true,
+          "selected_source_row_crosswalk_found": true,
           "fixed_pair_scope": [
             "HELIX-OS",
             "HELIX-HARNESS",
             "HELIX-INFRASTRUCTURE"
           ],
-          "result": "TLCPの候補要件。旧CI／Merge Trainの現行採用、数量制約やprovider構成を意味しない。 inventoryの`three-lane-capacity-profile`行（47行目）はfamily-level owner/state関係を示す。selected source row個別のcrosswalk/adopted pair bindingは見つからない。 HARNESS検証とOS pool/WIP責務への分解、現行owner・受入を照合する。"
+          "result": "Receipt `docs/governance/audits/requirement-registration/helixos-o3-o5-capacity-source-lines-2026-09-29-r2.jsonl` binds source line LEGACY-CAND-LINE-004497 by exact line SHA to atom OSCAP-049-002-S2 and its selected_span. D57 line 72 conditionally adopts the exact HELIXOS-L2-049/-L11-049 revision. Binding covers only the selected_span; the unselected source-line remainder remains preserved_pending.",
+          "row_specific_crosswalk_found": true,
+          "adopted_pair_binding_found": true
         },
-        "residual": "HARNESS検証とOS pool/WIP責務への分解、現行owner・受入を照合する。",
+        "residual": "HARNESS検証とOS pool/WIP責務への分解、現行owner・受入の照合を残す。OSCAP-049-002-S2のselected_span「pool上限をdispatch目標にせず、下流が詰まる場合は新規dispatchへbackpressureする。」以外はreceiptのremainder_scopeに従いpreserved_pending。successorは0、旧source condition closureは0。",
         "human_facing_summary": "active WIP算出とbackpressure条件",
-        "human_facing_comparison": "TLCPの候補要件。旧CI／Merge Trainの現行採用、数量制約やprovider構成を意味しない。 inventoryの`three-lane-capacity-profile`行（47行目）はfamily-level owner/state関係を示す。selected source row個別のcrosswalk/adopted pair bindingは見つからない。",
-        "human_facing_next_step": "HARNESS検証とOS pool/WIP責務への分解、現行owner・受入を照合する。",
+        "human_facing_comparison": "TLCPの候補要件。旧CI／Merge Trainの全面採用、数量制約やprovider構成を意味しない。inventoryの`three-lane-capacity-profile`行（47行目）はfamily-level owner/state関係を示す。source line LEGACY-CAND-LINE-004497はreceiptでOSCAP-049-002-S2のselected_spanに限り、条件付き採択された。",
+        "human_facing_next_step": "selected_span外のsource line remainderはpreserved_pending。HARNESS検証とOS pool/WIP責務への分解、現行owner・受入を照合する。",
         "source_family_relation_found": true,
-        "candidate_or_source_range_reference_found": false,
-        "row_specific_crosswalk_found": false,
-        "adopted_pair_binding_found": false,
+        "candidate_or_source_range_reference_found": true,
+        "row_specific_crosswalk_found": true,
+        "adopted_pair_binding_found": true,
         "full_source_atom_coverage_established": false,
         "source_family_relation_evidence": [
           {
@@ -1658,16 +1676,36 @@
             "line": 47,
             "evidence": "現行candidate source-target inventoryにあるfamily-level owner/state関係。選択source row個別の採択・closureは示さない。"
           }
-        ]
+        ],
+        "selected_source_row_crosswalk_found": true,
+        "source_range_crosswalk_found": false,
+        "current_source_atom_binding": {
+          "legacy_candidate_source_line_id": "LEGACY-CAND-LINE-004497",
+          "receipt_ref": "docs/governance/audits/requirement-registration/helixos-o3-o5-capacity-source-lines-2026-09-29-r2.jsonl#OSCAP-049-002-S2",
+          "atom_id": "OSCAP-049-002-S2",
+          "selected_span_only": true,
+          "paired_l2_l11": "HELIXOS-L2-049 / HELIXOS-L11-049",
+          "po_decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md#L72",
+          "successor_requirement_ids": [],
+          "source_condition_closed": false
+        },
+        "decision_status": {
+          "adopted": true,
+          "adoption_scope": "selected_span_only",
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
       },
       "decision_status": {
-        "adopted": false,
+        "adopted": true,
+        "adoption_scope": "selected_span_only",
         "retired": false,
         "closed": false,
         "authority_effect": "none"
       },
       "source_family_relation_found": true,
-      "adopted_pair_binding_found": false,
+      "adopted_pair_binding_found": true,
       "source_family_relation_evidence": [
         {
           "path": "docs/governance/audits/source-rebaseline/candidate-source-target-inventory.md",
@@ -1678,7 +1716,7 @@
         }
       ],
       "candidate_package_pointer_only": false,
-      "selected_source_row_crosswalk_found": false,
+      "selected_source_row_crosswalk_found": true,
       "source_range_crosswalk_found": false,
       "source_pin_check": {
         "archive_sha256": "d2df9851fcd3db79ffaed03116f85118da43fe26f943412045215a58cfa3804e",

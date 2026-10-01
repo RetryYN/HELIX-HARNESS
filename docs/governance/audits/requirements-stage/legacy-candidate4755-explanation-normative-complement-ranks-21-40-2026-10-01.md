@@ -2,7 +2,7 @@
 
 ## 対象と導出
 
-対象は#2353の4,755 `row_records`に#2356、#2360、#2363、#2366、#2367、#2368、#2369、#2381を順に適用したeffective explanation 2,965行から、正確なscreen marker pool 255行を除く補集合2,710行のrank 21–40である。screen inputは`f330d71d2b86d5d2e762478ce85d9d396b81bb54`に固定した。別記録のscreen pin先`50686b6`には対象JSONが存在しないため転記せず、正しいcommitとSHAを使用した。
+対象は#2353の4,755 `row_records`に#2356、#2360、#2363、#2366、#2367、#2368、#2369、#2381を順に適用したeffective explanation 2,965行から、正確なscreen marker pool 255行を除く補集合2,710行のrank 21–40である。screen inputは`2fdc1dfef3ec81e96eb91a03a234592e328980e0:docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-marker-screen-2026-10-01.json`に固定した。別記録のscreen pin先`50686b6`には対象JSONが存在しないため転記せず、正しいcommitとSHAを使用した。
 
 候補IDは全overlay適用後のexplanation行からmarker IDを除き、`LEGACY-CAND-LINE`の数値suffix昇順で再計算した。screen regexのraw hit 258件から、直後の物理行がMarkdown delimiter行となる3つのtable header（001500、001514、001910）を構造検出して除外し、255件をmarker poolとして再構成した。補集合2710行をID昇順に並べ、rank21–40を切り出した。各行はarchive原文・前後文脈、#2353 baseline physical bytes、source-line carry-forward JSONL、asset disposition JSONLを個別照合した。
 

@@ -1,6 +1,6 @@
 # Candidate 4755 規範語マーカー順位21〜40の意味監査
 
-対象はscreen commit `f330d71d2b86d5d2e762478ce85d9d396b81bb54`が固定した255行poolの順位21〜40。順位を再構成してscreen上位20件との一致を確かめ、旧archive原文・周辺節・source-line台帳・asset台帳を照合した。F6のsource-family/candidate関係と、選択行ごとのpair bindingを分けて記録する。
+対象はscreen commit `2fdc1dfef3ec81e96eb91a03a234592e328980e0:docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-marker-screen-2026-10-01.json`が固定した255行poolの順位21〜40。順位を再構成してscreen上位20件との一致を確かめ、旧archive原文・周辺節・source-line台帳・asset台帳を照合した。F6のsource-family/candidate関係と、選択行ごとのpair bindingを分けて記録する。
 
 先行top20監査 `0de781db5`とのID重複は0件。#21〜37には旧SEA/AAFD/AVS/BBR source-familyまたはcandidate保持の参照がある。ただし、個別旧行の正式pair binding、採択、全atom被覆は確認できない。#38〜40にL2/L11のsource-family relationはなく、#40はOSのdraft候補packageにpointerがあるだけである。
 

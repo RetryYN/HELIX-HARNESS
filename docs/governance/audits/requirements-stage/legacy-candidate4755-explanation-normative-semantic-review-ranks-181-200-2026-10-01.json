@@ -443,43 +443,6 @@
       ]
     },
     {
-      "path": "docs/helix-security/L2-requirements/security-requirements.md",
-      "commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
-      "file_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
-      "lines": [
-        {
-          "line": 98,
-          "text": "- **束ねる既存条件**：L1-003、Conceptの隔離の単位、旧SEAのtarget/environment scoping。",
-          "sha256": "81c247fdfb8e6ae8d686c9f51d88a3840b59b9a24652afe22c060dcea089ec1b"
-        },
-        {
-          "line": 148,
-          "text": "- **束ねる既存条件**：L1-008、PO §9、旧SEAのaction-specific authorityとtarget/environment/scope/expiry拘束。",
-          "sha256": "c4103e0a50c4a23257efc1cc0253f3b9c13a8ecbf62aca6d54f109089b496f63"
-        },
-        {
-          "line": 158,
-          "text": "- **束ねる既存条件**：L1-009、PO §10、旧SEAのrevoke/scope-drift停止条件。",
-          "sha256": "541aa91d4e9c448cabed996ea8ea553bfe461d0076b1e80cab9739b83b7cb0dd"
-        },
-        {
-          "line": 290,
-          "text": "- **束ねる既存条件**：PO §23 second flow、Concept lines 223/230/234、旧SEA authority tuple（security engagement限定を全操作へ黙って昇格させない）。",
-          "sha256": "789b003a79ac8e705a6c83787a311e0b75959db09b59d0b0f50b0cf7cbdc30d3"
-        },
-        {
-          "line": 394,
-          "text": "旧candidate source atomsは`MPR-SH-CANDIDATE-003`の入力集合にある。対象の旧SEA requests/requirements/acceptance line atomsはそれぞれ `LEGACY-CAND-LINE-004341..004373`（33行、source lines 1–44）、`004374..004419`（46行、source lines 1–57）、`004308..004340`（33行、source lines 1–38）である。file SHAは前表のrequests `c6d76c…f447`、requirements `38a68e…b16`、acceptance `c8d332…ffc`。この行数は登録済み候補sourceの集合であり、意味を全件移管したという主張ではない。L2候補のreceiptで各atomを保持、別の生存中登録へ保留、または人間decisionのいずれかへ割り当てる。",
-          "sha256": "64a4d58128a57ff05e0e36df30c7b1aec68ad328df111e054174a0fb11b950e5"
-        },
-        {
-          "line": 399,
-          "text": "2. **旧SEAの全操作authorityへの適用幅** — 根拠: 旧SEAは認可済みsecurity engagementのみ、現行L1-008/009はHELIX全操作へ広げる。選択肢: L1記載どおり全操作へ適用／security engagementに限定。推奨: L1を変えないならL2-008/009/022のscopeを全操作とし、旧SEA固有のsecurity engagement admissionは別扱いで残置する。影響: 操作authority、失効、OS/Worker/CONNECTへの停止伝播。全操作への一般化を人が確認していない場合、L1-008/009 revision確認は要求採択前に必要。",
-          "sha256": "18a256bdff89ee0928ff9d497bbdf1121b9b8699595d59b7af5dbbeb01a451e2"
-        }
-      ]
-    },
-    {
       "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
       "commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
       "file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
@@ -507,6 +470,39 @@
           "sha256": "b9b21650df3f9db1530f619eff2b7d4f91dd862115eb3fee6d460cf895a1c390"
         }
       ]
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "commit": "709a31f51c7c0569513d02723a45199ca8de7f30",
+      "file_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+      "lines": [
+        {
+          "line": 98,
+          "text": "- **束ねる既存条件**：L1-003、Conceptの隔離の単位、旧SEAのtarget/environment scoping。",
+          "sha256": "81c247fdfb8e6ae8d686c9f51d88a3840b59b9a24652afe22c060dcea089ec1b"
+        },
+        {
+          "line": 148,
+          "text": "- **束ねる既存条件**：L1-008、PO §9、旧SEAのaction-specific authorityとtarget/environment/scope/expiry拘束。",
+          "sha256": "c4103e0a50c4a23257efc1cc0253f3b9c13a8ecbf62aca6d54f109089b496f63"
+        },
+        {
+          "line": 158,
+          "text": "- **束ねる既存条件**：L1-009、PO §10、旧SEAのrevoke/scope-drift停止条件。",
+          "sha256": "541aa91d4e9c448cabed996ea8ea553bfe461d0076b1e80cab9739b83b7cb0dd"
+        },
+        {
+          "line": 290,
+          "text": "- **束ねる既存条件**：PO §23 second flow、Concept lines 223/230/234、旧SEA authority tuple（security engagement限定を全操作へ黙って昇格させない）。",
+          "sha256": "789b003a79ac8e705a6c83787a311e0b75959db09b59d0b0f50b0cf7cbdc30d3"
+        },
+        {
+          "line": 394,
+          "text": "旧candidate source atomsは`MPR-SH-CANDIDATE-003`の入力集合にある。対象の旧SEA requests/requirements/acceptance line atomsはそれぞれ `LEGACY-CAND-LINE-004341..004373`（33行、source lines 1–44）、`004374..004419`（46行、source lines 1–57）、`004308..004340`（33行、source lines 1–38）である。file SHAは前表のrequests `c6d76c…f447`、requirements `38a68e…b16`、acceptance `c8d332…ffc`。この行数は登録済み候補sourceの集合であり、意味を全件移管したという主張ではない。L2候補のreceiptで各atomを保持、別の生存中登録へ保留、または人間decisionのいずれかへ割り当てる。",
+          "sha256": "64a4d58128a57ff05e0e36df30c7b1aec68ad328df111e054174a0fb11b950e5"
+        }
+      ],
+      "role": "旧SEA source family relation and current scope boundary in the exact SECURITY candidate"
     }
   ],
   "later_decision_record_pins": [
@@ -601,6 +597,37 @@
       ],
       "mechanism": "HELIX-HARNESS",
       "record_commit_date": "2026-09-28T01:46:25+09:00"
+    },
+    {
+      "pair": "HELIX-OS D57",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "commit": "709a31f51c7c0569513d02723a45199ca8de7f30",
+      "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "lines": [
+        {
+          "line": 72,
+          "text": "| `HELIXOS-L2-049` | 条件付き採択：割当前に後段の検証義務・担当・capacityを確保する。割当先task自体のreview/merge完了は割当条件にしない（訂正L11 `HELIXOS-L2-049-003`）。 | `MPR-RC-HELIXOS-L2-049-003` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:e9372f19e5064cb5470141fef25a3212aa65cede5d44ecfff8c9ed86da83668b` | `HELIXOS-L2-049` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:d5a3a0c361a6d0056a8c608f5230a52d206c000d7ac81ff969aeaba30ad4d810` | `docs/governance/audits/requirement-registration/helixos-worker-utilization-coverage-receipt-2026-09-29-r4.json#HELIXOS-L2-049` |",
+          "sha256": "f0856ae991e2b0917c4a5196b903cd7ba8a1b7026397235826c77abbbe1ab939"
+        },
+        {
+          "line": 73,
+          "text": "| `HELIXOS-L2-050` | 条件付き採択：capacity増枠から新しいmerge権限を発生させない。既存review_merge担当は既存admission後にmergeできる。branch変更・Ready権限は与えない（訂正L11 `HELIXOS-L2-050-003`）。 | `MPR-RC-HELIXOS-L2-050-003` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:fab5fdfae9cfd2211f8c2fd6dfad5ce7b065e007ef11ca62f55420baa5033b6d` | `HELIXOS-L2-050` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:cf4866f2d8beee83eda5389e3b98100cd37cbd609f7c797617b499c1381bfafb` | `docs/governance/audits/requirement-registration/helixos-reviewer-capacity-coverage-receipt-2026-09-29-r3.json#HELIXOS-L2-050` |",
+          "sha256": "d8c7710bdc66863227e96b419e9271a73a6dba695cf40fb447a44c102eabf78b"
+        }
+      ]
+    },
+    {
+      "pair": "HELIX-SECURITY",
+      "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+      "commit": "709a31f51c7c0569513d02723a45199ca8de7f30",
+      "file_sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+      "lines": [
+        {
+          "line": 70,
+          "text": "SECURITYのA案を採用する。L1-008/009の全操作へのauthority境界を確定し、L2/L11-008・009・022およびWorker接続007に適用する。有効な既決権限を再利用し、通常作業の毎回の人間承認を追加しない。対象operation/revision/scope・期限等の照合、変更・失効時の再照合、停止伝播は保持する。旧special engagement固有のadmissionは通常作業へ移植しない。015/016の1.0基盤、020のGuardと必要時Bot、026の1.0 Guard/Bot境界と1.x意味接続能力を区別し、017〜019・025を1.0へ前倒ししない。",
+          "sha256": "8617ef280463c9433a45036fa0cd9ca234e3c83f449603326c42675cb13e87ed"
+        }
+      ]
     }
   ],
   "temporal_authority_evidence": {
@@ -681,14 +708,17 @@
     "lexical_only_false_positive_rows": 0,
     "standalone_requirement_conditions": 20,
     "candidate_pointer_rows": 4,
-    "source_family_relation_rows": 5,
-    "selected_source_row_crosswalk_rows": 0,
+    "source_family_relation_rows": 7,
+    "selected_source_row_crosswalk_rows": 2,
     "source_range_crosswalk_rows": 0,
-    "adopted_pair_binding_rows": 0,
+    "adopted_pair_binding_rows": 2,
     "source_condition_closed_rows": 0,
-    "adopted_retired_closed_count": 0,
+    "adopted_retired_closed_count": 2,
     "authority_effect": "none",
-    "closure": "unresolved"
+    "closure": "unresolved",
+    "successor_requirement_count": 0,
+    "retired_rows": 0,
+    "closed_rows": 0
   },
   "limitations": [
     "Regex marker hits are screening evidence only; a hit does not establish semantic normativity or requirement adoption.",
@@ -1701,10 +1731,10 @@
         "exclusive_group": "受入oracle",
         "normative_context_role": "acceptance_expected_or_negative_behavior",
         "standalone_requirement_condition": true,
-        "relation": "unknown profile、自由式condition、raw shell、未登録command、近似bindingを個別reasonでfail-closeするSEA-AC-003。SECURITY L2は旧SEAのscope／authorityを参照するが、対象L1の確認と再採否は未了であり、このAC行の採択・実行を示さない。",
-        "residual": "SecurityAuthorization／profile field、拒否reasonの区別、scope／unknown状態のnegative fixture、対象authority revisionが未解決。",
+        "relation": "SECURITYの2026-09-28 decisionは固定L1 revisionとL2/L11一式を確定・採択し、全操作へのauthority境界をL2/L11-008・009・022とWorker接続007へ適用する。旧SEA-AC-003はSECURITY L2の旧SEA source familyに属するが、この個別受入行を現行pairへ選択spanとして束縛した記録はない。",
+        "residual": "旧SEAはsecurity engagement限定のprofile/command受入条件であり、現行SECURITY decisionの全操作authority境界とscopeが異なる。拒否reason、profile field、negative fixture、およびこの旧AC行の個別crosswalk/adopted-pair bindingは未確定。",
         "counterexample": "語彙hitまたはsource-family/candidate参照だけから要求採択、exact source-row binding、oracle実施、coverage closureを導く。",
-        "source_family_relation_found": false,
+        "source_family_relation_found": true,
         "candidate_or_source_range_reference_found": true,
         "selected_source_row_crosswalk_found": false,
         "source_range_crosswalk_found": false,
@@ -1715,7 +1745,9 @@
           "retired": false,
           "closed": false,
           "authority_effect": "none"
-        }
+        },
+        "current_decision_ref": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md#L68-L70",
+        "legacy_scope_difference": "旧SEAはsecurity engagement限定scope、現行SECURITYは全操作のauthority境界。"
       }
     },
     {
@@ -1803,10 +1835,10 @@
         "exclusive_group": "要求条件",
         "normative_context_role": "direct_requirement_condition",
         "standalone_requirement_condition": true,
-        "relation": "SecurityAuthorizationのauthority tuple fieldを定義するSEA-FR-001。SECURITY L2に旧SEA tupleのfamily lineageはあるが、旧SEAのsecurity engagement限定scopeをこの行から拡張しない。SECURITY L1 authority確認とL2採択は未了。",
-        "residual": "fieldの意味とcardinality、信頼できるissuer、正確なtarget／action／environment／network／data束縛、expiry／revocation oracle、対象revision decisionが残る。",
+        "relation": "SECURITYの2026-09-28 decisionは固定L1 revisionとL2/L11一式を確定・採択し、A案で全操作へのauthority境界を適用する。旧SEA-FR-001はSECURITY L2の旧SEA authority tuple source familyに属するが、field tuple全体を現行pairへ選択spanとして束縛した記録はない。",
+        "residual": "旧SEAのSecurityAuthorization tupleはsecurity engagement限定scopeであり、現行SECURITY decisionは全操作へ適用するauthority境界を定める。fieldの意味/cardinality、issuer、各target/action/environment/network/data束縛、expiry/revocation oracleのうちどこまで同値に対応するかと、この旧FR行の個別crosswalk/adopted-pair bindingは未確定。",
         "counterexample": "語彙hitまたはsource-family/candidate参照だけから要求採択、exact source-row binding、oracle実施、coverage closureを導く。",
-        "source_family_relation_found": false,
+        "source_family_relation_found": true,
         "candidate_or_source_range_reference_found": true,
         "selected_source_row_crosswalk_found": false,
         "source_range_crosswalk_found": false,
@@ -1817,7 +1849,9 @@
           "retired": false,
           "closed": false,
           "authority_effect": "none"
-        }
+        },
+        "current_decision_ref": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md#L68-L70",
+        "legacy_scope_difference": "旧SEAはsecurity engagement限定scope、現行SECURITYは全操作のauthority境界。"
       }
     },
     {
@@ -2007,20 +2041,31 @@
         "exclusive_group": "受入oracle",
         "normative_context_role": "acceptance_expected_or_negative_behavior",
         "standalone_requirement_condition": true,
-        "relation": "3L-AC-030は下流capacityからactive WIP／backpressureを導出し、queue／CI／merge／budget圧迫時の盲目的dispatchを拒否する。現行OS L11には3L-R-28／backpressureの限定参照があるが、この行の個別bindingではない。",
-        "residual": "capacity入力、WIP式、圧迫原因／閾値、回復／再開oracleが未定。",
+        "relation": "旧3L-AC-030の選択span「上限までの盲目的dispatchを拒否」のみ。D57 :73の条件付き採択はcapacity増枠から新しいmerge権限を生じさせず、旧lineの他条件を採用しない。 source-line SHAからreceipt `docs/governance/audits/requirement-registration/helixos-o3-o5-capacity-source-lines-2026-09-29-r2.jsonl` のOSCAP-050-004-S2（HELIXOS-L2-050 selected_span）へexact row/span relationを確認し、D57 line 73が固定revision `HELIXOS-L2-050/-L11-050`を条件付き採択する。",
+        "residual": "receiptのremainder_scopeにあるdownstream capacityからactive WIP/backpressure reasonを導く条件およびqueue/CI/merge/budget別fixtureはpreserved_pending。 successorは0、旧source condition closureは0。",
         "counterexample": "語彙hitまたはsource-family/candidate参照だけから要求採択、exact source-row binding、oracle実施、coverage closureを導く。",
         "source_family_relation_found": true,
         "candidate_or_source_range_reference_found": true,
-        "selected_source_row_crosswalk_found": false,
+        "selected_source_row_crosswalk_found": true,
         "source_range_crosswalk_found": false,
-        "adopted_pair_binding_found": false,
+        "adopted_pair_binding_found": true,
         "source_condition_closed": false,
         "decision_status": {
-          "adopted": false,
+          "adopted": true,
+          "adoption_scope": "selected_span_only",
           "retired": false,
           "closed": false,
           "authority_effect": "none"
+        },
+        "current_source_atom_binding": {
+          "legacy_candidate_source_line_id": "LEGACY-CAND-LINE-004436",
+          "receipt_ref": "docs/governance/audits/requirement-registration/helixos-o3-o5-capacity-source-lines-2026-09-29-r2.jsonl#OSCAP-050-004-S2",
+          "atom_id": "OSCAP-050-004-S2",
+          "selected_span_only": true,
+          "paired_l2_l11": "HELIXOS-L2-050 / HELIXOS-L11-050",
+          "po_decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md#L73",
+          "successor_requirement_ids": [],
+          "source_condition_closed": false
         }
       }
     },
@@ -2109,20 +2154,31 @@
         "exclusive_group": "受入oracle",
         "normative_context_role": "acceptance_expected_or_negative_behavior",
         "standalone_requirement_condition": true,
-        "relation": "3L-AC-031は拡張段階ごとの実案件・費用・品質・回復証拠を要求し、第3reviewerはtyped threshold時だけ起動する。現行OS L11は旧3Lの一部を限定的に再導出し、固定数を持ち込まず閾値／session操作をPO判断に残す。この旧行の採択ではない。",
-        "residual": "sample size／window、品質・費用の閾値、回復証拠、閾値authority、許可される拡張判断が未解決。",
+        "relation": "旧3L-AC-031の選択span「Claude第3枠はtyped threshold時だけ起動する」のみ。D57 :73の条件付き採択はcapacity増枠から新しいmerge権限を生じさせず、固定第3reviewer等の残余条件を採用しない。 source-line SHAからreceipt `docs/governance/audits/requirement-registration/helixos-o3-o5-capacity-source-lines-2026-09-29-r2.jsonl` のOSCAP-050-005-S2（HELIXOS-L2-050 selected_span）へexact row/span relationを確認し、D57 line 73が固定revision `HELIXOS-L2-050/-L11-050`を条件付き採択する。",
+        "residual": "receiptのremainder_scopeにあるCursor/burst各遷移、実案件・費用・品質・回復証拠、Claude第3枠とnegative oracleはpreserved_pending。 successorは0、旧source condition closureは0。",
         "counterexample": "語彙hitまたはsource-family/candidate参照だけから要求採択、exact source-row binding、oracle実施、coverage closureを導く。",
         "source_family_relation_found": true,
         "candidate_or_source_range_reference_found": true,
-        "selected_source_row_crosswalk_found": false,
+        "selected_source_row_crosswalk_found": true,
         "source_range_crosswalk_found": false,
-        "adopted_pair_binding_found": false,
+        "adopted_pair_binding_found": true,
         "source_condition_closed": false,
         "decision_status": {
-          "adopted": false,
+          "adopted": true,
+          "adoption_scope": "selected_span_only",
           "retired": false,
           "closed": false,
           "authority_effect": "none"
+        },
+        "current_source_atom_binding": {
+          "legacy_candidate_source_line_id": "LEGACY-CAND-LINE-004437",
+          "receipt_ref": "docs/governance/audits/requirement-registration/helixos-o3-o5-capacity-source-lines-2026-09-29-r2.jsonl#OSCAP-050-005-S2",
+          "atom_id": "OSCAP-050-005-S2",
+          "selected_span_only": true,
+          "paired_l2_l11": "HELIXOS-L2-050 / HELIXOS-L11-050",
+          "po_decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md#L73",
+          "successor_requirement_ids": [],
+          "source_condition_closed": false
         }
       }
     },
@@ -2845,7 +2901,7 @@
     {
       "role": "superseded_prior_audit_version",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-161-180-2026-10-01.json",
-      "commit": "32c6308668b47887a17f6600a564c2351ea355e7",
+      "commit": "44fb9373a2eadd8a5cb8d089e8983b0274824675",
       "sha256": "43f61af38799dc0210ec5af01df4c21e6fac82a2b2f377f9aa743716dc7e7cdb",
       "not_used_for_current_rank_order": true,
       "superseded_by": {

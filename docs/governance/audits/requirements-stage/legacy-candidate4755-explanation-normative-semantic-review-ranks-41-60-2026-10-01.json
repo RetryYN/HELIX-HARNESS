@@ -4,7 +4,7 @@
   "created_against_commit": "50686b6762788574cb471967e8c24846d3dd56ae",
   "authority_effect": "none",
   "scope": {
-    "screen_commit": "f330d71d2b86d5d2e762478ce85d9d396b81bb54",
+    "screen_commit": "2fdc1dfef3ec81e96eb91a03a234592e328980e0:docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-marker-screen-2026-10-01.json",
     "screen_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-marker-screen-2026-10-01.json",
     "screen_sha256": "1f9b0b6e05bfb46d937dfbbb954e8f7aa956c440acd526cbad2487b82893efbb",
     "screen_pool_size": 255,
@@ -188,7 +188,7 @@
   "pinned_inputs": [
     {
       "role": "mechanical_marker_screen",
-      "commit": "f330d71d2b86d5d2e762478ce85d9d396b81bb54",
+      "commit": "2fdc1dfef3ec81e96eb91a03a234592e328980e0",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-marker-screen-2026-10-01.json",
       "sha256": "1f9b0b6e05bfb46d937dfbbb954e8f7aa956c440acd526cbad2487b82893efbb"
     },
@@ -254,7 +254,7 @@
     },
     {
       "role": "prior_ranks21_40_audit",
-      "commit": "8ab72549970c56a0f210667c6431be733bb8f944",
+      "commit": "709a31f51c7c0569513d02723a45199ca8de7f30",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-21-40-2026-10-01.json",
       "sha256": "7498c57886474b0663e19655ab13f0a1a2f468492c87bb74b486c0c6a50f249b"
     }
