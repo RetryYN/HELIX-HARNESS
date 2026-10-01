@@ -60,3 +60,7 @@ source holding `MPR-SH-IR-003`と旧carry-forward rowsは変更していない�
 - 旧本文・IR・HAC-HIL-14a・旧assertion consumerの原文、asset ID、file/line hash、relationを静的照合した。
 - 2026-09-28固定decisionとcurrent mainの採択済みL2/L11 rowsを比較し、HARNESS-005/022とOS-020/021の本文がfixed revisionと同一であることを確認した。OS-030は後続PO判断で保留のまま確認した。
 - L2/L11候補section、source-lines JSONL、coverage receipt、register entryのID、digest、境界、対応関係を静的検証する。旧runtime/test/CI、新世代CIは実行しない。
+
+## 最新mainへの追随
+
+構築時72d08ebの照合は履歴として保持する。PR比較先は統合main `6f859fc03c9add36d84eb153cb1832b26768d6d1` とし、既存mainの台帳642行prefixへ064候補1行だけを追記する。既存要求本文、source atom、paired section digestは不変。現行Bindingのfile SHAだけを追随する。
