@@ -1,0 +1,2161 @@
+{
+  "schema_version": "helix-legacy-candidate4755-explanation-normative-complement-semantic-review.v1",
+  "audit_id": "legacy-candidate4755-explanation-normative-complement-ranks-121-140-2026-10-01",
+  "created_against_commit": "812dc06171bba479e870b10f62d8ada526f68a70",
+  "authority_effect": "none",
+  "purpose": "Semantic audit of numeric-ID ranks 121–140 in the 2,710-row complement. Marker absence is a screening result, not evidence that a source row is non-normative; the adjacent context and current decision scope are reviewed per row.",
+  "pool_derivation": {
+    "baseline_ref": "#2353 full row_records",
+    "ordered_classification_overlays": [
+      "#2356",
+      "#2360",
+      "#2363",
+      "#2366",
+      "#2367",
+      "#2368",
+      "#2369",
+      "#2381"
+    ],
+    "effective_explanation_count": 2965,
+    "fully_screened_marker_pool_count": 255,
+    "complement_count": 2710,
+    "equation": "2965 - 255 = 2710",
+    "screen_method": "Reapply the pinned case-insensitive prohibition/mandatory/conditional regexes to exact source_line_text in effective explanation rows; exclude only the 3 marker-hit Markdown table headers whose immediately following physical line is a delimiter.",
+    "sort_key": "numeric LEGACY-CAND-LINE suffix ascending",
+    "selected_ranks": [
+      121,
+      140
+    ],
+    "selected_count": 20,
+    "selected_ids": [
+      "LEGACY-CAND-LINE-000205",
+      "LEGACY-CAND-LINE-000206",
+      "LEGACY-CAND-LINE-000207",
+      "LEGACY-CAND-LINE-000208",
+      "LEGACY-CAND-LINE-000211",
+      "LEGACY-CAND-LINE-000215",
+      "LEGACY-CAND-LINE-000216",
+      "LEGACY-CAND-LINE-000219",
+      "LEGACY-CAND-LINE-000221",
+      "LEGACY-CAND-LINE-000222",
+      "LEGACY-CAND-LINE-000223",
+      "LEGACY-CAND-LINE-000225",
+      "LEGACY-CAND-LINE-000229",
+      "LEGACY-CAND-LINE-000231",
+      "LEGACY-CAND-LINE-000235",
+      "LEGACY-CAND-LINE-000236",
+      "LEGACY-CAND-LINE-000237",
+      "LEGACY-CAND-LINE-000238",
+      "LEGACY-CAND-LINE-000239",
+      "LEGACY-CAND-LINE-000240"
+    ],
+    "selected_ids_sha256": "deb80c39d7e5be99e42ae833756bf660eec716e2920e2cd54c0704d10e7d2f2a",
+    "prior_rank_overlap_count": 0,
+    "reconstruction_checks": {
+      "baseline_source_rows": 4755,
+      "all_baseline_ids_unique": true,
+      "overlay_joined_by_exact_source_id": true,
+      "overlay_sets_disjoint": true,
+      "final_classification_counts": {
+        "condition_aggregate": 864,
+        "explanation": 2965,
+        "structure": 926
+      },
+      "effective_explanation_rows_recomputed": 2965,
+      "raw_marker_matches_before_three_header_exclusions": 258,
+      "marker_header_exclusions": 3,
+      "marker_header_ids": [
+        "LEGACY-CAND-LINE-001500",
+        "LEGACY-CAND-LINE-001514",
+        "LEGACY-CAND-LINE-001910"
+      ],
+      "marker_unique_ids": 255,
+      "complement_rows": 2710,
+      "selected_rows_effective_explanation": true,
+      "selected_rows_marker_negative": true,
+      "rank121_through140_recomputed_from_full_sorted_complement": true
+    }
+  },
+  "pinned_inputs": [
+    {
+      "role": "full_row_records_baseline",
+      "ref": "#2353",
+      "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+      "git_blob_sha": "2b0e305c68da5610f354a802c7410363ede1261c"
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "ref": "#2356",
+      "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164",
+      "git_blob_sha": null
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "ref": "#2360",
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+      "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb",
+      "git_blob_sha": null
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "ref": "#2363",
+      "commit": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+      "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384",
+      "git_blob_sha": null
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "ref": "#2366",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+      "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6",
+      "git_blob_sha": null
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "ref": "#2367",
+      "commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
+      "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d",
+      "git_blob_sha": null
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "ref": "#2368",
+      "commit": "f89f71e0371440e9e10636499192c2311872b024",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
+      "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95",
+      "git_blob_sha": null
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "ref": "#2369",
+      "commit": "081b0b6612b802cfcb02b3cecda1559dd9a3ce13",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30.json",
+      "sha256": "5ed02b037f78ca25991b396e232e8b1ee754b0c91b056ed6640c9fb1c47cf0c0",
+      "git_blob_sha": null
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "ref": "#2381",
+      "commit": "6e62f76986f19d14281cb2a96eca460c5430dcc6",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-metadata10-classification-proposal-2026-09-30.json",
+      "sha256": "512f9ceafe935648d459d6b268ff4d3952f0e8264298213ad278256236b5f40e",
+      "git_blob_sha": "47d52add2120ccfe2f278130c42119e9bfcf8354"
+    },
+    {
+      "role": "corrected_marker_screen",
+      "commit": "812dc06171bba479e870b10f62d8ada526f68a70",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-marker-screen-2026-10-01.json",
+      "sha256": "1f9b0b6e05bfb46d937dfbbb954e8f7aa956c440acd526cbad2487b82893efbb",
+      "git_blob_sha": "2671d48a68d18dcfec7c7e4781e97429821ddfe7"
+    },
+    {
+      "role": "effective_classification_recount",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-effective-classification-recount-after-2381-2026-09-30.json",
+      "sha256": "92c713d6c74ecc138f43d2169b4387f511e31a0b26ba9ca538994c8df80a9932",
+      "git_blob_sha": "6c44b02dc1720c135e1d9525bf81567d338dee57"
+    },
+    {
+      "role": "source_line_carry_forward_ledger",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+    },
+    {
+      "role": "legacy_asset_disposition_ledger",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    }
+  ],
+  "current_F6_pins": {
+    "fixed_pair_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "pair_files": [
+      {
+        "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "git_blob_sha": "e09de04601039d8593768eb3f3342d3416d03b8b"
+      },
+      {
+        "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "git_blob_sha": "f827c6bd955bbeb91deba5b7dced93e512e5da9e"
+      },
+      {
+        "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+        "git_blob_sha": "44a2db57aac3e23963da283284d229b5269d7ed2"
+      },
+      {
+        "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+        "git_blob_sha": "e75e5d5163149bc3c2ed48f973067ba991accc33"
+      }
+    ],
+    "relation": "The F6/current L2 files reference AVS sources and generic authority/progression requirements. Paired L11 conditions do not map these selected legacy acceptance rows individually."
+  },
+  "decision_pins": {
+    "audit_head_decisions": [
+      {
+        "commit": "812dc06171bba479e870b10f62d8ada526f68a70",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "file_sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
+        "git_blob_sha": "9af6816e38d0fc0ed4e1afd258094e6afb753e34"
+      },
+      {
+        "commit": "812dc06171bba479e870b10f62d8ada526f68a70",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+        "git_blob_sha": "e9f8b7652d9f2a958685845a005d878b9f4be149"
+      },
+      {
+        "commit": "812dc06171bba479e870b10f62d8ada526f68a70",
+        "path": "docs/governance/decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md",
+        "file_sha256": "899cc2affe05ae0c72fa873fe1c5dfe9f6bbe3a0e77089ef2e087ed63a4765cf",
+        "git_blob_sha": "804691037b96bc4dec96e44c8e9eec9f0ad45817"
+      },
+      {
+        "commit": "812dc06171bba479e870b10f62d8ada526f68a70",
+        "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+        "file_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+        "git_blob_sha": "c30870995516c7aed5fbff4a067e704ef3b4e544"
+      },
+      {
+        "commit": "812dc06171bba479e870b10f62d8ada526f68a70",
+        "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "file_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+        "git_blob_sha": "019b328e875808f7b587bef97dcdaa310dae0acd"
+      }
+    ],
+    "decision_semantics": {
+      "L2D-S1-01": "defer; neither approve nor reject; L2/L11 application and successor assignment do not occur.",
+      "OS_2026-09-28": "the explicit adopted set is HELIXOS-L2-014..029; legacy holding and unassigned atoms remain, and no coverage/retirement/holding release follows.",
+      "HARNESS_2026-09-28": "the explicit adopted set is the 24 listed candidates; existing source holding/unassigned atoms remain and the decision does not establish cross-source coverage/retirement."
+    }
+  },
+  "current_relation_lines": [
+    {
+      "commit": "812dc06171bba479e870b10f62d8ada526f68a70",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "file_sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
+      "lines": [
+        {
+          "line": 185,
+          "text": "[AVS候補](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requests.md)、",
+          "line_sha256": "3d7195493f7064ae7a2d7cbe3a2c15cd591c1cb171f813b8bd22c3186ce550b1"
+        },
+        {
+          "line": 188,
+          "text": "RFAは候補承認済み・正本化待ち、AVS／DGHはdraftであり、本書への記載で採用状態を変更しない。",
+          "line_sha256": "bcb626ec96d19a549ee60dcbe761e6300f5f332aaede4493ec877ef7972a1b67"
+        }
+      ]
+    },
+    {
+      "commit": "812dc06171bba479e870b10f62d8ada526f68a70",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+      "lines": [
+        {
+          "line": 427,
+          "text": "[AVS](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requests.md)、",
+          "line_sha256": "8c0ead973141f69d79afb432d98f683bbf079ad922ee8cf2ada9ed5d102f29c4"
+        },
+        {
+          "line": 429,
+          "text": "[DGH](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requests.md)をHELIXOS-L2-001／002／003／007へ対応づける。",
+          "line_sha256": "6ff6d61c39377a00e1544a6261320965bfb44bacd88819008bcf0d1f1f55d3b3"
+        },
+        {
+          "line": 430,
+          "text": "RFAは承認済み・正本化待ちの候補、AVS／DGHはdraft候補として扱い、同じ採用状態に丸めない。",
+          "line_sha256": "5aa93bddd9bc30a40ac0ed61832e968785535343c83e9acb048270be8f152d07"
+        },
+        {
+          "line": 507,
+          "text": "| AVS | [AVS要件](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requirements.md)：AVS-FR-001..005 | HELIXOS-L2-001／003／007 |",
+          "line_sha256": "c56ea464d2e4bc3870c1cd0776df76cb4f774a04454673cad2db74e41bbc3c8c"
+        }
+      ]
+    },
+    {
+      "commit": "812dc06171bba479e870b10f62d8ada526f68a70",
+      "path": "docs/governance/decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md",
+      "file_sha256": "899cc2affe05ae0c72fa873fe1c5dfe9f6bbe3a0e77089ef2e087ed63a4765cf",
+      "lines": [
+        {
+          "line": 40,
+          "text": "| `HDEC-L2D-S1-01-DEFER-01` | `L2D-S1-01 authority-vocabulary` | `docs/governance/audits/source-rebaseline/l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md` | `f2c2db07995b10ee8a384fdafc8c54b2e2bb9d4a5fc64d8057f28a8daa569c46` | defer | `defer` |",
+          "line_sha256": "90f6a672e141346ed159734b859aad0cb8367c8796590394513ff721d34339f0"
+        },
+        {
+          "line": 111,
+          "text": "`L2D-S1-01`は採否を先送りする。承認でも却下でもない。判断packet v2は",
+          "line_sha256": "254ec45815b63393950a4bf120f0cf8b7da7d62b683d3d48561d00d224bca994"
+        },
+        {
+          "line": 118,
+          "text": "- `L2D-S1-01`のL2／L11本文への適用、successor割当、次のdecision unitへの前進を行わない。",
+          "line_sha256": "140d848312884c04d958b9799f29277e078597d46cc398e8b8b16b66f3953d0e"
+        },
+        {
+          "line": 142,
+          "text": "| 旧L1意味source | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requests.md` | `5c29cba6331dff96082f74612ceaf755fe4a30a10e75be62797e8073de7fec99` |",
+          "line_sha256": "4fea6c03b664caf228fa4bba4ec36887daae59927378e5d58d3429528f02ebab"
+        },
+        {
+          "line": 144,
+          "text": "| 旧L10 oracle source | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md` | `0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0` |",
+          "line_sha256": "9551af4e93ca2715d59654ded3bbd1b72e2b13bb6658d9005b49285c9e53cb1e"
+        }
+      ]
+    },
+    {
+      "commit": "812dc06171bba479e870b10f62d8ada526f68a70",
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "file_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "lines": [
+        {
+          "line": 46,
+          "text": "POは以下の全16件を、確認資料に記載された各version_targetと適用条件を保持して採用した。",
+          "line_sha256": "4fb7810a880eadf6d6ec0f27d8b828faddde3a98a267528fec5e5902dd75b0e4"
+        },
+        {
+          "line": 48,
+          "text": "HELIXOS-L2-014, HELIXOS-L2-015, HELIXOS-L2-016, HELIXOS-L2-017, HELIXOS-L2-018, HELIXOS-L2-019, HELIXOS-L2-020, HELIXOS-L2-021, HELIXOS-L2-022, HELIXOS-L2-023, HELIXOS-L2-024, HELIXOS-L2-025, HELIXOS-L2-026, HELIXOS-L2-027, HELIXOS-L2-028, HELIXOS-L2-029",
+          "line_sha256": "3dfc3b0fc76ac744c97ae07cbeec090ad45722027b058f1867c395432018d053"
+        },
+        {
+          "line": 56,
+          "text": "- 旧sourceの未完引継ぎ、既存holding、および旧要求に関する未解決atomは維持する。今回の採用から旧sourceの被覆完了、retire、holding解除、またはcoverage範囲拡張を導かない。",
+          "line_sha256": "e73c9811034ab3807b38780586a03c4b939799d4b2c94c8016e9372914f13c55"
+        }
+      ]
+    },
+    {
+      "commit": "812dc06171bba479e870b10f62d8ada526f68a70",
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "file_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "lines": [
+        {
+          "line": 65,
+          "text": "",
+          "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 72,
+          "text": "- 後続版・Web条件付き要求は表のversion_targetと適用条件のまま採用し、1.0へ前倒ししない。要求への合意を実装済み・受入実行済みと扱わない。",
+          "line_sha256": "9bc148eb5fb85aa1c7384d983a6909fc636502786a248397111cf7595a7acfc4"
+        },
+        {
+          "line": 73,
+          "text": "- 旧sourceの保持点・意味再導出・変更理由は固定確認資料の旧source対応と機構内監査へ結び付ける。既存の未完source holding・未割当atomを保持し、候補の採用から旧sourceのretireや全被覆完了を生成しない。",
+          "line_sha256": "346b7622a38a6426496e546042b0df0a47d0742730316dfbf26678ce7509c1cb"
+        }
+      ]
+    }
+  ],
+  "source_family_relation_found": true,
+  "source_family_relation_evidence": [
+    {
+      "commit": "812dc06171bba479e870b10f62d8ada526f68a70",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "line": 185,
+      "relation": "AVS request source referenced; adjacent line 188 retains AVS as draft."
+    },
+    {
+      "commit": "812dc06171bba479e870b10f62d8ada526f68a70",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "line": 507,
+      "relation": "AVS-FR-001..005 linked to HELIXOS-L2-001/003/007; current line 430 retains AVS as draft."
+    }
+  ],
+  "interpretation_boundary": [
+    "Marker-negative rows may still contain normative acceptance or authority semantics.",
+    "Generic current authority requirements, source-family links, and AVS references do not establish selected-row adopted-pair binding or acceptance execution.",
+    "Do not infer L2D-S1-01 approval from the 2026-09-28 OS/HARNESS pair decisions; those decisions preserve old-source holding and apply only to their explicit candidate sets.",
+    "Metadata and table header rows remain in the numeric complement but do not inherit neighboring rows’ predicates.",
+    "No successor, adopted, retired, or closed status is assigned."
+  ],
+  "summary": {
+    "rows": 20,
+    "marker_negative_normative_or_authority_rows": 9,
+    "metadata_or_structure_rows": 11,
+    "row_specific_current_crosswalks": 0,
+    "adopted_pair_bindings": 0,
+    "successor_requirement_ids": 0,
+    "closures": 0,
+    "authority_effect": "none",
+    "source_authority_states": [
+      "historical_candidate"
+    ],
+    "target_authority_states": [
+      "draft_candidate"
+    ],
+    "atomization_states": [
+      "preserved_pending_atomization"
+    ],
+    "asset_disposition": [
+      "unresolved"
+    ],
+    "product_target": [
+      "unresolved"
+    ]
+  },
+  "limitations": [
+    "No acceptance oracle was executed.",
+    "The 2026-09-19 L2D-S1-01 defer and 2026-09-28 pair decisions were read as bounded records; this audit does not create a new human decision.",
+    "Legacy archive was read-only; no old workflow, CLI, hook, adapter, runtime, test, or CI was executed.",
+    "No successor assignment, implementation claim, source coverage closure, or requirement-stage completion is made."
+  ],
+  "queue": [
+    {
+      "complement_rank": 121,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000205",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "physical_line_number": 11,
+      "exact_source_line_text": "owner: QA / Codex TL",
+      "neighboring_archive_context": [
+        {
+          "line": 9,
+          "text": "created: 2026-09-02"
+        },
+        {
+          "line": 10,
+          "text": "updated: 2026-09-02"
+        },
+        {
+          "line": 11,
+          "text": "owner: QA / Codex TL"
+        },
+        {
+          "line": 12,
+          "text": "plan: PLAN-L3-82-authority-vocabulary-separation"
+        },
+        {
+          "line": 13,
+          "text": "parent_design: docs/governance/candidates/authority-vocabulary-requirements.md"
+        }
+      ],
+      "source_file_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+      "source_line_sha256": "a973e20691862a6cad97b36b629b063a891235db93b95a01bfb5bb8d38f5a926",
+      "physical_line_bytes_sha256_including_terminator": "da84824da61af3e415c5b7727ddbd69dbd32ffcce534865fd02d3b8e0206fa69",
+      "baseline_2353_physical_line_bytes_sha256": "da84824da61af3e415c5b7727ddbd69dbd32ffcce534865fd02d3b8e0206fa69",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 205,
+        "entry_line_sha256_including_terminator": "79880a5e2281d7ba2a8d4ad2ac0b853a3de7ac63794eba41822b00592d0d2b94",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000205",
+          "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md",
+          "source_file_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+          "source_line": 11,
+          "source_line_text": "owner: QA / Codex TL",
+          "source_line_sha256": "sha256:a973e20691862a6cad97b36b629b063a891235db93b95a01bfb5bb8d38f5a926",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-5DC004CDB36F2B0C29C5",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 790,
+        "entry_line_sha256_including_terminator": "1d4ab16ac1dbfc9bc6ef53cafda0bf7ce2dc2383dc31dff3bb1ab89f9cd1edc5",
+        "asset_class": "Historical",
+        "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+        "source_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": [],
+        "reuse_exclusion_class": null
+      },
+      "semantic_review": {
+        "semantic_category": "文書metadata",
+        "semantic_reading": "owner欄は担当表示であり、単独では要求や受入条件を定めない。",
+        "possible_classification_issue": "no",
+        "current_F6_relation_and_limit": "この行は文書metadata/表構造であり、固定F6の現行要求に接続する独立条件ではない。AVSのL2D-S1-01 deferを尊重し、隣接AVS条件を移さない。",
+        "remaining_no_loss_condition": "candidate上のowner表示から、現行ownerの確定やdecision authorityを推定しない。"
+      },
+      "marker_negative_normative_or_authority_condition": false,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 122,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000206",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "physical_line_number": 12,
+      "exact_source_line_text": "plan: PLAN-L3-82-authority-vocabulary-separation",
+      "neighboring_archive_context": [
+        {
+          "line": 10,
+          "text": "updated: 2026-09-02"
+        },
+        {
+          "line": 11,
+          "text": "owner: QA / Codex TL"
+        },
+        {
+          "line": 12,
+          "text": "plan: PLAN-L3-82-authority-vocabulary-separation"
+        },
+        {
+          "line": 13,
+          "text": "parent_design: docs/governance/candidates/authority-vocabulary-requirements.md"
+        },
+        {
+          "line": 14,
+          "text": "pair_artifact: docs/governance/candidates/authority-vocabulary-requirements.md"
+        }
+      ],
+      "source_file_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+      "source_line_sha256": "ada25aa8abd408faee10a7a47e2c252024c5fb27ed033c3eff771ae8d517345c",
+      "physical_line_bytes_sha256_including_terminator": "83272e0cd8d66eda6f8ce4f1b2425fc01ac250fae2dc350f65e7c1634f1ad383",
+      "baseline_2353_physical_line_bytes_sha256": "83272e0cd8d66eda6f8ce4f1b2425fc01ac250fae2dc350f65e7c1634f1ad383",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 206,
+        "entry_line_sha256_including_terminator": "8e0143643699e7fb7baad9c9ed5fcf2d62b2c59c24594e5e2786ca68fd8651e3",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000206",
+          "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md",
+          "source_file_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+          "source_line": 12,
+          "source_line_text": "plan: PLAN-L3-82-authority-vocabulary-separation",
+          "source_line_sha256": "sha256:ada25aa8abd408faee10a7a47e2c252024c5fb27ed033c3eff771ae8d517345c",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-5DC004CDB36F2B0C29C5",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 790,
+        "entry_line_sha256_including_terminator": "1d4ab16ac1dbfc9bc6ef53cafda0bf7ce2dc2383dc31dff3bb1ab89f9cd1edc5",
+        "asset_class": "Historical",
+        "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+        "source_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": [],
+        "reuse_exclusion_class": null
+      },
+      "semantic_review": {
+        "semantic_category": "計画参照metadata",
+        "semantic_reading": "旧plan IDへの参照。作業計画のidentityを示すだけで、現在の適用scopeや実行許可ではない。",
+        "possible_classification_issue": "no",
+        "current_F6_relation_and_limit": "この行は文書metadata/表構造であり、固定F6の現行要求に接続する独立条件ではない。AVSのL2D-S1-01 deferを尊重し、隣接AVS条件を移さない。",
+        "remaining_no_loss_condition": "planの存在・状態・承認を現行の要求採否やexecution authorityへ移さない。"
+      },
+      "marker_negative_normative_or_authority_condition": false,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 123,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000207",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "physical_line_number": 13,
+      "exact_source_line_text": "parent_design: docs/governance/candidates/authority-vocabulary-requirements.md",
+      "neighboring_archive_context": [
+        {
+          "line": 11,
+          "text": "owner: QA / Codex TL"
+        },
+        {
+          "line": 12,
+          "text": "plan: PLAN-L3-82-authority-vocabulary-separation"
+        },
+        {
+          "line": 13,
+          "text": "parent_design: docs/governance/candidates/authority-vocabulary-requirements.md"
+        },
+        {
+          "line": 14,
+          "text": "pair_artifact: docs/governance/candidates/authority-vocabulary-requirements.md"
+        },
+        {
+          "line": 15,
+          "text": "---"
+        }
+      ],
+      "source_file_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+      "source_line_sha256": "12aecc7857783443c561c1fda1964c824841ac8017ef0f289583502364b51a2c",
+      "physical_line_bytes_sha256_including_terminator": "8b5a66442e7b314bca6d70d7d9e9f7d20286d0039219b245c83f6aa09f7e2595",
+      "baseline_2353_physical_line_bytes_sha256": "8b5a66442e7b314bca6d70d7d9e9f7d20286d0039219b245c83f6aa09f7e2595",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 207,
+        "entry_line_sha256_including_terminator": "b59715b99ba4ec87a00b01d90d0dfe29fe96659d95b9f757705083adc6103b86",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000207",
+          "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md",
+          "source_file_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+          "source_line": 13,
+          "source_line_text": "parent_design: docs/governance/candidates/authority-vocabulary-requirements.md",
+          "source_line_sha256": "sha256:12aecc7857783443c561c1fda1964c824841ac8017ef0f289583502364b51a2c",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-5DC004CDB36F2B0C29C5",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 790,
+        "entry_line_sha256_including_terminator": "1d4ab16ac1dbfc9bc6ef53cafda0bf7ce2dc2383dc31dff3bb1ab89f9cd1edc5",
+        "asset_class": "Historical",
+        "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+        "source_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": [],
+        "reuse_exclusion_class": null
+      },
+      "semantic_review": {
+        "semantic_category": "親設計参照metadata",
+        "semantic_reading": "pairの親となる要求設計文書を示すprovenance pointer。内容条件自体はその文書内の別source rowsにある。",
+        "possible_classification_issue": "no",
+        "current_F6_relation_and_limit": "この行は文書metadata/表構造であり、固定F6の現行要求に接続する独立条件ではない。AVSのL2D-S1-01 deferを尊重し、隣接AVS条件を移さない。",
+        "remaining_no_loss_condition": "parent pointerだけでrequirementsの全atomや採択範囲を確定しない。"
+      },
+      "marker_negative_normative_or_authority_condition": false,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 124,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000208",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "physical_line_number": 14,
+      "exact_source_line_text": "pair_artifact: docs/governance/candidates/authority-vocabulary-requirements.md",
+      "neighboring_archive_context": [
+        {
+          "line": 12,
+          "text": "plan: PLAN-L3-82-authority-vocabulary-separation"
+        },
+        {
+          "line": 13,
+          "text": "parent_design: docs/governance/candidates/authority-vocabulary-requirements.md"
+        },
+        {
+          "line": 14,
+          "text": "pair_artifact: docs/governance/candidates/authority-vocabulary-requirements.md"
+        },
+        {
+          "line": 15,
+          "text": "---"
+        },
+        {
+          "line": 16,
+          "text": ""
+        }
+      ],
+      "source_file_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+      "source_line_sha256": "51f1ed5ba5b948c2591a3b71c03691973bbae69b2863f03393737ad181b990f7",
+      "physical_line_bytes_sha256_including_terminator": "dea7f0d70fd15d54b813ab875e5b8eefb2de54f1b0f467536aa10482aa24c460",
+      "baseline_2353_physical_line_bytes_sha256": "dea7f0d70fd15d54b813ab875e5b8eefb2de54f1b0f467536aa10482aa24c460",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 208,
+        "entry_line_sha256_including_terminator": "486f1e6c2ac857ca4086cd5dff62898cb555b888ea9b8095ef7221f3677de20f",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000208",
+          "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md",
+          "source_file_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+          "source_line": 14,
+          "source_line_text": "pair_artifact: docs/governance/candidates/authority-vocabulary-requirements.md",
+          "source_line_sha256": "sha256:51f1ed5ba5b948c2591a3b71c03691973bbae69b2863f03393737ad181b990f7",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-5DC004CDB36F2B0C29C5",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 790,
+        "entry_line_sha256_including_terminator": "1d4ab16ac1dbfc9bc6ef53cafda0bf7ce2dc2383dc31dff3bb1ab89f9cd1edc5",
+        "asset_class": "Historical",
+        "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+        "source_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": [],
+        "reuse_exclusion_class": null
+      },
+      "semantic_review": {
+        "semantic_category": "pair artifact参照metadata",
+        "semantic_reading": "受入設計と対にされた要求artifactのpath参照。受入条件でも要求採択でもない。",
+        "possible_classification_issue": "no",
+        "current_F6_relation_and_limit": "この行は文書metadata/表構造であり、固定F6の現行要求に接続する独立条件ではない。AVSのL2D-S1-01 deferを尊重し、隣接AVS条件を移さない。",
+        "remaining_no_loss_condition": "artifact pairの記述だけからL2/L11 adoptionやoracle実行を生成しない。"
+      },
+      "marker_negative_normative_or_authority_condition": false,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 125,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000211",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "physical_line_number": 19,
+      "exact_source_line_text": "| AC | Requirement | 合格条件 | Negative oracle |",
+      "neighboring_archive_context": [
+        {
+          "line": 17,
+          "text": "# authority語彙分離受入設計"
+        },
+        {
+          "line": 18,
+          "text": ""
+        },
+        {
+          "line": 19,
+          "text": "| AC | Requirement | 合格条件 | Negative oracle |"
+        },
+        {
+          "line": 20,
+          "text": "|---|---|---|---|"
+        },
+        {
+          "line": 21,
+          "text": "| `AVS-AC-001` | AVS-R-01 | 会話入力をexactly-one分類する | 0件／複数分類を拒否 |"
+        }
+      ],
+      "source_file_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+      "source_line_sha256": "39f2c8643b1cb336e728e5e23ad0661c2df9b95c5188b9add52ed47cfc41391a",
+      "physical_line_bytes_sha256_including_terminator": "be3d341a760721e1f3ccfd8685e2d89dbd9a7691e176caf17f5b63adfe50ad30",
+      "baseline_2353_physical_line_bytes_sha256": "be3d341a760721e1f3ccfd8685e2d89dbd9a7691e176caf17f5b63adfe50ad30",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 211,
+        "entry_line_sha256_including_terminator": "6c19613f44eb146e537adff4cd18f5102c5a2ce7bb8b5c8fcab80d1e5ae774ed",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000211",
+          "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md",
+          "source_file_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+          "source_line": 19,
+          "source_line_text": "| AC | Requirement | 合格条件 | Negative oracle |",
+          "source_line_sha256": "sha256:39f2c8643b1cb336e728e5e23ad0661c2df9b95c5188b9add52ed47cfc41391a",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-5DC004CDB36F2B0C29C5",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 790,
+        "entry_line_sha256_including_terminator": "1d4ab16ac1dbfc9bc6ef53cafda0bf7ce2dc2383dc31dff3bb1ab89f9cd1edc5",
+        "asset_class": "Historical",
+        "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+        "source_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": [],
+        "reuse_exclusion_class": null
+      },
+      "semantic_review": {
+        "semantic_category": "Markdown table header",
+        "semantic_reading": "AC、Requirement、合格条件、Negative oracleの列を宣言する表構造。行単体は期待挙動・oracleを述べない。",
+        "possible_classification_issue": "no",
+        "current_F6_relation_and_limit": "この行は文書metadata/表構造であり、固定F6の現行要求に接続する独立条件ではない。AVSのL2D-S1-01 deferを尊重し、隣接AVS条件を移さない。",
+        "remaining_no_loss_condition": "headerは後続AC rowsの意味を取り込まず、単独のsource atomとして扱わない。"
+      },
+      "marker_negative_normative_or_authority_condition": false,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 126,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000215",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "physical_line_number": 23,
+      "exact_source_line_text": "| `AVS-AC-002` | AVS-R-02 | 相談・叱責・質問・仮説をauthorityへ昇格しない | 「取り込んで」「なぜ」「遅い」をapproval／decisionにしない |",
+      "neighboring_archive_context": [
+        {
+          "line": 21,
+          "text": "| `AVS-AC-001` | AVS-R-01 | 会話入力をexactly-one分類する | 0件／複数分類を拒否 |"
+        },
+        {
+          "line": 22,
+          "text": "| `AVS-AC-001A` | AVS-R-01A | directive候補が実行意図・対象・許可scopeを持つ | 命令形、叱責、強い口調だけのdirective化を拒否 |"
+        },
+        {
+          "line": 23,
+          "text": "| `AVS-AC-002` | AVS-R-02 | 相談・叱責・質問・仮説をauthorityへ昇格しない | 「取り込んで」「なぜ」「遅い」をapproval／decisionにしない |"
+        },
+        {
+          "line": 24,
+          "text": "| `AVS-AC-003` | AVS-R-03 | directive受領後も正本・安全・受入を検査する | `指示だから`で矛盾や危険操作を通さない |"
+        },
+        {
+          "line": 25,
+          "text": "| `AVS-AC-003A` | AVS-R-03A | directive準拠と技術rationaleを別field・別証拠で保持する | `POが言った`だけの設計、review、完了claimを拒否 |"
+        }
+      ],
+      "source_file_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+      "source_line_sha256": "bc542d2d7b488848323bf868bb72f382ac973410ab042c0c3d8835a8ca434f4a",
+      "physical_line_bytes_sha256_including_terminator": "1bef0b43c41ee40b9a5f788350d436598eccd7abbf5d08a9b8bcf21827d7ad3e",
+      "baseline_2353_physical_line_bytes_sha256": "1bef0b43c41ee40b9a5f788350d436598eccd7abbf5d08a9b8bcf21827d7ad3e",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 215,
+        "entry_line_sha256_including_terminator": "28a048cd4729d50c8e49715435784429a4882b9212e2fe675ee11f9620eae4c1",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000215",
+          "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md",
+          "source_file_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+          "source_line": 23,
+          "source_line_text": "| `AVS-AC-002` | AVS-R-02 | 相談・叱責・質問・仮説をauthorityへ昇格しない | 「取り込んで」「なぜ」「遅い」をapproval／decisionにしない |",
+          "source_line_sha256": "sha256:bc542d2d7b488848323bf868bb72f382ac973410ab042c0c3d8835a8ca434f4a",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-5DC004CDB36F2B0C29C5",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 790,
+        "entry_line_sha256_including_terminator": "1d4ab16ac1dbfc9bc6ef53cafda0bf7ce2dc2383dc31dff3bb1ab89f9cd1edc5",
+        "asset_class": "Historical",
+        "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+        "source_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": [],
+        "reuse_exclusion_class": null
+      },
+      "semantic_review": {
+        "semantic_category": "受入oracle／AVS-R-02",
+        "semantic_reading": "相談・叱責・質問・仮説をauthorityへ昇格させず、「取り込んで」「なぜ」「遅い」をapproval／decisionにしない否定条件。",
+        "possible_classification_issue": "yes",
+        "current_F6_relation_and_limit": "固定F6ではAVS要求source-familyへの接続および汎用authority境界を確認できるが、L2D-S1-01はdeferであり、この旧L10 oracle rowへのadopted-pair binding/実施証拠はない。",
+        "remaining_no_loss_condition": "現行の一般authority境界は意味上近いが、L2D-S1-01 deferによりAVS-R-02/AC-002のpair adoptionはない。入力種別・誤分類negative oracle・実行証拠が残る。"
+      },
+      "marker_negative_normative_or_authority_condition": true,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 127,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000216",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "physical_line_number": 24,
+      "exact_source_line_text": "| `AVS-AC-003` | AVS-R-03 | directive受領後も正本・安全・受入を検査する | `指示だから`で矛盾や危険操作を通さない |",
+      "neighboring_archive_context": [
+        {
+          "line": 22,
+          "text": "| `AVS-AC-001A` | AVS-R-01A | directive候補が実行意図・対象・許可scopeを持つ | 命令形、叱責、強い口調だけのdirective化を拒否 |"
+        },
+        {
+          "line": 23,
+          "text": "| `AVS-AC-002` | AVS-R-02 | 相談・叱責・質問・仮説をauthorityへ昇格しない | 「取り込んで」「なぜ」「遅い」をapproval／decisionにしない |"
+        },
+        {
+          "line": 24,
+          "text": "| `AVS-AC-003` | AVS-R-03 | directive受領後も正本・安全・受入を検査する | `指示だから`で矛盾や危険操作を通さない |"
+        },
+        {
+          "line": 25,
+          "text": "| `AVS-AC-003A` | AVS-R-03A | directive準拠と技術rationaleを別field・別証拠で保持する | `POが言った`だけの設計、review、完了claimを拒否 |"
+        },
+        {
+          "line": 26,
+          "text": "| `AVS-AC-003B` | AVS-R-03B | authority矛盾をsurfaceし、可逆な適合案またはexact escalationを返す | 思考停止、盲目的実行、全件人間判断への丸投げを拒否 |"
+        }
+      ],
+      "source_file_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+      "source_line_sha256": "b233d893971d36d46c759b247410d3e09adf4ee6d48a13aefcb467bd9ed9e2be",
+      "physical_line_bytes_sha256_including_terminator": "d8c966ef0cab685c3e8cbe368064aab757f1c75fbdd04574b1ccc031a15f0340",
+      "baseline_2353_physical_line_bytes_sha256": "d8c966ef0cab685c3e8cbe368064aab757f1c75fbdd04574b1ccc031a15f0340",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 216,
+        "entry_line_sha256_including_terminator": "bc4dfbb3b888bccc6c877fbe25021d69c2ad5697d99a2c3f5fd16a4d58ec236b",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000216",
+          "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md",
+          "source_file_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+          "source_line": 24,
+          "source_line_text": "| `AVS-AC-003` | AVS-R-03 | directive受領後も正本・安全・受入を検査する | `指示だから`で矛盾や危険操作を通さない |",
+          "source_line_sha256": "sha256:b233d893971d36d46c759b247410d3e09adf4ee6d48a13aefcb467bd9ed9e2be",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-5DC004CDB36F2B0C29C5",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 790,
+        "entry_line_sha256_including_terminator": "1d4ab16ac1dbfc9bc6ef53cafda0bf7ce2dc2383dc31dff3bb1ab89f9cd1edc5",
+        "asset_class": "Historical",
+        "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+        "source_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": [],
+        "reuse_exclusion_class": null
+      },
+      "semantic_review": {
+        "semantic_category": "受入oracle／AVS-R-03",
+        "semantic_reading": "directive受領後も正本・安全・受入を検査し、「指示だから」で矛盾や危険操作を通さない。",
+        "possible_classification_issue": "yes",
+        "current_F6_relation_and_limit": "固定F6ではAVS要求source-familyへの接続および汎用authority境界を確認できるが、L2D-S1-01はdeferであり、この旧L10 oracle rowへのadopted-pair binding/実施証拠はない。",
+        "remaining_no_loss_condition": "現行権限・安全境界との近接だけではAVS AC-003の独立oracleにならない。正本/safety/acceptance各checkと矛盾・危険操作ケースの実施が未確認。"
+      },
+      "marker_negative_normative_or_authority_condition": true,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 128,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000219",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "physical_line_number": 27,
+      "exact_source_line_text": "| `AVS-AC-003C` | AVS-R-03C | AIが独立した手段選択・代替比較・反証・risk評価・検収を残す | 逐語実行や検討打切りを忠実性としてpassしない |",
+      "neighboring_archive_context": [
+        {
+          "line": 25,
+          "text": "| `AVS-AC-003A` | AVS-R-03A | directive準拠と技術rationaleを別field・別証拠で保持する | `POが言った`だけの設計、review、完了claimを拒否 |"
+        },
+        {
+          "line": 26,
+          "text": "| `AVS-AC-003B` | AVS-R-03B | authority矛盾をsurfaceし、可逆な適合案またはexact escalationを返す | 思考停止、盲目的実行、全件人間判断への丸投げを拒否 |"
+        },
+        {
+          "line": 27,
+          "text": "| `AVS-AC-003C` | AVS-R-03C | AIが独立した手段選択・代替比較・反証・risk評価・検収を残す | 逐語実行や検討打切りを忠実性としてpassしない |"
+        },
+        {
+          "line": 28,
+          "text": "| `AVS-AC-004` | AVS-R-04 | accepted decisionがADR系pointerと必須fieldを持つ | Issue comment／memoryだけのdecisionを拒否 |"
+        },
+        {
+          "line": 29,
+          "text": "| `AVS-AC-005` | AVS-R-05 | 5 identityを別schema／出力で保持する | selectionやdispositionをdecisionへ畳み込まない |"
+        }
+      ],
+      "source_file_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+      "source_line_sha256": "e0e8140b04629020070c68ac82757dd4262b75ac44ee5d89ca2e0740a4e69187",
+      "physical_line_bytes_sha256_including_terminator": "50d0d9048c8f36c1dfa6f52bd9c2393f7b42482586364349b1e610dd2262d328",
+      "baseline_2353_physical_line_bytes_sha256": "50d0d9048c8f36c1dfa6f52bd9c2393f7b42482586364349b1e610dd2262d328",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 219,
+        "entry_line_sha256_including_terminator": "8c01f7d4d2b57179ccba9fd61c694766454398523d8069cf93a67daf67e4a332",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000219",
+          "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md",
+          "source_file_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+          "source_line": 27,
+          "source_line_text": "| `AVS-AC-003C` | AVS-R-03C | AIが独立した手段選択・代替比較・反証・risk評価・検収を残す | 逐語実行や検討打切りを忠実性としてpassしない |",
+          "source_line_sha256": "sha256:e0e8140b04629020070c68ac82757dd4262b75ac44ee5d89ca2e0740a4e69187",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-5DC004CDB36F2B0C29C5",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 790,
+        "entry_line_sha256_including_terminator": "1d4ab16ac1dbfc9bc6ef53cafda0bf7ce2dc2383dc31dff3bb1ab89f9cd1edc5",
+        "asset_class": "Historical",
+        "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+        "source_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": [],
+        "reuse_exclusion_class": null
+      },
+      "semantic_review": {
+        "semantic_category": "受入oracle／AVS-R-03C",
+        "semantic_reading": "AIが独立した手段選択・代替比較・反証・risk評価・検収を残し、逐語実行や検討打切りを忠実性としてpassしない。",
+        "possible_classification_issue": "yes",
+        "current_F6_relation_and_limit": "固定F6ではAVS要求source-familyへの接続および汎用authority境界を確認できるが、L2D-S1-01はdeferであり、この旧L10 oracle rowへのadopted-pair binding/実施証拠はない。",
+        "remaining_no_loss_condition": "AI自律境界の一般記述はこの旧oracle rowへの採択bindingではない。各独立判断要素の観測方法とpass/fail evidenceが未定。"
+      },
+      "marker_negative_normative_or_authority_condition": true,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 129,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000221",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "physical_line_number": 29,
+      "exact_source_line_text": "| `AVS-AC-005` | AVS-R-05 | 5 identityを別schema／出力で保持する | selectionやdispositionをdecisionへ畳み込まない |",
+      "neighboring_archive_context": [
+        {
+          "line": 27,
+          "text": "| `AVS-AC-003C` | AVS-R-03C | AIが独立した手段選択・代替比較・反証・risk評価・検収を残す | 逐語実行や検討打切りを忠実性としてpassしない |"
+        },
+        {
+          "line": 28,
+          "text": "| `AVS-AC-004` | AVS-R-04 | accepted decisionがADR系pointerと必須fieldを持つ | Issue comment／memoryだけのdecisionを拒否 |"
+        },
+        {
+          "line": 29,
+          "text": "| `AVS-AC-005` | AVS-R-05 | 5 identityを別schema／出力で保持する | selectionやdispositionをdecisionへ畳み込まない |"
+        },
+        {
+          "line": 30,
+          "text": "| `AVS-AC-006` | AVS-R-06 | approvalが対象・scope・revision・actorへexact binding | AI解釈や同名actorだけでhuman approvalを生成しない |"
+        },
+        {
+          "line": 31,
+          "text": "| `AVS-AC-007` | AVS-R-07 | legacy値をexact adapterで一方向変換する | 曖昧な`decision`を推測変換しない |"
+        }
+      ],
+      "source_file_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+      "source_line_sha256": "239f1c443ff3e9393af816dba4bafd51a9e022f39b40182dffd69ed431c2d8e8",
+      "physical_line_bytes_sha256_including_terminator": "268bcdaef35b5bda790466c9906deb795cbeb3e4a0b5bfe8f8b8624144d3e96c",
+      "baseline_2353_physical_line_bytes_sha256": "268bcdaef35b5bda790466c9906deb795cbeb3e4a0b5bfe8f8b8624144d3e96c",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 221,
+        "entry_line_sha256_including_terminator": "c65638f797ed58092c5a4c2b1025b2dc263a86641e5838e756bbc691e2975e1a",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000221",
+          "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md",
+          "source_file_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+          "source_line": 29,
+          "source_line_text": "| `AVS-AC-005` | AVS-R-05 | 5 identityを別schema／出力で保持する | selectionやdispositionをdecisionへ畳み込まない |",
+          "source_line_sha256": "sha256:239f1c443ff3e9393af816dba4bafd51a9e022f39b40182dffd69ed431c2d8e8",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-5DC004CDB36F2B0C29C5",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 790,
+        "entry_line_sha256_including_terminator": "1d4ab16ac1dbfc9bc6ef53cafda0bf7ce2dc2383dc31dff3bb1ab89f9cd1edc5",
+        "asset_class": "Historical",
+        "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+        "source_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": [],
+        "reuse_exclusion_class": null
+      },
+      "semantic_review": {
+        "semantic_category": "受入oracle／AVS-R-05",
+        "semantic_reading": "selection/dispositionをdecisionへ畳み込まず、5 identityを別schema/出力で保持する条件。",
+        "possible_classification_issue": "yes",
+        "current_F6_relation_and_limit": "固定F6ではAVS要求source-familyへの接続および汎用authority境界を確認できるが、L2D-S1-01はdeferであり、この旧L10 oracle rowへのadopted-pair binding/実施証拠はない。",
+        "remaining_no_loss_condition": "現行のrequest/approval/decision区別と概念的近接はあるが、5 identity set/別schema/出力のこのrow単位adoptionなし。schema別・出力別oracleが残る。"
+      },
+      "marker_negative_normative_or_authority_condition": true,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 130,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000222",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "physical_line_number": 30,
+      "exact_source_line_text": "| `AVS-AC-006` | AVS-R-06 | approvalが対象・scope・revision・actorへexact binding | AI解釈や同名actorだけでhuman approvalを生成しない |",
+      "neighboring_archive_context": [
+        {
+          "line": 28,
+          "text": "| `AVS-AC-004` | AVS-R-04 | accepted decisionがADR系pointerと必須fieldを持つ | Issue comment／memoryだけのdecisionを拒否 |"
+        },
+        {
+          "line": 29,
+          "text": "| `AVS-AC-005` | AVS-R-05 | 5 identityを別schema／出力で保持する | selectionやdispositionをdecisionへ畳み込まない |"
+        },
+        {
+          "line": 30,
+          "text": "| `AVS-AC-006` | AVS-R-06 | approvalが対象・scope・revision・actorへexact binding | AI解釈や同名actorだけでhuman approvalを生成しない |"
+        },
+        {
+          "line": 31,
+          "text": "| `AVS-AC-007` | AVS-R-07 | legacy値をexact adapterで一方向変換する | 曖昧な`decision`を推測変換しない |"
+        },
+        {
+          "line": 32,
+          "text": "| `AVS-AC-008` | AVS-R-08 | current全surfaceがtyped identityを返す | generic decision identityの再出力をdoctorで拒否 |"
+        }
+      ],
+      "source_file_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+      "source_line_sha256": "6434925da29e52bd87664db0a39025fe3e8bfd185902df86b46e61050721cdb4",
+      "physical_line_bytes_sha256_including_terminator": "96672e68651a6a89ee0a3a21c02d17c541fe43027a7fbb1524b82efd55fa2a87",
+      "baseline_2353_physical_line_bytes_sha256": "96672e68651a6a89ee0a3a21c02d17c541fe43027a7fbb1524b82efd55fa2a87",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 222,
+        "entry_line_sha256_including_terminator": "c4e3a85b2e884fdc695d133907cce3b33e303e2b18dae486dddddd1db7d0a15f",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000222",
+          "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md",
+          "source_file_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+          "source_line": 30,
+          "source_line_text": "| `AVS-AC-006` | AVS-R-06 | approvalが対象・scope・revision・actorへexact binding | AI解釈や同名actorだけでhuman approvalを生成しない |",
+          "source_line_sha256": "sha256:6434925da29e52bd87664db0a39025fe3e8bfd185902df86b46e61050721cdb4",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-5DC004CDB36F2B0C29C5",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 790,
+        "entry_line_sha256_including_terminator": "1d4ab16ac1dbfc9bc6ef53cafda0bf7ce2dc2383dc31dff3bb1ab89f9cd1edc5",
+        "asset_class": "Historical",
+        "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+        "source_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": [],
+        "reuse_exclusion_class": null
+      },
+      "semantic_review": {
+        "semantic_category": "受入oracle／AVS-R-06",
+        "semantic_reading": "approvalを対象・scope・revision・actorへexact bindし、AI解釈や同名actorだけでhuman approvalを生成しない。",
+        "possible_classification_issue": "yes",
+        "current_F6_relation_and_limit": "固定F6ではAVS要求source-familyへの接続および汎用authority境界を確認できるが、L2D-S1-01はdeferであり、この旧L10 oracle rowへのadopted-pair binding/実施証拠はない。",
+        "remaining_no_loss_condition": "現行の対象revision/authority境界の近接は個別AC-006のadoption・受入実行ではない。exact binding keys、actor provenance、misattribution casesが未検証。"
+      },
+      "marker_negative_normative_or_authority_condition": true,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 131,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000223",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "physical_line_number": 31,
+      "exact_source_line_text": "| `AVS-AC-007` | AVS-R-07 | legacy値をexact adapterで一方向変換する | 曖昧な`decision`を推測変換しない |",
+      "neighboring_archive_context": [
+        {
+          "line": 29,
+          "text": "| `AVS-AC-005` | AVS-R-05 | 5 identityを別schema／出力で保持する | selectionやdispositionをdecisionへ畳み込まない |"
+        },
+        {
+          "line": 30,
+          "text": "| `AVS-AC-006` | AVS-R-06 | approvalが対象・scope・revision・actorへexact binding | AI解釈や同名actorだけでhuman approvalを生成しない |"
+        },
+        {
+          "line": 31,
+          "text": "| `AVS-AC-007` | AVS-R-07 | legacy値をexact adapterで一方向変換する | 曖昧な`decision`を推測変換しない |"
+        },
+        {
+          "line": 32,
+          "text": "| `AVS-AC-008` | AVS-R-08 | current全surfaceがtyped identityを返す | generic decision identityの再出力をdoctorで拒否 |"
+        },
+        {
+          "line": 33,
+          "text": "| `AVS-AC-009` | AVS-R-09 | current出力がdecision／approval／request_directiveをexact identityで返す | `PO判断`／`PO決定`／`PO指示`へ再集約しない |"
+        }
+      ],
+      "source_file_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+      "source_line_sha256": "f62bd2d87e12bd0776f9d42d0c38313a82ce3d9fb37047da10efdc791dddf13b",
+      "physical_line_bytes_sha256_including_terminator": "79d6e626406a4d58bf054e0bcd259fa3c0d1a2b86f44de84bd2dcfe3419f1bb7",
+      "baseline_2353_physical_line_bytes_sha256": "79d6e626406a4d58bf054e0bcd259fa3c0d1a2b86f44de84bd2dcfe3419f1bb7",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 223,
+        "entry_line_sha256_including_terminator": "a33c14fd00d30107025cce6e7cd8ca8fe504b521f76ae889cb7eb85da37fd15a",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000223",
+          "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md",
+          "source_file_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+          "source_line": 31,
+          "source_line_text": "| `AVS-AC-007` | AVS-R-07 | legacy値をexact adapterで一方向変換する | 曖昧な`decision`を推測変換しない |",
+          "source_line_sha256": "sha256:f62bd2d87e12bd0776f9d42d0c38313a82ce3d9fb37047da10efdc791dddf13b",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-5DC004CDB36F2B0C29C5",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 790,
+        "entry_line_sha256_including_terminator": "1d4ab16ac1dbfc9bc6ef53cafda0bf7ce2dc2383dc31dff3bb1ab89f9cd1edc5",
+        "asset_class": "Historical",
+        "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+        "source_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": [],
+        "reuse_exclusion_class": null
+      },
+      "semantic_review": {
+        "semantic_category": "受入oracle／AVS-R-07",
+        "semantic_reading": "legacy値をexact adapterで一方向変換し、曖昧なdecision値を推測変換しない。",
+        "possible_classification_issue": "yes",
+        "current_F6_relation_and_limit": "固定F6ではAVS要求source-familyへの接続および汎用authority境界を確認できるが、L2D-S1-01はdeferであり、この旧L10 oracle rowへのadopted-pair binding/実施証拠はない。",
+        "remaining_no_loss_condition": "旧adapter方針を現行機構へそのまま持ち込まない。adapter owner、許可value map、曖昧値のreject oracleはAVS defer下で未採択。"
+      },
+      "marker_negative_normative_or_authority_condition": true,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 132,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000225",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "physical_line_number": 33,
+      "exact_source_line_text": "| `AVS-AC-009` | AVS-R-09 | current出力がdecision／approval／request_directiveをexact identityで返す | `PO判断`／`PO決定`／`PO指示`へ再集約しない |",
+      "neighboring_archive_context": [
+        {
+          "line": 31,
+          "text": "| `AVS-AC-007` | AVS-R-07 | legacy値をexact adapterで一方向変換する | 曖昧な`decision`を推測変換しない |"
+        },
+        {
+          "line": 32,
+          "text": "| `AVS-AC-008` | AVS-R-08 | current全surfaceがtyped identityを返す | generic decision identityの再出力をdoctorで拒否 |"
+        },
+        {
+          "line": 33,
+          "text": "| `AVS-AC-009` | AVS-R-09 | current出力がdecision／approval／request_directiveをexact identityで返す | `PO判断`／`PO決定`／`PO指示`へ再集約しない |"
+        },
+        {
+          "line": 34,
+          "text": "| `AVS-AC-010` | AVS-R-10 | memoryがTTL coordination＋pointerに限定される | project requirement／design／profile本文を拒否 |"
+        },
+        {
+          "line": 35,
+          "text": "| `AVS-AC-011` | AVS-R-11 | invalid／superseded memoryがcurrent guidanceから消える | replacement済み本文のSessionStart再浮上を拒否 |"
+        }
+      ],
+      "source_file_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+      "source_line_sha256": "e9cbfb54166739613958d60ee78bd95d70fb9762c9021db3c17b16f044172ced",
+      "physical_line_bytes_sha256_including_terminator": "c3f088e754d4b83b8eec446eeab615badbfb62945bbdb0cad0a91959a334d80d",
+      "baseline_2353_physical_line_bytes_sha256": "c3f088e754d4b83b8eec446eeab615badbfb62945bbdb0cad0a91959a334d80d",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 225,
+        "entry_line_sha256_including_terminator": "9b29299a0e8133e0f5227242227b2db81721a16d7ac950ac2eb004c29e7ad6e4",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000225",
+          "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md",
+          "source_file_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+          "source_line": 33,
+          "source_line_text": "| `AVS-AC-009` | AVS-R-09 | current出力がdecision／approval／request_directiveをexact identityで返す | `PO判断`／`PO決定`／`PO指示`へ再集約しない |",
+          "source_line_sha256": "sha256:e9cbfb54166739613958d60ee78bd95d70fb9762c9021db3c17b16f044172ced",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-5DC004CDB36F2B0C29C5",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 790,
+        "entry_line_sha256_including_terminator": "1d4ab16ac1dbfc9bc6ef53cafda0bf7ce2dc2383dc31dff3bb1ab89f9cd1edc5",
+        "asset_class": "Historical",
+        "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+        "source_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": [],
+        "reuse_exclusion_class": null
+      },
+      "semantic_review": {
+        "semantic_category": "受入oracle／AVS-R-09",
+        "semantic_reading": "current出力をdecision/approval/request_directive identityで分け、包括的なPO語彙へ再集約しない。",
+        "possible_classification_issue": "yes",
+        "current_F6_relation_and_limit": "固定F6ではAVS要求source-familyへの接続および汎用authority境界を確認できるが、L2D-S1-01はdeferであり、この旧L10 oracle rowへのadopted-pair binding/実施証拠はない。",
+        "remaining_no_loss_condition": "現行decision recordやGitHub表記の意味近接で本rowを採択しない。全current surface、identity exactness、再集約検出oracleが未対応。"
+      },
+      "marker_negative_normative_or_authority_condition": true,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 133,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000229",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "physical_line_number": 37,
+      "exact_source_line_text": "| `AVS-AC-013` | AVS-R-13 | human provenanceをtyped sourceで照合する | actor名やAI要約からhuman attributionを作らない |",
+      "neighboring_archive_context": [
+        {
+          "line": 35,
+          "text": "| `AVS-AC-011` | AVS-R-11 | invalid／superseded memoryがcurrent guidanceから消える | replacement済み本文のSessionStart再浮上を拒否 |"
+        },
+        {
+          "line": 36,
+          "text": "| `AVS-AC-012` | AVS-R-12 | Claude/Codex rulesとadapterが同一marker／digest | 片側だけの規則変更をrule-driftで拒否 |"
+        },
+        {
+          "line": 37,
+          "text": "| `AVS-AC-013` | AVS-R-13 | human provenanceをtyped sourceで照合する | actor名やAI要約からhuman attributionを作らない |"
+        },
+        {
+          "line": 38,
+          "text": "| `AVS-AC-014` | AVS-R-14 | historical tokenはcurrentへ逆流しない | historical greenでcanonical failureを相殺しない |"
+        },
+        {
+          "line": 39,
+          "text": "| `AVS-AC-015` | AVS-R-15 | long-term knowledgeがLearning admissionを通る | memory本文を直接Skill正本へ昇格しない |"
+        }
+      ],
+      "source_file_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+      "source_line_sha256": "1968374adadc88ae6ce7c85a34ca9c00be9c9d5fdc4e8fcf02ffe1a315d81018",
+      "physical_line_bytes_sha256_including_terminator": "d7e170df4d22064563e0b0b0697cbd541606484f43ab1f153d006e947e3716f6",
+      "baseline_2353_physical_line_bytes_sha256": "d7e170df4d22064563e0b0b0697cbd541606484f43ab1f153d006e947e3716f6",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 229,
+        "entry_line_sha256_including_terminator": "47f03838b7fd80655cb77004c3277f8afa639a0fd9f8fd7adf2f5333281a880f",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000229",
+          "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md",
+          "source_file_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+          "source_line": 37,
+          "source_line_text": "| `AVS-AC-013` | AVS-R-13 | human provenanceをtyped sourceで照合する | actor名やAI要約からhuman attributionを作らない |",
+          "source_line_sha256": "sha256:1968374adadc88ae6ce7c85a34ca9c00be9c9d5fdc4e8fcf02ffe1a315d81018",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-5DC004CDB36F2B0C29C5",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 790,
+        "entry_line_sha256_including_terminator": "1d4ab16ac1dbfc9bc6ef53cafda0bf7ce2dc2383dc31dff3bb1ab89f9cd1edc5",
+        "asset_class": "Historical",
+        "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+        "source_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": [],
+        "reuse_exclusion_class": null
+      },
+      "semantic_review": {
+        "semantic_category": "受入oracle／AVS-R-13",
+        "semantic_reading": "human provenanceをtyped sourceで照合し、actor名やAI要約からhuman attributionを作らない。",
+        "possible_classification_issue": "yes",
+        "current_F6_relation_and_limit": "固定F6ではAVS要求source-familyへの接続および汎用authority境界を確認できるが、L2D-S1-01はdeferであり、この旧L10 oracle rowへのadopted-pair binding/実施証拠はない。",
+        "remaining_no_loss_condition": "現行のauthority attribution boundaryとの近さはrow-specific adoption/evidenceではない。typed source schema・provenance verifier・false attribution oracleが残る。"
+      },
+      "marker_negative_normative_or_authority_condition": true,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 134,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000231",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "physical_line_number": 39,
+      "exact_source_line_text": "| `AVS-AC-015` | AVS-R-15 | long-term knowledgeがLearning admissionを通る | memory本文を直接Skill正本へ昇格しない |",
+      "neighboring_archive_context": [
+        {
+          "line": 37,
+          "text": "| `AVS-AC-013` | AVS-R-13 | human provenanceをtyped sourceで照合する | actor名やAI要約からhuman attributionを作らない |"
+        },
+        {
+          "line": 38,
+          "text": "| `AVS-AC-014` | AVS-R-14 | historical tokenはcurrentへ逆流しない | historical greenでcanonical failureを相殺しない |"
+        },
+        {
+          "line": 39,
+          "text": "| `AVS-AC-015` | AVS-R-15 | long-term knowledgeがLearning admissionを通る | memory本文を直接Skill正本へ昇格しない |"
+        },
+        {
+          "line": 40,
+          "text": "| `AVS-AC-016` | AVS-R-16 | canonical signalがREDESIGNへexactに解決され、PLAN entryへ投影される | signal未定義、wrong-axis、decision-required、legacy `po_directive`再出力を拒否 |"
+        },
+        {
+          "line": 41,
+          "text": ""
+        }
+      ],
+      "source_file_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+      "source_line_sha256": "c84fee7044e5bfffcb778507835e81ba94e9b542fe07c1d8274a06da57d7d43a",
+      "physical_line_bytes_sha256_including_terminator": "b2bfcbe5b78e56f3ab761c1d1ebb8ff0ce17ca7f196ae4c37654913477e26e16",
+      "baseline_2353_physical_line_bytes_sha256": "b2bfcbe5b78e56f3ab761c1d1ebb8ff0ce17ca7f196ae4c37654913477e26e16",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 231,
+        "entry_line_sha256_including_terminator": "d4e716ee8d00c55633f06de7e7d03ea7fdc8170c0dce045a3b65a0c0262aee6b",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000231",
+          "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md",
+          "source_file_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+          "source_line": 39,
+          "source_line_text": "| `AVS-AC-015` | AVS-R-15 | long-term knowledgeがLearning admissionを通る | memory本文を直接Skill正本へ昇格しない |",
+          "source_line_sha256": "sha256:c84fee7044e5bfffcb778507835e81ba94e9b542fe07c1d8274a06da57d7d43a",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-5DC004CDB36F2B0C29C5",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 790,
+        "entry_line_sha256_including_terminator": "1d4ab16ac1dbfc9bc6ef53cafda0bf7ce2dc2383dc31dff3bb1ab89f9cd1edc5",
+        "asset_class": "Historical",
+        "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+        "source_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": [],
+        "reuse_exclusion_class": null
+      },
+      "semantic_review": {
+        "semantic_category": "受入oracle／AVS-R-15",
+        "semantic_reading": "long-term knowledgeはLearning admissionを通し、memory本文を直接Skill正本へ昇格しない。",
+        "possible_classification_issue": "yes",
+        "current_F6_relation_and_limit": "固定F6ではAVS要求source-familyへの接続および汎用authority境界を確認できるが、L2D-S1-01はdeferであり、この旧L10 oracle rowへのadopted-pair binding/実施証拠はない。",
+        "remaining_no_loss_condition": "LABO/OSのlearning・memory境界との意味関係だけではこのAVS受入rowの採択や実施を示さない。Learning admission owner、memory/Skill oracle、個別decisionが残る。"
+      },
+      "marker_negative_normative_or_authority_condition": true,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 135,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000235",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/authority-vocabulary-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requests.md",
+      "physical_line_number": 2,
+      "exact_source_line_text": "canonical_vmodel: L1-L12",
+      "neighboring_archive_context": [
+        {
+          "line": 1,
+          "text": "---"
+        },
+        {
+          "line": 2,
+          "text": "canonical_vmodel: L1-L12"
+        },
+        {
+          "line": 3,
+          "text": "candidate_layer: L1"
+        },
+        {
+          "line": 4,
+          "text": "canonical_pair: L12"
+        }
+      ],
+      "source_file_sha256": "5c29cba6331dff96082f74612ceaf755fe4a30a10e75be62797e8073de7fec99",
+      "source_line_sha256": "86045d2ba6240bed3d6c167138fb1cc85dec937677b4ce704b80073bd5e5e58e",
+      "physical_line_bytes_sha256_including_terminator": "52787172d6c4a8982894cc088a58dc1df0a0e1b47b96f2cf816f8799e64cfda2",
+      "baseline_2353_physical_line_bytes_sha256": "52787172d6c4a8982894cc088a58dc1df0a0e1b47b96f2cf816f8799e64cfda2",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 235,
+        "entry_line_sha256_including_terminator": "291fdc35191d8201025fea4588e0e07fe43809083f4a81d60b3ee0460f042666",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000235",
+          "source_path": "docs/governance/candidates/authority-vocabulary-requests.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requests.md",
+          "source_file_sha256": "5c29cba6331dff96082f74612ceaf755fe4a30a10e75be62797e8073de7fec99",
+          "source_line": 2,
+          "source_line_text": "canonical_vmodel: L1-L12",
+          "source_line_sha256": "sha256:86045d2ba6240bed3d6c167138fb1cc85dec937677b4ce704b80073bd5e5e58e",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-E9BDD9DCA6CF67CBE424",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 791,
+        "entry_line_sha256_including_terminator": "4c9bbd8751950fa65f2dc7cdd76eacce8deea336917e9442f5b31e34188609e5",
+        "asset_class": "Historical",
+        "source_path": "docs/governance/candidates/authority-vocabulary-requests.md",
+        "source_sha256": "5c29cba6331dff96082f74612ceaf755fe4a30a10e75be62797e8073de7fec99",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": [],
+        "reuse_exclusion_class": null
+      },
+      "semantic_review": {
+        "semantic_category": "要求文書frontmatter metadata",
+        "semantic_reading": "`canonical_vmodel`は文書が自己申告する層レンジmetadataであり、要求条件ではない。",
+        "possible_classification_issue": "no",
+        "current_F6_relation_and_limit": "この行は文書metadata/表構造であり、固定F6の現行要求に接続する独立条件ではない。AVSのL2D-S1-01 deferを尊重し、隣接AVS条件を移さない。",
+        "remaining_no_loss_condition": "frontmatterの層値は現行のlayer placement/approvalを確定しない。"
+      },
+      "marker_negative_normative_or_authority_condition": false,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 136,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000236",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/authority-vocabulary-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requests.md",
+      "physical_line_number": 3,
+      "exact_source_line_text": "candidate_layer: L1",
+      "neighboring_archive_context": [
+        {
+          "line": 1,
+          "text": "---"
+        },
+        {
+          "line": 2,
+          "text": "canonical_vmodel: L1-L12"
+        },
+        {
+          "line": 3,
+          "text": "candidate_layer: L1"
+        },
+        {
+          "line": 4,
+          "text": "canonical_pair: L12"
+        },
+        {
+          "line": 5,
+          "text": "title: \"authority語彙分離要求\""
+        }
+      ],
+      "source_file_sha256": "5c29cba6331dff96082f74612ceaf755fe4a30a10e75be62797e8073de7fec99",
+      "source_line_sha256": "08b00be946099c517d68d58d6ff68ff2e6ee20033ce867c3aa757662f1ff69ce",
+      "physical_line_bytes_sha256_including_terminator": "4ce4326d2485d98b7995049caa65220dc348542d6d58fbe21d5d9936a46a97d6",
+      "baseline_2353_physical_line_bytes_sha256": "4ce4326d2485d98b7995049caa65220dc348542d6d58fbe21d5d9936a46a97d6",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 236,
+        "entry_line_sha256_including_terminator": "1b5ef6009329a9b011d9ce23f9c2223b031deae96d4e822681ae19a1ed5a676c",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000236",
+          "source_path": "docs/governance/candidates/authority-vocabulary-requests.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requests.md",
+          "source_file_sha256": "5c29cba6331dff96082f74612ceaf755fe4a30a10e75be62797e8073de7fec99",
+          "source_line": 3,
+          "source_line_text": "candidate_layer: L1",
+          "source_line_sha256": "sha256:08b00be946099c517d68d58d6ff68ff2e6ee20033ce867c3aa757662f1ff69ce",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-E9BDD9DCA6CF67CBE424",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 791,
+        "entry_line_sha256_including_terminator": "4c9bbd8751950fa65f2dc7cdd76eacce8deea336917e9442f5b31e34188609e5",
+        "asset_class": "Historical",
+        "source_path": "docs/governance/candidates/authority-vocabulary-requests.md",
+        "source_sha256": "5c29cba6331dff96082f74612ceaf755fe4a30a10e75be62797e8073de7fec99",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": [],
+        "reuse_exclusion_class": null
+      },
+      "semantic_review": {
+        "semantic_category": "要求文書frontmatter metadata",
+        "semantic_reading": "`candidate_layer`はこの候補の自己分類。現行要求層の確定や採択ではない。",
+        "possible_classification_issue": "no",
+        "current_F6_relation_and_limit": "この行は文書metadata/表構造であり、固定F6の現行要求に接続する独立条件ではない。AVSのL2D-S1-01 deferを尊重し、隣接AVS条件を移さない。",
+        "remaining_no_loss_condition": "候補の自己記載と現行layer authorityを区別する。"
+      },
+      "marker_negative_normative_or_authority_condition": false,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 137,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000237",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/authority-vocabulary-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requests.md",
+      "physical_line_number": 4,
+      "exact_source_line_text": "canonical_pair: L12",
+      "neighboring_archive_context": [
+        {
+          "line": 2,
+          "text": "canonical_vmodel: L1-L12"
+        },
+        {
+          "line": 3,
+          "text": "candidate_layer: L1"
+        },
+        {
+          "line": 4,
+          "text": "canonical_pair: L12"
+        },
+        {
+          "line": 5,
+          "text": "title: \"authority語彙分離要求\""
+        },
+        {
+          "line": 6,
+          "text": "layer: L1"
+        }
+      ],
+      "source_file_sha256": "5c29cba6331dff96082f74612ceaf755fe4a30a10e75be62797e8073de7fec99",
+      "source_line_sha256": "a8856af36dd17b9bd5ecbc728fab2e035a62c25cc99ccf4c95c5987c91b74d43",
+      "physical_line_bytes_sha256_including_terminator": "7258d9a5bdcb368768eea7c8ea5d3b871828a1249d58f85cf2f1d34eb1bce95a",
+      "baseline_2353_physical_line_bytes_sha256": "7258d9a5bdcb368768eea7c8ea5d3b871828a1249d58f85cf2f1d34eb1bce95a",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 237,
+        "entry_line_sha256_including_terminator": "da1810abb590abbe186fd3dbcfe76b43163b0a7b41eb3ac4308d8995d2125d7b",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000237",
+          "source_path": "docs/governance/candidates/authority-vocabulary-requests.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requests.md",
+          "source_file_sha256": "5c29cba6331dff96082f74612ceaf755fe4a30a10e75be62797e8073de7fec99",
+          "source_line": 4,
+          "source_line_text": "canonical_pair: L12",
+          "source_line_sha256": "sha256:a8856af36dd17b9bd5ecbc728fab2e035a62c25cc99ccf4c95c5987c91b74d43",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-E9BDD9DCA6CF67CBE424",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 791,
+        "entry_line_sha256_including_terminator": "4c9bbd8751950fa65f2dc7cdd76eacce8deea336917e9442f5b31e34188609e5",
+        "asset_class": "Historical",
+        "source_path": "docs/governance/candidates/authority-vocabulary-requests.md",
+        "source_sha256": "5c29cba6331dff96082f74612ceaf755fe4a30a10e75be62797e8073de7fec99",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": [],
+        "reuse_exclusion_class": null
+      },
+      "semantic_review": {
+        "semantic_category": "要求文書frontmatter metadata",
+        "semantic_reading": "`canonical_pair`は意図する対向層の自己申告で、L12のcurrent pairを作らない。",
+        "possible_classification_issue": "no",
+        "current_F6_relation_and_limit": "この行は文書metadata/表構造であり、固定F6の現行要求に接続する独立条件ではない。AVSのL2D-S1-01 deferを尊重し、隣接AVS条件を移さない。",
+        "remaining_no_loss_condition": "pair declarationから現行L2/L11等の採択・successor IDを割り当てない。"
+      },
+      "marker_negative_normative_or_authority_condition": false,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 138,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000238",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/authority-vocabulary-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requests.md",
+      "physical_line_number": 5,
+      "exact_source_line_text": "title: \"authority語彙分離要求\"",
+      "neighboring_archive_context": [
+        {
+          "line": 3,
+          "text": "candidate_layer: L1"
+        },
+        {
+          "line": 4,
+          "text": "canonical_pair: L12"
+        },
+        {
+          "line": 5,
+          "text": "title: \"authority語彙分離要求\""
+        },
+        {
+          "line": 6,
+          "text": "layer: L1"
+        },
+        {
+          "line": 7,
+          "text": "kind: redesign"
+        }
+      ],
+      "source_file_sha256": "5c29cba6331dff96082f74612ceaf755fe4a30a10e75be62797e8073de7fec99",
+      "source_line_sha256": "079be00c3eea926592d131ef5b87733fbe7925f746d38f71bcae09ada95de425",
+      "physical_line_bytes_sha256_including_terminator": "533240a1a7890c259c4ec67cfe409ea92f6bc3e910d6028463b96e5c16bbd18a",
+      "baseline_2353_physical_line_bytes_sha256": "533240a1a7890c259c4ec67cfe409ea92f6bc3e910d6028463b96e5c16bbd18a",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 238,
+        "entry_line_sha256_including_terminator": "8c63743017b67f3618e3630e52d5971bc208efd00f8b01d3fe28b43673e2ec93",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000238",
+          "source_path": "docs/governance/candidates/authority-vocabulary-requests.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requests.md",
+          "source_file_sha256": "5c29cba6331dff96082f74612ceaf755fe4a30a10e75be62797e8073de7fec99",
+          "source_line": 5,
+          "source_line_text": "title: \"authority語彙分離要求\"",
+          "source_line_sha256": "sha256:079be00c3eea926592d131ef5b87733fbe7925f746d38f71bcae09ada95de425",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-E9BDD9DCA6CF67CBE424",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 791,
+        "entry_line_sha256_including_terminator": "4c9bbd8751950fa65f2dc7cdd76eacce8deea336917e9442f5b31e34188609e5",
+        "asset_class": "Historical",
+        "source_path": "docs/governance/candidates/authority-vocabulary-requests.md",
+        "source_sha256": "5c29cba6331dff96082f74612ceaf755fe4a30a10e75be62797e8073de7fec99",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": [],
+        "reuse_exclusion_class": null
+      },
+      "semantic_review": {
+        "semantic_category": "要求文書frontmatter metadata",
+        "semantic_reading": "titleは文書名のmetadataであり、要求意味を単独では定義しない。",
+        "possible_classification_issue": "no",
+        "current_F6_relation_and_limit": "この行は文書metadata/表構造であり、固定F6の現行要求に接続する独立条件ではない。AVSのL2D-S1-01 deferを尊重し、隣接AVS条件を移さない。",
+        "remaining_no_loss_condition": "名称の一致や概念類似でsource coverageを推定しない。"
+      },
+      "marker_negative_normative_or_authority_condition": false,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 139,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000239",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/authority-vocabulary-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requests.md",
+      "physical_line_number": 6,
+      "exact_source_line_text": "layer: L1",
+      "neighboring_archive_context": [
+        {
+          "line": 4,
+          "text": "canonical_pair: L12"
+        },
+        {
+          "line": 5,
+          "text": "title: \"authority語彙分離要求\""
+        },
+        {
+          "line": 6,
+          "text": "layer: L1"
+        },
+        {
+          "line": 7,
+          "text": "kind: redesign"
+        },
+        {
+          "line": 8,
+          "text": "status: draft_candidate"
+        }
+      ],
+      "source_file_sha256": "5c29cba6331dff96082f74612ceaf755fe4a30a10e75be62797e8073de7fec99",
+      "source_line_sha256": "0e163f873e8c5fda1b70def9a3dec8c84c02bb320da9bf39c07f1058c140a8a8",
+      "physical_line_bytes_sha256_including_terminator": "559822b72b99f56f8472bdfe1ca830da5081b7ae3ae575a844c97a22916801b0",
+      "baseline_2353_physical_line_bytes_sha256": "559822b72b99f56f8472bdfe1ca830da5081b7ae3ae575a844c97a22916801b0",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 239,
+        "entry_line_sha256_including_terminator": "4789bf0e855ace406367623eb6f61821daf2056ad282a9a4648fb68c0ba57112",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000239",
+          "source_path": "docs/governance/candidates/authority-vocabulary-requests.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requests.md",
+          "source_file_sha256": "5c29cba6331dff96082f74612ceaf755fe4a30a10e75be62797e8073de7fec99",
+          "source_line": 6,
+          "source_line_text": "layer: L1",
+          "source_line_sha256": "sha256:0e163f873e8c5fda1b70def9a3dec8c84c02bb320da9bf39c07f1058c140a8a8",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-E9BDD9DCA6CF67CBE424",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 791,
+        "entry_line_sha256_including_terminator": "4c9bbd8751950fa65f2dc7cdd76eacce8deea336917e9442f5b31e34188609e5",
+        "asset_class": "Historical",
+        "source_path": "docs/governance/candidates/authority-vocabulary-requests.md",
+        "source_sha256": "5c29cba6331dff96082f74612ceaf755fe4a30a10e75be62797e8073de7fec99",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": [],
+        "reuse_exclusion_class": null
+      },
+      "semantic_review": {
+        "semantic_category": "要求文書frontmatter metadata",
+        "semantic_reading": "`layer`は候補文書の自己記載metadata。実際の現行placementは別のauthority判断に従う。",
+        "possible_classification_issue": "no",
+        "current_F6_relation_and_limit": "この行は文書metadata/表構造であり、固定F6の現行要求に接続する独立条件ではない。AVSのL2D-S1-01 deferを尊重し、隣接AVS条件を移さない。",
+        "remaining_no_loss_condition": "古いL1/L12の番号を現行層へ機械的に対応づけない。"
+      },
+      "marker_negative_normative_or_authority_condition": false,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 140,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000240",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/authority-vocabulary-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requests.md",
+      "physical_line_number": 7,
+      "exact_source_line_text": "kind: redesign",
+      "neighboring_archive_context": [
+        {
+          "line": 5,
+          "text": "title: \"authority語彙分離要求\""
+        },
+        {
+          "line": 6,
+          "text": "layer: L1"
+        },
+        {
+          "line": 7,
+          "text": "kind: redesign"
+        },
+        {
+          "line": 8,
+          "text": "status: draft_candidate"
+        },
+        {
+          "line": 9,
+          "text": "created: 2026-09-02"
+        }
+      ],
+      "source_file_sha256": "5c29cba6331dff96082f74612ceaf755fe4a30a10e75be62797e8073de7fec99",
+      "source_line_sha256": "8776ae5946baba53c04b15b341187400fe67896c0cd9af195202fb6a8fd3fb47",
+      "physical_line_bytes_sha256_including_terminator": "b426e8580e1b28dde0d9b12f7fc177cdcf682602aeedbcced0a006f5d2df4774",
+      "baseline_2353_physical_line_bytes_sha256": "b426e8580e1b28dde0d9b12f7fc177cdcf682602aeedbcced0a006f5d2df4774",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 240,
+        "entry_line_sha256_including_terminator": "468faee91ab8a1878e183ca500879f9661c605dc5f7ee8a4c93753987b52952e",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000240",
+          "source_path": "docs/governance/candidates/authority-vocabulary-requests.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requests.md",
+          "source_file_sha256": "5c29cba6331dff96082f74612ceaf755fe4a30a10e75be62797e8073de7fec99",
+          "source_line": 7,
+          "source_line_text": "kind: redesign",
+          "source_line_sha256": "sha256:8776ae5946baba53c04b15b341187400fe67896c0cd9af195202fb6a8fd3fb47",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-E9BDD9DCA6CF67CBE424",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 791,
+        "entry_line_sha256_including_terminator": "4c9bbd8751950fa65f2dc7cdd76eacce8deea336917e9442f5b31e34188609e5",
+        "asset_class": "Historical",
+        "source_path": "docs/governance/candidates/authority-vocabulary-requests.md",
+        "source_sha256": "5c29cba6331dff96082f74612ceaf755fe4a30a10e75be62797e8073de7fec99",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": [],
+        "reuse_exclusion_class": null
+      },
+      "semantic_review": {
+        "semantic_category": "要求文書frontmatter metadata",
+        "semantic_reading": "`kind: redesign`は候補の種別ラベル。変更承認や意味変更のdecisionではない。",
+        "possible_classification_issue": "no",
+        "current_F6_relation_and_limit": "この行は文書metadata/表構造であり、固定F6の現行要求に接続する独立条件ではない。AVSのL2D-S1-01 deferを尊重し、隣接AVS条件を移さない。",
+        "remaining_no_loss_condition": "kind labelから再設計の採択、旧内容retire、successor assignmentを導かない。"
+      },
+      "marker_negative_normative_or_authority_condition": false,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    }
+  ]
+}

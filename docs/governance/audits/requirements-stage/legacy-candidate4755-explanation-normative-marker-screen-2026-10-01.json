@@ -1,0 +1,949 @@
+{
+  "schema_version": "helix-legacy-candidate4755-explanation-normative-marker-screen.v1",
+  "audit_id": "legacy-candidate4755-explanation-normative-marker-screen-2026-10-01",
+  "created_against_commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+  "authority_effect": "none",
+  "purpose": "Mechanical lexical screening queue only; no semantic classification, adoption, successor, coverage, or acceptance decision.",
+  "effective_classification_reconstruction": {
+    "baseline_ref": "#2353 reconciliation.row_records",
+    "ordered_overlays": [
+      "#2356",
+      "#2360",
+      "#2363",
+      "#2366",
+      "#2367",
+      "#2368",
+      "#2369",
+      "#2381"
+    ],
+    "counts": {
+      "structure": 926,
+      "explanation": 2965,
+      "condition": 864
+    },
+    "official_recount_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-effective-classification-recount-after-2381-2026-09-30.json",
+    "official_recount_sha256": "92c713d6c74ecc138f43d2169b4387f511e31a0b26ba9ca538994c8df80a9932",
+    "matches_official_2381_values": true
+  },
+  "population": {
+    "all_source_rows": 4755,
+    "effective_explanation_rows": 2965,
+    "excluded_markdown_heading_lines": true,
+    "excluded_markdown_table_header_lines": true,
+    "screening_pool_with_any_marker": 255
+  },
+  "screening": {
+    "method": "Regex-only presence screening over source_line_text for rows whose exact reconstructed effective classification is explanation. No tokenization, semantic interpretation, or adoption decision.",
+    "patterns": {
+      "prohibition": "してはなら|しなければならず?ならない|禁止|禁止する|拒否|拒絶|拒む|fail(?:[- ]?(?:close|closed))?|must\\s+not|shall\\s+not|should\\s+not|forbidden|prohibit(?:ed|s)?|deny|denied|reject(?:ed|s)?|block(?:ed|s)?|not\\s+permitted|not\\s+allowed",
+      "mandatory": "しなければ|必須|必ず|required|mandatory|\\bmust\\b|\\bshall\\b|\\brequire(?:d|s)?\\b|要する|必要条件",
+      "conditional": "only\\s+if|only\\s+when|unless|場合に限り|ときに限り|場合のみ|ときのみ"
+    },
+    "priority_order": [
+      "any prohibition marker",
+      "otherwise any mandatory marker",
+      "otherwise conditional marker"
+    ],
+    "tie_break": "Within tier: number of regex hits descending, then numeric LEGACY-CAND-LINE suffix ascending.",
+    "selected_count": 20
+  },
+  "pinned_reconstruction_inputs": [
+    {
+      "role": "full_row_records_baseline",
+      "ref": "#2353",
+      "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+      "git_blob_sha": "2b0e305c68da5610f354a802c7410363ede1261c"
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "ref": "#2356",
+      "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164",
+      "git_blob_sha": null
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "ref": "#2360",
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+      "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb",
+      "git_blob_sha": null
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "ref": "#2363",
+      "commit": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+      "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384",
+      "git_blob_sha": null
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "ref": "#2366",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+      "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6",
+      "git_blob_sha": null
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "ref": "#2367",
+      "commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
+      "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d",
+      "git_blob_sha": null
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "ref": "#2368",
+      "commit": "f89f71e0371440e9e10636499192c2311872b024",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
+      "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95",
+      "git_blob_sha": null
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "ref": "#2369",
+      "commit": "081b0b6612b802cfcb02b3cecda1559dd9a3ce13",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30.json",
+      "sha256": "5ed02b037f78ca25991b396e232e8b1ee754b0c91b056ed6640c9fb1c47cf0c0",
+      "git_blob_sha": null
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "ref": "#2381",
+      "commit": "6e62f76986f19d14281cb2a96eca460c5430dcc6",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-metadata10-classification-proposal-2026-09-30.json",
+      "sha256": "512f9ceafe935648d459d6b268ff4d3952f0e8264298213ad278256236b5f40e",
+      "git_blob_sha": "47d52add2120ccfe2f278130c42119e9bfcf8354"
+    }
+  ],
+  "pinned_source_ledgers": [
+    {
+      "role": "effective_classification_recount_and_overlay_order",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-effective-classification-recount-after-2381-2026-09-30.json",
+      "sha256": "92c713d6c74ecc138f43d2169b4387f511e31a0b26ba9ca538994c8df80a9932"
+    },
+    {
+      "role": "candidate_source_line_carry_forward_ledger",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+    },
+    {
+      "role": "legacy_asset_disposition_ledger",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    }
+  ],
+  "queue": [
+    {
+      "rank": 1,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000336",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        },
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        },
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        }
+      ],
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-acceptance.md",
+      "physical_line_number": 22,
+      "exact_source_line_text": "| BBR-AC03 | BBR-R03 | 修復ID/版・実装・失敗コード・schema・write-set・副作用・予算等の不足を拒否。直前HEAD/bytes/Policy/生成器/所有権/lease/fence変更を各々拒否し、他者変更を保全。未信頼command・候補PR内修復器を特権実行しない。GH-FR-011のAI自己修復を修復器の自動write許可へ変換しない。既存対象・契機・episode・scope・権限が一致する対照例は既存経路で通し、追加差分だけ承認・正本化へ返す。新しい自動適用は修復ごとの契約・独立検証・実consumer検証の各欠落を個別に拒否し、すべて成立した対象範囲だけ有効化する対照例を検証。要求承認だけ・登録だけ・他修復または他consumerの合格から包括的書込み許可を導出しない |",
+      "source_file_sha256": "cd2fdd3dcfaa98935db0fef6b876d6cdb7133b11b8c8877363c3d0138c4b8cbc",
+      "source_line_sha256": "0227b4e8ca1ea20f4133adc0574d2bb5f5e6d842baf63d5353657b9b1f831810",
+      "physical_line_bytes_sha256_including_terminator": "bed7e1b0d18367f56c550a294727b03e4a867e28f481da3fd17213f0cfafdb09",
+      "baseline_2353_physical_line_bytes_sha256": "bed7e1b0d18367f56c550a294727b03e4a867e28f481da3fd17213f0cfafdb09",
+      "effective_classification_overlay": "#2353 baseline (no classification overlay in #2356..#2381)",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 336,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-901CD182B52024593E41",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 793,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "disposition": "unresolved",
+        "authority_status": "historical"
+      }
+    },
+    {
+      "rank": 2,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-001574",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "BLOCKED"
+        },
+        {
+          "category": "mandatory",
+          "text": "REQUIRED"
+        },
+        {
+          "category": "mandatory",
+          "text": "REQUIRED"
+        }
+      ],
+      "source_path": "docs/governance/candidates/execution-ticket-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "physical_line_number": 250,
+      "exact_source_line_text": "immutable contractと、admission/readiness/execution/dispositionの状態軸を分離し、eventからcurrent viewを導出する。BLOCKED/HUMAN_REQUIRED/RECOVERY_REQUIRED/QUARANTINED等を成功と混同しない。参照要求・scope変更はaffected範囲をstale化し、旧権限をfence後に再admitする。無関係更新や観測policy変更で全Ticketをsupersedeしない。",
+      "source_file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "source_line_sha256": "13c2b99d8566e720f5c4d0bc475148c4d121cf4895b5d1fc88543d35bac457be",
+      "physical_line_bytes_sha256_including_terminator": "05fa26704ff60a595be41eaebcfb1172d4b6faf0204c2d1b3686a3c20a96beb8",
+      "baseline_2353_physical_line_bytes_sha256": "05fa26704ff60a595be41eaebcfb1172d4b6faf0204c2d1b3686a3c20a96beb8",
+      "effective_classification_overlay": "#2353 baseline (no classification overlay in #2356..#2381)",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1574,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 814,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "disposition": "unresolved",
+        "authority_status": "historical"
+      }
+    },
+    {
+      "rank": 3,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-002070",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        },
+        {
+          "category": "mandatory",
+          "text": "必須"
+        },
+        {
+          "category": "conditional",
+          "text": "場合のみ"
+        }
+      ],
+      "source_path": "docs/governance/candidates/functional-release-slice-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+      "physical_line_number": 58,
+      "exact_source_line_text": "| `FRS-AC-025` | FRS-R-23 | 操作・対象・影響に必要な安全依存だけを閉包化し、全て有効な場合のみ投入可能とする | 必須安全条件をoptionalへ変更、欠落や不明をgreenにするmutationを拒否 |",
+      "source_file_sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+      "source_line_sha256": "eef9d05e2ead36bd65c8049091baae22e95191594c933dcb7c609dc9ce17ce91",
+      "physical_line_bytes_sha256_including_terminator": "9cb300199feaa51ce05e382762b741389f49e128adfcfae4d5fe1ea509e56941",
+      "baseline_2353_physical_line_bytes_sha256": "9cb300199feaa51ce05e382762b741389f49e128adfcfae4d5fe1ea509e56941",
+      "effective_classification_overlay": "#2353 baseline (no classification overlay in #2356..#2381)",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 2070,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-67ADFAB856D954B3C5D2",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 818,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "disposition": "unresolved",
+        "authority_status": "historical"
+      }
+    },
+    {
+      "rank": 4,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004330",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "fail"
+        },
+        {
+          "category": "prohibition",
+          "text": "fail"
+        },
+        {
+          "category": "prohibition",
+          "text": "fail"
+        }
+      ],
+      "source_path": "docs/governance/candidates/security-engagement-authority-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-acceptance.md",
+      "physical_line_number": 25,
+      "exact_source_line_text": "| `SEA-AC-012` | `SEA-FR-001..012` | #679 broker failure、#1172 attestation failure、legacy guard greenを同時入力し、canonical failureをgreenで相殺しない。 |",
+      "source_file_sha256": "c8d332f8d7655ba04ff664aef75f084d33e19b5d8fd0493c7f498fcd97235ffc",
+      "source_line_sha256": "f974939016b3aabf1e9955c093791fc9e273a3d549c17319a964569ab6c29741",
+      "physical_line_bytes_sha256_including_terminator": "da584da73e4c0acfe6fc1057e1d1136c4b1e2fc20ce0a177f27237cc9941f0c4",
+      "baseline_2353_physical_line_bytes_sha256": "da584da73e4c0acfe6fc1057e1d1136c4b1e2fc20ce0a177f27237cc9941f0c4",
+      "effective_classification_overlay": "#2353 baseline (no classification overlay in #2356..#2381)",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 4330,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-349061A71CEF2554B9A7",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 867,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "disposition": "unresolved",
+        "authority_status": "historical"
+      }
+    },
+    {
+      "rank": 5,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000232",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        },
+        {
+          "category": "mandatory",
+          "text": "required"
+        }
+      ],
+      "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "physical_line_number": 40,
+      "exact_source_line_text": "| `AVS-AC-016` | AVS-R-16 | canonical signalがREDESIGNへexactに解決され、PLAN entryへ投影される | signal未定義、wrong-axis、decision-required、legacy `po_directive`再出力を拒否 |",
+      "source_file_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+      "source_line_sha256": "9f103c9eb772e3c12800c3449551718ae0be28244c1c9e1d12e844acaec9b66c",
+      "physical_line_bytes_sha256_including_terminator": "663d489c4b1562afa8f075a7f6c141d619f093fa708dc7c107ce686e5058b05e",
+      "baseline_2353_physical_line_bytes_sha256": "663d489c4b1562afa8f075a7f6c141d619f093fa708dc7c107ce686e5058b05e",
+      "effective_classification_overlay": "#2353 baseline (no classification overlay in #2356..#2381)",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 232,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-5DC004CDB36F2B0C29C5",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 790,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "disposition": "unresolved",
+        "authority_status": "historical"
+      }
+    },
+    {
+      "rank": 6,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000339",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "禁止"
+        },
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        }
+      ],
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-acceptance.md",
+      "physical_line_number": 25,
+      "exact_source_line_text": "| BBR-AC06 | BBR-R05 | 各禁止修復を個別拒否。旧Policy巻戻しや残義務削除で緑化せず、意味矛盾を上流へ送る |",
+      "source_file_sha256": "cd2fdd3dcfaa98935db0fef6b876d6cdb7133b11b8c8877363c3d0138c4b8cbc",
+      "source_line_sha256": "e4ae82f8de1574639cdb20ef853c0f0bc222a9aaec69bd8666666018f30853c8",
+      "physical_line_bytes_sha256_including_terminator": "7916c58e3307f34c0a47640464bebcf063aadbcc4fb36fcac11548cb5f08bc73",
+      "baseline_2353_physical_line_bytes_sha256": "7916c58e3307f34c0a47640464bebcf063aadbcc4fb36fcac11548cb5f08bc73",
+      "effective_classification_overlay": "#2353 baseline (no classification overlay in #2356..#2381)",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 339,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-901CD182B52024593E41",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 793,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "disposition": "unresolved",
+        "authority_status": "historical"
+      }
+    },
+    {
+      "rank": 7,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000441",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "blocks"
+        },
+        {
+          "category": "prohibition",
+          "text": "block"
+        }
+      ],
+      "source_path": "docs/governance/candidates/bugbot-intake-source.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-intake-source.md",
+      "physical_line_number": 17,
+      "exact_source_line_text": "if (blocks.length !== 1) throw new Error('source_block_count');",
+      "source_file_sha256": "8cc8ab54cd1e70b964473919c22815acf2feec92a0a2d9ed165e914b206723d9",
+      "source_line_sha256": "467ff1c889c64565802f1c04648f81e0febd910807f085efcd215768dc708390",
+      "physical_line_bytes_sha256_including_terminator": "6ef82a03a6686aa7536ac7d7d9809744d3e87831f10ea0ed6fd612e39849f20e",
+      "baseline_2353_physical_line_bytes_sha256": "6ef82a03a6686aa7536ac7d7d9809744d3e87831f10ea0ed6fd612e39849f20e",
+      "effective_classification_overlay": "#2353 baseline (no classification overlay in #2356..#2381)",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 441,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-F619177632B88B92DDBF",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 796,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "disposition": "unresolved",
+        "authority_status": "historical"
+      }
+    },
+    {
+      "rank": 8,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000810",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "reject"
+        },
+        {
+          "category": "prohibition",
+          "text": "reject"
+        }
+      ],
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "physical_line_number": 37,
+      "exact_source_line_text": "| HR-R-03 | AC6 | 客観greenと選好reject共存 / 客観greenで人間reject相殺 |",
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "ee2eb39c3a142af01c13dd031ed08dd0d10249896965c98b3a7ed431f9345cc0",
+      "physical_line_bytes_sha256_including_terminator": "2e28a70950922f211ecedf8bbdb0101bc7d6a072c312da7b3cd5dc8dccf941f2",
+      "baseline_2353_physical_line_bytes_sha256": "2e28a70950922f211ecedf8bbdb0101bc7d6a072c312da7b3cd5dc8dccf941f2",
+      "effective_classification_overlay": "#2353 baseline (no classification overlay in #2356..#2381)",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 810,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 805,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "disposition": "unresolved",
+        "authority_status": "historical"
+      }
+    },
+    {
+      "rank": 9,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000916",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "Reject"
+        },
+        {
+          "category": "prohibition",
+          "text": "禁止"
+        }
+      ],
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "physical_line_number": 138,
+      "exact_source_line_text": "「人間がRejectしたら全部デザイン再生成」は禁止する。",
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "3f52b5b6c9db326eebf61053eca27ec0619dd5eff9564a0dccd087506aa0259a",
+      "physical_line_bytes_sha256_including_terminator": "660aa85f25e663b7a9f7c86b7be3452e6d57b747858ebae8a85bfecd2e0cc459",
+      "baseline_2353_physical_line_bytes_sha256": "660aa85f25e663b7a9f7c86b7be3452e6d57b747858ebae8a85bfecd2e0cc459",
+      "effective_classification_overlay": "#2353 baseline (no classification overlay in #2356..#2381)",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 916,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 806,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "disposition": "unresolved",
+        "authority_status": "historical"
+      }
+    },
+    {
+      "rank": 10,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-002046",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        },
+        {
+          "category": "mandatory",
+          "text": "必須"
+        }
+      ],
+      "source_path": "docs/governance/candidates/functional-release-slice-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+      "physical_line_number": 34,
+      "exact_source_line_text": "| `FRS-AC-001` | FRS-R-01 | schemaの全必須field、version、channel、digest、strict unknown拒否が成立する | field欠落、重複ID、別軸identity混入を受理しない |",
+      "source_file_sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+      "source_line_sha256": "3c84c11fe4513a7e8f87189c74e3082bfd829b037d17b109cfc791c5771b42e6",
+      "physical_line_bytes_sha256_including_terminator": "3cca0d6b3df3a88f215629d790534d6e81cdd37cd8517d38dcff5301f79bfbdc",
+      "baseline_2353_physical_line_bytes_sha256": "3cca0d6b3df3a88f215629d790534d6e81cdd37cd8517d38dcff5301f79bfbdc",
+      "effective_classification_overlay": "#2353 baseline (no classification overlay in #2356..#2381)",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 2046,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-67ADFAB856D954B3C5D2",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 818,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "disposition": "unresolved",
+        "authority_status": "historical"
+      }
+    },
+    {
+      "rank": 11,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-002051",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        },
+        {
+          "category": "mandatory",
+          "text": "required"
+        }
+      ],
+      "source_path": "docs/governance/candidates/functional-release-slice-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+      "physical_line_number": 39,
+      "exact_source_line_text": "| `FRS-AC-006` | FRS-R-06 | included／excluded Sliceのexact set、unknown、conflict、required欠落が検査される | excludedをincludedへ戻す、未指定を含めるmutationを拒否 |",
+      "source_file_sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+      "source_line_sha256": "837d2340e5299c8ff88e94cb21629318d9ae7e4a3b8b6a55d065d3554c2138de",
+      "physical_line_bytes_sha256_including_terminator": "f0f8b45e05554194f2fa6886cabbbd524b40c48e47cb3764188859394819609f",
+      "baseline_2353_physical_line_bytes_sha256": "f0f8b45e05554194f2fa6886cabbbd524b40c48e47cb3764188859394819609f",
+      "effective_classification_overlay": "#2353 baseline (no classification overlay in #2356..#2381)",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 2051,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-67ADFAB856D954B3C5D2",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 818,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "disposition": "unresolved",
+        "authority_status": "historical"
+      }
+    },
+    {
+      "rank": 12,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-002068",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        },
+        {
+          "category": "mandatory",
+          "text": "必須"
+        }
+      ],
+      "source_path": "docs/governance/candidates/functional-release-slice-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+      "physical_line_number": 56,
+      "exact_source_line_text": "| `FRS-AC-023` | FRS-R-21 | Module連動CI・公開の完成なしに内部適用でき、同じ義務と比較条件で待ち時間・rerunを測定する | 必須義務削減、局所単回値の全CI効果への転用を拒否 |",
+      "source_file_sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+      "source_line_sha256": "3a8cebebe6dc44f5812b8766d0851ad8cd9ece269d0f0cc17d3bf595982262d8",
+      "physical_line_bytes_sha256_including_terminator": "9c4c921bce08ac3c3e06859eec51f8f17c81c5898d497819b8aea4077cc425aa",
+      "baseline_2353_physical_line_bytes_sha256": "9c4c921bce08ac3c3e06859eec51f8f17c81c5898d497819b8aea4077cc425aa",
+      "effective_classification_overlay": "#2353 baseline (no classification overlay in #2356..#2381)",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 2068,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-67ADFAB856D954B3C5D2",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 818,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "disposition": "unresolved",
+        "authority_status": "historical"
+      }
+    },
+    {
+      "rank": 13,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-002248",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "fail-close"
+        },
+        {
+          "category": "prohibition",
+          "text": "禁止"
+        }
+      ],
+      "source_path": "docs/governance/candidates/functional-release-slice-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+      "physical_line_number": 142,
+      "exact_source_line_text": "fallbackをしない。full verificationまたはfail-closeへ送る。inventory unionを根拠にしたsilent omissionを禁止する。",
+      "source_file_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+      "source_line_sha256": "e6c53d8fff0849d22191835fdaa955fca10d709bd53a8816030857c63ae4b1ec",
+      "physical_line_bytes_sha256_including_terminator": "2e1d1a6ec237d7c7a1cd342c16c332466c1d7b1fb8de138a4f4038864bc24672",
+      "baseline_2353_physical_line_bytes_sha256": "2e1d1a6ec237d7c7a1cd342c16c332466c1d7b1fb8de138a4f4038864bc24672",
+      "effective_classification_overlay": "#2353 baseline (no classification overlay in #2356..#2381)",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 2248,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-B75E46DBE77592351574",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 820,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "disposition": "unresolved",
+        "authority_status": "historical"
+      }
+    },
+    {
+      "rank": 14,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-002323",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        },
+        {
+          "category": "mandatory",
+          "text": "必須"
+        }
+      ],
+      "source_path": "docs/governance/candidates/harness-memory-coordination-boundary-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/harness-memory-coordination-boundary-acceptance.md",
+      "physical_line_number": 23,
+      "exact_source_line_text": "| `HMC-AC-001` | `HMC-R-01` | 必須field欠落、未知field、長文本文、secret、absolute path | typed envelope拒否、本文を出力しない |",
+      "source_file_sha256": "8b749ac6d5c2ad9a30ccf13947e7baf1c8978580a5672877b526d90478d1ade4",
+      "source_line_sha256": "4e89b79117106cf0893c88502d0f9971490afa33a04571471a88500062d27f8a",
+      "physical_line_bytes_sha256_including_terminator": "8812693f93b2bc6c3868b7dd1904bf31c493e444a26eade3389abb015b047ec0",
+      "baseline_2353_physical_line_bytes_sha256": "8812693f93b2bc6c3868b7dd1904bf31c493e444a26eade3389abb015b047ec0",
+      "effective_classification_overlay": "#2353 baseline (no classification overlay in #2356..#2381)",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 2323,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-FAD65F85239B4D525365",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 821,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "disposition": "unresolved",
+        "authority_status": "historical"
+      }
+    },
+    {
+      "rank": 15,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-003151",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "禁止"
+        },
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        }
+      ],
+      "source_path": "docs/governance/candidates/mechanism-adequacy-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/mechanism-adequacy-acceptance.md",
+      "physical_line_number": 37,
+      "exact_source_line_text": "| MA-AC-17 | MA-R-06 | probeの仮説・停止条件・各budgetを実測。既存policyが許可する対象・操作の正常対照と、許可scope外の対象・禁止操作・期限切れ認可の負例を個別検査し、負例は実行前に拒否して外部副作用0を確認する。枯渇時は証拠不足、無関係な作業は停止しない |",
+      "source_file_sha256": "de7e7a248ab0f0eaab77f6fba079c1876a244f50e6282ec5600c147187b9b7f6",
+      "source_line_sha256": "31e8190a6ef8207c58290580aabb71ff44d1cdc8a373e1a6b54c6fce8492baae",
+      "physical_line_bytes_sha256_including_terminator": "43d253e7abe1f9213015e33732b1568e16ea298606730d209819de1a224fe72e",
+      "baseline_2353_physical_line_bytes_sha256": "43d253e7abe1f9213015e33732b1568e16ea298606730d209819de1a224fe72e",
+      "effective_classification_overlay": "#2353 baseline (no classification overlay in #2356..#2381)",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 3151,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-2CE2F9E494E084235170",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 840,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "disposition": "unresolved",
+        "authority_status": "historical"
+      }
+    },
+    {
+      "rank": 16,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-003691",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "reject"
+        },
+        {
+          "category": "prohibition",
+          "text": "禁止"
+        }
+      ],
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "physical_line_number": 110,
+      "exact_source_line_text": "B-4. #217の既存outcomeを再利用する。推定モデルやキーワードだけで無承認採用へ振り分けず、根拠不足は追加調査／repair、権限不足は人間判断、明示的違反はrejectへ分ける。提案者が自分の委任範囲を拡大することや、検証条件を弱めて通過することを禁止する。[S2]",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "source_line_sha256": "ee264a4dcd19f6d9039f840f3bb57b4609558326e568f74f0bddb32f5a445dbf",
+      "physical_line_bytes_sha256_including_terminator": "027a39b7d92bf343306dc483b16f60e49bc99c828be2be35fe410b90d121fac1",
+      "baseline_2353_physical_line_bytes_sha256": "027a39b7d92bf343306dc483b16f60e49bc99c828be2be35fe410b90d121fac1",
+      "effective_classification_overlay": "#2353 baseline (no classification overlay in #2356..#2381)",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 3691,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-D6A372AEFBA19BE1C63C",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 852,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "disposition": "unresolved",
+        "authority_status": "historical"
+      }
+    },
+    {
+      "rank": 17,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-003917",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "block"
+        },
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        }
+      ],
+      "source_path": "docs/governance/candidates/requirements-authority-materialization-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirements-authority-materialization-acceptance.md",
+      "physical_line_number": 29,
+      "exact_source_line_text": "| `RAMG-AC-009` | RAMG-R-09 | #1318の前段進行とRSTDD-07 dependencyを分離 | Issue全体の過剰block／後段依存漏れを拒否 |",
+      "source_file_sha256": "e295588a3c2ef2d41701682b3f93aaf9bd61b9a6e2a8de4344bc104de5f1aaf0",
+      "source_line_sha256": "905caaa26c442d01a73d9f18991beb259298065b0acbae19e03da7380b137e3c",
+      "physical_line_bytes_sha256_including_terminator": "628ef424c1f7858d811a1d068f4508b5698d2b7ea466c103b28016715c4322c9",
+      "baseline_2353_physical_line_bytes_sha256": "628ef424c1f7858d811a1d068f4508b5698d2b7ea466c103b28016715c4322c9",
+      "effective_classification_overlay": "#2353 baseline (no classification overlay in #2356..#2381)",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 3917,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-EDCECC97CD785052A97F",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 856,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "disposition": "unresolved",
+        "authority_status": "historical"
+      }
+    },
+    {
+      "rank": 18,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004036",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "fail"
+        },
+        {
+          "category": "prohibition",
+          "text": "reject"
+        }
+      ],
+      "source_path": "docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+      "physical_line_number": 23,
+      "exact_source_line_text": "| `RCLS-AC-003` | RCLS-R-07 | failure、高cost、human rejectも分母へ残る | 成功例だけでconfidenceを上げない |",
+      "source_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7",
+      "source_line_sha256": "7635d890951e7ad5a15915d0be4c018ca9f1d54dc3dbf01f87a2bcfb48140886",
+      "physical_line_bytes_sha256_including_terminator": "d63425ab8f084021297121d166842f5b0ee5e711c05b4a6d980338877e62e9e8",
+      "baseline_2353_physical_line_bytes_sha256": "d63425ab8f084021297121d166842f5b0ee5e711c05b4a6d980338877e62e9e8",
+      "effective_classification_overlay": "#2353 baseline (no classification overlay in #2356..#2381)",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 4036,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-B1F192F46FC3AC336094",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 859,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "disposition": "unresolved",
+        "authority_status": "historical"
+      }
+    },
+    {
+      "rank": 19,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004054",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "fail"
+        },
+        {
+          "category": "prohibition",
+          "text": "fail"
+        }
+      ],
+      "source_path": "docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+      "physical_line_number": 42,
+      "exact_source_line_text": "20 oracleを独立failure classとして保持し、legacy/historical successでcurrent failureを相殺しない。",
+      "source_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7",
+      "source_line_sha256": "dd98d21899392e5968cc29a51ae12cc2fff42aadfd62f5339a62e6989dd2f603",
+      "physical_line_bytes_sha256_including_terminator": "e4580e14154e0ecb97275ac93a14dd4156833f32ca30e51c5da16f8197d88367",
+      "baseline_2353_physical_line_bytes_sha256": "e4580e14154e0ecb97275ac93a14dd4156833f32ca30e51c5da16f8197d88367",
+      "effective_classification_overlay": "#2353 baseline (no classification overlay in #2356..#2381)",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 4054,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-B1F192F46FC3AC336094",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 859,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "disposition": "unresolved",
+        "authority_status": "historical"
+      }
+    },
+    {
+      "rank": 20,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004250",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "block"
+        },
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        }
+      ],
+      "source_path": "docs/governance/candidates/rule-derivation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/rule-derivation-requirements.md",
+      "physical_line_number": 77,
+      "exact_source_line_text": "受入: 絶対条件のみHard化、助言非block、副作用前拒否、状態変化時の再照合、診断→Help→修正→通過、契約変更へのHelp追従、Skillゼロ時の成立、独立oracle、旧ルール再注入防止をG-ACで検証する。",
+      "source_file_sha256": "809474c7b0ef3facd35be5bd1d69460249196bec2a44515e06445458341263b9",
+      "source_line_sha256": "ad37b846a36db0035c768bf520928f972f5a69da5663ca98b68763070e4ed58a",
+      "physical_line_bytes_sha256_including_terminator": "02836a904797eb4c7251b8bc1fe216eab4f90b288f86503b91e6c0d548d6b0fd",
+      "baseline_2353_physical_line_bytes_sha256": "02836a904797eb4c7251b8bc1fe216eab4f90b288f86503b91e6c0d548d6b0fd",
+      "effective_classification_overlay": "#2353 baseline (no classification overlay in #2356..#2381)",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 4250,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-43BDCF59263A325425A2",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 864,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "disposition": "unresolved",
+        "authority_status": "historical"
+      }
+    }
+  ],
+  "limitations": [
+    "A marker hit is an identity match only; it does not establish that the row expresses a current normative requirement.",
+    "A lexically normative row may be context, an example, quoted text, code, an acceptance clause, a prohibition against generating a permission, or otherwise not suitable as a requirement.",
+    "No semantic comparison to current adopted L2/L11 or PO decisions was performed.",
+    "No archive workflow, old CLI, hook, adapter, source executable, test, CI, or runtime was run.",
+    "The 20 entries are an audit queue only; no row was adopted, rejected, classified semantically, or declared covered."
+  ]
+}

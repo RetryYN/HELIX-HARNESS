@@ -1,0 +1,2384 @@
+{
+  "schema_version": "1.0.0",
+  "audit_id": "LEGACY-CANDIDATE4755-EXPLANATION-NORMATIVE-SEMANTIC-REVIEW-RANKS-161-180-2026-10-01",
+  "created_against_commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+  "authority_effect": "none",
+  "purpose": "固定source-qualified/effective-classification explanation marker screenの順位161–180をsource rowごとに意味分類し、fixed F6比較と後続PO決定記録を時点別に照合する。語彙順位、family relation、候補採択、source-row binding、source coverage closureを混同しない。",
+  "scope": {
+    "screen_commit": "e070ce2fe7453768d174a0594975dc26b0b25f07",
+    "screen_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-marker-screen-2026-10-01.json",
+    "screen_sha256": "1f9b0b6e05bfb46d937dfbbb954e8f7aa956c440acd526cbad2487b82893efbb",
+    "fixed_marker_pool_size_as_recorded": 255,
+    "screen_effective_explanation_rows": 2965,
+    "reviewed_rank_start": 161,
+    "reviewed_rank_end": 180,
+    "semantic_rows_reviewed": 20,
+    "prior_ranks_1_160_commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+    "archive_runtime_cli_hook_test_ci_executed": false,
+    "not_full_source_closure": true,
+    "raw_regex_hit_count_before_markdown_header_exclusion": 258,
+    "excluded_markdown_table_header_count": 3,
+    "screen_pool_reconciled": true,
+    "prior_ranks_1_180_exact_reconstruction_verified": true
+  },
+  "ranking_reconstruction": {
+    "prior_ranks_1_160_exact_prior_audit_join": true,
+    "prior_rank_count": 160,
+    "prior_ids_unique": true,
+    "current_rank_slice_contiguous_unique": true,
+    "current_rows_disjoint_from_prior_1_160": true,
+    "source_ids_161_180": [
+      "LEGACY-CAND-LINE-003915",
+      "LEGACY-CAND-LINE-003918",
+      "LEGACY-CAND-LINE-003919",
+      "LEGACY-CAND-LINE-003920",
+      "LEGACY-CAND-LINE-003921",
+      "LEGACY-CAND-LINE-003923",
+      "LEGACY-CAND-LINE-003947",
+      "LEGACY-CAND-LINE-004035",
+      "LEGACY-CAND-LINE-004039",
+      "LEGACY-CAND-LINE-004040",
+      "LEGACY-CAND-LINE-004041",
+      "LEGACY-CAND-LINE-004042",
+      "LEGACY-CAND-LINE-004043",
+      "LEGACY-CAND-LINE-004044",
+      "LEGACY-CAND-LINE-004045",
+      "LEGACY-CAND-LINE-004046",
+      "LEGACY-CAND-LINE-004047",
+      "LEGACY-CAND-LINE-004048",
+      "LEGACY-CAND-LINE-004050",
+      "LEGACY-CAND-LINE-004051"
+    ],
+    "rank_rule": "prohibition > mandatory > conditional; within tier regex hit count descending; numeric LEGACY-CAND-LINE suffix ascending; exclude headings/table headers and separators as recorded in fixed screen",
+    "independent_full_marker_reconstruction_count": 255,
+    "recorded_screen_pool_count": 255,
+    "reconstruction_count_matches_recorded_screen_pool": true,
+    "reconstructed_ranks_161_180_match_current_slice": true,
+    "independent_raw_regex_hit_count_before_header_exclusion": 258,
+    "excluded_markdown_table_header_count": 3,
+    "excluded_markdown_table_header_ids": [
+      "LEGACY-CAND-LINE-001500",
+      "LEGACY-CAND-LINE-001514",
+      "LEGACY-CAND-LINE-001910"
+    ],
+    "reconstructed_ranks_253_255": [
+      {
+        "rank": 253,
+        "id": "LEGACY-CAND-LINE-001672",
+        "tier": "conditional",
+        "marker": "場合のみ"
+      },
+      {
+        "rank": 254,
+        "id": "LEGACY-CAND-LINE-001678",
+        "tier": "conditional",
+        "marker": "場合のみ"
+      },
+      {
+        "rank": 255,
+        "id": "LEGACY-CAND-LINE-001685",
+        "tier": "conditional",
+        "marker": "場合のみ"
+      }
+    ]
+  },
+  "pinned_prior_audits": [
+    {
+      "role": "prior_ranks_1_20",
+      "commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-2026-10-01.json",
+      "sha256": "f2e9077287ade80747eeecf373b1e08d53e3d6c8622c2aecc1cb08d881aecaaa",
+      "ranks": [
+        1,
+        20
+      ],
+      "record_count": 20
+    },
+    {
+      "role": "prior_ranks_21_40",
+      "commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-21-40-2026-10-01.json",
+      "sha256": "7498c57886474b0663e19655ab13f0a1a2f468492c87bb74b486c0c6a50f249b",
+      "ranks": [
+        21,
+        40
+      ],
+      "record_count": 20
+    },
+    {
+      "role": "prior_ranks_41_60",
+      "commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-41-60-2026-10-01.json",
+      "sha256": "9de0775e94628a068d6ec45de824f85a37193334e67291a7c3b90d93d6319c0d",
+      "ranks": [
+        41,
+        60
+      ],
+      "record_count": 20
+    },
+    {
+      "role": "prior_ranks_61_80",
+      "commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-61-80-2026-10-01.json",
+      "sha256": "a772c56e8001bb899bc28543fa9b5e8c2f866350f7c2306126f793fc58cd638b",
+      "ranks": [
+        61,
+        80
+      ],
+      "record_count": 20
+    },
+    {
+      "role": "prior_ranks_81_100",
+      "commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-81-100-2026-10-01.json",
+      "sha256": "c762d66599bdd07d825aeb1dd5f43e8c8a0f8a2c0f70aaac08e368ad47ba1ff8",
+      "ranks": [
+        81,
+        100
+      ],
+      "record_count": 20
+    },
+    {
+      "role": "prior_ranks_101_120",
+      "commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-101-120-2026-10-01.json",
+      "sha256": "29cc8bfecbebae44ba0b0473d4df8d561a92f72778ad13177f161e84d1267ecf",
+      "ranks": [
+        101,
+        120
+      ],
+      "record_count": 20
+    },
+    {
+      "role": "prior_ranks_121_140",
+      "commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-121-140-2026-10-01.json",
+      "sha256": "f5b88ec5da4727aee48c30311a0c10b47ff6b39fe7cf5adddcea6fa8380933ee",
+      "ranks": [
+        121,
+        140
+      ],
+      "record_count": 20
+    },
+    {
+      "role": "prior_ranks_141_160",
+      "commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-141-160-2026-10-01.json",
+      "sha256": "e40dbeaf5758a45a6eb39c96b5a8b5723780cfec15b21516103858f7659d8c4b",
+      "ranks": [
+        141,
+        160
+      ],
+      "record_count": 20
+    }
+  ],
+  "pinned_source_ledgers": [
+    {
+      "role": "candidate_source_line_carry_forward_ledger",
+      "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+    },
+    {
+      "role": "legacy_asset_disposition_ledger",
+      "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    }
+  ],
+  "fixed_F6_pair_file_pins": [
+    {
+      "mechanism": "HELIX-OS",
+      "layer": "L2",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "fixed_F6_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_F6_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "current_comparison_commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "current_comparison_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+      "current_bytes_extend_fixed_F6_prefix": true
+    },
+    {
+      "mechanism": "HELIX-OS",
+      "layer": "L11",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "fixed_F6_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_F6_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "current_comparison_commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "current_comparison_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+      "current_bytes_extend_fixed_F6_prefix": true
+    },
+    {
+      "mechanism": "HELIX-HARNESS",
+      "layer": "L2",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "fixed_F6_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_F6_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "current_comparison_commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "current_comparison_sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
+      "current_bytes_extend_fixed_F6_prefix": true
+    },
+    {
+      "mechanism": "HELIX-HARNESS",
+      "layer": "L11",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "fixed_F6_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_F6_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "current_comparison_commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "current_comparison_sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e",
+      "current_bytes_extend_fixed_F6_prefix": true
+    },
+    {
+      "mechanism": "HELIX-LABO",
+      "layer": "L2",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "fixed_F6_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_F6_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "current_comparison_commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "current_comparison_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+      "current_bytes_extend_fixed_F6_prefix": true
+    },
+    {
+      "mechanism": "HELIX-LABO",
+      "layer": "L11",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "fixed_F6_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_F6_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "current_comparison_commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "current_comparison_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+      "current_bytes_extend_fixed_F6_prefix": true
+    },
+    {
+      "mechanism": "HELIX-BRAIN",
+      "layer": "L2",
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "fixed_F6_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_F6_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+      "current_comparison_commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "current_comparison_sha256": "421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa",
+      "current_bytes_extend_fixed_F6_prefix": true
+    },
+    {
+      "mechanism": "HELIX-BRAIN",
+      "layer": "L11",
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "fixed_F6_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_F6_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+      "current_comparison_commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "current_comparison_sha256": "833e80f6b27e6f20461f4c57dd8021d146badcd3a6296e2dd7148649a4389ed5",
+      "current_bytes_extend_fixed_F6_prefix": true
+    }
+  ],
+  "current_relation_source_pins": [
+    {
+      "path": "docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.md",
+      "commit": "10a84beadf17fd729c23c6b67354c9d301931752",
+      "file_sha256": "d2bd02399212b3912825203a9c9037060332a2b1d48a942197bc9cd53536b2cb",
+      "lines": [
+        {
+          "line": 40,
+          "text": "- 監査・学習・成果の出所の節は、監査（AAFD）をIntelligence、学習（RCLS）をLABOへ移し、成果の出所（PPS）はOSに残す。",
+          "sha256": "4764d9b4ebab1e25617b0d4fd533796c5d11120f25fd31b8ea82aa385f4ee023"
+        },
+        {
+          "line": 65,
+          "text": "| 監査・学習・成果の出所の節のうち学習（RCLS）と、その受入条件 | 同上 | — |",
+          "sha256": "479cc704f9f4022b36881654a5747a349d0a03c5d3da264c7a8903a9c6fa416e"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-labo/candidates/improvement-research-requirements.md",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "file_sha256": "b0c1a193a61b5c64f8fef7307f17370aa1eb2a79a3fbdc425f88ff6c87a4cb9e",
+      "lines": [
+        {
+          "line": 20,
+          "text": "HELIX-OSの要求案にあった項目のうち、担当がHELIX-LABO（全体の改善研究機構）である項目を、2026-09-25のPO判断によりここへ移した。",
+          "sha256": "dbb8de698895c80808f3544ba6c96697c4f0d61abaa1f9ef74513d99187fda8b"
+        },
+        {
+          "line": 36,
+          "text": "## 学習に関する候補条件（RCLS）",
+          "sha256": "5b662289fcee91a45cb71e453710e92f96519529a23820933cce901cd9d2e926"
+        },
+        {
+          "line": 38,
+          "text": "出典は[RCLS](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md)である。",
+          "sha256": "529a6fff8bbe9a5b93f88d6b533583e73966d4c404412f089ffafc529cf58461"
+        },
+        {
+          "line": 43,
+          "text": "| RCLS-BR-001 | 知識・経験の所有を安定したresponsibility_idで追跡し、フォルダやSkill名の変更で失わない |",
+          "sha256": "5a9b6e322a8b85f96de0ce16b6cf14204c2186f5d361ab1d75ff40ed62639d5e"
+        },
+        {
+          "line": 46,
+          "text": "| RCLS-BR-004 | project内、独立検証、横断検証、shadow、Mechanismへの段階を区別し、機構化した規則のSkill本文との二重管理を解消する |",
+          "sha256": "07ca6980a9f065a76ff6e50577747dc67920119efc137eee32db120ed5ac0e56"
+        },
+        {
+          "line": 48,
+          "text": "| RCLS-BR-006 | 学習結果は提案・証拠・検索入力として扱い、要求・設計・merge・Release authorityを直接書き換えない。既存の要求形成・改善機構を重複実装しない |",
+          "sha256": "915f48a24e64fb2d81ed5de6b14043a08a429100154c9bd1abc993c3e0538183"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "lines": [
+        {
+          "line": 362,
+          "text": "| LEGACY-ASSET-F2C2755C8809C2C0DEAD `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md:各RCLS-BR-001..006` | `c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c` | responsibility ID、証拠種別、最小context、段階、失効、authority非変更 | RCLSは未承認candidateとして同候補文書に保持し、L2の新規採択に変換しない |",
+          "sha256": "7e45a8533188333e6dab66e9815710a4f8022f69e7f3ad253a5b7779d710085c"
+        },
+        {
+          "line": 375,
+          "text": "4. RCLS-BR-001..006とHELIXOS-L2-012/013の既存候補状態・親付け替えを更新すること。本文記載のみでstatusを変更しない。",
+          "sha256": "a43a9bc695be11d061b4a7bcf0de45aedf3ab80335826d6e8e89511178d1799f"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "lines": [
+        {
+          "line": 129,
+          "text": "これらは対象revisionの採用後に別途評価する候補条件であり、本書の記載で採用状態を変えない。",
+          "sha256": "436f92b27298a71dc3aa6513ce315e595a305fd8e8aa57232696d5ec10424827"
+        },
+        {
+          "line": 131,
+          "text": "- RCLS-BR-001..006：責務ownership、CASE/SCENE/PATTERN/LOG/VERIFY分離、最小packet、project-local→independent verify→cross-project→shadow→mechanismの段階、反例/authority revision/provider/model/expiry/security/licenseによるstale/revoke/revalidation、要求/design/merge/release authorityを直接変更しないことを確認する。",
+          "sha256": "b9b21650df3f9db1530f619eff2b7d4f91dd862115eb3fee6d460cf895a1c390"
+        },
+        {
+          "line": 136,
+          "text": "人判断が必要な内容はL2候補の保留欄を参照する。候補文書・PR・本受入案からL1確認、要求採択、設計承認、実行許可を生成しない。",
+          "sha256": "b15c4fb0bd04e651997ac804b34569c71e94f1fc2da53e7ff5eae81ea42d4d99"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "lines": [
+        {
+          "line": 504,
+          "text": "| RCLS | [RCLS要件](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requirements.md)：RCLS-FR-001..006 | HELIXOS-L2-004／005 |",
+          "sha256": "000cb9e09f08bdd5f3605c315ae6017ab27c760e94b5d2c803fec97ed00f0365"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "lines": [
+        {
+          "line": 182,
+          "text": "監査（AAFD）の受入条件は[HELIX-INTELLIGENCEの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ、学習（RCLS）の受入条件は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ、2026-09-25 PO判断により移した。",
+          "sha256": "57f3dbe34bcab9829c4b93bd2bed24a1148aac309f1a45981cab3f191bd070ec"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "file_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+      "lines": [
+        {
+          "line": 545,
+          "text": "| 旧RCLS-BR-004/006 | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md:37-47`, asset ledger `LEGACY-ASSET-F2C2755C8809C2C0DEAD`, SHA-256 `c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c` | 独立検証を経ること、提案だけでauthorityを変更しない | 登録と振分けをOS、効果評価をLABO、汎用knowledge revisionをBRAINへ分離 |",
+          "sha256": "9fb14b41016807baffc92fe0ac684365e975c07c87329e1df18bc12a3d0b613d"
+        }
+      ]
+    }
+  ],
+  "later_decision_record_pins": [
+    {
+      "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      "commit": "08652ec0fca77957deb66106926e3c5bafc14fff",
+      "file_sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0",
+      "lines": [
+        {
+          "line": 19,
+          "text": "",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 20,
+          "text": "> #2198〜#2205について、各確認資料が固定したL1の対象revisionを確定し、L2と対になるL11の要求一式に合意する。各PRの明示候補集合は、記載されているversion_targetと適用条件を保持して採用する。",
+          "sha256": "667aab7ecacc33bedfee8b0d6637c6df10dd535085a48ea4d648032dd8e07971"
+        },
+        {
+          "line": 44,
+          "text": "POは、確認packetに明示された全53件をL2本文と同identityのL11受入条件を一式として採用した。下表は採用identityと最新registration ID、候補表に載るkind／version_target／適用条件の対応であり、明示集合すべてを列挙する。採用状態は本記録と各最新registration IDの対応から読む。register行そのものは変更しない。",
+          "sha256": "3348f590ca23b402679e1711ae69208e583c83a5adaf9a14396e30d4522b7a67"
+        },
+        {
+          "line": 102,
+          "text": "件数照合は53件。全件の同full identityがL11にも存在する。採用集合一覧:",
+          "sha256": "19842e9c233a545a0a0ed263cdd517ad00f119f18a032238bbb40f945de37d59"
+        },
+        {
+          "line": 120,
+          "text": "全候補は固定候補本文・候補表どおりのkind、version_target、scope、依存区分、適用条件、L11 oracleで採用する。後続版を1.0へ前倒しせず、条件付き経路は記載条件が満たされる場合だけ適用する。草案metadataはPOのL1確定・候補採用を覆さないが、採用からruntime成立・実装済み・受入合格を推定しない。",
+          "sha256": "d671274428e29161a8cafac9833e970e93008d272d9274acbc5036001a5d1be0"
+        },
+        {
+          "line": 127,
+          "text": "旧HELIX sourceの意味・機能・受入・運用上の保証は、confirmation packetで示す対応と未完状態を保持する。全source atomの再配置・被覆・廃止・後続版移管が完了したとは推定せず、未完引継ぎは未完のまま残す。旧HELIXからのデグレ検証は必須で、後続の総合整理で旧assetごとに現行IDへの保持／意味の再導出／置換／後続版の版印／記録付き廃止を対応付け、未対応旧機能0件および弱まった受入・消えたnegative oracle・failure記録の有無を確かめる。本記録はデグレ検証完了を主張しない。旧workflow・CLI・hook・runtime・test・CIは実行しない。",
+          "sha256": "951f2630c85a91230431ecb57c7a119fec6bb6fc2373d8412af1b4c4ef1bbd7c"
+        }
+      ],
+      "mechanism": "HELIX-LABO",
+      "record_commit_date": "2026-09-28T01:59:19+09:00"
+    },
+    {
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "commit": "51e170f8a1e412f201173e8e7116a82538d451e0",
+      "file_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "lines": [
+        {
+          "line": 24,
+          "text": "",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 46,
+          "text": "POは以下の全16件を、確認資料に記載された各version_targetと適用条件を保持して採用した。",
+          "sha256": "4fb7810a880eadf6d6ec0f27d8b828faddde3a98a267528fec5e5902dd75b0e4"
+        },
+        {
+          "line": 56,
+          "text": "- 旧sourceの未完引継ぎ、既存holding、および旧要求に関する未解決atomは維持する。今回の採用から旧sourceの被覆完了、retire、holding解除、またはcoverage範囲拡張を導かない。",
+          "sha256": "e73c9811034ab3807b38780586a03c4b939799d4b2c94c8016e9372914f13c55"
+        }
+      ],
+      "mechanism": "HELIX-OS",
+      "record_commit_date": "2026-09-28T01:55:47+09:00"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "commit": "58b3e912bd4e84a695e01f7096622a4199b41202",
+      "file_sha256": "5b15f6858c9448abea9cd625a6d27619bebddf4b94d3245c5fad5b35a2afb4c2",
+      "lines": [
+        {
+          "line": 24,
+          "text": "[確認資料（判断前の固定版）](https://github.com/RetryYN/HELIX-HARNESS/blob/01810e9bb7078a287e928e5e87e9e073653d8688/docs/governance/audits/requirements-stage/helix-harness-po-confirmation-2026-09-27.md)が固定した本文を対象とする。L1対象revisionを確定し、L2と対になるL11の要求一式に合意する。明示候補24件は全件採用。下表のSHA-256は実ファイルbytesであり、本文を将来変更した場合へ無条件継承しない。",
+          "sha256": "f8810036d8e8411a068b523786196884971fc9cafef3fd0978930ae3daeccdb6"
+        },
+        {
+          "line": 67,
+          "text": "承認対象の本文bytesは変更しない。本文の「候補」「未採択」「人の判断が残る点」は判断前の記述として保存し、本記録が指定したrevisionと候補集合の採否・所属／scope判断には本記録を適用する。本文内容は選択された案と一致しているため、条件の追加・削除やL11の改変を行わない。registerの管理状態 `registered_proposal` と `authority_effect: none` は登録の性質を表すため書き換えず、採択は本記録と上表のidentity・最新登録IDの対応から読む。候補本文・source atomが不変のため、訂正register、receipt、研究pinの付け直しは不要である。",
+          "sha256": "a3f8d308e416ac9f892135df2895daa3243d464a44da37e50b0b9481b7567ebc"
+        },
+        {
+          "line": 72,
+          "text": "- 旧sourceの保持点・意味再導出・変更理由は固定確認資料の旧source対応と機構内監査へ結び付ける。既存の未完source holding・未割当atomを保持し、候補の採用から旧sourceのretireや全被覆完了を生成しない。",
+          "sha256": "346b7622a38a6426496e546042b0df0a47d0742730316dfbf26678ce7509c1cb"
+        },
+        {
+          "line": 73,
+          "text": "- POが求めた旧HELIXからのデグレ検証を最終横断整理の必須作業にする。旧機能・要求・受入・運用保証と採用本文を照合し、失われた機能、弱まった受入、反例・失敗時義務の欠落を調べる。本記録はその検証完了を主張しない。",
+          "sha256": "1a9698c7d52869fdfed11ff1c0ec78b60d8ce77d94fe4ab2fc5bf586da55d436"
+        }
+      ],
+      "mechanism": "HELIX-HARNESS",
+      "record_commit_date": "2026-09-28T01:46:25+09:00"
+    }
+  ],
+  "temporal_authority_evidence": {
+    "fixed_F6_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "fixed_F6_commit_date": "2026-09-27T22:28:58+09:00",
+    "decision_records_absent_at_F6": [
+      "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md"
+    ],
+    "absence_checked_by_git_tree_lookup": true,
+    "post_F6_decision_records": [
+      {
+        "mechanism": "HELIX-LABO",
+        "commit": "08652ec0fca77957deb66106926e3c5bafc14fff",
+        "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+        "file_sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0",
+        "record_commit_date": "2026-09-28T01:59:19+09:00"
+      },
+      {
+        "mechanism": "HELIX-OS",
+        "commit": "51e170f8a1e412f201173e8e7116a82538d451e0",
+        "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+        "file_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+        "record_commit_date": "2026-09-28T01:55:47+09:00"
+      },
+      {
+        "mechanism": "HELIX-HARNESS",
+        "commit": "58b3e912bd4e84a695e01f7096622a4199b41202",
+        "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "file_sha256": "5b15f6858c9448abea9cd625a6d27619bebddf4b94d3245c5fad5b35a2afb4c2",
+        "record_commit_date": "2026-09-28T01:46:25+09:00"
+      }
+    ],
+    "effect_boundary": "later records decide only the exact L1/L2/L11 revisions and explicit candidate identities each names; they do not adopt, source-bind, close, retire, or release any selected legacy RAMG/RCLS acceptance row."
+  },
+  "source_family_relation_boundary": {
+    "RCLS_rows_168_180_family_relation": true,
+    "basis": [
+      "2026-09-25 PO placement decision moved RCLS and its acceptance conditions to LABO",
+      "LABO candidate/L2/L11 keeps RCLS-BR-001..006 as candidate conditions for evaluation after adopted target revision",
+      "OS/BRAIN context cites RCLS requirement-family items, not the selected RCLS-AC line identities"
+    ],
+    "row_specific_old_acceptance_crosswalk": false,
+    "RAMG_rows_161_167_family_relation": false,
+    "meaning": "RCLS family/source placement is an explicit relationship only; neither exact old RCLS-AC line mapping nor adopted pair binding is established."
+  },
+  "summary": {
+    "exclusive_semantic_group_counts": {
+      "受入oracle": 19,
+      "要求条件": 1
+    },
+    "normative_context_role_counts": {
+      "acceptance_expected_or_negative_behavior": 19,
+      "direct_requirement_condition": 1
+    },
+    "normative_context_rows": 20,
+    "standalone_requirement_conditions": 20,
+    "candidate_pointer_rows": 13,
+    "source_family_relation_rows": 13,
+    "selected_source_row_crosswalk_rows": 0,
+    "source_range_crosswalk_rows": 0,
+    "adopted_pair_binding_rows": 0,
+    "source_condition_closed_rows": 0,
+    "adopted_retired_closed_count": 0
+  },
+  "limitations": [
+    "RCLS family relationは旧RCLS-AC選定行のID-level bindingや個別oracle実施と異なる。",
+    "RAMGの一般的なsource authority近接はRAMG source-family relationや採択を表さない。",
+    "F6 pair absence and post-F6 decision scope claims are bounded to the exact pinned files/commits.",
+    "archive runtime/CLI/hook/adapter/test/CI/workflowは実行していない。",
+    "Raw regex matching yields 258 rows; the published screen exclusions remove three Markdown table header lines (001500, 001514, 001910), yielding the fixed eligible pool of 255. The excluded lines are pinned here; screen source remains unchanged."
+  ],
+  "queue": [
+    {
+      "rank": 161,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-003915",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/requirements-authority-materialization-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirements-authority-materialization-acceptance.md",
+        "physical_line": 27,
+        "exact_source_line_text": "| `RAMG-AC-007` | RAMG-R-07 | stale sourceとpartial traceを別failure化 | stale digestをcurrentとして再利用しない |",
+        "source_file_sha256": "e295588a3c2ef2d41701682b3f93aaf9bd61b9a6e2a8de4344bc104de5f1aaf0",
+        "source_line_sha256": "sha256:22a6c3292b95aff51775ab54e05e1090d69a216b5421cff333e69e97b0138475",
+        "physical_line_bytes_sha256_including_terminator": "7e0af15916aefca46c6086a1b7a9f00c644cfc8e08014261a537c5de6a2f5156",
+        "context_lines": [
+          {
+            "line": 26,
+            "text": "| `RAMG-AC-006` | RAMG-R-06 | IRはsource authorityの一方向投影 | Issue proseからsemantic record生成を拒否 |",
+            "line_sha256": "a650caecbee5fd1497e292a4f9629c1eb2c5608141ce9ca2981d0432573f6502"
+          },
+          {
+            "line": 27,
+            "text": "| `RAMG-AC-007` | RAMG-R-07 | stale sourceとpartial traceを別failure化 | stale digestをcurrentとして再利用しない |",
+            "line_sha256": "22a6c3292b95aff51775ab54e05e1090d69a216b5421cff333e69e97b0138475"
+          },
+          {
+            "line": 28,
+            "text": "| `RAMG-AC-008` | RAMG-R-08 | #1292が複合Capability自身のauthorityを要求 | 構成要素coverageで相殺しない |",
+            "line_sha256": "f8d2deaf60c46f83ed504f673f34f08b4fc9be3a43f2d101ced33d11bef24725"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 3915,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "2996db38983c78c7d270ca46d7d02f6351f39075f8a7a0feee1bd3fc63272b16",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 856,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "7750a928236c640fc593e3eb793ec63d3eb32f8284c96b0d0daaf944b1d9c2a9",
+        "asset_id": "LEGACY-ASSET-EDCECC97CD785052A97F",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "RAMG-AC-007 stale sourceとpartial traceのfailureを分け、stale digestのcurrent再利用を拒否する。F6 OS/HARNESSにはsource authority、target placement、意味変更時のdecision境界など一般的な近接条件があるが、RAMG identity・stale digest oracleの個別参照はない。",
+        "residual": "staleの判定対象・freshness basis・partial trace stateとfailure precedence・再評価条件を持つsource-row pair/L11 oracleが未確認。候補family・隣接語を旧RAMG-AC-007採択としない。",
+        "counterexample": "general source authority/target pending languageをstale digest rejectionの実装済みoracleとする。",
+        "source_family_relation_found": false,
+        "candidate_or_source_range_reference_found": false,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 162,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-003918",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/requirements-authority-materialization-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirements-authority-materialization-acceptance.md",
+        "physical_line": 30,
+        "exact_source_line_text": "| `RAMG-AC-010` | RAMG-R-10 | Issueからruntime consumerまでstable join | owner不明、二重owner、到達不能を拒否 |",
+        "source_file_sha256": "e295588a3c2ef2d41701682b3f93aaf9bd61b9a6e2a8de4344bc104de5f1aaf0",
+        "source_line_sha256": "sha256:698f0c2cfa2ebf16a3c2bfd29b5ac01b0277ee8cfba848735069fd9b35dec36d",
+        "physical_line_bytes_sha256_including_terminator": "2d828fae47d4f55d79f0fe734c70d9c154088ef8012a9309f7f2f34efa296f5a",
+        "context_lines": [
+          {
+            "line": 29,
+            "text": "| `RAMG-AC-009` | RAMG-R-09 | #1318の前段進行とRSTDD-07 dependencyを分離 | Issue全体の過剰block／後段依存漏れを拒否 |",
+            "line_sha256": "905caaa26c442d01a73d9f18991beb259298065b0acbae19e03da7380b137e3c"
+          },
+          {
+            "line": 30,
+            "text": "| `RAMG-AC-010` | RAMG-R-10 | Issueからruntime consumerまでstable join | owner不明、二重owner、到達不能を拒否 |",
+            "line_sha256": "698f0c2cfa2ebf16a3c2bfd29b5ac01b0277ee8cfba848735069fd9b35dec36d"
+          },
+          {
+            "line": 31,
+            "text": "| `RAMG-AC-011` | RAMG-R-11 | 全対象がexactly-one disposition | 未分類、複数分類、件数だけの相殺を拒否 |",
+            "line_sha256": "a5f876c6c1ebdf629ee79c01636a521900819f95978b236efa40b5361d1e9bf9"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 3918,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "a7a897637e352aa0a6afa57ab141685c952cf1f2cbc0a8660033a51eca0e59f6",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 856,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "7750a928236c640fc593e3eb793ec63d3eb32f8284c96b0d0daaf944b1d9c2a9",
+        "asset_id": "LEGACY-ASSET-EDCECC97CD785052A97F",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "RAMG-AC-010はIssueからruntime consumerまでのstable joinとowner一意性・到達性を求める。F6 pairにsource/authorityと要件traceはあるが、Issue→runtime consumerのRAMG row bindingはない。",
+        "residual": "stable join identity、owner cardinality、consumer reachabilityを固定するschema・negative oracle・実行証拠が未対応。",
+        "counterexample": "source provenanceやtraceへの一般的言及からruntime consumer stable-joinを採択済みとする。",
+        "source_family_relation_found": false,
+        "candidate_or_source_range_reference_found": false,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 163,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-003919",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/requirements-authority-materialization-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirements-authority-materialization-acceptance.md",
+        "physical_line": 31,
+        "exact_source_line_text": "| `RAMG-AC-011` | RAMG-R-11 | 全対象がexactly-one disposition | 未分類、複数分類、件数だけの相殺を拒否 |",
+        "source_file_sha256": "e295588a3c2ef2d41701682b3f93aaf9bd61b9a6e2a8de4344bc104de5f1aaf0",
+        "source_line_sha256": "sha256:a5f876c6c1ebdf629ee79c01636a521900819f95978b236efa40b5361d1e9bf9",
+        "physical_line_bytes_sha256_including_terminator": "5144533a64440d8cd3d613eefd4146db99f9fab28e5eabef1775d129d956ce11",
+        "context_lines": [
+          {
+            "line": 30,
+            "text": "| `RAMG-AC-010` | RAMG-R-10 | Issueからruntime consumerまでstable join | owner不明、二重owner、到達不能を拒否 |",
+            "line_sha256": "698f0c2cfa2ebf16a3c2bfd29b5ac01b0277ee8cfba848735069fd9b35dec36d"
+          },
+          {
+            "line": 31,
+            "text": "| `RAMG-AC-011` | RAMG-R-11 | 全対象がexactly-one disposition | 未分類、複数分類、件数だけの相殺を拒否 |",
+            "line_sha256": "a5f876c6c1ebdf629ee79c01636a521900819f95978b236efa40b5361d1e9bf9"
+          },
+          {
+            "line": 32,
+            "text": "| `RAMG-AC-012` | RAMG-R-12 | PR高速検査とscheduled全数監査を分離 | PRごとの全件live走査とscheduled省略を拒否 |",
+            "line_sha256": "834b13169f0535cbe58fc93630d2e2e90ae61917a6c9dca826ff212ed8775cee"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 3919,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "2240d9034f72e1ae5d739e68a8bc1d5d2f6a47eb67ad9fc76dc3ea2f85a76f5c",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 856,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "7750a928236c640fc593e3eb793ec63d3eb32f8284c96b0d0daaf944b1d9c2a9",
+        "asset_id": "LEGACY-ASSET-EDCECC97CD785052A97F",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "RAMG-AC-011は各対象のexactly-one dispositionを要求し、未分類・多重分類・件数相殺を拒否する。F6 source/atom holding境界とは意味上近いがRAMG disposition contractへの直接参照はない。",
+        "residual": "判定対象集合、disposition enum、exact cardinality・duplicate/unknown/error oracleを結ぶ現行pairが未確認。",
+        "counterexample": "資産台帳やsource holdingの存在をRAMG全対象dispositionのexactly-one oracleとみなす。",
+        "source_family_relation_found": false,
+        "candidate_or_source_range_reference_found": false,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 164,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-003920",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/requirements-authority-materialization-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirements-authority-materialization-acceptance.md",
+        "physical_line": 32,
+        "exact_source_line_text": "| `RAMG-AC-012` | RAMG-R-12 | PR高速検査とscheduled全数監査を分離 | PRごとの全件live走査とscheduled省略を拒否 |",
+        "source_file_sha256": "e295588a3c2ef2d41701682b3f93aaf9bd61b9a6e2a8de4344bc104de5f1aaf0",
+        "source_line_sha256": "sha256:834b13169f0535cbe58fc93630d2e2e90ae61917a6c9dca826ff212ed8775cee",
+        "physical_line_bytes_sha256_including_terminator": "31d22eb82fcb9b2a4d37aaa6c0797973eba5be227ca9f9b328ebe2e1be0303da",
+        "context_lines": [
+          {
+            "line": 31,
+            "text": "| `RAMG-AC-011` | RAMG-R-11 | 全対象がexactly-one disposition | 未分類、複数分類、件数だけの相殺を拒否 |",
+            "line_sha256": "a5f876c6c1ebdf629ee79c01636a521900819f95978b236efa40b5361d1e9bf9"
+          },
+          {
+            "line": 32,
+            "text": "| `RAMG-AC-012` | RAMG-R-12 | PR高速検査とscheduled全数監査を分離 | PRごとの全件live走査とscheduled省略を拒否 |",
+            "line_sha256": "834b13169f0535cbe58fc93630d2e2e90ae61917a6c9dca826ff212ed8775cee"
+          },
+          {
+            "line": 33,
+            "text": "",
+            "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 3920,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "822099a05e59459e677d6b41579224b0096fcf5378e76caf9529b4d2752ba90c",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 856,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "7750a928236c640fc593e3eb793ec63d3eb32f8284c96b0d0daaf944b1d9c2a9",
+        "asset_id": "LEGACY-ASSET-EDCECC97CD785052A97F",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "RAMG-AC-012はPR fast checkとscheduled full auditを分離し、PRごとの全件live走査・scheduled省略を拒否する。固定F6 pairにはこのRAMG cadence/scope tupleの個別bindingがない。",
+        "residual": "fast-check coverage、scheduled population/cadence、missed-run/failure oracle、同一対象の結果照合が未指定。",
+        "counterexample": "一般的なCI/test分担をPR-vs-scheduled full audit contractと同値にする。",
+        "source_family_relation_found": false,
+        "candidate_or_source_range_reference_found": false,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 165,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-003921",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/requirements-authority-materialization-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirements-authority-materialization-acceptance.md",
+        "physical_line": 34,
+        "exact_source_line_text": "| RAMG-AC-013 | RAMG-R-13 | semantic consumerがcanonical Requirement IR JSONだけを読む | confirmed Markdown、DB、generated viewによるdual authorityを拒否 |",
+        "source_file_sha256": "e295588a3c2ef2d41701682b3f93aaf9bd61b9a6e2a8de4344bc104de5f1aaf0",
+        "source_line_sha256": "sha256:e2bd192665fb02312da330b8ae55880ac8e8219c14b31912f0310e12eb76bbd4",
+        "physical_line_bytes_sha256_including_terminator": "22134d671b26908407df01708b5554697c9ba891ff64faa12db4989622969c64",
+        "context_lines": [
+          {
+            "line": 33,
+            "text": "",
+            "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 34,
+            "text": "| RAMG-AC-013 | RAMG-R-13 | semantic consumerがcanonical Requirement IR JSONだけを読む | confirmed Markdown、DB、generated viewによるdual authorityを拒否 |",
+            "line_sha256": "e2bd192665fb02312da330b8ae55880ac8e8219c14b31912f0310e12eb76bbd4"
+          },
+          {
+            "line": 35,
+            "text": "| RAMG-AC-014 | RAMG-R-14 | auto-admissionとhuman freezeを別state／receiptで保持 | AI auto_admitだけでfrozen遷移や下流解放を行わない |",
+            "line_sha256": "a59bdf3d748f3d3f0d93486ebfd4163ec20663718ac9a977e42a045d6b19868a"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 3921,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "b4b1c27287d8a2d78723eb2e3c9efc9e235c3fcf5156d80df5c0d0ffb71bb455",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 856,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "7750a928236c640fc593e3eb793ec63d3eb32f8284c96b0d0daaf944b1d9c2a9",
+        "asset_id": "LEGACY-ASSET-EDCECC97CD785052A97F",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "RAMG-AC-013はsemantic consumerをcanonical Requirement IR JSONに限定し、confirmed Markdown/DB/generated viewをdual authorityとして拒否する。F6 pairはsource authorityを保つ一般境界を記すがRAMG canonical-consumer bindingなし。",
+        "residual": "canonical source schema/version、consumer read path、Markdown/DB/viewのnegative oracleと責任ownerが未対応。",
+        "counterexample": "source authority保持方針をcanonical JSON-only consumer policyの採択・実施と読み替える。",
+        "source_family_relation_found": false,
+        "candidate_or_source_range_reference_found": false,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 166,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-003923",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/requirements-authority-materialization-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirements-authority-materialization-acceptance.md",
+        "physical_line": 37,
+        "exact_source_line_text": "14 oracleを独立failure classとして保持し、単一happy pathで相殺しない。",
+        "source_file_sha256": "e295588a3c2ef2d41701682b3f93aaf9bd61b9a6e2a8de4344bc104de5f1aaf0",
+        "source_line_sha256": "sha256:9650f762700b5beb3c921519740812ff2ec040babdf85e189f27d8d483b189bd",
+        "physical_line_bytes_sha256_including_terminator": "09d75f590eebf14328a8d762ffc5635164c2de286d053516726c18a81489d6ce",
+        "context_lines": [
+          {
+            "line": 36,
+            "text": "",
+            "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 37,
+            "text": "14 oracleを独立failure classとして保持し、単一happy pathで相殺しない。",
+            "line_sha256": "9650f762700b5beb3c921519740812ff2ec040babdf85e189f27d8d483b189bd"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 3923,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "40a8db251e1c82747144b27e7b611a6982434804eda79b90ebfb9218cf50ec69",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 856,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "7750a928236c640fc593e3eb793ec63d3eb32f8284c96b0d0daaf944b1d9c2a9",
+        "asset_id": "LEGACY-ASSET-EDCECC97CD785052A97F",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "RAMG-AC一覧直後の要約は14 oracleを独立failure classとして保持し、単一happy pathで相殺しないと述べる。F6 pairに14分類のRAMG acceptance mappingも実行記録もない。",
+        "residual": "14項目それぞれのfailure identity、独立採点、集約時の非相殺oracleを現行L11へ個別に結ぶ対応が未確認。",
+        "counterexample": "一覧後の要約行を14個の現行oracleの採択または実行証拠とする。",
+        "source_family_relation_found": false,
+        "candidate_or_source_range_reference_found": false,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 167,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-003947",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/requirements-authority-materialization-requests.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirements-authority-materialization-requests.md",
+        "physical_line": 31,
+        "exact_source_line_text": "runtime、schema、DB、CLI current output、generated docsを変更する前に、その意味を所有する要求、要件、受入oracle、承認、source revisionを解決する。未解決時はfail-closeする。",
+        "source_file_sha256": "5d3393f7f733249ff8c248a0f6b8563a8974712d9832acdccc93feda1d42b502",
+        "source_line_sha256": "sha256:d48e39dbfb1304657d927add40fa0948226733084f76c51633cc7b82d02363b6",
+        "physical_line_bytes_sha256_including_terminator": "042c7ffea0472f53248f44be3a454bbde482520de23e56306c7edbbb7eb4f599",
+        "context_lines": [
+          {
+            "line": 30,
+            "text": "",
+            "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 31,
+            "text": "runtime、schema、DB、CLI current output、generated docsを変更する前に、その意味を所有する要求、要件、受入oracle、承認、source revisionを解決する。未解決時はfail-closeする。",
+            "line_sha256": "d48e39dbfb1304657d927add40fa0948226733084f76c51633cc7b82d02363b6"
+          },
+          {
+            "line": 32,
+            "text": "",
+            "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 3947,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "2b5ea8d631ce776597febbae22ad097de729a2d9464a99891b27b522f1aeac6a",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 857,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "32800addf5b4175f706e509af28bf15179a938c98e28146a89e78cfe7b3637a7",
+        "asset_id": "LEGACY-ASSET-76608A4341AF0CF64422",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "要求条件",
+        "normative_context_role": "direct_requirement_condition",
+        "standalone_requirement_condition": true,
+        "relation": "RAMG-R群のrequest条件は、runtime/schema/DB/CLI output/generated docsの変更前に要求・要件・受入oracle・承認・source revisionを解決し、unknown時はfail-closeする。F6 OS/HARNESSのauthority・人判断境界と近いが、このRAMG source lineを指すcurrent owner/pairなし。",
+        "residual": "対象operation、必須source tuple、解決owner、fail-close対象と例外、negative oracleを結ぶ採択pair/L11が未確認。",
+        "counterexample": "一般的な人間decision boundaryからRAMG-R-??の個別採択や自動gate成立を導く。",
+        "source_family_relation_found": false,
+        "candidate_or_source_range_reference_found": false,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 168,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004035",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "physical_line": 22,
+        "exact_source_line_text": "| `RCLS-AC-002` | RCLS-R-04..08 | 5 channelを別contractで保持 | 自由文tag／単一enumへの畳込みを拒否 |",
+        "source_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7",
+        "source_line_sha256": "sha256:7f04668eb0f6f12a07dfbbea121241e97e45e0511879d48d7b7a812b16477ee5",
+        "physical_line_bytes_sha256_including_terminator": "bc74ad4d6d91533f6a0798cc51980690d86cc00785c87c7e7548ed318f7fcd0c",
+        "context_lines": [
+          {
+            "line": 21,
+            "text": "| `RCLS-AC-001` | RCLS-R-01..03 | 全assetがexactly one primary ownerとlineageを持つ | owner不明、暗黙shared、複数primaryを拒否 |",
+            "line_sha256": "a19147feac37bb668438eee23fb3baa4da13762588affbee958d837af5f95341"
+          },
+          {
+            "line": 22,
+            "text": "| `RCLS-AC-002` | RCLS-R-04..08 | 5 channelを別contractで保持 | 自由文tag／単一enumへの畳込みを拒否 |",
+            "line_sha256": "7f04668eb0f6f12a07dfbbea121241e97e45e0511879d48d7b7a812b16477ee5"
+          },
+          {
+            "line": 23,
+            "text": "| `RCLS-AC-003` | RCLS-R-07 | failure、高cost、human rejectも分母へ残る | 成功例だけでconfidenceを上げない |",
+            "line_sha256": "7635d890951e7ad5a15915d0be4c018ca9f1d54dc3dbf01f87a2bcfb48140886"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4035,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "3a3eaee5f56a10b3bd2fb0a55c76e4908008c14dff768dc6d509c8b6674f3a3c",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 859,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "24e10bca79d7ec3fc3ed361b79a6febc283c0d8c5efa10eb65079a349e5f099f",
+        "asset_id": "LEGACY-ASSET-B1F192F46FC3AC336094",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "RCLS-AC-002は5 channelの別contract保持を要求し、free-text tag/single enumへの畳込みを拒否する。F6後の配置資料はRCLS-BR-002のCASE/SCENE/PATTERN/LOG/VERIFY分離をRCLS familyとして維持し、LABO L2/L11に候補状態で記す。これはAC-002のrow-specific adoptionまたはacceptance executionではない。",
+        "residual": "5 channelの正確なfield/schema、責務・事例・revisionとのbinding、single-enum negative fixtureを対象rowへ結ぶpair oracleがない。",
+        "counterexample": "RCLS-BR-002やLabo family handoffを旧RCLS-AC-002の採択・閉鎖とする。",
+        "source_family_relation_found": true,
+        "candidate_or_source_range_reference_found": true,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 169,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004039",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "physical_line": 26,
+        "exact_source_line_text": "| `RCLS-AC-006` | RCLS-R-10 | stale/contradicted/expired/restricted assetがexcluded receiptへ出る | current packetへの混入を拒否 |",
+        "source_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7",
+        "source_line_sha256": "sha256:b285adf0894b849c241e7586b2b69f2e128df13dd812a81db3fb010b546eb455",
+        "physical_line_bytes_sha256_including_terminator": "a3576a26cd70df3ab949a7169443834db967eaa19400d77f272c5bad499e2006",
+        "context_lines": [
+          {
+            "line": 25,
+            "text": "| `RCLS-AC-005` | RCLS-R-09..11 | 同一input/revision/policyから同一packet exact set/digest | vector similarityだけでowner/authorityを決めない |",
+            "line_sha256": "31f55208859762c8c01b5affb46553d21dec6d18b13f971f161c4320dc8d0068"
+          },
+          {
+            "line": 26,
+            "text": "| `RCLS-AC-006` | RCLS-R-10 | stale/contradicted/expired/restricted assetがexcluded receiptへ出る | current packetへの混入を拒否 |",
+            "line_sha256": "b285adf0894b849c241e7586b2b69f2e128df13dd812a81db3fb010b546eb455"
+          },
+          {
+            "line": 27,
+            "text": "| `RCLS-AC-007` | RCLS-R-12..13 | promotionと全縮退状態を再生可能 | 単一事例・頻度・自己評価による段階飛越を拒否 |",
+            "line_sha256": "722d2957d52dc17c9bd431dd61d20819fce563ced2e522fc54f8662efd4a0087"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4039,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "abe355f7de653656dba4c75b3f754d29356c82b4846e891ae9b2bacaa1d1b74b",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 859,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "24e10bca79d7ec3fc3ed361b79a6febc283c0d8c5efa10eb65079a349e5f099f",
+        "asset_id": "LEGACY-ASSET-B1F192F46FC3AC336094",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "RCLS-AC-006はstale/contradicted/expired/restricted assetのexcluded receiptを要求する。RCLS-BR-005とLABO candidate/L11にはexpiry・security/license・revoke/revalidationのfamily contextがあるが、このAC rowのreceipt schema/negative pathへ結ばれない。",
+        "residual": "excluded receipt identity、stale reason、asset-use filtering、expired/restricted data negative oracleと対象source setが残る。",
+        "counterexample": "RCLS-BR-005 family mentionからAC-006 scope/all assets closureを推論する。",
+        "source_family_relation_found": true,
+        "candidate_or_source_range_reference_found": true,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 170,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004040",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "physical_line": 27,
+        "exact_source_line_text": "| `RCLS-AC-007` | RCLS-R-12..13 | promotionと全縮退状態を再生可能 | 単一事例・頻度・自己評価による段階飛越を拒否 |",
+        "source_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7",
+        "source_line_sha256": "sha256:722d2957d52dc17c9bd431dd61d20819fce563ced2e522fc54f8662efd4a0087",
+        "physical_line_bytes_sha256_including_terminator": "7b0a281ee8bf1d6b82d4ac147f9e917259a8af4371018243c91830231da6bf88",
+        "context_lines": [
+          {
+            "line": 26,
+            "text": "| `RCLS-AC-006` | RCLS-R-10 | stale/contradicted/expired/restricted assetがexcluded receiptへ出る | current packetへの混入を拒否 |",
+            "line_sha256": "b285adf0894b849c241e7586b2b69f2e128df13dd812a81db3fb010b546eb455"
+          },
+          {
+            "line": 27,
+            "text": "| `RCLS-AC-007` | RCLS-R-12..13 | promotionと全縮退状態を再生可能 | 単一事例・頻度・自己評価による段階飛越を拒否 |",
+            "line_sha256": "722d2957d52dc17c9bd431dd61d20819fce563ced2e522fc54f8662efd4a0087"
+          },
+          {
+            "line": 28,
+            "text": "| `RCLS-AC-008` | RCLS-R-14 | Skillにscene trigger、非適用条件、効果測定、expiryがある | generic procedureの既定注入を拒否 |",
+            "line_sha256": "5c0aa37d391c47afd11433b02874bbd7b32cc711caf0c78b4f0d0a326fddf2e6"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4040,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "58547610f55d499079d4cf7e52a8c1cb45131852d18dd48e34c1be752cc96ae9",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 859,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "24e10bca79d7ec3fc3ed361b79a6febc283c0d8c5efa10eb65079a349e5f099f",
+        "asset_id": "LEGACY-ASSET-B1F192F46FC3AC336094",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "RCLS-AC-007はpromotionと全縮退状態をreplay可能にし、頻度/単一事例/自己評価による段階飛越を拒否する。RCLS-BR-004のproject→independent→cross-project→shadow→mechanism sequenceはfamily-level relationとして保持される。",
+        "residual": "stage state machine、required evidence、degraded/rollback states、replay oracleと各段階のownerをAC lineに結ぶpairが未確認。",
+        "counterexample": "段階名がLabo candidateにあることをpromotion oracle実装・実行とみなす。",
+        "source_family_relation_found": true,
+        "candidate_or_source_range_reference_found": true,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 171,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004041",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "physical_line": 28,
+        "exact_source_line_text": "| `RCLS-AC-008` | RCLS-R-14 | Skillにscene trigger、非適用条件、効果測定、expiryがある | generic procedureの既定注入を拒否 |",
+        "source_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7",
+        "source_line_sha256": "sha256:5c0aa37d391c47afd11433b02874bbd7b32cc711caf0c78b4f0d0a326fddf2e6",
+        "physical_line_bytes_sha256_including_terminator": "61b141c41fc624ab842d53fda8b2045ba0994436b343d4021fb9844fdad22ae2",
+        "context_lines": [
+          {
+            "line": 27,
+            "text": "| `RCLS-AC-007` | RCLS-R-12..13 | promotionと全縮退状態を再生可能 | 単一事例・頻度・自己評価による段階飛越を拒否 |",
+            "line_sha256": "722d2957d52dc17c9bd431dd61d20819fce563ced2e522fc54f8662efd4a0087"
+          },
+          {
+            "line": 28,
+            "text": "| `RCLS-AC-008` | RCLS-R-14 | Skillにscene trigger、非適用条件、効果測定、expiryがある | generic procedureの既定注入を拒否 |",
+            "line_sha256": "5c0aa37d391c47afd11433b02874bbd7b32cc711caf0c78b4f0d0a326fddf2e6"
+          },
+          {
+            "line": 29,
+            "text": "| `RCLS-AC-009` | RCLS-R-15 | mechanismにVERIFY、shadow、FP評価、rollback、approvalがある | event件数だけのACTIVE化を拒否 |",
+            "line_sha256": "af471ef7fe338f54da98aed0effda4f4103877b4eb31a3e2741994c65b89141d"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4041,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "ccfaea07650df5b1c746c34581eaf564638708486c42ce7b73996d561529e0bf",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 859,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "24e10bca79d7ec3fc3ed361b79a6febc283c0d8c5efa10eb65079a349e5f099f",
+        "asset_id": "LEGACY-ASSET-B1F192F46FC3AC336094",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "RCLS-AC-008はSkillごとにscene trigger、non-applicability、effect measurement、expiryを要求しgeneric default injectionを拒否する。LABO RCLS-BR family has trigger/scope and expiry adjacent meaning, not exact row binding.",
+        "residual": "Skill artifact schema、trigger/non-applicability semantics、effect window/denominator、expiry invalidation and negative fixture are unowned at this selected source row.",
+        "counterexample": "Skill scene trigger/expiry mention in RCLS family to assert AC-008 adoption or every Skill coverage.",
+        "source_family_relation_found": true,
+        "candidate_or_source_range_reference_found": true,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 172,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004042",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "physical_line": 29,
+        "exact_source_line_text": "| `RCLS-AC-009` | RCLS-R-15 | mechanismにVERIFY、shadow、FP評価、rollback、approvalがある | event件数だけのACTIVE化を拒否 |",
+        "source_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7",
+        "source_line_sha256": "sha256:af471ef7fe338f54da98aed0effda4f4103877b4eb31a3e2741994c65b89141d",
+        "physical_line_bytes_sha256_including_terminator": "299282f1980c6fd02fd9c07375e2c9646571c2d8363b7c11b191c5d6009f39d0",
+        "context_lines": [
+          {
+            "line": 28,
+            "text": "| `RCLS-AC-008` | RCLS-R-14 | Skillにscene trigger、非適用条件、効果測定、expiryがある | generic procedureの既定注入を拒否 |",
+            "line_sha256": "5c0aa37d391c47afd11433b02874bbd7b32cc711caf0c78b4f0d0a326fddf2e6"
+          },
+          {
+            "line": 29,
+            "text": "| `RCLS-AC-009` | RCLS-R-15 | mechanismにVERIFY、shadow、FP評価、rollback、approvalがある | event件数だけのACTIVE化を拒否 |",
+            "line_sha256": "af471ef7fe338f54da98aed0effda4f4103877b4eb31a3e2741994c65b89141d"
+          },
+          {
+            "line": 30,
+            "text": "| `RCLS-AC-010` | RCLS-R-16 | ACTIVE後の重複Skill proseが0 | machine policy化済み規則の再注入を拒否 |",
+            "line_sha256": "bbd5c267421cedee9511f32d6c2f710ff85ba13d6b11f18568780593a85e93bb"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4042,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "7c565d483f084cbf4259690054367803cc64ed774b7956a29d0a7ca4dbabc037",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 859,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "24e10bca79d7ec3fc3ed361b79a6febc283c0d8c5efa10eb65079a349e5f099f",
+        "asset_id": "LEGACY-ASSET-B1F192F46FC3AC336094",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "RCLS-AC-009 requires mechanism VERIFY, shadow, false-positive evaluation, rollback and approval; rejects activation from event counts alone. RCLS-BR-004 staged learning and LABO candidate checks are family context, not AC-009 acceptance evidence.",
+        "residual": "VERIFY producer/scope, shadow duration, FP denominator, rollback trigger and typed approval oracle plus execution evidence remain.",
+        "counterexample": "Stage or approval vocabulary alone establishes mechanism active qualification.",
+        "source_family_relation_found": true,
+        "candidate_or_source_range_reference_found": true,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 173,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004043",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "physical_line": 30,
+        "exact_source_line_text": "| `RCLS-AC-010` | RCLS-R-16 | ACTIVE後の重複Skill proseが0 | machine policy化済み規則の再注入を拒否 |",
+        "source_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7",
+        "source_line_sha256": "sha256:bbd5c267421cedee9511f32d6c2f710ff85ba13d6b11f18568780593a85e93bb",
+        "physical_line_bytes_sha256_including_terminator": "c74d9e6ac329717f90221d5e57f9f263c31e7a4ce957e35a0ca64cf76156dd40",
+        "context_lines": [
+          {
+            "line": 29,
+            "text": "| `RCLS-AC-009` | RCLS-R-15 | mechanismにVERIFY、shadow、FP評価、rollback、approvalがある | event件数だけのACTIVE化を拒否 |",
+            "line_sha256": "af471ef7fe338f54da98aed0effda4f4103877b4eb31a3e2741994c65b89141d"
+          },
+          {
+            "line": 30,
+            "text": "| `RCLS-AC-010` | RCLS-R-16 | ACTIVE後の重複Skill proseが0 | machine policy化済み規則の再注入を拒否 |",
+            "line_sha256": "bbd5c267421cedee9511f32d6c2f710ff85ba13d6b11f18568780593a85e93bb"
+          },
+          {
+            "line": 31,
+            "text": "| `RCLS-AC-011` | RCLS-R-17 | lane内部reviewと独立review receiptを分離 | provider内部reviewによるmerge admissionを拒否 |",
+            "line_sha256": "0fab017618767fb00364501f7c123f937117c83c2d2b14030ec32bc52def8c7d"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4043,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "c39eca74aed306fd27088ada21d2eb59cf096f69ab520a3e9f81276c2a9a178b",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 859,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "24e10bca79d7ec3fc3ed361b79a6febc283c0d8c5efa10eb65079a349e5f099f",
+        "asset_id": "LEGACY-ASSET-B1F192F46FC3AC336094",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "RCLS-AC-010 rejects duplicate Skill prose after machine policy activation. LABO RCLS-BR-004 says remove dual management after mechanism rules are institutionalized, a family-level relation only.",
+        "residual": "Definition of active machine policy, exact prose duplication set, precedence and no-duplicate check owner are not row-bound.",
+        "counterexample": "Current candidate statement of no duplicate governance as already enforced.",
+        "source_family_relation_found": true,
+        "candidate_or_source_range_reference_found": true,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 174,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004044",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "physical_line": 31,
+        "exact_source_line_text": "| `RCLS-AC-011` | RCLS-R-17 | lane内部reviewと独立review receiptを分離 | provider内部reviewによるmerge admissionを拒否 |",
+        "source_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7",
+        "source_line_sha256": "sha256:0fab017618767fb00364501f7c123f937117c83c2d2b14030ec32bc52def8c7d",
+        "physical_line_bytes_sha256_including_terminator": "6e40676ac92f72d6f9c868fde39d4eb5eb835984ffdc79f51f52b08248c47f5a",
+        "context_lines": [
+          {
+            "line": 30,
+            "text": "| `RCLS-AC-010` | RCLS-R-16 | ACTIVE後の重複Skill proseが0 | machine policy化済み規則の再注入を拒否 |",
+            "line_sha256": "bbd5c267421cedee9511f32d6c2f710ff85ba13d6b11f18568780593a85e93bb"
+          },
+          {
+            "line": 31,
+            "text": "| `RCLS-AC-011` | RCLS-R-17 | lane内部reviewと独立review receiptを分離 | provider内部reviewによるmerge admissionを拒否 |",
+            "line_sha256": "0fab017618767fb00364501f7c123f937117c83c2d2b14030ec32bc52def8c7d"
+          },
+          {
+            "line": 32,
+            "text": "| `RCLS-AC-012` | RCLS-R-18 | sensitivity/license/holdout policyが全外部assetを検査 | secret/PII/license不明/hidden oracleを拒否 |",
+            "line_sha256": "a637c75a3b29d1cebd9c6c0dfd65ad56827abd02f30ee36b5218e26f7395fefd"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4044,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "376767d87dc2588a074fab660a068a5ce0df0fed821601abc43356807fbfb288",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 859,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "24e10bca79d7ec3fc3ed361b79a6febc283c0d8c5efa10eb65079a349e5f099f",
+        "asset_id": "LEGACY-ASSET-B1F192F46FC3AC336094",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "RCLS-AC-011 requires provider internal review and independent review receipt to be distinct. LABO RCLS-BR-004 includes independent/cross-project verification stages, but no exact provider-lane review-admission relation.",
+        "residual": "Independent producer/session/context identity, receipt scope, exact HEAD and merge-admission negative oracle remain.",
+        "counterexample": "General independent verification mention as proof provider-internal review cannot create merge admission.",
+        "source_family_relation_found": true,
+        "candidate_or_source_range_reference_found": true,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 175,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004045",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "physical_line": 32,
+        "exact_source_line_text": "| `RCLS-AC-012` | RCLS-R-18 | sensitivity/license/holdout policyが全外部assetを検査 | secret/PII/license不明/hidden oracleを拒否 |",
+        "source_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7",
+        "source_line_sha256": "sha256:a637c75a3b29d1cebd9c6c0dfd65ad56827abd02f30ee36b5218e26f7395fefd",
+        "physical_line_bytes_sha256_including_terminator": "0384c49d364d4561687bb999aa21ade6ca0d828fdc60fea8917f9fe111be7dea",
+        "context_lines": [
+          {
+            "line": 31,
+            "text": "| `RCLS-AC-011` | RCLS-R-17 | lane内部reviewと独立review receiptを分離 | provider内部reviewによるmerge admissionを拒否 |",
+            "line_sha256": "0fab017618767fb00364501f7c123f937117c83c2d2b14030ec32bc52def8c7d"
+          },
+          {
+            "line": 32,
+            "text": "| `RCLS-AC-012` | RCLS-R-18 | sensitivity/license/holdout policyが全外部assetを検査 | secret/PII/license不明/hidden oracleを拒否 |",
+            "line_sha256": "a637c75a3b29d1cebd9c6c0dfd65ad56827abd02f30ee36b5218e26f7395fefd"
+          },
+          {
+            "line": 33,
+            "text": "| `RCLS-AC-013` | RCLS-R-19 | event journalからindex/confidence/promotionが一致再構築 | DB rowだけのauthority化を拒否 |",
+            "line_sha256": "c4cbe2c4eb60747859c99e7a5f0e8306d60953b2b82ae4f6a9b571622de521bd"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4045,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "dc1ebabd215afb6e19c9441b3452aa6d28e9712260e526757a01a6adb710274f",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 859,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "24e10bca79d7ec3fc3ed361b79a6febc283c0d8c5efa10eb65079a349e5f099f",
+        "asset_id": "LEGACY-ASSET-B1F192F46FC3AC336094",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "RCLS-AC-012 checks sensitivity/license/holdout for all external assets, rejecting secret/PII/license unknown/hidden oracle. RCLS-BR-005 and LABO family material mentions security/license but not complete data sensitivity and holdout contract.",
+        "residual": "External asset population, sensitivity classification, license evidence, holdout policy, secrets/PII and hidden-oracle negative tests remain unbound.",
+        "counterexample": "Security/license family words as proof of all-external-asset screening or permission to use source assets.",
+        "source_family_relation_found": true,
+        "candidate_or_source_range_reference_found": true,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 176,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004046",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "physical_line": 33,
+        "exact_source_line_text": "| `RCLS-AC-013` | RCLS-R-19 | event journalからindex/confidence/promotionが一致再構築 | DB rowだけのauthority化を拒否 |",
+        "source_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7",
+        "source_line_sha256": "sha256:c4cbe2c4eb60747859c99e7a5f0e8306d60953b2b82ae4f6a9b571622de521bd",
+        "physical_line_bytes_sha256_including_terminator": "164131545ce5cae8b58f2ea7bc366dbecafa9f72e68ac455589686e50faf6504",
+        "context_lines": [
+          {
+            "line": 32,
+            "text": "| `RCLS-AC-012` | RCLS-R-18 | sensitivity/license/holdout policyが全外部assetを検査 | secret/PII/license不明/hidden oracleを拒否 |",
+            "line_sha256": "a637c75a3b29d1cebd9c6c0dfd65ad56827abd02f30ee36b5218e26f7395fefd"
+          },
+          {
+            "line": 33,
+            "text": "| `RCLS-AC-013` | RCLS-R-19 | event journalからindex/confidence/promotionが一致再構築 | DB rowだけのauthority化を拒否 |",
+            "line_sha256": "c4cbe2c4eb60747859c99e7a5f0e8306d60953b2b82ae4f6a9b571622de521bd"
+          },
+          {
+            "line": 34,
+            "text": "| `RCLS-AC-014` | RCLS-R-20 | provider/model/version変更で対象qualificationがstale化 | 旧bench/Skill資格の無条件継承を拒否 |",
+            "line_sha256": "fb5cf64bc11187abcc8e924408e4167967ad375c303a3dbc9c4e24bf830ca2de"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4046,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "7a6282a0042e93ea537ca1c2a627f068e9e61fbf457f2087db568a01fd9cfed6",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 859,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "24e10bca79d7ec3fc3ed361b79a6febc283c0d8c5efa10eb65079a349e5f099f",
+        "asset_id": "LEGACY-ASSET-B1F192F46FC3AC336094",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "RCLS-AC-013 expects index/confidence/promotion to reconstruct consistently from event journal and rejects DB-row-only authority. RCLS-BR-002 mentions LOG and Labo candidate preserves source authority; no exact event-journal replay contract is bound.",
+        "residual": "event schema, ordering/idempotence, rebuild determinism, divergence oracle, confidence/promotion derivation and authority owner remain.",
+        "counterexample": "LOG channel or source authority mention as proof event-journal reconstruction is adopted.",
+        "source_family_relation_found": true,
+        "candidate_or_source_range_reference_found": true,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 177,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004047",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "physical_line": 34,
+        "exact_source_line_text": "| `RCLS-AC-014` | RCLS-R-20 | provider/model/version変更で対象qualificationがstale化 | 旧bench/Skill資格の無条件継承を拒否 |",
+        "source_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7",
+        "source_line_sha256": "sha256:fb5cf64bc11187abcc8e924408e4167967ad375c303a3dbc9c4e24bf830ca2de",
+        "physical_line_bytes_sha256_including_terminator": "b0d9c988a23d22fbac909b7631a7f229f686ccbc22c6c19b0d88a1ca28215827",
+        "context_lines": [
+          {
+            "line": 33,
+            "text": "| `RCLS-AC-013` | RCLS-R-19 | event journalからindex/confidence/promotionが一致再構築 | DB rowだけのauthority化を拒否 |",
+            "line_sha256": "c4cbe2c4eb60747859c99e7a5f0e8306d60953b2b82ae4f6a9b571622de521bd"
+          },
+          {
+            "line": 34,
+            "text": "| `RCLS-AC-014` | RCLS-R-20 | provider/model/version変更で対象qualificationがstale化 | 旧bench/Skill資格の無条件継承を拒否 |",
+            "line_sha256": "fb5cf64bc11187abcc8e924408e4167967ad375c303a3dbc9c4e24bf830ca2de"
+          },
+          {
+            "line": 35,
+            "text": "| `RCLS-AC-015` | RCLS-R-01..20 | #1370/#1372/#1382/#1035/#1318/#1295とのowner重複0 | 既存Capabilityの再実装を拒否 |",
+            "line_sha256": "6a40c6fb343a836e6ff85b0dcfc5dea0fe6f5bb8aa6d66a4cb6324a5dbb88dbc"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4047,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "4255ab2463006023559245accb8e41d4ca3dbe1a85c48556b9f95136d7e2ffd6",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 859,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "24e10bca79d7ec3fc3ed361b79a6febc283c0d8c5efa10eb65079a349e5f099f",
+        "asset_id": "LEGACY-ASSET-B1F192F46FC3AC336094",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "RCLS-AC-014 makes qualification stale on provider/model/version changes. RCLS-BR-005 explicitly retains provider/model/version and revalidation as family relation, but selected AC line has no row-specific adopted pair.",
+        "residual": "qualification identity/version tuple, affected-scope invalidation timing and stale/revalidate oracle remain.",
+        "counterexample": "RCLS-BR family candidate alignment as AC-014 adopted or provider-wide qualification closed.",
+        "source_family_relation_found": true,
+        "candidate_or_source_range_reference_found": true,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 178,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004048",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "physical_line": 35,
+        "exact_source_line_text": "| `RCLS-AC-015` | RCLS-R-01..20 | #1370/#1372/#1382/#1035/#1318/#1295とのowner重複0 | 既存Capabilityの再実装を拒否 |",
+        "source_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7",
+        "source_line_sha256": "sha256:6a40c6fb343a836e6ff85b0dcfc5dea0fe6f5bb8aa6d66a4cb6324a5dbb88dbc",
+        "physical_line_bytes_sha256_including_terminator": "f40a6dc5db7009403cc2cfc1b18150554116f9b008399c62711dba718b4314a5",
+        "context_lines": [
+          {
+            "line": 34,
+            "text": "| `RCLS-AC-014` | RCLS-R-20 | provider/model/version変更で対象qualificationがstale化 | 旧bench/Skill資格の無条件継承を拒否 |",
+            "line_sha256": "fb5cf64bc11187abcc8e924408e4167967ad375c303a3dbc9c4e24bf830ca2de"
+          },
+          {
+            "line": 35,
+            "text": "| `RCLS-AC-015` | RCLS-R-01..20 | #1370/#1372/#1382/#1035/#1318/#1295とのowner重複0 | 既存Capabilityの再実装を拒否 |",
+            "line_sha256": "6a40c6fb343a836e6ff85b0dcfc5dea0fe6f5bb8aa6d66a4cb6324a5dbb88dbc"
+          },
+          {
+            "line": 36,
+            "text": "| `RCLS-AC-016` | RCLS-R-10/14..16 | context bytes/task、defect、acceptance、reworkをbefore/after測定 | token削減だけで品質改善を主張しない |",
+            "line_sha256": "ffb54f811c2818d06406a266b336fa7a738d1bc020e0d8f2ee8b620722973f53"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4048,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "1da4c5fc847d85ec6c9c85b023a3d08d303684b8b3db669acfd3fbac6aa7c833",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 859,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "24e10bca79d7ec3fc3ed361b79a6febc283c0d8c5efa10eb65079a349e5f099f",
+        "asset_id": "LEGACY-ASSET-B1F192F46FC3AC336094",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "RCLS-AC-015 says no duplicated owners against named mechanisms. LABO RCLS-BR-006 says do not duplicate existing requirement-formation/improvement/evaluation mechanisms; this is family relation, not a current owner crosswalk over listed IDs.",
+        "residual": "Named legacy capability identity, current owner mapping, duplicate-scope predicate and zero-overlap oracle are not established.",
+        "counterexample": "Broad no-duplication principle as proof all listed owner overlaps were checked and zero.",
+        "source_family_relation_found": true,
+        "candidate_or_source_range_reference_found": true,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 179,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004050",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "physical_line": 37,
+        "exact_source_line_text": "| `RCLS-AC-017` | RCLS-R-18 | project-local→cross-projectにsource/license/redaction/human approvalがある | 一案件知識の自動横展開を拒否 |",
+        "source_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7",
+        "source_line_sha256": "sha256:9d977342e6dcf33530806d5d545151b64dd082a61ffaa5431d4d1e720d344d98",
+        "physical_line_bytes_sha256_including_terminator": "d09d4a4ca96a8ff68ac8b759540abfba8906e7b801f0f3c709a841165c7e0410",
+        "context_lines": [
+          {
+            "line": 36,
+            "text": "| `RCLS-AC-016` | RCLS-R-10/14..16 | context bytes/task、defect、acceptance、reworkをbefore/after測定 | token削減だけで品質改善を主張しない |",
+            "line_sha256": "ffb54f811c2818d06406a266b336fa7a738d1bc020e0d8f2ee8b620722973f53"
+          },
+          {
+            "line": 37,
+            "text": "| `RCLS-AC-017` | RCLS-R-18 | project-local→cross-projectにsource/license/redaction/human approvalがある | 一案件知識の自動横展開を拒否 |",
+            "line_sha256": "9d977342e6dcf33530806d5d545151b64dd082a61ffaa5431d4d1e720d344d98"
+          },
+          {
+            "line": 38,
+            "text": "| `RCLS-AC-018` | RCLS-R-19 | Learning System出力がproposal/evidenceに限定される | Requirement/Design/merge/release直接変更を拒否 |",
+            "line_sha256": "5da9411bb4b67b03a24ded5c77a563f7b3d0a2274a191a9173b902bc10dd111d"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4050,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "3a7328df08c4ac9bb2ed4a710df8b65db9d9606aa3137a56b64e4299d44f9943",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 859,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "24e10bca79d7ec3fc3ed361b79a6febc283c0d8c5efa10eb65079a349e5f099f",
+        "asset_id": "LEGACY-ASSET-B1F192F46FC3AC336094",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "RCLS-AC-017 requires source/license/redaction/human approval for project-local→cross-project promotion. LABO RCLS-BR-004/005 retain staged transfer and authority/security/license conditions generally; selected redaction/approval tuple has no direct pair.",
+        "residual": "Cross-project transfer scope, redaction policy, rights review, approval identity/revision, holdout and failure oracle remain.",
+        "counterexample": "Staged sharing or human judgment boundary as exact AC-017 approval evidence.",
+        "source_family_relation_found": true,
+        "candidate_or_source_range_reference_found": true,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 180,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004051",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "physical_line": 38,
+        "exact_source_line_text": "| `RCLS-AC-018` | RCLS-R-19 | Learning System出力がproposal/evidenceに限定される | Requirement/Design/merge/release直接変更を拒否 |",
+        "source_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7",
+        "source_line_sha256": "sha256:5da9411bb4b67b03a24ded5c77a563f7b3d0a2274a191a9173b902bc10dd111d",
+        "physical_line_bytes_sha256_including_terminator": "24d2a8f6881005e7e8f367820f7bb12943cdbb9b3dc5bdc85221fa6dc6d94f5a",
+        "context_lines": [
+          {
+            "line": 37,
+            "text": "| `RCLS-AC-017` | RCLS-R-18 | project-local→cross-projectにsource/license/redaction/human approvalがある | 一案件知識の自動横展開を拒否 |",
+            "line_sha256": "9d977342e6dcf33530806d5d545151b64dd082a61ffaa5431d4d1e720d344d98"
+          },
+          {
+            "line": 38,
+            "text": "| `RCLS-AC-018` | RCLS-R-19 | Learning System出力がproposal/evidenceに限定される | Requirement/Design/merge/release直接変更を拒否 |",
+            "line_sha256": "5da9411bb4b67b03a24ded5c77a563f7b3d0a2274a191a9173b902bc10dd111d"
+          },
+          {
+            "line": 39,
+            "text": "| `RCLS-AC-019` | RCLS-R-21..23 | selection／approval／disposition／runtime_judgment／ADR decisionが別identityで、decision・approvalはtyped authorityへ解決する | 相談、叱責、作業依頼、memory prose、学習結果をhuman decision／approvalへ昇格する入力を拒否 |",
+            "line_sha256": "be93f3834b60e61db8a78906ee0c55a25aa23a68ff7a15b6d91d92a81b4b2534"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4051,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "06ab594eeec3aec81c788b398116a0d4cf7eead4ac42bf5ec83ad090593d61c2",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 859,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "24e10bca79d7ec3fc3ed361b79a6febc283c0d8c5efa10eb65079a349e5f099f",
+        "asset_id": "LEGACY-ASSET-B1F192F46FC3AC336094",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "RCLS-AC-018 limits learning output to proposal/evidence and prohibits direct Requirement/Design/merge/release edits. RCLS-BR-006 and current Labo candidate explicitly retain this authority boundary at family level; no AC-018 row-specific adoption or acceptance run is asserted.",
+        "residual": "Output type/consumer access controls and negative proof against direct write across all four authority surfaces remain unverified for this source row.",
+        "counterexample": "LABO learning proposal/evidence boundary as evidence old AC-018 is individually adopted or enforced.",
+        "source_family_relation_found": true,
+        "candidate_or_source_range_reference_found": true,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    }
+  ],
+  "screen_pool_reconciliation": {
+    "recorded_screen_commit": "e070ce2fe7453768d174a0594975dc26b0b25f07",
+    "recorded_screen_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-marker-screen-2026-10-01.json",
+    "recorded_screen_sha256": "1f9b0b6e05bfb46d937dfbbb954e8f7aa956c440acd526cbad2487b82893efbb",
+    "recorded_screen_pool_size": 255,
+    "raw_regex_hit_count_before_markdown_header_exclusion": 258,
+    "excluded_markdown_table_header_count": 3,
+    "excluded_header_source_pins": [
+      {
+        "candidate_source_line_id": "LEGACY-CAND-LINE-001500",
+        "source_path": "docs/governance/candidates/execution-ticket-requirements.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "physical_line": 127,
+        "exact_source_line_text": "| field群 | 必須の意味 |",
+        "source_file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "source_line_sha256": "a968422e237e87ae98389cdbd676e872ca5e4b0cbf0af20e309a1b65e41d8459",
+        "physical_line_bytes_sha256_including_terminator": "74becd86e4ad2df175f9b291a846d2fe0a586c98d2dbce634e62a45a0c40a0fb",
+        "following_separator_line": {
+          "physical_line": 128,
+          "text": "|---|---|",
+          "sha256": "4199ba454d6d3ae83657120c2bb6bd674eefc0dd7d3cd4cc844171dc6725135b"
+        },
+        "source_line_ledger": {
+          "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+          "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+          "line": 1500,
+          "entry_sha256": "dd8ef1c0eb8de9437ba640ed47d4e90f56641da2a8b0630b8bf9945cb84127b3",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization"
+        },
+        "raw_regex_hit_rank_before_header_exclusion": 222
+      },
+      {
+        "candidate_source_line_id": "LEGACY-CAND-LINE-001514",
+        "source_path": "docs/governance/candidates/execution-ticket-requirements.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "physical_line": 147,
+        "exact_source_line_text": "| record | 必須field群 |",
+        "source_file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "source_line_sha256": "9c1cb66a01e9a99b37b58f238dd2b2c4b7dfe5be79a270ae7db93c8d93d9cfe8",
+        "physical_line_bytes_sha256_including_terminator": "bc3ec98139e38d16fc9e85709fee1fe74fa19a43e08fcc1d3d44b6f6c411ec40",
+        "following_separator_line": {
+          "physical_line": 148,
+          "text": "|---|---|",
+          "sha256": "4199ba454d6d3ae83657120c2bb6bd674eefc0dd7d3cd4cc844171dc6725135b"
+        },
+        "source_line_ledger": {
+          "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+          "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+          "line": 1514,
+          "entry_sha256": "0a7071a130f56591c2cf8cb5d4cd6f57984560eabd3d8238e2008107898c26e6",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization"
+        },
+        "raw_regex_hit_rank_before_header_exclusion": 223
+      },
+      {
+        "candidate_source_line_id": "LEGACY-CAND-LINE-001910",
+        "source_path": "docs/governance/candidates/execution-ticket-trace.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
+        "physical_line": 198,
+        "exact_source_line_text": "| NFR | 既存ACへの束縛 | 必須追加観点 |",
+        "source_file_sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d",
+        "source_line_sha256": "9e48f8e258df38a50cf78df7730f500be480625ee193f3d72090ff64de1d633c",
+        "physical_line_bytes_sha256_including_terminator": "f9a05c55bf82e9c7497eb3c2a4360c2c53bbba30e0ae1669bfd8ce2ca83de8c0",
+        "following_separator_line": {
+          "physical_line": 199,
+          "text": "|---|---|---|",
+          "sha256": "23cca02b74f386463efa24796c7a9011b0d2c93f0c38b4d15d5d276205b59b43"
+        },
+        "source_line_ledger": {
+          "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+          "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+          "line": 1910,
+          "entry_sha256": "8970c717e03324d46609556a19a6e17c116147467e8ede880be84eecd38f9bfa",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization"
+        },
+        "raw_regex_hit_rank_before_header_exclusion": 230
+      }
+    ],
+    "reconstructed_eligible_pool_size": 255,
+    "difference_after_published_exclusions": 0,
+    "reconstruction_count_matches_recorded_screen_pool": true,
+    "conditional_tail_rows_ranked_253_255": [
+      "LEGACY-CAND-LINE-001672",
+      "LEGACY-CAND-LINE-001678",
+      "LEGACY-CAND-LINE-001685"
+    ],
+    "screen_artifact_modified": false,
+    "semantic_review_of_conditional_tail_rows": false,
+    "raw_hit_rank_positions_excluded": {
+      "LEGACY-CAND-LINE-001500": 222,
+      "LEGACY-CAND-LINE-001514": 223,
+      "LEGACY-CAND-LINE-001910": 230
+    }
+  }
+}

@@ -1,0 +1,3266 @@
+{
+  "schema_version": "helix-legacy-candidate4755-explanation-normative-semantic-review.v1",
+  "audit_id": "legacy-candidate4755-explanation-normative-semantic-review-2026-10-01",
+  "created_against_commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+  "authority_effect": "none",
+  "scope": {
+    "screen_audit_commit": "2fdc1dfef3ec81e96eb91a03a234592e328980e0:docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-marker-screen-2026-10-01.json",
+    "source_candidate_count": 20,
+    "semantic_rows_reviewed": 20,
+    "archive_runtime_cli_hook_test_ci_executed": false,
+    "classification_is_human_contextual_review": true
+  },
+  "method": "For each of the 20 lexical-screen queue rows, read the exact archived source file and physical line plus nearby clause/table context; join source-line and legacy asset ledgers; compare only to pinned PO-fixed 現行L2/L11 text where a textual relationship is supported. No classification is treated as adoption, retirement, or closure.",
+  "interpretation_boundary": {
+    "legacy_asset_target_status": "Every selected asset is marked product_target=unresolved with empty upstream_ids and pair_ids in the pinned disposition ledger. Current pair references below are nearest thematic 比較s or explicit crosswalk evidence, not an established row-to-requirement binding.",
+    "current_authority": "The 現行L2/L11 bytes are pinned to fixed revision f6dad2a33e24f000b87d7f09b8d40288257e74cc and the four PO decisions listed. Decision status does not establish implementation or acceptance execution.",
+    "未対応": "Where 完全一致のない adopted pair or exact crosswalk is evidenced, the review records that as residual rather than inferring semantic coverage."
+  },
+  "pinned_inputs": [
+    {
+      "role": "machine_screen_queue",
+      "commit": "709a31f51c7c0569513d02723a45199ca8de7f30",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-marker-screen-2026-10-01.json",
+      "sha256": "1f9b0b6e05bfb46d937dfbbb954e8f7aa956c440acd526cbad2487b82893efbb"
+    },
+    {
+      "role": "source_line_ledger",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+    },
+    {
+      "role": "legacy_asset_disposition_ledger",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "role": "archive_snapshot",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "path": "archive/legacy-generation-2026-09-14/",
+      "evidence": "Each selected full source file SHA-256 and physical line bytes SHA-256 are recorded per queue row."
+    }
+  ],
+  "current_adopted_pair_pins": [
+    {
+      "pair": "HARNESS",
+      "decision_record": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+      },
+      "fixed_pair_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "L2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+      },
+      "L11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+      }
+    },
+    {
+      "pair": "OS",
+      "decision_record": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+        "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
+      },
+      "fixed_pair_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "L2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+      },
+      "L11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+      }
+    },
+    {
+      "pair": "SECURITY",
+      "decision_record": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+        "sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff"
+      },
+      "fixed_pair_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "L2": {
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c"
+      },
+      "L11": {
+        "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01"
+      }
+    },
+    {
+      "pair": "BRAIN",
+      "decision_record": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+        "sha256": "fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a"
+      },
+      "fixed_pair_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "L2": {
+        "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+        "sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03"
+      },
+      "L11": {
+        "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+        "sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b"
+      }
+    }
+  ],
+  "queue": [
+    {
+      "rank": 1,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000336",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        },
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        },
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        }
+      ],
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-acceptance.md",
+      "physical_line_number": 22,
+      "exact_source_line_text": "| BBR-AC03 | BBR-R03 | 修復ID/版・実装・失敗コード・schema・write-set・副作用・予算等の不足を拒否。直前HEAD/bytes/Policy/生成器/所有権/lease/fence変更を各々拒否し、他者変更を保全。未信頼command・候補PR内修復器を特権実行しない。GH-FR-011のAI自己修復を修復器の自動write許可へ変換しない。既存対象・契機・episode・scope・権限が一致する対照例は既存経路で通し、追加差分だけ承認・正本化へ返す。新しい自動適用は修復ごとの契約・独立検証・実consumer検証の各欠落を個別に拒否し、すべて成立した対象範囲だけ有効化する対照例を検証。要求承認だけ・登録だけ・他修復または他consumerの合格から包括的書込み許可を導出しない |",
+      "source_file_sha256": "cd2fdd3dcfaa98935db0fef6b876d6cdb7133b11b8c8877363c3d0138c4b8cbc",
+      "source_line_sha256": "0227b4e8ca1ea20f4133adc0574d2bb5f5e6d842baf63d5353657b9b1f831810",
+      "physical_line_bytes_sha256_including_terminator": "bed7e1b0d18367f56c550a294727b03e4a867e28f481da3fd17213f0cfafdb09",
+      "baseline_2353_physical_line_bytes_sha256": "bed7e1b0d18367f56c550a294727b03e4a867e28f481da3fd17213f0cfafdb09",
+      "current_reference_evidence": [
+        {
+          "parent_L2_id": "HARNESS-L2-022",
+          "L2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 447,
+            "text": "### HARNESS-L2-022 検証と受入の契約（コアの単体）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 217,
+            "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HARNESS-L2-031",
+          "L2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 627,
+            "text": "### HARNESS-L2-031 ログ・入力からの最小再現と回帰候補生成（単体候補、version_target 1.0）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 455,
+            "text": "| HARNESS-L2-031 | HELIX-HARNESS共通部品 | ④開発・⑤リファクタリングのfailure、⑦運用保守のincident等。PO原文の障害を本番incidentだけへ限定せず、許可されたlog/inputから再現・回帰候補を共有提供する。CORE/022のoracle/traceと選択executorの隔離実行を保持する。 |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HARNESS-L2-032",
+          "L2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 647,
+            "text": "### HARNESS-L2-032 生成artifactからOS-020実行契約への接続（接続候補、version_target 1.0）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 456,
+            "text": "| HARNESS-L2-032 | HELIX-HARNESS-CORE | 030/031利用サービスと選択したOS-020または利用者CI。test artifact/oracle/revision/scopeをexecutor inputへ写す業務上の接続packを所有する。CONNECTは利用時の登録・版照合・通信・再送・追跡を担い、032の業務意味は持たない。実行・隔離・結果回収は選択executorへ残す。 |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        }
+      ],
+      "legacy_context": {
+        "section_heading": {
+          "line": 13,
+          "text": "# 限定修復の受入候補"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 20,
+            "text": "| BBR-AC01 | BBR-R01 | 既存対象限定検査で版・HEAD・観測/期待・根拠・強制度を返す。助言・合法REDを完成条件で誤拒否しない |",
+            "line_text_sha256": "542ff8dca2b700f72edee884d3352443445e2c3471c735dfb0ec9900513a1583"
+          },
+          {
+            "line": 21,
+            "text": "| BBR-AC02 | BBR-R02 | 登録済み適用可能、意味判断必要、承認不足/未知を各処理先へ分け、proposalを実行許可に昇格させない |",
+            "line_text_sha256": "404017c104d63ac5d790b4a7d26496a9f5d2391508e9c187a0a98b6f42bac7f2"
+          },
+          {
+            "line": 22,
+            "text": "| BBR-AC03 | BBR-R03 | 修復ID/版・実装・失敗コード・schema・write-set・副作用・予算等の不足を拒否。直前HEAD/bytes/Policy/生成器/所有権/lease/fence変更を各々拒否し、他者変更を保全。未信頼command・候補PR内修復器を特権実行しない。GH-FR-011のAI自己修復を修復器の自動write許可へ変換しない。既存対象・契機・episode・scope・権限が一致する対照例は既存経路で通し、追加差分だけ承認・正本化へ返す。新しい自動適用は修復ごとの契約・独立検証・実consumer検証の各欠落を個別に拒否し、すべて成立した対象範囲だけ有効化する対照例を検証。要求承認だけ・登録だけ・他修復または他consumerの合格から包括的書込み許可を導出しない |",
+            "line_text_sha256": "0227b4e8ca1ea20f4133adc0574d2bb5f5e6d842baf63d5353657b9b1f831810"
+          },
+          {
+            "line": 23,
+            "text": "| BBR-AC04 | BBR-R04 | 同一修復再適用は差分ゼロ、重複eventで二重実行しない。session変更で試行/予算がresetせず、循環・再発・期限超過は停止してRecoveryへ返る |",
+            "line_text_sha256": "dc60166a47a253aa1b458b194b3a04260c5eb34f1307ad4dc680817e65f8176b"
+          },
+          {
+            "line": 24,
+            "text": "| BBR-AC05 | BBR-R04 | 部分失敗とCAS競合で差分/記録を保全。不明な外部副作用を再試行せず、Helpと許可された調査は維持。HEAD変更後のstale CI/reviewでmergeしない |",
+            "line_text_sha256": "142712ab6b4f1c8f93a9070097683e026d0f2e467b727205a8e1d96ece244078"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 336,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 793,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "asset_id": "LEGACY-ASSET-901CD182B52024593E41",
+        "source_path": "docs/governance/candidates/bugbot-bounded-repair-acceptance.md",
+        "source_sha256": "cd2fdd3dcfaa98935db0fef6b876d6cdb7133b11b8c8877363c3d0138c4b8cbc",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null,
+        "consumer_refs": []
+      },
+      "semantic_review": {
+        "class": "受入oracle行（否定・対照条件を含む）",
+        "standalone_requirement_condition": false,
+        "function": "BBR-AC03の受入表の一行。修復契約・失敗・scope変更・安全境界などを独立oracleで検出する試験条件で、実行時の一般要求本文そのものではない。",
+        "current_pairs": [
+          "HARNESS-L2-022",
+          "HARNESS-L2-031",
+          "HARNESS-L2-032"
+        ],
+        "residual": "修復identity別の許可、contract/verification/consumer欠落反例、自動適用のscopeは、旧BBR-R03親条件とsource全体を確認する必要がある。",
+        "next": "BBR-R03および原稿由来条件への逆参照を開き、対象機構ownerと現行pair候補を確定してから差分比較する。",
+        "comparison": "HARNESS-L2-022は受入の段階・oracle・戻し先を契約化し、L2-031/032は限定repro候補生成と選択executorへの接続を規定する。一方、この旧行の修復器による自動write許可・各repair契約は現行ペアに同一条件としては示されず、L2-031/032も修復の自動適用を許可しない。",
+        "comparison_grade": "部分的な責務境界の類似。sourceとpairの結合は未確立。",
+        "human_facing_summary": "独立要求条件ではなく、修復の安全・scope・許可を確かめる複合受入条件。",
+        "human_facing_comparison": "HARNESS-L2-022は受入oracle/stage契約、L2-031/032は限定repro候補と接続を担う。自動repair適用の許可は見当たらず、同じ意味の採択対応は未確立。",
+        "human_facing_next_step": "BBR-R03と根拠sourceを逆参照し、repair別の許可・契約・consumer検証条件を分解する。",
+        "exclusive_group": "受入oracle",
+        "normative_marker_role": "acceptance_expected_or_negative_behavior"
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      }
+    },
+    {
+      "rank": 2,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-001574",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "BLOCKED"
+        },
+        {
+          "category": "mandatory",
+          "text": "REQUIRED"
+        },
+        {
+          "category": "mandatory",
+          "text": "REQUIRED"
+        }
+      ],
+      "source_path": "docs/governance/candidates/execution-ticket-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "physical_line_number": 250,
+      "exact_source_line_text": "immutable contractと、admission/readiness/execution/dispositionの状態軸を分離し、eventからcurrent viewを導出する。BLOCKED/HUMAN_REQUIRED/RECOVERY_REQUIRED/QUARANTINED等を成功と混同しない。参照要求・scope変更はaffected範囲をstale化し、旧権限をfence後に再admitする。無関係更新や観測policy変更で全Ticketをsupersedeしない。",
+      "source_file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "source_line_sha256": "13c2b99d8566e720f5c4d0bc475148c4d121cf4895b5d1fc88543d35bac457be",
+      "physical_line_bytes_sha256_including_terminator": "05fa26704ff60a595be41eaebcfb1172d4b6faf0204c2d1b3686a3c20a96beb8",
+      "baseline_2353_physical_line_bytes_sha256": "05fa26704ff60a595be41eaebcfb1172d4b6faf0204c2d1b3686a3c20a96beb8",
+      "current_reference_evidence": [
+        {
+          "parent_L2_id": "HELIXOS-L2-017",
+          "L2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 662,
+            "text": "### HELIXOS-L2-017 推進・ticket/workflow（単体候補）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 338,
+            "text": "### HELIXOS-L2-017 推進・ticket/workflowの受入"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        }
+      ],
+      "legacy_context": {
+        "section_heading": {
+          "line": 248,
+          "text": "### HXT-FR-016 Lifecycle / Invalidation（取込補足：状態遷移と失効）"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 248,
+            "text": "### HXT-FR-016 Lifecycle / Invalidation（取込補足：状態遷移と失効）",
+            "line_text_sha256": "a2972fa2a6c5c0280062d5a578cefc34e5a6381206c8b2312ba54e8f17e08d68"
+          },
+          {
+            "line": 249,
+            "text": "",
+            "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 250,
+            "text": "immutable contractと、admission/readiness/execution/dispositionの状態軸を分離し、eventからcurrent viewを導出する。BLOCKED/HUMAN_REQUIRED/RECOVERY_REQUIRED/QUARANTINED等を成功と混同しない。参照要求・scope変更はaffected範囲をstale化し、旧権限をfence後に再admitする。無関係更新や観測policy変更で全Ticketをsupersedeしない。",
+            "line_text_sha256": "13c2b99d8566e720f5c4d0bc475148c4d121cf4895b5d1fc88543d35bac457be"
+          },
+          {
+            "line": 251,
+            "text": "",
+            "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 252,
+            "text": "### HXT-FR-017 GitHub Projection（取込補足：GitHubへの投影）",
+            "line_text_sha256": "7b4ef80318879fcf4cf3abeb5163c5906cbb1af6e194a4a75c31d00550746b17"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1574,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 814,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+        "source_path": "docs/governance/candidates/execution-ticket-requirements.md",
+        "source_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null,
+        "consumer_refs": []
+      },
+      "semantic_review": {
+        "class": "複合要求条件（execution-ticket lifecycle節内）",
+        "standalone_requirement_condition": true,
+        "function": "HXT-FR-016の説明段落だが、状態軸分離、event view導出、blocked等を成功扱いしないこと、affected範囲のstale化・権限fence後の再admit、無関係更新による全Ticket失効回避を要求する合成条件。受入例や引用ではない。",
+        "current_pairs": [
+          "HELIXOS-L2-017"
+        ],
+        "residual": "特にstate axes, event-derived current view, selective invalidation, old-right fencing/re-admissionの個別oracleを固定L2/L11から確認できない。",
+        "next": "HXT-FR-016の元要求・周辺FRとOS L2-017のsource basisを行単位で照合し、残差を未解決のまま記録する。",
+        "comparison": "固定`HELIXOS-L2-017`と対L11受入行はticketに対象・親revision・scope・dependency・acceptance duty・return pathを束縛し、未解決入力を実行可能にせず、停止理由・元revision・未完義務・累積budget/timeを引き継ぐ。HXTの責務・ticket候補条件への一般参照はあるが、この行の4状態軸・event projection・影響範囲stale化の全条件は明示的に行IDで対応づいていない。",
+        "comparison_grade": "ticket scope・未完義務・停止に一部整合。状態軸・再admit oracleは残差。",
+        "human_facing_summary": "状態軸、event view、blocked等の扱い、影響範囲のstale/re-admit、無関係変更時の維持をまとめた要求条件。",
+        "human_facing_comparison": "固定HELIXOS-L2-017と対L11受入行はticket target/scope/dependency/戻し先、停止理由、未完義務を保持。4状態軸やevent projection等の個別対応は未確認。",
+        "human_facing_next_step": "HXT-FR-016の親要求と周辺FRを復元し、OS-L2-017の旧source basisと項目別に照合する。",
+        "exclusive_group": "独立した複合要求条件",
+        "normative_marker_role": "direct_requirement_condition"
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      }
+    },
+    {
+      "rank": 3,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-002070",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        },
+        {
+          "category": "mandatory",
+          "text": "必須"
+        },
+        {
+          "category": "conditional",
+          "text": "場合のみ"
+        }
+      ],
+      "source_path": "docs/governance/candidates/functional-release-slice-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+      "physical_line_number": 58,
+      "exact_source_line_text": "| `FRS-AC-025` | FRS-R-23 | 操作・対象・影響に必要な安全依存だけを閉包化し、全て有効な場合のみ投入可能とする | 必須安全条件をoptionalへ変更、欠落や不明をgreenにするmutationを拒否 |",
+      "source_file_sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+      "source_line_sha256": "eef9d05e2ead36bd65c8049091baae22e95191594c933dcb7c609dc9ce17ce91",
+      "physical_line_bytes_sha256_including_terminator": "9cb300199feaa51ce05e382762b741389f49e128adfcfae4d5fe1ea509e56941",
+      "baseline_2353_physical_line_bytes_sha256": "9cb300199feaa51ce05e382762b741389f49e128adfcfae4d5fe1ea509e56941",
+      "current_reference_evidence": [
+        {
+          "parent_L2_id": "HARNESS-L2-023",
+          "L2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 463,
+            "text": "### HARNESS-L2-023 利用条件別の依存宣言（単体追補候補、1.0）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 223,
+            "text": "| HARNESS-L2-023 | `version_target: 1.0`のpack contract revisionに依存identity、owner、dependency contract version/range、4区分、条件式、対象operation/source selectionを固定する。ある入力条件を与えると、常時必須＋成立した操作条件＋選択したsource条件の依存だけが有効closureとなり、条件不成立の依存、未選択/未観測source、参照のみの資料、unknown/staleを別状態で表示する。出力を同一入力・revisionで再評価したときclosureと理由が一致する。該当時の全安全依存は閉じ、必要identity/版/authority/evidenceのいずれかが不明なら該当操作を保留し、上記のowner/POへ戻す。 | 全source対応表を全呼出しの必須依存と読む／逆に依存リストを単なる対応可能一覧とみなし必須を落とす／unknown条件をfalse・参照のみ・未選択へ暗黙変換／stale/未対応契約版を黙読替え／安全依存をoptional化／一source失敗から無断fallback／未選択sourceを「未使用成功」「利用可能」と表示／人の代行で権限・version・scope・検証・receiptを省略／単体packのgreenから上位構成を成立扱いする |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        }
+      ],
+      "legacy_context": {
+        "section_heading": {
+          "line": 30,
+          "text": "## §1 Oracle完全集合"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 56,
+            "text": "| `FRS-AC-023` | FRS-R-21 | Module連動CI・公開の完成なしに内部適用でき、同じ義務と比較条件で待ち時間・rerunを測定する | 必須義務削減、局所単回値の全CI効果への転用を拒否 |",
+            "line_text_sha256": "3a8cebebe6dc44f5812b8766d0851ad8cd9ece269d0f0cc17d3bf595982262d8"
+          },
+          {
+            "line": 57,
+            "text": "| `FRS-AC-024` | FRS-R-22 | Phase Aで事前発行branch、dispatch前後のowner／HEAD、single-writerを確認し、成果回収・ローカル検収・独立レビューまで成立する。Phase Bはlease／fenceへ接続する | #819／#860完成の一律前提化、二重writer、所有不明、wrong HEAD、期限切れ、予算逸脱、未回収成果の受理を拒否 |",
+            "line_text_sha256": "dbfd2adbac3909c5cf662b6b22cbb7cd92b44c6b51331a0cdfac658d8dfafa2b"
+          },
+          {
+            "line": 58,
+            "text": "| `FRS-AC-025` | FRS-R-23 | 操作・対象・影響に必要な安全依存だけを閉包化し、全て有効な場合のみ投入可能とする | 必須安全条件をoptionalへ変更、欠落や不明をgreenにするmutationを拒否 |",
+            "line_text_sha256": "eef9d05e2ead36bd65c8049091baae22e95191594c933dcb7c609dc9ce17ce91"
+          },
+          {
+            "line": 59,
+            "text": "| `FRS-AC-026` | FRS-R-24 | Lite／Fullのexact Slice構成にBundle固有の統合・更新・rollback・L12検証がある | 単体greenで組合せ検収を代用、未qualified Slice混入を拒否 |",
+            "line_text_sha256": "e932e7912f45ab40c5757f0aaa654432bdadee41672f2a738eb058dc9921734f"
+          },
+          {
+            "line": 60,
+            "text": "",
+            "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 2070,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 818,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "asset_id": "LEGACY-ASSET-67ADFAB856D954B3C5D2",
+        "source_path": "docs/governance/candidates/functional-release-slice-acceptance.md",
+        "source_sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null,
+        "consumer_refs": []
+      },
+      "semantic_review": {
+        "class": "受入oracle行（安全依存閉包）",
+        "standalone_requirement_condition": false,
+        "function": "FRS-AC-025の合格条件と否定mutation。dependency closureと必須安全条件をoptional化しないことを確かめる試験oracle。",
+        "current_pairs": [
+          "HARNESS-L2-023"
+        ],
+        "residual": "旧Slice/Module/Bundle機構の再利用は意図的に行わず、dependency closureを選択利用ごとに評価する変更理由・受入fixtureを区別する必要がある。",
+        "next": "現行L2-023/`HARNESS-L2-023`の対L11受入行に記録されたFRS crosswalkとreceiptを保持し、実装/受入と旧source全量closureは別の後続証拠とする。",
+        "comparison": "現行HARNESS-L2-023は旧FRS-R-23/FRS-AC-025の保持点として安全閉包を明示し、表現を旧Slice/Module/Bundle宣言から利用条件ごとの依存区分へ変えると記録する。`HARNESS-L2-023`の対L11受入行は利用条件別の依存宣言・欠落/unknown条件を扱う。これは20行中、旧行から現行pairへの最も明示的な意味保持根拠の一つだが、候補行自体を独立採択・closureしたことにはならない。",
+        "comparison_grade": "意味保持と方式再導出が現行L2に明記される。個別受入は未実行。",
+        "human_facing_summary": "安全依存の閉包条件を確認する試験行。独立した実行時要求本文ではない。",
+        "human_facing_comparison": "現行HARNESS-L2-023はFRS-R-23/FRS-AC-025を明記のうえ、旧Slice構造から利用条件別依存宣言へ方式を再導出する。対L11受入行も依存区分とunknownを扱う。",
+        "human_facing_next_step": "明示された意味保持を根拠として残し、個別受入実行と旧source全体closureは別の証拠とする。",
+        "exclusive_group": "受入oracle",
+        "normative_marker_role": "acceptance_expected_or_negative_behavior"
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      }
+    },
+    {
+      "rank": 4,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004330",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "fail"
+        },
+        {
+          "category": "prohibition",
+          "text": "fail"
+        },
+        {
+          "category": "prohibition",
+          "text": "fail"
+        }
+      ],
+      "source_path": "docs/governance/candidates/security-engagement-authority-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-acceptance.md",
+      "physical_line_number": 25,
+      "exact_source_line_text": "| `SEA-AC-012` | `SEA-FR-001..012` | #679 broker failure、#1172 attestation failure、legacy guard greenを同時入力し、canonical failureをgreenで相殺しない。 |",
+      "source_file_sha256": "c8d332f8d7655ba04ff664aef75f084d33e19b5d8fd0493c7f498fcd97235ffc",
+      "source_line_sha256": "f974939016b3aabf1e9955c093791fc9e273a3d549c17319a964569ab6c29741",
+      "physical_line_bytes_sha256_including_terminator": "da584da73e4c0acfe6fc1057e1d1136c4b1e2fc20ce0a177f27237cc9941f0c4",
+      "baseline_2353_physical_line_bytes_sha256": "da584da73e4c0acfe6fc1057e1d1136c4b1e2fc20ce0a177f27237cc9941f0c4",
+      "current_reference_evidence": [
+        {
+          "parent_L2_id": "HELIXSECURITY-L2-007",
+          "L2": {
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "line": 130,
+            "text": "### HELIXSECURITY-L2-007 Worker実行環境への制約適用（接続）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "line": 31,
+            "text": "| HELIXSECURITY-L2-007 | 1.0 | 各制約（write path、network、credential、environment、timeout、resource、diff検査、rollback、result collection）がWorker実行環境へ渡り、適用・観測状態を確認できる。いずれか未適用/unknownなのにhost fallbackで実行、制約をWorkerが自己拡張したら不合格。read-onlyでもwrite禁止の適用と操作対象scopeの実行後の変更なし観測を要する。rollbackだけは変更なしを確認できた場合に限り適用対象外とでき、変更有無がunknownなら成功扱いしない。後掲の9制御fixtureで条件を個別に確認する。 |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HELIXSECURITY-L2-008",
+          "L2": {
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "line": 140,
+            "text": "### HELIXSECURITY-L2-008 操作ごとのauthority"
+          },
+          "paired_L11": {
+            "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "line": 32,
+            "text": "| HELIXSECURITY-L2-008 | 1.0 | 異なるread/write/execute/network/install/delete/merge/release/deploy/credential-use/security-change操作で別authorityを要求し、actor/target/operation/revision/environment/scope/expiryが完全一致したときだけ影響の大きいoperationを許可する。Agent利用権から包括write/deployが生じる、または欠落・期限切れ・driftを通すと不合格。 |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HELIXSECURITY-L2-009",
+          "L2": {
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "line": 150,
+            "text": "### HELIXSECURITY-L2-009 revoke / quarantine伝播（構成体）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "line": 33,
+            "text": "| HELIXSECURITY-L2-009 | 1.0 | revoke、scope drift、credential漏洩、異常通信、runtime逸脱、unknownを投入すると、OSの新規割当停止、Workerの実行停止と途中成果物隔離、CONNECT通信停止、credential使用停止、artifact access停止の該当先へ伝わる。どれかの該当停止が確認できず成功扱いで継続したら不合格。unknownは列挙triggerの安全上の影響や不明な外部副作用に関するものとし、無関係な一般文書の意味unknownを全操作停止へ広げない。operation/project/worker/credential/connection/artifactの該当identityに束縛して伝播し、recipient別の受領・適用・未達・未観測を区別する。 |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        }
+      ],
+      "legacy_context": {
+        "section_heading": {
+          "line": 10,
+          "text": "# 認可済みSecurity engagement受入候補"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 23,
+            "text": "| `SEA-AC-010` | `SEA-FR-012` | OSS／Commercial／Privateまたはchannel変更前後で同一authority入力のdecisionが一致し、restricted dataをartifactへ含めない。 |",
+            "line_text_sha256": "f0d1b84e7e4d9853b7e846755b2be69745063526853eb3721b3248d4a214b24e"
+          },
+          {
+            "line": 24,
+            "text": "| `SEA-AC-011` | `SEA-FR-004..005` | exploit validationはsandbox外networkを拒否し、production deny-defaultを維持する。 |",
+            "line_text_sha256": "fba2965b07500eb0d69aa351f3a4240c4e7e00ce9ccd50d2bf001f7a5d2cd1af"
+          },
+          {
+            "line": 25,
+            "text": "| `SEA-AC-012` | `SEA-FR-001..012` | #679 broker failure、#1172 attestation failure、legacy guard greenを同時入力し、canonical failureをgreenで相殺しない。 |",
+            "line_text_sha256": "f974939016b3aabf1e9955c093791fc9e273a3d549c17319a964569ab6c29741"
+          },
+          {
+            "line": 26,
+            "text": "",
+            "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 27,
+            "text": "## mutation条件",
+            "line_text_sha256": "a44a29c139a8f9a721fea3e5988a1bb12086e8a2e83c9b7082213e0e30deda76"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 4330,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 867,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "asset_id": "LEGACY-ASSET-349061A71CEF2554B9A7",
+        "source_path": "docs/governance/candidates/security-engagement-authority-acceptance.md",
+        "source_sha256": "c8d332f8d7655ba04ff664aef75f084d33e19b5d8fd0493c7f498fcd97235ffc",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null,
+        "consumer_refs": []
+      },
+      "semantic_review": {
+        "class": "受入oracle行（failure precedence fixture）",
+        "standalone_requirement_condition": false,
+        "function": "SEA-AC-012のadversarial組合せ。broker/attestation/legacy guardの入力を同時に与え、canonical failureがlegacy greenで消えないことを確認するL11風の受入例。",
+        "current_pairs": [
+          "HELIXSECURITY-L2-007",
+          "HELIXSECURITY-L2-008",
+          "HELIXSECURITY-L2-009"
+        ],
+        "residual": "canonical failureとlegacy guardの優先関係、および対象control間の独立failure oracleは明示対応未確認。",
+        "next": "SEA-FR-001..012の親要件・#679/#1172 provenanceを調べ、Security pair内の既存failure oracleとの完全context比較を別途行う。",
+        "comparison": "固定Security pairは各操作のauthority boundary、Worker環境制約、revoke/quarantineの伝播を扱い、SECURITY A案は有効な既決権限を再利用しつつ境界を適用する。現行の固定本文に#679/#1172とlegacy guard greenを組合せる同一oracleへのID結合は確認できない。",
+        "comparison_grade": "security境界では近接するが、failureの優先規則を確かめるscenarioは未対応を示す。",
+        "human_facing_summary": "broker/attestation/legacy guardの組合せでcanonical failureを消さないnegative fixture。",
+        "human_facing_comparison": "固定SECURITY-L2-007〜009と対L11受入行は制約適用・操作authority・revoke/quarantineを扱うが、#679/#1172対legacy greenの同一oracleへの行対応はない。",
+        "human_facing_next_step": "SEA-FR-001..012と#679/#1172のsourceを調べ、failure優先関係の現行oracle有無を確認する。",
+        "exclusive_group": "受入oracle",
+        "normative_marker_role": "acceptance_expected_or_negative_behavior"
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      }
+    },
+    {
+      "rank": 5,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000232",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        },
+        {
+          "category": "mandatory",
+          "text": "required"
+        }
+      ],
+      "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-acceptance.md",
+      "physical_line_number": 40,
+      "exact_source_line_text": "| `AVS-AC-016` | AVS-R-16 | canonical signalがREDESIGNへexactに解決され、PLAN entryへ投影される | signal未定義、wrong-axis、decision-required、legacy `po_directive`再出力を拒否 |",
+      "source_file_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+      "source_line_sha256": "9f103c9eb772e3c12800c3449551718ae0be28244c1c9e1d12e844acaec9b66c",
+      "physical_line_bytes_sha256_including_terminator": "663d489c4b1562afa8f075a7f6c141d619f093fa708dc7c107ce686e5058b05e",
+      "baseline_2353_physical_line_bytes_sha256": "663d489c4b1562afa8f075a7f6c141d619f093fa708dc7c107ce686e5058b05e",
+      "current_reference_evidence": [
+        {
+          "parent_L2_id": "HARNESS-L2-024",
+          "L2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 499,
+            "text": "### HARNESS-L2-024 — 要求形成の質問優先と収束根拠"
+          },
+          "paired_L11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 240,
+            "text": "| HARNESS-L2-024 | 同一engine/pack/target revision・scopeの指示、既回答、要求candidateと不足一覧を与える。高影響の未決事項が、影響・不確実性・下流変更cost・人間専決度とともに優先提示され、回答済み質問は重複せず、未回答項目は同じopen itemで追跡される。actor/task、正常/取消/failure/timeout/recovery、P0/P1、contradiction/defer owner/re-entry、implicit matrix、利用可能なiteration history、該当時prototype agreementを各statusと根拠で示す。必須情報unknown等の形成不備と、形成情報が揃った後の人間確認・合意待ちを別状態として示し、同一入力revisionで同じ候補・質問順序・理由・状態を再現する。 | 高影響unknownより低影響表現を先に問う／同じscope・回答済み質問を言い換えて再質問／新根拠なしで合意回答を再開／根拠なく人間専決値を補完／正常系だけでfailure/cancel/timeout/recovery、actor、surface、matrixを省く／矛盾/deferにowner・re-entryなし／N/A理由なし／利用可能な履歴やprototype agreementを無視／score、質問数、訂正率、iteration数だけで形成不備または人間合意を閉じる／timeoutを成功扱い／OS登録、engine candidate、Issue/PR、沈黙から採択・操作権限を作る。 |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HELIXOS-L2-015",
+          "L2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 642,
+            "text": "### HELIXOS-L2-015 管理・authority記録（単体候補）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 320,
+            "text": "## HELIX-OS機能単位パックの受入候補（HELIXOS-L2-015〜025）"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HELIXOS-L2-016",
+          "L2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 652,
+            "text": "### HELIXOS-L2-016 Portfolio trace・状態（単体候補）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 331,
+            "text": "### HELIXOS-L2-016 Portfolio trace・状態の受入"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        }
+      ],
+      "legacy_context": {
+        "section_heading": {
+          "line": 17,
+          "text": "# authority語彙分離受入設計"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 38,
+            "text": "| `AVS-AC-014` | AVS-R-14 | historical tokenはcurrentへ逆流しない | historical greenでcanonical failureを相殺しない |",
+            "line_text_sha256": "77488fd7293db183d624c410fae00bfb89ab5970988d13668c3f27a2440409e0"
+          },
+          {
+            "line": 39,
+            "text": "| `AVS-AC-015` | AVS-R-15 | long-term knowledgeがLearning admissionを通る | memory本文を直接Skill正本へ昇格しない |",
+            "line_text_sha256": "c84fee7044e5bfffcb778507835e81ba94e9b542fe07c1d8274a06da57d7d43a"
+          },
+          {
+            "line": 40,
+            "text": "| `AVS-AC-016` | AVS-R-16 | canonical signalがREDESIGNへexactに解決され、PLAN entryへ投影される | signal未定義、wrong-axis、decision-required、legacy `po_directive`再出力を拒否 |",
+            "line_text_sha256": "9f103c9eb772e3c12800c3449551718ae0be28244c1c9e1d12e844acaec9b66c"
+          },
+          {
+            "line": 41,
+            "text": "",
+            "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 42,
+            "text": "20 oracleを独立failure classとして保持し、単一happy pathで相殺しない。",
+            "line_text_sha256": "42b2314eacdb5ca089b61cc0a9b0bf0b0c8a7ec48e3456785d9b30ea16aa1d67"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 232,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 790,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "asset_id": "LEGACY-ASSET-5DC004CDB36F2B0C29C5",
+        "source_path": "docs/governance/candidates/authority-vocabulary-acceptance.md",
+        "source_sha256": "0641ced495a545ca4820eec457caecb6cdf53531a112e00024e8f7c6ce6179d0",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null,
+        "consumer_refs": []
+      },
+      "semantic_review": {
+        "class": "受入oracle行（authority signalの投影）",
+        "standalone_requirement_condition": false,
+        "function": "AVS-AC-016の合格／否定oracle行。canonical signalをREDESIGNへ解決しPLAN entryへ投影する操作を試験する。",
+        "current_pairs": [
+          "HELIXOS-L2-015",
+          "HELIXOS-L2-016",
+          "HARNESS-L2-024"
+        ],
+        "residual": "signal taxonomy、REDESIGN resolution、PLAN entry schema/consumerは未対応として残る。",
+        "next": "AVS-R-16の上流・consumer・target mechanismを再特定し、現行のOS/HARNESS境界と混同せずに確認する。",
+        "comparison": "OS-L2-015はsource/revision/decision identityの追跡とPR/Issue/CI/memoryからauthorityを作らない境界を持つ。HARNESS-L2-024は質問/候補の形成と人の判断待ちを分ける。いずれもcanonical signal taxonomyからREDESIGN、PLAN workflow entryへ投影する同一契約は固定L2/L11に見つからない。",
+        "comparison_grade": "authority出所と候補形成の一般境界に限る一部類似。",
+        "human_facing_summary": "canonical signalからREDESIGNへの解決とPLAN entryへの投影を確かめる試験行。",
+        "human_facing_comparison": "OS-L2-015/016はauthority出所とtrace、HARNESS-L2-024は要求候補と人の判断待ちを扱う。signal taxonomy/PLAN projectionの同一契約は見つからない。",
+        "human_facing_next_step": "AVS-R-16のtarget、consumer、signal schemaを確定してから現行pairと比べる。",
+        "exclusive_group": "受入oracle",
+        "normative_marker_role": "acceptance_expected_or_negative_behavior"
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      }
+    },
+    {
+      "rank": 6,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000339",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "禁止"
+        },
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        }
+      ],
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-acceptance.md",
+      "physical_line_number": 25,
+      "exact_source_line_text": "| BBR-AC06 | BBR-R05 | 各禁止修復を個別拒否。旧Policy巻戻しや残義務削除で緑化せず、意味矛盾を上流へ送る |",
+      "source_file_sha256": "cd2fdd3dcfaa98935db0fef6b876d6cdb7133b11b8c8877363c3d0138c4b8cbc",
+      "source_line_sha256": "e4ae82f8de1574639cdb20ef853c0f0bc222a9aaec69bd8666666018f30853c8",
+      "physical_line_bytes_sha256_including_terminator": "7916c58e3307f34c0a47640464bebcf063aadbcc4fb36fcac11548cb5f08bc73",
+      "baseline_2353_physical_line_bytes_sha256": "7916c58e3307f34c0a47640464bebcf063aadbcc4fb36fcac11548cb5f08bc73",
+      "current_reference_evidence": [
+        {
+          "parent_L2_id": "HARNESS-L2-022",
+          "L2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 447,
+            "text": "### HARNESS-L2-022 検証と受入の契約（コアの単体）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 217,
+            "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HARNESS-L2-031",
+          "L2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 627,
+            "text": "### HARNESS-L2-031 ログ・入力からの最小再現と回帰候補生成（単体候補、version_target 1.0）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 455,
+            "text": "| HARNESS-L2-031 | HELIX-HARNESS共通部品 | ④開発・⑤リファクタリングのfailure、⑦運用保守のincident等。PO原文の障害を本番incidentだけへ限定せず、許可されたlog/inputから再現・回帰候補を共有提供する。CORE/022のoracle/traceと選択executorの隔離実行を保持する。 |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HARNESS-L2-032",
+          "L2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 647,
+            "text": "### HARNESS-L2-032 生成artifactからOS-020実行契約への接続（接続候補、version_target 1.0）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 456,
+            "text": "| HARNESS-L2-032 | HELIX-HARNESS-CORE | 030/031利用サービスと選択したOS-020または利用者CI。test artifact/oracle/revision/scopeをexecutor inputへ写す業務上の接続packを所有する。CONNECTは利用時の登録・版照合・通信・再送・追跡を担い、032の業務意味は持たない。実行・隔離・結果回収は選択executorへ残す。 |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        }
+      ],
+      "legacy_context": {
+        "section_heading": {
+          "line": 13,
+          "text": "# 限定修復の受入候補"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 23,
+            "text": "| BBR-AC04 | BBR-R04 | 同一修復再適用は差分ゼロ、重複eventで二重実行しない。session変更で試行/予算がresetせず、循環・再発・期限超過は停止してRecoveryへ返る |",
+            "line_text_sha256": "dc60166a47a253aa1b458b194b3a04260c5eb34f1307ad4dc680817e65f8176b"
+          },
+          {
+            "line": 24,
+            "text": "| BBR-AC05 | BBR-R04 | 部分失敗とCAS競合で差分/記録を保全。不明な外部副作用を再試行せず、Helpと許可された調査は維持。HEAD変更後のstale CI/reviewでmergeしない |",
+            "line_text_sha256": "142712ab6b4f1c8f93a9070097683e026d0f2e467b727205a8e1d96ece244078"
+          },
+          {
+            "line": 25,
+            "text": "| BBR-AC06 | BBR-R05 | 各禁止修復を個別拒否。旧Policy巻戻しや残義務削除で緑化せず、意味矛盾を上流へ送る |",
+            "line_text_sha256": "e4ae82f8de1574639cdb20ef853c0f0bc222a9aaec69bd8666666018f30853c8"
+          },
+          {
+            "line": 26,
+            "text": "| BBR-AC07 | BBR-R01, BBR-R02, BBR-R03, BBR-R04, BBR-R05 | 一つの実consumerで検出→許可確認→隔離差分→適用→再検証→独立reviewを通す。生成・適用・検収を別証拠で残す |",
+            "line_text_sha256": "8e1b62e087bc9c7cede23a77e3b0d1df65444a99e9b04c9931761bb85161c02a"
+          },
+          {
+            "line": 27,
+            "text": "",
+            "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 339,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 793,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "asset_id": "LEGACY-ASSET-901CD182B52024593E41",
+        "source_path": "docs/governance/candidates/bugbot-bounded-repair-acceptance.md",
+        "source_sha256": "cd2fdd3dcfaa98935db0fef6b876d6cdb7133b11b8c8877363c3d0138c4b8cbc",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null,
+        "consumer_refs": []
+      },
+      "semantic_review": {
+        "class": "受入oracle行（禁止修復の拒否）",
+        "standalone_requirement_condition": false,
+        "function": "BBR-AC06の一行。禁止修復を個々に拒否し、Policy rollbackや義務削除でgreen化しないnegative acceptance scenario。",
+        "current_pairs": [
+          "HARNESS-L2-031",
+          "HARNESS-L2-032",
+          "HARNESS-L2-022"
+        ],
+        "residual": "各種の禁止修復、Policy/義務差分のrollback時検知、repair identity別の拒否証拠。",
+        "next": "BBR-R05と対応sourceを分解し、修復実行を別authorityへ委譲する条件を既存SECURITY/OS boundaryで再比較する。",
+        "comparison": "固定H-L2-031/032はfailure/repro候補やrun-request packetまでで、実体へのpatch適用を持たない。L2-022はoracleとstage resultを分け、test generationやpassから受入を生成しない。この境界は自動修復許可を与えない点で現行pairと整合するが、BBRの個別禁止修復/Policy rollback例は同一oracleとして採用されていない。",
+        "comparison_grade": "実行許可を導かない境界は整合するが、修復固有negative oracleは未対応。",
+        "human_facing_summary": "禁止修復を個別に拒否し、Policy rollback等で緑化しない試験条件。",
+        "human_facing_comparison": "HARNESS-L2-031/032は候補生成・run-requestまでで実体修復を持たず、L2-022はoracleと受入stageを分ける。個別禁止repair oracleは未対応。",
+        "human_facing_next_step": "BBR-R05の全禁止条件と拒否証拠を確認し、OS/SECURITYの実行権限境界と照合する。",
+        "exclusive_group": "受入oracle",
+        "normative_marker_role": "acceptance_expected_or_negative_behavior"
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      }
+    },
+    {
+      "rank": 7,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000441",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "blocks"
+        },
+        {
+          "category": "prohibition",
+          "text": "block"
+        }
+      ],
+      "source_path": "docs/governance/candidates/bugbot-intake-source.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-intake-source.md",
+      "physical_line_number": 17,
+      "exact_source_line_text": "if (blocks.length !== 1) throw new Error('source_block_count');",
+      "source_file_sha256": "8cc8ab54cd1e70b964473919c22815acf2feec92a0a2d9ed165e914b206723d9",
+      "source_line_sha256": "467ff1c889c64565802f1c04648f81e0febd910807f085efcd215768dc708390",
+      "physical_line_bytes_sha256_including_terminator": "6ef82a03a6686aa7536ac7d7d9809744d3e87831f10ea0ed6fd612e39849f20e",
+      "baseline_2353_physical_line_bytes_sha256": "6ef82a03a6686aa7536ac7d7d9809744d3e87831f10ea0ed6fd612e39849f20e",
+      "current_reference_evidence": [],
+      "legacy_context": {
+        "section_heading": {
+          "line": 6,
+          "text": "## 復元検査"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 15,
+            "text": "const text = readFileSync('docs/governance/candidates/bugbot-intake-source.md', 'utf8');",
+            "line_text_sha256": "7054c129ab29eaee58b4ea0afb13cb33872872f78117856d1554a1822860ff1a"
+          },
+          {
+            "line": 16,
+            "text": "const blocks = [...text.matchAll(/^```base64\\n([A-Za-z0-9+/=\\n]+)\\n```$/gm)];",
+            "line_text_sha256": "582296fc06bce96bda5c4660d432816fe3d2e4677488481b354a32afa72bf13c"
+          },
+          {
+            "line": 17,
+            "text": "if (blocks.length !== 1) throw new Error('source_block_count');",
+            "line_text_sha256": "467ff1c889c64565802f1c04648f81e0febd910807f085efcd215768dc708390"
+          },
+          {
+            "line": 18,
+            "text": "const bytes = Buffer.from(blocks[0][1], 'base64');",
+            "line_text_sha256": "926a2db3890c24e8052268a99692447f3a5ae26f6cc5f3c248067685ca2425cb"
+          },
+          {
+            "line": 19,
+            "text": "const digest = createHash('sha256').update(bytes).digest('hex');",
+            "line_text_sha256": "f7834d8b5325602902b861b4d0ee41e8dcecbcd7c77ab5775b34f258aadf806f"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 441,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 796,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "asset_id": "LEGACY-ASSET-F619177632B88B92DDBF",
+        "source_path": "docs/governance/candidates/bugbot-intake-source.md",
+        "source_sha256": "8cc8ab54cd1e70b964473919c22815acf2feec92a0a2d9ed165e914b206723d9",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null,
+        "consumer_refs": []
+      },
+      "semantic_review": {
+        "class": "コードブロック内の原文復元assertion",
+        "standalone_requirement_condition": false,
+        "function": "JavaScript実装断片の`blocks.length !== 1`チェック。隣接節はbase64 blockの復元検査であり、正確な原文bytes確認用。要求採択・承認・実装完了を検査しないと明記されているため、`block(s)`語の正規表現ヒットは要件でない。",
+        "current_pairs": [],
+        "residual": "source blockの完全性確認はarchive/asset integrityの範囲であり、要求意味の残差ではない。",
+        "next": "marker screenの明白なlexical false positiveとして記録し、必要なら原文復元の証拠側でのみ扱う。",
+        "comparison": "比較対象となる要求文ではない。復元検査の実行も本監査ではしていない。",
+        "comparison_grade": "現行要求比較対象外。",
+        "human_facing_summary": "`blocks`はJavaScriptの原文復元コード内の語。節はbase64原文の復元完全性だけを扱う。",
+        "human_facing_comparison": "要求文ではないため、現行L2/L11と意味比較しない。コードは本作業で実行していない。",
+        "human_facing_next_step": "規範語screenのlexical false positiveとして扱い、必要ならsource restoration証拠で検査する。",
+        "exclusive_group": "コード内assertion",
+        "normative_marker_role": "lexical_only_false_positive"
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      }
+    },
+    {
+      "rank": 8,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000810",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "reject"
+        },
+        {
+          "category": "prohibition",
+          "text": "reject"
+        }
+      ],
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "physical_line_number": 37,
+      "exact_source_line_text": "| HR-R-03 | AC6 | 客観greenと選好reject共存 / 客観greenで人間reject相殺 |",
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "ee2eb39c3a142af01c13dd031ed08dd0d10249896965c98b3a7ed431f9345cc0",
+      "physical_line_bytes_sha256_including_terminator": "2e28a70950922f211ecedf8bbdb0101bc7d6a072c312da7b3cd5dc8dccf941f2",
+      "baseline_2353_physical_line_bytes_sha256": "2e28a70950922f211ecedf8bbdb0101bc7d6a072c312da7b3cd5dc8dccf941f2",
+      "current_reference_evidence": [
+        {
+          "parent_L2_id": "HARNESS-L2-024",
+          "L2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 499,
+            "text": "### HARNESS-L2-024 — 要求形成の質問優先と収束根拠"
+          },
+          "paired_L11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 240,
+            "text": "| HARNESS-L2-024 | 同一engine/pack/target revision・scopeの指示、既回答、要求candidateと不足一覧を与える。高影響の未決事項が、影響・不確実性・下流変更cost・人間専決度とともに優先提示され、回答済み質問は重複せず、未回答項目は同じopen itemで追跡される。actor/task、正常/取消/failure/timeout/recovery、P0/P1、contradiction/defer owner/re-entry、implicit matrix、利用可能なiteration history、該当時prototype agreementを各statusと根拠で示す。必須情報unknown等の形成不備と、形成情報が揃った後の人間確認・合意待ちを別状態として示し、同一入力revisionで同じ候補・質問順序・理由・状態を再現する。 | 高影響unknownより低影響表現を先に問う／同じscope・回答済み質問を言い換えて再質問／新根拠なしで合意回答を再開／根拠なく人間専決値を補完／正常系だけでfailure/cancel/timeout/recovery、actor、surface、matrixを省く／矛盾/deferにowner・re-entryなし／N/A理由なし／利用可能な履歴やprototype agreementを無視／score、質問数、訂正率、iteration数だけで形成不備または人間合意を閉じる／timeoutを成功扱い／OS登録、engine candidate、Issue/PR、沈黙から採択・操作権限を作る。 |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HELIXBRAIN-L2-006",
+          "L2": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "line": 139,
+            "text": "### HELIXBRAIN-L2-006 Visual DesignとUXの再利用知識"
+          },
+          "paired_L11": {
+            "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+            "line": 34,
+            "text": "| HELIXBRAIN-L2-006 | 1.0 | Information Architecture、Visual Hierarchy、Layout、Grid、Spacing/Density、Typography、Navigation、Component Composition、Form、Feedback、Empty/Loading/Error State、Responsive Design、Dashboard、Content Hierarchy、Accessibilityの知識例を再利用構造として扱える。製品固有の「黒背景・青accent」等のVisual Identityを汎用知識へ取り込んだら不合格。 |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HELIXBRAIN-L2-007",
+          "L2": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "line": 150,
+            "text": "### HELIXBRAIN-L2-007 出所・根拠・知識promotion"
+          },
+          "paired_L11": {
+            "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+            "line": 35,
+            "text": "| HELIXBRAIN-L2-007 | 1.0 | Pattern/Unit/Partにsource、provenance、根拠、採用理由、評価範囲、反例、限界、LABO評価の対象revisionを辿れる。AI生成や実績一件を根拠にaccepted/matureへ進めたら不合格。 |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HELIXBRAIN-L2-012",
+          "L2": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "line": 205,
+            "text": "### HELIXBRAIN-L2-012 提供候補と採用authorityの分離"
+          },
+          "paired_L11": {
+            "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+            "line": 40,
+            "text": "| HELIXBRAIN-L2-012 | 1.0 | BRAINの返却がPattern候補、required input、relation、alternative、constraint、evidenceに限定され、採用決定はHARNESS-CORE/INTELLIGENCE/人等の該当ownerに残る。候補返却を採用authorityや案件のruntime判断と誤認したら不合格。 |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        }
+      ],
+      "legacy_context": {
+        "section_heading": {
+          "line": 27,
+          "text": "## 要件対応"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 35,
+            "text": "| HR-R-01 | AC7 | 原文と解釈分離 / 原文上書き・memory流用 |",
+            "line_text_sha256": "29d934e9eb14839eea2842ef183f92c1fae8a5eb91e8830cf44b9c1d368d5d31"
+          },
+          {
+            "line": 36,
+            "text": "| HR-R-02 | AC3 | 複数分類・未解決 / 曖昧反応の単一断定 |",
+            "line_text_sha256": "f125d032a47fb5655abbbf85e8a673c386335410576f1bafafe34ea0c92fcbf3"
+          },
+          {
+            "line": 37,
+            "text": "| HR-R-03 | AC6 | 客観greenと選好reject共存 / 客観greenで人間reject相殺 |",
+            "line_text_sha256": "ee2eb39c3a142af01c13dd031ed08dd0d10249896965c98b3a7ed431f9345cc0"
+          },
+          {
+            "line": 38,
+            "text": "| HR-R-04 | AC4 | 表現のみの修正 / 全Design再生成 |",
+            "line_text_sha256": "e6fb8567d847f6569503f6629df603ab38830160dff583d14f1f413f4651c23c"
+          },
+          {
+            "line": 39,
+            "text": "| DC-R-01 | AC5 | stable軸とrevision / 軸リネームで受容履歴を消去 |",
+            "line_text_sha256": "cbb214cc19460365d6e5d86842565955100b510a748f91e30b740500ab79c688"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 810,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 805,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+        "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+        "source_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null,
+        "consumer_refs": []
+      },
+      "semantic_review": {
+        "class": "受入trace matrix行",
+        "standalone_requirement_condition": false,
+        "function": "DG受入設計内のtrace tableでHR-R-03とAC6の対応を並べる。客観greenと人間の選好rejectを同時保持する負例/受入テーマの索引行で、詳細scenarioは別行に委ねる。",
+        "current_pairs": [
+          "HELIXBRAIN-L2-006",
+          "HELIXBRAIN-L2-007",
+          "HELIXBRAIN-L2-012",
+          "HARNESS-L2-024"
+        ],
+        "residual": "客観品質と選好を別判定する具体oracle、拒否後に次比較prototypeへ進む条件。",
+        "next": "HR-R-03とDG-R-03の親sourceおよびBRAIN/Visual Design HARNESS target identityを特定し、必要な人間判断の有無を上流authority modelに照らす。",
+        "comparison": "BRAIN-L2-006はVisual Design/UX知識を扱う一方、製品固有visual identityとscreen/flowは製品COREへ残す。BRAIN L2-007/012はprovenanceとpromotion authorityを分ける。HARNESS-L2-024は人間の未決意味・採否を候補形成から分離する。これらはauthority/owner境界に限る。客観greenと選好rejectの同時取扱いoracleそのものは固定pairから直接辿れない。",
+        "comparison_grade": "責務境界に類似するだけで、人間選好reject ruleの対応は未確認。",
+        "human_facing_summary": "客観greenと人間の選好rejectを併存させる受入テーマの索引行。",
+        "human_facing_comparison": "BRAIN-L2-006/007/012と対L11行はVisual Design知識、出所、採用authorityを分け、HARNESS-L2-024は人の未決意味を候補から分離する。選好reject自体のoracleは未確認。",
+        "human_facing_next_step": "HR-R-03/DG-R-03の親sourceとtarget機構を特定し、客観品質と選好の別oracleを確認する。",
+        "exclusive_group": "受入trace matrix",
+        "normative_marker_role": "acceptance_trace_normative_reference"
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      }
+    },
+    {
+      "rank": 9,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000916",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "Reject"
+        },
+        {
+          "category": "prohibition",
+          "text": "禁止"
+        }
+      ],
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "physical_line_number": 138,
+      "exact_source_line_text": "「人間がRejectしたら全部デザイン再生成」は禁止する。",
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "3f52b5b6c9db326eebf61053eca27ec0619dd5eff9564a0dccd087506aa0259a",
+      "physical_line_bytes_sha256_including_terminator": "660aa85f25e663b7a9f7c86b7be3452e6d57b747858ebae8a85bfecd2e0cc459",
+      "baseline_2353_physical_line_bytes_sha256": "660aa85f25e663b7a9f7c86b7be3452e6d57b747858ebae8a85bfecd2e0cc459",
+      "current_reference_evidence": [
+        {
+          "parent_L2_id": "HARNESS-L2-024",
+          "L2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 499,
+            "text": "### HARNESS-L2-024 — 要求形成の質問優先と収束根拠"
+          },
+          "paired_L11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 240,
+            "text": "| HARNESS-L2-024 | 同一engine/pack/target revision・scopeの指示、既回答、要求candidateと不足一覧を与える。高影響の未決事項が、影響・不確実性・下流変更cost・人間専決度とともに優先提示され、回答済み質問は重複せず、未回答項目は同じopen itemで追跡される。actor/task、正常/取消/failure/timeout/recovery、P0/P1、contradiction/defer owner/re-entry、implicit matrix、利用可能なiteration history、該当時prototype agreementを各statusと根拠で示す。必須情報unknown等の形成不備と、形成情報が揃った後の人間確認・合意待ちを別状態として示し、同一入力revisionで同じ候補・質問順序・理由・状態を再現する。 | 高影響unknownより低影響表現を先に問う／同じscope・回答済み質問を言い換えて再質問／新根拠なしで合意回答を再開／根拠なく人間専決値を補完／正常系だけでfailure/cancel/timeout/recovery、actor、surface、matrixを省く／矛盾/deferにowner・re-entryなし／N/A理由なし／利用可能な履歴やprototype agreementを無視／score、質問数、訂正率、iteration数だけで形成不備または人間合意を閉じる／timeoutを成功扱い／OS登録、engine candidate、Issue/PR、沈黙から採択・操作権限を作る。 |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HELIXBRAIN-L2-006",
+          "L2": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "line": 139,
+            "text": "### HELIXBRAIN-L2-006 Visual DesignとUXの再利用知識"
+          },
+          "paired_L11": {
+            "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+            "line": 34,
+            "text": "| HELIXBRAIN-L2-006 | 1.0 | Information Architecture、Visual Hierarchy、Layout、Grid、Spacing/Density、Typography、Navigation、Component Composition、Form、Feedback、Empty/Loading/Error State、Responsive Design、Dashboard、Content Hierarchy、Accessibilityの知識例を再利用構造として扱える。製品固有の「黒背景・青accent」等のVisual Identityを汎用知識へ取り込んだら不合格。 |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HELIXBRAIN-L2-007",
+          "L2": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "line": 150,
+            "text": "### HELIXBRAIN-L2-007 出所・根拠・知識promotion"
+          },
+          "paired_L11": {
+            "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+            "line": 35,
+            "text": "| HELIXBRAIN-L2-007 | 1.0 | Pattern/Unit/Partにsource、provenance、根拠、採用理由、評価範囲、反例、限界、LABO評価の対象revisionを辿れる。AI生成や実績一件を根拠にaccepted/matureへ進めたら不合格。 |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HELIXBRAIN-L2-012",
+          "L2": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "line": 205,
+            "text": "### HELIXBRAIN-L2-012 提供候補と採用authorityの分離"
+          },
+          "paired_L11": {
+            "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+            "line": 40,
+            "text": "| HELIXBRAIN-L2-012 | 1.0 | BRAINの返却がPattern候補、required input、relation、alternative、constraint、evidenceに限定され、採用決定はHARNESS-CORE/INTELLIGENCE/人等の該当ownerに残る。候補返却を採用authorityや案件のruntime判断と誤認したら不合格。 |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        }
+      ],
+      "legacy_context": {
+        "section_heading": {
+          "line": 128,
+          "text": "### HR-R-04 Recovery Routing"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 136,
+            "text": "- visual preference → 次の比較Prototypeへ",
+            "line_text_sha256": "97828a8b14ef281caf4052329b4847034bcc73474f09bf90ff380728748c4ec1"
+          },
+          {
+            "line": 137,
+            "text": "",
+            "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 138,
+            "text": "「人間がRejectしたら全部デザイン再生成」は禁止する。",
+            "line_text_sha256": "3f52b5b6c9db326eebf61053eca27ec0619dd5eff9564a0dccd087506aa0259a"
+          },
+          {
+            "line": 139,
+            "text": "",
+            "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 140,
+            "text": "---",
+            "line_text_sha256": "cb3f91d54eee30e53e35b2b99905f70f169ed549fd78909d3dac2defc9ed8d3b"
+          }
+        ],
+        "section_context_lines": [
+          {
+            "line": 128,
+            "text": "### HR-R-04 Recovery Routing",
+            "line_text_sha256": "e767260db77eaf817325a11dd498dc818d8243663a45bea7b1eeedee1a9990d7"
+          },
+          {
+            "line": 129,
+            "text": "分類結果から再作業の種類を区別する。",
+            "line_text_sha256": "66fadf0d1d20cc0dea866bfe98ddc654107a1dac35f6755ba79f81b78bfc0555"
+          },
+          {
+            "line": 130,
+            "text": "",
+            "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 131,
+            "text": "例:",
+            "line_text_sha256": "fd89ad58cc426eb02934d153bdedfdfcd732a24076784c78b35434033b5e0ae7"
+          },
+          {
+            "line": 132,
+            "text": "- research不足 → Design Researchへ戻す",
+            "line_text_sha256": "8f331439e8859946fe2857b43d91f1957348e0149bc324945ca4d98e68851ca0"
+          },
+          {
+            "line": 133,
+            "text": "- prototypeの見せ方不足 → Prototype表現だけ修正",
+            "line_text_sha256": "dd8f24301a6a791440c7aa990f393f46cee35bdbf3e6e4ac95b69ed43d6eb62c"
+          },
+          {
+            "line": 134,
+            "text": "- intent mismatch → Requirement/Design Re-entry",
+            "line_text_sha256": "51d21834d6fe9d9ca57cda46e4b000f119007f4ef46e555ae6e59ecfd5a6fdae"
+          },
+          {
+            "line": 135,
+            "text": "- objective defect → Design/Implementation修正",
+            "line_text_sha256": "7f1005244db7d069f7bd2cf8f92792d0da1906da70138cea315cae211ff81153"
+          },
+          {
+            "line": 136,
+            "text": "- visual preference → 次の比較Prototypeへ",
+            "line_text_sha256": "97828a8b14ef281caf4052329b4847034bcc73474f09bf90ff380728748c4ec1"
+          },
+          {
+            "line": 137,
+            "text": "",
+            "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 138,
+            "text": "「人間がRejectしたら全部デザイン再生成」は禁止する。",
+            "line_text_sha256": "3f52b5b6c9db326eebf61053eca27ec0619dd5eff9564a0dccd087506aa0259a"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 916,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 806,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+        "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+        "source_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null,
+        "consumer_refs": []
+      },
+      "semantic_review": {
+        "class": "HR-R-04に従属する禁止条件",
+        "standalone_requirement_condition": false,
+        "function": "HR-R-04の「分類結果から再作業の種類を区別する」と5例に続き、人間のRejectを理由に全Designを再生成することを禁止する規範条件。単独の要求identityではないが、文脈に従属する実質的な禁止条件として保持する。",
+        "current_pairs": [
+          "HELIXBRAIN-L2-006",
+          "HELIXBRAIN-L2-007",
+          "HELIXBRAIN-L2-012",
+          "HARNESS-L2-024"
+        ],
+        "residual": "客観的な欠陥とvisual preferenceの識別基準、部分差分だけ再作業するscope、拒否後のowner/return actionが未解決。",
+        "next": "HR-R-04の親条件と5例を維持したまま、欠陥/選好の区別、再作業scope、拒否後の戻し先を照合する。",
+        "comparison": "固定BRAIN要求はVisual Design/UXの共有知識と製品固有意味の境界を置き、選択を知識側が決めない。HARNESS-L2-024は未決人間選好・prototype agreement等をrequirement formationから区別する。両者とも一括再生成禁止/Rejectへの応答のcaseを直接指定しない。",
+        "comparison_grade": "上位のowner/decision境界に一部類似するが、処理ruleは未対応。",
+        "human_facing_summary": "人間のRejectを理由に全Designを再生成することを禁じる規範条件。HR-R-04の分類結果と5例に従属し、独立identityではない。",
+        "human_facing_comparison": "BRAIN-L2-006等はVisual Design知識と製品固有意味を分け、HARNESS-L2-024はprototype agreement/人間判断を扱う。一括再生成禁止の具体動作は見当たらない。",
+        "human_facing_next_step": "HR-R-04の分類結果・5例を保ち、欠陥/選好の区別、部分再作業範囲、Reject後の戻し先を照合する。",
+        "exclusive_group": "HR-R-04に従属する禁止条件",
+        "normative_marker_role": "contextual_prohibition_condition"
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      }
+    },
+    {
+      "rank": 10,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-002046",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        },
+        {
+          "category": "mandatory",
+          "text": "必須"
+        }
+      ],
+      "source_path": "docs/governance/candidates/functional-release-slice-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+      "physical_line_number": 34,
+      "exact_source_line_text": "| `FRS-AC-001` | FRS-R-01 | schemaの全必須field、version、channel、digest、strict unknown拒否が成立する | field欠落、重複ID、別軸identity混入を受理しない |",
+      "source_file_sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+      "source_line_sha256": "3c84c11fe4513a7e8f87189c74e3082bfd829b037d17b109cfc791c5771b42e6",
+      "physical_line_bytes_sha256_including_terminator": "3cca0d6b3df3a88f215629d790534d6e81cdd37cd8517d38dcff5301f79bfbdc",
+      "baseline_2353_physical_line_bytes_sha256": "3cca0d6b3df3a88f215629d790534d6e81cdd37cd8517d38dcff5301f79bfbdc",
+      "current_reference_evidence": [
+        {
+          "parent_L2_id": "HARNESS-L2-010",
+          "L2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 340,
+            "text": "### HARNESS-L2-010 パックの境界"
+          },
+          "paired_L11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 205,
+            "text": "| HARNESS-L2-010 | 各パックの入力・出力・必要な依存・検証範囲・版と所有先を確認でき、リリース単位へ収めたパックと収めないパックを明示の一覧で確かめられる。パックを一つ差し替えても、他のパックの版と証拠が保たれる。同じ入力と版から同じ成果物を再現し、失敗時に直前の適格な版へ戻せる | 宣言のない依存を実行時に使う／一つのパックを二つのリリース単位が所有する／未検証のパックを暗黙に収める／パックの昇格だけでリリース単位や製品を昇格させる／関数やフォルダの一覧をパックの一覧とする／全体を一つのパックにまとめて交換・更新できない |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HARNESS-L2-011",
+          "L2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 352,
+            "text": "### HARNESS-L2-011 画面・作業環境から切り離して呼べる条件"
+          },
+          "paired_L11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 206,
+            "text": "| HARNESS-L2-011 | 画面を持たない呼出しで各パックを使い、能力名・契約の版・依存の版を照合し、渡した権限と隔離の単位の中で動き、相関ID付きの進行・結果・証拠を受け取り、途中で止めて同じ冪等キーで再開できる | 特定の画面・GUI・ローカルpath・provider・CI製品がないと呼べない／未対応の版を黙って読み替える／渡していない権限や別のtenantの資源を使う／呼出し元へHELIX本体の稼働DB・鍵・内部統制を渡す／期限切れや中断を成功として返す／Webの要求や設計を本要求から導く |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HARNESS-L2-022",
+          "L2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 447,
+            "text": "### HARNESS-L2-022 検証と受入の契約（コアの単体）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 217,
+            "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        }
+      ],
+      "legacy_context": {
+        "section_heading": {
+          "line": 30,
+          "text": "## §1 Oracle完全集合"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 32,
+            "text": "| AC ID | 対応要件 | 合格条件 | 否定mutation |",
+            "line_text_sha256": "d75dde9cdd673515d008f13d23a4a931d63d2b887bd51dcadd47ce5f7b9c9673"
+          },
+          {
+            "line": 33,
+            "text": "|---|---|---|---|",
+            "line_text_sha256": "4da1ec6f47782090102dc16bda978efb5655fbf2ddce0f84ecf1faf79a930f2d"
+          },
+          {
+            "line": 34,
+            "text": "| `FRS-AC-001` | FRS-R-01 | schemaの全必須field、version、channel、digest、strict unknown拒否が成立する | field欠落、重複ID、別軸identity混入を受理しない |",
+            "line_text_sha256": "3c84c11fe4513a7e8f87189c74e3082bfd829b037d17b109cfc791c5771b42e6"
+          },
+          {
+            "line": 35,
+            "text": "| `FRS-AC-002` | FRS-R-02 | L1／L3／L10／IRのpath・revision・digestが同じsourceへ束縛される | Issue、README、branch、providerから意味を推測した入力を拒否 |",
+            "line_text_sha256": "843edf01613ae5ea47f790867622c933778713ce37dbcc3ab3d07df3b664d93b"
+          },
+          {
+            "line": 36,
+            "text": "| `FRS-AC-003` | FRS-R-03 | shadow→preview→rc→stable→deprecated→retiredの順序と証拠が検査される | channel飛越、stale receipt、expiry後の昇格を拒否 |",
+            "line_text_sha256": "47194aee6176a4b00a10f1d2fc2bd11a7e9bb690c99cdcbc9ea435ce55a4b6b1"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 2046,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 818,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "asset_id": "LEGACY-ASSET-67ADFAB856D954B3C5D2",
+        "source_path": "docs/governance/candidates/functional-release-slice-acceptance.md",
+        "source_sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null,
+        "consumer_refs": []
+      },
+      "semantic_review": {
+        "class": "受入oracle行（schema/identity検証）",
+        "standalone_requirement_condition": false,
+        "function": "FRS-AC-001のschema, mandatory fields, version/channel/digest, strict unknown rejectionとnegative mutationを確かめるテスト条件。",
+        "current_pairs": [
+          "HARNESS-L2-010",
+          "HARNESS-L2-011",
+          "HARNESS-L2-022"
+        ],
+        "residual": "FRS version/channel/digest/unknown field listとcurrent pack schema之间のexact no-loss crosswalk未確認。",
+        "next": "FRS-R-01及びschema sourceを得てH-L2-010/011のimmutable input/output contractにfield単位で照合する。",
+        "comparison": "HARNESS-L2-010/011はpack/call identity, contract/dependency version, input/output, scope, authority, state/evidenceを明示する。共通descriptorの構造面では明確な類似があるが、旧Slice schema field inventoryとcurrent pack schemaの1:1 bindingは本source/asset ledgerにない。`HARNESS-L2-022`の対L11受入行は受入 stage oracleを別に判定する。",
+        "comparison_grade": "descriptor/schema上の一部保持は見られるが、fieldと旧sourceから現行へのidentity結合は未確認。",
+        "human_facing_summary": "schema/必須field/version/channel/digest/unknown検査の試験条件。",
+        "human_facing_comparison": "HARNESS-L2-010/011はpack/call identity, version, input/output, scope, authority/evidenceを規定する。構造上の類似はあるが旧Slice schemaとのfield単位対応は未確認。",
+        "human_facing_next_step": "FRS-R-01のschemaを得て、current pack contractとfieldごとに照合する。",
+        "exclusive_group": "受入oracle",
+        "normative_marker_role": "acceptance_expected_or_negative_behavior"
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      }
+    },
+    {
+      "rank": 11,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-002051",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        },
+        {
+          "category": "mandatory",
+          "text": "required"
+        }
+      ],
+      "source_path": "docs/governance/candidates/functional-release-slice-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+      "physical_line_number": 39,
+      "exact_source_line_text": "| `FRS-AC-006` | FRS-R-06 | included／excluded Sliceのexact set、unknown、conflict、required欠落が検査される | excludedをincludedへ戻す、未指定を含めるmutationを拒否 |",
+      "source_file_sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+      "source_line_sha256": "837d2340e5299c8ff88e94cb21629318d9ae7e4a3b8b6a55d065d3554c2138de",
+      "physical_line_bytes_sha256_including_terminator": "f0f8b45e05554194f2fa6886cabbbd524b40c48e47cb3764188859394819609f",
+      "baseline_2353_physical_line_bytes_sha256": "f0f8b45e05554194f2fa6886cabbbd524b40c48e47cb3764188859394819609f",
+      "current_reference_evidence": [
+        {
+          "parent_L2_id": "HARNESS-L2-010",
+          "L2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 340,
+            "text": "### HARNESS-L2-010 パックの境界"
+          },
+          "paired_L11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 205,
+            "text": "| HARNESS-L2-010 | 各パックの入力・出力・必要な依存・検証範囲・版と所有先を確認でき、リリース単位へ収めたパックと収めないパックを明示の一覧で確かめられる。パックを一つ差し替えても、他のパックの版と証拠が保たれる。同じ入力と版から同じ成果物を再現し、失敗時に直前の適格な版へ戻せる | 宣言のない依存を実行時に使う／一つのパックを二つのリリース単位が所有する／未検証のパックを暗黙に収める／パックの昇格だけでリリース単位や製品を昇格させる／関数やフォルダの一覧をパックの一覧とする／全体を一つのパックにまとめて交換・更新できない |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HARNESS-L2-011",
+          "L2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 352,
+            "text": "### HARNESS-L2-011 画面・作業環境から切り離して呼べる条件"
+          },
+          "paired_L11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 206,
+            "text": "| HARNESS-L2-011 | 画面を持たない呼出しで各パックを使い、能力名・契約の版・依存の版を照合し、渡した権限と隔離の単位の中で動き、相関ID付きの進行・結果・証拠を受け取り、途中で止めて同じ冪等キーで再開できる | 特定の画面・GUI・ローカルpath・provider・CI製品がないと呼べない／未対応の版を黙って読み替える／渡していない権限や別のtenantの資源を使う／呼出し元へHELIX本体の稼働DB・鍵・内部統制を渡す／期限切れや中断を成功として返す／Webの要求や設計を本要求から導く |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HARNESS-L2-022",
+          "L2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 447,
+            "text": "### HARNESS-L2-022 検証と受入の契約（コアの単体）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 217,
+            "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        }
+      ],
+      "legacy_context": {
+        "section_heading": {
+          "line": 30,
+          "text": "## §1 Oracle完全集合"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 37,
+            "text": "| `FRS-AC-004` | FRS-R-04 | Sliceのprimary Moduleがexactly oneで、orphan／重複／owner不明が拒否される | primaryを2件または0件にするmutationをkill |",
+            "line_text_sha256": "04fe2c1327c2046695f039b405344ded56c31fdd9dcdd92babcf3f332a4188e5"
+          },
+          {
+            "line": 38,
+            "text": "| `FRS-AC-005` | FRS-R-05 | Slice／Module／Bundleのversion、channel、digestが独立して保存される | Slice stableからModule／Bundleを暗黙stable化しない |",
+            "line_text_sha256": "309eba6f72529d5dd3e4a7d75e9572ae45da3ca88569f22ae22b160282fe4ad5"
+          },
+          {
+            "line": 39,
+            "text": "| `FRS-AC-006` | FRS-R-06 | included／excluded Sliceのexact set、unknown、conflict、required欠落が検査される | excludedをincludedへ戻す、未指定を含めるmutationを拒否 |",
+            "line_text_sha256": "837d2340e5299c8ff88e94cb21629318d9ae7e4a3b8b6a55d065d3554c2138de"
+          },
+          {
+            "line": 40,
+            "text": "| `FRS-AC-007` | FRS-R-07 | 維持・分割・統合・移管の比較と旧新identity、所有、consumer、rollback証拠を保持する | 現境界を無条件固定、または証拠なしで新Moduleを正本化するmutationを拒否 |",
+            "line_text_sha256": "06c0cd755d487c06a2ca626b5752d4ccf3f875c6542ebd2ba13011528512e1f6"
+          },
+          {
+            "line": 41,
+            "text": "| `FRS-AC-008` | FRS-R-08 | qualification packetがHEAD、authority、registry、artifact、CI、DB、review、consumer、rollback、expiryを保持する | 1項目欠落、digest不一致、green件数だけのqualifiedを拒否 |",
+            "line_text_sha256": "b9b66e6235a4c4773126f69d98e84aa7a2b043c1275d4f71a532c2af17182701"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 2051,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 818,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "asset_id": "LEGACY-ASSET-67ADFAB856D954B3C5D2",
+        "source_path": "docs/governance/candidates/functional-release-slice-acceptance.md",
+        "source_sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null,
+        "consumer_refs": []
+      },
+      "semantic_review": {
+        "class": "受入oracle行（included/excluded set）",
+        "standalone_requirement_condition": false,
+        "function": "FRS-AC-006の試験条件。included/excluded Sliceのexact set、unknown/conflict/required欠落を扱い、negative mutationを拒否する。",
+        "current_pairs": [
+          "HARNESS-L2-010",
+          "HARNESS-L2-011",
+          "HARNESS-L2-022"
+        ],
+        "residual": "included/excluded Slice setをmodule/pack setへ変換する根拠はない。旧構成数・ownership・rollback条件もこの行だけでは閉じない。",
+        "next": "FRS-R-06及びFRS-AC-006全体をpack-specific unit/connection/composite要件と照合し、set mappingを意味推測で作らない。",
+        "comparison": "HARNESS-L2-010はrelease unitに収載/除外するpack setを明示し、未適格packを暗黙収載しないと規定するため、明示集合/暗黙追加の禁止は近い。旧Slice/Module/Bundleの関係構造、selection identity、unknown/conflict matrixが同一採択されたとは確認できない。",
+        "comparison_grade": "明示集合の境界は近いが、構成identityと全例外は未照合。",
+        "human_facing_summary": "included/excluded Slice set, unknown/conflictを検査する受入条件。",
+        "human_facing_comparison": "HARNESS-L2-010の収載/除外pack setと暗黙収載禁止に近いが、Slice/Module/Bundle identityを同一視できる根拠はない。",
+        "human_facing_next_step": "FRS-R-06の全条件をpack/unit/connection/composite境界と照合し、set変換を推測しない。",
+        "exclusive_group": "受入oracle",
+        "normative_marker_role": "acceptance_expected_or_negative_behavior"
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      }
+    },
+    {
+      "rank": 12,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-002068",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        },
+        {
+          "category": "mandatory",
+          "text": "必須"
+        }
+      ],
+      "source_path": "docs/governance/candidates/functional-release-slice-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+      "physical_line_number": 56,
+      "exact_source_line_text": "| `FRS-AC-023` | FRS-R-21 | Module連動CI・公開の完成なしに内部適用でき、同じ義務と比較条件で待ち時間・rerunを測定する | 必須義務削減、局所単回値の全CI効果への転用を拒否 |",
+      "source_file_sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+      "source_line_sha256": "3a8cebebe6dc44f5812b8766d0851ad8cd9ece269d0f0cc17d3bf595982262d8",
+      "physical_line_bytes_sha256_including_terminator": "9c4c921bce08ac3c3e06859eec51f8f17c81c5898d497819b8aea4077cc425aa",
+      "baseline_2353_physical_line_bytes_sha256": "9c4c921bce08ac3c3e06859eec51f8f17c81c5898d497819b8aea4077cc425aa",
+      "current_reference_evidence": [
+        {
+          "parent_L2_id": "HARNESS-L2-007",
+          "L2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 46,
+            "text": "| HARNESS-L2-007 | HARNESS-L1-007 |"
+          },
+          "paired_L11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 27,
+            "text": "| HARNESS-L2-007 | 検証対象として選定した複数プロダクトとHELIX自身のプロジェクトについて、要求revision、適用構成、成果、L11受入、L12運用評価へ辿る。サービス①〜⑦のすべてがそれぞれ単独で成り立ち、つなげて開発全体に使えることと、Conceptの1.0土台7項目（ログと証拠、データの利用区分、計測、接続契約と版、隔離の単位、構成版の固定と切戻し、後から加わる機構の受け口）が全機構で共通に成立していることを確認する。単一demo、HARNESS単体test、文書整合、土台の一部だけならVersion 1未完成とし、HELIX-Webの完成有無を判定へ混入させない |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HARNESS-L2-022",
+          "L2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 447,
+            "text": "### HARNESS-L2-022 検証と受入の契約（コアの単体）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 217,
+            "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HELIXOS-L2-020",
+          "L2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 692,
+            "text": "### HELIXOS-L2-020 検収・CI運転（単体候補）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 359,
+            "text": "### HELIXOS-L2-020 検収・CI運転の受入"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        }
+      ],
+      "legacy_context": {
+        "section_heading": {
+          "line": 30,
+          "text": "## §1 Oracle完全集合"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 54,
+            "text": "| `FRS-AC-021` | FRS-R-19 | 全対象要求revisionに実装・runtime接続・検証・Module・Slice・Bundleと未成立状態が対応する | 要求を分母から削除、二重owner、stale source、未検証を完成とするmutationを拒否 |",
+            "line_text_sha256": "2f8adc1ea58d2079d6230d5131017d043db21ee33992198ce61b166bf02c8163"
+          },
+          {
+            "line": 55,
+            "text": "| `FRS-AC-022` | FRS-R-20 | 利用目的・責務・依存から構成とWaveを導出し旧新identityと移行条件を保持する | 旧個数や9群・17系統の固定強制、循環依存隠蔽を拒否 |",
+            "line_text_sha256": "9fc89a1d42d433f66f833e32309d53999eb533efdf8c463cb6d481c0aaf6144d"
+          },
+          {
+            "line": 56,
+            "text": "| `FRS-AC-023` | FRS-R-21 | Module連動CI・公開の完成なしに内部適用でき、同じ義務と比較条件で待ち時間・rerunを測定する | 必須義務削減、局所単回値の全CI効果への転用を拒否 |",
+            "line_text_sha256": "3a8cebebe6dc44f5812b8766d0851ad8cd9ece269d0f0cc17d3bf595982262d8"
+          },
+          {
+            "line": 57,
+            "text": "| `FRS-AC-024` | FRS-R-22 | Phase Aで事前発行branch、dispatch前後のowner／HEAD、single-writerを確認し、成果回収・ローカル検収・独立レビューまで成立する。Phase Bはlease／fenceへ接続する | #819／#860完成の一律前提化、二重writer、所有不明、wrong HEAD、期限切れ、予算逸脱、未回収成果の受理を拒否 |",
+            "line_text_sha256": "dbfd2adbac3909c5cf662b6b22cbb7cd92b44c6b51331a0cdfac658d8dfafa2b"
+          },
+          {
+            "line": 58,
+            "text": "| `FRS-AC-025` | FRS-R-23 | 操作・対象・影響に必要な安全依存だけを閉包化し、全て有効な場合のみ投入可能とする | 必須安全条件をoptionalへ変更、欠落や不明をgreenにするmutationを拒否 |",
+            "line_text_sha256": "eef9d05e2ead36bd65c8049091baae22e95191594c933dcb7c609dc9ce17ce91"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 2068,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 818,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "asset_id": "LEGACY-ASSET-67ADFAB856D954B3C5D2",
+        "source_path": "docs/governance/candidates/functional-release-slice-acceptance.md",
+        "source_sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null,
+        "consumer_refs": []
+      },
+      "semantic_review": {
+        "class": "受入oracle行（CI/publication/performance condition）",
+        "standalone_requirement_condition": false,
+        "function": "FRS-AC-023行はModule-linked CI/publication completionを待たずinternal useを許すことと、比較条件を揃えたwait/rerun測定を合わせたacceptance oracleである。",
+        "current_pairs": [
+          "HELIXOS-L2-020",
+          "HARNESS-L2-022",
+          "HARNESS-L2-007"
+        ],
+        "residual": "比較用義務・母集団・機械性能の定義、internal applicationのexact target scopeとrelease distinctionを確認する必要がある。",
+        "next": "FRS-R-21の親との条件、`HELIXOS-L2-020`のrun profile境界、およびPOが採用した対象範囲を分けて横断照合する。",
+        "comparison": "`HELIXOS-L2-020`は検証義務に沿うprofileの組立/隔離実行/result recording、L2-022はHARNESS側のstage/acceptance contractを分担し、PO decisionは旧CIを代用せず新CI未構築の境界を保つ。PO判断は旧CIを代用しない境界を置き、現行OS-L2-020/HARNESS-L2-022は実行とoracle/受入責務を分ける。一方、旧行のinternal-apply例外と同一義務でのwait/rerun性能測定を示す対応は確認できない。",
+        "comparison_grade": "CI責務の分離は一部保持。性能測定は残差。",
+        "human_facing_summary": "internal-use境界とModule連動CI/publication、比較条件付きperformance測定を同時に扱う受入行。",
+        "human_facing_comparison": "HELIXOS-L2-020とHARNESS-L2-022は実行責務とoracle/acceptance contractを分ける。旧CIを現在の証拠に使わない境界は明示されるが、performance測定oracleは未確認。",
+        "human_facing_next_step": "FRS-R-21の母集団・同一義務比較と、OS検収のtarget scopeを別々に確認する。",
+        "exclusive_group": "受入oracle",
+        "normative_marker_role": "acceptance_expected_or_negative_behavior"
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      }
+    },
+    {
+      "rank": 13,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-002248",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "fail-close"
+        },
+        {
+          "category": "prohibition",
+          "text": "禁止"
+        }
+      ],
+      "source_path": "docs/governance/candidates/functional-release-slice-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+      "physical_line_number": 142,
+      "exact_source_line_text": "fallbackをしない。full verificationまたはfail-closeへ送る。inventory unionを根拠にしたsilent omissionを禁止する。",
+      "source_file_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+      "source_line_sha256": "e6c53d8fff0849d22191835fdaa955fca10d709bd53a8816030857c63ae4b1ec",
+      "physical_line_bytes_sha256_including_terminator": "2e1d1a6ec237d7c7a1cd342c16c332466c1d7b1fb8de138a4f4038864bc24672",
+      "baseline_2353_physical_line_bytes_sha256": "2e1d1a6ec237d7c7a1cd342c16c332466c1d7b1fb8de138a4f4038864bc24672",
+      "current_reference_evidence": [
+        {
+          "parent_L2_id": "HARNESS-L2-023",
+          "L2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 463,
+            "text": "### HARNESS-L2-023 利用条件別の依存宣言（単体追補候補、1.0）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 223,
+            "text": "| HARNESS-L2-023 | `version_target: 1.0`のpack contract revisionに依存identity、owner、dependency contract version/range、4区分、条件式、対象operation/source selectionを固定する。ある入力条件を与えると、常時必須＋成立した操作条件＋選択したsource条件の依存だけが有効closureとなり、条件不成立の依存、未選択/未観測source、参照のみの資料、unknown/staleを別状態で表示する。出力を同一入力・revisionで再評価したときclosureと理由が一致する。該当時の全安全依存は閉じ、必要identity/版/authority/evidenceのいずれかが不明なら該当操作を保留し、上記のowner/POへ戻す。 | 全source対応表を全呼出しの必須依存と読む／逆に依存リストを単なる対応可能一覧とみなし必須を落とす／unknown条件をfalse・参照のみ・未選択へ暗黙変換／stale/未対応契約版を黙読替え／安全依存をoptional化／一source失敗から無断fallback／未選択sourceを「未使用成功」「利用可能」と表示／人の代行で権限・version・scope・検証・receiptを省略／単体packのgreenから上位構成を成立扱いする |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        }
+      ],
+      "legacy_context": {
+        "section_heading": {
+          "line": 139,
+          "text": "### FRS-R-14 Unknown、ambiguous、staleの安全側処理"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 140,
+            "text": "",
+            "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 141,
+            "text": "影響Module、Slice、Bundle、dependency、profile、channelがunknown、ambiguous、staleの場合、成功扱い、空集合、局所greenへの",
+            "line_text_sha256": "c3db0bbd984eda6d1b75000a93ddd7533df26eb4c74f0a94fcf030316a4f0fca"
+          },
+          {
+            "line": 142,
+            "text": "fallbackをしない。full verificationまたはfail-closeへ送る。inventory unionを根拠にしたsilent omissionを禁止する。",
+            "line_text_sha256": "e6c53d8fff0849d22191835fdaa955fca10d709bd53a8816030857c63ae4b1ec"
+          },
+          {
+            "line": 143,
+            "text": "",
+            "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 144,
+            "text": "## FRS-FR-005 生成projection、将来合成、配布境界",
+            "line_text_sha256": "51c20a586c962a17a793dc6a35ed6775f70d5a5df29b486bd614381b963255d6"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 2248,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 820,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "asset_id": "LEGACY-ASSET-B75E46DBE77592351574",
+        "source_path": "docs/governance/candidates/functional-release-slice-requirements.md",
+        "source_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null,
+        "consumer_refs": []
+      },
+      "semantic_review": {
+        "class": "独立した複合要求条件（FRS-R-14本文）",
+        "standalone_requirement_condition": true,
+        "function": "unknown/ambiguous/stale時にsuccess/empty/local greenへfallbackせず、full verificationまたはfail-closeへ送る、inventory unionによるsilent omissionを禁止する。FRS-R-14の本文でありtest exampleではない。",
+        "current_pairs": [
+          "HARNESS-L2-023"
+        ],
+        "residual": "silent omission禁止とfull/fail-closeの具体oracleが`HARNESS-L2-023`の対L11受入行 fixtureで全範囲実施済みとは証明されない。",
+        "next": "L2-023/`HARNESS-L2-023`の対L11受入行のdocumented source crosswalkを根拠に残し、acceptance oracle/evidenceを実装やclosureと切り離す。",
+        "comparison": "HARNESS-L2-023は旧FRS-R-14およびFRS-AC-014を旧保持点として明記し、unknown/missingをdependency resultとして出し、選択利用に必要な有効依存を別途満たすとする。表現/責務を選択利用ごとのdependency closureへ再導出しており、全体Slice inventory union方式は再利用しない。",
+        "comparison_grade": "意味保持と仕組み変更を現行L2が記録。",
+        "human_facing_summary": "unknown/ambiguous/staleを成功扱いせず、full verification/fail-closeへ送り、inventory unionによるsilent omissionを禁じる本文。",
+        "human_facing_comparison": "現行HARNESS-L2-023はFRS-R-14/AC-014を旧保持点と記録し、利用条件別dependency closureへ方式を再導出する。意味保持の文書根拠はあるが、oracle実行済みではない。",
+        "human_facing_next_step": "L2-023のdocumented crosswalkを保ち、L11受入証拠と旧source closureを区別する。",
+        "exclusive_group": "独立した複合要求条件",
+        "normative_marker_role": "direct_requirement_condition"
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      }
+    },
+    {
+      "rank": 14,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-002323",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        },
+        {
+          "category": "mandatory",
+          "text": "必須"
+        }
+      ],
+      "source_path": "docs/governance/candidates/harness-memory-coordination-boundary-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/harness-memory-coordination-boundary-acceptance.md",
+      "physical_line_number": 23,
+      "exact_source_line_text": "| `HMC-AC-001` | `HMC-R-01` | 必須field欠落、未知field、長文本文、secret、absolute path | typed envelope拒否、本文を出力しない |",
+      "source_file_sha256": "8b749ac6d5c2ad9a30ccf13947e7baf1c8978580a5672877b526d90478d1ade4",
+      "source_line_sha256": "4e89b79117106cf0893c88502d0f9971490afa33a04571471a88500062d27f8a",
+      "physical_line_bytes_sha256_including_terminator": "8812693f93b2bc6c3868b7dd1904bf31c493e444a26eade3389abb015b047ec0",
+      "baseline_2353_physical_line_bytes_sha256": "8812693f93b2bc6c3868b7dd1904bf31c493e444a26eade3389abb015b047ec0",
+      "current_reference_evidence": [
+        {
+          "parent_L2_id": "HARNESS-L2-011",
+          "L2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 352,
+            "text": "### HARNESS-L2-011 画面・作業環境から切り離して呼べる条件"
+          },
+          "paired_L11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 206,
+            "text": "| HARNESS-L2-011 | 画面を持たない呼出しで各パックを使い、能力名・契約の版・依存の版を照合し、渡した権限と隔離の単位の中で動き、相関ID付きの進行・結果・証拠を受け取り、途中で止めて同じ冪等キーで再開できる | 特定の画面・GUI・ローカルpath・provider・CI製品がないと呼べない／未対応の版を黙って読み替える／渡していない権限や別のtenantの資源を使う／呼出し元へHELIX本体の稼働DB・鍵・内部統制を渡す／期限切れや中断を成功として返す／Webの要求や設計を本要求から導く |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HELIXOS-L2-019",
+          "L2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 682,
+            "text": "### HELIXOS-L2-019 Evidence・continuity（単体候補）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 352,
+            "text": "### HELIXOS-L2-019 Evidence・continuityの受入"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HELIXSECURITY-L2-005",
+          "L2": {
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "line": 110,
+            "text": "### HELIXSECURITY-L2-005 Credential / Secret境界"
+          },
+          "paired_L11": {
+            "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "line": 29,
+            "text": "| HELIXSECURITY-L2-005 | 1.0 | raw credentialはcontext/log/artifactに現れず、範囲・operation・target・expiry付き利用だけが許可され、期限切れ/revoked credentialの後続利用が止まる。repository混入、直接Worker露出、egress漏れ、値入りreceiptがあれば不合格。 |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        }
+      ],
+      "legacy_context": {
+        "section_heading": {
+          "line": 16,
+          "text": "# harness memory coordination-only境界 受入候補"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 21,
+            "text": "| AC | 対応要件 | 反例／観測 | 合格条件 |",
+            "line_text_sha256": "dcc9dc0f91eb35b9bd921413a9b46aa7e3674fde706d508dd827a510152c3f9d"
+          },
+          {
+            "line": 22,
+            "text": "|---|---|---|---|",
+            "line_text_sha256": "4da1ec6f47782090102dc16bda978efb5655fbf2ddce0f84ecf1faf79a930f2d"
+          },
+          {
+            "line": 23,
+            "text": "| `HMC-AC-001` | `HMC-R-01` | 必須field欠落、未知field、長文本文、secret、absolute path | typed envelope拒否、本文を出力しない |",
+            "line_text_sha256": "4e89b79117106cf0893c88502d0f9971490afa33a04571471a88500062d27f8a"
+          },
+          {
+            "line": 24,
+            "text": "| `HMC-AC-002` | `HMC-R-02` | scope authorityがIssue／PLAN以外、複数対象、対象digest欠落 | 曖昧入力を拒否しpointerを推測しない |",
+            "line_text_sha256": "ffd03dbd5c9fe2dfe13af5b4eaf989ef2ced6d872cd94ed5e191d17a873a25f2"
+          },
+          {
+            "line": 25,
+            "text": "| `HMC-AC-003` | `HMC-R-03` | 同一通知を再送、ack欠落、TTL超過、dead-letter再試行 | 受信側冪等、dedupe、期限切れ隔離を返す |",
+            "line_text_sha256": "2d8b0118b643d22b864fb549734f459319f5754657bf68539f8d1487812c9958"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 2323,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 821,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "asset_id": "LEGACY-ASSET-FAD65F85239B4D525365",
+        "source_path": "docs/governance/candidates/harness-memory-coordination-boundary-acceptance.md",
+        "source_sha256": "8b749ac6d5c2ad9a30ccf13947e7baf1c8978580a5672877b526d90478d1ade4",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null,
+        "consumer_refs": []
+      },
+      "semantic_review": {
+        "class": "受入oracle行（typed envelope validation）",
+        "standalone_requirement_condition": false,
+        "function": "HMC-AC-001のnegative validation table row。必須/unknown fields、length, secret, absolute pathを入力反例とし、typed envelope拒否/本文非出力を合格にする。",
+        "current_pairs": [
+          "HELIXOS-L2-019",
+          "HELIXSECURITY-L2-005",
+          "HARNESS-L2-011"
+        ],
+        "residual": "envelope field inventory, length limit, absolute path rejection and body-output behavior 無損失の対応付けは未確認 to exact 現行pair.",
+        "next": "HMC-R-01及びmemory責務を特定し、OS continuity/SECURITY secret境界と別役割を持つかを比較する。",
+        "comparison": "`HELIXOS-L2-019`と対L11受入はprovenance, data-use class, continuityを保ち、重複/stale/provider memory success誤認を拒否する。Security-L2-005はsecret値を通常surfaceへ出さない。HARNESS-L2-011はlocal path依存を避ける。現行pairにこのcoordination envelopeの具体schema、最大長、absolute path規則の一括contractは見当たらない。",
+        "comparison_grade": "秘匿・出所・continuityの原則に一部整合。typed message contractは未確認。",
+        "human_facing_summary": "typed envelopeで必須/未知field、本文長、secret、absolute pathを拒否する試験条件。",
+        "human_facing_comparison": "OS-L2-019のprovenance/continuity、SECURITY-L2-005のsecret境界、HARNESS-L2-011のpath独立には部分類似。envelope schemaと長さ制限の一括契約は未確認。",
+        "human_facing_next_step": "HMC-R-01とmemory責務を特定し、OS continuityとSECURITYの個別境界に分けて照合する。",
+        "exclusive_group": "受入oracle",
+        "normative_marker_role": "acceptance_expected_or_negative_behavior"
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      }
+    },
+    {
+      "rank": 15,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-003151",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "禁止"
+        },
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        }
+      ],
+      "source_path": "docs/governance/candidates/mechanism-adequacy-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/mechanism-adequacy-acceptance.md",
+      "physical_line_number": 37,
+      "exact_source_line_text": "| MA-AC-17 | MA-R-06 | probeの仮説・停止条件・各budgetを実測。既存policyが許可する対象・操作の正常対照と、許可scope外の対象・禁止操作・期限切れ認可の負例を個別検査し、負例は実行前に拒否して外部副作用0を確認する。枯渇時は証拠不足、無関係な作業は停止しない |",
+      "source_file_sha256": "de7e7a248ab0f0eaab77f6fba079c1876a244f50e6282ec5600c147187b9b7f6",
+      "source_line_sha256": "31e8190a6ef8207c58290580aabb71ff44d1cdc8a373e1a6b54c6fce8492baae",
+      "physical_line_bytes_sha256_including_terminator": "43d253e7abe1f9213015e33732b1568e16ea298606730d209819de1a224fe72e",
+      "baseline_2353_physical_line_bytes_sha256": "43d253e7abe1f9213015e33732b1568e16ea298606730d209819de1a224fe72e",
+      "current_reference_evidence": [
+        {
+          "parent_L2_id": "HARNESS-L2-022",
+          "L2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 447,
+            "text": "### HARNESS-L2-022 検証と受入の契約（コアの単体）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 217,
+            "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HELIXOS-L2-020",
+          "L2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 692,
+            "text": "### HELIXOS-L2-020 検収・CI運転（単体候補）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 359,
+            "text": "### HELIXOS-L2-020 検収・CI運転の受入"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HELIXSECURITY-L2-018",
+          "L2": {
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "line": 240,
+            "text": "### HELIXSECURITY-L2-018 Capability probing観測"
+          },
+          "paired_L11": {
+            "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "line": 42,
+            "text": "| HELIXSECURITY-L2-018 | 1.x | endpoint/Tool/filesystem/model/config探査、Core dump、repeated unauthorized read、cross-project probing、debug誘発がsource/time/scope付きで観測され、INTELLIGENCEに判断材料が渡る。未観測を「異常なし」としたり、SECURITY単独のrisk判定で確定したら不合格。 |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        }
+      ],
+      "legacy_context": {
+        "section_heading": {
+          "line": 15,
+          "text": "# 機構充足性評価：受入候補"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 35,
+            "text": "| MA-AC-15 | MA-R-05 | 固定AI出力のprovenanceと機械証拠を分離。AI仮説を検証済み証拠へ偽装しない |",
+            "line_text_sha256": "eeaef37c6864f2f4ea566243153647675a2102754da9a7539f9a6d1fd7431ff4"
+          },
+          {
+            "line": 36,
+            "text": "| MA-AC-16 | MA-R-06 | 通常観測の追加LLM呼出し0とAIなしの保留／統制を実測。重複解析・無限再生成を拒否 |",
+            "line_text_sha256": "f69334541d1ee9dde0c68be27555bcfbf604411efa6689502044d08d0a83bf45"
+          },
+          {
+            "line": 37,
+            "text": "| MA-AC-17 | MA-R-06 | probeの仮説・停止条件・各budgetを実測。既存policyが許可する対象・操作の正常対照と、許可scope外の対象・禁止操作・期限切れ認可の負例を個別検査し、負例は実行前に拒否して外部副作用0を確認する。枯渇時は証拠不足、無関係な作業は停止しない |",
+            "line_text_sha256": "31e8190a6ef8207c58290580aabb71ff44d1cdc8a373e1a6b54c6fce8492baae"
+          },
+          {
+            "line": 38,
+            "text": "| MA-AC-18 | MA-R-07 | #1344等を当時revisionで再生。将来の正解混入と予測／実測／欠測混同を拒否 |",
+            "line_text_sha256": "31f10a934311e33a1977b3fd813eb67427d447987cfeae96fbc72d3cf9333099"
+          },
+          {
+            "line": 39,
+            "text": "| MA-AC-19 | MA-R-07 | 誤昇格・見逃し・費用・手戻り・再発で効果評価。新機構件数だけの成功判定を拒否 |",
+            "line_text_sha256": "a0e07ee83fbc1a8d55c8ab88f186db599ed03206cba33c6bd4507318e2871f7b"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 3151,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 840,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "asset_id": "LEGACY-ASSET-2CE2F9E494E084235170",
+        "source_path": "docs/governance/candidates/mechanism-adequacy-acceptance.md",
+        "source_sha256": "de7e7a248ab0f0eaab77f6fba079c1876a244f50e6282ec5600c147187b9b7f6",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null,
+        "consumer_refs": []
+      },
+      "semantic_review": {
+        "class": "受入oracle行（probe budget/failure挙動）",
+        "standalone_requirement_condition": false,
+        "function": "MA-AC-17の受入oracle。hypothesis/stop/budgetの実測とallowed/forbidden/expired negative cases、副作用0を問う試験条件。",
+        "current_pairs": [
+          "HARNESS-L2-022",
+          "HELIXOS-L2-020",
+          "HELIXSECURITY-L2-018"
+        ],
+        "residual": "MA-R-06のprobe scope、stop/budget、permission examples、side effect evidenceと現行pair inputsの関係は未確認。",
+        "next": "MA-R-06 source / mechanism target / probe consumerを確定後、Security/OS/HarNESSの各責務境界に分けて照合する。",
+        "comparison": "固定`HELIXOS-L2-020`はprofile、run identity、success/fail/denied/skipped/interrupted/staleの分類を扱い、Security-L2-018のtitleはcapability probing observationを示す。HARNESS-L2-022はoracle/受入契約の責任範囲を置く。ただしprobe budget・observation hypotheses・external side effect zeroといった一致する詳細条件は、正確なtarget/relationなしにそのまま移せない。",
+        "comparison_grade": "操作検証・deny境界に類似するが、probe固有条件は未対応。",
+        "human_facing_summary": "probe hypothesis/stop/budgetと許可外・期限切れ操作の拒否、副作用0を問う試験条件。",
+        "human_facing_comparison": "OS-L2-020の検証実行状態、SECURITY-L2-018のprobing観測、HARNESS-L2-022の受入契約には近接点があるが、probe budget/oracleは対応未確認。",
+        "human_facing_next_step": "MA-R-06のtarget/probe consumer/停止条件を特定し、各機構の責務へ分けて照合する。",
+        "exclusive_group": "受入oracle",
+        "normative_marker_role": "acceptance_expected_or_negative_behavior"
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      }
+    },
+    {
+      "rank": 16,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-003691",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "reject"
+        },
+        {
+          "category": "prohibition",
+          "text": "禁止"
+        }
+      ],
+      "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "physical_line_number": 110,
+      "exact_source_line_text": "B-4. #217の既存outcomeを再利用する。推定モデルやキーワードだけで無承認採用へ振り分けず、根拠不足は追加調査／repair、権限不足は人間判断、明示的違反はrejectへ分ける。提案者が自分の委任範囲を拡大することや、検証条件を弱めて通過することを禁止する。[S2]",
+      "source_file_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+      "source_line_sha256": "ee264a4dcd19f6d9039f840f3bb57b4609558326e568f74f0bddb32f5a445dbf",
+      "physical_line_bytes_sha256_including_terminator": "027a39b7d92bf343306dc483b16f60e49bc99c828be2be35fe410b90d121fac1",
+      "baseline_2353_physical_line_bytes_sha256": "027a39b7d92bf343306dc483b16f60e49bc99c828be2be35fe410b90d121fac1",
+      "current_reference_evidence": [
+        {
+          "parent_L2_id": "HARNESS-L2-024",
+          "L2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 499,
+            "text": "### HARNESS-L2-024 — 要求形成の質問優先と収束根拠"
+          },
+          "paired_L11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 240,
+            "text": "| HARNESS-L2-024 | 同一engine/pack/target revision・scopeの指示、既回答、要求candidateと不足一覧を与える。高影響の未決事項が、影響・不確実性・下流変更cost・人間専決度とともに優先提示され、回答済み質問は重複せず、未回答項目は同じopen itemで追跡される。actor/task、正常/取消/failure/timeout/recovery、P0/P1、contradiction/defer owner/re-entry、implicit matrix、利用可能なiteration history、該当時prototype agreementを各statusと根拠で示す。必須情報unknown等の形成不備と、形成情報が揃った後の人間確認・合意待ちを別状態として示し、同一入力revisionで同じ候補・質問順序・理由・状態を再現する。 | 高影響unknownより低影響表現を先に問う／同じscope・回答済み質問を言い換えて再質問／新根拠なしで合意回答を再開／根拠なく人間専決値を補完／正常系だけでfailure/cancel/timeout/recovery、actor、surface、matrixを省く／矛盾/deferにowner・re-entryなし／N/A理由なし／利用可能な履歴やprototype agreementを無視／score、質問数、訂正率、iteration数だけで形成不備または人間合意を閉じる／timeoutを成功扱い／OS登録、engine candidate、Issue/PR、沈黙から採択・操作権限を作る。 |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HELIXOS-L2-015",
+          "L2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 642,
+            "text": "### HELIXOS-L2-015 管理・authority記録（単体候補）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 320,
+            "text": "## HELIX-OS機能単位パックの受入候補（HELIXOS-L2-015〜025）"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HELIXOS-L2-017",
+          "L2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 662,
+            "text": "### HELIXOS-L2-017 推進・ticket/workflow（単体候補）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 338,
+            "text": "### HELIXOS-L2-017 推進・ticket/workflowの受入"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        }
+      ],
+      "legacy_context": {
+        "section_heading": {
+          "line": 96,
+          "text": "## 4. 新要求B：判断委任と影響限定の再確定"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 108,
+            "text": "B-3. 未委任の趣向・ビジュアル・動画演出・言葉・体験、目的・業務上の価値・非対象・許容損失の変更は、関係する候補と差分だけを人間へ返す。視覚領域でも承認済み規則内の機械的修復は再承認不要にできる。非視覚でも予算超過、秘密情報の外部送信、公開、不可逆操作など既存許可境界の越境は人間判断を残す。",
+            "line_text_sha256": "4045fa33cca95899d060cf759d5a2ab131cc8e1392e3400c551939d9a2851b1d"
+          },
+          {
+            "line": 109,
+            "text": "",
+            "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 110,
+            "text": "B-4. #217の既存outcomeを再利用する。推定モデルやキーワードだけで無承認採用へ振り分けず、根拠不足は追加調査／repair、権限不足は人間判断、明示的違反はrejectへ分ける。提案者が自分の委任範囲を拡大することや、検証条件を弱めて通過することを禁止する。[S2]",
+            "line_text_sha256": "ee264a4dcd19f6d9039f840f3bb57b4609558326e568f74f0bddb32f5a445dbf"
+          },
+          {
+            "line": 111,
+            "text": "",
+            "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 112,
+            "text": "B-5. 承認は文書全体や移動するmain HEADではなく、対象意味差分・制約・scopeへ束縛する。同一の明示指示ですでに決まった意味を再度尋ねず、未決の派生選択だけを提示する。機械決定はpolicyに基づくdecisionとして記録し、PO発言・人間承認を偽装しない。旧承認digestを意味変更後へ無条件流用しない。",
+            "line_text_sha256": "e3629b44d86b778cc0bb4e2e0cd6710099993c51a67ce95395a798823e37519e"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 3691,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 852,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "asset_id": "LEGACY-ASSET-D6A372AEFBA19BE1C63C",
+        "source_path": "docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+        "source_sha256": "4a6bab6cd9569157fbed6578abf995215edebaa3a9e7c2e374de8a8b96dd7c5d",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null,
+        "consumer_refs": []
+      },
+      "semantic_review": {
+        "class": "複合運用要求条件（intake decision routing）",
+        "standalone_requirement_condition": true,
+        "function": "B-4は既存outcome taxonomyを再利用し、keyword/modelだけで採用、evidence lack、authority lack、explicit violationをそれぞれ別処理に分け、自ら委任scopeを拡大する/verificationを弱めることを禁止する。引用でなく運用手順条件。",
+        "current_pairs": [
+          "HARNESS-L2-024",
+          "HELIXOS-L2-015",
+          "HELIXOS-L2-017"
+        ],
+        "residual": "separate routing for explicit violation vs evidence insufficiency, repair, missing authority; enforced delegation ceiling oracle.",
+        "next": "#217 outcome authority/source and these 4 typesを復元し、current requirement intake / OS ticket integrationの対象ownerを確定する。",
+        "comparison": "HARNESS-L2-024は要求候補をhuman decision/approved stateに昇格させず、必須事項unknownをformation insufficiency、人間判断待ちと分ける。OS-L2-015/017はauthority source, ticket scope, unknown/permission/dependency constraintsを保持する。ただし #217 outcome names (research/repair/human/reject) と proposer-delegation self-expansion rule are not an exact cited mapping in these pairs.",
+        "comparison_grade": "authority and unknownと人間判断待ちの境界 partial alignment, 旧outcome分類は未対応。",
+        "human_facing_summary": "keywordだけの採用を禁じ、根拠不足・権限不足・明示違反を異なる処理へ分ける。提案者による委任範囲拡大も禁じる。",
+        "human_facing_comparison": "HARNESS-L2-024は必須事項unknownと人間判断待ちを分け、OS-L2-015/017はauthority/scopeを保つ。#217のresearch/repair/human/reject taxonomyや委任上限は未対応。",
+        "human_facing_next_step": "#217 outcomeのsourceとconsumerを復元し、current intake/ticket責務との対応を確認する。",
+        "exclusive_group": "独立した複合要求条件",
+        "normative_marker_role": "direct_requirement_condition"
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      }
+    },
+    {
+      "rank": 17,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-003917",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "block"
+        },
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        }
+      ],
+      "source_path": "docs/governance/candidates/requirements-authority-materialization-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirements-authority-materialization-acceptance.md",
+      "physical_line_number": 29,
+      "exact_source_line_text": "| `RAMG-AC-009` | RAMG-R-09 | #1318の前段進行とRSTDD-07 dependencyを分離 | Issue全体の過剰block／後段依存漏れを拒否 |",
+      "source_file_sha256": "e295588a3c2ef2d41701682b3f93aaf9bd61b9a6e2a8de4344bc104de5f1aaf0",
+      "source_line_sha256": "905caaa26c442d01a73d9f18991beb259298065b0acbae19e03da7380b137e3c",
+      "physical_line_bytes_sha256_including_terminator": "628ef424c1f7858d811a1d068f4508b5698d2b7ea466c103b28016715c4322c9",
+      "baseline_2353_physical_line_bytes_sha256": "628ef424c1f7858d811a1d068f4508b5698d2b7ea466c103b28016715c4322c9",
+      "current_reference_evidence": [
+        {
+          "parent_L2_id": "HARNESS-L2-022",
+          "L2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 447,
+            "text": "### HARNESS-L2-022 検証と受入の契約（コアの単体）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 217,
+            "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HELIXOS-L2-016",
+          "L2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 652,
+            "text": "### HELIXOS-L2-016 Portfolio trace・状態（単体候補）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 331,
+            "text": "### HELIXOS-L2-016 Portfolio trace・状態の受入"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HELIXOS-L2-017",
+          "L2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 662,
+            "text": "### HELIXOS-L2-017 推進・ticket/workflow（単体候補）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 338,
+            "text": "### HELIXOS-L2-017 推進・ticket/workflowの受入"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HELIXOS-L2-023",
+          "L2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 722,
+            "text": "### HELIXOS-L2-023 管理→推進→Worker→検収の受渡し（接続候補）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 380,
+            "text": "### HELIXOS-L2-023 管理→推進→Worker→検収の受渡しの受入"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        }
+      ],
+      "legacy_context": {
+        "section_heading": {
+          "line": 17,
+          "text": "# 要求・要件authority materialization gate受入設計"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 27,
+            "text": "| `RAMG-AC-007` | RAMG-R-07 | stale sourceとpartial traceを別failure化 | stale digestをcurrentとして再利用しない |",
+            "line_text_sha256": "22a6c3292b95aff51775ab54e05e1090d69a216b5421cff333e69e97b0138475"
+          },
+          {
+            "line": 28,
+            "text": "| `RAMG-AC-008` | RAMG-R-08 | #1292が複合Capability自身のauthorityを要求 | 構成要素coverageで相殺しない |",
+            "line_text_sha256": "f8d2deaf60c46f83ed504f673f34f08b4fc9be3a43f2d101ced33d11bef24725"
+          },
+          {
+            "line": 29,
+            "text": "| `RAMG-AC-009` | RAMG-R-09 | #1318の前段進行とRSTDD-07 dependencyを分離 | Issue全体の過剰block／後段依存漏れを拒否 |",
+            "line_text_sha256": "905caaa26c442d01a73d9f18991beb259298065b0acbae19e03da7380b137e3c"
+          },
+          {
+            "line": 30,
+            "text": "| `RAMG-AC-010` | RAMG-R-10 | Issueからruntime consumerまでstable join | owner不明、二重owner、到達不能を拒否 |",
+            "line_text_sha256": "698f0c2cfa2ebf16a3c2bfd29b5ac01b0277ee8cfba848735069fd9b35dec36d"
+          },
+          {
+            "line": 31,
+            "text": "| `RAMG-AC-011` | RAMG-R-11 | 全対象がexactly-one disposition | 未分類、複数分類、件数だけの相殺を拒否 |",
+            "line_text_sha256": "a5f876c6c1ebdf629ee79c01636a521900819f95978b236efa40b5361d1e9bf9"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 3917,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 856,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "asset_id": "LEGACY-ASSET-EDCECC97CD785052A97F",
+        "source_path": "docs/governance/candidates/requirements-authority-materialization-acceptance.md",
+        "source_sha256": "e295588a3c2ef2d41701682b3f93aaf9bd61b9a6e2a8de4344bc104de5f1aaf0",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null,
+        "consumer_refs": []
+      },
+      "semantic_review": {
+        "class": "受入oracle行（前段進行と後段dependency）",
+        "standalone_requirement_condition": false,
+        "function": "RAMG-AC-009は#1318 pre-stage progress と RSTDD-07 dependency を分け、overblocking/late dependency omissionを拒否する受入ケース。",
+        "current_pairs": [
+          "HELIXOS-L2-016",
+          "HELIXOS-L2-017",
+          "HELIXOS-L2-023",
+          "HARNESS-L2-022"
+        ],
+        "residual": "pre-stage allowable progress versus later dependency blocking, issue-level scope, no over/under-blocking example.",
+        "next": "RAMG-R-09, #1318, RSTDD-07 parent conditions and consumer traceを再取得し、stage-specific mappingを確認する。",
+        "comparison": "OS-L2-016/017/023は要求、ticket, dependencies, handoff, acceptance dutiesを別状態で保持し、H-L2-022はproduct acceptance stageを実行責務と分ける。近い境界はあるが、#1318/RSTDD-07のexact stage semantics, Issue-granularity, allow-early/hold-late conditions are not cited in those fixed pairs.",
+        "comparison_grade": "stage別の義務・handoffの区分に一部類似するが、exact oracleは未対応。",
+        "human_facing_summary": "前段進行と後段dependencyを分け、過剰block/依存漏れを拒否する受入例。",
+        "human_facing_comparison": "OS-L2-016/017/023とHARNESS-L2-022はstate/handoff/stageの区別を持つが、#1318/RSTDD-07のexact stage oracleは未確認。",
+        "human_facing_next_step": "親条件#1318/RSTDD-07とIssue粒度、早期進行/後段blockの条件を照合する。",
+        "exclusive_group": "受入oracle",
+        "normative_marker_role": "acceptance_expected_or_negative_behavior"
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      }
+    },
+    {
+      "rank": 18,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004036",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "fail"
+        },
+        {
+          "category": "prohibition",
+          "text": "reject"
+        }
+      ],
+      "source_path": "docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+      "physical_line_number": 23,
+      "exact_source_line_text": "| `RCLS-AC-003` | RCLS-R-07 | failure、高cost、human rejectも分母へ残る | 成功例だけでconfidenceを上げない |",
+      "source_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7",
+      "source_line_sha256": "7635d890951e7ad5a15915d0be4c018ca9f1d54dc3dbf01f87a2bcfb48140886",
+      "physical_line_bytes_sha256_including_terminator": "d63425ab8f084021297121d166842f5b0ee5e711c05b4a6d980338877e62e9e8",
+      "baseline_2353_physical_line_bytes_sha256": "d63425ab8f084021297121d166842f5b0ee5e711c05b4a6d980338877e62e9e8",
+      "current_reference_evidence": [
+        {
+          "parent_L2_id": "HARNESS-L2-031",
+          "L2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 627,
+            "text": "### HARNESS-L2-031 ログ・入力からの最小再現と回帰候補生成（単体候補、version_target 1.0）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 455,
+            "text": "| HARNESS-L2-031 | HELIX-HARNESS共通部品 | ④開発・⑤リファクタリングのfailure、⑦運用保守のincident等。PO原文の障害を本番incidentだけへ限定せず、許可されたlog/inputから再現・回帰候補を共有提供する。CORE/022のoracle/traceと選択executorの隔離実行を保持する。 |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HELIXBRAIN-L2-007",
+          "L2": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "line": 150,
+            "text": "### HELIXBRAIN-L2-007 出所・根拠・知識promotion"
+          },
+          "paired_L11": {
+            "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+            "line": 35,
+            "text": "| HELIXBRAIN-L2-007 | 1.0 | Pattern/Unit/Partにsource、provenance、根拠、採用理由、評価範囲、反例、限界、LABO評価の対象revisionを辿れる。AI生成や実績一件を根拠にaccepted/matureへ進めたら不合格。 |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HELIXBRAIN-L2-010",
+          "L2": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "line": 183,
+            "text": "### HELIXBRAIN-L2-010 Anti-Pattern・失敗知識"
+          },
+          "paired_L11": {
+            "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+            "line": 38,
+            "text": "| HELIXBRAIN-L2-010 | 1.0 | Single Point of Failure、Network Partition、Dependency Failure、Storage Exhaustion、Queue Saturation、Connection Exhaustion、Resource Starvation、Cascading Failure、Region/Zone Failure、Deployment/Backup/Restore Failure、configuration drift等について、成立条件・影響・反例を知識として持てる。failureの前提を消して常時禁止/常時適用へ一般化したら不合格。 |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HELIXBRAIN-L2-025",
+          "L2": {
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "line": 464,
+            "text": "### HELIXBRAIN-L2-025 内部知識候補の独立検証・採否（composite）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+            "line": 65,
+            "text": "| HELIXBRAIN-L2-025 | 1.0 | Candidate→LABO evaluation→OS registration/routing→BRAIN change independent verification→adoptionの各状態とowner、対象revisionを別に追う。AI生成、単一実績、LABO評価、OS ticket、文書存在だけでaccepted/matureへ昇格、または意味を変えない差分へ新たなhuman approvalを加えたら不合格。Infrastructure candidateのmaturity判定は該当時のみL2-INFRA-017のstate/evidenceを確認する。 |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        }
+      ],
+      "legacy_context": {
+        "section_heading": {
+          "line": 17,
+          "text": "# 責務中心Learning System受入設計"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 21,
+            "text": "| `RCLS-AC-001` | RCLS-R-01..03 | 全assetがexactly one primary ownerとlineageを持つ | owner不明、暗黙shared、複数primaryを拒否 |",
+            "line_text_sha256": "a19147feac37bb668438eee23fb3baa4da13762588affbee958d837af5f95341"
+          },
+          {
+            "line": 22,
+            "text": "| `RCLS-AC-002` | RCLS-R-04..08 | 5 channelを別contractで保持 | 自由文tag／単一enumへの畳込みを拒否 |",
+            "line_text_sha256": "7f04668eb0f6f12a07dfbbea121241e97e45e0511879d48d7b7a812b16477ee5"
+          },
+          {
+            "line": 23,
+            "text": "| `RCLS-AC-003` | RCLS-R-07 | failure、高cost、human rejectも分母へ残る | 成功例だけでconfidenceを上げない |",
+            "line_text_sha256": "7635d890951e7ad5a15915d0be4c018ca9f1d54dc3dbf01f87a2bcfb48140886"
+          },
+          {
+            "line": 24,
+            "text": "| `RCLS-AC-004` | RCLS-R-08 | independent VERIFYが別producer/session/contextを証明 | 自己評価、旧HEAD reviewを独立検証に数えない |",
+            "line_text_sha256": "58b930f9198451656ba45a04a313fc371061dbecc24dbf023c05ff042ee54253"
+          },
+          {
+            "line": 25,
+            "text": "| `RCLS-AC-005` | RCLS-R-09..11 | 同一input/revision/policyから同一packet exact set/digest | vector similarityだけでowner/authorityを決めない |",
+            "line_text_sha256": "31f55208859762c8c01b5affb46553d21dec6d18b13f971f161c4320dc8d0068"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 4036,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 859,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "asset_id": "LEGACY-ASSET-B1F192F46FC3AC336094",
+        "source_path": "docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "source_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null,
+        "consumer_refs": []
+      },
+      "semantic_review": {
+        "class": "受入oracle行（evaluation denominator）",
+        "standalone_requirement_condition": false,
+        "function": "RCLS-AC-003 accepts keeping failure, high-cost outcome, and human reject in the evaluation denominator and rejects confidence increase from success-only examples. This is a learning/evaluation oracle.",
+        "current_pairs": [
+          "HELIXBRAIN-L2-007",
+          "HELIXBRAIN-L2-010",
+          "HELIXBRAIN-L2-025",
+          "HARNESS-L2-031"
+        ],
+        "residual": "denominator definition, weighting of cost/human reject, confidence update rule and learning consumer scope.",
+        "next": "RCLS-R-07 and its authority/data-use source must be restored before comparing any learning metric to BRAIN/LABO decisions.",
+        "comparison": "BRAIN-L2-007 requires source, evaluated scope, counterexamples, and independent verification for knowledge promotion; BRAIN-L2-010 separately identifies anti-pattern/failure knowledge. H-L2-031 keeps original failure and later result status separate for repro generation. These do not specify this RCLS denominator/confidence calculation.",
+        "comparison_grade": "証拠・反例・failure保持に一部類似するが、指標の意味は参照したpairにない。",
+        "human_facing_summary": "failure/high-cost/human rejectを評価denominatorに残し、成功例のみでconfidenceを上げない評価oracle。",
+        "human_facing_comparison": "BRAIN-L2-007/010は出所・反例・failure知識を、HARNESS-L2-031はfailure再現候補を扱うが、denominator/confidence計算は含まない。",
+        "human_facing_next_step": "RCLS-R-07と学習data-use/sourceを復元し、評価指標の定義を確認する。",
+        "exclusive_group": "受入oracle",
+        "normative_marker_role": "acceptance_expected_or_negative_behavior"
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      }
+    },
+    {
+      "rank": 19,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004054",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "fail"
+        },
+        {
+          "category": "prohibition",
+          "text": "fail"
+        }
+      ],
+      "source_path": "docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+      "physical_line_number": 42,
+      "exact_source_line_text": "20 oracleを独立failure classとして保持し、legacy/historical successでcurrent failureを相殺しない。",
+      "source_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7",
+      "source_line_sha256": "dd98d21899392e5968cc29a51ae12cc2fff42aadfd62f5339a62e6989dd2f603",
+      "physical_line_bytes_sha256_including_terminator": "e4580e14154e0ecb97275ac93a14dd4156833f32ca30e51c5da16f8197d88367",
+      "baseline_2353_physical_line_bytes_sha256": "e4580e14154e0ecb97275ac93a14dd4156833f32ca30e51c5da16f8197d88367",
+      "current_reference_evidence": [
+        {
+          "parent_L2_id": "HARNESS-L2-022",
+          "L2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 447,
+            "text": "### HARNESS-L2-022 検証と受入の契約（コアの単体）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 217,
+            "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HELIXOS-L2-020",
+          "L2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line": 692,
+            "text": "### HELIXOS-L2-020 検収・CI運転（単体候補）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "line": 359,
+            "text": "### HELIXOS-L2-020 検収・CI運転の受入"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        }
+      ],
+      "legacy_context": {
+        "section_heading": {
+          "line": 17,
+          "text": "# 責務中心Learning System受入設計"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 40,
+            "text": "| `RCLS-AC-020` | 全件 | targeted/full、mutation、doctor、DB、consumer smoke、Claude exact-HEAD、main read-afterがgreen | 局所greenで終端しない |",
+            "line_text_sha256": "6a1e8887df0fec247b347085998b3320bb1b77687c71658d460c1a33a3545aa8"
+          },
+          {
+            "line": 41,
+            "text": "",
+            "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 42,
+            "text": "20 oracleを独立failure classとして保持し、legacy/historical successでcurrent failureを相殺しない。",
+            "line_text_sha256": "dd98d21899392e5968cc29a51ae12cc2fff42aadfd62f5339a62e6989dd2f603"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 4054,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 859,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "asset_id": "LEGACY-ASSET-B1F192F46FC3AC336094",
+        "source_path": "docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "source_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null,
+        "consumer_refs": []
+      },
+      "semantic_review": {
+        "class": "受入メソッドの一般規範文",
+        "standalone_requirement_condition": false,
+        "function": "20 acceptance oracle classes should remain separate; legacy/historical success must not offset a current failure. This is an acceptance-method meta-clause under an acceptance candidate, not a product behavior requirement.",
+        "current_pairs": [
+          "HARNESS-L2-022",
+          "HELIXOS-L2-020"
+        ],
+        "residual": "oracle identity list, class definitions, independence criteria and historical/current temporal scoping.",
+        "next": "RCLS acceptance rows/source defining all 20 classes should be reviewed with its parent requirement before any metric/coverage decision.",
+        "comparison": "HARNESS-L2-022 separates Integrated/Verified/Accepted, requires system-specific obligations in addition to lower-stage proofs, and rejects using L10 pass as L11 pass. `HELIXOS-L2-020` keeps execution outcome states distinct. This provides a related anti-substitution principle, not the exact 20 failure classes or a legacy-success/current-failure oracle.",
+        "comparison_grade": "stage/evidence分離に類似するが、failure taxonomyは含まれない。",
+        "human_facing_summary": "20 oracleを独立failure classとして保持し、historical successでcurrent failureを相殺しない。受入設計のmeta条件。",
+        "human_facing_comparison": "HARNESS-L2-022のstage分離とHELIXOS-L2-020の実行状態区別に類似するが、20分類やhistorical/current precedenceの同一規則は見つからない。",
+        "human_facing_next_step": "20 oracle一覧、独立性、historical/currentの区分をRCLS親要求と照合する。",
+        "exclusive_group": "受入メソッド規範",
+        "normative_marker_role": "acceptance_method_norm"
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      }
+    },
+    {
+      "rank": 20,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004250",
+      "effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "block"
+        },
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        }
+      ],
+      "source_path": "docs/governance/candidates/rule-derivation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/rule-derivation-requirements.md",
+      "physical_line_number": 77,
+      "exact_source_line_text": "受入: 絶対条件のみHard化、助言非block、副作用前拒否、状態変化時の再照合、診断→Help→修正→通過、契約変更へのHelp追従、Skillゼロ時の成立、独立oracle、旧ルール再注入防止をG-ACで検証する。",
+      "source_file_sha256": "809474c7b0ef3facd35be5bd1d69460249196bec2a44515e06445458341263b9",
+      "source_line_sha256": "ad37b846a36db0035c768bf520928f972f5a69da5663ca98b68763070e4ed58a",
+      "physical_line_bytes_sha256_including_terminator": "02836a904797eb4c7251b8bc1fe216eab4f90b288f86503b91e6c0d548d6b0fd",
+      "baseline_2353_physical_line_bytes_sha256": "02836a904797eb4c7251b8bc1fe216eab4f90b288f86503b91e6c0d548d6b0fd",
+      "current_reference_evidence": [
+        {
+          "parent_L2_id": "HARNESS-L2-014",
+          "L2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 379,
+            "text": "### HARNESS-L2-014 ③ 設計（単体）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 209,
+            "text": "| HARNESS-L2-014 | ③だけを導入した環境で、持ち込んだ承認済みの要件から、templateに基づく設計義務と対の検証の設計が導かれ、要求入力の不足が上流へ戻る質問・要求候補として出る | templateから要求の意味を決める／下の設計を束ねただけで構成体の設計義務を満たしたとする／②がないと使えない |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HARNESS-L2-022",
+          "L2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 447,
+            "text": "### HARNESS-L2-022 検証と受入の契約（コアの単体）"
+          },
+          "paired_L11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 217,
+            "text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        },
+        {
+          "parent_L2_id": "HARNESS-L2-024",
+          "L2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 499,
+            "text": "### HARNESS-L2-024 — 要求形成の質問優先と収束根拠"
+          },
+          "paired_L11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 240,
+            "text": "| HARNESS-L2-024 | 同一engine/pack/target revision・scopeの指示、既回答、要求candidateと不足一覧を与える。高影響の未決事項が、影響・不確実性・下流変更cost・人間専決度とともに優先提示され、回答済み質問は重複せず、未回答項目は同じopen itemで追跡される。actor/task、正常/取消/failure/timeout/recovery、P0/P1、contradiction/defer owner/re-entry、implicit matrix、利用可能なiteration history、該当時prototype agreementを各statusと根拠で示す。必須情報unknown等の形成不備と、形成情報が揃った後の人間確認・合意待ちを別状態として示し、同一入力revisionで同じ候補・質問順序・理由・状態を再現する。 | 高影響unknownより低影響表現を先に問う／同じscope・回答済み質問を言い換えて再質問／新根拠なしで合意回答を再開／根拠なく人間専決値を補完／正常系だけでfailure/cancel/timeout/recovery、actor、surface、matrixを省く／矛盾/deferにowner・re-entryなし／N/A理由なし／利用可能な履歴やprototype agreementを無視／score、質問数、訂正率、iteration数だけで形成不備または人間合意を閉じる／timeoutを成功扱い／OS登録、engine candidate、Issue/PR、沈黙から採択・操作権限を作る。 |"
+          },
+          "authority_note": "PO decision fixes/adopts this pair revision. The paired L11 evidence is referenced by its parent L2 ID; no separate L11 requirement ID is invented."
+        }
+      ],
+      "legacy_context": {
+        "section_heading": {
+          "line": 75,
+          "text": "## 受入と提出物"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 75,
+            "text": "## 受入と提出物",
+            "line_text_sha256": "2f36c2a2f52a792103863024cf49187e46b6260478edb5741346f20252fd3a66"
+          },
+          {
+            "line": 76,
+            "text": "",
+            "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 77,
+            "text": "受入: 絶対条件のみHard化、助言非block、副作用前拒否、状態変化時の再照合、診断→Help→修正→通過、契約変更へのHelp追従、Skillゼロ時の成立、独立oracle、旧ルール再注入防止をG-ACで検証する。",
+            "line_text_sha256": "ad37b846a36db0035c768bf520928f972f5a69da5663ca98b68763070e4ed58a"
+          },
+          {
+            "line": 78,
+            "text": "",
+            "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 79,
+            "text": "提出: ②専用の要件・PLAN・受入、rule→Policy/検証器対応表、適用/非適用/強制不能の境界、診断/Help例、操作入口別の実証、誤拒否/総tokens/遅延、consumer移行とrollback。①のJSON移行を②の完了根拠にしない。",
+            "line_text_sha256": "5dc028c71a0a010db3b8eb1e2449be0ff9a7f940ac21592a1d1e252b4cec572a"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 4250,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 864,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "asset_id": "LEGACY-ASSET-43BDCF59263A325425A2",
+        "source_path": "docs/governance/candidates/rule-derivation-requirements.md",
+        "source_sha256": "809474c7b0ef3facd35be5bd1d69460249196bec2a44515e06445458341263b9",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null,
+        "consumer_refs": []
+      },
+      "semantic_review": {
+        "class": "受入要件のsummary (列挙criterion)",
+        "standalone_requirement_condition": false,
+        "function": "Section `受入と提出物`のG-AC verification summary. It states acceptance targets across policy hardening, advice nonblocking, pre-side-effect rejection, state recheck, help/repair, independent oracle and legacy-rule noninjection; an acceptance checklist rather than a singular product condition.",
+        "current_pairs": [
+          "HARNESS-L2-022",
+          "HARNESS-L2-014",
+          "HARNESS-L2-024"
+        ],
+        "residual": "G-AC source list and exact parent R requirements, identify which items are hard conditions vs advice, which consumer/operation scopes apply.",
+        "next": "G-R list and G-AC oracle inventory must be linked item-by-item before applying these criteria to a current product pair.",
+        "comparison": "HARNESS-L2-022 defines the L11 oracle contract and semantic backflow; `HARNESS-L2-014`と対L11受入 handle design output and paired verification; L2-024 defines requirement formation and human-decision boundaries. The listed G rules do not share exact source identity and several (Help, policy hardening, legacy-rule noninjection) are not proved by those references.",
+        "comparison_grade": "受入frameworkの責務に類似はあるが、単一の直接対応や無損失closureは確認できない。",
+        "human_facing_summary": "hard condition、助言、side-effect前拒否、再照合、Help/修正、oracle等をまとめた提出時の受入checklist。",
+        "human_facing_comparison": "HARNESS-L2-022/014/024の受入・設計・形成責務に近い項目はあるが、G-ACの個々の意味や複数条件のすべてを被覆しない。",
+        "human_facing_next_step": "G-RとG-AC oracleを要素ごとに特定し、条件/助言、operation scope、consumerを確認する。",
+        "exclusive_group": "受入summary",
+        "normative_marker_role": "acceptance_summary_norm"
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      }
+    }
+  ],
+  "summary": {
+    "semantic_classes": {
+      "受入oracle行（否定・対照条件を含む）": 1,
+      "複合要求条件（execution-ticket lifecycle節内）": 1,
+      "受入oracle行（安全依存閉包）": 1,
+      "受入oracle行（failure precedence fixture）": 1,
+      "受入oracle行（authority signalの投影）": 1,
+      "受入oracle行（禁止修復の拒否）": 1,
+      "コードブロック内の原文復元assertion": 1,
+      "受入trace matrix行": 1,
+      "引用句を含む文脈的禁止文": 1,
+      "受入oracle行（schema/identity検証）": 1,
+      "受入oracle行（included/excluded set）": 1,
+      "受入oracle行（CI/publication/performance condition）": 1,
+      "独立した複合要求条件（FRS-R-14本文）": 1,
+      "受入oracle行（typed envelope validation）": 1,
+      "受入oracle行（probe budget/failure挙動）": 1,
+      "複合運用要求条件（intake decision routing）": 1,
+      "受入oracle行（前段進行と後段dependency）": 1,
+      "受入oracle行（evaluation denominator）": 1,
+      "受入メソッドの一般規範文": 1,
+      "受入要件のsummary (列挙criterion)": 1
+    },
+    "standalone_requirement_conditions": 3,
+    "explicit_legacy_to_current_crosswalk_rows": [
+      "LEGACY-CAND-LINE-002070",
+      "LEGACY-CAND-LINE-002248"
+    ],
+    "adopted_retired_closed_count": 0,
+    "exclusive_semantic_group_counts": {
+      "受入oracle": 12,
+      "独立した複合要求条件": 3,
+      "コード内assertion": 1,
+      "受入trace matrix": 1,
+      "HR-R-04に従属する禁止条件": 1,
+      "受入メソッド規範": 1,
+      "受入summary": 1
+    },
+    "exclusive_group_total": 20,
+    "normative_marker_role_counts": {
+      "acceptance_expected_or_negative_behavior": 12,
+      "direct_requirement_condition": 3,
+      "lexical_only_false_positive": 1,
+      "acceptance_trace_normative_reference": 1,
+      "contextual_prohibition_condition": 1,
+      "acceptance_method_norm": 1,
+      "acceptance_summary_norm": 1
+    },
+    "normative_context_rows": 19,
+    "lexical_only_false_positive_rows": 1
+  },
+  "limitations": [
+    "Line-level semantic classification is contextual and does not reclassify the effective explanation class recorded by the mechanical audit.",
+    "Product target and exact requirement/pair identity are unresolved for all selected assets; thematic references are not crosswalk bindings.",
+    "Current L2/L11 比較 is limited to fixed bytes and evidence cited per row; it does not assert full cross-mechanism coverage.",
+    "No proposed row was adopted, retired, or closed. No implementation, test, acceptance execution, source-wide no-loss closure, or authority effect is claimed.",
+    "Archive workflow/CLI/hook/source execution/test/CI/runtime were not used."
+  ]
+}
