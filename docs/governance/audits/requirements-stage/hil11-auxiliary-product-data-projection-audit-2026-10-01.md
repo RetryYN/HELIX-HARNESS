@@ -20,14 +20,12 @@
 | 要求IR | `requirements-ir/requirements.json#/HIL-BR-15`, `#/HIL-FR-23`, `#/HIL-FR-24`, `#/HIL-NFR-17` | file `80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` |
 | 移行元L1 source | `root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:67,113-114,197` | file `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`; 行SHA-256（同順）`880385839788ea49f14544ee9dd0f1ed5037bc84b1707a9ba55f4fa6a267c2f5`, `85a92638e7c8e010055e880609ea9c634e205df5c61f0e80bdea3fbc9be68c92`, `a61697f41088818ddbb852fe274453666708c8467ce3d60a538203140bbc91d4`, `186a5b69b53e453fec1351f40e72221a3fea749e727ba0668d842a512a9566f6` |
 
-| atom | 選択statementの`statement.semantic_digest` | 本監査で保持するsource条件 |
+| atom | 原文statement digest | 本監査で保持するsource条件 |
 |---|---|---|
-| `HIL-BR-15` (`#/HIL-BR-15/statement`) | `5f5450b0a801f1f4c6650a0b4ddb87d5eee23400f2126332ed0038ed06f01115` | 版付きproduct-data sourceから、lineage・鮮度・schema・authorityを保持した正規projectionを作り、設計判断、coverage、impact、Issue routing、docgen、detectorへ供給する。 |
+| `HIL-BR-15` | `5f5450b0a801f1f4c6650a0b4ddb87d5eee23400f2126332ed0038ed06f01115` | 版付きproduct-data sourceから、lineage・鮮度・schema・authorityを保持した正規projectionを作り、設計判断、coverage、impact、Issue routing、docgen、detectorへ供給する。 |
 | `HIL-FR-23` | `641f78a72962e9343b37991cb298f1e64e0630659c312dc62c5515db81f5f5eb` | registryはsource種別、connector/schema版、credential reference、classification、read/write方針、同期方式、owner、有効状態を保持する。credential値は保存しない。 |
 | `HIL-FR-24` | `b021ff425efe0ba75863b33302ec3c41146b5c995ad9cfae41af926e80d152d2` | full/incremental snapshotを冪等に取得し、source record→canonical entity→requirement/design/Issue mapping、provenance、鮮度、tombstone、schema driftをread projectionへ投影する。証拠はsnapshot、watermark、mapping edge、stale/drift finding。 |
 | `HIL-NFR-17` | `476a1cc64e906c7341e251fc5396cefeab2bb0ce3bbcdb3e34d67c6c8600b8f7` | classification、取得最小化、redaction、retention、freshness SLAを持ち、PII/secret/raw payloadを通常projectionやagent contextへ複製しない。このatomは数値SLA/retention値を定めない。 |
-
-この表のdigestは各選択IR identityの`statement.semantic_digest`である。`source_pointer`のidentity root（例：`#/HIL-BR-15`）にあるobject全体の`semantic_digest`とは別フィールドを指す。
 
 HATは3つのHACと`HST-HIL-010`すべてを参照する。scenarioはfull/incremental projection、必須証拠はconnector・lineage・watermark・redaction/query、負例境界はschema drift・cursor逆行・PII・stale-currentである。これは設計oracleであり実行receiptではない。
 
