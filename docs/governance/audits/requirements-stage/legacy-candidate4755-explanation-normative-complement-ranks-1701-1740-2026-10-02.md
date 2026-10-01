@@ -66,3 +66,9 @@
 - 旧archiveはread-only。旧runtime・test・CIは実行していない。
 
 詳細なsource context、台帳hash、固定F6/PO/receipt検索pin、archive manifest pinはpaired JSON `legacy-candidate4755-explanation-normative-complement-ranks-1701-1740-2026-10-02.json` に記録。
+
+## 追加照合した固定F6・現行mainの引用
+
+INFRA L2:419の旧Concept v4.0引用範囲116–128に含まれるrank1701–1705（物理行123–127）の5行へ、固定F6と現行mainのcommit・file/行SHA・引用範囲を記録した。旧Plane構成を歴史的入力として読む引用であり、採択・source closureとは扱わない。
+
+product-boundary:75–76のfamily参照を旧Concept v4.0の32行（rank1701–1732）に記録した。旧承認を現行へ流用せず境界差分を照合する根拠として保持し、個別行の意味採択を生成しない。
