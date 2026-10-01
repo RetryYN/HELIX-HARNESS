@@ -707,7 +707,14 @@
       ]
     }
   ],
-  "source_family_relation_boundary": "F6のsource-familyおよびcandidate linkはsource-family/candidate relationとしてのみ記録する。未採択Execution TicketのL2/L11記述はcandidateを確認待ちとし、列挙されたHXT L11 caseをすべて未実行としている。選定したFRS acceptance rowは未採択L2-026 candidateが参照する。これらのrelationはいずれも、選定旧rowの採択、現行pairへのrow単位の採択、全source coverageを確立しない。",
+  "source_family_relation_boundary": "F6のsource-familyおよびcandidate linkはsource-family/candidate relationとしてのみ記録する。未採択Execution TicketのL2/L11記述はcandidateを確認待ちとし、列挙されたHXT L11 caseをすべて未実行としている。選定したFRS acceptance rowはF6時点のL2-026候補が参照する。後発の2026-09-28 PO判断はL2-026を1.0構築過程の候補として採用しているが、旧FRS-AC行別の採択や閉包は示さない。これらのrelationはいずれも、選定旧rowの採択、現行pairへのrow単位の採択、全source coverageを確立しない。",
+  "later_decision_pin": {
+    "commit": "51e170f8a1e412f201173e8e7116a82538d451e0",
+    "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+    "file_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+    "line_range": [46, 50],
+    "effect_boundary": "HELIXOS-L2-026 adopted as 1.0-build-process candidate; no per-row adoption or closure of old FRS-AC atoms"
+  },
   "limitations": [
     "screenは語句によるqueueであり、意味上の採択や要求化を示さない。",
     "source-family link、同一IDのcandidate参照、source-range記載は、選択rowの採択済みpair bindingやoracle実行を立証しない。",
@@ -3595,12 +3602,12 @@
             "HELIX-HARNESS",
             "HELIX-INTELLIGENCE"
           ],
-          "result": "F6 OS L2 HELIXOS-L2-026未採択候補がFRS acceptance lines32–59をsource basisとして明示する。F6 adopted OS/HARNESS pairにはFRS-BR grouped conditionsがあるが、FRS-AC-002のrow単位の採択済みpair bindingはない。"
+          "result": "F6 OS L2 HELIXOS-L2-026のF6時点の採否記録前候補がFRS acceptance lines32–59をsource basisとして明示する。F6 adopted OS/HARNESS pairにはFRS-BR grouped conditionsがあるが、FRS-AC-002のrow単位の採択済みpair bindingはない。"
         },
         "residual": "旧FRSのsource identity model、IR依存、FRS-R-02、必須field、現行ownerは個別対応付けされていない。固定pairの要求は別のsource/manifest境界を保持する。",
         "next": "候補証拠としてのFRS-AC-002 oracle、grouped FRS-BR pair条件、採択状態を区別して保持する。FRS受入の閉包は推定しない。",
         "human_facing_summary": "FRS-AC-002 oracle: L1/L3/L10/IRのpath/revision/digestを同一sourceへ束縛し、Issue/README/branch/providerから意味を推測した入力を拒む。",
-        "human_facing_comparison": "F6 OS L2 HELIXOS-L2-026未採択候補がFRS acceptance lines32–59をsource basisとして明示する。F6 adopted OS/HARNESS pairにはFRS-BR grouped conditionsがあるが、FRS-AC-002のrow単位の採択済みpair bindingはない。",
+        "human_facing_comparison": "F6 OS L2 HELIXOS-L2-026のF6時点の採否記録前候補がFRS acceptance lines32–59をsource basisとして明示する。F6 adopted OS/HARNESS pairにはFRS-BR grouped conditionsがあるが、FRS-AC-002のrow単位の採択済みpair bindingはない。",
         "human_facing_next_step": "候補証拠としてのFRS-AC-002 oracle、grouped FRS-BR pair条件、採択状態を区別して保持する。FRS受入の閉包は推定しない。",
         "source_family_relation_found": true,
         "candidate_or_source_range_reference_found": true,
@@ -3906,13 +3913,13 @@
             "HELIX-HARNESS",
             "HELIX-INTELLIGENCE"
           ],
-          "result": "F6 fixed OS L2/LL11 FRS-BR rows explicitly state old Slice/Module/Bundle/channel enum is not adopted. L2-026 unadopted candidate references the old acceptance source, not an adopted row binding."
+          "result": "F6 fixed OS L2/L11 FRS-BR rows explicitly state old Slice/Module/Bundle/channel enum is not adopted. the F6 L2-026 candidate text, before the later PO decision, references the old acceptance source, not an adopted row binding."
         },
         "residual": "旧channel enum/順序と遷移ごとの証拠は採択済みFRS-BR要求に対応付けられていない。authority/product release channelの意味はこのsource atomの範囲外である。",
-        "next": "旧遷移oracleは未採択候補の残差として保持する。lexical marker `reject`から現行channel契約を推定しない。",
+        "next": "旧遷移oracleは旧source atomの未対応残差として保持する。lexical marker `reject`から現行channel契約を推定しない。",
         "human_facing_summary": "FRS-AC-003 oracle: shadow→preview→rc→stable→deprecated→retired channel order/evidence; rejects skipped channels, stale receipt, and post-expiry elevation.",
-        "human_facing_comparison": "F6 fixed OS L2/LL11 FRS-BR rows explicitly state old Slice/Module/Bundle/channel enum is not adopted. L2-026 unadopted candidate references the old acceptance source, not an adopted row binding.",
-        "human_facing_next_step": "旧遷移oracleは未採択候補の残差として保持する。lexical marker `reject`から現行channel契約を推定しない。",
+        "human_facing_comparison": "F6 fixed OS L2/L11 FRS-BR rows explicitly state old Slice/Module/Bundle/channel enum is not adopted. the F6 L2-026 candidate text, before the later PO decision, references the old acceptance source, not an adopted row binding.",
+        "human_facing_next_step": "旧遷移oracleは旧source atomの未対応残差として保持する。lexical marker `reject`から現行channel契約を推定しない。",
         "source_family_relation_found": true,
         "candidate_or_source_range_reference_found": true,
         "row_specific_crosswalk_found": false,
@@ -4528,12 +4535,12 @@
             "HELIX-HARNESS",
             "HELIX-INTELLIGENCE"
           ],
-          "result": "F6 adopted OS/HARNESS FRS-BR-006 group preserves evidence-based responsibility-reorganization candidates; old FRS-AC-007 is referenced only from unadopted OS L2-026 candidate lines, with no exact adopted pair binding."
+          "result": "F6 adopted OS/HARNESS FRS-BR-006 group preserves evidence-based responsibility-reorganization candidates; old FRS-AC-007 is referenced only in the F6 OS L2-026 candidate text before the later PO decision, with no exact adopted pair binding."
         },
         "residual": "具体的なSlice/Module/Bundle identity、consumerとrollback evidence、受入owner、source atomの閉包はFRS-BR-006からは確定しない。",
         "next": "採択済みgrouped FRS-BR-006の意味と候補FRS-AC-007 oracleを分け、旧/新identity・consumer・rollbackの残差を保持する。",
         "human_facing_summary": "FRS-AC-007 oracle: compare preserve/split/merge/transfer and retain old/new identity, owner, consumer, rollback evidence; reject unconditional boundary freeze or unevidenced new Module authority.",
-        "human_facing_comparison": "F6 adopted OS/HARNESS FRS-BR-006 group preserves evidence-based responsibility-reorganization candidates; old FRS-AC-007 is referenced only from unadopted OS L2-026 candidate lines, with no exact adopted pair binding.",
+        "human_facing_comparison": "F6 adopted OS/HARNESS FRS-BR-006 group preserves evidence-based responsibility-reorganization candidates; old FRS-AC-007 is referenced only in the F6 OS L2-026 candidate text before the later PO decision, with no exact adopted pair binding.",
         "human_facing_next_step": "採択済みgrouped FRS-BR-006の意味と候補FRS-AC-007 oracleを分け、旧/新identity・consumer・rollbackの残差を保持する。",
         "source_family_relation_found": true,
         "candidate_or_source_range_reference_found": true,
