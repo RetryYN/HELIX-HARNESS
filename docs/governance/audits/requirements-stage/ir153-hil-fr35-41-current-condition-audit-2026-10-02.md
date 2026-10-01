@@ -39,3 +39,7 @@ main `f38bde044a7dfbf12aec0203b21a9384eef6ad8f` の064/065本文とMPR 649行pre
 ## #2497 REVIEW01 MinorF1訂正
 
 HIL-FR-39 line129の全source atomとcandidate scopeを保ち、初回candidateで弱かった条件を補った。L2に重複contract/policy/schemaの比較、独立変換単位、semantic signatureに基づくrename判断（同義名の統一候補、同名異義の分離候補）、observable behavior/public surface/DB semantics/要求差分のRedesign/Retrofit rerouteを明記した。L11には同義名renameのpositive例とlexical-only／同名異義のnegative例を追加した。既存のpair更新、対oracle、Scope Authority、rollback条件は維持する。receiptとMPR-001の節/full-file pinsを訂正後のbytesへ更新し、以前のローカルpinsはcorrection historyに残した。source atom、digest、no-loss subset、source holdingは変更していない。
+
+## F1修正後の最新main追随
+
+main `2a6b1fdd49ffa74eb2075fd98f67daca316408f2` の既存全文とMPR650行prefixを保持し067/068最終各一行を追加（652行）。F1で068本文が変わったため、共用L2/L11全file SHAは067/068両receiptへ追随した。067 sectionと原文2atomは不変、068のrename・重複比較・public/DB reroute条件を削らず受入と揃えた。

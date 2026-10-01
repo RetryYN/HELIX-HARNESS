@@ -24,7 +24,7 @@
   "candidate_pair": {
     "l2": {
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-      "full_file_sha256": "b5118424b1c1bee68a23ca5ee801144081fe2e6ae88d4746934caf27dd460710",
+      "full_file_sha256": "5b31dd26c7170a6cb4e7b2e11083a89443ec73d294f17cad09b52657749aec8a",
       "section_heading": "HARNESS-L2-067",
       "section_lines": [
         1274,
@@ -34,7 +34,7 @@
     },
     "l11": {
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-      "full_file_sha256": "a03e91220ab11dc5cc54c62915cb79165bd5fa9456dc0b8b7aa124ba9148d483",
+      "full_file_sha256": "ec09886ff8a7eeb3503a3b826baf1f38aa6d17d57c8d24129c471c0aca28926a",
       "section_heading": "HARNESS-L2-067",
       "section_lines": [
         993,
