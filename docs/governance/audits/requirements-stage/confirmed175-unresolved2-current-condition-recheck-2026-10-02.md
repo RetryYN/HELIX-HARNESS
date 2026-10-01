@@ -41,3 +41,7 @@
 - POへ上記選択肢A〜Dと推奨A、対象revision・影響要求を提示する。POがAを選んだ場合はcandidate 113のexact revisionを別途判断し、A以外ならcandidate parent/atom partitionを再導出する。
 - DAC-FR-009の実receipt ID/issuer/scope対応は、権限ある既存sourceが明示したときだけ別途扱う。
 - 両source holdingを、別の有効なdispositionができるまでliveに保持する。BR-007が未決でも、無関係なrequirements-stageの作業は続ける。
+
+## #2488統合後の比較先
+
+現在の比較先はmain `6f859fc03c9add36d84eb153cb1832b26768d6d1`。#2488の112本文と台帳をそのまま取り込み、既存642行のprefixを保持して113-001だけを643行へ追記した。上記72d08eb・641/642行は統合前の照合履歴である。採択111-001のbytesとdecision row64は不変。F1の非ancestor pinを除去し、F2の不要111-002を削除した。

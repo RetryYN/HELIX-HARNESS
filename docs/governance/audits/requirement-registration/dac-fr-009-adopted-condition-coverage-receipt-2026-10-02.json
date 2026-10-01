@@ -199,11 +199,11 @@
   },
   "current_pr_comparison_register_read_after": {
     "path": "docs/governance/management-provisional-requirement-register.jsonl",
-    "comparison_base_revision": "72d08ebc1b45c8cf85c0e89359c48f78eb779fee",
-    "origin_main_prefix_line_count": 641,
-    "origin_main_prefix_sha256": "sha256:d7902a431dd1b10200f2a32df7ea26fabbe28a26e7eb29a3ff185143ae623ace",
-    "current_pr_comparison_line_count": 642,
-    "current_pr_comparison_sha256": "sha256:c39f155c9f3a70a15bb9620fbe295ac338bae4af6a83a575ad323c487877b840",
+    "comparison_base_revision": "6f859fc03c9add36d84eb153cb1832b26768d6d1",
+    "origin_main_prefix_line_count": 642,
+    "origin_main_prefix_sha256": "sha256:4bd6edbf2d92758ab7280a7c4ff76c19fac5530374984f42a0e45b0a04f41358",
+    "current_pr_comparison_line_count": 643,
+    "current_pr_comparison_sha256": "sha256:98645c37df953bb9e376989da5055db49d200ba539c894ec97b4994ca8ac844f",
     "retained_adopted_pair_registration": {
       "line": 636,
       "line_sha256_lf_excluded": "sha256:8fd6f2757862c5307faa28933eebab735697a1609af81c3791f4f8a322ace39a",
@@ -214,7 +214,7 @@
       "target_authority_scope": "HELIXOS-L2/L11-111 abstract three-input AND only."
     },
     "only_local_suffix": {
-      "line": 642,
+      "line": 643,
       "registration_id": "MPR-RC-HELIXOS-L2-113-001",
       "line_sha256_lf_excluded": "sha256:0bd586a0d1400f26f8d852b43a40b3e611f5eaca49393f534c72d4bdee19296e",
       "management_state": "registered_proposal",

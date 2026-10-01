@@ -7,9 +7,9 @@
   "proposed_product_target": "HELIX-OS",
   "proposed_target_is_not_current_owner": true,
   "candidate_l2_section_digest": "sha256:ef74530043f7a7bebf2829fc2627bd6f78cd00c4a0d82c99b03da747b4209ed0",
-  "candidate_l2_file_sha256": "sha256:8941d4dfa3fa9f386a057f27e5e8aaf686b2a1554705bc9198d97d996c92e055",
+  "candidate_l2_file_sha256": "sha256:c7bea9a144398aa6a07fe80aba99b61ce7341c6a2d31e96d0cbdcc7fd320595c",
   "candidate_l11_section_digest": "sha256:b1c8c6b10a26dd7540e759b3d9c058715ba968f6be0a6f0a962162e11e5c6f2c",
-  "candidate_l11_file_sha256": "sha256:d1b1f795c76bf590f0cd2429191b1ab3995550f7c207bfc1f4b1812de2a3446b",
+  "candidate_l11_file_sha256": "sha256:1b2e0c8ddafccd56fa18285c245a14b35d9d7aeccfe621a1098f106cdc8ba9f1",
   "candidate_source_lines_ref": "docs/governance/audits/requirement-registration/three-lane-br-007-github-audit-source-lines-2026-10-02.jsonl",
   "candidate_source_lines_file_sha256": "sha256:dbc1f642b996a6923def8c8033323780a2ce46fef870cc84d8ddc38935e36506",
   "source_holding_registration_id": "MPR-SH-CONFIRMED-003",
@@ -192,11 +192,11 @@
   "latest_main_revision_read_after": "d31a4c8500d131001dc349bfbdfde82fb0b46839",
   "current_pr_comparison_register_read_after": {
     "path": "docs/governance/management-provisional-requirement-register.jsonl",
-    "comparison_base_revision": "72d08ebc1b45c8cf85c0e89359c48f78eb779fee",
-    "origin_main_prefix_line_count": 641,
-    "origin_main_prefix_sha256": "sha256:d7902a431dd1b10200f2a32df7ea26fabbe28a26e7eb29a3ff185143ae623ace",
-    "current_pr_comparison_line_count": 642,
-    "current_pr_comparison_sha256": "sha256:c39f155c9f3a70a15bb9620fbe295ac338bae4af6a83a575ad323c487877b840",
+    "comparison_base_revision": "6f859fc03c9add36d84eb153cb1832b26768d6d1",
+    "origin_main_prefix_line_count": 642,
+    "origin_main_prefix_sha256": "sha256:4bd6edbf2d92758ab7280a7c4ff76c19fac5530374984f42a0e45b0a04f41358",
+    "current_pr_comparison_line_count": 643,
+    "current_pr_comparison_sha256": "sha256:98645c37df953bb9e376989da5055db49d200ba539c894ec97b4994ca8ac844f",
     "retained_adopted_pair_registration": {
       "line": 636,
       "line_sha256_lf_excluded": "sha256:8fd6f2757862c5307faa28933eebab735697a1609af81c3791f4f8a322ace39a",
@@ -207,7 +207,7 @@
       "target_authority_scope": "HELIXOS-L2/L11-111 abstract three-input AND only."
     },
     "only_local_suffix": {
-      "line": 642,
+      "line": 643,
       "registration_id": "MPR-RC-HELIXOS-L2-113-001",
       "line_sha256_lf_excluded": "sha256:0bd586a0d1400f26f8d852b43a40b3e611f5eaca49393f534c72d4bdee19296e",
       "management_state": "registered_proposal",
