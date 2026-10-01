@@ -1,6 +1,6 @@
 # Candidate 4755 規範語マーカー順位81–100の意味監査
 
-- 監査基点: `f62a0512c26f07c74242b0b343360ca297e19f39`。固定F6本文比較revision: `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。
+- 監査基点および先行rank 1–80の正本bundle: `e070ce2fe7453768d174a0594975dc26b0b25f07`。main比較基点: `50686b6762788574cb471967e8c24846d3dd56ae`。固定F6本文比較revision: `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。この3 revisionは別の役割であり、F6をmainや監査基点と同一視しない。
 - #2353全4,755行と#2356/#2360/#2363/#2366/#2367/#2368/#2369/#2381の順序付き分類overlayから、effective explanation 2,965行とmarker-hit 255行を再構成した。
 - 順位はprohibition→mandatory→conditional、tier内marker hit数の降順、数値source IDの昇順。pin済み順位1–80のartifactと照合した後、81–100の20行を確認した。
 - 旧archiveのsource file/lineと前後context、carry-forward ledger entry、asset ledger entryを行別SHAでpinした。F6のOS/HARNESS L2/L11本文はF6 commit上のbytesをpinし、後発decision recordとは時点を分けた。

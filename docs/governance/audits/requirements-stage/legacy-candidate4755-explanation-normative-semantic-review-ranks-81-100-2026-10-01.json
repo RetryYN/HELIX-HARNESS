@@ -1,7 +1,7 @@
 {
   "schema_version": "helix-legacy-candidate4755-normative-semantic-review-batch.v1",
   "audit_id": "legacy-candidate4755-explanation-normative-semantic-review-ranks-81-100-2026-10-01",
-  "created_against_commit": "f62a0512c26f07c74242b0b343360ca297e19f39",
+  "created_against_commit": "e070ce2fe7453768d174a0594975dc26b0b25f07",
   "authority_effect": "none",
   "scope": {
     "screen_commit": "e070ce2fe7453768d174a0594975dc26b0b25f07",
@@ -7321,5 +7321,8 @@
       }
     ],
     "later_HARNESS_decision_boundary": "固定L2/L11 revisionと24候補を採用。旧source holding、未割当atom、retireや全被覆未完の保持。"
-  }
+  },
+  "main_comparison_commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+  "prior_rank_bundle_commit": "e070ce2fe7453768d174a0594975dc26b0b25f07",
+  "provenance_note": "監査基点とprior ranks1–80はe070ce2。mainとの比較基点は50686b。固定F6 L2/L11本文比較revisionは別途f6dad2。後発decision stateをF6時点へ遡及しない。"
 }
