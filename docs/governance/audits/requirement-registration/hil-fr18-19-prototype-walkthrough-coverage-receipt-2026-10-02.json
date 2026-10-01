@@ -125,7 +125,10 @@
       "fixed_current_l11_023_row_sha256": "sha256:f209dace6dd361437dd2f37785216ff7cdc3e69ef298ce760e1574033c4beaf4",
       "current_l11_023_row_sha256": "sha256:f209dace6dd361437dd2f37785216ff7cdc3e69ef298ce760e1574033c4beaf4",
       "fixed_current_l11_row_exact": true,
-      "authority_note": "MPR registered_proposal/authority_effect none does not override the PO decision."
+      "authority_note": "MPR registered_proposal/authority_effect none does not override the PO decision.",
+      "fixed_l11_023_section_sha256": "sha256:f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47",
+      "current_l11_023_section_sha256": "sha256:f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47",
+      "fixed_current_l11_section_exact": true
     }
   ],
   "condition_mapping": [
@@ -328,6 +331,9 @@
       "operation-only",
       "selected-input-source dependent",
       "reference-only"
-    ]
+    ],
+    "fixed_l11_section_sha256": "sha256:f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47",
+    "current_l11_section_sha256": "sha256:f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47",
+    "fixed_and_current_l11_section_exact": true
   }
 }
