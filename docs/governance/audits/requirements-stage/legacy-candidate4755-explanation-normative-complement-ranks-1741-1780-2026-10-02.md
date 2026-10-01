@@ -67,3 +67,7 @@
 - archiveはread-only参照。旧runtime、CLI、hook、test、CIは実行していない。
 
 詳細pin・source context/hash: paired JSON [`legacy-candidate4755-explanation-normative-complement-ranks-1741-1780-2026-10-02.json`](legacy-candidate4755-explanation-normative-complement-ranks-1741-1780-2026-10-02.json)
+
+## 同PR内の先行slice
+
+1701–1740はorigin/main未収載だが本PRに含む。commit `0d1cdf8972f9bb8ef3a63f46ffd39f4668b56209` のpaired JSONをSHAで固定し、末尾rank1740／002933と本slice先頭rank1741／002934の連続性を照合した。
