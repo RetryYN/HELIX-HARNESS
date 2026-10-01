@@ -37,18 +37,18 @@
       },
       "candidate_semantic_digest": "sha256:a5ae3f7d26f34fc6af4f30d4cbfd48be73bc7d466a710f137c24e179573bc95a",
       "candidate_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-114",
-      "candidate_file_sha256": "sha256:c8d2b8af1bc2844d1a2cf090c520b065a668b8edc1b37774697fae1bf65286c9",
+      "candidate_file_sha256": "sha256:e727aa3d3d5ecf9a6ce08a329f1089a2368bc685d262763d265f357107a22da8",
       "candidate_section_boundaries": {
-        "start_line": 1391,
-        "end_line": 1405,
+        "start_line": 1418,
+        "end_line": 1432,
         "start_heading_prefix": "### HELIXOS-L2-114"
       },
       "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-      "acceptance_file_sha256": "sha256:39708460c9bb1e2c1d4560c1287fbfcfb2a7983a435532d30d386075750baed7",
+      "acceptance_file_sha256": "sha256:84410578b56d69ba5fce0560bdf312973f93474d9ee08c7db04736c63833aa03",
       "acceptance_section_sha256": "sha256:f6ca2c371a8ee80c619a5334176d39613bd74404bd4fed8f5240cc5057f01630",
       "acceptance_section_boundaries": {
-        "start_line": 992,
-        "end_line": 1001,
+        "start_line": 1014,
+        "end_line": 1023,
         "start_heading_prefix": "### HELIXOS-L11-114"
       },
       "current_condition_refs": [
@@ -220,5 +220,17 @@
       "l11_section_digest": "sha256:32f08cfa7b070bb902277f79e044e971bbd3948e90621c624d80b167f80d7ded",
       "scope": "Adopted safe session transition and source-reread contract. Distinct from four-predicate loop eligibility."
     }
-  ]
+  ],
+  "construction_reference_revision": "d31a4c8500d131001dc349bfbdfde82fb0b46839",
+  "current_pr_comparison": {
+    "revision": "58cbdb8e799a18b6cfb2e3e9188fa3b694898474",
+    "main_register_prefix_lines": 643,
+    "current_register_lines": 645,
+    "main_prefix_preserved": true,
+    "only_suffix_registrations": [
+      "MPR-SH-PHCAP20-ORCHMEMORY-001",
+      "MPR-RC-HELIXOS-L2-114-001"
+    ],
+    "note": "current_condition_refsの物理行は構築時d31 snapshotを参照。既存本文のbytesはmainを保持。新114候補本文/受入と現行file SHAはこのPRに固定。"
+  }
 }

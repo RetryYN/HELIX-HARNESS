@@ -989,6 +989,28 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **受入境界**：fixtureで照合するのは明示入力receiptの独立性、status保持、三者AND条件だけである。各監査の意味・方法・内部schema、current issueやreceiptへのmapping、owner移管、旧source全体closure、実Census／startup／materialization実行、severity、repair、merge可否を検証しない。旧runtime／CLI／test／CIは実行しない。
 - **旧sourceと未解決**：candidate input atomは`MPR-SH-CONFIRMED-003`が保持するDAC-FR-009 line 56一atomに限定する。DAC-R-011 line 66とDAC-AC-017 line 42は独立receiptと負例の関連context/oracle evidenceであり、confirmed175 holdingまたはcandidate inputではない。各source owner、formal successor、適用scope、採択、実行受入を未確定のまま維持する。
 
+### HELIXOS-L2-112 Product Dataの版束縛read projection（L11受入候補、未採択）
+
+本節は候補L2-112に対する静的oracle形状である。旧HAC/HATの条件単位を保持して候補を検査できるようにするが、fixture文書の存在・レビュー・登録からruntime実装、外部read実行、HAT合格、要求stage closureを作らない。旧`HAT-HIL-11`は`designed_not_implemented`であり実行receiptではない。実service、credential、PII、旧test/runtime/CIを使用しない。
+
+- **正常oracle（旧HAC-HIL-11a）**：source ownerが選んだversioned read registrationと、適用可能なread/access/data-use条件と選択済みfreshness SLA/retention policy revision参照を固定したfixtureを与える。fullとincrementalを別のmode/scopeとして記述し、source record key、connector/schema/mapping revision、snapshot identity/digest、cursor/watermark、canonical entityとconsumer mapping edge、lineage/freshness、redaction/classification参照が同じ対象revisionへ辿れるかを確認する。同一intent・同一digest再送が二重効果を生まず、選択modeの境界とcurrent-resultの完全性を保持する。source enable/disableの正常fixtureでは、遷移receiptがsource registration identity/revision、connector contract identity/revision/content digest、要求状態・結果状態、および既存operation authority参照に結ばれ、fixtureの確定したrevisionとdigestがreceipt上でも同じであることを確認する。これは既存authority下の操作結果の記録であり、追加承認を条件にしない。freshness SLAとretention policyの参照revisionも正常fixtureの選択scope・resultへ結ぶ。入力consumerはexplicitly selected refsだけとし、旧HIL-BR-15に列挙された機能全体が今回のconsumer集合として採択されたとは扱わない。
+- **negative oracle（旧HAC-HIL-11b）**：schema drift、cursor/watermark逆行、invalid/unknown connector、partial page/partial result、duplicate/conflicting source key、mapping/lineage欠落、禁止write、read/data-use scope違反、unknown classification、PII/secret/raw payloadの通常出力漏れを一つずつfixtureで示す。各ケースでcurrent projectionとwatermarkが前進せず、原因source/revision、quarantineまたはfailed/stale状態、未完義務と戻し先が分かる。credential値・secret・raw payloadをreceiptへ複製しない。enable/disable操作について、actor/operationに既存authorityがない・失効・scope外の場合、または要求時/commit時のcontract digest・registry/contract revisionが不一致、stale、unknownの場合を個別に与え、enabled stateを変更しない。拒否receiptは既存操作結果としてsource identity、要求/観測revision、期待/観測digest、拒否理由を示し、authorityや再試行許可を生成しない。
+- **boundary oracle（旧HAC-HIL-11c）**：鮮度期限切れ、source/schema revision変更、明示tombstone、full結果での消失、incremental結果での不出現、unknown lineageを別条件としてfixture化する。明示tombstoneは関連mappingをstaleとして示し、incrementalの単なる不出現は削除にならない。full消失もsource ownerの明示契約とcomplete-scope根拠なしにtombstone化されない。stale/currentを混同せず、再取得が必要なscope・source revision・ownerが残る。
+- **unseen oracle**：consumer mapping契約、freshness SLAまたはretention policy reference、source key安定性、schema互換、cursor codec、data-use許可のいずれかをmissing/unknown/conflict/staleにする。成功、削除、consumer集合、許可または鮮度遵守を推測で補完せず、状態とownerへの不足参照を残す。影響しない別source resultを候補が一律に失敗させる条件も導入しない。
+- **境界・判定**：既存OS-L2-015/016/007/009のsource/provenance/projection/復旧oracleを維持する。CONNECTの一般互換性やtransport、SECURITYのauthority、source/consumer ownerの業務semantic mapping判定をOSが代行しない。正常／negative／boundary/unseenを文書上のfixtureとして静的に照合することは候補受入契約であり、要求段階のgateに正式実装、runtime成立、外部データ取得または旧HAT実行を加えない。
+- **出典・意味再導出**：旧`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`のL1 lines 67/113/114/197、`LEGACY-ASSET-67761C517521603F844C`の`HR-FR-HIL-11`、`LEGACY-ASSET-4886CEF2A7AB5B7AA5C8`のHAC-HIL-11a/b/cおよびHAT-HIL-11を起点にする。旧L5/L6のfull/incremental、source key、atomic projection、tombstone、stale、redaction、quarantineのfailure境界を意味再導出し、旧Node/Python/DB/runtime/testの物理方式は現行oracleへ固定しない。source atom入力と部分coverageは`hil11-product-data-projection-source-lines-2026-10-02.jsonl`および`hil11-product-data-projection-coverage-receipt-2026-10-02.json`に束縛する。
+
+
+### HELIXOS-L11-113 GitHub監査の決定的規則・semantic finding境界の受入候補（未採択・未実行）
+
+- **位置づけ・入力**：HELIXOS-L2-113の未採択候補に対する静的oracle案。scopeと対象revision、決定的規則の正本revision、Node gate結果、semantic modelのidentity/revisionおよび対象に対応する評価根拠をfixtureとして固定する。fixture内の表示は実運用結果ではない。
+- **正常例—決定的規則の強制拒否**：明示した決定的規則とNode gateの判定が`deny`で、semantic modelが`pass`を返すfixtureを与える。`pass`だけを根拠に許可される処理要求をfixtureに含め、oracleの期待結果として`gateDecision: deny`と`requestResult: rejected`の両方を照合する。これによりNode gateがその要求を強制拒否し、実効判定を`deny`のまま返す条件を確認する。semantic findingは別記録として保持できるが、findingを記録しただけで処理要求の拒否を省ける判定は不合格とする。model resultがgate結果を上書きまたは相殺してはならない。
+- **正常例—semantic finding**：決定的規則の判定と別に、同じ対象scope/model revisionへ結び付く評価根拠を持ったmodelのsemantic findingを与える。findingはsemantic findingとして区別され、Node gateの判定やowner authorityを作成・変更しない。既存のHELIX lane/provider/Control Plane identityをfixtureへ保ち、新しいものを追加しない。
+- **誤りを含む例**：model `pass`で決定的`deny`を相殺する、決定的規則をmodelへ委譲する、評価根拠が異なるmodel revision/scopeを評価済みと扱う、GitHub監査を第四provider laneまたは別Control Planeとして登録する場合は不合格。いずれかの条件に適合しても他条件の失敗を相殺しない。
+- **欠落・unknown例**：決定的規則のrevision、Node判定、model評価根拠、scopeまたはmodel revisionのいずれかがmissing/stale/unknown/conflictの場合、fixtureは未解決として保持する。別revisionの評価、Issue/PR状態、候補本文から補完して委譲またはpassを導かない。
+- **判定oracle**：L2が要求する三境界（Node gateによる決定的規則、評価根拠が対応するmodelへのsemantic finding限定委譲、第四provider lane/別Control Planeの不生成）を独立に照合する。Node gateの実行、modelの実評価・推論、GitHub監査、CI、Issue/PR更新、merge、実際のgreen、実装完了、L3承認またはsource retirementはこのL11候補の合格条件にしない。
+- **旧oracleとの対応**：旧3L-AC-016はmodelによるdeterministic gate上書き拒否、3L-AC-017はsemantic findingをowner/route候補として扱いbranchを直接修正しないこと、3L-AC-018はseverity作用範囲の分離を示す。severity値・停止条件の具体値は旧3L-R-17から下位設計へ渡し、本L2/L11で新設しない。旧test/runtimeは実行しない。
+
 ### HELIXOS-L11-114 worker/verifier loop継続適格性の受入候補（未実行）
 
 - **対応要求・状態**：未採択`HELIXOS-L2-114`の静的oracle案。HELIXOS-L2-009の意味変更・追補採択、継続実行、ticket／Worker起動、runtime green、受入実施、旧条件全体のclosureを示さない。
