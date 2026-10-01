@@ -1,6 +1,6 @@
 # AAFD proposal lifecycle R-01–03 / R-05–15 現行L2/L11照合
 
-基準は`origin/main` commit `97826109918f1f9c7b24a3b91a6bb12aaba7b77d`。旧sourceはasset `LEGACY-ASSET-EB3700B0088F311C2295`、`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md`、file SHA-256 `685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a`; asset disposition is `docs/governance/legacy-asset-disposition.jsonl:789` (whole-ledger SHA `cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c`), still `product_target: unresolved`, `disposition: unresolved`, no successor/decision. source line ID/line SHAは[coverage receipt](../requirement-registration/aafd-proposal-lifecycle-coverage-receipt-2026-10-02.json)と[source lines](../requirement-registration/aafd-proposal-lifecycle-source-lines-2026-10-02.jsonl)に保存した。旧runtime/CLI/test/CIは実行していない。
+候補・receipt・MPR追記の作成基準は`origin/main` commit `1cd77015081b87d5bcde7d5e45ee4e0a227e02c2`。現行状態は`origin/main` commit `d31a4c8500d131001dc349bfbdfde82fb0b46839`までread-after照合した。両commit間で対象L1/L2/L11、2026-09-28/29 PO decision、既存AAFD candidate、management proposal register、旧asset disposition ledgerに差分がないことをpath単位で確認した。receiptの`pins.base_commit`と内容hashは作成基準`1cd770...`を指し、現行比較commitを機械的に置換するpinではない。最新比較のpath/blob証拠はreceiptの`current_comparison_read_after`に記録した。旧sourceはasset `LEGACY-ASSET-EB3700B0088F311C2295`、`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md`、file SHA-256 `685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a`; asset disposition is `docs/governance/legacy-asset-disposition.jsonl:789` (whole-ledger SHA `cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c`), still `product_target: unresolved`, `disposition: unresolved`, no successor/decision. source line ID/line SHAは[coverage receipt](../requirement-registration/aafd-proposal-lifecycle-coverage-receipt-2026-10-02.json)と[source lines](../requirement-registration/aafd-proposal-lifecycle-source-lines-2026-10-02.jsonl)に保存した。旧runtime/CLI/test/CIは実行していない。
 
 ## 判断状態の区別
 
@@ -32,5 +32,24 @@
 
 - L2/L11-075はR-01..03の不足をL1-009配下の未採択候補として記録する。UIL qualification/ownerを持ち込まず、採択済みL2-073のR-04 scopeを変えない。
 - L2/L11-076はR-13..14の詳細candidateをL1-011配下に置くが、trigger/metricsの一部はL1-011の明記を越える。したがって`authority_effect: none`・PO pendingを維持する。
-- R-05..12はcurrent candidateのBR-02/03が広い要旨を残す一方、詳細処理はcurrent L1にない。L2/L11の新要求へ振替せず、source holdingのままowner/authority境界の判断を待つ。R-15は3.0 L2-065とcandidateへ接続するがAAFD source全条件closureを主張しない。
+- R-05..12はcurrent candidateのBR-02/03が広い要旨を残す一方、詳細処理はcurrent L1にない。以下に意思決定の具体案を記録する。この判断待ちは今回のsource照合・candidate記録・local commitを止めず、現行要求への採択やowner移管は行わない。R-15は3.0 L2-065とcandidateへ接続するがAAFD source全条件closureを主張しない。
 - candidate/L2/L11本文だけから旧sourceの意味変更・retire・運用許可を生成しない。全旧source conditionsは引き続き`MPR-SH-CANDIDATE-001`にpending保持される。
+
+
+## R-05..12とR-15の判断材料
+
+### R-05..12 — Future State Deltaの責務と詳細契約
+
+旧sourceはR-05 `:50-53`（`LEGACY-CAND-LINE-000145..000147`）でqualified internal/UILまたはexternal/TER receiptだけをdelta起点とし、origin typeとownerを別fieldにする。R-06 `:55-62`（`000148..000153`）はstable identity、receipt revision/digest、HEAD/authority/environment、責任scope、変更dimension、before/observed state、evidence/counterevidence/confidence/unknown、exact invalidation set、resynthesis flag、digestを要求する。R-07 `:64-67`（`000154..000156`）は同じ入力から同一exact set/digest、stale/wrong HEAD/authority・missing receipt・duplicate拒否とat-least-once冪等性を要求する。R-08 `:69-71`（`000157..000158`）はunknownの0/neutral/unchanged/observedへの変換を拒み、deltaからRequirement/Design/Release/Assignment/mergeを直接変更させない。R-09 `:75-78`（`000160..000162`）はF0 snapshotへのexact joinとrevision/digest不一致時のstale/re-observationを要求する。R-10 `:80-83`（`000163..000165`）は影響するFuture Type/assumption/projection/directiveだけを失効・再合成し、#1037をproposal-onlyとし、whole-system plannerのwrite/unparkを許さない。R-11 `:85-88`（`000166..000168`）はstale directive、unknown、missing receiptからassignment/release/retire/requirement/design writeを拒み、FSがUIL/TER observation/qualificationを複製しない。R-12 `:90-92`（`000169..000170`）はrepository authority/event journalからDB削除後にも同じexact set/digestをreplayする。これらは詳細adapter/runtime責務であり、現行candidate AAFD-BR-02/03の要約保持を個別条件の採択・closureと同一視しない。
+
+- **推奨案:** R-05..12は旧source holdingとAAFD candidateの範囲に保ち、L2/L11-009の現在のno-reimplementation境界を維持する。新しいL2、UIL/TER route、runtime、write権限を起こさない。既存L1-009とownerのどこがFuture Synthesisを所有するかが明確になった後、そのscopeに沿う別機能単位のL2/L11候補とsource receiptを作る。075はR-01..03監査proposalであり、異なるFuture State Delta機能を継ぎ足さない。
+- **選択肢:** (A) 推奨案のままholdingを継続する。(B) HELIX-INTELLIGENCEにFuture Synthesisの責務を置くなら、先にL1-009のscope/責任境界を人が明示決定し、その後R-05..12を個別機能単位としてL2/L11候補化する。(C) 実際のFuture Synthesis ownerが別機構なら、そのownerの採択済みL1 scopeを確認して同様に個別候補化し、INTELLIGENCE側はaudit/proposalの境界を保つ。現時点でownerを推測して選択肢B/Cを採択しない。
+- **影響する要求・記録:** HELIXINTELLIGENCE-L1/L2/L11-009、candidate AAFD-BR-02/03、source atoms `LEGACY-CAND-LINE-000145..000170`、`MPR-SH-CANDIDATE-001`。採択済みL2/L11-073（R-04）には拡張しない。
+
+### R-15 — learning candidateからのpromotion境界
+
+旧source `:106-109`（`LEGACY-CAND-LINE-000178..000180`）はbenchmark結果をcandidate evidenceに限り、rule/provider routing/Requirement/Designの自動更新を禁じ、#1035/#1384へのpromotionに独立VERIFY、counterexample、expiry、人間gateを置く。現行L1/L2-011のmodel比較境界とL2/L11-065の3.0 learning/lineage/comparison/independent LABO評価は一部の意味を保持するが、これらAAFD固有gateのsource-qualified対応を示す証拠は未確認である。
+
+- **推奨案:** R-15をsource holding/candidateとして保持し、L2/L11-011の現行比較scopeとL2/L11-065の3.0 boundaryを維持する。これらをAAFD全条件closureとみなさず、1.0へpromotionを前倒ししない。
+- **選択肢:** (A) 推奨案のまま保持する。(B) gateが3.0で必要なら、L1-021..026/L2/L11-065のscopeに入るかを確認し、独立VERIFY・counterexample・expiry・human gateをsource atom単位で照合した別候補を作る。(C) 1.0に必要とするなら、先にL1-011の意味変更を人が決定し、決定範囲に沿うL2/L11追補を起こす。現時点で1.0要求やpromotion許可は生成しない。
+- **影響する要求・記録:** HELIXINTELLIGENCE-L1/L2/L11-011、L1-021..026およびL2/L11-065 (3.0)、source atoms `LEGACY-CAND-LINE-000178..000180`、`MPR-SH-CANDIDATE-001`。

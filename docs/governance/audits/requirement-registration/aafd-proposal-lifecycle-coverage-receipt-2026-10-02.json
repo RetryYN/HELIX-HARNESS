@@ -341,5 +341,76 @@
     "later_PO_decision_line": 86,
     "later_PO_decision_L2_digest": "sha256:4425189d3870de92165ebdbc790902317dc2799d89f760156ab17441662a2eb5",
     "later_PO_decision_L11_digest": "sha256:d98488d23fc02992143edb4a1e689a0c12dcc91d0ec1c9adabe1b8e334dd9ef1"
+  },
+  "current_comparison_read_after": {
+    "commit": "d31a4c8500d131001dc349bfbdfde82fb0b46839",
+    "diff_scope_base_commit": "1cd77015081b87d5bcde7d5e45ee4e0a227e02c2",
+    "result": "No changes in scoped current L1/L2/L11, PO decision, existing candidate, management proposal register, or legacy asset disposition between the receipt construction base and this read-after commit. The receipt pins below remain construction-time evidence and are intentionally not rewritten.",
+    "scoped_files": [
+      {
+        "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+        "git_blob": "0da51e05b88ebcbee60728db52913c64a85f6b91"
+      },
+      {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "git_blob": "02c9b0cd333c7dc866e0d600b45023496fbb2167"
+      },
+      {
+        "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "git_blob": "de075a589250064c0df5ae254d3d575e5efd7dfb"
+      },
+      {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "git_blob": "f91f7c5cf28b57e41666ae24d729378c67f0aaab"
+      },
+      {
+        "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+        "git_blob": "130aff68da6c72a9455a530c7799d5c9c678e78c"
+      },
+      {
+        "path": "docs/helix-intelligence/candidates/audit-bounded-repair-requirements.md",
+        "git_blob": "b7c532cb43a4d11e9d227adec23090fc4e416165"
+      },
+      {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "git_blob": "cfa4a48dff89fb4b4066d958c1513ba405c2a3dd"
+      }
+    ],
+    "register_and_receipt_append_only_check": "This candidate commit adds the AAFD receipt and an append-only MPR suffix to the register. The suffix is bound to pins.pre_append_register_sha256; the read-after comparison checked the current main register prefix and confirmed no changes to the scoped pre-existing register content since the construction base."
+  },
+  "decision_material_for_unselected_source_conditions": {
+    "R-05..12": {
+      "source": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md:50-92; LEGACY-CAND-LINE-000145..000170; asset LEGACY-ASSET-EB3700B0088F311C2295",
+      "options": [
+        "A: keep exact delta processing in source holding and preserve L2/L11-009 no-reimplementation boundary (recommended).",
+        "B: if HELIX-INTELLIGENCE owns Future Synthesis, first obtain an explicit human L1-009 scope/owner decision, then draft a separate L2/L11 function unit with source receipt.",
+        "C: if a different Future Synthesis owner exists, verify that owner’s adopted L1 scope and draft the function unit there; keep INTELLIGENCE audit/proposal-only."
+      ],
+      "recommendation": "A pending verified ownership and adopted parent scope; do not extend L2-075, L2-073, or create runtime/write authority.",
+      "impacted_requirements": [
+        "HELIXINTELLIGENCE-L1/L2/L11-009",
+        "candidate AAFD-BR-02/03",
+        "MPR-SH-CANDIDATE-001",
+        "source atoms LEGACY-CAND-LINE-000145..000170"
+      ],
+      "status": "decision material recorded; not a blocker to this audit or candidate receipt; no option B/C adopted"
+    },
+    "R-15": {
+      "source": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md:106-109; LEGACY-CAND-LINE-000178..000180; asset LEGACY-ASSET-EB3700B0088F311C2295",
+      "options": [
+        "A: retain source holding/candidate and current 1.0/3.0 boundaries (recommended).",
+        "B: if required in 3.0, verify L1-021..026/L2/L11-065 scope and prepare a separate source-qualified gate candidate.",
+        "C: if required in 1.0, obtain human decision changing L1-011 meaning before drafting L2/L11 detail."
+      ],
+      "recommendation": "A; keep independent VERIFY, counterexample, expiry, and human-gate closure unproven and do not infer promotion permission.",
+      "impacted_requirements": [
+        "HELIXINTELLIGENCE-L1/L2/L11-011",
+        "HELIXINTELLIGENCE-L1-021..026",
+        "HELIXINTELLIGENCE-L2/L11-065 (3.0)",
+        "MPR-SH-CANDIDATE-001",
+        "source atoms LEGACY-CAND-LINE-000178..000180"
+      ],
+      "status": "decision material recorded; not a blocker to this audit or candidate receipt; no option B/C adopted"
+    }
   }
 }
