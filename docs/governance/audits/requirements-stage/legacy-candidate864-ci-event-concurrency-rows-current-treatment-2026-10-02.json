@@ -20,7 +20,7 @@
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
       "line_start": 1434,
       "line_end": 1444,
-      "section_sha256": "sha256:4729f2a77dba3c359c3f2a0b5572215f95ebcba663a6d87448653890be15ad3d"
+      "section_sha256": "sha256:3f9a18340eebe4dbbdbd7c172c5f54f4289071271c927b7ca5edd28225ae7d4a"
     },
     {
       "identity": "HELIXOS-L11-118",
@@ -28,7 +28,7 @@
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
       "line_start": 1025,
       "line_end": 1034,
-      "section_sha256": "sha256:7a3d5a324599334ca1ad977f874ead013cf13bbb277f83b973f1e5284a8f80cd"
+      "section_sha256": "sha256:720f1dcca06883dac492836cbdb36804c34a8df25546a4840a162c80fa15babe"
     }
   ],
   "review_scope": {
@@ -48,7 +48,7 @@
     ],
     "candidate_input_atom_digest": "sha256:6811dfa6e752c8468483477670df7d3ab6561cdf2d89b2f0a571f639eae1a55b",
     "source_lines_jsonl_ref": "docs/governance/audits/requirement-registration/ci-event-concurrency-source-lines-2026-10-02.jsonl",
-    "source_lines_jsonl_sha256": "sha256:99108177f83ce81fdba3da7986f8dfcf70686970b17927d480770025874b8332"
+    "source_lines_jsonl_sha256": "sha256:40517379c83d23d920e71d8047492368774dd4aeaa047ebec68b9495196c151d"
   },
   "rows": [
     {
@@ -96,7 +96,7 @@
           "path": "docs/helix-os/L2-requirements/governance-requirements.md",
           "line_start": 1434,
           "line_end": 1444,
-          "digest": "sha256:4729f2a77dba3c359c3f2a0b5572215f95ebcba663a6d87448653890be15ad3d",
+          "digest": "sha256:3f9a18340eebe4dbbdbd7c172c5f54f4289071271c927b7ca5edd28225ae7d4a",
           "digest_scope": "heading section through next ###, terminal LF"
         },
         {
@@ -105,7 +105,7 @@
           "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
           "line_start": 1025,
           "line_end": 1034,
-          "digest": "sha256:7a3d5a324599334ca1ad977f874ead013cf13bbb277f83b973f1e5284a8f80cd",
+          "digest": "sha256:720f1dcca06883dac492836cbdb36804c34a8df25546a4840a162c80fa15babe",
           "digest_scope": "heading section through next ###, terminal LF"
         }
       ],
@@ -167,7 +167,7 @@
           "path": "docs/helix-os/L2-requirements/governance-requirements.md",
           "line_start": 1434,
           "line_end": 1444,
-          "digest": "sha256:4729f2a77dba3c359c3f2a0b5572215f95ebcba663a6d87448653890be15ad3d",
+          "digest": "sha256:3f9a18340eebe4dbbdbd7c172c5f54f4289071271c927b7ca5edd28225ae7d4a",
           "digest_scope": "heading section through next ###, terminal LF"
         },
         {
@@ -176,7 +176,7 @@
           "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
           "line_start": 1025,
           "line_end": 1034,
-          "digest": "sha256:7a3d5a324599334ca1ad977f874ead013cf13bbb277f83b973f1e5284a8f80cd",
+          "digest": "sha256:720f1dcca06883dac492836cbdb36804c34a8df25546a4840a162c80fa15babe",
           "digest_scope": "heading section through next ###, terminal LF"
         }
       ],
@@ -265,7 +265,7 @@
           "path": "docs/helix-os/L2-requirements/governance-requirements.md",
           "line_start": 1434,
           "line_end": 1444,
-          "digest": "sha256:4729f2a77dba3c359c3f2a0b5572215f95ebcba663a6d87448653890be15ad3d",
+          "digest": "sha256:3f9a18340eebe4dbbdbd7c172c5f54f4289071271c927b7ca5edd28225ae7d4a",
           "digest_scope": "heading section through next ###, terminal LF"
         },
         {
@@ -274,7 +274,7 @@
           "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
           "line_start": 1025,
           "line_end": 1034,
-          "digest": "sha256:7a3d5a324599334ca1ad977f874ead013cf13bbb277f83b973f1e5284a8f80cd",
+          "digest": "sha256:720f1dcca06883dac492836cbdb36804c34a8df25546a4840a162c80fa15babe",
           "digest_scope": "heading section through next ###, terminal LF"
         }
       ],
@@ -345,7 +345,7 @@
           "path": "docs/helix-os/L2-requirements/governance-requirements.md",
           "line_start": 1434,
           "line_end": 1444,
-          "digest": "sha256:4729f2a77dba3c359c3f2a0b5572215f95ebcba663a6d87448653890be15ad3d",
+          "digest": "sha256:3f9a18340eebe4dbbdbd7c172c5f54f4289071271c927b7ca5edd28225ae7d4a",
           "digest_scope": "heading section through next ###, terminal LF"
         },
         {
@@ -354,7 +354,7 @@
           "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
           "line_start": 1025,
           "line_end": 1034,
-          "digest": "sha256:7a3d5a324599334ca1ad977f874ead013cf13bbb277f83b973f1e5284a8f80cd",
+          "digest": "sha256:720f1dcca06883dac492836cbdb36804c34a8df25546a4840a162c80fa15babe",
           "digest_scope": "heading section through next ###, terminal LF"
         }
       ],
@@ -407,7 +407,7 @@
           "path": "docs/helix-os/L2-requirements/governance-requirements.md",
           "line_start": 1434,
           "line_end": 1444,
-          "digest": "sha256:4729f2a77dba3c359c3f2a0b5572215f95ebcba663a6d87448653890be15ad3d",
+          "digest": "sha256:3f9a18340eebe4dbbdbd7c172c5f54f4289071271c927b7ca5edd28225ae7d4a",
           "digest_scope": "heading section through next ###, terminal LF"
         },
         {
@@ -416,7 +416,7 @@
           "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
           "line_start": 1025,
           "line_end": 1034,
-          "digest": "sha256:7a3d5a324599334ca1ad977f874ead013cf13bbb277f83b973f1e5284a8f80cd",
+          "digest": "sha256:720f1dcca06883dac492836cbdb36804c34a8df25546a4840a162c80fa15babe",
           "digest_scope": "heading section through next ###, terminal LF"
         }
       ],
@@ -505,7 +505,7 @@
           "path": "docs/helix-os/L2-requirements/governance-requirements.md",
           "line_start": 1434,
           "line_end": 1444,
-          "digest": "sha256:4729f2a77dba3c359c3f2a0b5572215f95ebcba663a6d87448653890be15ad3d",
+          "digest": "sha256:3f9a18340eebe4dbbdbd7c172c5f54f4289071271c927b7ca5edd28225ae7d4a",
           "digest_scope": "heading section through next ###, terminal LF"
         },
         {
@@ -514,7 +514,7 @@
           "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
           "line_start": 1025,
           "line_end": 1034,
-          "digest": "sha256:7a3d5a324599334ca1ad977f874ead013cf13bbb277f83b973f1e5284a8f80cd",
+          "digest": "sha256:720f1dcca06883dac492836cbdb36804c34a8df25546a4840a162c80fa15babe",
           "digest_scope": "heading section through next ###, terminal LF"
         }
       ],
@@ -585,7 +585,7 @@
           "path": "docs/helix-os/L2-requirements/governance-requirements.md",
           "line_start": 1434,
           "line_end": 1444,
-          "digest": "sha256:4729f2a77dba3c359c3f2a0b5572215f95ebcba663a6d87448653890be15ad3d",
+          "digest": "sha256:3f9a18340eebe4dbbdbd7c172c5f54f4289071271c927b7ca5edd28225ae7d4a",
           "digest_scope": "heading section through next ###, terminal LF"
         },
         {
@@ -594,7 +594,7 @@
           "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
           "line_start": 1025,
           "line_end": 1034,
-          "digest": "sha256:7a3d5a324599334ca1ad977f874ead013cf13bbb277f83b973f1e5284a8f80cd",
+          "digest": "sha256:720f1dcca06883dac492836cbdb36804c34a8df25546a4840a162c80fa15babe",
           "digest_scope": "heading section through next ###, terminal LF"
         }
       ],
@@ -665,7 +665,7 @@
           "path": "docs/helix-os/L2-requirements/governance-requirements.md",
           "line_start": 1434,
           "line_end": 1444,
-          "digest": "sha256:4729f2a77dba3c359c3f2a0b5572215f95ebcba663a6d87448653890be15ad3d",
+          "digest": "sha256:3f9a18340eebe4dbbdbd7c172c5f54f4289071271c927b7ca5edd28225ae7d4a",
           "digest_scope": "heading section through next ###, terminal LF"
         },
         {
@@ -674,7 +674,7 @@
           "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
           "line_start": 1025,
           "line_end": 1034,
-          "digest": "sha256:7a3d5a324599334ca1ad977f874ead013cf13bbb277f83b973f1e5284a8f80cd",
+          "digest": "sha256:720f1dcca06883dac492836cbdb36804c34a8df25546a4840a162c80fa15babe",
           "digest_scope": "heading section through next ###, terminal LF"
         }
       ],
@@ -689,7 +689,7 @@
       "source_file_sha256": "sha256:11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
       "source_line_sha256": "sha256:77f4af292cd562b2686f881a43a3044af2e3f3fa0230b687acaac5407e3f418c",
       "source_text": "HEADだけを置換でき、newer scheduleはolder scheduleだけを置換できる。`cancel-in-progress:false`だけによる",
-      "selected_condition_reading": "選択物理行の前半: HEADだけを置換し、新しいscheduleは古いscheduleだけを置換できる。末尾のcancel-in-progress:false句は未完の次節につながるため、このatomから独立条件へ展開しない。",
+      "selected_condition_reading": "選択atomは物理行31だけ。物理行30を文脈として結合し、同一PRのnewer HEADはそのPRのstale HEADだけを置換でき、newer scheduleはolder scheduleだけを置換できると読む。行31末尾のcancel-in-progress:false句は物理行32へ続く未完句であり、行32の「無制限並走を代替実装にしない」までが関連する完全文脈。行30と32はcontext_only_refsで記録し、source atom・atom数・digest inputには追加しない。",
       "historical_source_authority": "historical_candidate",
       "historical_target_authority": "draft_candidate",
       "historical_routing": {
@@ -727,7 +727,7 @@
           "path": "docs/helix-os/L2-requirements/governance-requirements.md",
           "line_start": 1434,
           "line_end": 1444,
-          "digest": "sha256:4729f2a77dba3c359c3f2a0b5572215f95ebcba663a6d87448653890be15ad3d",
+          "digest": "sha256:3f9a18340eebe4dbbdbd7c172c5f54f4289071271c927b7ca5edd28225ae7d4a",
           "digest_scope": "heading section through next ###, terminal LF"
         },
         {
@@ -736,24 +736,61 @@
           "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
           "line_start": 1025,
           "line_end": 1034,
-          "digest": "sha256:7a3d5a324599334ca1ad977f874ead013cf13bbb277f83b973f1e5284a8f80cd",
+          "digest": "sha256:720f1dcca06883dac492836cbdb36804c34a8df25546a4840a162c80fa15babe",
           "digest_scope": "heading section through next ###, terminal LF"
         }
       ],
-      "assessment": "Accepted sections retain adjacent general evidence/CI/continuity guarantees but not source-specific current-main protection, cross-obligation cancel non-interference, stale-only bounded replacement, or cancellation terminal reconstruction. Candidate 118 proposes these conditions for PO review.",
-      "condition_level_current_treatment": "選択行はHEADのみ、新scheduleはolder scheduleのみ置換できるという条件。隣接する次物理行の未完句は追加していない。採択L2/L11-020はrun identityや別HEAD結果拒否を持つが、stale-only境界とbounded置換を受入化していない。118候補に提案。",
-      "candidate_relation": "HELIXOS-L2/L11-118 unadopted candidate only; does not prove adoption or closure."
+      "assessment": "Context lines 30 and 32 are cited with independent file/line hashes but are not source atoms and do not alter the nine-atom candidate input.",
+      "condition_level_current_treatment": "選択atomは物理行31のみ。同一PRのnewer HEADはそのPRのstale HEADだけ、newer scheduleはolder scheduleだけ置換する。行31の末尾は行32「無制限並走を代替実装にしない」まで続く。採択L2/L11-020に同一PR/stale限定、schedule限定の受入はない。Aはsource strict保証、Bは同義務の別class結果流用を許し得る意味変更。",
+      "candidate_relation": "HELIXOS-L2/L11-118 unadopted candidate only; does not prove adoption or closure.",
+      "context_only_source_lines": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+          "line": 30,
+          "source_file_sha256": "sha256:11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+          "line_bytes_sha256": "sha256:a2e3dedba31688bcdbd4a0cf90ce5b133093df3e83bfdf017dfeccaa1a56edc4",
+          "line_sha256": "sha256:3869e4a2fb0b8c47faa444c56f3c400d2e24e824d90bc8acdbec090074303c77",
+          "text": "`main_push`、`schedule`、`workflow_dispatch`、別PRは相互にcancelしない。同一PRのnewer HEADはそのPRのstale",
+          "role": "context_only_not_selected_atom_not_in_candidate_atom_count"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+          "line": 32,
+          "source_file_sha256": "sha256:11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+          "line_bytes_sha256": "sha256:b85014139198ed2598ad41ab5de9c7691cb73c751403142aad4442095915ecb3",
+          "line_sha256": "sha256:309c491a6d25b513f5543e36f3a0a7af2c83231486e8b4916a83c27fcf50f0cb",
+          "text": "無制限並走を代替実装にしない。",
+          "role": "context_only_not_selected_atom_not_in_candidate_atom_count"
+        }
+      ]
     }
   ],
   "po_meaning_choices": {
-    "A": "Carry historical main/schedule/manual/PR event classes as fixed L2 classes; this fixes provider/event taxonomy.",
-    "B_recommended": "Keep those names as L11 fixtures; require separate obligation/generation boundaries, current-main non-substitution, stale-only bounded replacement, and reconstructible outcomes in L2; derive concrete classification from approved scope in L3/L10.",
-    "effect": "Neither choice adopts 118; a permanent taxonomy selection changes the source representation. B preserves outcome guarantees without inventing provider enum."
+    "A_recommended_source_faithful": "Keep cross-event-class non-cancellation; a newer PR HEAD replaces only that PR’s stale HEAD; newer schedule replaces only older schedule; another event class result cannot be reused for speedup, even if obligations otherwise match. Preserve these source guarantees without fixing provider API/schema.",
+    "B_meaning_change": "Generalize named events into obligation/generation identity and allow cross-event-class result reuse when the obligation/generation is the same. This can weaken the source strict rule; require explicit PO decision and impact scope before adoption.",
+    "decision_effect": "Neither alternative is adopted by this candidate; absent PO decision, strict A is the source-faithful candidate oracle."
   },
   "closure": "not_asserted",
   "limitations": [
     "No old runtime, CI, test, CLI, or live rehearsal was run.",
     "Historical routing metadata is not evidence of current satisfaction or deficiency.",
     "Candidate-only conditions remain unadopted; no implementation or execution evidence claimed."
-  ]
+  ],
+  "mpr_registration_history": [
+    {
+      "prior_local_draft": "MPR-RC-HELIXOS-L2-118-001 (before consolidation)",
+      "digest": "sha256:28bcb26170b839eaada879461ff3bf42b7dde0f53e062a335a0290a37c83e59d",
+      "event": "Initial local draft used atom concatenation without LF separators; it did not match the stated digest rule and is retained here as audit history only."
+    },
+    {
+      "prior_local_draft": "MPR-RC-HELIXOS-L2-118-002 (before consolidation)",
+      "digest": "sha256:6811dfa6e752c8468483477670df7d3ab6561cdf2d89b2f0a571f639eae1a55b",
+      "event": "Corrected atom digest to atom-id-sorted LF-separated tuples with no trailing LF; content and source atom hashes unchanged."
+    },
+    {
+      "final_register_record": "MPR-RC-HELIXOS-L2-118-001",
+      "event": "Corrected final source-condition reading and candidate pair; registration digest and source atom hashes remain the corrected values. Single final MPR record retained as 118-001."
+    }
+  ],
+  "audit_revision_recorded_at": "2026-10-02T06:53:18+09:00"
 }

@@ -25,24 +25,24 @@
 | `000500` / 同requests:29 | stale PR HEADと重複scheduleを、別event classへ影響させずbounded置換する。 | 採択L2/11とNCI候補の一般的なqueue/parallelism/HEAD bindingでは、他義務へのcancel波及とstale-only bounded replacementを検収できない。source class名は受入fixture例として残し、L2固定enumにしない。 |
 | `000501` / 同requests:30 | cancel/supersede/handoffの理由と対象を後から再構築する。 | L2/11-007/019の一般provenanceは任意のCI置換結果に対する具体関係を記さない。118はreason、対象義務/generation、terminal evidenceの追跡だけを追加し、旧receipt schemaを移さない。 |
 | `000502` / 同requests:31 | required verification削減、cancelled run成功扱い、別event class結果流用を高速化として認めない。 | L2/11-008/020はoracle削減や旧/別HEAD green代用を拒否するが、cancelled-runをpost-main/terminal/deferred recovery/review successへ使う拒否とsame-HEAD/different-obligation結果の不流用はない。118 L11へ個別反例を追加する。 |
-| `000528` / `ci-event-concurrency-generation-requirements.md:31` | 選択された物理行の読みに限り、HEAD置換とnewer scheduleによるolder schedule置換を述べる。行末の``cancel-in-progress:falseだけによる``は次行へ続く未完句である。 | 先行行の同一PR/stale HEAD文脈を識別用に確認したが、未選択の物理行32の述語をcandidate inputへ加えていない。118はstale対象に限る置換を保持し、同一義務境界以外への固定置換規則・provider方式は要求しない。 |
+| `000528` / `ci-event-concurrency-generation-requirements.md:31` | atomは物理行31のみ。行30をcontext-onlyで読むと、同一PRのnewer HEADはそのPRのstale HEADだけを置換し、newer scheduleはolder scheduleだけを置換できる。行31末尾の`cancel-in-progress:false`句は行32に続き、無制限並走を代替実装にしないという完全文脈になる。行30/32のtext・path・line・SHAをpaired JSONに別記し、atom数/digestには追加しない。 | L2/L11-020のrun identity・別HEAD拒否は保持済みだが、同一PR/stale-onlyとschedule-to-schedule限定は受入になっていない。118 Aは旧strict event class条件、無制限並走を設定1個で代替しない条件、別class結果非流用を保持する。Bは同義務なら別event class結果を流用しうる一般化で、元sourceのstrict非流用条件を弱める意味差として明示する。 |
 
 旧行ID・source fulltext/SHA・assetとledger/routing関係の正本は次のsource ledger/receipt。監査選択に使ったignored local JSONの分類はauthorityでもsource digestでもない。
 
 - source atoms：[`ci-event-concurrency-source-lines-2026-10-02.jsonl`](../requirement-registration/ci-event-concurrency-source-lines-2026-10-02.jsonl)
 - candidate receipt：[`ci-event-concurrency-coverage-receipt-2026-10-02.json`](../requirement-registration/ci-event-concurrency-coverage-receipt-2026-10-02.json)
-- MPR：`MPR-RC-HELIXOS-L2-118-002`（`registered_proposal`／`authority_effect: none`。001はsource-atom digest serialization訂正で002にsupersede）
+- MPR：`MPR-RC-HELIXOS-L2-118-001`（`registered_proposal`／`authority_effect: none`）。digest訂正の旧local draft履歴と最終一行への整理はreceipt/paired JSONに記録。
 
 - 条件単位の構造化照合は[paired JSON](legacy-candidate864-ci-event-concurrency-rows-current-treatment-2026-10-02.json)に記録した。各atomの採択済み／候補L2・L11行先、行／section digest、歴史routing、meaning変更、holding処置を含む。
 
 ## 意味差・PO判断材料
 
-旧sourceはmain、schedule、manual、PRをevent class名で記述する。crosswalkは旧enum/provider分類を新世代の恒久要求として固定しない一方、current-main検収保持、義務間非干渉、stale-only bounded replacement、terminal/reconstruction oracleを再採否へ渡している。候補118は、これらの利用者結果を義務/generation境界として保持し、event class名をL11 fixture例に限定する。
+旧sourceのCIG-R-02は`main_push`、`schedule`、`workflow_dispatch`、別PRの相互cancel禁止、同一PR内のstale HEAD限定置換、schedule内のolder schedule限定置換を指定する。source-faithful Aはこのstrict条件を保証し、provider APIやreceipt schemaは固定しない。Bはevent classをfixture例として義務/generation境界へ一般化するため、同一義務での別class結果流用を許し得る。これはold strict conditionを弱める意味差であり、PO decisionがない限り採択条件として扱わない。
 
-- **A**：旧main／schedule／manual／PR event classをL2の固定分類として引き継ぐ。旧分類との同一性は明瞭だが、GitHub固有のevent表と将来providerの分類をL2へ固定する。
-- **B（推奨）**：event class名をL11 fixtureに保持し、L2では異なるrequired obligationの非干渉・current main検収の非代用・stale generationに限るbounded置換・結果再構築を要求する。具体分類はL3/L10で承認済みscopeから導出する。利用者結果を維持し、sourceにない恒久enum/provider規則を追加しない。
+- **A（推奨・source-faithful）**：旧sourceに明記されたevent間cancel禁止、同一PRのstale HEADだけの置換、newer scheduleからolder scheduleだけの置換、別event class結果の高速化利用禁止を保つ。event名はこの要求scopeの振舞いを識別し、provider APIやschemaを固定しない。
+- **B（意味変更を要する）**：event class名をfixture例にし、同じ義務/generationであれば別event class結果を流用できる一般化を認める。sourceのstrictなevent class非干渉・結果非流用を弱めるため、選ぶ場合は許す範囲と影響要求をPO decisionに記録する。
 
-A/Bどちらも、別の義務の実行がcurrent-main検収をcancelしない条件を落とさない。数値の並列数・queue上限・TTL、GitHub native concurrency、旧receipt/DB/doctor/telemetry/run-ID形式、旧runtime/CI/test/live rehearsalはこの判断の対象にしない。
+両案ともcurrent-main post-main検収の非代用、数値を捏造しないbounded制御、旧runtime/CI/test/live rehearsal禁止を維持する。Bは同義務・同generation内のevent class横断流用を許し得るため、Aと同じsource意味ではない。並列数・queue上限・TTL、GitHub native concurrency、旧receipt/DB/doctor/telemetry/run-ID形式は固定しない。
 
 ## 境界と判定
 
