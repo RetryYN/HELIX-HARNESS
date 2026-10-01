@@ -2970,6 +2970,14 @@
         "utf8_source_line_content_sha256": "fcb45e5d981a26ac62c47db0f4393da1c16a074c2635c85020526cb18dabb671",
         "physical_line_bytes_sha256": "03cb25be010a9c46c9a3200f95d5304b7e1993bff2b4b03bab681df61c0f1c80",
         "source_line_sha256": "sha256:fcb45e5d981a26ac62c47db0f4393da1c16a074c2635c85020526cb18dabb671"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -3287,6 +3295,14 @@
         "utf8_source_line_content_sha256": "c539efe44a893c897f0cee83273e2b595c06ce294e0b502acac0fe5f4e20a7d4",
         "physical_line_bytes_sha256": "4e801c45a1c67c127669b137045a10f2e3da382524d13e177b83d86e2786c883",
         "source_line_sha256": "sha256:c539efe44a893c897f0cee83273e2b595c06ce294e0b502acac0fe5f4e20a7d4"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -3582,6 +3598,14 @@
         "utf8_source_line_content_sha256": "fbfb787f2c1b0a8e2270ff934690a42280682466c9f5b03f7153dda9da3dc9f2",
         "physical_line_bytes_sha256": "c69b77d446ca3e7c651628caf6f357a955997343fdf88b3d67f01ba0d8df5811",
         "source_line_sha256": "sha256:fbfb787f2c1b0a8e2270ff934690a42280682466c9f5b03f7153dda9da3dc9f2"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -3874,6 +3898,14 @@
         "utf8_source_line_content_sha256": "a04ad74ef4f3cf50f60563d6c0d8ef447dc77ca15386b6a5d0b7370b2df0aefa",
         "physical_line_bytes_sha256": "1b634bc9b5d092eea04ea18bd9918aa9db2f45c687bc33762e9d6990e5b26525",
         "source_line_sha256": "sha256:a04ad74ef4f3cf50f60563d6c0d8ef447dc77ca15386b6a5d0b7370b2df0aefa"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -4166,6 +4198,14 @@
         "utf8_source_line_content_sha256": "7640a93ac93e2666b650b78590b4ac20b6d1bbf3abf1078bf4099a41fe65a44b",
         "physical_line_bytes_sha256": "32c1d7f98d763820bb98ad8cb71c6432a9f69060ec679da97731dee8b84d47a2",
         "source_line_sha256": "sha256:7640a93ac93e2666b650b78590b4ac20b6d1bbf3abf1078bf4099a41fe65a44b"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -4458,6 +4498,14 @@
         "utf8_source_line_content_sha256": "e612a9b68537456c538d78658d6ac9d54a7f32c6525e9f3c357be311b1d15257",
         "physical_line_bytes_sha256": "9d4b144cf099267f8088a863f46dc5664b570fbe50b574ac984024153b75a5f9",
         "source_line_sha256": "sha256:e612a9b68537456c538d78658d6ac9d54a7f32c6525e9f3c357be311b1d15257"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -4750,6 +4798,14 @@
         "utf8_source_line_content_sha256": "e6a821a19697f7498bfa2512281031ae672813d389038d329cc43b75104a0ed2",
         "physical_line_bytes_sha256": "ea9d7e018ee15b120b7e7c24cce5da4a6cfeb7de9121dc6c6520bd0864134b1c",
         "source_line_sha256": "sha256:e6a821a19697f7498bfa2512281031ae672813d389038d329cc43b75104a0ed2"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -5042,6 +5098,14 @@
         "utf8_source_line_content_sha256": "1464a8658d16bc8674c66322ed790f146e93a00a3f0f1e9cb656d6ffdd43ab62",
         "physical_line_bytes_sha256": "6f24a4ea4be6d83f9ee809b8cc61535e27e4a625a690dd6645036e1da5b23438",
         "source_line_sha256": "sha256:1464a8658d16bc8674c66322ed790f146e93a00a3f0f1e9cb656d6ffdd43ab62"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -5334,6 +5398,14 @@
         "utf8_source_line_content_sha256": "1ba1fdcb473d1c6b9bf4bf77014d7a3092e295a2fa561e28dbf6656a7f841a36",
         "physical_line_bytes_sha256": "811cf0832db242f4db39dee5a017def0160ba7c7aea281b2d7bf3b3f98edef73",
         "source_line_sha256": "sha256:1ba1fdcb473d1c6b9bf4bf77014d7a3092e295a2fa561e28dbf6656a7f841a36"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -5626,6 +5698,14 @@
         "utf8_source_line_content_sha256": "b410f3fe7e5a6d9e65e48cefddb6a9945a02bb5cbee9cfedd0d97ab5b50c8b21",
         "physical_line_bytes_sha256": "5ecc9d1f8be8ff3390f68d0100d92b855c576a76e5cc7bb090ed9ca19c7d463b",
         "source_line_sha256": "sha256:b410f3fe7e5a6d9e65e48cefddb6a9945a02bb5cbee9cfedd0d97ab5b50c8b21"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -5918,6 +5998,14 @@
         "utf8_source_line_content_sha256": "7eeb9f1a1cb86b818adbd15323c297988d90c120a1847e09be714f4db4267353",
         "physical_line_bytes_sha256": "df231f41e26c62c6b4a8bc85ebb5f8a32a694c0cd980138cfe43290d4537a35d",
         "source_line_sha256": "sha256:7eeb9f1a1cb86b818adbd15323c297988d90c120a1847e09be714f4db4267353"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -6210,6 +6298,14 @@
         "utf8_source_line_content_sha256": "53ac9d16a987eccf3e85bf51e52418f1a5a68b636e54c2643356141075d1dd41",
         "physical_line_bytes_sha256": "3595360bcc63d2a73ff94dfaaa28d3c96a30f12f8d2b8de4f60eff15ae53b67a",
         "source_line_sha256": "sha256:53ac9d16a987eccf3e85bf51e52418f1a5a68b636e54c2643356141075d1dd41"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -6502,6 +6598,14 @@
         "utf8_source_line_content_sha256": "5087931323a61c6a2c10b4b9c1f04d1fba43c64cee13c4fb0a2d775a1b401c57",
         "physical_line_bytes_sha256": "4a69a6f856e2f8c7db29fa380378b093e3caa1b907a17a312f4da6ab909f3e8f",
         "source_line_sha256": "sha256:5087931323a61c6a2c10b4b9c1f04d1fba43c64cee13c4fb0a2d775a1b401c57"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -6794,6 +6898,14 @@
         "utf8_source_line_content_sha256": "d35e3d779f257667a4d2a86c4363953632b39402ae6cb2005ef20ad632126f7f",
         "physical_line_bytes_sha256": "5e61afdc65538ca91a1d835780d4a644eac6002958355d09653ad3f7abeffce3",
         "source_line_sha256": "sha256:d35e3d779f257667a4d2a86c4363953632b39402ae6cb2005ef20ad632126f7f"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -7086,6 +7198,14 @@
         "utf8_source_line_content_sha256": "2bd04a729583cf56eacfe066b95bb617606c1b4acddf4e39c84b5ec86c6b3b3e",
         "physical_line_bytes_sha256": "eb98c08358b51909bea83067dc2604a5e33f91434e52733ee78a87c76a6edebd",
         "source_line_sha256": "sha256:2bd04a729583cf56eacfe066b95bb617606c1b4acddf4e39c84b5ec86c6b3b3e"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -7378,6 +7498,14 @@
         "utf8_source_line_content_sha256": "048c44b65c61ece7d4a8af3c72e9e965c1f6a0eb43b97c74f4afd5208033ca33",
         "physical_line_bytes_sha256": "c8644f14be6198d4955557629fae63407e6d0587a2986f120c3f7c6d81a6e367",
         "source_line_sha256": "sha256:048c44b65c61ece7d4a8af3c72e9e965c1f6a0eb43b97c74f4afd5208033ca33"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -7670,6 +7798,14 @@
         "utf8_source_line_content_sha256": "8794c5ea07b82d2bd8288350464c748e7a677dd2ae81ab3cd892af068029609f",
         "physical_line_bytes_sha256": "ae1d70ebb775c671212d03d1486fb0d6bcad053b586c7d6ed3d9545cba78b6ad",
         "source_line_sha256": "sha256:8794c5ea07b82d2bd8288350464c748e7a677dd2ae81ab3cd892af068029609f"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -7682,7 +7818,7 @@
       "exact_source_line_text": "A-4. #1292の同一hypothesis revisionに調査、PoC、プロト、反応を接続する。実現可能性、見た目・言葉の好み、用途適合を分ける。静止画で動きを検証済みにしない。原発言・要約・AI解釈を分離し、反応から要求確定を捏造しない。[S9]",
       "semantic_family": "要求形成・影響限定Admission取込台帳",
       "semantic_function": "同一仮説revisionで実物確認の軸を分離",
-      "semantic_reading": "LEGACY-CAND-LINE-003681 — `#1292`の同じhypothesis revisionにresearch・PoC・prototype・reactionを接続し、実現可能性、見た目／言葉の好み、用途適合を分ける。静止画だけで動作確認済みにせず、原発言・要約・AI解釈を分け、反応から要求確定を作らない。",
+      "semantic_reading": "LEGACY-CAND-LINE-003681 — `#1292`の同じhypothesis revisionにresearch・PoC・prototype・reactionを接続し、実現可能性、見た目／言葉の好み、用途適合を分ける。静止画だけで動作確認済みにせず、原発言・要約・AI解釈を分け、反応から要求確定を作らない。 [S9]",
       "legacy_context": {
         "section_heading": {
           "line": 82,
@@ -7962,6 +8098,14 @@
         "utf8_source_line_content_sha256": "e223b38426115bf2831f9748ae68f8c5d6de1f44b2b8e057c91785e051399ac9",
         "physical_line_bytes_sha256": "ad1873bb12f0119e39c4ad4a594138bc964280fa082d21930bb65788442afd59",
         "source_line_sha256": "sha256:e223b38426115bf2831f9748ae68f8c5d6de1f44b2b8e057c91785e051399ac9"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -8254,6 +8398,14 @@
         "utf8_source_line_content_sha256": "4a8d6173ad223801496bf76b4acd81e22b58d558d8c9fcf586e640f7e598ee53",
         "physical_line_bytes_sha256": "4d85f3e002896f18b2c8960e1b63a12a19ae92c3774eed09b702baea308d2f30",
         "source_line_sha256": "sha256:4a8d6173ad223801496bf76b4acd81e22b58d558d8c9fcf586e640f7e598ee53"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -8546,6 +8698,14 @@
         "utf8_source_line_content_sha256": "c5da26adbc71fa426b6e97f170a4594572bda2068ff879c08695e832ac6a8ff8",
         "physical_line_bytes_sha256": "d7100260c493fa9fed5f3efd784ddb5260536aa3738348796930fae75761931f",
         "source_line_sha256": "sha256:c5da26adbc71fa426b6e97f170a4594572bda2068ff879c08695e832ac6a8ff8"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -8838,6 +8998,14 @@
         "utf8_source_line_content_sha256": "6f01b522ad1871780eea4f4a33d40699c9ad20559dbdde4d1056816797192e8b",
         "physical_line_bytes_sha256": "7ce30e34b4df25e82cb44a24c6658a8cf2bbf14c24ca24e43b684b1905cc1f9a",
         "source_line_sha256": "sha256:6f01b522ad1871780eea4f4a33d40699c9ad20559dbdde4d1056816797192e8b"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -9130,6 +9298,14 @@
         "utf8_source_line_content_sha256": "e3629b44d86b778cc0bb4e2e0cd6710099993c51a67ce95395a798823e37519e",
         "physical_line_bytes_sha256": "ca0a0f16e3988633cdf83253575fcbbe4d56ce2faf8a167b097562109c61ff0e",
         "source_line_sha256": "sha256:e3629b44d86b778cc0bb4e2e0cd6710099993c51a67ce95395a798823e37519e"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -9142,7 +9318,7 @@
       "exact_source_line_text": "B-6. #1169の再compile・再freeze・人間判断を独立判定する。影響closureに含まれる要求／設計／検証／Assignmentだけをstaleにし、無関係な仕事を停止しない。共有不変条件の影響範囲が不明なら、勝手に局所扱いせず調査・隔離する。意味不変の表記・projection更新で要求revisionを不要に増やさない。変更されたコードのCI・独立reviewは対象HEADで取り直す。[S3][S10]",
       "semantic_family": "要求形成・影響限定Admission取込台帳",
       "semantic_function": "影響closure限定のrecompile・refreeze・stale判定",
-      "semantic_reading": "LEGACY-CAND-LINE-003693 — `#1169`に関わる再compile・再freeze・人間判断を別々に判定する。影響closure内の要求・設計・検証・Assignmentだけをstaleにし、無関係作業を止めない。共有不変条件の影響が不明なら局所扱いせず調査・隔離する。意味不変の表記／projectionでは要求revisionを不要に増やさず、変更codeのCI・独立reviewを対象HEADで取り直す。",
+      "semantic_reading": "LEGACY-CAND-LINE-003693 — `#1169`に関わる再compile・再freeze・人間判断を別々に判定する。影響closure内の要求・設計・検証・Assignmentだけをstaleにし、無関係作業を止めない。共有不変条件の影響が不明なら局所扱いせず調査・隔離する。意味不変の表記／projectionでは要求revisionを不要に増やさず、変更codeのCI・独立reviewを対象HEADで取り直す。 [S3][S10]",
       "legacy_context": {
         "section_heading": {
           "line": 96,
@@ -9422,6 +9598,14 @@
         "utf8_source_line_content_sha256": "d8796bc15bc38e054dbba82ad170116c559c431d21a02c2e9cb674dc190ad68b",
         "physical_line_bytes_sha256": "d3a280b7c201256cc0e4425ba951701d397d86d75dd8f2aace3a035bb21f2b36",
         "source_line_sha256": "sha256:d8796bc15bc38e054dbba82ad170116c559c431d21a02c2e9cb674dc190ad68b"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -9434,7 +9618,7 @@
       "exact_source_line_text": "C-1. Issueのroot／capability／task／findingと、候補の成熟度・判断authority・実行profileを別軸にする。既存strict schemaへ未定義fieldを直足しせず、改版した正規契約からGitHubへ投影する。Issue作成・文書merge・CI greenだけで候補を実装許可へ昇格しない。[S10][S11]",
       "semantic_family": "要求形成・影響限定Admission取込台帳",
       "semantic_function": "Issue階層・候補状態・authority・実行profileの分離",
-      "semantic_reading": "LEGACY-CAND-LINE-003695 — Issueのroot／capability／task／finding階層と、候補成熟度・判断authority・実行profileを別軸にする。既存strict schemaへ未定義fieldを直接追加せず、改版済み正規contractからGitHubへ投影する。Issue作成・文書merge・CI greenのみで候補を実装許可へ上げない。",
+      "semantic_reading": "LEGACY-CAND-LINE-003695 — Issueのroot／capability／task／finding階層と、候補成熟度・判断authority・実行profileを別軸にする。既存strict schemaへ未定義fieldを直接追加せず、改版済み正規contractからGitHubへ投影する。Issue作成・文書merge・CI greenのみで候補を実装許可へ上げない。 [S10][S11]",
       "legacy_context": {
         "section_heading": {
           "line": 116,
@@ -9714,6 +9898,14 @@
         "utf8_source_line_content_sha256": "c2f73ef8afd0205160cdae413334e4284f7e2f8f1a935ee20407c7c8ab7ede0a",
         "physical_line_bytes_sha256": "1af6c94fc05f22154e4664f8314600b0e8a6de3f113399b52c2853e3b548ceba",
         "source_line_sha256": "sha256:c2f73ef8afd0205160cdae413334e4284f7e2f8f1a935ee20407c7c8ab7ede0a"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -10006,6 +10198,14 @@
         "utf8_source_line_content_sha256": "a13c2b1086d5b10ef5a5163d3b939150e6eef9d9053c9a725691dd0684d52b2a",
         "physical_line_bytes_sha256": "254015c11c38fdaa244781ecbefd6cb82d46b94e4c8ce72405a662f136266aa4",
         "source_line_sha256": "sha256:a13c2b1086d5b10ef5a5163d3b939150e6eef9d9053c9a725691dd0684d52b2a"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -10298,6 +10498,14 @@
         "utf8_source_line_content_sha256": "04f97a1cbbb5c5acf83f54e11d835867f5e41bd49e6c42da9a9daeed67d44de8",
         "physical_line_bytes_sha256": "1bb91ee395b09373f82d37c0735c1c2521a0775babf163ba702fd61b9a963e5a",
         "source_line_sha256": "sha256:04f97a1cbbb5c5acf83f54e11d835867f5e41bd49e6c42da9a9daeed67d44de8"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -10590,6 +10798,14 @@
         "utf8_source_line_content_sha256": "3b6c044c6afdbcd204d58ea4f680bdbe2251d5eadca94d21183f1b16970d6f7f",
         "physical_line_bytes_sha256": "4d47d6e5397b3eee3a851c5f9f59e5f84b34ad32d1b9bfdacca5b3510e208afb",
         "source_line_sha256": "sha256:3b6c044c6afdbcd204d58ea4f680bdbe2251d5eadca94d21183f1b16970d6f7f"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -10882,6 +11098,14 @@
         "utf8_source_line_content_sha256": "552b2f6e39b468d0ea302cb7fc4e151271311833bc4097528a0ae23267dbfee4",
         "physical_line_bytes_sha256": "f5e62d65bfe1811a77a2729989e4487940e7db5371af91a1b3678402acd215a1",
         "source_line_sha256": "sha256:552b2f6e39b468d0ea302cb7fc4e151271311833bc4097528a0ae23267dbfee4"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -11174,6 +11398,14 @@
         "utf8_source_line_content_sha256": "4f434d61c00d267b786dc962fb01f31421edb84937fc2c63e571affd4316052d",
         "physical_line_bytes_sha256": "f3c0d8d14571cd2ce030167070a6d98435340ae930ca452ebb09de907121ba65",
         "source_line_sha256": "sha256:4f434d61c00d267b786dc962fb01f31421edb84937fc2c63e571affd4316052d"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -11466,6 +11698,14 @@
         "utf8_source_line_content_sha256": "b899e995773e254d23d620792e3bf2cf4f0b84cae43f0204a722843b37f16b00",
         "physical_line_bytes_sha256": "7dd79f6555f14121a64f29f5f45a7e23aad0de759bc8384af6347e05741dbf28",
         "source_line_sha256": "sha256:b899e995773e254d23d620792e3bf2cf4f0b84cae43f0204a722843b37f16b00"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -11758,6 +11998,14 @@
         "utf8_source_line_content_sha256": "b17ebfa365ba6415e252ce09b2d6fece0626f75187cec4f80b785b72fa051083",
         "physical_line_bytes_sha256": "486a69642cc527508b22893d3ced33d58e5dc8f2e5950e959cbb99d601143c1f",
         "source_line_sha256": "sha256:b17ebfa365ba6415e252ce09b2d6fece0626f75187cec4f80b785b72fa051083"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -12050,6 +12298,14 @@
         "utf8_source_line_content_sha256": "a2182b4a41b3cfbb1a49dfdf6e4b44c9a317b727276d9d5f03e7423a8c4fa78a",
         "physical_line_bytes_sha256": "1b38529295cba33b91bbec54d88c1aca064f188db9bcce3f41b9b2186feaa937",
         "source_line_sha256": "sha256:a2182b4a41b3cfbb1a49dfdf6e4b44c9a317b727276d9d5f03e7423a8c4fa78a"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -12342,6 +12598,14 @@
         "utf8_source_line_content_sha256": "c72fac3908d8614a954b43acf7a2f6f5ef21fa3fa44d8ee977ffc19e93b076ae",
         "physical_line_bytes_sha256": "8eb5fbe803253db472f6efbf455420645a74441350fd14151c0773a1be0cbfe2",
         "source_line_sha256": "sha256:c72fac3908d8614a954b43acf7a2f6f5ef21fa3fa44d8ee977ffc19e93b076ae"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -12634,6 +12898,14 @@
         "utf8_source_line_content_sha256": "6eb3610abedc00b8d5b6fdf1f2b3f76dadac356732db7409809c7590abae4721",
         "physical_line_bytes_sha256": "3c2775dc85050d82fe48aa69eacebd6774c9459a39d95499304c7235ea8f4c48",
         "source_line_sha256": "sha256:6eb3610abedc00b8d5b6fdf1f2b3f76dadac356732db7409809c7590abae4721"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -12926,6 +13198,14 @@
         "utf8_source_line_content_sha256": "5552868a5be840d7a7cb3efbd74f4fb83344842aaf202105008ee092f0db01bb",
         "physical_line_bytes_sha256": "019979e6b0834b2ad88ea08a0ceb686430a0435797247ed45faef77cc72e406d",
         "source_line_sha256": "sha256:5552868a5be840d7a7cb3efbd74f4fb83344842aaf202105008ee092f0db01bb"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -13288,6 +13568,14 @@
         "utf8_source_line_content_sha256": "d30507273795da33fc510ec07994c4506da5711220a503a6965c71d087f5efbb",
         "physical_line_bytes_sha256": "bcb06f87357d06a2e7e4aa0edbb4a69a117911302ff9f611f54b2b6a5396378b",
         "source_line_sha256": "sha256:d30507273795da33fc510ec07994c4506da5711220a503a6965c71d087f5efbb"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -13580,6 +13868,14 @@
         "utf8_source_line_content_sha256": "609a5d3e44819df0d6aff89b80b3f2cde8ea23bdae9e9fd506d3c832a9560179",
         "physical_line_bytes_sha256": "2f5b056c7d27f0a863aa779065372d227db9828048a176b5470f8ec68da5a0f6",
         "source_line_sha256": "sha256:609a5d3e44819df0d6aff89b80b3f2cde8ea23bdae9e9fd506d3c832a9560179"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -13872,6 +14168,14 @@
         "utf8_source_line_content_sha256": "a548458855a74ba6625b695ce6b4eada042d9dc63b77cbe123da8472524f02bb",
         "physical_line_bytes_sha256": "f98ee76a739a13371c7bda12c2ae434171cf24e0faeef80b46cbc5483875f372",
         "source_line_sha256": "sha256:a548458855a74ba6625b695ce6b4eada042d9dc63b77cbe123da8472524f02bb"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -14164,6 +14468,14 @@
         "utf8_source_line_content_sha256": "b6eb117b2f6534e12adf46ff0dc0ccb306a72c9626fef2816ae6a629b7b727a3",
         "physical_line_bytes_sha256": "51fc8ee7a6a697a6d0fdc18591d3e66ab70cc8e90ac1cef8f51be5a7e3c83048",
         "source_line_sha256": "sha256:b6eb117b2f6534e12adf46ff0dc0ccb306a72c9626fef2816ae6a629b7b727a3"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     },
     {
@@ -14456,6 +14768,14 @@
         "utf8_source_line_content_sha256": "b446b4b1946146b3869f1279af843657d8be2ec50436c2206c5bc4d8329cd7e0",
         "physical_line_bytes_sha256": "6b162e934b615675cd45f6a4c3548f1406076871d7440391dd8707b98a13ba88",
         "source_line_sha256": "sha256:b446b4b1946146b3869f1279af843657d8be2ec50436c2206c5bc4d8329cd7e0"
+      },
+      "RFA_family_companion_relation": {
+        "evidence_ref": "#/RFA_shared_family_companion_evidence",
+        "interpretation": "固定F6のHARNESS L2:186,193–196／OS L2:428,440–442,508はRFA requests/requirementsのfamily関係。current mainにのみあるOS L2:1183／OS L11:800と046 receiptは選択外LEGACY-CAND-LINE-003612（RFA-AC-16、acceptance.md:37）に限るcompanion関係。選択したintake物理行のdirect binding・採択・successor・closureを生成しない。",
+        "selected_row_binding": false,
+        "selected_row_adoption": false,
+        "successor_created": false,
+        "closure_asserted": false
       }
     }
   ],
@@ -14525,5 +14845,608 @@
       "sha256": "cdccc509f0bd5e7ef752e76ac3ecb5a48e7b9bcd0981b9ccf23d442a29968ecd"
     },
     "note": "同一PRの先行slice本文をpin。作成時baseと区別し、全量closureは主張しない。"
+  },
+  "RFA_shared_family_companion_evidence": {
+    "origin": "隣接2101–2140のintake行2114と共通のRFA family/companion関係を元commitの本文・引用行へ再照合。",
+    "citations": [
+      {
+        "artifact_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "artifact_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "artifact_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "selected_source_file_path_line_refs": [],
+        "selected_source_file_sha256_refs": [],
+        "RFA_family_term_line_refs": [
+          {
+            "line": 186,
+            "text": "[RFA候補](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requests.md)、",
+            "matched_family_terms": [
+              "requirement-formation-scoped-admission"
+            ]
+          },
+          {
+            "line": 193,
+            "text": "| HARNESS-L2-003 | AVS-BR-001／003、RFA-BR-02 | 相談・依頼・採択・要件承認・操作認可を区別してscopeとrevisionを照合する。委任済み意図の技術的具体化は反復承認を必須にせず、未委任の意味・権限変更は別判断を要する |",
+            "matched_family_terms": [
+              "RFA-"
+            ]
+          },
+          {
+            "line": 195,
+            "text": "| HARNESS-L2-004 | RFA-BR-03、DGH-BR-02 | 変更の影響要求・設計・対検証を再確定し、影響しない有効作業を一律失効させない |",
+            "matched_family_terms": [
+              "RFA-"
+            ]
+          },
+          {
+            "line": 196,
+            "text": "| HARNESS-L2-003／005 | RFA-BR-01、DGH-BR-01／03 | 目的・前提・外部実例・既存資産・比較根拠と、受容済みの軸・未解決findingを確認する。客観品質と人間の受容を相殺せず、両者に必要な確認を残す |",
+            "matched_family_terms": [
+              "RFA-"
+            ]
+          }
+        ],
+        "relation_type": "source-file/family reference only; not a selected source-row binding or adoption"
+      },
+      {
+        "artifact_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "artifact_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "artifact_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+        "selected_source_file_path_line_refs": [],
+        "selected_source_file_sha256_refs": [],
+        "RFA_family_term_line_refs": [
+          {
+            "line": 428,
+            "text": "[RFA](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requests.md)、",
+            "matched_family_terms": [
+              "requirement-formation-scoped-admission"
+            ]
+          },
+          {
+            "line": 440,
+            "text": "| RFA-BR-01 | 目的・前提・選択肢・根拠を比較し、利用者意図との食い違いを確認できる |",
+            "matched_family_terms": [
+              "RFA-"
+            ]
+          },
+          {
+            "line": 441,
+            "text": "| RFA-BR-02 | 委任済み意図の範囲では技術的具体化が反復承認を要求せず進む。未委任の意味・権限変更は区別される |",
+            "matched_family_terms": [
+              "RFA-"
+            ]
+          },
+          {
+            "line": 442,
+            "text": "| RFA-BR-03 | 変更で影響する要求・検証・writerだけを再確定し、無関係な有効作業の継続を確認できる |",
+            "matched_family_terms": [
+              "RFA-"
+            ]
+          },
+          {
+            "line": 508,
+            "text": "| RFA | [RFA要件](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requirements.md)：RFA-RF-01..04、RFA-RC-01..05、RFA-GH-01..03 | HELIXOS-L2-001／002／003／007 |",
+            "matched_family_terms": [
+              "RFA-",
+              "requirement-formation-scoped-admission"
+            ]
+          }
+        ],
+        "relation_type": "source-file/family reference only; not a selected source-row binding or adoption"
+      },
+      {
+        "artifact_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "artifact_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "artifact_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+        "selected_source_file_path_line_refs": [],
+        "selected_source_file_sha256_refs": [],
+        "RFA_family_term_line_refs": [
+          {
+            "line": 209,
+            "text": "HELIXOS-L2-001／002／003／007ではAVS6件・RFA3件・DGH3件由来の条件を確認する。",
+            "matched_family_terms": [
+              "RFA3"
+            ]
+          }
+        ],
+        "relation_type": "source-file/family reference only; not a selected source-row binding or adoption"
+      },
+      {
+        "artifact_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "artifact_commit": "a0ea53c567779c51b453fcd5e22c985b36b9db2e",
+        "artifact_sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
+        "selected_source_file_path_line_refs": [],
+        "selected_source_file_sha256_refs": [],
+        "RFA_family_term_line_refs": [
+          {
+            "line": 186,
+            "text": "[RFA候補](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requests.md)、",
+            "matched_family_terms": [
+              "requirement-formation-scoped-admission"
+            ]
+          },
+          {
+            "line": 193,
+            "text": "| HARNESS-L2-003 | AVS-BR-001／003、RFA-BR-02 | 相談・依頼・採択・要件承認・操作認可を区別してscopeとrevisionを照合する。委任済み意図の技術的具体化は反復承認を必須にせず、未委任の意味・権限変更は別判断を要する |",
+            "matched_family_terms": [
+              "RFA-"
+            ]
+          },
+          {
+            "line": 195,
+            "text": "| HARNESS-L2-004 | RFA-BR-03、DGH-BR-02 | 変更の影響要求・設計・対検証を再確定し、影響しない有効作業を一律失効させない |",
+            "matched_family_terms": [
+              "RFA-"
+            ]
+          },
+          {
+            "line": 196,
+            "text": "| HARNESS-L2-003／005 | RFA-BR-01、DGH-BR-01／03 | 目的・前提・外部実例・既存資産・比較根拠と、受容済みの軸・未解決findingを確認する。客観品質と人間の受容を相殺せず、両者に必要な確認を残す |",
+            "matched_family_terms": [
+              "RFA-"
+            ]
+          }
+        ],
+        "relation_type": "source-file/family reference only; not a selected source-row binding or adoption"
+      },
+      {
+        "artifact_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "artifact_commit": "a0ea53c567779c51b453fcd5e22c985b36b9db2e",
+        "artifact_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+        "selected_source_file_path_line_refs": [],
+        "selected_source_file_sha256_refs": [],
+        "RFA_family_term_line_refs": [
+          {
+            "line": 428,
+            "text": "[RFA](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requests.md)、",
+            "matched_family_terms": [
+              "requirement-formation-scoped-admission"
+            ]
+          },
+          {
+            "line": 440,
+            "text": "| RFA-BR-01 | 目的・前提・選択肢・根拠を比較し、利用者意図との食い違いを確認できる |",
+            "matched_family_terms": [
+              "RFA-"
+            ]
+          },
+          {
+            "line": 441,
+            "text": "| RFA-BR-02 | 委任済み意図の範囲では技術的具体化が反復承認を要求せず進む。未委任の意味・権限変更は区別される |",
+            "matched_family_terms": [
+              "RFA-"
+            ]
+          },
+          {
+            "line": 442,
+            "text": "| RFA-BR-03 | 変更で影響する要求・検証・writerだけを再確定し、無関係な有効作業の継続を確認できる |",
+            "matched_family_terms": [
+              "RFA-"
+            ]
+          },
+          {
+            "line": 508,
+            "text": "| RFA | [RFA要件](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requirements.md)：RFA-RF-01..04、RFA-RC-01..05、RFA-GH-01..03 | HELIXOS-L2-001／002／003／007 |",
+            "matched_family_terms": [
+              "RFA-",
+              "requirement-formation-scoped-admission"
+            ]
+          },
+          {
+            "line": 1183,
+            "text": "- **source範囲と限界**：旧RFA-AC-16の一つのacceptance rowだけをこの接続候補へ対応づける。旧RFA候補全体、隣接AC行、旧engine／schema／runtime、全GitHub operationの実装・受入やsource closureは対象外で、旧条件全体のsuccessorを主張しない。",
+            "matched_family_terms": [
+              "RFA-"
+            ]
+          }
+        ],
+        "relation_type": "source-file/family reference only; not a selected source-row binding or adoption"
+      },
+      {
+        "artifact_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "artifact_commit": "a0ea53c567779c51b453fcd5e22c985b36b9db2e",
+        "artifact_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+        "selected_source_file_path_line_refs": [],
+        "selected_source_file_sha256_refs": [],
+        "RFA_family_term_line_refs": [
+          {
+            "line": 209,
+            "text": "HELIXOS-L2-001／002／003／007ではAVS6件・RFA3件・DGH3件由来の条件を確認する。",
+            "matched_family_terms": [
+              "RFA3"
+            ]
+          },
+          {
+            "line": 800,
+            "text": "- **境界と受入限界**：required条件と適用可能な除外は既存contractのownerが決め、本候補は具体的なrequired list、CI、skip機構、追加承認、実運用設定を定義しない。RFA-AC-16の指定rowだけを扱い、旧RFA全体のclosure、実装、運転、merge実施を主張しない。",
+            "matched_family_terms": [
+              "RFA-"
+            ]
+          }
+        ],
+        "relation_type": "source-file/family reference only; not a selected source-row binding or adoption"
+      },
+      {
+        "artifact_path": "docs/governance/audits/requirement-registration/helixos-rfa-scope-coverage-receipt-2026-09-28.json",
+        "artifact_commit": "a0ea53c567779c51b453fcd5e22c985b36b9db2e",
+        "artifact_sha256": "691bbe181787f65891d3728ba0c4069a2bb151701b400ef7192ff62ff8634128",
+        "selected_source_file_path_line_refs": [],
+        "selected_source_file_sha256_refs": [],
+        "RFA_family_term_line_refs": [
+          {
+            "line": 2,
+            "text": "  \"receipt_id\": \"DRAFT-RCPT-HELIXOS-L2-046-RFA-AC-16-2026-09-28\",",
+            "matched_family_terms": [
+              "RFA-"
+            ]
+          },
+          {
+            "line": 13,
+            "text": "  \"source_collection_scope\": \"MPR-SH-CANDIDATE-003が保全するlegacy candidate line inventoryのうち、LEGACY-CAND-LINE-003612（旧RFA-AC-16 acceptance row）1行だけを入力する局所receipt。旧RFA候補全体、隣接row、旧engine/schema/runtime、旧source全体は対象外。\",",
+            "matched_family_terms": [
+              "RFA-"
+            ]
+          },
+          {
+            "line": 34,
+            "text": "      \"source_path\": \"archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-acceptance.md\",",
+            "matched_family_terms": [
+              "requirement-formation-scoped-admission"
+            ]
+          },
+          {
+            "line": 38,
+            "text": "      \"source_text\": \"| RFA-AC-16 | RFA-GH-02 | dispatch/実行/ready/mergeが同authority/HEAD/scopeを照合。docs path免除・探索mergeの実装許可化・required skipを拒否 |\",",
+            "matched_family_terms": [
+              "RFA-"
+            ]
+          },
+          {
+            "line": 73,
+            "text": "    \"question\": \"旧RFA-AC-16のdispatch/実行/Ready/merge間のauthority・HEAD・scope連続性と指定された三つの迂回拒否を、既存責務を変えない限定OS L2/L11-046 connection候補として採択するか。\",",
+            "matched_family_terms": [
+              "RFA-"
+            ]
+          },
+          {
+            "line": 94,
+            "text": "  \"source_holding_note\": \"MPR-SH-CANDIDATE-003 remains unchanged and live as the wider legacy candidate holding; the selected RFA-AC-16 row is mapped only to this candidate input. This does not close the holding or other source conditions.\"",
+            "matched_family_terms": [
+              "RFA-"
+            ]
+          }
+        ],
+        "relation_type": "source-file/family reference only; not a selected source-row binding or adoption"
+      },
+      {
+        "role": "current_main",
+        "commit": "a0ea53c567779c51b453fcd5e22c985b36b9db2e",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "artifact_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+        "lines": [
+          {
+            "line": 1180,
+            "text": "- **提供するもの**：一つの選択済み作業scopeについて、dispatch、実行、Ready化、merge admissionの各遷移で対象、適用中のauthority、HEAD/revision、scope、既存契約が要求する検証義務とその結果を照合する接続条件を示す。遷移間に対象HEAD、authority、scopeまたは適用条件が変わった場合は、その変化をstale／未完として扱い、既存の判断・検証・merge admissionを再照合する。工程の一部の成功を後続段階の成功へ伝播しない。",
+            "line_sha256": "4fc433b9b1a1fe43d03b17b20d826f2a8ac730cab504d993ad9cf868d9e6f9a2"
+          },
+          {
+            "line": 1181,
+            "text": "- **禁止する迂回**：pathが`docs/`であることだけを理由に、既存の適用可能なauthority・review・required verificationを省略しない。探索・prototypeのmergeはその限定scopeの証拠共有に限り、本実装やproduction pathへの取り込み許可へ読み替えない。適用中の契約・設定でrequiredとされた確認を、未実施のままskipしてReady／merge可能としない。",
+            "line_sha256": "97df4700c06df8b07ed47b70ebf805edda09f841f823bcadb2923a0aeee3a5b2"
+          },
+          {
+            "line": 1182,
+            "text": "- **既存責務との境界**：`HELIXOS-L2-010／011`のticket、推進、統合計画責務、`HELIXOS-L2-004／007／008`のassignment・authority・証拠・CI運転、HELIX-OSのGitHub運用モデルのPR作成／独立review／merge admissionを置き換えない。検証義務の定義はHARNESS、操作authorityはSECURITY、具体的なrequired条件と除外可否はそれぞれ既存ownerの採択済みcontractが持つ。本候補は新しいapproval、check、scope、skipまたは許可方式を定義しない。",
+            "line_sha256": "44fb7d55f183ed5356f2d2ee67899f772de3ba43b638a968e148f41671660cb3"
+          },
+          {
+            "line": 1183,
+            "text": "- **source範囲と限界**：旧RFA-AC-16の一つのacceptance rowだけをこの接続候補へ対応づける。旧RFA候補全体、隣接AC行、旧engine／schema／runtime、全GitHub operationの実装・受入やsource closureは対象外で、旧条件全体のsuccessorを主張しない。",
+            "line_sha256": "7f08a571c52712db105058252d69e6061029a2c69ff49ea8f2e408e87f022300"
+          }
+        ],
+        "relation_type": "family-only link to unselected RFA-AC-16; no selected-row binding",
+        "interpretation": "OS L2-046 is a draft connection sourced from RFA-AC-16 line 37 only; it explicitly limits scope to one acceptance row and excludes closure."
+      },
+      {
+        "role": "current_main",
+        "commit": "a0ea53c567779c51b453fcd5e22c985b36b9db2e",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "artifact_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+        "lines": [
+          {
+            "line": 797,
+            "text": "- **正常例**：既存の有効なauthority、対象scope、入力HEAD、ticket／assignment、HARNESSが定めるrequired verificationとその現行HEAD向け結果を固定する。各遷移が同じ対象と許可scopeを参照し、必要な独立reviewと既存merge admission条件を満たした場合だけ次段へ進む。最終admissionはmerge対象content HEADと最新baseの組に結び、read-afterで照合できる。",
+            "line_sha256": "17a95c223bb5279a4340cdebeea1a3e23fd8ba453772341311ab56b18d2e40f4"
+          },
+          {
+            "line": 798,
+            "text": "- **scope／HEAD／authority変更**：実行中またはReady後に対象HEAD、base、scope、authorityの有効性、適用HARNESS contractのいずれかが変わるfixtureを与える。影響する遷移だけをstale／未完へ戻し、無関係なscopeは既存規則どおり扱う。旧HEADのreviewや検証結果、失効したauthorityを現在の対象へ転用しない。",
+            "line_sha256": "89b39eab01b4adf004cddef94ab496dab9a6195f05a8a138b844129d9fd4f1e2"
+          },
+          {
+            "line": 799,
+            "text": "- **誤りの例**：`docs/` pathのため既存のrequired review／verificationを除外する、探索・prototypeのmergeを本実装許可として扱う、required verificationをskipする、別HEADまたは別scopeの成功を流用する、対象HEAD／base変更後に古いreview結果でmergeを進める、あるいは一段の成功を次段完了へ伝播する場合は不成立。",
+            "line_sha256": "c8ddfcb26c116000ab9f0623cbff0f64eba95c3428e3aefd070f1fe0be8ea8df"
+          },
+          {
+            "line": 800,
+            "text": "- **境界と受入限界**：required条件と適用可能な除外は既存contractのownerが決め、本候補は具体的なrequired list、CI、skip機構、追加承認、実運用設定を定義しない。RFA-AC-16の指定rowだけを扱い、旧RFA全体のclosure、実装、運転、merge実施を主張しない。",
+            "line_sha256": "0f14f3e819952580fab55343760399628cedec435125dea731a2ee67e7ad2102"
+          }
+        ],
+        "relation_type": "family-only link to unselected RFA-AC-16; no selected-row binding",
+        "interpretation": "OS L11-046 is a static acceptance candidate for the same unselected RFA-AC-16 row; it does not claim execution or full RFA closure."
+      },
+      {
+        "role": "current_main",
+        "commit": "a0ea53c567779c51b453fcd5e22c985b36b9db2e",
+        "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+        "artifact_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+        "lines": [
+          {
+            "line": 27,
+            "text": "POは固定main f6dad2a33e24f000b87d7f09b8d40288257e74cc上の以下のbytesを確認対象revisionとして確定し、L2本文 HELIXOS-L2-001〜HELIXOS-L2-029 と、それぞれに対になる固定L11受入本文一式に合意した。",
+            "line_sha256": "234806a9c2a22b5a6cc4bbc0ff5ae330ae21b67f678018c65f1c2f100ba21698"
+          },
+          {
+            "line": 42,
+            "text": "固定対象本文のSHAは変更していない。L1/L2/L11のdraft/candidate metadataは固定時点の本文として維持し、POのrevision確認・要求合意・候補採用は本decision recordを正本として読む。",
+            "line_sha256": "319fcab9a82461ab478c20a7c02ac6c8a82a11fc4ad2dd39a3e9d26163c79345"
+          },
+          {
+            "line": 44,
+            "text": "## 採用する明示候補集合",
+            "line_sha256": "336beb701d3a7dc41150e84c725623fd5e08ad3cfb682e841db41db55c8bbd10"
+          },
+          {
+            "line": 46,
+            "text": "POは以下の全16件を、確認資料に記載された各version_targetと適用条件を保持して採用した。",
+            "line_sha256": "4fb7810a880eadf6d6ec0f27d8b828faddde3a98a267528fec5e5902dd75b0e4"
+          },
+          {
+            "line": 48,
+            "text": "HELIXOS-L2-014, HELIXOS-L2-015, HELIXOS-L2-016, HELIXOS-L2-017, HELIXOS-L2-018, HELIXOS-L2-019, HELIXOS-L2-020, HELIXOS-L2-021, HELIXOS-L2-022, HELIXOS-L2-023, HELIXOS-L2-024, HELIXOS-L2-025, HELIXOS-L2-026, HELIXOS-L2-027, HELIXOS-L2-028, HELIXOS-L2-029",
+            "line_sha256": "3dfc3b0fc76ac744c97ae07cbeec090ad45722027b058f1867c395432018d053"
+          },
+          {
+            "line": 50,
+            "text": "L2-014のv0.x→v1.0段階候補、L2-017のcore 1.0・動的外部workflow 4.0、L2-026の1.0構築過程から、その他の各version_targetと適用条件を確認packetの候補表どおり維持する。017の4.0機能を1.0必須にせず、026は1.0構築過程のcandidateとして扱う。",
+            "line_sha256": "80cfa34e824ab321e360511a5f8bc37bd2d839b45cb8fb18937aa42ceaddb22e"
+          },
+          {
+            "line": 52,
+            "text": "後続版または条件付きの能力を1.0へ前倒ししない。固定L2/L11本文に定めた操作条件・例外・適用条件を要約で置き換えない。",
+            "line_sha256": "752a974217bcba88d4b4bb58b12db161e71cd7dc9bb1a25b298b39ec58e2fc1b"
+          }
+        ],
+        "relation_type": "scope comparison for a separate unselected RFA-AC-16 source atom; not a binding for selected rows",
+        "interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+      },
+      {
+        "role": "current_main",
+        "commit": "a0ea53c567779c51b453fcd5e22c985b36b9db2e",
+        "path": "docs/governance/audits/requirement-registration/helixos-rfa-scope-coverage-receipt-2026-09-28.json",
+        "artifact_sha256": "691bbe181787f65891d3728ba0c4069a2bb151701b400ef7192ff62ff8634128",
+        "lines": [
+          {
+            "line": 2,
+            "text": "  \"receipt_id\": \"DRAFT-RCPT-HELIXOS-L2-046-RFA-AC-16-2026-09-28\",",
+            "line_sha256": "0e37505529da92dc73d73da5dcb65b6296e9eb447849181d4093f8294b20bcad"
+          },
+          {
+            "line": 3,
+            "text": "  \"receipt_state\": \"draft_unadopted_candidate_scope_recorded\",",
+            "line_sha256": "2d01189685d86747d58f43bebc713756ce4aa20b80c465c3c61f273ff2923c7e"
+          },
+          {
+            "line": 4,
+            "text": "  \"authority_effect\": \"none\",",
+            "line_sha256": "d32e03ec3de8c3584d94c1f59f556a1f5e86e7da8a3201651a90d121e1e3a5bc"
+          },
+          {
+            "line": 5,
+            "text": "  \"candidate_identity\": \"HELIXOS-L2-046\",",
+            "line_sha256": "40054ba1017a3894bda8dda2fd88bfdf6e8f75dc83827923d739731bd70ade9e"
+          },
+          {
+            "line": 12,
+            "text": "  \"source_lines_ref\": \"docs/governance/audits/requirement-registration/helixos-rfa-scope-source-lines-2026-09-28.jsonl\",",
+            "line_sha256": "e701552ed53078657e74db4c73b2f082e8871df3dac40825a28addb0aacd2739"
+          },
+          {
+            "line": 13,
+            "text": "  \"source_collection_scope\": \"MPR-SH-CANDIDATE-003が保全するlegacy candidate line inventoryのうち、LEGACY-CAND-LINE-003612（旧RFA-AC-16 acceptance row）1行だけを入力する局所receipt。旧RFA候補全体、隣接row、旧engine/schema/runtime、旧source全体は対象外。\",",
+            "line_sha256": "29eccc90205c844329f74bc1955899e70e27702934b603c8afec8053959a3bd4"
+          },
+          {
+            "line": 17,
+            "text": "  \"candidate_input_atom_refs\": [",
+            "line_sha256": "d7b1e2dd3c09834025f4a52621a01c3376b4d3b8ef810fbc6d87140481b88d3a"
+          },
+          {
+            "line": 18,
+            "text": "    \"LEGACY-CAND-LINE-003612\"",
+            "line_sha256": "3be85e4ea803c913cd3053cb2df5fa7d4001e624c13c270023801e24931df5ad"
+          },
+          {
+            "line": 20,
+            "text": "  \"candidate_input_atom_count\": 1,",
+            "line_sha256": "38b87abcd25b72daf586ff888e4742e2dff295c9a5c1e8fef3bc376ef1eb8716"
+          },
+          {
+            "line": 22,
+            "text": "  \"candidate_input_accounting_status\": \"選択した一つのacceptance rowをHELIXOS-L2/L11-046候補へ対応づけた。candidate-input no_lossはこのrow一件のmappingに限り、source row全体または旧RFA source群のclosureを主張しない。\",",
+            "line_sha256": "c323fa69082012a746b4897d7a80812d18c29f5602e9a3dbd9f8d31786f9adae"
+          },
+          {
+            "line": 23,
+            "text": "  \"source_line_coverage_result\": \"partial; only LEGACY-CAND-LINE-003612 is in scope; remaining RFA conditions and source closure are not assessed\",",
+            "line_sha256": "e348338cffb55af0859af04c2d28b3007cf4731c8978843615f04e952cd30438"
+          },
+          {
+            "line": 24,
+            "text": "  \"condition_closure\": \"not_asserted\",",
+            "line_sha256": "0e8736c2ed0d3c04789f69643b4306a257fbea6f02e7c2ac064e7e2e61018c3f"
+          },
+          {
+            "line": 25,
+            "text": "  \"candidate_input_coverage_result\": \"no_loss\",",
+            "line_sha256": "2c40be5cbc040e5854f5f2261c7e6f97d5ccc6f794385fcfcfe7ce9aa366868d"
+          },
+          {
+            "line": 29,
+            "text": "  \"atoms\": [",
+            "line_sha256": "3452579f9c1cae5b69b170174f3582bfc71d16a0af0b04a0ffcba6bfb1e46f27"
+          },
+          {
+            "line": 31,
+            "text": "      \"atom_id\": \"LEGACY-CAND-LINE-003612\",",
+            "line_sha256": "939d06ab77d5d632452dc483096e05fd69395958ebf599b328a285a875c16728"
+          },
+          {
+            "line": 34,
+            "text": "      \"source_path\": \"archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-acceptance.md\",",
+            "line_sha256": "9cd4b3410ae92cf9c75b8c9796741e69e6c047b23c79683b382ca572b8a8f2d0"
+          },
+          {
+            "line": 35,
+            "text": "      \"source_file_sha256\": \"sha256:c3f62478904e620eced270996360274e2840f9d94eca117d838d0e6dfeda7a86\",",
+            "line_sha256": "4108603976f6720dafed83af55627a3156a44d5125d23231c90e5d158d026a30"
+          },
+          {
+            "line": 36,
+            "text": "      \"source_line\": 37,",
+            "line_sha256": "8688800ad399b5ece351decc75a37f08976af7296dcd7d41f27f04f82a4534f1"
+          },
+          {
+            "line": 38,
+            "text": "      \"source_text\": \"| RFA-AC-16 | RFA-GH-02 | dispatch/実行/ready/mergeが同authority/HEAD/scopeを照合。docs path免除・探索mergeの実装許可化・required skipを拒否 |\",",
+            "line_sha256": "ae8abb6339d0a006eb0d9a1c0ca21ac4c962f05baa62ee07c459fb2a1864af2a"
+          },
+          {
+            "line": 40,
+            "text": "      \"disposition\": \"candidate_scope\",",
+            "line_sha256": "545a852438979b039fe8cce0cf158a009fd8a9b302cdb496c2784cd68de93702"
+          },
+          {
+            "line": 41,
+            "text": "      \"candidate_input\": true,",
+            "line_sha256": "f0b75564e0e1fd2e6dc58419bcf2044f49c252240b7f7c21f8dc3c057a52dcf4"
+          },
+          {
+            "line": 42,
+            "text": "      \"relation\": \"This candidate covers the bounded dispatch/execution/Ready/merge authority, HEAD and scope continuity oracle and its listed bypass rejections only. Other RFA rows and full legacy condition closure remain outside this receipt.\"",
+            "line_sha256": "c638051f8d502c88b8574f8cd4c26cd069e93eae2865b9db1549ba8dddc3e625"
+          },
+          {
+            "line": 45,
+            "text": "  \"candidate_scope_boundary\": \"One connection candidate checks continuity of existing authority, current subject/HEAD and scope across dispatch, execution, Ready and merge admission. It rejects path-only docs exemptions, treating exploratory/prototype merge as implementation permission, and skipping existing required verification. It defines no new approval, check list, CI, authority, or skip mechanism.\",",
+            "line_sha256": "c7f2237ba896ac2bd17a973c06436192f194a36f673a0f1944d207d7488a5ea0"
+          },
+          {
+            "line": 91,
+            "text": "  \"semantic_successor_status\": \"not_confirmed_pending_PO\",",
+            "line_sha256": "5034151426edbadbccc7104f3c8d8d4e6d1c6d8a415251f5cf177a24e1002c9b"
+          },
+          {
+            "line": 92,
+            "text": "  \"receipt_limits\": \"Records provenance and bounded candidate mapping only. It does not prove adopted successor, source closure, implementation, operation, acceptance execution, or merge permission.\",",
+            "line_sha256": "b7c44de04c6954d84585ff697693f1bf6606ffae02c07604bb0a0adb45cc5efd"
+          },
+          {
+            "line": 93,
+            "text": "  \"source_holding_remains_live\": true,",
+            "line_sha256": "11c2f6331f1c508352a73c986217ef96056468753d8f01421b6063269618bbd7"
+          },
+          {
+            "line": 94,
+            "text": "  \"source_holding_note\": \"MPR-SH-CANDIDATE-003 remains unchanged and live as the wider legacy candidate holding; the selected RFA-AC-16 row is mapped only to this candidate input. This does not close the holding or other source conditions.\"",
+            "line_sha256": "ccf73714020fb2c75156d9856e07d367aff3eb6eb6e54e0f4b3147975eefca52"
+          }
+        ],
+        "relation_type": "scope comparison for a separate unselected RFA-AC-16 source atom; not a binding for selected rows",
+        "interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
+      },
+      {
+        "role": "current_main",
+        "commit": "a0ea53c567779c51b453fcd5e22c985b36b9db2e",
+        "path": "docs/governance/audits/requirement-registration/helixos-rfa-scope-source-lines-2026-09-28.jsonl",
+        "artifact_sha256": "b18913133324fe3f46ca18e2e3b7656834e4fc79380c625a8a94aa8663f6c05c",
+        "lines": [
+          {
+            "line": 1,
+            "text": "{\"atom_id\":\"LEGACY-CAND-LINE-003612\",\"parent_line_atom_id\":\"LEGACY-CAND-LINE-003612\",\"source_holding_registration_id\":\"MPR-SH-CANDIDATE-003\",\"source_path\":\"archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-acceptance.md\",\"source_file_sha256\":\"sha256:c3f62478904e620eced270996360274e2840f9d94eca117d838d0e6dfeda7a86\",\"source_line\":37,\"source_line_sha256\":\"sha256:bafb2bae38d5e4363a90e58405e44e1e4544e85adfaa2b318bef2425a873065c\",\"source_text\":\"| RFA-AC-16 | RFA-GH-02 | dispatch/実行/ready/mergeが同authority/HEAD/scopeを照合。docs path免除・探索mergeの実装許可化・required skipを拒否 |\",\"source_clause_kind\":\"acceptance_condition\",\"atomization_rationale\":\"旧RFA-AC-16のacceptance row一行を一atomとして扱う。authority/HEAD/scopeの遷移間照合と、同じ行に明記された三つのbypass rejectionをひとつの判定条件として保持する。\",\"disposition\":\"candidate_scope\",\"candidate_input\":true,\"relation\":\"HELIXOS-L2/L11-046へ未採択connection候補として限定対応。dispatch、実行、Ready化、merge admissionの継続照合とdocs path exemption、exploratory mergeの実装許可化、required skipの拒否だけを扱う。\",\"audit_ref\":\"docs/governance/audits/requirements-stage/legacy-candidate-description-condition-overlay-2026-09-28.md#4-legacy-cand-line-003612\",\"source_section\":\"RFA-AC-16 / RFA-GH-02\"}",
+            "line_sha256": "772e4c16bcf288c6605b53750afcd82d72d020a1541e934d89d5036b9fe8014f"
+          }
+        ],
+        "relation_type": "scope comparison for a separate unselected RFA-AC-16 source atom; not a binding for selected rows",
+        "interpretation": "One JSONL atom row reproduces LEGACY-CAND-LINE-003612 at acceptance line 37; this source atom is outside ranks 2101–2140."
+      }
+    ],
+    "file_pins": [
+      {
+        "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+      },
+      {
+        "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+      },
+      {
+        "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+      },
+      {
+        "commit": "a0ea53c567779c51b453fcd5e22c985b36b9db2e",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6"
+      },
+      {
+        "commit": "a0ea53c567779c51b453fcd5e22c985b36b9db2e",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf"
+      },
+      {
+        "commit": "a0ea53c567779c51b453fcd5e22c985b36b9db2e",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112"
+      },
+      {
+        "commit": "a0ea53c567779c51b453fcd5e22c985b36b9db2e",
+        "path": "docs/governance/audits/requirement-registration/helixos-rfa-scope-coverage-receipt-2026-09-28.json",
+        "sha256": "691bbe181787f65891d3728ba0c4069a2bb151701b400ef7192ff62ff8634128"
+      },
+      {
+        "commit": "a0ea53c567779c51b453fcd5e22c985b36b9db2e",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf"
+      },
+      {
+        "commit": "a0ea53c567779c51b453fcd5e22c985b36b9db2e",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112"
+      },
+      {
+        "commit": "a0ea53c567779c51b453fcd5e22c985b36b9db2e",
+        "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+        "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
+      },
+      {
+        "commit": "a0ea53c567779c51b453fcd5e22c985b36b9db2e",
+        "path": "docs/governance/audits/requirement-registration/helixos-rfa-scope-coverage-receipt-2026-09-28.json",
+        "sha256": "691bbe181787f65891d3728ba0c4069a2bb151701b400ef7192ff62ff8634128"
+      },
+      {
+        "commit": "a0ea53c567779c51b453fcd5e22c985b36b9db2e",
+        "path": "docs/governance/audits/requirement-registration/helixos-rfa-scope-source-lines-2026-09-28.jsonl",
+        "sha256": "b18913133324fe3f46ca18e2e3b7656834e4fc79380c625a8a94aa8663f6c05c"
+      }
+    ],
+    "selected_row_binding": false,
+    "successor_created": false,
+    "closure_asserted": false
   }
 }
