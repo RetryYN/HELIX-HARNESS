@@ -591,6 +591,7 @@
       "event": "Corrected final source-condition reading and candidate pair; registration digest and source atom hashes remain the corrected values. Single final MPR record retained as 118-001."
     }
   ],
-  "current_comparison_base_commit": "6265c512bae65789b177e38404c8266726799f46",
-  "integration_note": "Latest main prefix retained; historical comparison and draft correction history remain historical. 115/117 are now merged candidates, not adopted."
+  "current_comparison_base_commit": "f38bde044a7dfbf12aec0203b21a9384eef6ad8f",
+  "integration_note": "最新main f38の既存本文/649登録prefix保持、118最終001一行を650行へ追加。原文11atomとpaired section digest不変。",
+  "previous_integration_base_commit": "6265c512bae65789b177e38404c8266726799f46"
 }
