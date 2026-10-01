@@ -33,7 +33,7 @@ HAC-HIL-14a（旧`acceptance_cases.json`, asset `LEGACY-ASSET-4886CEF2A7AB5B7AA5
 | HIL-NFR-09: macOS/Windows差異はadapter contract testで検出し、OS別domain logic forkを作らない。 | test結果を対象profile・contract/fixture・revisionへ束縛し、test未実施・不明とdomain forkを拒否（L2 1256）。 | Positiveで両profileのadapter contract test結果を結び、Negativeでtest欠落/stale/別profile証拠とlogic forkを拒否（L11 970、974、978）。 |
 | HIL-NFR-19: Linuxはcore completion platform。macOS/Windows未実施を明示し、Windows wrapper成功をLinux互換証拠にしない。 | Linux completionをLinux側証拠だけへ束縛し、missing/unknown/skipped/interrupted/staleをgreenへ読み替えない（L2 1255–1256）。 | Linux証拠の代用、3 OS positive条件の一部だけ、他profile推定の各Negative（L11 972、975–976）。 |
 
-HIL-NFR-09の「全core gate」と「macOS/Windows差異のadapter contract test検出」は、概要表には記録済みだったがL2/L11候補本文から欠けていたため今回の追補で戻した。source scope、4 atomのID・statement digest・atomset digestは変更していない。
+HIL-NFR-09の「全core gate」と「macOS/Windows差異のadapter contract test検出」は、原文とsource ledgerには保持されていたが、概要表では「全」を落とし、L2/L11候補本文からも欠けていたため今回の追補で戻した。source scope、4 atomのID・statement digest・atomset digestは変更していない。
 
 ## 採択済み隣接revisionと後続判断
 
@@ -80,3 +80,5 @@ source holding `MPR-SH-IR-003`と旧carry-forward rowsは変更していない�
 構築時72d08ebの照合は履歴として保持する。追補時点のmainは`6f859fc03c9add36d84eb153cb1832b26768d6d1`。L2/L11本文を照合し、HIL-NFR-09の二条件をpaired 064へ補った。4 source atomのID、原文、statement/atomset digestは不変である。
 
 **#2490修正履歴**：初回candidate sectionはL2 semantic digest `89229ad55e389efab42a9e9bda7454149b4800b3520b456f289ed15ee1d62c29`（全file SHA `6bab0d72be55c0bf46d1d3b73fdd303c982abb5ad988a6d28fabea4137791e19`）、L11 section digest `7e66852d10d4438cccc30b0b99a3afd37625386925c9c1d59b9fe943d84091c4`（全file SHA `a5296268e41a12f6d334cd0e01f629082e5dbb01c4c236a7090b763f90a653f0`）だった。初回本文はHIL-NFR-09の「Linux primaryで全core gate」「macOS/Windows差異をadapter contract testで検出」を落としていた。今回L2/L11で両句を追補し、部分core gateのみ成功するfixture、adapter test欠落/stale/別profile証拠のfixtureを負例として追加した。追補後の確定digest/pinはcoverage receiptと唯一の`MPR-RC-HARNESS-L2-064-001`行に合わせて更新し、MPRに途中revisionを増やさず、初回digestをこの監査に履歴として残す。
+
+現行PRの比較baseは `1fe54afb8ecf4e79b0c3123cdafee4e67fa369e1`。上記72d08eb・6f859fc・c60dacは構築と初回reviewの履歴であり、現行main比較を示さない。
