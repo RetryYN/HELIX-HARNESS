@@ -28674,9 +28674,9 @@
     }
   ],
   "integration_predecessor": {
-    "commit": "b0b73563b727287c5f1e8a39cdcd0af6cd0b7fd4",
+    "commit": "6ccd9efb738088602ad2b60422fbd876f8332c80",
     "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-2341-2380-2026-10-02.json",
-    "sha256": "f3f34f65e15ea9b8ec3b84a94f3a7370f84224327f1574f1a9ac90324f32069f",
+    "sha256": "435f8c0e595c4e1e164143a4e9bcae26c888f3fb5284c72e1a7f23afee285bfb",
     "last_rank": 2380,
     "last_candidate_source_line_id": "LEGACY-CAND-LINE-004065",
     "scope": "同一PR先行sliceの境界pinのみ。前sliceの全条件確認をpinから生成しない。"
