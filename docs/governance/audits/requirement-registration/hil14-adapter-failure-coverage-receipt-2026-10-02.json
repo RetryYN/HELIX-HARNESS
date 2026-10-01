@@ -26,18 +26,18 @@
       },
       "candidate_semantic_digest": "sha256:a5f298b035e4dcda868b7fb35aa63cbcb8d76a1f0c8668aa6fb64a81e404f75d",
       "candidate_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-065",
-      "candidate_file_sha256": "sha256:30f9771c3d494eb9f3bad3b7a909001b00b81ae5ae6302fe619c9cdf4fe217f8",
+      "candidate_file_sha256": "sha256:e22ff41b5ed36a00c0c0a9807052759d01f930ce5574aa860d80f7b90b76bdf4",
       "candidate_section_boundaries": {
-        "start_line": 1250,
-        "end_line": 1261,
+        "start_line": 1261,
+        "end_line": 1272,
         "start_heading_prefix": "### HARNESS-L2-065 "
       },
       "acceptance_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-      "acceptance_file_sha256": "sha256:34d25c5db932c03c72a81bb58a9eb665d6acae1e6057b2c90767bb1d95a31f2b",
+      "acceptance_file_sha256": "sha256:2cf983e2ac8771badd056f8e49dd0a0f6704a2f088b4f816b99792f5a7a8ac82",
       "acceptance_section_sha256": "sha256:fe1aba7f9dd08f64a0e6c5a0e5648beb5e9085ea00d4ae393f6925cdd6aed4bb",
       "acceptance_section_boundaries": {
-        "start_line": 965,
-        "end_line": 974,
+        "start_line": 982,
+        "end_line": 991,
         "start_heading_prefix": "### HARNESS-L2-065 "
       },
       "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil14-adapter-failure-source-lines-2026-10-02.jsonl#HIL14-ADAPTER-FAIL-SLICE-FR-34,HIL14-ADAPTER-FAIL-SLICE-TR-05,HIL14-ADAPTER-FAIL-CONSUMER-HST-014-06,HIL14-ADAPTER-FAIL-CONSUMER-HST-014-07",
@@ -111,5 +111,6 @@
       ]
     }
   ],
-  "source_correction_note": "2026-10-02 correction: direct consumer lines HST-CASE-014-06/07 are the source of numeric zero outcomes; HIL-FR-34 line124 is the parent fixture context only."
+  "source_correction_note": "2026-10-02 correction: direct consumer lines HST-CASE-014-06/07 are the source of numeric zero outcomes; HIL-FR-34 line124 is the parent fixture context only.",
+  "current_comparison_base_commit": "7b9d1938fc7699404f68c2b87829df56dc6f690d"
 }

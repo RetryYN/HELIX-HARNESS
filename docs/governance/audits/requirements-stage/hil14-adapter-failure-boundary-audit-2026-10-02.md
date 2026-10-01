@@ -109,3 +109,5 @@ HARNESS-064は別worktreeの未採択candidate commitで、main72dには存在�
 - この未統合のローカル候補は、最終内容を `MPR-RC-HARNESS-L2-065-001` に記録する。訂正後継MPR行は追加しない。訂正前のatom数・digestと理由はcoverage receiptのcorrection_historyと本監査に記録する。L2 semantic digestは `sha256:a5f298b035e4dcda868b7fb35aa63cbcb8d76a1f0c8668aa6fb64a81e404f75d`、source atom setは上記4件。
 - Candidate L2 file SHA-256 `30f9771c3d494eb9f3bad3b7a909001b00b81ae5ae6302fe619c9cdf4fe217f8`; paired L11 section digest `sha256:fe1aba7f9dd08f64a0e6c5a0e5648beb5e9085ea00d4ae393f6925cdd6aed4bb`, full file SHA-256 `34d25c5db932c03c72a81bb58a9eb665d6acae1e6057b2c90767bb1d95a31f2b`.
 - Numeric source meaning remains: 014-06 requires `process残存0件` at cancelled status; 014-07 requires `partial transaction 0件` after SQLite lock contention and retry-limit write reaches failed. Any cross-operation or non-SQLite use remains the candidate's explicit generalized meaning and PO impact, not a source-text attribution.
+
+現行PR比較baseは `7b9d1938fc7699404f68c2b87829df56dc6f690d`。構築時72d08ebと064 local1e766aは履歴であり、現在の064は#2490 mergeで原文二条件の修正も取り込まれた未採択候補である。064本文と既存全要求、台帳646行prefixを保ち065のみ末尾追補した。
