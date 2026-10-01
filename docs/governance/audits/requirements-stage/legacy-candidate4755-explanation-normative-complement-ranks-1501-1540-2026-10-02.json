@@ -80,18 +80,19 @@
       "this_first_rank": 1501,
       "this_first_id": "LEGACY-CAND-LINE-002527",
       "immediate_prior_1461_1500_audit_in_origin_main": false,
-      "preceding_rank_reconstructed_from_full_pool": true
+      "preceding_rank_reconstructed_from_full_pool": true,
+      "immediate_prior_1461_1500_audit_in_this_pr": true
     }
   },
   "prior_completed_complement_slice": {
-    "ranks": "1341-1380",
-    "commit": "0ba1afd796b5e8142444c6002767ded1a7325d9f",
-    "last_id": "LEGACY-CAND-LINE-002291",
-    "json_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1341-1380-2026-10-02.json",
-    "json_sha256": "9ba0d16f97e691c7b7567897f41030b6c0ac9f0491162e42838cc0cccf781232",
-    "md_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1341-1380-2026-10-02.md",
-    "md_sha256": "ab5ac89d464af89de266d21658db9d9094fd18b2aad75d6b06fbbb55cf31b9fe",
-    "note": "#2467でorigin/mainへ統合された直近の完了slice。1461–1500監査は基点に未収載のため先行意味監査を主張せず、rank1500/1501境界はfull-pool再構成から確認。"
+    "ranks": "1461-1500",
+    "commit": "72562f6539ab097b79ebd457a7734a4dfe69aa9b",
+    "last_id": "LEGACY-CAND-LINE-002526",
+    "json_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1461-1500-2026-10-02.json",
+    "json_sha256": "cd457152c546bbc640f653fab84abd09140e8ecb4dddbef8d99e0b3c6c51420b",
+    "md_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1461-1500-2026-10-02.md",
+    "md_sha256": "fbcff389ad7714f8d95785dc805045111a7b72e1e340e74bf8b38a4105eb0bdb",
+    "note": "同一PRに直前ranks1461–1500 auditを収載し、#2468 prior pin更新後commitのbytesをSHA-256で固定。rank境界はfull-pool再構成でも確認。"
   },
   "pinned_reconstruction_inputs": [
     {

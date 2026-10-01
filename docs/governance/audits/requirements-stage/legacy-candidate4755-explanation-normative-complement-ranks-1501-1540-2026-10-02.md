@@ -2,7 +2,7 @@
 
 - 基点: `0ba1afd796b5e8142444c6002767ded1a7325d9f`。#2353＋#2356/#2360/#2363/#2366/#2367/#2368/#2369/#2381をexact source IDで再構成した。
 - 母集団: explanation 2,965行からmarker queue/review union 255行を除いた2,710行。今回はrank 1501–1540の40行。
-- rank1500=`LEGACY-CAND-LINE-002526`、rank1501=`LEGACY-CAND-LINE-002527`。直近の統合済み意味監査は1341–1380。1461–1500 auditはorigin/mainに未収載のため、前sliceの意味確認を主張せずrank境界をfull-poolから再構成した。
+- rank1500=`LEGACY-CAND-LINE-002526`、rank1501=`LEGACY-CAND-LINE-002527`。直前1461–1500 auditを同一PRに収載し、commit `72562f6539ab097b79ebd457a7734a4dfe69aa9b` のJSON／MD bytesをpaired JSONでpinした。rank境界はfull-poolからも再構成した。
 - source構成: `helix-commercial-license-requirements.md` 33行、`helix-concept-v4-acceptance.md` 7行。全物理行と近傍headingを個別に確認した。
 
 ## 現行main / 固定F6 / PO / receiptの照合
