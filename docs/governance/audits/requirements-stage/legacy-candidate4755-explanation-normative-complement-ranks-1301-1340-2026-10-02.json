@@ -3553,9 +3553,9 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
       "physical_line_number": 37,
       "exact_source_line_text": "既存のRLS正本が定めるModuleは責務所有、Bundleは利用目的別compositionを担う。本候補が追加するSliceは、その間に置く",
-      "semantic_family": "承認境界の旧候補記述",
-      "semantic_function": "projection先への直接投影禁止",
-      "semantic_reading": "LEGACY-CAND-LINE-002178 — 前行から続く禁止文の対象として、意味をconfirmed requirements、runtime、schema、DB、CLI、generated catalog、DevOSへ直接投影してはならないと列挙する。前行の未完了gateと合わせた一文だが、隣接後続段落のModule/Slice定義は含めない。",
+      "semantic_family": "Module・Bundle・Slice間の機能境界",
+      "semantic_function": "Module所有・Bundle compositionとSlice配置の開始",
+      "semantic_reading": "LEGACY-CAND-LINE-002178 — 既存RLS正本ではModuleが責務所有、Bundleが利用目的別compositionを担う。本候補のSliceをその間に置くと述べ、機能上の役割は次の物理行へ続く。",
       "legacy_context": {
         "section_heading": {
           "line": 31,
@@ -3779,8 +3779,8 @@
       "physical_line_number": 38,
       "exact_source_line_text": "機能昇格単位であり、Module、Bundle、capability family、workflow identity、route、drive、execution mode、provider、",
       "semantic_family": "Module・Bundle・Slice間の機能境界",
-      "semantic_function": "Module所有とBundle composition、Sliceの配置",
-      "semantic_reading": "LEGACY-CAND-LINE-002179 — 既存RLS正本でModuleは責務所有、Bundleは利用目的別compositionを担うとしたうえで、本候補のSliceを両者の間に置くと文を開始する。対象位置・役割の説明は次行へ続く。",
+      "semantic_function": "Sliceの機能昇格単位と非置換対象の列挙",
+      "semantic_reading": "LEGACY-CAND-LINE-002179 — 前行から続きSliceを機能昇格単位とし、Module、Bundle、capability family、workflow identity、route、drive、execution mode、providerを置換しない対象として列挙する。列挙は次行へ続く。",
       "legacy_context": {
         "section_heading": {
           "line": 31,
@@ -4004,8 +4004,8 @@
       "physical_line_number": 39,
       "exact_source_line_text": "repositoryのいずれも置換しない。",
       "semantic_family": "Module・Bundle・Slice間の機能境界",
-      "semantic_function": "Sliceの昇格単位と置換しない境界",
-      "semantic_reading": "LEGACY-CAND-LINE-002180 — 前行から続きSliceを機能昇格単位とし、Module、Bundle、capability family、workflow identity、route、drive、execution mode、providerを置換しないと列挙する。文末のrepositoryも同じ否定条件として次行に続く。",
+      "semantic_function": "非置換対象repositoryの列挙末尾",
+      "semantic_reading": "LEGACY-CAND-LINE-002180 — 前行から続く否定条件をrepositoryまで完結し、挙げた既存identityのいずれもSliceで置換しないとする。",
       "legacy_context": {
         "section_heading": {
           "line": 31,
@@ -4228,9 +4228,9 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
       "physical_line_number": 41,
       "exact_source_line_text": "正規導出線は次とする。",
-      "semantic_family": "Module・Bundle・Slice間の機能境界",
-      "semantic_function": "repositoryも別名に含めない",
-      "semantic_reading": "LEGACY-CAND-LINE-002181 — 直前行の置換しない対象の列挙をrepositoryまで完結する。この行はリスト末尾であり、新しい独立した制約を追加しない。",
+      "semantic_family": "正規導出線の旧候補図",
+      "semantic_function": "導出線の導入",
+      "semantic_reading": "LEGACY-CAND-LINE-002181 — 正規導出線を後続の図で示すと述べる導入行。図中の要素や順序はこの行に含まない。",
       "legacy_context": {
         "section_heading": {
           "line": 31,
@@ -4454,8 +4454,8 @@
       "physical_line_number": 44,
       "exact_source_line_text": "Capability / Behavior Contract",
       "semantic_family": "正規導出線の旧候補図",
-      "semantic_function": "導出線の導入",
-      "semantic_reading": "LEGACY-CAND-LINE-002183 — 正規導出線を次に示すと述べる。矢印関係の各要素は後続図行にあり、この行自体は要素を列挙しない。",
+      "semantic_function": "Capability / Behavior Contractの図要素",
+      "semantic_reading": "LEGACY-CAND-LINE-002183 — 旧候補の正規導出線でCapability / Behavior Contractを最初の図要素として記す行。",
       "legacy_context": {
         "section_heading": {
           "line": 31,
@@ -4679,8 +4679,8 @@
       "physical_line_number": 45,
       "exact_source_line_text": "        ↓",
       "semantic_family": "正規導出線の旧候補図",
-      "semantic_function": "図の開始区切り",
-      "semantic_reading": "LEGACY-CAND-LINE-002184 — コードフェンスを開始するMarkdown構造行。業務条件を述べない。",
+      "semantic_function": "導出矢印",
+      "semantic_reading": "LEGACY-CAND-LINE-002184 — 下向き矢印で前後の図要素を接続する構造行。独立した要求条件はない。",
       "legacy_context": {
         "section_heading": {
           "line": 31,
@@ -4904,8 +4904,8 @@
       "physical_line_number": 46,
       "exact_source_line_text": "Functional Release Slice",
       "semantic_family": "正規導出線の旧候補図",
-      "semantic_function": "第1段階の名称",
-      "semantic_reading": "LEGACY-CAND-LINE-002185 — Capability / Behavior Contractを導出線の最初の要素として記載する。",
+      "semantic_function": "Functional Release Sliceの図要素",
+      "semantic_reading": "LEGACY-CAND-LINE-002185 — 旧候補の正規導出線でFunctional Release Sliceを図要素として記す行。",
       "legacy_context": {
         "section_heading": {
           "line": 31,
@@ -5130,7 +5130,7 @@
       "exact_source_line_text": "        ↓",
       "semantic_family": "正規導出線の旧候補図",
       "semantic_function": "導出矢印",
-      "semantic_reading": "LEGACY-CAND-LINE-002186 — 下向き矢印で図の次段階へつなぐ。独立条件ではない。",
+      "semantic_reading": "LEGACY-CAND-LINE-002186 — 下向き矢印で前後の図要素を接続する構造行。独立した要求条件はない。",
       "legacy_context": {
         "section_heading": {
           "line": 31,
@@ -5354,8 +5354,8 @@
       "physical_line_number": 48,
       "exact_source_line_text": "Release Module",
       "semantic_family": "正規導出線の旧候補図",
-      "semantic_function": "第2段階の名称",
-      "semantic_reading": "LEGACY-CAND-LINE-002187 — Functional Release Sliceを導出線の次要素として記載する。",
+      "semantic_function": "Release Moduleの図要素",
+      "semantic_reading": "LEGACY-CAND-LINE-002187 — 旧候補の正規導出線でRelease Moduleを図要素として記す行。",
       "legacy_context": {
         "section_heading": {
           "line": 31,
@@ -5580,7 +5580,7 @@
       "exact_source_line_text": "        ↓",
       "semantic_family": "正規導出線の旧候補図",
       "semantic_function": "導出矢印",
-      "semantic_reading": "LEGACY-CAND-LINE-002188 — 下向き矢印で図の次段階へつなぐ。独立条件ではない。",
+      "semantic_reading": "LEGACY-CAND-LINE-002188 — 下向き矢印で前後の図要素を接続する構造行。独立した要求条件はない。",
       "legacy_context": {
         "section_heading": {
           "line": 31,
@@ -5804,8 +5804,8 @@
       "physical_line_number": 50,
       "exact_source_line_text": "Bundle",
       "semantic_family": "正規導出線の旧候補図",
-      "semantic_function": "第3段階の名称",
-      "semantic_reading": "LEGACY-CAND-LINE-002189 — Release Moduleを導出線の次要素として記載する。",
+      "semantic_function": "Bundleの図要素",
+      "semantic_reading": "LEGACY-CAND-LINE-002189 — 旧候補の正規導出線でBundleを図要素として記す行。",
       "legacy_context": {
         "section_heading": {
           "line": 31,
@@ -6030,7 +6030,7 @@
       "exact_source_line_text": "        ↓",
       "semantic_family": "正規導出線の旧候補図",
       "semantic_function": "導出矢印",
-      "semantic_reading": "LEGACY-CAND-LINE-002190 — 下向き矢印で図の次段階へつなぐ。独立条件ではない。",
+      "semantic_reading": "LEGACY-CAND-LINE-002190 — 下向き矢印で前後の図要素を接続する構造行。独立した要求条件はない。",
       "legacy_context": {
         "section_heading": {
           "line": 31,
@@ -6254,8 +6254,8 @@
       "physical_line_number": 52,
       "exact_source_line_text": "channel / promotion / rollback",
       "semantic_family": "正規導出線の旧候補図",
-      "semantic_function": "第4段階の名称",
-      "semantic_reading": "LEGACY-CAND-LINE-002191 — Bundleを導出線の次要素として記載する。",
+      "semantic_function": "channel・promotion・rollbackの図要素",
+      "semantic_reading": "LEGACY-CAND-LINE-002191 — 旧候補の正規導出線でchannel / promotion / rollbackを終端の図要素として記す行。",
       "legacy_context": {
         "section_heading": {
           "line": 31,
@@ -6478,9 +6478,9 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
       "physical_line_number": 55,
       "exact_source_line_text": "Issue本文は意味authorityではない。L1／L3／L10とRequirement IRからのみSliceの意味を導出し、GitHub、DB、manifest、",
-      "semantic_family": "正規導出線の旧候補図",
-      "semantic_function": "導出矢印",
-      "semantic_reading": "LEGACY-CAND-LINE-002193 — 下向き矢印で図の次段階へつなぐ。独立条件ではない。",
+      "semantic_family": "意味authorityとprojection境界",
+      "semantic_function": "Issue非authorityとSlice意味の導出元",
+      "semantic_reading": "LEGACY-CAND-LINE-002193 — Issue本文を意味authorityとせず、Sliceの意味をL1／L3／L10とRequirement IRからのみ導出する。GitHub、DB、manifestの列挙で切れ、projectionの結論は次の物理行へ続く。",
       "legacy_context": {
         "section_heading": {
           "line": 31,
@@ -6703,9 +6703,9 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
       "physical_line_number": 56,
       "exact_source_line_text": "DevOSは再構築可能なprojectionとする。",
-      "semantic_family": "正規導出線の旧候補図",
-      "semantic_function": "channel・promotion・rollbackの最終項目",
-      "semantic_reading": "LEGACY-CAND-LINE-002194 — 導出線の末端項目としてchannel / promotion / rollbackをまとめて記載する。",
+      "semantic_family": "意味authorityとprojection境界",
+      "semantic_function": "DevOSを含むprojection境界の文末",
+      "semantic_reading": "LEGACY-CAND-LINE-002194 — 前行から続き、DevOSを含む列挙対象を再構築可能なprojectionとする。",
       "legacy_context": {
         "section_heading": {
           "line": 31,
@@ -6928,9 +6928,9 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
       "physical_line_number": 62,
       "exact_source_line_text": "`FunctionalReleaseSliceV1`は、`slice_id`、独立SemVer、`channel`、behavior contract exact set、primary module、",
-      "semantic_family": "正規導出線の旧候補図",
-      "semantic_function": "図の終了区切り",
-      "semantic_reading": "LEGACY-CAND-LINE-002197 — コードフェンスを終了するMarkdown構造行。業務条件を述べない。",
+      "semantic_family": "FRS-R-01 Sliceスキーマ",
+      "semantic_function": "FunctionalReleaseSliceV1の必須field列挙開始",
+      "semantic_reading": "LEGACY-CAND-LINE-002197 — FunctionalReleaseSliceV1のfieldとしてslice_id、独立SemVer、channel、behavior contract exact set、primary moduleを列挙する。必須field列挙は次の物理行へ続く。",
       "legacy_context": {
         "section_heading": {
           "line": 60,
@@ -7153,9 +7153,9 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
       "physical_line_number": 63,
       "exact_source_line_text": "副Moduleとの関係、Bundleへの束縛、正本情報、依存関係、互換性、受入手順、成果物／manifest、復旧／置換、改訂、",
-      "semantic_family": "意味authorityとprojection境界",
-      "semantic_function": "Issue本文の意味authority否定と意味導出元",
-      "semantic_reading": "LEGACY-CAND-LINE-002198 — Issue本文は意味authorityではないとし、Sliceの意味をL1／L3／L10とRequirement IRからのみ導出すると述べる。文は次行でprojection先を列挙して続く。",
+      "semantic_family": "FRS-R-01 Sliceスキーマ",
+      "semantic_function": "Slice schema必須field列挙の継続",
+      "semantic_reading": "LEGACY-CAND-LINE-002198 — 前行から続くfieldとして副Moduleとの関係、Bundle束縛、正本情報、依存、互換性、受入手順、成果物／manifest、復旧／置換、改訂を列挙する。digestと拒否条件は後続行にある。",
       "legacy_context": {
         "section_heading": {
           "line": 60,
@@ -7378,9 +7378,9 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
       "physical_line_number": 68,
       "exact_source_line_text": "source authorityはL1要求、L3要件、L10受入、Requirement IRのpath、revision、digestを保持する。Issue、README、Bundle名、",
-      "semantic_family": "意味authorityとprojection境界",
-      "semantic_function": "再構築可能なprojectionの列挙",
-      "semantic_reading": "LEGACY-CAND-LINE-002201 — 前行の文を閉じ、GitHub、DB、manifest、DevOSを再構築可能なprojectionとして列挙する。これは新たなauthority源の追加ではない。",
+      "semantic_family": "FRS-R-02 正本への束縛",
+      "semantic_function": "source authority参照情報と未完の否定対象",
+      "semantic_reading": "LEGACY-CAND-LINE-002201 — source authorityにL1要求、L3要件、L10受入、Requirement IRのpath・revision・digestを保持する。Issue、README、Bundle名の列挙で切れ、推測禁止の述語は次の物理行へ続く。",
       "legacy_context": {
         "section_heading": {
           "line": 66,
@@ -7603,9 +7603,9 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
       "physical_line_number": 69,
       "exact_source_line_text": "provider名、branch名からSliceの意味を推測しない。IR未admit、source digest不一致、stale revisionは候補または再観測へ戻す。",
-      "semantic_family": "FRS-FR-001 Sliceの識別・正本・ライフサイクル",
-      "semantic_function": "Slice schemaの冒頭と必須fieldの列挙開始",
-      "semantic_reading": "LEGACY-CAND-LINE-002202 — FunctionalReleaseSliceV1がslice_id、独立SemVer、channel、behavior contract exact set、primary moduleを持つと列挙を始める。必須fieldの残りと拒否条件は次行以降に続くため含めない。",
+      "semantic_family": "FRS-R-02 正本への束縛",
+      "semantic_function": "外形名からの意味推測禁止とstale復帰",
+      "semantic_reading": "LEGACY-CAND-LINE-002202 — 前行から続き、provider名・branch名からSliceの意味を推測しない。IR未admit、source digest不一致、stale revisionは候補または再観測へ戻す。",
       "legacy_context": {
         "section_heading": {
           "line": 66,
@@ -7828,9 +7828,9 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
       "physical_line_number": 73,
       "exact_source_line_text": "Sliceのchannelは `shadow → preview → rc → stable → deprecated → retired` の一方向遷移を正本とする。遷移には対象Slice、",
-      "semantic_family": "FRS-FR-001 Sliceの識別・正本・ライフサイクル",
-      "semantic_function": "Slice schema必須fieldの継続",
-      "semantic_reading": "LEGACY-CAND-LINE-002204 — 副Moduleとの関係、Bundleへの束縛、正本情報、依存関係、互換性、受入手順、成果物／manifest、復旧／置換、改訂を必須fieldとして列挙する。digestと拒否条件は次行のため含めない。",
+      "semantic_family": "FRS-R-03 channelのライフサイクル",
+      "semantic_function": "一方向channel遷移と束縛対象の開始",
+      "semantic_reading": "LEGACY-CAND-LINE-002204 — Slice channelの正本をshadow→preview→rc→stable→deprecated→retiredの一方向遷移とし、遷移対象Sliceの列挙で切れる。ほかの束縛対象は次の物理行へ続く。",
       "legacy_context": {
         "section_heading": {
           "line": 71,
@@ -8053,9 +8053,9 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
       "physical_line_number": 75,
       "exact_source_line_text": "provider driftはrevalidationまたは隔離へ戻し、channelを文字列だけで昇格させない。",
-      "semantic_family": "FRS-FR-001 Sliceの識別・正本・ライフサイクル",
-      "semantic_function": "Slice schema必須digestと不正schema拒否",
-      "semantic_reading": "LEGACY-CAND-LINE-002206 — 前2行に続く必須field digestを完結させ、unknown field、重複ID、欠落field、別軸identity混入を受理しないと定める。",
+      "semantic_family": "FRS-R-03 channelのライフサイクル",
+      "semantic_function": "provider drift時の復帰と文字列昇格拒否",
+      "semantic_reading": "LEGACY-CAND-LINE-002206 — provider driftではrevalidationまたは隔離へ戻し、channel名の文字列だけで昇格させない。",
       "legacy_context": {
         "section_heading": {
           "line": 71,
@@ -8278,9 +8278,9 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
       "physical_line_number": 86,
       "exact_source_line_text": "Slice、Module、Bundleは独立したversion、channel、digestを保持する。Slice stableはModule stableを意味せず、Module stableは",
-      "semantic_family": "FRS-R-02 正本への束縛",
-      "semantic_function": "根拠正本の参照情報",
-      "semantic_reading": "LEGACY-CAND-LINE-002212 — source authorityはL1要求、L3要件、L10受入、Requirement IRのpath、revision、digestを保持すると定める。次行の推測禁止・stale条件は含めない。",
+      "semantic_family": "FRS-R-05 SliceとModuleの成熟度分離",
+      "semantic_function": "Slice・Module・Bundleの独立版とstable非含意",
+      "semantic_reading": "LEGACY-CAND-LINE-002212 — Slice、Module、Bundleが別々のversion・channel・digestを保持し、Slice stableがModule stableを意味しない。Module stableについての続きは次の物理行にあるため、この行だけで収載条件を完結しない。",
       "legacy_context": {
         "section_heading": {
           "line": 84,
@@ -8503,9 +8503,9 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
       "physical_line_number": 96,
       "exact_source_line_text": "`Requirement Authority`、`Effective Agent Startup`、`Human Authority`、`Claim／Evidence Substance`、`Agentic Audit`、",
-      "semantic_family": "FRS-R-02 正本への束縛",
-      "semantic_function": "Issue等からの推測禁止とIR・digest・revision条件",
-      "semantic_reading": "LEGACY-CAND-LINE-002218 — Issue、README、Bundle名、provider名、branch名からSliceの意味を推測しない。IR未admit、source digest不一致、stale revisionを候補または再観測へ戻す。",
+      "semantic_family": "FRS-R-07 横断機能のSlice化",
+      "semantic_function": "横断機能例の列挙開始",
+      "semantic_reading": "LEGACY-CAND-LINE-002218 — Requirement Authority、Effective Agent Startup、Human Authority、Claim／Evidence Substance、Agentic Auditを横断機能例として列挙し、列挙は次の物理行へ続く。",
       "legacy_context": {
         "section_heading": {
           "line": 94,
@@ -8728,9 +8728,9 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
       "physical_line_number": 97,
       "exact_source_line_text": "`Three-Lane policy`、`Quality`、`Trust`、`Operations`、`Learning`、`Assurance`、`Synthesis`等は、要求・責務・依存・利用実績に",
-      "semantic_family": "FRS-R-03 channelのライフサイクル",
-      "semantic_function": "一方向channel遷移と束縛条件の開始",
-      "semantic_reading": "LEGACY-CAND-LINE-002219 — channelの正本をshadow→preview→rc→stable→deprecated→retiredの一方向遷移とし、対象Slice、candidate HEADを束縛対象として列挙開始する。残りの束縛対象は次行へ続く。",
+      "semantic_family": "FRS-R-07 横断機能のSlice化",
+      "semantic_function": "横断機能例と比較根拠の列挙継続",
+      "semantic_reading": "LEGACY-CAND-LINE-002219 — Three-Lane policy、Quality、Trust、Operations、Learning、Assurance、Synthesis等を列挙し、要求・責務・依存・利用実績に基づく文が次の物理行へ続く。比較の結論はこの行に含まない。",
       "legacy_context": {
         "section_heading": {
           "line": 94,
@@ -8953,9 +8953,9 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
       "physical_line_number": 98,
       "exact_source_line_text": "基づいて維持・分割・統合・移管を比較する。既存境界の維持も追加も前提にしない。変更理由、旧新identity対応、所有、",
-      "semantic_family": "FRS-R-03 channelのライフサイクル",
-      "semantic_function": "遷移に束縛する残りの根拠",
-      "semantic_reading": "LEGACY-CAND-LINE-002220 — 前行の遷移束縛対象の続きとしてartifact digest、受入receipt、独立review、rollback、前channelとの差分を列挙する。failure/expiry/security/provider driftの復帰条件は後続行のため含めない。",
+      "semantic_family": "FRS-R-07 横断機能のSlice化",
+      "semantic_function": "維持・分割・統合・移管の比較と未完の記録列挙",
+      "semantic_reading": "LEGACY-CAND-LINE-002220 — 前行から続き、要求等に基づいて維持・分割・統合・移管を比較し、既存境界の維持も追加も前提にしない。変更理由、旧新identity対応、所有の列挙で切れ、残りは次の物理行へ続く。",
       "legacy_context": {
         "section_heading": {
           "line": 94,
