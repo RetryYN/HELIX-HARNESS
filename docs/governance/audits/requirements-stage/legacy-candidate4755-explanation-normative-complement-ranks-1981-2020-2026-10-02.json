@@ -76,12 +76,13 @@
       "docs/governance/candidates/producer-provenance-separation-acceptance.md": 11
     },
     "preceding_slice_boundary": {
-      "preceding_rank": 1620,
-      "preceding_id": "LEGACY-CAND-LINE-002725",
-      "this_first_rank": 1621,
-      "this_first_id": "LEGACY-CAND-LINE-002726",
-      "immediate_prior_1581_1620_audit_in_origin_main": false,
-      "preceding_rank_reconstructed_from_full_pool": true
+      "preceding_rank": 1980,
+      "preceding_id": "LEGACY-CAND-LINE-003338",
+      "this_first_rank": 1981,
+      "this_first_id": "LEGACY-CAND-LINE-003339",
+      "immediate_prior_1941_1980_audit_in_origin_main": false,
+      "preceding_rank_reconstructed_from_full_pool": true,
+      "note": "直前sliceは同一PRへ統合し、最終commitの本文pinは作成側の統合時に追加する。"
     },
     "preceding_rank_boundary": {
       "rank": 1980,
