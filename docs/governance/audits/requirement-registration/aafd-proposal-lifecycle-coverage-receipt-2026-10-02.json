@@ -1,0 +1,345 @@
+{
+  "receipt_id": "MPR-RCPT-HELIXINTELLIGENCE-AAFD-PROPOSAL-LIFECYCLE-2026-10-02",
+  "supersedes_receipt_id": null,
+  "authority_effect": "none",
+  "candidate_state": "registered_proposal; PO未採択",
+  "scope": "AAFD-R-01..03をL2/L11-075候補へ、R-13..14をL2/L11-076候補へ限定比較。R-04の2 atomは既存L2/L11-073と2026-09-29 PO decisionで扱われるため重複しない。R-05..12 future-state delta processingおよびR-15 promotionは選択外・source holding。",
+  "source_atom_set_digest_rule": "source line order; atom_id + half-space + sha256-prefixed source_line_sha256 joined by LF without trailing LF.",
+  "candidate_digest_rule": "H3 ID heading through before next H3; trim trailing blank lines and hash UTF-8 ending in one LF. L2 and L11 section digests are separate.",
+  "candidates": [
+    {
+      "requirement_identity": "HELIXINTELLIGENCE-L2-075",
+      "requirement_kind": "unit",
+      "version_target": "1.0 candidate; PO decision pending; no adoption or implementation permission",
+      "parent_l1_ids": [
+        "HELIXINTELLIGENCE-L1-009"
+      ],
+      "parent_l1_source": {
+        "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+        "sha256": "sha256:8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8",
+        "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md"
+      },
+      "existing_parent_l2": "HELIXINTELLIGENCE-L2-009",
+      "candidate_semantic_digest": "sha256:3fd41ea6aac29e7f819398a4e7d6128ebfdf1053019c69811ac4eaf1f59f2f0d",
+      "candidate_source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#helixintelligence-l2-075",
+      "candidate_file_sha256": "sha256:3c9e350724b4abdca9c9e9b61c8338d078d2bdda1d1b619c2705d8121559a5d7",
+      "candidate_section_boundaries": {
+        "start_line": 618,
+        "end_line": 625,
+        "start_heading_prefix": "### HELIXINTELLIGENCE-L2-075 "
+      },
+      "acceptance_source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "acceptance_file_sha256": "sha256:164a9fcd1d1b5dcd7a0647ab6c1ab231574079bea647a09f9f3fefc213e2dd9a",
+      "acceptance_section_sha256": "sha256:9ccec35ca87d035abff2e2a4f6505719af18f2b07daab3d0d1d7533e93add7ce",
+      "acceptance_section_boundaries": {
+        "start_line": 337,
+        "end_line": 343,
+        "start_heading_prefix": "### HELIXINTELLIGENCE-L2-075 "
+      },
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/aafd-proposal-lifecycle-source-lines-2026-10-02.jsonl#LEGACY-CAND-LINE-000129,LEGACY-CAND-LINE-000132,LEGACY-CAND-LINE-000133,LEGACY-CAND-LINE-000134,LEGACY-CAND-LINE-000136,LEGACY-CAND-LINE-000137,LEGACY-CAND-LINE-000139,LEGACY-CAND-LINE-000140",
+      "source_atom_set_digest": "sha256:2fe8fd5a4e09676aff18f4368e527d8c634df3388dea56db2cc1239c816531be",
+      "source_atom_count": 8,
+      "source_collection_scope": "旧AAFD-R-01〜03。proposal identity/schema/evidence、source/authority identity検証、既存UIL-01..04 qualificationへのhandoffだけ。R-04はL2-073 adopted pairで扱うため入力外。他のdirect projection境界、R-05..12 Future Synthesis adapter、R-13..15 model comparison/promotionも入力外。",
+      "atoms": [
+        {
+          "atom_id": "LEGACY-CAND-LINE-000129",
+          "source_kind": "historical_candidate_requirement",
+          "candidate_line_id": "LEGACY-CAND-LINE-000129",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "sha256:685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 23,
+          "source_line_sha256": "sha256:b689c19e3f53f7a7f50e97f7442e7c673fda43d47077fcf56d7d4cde50de83e1",
+          "source_text": "`AgenticAuditProbeProposalV1`とし、PR review findingとsystem audit proposalを別identityで保持する。",
+          "parent_requirement_ref": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md:23",
+          "disposition": "carried_to_unadopted_candidate_limited_scope",
+          "semantic_limit": "AgenticAuditProbeProposalV1と既存PR review findingを別identityとして保つ。",
+          "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-000132",
+          "source_kind": "historical_candidate_requirement",
+          "candidate_line_id": "LEGACY-CAND-LINE-000132",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "sha256:685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 29,
+          "source_line_sha256": "sha256:76010fa1b342f27786fceb800460148bfb302056216fedc50206d2aab7aeb96d",
+          "source_text": "`AgenticAuditProbeProposalV1`はproposal ID、audit episode、producer provider/runtime/model/version/session、repository、",
+          "parent_requirement_ref": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md:29",
+          "disposition": "carried_to_unadopted_candidate_limited_scope",
+          "semantic_limit": "Proposal ID、audit episode、producer provider/runtime/model/version/session、repositoryを保持する。",
+          "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-000133",
+          "source_kind": "historical_candidate_requirement",
+          "candidate_line_id": "LEGACY-CAND-LINE-000133",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "sha256:685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 30,
+          "source_line_sha256": "sha256:8f672a6368f14453127ba68cedaff2b636d8f45d50af00793f05692d250d9ced",
+          "source_text": "候補HEAD、worktree identity、authority revision/digest、責務／不変条件ID、観測挙動、evidence、",
+          "parent_requirement_ref": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md:30",
+          "disposition": "carried_to_unadopted_candidate_limited_scope",
+          "semantic_limit": "候補HEAD、worktree identity、authority revision/digest、責務／不変条件ID、観測挙動、evidenceを保持する。",
+          "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-000134",
+          "source_kind": "historical_candidate_requirement",
+          "candidate_line_id": "LEGACY-CAND-LINE-000134",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "sha256:685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 31,
+          "source_line_sha256": "sha256:32d48b40393347e88cfd853e9c738ce724ccb759c7770aa2e2dd81b7252e1c9a",
+          "source_text": "reproduction recipe、counterevidence、confidence、expiry、finding advisory、remediation advisory、proposal digestを持つ。",
+          "parent_requirement_ref": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md:31",
+          "disposition": "carried_to_unadopted_candidate_limited_scope",
+          "semantic_limit": "reproduction、counterevidence、confidence、expiry、finding/remediation advisory、proposal digestを保持する。",
+          "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-000136",
+          "source_kind": "historical_candidate_requirement",
+          "candidate_line_id": "LEGACY-CAND-LINE-000136",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "sha256:685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 35,
+          "source_line_sha256": "sha256:82b09c4106afdb30735a332a8ef5a4da2ce386434ba0f9253cd01248331460fb",
+          "source_text": "exact HEAD、resolved worktree、authority digest、producer session、responsibility owner、evidenceの欠落または不一致を個別に",
+          "parent_requirement_ref": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md:35",
+          "disposition": "carried_to_unadopted_candidate_limited_scope",
+          "semantic_limit": "exact HEAD、resolved worktree、authority digest、producer session、responsibility owner、evidenceの欠落／不一致を個別fail-closeする。",
+          "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-000137",
+          "source_kind": "historical_candidate_requirement",
+          "candidate_line_id": "LEGACY-CAND-LINE-000137",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "sha256:685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 36,
+          "source_line_sha256": "sha256:be261bd03990a37b9dc52051aa449c95c1b2607efd2c5d3b73c88c87c51a70e6",
+          "source_text": "fail-closeする。current、compatibility、historical authorityを分離し、historical evidenceをcurrent claimへ読み替えない。",
+          "parent_requirement_ref": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md:36",
+          "disposition": "carried_to_unadopted_candidate_limited_scope",
+          "semantic_limit": "current/compatibility/historical authorityを分離しhistorical evidenceをcurrentへ読み替えない。",
+          "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-000139",
+          "source_kind": "historical_candidate_requirement",
+          "candidate_line_id": "LEGACY-CAND-LINE-000139",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "sha256:685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 40,
+          "source_line_sha256": "sha256:e7a4d53f08f77cbc48f2d86e2f19ab1ec0d178aee5f5c7f51743c86bd7092d1d",
+          "source_text": "AI自己評価だけでverified、P0/P1、owner、route、remediation採用を確定しない。duplicate Issue／existing owner照合、独立再現、",
+          "parent_requirement_ref": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md:40",
+          "disposition": "carried_to_unadopted_candidate_limited_scope",
+          "semantic_limit": "AI自己評価からverified/P0-P1/owner/route/remediation adoptionを確定せず、duplicate/owner照合、独立再現を要する。",
+          "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-000140",
+          "source_kind": "historical_candidate_requirement",
+          "candidate_line_id": "LEGACY-CAND-LINE-000140",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "sha256:685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 41,
+          "source_line_sha256": "sha256:0e46c073ca7c854ba00923ca1d5804d470c8a3beea6c85713411e74be9ac101e",
+          "source_text": "反証、expiry、supersessionをUIL-01〜04へ渡す。finding proposalとremediation proposalは別identity、別判定とする。",
+          "parent_requirement_ref": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md:41",
+          "disposition": "carried_to_unadopted_candidate_limited_scope",
+          "semantic_limit": "反証/expiry/supersessionをUIL-01..04へ渡しfinding/remediation proposalを別identity/判定とする。",
+          "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295"
+        }
+      ],
+      "coverage_result": "no_loss_limited_to_selected_candidate_atoms",
+      "carried_atom_refs": [
+        "LEGACY-CAND-LINE-000129",
+        "LEGACY-CAND-LINE-000132",
+        "LEGACY-CAND-LINE-000133",
+        "LEGACY-CAND-LINE-000134",
+        "LEGACY-CAND-LINE-000136",
+        "LEGACY-CAND-LINE-000137",
+        "LEGACY-CAND-LINE-000139",
+        "LEGACY-CAND-LINE-000140"
+      ],
+      "preserved_pending_registration_refs": [
+        "MPR-SH-CANDIDATE-001"
+      ],
+      "human_decision_disposition_refs": [],
+      "unaccounted_atom_refs": [],
+      "semantic_limit": "選択した旧source atomsの意味対応を未採択candidateへ保持した記録。対象L1のscope拡張、採択、実装、runtime検証を示さない。"
+    },
+    {
+      "requirement_identity": "HELIXINTELLIGENCE-L2-076",
+      "requirement_kind": "unit",
+      "version_target": "1.0 candidate; PO decision pending; no adoption or implementation permission",
+      "parent_l1_ids": [
+        "HELIXINTELLIGENCE-L1-011"
+      ],
+      "parent_l1_source": {
+        "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+        "sha256": "sha256:8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8",
+        "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md"
+      },
+      "existing_parent_l2": "HELIXINTELLIGENCE-L2-011",
+      "candidate_semantic_digest": "sha256:c4a239b6fe0882523c0c951b293371932699618bc0f7a1d72235b5016d02424f",
+      "candidate_source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#helixintelligence-l2-076",
+      "candidate_file_sha256": "sha256:3c9e350724b4abdca9c9e9b61c8338d078d2bdda1d1b619c2705d8121559a5d7",
+      "candidate_section_boundaries": {
+        "start_line": 627,
+        "end_line": 633,
+        "start_heading_prefix": "### HELIXINTELLIGENCE-L2-076 "
+      },
+      "acceptance_source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "acceptance_file_sha256": "sha256:164a9fcd1d1b5dcd7a0647ab6c1ab231574079bea647a09f9f3fefc213e2dd9a",
+      "acceptance_section_sha256": "sha256:1b6efb421f381e426dcb6f36d10386833d2056e90d6ab63f43bf49ed015c7a9e",
+      "acceptance_section_boundaries": {
+        "start_line": 345,
+        "end_line": 350,
+        "start_heading_prefix": "### HELIXINTELLIGENCE-L2-076 "
+      },
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/aafd-proposal-lifecycle-source-lines-2026-10-02.jsonl#LEGACY-CAND-LINE-000173,LEGACY-CAND-LINE-000174,LEGACY-CAND-LINE-000176,LEGACY-CAND-LINE-000177",
+      "source_atom_set_digest": "sha256:daadc6e2771b504873045502abaa0509a03fe695a0212fa964c2894cb515e74a",
+      "source_atom_count": 4,
+      "source_collection_scope": "旧AAFD-R-13〜14。provider/model/runtime/version change eventに基づくrevalidation proposalとcomparison metric分離だけ。R-01..12 proposal/future-state delta処理、R-15 learning promotionは入力外。",
+      "atoms": [
+        {
+          "atom_id": "LEGACY-CAND-LINE-000173",
+          "source_kind": "historical_candidate_requirement",
+          "candidate_line_id": "LEGACY-CAND-LINE-000173",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "sha256:685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 98,
+          "source_line_sha256": "sha256:f1491b51052dc676a1168aefd9dba47c8838642d85c2ffe5fd29d94bace50c30",
+          "source_text": "provider/model/runtime/version変更をTER eventとして記録し、同じaudit corpus、responsibility scope、policy、oracle revisionで",
+          "parent_requirement_ref": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md:98",
+          "disposition": "carried_to_unadopted_candidate_limited_scope",
+          "semantic_limit": "provider/model/runtime/version変更をTER eventとして記録し同じcorpus/responsibility/policy/oracleで再validationを開始する。",
+          "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-000174",
+          "source_kind": "historical_candidate_requirement",
+          "candidate_line_id": "LEGACY-CAND-LINE-000174",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "sha256:685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 99,
+          "source_line_sha256": "sha256:5537677382e26a908376684afe292df616e86900e40f2d61608d1013de828430",
+          "source_text": "revalidationを開始する。model名の文字列変更だけでqualificationを継承しない。",
+          "parent_requirement_ref": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md:99",
+          "disposition": "carried_to_unadopted_candidate_limited_scope",
+          "semantic_limit": "model名文字列変更だけでqualificationを継承しない。",
+          "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-000176",
+          "source_kind": "historical_candidate_requirement",
+          "candidate_line_id": "LEGACY-CAND-LINE-000176",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "sha256:685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 103,
+          "source_line_sha256": "sha256:4c9d0f47b50e21bcff9274ddc92a415053ef8a9b12ef763626de19f44ce83703",
+          "source_text": "new/lost finding、false positive/negative、duplicate、remediation correctness、authority drift、reproduction success、cost、latencyを",
+          "parent_requirement_ref": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md:103",
+          "disposition": "carried_to_unadopted_candidate_limited_scope",
+          "semantic_limit": "new/lost finding、FP/FN、duplicate、remediation correctness、authority drift、reproduction success、cost、latencyを比較する。",
+          "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-000177",
+          "source_kind": "historical_candidate_requirement",
+          "candidate_line_id": "LEGACY-CAND-LINE-000177",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "sha256:685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 104,
+          "source_line_sha256": "sha256:e5b93e6686946bd6d4fb1f1d57b8a62c071984b1598ddfdfb5f05e15014bd65c",
+          "source_text": "別metricで記録し、単一scoreへ潰さない。hidden oracleをworker contextへ渡さない。",
+          "parent_requirement_ref": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md:104",
+          "disposition": "carried_to_unadopted_candidate_limited_scope",
+          "semantic_limit": "metricsを分離しsingle scoreへ潰さずhidden oracleをworker contextへ渡さない。",
+          "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295"
+        }
+      ],
+      "coverage_result": "no_loss_limited_to_selected_candidate_atoms",
+      "carried_atom_refs": [
+        "LEGACY-CAND-LINE-000173",
+        "LEGACY-CAND-LINE-000174",
+        "LEGACY-CAND-LINE-000176",
+        "LEGACY-CAND-LINE-000177"
+      ],
+      "preserved_pending_registration_refs": [
+        "MPR-SH-CANDIDATE-001"
+      ],
+      "human_decision_disposition_refs": [],
+      "unaccounted_atom_refs": [],
+      "semantic_limit": "選択した旧source atomsの意味対応を未採択candidateへ保持した記録。対象L1のscope拡張、採択、実装、runtime検証を示さない。"
+    }
+  ],
+  "source_parent_context": {
+    "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+    "source_file_sha256": "sha256:685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+    "source_requirement_ref": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md:23-109",
+    "source_status": "historical draft candidate; no current authority inherited",
+    "selected_sets": {
+      "R-01..03": [
+        "LEGACY-CAND-LINE-000129",
+        "LEGACY-CAND-LINE-000132",
+        "LEGACY-CAND-LINE-000133",
+        "LEGACY-CAND-LINE-000134",
+        "LEGACY-CAND-LINE-000136",
+        "LEGACY-CAND-LINE-000137",
+        "LEGACY-CAND-LINE-000139",
+        "LEGACY-CAND-LINE-000140"
+      ],
+      "R-13..14": [
+        "LEGACY-CAND-LINE-000173",
+        "LEGACY-CAND-LINE-000174",
+        "LEGACY-CAND-LINE-000176",
+        "LEGACY-CAND-LINE-000177"
+      ]
+    },
+    "existing_R04_status": {
+      "source_atom_ids": [
+        "LEGACY-CAND-LINE-000142",
+        "LEGACY-CAND-LINE-000143"
+      ],
+      "candidate": "HELIXINTELLIGENCE-L2-073",
+      "PO_decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:86",
+      "scope": "two source atoms only"
+    },
+    "unselected_condition_status": {
+      "R-05..12": "retained in source holding; broad BR-02/03 candidate prose only. Exact adapter/runtime semantics lack current L1 scope and stay with existing UIL/TER/Future Synthesis owners.",
+      "R-15": "retained in source holding and 3.0 learning candidate boundary L2-065; AAFD-specific promotion/verification closure unproven."
+    }
+  },
+  "human_decision_provenance": {
+    "existing_parent_decision": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+    "new_candidate_adoption": "No matching PO decision found for L2-075 or L2-076. Both remain registered_proposal; authority_effect none.",
+    "meaning_change_items": [
+      "L2-076 TER change trigger and expanded metrics exceed explicit L1-011 fields; adoption requires PO decision.",
+      "L2-075 schema/qualification details are candidate refinements and remain unadopted."
+    ]
+  },
+  "validation_boundary": "static exact source path/file/line SHA, candidate L2/L11 section pins, MPR append-only registration and current PO/L1 scope comparison; no legacy runtime/test/CI/CLI execution and no L2/L11 adoption.",
+  "pins": {
+    "base_commit": "1cd77015081b87d5bcde7d5e45ee4e0a227e02c2",
+    "l2_file_sha256": "sha256:3c9e350724b4abdca9c9e9b61c8338d078d2bdda1d1b619c2705d8121559a5d7",
+    "l11_file_sha256": "sha256:164a9fcd1d1b5dcd7a0647ab6c1ab231574079bea647a09f9f3fefc213e2dd9a",
+    "existing_candidate_file_sha256": "sha256:3fb376ba503cc1e057aa2eb0c85b8fb5d4c4c06e2af2dc068fb2fd55f461cc16",
+    "parent_l1_sha256": "sha256:8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8",
+    "source_file_sha256": "sha256:685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+    "asset_disposition_ledger_sha256": "sha256:cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+    "asset_disposition_jsonl_line": 789,
+    "pre_append_register_sha256": "sha256:ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+    "prior_R04_r2_receipt_sha256": "sha256:31b7db992c333edcd1fe7cfc94c7567cc88df594d70b71610f040fc44129c3f8",
+    "prior_R04_source_lines_sha256": "sha256:b1ef1bbb5ab479490934d4eaceb62d2734f0b4a97e1f456a3520cfe33d25659d",
+    "later_PO_decision_file_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+    "later_PO_decision_line": 86,
+    "later_PO_decision_L2_digest": "sha256:4425189d3870de92165ebdbc790902317dc2799d89f760156ab17441662a2eb5",
+    "later_PO_decision_L11_digest": "sha256:d98488d23fc02992143edb4a1e689a0c12dcc91d0ec1c9adabe1b8e334dd9ef1"
+  }
+}
