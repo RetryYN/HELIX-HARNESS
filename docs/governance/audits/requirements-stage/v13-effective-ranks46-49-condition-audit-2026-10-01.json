@@ -501,7 +501,14 @@
         "formal_successor_assigned": false,
         "source_condition_closed": false,
         "authority_effect": "none",
-        "residual": "The fixed F6 L2-022/L11-022 comparison predates and does not include the later PO-adopted L2/L11-034/035 and OS-L2/L11-031 revisions. The later adoption context is recorded separately; this audit therefore does not conclude that those later revisions lack the 14-domain metric requirements. For this fixed-revision comparison, the old source row remains unresolved because no row-level closure determination is made here."
+        "residual": "固定F6に限定した未照合残差: 14品質領域ごとに各requirement/NFRからmetric/evidence contractを生成する規則、適用対象とsource identityのline-level対応、領域別の受入範囲・例外が固定採択pairから特定できない。 後続PO採択のHARNESS-L2-034/035およびHELIXOS-L2-031の固定対象revisionはこの固定F6 comparisonへ含めていない。したがってこの残差は固定F6 revisionでの未照合条件を示し、後続採択revisionに14品質領域やsource別契約が欠けるという主張ではない。 旧source rowの閉鎖判定や後続採択revisionの適合判定はこの監査の範囲外であり、source conditionは未解消のまま保持する。",
+        "fixed_f6_unresolved_conditions": {
+          "condition_text_as_recorded_in_original_fixed_f6_audit": "14品質領域ごとに各requirement/NFRからmetric/evidence contractを生成する規則、適用対象とsource identityのline-level対応、領域別の受入範囲・例外が固定採択pairから特定できない。",
+          "scope": "fixed F6 revision f6dad2a33e24f000b87d7f09b8d40288257e74cc only",
+          "not_a_claim_about_later_po_adopted_candidate_revisions": true,
+          "later_candidate_adoption_context_ref": "/later_po_adoption_context/explicitly_adopted_rows",
+          "source_condition_closed_by_this_audit": false
+        }
       },
       "later_po_adoption_context": {
         "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
@@ -636,7 +643,14 @@
         "formal_successor_assigned": false,
         "source_condition_closed": false,
         "authority_effect": "none",
-        "residual": "The fixed F6 L2-022/L11-022 comparison predates and does not include later PO-adopted L2/L11-034/035 and OS-L2/L11-031 revisions. This audit does not claim those exact adopted candidate revisions lack the enumerated measurement fields/failure conditions; it keeps the old source row unresolved because it does not adjudicate source-row closure or execution evidence beyond the fixed F6 comparison."
+        "residual": "固定F6に限定した未照合残差: metric ID、対象requirement/NFR、測定対象、workload/environment/data、baseline、target/SLO、tolerance、sampling/window、tool/probe、evidence schema、oracle、owner、実行layer、再測定triggerを持つfield contractと、未測定・stale・非代表環境・閾値未達のcompletion拒否を旧行単位に結ぶadopted pair bindingがない。 後続PO採択のHARNESS-L2-034/035およびHELIXOS-L2-031の固定対象revisionはこの固定F6 comparisonへ含めていない。したがってこの残差は固定F6 revisionでの未照合条件を示し、後続採択revisionに列挙fieldやfailure条件が欠けるという主張ではない。 旧source rowの閉鎖判定や後続採択revisionの適合判定はこの監査の範囲外であり、source conditionは未解消のまま保持する。",
+        "fixed_f6_unresolved_conditions": {
+          "condition_text_as_recorded_in_original_fixed_f6_audit": "metric ID、対象requirement/NFR、測定対象、workload/environment/data、baseline、target/SLO、tolerance、sampling/window、tool/probe、evidence schema、oracle、owner、実行layer、再測定triggerを持つfield contractと、未測定・stale・非代表環境・閾値未達のcompletion拒否を旧行単位に結ぶadopted pair bindingがない。",
+          "scope": "fixed F6 revision f6dad2a33e24f000b87d7f09b8d40288257e74cc only",
+          "not_a_claim_about_later_po_adopted_candidate_revisions": true,
+          "later_candidate_adoption_context_ref": "/later_po_adoption_context/explicitly_adopted_rows",
+          "source_condition_closed_by_this_audit": false
+        }
       },
       "later_po_adoption_context": {
         "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
@@ -779,7 +793,14 @@
         "formal_successor_assigned": false,
         "source_condition_closed": false,
         "authority_effect": "none",
-        "residual": "The fixed F6 L2/L11 comparison predates and does not include later PO-adopted L2/L11-034/035 and OS-L2/L11-031 revisions. The later adoption context is recorded separately; this audit does not conclude that those later revisions lack the measurement-process, privacy, overhead, or reproducibility conditions. The old source row remains unresolved within this fixed-revision audit because no row-level closure determination is made here."
+        "residual": "固定F6に限定した未照合残差: 測定stageとsource atomの対応、L7 probe/fixtureの受入、利用実態と時系列SLO評価のmetric/oracle、production secret/PIIを露出しない測定data handling、measurement overhead・再現性の記録をこのsource rowへ結ぶ固定L2/L11 pairは確認できない。 後続PO採択のHARNESS-L2-034/035およびHELIXOS-L2-031の固定対象revisionはこの固定F6 comparisonへ含めていない。したがってこの残差は固定F6 revisionでの未照合条件を示し、後続採択revisionに工程・安全・再現条件が欠けるという主張ではない。 旧source rowの閉鎖判定や後続採択revisionの適合判定はこの監査の範囲外であり、source conditionは未解消のまま保持する。",
+        "fixed_f6_unresolved_conditions": {
+          "condition_text_as_recorded_in_original_fixed_f6_audit": "測定stageとsource atomの対応、L7 probe/fixtureの受入、利用実態と時系列SLO評価のmetric/oracle、production secret/PIIを露出しない測定data handling、measurement overhead・再現性の記録をこのsource rowへ結ぶ固定L2/L11 pairは確認できない。",
+          "scope": "fixed F6 revision f6dad2a33e24f000b87d7f09b8d40288257e74cc only",
+          "not_a_claim_about_later_po_adopted_candidate_revisions": true,
+          "later_candidate_adoption_context_ref": "/later_po_adoption_context/explicitly_adopted_rows",
+          "source_condition_closed_by_this_audit": false
+        }
       },
       "later_po_adoption_context": {
         "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
@@ -966,7 +987,9 @@
     "later_candidate_adoption_not_inferred_as_source_closure": true,
     "markdown_later_po_decision_pins_match_json": true,
     "baseline_residual_reconciled_without_deleting_historical_reg03_wording": true,
-    "fixed_f6_scope_and_unclosed_source_residual_preserved": true
+    "fixed_f6_scope_and_unclosed_source_residual_preserved": true,
+    "fixed_f6_specific_conditions_preserved_in_json_and_markdown": true,
+    "later_adopted_candidate_scope_not_mischaracterized_as_missing": true
   },
   "later_po_adoption_context": {
     "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",

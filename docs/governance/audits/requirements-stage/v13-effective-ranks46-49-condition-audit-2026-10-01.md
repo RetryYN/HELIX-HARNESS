@@ -29,10 +29,18 @@ Decision record: `docs/governance/decisions/po-decision-2026-09-29-57candidates.
 
 |rank|Source ID / source line|Baseline|Finding|固定F6の限定的関係|残差|
 |---:|---|---|---|---|---|
-|46|`REQSRC-SUP-00192` / L247|unresolved|partial|HARNESS-L2-022 / L11-022: stageごとの検証・受入境界。14品質領域からmetric contractを生成するfield規則までは示さない。|固定F6比較は後続PO採択のHARNESS-L2-034/035・HELIXOS-L2-031 revisionを含まない。これらの採択対象を後続文脈としてpinしたが、本監査は固定F6を維持し、旧source row単位の閉鎖判定を行わない。|
-|47|`REQSRC-SUP-00193` / L249|unresolved|partial|HARNESS-L2-022 / L11-022: stage proofとsystem固有義務差分。全measurement fieldとstale/nonrepresentative/target未達の規則までは示さない。|固定F6比較は後続PO採択のHARNESS-L2-034/035・HELIXOS-L2-031 revisionを含まない。後続採択revisionに同じfieldが存在しないとは主張せず、この監査は旧source row単位の閉鎖や実行証拠を判定しない。|
-|48|`REQSRC-SUP-00194` / L251|unresolved|partial|HARNESS-L2-001 / 022とL11-001 / 022: layer/pairと受入段階。L5→L7→L8–10→L11→L12の計測運用・安全な測定条件までは示さない。|固定F6比較は後続PO採択のHARNESS-L2-034/035・HELIXOS-L2-031 revisionを含まない。後続採択revisionの工程・安全条件について不足を主張せず、この監査では旧source row単位の閉鎖を判定しない。|
+|46|`REQSRC-SUP-00192` / L247|unresolved|partial|HARNESS-L2-022 / L11-022: stageごとの検証・受入境界。14品質領域からmetric contractを生成するfield規則までは示さない。|固定F6未照合: 14品質領域ごとに各requirement/NFRからmetric/evidence contractを生成する規則、適用対象とsource identityのline-level対応、領域別の受入範囲・例外が固定採択pairから特定できない。 後続PO採択revisionの欠落を主張しない。source-row閉鎖はこの監査で判定しない。|
+|47|`REQSRC-SUP-00193` / L249|unresolved|partial|HARNESS-L2-022 / L11-022: stage proofとsystem固有義務差分。全measurement fieldとstale/nonrepresentative/target未達の規則までは示さない。|固定F6未照合: metric ID、対象requirement/NFR、測定対象、workload/environment/data、baseline、target/SLO、tolerance、sampling/window、tool/probe、evidence schema、oracle、owner、実行layer、再測定triggerを持つfield contractと、未測定・stale・非代表環境・閾値未達のcompletion拒否を旧行単位に結ぶadopted pair bindingがない。 後続PO採択revisionの欠落を主張しない。source-row閉鎖はこの監査で判定しない。|
+|48|`REQSRC-SUP-00194` / L251|unresolved|partial|HARNESS-L2-001 / 022とL11-001 / 022: layer/pairと受入段階。L5→L7→L8–10→L11→L12の計測運用・安全な測定条件までは示さない。|固定F6未照合: 測定stageとsource atomの対応、L7 probe/fixtureの受入、利用実態と時系列SLO評価のmetric/oracle、production secret/PIIを露出しない測定data handling、measurement overhead・再現性の記録をこのsource rowへ結ぶ固定L2/L11 pairは確認できない。 後続PO採択revisionの欠落を主張しない。source-row閉鎖はこの監査で判定しない。|
 |49|`REQSRC-SUP-00198` / L259|partial|partial|HARNESS-L2-002 / 003とL11-002 / 003:方式、工程、SR4前release-ready禁止の一部。Full V全体と列挙されたworkflow全状態・例外の閉包までは示さない。|Full Vのsystem-wide L1–L5 workflow modelの段階freezeと右腕による全transition/loop/terminal/exception/permission/timeout/notification/audit/data/switching/routing/resource allocation検証、Production Scrumのslice deltaとsprint review/release前backfillの全要素を旧line identityごとに結ぶ固定L2/L11 pairはない。|
+
+### 固定F6で未照合の具体条件（後続採択revisionの欠落を意味しない）
+
+次の残差は元監査が固定F6 revisionに限定して記録した具体条件である。後続PO決定row 39/40/54の採択対象revisionは別時点としてpinし、この比較から欠落を主張しない。
+
+- `REQSRC-SUP-00192`: 14品質領域ごとに各requirement/NFRからmetric/evidence contractを生成する規則、適用対象とsource identityのline-level対応、領域別の受入範囲・例外が固定採択pairから特定できない。 後続採択revisionの欠落を主張しない。source rowは本監査で閉鎖判定しない。
+- `REQSRC-SUP-00193`: metric ID、対象requirement/NFR、測定対象、workload/environment/data、baseline、target/SLO、tolerance、sampling/window、tool/probe、evidence schema、oracle、owner、実行layer、再測定triggerを持つfield contractと、未測定・stale・非代表環境・閾値未達のcompletion拒否を旧行単位に結ぶadopted pair bindingがない。 後続採択revisionの欠落を主張しない。source rowは本監査で閉鎖判定しない。
+- `REQSRC-SUP-00194`: 測定stageとsource atomの対応、L7 probe/fixtureの受入、利用実態と時系列SLO評価のmetric/oracle、production secret/PIIを露出しない測定data handling、measurement overhead・再現性の記録をこのsource rowへ結ぶ固定L2/L11 pairは確認できない。 後続採択revisionの欠落を主張しない。source rowは本監査で閉鎖判定しない。
 
 ### source identityと旧原文
 
