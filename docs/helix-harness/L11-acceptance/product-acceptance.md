@@ -961,3 +961,20 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **Negative — template gapの早期active化**：041のgapが未解消、独立review対象revisionが異なる、reviewerが作成者と同一、finding/dispositionが欠落、またはレビュー前にactive扱いした入力を与える。gapは未解消として残り、候補状態やOSのticket/PR/project表示からactiveを推定しない。
 - **Unknown — 未選択または未観測source**：対象外template、oracle、依存機構の記録がない場合、N/A・pass・failureへ推測変換せず`unknown`とする。入力選択を変えた場合はそのscopeの契約を新たに確認する。
 - **境界**：HARNESS-L2-009のtemplate選択・適用、041の抽出とgap列挙、040のcatalog/pair/edge契約、035の上流根拠と受入寄与の各oracleを再実装しない。OS state/ticket/保存の実行成功、L3承認、要求合意、実装完了、全HR-FR-HIL-17のno-lossを判定しない。
+
+### HARNESS-L2-064 support tierとprofile evidenceの対応受入候補
+
+このL11は、選択scope内のtier/profile対応意味を制御fixtureで照合する候補である。実OSのruntime successをL2/L3要求起草・承認・freezeのgateにしない。実測結果やOS-020のrun receiptがない状態で、実装・OS互換性・製品supportを成立扱いしない。
+
+- **Positive — tier別profile対応**：上流authorityが明示した適用scopeとprofile集合、同一contract/fixture、対象revisionを与える。各profileの結果がそのprofile固有のtier label、environment/run identity、oracle、evidenceへ結ばれ、Linux `primary/full`、macOS `first-class portable`、Windows `compatibility`の意味区分が保たれることを確認する。HAC-HIL-14aの旧positive oracleを成立と主張するscopeでは、Linux/macOS/Windowsの3 profileをそれぞれgreenのevidenceへ結ぶ。候補scopeがこの全3 OS条件を満たすかは本候補が決めない。
+- **Positive — Linux全core gateとadapter contract test**：Linux `primary/full`の対象revisionについてrequired core gateの全集合と個別結果を与え、全gateがLinuxで実行されgreenである場合にのみLinux core completionを対応づける。macOS `first-class portable`とWindows `compatibility`のcontract差異をadapter contract testで検出した結果を、profile・共通contract/fixture・revisionへ結ぶ。これは結果解釈の静的fixtureであり、要求stageで実OSを実行する条件ではない。
+- **Positive — 共通contractとadapter差分**：同じdomain contract/fixtureを各選択profileへ適用し、profile間の許容差をOS adapter境界に限る。各profile結果が別々に追跡でき、同じtierや同じ結果へ畳み込まれないことを確認する。
+- **Negative — Linux証拠の代用**：Linux未実行の状態でWindows wrapperだけgreen、またはmacOS portableだけgreenの結果を与える。Linux core completionを拒否し、未実行状態と不足するLinux evidenceを保持する。
+- **Negative — Linux core gateの一部欠落**：Linux `primary/full`のrequired core gate集合のうち一部だけgreenで、別のrequired gateがmissing／not run／unknownの結果を与える。部分実行の成功を全core completionへ拡張せず、Linux core completionを未完として不足gateを示す。
+- **Negative — OS差異のadapter test欠落**：macOSまたはWindows結果に差異があるのに対応するadapter contract test結果が無い、stale、または別profile／別contractの証拠である入力を与える。差異未検出や差異なしと扱わず、当該profile coverageをunknown／未完にする。domain logic forkが見つかった場合は次の負例どおり不成立とする。
+- **Negative — 3 OS positive条件の一部のみ実施**：定義scopeにLinux/macOS/Windows全profileが含まれるHAC-HIL-14a条件で、Linuxのみgreen、残るmacOS/Windowsが未実行または未確認の入力を与える。HAC-HIL-14aを未完とし、1 profileの成功から「3 OSが定義scopeをgreen」を成立させない。
+- **Negative — 他profileへの推定**：Linux full結果だけを与えてmacOS/Windowsをgreenとする、あるいはWindows compatibility結果からmacOS portableまたはLinux fullを成立とする入力を与える。証拠のprofile不一致としてcoverageを拒否する。
+- **Negative — mapping/evidence drift**：scope/profile選択、tier label、contract/fixture identity、対象revision、environment/run identity、oracleのいずれかを欠落・不一致・staleにする。該当profileだけをunknown／未完として残し、別profileのpassで相殺しない。scope選択の未決・矛盾はscope frame A/B/C/DとD推奨をPOへ返す。oracle不足はHARNESS-L2-005 owner、profile実行・environment・receipt mismatchはHELIXOS-L2-020 ownerへ戻す。unknownや未選択をN/A／passへ変えた入力を拒否する。
+- **Negative — domain fork**：共通fixtureの結果差にdomain logic forkを含める。adapter内の差として許容せず、不成立とし、該当scopeのprofile coverageを確定しない。
+- **Negative — shellをcore前提化**：WSL、Git Bash、PowerShellのいずれかをcoreの実行前提に置くtier/profile mappingを与える。旧tier条件と不一致として受け入れず、未完として戻す。
+- **適用限界と意味差**：本候補はprofile/tierの意味と証拠対応を検査する。どの製品・repository・consumer・段階を対象とするかは選択しない。scopeを3 OS未満に限定する案は旧HAC-HIL-14aの全3 OS positive oracleを満たさず、本候補の局所対応が旧条件の置換・formal successorになることもない。旧HIL-FR-34の個々のpath/process/lock oracle、HAC-HIL-14b/cのadapter failureとonline/offline supply-chain条件、HAT-HIL-14の合成受入は別範囲であり、本候補の合格に含めない。

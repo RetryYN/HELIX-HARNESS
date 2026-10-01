@@ -56,8 +56,7 @@
       "relation": "HELIXOS-L2/L11-117 unadopted candidate input; no formal successor, owner transfer, applicability, adoption, execution, or closure is claimed.",
       "atomization_rationale": "One exact selected AC row. The five listed identity facets and the individual reject outcome are retained together; adjacent CIG acceptance rows and CIG-R-01 requirement text are context only and are not additional candidate atoms.",
       "source_pointer": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md#L14",
-      "source_ledger_ref": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl#LEGACY-CAND-LINE-000468",
-      "treatment_audit_ref": "/home/tenni/.helix-worktrees/candidate4755-condition864-current-treatment-audit/scaffold/review-handoff/local/candidate4755-condition864-current-treatment-audit-2026-10-02/candidate4755-condition864-current-treatment-audit-2026-10-02.json#/rows/60"
+      "source_ledger_ref": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl#LEGACY-CAND-LINE-000468"
     }
   ],
   "parent_l1": {
@@ -101,15 +100,15 @@
     ]
   },
   "review_pins": {
-    "base_commit": "1fe54afb8ecf4e79b0c3123cdafee4e67fa369e1",
+    "base_commit": "7b9d1938fc7699404f68c2b87829df56dc6f690d",
     "po_decision": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
     "crosswalk": "docs/governance/audits/source-rebaseline/new-generation-ci-ai-source-crosswalk.md:24",
     "nci_candidate": "docs/helix-os/candidates/next-generation-ci-requirements.md#NCI-OS-003",
     "source_ledger": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl#LEGACY-CAND-LINE-000468",
-    "latest_main_comparison": "1fe54afb8ecf4e79b0c3123cdafee4e67fa369e1",
+    "latest_main_comparison": "7b9d1938fc7699404f68c2b87829df56dc6f690d",
     "latest_main_concept_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
     "latest_main_os_l1_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e"
   },
   "registered_at": "2026-10-02T06:17:08+09:00",
-  "source_atom_file_sha256": "sha256:ca8260959eb592da8576ba73e44df9300ea8d2d561817f343b6145daecb9b158"
+  "source_atom_file_sha256": "sha256:fd3eb6bcb2b8f412ec2608469a7e68ad0eb1e5c39b97bcd801d66301a5eb852d"
 }
