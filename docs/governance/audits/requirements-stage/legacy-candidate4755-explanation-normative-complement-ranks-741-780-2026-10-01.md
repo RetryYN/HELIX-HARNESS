@@ -5,8 +5,12 @@
 ## 対象と再構成
 
 - 監査基点は`3a3f16ec85482f2938939b16ab718b0c04f9c3b1`。#2353の4,755 `row_records`へ#2356、#2360、#2363、#2366、#2367、#2368、#2369、#2381をexact source IDで順に適用し、effective explanation 2,965行を再構成した。#2369の000841/000857はconditionへ移るため説明行から除外。
-- marker pool 255件を除き、`2,965 - 255 = 2,710`件をsource ID数値順にrank付けした。741–780位は40行。rank 740の境界IDは`LEGACY-CAND-LINE-001281`。701–740のpaired auditはこのorigin/main基準に存在しないため、先行意味検証を主張しない。
+- marker pool 255件を除き、`2,965 - 255 = 2,710`件をsource ID数値順にrank付けした。741–780位は40行。rank 740の境界IDは`LEGACY-CAND-LINE-001281`。直前の701–740位のpaired auditは#2459のmerge commit `67c46c299d32723d2ea9ad1b4c7a88e4a1e471e8`でmainに統合済み。境界IDと両artifactのSHAを照合し、順位は全母集団から独立に再構成した。
 - 741–745は実装段階表、748–758は改訂差分表の各物理行を列見出しと近傍行に照らして個別に読んだ。759は一段落の移行境界、766–778は要求候補・作業案・履歴境界を記す各source行である。行別context、ledger/hash、pin reachability、固定F6/decisionとの比較限定はpaired JSONに記録した。
+
+### 固定F6とのfamily関係
+
+741–779位の旧`execution-ticket-intake.md`はExecution Ticket familyの別候補であり、固定F6のOS L2 `governance-requirements.md:536–561`が直接名指しするのは旧`execution-ticket-requests.md`（HXT-RQ-01〜07→HELIXOS-L2-004/005/007/009）。固定F6のOS L11 `governance-acceptance.md:256–267`が直接名指しする旧`execution-ticket-validation.md`は、780位の旧文書titleが属する文書で、HXT-RQ-01〜07の受入は全件未実行。family関係や文書単位の名指しから、選択した各行の個別binding、successor、closureは生成しない。
 
 ## 行別意味監査
 
