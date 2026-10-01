@@ -2,9 +2,9 @@
 
 ## 基準と対象
 
-対象は旧HIL-11のsource registry・read projectionに関係する旧原文、`HR-FR-HIL-11`、`HAC-HIL-11a/b/c`、`HAT-HIL-11`と、現行main `1cd77015081b87d5bcde7d5e45ee4e0a227e02c2`上の関連L2/L11・decision・仮登録である。専用worktreeをこのcommitから開始し、候補を最新main `d31a4c8500d131001dc349bfbdfde82fb0b46839`へrebaseした。1cdからd31の間で本候補が参照するOS L2/L11、decision、MPR register、IR carry-forwardに差分はない。最終local commitはd31を直接のparentとする。archive内の旧test、runtime、CLI、hook、CIは実行していない。旧HATは`designed_not_implemented`であり、旧test設計、現行candidate、receiptは実行・合格証拠ではない。
+対象は旧HIL-11のsource registry・read projectionに関係する旧原文、`HR-FR-HIL-11`、`HAC-HIL-11a/b/c`、`HAT-HIL-11`と、現行main `1cd77015081b87d5bcde7d5e45ee4e0a227e02c2`上の関連L2/L11・decision・仮登録である。専用worktreeをこのcommitから開始し、候補を最新main `d31a4c8500d131001dc349bfbdfde82fb0b46839`へrebaseした。1cdからd31の間で本候補が参照するOS L2/L11、decision、MPR register、IR carry-forwardに差分はない。その後、AAFD候補が統合されたmain `72d08ebc1b45c8cf85c0e89359c48f78eb779fee`を取り込み、既存mainのregister prefixを保持した上で本候補の6行を後置した。構築時の1cdと親L1照合時のd31は履歴pinとして残す。現在の比較先は72d08ebである。archive内の旧test、runtime、CLI、hook、CIは実行していない。旧HATは`designed_not_implemented`であり、旧test設計、現行candidate、receiptは実行・合格証拠ではない。
 
-候補本文はHELIX-OSの`HELIXOS-L2-112` / paired `L11`として起草し、`MPR-RC-HELIXOS-L2-112-001`へ仮登録し、append-only訂正`-002`（記録時刻）、`-003`（source atom input）、`-004`（親L1 decision pin）、`-005`（HIL-FR-23/NFR-17 oracle条件とcandidate digest）を追記した。過去revisionは履歴として残し、latest `-005`を参照する。これは一つの責務配分提案で、HIL-11のformal successor、source owner移管、consumer集合、product scope、正式な導入版を決めない。HELIX-OS L1は2026-09-28 decisionが`f6dad2a33e24f000b87d7f09b8d40288257e74cc`上のSHA-256 `2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e`を対象revisionとして固定・採択し、現行main `d31a4c8500d131001dc349bfbdfde82fb0b46839`のL1 file SHAも同値である。L1の`draft_candidate` metadataは固定bytesの一部として残るが、その採択状態はdecision recordから読む。この既採択親revisionは、新規`HELIXOS-L2-112`／L11 candidateを採択しない。`version_target: 2.0 candidate`は既存crosswalkの配置案の記録でありPO判断ではない。
+候補本文はHELIX-OSの`HELIXOS-L2-112` / paired `L11`として起草し、`MPR-RC-HELIXOS-L2-112-001`へ仮登録し、append-only訂正`-002`（記録時刻）、`-003`（source atom input）、`-004`（親L1 decision pin）、`-005`（HIL-FR-23/NFR-17 oracle条件とcandidate digest）を追記した。さらに`-006`でsource-linesのfile SHAとstatement digestの定義を訂正した。過去revisionは履歴として残し、latest `-006`を参照する。これは一つの責務配分提案で、HIL-11のformal successor、source owner移管、consumer集合、product scope、正式な導入版を決めない。HELIX-OS L1は2026-09-28 decisionが`f6dad2a33e24f000b87d7f09b8d40288257e74cc`上のSHA-256 `2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e`を対象revisionとして固定・採択し、現行main `d31a4c8500d131001dc349bfbdfde82fb0b46839`のL1 file SHAも同値である。L1の`draft_candidate` metadataは固定bytesの一部として残るが、その採択状態はdecision recordから読む。この既採択親revisionは、新規`HELIXOS-L2-112`／L11 candidateを採択しない。`version_target: 2.0 candidate`は既存crosswalkの配置案の記録でありPO判断ではない。
 
 ## 旧sourceとsource atom
 
@@ -50,11 +50,11 @@ L11候補は旧HAC-HIL-11a（full/incremental正常lineage）、11b（schema/cur
 
 - Candidate base: `1cd77015081b87d5bcde7d5e45ee4e0a227e02c2`
 - L2 section digest: `6bfc4a3bef86e22a0ba044be7c8b1d5539b3f00e5445b76c9e690b7b02df0ba6`
-- L11 section digest: `sha256:c36baff0e3ec208ed8b02f9accbae28b5a1b4e7600c4deff79de3d7c79acb4eb`
+- L11 section digest: `sha256:3796ec774e093ee96d93d729b781c0980bb9eabc9339099e1ccb0f78857c6d99`
 - Source atom set digest: `sha256:0ea93e048acc41d5c5bf22dede0085a1208cf29c786016a164c326131219f1d4` (4 IR identity atoms)
-- Source atom file SHA-256: `sha256:67b67b1a431faa5e781e723f7fb676c78ac3fbd4139675f7e3828531640f85a2`
+- Source atom file SHA-256: `sha256:8bde161da7a54a62d121179265acb1f7789d3c0d09411ad4ee94461f509caa8e`
 - Receipt: `docs/governance/audits/requirement-registration/hil11-product-data-projection-coverage-receipt-2026-10-02.json`
 - Source-lines: `docs/governance/audits/requirement-registration/hil11-product-data-projection-source-lines-2026-10-02.jsonl`
-- Register addition: `MPR-RC-HELIXOS-L2-112-001` and append-only corrections through `MPR-RC-HELIXOS-L2-112-004` are retained in `management-provisional-requirement-register.jsonl`; latest revision corrects the exact adopted parent L1 pin and records the FR-23/NFR-17 condition additions and candidate digest, while the new L2/L11 remains unadopted with `authority_effect: none`.
+- Register addition: `MPR-RC-HELIXOS-L2-112-001` and append-only corrections through `MPR-RC-HELIXOS-L2-112-006` are retained in `management-provisional-requirement-register.jsonl`; latest revision corrects the exact adopted parent L1 pin and records the FR-23/NFR-17 condition additions and candidate digest, while the new L2/L11 remains unadopted with `authority_effect: none`.
 
-The register prefix is checked against this candidate base with `verify_management_register_append.py`; it must continue to be checked against the exact PR base if the branch base changes. These records are static candidate evidence, not a decision record or execution receipt.
+registerのprefixはPR比較先72d08ebのbytesと一致し、候補001〜006の6行だけを追加している。これらは静的な候補証拠であり、判断記録や実行receiptではない。現行OS本文の追補に伴いPHCAP-14/16 inventoryの4 file SHAとbindingの現行pinを更新した。選択された原文の行・意味・分類・authorityは変えていない。
