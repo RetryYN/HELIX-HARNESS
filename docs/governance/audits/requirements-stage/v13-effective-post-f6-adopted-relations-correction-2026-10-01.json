@@ -459,7 +459,8 @@
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
       "line": 105,
       "line_sha256": "8433f26d2bd2ed385fee35e3d994f52295690e8fa0911022935fe9530bc61f84",
-      "line_text": "| HARNESS-L2-002／003 | requirements v1.3 §4.1（L94、L96-106）／§4.2（L112-119、L138-139）に従い、スクラムの各sliceでcheckpoint triggerに該当した場合は`SR0 evidence capture → SR1 observed contract → SR2 V-layer mapping → SR3 design/refactor proposal → SR4 pair freeze and Forward reentry`を実行する。v1.3 L104-106にある4 entity、SR4 publish条件、provisional非canonicalをHARNESS条件とし、SR4 receiptなしにrelease-readyへ進めず、findingをRedesign／Design Refactor／Performance Refactor／Retrofitのexactly oneへ送る。Design Refactorでobservable behavior／public surface／DB semantics／要求に差分があれば、`HIL-BR-21`／`HIL-FR-39`／`HIL-FR-50`に従いRedesign／Retrofitへrerouteする。v1.3 L107-108が参照するentity要件と宣言oracle、およびentity要件が指すconfirmed親文書は[300行全量台帳](../../governance/legacy-migration/delegated-document/scrum-reverse-source-line-inventory.md)で保持する。親文書と対になるconfirmed受入文書は[file-blob holding](../../governance/legacy-migration/delegated-document/delegated-requirement-document-source-inventory.md)で保持し、後続要求PRでatom化するまでcurrent authorityへ昇格させない。Scrum Reverseはスクラムの工程条件であり、POの開発方式の定義（[2026-09-25の判断記録](../../governance/decisions/po-optimal-draft-po-decisions-2026-09-25.md)）に従い、方式を合成した場合もスクラムで進める部分に適用する（例：リリースカンバンのリリース単位の中をスクラムで作る場合、ハイブリッドのユニットをスクラムで作る場合）。旧v1.3が旧ハイブリッド（V設計＋Scrum実装）のsliceに適用していたのは、旧ハイブリッドがスクラムの実装を含んでいたためであり、この考え方を保つ |"
+      "line_text": "| HARNESS-L2-002／003 | requirements v1.3 §4.1（L94、L96-106）／§4.2（L112-119、L138-139）に従い、スクラムの各sliceでcheckpoint triggerに該当した場合は`SR0 evidence capture → SR1 observed contract → SR2 V-layer mapping → SR3 design/refactor proposal → SR4 pair freeze and Forward reentry`を実行する。v1.3 L104-106にある4 entity、SR4 publish条件、provisional非canonicalをHARNESS条件とし、SR4 receiptなしにrelease-readyへ進めず、findingをRedesign／Design Refactor／Performance Refactor／Retrofitのexactly oneへ送る。Design Refactorでobservable behavior／public surface／DB semantics／要求に差分があれば、`HIL-BR-21`／`HIL-FR-39`／`HIL-FR-50`に従いRedesign／Retrofitへrerouteする。v1.3 L107-108が参照するentity要件と宣言oracle、およびentity要件が指すconfirmed親文書は[300行全量台帳](../../governance/legacy-migration/delegated-document/scrum-reverse-source-line-inventory.md)で保持する。親文書と対になるconfirmed受入文書は[file-blob holding](../../governance/legacy-migration/delegated-document/delegated-requirement-document-source-inventory.md)で保持し、後続要求PRでatom化するまでcurrent authorityへ昇格させない。Scrum Reverseはスクラムの工程条件であり、POの開発方式の定義（[2026-09-25の判断記録](../../governance/decisions/po-optimal-draft-po-decisions-2026-09-25.md)）に従い、方式を合成した場合もスクラムで進める部分に適用する（例：リリースカンバンのリリース単位の中をスクラムで作る場合、ハイブリッドのユニットをスクラムで作る場合）。旧v1.3が旧ハイブリッド（V設計＋Scrum実装）のsliceに適用していたのは、旧ハイブリッドがスクラムの実装を含んでいたためであり、この考え方を保つ |",
+      "line_sha256_convention": "SHA-256 of physical line bytes including the terminating LF; line_text omits the LF."
     }
   ],
   "fixed_F6_boundary": {
@@ -2085,7 +2086,7 @@
           "match_basis": "line_sha256_and_text_only"
         }
       ],
-      "effective_current_view_correction": "Exact source atom is carried in HARNESS-034 r3 receipt; D57 adopts the pair. Limited receipt scope; no formal successor or execution/acceptance closure."
+      "effective_current_view_correction": "Receipt physical line number, text, and SHA-256 match; the receipt records alternate source path `docs/governance/requirements-source/helix-requirements_v1.3.md` (its whole-file SHA matches the archived source). This is `line_sha256_and_text_only`, not exact source-qualified identity. D57 adopts the pair. Limited receipt scope; no formal successor or execution/acceptance closure."
     },
     {
       "rank": 71,
@@ -2116,7 +2117,7 @@
           "match_basis": "line_sha256_and_text_only"
         }
       ],
-      "effective_current_view_correction": "Exact source atom is carried in HARNESS-034 r3 receipt; D57 adopts the pair. Limited receipt scope; no formal successor or execution/acceptance closure."
+      "effective_current_view_correction": "Receipt physical line number, text, and SHA-256 match; the receipt records alternate source path `docs/governance/requirements-source/helix-requirements_v1.3.md` (its whole-file SHA matches the archived source). This is `line_sha256_and_text_only`, not exact source-qualified identity. D57 adopts the pair. Limited receipt scope; no formal successor or execution/acceptance closure."
     },
     {
       "rank": 72,
@@ -2147,7 +2148,7 @@
           "match_basis": "line_sha256_and_text_only"
         }
       ],
-      "effective_current_view_correction": "Exact source atom is carried in HARNESS-034 r3 receipt; D57 adopts the pair. Limited receipt scope; no formal successor or execution/acceptance closure."
+      "effective_current_view_correction": "Receipt physical line number, text, and SHA-256 match; the receipt records alternate source path `docs/governance/requirements-source/helix-requirements_v1.3.md` (its whole-file SHA matches the archived source). This is `line_sha256_and_text_only`, not exact source-qualified identity. D57 adopts the pair. Limited receipt scope; no formal successor or execution/acceptance closure."
     },
     {
       "rank": 73,
@@ -2178,7 +2179,7 @@
           "match_basis": "line_sha256_and_text_only"
         }
       ],
-      "effective_current_view_correction": "Exact source atom is carried in HARNESS-034 r3 receipt; D57 adopts the pair. Limited receipt scope; no formal successor or execution/acceptance closure."
+      "effective_current_view_correction": "Receipt physical line number, text, and SHA-256 match; the receipt records alternate source path `docs/governance/requirements-source/helix-requirements_v1.3.md` (its whole-file SHA matches the archived source). This is `line_sha256_and_text_only`, not exact source-qualified identity. D57 adopts the pair. Limited receipt scope; no formal successor or execution/acceptance closure."
     },
     {
       "rank": 74,
@@ -2209,7 +2210,7 @@
           "match_basis": "line_sha256_and_text_only"
         }
       ],
-      "effective_current_view_correction": "Exact source atom is carried in HARNESS-034 r3 receipt; D57 adopts the pair. Limited receipt scope; no formal successor or execution/acceptance closure."
+      "effective_current_view_correction": "Receipt physical line number, text, and SHA-256 match; the receipt records alternate source path `docs/governance/requirements-source/helix-requirements_v1.3.md` (its whole-file SHA matches the archived source). This is `line_sha256_and_text_only`, not exact source-qualified identity. D57 adopts the pair. Limited receipt scope; no formal successor or execution/acceptance closure."
     },
     {
       "rank": 75,
@@ -2240,7 +2241,7 @@
           "match_basis": "line_sha256_and_text_only"
         }
       ],
-      "effective_current_view_correction": "Exact source atom is carried in HARNESS-034 r3 receipt; D57 adopts the pair. Limited receipt scope; no formal successor or execution/acceptance closure."
+      "effective_current_view_correction": "Receipt physical line number, text, and SHA-256 match; the receipt records alternate source path `docs/governance/requirements-source/helix-requirements_v1.3.md` (its whole-file SHA matches the archived source). This is `line_sha256_and_text_only`, not exact source-qualified identity. D57 adopts the pair. Limited receipt scope; no formal successor or execution/acceptance closure."
     },
     {
       "rank": 76,
@@ -2271,7 +2272,7 @@
           "match_basis": "line_sha256_and_text_only"
         }
       ],
-      "effective_current_view_correction": "Exact source atom is carried in HARNESS-034 r3 receipt; D57 adopts the pair. Limited receipt scope; no formal successor or execution/acceptance closure."
+      "effective_current_view_correction": "Receipt physical line number, text, and SHA-256 match; the receipt records alternate source path `docs/governance/requirements-source/helix-requirements_v1.3.md` (its whole-file SHA matches the archived source). This is `line_sha256_and_text_only`, not exact source-qualified identity. D57 adopts the pair. Limited receipt scope; no formal successor or execution/acceptance closure."
     },
     {
       "rank": 77,
@@ -2925,7 +2926,7 @@
           "match_basis": "line_sha256_and_text_only"
         }
       ],
-      "effective_current_view_correction": "Exact line624 is carried by OS Retrofit preflight receipt; D57 adopts OS-036. Supersedes “no source-specific pair routes this signal to Retrofit/preflight.” No runtime, holding retirement, or closure."
+      "effective_current_view_correction": "Receipt physical line number, text, and SHA-256 match; the receipt records alternate source path `docs/governance/requirements-source/helix-requirements_v1.3.md` (its whole-file SHA matches the archived source). This is `line_sha256_and_text_only`, not exact source-qualified identity. D57 adopts OS-036. Supersedes “no source-specific pair routes this signal to Retrofit/preflight.” No runtime, holding retirement, or closure."
     },
     {
       "rank": 116,
@@ -2951,7 +2952,7 @@
       },
       "queue_adopted_citation_refs": [],
       "exact_source_line_sha_receipt_matches": [],
-      "effective_current_view_correction": "Exact text counterpart occurs in adopted fixed HARNESS-L2-002/003 at line105: | HARNESS-L2-002／003 | requirements v1.3 §4.1（L94、L96-106）／§4.2（L112-119、L138-139）に従い、スクラムの各sliceでcheckpoint triggerに該当した場合は`SR0 evidence capture → SR1 observed contract → SR2 V-layer mapping → SR3 design/refactor proposal → SR4 pair freeze and Forward reentry`を実行する。v1.3 L104-106にある4 entity、SR4 publish条件、provisional非canonicalをHARNESS条件とし、SR4 receiptなしにrelease-readyへ進めず、findingをRedesign／Design Refactor／Performance Refactor／Retrofitのexactly oneへ送る。Design Refactorでobservable behavior／public surface／DB semantics／要求に差分があれば、`HIL-BR-21`／`HIL-FR-39`／`HIL-FR-50`に従いRedesign／Retrofitへrerouteする。v1.3 L107-108が参照するentity要件と宣言oracle、およびentity要件が指すconfirmed親文書は[300行全量台帳](../../governance/legacy-migration/delegated-document/scrum-reverse-source-line-inventory.md)で保持する。親文書と対になるconfirmed受入文書は[file-blob holding](../../governance/legacy-migration/delegated-document/delegated-requirement-document-source-inventory.md)で保持し、後続要求PRでatom化するまでcurrent authorityへ昇格させない。Scrum Reverseはスクラムの工程条件であり、POの開発方式の定義（[2026-09-25の判断記録](../../governance/decisions/po-optimal-draft-po-decisions-2026-09-25.md)）に従い、方式を合成した場合もスクラムで進める部分に適用する（例：リリースカンバンのリリース単位の中をスクラムで作る場合、ハイブリッドのユニットをスクラムで作る場合）。旧v1.3が旧ハイブリッド（V設計＋Scrum実装）のsliceに適用していたのは、旧ハイブリッドがスクラムの実装を含んでいたためであり、この考え方を保つ | Prior rank audit omitted this route from fixed_f6_relations, so “not established” is superseded for the exactly-one route clause only. Pin SHA 8433f26d2bd2ed385fee35e3d994f52295690e8fa0911022935fe9530bc61f84. No broader Scrum/source closure or successor."
+      "effective_current_view_correction": "The adopted fixed HARNESS-L2-002/003 at line105 contains a bounded clause semantically corresponding to the exactly-one route condition in source line643; wording is not identical. Only that route clause is corrected. The F6 physical-line SHA-256 pin includes the terminating LF; the pinned line_text omits it. The prior rank audit omitted this route from fixed_f6_relations, so “not established” is superseded only for the exactly-one route clause. No broader Scrum/source closure or successor."
     },
     {
       "rank": 118,
