@@ -5,13 +5,13 @@
   "authority_effect": "none",
   "prior_completed_complement_slice": {
     "ranks": "1301-1340",
-    "commit": "dead1fe95dd63150f63bec9a579f7c7d99f37a6c",
+    "commit": "5c72d9e2f68bf9f262a5695eb53e8281d90df67c",
     "last_id": "LEGACY-CAND-LINE-002220",
     "json_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1301-1340-2026-10-02.json",
-    "json_sha256": "15e902714882f8426764f18ea03851d48337823189afe5c0d7f5b774ce818aeb",
+    "json_sha256": "bc4bf02c1f86ca4dca6f7a80241eea41dab852cbc01e3afd172b16c8dc4ab780",
     "md_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1301-1340-2026-10-02.md",
-    "md_sha256": "6e40c61e224938e07baea69a4489dc12fc0b50196aaecbaee731564ed1e9b0ea",
-    "note": "同一PRに直前sliceを含め、commit時点のbytesをSHA-256で固定。今回のrank境界はfull-pool再構成でも確認。"
+    "md_sha256": "7c57a10013820bbedd358bfd2edc66c76822a036c85395f2bf22d998d46cf23b",
+    "note": "同一PRに直前sliceを含め、rank1317修正後commitのbytesをSHA-256で固定。rank境界はfull-pool再構成でも確認。"
   },
   "purpose": "Semantic audit of numeric-ID ranks 1341–1380 in the effective-explanation marker-negative complement; no adoption, successor, implementation, acceptance or source closure is generated.",
   "pool_derivation": {
@@ -813,7 +813,7 @@
       "exact_source_line_text": "consumer、互換性、rollback、必要証拠を候補へ束縛し、承認と検収前はshadowに留める。",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-07の局所要件文断片",
-      "semantic_reading": "FRS-R-07「横断機能のSlice化」の本文物理行断片: consumer、互換性、rollback、必要証拠を候補へ束縛し、承認と検収前はshadowに留める。",
+      "semantic_reading": "横断機能を候補へ束縛する情報として、consumer、互換性、rollback、必要証拠を挙げる。承認と検収の前にshadowに留める条件までをこの行で述べる。",
       "legacy_context": {
         "section_heading": {
           "line": 94,
@@ -1062,7 +1062,7 @@
       "exact_source_line_text": "Sliceのqualification packetは、target HEAD、source authority digest、slice／module／bundle registry digest、artifact digest、",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-08の局所要件文断片",
-      "semantic_reading": "FRS-R-08「適格性確認packet」の本文物理行断片: Sliceのqualification packetは、target HEAD、source authority digest、slice／module／bundle registry digest、artifact digest、",
+      "semantic_reading": "qualification packetに束縛する値の列挙を開始し、target HEAD、source authority digest、各registry digest、artifact digestまでを挙げる。列挙は次の物理行へ続く。",
       "legacy_context": {
         "section_heading": {
           "line": 103,
@@ -1311,7 +1311,7 @@
       "exact_source_line_text": "targeted／mutation／full CI、DB replay、独立exact-HEAD review、clean Linux／Windows consumer、upgrade／rollback、security profile、",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-08の局所要件文断片",
-      "semantic_reading": "FRS-R-08「適格性確認packet」の本文物理行断片: targeted／mutation／full CI、DB replay、独立exact-HEAD review、clean Linux／Windows consumer、upgrade／rollback、security profile、",
+      "semantic_reading": "前行から続くpacket項目としてtargeted／mutation／full CI、DB replay、独立exact-HEAD review、両OSのclean consumer、upgrade／rollbackを加え、security profileで列挙が次の物理行へ続く。",
       "legacy_context": {
         "section_heading": {
           "line": 103,
@@ -1556,7 +1556,7 @@
       "exact_source_line_text": "expiryを束縛する。greenの件数や文言だけでqualifiedにしない。",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-08の局所要件文断片",
-      "semantic_reading": "FRS-R-08「適格性確認packet」の本文物理行断片: expiryを束縛する。greenの件数や文言だけでqualifiedにしない。",
+      "semantic_reading": "前行のpacket項目列挙をexpiryの束縛で閉じる。続けてgreenの件数や文言だけではqualifiedにしないという判定上の制限を述べる。",
       "legacy_context": {
         "section_heading": {
           "line": 103,
@@ -1805,7 +1805,7 @@
       "exact_source_line_text": "`preview`はcandidate mainとtargeted／mutation、`rc`はcontract freeze、full CI、独立review、DB replay、clean consumer、",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-09の局所要件文断片",
-      "semantic_reading": "FRS-R-09「昇格gate」の本文物理行断片: `preview`はcandidate mainとtargeted／mutation、`rc`はcontract freeze、full CI、独立review、DB replay、clean consumer、",
+      "semantic_reading": "channelごとのgate列挙を開始し、previewにはcandidate mainとtargeted／mutation、rcにはcontract freezeからclean consumerまでを挙げる。rcの続きとstable条件は次の物理行へ続く。",
       "legacy_context": {
         "section_heading": {
           "line": 109,
@@ -2054,7 +2054,7 @@
       "exact_source_line_text": "省略または下位channelのgreenで代用しない。",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-09の局所要件文断片",
-      "semantic_reading": "FRS-R-09「昇格gate」の本文物理行断片: 省略または下位channelのgreenで代用しない。",
+      "semantic_reading": "前行でchannelごとに挙げたprofileについて、省略や下位channelのgreenによる代用を禁じる。",
       "legacy_context": {
         "section_heading": {
           "line": 109,
@@ -2303,7 +2303,7 @@
       "exact_source_line_text": "revisionへ戻す証拠を残し、rollback成功だけでincident、release、Issue、PLANを終端にしない。deprecated／retired Sliceは新規",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-10の局所要件文断片",
-      "semantic_reading": "FRS-R-10「復旧・置換・retirement」の本文物理行断片: revisionへ戻す証拠を残し、rollback成功だけでincident、release、Issue、PLANを終端にしない。deprecated／retired Sliceは新規",
+      "semantic_reading": "この行は前行から続くrollback先revisionの証拠を残すこと、rollback成功だけでincident・release・Issue・PLANを終端にしないことを述べる。末尾のdeprecated／retired Sliceの扱いは次の物理行へ続く。",
       "legacy_context": {
         "section_heading": {
           "line": 115,
@@ -2548,7 +2548,7 @@
       "exact_source_line_text": "Bundleのdefaultから除外し、互換期間とreplacementを明示する。",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-10の局所要件文断片",
-      "semantic_reading": "FRS-R-10「復旧・置換・retirement」の本文物理行断片: Bundleのdefaultから除外し、互換期間とreplacementを明示する。",
+      "semantic_reading": "前行末から続くdeprecated／retired Sliceの扱いを完結し、新規Bundleのdefaultから除外する条件と、互換期間・replacementの明示を述べる。",
       "legacy_context": {
         "section_heading": {
           "line": 115,
@@ -2797,7 +2797,7 @@
       "exact_source_line_text": "Slice、Module、Bundleのいずれかが更新されても、他のidentity、channel、version、artifactを暗黙に書き換えない。",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-11の局所要件文断片",
-      "semantic_reading": "FRS-R-11「Implicit promotion禁止」の本文物理行断片: Slice、Module、Bundleのいずれかが更新されても、他のidentity、channel、version、artifactを暗黙に書き換えない。",
+      "semantic_reading": "Slice、Module、Bundleのいずれかを更新しても、他のidentity、channel、version、artifactを暗黙に変更しないという独立した禁止条件を述べる。",
       "legacy_context": {
         "section_heading": {
           "line": 121,
@@ -3046,7 +3046,7 @@
       "exact_source_line_text": "preview／rcの新Sliceをstable Bundleへ取り込んではならない。対象Slice自身がstableの検収を満たした後、",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-11の局所要件文断片",
-      "semantic_reading": "FRS-R-11「Implicit promotion禁止」の本文物理行断片: preview／rcの新Sliceをstable Bundleへ取り込んではならない。対象Slice自身がstableの検収を満たした後、",
+      "semantic_reading": "preview／rcの新Sliceをstable Bundleへ入れることを禁じる。対象Slice自身がstable検収を満たした後の昇格条件へ文が続き、その手順の詳細は次の物理行にある。",
       "legacy_context": {
         "section_heading": {
           "line": 121,
@@ -3291,7 +3291,7 @@
       "exact_source_line_text": "Bundle側にも対象Slice exact setと組合せのprofile evidenceを揃えて昇格する。Bundle側の証拠だけでSliceの未成熟を相殺しない。",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-11の局所要件文断片",
-      "semantic_reading": "FRS-R-11「Implicit promotion禁止」の本文物理行断片: Bundle側にも対象Slice exact setと組合せのprofile evidenceを揃えて昇格する。Bundle側の証拠だけでSliceの未成熟を相殺しない。",
+      "semantic_reading": "前行から続く昇格条件として、Bundle側で対象Sliceのexact setと組合せprofile evidenceを揃えるよう求める。Bundle側の証拠だけでSliceの未成熟を相殺しない。",
       "legacy_context": {
         "section_heading": {
           "line": 121,
@@ -3540,7 +3540,7 @@
       "exact_source_line_text": "束縛して決定的に導出する。secondary relationだけを理由にsemantic ownerを変更しない。",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-12の局所要件文断片",
-      "semantic_reading": "FRS-R-12「影響閉包」の本文物理行断片: 束縛して決定的に導出する。secondary relationだけを理由にsemantic ownerを変更しない。",
+      "semantic_reading": "前行で示された影響関係をauthority／registry digestへ束縛し、決定的に導出することを述べる。secondary relationだけを理由にsemantic ownerを変えない。",
       "legacy_context": {
         "section_heading": {
           "line": 129,
@@ -3857,7 +3857,7 @@
       "exact_source_line_text": "Slice単位のtargeted／mutation／consumer検証を局所最適化しつつ、shared core、authority、cross-slice dependency、release、main",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-13の局所要件文断片",
-      "semantic_reading": "FRS-R-13「局所最適と全体統制」の本文物理行断片: Slice単位のtargeted／mutation／consumer検証を局所最適化しつつ、shared core、authority、cross-slice dependency、release、main",
+      "semantic_reading": "Slice単位のtargeted／mutation／consumer検証を局所最適化する一方、shared core、authority、cross-slice dependency、release、mainを列挙する。列挙はこの物理行末で切れ、展開先や禁止条件は次行に続く。",
       "legacy_context": {
         "section_heading": {
           "line": 134,
@@ -4173,7 +4173,7 @@
       "exact_source_line_text": "影響Module、Slice、Bundle、dependency、profile、channelがunknown、ambiguous、staleの場合、成功扱い、空集合、局所greenへの",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-14の局所要件文断片",
-      "semantic_reading": "FRS-R-14「Unknown、ambiguous、staleの安全側処理」の本文物理行断片: 影響Module、Slice、Bundle、dependency、profile、channelがunknown、ambiguous、staleの場合、成功扱い、空集合、局所greenへの",
+      "semantic_reading": "影響対象がunknown／ambiguous／staleの場合に扱う対象を列挙し、成功扱い・空集合・局所greenへのfallbackという候補を挙げ始める。否定述語と送付先は次の物理行に続く。",
       "legacy_context": {
         "section_heading": {
           "line": 139,
@@ -4481,7 +4481,7 @@
       "exact_source_line_text": "同一source HEAD、L1／L3／L10／IR、registry、profile、policyから同一Slice manifest、artifact、checksum、semantic digestを生成する。",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-15の局所要件文断片",
-      "semantic_reading": "FRS-R-15「決定論的manifest」の本文物理行断片: 同一source HEAD、L1／L3／L10／IR、registry、profile、policyから同一Slice manifest、artifact、checksum、semantic digestを生成する。",
+      "semantic_reading": "同一のsource HEAD、L1／L3／L10／IR、registry、profile、policyを入力とすると、Slice manifest等の同一成果を生成する決定論条件を述べる。",
       "legacy_context": {
         "section_heading": {
           "line": 146,
@@ -4726,7 +4726,7 @@
       "exact_source_line_text": "時刻、entry order、作業者、provider名、absolute path、development state、credentialをartifact identityへ混入させない。",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-15の局所要件文断片",
-      "semantic_reading": "FRS-R-15「決定論的manifest」の本文物理行断片: 時刻、entry order、作業者、provider名、absolute path、development state、credentialをartifact identityへ混入させない。",
+      "semantic_reading": "時刻、entry順、作業者、provider名、absolute path、development state、credentialをartifact identityへ混入させないという除外条件を列挙する。",
       "legacy_context": {
         "section_heading": {
           "line": 146,
@@ -4971,7 +4971,7 @@
       "exact_source_line_text": "Future SynthesisまたはSystem Synthesisの`release_future`は、既存Sliceの候補、channel、依存、qualification不足をproposalとして",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-16の局所要件文断片",
-      "semantic_reading": "FRS-R-16「Future／System Synthesis接続」の本文物理行断片: Future SynthesisまたはSystem Synthesisの`release_future`は、既存Sliceの候補、channel、依存、qualification不足をproposalとして",
+      "semantic_reading": "Future／System Synthesisのrelease_futureがproposalとして返し得る対象を、既存Sliceの候補・channel・依存・qualification不足までとする。変更禁止の述語は次の物理行にある。",
       "legacy_context": {
         "section_heading": {
           "line": 151,
@@ -5220,7 +5220,7 @@
       "exact_source_line_text": "返してよいが、Slice、Module、Bundle、Requirement、Assignment、releaseを直接変更しない。構造変更は別のAuthority／Design候補へ",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-16の局所要件文断片",
-      "semantic_reading": "FRS-R-16「Future／System Synthesis接続」の本文物理行断片: 返してよいが、Slice、Module、Bundle、Requirement、Assignment、releaseを直接変更しない。構造変更は別のAuthority／Design候補へ",
+      "semantic_reading": "前行で許したproposal返却と区別し、Slice等を直接変更しないと定める。構造変更の戻し先をAuthority／Design候補とし、必要な処理の続きは次行へ続く。",
       "legacy_context": {
         "section_heading": {
           "line": 151,
@@ -5465,7 +5465,7 @@
       "exact_source_line_text": "DevOSまたは配布repositoryは、HELIX-HARNESSで生成・sealされたSlice／Module／Bundle manifest、artifact digest、受入receiptを",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-17の局所要件文断片",
-      "semantic_reading": "FRS-R-17「DevOSへの投影」の本文物理行断片: DevOSまたは配布repositoryは、HELIX-HARNESSで生成・sealされたSlice／Module／Bundle manifest、artifact digest、受入receiptを",
+      "semantic_reading": "DevOSまたは配布repositoryにprojectionする対象として、HARNESS生成・seal済みのmanifest、artifact digest、受入receiptを列挙する。これらをどう扱うかの述語は次の物理行へ続く。",
       "legacy_context": {
         "section_heading": {
           "line": 157,
@@ -5710,7 +5710,7 @@
       "exact_source_line_text": "保存するprojectionである。DevOS側の手編集をsource authorityへ逆輸入せず、未承認Sliceをpublish、promotion、cutoverしない。",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-17の局所要件文断片",
-      "semantic_reading": "FRS-R-17「DevOSへの投影」の本文物理行断片: 保存するprojectionである。DevOS側の手編集をsource authorityへ逆輸入せず、未承認Sliceをpublish、promotion、cutoverしない。",
+      "semantic_reading": "前行で列挙したものをprojectionとして保存すると位置づける。DevOSの手編集をsource authorityへ逆輸入せず、未承認Sliceのpublish等を禁じる。",
       "legacy_context": {
         "section_heading": {
           "line": 157,
@@ -5955,7 +5955,7 @@
       "exact_source_line_text": "Slice registry、Module／Bundle registry、artifact manifest、GitHub、harness.db、consumer、rollback stateはevent／authorityから",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-18の局所要件文断片",
-      "semantic_reading": "FRS-R-18「収束とreplay」の本文物理行断片: Slice registry、Module／Bundle registry、artifact manifest、GitHub、harness.db、consumer、rollback stateはevent／authorityから",
+      "semantic_reading": "再構築対象としてSlice／Module／Bundle registryからrollback stateまでを列挙し、event／authorityを起点として示す。再構築の述語とread-after条件は次の物理行へ続く。",
       "legacy_context": {
         "section_heading": {
           "line": 162,
@@ -8446,7 +8446,7 @@
       "exact_source_line_text": "対象範囲を承認済みsource revisionへ固定し、全要求IDを実装artifact、runtime接続、検証ID／receipt、primary Module、Slice、Bundleへ",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-19の局所要件文断片",
-      "semantic_reading": "FRS-R-19「要求全件の対応表」の本文物理行断片: 対象範囲を承認済みsource revisionへ固定し、全要求IDを実装artifact、runtime接続、検証ID／receipt、primary Module、Slice、Bundleへ",
+      "semantic_reading": "対応表の対象を承認済みsource revisionへ固定し、全要求IDの対応先としてartifact、runtime、verification、primary Module、Slice、Bundleを列挙する。対応付ける述語は次の物理行にある。",
       "legacy_context": {
         "section_heading": {
           "line": 184,
@@ -8695,7 +8695,7 @@
       "exact_source_line_text": "対応付ける。未実装・未接続・未検証・未所属は明示状態として保持し、対象から削って整合を偽装しない。二重所有、欠落、stale revisionは",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-19の局所要件文断片",
-      "semantic_reading": "FRS-R-19「要求全件の対応表」の本文物理行断片: 対応付ける。未実装・未接続・未検証・未所属は明示状態として保持し、対象から削って整合を偽装しない。二重所有、欠落、stale revisionは",
+      "semantic_reading": "前行の列挙先へ対応付ける。未実装等を明示状態として残し、対象から削って整合を偽装しない。二重所有等の昇格条件は行末で次物理行へ続く。",
       "legacy_context": {
         "section_heading": {
           "line": 184,
@@ -8940,7 +8940,7 @@
       "exact_source_line_text": "Moduleは責務所有、Sliceは利用・検証・更新／rollback可能な昇格単位、Bundleは利用目的別構成、Waveは依存・検収に基づく順序とする。",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-20の局所要件文断片",
-      "semantic_reading": "FRS-R-20「構成とWaveの再導出」の本文物理行断片: Moduleは責務所有、Sliceは利用・検証・更新／rollback可能な昇格単位、Bundleは利用目的別構成、Waveは依存・検収に基づく順序とする。",
+      "semantic_reading": "Moduleを責務所有、Sliceを利用・検証・更新／rollback可能な昇格単位、Bundleを利用目的別構成、Waveを依存・検収に基づく順序とする各定義を示す。",
       "legacy_context": {
         "section_heading": {
           "line": 190,
@@ -9189,7 +9189,7 @@
       "exact_source_line_text": "9群・17系統や旧Module／Bundle数を固定enumにしない。維持・分割・統合・移管ごとに旧新identity、要求revision、owner、互換性、",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-20の局所要件文断片",
-      "semantic_reading": "FRS-R-20「構成とWaveの再導出」の本文物理行断片: 9群・17系統や旧Module／Bundle数を固定enumにしない。維持・分割・統合・移管ごとに旧新identity、要求revision、owner、互換性、",
+      "semantic_reading": "9群・17系統や旧Module／Bundle数を固定enumにしないとする。再編時に記録する旧新identity等の列挙は互換性で切れ、次の物理行へ続く。",
       "legacy_context": {
         "section_heading": {
           "line": 190,
@@ -9434,7 +9434,7 @@
       "exact_source_line_text": "既存HELIXのCI高速化はModule連動CIや正式配布の完成を前提にしない。必要な検証義務、独立レビュー、安全境界を維持し、",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-21の局所要件文断片",
-      "semantic_reading": "FRS-R-21「CIの内部先行投入」の本文物理行断片: 既存HELIXのCI高速化はModule連動CIや正式配布の完成を前提にしない。必要な検証義務、独立レビュー、安全境界を維持し、",
+      "semantic_reading": "CI高速化はModule連動CIや正式配布完成を前提とせず、検証義務・独立review・安全境界を保つとする。比較測定の項目は次の物理行へ続く。",
       "legacy_context": {
         "section_heading": {
           "line": 196,
@@ -9679,7 +9679,7 @@
       "exact_source_line_text": "比較対象HEAD、環境、対象義務、実行世代、待ち時間、実行時間、rerun数を実測する。単一局所テストの短縮を全CIの改善と数えない。",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-21の局所要件文断片",
-      "semantic_reading": "FRS-R-21「CIの内部先行投入」の本文物理行断片: 比較対象HEAD、環境、対象義務、実行世代、待ち時間、実行時間、rerun数を実測する。単一局所テストの短縮を全CIの改善と数えない。",
+      "semantic_reading": "前行から続く比較測定項目としてHEAD、環境、義務、実行世代、待ち時間、実行時間、rerun数を挙げる。局所test短縮を全CI改善と数えない。",
       "legacy_context": {
         "section_heading": {
           "line": 196,
@@ -9924,7 +9924,7 @@
       "exact_source_line_text": "#1293の委譲契約へ接続し、専用branch、action-bound assignment、single-writer排他、隔離、予算上限、TTL、成果HEAD・diffの回収、ローカル検収、",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-22の局所要件文断片",
-      "semantic_reading": "FRS-R-22「Cursorの限定先行投入」の本文物理行断片: #1293の委譲契約へ接続し、専用branch、action-bound assignment、single-writer排他、隔離、予算上限、TTL、成果HEAD・diffの回収、ローカル検収、",
+      "semantic_reading": "Cursor委譲契約へ接続する項目として専用branch、assignment、single-writer排他、隔離、予算、TTL、成果回収、ローカル検収を列挙する。列挙は次行へ続く。",
       "legacy_context": {
         "section_heading": {
           "line": 201,
@@ -10173,7 +10173,7 @@
       "exact_source_line_text": "Claude独立レビューを束縛する。#819または自律開発全体の完成を一律依存にしない。未回収成果、期限切れ、予算逸脱、",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-22の局所要件文断片",
-      "semantic_reading": "FRS-R-22「Cursorの限定先行投入」の本文物理行断片: Claude独立レビューを束縛する。#819または自律開発全体の完成を一律依存にしない。未回収成果、期限切れ、予算逸脱、",
+      "semantic_reading": "前行の委譲条件にClaude独立reviewを束縛し、#819等の全体完成を一律依存にしない。未回収成果等の拒否条件が続き、列挙は次行へ続く。",
       "legacy_context": {
         "section_heading": {
           "line": 201,
@@ -10422,7 +10422,7 @@
       "exact_source_line_text": "wrong HEADは受理しない。provider認証・課金・公開承認をRelease候補から推定しない。",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-22の局所要件文断片",
-      "semantic_reading": "FRS-R-22「Cursorの限定先行投入」の本文物理行断片: wrong HEADは受理しない。provider認証・課金・公開承認をRelease候補から推定しない。",
+      "semantic_reading": "前行から続く拒否対象にwrong HEADを加える。provider認証、課金、公開承認をRelease候補から推定しないという別の境界も明記する。",
       "legacy_context": {
         "section_heading": {
           "line": 201,
@@ -10675,7 +10675,7 @@
       "exact_source_line_text": "Phase AはHELIX事前発行branchとdispatch前後のowner／HEAD read-afterで排他を確認し、#860のlease自動化を一律前提にしない。",
       "semantic_family": "Functional Release Slice旧L3候補のFRS-R要求本文",
       "semantic_function": "FRS-R-22の局所要件文断片",
-      "semantic_reading": "FRS-R-22「Cursorの限定先行投入」の本文物理行断片: Phase AはHELIX事前発行branchとdispatch前後のowner／HEAD read-afterで排他を確認し、#860のlease自動化を一律前提にしない。",
+      "semantic_reading": "Phase Aでは事前発行branchとdispatch前後のowner／HEAD read-afterで排他を確認する。#860のlease自動化を一律前提にしない。",
       "legacy_context": {
         "section_heading": {
           "line": 201,
