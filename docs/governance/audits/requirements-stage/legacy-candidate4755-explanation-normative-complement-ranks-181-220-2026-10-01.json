@@ -4,6 +4,30 @@
   "created_against_commit": "dd605c7f472e43d97ad4b9110f77b85bbfddcd2e",
   "authority_effect": "none",
   "purpose": "Semantic audit of numeric-ID ranks 181–220 in the 2,710-row marker-negative complement. Marker absence is lexical screening only; source meaning, ledgers, fixed F6, later decisions and current source-family relations are audited per row.",
+  "nearby_adopted_relation_pins_for_ranks_194_195": [
+    {
+      "role": "HELIXLABO-L2-059_adoption",
+      "commit": "cfe90f400613935d1dd2c8c99d30b10e9d15e9a7",
+      "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      "line": 99,
+      "file_sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0"
+    },
+    {
+      "role": "HELIXLABO-L2-066_adoption",
+      "commit": "cfe90f400613935d1dd2c8c99d30b10e9d15e9a7",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "line": 81,
+      "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+    },
+    {
+      "role": "source_atom_000425_only_coverage_receipt",
+      "commit": "cfe90f400613935d1dd2c8c99d30b10e9d15e9a7",
+      "path": "docs/governance/audits/requirement-registration/labo-bugbot-misrepair-comparison-coverage-receipt-2026-09-28.json",
+      "file_sha256": "b678eee15274606442d9b4f6ac99767e8f6c50939d36793550913fa89a443d56",
+      "selected_source_line_ids": ["LEGACY-CAND-LINE-000425"],
+      "not_bound_source_line_ids": ["LEGACY-CAND-LINE-000341", "LEGACY-CAND-LINE-000342"]
+    }
+  ],
   "pool_derivation": {
     "baseline_ref": "#2353 reconciliation.row_records (4,755 exact source_item_id rows)",
     "ordered_classification_overlays": [
@@ -1565,7 +1589,7 @@
         "semantic_category": "効果測定条件",
         "semantic_reading": "AC07の比較指標に費用・時間・手戻りに加え誤修復・未解消数を含める。",
         "possible_classification_issue": "no",
-        "current_F6_relation_and_limit": "現行F6に当該candidateの測定receiptも採否閾値もない。",
+        "current_F6_relation_and_limit": "近接する採択済みHELIXLABO-L2-059は品質優先・同条件の費用/時間/手戻り比較、採択済みHELIXLABO-L2-066はAとの同条件比較・誤修復/未解消数を扱う。labo-bugbot-misrepair-comparison-coverage-receipt-2026-09-28.jsonの入力は別の旧要求行LEGACY-CAND-LINE-000425の1 atomのみ。この000341の行単位bindingや旧AC07全体のclosure、測定実施receipt、採否閾値はない。",
         "remaining_no_loss_condition": "旧Aとの比較前提や測定値を現行効果の証拠にしない。"
       },
       "marker_negative_normative_or_authority_condition": true,
@@ -1649,7 +1673,7 @@
         "semantic_category": "測定設計条件",
         "semantic_reading": "対象consumerと採否thresholdを測定前に固定し、実行件数のみを改善とみなさない。",
         "possible_classification_issue": "no",
-        "current_F6_relation_and_limit": "fixed L2/L11はこのcandidateのconsumer/threshold採択を持たず、source crosswalkは再導出候補に留める。",
+        "current_F6_relation_and_limit": "採択済みHELIXLABO-L2-066の事前固定oracleと意味が近く、HELIXLABO-L2-059の品質優先比較も関係する。ただしcoverage receiptは別の旧要求行LEGACY-CAND-LINE-000425の1 atom限定で、この000342のconsumer/採否閾値を行単位で採択していない。source crosswalkは再導出候補に留める。",
         "remaining_no_loss_condition": "事後threshold選択や件数単独の合格を避けるための候補条件をpreserveし、新しい閾値自体は作らない。"
       },
       "marker_negative_normative_or_authority_condition": true,
