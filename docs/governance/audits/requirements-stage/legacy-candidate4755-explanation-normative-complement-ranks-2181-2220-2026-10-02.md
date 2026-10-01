@@ -72,3 +72,7 @@
 - 40行のarchive bytes/source hash、#2353 baseline row hash、routing/line-ledger/asset entryとreceipt source_file/atom pinsはpaired JSONにある。
 
 詳細pin・source context/hash: paired JSON [`legacy-candidate4755-explanation-normative-complement-ranks-2181-2220-2026-10-02.json`](legacy-candidate4755-explanation-normative-complement-ranks-2181-2220-2026-10-02.json)
+
+## 統合時の先行slice確認
+
+先行PR #2478のmerge `148307bbb0f1f7b82fc48ecff5a382621c1850cd` に含まれる2141–2180行のJSON本文をpinする。rank2180は`LEGACY-CAND-LINE-003723`。
