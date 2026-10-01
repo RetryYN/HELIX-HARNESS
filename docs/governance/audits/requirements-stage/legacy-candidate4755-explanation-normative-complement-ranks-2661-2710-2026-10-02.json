@@ -2268,7 +2268,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::HELIX_World_Governance_v0_1",
-      "semantic_reading": "実態確認に使った当時の固定main commitを記録。",
+      "semantic_reading": "旧記録の記述として保持する：固定したmain：`1a4f9c3474a768765a85b480eabbb30698d7ef9d`。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4645,
@@ -2388,7 +2388,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::HELIX_World_Governance_v0_1",
-      "semantic_reading": "確認対象repositoryを指定。",
+      "semantic_reading": "旧記録の記述として保持する：対象：[RetryYN/HELIX-HARNESS](https://github.com/RetryYN/HELIX-HARNESS)。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4646,
@@ -3468,7 +3468,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::B_graph_loader",
-      "semantic_reading": "固定commit上の旧graph loader観測: directory取得失敗時にreturnするhelperがあり、不在・parse失敗を空集合とするコメントがある。test/source照合はimport解析に加えbasename一致の補助処理を使う。これは観測記録であり現行の採択要件ではない。",
+      "semantic_reading": "旧記録の記述として保持する：[`src/graph/loader.ts` L1–180](https://github.com/RetryYN/HELIX-HARNESS/blob/1a4f9c3474a768765a85b480eabbb30698d7ef9d/src/graph/loader.ts#L1-L180) では、ディレクトリ取得失敗時にreturnするhelperがあり、コメントにも不在・parse失敗を空集合として扱う方針が記載されている。テストとsourceの対応付けにはimport解析に加え、basename一致の補助処理がある。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4664,
@@ -6708,7 +6708,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::PO-1500-002",
-      "semantic_reading": "主ownerは#1500。意味正本/既存責務/優先順の境界と導入契約を含め入力9候補IDを保持し、正式ID採番時は衝突確認と対応表を要する。旧L3候補gate L3-PO-1500-002はcanonical昇格/IR収載/runtimeとは別工程。",
+      "semantic_reading": "旧記録の記述として保持する：主ownerは#1500。意味正本・既存責務・優先順の境界と導入契約を含め、入力の9候補IDを保持する。IDを正式採番する際は衝突を検査し対応表を維持する。[L3-PO-1500-002](https://github.com/RetryYN/HELIX-HARNESS/issues/1500#issuecomment-5556241015)でL3候補承認済みだが、canonical昇格・IR収載・runtime実装は別工程とする。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4711,
