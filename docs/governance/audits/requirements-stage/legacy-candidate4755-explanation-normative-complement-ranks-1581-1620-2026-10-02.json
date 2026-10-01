@@ -4379,5 +4379,24 @@
       },
       "authority_residual": "Historical candidate source row; no current requirement ID, adopted current ID, successor, approval, receipt binding, implementation, or source closure is assigned."
     }
-  ]
+  ],
+  "preceding_slice_boundary": {
+    "prior_rank": 1580,
+    "prior_id": "LEGACY-CAND-LINE-002665",
+    "this_first_rank": 1581,
+    "this_first_id": "LEGACY-CAND-LINE-002666",
+    "paired_audit_pins": [
+      {
+        "commit": "082c7446fdaae81b41e1a57aea65627e40ad052e",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1541-1580-2026-10-02.json",
+        "sha256": "a240e1b26cd6d505c6bdd12bb077a36a76deabbe88a7b2d422aa519bb00566b7"
+      },
+      {
+        "commit": "082c7446fdaae81b41e1a57aea65627e40ad052e",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1541-1580-2026-10-02.md",
+        "sha256": "5f4de03c70392dff3c580e5c089fe25e10c8b8acd566586decbb7363e6618373"
+      }
+    ],
+    "note": "直前1541–1580 paired auditを同一PRに収載し、対象commitのJSON/MD bytesをpinした。rank境界もfull-poolから再構成した。"
+  }
 }

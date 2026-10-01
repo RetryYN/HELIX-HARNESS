@@ -5,7 +5,7 @@
 ## 対象と再構成
 
 - effective explanationは2,965行、marker poolは255 ID（ID集合SHA-256 `27bc2c8ac43c182ac2a164e03960053b2e4b8f720f5f614070c518a12f9a7df3`）、補集合は2,710行。`2965 - 255 = 2710`。marker review slice 255 IDの集合と独立に再構成したmarker setは一致した。
-- rank 1580境界は `LEGACY-CAND-LINE-002665`（`docs/governance/candidates/helix-concept-v4-readme-projection.md:25`、`~~~text`）。対象はrank 1581 `LEGACY-CAND-LINE-002666`から1620 `LEGACY-CAND-LINE-002725`までの40行。直前ranks 1541–1580 sliceはorigin/main未収載のため参照せず、rank 1580境界をfull-poolから再構成した。
+- rank 1580境界は `LEGACY-CAND-LINE-002665`（`docs/governance/candidates/helix-concept-v4-readme-projection.md:25`、`~~~text`）。対象はrank 1581 `LEGACY-CAND-LINE-002666`から1620 `LEGACY-CAND-LINE-002725`までの40行。直前ranks 1541–1580 sliceを同一PRに収載し、commit `082c7446fdaae81b41e1a57aea65627e40ad052e` のJSON/MD bytesをpaired JSONでpinした。rank 1580境界もfull-poolから再構成した。
 - 対象は旧 `helix-concept-v4-readme-projection.md` の工程図・説明、`helix-concept-v4-requests.md` のauthority/frontmatter、`helix-concept-v4-requirements.md` の候補frontmatter。物理行の意味を個別に記し、前後行から採否・authority条件を補わない。
 
 ## 固定F6・PO/receiptとの関係
