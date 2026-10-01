@@ -71,17 +71,24 @@
     ],
     "selected_ids_sha256": "ae919f7c9887dc50a2242deb7456a6b895eac692febd4247a4d95860b234e9fd",
     "independently_reconstructed": true,
-    "prior_slice_crosscheck": {
+    "prior_slice_boundary_crosscheck": {
       "ranks": [
-        221,
-        260
+        341,
+        380
       ],
-      "overlap_count": 40,
-      "exact_id_order_match": true,
-      "prior_slice_sha256": "2a7e61d6fa77ed55f17864d8ee3c3b32ced9a703b5f655e8ff9219a1cffa8f7c"
+      "prior_last_id": "LEGACY-CAND-LINE-000629",
+      "selected_first_id": "LEGACY-CAND-LINE-000630",
+      "selected_rank_overlap_count": 0,
+      "prior_slice_file_sha256": "ebf61737776acb49334e885394065a611cd24b8f48305caab1e5bbf2d838b140"
     }
   },
   "pinned_reconstruction_inputs": [
+    {
+      "role": "preceding_complement_ranks_341_380_for_rank_boundary",
+      "commit": "0ae972c8e7884a16d369e59c1861acbfeeac12a3",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-341-380-2026-10-01.json",
+      "sha256": "ebf61737776acb49334e885394065a611cd24b8f48305caab1e5bbf2d838b140"
+    },
     {
       "role": "#2353 baseline row_records",
       "commit": "97672630b7de70fd4433827730c390cbabd90a99",

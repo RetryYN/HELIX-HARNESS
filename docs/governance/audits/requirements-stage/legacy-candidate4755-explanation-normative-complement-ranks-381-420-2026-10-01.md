@@ -5,12 +5,13 @@
 ## 対象と再構成
 
 - 対象commit `927ada15cf90abc2d21cfd1fb3e45fed764ec780`。#2353の4,755 `row_records`へ#2356、#2360、#2363、#2366、#2367、#2368、#2369、#2381のexact-ID分類差分を適用し、`explanation=2,965`を再構成した。#2369の000841/000857はconditionへ移るため補集合から除外。
-- マーカースクリーン済み255 IDを除き、`2,965 - 255 = 2,710`行をsource ID数値順にrank付けした。ranks 381–420の40 IDはranks 221–260既存JSONの対象区間と独立再構成したrank 221–260部分の40/40照合後に選んだ。
+- マーカースクリーン済み255 IDを除き、`2,965 - 255 = 2,710`行をsource ID数値順にrank付けした。ranks 381–420の40 IDを選び、直前ranks 341–380のpaired JSONをpinした。境界はrank380=`LEGACY-CAND-LINE-000629`、rank381=`LEGACY-CAND-LINE-000630`で、両sliceの重複は0件。
 - source text、section/context、行bytes・archive・source-line ledger・asset ledger hashes、現行比較pinはpaired JSONに記録した。
 
 ## 行別意味監査
 
 |Rank|Source ID / archive:line|候補行の役割と意味|現行関係・残差|
+|---:|---|---|---|
 |381|`LEGACY-CAND-LINE-000630`<br>`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md:47`<br>`\| PKG-D11 \| 運用・保守 \| helix-operations / helix-maintenance \|`|候補taxonomy mapping。PKG-D11〜13を既存候補Module名へ対応づける候補表の行。語彙対応であり、current mechanism identity・owner・正式Sliceを定めない。|HELIX-HARNESS/OSの固定F6 L2/L11と2026-09-28 PO判断の明示採択集合へ、この選択source rowの個別bindingは確認できない。現行Concept・責務境界と語彙や責務が近くても、同一identity、successor、採択または受入を意味しない。|
 |382|`LEGACY-CAND-LINE-000631`<br>`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md:48`<br>`\| PKG-D12 \| 診断・回復 \| helix-diagnosis / helix-reverse-recovery \|`|候補taxonomy mapping。PKG-D11〜13を既存候補Module名へ対応づける候補表の行。語彙対応であり、current mechanism identity・owner・正式Sliceを定めない。|HELIX-HARNESS/OSの固定F6 L2/L11と2026-09-28 PO判断の明示採択集合へ、この選択source rowの個別bindingは確認できない。現行Concept・責務境界と語彙や責務が近くても、同一identity、successor、採択または受入を意味しない。|
 |383|`LEGACY-CAND-LINE-000632`<br>`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md:49`<br>`\| PKG-D13 \| 意味保存の構造改善 \| helix-refactoring \|`|候補taxonomy mapping。PKG-D11〜13を既存候補Module名へ対応づける候補表の行。語彙対応であり、current mechanism identity・owner・正式Sliceを定めない。|HELIX-HARNESS/OSの固定F6 L2/L11と2026-09-28 PO判断の明示採択集合へ、この選択source rowの個別bindingは確認できない。現行Concept・責務境界と語彙や責務が近くても、同一identity、successor、採択または受入を意味しない。|
