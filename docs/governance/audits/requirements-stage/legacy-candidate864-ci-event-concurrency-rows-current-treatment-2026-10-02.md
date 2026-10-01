@@ -1,9 +1,9 @@
-# 旧candidate CIG concurrency選択10行の現行処置照合
+# 旧candidate CIG concurrency選択行の現行処置照合
 
 ## 対象とauthority
 
-- 現行比較base：`7b9d1938fc7699404f68c2b87829df56dc6f690d`。
-- 旧行選択：既存 `candidate4755-condition864-current-treatment-2026-10-02.json` のsource ID順で、前回対象の次にある10物理行（000478、000491、000492、000496、000497、000499、000500、000501、000502、000528）。同JSONの機械分類や`no_condition_specific_current_target_evidence_found`だけを欠落証拠にしていない。
+- 現行採択本文との比較base：`f38bde044a7dfbf12aec0203b21a9384eef6ad8f`。未採択候補118は#2496 Draft HEAD `0a9c58e0907ea2821374c84dfabe2482edde4419` も別revisionとして照合。
+- 旧行選択：既存 `candidate4755-condition864-current-treatment-2026-10-02.json` のsource ID順で選んだ元10物理行（000478、000491、000492、000496、000497、000499、000500、000501、000502、000528）に、独立reviewで要求条件と判明した旧requirements物理行30/32（source ID 000527/000529）を追加。計12物理行のうち000478は工程条件、残る11行がrequirement atoms。同JSONの機械分類や`no_condition_specific_current_target_evidence_found`だけを欠落証拠にしていない。
 - 旧archiveは読み取りだけとし、旧runtime、CI、test、CLI、live rehearsalは実行していない。
 - HELIX-OS 2026-09-28 PO decision（ファイルSHA-256 `5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da`）は固定commit `f6dad2a33e24f000b87d7f09b8d40288257e74cc` のL1/L2/L11 exact revisionを特定し、L2 `c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf`／L11 `925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680` bytesとHELIXOS-L2-001..029を採択している。2026-09-28本文のauthorityはこのdecisionから読む。今回のHELIXOS-L2/L11-118はその採択範囲の変更ではない。
 - 現行の採択L2-007／008／009／018／019／020と対L11を確認した。L2-007/019とL11-007/019はprovenance、欠落・重複・stale・未実行、event projection・checkpoint、再構築を扱う。L2-009/L11-009は中断・交代時の累積制約と未完義務、二重作業防止を扱う。L2-018/L11-018はassignment/attemptのbinding・期限/lease失効後のhandoffを扱う。L2-008/L11-008はHARNESS義務由来profile、CI起動・失敗・修復・再実行、旧CI結果での代替禁止を扱う。L2/L11-020はexact HEAD/oracle/environment/run identity、実行state、義務不足・中断の未完引継ぎ、oracle削減不可を扱う。いずれも別検証義務間のcancel非干渉、current-main post-main検収保護、stale generationのみのbounded置換、cancel/supersede/handoff対象の再構築、cancelled runの成功・terminal green・別義務結果流用を明示していない。
@@ -12,7 +12,7 @@
 
 ## 物理行別の意味照合
 
-旧本文は次の3ファイルを全文読んだ。source-lines JSONLは選択9 requirement atomsについて原文、archive path、物理行、file/line/bytes SHA、ledger record hash、asset ID、歴史routingを保持する。
+旧本文は次の3ファイルを全文読んだ。source-lines JSONLは選択11 requirement atomsについて原文、archive path、物理行、file/line/bytes SHA、legacy source-ledger record hash、asset ID、歴史routingを保持する。以前の候補auditは物理行30/32をcontext扱いしたが、内容は独立した要求条件なので別atomとして数え直した。旧routingの`explanation`分類は現在の意味評価を拘束しない。
 
 | source ID / 旧path:line | 選択行が述べる条件 | 現行本文と判定 |
 |---|---|---|
@@ -25,7 +25,9 @@
 | `000500` / 同requests:29 | stale PR HEADと重複scheduleを、別event classへ影響させずbounded置換する。 | 採択L2/11とNCI候補の一般的なqueue/parallelism/HEAD bindingでは、他義務へのcancel波及とstale-only bounded replacementを検収できない。source class名は受入fixture例として残し、L2固定enumにしない。 |
 | `000501` / 同requests:30 | cancel/supersede/handoffの理由と対象を後から再構築する。 | L2/11-007/019の一般provenanceは任意のCI置換結果に対する具体関係を記さない。118はreason、対象義務/generation、terminal evidenceの追跡だけを追加し、旧receipt schemaを移さない。 |
 | `000502` / 同requests:31 | required verification削減、cancelled run成功扱い、別event class結果流用を高速化として認めない。 | L2/11-008/020はoracle削減や旧/別HEAD green代用を拒否するが、cancelled-runをpost-main/terminal/deferred recovery/review successへ使う拒否とsame-HEAD/different-obligation結果の不流用はない。118 L11へ個別反例を追加する。 |
-| `000528` / `ci-event-concurrency-generation-requirements.md:31` | atomは物理行31のみ。行30をcontext-onlyで読むと、同一PRのnewer HEADはそのPRのstale HEADだけを置換し、newer scheduleはolder scheduleだけを置換できる。行31末尾の`cancel-in-progress:false`句は行32に続き、無制限並走を代替実装にしないという完全文脈になる。行30/32のtext・path・line・SHAをpaired JSONに別記し、atom数/digestには追加しない。 | L2/L11-020のrun identity・別HEAD拒否は保持済みだが、同一PR/stale-onlyとschedule-to-schedule限定は受入になっていない。118 Aは旧strict event class条件、無制限並走を設定1個で代替しない条件、別class結果非流用を保持する。Bは同義務なら別event class結果を流用しうる一般化で、元sourceのstrict非流用条件を弱める意味差として明示する。 |
+| `000527` / `ci-event-concurrency-generation-requirements.md:30` | `main_push`、`schedule`、`workflow_dispatch`、別PRの相互cancelを禁止する。行末の同一PR/newer HEAD句は選択済み物理行31（000528）へ続くため、二行を合わせ同一PRのstale HEADだけが置換対象だと読む。 | 採択L2/11-008/020の一般identity/run stateにはevent class間non-cancelとsame-PR stale-onlyがない。未採択118の正常対照が条件の行き先。正式successor/closureではない。 |
+| `000528` / `ci-event-concurrency-generation-requirements.md:31` | 同一PRのnewer HEADは同じPRのstale HEADだけを置換する。newer scheduleはolder scheduleだけを置換する。末尾`cancel-in-progress:false`句は物理行32（000529）と続けて読む。 | 採択L2/11-020のrun identity・別HEAD拒否は保持済みだが、event classごとの置換境界はない。未採択118の正常対照がsame-PR/older-schedule-only条件を保持する。行30/32はcontextから独立条件として選択atom化されたのでcontext-only refsではない。 |
+| `000529` / `ci-event-concurrency-generation-requirements.md:32` | `cancel-in-progress:false`だけではbounded controlにならず、無制限並走を代替実装にしない。物理行31（000528）の文末を完結する。 | 採択OS-020の隔離実行/未完引継ぎだけではunbounded parallelism拒否を明示しない。未採択118のnegative fixtureは「false指定だけで無制限並走」を拒否する。 |
 
 旧行ID・source fulltext/SHA・assetとledger/routing関係の正本は次のsource ledger/receipt。監査選択に使ったignored local JSONの分類はauthorityでもsource digestでもない。
 
@@ -46,4 +48,4 @@
 
 ## 境界と判定
 
-9 requirement source atomsを未採択のL2/L11-118候補へ入力し、source holdingは残す。coverage receiptの`no_loss`は9 atomの候補入力への対応だけを表し、正式successor、対象scope/ownerのPO割当、PO採択、条件closure、runtime実装または実行済み受入を主張しない。000478は監査対象10行のうちの工程条件として現行L3/L10後の別PLANへ残し、118 requirement atom数に加えない。
+11 requirement source atomsを未採択のL2/L11-118候補へ入力し、source holdingは残す。coverage receiptの`no_loss`は選択11 atomの候補入力への対応だけを表し、正式successor、対象scope/ownerのPO割当、PO採択、条件closure、runtime実装または実行済み受入を主張しない。000478は選択した12物理行のうちの工程条件として現行L3/L10後の別PLANへ残し、118 requirement atom数に加えない。
