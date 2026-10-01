@@ -5852,7 +5852,7 @@
       "exact_source_line_text": "Requirement、Design、Runtime、GitHub、CI、Security、Release、Provider、Recovery等のstableな`responsibility_id`が、経験、反例、検証済み知識のprimary ownerになる。folder、文書、agent persona、skill名をownerにしない。",
       "semantic_family": "責務中心Learning System企画候補",
       "semantic_function": "責務identityを知識所有者とする要求",
-      "semantic_reading": "LEGACY-CAND-LINE-004076 — Requirement、Design、Runtime、GitHub、CI、Security、Release、Provider、Recoveryのstableなresponsibility_idを、経験・反例・検証済み知識のprimary ownerとする。folder、文書、agent persona、skill名をownerにしない。",
+      "semantic_reading": "LEGACY-CAND-LINE-004076 — Requirement、Design、Runtime、GitHub、CI、Security、Release、Provider、Recovery等のstableなresponsibility_idを、経験・反例・検証済み知識のprimary ownerとする。folder、文書、agent persona、skill名をownerにしない。",
       "legacy_context": {
         "section_heading": {
           "line": 25,
