@@ -5,16 +5,16 @@
   "authority_effect": "none",
   "prior_completed_complement_slice": {
     "ranks": [
-      781,
-      820
+      821,
+      900
     ],
-    "commit": "44afc7c17054395f359a4f65da06b739a150697d",
-    "last_id": "LEGACY-CAND-LINE-001408",
-    "json_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-781-820-2026-10-01.json",
-    "json_sha256": "5f000ee72ae0c3aaae8dea8bde7ebef3fcde0be8931b1edaaf5128cbc2942237",
-    "md_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-781-820-2026-10-01.md",
-    "md_sha256": "5cd79027fa24ef7b1e7f5f25207d0ebccf934ff97fa75b418acba07194f22081",
-    "continuity_checked": false,
+    "merge_commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+    "last_id": "LEGACY-CAND-LINE-001536",
+    "json_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-861-900-2026-10-01.json",
+    "json_sha256": "eac55baf1020c701e4f4db8bef8edbee0929e28209b935189c16ebc82c8282e9",
+    "md_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-861-900-2026-10-01.md",
+    "md_sha256": "0ee890881b0bafd1ff382e2b1845b6e5d5c1e516fc0777cbf3cacfd0def656bb",
+    "continuity_checked": true,
     "boundary_reconstructed_from_full_pool": true
   },
   "fixed_F6_execution_ticket_family_relation": "固定F6 HARNESS L2 `product-requirements.md:314` / L11 `product-acceptance.md:197` は、コア提供からOS ticket発行・検収への接続を明記する。OS L2 `governance-requirements.md:536–539, 554–568` は旧 `execution-ticket-requests.md` の7要求を対象別に接続し、候補が `proposed_pending_l3_confirmation` で既存対文書を移動・再承認しないこと、HXT-RQ-01/04/07→OS-L2-004、02→007、03/05→005、06→009の対応を記す。OS L2 `:781` は今回のsource file `execution-ticket-requirements.md` を範囲 `[18–185, 186–289, 376–508]` とともに名指す。今回のうちrank 901–915と930–940の物理行は範囲内、rank 916–929（物理行290–375）は列挙範囲外である。範囲内の行についても文書/範囲レベルの出典関係であり、各物理行をL2 requirementへ個別採択・結合する証拠ではない。OS L11 `governance-acceptance.md:256–269` は別source `execution-ticket-validation.md` を名指し、HXT-RQ受入を全件未実行と明記する。今回のsource line別successorやclosureは生じない。LABO L2 `labo-requirements.md:342–368` の既存source crosswalkは同じ旧assetのHXB-FR-015 `execution-ticket-requirements.md:349–351` を `HELIXLABO-L2-055` 系へ関係づけるが、今回の選択source行は物理行178、183、185、190等であり349–351の行そのものではない。LABO L2 `:152` はBench水準を配置案の材料とし権限・割当を変えない。LABO L11 `labo-acceptance.md:191–196` は分母、欠測、失敗/unknown、scorer revisionと反例を扱う未実行例である。これはfamily-level semantic comparisonに留まり、今回40行のrow adoption/acceptanceではない。",

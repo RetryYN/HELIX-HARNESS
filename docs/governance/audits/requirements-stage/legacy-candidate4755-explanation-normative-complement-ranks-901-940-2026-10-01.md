@@ -6,7 +6,7 @@
 
 - 指定基点 `44afc7c17054395f359a4f65da06b739a150697d` から、#2353の4,755 `row_records`へ#2356、#2360、#2363、#2366、#2367、#2368、#2369、#2381を順に適用し、effective explanationを2,965件と再構成。#2369のsource_evidence 000841/000857はconditionへ分類される。
 - lexical marker screen queue 20行とsemantic review slices 235行のunionは255件。これを除いた2,710件をsource ID数値順にrank付けした。rank900境界は `LEGACY-CAND-LINE-001536`、rank901は `001537`。選択末尾rank940は `001660`。
-- 隣接sliceの意味監査連続性は対象外。rank900境界のみ全母集団から再構成。各選択行のsource text、物理行、hash、context、routing記録はpaired JSONに保存。
+- 直前ranks 821–900の監査は#2461のmerge commit `9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba`でmainに統合済み。rank900境界とranks 861–900のMD/JSON SHAを照合した。順位は全母集団から独立に再構成した。各選択行のsource text、物理行、hash、context、routing記録はpaired JSONに保存。
 
 ## 固定F6との関係
 
