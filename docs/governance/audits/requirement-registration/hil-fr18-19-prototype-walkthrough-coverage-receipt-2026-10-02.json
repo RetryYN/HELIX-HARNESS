@@ -1,0 +1,248 @@
+{
+  "receipt_id": "HIL-FR18-19-PROTOTYPE-WALKTHROUGH-COVERAGE-2026-10-02",
+  "comparison_base": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+  "authority_effect": "none",
+  "candidate_status": "unadopted_requirement_candidate",
+  "candidate_identity": "HARNESS-L2-079",
+  "candidate_revision": "MPR-RC-HARNESS-L2-079-001",
+  "candidate_section_digests": {
+    "l2": "sha256:a0b653116f85ee13e02798f7eb44ea66c6ff9d958430e6930929b5bc1ba97682",
+    "l11": "sha256:176e8f055282ccf3aceaf594e31711ca49266909e2be455b1b29992f619e3910"
+  },
+  "candidate_digest_rule": "From exact ### HARNESS-L2-079 heading up to next same-level ### heading; trim trailing blank lines; UTF-8 with one LF.",
+  "current_file_pins": {
+    "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+    "l2_file_sha256": "sha256:e3facdbaff7466b4b4f36c5e0aed6795d445a545757862a6327c10a47567e3e0",
+    "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+    "l11_file_sha256": "sha256:73ea3bbdb268a72a7ee096b758b2e87fee0b868f29a60a8063d8a8dea6d26be2"
+  },
+  "source_atom_set": {
+    "path": "docs/governance/audits/requirement-registration/hil-fr18-19-prototype-walkthrough-source-lines-2026-10-02.jsonl",
+    "count": 2,
+    "digest": "sha256:df33c100f2602cb2d83d19ef542c4c0b8412a4efd338109e3af7d93636aa86da",
+    "digest_rule": "Sort atom_id; concatenate atom_id + SPACE + source_line_sha256 hex without sha256: prefix + LF, UTF-8 SHA-256.",
+    "atom_ids": [
+      "REQSRC-LINE-01859",
+      "REQSRC-LINE-01860"
+    ],
+    "source_lines_file_sha256": "sha256:27138cc17c2024170c844f75c280ffc706ee2eee8e1950cfca518639ebf6a21f",
+    "canonical_carry_forward_rows": {
+      "path": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl",
+      "lines": [
+        51,
+        52
+      ],
+      "state": "both preserved_pending_rehome; successor_requirement_ids empty; decision_record null"
+    }
+  },
+  "legacy_source_and_consumer_pins": [
+    {
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "lines": [
+        108,
+        109
+      ],
+      "file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-63DEDB3F6F768B251BC5",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L6-screen-applicability-prototype-unit-test-design.md",
+      "lines": [
+        "U-SAP-005/006/007/009",
+        "HST-CASE-024-02/03/05/06/07/08"
+      ],
+      "file_sha256": "sha256:d72c002d485628ba059346b6af6a7233cead8bdf060a2630289d1c8148e0e26f",
+      "role": "historic unimplemented consumer/oracle, not current execution evidence"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-51B78F6A5128E2CD1448",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/screen-applicability-prototype.md",
+      "lines": [
+        "nine-state fixture; artifact and walkthrough conditions"
+      ],
+      "file_sha256": "sha256:aa744b5d6eb4121c14cd8f2e8660dac200183a1359b4f3cf6bdc3b5a14d882c0",
+      "role": "historic state/design meaning; no schema/runtime transfer"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A65B5C20721DD2149886",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/screen-applicability-prototype.md",
+      "lines": [
+        "prototype artifact and walkthrough design"
+      ],
+      "file_sha256": "sha256:3f92059a9854d774c0278e51138396536bcbf55f6132478576d2064f836d2b64",
+      "role": "supporting consumer design only"
+    }
+  ],
+  "legacy_ir_pin": {
+    "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+    "file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+    "records": {
+      "HIL-FR-18": {
+        "statement": "sha256:113f62503959378764966ff837c8d5f4beffde5932618b47aee921e507535ab3",
+        "record": "sha256:4bde6624ded9421c9c4e97a6ca4a1178195731267aa4ab16b6639d7b46d0e913"
+      },
+      "HIL-FR-19": {
+        "statement": "sha256:817dc126b7355e14109936f8f9c83edcd21fdc3d0afd9fad8a41508828306b35",
+        "record": "sha256:df78c7188f3a460486b34259b78e011b47518da134d4e7344b6614c514915e6b"
+      }
+    }
+  },
+  "current_adopted_comparisons": [
+    {
+      "identity": "HARNESS-L2-012",
+      "adoption_basis": "2026-09-28 fixed adopted revision",
+      "l2_section_sha256": "sha256:ebdb183eee98909a5777eaf4602423bd43698669013b2d1538de8f29626728b2",
+      "l11_ref": "product-acceptance.md:207",
+      "meaning": "Prototype/PoC distinction, HTML trial, backflow; not complete executable artifact or FR19 receipt."
+    },
+    {
+      "identity": "HARNESS-L2-039",
+      "adoption_basis": "2026-09-29 57-candidate exact -003 decision",
+      "l2_section_sha256": "sha256:fcb6400610a8b87e633a3487e7bda5fc1e4e3db58c5f9d5f5f121c1bbf15ee55",
+      "l11_section_sha256": "sha256:338eb75284ac80f7ad2bb7899e19f8624d21819c6dc494ed9169888b23755b3b",
+      "meaning": "UI/Experience relation, not prototype builder or FR19 receipt."
+    },
+    {
+      "identity": "HARNESS-L2-049",
+      "adoption_basis": "2026-09-30 live26 exact adopted revision",
+      "l2_section_sha256": "sha256:a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116",
+      "l11_section_sha256": "sha256:f3fb47da21371084e9f8c7c7f7ca6dd945c8e98ae7c7b70597c3fc44e4e08ee7",
+      "meaning": "Measurement of provided renderable prototype only; excludes generation and walkthrough."
+    },
+    {
+      "identity": "HARNESS-L2-003/024 + OS Backflow",
+      "meaning": "scope-change stale/re-entry is already held there and is excluded from candidate semantics."
+    }
+  ],
+  "condition_mapping": [
+    {
+      "atom_id": "REQSRC-LINE-01859",
+      "conditions": [
+        "executable screen prototype",
+        "screen ID",
+        "major operations and transitions",
+        "all nine states with preserved meaning",
+        "temporary-data boundary",
+        "replayable discovery path independent of visual fidelity",
+        "manifest and digest",
+        "startup procedure",
+        "screen/interaction/state trace"
+      ],
+      "candidate_whereabouts": "L2-079 FR18; L11-079 normal FR18 + individual negatives",
+      "status": "candidate condition only; not adopted/formal successor"
+    },
+    {
+      "atom_id": "REQSRC-LINE-01860",
+      "conditions": [
+        "exact prototype revision",
+        "user observation",
+        "requirement delta or explicit no_delta",
+        "L1 reflection target and state",
+        "rebuild decision",
+        "bounded iteration",
+        "walkthrough receipt, requirements delta, iteration checkpoint"
+      ],
+      "candidate_whereabouts": "L2-079 FR19; L11-079 normal FR19 + individual negatives",
+      "status": "candidate condition only; not adopted/formal successor"
+    }
+  ],
+  "layer_mapping": "Legacy rows are from old L1 and are now represented as a current HARNESS L2 requirement candidate paired with L11 acceptance oracle. This is a condition-level re-expression, not numeric old-layer transfer. L1 target within FR19 is retained literally; L2 delta follows existing HARNESS-L2-012 Backflow. Any change to upstream L1 meaning remains with the existing human decision boundary.",
+  "holding": "Both IR rows remain preserved_pending_rehome with successor_requirement_ids empty and no decision_record. Candidate does not assign formal successor, retire source, authorize implementation, or claim runtime/test completion.",
+  "validation_scope": "Static source/document/pin consistency only; no archive workflow/runtime/test/CLI/hook/CI execution. Supporting legacy HR/HAC/HAT and consumer cases are not execution evidence or additional source atoms.",
+  "unaccounted_selected_atoms": [],
+  "current_upstream_mapping": {
+    "concept_path": "docs/concept/helix-concept.md",
+    "concept_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+    "concept_reference": "service ① delivers HTML prototype and PoC (current section near lines 247–260)",
+    "current_l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+    "current_l1_sha256": "sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+    "current_l1_reference": "HARNESS-L1-006 line 36: requirements formation, prototype/non-UI applicability, agreement, freeze, return/re-entry/completion",
+    "current_l2_012_reference": "docs/helix-harness/L2-requirements/product-requirements.md#HARNESS-L2-012: HARNESS provides HTML prototype and sends results through Backflow before second requirement formation/Decide",
+    "mapping": "Current L2/L11 express the requirement output and acceptance meaning; existing OS progression/recording stays under its existing role. Physical prototype generator/runtime and receipt-storage schema are not specified here. Legacy layer numbers are not mechanically transferred."
+  },
+  "legacy_crosswalk_context": {
+    "path": "docs/governance/audits/source-rebaseline/infinity-functional-target-crosswalk.md",
+    "file_sha256": "sha256:c61aeff2e0839054f24b68296d5c48b5e99c8329a0ba776e52b8c3f0e192b71b",
+    "rows": {
+      "27": "HIL-FR-18 historical assessment: OS mechanism / HARNESS discovery conditions",
+      "28": "HIL-FR-19 historical proposal: correct L1 target to L2 requirement, L1 only for planning impact"
+    },
+    "treatment": "Rows 27-28 are historical assessments, not current authority or a new human-decision prerequisite. Current Concept service 1, L1-006, and adopted 012 are read. The candidate specifies HARNESS output/requirement semantics already present in 012 while OS retains existing progression/recording; it does not transfer artifact meaning to OS. FR19 source L1 target is retained, and L2 requirement delta relates through existing 012 Backflow. No semantic change to Concept/L1 is proposed."
+  },
+  "legacy_supporting_contracts": [
+    {
+      "id": "HR-FR-HIL-15 rev1",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+      "file_sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "pointer": "#/HR-FR-HIL-15",
+      "relation": "prototype→walkthrough→backprop/agreement sequence; static-only/state/walkthrough/delta failures; supporting source, not additional selected atom"
+    },
+    {
+      "id": "HAC-HIL-15a/b/c",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "pointers": [
+        "#/HAC-HIL-15a",
+        "#HAC-HIL-15b",
+        "#HAC-HIL-15c"
+      ],
+      "relation": "no-UI positive, UI freeze rejection, stale/re-entry boundary; latter meaning already mapped to 003/024+OS Backflow"
+    },
+    {
+      "id": "HAT-HIL-15",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+      "file_sha256": "sha256:7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+      "pointer": "#/HAT-HIL-15",
+      "relation": "designed_not_implemented; required applicability/artifact-state/walkthrough-delta-agreement; not execution evidence"
+    }
+  ],
+  "legacy_consumer_assets": [
+    {
+      "asset_id": "LEGACY-ASSET-63DEDB3F6F768B251BC5",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L6-screen-applicability-prototype-unit-test-design.md",
+      "lines": [
+        "U-SAP-005/006/007/009",
+        "U-SAP-006 line 37: static-only/startup/trace/every-state-deletion/digest mutation",
+        "U-SAP-007 line 38: actor/observation/delta/target/rebuild/iteration-over-bound mutation"
+      ],
+      "file_sha256": "sha256:d72c002d485628ba059346b6af6a7233cead8bdf060a2630289d1c8148e0e26f"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-CD32DDCC170620F5FBE8",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L5-screen-applicability-prototype-integration-test-design.md",
+      "lines": [
+        "IT-SAP-005/006/007/008"
+      ],
+      "file_sha256": "sha256:16a40c2952c2e69b42147f6f08994352d6188d5d8a68e72f1d4d618fc9784b07"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-51B78F6A5128E2CD1448",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/screen-applicability-prototype.md",
+      "lines": [
+        "L5 lines 45-61 component responsibilities; lines 69-78 historic physical schema (support only); line 80 exact nine-state set"
+      ],
+      "file_sha256": "sha256:aa744b5d6eb4121c14cd8f2e8660dac200183a1359b4f3cf6bdc3b5a14d882c0"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A65B5C20721DD2149886",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/screen-applicability-prototype.md",
+      "lines": [
+        "L6 lines 36-37 exact nine-state type; lines 46-49 public API contract context"
+      ],
+      "file_sha256": "sha256:3f92059a9854d774c0278e51138396536bcbf55f6132478576d2064f836d2b64"
+    }
+  ],
+  "authority_and_holding": "HIL-FR-18 and HIL-FR-19 carry-forward rows remain preserved_pending_rehome, successor_requirement_ids empty, decision_record null. Current adopted 012/039/049 cover the separately described portions but do not assign formal successor or close these legacy rows. Candidate remains unadopted; old HR/HAC/HAT are historic not-executed design evidence.",
+  "reviewed_decisions": [
+    "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md#HARNESS-L2-012",
+    "docs/governance/decisions/po-decision-2026-09-29-57candidates.md#HARNESS-L2-039 exact -003",
+    "docs/governance/decisions/po-decision-2026-09-30-live26.md#HARNESS-L2-049 adopted measurement-only revision"
+  ],
+  "responsibility_and_semantic_delta": {
+    "retained": "HARNESS L2-012 already provides HTML prototype and Backflow; HARNESS L2-079 adds missing artifact/walkthrough acceptance details, while OS remains existing progression/recording role. FR19 L1 target is retained and L2 delta uses existing Backflow. L1 semantic changes remain at existing human boundary.",
+    "changed": "Old L1 legacy layer number is re-expressed in current HARNESS L2 plus paired L11; no numeric layer transfer, source owner transfer, successor assignment, or full condition closure.",
+    "reason": "Current Concept service 1, current HARNESS L1-006, and adopted HARNESS L2-012 establish the current prototype/requirement responsibility. Exact missing conditions are supported by the old requirement line and old consumer oracle.",
+    "not_adopted": "Legacy crosswalk rows 27-28 suggested OS generator / changing FR19 destination to L2. Those are historical proposals, not current authority; the candidate retains the source L1 target and current 012 Backflow relation."
+  }
+}
