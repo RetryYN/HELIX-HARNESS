@@ -571,7 +571,9 @@
     "existing_direct_binding_count": 0,
     "unknown_preserved_count": 20,
     "not_requirement_atom_count": 20,
-    "direct_match_count": 0
+    "direct_match_count": 0,
+    "fixed_F6_same_id_other_source_rows": 1,
+    "fixed_F6_same_id_other_source_hits": 3
   },
   "limitations": [
     "規範語marker-negativeは語彙screen結果であり、各rowの意味監査を代替しない。",
@@ -2095,7 +2097,7 @@
       "exact_source_line_text": "NFR-007はHXB-AC-001..008/039、NFR-009はHXB-AC-037/038、NFR-011はHXB-AC-015/016/019/020、",
       "semantic_family": "Execution Ticket候補のNFR追加束縛・受入条件補足",
       "semantic_function": "NFRとHXB-AC間の追加束縛または未充足観点",
-      "semantic_reading": "NFR-007はHXB-AC-001..008/039、NFR-009はHXB-AC-037/038、NFR-011はHXB-AC-015/016/019/020、",
+      "semantic_reading": "NFR-007/009/011に対するHXB-AC IDの列挙が始まる行。列挙と文は次の物理行へ続くため、この行だけで束縛の全件や結論を確定しない。",
       "legacy_context": {
         "section_heading": {
           "line": 196,
@@ -2217,7 +2219,7 @@
       "exact_source_line_text": "NFR-014のretention後replay境界、NFR-009の数値SLO、NFR-005のWindows実測は既存AC文言だけで充足としない。",
       "semantic_family": "Execution Ticket候補のNFR追加束縛・受入条件補足",
       "semantic_function": "NFRとHXB-AC間の追加束縛または未充足観点",
-      "semantic_reading": "NFR-014のretention後replay境界、NFR-009の数値SLO、NFR-005のWindows実測は既存AC文言だけで充足としない。",
+      "semantic_reading": "retention後replay、数値SLO、Windows実測の三観点を、既存ACの文言だけで充足としない境界を記す。",
       "legacy_context": {
         "section_heading": {
           "line": 196,
@@ -2339,7 +2341,7 @@
       "exact_source_line_text": "各sliceの詳細テスト設計で独立fixtureを置き、未確定値はfreeze前に解決する。",
       "semantic_family": "Execution Ticket候補のNFR追加束縛・受入条件補足",
       "semantic_function": "NFRとHXB-AC間の追加束縛または未充足観点",
-      "semantic_reading": "各sliceの詳細テスト設計で独立fixtureを置き、未確定値はfreeze前に解決する。",
+      "semantic_reading": "各sliceの詳細テスト設計では独立fixtureを置き、未確定値をfreeze前に解決する候補条件を記す。",
       "legacy_context": {
         "section_heading": {
           "line": 196,
@@ -2461,7 +2463,7 @@
       "exact_source_line_text": "| slice | 対応範囲 | 既存ownerへの接続 |",
       "semantic_family": "Execution Ticket候補の原子的な後続責務と既存owner",
       "semantic_function": "slice別FR/owner接続とTicket候補の版・依存境界",
-      "semantic_reading": "| slice | 対応範囲 | 既存ownerへの接続 |",
+      "semantic_reading": "後続表の列名としてslice、対応範囲、既存ownerへの接続を定義する見出し行。個別slice条件は含まない。",
       "legacy_context": {
         "section_heading": {
           "line": 220,
@@ -2583,7 +2585,7 @@
       "exact_source_line_text": "| A | 全source authorityと衝突解消 | #1534、#397 |",
       "semantic_family": "Execution Ticket候補の原子的な後続責務と既存owner",
       "semantic_function": "slice別FR/owner接続とTicket候補の版・依存境界",
-      "semantic_reading": "| A | 全source authorityと衝突解消 | #1534、#397 |",
+      "semantic_reading": "slice Aを全source authorityと衝突解消へ対応させ、既存owner参照#1534/#397を列挙する。Issueの現行状態は示さない。",
       "legacy_context": {
         "section_heading": {
           "line": 220,
@@ -2709,7 +2711,7 @@
       "exact_source_line_text": "| B | HXT-FR-001..012,016 | #860/#819/#213/#1098、schema versionとshadow_compile |",
       "semantic_family": "Execution Ticket候補の原子的な後続責務と既存owner",
       "semantic_function": "slice別FR/owner接続とTicket候補の版・依存境界",
-      "semantic_reading": "| B | HXT-FR-001..012,016 | #860/#819/#213/#1098、schema versionとshadow_compile |",
+      "semantic_reading": "slice BにHXT-FR-001..012/016、owner参照#860/#819/#213/#1098、schema versionとshadow_compileを配置する旧表行。",
       "legacy_context": {
         "section_heading": {
           "line": 220,
@@ -2835,7 +2837,7 @@
       "exact_source_line_text": "| C | HXT-FR-013..015,018..020; HXB-FR-001..007,014,016,019 | #215/#499/#1295、live observerとbinding canary |",
       "semantic_family": "Execution Ticket候補の原子的な後続責務と既存owner",
       "semantic_function": "slice別FR/owner接続とTicket候補の版・依存境界",
-      "semantic_reading": "| C | HXT-FR-013..015,018..020; HXB-FR-001..007,014,016,019 | #215/#499/#1295、live observerとbinding canary |",
+      "semantic_reading": "slice CにHXT-FR-013..015/018..020とHXB-FR-001..007/014/016/019、owner参照#215/#499/#1295、live observerとbinding canaryを列挙する。",
       "legacy_context": {
         "section_heading": {
           "line": 220,
@@ -2961,7 +2963,7 @@
       "exact_source_line_text": "| D | HXT-FR-020; HXB-FR-008..010,018 | #1295/#250/#225、既存runner bridge |",
       "semantic_family": "Execution Ticket候補の原子的な後続責務と既存owner",
       "semantic_function": "slice別FR/owner接続とTicket候補の版・依存境界",
-      "semantic_reading": "| D | HXT-FR-020; HXB-FR-008..010,018 | #1295/#250/#225、既存runner bridge |",
+      "semantic_reading": "slice DにHXT-FR-020とHXB-FR-008..010/018、owner参照#1295/#250/#225、既存runner bridgeを列挙する。",
       "legacy_context": {
         "section_heading": {
           "line": 220,
@@ -3087,7 +3089,7 @@
       "exact_source_line_text": "| E | HXB-FR-008..010,017 | #1295/#225、反復と公平性 |",
       "semantic_family": "Execution Ticket候補の原子的な後続責務と既存owner",
       "semantic_function": "slice別FR/owner接続とTicket候補の版・依存境界",
-      "semantic_reading": "| E | HXB-FR-008..010,017 | #1295/#225、反復と公平性 |",
+      "semantic_reading": "slice EにHXB-FR-008..010/017、owner参照#1295/#225、反復と公平性を配置する旧表行。",
       "legacy_context": {
         "section_heading": {
           "line": 220,
@@ -3213,7 +3215,7 @@
       "exact_source_line_text": "| F | HXB-FR-011..013,017 | #214/#188/#679、scope認可付きshadow |",
       "semantic_family": "Execution Ticket候補の原子的な後続責務と既存owner",
       "semantic_function": "slice別FR/owner接続とTicket候補の版・依存境界",
-      "semantic_reading": "| F | HXB-FR-011..013,017 | #214/#188/#679、scope認可付きshadow |",
+      "semantic_reading": "slice FにHXB-FR-011..013/017、owner参照#214/#188/#679、scope認可付きshadowを配置する旧表行。",
       "legacy_context": {
         "section_heading": {
           "line": 220,
@@ -3339,7 +3341,7 @@
       "exact_source_line_text": "| G | HXT-FR-023/024; HXB-FR-015/020 | #861/#188/#1500/#659、advisoryと配置 |",
       "semantic_family": "Execution Ticket候補の原子的な後続責務と既存owner",
       "semantic_function": "slice別FR/owner接続とTicket候補の版・依存境界",
-      "semantic_reading": "| G | HXT-FR-023/024; HXB-FR-015/020 | #861/#188/#1500/#659、advisoryと配置 |",
+      "semantic_reading": "slice GにHXT-FR-023/024とHXB-FR-015/020、owner参照#861/#188/#1500/#659、advisoryと配置を列挙する。",
       "legacy_context": {
         "section_heading": {
           "line": 220,
@@ -3362,8 +3364,8 @@
         "archive_file_sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
       "marker_negative_normative_concern": "行内のslice、FR、既存owner参照、条件だけを候補記述として読む。Issue番号を現行status/authorityに変換せず、Release Sliceや版配置、blanket dependencyを追加しない。",
-      "current_relation_and_residual": "固定F6 HARNESS/HELIX-OS/HELIX-LABOのL2/L11六文書、3件のPO判断、PO判断が明示参照するcoverage receipt群を別々にpinしてsource ID/path/physical line/完全行文字列を検索。直接一致なし。HELIX-OS L2:781のexecution-ticket-requirements.md広域source spanは別文書のfamily比較に限られ、このtrace.md行への直接source relationではない。旧routing boundaryを維持し、unknownを非memberへ、既存receiptをadoption bindingへ変換しない。",
-      "fixed_F6_relation_classification": "direct_identifier_path_line_receipt_match_none; OS L2:781 other-requirement-file family span only",
+      "current_relation_and_residual": "固定F6 HARNESS/HELIX-OS/HELIX-LABOのL2/L11六文書、3件のPO判断、PO判断が明示参照するcoverage receipt群を別々にpinしてsource ID/path/physical line/完全行文字列を検索。直接一致なし。HELIX-OS L2:781のexecution-ticket-requirements.md広域source spanは別文書のfamily比較に限られ、このtrace.md行への直接source relationではない。旧routing boundaryを維持し、unknownを非memberへ、既存receiptをadoption bindingへ変換しない。 固定F6のLABO L2 `labo-requirements.md:363`、OS L2 `governance-requirements.md:539`、INTELLIGENCE L2 `intelligence-requirements.md:442` に同じHXB-FR-015 IDがある。いずれも別ファイル `execution-ticket-requirements.md:349–351` を引用する。選択した旧trace slice配置行へのpath:line binding・採択・successorではない。",
+      "fixed_F6_relation_classification": "same_identifier_in_other_source; selected_trace_row_path_line_receipt_match_none",
       "fixed_F6_direct_source_relations": [],
       "fixed_F6_family_comparison_relations": [
         {
@@ -3449,7 +3451,40 @@
         "physical_line_bytes_including_terminator_sha256": "4f3beb6c3c738dc25d2bc9888cb87bbcbf0af1139cf66be02332641b9808322b",
         "baseline_2353_physical_line_bytes_sha256": "4f3beb6c3c738dc25d2bc9888cb87bbcbf0af1139cf66be02332641b9808322b"
       },
-      "direct_search_hits": []
+      "direct_search_hits": [
+        {
+          "id": "HXB-FR-015",
+          "locator": "docs/helix-labo/L2-requirements/labo-requirements.md:363",
+          "cites_selected_trace_row": false
+        },
+        {
+          "id": "HXB-FR-015",
+          "locator": "docs/helix-os/L2-requirements/governance-requirements.md:539",
+          "cites_selected_trace_row": false
+        },
+        {
+          "id": "HXB-FR-015",
+          "locator": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md:442",
+          "cites_selected_trace_row": false
+        }
+      ],
+      "fixed_F6_same_id_relations": [
+        {
+          "id": "HXB-FR-015",
+          "locator": "docs/helix-labo/L2-requirements/labo-requirements.md:363",
+          "cites_selected_trace_row": false
+        },
+        {
+          "id": "HXB-FR-015",
+          "locator": "docs/helix-os/L2-requirements/governance-requirements.md:539",
+          "cites_selected_trace_row": false
+        },
+        {
+          "id": "HXB-FR-015",
+          "locator": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md:442",
+          "cites_selected_trace_row": false
+        }
+      ]
     },
     {
       "rank": 1164,
@@ -3461,7 +3496,7 @@
       "exact_source_line_text": "| H | HXT-FR-017,019,021,022,025; HXB-FR-018 | #865/#819/#659、段階切替・consumer |",
       "semantic_family": "Execution Ticket候補の原子的な後続責務と既存owner",
       "semantic_function": "slice別FR/owner接続とTicket候補の版・依存境界",
-      "semantic_reading": "| H | HXT-FR-017,019,021,022,025; HXB-FR-018 | #865/#819/#659、段階切替・consumer |",
+      "semantic_reading": "slice HにHXT-FR-017/019/021/022/025とHXB-FR-018、owner参照#865/#819/#659、段階切替・consumerを列挙する。",
       "legacy_context": {
         "section_heading": {
           "line": 220,
@@ -3583,7 +3618,7 @@
       "exact_source_line_text": "NFRは全sliceに適用し、ACは上記L3のFR対応から導出する。既存IssueをTicket全面完成待ちにする",
       "semantic_family": "Execution Ticket候補の原子的な後続責務と既存owner",
       "semantic_function": "slice別FR/owner接続とTicket候補の版・依存境界",
-      "semantic_reading": "NFRは全sliceに適用し、ACは上記L3のFR対応から導出する。既存IssueをTicket全面完成待ちにする",
+      "semantic_reading": "NFRの全slice適用とACのFR対応からの導出を述べた後、既存Issueの待機関係を述べる文が途中で切れる。否定は次の物理行にあるため、この行だけで「全面完成待ちにする」と結論づけない。",
       "legacy_context": {
         "section_heading": {
           "line": 220,
@@ -3701,7 +3736,7 @@
       "exact_source_line_text": "blanket dependencyは作らない。version target／Release Sliceは#1500で解決するまで未配置。",
       "semantic_family": "Execution Ticket候補の原子的な後続責務と既存owner",
       "semantic_function": "slice別FR/owner接続とTicket候補の版・依存境界",
-      "semantic_reading": "blanket dependencyは作らない。version target／Release Sliceは#1500で解決するまで未配置。",
+      "semantic_reading": "前の物理行から続く文としてblanket dependencyを作らないことを記し、version target／Release Sliceは#1500で解決するまで未配置とする。",
       "legacy_context": {
         "section_heading": {
           "line": 220,
@@ -3819,7 +3854,7 @@
       "exact_source_line_text": "2026-09-05、Codexによるローカル文書検証。独立reviewではない。",
       "semantic_family": "Execution Ticket候補の取込検証記録と再構成例",
       "semantic_function": "旧文書の検証履歴・説明または原稿再構成手順",
-      "semantic_reading": "2026-09-05、Codexによるローカル文書検証。独立reviewではない。",
+      "semantic_reading": "2026-09-05のCodexローカル文書検証という履歴表示で、独立reviewではないと明示する。現行の合格証拠にはしない。",
       "legacy_context": {
         "section_heading": {
           "line": 236,
@@ -3941,7 +3976,7 @@
       "exact_source_line_text": "19章＋ヘッダの再構成SHA-256一致、7 RQ／45 FR／14 NFR／90 ACのexact set、",
       "semantic_family": "Execution Ticket候補の取込検証記録と再構成例",
       "semantic_function": "旧文書の検証履歴・説明または原稿再構成手順",
-      "semantic_reading": "19章＋ヘッダの再構成SHA-256一致、7 RQ／45 FR／14 NFR／90 ACのexact set、",
+      "semantic_reading": "19章とヘッダの再構成SHA、7 RQ／45 FR／14 NFR／90 ACの集合について、検証結果の列挙が始まる行。文は次の物理行へ続き、ここだけで全検証項目を確定しない。",
       "legacy_context": {
         "section_heading": {
           "line": 236,
@@ -4063,7 +4098,7 @@
       "exact_source_line_text": "90 AC行からFRへの全参照、候補間リンクの存在を確認した。",
       "semantic_family": "Execution Ticket候補の取込検証記録と再構成例",
       "semantic_function": "旧文書の検証履歴・説明または原稿再構成手順",
-      "semantic_reading": "90 AC行からFRへの全参照、候補間リンクの存在を確認した。",
+      "semantic_reading": "前行から続く検証記録として90 AC行のFR参照と候補間リンクの存在確認を挙げる。履歴上の文書整合確認である。",
       "legacy_context": {
         "section_heading": {
           "line": 236,
@@ -4189,7 +4224,7 @@
       "exact_source_line_text": "PLAN lintはexit 0、日本語文書検査は9文書／違反0。DB rebuildはexit 0、79247 rows。",
       "semantic_family": "Execution Ticket候補の取込検証記録と再構成例",
       "semantic_function": "旧文書の検証履歴・説明または原稿再構成手順",
-      "semantic_reading": "PLAN lintはexit 0、日本語文書検査は9文書／違反0。DB rebuildはexit 0、79247 rows。",
+      "semantic_reading": "旧PLAN lint exit 0、日本語文書検査9文書/違反0、DB rebuild exit 0と79247 rowsという当時の検証結果を列挙する。現行CI証拠にはしない。",
       "legacy_context": {
         "section_heading": {
           "line": 236,
@@ -4311,7 +4346,7 @@
       "exact_source_line_text": "ここでgreenなのは文書整合であり、90件のruntime oracleを実行したという意味ではない。",
       "semantic_family": "Execution Ticket候補の取込検証記録と再構成例",
       "semantic_function": "旧文書の検証履歴・説明または原稿再構成手順",
-      "semantic_reading": "ここでgreenなのは文書整合であり、90件のruntime oracleを実行したという意味ではない。",
+      "semantic_reading": "前段のgreenは文書整合だけを指し、90件のruntime oracle実行を意味しないという限界を明示する。",
       "legacy_context": {
         "section_heading": {
           "line": 236,
@@ -4433,7 +4468,7 @@
       "exact_source_line_text": "PLANへ役割枠を追加した。役割枠は作業設計であり、独立review実施の証拠ではない。",
       "semantic_family": "Execution Ticket候補の取込検証記録と再構成例",
       "semantic_function": "旧文書の検証履歴・説明または原稿再構成手順",
-      "semantic_reading": "PLANへ役割枠を追加した。役割枠は作業設計であり、独立review実施の証拠ではない。",
+      "semantic_reading": "旧PLANに役割枠を追加した履歴と、それが作業設計であり独立review実施の証拠ではないことを記す。",
       "legacy_context": {
         "section_heading": {
           "line": 236,
@@ -4555,7 +4590,7 @@
       "exact_source_line_text": "修正後はCIと同じ `helix plan lint --gate governance`（1173 PLAN）と",
       "semantic_family": "Execution Ticket候補の取込検証記録と再構成例",
       "semantic_function": "旧文書の検証履歴・説明または原稿再構成手順",
-      "semantic_reading": "修正後はCIと同じ `helix plan lint --gate governance`（1173 PLAN）と",
+      "semantic_reading": "修正後の旧PLAN governance gate lintコマンドを列挙し、文が次の物理行へ続く。単独では両gateの結果や現行CIの合格を示さない。",
       "legacy_context": {
         "section_heading": {
           "line": 236,
@@ -4677,7 +4712,7 @@
       "exact_source_line_text": "`helix plan lint --gate post-merge-status` がともにexit 0。関連123テストも成功している。",
       "semantic_family": "Execution Ticket候補の取込検証記録と再構成例",
       "semantic_function": "旧文書の検証履歴・説明または原稿再構成手順",
-      "semantic_reading": "`helix plan lint --gate post-merge-status` がともにexit 0。関連123テストも成功している。",
+      "semantic_reading": "前行から続く旧PLAN post-merge-status gate lintのexit 0と関連123テスト成功という履歴記録。旧検証を現行合格証拠にはしない。",
       "legacy_context": {
         "section_heading": {
           "line": 236,
@@ -4799,7 +4834,7 @@
       "exact_source_line_text": "import { readFileSync, readdirSync } from 'node:fs';",
       "semantic_family": "Execution Ticket候補の取込検証記録と再構成例",
       "semantic_function": "旧文書の検証履歴・説明または原稿再構成手順",
-      "semantic_reading": "import { readFileSync, readdirSync } from 'node:fs';",
+      "semantic_reading": "旧再構成スクリプトでnode:fsからファイル読込・directory列挙関数をimportするコード行。実行指示ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 236,
@@ -4921,7 +4956,7 @@
       "exact_source_line_text": "import { createHash } from 'node:crypto';",
       "semantic_family": "Execution Ticket候補の取込検証記録と再構成例",
       "semantic_function": "旧文書の検証履歴・説明または原稿再構成手順",
-      "semantic_reading": "import { createHash } from 'node:crypto';",
+      "semantic_reading": "旧再構成スクリプトでnode:cryptoからcreateHashをimportするコード行。hash計算の準備であり、結果ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 236,
@@ -5047,7 +5082,7 @@
       "exact_source_line_text": "import assert from 'node:assert/strict';",
       "semantic_family": "Execution Ticket候補の取込検証記録と再構成例",
       "semantic_function": "旧文書の検証履歴・説明または原稿再構成手順",
-      "semantic_reading": "import assert from 'node:assert/strict';",
+      "semantic_reading": "旧再構成スクリプトでnode:assert/strictからassertをimportするコード行。検証結果は含まない。",
       "legacy_context": {
         "section_heading": {
           "line": 236,
@@ -5173,7 +5208,7 @@
       "exact_source_line_text": "const dir = 'docs/governance/candidates';",
       "semantic_family": "Execution Ticket候補の取込検証記録と再構成例",
       "semantic_function": "旧文書の検証履歴・説明または原稿再構成手順",
-      "semantic_reading": "const dir = 'docs/governance/candidates';",
+      "semantic_reading": "旧再構成スクリプトの対象directoryをdocs/governance/candidatesに設定するコード行。現行経路指定には使わない。",
       "legacy_context": {
         "section_heading": {
           "line": 236,
@@ -5299,7 +5334,7 @@
       "exact_source_line_text": "const parts = new Map();",
       "semantic_family": "Execution Ticket候補の取込検証記録と再構成例",
       "semantic_function": "旧文書の検証履歴・説明または原稿再構成手順",
-      "semantic_reading": "const parts = new Map();",
+      "semantic_reading": "旧再構成スクリプトでparts Mapを初期化するコード行。文書再構成の状態容器である。",
       "legacy_context": {
         "section_heading": {
           "line": 236,
@@ -5425,7 +5460,7 @@
       "exact_source_line_text": "for (const file of readdirSync(dir).filter(x => x.startsWith('execution-ticket-'))) {",
       "semantic_family": "Execution Ticket候補の取込検証記録と再構成例",
       "semantic_function": "旧文書の検証履歴・説明または原稿再構成手順",
-      "semantic_reading": "for (const file of readdirSync(dir).filter(x => x.startsWith('execution-ticket-'))) {",
+      "semantic_reading": "旧再構成スクリプトでdirectory中のexecution-ticket-で始まるファイルを走査するfor文の開始。ループ本体と実行結果はこの行にない。",
       "legacy_context": {
         "section_heading": {
           "line": 236,
