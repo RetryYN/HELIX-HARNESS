@@ -20,8 +20,8 @@
 | `000331` | 各反例に独立oracleとmutation拒否検証を行い、合法入力のcontrolを通す。実証は未実施。 | 採択HARNESS pairはoracle・negative/positive controlを保持する。各negativeへの必須mutationは採択条件に見当たらず、方法保証は部分対応。retire decisionなし。 |
 | `000468` | event class, PR ID, HEAD, run ID, attemptをそれぞれ欠落/改変し、不正入力を個別拒否。正常入力のgeneration identityは決定的に一致。 | 採択OS-008/020の一般identity条件は部分対応。未採択OS-117が選択scopeの個別facet negative/normal controlを行き先として保持。 |
 | `000470` | queue上限/TTL超過時に古いscheduleだけ置換し、無制限並走とsilent dropを拒否。 | 採択OS-020のrun/state条件は部分対応。queue/TTL/older-only replacementのoracleは未解決。NCI-OS-005は未採択の一般候補。 |
-| `000472` | cancelled runをpost-main, review, deferred-successへ注入し、各consumerが採用拒否する。 | 採択OS-020のstate分離は部分対応。3 consumerごとのcancel拒否は本文で証明できず、NCI-OS-004も未採択。 |
-| `000474` | bounded rehearsalまたはscheduleのrun-ID read-afterでmain push/scheduleの独立terminalとcancel/handoff receipt再構築を示す。 | 採択OS-008/020のrun-bound evidenceは部分対応。独立terminal/read-after/rebuild条件は未解決。旧runtimeの実行を現行条件にしない。 |
+| `000472` | cancelled runをpost-main, review, deferred-successへ注入し、各consumerが採用拒否する。 | 採択OS-020は状態分離を部分保持。#2496の未採択118 L11は3 named outcomesを個別に拒否するcondition destination。000472 source atomは118の選択9 atomに含まれず、採択/実行/formal successorではない。 |
+| `000474` | bounded rehearsalまたはscheduleのrun-ID read-afterでmain push/scheduleの独立terminalとcancel/handoff receipt再構築を示す。 | 採択OS-008/020は部分対応。#2496の未採択118 pairはindependent terminal/reason/target rebuildをcondition destinationとして保持。000474 source atomは118の選択9 atomに含まれず、採択/実行/formal successorではない。旧runtime実行は現行条件にしない。 |
 
 ## source別の比較
 
@@ -59,7 +59,7 @@
 
 原文は `bugbot-bounded-repair-acceptance.md:16`。各反例単位で独立oracle、mutationによる拒否、合法入力controlを求め、実証は未実施と明示する。
 
-採択HARNESS-L2-030/-031と対L11はcaseごとの事前特定oracleとnegative/positive examplesを持つ。対象revisionは2026-09-28 HARNESS PO decisionの明示採択集合（表行59–60、L2/L11 exact digest）であり、本文内の歴史的「未採択」metadataは採否を覆さない。2026-09-29 decisionはHARNESS-L2-036/-L11も表行41で採択し、riskに応じてproperty/model/differential/mutation/fuzz/snapshot手法を選ぶ。ただし各反例に個別mutationを必須とする定量/一律条件は採択L11に書かれておらず、L11はmutation閾値を新設しないとも定める。したがって独立oracleと合法controlは保持、全negative mutationの義務は部分対応/意味変更の可能性として扱い、PO retire/waiver decisionがない限りclosureしない。INTELLIGENCEの限定修復境界も別のproduct scopeであり、このHARNESS oracle条件の代替としない。
+採択HARNESS-L2-030/-031と対L11はcaseごとの事前特定oracleとnegative/positive examplesを持つ。対象revisionは2026-09-28 HARNESS PO decisionの明示採択集合（表行59–60、L2/L11 exact digest）であり、本文内の歴史的「未採択」metadataは採否を覆さない。2026-09-29 decisionはHARNESS-L2-036/-L11も表行41で採択し、riskに応じてproperty/model/differential/mutation/fuzz/snapshot手法を選ぶ。ただし各反例に個別mutationを必須とする条件は採択L11に明記されていない。手法名の不在だけから不足とは判定しない。原文は「各反例」にmutationを要求する一律な方法条件なので、その意味差は残す。選択肢Aは各negativeにindependent oracle+mutation rejection+legal controlを要求する（推奨: 原文のquantifierを保持し、数値thresholdは足さない）。BはHARNESS-L2-036のrisk-selected methodに委ね、mutationを各negativeに一律要求しない。A/Bは採択HARNESS-L2-005/030/031/036の受入方法に影響し、INTELLIGENCE限定修復consumerへはその適用範囲を別途照合する。現行本文にoracle/controlの行き先はあるが、A/Bの選択・retireは未決であり、source closureは主張しない。
 
 ### 000468 — generation identity各facetのnegative
 
@@ -71,19 +71,27 @@
 
 原文はCIG-AC-003だけ。source atomに隣接するAC-002のmain/manual/PR cancel independenceを今回の条件に混ぜない。対象はqueue上限とTTL超過時にolder scheduleだけを置換し、unbounded parallelismとsilent dropをrejectする結果。
 
-採択OS-020はexact run/evidence/state、old CI success非代用を保持し、OS-008はHARNESS義務とprofile接続を持つ。queue limit、TTL、older-schedule-only replacement、unbounded parallelism/silent dropの個別oracleは該当本文にない。NCI-OS-005候補はqueue/parallelism/cache/shard/retry/budgetの最適化でrequired HARNESS oracleを保つが未採択であり、old-schedule replacementのclosureを証明しない。sourceにない数値を足さず、exact requirementは未解決に残す。
+採択OS-020はexact run/evidence/state、old CI success非代用を保持し、OS-008はHARNESS義務とprofile接続を持つ。queue limit、TTL、older-schedule-only replacement、unbounded parallelism/silent dropの個別oracleは該当本文にない。NCI-OS-005候補はqueue/parallelism/cache/shard/retry/budgetの最適化でrequired HARNESS oracleを保つが未採択。追加で照合した#2496 DraftのHELIXOS-L2/L11-118は同一PR stale HEADだけ・newer scheduleはolder scheduleだけ置換し、無制限並走とrequired verification喪失を拒否する。sourceの「queue上限とTTLを超える」へのtest boundary/terminal outcomeは数値を固定せずに定義可能だが、118はそのoutcomeを列挙していない。また `silent drop` を独立反例として拒否しない。source row 000470は118の9 selected request atomsに含まれないため、この関係は候補の条件行き先である。推奨追補は、未完義務が残るscheduleを明示pending、older-schedule-only replacement、またはterminal non-successのいずれかで可視にし、黙って消えて成功扱いになるfixtureを拒否すること。queue/TTLの数値は下流選択までunknownのままとする。新identityは要らず既存118候補の差分だが、未採択のまま。
 
 ### 000472 — cancelled runの3 consumer拒否
 
 原文はCIG-AC-005だけ。列挙する `post-main`, `review`, `deferred success` の各consumerへcancelled runを注入し、全consumerが採用拒否する。今回のatomから未記載のconsumer集合へscopeを広げない。
 
-採択OS-020はsuccess/fail/denied/skipped/interrupted/staleの状態を分離し、old CIや別HEAD greenを禁止する。これらの一般状態保証は各named consumerがcancelled runを採用しないことと同じではない。NCI-OS-004候補はcancel等の状態を区別するが未採択であり、3 consumer別受入も明記しない。条件固有のclosure/retirement decisionは見つからず未解決。
+採択OS-020はsuccess/fail/denied/skipped/interrupted/staleの状態を分離し、old CIや別HEAD greenを禁止する。これらの一般状態保証は各named consumerがcancelled runを採用しないことと同じではない。NCI-OS-004候補は別の未採択候補。加えて#2496 Draftの118 L11はcancelled runをpost-main completion、terminal green、deferred recovery success、review receiptへ個別に投入し、全て拒否する。これはsource 000472の三consumerを全て含む条件の行き先である。ただし118 receiptの9 atom collectionは別の旧要求source行であり、000472 itselfのselected spanを登録していない。よってcandidate coverageとして記録し、採択、実行、正式successor、closureから分離する。重複候補は起こさない。
 
 ### 000474 — run-ID read-afterとcancel/handoff receipt
 
 原文はCIG-AC-007: bounded GitHub rehearsalまたはnatural scheduleのrun ID付きread-afterから、current-main pushとscheduleが別々のterminal outcomeを持つこと、cancel/handoff receiptを再構築できることを求める。旧 acceptance 文書line 26はruntime rehearsalをcanonical promotion後の別PLANへ送ると説明するため、当時の検証ルートと要求されるresult guaranteeを区別する。
 
-採択OS-008/020のrun-bound evidence・中断/再開・未完義務の条件には意味上の隣接があるが、current-main push対scheduleのindependent terminal、run-ID read-after、cancel/handoff receipt reconstructionは明記されていない。NCI候補も未採択。current rulesでarchive CI/runtimeを実行せず、新CIの実装/実行を要求形成gateにもしない。独立terminal/receiptの要求意味が必要なら、新世代の静的・下流受入契約として正規decision経路で選択し、旧GitHub rehearsal routeをそのまま移さない。
+採択OS-008/020のrun-bound evidence・中断/再開・未完義務条件には意味上の隣接がある。追加照合した#2496 Draft 118はcurrent canonical HEADのterminal evidence、main post-checkとschedule safety-netの分離、選択義務ごとの独立terminal evidence、cancel/supersede/handoffのreasonとtarget再構築を要求し、欠落・不一致はunknown/incompleteに留める。このためsource 000474のresult guaranteeにはcandidate text destinationがある。000474 source atomは118の9 selected atomsに含まれず、採択・実行・formal successor・closureではない。旧GitHub rehearsal routeを現行実行許可にしない。
+
+## #2496 Draft 118との追加比較
+
+追加比較対象は#2496 Draft HEAD `0a9c58e0907ea2821374c84dfabe2482edde4419` の `HELIXOS-L2-118` と `HELIXOS-L11-118`。section digestはそれぞれ `sha256:3f9a18340eebe4dbbdbd7c172c5f54f4289071271c927b7ca5edd28225ae7d4a` と `sha256:720f1dcca06883dac492836cbdb36804c34a8df25546a4840a162c80fa15babe`。対応MPRは `MPR-RC-HELIXOS-L2-118-001`、`registered_proposal` / `authority_effect: none`。118 receiptは選択した9 request-source atomsを118 pairへ束ねるが、今回のacceptance source rows `000470/472/474` はそのinput atom setには含まれない。したがって下記は条件内容の行き先として評価し、source atom mapping、採択、実行、formal successor、closureと区別する。
+
+- `000472`: L11-118 lines 1050–1051はcancelled runをpost-main completion、terminal green、deferred recovery success、review receiptへ個別に与え拒否する。sourceのpost-main/review/deferred-successを全て包含する既存候補destinationで、重複候補を作らない。
+- `000474`: L2/L11-118 lines 1461–1462 / 1047–1052はcurrent canonical HEADのterminal evidence、main/scheduleの独立結果、cancel/supersede/handoffのreasonとtarget再構築を保持し、欠落/不一致をunknown/incompleteとする。要求結果は候補本文に行き先がある。旧bounded GitHub rehearsalは実行要求へ移さない。
+- `000470`: 118はolder-schedule-only replacementとunbounded parallelism禁止を保持し、具体queue/TTL値を固定しない。sourceにも数値はないので数値未指定自体は欠落でない。一方、silent dropを拒否する個別oracleと、queue/TTL超過時に未完required verificationをpending/replaced/terminal-non-successとして明示する結果は本文にない。これは既存118 candidateへの限定追補が必要な残差。数値policyやprovider concurrency方式は推測しない。
 
 ## 採択・候補・保留の区別
 

@@ -1173,48 +1173,25 @@
       "meaning_current_treatment_review": {
         "meaning": "Repeated schedules exceeding queue upper bound and TTL: only an older schedule may be replaced; reject unbounded parallel execution and silent drop.",
         "context": "CIG-AC-003 row pairs with CIG-R-02; AC-002 separate main/schedule/manual/PR concurrency guarantees are not included in selected source atom.",
-        "assessment": "Adopted OS-020 requires exact run identity, interrupted/stale states and no old CI green; adopted OS-008 covers HARNESS obligations. They do not specify queue bound/TTL/older-schedule-only replacement or explicit rejection of unbounded parallelism/silent drop. Unadopted NCI-OS-005 optimizes queue/parallelism/retry/budget while retaining required oracle, but that is not this exact schedule replacement oracle. No applicable current adopted pair or retirement decision found.",
+        "assessment": "Adopted OS-020 requires exact run identity, interrupted/stale states and no old CI green; adopted OS-008 covers HARNESS obligations. They do not specify queue bound/TTL/older-schedule-only replacement or explicit rejection of unbounded parallelism/silent drop. Unadopted NCI-OS-005 optimizes queue/parallelism/retry/budget while retaining required oracle, but that is not this exact schedule replacement oracle. No applicable current adopted pair or retirement decision found. Additional comparison: #2496 Draft HELIXOS-L2/L11-118 preserves older-schedule-only replacement, rejects unbounded parallelism and refuses to lose required verification, while leaving exact queue/TTL values unknown. It does not explicitly reject silent dropping or state the queue/TTL over-bound outcome. Since old source supplies no numeric values, this is not a numeric threshold omission; the true residual is an explicit no-silent-drop / pending-or-terminal disposition oracle on overflow/expiry.",
         "current": [
           "docs/helix-os/L2-requirements/governance-requirements.md:692-700 and L11:359-379 (OS-020)",
-          "docs/helix-os/L2-requirements/governance-requirements.md:30-50 and docs/helix-os/candidates/next-generation-ci-requirements.md:47-49 (NCI-005 unadopted, generic optimization)"
+          "docs/helix-os/L2-requirements/governance-requirements.md:30-50 and docs/helix-os/candidates/next-generation-ci-requirements.md:47-49 (NCI-005 unadopted, generic optimization)",
+          "Unadopted #2496 Draft HELIXOS-L2/L11-118 exact pair digest: L2 sha256:3f9a18340eebe4dbbdbd7c172c5f54f4289071271c927b7ca5edd28225ae7d4a; L11 sha256:720f1dcca06883dac492836cbdb36804c34a8df25546a4840a162c80fa15babe; exact review HEAD 0a9c58e0907ea2821374c84dfabe2482edde4419; candidate scope includes 9 request atoms and does not map acceptance source line 000470."
         ],
-        "status": "adopted_general_execution_partial; exact_queue_ttl_condition_unresolved",
-        "decision": "Retain source condition; do not derive numeric bound or TTL because source has none. No new L2 in this audit."
+        "status": "adopted general execution partial; 118 candidate covers older-schedule-only and unbounded concurrency; silent-drop/over-bound outcome remains a candidate-text gap",
+        "decision": "Treat 118 as an existing unadopted destination, not closure. Recommend append to 118 L2/L11 a source-faithful bound-crossing outcome: a schedule whose required verification remains unsatisfied must stay explicitly pending, be explicitly superseded by an older-schedule-only bounded replacement, or return a terminal non-success disposition; silent disappearance or success-by-omission is rejected. Keep numeric queue/TTL values unknown for downstream derivation. Do not make a new L2 identity."
       },
       "authority_evidence": [
         {
-          "kind": "adopted_exact_pair",
-          "decision": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
-          "decision_file_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
-          "adopted_set": "L2-001..029 and paired fixed L11, plus all 16 explicit candidates including HELIXOS-L2-020",
-          "target_revision": "635f6c9296592473d0f6fb667d436a1f5f80afb7",
-          "target_l2_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
-          "target_l11_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
-          "current_base_section_digests": {
-            "HELIXOS-L2-020": "sha256:fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
-            "HELIXOS-L11-020": "sha256:a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88"
-          },
-          "HELIXOS-L2-008_refs": [
-            "docs/helix-os/L2-requirements/governance-requirements.md:61,296",
-            "docs/helix-os/L11-acceptance/governance-acceptance.md:28,51-54"
-          ]
-        },
-        {
-          "kind": "unadopted_candidate_pair",
-          "identity": "HELIXOS-L2/L11-117",
-          "l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:1434-1444",
-          "l2_section_digest": "sha256:a0f7524b0f89e47d22933eb592bac2945a66cce96d289162aea966b0f7998d26",
-          "l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:1025-1033",
-          "l11_section_digest": "sha256:9ecfe84e612c3e66a9377ac64ca275e423c3f0f2a9a468e1c127e6dddb15c186",
-          "status": "candidate_only; not in 2026-09-28 adopted set"
-        },
-        {
-          "kind": "unadopted_candidate_overlap",
-          "identity": "NCI-OS-005",
-          "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
-          "file_sha256": "4eae5f8dd485ed8c77d2ea7b6b0407028093c02566e5b92fce9d05a89307a49d",
-          "location": "lines 45-52, 70-92",
-          "status": "candidate_only; no exact source condition adopted"
+          "kind": "unadopted_candidate_condition_destination",
+          "identity": "HELIXOS-L2/L11-118",
+          "review_head": "0a9c58e0907ea2821374c84dfabe2482edde4419",
+          "l2_section_digest": "sha256:3f9a18340eebe4dbbdbd7c172c5f54f4289071271c927b7ca5edd28225ae7d4a",
+          "l11_section_digest": "sha256:720f1dcca06883dac492836cbdb36804c34a8df25546a4840a162c80fa15babe",
+          "covered": "older schedule only replaces older schedule; no unbounded parallelism; required verification not lost",
+          "uncovered": "explicit silent-drop rejection and bounded/TTL-exceeded terminal/pending outcome",
+          "status": "existing candidate destination; not source atom mapping/adopted/closed"
         }
       ]
     },
@@ -1345,48 +1322,24 @@
       "meaning_current_treatment_review": {
         "meaning": "Inject a cancelled run into post-main, review, and deferred-success consumers; every consumer rejects it as accepted success.",
         "context": "CIG-AC-005 row pairs CIG-R-04; “all consumers” is scoped to the three named consumer classes in this row, not an invented universal product-wide list.",
-        "assessment": "Adopted OS-020 distinguishes interrupted/stale from success and prevents old CI result substitution. That generic state distinction does not explicitly require all three named consumers to reject cancelled runs. NCI-OS-004 candidate distinguishes cancel and remediation, but it is not adopted and does not enumerate those three consumer checks. Exact condition unresolved; no closure/retire decision.",
+        "assessment": "Adopted OS-020 distinguishes interrupted/stale from success and prevents old CI result substitution. That generic state distinction does not explicitly require all three named consumers to reject cancelled runs. NCI-OS-004 candidate distinguishes cancel and remediation, but it is not adopted and does not enumerate those three consumer checks. Exact condition unresolved; no closure/retire decision. Additional comparison: the unadopted #2496 Draft L11-118 separately injects cancelled runs into post-main completion, terminal green, deferred recovery success, and review receipt and rejects each; this directly provides a candidate-text destination for the three named AC-005 consumers. It is not adopted/executed and MPR-118 source atoms do not include acceptance source line 000472.",
         "current": [
           "docs/helix-os/L2-requirements/governance-requirements.md:692-700 and L11:359-379 (adopted OS-020)",
-          "docs/helix-os/candidates/next-generation-ci-requirements.md:45-48 (NCI-004 candidate, unadopted)"
+          "docs/helix-os/candidates/next-generation-ci-requirements.md:45-48 (NCI-004 candidate, unadopted)",
+          "Unadopted #2496 Draft HELIXOS-L11-118: paired section digest sha256:720f1dcca06883dac492836cbdb36804c34a8df25546a4840a162c80fa15babe at review HEAD 0a9c58e0907ea2821374c84dfabe2482edde4419; L11 lines 1050-1052 individually rejects cancelled run into post-main completion, terminal green, deferred recovery success, and review receipt. Acceptance source line 000472 is outside the 9-atom MPR-118 source set."
         ],
-        "status": "adopted_state_distinction_partial; three_consumer_cancel_oracle_unresolved",
-        "decision": "Keep exact named consumer rejection condition open; do not treat cancelled as merely interrupted/stale without an explicit decision."
+        "status": "adopted state distinction partial; named consumer condition present in unadopted 118 L11 destination; not adopted/executed/formal successor",
+        "decision": "Count 118 as existing candidate condition destination for all three source-named outcomes; do not create duplicate wording or mark source condition closed. Adoption/execution and formal source mapping remain separate."
       },
       "authority_evidence": [
         {
-          "kind": "adopted_exact_pair",
-          "decision": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
-          "decision_file_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
-          "adopted_set": "L2-001..029 and paired fixed L11, plus all 16 explicit candidates including HELIXOS-L2-020",
-          "target_revision": "635f6c9296592473d0f6fb667d436a1f5f80afb7",
-          "target_l2_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
-          "target_l11_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
-          "current_base_section_digests": {
-            "HELIXOS-L2-020": "sha256:fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
-            "HELIXOS-L11-020": "sha256:a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88"
-          },
-          "HELIXOS-L2-008_refs": [
-            "docs/helix-os/L2-requirements/governance-requirements.md:61,296",
-            "docs/helix-os/L11-acceptance/governance-acceptance.md:28,51-54"
-          ]
-        },
-        {
-          "kind": "unadopted_candidate_pair",
-          "identity": "HELIXOS-L2/L11-117",
-          "l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:1434-1444",
-          "l2_section_digest": "sha256:a0f7524b0f89e47d22933eb592bac2945a66cce96d289162aea966b0f7998d26",
-          "l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:1025-1033",
-          "l11_section_digest": "sha256:9ecfe84e612c3e66a9377ac64ca275e423c3f0f2a9a468e1c127e6dddb15c186",
-          "status": "candidate_only; not in 2026-09-28 adopted set"
-        },
-        {
-          "kind": "unadopted_candidate_overlap",
-          "identity": "NCI-OS-004",
-          "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
-          "file_sha256": "4eae5f8dd485ed8c77d2ea7b6b0407028093c02566e5b92fce9d05a89307a49d",
-          "location": "lines 45-52, 70-92",
-          "status": "candidate_only; no exact source condition adopted"
+          "kind": "unadopted_candidate_condition_destination",
+          "identity": "HELIXOS-L2/L11-118",
+          "review_head": "0a9c58e0907ea2821374c84dfabe2482edde4419",
+          "l2_section_digest": "sha256:3f9a18340eebe4dbbdbd7c172c5f54f4289071271c927b7ca5edd28225ae7d4a",
+          "l11_section_digest": "sha256:720f1dcca06883dac492836cbdb36804c34a8df25546a4840a162c80fa15babe",
+          "covered": "cancelled-run refusal individually for post-main completion, terminal green, deferred recovery success, review receipt",
+          "status": "existing candidate destination; no 000472 source-atom mapping/adoption/execution/formal successor"
         }
       ]
     },
@@ -1517,49 +1470,25 @@
       "meaning_current_treatment_review": {
         "meaning": "Bounded GitHub rehearsal or natural schedule; run-ID read-after establishes current-main push and schedule independently terminal, and cancel/handoff receipt is reconstructable.",
         "context": "CIG-AC-007 row’s “run” is a historical acceptance route after canonical promotion (acceptance file line 26); selected outcome also independently specifies terminal outcomes and receipt reconstruction. Do not transfer old GitHub execution permission.",
-        "assessment": "Adopted OS-008/020 require run-bound results, evidence and interruption continuation, but no bounded live rehearsal/current-main vs schedule independent terminal/read-after or cancel/handoff receipt reconstruction condition was found. NCI candidates preserve old/new CI separation and future shadow route but remain unadopted. Current governance expressly prohibits running archive CI and says new CI is unbuilt; therefore execution procedure is not now runnable or a requirement formation gate. The outcome/receipt guarantee remains unresolved separately from the old route.",
+        "assessment": "Adopted OS-008/020 require run-bound results, evidence and interruption continuation, but no bounded live rehearsal/current-main vs schedule independent terminal/read-after or cancel/handoff receipt reconstruction condition was found. NCI candidates preserve old/new CI separation and future shadow route but remain unadopted. Current governance expressly prohibits running archive CI and says new CI is unbuilt; therefore execution procedure is not now runnable or a requirement formation gate. The outcome/receipt guarantee remains unresolved separately from the old route. Additional comparison: unadopted #2496 Draft L2/L11-118 requires current-canonical-HEAD terminal evidence and independent terminal evidence for selected obligations; it rebuilds cancel/supersede/handoff reason and target, leaves missing/mismatched relation unknown/incomplete, and separates current-main post-main check from schedule/manual safety net. This is a condition destination for AC-007 outcomes, but 000474 is not one of MPR-118’s nine selected source atoms.",
         "current": [
           "docs/helix-os/L2-requirements/governance-requirements.md:692-700; docs/helix-os/L11-acceptance/governance-acceptance.md:359-379 (adopted OS-020)",
           "docs/helix-os/candidates/next-generation-ci-requirements.md:70-92 (unadopted migration candidate and not an execution authorization)",
-          "AGENTS.md and CLAUDE.md: archive old runtime/tests/CI cannot execute; new-generation CI is unbuilt"
+          "AGENTS.md and CLAUDE.md: archive old runtime/tests/CI cannot execute; new-generation CI is unbuilt",
+          "Unadopted #2496 Draft HELIXOS-L2/L11-118 exact section digests L2 sha256:3f9a18340eebe4dbbdbd7c172c5f54f4289071271c927b7ca5edd28225ae7d4a and L11 sha256:720f1dcca06883dac492836cbdb36804c34a8df25546a4840a162c80fa15babe at review HEAD 0a9c58e0907ea2821374c84dfabe2482edde4419; L2 lines 1459-1462, L11 lines 1047-1052. 000474 is outside MPR-118 nine-atom input scope."
         ],
-        "status": "adopted_run_evidence_partial; independent_terminal_and_receipt_reconstruction_unresolved; legacy_rehearsal_route_not_authorized",
-        "decision": "Keep result guarantee as unresolved; do not require old GitHub rehearsal. If carried forward, derive a non-runtime static/read-after oracle under proper layer decision, with PO choice for event/scope."
+        "status": "adopted run evidence partial; independent terminal/reason/target rebuild present in unadopted 118 candidate destination; no adoption/execution/closure",
+        "decision": "Count 118 as a candidate-text destination for the independent current-main/schedule terminal and reconstruction outcome. Do not treat the historic bounded GitHub rehearsal route as required execution or authorized; candidate is unadopted and source line 000474 is outside its nine-atom source set."
       },
       "authority_evidence": [
         {
-          "kind": "adopted_exact_pair",
-          "decision": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
-          "decision_file_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
-          "adopted_set": "L2-001..029 and paired fixed L11, plus all 16 explicit candidates including HELIXOS-L2-020",
-          "target_revision": "635f6c9296592473d0f6fb667d436a1f5f80afb7",
-          "target_l2_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
-          "target_l11_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
-          "current_base_section_digests": {
-            "HELIXOS-L2-020": "sha256:fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
-            "HELIXOS-L11-020": "sha256:a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88"
-          },
-          "HELIXOS-L2-008_refs": [
-            "docs/helix-os/L2-requirements/governance-requirements.md:61,296",
-            "docs/helix-os/L11-acceptance/governance-acceptance.md:28,51-54"
-          ]
-        },
-        {
-          "kind": "unadopted_candidate_pair",
-          "identity": "HELIXOS-L2/L11-117",
-          "l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md:1434-1444",
-          "l2_section_digest": "sha256:a0f7524b0f89e47d22933eb592bac2945a66cce96d289162aea966b0f7998d26",
-          "l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md:1025-1033",
-          "l11_section_digest": "sha256:9ecfe84e612c3e66a9377ac64ca275e423c3f0f2a9a468e1c127e6dddb15c186",
-          "status": "candidate_only; not in 2026-09-28 adopted set"
-        },
-        {
-          "kind": "unadopted_candidate_overlap",
-          "identity": "NCI-OS candidate migration/receipt rows",
-          "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
-          "file_sha256": "4eae5f8dd485ed8c77d2ea7b6b0407028093c02566e5b92fce9d05a89307a49d",
-          "location": "lines 45-52, 70-92",
-          "status": "candidate_only; no exact source condition adopted"
+          "kind": "unadopted_candidate_condition_destination",
+          "identity": "HELIXOS-L2/L11-118",
+          "review_head": "0a9c58e0907ea2821374c84dfabe2482edde4419",
+          "l2_section_digest": "sha256:3f9a18340eebe4dbbdbd7c172c5f54f4289071271c927b7ca5edd28225ae7d4a",
+          "l11_section_digest": "sha256:720f1dcca06883dac492836cbdb36804c34a8df25546a4840a162c80fa15babe",
+          "covered": "separate selected-obligation terminal evidence, current canonical HEAD, main/schedule independent outcomes, cancel/supersede/handoff reason+target reconstruction, unknown/incomplete on missing or mismatched evidence",
+          "status": "existing candidate destination; no 000474 source-atom mapping/adoption/execution/formal successor"
         }
       ]
     }
@@ -1571,6 +1500,36 @@
     "source_specific_closure_proven": 0,
     "new_L2_or_L11_created": false,
     "PO_decision_or_authority_generated": false,
-    "old_runtime_CI_test_or_CLI_executed": false
+    "old_runtime_CI_test_or_CLI_executed": false,
+    "unadopted_candidate_condition_destinations_added_by_review": "HELIXOS-L2/L11-118 for 000472 and 000474; partial for 000470 with a silent-drop/overflow-outcome residual"
+  },
+  "supplemental_candidate_revisions": {
+    "l2": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "0a9c58e0907ea2821374c84dfabe2482edde4419",
+      "sha256": "62a05c7d743050f6cf97458e501140ad0275d6847630cd3a59d1bf39144b51e3"
+    },
+    "l11": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "revision": "0a9c58e0907ea2821374c84dfabe2482edde4419",
+      "sha256": "b6738a6d2c37c02ff0d6795fc71007835d560a91a595705a0850bafa7fbbbb1a"
+    },
+    "mpr": {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "revision": "0a9c58e0907ea2821374c84dfabe2482edde4419",
+      "sha256": "28c8f6c6effde29125185f3183a6298ee05b7f1866704fe5bb5572373922c702"
+    },
+    "receipt": {
+      "path": "docs/governance/audits/requirement-registration/ci-event-concurrency-coverage-receipt-2026-10-02.json",
+      "revision": "0a9c58e0907ea2821374c84dfabe2482edde4419",
+      "sha256": "a706ccd04257c01c38db4ff4107da6cc660fced1601d8773c8bb126093a77108"
+    },
+    "candidate_identity": "HELIXOS-L2/L11-118; MPR-RC-HELIXOS-L2-118-001; #2496 Draft content read at exact review HEAD 0a9c58e0907ea2821374c84dfabe2482edde4419",
+    "candidate_section_digests": {
+      "L2-118": "sha256:3f9a18340eebe4dbbdbd7c172c5f54f4289071271c927b7ca5edd28225ae7d4a",
+      "L11-118": "sha256:720f1dcca06883dac492836cbdb36804c34a8df25546a4840a162c80fa15babe"
+    },
+    "receipt_rule": "section from ### HELIXOS-L2-118 / ### HELIXOS-L11-118 to next same-level heading or EOF, trailing blank lines removed, one UTF-8 LF",
+    "scope_boundary": "MPR source collection receipt selects nine request-source atoms only; selected acceptance atoms 000470/472/474 are not included in its source atom set. Compare 118 as an unadopted requirement-condition destination, not as source atom mapping, adopted fulfillment, formal successor, execution, or closure."
   }
 }
