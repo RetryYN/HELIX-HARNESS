@@ -14553,7 +14553,7 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "acceptance_contract_row",
-      "semantic_reading": "SEA-AC-001は、authorization欠如・期限切れ・target等のscope不一致・第三者targetの場合にmodel/tool/network invocationを0件とする受入oracle。"
+      "semantic_reading": "SEA-AC-001（対応SEA-FR-001..002）はauthorization不在・期限切れ、wrong target/scope/environment/provider class/digest、第三者targetでmodel/tool/network invocationを0件とする受入oracle。"
     },
     {
       "rank": 2510,
@@ -14673,7 +14673,7 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "acceptance_contract_row",
-      "semantic_reading": "SEA-AC-002は、通常customer/tenant taskから特権credential等を選択できず、fallbackでも境界を越えない受入oracle。"
+      "semantic_reading": "SEA-AC-002（対応SEA-FR-003）は通常customer/tenant taskから特権credential/queue/lease/evidenceを選択できず、fallbackでも境界を越えない受入oracle。"
     },
     {
       "rank": 2511,
@@ -14793,7 +14793,7 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "acceptance_contract_row",
-      "semantic_reading": "SEA-AC-005はauthorizationからremediationまでepisode replayを保ち、raw secret/PII/personal absolute pathをreceiptへ出さない受入oracle。"
+      "semantic_reading": "SEA-AC-005（対応SEA-FR-006）はauthorizationからremediationまで同一episodeをreplayでき、raw secret/PII/個人absolute pathをreceiptへ出さない受入oracle。"
     },
     {
       "rank": 2512,
@@ -14913,7 +14913,7 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "acceptance_contract_row",
-      "semantic_reading": "SEA-AC-008はrevokeまたはscope drift後の新規assignmentを0件にし、in-flight lease/credential/network/artifact accessの停止とterminal receiptを求める。"
+      "semantic_reading": "SEA-AC-008（対応SEA-FR-010）はrevokeまたはscope drift後、新規assignmentを0件とし、in-flight lease/credential/network/artifact accessを停止してterminal receiptを残す。"
     },
     {
       "rank": 2513,
@@ -15033,7 +15033,7 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "acceptance_contract_row",
-      "semantic_reading": "SEA-AC-009はgenerated security documentのsource digest drift/手編集を検出し、文書からrequirementsへの逆流を防ぐ受入oracle。"
+      "semantic_reading": "SEA-AC-009（対応SEA-FR-011）はgenerated security documentのsource digest driftと手編集を検出し、文書からrequirementsへ逆流しない受入oracle。"
     },
     {
       "rank": 2514,
@@ -15153,7 +15153,7 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "acceptance_contract_row",
-      "semantic_reading": "SEA-AC-010はOSS/Commercial/Privateまたはchannel変更の前後でauthority入力同一時のdecision一致とrestricted dataのartifact除外を求める。"
+      "semantic_reading": "SEA-AC-010（対応SEA-FR-012）はOSS/Commercial/Privateまたはchannel変更前後で同一authority入力のdecisionが一致し、restricted dataをartifactへ含めない受入oracle。"
     },
     {
       "rank": 2515,
@@ -15273,7 +15273,7 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "candidate_prose_or_table_structure",
-      "semantic_reading": "文書greenだけではruntime capability完成を意味しない、というcandidateのcompletion境界を示す未完文。"
+      "semantic_reading": "文書greenはruntime capability完成を意味しないと定め、実機Security operation/credential設定/external accessを列挙する未完文。列挙の続きとaction-specific authorityの述語は次行にある。"
     },
     {
       "rank": 2516,
@@ -15393,7 +15393,7 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "candidate_prose_or_table_structure",
-      "semantic_reading": "前行の境界を続け、action-specific authorityなしに実機Security operation等を実行しない旨を列挙する。"
+      "semantic_reading": "前行の列挙にexploit validation/production接続/disclosure/publishを続け、別のaction-specific authorityなしに実行しないと定める。現行の実行許可にはしない。"
     },
     {
       "rank": 2517,
@@ -16233,7 +16233,7 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "candidate_prose_or_table_structure",
-      "semantic_reading": "L1 requests候補は、資産所有者が明示認可したcybersecurity業務を既存broker等で扱う要求文の一部。文は後続行へ続く。"
+      "semantic_reading": "資産所有者から明示的に認可されたサイバーセキュリティ業務をHELIXが扱う文の冒頭で、既存の安全capability brokerを列挙する未完文。次行の条件を独立に取り込まない。"
     },
     {
       "rank": 2524,
@@ -16473,7 +16473,7 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "candidate_prose_or_table_structure",
-      "semantic_reading": "plan固有human gateは成立済みという記述だが、続くruntime等への投影を禁止する前置きであり、現行採択を意味しない。"
+      "semantic_reading": "plan固有human gateは成立済みという旧記録に続き、独立技術review/L3↔L10 freeze/canonical main read-afterを列挙する未完文。現行採択ではなく、完了条件と投影禁止の述語は後続行に続く。"
     },
     {
       "rank": 2526,
@@ -16593,7 +16593,7 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "candidate_prose_or_table_structure",
-      "semantic_reading": "independent review・freeze・canonical read-after・Requirement IR admission完了前にcurrent authorityとして投影しない対象の列挙。未完文は次行に続く。"
+      "semantic_reading": "#397 Requirement IR admissionが完了するまでという条件と、runtime/schema/DB/CLI/provider設定/credential/generated documentへのcurrent authorityとしての投影対象を列挙する。投影しないという述語は次行に続く。"
     },
     {
       "rank": 2527,
@@ -17793,7 +17793,7 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "candidate_prose_or_table_structure",
-      "semantic_reading": "#679が実行brokerを所有する対象としてoperation capability等を述べる文の継続。下流の権限移動をこの候補行から生成しない。"
+      "semantic_reading": "#679に関する文でoperation capability/physical target/provenance/data／sinkを列挙する未完文。実行broker所有の述語と続く項目は次行にある。下流の権限移動をこの行から生成しない。"
     },
     {
       "rank": 2537,
@@ -17913,7 +17913,7 @@
       "authority_effect": "none",
       "semantic_family": "security_engagement_authority",
       "semantic_function": "candidate_prose_or_table_structure",
-      "semantic_reading": "前行の#679 brokerとの役割差を続け、上流候補がSecurity engagement認可等を扱うとする文。行は後続文へ続く。"
+      "semantic_reading": "前行の列挙にimpact/action bindingを続け、これらを判定する実行brokerを#679が所有すると定める。本書はその上流でSecurity engagementの認可/特権分離を扱う文が続き、残る項目と述語は次行へ続く。"
     },
     {
       "rank": 2538,
