@@ -66,3 +66,7 @@
 - 旧planの判断履歴は対象revision・工程境界に限る歴史資料として分離し、現行PO判断や選択行の個別採択へ拡張していない。旧archiveはread-only。旧runtime・test・CIは実行していない。
 
 詳細な旧source context、source/asset/routing ledger hash、archive manifest、固定F6と現行8機構の各24本文、現行candidate、全PO／receipt検索pin、旧plan履歴はpaired JSON `legacy-candidate4755-explanation-normative-complement-ranks-2061-2100-2026-10-02.json` に記録。
+
+## 統合時の先行slice確認
+
+同一PRの2021–2060行をcommit `602691ff22a2c8e6025205a063c0da9fe72473ef` のJSON本文pinで参照する。rank2060 `LEGACY-CAND-LINE-003478` → rank2061 `LEGACY-CAND-LINE-003479`。

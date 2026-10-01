@@ -15090,5 +15090,15 @@
       "available": true,
       "ancestor_of_base": true
     }
-  ]
+  ],
+  "integration_predecessor": {
+    "rank": 2060,
+    "candidate_source_line_id": "LEGACY-CAND-LINE-003478",
+    "prior_audit_pin": {
+      "commit": "602691ff22a2c8e6025205a063c0da9fe72473ef",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-2021-2060-2026-10-02.json",
+      "sha256": "aea93a0b5258654a7f63c030226c32cadc60cb06168b1b5afac57bb0bde1ece2"
+    },
+    "note": "同一PRの直前sliceをpinする。作成時baseの不在とは区別し、全量closureは主張しない。"
+  }
 }
