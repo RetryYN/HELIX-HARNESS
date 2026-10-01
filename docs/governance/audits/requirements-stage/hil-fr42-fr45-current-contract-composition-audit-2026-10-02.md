@@ -43,6 +43,55 @@
 | FR-45: stable requirement ID、immutable revision、typed requirement fields/edge | 040のstable subject ID/row revision/source span/semantic digest/owner/edgesとlayer catalog、041のatomまたは理由付きgap、063のauthority/source/revision/scope/edge/oracle closureを合成する。053は意味変更を新revisionとして記録し、split/merge/supersede lineageのhistory/authority/oracle/typed edgeの欠落をunknownに残す。採択済み035は上流根拠・authority・必要性・受入寄与の導出を担うが、035のscope計測追補は別の受入補助である。 | 各対象は明示されたHARNESS scopeの意味対応であり、FR-45全項目の正式successor assignmentではない。template移行の旧→後継 obligation意味対応はgeneric row/asset identityと同一視しない。 |
 | FR-45: split/merge/rename/supersede/reject/N/A receiptのbefore/after digest、全atom disposition、downstream stale、review authority | 053はrename/move履歴とsplit/merge/supersede前後identity/revision/authority/oracle/edge lineageを扱う。063は変更前後revision・source/template/ledger identity・影響edge/oracle・stale範囲を要求し、必須input revision変化後の旧receiptを現revisionの証拠として使わない。atomごとのsource binding/challenge/dispositionを同じ対象revisionへ結ぶ。変更のreview authorityはauthority-state-modelの対象revision/digestに束縛されたhuman decisionとOS038のauthority referenceで照合する。063のindependent gap reviewはtemplate gap固有の条件であり、変更authorityの代替として数えない。OS038は正確なbase/source/ledger/template digestをsnapshotに結び、stale/mismatchを成功状態へ進めない。 | 明示フィールド名の有無だけを不足と数えない。監査は同一の変更operation receiptが全ての旧FR-45属性を単一JSONに格納するとまでは主張しない。必須条件が組み合わさり、偽acceptedを許さないかを判定する。 |
 
+## 個別項目の照合限界（F1訂正）
+
+旧FR45の13項目を分ける。以下の行き先は部分対応であり、requirementごとの型付き保存全充足を証明しない。未確認を消込扱いにしない。
+
+| 旧項目 | 現行の部分対応／残差 |
+|---|---|
+| source atom | docs/helix-harness/L2-requirements/product-requirements.md:1242。063はsource atom identity/spanとauthority revisionを入力する。 |
+| canonical statement | 個別行き先未確認。引用した040/041/053/063/OS038では各requirementのこの項目とtyped relationを個別保証する契約を確認していない。 |
+| BR/FR/TR/NFR | 個別行き先未確認。引用した040/041/053/063/OS038では各requirementのこの項目とtyped relationを個別保証する契約を確認していない。 |
+| modality | docs/helix-harness/L2-requirements/product-requirements.md:1242。063はsource atomの適用modalityを入力する。 |
+| priority | 個別行き先未確認。引用した040/041/053/063/OS038では各requirementのこの項目とtyped relationを個別保証する契約を確認していない。 |
+| scope/non-goal | docs/helix-harness/L2-requirements/product-requirements.md:1242。063の対象scopeは明示されるが、各requirementのnon-goalの台帳保持は未確認。 |
+| authority/rationale | docs/helix-harness/L2-requirements/product-requirements.md:1242。063のauthority revisionは明示されるが、全requirementのrationale台帳項目は未確認。 |
+| acceptance oracle | docs/helix-harness/L2-requirements/product-requirements.md:1243。063は全要求relation/design obligation/L11 oracleを同じscope/revisionで閉じる。 |
+| owner | docs/helix-harness/L2-requirements/product-requirements.md:951。040はledger row ownerを識別する。 |
+| risk | 個別行き先未確認。引用した040/041/053/063/OS038では各requirementのこの項目とtyped relationを個別保証する契約を確認していない。 |
+| capability/service | 個別行き先未確認。引用した040/041/053/063/OS038では各requirementのこの項目とtyped relationを個別保証する契約を確認していない。 |
+| template applicability | docs/helix-harness/L2-requirements/product-requirements.md:961。041はtemplateの適用条件を持つatomを出力する。 |
+| design obligation | docs/helix-harness/L2-requirements/product-requirements.md:1243。063はdesign obligationと対L11 oracleの閉包を要求する。 |
+
+旧FR42の11観点も個別に残す。全観点について063:1243の一般edge閉包だけでは、観点固有のnode/edge・oracleの全列挙を証明しない。
+
+| 旧観点 | 行き先と残差 |
+|---|---|
+| API | HARNESS-063 L2:1243一般relationのみ。個別必須契約は未確認、REQSRC-LINE-01883に保持。 |
+| data | HARNESS-063 L2:1243一般relationのみ。個別必須契約は未確認、REQSRC-LINE-01883に保持。 |
+| state | HARNESS-063 L2:1243一般relationのみ。個別必須契約は未確認、REQSRC-LINE-01883に保持。 |
+| event | HARNESS-063 L2:1243一般relationのみ。個別必須契約は未確認、REQSRC-LINE-01883に保持。 |
+| failure | HARNESS-063 L2:1243一般relationのみ。個別必須契約は未確認、REQSRC-LINE-01883に保持。 |
+| security | HARNESS-063 L2:1243一般relationのみ。個別必須契約は未確認、REQSRC-LINE-01883に保持。 |
+| observability | HARNESS-063 L2:1243一般relationのみ。個別必須契約は未確認、REQSRC-LINE-01883に保持。 |
+| lifecycle | HARNESS-063 L2:1243一般relationのみ。個別必須契約は未確認、REQSRC-LINE-01883に保持。 |
+| operation | HARNESS-063 L2:1243一般relationのみ。個別必須契約は未確認、REQSRC-LINE-01883に保持。 |
+| test oracle | HARNESS-063 L2:1243一般relationのみ。個別必須契約は未確認、REQSRC-LINE-01883に保持。 |
+| gate | HARNESS-063 L2:1243一般relationのみ。個別必須契約は未確認、REQSRC-LINE-01883に保持。 |
+
+| 旧出力 | 部分対応と残差 |
+|---|---|
+| HIL-FR-42 obligation graph | docs/helix-harness/L2-requirements/product-requirements.md:1242。旧出力の個別contract同値・全対象scopeは未確認、REQSRC-LINE-01883保持。 |
+| HIL-FR-42 discharge receipt | docs/helix-harness/L2-requirements/product-requirements.md:1242。旧出力の個別contract同値・全対象scopeは未確認、REQSRC-LINE-01883保持。 |
+| HIL-FR-42 coverage receipt | docs/helix-harness/L2-requirements/product-requirements.md:1242。旧出力の個別contract同値・全対象scopeは未確認、REQSRC-LINE-01883保持。 |
+| HIL-FR-42 未消込finding | docs/helix-harness/L2-requirements/product-requirements.md:1242。旧出力の個別contract同値・全対象scopeは未確認、REQSRC-LINE-01883保持。 |
+| HIL-FR-45 requirement definition/revision | docs/helix-harness/L2-requirements/product-requirements.md:951。旧出力の個別契約全充足は未確認、REQSRC-LINE-01886保持。 |
+| HIL-FR-45 typed edge | docs/helix-harness/L2-requirements/product-requirements.md:1243。旧出力の個別契約全充足は未確認、REQSRC-LINE-01886保持。 |
+| HIL-FR-45 change/applicability receipt | docs/helix-harness/L2-requirements/product-requirements.md:1243。旧出力の個別契約全充足は未確認、REQSRC-LINE-01886保持。 |
+| HIL-FR-45 orphan/stale finding | docs/helix-harness/L2-requirements/product-requirements.md:1243。旧出力の個別契約全充足は未確認、REQSRC-LINE-01886保持。 |
+
+個別残差は後続で全現行L2/L11と再照合し、既存候補への追補または新候補が必要か判定する。本監査だけで旧条件全保持・黙示消失0とは結論しない。
+
 ## 同一revision名・異内容の反例検査
 
 反例として、requirement IDとrevision labelを据え置いたままcanonical statementまたはsource-backed requirement contentを変える。新内容ではsemantic digestが変わる。HARNESS-040のrow semantic digestは新本文と旧digestの不一致を表し、authority-state-model.mdのfail-close（人間decisionの欠落、revision不一致、digest不一致なら元状態を保持して停止）が旧decision digestでのactive化を拒む。HARNESS-063はsource authority revision・各source atom・対象revisionを結び、必須入力revisionの変化後に旧receiptを現revisionの有効証拠として使えない。OS-038はsource/template/ledger digestおよびbase digest不一致・staleをsuccess snapshot/appendへ通さず、-002は041-003が示すnondeterministic findingをquarantineする。041-003も同じbytes/revision/scope/applicability/extractorで抽出結果のdigestが異なる場合は未解決にする。
@@ -64,4 +113,4 @@
 - 判断exact digestはdecision行のregistration revisionとcurrent本文節digestを照合した。decisionの列挙は候補表記より優先し、未採択候補の採択済みrevisionと、未選択scope/未実行を分けた。
 - 旧runtime/test/CLI/CIは未実行。静的な契約判定であり実装・受入実績を示さない。
 
-結論: FR-42/45の上記条件は、限定採択scopeにおいて040/041-003/053/063とOS-038の固定digest・authority・stale・gap契約を合成して保持する。同一revision labelの異内容を旧authorityで通す偽pass根拠は確認できず、071は起草しない。FR-41の未明示の個別義務移行を追加要求にせず、070は発行しない。両旧identityは`preserved_pending_rehome`のままで、正式successorは0件。
+結論: 同一revision名の異内容を旧authorityで通す反例は、固定digest・authority・staleの合成により拒否される。change receiptのrevision束縛とfail-closeの行き先も確認した。この限定反例用の071は起草しない。FR45の13項目の型付き保存、FR42の11観点の個別義務、旧出力の全充足は未証明で、上表の残差を旧source holdingへ保持する。個別条件の不足を確認した後の候補追補を否定しない。FR41の未明示義務を推測して070は発行しない。両旧identityの正式successorは0件、全source closureは未証明である。

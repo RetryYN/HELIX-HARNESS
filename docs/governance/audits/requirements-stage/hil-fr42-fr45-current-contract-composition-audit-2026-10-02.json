@@ -258,12 +258,253 @@
     "decision_exact_revision_and_section_digest_checked": true,
     "current_full_file_hashes_recorded": true,
     "same_revision_false_pass_attempted_as_contract_composition": true,
-    "runtime_test_cli_ci_not_run": true
+    "runtime_test_cli_ci_not_run": true,
+    "all_individual_fields_or_dimensions_confirmed": false
   },
   "root_review": {
     "integration_base": "6265c512bae65789b177e38404c8266726799f46",
     "evidence_base_remains": "fcf944f839a6269fec63f8823d98f51f1d6ec84b",
     "source_lines_and_11_file_pins_recomputed": true,
     "note": "Evidence records the original exact fcf comparison; later OS115 append does not amend the adopted sections used here."
+  },
+  "fr45_individual_items": [
+    {
+      "old_item": "source atom",
+      "destination": "docs/helix-harness/L2-requirements/product-requirements.md:1242",
+      "state": "partial_whereabouts_ledger_typed_relation_unconfirmed",
+      "evidence_limit": "063はsource atom identity/spanとauthority revisionを入力する。",
+      "residual": "FR45が求めるrequirementごとの当該項目の型付き保存の充足は未証明。REQSRC-LINE-01886に保持し、追加照合対象とする。"
+    },
+    {
+      "old_item": "canonical statement",
+      "destination": null,
+      "state": "unconfirmed_residual",
+      "evidence_limit": "引用した040/041/053/063/OS038では各requirementのこの項目とtyped relationを個別保証する契約を確認していない。",
+      "residual": "FR45が求めるrequirementごとの当該項目の型付き保存の充足は未証明。REQSRC-LINE-01886に保持し、追加照合対象とする。"
+    },
+    {
+      "old_item": "BR/FR/TR/NFR",
+      "destination": null,
+      "state": "unconfirmed_residual",
+      "evidence_limit": "引用した040/041/053/063/OS038では各requirementのこの項目とtyped relationを個別保証する契約を確認していない。",
+      "residual": "FR45が求めるrequirementごとの当該項目の型付き保存の充足は未証明。REQSRC-LINE-01886に保持し、追加照合対象とする。"
+    },
+    {
+      "old_item": "modality",
+      "destination": "docs/helix-harness/L2-requirements/product-requirements.md:1242",
+      "state": "partial_whereabouts_ledger_typed_relation_unconfirmed",
+      "evidence_limit": "063はsource atomの適用modalityを入力する。",
+      "residual": "FR45が求めるrequirementごとの当該項目の型付き保存の充足は未証明。REQSRC-LINE-01886に保持し、追加照合対象とする。"
+    },
+    {
+      "old_item": "priority",
+      "destination": null,
+      "state": "unconfirmed_residual",
+      "evidence_limit": "引用した040/041/053/063/OS038では各requirementのこの項目とtyped relationを個別保証する契約を確認していない。",
+      "residual": "FR45が求めるrequirementごとの当該項目の型付き保存の充足は未証明。REQSRC-LINE-01886に保持し、追加照合対象とする。"
+    },
+    {
+      "old_item": "scope/non-goal",
+      "destination": "docs/helix-harness/L2-requirements/product-requirements.md:1242",
+      "state": "partial_whereabouts_ledger_typed_relation_unconfirmed",
+      "evidence_limit": "063の対象scopeは明示されるが、各requirementのnon-goalの台帳保持は未確認。",
+      "residual": "FR45が求めるrequirementごとの当該項目の型付き保存の充足は未証明。REQSRC-LINE-01886に保持し、追加照合対象とする。"
+    },
+    {
+      "old_item": "authority/rationale",
+      "destination": "docs/helix-harness/L2-requirements/product-requirements.md:1242",
+      "state": "partial_whereabouts_ledger_typed_relation_unconfirmed",
+      "evidence_limit": "063のauthority revisionは明示されるが、全requirementのrationale台帳項目は未確認。",
+      "residual": "FR45が求めるrequirementごとの当該項目の型付き保存の充足は未証明。REQSRC-LINE-01886に保持し、追加照合対象とする。"
+    },
+    {
+      "old_item": "acceptance oracle",
+      "destination": "docs/helix-harness/L2-requirements/product-requirements.md:1243",
+      "state": "partial_whereabouts_ledger_typed_relation_unconfirmed",
+      "evidence_limit": "063は全要求relation/design obligation/L11 oracleを同じscope/revisionで閉じる。",
+      "residual": "FR45が求めるrequirementごとの当該項目の型付き保存の充足は未証明。REQSRC-LINE-01886に保持し、追加照合対象とする。"
+    },
+    {
+      "old_item": "owner",
+      "destination": "docs/helix-harness/L2-requirements/product-requirements.md:951",
+      "state": "partial_whereabouts_ledger_typed_relation_unconfirmed",
+      "evidence_limit": "040はledger row ownerを識別する。",
+      "residual": "FR45が求めるrequirementごとの当該項目の型付き保存の充足は未証明。REQSRC-LINE-01886に保持し、追加照合対象とする。"
+    },
+    {
+      "old_item": "risk",
+      "destination": null,
+      "state": "unconfirmed_residual",
+      "evidence_limit": "引用した040/041/053/063/OS038では各requirementのこの項目とtyped relationを個別保証する契約を確認していない。",
+      "residual": "FR45が求めるrequirementごとの当該項目の型付き保存の充足は未証明。REQSRC-LINE-01886に保持し、追加照合対象とする。"
+    },
+    {
+      "old_item": "capability/service",
+      "destination": null,
+      "state": "unconfirmed_residual",
+      "evidence_limit": "引用した040/041/053/063/OS038では各requirementのこの項目とtyped relationを個別保証する契約を確認していない。",
+      "residual": "FR45が求めるrequirementごとの当該項目の型付き保存の充足は未証明。REQSRC-LINE-01886に保持し、追加照合対象とする。"
+    },
+    {
+      "old_item": "template applicability",
+      "destination": "docs/helix-harness/L2-requirements/product-requirements.md:961",
+      "state": "partial_whereabouts_ledger_typed_relation_unconfirmed",
+      "evidence_limit": "041はtemplateの適用条件を持つatomを出力する。",
+      "residual": "FR45が求めるrequirementごとの当該項目の型付き保存の充足は未証明。REQSRC-LINE-01886に保持し、追加照合対象とする。"
+    },
+    {
+      "old_item": "design obligation",
+      "destination": "docs/helix-harness/L2-requirements/product-requirements.md:1243",
+      "state": "partial_whereabouts_ledger_typed_relation_unconfirmed",
+      "evidence_limit": "063はdesign obligationと対L11 oracleの閉包を要求する。",
+      "residual": "FR45が求めるrequirementごとの当該項目の型付き保存の充足は未証明。REQSRC-LINE-01886に保持し、追加照合対象とする。"
+    }
+  ],
+  "fr42_individual_dimensions": [
+    {
+      "old_dimension": "API",
+      "destination": "docs/helix-harness/L2-requirements/product-requirements.md:1243",
+      "state": "generic_relation_only_dimension_contract_unconfirmed",
+      "evidence_limit": "063の全typed-edge閉包は一般保証であり、この観点固有の必須node/edge・oracleの列挙と双方向source接続を個別確認していない。",
+      "residual": "REQSRC-LINE-01883に保持。一般edge契約を個別観点の被覆証拠にしない。"
+    },
+    {
+      "old_dimension": "data",
+      "destination": "docs/helix-harness/L2-requirements/product-requirements.md:1243",
+      "state": "generic_relation_only_dimension_contract_unconfirmed",
+      "evidence_limit": "063の全typed-edge閉包は一般保証であり、この観点固有の必須node/edge・oracleの列挙と双方向source接続を個別確認していない。",
+      "residual": "REQSRC-LINE-01883に保持。一般edge契約を個別観点の被覆証拠にしない。"
+    },
+    {
+      "old_dimension": "state",
+      "destination": "docs/helix-harness/L2-requirements/product-requirements.md:1243",
+      "state": "generic_relation_only_dimension_contract_unconfirmed",
+      "evidence_limit": "063の全typed-edge閉包は一般保証であり、この観点固有の必須node/edge・oracleの列挙と双方向source接続を個別確認していない。",
+      "residual": "REQSRC-LINE-01883に保持。一般edge契約を個別観点の被覆証拠にしない。"
+    },
+    {
+      "old_dimension": "event",
+      "destination": "docs/helix-harness/L2-requirements/product-requirements.md:1243",
+      "state": "generic_relation_only_dimension_contract_unconfirmed",
+      "evidence_limit": "063の全typed-edge閉包は一般保証であり、この観点固有の必須node/edge・oracleの列挙と双方向source接続を個別確認していない。",
+      "residual": "REQSRC-LINE-01883に保持。一般edge契約を個別観点の被覆証拠にしない。"
+    },
+    {
+      "old_dimension": "failure",
+      "destination": "docs/helix-harness/L2-requirements/product-requirements.md:1243",
+      "state": "generic_relation_only_dimension_contract_unconfirmed",
+      "evidence_limit": "063の全typed-edge閉包は一般保証であり、この観点固有の必須node/edge・oracleの列挙と双方向source接続を個別確認していない。",
+      "residual": "REQSRC-LINE-01883に保持。一般edge契約を個別観点の被覆証拠にしない。"
+    },
+    {
+      "old_dimension": "security",
+      "destination": "docs/helix-harness/L2-requirements/product-requirements.md:1243",
+      "state": "generic_relation_only_dimension_contract_unconfirmed",
+      "evidence_limit": "063の全typed-edge閉包は一般保証であり、この観点固有の必須node/edge・oracleの列挙と双方向source接続を個別確認していない。",
+      "residual": "REQSRC-LINE-01883に保持。一般edge契約を個別観点の被覆証拠にしない。"
+    },
+    {
+      "old_dimension": "observability",
+      "destination": "docs/helix-harness/L2-requirements/product-requirements.md:1243",
+      "state": "generic_relation_only_dimension_contract_unconfirmed",
+      "evidence_limit": "063の全typed-edge閉包は一般保証であり、この観点固有の必須node/edge・oracleの列挙と双方向source接続を個別確認していない。",
+      "residual": "REQSRC-LINE-01883に保持。一般edge契約を個別観点の被覆証拠にしない。"
+    },
+    {
+      "old_dimension": "lifecycle",
+      "destination": "docs/helix-harness/L2-requirements/product-requirements.md:1243",
+      "state": "generic_relation_only_dimension_contract_unconfirmed",
+      "evidence_limit": "063の全typed-edge閉包は一般保証であり、この観点固有の必須node/edge・oracleの列挙と双方向source接続を個別確認していない。",
+      "residual": "REQSRC-LINE-01883に保持。一般edge契約を個別観点の被覆証拠にしない。"
+    },
+    {
+      "old_dimension": "operation",
+      "destination": "docs/helix-harness/L2-requirements/product-requirements.md:1243",
+      "state": "generic_relation_only_dimension_contract_unconfirmed",
+      "evidence_limit": "063の全typed-edge閉包は一般保証であり、この観点固有の必須node/edge・oracleの列挙と双方向source接続を個別確認していない。",
+      "residual": "REQSRC-LINE-01883に保持。一般edge契約を個別観点の被覆証拠にしない。"
+    },
+    {
+      "old_dimension": "test oracle",
+      "destination": "docs/helix-harness/L2-requirements/product-requirements.md:1243",
+      "state": "generic_relation_only_dimension_contract_unconfirmed",
+      "evidence_limit": "063の全typed-edge閉包は一般保証であり、この観点固有の必須node/edge・oracleの列挙と双方向source接続を個別確認していない。",
+      "residual": "REQSRC-LINE-01883に保持。一般edge契約を個別観点の被覆証拠にしない。"
+    },
+    {
+      "old_dimension": "gate",
+      "destination": "docs/helix-harness/L2-requirements/product-requirements.md:1243",
+      "state": "generic_relation_only_dimension_contract_unconfirmed",
+      "evidence_limit": "063の全typed-edge閉包は一般保証であり、この観点固有の必須node/edge・oracleの列挙と双方向source接続を個別確認していない。",
+      "residual": "REQSRC-LINE-01883に保持。一般edge契約を個別観点の被覆証拠にしない。"
+    }
+  ],
+  "old_output_individual_whereabouts": [
+    {
+      "old_identity": "HIL-FR-42",
+      "output": "obligation graph",
+      "destination": "docs/helix-harness/L2-requirements/product-requirements.md:1242",
+      "state": "partial_generic_freeze_receipt_only",
+      "residual": "旧出力の個別contract同値・全対象scopeは未確認、REQSRC-LINE-01883保持。"
+    },
+    {
+      "old_identity": "HIL-FR-42",
+      "output": "discharge receipt",
+      "destination": "docs/helix-harness/L2-requirements/product-requirements.md:1242",
+      "state": "partial_generic_freeze_receipt_only",
+      "residual": "旧出力の個別contract同値・全対象scopeは未確認、REQSRC-LINE-01883保持。"
+    },
+    {
+      "old_identity": "HIL-FR-42",
+      "output": "coverage receipt",
+      "destination": "docs/helix-harness/L2-requirements/product-requirements.md:1242",
+      "state": "partial_generic_freeze_receipt_only",
+      "residual": "旧出力の個別contract同値・全対象scopeは未確認、REQSRC-LINE-01883保持。"
+    },
+    {
+      "old_identity": "HIL-FR-42",
+      "output": "未消込finding",
+      "destination": "docs/helix-harness/L2-requirements/product-requirements.md:1242",
+      "state": "partial_generic_freeze_receipt_only",
+      "residual": "旧出力の個別contract同値・全対象scopeは未確認、REQSRC-LINE-01883保持。"
+    },
+    {
+      "old_identity": "HIL-FR-45",
+      "output": "requirement definition/revision",
+      "destination": "docs/helix-harness/L2-requirements/product-requirements.md:951",
+      "state": "partial_generic_contract_only",
+      "residual": "旧出力の個別契約全充足は未確認、REQSRC-LINE-01886保持。"
+    },
+    {
+      "old_identity": "HIL-FR-45",
+      "output": "typed edge",
+      "destination": "docs/helix-harness/L2-requirements/product-requirements.md:1243",
+      "state": "partial_generic_contract_only",
+      "residual": "旧出力の個別契約全充足は未確認、REQSRC-LINE-01886保持。"
+    },
+    {
+      "old_identity": "HIL-FR-45",
+      "output": "change/applicability receipt",
+      "destination": "docs/helix-harness/L2-requirements/product-requirements.md:1243",
+      "state": "partial_generic_contract_only",
+      "residual": "旧出力の個別契約全充足は未確認、REQSRC-LINE-01886保持。"
+    },
+    {
+      "old_identity": "HIL-FR-45",
+      "output": "orphan/stale finding",
+      "destination": "docs/helix-harness/L2-requirements/product-requirements.md:1243",
+      "state": "partial_generic_contract_only",
+      "residual": "旧出力の個別契約全充足は未確認、REQSRC-LINE-01886保持。"
+    }
+  ],
+  "bounded_conclusion": {
+    "proven_audit_scope": [
+      "same-label changed-content counterexample rejected by exact authority/digest/stale composition",
+      "change receipt revision binding and fail-close whereabouts"
+    ],
+    "all_fr42_fr45_conditions_held": false,
+    "individual_item_residuals_remain": true,
+    "candidate_071_not_drafted_scope": "same-label mutation only; this does not rule out a future candidate for confirmed individual-field/dimension gaps",
+    "followup": "Check individual residual destinations against full current L2/L11 before deciding candidate supplement vs new candidate. No new authority/adoption generated."
   }
 }
