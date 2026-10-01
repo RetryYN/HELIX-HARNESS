@@ -67,3 +67,7 @@
 - archiveはread-only参照。旧runtime、CLI、hook、test、CIは実行していない。
 
 詳細pin・source context/hash: paired JSON [`legacy-candidate4755-explanation-normative-complement-ranks-1861-1900-2026-10-02.json`](legacy-candidate4755-explanation-normative-complement-ranks-1861-1900-2026-10-02.json)
+
+## 統合済み先行slice
+
+#2474 merge `3643cec70e3724966b009f82ea07818bdd602b42` の1821–1860 JSONをSHAで固定し、rank1860／003136と先頭rank1861の連続性を確認した。
