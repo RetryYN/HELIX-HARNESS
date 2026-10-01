@@ -1,0 +1,1977 @@
+{
+  "schema_version": "v13-effective-next20-condition-audit.v1",
+  "audit_id": "v13-effective-next20-rows41-60-condition-audit-2026-10-01",
+  "audit_mode": "read_only_static_source_condition_comparison",
+  "created_against_revision": "50686b6762788574cb471967e8c24846d3dd56ae",
+  "selection_bundle_revision": "0c08cffe4d47f499214d952b1e6b055dba22bcf6",
+  "fixed_comparison_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "authority_effect": "none",
+  "purpose": "v1.3 condition queue primary_residual/unresolved_for_closure_workのexact-identity-filter candidateからfirst40を除外しpositions41–60の20 source conditionsを旧sourceおよび固定F6 HARNESS L2/L11と静的比較する。",
+  "scope_boundary": {
+    "queue_population": "pinned 303-row v1.3 REQSRC-SUP-* condition queue only",
+    "candidate4755_excluded": "#2353/#2356等のLEGACY-CAND-LINE-* candidate4755 overlaysは別source populationであり、本v1.3 queueへ混合しない。",
+    "candidate_filter_limits": "primary_residual + unresolved_for_closure_work rows joined against 32 pinned focused audit files by exact REQSRC-SUP-* ID token. Candidate count 119 / after first40 count 79 is bounded identity-filter arithmetic, not all semantic review or closure work."
+  },
+  "reconstruction": {
+    "queue_path": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json",
+    "queue_sha256": "a61ec098a6bd714fcbbb706d0d9afb4e7f2777b114bf23c8056fc130e30f60d9",
+    "queue_file_commit": "71659afc4",
+    "queue_lineage_basis_commit": "2bf484b1a84af346feaf8cf7b72e59f3889e6333",
+    "queue_audit_base_commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+    "queue_rows": 303,
+    "primary_residual_unresolved_rows": 255,
+    "focused_audit_count": 32,
+    "focused_identity_hits_all_queue_rows": 154,
+    "focused_identity_hits_primary_residual": 136,
+    "no_identity_hit_candidate_count": 119,
+    "prior_first40_ids": [
+      "REQSRC-SUP-00004",
+      "REQSRC-SUP-00008",
+      "REQSRC-SUP-00009",
+      "REQSRC-SUP-00010",
+      "REQSRC-SUP-00015",
+      "REQSRC-SUP-00016",
+      "REQSRC-SUP-00017",
+      "REQSRC-SUP-00018",
+      "REQSRC-SUP-00019",
+      "REQSRC-SUP-00022",
+      "REQSRC-SUP-00023",
+      "REQSRC-SUP-00024",
+      "REQSRC-SUP-00025",
+      "REQSRC-SUP-00026",
+      "REQSRC-SUP-00027",
+      "REQSRC-SUP-00028",
+      "REQSRC-SUP-00029",
+      "REQSRC-SUP-00046",
+      "REQSRC-SUP-00047",
+      "REQSRC-SUP-00051",
+      "REQSRC-SUP-00185",
+      "REQSRC-SUP-00186",
+      "REQSRC-SUP-00187",
+      "REQSRC-SUP-00188",
+      "REQSRC-SUP-00209",
+      "REQSRC-SUP-00212",
+      "REQSRC-SUP-00214",
+      "REQSRC-SUP-00215",
+      "REQSRC-SUP-00216",
+      "REQSRC-SUP-00218",
+      "REQSRC-SUP-00219",
+      "REQSRC-SUP-00220",
+      "REQSRC-SUP-00221",
+      "REQSRC-SUP-00269",
+      "REQSRC-SUP-00272",
+      "REQSRC-SUP-00273",
+      "REQSRC-SUP-00274",
+      "REQSRC-SUP-00275",
+      "REQSRC-SUP-00276",
+      "REQSRC-SUP-00277"
+    ],
+    "prior_first40_count": 40,
+    "post_first40_candidate_count": 79,
+    "selected_candidate_positions": [
+      41,
+      60
+    ],
+    "selected_ids_in_order": [
+      "REQSRC-SUP-00338",
+      "REQSRC-SUP-00339",
+      "REQSRC-SUP-00340",
+      "REQSRC-SUP-00435",
+      "REQSRC-SUP-00441",
+      "REQSRC-SUP-00442",
+      "REQSRC-SUP-00443",
+      "REQSRC-SUP-00444",
+      "REQSRC-SUP-00445",
+      "REQSRC-SUP-00446",
+      "REQSRC-SUP-00447",
+      "REQSRC-SUP-00451",
+      "REQSRC-SUP-00452",
+      "REQSRC-SUP-00453",
+      "REQSRC-SUP-00454",
+      "REQSRC-SUP-00455",
+      "REQSRC-SUP-00456",
+      "REQSRC-SUP-00457",
+      "REQSRC-SUP-00458",
+      "REQSRC-SUP-00459"
+    ],
+    "sort_key": "archive source physical line ascending then source_item_id",
+    "join_rule": "Exact REQSRC-SUP-* source ID token presence in the 32 SHA-pinned focused audit artifacts; identity filter only, not semantic coverage."
+  },
+  "input_pins": [
+    {
+      "name": "queue",
+      "path": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json",
+      "sha256": "a61ec098a6bd714fcbbb706d0d9afb4e7f2777b114bf23c8056fc130e30f60d9",
+      "file_commit": "71659afc4",
+      "audit_base_commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "lineage_basis_commit": "2bf484b1a84af346feaf8cf7b72e59f3889e6333"
+    },
+    {
+      "name": "baseline_source_audit",
+      "path": "docs/governance/audits/requirements-stage/legacy-v13-semantic-condition-audit-2026-09-28.json",
+      "sha256": "cd765545e584c50b423d652674ac54a3240aced24a321c0caa6bc2dd881ad863",
+      "source_basis_commit": "2bf484b1a84af346feaf8cf7b72e59f3889e6333"
+    },
+    {
+      "name": "first10_audit",
+      "path": "docs/governance/audits/requirements-stage/v13-effective-next10-condition-audit-2026-10-01.json",
+      "sha256": "cad2863a7310ffa74d46bdb78cdc6f534210299750592ce87991a93b41b8b255",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "rows11_20_audit",
+      "path": "docs/governance/audits/requirements-stage/v13-effective-next10-rows11-20-condition-audit-2026-10-01.json",
+      "sha256": "806d12c95e809b17ad64d57a2be58ea046c955bdfdbd989b11da71083ec1cbfa",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "rows21_40_audit",
+      "path": "docs/governance/audits/requirements-stage/v13-effective-next20-rows21-40-condition-audit-2026-10-01.json",
+      "sha256": "17578d8cf09819f30bbd9ed167b2b9f4ebe6e2e6222b640ea9ec4dec5e22eba0",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-bbg-br01-br02-condition-audit-2026-10-01.json",
+      "sha256": "0a0f41022929d4e546b0e2f2a8cf3afe7d77e84a3fc0512a216a8e963949025f",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-br01-condition-audit-2026-10-01.json",
+      "sha256": "8b50b9e3d9c1b5df663aacfdf35978f5cbf93209a58d1faaf296ab03abf3cc7b",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-br02-br05-condition-audit-2026-09-30.json",
+      "sha256": "8e1a9a5c2a56b222a2f03b20591b40c1126421899e3fb6b979f1d6fde0e2f79b",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-br07-ux01-ux03-condition-audit-2026-09-30.json",
+      "sha256": "a2d0c855e35ccad17c037d7e14cedd796479d2252d713c43aa56a80f9068495c",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-br21-22-fixed-f6-condition-audit-2026-10-01.json",
+      "sha256": "021cb514ea26d94b0bc24ce4643707732bf52ed99e162c8bc9e4cd5cd9ccf58d",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-cn1-6-fixed-f6-condition-audit-2026-10-01.json",
+      "sha256": "22eca23658171260d1ad489aa94d99b22ceaadb36245e40e2a854d5b6e1b7213",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-dac-nfr-three-condition-audit-2026-09-30.json",
+      "sha256": "372b7c8a6d992d621dc4f90378caf1828aa4d02bb2940bf23e6c8459556f69ca",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-19-fixed-l2l11-condition-audit-2026-10-01.json",
+      "sha256": "8f05e6837934976d9dcc27349400244932230e9f331bf03db64b45cbcbec339d",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-20-37-38-39-43-condition-audit-2026-09-30.json",
+      "sha256": "4ee325ddb47b56298156aaf68b882650f0b81b0fb9574022c01b966b2ccb00d4",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-28-34-condition-audit-2026-09-30.json",
+      "sha256": "135a193deafabebfad0e31a040213d533071eef1217fd0ce76a26b7f6a7a468e",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-36-fixed-l2l11-condition-audit-2026-10-01.json",
+      "sha256": "126036fa85c5f7c06b4ddafff7c5e97119d2663164d2f966a19fe1198058b7f1",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-40-42-condition-audit-2026-10-01.json",
+      "sha256": "3e5a6708426ad720e84ca28551177a18d5728b5e2e2e32deb200c7ad5d69f012",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p0-p1-p2-hnfr-ac-p3-p5-fixed-f6-condition-audit-2026-10-01.json",
+      "sha256": "2293af1784a0817540ca3b547f0e5555382a3809903744e29b66b8b29ba5fefa",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p3-fixed-f6-condition-audit-2026-10-01.json",
+      "sha256": "8a8e5cf5bc49256f91a21b5750900cc3cb31a579ca802ef41a29bc251f27569f",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p4-p7-p8-p9-hnfr-p8-fixed-f6-condition-audit-2026-10-01.json",
+      "sha256": "c3503c22aa150af4ed336f47e6c6a45a0989c2c4b0b8c06cb537c68e60589fa0",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-pm01-sbr001-fixed-f6-condition-audit-2026-10-01.json",
+      "sha256": "70e2e6f94fe23fdeb91a518dd108a02b7f6c14999115634f2eb53d4d572de2ae",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-resident-lane-br-01-10-condition-audit-2026-09-30.json",
+      "sha256": "cf1529da8d5fd5ec819094b203b58bdd283693d1551ab972992ed5dab1effd30",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-resident-lane-sr-1-11-condition-audit-2026-09-30.json",
+      "sha256": "39ded610617a795a4b62210df1bee0c82c3c134c8b6aa51ec65b548b070fd407",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-screen-pm02-pm06-condition-audit-2026-09-30.json",
+      "sha256": "76ac6f74ee0f8380f5adf0c4326124c5f5aa5804879b82c286405e7326fb83e2",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-three-lane-seven-condition-audit-2026-09-30.json",
+      "sha256": "22ce41ef506e65bbfa841448c71fdebbef506bc120e069d5e4d585453e568483",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/legacy-v13-harness-l2-039-authority-status-overlay-2026-09-30.json",
+      "sha256": "9a3daf5009f9d34ba555b5cd5a5e113c1d3b49855c00627ff31471311a467c98",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/v13-development-style-11-condition-audit-2026-09-30.json",
+      "sha256": "ce2aa162b917c281f78e27ccb5a67f04da484d2648b932aae753cfb25036cf75",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/v13-execution-policy-registry-seven-condition-audit-2026-09-30.json",
+      "sha256": "b1fc593b9b373ad8ed83cfde210e1f193e62ba4a2b95349f46847828650a25a8",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/v13-forward-reverse-391-396-condition-audit-2026-09-30.json",
+      "sha256": "8a57a8154fd5cbbe23550e36111e9fa94a29bbd427ab38f338776e2897676cc2",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/v13-github-autonomous-17-condition-audit-2026-09-30.json",
+      "sha256": "5e5675572666cd3b587116bca2bd65f3d885f37586481b8529967f58456cd9c9",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/v13-layer-chain-12-condition-audit-2026-09-30.json",
+      "sha256": "5632328d290657af5dbd4e0c6e2a72d2f8bbe156f7337a48622edc489e4333d2",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/v13-package-consumer-17-condition-audit-2026-09-30.json",
+      "sha256": "87c20af7de2fddd9893fd5badd6e7910b049bbfc1ec6849a4fabda39f0c01b6a",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/v13-package-consumer-residual-11-condition-audit-2026-09-30.json",
+      "sha256": "8012ab21555d78c1236b941c0c7d99728dccf429d2dcedb84c54f557e587b9e1",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/v13-policy-lines-167-171-condition-audit-2026-09-30.json",
+      "sha256": "3be27e97d0d250fbc386b33d1d3062606f5a76e4d4aa28382ba813f07d7e33d7",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/v13-policy-resolver-seven-condition-audit-2026-09-30.json",
+      "sha256": "a358b6fe6461ca57a1fda10ac81404f8f25bbcd0a4f3cf93e43d39fa3d3502d4",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/v13-security-broker-physical-identity-19-condition-audit-2026-09-30.json",
+      "sha256": "79ce122cafa093b79363ffcb537356c38a726bca856814e64a05e6e1d48139da",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    },
+    {
+      "name": "focused_identity_filter_artifact",
+      "path": "docs/governance/audits/requirements-stage/v13-signal-routing-484-492-condition-audit-2026-10-01.json",
+      "sha256": "9fc7fcb8295430418634b2e0a1160d38c5305c7aecfb611225dc1024fcbccd13",
+      "bundle_commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6"
+    }
+  ],
+  "additional_pins": [
+    {
+      "name": "archive_source",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+    },
+    {
+      "name": "asset_ledger",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "line": 956,
+      "entry_sha256": "a6d52de16ee4aa8ecb37ed092fb4c2beda22ec89d1d036b3028414a753375dde",
+      "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5"
+    }
+  ],
+  "legacy_source_asset": {
+    "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+    "archive_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+    "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+    "asset_ledger_path": "docs/governance/legacy-asset-disposition.jsonl",
+    "asset_ledger_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+    "asset_ledger_line": 956,
+    "asset_ledger_entry_sha256": "a6d52de16ee4aa8ecb37ed092fb4c2beda22ec89d1d036b3028414a753375dde",
+    "asset_ledger_source_path": "docs/governance/helix-harness-requirements_v1.3.md",
+    "asset_ledger_source_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+    "disposition": "source_snapshot_preservation"
+  },
+  "fixed_f6_pair_files": [
+    {
+      "layer": "L2",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+    },
+    {
+      "layer": "L11",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+    }
+  ],
+  "finding_counts": {
+    "partial": 15,
+    "unknown": 3,
+    "gap": 2
+  },
+  "records": [
+    {
+      "focused_candidate_position": 41,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00338",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "archive_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 438,
+        "source_line_sha256": "sha256:2c59992ccd95b908b909d67091d23f65d92be9f4596f3af1c59313a38697fbac",
+        "physical_line_bytes_sha256_including_terminator": "05ccdb3e71e3abaad8fe0f5d3aa714bdd3723d7dde3d38546580064ba6a3bc37",
+        "source_text": "（fixed fixture／rubric、重大failureの平均相殺禁止）による用途別admit／retireなしにworkerを採用しない。",
+        "source_section": "§4.10 外部AI worker・422–441",
+        "condition_cluster_id": "V13-COND-L0438",
+        "context_lines": [
+          {
+            "line": 437,
+            "text": "HR-FR-HIL-22の本書昇格）。Claude・Codex・Kimi・将来のGrokは同一契約のinstanceであり、blind benchmark",
+            "line_sha256": "e03e660240bf5c37a39081e9e4581526ba76fbd5ad8fc697b45f5abf5ab192e5"
+          },
+          {
+            "line": 438,
+            "text": "（fixed fixture／rubric、重大failureの平均相殺禁止）による用途別admit／retireなしにworkerを採用しない。",
+            "line_sha256": "2c59992ccd95b908b909d67091d23f65d92be9f4596f3af1c59313a38697fbac"
+          },
+          {
+            "line": 439,
+            "text": "Discovery成果（PLAN-DISCOVERY-12/13）はS4 decide前に正本claimへ昇格しない。",
+            "line_sha256": "987ca1fd7f0c0d150590918e2a7e3cfcd0dce5ffe13e1b3d2d79e0fbe4c22532"
+          }
+        ]
+      },
+      "baseline_queue": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status": "unresolved",
+        "focused_identity_hit": false,
+        "prior_first40_excluded": false
+      },
+      "comparison": {
+        "finding": "partial",
+        "direct_current_evidence": "固定F6のL2/L11には、旧worker用途別benchmarkの要件と同一性を示す行別pairを確認できない。現行L2/L11の一般条件から旧REQSRCとの対応を推定しない。",
+        "fixed_f6_relation_refs": [],
+        "selected_source_row_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "formal_successor_assigned": false,
+        "unresolved_residual": "fixed fixture/rubricと重大failureの平均相殺禁止を含む用途別blind benchmark、workerごとのadmit/retire oracle、旧REQSRC行のadopted binding。",
+        "authority_effect": "none"
+      }
+    },
+    {
+      "focused_candidate_position": 42,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00339",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "archive_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 439,
+        "source_line_sha256": "sha256:987ca1fd7f0c0d150590918e2a7e3cfcd0dce5ffe13e1b3d2d79e0fbe4c22532",
+        "physical_line_bytes_sha256_including_terminator": "d6ef975ea5bb337ab771b4a44b3b76ab98434bf1eeda34b6bd3176bff72edcbd",
+        "source_text": "Discovery成果（PLAN-DISCOVERY-12/13）はS4 decide前に正本claimへ昇格しない。",
+        "source_section": "§4.10 外部AI worker・422–441",
+        "condition_cluster_id": "V13-COND-L0439",
+        "context_lines": [
+          {
+            "line": 438,
+            "text": "（fixed fixture／rubric、重大failureの平均相殺禁止）による用途別admit／retireなしにworkerを採用しない。",
+            "line_sha256": "2c59992ccd95b908b909d67091d23f65d92be9f4596f3af1c59313a38697fbac"
+          },
+          {
+            "line": 439,
+            "text": "Discovery成果（PLAN-DISCOVERY-12/13）はS4 decide前に正本claimへ昇格しない。",
+            "line_sha256": "987ca1fd7f0c0d150590918e2a7e3cfcd0dce5ffe13e1b3d2d79e0fbe4c22532"
+          },
+          {
+            "line": 440,
+            "text": "正本FR＝`docs/design/helix/L3-requirements/worker-common-contract.md`（WCC-FR-01〜09、HIL-22/HIL-23 trace付き）、",
+            "line_sha256": "52d9b8207182cc47c8a75c5ed626378e2db53b7004293e94f2b009b68032b644"
+          }
+        ]
+      },
+      "baseline_queue": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status": "unresolved",
+        "focused_identity_hit": false,
+        "prior_first40_excluded": false
+      },
+      "comparison": {
+        "finding": "partial",
+        "direct_current_evidence": "固定F6 L2-002の具体条件はDiscovery/PoCを別ticketにし、Decide裁定前のproduction昇格を禁じ、L11-002も方式phaseへの混入を拒む。旧行のS4 receipt・PLAN-DISCOVERY-12/13固有のstate/consumerまではこのpairから確定しない。",
+        "fixed_f6_relation_refs": [
+          {
+            "target": "HARNESS-L2-002",
+            "pair_text_status": "adopted_requirement_text",
+            "claim_boundary": "現行文書の記載関係を示す。selected v1.3 source rowのadoption/crosswalk/closureを意味しない。",
+            "l2_pins": [
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 53,
+                "line_text": "| HARNESS-L2-002 | 対象プロダクトの特性に合わせて開発方式（Vモデル、スクラム、ハイブリッド、リリースカンバン）を選び、または合成して進められる。L3までは方式によらず一律共通に進める | HBR-P0／P1、v1.3 §4、2026-09-24 PO判断、[2026-09-25 PO判断](../../governance/decisions/po-optimal-draft-po-decisions-2026-09-25.md) | 4つの方式を下の定義どおりに区別し、駆動（ticketの種類）と混同しない。どの組み合わせでも、L1–L3と人の要件承認、V字の対、品質条件を落とさない。提供の単位ごとにリリースカンバン上の状態が分かる |",
+                "line_sha256": "932d09ce11a68ddc501378d4e0e5cf65f71597de161efebf5fd699ae82b2813b"
+              },
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 101,
+                "line_text": "| HARNESS-L2-002 | `HR-FR-HYB-003`／`FR-L1-15`／`HIL-BR-28`に従い、DiscoveryとPoCは仮説・実現性を検証する、開発方式とは別のticketとする。Scrum等の開発方式のphaseとして扱わず、Decideの裁定前にproduction成果へ昇格させない |",
+                "line_sha256": "f1fbad46ab5e0326dcfa51968b704527f370a81907b42a4d0b0fd7d378216432"
+              }
+            ],
+            "l11_pins": [
+              {
+                "layer": "L11",
+                "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 22,
+                "line_text": "| HARNESS-L2-002 | 異なる開発方式の工程を確認し、開発方式とticketの種類（駆動）を混同しない。Discovery・PoCを開発方式のphaseへ混入させない。リリースカンバンで立てたリリース単位の順序と優先に沿って、各リリース単位を選んだ開発方式で進められ、提供の単位ごとにリリースカンバン上の状態を確認できる |",
+                "line_sha256": "750bbdbca003df8710a0112781b490bb490573913fc1fd9d24f2d158cabb42cb"
+              }
+            ]
+          }
+        ],
+        "selected_source_row_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "formal_successor_assigned": false,
+        "unresolved_residual": "S4 decision receiptとPLAN-DISCOVERY-12/13の個別条件・oracle・consumer、旧REQSRC行のrow-specific採択pair binding。",
+        "authority_effect": "none"
+      }
+    },
+    {
+      "focused_candidate_position": 43,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00340",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "archive_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 440,
+        "source_line_sha256": "sha256:52d9b8207182cc47c8a75c5ed626378e2db53b7004293e94f2b009b68032b644",
+        "physical_line_bytes_sha256_including_terminator": "c2260422581e17a495668c7a25139f69eae7eb8f01938b3bc20f8d6cc794cff0",
+        "source_text": "正本FR＝`docs/design/helix/L3-requirements/worker-common-contract.md`（WCC-FR-01〜09、HIL-22/HIL-23 trace付き）、",
+        "source_section": "§4.10 外部AI worker・422–441",
+        "condition_cluster_id": "V13-COND-L0440",
+        "context_lines": [
+          {
+            "line": 439,
+            "text": "Discovery成果（PLAN-DISCOVERY-12/13）はS4 decide前に正本claimへ昇格しない。",
+            "line_sha256": "987ca1fd7f0c0d150590918e2a7e3cfcd0dce5ffe13e1b3d2d79e0fbe4c22532"
+          },
+          {
+            "line": 440,
+            "text": "正本FR＝`docs/design/helix/L3-requirements/worker-common-contract.md`（WCC-FR-01〜09、HIL-22/HIL-23 trace付き）、",
+            "line_sha256": "52d9b8207182cc47c8a75c5ed626378e2db53b7004293e94f2b009b68032b644"
+          },
+          {
+            "line": 441,
+            "text": "検証oracle＝`docs/test-design/helix/worker-common-contract-acceptance.md`（HAT-WCC-01〜09）。",
+            "line_sha256": "99275874dcd96a0c6e8656b5a6d3e9d65ee3815e1a33525b2172eef5f8d91495"
+          }
+        ]
+      },
+      "baseline_queue": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status": "unresolved",
+        "focused_identity_hit": false,
+        "prior_first40_excluded": false
+      },
+      "comparison": {
+        "finding": "partial",
+        "direct_current_evidence": "固定F6 L2/L11でWCC-FR-01〜09/HIL-22/23を特定する採択済み要求pairを確認できない。",
+        "fixed_f6_relation_refs": [],
+        "selected_source_row_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "formal_successor_assigned": false,
+        "unresolved_residual": "WCC-FR-01〜09/HIL-22/23のexact adopted target、行別trace/oracle、source materializationとadoption状態。",
+        "authority_effect": "none"
+      }
+    },
+    {
+      "focused_candidate_position": 44,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00435",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "archive_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 561,
+        "source_line_sha256": "sha256:636df91db6d1af09037b32e5227d1762093eb908a9da218fc861d22f40bd7b9f",
+        "physical_line_bytes_sha256_including_terminator": "412938bc8e847815e8c3f76debf00b3f1e7dc0363f978d750196a1760f49081b",
+        "source_text": "完了率100%は、全requirement、AC、必須edge、V pair、gate evidence、finding dispositionが閉じた場合だけ許可する。L単位tagは進捗の補助証拠であり、DB closureなしに完了率を上げない。",
+        "source_section": "§7 ledger/completion・557–561",
+        "condition_cluster_id": "V13-COND-L0561",
+        "context_lines": [
+          {
+            "line": 560,
+            "text": "",
+            "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 561,
+            "text": "完了率100%は、全requirement、AC、必須edge、V pair、gate evidence、finding dispositionが閉じた場合だけ許可する。L単位tagは進捗の補助証拠であり、DB closureなしに完了率を上げない。",
+            "line_sha256": "636df91db6d1af09037b32e5227d1762093eb908a9da218fc861d22f40bd7b9f"
+          },
+          {
+            "line": 562,
+            "text": "",
+            "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      "baseline_queue": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status": "unresolved",
+        "focused_identity_hit": false,
+        "prior_first40_excluded": false
+      },
+      "comparison": {
+        "finding": "partial",
+        "direct_current_evidence": "固定F6 L2-003/L11-003は工程完了・未検証状態を推定しない。scope分母・双方向join・obligation 100%未達条件を旧source行へ結ぶpairは確認できない。",
+        "fixed_f6_relation_refs": [
+          {
+            "target": "HARNESS-L2-003",
+            "pair_text_status": "adopted_requirement_text",
+            "claim_boundary": "現行文書の記載関係を示す。selected v1.3 source rowのadoption/crosswalk/closureを意味しない。",
+            "l2_pins": [
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 54,
+                "line_text": "| HARNESS-L2-003 | 工程の開始・凍結・差戻し・再開・完了に必要な条件を確認できる。画面や不確定要素のある対象は、L2.5のPrototype・PoCで不確定要素を減らしてから要件へ進む。Vの左側（Forward）は原子CIの最低保証で暫定の成果を速く作り、Vの谷（L6↔L7）より右側は、結合の範囲を広げるたびに実物を対の設計と照合し、意味を保てる範囲で直してから証明を強める | HBR-P0／P3、HNFR-P3、2026-09-24 PO判断、[2026-09-26 PO判断](../../governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md) | 必要な合意、対成果物、検証、未解決事項が明示され、実行成功だけで工程完了にならない。成果物の状態を、前の状態の成立から推定しない。Releaseの条件を最初から持ち、終わりで初めて探さない |",
+                "line_sha256": "693deb038a91ee9ba358aecab588d889a9fa40ff67c5d697f880ee76ff18b3d0"
+              }
+            ],
+            "l11_pins": [
+              {
+                "layer": "L11",
+                "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 23,
+                "line_text": "| HARNESS-L2-003 | 凍結・差戻し・再開・完了の条件を確認し、未合意・未検証で進行可能と判定しない。画面または技術的な成立性に不確定要素がある対象は、L2.5で確かめて合意するまで要件へ進めない。Vの谷より右側で、実物を対の設計と照合し、意味を保てる変更だけをRefactorし、意味が変わるものを対応する左の層へBackflowする。成果物の状態を前の状態から推定せず、Release Portの条件を開発の開始時から満たしていく |",
+                "line_sha256": "1ced8f2b5886a2c154bb809f169b8a01f27d9af38abb1697ac0cd96325dba9c5"
+              }
+            ]
+          }
+        ],
+        "selected_source_row_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "formal_successor_assigned": false,
+        "unresolved_residual": "全requirement/AC/edge/V-pair/gate evidence/finding dispositionをDB closureへ結ぶ旧分母の exact ownershipと、採択済みpairでの同一oracle。",
+        "authority_effect": "none"
+      }
+    },
+    {
+      "focused_candidate_position": 45,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00441",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "archive_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 571,
+        "source_line_sha256": "sha256:bc794e93d20dbfaa3a91f7c8cbf3bb2481f6bfa07fecfd01f92938c777c4bdf9",
+        "physical_line_bytes_sha256_including_terminator": "6b7c9a0e11fca243aa4b2d038cc8378101dfa12724978ff91c321fe3be1419a9",
+        "source_text": "  policyで再検証する。",
+        "source_section": "§8 runtime authority・563–578",
+        "condition_cluster_id": "V13-COND-L0571",
+        "context_lines": [
+          {
+            "line": 570,
+            "text": "- Python出力のcommand、SQL、absolute path、codeを実行せず、proposal bytesをNodeがschema／digest／authority",
+            "line_sha256": "8dbd44a6684df69af124c4274a1b0f7522b610d45ff05f8bfea82bec3446ae73"
+          },
+          {
+            "line": 571,
+            "text": "  policyで再検証する。",
+            "line_sha256": "bc794e93d20dbfaa3a91f7c8cbf3bb2481f6bfa07fecfd01f92938c777c4bdf9"
+          },
+          {
+            "line": 572,
+            "text": "- これらはprose宣言ではなく、doctor gateまたはtestで検査可能なACとして実装へ接続する（検査の不在は",
+            "line_sha256": "7c0e048ea6c0754857d963e8e41ceece9a62200f92f48978556f3cad35bd42ce"
+          }
+        ]
+      },
+      "baseline_queue": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status": "unresolved",
+        "focused_identity_hit": false,
+        "prior_first40_excluded": false
+      },
+      "comparison": {
+        "finding": "unknown",
+        "direct_current_evidence": "固定F6 HARNESS pairで旧Python worker固有のauthority/runtime boundaryを確定する採択済み条件は確認できない。",
+        "fixed_f6_relation_refs": [],
+        "selected_source_row_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "formal_successor_assigned": false,
+        "unresolved_residual": "旧Python/Node ADR epochと実行主体境界の現行owner、Python workerの権限欠如 oracle、adopted pair。",
+        "authority_effect": "none"
+      }
+    },
+    {
+      "focused_candidate_position": 46,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00442",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "archive_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 572,
+        "source_line_sha256": "sha256:7c0e048ea6c0754857d963e8e41ceece9a62200f92f48978556f3cad35bd42ce",
+        "physical_line_bytes_sha256_including_terminator": "708bb8a9552bcfdf423a7006987bf15f15ca9b956053711024f2e66901f0b089",
+        "source_text": "- これらはprose宣言ではなく、doctor gateまたはtestで検査可能なACとして実装へ接続する（検査の不在は",
+        "source_section": "§8 runtime authority・563–578",
+        "condition_cluster_id": "V13-COND-L0572",
+        "context_lines": [
+          {
+            "line": 571,
+            "text": "  policyで再検証する。",
+            "line_sha256": "bc794e93d20dbfaa3a91f7c8cbf3bb2481f6bfa07fecfd01f92938c777c4bdf9"
+          },
+          {
+            "line": 572,
+            "text": "- これらはprose宣言ではなく、doctor gateまたはtestで検査可能なACとして実装へ接続する（検査の不在は",
+            "line_sha256": "7c0e048ea6c0754857d963e8e41ceece9a62200f92f48978556f3cad35bd42ce"
+          },
+          {
+            "line": 573,
+            "text": "  fail-close対象であり、gap一覧へ登録して黙認しない）。",
+            "line_sha256": "25e5526c424b6ffb12fb4e9e68414be52d3c356f11ce73cc3e810f1f561d2282"
+          }
+        ]
+      },
+      "baseline_queue": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status": "unresolved",
+        "focused_identity_hit": false,
+        "prior_first40_excluded": false
+      },
+      "comparison": {
+        "finding": "unknown",
+        "direct_current_evidence": "固定F6 L2/L11に旧Python出力のcommand/SQL/path/code非実行とNode側schema/digest/policy再検証を示す採択済みpairを確認できない。",
+        "fixed_f6_relation_refs": [],
+        "selected_source_row_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "formal_successor_assigned": false,
+        "unresolved_residual": "Python proposal bytesの安全な受け渡し、Node revalidation実施者/oracle、旧command/SQL/code非実行条件のpair adoption。",
+        "authority_effect": "none"
+      }
+    },
+    {
+      "focused_candidate_position": 47,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00443",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "archive_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 573,
+        "source_line_sha256": "sha256:25e5526c424b6ffb12fb4e9e68414be52d3c356f11ce73cc3e810f1f561d2282",
+        "physical_line_bytes_sha256_including_terminator": "9ba8d20e4928d9eee99c4acfe87422c209c9b2a9b959ab1976c27a389378ab28",
+        "source_text": "  fail-close対象であり、gap一覧へ登録して黙認しない）。",
+        "source_section": "§8 runtime authority・563–578",
+        "condition_cluster_id": "V13-COND-L0573",
+        "context_lines": [
+          {
+            "line": 572,
+            "text": "- これらはprose宣言ではなく、doctor gateまたはtestで検査可能なACとして実装へ接続する（検査の不在は",
+            "line_sha256": "7c0e048ea6c0754857d963e8e41ceece9a62200f92f48978556f3cad35bd42ce"
+          },
+          {
+            "line": 573,
+            "text": "  fail-close対象であり、gap一覧へ登録して黙認しない）。",
+            "line_sha256": "25e5526c424b6ffb12fb4e9e68414be52d3c356f11ce73cc3e810f1f561d2282"
+          },
+          {
+            "line": 574,
+            "text": "",
+            "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      "baseline_queue": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status": "unresolved",
+        "focused_identity_hit": false,
+        "prior_first40_excluded": false
+      },
+      "comparison": {
+        "finding": "unknown",
+        "direct_current_evidence": "固定F6 L2/L11にPython worker制約をdoctor gate/test ACへ接続し、不在時fail-close・gap非黙認とする採択済み要件pairを確認できない。",
+        "fixed_f6_relation_refs": [],
+        "selected_source_row_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "formal_successor_assigned": false,
+        "unresolved_residual": "Python worker専用machine-checkable ACとgate/test oracle、検査不在のfailure behavior。",
+        "authority_effect": "none"
+      }
+    },
+    {
+      "focused_candidate_position": 48,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00444",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "archive_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 575,
+        "source_line_sha256": "sha256:ca4337b43f5f950aeb01f9d6ae57f6a26ed705b5f934bc8b71b4a47d2b4d4124",
+        "physical_line_bytes_sha256_including_terminator": "590630719d717620e0b0f288235caa73a84378cafe30555d649189b8eae19259",
+        "source_text": "CI OS profileは、Linuxをfull canonical gate、Native Windows／macOSを同一fixtureのcompatibility gateとする。",
+        "source_section": "§8 runtime authority・563–578",
+        "condition_cluster_id": "V13-COND-L0575",
+        "context_lines": [
+          {
+            "line": 574,
+            "text": "",
+            "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 575,
+            "text": "CI OS profileは、Linuxをfull canonical gate、Native Windows／macOSを同一fixtureのcompatibility gateとする。",
+            "line_sha256": "ca4337b43f5f950aeb01f9d6ae57f6a26ed705b5f934bc8b71b4a47d2b4d4124"
+          },
+          {
+            "line": 576,
+            "text": "v1.2由来の「Windows smokeを追加する」は着地済みであり、正本citeを本書に固定する: Windows smoke =",
+            "line_sha256": "d68d8260701278eb93c11155bd94ae30149f68ccb36ed6ad2e7364dde166d7a1"
+          }
+        ]
+      },
+      "baseline_queue": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status": "unresolved",
+        "focused_identity_hit": false,
+        "prior_first40_excluded": false
+      },
+      "comparison": {
+        "finding": "partial",
+        "direct_current_evidence": "固定L2-005/L11-005は対象riskに応じた検証義務・evidence・CI組立規則を扱う。",
+        "fixed_f6_relation_refs": [
+          {
+            "target": "HARNESS-L2-005",
+            "pair_text_status": "adopted_requirement_text",
+            "claim_boundary": "現行文書の記載関係を示す。selected v1.3 source rowのadoption/crosswalk/closureを意味しない。",
+            "l2_pins": [
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 56,
+                "line_text": "| HARNESS-L2-005 | ticketとの関係（Forward 小・中・大、V字の対、触るコネクタ、変更の種類）と、変更の内容・layer・riskから必要な検証義務と証拠条件を導出し、PRの前に回すCIを動的に組み立てるための規則を定められる。CIの組み立てと運転はHELIX-OSの検収が行う。言語・tool・実装方式に依存しない | HNFR-P3、v1.3 §4、旧GH-FR-025、新世代CI要求候補、2026-09-24 PO判断、[2026-09-26 PO判断](../../governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md) | CIの段数を固定せず、特定CIやWorkerに依存せず、対象revision、oracle、expected failure、証拠、有効期限、差戻し先を説明できる。全件の実行を既定にせず、省いた検査を記録して合流先のticketで回収する |",
+                "line_sha256": "7840e6369db64bfe553628e2cb0c5cafcd8537266b2637e64e5c9789778f81e4"
+              },
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 121,
+                "line_text": "| HARNESS-L2-005 | 検証条件には対象要求revision、成果物、入力、oracle、expected failure、実結果、証拠の有効期限、差戻し先を含める。required／conditional／informational／N/Aを理由付きで区別し、unknownをskipへ変換しない。CI成功・画面表示・文書登録だけを利用者受入や全工程完了の証拠にしない |",
+                "line_sha256": "164544023a6646eda7f073c3dbd7b30b1fc33e1bb33b5d5649be7305ae15a923"
+              }
+            ],
+            "l11_pins": [
+              {
+                "layer": "L11",
+                "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 25,
+                "line_text": "| HARNESS-L2-005 | ticketとの関係（Forward 小・中・大、V字の対、触るコネクタ、変更の種類）と、変更の内容・layer・riskから必要な検証が導出され、固定の段数ではなくその検証に合うCIをPRの前に組み立てる規則が導かれ、HELIX-OSの検収がその規則でCIを組み立てられる。省いた検査は記録され、合流先のticketで回収される。異なる言語・CI実装でも同じ検証契約を評価でき、特定Worker、旧job集合、CI greenを検証義務の代替にしない |",
+                "line_sha256": "edeceea2b54fe31fe92460f610e19a49e32fde6a2d7a57c51d98c9b9afcbe371"
+              }
+            ]
+          }
+        ],
+        "selected_source_row_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "formal_successor_assigned": false,
+        "unresolved_residual": "Linux canonicalとNative Windows/macOS compatibility gateのOS profile・same-fixture条件はこのpairに明示されない。",
+        "authority_effect": "none"
+      }
+    },
+    {
+      "focused_candidate_position": 49,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00445",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "archive_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 576,
+        "source_line_sha256": "sha256:d68d8260701278eb93c11155bd94ae30149f68ccb36ed6ad2e7364dde166d7a1",
+        "physical_line_bytes_sha256_including_terminator": "97a776b6667b9d318423871d7c668ec68b1eaaa3b4d3bd80be48c86a7dcd75a6",
+        "source_text": "v1.2由来の「Windows smokeを追加する」は着地済みであり、正本citeを本書に固定する: Windows smoke =",
+        "source_section": "§8 runtime authority・563–578",
+        "condition_cluster_id": "V13-COND-L0576",
+        "context_lines": [
+          {
+            "line": 575,
+            "text": "CI OS profileは、Linuxをfull canonical gate、Native Windows／macOSを同一fixtureのcompatibility gateとする。",
+            "line_sha256": "ca4337b43f5f950aeb01f9d6ae57f6a26ed705b5f934bc8b71b4a47d2b4d4124"
+          },
+          {
+            "line": 576,
+            "text": "v1.2由来の「Windows smokeを追加する」は着地済みであり、正本citeを本書に固定する: Windows smoke =",
+            "line_sha256": "d68d8260701278eb93c11155bd94ae30149f68ccb36ed6ad2e7364dde166d7a1"
+          },
+          {
+            "line": 577,
+            "text": "`.github/workflows/harness-check.yml`の`windows-durability-smoke` job（`runs-on: windows-latest`）。",
+            "line_sha256": "77e6029851b149a2ba9682a68fcc1a6d396e0f2b35bb4d68335cfb2bc075c24a"
+          }
+        ]
+      },
+      "baseline_queue": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status": "unresolved",
+        "focused_identity_hit": false,
+        "prior_first40_excluded": false
+      },
+      "comparison": {
+        "finding": "gap",
+        "direct_current_evidence": "固定L2/L11 pairで旧v1.2由来Windows smoke要求の正本citationを同じpathに固定・更新する条件を特定できない。",
+        "fixed_f6_relation_refs": [
+          {
+            "target": "HARNESS-L2-005",
+            "pair_text_status": "adopted_requirement_text",
+            "claim_boundary": "現行文書の記載関係を示す。selected v1.3 source rowのadoption/crosswalk/closureを意味しない。",
+            "l2_pins": [
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 56,
+                "line_text": "| HARNESS-L2-005 | ticketとの関係（Forward 小・中・大、V字の対、触るコネクタ、変更の種類）と、変更の内容・layer・riskから必要な検証義務と証拠条件を導出し、PRの前に回すCIを動的に組み立てるための規則を定められる。CIの組み立てと運転はHELIX-OSの検収が行う。言語・tool・実装方式に依存しない | HNFR-P3、v1.3 §4、旧GH-FR-025、新世代CI要求候補、2026-09-24 PO判断、[2026-09-26 PO判断](../../governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md) | CIの段数を固定せず、特定CIやWorkerに依存せず、対象revision、oracle、expected failure、証拠、有効期限、差戻し先を説明できる。全件の実行を既定にせず、省いた検査を記録して合流先のticketで回収する |",
+                "line_sha256": "7840e6369db64bfe553628e2cb0c5cafcd8537266b2637e64e5c9789778f81e4"
+              },
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 121,
+                "line_text": "| HARNESS-L2-005 | 検証条件には対象要求revision、成果物、入力、oracle、expected failure、実結果、証拠の有効期限、差戻し先を含める。required／conditional／informational／N/Aを理由付きで区別し、unknownをskipへ変換しない。CI成功・画面表示・文書登録だけを利用者受入や全工程完了の証拠にしない |",
+                "line_sha256": "164544023a6646eda7f073c3dbd7b30b1fc33e1bb33b5d5649be7305ae15a923"
+              }
+            ],
+            "l11_pins": [
+              {
+                "layer": "L11",
+                "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 25,
+                "line_text": "| HARNESS-L2-005 | ticketとの関係（Forward 小・中・大、V字の対、触るコネクタ、変更の種類）と、変更の内容・layer・riskから必要な検証が導出され、固定の段数ではなくその検証に合うCIをPRの前に組み立てる規則が導かれ、HELIX-OSの検収がその規則でCIを組み立てられる。省いた検査は記録され、合流先のticketで回収される。異なる言語・CI実装でも同じ検証契約を評価でき、特定Worker、旧job集合、CI greenを検証義務の代替にしない |",
+                "line_sha256": "edeceea2b54fe31fe92460f610e19a49e32fde6a2d7a57c51d98c9b9afcbe371"
+              }
+            ]
+          }
+        ],
+        "selected_source_row_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "formal_successor_assigned": false,
+        "unresolved_residual": "Windows smoke authority path・job nameとsource citationの同時更新責務。",
+        "authority_effect": "none"
+      }
+    },
+    {
+      "focused_candidate_position": 50,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00446",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "archive_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 577,
+        "source_line_sha256": "sha256:77e6029851b149a2ba9682a68fcc1a6d396e0f2b35bb4d68335cfb2bc075c24a",
+        "physical_line_bytes_sha256_including_terminator": "4bc4fdf7754eb08d85547bc45d4d543d2a6f8a06f9b0a839a6f2e6c5b4f8cac0",
+        "source_text": "`.github/workflows/harness-check.yml`の`windows-durability-smoke` job（`runs-on: windows-latest`）。",
+        "source_section": "§8 runtime authority・563–578",
+        "condition_cluster_id": "V13-COND-L0577",
+        "context_lines": [
+          {
+            "line": 576,
+            "text": "v1.2由来の「Windows smokeを追加する」は着地済みであり、正本citeを本書に固定する: Windows smoke =",
+            "line_sha256": "d68d8260701278eb93c11155bd94ae30149f68ccb36ed6ad2e7364dde166d7a1"
+          },
+          {
+            "line": 577,
+            "text": "`.github/workflows/harness-check.yml`の`windows-durability-smoke` job（`runs-on: windows-latest`）。",
+            "line_sha256": "77e6029851b149a2ba9682a68fcc1a6d396e0f2b35bb4d68335cfb2bc075c24a"
+          },
+          {
+            "line": 578,
+            "text": "本jobの存在と`harness-check`からの参照（`needs`）をACとし、削除・rename時は本節を同時更新する。",
+            "line_sha256": "2296c65ea058cff7459b1467721b1b0e1f54e5ca21ce79e876a2609f16a8cf86"
+          }
+        ]
+      },
+      "baseline_queue": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status": "unresolved",
+        "focused_identity_hit": false,
+        "prior_first40_excluded": false
+      },
+      "comparison": {
+        "finding": "gap",
+        "direct_current_evidence": "固定L2/L11 pairに`.github/workflows/harness-check.yml`の`windows-durability-smoke` jobを現行必須物として特定するpair requirementはない。",
+        "fixed_f6_relation_refs": [
+          {
+            "target": "HARNESS-L2-005",
+            "pair_text_status": "adopted_requirement_text",
+            "claim_boundary": "現行文書の記載関係を示す。selected v1.3 source rowのadoption/crosswalk/closureを意味しない。",
+            "l2_pins": [
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 56,
+                "line_text": "| HARNESS-L2-005 | ticketとの関係（Forward 小・中・大、V字の対、触るコネクタ、変更の種類）と、変更の内容・layer・riskから必要な検証義務と証拠条件を導出し、PRの前に回すCIを動的に組み立てるための規則を定められる。CIの組み立てと運転はHELIX-OSの検収が行う。言語・tool・実装方式に依存しない | HNFR-P3、v1.3 §4、旧GH-FR-025、新世代CI要求候補、2026-09-24 PO判断、[2026-09-26 PO判断](../../governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md) | CIの段数を固定せず、特定CIやWorkerに依存せず、対象revision、oracle、expected failure、証拠、有効期限、差戻し先を説明できる。全件の実行を既定にせず、省いた検査を記録して合流先のticketで回収する |",
+                "line_sha256": "7840e6369db64bfe553628e2cb0c5cafcd8537266b2637e64e5c9789778f81e4"
+              },
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 121,
+                "line_text": "| HARNESS-L2-005 | 検証条件には対象要求revision、成果物、入力、oracle、expected failure、実結果、証拠の有効期限、差戻し先を含める。required／conditional／informational／N/Aを理由付きで区別し、unknownをskipへ変換しない。CI成功・画面表示・文書登録だけを利用者受入や全工程完了の証拠にしない |",
+                "line_sha256": "164544023a6646eda7f073c3dbd7b30b1fc33e1bb33b5d5649be7305ae15a923"
+              }
+            ],
+            "l11_pins": [
+              {
+                "layer": "L11",
+                "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 25,
+                "line_text": "| HARNESS-L2-005 | ticketとの関係（Forward 小・中・大、V字の対、触るコネクタ、変更の種類）と、変更の内容・layer・riskから必要な検証が導出され、固定の段数ではなくその検証に合うCIをPRの前に組み立てる規則が導かれ、HELIX-OSの検収がその規則でCIを組み立てられる。省いた検査は記録され、合流先のticketで回収される。異なる言語・CI実装でも同じ検証契約を評価でき、特定Worker、旧job集合、CI greenを検証義務の代替にしない |",
+                "line_sha256": "edeceea2b54fe31fe92460f610e19a49e32fde6a2d7a57c51d98c9b9afcbe371"
+              }
+            ]
+          }
+        ],
+        "selected_source_row_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "formal_successor_assigned": false,
+        "unresolved_residual": "job existence/runs-on windows-latestのadopted requirement/acceptance oracleと固定source cite。",
+        "authority_effect": "none"
+      }
+    },
+    {
+      "focused_candidate_position": 51,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00447",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "archive_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 578,
+        "source_line_sha256": "sha256:2296c65ea058cff7459b1467721b1b0e1f54e5ca21ce79e876a2609f16a8cf86",
+        "physical_line_bytes_sha256_including_terminator": "5c3fbcfac42960685ca3aebf1aa33010be21e980efc11d00d9a6278dc8920c17",
+        "source_text": "本jobの存在と`harness-check`からの参照（`needs`）をACとし、削除・rename時は本節を同時更新する。",
+        "source_section": "§8 runtime authority・563–578",
+        "condition_cluster_id": "V13-COND-L0578",
+        "context_lines": [
+          {
+            "line": 577,
+            "text": "`.github/workflows/harness-check.yml`の`windows-durability-smoke` job（`runs-on: windows-latest`）。",
+            "line_sha256": "77e6029851b149a2ba9682a68fcc1a6d396e0f2b35bb4d68335cfb2bc075c24a"
+          },
+          {
+            "line": 578,
+            "text": "本jobの存在と`harness-check`からの参照（`needs`）をACとし、削除・rename時は本節を同時更新する。",
+            "line_sha256": "2296c65ea058cff7459b1467721b1b0e1f54e5ca21ce79e876a2609f16a8cf86"
+          },
+          {
+            "line": 579,
+            "text": "",
+            "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      "baseline_queue": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status": "unresolved",
+        "focused_identity_hit": false,
+        "prior_first40_excluded": false
+      },
+      "comparison": {
+        "finding": "partial",
+        "direct_current_evidence": "L2-005/L11-005は必要CIと証拠条件を組み立てる一般境界を記載する。",
+        "fixed_f6_relation_refs": [
+          {
+            "target": "HARNESS-L2-005",
+            "pair_text_status": "adopted_requirement_text",
+            "claim_boundary": "現行文書の記載関係を示す。selected v1.3 source rowのadoption/crosswalk/closureを意味しない。",
+            "l2_pins": [
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 56,
+                "line_text": "| HARNESS-L2-005 | ticketとの関係（Forward 小・中・大、V字の対、触るコネクタ、変更の種類）と、変更の内容・layer・riskから必要な検証義務と証拠条件を導出し、PRの前に回すCIを動的に組み立てるための規則を定められる。CIの組み立てと運転はHELIX-OSの検収が行う。言語・tool・実装方式に依存しない | HNFR-P3、v1.3 §4、旧GH-FR-025、新世代CI要求候補、2026-09-24 PO判断、[2026-09-26 PO判断](../../governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md) | CIの段数を固定せず、特定CIやWorkerに依存せず、対象revision、oracle、expected failure、証拠、有効期限、差戻し先を説明できる。全件の実行を既定にせず、省いた検査を記録して合流先のticketで回収する |",
+                "line_sha256": "7840e6369db64bfe553628e2cb0c5cafcd8537266b2637e64e5c9789778f81e4"
+              },
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 121,
+                "line_text": "| HARNESS-L2-005 | 検証条件には対象要求revision、成果物、入力、oracle、expected failure、実結果、証拠の有効期限、差戻し先を含める。required／conditional／informational／N/Aを理由付きで区別し、unknownをskipへ変換しない。CI成功・画面表示・文書登録だけを利用者受入や全工程完了の証拠にしない |",
+                "line_sha256": "164544023a6646eda7f073c3dbd7b30b1fc33e1bb33b5d5649be7305ae15a923"
+              }
+            ],
+            "l11_pins": [
+              {
+                "layer": "L11",
+                "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 25,
+                "line_text": "| HARNESS-L2-005 | ticketとの関係（Forward 小・中・大、V字の対、触るコネクタ、変更の種類）と、変更の内容・layer・riskから必要な検証が導出され、固定の段数ではなくその検証に合うCIをPRの前に組み立てる規則が導かれ、HELIX-OSの検収がその規則でCIを組み立てられる。省いた検査は記録され、合流先のticketで回収される。異なる言語・CI実装でも同じ検証契約を評価でき、特定Worker、旧job集合、CI greenを検証義務の代替にしない |",
+                "line_sha256": "edeceea2b54fe31fe92460f610e19a49e32fde6a2d7a57c51d98c9b9afcbe371"
+              }
+            ]
+          }
+        ],
+        "selected_source_row_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "formal_successor_assigned": false,
+        "unresolved_residual": "特定job存在と`harness-check`からの`needs`参照をdoctor/test ACにする条件、および削除/rename時の同時doc更新。",
+        "authority_effect": "none"
+      }
+    },
+    {
+      "focused_candidate_position": 52,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00451",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "archive_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 584,
+        "source_line_sha256": "sha256:fa4b0cfa000aa3e3256aee6b3d24dd27d4c02da51afd4f69c6297edc93921ac9",
+        "physical_line_bytes_sha256_including_terminator": "85f4be30160ce3cda5ae318543334f50f5f043ab9ba9f3fbed460907d81e6574",
+        "source_text": "| L0 charter | L1 企画 |",
+        "source_section": "§9 canonical layer mapping・580–593",
+        "condition_cluster_id": "V13-COND-L0584",
+        "context_lines": [
+          {
+            "line": 583,
+            "text": "|---|---|",
+            "line_sha256": "4199ba454d6d3ae83657120c2bb6bd674eefc0dd7d3cd4cc844171dc6725135b"
+          },
+          {
+            "line": 584,
+            "text": "| L0 charter | L1 企画 |",
+            "line_sha256": "fa4b0cfa000aa3e3256aee6b3d24dd27d4c02da51afd4f69c6297edc93921ac9"
+          },
+          {
+            "line": 585,
+            "text": "| L1要求＋L2画面 | L2 要求＋画面プロト |",
+            "line_sha256": "582103f25c13c939c3cb25b6ac2bf7e30077140cdfb895b644dd72486f1a103c"
+          }
+        ]
+      },
+      "baseline_queue": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status": "partial",
+        "focused_identity_hit": false,
+        "prior_first40_excluded": false
+      },
+      "comparison": {
+        "finding": "partial",
+        "direct_current_evidence": "固定L2-001/L11-001はcurrent L1–L12成果とpairおよびL0 charterの層外境界を定める。",
+        "fixed_f6_relation_refs": [
+          {
+            "target": "HARNESS-L2-001",
+            "pair_text_status": "adopted_requirement_text",
+            "claim_boundary": "現行文書の記載関係を示す。selected v1.3 source rowのadoption/crosswalk/closureを意味しない。",
+            "l2_pins": [
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 52,
+                "line_text": "| HARNESS-L2-001 | 企画・要求・L2.5（Prototype・PoC）・要件・設計・実装・検証をL1–L12と正規V-pairで構成できる。画面や不確定要素のない対象ではL2.5を飛ばせる | v1.3 §2、HBR-P3、2026-09-24 PO判断 | L2要求とL11受入、L3要件とL10総合検証を混同せず、各層の成果と対が分かる。L2.5の結果を要求の合意と区別する |",
+                "line_sha256": "19bc5f0236524bedabfd9c1ff2729b90699b4d2b0be0834f0ff11bbf8feb5e0e"
+              },
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 99,
+                "line_text": "| HARNESS-L2-001 | 正規pairはL1↔L12、L2↔L11、L3↔L10、L4↔L9、L5↔L8、L6↔L7。L0 charterは層外の上位根拠とし、旧物理pathの層番号を現行pairへ混入させない |",
+                "line_sha256": "178f3e8474016b318a3bef7238cc79f993151558adbde462afb2d0559076d15d"
+              }
+            ],
+            "l11_pins": [
+              {
+                "layer": "L11",
+                "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 21,
+                "line_text": "| HARNESS-L2-001 | L1–L12の成果と対を確認し、L2／L11とL3／L10の混同、片側欠落を識別できる。L2.5（Prototype・PoC）の結果を要求の合意と取り違えず、L2.5を飛ばした対象でも非適用の判定と理由が残る |",
+                "line_sha256": "c4c9fa75277a9296c40e4dd1d443b58fe0edc36e1ef3d85bb1234408a0b928e1"
+              }
+            ]
+          }
+        ],
+        "selected_source_row_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "formal_successor_assigned": false,
+        "unresolved_residual": "旧L0→current L1のcompatibility mappingを、対象ごとのlegacy_layer/canonical_layer fieldで変換する採択済みrow mappingは確認できない。",
+        "authority_effect": "none"
+      }
+    },
+    {
+      "focused_candidate_position": 53,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00452",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "archive_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 585,
+        "source_line_sha256": "sha256:582103f25c13c939c3cb25b6ac2bf7e30077140cdfb895b644dd72486f1a103c",
+        "physical_line_bytes_sha256_including_terminator": "f1d52a46da8bd193bfd7ef7f83d8cd9d32280bd1c63a3dc5eefeeb26131055e0",
+        "source_text": "| L1要求＋L2画面 | L2 要求＋画面プロト |",
+        "source_section": "§9 canonical layer mapping・580–593",
+        "condition_cluster_id": "V13-COND-L0585",
+        "context_lines": [
+          {
+            "line": 584,
+            "text": "| L0 charter | L1 企画 |",
+            "line_sha256": "fa4b0cfa000aa3e3256aee6b3d24dd27d4c02da51afd4f69c6297edc93921ac9"
+          },
+          {
+            "line": 585,
+            "text": "| L1要求＋L2画面 | L2 要求＋画面プロト |",
+            "line_sha256": "582103f25c13c939c3cb25b6ac2bf7e30077140cdfb895b644dd72486f1a103c"
+          },
+          {
+            "line": 586,
+            "text": "| L3要件 | L3 要件freeze |",
+            "line_sha256": "1c0bb185c1fddc858c9fe8138eb0dbd1e1d8b87d9bbbe1edabea964bceaa2533"
+          }
+        ]
+      },
+      "baseline_queue": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status": "partial",
+        "focused_identity_hit": false,
+        "prior_first40_excluded": false
+      },
+      "comparison": {
+        "finding": "partial",
+        "direct_current_evidence": "L2-001/L11-001はcurrent canonical pair、L2-019/L11-019は既存artifact持込・変換結果・unknown保持を定める。",
+        "fixed_f6_relation_refs": [
+          {
+            "target": "HARNESS-L2-001",
+            "pair_text_status": "adopted_requirement_text",
+            "claim_boundary": "現行文書の記載関係を示す。selected v1.3 source rowのadoption/crosswalk/closureを意味しない。",
+            "l2_pins": [
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 52,
+                "line_text": "| HARNESS-L2-001 | 企画・要求・L2.5（Prototype・PoC）・要件・設計・実装・検証をL1–L12と正規V-pairで構成できる。画面や不確定要素のない対象ではL2.5を飛ばせる | v1.3 §2、HBR-P3、2026-09-24 PO判断 | L2要求とL11受入、L3要件とL10総合検証を混同せず、各層の成果と対が分かる。L2.5の結果を要求の合意と区別する |",
+                "line_sha256": "19bc5f0236524bedabfd9c1ff2729b90699b4d2b0be0834f0ff11bbf8feb5e0e"
+              },
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 99,
+                "line_text": "| HARNESS-L2-001 | 正規pairはL1↔L12、L2↔L11、L3↔L10、L4↔L9、L5↔L8、L6↔L7。L0 charterは層外の上位根拠とし、旧物理pathの層番号を現行pairへ混入させない |",
+                "line_sha256": "178f3e8474016b318a3bef7238cc79f993151558adbde462afb2d0559076d15d"
+              }
+            ],
+            "l11_pins": [
+              {
+                "layer": "L11",
+                "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 21,
+                "line_text": "| HARNESS-L2-001 | L1–L12の成果と対を確認し、L2／L11とL3／L10の混同、片側欠落を識別できる。L2.5（Prototype・PoC）の結果を要求の合意と取り違えず、L2.5を飛ばした対象でも非適用の判定と理由が残る |",
+                "line_sha256": "c4c9fa75277a9296c40e4dd1d443b58fe0edc36e1ef3d85bb1234408a0b928e1"
+              }
+            ]
+          },
+          {
+            "target": "HARNESS-L2-019",
+            "pair_text_status": "adopted_requirement_text",
+            "claim_boundary": "現行文書の記載関係を示す。selected v1.3 source rowのadoption/crosswalk/closureを意味しない。",
+            "l2_pins": [
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 419,
+                "line_text": "### HARNESS-L2-019 入口：フルリバース（単体）",
+                "line_sha256": "b71e05b82d9ba22df34f471b04bdf935f5143dabd7e24f740cb869fb6570f843"
+              },
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 421,
+                "line_text": "- **受け取るもの**：持ち込まれた既存の要件、コード、PoC。",
+                "line_sha256": "98bf4efe0517a9ed47b2ef6887f118d0bd955a551e9b62957655f8b1d921fdb9"
+              },
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 422,
+                "line_text": "- **提供するもの**：HELIXの形（要求・設計・検証の対とtrace）へ変換した成果と、変換できなかった部分・由来の不明な部分の一覧。",
+                "line_sha256": "6786b088877ed2c6bd0261dbf2412f8a2c7dd72fd1444c3e8dbb350d37db1e36"
+              },
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 423,
+                "line_text": "- **保証すること**：どのリリース単位からでも入れる。由来が不明、旧資産、設計traceの欠落のときの復旧の手段として全体のReverseを使い、変換の結果を承認済みの要求・設計にしない。変換できない部分をunknownとして残し、推定で埋めない。",
+                "line_sha256": "5907e9093e0ab5387cd572d53e40db8eecfdd07aff8f79d3524044ab9b10590b"
+              }
+            ],
+            "l11_pins": [
+              {
+                "layer": "L11",
+                "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 214,
+                "line_text": "| HARNESS-L2-019 | 既存の要件・コード・PoCを持ち込み、どのリリース単位からでも入れ、変換の結果と、変換できなかった部分・由来の不明な部分の一覧が出る | 変換の結果を承認済みの要求・設計とする／変換できない部分を推定で埋める／入る先の単位を限る |",
+                "line_sha256": "5ea5e138c43ec73f080c8e4cc7e0032e01e2cdd8aff94ffe3f9288378419e376"
+              }
+            ]
+          }
+        ],
+        "selected_source_row_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "formal_successor_assigned": false,
+        "unresolved_residual": "旧L1要求＋L2画面からcurrent L2要求＋L2.5へのexact layer mappingとそのscope/version oracle。",
+        "authority_effect": "none"
+      }
+    },
+    {
+      "focused_candidate_position": 54,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00453",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "archive_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 586,
+        "source_line_sha256": "sha256:1c0bb185c1fddc858c9fe8138eb0dbd1e1d8b87d9bbbe1edabea964bceaa2533",
+        "physical_line_bytes_sha256_including_terminator": "3a164e22136ce6c311fc1ee457555a22573b12b3fcd45a4337701dfba614ae73",
+        "source_text": "| L3要件 | L3 要件freeze |",
+        "source_section": "§9 canonical layer mapping・580–593",
+        "condition_cluster_id": "V13-COND-L0586",
+        "context_lines": [
+          {
+            "line": 585,
+            "text": "| L1要求＋L2画面 | L2 要求＋画面プロト |",
+            "line_sha256": "582103f25c13c939c3cb25b6ac2bf7e30077140cdfb895b644dd72486f1a103c"
+          },
+          {
+            "line": 586,
+            "text": "| L3要件 | L3 要件freeze |",
+            "line_sha256": "1c0bb185c1fddc858c9fe8138eb0dbd1e1d8b87d9bbbe1edabea964bceaa2533"
+          },
+          {
+            "line": 587,
+            "text": "| L4基本 | L4 基本設計 |",
+            "line_sha256": "75894fd400e9f45b8705f30786d247cecd443e2ec1f3fb00cf557d903d15eddb"
+          }
+        ]
+      },
+      "baseline_queue": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status": "partial",
+        "focused_identity_hit": false,
+        "prior_first40_excluded": false
+      },
+      "comparison": {
+        "finding": "partial",
+        "direct_current_evidence": "L2-001/L11-001はcurrent L3↔L10とL2↔L11の対を混同せず扱う。",
+        "fixed_f6_relation_refs": [
+          {
+            "target": "HARNESS-L2-001",
+            "pair_text_status": "adopted_requirement_text",
+            "claim_boundary": "現行文書の記載関係を示す。selected v1.3 source rowのadoption/crosswalk/closureを意味しない。",
+            "l2_pins": [
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 52,
+                "line_text": "| HARNESS-L2-001 | 企画・要求・L2.5（Prototype・PoC）・要件・設計・実装・検証をL1–L12と正規V-pairで構成できる。画面や不確定要素のない対象ではL2.5を飛ばせる | v1.3 §2、HBR-P3、2026-09-24 PO判断 | L2要求とL11受入、L3要件とL10総合検証を混同せず、各層の成果と対が分かる。L2.5の結果を要求の合意と区別する |",
+                "line_sha256": "19bc5f0236524bedabfd9c1ff2729b90699b4d2b0be0834f0ff11bbf8feb5e0e"
+              },
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 99,
+                "line_text": "| HARNESS-L2-001 | 正規pairはL1↔L12、L2↔L11、L3↔L10、L4↔L9、L5↔L8、L6↔L7。L0 charterは層外の上位根拠とし、旧物理pathの層番号を現行pairへ混入させない |",
+                "line_sha256": "178f3e8474016b318a3bef7238cc79f993151558adbde462afb2d0559076d15d"
+              }
+            ],
+            "l11_pins": [
+              {
+                "layer": "L11",
+                "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 21,
+                "line_text": "| HARNESS-L2-001 | L1–L12の成果と対を確認し、L2／L11とL3／L10の混同、片側欠落を識別できる。L2.5（Prototype・PoC）の結果を要求の合意と取り違えず、L2.5を飛ばした対象でも非適用の判定と理由が残る |",
+                "line_sha256": "c4c9fa75277a9296c40e4dd1d443b58fe0edc36e1ef3d85bb1234408a0b928e1"
+              }
+            ]
+          }
+        ],
+        "selected_source_row_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "formal_successor_assigned": false,
+        "unresolved_residual": "old L3 requirement→current L3 freezeのcompatibility conversion contractと旧layer identityの受渡し。",
+        "authority_effect": "none"
+      }
+    },
+    {
+      "focused_candidate_position": 55,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00454",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "archive_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 587,
+        "source_line_sha256": "sha256:75894fd400e9f45b8705f30786d247cecd443e2ec1f3fb00cf557d903d15eddb",
+        "physical_line_bytes_sha256_including_terminator": "d1432454830894c33b8ecb50b51264aba387cbc24bf95e66604222a5b0101dac",
+        "source_text": "| L4基本 | L4 基本設計 |",
+        "source_section": "§9 canonical layer mapping・580–593",
+        "condition_cluster_id": "V13-COND-L0587",
+        "context_lines": [
+          {
+            "line": 586,
+            "text": "| L3要件 | L3 要件freeze |",
+            "line_sha256": "1c0bb185c1fddc858c9fe8138eb0dbd1e1d8b87d9bbbe1edabea964bceaa2533"
+          },
+          {
+            "line": 587,
+            "text": "| L4基本 | L4 基本設計 |",
+            "line_sha256": "75894fd400e9f45b8705f30786d247cecd443e2ec1f3fb00cf557d903d15eddb"
+          },
+          {
+            "line": 588,
+            "text": "| L5詳細＋旧L6機能 | L5 詳細設計＋test contract |",
+            "line_sha256": "995ef5c46d28f6760f7df9eb67bb2e81032502cc7257a1e73c346a4044227c70"
+          }
+        ]
+      },
+      "baseline_queue": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status": "partial",
+        "focused_identity_hit": false,
+        "prior_first40_excluded": false
+      },
+      "comparison": {
+        "finding": "partial",
+        "direct_current_evidence": "L2-001/L11-001はcurrent L4↔L9 pairを定める。",
+        "fixed_f6_relation_refs": [
+          {
+            "target": "HARNESS-L2-001",
+            "pair_text_status": "adopted_requirement_text",
+            "claim_boundary": "現行文書の記載関係を示す。selected v1.3 source rowのadoption/crosswalk/closureを意味しない。",
+            "l2_pins": [
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 52,
+                "line_text": "| HARNESS-L2-001 | 企画・要求・L2.5（Prototype・PoC）・要件・設計・実装・検証をL1–L12と正規V-pairで構成できる。画面や不確定要素のない対象ではL2.5を飛ばせる | v1.3 §2、HBR-P3、2026-09-24 PO判断 | L2要求とL11受入、L3要件とL10総合検証を混同せず、各層の成果と対が分かる。L2.5の結果を要求の合意と区別する |",
+                "line_sha256": "19bc5f0236524bedabfd9c1ff2729b90699b4d2b0be0834f0ff11bbf8feb5e0e"
+              },
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 99,
+                "line_text": "| HARNESS-L2-001 | 正規pairはL1↔L12、L2↔L11、L3↔L10、L4↔L9、L5↔L8、L6↔L7。L0 charterは層外の上位根拠とし、旧物理pathの層番号を現行pairへ混入させない |",
+                "line_sha256": "178f3e8474016b318a3bef7238cc79f993151558adbde462afb2d0559076d15d"
+              }
+            ],
+            "l11_pins": [
+              {
+                "layer": "L11",
+                "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 21,
+                "line_text": "| HARNESS-L2-001 | L1–L12の成果と対を確認し、L2／L11とL3／L10の混同、片側欠落を識別できる。L2.5（Prototype・PoC）の結果を要求の合意と取り違えず、L2.5を飛ばした対象でも非適用の判定と理由が残る |",
+                "line_sha256": "c4c9fa75277a9296c40e4dd1d443b58fe0edc36e1ef3d85bb1234408a0b928e1"
+              }
+            ]
+          }
+        ],
+        "selected_source_row_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "formal_successor_assigned": false,
+        "unresolved_residual": "legacy L4 basic→current L4 basic designの型付きcompatibility map。",
+        "authority_effect": "none"
+      }
+    },
+    {
+      "focused_candidate_position": 56,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00455",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "archive_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 588,
+        "source_line_sha256": "sha256:995ef5c46d28f6760f7df9eb67bb2e81032502cc7257a1e73c346a4044227c70",
+        "physical_line_bytes_sha256_including_terminator": "42d65f66a4f0620bc28ba84b06465e6f168e197bb791f732028a92803202dd49",
+        "source_text": "| L5詳細＋旧L6機能 | L5 詳細設計＋test contract |",
+        "source_section": "§9 canonical layer mapping・580–593",
+        "condition_cluster_id": "V13-COND-L0588",
+        "context_lines": [
+          {
+            "line": 587,
+            "text": "| L4基本 | L4 基本設計 |",
+            "line_sha256": "75894fd400e9f45b8705f30786d247cecd443e2ec1f3fb00cf557d903d15eddb"
+          },
+          {
+            "line": 588,
+            "text": "| L5詳細＋旧L6機能 | L5 詳細設計＋test contract |",
+            "line_sha256": "995ef5c46d28f6760f7df9eb67bb2e81032502cc7257a1e73c346a4044227c70"
+          },
+          {
+            "line": 589,
+            "text": "| L7実装 | L6 実装 |",
+            "line_sha256": "f0f859239773f15382601685d08ca89253492569df12b60118ccd8693081b2ce"
+          }
+        ]
+      },
+      "baseline_queue": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status": "partial",
+        "focused_identity_hit": false,
+        "prior_first40_excluded": false
+      },
+      "comparison": {
+        "finding": "partial",
+        "direct_current_evidence": "L2-001/L11-001はcurrent L5↔L8 pairを定める。",
+        "fixed_f6_relation_refs": [
+          {
+            "target": "HARNESS-L2-001",
+            "pair_text_status": "adopted_requirement_text",
+            "claim_boundary": "現行文書の記載関係を示す。selected v1.3 source rowのadoption/crosswalk/closureを意味しない。",
+            "l2_pins": [
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 52,
+                "line_text": "| HARNESS-L2-001 | 企画・要求・L2.5（Prototype・PoC）・要件・設計・実装・検証をL1–L12と正規V-pairで構成できる。画面や不確定要素のない対象ではL2.5を飛ばせる | v1.3 §2、HBR-P3、2026-09-24 PO判断 | L2要求とL11受入、L3要件とL10総合検証を混同せず、各層の成果と対が分かる。L2.5の結果を要求の合意と区別する |",
+                "line_sha256": "19bc5f0236524bedabfd9c1ff2729b90699b4d2b0be0834f0ff11bbf8feb5e0e"
+              },
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 99,
+                "line_text": "| HARNESS-L2-001 | 正規pairはL1↔L12、L2↔L11、L3↔L10、L4↔L9、L5↔L8、L6↔L7。L0 charterは層外の上位根拠とし、旧物理pathの層番号を現行pairへ混入させない |",
+                "line_sha256": "178f3e8474016b318a3bef7238cc79f993151558adbde462afb2d0559076d15d"
+              }
+            ],
+            "l11_pins": [
+              {
+                "layer": "L11",
+                "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 21,
+                "line_text": "| HARNESS-L2-001 | L1–L12の成果と対を確認し、L2／L11とL3／L10の混同、片側欠落を識別できる。L2.5（Prototype・PoC）の結果を要求の合意と取り違えず、L2.5を飛ばした対象でも非適用の判定と理由が残る |",
+                "line_sha256": "c4c9fa75277a9296c40e4dd1d443b58fe0edc36e1ef3d85bb1234408a0b928e1"
+              }
+            ]
+          }
+        ],
+        "selected_source_row_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "formal_successor_assigned": false,
+        "unresolved_residual": "old L5 detail + old L6 function→current L5 detail + test contract mapping、legacy L6を独立現行layerと誤認しないinput/output oracle。",
+        "authority_effect": "none"
+      }
+    },
+    {
+      "focused_candidate_position": 57,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00456",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "archive_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 589,
+        "source_line_sha256": "sha256:f0f859239773f15382601685d08ca89253492569df12b60118ccd8693081b2ce",
+        "physical_line_bytes_sha256_including_terminator": "0a5cbfe86b226e1e24bab225213c0dd6d855a3881a033792f2a446aa99edee12",
+        "source_text": "| L7実装 | L6 実装 |",
+        "source_section": "§9 canonical layer mapping・580–593",
+        "condition_cluster_id": "V13-COND-L0589",
+        "context_lines": [
+          {
+            "line": 588,
+            "text": "| L5詳細＋旧L6機能 | L5 詳細設計＋test contract |",
+            "line_sha256": "995ef5c46d28f6760f7df9eb67bb2e81032502cc7257a1e73c346a4044227c70"
+          },
+          {
+            "line": 589,
+            "text": "| L7実装 | L6 実装 |",
+            "line_sha256": "f0f859239773f15382601685d08ca89253492569df12b60118ccd8693081b2ce"
+          },
+          {
+            "line": 590,
+            "text": "| L8〜L12検証 | L7〜L11 TDD・単体・結合・総合・受入 |",
+            "line_sha256": "79c7db9ee8377ca735a40d80c5fd08339f6bbc08c4d3788ec902ca636012c757"
+          }
+        ]
+      },
+      "baseline_queue": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status": "partial",
+        "focused_identity_hit": false,
+        "prior_first40_excluded": false
+      },
+      "comparison": {
+        "finding": "partial",
+        "direct_current_evidence": "L2-001/L11-001はcurrent L6↔L7 pairとcanonical layer sequenceを定める。",
+        "fixed_f6_relation_refs": [
+          {
+            "target": "HARNESS-L2-001",
+            "pair_text_status": "adopted_requirement_text",
+            "claim_boundary": "現行文書の記載関係を示す。selected v1.3 source rowのadoption/crosswalk/closureを意味しない。",
+            "l2_pins": [
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 52,
+                "line_text": "| HARNESS-L2-001 | 企画・要求・L2.5（Prototype・PoC）・要件・設計・実装・検証をL1–L12と正規V-pairで構成できる。画面や不確定要素のない対象ではL2.5を飛ばせる | v1.3 §2、HBR-P3、2026-09-24 PO判断 | L2要求とL11受入、L3要件とL10総合検証を混同せず、各層の成果と対が分かる。L2.5の結果を要求の合意と区別する |",
+                "line_sha256": "19bc5f0236524bedabfd9c1ff2729b90699b4d2b0be0834f0ff11bbf8feb5e0e"
+              },
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 99,
+                "line_text": "| HARNESS-L2-001 | 正規pairはL1↔L12、L2↔L11、L3↔L10、L4↔L9、L5↔L8、L6↔L7。L0 charterは層外の上位根拠とし、旧物理pathの層番号を現行pairへ混入させない |",
+                "line_sha256": "178f3e8474016b318a3bef7238cc79f993151558adbde462afb2d0559076d15d"
+              }
+            ],
+            "l11_pins": [
+              {
+                "layer": "L11",
+                "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 21,
+                "line_text": "| HARNESS-L2-001 | L1–L12の成果と対を確認し、L2／L11とL3／L10の混同、片側欠落を識別できる。L2.5（Prototype・PoC）の結果を要求の合意と取り違えず、L2.5を飛ばした対象でも非適用の判定と理由が残る |",
+                "line_sha256": "c4c9fa75277a9296c40e4dd1d443b58fe0edc36e1ef3d85bb1234408a0b928e1"
+              }
+            ]
+          }
+        ],
+        "selected_source_row_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "formal_successor_assigned": false,
+        "unresolved_residual": "legacy L7 implementation→current L6 implementationの個別compatibility field mapping。",
+        "authority_effect": "none"
+      }
+    },
+    {
+      "focused_candidate_position": 58,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00457",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "archive_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 590,
+        "source_line_sha256": "sha256:79c7db9ee8377ca735a40d80c5fd08339f6bbc08c4d3788ec902ca636012c757",
+        "physical_line_bytes_sha256_including_terminator": "c16fa4a2f4ef5ee21684933bae7cc27834fbe1521d0db9f5fa0239bed814aacc",
+        "source_text": "| L8〜L12検証 | L7〜L11 TDD・単体・結合・総合・受入 |",
+        "source_section": "§9 canonical layer mapping・580–593",
+        "condition_cluster_id": "V13-COND-L0590",
+        "context_lines": [
+          {
+            "line": 589,
+            "text": "| L7実装 | L6 実装 |",
+            "line_sha256": "f0f859239773f15382601685d08ca89253492569df12b60118ccd8693081b2ce"
+          },
+          {
+            "line": 590,
+            "text": "| L8〜L12検証 | L7〜L11 TDD・単体・結合・総合・受入 |",
+            "line_sha256": "79c7db9ee8377ca735a40d80c5fd08339f6bbc08c4d3788ec902ca636012c757"
+          },
+          {
+            "line": 591,
+            "text": "| L13/L14 | L12 運用テスト・改善 |",
+            "line_sha256": "c2ca3bfb56dfb0364d2bfa1f11258ded91dce93147a2f8bf799473c593a35afd"
+          }
+        ]
+      },
+      "baseline_queue": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status": "partial",
+        "focused_identity_hit": false,
+        "prior_first40_excluded": false
+      },
+      "comparison": {
+        "finding": "partial",
+        "direct_current_evidence": "L2-001/L11-001はcurrent L7–L11成果/pairsを保持する。",
+        "fixed_f6_relation_refs": [
+          {
+            "target": "HARNESS-L2-001",
+            "pair_text_status": "adopted_requirement_text",
+            "claim_boundary": "現行文書の記載関係を示す。selected v1.3 source rowのadoption/crosswalk/closureを意味しない。",
+            "l2_pins": [
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 52,
+                "line_text": "| HARNESS-L2-001 | 企画・要求・L2.5（Prototype・PoC）・要件・設計・実装・検証をL1–L12と正規V-pairで構成できる。画面や不確定要素のない対象ではL2.5を飛ばせる | v1.3 §2、HBR-P3、2026-09-24 PO判断 | L2要求とL11受入、L3要件とL10総合検証を混同せず、各層の成果と対が分かる。L2.5の結果を要求の合意と区別する |",
+                "line_sha256": "19bc5f0236524bedabfd9c1ff2729b90699b4d2b0be0834f0ff11bbf8feb5e0e"
+              },
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 99,
+                "line_text": "| HARNESS-L2-001 | 正規pairはL1↔L12、L2↔L11、L3↔L10、L4↔L9、L5↔L8、L6↔L7。L0 charterは層外の上位根拠とし、旧物理pathの層番号を現行pairへ混入させない |",
+                "line_sha256": "178f3e8474016b318a3bef7238cc79f993151558adbde462afb2d0559076d15d"
+              }
+            ],
+            "l11_pins": [
+              {
+                "layer": "L11",
+                "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 21,
+                "line_text": "| HARNESS-L2-001 | L1–L12の成果と対を確認し、L2／L11とL3／L10の混同、片側欠落を識別できる。L2.5（Prototype・PoC）の結果を要求の合意と取り違えず、L2.5を飛ばした対象でも非適用の判定と理由が残る |",
+                "line_sha256": "c4c9fa75277a9296c40e4dd1d443b58fe0edc36e1ef3d85bb1234408a0b928e1"
+              }
+            ]
+          }
+        ],
+        "selected_source_row_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "formal_successor_assigned": false,
+        "unresolved_residual": "legacy L8–L12 validation→current L7–L11の個々の成果種別、TDD/acceptance boundaryのexact mapping。",
+        "authority_effect": "none"
+      }
+    },
+    {
+      "focused_candidate_position": 59,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00458",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "archive_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 591,
+        "source_line_sha256": "sha256:c2ca3bfb56dfb0364d2bfa1f11258ded91dce93147a2f8bf799473c593a35afd",
+        "physical_line_bytes_sha256_including_terminator": "c4d609b960d60becf7f6760046c921941aca819926a3b7f7a514810cdd2123bb",
+        "source_text": "| L13/L14 | L12 運用テスト・改善 |",
+        "source_section": "§9 canonical layer mapping・580–593",
+        "condition_cluster_id": "V13-COND-L0591",
+        "context_lines": [
+          {
+            "line": 590,
+            "text": "| L8〜L12検証 | L7〜L11 TDD・単体・結合・総合・受入 |",
+            "line_sha256": "79c7db9ee8377ca735a40d80c5fd08339f6bbc08c4d3788ec902ca636012c757"
+          },
+          {
+            "line": 591,
+            "text": "| L13/L14 | L12 運用テスト・改善 |",
+            "line_sha256": "c2ca3bfb56dfb0364d2bfa1f11258ded91dce93147a2f8bf799473c593a35afd"
+          },
+          {
+            "line": 592,
+            "text": "",
+            "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      "baseline_queue": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status": "partial",
+        "focused_identity_hit": false,
+        "prior_first40_excluded": false
+      },
+      "comparison": {
+        "finding": "partial",
+        "direct_current_evidence": "L2-001/L11-001はcurrent L12 operations/feedbackをcanonical sequenceに保持する。",
+        "fixed_f6_relation_refs": [
+          {
+            "target": "HARNESS-L2-001",
+            "pair_text_status": "adopted_requirement_text",
+            "claim_boundary": "現行文書の記載関係を示す。selected v1.3 source rowのadoption/crosswalk/closureを意味しない。",
+            "l2_pins": [
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 52,
+                "line_text": "| HARNESS-L2-001 | 企画・要求・L2.5（Prototype・PoC）・要件・設計・実装・検証をL1–L12と正規V-pairで構成できる。画面や不確定要素のない対象ではL2.5を飛ばせる | v1.3 §2、HBR-P3、2026-09-24 PO判断 | L2要求とL11受入、L3要件とL10総合検証を混同せず、各層の成果と対が分かる。L2.5の結果を要求の合意と区別する |",
+                "line_sha256": "19bc5f0236524bedabfd9c1ff2729b90699b4d2b0be0834f0ff11bbf8feb5e0e"
+              },
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 99,
+                "line_text": "| HARNESS-L2-001 | 正規pairはL1↔L12、L2↔L11、L3↔L10、L4↔L9、L5↔L8、L6↔L7。L0 charterは層外の上位根拠とし、旧物理pathの層番号を現行pairへ混入させない |",
+                "line_sha256": "178f3e8474016b318a3bef7238cc79f993151558adbde462afb2d0559076d15d"
+              }
+            ],
+            "l11_pins": [
+              {
+                "layer": "L11",
+                "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 21,
+                "line_text": "| HARNESS-L2-001 | L1–L12の成果と対を確認し、L2／L11とL3／L10の混同、片側欠落を識別できる。L2.5（Prototype・PoC）の結果を要求の合意と取り違えず、L2.5を飛ばした対象でも非適用の判定と理由が残る |",
+                "line_sha256": "c4c9fa75277a9296c40e4dd1d443b58fe0edc36e1ef3d85bb1234408a0b928e1"
+              }
+            ]
+          }
+        ],
+        "selected_source_row_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "formal_successor_assigned": false,
+        "unresolved_residual": "legacy L13/L14→current L12 operation test/improvementのexact field mappingと旧identity保持。",
+        "authority_effect": "none"
+      }
+    },
+    {
+      "focused_candidate_position": 60,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00459",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "archive_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 593,
+        "source_line_sha256": "sha256:51453b5149e0b2271962178447bf1c878ec96f3fd6422d27a8d94d45b3fcebec",
+        "physical_line_bytes_sha256_including_terminator": "71eb512e642ca82cc89bfa06b69d21fadfb9ecbe7680c8ff529ebfaa8cdca4c1",
+        "source_text": "compatibility inputには`legacy_layer`、canonical outputには`canonical_layer`を保持する。旧path名を残すことは旧authorityを残すことを意味しない。",
+        "source_section": "§9 canonical layer mapping・580–593",
+        "condition_cluster_id": "V13-COND-L0593",
+        "context_lines": [
+          {
+            "line": 592,
+            "text": "",
+            "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 593,
+            "text": "compatibility inputには`legacy_layer`、canonical outputには`canonical_layer`を保持する。旧path名を残すことは旧authorityを残すことを意味しない。",
+            "line_sha256": "51453b5149e0b2271962178447bf1c878ec96f3fd6422d27a8d94d45b3fcebec"
+          },
+          {
+            "line": 594,
+            "text": "",
+            "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      "baseline_queue": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status": "partial",
+        "focused_identity_hit": false,
+        "prior_first40_excluded": false
+      },
+      "comparison": {
+        "finding": "partial",
+        "direct_current_evidence": "L2-019/L11-019はlegacy artifactsの入力・変換結果・unknownを保持し、推測で承認済み要求/設計へしない。",
+        "fixed_f6_relation_refs": [
+          {
+            "target": "HARNESS-L2-019",
+            "pair_text_status": "adopted_requirement_text",
+            "claim_boundary": "現行文書の記載関係を示す。selected v1.3 source rowのadoption/crosswalk/closureを意味しない。",
+            "l2_pins": [
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 419,
+                "line_text": "### HARNESS-L2-019 入口：フルリバース（単体）",
+                "line_sha256": "b71e05b82d9ba22df34f471b04bdf935f5143dabd7e24f740cb869fb6570f843"
+              },
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 421,
+                "line_text": "- **受け取るもの**：持ち込まれた既存の要件、コード、PoC。",
+                "line_sha256": "98bf4efe0517a9ed47b2ef6887f118d0bd955a551e9b62957655f8b1d921fdb9"
+              },
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 422,
+                "line_text": "- **提供するもの**：HELIXの形（要求・設計・検証の対とtrace）へ変換した成果と、変換できなかった部分・由来の不明な部分の一覧。",
+                "line_sha256": "6786b088877ed2c6bd0261dbf2412f8a2c7dd72fd1444c3e8dbb350d37db1e36"
+              },
+              {
+                "layer": "L2",
+                "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 423,
+                "line_text": "- **保証すること**：どのリリース単位からでも入れる。由来が不明、旧資産、設計traceの欠落のときの復旧の手段として全体のReverseを使い、変換の結果を承認済みの要求・設計にしない。変換できない部分をunknownとして残し、推定で埋めない。",
+                "line_sha256": "5907e9093e0ab5387cd572d53e40db8eecfdd07aff8f79d3524044ab9b10590b"
+              }
+            ],
+            "l11_pins": [
+              {
+                "layer": "L11",
+                "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+                "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+                "line": 214,
+                "line_text": "| HARNESS-L2-019 | 既存の要件・コード・PoCを持ち込み、どのリリース単位からでも入れ、変換の結果と、変換できなかった部分・由来の不明な部分の一覧が出る | 変換の結果を承認済みの要求・設計とする／変換できない部分を推定で埋める／入る先の単位を限る |",
+                "line_sha256": "5ea5e138c43ec73f080c8e4cc7e0032e01e2cdd8aff94ffe3f9288378419e376"
+              }
+            ]
+          }
+        ],
+        "selected_source_row_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "formal_successor_assigned": false,
+        "unresolved_residual": "`legacy_layer` inputと`canonical_layer` outputのtyped field contract、旧path/authority非昇格をこのselected source rowへ結ぶadopted pair binding。",
+        "authority_effect": "none"
+      }
+    }
+  ],
+  "claims": {
+    "selected_rows": 20,
+    "source_row_crosswalks": 0,
+    "adopted_pair_bindings": 0,
+    "source_condition_closures": 0,
+    "formal_successor_assignments": 0,
+    "authority_effect": "none",
+    "acceptance_execution_claimed": false,
+    "implementation_claimed": false,
+    "legacy_runtime_or_test_executed": false,
+    "all_semantically_unreviewed_count_claimed": false,
+    "total_closure_count_claimed": false
+  },
+  "non_claims": [
+    "Focused identity-filterの119件/first40後79件を全意味未review・全closure work件数としない。",
+    "identity hitはmeaning coverageではなく、no hitは他の比較証拠不存在を示さない。",
+    "candidate4755 LEGACY-CAND-LINE populationをREQSRC-SUP v1.3 queueに混ぜない。",
+    "固定F6 pair文書のcandidate textを採択済み要求として扱わず、source-family/類似語彙/別source IDをselected rowのadoption bindingにしない。",
+    "formal successor、source closure、adoption、authority effect、L11 acceptance execution、implementation、legacy runtime/test/CI executionは主張しない。"
+  ],
+  "static_validation": {
+    "queue_sha_verified_at_71659": true,
+    "queue_sha_verified_at_audit_base_50686": true,
+    "queue_lineage_basis_commit_separate_from_file_commit": true,
+    "baseline_source_audit_sha_verified_at_2bf": true,
+    "focused_audit_file_sha_pins_recomputed": true,
+    "candidate_counts_and_first40_exclusion_asserted": true,
+    "selected_ids_nonoverlap_first40": true,
+    "selected_archive_file_line_and_context_sha_recomputed": true,
+    "asset_ledger_entry_and_source_sha_recomputed": true,
+    "fixed_f6_pair_file_and_line_sha_recomputed": true,
+    "selected_row_crosswalks": 0,
+    "adopted_pair_bindings": 0,
+    "acceptance_executed": false,
+    "legacy_runtime_executed": false
+  }
+}
