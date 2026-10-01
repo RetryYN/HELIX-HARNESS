@@ -4,9 +4,9 @@
   "authority_effect": "none",
   "candidate_identity": "HELIXOS-L2-118",
   "requirement_kind": "unit",
-  "candidate_semantic_digest": "sha256:af7a0c7cf74dbf61578c04618bd4b566b741083a8cea079b74882243613619a3",
+  "candidate_semantic_digest": "sha256:4e3fbf98a8c81e30d9029833fae8e7030952da5d52a266f675193b328f7a78d3",
   "candidate_digest_rule": "L2 section from ### HELIXOS-L2-118 to next same-level ### or EOF; trim trailing blank lines and terminate with one UTF-8 LF.",
-  "candidate_l2_file_sha256": "sha256:299b26667fd40a1c5af8c54426ffda5d5b6fe2f34d56c6a6eb3d8e34287b65e9",
+  "candidate_l2_file_sha256": "sha256:20bc628a1b46ec9c31537d7b6f05d7535827daaf2e6ed6491544ecff04fb854f",
   "candidate_l2_line_start": 1455,
   "candidate_l2_line_end": 1465,
   "paired_acceptance_identity": "HELIXOS-L11-118",
@@ -19,7 +19,7 @@
   "source_atom_set_digest": "sha256:17329e40351f30f0fb8c5e4dba7e214a840fb3118a3d07d654b2ae6f55c6dfba",
   "source_atom_set_digest_rule": "atom_id昇順。各atomを `atom_id SP source_line_sha256`（sha256:接頭辞を含む）で表し、LFで区切って連結する。末尾LFなし。",
   "source_atom_file_sha256": "sha256:409d0f0501b8b2b7b09560d7ed635d52b1bae5eaef5ee0c3ca3b36f21bcb5629",
-  "source_collection_scope": "MPR-SH-CANDIDATE-003が保持する旧CI event concurrency generation候補から選択した14 physical-line requirement atoms。既存11行に加え、acceptanceの000470（queue/TTL超過時のolder-schedule-only、無制限並走とsilent dropの拒否）、000472（cancelled runをpost-main/review/deferred-success全consumerが拒否）、000474（run-ID read-after、current main push/schedule独立terminal、cancel/handoff再構築）を記録。000470だけ未完義務の可視性/no-success扱いをL2/L11候補へ追補し、472/474は既存候補本文の行き先をsource formal selectionとして結ぶ。数値/TTL/state enum/runtime rehearsalを固定しない。000478は別PLANのprocess atomとしてrequirement input外。",
+  "source_collection_scope": "MPR-SH-CANDIDATE-003が保持する旧CI event concurrency generation候補から選択した14 physical-line requirement atoms。既存11行に加え、acceptanceの000470（queue/TTL超過時のolder-schedule-only、無制限並走とsilent dropの拒否）、000472（cancelled runをpost-main/review/deferred-success全consumerが拒否）、000474（run-ID read-after、current main push/schedule独立terminal、cancel/handoff再構築）を記録。000470は未完義務の可視性/no-successを追補。000472のconsumer拒否、000474の独立terminalとcancel/handoff再構築は既存条件へsource mappingし、000474のread-after結果と対応run IDのbindingおよび欠落・不一致時unknown／未完oracleだけを追補する。数値/TTL/state enum/runtime rehearsalを固定しない。000478は別PLANのprocess atomとしてrequirement input外.",
   "source_collection_atom_count": 14,
   "candidate_input_atom_refs": [
     "LEGACY-CAND-LINE-000470",
@@ -39,7 +39,7 @@
   ],
   "candidate_input_atom_count": 14,
   "candidate_input_atom_set_digest": "sha256:17329e40351f30f0fb8c5e4dba7e214a840fb3118a3d07d654b2ae6f55c6dfba",
-  "candidate_input_accounting_status": "The fourteen selected physical-line atoms are mapped to this unadopted candidate pair without loss inside this selected scope. The queue/TTL overrun no-silent-drop and visible-unfinished outcome is explicit; 000474 now explicitly binds each main-push/schedule read-after result to its corresponding run ID and keeps missing/mismatched bindings unknown/incomplete. Existing cancelled-consumer and cancel/handoff reconstruction outcomes remain mapped without duplicate meaning. Source holding remains live; no formal successor, owner/applicability assignment, PO adoption, runtime implementation, execution, source closure or condition closure is claimed.",
+  "candidate_input_accounting_status": "The fourteen selected physical-line atoms are mapped to this unadopted candidate pair without loss inside this selected scope. The queue/TTL overrun no-silent-drop and visible-unfinished outcome is explicit; 000474 now adds corresponding run-ID binding and missing/mismatched-ID unknown/incomplete oracles. Independent terminal confirmation and cancel/handoff reconstruction remain mapped to existing candidate conditions; 000472 consumer rejection remains mapped without duplicate semantics. Source holding remains live; no formal successor, owner/applicability assignment, PO adoption, runtime implementation, execution, source closure or condition closure is claimed.",
   "source_line_coverage_result": "candidate_input_scoped_to_fourteen_selected_requirement_atoms; formal_successor_owner_scope_adoption_and_execution_unconfirmed",
   "candidate_input_coverage_result": "no_loss",
   "condition_closure": "not_asserted",
@@ -645,7 +645,7 @@
     "fixed_adoption_scope": "HELIXOS-L2/L11-001..029; includes accepted L2/L11-007/008/009/018/019/020, does not include new L2/L11-118.",
     "current_paths": {
       "l2": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "l2_sha256": "sha256:299b26667fd40a1c5af8c54426ffda5d5b6fe2f34d56c6a6eb3d8e34287b65e9",
+      "l2_sha256": "sha256:20bc628a1b46ec9c31537d7b6f05d7535827daaf2e6ed6491544ecff04fb854f",
       "l11": "docs/helix-os/L11-acceptance/governance-acceptance.md",
       "l11_sha256": "sha256:e287f7ac2e82bbd7bca2a2ac1af6f263a5fe348fc6e70f29d7bc7c3c3e1d0c34"
     },
@@ -704,7 +704,8 @@
     "latest_main_comparison": "a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20",
     "latest_main_concept_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
     "latest_main_os_l1_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
-    "candidate_content_revision": "6115d5bed71c9fada0bb21d25839d0bb893bddec"
+    "candidate_content_revision": "local F1 correction based on 362bf61499d5b03f486799e3f6f08e2cafb795dd",
+    "candidate_content_revision_parent": "362bf61499d5b03f486799e3f6f08e2cafb795dd"
   },
   "registered_at": "2026-10-02T07:30:54+09:00",
   "active_mpr_registration_id": "MPR-RC-HELIXOS-L2-118-002",
@@ -761,6 +762,14 @@
       "source_atom_set_digest": "sha256:17329e40351f30f0fb8c5e4dba7e214a840fb3118a3d07d654b2ae6f55c6dfba",
       "comparison_base_commit": "a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20",
       "candidate_content_revision": "6115d5bed71c9fada0bb21d25839d0bb893bddec"
+    },
+    {
+      "event": "Root inspection correction: restore the general evidence-missing/target-unknown unfinished condition in L2-118 and distinguish existing 000474 independent-terminal/reconstruction mapping from the newly added run-ID-bound read-after oracle. No source atom or source hash changed; candidate remains unadopted.",
+      "registration_id": "MPR-RC-HELIXOS-L2-118-002",
+      "source_atom_count": 14,
+      "source_atom_set_digest": "sha256:17329e40351f30f0fb8c5e4dba7e214a840fb3118a3d07d654b2ae6f55c6dfba",
+      "comparison_base_commit": "a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20",
+      "candidate_content_revision_parent": "362bf61499d5b03f486799e3f6f08e2cafb795dd"
     }
   ],
   "current_comparison_base_commit": "a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20",
@@ -780,7 +789,7 @@
     "old_revision_files_unchanged": true
   },
   "paired_audit_ref": "docs/governance/audits/requirements-stage/legacy-candidate864-ci-event-concurrency-rows-current-treatment-2026-10-02-r2.json",
-  "paired_audit_sha256": "sha256:636b3a90d7874485758d9c14b633c46958aa8e0a0c7386e0423fec74630a4af3",
+  "paired_audit_sha256": "sha256:ba241eb79fece41139930a6baf31c69677ca8f2277abe5c4d37f4a8bb38e348b",
   "paired_markdown_ref": "docs/governance/audits/requirements-stage/legacy-candidate864-ci-event-concurrency-rows-current-treatment-2026-10-02-r2.md",
-  "paired_markdown_sha256": "sha256:988d0a2efff6efe257ef4fde987754c54ca2473374a657a54e8e0ede53552d82"
+  "paired_markdown_sha256": "sha256:e077a20e5b9d0201e5c89a4e394b5ad239cafc1a953def9e1432db2fd968b78d"
 }

@@ -6,7 +6,7 @@
 
 ## 対象とauthority
 
-- 現行比較base：`a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20`。修正対象candidate contentは`6115d5bed71c9fada0bb21d25839d0bb893bddec`を起点にし、L2/L11-118は未採択候補として扱う。本文・receipt・MPR stateから採択を推定しない。
+- 現行比較base：`a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20`。修正対象candidate contentは`6115d5bed71c9fada0bb21d25839d0bb893bddec`を起点にし、F1 correctionを追加した。L2/L11-118は未採択候補として扱う。本文・receipt・MPR stateから採択を推定しない。
 - 旧行選択：既存 `candidate4755-condition864-current-treatment-2026-10-02.json` のsource ID順で選んだ元10物理行（000478、000491、000492、000496、000497、000499、000500、000501、000502、000528）に、独立reviewで要求条件と判明した旧requirements物理行30/32（source ID 000527/000529）、旧acceptance行16/18/20（000470/000472/000474）を追加。計15物理行のうち000478は工程条件、残る14行がrequirement atoms。同JSONの機械分類や`no_condition_specific_current_target_evidence_found`だけを欠落証拠にしていない。
 - 旧archiveは読み取りだけとし、旧runtime、CI、test、CLI、live rehearsalは実行していない。
 - HELIX-OS 2026-09-28 PO decision（ファイルSHA-256 `5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da`）は固定commit `f6dad2a33e24f000b87d7f09b8d40288257e74cc` のL1/L2/L11 exact revisionを特定し、L2 `c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf`／L11 `925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680` bytesとHELIXOS-L2-001..029を採択している。2026-09-28本文のauthorityはこのdecisionから読む。今回のHELIXOS-L2/L11-118はその採択範囲の変更ではない。
@@ -54,7 +54,7 @@
 
 ## F1 review修正：000474 run-ID read-after
 
-旧原文`ci-event-concurrency-generation-acceptance.md:20`（`LEGACY-CAND-LINE-000474`）は、run ID付きread-afterでcurrent main pushとscheduleの独立terminalを確認する。修正前の118本文は各結果のterminal確認を求めていたが、それを生じたrun IDへ結び付ける条件は記していなかった。L2-118へ対応run ID bindingとmissing/mismatch時のunknown／未完境界を追加し、L11-118の正常対照へrun-ID bound read-after、終端反例へ欠落・別run binding時の拒否を追加した。これは旧sourceの結果保証を具体化し、run ID format、receipt schema、数値、状態enum、実行許可を追加しない。
+旧原文`ci-event-concurrency-generation-acceptance.md:20`（`LEGACY-CAND-LINE-000474`）は、run ID付きread-afterでcurrent main pushとscheduleの独立terminalを確認する。修正前の118本文は各結果のterminal確認を求めていたが、それを生じたrun IDへ結び付ける条件は記していなかった。L2-118では既存の証拠欠落・対象不明時unknown／未完条件を保ったうえで、対応run ID bindingとmissing/mismatch時のunknown／未完境界を追加し、L11-118の正常対照へrun-ID bound read-after、終端反例へ欠落・別run binding時の拒否を追加した。独立terminal確認とcancel/handoff再構築は既存候補の行き先を維持する。これは旧sourceの結果保証を具体化し、run ID format、receipt schema、数値、状態enum、実行許可を追加しない。
 
 ## 意味差・PO判断材料
 
@@ -70,4 +70,4 @@
 14 requirement source atomsを未採択のL2/L11-118候補へ入力し、source holdingは残す。coverage receiptの`no_loss`は選択14 atomの候補入力への対応だけを表し、正式successor、対象scope/ownerのPO割当、PO採択、条件closure、runtime実装または実行済み受入を主張しない。000472は既存候補のconsumer別拒否へsource mappingする。000474の独立terminalとcancel/handoff再構築は既存行き先を保ち、run-ID bindingおよび欠落・不一致時unknown／未完oracleを今回候補本文へ追加した。000478は選択した15物理行のうちの工程条件として現行L3/L10後の別PLANへ残し、118 requirement atom数に加えない。
 
 
-修正後の候補section pin（comparison base `a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20`、content revision `6115d5bed71c9fada0bb21d25839d0bb893bddec`）：L2-118 `sha256:af7a0c7cf74dbf61578c04618bd4b566b741083a8cea079b74882243613619a3`、L11-118 `sha256:8590e78e81005c6eb074211eaaf40793eb6f0be1ef5639d9e6eb1da79bf82d4d`。候補状態は未採択のまま。
+修正後の候補section pin（comparison base `a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20`、前revision `362bf61499d5b03f486799e3f6f08e2cafb795dd`後のlocal F1訂正）：L2-118 `sha256:af7a0c7cf74dbf61578c04618bd4b566b741083a8cea079b74882243613619a3`、L11-118 `sha256:8590e78e81005c6eb074211eaaf40793eb6f0be1ef5639d9e6eb1da79bf82d4d`。候補状態は未採択のまま。
