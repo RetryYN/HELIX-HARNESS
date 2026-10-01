@@ -200,7 +200,8 @@
         {
           "path": "docs/governance/audits/requirement-registration/connect-v13-hyb-002-profile-supply-coverage-receipt-2026-09-29.json",
           "sha256": "e601a5e26b9afa467e081983e2adcd7df43a19420e3641645a371edf4d0b1477",
-          "result": "12 lineage atoms across SECURITY-034 and CONNECT-008 candidates; source coverage partial; semantic closure 0/12; both candidates unadopted, recommendation split still pending PO"
+          "result": "At receipt creation (2026-09-29): 12 lineage atoms were split between SECURITY-034 and CONNECT-008 candidates; source coverage was partial and the receipt reported semantic closure 0/12 while pending PO. Later PO disposition is separately pinned: SECURITY-034 adopted and CONNECT-008 conditionally adopted for A placement. These dispositions do not establish whole source-line closure here.",
+          "later_decision_status": "HELIXSECURITY-L2-034 adopted; HELIXCONNECT-L2-008 conditionally adopted: A placement (supply CONNECT, safety judgment SECURITY), registration -002; see later_po_decision_pin lines 93–94."
         },
         {
           "path": "docs/governance/audits/requirement-registration/connect-v13-hyb-002-profile-supply-source-lines-2026-09-29.jsonl",
@@ -220,7 +221,8 @@
         {
           "path": "docs/governance/audits/requirement-registration/os-v13-hyb-006-feedback-resolution-coverage-receipt-2026-09-28.json",
           "sha256": "cb22a82d4881a62b2066e881449e2a6b65cae23613b0ba6715da6c6b7af34af9",
-          "result": "HELIXOS-L2-044 candidate unadopted; candidate scope rejects prose-only resolution; lifecycle, unacknowledged finding and source-HEAD mismatch atoms remain pending in that receipt; full source line partial"
+          "result": "At receipt creation (2026-09-28): HELIXOS-L2-044 was a draft/unadopted candidate scoped to prose-only resolution; lifecycle, unacknowledged-finding and source-HEAD mismatch atoms were preserved pending. Later PO disposition is separately pinned: HELIXOS-L2-044 adopted. The adoption does not establish whole source-line closure here.",
+          "later_decision_status": "HELIXOS-L2-044 adopted; see later_po_decision_pin line 67."
         },
         {
           "path": "docs/governance/audits/requirement-registration/os-v13-hyb-006-feedback-resolution-source-lines-2026-09-28.jsonl",
@@ -229,7 +231,7 @@
         {
           "path": "docs/governance/audits/requirements-stage/os-v13-hyb-006-feedback-functional-unit-crosswalk-2026-09-29.json",
           "sha256": "9f7faf9cfebc68eb187b7705e7b115314dfd1452c4f470473d6b367ec28ae191",
-          "result": "two of eight clause-span/revision atoms are satisfied by adopted OS-007/009; two have only partial relation; two map to an unadopted candidate; two remain pending without exact general successor. Source-line closure count 0; both source lines remain partial."
+          "result": "At the 2026-09-29 crosswalk observation: two of eight clause-span/revision atoms were satisfied by adopted OS-007/009; two had only partial relation; two mapped to an OS-044 candidate then unadopted; two remained pending without exact general successor. The later PO record adopts HELIXOS-L2-044 (pinned separately). Source-line closure count in that crosswalk was 0; this audit continues to make no whole-line closure claim."
         }
       ]
     }
@@ -241,11 +243,16 @@
       "baseline_status": "unresolved",
       "audit_assessment": "partial_relation_only; source-row closure unresolved",
       "retained": "Fixed F6 L2-008 preserves requirement formation, semantic comparison, scope boundary, and prohibits automatic promotion of output to approved requirement/operation authority. L2-005 and L11-005 provide general verification/oracle/evidence conditions. Separate source-specific receipt evidence partitions profile-supply/security atoms across CONNECT-008 and SECURITY-034 candidates.",
-      "residual": "No adopted exact pair in fixed F6 establishes the full typed MCP profile catalog: profile enumeration/configuration, typed safety and read-only probe descriptors, credential/egress/tool-capability fail-close per profile, and all three negative cases (unregistered profile, secret request, write-capable probe). The coverage receipt reports 0/12 semantic closure and candidates pending; relation and routing are not adoption.",
+      "residual": "No adopted exact pair in fixed F6 establishes the full typed MCP profile catalog: profile enumeration/configuration, typed safety and read-only probe descriptors, credential/egress/tool-capability fail-close per profile, and all three negative cases (unregistered profile, secret request, write-capable probe). The receipts record partial scoped atom coverage; later PO adopted SECURITY-034 and conditionally adopted CONNECT-008 for A placement. This audit does not convert that later placement decision or receipt-time 0/12 into whole source-line closure; the row-level closure remains unproven.",
       "classification": "partial",
       "formal_successor_assignment": null,
-      "adoption_or_binding": false,
-      "implementation_or_acceptance_closure": "not_proven"
+      "implementation_or_acceptance_closure": "not_proven",
+      "later_decision_ref": "later_po_decision_pin lines 93–94",
+      "source_line_adoption_or_binding_asserted": false,
+      "later_adopted_candidate_ids": [
+        "HELIXSECURITY-L2-034",
+        "HELIXCONNECT-L2-008 (conditional A placement)"
+      ]
     },
     {
       "position": 56,
@@ -253,11 +260,15 @@
       "baseline_status": "unresolved",
       "audit_assessment": "partial_relation_only; source-row closure unresolved",
       "retained": "Fixed F6 L2-004/008 and L11-005/008 support trace/change impact, preserving findings, Backflow, evidence relation, and keeping completion distinct from evidence. Later source-specific crosswalk finds two clause-span/revision atoms satisfied by adopted OS-007/009.",
-      "residual": "No single adopted successor/pair closes the full HR-FR-HYB-006 lifecycle. Intake/classify/ack/pending/reverse-candidate/resolution/SessionStart event-projection behavior is not fully mapped; unacknowledged-finding, prose-only resolution, and source-HEAD mismatch clauses remain split across separate status atoms. The OS-044 candidate for prose-only resolution is unadopted; the two OS-007/009 atom matches do not establish source-line closure.",
+      "residual": "No single adopted successor/pair closes the full HR-FR-HYB-006 lifecycle. Intake/classify/ack/pending/reverse-candidate/resolution/SessionStart event-projection behavior is not fully mapped; source-HEAD mismatch and the full old AC remain beyond the narrow candidate scope. The 2026-09-28 receipt and 2026-09-29 crosswalk recorded HELIXOS-L2-044 as unadopted then; the later PO record adopts it for its recorded scope. That adoption and the OS-007/009 atom matches do not establish source-line closure, which this audit leaves unproven.",
       "classification": "partial",
       "formal_successor_assignment": null,
-      "adoption_or_binding": false,
-      "implementation_or_acceptance_closure": "not_proven"
+      "implementation_or_acceptance_closure": "not_proven",
+      "later_decision_ref": "later_po_decision_pin line 67",
+      "source_line_adoption_or_binding_asserted": false,
+      "later_adopted_candidate_ids": [
+        "HELIXOS-L2-044"
+      ]
     }
   ],
   "residual_and_claim_boundary": {
@@ -276,7 +287,8 @@
       "fixed F6 generic pair conditions establish an unrecorded exact source successor",
       "archive runtime/test/CLI/CI behavior is current evidence"
     ],
-    "old_runtime_cli_test_ci_executed": false
+    "old_runtime_cli_test_ci_executed": false,
+    "temporal_decision_note": "Later origin/main PO record adopts SECURITY-034 and HELIXOS-044 and conditionally adopts CONNECT-008 under A placement. Historical receipts retain their creation-time pending/unadopted descriptions. This audit retains fixed F6 as its comparison revision and makes no whole source-line closure claim."
   },
   "static_validation": {
     "source_identity_lines_checked_against_archive_and_snapshot": true,
@@ -287,5 +299,40 @@
     "residual_and_authority_claims_preserved": true,
     "json_roundtrip": true,
     "old_runtime_cli_test_ci_executed": false
+  },
+  "later_po_decision_pin": {
+    "observation_ref": "origin/main",
+    "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+    "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+    "blob_sha1": "f91f7c5cf28b57e41666ae24d729378c67f0aaab",
+    "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+    "decision_rows": [
+      {
+        "line": 67,
+        "line_sha256": "6f3334da6887e697a3df623ada6e7e84963870ea7d706759edfdda4bfbe96153",
+        "id": "HELIXOS-L2-044",
+        "decision": "adopted",
+        "receipt_ref": "docs/governance/audits/requirement-registration/os-v13-hyb-006-feedback-resolution-coverage-receipt-2026-09-28.json",
+        "scope_note": "adoption of the candidate listed in the PO record; does not by itself close the whole old HR-FR-HYB-006/HR-AC-HYB-006 source line"
+      },
+      {
+        "line": 93,
+        "line_sha256": "ec02930f3e3c7d0108f9e6a81c4e5376b4ed6259ba9396cc3aa2fc0732bca489",
+        "id": "HELIXSECURITY-L2-034",
+        "decision": "adopted",
+        "receipt_ref": "docs/governance/audits/requirement-registration/security-v13-hyb-002-profile-coverage-receipt-2026-09-28.json#candidates[HELIXSECURITY-L2-034]",
+        "scope_note": "adoption of the listed scoped candidate; does not by itself close the whole old HR-FR-HYB-002/HR-AC-HYB-002 source line"
+      },
+      {
+        "line": 94,
+        "line_sha256": "0f5350230dd35d037de1a8b8f7366867f4677a5e8ee37d8856c3919a73b3f366",
+        "id": "HELIXCONNECT-L2-008",
+        "decision": "conditional adoption: A placement (supply CONNECT, safety judgment SECURITY), registration -002",
+        "receipt_ref": "docs/governance/audits/requirement-registration/connect-v13-hyb-002-profile-supply-coverage-receipt-2026-09-29.json",
+        "scope_note": "conditional A placement; this row does not turn receipt-time 0/12 into a claim of whole old source-line closure"
+      }
+    ],
+    "time_boundary": "The 2026-09-28/29 coverage receipts record their own then-state (candidate pending/unadopted and partial). This later decision pin records the PO dispositions visible at origin/main. Preserve the historical receipt claims as historical; do not repeat their candidate-unadopted state as the current state. The decision update does not alter the fixed F6 comparison revision or establish full source-line closure in this audit.",
+    "decision_file_last_changed_commit": "7581e0fc5f2a790eb5bf6f163e70d4b900ff4a45"
   }
 }

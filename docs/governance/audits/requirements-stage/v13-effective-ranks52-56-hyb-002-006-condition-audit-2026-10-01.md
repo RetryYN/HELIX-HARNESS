@@ -15,7 +15,7 @@
 
 先行 `v13-development-style-11` には両IDが含まれるが、いずれも `/population_and_deduplication/excluded_exact_source_item_ids` の単なる配列要素（00213はindex 27、00217はindex 28）であり、source path、source-file SHA-256、旧source物理行、source-line SHA-256を束ねるidentity tupleではない。00213には後発監査のprose/citation上の出現もあるが、それらも当該queue tupleを特定しない。よってこの32監査joinでは、ID文字列だけを理由に行を除外しない。00217について、同join proofが挙げる出現は同じ除外配列だけである。
 
-ただし「他のsource-qualified記録が一切ない」という意味ではない。queueは00213の限定coverage/atom mapping記録を24件、00217を20件記録している。これらは別途下記の範囲で照合した。いずれも全source行のclosureを証明するものではなく、候補の未採択またはpartial残差が明記される。したがってraw mentionをfilter hitに数えない判断と、既存の限定証拠を保持することは両立する。
+ただし「他のsource-qualified記録が一切ない」という意味ではない。queueは00213の限定coverage/atom mapping記録を24件、00217を20件記録している。receiptの記載は作成時点の状態として保持し、後発のPO判断を別の時点として照合した。2026-09-29の判断記録ではSECURITY-034とOS-044が採択され、CONNECT-008はA配置（供給はCONNECT、安全判定はSECURITY）として条件付き採択されている。よってこれらを現在も「未採択」とは記述しない。後発decisionの採択と配置判断を記録する一方、この監査は全source行のclosureを主張しない。
 
 ## 旧source、asset、pair pins
 
@@ -31,16 +31,26 @@ archive sourceは `archive/legacy-generation-2026-09-14/root/docs/governance/hel
 
 **判定: partial。旧source行は未解決で、行全体のclosureは未確認。** 固定F6のL2-008は要求形成、意味比較、scope逸脱の提示、人の訂正・合意、候補出力を承認済み要求や操作権限へ自動昇格させない境界を持つ。L2/L11-005には一般的な検証義務、oracle、証拠identityの条件がある。これらはprofile供給条件の一部に関係するが、固定pairは型付きMCP profile catalogの全契約を個別に採択していない。
 
-別のsource-qualified coverage receiptは、旧行を12 atomに分け、SECURITY-034とCONNECT-008候補へ分配している。receipt上のsource coverageはpartial、意味closureは0/12、両候補は未採択である。profile列挙・設定・typed descriptor/read-only probe供給と、credential/egress/tool capabilityのfail-close・3 negative caseを一括して閉じたとはしない。
+別のsource-qualified coverage receiptは、旧行を12 atomに分け、SECURITY-034とCONNECT-008へ分配した。receipt作成時には両候補pending POで、source coverageはpartial、意味closureは0/12と記録されていた。その後のPO判断はSECURITY-034を採択し、CONNECT-008をA配置で条件付き採択した。候補の採択・配置は後発の状態として記録するが、profile列挙・設定・typed descriptor/read-only probe供給と、credential/egress/tool capabilityのfail-close・3 negative caseを含む旧source行全体のclosureをこの監査が再判定・宣言するものではない。receiptの0/12はreceipt作成時点の記録である。
 
 ### rank 56 — `REQSRC-SUP-00217` / feedback lifecycle
 
 **判定: partial。旧source行は未解決で、行全体のclosureは未確認。** 固定F6のL2-004/008とL11-005/008は、trace・変更影響、findingの保持、Backflow、証拠relation、およびCI/evidenceだけで受入を成立させない条件に関係する。しかし7段階のlifecycle、event/projection、SessionStart surface、旧ACの3 negative clauseすべてを網羅する単一のadopted successorは確認できない。
 
-既存のsource crosswalkは8個のclause-span/revision atomのうち2件だけをadopted OS-007/009で満たし、2件を部分関係、2件を未採択OS-044候補、2件をexact general successorなしのpendingとして記録する。source line closure countは0であり旧2行はpartialのまま。未ack findingについての2 atom対応を旧行全体のclosureと読まない。
+既存のsource crosswalkは2026-09-29時点で、8個のclause-span/revision atomのうち2件をadopted OS-007/009で満たし、2件を部分関係、2件を当時未採択のOS-044候補、2件をexact general successorなしのpendingとして記録する。後発のPO判断はOS-044を採択している。crosswalkのsource line closure countは0であり、後発採択を含めても本監査は旧source行全体のclosureを主張しない。未ack findingについての2 atom対応やprose-only条件の採択を、旧lifecycle全体のclosureと読まない。
+
+## 後発PO判断の時点pin
+
+`origin/main`（commit `50686b6762788574cb471967e8c24846d3dd56ae`）の `docs/governance/decisions/po-decision-2026-09-29-57candidates.md` を参照した。ファイルSHA-256は `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`。該当行のSHA-256は67行=`6f3334da6887e697a3df623ada6e7e84963870ea7d706759edfdda4bfbe96153`、93行=`ec02930f3e3c7d0108f9e6a81c4e5376b4ed6259ba9396cc3aa2fc0732bca489`、94行=`0f5350230dd35d037de1a8b8f7366867f4677a5e8ee37d8856c3919a73b3f366`。
+
+- 67行: `HELIXOS-L2-044` 採択。根拠receiptは `os-v13-hyb-006-feedback-resolution-coverage-receipt-2026-09-28.json`。
+- 93行: `HELIXSECURITY-L2-034` 採択。根拠receiptは `security-v13-hyb-002-profile-coverage-receipt-2026-09-28.json`。
+- 94行: `HELIXCONNECT-L2-008` 条件付き採択。A配置としてprofile supplyをCONNECT、安全判定をSECURITYへ置き、registration -002を対象とする。根拠receiptは `connect-v13-hyb-002-profile-supply-coverage-receipt-2026-09-29.json`。
+
+各receiptに記録されたpending/unadoptedはreceipt作成時点の記述として残す。後発採択は固定F6比較revisionを変更せず、旧source行全体のclosureをこの監査に発生させない。decision file、行SHA、対象IDはJSONの `later_po_decision_pin` にも構造化して記録した。
 
 ## 残差と主張境界
 
-両行はqueue上primary residual／unresolvedであり、正式successor assignmentは本監査では行わない。候補route、atom-level relation、source snapshot保全、文書上の類似だけからadoption、binding、source行closure、人間authorityを生成しない。実装・受入実行の成立も主張しない。archive runtime、CLI、test、CIは実行していない。
+両行はqueue上primary residual／unresolvedであり、正式successor assignmentは本監査では行わない。後発PO判断による限定candidate採択・配置は上記のexact pinで認識するが、それだけから当該source行全体のclosure、実装・受入実行を推定しない。本監査は人間authorityを生成せず、archive runtime、CLI、test、CIを実行していない。
 
 構造化した出典tuple、監査join/crosswalk pins、既存coverageの限定scope、F6 pair行digests、行別残差は対応JSONに記録した。
