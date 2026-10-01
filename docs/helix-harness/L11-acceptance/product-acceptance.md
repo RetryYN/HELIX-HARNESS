@@ -1012,3 +1012,22 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **未見例**：依存関係が未選択sourceまたは未読artifactに及ぶ場合、そのconsumer/rollback適用性をunknownとして保持する。未読であることを影響なし・rollback可へ置き換えない。確認済み変換単位の個別結果は未見部分から分離する。
 - **限界**：この受入はrollbackを実行する、特定の復旧手順を採択する、毎ticketの人手承認を要求する、または旧test/runtimeを復活させるものではない。候補本文とoracleからL2採択・L3承認・実装/実行許可を生成しない。
 - **HARNESS-L2-053との境界**：053の採択pairはasset identity、revision、lineage relation、authority/oracle/typed-edge対応と欠落unknownを扱う。ここではそれらのhistoryを前提に、Design Refactorの独立変換計画、既存Refactor接続前に更新すべき設計pair、および対象scopeへ適用できる回復basisの有無を評価する。053のlineage確認だけでこれらの接続前条件が満たされたとはしない。
+
+### HARNESS-L2-077 source条件からdesign-obligation graphを閉じる受入候補（未採択・未実行）
+
+- **Positive — scope内graph closure**：authorityが選んだ同一scope/revisionについてsource/directive atom、requirement atom、capability/service、domain object、該当するAPI/data/state/event/failure/security/observability/lifecycle/operation/test-oracle/gate relation、適用pair/template契約とL11 oracleを与える。各適用relationから必要なdesign obligationが個別に導かれ、対応oracleへ結ばれる。各選択atomの順方向・逆方向のtyped pathが対応し、11観点の適用性と非適用理由がそれぞれ追跡でき、obligation graph、個別discharge/coverage receipt、未消込findingが同じscope/revisionに揃い、全義務に対応oracleがあれば、その選択scope/revisionだけをcomplete候補とする。
+- **Negative — relation欠落・孤児**：列挙経路のnodeまたはtyped edgeを一つずつ欠落させる、端点・型・方向・revisionを不一致にする、またはsource/reverse pathの一方を孤児にする。該当閉包を未完としてpair-freezeを拒否する。
+- **Negative — 未消込・placeholder**：未解消のdesign obligationまたはplaceholder nodeを含める。該当義務をcompleteとせず、別atomや観点の成功で埋め合わせない。
+- **Negative — 根拠のないN/A・適用性unknown**：観点をN/Aとするが理由・scope根拠がない例、適用性がunknownの観点をN/A/passにした例を与える。どちらも閉包から除外し、pair-freezeを拒否する。unknownはunknownのまま返す。
+- **Negative — aggregate一括消込**：一つのsummary/aggregate receiptだけで複数source atomまたは観点の個別義務を消し込む。個別対応の証拠がないatomを未完として残し、pair-freezeを拒否する。
+- **受入限界**：旧HIL-FR-42一行の選択条件だけを対象とする静的oracle案で、旧HR-FR-HIL-17全体・全資産・実graph/runtime、要求採択、設計pair実体、実行結果、pair freeze実績を主張しない。旧runtime/test/CIは実行せず、本候補oracleも未実行である。
+
+
+### HARNESS-L2-078 typed requirement definitionと変更receiptの受入候補（未採択・未実行）
+
+- **Positive — definition fieldsとrevision**：一つの対象scopeに対するstable requirement IDとimmutable revisionを与え、source atom、canonical statement、BR/FR/TR/NFR、modality、priority、scope/non-goal、authority/rationale、acceptance oracle、owner、risk、capability/service、template applicability、design obligationの13 field群すべてを個別に識別できる値とtyped edgeで同対象revisionへ結ぶ。項目単位の適用外/N/Aや省略を認めず、13項目すべてとrelationが欠落なく保存された場合だけ当該definitionの候補をcompleteとして扱う。物理的に単一file/schemaへ格納することは検査しない。
+- **Positive — 変更操作receipt**：split/merge/rename/supersede/reject/N/Aの一例について、対象operation、前後scope/revision、before/after semantic digest、全入力source atomのdisposition、影響downstreamとstale/result、既存authority契約に基づくreview authorityが相互に同じ変更を指す。すべてが整合するときだけ当該operationを適用済みとして表せる。
+- **Negative — field単独欠落**：13 field群の各項目を一つずつmissing、unknown、誤revisionまたは不明型にする。欠けた項目を他fieldから推測せず、definitionをcompleteとしない。field単位のN/A/適用外を使って13項目の必須条件を省略する場合は拒否し、definitionをcompleteとしない。
+- **Negative — change receiptの各証拠欠落**：6操作それぞれに対し、before digest、after digest、いずれかのsource atom disposition、downstream stale/result、review authorityを個別に欠落・不一致にする。該当operationを適用済みにせず、orphan/stale findingと影響する義務・下流範囲を未完またはunknownとして残す。別操作、別revision、一般のasset lineage evidenceで欠落分を補わない。
+- **Negative — revision/authority/stale不一致**：同じrequirement IDの本文意味を変えながらimmutable revision/digestを据え置く、別scopeのauthorityを参照する、影響downstreamをstaleにしない、または旧receiptを新revisionに流用する。新revisionの扱いを旧authorityで成立させず、現行authority-stateとchange契約に沿って未完として返す。
+- **受入限界**：旧HIL-FR-45一行の選択条件に限る静的oracle案である。全IR/HR条件のclosure、物理DB/schemaの採用、特定record layout、runtime、旧test/CI、PO採択、L3承認、実行受入を主張しない。候補oracleは未実行である。
