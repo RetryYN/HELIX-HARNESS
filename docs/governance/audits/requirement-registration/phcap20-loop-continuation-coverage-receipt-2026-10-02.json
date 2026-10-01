@@ -1,0 +1,236 @@
+{
+  "receipt_id": "MPR-RCPT-PHCAP20-LOOP-CONTINUATION-2026-10-02",
+  "authority_effect": "none",
+  "candidate_state": "registered_proposal; PO未採択",
+  "scope": "初期PHCAP inventoryのruntime/実装分類を要求欠落と扱わず、後続PHCAP-20条件回復監査で未対応とされた旧HR-BR-07の継続適格性を、4条件ANDとして限定照合。旧L3 orchestration-memory.mdのphysical lines 26–27（1つの継続条件、2 source-line atoms）だけを入力し、旧停止rule、失敗分類、memory意味、他PHCAP機能、全consumer、実装/実行/受入closureは対象外。",
+  "candidate_digest_rule": "L2の### HELIXOS-L2-114見出しから次の同階層###まで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id + 半角空白 + sha256:を除いたsource_line_sha256 + LFをatom順で連結。末尾改行なし。",
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/phcap20-loop-continuation-source-lines-2026-10-02.jsonl#PHCAP20-ORCHMEM-CANRESUME-L0026+PHCAP20-ORCHMEM-CANRESUME-L0027",
+  "source_atom_set_digest": "sha256:8148476ee059287f0120618893c6ac7e7d470fcd15d6ef6c8fc7886b0d7b2dfb",
+  "source_atom_count": 2,
+  "source_collection_scope": "旧LEGACY-ASSET-899A61905AFBC415F595のHR-BR-07継続判定を成すlines 26–27のみ。隣接する停止条件lines 28–31、HR-BR-12/HR-NFR-03、L5/L6/test/runtime/DB consumer群はcandidate input atomsでない。source holdingはasset単位で独立に保持。",
+  "source_holding": {
+    "registration_id": "MPR-SH-PHCAP20-ORCHMEMORY-001",
+    "asset_id": "LEGACY-ASSET-899A61905AFBC415F595",
+    "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/orchestration-memory.md",
+    "source_file_sha256": "sha256:9c88351f237d00c809f2cf7796fa30942f0ee2c3ad071842e719861551ccca5c",
+    "preservation_scope": "旧archive asset全体をsource file revisionとして保持する1 path_revision_pair。要求atom数、現行owner、successor、採否または旧runtime実行可能性を主張しない。既存legacy-asset-disposition ledger row 470のhistorical/unresolved状態を変更しない。",
+    "ledger_ref": "docs/governance/legacy-asset-disposition.jsonl#LEGACY-ASSET-899A61905AFBC415F595",
+    "source_atom_set_digest_rule": "asset_id + 半角空白 + sha256:を除いたsource_file_sha256。path_revision_pair 1件のUTF-8 bytesをSHA-256。",
+    "source_atom_set_digest": "sha256:503c8b8d4fd3fe290592bd443a37fe37fed814953e23607b01879f2b0601bacc",
+    "source_atom_count": 1
+  },
+  "candidates": [
+    {
+      "requirement_identity": "HELIXOS-L2-114",
+      "requirement_kind": "unit",
+      "product_target": "HELIX-OS",
+      "version_target": null,
+      "parent_l1_ids": [
+        "HELIXOS-L1-003",
+        "HELIXOS-L1-008"
+      ],
+      "parent_l1_source": {
+        "path": "docs/helix-os/L1-planning/system-intent.md",
+        "sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+        "decision_ref": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md"
+      },
+      "candidate_semantic_digest": "sha256:a5ae3f7d26f34fc6af4f30d4cbfd48be73bc7d466a710f137c24e179573bc95a",
+      "candidate_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-114",
+      "candidate_file_sha256": "sha256:e727aa3d3d5ecf9a6ce08a329f1089a2368bc685d262763d265f357107a22da8",
+      "candidate_section_boundaries": {
+        "start_line": 1418,
+        "end_line": 1432,
+        "start_heading_prefix": "### HELIXOS-L2-114"
+      },
+      "acceptance_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "acceptance_file_sha256": "sha256:84410578b56d69ba5fce0560bdf312973f93474d9ee08c7db04736c63833aa03",
+      "acceptance_section_sha256": "sha256:f6ca2c371a8ee80c619a5334176d39613bd74404bd4fed8f5240cc5057f01630",
+      "acceptance_section_boundaries": {
+        "start_line": 1014,
+        "end_line": 1023,
+        "start_heading_prefix": "### HELIXOS-L11-114"
+      },
+      "current_condition_refs": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": "62, 297",
+          "ids": [
+            "HELIXOS-L2-009"
+          ],
+          "status": "adopted; general continuity, durable events, idempotent projection, checkpoint, budget/deadline/unfinished obligation preservation, duplicate side-effect prevention"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "lines": "29, 55, 419",
+          "ids": [
+            "HELIXOS-L2-009"
+          ],
+          "status": "adopted; general interruption/continuity oracle, no exact 4-predicate loop eligibility oracle"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": "46-47, 62-63",
+          "ids": [
+            "HELIXOS-L2-004",
+            "HELIXOS-L2-009",
+            "HELIXOS-L2-010"
+          ],
+          "status": "adopted; assignment authority, bounded continuation and operation workflow, no identical running/window/verdict/iteration state tuple"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "lines": "1125-1143",
+          "ids": [
+            "HELIXOS-L2-040",
+            "HELIXOS-L2-041"
+          ],
+          "status": "Adopted adjacent L2/L11 pairs under po-decision-2026-09-29-57candidates.md rows 63-64: L2-040 defines the failure-retry upper bound; L2-041 covers safe session transition and source reread. Neither supplies this loop’s four-predicate eligibility contract or a successor for HR-BR-07."
+        }
+      ],
+      "coverage_result": "no_loss_limited_to_two_source_lines_candidate_mapping_only",
+      "carried_atom_refs": [
+        "PHCAP20-ORCHMEM-CANRESUME-L0026",
+        "PHCAP20-ORCHMEM-CANRESUME-L0027"
+      ],
+      "preserved_pending_registration_refs": [
+        "MPR-SH-PHCAP20-ORCHMEMORY-001"
+      ],
+      "human_decision_disposition_refs": [],
+      "unaccounted_atom_refs": [],
+      "four_condition_crosswalk": [
+        {
+          "index": 1,
+          "legacy_condition": "status==running",
+          "current_evidence": "L2-004 assignment/operation, L2-009 continuity, L2-010 workflow; no adopted exact status equivalence",
+          "classification": "unresolved; no closure",
+          "preserved_or_changed": "Keep the condition as a separate predicate. Do not infer running from open issue, existing session, or generic active ticket.",
+          "oracle": "A single explicit false state blocks; missing/stale/conflicting authority state yields unknown."
+        },
+        {
+          "index": 2,
+          "legacy_condition": "within the legacy time window",
+          "current_evidence": "adopted L2-009 preserves deadlines and permission scope but does not specify the old window or its boundaries",
+          "classification": "partial adjacent protection; semantic equivalence unresolved",
+          "preserved_or_changed": "Preserve an independent temporal eligibility check; do not copy old interval schema, inclusive-boundary rule, timestamps, or values.",
+          "oracle": "A clearly out-of-window fixture blocks; missing current temporal contract/revision yields unknown."
+        },
+        {
+          "index": 3,
+          "legacy_condition": "lastVerdict!=pass",
+          "current_evidence": "L2-008/020 distinguish verification outcome and execution state; L2-009 does not define a loop-terminal verdict",
+          "classification": "unresolved; no closure",
+          "preserved_or_changed": "Keep loop-terminal verdict distinct from generic HARNESS oracle pass, CI green, or downstream stage readiness.",
+          "oracle": "A pass from the selected loop-terminal oracle blocks same-loop reentry; generic CI/oracle pass alone is not the negative case."
+        },
+        {
+          "index": 4,
+          "legacy_condition": "iteration<max",
+          "current_evidence": "L2-009 carries failure count/budget/constraints; adopted L2-040 (PO decision row63) defines a failure-retry cap, not a bound on general loop iterations.",
+          "classification": "unresolved; no closure",
+          "preserved_or_changed": "Keep an independent iteration-bound check without importing old max values or treating retry count as its successor.",
+          "oracle": "At the input owner-defined maximum, block the next same-loop iteration. Missing owner-bound maximum or count yields unknown; no number is fixed here."
+        }
+      ],
+      "human_decision_options": [
+        {
+          "option": "A",
+          "choice": "Preserve the old four-predicate conjunction for explicitly selected worker/verifier loops, with each current authority owner named.",
+          "impacts": [
+            "HELIXOS-L1-003/008",
+            "HELIXOS-L2-004/009/019 and paired L11",
+            "operation-specific loop lifecycle and verdict authority"
+          ]
+        },
+        {
+          "option": "B",
+          "choice": "Define state, temporal eligibility, terminal verdict, and iteration bound per selected current operation; retain old four predicates as comparison evidence.",
+          "impacts": [
+            "HELIXOS-L1-003/008",
+            "HELIXOS-L2-004/009/010/019 and paired L11",
+            "operation owners choose whether a loop has each condition"
+          ]
+        },
+        {
+          "option": "C",
+          "choice": "No common current worker/verifier loop requirement; hold the old condition without a current requirement successor.",
+          "impacts": [
+            "No change to adopted HELIXOS-L2-004/009/010/019; PHCAP-20 source remains unresolved in the asset ledger"
+          ]
+        }
+      ],
+      "recommendation": "B. Keep all four safety predicates individually visible while avoiding a false equivalence between legacy running/window/verdict/max and current assignment/workflow/verification vocabulary; do not impose global fields or numeric values.",
+      "candidate_limit": "The candidate and its limited no_loss mapping do not assign formal successor, transfer source ownership, settle the PO choice, close other HR-BR-07 conditions or PHCAP-20, prove consumer closure, or establish implementation/execution/acceptance."
+    }
+  ],
+  "historical_status_context": {
+    "inventory_ref": "docs/governance/phase-capability-inventory.json#PHCAP-20",
+    "initial_transition_assessment": "degraded_to_draft",
+    "use_limit": "Historical inventory label only; not evidence that current runtime implementation is required, absent, or failed.",
+    "followup_audit_ref": "docs/governance/audits/requirements-stage/phcap18-condition-recovery-audit-2026-09-28.json#PHCAP-20",
+    "followup_status": "adopted_relevant_partial; exact four-predicate resume/stop function not fully adopted; runtime/execution closure not proven by L2/L11 references."
+  },
+  "meaning_change_context": {
+    "decision_ref": "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md:65-69",
+    "recorded_change": "Long-term knowledge evaluation/retention responsibility moved to LABO for 1.0–2.x; old Learning/Skill authority and provider-native memory are not reused.",
+    "relation_to_candidate": "Separate from this worker/verifier reentry candidate. Does not retire, adopt, or map the HR-BR-07 four conditions."
+  },
+  "overlap_check": [
+    {
+      "ref": "HELIXOS-L2/L11-040 adopted pair",
+      "adoption_decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md#row-63",
+      "l2_section_digest": "sha256:dfd272b75826d37333671f7152a0a58d2d013f0bd13a3f3957a76a39dcdfad80",
+      "l11_section_digest": "sha256:a70e3b1af4b22d3370c6a845fc6b5ced1e1162e2cea66cb1d0664211130533e7",
+      "difference": "The adopted contract limits failure retries; it does not cap general same-loop iterations."
+    },
+    {
+      "ref": "HELIXOS-L2/L11-041 adopted pair",
+      "adoption_decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md#row-64",
+      "l2_section_digest": "sha256:a43e3eda819e37ef81db0c60c5add5cebce5e3d17ca858c1446c27ac4db80c48",
+      "l11_section_digest": "sha256:32f08cfa7b070bb902277f79e044e971bbd3948e90621c624d80b167f80d7ded",
+      "difference": "The adopted contract covers safe session transition/source reread; it does not define four-predicate loop eligibility."
+    },
+    {
+      "ref": "HELIXOS-L2-009 adopted",
+      "difference": "existing continuity guarantees remain unchanged; 114 is unadopted condition-level candidate"
+    }
+  ],
+  "human_decision_provenance": {
+    "existing_l1_l2_decision_ref": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+    "candidate_adoption_status": "not in prior adopted set; no adoption inherited",
+    "required_decision": "PO choice among A/B/C for whether and how these four conditions apply to a current repeated worker/verifier loop."
+  },
+  "validation_boundary": "Static source lines, current L2/L11, PO decision, inventory status, candidate section and MPR references only. No archive runtime, CLI, test, old CI, or new runtime executed.",
+  "adjacent_adopted_pairs": [
+    {
+      "requirement_identity": "HELIXOS-L2-040",
+      "paired_acceptance_identity": "HELIXOS-L2-040",
+      "adoption_decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md#row-63",
+      "decision_file_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "l2_section_digest": "sha256:dfd272b75826d37333671f7152a0a58d2d013f0bd13a3f3957a76a39dcdfad80",
+      "l11_section_digest": "sha256:a70e3b1af4b22d3370c6a845fc6b5ced1e1162e2cea66cb1d0664211130533e7",
+      "scope": "Adopted failure-retry upper-bound contract. Distinct from general loop iteration limit."
+    },
+    {
+      "requirement_identity": "HELIXOS-L2-041",
+      "paired_acceptance_identity": "HELIXOS-L2-041",
+      "adoption_decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md#row-64",
+      "decision_file_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "l2_section_digest": "sha256:a43e3eda819e37ef81db0c60c5add5cebce5e3d17ca858c1446c27ac4db80c48",
+      "l11_section_digest": "sha256:32f08cfa7b070bb902277f79e044e971bbd3948e90621c624d80b167f80d7ded",
+      "scope": "Adopted safe session transition and source-reread contract. Distinct from four-predicate loop eligibility."
+    }
+  ],
+  "construction_reference_revision": "d31a4c8500d131001dc349bfbdfde82fb0b46839",
+  "current_pr_comparison": {
+    "revision": "58cbdb8e799a18b6cfb2e3e9188fa3b694898474",
+    "main_register_prefix_lines": 643,
+    "current_register_lines": 645,
+    "main_prefix_preserved": true,
+    "only_suffix_registrations": [
+      "MPR-SH-PHCAP20-ORCHMEMORY-001",
+      "MPR-RC-HELIXOS-L2-114-001"
+    ],
+    "note": "current_condition_refsの物理行は構築時d31 snapshotを参照。既存本文のbytesはmainを保持。新114候補本文/受入と現行file SHAはこのPRに固定。"
+  }
+}
