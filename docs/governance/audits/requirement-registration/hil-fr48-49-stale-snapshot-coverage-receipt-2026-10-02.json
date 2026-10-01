@@ -144,18 +144,18 @@
   "candidate_pair": {
     "l2": {
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-      "full_file_sha256": "sha256:cc05a2aeed9fbacc3ae15780b5a1f4c1d0846d8f7583d7dc6f3c117a47b120d0",
+      "full_file_sha256": "sha256:96a044491b0d8a8f45833a048753f89fc76966824a825982303ecc50e821ec2e",
       "heading": "### HARNESS-L2-072 選択pairのstale revision・異snapshot不成立候補（HARNESS-CORE unit、未採択）",
-      "start_line": 1306,
-      "end_line": 1314,
+      "start_line": 1325,
+      "end_line": 1333,
       "sha256": "84e1f111a4dff5a821197f9102685b6e92fde5e9759dfe73530fea8b39ff3461"
     },
     "l11": {
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-      "full_file_sha256": "sha256:c086534af52a7c2db0175fb9339860140e79627aa371df5b5ed82fb7a8e5b6e1",
+      "full_file_sha256": "sha256:a286d3f9e813571485ebb7b1a9dcdd7afae996180a3d2f6c6463d2ea98f96be3",
       "heading": "### HARNESS-L2-072 選択pairのstale revision・異snapshot結果受入候補（未実行）",
-      "start_line": 1016,
-      "end_line": 1025,
+      "start_line": 1035,
+      "end_line": 1044,
       "sha256": "a545a10ba59c0f1fa18c06b736153b7c99744efc9e451e9d61edd7c346039914"
     },
     "candidate_semantic_digest_rule": "L2 selected candidate section SHA-256; L11 is paired independently by exact section digest."
@@ -292,5 +292,6 @@
     "new_generation_runtime_test_ci_run": false,
     "common_8_gates_run_by_worker": false,
     "137_run_by_worker": false
-  }
+  },
+  "root_integration_note": "Current candidate full-file and line locators refreshed after latest main b6aed5a4 integration; source evidence base a93, two selected atoms, all semantic section digests and adopted055/056/063 are unchanged."
 }
