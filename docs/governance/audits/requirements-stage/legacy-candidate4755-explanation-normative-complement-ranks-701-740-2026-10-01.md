@@ -6,8 +6,8 @@
 - 選択ID SHA-256: `a81fda01f36fb0f5120393bf2abd928a42f7ef496bb22b990220469c121e23aa`
 - 旧文書: `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md`。原文の同一行・節/表文脈・前後2物理行とsource/asset ledgerを照合。
 - HXT/HXB AC IDは選択行にない。旧文書line54のID範囲を参照文脈として確認したが、選択source rowへの意味混入を避けた。
-- F6 relation: HARNESS-L2-003/004/005/022、HELIXOS-L2-004/005/007/008はfamily-levelの比較先。source-row個別binding、採用・実行・後続・closureを示さない。
-- 境界: prior ranks 661–700 paired audit / semantic verification is not in this base; rank700 ID is independently reconstructed and used only as the boundary identifier.
+- F6 relation: 固定F6のHELIX-OS L2 `governance-requirements.md:536–561`は旧`execution-ticket-requests.md`を、L11 `governance-acceptance.md:256–267`は旧`execution-ticket-validation.md`を名指し、HXT-RQ-01〜07の受入は全件未実行。本sliceの`execution-ticket-intake.md`は同じExecution Ticket familyの別候補であり、両固定文書から直接名指しされない。 HARNESS-L2-003/004/005/022、HELIXOS-L2-004/005/007/008はfamily-levelの比較先。source-row個別binding、採用・実行・後続・closureを示さない。
+- 境界: 直前ranks 661–700のpaired auditは同じ作成PR内のcommit `57e5173bd`で確定した。rank700は`LEGACY-CAND-LINE-001228`、本sliceのrank701は`LEGACY-CAND-LINE-001229`。両artifactのSHAを照合し、順位は全母集団から独立に再構成した。
 
 | 順位 | Source ID / archive行 | 分類・意味 | marker陰性の扱い | 固定F6／PO判断との関係 |
 |---:|---|---|---|---|

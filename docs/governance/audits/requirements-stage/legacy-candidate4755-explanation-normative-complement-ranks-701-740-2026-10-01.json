@@ -3,6 +3,8 @@
   "audit_id": "legacy-candidate4755-explanation-normative-complement-ranks-701-740-2026-10-01",
   "created_against_commit": "3a3f16ec85482f2938939b16ab718b0c04f9c3b1",
   "authority_effect": "none",
+  "fixed_F6_execution_ticket_family_relation": "固定F6のOS L2は旧execution-ticket-requests.md、OS L11は旧execution-ticket-validation.mdを名指しし、HXT-RQ-01〜07の受入は全件未実行。選択sourceであるexecution-ticket-intake.mdは直接名指しされず、family比較から個別bindingを生成しない。",
+  "prior_completed_complement_slice": {"ranks": "661-700", "commit": "57e5173bd", "last_id": "LEGACY-CAND-LINE-001228", "json_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-661-700-2026-10-01.json", "json_sha256": "24fba5930b909696a5b443a015e9cfc762f4300ecc1ecf4e556da6ca875ce265", "md_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-661-700-2026-10-01.md", "md_sha256": "b07ecfdb13fcd4124d9dbab57773e0456750b10e4b41a49d8598f2adc15d7d93"},
   "purpose": "effective explanation marker-negative complement ranks 701–740の旧source行意味監査。採用・successor・実装・受入・source closureを生成しない。",
   "pool_derivation": {
     "baseline_ref": "#2353 reconciliation.row_records exact source_item_id join",
