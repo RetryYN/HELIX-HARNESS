@@ -1,11 +1,11 @@
 # Candidate 4755 説明行の規範語スクリーン補集合 ranks 1141–1180 意味監査
 
-> 監査基点 `9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba`。旧archive source、source-line/asset ledger、固定F6 HARNESS/HELIX-OS/HELIX-LABO L2/L11、PO判断と判断記録が参照するreceipt、行別semantic-routingを照合した。採択、successor、実装、受入、source closureは生成しない。
+> 監査基点 `fbf830ba5df25cc82da47cb1f9814cf188a51576`。旧archive source、source-line/asset ledger、固定F6 HARNESS/HELIX-OS/HELIX-LABO L2/L11、PO判断と判断記録が参照するreceipt、行別semantic-routingを照合した。採択、successor、実装、受入、source closureは生成しない。
 
 ## 対象と再構成
 
 - #2353の4,755 `row_records`へ#2356、#2360、#2363、#2366、#2367、#2368、#2369、#2381のexact-ID overlayを順に適用し、effective explanation 2,965行を再構成した。marker screen queueと既存semantic-review slicesのID unionは255件。これを除いた `2,965 - 255 = 2,710`行を数値ID順に順位付けした。
-- ranks 1141–1180は40行。rank 1140境界は`LEGACY-CAND-LINE-001912`。今回の最初の行は`LEGACY-CAND-LINE-001914`。#2461 mergeを含む指定基準origin/mainには隣接ranks 1101–1140 auditが未収載のため、その意味確認を先行証拠として主張しない。
+- ranks 1141–1180は40行。rank 1140境界は`LEGACY-CAND-LINE-001912`。今回の最初の行は`LEGACY-CAND-LINE-001914`。#2464で統合された隣接ranks 1101–1140監査の最終IDは`LEGACY-CAND-LINE-001912`であり、今回のpool再構成でも1140/1141境界を照合した。
 - 対象物理行はNFRの既存AC束縛、非機能観点、slice/既存owner対応、旧取り込み検証記録、archive原稿再構成コード例。各行を物理行単位で分離し、NFR間・table row間・code行間の条件を混ぜない。
 
 ## 固定F6の直接参照確認

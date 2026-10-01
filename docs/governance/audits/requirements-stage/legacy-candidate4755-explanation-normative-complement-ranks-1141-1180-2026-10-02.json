@@ -1,17 +1,17 @@
 {
   "schema_version": "helix-legacy-candidate4755-explanation-normative-complement-semantic-audit.v1",
   "audit_id": "legacy-candidate4755-explanation-normative-complement-ranks-1141-1180-2026-10-02",
-  "created_against_commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+  "created_against_commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
   "authority_effect": "none",
   "prior_completed_complement_slice": {
-    "ranks": "861-900",
-    "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
-    "last_id": "LEGACY-CAND-LINE-001536",
-    "json_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-861-900-2026-10-01.json",
-    "json_sha256": "eac55baf1020c701e4f4db8bef8edbee0929e28209b935189c16ebc82c8282e9",
-    "md_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-861-900-2026-10-01.md",
-    "md_sha256": "0ee890881b0bafd1ff382e2b1845b6e5d5c1e516fc0777cbf3cacfd0def656bb",
-    "note": "#2461 merge includes ranks 821–860 and 861–900; additional ranks 901–1140 are not in this origin/main baseline. This audit independently reconstructs full rank pool and makes no prior semantic verification claim for intervening ranks."
+    "ranks": "1101-1140",
+    "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
+    "last_id": "LEGACY-CAND-LINE-001912",
+    "json_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1101-1140-2026-10-02.json",
+    "json_sha256": "65af017228a3cdb4e61999f44af41a1652b6327632e3800b5082453b6e781463",
+    "md_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1101-1140-2026-10-02.md",
+    "md_sha256": "61b65669bf8ef03a45ca2d63239e77475e055d02292e7b3f69ae01204c7915e8",
+    "note": "#2464 merge includes ranks 1061–1140, including the immediately preceding 1101–1140 audit. This audit independently reconstructs the full rank pool and cross-checks the 1140/1141 boundary."
   },
   "purpose": "Semantic audit of numeric-ID ranks 1141–1180 in the effective-explanation marker-negative complement; no adoption, successor, implementation, acceptance or source closure is generated.",
   "pool_derivation": {
@@ -87,9 +87,12 @@
       "preceding_id": "LEGACY-CAND-LINE-001912",
       "this_first_rank": 1141,
       "this_first_id": "LEGACY-CAND-LINE-001914",
-      "origin_main_prior_audit": false,
+      "origin_main_prior_audit": true,
       "remote_prior_audit_rank901_940_commit": "45bafdd412d0f2af2b89f78d8da6a987e662d1c9",
-      "boundary_reconstructed_from_full_pool": true
+      "boundary_reconstructed_from_full_pool": true,
+      "prior_audit_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1101-1140-2026-10-02.json",
+      "prior_audit_commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
+      "prior_audit_sha256": "65af017228a3cdb4e61999f44af41a1652b6327632e3800b5082453b6e781463"
     }
   },
   "pinned_reconstruction_inputs": [
@@ -164,49 +167,49 @@
     },
     {
       "role": "exact-ID classification overlay in order",
-      "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+      "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
       "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164"
     },
     {
       "role": "exact-ID classification overlay in order",
-      "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+      "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
       "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb"
     },
     {
       "role": "exact-ID classification overlay in order",
-      "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+      "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
       "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384"
     },
     {
       "role": "exact-ID classification overlay in order",
-      "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+      "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
       "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6"
     },
     {
       "role": "exact-ID classification overlay in order",
-      "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+      "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
       "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d"
     },
     {
       "role": "exact-ID classification overlay in order",
-      "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+      "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
       "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95"
     },
     {
       "role": "exact-ID classification overlay in order",
-      "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+      "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-metadata10-classification-proposal-2026-09-30.json",
       "sha256": "512f9ceafe935648d459d6b268ff4d3952f0e8264298213ad278256236b5f40e"
     },
     {
       "role": "#2369 exact 000841/000857 explanation to condition correction",
-      "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+      "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30.json",
       "sha256": "5ed02b037f78ca25991b396e232e8b1ee754b0c91b056ed6640c9fb1c47cf0c0"
     }
@@ -299,13 +302,13 @@
   },
   "source_ledgers": [
     {
-      "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+      "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
       "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
       "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
       "rows": 4755
     },
     {
-      "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+      "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
       "path": "docs/governance/legacy-asset-disposition.jsonl",
       "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
     }
@@ -355,89 +358,89 @@
     },
     {
       "role": "HARNESS PO decision",
-      "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+      "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
       "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
       "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
       "line_or_section": 1
     },
     {
       "role": "HELIX-OS PO decision",
-      "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+      "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
       "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
       "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
       "line_or_section": 1
     },
     {
       "role": "HELIX-LABO PO decision",
-      "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+      "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
       "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
       "sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0",
       "line_or_section": 1
     },
     {
       "role": "PO-referenced coverage receipt; source ID/path direct-match search only",
-      "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+      "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
       "path": "docs/governance/audits/requirement-registration/harness-content-quality-coverage-receipt-2026-09-27-r2.json",
       "sha256": "2d9042062172162cc4f87de523c28ca12376f3d070c239effbdaf4fb85597345"
     },
     {
       "role": "PO-referenced coverage receipt; source ID/path direct-match search only",
-      "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+      "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
       "path": "docs/governance/audits/requirement-registration/harness-convergence-coverage-receipt-2026-09-27.json",
       "sha256": "b3ff17f9e58c735f08a5431cf51457b5f32187d4edcce3c32ab141cae7db35c6"
     },
     {
       "role": "PO-referenced coverage receipt; source ID/path direct-match search only",
-      "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+      "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
       "path": "docs/governance/audits/requirement-registration/harness-effect-acceptance-coverage-receipt-2026-09-27.json",
       "sha256": "d67f3379cfc5c6884a7aa82497473267caf5f4bed309c3b84c4307ced927edb5"
     },
     {
       "role": "PO-referenced coverage receipt; source ID/path direct-match search only",
-      "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+      "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
       "path": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json",
       "sha256": "1d602a8e28f6cbbc82de950f8fc4b440efd197884514702bcd535f390b21651b"
     },
     {
       "role": "PO-referenced coverage receipt; source ID/path direct-match search only",
-      "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+      "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
       "path": "docs/governance/audits/requirement-registration/helix-harness-dependency-conditions-coverage-receipt-2026-09-27-r2.json",
       "sha256": "f09051ffdcd115792827a111aeb433b8ae258298b0a3c38e8fe39a9bbb4d7ee4"
     },
     {
       "role": "PO-referenced coverage receipt; source ID/path direct-match search only",
-      "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+      "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
       "path": "docs/governance/audits/requirement-registration/helix-harness-design-composition-coverage-receipt-2026-09-27-r2.json",
       "sha256": "9bec4244981a8852a501d5578becd2d796cd7fd44ef8c1f7717d2922a6e437ec"
     },
     {
       "role": "PO-referenced coverage receipt; source ID/path direct-match search only",
-      "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+      "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
       "path": "docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json",
       "sha256": "c6c3b2863eaf026ac61c4e272acc197c6021c24e74b4899a23631c74b67b8860"
     },
     {
       "role": "PO-referenced coverage receipt; source ID/path direct-match search only",
-      "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+      "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
       "path": "docs/governance/audits/requirement-registration/ops-o1-o2-coverage-receipt-2026-09-29.json",
       "sha256": "b3bde2d942f62470f7a3a45b09b1b6a4e6ce4b6e6e5aac7d77897f24f041d164"
     },
     {
       "role": "rank 921 binding exception decision reference",
-      "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+      "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
       "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
       "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
     }
   ],
   "semantic_routing_inventory_pin": {
-    "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+    "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
     "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
     "sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
     "selected_rows": 40,
     "preserved_source_classification_and_authority_per_row": true
   },
   "pin_reachability": {
-    "baseline_commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+    "baseline_commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
     "fixed_F6_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
     "fixed_documents": [
       {
@@ -480,59 +483,59 @@
     "PO_decision_records": [
       {
         "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
       },
       {
         "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
       },
       {
         "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0"
       }
     ],
     "PO_referenced_receipts": [
       {
         "path": "docs/governance/audits/requirement-registration/harness-content-quality-coverage-receipt-2026-09-27-r2.json",
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "sha256": "2d9042062172162cc4f87de523c28ca12376f3d070c239effbdaf4fb85597345"
       },
       {
         "path": "docs/governance/audits/requirement-registration/harness-convergence-coverage-receipt-2026-09-27.json",
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "sha256": "b3ff17f9e58c735f08a5431cf51457b5f32187d4edcce3c32ab141cae7db35c6"
       },
       {
         "path": "docs/governance/audits/requirement-registration/harness-effect-acceptance-coverage-receipt-2026-09-27.json",
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "sha256": "d67f3379cfc5c6884a7aa82497473267caf5f4bed309c3b84c4307ced927edb5"
       },
       {
         "path": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json",
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "sha256": "1d602a8e28f6cbbc82de950f8fc4b440efd197884514702bcd535f390b21651b"
       },
       {
         "path": "docs/governance/audits/requirement-registration/helix-harness-dependency-conditions-coverage-receipt-2026-09-27-r2.json",
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "sha256": "f09051ffdcd115792827a111aeb433b8ae258298b0a3c38e8fe39a9bbb4d7ee4"
       },
       {
         "path": "docs/governance/audits/requirement-registration/helix-harness-design-composition-coverage-receipt-2026-09-27-r2.json",
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "sha256": "9bec4244981a8852a501d5578becd2d796cd7fd44ef8c1f7717d2922a6e437ec"
       },
       {
         "path": "docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json",
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "sha256": "c6c3b2863eaf026ac61c4e272acc197c6021c24e74b4899a23631c74b67b8860"
       },
       {
         "path": "docs/governance/audits/requirement-registration/ops-o1-o2-coverage-receipt-2026-09-29.json",
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "sha256": "b3bde2d942f62470f7a3a45b09b1b6a4e6ce4b6e6e5aac7d77897f24f041d164"
       }
     ],
@@ -542,12 +545,12 @@
       "audit_sha256": "7ff3c2b5625cd0089404d3f7f3b01352e97368fe696dd17c34a63d55b62514f6",
       "decision_record": {
         "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
       },
       "receipt": {
         "path": "docs/governance/audits/requirement-registration/ops-o1-o2-coverage-receipt-2026-09-29.json",
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "sha256": "b3bde2d942f62470f7a3a45b09b1b6a4e6ce4b6e6e5aac7d77897f24f041d164"
       },
       "selected_target_rows_match_exception": false
@@ -647,7 +650,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1914,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -664,7 +667,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1914,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -678,7 +681,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -692,7 +695,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -773,7 +776,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1915,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -790,7 +793,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1915,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -804,7 +807,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -818,7 +821,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -899,7 +902,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1916,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -916,7 +919,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1916,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -930,7 +933,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -944,7 +947,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -1025,7 +1028,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1917,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -1042,7 +1045,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1917,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -1056,7 +1059,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -1070,7 +1073,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -1151,7 +1154,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1918,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -1168,7 +1171,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1918,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -1182,7 +1185,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -1196,7 +1199,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -1277,7 +1280,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1919,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -1294,7 +1297,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1919,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -1308,7 +1311,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -1322,7 +1325,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -1403,7 +1406,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1920,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -1420,7 +1423,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1920,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -1434,7 +1437,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -1448,7 +1451,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -1529,7 +1532,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1921,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -1546,7 +1549,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1921,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -1560,7 +1563,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -1574,7 +1577,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -1655,7 +1658,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1922,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -1672,7 +1675,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1922,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -1686,7 +1689,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -1700,7 +1703,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -1781,7 +1784,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1923,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -1798,7 +1801,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1923,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -1812,7 +1815,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -1826,7 +1829,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -1903,7 +1906,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1924,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -1920,7 +1923,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1924,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -1934,7 +1937,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -1948,7 +1951,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -2025,7 +2028,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1925,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -2042,7 +2045,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1925,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -2056,7 +2059,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -2070,7 +2073,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -2147,7 +2150,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1926,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -2164,7 +2167,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1926,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -2178,7 +2181,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -2192,7 +2195,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -2269,7 +2272,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1928,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -2286,7 +2289,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1928,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -2300,7 +2303,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -2314,7 +2317,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -2391,7 +2394,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1929,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -2408,7 +2411,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1929,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -2422,7 +2425,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -2436,7 +2439,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -2513,7 +2516,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1931,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -2530,7 +2533,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1931,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -2544,7 +2547,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -2558,7 +2561,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -2639,7 +2642,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1933,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -2656,7 +2659,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1933,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -2670,7 +2673,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -2684,7 +2687,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -2765,7 +2768,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1934,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -2782,7 +2785,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1934,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -2796,7 +2799,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -2810,7 +2813,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -2891,7 +2894,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1935,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -2908,7 +2911,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1935,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -2922,7 +2925,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -2936,7 +2939,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -3017,7 +3020,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1936,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -3034,7 +3037,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1936,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -3048,7 +3051,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -3062,7 +3065,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -3143,7 +3146,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1937,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -3160,7 +3163,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1937,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -3174,7 +3177,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -3188,7 +3191,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -3269,7 +3272,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1938,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -3286,7 +3289,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1938,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -3300,7 +3303,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -3314,7 +3317,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -3391,7 +3394,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1939,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -3408,7 +3411,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1939,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -3422,7 +3425,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -3436,7 +3439,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -3513,7 +3516,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1940,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -3530,7 +3533,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1940,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -3544,7 +3547,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -3558,7 +3561,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -3631,7 +3634,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1941,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -3648,7 +3651,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1941,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -3662,7 +3665,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -3676,7 +3679,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -3749,7 +3752,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1942,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -3766,7 +3769,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1942,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -3780,7 +3783,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -3794,7 +3797,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -3871,7 +3874,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1944,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -3888,7 +3891,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1944,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -3902,7 +3905,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -3916,7 +3919,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -3993,7 +3996,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1945,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -4010,7 +4013,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1945,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -4024,7 +4027,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -4038,7 +4041,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -4119,7 +4122,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1946,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -4136,7 +4139,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1946,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -4150,7 +4153,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -4164,7 +4167,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -4241,7 +4244,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1947,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -4258,7 +4261,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1947,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -4272,7 +4275,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -4286,7 +4289,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -4363,7 +4366,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1948,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -4380,7 +4383,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1948,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -4394,7 +4397,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -4408,7 +4411,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -4485,7 +4488,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1950,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -4502,7 +4505,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1950,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -4516,7 +4519,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -4530,7 +4533,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -4607,7 +4610,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1951,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -4624,7 +4627,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1951,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -4638,7 +4641,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -4652,7 +4655,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -4729,7 +4732,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1952,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -4746,7 +4749,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1952,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -4760,7 +4763,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -4774,7 +4777,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -4851,7 +4854,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1955,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -4868,7 +4871,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1955,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -4882,7 +4885,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -4896,7 +4899,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -4977,7 +4980,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1956,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -4994,7 +4997,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1956,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -5008,7 +5011,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -5022,7 +5025,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -5103,7 +5106,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1957,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -5120,7 +5123,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1957,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -5134,7 +5137,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -5148,7 +5151,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -5229,7 +5232,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1958,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -5246,7 +5249,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1958,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -5260,7 +5263,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -5274,7 +5277,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -5355,7 +5358,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1959,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -5372,7 +5375,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1959,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -5386,7 +5389,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -5400,7 +5403,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -5481,7 +5484,7 @@
         }
       ],
       "semantic_routing_record": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
         "line": 1960,
         "whole_file_sha256": "935740de546d71626131e5114ebbdff7d456c109e6efbda79cde938dc2fb8dc3",
@@ -5498,7 +5501,7 @@
         "candidate_identity": null
       },
       "source_line_ledger": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 1960,
         "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
@@ -5512,7 +5515,7 @@
         "decision_record": null
       },
       "asset_disposition": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "docs/governance/legacy-asset-disposition.jsonl",
         "line": 815,
         "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -5526,7 +5529,7 @@
         "pair_ids": []
       },
       "source_snapshot_pin": {
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
         "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
@@ -5582,59 +5585,59 @@
     "PO_decision_records": [
       {
         "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
       },
       {
         "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
       },
       {
         "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0"
       }
     ],
     "PO_referenced_receipts": [
       {
         "path": "docs/governance/audits/requirement-registration/harness-content-quality-coverage-receipt-2026-09-27-r2.json",
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "sha256": "2d9042062172162cc4f87de523c28ca12376f3d070c239effbdaf4fb85597345"
       },
       {
         "path": "docs/governance/audits/requirement-registration/harness-convergence-coverage-receipt-2026-09-27.json",
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "sha256": "b3ff17f9e58c735f08a5431cf51457b5f32187d4edcce3c32ab141cae7db35c6"
       },
       {
         "path": "docs/governance/audits/requirement-registration/harness-effect-acceptance-coverage-receipt-2026-09-27.json",
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "sha256": "d67f3379cfc5c6884a7aa82497473267caf5f4bed309c3b84c4307ced927edb5"
       },
       {
         "path": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json",
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "sha256": "1d602a8e28f6cbbc82de950f8fc4b440efd197884514702bcd535f390b21651b"
       },
       {
         "path": "docs/governance/audits/requirement-registration/helix-harness-dependency-conditions-coverage-receipt-2026-09-27-r2.json",
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "sha256": "f09051ffdcd115792827a111aeb433b8ae258298b0a3c38e8fe39a9bbb4d7ee4"
       },
       {
         "path": "docs/governance/audits/requirement-registration/helix-harness-design-composition-coverage-receipt-2026-09-27-r2.json",
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "sha256": "9bec4244981a8852a501d5578becd2d796cd7fd44ef8c1f7717d2922a6e437ec"
       },
       {
         "path": "docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json",
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "sha256": "c6c3b2863eaf026ac61c4e272acc197c6021c24e74b4899a23631c74b67b8860"
       },
       {
         "path": "docs/governance/audits/requirement-registration/ops-o1-o2-coverage-receipt-2026-09-29.json",
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "sha256": "b3bde2d942f62470f7a3a45b09b1b6a4e6ce4b6e6e5aac7d77897f24f041d164"
       }
     ],
@@ -5644,12 +5647,12 @@
       "audit_sha256": "7ff3c2b5625cd0089404d3f7f3b01352e97368fe696dd17c34a63d55b62514f6",
       "decision_record": {
         "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
       },
       "receipt": {
         "path": "docs/governance/audits/requirement-registration/ops-o1-o2-coverage-receipt-2026-09-29.json",
-        "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
+        "commit": "fbf830ba5df25cc82da47cb1f9814cf188a51576",
         "sha256": "b3bde2d942f62470f7a3a45b09b1b6a4e6ce4b6e6e5aac7d77897f24f041d164"
       },
       "note": "rank 921 is an existing adopted source-row binding with direct F6 refs; the selected trace.md rows were independently searched and none match that exact requirements.md source row/path-line digest."
